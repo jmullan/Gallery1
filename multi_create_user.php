@@ -110,8 +110,8 @@ if (isset($create))
 		}
 	       	print "<br><br>" .
 		       	sprintf(_("%s added, %s skipped"), 
-				pluralize_n($total_added, _("1 user") , _("users"), _("0 users")),
-			       	pluralize_n($total_skipped, _("1 user") , _("users"), _("0 users")));
+				pluralize_n2(ngettext("1 user", "%d users", $total_added), $total_added),
+			       	pluralize_n2(ngettext("1 user", "%d users", $total_skipped), $total_skipped));
 	       	?>
 		       	<center><br><br>
 		       	<form><input type="submit" name="dismiss" value="<?php echo _("Dismiss") ?>"></form>

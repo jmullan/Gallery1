@@ -21,13 +21,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-12 16:26+0200\n"
+"POT-Creation-Date: 2004-05-13 12:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: ../errors/configmode.php:11
 msgid "Gallery in Configuration Mode"
@@ -394,47 +395,46 @@ msgstr ""
 msgid "%sClick here%s to see more details"
 msgstr ""
 
-#: ../setup/check_versions.php:69
+#: ../setup/check_versions.php:70
 #, php-format
-msgid "%s missing, corrupt or older than expected."
+msgid "One file is missing, corrupt or older than expected."
+msgid_plural "%d files are missing, corrupt or older than expected."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../setup/check_versions.php:72 ../setup/check_versions.php:103
+msgid "All files okay."
 msgstr ""
 
-#: ../setup/check_versions.php:70 ../setup/check_versions.php:98
-#: ../setup/check_versions.php:122
-msgid "1 file"
-msgstr ""
-
-#: ../setup/check_versions.php:71 ../setup/check_versions.php:98
-#: ../setup/check_versions.php:123
-msgid "files"
-msgstr ""
-
-#: ../setup/check_versions.php:71 ../setup/check_versions.php:98
-#: ../setup/check_versions.php:123
-msgid "No files"
-msgstr ""
-
-#: ../setup/check_versions.php:76
+#: ../setup/check_versions.php:79
 #, php-format
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr ""
 
-#: ../setup/check_versions.php:97
+#: ../setup/check_versions.php:101
 #, php-format
-msgid "%s more recent than expected."
-msgstr ""
+msgid "One file is more recent than expected."
+msgid_plural "%d files are more recent than expected."
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../setup/check_versions.php:104
+#: ../setup/check_versions.php:111
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr ""
 
-#: ../setup/check_versions.php:121
+#: ../setup/check_versions.php:129
 #, php-format
-msgid "%s up-to-date."
+msgid "One file is up-to-date."
+msgid_plural "%d files are up-to-date."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../setup/check_versions.php:131
+msgid "No files are up-to-date."
 msgstr ""
 
-#: ../setup/check_versions.php:127
+#: ../setup/check_versions.php:137
 msgid "The following files are up-to-date."
 msgstr ""
 
@@ -1893,36 +1893,34 @@ msgstr ""
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr ""
 
-#: ../setup/confirm.inc:456 ../setup/confirm.inc:471
+#: ../setup/confirm.inc:456 ../setup/confirm.inc:472
 msgid "Edit Config"
 msgstr ""
 
-#: ../setup/confirm.inc:458 ../setup/confirm.inc:473
+#: ../setup/confirm.inc:458 ../setup/confirm.inc:474
 msgid "Save Config"
 msgstr ""
 
 #: ../setup/confirm.inc:461
 #, php-format
-msgid "%s.  Details below."
-msgstr ""
+msgid "One error."
+msgid_plural "%d errors."
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../setup/confirm.inc:461
-msgid "One error"
+msgid "No errors."
 msgstr ""
 
-#: ../setup/confirm.inc:461
-msgid "errors"
-msgstr ""
-
-#: ../setup/confirm.inc:461
-msgid "no errors"
-msgstr ""
-
-#: ../setup/confirm.inc:476
-msgid "There are errors in your configuration."
+#: ../setup/confirm.inc:462
+msgid "See Details below."
 msgstr ""
 
 #: ../setup/confirm.inc:477
+msgid "There are errors in your configuration."
+msgstr ""
+
+#: ../setup/confirm.inc:478
 msgid "Please go back and fix them!"
 msgstr ""
 

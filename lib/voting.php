@@ -300,9 +300,7 @@ function showResultsGraph($num_rows) {
 		$name_string.= $desc;
 		$name_string.= "</a>";
 		$name_string.= " - ".
-		      	pluralize_n($results_count[$element], _("1 voter"), 
-					_("voters"), 
-					_("0 voters"));
+		      	pluralize_n2(ngettext("1 voter", "%d voters", $results_count[$element]), $results_count[$element]);
 	       	$graph[$name_string]=$count;
 	}
 
@@ -314,10 +312,8 @@ function showResultsGraph($num_rows) {
 	$buf .="\n<br>";
 	if ($graph) {
                 $buf .="<span class=\"title\">".
-			sprintf(_("Results from %s."),
-					pluralize_n(sizeof($voters), 
-						_("1 voter"), _("voters"), 
-						_("0 voters"))).
+		      	pluralize_n2(ngettext("Result from one voter", 
+			"Result of %d voters", sizeof($voters)), sizeof($voters)).
                         "</span>";
                 if ($gallery->album->getPollType() == "critique") {
                         $key_string="";
@@ -369,7 +365,8 @@ function showResults($id) {
 
 	foreach ($vote_tally as $key => $value) {
 		$buf .= sprintf(_("%s: %s"), $nv_pairs[$key]["name"],
-			pluralize_n($value, _("1 vote"), _("votes"), _("0 votes"))). "<br>";
+		      	pluralize_n2(ngettext("one vote", "%d votes", $value), $value)) . "<br>";
+
 	}
 	return $buf;
 }

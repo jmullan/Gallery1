@@ -167,7 +167,7 @@ if (isset($go)) {
 		print _("search albums here") . "<p>";
 	    }
 	    echo "<tr><td valign=top><span class=desc>".
-		    pluralize_n($albumMatch, _("1 Album Match"), _("Album Matches"), _("No Album Matches")).".</span></td></tr>";
+		    pluralize_n2(ngettext("One album matches", "%d albums match", $albumMatch), $albumMatch, _("No album matches")) .".</span></td></tr>";
 	    echo "</table><br>";
     }
     if ($searchstring || $item_owners) {
@@ -230,10 +230,9 @@ if (isset($go)) {
 	else {
 		print _("search photos here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".pluralize_n($photoMatch,
-			    _("1 Photo Match"), _("Photo Matches"), 
-			    _("No Photo Matches")).".
-		    </span></td></tr>";
+	    echo "<tr><td valign=top><span class=desc>".
+			pluralize_n2(ngettext("One photo matches", "%d photos match", $photoMatch), $photoMatch, _("No photo matches")).".
+		    "</span></td></tr>";
 	    echo "</table><br>";
 	}
     if ($searchstring || $commenters) {
@@ -307,7 +306,9 @@ if (isset($go)) {
 	else {
 		print _("search comments here") . "<p>";
 	}
-	    echo "<tr><td valign=top><span class=desc>".pluralize_n($commentMatch, _("1 Comment Match"), _("Comment Matches"), _("No Comment Matches")) .
+	    echo "<tr><td valign=top><span class=desc>".
+			pluralize_n2(ngettext("One comment Matches", "%d comment match", $commentMatch), 
+				$commentMatch, _("No comment matches")) .
 		    "</span></td></tr>";
 	    echo "</table><br>";
 	}

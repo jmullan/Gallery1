@@ -1925,7 +1925,7 @@ function printChildren($albumName,$depth=0) {
 				$val2 = $nestedAlbum->fields['title'];
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
 					&& !$gallery->session->offline) {
-				    $val3 = "(" . pluralize_n($nestedAlbum->getClicks(), _("1 hit"), _("hits"), _("0 hits")) . ")";
+				    $val3 = "(" . pluralize_n2(ngettext("1 hit", "%d hits", $nestedAlbum->getClicks()), $nestedAlbum->getClicks()) . ")";
 				} else {
 				    $val3 = "";
 				}
@@ -2279,7 +2279,7 @@ function galleryDocs($class='') {
 	global $gallery;
 
 	if (fs_file_exists(dirname(__FILE__) .'/docs/index.html')) {
-		if (isset($gallery->app->photoAlbumUrl)) {
+		if (isset($gallery->app->photoAlbumURL)) {
 			$url=$gallery->app->photoAlbumURL . '/docs/index.html';
 		}
 		else {  // When first time config without $gallery set.

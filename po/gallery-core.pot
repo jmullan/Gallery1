@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2004-05-12 16:26+0200\n"
+"POT-Creation-Date: 2004-05-13 12:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,14 +206,14 @@ msgstr[1] ""
 msgid "no images"
 msgstr ""
 
-#: ../albums.php:130 ../captionator.php:168 ../view_album.php:269
+#: ../albums.php:130 ../view_album.php:269
 #, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:130 ../captionator.php:168
+#: ../albums.php:130
 msgid "no pages"
 msgstr ""
 
@@ -321,34 +321,34 @@ msgstr ""
 msgid "Last changed on %s."
 msgstr ""
 
-#: ../albums.php:358
+#: ../albums.php:359
 #, php-format
-msgid "This album contains 1 item"
+msgid "This album contains one item"
 msgid_plural "This album contains %d items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:362
+#: ../albums.php:364
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr ""
 
-#: ../albums.php:363 ../view_album.php:865 ../view_album.php:882
+#: ../albums.php:365 ../view_album.php:865 ../view_album.php:882
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:363
+#: ../albums.php:365
 msgid "0 times"
 msgstr ""
 
-#: ../albums.php:369
+#: ../albums.php:371
 msgid "reset counter"
 msgstr ""
 
-#: ../albums.php:399 ../view_album.php:1077
+#: ../albums.php:401 ../view_album.php:1077
 msgid "Comments available for this item."
 msgstr ""
 
@@ -370,10 +370,6 @@ msgstr ""
 
 #: ../captionator.php:168
 msgid "on"
-msgstr ""
-
-#: ../captionator.php:168
-msgid "pages"
 msgstr ""
 
 #: ../captionator.php:196 ../captionator.php:304
@@ -406,7 +402,7 @@ msgstr ""
 msgid "Photo Caption"
 msgstr ""
 
-#: ../captionator.php:264 ../extra_fields.php:101 ../lib/lang.php:532
+#: ../captionator.php:264 ../extra_fields.php:101 ../lib/lang.php:594
 msgid "Title"
 msgstr ""
 
@@ -414,7 +410,7 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: ../captionator.php:285 ../lib/lang.php:522
+#: ../captionator.php:285 ../lib/lang.php:584
 msgid "Capture Date"
 msgstr ""
 
@@ -478,22 +474,22 @@ msgstr ""
 msgid "No highlight"
 msgstr ""
 
-#: ../classes/Album.php:1269
+#: ../classes/Album.php:1286
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1561
+#: ../classes/Album.php:1578
 #, php-format
 msgid "Error %s getting EXIF data"
 msgstr ""
 
-#: ../classes/Album.php:2045
+#: ../classes/Album.php:2062
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2183
+#: ../classes/Album.php:2200
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -1076,7 +1072,7 @@ msgstr ""
 msgid "Configure Custom Fields"
 msgstr ""
 
-#: ../extra_fields.php:122 ../lib/lang.php:534
+#: ../extra_fields.php:122 ../lib/lang.php:596
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1658,19 +1654,19 @@ msgstr ""
 msgid "Invert Selection"
 msgstr ""
 
-#: ../lib/lang.php:521
+#: ../lib/lang.php:583
 msgid "Upload Date"
 msgstr ""
 
-#: ../lib/lang.php:523
+#: ../lib/lang.php:585
 msgid "Image Size"
 msgstr ""
 
-#: ../lib/lang.php:524 ../util.php:3069
+#: ../lib/lang.php:586 ../util.php:3069
 msgid "Additional EXIF Data"
 msgstr ""
 
-#: ../lib/lang.php:533
+#: ../lib/lang.php:595
 msgid "Description"
 msgstr ""
 
@@ -1693,69 +1689,58 @@ msgstr ""
 msgid "Album: %s"
 msgstr ""
 
-#: ../lib/voting.php:303 ../lib/voting.php:319
-msgid "1 voter"
-msgstr ""
-
-#: ../lib/voting.php:304 ../lib/voting.php:319
-msgid "voters"
-msgstr ""
-
-#: ../lib/voting.php:305 ../lib/voting.php:320
-msgid "0 voters"
-msgstr ""
-
-#: ../lib/voting.php:317
+#: ../lib/voting.php:303
 #, php-format
-msgid "Results from %s."
-msgstr ""
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] ""
+msgstr[1] ""
 
-#: ../lib/voting.php:328
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lib/voting.php:324
 #, php-format
 msgid "%s: %s points; "
 msgstr ""
 
-#: ../lib/voting.php:333
+#: ../lib/voting.php:329
 #, php-format
 msgid "Key - %s"
 msgstr ""
 
-#: ../lib/voting.php:339 ../poll_results.php:164
+#: ../lib/voting.php:335 ../poll_results.php:164
 msgid "No votes so far."
 msgstr ""
 
-#: ../lib/voting.php:360
+#: ../lib/voting.php:356
 msgid "Poll results:"
 msgstr ""
 
-#: ../lib/voting.php:363
+#: ../lib/voting.php:359
 msgid "No votes"
 msgstr ""
 
-#: ../lib/voting.php:367
+#: ../lib/voting.php:363
 #, php-format
 msgid "Number %d overall."
 msgstr ""
 
-#: ../lib/voting.php:371
+#: ../lib/voting.php:367
 #, php-format
 msgid "%s: %s"
 msgstr ""
 
-#: ../lib/voting.php:372 ../view_album.php:613
+#: ../lib/voting.php:368
 #, php-format
-msgid "1 vote"
+msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../lib/voting.php:372
-msgid "votes"
-msgstr ""
-
-#: ../lib/voting.php:372
-msgid "0 votes"
-msgstr ""
 
 #: ../login.php:37 ../login.php:43 ../publish_xp.php:53 ../publish_xp.php:97
 #, php-format
@@ -1998,16 +1983,11 @@ msgid "%s added, %s skipped"
 msgstr ""
 
 #: ../multi_create_user.php:113 ../multi_create_user.php:114
+#, php-format
 msgid "1 user"
-msgstr ""
-
-#: ../multi_create_user.php:113 ../multi_create_user.php:114
-msgid "users"
-msgstr ""
-
-#: ../multi_create_user.php:113 ../multi_create_user.php:114
-msgid "0 users"
-msgstr ""
+msgid_plural "%d users"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../multi_create_user.php:136
 msgid "Create Users"
@@ -2945,16 +2925,11 @@ msgid "Could not acquire lock (%s)!"
 msgstr ""
 
 #: ../util.php:1928
+#, php-format
 msgid "1 hit"
-msgstr ""
-
-#: ../util.php:1928
-msgid "hits"
-msgstr ""
-
-#: ../util.php:1928
-msgid "0 hits"
-msgstr ""
+msgid_plural "%d hits"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../util.php:1933
 msgid "Sub-albums"
@@ -3260,6 +3235,13 @@ msgstr ""
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr ""
+
+#: ../view_album.php:613
+#, php-format
+msgid "1 vote"
+msgid_plural "%d votes"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../view_album.php:618
 msgid "You can change your choices if you wish."

@@ -66,9 +66,12 @@ list($oks, $errors, $warnings)=checkVersions(false);
 if  ($errors) { ?>
 <table class="inner" width="100%">
 <tr>
-	<td class="errorlong" colspan="2"><?php print sprintf(_("%s missing, corrupt or older than expected."), 
-						pluralize_n(count($errors), _("1 file"), 
-						_("files"), _("No files"))); ?></td>
+	<td class="errorlong" colspan="2">
+		<?php echo pluralize_n2(ngettext("One file is missing, corrupt or older than expected.", 
+					"%d files are missing, corrupt or older than expected.", count($errors)), 
+						count($errors), _("All files okay."));
+		?>
+	</td>
 </tr>
 <?php 
 	if ($show_details) { ?>
@@ -94,8 +97,12 @@ if ($warnings) {
 <table class="inner" width="100%">
 <tr>
 
-	<td class="warninglong" colspan="2"><?php print sprintf(_("%s more recent than expected."), 
-							pluralize_n(count($warnings), _("1 file"), _("files"), _("No files"))); ?></td>
+	<td class="warninglong" colspan="2">
+	<?php echo pluralize_n2(ngettext("One file is more recent than expected.", 
+				"%d files are more recent than expected.", count($warnings)),
+					count($warnings), _("All files okay.")); 
+	?>
+	</td>
 </tr>
 <?php
 	if ($show_details) {?>
@@ -118,9 +125,12 @@ if ($warnings) {
 
 <table class="inner" width="100%">
 <tr>
-	<td class="successlong" colspan="2"><?php print sprintf(_("%s up-to-date."), 
-						pluralize_n(count($oks), _("1 file"), 
-						_("files"), _("No files"))); ?></td>
+	<td class="successlong" colspan="2">
+		<?php echo pluralize_n2(ngettext("One file is up-to-date.",
+					"%d files are up-to-date.", count($oks)),
+					count($oks),  _("No files are up-to-date."));
+		ß?>
+	</td>
 </tr><?php 
 if ($show_details && $oks) {
 	echo "\n<tr>";

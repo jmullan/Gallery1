@@ -356,7 +356,7 @@ for ($i = $start; $i <= $end; $i++) {
    <?php 
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
 	$visibleItems=array_sum($gallery->album->numVisibleItems($gallery->user));
-	echo pluralize_n2(ngettext("This album contains 1 item", "This album contains %d items", $visibleItems));	
+	echo pluralize_n2(ngettext("This album contains one item", "This album contains %d items", $visibleItems), $visibleItems);	
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
    <br><br><?php

@@ -610,7 +610,7 @@ if (canVote())
 			$voteCount=$gallery->album->getPollScale();
 			print "  ".
 				sprintf(_("You have a total of %s and can change them if you wish."), 
-					pluralize_n2(ngettext("1 vote", "%d votes", $voteCount))) .
+					pluralize_n2(ngettext("1 vote", "%d votes", $voteCount), $voteCount)) .
 				'</span><p>';
  		}
  		else
@@ -854,7 +854,7 @@ if ($numPhotos) {
 				echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
  				echo "\n<br>";
 				$visibleItems=array_sum($myAlbum->numVisibleItems($gallery->user));
-				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems)) . '.';
+				echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visibleItems), $visibleItems) . '.';
 				$lastCommentDate = $myAlbum->lastCommentDate();
 				if ($lastCommentDate > 0) {
 					print lastCommentString($lastCommentDate, $displayCommentLegend);
@@ -862,7 +862,7 @@ if ($numPhotos) {
 				echo '</span><br>';
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
 					echo '<span class="viewcounter">';
-					echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()));
+					echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()), $myAlbum->getClicks());
 					echo ".<br></span>";
 				}
 				echo '</span>';
@@ -879,7 +879,7 @@ if ($numPhotos) {
 				echo("<br>");
 				if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
 					echo '<span class="viewcounter">';
-					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)));
+					echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));
 					echo ".<br></span>";
 				}
 			}
