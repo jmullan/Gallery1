@@ -61,7 +61,13 @@ list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $
 list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 
 list ($page, $set_albumListPage) =
-getRequestVar(array('page', 'set_albumListPage'));
+	getRequestVar(array('page', 'set_albumListPage'));
+
+if (empty($type)) {
+	/* We assume was called direct. So we call show defaults */
+	require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
+	header("Location: ". unhtmlentities(defaultStatsUrl('views')));
+}
 
 $rating = "";
 $ratingCount = "";
