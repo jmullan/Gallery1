@@ -31,7 +31,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <?
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: albums.php");
+        header("Location: " . makeAlbumUrl());
 	return;
 }
 
@@ -39,10 +39,7 @@ if ($id) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
 		// That photo no longer exists.
-		header("Location: " .
-			$gallery->app->photoAlbumURL . 
-			"/" . 
-			$gallery->session->albumName);
+	        header("Location: " . makeAlbumUrl($gallery->session->albumName));
 		return;
 	}
 } else {

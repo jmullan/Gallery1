@@ -135,7 +135,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 				 $gallery->session->albumName);
 		header("Location: $url");
 	} else {
-		header("Location: albums.php");
+	        header("Location: " . makeAlbumUrl());
 	}
 } else if (!strcmp($cmd, "reset-album-clicks")) {
 		$myAlbum = new Album();
@@ -145,7 +145,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		// this is a popup do dismiss and reload!
 		dismissAndReload();
 	} else {
-		header("Location: albums.php");
+	        header("Location: " . makeAlbumUrl());
 	}
 
 } else if (!strcmp($cmd, "delete-comment")) {
@@ -154,7 +154,7 @@ if (!strcmp($cmd, "remake-thumbnail")) {
 		$gallery->album->save();
 		dismissAndReload();
 	} else {
-		header("Location: albums.php");
+	        header("Location: " . makeAlbumUrl());
 	}
 
 } else if (!empty($return)) {

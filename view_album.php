@@ -31,12 +31,12 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 <? 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: albums.php");
+	header("Location: " . makeAlbumUrl());
 	return;
 }
 
 if (!$gallery->album->isLoaded()) {
-	header("Location: albums.php");
+	header("Location: " . makeAlbumUrl());
 	return;
 }
 
