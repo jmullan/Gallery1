@@ -32,8 +32,13 @@ foreach ($sensitiveList as $sensitive) {
 		exit;
 	}
 }
-?>
-<?php
+
+// Optional developer hook - location to add useful
+// functions such as code profiling modules
+if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
+	require_once(dirname(__FILE__) . "/lib/devel.php");
+}
+
 /*
  * Turn down the error reporting to just critical errors for now.
  * In v1.2, we know that we'll have lots and lots of warnings if

@@ -1,3 +1,15 @@
+2004-05-25  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b144
+
+	* Change:  Add "php_value session.save_handler files" to 
+	  the php_values.template to proactively prevent some of the 
+	  cases where it's set to "user" system-wide.
+
+	* Change: Add a developer-file hook to init.php.  If the file
+	  "lib/devel.php" is present on your local system, it will be 
+	  included near the top of init.php.  It's a logical location for
+	  code profiling modules and such that shouldn't be checked into
+	  CVS, but you don't want getting overwritten with each cvs up.
+
 2004-05-25  Jay Rossiter <cryptographite@users.sf.net>  1.4.4-cvs-b143
 
 	* Change: Only display visible (non-hidden) albums
