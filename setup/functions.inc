@@ -339,7 +339,7 @@ function check_exec() {
 	$success = array();
 	$fail = array();
 	$warn = array();
-	if (!empty($disabled) && eregi($disabled, "exec")) {
+	if (!empty($disabled) && eregi("exec", $disabled)) {
 		$fail["fail-exec"] = 1;
 	}
 	else {
