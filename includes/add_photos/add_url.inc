@@ -40,11 +40,11 @@
 ?>
 <input type="text" name="urls[]" size="40">
 <p>
-<input type="radio" name="setCaption" value="0"><?php echo _("Leave blank if no caption is specified.") ?>
-<br>
-<input type="radio" name="setCaption" value="1" checked><?php echo _("Set photo captions with original filenames.") ?>
-<br>
-<input type="radio" name="setCaption" value="2"><?php echo _("Set photo captions with file creation times.") ?>
+<?php
+	echo _("How should the captions be ?");
+	 echo "\n<br><br>";
+	include(dirname(__FILE__) .'/captionOptions.inc.php');
+?>
 </p>
 <?php
 if (isset($gallery->app->watermarkDir)) {
