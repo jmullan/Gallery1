@@ -1,14 +1,17 @@
 <html>
 <head>
   <title>Gallery Configuration</title>
+  <link rel="stylesheet" type="text/css" href="../css/gallery_style.css.default">
 </head>
 <body>
+
 <?
 require("functions.inc");
 
 if (file_exists("../config.php")) {
 	include("../config.php");
 }
+
 if (function_exists("posix_getpwuid")) {
 	$rec = posix_getpwuid(posix_getuid());
 	$webserver_user = $rec["name"];
