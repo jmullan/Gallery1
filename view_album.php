@@ -129,7 +129,7 @@ if ($numPhotos) {
 					$album->getThumbnailTag($i) .
 					"</a>");
 			} else {
-				echo("<a href=view_photo.php?index=$i>" . 
+				echo("<a href=$albumName/$i>" . 
 					$album->getThumbnailTag($i) .
 					"</a>");
 			}
