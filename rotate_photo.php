@@ -48,7 +48,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-
+<span class="popup">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if ($rotate) {
@@ -100,5 +100,6 @@ if ($gallery->session->albumName && isset($index)) {
 }
 ?>
 
+</span>
 </body>
 </html>

@@ -36,7 +36,7 @@ require($GALLERY_BASEDIR . 'init.php'); ?>
 <?php
 function image($name) {
 	global $GALLERY_BASEDIR;
-	return $GALLERY_BASEDIR . "images/$name";
+	return getImagePath("$name");
 }
 ?>
 <html>
@@ -47,8 +47,9 @@ function image($name) {
 
 <body dir="<?php echo $gallery->direction ?>">
 <center>
-<span class="title"><?php echo _("File upload in progress!") ?></span>
+<span class="popuphead"><?php echo _("File upload in progress!") ?></span>
 <p>
+<span class="popup">
 <?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
 <p>
 <table border=0 cellpadding=0 cellspacing=0>
@@ -62,5 +63,7 @@ function image($name) {
 </center>
 
 </script>
+
+</span>
 </body>
 </html>

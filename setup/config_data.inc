@@ -330,7 +330,12 @@ $constants =  array_merge(
 		"choices" => array("yes" => _("yes"), "no" => _("no")),
 		"value" => "yes"
 	),
-
+	"skinname" => array(
+		"prompt" => _("Skin Name"),
+		"desc" => _("Select a skin to use for Gallery. You now have a wide choice of \"skins\" that affect the look of every page of your gallery.  You can have fun experimenting with the available skins. Choose \"default\" to use the look from v1.4.") . newIn("1.4.1"),
+		"choices" => available_skins(),
+		"value" => "default"
+	),
 	"gallery_thumb_frame_style" => array(
 		"prompt" => "Frame around albums",
 		"desc" => _("On the main page, the image representing each album has a frame arount it.  The following styles are available:") .

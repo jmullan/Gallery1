@@ -58,6 +58,7 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 
 <center>
+<span class="popup">
 <?php echo _("Do you want this photo to be the one that shows up on the gallery page, representing this album?") ?>
 <br>
 <br>
@@ -79,6 +80,7 @@ if ($gallery->session->albumName && isset($index)) {
 }
 ?>
 
+</span>
 </body>
 </html>
 

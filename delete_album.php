@@ -58,6 +58,7 @@ if ($gallery->album) {
 <center>
 <span class="popuphead"><?php echo _("Delete Album") ?></span>
 <br><br>
+<span class="popup">
 <?php echo _("Do you really want to delete this album?") ?>
 <br>
 <b><?php echo $gallery->album->fields["title"] ?></b>
@@ -76,5 +77,6 @@ if ($gallery->album) {
 }
 ?>
 
+</span>
 </body>
 </html>
