@@ -62,6 +62,32 @@ if ($urls) {
 	$temp_files = array();
 	
 	foreach ($urls as $url) {
+
+		/*
+		 * Check to see if the URL is a local directory (inspired by
+		 * code from Jared (hogalot)
+		 */
+		if (is_dir($url)) {
+			msg("Processing <i>$url</i> as a local directory.");
+			$handle = opendir($url);
+			while (($file = readdir($handle)) != false) {
+				if ($file != "." && $file != "..") {
+					$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $file);
+					$tag = strtolower($tag);
+					if (acceptableFormat($tag)) {
+						/* Tack it onto userfile */
+						if (substr($url,-1) == "/") {
+							$image_tags[] = $url . $file;
+						} else {
+							$image_tags[] = $url . "/" . $file;
+						}
+					}
+				}
+			}
+			closedir($handle);
+			continue;
+		}
+
 	
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = eregi_replace("^[[:space:]]+", "", $url);
