@@ -9,74 +9,79 @@
 		include($GALLERY_BASEDIR . "platform/fs_unix.php");
 	}
 	include ($GALLERY_BASEDIR . "util.php");
-	load_languages();
+
+	$nls=getNLS();
 
 $total=array();
+$handle=fs_opendir($GALLERY_BASEDIR ."locale");
 $eastergg=0;
-foreach ($gallery->nls['language'] as $locale => $langname) {
-	$dirname=$locale;
-	if ($locale == "en_GB" || $locale == "en_US") continue; 
-	$total['lang']++;
-	$dir=opendir($GALLERY_BASEDIR . "locale/$dirname");
-	$tpd=0;
-	$cc=0;
-	while ($file = readdir($dir)) {
-		if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.+\.po)$", $file, $matches)) {
-			$pos=strpos($file,"gallery_");
-			$component=substr($file,$pos+8,-3);
+while ($dirname = readdir($handle)) {
+	if (preg_match("/^([a-z]{2}_[A-Z]{2})/", $dirname)) {
+		$locale=$dirname;
+		if ($locale == "en_GB" || $locale == "en_US") continue; 
+		$total['lang']++;
+		$dir=opendir($GALLERY_BASEDIR . "locale/$dirname");
+		$tpd=0;
+		$cc=0;
+		while ($file = readdir($dir)) {
+		        if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.+\.po)$", $file, $matches)) {
+				$pos=strpos($file,"gallery_");
+				$component=substr($file,$pos+8,-3);
 
-			$lines=file($GALLERY_BASEDIR . "locale/$dirname/$file");
-			$fuzzy=0;
-			$untranslated=-2;
-			$translated=0;
-			$obsolete=0;
-			foreach ($lines as $line) {	
-			if(strpos($line,'msgstr') === 0) {
-				if(stristr($line,'msgstr ""')) {
-					$untranslated++;
-				} else {
-					$translated++;
+				$lines=file($GALLERY_BASEDIR . "locale/$dirname/$file");
+				$fuzzy=0;
+				$untranslated=-2;
+				$translated=0;
+				$obsolete=0;
+				foreach ($lines as $line) {	
+				if(strpos($line,'msgstr') === 0) {
+						if(stristr($line,'msgstr ""')) {
+						$untranslated++;
+						} else {
+							$translated++;
 						}
-				} elseif (strpos($line,'#, fuzzy') === 0) {
-					$fuzzy++;
-				} elseif (strpos($line,'#~ ') === 0) {
-					$obsolete++;
+					} elseif (strpos($line,'#, fuzzy') === 0) {
+						$fuzzy++;
+					} elseif (strpos($line,'#~ ') === 0) {
+						$obsolete++;
+					}
 				}
-			}
-			$all=$translated+$untranslated;
-			$percent_done=round(($translated-$fuzzy)/$all*100,2);
-			$rpd=round($percent_done,0);
+				$all=$translated+$untranslated;
+				$percent_done=round(($translated-$fuzzy)/$all*100,2);
+				$rpd=round($percent_done,0);
 
-			if ($component =="config" ) {
-				$border=40;
-			} else {
-				$border=50;
-			}
-			if($rpd < $border) {
-				$color=dechex(255-$rpd*2). "0000";
-			} else {
-				$color="00" . dechex(55+$rpd*2). "00";
-			}
-			if (strlen($color) <6) $color="0". $color;
-			$tpd+=$percent_done;
-			if ($percent_done == 100) $easteregg++;
-			$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
-			$total['percent_done'] = $total['percent_done'] + $percent_done;
-			$cc++;
-
-			$rtpd=round($tpd/$cc,0);
-			if($rtpd <50) {
-				$color=dechex(255-$rtpd*2). "0000";
-			} else {
-				$color="00" . dechex(55+$rtpd*2). "00";
-			}
-			if (strlen($color) <6) $color="0". $color;
-			$report[$locale]['tpd']=$tpd/$cc;
-			$report[$locale]['color']=$color;
+				if ($component =="config" ) {
+					$border=40;
+				} else {
+					$border=50;
+				}
+				if($rpd < $border) {
+					$color=dechex(255-$rpd*2). "0000";
+				} else {
+					$color="00" . dechex(55+$rpd*2). "00";
+				}
+				if (strlen($color) <6) $color="0". $color;
+				$tpd+=$percent_done;
+				if ($percent_done == 100) $easteregg++;
+				$report[$locale][$component]=array ($color,$percent_done,$all,$translated,$fuzzy,$untranslated,$obsolete);
+				$total['percent_done'] = $total['percent_done'] + $percent_done;
+				$cc++;
+		        }
 		}
+
+		$rtpd=round($tpd/$cc,0);
+		if($rtpd <50) {
+			$color=dechex(255-$rtpd*2). "0000";
+		} else {
+			$color="00" . dechex(55+$rtpd*2). "00";
+		}
+		if (strlen($color) <6) $color="0". $color;
+		$report[$locale]['tpd']=$tpd/$cc;
+		$report[$locale]['color']=$color;
+		closedir($dir);
 	}
-	closedir($dir);
 }
+closedir($handle);
 
 $total['percent_done'] = round($total['percent_done'] / ($total['lang']*2),2);
 
@@ -123,7 +128,7 @@ foreach ($report as $key => $value) {
 
 	fwrite($handle,"\n\t<locale id=\"$key\" scheme=\"$scheme\">");
 	fwrite($handle,"\n\t\t<nr scheme=\"$scheme\">$line</nr>");
-	fwrite($handle,"\n\t\t<language scheme=\"$scheme\">". $gallery->nls['language'][$key] ."</language>");
+	fwrite($handle,"\n\t\t<language scheme=\"$scheme\">". $nls['language'][$key] ."</language>");
 	fwrite($handle,"\n\t\t<tpd style=\"background-color:#". $value['color'] ."\">". $value['tpd'] ."</tpd>");
 	
 	foreach ($value as $subkey => $subvalue) {

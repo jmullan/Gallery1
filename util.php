@@ -28,6 +28,7 @@ if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
 	print _("Security violation") ."\n";
 	exit;
 }
+require($GALLERY_BASEDIR."nls.php");
 
 function editField($album, $field, $link=null) {
 	global $gallery;
@@ -2272,15 +2273,16 @@ function initLanguage() {
 	global $gallery, $GALLERY_BASEDIR, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $HTTP_SERVER_VARS, $HTTP_COOKIE_VARS, $HTTP_GET_VARS, $HTTP_SESSION_VARS;
 
-	load_languages();
 	// $locale is *NUKEs locale var
 	global $locale ;
+
+       $nls = getNLS();
 
        // before we do any tests or settings test if we are in mode 0
        // If so, we skip language settings at all
 
-       $gallery->direction=$gallery->nls['default']['direction'];
-       $gallery->align=$gallas->nls['default']['alignment'];
+       $gallery->direction=$nls['default']['direction'];
+       $gallery->align=$nls['default']['alignment'];
        if (isset($gallery->app->ML_mode)) {
 		if($gallery->app->ML_mode == 0) {
 			return;
@@ -2341,7 +2343,7 @@ function initLanguage() {
 		if (isset ($gallery->session->language) && ! isset($gallery->nuke_language)) {
 			$gallery->language = $gallery->session->language;
 		} else {
-			$gallery->language=$gallery->nls['alias'][$gallery->nuke_language];
+			$gallery->language=$nls['alias'][$gallery->nuke_language];
 		}
 	} else {
 		// We're not in Nuke
@@ -2363,9 +2365,9 @@ function initLanguage() {
 				// Does the user want a new language ?
 				if (!empty($newlang)) {
 					// Use Alias if
-					if (isset($gallery->nls['alias'][$newlang])) $newlang=$gallery->nls['alias'][$newlang] ;
+					if (isset($nls['alias'][$newlang])) $newlang=$nls['alias'][$newlang] ;
 					// Set Language to the User selected language (if this language is defined)
-					if (isset($gallery->nls['language'][$newlang])) {
+					if (isset($nls['language'][$newlang])) {
 						$gallery->language=$newlang;
 					}
 				} elseif (isset($gallery->session->language)) {
@@ -2405,8 +2407,8 @@ function initLanguage() {
 
 	// if an alias for a language is given, use it
 	//
-	if (isset($gallery->nls['alias'][$gallery->language])) {
-		$gallery->language = $gallery->nls['alias'][$gallery->language] ;
+	if (isset($nls['alias'][$gallery->language])) {
+		$gallery->language = $nls['alias'][$gallery->language] ;
 	}
 
 	// And now set this language into session
@@ -2428,10 +2430,10 @@ function initLanguage() {
 
 	foreach($checklist as $check) {
 		// if no ... is given, use default
-		if ( !isset($gallery->nls[$check][$gallery->language])) {
-			$gallery->$check = $gallery->nls['default'][$check] ;
+		if ( !isset($nls[$check][$gallery->language])) {
+			$gallery->$check = $nls['default'][$check] ;
 		} else {
-			$gallery->$check = $gallery->nls[$check][$gallery->language] ;
+			$gallery->$check = $nls[$check][$gallery->language] ;
 		}
 	}
 
@@ -2471,7 +2473,7 @@ function emulate_gettext() {
 	global $translation;
 	global $GALLERY_BASEDIR, $gallery;
 
-	if (in_array($gallery->language,array_keys($gallery->nls['language'])) &&
+	if (in_array($gallery->language,array_keys(gallery_languages())) &&
 		$gallery->language != 'en_US') {
 		$filename=$GALLERY_BASEDIR ."locale/". $gallery->language ."/". $gallery->language ."-gallery_". where_i_am()  .".po";
 		$lines=file($filename);
@@ -2975,13 +2977,14 @@ function album_validation_link($album, $photo='', $args=array()) {
 }
 
 //returns all languages in this gallery installation
+function gallery_languages() {
 
-function load_languages() {
 	global $GALLERY_BASEDIR;
-	global $gallery;
+	$nls=getNLS();
 
 	$modules=array('config','core');
 	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
+	$available=array('en_US' => 'English (US)');
 	
 	while ($dirname = readdir($handle)) {
 		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
@@ -2994,16 +2997,48 @@ function load_languages() {
 					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
 				}
 			}
-			if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php")) $fc++;
-			if ($fc == sizeof($modules) + 1) {
+			if ($fc == sizeof($modules)) {
+				$available[$dirname]=$nls['language'][$dirname];
+			}
+		}
+	}
+	closedir($handle);
+
+return $available;
+}
+
+function getNLS() {
+
+	global $GALLERY_BASEDIR;
+
+	$nls=array();
+
+	$modules=array('config','core');
+	$handle=fs_opendir($GALLERY_BASEDIR. "locale");
+	$available=array('en_US' => 'English (US)');
+	
+	while ($dirname = readdir($handle)) {
+		if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
+			$locale=$dirname;
+			$fc=0;
+			foreach ($modules as $module) {
+				if (gettext_installed()) {
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-gallery_$module.po")) $fc++;
+				} else {
+					if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+				}
+			}
+			if (fs_file_exists($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php")) {
 				include ($GALLERY_BASEDIR . "locale/$dirname/$locale-nls.php");
 			}
 		}
 	}
 	closedir($handle);
-	$gallery->nls=$nls;
-	$gallery->nls['language']['en_US'] = 'English (US)';
+	include ($GALLERY_BASEDIR. "nls.php");
+//print_r($nls);
+return $nls;
 }
+
 
 function where_i_am() {
 	global $GALLERY_OK;

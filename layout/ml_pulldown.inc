@@ -24,27 +24,27 @@
 
 <?php 
 
-//print_r($gallery);
+$gallery_languages = gallery_languages();
 if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
-
-	if($gallery->app->show_flags !='yes') {?>
-	<script language="JavaScript" type="text/javascript">
-	function ML_reload() {
-		var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
-		window.location.href=newlang;
-	}
-	</script>
-<?php	} ?>
+    
+if($gallery->app->show_flags !='yes') {?>
+<script language="JavaScript" type="text/javascript">
+function ML_reload() {
+	var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;
+	window.location.href=newlang;
+}
+</script>
+<?php } ?>
 
 	<form name="MLForm" action="#">
 	<table width="100%" cellpadding="0" cellspacing="0">
-	<tr><td valign="top" align="right"><br>
+	<tr><td valign="top" align="right"><br >
 
 <?php
 
-	if($gallery->app->show_flags !='yes') {
-		echo '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
-	}
+if($gallery->app->show_flags !='yes') {
+	echo '<select style="font-size:8pt;" name="newlang" onChange="ML_reload()" size="1">';
+}
 
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
@@ -54,16 +54,16 @@ if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($galler
 	} else {
         	$urlTemp = end(explode("/", $HTTP_SERVER_VARS["PHP_SELF"]));
 	}
+	$nls = getNLS();
 
 	$count=0;
 	$half=sizeof($gallery->app->available_lang)/2;
 	foreach ($gallery->app->available_lang as $value) {
 
-		echo "\n<br>--->$value";
 		// Only use language from config.php if it's available
-		if (! isset($gallery->nls['language'][$value])) continue;
+		if (! isset($nls['language'][$value])) continue;
 
-		if (!in_array($value, array_keys($gallery->nls['language']))) {
+		if (!in_array($value, array_keys($gallery_languages))) {
 			continue;
 		}
 
@@ -72,13 +72,13 @@ if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($galler
 		if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
 				/* postnuke */
-				if (! isset($gallery->nls['postnuke'][$value])) continue;
-				$args["newlang"]=$gallery->nls['postnuke'][$value];
+				if (! isset($nls['postnuke'][$value])) continue;
+				$args["newlang"]=$nls['postnuke'][$value];
 			}
 			else {
 				/* phpnuke */ 
-				if (! isset($gallery->nls['phpnuke'][$value])) continue;
-				$args["newlang"]=$gallery->nls['phpnuke'][$value];
+				if (! isset($nls['phpnuke'][$value])) continue;
+				$args["newlang"]=$nls['phpnuke'][$value];
 			} 
 		} else {
 			$args["newlang"]=$value;
@@ -88,13 +88,17 @@ if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($galler
 			if ($gallery->language == $value) $selected="selected"; else $selected="";
 			echo "\n\t\t<option value=\"".makeGalleryUrl(
 					$urlTemp,
-					$args)."\" $selected>" . $gallery->nls['language'][$value] ."</option>";
+					$args)."\" $selected>" . $nls['language'][$value] ."</option>";
 		} else {
-			$flagname=$value;
+			if (isset($nls['flag'][$value])) {
+				$flagname=$nls['flag'][$value];
+			} else {
+				$flagname=$value;
+			}
 			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\">";
 			if ($gallery->language == $value) $style="style=\"margin:7px\""; else $style="";
 
-			echo "<img $style src=\"" .$GALLERY_BASEDIR ."locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$gallery->nls['language'][$value] . "\" title=\"" .$gallery->nls['language'][$value] . "\"></a>";
+			echo "<img $style src=\"" .$GALLERY_BASEDIR ."locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
 
 			if ($count > $half && $half >10) {
 				echo "<br>";
