@@ -83,8 +83,8 @@ Click the <b>Browse</b> button to locate a photo to upload.
 <? } ?>
 <br><br>
 <center>
-<input type="submit" value="Upload Now">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type="button" value="Upload Now" onClick='opener.showProgress(); submit()'>
+<input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
 
@@ -93,11 +93,12 @@ Or, upload all the images from this URL:
 <input name="url">
 <br><br>
 <center>
-<input type="submit" value="Submit URL">
-<input type=submit name="submit" value="Cancel" onclick='parent.close()'>
+<input type="button" value="Submit URL" onClick='opener.showProgress(); submit()'>
+<input type=submit value="Cancel" onclick='parent.close()'>
 </center>
 </form>
 </span>
 
+<head>
 </body>
 </html>
