@@ -16,7 +16,7 @@
 	<td valign="top">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td valign="top" width="3000"><span class="title"><?php echo _("Album") ?>: <?php echo $myAlbum->fields["title"] ?></span>
+			<td valign="top"><span class="title"><?php echo _("Album") ?>: <?php echo $myAlbum->fields["title"] ?></span>
     <?php if ($gallery->album->isHidden($i)) {
 		echo "  (". _("hidden") .")";
 	}

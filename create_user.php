@@ -24,8 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($action, $uname, $new_password1, $new_password2, $fullname, $canCreate, $email, $defaultLanguage) = 
-	getRequestVar(array('action', 'uname', 'new_password1', 'new_password2', 'fullname', 'canCreate', 'email', 'defaultLanguage'));
+list($formaction, $uname, $new_password1, $new_password2, $fullname, $canCreate, $email, $defaultLanguage) = 
+	getRequestVar(array('formaction', 'uname', 'new_password1', 'new_password2', 'fullname', 'canCreate', 'email', 'defaultLanguage'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
@@ -33,7 +33,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $errorCount=0;
-if (!empty($action) && $action == 'create') {
+if (!empty($formaction) && $formaction == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
 		$errorCount++;
@@ -102,7 +102,7 @@ if (!empty($action) && $action == 'create') {
 		<?php
 		exit;
        	}
-} else if (!empty($action) || isset($dismiss)) {
+} else if (!empty($formaction) || isset($dismiss)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 doctype();
@@ -144,9 +144,9 @@ $allowChange["member_file"] = false;
 
 <br>
 
-<input type="hidden" name="action" value="">
-<input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.action.value='create'">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="usercreate_form.action.value='cancel'">
+<input type="hidden" name="formaction" value="">
+<input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="usercreate_form.formaction.value='cancel'">
 </form>
 </div>
 

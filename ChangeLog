@@ -1,3 +1,23 @@
+2004-10-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b248
+
+	* Change: Fix margin on Search form for IE.
+
+	* Fix 783843: Get rid of width=3000 and width=4000 - all of the recent
+	  layouts have finally made this unnecessary!
+
+	* Fix 839037: Allow relative URLs, but warn the user that it will break
+	  some features (printing, etc.) since the printer will not be able to find
+	  the Gallery install.
+
+	* Fix 930742: Prevent repetetive automatic re-highlighting of an album 
+	  during delete.
+
+	* Change: register_globals issue - canCreate, isAdmin and Cancel on 
+	  the modify_user page
+
+	* Fix 1047814: Renamed the 'action' field to 'formaction' to prevent JS/DOM
+	  naming conflict
+
 2004-10-22  Jay Rossiter <cryptographite@users.sf.net>  1.4.5-cvs-b247
 
 	* Fix 1003564: Custom textcolor not applied to captions

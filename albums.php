@@ -130,7 +130,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		echo '<td valign="middle" align="right">';
 		echo makeFormIntro('search.php', array(
 							'name'		=> 'search_form',
-							'method'	=> 'post'));
+							'method'	=> 'post',
+							'style'		=> 'margin-bottom: 0px;'));
 		echo '<span class="search">'. _("Search") .': </span>';
 		echo '<input style="font-size:10px;" type="text" name="searchstring" value="" size="25">';
 		echo '</form></td>';

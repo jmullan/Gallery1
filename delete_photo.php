@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($id, $index, $action, $albumDelete, $albumMatch, $nextId) = getRequestVar(array('id', 'index', 'action', 'albumDelete', 'albumMatch', 'nextId'));
+list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) = getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
 
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);
@@ -41,7 +41,7 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album)
 doctype();
 echo "\n<html>";
 
-if (isset($action) && $action == 'delete' && isset($id)) {
+if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 	if (!empty($albumDelete)) {
 		/* Track down the corresponding photo index and remove it */
 		$index = 0;
@@ -135,8 +135,8 @@ if ($gallery->album && isset($id)) {
 		} 
 	}
 ?>
-<input type="hidden" name="action" value="">
-<input type="submit" name="confirm" value="<?php echo _("Delete") ?>" onclick="deletephoto_form.action.value='delete'">
+<input type="hidden" name="formaction" value="">
+<input type="submit" name="confirm" value="<?php echo _("Delete") ?>" onclick="deletephoto_form.formaction.value='delete'">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <br>

@@ -24,20 +24,19 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
+list($formaction, $unames) = getRequestVar(array('formaction', 'unames'));
+
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	
 }
 
-$action=getRequestVar('action');
-$unames=getRequestVar('unames');
-
-if (isset($action) && $action == 'delete') {
+if (isset($formaction) && $formaction == 'delete') {
 	foreach($unames as $user) {
 		$gallery->userDB->deleteUserByUsername($user);
 	}
 }
-if (!empty($action)) {
+if (!empty($formaction)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
 
@@ -77,12 +76,12 @@ if (! isset($error)) {
 	}
 ?>
 <br><br>
-<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.action.value='delete'">
+<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.formaction.value='delete'">
 <?php
 }
 ?>
-<input type="hidden" name="action" value="">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.action.value='cancel'">
+<input type="hidden" name="formaction" value="">
+<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="deleteuser_form.formaction.value='cancel'">
 </form> 
 <?php print gallery_validation_link("delete_user.php"); ?>
 </div>

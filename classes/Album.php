@@ -926,9 +926,12 @@ class Album {
 		$safe_to_scrub = 0;
 		$dir = $this->getAlbumDir();
 
-		/* Delete all pictures */
-		while ($this->numPhotos(1)) {
-			$this->deletePhoto(0);
+		/* Delete all pictures in reverse order to prevent automatic 
+		   re-highlighting of the album after every delete.
+		   Using this method, re-highlighting will occur, at most, one time.
+		*/
+		for ($numPhotos = $this->numPhotos(1); $numPhotos > 0; $numPhotos--) {
+			$this->deletePhoto($numPhotos);
 		}
 
 		/* Delete data file */

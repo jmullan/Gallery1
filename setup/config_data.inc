@@ -300,11 +300,10 @@ $constants =  array_merge(
 	'photoAlbumURL' => array(
 		'prompt' => "Gallery URL",
 		'desc' => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
-				sprintf(_("The full URL to the Gallery web application.  E.g. %s"),
+				sprintf(_("The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
 				'<i>http://www.example.com/gallery</i>'),
 		'value' => "http://" . getenv("SERVER_NAME") . $GALLERY_URL,
 		'no-trailing-slash' => 1,
-		'must-be-url' => 1,
 		'type' => "text",
 		'attrs' => array('size' => 50),
 		'required' => true,
@@ -312,11 +311,11 @@ $constants =  array_merge(
 	'albumDirURL' => array(
 		'prompt' => _("Albums URL"),
 		'desc' => '(<span class="attention">' . _('REQUIRED') . '</span>) ' .
-			sprintf(_("The full URL to your album directory (specified above) on your web server.  E.g. %s"), 
+			sprintf(_("The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with
+relative URLs, however some features, such as printing, may not function correctly."), 
 			'<i>http://www.example.com/albums</i>'),
 		'value' => "http://" . getenv("SERVER_NAME") . "/albums",
 		'no-trailing-slash' => 1,
-		'must-be-url' => 1,
 		'type' => "text",
 		'attrs' => array('size' => 50),
 		'required' => true,
