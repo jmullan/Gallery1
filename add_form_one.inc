@@ -20,90 +20,9 @@
  * $Id$
  */
 ?>
-<?php
-// Hack prevention.
-if (!empty($HTTP_GET_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_POST_VARS["GALLERY_BASEDIR"]) ||
-		!empty($HTTP_COOKIE_VARS["GALLERY_BASEDIR"])) {
-	print _("Security violation") ."\n";
-	exit;
-}
-?>
-<?php if (!isset($GALLERY_BASEDIR)) {
-    $GALLERY_BASEDIR = './';
-}
-require($GALLERY_BASEDIR . "init.php"); ?>
-<?php
-// Hack check
-if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	exit;
-}
-?>
-<html>
-<head>
-  <title><?php echo _("Add Photo") ?></title>
-  <?php echo getStyleSheetLink() ?>
 
-<script language="Javascript">
-<!--
-	function reloadPage() {
-		document.count_form.submit();
-		return false;
-	}
-// -->
-</script>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php
-if (isset($userfile_name) && fs_file_exists($userfile)) { ?>
-<script language="Javascript">
-	opener.showProgress();
-</script>
-<?php
-	$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $userfile_name);
-        $tag = strtolower($tag); 
-	if (get_magic_quotes_gpc()) {
-		$caption=stripslashes($caption);    
-		foreach ($extra_fields as $key => $value) {
-			$extra_fields[$key] = stripslashes($value);
-		}
-	}
-	processNewImage($userfile, $tag, $userfile_name, $caption, $setCaption, $extra_fields);
-	$gallery->album->save(array(i18n("A new item %s has been added"), $userfile_name));
+<p>
 
-	if ($temp_files) {
-		/* Clean up the temporary url file */
-		foreach ($temp_files as $tf => $junk) {
-		    fs_unlink($tf);
-		}
-	}
-?>
-<p align="center">
-<form>
-	<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
-</form>
-</p>
-<script language="Javascript">
-	opener.hideProgressAndReload();
-</script>
-
-<?php
-	reload();
-
-}
-else
-{
-?>
-
-<p class="popuphead"><?php echo _("Add Photo") ?></p>
-<?php
-if (isset($userfile_name) && ! fs_file_exists($userfile)) {
-	echo "<p>" . gallery_error(sprintf(_("The file %s does not exist"),
-				"&quot;" . $userfile . "&quot;")) . "</p>";
-}
-// Note: file button is not labelled "Browse" in all browsers.  Eg Safari "Choose File"
-
-?>
 <span class="popup">
 <?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
 </span>
@@ -153,7 +72,5 @@ foreach ($gallery->album->getExtraFields() as $field) {
 <input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </center>
 </form>
-<?php } ?>
 
-</body>
-</html>
+</p>

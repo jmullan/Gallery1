@@ -39,10 +39,6 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 	
-if (!isset($boxes)) {
-	$boxes = 5;
-}
-
 ?>
 
 <html>
@@ -61,90 +57,51 @@ if (!isset($boxes)) {
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
-<span class="popuphead"><?php echo _("Add Photos") ?></span>
-<br>
-<span class="popup">
-<?php echo _("Click the <b>Browse</b> button to locate a photo to upload.") ?>
+<?php
 
-<?php if ($gallery->app->feature["zip"]) { ?>
-<br>
-&nbsp;&nbsp;<?php echo _("Tip:  Upload a ZIP file full of photos and movies!") ?>
-<?php } ?>
-<br>
-&nbsp;&nbsp;(<?php echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList()) ?>)
-
-<br><br>
-<?php echo makeFormIntro("add_photos.php",
-			array("name" => "count_form",
-				"method" => "POST")); ?>
-<?php echo _("1. Select the number of files you want to upload:") ?>
-<select name="boxes" onChange='reloadPage()'>
-<?php for ($i = 1; $i <= 10;  $i++) {
-	echo "<option ";
-        if ($i == $boxes) {
-		echo "selected ";
+if (file_exists("java/GalleryRemoteAppletMini.jar") &&
+	file_exists("java/GalleryRemoteHTTPClient.jar")) {
+    $modes["applet_mini"] = _("Applet (mini)");
+	
+	if (file_exists("java/GalleryRemoteApplet.jar")) {
+	    $modes["applet"] = _("Applet (window)");
 	}
-	echo "value=\"$i\">$i\n";
+}
 
-} ?>
-</select>
-<br>
-</form>
 
-<?php echo makeFormIntro("save_photos.php",
-			array("name" => "upload_form",
-				"enctype" => "multipart/form-data",
-				"method" => "POST")); ?>
-<?php echo _("2. Use the Browse button to find the photos on your computer") ?>
-<input type="hidden" name="max_file_size" value="10000000">
-<table>
-<?php for ($i = 0; $i < $boxes;  $i++) { ?>
-<tr><td>
-<?php echo _("File") ?></td>
-<td><input name="userfile[]" type="file" size=40></td></tr>
-<td><?php echo _("Caption") ?></td><td> <input name="usercaption[]" type="text" size=40></td></tr>
-<tr><td></td></tr> 
-<?php } ?>
+$modes["form"] = _("Form");
+$modes["form_one"] = _("Form (one picture)");
+$modes["url"] = _("Add from URL");
+$modes["other"] = _("Other methods");
+
+if ($gallery->user->isAdmin()) {
+    $modes["admin"] = _("Admin");
+}
+
+if (!isset($mode) || !isset($modes[$mode])) {
+	$mode = key($modes);
+}
+?>
+
+<table cellpadding="5" border="1">
+<tr>
+<?php
+foreach ($modes as $m => $mt) {
+	echo "<td>";
+	if ($m == $mode) {
+		echo "<b>$mt</b>";
+	} else {
+		echo "<a href=\"add_photos.php?mode=$m\">$mt</a>";
+	}
+	echo "</td>";
+}
+?>
+</tr>
 </table>
-<input type=checkbox name=setCaption checked value="1"><?php echo _("Use filename as caption if no caption is specified.") ?>
-<br>
-<center>
-<input type="button" value="<?php echo _("Upload Now") ?>" onClick='opener.showProgress(); document.upload_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</center>
-</form>
 
-<?php echo makeFormIntro("save_photos.php",
-			array("name" => "uploadurl_form",
-				"method" => "POST")); ?>
-<?php echo _("Or, upload any images found at this location.") ?>
-<?php echo _("The location can either be a URL or a directory on the server.") ?>
-<br>
+<?php
+include "add_$mode.inc";
+?>
 
-&nbsp;&nbsp;<?php echo _("Tip: FTP images to a directory on your server then provide that path here!") ?>
-<br>
-
-<input type="text" name="urls[]" size=40>
-<br>
-<input type="checkbox" name="setCaption" checked value="1"><?php echo _("Set photo captions with original filenames.") ?>
-<br>
-<center>
-<input type="button" value="<?php echo _("Submit URL or directory") ?>" onClick='opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</center>
-</form>
-<?php echo _("Alternatively, you can use one of these desktop agents to drag and drop photos from your desktop") ?>:
-<br>
-&nbsp;&nbsp;&nbsp;<b><a href="#" onClick="opener.location = 'http://gallery.sourceforge.net/gallery_remote.php?protocol_version=<?php echo $gallery->remote_protocol_version ?>'; parent.close();">Gallery Remote</a></b>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <?php echo _("A Java application that runs on Mac, Windows and Unix") ?>
-<br>
-<?php if (empty($GALLERY_EMBEDDED_INSIDE)) { ?>
-&nbsp;&nbsp;&nbsp;<b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>">Windows XP Publishing Agent</a></b>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo _("<i>Note:</i> this feature is still experimental!") ?>
-<?php } ?>					 
-
-</span>
 </body>
 </html>

@@ -75,7 +75,6 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		 array(
 
 		       "add_comment.php",
-		       "add_photo.php",
 		       "add_photos.php",
 		       "album_permissions.php",
 		       "albums.php",
@@ -115,6 +114,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload")) {
 		       "save_photos.php",
 		       "search.php",
 		       "slideshow.php",
+		       "slideshow_high.php",
 		       "slideshow_low.php",
 		       "sort_album.php",
 		       "upgrade_album.php",
