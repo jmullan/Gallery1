@@ -7,7 +7,11 @@ $locale_check=check_locale();
 ** "no" disables all language settings 
 */
 
-if ( ($locale_check == NULL) && (stristr(PHP_OS,"linux")) ) $elawisyl = "no";
+if ($locale_check == NULL) {
+	$elawisyl = "no";
+} else {
+	$elawisyl = "yes";
+}
 
 $common_messages["getting-netpbm"] = 
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from %sGallery on SourceForge%s.  Or, you can compile and install the entire NetPBM package from %sNetPBM on SourceForge%s."), 
@@ -152,7 +156,6 @@ $checklist = array(
 		"desc" => _("Testing to see if which locales are absent"),
 		"func" => "check_absent_locales",
 		"serious" => ( $elawisyl == "no" ) ? 1 : 0 ,
-		"enabled" => (stristr(PHP_OS,"win")) ? "no" : "yes" 
 	)
 );
 

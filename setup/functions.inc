@@ -539,7 +539,7 @@ function check_absent_locales()
 		$fail[] = sprintf(_("We were unable to detect any locales.  However, your server is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is ok to continue."),
 				'<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">open_basedir</a>');
 	    } else {
-			if (PHP_OS == "Linux") {
+			if (getOS() == OS_LINUX) {
 				$fail[] = sprintf(_("We were unable to detect any system locales. Multilanguage functions will be disabled. Please install the corresponding locales or ask your Provider to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s"),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html">', "</a>");
 			} else {
 		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
@@ -587,7 +587,7 @@ function check_locale() {
 	$unavailable_locales=array();
 
 	/* Lets see which system locales are installed. */
-	if (! stristr(PHP_OS,"win")) {
+	if (getOS() != OS_WINDOWS) { 
 		# Unix / Linux
 		# Check which locales are installed
 		$tmp=split("\n", shell_exec("locale -a"));
@@ -602,18 +602,19 @@ function check_locale() {
 	}
 
 	/* DAMN, there are none */
-	if(sizeof($system_locales) == 0) {
+	if( (sizeof($system_locales) == 0) && (getOS() == OS_LINUX )) {
 		return NULL;
 	}
 
 	/* There were at least one system locale
 	** Now lets test if our languages are supported by the system
 	*/
+	
 	foreach ($gallery_languages as $locale => $locale_name) {
 		$aliases=array();
 		
 		/* Found an supported one, put it in availables */
-		if (in_array($locale, $system_locales)) {
+		if ( (in_array($locale, $system_locales)) || (setlocale(LC_ALL, $locale))) {
 			$available_locales[$locale]=$locale;
 			continue;
 		}
@@ -622,19 +623,26 @@ function check_locale() {
 		**  e.G. nl to find nl_BE or nl_NL
 		*/
 		if (in_array($locale,$nls['alias'])) {
-                        $keylist=array_keys($nls['alias'],$locale);
-			$aliases = preg_grep ("/^(". substr($locale,0,2) ."|" . implode ("|", $keylist) .")/",$system_locales);
-                } else {
+			$keylist = array_keys($nls['alias'],$locale);
+			if (getOS() != OS_WINDOWS) {
+				$aliases = preg_grep ("/^(". substr($locale,0,2) ."|" . implode ("|", $keylist) .")/",$system_locales);
+			} else {
+				$aliases=$keylist;
+			}
+		} else {
 			$aliases = preg_grep ("/^". substr($locale,0,2) ."/",$system_locales);
 		}
 
-		/* if there were aliass we put them in maybes */
 		if ($aliases) {
-			$maybe_locales[$locale]=$aliases;
+			foreach ($aliases as $test) {
+				if (setlocale(LC_ALL,$test)) {
+					$maybe_locales[$locale][]=$test;
+				}
+			}
 		} else {
-				$unavailable_locales[]=$locale;
+			$unavailable_locales[]=$locale;
+		}
 	}
-}
 
 	return array(
 		"available_locales" => $available_locales,
@@ -703,10 +711,10 @@ function config_maybe_locales() {
 	$block_start_done=false;
 	$choices=array();
 	foreach ($available as $choice => $value) { 
-		$choices[$choice]=$value;
+		$choices[$choice]=$nls['language'][$value];
 	}
         foreach ($unavailable as $key) {
-		if (sizeof($available) == 1) {
+		if (sizeof($available) <= 1) {
 			$results["locale_alias['$key']"] = array (
 				"type" => "hidden", 
 				"value" => 0,

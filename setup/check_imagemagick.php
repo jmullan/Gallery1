@@ -157,7 +157,7 @@ function checkImageMagick($cmd) {
 	 * means that we can't detect the version number.
 	 */
 	if ($ok) {
-	    if (substr(PHP_OS, 0, 3) == 'WIN') {
+	    if (getOS() == OS_WINDOWS) {
 			$version = "<i>" . _("can't detect version on Windows") ."</i>";
 	    }
 		else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {

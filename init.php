@@ -85,7 +85,7 @@ if (!$gallery->register_globals) {
 require($GALLERY_BASEDIR . "Version.php");
 require($GALLERY_BASEDIR . "util.php");
 /* Load bootstrap code */
-if (substr(PHP_OS, 0, 3) == 'WIN') {
+if (getOS() == OS_WINDOWS) {
 	include($GALLERY_BASEDIR . "platform/fs_win32.php");
 } else {
 	include($GALLERY_BASEDIR . "platform/fs_unix.php");
