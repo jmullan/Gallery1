@@ -40,7 +40,7 @@ class Album {
 		global $gallery;
 
 		$this->fields["title"] = _("Untitled");
-		$this->fields["description"] = _("");
+		$this->fields["description"] = "";
 		$this->fields["summary"]="";
 		$this->fields["nextname"] = "aaa";
 		$this->fields["bgcolor"] = "";

@@ -41,7 +41,8 @@
  */
 function getNLS () {
 	$nls['language']['zh_CN'] = 'Chinese (Simplified) (&#x7b80;&#x4f53;&#x4e2d;&#x6587;)';
-	$nls['language']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;)';
+	$nls['language']['zh_TW'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;) (BIG5)';
+	$nls['language']['zh_TW.utf8'] = 'Chinese (Traditional) (&#x6b63;&#x9ad4;&#x4e2d;&#x6587;) (UTF-8)';
 	$nls['language']['de_DE'] = 'Deutsch';
 	$nls['language']['en_GB'] = 'English (UK)';
 	$nls['language']['en_US'] = 'English (US)';
@@ -194,6 +195,7 @@ function getNLS () {
 	$nls['charset']['tr_TR'] = 		'ISO-8859-9';
 	$nls['charset']['zh_CN'] = 		'GB2312';
 	$nls['charset']['zh_TW'] = 		'BIG5';	
+	$nls['charset']['zh_TW.utf8'] = 	'UTF-8';	
 
 	//$nls['charset']['de_DE'] =		'de_DE.ISO-8859-15@euro' ;
 	//$nls['charset']['lt_LT'] = 		'ISO-8859-13';
@@ -254,6 +256,13 @@ function getNLS () {
 	$nls['postnuke']['no_NO'] = 'nor';
 	$nls['postnuke']['ru_RU'] = 'rus';
 	$nls['postnuke']['sv_SE'] = 'swe';
+
+
+/**
+ ** Flags "alias"
+ **/
+	$nls['flag']['ru_RU.koi8r'] =	'ru_RU';
+	$nls['flag']['zh_TW.utf8'] =	'zh_TW';
 
 return $nls;
 }

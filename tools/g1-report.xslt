@@ -93,6 +93,28 @@
 			</xsl:choose>
 		</td>
 	</xsl:template>
+
+	<xsl:template match="total">
+		<tr><td><xsl:attribute name="colspan"><xsl:value-of select="8"/></xsl:attribute>&#160;</td></tr>
+		<tr><xsl:apply-templates/></tr>
+	</xsl:template>
+
+	<xsl:template match="languages">
+		<td><xsl:apply-templates/></td>
+	</xsl:template>
+
+	<xsl:template match="t_percent_done">
+		<td>
+			<xsl:attribute name="align"><xsl:value-of select="@align"/></xsl:attribute>
+			<xsl:attribute name="colspan"><xsl:value-of select="3"/></xsl:attribute>&#160;
+			<xsl:apply-templates/> %
+		</td>
+		<td>
+			<xsl:attribute name="colspan"><xsl:value-of select="4"/></xsl:attribute>
+			&#160;
+		</td>
+	</xsl:template>
+
 	<xsl:template match="report">
 		<html>
 			<head>

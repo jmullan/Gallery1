@@ -62,7 +62,12 @@ if($gallery->app->show_flags !='yes') {
 					$urlTemp,
 					$args)."\" $selected>" . $nls['language'][$value] ."</option>";
 		} else {
-			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$value.gif\" border=\"0\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
+			if (isset($nls['flag'][$value])) {
+				$flagname=$nls['flag'][$value];
+			} else {
+				$flagname=$value;
+			}
+			echo "\n\t\t<a href=\"". makeGalleryUrl( $urlTemp, $args) . "\"><img src=\"". $gallery->app->photoAlbumURL ."/images/flags/$flagname.gif\" border=\"0\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\"></a>";
 		}
 	}
 

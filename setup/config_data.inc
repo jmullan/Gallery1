@@ -729,8 +729,7 @@ $defaults = array(
 			),
 	"poll_scale" => array(
 		"prompt" => _("Number of choices to offer voters"),
-		"desc" => _("") . 
-			"<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
+		"desc" => "<br><font color=blue><b>(" . sprintf(_("this is new in version %s"), "1.4.1") .")</b></font>",
 		"value" => 3,
 		"choices" => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)
 			),

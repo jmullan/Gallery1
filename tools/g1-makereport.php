@@ -4,12 +4,13 @@
 
 $nls=getNLS();
 
+$total=array();
 $handle=opendir('../po');
 while ($file = readdir($handle)) {
         if (ereg("^([a-z]{2}_[A-Z]{2})(\.[a-zA-Z0-9]+)?(\-gallery.po)$", $file, $matches)) {
 		$locale=$matches[1] . $matches[2];
 		if ($locale == "en_GB") continue; 
-		$i++;
+		$total['lang']++;
 
 		$lines=file("../po/$file");
 		$fuzzy=0;
@@ -40,9 +41,12 @@ while ($file = readdir($handle)) {
 		}
 		if (strlen($color) <6) $color="0". $color;
 		$report[$locale]=array ($color,$percent_done,$translated,$fuzzy,$untranslated,$obsolete);
+		$total['percent_done'] = $total['percent_done'] + $percent_done;
         }
 }
 closedir($handle);
+
+$total['percent_done'] = round($total['percent_done'] / $total['lang'],2);
 
 function my_usort_function ($a, $b) {
 	if ($a[1] > $b[1]) { return -1; }
@@ -93,6 +97,10 @@ foreach ($report as $key => $value) {
 
 	$last_key=$key;	
 }
+fwrite($handle,"\n\t<total>");
+fwrite($handle,"\n\t\t<languages>". $total['lang'] ."</languages>");
+fwrite($handle,"\n\t\t<t_percent_done align=\"right\">". $total['percent_done'] ."</t_percent_done>");
+fwrite($handle,"\n\t</total>");
 fwrite($handle,"\n</report>");
 fclose($handle);
 
