@@ -159,7 +159,7 @@ if ($gallery->user->isAdmin()) {
 	if ($doc) {
 		$adminCommands .= "$doc&nbsp;";
 	}
-	$adminCommands .= '<a href="'. $gallery->app->photoAlbumURL .'/setup">['. _("Configuration Wizard") .']</a>';
+	$adminCommands .= '<a href="'. $gallery->app->photoAlbumURL .'/setup">['. _("configuration wizard") .']</a>';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
