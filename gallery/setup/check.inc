@@ -64,7 +64,7 @@ foreach ($checklist as $check) {
 		}
 
 		if ($check["open-basedir-note"] && !empty($openBasedir)) {
-			print $check["open-basedir-note"];
+			print $check["open-basedir-note"] . "<br><br>";
 		}
 
 		if (is_array($val)) {

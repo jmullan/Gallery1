@@ -499,7 +499,11 @@ function check_absent_locales()
 	if (sizeof($missing_locales) == 0 ) {
 		$success[] = _("All gallery locales are available on this host");
 	} else if (sizeof($avail_locales) <= 1 || $missing_locales == $avail_locales) {
-		$fail[] = "Only the default locale for this machine is available, so date format will not change for different languages.";
+	    if (ini_get('open_basedir')) {
+		$fail[] = _("We were unable to detect any locales.  However, your server is configured with the <a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\">open_basedir</a> restriction so this may be interfering with the way that we detect locales.  If you don't have any locales installed, the date format will not change for different languages.  Either way, it is ok to continue.");
+	    } else {
+		$fail[] = _("Only the default locale for this machine is available, so date format will not change for different languages.");
+	    }
 	} else {
 		$msg = _("Dates in these languages may not be formatted properly, because the corresponding locales are missing:") . "<br>";
 		$nls=getNLS();
