@@ -47,29 +47,26 @@ require('classes/UserDB.php');
 require('session.php');
 
 /* Load our user database (and user object) */
-$userDB = new UserDB;
+$gallery->userDB = new UserDB;
 
-/* Check to see if we have the serialization bug */
-if (strcmp(get_class($userDB),"userdb")) {
-	include("errors/bug_unserialization.php");
-	exit;
+/* Load their user object with their username as the key */
+if ($gallery->session->username) {
+	$gallery->user = 
+		$gallery->userDB->getUserByUsername($gallery->session->username);
 }
 
-if ($username) {
-	$user = $userDB->getUserByUsername($username);
-}
-
-if (!$user) {
-	$user = $userDB->getEverybody();
-	$username = "";
+/* If there's no specific user, they are the special Everybody user */
+if (!$gallery->user) {
+	$gallery->user = $gallery->userDB->getEverybody();
+	$gallery->session->username = "";
 }
 
 /* Load the correct album object */
-$album = new Album;
-if ($albumName) {
-	$album->load($albumName);
-	if ($album->integrityCheck()) {
-		$album->save();
+$gallery->album = new Album;
+if ($gallery->session->albumName) {
+	$gallery->album->load($gallery->session->albumName);
+	if ($gallery->album->integrityCheck()) {
+		$gallery->album->save();
 	}
 }
 ?>
