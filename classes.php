@@ -30,6 +30,9 @@ class Album {
 		$this->fields["title"] = "Untitled";
 		$this->fields["description"] = "No description";
 		$this->fields["nextname"] = "photo-aaa";
+        	$this->fields["bgcolor"] = "000000";
+        	$this->fields["textcolor"] = "CCCCCC";
+        	$this->fields["linkcolor"] = "FFFFFF";
 		$this->fields["font"] = $app->default["font"];
 		$this->fields["border"] = $app->default["border"];
 		$this->fields["bordercolor"] = $app->default["bordercolor"];
