@@ -26,20 +26,9 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($page) = getRequestVar(array('page'));
 
-//Prevent error
-if (!$gallery->session->albumName) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
-}
-
-// Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
-}
-
-if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumHeaderUrl());
+// Hack check and prevent errors
+if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
+	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
 	return;
 }
 

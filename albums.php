@@ -260,6 +260,15 @@ if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $g
 	}
 	echo "\n</div></center>\n";
 }
+
+
+if (getRequestVar('gRedir') == 1) {
+        echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
+        echo "\n<p class=\"head\"><u>". _("Attention!") ."</u></p>";
+
+	echo sprintf(_('The album or photo that you were attempting to view either does not exist, or requires user privledges that you do not posess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(_("%s and try again."), popup_link(_("login"), "login.php", false, true, 500, 500))));
+        echo "\n</div></center>\n";
+}
 ?>
 
 <!-- album table begin -->
