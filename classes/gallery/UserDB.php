@@ -51,18 +51,16 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (fs_file_exists("$userDir/userdb.dat")) {
 			$tmp = getFile("$userDir/userdb.dat");
-			$tmpclass = unserialize($tmp);
 
 			/* 
 			 * We moved from class UserDB.php to class Gallery_UserDB.php
 			 * in v1.2.  If we're upgrading from an old version, just ignore
 			 * the old cache file (it'll get rebuilt automatically).
 			 */
-			if (strcmp(get_class($tmpclass), "userdb")) {
-				$this = $tmpclass;
-			} 
+			if (strcmp(substr($tmp, 0, 12), 'O:6:"userdb"')) {
+				$this = unserialize($tmp);
+			}
 		}
-
 
 		if (!$this->nobody) {
 			$this->nobody = new NobodyUser();
