@@ -1,19 +1,20 @@
 <?php
 // $Id$
-// This is the default search header (for the search results
-// page: albums.php). It's companion is search.footer.default. 
+// This is the default stats header (for the stats results page: stats.php).
+// It's companion is stats.footer.default. 
 //
-// To override this header, create a file called search.header
+// To override this header, create a file called stats.header
 // in this directory. 
 //
 // NOTE: This header gets inserted below the <body> tag.
 // 
 ?>
 <?php
-includeHtmlWrap("wrapper.header");
+	includeHtmlWrap("wrapper.header");
+	global $stats_title;
 ?>
 
-<table width="100%" border=0>
+<table width="100%" border="0">
   <tr>
     <td>
       <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_headliner">
@@ -23,57 +24,7 @@ includeHtmlWrap("wrapper.header");
             <table cellspacing="0" cellpadding="0" class="mod_toplight_bg">
               <tr>
                 <td class="mod_toplight_left" align="right"></td>
-                <td nowrap class="head" align="left">
-<?php
-                  global $type, $reverseOrder;
-                  if ( $type == "votes" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Images with the most Votes";
-                     else
-                        echo "&nbsp;Images with the least Votes"; 
-                  }
-                  else if ( $type == "ratings" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Top Rated Images";
-                     else
-                        echo "&nbsp;Bottom Rated Images";
-                  }
-                  else if ( $type == "views" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Images with the most Views";
-                     else
-                        echo "&nbsp;Images with the least Views";
-                  }
-                  else if ( $type == "date" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Latest Images";
-                     else
-                        echo "&nbsp;Oldest Images";
-                  }
-                  else if ( $type == "cdate" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Latest Capture Date";
-                     else
-                        echo "&nbsp;Oldest Capture Date";
-                  }
-                  else if ( $type == "comments" )
-                  {
-                     if ( !$reverseOrder )
-                        echo "&nbsp;Latest Comments";
-                     else
-                        echo "&nbsp;Oldest Comments";
-                  }
-                  else if ( $type == "random" )
-                  {
-                     echo "&nbsp;Random Images";
-                  }
-?>
-                </td>
+                <td nowrap class="head" align="left"><?php echo _("Gallery statistics") . $stats_title; ?></td>
                 <td class="mod_toplight_right" align="left"></td>
               </tr>
             </table>

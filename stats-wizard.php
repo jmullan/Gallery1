@@ -35,15 +35,17 @@ if (!$gallery->user->isAdmin()) {
 
 /* Layout function */
 function stats_showBlock($block, $caption=null) {
-	echo "\n\t<table>";
+	echo "\n<table>";
 	if (isset($caption)) {
-		echo "<caption>$caption</caption>"; 
+		echo "\n<caption>$caption</caption>"; 
 	}
 	foreach ($block as $option => $attr) {
 		echo "\n<tr>";
 		switch ($attr['type']) {
-			case 'checkbox':
 			case 'radio':
+					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $attr['name'] .'" value="'. $option .'" '. $attr['checked'] .'></td>';
+			break;
+			case 'checkbox':
 					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $option .'" value="1" '. $attr['checked'] .'></td>';
 			break;
 			case 'select':
@@ -60,8 +62,6 @@ function stats_showBlock($block, $caption=null) {
 		echo "\n\t<td>". $attr['text'] ."</td>";
 		echo "\n</tr>";
 	}
-	echo "\n\t</td>";
-	echo "\n</tr>";
 	echo "\n</table>";
 }
 
@@ -74,26 +74,26 @@ doctype();
 <?php 
 	common_header() ;
 ?>
-  <style>
+  <style type="text/css">
 	.blockcell { vertical-align: top; border-bottom: 1px solid #000000 }
 	caption	{ font-weight:bold; margin-bottom: 5px}
   </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
-        includeHtmlWrap("gallery.header");
+	$stats_title = " - " . _("Wizard");
+        includeHtmlWrap("stats.header");
 ?>
-<p align="center" class="popuphead"><?php echo _("Statistic Wizard") ?></p>
 <div style="text-align:right"><a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("Return to Gallery"); ?></a></div>
 
 <?php
 	$types = array (
-		'views'		=> array ('type' => 'radio', 'checked' => 'checked',	'text' => _("Sort by most viewed image first")),
-		'date'		=> array ('type' => 'radio', 'checked' => '', 		'text' => _("Sort by the latest added image first")),
-		'cdate'		=> array ('type' => 'radio', 'checked' => '', 		'text' => _("Sort by image capture date")),
-		'comments'	=> array ('type' => 'radio', 'checked' => '', 		'text' => _("Show images with comments - latest are shown first")),
-		'ratings'	=> array ('type' => 'radio', 'checked' => '', 		'text' => _("Show images with the highest ratings first")),
-		'random'	=> array ('type' => 'radio', 'checked' => '', 		'text' => _("Show random images"))
+		'views'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => 'checked',	'text' => _("Sort by most viewed image first")),
+		'date'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Sort by the latest added image first")),
+		'cdate'		=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Sort by image capture date")),
+		'comments'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show images with comments - latest are shown first")),
+		'ratings'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show images with the highest ratings first")),
+		'random'	=> array ('name' =>'type', 'type' => 'radio', 'checked' => '', 		'text' => _("Show random images"))
 	);
 
 
@@ -153,6 +153,11 @@ doctype();
 	echo "\n</table>";
 	echo "\n". '<input type="submit" value="'. _("Show me the statistic") . '">';
 	echo "\n</form>";
-?>
+
+
+includeHtmlWrap("stats.footer");
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
+<?php } ?>

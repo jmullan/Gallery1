@@ -51,7 +51,6 @@ if (!isset($gallery->version)) {
 	require_once(dirname(__FILE__) . '/init.php');
 }
 
-// Security check
 if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeAlbumHeaderUrl());
 	exit;
@@ -60,13 +59,11 @@ if (!$gallery->user->isAdmin()) {
 $statsVersion = "2.03j";
 $debug = 0;
 //$album="album01";
-$addLinksPos = 'oncaptionline';
 
 list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $stm, $rev, $tsz ,$ppp, $total, $sgr, $rows, $cols) =
-getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'rev', 'tsz' ,'ppp', 'total', 'sgr', 'rows', 'cols'));
+	getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'rev', 'tsz' ,'ppp', 'total', 'sgr', 'rows', 'cols'));
 
-list ($ty, $tm, $td) =
-getRequestVar(array('ty', 'tm', 'td'));
+list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 
 list ($page, $set_albumListPage) =
 getRequestVar(array('page', 'set_albumListPage'));
@@ -527,81 +524,78 @@ else {
 	$thumbSize = $gallery->app->default["thumb_size"];
 }
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-<?php
 switch ($type) {
 	case 'votes':
 	if ( !$reverseOrder ) {
-		$title =  _(" - Most Votes");
+		$stats_title =  _(" - Images with the most votes");
 	}
 	else {
-		$title =  _(" - Least Votes");
+		$stats_title =  _(" - Images with the least votes");
 	}
 	break;
 
 	case 'ratings':
 	if ( !$reverseOrder ) {
-		$title =  _(" - Top Rated");
+		$stats_title =  _(" - Top rated images");
 	}
 	else {
-		$title =  _(" - Bottom Rated");
+		$stats_title =  _(" - Bottom rated images");
 	}
 	break;
 
 	case 'date':
 	if ( !$reverseOrder ) {
-		$title =  _(" - Latest");
+		$stats_title =  _(" - Latest added images");
 	}
 	else {
-		$title =  _(" - Oldest");
+		$stats_title =  _(" - Oldest images first");
 	}
 	break;
 
 	case 'cdate':
 	if ( !$reverseOrder ) {
-		$title =  _(" - Latest Capture Date");
+		$stats_title =  _(" - Latest Capture Date");
 	}
 	else {
-		$title =  _(" - Oldest Capture Date");
+		$stats_title =  _(" - Oldest Capture Date");
 	}
 	break;
 
 	case 'comments':
 	if ( !$reverseOrder ) {
-		$title =  _(" - Latest Comments");
+		$stats_title =  _(" - Latest Comments");
 	}
 	else {
-		$title =  _(" - Oldest Comments");
+		$stats_title =  _(" - Oldest Comments");
 	}
 	break;
 
 	case 'random':
-		$title =  _(" - Random Images");
+		$stats_title =  _(" - Random Images");
 	break;
 
 	default:
 	// 'views'
 	if ( !$reverseOrder ) {
-		$title =  _(" - Most Views");
+		$stats_title =  _(" - Images with the most views");
 	}
 	else {
-		$title =  _(" - Least Views");
+		$stats_title =  _(" - Images with the least views");
 	}
 	break;
 }
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
 ?>
-  <title><?php echo $gallery->app->galleryTitle . $title; ?></title>
+<html>
+<head>
+  <title><?php echo $gallery->app->galleryTitle . $stats_title; ?></title>
 <?php
 common_header() ;
 ?>
 </head>
-
    <body dir="<?php echo $gallery->direction ?>">
-  <div class="popuphead"><?php echo _("Gallery statistics") . $title; ?></div>
 <?php
 }
 ?>

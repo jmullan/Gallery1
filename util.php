@@ -1100,10 +1100,10 @@ function includeLayout($name, $skinname='') {
 	}
 }
 
-function includeHtmlWrap($name, $skinname='') {
+function includeHtmlWrap($name, $skinname='', $adds='') {
 
 	// define these globals to make them available to custom text
-        global $gallery;
+	global $gallery;
 
 	$domainname = dirname(__FILE__) . '/html_wrap/' . $_SERVER['HTTP_HOST'] . "/$name";
 
@@ -1112,18 +1112,20 @@ function includeHtmlWrap($name, $skinname='') {
 	}
 
 	if (fs_file_exists($domainname) && !broken_link($domainname)) {
-	    include ($domainname);
-	} else {
-	    $defaultname = dirname(__FILE__) . "/html_wrap/$name";
-	    $fullname = dirname(__FILE__) . "/skins/$skinname/html_wrap/$name";
+		include ($domainname);
+	}
+	else {
+		$defaultname = dirname(__FILE__) . "/html_wrap/$name";
+		$fullname = dirname(__FILE__) . "/skins/$skinname/html_wrap/$name";
 	    
-	    if (fs_file_exists($fullname) && !broken_link($fullname)) {
-		include ($fullname);
-	    } elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
-		include ($defaultname);
-	    } else {
-		include ("$defaultname.default");
-	    }
+		if (fs_file_exists($fullname) && !broken_link($fullname)) {
+			include ($fullname);
+		}
+		elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+			include ($defaultname);
+		} else {
+			include ("$defaultname.default");
+		}
 	}
 
 	return 1;
@@ -2999,17 +3001,22 @@ function gallery_validation_link($file, $valid=true, $args='') {
 	if (!isset($args)) {
 		$args=array();
 	}
-
+	
 	$args['PHPSESSID']=session_id();
-	$link='<a href="http://validator.w3.org/check?uri='.
-		urlencode(eregi_replace("&amp;", "&",
-					makeGalleryURL($file, $args))) .
-		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+
+	if (!empty($file)) {
+		$uri = urlencode(eregi_replace("&amp;", "&", makeGalleryURL($file, $args)));
+	 }
+	else {
+		$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
+	}
+	$link='<a href="http://validator.w3.org/check?uri='. $uri .'">'.
+		'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 	if (!$valid) {
 		$link .= _("Not valid yet");
 	}
-	return $link;
 
+	return $link;
 }
 
 // uses makeAlbumURL
