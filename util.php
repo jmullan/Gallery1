@@ -2704,7 +2704,6 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	/* Minimum Headers according to RFC 822 A.3.1. */
 	$headers  = "Date: ". date("r") ."\r\n";
 	$headers  .= "From: ". $gallery->app->galleryTitle ." ". _("Administrator") . " <$from>\r\n";
-	$headers  .= "To: ". $to ."\r\n";
 	
 	/* Additional headers */
 	$additional_headers = "Reply-To: <$reply_to>\r\n";
