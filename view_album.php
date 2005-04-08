@@ -696,7 +696,11 @@ if ($numPhotos) {
 				       	$gallery->html_wrap['thumbTag']	= $gallery->html_wrap['imageTag'];
 				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 				/*end backwards compatibility*/
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				list($divCellWidth, $divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				// If there is only one column, we don't need to try and match row heights
+				if ($cols == 1) { 
+					$padding = 0; 
+				}
 				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 
 				includeHtmlWrap('inline_moviethumb.frame');
