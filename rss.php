@@ -89,7 +89,8 @@ function getThumbsAndCaptions($album) {
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
 			$imgtag = $album->getThumbnailTag($i, 0, $tags);
 			$caption = $photo->getCaption();
-			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
+			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) .
+"\">" . $imgtag . "</a>$caption<br />\n";
 		}
 	}
 	

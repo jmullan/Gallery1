@@ -1207,7 +1207,7 @@ $constants = array_merge($constants,
 			'basic' => _("Basic information only"),
 			'highlight' => _("Album highlight"),
 			'thumbs' => _("All image thumbnails"),
-			'captions' => _("All image thumbnails and captions")),
+			'thumbs-with-captions' => _("All image thumbnails and captions")),
 		'value' => "basic",
 	),
 	'rssHighlight' => array(
