@@ -55,6 +55,10 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
 	return fopen($filename, $mode, $use_include_path);
 }
 
+function fs_file_get_contents($filename) {
+        return @file_get_contents($filename);
+}
+
 function fs_is_dir($filename) {
 	return @is_dir($filename);
 }

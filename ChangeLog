@@ -1,3 +1,9 @@
+2005-04-11  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b7
+
+	* Fix: getFile() failed to call fs_import_filename on Windows when
+	  using file_get_contents - this caused problems with the old UserDB
+	  format.
+
 2005-04-09  Jens A. Tkotz <jens@peino.de>  1.5-RC4-CVS-b6
 
 	* Fix: gallery_mail added unneeded (and invalid) second to: header.

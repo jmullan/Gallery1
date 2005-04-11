@@ -452,7 +452,7 @@ function getFile($fname, $legacy=false) {
 	}
 
 	if (function_exists("file_get_contents")) {
-		return file_get_contents($fname);
+		return fs_file_get_contents($fname);
 	}
 
 	if ($legacy) {
