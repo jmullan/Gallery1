@@ -678,7 +678,7 @@ if (isset($stm)) {
 }
 
 	/* Start of album layout style. */
-	echo '<table width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" border="0" cellspacing="7>';
+	echo '<table width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" border="0" cellspacing="7">';
 
 	for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; $j+=1) {
 		$photoInfo = $arrPhotos[$j];
