@@ -388,10 +388,6 @@ if (!$gallery->album->isMovie($id)) {
 	global $printEZPrintsForm, $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
 	
 	switch ($name) {
-	    case 'ezprints':
-		$printEZPrintsForm = true;
-	    break;
-                                
 	    case 'shutterfly':
 		$printShutterflyForm = true;
 	    break;
@@ -415,7 +411,6 @@ if (!$gallery->album->isMovie($id)) {
 
     $fullNames = array(
 	'Print Services' => array(
-	    'ezprints'    => 'EZ Prints',
 	    'fotokasten'  => 'Fotokasten',
 	    'fotoserve'   => 'Fotoserve',
 	    'shutterfly'  => 'Shutterfly',
@@ -485,10 +480,6 @@ if (!$gallery->album->isMovie($id)) {
 		    input = document.admin_form.print_services.value;
 		}
 		switch (input) {
-		case 'ezprints':
-			document.ezPrintsForm.returnpage.value=document.location;
-			document.ezPrintsForm.submit();
-			break;
 		case 'fotokasten':
 			window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print_with_Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
 			break;
@@ -752,26 +743,6 @@ if (isset($printPhotoAccessForm)) { ?>
   <input type="hidden" name="thumbUrl" value="<?php echo $thumbImage ?>">
   <input type="hidden" name="imgWidth" value="<?php echo $imageWidth ?>">
   <input type="hidden" name="imgHeight" value="<?php echo $imageHeight ?>">
-</form>
-<?php }
-if (isset($printEZPrintsForm)) { ?>
-<form method="post" name="ezPrintsForm" action="http://gallery.mye-pix.com/partner.asp">
-  <?php
-     /* Print the caption on back of photo. If no caption,
-      * then print the URL to this page. */
-     $imbkprnt = $gallery->album->getCaption($index);
-     if (empty($imbkprnt)) {
-        $imbkprnt = makeAlbumUrl($gallery->session->albumName, $id);
-     }
-  ?>
-  <input type="hidden" name="count" value="1">
-  <input type="hidden" name="title0" value="<?php echo htmlentities(strip_tags($imbkprnt)) ?>">
-  <input type="hidden" name="lo_res_url0" value="<?php echo $thumbImage ?>">
-  <input type="hidden" name="hi_res_url0" value="<?php echo $rawImage ?>">
-  <input type="hidden" name="returnpage" value="this-gets-set-by-javascript-in-onClick">
-  <input type="hidden" name="width0" value="<?php echo $imageWidth ?>">
-  <input type="hidden" name="height0" value="<?php echo $imageHeight ?>">
-  <input type="hidden" name="startwith" value="cart">
 </form>
 <?php }
 	includeHtmlWrap("photo.footer");

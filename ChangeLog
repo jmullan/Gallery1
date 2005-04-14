@@ -1,3 +1,14 @@
+2005-04-13  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b9
+
+	* Change: Remove EZPrints as an option for print providers at their
+	  request.  Migrate all EZPrints users to Shutterfly.
+
+	* Fix: Bypass annoying PHP5 bug for isset($var->unset['unset'])
+
+	* Fix: Modify fs_file_get_contents() to simulate file_get_contents
+	  if it doesn't exist.  GR was using file_get_contents without verifying
+	  support first.
+
 2005-04-13  Jens A. Tkotz <jens@peino.de>  1.5-RC4-CVS-b8
 
 	* Fix: Album Navigation ignored returnto=no in the middle.

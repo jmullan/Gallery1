@@ -56,7 +56,17 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
 }
 
 function fs_file_get_contents($filename) {
-        return @file_get_contents($filename);
+        if (function_exists("file_get_contents")) {
+                $tmp = @file_get_contents($filename);
+        } else {
+                if ($fd = fs_fopen($fname, "rb")) {
+                        while (!feof($fd)) {
+                                $tmp .= fread($fd, 65536);
+                        }
+                        fclose($fd);
+                }
+        }       
+        return $tmp;
 }
 
 function fs_is_dir($filename) {

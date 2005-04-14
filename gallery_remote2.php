@@ -271,7 +271,7 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$capt
 				$userfile_name = substr(md5(microtime()),0,8).'.'.$imagetype;
 			}
 		}
-		if($tmpImage = file_get_contents($userfile)) {
+		if($tmpImage = fs_file_get_contents($userfile)) {
 			$userfile = tempnam($gallery->app->tmpDir,'img');
 			if(!$fhandle = fopen($userfile,'wb')) {
 				$response->setProperty( 'status', $GR_STAT['UPLOAD_PHOTO_FAIL'] );
