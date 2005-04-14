@@ -181,23 +181,18 @@ $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height
 		'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 #-- breadcrumb text ---
-$breadCount = 0;
-$breadtext=array();
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
+                'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
-if (isset($gallery->album)) {
-	/* We are inside an album */
-	if ($gallery->album->fields['returnto'] != 'no') {
-		$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
-		  $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-		foreach ($gallery->album->getParentAlbums(true) as $name => $title) {
-			$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" .
-			  $title. "&nbsp;" . $upArrowURL . "</a>";
-		}
-	}
+if (isset($gallery->album) && $gallery->album->fields['returnto'] != 'no') {
+    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
+        $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
+          $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+    }
 } else {
-	/* We're on mainpage */
-	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
-	  $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
+        /* We're on mainpage */
+        $breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
+          $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
 }
 
 $breadcrumb["bordercolor"] = $borderColor;
