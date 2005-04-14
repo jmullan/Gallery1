@@ -475,11 +475,13 @@ class Album {
 		}
 
 		if ($this->version < 34) {
-			if (isset($this->fields['print_photos']['ezprints']['checked'])) {
-			    $this->fields['print_photos']['shutterfly']['checked'] = 'checked';
+			if (isset($this->fields['print_photos']['ezprints'])) {
+				if (isset($this->fields['print_photos']['ezprints']['checked'])) {
+				    $this->fields['print_photos']['shutterfly']['checked'] = 'checked';
+				}
+				unset($this->fields['print_photos']['ezprints']);
+				$changed = 1;
 			}
-			unset($this->fields['print_photos']['ezprints']);
-			$changed = 1;
 		}
 
 		/* Special case for EXIF :-( */
