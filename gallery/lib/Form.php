@@ -82,6 +82,7 @@ function selectOptions($album, $field, $opts) {
 function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	$attrs = "";
 	if (!empty($attrList)) {
+		$attrs = " ";
 		foreach ($attrList as $key => $value) {
 			if ($value == NULL) {
 				$attrs .= " $key";
@@ -93,20 +94,20 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	}
 
 	$buf = "";
-	$buf .= "<select name=\"$name\" size=$size $attrs>\n";
+	$buf .= "<select name=\"$name\" size=\"$size\"$attrs>";
 	foreach ($array as $uid => $username) {
 		$sel = "";
 		if (is_array($selected)) {
 			if (in_array($uid, $selected)) {
-				$sel = "selected";
+				$sel = " selected";
 			}
 		}
 		else if (!strcmp($uid, $selected)) {
-			$sel = "selected";
+			$sel = " selected";
                 }
-		$buf .= "<option value=$uid $sel>". $username ."</option>\n";
+		$buf .= "<option value=\"$uid\"$sel>". $username ."</option>";
 	}
-	$buf .= "</select>\n";
+	$buf .= "</select>";
 
 	return $buf;
 }

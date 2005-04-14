@@ -109,12 +109,10 @@ $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height
 		'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 if ($gallery->album->fields['returnto'] != 'no') {
-	$breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" . 
-		$gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-	foreach ($gallery->album->getParentAlbums() as $name => $title) {
-		$breadcrumb["text"][] = _("Album") .": <a class=\"bread\" href=\"" . makeAlbumUrl($name) . "\">" . 
-			$title. "&nbsp;" . $upArrowURL . "</a>";
-	}
+    foreach ($gallery->album->getParentAlbums() as $navAlbum) {
+	$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'. 
+	  $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+    }
 }
 
 $breadcrumb["bordercolor"] = $bordercolor;
@@ -696,7 +694,11 @@ if ($numPhotos) {
 				       	$gallery->html_wrap['thumbTag']	= $gallery->html_wrap['imageTag'];
 				       	$gallery->html_wrap['thumbHref'] = $gallery->html_wrap['imageHref'];
 				/*end backwards compatibility*/
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				list($divCellWidth, $divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				// If there is only one column, we don't need to try and match row heights
+				if ($cols == 1) { 
+					$padding = 0; 
+				}
 				echo "<div style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\" align=\"center\" class=\"vafloat2\">\n";
 
 				includeHtmlWrap('inline_moviethumb.frame');

@@ -80,7 +80,7 @@ foreach ($defaults as $key => $val) {
 	}
 
 	/* Support $app-> for backwards compatibility */
-	if (isset($app->default[$key])) {
+	if (isset($app->default) && isset($app->default[$key])) {
 		$val["value"] = $app->default[$key];
 	}
 

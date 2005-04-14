@@ -180,6 +180,7 @@ if (!empty($gallery->app->stats_foruser) && $numPhotos != 0) {
 /* Admin Text (right side) */
 
 $adminCommands = '';
+$iconElements = array(); 
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 

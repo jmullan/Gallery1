@@ -1,12 +1,65 @@
+2005-04-13  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b9
+
+	* Change: Remove EZPrints as an option for print providers at their
+	  request.  Migrate all EZPrints users to Shutterfly.
+
+	* Fix: Bypass annoying PHP5 bug for isset($var->unset['unset'])
+
+	* Fix: Modify fs_file_get_contents() to simulate file_get_contents
+	  if it doesn't exist.  GR was using file_get_contents without verifying
+	  support first.
+
+2005-04-13  Jens A. Tkotz <jens@peino.de>  1.5-RC4-CVS-b8
+
+	* Fix: Album Navigation ignored returnto=no in the middle.
+	       Result was that anytime the full line was showed.
+
+2005-04-11  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b7
+
+	* Fix: getFile() failed to call fs_import_filename on Windows when
+	  using file_get_contents - this caused problems with the old UserDB
+	  format.
+
+2005-04-09  Jens A. Tkotz <jens@peino.de>  1.5-RC4-CVS-b6
+
+	* Fix: gallery_mail added unneeded (and invalid) second to: header.
+
+2005-04-08  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b5
+
+	* Fix: Setup was using an incorrect string value for the thumbnails RSS option
+
+	* Fix: Captions were not being properly included in RSS when thumbs-with-captions
+	  was selected in the config wizard.
+
+2005-04-07  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b4
+
+	* Fix: When displaying a single column in view_album, don't try to 
+	  pad the row height to match other columns
+
+2005-04-07  Jens A. Tkotz <jens@peino.de>  1.5-RC4-CVS-b3
+
+	* Fix: $iconelement was not correct initialized.
+
+2005-04-05  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b2
+
+	* Fix: Incorrect variable being referenced when setting a movie as
+	  highlight resulted in a missing highlight thumbnail.
+
+2005-04-05  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC4-cvs-b1
+
+	* Fix: lib/Form.php - remove the newlines from selectOptions.
+	  The High slideshow uses selectOptions in JS with document.write
+	  which is incapable of handling newlines in its data.
+
 2005-04-04  Chris Kelly <ckdake@users.sf.net> 1.5-RC3
 
 	* 1.5-RC3 Release
 
-2005-04-01  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b23
+2005-04-01  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b23
 
 	* "Fix": highest rating code in stats was broken -> commented out
 
-2005-03-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b22
+2005-03-30  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b22
 
 	* Fix: Logged in users now no longer use the stats cache - this will
 	  prevent issues when using stats filters (which only logged-in users can see)
@@ -14,22 +67,22 @@
 
 	* Change: Removed some dead, commented code.
 
-2005-03-29  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b21
+2005-03-29  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b21
 
 	* Fix: check_mail.php now uses gallery_mail() instead of calling mail()
 	  directly.
 
-2005-03-28  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b20
+2005-03-28  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b20
 
 	* Change: Wording on view_album. 
 		"admin options" -> "album actions"
 		"edit ..." -> "... actions"
 
-2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b19
+2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b19
 
 	* Fix: madmod1 skin had unquoted keys.
 
-2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b18
+2005-03-27  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b18
 
 	* Fix: admin-page.php, stats-wizard.php, tools/despam-comments.php and 
 	       tools/validate_albums.php gave errors when embedded.
@@ -42,32 +95,32 @@
 
 	* CHange: Moved some css from adminpage and stats-wizard into base.css
 	        
-2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b17
+2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b17
 
 	* Change: Upgrade GR Applets to 1.4.2-b12
 
-2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b16
+2005-03-24  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b16
 
 	* Fix: multi_create_user wasn't globalized
 
 	* Fix: Variable typo in manager_users
 
-2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b15
+2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b15
 
 	* Change: Don't update the album's mod time when users request mail
 	  notifications.
 
-2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b14
+2005-03-23  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b14
 
 	* Change: An attempt to bypass the Zend problem of reversing breadcrumbs
 
 	* Fix: IM5 strip logic was backwards, too?  *confuzzled*
 
-2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b13
+2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b13
 
 	* Fix: stats wouldn't filter by day, month and year.  Only one at a time.
 
-2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b12
+2005-03-21  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b12
 
 	* Fix: check_mail.php wasn't globalized
 
@@ -75,55 +128,55 @@
 
 	* Fix: Custom regenerate_session_id didn't work on Win32
 
-2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b11
+2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b11
 
 	* Fix: Forgot a $ in b10 fix for the b4 fix.
 
-2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b10
+2005-03-18  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b10
 
 	* Fix: The headers in the b4 fix was not concatenated.
 
-2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b9
+2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b9
 
 	* Fix: b8 was senseless. Also removed a second senseless check.
 
 	* Change: Moved backup_albums.php to tools/ folder.
 
-2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b8
+2005-03-17  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b8
 
 	* Fix: Adminpage can be there for non admins, but for user you can modify users.
 
-2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b7
+2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b7
 
 	* Change: A Sentence in album_permissions.php was not translateable.
 
-2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b6
+2005-03-16  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b6
 
 	* Fix: Dont show warning message regarding permissions after having logged In.
 
-2005-03-16  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b5
+2005-03-16  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b5
 
 	* Fix:  The logic for determining whether to strip EXIF in IM6 is
 	  the backwards of IM5.  As so elequently put by fryfrog:
 	  "<fryfrog> so in 5.x they always dumped exif but had an option 
 	  to preserve and in 6.x they preserve with an option to dump?"
 
-2005-03-15  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC3-b4
+2005-03-15  Jens A. Tkotz <jens@peino.de>  1.5-RC3-cvs-b4
 
 	* Fix: Added Minimum Headers according to RFC 822 in gallery mail.
 
-2005-03-13  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b3
+2005-03-13  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b3
 
 	* Fix: Unquoted array refs, global scope issues, html comments 
 	  surrounding script tags.
 
-2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b2
+2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b2
 
 	* Fix: Attempt to address phpBB unset()ing the op/name/modload vars
 	  before we use them by not setting them until after we include
 	  phpBB's files.
 
-2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-cvs-RC3-b1
+2005-03-12  Jay Rossiter <cryptographite@users.sf.net>  1.5-RC3-cvs-b1
 
 	* Fix: Unset array ref in do_command
 
@@ -134,7 +187,7 @@
 
 	* Fix: Update phpBB instructions to include new CSS file
 
-2005-03-10  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b32
+2005-03-10  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b32
 
 	* Fix: Removed linebreak in translateable text.
 
@@ -144,7 +197,7 @@
 
 	* Fix: Only try to watermark if the item isn't an album or a movie
 
-2005-03-09  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b30
+2005-03-09  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b30
 
 	* Updated Copyrights to 2005.
 
@@ -163,7 +216,7 @@
 
 	* Change: Add validate albums to the admin page
 
-2005-03-03  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b26
+2005-03-03  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b26
 
 	* Fix: Show "See full poll results" link only to admins and owners 
 	       otherwise normal users get an errormessage.
@@ -184,7 +237,7 @@
 	* Change: Change .pcaption to inherit font-size when embedded.  
 	  It was showing up too small when embedded, for some reason.
 
-2005-03-02  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b22
+2005-03-02  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b22
 
 	* Fix: Adjust skins:
 	  - lilac
@@ -208,11 +261,11 @@
 
 	* Change: Update 'embedding' text to mention the 'Ignore register_globals' option
 
-2005-03-01  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.5-cvs-RC2-b19
+2005-03-01  Pierre-Luc Paour  <paour@users.sourceforge.net> 1.5-RC2-cvs-b19
 
 	* Fix: Mambo support for the upload applet needed a new cookie to be passed.
 
-2005-03-01  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b18
+2005-03-01  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b18
 
 	* Fix: Adjust skins:
 	  - greenpurple
@@ -228,7 +281,7 @@
 
 	* Fix: User input checking
 
-2005-02-24  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b16
+2005-02-24  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b16
 
 	* Change: css enhancement for better readability of links in attention messages.
 
@@ -257,13 +310,13 @@
 
 	* Fix: phpBB modules.php was relying on globals that didn't exist
 
-2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b13
+2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b13
 
 	* Change: Texts in setup/config_data.inc
 
 	* Change: css consolidation in setup/config_data.inc
 
-2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b12
+2005-02-21  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b12
 
 	* Fix: css class in EXIF Table
 
@@ -271,7 +324,7 @@
 	  - bpurple
 	  - bred
 
-2005-02-18  Jens A. Tkotz <jens@peino.de>  1.5-cvs-RC2-b11
+2005-02-18  Jens A. Tkotz <jens@peino.de>  1.5-RC2-cvs-b11
 
 	* Fix: css classes:
 	  - captionator.php

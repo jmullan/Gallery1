@@ -1207,7 +1207,7 @@ $constants = array_merge($constants,
 			'basic' => _("Basic information only"),
 			'highlight' => _("Album highlight"),
 			'thumbs' => _("All image thumbnails"),
-			'captions' => _("All image thumbnails and captions")),
+			'thumbs-with-captions' => _("All image thumbnails and captions")),
 		'value' => "basic",
 	),
 	'rssHighlight' => array(
@@ -1427,17 +1427,12 @@ $defaults = array(
 			'fotokasten'  => array(
 				'name'    => 'Fotokasten',
 				'url'     => 'http://www.fotokasten.de/'),    
-			'ezprints'    => array(
-				'name'    => 'EZ Prints',
-				'url'     => 'http://www.ezprints.com/'),
 			'mpush'       => array(
 				'name'    => 'mPUSH',
 				'url'	  => 'http://www.mpush.cc/',
 				'desc'    => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."),),
 		),
 		'value' => array(
-			'ezprints' => array(
-				'checked' => true),
 			'fotokasten' => array(
 				'checked' => true),
 			'photoaccess' => array(

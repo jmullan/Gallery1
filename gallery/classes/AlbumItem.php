@@ -355,7 +355,7 @@ class AlbumItem {
 			}
 			$size = $album->getHighlightSize();
 
-			if ($srcitem->image->thumb_width > 0  && !$this->isMovie()) {
+			if ($srcitem->image->thumb_width > 0  && !$srcitem->isMovie()) {
 				// Crop it first
 				$ret = cut_image("$srcdir/".$srcitem->image->name.".$tag",
 						"$dir/$name.tmp.$tag",
@@ -371,7 +371,7 @@ class AlbumItem {
 							    $size);
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
-			} elseif ($this->isMovie()) {
+			} elseif ($srcitem->isMovie()) {
 				if (fs_file_exists($gallery->app->movieThumbnail)) {
 					$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
 					$ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size);
