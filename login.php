@@ -73,7 +73,7 @@ doctype();
 
 <?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
-<p>
+
 <table align="center">
 <?php if (isset($error)) { ?>
 <tr>
@@ -91,11 +91,9 @@ doctype();
 </tr>
 </table>
 
-<p>
-<div align="center">
+<p align="center">
 	<input type="submit" name="login" value="<?php echo _("Login") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</div>
 </p>
 </form>
 </div>
@@ -141,20 +139,17 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
     } 
 ?>
 
-<p>
 <table align="center">
 <tr>
 	<td><?php echo _("Username") ?></td>
 	<td><input type="text" name="username"  class="popupform" value="<?php echo $username ?>"></td>
 </tr>
 </table>
-</p>
 
-<p>
-<div align="center"><input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>"></div>
+<p align="center"><input type="submit" name="forgot" value="<?php echo _("Send me my password") ?>"></p>
 </form>
-
 </div>
+
 <?php } /* End if-email-on */ ?>
 
 <script language="javascript1.2" type="text/JavaScript">

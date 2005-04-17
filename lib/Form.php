@@ -79,8 +79,10 @@ function selectOptions($album, $field, $opts) {
 }
 
 
-function drawSelect($name, $array, $selected, $size, $attrList=array()) {
+function drawSelect($name, $options, $selected, $size, $attrList=array(), $prettyPrinting = false) {
 	$attrs = "";
+	$crlf = ($prettyPrinting) ? "\n\t" : '';
+
 	if (!empty($attrList)) {
 		$attrs = " ";
 		foreach ($attrList as $key => $value) {
@@ -94,20 +96,20 @@ function drawSelect($name, $array, $selected, $size, $attrList=array()) {
 	}
 
 	$buf = "";
-	$buf .= "<select name=\"$name\" size=\"$size\"$attrs>";
-	foreach ($array as $uid => $username) {
+	$buf .= "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
+	foreach ($options as $value => $text) {
 		$sel = "";
 		if (is_array($selected)) {
-			if (in_array($uid, $selected)) {
+			if (in_array($value, $selected)) {
 				$sel = " selected";
 			}
 		}
-		else if (!strcmp($uid, $selected)) {
+		else if (!strcmp($value, $selected)) {
 			$sel = " selected";
                 }
-		$buf .= "<option value=\"$uid\"$sel>". $username ."</option>";
+		$buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
 	}
-	$buf .= "</select>";
+	$buf .= "</select>". $crlf;
 
 	return $buf;
 }
@@ -142,7 +144,7 @@ function makeFormIntro($target, $attrList=array(), $urlargs=array()) {
 		$attrs .= " $key=\"$value\"";
 	}
 
-	$form = "<form action=\"$target\" $attrs>\n";
+	$form = "\n<form action=\"$target\" $attrs>\n";
 
 	$args = split("&", $tmp);
 	foreach ($args as $arg) {

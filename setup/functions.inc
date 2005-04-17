@@ -25,7 +25,8 @@
 function evenOdd_row($fields, $evenOdd) {
 	$buf='';
 
-	$f0 = str_replace(" ", "&nbsp;", $fields[0]);
+	/* why was this added ? Jens Tkotz, 05.04.2005 */
+	// $f0 = str_replace(" ", "&nbsp;", $fields[0]);
 	if (isset($fields[4])) {
                         $f0 .= '&nbsp;<span class="littlered">*</span>';
 	}
@@ -41,8 +42,8 @@ function evenOdd_row($fields, $evenOdd) {
 		$buf .= "\n</td></tr>";
 	} else {
 		$buf .= "\n<tr>";
-		$buf .= "\n\t<td class=\"shortdesc\" valign=\"top\">$f0</td>";
-		$buf .= "\n\t<td class=\"shortdesc\" width=\"90%\" valign=\"top\">$fields[1]</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" width=\"40%\" valign=\"top\">$fields[0]</td>";
+		$buf .= "\n\t<td class=\"shortdesc\" valign=\"top\">$fields[1]</td>";
 		$buf .= "\n</tr>";
 		$buf .= "\n<tr>";
 		if (!empty($fields[2])) {
@@ -193,7 +194,10 @@ function form_choice($key, $arr) {
 }
 
 function form_multiple_choice($key, $arr) {
-	
+	if (empty($arr["multiple_choices"])) {
+	   return _("No content");
+	}
+
 	$buf= '<table><tr><td valign="top">';
 	$count=0;
 	$column=0;
@@ -1168,7 +1172,7 @@ function inOpenBasedir($dir) {
 
 function make_separator($key, $arr)  {
 		$buf ="\n<div class=\"inner\">";
-		$buf .= "\n\t<div class=\"separator\">". $arr["title"] ."</></div>";
+		$buf .= "\n\t<div class=\"separator\">". $arr["title"] ."</div>";
 		if( isset($arr["desc"])) {
 			$buf .= "\n<div class=\"desc\">". $arr["desc"] ."</div>";
 		}
@@ -1550,7 +1554,7 @@ function checkVersions($verbose=false) {
 **	 - You always need a group_end for a group. Otherwise everything below will belong to the group.	
 */ 
 
-function makeSectionTabs($array) {
+function makeSectionTabs($array, $break = 7) {
 	$tabs=array();
 	$initialtab='';
 	foreach ($array as $key => $var) {
@@ -1575,12 +1579,12 @@ function makeSectionTabs($array) {
 		}
 		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
 		echo '<span class="tab-text">'. $cell['title'] . '&nbsp;</span>';
-		if (isset($cell['contains_required'])) {
+		if (!empty($cell['contains_required'])) {
 			echo '<span class="littlered">*</span>';
 		}
 		echo '</td>';
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
-		if ($tabcount %7 ==0) {
+		if ($tabcount % $break == 0) {
 			echo "\n</tr>\n</table>";
 			echo "\n<table width=\"100%\"cellspacing=\"0\" style=\"margin-top:5px;\">\n<tr>";
 		}
@@ -1646,4 +1650,25 @@ function configLogin($target) {
 	}
 }
 
+function placeholderDescription() {
+    $placeholderDescription =  
+	_("This email will be sent when new accounts are created.") .
+	_("Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
+	_("The following placeholder can be used:") .
+	'<p><table>';
+	
+    foreach(welcomeMsgPlaceholderList() as $placeholder => $description) {
+	$placeholderDescription .= '<tr>'.
+				   '<td>!!'. strtoupper($placeholder) . '!!</td>'.
+				   "<td>$description</td>".
+				   '</tr>';
+    }
+    $placeholderDescription .= '</table></p>'.
+
+	'<div style="border: 1px black solid; padding-left:10%; padding-right:10%">'. 
+		nl2br(welcome_email(true)) . 
+	'</div>';
+
+    return $placeholderDescription;
+}	
 ?>

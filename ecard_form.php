@@ -1,0 +1,274 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2005 Bharat Mediratta
+ *
+ * This file Copyright (C) 2003-2004 Joan McGalliard
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * $Id$
+ */
+?>
+<?php
+/*
+####################################################################################
+# IBPS E-C@ard for Gallery           Version 1                                     #
+# Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de                       #
+# Ported (the first time) for Gallery By freenik      webmaster@cittadipolicoro.com#
+####################################################################################
+*/
+
+  require_once(dirname(__FILE__) . '/init.php');
+
+//  print_r($_POST);
+  list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
+  $photo = $gallery->album->getPhoto($photoIndex);
+
+  /* Get the dimensions of the sized Photo */
+  list($width, $height) = $photo->getDimensions(0, false);  
+
+  $max_length = 300;   // Maximum length of the e-Card text
+  $msgTextError1 = _("Error processing e-card. Please try later.");
+  $msgTextError2 = _("Some input fields are not correctly filled out. Please fill out.");
+  $ecard_PLAIN_data = _("You have an e-card as attachment. Click to see.");
+
+  $error_msg = "";
+
+  $ecard_send = false;
+
+  if (! empty($submit_action)) {
+    if ( check_email($ecard["email_recepient"]) && check_email($ecard["email_sender"]) && ($ecard["email_recepient"] != "") && ($ecard["name_sender"] != "") )  {
+      if (strlen($ecard["message"]) > $max_length) {
+	$ecard["message"] = substr($ecard["message"],0,$max_length-1);
+      }
+      list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+      if ($error) {
+        $error_msg = $msgTextError1;
+       } else {
+           $ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse);
+           $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
+           if ($result) {
+             $ecard_send = true;
+           } else {
+               $error_msg = $msgTextError1;
+             }
+         }
+    } else {
+       $error_msg = $msgTextError2;
+      }
+  } else {
+	if (!isset($ecard["image_name"])) {
+	    $ecard["image_name"] = $gallery->album->getPhotoPath($photoIndex, false);
+	}
+    }
+//print_r($ecard);
+doctype();
+?>
+<html>
+  <?php common_header(); ?>
+  <title><?php echo _("Send this photo as eCard") ?></title>
+ 
+<script type="text/javascript">
+<!--
+function popup_win(theURL,winName,winOptions) {
+   win = window.open(theURL,winName,winOptions);
+   win.focus();
+ }
+
+ function make_preview() {
+   document.ecard_form.action = "ecard_preview.php";
+   popup_win('_templates/leer.htm','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
+   document.ecard_form.target = "ecard_preview";
+   document.ecard_form.submit();
+ }
+ function take_stamp() {
+   document.ecard_form.action = "stamp_preview.php";
+   popup_win('stamp_preview.php','stamp_preview','resizable=yes,scrollbars=yes,width=300,height=600');
+   document.ecard_form.target = "stamp_preview";
+   document.ecard_form.submit();
+ }
+ function send_ecard() {
+   document.ecard_form.action = "<?php echo $HTTP_SERVER_VARS["PHP_SELF"] ?>";
+   document.ecard_form.target = "_self";
+   document.ecard_form["submit_action"].value = "send";
+   if (check()) { document.ecard_form.submit(); }
+ }
+ 
+ function check() {
+   var error = false;
+   var error_message = "Error, to send an E-C@rd\nyou hve to fill all fields.\n Please fill this fields:\n\n";
+
+   if (document.ecard_form["ecard[name_sender]"].value == "") {
+     error = true;
+     error_message += "- Your Name\n";
+   } 
+ 
+   if ((document.ecard_form["ecard[email_sender]"].value == "") && 
+      (document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1)) {
+        error = true;
+        error_message += "- Your Email\n";
+   }
+  
+   if (document.ecard_form["ecard[name_recepient]"].value == "") {
+     error = true;
+     error_message += "- Recipient's Name\n";
+   } 
+ 
+   if ((document.ecard_form["ecard[email_recepient]"].value == "") && 
+      (document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1)) {
+        error = true;
+        error_message += "- Recipient's Email\n";
+   }
+  
+   if (document.ecard_form["ecard[message]"].value == "") {
+     error = true;
+     error_message += "- Your Message\n";
+   }
+
+   if (error) {
+     error_message += "\n\nPlease fill all fields\n next click 'Send'.";
+     alert(error_message);
+     return false;  // Formular wird nicht abgeschickt.
+   } else {
+       return true;  // Formular wird abgeschickt.
+     }
+
+  } // Ende function check()
+  
+  function CountMax() {
+    max = <?php echo $max_length ?>;
+    wert = max - document.ecard_form["ecard[message]"].value.length;
+    if (wert < 0) {
+      alert("You have entered more than " + max + " characters!");
+      document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
+      wert = 0;
+      document.ecard_form.counter.value = wert;
+    } else {
+        document.ecard_form.counter.value = max - document.ecard_form["ecard[message]"].value.length;
+      }
+  } // Ende function CountMax()
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+
+</HEAD>
+
+<body class="popupbody" dir="<?php echo $gallery->direction ?>">
+<div class="popuphead"><?php echo _("Send this photo as eCard") ?></div>
+<div align="center" class="popup">
+
+<?php 
+    if (! $ecard_send) {
+	echo $gallery->album->getThumbnailTag($photoIndex);
+	if (!empty($error_msg)) {
+	    echo '<p>'. gallery_error($error_msg) .'</p>';
+	}
+
+    echo makeFormIntro("ecard_form.php",
+                array("name" => "ecard_form", "method" => "POST"),
+                array("type" => "popup"));
+?>
+  <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"] ?>">
+  <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
+  <input name="photoIndex" type="hidden" value="<?php echo $photoIndex; ?>">
+  <input name="submit_action" type="hidden" value="">
+
+  <br>
+  <table border="1" cellpadding="0" cellspacing="4" align="center">
+  <tr>
+    <td bgcolor="#F48000" colspan="2"><?php echo _("Your info"); ?></td>
+    <td width="10">&nbsp;</td>
+    <td bgcolor="#F48000" colspan="2"><?php echo _("Recipient's info"); ?></td>
+  </tr>
+  <tr>
+    <td><?php echo _("Name") ?></td>
+    <td><input maxlength="40" name="ecard[name_sender]" size="18" type="Text" value='<?php if (! empty($ecard["name_sender"])) echo $ecard["name_sender"]; ?>'></td>
+    <td></td>
+    <td><?php echo _("Name") ?></td>
+    <td><input maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value='<?php if (! empty($ecard["name_recepient"])) echo $ecard["name_recepient"]; ?>'></td>
+  </tr>
+  <tr>
+    <td><?php echo _("E-Mail"); ?></td>
+    <td><input maxlength="40" name="ecard[email_sender]" size="18" type="Text" value='<?php if (! empty($ecard["email_sender"])) echo $ecard["email_sender"]; ?>'></td>
+    <td></td>
+    <td><?php echo _("E-Mail"); ?></td>
+    <td><input maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value='<?php if (! empty($ecard["email_recepient"])) echo $ecard["email_recepient"]; ?>'></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center">
+  	  <select id="ecardstamp" name="ecard[stamp]">
+            <option selected value="<?php echo $gallery->app->photoAlbumURL .'/images/ecard_images/08.gif' ?>"><?php echo _("Choose a Stamp"); ?></option>
+<?php
+for($i = 1; $i <= 27; $i++) {
+    $nr = sprintf("%02d", $i-1);
+    echo "\n\t" . '<option value="'. $gallery->app->photoAlbumURL .'/images/ecard_images/'. $nr .'.gif">';
+    echo sprintf(_("Stamp #%d"), $i);
+    echo "</option>";
+}
+?>
+        </select>
+        <img alt="helpIcon" height="15" hspace="5" onclick="MM_openBrWindow('stamp_preview.php','Francobolli','scrollbars=yes,width=130,height=300')" src="images/ecard_images/icon_help.gif" width="15">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5"><?php echo _("Your Message:"); ?></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="5">
+      <textarea cols="45" name="ecard[message]" onchange="CountMax();" onclick="CountMax();" onfocus="CountMax();" onkeydown="CountMax();" onkeypress="CountMax();" onkeyup="CountMax();" rows="6"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" colspan="5">
+      <table border="0" cellpadding="3" cellspacing="0" width="100%">
+      <tr>
+        <td align="left"><a href="javascript:make_preview();"><?php echo _("Preview"); ?></a></td>
+        <td align="center"><input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text"></td>
+        <td align="right"><a href="javascript:send_ecard();"><?php echo _("Send eCard"); ?></a></td>
+      </tr>
+      </table>
+  </form>
+<?php } else {
+	echo _("Your >E-C@ard has been sent.");
+?>
+  <p>
+  <table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><b><?php echo _("Your name and e-mail :"); ?></b><br>
+    <?php echo $ecard["name_sender"].", ".$ecard["email_sender"]; ?></td>
+  </tr>
+  <tr>
+    <td align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></td>
+  </tr>
+  <tr>
+    <td><b><?php echo _("Recipient's Name and e-mail :"); ?></b><br>
+      <?php echo $ecard["name_recepient"].", ".$ecard["email_recepient"]; ?></td>
+  </tr>
+  </table>
+<br>
+<a href="javascript:window.close()">Close this window</a> <?php }?> <br>powered by <a href="http://www.ibps-friedrichs.de/" target="_blank">http://www.ibps-friedrichs.de</a>&nbsp;ported for gallery by <a href="http://www.cittadipolicoro.com" target="_blank">freenik</a> <br> </td>
+  <td></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

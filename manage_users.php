@@ -94,7 +94,7 @@ echo _("To select multiple users (only recognized for deletion), hold down the C
 ?>
 
 <p>
-<input type="submit" name="create" value="<?php echo _("Create") ?>"> 
+<input type="submit" name="create" value="<?php echo _("Create new user") ?>">
 <?php if ($gallery->app->multiple_create == "yes") { ?>
 	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>"> 
 <?php }

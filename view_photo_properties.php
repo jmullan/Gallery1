@@ -104,7 +104,8 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
         }
     }
 
-    $extra_fields=$gallery->album->getExtraFields(false);
+    $extra_fields = $gallery->album->getExtraFields(false);
+
     displayPhotoFields($index, $extra_fields, false, true,NULL,$forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {

@@ -25,6 +25,7 @@
 require_once(dirname(__FILE__) . '/nls.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
+require_once(dirname(__FILE__) . '/classes/Mail/htmlMimeMail.php');
 
 function getRequestVar($str) {
 	if (!is_array($str)) {
@@ -2547,14 +2548,11 @@ function getOS () {
 
 /*
 ** The functions checks if the given email(s) is(are) in a valid format.
-** 
 ** if $multiples is true, look to see if it's a list of comma separated addresses.
-**
 ** Return email(s) when email(s) is(are) correct, else false.
 */
 
-function gallery_validate_email($email, $multiples=false)
-{
+function gallery_validate_email($email, $multiples=false) {
        	if (eregi('^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
 	} elseif (!$multiples) {
@@ -2651,112 +2649,124 @@ function emailDisclaimer() {
 	}
 }
 
-
-
+/*
+** This function sends a mail.
+** Return is true when succesfully send, otherise false
+** Errormessages are printed immediately
+*/
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
-	global $gallery;
+    global $gallery;
 
-	$headers ='';	
-	$additional_headers = '';
+    $headers ='';	
+    $additional_headers = '';
+    $bcc ='';
+    $join = '';
 
-	if ($gallery->app->emailOn == "no") {
-		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
-		return false;
+/* Begin Catch errors */
+    if ($gallery->app->emailOn == "no") {
+	echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
+	return false;
+    }
+
+    if (empty($to)) {
+	echo "\n<br>". gallery_error(_("Email not sent as no reciepient address provided"));
+	return false;
+    }
+
+    if (!gallery_validate_email($to, true)) {
+	echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
+			'<i>' . $to . "</i>"));
+	return false;
+    }
+
+    if ($hide_recipients) {
+	$bcc = $to;
+	$to = '';
+	$join = ',';
+    }
+
+    if (!gallery_validate_email($from)) {
+	if (isDebugging() && $from) {
+	    echo "\n<br>". gallery_error(sprintf(_("Sender address %s is invalid, using %s."),
+				$from, $gallery->app->senderEmail));
 	}
+	$from = $gallery->app->senderEmail;
+	$reply_to = $gallery->app->adminEmail;
+    } else {
+	$reply_to = $from;
+    }
 
-	if (empty($to)) {
-		echo "\n<br>". gallery_error(sprintf(_("Email not sent as no address provided"),
-				       	"<i>" . $to . "</i>"));
-		return false;
-	}
+/* End catch errors */
 
-       	if (!gallery_validate_email($to, true)) {
-		echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
-				       	"<i>" . $to . "</i>"));
-		return false;
-	}
+    if (isset($gallery->app->email_notification) && 
+        in_array("bcc", $gallery->app->email_notification)) {
+	$bcc .= $join . $gallery->app->adminEmail;
+    }
 
-	if ($hide_recipients) {
-		$bcc=$to;
-		$to="";
-		$join=",";
-	} else {
-		$bcc="";
-		$join="";
-	}
-
-	if (!gallery_validate_email($from)) {
-		if (isDebugging() && $from) {
-			echo "\n<br>". gallery_error( sprintf(_("Sender address %s is invalid, using %s."),
-				       	$from, $gallery->app->senderEmail));
-	       	}
-		$from = $gallery->app->senderEmail;
-		$reply_to = $gallery->app->adminEmail;
-	} else {
-		$reply_to = $from;
-	}
-
-	if (isset($gallery->app->email_notification) &&
-			in_array("bcc", $gallery->app->email_notification)) {
-		$bcc .= $join . $gallery->app->adminEmail;
-	}
-
-	/* Minimum Headers according to RFC 822 A.3.1. */
-	$headers  = "Date: ". date("r") ."\r\n";
-	$headers  .= "From: ". $gallery->app->galleryTitle ." ". _("Administrator") . " <$from>\r\n";
+/* Minimum Headers according to RFC 822 A.3.1. 
+** The 'to' header is set automatically by the mailfunction.
+*/
+    $headers  = 'Date: '. date("r") ."\r\n";
+    $headers  .= 'From: '. $gallery->app->galleryTitle .' '. _("Administrator") . " <$from>\r\n";
 	
-	/* Additional headers */
-	$additional_headers = "Reply-To: <$reply_to>\r\n";
-	$additional_headers .= "X-GalleryRequestIP: " . $_SERVER['REMOTE_ADDR'] . "\r\n";
-	$additional_headers .= "MIME-Version: 1.0\r\n";
-	$additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
+/* Additional headers */
+    $additional_headers = "Reply-To: <$reply_to>\r\n";
+    $additional_headers .= 'X-GalleryRequestIP: '. $_SERVER['REMOTE_ADDR'] . "\r\n";
+    $additional_headers .= "MIME-Version: 1.0\r\n";
+    $additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
+    $additional_headers .= "Content-Transfer-Encoding: base64\r\n";
 
-	if ($bcc) {
-		$additional_headers .= "Bcc: " . $bcc . "\r\n";
-	}
+    if ($bcc) {
+	$additional_headers .= "Bcc: " . $bcc . "\r\n";
+    }
 
-	if (get_magic_quotes_gpc()) {
-		$msg = stripslashes($msg);
-	}
+    if (get_magic_quotes_gpc()) {
+	$msg = stripslashes($msg);
+    }
 
-	$msg = unhtmlentities($msg);
-	$subject = unhtmlentities($gallery->app->emailSubjPrefix . " " . $subject);
+    $msg = unhtmlentities($msg);
+    $subject = unhtmlentities($gallery->app->emailSubjPrefix . " " . $subject);
 
-	// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
-	// (but not the individual components of "\r\n") with "\r\n"
-	$msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
+// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
+// (but not the individual components of "\r\n") with "\r\n"
+    $msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
 
-	if ($gallery->app->useOtherSMTP != "yes") {
-		$result = mail($to, $subject, emailDisclaimer() . $msg, $headers . $additional_headers);
+/* Encode message and body to base64 */
+   $enc_subject = "=?" . $gallery->charset . "?B?" . base64_encode($gallery->app->emailSubjPrefix . " " . $subject) . "?=";
+   $enc_msg = chunk_split(base64_encode(emailDisclaimer().$msg));
+
+    if ($gallery->app->useOtherSMTP != "yes") {
+	$result = mail($to, $enc_subject, $enc_msg, $headers . $additional_headers);
+    } else {
+	$result = gallery_smtp($to, $bcc, $enc_subject, $enc_msg, $headers . $additional_headers);
+    }
+
+// Commented to prevent accidental disclosure of passwords via debug screens
+// Remove the "false &&" to enable for testing purposes
+    if (false && isDebugging()) {
+	print "<table>";
+	print "<tr><td valign=\"top\">To:</td><td valign=\"top\">&lt;" .
+		_("not shown") . "&gt;</td></tr>";
+	print "<tr><td valign=\"top\">Subject:</td><td valign=\"top\">$subject</td></tr>";
+	print "<tr><td valign=\"top\">";
+	print str_replace(":", ":</td><td valign=\"top\">", 
+			ereg_replace(":[^:\n]*\n", ":&lt;" . 
+				_("not shown") . 
+				"&gt;</td></tr><tr><td valign=\"top\">",
+				$additional_headers));
+	print "</td></tr>";
+	print '<tr><td valign="top">' . _("Message") . 
+		':</td><td valign="top">'. str_replace("\n", "<br>", $msg). '</td></tr>';
+	print "</table>";
+      	if ($result) {
+	    print _("Email sent")."<br>";
 	} else {
-		$result = gallery_smtp($to, $bcc, $subject, $msg, $headers . $additional_headers);
+	    echo gallery_error(_("Email not sent"));
 	}
+    }
 
-	// Commented to prevent accidental disclosure of passwords via debug screens
-	// Remove the "false &&" to enable for testing purposes
-	if (false && isDebugging()) {
-		print "<table>";
-		print "<tr><td valign=\"top\">To:</td><td valign=\"top\">&lt;" .
-			_("not shown") . "&gt;</td></tr>";
-		print "<tr><td valign=\"top\">Subject:</td><td valign=\"top\">$subject</td></tr>";
-		print "<tr><td valign=\"top\">";
-		print str_replace(":", ":</td><td valign=\"top\">", 
-				ereg_replace(":[^:\n]*\n", ":&lt;" . 
-					_("not shown") . 
-					"&gt;</td></tr><tr><td valign=\"top\">",
-					$additional_headers));
-		print "</td></tr>";
-		print '<tr><td valign="top">' . _("Message") . 
-			':</td><td valign="top">'. str_replace("\n", "<br>", $msg). '</td></tr>';
-		print "</table>";
-	       	if ($result) {
-			print _("Email sent")."<br>";
-		} else {
-			echo gallery_error(_("Email not sent"));
-	       	}
-	}
-	emailLogMessage($logmsg, $result);
-	return $result;
+    emailLogMessage($logmsg, $result);
+    return $result;
 }
 
 function gallery_smtp($to, $bcc, $subject, $msg, $additional_headers) {
@@ -2959,6 +2969,43 @@ Gallery @ %s Administrator.");
 		return $gallery->app->emailGreeting;
 	}
 
+}
+
+
+function welcomeMsgPlaceholderList() {
+
+    $placeholders = array(
+	'galleryurl' => _("The Url to your Gallery."),
+	'gallerytitle' => _("Title of your Gallerfy."),
+	'adminemail' => _("Admin email(s)"),
+	'password' => _("Password for the newly created user."),
+	'username' => _("Username"),
+	'fullname' => _("Fullname"),
+	'newpasswordlink' =>  _("Will be replaced by a link the new user can click on to create a new password.")
+   );
+
+   return $placeholders;
+}
+
+/*
+** This function substitutes placeholder like !!USERNAME!! 
+** with the corresponding value in the welcome message for new users.
+*/
+function resolveWelcomeMsg($placeholders = array()) {
+    global $gallery;
+    $welcomeMsg =  welcome_email();
+
+    $placeholders['galleryurl'] = $gallery->app->photoAlbumURL;
+    $placeholders['gallerytitle'] = $gallery->app->galleryTitle;
+    $placeholders['adminemail'] = $gallery->app->adminEmail;
+
+    foreach (welcomeMsgPlaceholderList() as $key => $trash) {
+	if (!empty($placeholders[$key])) {
+	    $welcomeMsg = str_replace('!!'. strtoupper($key) .'!!', $placeholders[$key], $welcomeMsg);
+	}
+    }
+
+    return $welcomeMsg;
 }
 
 function available_skins($description_only=false) {
@@ -3164,10 +3211,14 @@ function doctype() {
 	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' . "\n";
 }
 
-function common_header() {
+function common_header($adds = array()) {
+    $metaTagAdds = array();
+    if(isset($adds['metaTags'])) {
+	$metaTagAdds = $adds['metaTags'];
+    }
 
 // Do some meta tags
-	metatags();
+	metatags($metaTagAdds);
 	
 // Import CSS Style_sheet
 	echo getStyleSheetLink();
@@ -3176,13 +3227,19 @@ function common_header() {
 	echo "\n  <link rel=\"shortcut icon\" href=\"". makeGalleryUrl('images/favicon.ico') . "\">\n";
 }
 
-function metatags() {
-	global $gallery;
+function metatags($adds = array()) {
+    global $gallery;
 
-	echo '<meta http-equiv="content-style-type" content="text/css">';
-	echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'">';
-	echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '">';
-	echo "\n\n";
+    echo '<meta http-equiv="content-style-type" content="text/css">';
+    echo "\n  ". '<meta http-equiv="content-type" content="Mime-Type; charset='. $gallery->charset .'">';
+    echo "\n  ". '<meta name="content-language" content="' . str_replace ("_","-",$gallery->language) . '">';
+
+    if(!empty($adds)) {
+	foreach ($adds as $name => $content) {
+	    echo "\n  ". '<meta name="'. $name .'" content="'. $content .'">';
+	}
+    } 
+    echo "\n\n";
 }
 
 // uses makeGalleryURL
@@ -3453,13 +3510,12 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 
 	// if we have extra fiels and we want to show them, then get the values
 	if (isset($extra_fields) && $withExtraFields) {
-		$CF=getExtraFieldsValues($index, $extra_fields, $full);
+		$CF = getExtraFieldsValues($index, $extra_fields, $full);
 		if ($CF) {
 			$tables = array("" => $CF);
 		}
 	}
 
-	
 	if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) && 
 			(eregi("jpe?g\$", $photo->image->type))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
@@ -3470,6 +3526,8 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 			// array_pop($myExif); // get rid of empty element at end
 			array_shift($myExif); // get rid of file name at beginning
 			$tables[_("EXIF Data")]  = $myExif;
+		} elseif (isset($myExif['status']) && $myExif['status'] == 1) {
+			echo '<p class="warning">'. _("Display of EXIF data enabled, but no data found.") .'</p>';
 		}
 	}
 
@@ -3700,7 +3758,66 @@ function makeIconMenu($iconElements, $closeTable = true) {
     return $html;
 }
 
+/* Ecard Function begin */ 
+function get_ecard_template($template_name) {
+    global $gallery;
+
+    $error = false;
+    $file_data = "";
+    $fpread = @fopen(dirname(__FILE__) . '/includes/ecard/templates/'. $template_name, 'r');
+    if (!$fpread) {
+        $error = true;
+    } else {
+        while(! feof($fpread) ) {
+            $file_data .= fgets($fpread, 4096);
+        }
+        fclose($fpread);
+      }
+    return array($error,$file_data);
+}
+
+function parse_ecard_template($ecard,$ecard_data) {
+    $ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_image_name%>/", $ecard["image_name"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_stamp%>/", $ecard["stamp"], $ecard_data);
+	
+    return $ecard_data;
+  }
+
+function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
+    $ecard_mail = new htmlMimeMail();
+    $ecard_image = $ecard_mail->getFile($ecard["image_name"]);
+
+    if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
+        for ($i=0; $i<count($matchArray[0]); ++$i) {
+            $ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
+        }
+    }
+    $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data,'./');
+    $ecard_mail->setFrom($ecard["name_sender"].'<'.$ecard["email_sender"].'>');
+    $ecard_mail->setSubject('You have an E-C@rd from '.$ecard["name_sender"]);
+    $ecard_mail->setReturnPath($ecard["email_sender"]);
+	
+    $result = $ecard_mail->send(array($ecard["email_recepient"]));
+    
+    return $result;
+}
+  
+function check_email($email) {
+    if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
+      $mail_ok = false;
+    } else {
+        $mail_ok = true;
+      }
+    return $mail_ok;
+  }  # End of - sub check_email -
+
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
+
 ?>

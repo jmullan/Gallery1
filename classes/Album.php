@@ -371,25 +371,17 @@ class Album {
 				$changed = 1;
 			}
 		}
+
+		/* upgrade photo print services to new (1.5.1) format */
 		if ($this->version < 20) {
-			/* upgrade photo print services to new format */
-			switch ($this->fields['print_photos']) {
-			case 'fotokasten':
-			case 'photoaccess':
-				$this->fields['print_photos'] = array($this->fields['print_photos'] => array('checked' => true));
-				break;
-			case 'shutterfly':
-				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true));
-				break;
-			case 'shutterfly without donation':
-				$this->fields['print_photos'] = array('shutterfly' => array('checked' => true));
-				break;
-			default:
-				$this->fields['print_photos'] = array();
-				break;
-			}
-			$changed = true;
+		    if ($this->fields['print_photos'] == 'none') {
+			$this->fields['print_photos'] = array();
+		    } else {
+			$this->fields['print_photos'] = array($this->fields['print_photos']);
+		    }
+		    $changed = true;
 		}
+
 		if ($this->version < 23) {
 			if ($this->fields['public_comments'] == 'yes') {
 			       	$everybody = $gallery->userDB->getEverybody();
@@ -482,6 +474,17 @@ class Album {
 				unset($this->fields['print_photos']['ezprints']);
 				$changed = 1;
 			}
+		}
+		// In gallery 1.5.1 the Structure for print services was 'de-suck-ified' (quoted B.M.W.)
+		if ($this->version < 35) {
+		    $tempArray = array();
+		    if(!empty($this->fields['print_photos'])) {
+			foreach ($this->fields['print_photos'] as $service => $trash) {
+			    $tempArray[] = $service;
+			}
+			$this->fields['print_photos'] = $tempArray;
+		    }
+		   $changed = true;
 		}
 
 		/* Special case for EXIF :-( */
@@ -1882,8 +1885,8 @@ class Album {
 		if ($status != 0) {
 		    // An error occurred.
 		    return array("junk1" => "",
-				 "Error" => sprintf(_("Error %s getting EXIF data"),$status),
-				 "junk2" => "");
+				 "Error" => sprintf(_("Error getting EXIF data. Expected Status 0, got %s."),$status),
+				 "status" => $status);
 		}
 
 		if ($needToSave) {
@@ -2049,7 +2052,6 @@ class Album {
 			}
 		}
 
-		
 		return false;
 	}
 
@@ -2240,7 +2242,7 @@ class Album {
 		if ($all) {
 			return $this->fields["extra_fields"];
 		} else {
-			$return=array();
+			$return = array();
 			foreach($this->fields["extra_fields"] as $value) {
 				if ($value != 'AltText') {
 					$return[]=$value;
@@ -2251,13 +2253,14 @@ class Album {
 	}
 
 	function setExtraFields($extra_fields) {
-		$this->fields["extra_fields"]=$extra_fields;
+		$this->fields["extra_fields"] = $extra_fields;
 	}
-	function getExtraField($index, $field)
-	{
+
+	function getExtraField($index, $field) {
 		$photo = $this->getPhoto($index);
 		return $photo->getExtraField($field);
 	}
+
 	function setExtraField($index, $field, $value)
 	{
 		$photo = &$this->getPhoto($index);

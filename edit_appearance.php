@@ -29,7 +29,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
 	exit;
 }
-	
+
 if (getRequestVar('save')) {
 	foreach ($gallery->album->fields as $key => $name) {
 		${$key} = getRequestVar($key);
@@ -58,7 +58,7 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["cols"] = $cols;
 	$gallery->album->fields["fit_to_window"] = $fit_to_window;
 	$gallery->album->fields["use_fullOnly"] = $use_fullOnly;
-	$gallery->album->fields["print_photos"] = empty($print_photos) ? "" : $print_photos;
+	$gallery->album->fields["print_photos"] = $print_photos;
 	$gallery->album->fields["use_exif"] = $use_exif;
 	$gallery->album->fields["display_clicks"] = $display_clicks;
 	$gallery->album->fields["item_owner_modify"] = $item_owner_modify;
@@ -82,136 +82,11 @@ if (getRequestVar('save')) {
 	reload();
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Album Properties") ?></title>
-  <?php common_header(); ?>
-</head>
-
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Album Properties") ?></div>
-<div class="popup" align="center">
-<?php echo makeFormIntro("edit_appearance.php", 
-		array("name" => "theform", "method" => "POST"),
-		array("type" => "popup"));
-?>
-<input type="hidden" name="save" value="1">
-<table>
-<tr>
-	<td colspan="2"><?php echo _("Album Summary") ?></td>
-</tr>
-<tr>
-<td colspan="2" align="left">
-	<textarea cols="60" rows="8" name="summary"><?php echo $gallery->album->fields["summary"] ?></textarea>
-</td>
-</tr>
-<tr>
-	<td><?php echo _("Album Title") ?></td>
-	<td><input type="text" name="title" value="<?php echo $gallery->album->fields["title"]; ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Background Color") ?></td>
-	<td><input type="text" name="bgcolor" value="<?php echo $gallery->album->fields["bgcolor"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Text Color") ?></td>
-	<td><input type="text" name="textcolor" value="<?php echo $gallery->album->fields["textcolor"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Link Color") ?></td>
-	<td><input type="text" name="linkcolor" value="<?php echo $gallery->album->fields["linkcolor"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Background Image") ?> (URL)</td>
-	<td><input type="text" name="background" value="<?php echo $gallery->album->fields["background"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Font") ?></td>
-	<td><input type="text" name="font" value="<?php echo $gallery->album->fields["font"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Borders") ?></td>
-	<td>
-	<select name="border"><?php echo selectOptions($gallery->album, "border", array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20)) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Border color") ?></td>
-	<td><input type="text" name="bordercolor" value="<?php echo $gallery->album->fields["bordercolor"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Thumbnail size") ?></td>
-	<td><input type="text" name="thumb_size" value="<?php echo $gallery->album->fields["thumb_size"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Maximum dimensions of intermediate sized images") ?></td>
-	<td>
-	<select name="resize_size"><?php echo selectOptions($gallery->album, "resize_size", array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280)) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
-	<td><input type="text" name="resize_file_size" value="<?php echo $gallery->album->fields["resize_file_size"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Maximum dimensions of full sized images") ?></td>
-	<td>
-	<select name="max_size"><?php echo selectOptions($gallery->album, 'max_size', array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)") ?></td>
-	<td><input type="text" name="max_file_size" value="<?php echo $gallery->album->fields['max_file_size'] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Show <i>Return to</i> link") ?></td>
-	<td>
-	<select name="returnto"><?php echo selectOptions($gallery->album, "returnto", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Rows") ?></td>
-	<td>
-	<select name="rows"><?php echo selectOptions($gallery->album, "rows", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10)) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Columns") ?></td>
-	<td>
- 	<select name="cols"><?php echo selectOptions($gallery->album, "cols", array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10)) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Auto fit-to-window for<br>images without a resized copy") ?></td>
-	<td>
-	<select name="fit_to_window"><?php echo selectOptions($gallery->album, "fit_to_window", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Offer visitors ability to specify<br>preference for full-size or resized images") ?></td>
-	<td>
-	<select name="use_fullOnly"><?php echo selectOptions($gallery->album, "use_fullOnly", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td valign="top"><?php echo _("Which photo printing services<br>do you want to let visitors use?") ?></td>
-	<td valign="top">
-<?php
 $services = array(
 	'photoaccess' => array(
 		'name'    => 'PhotoWorks',
 		'url'     => 'http://www.photoworks.com/'),
-	'shutterfly'  => array(
+		'shutterfly'  => array(
 		'name'    => 'Shutterfly',
 		'url'     => 'http://www.shutterfly.com/',
 	),
@@ -226,122 +101,374 @@ $services = array(
 		'name'	  => 'mPUSH',
 		'url'     => 'http://www.mpush.cc/'),
 );
-foreach ($services as $item => $data) {
-	if (isset($gallery->album->fields['print_photos'][$item])) {
-		$value = $gallery->album->fields['print_photos'][$item];
-	} else {
-		$value = array('checked' => false);
+
+include (dirname(__FILE__) . '/setup/functions.inc');
+include (dirname(__FILE__) . '/js/sectionTabs.js.php');
+$properties = array(
+	'group_text_start' => array (
+		'type' => "group_start",
+		'name' => "group_text",
+		'default' => "inline",
+		'title' => _("Texts"),
+		'contains_required' => false,
+	),
+	'summary' => array(
+		'prompt' => _("Album Summary"),
+		'desc' => '',
+		'value' => $gallery->album->fields["summary"],
+		'type' => "textarea",
+		'attrs' => array('cols' => 45, 'rows' => 8)
+	),
+	'title' => array(
+		'prompt' => _("Album Title"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["title"]
+	),
+	'group_text_end' => array (
+		'type' => "group_end",
+	),
+	'group_colors_start' => array (
+		'type' => "group_start",
+		'name' => "group_color",
+		'default' => "none",
+		'title' => _("Colors"),
+		'desc' => ""
+	),
+	'bgcolor' => array(
+		'prompt' => _("Background Color"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["bgcolor"]
+	),
+	'textcolor' => array(
+		'prompt' => _("Text Color"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["textcolor"]
+	),
+	'linkcolor' => array(
+		'prompt' => _("Link Color"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["linkcolor"]
+	),
+	'group_color_end' => array (
+		'type' => "group_end"
+	),
+	'group_layout_start' => array (
+		'type' => "group_start",
+		'name' => "group_layout",
+		'default' => "none",
+		'title' => _("Layout"),
+		'desc' => ""
+	),
+	'background' => array(
+		'prompt' => _("Background Image (URL)"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["background"]
+	),
+	'font' => array(
+		'prompt' => _("Font"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["font"]
+	),
+	'rows' => array(
+		'prompt' => _("Rows"),
+		'desc' => '',
+		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+		'value' => $gallery->album->fields["rows"]
+	),
+	'cols' => array(
+		'prompt' => _("Columns"),
+		'desc' => '',
+		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+		'value' => $gallery->album->fields["cols"]
+	),
+	'border' => array(
+		'prompt' => _("Borders"),
+		'desc' => '',
+		'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20),
+		'value' => $gallery->album->fields["border"]
+	),
+	'bordercolor' => array(
+		'prompt' => _("Border color"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["bordercolor"]
+	),
+	'album_frame' => array(
+		'prompt' => _("Album Frame"),
+		'desc' => '',
+		'choices' => available_frames(),
+		'value' => $gallery->album->fields["album_frame"]
+	),
+	'thumb_frame' => array(
+		'prompt' => _("Thumb Frame"),
+		'desc' => '',
+		'choices' => available_frames(),
+		'value' => $gallery->album->fields["thumb_frame"]
+	),
+	'image_frame' => array(
+		'prompt' => _("Image Frame"),
+		'desc' => '',
+		'choices' => available_frames(),
+		'value' => $gallery->album->fields["image_frame"]
+	),
+	'group_layout_end' => array (
+		'type' => "group_end"
+	),
+	'group_diashow_start' => array (
+		'type' => "group_start",
+		'name' => "group_diashow",
+		'default' => "none",
+		'title' => _("Diashow"),
+		'desc' => ""
+	),
+	'slideshow_type' => array(
+		'prompt' => _("Slideshow Type"),
+		'desc' => '',
+		'choices' => array( "off" => _("Off"), "ordered" => _("Ordered"), "random" => _("Random")),
+		'value' => $gallery->album->fields["slideshow_type"]
+	),
+	'slideshow_recursive' => array(
+		'prompt' => _("Include sub-albums in slideshow"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["slideshow_recursive"]
+	),
+	'slideshow_loop' => array(
+		'prompt' => _("Allow slideshow to loop"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["slideshow_loop"]
+	),
+	'slideshow_length' => array(
+		'prompt' => _("Slideshow Length"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["slideshow_length"]
+	),
+	'group_diashow_end' => array (
+		'type' => "group_end"
+	),
+	'group_sizes_start' => array (
+		'type' => "group_start",
+		'name' => "group_sizes",
+		'default' => "none",
+		'title' => _("Sizes"),
+		'desc' => ""
+	),
+	'thumb_size' => array(
+		'prompt' => _("Thumbnail size"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["thumb_size"]
+	),
+	'resize_size' => array(
+		'prompt' => _("Maximum dimensions of intermediate sized images"),
+		'desc' => '',
+		'choices' => array("off" => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
+		'value' => $gallery->album->fields["resize_size"]
+	),
+	'resize_file_size' => array(
+		'prompt' => _("Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["resize_file_size"]
+	),
+	'max_size' => array(
+		'prompt' => _("Maximum dimensions of full sized images"),
+		'desc' => '',
+		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3)),
+		'value' => $gallery->album->fields["max_size"]
+	),
+	'max_file_size' => array(
+		'prompt' => _("Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+		'desc' => '',
+		'type' => 'text',
+		'value' => $gallery->album->fields["max_file_size"]
+	),
+	'group_sizes_end' => array (
+		'type' => "group_end"
+	),
+	'group_permission_start' => array (
+		'type' => "group_start",
+		'name' => "group_permission",
+		'default' => "none",
+		'title' => _("Permissions"),
+		'desc' => ""
+	),
+	'item_owner_modify' => array(
+		'prompt' => _("Allow item owners to modify their images"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["item_owner_modify"]
+	),
+	'item_owner_delete' => array(
+		'prompt' => _("Allow item owners to delete their images"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["item_owner_delete"]
+	),
+	'group_permission_end' => array (
+		'type' => "group_end"
+	),
+	'group_data_start' => array (
+		'type' => "group_start",
+		'name' => "group_data",
+		'default' => "none",
+		'title' => _("Element data"),
+		'desc' => ""
+	),
+	'display_clicks' => array(
+		'prompt' => _("Display click counter for this album?"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["display_clicks"]
+	),
+	'item_owner_display' => array(
+		'prompt' => _("Display owners name with caption"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["item_owner_display"]
+	),
+	'showDimensions' => array(
+		'prompt' => _("Display clickable image dimensions"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["showDimensions"]
+	),
+	'use_exif' => array(
+		'prompt' => _("Display EXIF data?"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["use_exif"],
+		'skip' => ($gallery->app->use_exif == 'yes') ? true : false
+	),
+	'group_data_end' => array (
+		'type' => "group_end"
+	),
+	'group_services_start' => array (
+		'type' => "group_start",
+		'name' => "group_services",
+		'default' => "none",
+		'title' => _("Services"),
+		'desc' => ""
+	),
+	'print_photos' => array(
+                'prompt' => _("Which photo printing services<br>do you want to let visitors use?"),
+                'desc' => '',
+		'multiple_choices' => array(
+                        'photoaccess' => '<a href="http://www.photoworks.com/">PhotoWorks</a>',
+                        'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
+                        'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
+                        'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
+                        'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>'
+                ),
+                'value' => $gallery->album->fields['print_photos']
+        ),
+	'group_services_end' => array (
+		'type' => "group_end"
+	),
+	'group_misc_start' => array (
+		'type' => "group_start",
+		'name' => "group_misc",
+		'default' => "none",
+		'title' => _("Misc"),
+		'desc' => ""
+	),
+	'add_to_beginning' => array(
+		'prompt' => _("Add new items at beginning of album"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["add_to_beginning"]
+	),
+	'returnto' => array(
+		'prompt' => _("Show <i>Return to</i> link"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["returnto"]
+	),
+	'use_fullOnly' => array(
+		'prompt' => _("Offer visitors ability to specify<br>preference for full-size or resized images"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["use_fullOnly"]
+	),
+	'fit_to_window' => array(
+		'prompt' => _("Auto fit-to-window for<br>images without a resized copy"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["fit_to_window"]
+	),
+	'group_misc_end' => array (
+		'type' => "group_end"
+	),
+);
+doctype();
+?>
+<html>
+<head>
+  <title><?php echo _("Album Properties") ?></title>
+  <?php common_header(); ?>
+</head>
+
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo _("Album Properties") ?></div>
+<div class="popup" align="center">
+<?php 
+//print_r($gallery->album);
+echo makeFormIntro("edit_appearance.php", 
+		array("name" => "theform", "method" => "POST"),
+		array("type" => "popup"));
+
+$i = 0;
+makeSectionTabs($properties,5);
+foreach ($properties as $key => $val) {
+	if(!empty($val['skip'])) {
+		continue;
 	}
-	$checked = !empty($value['checked']) ? ' checked' : '';
-	print "\t<input name=\"print_photos[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a target=\"_blank\" href=\"${data['url']}\">${data['name']}</a><br>\n";
+	
+	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
+		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
+		echo make_separator($key, $val);
+		echo "\n<table width=\"100%\" class=\"inner\">";
+		continue;
+	}
+
+	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+		echo "\n</table>";
+		echo "\n</div>";
+		continue;
+	}
+
+	/* We dont want separate borders around each property */
+	//echo "\n<table width=\"100%\" class=\"inner\">";
+
+	// Protect quote characters to avoid screwing up HTML forms
+	$val["value"] = array_str_replace('"', "&quot;", $val["value"]);
+
+	if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
+		list($f1, $f2) = make_fields($key, $val);
+		echo $f2;
+	} else {
+		echo evenOdd_row(make_fields($key, $val),
+		$i++ % 2);
+	}
+
+	$onThisPage[$key] = 1;
+	$preserve[$key] = 1;
+
+	/* We dont want separate borders around each property */
+	//echo "\n</table>";
 }
 ?>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Slideshow Type") ?></td>
-	<td>
-	<select name="slideshow_type"><?php echo selectOptions($gallery->album, "slideshow_type", array( "off" => _("Off"), "ordered" => _("Ordered"), "random" => _("Random"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Include sub-albums in slideshow") ?></td>
-	<td>
-	<select name="slideshow_recursive"><?php echo selectOptions($gallery->album, "slideshow_recursive", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Allow slideshow to loop") ?></td>
-	<td>
-	<select name="slideshow_loop"><?php echo selectOptions($gallery->album, "slideshow_loop", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Slideshow Length") ?></td>
-	<td><input type="text" name="slideshow_length" value="<?php echo $gallery->album->fields["slideshow_length"] ?>"></td>
-</tr>
-<tr>
-	<td><?php echo _("Album Frame") ?></td>
-	<td>
-	<select name="album_frame"><?php echo selectOptions($gallery->album, "album_frame", available_frames()) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Thumb Frame") ?></td>
-	<td>
-	<select name="thumb_frame"><?php echo selectOptions($gallery->album, "thumb_frame", available_frames()) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Image Frame") ?></td>
-	<td>
-	<select name="image_frame"><?php echo selectOptions($gallery->album, "image_frame", available_frames()) ?>
-	</select>
-	</td>
-</tr>
-<?php
-if ($gallery->app->use_exif) {
-?>
-<tr>
-	<td><?php echo _("Display EXIF data?") ?></td>
-	<td>
-	<select name="use_exif"><?php echo selectOptions($gallery->album, "use_exif", array("no" => _("no"), "yes" => _("yes"))) ?>
-	</select>
-	</td>
-</tr>
-<?php
-} // end if
-?>
-<tr>
-	<td><?php echo _("Display click counter for this album?") ?></td>
-	<td>
-	<select name="display_clicks"><?php echo selectOptions($gallery->album, "display_clicks", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Display owners name with caption") ?></td>
-	<td>
-	<select name="item_owner_display"><?php echo selectOptions($gallery->album, "item_owner_display", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Allow item owners to modify their images") ?></td>
-	<td>
-	<select name="item_owner_modify"><?php echo selectOptions($gallery->album, "item_owner_modify", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Allow item owners to delete their images") ?></td>
-	<td>
-	<select name="item_owner_delete"><?php echo selectOptions($gallery->album, "item_owner_delete", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Add new items at beginning of album") ?></td>
-	<td>
-	<select name="add_to_beginning"><?php echo selectOptions($gallery->album, "add_to_beginning", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-<tr>
-	<td><?php echo _("Display clickable image dimensions") ?></td>
-	<td>
-	<select name="showDimensions"><?php echo selectOptions($gallery->album, "showDimensions", array("yes" => _("yes"), "no" => _("no"))) ?>
-	</select>
-	</td>
-</tr>
-</table>
+<input type="hidden" name="save" value="1">
 
-<br>
+<hr>
 <input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo _("Apply values to nested albums (except album title and summary).") ?></label>
 <br>
 <br>
@@ -352,7 +479,7 @@ if ($gallery->app->use_exif) {
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
-<!--   
+<!--
 // position cursor in top form field
 document.theform.title.focus();
 //-->

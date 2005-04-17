@@ -163,7 +163,10 @@ if(isset($gallery->app)) {
  */
 set_magic_quotes_runtime(0);
 
-/* Load classes and session information */
+/* Load classes and session information
+** Note: Some classes and libs are loaded in util.php
+*/
+
 require(dirname(__FILE__) . "/classes/Album.php");
 require(dirname(__FILE__) . "/classes/Image.php");
 require(dirname(__FILE__) . "/classes/AlbumItem.php");

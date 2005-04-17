@@ -42,14 +42,18 @@ list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
 
 if (isset($submit)) {
 	if(gallery_validate_email($email_address)) {
-		$ret = gallery_mail($email_address, sprintf(_("Test email from %s"), Gallery()), 
-			_("This email was automatically generated."). "\n\n" .
+		$to = $email_address;
+		$subject = sprintf(_("Test email from %s"), Gallery());
+		$msg = _("This email was automatically generated."). "\n\n" .
 			_("If you recevied this in error, then please disregard, as you should not receive any similar emails.") . "\n\n" .
 			sprintf(_("If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."),
 			Gallery(),
 			"http://" . getenv("SERVER_NAME") . $GALLERY_URL,
-			Gallery()) . "\n\n", 
-			'');
+			Gallery()) . "\n\n";
+
+		$logmsg = _("Attempt to send Testmail from config wizard.");
+
+		$ret = gallery_mail($to, $subject, $msg, $logmsg);
 		if ($ret) {
 			echo '<table class="inner" width="100%"><tr>';
 			echo '<td class="successpct">'. _("SUCCESS!"). '</td></tr>';

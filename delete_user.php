@@ -71,7 +71,7 @@ if (! isset($error)) {
 ?>
 <p>
 <?php 
-	echo ngettext("Do you really want to delete user", "Do you really want to delete these users", sizeof($unames)) .":";
+	echo ngettext("Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));
 	foreach ($unames as $key => $value) { 
 		echo "<input type=\"hidden\" name=\"unames[$key]\" value=\"$value\"><br>$value\n";
 	}

@@ -1124,7 +1124,7 @@ function getHeightFromTag($str) {
 
 function getWidthFromTag($str) {
 	$start = 'width="';
-	$end = '" height=';
+	$end = '" height="';
 	$lenStr= strpos($str,$end) -strpos($str, $start);
 	return substr(substr($str, strpos($str,$start), $lenStr), 7);
 }
@@ -1158,7 +1158,7 @@ if ( $showCaption && !$showGrid ) {
                      <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
                         <tr valign="middle">
                            <td class="mod_title_left" align="right"></td>
-                           <td wrap class="title" align="left">
+                           <td class="title" align="left">
 <?php
 	$statsCaption = $statsAlbum->getCaption($photoIndex);
 	$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
@@ -1227,7 +1227,7 @@ if ( $showAlbumOwner == 1 ) {
 echo '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] .'</a>'. $owner_var;
 ?>
          </span>
-         <br clear all>
+         <br clear="all">
 <?php
 }
 
@@ -1237,7 +1237,7 @@ if ( $showDescription ) {
 <?php
 $description =$statsAlbum->getExtraField($photoIndex, "Description");
 if ($description != "") {
-	echo "<br clear=all>$description<br clear=all>";
+	echo '<br clear="all">'. $description .'<br clear="all">';
 }
 ?>
          </span>
@@ -1247,22 +1247,22 @@ if ($description != "") {
 
 if ( $addLinksPos == 'abovestats' ) {
 	if ( $showAddComment ) {
-		echo "<br clear=all>";
+		echo '<br clear="all">';
 		showAddCommentLink( $photoId );
 		if ( !$showAddVote ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 		}
 	}
 
 	if ( $showAddVote ) {
 		if ( !$showAddComment ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 		}
 		else {
 			echo "&nbsp;&nbsp";
 		}
 		showAddVoteLink( $photoId, $page );
-		echo "<br clear=all>";
+		echo '<br clear="all">';
 	}
 }
 ?>
@@ -1351,18 +1351,18 @@ echo "</table>";
 
 if ( $addLinksPos == 'abovecomments' ) {
 	if (  $showAddComment ) {
-		echo "<br clear=all>";
+		echo '<br clear="all">';
 		if ( !$showGrid ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 		}
 		showAddCommentLink( $photoId );
 	}
 
 	if ( $showAddVote ) {
 		if ( !$showAddComment ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 			if ( !$showGrid ) {
-				echo "<br clear=all>";
+				echo '<br clear="all">';
 			}
 		}
 		else
@@ -1375,9 +1375,9 @@ if ( $showComments &&
 $statsAlbum->numComments($photoIndex) > 0 &&
 $statsAlbum->canViewComments($gallery->user->getUid()) ) {
 	// Force the comment table below the previous table using clear all.
-	echo "<br clear=all>";
+	echo '<br clear="all">';
 	if ( !$showGrid ) {
-		echo "<br clear=all>";
+		echo '<br clear="all">';
 	}
 	$gallery->album = $statsAlbum;
 	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst, 'popup', $statsAlbum->fields['name']);
@@ -1385,17 +1385,17 @@ $statsAlbum->canViewComments($gallery->user->getUid()) ) {
 
 if ( $addLinksPos == 'belowcomments' ) {
 	if ( $showAddComment ) {
-		echo "<br clear=all>";
+		echo '<br clear="all">';
 		if ( !$showGrid ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 		}
 		showAddCommentLink( $photoId );
 	}
 	if ( $showAddVote ) {
 		if ( !$showAddComment ) {
-			echo "<br clear=all>";
+			echo '<br clear="all">';
 			if ( !$showGrid ) {
-				echo "<br clear=all>";
+				echo '<br clear="all">';
 			}
 		}
 		else {

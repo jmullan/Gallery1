@@ -25,9 +25,9 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($formaction, $uname, $new_password1, $new_password2, $fullname, $canCreate, 
-     $email, $defaultLanguage, $send_email) = 
+     $email, $defaultLanguage, $send_email, $dismiss) = 
 	getRequestVar(array('formaction', 'uname', 'new_password1', 'new_password2', 'fullname', 
-			    'canCreate', 'email', 'defaultLanguage', 'send_email'));
+			    'canCreate', 'email', 'defaultLanguage', 'send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
@@ -77,12 +77,18 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->save();
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
 		if (!empty($send_email)) {
-		       	$msg = ereg_replace("!!PASSWORD!!", $new_password1,
-				ereg_replace("!!USERNAME!!", $uname,
-				       	ereg_replace("!!FULLNAME!!", $fullname,
-					       	ereg_replace("!!NEWPASSWORDLINK!!", 
-							$tmpUser->genRecoverPasswordHash(),
-							welcome_email()))));
+			echo "\n<p><pre>*******". $msg;
+
+			$values = array('password' => $new_password1, 
+					'username' => $uname, 
+					'fullname' => $fullname, 
+					'newpasswordlink' => $tmpUser->genRecoverPasswordHash());
+		
+			$msg = resolveWelcomeMsg($values);
+
+	 		 echo "\n</p>********<p>". $msg;
+
+			exit();
 		       	$logmsg = sprintf(_("%s has registered by %s.  Email has been sent to %s."),
 				       	$uname, $gallery->user->getUsername(), $email);
 		       	$logmsg2  = sprintf("%s has registered by %s.  Email has been sent to %s.",
@@ -99,9 +105,10 @@ if (!empty($formaction) && $formaction == 'create') {
 		       	}
 	       	} 
 	?>
-	<br>
+	<br><br>
 	<form>
-		<input type="submit" name="dismiss" value="<?php echo _("Dismiss") ?>">
+		<input type="submit" name="moreuser" value="<?php echo _("Create another user") ?>">
+		<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>">
 	</form>
 	</div>
 </body>
@@ -153,7 +160,7 @@ $allowChange["member_file"] = false;
 
 <input type="hidden" name="formaction" value="">
 <input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick="usercreate_form.formaction.value='cancel'">
+<input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
 </form>
 </div>
 

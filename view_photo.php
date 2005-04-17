@@ -55,17 +55,15 @@ if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 	return;
 }
 
-
 if (!isset($full)) {
-	$full=NULL;
+    $full=NULL;
 }
-
 
 if (!empty($votes)) {
     if (!isset($votes[$id]) && 
 	  $gallery->album->getPollScale() == 1 && 
 	  $gallery->album->getPollType() == "critique") {
-               $votes[$id]=null;
+	$votes[$id]=null;
     }
        
     saveResults($votes);
@@ -76,17 +74,17 @@ if (!empty($votes)) {
 }
 
 // is photo hidden?  should user see it anyway?
-if (($gallery->album->isHidden($index))
-    && (!$gallery->user->canWriteToAlbum($gallery->album))){
+if (($gallery->album->isHidden($index)) && 
+  (!$gallery->user->canWriteToAlbum($gallery->album))){
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
     return;
 }
 
 $albumName = $gallery->session->albumName;
-if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) 
-	&& !$gallery->session->offline) {
-	$gallery->session->viewedItem[$albumName][$id] = 1;
-	$gallery->album->incrementItemClicks($index);
+if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) && 
+  !$gallery->session->offline) {
+    $gallery->session->viewedItem[$albumName][$id] = 1;
+    $gallery->album->incrementItemClicks($index);
 }
 
 $photo = $gallery->album->getPhoto($index);
@@ -114,18 +112,18 @@ $fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes")
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 $next = $index+1;
 if ($next > $numPhotos) {
-	//$next = 1;
-        $last = 1;
+    //$next = 1;
+    $last = 1;
 }
 
 $prev = $index-1;
 if ($prev <= 0) {
-	//$prev = $numPhotos;
-        $first = 1;
+    //$prev = $numPhotos;
+    $first = 1;
 }
 
 if ($index > $gallery->album->numPhotos(1)) {
-	$index = $numPhotos;
+    $index = $numPhotos;
 }
 
 /*
@@ -205,13 +203,19 @@ if (!empty($save)) {
 	}
 }
 
+$metaTags = array();
+$keyWords = $gallery->album->getKeywords($index);
+if (!empty($keyWords)) {
+    $metaTags['Keywords'] = ereg_replace("[[:space:]]+",' ',$keyWords);
+}
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
   <?php 	
-	common_header();
+	common_header(array('metaTags' => $metaTags));
 	
 	/* prefetch/navigation */
   	$navcount = sizeof($navigator['allIds']);
@@ -223,32 +227,30 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		$navpage--;
   	}
   	if ($navigator['allIds'][0] != $id) {
-      		if ($navigator['allIds'][0] != 'unknown') { ?>
-   <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) ?>" >
-<?php		}
-      		if ($navigator['allIds'][$navpage-1] != 'unknown') { ?>
-   <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) ?>" >
-<?php 		}
+      	    if ($navigator['allIds'][0] != 'unknown') {
+		echo "\n  ". '<link rel="first" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) .'">';
+	    }
+
+	    if ($navigator['allIds'][$navpage-1] != 'unknown') {
+		echo "\n  ". '<link rel="prev" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) .'">';
+	    }
   	}
   	if ($navigator['allIds'][$navcount - 1] != $id) {
-      		if ($navigator['allIds'][$navpage+1] != 'unknown') { ?>
-  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) ?>" >
- <?php 		}
-      		if ($navigator['allIds'][$navcount-1] != 'unknown') { ?>
-  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) ?>" >
-<?php 		}
-  	} ?>
-  <link rel="up" href="<?php echo makeAlbumUrl($gallery->session->albumName) ?>">
-<?php 	if ($gallery->album->isRoot() && 
-		(!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
-  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">	 
-<?php 	}
-	$keyWords=$gallery->album->getKeywords($index);
-	if (!empty($keyWords)) {
-		$metakeywords = ereg_replace("[[:space:]]+",' ',$keyWords); 
-		echo "  <meta name=\"Keywords\" content=\"$metakeywords\">\n";
+	    if ($navigator['allIds'][$navpage+1] != 'unknown') {
+		echo "\n  ". '<link rel="next" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) .'">';
+	    }
+	    if ($navigator['allIds'][$navcount-1] != 'unknown') {
+  		echo "\n  ". '<link rel="last" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) .'">';
+	    }
+  	}
+  	
+	echo "\n  ". '<link rel="up" href="' . makeAlbumUrl($gallery->session->albumName) .'">';
+	if ($gallery->album->isRoot() && 
+		(!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
+	    echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
 	}
 ?>
+
   <style type="text/css">
 <?php
 	// the link colors have to be done here to override the style sheet
@@ -288,7 +290,6 @@ if ($fitToWindow) {
 }
 ?>
 <!-- Top Nav Bar -->
-<form name="admin_form" action="view_photos.php">
 <table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
 
 <tr>
@@ -355,7 +356,7 @@ if (!$gallery->album->isMovie($id)) {
 	$iconElements[] =  popup_link($iconText, "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
     }
 
-    if (isset($gallery->album->fields["print_photos"]) &&
+    if (!empty($gallery->album->fields["print_photos"]) &&
 	!$gallery->session->offline &&
 	!$gallery->album->isMovie($id)){
 
@@ -384,6 +385,7 @@ if (!$gallery->album->isMovie($id)) {
 
     list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 		
+    /* Note: the printservices are put into the left column 'adminText' */
     function enablePrintForm($name) {
 	global $printEZPrintsForm, $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
 	
@@ -422,9 +424,10 @@ if (!$gallery->album->isMovie($id)) {
     /* display a <select> menu if more than one option */
     if ($numServices > 1) {
 	// Build an array with groups, but only for enabled services
+
 	foreach ($fullNames as $serviceGroupName => $serviceGroup) {
 	    foreach ($serviceGroup as $name => $fullName) {
-	        if (!isset($printServices[$name]['checked'])) {
+	        if (!in_array($name, $printServices)) {
 		    continue;
 	        } else {
 		    $serviceGroups[$serviceGroupName][$name] = $fullName;
@@ -432,38 +435,46 @@ if (!$gallery->album->isMovie($id)) {
 	    }
 	}
 
-	if (isset($serviceGroups['Mobile Service'])) {
-	    $instructionLine = "\n\t". '<option>'. _("Send photo to...") .'</option>';
-	} else {
-	    $instructionLine = "\n\t". '<option>'. _("Print photo with...") .'</option>';	
-	}
+	$options = array();
 
-	$selectCommand = "\n". '<select name="print_services" class="adminform" onChange="doPrintService()">';
-	$selectCommand .= $instructionLine;
+	if (isset($serviceGroups['Mobile Service'])) {
+	    $options[] = _("Send photo to...") ;
+	} else {
+	    $options[] = _("Print photo with...");
+	}
 
 	$firstGroup = true;
 	// now build the real select options.
 	foreach ($serviceGroups as $serviceGroupName => $serviceGroup) {
 	    if (! $firstGroup) {
-		    $selectCommand .= '<option value="">----------</option>';
+		    $options[]= '----------';
 		}
 	    $firstGroup = false;
 	    foreach ($serviceGroup as $name => $fullName) {
 		enablePrintForm($name);
-		$selectCommand .= "\n\t". '<option align="center" value="'. $name .'">&nbsp;&nbsp;&nbsp;'. $fullName .'</option>';
+		$options[$name] = '&nbsp;&nbsp;&nbsp;'. $fullName;
 	    }
 	}
-	$selectCommand .= '</select>';
-	$adminText .= $selectCommand;
+
+	/* Todo: prevent newline after form end. */
+	$adminText .= makeFormIntro('view_photo.php', array("name" => "print_form"));
+	$adminText .= drawSelect('print_services', 
+				$options, 
+				'', 
+				1, 
+				array('onChange' =>'doPrintService()', 'class' => 'adminform'),
+				true
+				);
+	$adminText .= '</form>';
 	
 	/* just print out text if only one option */
-    } elseif ($numServices == 1 && isset($printServices[@key($printServices)]['checked'])) {
+    } elseif ($numServices == 1) {
 	$name = @key($printServices);
 
 	enablePrintForm($name);
 	foreach ($fullNames as $serviceGroupName => $serviceGroup) {
 	    foreach ($serviceGroup as $name => $fullName) {
-	        if (!isset($printServices[$name]['checked'])) {
+	        if (!in_array($name, $printServices)) {
 		    continue;
 	        } else {
 		    $adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
@@ -471,13 +482,18 @@ if (!$gallery->album->isMovie($id)) {
 		}
 	    }
 	}
-		
     }
+
+/* If eCards are enabled, show the link.
+** The eCard opens in a popup and sends the actual displayed photo.
+*/
+    $adminText .= popup_link("[". _("Send Photo as eCard") ."]",
+	makeGalleryUrl('ecard_form.php', array('photoIndex' => $index )), 1);
 ?>
 <script language="javascript1.2" type="text/JavaScript">
 	 function doPrintService(input) {
 		if (!input) {
-		    input = document.admin_form.print_services.value;
+		    input = document.print_form.print_services.value;
 		}
 		switch (input) {
 		case 'fotokasten':
@@ -514,20 +530,18 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 					'">'. $iconText .'</a>';
 	} else {
 		$iconText = getIconText('identity.gif', _("login"));
-		$iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
+		$iconElements[] = popup_link($iconText, "login.php", false);
         }
 }
 includeLayout('navtablebegin.inc');
 
-$adminbox["text"] = $adminText;	
+$adminbox["text"] = $adminText;
 $adminbox["commands"] = makeIconMenu($iconElements);;
 $adminbox["bordercolor"] = $bordercolor;
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
 
 $breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["top"] = true;
-$breadcrumb['bottom'] = false;
 includeLayout('breadcrumb.inc');
 includeLayout('navtablemiddle.inc');
 includeLayout('navphoto.inc');
@@ -545,9 +559,8 @@ if ($bordercolor) {
 </td>
 </tr>
 </table>
-</form>
 
-<div width="<?php echo $mainWidth ?>">
+<div style="width:<?php echo $mainWidth ?>"> 
 <?php includeHtmlWrap("inline_photo.header"); ?>
 </div>
 

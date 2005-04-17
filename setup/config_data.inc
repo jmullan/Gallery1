@@ -732,21 +732,10 @@ $constants = array_merge($constants,
 	),
 	'emailGreeting' => array(
 		'prompt' => _("Welcome email message text"),
-	       	'desc' => _("This email will be sent when new accounts are created.") . "<p>" .
-	       		sprintf(_("%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."),
-				"<i>!!FULLNAME!!</i>",
-				"<i>!!USERNAME!!</i>",
-				"<i>!!PASSWORD!!</i>") . "<p>" .
-			sprintf(_("%s will be replaced by a link the new user can click on to create a new password"),
-				"<i>!!NEWPASSWORDLINK!!</i>") . "<p>" .
-			_("Leave this field blank to get the default message that can be translated into other languages.  The default message is:") . 
-			'<table><tr><td width="20%"></td><td width="60%"><tt>' .
-			str_replace("\n", "<br>", welcome_email(true)) . 
-			'</tt></td><td width="20%"></td></tr></table>',
+	       	'desc' => placeholderDescription(),
 		'optional' => 1,
 		'type' => "textarea",
 		'value' => "",
-
 		'attrs' => array('cols' => 50, 'rows' => 11)),
 	'selfReg' => array(
 		'prompt' => _("Allow visitors to self register."),
@@ -1411,26 +1400,13 @@ $defaults = array(
 	'print_photos' => array(
 		'prompt' => _("Printing Services"),
  		'desc' => _("Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
-		'type' => 'print_services',
-		'services' => array(
-			'photoaccess' => array(
-				'name'    => 'PhotoWorks',
-				'url'     => 'http://www.photoworks.com/'),
-			'shutterfly'  => array(
-				'name'    => 'Shutterfly',
-				'url'     => 'http://www.shutterfly.com/',
-			),
-			'fotoserve'  => array(
-				'name'    => 'Fotoserve.com',
-				'url'     => 'http://www.fotoserve.com/',
-			),
-			'fotokasten'  => array(
-				'name'    => 'Fotokasten',
-				'url'     => 'http://www.fotokasten.de/'),    
-			'mpush'       => array(
-				'name'    => 'mPUSH',
-				'url'	  => 'http://www.mpush.cc/',
-				'desc'    => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."),),
+		'multiple_choices' => array(
+			'photoaccess' => '<a href="http://www.photoworks.com/">PhotoWorks</a>',
+			'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
+			'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
+			'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
+			'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>' .
+					  _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
 		),
 		'value' => array(
 			'fotokasten' => array(
