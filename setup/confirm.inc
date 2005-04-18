@@ -37,7 +37,7 @@ $docs = galleryDocs() ? '<a href="'. galleryDocs() .'">'. _("documentation") .'<
 
 $error = 0;
 $viewheader = "";
-$outfile_list=array("config.php" => false, ".htaccess" => true);
+$outfile_list = array("config.php" => false, ".htaccess" => true);
 foreach ($outfile_list as $outfile => $optional) {
 	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
 		$error++;
@@ -426,7 +426,6 @@ foreach ($defaults as $key => $val) {
 		$gallery->session->configForm->$key = array_str_replace('"', '&quot;', $gallery->session->configForm->$key);
 		
 		if (is_array($gallery->session->configForm->$key)) {
-			echo "\n<p> Array: $key";
 			foreach ($gallery->session->configForm->$key as $sub_key => $sub_value) {
 				if (is_array ($sub_value)) {
 					/* Poll configuration */
