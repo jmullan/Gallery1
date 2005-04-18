@@ -458,7 +458,7 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 }
 
 $adminbox["text"] = $adminText;
-$adminbox["commands"] =	$adminCommands . makeIconMenu($iconElements);
+$adminbox["commands"] =	$adminCommands . makeIconMenu($iconElements, 'right');
 $adminbox["bordercolor"] = $bordercolor;
 
 if (!empty($adminOptionHTML)) {

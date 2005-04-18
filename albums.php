@@ -231,7 +231,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 $adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands . makeIconMenu($iconElements);
+$adminbox["commands"] = $adminCommands . makeIconMenu($iconElements, 'right');
 $adminbox["bordercolor"] = $borderColor;
 
 includeLayout('navtablebegin.inc');

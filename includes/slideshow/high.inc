@@ -519,7 +519,7 @@ function slideshow_controlPanel() {
 		$iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
 	} 
 
-	echo makeIconMenu($iconElements, false);
+	echo makeIconMenu($iconElements, 'right', false);
 ?>
     <td class="noLink"><script type="text/javascript">
     <!--

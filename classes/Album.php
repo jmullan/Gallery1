@@ -487,6 +487,14 @@ class Album {
 		   $changed = true;
 		}
 
+		// Added field for ecards
+		if ($this->version < 36) {
+		    if(!isset($this->fields['ecards'])) {
+			$this->fields['ecards'] = null;
+		    }
+		    $changed = true;
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields["use_exif"]) {
 			if (!empty($gallery->app->use_exif)) {

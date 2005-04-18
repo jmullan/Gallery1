@@ -1408,6 +1408,7 @@ $defaults = array(
 			'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>' .
 					  _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
 		),
+/* old .. needs to be fixed */
 		'value' => array(
 			'fotokasten' => array(
 				'checked' => true),
@@ -1430,6 +1431,13 @@ $defaults = array(
 		'value' => 'gallery',
 		'type' => 'text',
 	),
+	'ecards' => array(
+                'prompt' => _("Enable Ecards ?"),
+                'desc' => _("Set this to 'yes' to allow users to send a picure as eCard via eMail") . '<br>'.
+			'<span class="attention">' . _("This option requires the Email feature to be enabled.") . '</span>',
+                'choices' => array("yes" => _("yes"), "no" => _("no")),
+                'value' => 'no'
+        ),
 	'returnto' => array(
 		'prompt' => _("Gallery Link"),
 		'desc' => _("Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),

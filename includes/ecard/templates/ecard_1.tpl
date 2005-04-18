@@ -7,10 +7,10 @@
 <BODY BGCOLOR="#FFFFFF">
 
 <br>
-<table border="1" style="border:1px solid #666666" width="722" height="352" align="center" cellpadding="3" cellspacing="0">
+<table border="1" style="border:1px solid #666666" height="400" align="center" cellpadding="3" cellspacing="0">
   <tr>
     <td rowspan="2" align="center"><IMG SRC="<%ecard_image_name%>" BORDER="1"></td>
-    <td height="30%" align="right" valign="top">
+    <td height="30%" width="200" align="right" valign="top">
 	<img src="<%ecard_stamp%>">
 	<br>
 	<br>

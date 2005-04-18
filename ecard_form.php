@@ -33,7 +33,6 @@
 
   require_once(dirname(__FILE__) . '/init.php');
 
-//  print_r($_POST);
   list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
   $photo = $gallery->album->getPhoto($photoIndex);
 
@@ -74,7 +73,6 @@
 	    $ecard["image_name"] = $gallery->album->getPhotoPath($photoIndex, false);
 	}
     }
-//print_r($ecard);
 doctype();
 ?>
 <html>
@@ -190,11 +188,11 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
   <input name="submit_action" type="hidden" value="">
 
   <br>
-  <table border="1" cellpadding="0" cellspacing="4" align="center">
+  <table border="0" cellpadding="0" cellspacing="4" align="center">
   <tr>
-    <td bgcolor="#F48000" colspan="2"><?php echo _("Your info"); ?></td>
+    <td class="columnheader" colspan="2"><?php echo _("Your info"); ?></td>
     <td width="10">&nbsp;</td>
-    <td bgcolor="#F48000" colspan="2"><?php echo _("Recipient's info"); ?></td>
+    <td class="columnheader" colspan="2"><?php echo _("Recipient's info"); ?></td>
   </tr>
   <tr>
     <td><?php echo _("Name") ?></td>
@@ -231,7 +229,7 @@ for($i = 1; $i <= 27; $i++) {
   </tr>
   <tr>
     <td align="center" colspan="5">
-      <textarea cols="45" name="ecard[message]" onchange="CountMax();" onclick="CountMax();" onfocus="CountMax();" onkeydown="CountMax();" onkeypress="CountMax();" onkeyup="CountMax();" rows="6"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
+      <textarea cols="55" rows="7" name="ecard[message]" onKeyPress="CountMax();" onfocus="CountMax();"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
     </td>
   </tr>
   <tr>
@@ -241,34 +239,34 @@ for($i = 1; $i <= 27; $i++) {
     <td align="center" colspan="5">
       <table border="0" cellpadding="3" cellspacing="0" width="100%">
       <tr>
-        <td align="left"><a href="javascript:make_preview();"><?php echo _("Preview"); ?></a></td>
-        <td align="center"><input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text"></td>
-        <td align="right"><a href="javascript:send_ecard();"><?php echo _("Send eCard"); ?></a></td>
+        <td align="left"><input type="button" onClick="javascript:make_preview();" value="<?php echo _("Preview"); ?>"></td>
+        <td colspan="2" align="center"><input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text"></td>
+        <td align="right">
+	    <input type="reset" value="<?php echo _("Reset"); ?>">
+	    <input type="button" onClick="javascript:send_ecard();" value="<?php echo _("Send eCard"); ?>">
+	</td>
       </tr>
       </table>
-  </form>
-<?php } else {
-	echo _("Your >E-C@ard has been sent.");
-?>
-  <p>
-  <table border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td><b><?php echo _("Your name and e-mail :"); ?></b><br>
-    <?php echo $ecard["name_sender"].", ".$ecard["email_sender"]; ?></td>
-  </tr>
-  <tr>
-    <td align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></td>
-  </tr>
-  <tr>
-    <td><b><?php echo _("Recipient's Name and e-mail :"); ?></b><br>
-      <?php echo $ecard["name_recepient"].", ".$ecard["email_recepient"]; ?></td>
+    </td>
   </tr>
   </table>
+  </form>
+<?php } else {
+    echo sprintf(_("Your E-C@ard with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
+?>
+  <p align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></p>
 <br>
-<a href="javascript:window.close()">Close this window</a> <?php }?> <br>powered by <a href="http://www.ibps-friedrichs.de/" target="_blank">http://www.ibps-friedrichs.de</a>&nbsp;ported for gallery by <a href="http://www.cittadipolicoro.com" target="_blank">freenik</a> <br> </td>
-  <td></td>
-</tr>
-</table>
-</div>
+<a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
+<?php }
+?>
+</diV
+<?php
+global $GALLERY_EMBEDDED_INSIDE;
+    $validation_args = array('photoIndex' => $photoIndex);
+    $validation_file = basename(__FILE__);
+        if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+                print gallery_validation_link($validation_file, true, $validation_args);
+        }
+?>
 </body>
 </html>

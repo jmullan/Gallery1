@@ -3707,7 +3707,7 @@ function getIconText($iconName='', $altText='') {
 	global $gallery;
 	$text = $altText;
 
-	if (isset($gallery->app->useIcons) && $gallery->app->useIcons != "no") {
+	if (isset($gallery->app->useIcons) && $gallery->app->useIcons != "no" && $iconName != '') {
 		if ($gallery->app->useIcons == 'both') {
 			$altText = '';
 		}
@@ -3728,7 +3728,7 @@ function getIconText($iconName='', $altText='') {
 	return $linkText;
 }
 
-function makeIconMenu($iconElements, $closeTable = true) {
+function makeIconMenu($iconElements, $align = 'left', $closeTable = true) {
     global $gallery;
 
     if (empty($iconElements)) {
@@ -3736,23 +3736,21 @@ function makeIconMenu($iconElements, $closeTable = true) {
     }
 
 // For rtl/ltr stuff
-    if ($gallery->direction == 'ltr') {
-	$align ='right';
-    } else {
-	$align ='left';
+    if ($gallery->direction == 'rtl') {
+	$align = ($align == 'left') ? 'right' : 'left';
     }
 
     $html = "\n". '<table id="menu" align="'. $align .'"><tr>';
     foreach ($iconElements as $element) {
 	if (stristr($element,'</a>')) {
-	    $html .= "\n\t". '<td>'.  $element .'</td>';
+	    $html .= "\n\t". '<td>'. $element .'</td>';
 	} else {
 	    $html .= "\n\t". '<td class="noLink">'. $element .'</td>';
 	}
     }
 
     if ($closeTable == true) {
-	$html .= "</tr></table>";
+	$html .= "</tr>\n</table>";
     }
 
     return $html;

@@ -56,7 +56,7 @@ if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 }
 
 if (!isset($full)) {
-    $full=NULL;
+    $full = NULL;
 }
 
 if (!empty($votes)) {
@@ -296,8 +296,9 @@ if ($fitToWindow) {
 <td>
 <?php
 
-$adminText = '';
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
+$iconElements = array();
+$adminTextIconElemens = array();
 
 if (!$gallery->album->isMovie($id)) {
     print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
@@ -332,20 +333,6 @@ if (!$gallery->album->isMovie($id)) {
 	$iconElements[] = popup_link($iconText, "delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500);
     }
 
-    if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
-	!$gallery->session->offline  &&
-	 $gallery->user->canViewFullImages($gallery->album)) {
-
-	$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
-	$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
-
-	$adminText = '&nbsp;' . _('View Images') .':&nbsp;[&nbsp;';
-	if (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) {
-	    $adminText .= _('normal') . "&nbsp;|&nbsp;<a class=\"admin\" href=\"$link\">" . _('full') .'</a>&nbsp;]';
-	} else {
-	    $adminText .= "<a class=\"admin\" href=\"$link\">" . _("normal") .'</a>&nbsp;|&nbsp;'. _('full') .'&nbsp;]';
-	}
-    } 
 	
     if ($gallery->album->fields["use_exif"] == "yes" &&
 	(eregi("jpe?g\$", $photo->image->type)) &&
@@ -384,8 +371,11 @@ if (!$gallery->album->isMovie($id)) {
     }
 
     list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
-		
-    /* Note: the printservices are put into the left column 'adminText' */
+
+    /* 
+    ** Now build the admin Texts / left colun
+    */		
+    
     function enablePrintForm($name) {
 	global $printEZPrintsForm, $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
 	
@@ -456,16 +446,16 @@ if (!$gallery->album->isMovie($id)) {
 	    }
 	}
 
-	/* Todo: prevent newline after form end. */
-	$adminText .= makeFormIntro('view_photo.php', array("name" => "print_form"));
-	$adminText .= drawSelect('print_services', 
+	$printServicesText = makeFormIntro('view_photo.php', array("name" => "print_form"));
+	$printServicesText .= drawSelect('print_services', 
 				$options, 
 				'', 
 				1, 
 				array('onChange' =>'doPrintService()', 'class' => 'adminform'),
 				true
 				);
-	$adminText .= '</form>';
+	$printServicesText .= '</form>';
+	$adminTextIconElemens[] = $printServicesText;
 	
 	/* just print out text if only one option */
     } elseif ($numServices == 1) {
@@ -477,18 +467,13 @@ if (!$gallery->album->isMovie($id)) {
 	        if (!in_array($name, $printServices)) {
 		    continue;
 	        } else {
-		    $adminText .= "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">[" .
-				    sprintf(_('process this photo with %s'), $fullName) . ']</a>';
+		    $iconText = getIconText('', sprintf(_('process this photo with %s'), $fullName));
+          	    $adminTextIconElemens[] = "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
 		}
 	    }
 	}
     }
 
-/* If eCards are enabled, show the link.
-** The eCard opens in a popup and sends the actual displayed photo.
-*/
-    $adminText .= popup_link("[". _("Send Photo as eCard") ."]",
-	makeGalleryUrl('ecard_form.php', array('photoIndex' => $index )), 1);
 ?>
 <script language="javascript1.2" type="text/JavaScript">
 	 function doPrintService(input) {
@@ -520,6 +505,37 @@ if (!$gallery->album->isMovie($id)) {
 </script>
 <?php
     }
+
+    if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
+	!$gallery->session->offline  &&
+	 $gallery->user->canViewFullImages($gallery->album)) {
+
+	$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
+	$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
+	$adminTextIconElemens[] = _('View Images:');
+	$iconTextNormal = _("normal");
+	$iconTextFull = _("full");
+
+	if (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) {
+	    $adminTextIconElemens[] = $iconTextNormal;
+	    $adminTextIconElemens[] = '|';
+	    $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[" . $iconTextFull .']</a>';
+	} else {
+	    $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[" .$iconTextNormal .']</a>';
+	    $adminTextIconElemens[] = '|';
+	    $adminTextIconElemens[] = $iconTextFull;
+	}
+    }
+
+    /* If eCards are enabled, show the link.
+    ** The eCard opens in a popup and sends the actual displayed photo.
+   */
+    if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
+	$gallery->app->emailOn == 'yes') {
+	  $iconText = getIconText('ecard.gif', _("Send Photo as eCard"));
+          $adminTextIconElemens[] = popup_link($iconText,
+	    makeGalleryUrl('ecard_form.php', array('photoIndex' => $index,'gallery_popup' => 'true' )), 1, true, 550, 600);
+    }
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
@@ -535,8 +551,8 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 }
 includeLayout('navtablebegin.inc');
 
-$adminbox["text"] = $adminText;
-$adminbox["commands"] = makeIconMenu($iconElements);;
+$adminbox["text"] = makeIconMenu($adminTextIconElemens, 'left');
+$adminbox["commands"] = makeIconMenu($iconElements, 'right');
 $adminbox["bordercolor"] = $bordercolor;
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');

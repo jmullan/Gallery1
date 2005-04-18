@@ -73,6 +73,8 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
 	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->fields["showDimensions"] = $showDimensions;
+	$gallery->album->fields["ecards"] = $ecards;
+	
 	$gallery->album->save(array(i18n("Properties changed")));
 
 	if (getRequestVar('setNested')) {
@@ -346,7 +348,7 @@ $properties = array(
 		'desc' => '',
 		'choices' => array("yes" => _("yes"), "no" => _("no")),
 		'value' => $gallery->album->fields["use_exif"],
-		'skip' => ($gallery->app->use_exif == 'yes') ? true : false
+		'skip' => ($gallery->app->use_exif == 'yes') ? false : true
 	),
 	'group_data_end' => array (
 		'type' => "group_end"
@@ -369,6 +371,13 @@ $properties = array(
                         'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>'
                 ),
                 'value' => $gallery->album->fields['print_photos']
+        ),
+	'ecards' => array(
+		'prompt' => _("Enable Ecards ?"),
+                'desc' => '',
+                'choices' => array("yes" => _("yes"), "no" => _("no")),
+                'value' => isset($gallery->album->fields["ecards"]) ? $gallery->album->fields["ecards"] : 'no',
+                'skip' => ($gallery->app->emailOn == 'yes') ? false : true
         ),
 	'group_services_end' => array (
 		'type' => "group_end"

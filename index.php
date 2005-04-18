@@ -108,6 +108,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		       "delete_photo.php",
 		       "delete_user.php",
 		       "do_command.php",
+		       "ecard_form.php",
 		       "edit_appearance.php",
 		       "edit_caption.php",
 		       "edit_field.php",

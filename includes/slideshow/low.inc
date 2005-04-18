@@ -332,7 +332,7 @@ if ($loop) {
     $iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
 }
 
-    echo makeIconMenu($iconElements);
+    echo makeIconMenu($iconElements, 'right');
 ?>
 </form>
 <?php
