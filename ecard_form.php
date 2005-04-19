@@ -252,14 +252,14 @@ for($i = 1; $i <= 27; $i++) {
   </table>
   </form>
 <?php } else {
-    echo sprintf(_("Your E-C@ard with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
+    echo sprintf(_("Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></p>
 <br>
 <a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
 <?php }
 ?>
-</diV
+</div>
 <?php
 global $GALLERY_EMBEDDED_INSIDE;
     $validation_args = array('photoIndex' => $photoIndex);
