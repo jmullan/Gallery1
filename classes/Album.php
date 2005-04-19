@@ -1957,6 +1957,7 @@ class Album {
 				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
 				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
 				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
+				$nestedAlbum->fields["ecards"] => this->fields["ecards"];
 				$nestedAlbum->fields["email_me"] = array();
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();

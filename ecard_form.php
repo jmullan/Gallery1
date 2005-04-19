@@ -196,17 +196,25 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
   </tr>
   <tr>
     <td><?php echo _("Name") ?></td>
-    <td><input maxlength="40" name="ecard[name_sender]" size="18" type="Text" value='<?php if (! empty($ecard["name_sender"])) echo $ecard["name_sender"]; ?>'></td>
+    <?php
+        $defaultSenderName = '';
+	$defaultSenderEmail = '';
+	if (! empty($gallery->user) && $gallery->user->isLoggedIn()) {
+	    $defaultSenderName = $gallery->user->displayName();
+	    $defaultSenderEmail = $gallery->user->getEmail();
+	}
+    ?>
+    <td><input maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $defaultSenderName; ?>"></td>
     <td></td>
     <td><?php echo _("Name") ?></td>
-    <td><input maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value='<?php if (! empty($ecard["name_recepient"])) echo $ecard["name_recepient"]; ?>'></td>
+    <td><input maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
     <td><?php echo _("E-Mail"); ?></td>
-    <td><input maxlength="40" name="ecard[email_sender]" size="18" type="Text" value='<?php if (! empty($ecard["email_sender"])) echo $ecard["email_sender"]; ?>'></td>
+    <td><input maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $defaultSenderEmail; ?>"></td>
     <td></td>
     <td><?php echo _("E-Mail"); ?></td>
-    <td><input maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value='<?php if (! empty($ecard["email_recepient"])) echo $ecard["email_recepient"]; ?>'></td>
+    <td><input maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
     <td colspan="5" align="center">
@@ -223,6 +231,11 @@ for($i = 1; $i <= 27; $i++) {
         </select>
         <img alt="helpIcon" height="15" hspace="5" onclick="MM_openBrWindow('stamp_preview.php','Francobolli','scrollbars=yes,width=130,height=300')" src="images/ecard_images/icon_help.gif" width="15">
     </td>
+  </tr>
+  <tr>
+    <td><?php echo _("Subject:"); ?></td>
+    <?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(_("%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
+    <td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
   </tr>
   <tr>
     <td colspan="5"><?php echo _("Your Message:"); ?></td>
