@@ -166,7 +166,7 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 	        }
 	}
         elseif (!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||  
-		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($i)) {
+		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($gallery->user, $i)) {
 		$comments = $gallery->album->numComments($i);
 		if($comments > 0) {
 			includeLayout('commentboxtop.inc');
