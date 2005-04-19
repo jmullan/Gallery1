@@ -22,7 +22,7 @@
 ?>
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/includes/stats/stats.inc.php');
+require_once(GALLERY_BASE . '/includes/stats/stats.inc.php');
 $stats_choices = array();
 foreach ($stats['types'] as $key => $trash) {
 	if(!empty($stats['types'][$key]['linktext'])) {
