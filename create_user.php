@@ -77,8 +77,6 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->save();
 		print sprintf(_("User %s created"), $uname) . "<br><br>";
 		if (!empty($send_email)) {
-			echo "\n<p><pre>*******". $msg;
-
 			$values = array('password' => $new_password1, 
 					'username' => $uname, 
 					'fullname' => $fullname, 
@@ -86,9 +84,8 @@ if (!empty($formaction) && $formaction == 'create') {
 		
 			$msg = resolveWelcomeMsg($values);
 
-	 		 echo "\n</p>********<p>". $msg;
+			echo "\n<p><pre>". wordwrap($msg,80) ."\n</pre></p>";
 
-			exit();
 		       	$logmsg = sprintf(_("%s has registered by %s.  Email has been sent to %s."),
 				       	$uname, $gallery->user->getUsername(), $email);
 		       	$logmsg2  = sprintf("%s has registered by %s.  Email has been sent to %s.",
