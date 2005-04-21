@@ -145,6 +145,7 @@ class Album {
 	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
 	       $this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
 	       $this->fields["email_me"] = array();
+	       $this->fields["ecards"] = $gallery->app->default["ecards"];
 
 	       // Seed new albums with the appropriate version.
 	       $this->version = $gallery->album_version;

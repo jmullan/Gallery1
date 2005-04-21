@@ -96,12 +96,12 @@ $defaultLanguage = $gallery->user->getDefaultLanguage();
 $allowChange["uname"] = $gallery->user->isAdmin() ? true : false;
 $allowChange["email"] = true;
 $allowChange["fullname"] = true;
-$allowChange["password"] = true;
 $allowChange["old_password"] = true;
 $allowChange["default_language"] = true;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 $allowChange["create_albums"] = false;
+$allowChange["password"] = $gallery->user->canChangeOwnPw() ? true : false;
 
 doctype();
 ?>

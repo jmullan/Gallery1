@@ -123,6 +123,14 @@ class Gallery_User extends Abstract_User {
 				fs_rename("$file1.lock", "$file2.lock");
 			}
 		}
+
+		/* New attribut introduced in Gallery 1.5.1-cvs-b10
+		** Set to 1 (yes) as this was the behaviour before.
+		*/
+		if ($this->version < 6)  {
+		    $this->canChangeOwnPw = 1;
+		}
+
 		$this->version = $gallery->user_version;
 		if ($this->save()) {
 			$success=true;

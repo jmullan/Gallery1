@@ -24,17 +24,18 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($formaction, $uname, $new_password1, $new_password2, $fullname, $canCreate, 
-     $email, $defaultLanguage, $send_email, $dismiss) = 
-	getRequestVar(array('formaction', 'uname', 'new_password1', 'new_password2', 'fullname', 
-			    'canCreate', 'email', 'defaultLanguage', 'send_email', 'dismiss'));
+list($uname, $new_password1, $new_password2, $fullname, $email, $defaultLanguage) =
+    getRequestVar(array('uname', 'new_password1', 'new_password2', 'fullname', 'email', 'defaultLanguage'));
+
+list($formaction, $canCreate, $canChangeOwnPw, $isAdmin, $send_email, $dismiss) = 
+    getRequestVar(array('formaction', 'canCreate', 'canChangeOwnPw', 'isAdmin', 'send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
 	exit;	
 }
 
-$errorCount=0;
+$errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
@@ -54,7 +55,7 @@ if (!empty($formaction) && $formaction == 'create') {
 
 	if (!$errorCount) {
 		doctype();
-		?>
+?>
 <html>
 <head>
   <title><?php echo _("Create User") ?></title>
@@ -69,6 +70,8 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->setPassword($new_password1);
 		$tmpUser->setFullname($fullname);
 		$tmpUser->setCanCreateAlbums($canCreate);
+		$tmpUser->setCanChangeOwnPw($canChangeOwnPw);
+		$tmpUser->setIsAdmin($isAdmin);
 		$tmpUser->setEmail($email);
 		$tmpUser->origEmail=$email;
 		$tmpUser->setDefaultLanguage($defaultLanguage);
@@ -127,8 +130,7 @@ doctype();
 <div class="popuphead"><?php echo _("Create User") ?></div>
 <div class="popup" align="center">
 <?php
-$canCreate = 1;
-$canCreateChoices = array(1 => _("yes"), 0 => _("no"));
+$canCreate = 0;
 
 $allowChange["uname"] = true;
 $allowChange["email"] = true;
@@ -137,11 +139,13 @@ $allowChange["old_password"] = false;
 $allowChange["fullname"] = true;
 $allowChange["send_email"] = true;
 $allowChange["create_albums"] = true;
+$allowChange["canChangeOwnPw"] = true;
 $allowChange["default_language"] = true;
 $allowChange["member_file"] = false;
+$allowChange["admin"] = true;
 
+echo _("Create a new user here.");
 ?>
-<?php echo _("Create a new user here.") ?>
 <br>
 
 <?php echo makeFormIntro("create_user.php", array(

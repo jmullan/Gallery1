@@ -167,7 +167,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 
 </HEAD>
 
-<body class="popupbody" dir="<?php echo $gallery->direction ?>">
+<body class="popupbody" dir="<?php echo $gallery->direction ?>" onLoad="document.ecard_form['ecard[name_sender]'].focus()">
 <div class="popuphead"><?php echo _("Send this photo as eCard") ?></div>
 <div align="center" class="popup">
 
@@ -204,17 +204,17 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 	    $defaultSenderEmail = $gallery->user->getEmail();
 	}
     ?>
-    <td><input maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $defaultSenderName; ?>"></td>
+    <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $defaultSenderName; ?>"></td>
     <td></td>
     <td><?php echo _("Name") ?></td>
-    <td><input maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value=""></td>
+    <td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
     <td><?php echo _("E-Mail"); ?></td>
-    <td><input maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $defaultSenderEmail; ?>"></td>
+    <td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $defaultSenderEmail; ?>"></td>
     <td></td>
     <td><?php echo _("E-Mail"); ?></td>
-    <td><input maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value=""></td>
+    <td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
     <td colspan="5" align="center">
@@ -250,17 +250,21 @@ for($i = 1; $i <= 27; $i++) {
   </tr>
   <tr>
     <td align="center" colspan="5">
-      <table border="0" cellpadding="3" cellspacing="0" width="100%">
-      <tr>
-        <td align="left"><input type="button" onClick="javascript:make_preview();" value="<?php echo _("Preview"); ?>"></td>
-        <td colspan="2" align="center"><input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text"></td>
-        <td align="right">
-	    <input type="reset" value="<?php echo _("Reset"); ?>">
-	    <input type="button" onClick="javascript:send_ecard();" value="<?php echo _("Send eCard"); ?>">
-	</td>
-      </tr>
-      </table>
+	<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text">
     </td>
+  </tr>
+  <tr>
+     <td colspan="5" align="center">
+     <table>
+      <tr>
+        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo _("Preview"); ?>"></td>
+        <td><input type="reset" value="<?php echo _("Reset"); ?>"></td>
+	<td width="100%">&nbsp;</td>
+        <td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo _("Cancel"); ?>"></td>
+	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo _("Send eCard"); ?>"></td>
+      </tr>
+     </table>
+     </td>
   </tr>
   </table>
   </form>

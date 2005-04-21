@@ -27,6 +27,7 @@ function evenOdd_row($fields, $evenOdd) {
 
 	/* why was this added ? Jens Tkotz, 05.04.2005 */
 	// $f0 = str_replace(" ", "&nbsp;", $fields[0]);
+	$f0 = $fields[0];
 	if (isset($fields[4])) {
                         $f0 .= '&nbsp;<span class="littlered">*</span>';
 	}

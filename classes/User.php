@@ -29,6 +29,7 @@ class Abstract_User {
 	var $isAdmin;
 	var $canCreateAlbums;
 	var $uid;
+	var $canChangeOwnPw;
 
 	function Abstract_User() {
 		$this->setIsAdmin(false);
@@ -131,6 +132,14 @@ class Abstract_User {
 	function setIsAdmin($bool) {
 		$this->isAdmin = $bool;
 	}
+
+	function setCanChangeOwnPw($bool) {
+		$this->canChangeOwnPw = $bool;
+	}
+
+	function canChangeOwnPw() {
+	       	return $this->canChangeOwnPw;
+       	}
 
 	function canReadAlbum($album) {
 		if ($this->isAdmin()) {
@@ -305,7 +314,7 @@ class Abstract_User {
 	}
 
 	function displayName() {
-		$FullName=$this->getFullName();
+		$FullName = $this->getFullName();
 	        if (! empty($FullName)) {
 			return $this->getFullname();
 		} else {

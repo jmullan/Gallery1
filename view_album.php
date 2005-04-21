@@ -437,7 +437,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 
 /* User is allowed to view ALL comments */
 if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
-	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
+	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") &&
 	$gallery->user->canViewComments($gallery->album))) {
 		$iconText = getIconText('showcomment.gif', _("view&nbsp;comments"));
                 $iconElements[] = '<a href="'. 

@@ -31,10 +31,10 @@ if (!isset($gallery)) {
 	$gallery = new stdClass();
 }
 
-$gallery->version = '1.5.1-cvs-b9';
+$gallery->version = '1.5.1-cvs-b10';
 $gallery->config_version = 91;
 $gallery->album_version = 36;
-$gallery->user_version = 5;
+$gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";
 
 /* do not edit the date!! modified by CVS */

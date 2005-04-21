@@ -1,3 +1,23 @@
+2005-04-21 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b10
+
+	* Fix: eCard setting from setup was not used for new albums (thanks Judith)
+
+	* Change: Added tabindex order in eCard Form and focus on first field.
+
+	* Change: Admins can now created directly as new user.
+
+	* New: New flag for user to allow or disallow them to change their password.
+	  Note: User version bump. "Old" user automatically get this to true.
+
+	* Change: Stay in modify user view after having modified a user.
+
+	* New: added id="galleryImage" to img tags in view_photo (for jmullan)
+
+	* Fix: View Comments for not loggedIn User where displayed even if setting i setup was off,
+	       but everybody is allowed to see comments.
+
+	* "Fix": removed select:focus css (except in Jenskin) as FF on Linux is buggy on this.
+
 2005-04-20 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b9
 
 	* Fix: Create user were b0rked since b2.
