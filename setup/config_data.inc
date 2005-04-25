@@ -1300,8 +1300,7 @@ $defaults = array(
 
 		// <a href="http://www.w3.org/TR/REC-html40/types.html#h-6.5">W3.org</a>',
  		'value' => "black",
-		'type' => "text",
-		'attrs' => array('size' => 10),
+		'type' => 'colorpicker'
 	),
 	'border' => array(
 		'prompt' => _("Border width"),
@@ -1405,7 +1404,7 @@ $defaults = array(
 			'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
 			'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
 			'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
-			'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>' .
+			'mpush'       => '<a href="http://www.mpush.cc/">mPush</a> ' .
 					  _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
 		),
 /* old .. needs to be fixed */

@@ -170,4 +170,24 @@ function emptyFormVar($name) {
 	return !isset($_REQUEST[$name]);
 }
 
+/* The code below was inspired from the Horde Framework (http://www.horde.org)
+** It was taken from: framework/UI/UI/VarRenderer/html.php,v 1.106
+** Copyright 2003-2005 Jason M. Felice <jfelice@cronosys.com>
+**
+** Jens Tkotz 25.04.2005
+*/
+function showColorpicker($attrs = array()) {
+    $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16"></a></td>';
+    $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', array('target' => $attrs['name'], 'gallery_popup' => true));
+
+    $html = '<table border="0" cellspacing="0">';
+    $html .= '<tr>';
+    $html .= '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
+    $html .= '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
+    $html .= "<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>'; 
+    $html .= '<td><div id="colorpicker_' . $attrs['name'] . '" class="control"></div></td>';
+    $html .= '</tr></table>';
+
+    return $html;
+}
 ?>

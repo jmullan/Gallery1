@@ -673,9 +673,9 @@ class AlbumItem {
 		}
 	}
 
-	function getPhotoTag($dir, $full=0) {
+	function getPhotoTag($dir, $full=0, $attrs) {
 		if ($this->image) {
-			return $this->image->getTag($dir, $full, '', '', $this->getAlttext());
+			return $this->image->getTag($dir, $full, '', $attrs, $this->getAlttext());
 		} else {
 			return "about:blank";
 		}

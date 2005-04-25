@@ -140,19 +140,19 @@ $properties = array(
 	'bgcolor' => array(
 		'prompt' => _("Background Color"),
 		'desc' => '',
-		'type' => 'text',
+		'type' => 'colorpicker',
 		'value' => $gallery->album->fields["bgcolor"]
 	),
 	'textcolor' => array(
 		'prompt' => _("Text Color"),
 		'desc' => '',
-		'type' => 'text',
+		'type' => 'colorpicker',
 		'value' => $gallery->album->fields["textcolor"]
 	),
 	'linkcolor' => array(
 		'prompt' => _("Link Color"),
 		'desc' => '',
-		'type' => 'text',
+		'type' => 'colorpicker',
 		'value' => $gallery->album->fields["linkcolor"]
 	),
 	'group_color_end' => array (
@@ -198,7 +198,7 @@ $properties = array(
 	'bordercolor' => array(
 		'prompt' => _("Border color"),
 		'desc' => '',
-		'type' => 'text',
+		'type' => 'colorpicker',
 		'value' => $gallery->album->fields["bordercolor"]
 	),
 	'album_frame' => array(
@@ -429,13 +429,14 @@ doctype();
 <div class="popuphead"><?php echo _("Album Properties") ?></div>
 <div class="popup" align="center">
 <?php 
-//print_r($gallery->album);
+
 echo makeFormIntro("edit_appearance.php", 
 		array("name" => "theform", "method" => "POST"),
 		array("type" => "popup"));
 
 $i = 0;
-makeSectionTabs($properties,5);
+
+makeSectionTabs($properties,5, getRequestVar('initialtab'));
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
 		continue;
@@ -487,12 +488,6 @@ foreach ($properties as $key => $val) {
 
 </form>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-// position cursor in top form field
-document.theform.title.focus();
-//-->
-</script>
 </div>
 <?php print gallery_validation_link("edit_appearance.php"); ?>
 

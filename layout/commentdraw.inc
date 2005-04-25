@@ -16,8 +16,8 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 <!-- Begin Comment -->
 <table width="75%" align="center" border="0" class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
-	<td class="commentboxhead"><?php echo _("From:") ?></td> 
-	<td class="commentboxhead"><b><?php echo wordwrap($commentdraw["name"], 50, " ", 1) ?></b>
+	<td class="commentboxhead" width="50"><?php echo _("From:") ?></td> 
+	<td class="commentboxhead" width="55%"><b><?php echo wordwrap($commentdraw["name"], 50, " ", 1) ?></b>
 <?php
 if ($gallery->user->isAdmin()) {
 	echo "@ &nbsp;";

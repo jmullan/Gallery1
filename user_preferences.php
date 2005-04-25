@@ -102,6 +102,9 @@ $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 $allowChange["create_albums"] = false;
 $allowChange["password"] = $gallery->user->canChangeOwnPw() ? true : false;
+$allowChange["admin"] = true;
+
+$isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
 doctype();
 ?>

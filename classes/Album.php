@@ -1400,12 +1400,12 @@ class Album {
 		}
 	}
 
-	function getPhotoTag($index, $full) {
+	function getPhotoTag($index, $full, $attrs) {
 		$photo = $this->getPhoto($index);
 		if ($photo->isMovie()) {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"));
 		} else {
-			return $photo->getPhotoTag($this->getAlbumDirURL("full"), $full);
+			return $photo->getPhotoTag($this->getAlbumDirURL("full"), $full, $attrs);
 		}
 	}
 

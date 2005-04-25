@@ -90,6 +90,9 @@ function make_fields($key, $arr) {
 		$col2 = form_textarea($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "text") {
 		$col2 = form_input($key, $arr);
+	} else if (isset($arr["type"]) && $arr["type"] == "colorpicker") {
+		$arr['name'] = $key;
+		$col2 = showColorpicker($arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "password") {
 		$col2 = form_password($key, $arr);
 	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
@@ -1552,12 +1555,12 @@ function checkVersions($verbose=false) {
 ** ""contains_required"	: Indicates that this Group contains field that are required
 **
 ** Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
-**	 - You always need a group_end for a group. Otherwise everything below will belong to the group.	
+**	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
 */ 
 
-function makeSectionTabs($array, $break = 7) {
-	$tabs=array();
-	$initialtab='';
+function makeSectionTabs($array, $break = 7, $initialtab = '') {
+	$tabs = array();
+
 	foreach ($array as $key => $var) {
         	if(isset($var['type']) && $var['type'] == 'group_start') {
 			$tab[]=$var;
@@ -1566,13 +1569,13 @@ function makeSectionTabs($array, $break = 7) {
 
 	echo "\n<table width=\"100%\" cellspacing=\"0\">";
 	echo "\n<tr>";
-	$tabcount=0;
+	$tabcount = 0;
 	foreach ($tab as $cell) {
         	$tabcount++;
-		if ($cell['default'] == 'inline') {
+		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
 		        $class = 'class="tab-hi"';
 			if ($initialtab == '') {
-				$initialtab=$cell['name'];
+				$initialtab = $cell['name'];
 			}
 		}
 		else { 
@@ -1593,6 +1596,7 @@ function makeSectionTabs($array, $break = 7) {
 	echo "\n</tr>";
 	echo "\n</table>\n";	
 
+	echo "\n". '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 	echo "\n". '<script language="JavaScript" type="text/javascript">';
 
         $i=0;

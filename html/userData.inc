@@ -126,7 +126,7 @@ if ($gallery->user->isAdmin()) { ?>
 	<?php 
 		if ($allowChange["admin"] === true) {
 		    if ($uname=$gallery->user->getUsername() == $uname) {
-			echo '<td>'. $isAdminChoices[$isAdmin] .'</td></tr>';
+			echo '<td>'. $yesNoChoices[$isAdmin] .'</td></tr>';
 			echo '<tr><td colspan="2"><i>('. _("you can't un-admin yourself") . ')</i></td>';
 		    } else {
 			echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . '</td>';
