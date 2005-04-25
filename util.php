@@ -2976,7 +2976,7 @@ function welcomeMsgPlaceholderList() {
 
     $placeholders = array(
 	'galleryurl' => _("The Url to your Gallery."),
-	'gallerytitle' => _("Title of your Gallerfy."),
+	'gallerytitle' => _("Title of your Gallery."),
 	'adminemail' => _("Admin email(s)"),
 	'password' => _("Password for the newly created user."),
 	'username' => _("Username"),

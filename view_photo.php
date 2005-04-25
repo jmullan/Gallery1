@@ -607,7 +607,7 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 	$frame = 'none';
 }
 
-$photoTag = $gallery->album->getPhotoTag($index, $full,'id="GalleryImage"');
+$photoTag = $gallery->album->getPhotoTag($index, $full,'id="galleryImage"');
 
 list($width, $height) = $photo->getDimensions($full);
 $gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
