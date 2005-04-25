@@ -592,7 +592,7 @@ if (canVote()) {
  	else {
 		print "  "._("You can change your choices if you wish.");
  	}
-	echo "</span></p>";
+	echo "</span>";
 ?>
    <script language="javascript1.2" type="text/JavaScript">
  function chooseOnlyOne(i, form_pos, scale)
