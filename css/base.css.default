@@ -8,7 +8,7 @@
    If that file is found in this directory it will be 
    used instead of this one.
 
-   Some of the styles below are overriden by specific 
+   Some of the styles below are overridden by specific 
    album properties.
 
    $Id$
@@ -16,7 +16,7 @@
 
 
 /* 
-   default text styles - background and colors overriden by
+   default text styles - background and colors overridden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 
@@ -63,13 +63,13 @@ form {
 	  border-bottom-width:0px;
 	  border-left-width:0px;
 	}
-.mod_title_bg   /* album title hightlight Text is controled by .title */
+.mod_title_bg   /* album title hightlight Text is controlled by .title */
 	{
 	}
-.mod_title_right  /* album title hightlight  Text is controled by .title*/
+.mod_title_right  /* album title hightlight  Text is controlled by .title*/
 	{
 	}
-.mod_title_left  /* album title hightlight  Text is controled by .title */
+.mod_title_left  /* album title hightlight  Text is controlled by .title */
 	{
 	}
 .albumdesc  /*album description includes all text and background*/
@@ -145,16 +145,16 @@ a.error:hover {
 	  font-size: 16px; 
 	  font-weight: bold; 
 	}
-.mod_headliner  /* Gallery & Album titles. Text is controled by .head */
+.mod_headliner  /* Gallery & Album titles. Text is controlled by .head */
 	{
 	}
-.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */
+.mod_toplight_bg  /* Gallery & Album titles. Text is controlled by .head */
 	{
 	}
-.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/
+.mod_toplight_right  /* Gallery & Album titles. Text is controlled by .head*/
 	{
 	}
-.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */
+.mod_toplight_left  /* Gallery & Album titles. Text is controlled by .head */
 	{
 	}
 .bread                          /* used in breadcrumb bars */
@@ -302,31 +302,31 @@ a.error:hover {
 }
 	
 #tabnav a:link, #tabnav a:visited {
-	float: left;
-	font-size: 11px;
-	line-height: 14px;
-	font-weight: bold;
-	padding: 2px 5px 2px 5px;
-	margin-right: 4px;
-	text-decoration: none;
-	color: #666;
-	border-width:1px;
-	border-style: solid; border-color: #000000;
-	-Moz-Border-Radius-TopLeft: 20px;
-	-Moz-Border-Radius-TopRight: 20px;
+    float: left;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: bold;
+    padding: 2px 5px 2px 5px;
+    margin-right: 4px;
+    text-decoration: none;
+    color: #666;
+    border: 1px solid #000000;
+    -Moz-Border-Radius-TopLeft: 20px;
+    -Moz-Border-Radius-TopRight: 20px;
 }
 
 #tabnav a:link.active, #tabnav a:visited.active {
-	background-color: #FCFCF3 ; padding:2px 5px 2px 5px; font-size:12px;
-	margin-right: 4px;
-	border-style: solid; border-color: #000000;
-	-Moz-Border-Radius-TopLeft: 20px;
-	-Moz-Border-Radius-TopRight: 20px;
-	color:#000000;
+    background-color: #FCFCF3;
+    color: #000000;
+    padding:2px 5px 2px 5px; font-size:12px;
+    margin-right: 4px;
+    border: 1px solid #000000;
+    -Moz-Border-Radius-TopLeft: 20px;
+    -Moz-Border-Radius-TopRight: 20px;
 }
 
 #tabnav a:hover {
-	color: #444;
+    color: #444;
 }
 
 #adminbox {
@@ -375,33 +375,38 @@ td.adm_options {
     padding: 5px;
 }
 
-/* Following two claes areu sed in stats-wizard */
+/* Following two classes are used in stats-wizard */
  .blockcell { 
     vertical-align: top; 
-    border-bottom: 1px solid #000000 
+    border-bottom: 1px solid #000000;
 }
         
 caption {
     font-weight:bold; 
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
 .tab {
     border:1px solid black;
-    background-color:white; color: #000000;
-    -moz-border-radius-topleft:10px; -moz-border-radius-topright:10px;
+    background-color:white;
+    color: #000000;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
     cursor: pointer;
     text-align:center;
-    padding:5px; margin-left:10px;
+    padding:5px;
+    margin-left:10px;
 }
 
 .tab-hi {
     border:1px solid black;
     background-color: #000099; color:#FFFFFF;
-    -moz-border-radius-topleft:10px; -moz-border-radius-topright:10px;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
     cursor: pointer;
     text-align:center;
-    padding:5px; margin-left:10px;
+    padding:5px;
+    margin-left:10px;
 }
 
 .tab-text { 
@@ -409,9 +414,14 @@ caption {
     font-weight:bold;
 }
 
-.littlered      { font-size: 10px; color:red; vertical-align:top;
-                }
+.littlered { 
+    font-size: 10px;
+    color:red;
+    vertical-align:top;
+}
 
-td.tabspacer    {  border-bottom-width: 1px; border-bottom-style:solid;
-                   border-color: black;
-                }
+td.tabspacer {
+    border-bottom-width: 1px;
+    border-bottom-style:solid;
+    border-color: black;
+}

@@ -30,6 +30,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
+$reloadOpener = false;
 if (getRequestVar('save')) {
 	foreach ($gallery->album->fields as $key => $name) {
 		${$key} = getRequestVar($key);
@@ -81,7 +82,7 @@ if (getRequestVar('save')) {
 		$gallery->album->setNestedProperties();
 	}
 
-	reload();
+	$reloadOpener = true;
 }
 
 $services = array(
@@ -417,6 +418,9 @@ $properties = array(
 		'type' => "group_end"
 	),
 );
+
+$initialtab = getRequestVar('initialtab');
+
 doctype();
 ?>
 <html>
@@ -426,6 +430,7 @@ doctype();
 </head>
 
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<?php if ($reloadOpener) reload(); ?>
 <div class="popuphead"><?php echo _("Album Properties") ?></div>
 <div class="popup" align="center">
 <?php 
@@ -436,14 +441,19 @@ echo makeFormIntro("edit_appearance.php",
 
 $i = 0;
 
-makeSectionTabs($properties,5, getRequestVar('initialtab'));
+makeSectionTabs($properties,5, $initialtab);
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
 		continue;
 	}
 	
 	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
-		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
+		if ($val['name'] == $initialtab || (empty($initialtab) && $val['default'] == 'inline')) {
+		    $display = 'inline';
+		} else {
+		    $display = 'none';
+		}
+		echo "\n<div id=\"". $val["name"] ."\" style=\"display: $display\">";
 		echo make_separator($key, $val);
 		echo "\n<table width=\"100%\" class=\"inner\">";
 		continue;
@@ -477,7 +487,7 @@ foreach ($properties as $key => $val) {
 }
 ?>
 <input type="hidden" name="save" value="1">
-
+<input type="hidden" name="set_albumName" value="<?php echo $gallery->session->albumName ?>">
 <hr>
 <input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo _("Apply values to nested albums (except album title and summary).") ?></label>
 <br>
