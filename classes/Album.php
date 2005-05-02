@@ -88,10 +88,10 @@ class Album {
 		    break;
 	    }
 
-	    $this->setPerm("canRead", $UserDBtoPerm->getUid(), 1);
-	    $this->setPerm("canViewFullImages", $UserDBtoPerm->getUid(), 1);
-	    $this->setPerm("canViewComments", $UserDBtoPerm->getUid(), 1);
-	    $this->setPerm("canAddComments", $UserDBtoPerm->getUid(), 1);		
+	    $this->setPerm("canRead", $UserToPerm->getUid(), 1);
+	    $this->setPerm("canViewFullImages", $UserToPerm->getUid(), 1);
+	    $this->setPerm("canViewComments", $UserToPerm->getUid(), 1);
+	    $this->setPerm("canAddComments", $UserToPerm->getUid(), 1);		
 		
 	    $this->fields["parentAlbumName"] = 0;
 	    $this->fields["clicks"] = 0;
