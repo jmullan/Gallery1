@@ -1446,7 +1446,11 @@ $defaults = array(
 	'defaultPerms' => array(
 		'prompt' => _("Default Album Permissions"),
 		'desc' => _("Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."),
-		'choices' => array('everybody' => _("Everybody"), 'loggedin' => _("Logged-In Users")),
+		'choices' => array(
+				'everybody' => _("Everybody"), 
+				'loggedin' => _("Logged-In Users"),
+				'nobody' => _("Nobody")
+		),
 		'value' => "everybody",
 	),
 	'group4_end' => array (

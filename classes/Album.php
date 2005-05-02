@@ -37,118 +37,121 @@ class Album {
 	var $transient;
 
 	function Album() {
-		global $gallery;
+	    global $gallery;
 
-		$this->fields["title"] = _("Untitled");
-		$this->fields["description"] = "";
-		$this->fields["summary"]="";
-		$this->fields["nextname"] = "aaa";
-		$this->fields["bgcolor"] = "";
-		$this->fields["textcolor"] = "";
-		$this->fields["linkcolor"] = "";
-		$this->fields["background"] = "";
-		$this->fields["font"] = $gallery->app->default["font"];
-		$this->fields["border"] = $gallery->app->default["border"];
-		$this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
-		$this->fields["returnto"] = $gallery->app->default["returnto"];
-		$this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
-		$this->fields["resize_size"] = $gallery->app->default["resize_size"];
-		$this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
-		$this->fields['max_size'] = $gallery->app->default['max_size'];
-		$this->fields['max_file_size'] = $gallery->app->default['max_file_size'];
-		$this->fields["rows"] = $gallery->app->default["rows"];
-		$this->fields["cols"] = $gallery->app->default["cols"];
-		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
-		$this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
-		if (isset($gallery->app->default['print_photos'])) {
-			$this->fields["print_photos"] = $gallery->app->default["print_photos"];
-		}
-		$this->fields["guid"] = 0;
-		if (isset($gallery->app->use_exif)) {
-			$this->fields["use_exif"] = "yes";
+	    $this->fields["title"] = _("Untitled");
+	    $this->fields["description"] = "";
+	    $this->fields["summary"]="";
+	    $this->fields["nextname"] = "aaa";
+	    $this->fields["bgcolor"] = "";
+	    $this->fields["textcolor"] = "";
+	    $this->fields["linkcolor"] = "";
+	    $this->fields["background"] = "";
+	    $this->fields["font"] = $gallery->app->default["font"];
+	    $this->fields["border"] = $gallery->app->default["border"];
+	    $this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
+	    $this->fields["returnto"] = $gallery->app->default["returnto"];
+	    $this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
+	    $this->fields["resize_size"] = $gallery->app->default["resize_size"];
+	    $this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
+	    $this->fields['max_size'] = $gallery->app->default['max_size'];
+	    $this->fields['max_file_size'] = $gallery->app->default['max_file_size'];
+	    $this->fields["rows"] = $gallery->app->default["rows"];
+	    $this->fields["cols"] = $gallery->app->default["cols"];
+	    $this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
+	    $this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
+	    if (isset($gallery->app->default['print_photos'])) {
+		$this->fields["print_photos"] = $gallery->app->default["print_photos"];
+	    }
+	
+	    $this->fields["guid"] = 0;
+	    if (isset($gallery->app->use_exif)) {
+		$this->fields["use_exif"] = "yes";
+	    } else {
+		$this->fields["use_exif"] = "no";
+	    }
+
+	    $standardPerm = $gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody";
+
+	    switch($standardPerm) {
+	    	case 'nobody':
+		    $UserToPerm = $gallery->userDB->getNobody();
+		    break;
+		
+		case 'loggedin':
+		    $UserToPerm = $gallery->userDB->getLoggedIn();
+		    break;
+
+		case 'everybody':
+		default:
+		    $UserToPerm= $gallery->userDB->getEverybody();
+		    break;
+	    }
+
+	    $this->setPerm("canRead", $UserDBtoPerm->getUid(), 1);
+	    $this->setPerm("canViewFullImages", $UserDBtoPerm->getUid(), 1);
+	    $this->setPerm("canViewComments", $UserDBtoPerm->getUid(), 1);
+	    $this->setPerm("canAddComments", $UserDBtoPerm->getUid(), 1);		
+		
+	    $this->fields["parentAlbumName"] = 0;
+	    $this->fields["clicks"] = 0;
+	    $this->fields["clicks_date"] = time();
+	    $this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
+	    $this->fields["serial_number"] = 0;
+	    $this->fields["extra_fields"] = split(",", trim($gallery->app->default["extra_fields"]));
+	    foreach ($this->fields["extra_fields"] as $key => $value) {
+	    	$value = trim($value);
+	    	if ($value == "") {
+		    unset($this->fields["extra_fields"][$key]);
 		} else {
-			$this->fields["use_exif"] = "no";
+		    $this->fields["extra_fields"][$key] = $value;
 		}
-
-		$everybody = $gallery->userDB->getEverybody();
-		$loggedin = $gallery->userDB->getLoggedIn();
-		switch(isset($gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody") {
-			case 'loggedin':
-				$this->setPerm("canRead", $loggedin->getUid(), 1);
-				$this->setPerm("canViewFullImages", $loggedin->getUid(), 1);
-				$this->setPerm("canViewComments", $loggedin->getUid(), 1);
-				$this->setPerm("canAddComments", $loggedin->getUid(), 1);
-				break;
-
-			default:
-				$this->setPerm("canRead", $everybody->getUid(), 1);
-				$this->setPerm("canViewFullImages", $everybody->getUid(), 1);
-				$this->setPerm("canViewComments", $everybody->getUid(), 1);
-				$this->setPerm("canAddComments", $everybody->getUid(), 1);
-				break;
-		}
+	    }
 		
-		$this->fields["parentAlbumName"] = 0;
-		$this->fields["clicks"] = 0;
-		$this->fields["clicks_date"] = time();
-		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
-		$this->fields["serial_number"] = 0;
-		$this->fields["extra_fields"] =
-		    split(",", trim($gallery->app->default["extra_fields"]));
-		foreach ($this->fields["extra_fields"] as $key => $value) {
-			$value=trim($value);
-			if ($value == "") {
-				unset($this->fields["extra_fields"][$key]);
-			} else {
-				$this->fields["extra_fields"][$key]=$value;
-			}
-
-		}
-		$this->fields["cached_photo_count"] = 0;
-		$this->fields["photos_separate"] = FALSE;
-		$this->transient->photosloaded = TRUE; 
+	    $this->fields["cached_photo_count"] = 0;
+	    $this->fields["photos_separate"] = FALSE;
+	    $this->transient->photosloaded = TRUE; 
 		
-		$this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
-		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
-		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
-		$this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
-		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
+	    $this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
+	    $this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
+	    $this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
+	    $this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
+	    $this->fields["last_quality"] = $gallery->app->jpegImageQuality;
 
 
-               // VOTING Variables
-               $this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
-               $this->fields["poll_scale"]=$gallery->app->default["poll_scale"]; // num of choices to offer voter
-               $this->fields["votes"]=array(); // holds all the votes by UID or session ID
-               $this->fields["poll_nv_pairs"]= $gallery->app->default["poll_nv_pairs"];
+            /* VOTING Variables */
+            this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
+            $this->fields["poll_scale"]=$gallery->app->default["poll_scale"]; // num of choices to offer voter
+            $this->fields["votes"]=array(); // holds all the votes by UID or session ID
+            $this->fields["poll_nv_pairs"]= $gallery->app->default["poll_nv_pairs"];
                        // allows admin to explicitly set display value and
                        // points for all voting options.  EG "Excellent" -> 4
                        // points; "Good" -> 3 points etc etc
-               $this->fields["poll_hint"]=$gallery->app->default["poll_hint"];
+            $this->fields["poll_hint"]=$gallery->app->default["poll_hint"];
                        // This is displayed above the voting options
                        // for each image.
-               $this->fields["poll_show_results"]=$gallery->app->default["poll_show_results"];
+            $this->fields["poll_show_results"]=$gallery->app->default["poll_show_results"];
                        // The results graph and breakdown will be displayed
                        // if this is yes.  Note that this should eventually
                        // be part of permissions
-               $this->fields["poll_num_results"]=$gallery->app->default["poll_num_results"]; 
+            $this->fields["poll_num_results"]=$gallery->app->default["poll_num_results"]; 
 	       		// number of lines of graph to show on the album page
-	       $this->fields["voter_class"]=$gallery->app->default["voter_class"];
+	    $this->fields["voter_class"]=$gallery->app->default["voter_class"];
                         // Nobody, Everybody, Logged in
-	       // end of VOTING variables
+	       // end of VOTING variable
+	    $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
+	    $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
+	    $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
+	    $this->fields["slideshow_loop"]=$gallery->app->default["slideshow_loop"];
+	    $this->fields["album_frame"]=$gallery->app->default["album_frame"];
+	    $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
+	    $this->fields["image_frame"]=$gallery->app->default["image_frame"];
+	    $this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
+	    $this->fields["email_me"] = array();
+	    $this->fields["ecards"] = $gallery->app->default["ecards"];
 
-	       $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
-	       $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
-	       $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
-	       $this->fields["slideshow_loop"]=$gallery->app->default["slideshow_loop"];
-	       $this->fields["album_frame"]=$gallery->app->default["album_frame"];
-	       $this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
-	       $this->fields["image_frame"]=$gallery->app->default["image_frame"];
-	       $this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
-	       $this->fields["email_me"] = array();
-	       $this->fields["ecards"] = $gallery->app->default["ecards"];
-
-	       // Seed new albums with the appropriate version.
-	       $this->version = $gallery->album_version;
+	    // Seed new albums with the appropriate version.
+	   $this->version = $gallery->album_version;
        	}
 
 	function isRoot() {
