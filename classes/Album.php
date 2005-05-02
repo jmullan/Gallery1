@@ -71,7 +71,7 @@ class Album {
 		$this->fields["use_exif"] = "no";
 	    }
 
-	    $standardPerm = $gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody";
+	    $standardPerm = ($gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody";
 
 	    switch($standardPerm) {
 	    	case 'nobody':
@@ -120,7 +120,7 @@ class Album {
 
 
             /* VOTING Variables */
-            this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
+            $this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
             $this->fields["poll_scale"]=$gallery->app->default["poll_scale"]; // num of choices to offer voter
             $this->fields["votes"]=array(); // holds all the votes by UID or session ID
             $this->fields["poll_nv_pairs"]= $gallery->app->default["poll_nv_pairs"];
