@@ -21,47 +21,47 @@
  */
 ?>
 <?php
+
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 if (empty($gallery->session->username)) {
-	/* Get the cached version if possible */
-	$cache_file = "cache.html";
-	if (!getRequestVar('gallery_nocache')) {
-		$cache_now = time();
-		foreach (array(sprintf("cache-%s.html", $_SERVER['HTTP_HOST']), "cache.html")
-			 as $cache_file_basename) {
- 			$cache_file = dirname(__FILE__) . '/' . $cache_file_basename;
-			if (fs_file_exists($cache_file)) {
-				$cache_stat = @stat($cache_file);
- 				if ($cache_now - $cache_stat[9] < (20 * 60)) {
-	 				if ($fp = fopen($cache_file, "rb")) {
-		 				while (!feof($fp)) {
-		 					print fread($fp, 4096);
-	 					}
-						fclose($fp);
-						printf("<!-- From %s, created at %s -->",
-	 					       $cache_file_basename,
-						       strftime("%D %T", $cache_stat[9]));
-						return;
-					}
-	 			}
-			}
-		}
+    /* Get the cached version if possible */
+    $cache_file = "cache.html";
+    if (!getRequestVar('gallery_nocache')) {
+	$cache_now = time();
+	$cacheFileBaseNames = array(sprintf("cache-%s.html", $_SERVER['HTTP_HOST']), "cache.html");
+	foreach ($cacheFileBaseNames as $cache_file_basename) {
+ 	    $cache_file = dirname(__FILE__) . '/' . $cache_file_basename;
+	    if (fs_file_exists($cache_file)) {
+		$cache_stat = @stat($cache_file);
+ 		if ($cache_now - $cache_stat[9] < (20 * 60)) {
+	 	    if ($fp = fopen($cache_file, "rb")) {
+		 	while (!feof($fp)) {
+		 	    print fread($fp, 4096);
+	 		}
+		        fclose($fp);
+			printf("<!-- From %s, created at %s -->",
+	 		  $cache_file_basename, strftime("%D %T", $cache_stat[9]));
+			return;
+		     }
+	 	}
+	    }
 	}
+    }
 }
 
-$gallery->session->offlineAlbums["albums.php"]=true;
+$gallery->session->offlineAlbums["albums.php"] = true;
 
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
-$gallery->session->albumName = "";
+$gallery->session->albumName = '';
 $page = 1;
 
 /* If there are albums in our list, display them in the table */
 list ($numPhotos, $numAccess, $numAlbums) = $albumDB->numAccessibleItems($gallery->user);
 
-if (empty($gallery->session->albumListPage)) {
+if (empty($gallery->session->albumListPage) || $gallery->session->albumListPage < 1) {
 	$gallery->session->albumListPage = 1;
 }
 $perPage = $gallery->app->albumsPerPage;
@@ -291,14 +291,17 @@ if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
 $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
-        $gallery->album = $albumDB->getAlbum($gallery->user, $i);
-	$isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
-	if($isRoot) {
-		if (strcmp($gallery->app->showOwners, "no")) {
-			$owner = $gallery->album->getOwner();
-		}
-        	$tmpAlbumName = $gallery->album->fields["name"];
-        	$albumURL = makeAlbumUrl($tmpAlbumName);
+    if(!$gallery->album = $albumDB->getAlbum($gallery->user, $i)) {
+	echo gallery_error(sprintf(_("The requested album with index %s is not valid"), $i));
+        continue;
+    }
+    $isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
+    if($isRoot) {
+	if (strcmp($gallery->app->showOwners, "no")) {
+	    $owner = $gallery->album->getOwner();
+	}
+        $tmpAlbumName = $gallery->album->fields["name"];
+        $albumURL = makeAlbumUrl($tmpAlbumName);
 ?>     
 
   <!-- Begin Album Column Block -->

@@ -61,6 +61,10 @@ list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 list ($page, $set_albumListPage) =
 	getRequestVar(array('page', 'set_albumListPage'));
 
+if ($set_albumListPage < 0) {
+    $set_albumListPage = 1;
+}
+
 if (empty($type)) {
 	/* We assume was called direct. So we call show defaults */
 	header("Location: ". unhtmlentities(defaultStatsUrl('views')));

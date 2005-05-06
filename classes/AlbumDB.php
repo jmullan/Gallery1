@@ -186,12 +186,13 @@ class AlbumDB {
 	}
 
 	function getAlbum($user, $index) {
-		global $gallery;
-		$list = $this->getVisibleAlbums($user);
-		if (!isset($list[$index-1]->transient) || !$list[$index-1]->transient->photosloaded) {
-			$list[$index-1]->loadPhotos($gallery->app->albumDir . "/" . $list[$index-1]->fields["name"]);
-		}
-		return $list[$index-1];
+	    global $gallery;
+	    $list = $this->getVisibleAlbums($user);
+	    $wantedAlbum = isset($list[$index-1]) ? $list[$index-1] : false;
+	    if ($wantedAlbum && (!isset($wantedAlbum->transient) || !$wantedAlbum->transient->photosloaded)) {
+		$wantedAlbum->loadPhotos($gallery->app->albumDir . "/" . $wantedAlbum->fields["name"]);
+	    }
+	    return $wantedAlbum;
 	}
 
 	function getAlbumByName($name, $load=TRUE) {
