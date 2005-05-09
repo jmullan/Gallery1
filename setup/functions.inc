@@ -22,6 +22,8 @@
 ?>
 <?php
 
+require_once(dirname(dirname(__FILE__)) . '/classes/HTML/table.php');
+
 function evenOdd_row($fields, $evenOdd) {
 	$buf='';
 
@@ -68,47 +70,48 @@ function make_attrs($attrList) {
 		*/
 
 		foreach ($attrList as $attrKey => $attrVal) {
-			$attrs .= "$attrKey=$attrVal ";
+			$attrs .= "$attrKey=\"$attrVal\" ";
 		}
 	}
 	return $attrs;
 }
 
 function make_fields($key, $arr) {
-	if (isset($arr["prompt"])) {
-		$col1 = $arr["prompt"];
+	if (isset($arr['prompt'])) {
+		$col1 = $arr['prompt'];
 	} else {
-		$col1 = "";
+		$col1 = '';
 	}
-	if (isset($arr["type"]) && $arr["type"] == "hidden") {
+	if (isset($arr['type']) && 
+		($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
 		$col2 = form_input($key, $arr);
-	} else if (isset($arr["choices"])) {
+	} else if (isset($arr['choices'])) {
 		$col2 = form_choice($key, $arr);
-	} else if (isset($arr["multiple_choices"])) {
+	} else if (isset($arr['multiple_choices'])) {
 		$col2 = form_multiple_choice($key, $arr);
-	} else if (!strcmp($arr["type"], "textarea")) {
+	} else if (isset($arr['type']) && $arr['type'] == 'textarea') {
 		$col2 = form_textarea($key, $arr);
-	} else if (isset($arr["type"]) && $arr["type"] == "text") {
-		$col2 = form_input($key, $arr);
-	} else if (isset($arr["type"]) && $arr["type"] == "colorpicker") {
+	} else if (isset($arr['type']) && $arr['type'] == 'table_values') {
+		$col2 = form_table_values($key, $arr);
+	} else if (isset($arr['type']) && $arr['type'] == 'colorpicker') {
 		$arr['name'] = $key;
 		$col2 = showColorpicker($arr);
-	} else if (isset($arr["type"]) && $arr["type"] == "password") {
+	} else if (isset($arr['type']) && $arr['type'] == 'password') {
 		$col2 = form_password($key, $arr);
-	} else if (isset($arr["type"]) && $arr["type"] == "nv_pairs") {
+	} else if (isset($arr['type']) && $arr['type'] == 'nv_pairs') {
 		$col2 = form_nv_pairs($key, $arr);
 	} else if (isset($arr['type']) && $arr['type'] == 'print_services') {
 		$col2 = form_print_services($key, $arr);
 	} else {
-		$col2 ="";
+		$col2 ='';
 	}
-	if (isset($arr["desc"])) {
-		$col3 = $arr["desc"];
+	if (isset($arr['desc'])) {
+		$col3 = $arr['desc'];
 	} else {
-		$col3 = "";
+		$col3 = '';
 	}
-	$col4 = isset($arr["type"]) ?  $arr["type"] : NULL;
-	$col5 = isset($arr["required"]) ? true : NULL;
+	$col4 = isset($arr['type']) ?  $arr['type'] : NULL;
+	$col5 = isset($arr['required']) ? true : NULL;
 
 	return array($col1, $col2, $col3,$col4,$col5);
 }
@@ -119,16 +122,13 @@ function form_textarea($key, $arr) {
 }
 
 function form_input($key, $arr) {
-	if ($arr["type"]) {
-		$type = "type=\"$arr[type]\"";
-	}
-	if (isset($arr["attrs"])) {
-		$attrs = make_attrs($arr["attrs"]);
-	} else {
-		$attrs = '';
-	}
+    $type  = (isset($arr['type'])) ? 'type="'.$arr['type'].'"' : '';
 
-	return "<input $type name=\"$key\" value=\"$arr[value]\" $attrs>";
+    $attrs = (isset($arr['attrs'])) ? make_attrs($arr['attrs']) : '';
+
+    $name  = (isset($arr['name'])) ? $arr['name'] : $key;
+	
+    return "<input $type name=\"$name\" value=\"$arr[value]\" $attrs>";
 }
 
 function form_password($key, $arr) {
@@ -225,6 +225,34 @@ function form_multiple_choice($key, $arr) {
 	$buf .="</table>";
 	return $buf;
 }
+
+function makeMultipleChoiceContent($array) {
+    $multipleChoiceContent = array();
+
+    foreach($array as $key => $content) {
+	$multipleChoiceContent[$key] = '<a href="'. $content['url'] .'">'. $content['name'] .'</a>';
+	if (isset($content['description'])) {
+	    $multipleChoiceContent[$key] .= ' '. $content['description'];
+	}
+    }
+
+    return $multipleChoiceContent;
+}
+
+/* in progress */
+function form_table_values($key, $arr) {
+	if (empty($arr['elements'])) {
+	   return _("No content");
+	}
+
+	$jTable = new galleryTable(sizeof($arr['columns']));
+
+	$jTable->headers = $arr['columns'];
+	$jTable->addElement($arr['elements']);
+
+	return $jTable->render();
+}
+
 
 function form_print_services($key, $arr) {
 

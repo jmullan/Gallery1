@@ -514,8 +514,8 @@ function slideshow_controlPanel() {
 			);
 
 	if ($loop) {
-		$checked = ($defaultLoop) ? "checked" : "";
-		$iconElements[] = $loopIconText .':';
+		$checked = ($defaultLoop) ? 'checked' : '';
+		$iconElements[] = $loopIconText;
 		$iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
 	} 
 

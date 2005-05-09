@@ -30,6 +30,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
+list($nv_pairs, $extra_fields, $num_user_fields) = 
+    getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
+
 $reloadOpener = false;
 if (getRequestVar('save')) {
 	foreach ($gallery->album->fields as $key => $name) {
@@ -75,7 +78,59 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->fields["showDimensions"] = $showDimensions;
 	$gallery->album->fields["ecards"] = $ecards;
-	
+
+	/* Poll properties */
+	for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
+                //convert values to numbers
+                $nv_pairs[$i]["value"]=0+$nv_pairs[$i]["value"];
+        }
+        $gallery->album->fields["poll_nv_pairs"]=$nv_pairs;
+        $gallery->album->fields["poll_hint"]=$poll_hint;
+        $gallery->album->fields["poll_type"] = $poll_type;
+        if ($voter_class == "Logged in" &&
+            $gallery->album->fields["voter_class"] == "Everybody" &&
+            sizeof($gallery->album->fields["votes"]) > 0) {
+                $error="<br>" .
+                        sprintf(_("Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."),
+                                        "<i>". _("Everybody") ."</i>",
+                                        "<i>". _("Logged in") ."</i>");
+        }
+        $gallery->album->fields["voter_class"] = $voter_class;
+        $gallery->album->fields["poll_scale"] = $poll_scale;
+        $gallery->album->fields["poll_show_results"] = $poll_show_results;
+        $gallery->album->fields["poll_num_results"] = $poll_num_results;
+        $gallery->album->fields["poll_orientation"] = $poll_orientation;
+
+
+	/* Extrafields and Custom Fields */
+	$count=0;
+        if (!isset($extra_fields)) {
+                $extra_fields = array();
+        }
+
+        for ($i = 0; $i < sizeof($extra_fields); $i++) {
+            if (get_magic_quotes_gpc()) {
+                $extra_fields[$i] = stripslashes($extra_fields[$i]);
+            }
+            $extra_fields[$i] = str_replace('"', '&quot;', $extra_fields[$i]);
+        }
+
+        $num_fields=$num_user_fields+num_special_fields($extra_fields);
+
+        $gallery->album->setExtraFields($extra_fields);
+
+        if ($num_fields > 0 && !$gallery->album->getExtraFields()) {
+                $gallery->album->setExtraFields(array());
+        }
+
+        if (sizeof ($gallery->album->getExtraFields()) < $num_fields) {
+                $gallery->album->setExtraFields(array_pad($gallery->album->getExtraFields(), $num_fields, _("untitled field")));
+        }
+
+        if (sizeof ($gallery->album->getExtraFields()) > $num_fields) {
+                $gallery->album->setExtraFields(array_slice($gallery->album->getExtraFields(), 0, $num_fields));
+        }	
+
 	$gallery->album->save(array(i18n("Properties changed")));
 
 	if (getRequestVar('setNested')) {
@@ -85,28 +140,69 @@ if (getRequestVar('save')) {
 	$reloadOpener = true;
 }
 
-$services = array(
-	'photoaccess' => array(
-		'name'    => 'PhotoWorks',
-		'url'     => 'http://www.photoworks.com/'),
-		'shutterfly'  => array(
-		'name'    => 'Shutterfly',
-		'url'     => 'http://www.shutterfly.com/',
-	),
-	'fotoserve'  => array(
-		'name'    => 'Fotoserve.com',
-		'url'     => 'http://www.fotoserve.com/',
-	),
-	'fotokasten'  => array(
-		'name'    => 'Fotokasten',
-		'url'     => 'http://www.fotokasten.de/'),
-	'mpush'       => array(
-		'name'	  => 'mPUSH',
-		'url'     => 'http://www.mpush.cc/'),
-);
 
+/* Custom / Extra Fields */
+
+function num_special_fields($extra_fields) {
+    $num_special_fields = 0;
+    foreach (array_keys(automaticFieldsList()) as $special_field) {
+	if (in_array($special_field, $extra_fields)) {
+	    $num_special_fields++;
+	}
+    }
+
+    foreach (array("Title", "AltText") as $named_field) {
+	if (in_array($named_field, $extra_fields)) {
+	    $num_special_fields++;
+        }
+    }
+
+    return $num_special_fields;
+}
+
+$multiple_choices_EF = array(
+			    'Title' => _("Title"),
+			    'AltText' => _("Alt Text / onMouseOver")
+);
+$extra_fields = $gallery->album->getExtraFields();
+$checked_EF = array();
+
+foreach (automaticFieldsList() as $automatic => $printable_automatic) {
+    if ($automatic === "EXIF" && (($gallery->album->fields["use_exif"] !== "yes") || !$gallery->app->use_exif)) {
+	continue;
+    }
+    $multiple_choices_EF[$automatic] = $printable_automatic;
+}
+
+foreach($multiple_choices_EF as $field => $trash) {  
+    if (in_array($field, $extra_fields)) {
+	$checked_EF[] = $field;
+    }
+}
+
+$num_user_fields = sizeof($extra_fields) - num_special_fields($extra_fields);
+
+$customFields = array();
+$i = 1;
+foreach ($extra_fields as $value) {
+    if (in_array($value, array_keys(automaticFieldsList())) || !strcmp($value, "Title") || !strcmp($value, "AltText")) {
+	continue;
+    }
+
+    $customFields["cf_$i"] = array(
+	'name' => 'extra_fields[]',
+	'prompt' => sprintf(_("Field %s:"),$i),
+	'desc' => '',
+	'type' => 'text',
+	'value' => $value
+    );
+    $i++;
+}
+
+include (dirname(__FILE__) . '/includes/definitions/services.php');
 include (dirname(__FILE__) . '/setup/functions.inc');
 include (dirname(__FILE__) . '/js/sectionTabs.js.php');
+
 $properties = array(
 	'group_text_start' => array (
 		'type' => "group_start",
@@ -120,7 +216,7 @@ $properties = array(
 		'desc' => '',
 		'value' => $gallery->album->fields["summary"],
 		'type' => "textarea",
-		'attrs' => array('cols' => 45, 'rows' => 8)
+		'attrs' => array('cols' => 40, 'rows' => 6)
 	),
 	'title' => array(
 		'prompt' => _("Album Title"),
@@ -383,6 +479,68 @@ $properties = array(
 	'group_services_end' => array (
 		'type' => "group_end"
 	),
+	'group_pollProperties_start' => array (
+                'type' => "group_start",
+                'name' => "group_pollProperties",
+                'default' => "none",
+                'title' => _("Poll Properties"),
+                'desc' => ""
+        ),
+	'poll_type' => array(
+		'prompt' => _("Type of poll for this album"),
+		'desc' => '',
+		'choices' => array("rank" => _("Rank"), "critique" => _("Critique")),
+		'value' => $gallery->album->fields["poll_type"]
+	),
+	'poll_scale' => array(
+                'prompt' => _("Number of voting options"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $gallery->album->getPollScale()
+        ),
+	'poll_show_results' => array(
+                'prompt' => _("Show results of voting to all visitors?"),
+                'desc' => '',
+                'choices' => array("yes" => _("yes"), "no" => _("no")),
+                'value' => $gallery->album->fields["poll_show_results"]
+        ),
+	'poll_num_results' => array(
+                'prompt' => _("Number of lines of results graph to display on the album page"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $gallery->album->getPollNumResults()
+        ),
+	'voter_class' => array(
+                'prompt' => _("Who can vote?"),
+                'desc' => '',
+                'choices' => array("Logged in" => _("Logged in"), "Everybody" => _("Everybody"), "Nobody" => _("Nobody")),
+                'value' => $gallery->album->fields["voter_class"]
+        ),
+	'poll_orientation' => array(
+                'prompt' => _("Orientation of vote choices"),
+                'desc' => '',
+                'choices' => array('horizontal' => _("Horizontal"), 'vertical' => _("Vertical")),
+                'value' => isset($gallery->album->fields['poll_orientation']) ? 
+				 $gallery->album->fields['poll_orientation'] : ''
+        ),
+        'poll_hint' => array(
+                'prompt' => _("Vote hint"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $gallery->album->getPollHint(),
+		'attrs' => array('size' => 60)
+	),
+        'poll_displayed_values' => array(
+                'prompt' => _("Voting Options"),
+                'desc' => '',
+                'type' => 'table_values',
+		'elements' => buildVotingInputFields(),
+		'columns' => array(_("Displayed Value"),_("Points")),
+		'value' => ''
+	),
+	'group_pollProperties_end' => array (
+                'type' => "group_end"
+        ),
 	'group_misc_start' => array (
 		'type' => "group_start",
 		'name' => "group_misc",
@@ -417,7 +575,35 @@ $properties = array(
 	'group_misc_end' => array (
 		'type' => "group_end"
 	),
+    'group_CustomFields_start' => array (
+        'type' => "group_start",
+        'name' => "group_CustomFields",
+        'default' => "none",
+        'title' => _("Custom Fields")
+    ),
+    'extra_fields' => array(
+	'prompt' => '',
+	'desc' => '',
+        'multiple_choices' => $multiple_choices_EF,
+        'value' => $checked_EF
+    ),
+    'num_user_fields' => array(
+                'prompt' => _("Number of user defined custom fields"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $num_user_fields,
+		'attrs' => array('size' => 2)
+    )
 );
+
+$properties = array_merge($properties, $customFields);
+$properties = array_merge($properties, array(
+    'group_CustomFields_end' => array (
+        'type' => "group_end"
+    )
+  )
+);
+
 
 $initialtab = getRequestVar('initialtab');
 
@@ -441,7 +627,7 @@ echo makeFormIntro("edit_appearance.php",
 
 $i = 0;
 
-makeSectionTabs($properties,5, $initialtab);
+makeSectionTabs($properties,4, $initialtab);
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
 		continue;

@@ -23,6 +23,8 @@
 <?php
 
 require_once(GALLERY_BASE . '/includes/stats/stats.inc.php');
+require_once(GALLERY_BASE . '/includes/definitions/services.php');
+
 $stats_choices = array();
 foreach ($stats['types'] as $key => $trash) {
 	if(!empty($stats['types'][$key]['linktext'])) {
@@ -1399,14 +1401,7 @@ $defaults = array(
 	'print_photos' => array(
 		'prompt' => _("Printing Services"),
  		'desc' => _("Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."),
-		'multiple_choices' => array(
-			'photoaccess' => '<a href="http://www.photoworks.com/">PhotoWorks</a>',
-			'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
-			'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
-			'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
-			'mpush'       => '<a href="http://www.mpush.cc/">mPush</a> ' .
-					  _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
-		),
+		'multiple_choices' => makeMultipleChoiceContent($services),
 /* old .. needs to be fixed */
 		'value' => array(
 			'fotokasten' => array(
