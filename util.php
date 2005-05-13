@@ -26,6 +26,7 @@ require_once(dirname(__FILE__) . '/nls.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
 require_once(dirname(__FILE__) . '/classes/Mail/htmlMimeMail.php');
+require_once(dirname(__FILE__) . '/lib/valchecks.php');
 
 function getRequestVar($str) {
 	if (!is_array($str)) {
