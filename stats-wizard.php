@@ -40,7 +40,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle ?></title>
+<title><?php echo $gallery->app->galleryTitle ?>::<?php echo _("Gallery statistics - Wizard") ?></title>
 <?php 
 	common_header() ;
 ?>
@@ -48,8 +48,26 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>" onLoad="updateUrl()">
 <?php  
 }
-	$stats_title = " - " . _("Wizard");
-        includeHtmlWrap("stats.header");
+
+    includeHtmlWrap("gallery.header");
+
+    $adminbox['text'] ='<span class="head">'. _("Gallery statistics - Wizard") .'</span>';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+
+    $adminbox["commands"] = $adminCommands;
+    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+    $breadcrumb['text'][] = languageSelector();
+
+    includeLayout('navtablebegin.inc');
+    includeLayout('adminbox.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
+
+?>
+<div class="popup" align="center">
+<?php
 /* note: the script is below as the header of the environment needs to loaded before. */
 ?>
 <script type="text/javascript">
@@ -97,8 +115,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 </script>
 
-<div style="text-align:right">[<a href="<?php echo makeAlbumUrl(); ?>"><?php echo _("return to gallery"); ?></a>]</div>
-
 <?php
 	echo makeFormIntro("stats.php", array("name" => "stats_form", 
 						"method" => "POST", 
@@ -127,12 +143,16 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	echo "\n". '<input type="submit" name="submitbutton" value="'. _("Show statistics") . '">';
 	echo "\n</form>";
 
+	echo "\n". '<div align="left">';
 	echo _("Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
 	echo "\n<br>". '<form name="url_form" action="#">';
 	echo "\n". '<input type=text" name="stats_url" size="150" value="" readonly';
+	echo "\"</div>";
 	echo "\n</form>";
 
-
+?>
+</div>
+<?php
 includeHtmlWrap("stats.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

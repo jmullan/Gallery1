@@ -29,6 +29,7 @@ img {
 
 td,p { 
 }
+^
 
 a {
     text-decoration: none;
@@ -109,11 +110,11 @@ form {
         margin-top:10px;
         width:80%;
 	}
-.commentIndication 
-	{
-	   color: red;
-	   font-size: 12px;
-	}
+.commentIndication {
+    color: red;
+    font-size: 12px;
+}
+
 .error                          /* all error text */
 { 
       color: red; 
@@ -174,6 +175,31 @@ a.error:hover {
 	  border:1px solid #000000;
 	  border-top-width:0px;
 	}
+.nav_micro_first_img {
+	border: 1px solid black;
+/*
+	border-left: 2px solid blue;
+	border-top: 2px solid blue;
+	border-bottom: 2px solid blue;
+*/
+}
+.nav_micro_last_img {
+	border: 1px solid black;
+/*
+	border-right: 2px solid blue;
+	border-top: 2px solid blue;
+	border-bottom: 2px solid blue;
+*/
+}
+
+.nav_micro_current_img {
+	border: 2px solid red;
+}
+
+.nav_micro_img {
+	border: 1px solid black;
+}
+
 .bordertop
 	{
 	  border:1px solid #000000;
@@ -181,6 +207,7 @@ a.error:hover {
 	  border-bottom-width:0px;
 	  border-left-width:0px;
 	}
+
 .borderright
 	{
 	  border:1px solid #000000;
@@ -188,6 +215,7 @@ a.error:hover {
 	  border-bottom-width:0px;
 	  border-left-width:0px;
 	}
+
 .borderleft
 	{
 	  border:1px solid #000000;
@@ -252,34 +280,33 @@ a.error:hover {
 
 
 .popupbody  /* controls the background of popup. */ 
-	 {
-	   color: #000;
-	 }
+{
+}
 	
 .popuphead  /* controls the title and background */ 
-	 {
-	   text-align:center;
-	   font-size: 14px;
-	   font-weight: bold;
-	   line-height: 150%;
- 	}
+{
+    text-align:center;
+    font-size: 14px; font-weight: bold;
+    line-height: 150%;
+}
 
 .popup /* controls the main text and message body */
-	 {
-	   text-align:center;
-	   font-size: 12px;
-	   font-weight: normal;
-	   padding: 5px;
-	   margin-bottom: 10px;  
-	 }
+{
+    text-align:center;
+    font-size: 12px; font-weight: normal;
+    padding: 5px;
+    margin-bottom: 10px;
+}
 
 .popupform /* controls form textarea */
-	 {
-	   font-size: 12px;
-	   font-weight: normal;
-	   line-height: 120%;
-	   padding: 2px;
-	 }
+{
+    font-size: 12px; font-weight: normal;
+    line-height: 120%;
+    padding: 2px;
+}
+
+.popup td, th {
+}
 
 /* CSS ID for the add photos popup */
 
@@ -425,4 +452,15 @@ td.tabspacer {
     border-bottom-width: 1px;
     border-bottom-style:solid;
     border-color: black;
+}
+
+.MLForm {
+    margin: 0px; 
+    padding: 0px;
+}
+
+.languageSelector {
+    text-align:right; 
+    vertical-align:top;
+    padding:0px; margin: 0px;
 }

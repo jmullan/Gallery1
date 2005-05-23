@@ -231,7 +231,7 @@ echo "\n<br>";
 
 slideshow_image();
 
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 includeHtmlWrap("slideshow.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

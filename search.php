@@ -306,7 +306,7 @@ $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
 includeLayout('breadcrumb.inc');
 
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 includeHtmlWrap("search.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) {

@@ -330,7 +330,7 @@ if ($page != 1) {
 <br>
 
 <?php
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 
 $validation_file = 'captionator.php';
 includeHtmlWrap('general.footer');

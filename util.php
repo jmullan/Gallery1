@@ -26,6 +26,7 @@ require_once(dirname(__FILE__) . '/nls.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
 require_once(dirname(__FILE__) . '/classes/Mail/htmlMimeMail.php');
+require_once(dirname(__FILE__) . '/classes/HTML/table.php');
 require_once(dirname(__FILE__) . '/lib/valchecks.php');
 
 function getRequestVar($str) {
@@ -1146,21 +1147,22 @@ function getImagePath($name, $skinname='') {
 }
 
 function includeLayout($name, $skinname='') {
+    global $gallery;
 
-	global $gallery;
+    if (!$skinname) {
+        $skinname = $gallery->app->skinname;
+    }
 
-	if (!$skinname) {
-                $skinname = $gallery->app->skinname;
-        }
+    $defaultname = dirname(__FILE__) . "/layout/$name";
+    $fullname = dirname(__FILE__) . "/skins/$skinname/layout/$name";
 
-	$defaultname = dirname(__FILE__) . "/layout/$name";
-	$fullname = dirname(__FILE__) . "/skins/$skinname/layout/$name";
-
-	if (fs_file_exists($fullname) && !broken_link($fullname)) {
-		include ($fullname);
-	} else {
-		include ($defaultname);
-	}
+    if (fs_file_exists($fullname) && !broken_link($fullname)) {
+	include ($fullname);
+    } elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+	include ($defaultname);
+    } else {
+	echo gallery_error(sprintf(_("Problem including file %s"), $name));
+    }
 }
 
 function includeHtmlWrap($name, $skinname='', $adds='') {
@@ -1984,6 +1986,45 @@ function printChildren($albumName,$depth=0) {
 			}
 		}
 	}
+}
+
+function printMicroChildren($albumName,$depth=0) {
+        global $gallery;
+        $printedHeader = 0;
+        $myAlbum = new Album();
+        $myAlbum->load($albumName);
+        $numPhotos = $myAlbum->numPhotos(1);
+
+        if ($depth >= $gallery->app->albumTreeDepth) {
+                return;
+        }
+        for ($i=1; $i <= $numPhotos; $i++) {
+                //set_time_limit($gallery->app->timeLimit);
+                if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
+                        $myName = $myAlbum->getAlbumName($i, false);
+                        $nestedAlbum = new Album();
+                        $nestedAlbum->load($myName);
+                        if ($gallery->user->canReadAlbum($nestedAlbum)) {
+				if (strstr($nestedAlbum->gethighlightTag(), "img") === false) { continue; }
+                                $val2 = $nestedAlbum->fields['title'];
+                                if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
+                                        && !$gallery->session->offline) {
+				    $val3 = "(" . pluralize_n2(ngettext("1 hit", "%d hits", $nestedAlbum->getClicks()), $nestedAlbum->getClicks()) . ")";
+                                } else {
+                                    $val3 = "";
+                                }
+				if ($depth==0 && !$printedHeader++) {
+					echo "<br /><br /><strong>". _("Sub-albums") .":</strong><br />";
+				}
+                                echo "<a href=\"";
+                                echo makeAlbumUrl($myName);
+                                echo "\">" . $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
+				  "class=\"nav_micro_img\"","$val2 $val3") . "</a>&nbsp";
+                                printMicroChildren($myName, $depth+1);
+                        }
+                }
+        }
+
 }
 
 /* this function left in place to support patches that use it, but please use

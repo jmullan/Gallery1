@@ -670,7 +670,7 @@ includeLayout('navtablemiddle.inc');
 echo "<!-- Begin top nav -->";
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 echo "<!-- End top nav -->";
 
 if ( $useCache ) {
@@ -804,7 +804,7 @@ includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
 
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 includeHtmlWrap("stats.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

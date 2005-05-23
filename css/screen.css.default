@@ -50,6 +50,10 @@ a:hover {
     color: yellow;
 }
 
+.popup a:hover {
+    color: #4E2192;
+}
+
 textarea:focus, input:focus {
     background-color: #FFFFDA;
 }
@@ -165,34 +169,45 @@ textarea:focus, input:focus {
 	}
 .navtableborderbegin
 	{
-	  border:1px solid #000000;
+	  border:1px solid #FFFFFF;
 	}
 .navtableborderend
 	{
-	  border:1px solid #000000;
+	  border:1px solid #FFFFFF;
 	  border-top-width:0px;
 	}
 .bordertop
 	{
-	  border:1px solid #000000;
+	  border:1px solid #FFFFFF;
 	  border-right-width:0px;
 	  border-bottom-width:0px;
 	  border-left-width:0px;
 	}
 .borderright
 	{
-	  border:1px solid #000000;
+	  border:1px solid #FFFFFF;
 	  border-top-width:0px;
 	  border-bottom-width:0px;
 	  border-left-width:0px;
 	}
+
 .borderleft
 	{
-	  border:1px solid #000000;
+	  border:1px solid #FFFFFF;
 	  border-top-width:0px;
 	  border-bottom-width:0px;
 	  border-right-width:0px;
 	}
+
+
+.borderleft-popup {
+    border:1px solid #000000;
+    border-top-width:0px;
+    border-bottom-width:0px;
+    border-right-width:0px;
+    padding-left: 5px;
+}
+
 .fineprint                      /* used for fine print */
 	{
 	  font-size: 10px;
@@ -208,8 +223,9 @@ textarea:focus, input:focus {
 	  font-size: 10px;
 	}
 .modnavbox  /* main navigation bar next and previous */
-	{
-	}
+{
+}
+
 .admin                          /* used in admin bars */
 	{ 
 	  font-size: 10px; 
@@ -250,23 +266,20 @@ textarea:focus, input:focus {
 
 
 .popupbody  /* controls the background of popup. */ 
-	 {
-	   color: #000;
-	 }
+{
+    color: #000;
+}
 	
 .popuphead, .separator  /* controls the title and background */ 
-	 {
-	   text-align:center;
-	   font-size: 14px;
-	   font-weight: bold;
-	   line-height: 150%;
-	   color: #FFF;
-	   padding-left: 5px;
-	   border-top: 1px solid #FFF;
-	   border-left: 1px solid #FFF;
-	   border-right: 1px solid #FFF;
-	   background-color: #6274CB;
- 	}
+{
+    text-align:center;
+    font-size: 14px; font-weight: bold;
+    line-height: 150%;
+    color: #FFFFFF;
+    background-color: #6274CB;
+    padding-left: 5px;
+    border-top: 1px solid #FFF; border-left: 1px solid #FFF; border-right: 1px solid #FFF;
+}
 
 .popup /* controls the main text and message body */
 	 {
@@ -290,6 +303,10 @@ textarea:focus, input:focus {
 	   border: 1px solid #FFF;
 	   background-color: #C0C0C0;
 	 }
+
+.popup td,th {
+    color: #000000;
+}
 
 .columnheader {
     font-size: 12px;
@@ -350,6 +367,16 @@ textarea:focus, input:focus {
     color: #444;
 }
 
+/* Following two classes are used in stats-wizard */
+.blockcell {
+}
+
+caption {
+    color: #6274CB;
+}
+
+
+/* Adminbar */
 
 #adminbox {
     background-color: #6274CB; 
@@ -398,4 +425,3 @@ textarea:focus, input:focus {
    border-left: 1px solid #224;
    padding: 1px;
 */
-}

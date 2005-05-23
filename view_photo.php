@@ -560,7 +560,17 @@ includeLayout('navtablemiddle.inc');
 $breadcrumb["bordercolor"] = $bordercolor;
 includeLayout('breadcrumb.inc');
 includeLayout('navtablemiddle.inc');
-includeLayout('navphoto.inc');
+
+if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
+	includeLayout('navphoto.inc');
+}
+
+if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"top") || 
+     !strcmp($gallery->album->fields["nav_thumbs_location"],"both")) && 
+     (!strcmp($gallery->album->fields["nav_thumbs"],"yes") || 
+     !strcmp($gallery->album->fields["nav_thumbs"],"both") ) ) {
+	includeLayout('navmicro.inc');
+}
 includeLayout('navtableend.inc');
 
 #-- if borders are off, just make them the bgcolor ----
@@ -714,12 +724,20 @@ includeHtmlWrap("inline_photo.footer");
 }
 echo "</div>";
 includeLayout('navtablebegin.inc');
-includeLayout('navphoto.inc');
+if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"bottom") || 
+     !strcmp($gallery->album->fields["nav_thumbs_location"],"both")) && 
+     (!strcmp($gallery->album->fields["nav_thumbs"],"yes") || 
+     !strcmp($gallery->album->fields["nav_thumbs"],"both") ) ) {
+	includeLayout('navmicro.inc');
+}
+if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
+	includeLayout('navphoto.inc');
+}
 $breadcrumb["top"] = false;
 includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 if ($fitToWindow) {
 ?>
 <script type="text/javascript">

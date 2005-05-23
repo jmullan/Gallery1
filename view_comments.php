@@ -187,7 +187,7 @@ includeLayout('navtablebegin.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
 includeHtmlWrap("general.footer");

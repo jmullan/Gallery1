@@ -118,6 +118,15 @@ class Album {
 	    $this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
 	    $this->fields["last_quality"] = $gallery->app->jpegImageQuality;
 
+	    // MICRO-THUMB NAV Variables
+	    $this->fields["nav_thumbs"] = $gallery->app->default["nav_thumbs"];
+	    $this->fields["nav_thumbs_style"] = $gallery->app->default["nav_thumbs_style"];
+	    $this->fields["nav_thumbs_first_last"] = $gallery->app->default["nav_thumbs_first_last"];
+	    $this->fields["nav_thumbs_prev_shown"] = $gallery->app->default["nav_thumbs_prev_shown"];
+	    $this->fields["nav_thumbs_next_shown"] = $gallery->app->default["nav_thumbs_next_shown"];
+	    $this->fields["nav_thumbs_location"] = $gallery->app->default["nav_thumbs_location"];
+	    $this->fields["nav_thumbs_size"] = $gallery->app->default["nav_thumbs_size"];
+	    $this->fields["nav_thumbs_current_bonus"] = $gallery->app->default["nav_thumbs_current_bonus"];
 
             /* VOTING Variables */
             $this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
@@ -138,7 +147,8 @@ class Album {
 	       		// number of lines of graph to show on the album page
 	    $this->fields["voter_class"]=$gallery->app->default["voter_class"];
                         // Nobody, Everybody, Logged in
-	       // end of VOTING variable
+	       // end of VOTING variables
+
 	    $this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
 	    $this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
 	    $this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
@@ -332,6 +342,14 @@ class Album {
 				"image_frame",
 				"showDimensions",
 				"background",
+				"nav_thumbs",
+				"nav_thumbs_style",
+				"nav_thumbs_first_last",
+				"nav_thumbs_prev_shown",
+				"nav_thumbs_next_shown",
+				"nav_thumbs_location",
+				"nav_thumbs_size",
+				"nav_thumbs_current_bonus"
 				);
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field]) && isset($gallery->app->default[$field])) {
@@ -1954,6 +1972,14 @@ class Album {
 				$nestedAlbum->fields['album_frame']    = $this->fields['album_frame'];
 				$nestedAlbum->fields['thumb_frame']    = $this->fields['thumb_frame'];
 				$nestedAlbum->fields['image_frame']    = $this->fields['image_frame'];
+				$nestedAlbum->fields["nav_thumbs"] = $this->fields["nav_thumbs"];
+				$nestedAlbum->fields["nav_thumbs_style"] = $this->fields["nav_thumbs_style"];
+				$nestedAlbum->fields["nav_thumbs_first_last"] = $this->fields["nav_thumbs_first_last"];
+				$nestedAlbum->fields["nav_thumbs_prev_shown"] = $this->fields["nav_thumbs_prev_shown"];
+				$nestedAlbum->fields["nav_thumbs_next_shown"] = $this->fields["nav_thumbs_next_shown"];
+				$nestedAlbum->fields["nav_thumbs_location"] = $this->fields["nav_thumbs_location"];
+				$nestedAlbum->fields["nav_thumbs_size"] = $this->fields["nav_thumbs_size"];
+				$nestedAlbum->fields["nav_thumbs_current_bonus"] = $this->fields["nav_thumbs_current_bonus"];
 				$nestedAlbum->fields["use_exif"] = $this->fields["use_exif"];
 				$nestedAlbum->fields["display_clicks"] = $this->fields["display_clicks"];
 				$nestedAlbum->fields["item_owner_display"] = $this->fields["item_owner_display"];

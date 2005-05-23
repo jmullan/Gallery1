@@ -241,16 +241,18 @@ function makeMultipleChoiceContent($array) {
 
 /* in progress */
 function form_table_values($key, $arr) {
-	if (empty($arr['elements'])) {
-	   return _("No content");
-	}
+    if (empty($arr['elements'])) {
+	return _("No content");
+    }
 
-	$jTable = new galleryTable(sizeof($arr['columns']));
+    $jTable = new galleryTable();
 
-	$jTable->headers = $arr['columns'];
-	$jTable->addElement($arr['elements']);
+    $jTable->headers = $arr['columns'];
+    foreach($arr['elements'] as $element) {
+	$jTable->addElement(array('content' => $element));
+    }
 
-	return $jTable->render();
+    return $jTable->render();
 }
 
 

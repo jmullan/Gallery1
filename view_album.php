@@ -397,7 +397,7 @@ if (!empty($adminOptionHTML)) {
 	  . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
 	  . "\tswitch (adminOptions[key].action) {\n"
 	  . "\tcase 'popup':\n"
-	  . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
+	  . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=700,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
 	  . "\t\tnw.opener=self;\n"
 	  . "\t\tbreak;\n"
 	  . "\tcase 'url':\n"
@@ -1114,7 +1114,7 @@ if (!empty($breadcrumb["text"])) {
 	includeLayout('breadcrumb.inc');
 }
 includeLayout('navtableend.inc');
-includeLayout('ml_pulldown.inc');
+echo languageSelector();
 includeHtmlWrap("album.footer");
 ?>
 

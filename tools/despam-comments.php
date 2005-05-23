@@ -50,22 +50,23 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
 }
-        includeHtmlWrap("gallery.header");
+    includeHtmlWrap("gallery.header");
+    $adminbox['text'] ='<span class="head">'. _("Find and remove comment spam") .'</span>';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
+    $adminbox["commands"] = $adminCommands;
+    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+    $breadcrumb['text'][] = languageSelector();
+
+    includeLayout('navtablebegin.inc');
+    includeLayout('adminbox.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
 ?>
-<p align="center" class="popuphead"><?php echo _("Find and remove comment spam") ?></p>
-<?php
-
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
-
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-includeLayout('adminbox.inc');
-includeLayout('ml_pulldown.inc');
-
-?>
-<table width="100%" class="albumdesc">
+<div class="popup">
+<table width="100%">
 <tr>
 <?php
 echo '<td style="vertical-align:top; white-space:nowrap; width:280px;">';
@@ -74,7 +75,7 @@ echo "</td>";
 
 $g1_mode=getRequestVar('g1_mode');
 
-echo "<td>";
+echo '<td class="borderleft-popup">';
 switch($g1_mode) {
 	case 'deleteComments':
 		deleteComments();
@@ -103,17 +104,17 @@ switch($g1_mode) {
 	default:
 	break;
 }
-echo "</td>";
-echo '<div style="clear:left">';
+echo "</td></tr>";
 ?>
 </table>
-<br>
-<hr>
-<?php includeHtmlWrap("gallery.footer"); ?>
-</div> 
+</div>
+<?php
+  includeHtmlWrap("gallery.footer");
+if (!$GALLERY_EMBEDDED_INSIDE) {
+?>
 </body>
 </html>
-<?php
+<?php }
 
 /* Everything below is a utility function */
 function deleteComments() {
@@ -380,14 +381,13 @@ function offerOptions() {
                 "addBlacklistEntries" => _("Add blacklist entries")
 	);
 
-	printf("\n<div style=\"padding-right:5px; border-right: 1px solid #000000;\">%s", _("Options"));
-	print "\n<ol>";
+	echo _("Options");
+	echo "\n<ol>";
 	foreach ($options as $key => $text) {
 		printf("\n\t<li><a href=\"%s\">%s</a></li>",
 			makeGalleryUrl('tools/despam-comments.php', array('g1_mode' => $key)),
 			$text);
 	}
-	print "\n</ol>";
-	print "\n</div>";
+	echo "\n</ol>";
 }
 ?>

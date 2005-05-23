@@ -205,18 +205,20 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php 
 } 
-        includeHtmlWrap("gallery.header");
-?>
-<div class="popuphead"><?php echo _("Find Orphans") ?></div>
-<?php
+    includeHtmlWrap("gallery.header");
+    $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    $adminbox["commands"] = $adminCommands;
+    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+    $breadcrumb['text'][] = languageSelector();
 
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-includeLayout('adminbox.inc');
-includeLayout('ml_pulldown.inc');
+    includeLayout('navtablebegin.inc');
+    includeLayout('adminbox.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
 
 echo '<div class="popup">';
 if (empty($action)) { 
@@ -293,7 +295,7 @@ if (empty($action)) {
 	} else {
 		// No Orphans
 		echo "\n<p align=\"center\" class=\"warning\">" .  _("No Orphans Found") . "</p>";
-		echo "\n<p align=\"center\">". _("There are no orphaned elements in this Gallery.") . "</p>";
+		echo "\n<p align=\"center\">". _("There are no orphaned elements in this Gallery.") . "</p>\n";
 	}
 } // !isset(update) 
 else { 
@@ -315,11 +317,12 @@ else {
 		}
 	}
 }
-
-	includeHtmlWrap("gallery.footer"); 
-if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </div>
+<?php
+    includeHtmlWrap("gallery.footer"); 
+    if (!$GALLERY_EMBEDDED_INSIDE) {
+?>
 </body>
 </html>
 <?php } ?>

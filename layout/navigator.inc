@@ -76,7 +76,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$ndrUrl=getImagePath('nav_dot_right.gif');
 		$ndUrl=getImagePath('nav_dot.gif');
 	
-		$mpContent = "\n\t\t<table border=0 cellpadding=0 cellspacing=0><tr>";
+		$mpContent = "\n\t\t". '<table border="0" cellpadding="0" cellspacing="0"><tr>';
 		for ($i = $begin; $i <= $end; $i++) {
 			if ($i == $current) {
 				$number = '<span class="nav"><b>'. $i .'</b></span>';

@@ -482,6 +482,12 @@ $constants =  array_merge(
 				1000 => _("Complete Tree")),
 		'value' => 1000,
 	),
+	'microTree' => array(
+		'prompt' => _("Replace album tree with micro thumbs"),
+		'desc' => _("If you have set album tree to anything but off, this will display micro thumbs of the sub albums instead of the album tree."),
+		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'value' => "no"
+	),
 	'highlight_size' => array(
 		'prompt' => _("Highlight size"),
 		'desc' => _("The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."),
@@ -1648,6 +1654,76 @@ $defaults = array(
 		'attrs' => array('size' => 5)
 	),
 	'group8_end' => array (
+		'type' => 'group_end',
+	),
+	'group_MicroNav_Start' => array (
+		'type' => 'group_start',
+		'name' => 'group_photoMicroNav',
+		'default' => 'none',
+		'title' => _("Micro Thumb Photo Navigation"),
+		'desc' => _("These settings apply to the micro-thumb photo navigation system.  The micro thumbs are only visible when viewing individual images.")
+	),
+	'nav_thumbs' => array(
+		'prompt' => _("Micro Thumb Photo Navigation"),
+		'desc' => _("Uses micro-thumbnails for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the micro thumb navigation system AND the old style navigation system."),
+		'value' => "no",
+		'choices' => array('yes' => _("yes"), 'no' => _("no"), 'both' => _("both"))
+	),
+	'nav_thumbs_style' => array(
+		'prompt' => _("Micro Thumb Photo Navigation"),
+                        'desc' => "<dl>"
+                                . "<dt>" . _("Fixed") ."</dt>"
+                                . "<dd>" . _("Displays prev+next groups of thumbs, changing only to display next group of thumbs.") . "</dd>"
+                                . "<dt>" . _("Dynamic") . "</dt>"
+                                . "<dd>" . _("Displays previos & next images, with current image between.") . "</dd>"
+                                . "</dl>",
+		'value' => "fixed",
+		'choices' => array('fixed' => _("Fixed"), 'dynamic' => _("Dynamic"))
+	),
+	'nav_thumbs_first_last' => array(
+		'prompt' => _("Show Micro Thumb for First/Last"),
+		'desc' => _("This allows you to turn on and off the display of the first and last micro-thumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."),
+		'value' => "no",
+		'choices' => array('yes' => _("yes"), 'no' => _("no"))
+	),
+	'nav_thumbs_prev_shown' => array(
+		'prompt' => _("Number of Previous Micro Thumbs"),
+		'desc' => _("This is the number of previous micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."),
+		'value' => "no",
+		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4,
+				5 => 5, 6 => 6, 6 => 6, 7 => 7,
+				8 => 8, 9 => 9, 10 => 10)
+	),
+	'nav_thumbs_next_shown' => array(
+		'prompt' => _("Number of Next Micro Thumbs"),
+		'desc' => _("This is the number of next micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."),
+		'value' => "no",
+		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4,
+				5 => 5, 6 => 6, 6 => 6, 7 => 7,
+				8 => 8, 9 => 9, 10 => 10)
+	),
+	'nav_thumbs_location' => array(
+		'prompt' => _("Location of Micro Thumb Navigation"),
+		'desc' => _("Displays the micro-thumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the micro thumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."),
+		'value' => "top",
+		'choices' => array(
+			'top' => _("Top"), 
+			'both' => _("Both"), 
+			'bottom' => _("Bottom"))
+	),
+	'nav_thumbs_size' => array(
+		'prompt' => _("Height of Micro Thumbs"),
+		'desc' => _("The size of micro thumbnails will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."),
+		'value' => '45',
+		'type' => 'text'
+	),
+	'nav_thumbs_current_bonus' => array(
+		'prompt' => _("Bonus to Current Micro Thumb's Size"),
+		'desc' => _("This is the bonus in pixels to the size of the current micro-thumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other micro thumbs and a negative value will result in a smaller micro thumb."),
+		'value' => '15',
+		'type' => 'text'
+	),
+	'group_MicroNav_End' => array (
 		'type' => 'group_end',
 	),
 	'group_frames' => array (

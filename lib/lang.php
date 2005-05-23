@@ -676,4 +676,102 @@ function translateableFields() {
 	);
 }
 
+/* This "block" returns either a combobox with available languages or show flags for them.
+** Both are only displayed if at least 2 languages are available.
+*/
+
+function languageSelector() {
+    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+    $html = '';
+
+    if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
+        if($gallery->app->show_flags !='yes') { 
+	   $html .= '<script language="JavaScript" type="text/javascript">';
+   	   $html .= "\n". 'function ML_reload() {';
+	   $html .= "\n". 'var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;';
+	   $html .= "\n". 'window.location.href=newlang;';
+	   $html .= "\n". '}';
+	   $html .= "\n" . '</script>';
+	}
+
+        $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
+        $LangSelectTable = new galleryTable(array('columns' => 1, 'attrs' => array('class' => 'languageSelector', 'align' => 'right')));
+
+        $nls = getNLS();
+
+        $count = 0;
+        $half = sizeof($gallery->app->available_lang)/2;
+        foreach ($gallery->app->available_lang as $value) {
+	    /* 
+      	    ** We only allow show languages which are available in gallery.
+     	    ** These could differ to the languages defined in config.php.
+    	    */
+	    if (! isset($nls['language'][$value])) continue;
+	
+	    $count++;
+	    $args = isset($_GET) ? $_GET : array();
+	    if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
+	    	if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
+	            /* postnuke */
+	            if (! isset($nls['postnuke'][$value])) continue;
+		    $new_lang = $nls['postnuke'][$value];
+	        }
+	        else {
+	    	    /* phpNuke, nsnNuke or cpgNuke */ 
+		    if (! isset($nls['phpnuke'][$value])) continue;
+		    $new_lang = $nls['phpnuke'][$value];
+	    	} 
+	    } else {
+	    	$new_lang = $value;
+	    }
+
+	    /* now we build the URL according to the new language */
+	    $request_url = $_SERVER['REQUEST_URI'];
+	    $pos = strpos($request_url, "newlang");
+	    if ($pos >0) {
+	        $request_url = substr($request_url,0,$pos-1);
+	    }
+	
+	    $url = htmlspecialchars(addUrlArg($request_url, "newlang=$new_lang"));
+	
+	    /* Show pulldown or flags */
+	    if($gallery->app->show_flags !='yes') {
+	    	$options[$url] = $nls['language'][$value];
+	    } 
+	    else {
+	    	$flagname = $value;
+	    	$flagImage = "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
+
+	    	if ($gallery->language != $value) {
+		    $LangSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
+	        }
+	    	else {
+		    $LangSelectTable->addElement(array('content' => $flagImage, 'cellArgs' => array('style' => 'margin:7px')));
+	    	}
+	    	/*
+		if ($count > $half && $half >10) {
+		    echo "<br>";
+		    $count=0;
+		}
+	    	*/
+	    }
+    	}
+
+    	if($gallery->app->show_flags !='yes') {
+	    $content = drawSelect('newlang', 
+				$options, 
+				$nls['language'][$gallery->language], 
+				1, 
+				array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
+				true);
+		$LangSelectTable->addElement(array('content' => $content));
+    	}
+
+    	$html .= $LangSelectTable->render();
+    	$html .= "</form>";
+   
+   	return $html;
+    }
+}
 ?>

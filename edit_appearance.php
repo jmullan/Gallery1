@@ -79,6 +79,15 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["showDimensions"] = $showDimensions;
 	$gallery->album->fields["ecards"] = $ecards;
 
+	$gallery->album->fields["nav_thumbs"] = $nav_thumbs;
+	$gallery->album->fields["nav_thumbs_style"] = $nav_thumbs_style;
+	$gallery->album->fields["nav_thumbs_first_last"] = $nav_thumbs_first_last;
+	$gallery->album->fields["nav_thumbs_prev_shown"] = $nav_thumbs_prev_shown;
+	$gallery->album->fields["nav_thumbs_next_shown"] = $nav_thumbs_next_shown;
+	$gallery->album->fields["nav_thumbs_location"] = $nav_thumbs_location;
+	$gallery->album->fields["nav_thumbs_size"] = $nav_thumbs_size;
+	$gallery->album->fields["nav_thumbs_current_bonus"] = $nav_thumbs_current_bonus;
+	
 	/* Poll properties */
 	for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
                 //convert values to numbers
@@ -600,10 +609,68 @@ $properties = array_merge($properties, $customFields);
 $properties = array_merge($properties, array(
     'group_CustomFields_end' => array (
         'type' => "group_end"
-    )
+    ),
+    'group_MicroThumbs_start' => array (
+        'type' => "group_start",
+        'name' => "group_MicroThumbs",
+        'default' => "none",
+        'title' => _("Microthumbs")
+    ),
+    'nav_thumbs' => array(
+                'prompt' => _("Use micro thumb photo navigation"),
+                'desc' => '',
+                'choices' => array("yes" => _("yes"), "no" => _("no"), "both" => _("both")),
+                'value' => $gallery->album->fields["nav_thumbs"]
+    ),
+    'nav_thumbs_style' => array(
+                'prompt' => _("Micro thumb style"),
+                'desc' => '',
+                'choices' => array("fixed" => _("Fixed"), "dynamic" => _("Dynamic")),
+                'value' => $gallery->album->fields["nav_thumbs_style"]
+    ),
+    'nav_thumbs_first_last' => array(
+                'prompt' => _("Show first & last micro thumb"),
+                'desc' => '',
+                'choices' => array("yes" => _("yes"), "no" => _("no")),
+                'value' => $gallery->album->fields["nav_thumbs_first_last"]
+    ),
+    'nav_thumbs_prev_shown' => array(
+                'prompt' => _("Number of previous thumbs"),
+                'desc' => '',
+                'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+                'value' => $gallery->album->fields["nav_thumbs_prev_shown"]
+    ),
+    'nav_thumbs_next_shown' => array(
+                'prompt' => _("Number of next thumbs"),
+                'desc' => '',
+                'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+                'value' => $gallery->album->fields["nav_thumbs_next_shown"]
+    ),
+    'nav_thumbs_location' => array(
+                'prompt' => _("Position of micro-thumb navigation bar"),
+                'desc' => '',
+                'choices' => array("top" => _("Top"), "both" => _("Both"), "bottom" => _("Bottom")),
+                'value' => $gallery->album->fields["nav_thumbs_location"]
+    ),
+    'nav_thumbs_size' => array(
+                'prompt' => _("Height of micro-thumbs in navigation bar"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $gallery->album->fields["nav_thumbs_size"],
+                'attrs' => array('size' => 3)
+    ),
+    'nav_thumbs_current_bonus' => array(
+                'prompt' => _("Bonus to height of current micro-thumb (pixels)"),
+                'desc' => '',
+                'type' => 'text',
+                'value' => $gallery->album->fields["nav_thumbs_current_bonus"],
+                'attrs' => array('size' => 3)
+        ),
+    'group_MicroThumbs_end' => array (
+        'type' => "group_end"
+    ),
   )
 );
-
 
 $initialtab = getRequestVar('initialtab');
 
@@ -627,7 +694,7 @@ echo makeFormIntro("edit_appearance.php",
 
 $i = 0;
 
-makeSectionTabs($properties,4, $initialtab);
+makeSectionTabs($properties,5, $initialtab);
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
 		continue;

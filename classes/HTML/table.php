@@ -23,24 +23,20 @@
 <?php
 class galleryTable {
 
-    var $class;
-    var $columns;
     var $headers;
+    var $columns;
+    var $attrs;	
     var $elements;
 
-    function galleryTable($columns = 3) {
-	$this->columns = $columns;
+    function galleryTable($tableArgs = array('columns' => 3, 'attrs' => array())) {
+	$this->columns = $tableArgs['columns'];
+	$this->attrs = $tableArgs['attrs'];
 	$this->elements = array();
     }
 
-    function addElement($element = null) {
-
+    function addElement($element = array('content' => null, 'cellArgs' => array())) {
 	if (!empty($element)) {
-	    if (!is_array($element)) {
-		$this->elements[] = $element;
-	    } else {
-		$this->elements = array_merge($this->elements,$element);
-	    }
+	    $this->elements[] = $element;
 	    return true;
 	} else {
 	    return false;
@@ -48,8 +44,12 @@ class galleryTable {
     }
 
     function render() {
+	$buf = "\n<table";
+	foreach ($this->attrs as $attr => $value) {
+	    $buf .= " $attr=\"$value\"";
+        }
+	$buf .= '>'; 
 
-	$buf = "\n<table>";
 	if (!empty($this->headers)) {
 	    $buf .= "\n<tr>";
 	    $i = 0;
@@ -62,16 +62,19 @@ class galleryTable {
 		$buf .="\n<th>&nbsp;</th>";
 	    }
 
+	    /* Override count of columns */
+	    $this->columns = $i;
+
 	}
 	if (!empty($this->elements)) {
 	    $i = 0;
 	    $buf .= "\n<tr>";
-	    foreach ($this->elements as $element) {
+	    foreach ($this->elements as $nr => $element) {
 		$i++;
 		if ($i % $this->columns) {
 		    $buf .= "\n</tr>\n<tr>";
 		}
-		$buf .= "\n    <td>$element</td>";
+		$buf .= "\n    <td>". $element['content'] ."</td>";
 	    }
 	    $buf .= "\n</tr>";
 	}

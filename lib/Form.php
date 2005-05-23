@@ -104,7 +104,7 @@ function drawSelect($name, $options, $selected, $size, $attrList=array(), $prett
 				$sel = " selected";
 			}
 		}
-		else if (!strcmp($value, $selected)) {
+		else if (!strcmp($value, $selected) || !strcmp($text, $selected)) {
 			$sel = " selected";
                 }
 		$buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;

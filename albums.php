@@ -242,8 +242,8 @@ echo "<!-- Begin top nav -->";
 
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
-includeLayout('ml_pulldown.inc');
 
+echo languageSelector();
 echo "<!-- End top nav -->";
 
 /* Display warnings about broken albums */
@@ -435,8 +435,14 @@ if($gallery->app->comments_enabled == 'yes') {
 ?>
 
   </span>
-  </td>
-<?php  if (isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth >0) { ?>
+<?php 
+
+    if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0)
+	if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') { ?>
+  <div style="width: 100%;">
+    <?php echo printMicroChildren($albumName); ?>
+  </div>
+<?php } else { ?>
   <td align="left" valign="top" class="albumdesc">
    <?php echo printChildren($albumName); ?>
   </td>

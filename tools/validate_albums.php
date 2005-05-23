@@ -128,11 +128,26 @@ if (empty($action)) {
   <title><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<body dir="<?php echo $gallery->direction ?>">
 <?php
     }
+
+    includeHtmlWrap("gallery.header");
+    $adminbox['text'] ='<span class="head">'. ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") .'</span>';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+
+    $adminbox["commands"] = $adminCommands;
+    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+    $breadcrumb['text'][] = languageSelector();
+
+    includeLayout('navtablebegin.inc');
+    includeLayout('adminbox.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
+
 ?>
-<div class="popuphead"><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></div>
 <div class="popup" align="center">
 <?php
     switch ($action) {
@@ -142,8 +157,7 @@ if (empty($action)) {
 		removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 		dismiss();
 	    } else {
-		echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'invalidAlbum' =>
-$invalidAlbum));
+		echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'invalidAlbum' => $invalidAlbum));
 		echo "<p><input type='submit' name='verified' value='Delete $invalidAlbum'></p>";
 		echo "</form>";
 	    }
@@ -159,8 +173,7 @@ $invalidAlbum));
 		$targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
 		dismiss();
 	    } else {
-		echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'album' => $album,
-'id' => $id));
+		echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'album' => $album, 'id' => $id));
 		$targetAlbum = new Album();
 		$targetAlbum->load($album);
 		echo $targetAlbum->getThumbnailTagById($id);
@@ -192,21 +205,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header();
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<body dir="<?php echo $gallery->direction ?>">
 <?php 
 } 
-        includeHtmlWrap("gallery.header");
-?>
-<div class="popuphead"><?php echo _("Validate Albums") ?></div>
-<?php
+    includeHtmlWrap("gallery.header");
+    $adminbox['text'] ='<span class="head">'.  _("Validate Albums") .'</span>';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
 
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    $adminbox["commands"] = $adminCommands;
+    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+    $breadcrumb['text'][] = languageSelector();
 
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-includeLayout('adminbox.inc');
-includeLayout('ml_pulldown.inc');
+    includeLayout('navtablebegin.inc');
+    includeLayout('adminbox.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
+
 
 echo '<div class="popup">';
 if (empty($action)) {
@@ -290,11 +306,12 @@ if (empty($action)) {
 <?php
 	}
 }
-
+?>
+</div>
+<?php
 includeHtmlWrap("gallery.footer"); 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
-</div>
 </body>
 </html>
 <?php } ?>
