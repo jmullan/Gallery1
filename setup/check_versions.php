@@ -22,10 +22,12 @@
 ?>
 <?php 
 
-	require_once(dirname(__FILE__) . '/init.php');
-	require(dirname(__FILE__) . '/functions.inc');
-?>
-<?php echo doctype(); ?>
+    require_once(dirname(__FILE__) . '/init.php');
+    require(dirname(__FILE__) . '/functions.inc');
+
+    $show_details = getRequestVar('show_details');
+
+    echo doctype(); ?>
 <html>
 <head>
   <title> <?php echo _("Check Versions") ?> </title>
@@ -46,10 +48,7 @@
 <table class="inner" width="100%">
 <tr>
 	<td class="desc"><?php 
-if (empty($show_details)) {
-	$show_details=0;
-}
-if ($show_details) {
+if (!empty($show_details)) {
        	print sprintf(_("%sClick here%s to hide the details"),
 		       	'<a href="check_versions.php?show_details=0">','</a>');
 } else {
@@ -62,7 +61,7 @@ if ($show_details) {
 
 <?php
 
-list($oks, $errors, $warnings)=checkVersions(false);
+list($oks, $errors, $warnings) = checkVersions(false);
 
 if  ($errors) { ?>
 <table class="inner" width="100%">
