@@ -1612,7 +1612,7 @@ function makeSectionTabs($array, $break = 7, $initialtab = '') {
 			$class = 'class="tab"';
 		}
 		echo "\n\t<td $class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
-		echo '<span class="tab-text">'. $cell['title'] . '&nbsp;</span>';
+		echo $cell['title'];
 		if (!empty($cell['contains_required'])) {
 			echo '<span class="littlered">*</span>';
 		}

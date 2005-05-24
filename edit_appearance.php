@@ -177,7 +177,7 @@ $extra_fields = $gallery->album->getExtraFields();
 $checked_EF = array();
 
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
-    if ($automatic === "EXIF" && (($gallery->album->fields["use_exif"] !== "yes") || !$gallery->app->use_exif)) {
+    if ($automatic === "EXIF" && (($gallery->album->fields["use_exif"] != "yes") || !$gallery->app->use_exif)) {
 	continue;
     }
     $multiple_choices_EF[$automatic] = $printable_automatic;
@@ -454,7 +454,7 @@ $properties = array(
 		'desc' => '',
 		'choices' => array("yes" => _("yes"), "no" => _("no")),
 		'value' => $gallery->album->fields["use_exif"],
-		'skip' => ($gallery->app->use_exif == 'yes') ? false : true
+		'skip' => (empty($gallery->app->use_exif)) ? true : false
 	),
 	'group_data_end' => array (
 		'type' => "group_end"
@@ -687,14 +687,13 @@ doctype();
 <div class="popuphead"><?php echo _("Album Properties") ?></div>
 <div class="popup" align="center">
 <?php 
-
 echo makeFormIntro("edit_appearance.php", 
 		array("name" => "theform", "method" => "POST"),
 		array("type" => "popup"));
 
 $i = 0;
-
 makeSectionTabs($properties,5, $initialtab);
+
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
 		continue;
