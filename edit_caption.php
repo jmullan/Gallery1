@@ -69,7 +69,7 @@ if (isset($save)) {
 			return;
 		}
 	} else {
-		$err = _("Year must be between 1000 and 3000");
+		$err = _("Year must be between 1969 and 2070");
 	}
 }
 ?>
@@ -127,8 +127,8 @@ foreach ($gallery->album->getExtraFields() as $field)
 
 <?php
 // get the itemCaptureDate
-if (isset($error)) {
-	echo "\n<p>". gallery_error($error_text) . "</p>";
+if (!empty($err)) {
+	echo "\n<p>". gallery_error($err) . "</p>";
 }
 $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
 
