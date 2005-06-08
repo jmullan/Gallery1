@@ -82,7 +82,6 @@ $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
-
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
 
 /*
@@ -236,11 +235,11 @@ $adminbox["bordercolor"] = $borderColor;
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
-
-echo "<!-- Begin top nav -->";
-
-includeLayout('navigator.inc');
+if ($navigator["page"] < $navigator["maxPages"]) {
+    includeLayout('navtablemiddle.inc');
+    echo "<!-- Begin top nav -->";
+    includeLayout('navigator.inc');
+}
 includeLayout('navtableend.inc');
 
 echo languageSelector();
@@ -466,11 +465,16 @@ if ($displayCommentLegend) {
 ?>
 <!-- bottom nav -->
 <?php
-includeLayout('navtablebegin.inc');
-includeLayout('navigator.inc');
-includeLayout('navtableend.inc');
-?>
 
+if ($navigator["page"] < $navigator["maxPages"]) {
+    includeLayout('navtablebegin.inc');
+    includeLayout('navigator.inc');
+    includeLayout('navtableend.inc');
+} else {
+    echo '<hr width="100%">';
+}
+?>
+<p>
 <!-- gallery.footer begin -->
 <?php
 

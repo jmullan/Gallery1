@@ -100,9 +100,9 @@ if (isset($create))
 								       	ereg_replace("!!NEWPASSWORDLINK!!", 
 										$tmpUser->genRecoverPasswordHash(),
 									       	welcome_email()))));
-				       	$logmsg = sprintf(_("%s has registered by %s.  Email has been sent to %s."),
+				       	$logmsg = sprintf(_("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
 						       	$uname, $gallery->user->getUsername(), $email);
-				       	$logmsg2  = sprintf("%s has registered by %s.  Email has been sent to %s.",
+				       	$logmsg2  = sprintf("%New user '%s' has been registered by %s.  Gallery has sent a notification email to %s.",
 						       	$uname, $gallery->user->getUsername(), $email);
 				       	if ($logmsg != $logmsg2) {
 					       	$logmsg .= " <<<<>>>>> $logmsg2";

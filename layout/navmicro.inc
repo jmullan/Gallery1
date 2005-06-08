@@ -1,7 +1,7 @@
 <?php /* $Id$ */ ?>
 <?php
 global $navigator;
-if(!includeTemplate('navmico.tpl')) {
+if(!includeTemplate('navmicro.tpl')) {
 	// Calculate the beginning and ending of the navigator range
 	$begin = 0;
 	$navpage = sizeof($navigator["allIds"]) - 1;

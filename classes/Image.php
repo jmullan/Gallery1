@@ -175,17 +175,20 @@ class Image {
 			$size_val = "width=\"$this->width\" height=\"$this->height\"";
 		}
 
+		$fullImage = urlencode($this->name) .".$this->type";
+		$resizedImage = urlencode($this->resizedName) .".$this->type";
+
 		if ($this->resizedName && $size == 0) {
 			if ($full) {
-				return "<img src=\"$dir/$this->name.$this->type\" " .
+				return "<img src=\"$dir/$fullImage\" " .
 					"width=\"$this->raw_width\" height=\"$this->raw_height\" $attrs alt=\"$alttext\" title=\"$alttext\">";
 			} else {
-				return "<img src=\"$dir/$this->resizedName.$this->type\" " .
+				return "<img src=\"$dir/$resizedImage\" " .
 					"width=\"$this->width\" height=\"$this->height\" " .
 					"$attrs alt=\"$alttext\" title=\"$alttext\">";
 			}
 		} else {
-			return "<img src=\"$dir/$this->name.$this->type\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
+			return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
 		}
 	}
 

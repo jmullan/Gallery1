@@ -48,7 +48,7 @@ doctype();
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
 
-        if (isset($newAlbum)) {	// we are copying from one album to another
+        if (!empty($newAlbum)) {	// we are copying from one album to another
             	$postAlbum = $albumDB->getAlbumByName($newAlbum);
 		if (!$postAlbum) {
 			echo gallery_error(sprintf(_("Invalid album selected: %s"),
@@ -122,7 +122,9 @@ if ($gallery->session->albumName && isset($index)) {
 		       	return;
 	       	} //end if ($gallery->album != $postAlbum)
 	} //end if (isset($newAlbum))
-
+	elseif (isset($newAlbum) && $newAlbum == 0) {
+		echo gallery_error(_("Please select the album where you want to copy the photo(s) to."));
+	}
 	if ($gallery->album->isAlbum($index)) {
 		echo gallery_error(sprintf(_("Can't copy album #%d"), $index));
 		return;

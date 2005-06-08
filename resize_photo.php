@@ -118,11 +118,13 @@ if ($gallery->session->albumName && isset($index)) {
 </tr>
 </table>
 
+<?php
+     if (!strcmp($index, "all")) { ?>
 <p>
 	<?php echo _("Apply to nested albums ?"); ?>
 	<input type="checkbox" name="resizeRecursive" value="false">
 </p>
-
+<?php } ?>
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="remove_resized" value="<?php echo _("Get rid of resized") ?>">
