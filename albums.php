@@ -235,7 +235,7 @@ $adminbox["bordercolor"] = $borderColor;
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-if ($navigator["page"] < $navigator["maxPages"]) {
+if ($navigator["maxPages"] > 1) {
     includeLayout('navtablemiddle.inc');
     echo "<!-- Begin top nav -->";
     includeLayout('navigator.inc');
@@ -466,7 +466,7 @@ if ($displayCommentLegend) {
 <!-- bottom nav -->
 <?php
 
-if ($navigator["page"] < $navigator["maxPages"]) {
+if ($navigator["maxPages"] > 1) {
     includeLayout('navtablebegin.inc');
     includeLayout('navigator.inc');
     includeLayout('navtableend.inc');
