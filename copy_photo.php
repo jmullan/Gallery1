@@ -67,9 +67,9 @@ if ($gallery->session->albumName && isset($index)) {
 						$myphoto = $gallery->album->getPhoto($index);
 						$myname = $myphoto->image->name;
 						$myresized = $myphoto->image->resizedName;
-						$mytype=$myphoto->image->type;
-						$myfile="$mydir/$myname.$mytype";
-						$myhidden=$myphoto->isHidden();
+						$mytype = $myphoto->image->type;
+						$myfile = "$mydir/$myname.$mytype";
+						$myhidden = $myphoto->isHidden();
 						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
 						    (!$myphoto->isMovie())) {
 							$pathToThumb="$mydir/$myname.thumb.$mytype";
@@ -78,22 +78,27 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- ". _("Creating Thumbnail") ."<br>";
 							my_flush();
 						}
-						$photo=$gallery->album->getPhoto($index);
+						$photo = $gallery->album->getPhoto($index);
 
-						$id=$gallery->album->getPhotoId($index);
-
+						$id = $gallery->album->getPhotoId($index);
 
 						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, 
 								$gallery->album->getCaption($index), 
 								$pathToThumb, $photo->extraFields, 
 								$gallery->album->getItemOwner($index));
+
 						if (!$err) {
-							$newPhotoIndex = $postAlbum->numPhotos(1);
+							if ($postAlbum->getAddToBeginning()) {
+							    $newPhotoIndex = 1;
+							} else {					
+							    $newPhotoIndex = $postAlbum->numPhotos(1);
+							}
 
 							// Save additional item settings... currently:
 							//  $clicks $keywords $comments $uploadDate $itemCaptureDate;
 							$newphoto = $postAlbum->getPhoto($newPhotoIndex);
 							$oldphoto = $gallery->album->getPhoto($index);
+
 							$newphoto->clicks = $oldphoto->clicks;
 							$newphoto->keywords = $oldphoto->keywords;
 							$newphoto->comments = $oldphoto->comments;

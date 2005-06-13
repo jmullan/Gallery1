@@ -28,17 +28,17 @@
  * like a class.
  */
 if (!isset($gallery)) {
-	$gallery = new stdClass();
+    $gallery = new stdClass();
 }
 
-$gallery->version = '1.5.1-cvs-b30';
+$gallery->version = '1.5.1-cvs-b31';
 $gallery->config_version = 92;
 $gallery->album_version = 37;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";
 
 /* do not edit the date!! modified by CVS */
-$gallery->last_change=strtotime(substr('$Date$', 7, -1));
+$gallery->last_change = strtotime(substr('$Date$', 7, -1));
 /*
  * PostNuke version info
  */
@@ -54,9 +54,9 @@ $modversion['author'] = 'Bharat Mediratta'; // Author
 $modversion['contact'] = $gallery->url; // The Authors Website or Contact Email Address
 $modversion['admin'] = 0; // Leave at 0
 if (!isset($modname) && isset($name)) {
-	$modname = $name;
+    $modname = $name;
 } else {
-	$modname = '';
+    $modname = '';
 }
 $modversion['securityschema'] = array("$modname::" => '::'); // Permission Component
 ?>
