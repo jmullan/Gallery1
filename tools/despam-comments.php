@@ -203,7 +203,7 @@ function findBlacklistedComments() {
     if (empty($list)) {
 	printf("<h3>%s</h3>", _("No spam comments."));
     } else {
-	print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
+	print makeFormIntro("tools/despam-comments.php", array("name" => "deleteComments", "method" => "POST"));
 	print "\n<table>";
 	printf("\n\t<tr> <th> %s </th> <th>%s</th> </tr>",
 	       _("Entry"), _("Delete"));
@@ -335,26 +335,36 @@ function updateBlacklist() {
 }
 
 function viewBlacklist() {
-	$blacklist = loadBlacklist();
-	printf("<h3>%s (%d) </h3>", _("Current blacklist"), sizeof($blacklist['entries']));
-	if (empty($blacklist['entries'])) {
-		print _("Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
-	} else {
-		print makeFormIntro("tools/despam-comments.php", array("method" => "POST"));
-		print "\n<table align=\"center\" width=\"60%\">";
-		printf("\n\t<tr><th>%s</th><th>%s</th></tr>", ("Entry"), _("Delete"));
-		$i = 0;
-		foreach ($blacklist['entries'] as $key => $regex) {
-			$i++;
-			print "\n\t<tr>";
-			printf("<td>%s</td>", wordwrap($regex, 80, "<br>", true));
-			printf("<td align=\"center\"><input type=\"checkbox\" name=\"delete[]\" value=\"%s\"></td>", $key);
-			print "</tr>";
-		}
-		print "\n</table><br>";
-		print "\n<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\">";
-		printf("\n<input type=\"submit\" value=\"%s\">", _("Update Blacklist"));
-		print "\n</form>";
+    $blacklist = loadBlacklist();
+    printf("<h3>%s (%d) </h3>", _("Current blacklist"), sizeof($blacklist['entries']));
+    if (empty($blacklist['entries'])) {
+	print _("Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
+    } else {
+        echo insertFormJS('updateBlacklistForm');
+
+	print makeFormIntro("tools/despam-comments.php", array('name' => 'updateBlacklistForm', 'method' => 'POST'));
+	$blacklistTable = new galleryTable();
+        $blacklistTable->setAttrs(array('align' => 'center', 'width' => '60%'));
+	$blacklistTable->setHeaders(array(_("Entry"), _("Delete")));
+	$blacklistTable->setColumnCount(2);
+
+	foreach ($blacklist['entries'] as $key => $regex) {
+            $blacklistTable->addElement(array(
+                'content' => wordwrap($regex, 80, "<br>", true)));
+
+            $blacklistTable->addElement(array(
+                'content' => '<input type="checkbox" name="delete[]" value="'. $key .'%s">',
+		'cellArgs' => array('align' => 'center')));
+	}
+        $blacklistTable->addElement(array(
+            'content' => insertFormJSLinks('delete[]'),
+	    'cellArgs' => array('colspan' => 2, 'align' => 'center')));
+
+	echo $blacklistTable->render();
+
+	print "\n<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\">";
+	printf("\n<input type=\"submit\" value=\"%s\">", _("Update Blacklist"));
+	print "\n</form>";
     }
 }
 

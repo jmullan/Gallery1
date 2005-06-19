@@ -36,6 +36,8 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $errorCount = 0;
+$msg = '';
+$infoLineType = '';
 
 /* User pressed "save" Button
 ** If (changed) user name is valid and password match,
@@ -83,6 +85,12 @@ if (!empty($save)) {
 	if (!strcmp($old_uname, $gallery->session->username)) {
 	    $gallery->session->username = $uname;
 	}
+	$msg = _("User information succesfully updated.");
+        $infoLineType = 'success';
+    }
+    else {
+	$msg = gallery_error(_("User information was not succesfully updated !!"));
+	$infoLineType = 'error';
     }
 } else if (isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
@@ -126,8 +134,8 @@ $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 $canChangeOwnPw = $tmpUser->canChangeOwnPw() ? 1: 0;
 
+doctype(); 
 ?>
-<?php doctype(); ?>
 <html>
 <head>
   <title><?php echo _("Modify User") ?></title>
@@ -136,8 +144,10 @@ $canChangeOwnPw = $tmpUser->canChangeOwnPw() ? 1: 0;
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Modify User") ?></div>
 <div class="popup" align="center">
-<?php echo _("You can change any information about the user using this form.") ?>
-
+<?php 
+	echo infoLine($msg, $infoLineType);
+	echo _("You can change any information about the user using this form.") 
+?>
 <br>
 
 <?php echo makeFormIntro("modify_user.php", 

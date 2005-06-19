@@ -200,35 +200,9 @@ if (!$gallery->session->offline) { ?>
 	hideProgress();
 	location.reload();
   }
-
-  function imageEditChoice(selected_select) {
-	  var sel_index = selected_select.selectedIndex;
-	  var sel_value = selected_select.options[sel_index].value;
-	  var sel_class = selected_select.options[sel_index].className;
-	  selected_select.options[0].selected = true;
-	  selected_select.blur();
-          if (sel_class == "url") {
-	      document.location = sel_value;
-	  } else {
-              // the only other option should be popup
-	      <?php echo popup('sel_value', 1) ?>
-          }
-  } 
-  //--> 
+ //-->
   </script>
 <?php }
-
-function showChoice($label, $target, $args, $class="") {
-    global $gallery, $showAdminForm;
-    if (!$showAdminForm)
-    	return;
-    
-    if (empty($args['set_albumName'])) {
-	$args['set_albumName'] = $gallery->session->albumName;
-    }
-    $args['type'] = 'popup';
-    echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
-}
 
 $adminText = '';
 $albums_str= pluralize_n2(ngettext("1 sub-album", "%d sub-albums",$numAlbums), $numAlbums, _("No albums"));
@@ -422,8 +396,8 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if ( ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
-	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") &&
+if ( $numVisibleItems != 0 && ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
+	((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
 	$gallery->user->canViewComments($gallery->album))) {
 		$iconText = getIconText('showcomment.gif', _("view&nbsp;comments"));
                 $iconElements[] = '<a href="'. 
@@ -459,11 +433,13 @@ includeLayout('adminbox.inc');
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
 if (!empty($breadcrumb["text"])) {
-	includeLayout('navtablemiddle.inc');
-	includeLayout('breadcrumb.inc');
+    includeLayout('navtablemiddle.inc');
+    includeLayout('breadcrumb.inc');
 }
-includeLayout('navtablemiddle.inc');
-includeLayout('navigator.inc');
+if ($navigator["maxPages"] > 1) {
+    includeLayout('navtablemiddle.inc');
+    includeLayout('navigator.inc');
+}
 includeLayout('navtableend.inc');
 
 
@@ -545,6 +521,22 @@ if ($gallery->album->getPollShowResults()) {
 	echo '</div>';
 }
 
+?>
+
+   <script language="javascript1.2" type="text/JavaScript">
+ function chooseOnlyOne(i, form_pos, scale)
+ {
+   for(var j=0;j<scale;j++)
+     {
+         if(j != i)
+ 	    {
+ 		eval("document.vote_form['votes["+j+"]']["+form_pos+"].checked=false");
+ 	    }
+     }
+ }
+   </script>
+<?php
+
 echo makeFormIntro("view_album.php",
 	       	array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
 if (canVote()) { 
@@ -580,19 +572,6 @@ if (canVote()) {
  	}
 	echo "</span>";
 ?>
-   <script language="javascript1.2" type="text/JavaScript">
- function chooseOnlyOne(i, form_pos, scale)
- {
-   for(var j=0;j<scale;j++)
-     {
-         if(j != i)
- 	    {
- 		eval("document.vote_form['votes["+j+"]']["+form_pos+"].checked=false");
- 	    }
-     }
- }
-   </script>
-
    </div>
 
 <?php if (canVote()) { ?>
@@ -869,147 +848,20 @@ if ($numPhotos) {
 			// End Caption
 
 		       	if (canVote()) {
-					echo("<div align=\"center\">\n");
-			       	addPolling($gallery->album->getVotingIdByIndex($i),
-					       	$form_pos, false);
-			       	$form_pos++;
+			    echo("<div align=\"center\">\n");
+			    addPolling($gallery->album->getVotingIdByIndex($i), $form_pos, false);
+			    $form_pos++;
 		       	}
 
 			if ($showAdminForm) {
-				if ($gallery->album->isMovieByIndex($i)) {
-					$label = _("Movie");
-				} elseif ($gallery->album->isAlbum($i)) {
-					$label = _("Album");
-				} else {
-					$label = _("Photo");
-				}
-
-			       	if (canVote()) {
-				       	print '</div>';
-				}
-				echo("</div>\n");
-				echo("\n\t<select style=\"font-size:10px\" class=\"adminform\" name=\"s$i\" ".
-					"onChange='imageEditChoice(document.vote_form.s$i)'>");
-				echo("\n\t\t<option value=''>&laquo; ". sprintf(_("%s actions"), $label) . " &raquo;</option>");
+			    $albumItemOptions = getItemActions($i, false);
+			    echo drawSelect2("s$i", $albumItemOptions, array(
+    				'onChange' => "imageEditChoice(document.vote_form.s$i)",
+    				'class' => 'adminform'));
 			}
-			if ($gallery->album->getItemOwnerModify() && 
-			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
-			    !$gallery->album->isAlbum($i) &&
-			    !$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-				showChoice("Edit Text", "edit_caption.php", array("index" => $i));
-			}
-			if ($gallery->album->getItemOwnerModify() && 
-			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
-			    !$gallery->album->isAlbum($i) &&
-			    !$gallery->album->isMovieByIndex($i) &&
-			    !$gallery->user->canWriteToAlbum($gallery->album)) {
-				showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
-				showChoice(sprintf(_("Rotate/Flip %s"),$label), "rotate_photo.php", array("index" => $i));
-				if (strlen($gallery->app->watermarkDir)) {
-					showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
-				}
-			}
-			if ($gallery->album->getItemOwnerDelete() && 
-			    $gallery->album->isItemOwner($gallery->user->getUid(), $i) && 
-			    !$gallery->album->isAlbum($i) &&
-			    !$gallery->user->canDeleteFromAlbum($gallery->album)) {
-				showChoice(sprintf(_("Delete %s"), $label), "delete_photo.php", array("id" => $id));
-			}
-			if ($gallery->user->canChangeTextOfAlbum($gallery->album) && $showAdminForm) {
-				if (isset($myAlbum)) {
-					if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {	
-						showChoice(_("Edit Title"),
-							"edit_field.php", 
-							array("set_albumName" => $myAlbum->fields["name"],
-								"field" => "title")) . 
-						showChoice(_("Edit Description"),
-							"edit_field.php",
-							array("set_albumName" => $myAlbum->fields["name"],
-								"field" => "description"));
-					}
-					if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
-						showChoice(_("Rename Album"),
-							"rename_album.php",
-							array("set_albumName" => $myAlbum->fields["name"],
-							      "index" => $i));
-					}
-				} else {
-					showChoice(_("Edit Text"), "edit_caption.php", array("index" => $i));
-				}
-			}
-			if ($gallery->user->canWriteToAlbum($gallery->album) && $showAdminForm) {
-				if (!$gallery->album->isMovieByIndex($i) && !$gallery->album->getAlbumName($i)) {
-					showChoice(_("Edit Thumbnail"), "edit_thumb.php", array("index" => $i));
-					showChoice(sprintf(_("Rotate/Flip %s"), $label), "rotate_photo.php", array("index" => $i));
-					if (!empty($gallery->app->watermarkDir)) {
-						showChoice(_("Edit Watermark"), "edit_watermark.php", array("index" => $i));
-					}
-				}
-				if (!$gallery->album->isMovieByIndex($i)) {
-					 /* Show Highlight Album/Photo only when this i a photo, or Album has a highlight */
-					$nestedAlbum=$gallery->album->getNestedAlbum($i);
-					if (!$gallery->album->isAlbum($i) || $nestedAlbum->hasHighlight()) {
-						showChoice(sprintf(_("Highlight %s"),$label), 'do_command.php', array('cmd' => 'highlight', 'index' => $i));
-					}
-				}
-				if ($gallery->album->isAlbum($i)) {
-					showChoice(_("Reset Counter"), "do_command.php",
-						array("cmd" => "reset-album-clicks",
-						      "set_albumName" => $gallery->album->getAlbumName($i),
-							"return" => urlencode(makeGalleryUrl("view_album.php"))));
-				}
-				showChoice(sprintf(_("Move %s"),$label), "move_photo.php", array("index" => $i, 'reorder' => 0));
-				showChoice(sprintf(_("Reorder %s"),$label), "move_photo.php", array("index" => $i, 'reorder' => 1));
-				if (!$gallery->album->isAlbum($i)) {
-					showChoice(sprintf(_("Copy %s"),$label), "copy_photo.php", array("index" => $i));
-				}
-			}
-			if ($gallery->user->isAdmin() || ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
-				$gallery->album->isItemOwner($gallery->user->getUid(), $i)) && 
-				$showAdminForm) {
-				if ($gallery->album->isHidden($i)) {
- 					showChoice(sprintf(_("Show %s"), $label), "do_command.php", array("cmd" => "show", "index" => $i));
-				} else {
-					showChoice(sprintf(_("Hide %s"), $label), "do_command.php", array("cmd" => "hide", "index" => $i));
-				}
-			}
-			if ($gallery->user->canDeleteFromAlbum($gallery->album) && $showAdminForm) {
-				if($gallery->album->isAlbum($i)) {
-					if($gallery->user->canDeleteAlbum($myAlbum)) {
-						showChoice(sprintf(_("Delete %s"),$label), "delete_photo.php",
-							array("id" => $myAlbum->fields["name"],
-							      "albumDelete" => 1));
-					}
-				} else {
-					showChoice(sprintf(_("Delete %s"), $label), "delete_photo.php",
-						   array("id" => $id));
-				}
-			}
-			if($gallery->album->isAlbum($i)) {
-			    if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum) && $showAdminForm) {
-				showChoice(_("Permissions"), "album_permissions.php",
-					   array("set_albumName" => $myAlbum->fields["name"]));
-
-				/* Watermarking support is enabled and user is allowed to watermark images/albums */
-				if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
-					showChoice(_("Watermark Album"), "watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]));
-				}
-                                if ($gallery->user->canViewComments($myAlbum) &&
-                                    ($myAlbum->lastCommentDate("no") != -1))
-                                {
-                                        showChoice(_("View Comments"), "view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url");
-                                }
-			    }
-			}
-                       if ($gallery->user->isAdmin() && !$gallery->album->isAlbum($i)) {
-                               showChoice(_("Change Owner"), "photo_owner.php", array("id" => $id));
-                       }
-		       if ($showAdminForm) {
-			       echo "</select>\n";
-		       }
-		       if (canVote()) {
+		        if (canVote()) {
 			       print '</div>';
-		       }
+		        }
 			echo("</div></div>");
 			echo "\n";
 			echo("</td>");
@@ -1107,18 +959,20 @@ if (canVote()) { ?>
 <?php } ?>
 <!-- bottom nav -->
 <?php 
-includeLayout('navtablebegin.inc');
-includeLayout('navigator.inc');
-if (!empty($breadcrumb["text"])) {
-	includeLayout('navtablemiddle.inc');
-	includeLayout('breadcrumb.inc');
-}
-includeLayout('navtableend.inc');
-echo languageSelector();
-includeHtmlWrap("album.footer");
-?>
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+if($numVisibleItems != 0) {
+    includeLayout('navtablebegin.inc');
+    if ($navigator["maxPages"] > 1) {
+        includeLayout('navigator.inc');
+   	includeLayout('navtablemiddle.inc');
+    }
+    includeLayout('breadcrumb.inc');
+    includeLayout('navtableend.inc');
+}
+    echo languageSelector();
+includeHtmlWrap("album.footer");
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>

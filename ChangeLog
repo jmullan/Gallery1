@@ -1,3 +1,64 @@
+2005-06-19 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b32
+
+	* Change: moved some messages functions into lib/messages.php
+		  created new message functions for:
+		  - infolines
+		  - debugmessages
+
+	* Change: Added infoline and tweaked Emailtext in create_user.php
+
+	* Change: Added infoline in modify_user.php
+
+	* Change: Modified config var "debug" yes/no to "debuglevel" 0 means no debug.
+		  Tweaked isDebugging to recognize the level.
+		  Now you can give a Parameter to ask if debug in in given level.
+
+	* Change: stats-wizard.php, var 'sgr' renamed to 'showGrid'
+
+	* CHANGE: stats-php
+		  - lots of indenting
+		  - The complete statstable is now generated via class galleryTable !!
+		    o Thumbs are now just as they are, not anymore like in the albums.
+		    o show Commentes code tweaked to work with galleryTable
+		  - readded Grid mode, old code removed as the rendering is now done by galleryTable
+		  - replace debug code with much smarter debugMessage()
+		  - remove all 7 usort functions, replaced by one new 
+		    array_sort_by_fields() function in util.php
+
+		  - renamed var 'rev' to 'reverse'
+
+	* Change: util.php
+		  - lots of indenting
+		  - tweaked getIconText(),
+		    o new parameter to override the iconMode	
+		    o new parameter to use the [] around the Text when no icon is used.
+		  - Tweaked makeIconMenu(), added parameter to force a linebreak after the half of elements
+
+	* Change: Added lib/AlbumItem.php
+		  - New function getItemActions(), 
+		    returns an array with all possible albumItem actions
+		  - New function showComments, return HTML with all comments for an item.
+	
+	* Change: view_album.php
+		  - Use of getItemActions() under each thumb.
+		  - Show Navigator only if there is something to navigate.
+
+        * Change: view_photo.php
+                  - Use of getItemActions() under each thumb.
+                  - Show alle item actions as links (with or with out icons)
+
+	* Change: Tweaked class galleryTable
+		  - setAttr
+		  - setColumnCount
+		  - setHeaders
+		  - setCaption
+		  - adapted render()
+		  
+	* Change: Added infoline for debug info in html_wrap/wrapper.footer.default
+
+	*
+
+		  
 2005-06-13 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b31
 
 	* Fix: When copying a photo to an album where "add to beginning" is enabled,
@@ -32,7 +93,7 @@
 2005-05-24 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b27
 
 	* Fix: use_exif was not broken in album properties.
-	       Found by Johanm Nenni
+	  Found by Johan Nenni
 
 	* Change: removed class tab-text, the font color is now controlled by the tab itself.
 
@@ -155,7 +216,7 @@
 
 	* New: added id="galleryImage" to img tags in view_photo (for jmullan)
 
-	* Fix: View Comments for not loggedIn User where displayed even if setting i setup was off,
+	* Fix: View Comments for not loggedIn User where displayed even if setting in setup was off,
 	       but everybody is allowed to see comments.
 
 	* "Fix": removed select:focus css (except in Jenskin) as FF on Linux is buggy on this.

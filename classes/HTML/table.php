@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
+setAttrs * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
@@ -23,15 +23,30 @@
 <?php
 class galleryTable {
 
-    var $headers;
-    var $columns;
     var $attrs;	
+    var $headers;
+    var $headerClass;
+    var $caption;
+    var $captionClass;
+    var $columnCount;
     var $elements;
 
-    function galleryTable($tableArgs = array('columns' => 3, 'attrs' => array())) {
-	$this->columns = $tableArgs['columns'];
-	$this->attrs = $tableArgs['attrs'];
+    function galleryTable() {
+	$this->attrs = array();
+	$this->headers = array();
+	$this->headerClass = '';
+	$this->caption = '';
+	$this->captionClass = '';
+	$this->columnCount = 3;
 	$this->elements = array();
+    }
+
+    function setAttrs($attrs = array()) {
+	$this->attrs = $attrs;
+    }
+
+    function setColumnCount($nr) {
+	$this->columnCount = $nr;
     }
 
     function addElement($element = array('content' => null, 'cellArgs' => array())) {
@@ -43,42 +58,81 @@ class galleryTable {
         }
     }
 
-    function render() {
-	$buf = "\n<table";
+    function setHeaders($headers = array(), $class = '') {
+	$this->headers = $headers;
+	$this->headerClass = $class;
+    }
+
+    function setCaption($caption = '', $class = '') {
+	$this->caption = $caption;
+	$this->captionClass = $class;
+    }
+
+    function render($indent = 0) {
+	if (empty($this->elements)) {
+	    return '';
+ 	}
+
+	$ind = '';
+	$numElements = sizeof($this->elements);
+
+	for($i = 0; $i < $indent; $i++) {
+	    $ind .= "    ";
+	}
+
+	$buf = "\n$ind<table";
 	foreach ($this->attrs as $attr => $value) {
 	    $buf .= " $attr=\"$value\"";
         }
 	$buf .= '>'; 
 
+	if (!empty($this->caption)) {
+	    $buf .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
+	}
+
 	if (!empty($this->headers)) {
-	    $buf .= "\n<tr>";
+	    $buf .= "\n$ind<tr>";
 	    $i = 0;
 	    foreach ($this->headers as $header) {
 		$i++;
-		$buf .="\n<th>$header</th>";
+		$buf .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
 	    }
 
-	    for (; $i < $this->columns; $i++) {
-		$buf .="\n<th>&nbsp;</th>";
+	    for (; $i < $this->columnCount; $i++) {
+		$buf .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
 	    }
 
-	    /* Override count of columns */
-	    $this->columns = $i;
-
+	    /* Override value of columnCount */
+	    $this->columnCount = $i;
 	}
+
 	if (!empty($this->elements)) {
 	    $i = 0;
-	    $buf .= "\n<tr>";
+	    $buf .= "\n$ind<tr>";
 	    foreach ($this->elements as $nr => $element) {
-		$i++;
-		if ($i % $this->columns) {
-		    $buf .= "\n</tr>\n<tr>";
+	        $buf .= "\n$ind    <td";
+		if(!empty($element['cellArgs'])) {
+		    foreach ($element['cellArgs'] as $attr => $value) {
+			$buf .= " $attr=\"$value\"";
+		    }
 		}
-		$buf .= "\n    <td>". $element['content'] ."</td>";
+		$buf .= '>'. $element['content'] ."</td>";
+		
+		if(isset($element['cellArgs']['colspan'])) {
+		    $i += $element['cellArgs']['colspan'];
+		}
+		else {
+		    $i++;
+		}
+
+		if (!($i % $this->columnCount) && $nr < $numElements-1) {
+		    $buf .= "\n$ind </tr>\n$ind<tr>";
+		}
 	    }
-	    $buf .= "\n</tr>";
+	    $buf .= "\n$ind</tr>";
 	}
-	$buf .= "\n</table>";
+
+	$buf .= "\n$ind</table>\n$ind";
 
 	return $buf;
     }

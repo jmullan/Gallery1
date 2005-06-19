@@ -157,7 +157,6 @@ $versions['layout/breadcrumb.inc']='1.27';
 $versions['layout/commentbox.inc']='1.21';
 $versions['layout/commentboxbottom.inc']='1.15';
 $versions['layout/commentboxtop.inc']='1.22';
-$versions['layout/commentdraw.inc']='1.26';
 $versions['layout/navigator.inc']='1.37';
 $versions['layout/navmicro.inc']='1.1';
 $versions['layout/navphoto.inc']='1.36';

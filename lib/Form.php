@@ -114,6 +114,40 @@ function drawSelect($name, $options, $selected, $size, $attrList=array(), $prett
 	return $buf;
 }
 
+
+function drawSelect2($name, $options, $attrList = array(), $args = array()) {
+    $attrs = "";
+    $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+    if (!isset($args['size'])) {
+	$args['size'] = 1;
+    }
+
+    if (!empty($attrList)) {
+	$attrs = " ";
+	foreach ($attrList as $key => $value) {
+	    if ($value == NULL) {
+		$attrs .= " $key";
+	    }
+	    else {
+		$attrs .= " $key=\"$value\"";
+	    }
+	}
+    }
+
+    $buf = '';
+    $buf .= '<select name="'. $name .'" size="'. $args['size'] .'"'. $attrs .'">'. $crlf;
+    foreach ($options as $nr => $option) {
+	$sel = '';
+	if (isset($option['selected'])) {
+		$sel = " selected";
+	}
+	$buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
+    }
+    $buf .= "</select>". $crlf;
+
+    return $buf;
+}
+
 /*
  * makeFormIntro() is a wrapper around makeGalleryUrl() that will generate
  * a <form> tag suitable for usage in either standalone or embedded mode.
@@ -190,4 +224,25 @@ function showColorpicker($attrs = array()) {
 
     return $html;
 }
+
+function showChoice($label, $target, $args, $class="") {
+    global $gallery;
+
+    if (empty($args['set_albumName'])) {
+        $args['set_albumName'] = $gallery->session->albumName;
+    }
+    $args['type'] = 'popup';
+    echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
+}
+
+function showChoice2($target, $args) {
+    global $gallery;
+
+    if (empty($args['set_albumName'])) {
+        $args['set_albumName'] = $gallery->session->albumName;
+    }
+    $args['type'] = 'popup';
+    return makeGalleryUrl($target, $args);
+}
+
 ?>

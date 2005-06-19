@@ -696,7 +696,9 @@ function languageSelector() {
 	}
 
         $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
-        $LangSelectTable = new galleryTable(array('columns' => 1, 'attrs' => array('class' => 'languageSelector', 'align' => 'right')));
+        $langSelectTable = new galleryTable();
+	$langSelectTable->setColumnCount(1);
+	$langSelectTable->setAttrs(array('class' => 'languageSelector', 'align' => 'right'));
 
         $nls = getNLS();
 
@@ -744,10 +746,10 @@ function languageSelector() {
 	    	$flagImage = "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
 
 	    	if ($gallery->language != $value) {
-		    $LangSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
+		    $langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
 	        }
 	    	else {
-		    $LangSelectTable->addElement(array('content' => $flagImage, 'cellArgs' => array('style' => 'margin:7px')));
+		    $langSelectTable->addElement(array('content' => $flagImage, 'cellArgs' => array('style' => 'margin:7px')));
 	    	}
 	    	/*
 		if ($count > $half && $half >10) {
@@ -765,10 +767,10 @@ function languageSelector() {
 				1, 
 				array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
 				true);
-		$LangSelectTable->addElement(array('content' => $content));
+		$langSelectTable->addElement(array('content' => $content));
     	}
 
-    	$html .= $LangSelectTable->render();
+    	$html .= $langSelectTable->render();
     	$html .= "</form>";
    
    	return $html;

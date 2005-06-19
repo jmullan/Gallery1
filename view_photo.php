@@ -88,6 +88,9 @@ if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
 }
 
 $photo = $gallery->album->getPhoto($index);
+
+$albumItemOptions = getItemActions($index, true);
+
 if ($photo->isMovie()) {
 	$image = $photo->thumbnail;
 } else {
@@ -172,18 +175,18 @@ if ($gallery->album->fields['returnto'] != 'no') {
 }
 
 $extra_fields=$gallery->album->getExtraFields(false);
-$title=NULL;
+$title = NULL;
 if (in_array("Title", $extra_fields)) {
-	$title=$gallery->album->getExtraField($index, "Title");
+	$title = $gallery->album->getExtraField($index, "Title");
 }
 if (!$title) {
-	$title=$photo->image->name;
+    $title = $photo->image->name;
 }
 
 if (isset($gallery->app->comments_length)) {
-	$maxlength=$gallery->app->comments_length;
+    $maxlength = $gallery->app->comments_length;
 } else {
-	$maxlength=0;
+    $maxlength = 0;
 }
 
 if (!empty($save)) {
@@ -303,10 +306,6 @@ $adminTextIconElemens = array();
 if (!$gallery->album->isMovie($id)) {
     print "<a id=\"photo_url\" href=\"$photoURL\" ></a>\n";
     print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
-    if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	$iconText = getIconText('window_fullscreen.gif', _("resize photo"));
-	$iconElements[] = popup_link($iconText, "resize_photo.php?index=$index", false, true, 500, 500);
-    }
 
     if ($gallery->user->canDeleteFromAlbum($gallery->album) || 
 	($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
@@ -328,15 +327,13 @@ if (!$gallery->album->isMovie($id)) {
 	} else {
 	    $nextId = $gallery->album->getPhotoId($nextIndex);
 	}
-
-	$iconText = getIconText('delete.gif', _("delete photo"));
-	$iconElements[] = popup_link($iconText, "delete_photo.php?id=$id&nextId=$nextId", false, true, 500, 500);
     }
 
 	
     if ($gallery->album->fields["use_exif"] == "yes" &&
 	(eregi("jpe?g\$", $photo->image->type)) &&
-	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
+	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
+	sizeof($albumItemOptions) == 2) {
 	
 	$albumName = $gallery->session->albumName;
 	$iconText = getIconText('frame_query.gif', _("photo properties"));
@@ -559,11 +556,26 @@ includeLayout('navtablemiddle.inc');
 
 $breadcrumb["bordercolor"] = $bordercolor;
 includeLayout('breadcrumb.inc');
-includeLayout('navtablemiddle.inc');
 
-if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
-	includeLayout('navphoto.inc');
+/* Show itemOptions only if we have more then one (photo properties) */
+if(sizeof($albumItemOptions) > 2) {
+    includeLayout('navtablemiddle.inc');
+    echo makeFormIntro("view_album.php",
+        array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
+
+    $albumItemOptionElements = array();
+    foreach ($albumItemOptions as $trash => $option) {
+        if(!empty($option['value'])) {
+//        $albumItemOptionElements[] = 
+    	echo "\n". popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
+//		   popup_link($title,           $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='') {
+        }
+    }
+    //echo makeIconMenu($albumItemOptionElements, 'left', true, true);
+    echo "\n</form>";
 }
+
+includeLayout('navtablemiddle.inc');
 
 if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"top") || 
      !strcmp($gallery->album->fields["nav_thumbs_location"],"both")) && 
@@ -571,14 +583,21 @@ if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"top") ||
      !strcmp($gallery->album->fields["nav_thumbs"],"both") ) ) {
 	includeLayout('navmicro.inc');
 }
+
+includeLayout('navtablemiddle.inc');
+
+if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
+    includeLayout('navphoto.inc');
+}
+
 includeLayout('navtableend.inc');
 
 #-- if borders are off, just make them the bgcolor ----
 if ($gallery->album->fields["border"] == 0) {
-	$bordercolor = $gallery->album->fields["bgcolor"];
+    $bordercolor = $gallery->album->fields["bgcolor"];
 }
 if ($bordercolor) {
-	$bordercolor = "bgcolor=$bordercolor";
+    $bordercolor = "bgcolor=$bordercolor";
 }
 ?>
 <br>
@@ -730,11 +749,13 @@ if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"bottom") ||
      !strcmp($gallery->album->fields["nav_thumbs"],"both") ) ) {
 	includeLayout('navmicro.inc');
 }
+includeLayout('navtablemiddle.inc');
+
 if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
 	includeLayout('navphoto.inc');
 }
-$breadcrumb["top"] = false;
 includeLayout('navtablemiddle.inc');
+
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 echo languageSelector();

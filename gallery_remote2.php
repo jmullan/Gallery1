@@ -44,7 +44,7 @@ header("Content-type: text/plain");
 /*
  * Start buffering output
  */
-//if($gallery->app->debug == "no") {
+//if(!isDebugging()) {
 //	@ob_start();
 //}
 

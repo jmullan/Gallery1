@@ -945,21 +945,21 @@ $constants = array_merge($constants,
 			'value' => "!!FULLNAME!! (!!USERNAME!!)",
 			),
 	'comments_addType' => array(
-			'prompt' => _("Add Comments inside the photo page"),
+			'prompt' => _("Add comments inside the photo page"),
 			'desc' => _("Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"),
 			'choices' => array ('popup' => _("Popup"), 'inside' => _("Inside")),
 			'value' => "popup"
 			),
 	'comments_length' => array(
-			'prompt' => _("Maximum length of Comments"),
+			'prompt' => _("Maximum length of comments"),
 			'desc' => _("Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."),
 			'type' => "text",
 			'must-be-integer' => 1,
 			'value' => 300
 	),
 	'comments_overview_for_all' => array(
-			'prompt' => _("Can everybody see a Comments overview"),
-			'desc' => _("Do you want to allow everybody to see a complete overview of all Comments of an Album. Set this to &quot;no&quot; if only admin and owners can use this feature."),
+			'prompt' => _("Can every permitted user see a comments overview"),
+			'desc' => _("Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."),
 			'type' => "text",
 			'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		       	'value' => "no",
@@ -1100,11 +1100,11 @@ $constants = array_merge($constants,
 			'<br><span class="attention">'.
 			_("Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.") .
 			'<span>'),
-	'debug' => array(
-		'prompt' => _("Debug mode"),
-		'desc' => _("Turn debug mode on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
-		'value' => "no",
+	'debuglevel' => array(
+		'prompt' => _("Debug Level"),
+		'desc' => _("Turn debug on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
+		'choices' => array(0 => _("No Debug"), 1 => _("Normal"), 2 => _("High (former Debug 'on')")),
+		'value' => 0,
 	),
 	'skipRegisterGlobals' => array(
 		'prompt' => _('Disable register_globals check'),

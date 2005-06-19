@@ -50,163 +50,231 @@
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-$debug = 0;
 //$album="album01";
 
-list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $stm, $rev, $tsz ,$ppp, $total, $sgr, $rows, $cols, $addLinksPos) =
-	getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'rev', 'tsz' ,'ppp', 'total', 'sgr', 'rows', 'cols', 'addLinksPos'));
+list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $stm, $reverse, $tsz ,$ppp, $total, $showGrid, $rows, $cols, $addLinksPos) =
+    getRequestVar(array('type', 'sca', 'sal', 'sde', 'sco', 'scd', 'sud', 'svi', 'sac', 'svo', 'sav', 'sao', 'stm', 'reverse', 'tsz' ,'ppp', 'total', 'showGrid', 'rows', 'cols', 'addLinksPos'));
 
 list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 
 list ($page, $set_albumListPage) =
-	getRequestVar(array('page', 'set_albumListPage'));
+    getRequestVar(array('page', 'set_albumListPage'));
+if (empty($type)) {
+    /* We assume was called direct. So we call show defaults */
+    header("Location: ". unhtmlentities(defaultStatsUrl('views')));
+}
+
+/*
+** Start of HTML Output to show page in valida HTML when debug is ON
+*/
+
+switch ($type) {
+    case 'votes':
+        if ( $reverse) {
+            $stats_title =  _(" - Images with the least votes");
+        }
+        else {
+            $stats_title =  _(" - Images with the most votes");
+        }
+    break;
+
+    case 'ratings':
+        if ( $reverse ) {
+            $stats_title =  _(" - Bottom rated images");
+        }
+    else {
+            $stats_title =  _(" - Top rated images");
+    }
+    break;
+
+    case 'date':
+        if ( $reverse ) {
+            $stats_title =  _(" - Oldest images first");
+        }
+        else {
+
+            $stats_title =  _(" - Latest added images");
+        }
+    break;
+
+    case 'cdate':
+        if ( $reverse ) {
+            $stats_title =  _(" - Latest Capture Date");
+        }
+        else {
+            $stats_title =  _(" - Oldest Capture Date");
+        }
+    break;
+
+    case 'comments':
+        if ( $reverse ) {
+            $stats_title =  _(" - Latest Comments");
+        }
+        else {
+            $stats_title =  _(" - Oldest Comments");
+        }
+    break;
+
+    case 'random':
+        $stats_title =  _(" - Random Images");
+    break;
+
+    default:
+    // 'views'
+    if ( $reverse ) {
+        $stats_title =  _(" - Images with the least views");
+    }
+    else {
+        $stats_title =  _(" - Images with the most views");
+    }
+    break;
+}
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    doctype();
+?>
+<html>
+<head>
+  <title><?php echo $gallery->app->galleryTitle . $stats_title; ?></title>
+<?php
+common_header() ;
+?>
+</head>
+   <body dir="<?php echo $gallery->direction ?>">
+<?php
+}
+/* End of HTML begin, lets do some calculations etc. */
 
 if ($set_albumListPage < 0) {
     $set_albumListPage = 1;
 }
 
-if (empty($type)) {
-	/* We assume was called direct. So we call show defaults */
-	header("Location: ". unhtmlentities(defaultStatsUrl('views')));
-}
-
-$rating = "";
-$ratingCount = "";
-$randomNum = "";
+$rating = '';
+$ratingCount = '';
+$randomNum = '';
 $pixelImage = '<img src="' . getImagePath('pixel_trans.gif') . '" width="1" height="1" alt="pixel_trans">';
 
-if ( !empty($stm) ) {
-	$time_start = getmicrotime();
-}
+$time_start = getmicrotime();
 
 class cacheCtrl {
-	var $enabled;
-	var $expireSecs;
+    var $enabled;
+    var $expireSecs;
 
-	function cacheCtrl($enabled = 0, $expireSecs = -1) {
-		$this->enabled    = $enabled;
-		$this->expireSecs = $expireSecs;
-	}
+    function cacheCtrl($enabled = 0, $expireSecs = -1) {
+        $this->enabled    = $enabled;
+        $this->expireSecs = $expireSecs;
+    }
 }
 
 define("CACHE_INDEX_FIELD_WIDTH", 16);
 
 // Always show comments if only displaying images that have comments.
 if ( $type == "comments" ) {
-	$showComments = 1;
-	$cache = new cacheCtrl( $gallery->app->stats_commentsCacheOn, $gallery->app->stats_commentsCacheExpireSecs );
+    $showComments = 1;
+    $cache = new cacheCtrl( $gallery->app->stats_commentsCacheOn, $gallery->app->stats_commentsCacheExpireSecs );
 }
 /*
 ** Commented out, because the rating code is broken.
 else if ( $type == "ratings" ) {
-	$showRatings = 1;
-	$cache = new cacheCtrl( $gallery->app->stats_ratingsCacheOn, $gallery->app->stats_ratingsCacheExpireSecs );
+$showRatings = 1;
+$cache = new cacheCtrl( $gallery->app->stats_ratingsCacheOn, $gallery->app->stats_ratingsCacheExpireSecs );
 }
 */
 else if ( $type == "views" ) {
-	$showViews = 1;
-	$cache = new cacheCtrl($gallery->app->stats_viewsCacheOn, $gallery->app->stats_viewsCacheExpireSecs);
+    $showViews = 1;
+    $cache = new cacheCtrl($gallery->app->stats_viewsCacheOn, $gallery->app->stats_viewsCacheExpireSecs);
 }
 else if ( $type == "date" ) {
-	$showUploadDate = 1;
-	$cache = new cacheCtrl( $gallery->app->stats_dateCacheOn, $gallery->app->stats_dateCacheExpireSecs );
+    $showUploadDate = 1;
+    $cache = new cacheCtrl( $gallery->app->stats_dateCacheOn, $gallery->app->stats_dateCacheExpireSecs );
 }
 else if ( $type == "cdate" ) {
-	$showCaptureDate = 1;
-	$cache = new cacheCtrl( $gallery->app->stats_cDateCacheOn, $gallery->app->stats_cDateCacheExpireSecs );
+    $showCaptureDate = 1;
+    $cache = new cacheCtrl( $gallery->app->stats_cDateCacheOn, $gallery->app->stats_cDateCacheExpireSecs );
 }
 else if ( $type == "votes" ) {
-	$showVotes = 1;
-	$cache = new cacheCtrl( $gallery->app->stats_votesCacheOn, $gallery->app->stats_votesCacheExpireSecs );
+    $showVotes = 1;
+    $cache = new cacheCtrl( $gallery->app->stats_votesCacheOn, $gallery->app->stats_votesCacheExpireSecs );
 }
 else {
-	$cache = new cacheCtrl;
+    $cache = new cacheCtrl;
 }
 
 // Check for any control variables passed in the url.
 if (!empty( $sca )) {
-	$showCaption = $sca;
+    $showCaption = $sca;
 }
 
 if (!empty( $sal )) {
-	$showAlbumLink = $sal;
+    $showAlbumLink = $sal;
 }
 
 if (!empty( $sde )) {
-	$showDescription = $sde;
+    $showDescription = $sde;
 }
 
 if (!empty( $scd )) {
-	$showCaptureDate = $scd;
+    $showCaptureDate = $scd;
 }
 
 if (!empty( $sud )) {
-	$showUploadDate = $sud;
+    $showUploadDate = $sud;
 }
 
 if (!empty( $svi )) {
-	$showViews = $svi;
+    $showViews = $svi;
 }
 
 if (!empty( $svo )) {
-	$showVotes = $svo;
+    $showVotes = $svo;
 }
 /*
 if (!empty( $sra )) {
-	$showRatings = $sra;
+$showRatings = $sra;
 }
 */
 if (!empty( $sco )) {
-	$showComments = $sco;
+    $showComments = $sco;
 }
 
 if (!empty( $sac )) {
-	$showAddComment = $sac;
+    $showAddComment = $sac;
 }
 
 if (!empty( $sav )) {
-	$showAddVote = $sav;
+    $showAddVote = $sav;
 }
 
 if (!empty( $sao )) {
-	$showAlbumOwner = $sao;
-}
-
-if (!empty( $sgr )) {
-	$showGrid = $sgr;
-}
-
-if (!empty( $rev )) {
-	$reverseOrder = $rev;
-} else {
-	$reverseOrder = 0;
+    $showAlbumOwner = $sao;
 }
 
 if (!empty( $ppp )) {
-	$photosPerPage = $ppp;
+    $photosPerPage = $ppp;
 }
 
 if (!empty( $rows )) {
-	$numRows = $rows;
-}
-
-if (!empty( $cols )) {
-	$numCols = $cols;
+    $numRows = $rows;
 }
 
 if (!empty( $total )) {
-	$totalPhotosToDisplay = $total;
+    $totalPhotosToDisplay = $total;
 }
 if (!empty( $ty )) {
-	$timeYear = $ty;
+    $timeYear = $ty;
 }
 
 if (!empty( $tm )) {
-	$timeMonth = $tm;
+    $timeMonth = $tm;
 }
 
 if (!empty( $td )) {
-	$timeDay = $td;
+    $timeDay = $td;
+}
+
+if (!empty($showGrid)) {
+    // In grid mode photos per page is controlled by the number of rows and columns.
+    $photosPerPage = $cols * $numRows;
 }
 
 $albumDB = new AlbumDB(FALSE);
@@ -216,15 +284,15 @@ $albumDB = new AlbumDB(FALSE);
 // on all hosts.
 $numTopAlbums = $albumDB->numAlbums($gallery->user);
 for ($i = 1; $i <= $numTopAlbums; $i++) {
-	$topAlbum = $albumDB->getAlbum($gallery->user, $i);
-	$list[] = $topAlbum;
-	recurseAlbums( $topAlbum );
+    $topAlbum = $albumDB->getAlbum($gallery->user, $i);
+    $list[] = $topAlbum;
+    recurseAlbums( $topAlbum );
 }
 
 $numAlbums = count($list);
-if ($debug) {
-	echo sprintf (_("Number Albums = %s") . "<br>", $numAlbums) ;
-}
+
+debugMessage(sprintf (_("Number Albums = %s") . "<br>", $numAlbums),__FILE__ , __LINE__) ;
+
 $skip = array();
 $arrPhotos = array();
 
@@ -233,289 +301,247 @@ $cacheReloadRequired = false;
 
 // Attempt to load from cache if cache is selected
 // and a period or album have not been specified.
-$cacheFilename = $gallery->app->albumDir . "/stats.$type.$reverseOrder.cache";
-if ( $debug > 1 ) {
-	echo sprintf (_("Cache filename = %s ; enabled = %s ; expires = %s"), $cacheFilename, $cache->enabled, $cache->expireSecs) . "<br>";
+$cacheFilename = $gallery->app->albumDir . "/stats.$type.$reverse.cache";
+debugMessage(sprintf (_("Cache filename = %s ; enabled = %s ; expires = %s"), $cacheFilename, $cache->enabled, $cache->expireSecs), __FILE__, __LINE__);
+
+if (!isset($refreshcache) &&
+    !isset($period) &&
+    !isset($album)  &&
+    $cache->enabled ) {
+    if (fs_file_exists($cacheFilename)) {
+        $cacheState = fs_stat($cacheFilename);
+        $cacheTime = $cacheState[9];
+        if ( $cache->expireSecs == -1 ||
+        time() - $cacheTime < $cache->expireSecs) {
+            debugMessage(sprintf (_("Time now = %s ; Cache time = %s"), time(), $cacheTime), __FILE__, __LINE__);
+            $numPhotos = readCacheNumPhotos($cacheFilename);
+            if ( $numPhotos != -1 ) {
+                $arrPhotos = array_fill(0, $numPhotos, 0);
+                $useCache = true;
+            }
+        }
+    }
+
+    if ( !$useCache ) {
+        $refreshcache = true;
+    }
+
+    // Logged in users don't use the cache
+    if ($gallery->user->isLoggedIn()) {
+        debugMessage(_("Logged In - Disabling Cache"), __FILE__, __LINE__);
+        $refreshcache = false;
+        $useCache = false;
+    }
 }
 
-if ( !isset($refreshcache) &&
-	!isset($period) &&
-	!isset($album)  &&
-	$cache->enabled ) {
-	if (fs_file_exists($cacheFilename)) {
-		$cacheState = fs_stat($cacheFilename);
-		$cacheTime = $cacheState[9];
-		if ( $cache->expireSecs == -1 ||
-		time() - $cacheTime < $cache->expireSecs) {
-			if ( $debug > 1 ) {
-				echo sprintf (_("Time now = %s ; Cache time = %s"), time(), $cacheTime). "<br>";
-			}
-			$numPhotos = readCacheNumPhotos($cacheFilename);
-			if ( $numPhotos != -1 ) {
-				$arrPhotos = array_fill(0, $numPhotos, 0);
-				$useCache = true;
-			}
-		}
-	}
-
-	if ( !$useCache ) {
-		$refreshcache = true;
-	}
-
-	// Logged in users don't use the cache
-	if ($gallery->user->isLoggedIn()) {
-		if ($debug > 1) {
-			echo _("Logged In - Disabling Cache") . "<br>";
-		}
-		$refreshcache = false;
-		$useCache = false;
-	}
-}
-
-if ( $debug > 1 ) {
-	if ( $useCache ) {
-		echo _("Using cache") . "<br>";
-	}
-	else {
-		echo _("Not using cache"). "<br>";
-	}
-	if ( !empty($refreshcache) ) {
-		echo _("Cache to be rebuilt"). "<br>";
-	}
-}
+debugMessage((!empty($useCache)) ? _("Using cache") : _("Not using cache") ,__FILE__, __LINE__);
+debugMessage((!empty($refreshcache)) ? _("Cache to be rebuilt") : _("Cache will not rebuild.") , __FILE__, __LINE__);
 
 // Check if photo data will be loaded from the caches.
 // If it isn't, then load the photos data and sort.
-if ( !$useCache ) {
-	if ( isset($period ) ) {
-		$cutoffDate = strftime("%Y") * 12 + strftime("%m") - $period;
-	}
-	else {
-		$cutoffDate = 0;
-	}
+if (empty($useCache)) {
+    if (!empty($period )) {
+        $cutoffDate = strftime("%Y") * 12 + strftime("%m") - $period;
+    }
+    else {
+        $cutoffDate = 0;
+    }
 
-	if ( $type == "random" ) {
-		// Seed the random number generator.
-		srand((double)microtime()*1000000);
-	}
+    if ( $type == "random" ) {
+        // Seed the random number generator.
+        srand((double)microtime()*1000000);
+    }
 
-	for ($i = 0; $i<$numAlbums; $i++) {
-		$statsAlbum = $list[$i];
-		if ($statsAlbum->versionOutOfDate()) {
-			if ( $debug >= 2 ) {
-				echo _("Version out of date.") ."<br>";
-			}
-			$skip[] = $statsAlbum;
-			continue;
-		}
+    for ($i = 0; $i<$numAlbums; $i++) {
+        debugMessage("<hr>", __FILE__, __LINE__);
+        $statsAlbum = $list[$i];
+        //		print_r($statsAlbum);
+        if ($statsAlbum->versionOutOfDate()) {
+            debugMessage(_("Version out of date."), __FILE__, __LINE__, 2);
+            $skip[] = $statsAlbum;
+            continue;
+        }
 
-		/* broken when showNestedAlbums = 1 */
-		if (isset($album)) {
-			if (isset($showNestedAlbums)) {
-				// Need to show nested images inside the requested album.
-				if (in_array($album, getParentAlbums($statsAlbum))) {
-					// Check if this album is the parent
-					if ( $album == $statsAlbum->fields['name']) {
-						$albumobj = $statsAlbum;
-					}
-				}
-				else {
-					// Ignore albums that are not within the specified $album
-					continue;
-				}
-			}
-			else {
-				if ( $album == $statsAlbum->fields['name']) {
-					$albumobj = $statsAlbum;
-				}
-				else {
-					continue;
-				}
-			}
-		}
+        /* broken when showNestedAlbums = 1 */
+        if (isset($album)) {
+            if (isset($showNestedAlbums)) {
+                // Need to show nested images inside the requested album.
+                if (in_array($album, getParentAlbums($statsAlbum))) {
+                    // Check if this album is the parent
+                    if ( $album == $statsAlbum->fields['name']) {
+                        $albumobj = $statsAlbum;
+                    }
+                }
+                else {
+                    // Ignore albums that are not within the specified $album
+                    continue;
+                }
+            }
+            else {
+                if ( $album == $statsAlbum->fields['name']) {
+                    $albumobj = $statsAlbum;
+                }
+                else {
+                    continue;
+                }
+            }
+        }
 
-		$uid = $gallery->user->getUid();
-		if ($statsAlbum->canRead($uid) || $gallery->user->isAdmin() || $statsAlbum->isOwner($uid))  {
-			if ( $debug ) {
-				echo sprintf (_("Checking album: %s"), $statsAlbum->fields['name']) ."<br>";
-			}
+        $uid = $gallery->user->getUid();
+        if ($statsAlbum->canRead($uid) || $gallery->user->isAdmin() || $statsAlbum->isOwner($uid))  {
+            debugMessage(sprintf (_("Checking album: %s"), $statsAlbum->fields['name']), __FILE__, __LINE__);
 
-			// Haplo code to make sense of the Gallery rankings.
-			/*
-			if ( isset($showRatings) || $type == "ratings" ) {
-				$ratingAverageList = getRatingAverage();
-			}
-			*/
-			$numPhotos = $statsAlbum->numPhotos(1);
-			for ($j = 1; $j <= $numPhotos; $j++) {
-				if ( $debug > 1 ) {
-					echo sprintf (_("Reading info for photo index = %d , id = %d"), $j, $statsAlbum->getPhotoId($j)). "<br>";
-				}
+            // Haplo code to make sense of the Gallery rankings.
+            /*
+            if ( isset($showRatings) || $type == "ratings" ) {
+            $ratingAverageList = getRatingAverage();
+            }
+            */
+            $numPhotos = $statsAlbum->numPhotos(1);
+            for ($j = 1; $j <= $numPhotos; $j++) {
+                debugMessage(sprintf (_("Reading info for photo index = %d , id = %d"), $j, $statsAlbum->getPhotoId($j)), __FILE__, __LINE__, 2);
 
-				if (! $statsAlbum->isAlbum($j) &&
-				(!$statsAlbum->isHidden($j) || $gallery->user->isAdmin())) {
-					$uploaddate = $statsAlbum->getUploadDate($j);
+                if (! $statsAlbum->isAlbum($j) && (!$statsAlbum->isHidden($j) || $gallery->user->isAdmin())) {
+                    $uploaddate = $statsAlbum->getUploadDate($j);
 
-					if ( strftime("%Y",$uploaddate ) * 12 + strftime("%m",$uploaddate) >= $cutoffDate ) {
-						// If displaying latest comments,
-						// then only list photos with comments;
-						// otherwise display all.
-						if ( $type != "comments" ||
-						( $statsAlbum->numComments($j) > 0 &&
-						$statsAlbum->canViewComments($uid) )) {
-							if ( isset($showVotes) || $type == "votes" ) {
-								if ( $debug > 2 ) {
-									echo _("Getting SVotes") ."<br>";
-								}
-								$votes = $statsAlbum->getItemSVotes($j);
-							} else {
-								$votes ="";
-							}
+                    if ( strftime("%Y",$uploaddate ) * 12 + strftime("%m",$uploaddate) >= $cutoffDate ) {
+                        // If displaying latest comments,
+                        // then only list photos with comments;
+                        // otherwise display all.
+                        if ( $type != "comments" || ( $statsAlbum->numComments($j) > 0 && $statsAlbum->canViewComments($uid) )) {
+                            if ( isset($showVotes) || $type == "votes" ) {
+                                debugMessage(_("Getting SVotes"), __FILE__, __LINE__, 2);
+                                $votes = $statsAlbum->getItemSVotes($j);
+                            } else {
+                                $votes = '';
+                            }
 
-							if ( $debug > 2 ) {
-								echo _("Getting Item Clicks") ."<br>";
-							}
-							$views = $statsAlbum->getItemClicks($j);
+                            debugMessage(_("Getting Item Clicks"), __FILE__, __LINE__, 2);
+                            $views = $statsAlbum->getItemClicks($j);
 
-							if ( $debug > 2 ) {
-								echo _("Getting Item Capture Date") ."<br>";
-							}
-							$captureDate = $statsAlbum->getItemCaptureDate($j);
+                            debugMessage(_("Getting Item Capture Date"), __FILE__, __LINE__, 2);
+                            $captureDate = $statsAlbum->getItemCaptureDate($j);
 
-							// If the user wants stats for a capture date of a
-							// specific year, month or day then filter out any images
-							// that do not match.
-							if ( !empty($timeYear) && $timeYear != strftime("%Y",$captureDate)) {
-								continue;
-							}
-							
-							if ( !empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
-								continue;
-							}
-							
-							if ( !empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
-								continue;
-							}
+                            // If the user wants stats for a capture date of a
+                            // specific year, month or day then filter out any images
+                            // that do not match.
+                            if ( !empty($timeYear) && $timeYear != strftime("%Y",$captureDate)) {
+                                continue;
+                            }
 
-							if ( $debug > 2 ) {
-								echo _("Getting Number of Comments"). "<br>";
-							}
-							if ( $statsAlbum->numComments($j) > 0 )  {
-								if ( $debug > 2 ) {
-									echo _("Getting Comments") ."<br>";
-								}
-								$comment = $statsAlbum->getComment( $j, $statsAlbum->numComments($j) );
-								$commentDate = $comment->datePosted;
-							}
-							else {
-								$commentDate = 0;
-							}
-							/*
-							if ( isset($showRatings) || $type == "ratings" ) {
-								if ( $debug > 2 ) {
-									echo _("Getting Ratings"). "<br>";
-								}
+                            if ( !empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
+                                continue;
+                            }
 
-								if (!empty($ratingAverageList[$j])) {
-									$ratingCount = $ratingAverageList[$j]['count'];
-									if ( $ratingAverageList[$j]['average'] != 0 ) {
-										// Only show rating when sufficient votes have been cast.
-										if ($ratingAverageList[$j]['count'] >= $votesNeededToShowRating ) {
-											$rating = $ratingAverageList[$j]['average'];
-										}
-										else {
-											$rating = -1;
-										}
-									}
-									else {
-										$rating = -2;
-									}
-								}
-							}
-							*/
+                            if ( !empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
+                                continue;
+                            }
 
-							if ( $type == "random" ) {
-								$randomNum = rand();
-							}
 
-							$arrPhotos[] = array("albumName" => $statsAlbum->fields['name'],
-							"photoId" => $statsAlbum->getPhotoId($j),
-							"votes" => $votes,
-							"views" => $views,
-							"uploaddate" => $uploaddate,
-							"capturedate" => $captureDate,
-							"commentdate" => $commentDate,
-							"rating" => $rating,
-							"ratingcount" => $ratingCount,
-							"random" => $randomNum );
-							if ( $debug > 1 ) {
-								echo sprintf (_("Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"). "<br>",
-								$statsAlbum->fields['name'], $j, $votes, $views, $uploaddate, $captureDate, $commentDate, $rating, $ratingCount, $randomNum);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+                            debugMessage(_("Getting Number of Comments"), __FILE__, __LINE__, 2);
+                            if ( $statsAlbum->numComments($j) > 0 )  {
+                                debugMessage(_("Getting Comments"), __FILE__, __LINE__, 2);
+                                $comment = $statsAlbum->getComment( $j, $statsAlbum->numComments($j) );
+                                $commentDate = $comment->datePosted;
+                            }
+                            else {
+                                $commentDate = 0;
+                            }
+                            /*
+                            if ( isset($showRatings) || $type == "ratings" ) {
+                            debugMessage(_("Getting Ratings"), __FILE__, __LINE__, 2);
 
-	if ( is_array($arrPhotos) ) {
-		// Set what is returned from the sort comparisons depending
-		// upon whether the user wants to reverse the sort order or not.
-		if ( $reverseOrder ) {
-			$retSortGreater = 1;
-			$retSortLesser  = -1;
-		}
-		else {
-			$retSortGreater = -1;
-			$retSortLesser  = 1;
-		}
+                            if (!empty($ratingAverageList[$j])) {
+                            $ratingCount = $ratingAverageList[$j]['count'];
+                            if ( $ratingAverageList[$j]['average'] != 0 ) {
+                            // Only show rating when sufficient votes have been cast.
+                            if ($ratingAverageList[$j]['count'] >= $votesNeededToShowRating ) {
+                            $rating = $ratingAverageList[$j]['average'];
+                            }
+                            else {
+                            $rating = -1;
+                            }
+                            }
+                            else {
+                            $rating = -2;
+                            }
+                            }
+                            }
+                            */
 
-		// Now do the search using the criteria specified by $type.
-		if ( $type == "votes" ) {
-			usort($arrPhotos, "votesort");
-		}
-		else if ( $type == "views" ) {
-			usort($arrPhotos, "viewsort");
-		}
-		else if ( $type == "date" ) {
-			usort($arrPhotos, "datesort");
-		}
-		else if ( $type == "cdate" ) {
-			usort($arrPhotos, "capturedatesort");
-		}
-		else if ( $type == "comments" ) {
-			usort($arrPhotos, "commentdatesort");
-		}
-		else if ( $type == "ratings" ) {
-			usort($arrPhotos, "ratingsort");
-		}
-		else if ( $type == "random" ) {
-			usort($arrPhotos, "randomsort");
-		}
-	}
+                            if ( $type == "random" ) {
+                                $randomNum = rand();
+                            }
+
+                            $arrPhotos[] = array("albumName" => $statsAlbum->fields['name'],
+                                "photoId" => $statsAlbum->getPhotoId($j),
+                                "votes" => $votes,
+                                "views" => $views,
+                                "uploaddate" => $uploaddate,
+                                "capturedate" => $captureDate,
+                                "commentdate" => $commentDate,
+                                "rating" => $rating,
+                                "ratingcount" => $ratingCount,
+                                "random" => $randomNum );
+                            debugMessage(sprintf (_("Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"). "<br>",
+                                $statsAlbum->fields['name'], $j, $votes, $views, $uploaddate, $captureDate, $commentDate, $rating, $ratingCount, $randomNum) 
+				, __FILE__, __LINE__, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    $order = ($reverse) ? -1 : 1;
+    if ( is_array($arrPhotos) ) {
+        // Do the search using the criteria specified by $type.
+	switch ($type) {
+	    case 'votes':
+	        array_sort_by_fields($arrPhotos, 'votes', $order);
+		break;
+	    case 'views':
+	        array_sort_by_fields($arrPhotos, 'views', $order);
+		break;
+	    case 'date':
+	        array_sort_by_fields($arrPhotos, 'uploaddate', $order);
+		break;
+	    case 'cdate':
+	        array_sort_by_fields($arrPhotos, 'capturedate', $order);
+		break;
+	    case 'comments':
+	        array_sort_by_fields($arrPhotos, 'commentdate', $order);
+		break;
+	    case 'ratings':
+	        array_sort_by_fields($arrPhotos, 'rating', $order);
+		break;
+	    case 'random':
+	        array_sort_by_fields($arrPhotos, 'random', $order);
+		break;
+        }
+    }
 }
 
 if ( !empty($refreshcache) &&
     !isset($period) &&
     !isset($album) &&
     is_array($arrPhotos)) {
-	writeCache($cacheFilename);
+    writeCache($cacheFilename);
 }
 
 $uid = $gallery->user->getUid();
 if (empty($page) && empty($set_albumListPage)) {
-	$page = 1;
+    $page = 1;
 } elseif (!empty($set_albumListPage)) {
-	$page = $set_albumListPage;
+    $page = $set_albumListPage;
 }
 
 if (!isset($totalPhotosToDisplay) || $totalPhotosToDisplay <= 0 || $totalPhotosToDisplay > sizeof($arrPhotos)) {
-	$totalPhotosToDisplay = sizeof($arrPhotos);
+    $totalPhotosToDisplay = sizeof($arrPhotos);
 }
 
 if (!isset($photosPerPage)) {
-	$photosPerPage = $totalPhotosToDisplay;
+    $photosPerPage = $totalPhotosToDisplay;
 }
 
 $totalPhotosReq = $totalPhotosToDisplay;
@@ -523,94 +549,15 @@ $startPhoto = ($page - 1) * $photosPerPage;
 
 // Use fuz factor to avoid rounding up when result is 0.5
 $lastpage = round( ($totalPhotosToDisplay / $photosPerPage) - 0.500001) + 1;
-if ($debug) {
-	echo sprintf(_("Total: %s ; Start: %s ; Last Page: %s"), $totalPhotosToDisplay, $startPhoto, $lastpage) . "<br>";
-}
+debugMessage(sprintf(_("Total: %s ; Start: %s ; Last Page: %s"), $totalPhotosToDisplay, $startPhoto, $lastpage), __FILE__, __LINE__);
 
 $borderColor = $gallery->app->default["bordercolor"];
 if ( isset($tsz) ) {
-	$thumbSize = $tsz;
+    $thumbSize = $tsz;
 }
 else {
-	$thumbSize = $gallery->app->default["thumb_size"];
+    $thumbSize = $gallery->app->default["thumb_size"];
 }
-
-switch ($type) {
-	case 'votes':
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Images with the most votes");
-	}
-	else {
-		$stats_title =  _(" - Images with the least votes");
-	}
-	break;
-
-	case 'ratings':
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Top rated images");
-	}
-	else {
-		$stats_title =  _(" - Bottom rated images");
-	}
-	break;
-
-	case 'date':
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Latest added images");
-	}
-	else {
-		$stats_title =  _(" - Oldest images first");
-	}
-	break;
-
-	case 'cdate':
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Latest Capture Date");
-	}
-	else {
-		$stats_title =  _(" - Oldest Capture Date");
-	}
-	break;
-
-	case 'comments':
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Latest Comments");
-	}
-	else {
-		$stats_title =  _(" - Oldest Comments");
-	}
-	break;
-
-	case 'random':
-		$stats_title =  _(" - Random Images");
-	break;
-
-	default:
-	// 'views'
-	if ( !$reverseOrder ) {
-		$stats_title =  _(" - Images with the most views");
-	}
-	else {
-		$stats_title =  _(" - Images with the least views");
-	}
-	break;
-}
-
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-  <title><?php echo $gallery->app->galleryTitle . $stats_title; ?></title>
-<?php
-	common_header() ;
-?>
-</head>
-   <body dir="<?php echo $gallery->direction ?>">
-<?php
-}
-?>
-<?php 
 
 // <!-- stats.header begin -->
 includeHtmlWrap("stats.header");
@@ -621,34 +568,34 @@ $navigator["widthUnits"] = "%";
 $adminText = "";
 
 if (isset($album)) {
-	if (isset($albumobj)) {
-		if ( $type == "comments" ) {
-			$adminText .= sprintf(_("%d images with comments in album: %s"), count($arrPhotos), $albumLink);
-		} else {
-			$adminText .= sprintf(_("%d images in album: %s"), count($arrPhotos), $albumLink);
-		}
-	} else {
-		$adminText .= sprintf(_("Given albumname: '%s' is invalid !"), $album);
-	}
+    if (isset($albumobj)) {
+        if ( $type == "comments" ) {
+            $adminText .= sprintf(_("%d images with comments in album: %s"), count($arrPhotos), $albumLink);
+        } else {
+            $adminText .= sprintf(_("%d images in album: %s"), count($arrPhotos), $albumLink);
+        }
+    } else {
+        $adminText .= sprintf(_("Given albumname: '%s' is invalid !"), $album);
+    }
 }
 else {
-	if ( $type == "comments" ) {
-		$adminText .= sprintf(_("%d images with comments in this Gallery"), count($arrPhotos));
-	}
-	else {
-		$adminText .= sprintf(_("%d images this Gallery"), count($arrPhotos));
-	}
+    if ( $type == "comments" ) {
+        $adminText .= sprintf(_("%d images with comments in this Gallery"), count($arrPhotos));
+    }
+    else {
+        $adminText .= sprintf(_("%d images this Gallery"), count($arrPhotos));
+    }
 }
 
 $adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
-	$adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
+    $adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
 }
 $adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>]';
 
 
 if (!empty($gallery->app->stats_foruser)) {
-	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
+    $adminText .= "\n<br>&nbsp;". generateStatsLinks();
 }
 
 $adminbox['text'] = $adminText;
@@ -674,132 +621,109 @@ echo languageSelector();
 echo "<!-- End top nav -->";
 
 if ( $useCache ) {
-	readCache($cacheFilename, $startPhoto, $photosPerPage );
+    readCache($cacheFilename, $startPhoto, $photosPerPage );
 }
 if (isset($stm)) {
-	$time = getmicrotime() - $time_start;
-	echo sprintf(_("Data load time %d seconds"), $time);
+    $time = getmicrotime() - $time_start;
+    echo sprintf(_("Data load time %d seconds"), $time);
 }
 
-	/* Start of album layout style. */
-	echo '<table width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" border="0" cellspacing="7">';
+/* Start of album layout style. */
 
-	for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; $j+=1) {
-		$photoInfo = $arrPhotos[$j];
-		for ( $i = 0; $i < $numAlbums; ++$i ) {
-			if ( !strcmp($photoInfo['albumName'], $list[$i]->fields['name']) ) {
-				$statsAlbum = $list[$i];
-				break;
-			}
-		}
-
-		if (!isset($statsAlbum)) {
-			// Album deleted.
-			$cacheReloadRequired = true;
-		}
-		else {
-			$photoId = $photoInfo['photoId'];
-			$photoIndex = $statsAlbum->getPhotoIndex($photoId);
-			if ( $photoIndex == -1 ) {
-				$cacheReloadRequired = true;
-			}
-			else {
-				if ($statsAlbum->canRead($uid) || $gallery->user->isAdmin()) {
-					if (!$statsAlbum->isHidden($photoIndex) ||
-					$statsAlbum->isOwner($uid) ||
-					$gallery->user->isAdmin()) {
-						$statsCaption = $statsAlbum->getCaption($photoIndex);
-						$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
-						$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
-?>
-                     <!-- Begin Album Column Block -->
-                     <tr>
-                        <td height="10"><?php echo $pixelImage ?></td>
-                        <td height="10"><?php echo $pixelImage ?></td>
-                     </tr>
-                     <tr>
-                        <!-- Begin Image Cell -->
-                        <td align="center" valign="top">
-
-<?php
-$gallery->html_wrap['borderColor'] = $borderColor;
-$gallery->html_wrap['borderWidth'] = 1;
-$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
-$scaleTo = $gallery->app->highlight_size;
-$iWidth = $gallery->app->highlight_size;
-$iHeight = 100;
-/*begin backwards compatibility */
-$gallery->html_wrap['thumbWidth'] = $iWidth;
-$gallery->html_wrap['thumbHeight'] = $iHeight;
-$gallery->html_wrap['thumbTag'] = $statsAlbum->getThumbnailTag($photoIndex, $thumbSize);
-$gallery->html_wrap['thumbHref'] = $statsUrl;
-/*end backwards compatibility*/
-$gallery->html_wrap['imageTag'] =  $statsAlbum->getThumbnailTag($photoIndex, $thumbSize);
-
-// Added for Gallery 1.44
-$imgTag = $gallery->html_wrap['imageTag'];
-$gallery->html_wrap['imageWidth']  = getWidthFromTag($imgTag);
-$gallery->html_wrap['imageHeight'] = getHeightFromTag($imgTag);
-
-$gallery->html_wrap['imageHref'] = $statsUrl;
-$gallery->html_wrap['frame'] = $statsAlbum->fields['thumb_frame'];
-includeHtmlWrap('inline_gallerythumb.frame');
-?>
-                        </td>
-                        <td>&nbsp;</td>
-                        <!-- End Image Cell -->
-
-<?php
-displayTextCell($statsAlbum, $photoIndex, $photoId, $photoInfo['rating'], $photoInfo['ratingcount'] );
-?>
-
-                     </tr>
-<?php
-					}
-				}
-			}
-		}
-	}
-
-	echo "</table>";
-
-if (isset($stm)) {
-	$time = getmicrotime() - $time_start;
-	echo sprintf (_("Finished in %d seconds"), $time). "\n";
+if (empty($showGrid)) {
+    $cols = 1;
+    $style = 'style="margin-right:3px; float:left"';
+} else {
+    $style = '';
 }
+
+echo '<br clear="all">';
+
+$statsTable = new galleryTable();
+$statsTable->setColumnCount(2 * $cols);
+$statsTable->setAttrs(array(
+    'id' => 'statsTable',
+    'width' => $navigator["fullWidth"] . $navigator["widthUnits"],
+    'border' => 0,
+    'cellspacing' => 7));
+
+for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; $j+=1) {
+    $photoInfo = $arrPhotos[$j];
+    for ( $i = 0; $i < $numAlbums; ++$i ) {
+        if ( !strcmp($photoInfo['albumName'], $list[$i]->fields['name']) ) {
+            $statsAlbum = $list[$i];
+            break;
+        }
+    }
+
+    if (!isset($statsAlbum)) {
+        // Album deleted.
+        $cacheReloadRequired = true;
+    }
+    else {
+        $photoId = $photoInfo['photoId'];
+        $photoIndex = $statsAlbum->getPhotoIndex($photoId);
+        if ( $photoIndex == -1 ) {
+            $cacheReloadRequired = true;
+        }
+        else {
+            if ($statsAlbum->canRead($uid) || $gallery->user->isAdmin()) {
+                if (!$statsAlbum->isHidden($photoIndex) || $statsAlbum->isOwner($uid) || $gallery->user->isAdmin()) {
+                    $statsCaption = $statsAlbum->getCaption($photoIndex);
+                    $statsCaption .= $statsAlbum->getCaptionName($photoIndex);
+                    $statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
+
+                    // Image Cell
+                    $statsTable->addElement(array(
+                        'content' => "<a href=\"$statsUrl\">". $statsAlbum->getThumbnailTag($photoIndex, $thumbSize) . "</a>",
+                        'cellArgs' => array('align' => 'center', 'valign' => 'top')));
+
+                    //  Text Cell -->
+                    $statsTable->addElement(array(
+                    'content' => displayTextCell($statsAlbum, $photoIndex, $photoId, $photoInfo['rating'], $photoInfo['ratingcount']),
+                    'cellArgs' => array('align' => 'left', 'valign' => 'top', 'class' => 'albumdesc')));
+                }
+            }
+        }
+    }
+}
+
+echo $statsTable->render();
+
+$time = getmicrotime() - $time_start;
+echo infoLine(sprintf (_("Finished in %d seconds"), $time), 'success1');
 
 if ($cacheReloadRequired) {
-	$url = makeStatsUrl( $page );
-	$url .= "&refreshcache=1";
-	$urlhref = '<a href="'. $url .'">['. _("Update") .']</a>';
-	echo gallery_error(_("Cache update required. ").$urlhref);
+    $url = makeStatsUrl( $page );
+    $url .= "&refreshcache=1";
+    $urlhref = '<a href="'. $url .'">['. _("Update") .']</a>';
+    echo gallery_error(_("Cache update required. ").$urlhref);
 }
 
 if (sizeof($skip) > 0) {
-	echo gallery_error(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first"),Gallery()));
-	if ($gallery->user->isAdmin()) {
-		print ":<br>";
-		echo popup_link(_("upgrade all albums"), "upgrade_album.php");
-		print "<br>(";
-		$join_text='';
-		foreach($skip as $stalbum) {
-			$link = makeGalleryUrl("view_album.php",
-			array("set_albumName" => $stalbum->fields["name"]));
-			echo $join_text .'<a href="'. $link .'">'. $stalbum->fields["name"] .'</a>';
-			$join_text=", ";
-		}
-		print ")";
-	}
-	else {
-		print ".";
-	}
-	echo "<p>";
+    echo gallery_error(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first"),Gallery()));
+    if ($gallery->user->isAdmin()) {
+        print ":<br>";
+        echo popup_link(_("upgrade all albums"), "upgrade_album.php");
+        print "<br>(";
+        $join_text='';
+        foreach($skip as $stalbum) {
+            $link = makeGalleryUrl("view_album.php",
+            array("set_albumName" => $stalbum->fields["name"]));
+            echo $join_text .'<a href="'. $link .'">'. $stalbum->fields["name"] .'</a>';
+            $join_text=", ";
+        }
+        print ")";
+    }
+    else {
+        print ".";
+    }
+    echo "<p>";
 }
 echo "<br>";
-?>
 
-<!-- bottom nav -->
-<?php
+// <!-- bottom nav -->
+
 includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
 includeLayout('navtableend.inc');
@@ -817,600 +741,459 @@ if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 */
 
 function getmicrotime() {
-	list($usec, $sec) = explode(" ", microtime());
-	return ((float)$usec + (float)$sec);
+    list($usec, $sec) = explode(" ", microtime());
+    return ((float)$usec + (float)$sec);
 }
 
 function recurseAlbums( $parentAlbum) {
-	global $debug, $list, $gallery;
-	if ($parentAlbum) {
-		if ( $debug >= 2 ) {
-			echo sprintf(_("Recursing album: %s"),  $parentAlbum->fields['name']) ."<br>";
-		}
+    global $list, $gallery;
+    if ($parentAlbum) {
+        debugMessage(sprintf(_("Recursing album: %s"),  $parentAlbum->fields['name']),__FILE__, __LINE__, 2);
 
-		$numPhotos = $parentAlbum->numPhotos(1);
-		for ($j = 1; $j <= $numPhotos; $j++) {
-			if ($parentAlbum->isAlbum($j) &&
-			(!$parentAlbum->isHidden($j) || $gallery->user->isAdmin()) ) {
-				$childAlbumName = $parentAlbum->getAlbumName($j);
-				$childAlbum = new Album();
-				$childAlbum->load($childAlbumName);
-				$list[] = $childAlbum;
-				recurseAlbums($childAlbum);
-			}
-		}
-	}
+        $numPhotos = $parentAlbum->numPhotos(1);
+        for ($j = 1; $j <= $numPhotos; $j++) {
+            if ($parentAlbum->isAlbum($j) &&
+            (!$parentAlbum->isHidden($j) || $gallery->user->isAdmin()) ) {
+                $childAlbumName = $parentAlbum->getAlbumName($j);
+                $childAlbum = new Album();
+                $childAlbum->load($childAlbumName);
+                $list[] = $childAlbum;
+                recurseAlbums($childAlbum);
+            }
+        }
+    }
 }
 
 function myFlock($fd, $op) {
-	global $gallery;
-	if (!strcmp($gallery->app->use_flock, "yes")) {
-		$res = flock($fd, $op);
-	}
-	else {
-		$res = 1;
-	}
+    global $gallery;
+    if (!strcmp($gallery->app->use_flock, "yes")) {
+        $res = flock($fd, $op);
+    }
+    else {
+        $res = 1;
+    }
 
-	return $res;
+    return $res;
 }
 
 function readCacheNumPhotos( $cacheFilename ) {
-	global $debug;
+    $numPhotos = -1;
+    if ($fd = fs_fopen($cacheFilename, "rb")) {
+        if (myFlock($fd, LOCK_SH)) {
+            $numPhotos = fgets($fd);
+            myFlock($fd, LOCK_UN);
+        }
+        else {
+            debugMessage(_("Read cache num photos lock failed."), __FILE__, __LINE__, 2);
+        }
+        fclose($fd);
+    }
 
-	$numPhotos = -1;
-	if ($fd = fs_fopen($cacheFilename, "rb")) {
-		if (myFlock($fd, LOCK_SH)) {
-			$numPhotos = fgets($fd);
-			myFlock($fd, LOCK_UN);
-		}
-		else {
-			if ( $debug > 1 ) {
-				echo _("Read cache num photos lock failed.") ."<br>";
-			}
-		}
-		fclose($fd);
-	}
-
-	return $numPhotos;
+    return $numPhotos;
 }
 
 function readCache( $cacheFilename, $start, $numPhotos ) {
-	global $arrPhotos, $debug;
+    global $arrPhotos;
 
-	$size = filesize($cacheFilename) + 1;
-	if ($fd = fs_fopen($cacheFilename, "rb")) {
-		if (myFlock($fd, LOCK_SH)) {
-			fgets($fd);
-			$posIndex = fgets($fd);
-			$posData = ftell($fd);
-			fseek( $fd, $posIndex + ($start * (CACHE_INDEX_FIELD_WIDTH + 1)), SEEK_CUR );
-			$index = fgets($fd);
-			fseek( $fd, $posData + $index );
+    $size = filesize($cacheFilename) + 1;
+    if ($fd = fs_fopen($cacheFilename, "rb")) {
+        if (myFlock($fd, LOCK_SH)) {
+            fgets($fd);
+            $posIndex = fgets($fd);
+            $posData = ftell($fd);
+            fseek( $fd, $posIndex + ($start * (CACHE_INDEX_FIELD_WIDTH + 1)), SEEK_CUR );
+            $index = fgets($fd);
+            fseek( $fd, $posData + $index );
 
-			for ( $i = 0; $i < $numPhotos; ++$i ) {
-				$data = fgetcsv($fd,$size,'|');
-				if ( $data ) {
-					if ( $debug > 1 ) {
-						echo sprintf(_("Album name : %s ; index: %s"), $data[0], $data[1]) ."<br>";
-					}
-					$arrPhotos[$start+$i] = array("albumName" => $data[0],
-					"photoId" => $data[1],
-					"rating" => $data[2],
-					"ratingcount" => $data[3] );
-				}
-			}
-			myFlock($fd, LOCK_UN);
-		}
-		else {
-			if ( $debug > 1 ) {
-				echo _("Read cache lock failed."). "<br>";
-			}
-		}
-		fclose($fd);
-	}
+            for ( $i = 0; $i < $numPhotos; ++$i ) {
+                $data = fgetcsv($fd,$size,'|');
+                if ( $data ) {
+                    debugMessage(sprintf(_("Album name : %s ; index: %s"), $data[0], $data[1]), __FILE__, __LINE__, 1);
+
+                    $arrPhotos[$start+$i] = array("albumName" => $data[0],
+			'photoId' => $data[1],
+			'rating' => $data[2],
+                        'ratingcount' => $data[3] );
+                }
+            }
+            myFlock($fd, LOCK_UN);
+        }
+        else {
+            debugMessage(_("Read cache lock failed."), __FILE__, __LINE__, 2);
+        }
+        fclose($fd);
+    }
 }
 
 function writeCache( $cacheFilename ) {
-	global $arrPhotos;
+    global $arrPhotos;
 
-	if ($fd = fs_fopen($cacheFilename, "wb")) {
-		if (myFlock($fd, LOCK_EX)) {
-			// Write the number of photos on the first line of the cache.
-			fwrite( $fd, sizeof($arrPhotos));
-			fwrite( $fd, "\n" );
+    if ($fd = fs_fopen($cacheFilename, "wb")) {
+        if (myFlock($fd, LOCK_EX)) {
+            // Write the number of photos on the first line of the cache.
+            fwrite( $fd, sizeof($arrPhotos));
+            fwrite( $fd, "\n" );
 
-			// Write a blank line to the cache. This will eventually be used to store a pointer to the index.
-			$fileSecondLine = ftell($fd);
-			$filepos = 0;
-			fwrite( $fd, sprintf("%".CACHE_INDEX_FIELD_WIDTH."d\n",$filepos));
-			$index = "";
+            // Write a blank line to the cache. This will eventually be used to store a pointer to the index.
+            $fileSecondLine = ftell($fd);
+            $filepos = 0;
+            fwrite( $fd, sprintf("%".CACHE_INDEX_FIELD_WIDTH."d\n",$filepos));
+            $index = "";
 
-			// Write data that is required to be cached.
-			for ($i = 0; $i < sizeof($arrPhotos); ++$i ) {
-				$photoInfo = $arrPhotos[$i];
-				$lineout = $photoInfo['albumName']. "|". $photoInfo['photoId']. "|". $photoInfo['rating']. "|". $photoInfo['ratingcount']."\n";
-				fwrite( $fd, $lineout);
-				$index = $index . sprintf("%".CACHE_INDEX_FIELD_WIDTH."d" ,$filepos) . "\n";
-				$filepos += strlen($lineout);
-			}
+            // Write data that is required to be cached.
+            for ($i = 0; $i < sizeof($arrPhotos); ++$i ) {
+                $photoInfo = $arrPhotos[$i];
+                $lineout = $photoInfo['albumName']. "|". $photoInfo['photoId']. "|". $photoInfo['rating']. "|". $photoInfo['ratingcount']."\n";
+                fwrite( $fd, $lineout);
+                $index = $index . sprintf("%".CACHE_INDEX_FIELD_WIDTH."d" ,$filepos) . "\n";
+                $filepos += strlen($lineout);
+            }
 
-			// Write the index to the end of the cache.
-			fwrite( $fd, $index );
+            // Write the index to the end of the cache.
+            fwrite( $fd, $index );
 
-			// Move back to the second line and write a pointer to the index.
-			fseek( $fd, $fileSecondLine);
-			fwrite( $fd, sprintf("%".CACHE_INDEX_FIELD_WIDTH."d",$filepos));
-			myFlock($fd, LOCK_UN);
-		}
-		else {
-			if ( $debug > 1 ) {
-				echo _("Read cache lock failed.") ."<br>";
-			}
-		}
-		fclose($fd);
-	}
-}
-
-function votesort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-	if ($a['votes'] == $b['votes']) {
-		return 0;
-	}
-	return ($a['votes'] > $b['votes']) ? $retSortGreater : $retSortLesser;
-}
-
-function ratingsort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-	if ($a['rating'] == $b['rating']) {
-		return 0;
-	}
-	return ($a['rating'] > $b['rating']) ? $retSortGreater : $retSortLesser;
-}
-
-function viewsort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-	if ($a['views'] == $b['views']) {
-		return 0;
-	}
-	return ($a['views'] > $b['views']) ? $retSortGreater : $retSortLesser;
-}
-
-function datesort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-	if ($a['uploaddate'] == $b['uploaddate']) {
-		return 0;
-	}
-	return ($a['uploaddate'] > $b['uploaddate']) ? $retSortGreater : $retSortLesser;
-}
-
-function commentdatesort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-	if ($a['commentdate'] == $b['commentdate']) {
-		return 0;
-	}
-	return ($a['commentdate'] > $b['commentdate']) ? $retSortGreater : $retSortLesser;
-}
-
-function capturedatesort($a, $b) {
-	global $retSortGreater, $retSortLesser;
-
-	if($a['capturedate'] == $b['capturedate']) {
-		return 0;
-	}
-
-	return ($a['capturedate'] > $b['capturedate']) ? $retSortGreater : $retSortLesser;
-}
-
-function randomsort($a, $b) {
-	if ($a['random'] == $b['random']) {
-		return 0;
-	}
-	return ($a['random'] > $b['random']) ? -1 : 1;
+            // Move back to the second line and write a pointer to the index.
+            fseek( $fd, $fileSecondLine);
+            fwrite( $fd, sprintf("%".CACHE_INDEX_FIELD_WIDTH."d",$filepos));
+            myFlock($fd, LOCK_UN);
+        }
+        else {
+            debugMessage(_("Read cache lock failed."), __FILE__, __LINE__, 2);
+        }
+        fclose($fd);
+    }
 }
 
 function makeStatsUrl( $urlpage ) {
-	global $type, $period, $album, $thumbSize;
-	global $showCaption, $showAlbumLink, $showDescription;
-	global $showUploadDate, $showViews, $showVotes;
-//	global $showRatings;
-	global $showComments, $showCaptureDate;
-	global $showAddComment, $showAddVote, $showAlbumOwner, $showGrid, $numRows, $numCols;
-	global $photosPerPage, $totalPhotosReq, $reverseOrder;
-	global $timeMonth, $timeYear, $timeDay;
-	$urlParams = array( "type" => $type,
-		"page" => $urlpage,
-		"sca" => $showCaption,
-		"sal" => $showAlbumLink,
-		"sde" => $showDescription,
-		"sud" => $showUploadDate,
-		"svi" => $showViews,
-		"svo" => $showVotes,
-//		"sra" => $showRatings,
-		"sco" => $showComments,
-		"scd" => $showCaptureDate,
-		"sac" => $showAddComment,
-		"sav" => $showAddVote,
-		"sao" => $showAlbumOwner,
-		"sgr" => $showGrid,
-		"rev" => $reverseOrder,
-		"tsz" => $thumbSize,
-		"ppp" => $photosPerPage,
-		"rows" => $numRows,
-		"cols" => $numCols,
-		"total" => $totalPhotosReq);
-	if ( isset($period) ) {
-		$urlParams["period"] = $period;
-	}
-	if ( isset($album) ) {
-		$urlParams["album"] = $album;
-	}
-	if ( isset($timeYear) ) {
-		$urlParams["ty"] = $timeYear;
-	}
-	if ( isset($timeMonth) ) {
-		$urlParams["tm"] = $timeMonth;
-	}
-	if ( isset($timeDay) ) {
-		$urlParams["td"] = $timeDay;
-	}
+    global $type, $period, $album, $thumbSize;
+    global $showCaption, $showAlbumLink, $showDescription;
+    global $showUploadDate, $showViews, $showVotes;
+    //	global $showRatings;
+    global $showComments, $showCaptureDate;
+    global $showAddComment, $showAddVote, $showAlbumOwner, $showGrid, $numRows, $cols;
+    global $photosPerPage, $totalPhotosReq, $reverse;
+    global $timeMonth, $timeYear, $timeDay;
+    $urlParams = array( "type" => $type,
+    "page" => $urlpage,
+    "sca" => $showCaption,
+    "sal" => $showAlbumLink,
+    "sde" => $showDescription,
+    "sud" => $showUploadDate,
+    "svi" => $showViews,
+    "svo" => $showVotes,
+    //		"sra" => $showRatings,
+    "sco" => $showComments,
+    "scd" => $showCaptureDate,
+    "sac" => $showAddComment,
+    "sav" => $showAddVote,
+    "sao" => $showAlbumOwner,
+    "showGrid" => $showGrid,
+    "reverse" => $reverse,
+    "tsz" => $thumbSize,
+    "ppp" => $photosPerPage,
+    "rows" => $numRows,
+    "cols" => $cols,
+    "total" => $totalPhotosReq);
+    if ( isset($period) ) {
+        $urlParams["period"] = $period;
+    }
+    if ( isset($album) ) {
+        $urlParams["album"] = $album;
+    }
+    if ( isset($timeYear) ) {
+        $urlParams["ty"] = $timeYear;
+    }
+    if ( isset($timeMonth) ) {
+        $urlParams["tm"] = $timeMonth;
+    }
+    if ( isset($timeDay) ) {
+        $urlParams["td"] = $timeDay;
+    }
 
-	$msStatsUrl = makeGalleryUrl( "stats.php", $urlParams);
+    $msStatsUrl = makeGalleryUrl( "stats.php", $urlParams);
 
-	return $msStatsUrl;
+    return $msStatsUrl;
 }
 
 // Get rating average value for all pics in statsalbum
 function getRatingAverage() {
-	global $statsAlbum;
-	$results=array();
-	$ratings=array();
-	$results_count=array();
-	$nv_pairs=$statsAlbum->getVoteNVPairs();
-	$voters=array();
-	foreach ($statsAlbum->fields["votes"] as $element => $image_votes) {
-		$accum_votes=0;
-		$count=0;
-		foreach ($image_votes as $voter => $vote_value ) {
-			$voters[$voter]=true;
-			if ($vote_value> $statsAlbum->getPollScale()) { // scale has changed
-				$vote_value=$statsAlbum->getPollScale();
-			}
-			$accum_votes+=$nv_pairs[$vote_value]["value"];
-			$count++;
-		}
-		if ($accum_votes > 0) {
-			$results_count[$element]=$count;
-			if ($statsAlbum->getPollType() == "rank" || $statsAlbum->getPollScale() == 1) {
-				$results[$element]=$accum_votes;
-			}
-			else {
-				$results[$element]=number_format(((double)$accum_votes)/$count, 2);
-			}
-		}
-		else {
-			$results[$element] = 0;
-		}
-		$index = $statsAlbum->getIndexByVotingId($element);
-		$ratings[$index] = array('average' => $results[$element], 'count' => $count);
-	}
-	return $ratings;
+    global $statsAlbum;
+    $results=array();
+    $ratings=array();
+    $results_count=array();
+    $nv_pairs=$statsAlbum->getVoteNVPairs();
+    $voters=array();
+    foreach ($statsAlbum->fields["votes"] as $element => $image_votes) {
+        $accum_votes=0;
+        $count=0;
+        foreach ($image_votes as $voter => $vote_value ) {
+            $voters[$voter]=true;
+            if ($vote_value> $statsAlbum->getPollScale()) { // scale has changed
+            $vote_value=$statsAlbum->getPollScale();
+            }
+            $accum_votes+=$nv_pairs[$vote_value]["value"];
+            $count++;
+        }
+        if ($accum_votes > 0) {
+            $results_count[$element]=$count;
+            if ($statsAlbum->getPollType() == "rank" || $statsAlbum->getPollScale() == 1) {
+                $results[$element]=$accum_votes;
+            }
+            else {
+                $results[$element]=number_format(((double)$accum_votes)/$count, 2);
+            }
+        }
+        else {
+            $results[$element] = 0;
+        }
+        $index = $statsAlbum->getIndexByVotingId($element);
+        $ratings[$index] = array('average' => $results[$element], 'count' => $count);
+    }
+    return $ratings;
 }
 
 // Show the add comment link
 function showAddCommentLink( $photoId ) {
-	global $statsAlbum;
+    global $statsAlbum;
 
-	$url = "add_comment.php?set_albumName={$statsAlbum->fields['name']}&id=$photoId";
-	echo  '<span class="fineprint">' .
-	popup_link('[' . _("add comment") . ']', $url, 0) .
-	"</span>";
+    $url = "add_comment.php?set_albumName={$statsAlbum->fields['name']}&id=$photoId";
+    return '<span class="fineprint">' . popup_link('[' . _("add comment") . ']', $url, 0) . "</span>";
 }
 
 // Show the add vote link
 function showAddVoteLink( $photoId, $page ) {
-	global $statsAlbum;
+    global $statsAlbum;
 
-	$urlargs['set_albumName'] = $statsAlbum->fields['name'];
-	$urlargs['id'] = $photoId;
-	$urlargs['url'] = urlencode(makeStatsUrl( $page ));
-	echo '<span class="fineprint">';
-	echo '<a href="'. makeGalleryUrl("vote.php", $urlargs) . '">';
-	echo "[". _("add vote") ."]";
-	echo "</a></span>";
+    $urlargs['set_albumName'] = $statsAlbum->fields['name'];
+    $urlargs['id'] = $photoId;
+    $urlargs['url'] = urlencode(makeStatsUrl( $page ));
+
+    $addVoteLink = '<span class="fineprint">';
+    $addVoteLink .= '<a href="'. makeGalleryUrl("vote.php", $urlargs) . '">';
+    $addVoteLink .= "[". _("add vote") ."]";
+    $addVoteLink .= "</a></span>";
+
+    return $addVoteLink;
 }
 
+
 function getHeightFromTag($str) {
-	$start = 'height="';
-	$end = '"  border';
-	$lenStr= strpos($str,$end) -strpos($str, $start);
-	return substr(substr($str, strpos($str,$start), $lenStr), 8);
+    $start = 'height="';
+    $end = '"  border';
+    $lenStr= strpos($str,$end) -strpos($str, $start);
+    return substr(substr($str, strpos($str,$start), $lenStr), 8);
 }
 
 function getWidthFromTag($str) {
-	$start = 'width="';
-	$end = '" height="';
-	$lenStr= strpos($str,$end) -strpos($str, $start);
-	return substr(substr($str, strpos($str,$start), $lenStr), 7);
+    $start = 'width="';
+    $end = '" height="';
+    $lenStr= strpos($str,$end) -strpos($str, $start);
+    return substr(substr($str, strpos($str,$start), $lenStr), 7);
+}
+
+function showAddVoteAddCommentLinks($photoId, $page) {
+    global $showAddComment, $showAddVote;
+    $text = '';
+
+    if ($showAddComment || $showAddVote) {
+        $text = '&nbsp;<span class="fineprint">';
+        if ($showAddComment) {
+            $text .= showAddCommentLink($photoId);
+        }
+       if ($showAddVote) {
+            $text .= "&nbsp;";
+            $text .= showAddVoteLink($photoId, $page);
+        }
+        $text .= '</span>';
+    }
+    return $text;
 }
 
 function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcount ) {
-	global $addLinksPos, $showAddComment, $showAddVote, $page, $showAlbumOwner, $showCaptureDate, $showUploadDate;
-	global $showViews, $gallery, $showVotes;
-//	global $showRatings;
-	global $showComments, $newestCommentsFirst;
-	global $showCaption, $showAlbumLink, $showDescription, $showGrid,  $imageCellWidth;
+    global $addLinksPos, $showAddComment, $showAddVote, $page, $showAlbumOwner, $showCaptureDate, $showUploadDate;
+    global $showViews, $gallery, $showVotes;
+    //	global $showRatings;
+    global $showComments, $newestCommentsFirst;
+    global $showCaption, $showAlbumLink, $showDescription, $showGrid;
 
-	if ( $showGrid ) {
-		$statsAlign = "center";
-		$statsWidth = $statsAlbum->fields['thumb_size'];
-	}
-	else {
-		$statsAlign = "left";
-		$statsWidth = "100%";
-	}
-?>
-   <!-- Begin Text Cell -->
-   <td align="<?php echo $statsAlign ?>" valign="top" class="albumdesc">
-<?php
+    $html = '';
 
-if ( $showCaption && !$showGrid ) {
-?>
-         <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title">
-            <tr valign="middle">
-               <td class="leftspacer">
-                  <td>
-                     <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
-                        <tr valign="middle">
-                           <td class="mod_title_left" align="right"></td>
-                           <td class="title" align="left">
-<?php
-	$statsCaption = $statsAlbum->getCaption($photoIndex);
-	$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
-	$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
-	echo '<a href="'. $statsUrl .'">'. $statsCaption .'</a>&nbsp;&nbsp;';
-	if ( $addLinksPos == 'oncaptionline' ) {
-		echo '<span class="fineprint">&nbsp;&nbsp;';
-                	if ( $showAddComment ) {
-                        	showAddCommentLink( $photoId );
-	                }
-		if ( $showAddVote ) {
-			echo "&nbsp;";
-			showAddVoteLink( $photoId, $page );
-		}
-		echo '</span>';
-}
+    if ($showCaption) {
+        $captionTable = new galleryTable();
+        $captionTable->setAttrs(array(
+            'width' => '100%',
+            'border' => 0,
+            'cellspacing' => 0,
+            'cellpadding' => 0,
+            'class' => 'mod_title'));
 
-?>
-                           </td><td class="mod_title_right" align="left"></td>
+        $statsCaption = $statsAlbum->getCaption($photoIndex);
+        $statsCaption .= $statsAlbum->getCaptionName($photoIndex);
+        $statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
 
-                        </tr>
-                     </table>
-                  </td>
-               </td>  <!-- Added during formatting -->
-            </tr>
-         </table>
-         <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-               <td class="mod_titleunder_hl"></td>
-            </tr>
-         </table>
-<?php
-}
+        $captionText = '<a href="'. $statsUrl .'">'. $statsCaption .'</a>&nbsp;&nbsp;';
 
-if ( $showCaption && $showGrid ) {
-	echo '<table width="' . $statsAlbum->fields['thumb_size'] . '" border="0" cellpadding="0" cellspacing="4">';
-	echo '<tr><td class="pcaption">';
+        if ( $addLinksPos == 'oncaptionline' ) {
+            $captionText .= showAddVoteAddCommentLinks($photoId, $page);
+        }
 
-	$statsCaption = $statsAlbum->getCaption($photoIndex);
-	$statsCaption .= $statsAlbum->getCaptionName($photoIndex);
-	$statsUrl = makeAlbumUrl($statsAlbum->fields['name'], $photoId);
-	echo "$statsCaption";
-	if ( $addLinksPos == 'oncaptionline' ) {
-		echo '<span class="fineprint">&nbsp;&nbsp;';
-		if ( $showAddComment ) {
-			showAddCommentLink( $photoId );
-		}
-		if ( $showAddVote ) {
-			echo '&nbsp;';
-			showAddVoteLink( $photoId, $page );
-		}
-		echo '</span>';
-	}
-	echo '</td></table>';
-}
+        $captionTextTable = new galleryTable();
+        $captionTextTable->setAttrs(array(
+            'border' => 0,
+            'cellspacing' => 0,
+            'cellpadding' => 0,
+            'class' => 'mod_title_bg'));
 
-if ( $showAlbumLink ) {
-?>
-         <span class="fineprint"><br clear="all"><?php echo _("From album") . ' '; /* Needs a trailing space */ ?>
-<?php
-$owner_var = '';
-if ( $showAlbumOwner == 1 ) {
-	$owner_var = '<br>' . _("Owned by:") . ' ' . showOwner($statsAlbum->getOwner());
-}
+        $captionTextTable->addElement(array(
+            'content' => '',
+            'cellArgs' => array('class' => 'mod_title_left', 'align' => 'right')));
+        $captionTextTable->addElement(array(
+            'content' => $captionText,
+            'cellArgs' => array('class' => 'title', 'align' => 'left')));
+        $captionTextTable->addElement(array(
+            'content' => '',
+            'cellArgs' => array('class' => 'mod_title_right', 'align' => 'left')));
 
-echo '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] .'</a>'. $owner_var;
-?>
-         </span>
-         <br clear="all">
-<?php
-}
+        $captionTable->addElement(array(
+            'content' => $captionTextTable->render(2),
+            'cellArgs' => ''));
 
-if ( $showDescription ) {
-?>
-         <span class="fineprint">
-<?php
-$description =$statsAlbum->getExtraField($photoIndex, "Description");
-if ($description != "") {
-	echo '<br clear="all">'. $description .'<br clear="all">';
-}
-?>
-         </span>
+        $html = $captionTable->render(1);
+    }
 
-<?php
-}
+    // End Caption
 
-if ( $addLinksPos == 'abovestats' ) {
-	if ( $showAddComment ) {
-		echo '<br clear="all">';
-		showAddCommentLink( $photoId );
-		if ( !$showAddVote ) {
-			echo '<br clear="all">';
-		}
-	}
+    if ( $showAlbumLink ) {
+        $albumLink = sprintf(_("From album: %s"),
+        '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] . '</a>');
 
-	if ( $showAddVote ) {
-		if ( !$showAddComment ) {
-			echo '<br clear="all">';
-		}
-		else {
-			echo "&nbsp;&nbsp";
-		}
-		showAddVoteLink( $photoId, $page );
-		echo '<br clear="all">';
-	}
-}
-?>
-      <br clear="all">
-      <table cellpadding="0" cellspacing="0" width="<?php echo $statsWidth ?>" border="0" align="<?php echo $statsAlign ?>" class="fineprint">
+        $owner_var = '';
+        if ( $showAlbumOwner == 1 ) {
+            $owner_var = '<br>' . sprintf(_("Owned by: %s"), showOwner($statsAlbum->getOwner()));
+        }
 
-<?php
-if ( $showCaptureDate ) {
-	$captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
+        $html .= "\n    " . '<div class="fineprint">'. $albumLink . $owner_var . '</div>';
+    }
 
-	echo '<tr>';
-	echo '<td width="105" class="fineprint">'. _("Capture Date:") .'</td>';
-	echo '<td class="fineprint">'. $captureDate .'</td>';
-	echo '</tr>';
-}
+    if ($showDescription) {
+        $description = $statsAlbum->getExtraField($photoIndex, "Description");
+        if ($description != "") {
+            $html .= "\n    ". '<div class="fineprint" style="margin-top:10px;">'. $description .'</div>';
+        }
+    }
 
-if ( $showUploadDate ) {
-	$time = $statsAlbum->getUploadDate($photoIndex);
-	// Older albums may not have this field.
-	if ($time) {
-		$time = strftime($gallery->app->dateString,$time);
-		echo '<tr>';
-		echo '<td width="105" class="fineprint">'. _("Upload Date:") .'</td>';
-		echo '<td class="fineprint">'. $time. '</td>';
-		echo '</tr>';
-	}
-}
+    if ( $addLinksPos == 'abovestats' ) {
+        $html .= showAddVoteAddCommentLinks($photoId, $page);
+    }
 
-if ( $showViews &&
-!($statsAlbum->fields["display_clicks"] == "no") &&
-!$gallery->session->offline) {
+    /* Begin Inner Stats */
 
-	echo "\n<tr>";
-	echo "\n\t". '<td width="105" class="fineprint">'. _("Views:") .'</td>';
-	echo "\n\t". '<td class="fineprint">';
-	echo pluralize_n2($statsAlbum->getItemClicks($photoIndex), "1 time", "times" , "0 times");
-	echo "</td>";
-	echo "\n</tr>";
-}
+    $html .= '<br clear="all">';
 
-if ( !empty($showVotes )) {
-	echo "\n<tr>";
-	echo "\n\t". '<td width="105" class="fineprint">' . _("Votes:") .'</td>';
-	echo "\n\t". '<td class="fineprint">'. $statsAlbum->getItemSVotes($photoIndex) .'</td>';
-	echo "\n</tr>";
-}
+    $innerStatsTable = new galleryTable();
+    $innerStatsTable->setAttrs(array(
+        'border' => 0,
+        'cellspacing' => 0,
+        'cellpadding' => 0,
+        'class' => 'fineprint'));
 
-if ( !empty($showRatings)) {
-	switch ($rating) {
-		case -2:
-		$photoRateCounts = '';
-		$photoRate = _("not rated");
-		break;
-		case -1:
-		$photoRateCounts = '';
-		$photoRate =  $ratingcount;
-		$photoRate .= $ratingcount == 1 ? " vote" : " votes";
-		$photoRate .= ' cast, more required';
-		break;
-		default:
-		$photoRateCounts = $ratingcount == 1 ? " (".$ratingcount." vote)" : " (".$ratingcount." votes)";
-		$photoRate = $rating;
-	}
+    $innerStatsTable->setColumnCount(2);
 
-	if ( $showGrid ) {
-		echo "<tr>";
-		echo '<td valign="top" width="105" class="fineprint">'. _("Rating:") .'</td>';
-		echo '<td class="fineprint">'. $photoRate .'</td>';
-		echo "</tr>";
+    if ( $showCaptureDate ) {
+        $captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
 
-		echo "<tr>";
-		echo '<td width="105" class="fineprint"></td>';
-		echo '<td class="fineprint">'. $photoRateCounts .'</td>';
-		echo "</tr>";
-	}
-	else {
-		echo "<tr>";
-		echo '<td valign="top" width="105" class="fineprint">'. _("Rating:") .'</td>';
-		echo '<td class="fineprint">' .$photoRate.$photoRateCounts;
-		echo "</td>";
-		echo "</tr>";
-	}
-}
+        $innerStatsTable->addElement(array(
+            'content' => _("Capture Date:"),
+            'cellArgs' => array('width' => 100)));
 
-echo "</table>";
+        $innerStatsTable->addElement(array(
+            'content' => $captureDate,
+            'cellArgs' => array('class' => 'fineprint')));
+    }
 
-if ( $addLinksPos == 'abovecomments' ) {
-	if (  $showAddComment ) {
-		echo '<br clear="all">';
-		if ( !$showGrid ) {
-			echo '<br clear="all">';
-		}
-		showAddCommentLink( $photoId );
-	}
+    if ( $showUploadDate ) {
+        $time = $statsAlbum->getUploadDate($photoIndex);
+        // Older albums may not have this field.
+        if ($time) {
+            $time = strftime($gallery->app->dateString,$time);
+            $innerStatsTable->addElement(array(
+                'content' => _("Upload Date:"),
+                'cellArgs' => array('width' => 100)));
 
-	if ( $showAddVote ) {
-		if ( !$showAddComment ) {
-			echo '<br clear="all">';
-			if ( !$showGrid ) {
-				echo '<br clear="all">';
-			}
-		}
-		else
-		echo "&nbsp;&nbsp";
-		showAddVoteLink( $photoId, $page );
-	}
-}
+            $innerStatsTable->addElement(array(
+                'content' => $time,
+                'cellArgs' => array('class' => 'fineprint')));
+        }
+    }
 
-if ( $showComments &&
-$statsAlbum->numComments($photoIndex) > 0 &&
-$statsAlbum->canViewComments($gallery->user->getUid()) ) {
-	// Force the comment table below the previous table using clear all.
-	echo '<br clear="all">';
-	if ( !$showGrid ) {
-		echo '<br clear="all">';
-	}
-	$gallery->album = $statsAlbum;
-	viewComments($photoIndex, $gallery->user->canAddComments($statsAlbum), "DISCO1", $newestCommentsFirst, 'popup', $statsAlbum->fields['name']);
-}
+    if ( $showViews &&
+    !($statsAlbum->fields["display_clicks"] == "no") &&
+    !$gallery->session->offline) {
 
-if ( $addLinksPos == 'belowcomments' ) {
-	if ( $showAddComment ) {
-		echo '<br clear="all">';
-		if ( !$showGrid ) {
-			echo '<br clear="all">';
-		}
-		showAddCommentLink( $photoId );
-	}
-	if ( $showAddVote ) {
-		if ( !$showAddComment ) {
-			echo '<br clear="all">';
-			if ( !$showGrid ) {
-				echo '<br clear="all">';
-			}
-		}
-		else {
-			echo "&nbsp;&nbsp";
-		}
-		showAddVoteLink( $photoId, $page );
-	}
-}
-?>
-   </td>
-   <!-- End Text Cell -->
-<?php
+        $innerStatsTable->addElement(array(
+        'content' => _("Views:"),
+        'cellArgs' => array('width' => 100)));
+
+        $innerStatsTable->addElement(array(
+        'content' => pluralize_n2($statsAlbum->getItemClicks($photoIndex), "1 time", "times" , "0 times"),
+        'cellArgs' => array('class' => 'fineprint')));
+    }
+
+    if ( !empty($showVotes )) {
+        $innerStatsTable->addElement(array(
+            'content' => _("Votes:"),
+            'cellArgs' => array('width' => 100)));
+
+        $innerStatsTable->addElement(array(
+            'content' => $statsAlbum->getItemSVotes($photoIndex),
+            'cellArgs' => array('class' => 'fineprint')));
+    }
+
+    if ( !empty($showRatings)) {
+        switch ($rating) {
+            case -2:
+                $photoRateCounts = '';
+                $photoRate = _("not rated");
+                break;
+            case -1:
+                $photoRateCounts = '';
+                $photoRate =  $ratingcount;
+                $photoRate .= $ratingcount == 1 ? " vote" : " votes";
+                $photoRate .= ' cast, more required';
+                break;
+            default:
+                $photoRateCounts = $ratingcount == 1 ? " (".$ratingcount." vote)" : " (".$ratingcount." votes)";
+                $photoRate = $rating;
+        }
+
+        $innerStatsTable->addElement(array(
+            'content' => _("Rating:"),
+            'cellArgs' => array('width' => 100)));
+
+        $innerStatsTable->addElement(array(
+            'content' => $photoRate .' | '. $photoRateCounts,
+            'cellArgs' => array('class' => 'fineprint')));
+    }
+
+    $html .= $innerStatsTable->render(1);
+    // End Innerstats
+
+    if ( $addLinksPos == 'abovecomments' ) {
+        $html .= showAddVoteAddCommentLinks($photoId, $page);
+    }
+
+    if ( $showComments &&
+    $statsAlbum->numComments($photoIndex) > 0 &&
+    $statsAlbum->canViewComments($gallery->user->getUid()) ) {
+
+        $gallery->album = $statsAlbum;
+        $html .= '<br clear="all">'. showComments($photoIndex, $statsAlbum->fields['name']);
+    }
+
+    if ( $addLinksPos == 'belowcomments' ) {
+        $html .= showAddVoteAddCommentLinks($photoId, $page);
+    }
+
+    return $html;
 }
 ?>

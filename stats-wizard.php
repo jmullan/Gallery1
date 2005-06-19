@@ -83,24 +83,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		value = false;
 		/* special case */
 		if ((document.stats_form.elements[i].name == 'cols' || document.stats_form.elements[i].name == 'rows') &&
-			document.stats_form.sgr.checked == false) {
+			document.stats_form.showGrid.checked == false) {
 			continue;
 		}
 		switch(document.stats_form.elements[i].type) {
 			case 'submit':
-				continue;
+			    continue;
 			break;
 			
 			case 'checkbox':
-				if(document.stats_form.elements[i].checked) {
-					value = 1;
-				}
+			    if(document.stats_form.elements[i].checked) {
+				value = 1;
+			    }
 			break;
 
 			case 'radio':
-				if (document.stats_form.elements[i].checked) {
-					value = document.stats_form.elements[i].value;
-				}
+			    if (document.stats_form.elements[i].checked) {
+				value = document.stats_form.elements[i].value;
+			    }
 			break;
 			
 			default:

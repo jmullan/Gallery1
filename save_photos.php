@@ -267,26 +267,26 @@ while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp
 	$file = array_shift($_FILES['metafile']['tmp_name']);
 	$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
 }
-if ($gallery->app->debug == "yes") {
-	// Print meta data
-	print "<table border=\"1\">\n";
-	$row = 0;
-	foreach ($image_info as $info) {
-		print "<tr>";
-		if ($row == 0) {
-			$keys = array_keys($info);
-			foreach ($keys as $key) {
-				print "<th>$key</th>";
-			}
-			print "</tr>\n<tr>";
-		}
-		foreach ($keys as $key) {
-			print "<td>".$info[$key]."</td>";
-		}
-		$row++;
-		print "</tr>\n";
+if (isDebugging()) {
+    // Print meta data
+    print "<table border=\"1\">\n";
+    $row = 0;
+    foreach ($image_info as $info) {
+	print "<tr>";
+	if ($row == 0) {
+	    $keys = array_keys($info);
+	    foreach ($keys as $key) {
+		print "<th>$key</th>";
+	    }
+	    print "</tr>\n<tr>";
 	}
-	print "</table>\n";
+	foreach ($keys as $key) {
+	    print "<td>".$info[$key]."</td>";
+	}
+	$row++;
+	print "</tr>\n";
+    }
+    print "</table>\n";
 }
 // $captionMetaFields will store the names (in order of priority to set caption to)
 $captionMetaFields = array("Caption", "Title", "Description", "Persons");
