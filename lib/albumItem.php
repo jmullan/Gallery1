@@ -1,9 +1,5 @@
 <?php
 
-function cmpAI ($a, $b) {
-   return strcmp($a['text'], $b['text']);
-}
-
 /*
 ** This function shows all possible actions for an album item
 **
@@ -18,7 +14,6 @@ function getItemActions($i, $withIcons = false) {
     $override = ($withIcons) ? '' : 'no';    
 
     if (!$gallery->session->offline && empty($javascriptSet)) { ?>
-  <!-- PISO -->
   <script language="javascript1.2" type="text/JavaScript">
   <!-- //
 
@@ -253,7 +248,6 @@ function getItemActions($i, $withIcons = false) {
         );
     }
 
-    usort($options, 'cmpAI');
     return $options;
 }
 
@@ -262,19 +256,21 @@ function showComments ($index, $albumName, $reverse = false) {
     global $gallery;
 
     $numComments = $gallery->album->numComments($index);
+    $delCommentText = getIconText('delete.gif', _("delete comment"), 'yes');
 
     $commentdraw["index"] = $index;
 
     $commentTable = new galleryTable();
     $commentTable->setAttrs(array(
 	'width' => '75%',
-	'align' => 'center',
+	'style' => 'padding-left:30px;',
         'border' => 0,
         'cellspacing' => 0,
         'cellpadding' => 0,
         'class' => 'commentbox'));
 
-    $commentTable->setColumnCount(3);
+    $commentTable->setColumnCount(4);
+
 
     for ($nr =1; $nr <= $numComments; $nr++) {
         $comment = $gallery->album->getComment($index, $nr);
@@ -286,19 +282,15 @@ function showComments ($index, $albumName, $reverse = false) {
 
     	$commentTable->addElement(array(
             'content' => _("From:"),
-            'cellArgs' => array('class' => 'commentboxhead', 'width' => 50)));
+            'cellArgs' => array('class' => 'admin', 'width' => 50, 'height' => '25')));
 
 	$commentTable->addElement(array(
             'content' => $commenterName,
-            'cellArgs' => array('class' => 'commentboxhead', 'width' => '55%')));
+            'cellArgs' => array('class' => 'admin', 'width' => '55%')));
 
 	$commentTable->addElement(array(
            'content' => '('. $comment->getDatePosted() .')',
-           'cellArgs' => array('class' => 'commentboxhead')));
-
-	$commentTable->addElement(array(
-            'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-            'cellArgs' => array('colspan' => 3)));
+           'cellArgs' => array('class' => 'admin')));
 
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
             $url = doCommand('delete-comment',
@@ -308,11 +300,13 @@ function showComments ($index, $albumName, $reverse = false) {
 	        );
 
 	    $commentTable->addElement(array(
-                'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>',
-                'cellArgs' => array('colspan' => 3, 'class' => 'commentboxfooter', 'align' => 'center')));
+                'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">'. $delCommentText .' </a>'));
 	}
 
-    }
+	$commentTable->addElement(array(
+            'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
+            'cellArgs' => array('colspan' => 4, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc')));
+    } 
     if ($reverse) {
 	$commentTable['elements'] = array_reverse($commentTable['elements']);
     }

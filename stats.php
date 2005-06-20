@@ -1088,8 +1088,6 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
     /* Begin Inner Stats */
 
-    $html .= '<br clear="all">';
-
     $innerStatsTable = new galleryTable();
     $innerStatsTable->setAttrs(array(
         'border' => 0,

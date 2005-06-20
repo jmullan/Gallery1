@@ -119,7 +119,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 ?>
 
 <!-- Photo Navigator -->
-<table<?php echo $width ?> border="0" cellspacing="0" cellpadding="0" class="modnavbox">
+<table<?php echo $width ?> border="0" cellspacing="0" cellpadding="0" class="modnavboxthumbs">
 <tr>
 	<td colspan="5">
 		<table width="100%" border="0" align="center">

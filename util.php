@@ -3690,7 +3690,7 @@ function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrac
 	    $imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
 	    $linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '" style="border: none;">';
 
-	    if ($gallery->app->useIcons == "both") {
+	    if ($iconMode == "both") {
 		$linkText .= "<br>$text";
 	    }
 	}
@@ -3704,7 +3704,7 @@ function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrac
 	   }
 	}
 
-	return $linkText;
+    return $linkText;
 }
 
 function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $linebreak = false) {
