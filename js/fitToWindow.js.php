@@ -56,22 +56,23 @@ function windowHeight()
 */
 function calculateNewSize(){
 
-	width = windowWidth();
-	height= windowHeight();
+    windowWidth = windowWidth();
+    windowHeight= windowHeight();
 
-	newwidth = imagewidth;
-	newheight = imageheight;
+    newwidth = imagewidth;
+    newheight = imageheight;
 
-	if ( imagewidth > (width - marginLeft)) {
-		newwidth = width - marginLeft;
-		newheight = newwidth / imageratio;
-	}
-	if (imageheight > (height - marginTop)) {
-		newheight = height - marginTop;
-		newwidth = newheight * imageratio;
-	}
+    if ( imagewidth > (windowWidth - marginLeft)) {
+	newwidth = windowWidth - marginLeft;
+	newheight = newwidth / imageratio;
+    }
 
-	setReducedSize();
+    if ( newheight > (windowHeight - marginTop)) {
+	newheight = windowHeight - marginTop;
+	newwidth = newheight * imageratio;
+    }
+
+    setReducedSize();
 }
 
 function setReducedSize() {
