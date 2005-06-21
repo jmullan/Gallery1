@@ -24,12 +24,11 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-/*
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
         echo _("You are not allowed to perform this action!");
         exit;
 }
-*/
+
 $rearrList = getRequestVar('rearrList');
 
 if (!empty($rearrList)) {
