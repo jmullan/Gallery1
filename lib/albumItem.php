@@ -269,7 +269,8 @@ function showComments ($index, $albumName, $reverse = false) {
         'cellpadding' => 0,
         'class' => 'commentbox'));
 
-    $commentTable->setColumnCount(4);
+    $columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
+    $commentTable->setColumnCount($columns);
 
 
     for ($nr =1; $nr <= $numComments; $nr++) {
@@ -305,7 +306,7 @@ function showComments ($index, $albumName, $reverse = false) {
 
 	$commentTable->addElement(array(
             'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-            'cellArgs' => array('colspan' => 4, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc')));
+            'cellArgs' => array('colspan' => $columns, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc')));
     } 
     if ($reverse) {
 	$commentTable['elements'] = array_reverse($commentTable['elements']);

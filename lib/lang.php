@@ -697,7 +697,7 @@ function languageSelector() {
 
         $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
         $langSelectTable = new galleryTable();
-	$langSelectTable->setColumnCount(1);
+	$langSelectTable->setColumnCount(-1);
 	$langSelectTable->setAttrs(array('class' => 'languageSelector', 'align' => 'right'));
 
         $nls = getNLS();
@@ -771,7 +771,7 @@ function languageSelector() {
     	}
 
     	$html .= $langSelectTable->render();
-    	$html .= "</form>";
+    	$html .= '</form><br clear="all">';
    
    	return $html;
     }
