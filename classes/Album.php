@@ -1790,6 +1790,27 @@ class Album {
 		array_splice($this->photos, $newIndex, 0, $photo);
 	}
 
+	function rearrangePhotos($newOrder) {
+		// safety check.. no repeats, all valid 1-based indices
+		$check = array();
+	 	$count = count($this->photos);
+ 		foreach ($newOrder as $index) {
+		if ($index < 1 || $index > $count || isset($check[$index]))
+			return;
+			$check[$index] = 1;
+		}
+		// build new list..
+		$newList = array();
+		for ($i=$j=0; $i < $count; $i++) {
+			if (in_array($i+1, $newOrder)) {
+				$newList[$i] = $this->photos[$newOrder[$j++]-1];
+			} else {
+				$newList[$i] = $this->photos[$i];
+			}
+		}
+		$this->photos = $newList;
+	}
+
 	function isMovie($id) {
 		$index = $this->getPhotoIndex($id);
 		$photo = $this->getPhoto($index);
