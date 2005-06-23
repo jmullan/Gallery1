@@ -31,14 +31,9 @@ require_once(dirname(__FILE__) . '/lib/valchecks.php');
 require_once(dirname(__FILE__) . '/lib/messages.php');
 
 function getRequestVar($str) {
-	if (!is_array($str)) {
-		if (!isset($_REQUEST[$str])) {
-			return null;
-		}
-		$ret = &$_REQUEST[$str];
-		if (get_magic_quotes_gpc()) {
-			$ret = stripslashes_deep($ret);
-		}	
+    if (!is_array($str)) {
+	if (!isset($_REQUEST[$str])) {
+	    return null;
 	}
 	$ret = &$_REQUEST[$str];
 	if (get_magic_quotes_gpc() && !is_array($ret)) {
@@ -50,17 +45,15 @@ function getRequestVar($str) {
 	    $ret[] = getRequestVar($reqvar);
 	}
     }
-	
     return $ret;
 }
 
 function getFilesVar($str) {
-	if (!is_array($str)) {
-		if (!isset($_FILES[$str])) {
-			return null;
-		}
-		$ret = &$_FILES[$str];
+    if (!is_array($str)) {
+	if (!isset($_FILES[$str])) {
+	    return null;
 	}
+	$ret = &$_FILES[$str];
     }
     else {
 	foreach ($str as $reqvar) {
@@ -71,12 +64,11 @@ function getFilesVar($str) {
 }
 
 function getEnvVar($str) {
-	if (!is_array($str)) {
-		if (!isset($_ENV[$str])) {
-			return null;
-		}
-		$ret = &$_ENV[$str];
+    if (!is_array($str)) {
+	if (!isset($_ENV[$str])) {
+	    return null;
 	}
+	$ret = &$_ENV[$str];
     }
     else {
 	foreach ($str as $reqvar) {
@@ -88,10 +80,8 @@ function getEnvVar($str) {
 
 function stripslashes_deep($value) {
     $value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
-
     return $value;
 }
-
 
 function editField($album, $field, $link=null) {
 	global $gallery;
