@@ -36,8 +36,8 @@ function getRequestVar($str) {
 			return null;
 		}
 		$ret = &$_REQUEST[$str];
-		if (get_magic_quotes_gpc() && !is_array($ret)) {
-			$ret = stripslashes($ret);
+		if (get_magic_quotes_gpc()) {
+			$ret = stripslashes_deep($ret);
 		}	
 	}
 	else {
@@ -55,9 +55,6 @@ function getFilesVar($str) {
 			return null;
 		}
 		$ret = &$_FILES[$str];
-		if (get_magic_quotes_gpc()) {
-			$ret = stripslashes($ret);
-		}
 	}
 	else {
 		foreach ($str as $reqvar) {
@@ -73,9 +70,6 @@ function getEnvVar($str) {
 			return null;
 		}
 		$ret = &$_ENV[$str];
-		if (get_magic_quotes_gpc()) {
-			$ret = stripslashes($ret);
-		}
 	}
 	else {
 		foreach ($str as $reqvar) {
@@ -84,6 +78,16 @@ function getEnvVar($str) {
 	}
 	return $ret;
 }
+
+function stripslashes_deep($value)
+{
+	$value = is_array($value) ?
+		array_map('stripslashes_deep', $value) :
+		stripslashes($value);
+
+	return $value;
+}
+
 
 function editField($album, $field, $link=null) {
 	global $gallery;
