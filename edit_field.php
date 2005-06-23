@@ -36,13 +36,13 @@ doctype();
 echo "\n<html>";
 
 if (isset($save)) {
-	if (!strcmp($field, 'title')) {
-		$data = removeTags($data);
-	}
-	$gallery->album->fields[$field] = stripslashes($data);
-	$gallery->album->save(array(i18n("%s modified"), $field));
-	dismissAndReload();
-	return;
+    if (!strcmp($field, 'title')) {
+	$data = removeTags($data);
+    }
+    $gallery->album->fields[$field] = $data;
+    $gallery->album->save(array(i18n("%s modified"), $field));
+    dismissAndReload();
+    return;
 }
 ?>
 <head>

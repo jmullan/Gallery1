@@ -68,20 +68,16 @@ if (isset($save) || isset($next) || isset($prev)) {
         $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
-	$myAlbum->fields['description'] = stripslashes(getRequestVar("new_captions_$i"));
+	$myAlbum->fields['description'] = getRequestVar("new_captions_$i");
 	$myAlbum->save(array(i18n("Text has been changed")));
 
       } else {
-	$gallery->album->setCaption($i, stripslashes(getRequestVar("new_captions_$i")));
-	$gallery->album->setKeywords($i, stripslashes(getRequestVar("new_keywords_$i")));
+	$gallery->album->setCaption($i, getRequestVar("new_captions_$i"));
+	$gallery->album->setKeywords($i, getRequestVar("new_keywords_$i"));
 	if (isset($extra_fields)) {
-		foreach ($extra_fields[$i] as $field => $value)
-		{
-			if (get_magic_quotes_gpc()) {
-				$value=stripslashes($value);
-			}
-			$gallery->album->setExtraField($i, $field, trim($value));
-		}
+	    foreach ($extra_fields[$i] as $field => $value) {
+		$gallery->album->setExtraField($i, $field, trim($value));
+	    }
 	}
       }
 
@@ -90,7 +86,6 @@ if (isset($save) || isset($next) || isset($prev)) {
     }
 
     $gallery->album->save(array(i18n("Text has been changed")));
-
 }
 
 if (isset($cancel) || isset($save)) {

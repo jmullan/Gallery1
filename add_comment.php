@@ -64,7 +64,7 @@ if (isset($save)) {
 		$comment_text = removeTags($comment_text);
 		$commenter_name = removeTags($commenter_name);
 		$IPNumber = $_SERVER['REMOTE_ADDR'];
-		$gallery->album->addComment($id, stripslashes($comment_text), $IPNumber, $commenter_name);
+		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
 		$gallery->album->save();
 		emailComments($id, $comment_text, $commenter_name);
 		// Note: In stats.php this causes the browser to show a message about POST data ...

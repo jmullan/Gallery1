@@ -39,8 +39,8 @@ if (getRequestVar('save')) {
 		${$key} = getRequestVar($key);
 	}
 	if (get_magic_quotes_gpc()) {
-		$gallery->album->fields["summary"] = stripslashes($summary);
-		$gallery->album->fields["title"] = stripslashes($title);
+		$gallery->album->fields["summary"] = $summary;
+		$gallery->album->fields["title"] = $title;
 	} else {
 		$gallery->album->fields["summary"] = $summary;
 		$gallery->album->fields["title"] = $title;
@@ -118,9 +118,6 @@ if (getRequestVar('save')) {
         }
 
         for ($i = 0; $i < sizeof($extra_fields); $i++) {
-            if (get_magic_quotes_gpc()) {
-                $extra_fields[$i] = stripslashes($extra_fields[$i]);
-            }
             $extra_fields[$i] = str_replace('"', '&quot;', $extra_fields[$i]);
         }
 

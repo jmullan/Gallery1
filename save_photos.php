@@ -303,9 +303,6 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 	if (!isset($caption)) {
 	       	$caption="";
        	}
-	if (get_magic_quotes_gpc()) {
-		$caption=stripslashes($caption);    
-	}
 
 	if ($name) {
 		$extra_fields = array();

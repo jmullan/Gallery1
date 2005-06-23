@@ -35,7 +35,6 @@ if (!getRequestVar('cmd')) {
 	exit;
 }
 
-
 /*
  * Set content type
  */
@@ -80,8 +79,6 @@ $GR_STAT['NO_CREATE_ALBUM_PERMISSION']	= 501;
 $GR_STAT['CREATE_ALBUM_FAILED']			= 502;
 $GR_STAT['MOVE_ALBUM_FAILED']	= 503;
 $GR_STAT['ROTATE_IMAGE_FAILED'] = 504;
-
-
 
 
 $response = new Properties();
@@ -365,12 +362,6 @@ function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &
 
 	global $GR_STAT;
 
-	if(get_magic_quotes_gpc()) {
-		$newAlbumName = stripslashes($newAlbumName);
-		$newAlbumTitle = stripslashes($newAlbumTitle);
-		$newAlbumDesc = stripslashes($newAlbumDesc);
-	}
-
 	if(isset($gallery->album) && isset($gallery->album->fields["name"])) {
 		$canAddAlbum = $gallery->user->canCreateSubAlbum($gallery->album);
 	} else {
@@ -452,7 +443,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 					$response->setProperty( 'image.capturedate.hours.'.$tmpImageNum, $albumItemObj->itemCaptureDate['hours'] );
 					$response->setProperty( 'image.capturedate.minutes.'.$tmpImageNum, $albumItemObj->itemCaptureDate['minutes'] );
 					$response->setProperty( 'image.capturedate.seconds.'.$tmpImageNum, $albumItemObj->itemCaptureDate['seconds'] );
-					$response->setProperty( 'image.hidden.'.$tmpImageNum, $albumItemObj->isHidden()?"yes":"no" );
+					$response->setProperty( 'image.hidden.'.$tmpImageNum, $albumItemObj->isHidden()? "yes":"no" );
 				} else {
 					if ($albums_too) {
 						if (! isset($albumDB)) {
@@ -465,7 +456,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 							$tmpImageNum++;
 
 							$response->setProperty( 'album.name.'.$tmpImageNum, $albumItemObj->getAlbumName() );
-							$response->setProperty( 'album.hidden.'.$tmpImageNum, $myAlbum->isHiddenRecurse()?'yes':'no' );
+							$response->setProperty( 'album.hidden.'.$tmpImageNum, $myAlbum->isHiddenRecurse() ? 'yes':'no' );
 						}
 					}
 				}
@@ -665,8 +656,6 @@ function gr_rotate_image( &$gallery, &$response ) {
 }
 */
 
-
-
 function check_proto_version( &$response ) {
 	global $protocol_version, $GR_STAT, $GR_VER;
 
@@ -837,9 +826,7 @@ function processFile($file, $tag, $name, $setCaption="") {
     } else {
         // remove %20 and the like from name
         $name = urldecode($name);
-	if (get_magic_quotes_gpc()) {
-		$name = stripslashes($name);
-	}
+
         // parse out original filename without extension
         $originalFilename = eregi_replace(".$tag$", "", $name);
         // replace multiple non-word characters with a single "_"
@@ -880,9 +867,6 @@ function processFile($file, $tag, $name, $setCaption="") {
 		    }
 
             if ($setCaption) {
-		if (get_magic_quotes_gpc()) {
-			$setCaption = stripslashes($setCaption);
-		}
                 $caption = $setCaption;
             } else {
                 $caption = "";
@@ -895,23 +879,17 @@ function processFile($file, $tag, $name, $setCaption="") {
 				//echo "Looking for extra field $fieldname\n";
 
 				// The way it should be done now
-				$value = isset($_POST[("extrafield.".$field)]) ? $_POST[("extrafield.".$field)] : '';
+				$value = getRequestVar("extrafield.".$field);
 				//echo "Got extra field $field = $value\n";
-				if ($value) {
-					if (get_magic_quotes_gpc()) {
-						$value = stripslashes($value);
-					}
+				if (!empty($value)) {
 					//echo "Setting field $field\n";
 					$myExtraFields[$field] = $value;
 				}
 
 				// Deprecated
-				$value = isset($_POST[("extrafield_".$field)]) ? $_POST[("extrafield_".$field)] : '';
+				$value = getRequestVar("extrafield_".$field);
 				//echo "Got extra field $field = $value\n";
-				if ($value) {
-					if (get_magic_quotes_gpc()) {
-						$value = stripslashes($value);
-					}
+				if (!empty($value)) {
 					//echo "Setting field $field\n";
 					$myExtraFields[$field] = $value;
 				}

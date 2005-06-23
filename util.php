@@ -40,13 +40,18 @@ function getRequestVar($str) {
 			$ret = stripslashes_deep($ret);
 		}	
 	}
-	else {
-		foreach ($str as $reqvar) {
-			$ret[] = getRequestVar($reqvar);
-		}
+	$ret = &$_REQUEST[$str];
+	if (get_magic_quotes_gpc() && !is_array($ret)) {
+	    $ret = stripslashes($ret);
+	}	
+    }
+    else {
+	foreach ($str as $reqvar) {
+	    $ret[] = getRequestVar($reqvar);
 	}
+    }
 	
-	return $ret;
+    return $ret;
 }
 
 function getFilesVar($str) {
@@ -56,12 +61,13 @@ function getFilesVar($str) {
 		}
 		$ret = &$_FILES[$str];
 	}
-	else {
-		foreach ($str as $reqvar) {
-			$ret[] = getFilesVar($reqvar);
-		}
+    }
+    else {
+	foreach ($str as $reqvar) {
+	    $ret[] = getFilesVar($reqvar);
 	}
-	return $ret;
+    }
+    return $ret;
 }
 
 function getEnvVar($str) {
@@ -71,21 +77,19 @@ function getEnvVar($str) {
 		}
 		$ret = &$_ENV[$str];
 	}
-	else {
-		foreach ($str as $reqvar) {
-			$ret[] = getEnvVar($reqvar);
-		}
+    }
+    else {
+	foreach ($str as $reqvar) {
+	    $ret[] = getEnvVar($reqvar);
 	}
-	return $ret;
+    }
+    return $ret;
 }
 
-function stripslashes_deep($value)
-{
-	$value = is_array($value) ?
-		array_map('stripslashes_deep', $value) :
-		stripslashes($value);
+function stripslashes_deep($value) {
+    $value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
 
-	return $value;
+    return $value;
 }
 
 

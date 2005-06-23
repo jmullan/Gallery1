@@ -63,11 +63,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 			 'longtext' => _("Manage your users."));
 }
 
-function cmp ($a, $b) {
-   return strcmp($a['text'], $b['text']);
-}
-
-usort($adminOptions, 'cmp');
+array_sort_by_fields($adminOptions, 'text');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
     doctype();

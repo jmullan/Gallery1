@@ -106,8 +106,6 @@ foreach ($defaults as $key => $val) {
 		if (get_magic_quotes_gpc()) {
 			$val["value"] = array_stripslashes($val["value"]);
 		}
-
-
 	}
 	// Protect quote characters to avoid screwing up HTML forms
 	$val["value"] = array_str_replace('"', "&quot;", $val["value"]);

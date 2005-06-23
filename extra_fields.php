@@ -42,9 +42,6 @@ if (isset($apply)) {
 	}
 
 	for ($i = 0; $i < sizeof($extra_fields); $i++) {
-	    if (get_magic_quotes_gpc()) {
-		$extra_fields[$i] = stripslashes($extra_fields[$i]);
-	    }
 	    $extra_fields[$i] = str_replace('"', '&quot;', $extra_fields[$i]);
 	}
 	
