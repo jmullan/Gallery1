@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.5-u1
+# Version: 1.5-u2
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2005 Bharat Mediratta
@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
 "POT-Creation-Date: 2005-05-17 23:46+0200\n"
-"PO-Revision-Date: 2005-05-17 02:55+0200\n"
+"PO-Revision-Date: 2005-06-257 02:55+0200\n"
 "Last-Translator: Göker ISIK <admin@ansolon.com>\n"
 "Language-Team: Türkçe <admin AT ansolon DOT com>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Yorumunuz çok uzun, yönetici yorumlarý %d karakter ile sýnýrlandýrdý"
 
 #: ../add_comment.php:62 ../view_photo.php:195
 msgid "Your Comment contains forbidden words. It will not be added."
-msgstr ""
+msgstr "Yorumunuz yasaklý kelime içeriyor. Bu yüzden eklenmiyecek."
 
 #: ../add_comment.php:79 ../add_comment.php:83
 msgid "Add Comment"
@@ -115,11 +115,11 @@ msgstr "Yönetici"
 
 #: ../admin-page.php:36
 msgid "statistics"
-msgstr ""
+msgstr "istatistikler"
 
 #: ../admin-page.php:38
 msgid "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."
-msgstr ""
+msgstr "Galerinizin bazý istatistiklerini görüntüleyin. Mesela en çok görüntülenen resimler yada en iyi oylanan fotolar vb."
 
 #: ../admin-page.php:40
 msgid "configuration wizard"
@@ -127,11 +127,11 @@ msgstr "konfigürasyon sihirbazý"
 
 #: ../admin-page.php:42
 msgid "Use the config wizard to reconfigure or tweak your Gallery"
-msgstr ""
+msgstr "Yapýlandýrma sihirbazýný kullanarak Gallerinizi yeniden yapýlandýrýn ya da deðiþtirin"
 
 #: ../admin-page.php:44
 msgid "find orphans"
-msgstr ""
+msgstr "sahipsizleri bul"
 
 #: ../admin-page.php:46
 msgid "Find, remove or re-attach orphaned elements."
@@ -223,7 +223,7 @@ msgstr "Yorumlarý görüntüleyebilecek kullanýcýlar."
 
 #: ../album_permissions.php:351
 msgid "Apply permissions to all sub-albums"
-msgstr ""
+msgstr "Ýzinleri tüm alt-albümlere uygula"
 
 #: ../album_permissions.php:354 ../edit_caption.php:188 ../edit_field.php:56
 #: ../edit_field.php:65 ../edit_watermark.php:107 ../modify_user.php:151
@@ -392,7 +392,7 @@ msgstr ""
 #: ../albums.php:280
 #, php-format
 msgid "%s and try again."
-msgstr ""
+msgstr "%s ve tekrar deneyin."
 
 #: ../albums.php:281
 msgid "Log in"
@@ -601,9 +601,9 @@ msgid "Entering album %s, processing %d photos"
 msgstr ""
 
 #: ../classes/Album.php:1028
-#, fuzzy, php-format
+#, php-format
 msgid "Processing element %d..."
-msgstr "Resim iþleniyor %d..."
+msgstr "Element iþleniyor %d..."
 
 #: ../classes/Album.php:1042
 msgid "Doing the naming"
@@ -611,7 +611,7 @@ msgstr ""
 
 #: ../classes/Album.php:1077
 msgid "Image Preprocessing"
-msgstr ""
+msgstr "Resim Ýþleniyor"
 
 #: ../classes/Album.php:1083
 msgid "Resizing/compressing original image"
@@ -657,7 +657,7 @@ msgstr "Resim iþleniyor %d..."
 #: ../classes/Album.php:1883
 #, php-format
 msgid "Error %s getting EXIF data"
-msgstr ""
+msgstr "Hata %s EXIF verisini almada"
 
 #: ../classes/Album.php:2404
 #, php-format
@@ -674,18 +674,16 @@ msgid "Invalid image"
 msgstr "Geçersiz resim"
 
 #: ../classes/AlbumItem.php:586
-#, fuzzy
 msgid "Generating thumbnail."
-msgstr "Thumbnail yaratiliyor"
+msgstr "Thumbnail yaratýlýyor."
 
 #: ../classes/AlbumItem.php:629
 msgid "Unable to make thumbnail"
 msgstr "Thumbnail yaratýlamýyor"
 
 #: ../classes/AlbumItem.php:640
-#, fuzzy
 msgid "No preview"
-msgstr "Görünüm"
+msgstr "Görünüm yok"
 
 #: ../classes/AlbumItem.php:659
 msgid "No thumbnail"
@@ -715,7 +713,7 @@ msgstr ""
 
 #: ../classes/gallery/UserDB.php:82
 msgid "Your Userfile is not writeable"
-msgstr ""
+msgstr "Kullanýcýdosyanýz yazýlabilir deðil"
 
 #: ../classes/gallery/UserDB.php:280
 #, php-format
@@ -728,9 +726,9 @@ msgid "Illegal username %s: must at most 15 characters"
 msgstr "Geçersiz kullanýcý adý %s: en fazla 15 karakterden oluþmalý"
 
 #: ../classes/gallery/UserDB.php:291
-#, fuzzy, php-format
+#, php-format
 msgid "Illegal username %s: must contain only letters or digits"
-msgstr "Geçersiz kullanýcý adý %s: en az 2 karakterden oluþmalý"
+msgstr "Geçersiz kullanýcý adý %s: sadece harf ve rakam içerebilir"
 
 #: ../classes/gallery/UserDB.php:298
 #, php-format
@@ -799,9 +797,8 @@ msgid "Copy a range of photos to a new album:"
 msgstr "Fotoðraflarý yeni albüme kopyala:"
 
 #: ../copy_photo.php:134
-#, fuzzy
 msgid "To copy just one photo, make First and Last the same."
-msgstr "Sadece tek fotoðraf kopyala, Birinci ve Sonuncuyu ayný yap"
+msgstr "Sadece tek fotoðraf kopyala, Birinci ve Sonuncuyu ayný yap."
 
 #: ../copy_photo.php:135 ../move_photo.php:268
 msgid "Nested albums in this range will be ignored."
@@ -940,29 +937,26 @@ msgid "Users can have special permissions in each album."
 msgstr "Kullanýcýlar bütün albümlerde özel izinler alabilir."
 
 #: ../delete_user.php:68
-#, fuzzy
 msgid "If you delete this user, any such permissions go away."
 msgid_plural "if you delete these users, any permissions will go away"
 msgstr[0] "Eðer bu kullanýcýyý silerseniz, bütün izinleride birlikte silinecek."
-msgstr[1] ""
+msgstr[1] "Eðer bu kullanýcýlarýý silerseniz, bütün izinleride birlikte silinecek."
 
 #: ../delete_user.php:69
 msgid "Users cannot be recreated."
 msgstr "Kullanýcýlar yeniden yaratýlamaz"
 
 #: ../delete_user.php:70
-#, fuzzy
 msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
 msgstr[0] "Bu kullanýcýyý tekrar oluþtursanýz bile, izinler gitmiþ olacak."
-msgstr[1] ""
+msgstr[1] "Bu kullanýcýlarý tekrar oluþtursanýz bile, izinleri gitmiþ olacak."
 
 #: ../delete_user.php:74
-#, fuzzy
 msgid "Do you really want to delete user"
 msgid_plural "Do you really want to delete these users"
 msgstr[0] "Kullanýcýyý silmek istediðinizden eminmisiniz?"
-msgstr[1] ""
+msgstr[1] "Kullanýcýlarý silmek istediðinizden emin misiniz?"
 
 #: ../do_command.php:38
 msgid "Attempted security breach."
@@ -977,9 +971,8 @@ msgid "Performing Operation.."
 msgstr ""
 
 #: ../do_command.php:60
-#, fuzzy
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
-msgstr "Bu albümü silmek istediginizden eminmisiniz?"
+msgstr "Alt-albümlerdeki thumbnaillarý da yeniden oluþturmak istiyor musunuz?"
 
 #: ../do_command.php:70
 msgid "Start"
@@ -1052,7 +1045,7 @@ msgstr "Kilobyte cinsiden maksimum JPEG/PNG resim boyutu (0 yada boþ býraktýðýný
 
 #: ../edit_appearance.php:161
 msgid "Maximum dimensions of full sized images"
-msgstr ""
+msgstr "Tam görünümlü resmin maksimum boyutlarý"
 
 #: ../edit_appearance.php:163
 #, php-format
@@ -1105,7 +1098,7 @@ msgstr "Rastgele"
 
 #: ../edit_appearance.php:249
 msgid "Include sub-albums in slideshow"
-msgstr ""
+msgstr "Slaytgösterisinde alt-albümleri içer"
 
 #: ../edit_appearance.php:256
 msgid "Allow slideshow to loop"
@@ -1156,9 +1149,8 @@ msgid "Display clickable image dimensions"
 msgstr ""
 
 #: ../edit_appearance.php:345
-#, fuzzy
 msgid "Apply values to nested albums (except album title and summary)."
-msgstr "Bu seçimleri Alt-Albümlere uygula (Albüm baþlýðý ve açýklamasý dýþýnda)"
+msgstr "Bu seçimleri Alt-Albümlere uygula (albüm baþlýðý ve açýklamasý dýþýnda),"
 
 #: ../edit_appearance.php:348 ../extra_fields.php:176
 #: ../poll_properties.php:140
@@ -1242,9 +1234,8 @@ msgid "Choose which part of the image will compose your thumbnail:"
 msgstr ""
 
 #: ../edit_watermark.php:43
-#, fuzzy
 msgid "Watermarking photo."
-msgstr "Albümü Sýrala"
+msgstr "Watermarking foto."
 
 #: ../edit_watermark.php:43 ../watermark_album.php:55
 msgid "this may take a while"
@@ -1261,9 +1252,8 @@ msgstr "Lütfen kullanýcý seçiniz"
 
 #: ../edit_watermark.php:75 ../edit_watermark.php:79 ../view_album.php:923
 #: ../view_album.php:959
-#, fuzzy
 msgid "Edit Watermark"
-msgstr "Albümü Sýrala"
+msgstr "Watermark Düzenle"
 
 #: ../edit_watermark.php:108 ../watermark_album.php:132
 msgid "Preview"
@@ -1292,7 +1282,6 @@ msgid "Field"
 msgstr "Dosya"
 
 #: ../extra_fields.php:173 ../poll_properties.php:137
-#, fuzzy
 msgid "Apply values to nested albums."
 msgstr "Deðerleri Alt-albümlere uygula."
 
@@ -1345,9 +1334,8 @@ msgid "Tip:"
 msgstr "Ýpucu:"
 
 #: ../includes/add_photos/add_form.inc:42
-#, fuzzy
 msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
-msgstr "Resim ve Film  içeren ZIP dosyalarý yükleyebilirsiniz!"
+msgstr "Sýkýþtýrýlmýþ dosya gönderin (zip, rar, ace ...) Resinm ve film ile dolu!"
 
 #: ../includes/add_photos/add_form.inc:51
 msgid "1. Select the number of files you want to upload:"
@@ -1383,9 +1371,8 @@ msgid "Upload Now"
 msgstr "Þimdi Yükle"
 
 #: ../includes/add_photos/add_other.inc:24
-#, fuzzy
 msgid "You can use one of these desktop agents to drag and drop photos from your desktop"
-msgstr "Alternatif olarak, masaüstü bileþenlerini kullanarak resimleri sürekle ve býrak yöntemiyle yükleyebilirsiniz"
+msgstr "Masaüstü bileþenlerini kullanarak resimleri sürekle ve býrak yöntemiyle masaüstünüzden yükleyebilirsiniz"
 
 #: ../includes/add_photos/add_other.inc:29
 msgid "A Java application that runs on Mac, Windows and Unix"
@@ -1443,17 +1430,17 @@ msgstr ""
 
 #: ../includes/slideshow/applet.inc:80
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
-msgstr ""
+msgstr "Tarayýcýnýz applet larý desteklemiyor; diðer slaytgösterisi methodlarýný kullanmayý deneyin."
 
 #: ../includes/slideshow/high.inc:67
-#, fuzzy, php-format
+#, php-format
 msgid "%s Random Images from %s"
-msgstr "resim yok"
+msgstr "%s Rastgele Resimler %s"
 
 #: ../includes/slideshow/high.inc:76
-#, fuzzy, php-format
+#, php-format
 msgid "%d Random Images from album :: %s"
-msgstr " %s, %s"
+msgstr "%d Rastgele Resimler albüm :: %s"
 
 #: ../includes/slideshow/high.inc:230
 msgid "Blend"
@@ -1530,14 +1517,12 @@ msgid "Slide show is running..."
 msgstr "Slayt Þov çalýþýyor..."
 
 #: ../includes/slideshow/high.inc:332
-#, fuzzy
 msgid "The slide is showing full sized images, Click [normal size] to view resized images."
-msgstr "Slaytþov durduruldu, [oynat]'ý týklayarak devam ettirin. "
+msgstr "Slaytþov resimlerin tam boyutunu gösteriyor, [normal boyut]'a týklayarak yeniden boyutlandýrýlmýþ resimleri görün."
 
 #: ../includes/slideshow/high.inc:339
-#, fuzzy
 msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
-msgstr "Slaytþov durduruldu, [oynat]'ý týklayarak devam ettirin. "
+msgstr "Bu slayt normal boyuttaki resimleri gösteriyor, [tam boyut] linkine týklayarak tam boyut resmi görüntüleyebilirsiniz."
 
 #: ../includes/slideshow/high.inc:377 ../includes/slideshow/low.inc:207
 msgid "Picture is loading..."
@@ -1616,7 +1601,7 @@ msgstr "Albüm için Slaytþov"
 
 #: ../includes/stats/stats.inc.php:48
 msgid "Sort by most viewed image first"
-msgstr ""
+msgstr "En çok görüntülenen resmi ilk olarak sýrala"
 
 #: ../includes/stats/stats.inc.php:49
 msgid "most viewed"
@@ -1631,9 +1616,8 @@ msgid "latest added"
 msgstr ""
 
 #: ../includes/stats/stats.inc.php:58
-#, fuzzy
 msgid "Sort by image capture date"
-msgstr "Yakalama Tarihi"
+msgstr "Resim yakalama tarihi ile sýrala"
 
 #: ../includes/stats/stats.inc.php:59
 #, fuzzy
@@ -1641,14 +1625,12 @@ msgid "latest shots"
 msgstr "Son Resim"
 
 #: ../includes/stats/stats.inc.php:63
-#, fuzzy
 msgid "Show images with comments - latest are shown first"
-msgstr "Bu Galeride sahipsiz albümler yok."
+msgstr "Yorumlu resimleri göster - enson yorumlular ilk gösterilecek"
 
 #: ../includes/stats/stats.inc.php:64
-#, fuzzy
 msgid "latest comments"
-msgstr "Son Yorum %s."
+msgstr "son yorumlar"
 
 #: ../includes/stats/stats.inc.php:75
 msgid "Show random images"
@@ -1676,24 +1658,20 @@ msgid "Show comments"
 msgstr "Yorumlarý göster"
 
 #: ../includes/stats/stats.inc.php:95
-#, fuzzy
 msgid "Show capture date"
-msgstr "Resim Yakalama Tarihi"
+msgstr "Yakalama tarihini göster"
 
 #: ../includes/stats/stats.inc.php:98
-#, fuzzy
 msgid "Show upload date"
-msgstr "Eklenme Tarihi ile"
+msgstr "Eklenme Tarihini Göster"
 
 #: ../includes/stats/stats.inc.php:101
-#, fuzzy
 msgid "Show number of views"
-msgstr "Týklanma Sayýsý ile"
+msgstr "Görüntüleme sayýsýný göster"
 
 #: ../includes/stats/stats.inc.php:104
-#, fuzzy
 msgid "Show the add comment link"
-msgstr "yorum ekle"
+msgstr "Yorum ekle baðlantýsýný göster"
 
 #: ../includes/stats/stats.inc.php:111
 #, fuzzy
@@ -1701,9 +1679,8 @@ msgid "Show the add vote link"
 msgstr "yorum ekle"
 
 #: ../includes/stats/stats.inc.php:114
-#, fuzzy
 msgid "Show the album owners"
-msgstr " %s, %s"
+msgstr "Albüm sahiplerini göster"
 
 #: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
@@ -1727,23 +1704,20 @@ msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr ""
 
 #: ../includes/stats/stats.inc.php:143
-#, fuzzy
 msgid "Above the comments"
-msgstr "yorumlarý görüntüle"
+msgstr "Yorumlarýn üstünde"
 
 #: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr ""
 
 #: ../includes/stats/stats.inc.php:145
-#, fuzzy
 msgid "Above the stats"
-msgstr "yorumlarý görüntüle"
+msgstr "Ýstatisklerin üstünde"
 
 #: ../includes/stats/stats.inc.php:146
-#, fuzzy
 msgid "Below the comments"
-msgstr "yorum sil"
+msgstr "Yorumlarýn altýnda"
 
 #: ../includes/stats/stats.inc.php:147
 #, fuzzy
@@ -1751,18 +1725,16 @@ msgid "Position of the add vote and add comment links"
 msgstr "yorum ekle"
 
 #: ../includes/stats/stats.inc.php:152
-#, fuzzy
 msgid "Filter by year"
-msgstr "Yakalama Tarihi"
+msgstr "Yýla göre filtrele"
 
 #: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr ""
 
 #: ../includes/stats/stats.inc.php:158
-#, fuzzy
 msgid "Filter by day"
-msgstr "Yakalama Tarihi"
+msgstr "Güne göre filtrele"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -1859,9 +1831,8 @@ msgid "view&nbsp;comments"
 msgstr "yorumlarý&nbsp;görüntüle"
 
 #: ../layout/adminAlbumCommands.inc:40
-#, fuzzy
 msgid "watermark&nbsp;album"
-msgstr "Albümü Sýrala"
+msgstr "watermark&nbsp;albüm"
 
 #: ../layout/breadcrumb.inc:39
 msgid "Logged in as:"
@@ -1952,7 +1923,7 @@ msgstr ""
 
 #: ../layout/watermarkform.inc:111
 msgid "Upper&nbsp;Left"
-msgstr ""
+msgstr "Üst&nbsp;Sol"
 
 #: ../layout/watermarkform.inc:113
 msgid "Top"
@@ -1960,7 +1931,7 @@ msgstr "Üst"
 
 #: ../layout/watermarkform.inc:115
 msgid "Upper&nbsp;Right"
-msgstr ""
+msgstr "Üst&nbsp;Sað"
 
 #: ../layout/watermarkform.inc:119
 msgid "Left"
@@ -1976,7 +1947,7 @@ msgstr "Sað"
 
 #: ../layout/watermarkform.inc:127
 msgid "Lower&nbsp;Left"
-msgstr ""
+msgstr "Alt&nbsp;Sol"
 
 #: ../layout/watermarkform.inc:129
 msgid "Bottom"
@@ -1984,7 +1955,7 @@ msgstr "Orta"
 
 #: ../layout/watermarkform.inc:131
 msgid "Lower&nbsp;Right"
-msgstr ""
+msgstr "Alt&nbsp;Sað"
 
 #: ../layout/watermarkform.inc:144
 msgid "Preview Size"
@@ -2003,9 +1974,8 @@ msgid "Watermark subalbums"
 msgstr "Watermak alt-albümler"
 
 #: ../layout/watermarkform.inc:159
-#, fuzzy
 msgid "Apply watermark to"
-msgstr "Albümü Sýrala"
+msgstr "Watermark uygula"
 
 #: ../layout/watermarkform.inc:160
 msgid "All photos"
@@ -2017,9 +1987,8 @@ msgid "Only sized photos"
 msgstr "resmin boyutunu yeniden ayarla"
 
 #: ../layout/watermarkform.inc:162
-#, fuzzy
 msgid "Only full photos"
-msgstr "resmin boyutunu yeniden ayarla"
+msgstr "Sadece tam fotolar"
 
 #: ../lib/Form.php:56
 msgid "Check All"
@@ -2083,8 +2052,8 @@ msgstr[1] "%d oy veren"
 #, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sonuç oy veren sayýsý bir"
+msgstr[1] "Sonuç oy veren sayýsý %d "
 
 #: ../lib/voting.php:324
 #, php-format
@@ -2096,10 +2065,10 @@ msgstr "%s: %s puan; "
 msgid "Key - %s"
 msgstr "Anahtar - %s"
 
-#: ../lib/voting.php:335 ../poll_results.php:163
-#, fuzzy
+#: ../lib/voting.php:335
+#: ../poll_results.php:163
 msgid "No votes so far."
-msgstr "Not"
+msgstr "Oy yok."
 
 #: ../lib/voting.php:356
 msgid "Poll results:"
@@ -2128,16 +2097,15 @@ msgstr[1] "%d oy"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
-msgstr ""
+msgstr "BAÞARILI"
 
 #: ../login.php:55
 msgid "Invalid username or password"
 msgstr "Geçersiz kullanýcý adý veya þifre"
 
 #: ../login.php:60
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "Lütfen Kullanýcý adý ve Þifrenizi giriniz"
+msgstr "Lütfen kullanýcýadý ve þifre giriniz."
 
 #: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
@@ -2195,9 +2163,9 @@ msgid "Email could not be sent.  Please contact %s administrators for a new pass
 msgstr "Email gönderilemiyor. Lütfen yeni bir þifre için %s yöneticilerle iletiþime geçiniz"
 
 #: ../login.php:136
-#, fuzzy, php-format
+#, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
-msgstr "Email gönderilemiyor. Lütfen yeni bir þifre için %s yöneticilerle iletiþime geçiniz"
+msgstr "Bu hesap için geçerli bir email adresi yok. Lütfen yeni bir þifre için %s yöneticilerle iletiþime geçiniz"
 
 #: ../login.php:139 ../new_password.php:35 ../new_password.php:39
 msgid "Not a valid username"
@@ -2377,7 +2345,7 @@ msgstr "Email göndermede sorun var %s"
 #: ../multi_create_user.php:124
 #, php-format
 msgid "%s added, %s skipped"
-msgstr ""
+msgstr "%s eklendi, %s geçildi"
 
 #: ../multi_create_user.php:125 ../multi_create_user.php:126
 #, php-format
@@ -2505,7 +2473,7 @@ msgstr "Oylama ipucu"
 
 #: ../poll_properties.php:120
 msgid "Displayed Value"
-msgstr ""
+msgstr "Görüntülenen Deðer"
 
 #: ../poll_properties.php:121
 msgid "Points"
@@ -2700,9 +2668,8 @@ msgid "Open your Windows explorer and browse to a folder containing supported im
 msgstr "Windows Explorerýnýzý açýn ve desteklenen resimleri içeren klasörlerinize gözatýn."
 
 #: ../publish_xp_docs.php:62
-#, fuzzy
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Resmi seçtiðinizde sol bölümde &quot;Bu dosyayý Web'de yayýmla&quot; baþlýðý altýnda bir link açýlacak"
+msgstr "Resmi veya klasörü seçtiðinizde sol bölümde &quot;Bu dosyayý Web'de yayýmla&quot; baþlýðý altýnda bir link açýlacak"
 
 #: ../publish_xp_docs.php:63
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
@@ -2740,7 +2707,7 @@ msgid "Gallery Self Registration"
 msgstr "Galeri Konfigurasyonu"
 
 #: ../register.php:114
-#, fuzzy, php-format
+#, php-format
 msgid "An email has been sent to %s."
 msgstr "Email gönderildi %s."
 
@@ -2749,9 +2716,8 @@ msgid "Your account information is contained within the email."
 msgstr ""
 
 #: ../register.php:118
-#, fuzzy
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
-msgstr "Email gönderilemiyor. Lütfen yeni bir þifre için %s yöneticilerle iletiþime geçiniz"
+msgstr "Email gönderilemiyor. Lütfen kay"
 
 #: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
@@ -2839,9 +2805,8 @@ msgid "(manual value)"
 msgstr ""
 
 #: ../resize_photo.php:122
-#, fuzzy
 msgid "Apply to nested albums ?"
-msgstr "Alt-albümlere uygula"
+msgstr "Alt-albümlere uygula ?"
 
 #: ../resize_photo.php:128
 msgid "Get rid of resized"
@@ -2872,9 +2837,8 @@ msgid "Manipulate again?"
 msgstr ""
 
 #: ../rotate_photo.php:64
-#, fuzzy
 msgid "How do you want to manipulate this photo?"
-msgstr "Bu resmi silmek istediginizden eminmisiniz?"
+msgstr "Bu fotoyu nasýl deðiþtirmek istersiniz?"
 
 #: ../rotate_photo.php:70
 msgid "Rotate"
@@ -2982,9 +2946,9 @@ msgid "No Photo Matches"
 msgstr "Uygun resim bulanumadý"
 
 #: ../search.php:264
-#, fuzzy, php-format
+#, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
-msgstr "Bazý albümlerde arama yapýlamýyor, çünkü son yayýmlanan vesiyona yükseltilmesi gerekli. Son versiyon:  %s "
+msgstr "Bazý albümlerde arama yapýlamýyor, çünkü son yayýmlanan vesiyona yükseltilmesi gerekli. Son versiyon:  %s."
 
 #: ../search.php:267
 msgid "Upgrade all albums."
@@ -3015,9 +2979,8 @@ msgid "forward direction"
 msgstr "ileri istikamet"
 
 #: ../slideshow.php:93
-#, fuzzy
 msgid "Delay"
-msgstr "Gecikme:"
+msgstr "Gecikme"
 
 #: ../slideshow.php:94
 msgid "Loop"
@@ -3117,11 +3080,11 @@ msgstr ""
 
 #: ../stats.php:273
 msgid "Using cache"
-msgstr ""
+msgstr "Önbellek kullan"
 
 #: ../stats.php:276
 msgid "Not using cache"
-msgstr ""
+msgstr "Önbellek kullanma"
 
 #: ../stats.php:279
 msgid "Cache to be rebuilt"
@@ -3129,7 +3092,7 @@ msgstr ""
 
 #: ../stats.php:302
 msgid "Version out of date."
-msgstr ""
+msgstr "Versiyon güncel deðil."
 
 #: ../stats.php:336
 #, php-format
@@ -3142,14 +3105,12 @@ msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
 #: ../stats.php:364
-#, fuzzy
 msgid "Getting SVotes"
-msgstr "Yorumlar eþleniyor"
+msgstr ""
 
 #: ../stats.php:372
-#, fuzzy
 msgid "Getting Item Clicks"
-msgstr "Yakalama Tarihi"
+msgstr "Öge Týklamalarý Alýnýyor"
 
 #: ../stats.php:377
 #, fuzzy
@@ -3157,19 +3118,17 @@ msgid "Getting Item Capture Date"
 msgstr "Yakalama Tarihi"
 
 #: ../stats.php:397
-#, fuzzy
 msgid "Getting Number of Comments"
-msgstr "Yorum Sayýsý ile"
+msgstr "Yorum Sayýsý Alýnýyor"
 
 #: ../stats.php:401
-#, fuzzy
 msgid "Getting Comments"
-msgstr "Yorumlar eþleniyor"
+msgstr "Yorumlar Alýnýyor"
 
 #: ../stats.php:448
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
-msgstr ""
+msgstr "Albüm: %s ; Indeks: %d ; Oylar: %d ; Görüntüleme: %d; Tarih: %s; Yakalama: %s; Yorum Tarihi: %s; Reyting: %s; Reyting sayacý: %d; Rastgele: %d"
 
 #: ../stats.php:523
 #, php-format
@@ -3185,44 +3144,36 @@ msgid " - Images with the least votes"
 msgstr ""
 
 #: ../stats.php:546
-#, fuzzy
 msgid " - Top rated images"
-msgstr "resim yok"
+msgstr " - En iyi oy olan resimler"
 
 #: ../stats.php:549
-#, fuzzy
 msgid " - Bottom rated images"
-msgstr "resim yok"
+msgstr "- En az oy olan resimler"
 
 #: ../stats.php:555
-#, fuzzy
 msgid " - Latest added images"
-msgstr "Yakalama Tarihi"
+msgstr " - Son eklenen resimler"
 
 #: ../stats.php:558
-#, fuzzy
 msgid " - Oldest images first"
-msgstr "yorum sil"
+msgstr " - En eski resimler ilk"
 
 #: ../stats.php:564
-#, fuzzy
 msgid " - Latest Capture Date"
-msgstr "Yakalama Tarihi"
+msgstr "- Son Yakalama Tarihi"
 
 #: ../stats.php:567
-#, fuzzy
 msgid " - Oldest Capture Date"
-msgstr "Yakalama Tarihi"
+msgstr ""
 
 #: ../stats.php:573
-#, fuzzy
 msgid " - Latest Comments"
-msgstr "Son Yorum %s."
+msgstr " - Son Yorumlar"
 
 #: ../stats.php:576
-#, fuzzy
 msgid " - Oldest Comments"
-msgstr "yorum sil"
+msgstr " - En eski Yorumlar"
 
 #: ../stats.php:581
 msgid " - Random Images"
@@ -3242,38 +3193,38 @@ msgid "%d images with comments in album: %s"
 msgstr "Bu Galeride sahipsiz albümler yok."
 
 #: ../stats.php:624
-#, fuzzy, php-format
+#, php-format
 msgid "%d images in album: %s"
-msgstr " %s, %s"
+msgstr "%d resim, albüm: %s"
 
 #: ../stats.php:627
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
-msgstr ""
+msgstr "Verilen albümadý: '%s' geçersiz!"
 
 #: ../stats.php:632
-#, fuzzy, php-format
+#, php-format
 msgid "%d images with comments in this Gallery"
-msgstr "Bu Galeride sahipsiz albümler yok."
+msgstr "Galeride %d adet yorumu olan resim bulunuyor."
 
 #: ../stats.php:635
-#, fuzzy, php-format
+#, php-format
 msgid "%d images this Gallery"
-msgstr "Galeriye Gir"
+msgstr "Galeride %d resim var"
 
 #: ../stats.php:641
 msgid "Back to stats-wizard"
-msgstr ""
+msgstr "Ýstatistik-sihirbazýna dön"
 
 #: ../stats.php:677
 #, php-format
 msgid "Data load time %d seconds"
-msgstr ""
+msgstr "Veri yükleme süresi %d saniye"
 
 #: ../stats.php:764
 #, php-format
 msgid "Finished in %d seconds"
-msgstr ""
+msgstr "%d saniyede bitirildi"
 
 #: ../stats.php:770
 msgid "Update"
@@ -3281,7 +3232,7 @@ msgstr "Güncelle"
 
 #: ../stats.php:771
 msgid "Cache update required. "
-msgstr ""
+msgstr "Önbellek güncellemesi gerekli."
 
 #: ../stats.php:775
 #, fuzzy, php-format
@@ -3289,9 +3240,8 @@ msgid "Some albums not searched as they require upgrading to the latest version 
 msgstr "Bazý albümlerde arama yapýlamýyor, çünkü son yayýmlanan vesiyona yükseltilmesi gerekli. Son versiyon:  %s "
 
 #: ../stats.php:778
-#, fuzzy
 msgid "upgrade all albums"
-msgstr "tüm albümleri güncelle"
+msgstr "alt albümleri güncelle"
 
 #: ../stats.php:824
 #, fuzzy, php-format
@@ -3305,46 +3255,39 @@ msgstr ""
 #: ../stats.php:890
 #, php-format
 msgid "Album name : %s ; index: %s"
-msgstr ""
+msgstr "Albüm adý : %s ; indeks: %s"
 
 #: ../stats.php:902 ../stats.php:943
 msgid "Read cache lock failed."
 msgstr ""
 
 #: ../stats.php:1114
-#, fuzzy
 msgid "add vote"
-msgstr "Not"
+msgstr "oy ekle"
 
 #: ../stats.php:1220
-#, fuzzy
 msgid "From album"
 msgstr "Albüm"
 
 #: ../stats.php:1224
-#, fuzzy
 msgid "Owned by:"
 msgstr "Sahip:"
 
 #: ../stats.php:1277
-#, fuzzy
 msgid "Capture Date:"
-msgstr "Yakalama Tarihi"
+msgstr "Yakalama Tarihi:"
 
 #: ../stats.php:1288
-#, fuzzy
 msgid "Upload Date:"
-msgstr "Eklenme Tarihi"
+msgstr "Gönderim Tarihi:"
 
 #: ../stats.php:1299
-#, fuzzy
 msgid "Views:"
 msgstr "Görüntüleme:"
 
 #: ../stats.php:1308
-#, fuzzy
 msgid "Votes:"
-msgstr "Notlar:"
+msgstr "Oylar:"
 
 #: ../stats.php:1317
 #, fuzzy
@@ -3362,21 +3305,19 @@ msgstr "Sihirbaz"
 
 #: ../stats-wizard.php:109
 msgid "Type"
-msgstr ""
+msgstr "Tür"
 
 #: ../stats-wizard.php:113 ../tools/despam-comments.php:383
 msgid "Options"
 msgstr "Seçenekler:"
 
 #: ../stats-wizard.php:118
-#, fuzzy
 msgid "Layout"
-msgstr "Son"
+msgstr "Layout"
 
 #: ../stats-wizard.php:122
-#, fuzzy
 msgid "Filter by Capture Date"
-msgstr "Yakalama Tarihi"
+msgstr "Yakalama Tarihi ile Filtrele"
 
 #: ../stats-wizard.php:127
 msgid "Show statistics"
@@ -3384,22 +3325,20 @@ msgstr "Ýstatistikleri göster"
 
 #: ../stats-wizard.php:130
 msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
-msgstr ""
+msgstr "Belki kendi istatistik sisteminizi kullanmak istersiniz .. Sadece yazý kutusundaki url yi kopyalayýp yapýþtýrýn."
 
 #: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
 msgid "Find Orphans"
-msgstr ""
+msgstr "Sahipsizleri Bul"
 
 #: ../tools/find_orphans.php:213 ../tools/despam-comments.php:59
 #: ../tools/validate_albums.php:203
-#, fuzzy
 msgid "return to admin page"
-msgstr "albüme dön"
+msgstr "yönetici sayfasýna geri dön"
 
 #: ../tools/find_orphans.php:224
-#, fuzzy
 msgid "Orphaned Albums:"
-msgstr "Sahipsiz Albümler"
+msgstr "Sahipsiz Albümler:"
 
 #: ../tools/find_orphans.php:225
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
@@ -3418,14 +3357,12 @@ msgid "Gallery Root"
 msgstr "Galeri Kök"
 
 #: ../tools/find_orphans.php:252
-#, fuzzy
 msgid "Re-Attach Orphaned Albums!"
-msgstr "Sahipsiz Albümler"
+msgstr "Sahipsiz Albümleri Yeniden-Ekle!"
 
 #: ../tools/find_orphans.php:259
-#, fuzzy
 msgid "Orphaned Files:"
-msgstr "Sahipsiz Albümler"
+msgstr "Sahipsiz Dosyalar:"
 
 #: ../tools/find_orphans.php:260
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
@@ -3436,28 +3373,25 @@ msgid "Album directory"
 msgstr "Albüm klasörü"
 
 #: ../tools/find_orphans.php:266
-#, fuzzy
 msgid "Orphaned file"
-msgstr "Sahipsiz Albüm"
+msgstr "Sahipsiz dosya"
 
 #: ../tools/find_orphans.php:289
-#, fuzzy
 msgid "Delete Orphaned Files!"
-msgstr "Sahipsiz Albümler"
+msgstr "Sahipsiz Dosyalarý Sil!"
 
 #: ../tools/find_orphans.php:295
 msgid "No Orphans Found"
-msgstr ""
+msgstr "Sahipsiz bulunamadý"
 
 #: ../tools/find_orphans.php:296
-#, fuzzy
 msgid "There are no orphaned elements in this Gallery."
-msgstr "Bu Galeride sahipsiz albümler yok."
+msgstr "Bu Galeride sahipsiz elementler yok."
 
 #: ../tools/find_orphans.php:300
 #, php-format
 msgid "Orphan %s Repaired"
-msgstr ""
+msgstr "Sahipsizler %s Düzeltildi"
 
 #: ../tools/find_orphans.php:300
 msgid "Albums"
@@ -3477,12 +3411,11 @@ msgstr ""
 
 #: ../tools/find_orphans.php:314
 msgid "Reload"
-msgstr ""
+msgstr "Yeniden Yükle"
 
 #: ../tools/despam-comments.php:56
-#, fuzzy
 msgid "Find and remove comment spam"
-msgstr "yorumlarý görüntüle"
+msgstr "Spam yorumlarý bul ve sil"
 
 #: ../tools/despam-comments.php:120
 msgid "Delete Comments"
@@ -3495,16 +3428,16 @@ msgid "No action taken!"
 msgstr "Baþlýk Yok"
 
 #: ../tools/despam-comments.php:146
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %d spam comments"
-msgstr "yorum sil"
+msgstr "%d  spam yorumu silindi."
 
 #: ../tools/despam-comments.php:150
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
-msgstr[0] "yorum sil"
-msgstr[1] ""
+msgstr[0] "%d spam yorumu silindi."
+msgstr[1] "%d spam yorumu silindi."
 
 #: ../tools/despam-comments.php:151
 msgid "No comment deleted."
@@ -3521,14 +3454,12 @@ msgid "No spam comments."
 msgstr "yorum ekle"
 
 #: ../tools/despam-comments.php:208
-#, fuzzy
 msgid "Entry"
-msgstr "Boþ"
+msgstr "Giriþ"
 
 #: ../tools/despam-comments.php:212
-#, fuzzy
 msgid "Location"
-msgstr "dökümantasyon"
+msgstr "Lokasyon"
 
 #: ../tools/despam-comments.php:216
 msgid "Commenter"
@@ -3543,14 +3474,13 @@ msgid "Delete Checked Comments"
 msgstr "Seçilen yorumlarý sil"
 
 #: ../tools/despam-comments.php:249
-#, fuzzy
 msgid "Delete from blacklist"
-msgstr "þu andaki yeri"
+msgstr "Karalisteden sil"
 
-#: ../tools/despam-comments.php:266 ../tools/despam-comments.php:310
-#, fuzzy
+#: ../tools/despam-comments.php:266
+#: ../tools/despam-comments.php:310
 msgid "Error saving blacklist!"
-msgstr "þu andaki yeri"
+msgstr "Karalisteyi kaydetmede hata!"
 
 #: ../tools/despam-comments.php:269
 #, php-format
@@ -3560,55 +3490,49 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../tools/despam-comments.php:313
-#, fuzzy
 msgid "Added to blacklist:"
-msgstr "þu andaki yeri"
+msgstr "Karalisteye eklendi:"
 
 #: ../tools/despam-comments.php:322
 msgid "Following duplicates were not added:"
 msgstr ""
 
 #: ../tools/despam-comments.php:338
-#, fuzzy
 msgid "Current blacklist"
-msgstr "þu andaki yeri"
+msgstr "Þuanki karaliste"
 
 #: ../tools/despam-comments.php:340
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
-#: ../tools/despam-comments.php:355 ../tools/despam-comments.php:372
-#, fuzzy
+#: ../tools/despam-comments.php:355
+#: ../tools/despam-comments.php:372
 msgid "Update Blacklist"
-msgstr "þu andaki yeri"
+msgstr "Karalisteyi Güncelle"
 
 #: ../tools/despam-comments.php:362
-#, fuzzy
 msgid "Enter new blacklist entries"
-msgstr "yorum sil"
+msgstr "Yeni karaliste giriþlerini yap"
 
 #: ../tools/despam-comments.php:363
-#, fuzzy
 msgid "Useful blacklists: "
-msgstr "þu andaki yeri"
+msgstr "Kullanýþlý karaliste:"
 
 #: ../tools/despam-comments.php:368
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr ""
 
 #: ../tools/despam-comments.php:378
-#, fuzzy
 msgid "Find blacklisted comments"
-msgstr "yorum sil"
+msgstr "Karalisteye alýnmýþ yorumlarý bul"
 
 #: ../tools/despam-comments.php:379
 msgid "View/Edit blacklist"
 msgstr "Karaliste Görüntüle/Düzenle"
 
 #: ../tools/despam-comments.php:380
-#, fuzzy
 msgid "Add blacklist entries"
-msgstr "yorum sil"
+msgstr "Karaliste girdilerini ekle"
 
 #: ../tools/validate_albums.php:168
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
@@ -3631,10 +3555,10 @@ msgstr ""
 msgid "Missing File"
 msgstr "Kayýp Dosya"
 
-#: ../tools/validate_albums.php:221 ../tools/validate_albums.php:263
-#, fuzzy
+#: ../tools/validate_albums.php:221
+#: ../tools/validate_albums.php:263
 msgid "Action"
-msgstr "dökümantasyon"
+msgstr "Hareket"
 
 #: ../tools/validate_albums.php:230 ../view_photo.php:328
 msgid "delete photo"
@@ -3645,23 +3569,20 @@ msgid "No Missing Files"
 msgstr "Kayýp Dosya Yok"
 
 #: ../tools/validate_albums.php:247
-#, fuzzy
 msgid "There are no missing files in this Gallery."
-msgstr "Bu Galeride sahipsiz albümler yok."
+msgstr "Galeride hiç kayýp dosya yok."
 
 #: ../tools/validate_albums.php:256
-#, fuzzy
 msgid "Invalid Albums:"
-msgstr "Geçersiz kullanýcý"
+msgstr "Geçersiz Albümler:"
 
 #: ../tools/validate_albums.php:257
 msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
 msgstr ""
 
 #: ../tools/validate_albums.php:261
-#, fuzzy
 msgid "Invalid Album"
-msgstr "Geçersiz kullanýcý"
+msgstr "Geçersiz Albüm"
 
 #: ../tools/validate_albums.php:270
 msgid "delete directory"
@@ -3669,12 +3590,11 @@ msgstr "klasör sil"
 
 #: ../tools/validate_albums.php:286
 msgid "No Invalid Albums Found"
-msgstr ""
+msgstr "Geçersiz Albüm Bulunmadý"
 
 #: ../tools/validate_albums.php:287
-#, fuzzy
 msgid "There are no invalid albums present in this Gallery."
-msgstr "Bu Galeride sahipsiz albümler yok."
+msgstr "Bu Galeride geçersiz albüm bulunmuyor."
 
 #: ../upgrade_album.php:81
 msgid "Progress"
@@ -3750,9 +3670,8 @@ msgid "There was a problem upgrading users.  Please check messages above, and tr
 msgstr ""
 
 #: ../upgrade_users.php:56
-#, fuzzy
 msgid "Retry"
-msgstr "Boþ"
+msgstr "Yeniden"
 
 #: ../upgrade_users.php:60
 msgid "Users upgraded successfully."
@@ -3844,12 +3763,11 @@ msgstr "Durum: %s (beklenen %s)"
 #: ../util.php:353
 #, php-format
 msgid "Getting Dimension of file: %s"
-msgstr ""
+msgstr "Dosyanýn boyutlarý alýnýyor: %s"
 
 #: ../util.php:358
-#, fuzzy
 msgid "The file does not exist ?!"
-msgstr "%s dosyasý mevcut deðil ?!"
+msgstr "Bu dosya mevcut deðil ?!"
 
 #: ../util.php:370
 #, php-format
@@ -3870,9 +3788,9 @@ msgid "Not closing this window because debug mode is on"
 msgstr "Bu pencere kapatýlmýyor çünkü debug modu açýk"
 
 #: ../util.php:513
-#, fuzzy, php-format
+#, php-format
 msgid "Resizing Image: %s"
-msgstr "Boyut Yenileniyor %s"
+msgstr "Resim Boyutu Yenileniyor: %s"
 
 #: ../util.php:545
 msgid "No resizing required"
@@ -3910,7 +3828,7 @@ msgstr ""
 #: ../util.php:1031
 #, php-format
 msgid "File %s type %d."
-msgstr ""
+msgstr "Dosya %s tür %d."
 
 #: ../util.php:1074 ../util.php:1097
 #, php-format
@@ -3944,9 +3862,9 @@ msgid "self"
 msgstr ""
 
 #: ../util.php:1830
-#, fuzzy, php-format
+#, php-format
 msgid "Item Capture Date : %s"
-msgstr "Yakalama Tarihi"
+msgstr "Öge Yakalama Tarihi : %s"
 
 #: ../util.php:1875
 #, php-format
@@ -3954,9 +3872,9 @@ msgid "Could not open lock file (%s)!"
 msgstr "Kilitli dosya açýlamýyor (%s)!"
 
 #: ../util.php:1880
-#, fuzzy, php-format
+#, php-format
 msgid "Could not acquire lock (%s)!"
-msgstr "Kilitli dosya açýlamýyor (%s)!"
+msgstr "Kilit alýnamýyor (%s)!"
 
 #: ../util.php:1969
 #, php-format
@@ -4014,23 +3932,23 @@ msgid "Note: This is an automatically generated email message sent from the %s w
 msgstr ""
 
 #: ../util.php:2644
-#, fuzzy, php-format
+#, php-format
 msgid "Report abuse to %s"
-msgstr "Geri Dön %s"
+msgstr "Kötü sözleri bildir %s"
 
 #: ../util.php:2663
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
 #: ../util.php:2668
-#, fuzzy, php-format
+#, php-format
 msgid "Email not sent as no address provided"
-msgstr "Kullanýcý adý girmelisiniz"
+msgstr "Adres belirtilmediðinden Email gönderilmedi"
 
 #: ../util.php:2674
-#, fuzzy, php-format
+#, php-format
 msgid "Email not sent to %s as it is not a valid address"
-msgstr "Kullanýcý adý girmelisiniz"
+msgstr "Geçersiz adres olmasý nedeniyle %s adresine email gönderilemedi"
 
 #: ../util.php:2690
 #, php-format
@@ -4039,7 +3957,7 @@ msgstr ""
 
 #: ../util.php:2706
 msgid "Administrator"
-msgstr ""
+msgstr "Yönetici"
 
 #: ../util.php:2740 ../util.php:2745
 msgid "not shown"
@@ -4064,7 +3982,7 @@ msgstr "Son Yorum %s."
 
 #: ../util.php:2900
 msgid "FAILED"
-msgstr ""
+msgstr "BAÞARISIZ"
 
 #: ../util.php:2909
 msgid "Email activity"
@@ -4109,9 +4027,8 @@ msgid "unknown"
 msgstr "bilinmeyen"
 
 #: ../util.php:3035
-#, fuzzy
 msgid "Version"
-msgstr "Ýzinler"
+msgstr "Versiyon"
 
 #: ../util.php:3037
 msgid "Last Update"
@@ -4121,10 +4038,10 @@ msgstr "Son Güncelleme"
 msgid "Dots"
 msgstr "Noktalar"
 
-#: ../util.php:3058 ../util.php:3063
-#, fuzzy
+#: ../util.php:3058
+#: ../util.php:3063
 msgid "Solid"
-msgstr "Slide"
+msgstr "Solid"
 
 #: ../util.php:3061
 msgid "No frames"
@@ -4301,9 +4218,8 @@ msgid "%dkB"
 msgstr ""
 
 #: ../view_album.php:821
-#, fuzzy
 msgid "highlight"
-msgstr "Temsil yok"
+msgstr "highlight"
 
 #: ../view_album.php:827
 msgid "No description"
@@ -4318,11 +4234,11 @@ msgid "Contains: "
 msgstr "Ýçeriyor:"
 
 #: ../view_album.php:838
-#, fuzzy, php-format
+#, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 öge"
-msgstr[1] "dd"
+msgstr[1] "%d öge "
 
 #: ../view_album.php:854 ../view_album.php:878
 msgid "Viewed:"
@@ -4337,9 +4253,9 @@ msgid "Photo"
 msgstr "Resim"
 
 #: ../view_album.php:907
-#, fuzzy, php-format
+#, php-format
 msgid "%s actions"
-msgstr "dökümantasyon"
+msgstr "%s hareketler"
 
 #: ../view_album.php:920 ../view_album.php:956
 msgid "Edit Thumbnail"
@@ -4502,6 +4418,6 @@ msgid "Watermarking album."
 msgstr "Albümü Sýrala"
 
 #: ../watermark_album.php:103
-#, fuzzy
 msgid "No items to watermark."
-msgstr "Not"
+msgstr "Watermarklanýcak öge yok."
+
