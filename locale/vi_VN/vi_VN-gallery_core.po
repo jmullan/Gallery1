@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.5-u1
+# Version: 1.5.1
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2005 Bharat Mediratta
@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-05-17 23:30+0200\n"
+"POT-Creation-Date: 2005-06-26 01:05+0200\n"
 "PO-Revision-Date: 2005-05-17 12:30+0300\n"
 "Last-Translator: A.L.T <leanh AT airland DOT kiev DOT ua>\n"
 "Language-Team: AIRLAND <admin AT airland DOT kiev DOT ua>\n"
@@ -41,23 +41,23 @@ msgstr ""
 #: ../edit_watermark.php:28 ../extra_fields.php:34 ../manage_users.php:31
 #: ../modify_user.php:34 ../move_album.php:31 ../move_photo.php:31
 #: ../multi_create_user.php:33 ../photo_owner.php:34 ../poll_properties.php:34
-#: ../poll_results.php:37 ../rename_album.php:31 ../reset_votes.php:37
-#: ../resize_photo.php:31 ../rotate_photo.php:31 ../save_photos.php:33
-#: ../upgrade_album.php:57 ../user_preferences.php:31
+#: ../poll_results.php:37 ../rearrange.php:28 ../rename_album.php:31
+#: ../reset_votes.php:37 ../resize_photo.php:31 ../rotate_photo.php:31
+#: ../save_photos.php:33 ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:32
 msgid "You are not allowed to perform this action!"
 msgstr "Bạn không được phép thực hiện bước này!"
 
-#: ../add_comment.php:58 ../view_photo.php:191
+#: ../add_comment.php:58 ../view_photo.php:192
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Yêu cầu tên và lời bình khi thêm lời bình mới!"
 
-#: ../add_comment.php:60 ../view_photo.php:193
+#: ../add_comment.php:60 ../view_photo.php:194
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr "Lời bình của bạn quá dài, độ dài tối đa được phép là %d ký tự"
 
-#: ../add_comment.php:62 ../view_photo.php:195
+#: ../add_comment.php:62 ../view_photo.php:196
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr "Lời bình của bạn có những từ bị cấm. Cho nên chúng sẽ không được thêm."
 
@@ -69,14 +69,14 @@ msgstr "Thêm lời bình"
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Ghi lời bình của bạn cho ảnh này vào bên dưới."
 
-#: ../add_comment.php:103 ../copy_photo.php:197 ../delete_album.php:66
-#: ../delete_photo.php:140 ../delete_user.php:85 ../edit_caption.php:189
+#: ../add_comment.php:103 ../copy_photo.php:204 ../delete_album.php:66
+#: ../delete_photo.php:140 ../delete_user.php:85 ../edit_caption.php:185
 #: ../edit_field.php:66 ../edit_watermark.php:109
 #: ../includes/add_photos/add_form.inc:107
 #: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
 #: ../multi_create_user.php:174 ../new_password.php:125 ../register.php:142
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:135
+#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:137
 #: ../sort_album.php:114 ../user_preferences.php:137
 #: ../watermark_album.php:134
 msgid "Cancel"
@@ -158,13 +158,13 @@ msgstr "quản lý người dùng"
 msgid "Manage your users."
 msgstr "Quản lý người dùng."
 
-#: ../admin-page.php:91
+#: ../admin-page.php:73 ../admin-page.php:84
 msgid "Admin options"
 msgstr "Tùy chọn QT"
 
-#: ../admin-page.php:92 ../stats.php:647 ../stats-wizard.php:100
-#: ../tools/find_orphans.php:214 ../tools/despam-comments.php:60
-#: ../tools/validate_albums.php:204
+#: ../admin-page.php:85 ../stats.php:594 ../stats-wizard.php:56
+#: ../tools/find_orphans.php:211 ../tools/despam-comments.php:56
+#: ../tools/validate_albums.php:138 ../tools/validate_albums.php:214
 msgid "return to gallery"
 msgstr "quay lại thư viện ảnh"
 
@@ -177,7 +177,7 @@ msgstr "Quyền hạn Album"
 msgid "Changing permissions for %s"
 msgstr "Thay đổi quyền hạn cho %s"
 
-#: ../album_permissions.php:197 ../albums.php:380
+#: ../album_permissions.php:197 ../albums.php:379
 msgid "Owner:"
 msgstr "Người sở hữu:"
 
@@ -221,8 +221,8 @@ msgstr "Những người có thể xem lời bình."
 msgid "Apply permissions to all sub-albums"
 msgstr "Thực thi quyền hạn cho tất cả các album nhánh"
 
-#: ../album_permissions.php:354 ../edit_caption.php:188 ../edit_field.php:56
-#: ../edit_field.php:65 ../edit_watermark.php:107 ../modify_user.php:154
+#: ../album_permissions.php:354 ../edit_caption.php:184 ../edit_field.php:56
+#: ../edit_field.php:65 ../edit_watermark.php:107 ../modify_user.php:164
 #: ../new_password.php:124 ../photo_owner.php:103 ../user_preferences.php:136
 #: ../watermark_album.php:129
 msgid "Save"
@@ -234,229 +234,229 @@ msgstr "Lưu&nbsp;giữ"
 msgid "Done"
 msgstr "Kết&nbsp;thúc"
 
-#: ../albums.php:121 ../view_album.php:129
+#: ../albums.php:120 ../view_album.php:129
 #, php-format
 msgid "%s RSS"
 msgstr "%s cung cấp RSS"
 
-#: ../albums.php:141 ../html_wrap/search.header.default:28 ../search.php:43
+#: ../albums.php:140 ../html_wrap/search.header.default:28 ../search.php:43
 msgid "Search"
 msgstr "Tìm&nbsp;kiếm"
 
-#: ../albums.php:156
+#: ../albums.php:155
 #, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "1 album"
 msgstr[1] "%d album"
 
-#: ../albums.php:156
+#: ../albums.php:155
 msgid "no albums"
 msgstr "không có album"
 
-#: ../albums.php:158
+#: ../albums.php:157
 #, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
 msgstr[0] "1 album chính"
 msgstr[1] "%d album chính"
 
-#: ../albums.php:158
+#: ../albums.php:157
 msgid "No top-level albums"
 msgstr "không có album chính"
 
-#: ../albums.php:161
+#: ../albums.php:160
 #, php-format
 msgid "%d total"
 msgstr "%d tổng cộng"
 
-#: ../albums.php:162 ../view_album.php:235
+#: ../albums.php:161 ../view_album.php:209
 #, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "1 ảnh"
 msgstr[1] "%d ảnh"
 
-#: ../albums.php:162 ../view_album.php:235
+#: ../albums.php:161 ../view_album.php:209
 msgid "no images"
 msgstr "không có ảnh"
 
-#: ../albums.php:163 ../view_album.php:236
+#: ../albums.php:162 ../view_album.php:210
 #, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] "1 trang"
 msgstr[1] "%d trang"
 
-#: ../albums.php:163
+#: ../albums.php:162
 msgid "no pages"
 msgstr "không có trang nào"
 
-#: ../albums.php:166
+#: ../albums.php:165
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%s (%s), %s trong %s"
 
-#: ../albums.php:169
+#: ../albums.php:168
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:171
+#: ../albums.php:170
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%s, %s trong %s"
 
-#: ../albums.php:173
+#: ../albums.php:172
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:188
+#: ../albums.php:187
 #, php-format
 msgid "Welcome, %s"
 msgstr "Chào mừng, %s"
 
-#: ../albums.php:192 ../view_album.php:418
+#: ../albums.php:191 ../view_album.php:388
 msgid "slideshow"
 msgstr "trình diễn ảnh"
 
-#: ../albums.php:197
+#: ../albums.php:196
 msgid "new album"
 msgstr "album mới"
 
-#: ../albums.php:203
+#: ../albums.php:202
 msgid "preferences"
 msgstr "cấu hình"
 
-#: ../albums.php:210
+#: ../albums.php:209
 msgid "documentation"
 msgstr "tài liệu"
 
-#: ../albums.php:214
+#: ../albums.php:213
 msgid "admin page"
 msgstr "trang quản trị"
 
-#: ../albums.php:218 ../view_album.php:436 ../view_photo.php:543
+#: ../albums.php:217 ../view_album.php:406 ../view_photo.php:539
 msgid "logout"
 msgstr "thoát"
 
-#: ../albums.php:223 ../view_album.php:441 ../view_photo.php:548
+#: ../albums.php:222 ../view_album.php:411 ../view_photo.php:544
 msgid "login"
 msgstr "đăng nhập"
 
-#: ../albums.php:227
+#: ../albums.php:226
 msgid "register"
 msgstr "đăng ký"
 
-#: ../albums.php:253
+#: ../albums.php:252
 msgid "Attention Gallery Administrator!"
 msgstr "Quản trị Thư viện ảnh Chú ý!"
 
-#: ../albums.php:256
+#: ../albums.php:255
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s tìm thấy %d album sau không có giá trị trong thư mục album của bạn<br>(%s):"
 
-#: ../albums.php:262
+#: ../albums.php:261
 msgid "Please move it/them out of the albums directory."
 msgstr "Hãy chuyển chúng ra khỏi thư mục album."
 
-#: ../albums.php:266
+#: ../albums.php:265
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr "%s đã phát hiện thấy %d album của bạn đã tới hạn."
 
-#: ../albums.php:270
+#: ../albums.php:269
 #, php-format
 msgid "Please %s."
 msgstr "Xin vui lòng %s."
 
-#: ../albums.php:270
+#: ../albums.php:269
 msgid "upgrade those albums"
 msgstr "nâng cấp những album đó"
 
-#: ../albums.php:278
+#: ../albums.php:277
 msgid "Attention!"
 msgstr "Chú ý!"
 
-#: ../albums.php:280
+#: ../albums.php:279
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not posess. %s"
 msgstr "Album hoặc ảnh mà bạn muốn xem hoặc không có, hoặc yêu cầu quyền hạn mà bạn không có. %s"
 
-#: ../albums.php:280
+#: ../albums.php:279
 #, php-format
 msgid "%s and try again."
 msgstr "%s và thử lại."
 
-#: ../albums.php:281
+#: ../albums.php:280
 msgid "Log in"
 msgstr "Đăng nhập"
 
-#: ../albums.php:295
+#: ../albums.php:294
 #, php-format
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:336 ../view_album.php:694
+#: ../albums.php:335 ../view_album.php:669
 msgid "Highlight for Album:"
 msgstr "Đánh dấu cho album:"
 
-#: ../albums.php:353
+#: ../albums.php:352
 msgid "title"
 msgstr "tiêu đề"
 
-#: ../albums.php:385
+#: ../albums.php:384
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:396
+#: ../albums.php:395
 msgid "Hey!"
 msgstr "Lưu ý!"
 
-#: ../albums.php:397
+#: ../albums.php:396
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s để URL không bị trùng lặp!"
 
-#: ../albums.php:398
+#: ../albums.php:397
 msgid "Rename this album"
 msgstr "Sửa tên album này"
 
-#: ../albums.php:409
+#: ../albums.php:408
 #, php-format
 msgid "Last changed on %s."
 msgstr "Thay đổi cuối vào %s."
 
-#: ../albums.php:412
+#: ../albums.php:411
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Album này bao gồm một mục/ảnh."
 msgstr[1] "Album này bao gồm %d mục/ảnh."
 
-#: ../albums.php:417
+#: ../albums.php:416
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Album này đã được xem %s kể từ %s."
 
-#: ../albums.php:418 ../view_album.php:840 ../view_album.php:864
+#: ../albums.php:417 ../view_album.php:815 ../view_album.php:839
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 lần"
 msgstr[1] "%d lần"
 
-#: ../albums.php:418
+#: ../albums.php:417
 msgid "0 times"
 msgstr "0 lần"
 
-#: ../albums.php:424
+#: ../albums.php:423
 msgid "reset counter"
 msgstr "xóa bộ đếm"
 
-#: ../albums.php:458 ../view_album.php:1062
+#: ../albums.php:463 ../view_album.php:911
 msgid "Comments available for this item."
 msgstr "Có thể ghi bình luận cho mục/ảnh này."
 
@@ -464,90 +464,90 @@ msgstr "Có thể ghi bình luận cho mục/ảnh này."
 msgid "Captioned album does not match current album - aborting changes!"
 msgstr "Chú thích Album không đúng cho album hiện tại - hủy bỏ thay đổi!"
 
-#: ../captionator.php:100
+#: ../captionator.php:95
 msgid "Debugging: Click here to return to the album"
 msgstr "Tìm lỗi: Nhấn ở đây để quay lại album"
 
-#: ../captionator.php:136
+#: ../captionator.php:131
 msgid "Captionator"
 msgstr "Người chú thích"
 
-#: ../captionator.php:178
+#: ../captionator.php:173
 msgid "Multiple Caption Editor."
 msgstr "Ghi nhiều chú thích."
 
-#: ../captionator.php:180
+#: ../captionator.php:175
 msgid "1 photo in this album"
 msgstr "1 ảnh trong album này"
 
-#: ../captionator.php:182
+#: ../captionator.php:177
 msgid "items in this album"
 msgstr "các mục/ảnh trong album này"
 
-#: ../captionator.php:184
+#: ../captionator.php:179
 msgid "on"
 msgstr "vào"
 
-#: ../captionator.php:184
+#: ../captionator.php:179
 #, php-format
 msgid "one page"
 msgid_plural "%d pages"
 msgstr[0] "một trang"
 msgstr[1] "%d trang"
 
-#: ../captionator.php:198 ../captionator.php:314
+#: ../captionator.php:193 ../captionator.php:309
 msgid "Save and Exit"
 msgstr "Lưu&nbsp;và&nbsp;thoát"
 
-#: ../captionator.php:201 ../captionator.php:317
+#: ../captionator.php:196 ../captionator.php:312
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "Lưu&nbsp;và&nbsp;soạn&nbsp;tiếp&nbsp;theo&nbsp;%d"
 
-#: ../captionator.php:205 ../captionator.php:321
+#: ../captionator.php:200 ../captionator.php:316
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "Lưu&nbsp;và&nbsp;soạn&nbsp;phía&nbsp;trước&nbsp;%d"
 
-#: ../captionator.php:209 ../captionator.php:325
+#: ../captionator.php:204 ../captionator.php:320
 msgid "Exit"
 msgstr "Thoát"
 
-#: ../captionator.php:240
+#: ../captionator.php:235
 msgid "(click to enlarge)"
 msgstr "(nhấn để xem lớn hơn)"
 
-#: ../captionator.php:248 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:46 ../view_album.php:802
+#: ../captionator.php:243 ../layout/commentboxtop.inc:20
+#: ../layout/commentboxtop.inc:46 ../view_album.php:777
 msgid "hidden"
 msgstr "ẩn"
 
-#: ../captionator.php:261
+#: ../captionator.php:256
 msgid "Album Caption"
 msgstr "Chú thích album"
 
-#: ../captionator.php:268
+#: ../captionator.php:263
 msgid "Movie Caption"
 msgstr "Chú thích phim"
 
-#: ../captionator.php:270
+#: ../captionator.php:265
 msgid "Photo Caption"
 msgstr "Chú thích ảnh"
 
-#: ../captionator.php:280 ../edit_appearance.php:164 ../extra_fields.php:102
+#: ../captionator.php:275 ../edit_appearance.php:186 ../extra_fields.php:99
 #: ../lib/lang.php:672
 msgid "Title"
 msgstr "Tiêu đề"
 
-#: ../captionator.php:289 ../edit_caption.php:123
+#: ../captionator.php:284 ../edit_caption.php:119
 msgid "Keywords"
 msgstr "Từ khoá"
 
-#: ../captionator.php:295 ../lib/lang.php:662
+#: ../captionator.php:290 ../lib/lang.php:662
 msgid "Capture Date"
 msgstr "Ngày gửi"
 
-#: ../captionator.php:306
+#: ../captionator.php:301
 msgid "NO PHOTOS!"
 msgstr "KHÔNG CÓ ẢNH!"
 
@@ -555,116 +555,116 @@ msgstr "KHÔNG CÓ ẢNH!"
 msgid "Untitled"
 msgstr "Không tiêu đề"
 
-#: ../classes/Album.php:230 ../classes/Album.php:242
-#: ../layout/commentboxtop.inc:18 ../upgrade_album.php:84
-#: ../upgrade_album.php:96 ../view_album.php:882
+#: ../classes/Album.php:240 ../classes/Album.php:252
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:42
+#: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Album"
 
-#: ../classes/Album.php:254 ../search.php:74 ../search.php:302
+#: ../classes/Album.php:264 ../search.php:74 ../search.php:302
 #: ../slideshow.php:194
 msgid "Gallery"
 msgstr "Thư viện ảnh"
 
-#: ../classes/Album.php:295
+#: ../classes/Album.php:305
 msgid "Album up to date."
 msgstr "Album cập nhật."
 
-#: ../classes/Album.php:299
+#: ../classes/Album.php:309
 msgid "Upgrading album properties..."
 msgstr "Nâng cấp cấu hình album..."
 
-#: ../classes/Album.php:434
+#: ../classes/Album.php:452
 #, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "Đổi tên album từ %s sang %s..."
 
-#: ../classes/Album.php:518 ../classes/Album.php:535
+#: ../classes/Album.php:536 ../classes/Album.php:553
 msgid "done"
 msgstr "kết&nbsp;thúc"
 
-#: ../classes/Album.php:526
+#: ../classes/Album.php:544
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Nâng cấp mục/ảnh %d của %d . . . "
 
-#: ../classes/Album.php:952
+#: ../classes/Album.php:970
 msgid "msg should be an array!"
 msgstr "tin phải là một dãy array!"
 
-#: ../classes/Album.php:973 ../util.php:3574
+#: ../classes/Album.php:991 ../util.php:3537
 msgid "No email sent as no valid email addresses were found"
 msgstr "Không email nào được gửi vì không có địa chỉ email nào chính xác"
 
-#: ../classes/Album.php:1040 ../classes/Album.php:1748
+#: ../classes/Album.php:1058 ../classes/Album.php:1766
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Truy cập album %s, sử lý %d ảnh"
 
-#: ../classes/Album.php:1045
+#: ../classes/Album.php:1063
 #, php-format
 msgid "Processing element %d..."
 msgstr "Sử lý thành phần %d..."
 
-#: ../classes/Album.php:1059
+#: ../classes/Album.php:1077
 msgid "Doing the naming"
 msgstr "Thực thi tên"
 
-#: ../classes/Album.php:1094
+#: ../classes/Album.php:1112
 msgid "Image Preprocessing"
 msgstr "Sử lý ảnh trước"
 
-#: ../classes/Album.php:1100
+#: ../classes/Album.php:1118
 msgid "Resizing/compressing original image"
 msgstr "Chỉnh cỡ/nén ảnh nguyên gốc"
 
-#: ../classes/Album.php:1104
+#: ../classes/Album.php:1122
 msgid "Cannot resize/compress this filetype"
 msgstr "Không thể chỉnh cỡ/nén đối với loại file này"
 
-#: ../classes/Album.php:1108
+#: ../classes/Album.php:1126
 msgid "Adding Photo to the photo list"
 msgstr "Thêm ảnh vào danh sách ảnh"
 
-#: ../classes/Album.php:1162
+#: ../classes/Album.php:1180
 #, php-format
 msgid "Resizing %s"
 msgstr "Chỉnh cỡ %s"
 
-#: ../classes/Album.php:1227
+#: ../classes/Album.php:1245
 msgid "Photo auto-rotated/transformed"
 msgstr "Ảnh tự xoay/chuyển đổi"
 
-#: ../classes/Album.php:1235
+#: ../classes/Album.php:1253
 msgid "Watermarking Image"
 msgstr "Ảnh chèn"
 
-#: ../classes/Album.php:1392 ../classes/Album.php:1402
+#: ../classes/Album.php:1410 ../classes/Album.php:1420
 #: ../classes/AlbumItem.php:672
 msgid "No highlight"
 msgstr "Không có đánh dấu"
 
-#: ../classes/Album.php:1556
+#: ../classes/Album.php:1574
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Yêu cầu index [%d] vượt quá [%d]"
 
-#: ../classes/Album.php:1762 ../do_command.php:82
+#: ../classes/Album.php:1780 ../do_command.php:82
 #, php-format
 msgid "Processing image %d..."
 msgstr "Sử lý ảnh %d..."
 
-#: ../classes/Album.php:1900
+#: ../classes/Album.php:1939
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2422
+#: ../classes/Album.php:2469
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2575
+#: ../classes/Album.php:2622
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Vấn đề với email: bỏ qua %s (UID %s) bởi vì địa chỉ email %s là không hợp lệ."
@@ -693,8 +693,8 @@ msgstr "Không có thumbnail"
 msgid "Anonymous User"
 msgstr "Khách viếng thăm"
 
-#: ../classes/NobodyUser.php:27 ../edit_appearance.php:516
-#: ../poll_properties.php:104
+#: ../classes/NobodyUser.php:27
+#: ../includes/definitions/albumProperties.php:343 ../poll_properties.php:104
 msgid "Nobody"
 msgstr "Không ai cả"
 
@@ -768,7 +768,7 @@ msgstr "Copy&nbsp;ảnh"
 msgid "Invalid album selected: %s"
 msgstr "Đã chọn sai album: %s"
 
-#: ../copy_photo.php:58 ../copy_photo.php:127
+#: ../copy_photo.php:58 ../copy_photo.php:134
 #, php-format
 msgid "Can't copy album #%d"
 msgstr "Không thể copy album #%d"
@@ -782,109 +782,113 @@ msgstr "Copy ảnh #%d"
 msgid "Creating Thumbnail"
 msgstr "Tạo Thumbnail"
 
-#: ../copy_photo.php:112 ../move_photo.php:197
+#: ../copy_photo.php:117 ../move_photo.php:197
 #, php-format
 msgid "Skipping Album #%d"
 msgstr "Bỏ qua Album #%d"
 
-#: ../copy_photo.php:119 ../do_command.php:226 ../login.php:127
+#: ../copy_photo.php:124 ../do_command.php:226 ../login.php:127
 #: ../multi_create_user.php:129 ../register.php:47 ../register.php:122
-#: ../save_photos.php:369
+#: ../save_photos.php:366
 msgid "Dismiss"
 msgstr "Kết&nbsp;thúc"
 
-#: ../copy_photo.php:133
+#: ../copy_photo.php:131
+msgid "Please select the album where you want to copy the photo(s) to."
+msgstr ""
+
+#: ../copy_photo.php:140
 msgid "Copy a range of photos to a new album:"
 msgstr "Copy một khoảng ảnh vào một album mới:"
 
-#: ../copy_photo.php:134
+#: ../copy_photo.php:141
 msgid "To copy just one photo, make First and Last the same."
 msgstr "Để copy một ảnh, hãy chọn số Đầu và Cuối giống nhau."
 
-#: ../copy_photo.php:135 ../move_photo.php:268
+#: ../copy_photo.php:142 ../move_photo.php:268
 msgid "Nested albums in this range will be ignored."
 msgstr "Những album nhánh ở khoảng này sẽ được bỏ qua."
 
-#: ../copy_photo.php:147 ../move_photo.php:277
+#: ../copy_photo.php:154 ../move_photo.php:277
 msgid "First"
 msgstr "Đầu"
 
-#: ../copy_photo.php:148 ../move_photo.php:278
+#: ../copy_photo.php:155 ../move_photo.php:278
 msgid "Last"
 msgstr "Cuối"
 
-#: ../copy_photo.php:149 ../move_photo.php:279
+#: ../copy_photo.php:156 ../move_photo.php:279
 msgid "New Album"
 msgstr "Album mới"
 
-#: ../copy_photo.php:191 ../move_photo.php:329
+#: ../copy_photo.php:198 ../move_photo.php:329
 #, php-format
 msgid "WARNING: Some of the albums need to be upgraded to the current version of %s."
 msgstr "CHÚ Ý: Vài album cần được nâng cấp tới phiên bản hiện tại của %s."
 
-#: ../copy_photo.php:192 ../move_photo.php:330
+#: ../copy_photo.php:199 ../move_photo.php:330
 msgid "Upgrade now"
 msgstr "Nâng&nbsp;cấp"
 
-#: ../copy_photo.php:196
+#: ../copy_photo.php:203
 msgid "Copy to Album!"
 msgstr "Copy vào album!"
 
-#: ../copy_photo.php:201 ../delete_photo.php:145 ../edit_thumb.php:131
-#: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:142
+#: ../copy_photo.php:208 ../delete_photo.php:145 ../edit_thumb.php:131
+#: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "không chỉ định album/tựa đề"
 
-#: ../create_user.php:46 ../modify_user.php:56 ../new_password.php:51
+#: ../create_user.php:46 ../modify_user.php:58 ../new_password.php:51
 #: ../user_preferences.php:61
 msgid "Passwords do not match!"
 msgstr "Mật khẩu không đúng!"
 
-#: ../create_user.php:61 ../create_user.php:66 ../create_user.php:126
-#: ../create_user.php:130
+#: ../create_user.php:61 ../create_user.php:66 ../create_user.php:128
+#: ../create_user.php:132
 msgid "Create User"
 msgstr "Tạo thành viên"
 
-#: ../create_user.php:81
+#: ../create_user.php:82
 #, php-format
 msgid "User %s created"
 msgstr "Thành viên %s đã được tạo"
 
-#: ../create_user.php:92 ../multi_create_user.php:103
-#, php-format
-msgid "%s has registered by %s.  Email has been sent to %s."
+#: ../create_user.php:94 ../multi_create_user.php:103
+#, fuzzy, php-format
+msgid "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."
 msgstr "%s đã được đăng ký bởi %s. Email được gửi tới %s."
 
-#: ../create_user.php:100 ../multi_create_user.php:111
+#: ../create_user.php:102 ../multi_create_user.php:111
 msgid "Gallery Registration"
 msgstr "Đăng ký vào Thư viện ảnh"
 
-#: ../create_user.php:103
+#: ../create_user.php:105
 #, php-format
 msgid "Email sent to %s."
 msgstr "Email được gửi tới %s."
 
-#: ../create_user.php:110
+#: ../create_user.php:112
 #, fuzzy
 msgid "Create another user"
 msgstr "Đăng ký thành viên mới ở đây."
 
-#: ../create_user.php:111 ../create_user.php:164 ../modify_user.php:155
+#: ../create_user.php:113 ../create_user.php:166 ../modify_user.php:165
 msgid "Back to usermanagement"
 msgstr ""
 
-#: ../create_user.php:147
+#: ../create_user.php:149
 msgid "Create a new user here."
 msgstr "Đăng ký thành viên mới ở đây."
 
-#: ../create_user.php:163 ../multi_create_user.php:173 ../register.php:141
+#: ../create_user.php:165 ../multi_create_user.php:173 ../register.php:141
 msgid "Create"
 msgstr "Tạo"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:81
 #: ../delete_photo.php:89 ../tools/validate_albums.php:128
-#: ../tools/validate_albums.php:135
+#: ../tools/validate_albums.php:136
 msgid "Delete Album"
 msgstr "Xóa album"
 
@@ -893,8 +897,9 @@ msgid "Do you really want to delete this album?"
 msgstr "Bạn có chắc muốn xoá album này?"
 
 #: ../delete_album.php:65 ../delete_photo.php:139 ../delete_user.php:80
-#: ../layout/commentbox.inc:15 ../manage_users.php:103
-#: ../tools/despam-comments.php:208 ../tools/despam-comments.php:344
+#: ../layout/commentbox.inc:15 ../lib/albumItem.php:67
+#: ../lib/albumItem.php:169 ../lib/albumItem.php:175 ../manage_users.php:103
+#: ../tools/despam-comments.php:209 ../tools/despam-comments.php:348
 msgid "Delete"
 msgstr "Xóa"
 
@@ -903,7 +908,7 @@ msgid "no album specified"
 msgstr "không chỉ định album"
 
 #: ../delete_photo.php:81 ../delete_photo.php:118
-#: ../tools/validate_albums.php:128 ../tools/validate_albums.php:135
+#: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
 msgid "Delete Photo"
 msgstr "Xóa&nbsp;ảnh"
 
@@ -962,27 +967,43 @@ msgstr "Thực hiện tác động.."
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Bạn có chắc muốn làm lại các ảnh thumbnail trong các album nhánh?"
 
-#: ../do_command.php:67 ../edit_appearance.php:338 ../edit_appearance.php:344
-#: ../edit_appearance.php:406 ../edit_appearance.php:412
-#: ../edit_appearance.php:428 ../edit_appearance.php:434
-#: ../edit_appearance.php:440 ../edit_appearance.php:446
-#: ../edit_appearance.php:475 ../edit_appearance.php:504
-#: ../edit_appearance.php:554 ../edit_appearance.php:560
-#: ../edit_appearance.php:566 ../edit_appearance.php:572
-#: ../html/userData.inc:13 ../multi_create_user.php:165
-#: ../poll_properties.php:96
+#: ../do_command.php:67 ../includes/definitions/albumProperties.php:157
+#: ../includes/definitions/albumProperties.php:163
+#: ../includes/definitions/albumProperties.php:231
+#: ../includes/definitions/albumProperties.php:237
+#: ../includes/definitions/albumProperties.php:253
+#: ../includes/definitions/albumProperties.php:259
+#: ../includes/definitions/albumProperties.php:265
+#: ../includes/definitions/albumProperties.php:271
+#: ../includes/definitions/albumProperties.php:300
+#: ../includes/definitions/albumProperties.php:330
+#: ../includes/definitions/albumProperties.php:381
+#: ../includes/definitions/albumProperties.php:387
+#: ../includes/definitions/albumProperties.php:393
+#: ../includes/definitions/albumProperties.php:399
+#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "yes"
 msgstr "đồng ý"
 
-#: ../do_command.php:68 ../edit_appearance.php:338 ../edit_appearance.php:344
-#: ../edit_appearance.php:406 ../edit_appearance.php:412
-#: ../edit_appearance.php:428 ../edit_appearance.php:434
-#: ../edit_appearance.php:440 ../edit_appearance.php:446
-#: ../edit_appearance.php:475 ../edit_appearance.php:504
-#: ../edit_appearance.php:554 ../edit_appearance.php:560
-#: ../edit_appearance.php:566 ../edit_appearance.php:572
-#: ../html/userData.inc:13 ../multi_create_user.php:165
-#: ../poll_properties.php:96
+#: ../do_command.php:68 ../includes/definitions/albumProperties.php:157
+#: ../includes/definitions/albumProperties.php:163
+#: ../includes/definitions/albumProperties.php:231
+#: ../includes/definitions/albumProperties.php:237
+#: ../includes/definitions/albumProperties.php:253
+#: ../includes/definitions/albumProperties.php:259
+#: ../includes/definitions/albumProperties.php:265
+#: ../includes/definitions/albumProperties.php:271
+#: ../includes/definitions/albumProperties.php:300
+#: ../includes/definitions/albumProperties.php:330
+#: ../includes/definitions/albumProperties.php:381
+#: ../includes/definitions/albumProperties.php:387
+#: ../includes/definitions/albumProperties.php:393
+#: ../includes/definitions/albumProperties.php:399
+#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "no"
 msgstr "không"
 
@@ -999,372 +1020,104 @@ msgstr "Tạo lại %d thumbnails..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Tạo lại 1 thumbnail..."
 
-#: ../edit_appearance.php:94
+#: ../edit_appearance.php:57
+#, php-format
+msgid "Failure with '%s'. %s"
+msgstr ""
+
+#: ../edit_appearance.php:119
 #, fuzzy, php-format
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr "Chú ý: Bạn đã đổi người bình chọn từ %s tới %s.  Nên hãy làm lại bình chọn để xóa hết đi những bình chọn cũ."
 
-#: ../edit_appearance.php:95 ../edit_appearance.php:516
+#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:343
 #: ../poll_properties.php:52 ../poll_properties.php:104
 msgid "Everybody"
 msgstr "Mọi người"
 
-#: ../edit_appearance.php:96 ../edit_appearance.php:516
+#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:343
 #: ../poll_properties.php:53 ../poll_properties.php:104
 msgid "Logged in"
 msgstr "Đã đăng nhập"
 
-#: ../edit_appearance.php:127 ../extra_fields.php:60
+#: ../edit_appearance.php:149 ../extra_fields.php:57
 msgid "untitled field"
 msgstr "mẫu không tiêu đề"
 
-#: ../edit_appearance.php:165 ../extra_fields.php:123 ../lib/lang.php:675
+#: ../edit_appearance.php:187 ../extra_fields.php:120 ../lib/lang.php:675
 msgid "Alt Text / onMouseOver"
 msgstr "Chữ hiển thị khi chỉ chuột / đưa chuột qua"
 
-#: ../edit_appearance.php:194
+#: ../edit_appearance.php:216
 #, fuzzy, php-format
 msgid "Field %s:"
 msgstr "Mẫu"
 
-#: ../edit_appearance.php:211
-msgid "Texts"
-msgstr ""
-
-#: ../edit_appearance.php:215
-msgid "Album Summary"
-msgstr "Tóm lược Album"
-
-#: ../edit_appearance.php:222
-msgid "Album Title"
-msgstr "Tựa đề Album"
-
-#: ../edit_appearance.php:234
-#, fuzzy
-msgid "Colors"
-msgstr "Đóng"
-
-#: ../edit_appearance.php:238
-msgid "Background Color"
-msgstr "Màu nền"
-
-#: ../edit_appearance.php:244
-msgid "Text Color"
-msgstr "Màu chữ"
-
-#: ../edit_appearance.php:250
-msgid "Link Color"
-msgstr "Màu liên kết"
-
-#: ../edit_appearance.php:262 ../stats-wizard.php:118
-msgid "Layout"
-msgstr "Sắp đặt"
-
-#: ../edit_appearance.php:266
-#, fuzzy
-msgid "Background Image (URL)"
-msgstr "Ảnh nền"
-
-#: ../edit_appearance.php:272
-msgid "Font"
-msgstr "Font"
-
-#: ../edit_appearance.php:278
-msgid "Rows"
-msgstr "Hàng"
-
-#: ../edit_appearance.php:284
-msgid "Columns"
-msgstr "Cột"
-
-#: ../edit_appearance.php:290
-msgid "Borders"
-msgstr "Viền"
-
-#: ../edit_appearance.php:296
-msgid "Border color"
-msgstr "Màu viền"
-
-#: ../edit_appearance.php:302
-msgid "Album Frame"
-msgstr "Khung album"
-
-#: ../edit_appearance.php:308
-msgid "Thumb Frame"
-msgstr "Khung ảnh thumb"
-
-#: ../edit_appearance.php:314
-msgid "Image Frame"
-msgstr "Khung ảnh"
-
-#: ../edit_appearance.php:326
-#, fuzzy
-msgid "Diashow"
-msgstr "trình diễn ảnh"
-
-#: ../edit_appearance.php:330
-msgid "Slideshow Type"
-msgstr "Kiểu trình diễn ảnh"
-
-#: ../edit_appearance.php:332
-msgid "Off"
-msgstr "Tắt"
-
-#: ../edit_appearance.php:332
-msgid "Ordered"
-msgstr "Thứ tự"
-
-#: ../edit_appearance.php:332
-msgid "Random"
-msgstr "Ngẫu nhiên"
-
-#: ../edit_appearance.php:336
-msgid "Include sub-albums in slideshow"
-msgstr "Bao gồm các album nhánh trong trình diễn ảnh"
-
-#: ../edit_appearance.php:342
-msgid "Allow slideshow to loop"
-msgstr "Cho phép trình diễn ảnh lặp lại"
-
-#: ../edit_appearance.php:348
-msgid "Slideshow Length"
-msgstr "Độ dài trình diễn ảnh"
-
-#: ../edit_appearance.php:360
-msgid "Sizes"
-msgstr ""
-
-#: ../edit_appearance.php:364
-msgid "Thumbnail size"
-msgstr "Cỡ thumbnail"
-
-#: ../edit_appearance.php:370
-msgid "Maximum dimensions of intermediate sized images"
-msgstr "Kích thước lớn nhất của ảnh trung gian"
-
-#: ../edit_appearance.php:372 ../edit_appearance.php:384
-msgid "off"
-msgstr "tắt"
-
-#: ../edit_appearance.php:376
-msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG trung gian (ghi 0 hoặc để trống để không chỉnh)"
-
-#: ../edit_appearance.php:382
-msgid "Maximum dimensions of full sized images"
-msgstr "Kích thước lớn nhất của ảnh cỡ đầy đủ"
-
-#: ../edit_appearance.php:384
-#, php-format
-msgid "%d (%d MPix)"
-msgstr "%d (%d MêgaPixel)"
-
-#: ../edit_appearance.php:388
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG cỡ đầy đủ (ghi 0 hoặc để trống để không chỉnh)"
-
-#: ../edit_appearance.php:400 ../view_album.php:990
-msgid "Permissions"
-msgstr "Quyền hạn"
-
-#: ../edit_appearance.php:404
-msgid "Allow item owners to modify their images"
-msgstr "Cho phép người sở hữu mục/ảnh được sửa ảnh của họ"
-
-#: ../edit_appearance.php:410
-msgid "Allow item owners to delete their images"
-msgstr "Cho phép người sở hữu mục/ảnh được xóa ảnh của họ"
-
-#: ../edit_appearance.php:422
-msgid "Element data"
-msgstr ""
-
-#: ../edit_appearance.php:426
-msgid "Display click counter for this album?"
-msgstr "Hiển thị nhấn bộ đếm cho album này?"
-
-#: ../edit_appearance.php:432
-msgid "Display owners name with caption"
-msgstr "Hiển thị tên người sở hữu với chú thích"
-
-#: ../edit_appearance.php:438
-msgid "Display clickable image dimensions"
-msgstr "Cho phép nhấn chuột trên ảnh để thay đổi kích cỡ"
-
-#: ../edit_appearance.php:444
-msgid "Display EXIF data?"
-msgstr "Hiển thị dữ liệu EXIF?"
-
-#: ../edit_appearance.php:457
-msgid "Services"
-msgstr ""
-
-#: ../edit_appearance.php:461
-msgid "Which photo printing services<br>do you want to let visitors use?"
-msgstr "Dịch vụ in ấn nào<br> bạn muốn người xem sử dụng?"
-
-#: ../edit_appearance.php:473
-msgid "Enable Ecards ?"
-msgstr ""
-
-#: ../edit_appearance.php:486 ../poll_properties.php:72
-#: ../poll_properties.php:76
-msgid "Poll Properties"
-msgstr "Cấu hình bình chọn"
-
-#: ../edit_appearance.php:490 ../poll_properties.php:87
-msgid "Type of poll for this album"
-msgstr "Kiểu bình chọn cho album này"
-
-#: ../edit_appearance.php:492 ../poll_properties.php:88
-msgid "Rank"
-msgstr "Nút chọn"
-
-#: ../edit_appearance.php:492 ../poll_properties.php:88
-msgid "Critique"
-msgstr "Hộp chọn"
-
-#: ../edit_appearance.php:496 ../poll_properties.php:91
-msgid "Number of voting options"
-msgstr "Số lượng lựa chọn cho bình chọn"
-
-#: ../edit_appearance.php:502 ../poll_properties.php:95
-msgid "Show results of voting to all visitors?"
-msgstr "Hiển thị kết quả bình chọn cho mọi khách viếng thăm?"
-
-#: ../edit_appearance.php:508 ../poll_properties.php:99
-msgid "Number of lines of results graph to display on the album page"
-msgstr "Số lượng hình biểu thị kết quả hiện trên trang album"
-
-#: ../edit_appearance.php:514
-#, fuzzy
-msgid "Who can vote?"
-msgstr "Ai có thể bình chọn"
-
-#: ../edit_appearance.php:520 ../poll_properties.php:107
-msgid "Orientation of vote choices"
-msgstr "Hướng sắp đặt của bình chọn"
-
-#: ../edit_appearance.php:522 ../poll_properties.php:108
-#: ../rotate_photo.php:82
-msgid "Horizontal"
-msgstr "Ngang"
-
-#: ../edit_appearance.php:522 ../poll_properties.php:108
-#: ../rotate_photo.php:85
-msgid "Vertical"
-msgstr "Dọc"
-
-#: ../edit_appearance.php:527 ../poll_properties.php:111
-msgid "Vote hint"
-msgstr "Gợi ý bình chọn"
-
-#: ../edit_appearance.php:534
-#, fuzzy
-msgid "Voting Options"
-msgstr "Tùy chọn QT"
-
-#: ../edit_appearance.php:538 ../poll_properties.php:120
-msgid "Displayed Value"
-msgstr "Giá trị hiển thị"
-
-#: ../edit_appearance.php:538 ../poll_properties.php:121
-msgid "Points"
-msgstr "Điểm"
-
-#: ../edit_appearance.php:548
-msgid "Misc"
-msgstr ""
-
-#: ../edit_appearance.php:552
-msgid "Add new items at beginning of album"
-msgstr "Các mục/ảnh mới sẽ được thêm vào từ phía đầu album"
-
-#: ../edit_appearance.php:558
-msgid "Show <i>Return to</i> link"
-msgstr "Hiển thị liên kết <i>Quay lại</i>"
-
-#: ../edit_appearance.php:564
-msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
-msgstr "Cho người xem chỉ định ảnh<br>cỡ trọn vẹn hoặc ảnh thu cỡ"
-
-#: ../edit_appearance.php:570
-msgid "Auto fit-to-window for<br>images without a resized copy"
-msgstr "Tự động chỉnh ảnh vừa vào cửa sổ<br>mà không cần chỉnh lại cỡ"
-
-#: ../edit_appearance.php:582
-#, fuzzy
-msgid "Custom Fields"
-msgstr "mẫu theo ý"
-
-#: ../edit_appearance.php:591 ../extra_fields.php:133
-msgid "Number of user defined custom fields"
-msgstr "Số lượng mẫu chỉ định theo ý người dùng"
-
-#: ../edit_appearance.php:614 ../edit_appearance.php:620
+#: ../edit_appearance.php:231 ../edit_appearance.php:237
 msgid "Album Properties"
 msgstr "Cấu hình album"
 
-#: ../edit_appearance.php:678
+#: ../edit_appearance.php:295
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Thực thi giá trị cho cả các album nhánh (ngoại trừ tựa đề album và tóm lược)."
 
-#: ../edit_appearance.php:681 ../extra_fields.php:177
+#: ../edit_appearance.php:298 ../extra_fields.php:174
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "Thực&nbsp;thi"
 
-#: ../edit_appearance.php:682 ../extra_fields.php:178
+#: ../edit_appearance.php:299 ../extra_fields.php:175
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "Làm&nbsp;lại"
 
-#: ../edit_appearance.php:683 ../extra_fields.php:179
+#: ../edit_appearance.php:300 ../extra_fields.php:176
 #: ../poll_properties.php:142 ../rotate_photo.php:87
 msgid "Close"
 msgstr "Đóng"
 
-#: ../edit_caption.php:72
-msgid "Year must be between 1000 and 3000"
+#: ../edit_caption.php:68
+#, fuzzy
+msgid "Year must be between 1969 and 2070"
 msgstr "Giá trị năm phải trong khoảng 1000 đến 3000"
 
-#: ../edit_caption.php:77 ../view_album.php:937
+#: ../edit_caption.php:73 ../lib/albumItem.php:92
 msgid "Edit Text"
 msgstr "Biên soạn nội dung"
 
-#: ../edit_caption.php:81
+#: ../edit_caption.php:77
 msgid "Edit Caption"
 msgstr "Biên soạn chú thích"
 
-#: ../edit_caption.php:93 ../includes/add_photos/add_form.inc:76
+#: ../edit_caption.php:89 ../includes/add_photos/add_form.inc:76
 msgid "Caption"
 msgstr "Chú thích"
 
-#: ../edit_caption.php:147
+#: ../edit_caption.php:143
 msgid "Photo Capture Date"
 msgstr "Ngày lưu ảnh"
 
-#: ../edit_caption.php:150
+#: ../edit_caption.php:146
 msgid "Month"
 msgstr "Tháng"
 
-#: ../edit_caption.php:151
+#: ../edit_caption.php:147
 msgid "Day"
 msgstr "Ngày"
 
-#: ../edit_caption.php:152
+#: ../edit_caption.php:148
 msgid "Year"
 msgstr "Năm"
 
-#: ../edit_caption.php:153
+#: ../edit_caption.php:149
 msgid "Hours"
 msgstr "Giờ"
 
-#: ../edit_caption.php:154
+#: ../edit_caption.php:150
 msgid "Minutes"
 msgstr "Phút"
 
-#: ../edit_caption.php:155
+#: ../edit_caption.php:151
 msgid "Seconds"
 msgstr "Giây"
 
@@ -1406,8 +1159,7 @@ msgstr "Hãy chọn một ảnh chèn."
 msgid "Please select an alignment."
 msgstr "Hãy chọn một kiểu sắp đặt."
 
-#: ../edit_watermark.php:75 ../edit_watermark.php:79 ../view_album.php:909
-#: ../view_album.php:945
+#: ../edit_watermark.php:75 ../edit_watermark.php:79
 msgid "Edit Watermark"
 msgstr "Biên soạn ảnh chèn"
 
@@ -1415,15 +1167,19 @@ msgstr "Biên soạn ảnh chèn"
 msgid "Preview"
 msgstr "Xem trước"
 
-#: ../extra_fields.php:80 ../extra_fields.php:84
+#: ../extra_fields.php:77 ../extra_fields.php:81
 msgid "Configure Custom Fields"
 msgstr "Mẫu cấu hình theo ý"
 
-#: ../extra_fields.php:149
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:421
+msgid "Number of user defined custom fields"
+msgstr "Số lượng mẫu chỉ định theo ý người dùng"
+
+#: ../extra_fields.php:146
 msgid "Field"
 msgstr "Mẫu"
 
-#: ../extra_fields.php:174 ../poll_properties.php:137
+#: ../extra_fields.php:171 ../poll_properties.php:137
 msgid "Apply values to nested albums."
 msgstr "Thực thi giá trị cho những album nhánh."
 
@@ -1554,6 +1310,348 @@ msgstr "Bạn muốn chú thích mặc định là gì?"
 #: ../includes/add_photos/add_url.inc:59
 msgid "Submit URL or directory"
 msgstr "Gửi URL hoặc thư mục"
+
+#: ../includes/definitions/albumProperties.php:30
+msgid "Texts"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:34
+msgid "Album Summary"
+msgstr "Tóm lược Album"
+
+#: ../includes/definitions/albumProperties.php:41
+msgid "Album Title"
+msgstr "Tựa đề Album"
+
+#: ../includes/definitions/albumProperties.php:53
+#, fuzzy
+msgid "Colors"
+msgstr "Đóng"
+
+#: ../includes/definitions/albumProperties.php:57
+msgid "Background Color"
+msgstr "Màu nền"
+
+#: ../includes/definitions/albumProperties.php:63
+msgid "Text Color"
+msgstr "Màu chữ"
+
+#: ../includes/definitions/albumProperties.php:69
+msgid "Link Color"
+msgstr "Màu liên kết"
+
+#: ../includes/definitions/albumProperties.php:81 ../stats-wizard.php:134
+msgid "Layout"
+msgstr "Sắp đặt"
+
+#: ../includes/definitions/albumProperties.php:85
+#, fuzzy
+msgid "Background Image (URL)"
+msgstr "Ảnh nền"
+
+#: ../includes/definitions/albumProperties.php:91
+msgid "Font"
+msgstr "Font"
+
+#: ../includes/definitions/albumProperties.php:97
+msgid "Rows"
+msgstr "Hàng"
+
+#: ../includes/definitions/albumProperties.php:103
+msgid "Columns"
+msgstr "Cột"
+
+#: ../includes/definitions/albumProperties.php:109
+msgid "Borders"
+msgstr "Viền"
+
+#: ../includes/definitions/albumProperties.php:115
+msgid "Border color"
+msgstr "Màu viền"
+
+#: ../includes/definitions/albumProperties.php:121
+msgid "Album Frame"
+msgstr "Khung album"
+
+#: ../includes/definitions/albumProperties.php:127
+msgid "Thumb Frame"
+msgstr "Khung ảnh thumb"
+
+#: ../includes/definitions/albumProperties.php:133
+msgid "Image Frame"
+msgstr "Khung ảnh"
+
+#: ../includes/definitions/albumProperties.php:145
+#, fuzzy
+msgid "Diashow"
+msgstr "trình diễn ảnh"
+
+#: ../includes/definitions/albumProperties.php:149
+msgid "Slideshow Type"
+msgstr "Kiểu trình diễn ảnh"
+
+#: ../includes/definitions/albumProperties.php:151
+msgid "Off"
+msgstr "Tắt"
+
+#: ../includes/definitions/albumProperties.php:151
+msgid "Ordered"
+msgstr "Thứ tự"
+
+#: ../includes/definitions/albumProperties.php:151
+msgid "Random"
+msgstr "Ngẫu nhiên"
+
+#: ../includes/definitions/albumProperties.php:155
+msgid "Include sub-albums in slideshow"
+msgstr "Bao gồm các album nhánh trong trình diễn ảnh"
+
+#: ../includes/definitions/albumProperties.php:161
+msgid "Allow slideshow to loop"
+msgstr "Cho phép trình diễn ảnh lặp lại"
+
+#: ../includes/definitions/albumProperties.php:167
+msgid "Slideshow Length"
+msgstr "Độ dài trình diễn ảnh"
+
+#: ../includes/definitions/albumProperties.php:180
+msgid "Sizes"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:184
+msgid "Thumbnail size"
+msgstr "Cỡ thumbnail"
+
+#: ../includes/definitions/albumProperties.php:191
+msgid "Maximum dimensions of intermediate sized images"
+msgstr "Kích thước lớn nhất của ảnh trung gian"
+
+#: ../includes/definitions/albumProperties.php:193
+#: ../includes/definitions/albumProperties.php:207
+msgid "off"
+msgstr "tắt"
+
+#: ../includes/definitions/albumProperties.php:198
+msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG trung gian (ghi 0 hoặc để trống để không chỉnh)"
+
+#: ../includes/definitions/albumProperties.php:205
+msgid "Maximum dimensions of full sized images"
+msgstr "Kích thước lớn nhất của ảnh cỡ đầy đủ"
+
+#: ../includes/definitions/albumProperties.php:207
+#, php-format
+msgid "%d (%d MPix)"
+msgstr "%d (%d MêgaPixel)"
+
+#: ../includes/definitions/albumProperties.php:212
+msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG cỡ đầy đủ (ghi 0 hoặc để trống để không chỉnh)"
+
+#: ../includes/definitions/albumProperties.php:225 ../lib/albumItem.php:184
+msgid "Permissions"
+msgstr "Quyền hạn"
+
+#: ../includes/definitions/albumProperties.php:229
+msgid "Allow item owners to modify their images"
+msgstr "Cho phép người sở hữu mục/ảnh được sửa ảnh của họ"
+
+#: ../includes/definitions/albumProperties.php:235
+msgid "Allow item owners to delete their images"
+msgstr "Cho phép người sở hữu mục/ảnh được xóa ảnh của họ"
+
+#: ../includes/definitions/albumProperties.php:247
+msgid "Element data"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:251
+msgid "Display click counter for this album?"
+msgstr "Hiển thị nhấn bộ đếm cho album này?"
+
+#: ../includes/definitions/albumProperties.php:257
+msgid "Display owners name with caption"
+msgstr "Hiển thị tên người sở hữu với chú thích"
+
+#: ../includes/definitions/albumProperties.php:263
+msgid "Display clickable image dimensions"
+msgstr "Cho phép nhấn chuột trên ảnh để thay đổi kích cỡ"
+
+#: ../includes/definitions/albumProperties.php:269
+msgid "Display EXIF data?"
+msgstr "Hiển thị dữ liệu EXIF?"
+
+#: ../includes/definitions/albumProperties.php:282
+msgid "Services"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:286
+msgid "Which photo printing services<br>do you want to let visitors use?"
+msgstr "Dịch vụ in ấn nào<br> bạn muốn người xem sử dụng?"
+
+#: ../includes/definitions/albumProperties.php:298
+msgid "Enable Ecards ?"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:311 ../poll_properties.php:72
+#: ../poll_properties.php:76
+msgid "Poll Properties"
+msgstr "Cấu hình bình chọn"
+
+#: ../includes/definitions/albumProperties.php:315 ../poll_properties.php:87
+msgid "Type of poll for this album"
+msgstr "Kiểu bình chọn cho album này"
+
+#: ../includes/definitions/albumProperties.php:317 ../poll_properties.php:88
+msgid "Rank"
+msgstr "Nút chọn"
+
+#: ../includes/definitions/albumProperties.php:317 ../poll_properties.php:88
+msgid "Critique"
+msgstr "Hộp chọn"
+
+#: ../includes/definitions/albumProperties.php:321 ../poll_properties.php:91
+msgid "Number of voting options"
+msgstr "Số lượng lựa chọn cho bình chọn"
+
+#: ../includes/definitions/albumProperties.php:328 ../poll_properties.php:95
+msgid "Show results of voting to all visitors?"
+msgstr "Hiển thị kết quả bình chọn cho mọi khách viếng thăm?"
+
+#: ../includes/definitions/albumProperties.php:334 ../poll_properties.php:99
+msgid "Number of lines of results graph to display on the album page"
+msgstr "Số lượng hình biểu thị kết quả hiện trên trang album"
+
+#: ../includes/definitions/albumProperties.php:341
+#, fuzzy
+msgid "Who can vote?"
+msgstr "Ai có thể bình chọn"
+
+#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:107
+msgid "Orientation of vote choices"
+msgstr "Hướng sắp đặt của bình chọn"
+
+#: ../includes/definitions/albumProperties.php:349 ../poll_properties.php:108
+#: ../rotate_photo.php:82
+msgid "Horizontal"
+msgstr "Ngang"
+
+#: ../includes/definitions/albumProperties.php:349 ../poll_properties.php:108
+#: ../rotate_photo.php:85
+msgid "Vertical"
+msgstr "Dọc"
+
+#: ../includes/definitions/albumProperties.php:354 ../poll_properties.php:111
+msgid "Vote hint"
+msgstr "Gợi ý bình chọn"
+
+#: ../includes/definitions/albumProperties.php:361
+#, fuzzy
+msgid "Voting Options"
+msgstr "Tùy chọn QT"
+
+#: ../includes/definitions/albumProperties.php:365 ../poll_properties.php:120
+msgid "Displayed Value"
+msgstr "Giá trị hiển thị"
+
+#: ../includes/definitions/albumProperties.php:365 ../poll_properties.php:121
+msgid "Points"
+msgstr "Điểm"
+
+#: ../includes/definitions/albumProperties.php:375
+msgid "Misc"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:379
+msgid "Add new items at beginning of album"
+msgstr "Các mục/ảnh mới sẽ được thêm vào từ phía đầu album"
+
+#: ../includes/definitions/albumProperties.php:385
+msgid "Show <i>Return to</i> link"
+msgstr "Hiển thị liên kết <i>Quay lại</i>"
+
+#: ../includes/definitions/albumProperties.php:391
+msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
+msgstr "Cho người xem chỉ định ảnh<br>cỡ trọn vẹn hoặc ảnh thu cỡ"
+
+#: ../includes/definitions/albumProperties.php:397
+msgid "Auto fit-to-window for<br>images without a resized copy"
+msgstr "Tự động chỉnh ảnh vừa vào cửa sổ<br>mà không cần chỉnh lại cỡ"
+
+#: ../includes/definitions/albumProperties.php:412
+#, fuzzy
+msgid "Custom Fields"
+msgstr "mẫu theo ý"
+
+#: ../includes/definitions/albumProperties.php:444
+msgid "Microthumbs"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:447
+msgid "Use micro thumb photo navigation"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:449
+#, fuzzy
+msgid "both"
+msgstr "Tháng"
+
+#: ../includes/definitions/albumProperties.php:453
+msgid "Micro thumb style"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:455
+#, fuzzy
+msgid "Fixed"
+msgstr "Mẫu"
+
+#: ../includes/definitions/albumProperties.php:455
+msgid "Dynamic"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:459
+msgid "Show first & last micro thumb"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:465
+#, fuzzy
+msgid "Number of previous thumbs"
+msgstr "Số lượng lựa chọn cho bình chọn"
+
+#: ../includes/definitions/albumProperties.php:471
+#, fuzzy
+msgid "Number of next thumbs"
+msgstr "Số lượng lựa chọn cho bình chọn"
+
+#: ../includes/definitions/albumProperties.php:477
+msgid "Position of micro-thumb navigation bar"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:479
+#: ../layout/watermarkform.inc:113
+msgid "Top"
+msgstr "Đỉnh"
+
+#: ../includes/definitions/albumProperties.php:479
+#, fuzzy
+msgid "Both"
+msgstr "Tháng"
+
+#: ../includes/definitions/albumProperties.php:479
+#: ../layout/watermarkform.inc:129
+msgid "Bottom"
+msgstr "Đáy"
+
+#: ../includes/definitions/albumProperties.php:483
+msgid "Height of micro-thumbs in navigation bar"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:490
+msgid "Bonus to height of current micro-thumb (pixels)"
+msgstr ""
+
+#: ../includes/definitions/services.php:45
+msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
+msgstr ""
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
 #, php-format
@@ -1778,95 +1876,109 @@ msgstr "Hiển thị ảnh ngẫu nhiên"
 msgid "random images"
 msgstr "ảnh ngẫu nhiên"
 
-#: ../includes/stats/stats.inc.php:83
+#: ../includes/stats/stats.inc.php:82
 msgid "Show caption"
 msgstr "Hiển thị chú thích"
 
-#: ../includes/stats/stats.inc.php:86
+#: ../includes/stats/stats.inc.php:85
 msgid "Show album link"
 msgstr "Hiển thị liên kết album"
 
-#: ../includes/stats/stats.inc.php:89
+#: ../includes/stats/stats.inc.php:88
 msgid "Show description"
 msgstr "Hiển thị giới thiệu"
 
-#: ../includes/stats/stats.inc.php:92
+#: ../includes/stats/stats.inc.php:91
 msgid "Show comments"
 msgstr "Hiển thị lời bình"
 
-#: ../includes/stats/stats.inc.php:95
+#: ../includes/stats/stats.inc.php:94
 msgid "Show capture date"
 msgstr "Hiển thị ngày tạo ảnh"
 
-#: ../includes/stats/stats.inc.php:98
+#: ../includes/stats/stats.inc.php:97
 msgid "Show upload date"
 msgstr "Hiển thị ngày tải lên"
 
-#: ../includes/stats/stats.inc.php:101
+#: ../includes/stats/stats.inc.php:100
 msgid "Show number of views"
 msgstr "Hiển thị số lần xem"
 
-#: ../includes/stats/stats.inc.php:104
+#: ../includes/stats/stats.inc.php:103
 msgid "Show the add comment link"
 msgstr "Hiển thị liên kết thêm lời bình"
 
-#: ../includes/stats/stats.inc.php:111
+#: ../includes/stats/stats.inc.php:110
 msgid "Show the add vote link"
 msgstr "Hiển thị liên kết thêm đánh giá"
 
-#: ../includes/stats/stats.inc.php:114
+#: ../includes/stats/stats.inc.php:113
 msgid "Show the album owners"
 msgstr "Hiển thị người sở hữu album"
 
-#: ../includes/stats/stats.inc.php:117
+#: ../includes/stats/stats.inc.php:116
 msgid "Show timing basic information"
 msgstr "Hiển thị thông tin thời gian cơ bản"
 
-#: ../includes/stats/stats.inc.php:123
+#: ../includes/stats/stats.inc.php:122
 msgid "Reverses sort order - see above"
 msgstr "Đảo chiều sắp xếp - xem bên trên"
 
-#: ../includes/stats/stats.inc.php:126
+#: ../includes/stats/stats.inc.php:125
 msgid "Thumb size in pixels"
 msgstr "Cỡ ảnh thumb bằng pixel"
 
-#: ../includes/stats/stats.inc.php:129
+#: ../includes/stats/stats.inc.php:128
 msgid "Controls the number of photos displayed on one page"
 msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
 
-#: ../includes/stats/stats.inc.php:132
+#: ../includes/stats/stats.inc.php:131
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Kiểm soát số lượng tối đa ảnh liệt kê, -1 cho tất cả"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:134
+msgid "Use Grid Layout"
+msgstr ""
+
+#: ../includes/stats/stats.inc.php:137
+#, fuzzy
+msgid "Controls the number of rows to display in grid mode"
+msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
+
+#: ../includes/stats/stats.inc.php:140
+#, fuzzy
+msgid "Controls the number of columns to display in grid mode"
+msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
+
+#: ../includes/stats/stats.inc.php:142
 msgid "Above the comments"
 msgstr "Trên bình luận"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:143
 msgid "In the caption line"
 msgstr "Trong dòng chú thích"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:144
 msgid "Above the stats"
 msgstr "Trên trạng thái"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:145
 msgid "Below the comments"
 msgstr "Dưới bình luận"
 
-#: ../includes/stats/stats.inc.php:147
+#: ../includes/stats/stats.inc.php:146
 msgid "Position of the add vote and add comment links"
 msgstr "Vị trí của liên kết thêm đánh giá và thêm lời bình"
 
-#: ../includes/stats/stats.inc.php:152
+#: ../includes/stats/stats.inc.php:151
 msgid "Filter by year"
 msgstr "Lọc theo năm"
 
-#: ../includes/stats/stats.inc.php:155
+#: ../includes/stats/stats.inc.php:154
 msgid "Filter by month"
 msgstr "Lọc theo tháng"
 
-#: ../includes/stats/stats.inc.php:158
+#: ../includes/stats/stats.inc.php:157
 msgid "Filter by day"
 msgstr "Lọc theo ngày"
 
@@ -1874,7 +1986,7 @@ msgstr "Lọc theo ngày"
 msgid "Member file"
 msgstr "Thông tin thành viên"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:2983
+#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:2950
 msgid "Username"
 msgstr "Tên truy cập"
 
@@ -1934,6 +2046,11 @@ msgstr "Gửi email cho thành viên <br>khi tài khoản được tạo"
 msgid "Donate to Gallery now!!"
 msgstr "Quyên góp tặng cho Thư viện ảnh!!"
 
+#: ../html_wrap/wrapper.footer.default:62
+#, php-format
+msgid "Debug ON ! Level %s"
+msgstr ""
+
 #: ../html_wrap/wrapper.header.default:100 ../view_photo_properties.php:31
 msgid "Security violation"
 msgstr "Xâm phạm an toàn"
@@ -1950,23 +2067,23 @@ msgstr "chuyển album"
 msgid "reorder album"
 msgstr "sắp xếp lại album"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:272
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:247
 msgid "rename album"
 msgstr "đổi tên album"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:285
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:260
 msgid "edit captions"
 msgstr "sửa chú thích"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:320
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:295
 msgid "permissions"
 msgstr "quyền hạn"
 
-#: ../layout/adminAlbumCommands.inc:28 ../view_album.php:314
+#: ../layout/adminAlbumCommands.inc:28 ../view_album.php:284
 msgid "properties"
 msgstr "cấu hình"
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:428
+#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:398
 msgid "view&nbsp;comments"
 msgstr "xem&nbsp;lời&nbsp;bình"
 
@@ -1978,11 +2095,12 @@ msgstr "chèn&nbsp;ảnh"
 msgid "Logged in as:"
 msgstr "Đã đăng nhập vào là:"
 
-#: ../layout/commentbox.inc:8 ../layout/commentdraw.inc:19
+#: ../layout/commentbox.inc:8 ../layout/commentdraw.inc:23
+#: ../lib/albumItem.php:254
 msgid "From:"
 msgstr "Từ:"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:1105 ../util.php:189
+#: ../layout/commentboxbottom.inc:11 ../stats.php:960 ../util.php:164
 msgid "add comment"
 msgstr "thêm lời bình"
 
@@ -1998,7 +2116,7 @@ msgstr "xem lời bình cho album nhánh"
 msgid "Album contains no comments"
 msgstr "Album không có lời bình nào"
 
-#: ../layout/commentdraw.inc:42
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:228
 msgid "delete comment"
 msgstr "xóa lời bình"
 
@@ -2039,11 +2157,11 @@ msgstr "Ảnh cuối"
 msgid "%d of %d"
 msgstr "ảnh %d trong %d"
 
-#: ../layout/watermarkform.inc:77
+#: ../layout/watermarkform.inc:77 ../lib/albumItem.php:114
 msgid "Watermark"
 msgstr "Ảnh chèn"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3104 ../util.php:3109
+#: ../layout/watermarkform.inc:80 ../util.php:3071 ../util.php:3076
 msgid "None"
 msgstr "Không"
 
@@ -2065,10 +2183,6 @@ msgstr "Sắp xếp"
 msgid "Upper&nbsp;Left"
 msgstr "Trên&nbsp;Trái"
 
-#: ../layout/watermarkform.inc:113
-msgid "Top"
-msgstr "Đỉnh"
-
 #: ../layout/watermarkform.inc:115
 msgid "Upper&nbsp;Right"
 msgstr "Trên&nbsp;Phải"
@@ -2088,10 +2202,6 @@ msgstr "Phải"
 #: ../layout/watermarkform.inc:127
 msgid "Lower&nbsp;Left"
 msgstr "Dưới&nbsp;Trái"
-
-#: ../layout/watermarkform.inc:129
-msgid "Bottom"
-msgstr "Đáy"
 
 #: ../layout/watermarkform.inc:131
 msgid "Lower&nbsp;Right"
@@ -2129,19 +2239,19 @@ msgstr "Chỉ các ảnh thu cỡ"
 msgid "Only full photos"
 msgstr "Chỉ các ảnh đầy đủ"
 
-#: ../lib/Form.php:56
+#: ../lib/Form.php:69
 msgid "Check All"
 msgstr "Kiểm tra tất cả"
 
-#: ../lib/Form.php:58
+#: ../lib/Form.php:71
 msgid "Clear All"
 msgstr "Xóa tất cả"
 
-#: ../lib/Form.php:60
+#: ../lib/Form.php:73
 msgid "Invert Selection"
 msgstr "Xoay ngược lựa chọn"
 
-#: ../lib/Form.php:187
+#: ../lib/Form.php:234
 msgid "Colorpicker"
 msgstr ""
 
@@ -2165,8 +2275,8 @@ msgstr "Chi tiết"
 msgid "description"
 msgstr "chi tiết"
 
-#: ../lib/voting.php:215 ../view_album.php:571 ../view_album.php:600
-#: ../view_album.php:1068
+#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
+#: ../view_album.php:917
 msgid "Vote"
 msgstr "Bình chọn"
 
@@ -2178,8 +2288,8 @@ msgstr "Điểm tổng cộng trong ngoặc"
 msgid "Average points in brackets"
 msgstr "Điểm trung bình trong ngoặc"
 
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:517
-#: ../view_album.php:812
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
+#: ../view_album.php:787
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -2236,6 +2346,114 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "một bình chọn"
 msgstr[1] "%d bình chọn"
+
+#: ../lib/albumItem.php:40 ../rearrange.php:112
+msgid "Movie"
+msgstr "phim"
+
+#: ../lib/albumItem.php:44
+msgid "Photo"
+msgstr "ảnh"
+
+#: ../lib/albumItem.php:58
+#, php-format
+msgid "%s actions"
+msgstr "%s thực thi"
+
+#: ../lib/albumItem.php:76
+msgid "Edit Title"
+msgstr "Sửa tiêu đề"
+
+#: ../lib/albumItem.php:80
+msgid "Edit Description"
+msgstr "Sửa chi tiết"
+
+#: ../lib/albumItem.php:86 ../rename_album.php:39 ../rename_album.php:43
+msgid "Rename Album"
+msgstr "Sửa tên album"
+
+#: ../lib/albumItem.php:101
+#, fuzzy
+msgid "Edit Thumbnail"
+msgstr "Sửa thumbnails"
+
+#: ../lib/albumItem.php:105
+#, fuzzy, php-format
+msgid "Rotate/Flip"
+msgstr "Xoay/Lật %s"
+
+#: ../lib/albumItem.php:109
+#, fuzzy
+msgid "Resize"
+msgstr "Đã chỉnh cỡ"
+
+#: ../lib/albumItem.php:123
+#, fuzzy, php-format
+msgid "Set as highlight"
+msgstr "đánh dấu"
+
+#: ../lib/albumItem.php:130
+msgid "Reset Counter"
+msgstr "Xóa bộ đếm"
+
+#: ../lib/albumItem.php:135
+#, fuzzy
+msgid "Move"
+msgstr "phim"
+
+#: ../lib/albumItem.php:139
+#, fuzzy
+msgid "Reorder"
+msgstr "Sắp&nbsp;xếp&nbsp;lại %s"
+
+#: ../lib/albumItem.php:144
+#, fuzzy
+msgid "Copy"
+msgstr "Copy %s"
+
+#: ../lib/albumItem.php:154
+#, fuzzy
+msgid "Show"
+msgstr "Tuyết"
+
+#: ../lib/albumItem.php:159
+#, fuzzy
+msgid "Hide"
+msgstr "ẩn"
+
+#: ../lib/albumItem.php:190 ../watermark_album.php:95
+#: ../watermark_album.php:99
+msgid "Watermark Album"
+msgstr "Album ảnh chèn"
+
+#: ../lib/albumItem.php:196
+msgid "View Comments"
+msgstr "Xem lời bình"
+
+#: ../lib/albumItem.php:207
+#, fuzzy
+msgid "Photo properties"
+msgstr "tham số ảnh"
+
+#: ../lib/albumItem.php:215 ../photo_owner.php:78 ../photo_owner.php:82
+msgid "Change Owner"
+msgstr "Đổi người sở hữu"
+
+#: ../lib/valchecks.php:68
+msgid "Value was set to given default. Because the original value is not numeric."
+msgstr ""
+
+#: ../lib/valchecks.php:70
+msgid "The given Value is not numeric."
+msgstr ""
+
+#: ../lib/valchecks.php:76
+msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgstr ""
+
+#: ../lib/valchecks.php:78
+msgid "The given Value not a valid Integer."
+msgstr ""
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -2350,15 +2568,24 @@ msgstr "Tạo số nhiều"
 msgid "Modify"
 msgstr "Sửa"
 
-#: ../modify_user.php:95
+#: ../modify_user.php:88
+#, fuzzy
+msgid "User information succesfully updated."
+msgstr "Đã nâng cấp thành viên xong."
+
+#: ../modify_user.php:92
+msgid "User information was not succesfully updated !!"
+msgstr ""
+
+#: ../modify_user.php:103
 msgid "Invalid user"
 msgstr "Sai thành viên"
 
-#: ../modify_user.php:133 ../modify_user.php:137
+#: ../modify_user.php:141 ../modify_user.php:145
 msgid "Modify User"
 msgstr "Sửa thành viên"
 
-#: ../modify_user.php:139
+#: ../modify_user.php:149
 msgid "You can change any information about the user using this form."
 msgstr "Bạn có thể thay đổi thông tin về thành viên bằng mẫu này."
 
@@ -2551,10 +2778,6 @@ msgstr "Bạn có thể thay đổi thông tin thành viên ở đây."
 #: ../new_password.php:106
 msgid "You must enter the new password twice."
 msgstr "Bạn phải ghi mật khẩu mới hai lần."
-
-#: ../photo_owner.php:78 ../photo_owner.php:82 ../view_album.php:1005
-msgid "Change Owner"
-msgstr "Đổi người sở hữu"
 
 #: ../photo_owner.php:96
 msgid "Owner"
@@ -2768,6 +2991,57 @@ msgstr "Nhấn liên kết sau đó theo chỉ dẫn để truy cập vào Thư 
 msgid "Return to Add Photos"
 msgstr "Quay lại Thêm ảnh"
 
+#: ../rearrange.php:48 ../rearrange.php:101
+#, fuzzy, php-format
+msgid "Rearrange Album: %s"
+msgstr "Trở lại album: %s"
+
+#: ../rearrange.php:104
+msgid "Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be."
+msgstr ""
+
+#: ../rearrange.php:107
+msgid "Meaning of the borderstyle"
+msgstr ""
+
+#: ../rearrange.php:111
+msgid "Picture"
+msgstr ""
+
+#: ../rearrange.php:113
+#, fuzzy
+msgid "Subalbum"
+msgstr "Album nhánh"
+
+#: ../rearrange.php:114
+#, fuzzy
+msgid "Selected"
+msgstr "Xóa"
+
+#: ../rearrange.php:115
+msgid "Visible"
+msgstr ""
+
+#: ../rearrange.php:116
+#, fuzzy
+msgid "Hidden"
+msgstr "ẩn"
+
+#: ../rearrange.php:136 ../rearrange.php:174
+#, fuzzy
+msgid "save"
+msgstr "Lưu&nbsp;giữ"
+
+#: ../rearrange.php:137 ../rearrange.php:175
+#, fuzzy
+msgid "cancel"
+msgstr "Kết&nbsp;thúc"
+
+#: ../rearrange.php:147
+#, php-format
+msgid "******* Page %s *******"
+msgstr ""
+
 #: ../register.php:37 ../register.php:41
 #, php-format
 msgid "Create User for %s."
@@ -2810,10 +3084,6 @@ msgstr "Không gửi được email.  Xin hãy liên hệ quản trị thư vi�
 #: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Thông tin tài khoản của bạn sẽ được gửi tới địa chỉ email bạn cung cấp."
-
-#: ../rename_album.php:39 ../rename_album.php:43 ../view_album.php:931
-msgid "Rename Album"
-msgstr "Sửa tên album"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -2892,19 +3162,19 @@ msgstr "Độ rộng ảnh tối đa bằng pixel"
 msgid "(manual value)"
 msgstr "(giá trị tự ghi)"
 
-#: ../resize_photo.php:122
+#: ../resize_photo.php:124
 msgid "Apply to nested albums ?"
 msgstr "Thực thi cả những album nhánh ?"
 
-#: ../resize_photo.php:128
+#: ../resize_photo.php:130
 msgid "Get rid of resized"
 msgstr "Bỏ ảnh thu cỡ đi"
 
-#: ../resize_photo.php:129
+#: ../resize_photo.php:131
 msgid "(Use only the original picture)"
 msgstr "(Chỉ dùng ảnh nguyên gốc)"
 
-#: ../resize_photo.php:134
+#: ../resize_photo.php:136
 msgid "Change Size"
 msgstr "Đổi cỡ"
 
@@ -2981,16 +3251,20 @@ msgstr "Thấy %d ảnh"
 msgid "Processing status..."
 msgstr "Sử lý trạng thái..."
 
-#: ../save_photos.php:365
+#: ../save_photos.php:362
 msgid "No images uploaded!"
 msgstr "Không gửi được ảnh nào!"
 
-#: ../save_photos.php:415
+#: ../save_photos.php:385
+msgid "Select the items you want to upload. To select multiple hold 'strg' (PC) or 'Command' (Mac)"
+msgstr ""
+
+#: ../save_photos.php:413
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "%d các file đã thấy.  Những file này có chứa thông tin về ảnh, như là tựa đề và chi tiết."
 
-#: ../save_photos.php:447
+#: ../save_photos.php:445
 msgid "Add Files"
 msgstr "Thêm files"
 
@@ -3087,7 +3361,7 @@ msgid "Compatible but limited"
 msgstr "Tương thích nhưng giới hạn"
 
 #: ../slideshow.php:181 ../slideshow.php:185 ../view_album.php:108
-#: ../view_comments.php:56 ../view_photo.php:165
+#: ../view_comments.php:56 ../view_photo.php:166
 msgid "navigate UP"
 msgstr "hướng LÊN"
 
@@ -3147,527 +3421,535 @@ msgstr "Xuống"
 msgid "Sort"
 msgstr "Sắp&nbsp;xếp"
 
-#: ../stats.php:226
+#: ../stats.php:74
+msgid " - Images with the least votes"
+msgstr " - Những ảnh có ít đánh giá"
+
+#: ../stats.php:77
+msgid " - Images with the most votes"
+msgstr " - Những ảnh có nhiều đánh giá"
+
+#: ../stats.php:83
+msgid " - Bottom rated images"
+msgstr " - Những ảnh bị đánh giá thấp nhất"
+
+#: ../stats.php:86
+msgid " - Top rated images"
+msgstr " - Những ảnh được đánh giá cao nhất"
+
+#: ../stats.php:92
+msgid " - Oldest images first"
+msgstr " - Những ảnh cũ nhất trước"
+
+#: ../stats.php:96
+msgid " - Latest added images"
+msgstr " - Những ảnh được thêm sau cùng"
+
+#: ../stats.php:102
+msgid " - Latest Capture Date"
+msgstr " - Ngày tạo ảnh sau cùng"
+
+#: ../stats.php:105
+msgid " - Oldest Capture Date"
+msgstr " - Ngày tạo ảnh cũ nhất"
+
+#: ../stats.php:111
+msgid " - Latest Comments"
+msgstr " - Lời bình mới nhất"
+
+#: ../stats.php:114
+msgid " - Oldest Comments"
+msgstr " - Lời bình cũ nhất"
+
+#: ../stats.php:119
+msgid " - Random Images"
+msgstr " - Những ảnh ngẫu nhiên"
+
+#: ../stats.php:125
+msgid " - Images with the least views"
+msgstr " - Những ảnh được xem ít nhất"
+
+#: ../stats.php:128
+msgid " - Images with the most views"
+msgstr " - Những ảnh được xem nhiều nhất"
+
+#: ../stats.php:294
 #, php-format
 msgid "Number Albums = %s"
 msgstr "Số Album = %s"
 
-#: ../stats.php:238
+#: ../stats.php:305
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr "Tên file lưu trữ = %s ; hiệu lực = %s ; thời hạn = %s"
 
-#: ../stats.php:251
+#: ../stats.php:316
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr "Thời gian hiện tại = %s ; Thời gian lưu trữ = %s"
 
-#: ../stats.php:268
+#: ../stats.php:331
 msgid "Logged In - Disabling Cache"
 msgstr "Đã đăng nhập - Ngưng lưu trữ"
 
-#: ../stats.php:277
+#: ../stats.php:337
 msgid "Using cache"
 msgstr "Sử dụng lưu trữ"
 
-#: ../stats.php:280
+#: ../stats.php:337
 msgid "Not using cache"
 msgstr "Không sử dụng lưu trữ"
 
-#: ../stats.php:283
+#: ../stats.php:338
 msgid "Cache to be rebuilt"
 msgstr "Lưu trữ được làm lại"
 
-#: ../stats.php:306
+#: ../stats.php:338
+#, fuzzy
+msgid "Cache will not rebuild."
+msgstr "Lưu trữ được làm lại"
+
+#: ../stats.php:360
 msgid "Version out of date."
 msgstr "Quá hạn phiên bản."
 
-#: ../stats.php:340
+#: ../stats.php:392
 #, php-format
 msgid "Checking album: %s"
 msgstr "Kiểm tra album: %s"
 
-#: ../stats.php:352
+#: ../stats.php:402
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr "Đọc thông tin index ảnh = %d , id = %d"
 
-#: ../stats.php:368
+#: ../stats.php:413
 msgid "Getting SVotes"
 msgstr "Nhận Đánh giá"
 
-#: ../stats.php:376
+#: ../stats.php:419
 msgid "Getting Item Clicks"
 msgstr "Nhận Số lần nhấn Ảnh"
 
-#: ../stats.php:381
+#: ../stats.php:422
 msgid "Getting Item Capture Date"
 msgstr "Nhận Ngày tạo Mục/Ảnh"
 
-#: ../stats.php:401
+#: ../stats.php:441
 msgid "Getting Number of Comments"
 msgstr "Nhận Số lượng Lời bình"
 
-#: ../stats.php:405
+#: ../stats.php:443
 msgid "Getting Comments"
 msgstr "Nhận Lời bình"
 
-#: ../stats.php:452
+#: ../stats.php:486
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr "Album: %s ; Index: %d ; Đánh giá: %d ; Xem: %d; Ngày: %s; Tạo ảnh: %s; Ngày bình: %s; Bình chọn: %s; Đếm bình chọn: %d; Ngẫu nhiên: %d"
 
-#: ../stats.php:527
+#: ../stats.php:552
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Tổng cộng: %s ; Bắt đầu: %s ; Trang cuối: %s"
 
-#: ../stats.php:541
-msgid " - Images with the most votes"
-msgstr " - Những ảnh có nhiều đánh giá"
-
-#: ../stats.php:544
-msgid " - Images with the least votes"
-msgstr " - Những ảnh có ít đánh giá"
-
-#: ../stats.php:550
-msgid " - Top rated images"
-msgstr " - Những ảnh được đánh giá cao nhất"
-
-#: ../stats.php:553
-msgid " - Bottom rated images"
-msgstr " - Những ảnh bị đánh giá thấp nhất"
-
-#: ../stats.php:559
-msgid " - Latest added images"
-msgstr " - Những ảnh được thêm sau cùng"
-
-#: ../stats.php:562
-msgid " - Oldest images first"
-msgstr " - Những ảnh cũ nhất trước"
-
-#: ../stats.php:568
-msgid " - Latest Capture Date"
-msgstr " - Ngày tạo ảnh sau cùng"
-
-#: ../stats.php:571
-msgid " - Oldest Capture Date"
-msgstr " - Ngày tạo ảnh cũ nhất"
-
-#: ../stats.php:577
-msgid " - Latest Comments"
-msgstr " - Lời bình mới nhất"
-
-#: ../stats.php:580
-msgid " - Oldest Comments"
-msgstr " - Lời bình cũ nhất"
-
-#: ../stats.php:585
-msgid " - Random Images"
-msgstr " - Những ảnh ngẫu nhiên"
-
-#: ../stats.php:591
-msgid " - Images with the most views"
-msgstr " - Những ảnh được xem nhiều nhất"
-
-#: ../stats.php:594
-msgid " - Images with the least views"
-msgstr " - Những ảnh được xem ít nhất"
-
-#: ../stats.php:626
+#: ../stats.php:573
 #, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d ảnh có lời bình trong album: %s"
 
-#: ../stats.php:628
+#: ../stats.php:575
 #, php-format
 msgid "%d images in album: %s"
 msgstr "%d ảnh trong album: %s"
 
-#: ../stats.php:631
+#: ../stats.php:578
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr "Tên album: '%s' là sai qui cách !"
 
-#: ../stats.php:636
+#: ../stats.php:583
 #, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "%d ảnh có lời bình trong Thư viện ảnh này"
 
-#: ../stats.php:639
+#: ../stats.php:586
 #, php-format
 msgid "%d images this Gallery"
 msgstr "%d ảnh trong Thư viện ảnh này"
 
-#: ../stats.php:645
+#: ../stats.php:592
 msgid "Back to stats-wizard"
 msgstr "Quay lại trang trạng thái"
 
-#: ../stats.php:681
+#: ../stats.php:628
 #, php-format
 msgid "Data load time %d seconds"
 msgstr "Thời gian tải dữ liệu %d giây"
 
-#: ../stats.php:768
+#: ../stats.php:694
 #, php-format
 msgid "Finished in %d seconds"
 msgstr "Hoàn thành trong %d giây"
 
-#: ../stats.php:774
+#: ../stats.php:699
 msgid "Update"
 msgstr "Cập nhật"
 
-#: ../stats.php:775
+#: ../stats.php:700
 msgid "Cache update required. "
 msgstr "Yêu cầu cập nhật lưu trữ. "
 
-#: ../stats.php:779
+#: ../stats.php:704
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Không tìm kiếm trong vài album vì chúng yêu cầu phải được nâng cấp tới phiên bản sau cùng của %s trước"
 
-#: ../stats.php:782
+#: ../stats.php:707
 msgid "upgrade all albums"
 msgstr "nâng cấp tất cả album"
 
-#: ../stats.php:828
+#: ../stats.php:751
 #, php-format
 msgid "Recursing album: %s"
 msgstr "Trở lại album: %s"
 
-#: ../stats.php:868
+#: ../stats.php:787
 msgid "Read cache num photos lock failed."
 msgstr "Đọc khóa lưu trữ số lượng ảnh bị lỗi."
 
-#: ../stats.php:894
+#: ../stats.php:811
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr "Tên album : %s ; index: %s"
 
-#: ../stats.php:906 ../stats.php:947
+#: ../stats.php:822 ../stats.php:861
 msgid "Read cache lock failed."
 msgstr "Đọc khóa lưu trữ bị lỗi."
 
-#: ../stats.php:1118
+#: ../stats.php:973
 msgid "add vote"
 msgstr "thêm đánh giá"
 
-#: ../stats.php:1224
-msgid "From album"
+#: ../stats.php:1067
+#, fuzzy, php-format
+msgid "From album: %s"
 msgstr "Từ album"
 
-#: ../stats.php:1228
-msgid "Owned by:"
+#: ../stats.php:1072
+#, fuzzy, php-format
+msgid "Owned by: %s"
 msgstr "Sở hữu của:"
 
-#: ../stats.php:1281
+#: ../stats.php:1104
 msgid "Capture Date:"
 msgstr "Ngày tạo:"
 
-#: ../stats.php:1292
+#: ../stats.php:1118
 msgid "Upload Date:"
 msgstr "Ngày tải lên:"
 
-#: ../stats.php:1303
+#: ../stats.php:1132
 msgid "Views:"
 msgstr "Đã xem:"
 
-#: ../stats.php:1312
+#: ../stats.php:1142
 msgid "Votes:"
 msgstr "Đánh giá:"
 
-#: ../stats.php:1321
+#: ../stats.php:1154
 msgid "not rated"
 msgstr "không bình chọn"
 
-#: ../stats.php:1336 ../stats.php:1347
+#: ../stats.php:1168
 msgid "Rating:"
 msgstr "Bình chọn:"
 
-#: ../stats-wizard.php:51
-msgid "Wizard"
-msgstr "Đồ Thuật"
+#: ../stats-wizard.php:43 ../stats-wizard.php:54
+msgid "Gallery statistics - Wizard"
+msgstr ""
 
-#: ../stats-wizard.php:109
-msgid "Type"
-msgstr "Loại"
-
-#: ../stats-wizard.php:113 ../tools/despam-comments.php:383
-msgid "Options"
-msgstr "Lựa chọn"
-
-#: ../stats-wizard.php:122
-msgid "Filter by Capture Date"
-msgstr "Lọc theo ngày gửi"
-
-#: ../stats-wizard.php:127
-msgid "Show statistics"
-msgstr "Hiển thị trạng thái"
-
-#: ../stats-wizard.php:130
-msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
-msgstr "Có thể bạn muốn sử dụng trạng thái của riêng bạn ở đâu đó .. Hãy sao chép và dán địa chỉ có trong hộp này."
-
-#: ../tools/find_orphans.php:200 ../tools/find_orphans.php:210
-msgid "Find Orphans"
-msgstr "Tìm kiếm phần rời"
-
-#: ../tools/find_orphans.php:213 ../tools/despam-comments.php:59
-#: ../tools/validate_albums.php:203
+#: ../stats-wizard.php:55 ../tools/find_orphans.php:210
+#: ../tools/despam-comments.php:55 ../tools/validate_albums.php:137
+#: ../tools/validate_albums.php:213
 msgid "return to admin page"
 msgstr "quay lại trang quản trị"
 
-#: ../tools/find_orphans.php:224
+#: ../stats-wizard.php:125
+msgid "Type"
+msgstr "Loại"
+
+#: ../stats-wizard.php:129 ../tools/despam-comments.php:394
+msgid "Options"
+msgstr "Lựa chọn"
+
+#: ../stats-wizard.php:138
+msgid "Filter by Capture Date"
+msgstr "Lọc theo ngày gửi"
+
+#: ../stats-wizard.php:143
+msgid "Show statistics"
+msgstr "Hiển thị trạng thái"
+
+#: ../stats-wizard.php:147
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr "Có thể bạn muốn sử dụng trạng thái của riêng bạn ở đâu đó .. Hãy sao chép và dán địa chỉ có trong hộp này."
+
+#: ../tools/find_orphans.php:200 ../tools/find_orphans.php:209
+msgid "Find Orphans"
+msgstr "Tìm kiếm phần rời"
+
+#: ../tools/find_orphans.php:226
 msgid "Orphaned Albums:"
 msgstr "Album rời:"
 
-#: ../tools/find_orphans.php:225
+#: ../tools/find_orphans.php:227
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "Các album rời sẽ được gán lại vào các album gốc của chúng, nếu có thể được.  Nếu album gốc bị mất, album rời sẽ được gán vào gốc Thư viện ảnh, và nó có thể được chuyển tới một vị trí mới từ đó."
 
-#: ../tools/find_orphans.php:229
+#: ../tools/find_orphans.php:231
 msgid "Parent Album"
 msgstr "Album gốc"
 
-#: ../tools/find_orphans.php:231
+#: ../tools/find_orphans.php:233
 msgid "Orphaned Album"
 msgstr "Album rời"
 
-#: ../tools/find_orphans.php:238
+#: ../tools/find_orphans.php:240
 msgid "Gallery Root"
 msgstr "Thư viện ảnh gốc"
 
-#: ../tools/find_orphans.php:252
+#: ../tools/find_orphans.php:254
 msgid "Re-Attach Orphaned Albums!"
 msgstr "Gán lại các album rời!"
 
-#: ../tools/find_orphans.php:259
+#: ../tools/find_orphans.php:261
 msgid "Orphaned Files:"
 msgstr "Các files rời:"
 
-#: ../tools/find_orphans.php:260
+#: ../tools/find_orphans.php:262
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr "Các file rời sẽ bị xóa khỏi đĩa.  Các file rời không bao giờ được có -  nếu có, tức là chúng chính là ảnh hỏng trong khi gửi lên, hoặc vì những lý do an toàn khác như là cơ sở dữ liệu ảnh bị ghi đè bằng những thông tin xấu."
 
-#: ../tools/find_orphans.php:264
+#: ../tools/find_orphans.php:266
 msgid "Album directory"
 msgstr "Thư mục album"
 
-#: ../tools/find_orphans.php:266
+#: ../tools/find_orphans.php:268
 msgid "Orphaned file"
 msgstr "File rời"
 
-#: ../tools/find_orphans.php:289
+#: ../tools/find_orphans.php:291
 msgid "Delete Orphaned Files!"
 msgstr "Xóa các file rời!"
 
-#: ../tools/find_orphans.php:295
+#: ../tools/find_orphans.php:297
 msgid "No Orphans Found"
 msgstr "Không có phần rời nào"
 
-#: ../tools/find_orphans.php:296
+#: ../tools/find_orphans.php:298
 msgid "There are no orphaned elements in this Gallery."
 msgstr "Không có thành phần rời nào trong Thư viện ảnh này."
 
-#: ../tools/find_orphans.php:300
+#: ../tools/find_orphans.php:302
 #, php-format
 msgid "Orphan %s Repaired"
 msgstr "Đã sửa %s rời"
 
-#: ../tools/find_orphans.php:300
+#: ../tools/find_orphans.php:302
 msgid "Albums"
 msgstr "Albums"
 
-#: ../tools/find_orphans.php:300
+#: ../tools/find_orphans.php:302
 msgid "Files"
 msgstr "Files"
 
-#: ../tools/find_orphans.php:307
+#: ../tools/find_orphans.php:309
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr "Máy chủ web không đủ quyền hạn để xóa những file sau:"
 
-#: ../tools/find_orphans.php:313
+#: ../tools/find_orphans.php:315
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr "Xin hãy kiểm tra quyền hạn của những file đó và thư mục trên. thực hiện chmod chúng, hoặc hỏi QT để thực hiện."
 
-#: ../tools/find_orphans.php:314
+#: ../tools/find_orphans.php:316
 msgid "Reload"
 msgstr "Tải lại"
 
-#: ../tools/despam-comments.php:56
+#: ../tools/despam-comments.php:54
 msgid "Find and remove comment spam"
 msgstr "Tìm và xóa lời bình nhảm nhí"
 
-#: ../tools/despam-comments.php:120
+#: ../tools/despam-comments.php:121
 msgid "Delete Comments"
 msgstr "Xóa lời bình"
 
-#: ../tools/despam-comments.php:122 ../tools/despam-comments.php:251
-#: ../tools/despam-comments.php:262 ../tools/despam-comments.php:331
+#: ../tools/despam-comments.php:123 ../tools/despam-comments.php:252
+#: ../tools/despam-comments.php:263 ../tools/despam-comments.php:332
 msgid "No action taken!"
 msgstr "Không thực thi gì!"
 
-#: ../tools/despam-comments.php:146
+#: ../tools/despam-comments.php:147
 #, php-format
 msgid "Deleted %d spam comments"
 msgstr "Đã xóa %d lời bình nhảm nhí"
 
-#: ../tools/despam-comments.php:150
+#: ../tools/despam-comments.php:151
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] "Xóa %d lời bình nhảm nhí."
 msgstr[1] "Xóa %d lời bình nhảm nhí."
 
-#: ../tools/despam-comments.php:151
+#: ../tools/despam-comments.php:152
 msgid "No comment deleted."
 msgstr "Không xóa lời bình nào."
 
-#: ../tools/despam-comments.php:197
+#: ../tools/despam-comments.php:198
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr "Đã quét %d album, %d ảnh, %d lời bình trong %2.2f giây"
 
-#: ../tools/despam-comments.php:203
+#: ../tools/despam-comments.php:204
 msgid "No spam comments."
 msgstr "Không có lời bình nhảm nhí."
 
-#: ../tools/despam-comments.php:208
+#: ../tools/despam-comments.php:209 ../tools/despam-comments.php:348
 msgid "Entry"
 msgstr "Mục"
 
-#: ../tools/despam-comments.php:212
+#: ../tools/despam-comments.php:213
 msgid "Location"
 msgstr "Vị trí"
 
-#: ../tools/despam-comments.php:216
+#: ../tools/despam-comments.php:217
 msgid "Commenter"
 msgstr "Người bình"
 
-#: ../tools/despam-comments.php:220
+#: ../tools/despam-comments.php:221
 msgid "Comment"
 msgstr "Lời bình"
 
-#: ../tools/despam-comments.php:234
+#: ../tools/despam-comments.php:235
 msgid "Delete Checked Comments"
 msgstr "Xóa các lời bình được chọn"
 
-#: ../tools/despam-comments.php:249
+#: ../tools/despam-comments.php:250
 msgid "Delete from blacklist"
 msgstr "Xóa khỏi sổ đen"
 
-#: ../tools/despam-comments.php:266 ../tools/despam-comments.php:310
+#: ../tools/despam-comments.php:267 ../tools/despam-comments.php:311
 msgid "Error saving blacklist!"
 msgstr "Lỗi lưu giữ sổ đen!"
 
-#: ../tools/despam-comments.php:269
+#: ../tools/despam-comments.php:270
 #, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "Xóa %d mục khỏi sổ đen."
 msgstr[1] "Xóa %d mục khỏi sổ đen."
 
-#: ../tools/despam-comments.php:313
+#: ../tools/despam-comments.php:314
 msgid "Added to blacklist:"
 msgstr "vị trí hiện tại"
 
-#: ../tools/despam-comments.php:322
+#: ../tools/despam-comments.php:323
 msgid "Following duplicates were not added:"
 msgstr "Bên dưới là những trùng lặp không được thêm:"
 
-#: ../tools/despam-comments.php:338
+#: ../tools/despam-comments.php:339
 msgid "Current blacklist"
 msgstr "Sổ đen hiện tại"
 
-#: ../tools/despam-comments.php:340
+#: ../tools/despam-comments.php:341
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr "Sổ đen của bạn trống.  Bạn phải thêm các mục mới vào sổ đen của bạn để có thể sử dụng."
 
-#: ../tools/despam-comments.php:355 ../tools/despam-comments.php:372
+#: ../tools/despam-comments.php:366 ../tools/despam-comments.php:383
 msgid "Update Blacklist"
 msgstr "Cập nhật sổ đen"
 
-#: ../tools/despam-comments.php:362
+#: ../tools/despam-comments.php:373
 msgid "Enter new blacklist entries"
 msgstr "Ghi các mục sổ đen mới"
 
-#: ../tools/despam-comments.php:363
+#: ../tools/despam-comments.php:374
 msgid "Useful blacklists: "
 msgstr "Các sổ đen dùng được: "
 
-#: ../tools/despam-comments.php:368
+#: ../tools/despam-comments.php:379
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr "Bạn có thể chỉ cần cắt và dán những sổ đen này vào trong khung nhập, hoặc thêm những mục mới của bạn."
 
-#: ../tools/despam-comments.php:378
+#: ../tools/despam-comments.php:389
 msgid "Find blacklisted comments"
 msgstr "Tìm các lời bình bị nằm trong sổ đen"
 
-#: ../tools/despam-comments.php:379
+#: ../tools/despam-comments.php:390
 msgid "View/Edit blacklist"
 msgstr "Xem/Biên soạn sổ đen"
 
-#: ../tools/despam-comments.php:380
+#: ../tools/despam-comments.php:391
 msgid "Add blacklist entries"
 msgstr "Thêm mục sổ đen"
 
-#: ../tools/validate_albums.php:168
+#: ../tools/validate_albums.php:181
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr "Xin chú ý: Ngay cả nếu ảnh thumbnail hiển thị đúng, ảnh cỡ đầy đủ thực tế đã được xác nhận là bị mất."
 
-#: ../tools/validate_albums.php:190 ../tools/validate_albums.php:200
+#: ../tools/validate_albums.php:203 ../tools/validate_albums.php:212
 msgid "Validate Albums"
 msgstr "Hợp lệ album"
 
-#: ../tools/validate_albums.php:214
+#: ../tools/validate_albums.php:230
 msgid "Missing Files:"
 msgstr "Những file mất:"
 
-#: ../tools/validate_albums.php:215
+#: ../tools/validate_albums.php:231
 msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
 msgstr "Những file sau bị mất khỏi thư mục album.  Tuy nhiên thông tin về ảnh vẫn được lưu giữ trong dữ liệu album, nhưng bản thân file không thể trình bày do vài lý do.  Những file đó có thể gây lỗi khi chuyển qua Thư viện ảnh 2.0. Điều này có thể sửa được bằng một trong hai cách; cách thứ nhất là xóa dữ liệu ảnh khỏi album.  Cách thứ hai là tự thêm lại file vào thư mục album và sử dụng tên file như bạn thấy ở bên trái của bảng."
 
-#: ../tools/validate_albums.php:219
+#: ../tools/validate_albums.php:235
 msgid "Missing File"
 msgstr "File mất"
 
-#: ../tools/validate_albums.php:221 ../tools/validate_albums.php:263
+#: ../tools/validate_albums.php:237 ../tools/validate_albums.php:279
 msgid "Action"
 msgstr "Thực hiện"
 
-#: ../tools/validate_albums.php:230 ../view_photo.php:332
+#: ../tools/validate_albums.php:246
 msgid "delete photo"
 msgstr "xóa ảnh"
 
-#: ../tools/validate_albums.php:246
+#: ../tools/validate_albums.php:262
 msgid "No Missing Files"
 msgstr "Không file nào bị mất"
 
-#: ../tools/validate_albums.php:247
+#: ../tools/validate_albums.php:263
 msgid "There are no missing files in this Gallery."
 msgstr "Không có file nào bị mất trong Thư viện ảnh này."
 
-#: ../tools/validate_albums.php:256
+#: ../tools/validate_albums.php:272
 msgid "Invalid Albums:"
 msgstr "Những album sai qui cách:"
 
-#: ../tools/validate_albums.php:257
+#: ../tools/validate_albums.php:273
 msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
 msgstr "Những album sai qui cách là những thư mục mà đã được tạo trong thư mục album và thực tế không có chứa dữ liệu album.  Sự có mặt của những thư mục này có thể gây ra vấn đề cho Thư viện ảnh như khi thử chuyển sang Thư viện ảnh 2.0"
 
-#: ../tools/validate_albums.php:261
+#: ../tools/validate_albums.php:277
 msgid "Invalid Album"
 msgstr "Album sai qui cách"
 
-#: ../tools/validate_albums.php:270
+#: ../tools/validate_albums.php:286
 msgid "delete directory"
 msgstr "xóa thư mục"
 
-#: ../tools/validate_albums.php:286
+#: ../tools/validate_albums.php:302
 msgid "No Invalid Albums Found"
 msgstr "Không thấy album sai qui cách nào"
 
-#: ../tools/validate_albums.php:287
+#: ../tools/validate_albums.php:303
 msgid "There are no invalid albums present in this Gallery."
 msgstr "Không có album sai qui cách nào xuất hiện trong Thư viện ảnh này."
 
@@ -3793,280 +4075,271 @@ msgstr "Không có chú thích"
 msgid "edit"
 msgstr "soạn"
 
-#: ../util.php:206
+#: ../util.php:180
 msgid "Add your comment"
 msgstr "Thêm lời bình của bạn"
 
-#: ../util.php:209
+#: ../util.php:183
 msgid "Commenter:"
 msgstr "Người bình:"
 
-#: ../util.php:226
+#: ../util.php:201
 msgid "Message:"
 msgstr "Thông điệp:"
 
-#: ../util.php:230
+#: ../util.php:205
 msgid "Post"
 msgstr "Gửi&nbsp;đi"
 
-#: ../util.php:281
-msgid "Error:"
-msgstr "Lỗi:"
-
-#: ../util.php:302
+#: ../util.php:272
 msgid "Executing:"
 msgstr "Thực hiện:"
 
-#: ../util.php:309
+#: ../util.php:279
 msgid "Results:"
 msgstr "Kết quả:"
 
-#: ../util.php:313
+#: ../util.php:283
 msgid "none"
 msgstr "không"
 
-#: ../util.php:318
+#: ../util.php:288
 msgid "Debug messages:"
 msgstr "Nội dung gỡ rối:"
 
-#: ../util.php:329
+#: ../util.php:299
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Trạng thái: %s (yêu cầu %s)"
 
-#: ../util.php:355
+#: ../util.php:324
 #, php-format
 msgid "Getting Dimension of file: %s"
 msgstr "Nhận Kích thước của file: %s"
 
-#: ../util.php:360
+#: ../util.php:327
 msgid "The file does not exist ?!"
 msgstr "File đó không còn tồn tại ?!"
 
-#: ../util.php:372
+#: ../util.php:338
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "Chức năng PHP's %s không thể xác định kích thước."
 
-#: ../util.php:388 ../util.php:709 ../util.php:962 ../util.php:1008
-#: ../util.php:2510
+#: ../util.php:353 ../util.php:671 ../util.php:922 ../util.php:968
+#: ../util.php:2493
 msgid "You have no graphics package configured for use!"
 msgstr "Bạn không có ứng dụng sử lý graphic nào đã được cấu hình để sử dụng!"
 
-#: ../util.php:413
+#: ../util.php:377
 msgid "Unable to determine image dimensions!"
 msgstr "Không thể xác định kích thước ảnh!"
 
-#: ../util.php:479 ../util.php:498
+#: ../util.php:442 ../util.php:461
 msgid "Not closing this window because debug mode is on"
 msgstr "Không đóng cửa sổ này vì trình gỡ rối đang bật"
 
-#: ../util.php:515
+#: ../util.php:478
 #, php-format
 msgid "Resizing Image: %s"
 msgstr "Chỉnh cỡ ảnh: %s"
 
-#: ../util.php:547
+#: ../util.php:509
 msgid "No resizing required"
 msgstr "Không yêu cầu chỉnh cỡ"
 
-#: ../util.php:577
+#: ../util.php:539
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "dung lượng file chọn %d kbytes"
 
-#: ../util.php:583 ../util.php:613
+#: ../util.php:545 ../util.php:575
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> cỡ file %d kbytes"
 
-#: ../util.php:584
+#: ../util.php:546
 #, php-format
 msgid "trying quality %d%%"
 msgstr "thử chất lượng %d%%"
 
-#: ../util.php:614
+#: ../util.php:576
 msgid "Done."
 msgstr "Kết&nbsp;thúc."
 
-#: ../util.php:713
+#: ../util.php:675
 msgid "No watermark name specified!"
 msgstr "Không có ảnh chèn nào được chỉ định!"
 
-#: ../util.php:1027
+#: ../util.php:986
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Truy xuất tới %s bị lỗi trong %s cho file %s!"
 
-#: ../util.php:1033
+#: ../util.php:990
 #, php-format
 msgid "File %s type %d."
 msgstr "File %s loại %d."
 
-#: ../util.php:1076 ../util.php:1099
+#: ../util.php:1025 ../util.php:1048
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Không rõ loại file: %s"
 
-#: ../util.php:1505
+#: ../util.php:1112
+#, fuzzy, php-format
+msgid "Problem including file %s"
+msgstr "Có vấn đề khi thêm %s:"
+
+#: ../util.php:1442
 #, php-format
 msgid "Can't write to %s."
 msgstr "Không thể viết vào %s."
 
-#: ../util.php:1512
+#: ../util.php:1449
 #, php-format
 msgid "Can't read %s."
 msgstr "Không thể đọc %s."
 
-#: ../util.php:1616
+#: ../util.php:1564
 msgid "Select Album"
 msgstr "Chọn Album"
 
-#: ../util.php:1622
+#: ../util.php:1570
 msgid "Top Level"
 msgstr "Chính"
 
-#: ../util.php:1643 ../util.php:1694
+#: ../util.php:1591 ../util.php:1642
 msgid "current location"
 msgstr "vị trí hiện tại"
 
-#: ../util.php:1697
+#: ../util.php:1645
 msgid "self"
 msgstr "tự"
 
-#: ../util.php:1832
+#: ../util.php:1780
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Ngày Tạo Mục/Ảnh : %s"
 
-#: ../util.php:1877
+#: ../util.php:1825
 #, php-format
 msgid "Could not open lock file (%s)!"
 msgstr "Không thể mở file khóa (%s)!"
 
-#: ../util.php:1882
+#: ../util.php:1830
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Không thể thu được khóa (%s)!"
 
-#: ../util.php:1971
+#: ../util.php:1919 ../util.php:1958
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 lx"
 msgstr[1] "%d lx"
 
-#: ../util.php:1976
+#: ../util.php:1924 ../util.php:1963
 msgid "Sub-albums"
 msgstr "Album nhánh"
 
-#: ../util.php:2142
+#: ../util.php:2131
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Bỏ qua %s (%s không hiệu lực)"
 
-#: ../util.php:2255
+#: ../util.php:2246
 #, php-format
 msgid "Adding %s"
 msgstr "Thêm %s"
 
-#: ../util.php:2289
+#: ../util.php:2283
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Cần trợ giúp? Hãy xem %s%s Hỏi đáp%s"
 
-#: ../util.php:2295
+#: ../util.php:2288
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Bỏ qua %s (không thể giữ định dạng %s)"
 
-#: ../util.php:2475
+#: ../util.php:2458
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Không thể nhận dữ liệu EXIF (jhead không được cài đặt)"
 
-#: ../util.php:2527
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Được tạo bằng %s v%s"
-
-#: ../util.php:2529
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Powered by %s v%s"
-
-#: ../util.php:2576
+#: ../util.php:2543
 #, php-format
 msgid "Skipping invalid email address %s"
 msgstr "Bỏ qua địa chỉ email không hợp lệ %s"
 
-#: ../util.php:2641
+#: ../util.php:2608
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "Chú ý: Đây là email tin được tự động tạo ra gửi đến từ website %s. Nếu khi bạn nhận và có lỗi, hãy bỏ qua nó."
 
-#: ../util.php:2643
+#: ../util.php:2610
 #, php-format
 msgid "Report abuse to %s"
 msgstr "Báo cáo tới %s"
 
-#: ../util.php:2668
+#: ../util.php:2635
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "Email không được gửi vì chức năng gửi email không hiệu lực cho thư viện ảnh"
 
-#: ../util.php:2673
+#: ../util.php:2640
 #, fuzzy
 msgid "Email not sent as no reciepient address provided"
 msgstr "Email không được gửi vì không cung cấp địa chỉ"
 
-#: ../util.php:2678
+#: ../util.php:2645
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "Email không được gửi tới %s vì đó là địa chỉ không hợp lệ"
 
-#: ../util.php:2691
+#: ../util.php:2658
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Địa chỉ người gửi %s không hợp lệ, sử dụng %s."
 
-#: ../util.php:2711
+#: ../util.php:2678
 msgid "Administrator"
 msgstr "Quản trị"
 
-#: ../util.php:2750 ../util.php:2755
+#: ../util.php:2717 ../util.php:2722
 msgid "not shown"
 msgstr "không hiển thị"
 
-#: ../util.php:2759
+#: ../util.php:2726
 msgid "Message"
 msgstr "Thông điệp"
 
-#: ../util.php:2763
+#: ../util.php:2730
 msgid "Email sent"
 msgstr "Email đã được gửi"
 
-#: ../util.php:2765
+#: ../util.php:2732
 msgid "Email not sent"
 msgstr "Email không được gửi"
 
-#: ../util.php:2899
+#: ../util.php:2866
 #, php-format
 msgid "Last comment %s."
 msgstr "Lời bình cuối %s."
 
-#: ../util.php:2911
+#: ../util.php:2878
 msgid "FAILED"
 msgstr "LỖI"
 
-#: ../util.php:2920
+#: ../util.php:2887
 msgid "Email activity"
 msgstr "Kích hoạt Email"
 
-#: ../util.php:2945
+#: ../util.php:2912
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Không thể mở logfile: %s"
 
-#: ../util.php:2952
+#: ../util.php:2919
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -4085,365 +4358,292 @@ msgstr ""
 "\n"
 "Thư viện ảnh @ %s Ban quản trị."
 
-#: ../util.php:2961 ../util.php:2963
+#: ../util.php:2928 ../util.php:2930
 msgid "gallery title"
 msgstr "tiêu đề thư viện ảnh"
 
-#: ../util.php:2962
+#: ../util.php:2929
 msgid "gallery URL"
 msgstr "URL thư viện ảnh"
 
-#: ../util.php:2979
+#: ../util.php:2946
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../util.php:2980
+#: ../util.php:2947
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../util.php:2981
+#: ../util.php:2948
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Trợ giúp QT"
 
-#: ../util.php:2982
+#: ../util.php:2949
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../util.php:2984
+#: ../util.php:2951
 #, fuzzy
 msgid "Fullname"
 msgstr "Tên đầy đủ"
 
-#: ../util.php:2985
+#: ../util.php:2952
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../util.php:3029
+#: ../util.php:2996
 msgid "No Skin"
 msgstr "Không kiểu dáng"
 
-#: ../util.php:3030
+#: ../util.php:2997
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Dùng kiểu dáng nguyên gốc.</dd>"
 
-#: ../util.php:3075 ../util.php:3079
+#: ../util.php:3042 ../util.php:3046
 msgid "unknown"
 msgstr "không rõ"
 
-#: ../util.php:3083
+#: ../util.php:3050
 msgid "Version"
 msgstr "Phiên bản"
 
-#: ../util.php:3085
+#: ../util.php:3052
 msgid "Last Update"
 msgstr "Cập nhật lần cuối"
 
-#: ../util.php:3105 ../util.php:3110
+#: ../util.php:3072 ../util.php:3077
 msgid "Dots"
 msgstr "Gạch"
 
-#: ../util.php:3106 ../util.php:3111
+#: ../util.php:3073 ../util.php:3078
 msgid "Solid"
 msgstr "Khối"
 
-#: ../util.php:3109
+#: ../util.php:3076
 msgid "No frames"
 msgstr "Không dùng khung"
 
-#: ../util.php:3110
+#: ../util.php:3077
 msgid "Just a simple dashed border around the thumb."
 msgstr "Viền mảnh xung quanh ảnh thumb."
 
-#: ../util.php:3111
+#: ../util.php:3078
 msgid "Just a simple solid border around the thumb."
 msgstr "Viền đậm xung quanh ảnh thumb."
 
-#: ../util.php:3132
+#: ../util.php:3099
 #, php-format
 msgid "Skipping %s."
 msgstr "Bỏ qua %s."
 
-#: ../util.php:3138
+#: ../util.php:3105
 #, php-format
 msgid "Can't open %s"
 msgstr "Không thể mở %s"
 
-#: ../util.php:3268 ../util.php:3287
+#: ../util.php:3235 ../util.php:3254
 msgid "Not valid yet"
 msgstr "Chưa chính xác"
 
-#: ../util.php:3529
+#: ../util.php:3495
 msgid "EXIF Data"
 msgstr "Dữ liệu EXIF"
 
-#: ../util.php:3531
+#: ../util.php:3497
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3802
+#: ../util.php:3784
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../view_album.php:234
+#: ../view_album.php:208
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "1 album nhánh"
 msgstr[1] "%d album nhánh"
 
-#: ../view_album.php:234
+#: ../view_album.php:208
 msgid "No albums"
 msgstr "Không có album"
 
-#: ../view_album.php:236
+#: ../view_album.php:210
 msgid "0 pages"
 msgstr "0 trang"
 
-#: ../view_album.php:239
+#: ../view_album.php:213
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s và %s trong album này trên %s"
 
-#: ../view_album.php:242
+#: ../view_album.php:216
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s và %s trong album này"
 
-#: ../view_album.php:245
+#: ../view_album.php:219
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s trong album này trên %s"
 
-#: ../view_album.php:248
+#: ../view_album.php:222
 #, php-format
 msgid "%s in this album"
 msgstr "%s trong album này"
 
-#: ../view_album.php:255
+#: ../view_album.php:229
 #, php-format
 msgid "%s are hidden"
 msgstr "%s là ẩn"
 
-#: ../view_album.php:257
+#: ../view_album.php:231
 #, php-format
 msgid "%s is hidden"
 msgstr "%s là ẩn"
 
-#: ../view_album.php:266
+#: ../view_album.php:241
 msgid "add photos"
 msgstr "thêm ảnh"
 
-#: ../view_album.php:279
+#: ../view_album.php:254
 msgid "new nested album"
 msgstr "tạo album mới"
 
-#: ../view_album.php:292
+#: ../view_album.php:266
 msgid "sort items"
 msgstr "sắp xếp mục/ảnh"
 
-#: ../view_album.php:299
+#: ../view_album.php:272
 msgid "resize all"
 msgstr "chỉnh cỡ tất cả"
 
-#: ../view_album.php:307
+#: ../view_album.php:278
 msgid "rebuild thumbs"
 msgstr "làm lại thumbs"
 
-#: ../view_album.php:326
+#: ../view_album.php:290
+msgid "rearrange items"
+msgstr ""
+
+#: ../view_album.php:301
 msgid "poll results"
 msgstr "kết quả bình chọn"
 
-#: ../view_album.php:332
+#: ../view_album.php:307
 msgid "poll reset"
 msgstr "làm lại bình chọn"
 
-#: ../view_album.php:338
+#: ../view_album.php:313
 msgid "view comments"
 msgstr "xem lời bình"
 
-#: ../view_album.php:346
+#: ../view_album.php:319
 msgid "watermark album"
 msgstr "ảnh chèn album"
 
-#: ../view_album.php:411
+#: ../view_album.php:381
 msgid "album actions"
 msgstr "lựa chọn"
 
-#: ../view_album.php:499
+#: ../view_album.php:471
 msgid "You have no votes recorded for this poll."
 msgstr "Bạn không có bình chọn nào cho mục bình chọn này."
 
-#: ../view_album.php:503
+#: ../view_album.php:475
 msgid "Your current choices are"
 msgstr "Lựa chọn hiện tại của bạn là"
 
-#: ../view_album.php:543
+#: ../view_album.php:515
 msgid "See full poll results"
 msgstr "Xem kết quả bình chọn"
 
-#: ../view_album.php:563
+#: ../view_album.php:551
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:565
+#: ../view_album.php:553
 msgid " or "
 msgstr " hoặc "
 
-#: ../view_album.php:569
+#: ../view_album.php:557
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Để bình chọn cho một ảnh, chọn vào %s."
 
-#: ../view_album.php:570
+#: ../view_album.php:558
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Bạn phải nhấn vào %s để lựa chọn của bạn được ghi lại."
 
-#: ../view_album.php:575
+#: ../view_album.php:563
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Bạn có tổng số của %s và có thể thay đổi chúng nếu bạn muốn."
 
-#: ../view_album.php:576
+#: ../view_album.php:564
 #, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "1 bình chọn"
 msgstr[1] "%d bình chọn"
 
-#: ../view_album.php:579
+#: ../view_album.php:567
 msgid "You can change your choices if you wish."
 msgstr "Bạn có thể thay đổi lựa chọn của bạn nếu bạn muốn."
 
-#: ../view_album.php:745 ../view_album.php:746
+#: ../view_album.php:720 ../view_album.php:721
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:807
+#: ../view_album.php:782
 msgid "highlight"
 msgstr "đánh dấu"
 
-#: ../view_album.php:813
+#: ../view_album.php:788
 msgid "No description"
 msgstr "Không có giới thiệu"
 
-#: ../view_album.php:821
+#: ../view_album.php:796
 msgid "Changed: "
 msgstr "Đã thay đổi: "
 
-#: ../view_album.php:824
+#: ../view_album.php:799
 msgid "Contains: "
 msgstr "Bao gồm: "
 
-#: ../view_album.php:824
+#: ../view_album.php:799
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 mục/ảnh"
 msgstr[1] "%d mục/ảnh"
 
-#: ../view_album.php:840 ../view_album.php:864
+#: ../view_album.php:815 ../view_album.php:839
 msgid "Viewed:"
 msgstr "Đã xem:"
 
-#: ../view_album.php:880
-msgid "Movie"
-msgstr "phim"
-
-#: ../view_album.php:884
-msgid "Photo"
-msgstr "ảnh"
-
-#: ../view_album.php:893
-#, php-format
-msgid "%s actions"
-msgstr "%s thực thi"
-
-#: ../view_album.php:906 ../view_album.php:942
-msgid "Edit Thumbnail"
-msgstr "Sửa thumbnails"
-
-#: ../view_album.php:907 ../view_album.php:943
-#, php-format
-msgid "Rotate/Flip %s"
-msgstr "Xoay/Lật %s"
-
-#: ../view_album.php:916 ../view_album.php:979 ../view_album.php:984
-#, php-format
-msgid "Delete %s"
-msgstr "Xóa %s"
-
-#: ../view_album.php:921
-msgid "Edit Title"
-msgstr "Sửa tiêu đề"
-
-#: ../view_album.php:925
-msgid "Edit Description"
-msgstr "Sửa chi tiết"
-
-#: ../view_album.php:952
-#, php-format
-msgid "Highlight %s"
-msgstr "Đánh dấu %s"
-
-#: ../view_album.php:956
-msgid "Reset Counter"
-msgstr "Xóa bộ đếm"
-
-#: ../view_album.php:961
-#, php-format
-msgid "Move %s"
-msgstr "Chuyển %s"
-
-#: ../view_album.php:962
-#, php-format
-msgid "Reorder %s"
-msgstr "Sắp&nbsp;xếp&nbsp;lại %s"
-
-#: ../view_album.php:964
-#, php-format
-msgid "Copy %s"
-msgstr "Copy %s"
-
-#: ../view_album.php:971
-#, php-format
-msgid "Show %s"
-msgstr "Hiển&nbsp;thị %s"
-
-#: ../view_album.php:973
-#, php-format
-msgid "Hide %s"
-msgstr "Ẩn %s"
-
-#: ../view_album.php:995 ../watermark_album.php:95 ../watermark_album.php:99
-msgid "Watermark Album"
-msgstr "Album ảnh chèn"
-
-#: ../view_album.php:1000
-msgid "View Comments"
-msgstr "Xem lời bình"
-
-#: ../view_album.php:1047
+#: ../view_album.php:895
 msgid "Hey! Add some photos."
 msgstr "Hãy thêm vài ảnh."
 
-#: ../view_album.php:1049
+#: ../view_album.php:897
 msgid "This album is empty."
 msgstr "Album này không có gì"
 
-#: ../view_album.php:1093
+#: ../view_album.php:942
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "Gửi email cho tôi khi có những tác động được thực hiện trong album này:"
 
-#: ../view_album.php:1098
+#: ../view_album.php:947
 msgid "Comments are added"
 msgstr "Lời bình đã được thêm"
 
-#: ../view_album.php:1101
+#: ../view_album.php:950
 msgid "Other changes are made"
 msgstr "Những thay đổi khác đã được tạo"
 
@@ -4464,45 +4664,41 @@ msgstr "quay lại album"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Xin lỗi.  Album này không cho phép bình luận."
 
-#: ../view_photo.php:307
-msgid "resize photo"
-msgstr "chỉnh cỡ ảnh"
-
-#: ../view_photo.php:342
+#: ../view_photo.php:338
 msgid "photo properties"
 msgstr "tham số ảnh"
 
-#: ../view_photo.php:431
+#: ../view_photo.php:427
 msgid "Send photo to..."
 msgstr "Gửi ảnh tới..."
 
-#: ../view_photo.php:433
+#: ../view_photo.php:429
 msgid "Print photo with..."
 msgstr "In ảnh với..."
 
-#: ../view_photo.php:470
+#: ../view_photo.php:466
 #, php-format
 msgid "process this photo with %s"
 msgstr "sử lý ảnh này với %s"
 
-#: ../view_photo.php:515
+#: ../view_photo.php:511
 #, fuzzy
 msgid "View Images:"
 msgstr "Xem ảnh"
 
-#: ../view_photo.php:516
+#: ../view_photo.php:512
 msgid "normal"
 msgstr "bình thường"
 
-#: ../view_photo.php:517
+#: ../view_photo.php:513
 msgid "full"
 msgstr "đầy đủ"
 
-#: ../view_photo.php:535
+#: ../view_photo.php:531
 msgid "Send Photo as eCard"
 msgstr ""
 
-#: ../view_photo.php:708
+#: ../view_photo.php:736
 msgid "Email me when comments are added"
 msgstr "Gửi email cho tôi khi lời bình được thêm"
 
@@ -4525,6 +4721,56 @@ msgstr "Tạo ảnh chèn album."
 #: ../watermark_album.php:103
 msgid "No items to watermark."
 msgstr "Không có mục/ảnh nào để chèn."
+
+#, fuzzy
+#~ msgid "Edit Text1"
+#~ msgstr "Biên soạn nội dung"
+
+#~ msgid "Delete %s"
+#~ msgstr "Xóa %s"
+
+#, fuzzy
+#~ msgid "Edit Text2"
+#~ msgstr "Biên soạn nội dung"
+
+#, fuzzy
+#~ msgid "Edit Thumbnail2"
+#~ msgstr "Sửa thumbnails"
+
+#, fuzzy
+#~ msgid "Rotate/Flip %s2"
+#~ msgstr "Xoay/Lật %s"
+
+#, fuzzy
+#~ msgid "Resize photo"
+#~ msgstr "Chỉnh cỡ ảnh"
+
+#~ msgid "Highlight %s"
+#~ msgstr "Đánh dấu %s"
+
+#~ msgid "Move %s"
+#~ msgstr "Chuyển %s"
+
+#~ msgid "Show %s"
+#~ msgstr "Hiển&nbsp;thị %s"
+
+#~ msgid "Hide %s"
+#~ msgstr "Ẩn %s"
+
+#~ msgid "Error:"
+#~ msgstr "Lỗi:"
+
+#~ msgid "Generated by %s v%s"
+#~ msgstr "Được tạo bằng %s v%s"
+
+#~ msgid "Powered by %s v%s"
+#~ msgstr "Powered by %s v%s"
+
+#~ msgid "resize photo"
+#~ msgstr "chỉnh cỡ ảnh"
+
+#~ msgid "Wizard"
+#~ msgstr "Đồ Thuật"
 
 #~ msgid "Error %s getting EXIF data"
 #~ msgstr "Lỗi %s khi nhận dữ liệu EXIF"
