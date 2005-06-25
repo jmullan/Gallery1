@@ -381,25 +381,26 @@ if (count($image_tags)) {
 ?>
 </p>
 
-<table>
-<tr>
-	<td>
-<?php echo makeFormIntro("save_photos.php", 
+<?php 
+    echo _("Select the items you want to upload. To select multiple hold 'strg' (PC) or 'Command' (Mac)");
+    echo makeFormIntro("save_photos.php", 
 		array("name" => 'uploadurl_form',
 			"method" => "POST"), array('type' => 'popup')); 
 
-	/* Allow user to select which files to grab - only show url right now ( no image previews ) */
-	sort($image_tags);
-	foreach ( $image_tags as $image_src) {
-		print "\t<input type=checkbox name=\"urls[]\" value=\"$image_src\" checked>$image_src</input><br>\n";
-	}
-?>
-	</td>
-</tr>
-</table>
+    /* Allow user to select which files to grab - only show url right now ( no image previews ) */
+    sort($image_tags);
+    $selectSize = (sizeof($image_tags) > 20) ? 20 : sizeof($image_tags);
+	
+    echo '<select name="urls[]" multiple="multiple" size="'. $selectSize ."\">\n";
+    foreach ( $image_tags as $image_src) {
+	echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
+    }
 
-<?php /* REVISIT - it'd be nice to have these functions get shoved
-  into util.php at some time - maybe added functionality to the makeFormIntro? */ ?>
+echo "</select>\n";
+
+/* REVISIT - it'd be nice to have these functions get shoved
+  into util.php at some time - maybe added functionality to the makeFormIntro? */ 
+?>
 
 <p>
 <?php 

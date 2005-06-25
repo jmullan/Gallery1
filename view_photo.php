@@ -278,15 +278,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	}       
 ?> 
   </style> 
-<?php 
-  $albumItemOptions = getItemActions($index, true);
-?>
   </head>
   <body dir="<?php echo $gallery->direction ?>"<?php echo ($fitToWindow) ? ' onResize="calculateNewSize()"' : '' ?>>
 <?php
 } // End if ! embedded
 
 includeHtmlWrap("photo.header");
+$albumItemOptions = getItemActions($index, true);
 
 if ($fitToWindow) {
 	/* Include Javascript */

@@ -28,23 +28,36 @@ function insertFormJS($formName) {
 <script type="text/javascript" language="javascript">
 // <!-- 
 function setCheck(val,elementName) {
-	ufne=document.<?php echo $formName; ?>;
-	len = ufne.elements.length;
-	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name==elementName) {
-			ufne.elements[i].checked=val;
+    ufne = document.<?php echo $formName; ?>;
+    for(i = 0 ; i < ufne.elements.length; i++) {
+	if (ufne.elements[i].name == elementName) {
+	    if (ufne.elements[i].type == 'select-multiple') {
+		for (j = 0; j < ufne.elements[i].length; j++) {
+		    ufne.elements[i].options[j].selected = val;
 		}
+	    }
+	    else {
+	        ufne.elements[i].checked = val;
+	    }
 	}
+    }
 }
 
 function invertCheck(elementName) {
-	ufne=document.<?php echo $formName; ?>;
-	len = ufne.elements.length;
-	for(i = 0 ; i < len ; i++) {
-		if (ufne.elements[i].name==elementName) {
-			ufne.elements[i].checked = !(ufne.elements[i].checked);
+    ufne = document.<?php echo $formName; ?>;
+    len = ufne.elements.length;
+    for(i = 0 ; i < ufne.elements.length; i++) {
+	if (ufne.elements[i].name==elementName) {
+	    if (ufne.elements[i].type == 'select-multiple') {
+		for (j = 0; j < ufne.elements[i].length; j++) {
+		    ufne.elements[i].options[j].selected = !(ufne.elements[i].options[j].selected);
 		}
+	    }
+	    else {
+		ufne.elements[i].checked = !(ufne.elements[i].checked);
+	    }
 	}
+    }
 }
 // -->
 </script>
@@ -104,7 +117,7 @@ function drawSelect($name, $options, $selected, $size, $attrList=array(), $prett
 				$sel = " selected";
 			}
 		}
-		else if (!strcmp($value, $selected) || !strcmp($text, $selected)) {
+		else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected == '__ALL__') {
 			$sel = " selected";
                 }
 		$buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;

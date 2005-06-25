@@ -1271,9 +1271,6 @@ $constants = array_merge($constants,
 	)
 );
 
-$albumPropertiesObj = new albumProperties();
-$defaults = $albumPropertiesObj->getDefaultAlbumProperties();
-
 $defaults = array(
 	'group_layout' => array (
 		'type' => 'group_start',

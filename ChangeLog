@@ -1,3 +1,53 @@
+2005-06-26 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b40
+
+	* Fix: Added  lib/colorpicker.php and  rearrange.php to safeToInclude list in index.php
+	  Thanks to Kai Tomalik
+
+	* Change: Added modified Patch #1085388.
+		  Now we use a multi-select for selecting which items found in url.upload should be uploaded.
+	  Thanks to Jonathan Dowland
+
+	* Fix: rearrange.php opened wrong when embeded.
+	  Thanks to Kai Tomalik
+	
+	* Fix: Again moved Javascript in view_photo.php as it were broken when embedded.
+
+	* Change: Tweaked Javascript for (de)selecting all/inverting to work with multi-select.
+
+	* Fix: removed Testcode in setup/config_data.inc that broke config wizard.
+
+2005-06-25 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b39
+
+	* Security FIX !!!: Added check for invalid input for values for sizes in edit_appearance.
+	  	   The values are used in exec() command.
+
+	* Change: outsourced albumProperties from edit_appearance into includes/definitions/albumProperties
+
+	* Fix: removed <> around some header fields when sending mails. 
+	       This caused Emailadresses to become <Someone <someone@example.com>>
+	       Thanks to JohnH from the forums.
+
+	* Fix: Javascript before doctype in view_photo.php
+	       Thanks to Gaille.
+
+	* Change: Some CSS for tabs
+
+	* Change: lib/albumItem.php:
+		  - removed unused ifs
+		  - Text changes. Removed %s (label) at a couple commands.
+		  - Added icon for watermarks.
+
+	* Change: Tweaked infoLine() function. Now also acceptes array of messages.
+
+	* New: Added function sanitycheck in lib/valchecks.php
+
+	* Fix: Added more missing files to translation list for core.
+
+	* Changes: Change from "off" to 0 for no image size limitations
+
+	* Fix: Display of voting values.
+
+
 2005-06-23 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b38
 
 	* Fix: Bug #1217095, removed double stripslashes that breakes e.g. chinese.

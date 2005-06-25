@@ -291,7 +291,7 @@ $adminOptions = array(
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
         'value' => makeGalleryUrl('rearrange.php', 
-            array('set_albumName' => $gallery->session->albumName))),
+            array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'permissions'     => array('name' => _('permissions'),
         'requirements' => array('isAdminOrAlbumOwner'),
         'action' => 'popup',
