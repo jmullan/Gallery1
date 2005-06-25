@@ -248,13 +248,14 @@ function form_table_values($key, $arr) {
     $jTable = new galleryTable();
 
     $jTable->setHeaders($arr['columns']);
+    $jTable->setColumnCount(sizeof($arr['columns']));
+
     foreach($arr['elements'] as $element) {
 	$jTable->addElement(array('content' => $element));
     }
 
     return $jTable->render();
 }
-
 
 function form_print_services($key, $arr) {
 

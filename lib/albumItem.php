@@ -59,44 +59,12 @@ function getItemActions($i, $withIcons = false) {
         'value' => ''
     );
 
-    if ($gallery->album->getItemOwnerModify() &&
-    $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
-    !$gallery->album->isAlbum($i) &&
-    !$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-        $options[] = array(
-            'text' => getIconText('kcmfontinst.png', _("Edit Text1"), $override, $withIcons),
-            'value' => showChoice2('edit_caption.php', array('index' => $i))
-        );
-    }
-
-    if ($gallery->album->getItemOwnerModify() &&
-    $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
-    !$gallery->album->isAlbum($i) &&
-    !$gallery->album->isMovieByIndex($i) &&
-    !$gallery->user->canWriteToAlbum($gallery->album)) {
-        $options[] = array(
-            'text' => getIconText('thumbnail.png', _("Edit Thumbnail1"), $override, $withIcons),
-            'value' => showChoice2('edit_thumb.php', array('index' => $i))
-        );
-        $options[] = array(
-            'text' => getIconText('reload.png',sprintf(_("Rotate/Flip %s1"),$label), $override, $withIcons),
-            'value' => showChoice2('rotate_photo.php', array('index' => $i))
-        );
-
-        if (strlen($gallery->app->watermarkDir)) {
-            $options[] = array(
-                'text' => getIconText('',_("Edit Watermark"), $override, $withIcons),
-                'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
-            );
-        }
-    }
-
     if ($gallery->album->getItemOwnerDelete() &&
     $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
     !$gallery->album->isAlbum($i) &&
     !$gallery->user->canDeleteFromAlbum($gallery->album)) {
         $options[] = array(
-            'text' => getIconText('delete.gif',sprintf(_("Delete %s"), $label), $override, $withIcons),
+            'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
             'value' => showChoice2('delete_photo.php', array('id' => $id))
         );
     }
@@ -121,37 +89,38 @@ function getItemActions($i, $withIcons = false) {
             }
         } else {
             $options[] = array(
-                'text' => getIconText('kcmfontinst.png',_("Edit Text2"), $override, $withIcons),
+                'text' => getIconText('kcmfontinst.png',_("Edit Text"), $override, $withIcons),
                 'value' => showChoice2("edit_caption.php", array("index" => $i))
             );
         }
     }
 
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
-        if (!$gallery->album->isMovieByIndex($i) && !$gallery->album->getAlbumName($i)) {
+        if (!$gallery->album->isMovieByIndex($i) && !$gallery->album->isAlbum($i)) {
             $options[] = array(
-                'text' => getIconText('thumbnail.png',_("Edit Thumbnail2"), $override, $withIcons),
+                'text' => getIconText('thumbnail.png',_("Edit Thumbnail"), $override, $withIcons),
                 'value' => showChoice2('edit_thumb.php', array('index' => $i))
             );
             $options[] = array(
-                'text' => getIconText('reload.png',sprintf(_("Rotate/Flip %s2"), $label), $override, $withIcons),
+                'text' => getIconText('reload.png',sprintf(_("Rotate/Flip"), $label), $override, $withIcons),
                 'value' => showChoice2('rotate_photo.php', array('index' => $i))
             );
             $options[] = array(
-                'text' => getIconText('window_fullscreen.gif',_("Resize photo"), $override, $withIcons),
+                'text' => getIconText('window_fullscreen.gif',_("Resize"), $override, $withIcons),
                 'value' => showChoice2('resize_photo.php', array('index' => $i))
             );
             if (!empty($gallery->app->watermarkDir)) {
-                $options[] = array(
-                      
-                );
+            $options[] = array(
+                'text' => getIconText('camera.png',_("Watermark"), $override, $withIcons),
+                'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
+            );
             }
         }
         if (!$gallery->album->isMovieByIndex($i)) {
             $nestedAlbum=$gallery->album->getNestedAlbum($i);
             if (!$gallery->album->isAlbum($i) || $nestedAlbum->hasHighlight()) {
                 $options[] = array(
-                    'text' => getIconText('viewmag1.png',sprintf(_("Highlight %s"),$label), $override, $withIcons),
+                    'text' => getIconText('viewmag1.png',sprintf(_("Set as highlight"),$label), $override, $withIcons),
                     'value' => showChoice2('do_command.php', array('cmd' => 'highlight', 'index' => $i))
                 );
             }
@@ -163,16 +132,16 @@ function getItemActions($i, $withIcons = false) {
             );
         }
         $options[] = array(
-            'text' => getIconText('tab_duplicate.png',sprintf(_("Move %s"),$label), $override, $withIcons),
+            'text' => getIconText('tab_duplicate.png',_("Move"), $override, $withIcons),
             'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0))
         );
         $options[] = array(
-            'text' => getIconText('tab_duplicate.png',sprintf(_("Reorder %s"),$label), $override, $withIcons),
+            'text' => getIconText('tab_duplicate.png',_("Reorder"), $override, $withIcons),
             'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1))
         );
         if (!$gallery->album->isAlbum($i)) {
             $options[] = array(
-                'text' => getIconText('editcopy.png',sprintf(_("Copy %s"),$label), $override, $withIcons),
+                'text' => getIconText('editcopy.png',_("Copy"), $override, $withIcons),
                 'value' => showChoice2("copy_photo.php", array("index" => $i))
             );
         }
@@ -182,12 +151,12 @@ function getItemActions($i, $withIcons = false) {
     $gallery->album->isItemOwner($gallery->user->getUid(), $i))) {
         if ($gallery->album->isHidden($i)) {
             $options[] = array(
-                'text' => getIconText('idea.png',sprintf(_("Show %s"), $label), $override, $withIcons),
+                'text' => getIconText('idea.png',_("Show"), $override, $withIcons),
                 'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i))
             );
         } else {
             $options[] = array(
-                'text' => getIconText('no_idea.png',sprintf(_("Hide %s"), $label), $override, $withIcons),
+                'text' => getIconText('no_idea.png',_("Hide"), $override, $withIcons),
                 'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i))
             );
         }
@@ -197,13 +166,13 @@ function getItemActions($i, $withIcons = false) {
         if($gallery->album->isAlbum($i)) {
             if($gallery->user->canDeleteAlbum($myAlbum)) {
                 $options[] = array(
-                    'text' =>getIconText('delete.gif', sprintf(_("Delete %s"),$label), $override, $withIcons),
+                    'text' =>getIconText('delete.gif', _("Delete"), $override, $withIcons),
                     'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1))
                 );
             }
         } else {
             $options[] = array(
-                'text' => getIconText('delete.gif',sprintf(_("Delete %s"),$label), $override, $withIcons),
+                'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
                 'value' => showChoice2("delete_photo.php", array("id" => $id))
             );
         }

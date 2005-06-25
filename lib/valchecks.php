@@ -23,6 +23,28 @@
 <?php
 
 /*
+** This is a wrapper around different valchecks
+** The input is the value, the type its tested against and optional a default
+** The return is given by the valcheck function
+*/
+function sanityCheck($var, $type, $default = NULL) {
+    switch ($type) {
+	case 'int':
+	    return isValidInteger($var, true, NULL, true);
+	    break;
+	case 'int_notnull':
+	    return isValidInteger($var, true, $default, false);
+	    break;
+	case 'int_empty':
+	    return isValidInteger($var, true, $default, true);
+	    break;
+	default:
+	    return array(0, $var, '');
+	    break;
+    }
+}
+
+/*
 ** This function checks if a given value is a valid integer.
 ** Valid means:
 ** --- its a numeric value
@@ -32,21 +54,24 @@
 ** Return is an array that contains:
 ** --- Status, can be 0 for OK, 1 for set to default, 2 failure and no default
 ** --- Original or default value
-** --- Debug messag
+** --- Debug message
 */
-
-function isValidInteger($mixed, $includingZero = false, $default = false) {
+function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyAllowed = false) {
     $minimum = ($includingZero == true) ? 0 : 1;
-    $int_val = intval($mixed);
-    if (! is_numeric($int_val)) {
-	if (!isset($default)) {
+
+    if ( $mixed == '' && $emptyAllowed) {
+	return array(0, $mixed, '');
+    }
+	
+    if (! is_numeric($mixed)) {
+	if (isset($default)) {
 	    return array(1,$default, _("Value was set to given default. Because the original value is not numeric."));
 	} else {
 	    return array(2, false, _("The given Value is not numeric."));
 	}
     }
-   
-    if($int_val < $minimum) {
+
+    if($mixed < $minimum) {
 	if (isset($default)) {
             return array(1, $default, _("Value was set to given default. Because the original value is not a valid Integer"));
         } else {
@@ -54,6 +79,6 @@ function isValidInteger($mixed, $includingZero = false, $default = false) {
         }
     }
 
-    return array(0, $int_val, '');
+    return array(0, $mixed, '');
 }
 ?>

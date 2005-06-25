@@ -26,8 +26,10 @@ function gallery_error($message) {
     return '<span class="error">'. _("Error:") . " $message</span>\n";
 }
 
-function infoLine($message, $type = '') {
+function infoLine($messages, $type = '') {
     $class = (!empty($type)) ? "infoline_$type" : '';
+
+    $message = (is_array($messages)) ? implode("<br>\n", $messages) : $messages;
 
     if(!empty($message)) {
         return "<div class=\"$class\">$message</div>\n";

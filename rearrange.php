@@ -101,7 +101,7 @@ function doclick(idx) {
 <div class="popuphead"><?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
 <div class="admin" align="center">
 <?php 
-echo _("Here you can rearrange your pictures easily. Just click on the item you want to reorder. The click on the item at which position you want it to be.");
+echo _("Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
 
 $explainTable = new galleryTable;
 $explainTable->setCaption(_("Meaning of the borderstyle"));

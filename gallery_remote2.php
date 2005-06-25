@@ -333,9 +333,6 @@ function gr_album_properties( &$gallery, &$response ) {
 	global $GR_STAT;
 
 	$resize_dimension = $gallery->album->fields['resize_size'];
-	if ($resize_dimension == 'off') {
-		$resize_dimension = 0;
-	}
 
 	$response->setProperty( 'auto_resize', $resize_dimension );
 
@@ -756,8 +753,8 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 	$response->setProperty( "album.title.$album_index", $albumTitle );
 	$response->setProperty( "album.summary.$album_index", $myAlbum->fields['summary'] );
 	$response->setProperty( "album.parent.$album_index", $parent_index );
-	$response->setProperty( "album.resize_size.$album_index", $myAlbum->fields['resize_size'] == 'off' ? 0 : $myAlbum->fields['resize_size'] );
-	$response->setProperty( "album.max_size.$album_index", $myAlbum->fields['max_size'] == 'off' ? 0 : $myAlbum->fields['max_size'] );
+	$response->setProperty( "album.resize_size.$album_index", $myAlbum->fields['resize_size'] );
+	$response->setProperty( "album.max_size.$album_index", $myAlbum->fields['max_size'] );
 	$response->setProperty( "album.thumb_size.$album_index", $myAlbum->fields['thumb_size'] );
 
 	// write permissions

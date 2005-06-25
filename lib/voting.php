@@ -373,12 +373,13 @@ function showResults($id) {
 
 /*
 ** This is a hack around the voting code.
+** Note $gallery->album must be set
 */
 
 function buildVotingInputFields() {
     global $gallery;
 
-    $nv_pairs=$gallery->album->getVoteNVPairs();
+    $nv_pairs = $gallery->album->getVoteNVPairs();
     $votingInputFieldArray = array();
     for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 	 $votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";

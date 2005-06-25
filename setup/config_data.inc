@@ -1271,6 +1271,9 @@ $constants = array_merge($constants,
 	)
 );
 
+$albumPropertiesObj = new albumProperties();
+$defaults = $albumPropertiesObj->getDefaultAlbumProperties();
+
 $defaults = array(
 	'group_layout' => array (
 		'type' => 'group_start',
@@ -1344,7 +1347,7 @@ $defaults = array(
 		'prompt' => _("Resized image size"),
 		'desc' => _("When large images are added to an album, an intermediate version will automatically be generated at this size."),
 		'value' => 640,
-		'choices' => array('off' => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
+		'choices' => array(0 => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024)
 	),
 	'resize_file_size' => array(
 		'prompt' => _("Resized JPEG/PNG images file size"),
@@ -1360,7 +1363,7 @@ $defaults = array(
 			'<br><span class="attention>'. _("Warning:") .'</span> '. 
 			_("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
-		'choices' => array('off' => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
+		'choices' => array(0 => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
 	),
 	'max_file_size' => array(
 		'prompt' => _('Maximum JPEG/PNG image file size'),
@@ -1595,17 +1598,17 @@ $defaults = array(
 			'horizontal' => _("Horizontal"), 
 			'vertical' => _("Vertical"))) ,
 	'poll_nv_pairs' => array(
-			'prompt' => _("Vote words and values"), 
-			'desc' => _("This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."),
-			'value' => array (
-				array('name' => _("Excellent"), 'value' => 5),
-				array('name' => _("Very Good"), 'value' => 4),
-				array('name' => _("Good"), 'value' => 3),
-				array('name' => _("Average"), 'value' => 2), 
-				array('name' => _("Poor"), 'value' => 1)),
-			'type' => "nv_pairs",
-			'verify-func' => "check_poll_nv_pairs",
-			'size' => 9),
+		'prompt' => _("Vote words and values"), 
+		'desc' => _("This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."),
+		'value' => array (
+			array('name' => _("Excellent"), 'value' => 5),
+			array('name' => _("Very Good"), 'value' => 4),
+			array('name' => _("Good"), 'value' => 3),
+			array('name' => _("Average"), 'value' => 2), 
+			array('name' => _("Poor"), 'value' => 1)),
+		'type' => "nv_pairs",
+		'verify-func' => "check_poll_nv_pairs",
+		'size' => 9),
 	'group7_end' => array (
 		'type' => 'group_end',
 	),
@@ -1617,34 +1620,34 @@ $defaults = array(
 		'desc' => _("These settings do not apply to the low tech slideshow.")
 	),
 	'slideshow_type' => array(
-		       	'prompt' => _("Slideshow Type"),
-		       	'desc' => "<dl>"
-				. "<dt>" . _("Off") ."</dt>"
-				. "<dd>" . _("No slideshow link will appear.") . "</dd>"
-				. "<dt>" . _("Ordered") . "</dt>"
-				. "<dd>" . _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
-				. "<dt>" . _("Random") . "</dt>"
-				. "<dd>" . _("Images will appear in a random order.") . "</dd>"
-				. "</dl>",
-		       	'choices' => array(
-			       	'off' => _("Off"),
-			       	'ordered' => _("Ordered"),
-			       	'random' => _("Random"),
-				),
-		       	'value' => "ordered",
+	      	'prompt' => _("Slideshow Type"),
+	       	'desc' => "<dl>"
+			. "<dt>" . _("Off") ."</dt>"
+			. "<dd>" . _("No slideshow link will appear.") . "</dd>"
+			. "<dt>" . _("Ordered") . "</dt>"
+			. "<dd>" . _("Images will display in the same order as they appear in the Gallery.") . "</dd>"
+			. "<dt>" . _("Random") . "</dt>"
+			. "<dd>" . _("Images will appear in a random order.") . "</dd>"
+			. "</dl>",
+	      	'choices' => array(
+		       	'off' => _("Off"),
+		       	'ordered' => _("Ordered"),
+		       	'random' => _("Random"),
 			),
+	       	'value' => "ordered",
+	),
 	'slideshow_recursive' => array(
 		'prompt' => _("Recursive slideshow"),
 		'desc' => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("yes")."</b>"),
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		'value' => "no"
-			),
+	),
 	'slideshow_loop' => array(
 		'prompt' => _("Allow slideshow to loop"),
 		'desc' => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
 		'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		'value' => "yes"
-			),
+	),
 	'slideshow_length' => array(
 		'prompt' => _("Slideshow length"),
 		'desc' => _("Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."),

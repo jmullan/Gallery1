@@ -89,8 +89,6 @@ if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
 
 $photo = $gallery->album->getPhoto($index);
 
-$albumItemOptions = getItemActions($index, true);
-
 if ($photo->isMovie()) {
 	$image = $photo->thumbnail;
 } else {
@@ -280,6 +278,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	}       
 ?> 
   </style> 
+<?php 
+  $albumItemOptions = getItemActions($index, true);
+?>
   </head>
   <body dir="<?php echo $gallery->direction ?>"<?php echo ($fitToWindow) ? ' onResize="calculateNewSize()"' : '' ?>>
 <?php

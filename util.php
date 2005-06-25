@@ -2678,7 +2678,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
     $headers  .= 'From: '. $gallery->app->galleryTitle .' '. _("Administrator") . " <$from>\r\n";
 	
 /* Additional headers */
-    $additional_headers = "Reply-To: <$reply_to>\r\n";
+    $additional_headers = "Reply-To: $reply_to\r\n";
     $additional_headers .= 'X-GalleryRequestIP: '. $_SERVER['REMOTE_ADDR'] . "\r\n";
     $additional_headers .= "MIME-Version: 1.0\r\n";
     $additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
@@ -2774,13 +2774,13 @@ function gallery_smtp($to, $bcc, $subject, $msg, $additional_headers) {
 		$bcc_array = explode(", ",$bcc);
 		foreach ($bcc_array as $bccto) {
 			if ($bccto != "") {
-				$smtp[] = array("MAIL FROM: " . '<' . $from . '>' . $lb, "250", "MAIL FROM error: ");
-				$smtp[] = array("RCPT TO: " . '<' . $bccto . '>' . $lb, "250", "RCPT TO:" . '<' . $bccto . '>' . " error: ");
+				$smtp[] = array("MAIL FROM: " . $from . $lb, "250", "MAIL FROM error: ");
+				$smtp[] = array("RCPT TO: " . $bccto . $lb, "250", "RCPT TO:" . $bccto . " error: ");
 				// begin data
 				$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
 				// header
 				$smtp[] = array("Subject: " . $subject . $lb, "", "");
-				$smtp[] = array("To: <$bccto>" . $lb, "", "");
+				$smtp[] = array("To: $bccto . $lb", "", "");
 				foreach ($hdr as $h) {
 					if (!empty($h)) {
 						$smtp[] = array($h . $lb, "", "");
@@ -2798,13 +2798,13 @@ function gallery_smtp($to, $bcc, $subject, $msg, $additional_headers) {
 			}
 		}
 	} else {
-		$smtp[] = array("MAIL FROM: " . '<' . $from . '>' . $lb, "250", "MAIL FROM error: ");
-		$smtp[] = array("RCPT TO: " . '<' . $to . '>' . $lb, "250", "RCPT TO:" . $to . " error: ");
+		$smtp[] = array("MAIL FROM: " . $from . $lb, "250", "MAIL FROM error: ");
+		$smtp[] = array("RCPT TO: " . $to . $lb, "250", "RCPT TO:" . $to . " error: ");
 		// begin data
 		$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
 		// header
 		$smtp[] = array("Subject: " . $subject . $lb, "", "");
-		$smtp[] = array("To: <$to>" . $lb, "", "");
+		$smtp[] = array("To: $to" . $lb, "", "");
 		foreach ($hdr as $h) {
 			if (!empty($h)) {
 				$smtp[] = array($h . $lb, "", "");
