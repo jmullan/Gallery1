@@ -42,6 +42,8 @@
 	$nls['phpnuke']['en_US']  =     'english';
 	$nls['alias']['english']  =     'en_US';
 
+	$nls['alias']['en']  =     'en_US';
+
 /** 
  ** Charset
  **/

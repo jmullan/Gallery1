@@ -402,9 +402,6 @@ $properties = array(
 	'group_misc_end' => array (
 		'type' => "group_end"
 	),
-);
-if (isset($customField)) {
-    $properties = array_merge($properties, array(
 	'group_CustomFields_start' => array (
             'type' => "group_start",
             'name' => "group_CustomFields",
@@ -414,8 +411,8 @@ if (isset($customField)) {
 	'extra_fields' => array(
 	    'prompt' => '',
 	    'desc' => '',
-	    'multiple_choices' => $multiple_choices_EF,
-	    'value' => $checked_EF,
+	    'multiple_choices' => isset($multiple_choices_EF) ? $multiple_choices_EF : '',
+	    'value' => !empty($checked_EF) ? $checked_EF : '',
 	),
         'num_user_fields' => array(
 	    'prompt' => _("Number of user defined custom fields"),
@@ -425,18 +422,14 @@ if (isset($customField)) {
 	    'attrs' => array('size' => 2),
 	    'vartype' => 'int_empty'
 	)
-      )
     );
+if (isset($customFields)) {
     $properties = array_merge($properties, $customFields);
+}
     $properties = array_merge($properties, array(
         'group_CustomFields_end' => array (
         'type' => "group_end"
 	),
-      )
-    );
-}
-
-$properties = array_merge($properties, array(
     'group_MicroThumbs_start' => array (
         'type' => "group_start",
         'name' => "group_MicroThumbs",

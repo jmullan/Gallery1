@@ -45,28 +45,28 @@ function pluralize_n2($singPlu, $count, $none='') {
 ** This is caught later with the aliases
 */
 function getBrowserLanguage() {
-	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
-		$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+    if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
+	$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
-		/* Maybe there are some extra infos we dont need, so we strip them. */
-		$spos=strpos($lang[0],";");
-		if ($spos >0) {
-			$lang[0]=substr($lang[0],0,$spos);
-		}
+	/* Maybe there are some extra infos we dont need, so we strip them. */
+	$spos = strpos($lang[0],";");
+	if ($spos >0) {
+	    $lang[0] = substr($lang[0],0,$spos);
+	}
 		
-		/* browser may send aa-bb, then we convert to aa_BB */
-		$lang_pieces=explode ("-",$lang[0]);
-		if (strlen($lang[0]) >2) {
-			$browserLang=strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
-		} else {
-			$browserLang=$lang[0];
-		}
+	/* browser may send aa-bb, then we convert to aa_BB */
+	$lang_pieces = explode ("-",$lang[0]);
+	if (strlen($lang[0]) >2) {
+		$browserLang=strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
+	} else {
+		$browserLang = $lang[0];
 	}
-	else {
-		$browserLang=false;
-	}
+    }
+    else {
+	$browserLang = false;
+    }
 	
-	return $browserLang;
+    return $browserLang;
 }
 
 
