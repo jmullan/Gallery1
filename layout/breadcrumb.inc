@@ -42,8 +42,10 @@ if(!includeTemplate('breadcrumb.tpl')) {
 		
 	<td class="bread" height="18" align="right">
 	<?php
+	if (isset($breadcrumb['text'])) {
 	foreach($breadcrumb["text"] as $nr => $text) {
 	    echo "\t\t$text\n";
+	}
 	}
 	?>
 	</td> 
