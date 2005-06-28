@@ -2968,16 +2968,14 @@ function resolveWelcomeMsg($placeholders = array()) {
     $placeholders['adminemail'] = $gallery->app->adminEmail;
 
     foreach (welcomeMsgPlaceholderList() as $key => $trash) {
-	if (!empty($placeholders[$key])) {
-	    $welcomeMsg = str_replace('!!'. strtoupper($key) .'!!', $placeholders[$key], $welcomeMsg);
-	}
+	$welcomeMsg = str_replace('!!'. strtoupper($key) .'!!', 
+		isset($placeholders[$key]) ? $placeholders[$key] : '', $welcomeMsg);
     }
 
     return $welcomeMsg;
 }
 
-function available_skins($description_only=false) {
-
+function available_skins($description_only = false) {
     global $gallery;
     $version ='';
     $last_update ='';
@@ -3793,13 +3791,12 @@ function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
   
 function check_email($email) {
     if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
-      $mail_ok = false;
+	$mail_ok = false;
     } else {
-        $mail_ok = true;
-      }
+	$mail_ok = true;
+    }
     return $mail_ok;
-  }  # End of - sub check_email -
-
+}
 
 /* This function is taken from
 ** http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079

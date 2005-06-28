@@ -420,7 +420,6 @@ $properties = array(
 	    'type' => 'text',
 	    'value' => $num_user_fields,
 	    'attrs' => array('size' => 2),
-	    'vartype' => 'int_empty'
 	)
     );
 if (isset($customFields)) {

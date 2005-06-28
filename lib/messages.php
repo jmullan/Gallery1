@@ -47,7 +47,7 @@ function errorRow($key) {
                 $error = NULL;
         }
         if ($error) {
-                include(dirname(__FILE__) . "/html/errorRow.inc");
+                include(dirname(dirname(__FILE__)) . "/html/errorRow.inc");
         }
 }
 

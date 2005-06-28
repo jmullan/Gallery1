@@ -54,7 +54,7 @@ if (getRequestVar('save')) {
 	    list($status, ${$fieldName}, $infoMessage) = 
 		sanityCheck(${$fieldName}, $properties[$fieldName]['vartype'], $gallery->app->default[$fieldName]);
 	    if (!empty($infoMessage)) {
-		$infoMessages[] .= sprintf (_("Failure with '%s'. %s"), $fieldName, $infoMessage);
+		$infoMessages[] .= sprintf (_("Problem with input of field '%s'. %s"), $fieldName, $infoMessage);
 	    }
         }
     }

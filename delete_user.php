@@ -41,6 +41,8 @@ if (!empty($formaction)) {
 }
 
 doctype();
+
+$error = NULL;
 ?>
 <html>
 <head>
@@ -58,7 +60,7 @@ doctype();
 foreach ($unames as $user) {
 	if (!strcmp($gallery->user->getUsername(), $user)) {
 		echo '<p align="center">';
-		echo gallery_error(_("You can't delete your own account!"));
+		echo infoLine(gallery_error(_("You can't delete your own account!")),'error');
 		echo '</p>';
 		$error++;
 	}
@@ -68,10 +70,8 @@ if (! isset($error)) {
 	ngettext("If you delete this user, any such permissions go away.", "if you delete these users, any permissions will go away", sizeof($unames)) .
 	_("Users cannot be recreated.") .
 	ngettext ("Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
-?>
-<p>
-<?php 
-	echo ngettext("Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));
+	
+	echo "\n<p>" . ngettext("Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));
 	foreach ($unames as $key => $value) { 
 		echo "<input type=\"hidden\" name=\"unames[$key]\" value=\"$value\"><br>$value\n";
 	}

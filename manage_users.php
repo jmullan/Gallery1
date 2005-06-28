@@ -69,7 +69,7 @@ doctype();
 <div class="popup" align="center">
 <?php 
 if (isset($error)) {
-	echo gallery_error($error);
+	echo infoline(gallery_error($error),'error');
 }
 
 echo makeFormIntro("manage_users.php", array(
