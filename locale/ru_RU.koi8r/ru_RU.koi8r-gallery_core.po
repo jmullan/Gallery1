@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-26 01:05+0200\n"
+"POT-Creation-Date: 2005-06-28 22:40+0200\n"
 "PO-Revision-Date: 2004-09-17 23:48+0600\n"
 "Last-Translator: Max Kosmach <max AT tcen DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -692,7 +692,7 @@ msgid "msg should be an array!"
 msgstr "msg должно быть массивом!"
 
 #
-#: ../classes/Album.php:991 ../util.php:3537
+#: ../classes/Album.php:991 ../util.php:3535
 msgid "No email sent as no valid email addresses were found"
 msgstr "E-mail не отправлен, т.к. не найден правильный e-mail адрес."
 
@@ -1067,22 +1067,22 @@ msgid "Do you really want to delete this photo?"
 msgstr "Вы действительно хотите удалять эту фотографию?"
 
 #
-#: ../delete_user.php:47 ../delete_user.php:51
+#: ../delete_user.php:49 ../delete_user.php:53
 msgid "Delete User"
 msgstr "Удаление пользователя"
 
 #
-#: ../delete_user.php:61
+#: ../delete_user.php:63
 msgid "You can't delete your own account!"
 msgstr "Вы не можете удалить свой собственный аккаунт!"
 
 #
-#: ../delete_user.php:67
+#: ../delete_user.php:69
 msgid "Users can have special permissions in each album."
 msgstr "Пользователи могут иметь специальные полномочия в каждом альбоме."
 
 #
-#: ../delete_user.php:68
+#: ../delete_user.php:70
 #, fuzzy
 msgid "If you delete this user, any such permissions go away."
 msgid_plural "if you delete these users, any permissions will go away"
@@ -1091,12 +1091,12 @@ msgstr[1] "Если вы удаляете этого пользователя, все его полномочия отменяются."
 msgstr[2] "Если вы удаляете этого пользователя, все его полномочия отменяются."
 
 #
-#: ../delete_user.php:69
+#: ../delete_user.php:71
 msgid "Users cannot be recreated."
 msgstr "Пользователи не могут быть вновь созданы."
 
 #
-#: ../delete_user.php:70
+#: ../delete_user.php:72
 #, fuzzy
 msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
@@ -1148,8 +1148,8 @@ msgstr "Вы действительно хотите удалять этот альбом?"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "yes"
 msgstr "да"
@@ -1169,8 +1169,8 @@ msgstr "да"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "no"
 msgstr "нет"
@@ -1192,10 +1192,11 @@ msgstr "Обновление %d макета..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Обновление 1 макета..."
 
+#
 #: ../edit_appearance.php:57
-#, php-format
-msgid "Failure with '%s'. %s"
-msgstr ""
+#, fuzzy, php-format
+msgid "Problem with input of field '%s'. %s"
+msgstr "Проблема с e-mail для %s"
 
 #: ../edit_appearance.php:119
 #, fuzzy, php-format
@@ -1370,7 +1371,7 @@ msgstr "Просмотр"
 msgid "Configure Custom Fields"
 msgstr "Настройка дополнительных полей"
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:421
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:418
 msgid "Number of user defined custom fields"
 msgstr "Число полей определённых пользователем"
 
@@ -1838,80 +1839,80 @@ msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Автоматическая подгонка размера изображения<br>без изменения размера копии"
 
 #
-#: ../includes/definitions/albumProperties.php:412
+#: ../includes/definitions/albumProperties.php:409
 #, fuzzy
 msgid "Custom Fields"
 msgstr "дополнительные поля"
 
-#: ../includes/definitions/albumProperties.php:444
+#: ../includes/definitions/albumProperties.php:436
 msgid "Microthumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:447
+#: ../includes/definitions/albumProperties.php:439
 msgid "Use micro thumb photo navigation"
 msgstr ""
 
 #
-#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:441
 #, fuzzy
 msgid "both"
 msgstr "Месяц"
 
-#: ../includes/definitions/albumProperties.php:453
+#: ../includes/definitions/albumProperties.php:445
 msgid "Micro thumb style"
 msgstr ""
 
 #
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:447
 #, fuzzy
 msgid "Fixed"
 msgstr "Поле"
 
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:447
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:459
+#: ../includes/definitions/albumProperties.php:451
 msgid "Show first & last micro thumb"
 msgstr ""
 
 #
-#: ../includes/definitions/albumProperties.php:465
+#: ../includes/definitions/albumProperties.php:457
 #, fuzzy
 msgid "Number of previous thumbs"
 msgstr "Количество пунктов голосования"
 
 #
-#: ../includes/definitions/albumProperties.php:471
+#: ../includes/definitions/albumProperties.php:463
 #, fuzzy
 msgid "Number of next thumbs"
 msgstr "Количество пунктов голосования"
 
-#: ../includes/definitions/albumProperties.php:477
+#: ../includes/definitions/albumProperties.php:469
 msgid "Position of micro-thumb navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:113
 msgid "Top"
 msgstr "Вверх"
 
 #
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #, fuzzy
 msgid "Both"
 msgstr "Месяц"
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:129
 msgid "Bottom"
 msgstr "Вниз"
 
-#: ../includes/definitions/albumProperties.php:483
+#: ../includes/definitions/albumProperties.php:475
 msgid "Height of micro-thumbs in navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:490
+#: ../includes/definitions/albumProperties.php:482
 msgid "Bonus to height of current micro-thumb (pixels)"
 msgstr ""
 
@@ -2544,7 +2545,7 @@ msgid "Watermark"
 msgstr "Водяной знак"
 
 #
-#: ../layout/watermarkform.inc:80 ../util.php:3071 ../util.php:3076
+#: ../layout/watermarkform.inc:80 ../util.php:3069 ../util.php:3074
 msgid "None"
 msgstr "Ничто"
 
@@ -2631,133 +2632,6 @@ msgstr "изменить размер фото"
 #, fuzzy
 msgid "Only full photos"
 msgstr "изменить размер фото"
-
-#
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Проверить&nbsp;все"
-
-#
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Очистить&nbsp;все"
-
-#
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Инвертировать выбор"
-
-#: ../lib/Form.php:234
-msgid "Colorpicker"
-msgstr ""
-
-#
-#: ../lib/lang.php:661
-msgid "Upload Date"
-msgstr "Дата загрузки"
-
-#
-#: ../lib/lang.php:663
-msgid "Image Size"
-msgstr "Размер изображения"
-
-#: ../lib/lang.php:664
-msgid "Additional EXIF Data"
-msgstr "Дополнительные EXIF данные"
-
-#
-# Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:673
-msgid "Description"
-msgstr "Описание"
-
-# Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:674
-msgid "description"
-msgstr "описание"
-
-#
-#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
-#: ../view_album.php:917
-msgid "Vote"
-msgstr "Голосовать"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Итоговый балл в скобках"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "Средний балл в скобках"
-
-#
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
-#: ../view_album.php:787
-#, php-format
-msgid "Album: %s"
-msgstr "Альбом: %s"
-
-#
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "%d голос"
-msgstr[1] "%d голоса"
-msgstr[2] "%d голосов"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Результат %d голоса"
-msgstr[1] "Результат %d голосов"
-msgstr[2] "Результат %d голосов"
-
-#
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s баллов; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Ключ - %s"
-
-#
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Голосов пока нет."
-
-#
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Результаты опроса:"
-
-#
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Нет голосов"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "Итоговая позиция %d."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "%d голос"
-msgstr[1] "%d голоса"
-msgstr[2] "%d голосов"
 
 #
 #: ../lib/albumItem.php:40 ../rearrange.php:112
@@ -2864,6 +2738,148 @@ msgstr "свойства фото"
 #: ../lib/albumItem.php:215 ../photo_owner.php:78 ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Изменить владельца"
+
+#
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Проверить&nbsp;все"
+
+#
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Очистить&nbsp;все"
+
+#
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Инвертировать выбор"
+
+#: ../lib/Form.php:234
+msgid "Colorpicker"
+msgstr ""
+
+#
+#: ../lib/lang.php:661
+msgid "Upload Date"
+msgstr "Дата загрузки"
+
+#
+#: ../lib/lang.php:663
+msgid "Image Size"
+msgstr "Размер изображения"
+
+#: ../lib/lang.php:664
+msgid "Additional EXIF Data"
+msgstr "Дополнительные EXIF данные"
+
+#
+# Neccessary infact of hardcoded function editField() in util.php
+#: ../lib/lang.php:673
+msgid "Description"
+msgstr "Описание"
+
+# Neccessary infact of hardcoded function editField() in util.php
+#: ../lib/lang.php:674
+msgid "description"
+msgstr "описание"
+
+#
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Ошибка:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Сгенерированно %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "При поддержке %s v%s"
+
+#
+#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
+#: ../view_album.php:917
+msgid "Vote"
+msgstr "Голосовать"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Итоговый балл в скобках"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "Средний балл в скобках"
+
+#
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
+#: ../view_album.php:787
+#, php-format
+msgid "Album: %s"
+msgstr "Альбом: %s"
+
+#
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "%d голос"
+msgstr[1] "%d голоса"
+msgstr[2] "%d голосов"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Результат %d голоса"
+msgstr[1] "Результат %d голосов"
+msgstr[2] "Результат %d голосов"
+
+#
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s баллов; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Ключ - %s"
+
+#
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Голосов пока нет."
+
+#
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Результаты опроса:"
+
+#
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Нет голосов"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "Итоговая позиция %d."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "%d голос"
+msgstr[1] "%d голоса"
+msgstr[2] "%d голосов"
 
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
@@ -5146,78 +5162,78 @@ msgid "Will be replaced by a link the new user can click on to create a new pass
 msgstr ""
 
 #
-#: ../util.php:2996
+#: ../util.php:2994
 #, fuzzy
 msgid "No Skin"
 msgstr "Вход"
 
-#: ../util.php:2997
+#: ../util.php:2995
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Первоначальный взгляд и ощущения.</dd>"
 
-#: ../util.php:3042 ../util.php:3046
+#: ../util.php:3040 ../util.php:3044
 msgid "unknown"
 msgstr ""
 
-#: ../util.php:3050
+#: ../util.php:3048
 #, fuzzy
 msgid "Version"
 msgstr "Полномочия"
 
 #
-#: ../util.php:3052
+#: ../util.php:3050
 #, fuzzy
 msgid "Last Update"
 msgstr "Последняя страница"
 
 #
-#: ../util.php:3072 ../util.php:3077
+#: ../util.php:3070 ../util.php:3075
 msgid "Dots"
 msgstr "Многоточие"
 
-#: ../util.php:3073 ../util.php:3078
+#: ../util.php:3071 ../util.php:3076
 msgid "Solid"
 msgstr "Сплошной"
 
 #
-#: ../util.php:3076
+#: ../util.php:3074
 msgid "No frames"
 msgstr "Нет рамок"
 
-#: ../util.php:3077
+#: ../util.php:3075
 msgid "Just a simple dashed border around the thumb."
 msgstr "Простой штрих-пунктирный бордюр вокруг макета."
 
-#: ../util.php:3078
+#: ../util.php:3076
 msgid "Just a simple solid border around the thumb."
 msgstr "Простой сплошной бордюр вокруг макета."
 
 #
-#: ../util.php:3099
+#: ../util.php:3097
 #, php-format
 msgid "Skipping %s."
 msgstr "Пропущен %s."
 
 #
-#: ../util.php:3105
+#: ../util.php:3103
 #, php-format
 msgid "Can't open %s"
 msgstr "Не могу открыть %s"
 
-#: ../util.php:3235 ../util.php:3254
+#: ../util.php:3233 ../util.php:3252
 msgid "Not valid yet"
 msgstr "Ещё неправильно"
 
-#: ../util.php:3495
+#: ../util.php:3493
 msgid "EXIF Data"
 msgstr "EXIF данные"
 
-#: ../util.php:3497
+#: ../util.php:3495
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3784
+#: ../util.php:3782
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -5571,16 +5587,6 @@ msgstr "Голосов пока нет."
 
 #~ msgid "Hide %s"
 #~ msgstr "Скрыть %s"
-
-#
-#~ msgid "Error:"
-#~ msgstr "Ошибка:"
-
-#~ msgid "Generated by %s v%s"
-#~ msgstr "Сгенерированно %s v%s"
-
-#~ msgid "Powered by %s v%s"
-#~ msgstr "При поддержке %s v%s"
 
 #
 #~ msgid "resize photo"

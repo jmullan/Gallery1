@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-26 01:05+0200\n"
+"POT-Creation-Date: 2005-06-28 22:40+0200\n"
 "PO-Revision-Date: 2005-03-24 07:54+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -588,7 +588,7 @@ msgstr "アイテム %d / %d をアップグレード . . . "
 msgid "msg should be an array!"
 msgstr "msg は配列であるべきです!"
 
-#: ../classes/Album.php:991 ../util.php:3537
+#: ../classes/Album.php:991 ../util.php:3535
 msgid "No email sent as no valid email addresses were found"
 msgstr "有効なメールアドレスがみつからなかったため、メールは送信されませんでした。"
 
@@ -913,28 +913,28 @@ msgstr "画像削除"
 msgid "Do you really want to delete this photo?"
 msgstr "本当にこの画像を削除しますか?"
 
-#: ../delete_user.php:47 ../delete_user.php:51
+#: ../delete_user.php:49 ../delete_user.php:53
 msgid "Delete User"
 msgstr "ユーザ削除"
 
-#: ../delete_user.php:61
+#: ../delete_user.php:63
 msgid "You can't delete your own account!"
 msgstr "自分自身のアカウントを削除することはできません"
 
-#: ../delete_user.php:67
+#: ../delete_user.php:69
 msgid "Users can have special permissions in each album."
 msgstr "ユーザはそれぞれのアルバムで特別なパーミッションを持つことができます。"
 
-#: ../delete_user.php:68
+#: ../delete_user.php:70
 msgid "If you delete this user, any such permissions go away."
 msgid_plural "if you delete these users, any permissions will go away"
 msgstr[0] "このユーザを削除すると、該当パーミッションは全てなくなります。"
 
-#: ../delete_user.php:69
+#: ../delete_user.php:71
 msgid "Users cannot be recreated."
 msgstr "ユーザは再作成できません。"
 
-#: ../delete_user.php:70
+#: ../delete_user.php:72
 msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
 msgstr[0] "このユーザが再作成されたとしても、パーミッションは初期化されます。"
@@ -975,8 +975,8 @@ msgstr "サブアルバムのサムネイルをリビルドしますか?"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "yes"
 msgstr "はい"
@@ -995,8 +995,8 @@ msgstr "はい"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "no"
 msgstr "いいえ"
@@ -1015,9 +1015,9 @@ msgid "Rebuilding 1 thumbnail..."
 msgstr "1 サムネイルを再生成中..."
 
 #: ../edit_appearance.php:57
-#, php-format
-msgid "Failure with '%s'. %s"
-msgstr ""
+#, fuzzy, php-format
+msgid "Problem with input of field '%s'. %s"
+msgstr "%sへのメール送信エラー"
 
 #: ../edit_appearance.php:119
 #, fuzzy, php-format
@@ -1165,7 +1165,7 @@ msgstr "プレビュー"
 msgid "Configure Custom Fields"
 msgstr "カスタムフィールドを設定"
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:421
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:418
 msgid "Number of user defined custom fields"
 msgstr "ユーザが定義したカスタムフィールド数"
 
@@ -1571,75 +1571,75 @@ msgstr "訪問者がフルサイズ画像を見るか、リサイズ画像を見るか選択できるようにする
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "リサイズされた画像のコピーなしで<br>自動的にウィンドウにフィットさせる。"
 
-#: ../includes/definitions/albumProperties.php:412
+#: ../includes/definitions/albumProperties.php:409
 #, fuzzy
 msgid "Custom Fields"
 msgstr "カスタムフィールド"
 
-#: ../includes/definitions/albumProperties.php:444
+#: ../includes/definitions/albumProperties.php:436
 msgid "Microthumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:447
+#: ../includes/definitions/albumProperties.php:439
 msgid "Use micro thumb photo navigation"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:441
 #, fuzzy
 msgid "both"
 msgstr "月"
 
-#: ../includes/definitions/albumProperties.php:453
+#: ../includes/definitions/albumProperties.php:445
 msgid "Micro thumb style"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:447
 #, fuzzy
 msgid "Fixed"
 msgstr "フィールド"
 
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:447
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:459
+#: ../includes/definitions/albumProperties.php:451
 msgid "Show first & last micro thumb"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:465
+#: ../includes/definitions/albumProperties.php:457
 #, fuzzy
 msgid "Number of previous thumbs"
 msgstr "投票オプションの数"
 
-#: ../includes/definitions/albumProperties.php:471
+#: ../includes/definitions/albumProperties.php:463
 #, fuzzy
 msgid "Number of next thumbs"
 msgstr "投票オプションの数"
 
-#: ../includes/definitions/albumProperties.php:477
+#: ../includes/definitions/albumProperties.php:469
 msgid "Position of micro-thumb navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:113
 msgid "Top"
 msgstr "上"
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #, fuzzy
 msgid "Both"
 msgstr "月"
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:129
 msgid "Bottom"
 msgstr "下"
 
-#: ../includes/definitions/albumProperties.php:483
+#: ../includes/definitions/albumProperties.php:475
 msgid "Height of micro-thumbs in navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:490
+#: ../includes/definitions/albumProperties.php:482
 msgid "Bonus to height of current micro-thumb (pixels)"
 msgstr ""
 
@@ -2155,7 +2155,7 @@ msgstr "%d / %d"
 msgid "Watermark"
 msgstr "透かし"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3071 ../util.php:3076
+#: ../layout/watermarkform.inc:80 ../util.php:3069 ../util.php:3074
 msgid "None"
 msgstr "なし"
 
@@ -2232,111 +2232,6 @@ msgstr "リサイズ画像のみ"
 #: ../layout/watermarkform.inc:162
 msgid "Only full photos"
 msgstr "完全画像のみ"
-
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "全てチェック"
-
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "全てクリア"
-
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "選択を反転"
-
-#: ../lib/Form.php:234
-msgid "Colorpicker"
-msgstr ""
-
-#: ../lib/lang.php:661
-msgid "Upload Date"
-msgstr "アップロード日"
-
-#: ../lib/lang.php:663
-msgid "Image Size"
-msgstr "画像のサイズ"
-
-#: ../lib/lang.php:664
-msgid "Additional EXIF Data"
-msgstr "拡張 EXIF データ"
-
-#: ../lib/lang.php:673
-msgid "Description"
-msgstr "詳細"
-
-#: ../lib/lang.php:674
-msgid "description"
-msgstr "詳細"
-
-#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
-#: ../view_album.php:917
-msgid "Vote"
-msgstr "投票"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "ブラケット内に総得点"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "括弧内に平均得点"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
-#: ../view_album.php:787
-#, php-format
-msgid "Album: %s"
-msgstr "アルバム: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "%d 人の投票者"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "%d 人からの投票の結果"
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s 点; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "キー - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "今のところ投票はありません。"
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "投票結果:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "投票なし"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "全体で %d 位"
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "%d 票"
 
 #: ../lib/albumItem.php:40 ../rearrange.php:112
 msgid "Movie"
@@ -2429,6 +2324,125 @@ msgstr "画像のプロパティ"
 #: ../lib/albumItem.php:215 ../photo_owner.php:78 ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "所有者変更"
+
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "全てチェック"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "全てクリア"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "選択を反転"
+
+#: ../lib/Form.php:234
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/lang.php:661
+msgid "Upload Date"
+msgstr "アップロード日"
+
+#: ../lib/lang.php:663
+msgid "Image Size"
+msgstr "画像のサイズ"
+
+#: ../lib/lang.php:664
+msgid "Additional EXIF Data"
+msgstr "拡張 EXIF データ"
+
+#: ../lib/lang.php:673
+msgid "Description"
+msgstr "詳細"
+
+#: ../lib/lang.php:674
+msgid "description"
+msgstr "詳細"
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "エラー:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Generated by %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Powered by %s v%s"
+
+#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
+#: ../view_album.php:917
+msgid "Vote"
+msgstr "投票"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "ブラケット内に総得点"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "括弧内に平均得点"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
+#: ../view_album.php:787
+#, php-format
+msgid "Album: %s"
+msgstr "アルバム: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "%d 人の投票者"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "%d 人からの投票の結果"
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s 点; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "キー - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "今のところ投票はありません。"
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "投票結果:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "投票なし"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "全体で %d 位"
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "%d 票"
 
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
@@ -4384,70 +4398,70 @@ msgstr "フルネーム"
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../util.php:2996
+#: ../util.php:2994
 msgid "No Skin"
 msgstr "スキンなし"
 
-#: ../util.php:2997
+#: ../util.php:2995
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>オリジナルのルック&amp;フィール</dd>"
 
-#: ../util.php:3042 ../util.php:3046
+#: ../util.php:3040 ../util.php:3044
 msgid "unknown"
 msgstr "不明"
 
-#: ../util.php:3050
+#: ../util.php:3048
 msgid "Version"
 msgstr "バージョン"
 
-#: ../util.php:3052
+#: ../util.php:3050
 msgid "Last Update"
 msgstr "最後のアップデート"
 
-#: ../util.php:3072 ../util.php:3077
+#: ../util.php:3070 ../util.php:3075
 msgid "Dots"
 msgstr "ドット"
 
-#: ../util.php:3073 ../util.php:3078
+#: ../util.php:3071 ../util.php:3076
 msgid "Solid"
 msgstr "ソリッド"
 
-#: ../util.php:3076
+#: ../util.php:3074
 msgid "No frames"
 msgstr "フレームなし"
 
-#: ../util.php:3077
+#: ../util.php:3075
 msgid "Just a simple dashed border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:3078
+#: ../util.php:3076
 msgid "Just a simple solid border around the thumb."
 msgstr "サムネイルの回りに単にダッシュの枠線を描きます。"
 
-#: ../util.php:3099
+#: ../util.php:3097
 #, php-format
 msgid "Skipping %s."
 msgstr "%sをスキップ"
 
-#: ../util.php:3105
+#: ../util.php:3103
 #, php-format
 msgid "Can't open %s"
 msgstr "%sが開けません"
 
-#: ../util.php:3235 ../util.php:3254
+#: ../util.php:3233 ../util.php:3252
 msgid "Not valid yet"
 msgstr "未検証"
 
-#: ../util.php:3495
+#: ../util.php:3493
 msgid "EXIF Data"
 msgstr "EXIF データ"
 
-#: ../util.php:3497
+#: ../util.php:3495
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3784
+#: ../util.php:3782
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4746,15 +4760,6 @@ msgstr "透かしにするアイテムなし"
 
 #~ msgid "Hide %s"
 #~ msgstr "%s を隠す"
-
-#~ msgid "Error:"
-#~ msgstr "エラー:"
-
-#~ msgid "Generated by %s v%s"
-#~ msgstr "Generated by %s v%s"
-
-#~ msgid "Powered by %s v%s"
-#~ msgstr "Powered by %s v%s"
 
 #~ msgid "resize photo"
 #~ msgstr "画像リサイズ"

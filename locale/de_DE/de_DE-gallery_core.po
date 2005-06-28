@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-26 01:05+0200\n"
+"POT-Creation-Date: 2005-06-28 22:40+0200\n"
 "PO-Revision-Date: 2005-06-25 19:52+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -595,7 +595,7 @@ msgstr "Aktualisiere Element %d von %d . . ."
 msgid "msg should be an array!"
 msgstr "Die Meldung sollte ein Array sein!"
 
-#: ../classes/Album.php:991 ../util.php:3537
+#: ../classes/Album.php:991 ../util.php:3535
 msgid "No email sent as no valid email addresses were found"
 msgstr "Es wurde keine Email gesendet, da keine g&uuml;ltige Emailadresse gefunden wurde."
 
@@ -918,29 +918,29 @@ msgstr "Element l&ouml;schen"
 msgid "Do you really want to delete this photo?"
 msgstr "M&ouml;chten Sie dieses Bild wirklich l&ouml;schen?"
 
-#: ../delete_user.php:47 ../delete_user.php:51
+#: ../delete_user.php:49 ../delete_user.php:53
 msgid "Delete User"
 msgstr "Benutzer l&ouml;schen"
 
-#: ../delete_user.php:61
+#: ../delete_user.php:63
 msgid "You can't delete your own account!"
 msgstr "Sie k&ouml;nnen Ihren eigenen Account nicht l&ouml;schen!"
 
-#: ../delete_user.php:67
+#: ../delete_user.php:69
 msgid "Users can have special permissions in each album."
 msgstr "Die Benutzer k&ouml;nnen separate Berechtigungen f&uuml;r jedes Album haben."
 
-#: ../delete_user.php:68
+#: ../delete_user.php:70
 msgid "If you delete this user, any such permissions go away."
 msgid_plural "if you delete these users, any permissions will go away"
 msgstr[0] "Wenn Sie den Benutzer l&ouml;schen, gehen dessen Berechtigungen verloren."
 msgstr[1] "Wenn Sie diese Benutzer l&ouml;schen, gehen deren Berechtigungen verloren."
 
-#: ../delete_user.php:69
+#: ../delete_user.php:71
 msgid "Users cannot be recreated."
 msgstr "Benutzer k&ouml;nnen nicht wieder hergestellt werden."
 
-#: ../delete_user.php:70
+#: ../delete_user.php:72
 msgid "Even if this user is recreated, those permissions are gone."
 msgid_plural "Even if you recreate one of those users, the permissions are gone."
 msgstr[0] "Selbst wenn Sie den Benutzer neu anlegen, sind dessen Berechtigungen verloren."
@@ -982,8 +982,8 @@ msgstr "M&ouml;chten Sie auch die Vorschaubilder der Unteralben erneuern?"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "yes"
 msgstr "Ja"
@@ -1002,8 +1002,8 @@ msgstr "Ja"
 #: ../includes/definitions/albumProperties.php:387
 #: ../includes/definitions/albumProperties.php:393
 #: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:449
-#: ../includes/definitions/albumProperties.php:461 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
 #: ../multi_create_user.php:165 ../poll_properties.php:96
 msgid "no"
 msgstr "Nein"
@@ -1023,8 +1023,8 @@ msgstr "Erneuere ein Thumbnail ..."
 
 #: ../edit_appearance.php:57
 #, php-format
-msgid "Failure with '%s'. %s"
-msgstr ""
+msgid "Problem with input of field '%s'. %s"
+msgstr "Es gibt ein Problem mit deim Inhalt von Feld '%s'. %s"
 
 #: ../edit_appearance.php:119
 #, php-format
@@ -1171,7 +1171,7 @@ msgstr "Vorschau"
 msgid "Configure Custom Fields"
 msgstr "Individuelle Felder bearbeiten"
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:421
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:418
 msgid "Number of user defined custom fields"
 msgstr "Anzahl der zus&auml;tzlichen benutzerspezifischen Felder"
 
@@ -1572,72 +1572,69 @@ msgstr "Biete Besuchern die M&ouml;glichkeit, eine Pr&auml;ferenz zwischen <br>V
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Bilder ohne Kopie automatisch<br>an die Fenstergr&ouml;sse anpassen?"
 
-#: ../includes/definitions/albumProperties.php:412
+#: ../includes/definitions/albumProperties.php:409
 msgid "Custom Fields"
 msgstr "Individuelle Felder"
 
-#: ../includes/definitions/albumProperties.php:444
+#: ../includes/definitions/albumProperties.php:436
 msgid "Microthumbs"
-msgstr ""
+msgstr "Microvorschau"
 
-#: ../includes/definitions/albumProperties.php:447
+#: ../includes/definitions/albumProperties.php:439
 msgid "Use micro thumb photo navigation"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:441
 msgid "both"
 msgstr "Beides"
 
-#: ../includes/definitions/albumProperties.php:453
+#: ../includes/definitions/albumProperties.php:445
 msgid "Micro thumb style"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:455
-#, fuzzy
+#: ../includes/definitions/albumProperties.php:447
 msgid "Fixed"
-msgstr "Feld"
+msgstr "Fest"
 
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:447
 msgid "Dynamic"
 msgstr "Dynamisch"
 
-#: ../includes/definitions/albumProperties.php:459
+#: ../includes/definitions/albumProperties.php:451
 msgid "Show first & last micro thumb"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:465
-#, fuzzy
+#: ../includes/definitions/albumProperties.php:457
 msgid "Number of previous thumbs"
-msgstr "Anzahl der Abstufungen"
+msgstr "Anzahl der vorherigen Vorschaubilder"
 
-#: ../includes/definitions/albumProperties.php:471
-#, fuzzy
+#: ../includes/definitions/albumProperties.php:463
 msgid "Number of next thumbs"
-msgstr "Anzahl der Abstufungen"
+msgstr "Anzahl der &auml;chsten Vorschaubilder"
 
-#: ../includes/definitions/albumProperties.php:477
+#: ../includes/definitions/albumProperties.php:469
 msgid "Position of micro-thumb navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:113
 msgid "Top"
 msgstr "Oben mitte"
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 msgid "Both"
 msgstr "Beides"
 
-#: ../includes/definitions/albumProperties.php:479
+#: ../includes/definitions/albumProperties.php:471
 #: ../layout/watermarkform.inc:129
 msgid "Bottom"
 msgstr "Unten mitte"
 
-#: ../includes/definitions/albumProperties.php:483
+#: ../includes/definitions/albumProperties.php:475
 msgid "Height of micro-thumbs in navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:490
+#: ../includes/definitions/albumProperties.php:482
 msgid "Bonus to height of current micro-thumb (pixels)"
 msgstr ""
 
@@ -1930,7 +1927,7 @@ msgstr "Beschr‰nkt die maximale Bilderanzahl. -1 zeigt alle an"
 
 #: ../includes/stats/stats.inc.php:134
 msgid "Use Grid Layout"
-msgstr ""
+msgstr "Benutze Tabellen-Layout"
 
 #: ../includes/stats/stats.inc.php:137
 #, fuzzy
@@ -2151,7 +2148,7 @@ msgstr "%d von %d"
 msgid "Watermark"
 msgstr "Wasserzeichen"
 
-#: ../layout/watermarkform.inc:80 ../util.php:3071 ../util.php:3076
+#: ../layout/watermarkform.inc:80 ../util.php:3069 ../util.php:3074
 msgid "None"
 msgstr "Keinen"
 
@@ -2228,114 +2225,6 @@ msgstr "Nur die Zwischenbilder"
 #: ../layout/watermarkform.inc:162
 msgid "Only full photos"
 msgstr "Nur Vollbilder"
-
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "W&auml;hle alle"
-
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "L&ouml;sche alle"
-
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Invertiere Auswahl"
-
-#: ../lib/Form.php:234
-msgid "Colorpicker"
-msgstr "Farbauswahl"
-
-#: ../lib/lang.php:661
-msgid "Upload Date"
-msgstr "Upload Datum"
-
-#: ../lib/lang.php:663
-msgid "Image Size"
-msgstr "Bildgr&ouml;&szlig;e"
-
-#: ../lib/lang.php:664
-msgid "Additional EXIF Data"
-msgstr "Zus&auml;tzliche EXIF-Daten"
-
-#: ../lib/lang.php:673
-msgid "Description"
-msgstr "Beschreibung"
-
-#: ../lib/lang.php:674
-msgid "description"
-msgstr "Beschreibung"
-
-#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
-#: ../view_album.php:917
-msgid "Vote"
-msgstr "Abstimmen"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Gesamtpunkte in Klammern"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "Durchschnittliche Punkte in Klammern"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
-#: ../view_album.php:787
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "Eine Stimme"
-msgstr[1] "%d Stimmen"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Ergebnis nach einer Stimmabgabe: "
-msgstr[1] "Ergebnis nach %d Stimmabgaben: "
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s Punkte; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Abstufungen - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Bisher keine Stimmen."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Abstimmungsergebnis:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Keine Stimmen"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "%d insgesamt."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "Eine Stimme"
-msgstr[1] "%d Stimmen"
 
 #: ../lib/albumItem.php:40 ../rearrange.php:112
 msgid "Movie"
@@ -2420,6 +2309,128 @@ msgstr "Bildeigenschaften"
 #: ../lib/albumItem.php:215 ../photo_owner.php:78 ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Besitzer/in &auml;ndern"
+
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "W&auml;hle alle"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "L&ouml;sche alle"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Invertiere Auswahl"
+
+#: ../lib/Form.php:234
+msgid "Colorpicker"
+msgstr "Farbauswahl"
+
+#: ../lib/lang.php:661
+msgid "Upload Date"
+msgstr "Upload Datum"
+
+#: ../lib/lang.php:663
+msgid "Image Size"
+msgstr "Bildgr&ouml;&szlig;e"
+
+#: ../lib/lang.php:664
+msgid "Additional EXIF Data"
+msgstr "Zus&auml;tzliche EXIF-Daten"
+
+#: ../lib/lang.php:673
+msgid "Description"
+msgstr "Beschreibung"
+
+#: ../lib/lang.php:674
+msgid "description"
+msgstr "Beschreibung"
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Fehler:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Generiert von %s Version %s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Powered by %s Version %s"
+
+#: ../lib/voting.php:215 ../view_album.php:559 ../view_album.php:575
+#: ../view_album.php:917
+msgid "Vote"
+msgstr "Abstimmen"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Gesamtpunkte in Klammern"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "Durchschnittliche Punkte in Klammern"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
+#: ../view_album.php:787
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "Eine Stimme"
+msgstr[1] "%d Stimmen"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Ergebnis nach einer Stimmabgabe: "
+msgstr[1] "Ergebnis nach %d Stimmabgaben: "
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s Punkte; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Abstufungen - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Bisher keine Stimmen."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Abstimmungsergebnis:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Keine Stimmen"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "%d insgesamt."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Eine Stimme"
+msgstr[1] "%d Stimmen"
 
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
@@ -3479,9 +3490,8 @@ msgid "Cache to be rebuilt"
 msgstr "Cache wird erneuert."
 
 #: ../stats.php:338
-#, fuzzy
 msgid "Cache will not rebuild."
-msgstr "Cache wird erneuert."
+msgstr "Cache wird nicht erneuert."
 
 #: ../stats.php:360
 msgid "Version out of date."
@@ -4368,70 +4378,70 @@ msgstr "Vollst&auml;ndiger Name"
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Wird ersetzt werden durch einen Link. Dieser muﬂ vom Empf‰nger aufgerufen werden um sein neues Passwort zu bekommen."
 
-#: ../util.php:2996
+#: ../util.php:2994
 msgid "No Skin"
 msgstr "Kein Skin"
 
-#: ../util.php:2997
+#: ../util.php:2995
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Original Look and feel.</dd>"
 
-#: ../util.php:3042 ../util.php:3046
+#: ../util.php:3040 ../util.php:3044
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../util.php:3050
+#: ../util.php:3048
 msgid "Version"
 msgstr "Version"
 
-#: ../util.php:3052
+#: ../util.php:3050
 msgid "Last Update"
 msgstr "Letzte Aktualisierung"
 
-#: ../util.php:3072 ../util.php:3077
+#: ../util.php:3070 ../util.php:3075
 msgid "Dots"
 msgstr "Gestrichelte Linie"
 
-#: ../util.php:3073 ../util.php:3078
+#: ../util.php:3071 ../util.php:3076
 msgid "Solid"
 msgstr "Durchgezogene Linie"
 
-#: ../util.php:3076
+#: ../util.php:3074
 msgid "No frames"
 msgstr "Keinen Rahmen"
 
-#: ../util.php:3077
+#: ../util.php:3075
 msgid "Just a simple dashed border around the thumb."
 msgstr "Zeichnet eine einfache gestrichelte Linie um den Thumbnail."
 
-#: ../util.php:3078
+#: ../util.php:3076
 msgid "Just a simple solid border around the thumb."
 msgstr "Zeichnet eine einfache durchgezogene Linie um den Thumbnail."
 
-#: ../util.php:3099
+#: ../util.php:3097
 #, php-format
 msgid "Skipping %s."
 msgstr "&Uuml;berspringe %s."
 
-#: ../util.php:3105
+#: ../util.php:3103
 #, php-format
 msgid "Can't open %s"
 msgstr "Fehler beim &Ouml;ffnen von %s"
 
-#: ../util.php:3235 ../util.php:3254
+#: ../util.php:3233 ../util.php:3252
 msgid "Not valid yet"
 msgstr "Noch nicht validiert."
 
-#: ../util.php:3495
+#: ../util.php:3493
 msgid "EXIF Data"
 msgstr "EXIF-Daten"
 
-#: ../util.php:3497
+#: ../util.php:3495
 msgid "Display of EXIF data enabled, but no data found."
 msgstr "Die Anzeige von EXIF-Daten wurder aktiviert, aber es wurden keine Daten gefunden."
 
-#: ../util.php:3784
+#: ../util.php:3782
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s hat dir eine eC@rd geschickt."
