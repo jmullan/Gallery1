@@ -1206,13 +1206,14 @@ function inOpenBasedir($dir) {
 }
 
 function make_separator($key, $arr)  {
-		$buf ="\n<div class=\"inner\">";
-		$buf .= "\n\t<div class=\"separator\">". $arr["title"] ."</div>";
-		if( isset($arr["desc"])) {
-			$buf .= "\n<div class=\"desc\">". $arr["desc"] ."</div>";
-		}
-		$buf .="\n</div>";
-		return $buf;
+    $buf ="\n<div class=\"inner\">";
+    $buf .= "\n\t<div class=\"separator\">". $arr["title"] ."</div>";
+    if( isset($arr["desc"])) {
+	$buf .= "\n<div class=\"desc\">". $arr["desc"] ."</div>";
+    }
+    $buf .="\n</div>";
+
+    return $buf;
 }
 
 function array_stripslashes($subject) {

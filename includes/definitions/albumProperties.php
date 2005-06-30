@@ -46,34 +46,6 @@ $properties = array(
 	'group_text_end' => array (
 		'type' => "group_end",
 	),
-	'group_colors_start' => array (
-		'type' => "group_start",
-		'name' => "group_color",
-		'default' => "none",
-		'title' => _("Colors"),
-		'desc' => ""
-	),
-	'bgcolor' => array(
-		'prompt' => _("Background Color"),
-		'desc' => '',
-		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["bgcolor"]
-	),
-	'textcolor' => array(
-		'prompt' => _("Text Color"),
-		'desc' => '',
-		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["textcolor"]
-	),
-	'linkcolor' => array(
-		'prompt' => _("Link Color"),
-		'desc' => '',
-		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["linkcolor"]
-	),
-	'group_color_end' => array (
-		'type' => "group_end"
-	),
 	'group_layout_start' => array (
 		'type' => "group_start",
 		'name' => "group_layout",
@@ -111,11 +83,37 @@ $properties = array(
 		'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20),
 		'value' => $gallery->album->fields["border"]
 	),
+	'subgroup_colors' => array (
+		'type' => "subgroup",
+		'title' => _("Colors")
+	),
+	'bgcolor' => array(
+		'prompt' => _("Background Color"),
+		'desc' => '',
+		'type' => 'colorpicker',
+		'value' => $gallery->album->fields["bgcolor"]
+	),
+	'textcolor' => array(
+		'prompt' => _("Text Color"),
+		'desc' => '',
+		'type' => 'colorpicker',
+		'value' => $gallery->album->fields["textcolor"]
+	),
+	'linkcolor' => array(
+		'prompt' => _("Link Color"),
+		'desc' => '',
+		'type' => 'colorpicker',
+		'value' => $gallery->album->fields["linkcolor"]
+	),
 	'bordercolor' => array(
 		'prompt' => _("Border color"),
 		'desc' => '',
 		'type' => 'colorpicker',
 		'value' => $gallery->album->fields["bordercolor"]
+	),
+	'subgroup_frams' => array (
+		'type' => "subgroup",
+		'title' => _("Frames")
 	),
 	'album_frame' => array(
 		'prompt' => _("Album Frame"),
@@ -138,11 +136,11 @@ $properties = array(
 	'group_layout_end' => array (
 		'type' => "group_end"
 	),
-	'group_diashow_start' => array (
+	'group_slideshow_start' => array (
 		'type' => "group_start",
-		'name' => "group_diashow",
+		'name' => "group_slideshow",
 		'default' => "none",
-		'title' => _("Diashow"),
+		'title' => _("Slideshow"),
 		'desc' => ""
 	),
 	'slideshow_type' => array(
@@ -170,7 +168,7 @@ $properties = array(
 		'value' => $gallery->album->fields["slideshow_length"],
 		'vartype' => 'int_empty'
 	),
-	'group_diashow_end' => array (
+	'group_slideshow_end' => array (
 		'type' => "group_end"
 	),
 	'group_sizes_start' => array (
@@ -218,33 +216,11 @@ $properties = array(
 	'group_sizes_end' => array (
 		'type' => "group_end"
 	),
-	'group_permission_start' => array (
+	'group_display_start' => array (
 		'type' => "group_start",
-		'name' => "group_permission",
+		'name' => "group_display",
 		'default' => "none",
-		'title' => _("Permissions"),
-		'desc' => ""
-	),
-	'item_owner_modify' => array(
-		'prompt' => _("Allow item owners to modify their images"),
-		'desc' => '',
-		'choices' => array("yes" => _("yes"), "no" => _("no")),
-		'value' => $gallery->album->fields["item_owner_modify"]
-	),
-	'item_owner_delete' => array(
-		'prompt' => _("Allow item owners to delete their images"),
-		'desc' => '',
-		'choices' => array("yes" => _("yes"), "no" => _("no")),
-		'value' => $gallery->album->fields["item_owner_delete"]
-	),
-	'group_permission_end' => array (
-		'type' => "group_end"
-	),
-	'group_data_start' => array (
-		'type' => "group_start",
-		'name' => "group_data",
-		'default' => "none",
-		'title' => _("Element data"),
+		'title' => _("Display"),
 		'desc' => ""
 	),
 	'display_clicks' => array(
@@ -272,7 +248,7 @@ $properties = array(
 		'value' => $gallery->album->fields["use_exif"],
 		'skip' => (empty($gallery->app->use_exif)) ? true : false
 	),
-	'group_data_end' => array (
+	'group_display_end' => array (
 		'type' => "group_end"
 	),
 	'group_services_start' => array (
@@ -398,6 +374,22 @@ $properties = array(
 		'desc' => '',
 		'choices' => array("yes" => _("yes"), "no" => _("no")),
 		'value' => $gallery->album->fields["fit_to_window"]
+	),
+	'subgroup_ermission' => array (
+		'type' => "subgroup",
+		'title' => _("Permissions")
+	),
+	'item_owner_modify' => array(
+		'prompt' => _("Allow item owners to modify their images"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["item_owner_modify"]
+	),
+	'item_owner_delete' => array(
+		'prompt' => _("Allow item owners to delete their images"),
+		'desc' => '',
+		'choices' => array("yes" => _("yes"), "no" => _("no")),
+		'value' => $gallery->album->fields["item_owner_delete"]
 	),
 	'group_misc_end' => array (
 		'type' => "group_end"

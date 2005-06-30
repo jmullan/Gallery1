@@ -190,8 +190,8 @@ initLanguage();
 
 /* Make sure that Gallery is set up properly */
 if ($gallerySanity != NULL) {
-	include_once(dirname(__FILE__) . "/errors/$gallerySanity");
-	exit;
+    include_once(dirname(__FILE__) . "/includes/errors/$gallerySanity");
+    exit;
 }
 
 if (isset($GALLERY_EMBEDDED_INSIDE)) {

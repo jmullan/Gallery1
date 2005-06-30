@@ -262,6 +262,11 @@ foreach ($properties as $key => $val) {
 		continue;
 	}
 
+	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
+	    echo '<tr><td colspan="2">'. make_separator($key, $val) .'</td></tr>';
+	    continue;
+	}
+
 	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
 		echo "\n</table>";
 		echo "\n</div>";

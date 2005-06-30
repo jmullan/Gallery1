@@ -960,7 +960,6 @@ $constants = array_merge($constants,
 	'comments_overview_for_all' => array(
 			'prompt' => _("Can every permitted user see a comments overview"),
 			'desc' => _("Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."),
-			'type' => "text",
 			'choices' => array('yes' => _("yes"), 'no' => _("no")),
 		       	'value' => "no",
 	),

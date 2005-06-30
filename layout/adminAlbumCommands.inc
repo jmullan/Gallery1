@@ -25,7 +25,7 @@ if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)
 
 	/* User is allowed to change Album Permissions */
 	echo "\n\t". popup_link("[" . _("permissions") ."]", "album_permissions.php?set_albumName={$tmpAlbumName}");
-	echo "\n\t". popup_link("[" . _("properties") ."]", "edit_appearance.php?set_albumName={$tmpAlbumName}", 0, true, 500, 650);
+	echo "\n\t". popup_link("[" . _("properties") ."]", "edit_appearance.php?set_albumName={$tmpAlbumName}", 0, true, 500, 600);
 
 	/* User is allowed to view ALL comments */
 	if ($gallery->user->canViewComments($gallery->album)
