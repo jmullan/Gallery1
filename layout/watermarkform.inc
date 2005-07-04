@@ -21,6 +21,7 @@
  */
 ?>
 <?php
+
 global $watermarkForm;
 global $wmAlign;
 global $wmAlignX;
@@ -29,30 +30,31 @@ global $previewFull;
 global $wmName;
 
 $err = "";
-if (!isset($wmAlignX) || ($wmAlignX <= 0))
-{
+if (!isset($wmAlignX) || ($wmAlignX <= 0)) {
     $wmAlignX = 0;
 }
-if (!isset($wmAlignY) || ($wmAlignY <= 0))
-{
+
+if (!isset($wmAlignY) || ($wmAlignY <= 0)) {
     $wmAlignY = 0;
 }
-if (!isset($wmName))
-{
-    $wmName = "";
+
+if (!isset($wmName)) {
+    $wmName = '';
 }
+
 if (!isset($wmAlign)) {
-    $wmAlign=9;
+    $wmAlign = 9;
 }
+
 if (!isset($previewFull)) {
-    $previewFull=0;
+    $previewFull = 0;
 }
+
 if (!isset($wmSelect)) {
     $wmSelect = $gallery->app->watermarkSizes;
 }
-?>
-<p>
-<?php
+
+echo "\n<p>";
 
 if (!isset($wmAlign)) {
     $wmAlign = 0;
@@ -71,16 +73,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
             }
         }
         if ($matches_ext) {
-            /*
-            print "\t<option ";
-            if ($wmName == $wmFile) {
-                print "selected ";
-            }
-            print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
-            */
              $options[] = array('value' => $wmFile, 'text' => $wmFile);
-        } // end if ($matches_ext)
-    } // end while ($wmFile
+        }
+    }
     closedir($wmDir);
     
     if(sizeof($options) > 0) {
@@ -98,8 +93,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
         echo gallery_error($err);
     } 
 } else {
-    $err=sprintf (_("Could not open directory %s"), $gallery->app->watermarkDir);
-    echo gallery_error($err);
+    echo gallery_error(sprintf (_("Could not open directory %s"), $gallery->app->watermarkDir));
 }
 ?>
 </p>
@@ -143,10 +137,12 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 <?php if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) { ?>
 <b><?php echo _("Preview Size") ?>:</b><br>
 <table border="0">
-<tr><td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>>
-<?php echo _("Resized"); ?> </input></td></tr>
-<tr><td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>>
-<?php echo _("Full"); ?> </input></td></tr>
+<tr>
+  <td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>><?php echo _("Resized"); ?> </input></td>
+</tr>
+<tr>
+  <td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>><?php echo _("Full"); ?> </input></td>
+</tr>
 </table>
 <?php } // end if canViewFullImages ?>
 <br>
