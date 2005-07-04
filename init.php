@@ -363,6 +363,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			global $mosConfig_password;
 			global $mosConfig_db;
 			global $mosConfig_dbprefix;
+			global $mosConfig_lang;
 			global $my;
 
 			/* Session info about Mambo are available when we open a Popup from Mambo, 
@@ -374,6 +375,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$mosConfig_password	= $gallery->session->mambo->mosConfig_password;
 				$mosConfig_db		= $gallery->session->mambo->mosConfig_db;
 				$mosConfig_dbprefix	= $gallery->session->mambo->mosConfig_dbprefix;
+				$mosConfig_lang		= $gallery->session->mambo->mosConfig_lang;
 				$MOS_GALLERY_PARAMS	= $gallery->session->mambo->MOS_GALLERY_PARAMS;
 			} elseif (!empty($mosConfig_db)) {
 				$gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
@@ -385,6 +387,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->session->mambo->mosConfig_password = $mosConfig_password;
 				$gallery->session->mambo->mosConfig_db       = $mosConfig_db;
 				$gallery->session->mambo->mosConfig_dbprefix = $mosConfig_dbprefix;
+				$gallery->session->mambo->mosConfig_lang     = $mosConfig_lang;
 				$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
 			} else {
 				echo 'init.php: ' . _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");

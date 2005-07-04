@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-$index=getRequestVar('index');
+$index = getRequestVar('index');
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
@@ -34,7 +34,6 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 
 doctype();
 ?>
-
 <html>
 <head>
   <title><?php echo _("Photo Properties") ?></title>
