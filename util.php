@@ -3638,6 +3638,9 @@ function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
     return $result;
 }
   
+/**
+ * @package mail
+ */
 function check_email($email) {
     if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
 	$mail_ok = false;
@@ -3647,23 +3650,38 @@ function check_email($email) {
     return $mail_ok;
 }
 
-/* This function is taken from
-** http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
-**/
-function array_sort_by_fields(&$data, $sortby, $order = 'asc') { 
+/**
+ * This function is taken from
+ * http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
+ * @package arrays
+ */
+function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true) { 
     static $sort_funcs = array();
     $order = ($order == 'asc') ? 1 : -1;
 
     if (empty($sort_funcs[$sortby])) { 
-	$code = "
-	if( \$a['$sortby'] == \$b['$sortby'] ) { 
-	    return 0;
-	};
-	if ( \$a['$sortby'] > \$b['$sortby'] ) {
-	    return $order;
-	} else {
-	    return -1 * $order;
-	}";
+	if ($caseSensitive) {
+	    $code = "
+	    if( \$a['$sortby'] == \$b['$sortby'] ) { 
+	        return 0;
+	    };
+	    if ( \$a['$sortby'] > \$b['$sortby'] ) {
+	        return $order;
+	    } else {
+	        return -1 * $order;
+	    }";
+	}
+	else {
+	    $code = "
+	    if(strtoupper(\$a['$sortby']) == strtoupper(\$b['$sortby'])) { 
+	        return 0;
+	    };
+	    if (strtoupper(\$a['$sortby']) > strtoupper(\$b['$sortby'])) {
+	        return $order;
+	    } else {
+	        return -1 * $order;
+	    }";
+	}
 
 	$sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
     } else {

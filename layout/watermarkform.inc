@@ -21,85 +21,85 @@
  */
 ?>
 <?php
-  global $watermarkForm;
-  global $wmAlign;
-  global $wmAlignX;
-  global $wmAlignY;
-  global $previewFull;
-  global $wmName;
+global $watermarkForm;
+global $wmAlign;
+global $wmAlignX;
+global $wmAlignY;
+global $previewFull;
+global $wmName;
 
-  $err = "";	
-  if (!isset($wmAlignX) || ($wmAlignX <= 0))
-  {
+$err = "";
+if (!isset($wmAlignX) || ($wmAlignX <= 0))
+{
     $wmAlignX = 0;
-  }
-  if (!isset($wmAlignY) || ($wmAlignY <= 0))
-  {
+}
+if (!isset($wmAlignY) || ($wmAlignY <= 0))
+{
     $wmAlignY = 0;
-  }
-  if (!isset($wmName))
-  {
+}
+if (!isset($wmName))
+{
     $wmName = "";
-  }
-  if (!isset($wmAlign)) {
+}
+if (!isset($wmAlign)) {
     $wmAlign=9;
-  }
-  if (!isset($previewFull)) {
+}
+if (!isset($previewFull)) {
     $previewFull=0;
-  }
-  if (!isset($wmSelect)) {
+}
+if (!isset($wmSelect)) {
     $wmSelect = $gallery->app->watermarkSizes;
-  }
+}
 ?>
 <p>
 <?php
-   
+
 if (!isset($wmAlign)) {
-	$wmAlign = 0;
+    $wmAlign = 0;
 }
 
 // get a list of watermarks
-if ($wmDir = opendir($gallery->app->watermarkDir)) { 
-	$found = 0;
-	$extensions = array ("png", "gif", "tif");
-	$extensions_string = "png, gif, tif";
-	while ($wmFile = readdir($wmDir)) {
-		$matches_ext = 0;
-		foreach ($extensions as $ext) {
-			if (eregi("\\.$ext$", $wmFile, $regs)) {
-				$matches_ext = 1;
-			}
-		}
-		if ($matches_ext) {
-			$found++;
-			if ($found == 1) {
-				// Start select form element on first matching file
-				print "<b>" . _("Watermark") . ":</b>&nbsp;";
-				print "<select name=\"wmName\">\n";
-				if ($watermarkForm["allowNone"]) {
-					print '<option label="' . _("None") . '" value=""></option>' . "\n";
-				}
-			}
-			print "\t<option ";
-			if ($wmName == $wmFile) {
-				print "selected ";
-			}
-			print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
-		} // end if ($matches_ext)
-	} // end while ($wmFile
-	closedir($wmDir);
-
-	if ($found == 0) {
-		$err=sprintf(_("No files matching %s found in %s"),
-			"<b>" . $extensions_string . "</b>",
-			"<b>" . $gallery->app->watermarkDir . "</b>");
-		echo gallery_error($err);
-	} else {
-		print "</select>\n";
-	}
+if ($wmDir = opendir($gallery->app->watermarkDir)) {
+    $found = 0;
+    $extensions = array ("png", "gif", "tif");
+    $extensions_string = "png, gif, tif";
+    while ($wmFile = readdir($wmDir)) {
+        $matches_ext = 0;
+        foreach ($extensions as $ext) {
+            if (eregi("\\.$ext$", $wmFile, $regs)) {
+                $matches_ext = 1;
+            }
+        }
+        if ($matches_ext) {
+            /*
+            print "\t<option ";
+            if ($wmName == $wmFile) {
+                print "selected ";
+            }
+            print "label=\"".$wmFile."\" value=\"".$wmFile."\">".$wmFile."</option>\n";
+            */
+             $options[] = array('value' => $wmFile, 'text' => $wmFile);
+        } // end if ($matches_ext)
+    } // end while ($wmFile
+    closedir($wmDir);
+    
+    if(sizeof($options) > 0) {
+        echo "<b>" . _("Watermark") . ":</b>&nbsp;";
+        if ($watermarkForm["allowNone"]) {
+            $options[] = array('value' => '', 'text' => _("No Watermark"), 'selected' => true);
+        }
+        array_sort_by_fields(&$options, 'text', 'asc', false);
+        echo drawSelect2('wmName', $options, array('size' => 1), array('prettyPrinting' => true));
+    }
+    else {
+        $err = sprintf(_("No files matching %s found in %s"),
+            "<b>" . $extensions_string . "</b>",
+            "<b>" . $gallery->app->watermarkDir . "</b>");
+        echo gallery_error($err);
+    } 
 } else {
-	$err=sprintf (_("Could not open directory %s"), $gallery->app->watermarkDir);
-	echo gallery_error($err);
+    $err=sprintf (_("Could not open directory %s"), $gallery->app->watermarkDir);
+    echo gallery_error($err);
 }
 ?>
 </p>
@@ -151,10 +151,10 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 <?php } // end if canViewFullImages ?>
 <br>
 <?php if ($watermarkForm["askRecursive"]) {
-  print '<input type="checkbox" name="recursive"';
-  global $recursive;
-  if (isset($recursive)) echo " checked";
-  print ">" . _("Watermark subalbums") . "</input><br><br>";
+    print '<input type="checkbox" name="recursive"';
+    global $recursive;
+    if (isset($recursive)) echo " checked";
+    print ">" . _("Watermark subalbums") . "</input><br><br>";
 } ?>
 <?php echo _("Apply watermark to") ?> <select name="wmSelect">
   <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo _("All photos");?></option>
