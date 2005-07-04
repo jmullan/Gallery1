@@ -19,51 +19,53 @@
  *
  * $Id$
  *
- * Version: 1.5.1
  */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
- * (jens@peino.de)
+ * @version     1.5.1
+ * @package     language
+ * @subpackage  languagepack
+ * @author      Jens Tkotz
  *
  */
 
+/**
+ * Native languagename
+ */
+$nls['language']['de_DE'] = 		'Deutsch';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['de_DE'] = 		'Deutsch';
+ * Aliases for languages with different browser and gettext codes
+ */
+
+$nls['alias']['de'] = 			'de_DE';
 
 /**
- ** Aliases for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['de'] = 			'de_DE';
-
-/**
- ** Aliases for languages which we substitte or send by NUKE or GeekLog
- **/
-
-	$nls['alias']['german'] =		'de_DE' ;
-	$nls['alias']['deu'] =			'de_DE' ;
-	$nls['alias']['de_LI'] = 		'de_DE' ;
-	$nls['alias']['de_LU'] = 		'de_DE' ;
-	$nls['alias']['de_CH'] = 		'de_DE' ;
-	$nls['alias']['de_AT'] = 		'de_DE' ;
-	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
-	$nls['alias']['german_formal'] =	'de_DE' ;
-	
-/**
- ** phpNuke
- **/
-	$nls['phpnuke']['de_DE'] = 'german';
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
+$nls['alias']['german'] =           'de_DE' ;
+$nls['alias']['deu'] =              'de_DE' ;
+$nls['alias']['de_LI'] =            'de_DE' ;
+$nls['alias']['de_LU'] =            'de_DE' ;
+$nls['alias']['de_CH'] =            'de_DE' ;
+$nls['alias']['de_AT'] =            'de_DE' ;
+$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
+$nls['alias']['german_formal'] =	'de_DE' ;
+$nls['alias']['germanf'] =          'de_DE' ;
+$nls['alias']['germani'] =          'de_DE' ;
 
 /**
- ** postNuke
- **/
-	$nls['postnuke']['de_DE'] = 'deu';
+ * phpNuke
+ */
+$nls['phpnuke']['de_DE'] = 'german';
+
+/**
+ * postNuke
+ */
+$nls['postnuke']['de_DE'] = 'deu';
 
 ?>

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-28 22:40+0200\n"
+"POT-Creation-Date: 2005-07-04 14:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 #: ../edit_caption.php:33 ../edit_field.php:31 ../edit_thumb.php:31
 #: ../edit_watermark.php:28 ../extra_fields.php:34 ../manage_users.php:31
 #: ../modify_user.php:34 ../move_album.php:31 ../move_photo.php:31
-#: ../multi_create_user.php:33 ../photo_owner.php:34 ../poll_properties.php:34
+#: ../multi_create_user.php:34 ../photo_owner.php:34 ../poll_properties.php:34
 #: ../poll_results.php:37 ../rearrange.php:28 ../rename_album.php:31
 #: ../reset_votes.php:37 ../resize_photo.php:31 ../rotate_photo.php:31
 #: ../save_photos.php:33 ../upgrade_album.php:57 ../user_preferences.php:31
@@ -44,16 +44,16 @@ msgstr ""
 msgid "You are not allowed to perform this action!"
 msgstr ""
 
-#: ../add_comment.php:58 ../view_photo.php:192
+#: ../add_comment.php:58 ../view_photo.php:200
 msgid "Name and comment are both required to save a new comment!"
 msgstr ""
 
-#: ../add_comment.php:60 ../view_photo.php:194
+#: ../add_comment.php:60 ../view_photo.php:202
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr ""
 
-#: ../add_comment.php:62 ../view_photo.php:196
+#: ../add_comment.php:62 ../view_photo.php:204
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr ""
 
@@ -71,10 +71,9 @@ msgstr ""
 #: ../includes/add_photos/add_form.inc:107
 #: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
-#: ../multi_create_user.php:174 ../new_password.php:125 ../register.php:142
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:137
-#: ../sort_album.php:114 ../user_preferences.php:137
-#: ../watermark_album.php:134
+#: ../new_password.php:125 ../register.php:142 ../rename_album.php:131
+#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:114
+#: ../user_preferences.php:137 ../watermark_album.php:134
 msgid "Cancel"
 msgstr ""
 
@@ -333,11 +332,11 @@ msgstr ""
 msgid "admin page"
 msgstr ""
 
-#: ../albums.php:217 ../view_album.php:406 ../view_photo.php:539
+#: ../albums.php:217 ../view_album.php:406 ../view_photo.php:554
 msgid "logout"
 msgstr ""
 
-#: ../albums.php:222 ../view_album.php:411 ../view_photo.php:544
+#: ../albums.php:222 ../view_album.php:411 ../view_photo.php:559
 msgid "login"
 msgstr ""
 
@@ -531,7 +530,7 @@ msgid "Photo Caption"
 msgstr ""
 
 #: ../captionator.php:275 ../edit_appearance.php:186 ../extra_fields.php:99
-#: ../lib/lang.php:672
+#: ../lib/lang.php:707
 msgid "Title"
 msgstr ""
 
@@ -539,7 +538,7 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: ../captionator.php:290 ../lib/lang.php:662
+#: ../captionator.php:290 ../lib/lang.php:697
 msgid "Capture Date"
 msgstr ""
 
@@ -588,7 +587,21 @@ msgstr ""
 msgid "msg should be an array!"
 msgstr ""
 
-#: ../classes/Album.php:991 ../util.php:3535
+#: ../classes/Album.php:977
+#, php-format
+msgid "A change has been made to %s by %s (IP %s).  The change is: %s"
+msgstr ""
+
+#: ../classes/Album.php:983
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that &quot;Email me when other changes are made&quot; is unchecked (You'll need to login first)."
+msgstr ""
+
+#: ../classes/Album.php:984
+#, php-format
+msgid "Changes to %s"
+msgstr ""
+
+#: ../classes/Album.php:991 ../util.php:3619
 msgid "No email sent as no valid email addresses were found"
 msgstr ""
 
@@ -690,7 +703,7 @@ msgid "Anonymous User"
 msgstr ""
 
 #: ../classes/NobodyUser.php:27
-#: ../includes/definitions/albumProperties.php:343 ../poll_properties.php:104
+#: ../includes/definitions/albumProperties.php:319 ../poll_properties.php:104
 msgid "Nobody"
 msgstr ""
 
@@ -784,7 +797,7 @@ msgid "Skipping Album #%d"
 msgstr ""
 
 #: ../copy_photo.php:124 ../do_command.php:226 ../login.php:127
-#: ../multi_create_user.php:129 ../register.php:47 ../register.php:122
+#: ../multi_create_user.php:127 ../register.php:47 ../register.php:122
 #: ../save_photos.php:366
 msgid "Dismiss"
 msgstr ""
@@ -851,12 +864,12 @@ msgstr ""
 msgid "User %s created"
 msgstr ""
 
-#: ../create_user.php:94 ../multi_create_user.php:103
+#: ../create_user.php:94 ../multi_create_user.php:101
 #, php-format
 msgid "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."
 msgstr ""
 
-#: ../create_user.php:102 ../multi_create_user.php:111
+#: ../create_user.php:102 ../multi_create_user.php:109
 msgid "Gallery Registration"
 msgstr ""
 
@@ -870,6 +883,7 @@ msgid "Create another user"
 msgstr ""
 
 #: ../create_user.php:113 ../create_user.php:166 ../modify_user.php:165
+#: ../multi_create_user.php:176
 msgid "Back to usermanagement"
 msgstr ""
 
@@ -877,7 +891,7 @@ msgstr ""
 msgid "Create a new user here."
 msgstr ""
 
-#: ../create_user.php:165 ../multi_create_user.php:173 ../register.php:141
+#: ../create_user.php:165 ../multi_create_user.php:175 ../register.php:141
 msgid "Create"
 msgstr ""
 
@@ -961,43 +975,43 @@ msgstr ""
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr ""
 
-#: ../do_command.php:67 ../includes/definitions/albumProperties.php:157
-#: ../includes/definitions/albumProperties.php:163
-#: ../includes/definitions/albumProperties.php:231
-#: ../includes/definitions/albumProperties.php:237
-#: ../includes/definitions/albumProperties.php:253
-#: ../includes/definitions/albumProperties.php:259
-#: ../includes/definitions/albumProperties.php:265
-#: ../includes/definitions/albumProperties.php:271
-#: ../includes/definitions/albumProperties.php:300
-#: ../includes/definitions/albumProperties.php:330
-#: ../includes/definitions/albumProperties.php:381
-#: ../includes/definitions/albumProperties.php:387
-#: ../includes/definitions/albumProperties.php:393
-#: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:441
-#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
-#: ../multi_create_user.php:165 ../poll_properties.php:96
+#: ../do_command.php:67 ../includes/definitions/albumProperties.php:155
+#: ../includes/definitions/albumProperties.php:161
+#: ../includes/definitions/albumProperties.php:229
+#: ../includes/definitions/albumProperties.php:235
+#: ../includes/definitions/albumProperties.php:241
+#: ../includes/definitions/albumProperties.php:247
+#: ../includes/definitions/albumProperties.php:276
+#: ../includes/definitions/albumProperties.php:306
+#: ../includes/definitions/albumProperties.php:357
+#: ../includes/definitions/albumProperties.php:363
+#: ../includes/definitions/albumProperties.php:369
+#: ../includes/definitions/albumProperties.php:375
+#: ../includes/definitions/albumProperties.php:385
+#: ../includes/definitions/albumProperties.php:391
+#: ../includes/definitions/albumProperties.php:433
+#: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
+#: ../multi_create_user.php:166 ../poll_properties.php:96
 msgid "yes"
 msgstr ""
 
-#: ../do_command.php:68 ../includes/definitions/albumProperties.php:157
-#: ../includes/definitions/albumProperties.php:163
-#: ../includes/definitions/albumProperties.php:231
-#: ../includes/definitions/albumProperties.php:237
-#: ../includes/definitions/albumProperties.php:253
-#: ../includes/definitions/albumProperties.php:259
-#: ../includes/definitions/albumProperties.php:265
-#: ../includes/definitions/albumProperties.php:271
-#: ../includes/definitions/albumProperties.php:300
-#: ../includes/definitions/albumProperties.php:330
-#: ../includes/definitions/albumProperties.php:381
-#: ../includes/definitions/albumProperties.php:387
-#: ../includes/definitions/albumProperties.php:393
-#: ../includes/definitions/albumProperties.php:399
-#: ../includes/definitions/albumProperties.php:441
-#: ../includes/definitions/albumProperties.php:453 ../html/userData.inc:13
-#: ../multi_create_user.php:165 ../poll_properties.php:96
+#: ../do_command.php:68 ../includes/definitions/albumProperties.php:155
+#: ../includes/definitions/albumProperties.php:161
+#: ../includes/definitions/albumProperties.php:229
+#: ../includes/definitions/albumProperties.php:235
+#: ../includes/definitions/albumProperties.php:241
+#: ../includes/definitions/albumProperties.php:247
+#: ../includes/definitions/albumProperties.php:276
+#: ../includes/definitions/albumProperties.php:306
+#: ../includes/definitions/albumProperties.php:357
+#: ../includes/definitions/albumProperties.php:363
+#: ../includes/definitions/albumProperties.php:369
+#: ../includes/definitions/albumProperties.php:375
+#: ../includes/definitions/albumProperties.php:385
+#: ../includes/definitions/albumProperties.php:391
+#: ../includes/definitions/albumProperties.php:433
+#: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
+#: ../multi_create_user.php:166 ../poll_properties.php:96
 msgid "no"
 msgstr ""
 
@@ -1024,12 +1038,12 @@ msgstr ""
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr ""
 
-#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:343
+#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:319
 #: ../poll_properties.php:52 ../poll_properties.php:104
 msgid "Everybody"
 msgstr ""
 
-#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:343
+#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:319
 #: ../poll_properties.php:53 ../poll_properties.php:104
 msgid "Logged in"
 msgstr ""
@@ -1038,7 +1052,7 @@ msgstr ""
 msgid "untitled field"
 msgstr ""
 
-#: ../edit_appearance.php:187 ../extra_fields.php:120 ../lib/lang.php:675
+#: ../edit_appearance.php:187 ../extra_fields.php:120 ../lib/lang.php:710
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1051,21 +1065,21 @@ msgstr ""
 msgid "Album Properties"
 msgstr ""
 
-#: ../edit_appearance.php:295
+#: ../edit_appearance.php:300
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr ""
 
-#: ../edit_appearance.php:298 ../extra_fields.php:174
+#: ../edit_appearance.php:303 ../extra_fields.php:174
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr ""
 
-#: ../edit_appearance.php:299 ../extra_fields.php:175
+#: ../edit_appearance.php:304 ../extra_fields.php:175
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr ""
 
-#: ../edit_appearance.php:300 ../extra_fields.php:176
+#: ../edit_appearance.php:305 ../extra_fields.php:176
 #: ../poll_properties.php:142 ../rotate_photo.php:87
 msgid "Close"
 msgstr ""
@@ -1164,7 +1178,7 @@ msgstr ""
 msgid "Configure Custom Fields"
 msgstr ""
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:418
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:410
 msgid "Number of user defined custom fields"
 msgstr ""
 
@@ -1316,318 +1330,322 @@ msgstr ""
 msgid "Album Title"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:53
-msgid "Colors"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:57
-msgid "Background Color"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:63
-msgid "Text Color"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:69
-msgid "Link Color"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:81 ../stats-wizard.php:134
+#: ../includes/definitions/albumProperties.php:53 ../stats-wizard.php:134
 msgid "Layout"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:85
+#: ../includes/definitions/albumProperties.php:57
 msgid "Background Image (URL)"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:91
+#: ../includes/definitions/albumProperties.php:63
 msgid "Font"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:97
+#: ../includes/definitions/albumProperties.php:69
 msgid "Rows"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:103
+#: ../includes/definitions/albumProperties.php:75
 msgid "Columns"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:109
+#: ../includes/definitions/albumProperties.php:81
 msgid "Borders"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:115
+#: ../includes/definitions/albumProperties.php:88
+msgid "Colors"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:91
+msgid "Background Color"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:97
+msgid "Text Color"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:103
+msgid "Link Color"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:109
 msgid "Border color"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:121
+#: ../includes/definitions/albumProperties.php:116
+msgid "Frames"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:119
 msgid "Album Frame"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:127
+#: ../includes/definitions/albumProperties.php:125
 msgid "Thumb Frame"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:133
+#: ../includes/definitions/albumProperties.php:131
 msgid "Image Frame"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:145
-msgid "Diashow"
+#: ../includes/definitions/albumProperties.php:143
+msgid "Slideshow"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:149
+#: ../includes/definitions/albumProperties.php:147
 msgid "Slideshow Type"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:151
+#: ../includes/definitions/albumProperties.php:149
 msgid "Off"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:151
+#: ../includes/definitions/albumProperties.php:149
 msgid "Ordered"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:151
+#: ../includes/definitions/albumProperties.php:149
 msgid "Random"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:155
+#: ../includes/definitions/albumProperties.php:153
 msgid "Include sub-albums in slideshow"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:161
+#: ../includes/definitions/albumProperties.php:159
 msgid "Allow slideshow to loop"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:167
+#: ../includes/definitions/albumProperties.php:165
 msgid "Slideshow Length"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:180
+#: ../includes/definitions/albumProperties.php:178
 msgid "Sizes"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:184
+#: ../includes/definitions/albumProperties.php:182
 msgid "Thumbnail size"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:191
+#: ../includes/definitions/albumProperties.php:189
 msgid "Maximum dimensions of intermediate sized images"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:193
-#: ../includes/definitions/albumProperties.php:207
+#: ../includes/definitions/albumProperties.php:191
+#: ../includes/definitions/albumProperties.php:205
 msgid "off"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:198
+#: ../includes/definitions/albumProperties.php:196
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:205
+#: ../includes/definitions/albumProperties.php:203
 msgid "Maximum dimensions of full sized images"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:207
+#: ../includes/definitions/albumProperties.php:205
 #, php-format
 msgid "%d (%d MPix)"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:212
+#: ../includes/definitions/albumProperties.php:210
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:225 ../lib/albumItem.php:184
-msgid "Permissions"
+#: ../includes/definitions/albumProperties.php:223
+msgid "Display"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:229
-msgid "Allow item owners to modify their images"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:235
-msgid "Allow item owners to delete their images"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:247
-msgid "Element data"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:251
+#: ../includes/definitions/albumProperties.php:227
 msgid "Display click counter for this album?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:257
+#: ../includes/definitions/albumProperties.php:233
 msgid "Display owners name with caption"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:263
+#: ../includes/definitions/albumProperties.php:239
 msgid "Display clickable image dimensions"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:269
+#: ../includes/definitions/albumProperties.php:245
 msgid "Display EXIF data?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:282
+#: ../includes/definitions/albumProperties.php:258
 msgid "Services"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:286
+#: ../includes/definitions/albumProperties.php:262
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:298
+#: ../includes/definitions/albumProperties.php:274
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:311 ../poll_properties.php:72
+#: ../includes/definitions/albumProperties.php:287 ../poll_properties.php:72
 #: ../poll_properties.php:76
 msgid "Poll Properties"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:315 ../poll_properties.php:87
+#: ../includes/definitions/albumProperties.php:291 ../poll_properties.php:87
 msgid "Type of poll for this album"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:317 ../poll_properties.php:88
+#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:88
 msgid "Rank"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:317 ../poll_properties.php:88
+#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:88
 msgid "Critique"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:321 ../poll_properties.php:91
+#: ../includes/definitions/albumProperties.php:297 ../poll_properties.php:91
 msgid "Number of voting options"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:328 ../poll_properties.php:95
+#: ../includes/definitions/albumProperties.php:304 ../poll_properties.php:95
 msgid "Show results of voting to all visitors?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:334 ../poll_properties.php:99
+#: ../includes/definitions/albumProperties.php:310 ../poll_properties.php:99
 msgid "Number of lines of results graph to display on the album page"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:341
+#: ../includes/definitions/albumProperties.php:317
 msgid "Who can vote?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:107
+#: ../includes/definitions/albumProperties.php:323 ../poll_properties.php:107
 msgid "Orientation of vote choices"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:349 ../poll_properties.php:108
+#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:108
 #: ../rotate_photo.php:82
 msgid "Horizontal"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:349 ../poll_properties.php:108
+#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:108
 #: ../rotate_photo.php:85
 msgid "Vertical"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:354 ../poll_properties.php:111
+#: ../includes/definitions/albumProperties.php:330 ../poll_properties.php:111
 msgid "Vote hint"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:361
+#: ../includes/definitions/albumProperties.php:337
 msgid "Voting Options"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:365 ../poll_properties.php:120
+#: ../includes/definitions/albumProperties.php:341 ../poll_properties.php:120
 msgid "Displayed Value"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:365 ../poll_properties.php:121
+#: ../includes/definitions/albumProperties.php:341 ../poll_properties.php:121
 msgid "Points"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:375
+#: ../includes/definitions/albumProperties.php:351
 msgid "Misc"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:379
+#: ../includes/definitions/albumProperties.php:355
 msgid "Add new items at beginning of album"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:385
+#: ../includes/definitions/albumProperties.php:361
 msgid "Show <i>Return to</i> link"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:391
+#: ../includes/definitions/albumProperties.php:367
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:397
+#: ../includes/definitions/albumProperties.php:373
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:409
+#: ../includes/definitions/albumProperties.php:380 ../lib/albumItem.php:184
+msgid "Permissions"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:383
+msgid "Allow item owners to modify their images"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:389
+msgid "Allow item owners to delete their images"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:401
 msgid "Custom Fields"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:436
+#: ../includes/definitions/albumProperties.php:428
 msgid "Microthumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:439
+#: ../includes/definitions/albumProperties.php:431
 msgid "Use micro thumb photo navigation"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:441
+#: ../includes/definitions/albumProperties.php:433
 msgid "both"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:445
+#: ../includes/definitions/albumProperties.php:437
 msgid "Micro thumb style"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:447
+#: ../includes/definitions/albumProperties.php:439
 msgid "Fixed"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:447
+#: ../includes/definitions/albumProperties.php:439
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:451
+#: ../includes/definitions/albumProperties.php:443
 msgid "Show first & last micro thumb"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:457
+#: ../includes/definitions/albumProperties.php:449
 msgid "Number of previous thumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:463
+#: ../includes/definitions/albumProperties.php:455
 msgid "Number of next thumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:469
+#: ../includes/definitions/albumProperties.php:461
 msgid "Position of micro-thumb navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:471
+#: ../includes/definitions/albumProperties.php:463
 #: ../layout/watermarkform.inc:113
 msgid "Top"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:471
+#: ../includes/definitions/albumProperties.php:463
 msgid "Both"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:471
+#: ../includes/definitions/albumProperties.php:463
 #: ../layout/watermarkform.inc:129
 msgid "Bottom"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:475
+#: ../includes/definitions/albumProperties.php:467
 msgid "Height of micro-thumbs in navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:482
+#: ../includes/definitions/albumProperties.php:474
 msgid "Bonus to height of current micro-thumb (pixels)"
 msgstr ""
 
@@ -1966,7 +1984,7 @@ msgstr ""
 msgid "Member file"
 msgstr ""
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:2950
+#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:3034
 msgid "Username"
 msgstr ""
 
@@ -2139,7 +2157,7 @@ msgstr ""
 msgid "Watermark"
 msgstr ""
 
-#: ../layout/watermarkform.inc:80 ../util.php:3069 ../util.php:3074
+#: ../layout/watermarkform.inc:80 ../util.php:3153 ../util.php:3158
 msgid "None"
 msgstr ""
 
@@ -2317,23 +2335,23 @@ msgstr ""
 msgid "Colorpicker"
 msgstr ""
 
-#: ../lib/lang.php:661
+#: ../lib/lang.php:696
 msgid "Upload Date"
 msgstr ""
 
-#: ../lib/lang.php:663
+#: ../lib/lang.php:698
 msgid "Image Size"
 msgstr ""
 
-#: ../lib/lang.php:664
+#: ../lib/lang.php:699
 msgid "Additional EXIF Data"
 msgstr ""
 
-#: ../lib/lang.php:673
+#: ../lib/lang.php:708
 msgid "Description"
 msgstr ""
 
-#: ../lib/lang.php:674
+#: ../lib/lang.php:709
 msgid "description"
 msgstr ""
 
@@ -2668,7 +2686,7 @@ msgid "Note: items that have votes will lose these votes if moved to an album wi
 msgstr ""
 
 #: ../multi_create_user.php:44 ../multi_create_user.php:48
-#: ../multi_create_user.php:142
+#: ../multi_create_user.php:140
 msgid "Create Multiple Users"
 msgstr ""
 
@@ -2686,50 +2704,50 @@ msgstr ""
 msgid "Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"
 msgstr ""
 
-#: ../multi_create_user.php:89
+#: ../multi_create_user.php:88
 #, php-format
 msgid "adding %s"
 msgstr ""
 
-#: ../multi_create_user.php:96
+#: ../multi_create_user.php:94
 #, php-format
 msgid "Send email to %s"
 msgstr ""
 
-#: ../multi_create_user.php:112
+#: ../multi_create_user.php:110
 #, php-format
 msgid "Problem with email to %s"
 msgstr ""
 
-#: ../multi_create_user.php:124
+#: ../multi_create_user.php:122
 #, php-format
 msgid "%s added, %s skipped"
 msgstr ""
 
-#: ../multi_create_user.php:125 ../multi_create_user.php:126
+#: ../multi_create_user.php:123 ../multi_create_user.php:124
 #, php-format
 msgid "1 user"
 msgid_plural "%d users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../multi_create_user.php:146
+#: ../multi_create_user.php:144
 msgid "Create Users"
 msgstr ""
 
-#: ../multi_create_user.php:148
+#: ../multi_create_user.php:146
 msgid "Create multiple new users from a file."
 msgstr ""
 
-#: ../multi_create_user.php:178
+#: ../multi_create_user.php:181
 msgid "Notes:"
 msgstr ""
 
-#: ../multi_create_user.php:181
-msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
+#: ../multi_create_user.php:184
+msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it."
 msgstr ""
 
-#: ../multi_create_user.php:186
+#: ../multi_create_user.php:187
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr ""
 
@@ -3337,7 +3355,7 @@ msgid "Compatible but limited"
 msgstr ""
 
 #: ../slideshow.php:181 ../slideshow.php:185 ../view_album.php:108
-#: ../view_comments.php:56 ../view_photo.php:166
+#: ../view_comments.php:56 ../view_photo.php:174
 msgid "navigate UP"
 msgstr ""
 
@@ -4257,63 +4275,63 @@ msgstr ""
 msgid "Report abuse to %s"
 msgstr ""
 
-#: ../util.php:2635
+#: ../util.php:2633 ../util.php:2719
 msgid "Email not sent as it is disabled for this gallery"
 msgstr ""
 
-#: ../util.php:2640
+#: ../util.php:2638 ../util.php:2724
 msgid "Email not sent as no reciepient address provided"
 msgstr ""
 
-#: ../util.php:2645
+#: ../util.php:2643 ../util.php:2729
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr ""
 
-#: ../util.php:2658
+#: ../util.php:2656 ../util.php:2742
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr ""
 
-#: ../util.php:2678
+#: ../util.php:2762
 msgid "Administrator"
 msgstr ""
 
-#: ../util.php:2717 ../util.php:2722
+#: ../util.php:2801 ../util.php:2806
 msgid "not shown"
 msgstr ""
 
-#: ../util.php:2726
+#: ../util.php:2810
 msgid "Message"
 msgstr ""
 
-#: ../util.php:2730
+#: ../util.php:2814
 msgid "Email sent"
 msgstr ""
 
-#: ../util.php:2732
+#: ../util.php:2816
 msgid "Email not sent"
 msgstr ""
 
-#: ../util.php:2866
+#: ../util.php:2950
 #, php-format
 msgid "Last comment %s."
 msgstr ""
 
-#: ../util.php:2878
+#: ../util.php:2962
 msgid "FAILED"
 msgstr ""
 
-#: ../util.php:2887
+#: ../util.php:2971
 msgid "Email activity"
 msgstr ""
 
-#: ../util.php:2912
+#: ../util.php:2996
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr ""
 
-#: ../util.php:2919
+#: ../util.php:3003
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -4325,102 +4343,102 @@ msgid ""
 "Gallery @ %s Administrator."
 msgstr ""
 
-#: ../util.php:2928 ../util.php:2930
+#: ../util.php:3012 ../util.php:3014
 msgid "gallery title"
 msgstr ""
 
-#: ../util.php:2929
+#: ../util.php:3013
 msgid "gallery URL"
 msgstr ""
 
-#: ../util.php:2946
+#: ../util.php:3030
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../util.php:2947
+#: ../util.php:3031
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../util.php:2948
+#: ../util.php:3032
 msgid "Admin email(s)"
 msgstr ""
 
-#: ../util.php:2949
+#: ../util.php:3033
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../util.php:2951
+#: ../util.php:3035
 msgid "Fullname"
 msgstr ""
 
-#: ../util.php:2952
+#: ../util.php:3036
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../util.php:2994
+#: ../util.php:3078
 msgid "No Skin"
 msgstr ""
 
-#: ../util.php:2995
+#: ../util.php:3079
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr ""
 
-#: ../util.php:3040 ../util.php:3044
+#: ../util.php:3124 ../util.php:3128
 msgid "unknown"
 msgstr ""
 
-#: ../util.php:3048
+#: ../util.php:3132
 msgid "Version"
 msgstr ""
 
-#: ../util.php:3050
+#: ../util.php:3134
 msgid "Last Update"
 msgstr ""
 
-#: ../util.php:3070 ../util.php:3075
+#: ../util.php:3154 ../util.php:3159
 msgid "Dots"
 msgstr ""
 
-#: ../util.php:3071 ../util.php:3076
+#: ../util.php:3155 ../util.php:3160
 msgid "Solid"
 msgstr ""
 
-#: ../util.php:3074
+#: ../util.php:3158
 msgid "No frames"
 msgstr ""
 
-#: ../util.php:3075
+#: ../util.php:3159
 msgid "Just a simple dashed border around the thumb."
 msgstr ""
 
-#: ../util.php:3076
+#: ../util.php:3160
 msgid "Just a simple solid border around the thumb."
 msgstr ""
 
-#: ../util.php:3097
+#: ../util.php:3181
 #, php-format
 msgid "Skipping %s."
 msgstr ""
 
-#: ../util.php:3103
+#: ../util.php:3187
 #, php-format
 msgid "Can't open %s"
 msgstr ""
 
-#: ../util.php:3233 ../util.php:3252
+#: ../util.php:3317 ../util.php:3336
 msgid "Not valid yet"
 msgstr ""
 
-#: ../util.php:3493
+#: ../util.php:3577
 msgid "EXIF Data"
 msgstr ""
 
-#: ../util.php:3495
+#: ../util.php:3579
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3782
+#: ../util.php:3866
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4629,40 +4647,40 @@ msgstr ""
 msgid "Sorry.  This album does not allow comments."
 msgstr ""
 
-#: ../view_photo.php:338
+#: ../view_photo.php:347
 msgid "photo properties"
 msgstr ""
 
-#: ../view_photo.php:427
+#: ../view_photo.php:436
 msgid "Send photo to..."
 msgstr ""
 
-#: ../view_photo.php:429
+#: ../view_photo.php:438
 msgid "Print photo with..."
 msgstr ""
 
-#: ../view_photo.php:466
+#: ../view_photo.php:475
 #, php-format
 msgid "process this photo with %s"
 msgstr ""
 
-#: ../view_photo.php:511
+#: ../view_photo.php:520
 msgid "View Images:"
 msgstr ""
 
-#: ../view_photo.php:512
+#: ../view_photo.php:521
 msgid "normal"
 msgstr ""
 
-#: ../view_photo.php:513
+#: ../view_photo.php:522
 msgid "full"
 msgstr ""
 
-#: ../view_photo.php:531
+#: ../view_photo.php:540
 msgid "Send Photo as eCard"
 msgstr ""
 
-#: ../view_photo.php:736
+#: ../view_photo.php:744
 msgid "Email me when comments are added"
 msgstr ""
 
