@@ -22,6 +22,14 @@
 ?>
 <?php
 
+/*
+** You have icons enabled, but dont like the item options to be icons.
+** You prefer a combobox ?
+** Set setting below to false
+*/
+
+$iconsForItemOptions = true;
+
 require_once(dirname(__FILE__) . '/init.php');
 
 list($full, $id, $index, $votes) = getRequestVar(array('full', 'id', 'index', 'votes'));
@@ -284,7 +292,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } // End if ! embedded
 
 includeHtmlWrap("photo.header");
-$albumItemOptions = getItemActions($index, true);
+$useIcons = (!$iconsForItemOptions) ? 'no' : $gallery->app->useIcons;
+$albumItemOptions = getItemActions($index, $useIcons);
 
 if ($fitToWindow) {
 	/* Include Javascript */
@@ -534,6 +543,12 @@ if (!$gallery->album->isMovie($id)) {
     }
 }
 
+if(sizeof($albumItemOptions) > 2 && $useIcons == 'no') {
+    $iconElements[] =  drawSelect2("itemOptions", $albumItemOptions, array(
+                'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
+                'class' => 'adminform'));
+}
+
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 	if ($gallery->user->isLoggedIn()) {
 		$iconText = getIconText('exit.gif', _("logout"));
@@ -557,21 +572,14 @@ $breadcrumb["bordercolor"] = $bordercolor;
 includeLayout('breadcrumb.inc');
 
 /* Show itemOptions only if we have more then one (photo properties) */
-if(sizeof($albumItemOptions) > 2) {
+if(sizeof($albumItemOptions) > 2 && $useIcons != 'no') {
     includeLayout('navtablemiddle.inc');
-    echo makeFormIntro("view_album.php",
-        array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
-
     $albumItemOptionElements = array();
     foreach ($albumItemOptions as $trash => $option) {
         if(!empty($option['value'])) {
-//        $albumItemOptionElements[] = 
-    	echo "\n". popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
-//		   popup_link($title,           $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='') {
+    	    echo "\n". popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
         }
     }
-    //echo makeIconMenu($albumItemOptionElements, 'left', true, true);
-    echo "\n</form>";
 }
 
 includeLayout('navtablemiddle.inc');

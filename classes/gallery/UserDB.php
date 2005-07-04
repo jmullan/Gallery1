@@ -393,10 +393,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	return $tmpUser;
 	       	} else { 
 			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
-		       	foreach ($gErrors as $key_var => $value_var)
-		       	{
-			       	print "<br>";
-			       	errorRow($key_var);
+		       	foreach ($gErrors as $key_var => $value_var) {
+			       	echo "\n<br>". gallery_error($gErrors[$key_var]);
 		       	}
 		       	return false;
 	       	}

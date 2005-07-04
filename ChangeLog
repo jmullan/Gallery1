@@ -1,10 +1,35 @@
+2005-04-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b47
+
+	* Change: 3rd Param of array_sort_by_fields is now 'asc' or 'desc' instead of 1/-1.
+
+	* Change: itemOptions in view_photo.php are now a dropdown when no icons are wanted.
+		  Settings at file beginning can force dropdown with icons on.
+
+	* Fix: Found untranslated text (!) in classes/Album.php
+	  Thanks to Gekow.
+
+	* New: Use phpDocumentor compatible documenting. Will be completed step by step.
+
+	* Change: When embeddd into Mambo $mosConfig_lang is now checked.
+
+	* Change: updated Manifest
+
+	* Fix: reworked bulk user creation.
+	       - register globals
+	       - email problems
+
+	* New: Added two more possible formats for bulk user creation.
+
+	* CHANGE: moved gallery_mail into a wrapper for MAIL class. Removed gallery_smtp
+
+	* Fix: use of gallery_error instead of errorRow classes/gallery/UserDB.php 
+	       when creating new user.
+
 2005-06-30 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b46
 
 	* Fix: Fieldtype for Comment Overview in Setup.
 
 	* Change: moved /errors/ to includes/errors/
-
-	* Change: updated Manifest
 
 	* Change: Added multiple headings in properties to reduce tabs.
 

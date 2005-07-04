@@ -63,7 +63,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 			 'longtext' => _("Manage your users."));
 }
 
-array_sort_by_fields($adminOptions, 'text');
+array_sort_by_fields($adminOptions, 'text', 'asc');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
     doctype();

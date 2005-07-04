@@ -974,14 +974,14 @@ class Album {
 		       	$to = implode(", ", $this->getEmailMeList('other'));
 			$msg_str=call_user_func_array('sprintf', $msg);
 		       	if (strlen($to) > 0) {
-			       	$text = sprintf("A change has been made to %s by %s (IP %s).  The change is: %s",
+			       	$text = sprintf(_("A change has been made to %s by %s (IP %s).  The change is: %s"),
 					       	makeAlbumUrl($this->fields['name']),
 						user_name_string($gallery->user->getUID(),
 							$gallery->app->comments_display_name),
 						$_SERVER['REMOTE_ADDR'],
 					       	$msg_str);
-			       	$text .= "\n\n". "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when other changes are made\" is unchecked (You'll need to login first).";
-			       	$subject=sprintf("Changes to %s", $this->fields['name']);
+			       	$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that &quot;Email me when other changes are made&quot; is unchecked (You'll need to login first).");
+			       	$subject=sprintf(_("Changes to %s", $this->fields['name']));
 			       	$logmsg=sprintf("Change to %s: %s.",
 						       	makeAlbumUrl($this->fields['name']),
 						       	$msg_str);

@@ -2515,11 +2515,11 @@ function getOS () {
 }
 
 /*
-** The functions checks if the given email(s) is(are) in a valid format.
-** if $multiples is true, look to see if it's a list of comma separated addresses.
-** Return email(s) when email(s) is(are) correct, else false.
+ * The functions checks if the given email(s) is(are) in a valid format.
+ * if $multiples is true, look to see if it's a list of comma separated addresses.
+ * Return email(s) when email(s) is(are) correct, else false.
+ * @package mail
 */
-
 function gallery_validate_email($email, $multiples=false) {
        	if (eregi('^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
@@ -2617,16 +2617,17 @@ function emailDisclaimer() {
 	}
 }
 
-/*
-** This function sends a mail.
-** Return is true when succesfully send, otherise false
-** Errormessages are printed immediately
+/* 
+ * This function is a wrapper around the Mail classes
+ * It has currently the same structure as gallery_mail_old
+ * Return is true when succesfully send, otherise false
+ * Errormessages are printed immediately
+ * @package mail
 */
+
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
     global $gallery;
 
-    $headers ='';	
-    $additional_headers = '';
     $bcc ='';
     $join = '';
 
@@ -2671,190 +2672,38 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$bcc .= $join . $gallery->app->adminEmail;
     }
 
-/* Minimum Headers according to RFC 822 A.3.1. 
-** The 'to' header is set automatically by the mailfunction.
-*/
-    $headers  = 'Date: '. date("r") ."\r\n";
-    $headers  .= 'From: '. $gallery->app->galleryTitle .' '. _("Administrator") . " $from\r\n";
-	
-/* Additional headers */
-    $additional_headers = "Reply-To: $reply_to\r\n";
-    $additional_headers .= 'X-GalleryRequestIP: '. $_SERVER['REMOTE_ADDR'] . "\r\n";
-    $additional_headers .= "MIME-Version: 1.0\r\n";
-    $additional_headers .= "Content-type: text/plain; charset=\"". $gallery->charset ."\"\r\n";
-    $additional_headers .= "Content-Transfer-Encoding: base64\r\n";
-
-    if ($bcc) {
-	$additional_headers .= "Bcc: " . $bcc . "\r\n";
-    }
-
-    if (get_magic_quotes_gpc()) {
+   if (get_magic_quotes_gpc()) {
 	$msg = stripslashes($msg);
     }
 
-    $msg = unhtmlentities($msg);
-    $subject = unhtmlentities($gallery->app->emailSubjPrefix . " " . $subject);
+    $gallery_mail = new htmlMimeMail();
 
-// Ensure that there are no bare linefeeds by replacing "\r" or "\n"
-// (but not the individual components of "\r\n") with "\r\n"
-    $msg = preg_replace("/([^\r])?\n|\r([^\n])?/", "\\1\r\n\\2", $msg);
+    $gallery_mail->setSubject($subject);
+    $gallery_mail->setText($msg);
 
-/* Encode message and body to base64 */
-   $enc_subject = "=?" . $gallery->charset . "?B?" . base64_encode($gallery->app->emailSubjPrefix . " " . $subject) . "?=";
-   $enc_msg = chunk_split(base64_encode(emailDisclaimer().$msg));
+    $gallery_mail->setFrom($from);
+    $gallery_mail->setReturnPath($reply_to);
 
-    if ($gallery->app->useOtherSMTP != "yes") {
-	$result = mail($to, $enc_subject, $enc_msg, $headers . $additional_headers);
-    } else {
-	$result = gallery_smtp($to, $bcc, $enc_subject, $enc_msg, $headers . $additional_headers);
+    if ($bcc) {
+        $gallery_mail->setBcc($bcc);
     }
 
-// Commented to prevent accidental disclosure of passwords via debug screens
-// Remove the "false &&" to enable for testing purposes
-    if (false && isDebugging()) {
-	print "<table>";
-	print "<tr><td valign=\"top\">To:</td><td valign=\"top\">&lt;" .
-		_("not shown") . "&gt;</td></tr>";
-	print "<tr><td valign=\"top\">Subject:</td><td valign=\"top\">$subject</td></tr>";
-	print "<tr><td valign=\"top\">";
-	print str_replace(":", ":</td><td valign=\"top\">", 
-			ereg_replace(":[^:\n]*\n", ":&lt;" . 
-				_("not shown") . 
-				"&gt;</td></tr><tr><td valign=\"top\">",
-				$additional_headers));
-	print "</td></tr>";
-	print '<tr><td valign="top">' . _("Message") . 
-		':</td><td valign="top">'. str_replace("\n", "<br>", $msg). '</td></tr>';
-	print "</table>";
-      	if ($result) {
-	    print _("Email sent")."<br>";
-	} else {
-	    echo gallery_error(_("Email not sent"));
-	}
+    if ($gallery->app->useOtherSMTP == "yes") {
+	$gallery_mail->setSMTPParams(
+		$gallery->app->smtpHost,
+		$gallery->app->smtpPort,
+		$gallery->app->smtpUserName,
+		FALSE,
+		$gallery->app->smtpUserName,
+		$gallery->app->smtpPassword
+	);
     }
 
+    $result = $gallery_mail->send(array($to), ($gallery->app->useOtherSMTP != "yes") ? 'mail' : 'smtp');
     emailLogMessage($logmsg, $result);
+
     return $result;
 }
-
-function gallery_smtp($to, $bcc, $subject, $msg, $additional_headers) {
-	global $gallery;
-
-	$lb = "\r\n";                                   // linebreak
-	$hdr = explode($lb, $additional_headers);       // header fields
-	$result = 0;
-
-	$bdy = emailDisclaimer() . $msg;
-	if (!empty($bdy)) {
-		$bdy = ereg_replace("^\.", "..", $bdy);
-		$bdy = explode($lb, $bdy);
-	}
-
-	// build the array for the SMTP dialog. Line content is
-	// array((string)command, (string)success code, (string)debug error message)
-	if (!empty($gallery->app->smtpUserName)) { // SMTP authentication methode AUTH LOGIN, use extended HELO "EHLO"
-	    $smtp = array(
-		// call the server and tell the name of your local host
-		array("EHLO " . $gallery->app->smtpFromHost . $lb, "220,250", "HELO error: "),
-		// request to auth
-		array("AUTH LOGIN" . $lb, "334", "AUTH error:"),
-		// username
-		array(base64_encode($gallery->app->smtpUserName) . $lb, "334", "AUTHENTICATION error : "),
-		// password
-		array(base64_encode($gallery->app->smtpPassword) . $lb, "235", "AUTHENTICATION error : "));
-	}
-	else { // no authentication, use standard HELO
-	    $smtp = array(
-		// call the server and tell the name of your local host
-		array("HELO " . $gallery->app->smtpFromHost . $lb, "220,250", "HELO error: "));
-	}
-
-	// envelop
-	if ($to == "") {
-		$bcc_array = explode(", ",$bcc);
-		foreach ($bcc_array as $bccto) {
-			if ($bccto != "") {
-				$smtp[] = array("MAIL FROM: " . $from . $lb, "250", "MAIL FROM error: ");
-				$smtp[] = array("RCPT TO: " . $bccto . $lb, "250", "RCPT TO:" . $bccto . " error: ");
-				// begin data
-				$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
-				// header
-				$smtp[] = array("Subject: " . $subject . $lb, "", "");
-				$smtp[] = array("To: $bccto . $lb", "", "");
-				foreach ($hdr as $h) {
-					if (!empty($h)) {
-						$smtp[] = array($h . $lb, "", "");
-					}
-				}
-				// end header, begin the body
-				$smtp[] = array($lb,"","");
-				if ($bdy) {
-					foreach ($bdy as $b) {
-						$smtp[] = array($b . $lb, "", "");
-					}
-				}
-				// end of messageO5B
-				$smtp[] = array($lb . "." . $lb, "250", "DATA(end) error: ");
-			}
-		}
-	} else {
-		$smtp[] = array("MAIL FROM: " . $from . $lb, "250", "MAIL FROM error: ");
-		$smtp[] = array("RCPT TO: " . $to . $lb, "250", "RCPT TO:" . $to . " error: ");
-		// begin data
-		$smtp[] = array("DATA" . $lb, "354", "DATA error: ");
-		// header
-		$smtp[] = array("Subject: " . $subject . $lb, "", "");
-		$smtp[] = array("To: $to" . $lb, "", "");
-		foreach ($hdr as $h) {
-			if (!empty($h)) {
-				$smtp[] = array($h . $lb, "", "");
-			}
-		}
-		// end header, begin the body
-		$smtp[] = array($lb, "", "");
-		if ($bdy) {
-			foreach ($bdy as $b) {
-				$smtp[] = array($b . $lb, "", "");
-			}
-		}
-		// end of message
-		$smtp[] = array($lb . "." . $lb, "250", "DATA(end)error: ");
-	}
-	$smtp[] = array("QUIT" . $lb, "221", "QUIT error: ");
-
-	// open socket
-	$fp = @fsockopen($gallery->app->smtpHost, $gallery->app->smtpPort);
-	if (!$fp){
-		 echo "<b>Error:</b> Cannot connect to " . $gallery->app->smtpHost . "<br>";
-		 $result = 1;
-	}
-	$banner = @fgets($fp, 1024);
-	// perform the SMTP dialog with all lines of the list
-	foreach ($smtp as $req){
-	    // send request
-	    @fputs($fp, $req[0]);
-	    // get available server messages and stop on errors
-	    if ($req[1]) {
-		while ($result = @fgets($fp, 1024)){
-			if (substr($result,3,1) == " ") {
-				break;
-			}
-		};
-		if (!strstr($req[1], substr($result, 0, 3))) {
-			if (isDebugging()) {
-				echo "$req[2] . $result<br>";
-			}
-			$result = 1;
-		}
-	    }
-       }
-       @fgets($fp, 1024);
-       // close socket
-       @fclose($fp);
-
-	return $result;
-}
-
 
 /* Formats a nice string to print below an item with comments */
 function lastCommentString($lastCommentDate, &$displayCommentLegend) {
@@ -3801,15 +3650,16 @@ function check_email($email) {
 /* This function is taken from
 ** http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
 **/
-function array_sort_by_fields(&$data, $sortby, $order = 1) { 
+function array_sort_by_fields(&$data, $sortby, $order = 'asc') { 
     static $sort_funcs = array();
+    $order = ($order == 'asc') ? 1 : -1;
 
     if (empty($sort_funcs[$sortby])) { 
 	$code = "
 	if( \$a['$sortby'] == \$b['$sortby'] ) { 
 	    return 0;
 	};
-	if ( \$a['$sortby'] < \$b['$sortby'] ) {
+	if ( \$a['$sortby'] > \$b['$sortby'] ) {
 	    return $order;
 	} else {
 	    return -1 * $order;
