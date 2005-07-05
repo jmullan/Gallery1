@@ -493,7 +493,7 @@ if (empty($useCache)) {
         }
     }
 
-    $order = ($reverse) ? 'desc' : 'asc';
+    $order = ($reverse) ? 'asc' : 'desc';
     if ( is_array($arrPhotos) ) {
         // Do the search using the criteria specified by $type.
 	switch ($type) {

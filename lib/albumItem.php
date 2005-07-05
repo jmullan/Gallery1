@@ -1,13 +1,20 @@
 <?php
 
+/**
+ * @package	Item
+ * @author	Jens Tkotz
+ */
+	
 /*
-** This function shows all possible actions for an album item
-**
-** Parameter: $i which is the index number of the item
-*/
+ * This function shows all possible actions for an album item
+ *
+ * Parameter: $i which is the index number of the item
+ */
 
 function getItemActions($i, $withIcons = false) {
     global $gallery;
+    global $nextId;
+
     static $javascriptSet;
 
     $id = $gallery->album->getPhotoId($i);
@@ -52,8 +59,6 @@ function getItemActions($i, $withIcons = false) {
         }
     }
 
-    $options = array();
-
     $options[] = array(
         'text' => '&laquo; '. sprintf(_("%s actions"), $label) . ' &raquo;',
         'value' => ''
@@ -65,7 +70,7 @@ function getItemActions($i, $withIcons = false) {
     !$gallery->user->canDeleteFromAlbum($gallery->album)) {
         $options[] = array(
             'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
-            'value' => showChoice2('delete_photo.php', array('id' => $id))
+            'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
         );
     }
 
@@ -172,8 +177,8 @@ function getItemActions($i, $withIcons = false) {
             }
         } else {
             $options[] = array(
-                'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
-                'value' => showChoice2("delete_photo.php", array("id" => $id))
+		'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
+            	'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
             );
         }
     }

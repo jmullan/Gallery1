@@ -24,7 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) = getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
+list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) =
+    getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
 
 if (isset($id)) {
         $index = $gallery->album->getPhotoIndex($id);

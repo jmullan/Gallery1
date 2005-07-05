@@ -292,8 +292,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } // End if ! embedded
 
 includeHtmlWrap("photo.header");
-$useIcons = (!$iconsForItemOptions) ? 'no' : $gallery->app->useIcons;
-$albumItemOptions = getItemActions($index, $useIcons);
 
 if ($fitToWindow) {
 	/* Include Javascript */
@@ -337,7 +335,6 @@ if (!$gallery->album->isMovie($id)) {
 	}
     }
 
-	
     if ($gallery->album->fields["use_exif"] == "yes" &&
 	(eregi("jpe?g\$", $photo->image->type)) &&
 	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
@@ -542,6 +539,9 @@ if (!$gallery->album->isMovie($id)) {
 	    makeGalleryUrl('ecard_form.php', array('photoIndex' => $index,'gallery_popup' => 'true' )), 1, true, 550, 600);
     }
 }
+
+$useIcons = (!$iconsForItemOptions) ? 'no' : $gallery->app->useIcons;
+$albumItemOptions = getItemActions($index, $useIcons);
 
 if(sizeof($albumItemOptions) > 2 && $useIcons == 'no') {
     $iconElements[] =  drawSelect2("itemOptions", $albumItemOptions, array(

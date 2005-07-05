@@ -526,8 +526,9 @@ function ngettext_installed() {
 }
 
 /**
- * returns all languages in this gallery installation
-*/
+ * @return array 	All languages in this gallery installation
+ * @author Jens Tkotz
+ */
 function gallery_languages() {
 	$nls = getNLS();
 	return $nls['language'];
@@ -537,9 +538,9 @@ function gallery_languages() {
  * This function tries to find an alias for an given "language".
  * Given language is set to Alias if found.
  * @param	string	$language
- * @return 	boolean	true if Alias was found and set.
+ * @return 	boolean true if Alias was found and set.
  * @author	Jens Tkotz
-*/
+ */
 function getLanguageAlias(& $language) {
     $nls = getNLS();
 
