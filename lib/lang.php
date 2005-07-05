@@ -19,11 +19,9 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
- * @package	language
+ * @package	Language
  * @author	Jens Tkotz
  */
 
@@ -34,10 +32,10 @@
  * Note: The redundant $count is always needed, when you use %d
  *
  * example: pluralize_n2(ngettext("1 car", "5 cars", $numCars), $numCars, _("No cars"));
- * @param   string    $singPlu   Already translated singlular/plural text
+ * @param	string    $singPlu   Already translated singlular/plural text
  * @param	int       $count
  * @param	string    $none
- * @return  mixed
+ * @return	mixed
  * @author	Jens Tkotz
  */
 function pluralize_n2($singPlu, $count, $none='') {

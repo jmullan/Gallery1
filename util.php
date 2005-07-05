@@ -19,9 +19,14 @@
  *
  * $Id$
  */
-?>
-<?php
 
+/**
+ * @package Utils
+ */
+
+/**
+ * First include some necessary files
+ */
 require_once(dirname(__FILE__) . '/nls.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
@@ -384,7 +389,7 @@ function acceptableFormat($tag) {
 }
 
 function acceptableFormatRegexp() {
-	return "(" . join("|", acceptableFormatList()) . ")";
+	return "(?:" . join("|", acceptableFormatList()) . ")";
 }
 
 function acceptableMovieList() {
@@ -2518,8 +2523,7 @@ function getOS () {
  * The functions checks if the given email(s) is(are) in a valid format.
  * if $multiples is true, look to see if it's a list of comma separated addresses.
  * Return email(s) when email(s) is(are) correct, else false.
- * @package mail
-*/
+ */
 function gallery_validate_email($email, $multiples=false) {
        	if (eregi('^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
 	       	return $email;
@@ -2622,8 +2626,7 @@ function emailDisclaimer() {
  * It has currently the same structure as gallery_mail_old
  * Return is true when succesfully send, otherise false
  * Errormessages are printed immediately
- * @package mail
-*/
+ */
 
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
     global $gallery;
@@ -3639,7 +3642,7 @@ function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
 }
   
 /**
- * @package mail
+ *
  */
 function check_email($email) {
     if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
@@ -3653,7 +3656,6 @@ function check_email($email) {
 /**
  * This function is taken from
  * http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
- * @package arrays
  */
 function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true) { 
     static $sort_funcs = array();

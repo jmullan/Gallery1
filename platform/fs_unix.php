@@ -19,8 +19,11 @@
  *
  * $Id$
  */
-?>
-<?php
+
+/**
+ * @package Filesystem_unix
+ */
+
 function fs_copy($source, $dest) {
 	$umask = umask(0113);
 	$results = copy($source, $dest);

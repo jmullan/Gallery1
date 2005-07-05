@@ -18,7 +18,6 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
  */
 
 /**
@@ -27,8 +26,8 @@
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
  * @version     1.5.1
- * @package     language
- * @subpackage  languagepack
+ * @package     Language
+ * @subpackage  Languagepack
  * @author      Jens Tkotz
  *
  */

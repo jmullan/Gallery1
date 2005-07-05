@@ -19,8 +19,10 @@
  *
  * $Id$
  */
-?>
-<?php
+
+/**
+ * @package Elements
+ */
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -65,8 +67,6 @@ if (!empty($urls)) {
 	** $urls contains all URLs given by the "URL Upload".
 	** $urls should be empty when using the "Form Upload".
 	*/
-	$temp_files = array();
-	
 	foreach ($urls as $url) {
 
 	/* Get rid of any extra white space */
@@ -109,7 +109,7 @@ if (!empty($urls)) {
 		$url = ltrim($url);
 		
 		$urlParts = parse_url($url);
-		$urlPathInfo = pathinfo($urlParts['path']);
+		$urlPathInfo = isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
 		$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
 		
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
@@ -126,11 +126,10 @@ if (!empty($urls)) {
 				$url_stuff["path"]="";
 			}
 			$name = basename($url_stuff["path"]);
-
 		} else {
 			$name = basename($url);
-
 		}
+		
 		/* Dont output warning messages if we cant open url */
 	
 		/*
@@ -140,83 +139,90 @@ if (!empty($urls)) {
 		 */
  		$id = @fopen($url, "rb");
 		if (!ereg("http", $url)) {
-			if (!$id) $id = @fopen("http://$url", "rb");
-			if (!$id) $id = @fopen("http://$url/", "rb");
+			if (!$id) {
+			    $url = "http://$url";
+			    $id = @fopen($url, "rb");
+			}
+			if (!$id) {
+			    $url = "http://$url/";
+                $id = @fopen($url, "rb");
+			}
 		}
-		if (!$id) $id = @fopen("$url/", "rb");
-
-		if ($id) {
-			processingMsg(urldecode($url));
-		} else {
+		if (!$id) {
+		  $url = "$url/";
+		  $id = @fopen($url, "rb");
+		}
+		
+		if (!$id) {
 			processingMsg(sprintf(_("Could not open url: %s"), $url));
 			continue;
 		} 
-
-		/* copy file locally 
-		   use fopen instead of fs_fopen to prevent directory and filename
-		   disclosure */
-		$file = $gallery->app->tmpDir . "/upload." . genGUID();
-		$od = @fopen($file, "wb");
-		if ($id && $od) {
-			while (!feof($id)) {
-				fwrite($od, fread($id, 65536));
-				set_time_limit($gallery->app->timeLimit);
-			}
-			fclose($id);
-			fclose($od);
-		}
-
-		/* Make sure we delete this file when we're through... */
-		$temp_files[$file]=1;
 	
-		/* If this is an image or movie - add it to the processor array */
+		/**
+		 * If this is an image or movie - 
+		 * copy it locally and add it to the processor array
+		 */
 		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
-			/* Add it to userfile */
-			$_FILES['userfile']['name'][] = $name;
-			$_FILES['userfile']['tmp_name'][] = $file;
+
+		    /* copy file locally
+		    * use fopen instead of fs_fopen to prevent directory and filename disclosure
+		    */
+		    $file = $gallery->app->tmpDir . "/upload." . genGUID();
+		    $od = @fopen($file, "wb");
+		    if ($id && $od) {
+		        while (!feof($id)) {
+		            fwrite($od, fread($id, 65536));
+		            set_time_limit($gallery->app->timeLimit);
+		        }
+		        fclose($id);
+		        fclose($od);
+		    }
+		    /* Make sure we delete this file when we're through... */
+		    $temp_files[$file]=1;
+		    
+		    /* Add it to userfile */
+		    $_FILES['userfile']['name'][] = $name;
+		    $_FILES['userfile']['tmp_name'][] = $file;
+
 		} else {
-			/* Slurp the file */
-			processingMsg(sprintf(_("Parsing %s for images..."), $url));
-			$fd = fs_fopen ($file, "r");
-			$contents = fread ($fd, fs_filesize ($file));
-			fclose ($fd);
-	
-			/* We'll need to add some stuff to relative links */
-			$base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
-			$base_dir = '';
-			if (isset($url_stuff["port"])) {
-				$base_url .= ':' . $url_stuff["port"];
-			}
-	
-			/* Hack to account for broken dirname 
-			 * This has to make the ugly assumption that the URL is either a
-			 * directory (with or without trailing /), or a filename containing a "."
-			 * This prevents a directory without a trailing / from being inadvertantly
-			 * dropped from resulting URLs.
-			 */
-			if (ereg("/$", $url_stuff["path"]) || !ereg("\.", $name)) {
-				$base_dir = $url_stuff["path"];
-			} else {
-				$base_dir = dirname($url_stuff["path"]);
-			}
-	
-			/* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
-			if (!ereg("/$", $base_dir)) {
-				$base_dir .= '/';
-			}
+		    /* Slurp the file */
+		    processingMsg(sprintf(_("Parsing %s for images..."), $url));
+		    $contents = fs_file_get_contents($url);
+
+		    /* We'll need to add some stuff to relative links */
+		    $base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
+		    $base_dir = '';
+		    if (isset($url_stuff["port"])) {
+		        $base_url .= ':' . $url_stuff["port"];
+		    }
+
+		    /* Hack to account for broken dirname
+		    * This has to make the ugly assumption that the URL is either a
+		    * directory (with or without trailing /), or a filename containing a "."
+		    * This prevents a directory without a trailing / from being inadvertantly
+		    * dropped from resulting URLs.
+		    */
+		    if (ereg("/$", $url_stuff["path"]) || !ereg("\.", $name)) {
+		        $base_dir = $url_stuff["path"];
+		    } else {
+		        $base_dir = dirname($url_stuff["path"]);
+		    }
+
+		    /* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
+		    if (!ereg("/$", $base_dir)) {
+		        $base_dir .= '/';
+		    }
 
 			$things = array();
 			$results =array();
-			
-			while ($cnt = eregi('(src|href)="?([^" >]+\.' . acceptableFormatRegexp() . ')[" >]',
-					    $contents, 
-					    $results)) {
-				set_time_limit($gallery->app->timeLimit);
-				$things[$results[2]]=1;
-				$contents = str_replace($results[0], "", $contents);
-			}
 
-			/* Add each unique link to an array we scan later */
+            if (preg_match_all('{(?:src|href)\s*=\s*(["\'])([^\'">]+\.'. acceptableFormatRegexp() .')(?:\1)}i', $contents, $matches)) {
+                foreach ($matches[2] as $url) {
+                    $things[$url] = 1;
+                }
+            }
+
+            /* Add each unique link to an array we scan later */
 			foreach (array_keys($things) as $thing) {
 
 				/* 
@@ -253,7 +259,7 @@ if (!empty($urls)) {
 <div class="popup" align="center">
 
 <?php
-$image_count=0;
+$image_count = 0;
 $image_info = array();
 // Get meta data
 if (isset($meta)) {
@@ -291,8 +297,10 @@ if (isDebugging()) {
 // $captionMetaFields will store the names (in order of priority to set caption to)
 $captionMetaFields = array("Caption", "Title", "Description", "Persons");
 
+$upload_started = false;
 /* Now we start processing the given Files */
 while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
+    $upload_started = true;
 	$name = array_shift($_FILES['userfile']['name']);
 	$file = array_shift($_FILES['userfile']['tmp_name']);
 	if (!empty($usercaption) && is_array($usercaption)) {
@@ -349,16 +357,16 @@ if ($image_count) {
 }
 
 if (!empty($temp_files)) {
-	/* Clean up the temporary url file */
-	foreach ($temp_files as $tf => $junk) {
-		fs_unlink($tf);
-	}
+    /* Clean up the temporary url file */
+    foreach ($temp_files as $tf => $junk) {
+        fs_unlink($tf);
+    }
 }
 ?>
 
 <div align="center">
 <?php
-if (empty($image_count)) {
+if (empty($image_count) && $upload_started) {
 	print _("No images uploaded!");
 }
 ?>

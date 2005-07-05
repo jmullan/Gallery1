@@ -19,8 +19,10 @@
  *
  * $Id$
  */
-?>
-<?php
+
+/**
+ * @package Layout
+ */
 
 global $watermarkForm;
 global $wmAlign;
@@ -80,10 +82,12 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
     
     if(sizeof($options) > 0) {
         echo "<b>" . _("Watermark") . ":</b>&nbsp;";
+        
+        array_sort_by_fields(&$options, 'text', 'desc', false);
         if ($watermarkForm["allowNone"]) {
-            $options[] = array('value' => '', 'text' => _("No Watermark"), 'selected' => true);
+            $options[] = array('value' => '', 'text' => _("* No Watermark *"), 'selected' => true);
         }
-        array_sort_by_fields(&$options, 'text', 'asc', false);
+        $options = array_reverse($options);
         echo drawSelect2('wmName', $options, array('size' => 1), array('prettyPrinting' => true));
     }
     else {

@@ -1,15 +1,25 @@
-2005-04-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b49
+2005-07-05 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b50
+
+	* CHANGE: save_photos.php
+		  - Do the copy to local temp dir only for accepted formats (images, movies, archives)	
+		  - Use fs_file_get_contents to get the content of the URL
+		  - Changed Regexp to catch files from an URL. (Thanks Valiant and Signe)
+		    o changed acceptableFormatRegexp() in util.php to fit with new regexp
+
+	* Change: phpdoc changes.
+
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b49
 
 	* Fix: Language was not correct set in popups when embedded into mambo
 	  Thanks to Kai Tomalik.
 
-2005-04-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b48
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b48
 
 	* Change: Added 4th to array_sort_by_fields: caseSensitive
 
-	* Change: Sort of alphabetical case insensitve of watermark files.
+	* Change: Display watermakr files alphabetical case insensitve sorted.
 
-2005-04-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b47
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b47
 
 	* Change: 3rd Param of array_sort_by_fields is now 'asc' or 'desc' instead of 1/-1.
 
