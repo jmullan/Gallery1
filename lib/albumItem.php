@@ -19,6 +19,7 @@ function getItemActions($i, $withIcons = false) {
 
     $id = $gallery->album->getPhotoId($i);
     $override = ($withIcons) ? '' : 'no';    
+    $options = array();
 
     if (!$gallery->session->offline && empty($javascriptSet)) { ?>
   <script language="javascript1.2" type="text/JavaScript">
