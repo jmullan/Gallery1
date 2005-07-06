@@ -4,12 +4,12 @@
  * @package	Item
  * @author	Jens Tkotz
  */
-	
+
 /*
- * This function shows all possible actions for an album item
- *
- * Parameter: $i which is the index number of the item
- */
+* This function shows all possible actions for an album item
+*
+* Parameter: $i which is the index number of the item
+*/
 
 function getItemActions($i, $withIcons = false) {
     global $gallery;
@@ -18,7 +18,7 @@ function getItemActions($i, $withIcons = false) {
     static $javascriptSet;
 
     $id = $gallery->album->getPhotoId($i);
-    $override = ($withIcons) ? '' : 'no';    
+    $override = ($withIcons) ? '' : 'no';
     $options = array();
 
     if (!$gallery->session->offline && empty($javascriptSet)) { ?>
@@ -41,7 +41,7 @@ function getItemActions($i, $withIcons = false) {
   //-->
   </script>
 <?php 
-        $javascriptSet = true;
+    $javascriptSet = true;
     }
 
     if ($gallery->album->isMovieByIndex($i)) {
@@ -66,11 +66,11 @@ function getItemActions($i, $withIcons = false) {
     );
 
     if ($gallery->album->getItemOwnerDelete() &&
-    $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
-    !$gallery->album->isAlbum($i) &&
-    !$gallery->user->canDeleteFromAlbum($gallery->album)) {
+      $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
+      !$gallery->album->isAlbum($i) &&
+      !$gallery->user->canDeleteFromAlbum($gallery->album)) {
         $options[] = array(
-            'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
+          'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
             'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
         );
     }
@@ -91,7 +91,7 @@ function getItemActions($i, $withIcons = false) {
                 $options[] = array(
                     'text' => getIconText('',_("Rename Album"), $override, $withIcons),
                     'value' => showChoice2("rename_album.php", array("set_albumName" => $myAlbum->fields["name"], "index" => $i))
-               );
+                );
             }
         } else {
             $options[] = array(
@@ -116,10 +116,10 @@ function getItemActions($i, $withIcons = false) {
                 'value' => showChoice2('resize_photo.php', array('index' => $i))
             );
             if (!empty($gallery->app->watermarkDir)) {
-            $options[] = array(
-                'text' => getIconText('camera.gif',_("Watermark"), $override, $withIcons),
-                'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
-            );
+                $options[] = array(
+                    'text' => getIconText('camera.gif',_("Watermark"), $override, $withIcons),
+                    'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
+                );
             }
         }
         if (!$gallery->album->isMovieByIndex($i)) {
@@ -154,7 +154,7 @@ function getItemActions($i, $withIcons = false) {
     }
 
     if ($gallery->user->isAdmin() || ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-    $gallery->album->isItemOwner($gallery->user->getUid(), $i))) {
+      $gallery->album->isItemOwner($gallery->user->getUid(), $i))) {
         if ($gallery->album->isHidden($i)) {
             $options[] = array(
                 'text' => getIconText('idea.gif',_("Show"), $override, $withIcons),
@@ -178,8 +178,8 @@ function getItemActions($i, $withIcons = false) {
             }
         } else {
             $options[] = array(
-		'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
-            	'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
+                'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
+                'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
             );
         }
     }
@@ -207,8 +207,8 @@ function getItemActions($i, $withIcons = false) {
     } else {
         $photo = $gallery->album->getPhoto($i);
         if ($gallery->album->fields["use_exif"] == "yes" &&
-        (eregi("jpe?g\$", $photo->image->type)) &&
-        (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
+          (eregi("jpe?g\$", $photo->image->type)) &&
+          (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
             $options[] = array(
                 'text' => getIconText('frame_query.gif',_("Photo properties"), $override, $withIcons),
                 'value' => showChoice2("view_photo_properties.php", array("index" => $i))
@@ -237,56 +237,80 @@ function showComments ($index, $albumName, $reverse = false) {
 
     $commentTable = new galleryTable();
     $commentTable->setAttrs(array(
-	'width' => '75%',
-	'style' => 'padding-left:30px;',
+        'width' => '75%',
+        'style' => 'padding-left:30px;',
         'border' => 0,
         'cellspacing' => 0,
         'cellpadding' => 0,
-        'class' => 'commentbox'));
+        'class' => 'commentbox')
+    );
 
     $columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
     $commentTable->setColumnCount($columns);
 
-
     for ($nr =1; $nr <= $numComments; $nr++) {
         $comment = $gallery->album->getComment($index, $nr);
 
-	$commenterName = '<b>'. wordwrap($comment->getName(), 50, " ", 1) .'</b>';
-	if ($gallery->user->isAdmin()) {
+        $commenterName = '<b>'. wordwrap($comment->getName(), 50, " ", 1) .'</b>';
+        if ($gallery->user->isAdmin()) {
             $commenterName .= '@ &nbsp;'. $comment->getIPNumber();
-    	}
+        }
 
-    	$commentTable->addElement(array(
+        $commentTable->addElement(array(
             'content' => _("From:"),
             'cellArgs' => array('class' => 'admin', 'width' => 50, 'height' => '25')));
 
-	$commentTable->addElement(array(
+        $commentTable->addElement(array(
             'content' => $commenterName,
             'cellArgs' => array('class' => 'admin', 'width' => '55%')));
 
-	$commentTable->addElement(array(
-           'content' => '('. $comment->getDatePosted() .')',
-           'cellArgs' => array('class' => 'admin')));
+        $commentTable->addElement(array(
+            'content' => '('. $comment->getDatePosted() .')',
+            'cellArgs' => array('class' => 'admin')));
 
-	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+        if ($gallery->user->canWriteToAlbum($gallery->album)) {
             $url = doCommand('delete-comment',
-	        array('index'=> $index,
-		    'comment_index' => $nr,
-		    'albumName' => $albumName)
-	        );
+            array('index'=> $index,
+                'comment_index' => $nr,
+                'albumName' => $albumName)
+            );
 
-	    $commentTable->addElement(array(
-                'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">'. $delCommentText .' </a>'));
-	}
+            $commentTable->addElement(array(
+                'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">'. $delCommentText .' </a>')
+            );
+        }
 
-	$commentTable->addElement(array(
+        $commentTable->addElement(array(
             'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-            'cellArgs' => array('colspan' => $columns, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc')));
-    } 
+            'cellArgs' => array('colspan' => $columns, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'albumdesc'))
+        );
+    }
     if ($reverse) {
-	$commentTable['elements'] = array_reverse($commentTable['elements']);
+        $commentTable['elements'] = array_reverse($commentTable['elements']);
     }
 
     return $commentTable->render();
+}
+
+/**
+ * Determine id of next photo or movie.
+ * Ater deletion we move to previous image if we're at the end.
+ * and move forward if we're not.
+ */
+function getNextId($currentId) {
+    global $gallery;
+    
+    $allIds = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
+    $current = array_search($currentId, $allIds);
+    
+    if ($current < sizeof($allIds)-1) {
+        $nextId = $allIds[$current+1];
+    } elseif ($current > 0) {
+        $nextId = $allIds[$current-1];
+    } else {
+        $nextId = $currentId;
+    }
+    
+    return $nextId;
 }
 ?>

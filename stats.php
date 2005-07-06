@@ -1,51 +1,56 @@
 <?php
+/**
+ * Stats is a Gallery mod that allows photo statistics to be displayed.
+ * Use the url variable "type" to select the statistic to display.
+ *
+ *   - number of views (clicks) - use stats.php?type=views
+ *   - upload date - use stats.php?type=date
+ *   - number of votes (stats votes) - use stats.php?type=votes
+ *   - ratings (Gallery votes) - use stats.php?type=ratings
+ *   - capture date - use stats.php?type=cdate
+ *   - latest comments - use stats.php?type=comments
+ *   - random images - use stats.php?type=random
+ *
+ * The photos displayed can be restricted by their upload date.
+ * Use stats.php?type=date&period=<x> where x is the number of months
+ * that you want to display. For example:
+ *   stats.php?type=date&period=0 displays all photos uploaded during
+ *       the current month.
+ *   stats.php?type=views?period=1 displays the number of views (clicks)
+ *       for all photos uploaded during the last month and the current month
+ *       stats.php?type=date&period=6 covers the last 6 months.
+ *
+ * The images listed can be restricted to one album by using the album
+ * parameter. For example:
+ *   stats.php?type=date&album=new displays only images from the new album.
+ *
+ * More details are available in the readme.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * @package Stats
+ * @author Jeremy Gilliat
+ * @author Haplo
+ * @author Jens Tkotz
+ */
 /*
-* Stats is a Gallery mod that allows photo statistics to be displayed.
-* Use the url variable "type" to select the statistic to display.
-*
-*   - number of views (clicks) - use stats.php?type=views
-*   - upload date - use stats.php?type=date
-*   - number of votes (stats votes) - use stats.php?type=votes
-*   - ratings (Gallery votes) - use stats.php?type=ratings
-*   - capture date - use stats.php?type=cdate
-*   - latest comments - use stats.php?type=comments
-*   - random images - use stats.php?type=random
-*
-* The photos displayed can be restricted by their upload date.
-* Use stats.php?type=date&period=<x> where x is the number of months
-* that you want to display. For example:
-*   stats.php?type=date&period=0 displays all photos uploaded during
-*       the current month.
-*   stats.php?type=views?period=1 displays the number of views (clicks)
-*       for all photos uploaded during the last month and the current month
-*       stats.php?type=date&period=6 covers the last 6 months.
-*
-* The images listed can be restricted to one album by using the album
-* parameter. For example:
-*   stats.php?type=date&album=new displays only images from the new album.
-*
-* More details are available in the readme.
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*
-* Copyright (C) 2004 Jeremy Gilliat with rating contribution by Haplo
-* based on Bharat Mediratta's standard Gallery code.
-*
-* $Id$
-*/
-
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * Copyright (C) 2004 Jeremy Gilliat with rating contribution by Haplo
+ * based on Bharat Mediratta's standard Gallery code.
+ *
+ * $Id$
+ */
 
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
@@ -64,9 +69,7 @@ if (empty($type)) {
     header("Location: ". unhtmlentities(defaultStatsUrl('views')));
 }
 
-/*
-** Start of HTML Output to show page in valida HTML when debug is ON
-*/
+/* Start of HTML Output to show page in valida HTML when debug is ON */
 
 switch ($type) {
     case 'votes':
@@ -99,19 +102,19 @@ switch ($type) {
 
     case 'cdate':
         if ( $reverse ) {
-            $stats_title =  _(" - Latest Capture Date");
+            $stats_title =  _(" - Oldest Capture Date");
         }
         else {
-            $stats_title =  _(" - Oldest Capture Date");
+            $stats_title =  _(" - Latest Capture Date");
         }
     break;
 
     case 'comments':
         if ( $reverse ) {
-            $stats_title =  _(" - Latest Comments");
+            $stats_title =  _(" - Oldest Comments");
         }
         else {
-            $stats_title =  _(" - Oldest Comments");
+            $stats_title =  _(" - Latest Comments");
         }
     break;
 
@@ -200,7 +203,7 @@ else {
     $cache = new cacheCtrl;
 }
 
-// Check for any control variables passed in the url.
+/* Check for any control variables passed in the url. */
 if (!empty( $sca )) {
     $showCaption = $sca;
 }
@@ -1013,7 +1016,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
     global $addLinksPos, $showAddComment, $showAddVote, $page, $showAlbumOwner, $showCaptureDate, $showUploadDate;
     global $showViews, $gallery, $showVotes;
     //	global $showRatings;
-    global $showComments, $newestCommentsFirst;
+    global $showComments;
     global $showCaption, $showAlbumLink, $showDescription, $showGrid;
 
     $html = '';
