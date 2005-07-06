@@ -293,7 +293,7 @@ if (!empty($gallery->album->fields["textcolor"])) {
 
 includeHtmlWrap("photo.header");
 
-$useIcons = (!$iconsForItemOptions) ? 'no' : $gallery->app->useIcons;
+$useIcons = (!$iconsForItemOptions || $gallery->app->useIcons == 'no') ? false : true;
 $albumItemOptions = getItemActions($index, $useIcons);
 
 if ($fitToWindow) {
@@ -513,7 +513,7 @@ function doPrintService(input) {
     }
 }
 
-if(sizeof($albumItemOptions) > 2 && $useIcons == 'no') {
+if(sizeof($albumItemOptions) > 2 && !$useIcons) {
     $iconElements[] =  drawSelect2("itemOptions", $albumItemOptions, array(
         'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
         'class' => 'adminform')
@@ -543,7 +543,7 @@ $breadcrumb["bordercolor"] = $bordercolor;
 includeLayout('breadcrumb.inc');
 
 /* Show itemOptions only if we have more then one (photo properties) */
-if(sizeof($albumItemOptions) > 2 && $useIcons != 'no') {
+if(sizeof($albumItemOptions) > 2 && $useIcons) {
     includeLayout('navtablemiddle.inc');
     $albumItemOptionElements = array();
     foreach ($albumItemOptions as $trash => $option) {
