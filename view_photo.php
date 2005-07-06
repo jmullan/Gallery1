@@ -21,8 +21,11 @@
  */
 ?>
 <?php
+/**
+ * @package Item
+ */
 
-/*
+/**
  * You have icons enabled, but dont like the item options to be icons.
  * You prefer a combobox ?
  * Set setting below to false

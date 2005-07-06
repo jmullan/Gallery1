@@ -21,9 +21,12 @@
  */
 
 /**
- * @package Elements
+ * @package Item
  */
 
+/**
+ *
+ */
 require_once(dirname(__FILE__) . '/init.php');
 
 list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));

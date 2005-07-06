@@ -1,16 +1,14 @@
 <?php
-
 /**
  * @package	Item
  * @author	Jens Tkotz
  */
 
-/*
-* This function shows all possible actions for an album item
-*
-* Parameter: $i which is the index number of the item
-*/
-
+/**
+ * This function shows all possible actions for an album item
+ * @param $i integer index number of the item
+ * 
+ */
 function getItemActions($i, $withIcons = false) {
     global $gallery;
     global $nextId;

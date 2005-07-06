@@ -1,12 +1,16 @@
 <?php
 /**
-* Filename.......: class.html.mime.mail.inc
-* Project........: HTML Mime mail class
-* Last Modified..: $Date$
-* CVS Revision...: $Revision$
-* Copyright......: 2001, 2002 Richard Heyes
+ * Filename.......: class.html.mime.mail.inc
+ * Project........: HTML Mime mail class
+ * Last Modified..: $Date$
+ * CVS Revision...: $Revision$
+ * Copyright......: 2001, 2002 Richard Heyes
+ * @package Mail
 */
 
+/**
+ *
+ */
 require_once(dirname(__FILE__) . '/mimePart.php');
 
 class htmlMimeMail
