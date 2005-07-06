@@ -1,6 +1,6 @@
 # $Id$
 #
-# Version: 1.5-u1
+# Version: 1.5-u2
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2005 Bharat Mediratta
@@ -20,17 +20,17 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 # Swedish translation
-# Christian Wallin <crille@swipnet.se>, 2002-2005.
-# Mikael Gustafsson <mikael.gustafsson@lecando.com>, 2003-2005.
-# Peter Liversten <skansberget@telia.com>, 2003-2005.
+# Christian Wallin <crille AT swipnet DOT se>, 2002-2005.
+# Mikael Gustafsson <mikael DOT gustafsson AT lecando DOT com>, 2003-2005.
+# Peter Liversten <skansberget AT telia DOT com>, 2003-2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5: Config\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-01 15:39+0200\n"
-"PO-Revision-Date: 2005-06-01 10:00+0100\n"
-"Last-Translator: Peter Liversten <skansberget@telia.com>\n"
+"POT-Creation-Date: 2005-07-06 15:30+0200\n"
+"PO-Revision-Date: 2005-07-06 10:00+0100\n"
+"Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -477,7 +477,7 @@ msgstr "Kontroll för att se om du använder PHP 4.1.0 eller senare."
 
 #: ../setup/config_data.inc:102
 msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-msgstr "Sedan Gallery 1.4.5 så behöver Gallery minst PHP 4.1.0. Detta är för att vissa versioner av PHP har buggar som orsakar "
+msgstr "Sedan Gallery 1.4.5 så behöver Gallery minst PHP 4.1.0. Detta är för att vissa versioner av PHP har buggar som orsakar att Gallery misslyckas och denna äldre version har inte den funktionallitet som krävs."
 
 #: ../setup/config_data.inc:104
 #, php-format
@@ -643,7 +643,7 @@ msgstr "Använd ikoner?"
 
 #: ../setup/config_data.inc:261
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
-msgstr ""
+msgstr "Du kan välja om du önskar att använda Gallery-ikoner, text endast eller både och.  När du väljer ikoner endast så kommer det att bli en onMousoverText."
 
 #: ../setup/config_data.inc:262
 msgid "Icons and text"
@@ -675,7 +675,7 @@ msgstr "Förvald uppladdningsmetod"
 
 #: ../setup/config_data.inc:278
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
-msgstr "Vilken metod för uppladdning av foton skall vara förvald för användare som inte   "
+msgstr "Vilken metod för uppladdning av foton skall vara förvald för användare som inte specificerar någon?  "
 
 #: ../setup/config_data.inc:279
 msgid "Form-based Upload"
@@ -792,7 +792,7 @@ msgstr "Detta värde är endast av betydelse om du använder NetPBM.  NetPBM använd
 
 #: ../setup/config_data.inc:406
 msgid "PNM Composite (Overlay)"
-msgstr ""
+msgstr "PNM Composite (Överlappning)"
 
 #: ../setup/config_data.inc:407
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
@@ -887,13 +887,12 @@ msgid "Embedded Gallery"
 msgstr "Inbäddat Gallery"
 
 #: ../setup/config_data.inc:451
-#, fuzzy
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
-msgstr "Gallery upptäcker automatiskt när det är inbäddat i någon av de CMS-miljöerna som det stöder"
+msgstr "Gallery upptäcker automatiskt när det är inbäddat i någon av de CMS-miljöerna som det stöder, men det kan vara så att vissa miljöer har speciella alternativ som behöver ställas in.  Alla alternativ som inte automatiskt upptäcks kommer att behöva specificeras på denna skärm."
 
 #: ../setup/config_data.inc:451
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
-msgstr ""
+msgstr "Om din ISP (internet-/webbhotellsleverantör) eller CMS-miljö kräver att register_globals skall vara aktiverat så kan du behöva aktivera 'Avaktivera register_globals-kontroll' alternativet under fliken tekniskt."
 
 #: ../setup/config_data.inc:454
 msgid "GeekLog Dir"
@@ -972,9 +971,8 @@ msgid "Accurate Photo Count"
 msgstr "Exakt fotoräknare"
 
 #: ../setup/config_data.inc:512
-#, fuzzy
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-msgstr "Visa album och fotoräknare på Gallerys rotsida genom användning av exakt  men väldigt långsam räkningsmetod.  "
+msgstr "Visa album- och fotoräknare på Gallerys rotsida genom användning av en exakt  men väldigt långsam räkningsmetod.  Denna egenskap lades till efter önskemål från många användare, hursomhelst så är det inte rekommenderat för Gallerier där du kommer att ha ett stort antal av album och foton.  Vissa exempel har visat att huvudsidan tagit upp till 30 sekunder att ladda med detta alternativ aktiverat."
 
 #: ../setup/config_data.inc:517
 msgid "Frame around albums"
@@ -1198,24 +1196,20 @@ msgid "This option allows you to create many new user accounts at one time by cr
 msgstr "Detta alternativ tillåter dig att skapa många nya användarkonton på en gång genom att skapa en fil med nya användare."
 
 #: ../setup/config_data.inc:773
-#, fuzzy
 msgid "This is allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
-msgstr "Detta tillåter &quot;admin&quotkontot att mottaga e-post när en kommentar har lagts till något album"
+msgstr "Detta gör så att &quot;administratörs&quotkontot tar emot e-post när kommentar läggs till något album"
 
 #: ../setup/config_data.inc:774
-#, fuzzy
 msgid "Admin comment email"
-msgstr "Admin kommentar e-post"
+msgstr "E-post för kommentar från administratör"
 
 #: ../setup/config_data.inc:779
-#, fuzzy
 msgid "This is allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr "Detta tillåter &quot;admin&quot;-kontot att mottaga e-post när en ändring är gjord på något album"
 
 #: ../setup/config_data.inc:780
-#, fuzzy
 msgid "Admin Other Changes email"
-msgstr "Admin andra ändringar e-post"
+msgstr "E-post för andra ändringar från administratör"
 
 #: ../setup/config_data.inc:786
 msgid "Admin notification of email activity"
@@ -1239,12 +1233,11 @@ msgstr "Skicka dubbla epostmeddelanden"
 
 #: ../setup/config_data.inc:796
 msgid "Use non-local SMTP server."
-msgstr ""
+msgstr "Använd SMTP-server som ej är lokal."
 
 #: ../setup/config_data.inc:797
-#, fuzzy
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
-msgstr "Använd en smtp-server som körs på en annan maskin (   Din IPS (Internet-/webbhotellsleverantör) för att    utgående Gallery e-post."
+msgstr "Använd en smtp-server som körs på en annan maskin (t.ex. Din IPS's (Internet-/webbhotellsleverantör)-e-postserver) för att framställa utgående e-post från Gallery."
 
 #: ../setup/config_data.inc:804
 msgid "SMTP Server"
@@ -1256,12 +1249,11 @@ msgstr "Namnet på eller IP-adressen för SMTP-servern du önskar att använda."
 
 #: ../setup/config_data.inc:813
 msgid "Sender hostname"
-msgstr ""
+msgstr "Avsändarens värdnamn"
 
 #: ../setup/config_data.inc:814
-#, fuzzy
 msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
-msgstr "Hela gästnamnet på servern som du skickar e-post från (Servern som ditt Gallery är installerat på).  Om din server är bakom en NAT så bör detta vara DNS-namnet på din router."
+msgstr "Hela värdnamnet på servern som du skickar e-post från (Servern som ditt Gallery är installerat på).  Om din server är bakom en NAT så bör detta vara DNS-namnet på din router."
 
 #: ../setup/config_data.inc:821
 msgid "SMTP Port"
@@ -1276,18 +1268,16 @@ msgid "SMTP account name"
 msgstr "SMTP-kontonamn"
 
 #: ../setup/config_data.inc:831
-#, fuzzy
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
-msgstr "Om din         kräver ett användarnamn för utgående e-post, använd det här, om det inte krävs så lämna detta blankt."
+msgstr "Om din tillhandahållare kräver ett användarnamn för utgående e-post, använd det här, om det inte krävs så lämna detta blankt."
 
 #: ../setup/config_data.inc:839
 msgid "SMTP password"
 msgstr "SMTP-lösenord"
 
 #: ../setup/config_data.inc:840
-#, fuzzy
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-msgstr "Lösenord för att skicka e-post genom smtp server. OBSERVERA: Detta lösenord är sparat som klartext i config.php. Gör säkert att rättigheter är inställda för att "
+msgstr "Lösenord för att skicka e-post genom smtp server. OBSERVERA: Detta lösenord är sparat som klartext i config.php. Gör säkert att rättigheter är inställda för att förhindra andra att komma åt det!"
 
 #: ../setup/config_data.inc:855
 msgid "Gallery wide slideshow"
@@ -1358,9 +1348,8 @@ msgid "Slideshow Mode"
 msgstr "Bildspelsläge"
 
 #: ../setup/config_data.inc:892
-#, fuzzy
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
-msgstr "Detta tillåter dig att ställa in förvalt värde för bildspelet.  &quot;Java Applet&quot; kräver att användaren har "
+msgstr "Detta tillåter dig att ställa in förvalt värde för bildspelet.  &quot;Java Applet&quot; kräver att användaren har Java Runtime Environment installerat i sin webbläsare för att tillåta helskärmsvisning.  &quot;JavaScript&quot; stöds av alla moderna webbläsare utan något extra instcksprogram, men är mer begränsat än Java Applet."
 
 #: ../setup/config_data.inc:893
 msgid "Java Applet"
@@ -1379,9 +1368,8 @@ msgid "Enable commenting"
 msgstr "Aktivera kommentarer"
 
 #: ../setup/config_data.inc:907
-#, fuzzy
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
-msgstr "Detta alternativ kommer att aktivera eller avaktivera möjligheten för dina användare att göra kommentarer.  Om du ställer in detta på &quot;nej&quot; så är all kommentarfunktionallitet avaktiverad."
+msgstr "Detta alternativ kommer att aktivera eller avaktivera möjligheten för dina användare att göra kommentarer.  Om du ställer in detta på &quot;nej&quot; så är all funktionallitet för kommentarer avaktiverad."
 
 #: ../setup/config_data.inc:912
 msgid "Indicate if there are comments available"
@@ -1443,7 +1431,7 @@ msgstr "Namn på inloggade användare som gjort någon kommentar kan visas på flera
 
 #: ../setup/config_data.inc:951
 msgid "Add Comments inside the photo page"
-msgstr "Lägg till kommentarer inuti fotosidan"
+msgstr "Lägg till kommentarer inuti(på) fotosidan"
 
 #: ../setup/config_data.inc:952
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
@@ -1520,27 +1508,27 @@ msgstr "Statistik"
 
 #: ../setup/config_data.inc:1013
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
-msgstr ""
+msgstr "Caching förbättrar prestandan för ett stort galleri på bekostnad av potentiell visning av foton som är utgångna eller har föråldrad värderingsinformation."
 
 #: ../setup/config_data.inc:1014
 msgid "There's a different cache for each stats type supported with the exception of random."
-msgstr ""
+msgstr "Det är olika cache för varje typ av statistik som stöds med undantaget av det slumpmässiga. "
 
 #: ../setup/config_data.inc:1015
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
-msgstr ""
+msgstr "Cacharna kan uppdateras genom att ladda om statstiksidan och specificera url-variabeln 'refreshcache'."
 
 #: ../setup/config_data.inc:1016
 msgid "Caches will also refresh themselves after they have expired."
-msgstr ""
+msgstr "Cacharna kommer också uppdatera sig själva efter att de har förfallit."
 
 #: ../setup/config_data.inc:1017
 msgid "The expire time in seconds is specified for each cache below."
-msgstr ""
+msgstr "Förfallotiden i sekunder är specificerad nedan för varje cache."
 
 #: ../setup/config_data.inc:1018
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
-msgstr ""
+msgstr "Om förfallotiden ställs in på -1 så kommer cachen inte att automatiskt uppdateras."
 
 #: ../setup/config_data.inc:1022
 msgid "Available Stats for 'normal' users"
@@ -1566,59 +1554,48 @@ msgid "On"
 msgstr "På"
 
 #: ../setup/config_data.inc:1034
-#, fuzzy
 msgid "View cache expiration"
-msgstr "Visa cacheförfallotid"
+msgstr "Visa förfallotid av cache"
 
 #: ../setup/config_data.inc:1040
-#, fuzzy
 msgid "Comment cache"
-msgstr "Kommentarercache"
+msgstr "Cache för kommentarer"
 
 #: ../setup/config_data.inc:1045
-#, fuzzy
 msgid "Comment cache expiration"
-msgstr "Kommentarcache förfallotid"
+msgstr "Förfallotid av cache för kommentarer"
 
 #: ../setup/config_data.inc:1051
-#, fuzzy
 msgid "Date cache"
-msgstr "Datumcache"
+msgstr "Cache för datum"
 
 #: ../setup/config_data.inc:1056
-#, fuzzy
 msgid "Date cache expiration"
-msgstr "Datumcache förfallotid"
+msgstr "Förfallotid av cache för datum"
 
 #: ../setup/config_data.inc:1062
-#, fuzzy
 msgid "Vote cache"
-msgstr "Röstningscache"
+msgstr "Cache för röster"
 
 #: ../setup/config_data.inc:1067
-#, fuzzy
 msgid "Vote cache expiration"
-msgstr "Röstningscache förfallotid"
+msgstr "Förfallotid av cache för röster"
 
 #: ../setup/config_data.inc:1073
-#, fuzzy
 msgid "Rating cache"
-msgstr "Bedömningscache"
+msgstr "Cache för betygsättning"
 
 #: ../setup/config_data.inc:1078
-#, fuzzy
 msgid "Rating cache expiration"
-msgstr "Bedömningscache förfallotid"
+msgstr "Förfallotid av cache för betygsättningar"
 
 #: ../setup/config_data.inc:1084
-#, fuzzy
 msgid "Capturedate cache"
-msgstr "Skärmdumpdatum-cache"
+msgstr "Cache för objektrubriker"
 
 #: ../setup/config_data.inc:1089
-#, fuzzy
 msgid "Capturedate cache expiration"
-msgstr "Skärmdumpdatum-cache förfallotid"
+msgstr "Förfallotid av cache för objektrubriker"
 
 #: ../setup/config_data.inc:1101
 msgid "Technical"
@@ -1629,9 +1606,8 @@ msgid "The settings in this section are intended for advanced users only."
 msgstr "Inställningarna i detta avsnitt är avsedda för avancerade användare endast."
 
 #: ../setup/config_data.inc:1104
-#, fuzzy
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
-msgstr "Var medveten om att ändrade inställningar i denna flik kan ha kännbar "
+msgstr "Var medveten om att ändrade inställningar i denna flik kan ha kännbara prestanda- eller säkerhetspåföljder, så ändra på egen risk."
 
 #: ../setup/config_data.inc:1107
 msgid "Debug mode"
@@ -1643,7 +1619,7 @@ msgstr "Sätt på felsökningsläge så att du kan diagnostisera problem?"
 
 #: ../setup/config_data.inc:1108
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
-msgstr ""
+msgstr "Observera: Lämna inte detta alternativ på i ett produktions-system! Annars så kan du visa användare mer information om ditt Gallery och system än du önskar! "
 
 #: ../setup/config_data.inc:1113
 msgid "Disable register_globals check"
@@ -1652,7 +1628,7 @@ msgstr "Avaktivera register_globals-kontroll"
 #: ../setup/config_data.inc:1114
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
-msgstr ""
+msgstr "<b>Var medveten om att ändring av denna inställning kan sänka säkerheten på ditt Gallery och vi kanske inte ger dig support om du råkar ut för problem som inte uppstår när detta är intställt på av.</b><br><br> Påsättning av detta orsakar att %s ignorerar att register_globals är inställt på på.  %s försöker normalt att avmarkera alla variabler skapade av register_globals för att upprätthålla säkerheten.  Om ett skript som du kör kräver att register_globals skall vara på och inte vill samverka med %s så ställ in detta på &quot;ja&quot;."
 
 #: ../setup/config_data.inc:1119
 msgid "Time Limit"
@@ -1664,12 +1640,11 @@ msgstr "Maximalt antal  sekunder varje enkel operation får ta.  Om du finner att
 
 #: ../setup/config_data.inc:1128
 msgid "Random Block Cache Time"
-msgstr ""
+msgstr "Cache-tid för slumpmässigt block"
 
 #: ../setup/config_data.inc:1129
-#, fuzzy
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
-msgstr "Detta är den tid som det slumpmässiga blocket kommer att "
+msgstr "Detta är den tid som det slumpmässiga blocket kommer att cache information om dina foton och album, detta snabbar upp  för slumpmässiga foton.  Ju oftare som dina album ädras dessto lägre bör du ställa in detta värde för att försäkra att nya foton väljs fort och för att förhindra försök att öppna foton som har tagits bort.  Cachen förnyas automatiskt när en användare visar det slumpmässiga blocket efter att tidsgränsen har gått ut."
 
 #: ../setup/config_data.inc:1132
 msgid "24 Hours"
@@ -1693,7 +1668,7 @@ msgstr "30 minuter"
 
 #: ../setup/config_data.inc:1140
 msgid "Random Block Retrieval Attempts"
-msgstr ""
+msgstr "Återställningsförsök för slumpmässigt block"
 
 #: ../setup/config_data.inc:1141
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
@@ -1803,13 +1778,12 @@ msgid "RSS Highlight"
 msgstr "RSS-förgrundsbild"
 
 #: ../setup/config_data.inc:1215
-#, fuzzy
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
-msgstr "Specificerar vilket album som kommer att visas som ikon för alla entrer men något mål i: Med ett tomt fält menas att det inte kommer att bli någon förvald förgrundsbild.  '*' använder det senaste uppdaterade albumets förgrundsbild. Specificering av ett albumnamn kommer att göra så att det albumets förgrungsbild används."
+msgstr "Specificerar vilket album som kommer att visas som ikonen för alla entréer med något mål: Med ett tomt fält menas att det inte kommer att bli någon förvald förgrundsbild.  '*' använder förgrundsbild från det album som uppdaterades senast.  Specificering av ett albumnamn kommer att göra så att förgrungsbild från angivet album används."
 
 #: ../setup/config_data.inc:1221
 msgid "Maximum Albums Returned"
-msgstr ""
+msgstr "Maximalt antal returnerade album "
 
 #: ../setup/config_data.inc:1222
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
@@ -1966,9 +1940,8 @@ msgid "You can optionally limit the filesize of your JPEG/PNG images on upload t
 msgstr "Du kan valfritt begränsa filstorleken på dina JPEG/PNG bilder vid lämning till Gallery. "
 
 #: ../setup/config_data.inc:1373
-#, fuzzy
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
-msgstr " Aktivering av denna egenskap kommer lämna dig <b>utan en originalkvallitets-bild</b> i ditt Gallery.  Ställ in förvald målfilstorlek (i kilobyte).  Inkludering av ett värde kan  fillämningar, men kommer att göra sidvisningstiden snabbare, speciellt för personer med uppringd förbindelse.  Ställ in på 0 om du inte vill begränsa filstorlek."
+msgstr " Aktivering av denna egenskap kommer lämna dig <b>utan en original kvalitetsbild</b> i ditt Gallery.  Ställ in förvald storlek på målfil (i kilobyte).  Inkludering av ett värde kan göra så att filuppladdningar går långsammare, men kommer att göra tiden för sidvisning snabbare, speciellt för personer med uppringd förbindelse.  Ställ in på 0 om du inte vill begränsa filstorlek."
 
 #: ../setup/config_data.inc:1379
 msgid "Preserve Names"
@@ -3189,7 +3162,7 @@ msgstr "Du måste ta bort filen '%s' från installationskatalogen för att göra din
 
 #: ../setup/write.inc:208
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
-msgstr "Du kan konfigurera om Gallery närsomhelst genom att göra om denna konfigurationsguide."
+msgstr "Du kan omkonfigurera Gallery närsomhelst genom att göra om denna konfigurationsguide."
 
 #: ../setup/write.inc:210
 msgid "It will save your data so you won't have to enter it all again!"
@@ -3228,7 +3201,7 @@ msgstr "Spiralbunden anteckningsbok"
 
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr "En vit skuggad ram med spiralbunden anteckningsbok på vänster sida"
+msgstr "En vit skuggad anteckningsbok spiralbunden på vänster sida"
 
 #: ../html_wrap/frames/shadows/frame.def:3
 msgid "Shadows"
