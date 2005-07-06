@@ -981,8 +981,8 @@ class Album {
 						$_SERVER['REMOTE_ADDR'],
 					       	$msg_str);
 			       	$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that &quot;Email me when other changes are made&quot; is unchecked (You'll need to login first).");
-			       	$subject=sprintf(_("Changes to %s", $this->fields['name']));
-			       	$logmsg=sprintf("Change to %s: %s.",
+			       	$subject = sprintf(_("Changes to %s"), $this->fields['name']);
+			       	$logmsg = sprintf("Change to %s: %s.",
 						       	makeAlbumUrl($this->fields['name']),
 						       	$msg_str);
 			       	gallery_mail($to, $subject, $text, $logmsg, true);
