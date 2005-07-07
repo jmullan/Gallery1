@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5: Core\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-07-06 15:48+0200\n"
+"POT-Creation-Date: 2005-07-07 23:21+0200\n"
 "PO-Revision-Date: 2005-06-26 20:31+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -166,9 +166,10 @@ msgstr "Administrera dina användare."
 msgid "Admin options"
 msgstr "Administratörsalternativ"
 
-#: ../admin-page.php:85 ../stats.php:598 ../stats-wizard.php:56
-#: ../tools/find_orphans.php:211 ../tools/despam-comments.php:56
-#: ../tools/validate_albums.php:138 ../tools/validate_albums.php:214
+#: ../admin-page.php:85 ../search.php:66 ../stats.php:598
+#: ../stats-wizard.php:56 ../tools/find_orphans.php:211
+#: ../tools/despam-comments.php:56 ../tools/validate_albums.php:138
+#: ../tools/validate_albums.php:214
 msgid "return to gallery"
 msgstr "Återgå till Gallery"
 
@@ -243,7 +244,7 @@ msgstr "Klar"
 msgid "%s RSS"
 msgstr "%s RSS"
 
-#: ../albums.php:140 ../html_wrap/search.header.default:28 ../search.php:43
+#: ../albums.php:140 ../search.php:43 ../search.php:65
 msgid "Search"
 msgstr "Sök"
 
@@ -566,8 +567,7 @@ msgstr "Ingen titel"
 msgid "Album"
 msgstr "Album"
 
-#: ../classes/Album.php:264 ../search.php:74 ../search.php:302
-#: ../slideshow.php:194
+#: ../classes/Album.php:264 ../search.php:68 ../slideshow.php:194
 msgid "Gallery"
 msgstr "Gallery"
 
@@ -603,7 +603,7 @@ msgid "A change has been made to %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
 #: ../classes/Album.php:983
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that &quot;Email me when other changes are made&quot; is unchecked (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
 msgstr ""
 
 #: ../classes/Album.php:984
@@ -611,7 +611,7 @@ msgstr ""
 msgid "Changes to %s"
 msgstr "Kan inte skriva till %s."
 
-#: ../classes/Album.php:991 ../util.php:3387
+#: ../classes/Album.php:991 ../util.php:3389
 msgid "No email sent as no valid email addresses were found"
 msgstr "Ingen e-post skickades eftersom inga giltiga e-postadresser hittades"
 
@@ -678,12 +678,12 @@ msgstr "Bearbetar bild %d..."
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Fel vid hämtning av EXIF-information.  Förväntad status 0, fick %s."
 
-#: ../classes/Album.php:2469
+#: ../classes/Album.php:2468
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2622
+#: ../classes/Album.php:2621
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problem med e-post: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
@@ -1996,7 +1996,7 @@ msgstr "Filtrera efter dag"
 msgid "Member file"
 msgstr "Medlemsfil"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:2802
+#: ../html/userData.inc:26 ../login.php:85 ../login.php:144 ../util.php:2804
 msgid "Username"
 msgstr "Användarnamn:"
 
@@ -2049,7 +2049,7 @@ msgid "Send email to user when account is created"
 msgstr "Skicka e-post till användare när konto är skapat"
 
 #: ../html_wrap/album.footer.default:45 ../html_wrap/gallery.footer.default:51
-#: ../html_wrap/photo.footer.default:44 ../html_wrap/search.footer.default:51
+#: ../html_wrap/photo.footer.default:44
 #: ../html_wrap/slideshow.footer.default:47
 msgid "Donate to Gallery now!!"
 msgstr "Donera till Gallery nu!!"
@@ -2724,9 +2724,9 @@ msgid "Upload went fine, but the file is not readable, please make sure %s is ac
 msgstr "Uppladdning gick bra, men filen är inte läsbar, vänligen säkerhetsställ att %s är åtkomstbar av din webbserver. (Kontrollera också openbasedir-begränsningar.)"
 
 #: ../multi_create_user.php:101
-#, php-format
+#, fuzzy, php-format
 msgid "Adding %s (%s) with email: %s"
-msgstr ""
+msgstr "Lägger till %s"
 
 #: ../multi_create_user.php:102 ../multi_create_user.php:106
 msgid "No fullname given"
@@ -3312,58 +3312,59 @@ msgstr "%d metafil(er) hittad(e).  Dessa filer innehåller information om bildern
 msgid "Add Files"
 msgstr "Ladda upp filer"
 
-#: ../search.php:60
+#: ../search.php:56
 msgid "Search Again"
 msgstr "Sök igen"
 
-#: ../search.php:166
+#: ../search.php:162
 msgid "Caption: "
 msgstr "Objektrubrik: "
 
-#: ../search.php:183
+#: ../search.php:180
 msgid "Matching Comments"
 msgstr "Matchande kommentarer"
 
-#: ../search.php:214
+#: ../search.php:212
 msgid "From Album"
 msgstr "Från album"
 
-#: ../search.php:221 ../view_photo_properties.php:111
+#: ../search.php:219 ../view_photo_properties.php:111
 msgid "KEYWORDS"
 msgstr "NYCKELORD"
 
-#: ../search.php:239
+#: ../search.php:237
 #, php-format
 msgid "Albums containing %s"
 msgstr "Album innehållande %s"
 
-#: ../search.php:240
+#: ../search.php:238
 msgid "No Album Matches"
 msgstr "Inga album matchar"
 
-#: ../search.php:243
-#, php-format
-msgid "Photos containing %s in caption or comment"
+#: ../search.php:241
+#, fuzzy, php-format
+msgid "Photos containing %s in caption, comment or name."
 msgstr "Foton som innehåller %s i rubrik eller kommentar"
 
-#: ../search.php:244
+#: ../search.php:242
 msgid "No Photo Matches"
 msgstr "Inga foton matchar"
 
-#: ../search.php:264
+#: ../search.php:262
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
 msgstr "Vissa album genomsöktes inte eftersom de kräver uppgradering till senaste versionen av %s först."
 
-#: ../search.php:267
+#: ../search.php:265
 msgid "Upgrade all albums."
 msgstr "Uppgradera alla album."
 
-#: ../search.php:286
-msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments"
+#: ../search.php:282
+#, fuzzy
+msgid "Search the Gallery's Album and Photo<br> titles, descriptions and comments:"
 msgstr "Sök i Gallerys Album och Foton<br> Titlar, Beskrivningar och Kommentarer"
 
-#: ../search.php:292
+#: ../search.php:290
 msgid "Go"
 msgstr "Genomför"
 
@@ -4342,25 +4343,25 @@ msgstr "E-post skickades inte till %s eftersom det inte är en giltig e-postadres
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsändarens e-postadress %s är ogiltig, använder %s."
 
-#: ../util.php:2718
+#: ../util.php:2720
 #, php-format
 msgid "Last comment %s."
 msgstr "Senaste kommentar %s."
 
-#: ../util.php:2730
+#: ../util.php:2732
 msgid "FAILED"
 msgstr "MISSLYCKADES"
 
-#: ../util.php:2739
+#: ../util.php:2741
 msgid "Email activity"
 msgstr "E-postaktivitet"
 
-#: ../util.php:2764
+#: ../util.php:2766
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:2771
+#: ../util.php:2773
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,  \n"
@@ -4379,106 +4380,106 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratör."
 
-#: ../util.php:2780 ../util.php:2782
+#: ../util.php:2782 ../util.php:2784
 msgid "gallery title"
 msgstr "Gallerytitel"
 
-#: ../util.php:2781
+#: ../util.php:2783
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../util.php:2798
+#: ../util.php:2800
 msgid "The Url to your Gallery."
 msgstr "Webbadressen till ditt Gallery."
 
-#: ../util.php:2799
+#: ../util.php:2801
 msgid "Title of your Gallery."
 msgstr "Titel på ditt Gallery"
 
-#: ../util.php:2800
+#: ../util.php:2802
 msgid "Admin email(s)"
 msgstr "E-post till administratör(er)"
 
-#: ../util.php:2801
+#: ../util.php:2803
 msgid "Password for the newly created user."
 msgstr "Lösenord för den nyligen skapade användaren."
 
-#: ../util.php:2803
+#: ../util.php:2805
 msgid "Fullname"
 msgstr "Fullständigt namn"
 
-#: ../util.php:2804
+#: ../util.php:2806
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Kommer att ersättas med en länk som den nya användaren kan klicka på för att skapa ett nytt lösenord."
 
-#: ../util.php:2846
+#: ../util.php:2848
 msgid "No Skin"
 msgstr "Inget skal"
 
-#: ../util.php:2847
+#: ../util.php:2849
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Original \"look and feel\".</dd>"
 
-#: ../util.php:2892 ../util.php:2896
+#: ../util.php:2894 ../util.php:2898
 msgid "unknown"
 msgstr "okänd"
 
-#: ../util.php:2900
+#: ../util.php:2902
 msgid "Version"
 msgstr "Version"
 
-#: ../util.php:2902
+#: ../util.php:2904
 msgid "Last Update"
 msgstr "Senast uppdaterad"
 
-#: ../util.php:2921 ../util.php:2926
+#: ../util.php:2923 ../util.php:2928
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2922 ../util.php:2927
+#: ../util.php:2924 ../util.php:2929
 msgid "Dots"
 msgstr "Punkter"
 
-#: ../util.php:2923 ../util.php:2928
+#: ../util.php:2925 ../util.php:2930
 msgid "Solid"
 msgstr "Enfärgad"
 
-#: ../util.php:2926
+#: ../util.php:2928
 msgid "No frames"
 msgstr "Inga ramar"
 
-#: ../util.php:2927
+#: ../util.php:2929
 msgid "Just a simple dashed border around the thumb."
 msgstr "Endast en enkel streckad kant runt miniatyrbilden."
 
-#: ../util.php:2928
+#: ../util.php:2930
 msgid "Just a simple solid border around the thumb."
 msgstr "Endast en enkel enfärgad kant runt miniatyrbilden."
 
-#: ../util.php:2949
+#: ../util.php:2951
 #, php-format
 msgid "Skipping %s."
 msgstr "Utesluter %s."
 
-#: ../util.php:2955
+#: ../util.php:2957
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan inte öppna %s"
 
-#: ../util.php:3085 ../util.php:3104
+#: ../util.php:3087 ../util.php:3106
 msgid "Not valid yet"
 msgstr "Inte giltigt ännu"
 
-#: ../util.php:3345
+#: ../util.php:3347
 msgid "EXIF Data"
 msgstr "EXIF-information"
 
-#: ../util.php:3347
+#: ../util.php:3349
 msgid "Display of EXIF data enabled, but no data found."
 msgstr "Visning av EXIF-information aktiverad men ingen information hittades."
 
-#: ../util.php:3634
+#: ../util.php:3636
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s har skickat ett E-C@rd till dig."

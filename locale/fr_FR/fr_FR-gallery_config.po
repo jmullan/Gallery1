@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-26 01:05+0200\n"
+"POT-Creation-Date: 2005-07-07 23:21+0200\n"
 "PO-Revision-Date: 2005-04-14 23:37-0800\n"
 "Last-Translator: Benoît Catelin <gallery AT catelin DOT net>\n"
 "Language-Team: Mikael Berthe <mikael DOT berthe AT lilotux DOT net>\n"
@@ -39,57 +39,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: ../errors/configure_help.php:2
+#: ../html_wrap/frames/notebook/frame.def:5
+msgid "Spiral Notebook"
+msgstr "Classeur à spirales"
+
+#: ../html_wrap/frames/notebook/frame.def:6
+msgid "A white shadowed frame with spiral notebook binding on the left side"
+msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "Ombres"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "Ombres transparentes en PNG allant vers en bas à droite. Vraie transparence donc celà devrait fonctionner sur la plupart des fonds d'ecran, sauf noir."
+
+#: ../html_wrap/frames/polaroid/frame.def:3
+msgid "Polaroid"
+msgstr "Polaroid"
+
+#: ../html_wrap/frames/polaroid/frame.def:4
+msgid "A photo with a large white frame, extra wide at the bottom edge"
+msgstr "Une photo avec un grand cadre, agrandi au bas de l'image"
+
+#: ../html_wrap/frames/polaroids/frame.def:3
+msgid "Polaroids"
+msgstr "Polaroides"
+
+#: ../html_wrap/frames/polaroids/frame.def:4
+msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
+msgstr "Plusieurs photos avec un grand cadre, agrandi au bas de l'image"
+
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "Cadres dorés"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr ""
+
+#: ../html_wrap/frames/simple_book/frame.def:3
+msgid "Original Style"
+msgstr "Style Original"
+
+#: ../html_wrap/frames/simple_book/frame.def:4
+#, php-format
+msgid "The original %s album frame style."
+msgstr "Le style d'album %s original"
+
+#: ../html_wrap/frames/wooden/frame.def:4
+msgid "Wood Frame"
+msgstr "Cadres bois"
+
+#: ../html_wrap/frames/wooden/frame.def:5
+msgid "A textured wooden frame"
+msgstr "Un cadre avec texture bois."
+
+#: ../includes/errors/configure_help.php:2
 #, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 msgstr "Au cas ou vous rencontreriez des problèmes, vous pouvez trouver de l'aide dans la  %s Page d'aide de Gallery%s"
 
-#: ../errors/reconfigure.php:10 ../errors/reconfigure.php:16
+#: ../includes/errors/reconfigure.php:10 ../includes/errors/reconfigure.php:16
 msgid "Gallery needs Reconfiguration"
 msgstr "Gallery a besoin d'être Reconfiguré"
 
-#: ../errors/reconfigure.php:19
+#: ../includes/errors/reconfigure.php:19
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
 msgstr "Votre configuration fut créée avec l'assistant de configuration d'une ancienne version de Gallery.  Elle est obsolète. Merci de relancer l'assistant de configuration! Voici comment:"
 
-#: ../errors/reconfigure.php:24
+#: ../includes/errors/reconfigure.php:24
 #, php-format
 msgid "Launch the %sConfiguration Wizard%s."
 msgstr "Lancez l'%sAssitant de Configuration%s."
 
-#: ../errors/unconfigured.php:10
+#: ../includes/errors/unconfigured.php:10
 msgid "Gallery Configuration Error"
 msgstr "Erreur de Configuration de Gallery"
 
-#: ../errors/unconfigured.php:16
+#: ../includes/errors/unconfigured.php:16
 msgid "Gallery has not been configured!"
 msgstr "Gallery n'a pas été configuré!"
 
-#: ../errors/unconfigured.php:20
+#: ../includes/errors/unconfigured.php:20
 msgid "Gallery must be configured before you can use it."
 msgstr "Gallery doit être configuré avant de pouvoir l'utiliser."
 
-#: ../errors/unconfigured.php:25
+#: ../includes/errors/unconfigured.php:25
 msgid "1."
 msgstr "1."
 
-#: ../errors/unconfigured.php:26
+#: ../includes/errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
 msgstr "Veuillez créer deux fichiers vides nommés .htaccess et config.php"
 
-#: ../errors/unconfigured.php:28
+#: ../includes/errors/unconfigured.php:28
 msgid "2."
 msgstr "2."
 
-#: ../errors/unconfigured.php:29
+#: ../includes/errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
 msgstr "Veuillez créer un dossier nommé album pour vos films et images."
 
-#: ../errors/unconfigured.php:32
+#: ../includes/errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
 msgstr "Vérifiez que les deux fichiers sont accessible en lecture et écriture par le serveur web."
 
-#: ../errors/unconfigured.php:37
+#: ../includes/errors/unconfigured.php:37
 #, php-format
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "Ensuite, lancez l'%sAssistant de Configuration%s."
@@ -199,7 +256,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "Il semble que vous n'avez pas configuré votre Gallery. Merci de lancer et finir l'assistant de configuration."
 
 #: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1292
+#: ../setup/functions.inc:1293
 msgid "OK"
 msgstr "OK"
 
@@ -837,18 +894,18 @@ msgstr "Nécessite Jhead EXIF parser v.1.9 ou supérieur (Voir 'Outils')."
 #: ../setup/config_data.inc:796 ../setup/config_data.inc:884
 #: ../setup/config_data.inc:905 ../setup/config_data.inc:931
 #: ../setup/config_data.inc:937 ../setup/config_data.inc:938
-#: ../setup/config_data.inc:964 ../setup/config_data.inc:1112
-#: ../setup/config_data.inc:1147 ../setup/config_data.inc:1154
-#: ../setup/config_data.inc:1160 ../setup/config_data.inc:1166
-#: ../setup/config_data.inc:1377 ../setup/config_data.inc:1383
-#: ../setup/config_data.inc:1390 ../setup/config_data.inc:1396
-#: ../setup/config_data.inc:1438 ../setup/config_data.inc:1445
-#: ../setup/config_data.inc:1469 ../setup/config_data.inc:1483
-#: ../setup/config_data.inc:1498 ../setup/config_data.inc:1504
-#: ../setup/config_data.inc:1510 ../setup/config_data.inc:1579
-#: ../setup/config_data.inc:1586 ../setup/config_data.inc:1638
-#: ../setup/config_data.inc:1639 ../setup/config_data.inc:1645
-#: ../setup/config_data.inc:1670 ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:963 ../setup/config_data.inc:1111
+#: ../setup/config_data.inc:1146 ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1159 ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1376 ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1389 ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1437 ../setup/config_data.inc:1444
+#: ../setup/config_data.inc:1468 ../setup/config_data.inc:1482
+#: ../setup/config_data.inc:1497 ../setup/config_data.inc:1503
+#: ../setup/config_data.inc:1509 ../setup/config_data.inc:1578
+#: ../setup/config_data.inc:1585 ../setup/config_data.inc:1637
+#: ../setup/config_data.inc:1638 ../setup/config_data.inc:1644
+#: ../setup/config_data.inc:1669 ../setup/config_data.inc:1686
 msgid "yes"
 msgstr "oui"
 
@@ -861,24 +918,24 @@ msgstr "oui"
 #: ../setup/config_data.inc:778 ../setup/config_data.inc:796
 #: ../setup/config_data.inc:883 ../setup/config_data.inc:884
 #: ../setup/config_data.inc:905 ../setup/config_data.inc:931
-#: ../setup/config_data.inc:938 ../setup/config_data.inc:964
-#: ../setup/config_data.inc:1112 ../setup/config_data.inc:1147
-#: ../setup/config_data.inc:1154 ../setup/config_data.inc:1160
-#: ../setup/config_data.inc:1166 ../setup/config_data.inc:1377
-#: ../setup/config_data.inc:1383 ../setup/config_data.inc:1390
-#: ../setup/config_data.inc:1396 ../setup/config_data.inc:1438
-#: ../setup/config_data.inc:1445 ../setup/config_data.inc:1469
-#: ../setup/config_data.inc:1483 ../setup/config_data.inc:1498
-#: ../setup/config_data.inc:1504 ../setup/config_data.inc:1510
-#: ../setup/config_data.inc:1578 ../setup/config_data.inc:1579
-#: ../setup/config_data.inc:1639 ../setup/config_data.inc:1644
-#: ../setup/config_data.inc:1645 ../setup/config_data.inc:1670
-#: ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:938 ../setup/config_data.inc:963
+#: ../setup/config_data.inc:1111 ../setup/config_data.inc:1146
+#: ../setup/config_data.inc:1153 ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1165 ../setup/config_data.inc:1376
+#: ../setup/config_data.inc:1382 ../setup/config_data.inc:1389
+#: ../setup/config_data.inc:1395 ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:1444 ../setup/config_data.inc:1468
+#: ../setup/config_data.inc:1482 ../setup/config_data.inc:1497
+#: ../setup/config_data.inc:1503 ../setup/config_data.inc:1509
+#: ../setup/config_data.inc:1577 ../setup/config_data.inc:1578
+#: ../setup/config_data.inc:1638 ../setup/config_data.inc:1643
+#: ../setup/config_data.inc:1644 ../setup/config_data.inc:1669
+#: ../setup/config_data.inc:1686
 msgid "no"
 msgstr "non"
 
 #: ../setup/config_data.inc:438 ../setup/config_data.inc:667
-#: ../setup/config_data.inc:677 ../setup/config_data.inc:1145
+#: ../setup/config_data.inc:677 ../setup/config_data.inc:1144
 #: ../setup/functions.inc:923 ../setup/functions.inc:1003
 msgid "Advanced"
 msgstr "Avancé"
@@ -1170,7 +1227,7 @@ msgstr "Autoriser les visiteurs à s'auto-enregistrer."
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Activer ceci autorisera les visiteurs de votre site à créer leurs propres comptes de connexions."
 
-#: ../setup/config_data.inc:751 ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:751 ../setup/config_data.inc:1436
 msgid "This option requires the Email feature to be enabled."
 msgstr "Cette option nécessite que l'email soit activé dans Gallery."
 
@@ -1288,7 +1345,7 @@ msgstr "Diaporama général sur la galerie"
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Ajoute un lien vers le diaporama dans la page principale de la galerie. Notez que sur les galeries très remplies, ceci peut être très lent et utiliser des ressources importantes."
 
-#: ../setup/config_data.inc:854 ../setup/config_data.inc:1617
+#: ../setup/config_data.inc:854 ../setup/config_data.inc:1616
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Ces parametres ne s'appliquent pas au diaporama 'low tech'."
 
@@ -1298,44 +1355,44 @@ msgstr "Préférences de Diaporama"
 
 #: ../setup/config_data.inc:859 ../setup/config_data.inc:867
 #: ../setup/config_data.inc:911 ../setup/config_data.inc:921
-#: ../setup/config_data.inc:1027 ../setup/config_data.inc:1038
-#: ../setup/config_data.inc:1049 ../setup/config_data.inc:1060
-#: ../setup/config_data.inc:1071 ../setup/config_data.inc:1082
-#: ../setup/config_data.inc:1622 ../setup/config_data.inc:1630
+#: ../setup/config_data.inc:1026 ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1048 ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1070 ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1621 ../setup/config_data.inc:1629
 msgid "Off"
 msgstr "Désactivé"
 
-#: ../setup/config_data.inc:860 ../setup/config_data.inc:1623
+#: ../setup/config_data.inc:860 ../setup/config_data.inc:1622
 msgid "No slideshow link will appear."
 msgstr "Le lien diaporama n'apparaîtra pas."
 
 #: ../setup/config_data.inc:861 ../setup/config_data.inc:868
-#: ../setup/config_data.inc:1624 ../setup/config_data.inc:1631
+#: ../setup/config_data.inc:1623 ../setup/config_data.inc:1630
 msgid "Ordered"
 msgstr "Ordonné"
 
-#: ../setup/config_data.inc:862 ../setup/config_data.inc:1625
+#: ../setup/config_data.inc:862 ../setup/config_data.inc:1624
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Les images seront affichées dans le même ordre que dans la gallerie."
 
 #: ../setup/config_data.inc:863 ../setup/config_data.inc:869
-#: ../setup/config_data.inc:1626 ../setup/config_data.inc:1632
+#: ../setup/config_data.inc:1625 ../setup/config_data.inc:1631
 msgid "Random"
 msgstr "Au hasard"
 
-#: ../setup/config_data.inc:864 ../setup/config_data.inc:1627
+#: ../setup/config_data.inc:864 ../setup/config_data.inc:1626
 msgid "Images will appear in a random order."
 msgstr "Les images aparaitront dans un ordre aléatoire."
 
-#: ../setup/config_data.inc:874 ../setup/config_data.inc:1649
+#: ../setup/config_data.inc:874 ../setup/config_data.inc:1648
 msgid "Slideshow length"
 msgstr "Longueur de Diaporama"
 
-#: ../setup/config_data.inc:875 ../setup/config_data.inc:1650
+#: ../setup/config_data.inc:875 ../setup/config_data.inc:1649
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Nombre d'images à afficher dans un diaporama. Mettez 0 ou rien pour afficher toutes les images. Mettez y un nombre si les diaporamas sont aléatoires ou si vous voulez seulement afficher une sélection d'immages."
 
-#: ../setup/config_data.inc:882 ../setup/config_data.inc:1643
+#: ../setup/config_data.inc:882 ../setup/config_data.inc:1642
 msgid "Allow slideshow to loop"
 msgstr "Autoriser les diaporamas à reboucler"
 
@@ -1397,7 +1454,7 @@ msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Les albums et sous-albums qui ont des commentaires seront marqués."
 
 #: ../setup/config_data.inc:917 ../setup/config_data.inc:924
-#: ../setup/config_data.inc:1711
+#: ../setup/config_data.inc:1710
 msgid "Both"
 msgstr "Les deux"
 
@@ -1467,943 +1524,943 @@ msgstr "Est-ce que tout le monde peut voir la vue globale des commentaires"
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "Voulez vous que tout le monde puisse voir une vue d'ensemble des commentaires d'un album? Configurez à &quot;no&quot; si vous voulez réserver cette possibilité seulement à l'utilisateur admin et aux propriétaires des albums."
 
-#: ../setup/config_data.inc:974
+#: ../setup/config_data.inc:973
 msgid "Watermarking"
 msgstr "Ajout de filigrane"
 
-#: ../setup/config_data.inc:976
+#: ../setup/config_data.inc:975
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr "Choisissez si vous voulez activer ou non les filigrannes . Et configurez le comportement par défaut."
 
-#: ../setup/config_data.inc:977
+#: ../setup/config_data.inc:976
 msgid "Watermarking is not possible in this installation !"
 msgstr "Cette installation ne peut pas créer de filigrannes"
 
-#: ../setup/config_data.inc:980
+#: ../setup/config_data.inc:979
 msgid "Watermark directory"
 msgstr "Répertoire des filigranes"
 
-#: ../setup/config_data.inc:981
+#: ../setup/config_data.inc:980
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr ""
 
-#: ../setup/config_data.inc:991
+#: ../setup/config_data.inc:990
 msgid "Which Imagetype is watermarked"
 msgstr "A quel type d'image ajoute-t-on un filigranne?"
 
-#: ../setup/config_data.inc:992
+#: ../setup/config_data.inc:991
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr "Ici vous pouvez choisir à quel type d'image Gallery devrait ajouter un filigranne, par défaut."
 
-#: ../setup/config_data.inc:997
+#: ../setup/config_data.inc:996
 msgid "Watermark both resized and full images"
 msgstr "Aouter un filigrane aux images redimensionnées et aux images d'origine."
 
-#: ../setup/config_data.inc:998
+#: ../setup/config_data.inc:997
 msgid "Watermark resized image only"
 msgstr "ajouter des filigrannes seulement aux images redimmensionnés"
 
-#: ../setup/config_data.inc:999
+#: ../setup/config_data.inc:998
 msgid "Watermark full sized image only"
 msgstr "Ajouter des filigrannes seulement aux images d'origine"
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1008
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: ../setup/config_data.inc:1010
+#: ../setup/config_data.inc:1009
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr "Le cache améliore les performances des grandes galleries d'images mais à cause de celà Gallery peut afficher les images dans le désordre ou avec des résultats de votes non mis à jours."
 
-#: ../setup/config_data.inc:1011
+#: ../setup/config_data.inc:1010
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr "Il y a un type différent de cahe pour chaque type de statistiques sauf pour &quot;aléatoire&quot;.I"
 
-#: ../setup/config_data.inc:1012
+#: ../setup/config_data.inc:1011
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr "Les caches peuvent être rafraichi en rechargeant la page de statistique et en ajoutant la variable 'refreshcache' dans l'URL."
 
-#: ../setup/config_data.inc:1013
+#: ../setup/config_data.inc:1012
 msgid "Caches will also refresh themselves after they have expired."
 msgstr "Les caches se rafraichiront d'eux-mêmes après expiration."
 
-#: ../setup/config_data.inc:1014
+#: ../setup/config_data.inc:1013
 msgid "The expire time in seconds is specified for each cache below."
 msgstr "La durée de vie de chaque cache est configurable, en secondes, pour tous les caches affichés ci-dessous."
 
-#: ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1014
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr "Si la durée de vie du cache est configurée à -1 alors le cache ne se rafraichira pas de lui même."
 
-#: ../setup/config_data.inc:1019
+#: ../setup/config_data.inc:1018
 msgid "Available Stats for 'normal' users"
 msgstr "Statistiques accessibles à un utilisateur 'normal'."
 
-#: ../setup/config_data.inc:1020
+#: ../setup/config_data.inc:1019
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr "Gallery peut fournir beaucoup de statistiques à l'administrateur, toutefois vous pouvez autoriser l'acces à certaines de ces statistiques aux simple utilisateurs."
 
-#: ../setup/config_data.inc:1021
+#: ../setup/config_data.inc:1020
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr "Pour chaque élément sélectionné Gallery créera un lien sur la page principale. Les statistiques sont basées sur ce qui est configuré dans %s."
 
-#: ../setup/config_data.inc:1026
+#: ../setup/config_data.inc:1025
 msgid "View cache"
 msgstr "Voir le cache"
 
-#: ../setup/config_data.inc:1027 ../setup/config_data.inc:1038
-#: ../setup/config_data.inc:1049 ../setup/config_data.inc:1060
-#: ../setup/config_data.inc:1071 ../setup/config_data.inc:1082
+#: ../setup/config_data.inc:1026 ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1048 ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1070 ../setup/config_data.inc:1081
 msgid "On"
 msgstr "Activé"
 
-#: ../setup/config_data.inc:1031
+#: ../setup/config_data.inc:1030
 msgid "View cache expiration"
 msgstr "Durée de vie du cache de visualisation"
 
-#: ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1036
 msgid "Comment cache"
 msgstr "Cache de commentaireCommentaires"
 
-#: ../setup/config_data.inc:1042
+#: ../setup/config_data.inc:1041
 msgid "Comment cache expiration"
 msgstr "Durée de vie du cahce de commentaire"
 
-#: ../setup/config_data.inc:1048
+#: ../setup/config_data.inc:1047
 msgid "Date cache"
 msgstr "cache de date"
 
-#: ../setup/config_data.inc:1053
+#: ../setup/config_data.inc:1052
 msgid "Date cache expiration"
 msgstr "Durée de vie du cache de date"
 
-#: ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1058
 msgid "Vote cache"
 msgstr "Cache de vote"
 
-#: ../setup/config_data.inc:1064
+#: ../setup/config_data.inc:1063
 msgid "Vote cache expiration"
 msgstr "Durée de vie du cache de vote"
 
-#: ../setup/config_data.inc:1070
+#: ../setup/config_data.inc:1069
 msgid "Rating cache"
 msgstr "cache d'estimation"
 
-#: ../setup/config_data.inc:1075
+#: ../setup/config_data.inc:1074
 msgid "Rating cache expiration"
 msgstr "Expiration du cache d'estimation"
 
-#: ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1080
 msgid "Capturedate cache"
 msgstr "Cache de date de prise de vue"
 
-#: ../setup/config_data.inc:1086
+#: ../setup/config_data.inc:1085
 msgid "Capturedate cache expiration"
 msgstr "Expiration du cache de date de prise de vue"
 
-#: ../setup/config_data.inc:1098
+#: ../setup/config_data.inc:1097
 msgid "Technical"
 msgstr "Technique"
 
-#: ../setup/config_data.inc:1099
+#: ../setup/config_data.inc:1098
 msgid "The settings in this section are intended for advanced users only."
 msgstr "Les parametres de cette section sont réservés aux utilisateurs avancés."
 
-#: ../setup/config_data.inc:1101
+#: ../setup/config_data.inc:1100
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
 msgstr "Veuillez être avertis que les paramêtres changés dans cet onglet pourraient avoir de sérieuses conséquences sur les performances ou la sécurité. Touchez à ceux-ci à vos risques et périls."
 
-#: ../setup/config_data.inc:1104
+#: ../setup/config_data.inc:1103
 #, fuzzy
 msgid "Debug Level"
 msgstr "Mode de Debug"
 
-#: ../setup/config_data.inc:1105
+#: ../setup/config_data.inc:1104
 #, fuzzy
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr "Activer le mode de debuggage afin de diagnostiquer les problèmes ?"
 
-#: ../setup/config_data.inc:1105
+#: ../setup/config_data.inc:1104
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr "Note: ne laissez pas active cette option dans votre environement de production! Sinon vous pourriez afficher plus d'informations sur votre Gallery et votre système que vous ne le souhaiteriez!"
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "No Debug"
 msgstr ""
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "Normal"
 msgstr ""
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "High (former Debug 'on')"
 msgstr ""
 
-#: ../setup/config_data.inc:1110
+#: ../setup/config_data.inc:1109
 msgid "Disable register_globals check"
 msgstr "Désactiver la vérification de register_global"
 
-#: ../setup/config_data.inc:1111
+#: ../setup/config_data.inc:1110
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
 msgstr ""
 
-#: ../setup/config_data.inc:1116
+#: ../setup/config_data.inc:1115
 msgid "Time Limit"
 msgstr "Timite de Temps"
 
-#: ../setup/config_data.inc:1117
+#: ../setup/config_data.inc:1116
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "Le temps maximal en secondes qu'une opération uniquement peut prendre.  Si vous vous trouvez confronté au message d'erreur <b>Maximum execution time exceeded</b>, vous pouvez essayer d'augmenter cette valeur.  Soyez conscients qu'une valeur trop importante pourrai laisser tourner un processus planté très longtemps sans pouvoir faire autre chose.  La valeur par défaut de 30 est raisonnable."
 
-#: ../setup/config_data.inc:1125
+#: ../setup/config_data.inc:1124
 msgid "Random Block Cache Time"
 msgstr ""
 
-#: ../setup/config_data.inc:1126
+#: ../setup/config_data.inc:1125
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr ""
 
-#: ../setup/config_data.inc:1129
+#: ../setup/config_data.inc:1128
 msgid "24 Hours"
 msgstr "24 heures"
 
-#: ../setup/config_data.inc:1130
+#: ../setup/config_data.inc:1129
 msgid "12 Hours"
 msgstr "12 heures"
 
-#: ../setup/config_data.inc:1131
+#: ../setup/config_data.inc:1130
 msgid "6 Hours"
 msgstr "6 heures"
 
-#: ../setup/config_data.inc:1132
+#: ../setup/config_data.inc:1131
 msgid "1 Hour"
 msgstr "1 heure"
 
-#: ../setup/config_data.inc:1133
+#: ../setup/config_data.inc:1132
 msgid "30 Minutes"
 msgstr "30 minutes"
 
-#: ../setup/config_data.inc:1137
+#: ../setup/config_data.inc:1136
 msgid "Random Block Retrieval Attempts"
 msgstr ""
 
-#: ../setup/config_data.inc:1138
+#: ../setup/config_data.inc:1137
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../setup/config_data.inc:1145
+#: ../setup/config_data.inc:1144
 msgid "Cache EXIF data"
 msgstr "Mettre en cache les données EXIF"
 
-#: ../setup/config_data.inc:1146
+#: ../setup/config_data.inc:1145
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "Les données EXIF extraites des fichiers JPEG peuvent être mise en cache après leur première lecture. La différence est que si vous mettez en cache tes données, il est possible que les fichiers de données deviennent assez gros, ce qui peut ralentir la visualisation de vos albums.  D'un autre côté, si vous ne les mettez pas en cache ces données doivent être relues à chaque fois fois qu'un utilisateur regarde les propriétés d'une photo, ce qui peut rendre l'opération lente."
 
-#: ../setup/config_data.inc:1152
+#: ../setup/config_data.inc:1151
 msgid "Developer Mode"
 msgstr "Mode développeur"
 
-#: ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1152
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr "Active l'affichage de toutes les erreurs et notifications PHP. Ceci n'est pas recommandé pour les utilisateurs qui ne sont pas familiers avec PHP."
 
-#: ../setup/config_data.inc:1158
+#: ../setup/config_data.inc:1157
 msgid "Use Syslog"
 msgstr "Utiliser Syslog"
 
-#: ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1158
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr "Rapporter les connexions utilisateurs, déconnexions et les erreurs graves via syslog (UNIX) ou l'observateur dévénements (Windows)."
 
-#: ../setup/config_data.inc:1164
+#: ../setup/config_data.inc:1163
 #, php-format
 msgid "Use %s"
 msgstr "Utiliser %s"
 
-#: ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1164
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Gallery utilise un sytème appelé flock() pour ajouter une protection contre les corruptions de données.  Ceci n'est pas supporté sur toutes les plateformes .  Si vous observrez des erreurs comme <i>Impossible d'acquérir un lock</i>, alors mettrez cette valeur à <i>non</i>."
 
-#: ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1168
 msgid "Status code"
 msgstr "Code d'état"
 
-#: ../setup/config_data.inc:1170
+#: ../setup/config_data.inc:1169
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "Code d'état que Gallery attend voir après un appel réussi à <i>exec()</i>.  Gallery essayera de voir ceci par lui même et vous ne devrez probablement pas changer cette valeurs tant que vous ne rencontrez pas de problème."
 
-#: ../setup/config_data.inc:1176
+#: ../setup/config_data.inc:1175
 msgid "Session variable"
 msgstr "Variable de session"
 
-#: ../setup/config_data.inc:1177
+#: ../setup/config_data.inc:1176
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "C'est le nom de variable de session utilisée pour contenir toutes les informations de session Gallery. Changez la s'il elle entre en conflit avec une autre application PHP sur votre site web."
 
-#: ../setup/config_data.inc:1189
+#: ../setup/config_data.inc:1188
 msgid "RSS Publisher"
 msgstr "Editeur RSS"
 
-#: ../setup/config_data.inc:1190
+#: ../setup/config_data.inc:1189
 msgid "Options for the Gallery RSS Publisher"
 msgstr "Options pour le feed RSS de Gallery. Si vous ne savez pas ce qu'est RSS vous pouvez aller sur http://www.pointblog.com/abc/000244.htm pour avoir plus d'informations"
 
-#: ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1192
 msgid "Enable RSS Generator"
 msgstr "Activer le générateur RSS"
 
-#: ../setup/config_data.inc:1194
+#: ../setup/config_data.inc:1193
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr "Active ou désactive le générateur RSS de Gallery."
 
-#: ../setup/config_data.inc:1196 ../setup/config_data.inc:1237
-#: ../setup/config_data.inc:1245 ../setup/config_data.inc:1253
+#: ../setup/config_data.inc:1195 ../setup/config_data.inc:1236
+#: ../setup/config_data.inc:1244 ../setup/config_data.inc:1252
 msgid "Yes"
 msgstr "oui"
 
-#: ../setup/config_data.inc:1197 ../setup/config_data.inc:1238
-#: ../setup/config_data.inc:1246 ../setup/config_data.inc:1254
+#: ../setup/config_data.inc:1196 ../setup/config_data.inc:1237
+#: ../setup/config_data.inc:1245 ../setup/config_data.inc:1253
 msgid "No"
 msgstr "Non"
 
-#: ../setup/config_data.inc:1201
+#: ../setup/config_data.inc:1200
 msgid "RSS Content"
 msgstr "Contenu du RSS"
 
-#: ../setup/config_data.inc:1202
+#: ../setup/config_data.inc:1201
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr "Spécifie quelle informations doivent être incluses dans votre feed RSS."
 
-#: ../setup/config_data.inc:1204
+#: ../setup/config_data.inc:1203
 msgid "Basic information only"
 msgstr "Informations de base seulement"
 
-#: ../setup/config_data.inc:1205
+#: ../setup/config_data.inc:1204
 msgid "Album highlight"
 msgstr "Mise en valeur de l'album"
 
-#: ../setup/config_data.inc:1206
+#: ../setup/config_data.inc:1205
 msgid "All image thumbnails"
 msgstr "Toutes les vignettes"
 
-#: ../setup/config_data.inc:1207
+#: ../setup/config_data.inc:1206
 msgid "All image thumbnails and captions"
 msgstr "Toutes les vignettes ainsi que les titres"
 
-#: ../setup/config_data.inc:1211
+#: ../setup/config_data.inc:1210
 msgid "RSS Highlight"
 msgstr "Mise en valeur du RSS"
 
-#: ../setup/config_data.inc:1212
+#: ../setup/config_data.inc:1211
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr "Spécifie quel album sera affiché comme icone de toutes les entrées RSS: Un champ vide signifie qu'il n'y aura pas de mise en valeur par défaut. '*' mettra en valeur les albums mis à jour récemment. Si vous spécifiez un nom d'album alors son image principale sera utilisée"
 
-#: ../setup/config_data.inc:1218
+#: ../setup/config_data.inc:1217
 msgid "Maximum Albums Returned"
 msgstr "Nombre maximum d'albums qui sera envoyé"
 
-#: ../setup/config_data.inc:1219
+#: ../setup/config_data.inc:1218
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr "Cette valeur détermine le nombre maximum d'albums que le feed RSS affichera à l'utilisateur. Seulement les albums mis à jour le plus récemment seront affiché."
 
-#: ../setup/config_data.inc:1226
+#: ../setup/config_data.inc:1225
 msgid "Visible Albums Only"
 msgstr "Albums visibles seulement"
 
-#: ../setup/config_data.inc:1227
+#: ../setup/config_data.inc:1226
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../setup/config_data.inc:1229
+#: ../setup/config_data.inc:1228
 msgid "Display Visible Albums Only"
 msgstr "Affiche seulement les albums visibles"
 
-#: ../setup/config_data.inc:1230
+#: ../setup/config_data.inc:1229
 msgid "Display Hidden Albums"
 msgstr "Afficher les albums cachés"
 
-#: ../setup/config_data.inc:1234
+#: ../setup/config_data.inc:1233
 msgid "Use dc:date"
 msgstr "Utiliser dc:date"
 
-#: ../setup/config_data.inc:1235
+#: ../setup/config_data.inc:1234
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr "(Avancé) Si un utilisateur se plaint du fait que le lecteur RSS affiche mal les vignettes, vous pouvez tenter d'activer cette option. Inclure dc:date n'est pas conforme au standard RSS 2.0, toutefois certains lecteurs RSS en ont besoin. Votre feed RSS ne sera plus valide RSS 2.0 une fois activé. "
 
-#: ../setup/config_data.inc:1242
+#: ../setup/config_data.inc:1241
 msgid "Use Big Photo"
 msgstr "Utiliser de grandes images"
 
-#: ../setup/config_data.inc:1243
+#: ../setup/config_data.inc:1242
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr "(Avancé) Si un utilisateur se plaint du fait que le lecteur RSS affiche mal les vignettes, vous pouvez tenter d'activer cette option.  Votre feed RSS ne sera plus valide RSS 2.0 une fois activé."
 
-#: ../setup/config_data.inc:1250
+#: ../setup/config_data.inc:1249
 msgid "Use Photo Tag"
 msgstr ""
 
-#: ../setup/config_data.inc:1251
+#: ../setup/config_data.inc:1250
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../setup/config_data.inc:1279
+#: ../setup/config_data.inc:1278
 msgid "Layout"
 msgstr "Disposition"
 
-#: ../setup/config_data.inc:1282
+#: ../setup/config_data.inc:1281
 msgid "Default Columns"
 msgstr "Nombre de Colonnes par défaut"
 
-#: ../setup/config_data.inc:1283
+#: ../setup/config_data.inc:1282
 msgid "The default number of columns in an album."
 msgstr "Le nombre par défaut de colonnes dans un album."
 
-#: ../setup/config_data.inc:1288
+#: ../setup/config_data.inc:1287
 msgid "Default Rows"
 msgstr "Lignes par Défaut"
 
-#: ../setup/config_data.inc:1289
+#: ../setup/config_data.inc:1288
 msgid "The default number of rows in an album."
 msgstr "Le nombre de lignes par défaut dans un album."
 
-#: ../setup/config_data.inc:1300
+#: ../setup/config_data.inc:1299
 msgid "Appearance"
 msgstr "Apparence"
 
-#: ../setup/config_data.inc:1303
+#: ../setup/config_data.inc:1302
 msgid "Border color"
 msgstr "Couleur du cadre"
 
-#: ../setup/config_data.inc:1304
+#: ../setup/config_data.inc:1303
 #, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "Couleur par défaut pour les bords d'images. Vous trouverez des informations concernant les %scouleurs%s ici."
 
-#: ../setup/config_data.inc:1314
+#: ../setup/config_data.inc:1313
 msgid "Border width"
 msgstr "Épaisseur des cadres"
 
-#: ../setup/config_data.inc:1315
+#: ../setup/config_data.inc:1314
 msgid "Default width of (image) borders."
 msgstr "Épaisseur par défaut des bords d'image."
 
-#: ../setup/config_data.inc:1320
+#: ../setup/config_data.inc:1319
 msgid "Default Font"
 msgstr "Police par défaut"
 
-#: ../setup/config_data.inc:1321
+#: ../setup/config_data.inc:1320
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "Corps de police par défaut. ex: <i>arial</i> ou <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:1333
 msgid "Image Processing and Display"
 msgstr "Transformation et Affichage des Images"
 
-#: ../setup/config_data.inc:1337
+#: ../setup/config_data.inc:1336
 msgid "Thumbnail size"
 msgstr "Dimension des miniatures"
 
-#: ../setup/config_data.inc:1338
+#: ../setup/config_data.inc:1337
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "La taille par défaut (en pixels) des vignettes des albums."
 
-#: ../setup/config_data.inc:1344
+#: ../setup/config_data.inc:1343
 msgid "Resized image size"
 msgstr "Taille des images redimensionnées"
 
-#: ../setup/config_data.inc:1345
+#: ../setup/config_data.inc:1344
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "Quand les grandes images sont ajoutées à un album, une version intermédiaire sera automatiquement génerée à cette taille."
 
-#: ../setup/config_data.inc:1347 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1346 ../setup/config_data.inc:1362
 msgid "off"
 msgstr "désactivé"
 
-#: ../setup/config_data.inc:1350
+#: ../setup/config_data.inc:1349
 msgid "Resized JPEG/PNG images file size"
 msgstr "Taille des fichiers des images JPEG/PNG redimensionnées"
 
-#: ../setup/config_data.inc:1351
+#: ../setup/config_data.inc:1350
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "La taille par défaut de destination (en ko) des images JPEG/PNG redimensionnées. Entrer une valeur risque de ralentir l'envoi de fichiers, mais accélèrera l'affichage des pages, particulièrement pour les visiteurs sur modem téléphonique. Mettez à 0 pour ne pas choisir de taille."
 
-#: ../setup/config_data.inc:1358
+#: ../setup/config_data.inc:1357
 msgid "Maximum image size"
 msgstr "Taille maximale d'image"
 
-#: ../setup/config_data.inc:1359
+#: ../setup/config_data.inc:1358
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Vous pouvez éventuellement limiter les dimensions des images que vous enverrez dans Gallery."
 
-#: ../setup/config_data.inc:1360 ../setup/config_data.inc:1368
+#: ../setup/config_data.inc:1359 ../setup/config_data.inc:1367
 msgid "Warning:"
 msgstr "Attention:"
 
-#: ../setup/config_data.inc:1361
+#: ../setup/config_data.inc:1360
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Activer ce paramètre vous laissera <b>sans image originale de pleine taille</b> dans Gallery, mais vous permet de sauver un peu d'espace disque. Gallery tentera de préserver les commentaires JPEG et données EXIF pour l'image rétrécie, et ceci requièrt <b>ImageMagick</b> ou le programme optionnel <b>jhead</b> (voir l'Étape 2)."
 
-#: ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1362
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../setup/config_data.inc:1366
+#: ../setup/config_data.inc:1365
 msgid "Maximum JPEG/PNG image file size"
 msgstr "Taille maximale  de fichier d'image JPEG/PNG"
 
-#: ../setup/config_data.inc:1367
+#: ../setup/config_data.inc:1366
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "Vous pouvez en option, limiter la taille de fichier de vos images JPEG/PNG à l'envoi dans Gallery."
 
-#: ../setup/config_data.inc:1369
+#: ../setup/config_data.inc:1368
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "Activer cette fonctionnalité vous laissera <b>sans image de qualité originale</b> dans Gallery. Choisissez la taille de destination par défaut (en ko). Choisir une valeur risque de ralentir les envois de fichiers, mais accélèrera l'affichage des pages, particulièrement pour les utilisateurs connectés par modem téléphoniques. Mettez à 0 si vous ne voulez pas restreindre la taille de fichier."
 
-#: ../setup/config_data.inc:1375
+#: ../setup/config_data.inc:1374
 msgid "Preserve Names"
 msgstr "Préserver les Noms"
 
-#: ../setup/config_data.inc:1376
+#: ../setup/config_data.inc:1375
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "Quand vous envoyez des images dans Gallery, faut il préserver les noms de fichiers originaux? Si vous sélectionnez <i>non</i>, Gallery assignera un nouveau nom de fichier pour chaque photo ou film envoyé."
 
-#: ../setup/config_data.inc:1381
+#: ../setup/config_data.inc:1380
 msgid "Add to beginning"
 msgstr "Ajouter au début"
 
-#: ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1381
 msgid "New images added to beginning rather than end of albums."
 msgstr "Ajouter les nouvelles images au début plutôt qu'à la fin des albums."
 
-#: ../setup/config_data.inc:1387
+#: ../setup/config_data.inc:1386
 msgid "Fit-to-window"
 msgstr "Ajuster à la fenêtre"
 
-#: ../setup/config_data.inc:1388
+#: ../setup/config_data.inc:1387
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "À l'affichage de photos n'ayant pas de taille intermédiaire, Gallery peut automatiquement redimensionner les images pour qu'elles rentrent dans la fenêtre du navigateur (en utilisant JavaScript).  Ceci ne marchera probablement pas dans les environnements intégrés comme Nuke."
 
-#: ../setup/config_data.inc:1393
+#: ../setup/config_data.inc:1392
 msgid "Visitor size prefs"
 msgstr "Préférences de taille des visiteurs"
 
-#: ../setup/config_data.inc:1394
+#: ../setup/config_data.inc:1393
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "Offre aux visiteurs le choix de toujours voir les versions en pleine taille des images au lieu d'une taille intermédiaire. Ce paramètre dure le temps de la session du visiteur."
 
-#: ../setup/config_data.inc:1405
+#: ../setup/config_data.inc:1404
 msgid "Options"
 msgstr "Options"
 
-#: ../setup/config_data.inc:1408
+#: ../setup/config_data.inc:1407
 msgid "Printing Services"
 msgstr "Services d'Impression"
 
-#: ../setup/config_data.inc:1409
+#: ../setup/config_data.inc:1408
 msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "Autorise les visiteurs à imprimer les photos directement depuis l'album. Fotokasten est un service d'impression Allemand il est dont utile pour le marché europpéen. EZ Prints, PhotoAccess et Shutterfly sont basés aux États Unis. Chaque service donnera une petite donation au projet Gallery, à chaque impression. Si vous choisissez l'option Shutterfly's &quot;with donation&quot; , Gallery prendra une part de 2 cents (US) pour chaque photo imprimée (une photo 10x15 coûte normalement 49 cents US) et 1.8 cents parmi cette somme seront reversés au projet Gallery.  C'est un bon moyen pour vous de fournir du support à ce logiciel libre."
 
-#: ../setup/config_data.inc:1428
+#: ../setup/config_data.inc:1427
 msgid "Account for the mPUSH service"
 msgstr "compte pour le service mPUSH"
 
-#: ../setup/config_data.inc:1429
+#: ../setup/config_data.inc:1428
 #, fuzzy, php-format
 msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr "Si vous le choisissez vous pouvez créer votre propre compte mPUSH cellular photo service. Si vous n'utilisez pas votre propre compte alors veillez laisser ceci configuré à 'gallery'"
 
-#: ../setup/config_data.inc:1435
+#: ../setup/config_data.inc:1434
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../setup/config_data.inc:1436
+#: ../setup/config_data.inc:1435
 msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail"
 msgstr ""
 
-#: ../setup/config_data.inc:1442
+#: ../setup/config_data.inc:1441
 msgid "Gallery Link"
 msgstr "Lien vers la galerie"
 
-#: ../setup/config_data.inc:1443
+#: ../setup/config_data.inc:1442
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "Afficher un lien vers le premier niveau de Gallery à l'intérieur de l'album? Si vous désactivez cette fonctionnalité, les utilisateurs n'auront pas la possibilité de naviger hors des albums.  C'est utile seulement si vous vous utilisez Gallery à l'intérieur d'un site web et que vous ne voulez pas que les utilisateurs puissent (facilement) voir les autres albums de la galerie."
 
-#: ../setup/config_data.inc:1448
+#: ../setup/config_data.inc:1447
 msgid "Default Album Permissions"
 msgstr "Permissions des albums par défaut"
 
-#: ../setup/config_data.inc:1449
+#: ../setup/config_data.inc:1448
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr ""
 
-#: ../setup/config_data.inc:1451 ../setup/config_data.inc:1539
-#: ../setup/config_data.inc:1545
+#: ../setup/config_data.inc:1450 ../setup/config_data.inc:1538
+#: ../setup/config_data.inc:1544
 msgid "Everybody"
 msgstr "Tout le monde"
 
-#: ../setup/config_data.inc:1452
+#: ../setup/config_data.inc:1451
 msgid "Logged-In Users"
 msgstr "utilisateurs connectés"
 
-#: ../setup/config_data.inc:1453 ../setup/config_data.inc:1537
-#: ../setup/config_data.inc:1544
+#: ../setup/config_data.inc:1452 ../setup/config_data.inc:1536
+#: ../setup/config_data.inc:1543
 msgid "Nobody"
 msgstr "&quot;Personne&quot;"
 
-#: ../setup/config_data.inc:1464
+#: ../setup/config_data.inc:1463
 msgid "Data displayed"
 msgstr "Données affichées"
 
-#: ../setup/config_data.inc:1467
+#: ../setup/config_data.inc:1466
 msgid "Click counts"
 msgstr "Compter les clics"
 
-#: ../setup/config_data.inc:1468
+#: ../setup/config_data.inc:1467
 msgid "Display click counts within Albums?"
 msgstr "Afficher le compteur de clics dans les Albums?"
 
-#: ../setup/config_data.inc:1473
+#: ../setup/config_data.inc:1472
 msgid "Custom Fields"
 msgstr "Champs Personnalisés"
 
-#: ../setup/config_data.inc:1475
+#: ../setup/config_data.inc:1474
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "Les champs personnalisés sont disponibles pour décrire chaque image.  Ils doivent être séparés par des virgules. Ex: <i>Personnages, Lieu, Type de film</i>"
 
-#: ../setup/config_data.inc:1481
+#: ../setup/config_data.inc:1480
 msgid "Display clickable image dimensions"
 msgstr "Affiche des dimensions d'images cliquables"
 
-#: ../setup/config_data.inc:1482
+#: ../setup/config_data.inc:1481
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "Affiche des dimensions d'image cliquables cliquable sous les vignettes. Cela montrera d'abord les dimensions des images redimensionnées (s'il en existe), puis l'image en pleine taille, en fonction des paramètres de l'album et des permissions utilisateurs. Vous pourriez cliquez sur eux au lieu des vignettes de chaque image."
 
-#: ../setup/config_data.inc:1493
+#: ../setup/config_data.inc:1492
 msgid "Item Owner"
 msgstr "Propriétaire de l'Élément"
 
-#: ../setup/config_data.inc:1496
+#: ../setup/config_data.inc:1495
 msgid "Photo owner modification"
 msgstr "Modification par les propriétaire des photos"
 
-#: ../setup/config_data.inc:1497
+#: ../setup/config_data.inc:1496
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "Autoriser les propriétaires à éditer et redimensionner ou appliquer des modifications d'orientation à leurs photos ?"
 
-#: ../setup/config_data.inc:1502
+#: ../setup/config_data.inc:1501
 msgid "Photo owner deletion"
 msgstr "Suppression par les propriétaires de photo"
 
-#: ../setup/config_data.inc:1503
+#: ../setup/config_data.inc:1502
 msgid "Allow photo owners to delete their own photos?"
 msgstr "Voulez vous autoriser les propriétaires des photos à les supprimer?"
 
-#: ../setup/config_data.inc:1508
+#: ../setup/config_data.inc:1507
 msgid "Photo owner display"
 msgstr "Affichage du propriétaire de la photo"
 
-#: ../setup/config_data.inc:1509
+#: ../setup/config_data.inc:1508
 msgid "Display the name of photo owners with the caption?"
 msgstr "Afficher le nom des propriétaires des photos avec la description?"
 
-#: ../setup/config_data.inc:1520
+#: ../setup/config_data.inc:1519
 msgid "Polling configuration"
 msgstr "Configuration des Sondages"
 
-#: ../setup/config_data.inc:1522
+#: ../setup/config_data.inc:1521
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "Ceci autorise vos visiteurs à voter ou évaluer le contenu d'un album. Vous placez des paramètres par défaut ici, qui seront appliqués aux nouveaux albums, et à tous les albums existants si c'est votre première mise à jour vers la version %s."
 
-#: ../setup/config_data.inc:1525
+#: ../setup/config_data.inc:1524
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "Dans chaque album, le vote peut être désactivé, restreind aux seuls utilisateurs connectés ou ouvert à tous les visiteurs."
 
-#: ../setup/config_data.inc:1527
+#: ../setup/config_data.inc:1526
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Il y a deux sortes de scrutins:  %s, qui permet aux votants de choisir leurs favoris en tant que premier, second, troisième, etc., et %s, qui permet aux votants d'évaluer n'importe laquelle ou toutes les images sans restriction.  %s est comme une revue de film où toutes les images peuvent obtenir (par exemple) 5 points, alors que %s est utile dans un concours."
 
-#: ../setup/config_data.inc:1528 ../setup/config_data.inc:1531
-#: ../setup/config_data.inc:1552 ../setup/config_data.inc:1557
+#: ../setup/config_data.inc:1527 ../setup/config_data.inc:1530
+#: ../setup/config_data.inc:1551 ../setup/config_data.inc:1556
 msgid "Rank"
 msgstr "Classement"
 
-#: ../setup/config_data.inc:1529 ../setup/config_data.inc:1530
-#: ../setup/config_data.inc:1554 ../setup/config_data.inc:1558
+#: ../setup/config_data.inc:1528 ../setup/config_data.inc:1529
+#: ../setup/config_data.inc:1553 ../setup/config_data.inc:1557
 msgid "Critique"
 msgstr "Critique"
 
-#: ../setup/config_data.inc:1534
+#: ../setup/config_data.inc:1533
 msgid "Voter class"
 msgstr "Classe de votant"
 
-#: ../setup/config_data.inc:1535
+#: ../setup/config_data.inc:1534
 msgid "Voting is available to:"
 msgstr "Le vote est accessible à:"
 
-#: ../setup/config_data.inc:1538
+#: ../setup/config_data.inc:1537
 msgid "Voting is off."
 msgstr "Le vote est désactivé."
 
-#: ../setup/config_data.inc:1540
+#: ../setup/config_data.inc:1539
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Tout le monde peut voter. Les votes sont enregistrés par identifiant de session."
 
-#: ../setup/config_data.inc:1541 ../setup/config_data.inc:1546
+#: ../setup/config_data.inc:1540 ../setup/config_data.inc:1545
 msgid "Logged in"
 msgstr "Connecté"
 
-#: ../setup/config_data.inc:1542
+#: ../setup/config_data.inc:1541
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "Les utilisateurs enregistrés peuvent voter.  Des voix sont enregistrées sur l'identification de l'utilisateur, et les votants peuvent revenir et changer leurs choix."
 
-#: ../setup/config_data.inc:1549
+#: ../setup/config_data.inc:1548
 msgid "Poll type"
 msgstr "Type de sonfage"
 
-#: ../setup/config_data.inc:1550
+#: ../setup/config_data.inc:1549
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Gallery offre deux types de sondages permettant de voter pour les images. Voir ci-dessus pour une explication plus détaillée."
 
-#: ../setup/config_data.inc:1553
+#: ../setup/config_data.inc:1552
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "Les utilisateurs ont un ensemble de voix qu'ils peuvent assigner aux images."
 
-#: ../setup/config_data.inc:1555
+#: ../setup/config_data.inc:1554
 msgid "Enables users to give all images points without restriction."
 msgstr "Permettre aux utilisateurs de donner à toutes les images des points sans restrictions."
 
-#: ../setup/config_data.inc:1562
+#: ../setup/config_data.inc:1561
 msgid "Number of choices"
 msgstr "Nombre de Choix"
 
-#: ../setup/config_data.inc:1563
+#: ../setup/config_data.inc:1562
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "Entrez le nombre de choix qui seront disponibles aux utilisateurs en tant que bouton radio ou menu déroulant."
 
-#: ../setup/config_data.inc:1568
+#: ../setup/config_data.inc:1567
 msgid "Vote hint"
 msgstr "Conseil de vote"
 
-#: ../setup/config_data.inc:1569
+#: ../setup/config_data.inc:1568
 msgid "This is displayed above the voting options under each image."
 msgstr "Ceci est affiché en dessus des options de vote sous chaque image."
 
-#: ../setup/config_data.inc:1571
+#: ../setup/config_data.inc:1570
 msgid "Vote for this image"
 msgstr "Vote pour cet image"
 
-#: ../setup/config_data.inc:1576 ../setup/config_data.inc:1585
+#: ../setup/config_data.inc:1575 ../setup/config_data.inc:1584
 msgid "Show vote results"
 msgstr "Afficher les résultats des votes"
 
-#: ../setup/config_data.inc:1577
+#: ../setup/config_data.inc:1576
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "Affiche un résumé et un graphe sur la page de l'album à propos des images qui ont reçu les votes les plus élevés, et fourni un lien vers les résultats complets. Si cette option est %s, les résultats de vote seront seulement accessibles aux admins et propriétaires des albums."
 
-#: ../setup/config_data.inc:1583
+#: ../setup/config_data.inc:1582
 msgid "Number of results displayed"
 msgstr "Nombre de résultats affichés"
 
-#: ../setup/config_data.inc:1584
+#: ../setup/config_data.inc:1583
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "Si %s est %s, affiche un graphe montrant les plus hauts résultats. (Les résultats complets seront disponibles sur une page liée.)"
 
-#: ../setup/config_data.inc:1591
+#: ../setup/config_data.inc:1590
 msgid "Orientation of vote choices?"
 msgstr "Orientation des choix de vote?"
 
-#: ../setup/config_data.inc:1592
+#: ../setup/config_data.inc:1591
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "Les classements des sondages peuvent être affichés en les uns à côté des autres (horizontalement) ou au dessus les uns des autres (verticalement). Ceci n'a pas d'effet sur le vote de critique, qui est une liste déroulante."
 
-#: ../setup/config_data.inc:1595
+#: ../setup/config_data.inc:1594
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: ../setup/config_data.inc:1596
+#: ../setup/config_data.inc:1595
 msgid "Vertical"
 msgstr "Vertical"
 
-#: ../setup/config_data.inc:1598 ../setup/functions.inc:1078
+#: ../setup/config_data.inc:1597 ../setup/functions.inc:1078
 #: ../setup/functions.inc:1087 ../setup/functions.inc:1092
 msgid "Vote words and values"
 msgstr "Valeurs et mots du Vote"
 
-#: ../setup/config_data.inc:1599
+#: ../setup/config_data.inc:1598
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Ceci vous autorise à configurer le texte actuel qui sera affiché pour chaque option de vote, ainsi que le nombre de points que l'option vaut."
 
-#: ../setup/config_data.inc:1601
+#: ../setup/config_data.inc:1600
 msgid "Excellent"
 msgstr "Excellent"
 
-#: ../setup/config_data.inc:1602
+#: ../setup/config_data.inc:1601
 msgid "Very Good"
 msgstr "Très Bon"
 
-#: ../setup/config_data.inc:1603
+#: ../setup/config_data.inc:1602
 msgid "Good"
 msgstr "Bon"
 
-#: ../setup/config_data.inc:1604
+#: ../setup/config_data.inc:1603
 msgid "Average"
 msgstr "Moyen"
 
-#: ../setup/config_data.inc:1605
+#: ../setup/config_data.inc:1604
 msgid "Poor"
 msgstr "Pauvre"
 
-#: ../setup/config_data.inc:1616
+#: ../setup/config_data.inc:1615
 msgid "Album Slideshow"
 msgstr "Diaporama d'Album"
 
-#: ../setup/config_data.inc:1620
+#: ../setup/config_data.inc:1619
 msgid "Slideshow Type"
 msgstr "Type de Diaporama"
 
-#: ../setup/config_data.inc:1637
+#: ../setup/config_data.inc:1636
 msgid "Recursive slideshow"
 msgstr "Diaporama récursif"
 
-#: ../setup/config_data.inc:1638
+#: ../setup/config_data.inc:1637
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "Mettez à %s si vous voulez inclure les images des sous-albums dans le diaporama."
 
-#: ../setup/config_data.inc:1644
+#: ../setup/config_data.inc:1643
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Cette option va autoriser les visiteurs à avoir votre diaporama rebouclant jusqu'à ce qu'ils ferment la fenêtre ou qu'ils naviguent jusqu'à une autre page. Mettez à %s si vous voulez économiser de la bande passante."
 
-#: ../setup/config_data.inc:1663 ../setup/config_data.inc:1667
-#: ../setup/config_data.inc:1673
+#: ../setup/config_data.inc:1662 ../setup/config_data.inc:1666
+#: ../setup/config_data.inc:1672
 msgid "Micro Thumb Photo Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1664
+#: ../setup/config_data.inc:1663
 msgid "These settings apply to the micro-thumb photo navigation system.  The micro thumbs are only visible when viewing individual images."
 msgstr ""
 
-#: ../setup/config_data.inc:1668
+#: ../setup/config_data.inc:1667
 msgid "Uses micro-thumbnails for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the micro thumb navigation system AND the old style navigation system."
 msgstr ""
 
-#: ../setup/config_data.inc:1670
+#: ../setup/config_data.inc:1669
 #, fuzzy
 msgid "both"
 msgstr "Les deux"
 
-#: ../setup/config_data.inc:1675 ../setup/config_data.inc:1681
+#: ../setup/config_data.inc:1674 ../setup/config_data.inc:1680
 #, fuzzy
 msgid "Fixed"
 msgstr "Échec"
 
-#: ../setup/config_data.inc:1676
+#: ../setup/config_data.inc:1675
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1677 ../setup/config_data.inc:1681
+#: ../setup/config_data.inc:1676 ../setup/config_data.inc:1680
 msgid "Dynamic"
 msgstr ""
 
-#: ../setup/config_data.inc:1678
+#: ../setup/config_data.inc:1677
 msgid "Displays previos & next images, with current image between."
 msgstr ""
 
-#: ../setup/config_data.inc:1684
+#: ../setup/config_data.inc:1683
 msgid "Show Micro Thumb for First/Last"
 msgstr ""
 
-#: ../setup/config_data.inc:1685
+#: ../setup/config_data.inc:1684
 msgid "This allows you to turn on and off the display of the first and last micro-thumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1690
+#: ../setup/config_data.inc:1689
 msgid "Number of Previous Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1691
+#: ../setup/config_data.inc:1690
 msgid "This is the number of previous micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1698
+#: ../setup/config_data.inc:1697
 msgid "Number of Next Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1699
+#: ../setup/config_data.inc:1698
 msgid "This is the number of next micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1706
+#: ../setup/config_data.inc:1705
 msgid "Location of Micro Thumb Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1707
+#: ../setup/config_data.inc:1706
 msgid "Displays the micro-thumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the micro thumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
 msgstr ""
 
-#: ../setup/config_data.inc:1710
+#: ../setup/config_data.inc:1709
 msgid "Top"
 msgstr ""
 
-#: ../setup/config_data.inc:1712
+#: ../setup/config_data.inc:1711
 msgid "Bottom"
 msgstr ""
 
-#: ../setup/config_data.inc:1715
+#: ../setup/config_data.inc:1714
 msgid "Height of Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1716
+#: ../setup/config_data.inc:1715
 msgid "The size of micro thumbnails will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
-#: ../setup/config_data.inc:1721
+#: ../setup/config_data.inc:1720
 msgid "Bonus to Current Micro Thumb's Size"
 msgstr ""
 
-#: ../setup/config_data.inc:1722
+#: ../setup/config_data.inc:1721
 msgid "This is the bonus in pixels to the size of the current micro-thumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other micro thumbs and a negative value will result in a smaller micro thumb."
 msgstr ""
 
-#: ../setup/config_data.inc:1733 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1732 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "Cadres"
 
-#: ../setup/config_data.inc:1734
+#: ../setup/config_data.inc:1733
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "Chaque image (vignette, redimensionnée et en pleine taille) dans %s a un cadre. Les styles suivants sont disponibles:"
 
-#: ../setup/config_data.inc:1738
+#: ../setup/config_data.inc:1737
 msgid "Subalbum frames"
 msgstr "Cadres de sous-albums"
 
-#: ../setup/config_data.inc:1739
+#: ../setup/config_data.inc:1738
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "Ce cadre apparaitra autour de l'image vignette représentant un sous-album."
 
-#: ../setup/config_data.inc:1744
+#: ../setup/config_data.inc:1743
 msgid "Frame around thumbs"
 msgstr "Cadres autour des vignettes"
 
-#: ../setup/config_data.inc:1745
+#: ../setup/config_data.inc:1744
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "Ce cadre apparaitera autour des images vignettes représentant une photo ou une animation."
 
-#: ../setup/config_data.inc:1751
+#: ../setup/config_data.inc:1750
 msgid "Frame around images"
 msgstr "Cadre autour des images"
 
-#: ../setup/config_data.inc:1752
+#: ../setup/config_data.inc:1751
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "Ce cadre apparaitra autour des photos en pleine taille et redimensionnées."
 
@@ -2957,212 +3014,212 @@ msgstr "Si %s, comme nom %s (ligne %d) valeur %s devrai être un nombre entier po
 msgid "<b>register_globals</b> is off."
 msgstr "<b>register_global</b> est désactivé."
 
-#: ../setup/functions.inc:1281
+#: ../setup/functions.inc:1282
 msgid "Your passwords do not match!"
 msgstr "Erreur de mot de passe, veuillez le retaper."
 
-#: ../setup/functions.inc:1297
+#: ../setup/functions.inc:1298
 msgid "Valid admin email address given."
 msgstr "Email d'admin valide donnée."
 
-#: ../setup/functions.inc:1304
+#: ../setup/functions.inc:1305
 msgid "You must specify valid admin email addresses"
 msgstr "Vous devez spécifier une adresse d'aministrateur valide"
 
-#: ../setup/functions.inc:1312
+#: ../setup/functions.inc:1313
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s n'est pas une adresse email valide."
 
-#: ../setup/functions.inc:1321
+#: ../setup/functions.inc:1322
 msgid "Valid sender email address given."
 msgstr "Email d'expéditeur valide donnée."
 
-#: ../setup/functions.inc:1323
+#: ../setup/functions.inc:1324
 msgid "You must specify a valid sender email address"
 msgstr "Vous devez spécifier une email d'envoi valide"
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1327
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Vous devez inclure %s dans votre message de bienvenue"
 
-#: ../setup/functions.inc:1331
+#: ../setup/functions.inc:1332
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Vous devez inclure %s ou bien %s dans votre email de bienvenue"
 
-#: ../setup/functions.inc:1355
+#: ../setup/functions.inc:1356
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr "Les fichiers suivant sont trop vieux, corrompus ou manquant: <br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
-#: ../setup/functions.inc:1357
+#: ../setup/functions.inc:1358
 msgid "This should be fixed before proceeding"
 msgstr "Ceci devrai être fixé avant de procéder"
 
-#: ../setup/functions.inc:1358 ../setup/functions.inc:1362
+#: ../setup/functions.inc:1359 ../setup/functions.inc:1363
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "Voyez à %sVérification des Versions%s pour plus de détails."
 
-#: ../setup/functions.inc:1361
+#: ../setup/functions.inc:1362
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr "%d fichiers sont plus récents qu'attendu. Ceci est OK si vous utilisez une pre-release, une beta, CVS ou du code modifié."
 
-#: ../setup/functions.inc:1366
+#: ../setup/functions.inc:1367
 #, php-format
 msgid "All tested files up-to-date."
 msgstr "Tous les fichiers sont à jour."
 
-#: ../setup/functions.inc:1368
+#: ../setup/functions.inc:1369
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr "Tous les %d fichiers sont à jour."
 
-#: ../setup/functions.inc:1377
+#: ../setup/functions.inc:1378
 #, php-format
 msgid "this is new in version %s"
 msgstr "nouveauté de la version %s"
 
-#: ../setup/functions.inc:1382
+#: ../setup/functions.inc:1383
 #, php-format
 msgid "Return to %s."
 msgstr "Retourner à %s."
 
-#: ../setup/functions.inc:1383
+#: ../setup/functions.inc:1384
 msgid "Configuration Wizard"
 msgstr "Assistant de Configuration"
 
-#: ../setup/functions.inc:1432
+#: ../setup/functions.inc:1433
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Vous devez entrer un mot de passe pour le compte %s."
 
-#: ../setup/functions.inc:1437
+#: ../setup/functions.inc:1438
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "Il semble que vous ayez déjà configuré Gallery, parce qu'il y a un compte administrateur, qui n'est cependantpas appelé %s."
 
-#: ../setup/functions.inc:1440
+#: ../setup/functions.inc:1441
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "Il semble que vous ayez déjà configuré Gallery, parce qu'il y a %d comptes administrateur, il n'y a cependant aucun nom d'utilisateur appelé %s"
 
-#: ../setup/functions.inc:1442
+#: ../setup/functions.inc:1443
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Vous n'êtes pas obligé d'entrer un mot de passe, mais si vous le vous le faites, Gallery créera un compte administrateur appelé %s avec ce mot de passe."
 
-#: ../setup/functions.inc:1451
+#: ../setup/functions.inc:1452
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Il semble que vous ayez déjà configuré Gallery, parce que l'utilisateur %s existe. Vous n'avez pas à entrer un mot de passe, mais si vous le faites, Gallery changera le mot de passe de l'utilisateur %s."
 
-#: ../setup/functions.inc:1458
+#: ../setup/functions.inc:1459
 msgid "Admin password"
 msgstr "Mot de Passe Administrateur"
 
-#: ../setup/functions.inc:1473 ../setup/functions.inc:1475
-#: ../setup/functions.inc:1477 ../setup/functions.inc:1485
+#: ../setup/functions.inc:1474 ../setup/functions.inc:1476
+#: ../setup/functions.inc:1478 ../setup/functions.inc:1486
 msgid "Full Name"
 msgstr "Nom"
 
-#: ../setup/functions.inc:1473 ../setup/functions.inc:1475
-#: ../setup/functions.inc:1479 ../setup/functions.inc:1487
+#: ../setup/functions.inc:1474 ../setup/functions.inc:1476
+#: ../setup/functions.inc:1480 ../setup/functions.inc:1488
 #: ../setup/login.inc:93
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../setup/functions.inc:1481
+#: ../setup/functions.inc:1482
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr "Nom complet sur lequel vous pouvez cliquer pour envoyer un e-mail (balise mailto:)."
 
-#: ../setup/functions.inc:1483
+#: ../setup/functions.inc:1484
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Nom d'utilisateur sur lequel vous pouvez cliquer pour envoyer un e-mail (balise mailto:)."
 
-#: ../setup/functions.inc:1485 ../setup/functions.inc:1487
+#: ../setup/functions.inc:1486 ../setup/functions.inc:1488
 msgid "email address"
 msgstr "Votre adresse email"
 
-#: ../setup/functions.inc:1498
+#: ../setup/functions.inc:1499
 msgid "Your version of PHP handles this issue properly."
 msgstr "Votre version de PHP est correctement configurée pour cette fonction."
 
-#: ../setup/functions.inc:1515
+#: ../setup/functions.inc:1516
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr "Fichier manquant ou illisible. Merci de l'installer puis de re-lancer ce test."
 
-#: ../setup/functions.inc:1519
+#: ../setup/functions.inc:1520
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr "Merci de vous assurer que %s soit la dernière version."
 
-#: ../setup/functions.inc:1524
+#: ../setup/functions.inc:1525
 #, php-format
 msgid "Testing status of %d files."
 msgstr "Test de l'état de %d fichiers."
 
-#: ../setup/functions.inc:1531
+#: ../setup/functions.inc:1532
 #, php-format
 msgid "Cannot read file %s."
 msgstr "Ne peut pas lire %s."
 
-#: ../setup/functions.inc:1533
+#: ../setup/functions.inc:1534
 msgid "File missing or unreadable."
 msgstr "Fichier manquant ou illisible"
 
-#: ../setup/functions.inc:1538
+#: ../setup/functions.inc:1539
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr "Informations de version non trouvées dans %s. Les fichiers sont trop anciens ou corrompus."
 
-#: ../setup/functions.inc:1540
+#: ../setup/functions.inc:1541
 msgid "Missing version"
 msgstr "Version manquante"
 
-#: ../setup/functions.inc:1547
+#: ../setup/functions.inc:1548
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr "Problème avec %s. La version attendue est %s (ou supérieure) mais la version trouvée est %s."
 
-#: ../setup/functions.inc:1549
+#: ../setup/functions.inc:1550
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr "La version attendue est %s (ou supérieure) mais la version trouvée est %s."
 
-#: ../setup/functions.inc:1553
+#: ../setup/functions.inc:1554
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr "%s OK. La version actuelle (%s) est plus récente que la version attendue (%s)"
 
-#: ../setup/functions.inc:1555
+#: ../setup/functions.inc:1556
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr "La version attendue est %s mais la version trouvée est %s."
 
-#: ../setup/functions.inc:1559
+#: ../setup/functions.inc:1560
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../setup/functions.inc:1561
+#: ../setup/functions.inc:1562
 #, php-format
 msgid "Found expected version %s."
 msgstr "La version attendue %s a été trouvée."
 
-#: ../setup/functions.inc:1691
+#: ../setup/functions.inc:1692
 msgid "This email will be sent when new accounts are created."
 msgstr "Cet email sera envoyé aux nouveaux comptes à leur création."
 
-#: ../setup/functions.inc:1692
+#: ../setup/functions.inc:1693
 #, fuzzy
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Laissez ce champ vide pour obtenir le message par défaut, qui sera traduit en d'autres langues. Le message par défaut est:"
 
-#: ../setup/functions.inc:1693
+#: ../setup/functions.inc:1694
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "Les fichiers suivants sont à jour."
@@ -3333,63 +3390,6 @@ msgstr "Il vous manque %s ou bien %s."
 #: ../setup/write.inc:242
 msgid "Review Settings"
 msgstr "Revue des Paramètres"
-
-#: ../html_wrap/frames/notebook/frame.def:5
-msgid "Spiral Notebook"
-msgstr "Classeur à spirales"
-
-#: ../html_wrap/frames/notebook/frame.def:6
-msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Ombres"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "Ombres transparentes en PNG allant vers en bas à droite. Vraie transparence donc celà devrait fonctionner sur la plupart des fonds d'ecran, sauf noir."
-
-#: ../html_wrap/frames/polaroid/frame.def:3
-msgid "Polaroid"
-msgstr "Polaroid"
-
-#: ../html_wrap/frames/polaroid/frame.def:4
-msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr "Une photo avec un grand cadre, agrandi au bas de l'image"
-
-#: ../html_wrap/frames/polaroids/frame.def:3
-msgid "Polaroids"
-msgstr "Polaroides"
-
-#: ../html_wrap/frames/polaroids/frame.def:4
-msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr "Plusieurs photos avec un grand cadre, agrandi au bas de l'image"
-
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Cadres dorés"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr ""
-
-#: ../html_wrap/frames/simple_book/frame.def:3
-msgid "Original Style"
-msgstr "Style Original"
-
-#: ../html_wrap/frames/simple_book/frame.def:4
-#, php-format
-msgid "The original %s album frame style."
-msgstr "Le style d'album %s original"
-
-#: ../html_wrap/frames/wooden/frame.def:4
-msgid "Wood Frame"
-msgstr "Cadres bois"
-
-#: ../html_wrap/frames/wooden/frame.def:5
-msgid "A textured wooden frame"
-msgstr "Un cadre avec texture bois."
 
 #~ msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 #~ msgstr "%s, %s et %s seront remplacés par le nom complet, le nom d'utilisateur et le mot de passe de l'utilisateur nouvellement créé."

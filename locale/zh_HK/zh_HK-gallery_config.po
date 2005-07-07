@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-06-26 01:05+0200\n"
+"POT-Creation-Date: 2005-07-07 23:21+0200\n"
 "PO-Revision-Date: 2004-09-01 13:57+0800\n"
 "Last-Translator: Kenneth Cheung\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -35,57 +35,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../errors/configure_help.php:2
+#: ../html_wrap/frames/notebook/frame.def:5
+msgid "Spiral Notebook"
+msgstr "螺旋記事本"
+
+#: ../html_wrap/frames/notebook/frame.def:6
+msgid "A white shadowed frame with spiral notebook binding on the left side"
+msgstr "白影框和在左側有螺旋釘裝的記事本"
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "陰影"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "PNG 透明影子在右邊和下面。除了黑色背景，適當的透明度可以用在所有背景上。"
+
+#: ../html_wrap/frames/polaroid/frame.def:3
+msgid "Polaroid"
+msgstr "寶麗萊"
+
+#: ../html_wrap/frames/polaroid/frame.def:4
+msgid "A photo with a large white frame, extra wide at the bottom edge"
+msgstr "大白框圍繞一張相片，在下邊特有特別多空位。"
+
+#: ../html_wrap/frames/polaroids/frame.def:3
+msgid "Polaroids"
+msgstr "多張寶麗萊"
+
+#: ../html_wrap/frames/polaroids/frame.def:4
+msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
+msgstr "大白框圍繞一疊相片，在下邊有特別多空位。"
+
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "金框"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "別出心裁的金質框"
+
+#: ../html_wrap/frames/simple_book/frame.def:3
+msgid "Original Style"
+msgstr "原來風格"
+
+#: ../html_wrap/frames/simple_book/frame.def:4
+#, php-format
+msgid "The original %s album frame style."
+msgstr "%s 相簿框原來風格"
+
+#: ../html_wrap/frames/wooden/frame.def:4
+msgid "Wood Frame"
+msgstr "木框"
+
+#: ../html_wrap/frames/wooden/frame.def:5
+msgid "A textured wooden frame"
+msgstr "木質框"
+
+#: ../includes/errors/configure_help.php:2
 #, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 msgstr "如果您碰到任何問題，應該先在 %sGallery 說明網頁%s 上尋找答案。"
 
-#: ../errors/reconfigure.php:10 ../errors/reconfigure.php:16
+#: ../includes/errors/reconfigure.php:10 ../includes/errors/reconfigure.php:16
 msgid "Gallery needs Reconfiguration"
 msgstr "需重新設定 Gallery"
 
-#: ../errors/reconfigure.php:19
+#: ../includes/errors/reconfigure.php:19
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
 msgstr "您的設定檔是由舊的 Gallery 所建立，並已經過時，請重新執行設定精靈！"
 
-#: ../errors/reconfigure.php:24
+#: ../includes/errors/reconfigure.php:24
 #, php-format
 msgid "Launch the %sConfiguration Wizard%s."
 msgstr "執行 %s設定精靈%s。"
 
-#: ../errors/unconfigured.php:10
+#: ../includes/errors/unconfigured.php:10
 msgid "Gallery Configuration Error"
 msgstr "Gallery 設定錯誤"
 
-#: ../errors/unconfigured.php:16
+#: ../includes/errors/unconfigured.php:16
 msgid "Gallery has not been configured!"
 msgstr "Gallery 沒有完成設定！"
 
-#: ../errors/unconfigured.php:20
+#: ../includes/errors/unconfigured.php:20
 msgid "Gallery must be configured before you can use it."
 msgstr "使用 Gallery 前必須設定妥當。"
 
-#: ../errors/unconfigured.php:25
+#: ../includes/errors/unconfigured.php:25
 msgid "1."
 msgstr "1."
 
-#: ../errors/unconfigured.php:26
+#: ../includes/errors/unconfigured.php:26
 msgid "Create an empty file .htaccess and an empty file config.php"
 msgstr "建立空白檔案 .htaccess 和 config.php"
 
-#: ../errors/unconfigured.php:28
+#: ../includes/errors/unconfigured.php:28
 msgid "2."
 msgstr "2."
 
-#: ../errors/unconfigured.php:29
+#: ../includes/errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
 msgstr "為您的相片和影片建立相簿資料夾。"
 
-#: ../errors/unconfigured.php:32
+#: ../includes/errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
 msgstr "請確定您的網站伺服器可以讀取並寫入檔案及檔案夾！"
 
-#: ../errors/unconfigured.php:37
+#: ../includes/errors/unconfigured.php:37
 #, php-format
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "然後執行 %s設定精靈%s。"
@@ -195,7 +252,7 @@ msgid "It seems that you did not configure your GALLERY. Please run and finish t
 msgstr "似乎您的 Gallery 尚未設定完成，請執行並完成設定精靈。"
 
 #: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1292
+#: ../setup/functions.inc:1293
 msgid "OK"
 msgstr "OK"
 
@@ -831,18 +888,18 @@ msgstr "需要 Jhead EXIF parser v.1.9 或以上版本（詳見下）。"
 #: ../setup/config_data.inc:796 ../setup/config_data.inc:884
 #: ../setup/config_data.inc:905 ../setup/config_data.inc:931
 #: ../setup/config_data.inc:937 ../setup/config_data.inc:938
-#: ../setup/config_data.inc:964 ../setup/config_data.inc:1112
-#: ../setup/config_data.inc:1147 ../setup/config_data.inc:1154
-#: ../setup/config_data.inc:1160 ../setup/config_data.inc:1166
-#: ../setup/config_data.inc:1377 ../setup/config_data.inc:1383
-#: ../setup/config_data.inc:1390 ../setup/config_data.inc:1396
-#: ../setup/config_data.inc:1438 ../setup/config_data.inc:1445
-#: ../setup/config_data.inc:1469 ../setup/config_data.inc:1483
-#: ../setup/config_data.inc:1498 ../setup/config_data.inc:1504
-#: ../setup/config_data.inc:1510 ../setup/config_data.inc:1579
-#: ../setup/config_data.inc:1586 ../setup/config_data.inc:1638
-#: ../setup/config_data.inc:1639 ../setup/config_data.inc:1645
-#: ../setup/config_data.inc:1670 ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:963 ../setup/config_data.inc:1111
+#: ../setup/config_data.inc:1146 ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1159 ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1376 ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1389 ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1437 ../setup/config_data.inc:1444
+#: ../setup/config_data.inc:1468 ../setup/config_data.inc:1482
+#: ../setup/config_data.inc:1497 ../setup/config_data.inc:1503
+#: ../setup/config_data.inc:1509 ../setup/config_data.inc:1578
+#: ../setup/config_data.inc:1585 ../setup/config_data.inc:1637
+#: ../setup/config_data.inc:1638 ../setup/config_data.inc:1644
+#: ../setup/config_data.inc:1669 ../setup/config_data.inc:1686
 msgid "yes"
 msgstr "是"
 
@@ -855,24 +912,24 @@ msgstr "是"
 #: ../setup/config_data.inc:778 ../setup/config_data.inc:796
 #: ../setup/config_data.inc:883 ../setup/config_data.inc:884
 #: ../setup/config_data.inc:905 ../setup/config_data.inc:931
-#: ../setup/config_data.inc:938 ../setup/config_data.inc:964
-#: ../setup/config_data.inc:1112 ../setup/config_data.inc:1147
-#: ../setup/config_data.inc:1154 ../setup/config_data.inc:1160
-#: ../setup/config_data.inc:1166 ../setup/config_data.inc:1377
-#: ../setup/config_data.inc:1383 ../setup/config_data.inc:1390
-#: ../setup/config_data.inc:1396 ../setup/config_data.inc:1438
-#: ../setup/config_data.inc:1445 ../setup/config_data.inc:1469
-#: ../setup/config_data.inc:1483 ../setup/config_data.inc:1498
-#: ../setup/config_data.inc:1504 ../setup/config_data.inc:1510
-#: ../setup/config_data.inc:1578 ../setup/config_data.inc:1579
-#: ../setup/config_data.inc:1639 ../setup/config_data.inc:1644
-#: ../setup/config_data.inc:1645 ../setup/config_data.inc:1670
-#: ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:938 ../setup/config_data.inc:963
+#: ../setup/config_data.inc:1111 ../setup/config_data.inc:1146
+#: ../setup/config_data.inc:1153 ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1165 ../setup/config_data.inc:1376
+#: ../setup/config_data.inc:1382 ../setup/config_data.inc:1389
+#: ../setup/config_data.inc:1395 ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:1444 ../setup/config_data.inc:1468
+#: ../setup/config_data.inc:1482 ../setup/config_data.inc:1497
+#: ../setup/config_data.inc:1503 ../setup/config_data.inc:1509
+#: ../setup/config_data.inc:1577 ../setup/config_data.inc:1578
+#: ../setup/config_data.inc:1638 ../setup/config_data.inc:1643
+#: ../setup/config_data.inc:1644 ../setup/config_data.inc:1669
+#: ../setup/config_data.inc:1686
 msgid "no"
 msgstr "否"
 
 #: ../setup/config_data.inc:438 ../setup/config_data.inc:667
-#: ../setup/config_data.inc:677 ../setup/config_data.inc:1145
+#: ../setup/config_data.inc:677 ../setup/config_data.inc:1144
 #: ../setup/functions.inc:923 ../setup/functions.inc:1003
 msgid "Advanced"
 msgstr "進階"
@@ -1167,7 +1224,7 @@ msgstr "允許使用者申請自動註冊。"
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "啟動本選項將允許訪客建立屬於自己的登入帳號。"
 
-#: ../setup/config_data.inc:751 ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:751 ../setup/config_data.inc:1436
 msgid "This option requires the Email feature to be enabled."
 msgstr "這個選項要求先啟動電郵巧能。"
 
@@ -1286,7 +1343,7 @@ msgstr "Gallery 層面的幻燈片輪播"
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "在 Gallery 的首頁顯示幻燈片輪播連結。注意較大規模的 Gallery 或會執行得很慢而且消耗不少系統資源。"
 
-#: ../setup/config_data.inc:854 ../setup/config_data.inc:1617
+#: ../setup/config_data.inc:854 ../setup/config_data.inc:1616
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "這個設定並不適用於低階幻燈片輪播。"
 
@@ -1296,44 +1353,44 @@ msgstr "幻燈片輪播設定"
 
 #: ../setup/config_data.inc:859 ../setup/config_data.inc:867
 #: ../setup/config_data.inc:911 ../setup/config_data.inc:921
-#: ../setup/config_data.inc:1027 ../setup/config_data.inc:1038
-#: ../setup/config_data.inc:1049 ../setup/config_data.inc:1060
-#: ../setup/config_data.inc:1071 ../setup/config_data.inc:1082
-#: ../setup/config_data.inc:1622 ../setup/config_data.inc:1630
+#: ../setup/config_data.inc:1026 ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1048 ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1070 ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1621 ../setup/config_data.inc:1629
 msgid "Off"
 msgstr "關閉"
 
-#: ../setup/config_data.inc:860 ../setup/config_data.inc:1623
+#: ../setup/config_data.inc:860 ../setup/config_data.inc:1622
 msgid "No slideshow link will appear."
 msgstr "不顯示幻燈片輪播連結。"
 
 #: ../setup/config_data.inc:861 ../setup/config_data.inc:868
-#: ../setup/config_data.inc:1624 ../setup/config_data.inc:1631
+#: ../setup/config_data.inc:1623 ../setup/config_data.inc:1630
 msgid "Ordered"
 msgstr "順序"
 
-#: ../setup/config_data.inc:862 ../setup/config_data.inc:1625
+#: ../setup/config_data.inc:862 ../setup/config_data.inc:1624
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "影像將會以 Gallery 中放置的次序顯示。"
 
 #: ../setup/config_data.inc:863 ../setup/config_data.inc:869
-#: ../setup/config_data.inc:1626 ../setup/config_data.inc:1632
+#: ../setup/config_data.inc:1625 ../setup/config_data.inc:1631
 msgid "Random"
 msgstr "隨機"
 
-#: ../setup/config_data.inc:864 ../setup/config_data.inc:1627
+#: ../setup/config_data.inc:864 ../setup/config_data.inc:1626
 msgid "Images will appear in a random order."
 msgstr "影像將會隨機顯示。"
 
-#: ../setup/config_data.inc:874 ../setup/config_data.inc:1649
+#: ../setup/config_data.inc:874 ../setup/config_data.inc:1648
 msgid "Slideshow length"
 msgstr "幻燈片輪播長度"
 
-#: ../setup/config_data.inc:875 ../setup/config_data.inc:1650
+#: ../setup/config_data.inc:875 ../setup/config_data.inc:1649
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "在幻燈片輪播中顯示的影像數量。設定為 0 或留空以顯示所有影像。在幻燈片隨機輪播下，如果您只想顯示一部份影像，將此設定為一個數值。"
 
-#: ../setup/config_data.inc:882 ../setup/config_data.inc:1643
+#: ../setup/config_data.inc:882 ../setup/config_data.inc:1642
 msgid "Allow slideshow to loop"
 msgstr "讓幻燈片重複輪播"
 
@@ -1396,7 +1453,7 @@ msgid "Albums and sub-albums that have comments will be marked."
 msgstr "有評論的相簿及子相簿會有記號標示。"
 
 #: ../setup/config_data.inc:917 ../setup/config_data.inc:924
-#: ../setup/config_data.inc:1711
+#: ../setup/config_data.inc:1710
 msgid "Both"
 msgstr "兩者"
 
@@ -1466,953 +1523,953 @@ msgstr "所有人都能看到評論總覽嗎"
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "您是否希望所有的人都看到相簿的所有評論總覽？如果只有管理者和擁有者可以使用這項功能，請設定為「否」。"
 
-#: ../setup/config_data.inc:974
+#: ../setup/config_data.inc:973
 #, fuzzy
 msgid "Watermarking"
 msgstr "水印目錄"
 
-#: ../setup/config_data.inc:976
+#: ../setup/config_data.inc:975
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
-#: ../setup/config_data.inc:977
+#: ../setup/config_data.inc:976
 #, fuzzy
 msgid "Watermarking is not possible in this installation !"
 msgstr "安裝過程中沒有使用 NetPBM。"
 
-#: ../setup/config_data.inc:980
+#: ../setup/config_data.inc:979
 msgid "Watermark directory"
 msgstr "水印目錄"
 
-#: ../setup/config_data.inc:981
+#: ../setup/config_data.inc:980
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr "在磁碟中儲存水印影像的完整目錄。這個目錄可包含用以覆蓋在相片上的 .png、.tif 及 .gif 影像。這些格式是被支援的因為它們可以包含透明或 alpha 層。<b>空白的目錄將導致無法使用水印功能。</b>注意此目錄需允許執行網站程式的使用者擁有讀取權限（您的使用者是 %s）。"
 
-#: ../setup/config_data.inc:991
+#: ../setup/config_data.inc:990
 msgid "Which Imagetype is watermarked"
 msgstr ""
 
-#: ../setup/config_data.inc:992
+#: ../setup/config_data.inc:991
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr ""
 
-#: ../setup/config_data.inc:997
+#: ../setup/config_data.inc:996
 #, fuzzy
 msgid "Watermark both resized and full images"
 msgstr "水印目錄"
 
-#: ../setup/config_data.inc:998
+#: ../setup/config_data.inc:997
 #, fuzzy
 msgid "Watermark resized image only"
 msgstr "水印目錄"
 
-#: ../setup/config_data.inc:999
+#: ../setup/config_data.inc:998
 #, fuzzy
 msgid "Watermark full sized image only"
 msgstr "水印目錄"
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1008
 msgid "Statistics"
 msgstr ""
 
-#: ../setup/config_data.inc:1010
+#: ../setup/config_data.inc:1009
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr ""
 
-#: ../setup/config_data.inc:1011
+#: ../setup/config_data.inc:1010
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr ""
 
-#: ../setup/config_data.inc:1012
+#: ../setup/config_data.inc:1011
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr ""
 
-#: ../setup/config_data.inc:1013
+#: ../setup/config_data.inc:1012
 msgid "Caches will also refresh themselves after they have expired."
 msgstr ""
 
-#: ../setup/config_data.inc:1014
+#: ../setup/config_data.inc:1013
 msgid "The expire time in seconds is specified for each cache below."
 msgstr ""
 
-#: ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1014
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr ""
 
-#: ../setup/config_data.inc:1019
+#: ../setup/config_data.inc:1018
 msgid "Available Stats for 'normal' users"
 msgstr ""
 
-#: ../setup/config_data.inc:1020
+#: ../setup/config_data.inc:1019
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr ""
 
-#: ../setup/config_data.inc:1021
+#: ../setup/config_data.inc:1020
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr ""
 
-#: ../setup/config_data.inc:1026
+#: ../setup/config_data.inc:1025
 msgid "View cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1027 ../setup/config_data.inc:1038
-#: ../setup/config_data.inc:1049 ../setup/config_data.inc:1060
-#: ../setup/config_data.inc:1071 ../setup/config_data.inc:1082
+#: ../setup/config_data.inc:1026 ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1048 ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1070 ../setup/config_data.inc:1081
 msgid "On"
 msgstr ""
 
-#: ../setup/config_data.inc:1031
+#: ../setup/config_data.inc:1030
 msgid "View cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1037
+#: ../setup/config_data.inc:1036
 #, fuzzy
 msgid "Comment cache"
 msgstr "評論"
 
-#: ../setup/config_data.inc:1042
+#: ../setup/config_data.inc:1041
 msgid "Comment cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1048
+#: ../setup/config_data.inc:1047
 msgid "Date cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1053
+#: ../setup/config_data.inc:1052
 msgid "Date cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1059
+#: ../setup/config_data.inc:1058
 #, fuzzy
 msgid "Vote cache"
 msgstr "投票者等級"
 
-#: ../setup/config_data.inc:1064
+#: ../setup/config_data.inc:1063
 msgid "Vote cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1070
+#: ../setup/config_data.inc:1069
 msgid "Rating cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1075
+#: ../setup/config_data.inc:1074
 msgid "Rating cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1080
 msgid "Capturedate cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1086
+#: ../setup/config_data.inc:1085
 msgid "Capturedate cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1098
+#: ../setup/config_data.inc:1097
 msgid "Technical"
 msgstr "技術性"
 
-#: ../setup/config_data.inc:1099
+#: ../setup/config_data.inc:1098
 msgid "The settings in this section are intended for advanced users only."
 msgstr ""
 
-#: ../setup/config_data.inc:1101
+#: ../setup/config_data.inc:1100
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
 msgstr ""
 
-#: ../setup/config_data.inc:1104
+#: ../setup/config_data.inc:1103
 #, fuzzy
 msgid "Debug Level"
 msgstr "除錯模式"
 
-#: ../setup/config_data.inc:1105
+#: ../setup/config_data.inc:1104
 #, fuzzy
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr "是否打開除錯模式以便調查分析問題？"
 
-#: ../setup/config_data.inc:1105
+#: ../setup/config_data.inc:1104
 #, fuzzy
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr "警告：不要在最終發佈的系統中啟動這個選項！否則會顯示更多您不想讓使用者看到的 Gallery 和系統資訊！"
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "No Debug"
 msgstr ""
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "Normal"
 msgstr ""
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1105
 msgid "High (former Debug 'on')"
 msgstr ""
 
-#: ../setup/config_data.inc:1110
+#: ../setup/config_data.inc:1109
 msgid "Disable register_globals check"
 msgstr ""
 
-#: ../setup/config_data.inc:1111
+#: ../setup/config_data.inc:1110
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
 msgstr ""
 
-#: ../setup/config_data.inc:1116
+#: ../setup/config_data.inc:1115
 msgid "Time Limit"
 msgstr "時限"
 
-#: ../setup/config_data.inc:1117
+#: ../setup/config_data.inc:1116
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "每一個動作所執行的最長時間（秒）。如果您發現有<b>超過最長運作時間</b>錯誤訊息，您可嘗試將數字設大一點。請注意如果您設得太大，<i>有可能</i>會導致一個程序停留太久但沒有任何行動。預設為 30 秒算是頗理想。"
 
-#: ../setup/config_data.inc:1125
+#: ../setup/config_data.inc:1124
 msgid "Random Block Cache Time"
 msgstr "隨機方塊暫存時間"
 
-#: ../setup/config_data.inc:1126
+#: ../setup/config_data.inc:1125
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr "這是隨機方塊暫存您相片及相簿資料以加快隨機相片要求的時間。越多更改您的相簿，就應越降低此數值，以確保新的相片可更快被選取及避免檢索已刪除的相片。當使用者在時限過後觀看隨機方塊，暫存資料會自動被更新。"
 
-#: ../setup/config_data.inc:1129
+#: ../setup/config_data.inc:1128
 msgid "24 Hours"
 msgstr "24 小時"
 
-#: ../setup/config_data.inc:1130
+#: ../setup/config_data.inc:1129
 msgid "12 Hours"
 msgstr "12 小時"
 
-#: ../setup/config_data.inc:1131
+#: ../setup/config_data.inc:1130
 msgid "6 Hours"
 msgstr "6 小時"
 
-#: ../setup/config_data.inc:1132
+#: ../setup/config_data.inc:1131
 msgid "1 Hour"
 msgstr "1 小時"
 
-#: ../setup/config_data.inc:1133
+#: ../setup/config_data.inc:1132
 msgid "30 Minutes"
 msgstr "30 分鐘"
 
-#: ../setup/config_data.inc:1137
+#: ../setup/config_data.inc:1136
 msgid "Random Block Retrieval Attempts"
 msgstr ""
 
-#: ../setup/config_data.inc:1138
+#: ../setup/config_data.inc:1137
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../setup/config_data.inc:1145
+#: ../setup/config_data.inc:1144
 msgid "Cache EXIF data"
 msgstr "暫存 EXIF 資料"
 
-#: ../setup/config_data.inc:1146
+#: ../setup/config_data.inc:1145
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "當第一次由 JPEG 檔案讀取 EXIF 資料時會將資料放入暫存檔內。缺點是若您暫存這資料，相簿的資料檔會變得頗大而有可能拖慢瀏覽相簿速度，但若不暫存這資料，則每次使用者瀏覽相片屬性時都需要才能接收讀取這資料，這樣做其實也會拖慢瀏覽速度。"
 
-#: ../setup/config_data.inc:1152
+#: ../setup/config_data.inc:1151
 msgid "Developer Mode"
 msgstr "開發人員模式"
 
-#: ../setup/config_data.inc:1153
+#: ../setup/config_data.inc:1152
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr "啟動開發人員模式以觀看所有 PHP 警告及告示。不建議對 PHP 不熟悉的使用者啟動此功能。"
 
-#: ../setup/config_data.inc:1158
+#: ../setup/config_data.inc:1157
 msgid "Use Syslog"
 msgstr "使用 Syslog"
 
-#: ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1158
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr "透過 syslog (UNIX) 或 System Event Manager (Windows) 報告使用者登入、登出及嚴重錯誤。"
 
-#: ../setup/config_data.inc:1164
+#: ../setup/config_data.inc:1163
 #, php-format
 msgid "Use %s"
 msgstr "使用 %s"
 
-#: ../setup/config_data.inc:1165
+#: ../setup/config_data.inc:1164
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Gallery 使用 flock() 作為鎖定系統以保護資料的正確性。通常不是所有的平台都有支援，如果您發現有錯誤情形例如 <i>Could not acquire lock</i> 那麼您應該將設定改為<i>否</i>。"
 
-#: ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1168
 msgid "Status code"
 msgstr "狀態碼"
 
-#: ../setup/config_data.inc:1170
+#: ../setup/config_data.inc:1169
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "當 exec() 呼叫成功時傳回 Gallery 的預期狀態碼。Gallery 會嘗試自行解決，所以除非您碰到問題，否則通常不需更改。"
 
-#: ../setup/config_data.inc:1176
+#: ../setup/config_data.inc:1175
 msgid "Session variable"
 msgstr "Session 變數"
 
-#: ../setup/config_data.inc:1177
+#: ../setup/config_data.inc:1176
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "用來包含 Gallery session 資訊的 session 變數名稱，如跟其他在您網站的 PHP 應用程式起衝突，就更改它。"
 
-#: ../setup/config_data.inc:1189
+#: ../setup/config_data.inc:1188
 msgid "RSS Publisher"
 msgstr "RSS 發佈者"
 
-#: ../setup/config_data.inc:1190
+#: ../setup/config_data.inc:1189
 msgid "Options for the Gallery RSS Publisher"
 msgstr "Gallery RSS 發佈者選項"
 
-#: ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1192
 msgid "Enable RSS Generator"
 msgstr "啟動 RSS 產生器"
 
-#: ../setup/config_data.inc:1194
+#: ../setup/config_data.inc:1193
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr "開啟或關閉 Gallery RSS 產生器"
 
-#: ../setup/config_data.inc:1196 ../setup/config_data.inc:1237
-#: ../setup/config_data.inc:1245 ../setup/config_data.inc:1253
+#: ../setup/config_data.inc:1195 ../setup/config_data.inc:1236
+#: ../setup/config_data.inc:1244 ../setup/config_data.inc:1252
 msgid "Yes"
 msgstr "是"
 
-#: ../setup/config_data.inc:1197 ../setup/config_data.inc:1238
-#: ../setup/config_data.inc:1246 ../setup/config_data.inc:1254
+#: ../setup/config_data.inc:1196 ../setup/config_data.inc:1237
+#: ../setup/config_data.inc:1245 ../setup/config_data.inc:1253
 msgid "No"
 msgstr "否"
 
-#: ../setup/config_data.inc:1201
+#: ../setup/config_data.inc:1200
 msgid "RSS Content"
 msgstr "RSS 內容"
 
-#: ../setup/config_data.inc:1202
+#: ../setup/config_data.inc:1201
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr "指定您的 RSS 發佈要包含哪些資料。"
 
-#: ../setup/config_data.inc:1204
+#: ../setup/config_data.inc:1203
 msgid "Basic information only"
 msgstr "只有基本資料"
 
-#: ../setup/config_data.inc:1205
+#: ../setup/config_data.inc:1204
 msgid "Album highlight"
 msgstr "相簿封面"
 
-#: ../setup/config_data.inc:1206
+#: ../setup/config_data.inc:1205
 msgid "All image thumbnails"
 msgstr "所有影像縮圖"
 
-#: ../setup/config_data.inc:1207
+#: ../setup/config_data.inc:1206
 msgid "All image thumbnails and captions"
 msgstr "所有影像縮圖及說明"
 
-#: ../setup/config_data.inc:1211
+#: ../setup/config_data.inc:1210
 msgid "RSS Highlight"
 msgstr "RSS 封面"
 
-#: ../setup/config_data.inc:1212
+#: ../setup/config_data.inc:1211
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr "指定顯示那個相簿作為所有發佈條目的圖示：空白欄位代表將沒有封面圖片，'*' 使用最新相簿的封面，指定某個相簿名稱將會使用該相簿的封面圖像。"
 
-#: ../setup/config_data.inc:1218
+#: ../setup/config_data.inc:1217
 msgid "Maximum Albums Returned"
 msgstr "最多相簿數量 Albums Returned"
 
-#: ../setup/config_data.inc:1219
+#: ../setup/config_data.inc:1218
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr "此數值代表在 RSS 發佈中顯示給使用者的最多相簿數量，只有最近期修改過的相簿才會被納入此數值。"
 
-#: ../setup/config_data.inc:1226
+#: ../setup/config_data.inc:1225
 msgid "Visible Albums Only"
 msgstr "只有可觀賞相簿"
 
-#: ../setup/config_data.inc:1227
+#: ../setup/config_data.inc:1226
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr "指定 RSS 應否包括隱藏相簿。並不建議這樣做，除非您是 Gallery 的唯一使用者。如果公開隱藏相簿將會使其他使用感到不悅。"
 
-#: ../setup/config_data.inc:1229
+#: ../setup/config_data.inc:1228
 msgid "Display Visible Albums Only"
 msgstr "只顯示可觀賞相簿"
 
-#: ../setup/config_data.inc:1230
+#: ../setup/config_data.inc:1229
 msgid "Display Hidden Albums"
 msgstr "顯示隱藏相簿"
 
-#: ../setup/config_data.inc:1234
+#: ../setup/config_data.inc:1233
 msgid "Use dc:date"
 msgstr "使用 dc:date"
 
-#: ../setup/config_data.inc:1235
+#: ../setup/config_data.inc:1234
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr "（進階）如果使用者投訴他們的 RSS 閱讀器無法處理您的發佈，嘗試啟動此項目。RSS 2.0 並不包含 dc:date，但一些閱讀器還是需要它，啟動它可以使您的發佈不被視為 RSS 2.0。"
 
-#: ../setup/config_data.inc:1242
+#: ../setup/config_data.inc:1241
 msgid "Use Big Photo"
 msgstr "使用大照片"
 
-#: ../setup/config_data.inc:1243
+#: ../setup/config_data.inc:1242
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr "（進階）如果使用者投訴他們的 RSS 閱讀器破壞了媒介繪圖，您可啟動此選項。啟動它可以使您的發佈不被視為合法的 RSS 2.0。"
 
-#: ../setup/config_data.inc:1250
+#: ../setup/config_data.inc:1249
 msgid "Use Photo Tag"
 msgstr "用相片標籤"
 
-#: ../setup/config_data.inc:1251
+#: ../setup/config_data.inc:1250
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr "（進階）關閉此項目產生兩個 RSS 延伸，使代表影像的項目可以從發佈中被移除。啟動此項目不會造成任何問題，關閉此項目側是個人偏好。"
 
-#: ../setup/config_data.inc:1279
+#: ../setup/config_data.inc:1278
 msgid "Layout"
 msgstr "版面"
 
-#: ../setup/config_data.inc:1282
+#: ../setup/config_data.inc:1281
 msgid "Default Columns"
 msgstr "預設行數（直）"
 
-#: ../setup/config_data.inc:1283
+#: ../setup/config_data.inc:1282
 msgid "The default number of columns in an album."
 msgstr "每個相簿的預設行數。"
 
-#: ../setup/config_data.inc:1288
+#: ../setup/config_data.inc:1287
 msgid "Default Rows"
 msgstr "預設列數（橫）"
 
-#: ../setup/config_data.inc:1289
+#: ../setup/config_data.inc:1288
 msgid "The default number of rows in an album."
 msgstr "每個相簿的預設列數。"
 
-#: ../setup/config_data.inc:1300
+#: ../setup/config_data.inc:1299
 msgid "Appearance"
 msgstr "外觀"
 
-#: ../setup/config_data.inc:1303
+#: ../setup/config_data.inc:1302
 msgid "Border color"
 msgstr "邊框顏色"
 
-#: ../setup/config_data.inc:1304
+#: ../setup/config_data.inc:1303
 #, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "預設（影像）邊框顏色。您可在此取得關於%s顏色%s的資訊。"
 
-#: ../setup/config_data.inc:1314
+#: ../setup/config_data.inc:1313
 msgid "Border width"
 msgstr "邊框寬度"
 
-#: ../setup/config_data.inc:1315
+#: ../setup/config_data.inc:1314
 msgid "Default width of (image) borders."
 msgstr "預設（影像）邊框寬度。"
 
-#: ../setup/config_data.inc:1320
+#: ../setup/config_data.inc:1319
 msgid "Default Font"
 msgstr "預設字形"
 
-#: ../setup/config_data.inc:1321
+#: ../setup/config_data.inc:1320
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "預設字型，例如 <i>arial</i> 或 <i>trebuchet</i>。"
 
-#: ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:1333
 msgid "Image Processing and Display"
 msgstr "影像處理與顯示"
 
-#: ../setup/config_data.inc:1337
+#: ../setup/config_data.inc:1336
 msgid "Thumbnail size"
 msgstr "縮圖大小"
 
-#: ../setup/config_data.inc:1338
+#: ../setup/config_data.inc:1337
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "預設的相片縮圖目標尺寸（單位：像素）。"
 
-#: ../setup/config_data.inc:1344
+#: ../setup/config_data.inc:1343
 msgid "Resized image size"
 msgstr "經調整的影像尺寸"
 
-#: ../setup/config_data.inc:1345
+#: ../setup/config_data.inc:1344
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "如果放到相簿的影像尺寸太大時，會自動產生一份這個尺寸的過渡版本。"
 
-#: ../setup/config_data.inc:1347 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1346 ../setup/config_data.inc:1362
 msgid "off"
 msgstr "關閉"
 
-#: ../setup/config_data.inc:1350
+#: ../setup/config_data.inc:1349
 msgid "Resized JPEG/PNG images file size"
 msgstr "調整 JPEG/PNG 影像的檔案大小"
 
-#: ../setup/config_data.inc:1351
+#: ../setup/config_data.inc:1350
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "預設重新調整的 JPEG/PNG 影像檔案大小（單位：kilobytes）。設定之後也許會拖慢檔案上傳的完成速度，不過在瀏覽圖片時會比較快速，特別對於使用撥號上網的用家。設定為 0 代表沒有限制。"
 
-#: ../setup/config_data.inc:1358
+#: ../setup/config_data.inc:1357
 msgid "Maximum image size"
 msgstr "最大影像大小"
 
-#: ../setup/config_data.inc:1359
+#: ../setup/config_data.inc:1358
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "您可選擇性的限制上傳到 Gallery 影像的大小"
 
-#: ../setup/config_data.inc:1360 ../setup/config_data.inc:1368
+#: ../setup/config_data.inc:1359 ../setup/config_data.inc:1367
 #, fuzzy
 msgid "Warning:"
 msgstr "警告"
 
-#: ../setup/config_data.inc:1361
+#: ../setup/config_data.inc:1360
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "啟動此功能將令您在 Gallery 內<b>無法保留一份原始質素的影像</b>，但可以使您節省硬碟空間。Gallery會試著在已縮小的影像內保存 JPEG 備註及 EXIF 資料，但這必須要有 <b>Image Magick</b> 或非必要的 <b>jhead</b> 程式（請看步驟 2）。"
 
-#: ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1362
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d（%d 百萬像素）"
 
-#: ../setup/config_data.inc:1366
+#: ../setup/config_data.inc:1365
 msgid "Maximum JPEG/PNG image file size"
 msgstr "最大 JPEG/PNG 影像檔案大小"
 
-#: ../setup/config_data.inc:1367
+#: ../setup/config_data.inc:1366
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "您可選擇性地限制上傳到 Gallery 的 JPEG/PNG 相片檔案大小。"
 
-#: ../setup/config_data.inc:1369
+#: ../setup/config_data.inc:1368
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "啟動此功能將令您在 Gallery 內<b>無法保留一份原始質素的影像</b>。預設重新調整的 JPEG 影像檔案大小(單位：KB)。設定之後也許會拖慢檔案上傳的完成速度，不過在瀏覽圖片時會比較快速，特別對於使用撥號上網的用家。設定為 0 代表沒有限制檔案大小。"
 
-#: ../setup/config_data.inc:1375
+#: ../setup/config_data.inc:1374
 msgid "Preserve Names"
 msgstr "保留名稱"
 
-#: ../setup/config_data.inc:1376
+#: ../setup/config_data.inc:1375
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "上傳檔案時應否保留原如檔案名稱？如果您選擇<i>否</i>，Gallery 將會為每個上傳的相片或影片指定一個新的名稱。"
 
-#: ../setup/config_data.inc:1381
+#: ../setup/config_data.inc:1380
 msgid "Add to beginning"
 msgstr "新增至最前面"
 
-#: ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1381
 msgid "New images added to beginning rather than end of albums."
 msgstr "新加入的影像放在相簿最前而不是最後。"
 
-#: ../setup/config_data.inc:1387
+#: ../setup/config_data.inc:1386
 msgid "Fit-to-window"
 msgstr "符合視窗大小"
 
-#: ../setup/config_data.inc:1388
+#: ../setup/config_data.inc:1387
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "當觀看沒有過渡版本的相片時，Gallery 會根據瀏覽者的視窗自動調整大小（利用 JavaScript）。這個功能可能在 Nuke 等嵌入環境下無法使用。"
 
-#: ../setup/config_data.inc:1393
+#: ../setup/config_data.inc:1392
 msgid "Visitor size prefs"
 msgstr "訪客尺寸喜好"
 
-#: ../setup/config_data.inc:1394
+#: ../setup/config_data.inc:1393
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "允許訪客能夠一直觀看完整相片而非過渡版本。這個功能只有在該訪客的 session 內生效。"
 
-#: ../setup/config_data.inc:1405
+#: ../setup/config_data.inc:1404
 msgid "Options"
 msgstr "選項"
 
-#: ../setup/config_data.inc:1408
+#: ../setup/config_data.inc:1407
 msgid "Printing Services"
 msgstr "列印服務"
 
-#: ../setup/config_data.inc:1409
+#: ../setup/config_data.inc:1408
 #, fuzzy
 msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "允許訪客從相簿中直接列印相片。Fotokasten 是一間德國的印製服務商，所以適合歐洲市場。EZ Prints、PhotoAccess 及 Shutterfly 是美國服務商。每張您列印相片所付的費用，所有服務商均會將一少部份撥獻給 Gallery 計畫。使用這些服務是您贊助本免費軟件的最佳途徑。"
 
-#: ../setup/config_data.inc:1428
+#: ../setup/config_data.inc:1427
 msgid "Account for the mPUSH service"
 msgstr ""
 
-#: ../setup/config_data.inc:1429
+#: ../setup/config_data.inc:1428
 #, php-format
 msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr ""
 
-#: ../setup/config_data.inc:1435
+#: ../setup/config_data.inc:1434
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../setup/config_data.inc:1436
+#: ../setup/config_data.inc:1435
 msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail"
 msgstr ""
 
-#: ../setup/config_data.inc:1442
+#: ../setup/config_data.inc:1441
 msgid "Gallery Link"
 msgstr "Gallery 連結"
 
-#: ../setup/config_data.inc:1443
+#: ../setup/config_data.inc:1442
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "要在您的相簿中顯示連至 Gallery 頂層的連結嗎？如果沒有開啟這個功能，使用者將無法在您的網站上自由瀏覽相簿。這個功能只有當您想要把相簿嵌入網站中，卻又不想讓別人輕易瀏覽 Gallery 裡的其他相簿時才要開啟。"
 
-#: ../setup/config_data.inc:1448
+#: ../setup/config_data.inc:1447
 msgid "Default Album Permissions"
 msgstr "預設相簿權限"
 
-#: ../setup/config_data.inc:1449
+#: ../setup/config_data.inc:1448
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr "設定相簿權限的預設值，具體就是誰可觀看此相簿及觀看其相片。"
 
-#: ../setup/config_data.inc:1451 ../setup/config_data.inc:1539
-#: ../setup/config_data.inc:1545
+#: ../setup/config_data.inc:1450 ../setup/config_data.inc:1538
+#: ../setup/config_data.inc:1544
 msgid "Everybody"
 msgstr "所有人"
 
-#: ../setup/config_data.inc:1452
+#: ../setup/config_data.inc:1451
 msgid "Logged-In Users"
 msgstr "登入的使用者"
 
-#: ../setup/config_data.inc:1453 ../setup/config_data.inc:1537
-#: ../setup/config_data.inc:1544
+#: ../setup/config_data.inc:1452 ../setup/config_data.inc:1536
+#: ../setup/config_data.inc:1543
 msgid "Nobody"
 msgstr "無人"
 
-#: ../setup/config_data.inc:1464
+#: ../setup/config_data.inc:1463
 msgid "Data displayed"
 msgstr "日期顯示"
 
-#: ../setup/config_data.inc:1467
+#: ../setup/config_data.inc:1466
 msgid "Click counts"
 msgstr "點閱數"
 
-#: ../setup/config_data.inc:1468
+#: ../setup/config_data.inc:1467
 msgid "Display click counts within Albums?"
 msgstr "要在相簿內顯示點閱數嗎？"
 
-#: ../setup/config_data.inc:1473
+#: ../setup/config_data.inc:1472
 msgid "Custom Fields"
 msgstr "自訂欄位"
 
-#: ../setup/config_data.inc:1475
+#: ../setup/config_data.inc:1474
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "自訂欄位可以增加相片的可讀性，您可以用逗號分隔，例如 <i>描述、地點、電影類別</i>。"
 
-#: ../setup/config_data.inc:1481
+#: ../setup/config_data.inc:1480
 msgid "Display clickable image dimensions"
 msgstr "顯示可點入的影像大小"
 
-#: ../setup/config_data.inc:1482
+#: ../setup/config_data.inc:1481
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "在縮圖下顯示可點入的影像大小。經調整大小的影像會先顯現，然後是完整影像，這取決於使用者的權限設定，您可點擊這些連結而不點擊縮圖以觀看影像。"
 
-#: ../setup/config_data.inc:1493
+#: ../setup/config_data.inc:1492
 msgid "Item Owner"
 msgstr "檔案擁有者"
 
-#: ../setup/config_data.inc:1496
+#: ../setup/config_data.inc:1495
 msgid "Photo owner modification"
 msgstr "相片擁有者可以修改檔案"
 
-#: ../setup/config_data.inc:1497
+#: ../setup/config_data.inc:1496
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "允許相片擁有者修改、旋轉/翻轉他的相片？"
 
-#: ../setup/config_data.inc:1502
+#: ../setup/config_data.inc:1501
 msgid "Photo owner deletion"
 msgstr "相片擁有者可以刪除檔案"
 
-#: ../setup/config_data.inc:1503
+#: ../setup/config_data.inc:1502
 msgid "Allow photo owners to delete their own photos?"
 msgstr "允許相片擁有者刪除自己的相片？"
 
-#: ../setup/config_data.inc:1508
+#: ../setup/config_data.inc:1507
 msgid "Photo owner display"
 msgstr "顯示相片擁有者"
 
-#: ../setup/config_data.inc:1509
+#: ../setup/config_data.inc:1508
 msgid "Display the name of photo owners with the caption?"
 msgstr "在說明中顯示相片的擁有者? "
 
-#: ../setup/config_data.inc:1520
+#: ../setup/config_data.inc:1519
 msgid "Polling configuration"
 msgstr "投票系統設定"
 
-#: ../setup/config_data.inc:1522
+#: ../setup/config_data.inc:1521
 #, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you first upgrade to version %s."
 msgstr "這允許您的訪客對相簿的內容進行投票或評分。在此您將設定投票系統的預設值，它會套用在新增的相簿中，同時也會在您第一次更新到版本 %s 時套用在已經存在的相簿裡面。"
 
-#: ../setup/config_data.inc:1525
+#: ../setup/config_data.inc:1524
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "在每個相簿裡面，投票系統可以關閉、限制給登入的使用者或開放給所有訪客使用。"
 
-#: ../setup/config_data.inc:1527
+#: ../setup/config_data.inc:1526
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "目前有兩種投票方式:%s 允許投票者選擇他們最喜愛、第二喜愛、第三喜愛等等，而 %s 允許投票者自由地對個別或全部影像進行評分。%s 比較像影像評論，所有相片可以獲得（比如說）5 分，而 %s 在分數競賽中比較有用。"
 
-#: ../setup/config_data.inc:1528 ../setup/config_data.inc:1531
-#: ../setup/config_data.inc:1552 ../setup/config_data.inc:1557
+#: ../setup/config_data.inc:1527 ../setup/config_data.inc:1530
+#: ../setup/config_data.inc:1551 ../setup/config_data.inc:1556
 msgid "Rank"
 msgstr "排名"
 
-#: ../setup/config_data.inc:1529 ../setup/config_data.inc:1530
-#: ../setup/config_data.inc:1554 ../setup/config_data.inc:1558
+#: ../setup/config_data.inc:1528 ../setup/config_data.inc:1529
+#: ../setup/config_data.inc:1553 ../setup/config_data.inc:1557
 msgid "Critique"
 msgstr "評論"
 
-#: ../setup/config_data.inc:1534
+#: ../setup/config_data.inc:1533
 msgid "Voter class"
 msgstr "投票者等級"
 
-#: ../setup/config_data.inc:1535
+#: ../setup/config_data.inc:1534
 msgid "Voting is available to:"
 msgstr "投票系統開放給："
 
-#: ../setup/config_data.inc:1538
+#: ../setup/config_data.inc:1537
 msgid "Voting is off."
 msgstr "投票系統已關閉。"
 
-#: ../setup/config_data.inc:1540
+#: ../setup/config_data.inc:1539
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "任何人皆可使用投票系統，票數將根據 session ID 紀錄。"
 
-#: ../setup/config_data.inc:1541 ../setup/config_data.inc:1546
+#: ../setup/config_data.inc:1540 ../setup/config_data.inc:1545
 msgid "Logged in"
 msgstr "已登入"
 
-#: ../setup/config_data.inc:1542
+#: ../setup/config_data.inc:1541
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "已註冊的使用者可以投票，票數將根據使用者身份紀錄，而投票者可以回來更改他們的選擇。"
 
-#: ../setup/config_data.inc:1549
+#: ../setup/config_data.inc:1548
 msgid "Poll type"
 msgstr "投票類型"
 
-#: ../setup/config_data.inc:1550
+#: ../setup/config_data.inc:1549
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Gallery 提供兩種影像投票的方式，詳見上面詳細的解釋。"
 
-#: ../setup/config_data.inc:1553
+#: ../setup/config_data.inc:1552
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "使用者有一組選票分配給各影像。"
 
-#: ../setup/config_data.inc:1555
+#: ../setup/config_data.inc:1554
 msgid "Enables users to give all images points without restriction."
 msgstr "讓使用者可以自由地對所有影像進行評分。"
 
-#: ../setup/config_data.inc:1562
+#: ../setup/config_data.inc:1561
 msgid "Number of choices"
 msgstr "選項數量"
 
-#: ../setup/config_data.inc:1563
+#: ../setup/config_data.inc:1562
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "給投票者在選擇式按鈕或下拉式選單中使用的選項數量。"
 
-#: ../setup/config_data.inc:1568
+#: ../setup/config_data.inc:1567
 msgid "Vote hint"
 msgstr "投票提示"
 
-#: ../setup/config_data.inc:1569
+#: ../setup/config_data.inc:1568
 msgid "This is displayed above the voting options under each image."
 msgstr "將會在每個影像的投票選項上面顯示。"
 
-#: ../setup/config_data.inc:1571
+#: ../setup/config_data.inc:1570
 msgid "Vote for this image"
 msgstr "對影像進行投票"
 
-#: ../setup/config_data.inc:1576 ../setup/config_data.inc:1585
+#: ../setup/config_data.inc:1575 ../setup/config_data.inc:1584
 msgid "Show vote results"
 msgstr "顯示投票結果"
 
-#: ../setup/config_data.inc:1577
+#: ../setup/config_data.inc:1576
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "在得分最高的影像所在頁面顯示摘要及圖表，並且提供連結到完整的結果。如果這個選項是 %s，投票結果將只開放給管理者及相簿擁有者。"
 
-#: ../setup/config_data.inc:1583
+#: ../setup/config_data.inc:1582
 msgid "Number of results displayed"
 msgstr "結果顯示的數量"
 
-#: ../setup/config_data.inc:1584
+#: ../setup/config_data.inc:1583
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "如果 %s 為 %s，顯示最多此數目的圖表。（完整結果將另存在一個連結頁面）"
 
-#: ../setup/config_data.inc:1591
+#: ../setup/config_data.inc:1590
 msgid "Orientation of vote choices?"
 msgstr "投票選項的排列方向？"
 
-#: ../setup/config_data.inc:1592
+#: ../setup/config_data.inc:1591
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "投票排行可以顯示在每一個旁邊（水平）或每一個下面（垂直）。對評論投票沒有影響，因其使用下拉式選單。"
 
-#: ../setup/config_data.inc:1595
+#: ../setup/config_data.inc:1594
 msgid "Horizontal"
 msgstr "水平"
 
-#: ../setup/config_data.inc:1596
+#: ../setup/config_data.inc:1595
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../setup/config_data.inc:1598 ../setup/functions.inc:1078
+#: ../setup/config_data.inc:1597 ../setup/functions.inc:1078
 #: ../setup/functions.inc:1087 ../setup/functions.inc:1092
 msgid "Vote words and values"
 msgstr "選項名稱與數值"
 
-#: ../setup/config_data.inc:1599
+#: ../setup/config_data.inc:1598
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "這允許您設定每個投票選項的實際顯示文字，以及每個選項所代表的分數。"
 
-#: ../setup/config_data.inc:1601
+#: ../setup/config_data.inc:1600
 msgid "Excellent"
 msgstr "一流"
 
-#: ../setup/config_data.inc:1602
+#: ../setup/config_data.inc:1601
 msgid "Very Good"
 msgstr "很好"
 
-#: ../setup/config_data.inc:1603
+#: ../setup/config_data.inc:1602
 msgid "Good"
 msgstr "好"
 
-#: ../setup/config_data.inc:1604
+#: ../setup/config_data.inc:1603
 msgid "Average"
 msgstr "普通"
 
-#: ../setup/config_data.inc:1605
+#: ../setup/config_data.inc:1604
 msgid "Poor"
 msgstr "差"
 
-#: ../setup/config_data.inc:1616
+#: ../setup/config_data.inc:1615
 msgid "Album Slideshow"
 msgstr "相簿幻燈片輪播"
 
-#: ../setup/config_data.inc:1620
+#: ../setup/config_data.inc:1619
 msgid "Slideshow Type"
 msgstr "幻燈片輪播形式"
 
-#: ../setup/config_data.inc:1637
+#: ../setup/config_data.inc:1636
 msgid "Recursive slideshow"
 msgstr "幻燈片循環輪播"
 
-#: ../setup/config_data.inc:1638
+#: ../setup/config_data.inc:1637
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "設定為 %s 如果您想要將子相簿裡的影像包含在幻燈片輪播裡面。"
 
-#: ../setup/config_data.inc:1644
+#: ../setup/config_data.inc:1643
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "這個選項可以讓訪客重複觀看幻燈片輪播直到他們關閉視窗或移至另一頁為止。如果您想節省頻寬請設定為「%s」。"
 
-#: ../setup/config_data.inc:1663 ../setup/config_data.inc:1667
-#: ../setup/config_data.inc:1673
+#: ../setup/config_data.inc:1662 ../setup/config_data.inc:1666
+#: ../setup/config_data.inc:1672
 msgid "Micro Thumb Photo Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1664
+#: ../setup/config_data.inc:1663
 msgid "These settings apply to the micro-thumb photo navigation system.  The micro thumbs are only visible when viewing individual images."
 msgstr ""
 
-#: ../setup/config_data.inc:1668
+#: ../setup/config_data.inc:1667
 msgid "Uses micro-thumbnails for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the micro thumb navigation system AND the old style navigation system."
 msgstr ""
 
-#: ../setup/config_data.inc:1670
+#: ../setup/config_data.inc:1669
 #, fuzzy
 msgid "both"
 msgstr "兩者"
 
-#: ../setup/config_data.inc:1675 ../setup/config_data.inc:1681
+#: ../setup/config_data.inc:1674 ../setup/config_data.inc:1680
 #, fuzzy
 msgid "Fixed"
 msgstr "失敗"
 
-#: ../setup/config_data.inc:1676
+#: ../setup/config_data.inc:1675
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1677 ../setup/config_data.inc:1681
+#: ../setup/config_data.inc:1676 ../setup/config_data.inc:1680
 msgid "Dynamic"
 msgstr ""
 
-#: ../setup/config_data.inc:1678
+#: ../setup/config_data.inc:1677
 msgid "Displays previos & next images, with current image between."
 msgstr ""
 
-#: ../setup/config_data.inc:1684
+#: ../setup/config_data.inc:1683
 msgid "Show Micro Thumb for First/Last"
 msgstr ""
 
-#: ../setup/config_data.inc:1685
+#: ../setup/config_data.inc:1684
 msgid "This allows you to turn on and off the display of the first and last micro-thumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1690
+#: ../setup/config_data.inc:1689
 msgid "Number of Previous Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1691
+#: ../setup/config_data.inc:1690
 msgid "This is the number of previous micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1698
+#: ../setup/config_data.inc:1697
 msgid "Number of Next Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1699
+#: ../setup/config_data.inc:1698
 msgid "This is the number of next micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1706
+#: ../setup/config_data.inc:1705
 msgid "Location of Micro Thumb Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1707
+#: ../setup/config_data.inc:1706
 msgid "Displays the micro-thumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the micro thumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
 msgstr ""
 
-#: ../setup/config_data.inc:1710
+#: ../setup/config_data.inc:1709
 msgid "Top"
 msgstr ""
 
-#: ../setup/config_data.inc:1712
+#: ../setup/config_data.inc:1711
 msgid "Bottom"
 msgstr ""
 
-#: ../setup/config_data.inc:1715
+#: ../setup/config_data.inc:1714
 msgid "Height of Micro Thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1716
+#: ../setup/config_data.inc:1715
 msgid "The size of micro thumbnails will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
-#: ../setup/config_data.inc:1721
+#: ../setup/config_data.inc:1720
 msgid "Bonus to Current Micro Thumb's Size"
 msgstr ""
 
-#: ../setup/config_data.inc:1722
+#: ../setup/config_data.inc:1721
 msgid "This is the bonus in pixels to the size of the current micro-thumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other micro thumbs and a negative value will result in a smaller micro thumb."
 msgstr ""
 
-#: ../setup/config_data.inc:1733 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1732 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "相框"
 
-#: ../setup/config_data.inc:1734
+#: ../setup/config_data.inc:1733
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "所有 %s 的影像（縮圖、經調整大小及完整尺寸）均可以有相框。有下列風格可選："
 
-#: ../setup/config_data.inc:1738
+#: ../setup/config_data.inc:1737
 msgid "Subalbum frames"
 msgstr "子相簿相框"
 
-#: ../setup/config_data.inc:1739
+#: ../setup/config_data.inc:1738
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "此相框將顯示於縮圖周圍，以代表這是一個子相簿。"
 
-#: ../setup/config_data.inc:1744
+#: ../setup/config_data.inc:1743
 msgid "Frame around thumbs"
 msgstr "縮圖相框"
 
-#: ../setup/config_data.inc:1745
+#: ../setup/config_data.inc:1744
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "此相框將顯示於縮圖周圍，以代表這是一個相片或影片。"
 
-#: ../setup/config_data.inc:1751
+#: ../setup/config_data.inc:1750
 msgid "Frame around images"
 msgstr "影像相框"
 
-#: ../setup/config_data.inc:1752
+#: ../setup/config_data.inc:1751
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "此相框將顯示於完整或被調整大小的相片周圍。"
 
@@ -2964,213 +3021,213 @@ msgstr "在 %s 中，名稱 %s（第 %d 列）的數值 %s 應為正整數"
 msgid "<b>register_globals</b> is off."
 msgstr "<b>safe_mode</b> 已關閉。"
 
-#: ../setup/functions.inc:1281
+#: ../setup/functions.inc:1282
 #, fuzzy
 msgid "Your passwords do not match!"
 msgstr "您的管理者密碼不符！"
 
-#: ../setup/functions.inc:1297
+#: ../setup/functions.inc:1298
 msgid "Valid admin email address given."
 msgstr "已指定合法的管理者電郵地址。"
 
-#: ../setup/functions.inc:1304
+#: ../setup/functions.inc:1305
 msgid "You must specify valid admin email addresses"
 msgstr "您必須指定合法的管理者電郵位址"
 
-#: ../setup/functions.inc:1312
+#: ../setup/functions.inc:1313
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s 並非合法的電郵地址。"
 
-#: ../setup/functions.inc:1321
+#: ../setup/functions.inc:1322
 msgid "Valid sender email address given."
 msgstr "已指定合法的送信者電郵地址。"
 
-#: ../setup/functions.inc:1323
+#: ../setup/functions.inc:1324
 msgid "You must specify a valid sender email address"
 msgstr "您必須指定一個正確的送信者電郵地址"
 
-#: ../setup/functions.inc:1326
+#: ../setup/functions.inc:1327
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "您必須將 %s 放入歡迎信件中"
 
-#: ../setup/functions.inc:1331
+#: ../setup/functions.inc:1332
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "您必須將 %s 或 %s 放入歡迎電郵中"
 
-#: ../setup/functions.inc:1355
+#: ../setup/functions.inc:1356
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr "下列檔案已過期、損毀或遺失：<br>&nbsp;&nbsp;&nbsp;&nbsp;%s。"
 
-#: ../setup/functions.inc:1357
+#: ../setup/functions.inc:1358
 msgid "This should be fixed before proceeding"
 msgstr "這需先被修復才可繼續"
 
-#: ../setup/functions.inc:1358 ../setup/functions.inc:1362
+#: ../setup/functions.inc:1359 ../setup/functions.inc:1363
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "詳見 %s檢查版本%s。"
 
-#: ../setup/functions.inc:1361
+#: ../setup/functions.inc:1362
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
 msgstr "%d 份檔案比預期新。如果您是使用 pre-release、beta、CVS 或修改過的編碼，這是可以的。"
 
-#: ../setup/functions.inc:1366
+#: ../setup/functions.inc:1367
 #, php-format
 msgid "All tested files up-to-date."
 msgstr "所有測試的檔案都是最新的。"
 
-#: ../setup/functions.inc:1368
+#: ../setup/functions.inc:1369
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr "所有 %d 份測試的檔案都是最新的。"
 
-#: ../setup/functions.inc:1377
+#: ../setup/functions.inc:1378
 #, php-format
 msgid "this is new in version %s"
 msgstr "這是版本 %s 的新功能"
 
-#: ../setup/functions.inc:1382
+#: ../setup/functions.inc:1383
 #, php-format
 msgid "Return to %s."
 msgstr "返回 %s。"
 
-#: ../setup/functions.inc:1383
+#: ../setup/functions.inc:1384
 msgid "Configuration Wizard"
 msgstr "設定精靈"
 
-#: ../setup/functions.inc:1432
+#: ../setup/functions.inc:1433
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "您必須為 %s 戶口輸入一個密碼。"
 
-#: ../setup/functions.inc:1437
+#: ../setup/functions.inc:1438
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "似乎您已設定過 Gallery，因為已經有一個管理者帳號，但不是名為%s。"
 
-#: ../setup/functions.inc:1440
+#: ../setup/functions.inc:1441
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "似乎您已設定過 Gallery，因為已經有 %d 個管理者帳號，但沒有使用者名為%s。"
 
-#: ../setup/functions.inc:1442
+#: ../setup/functions.inc:1443
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "您不需要輸入密碼，但您如果輸入密碼，Gallery 會建立一個管理者帳號名為%s，並以此為密碼。"
 
-#: ../setup/functions.inc:1451
+#: ../setup/functions.inc:1452
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "似乎您已設定過 Gallery，因為%s使用者已存在。您不需要輸入密碼，但您如果輸入密碼，Gallery 會更改使用者%s的密碼。"
 
-#: ../setup/functions.inc:1458
+#: ../setup/functions.inc:1459
 msgid "Admin password"
 msgstr "管理者密碼"
 
-#: ../setup/functions.inc:1473 ../setup/functions.inc:1475
-#: ../setup/functions.inc:1477 ../setup/functions.inc:1485
+#: ../setup/functions.inc:1474 ../setup/functions.inc:1476
+#: ../setup/functions.inc:1478 ../setup/functions.inc:1486
 msgid "Full Name"
 msgstr "全名"
 
-#: ../setup/functions.inc:1473 ../setup/functions.inc:1475
-#: ../setup/functions.inc:1479 ../setup/functions.inc:1487
+#: ../setup/functions.inc:1474 ../setup/functions.inc:1476
+#: ../setup/functions.inc:1480 ../setup/functions.inc:1488
 #: ../setup/login.inc:93
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../setup/functions.inc:1481
+#: ../setup/functions.inc:1482
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr "可點擊以寄出電郵(mailto:)時的全名"
 
-#: ../setup/functions.inc:1483
+#: ../setup/functions.inc:1484
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "可點擊以寄出電郵(mailto:)時的使用者名稱"
 
-#: ../setup/functions.inc:1485 ../setup/functions.inc:1487
+#: ../setup/functions.inc:1486 ../setup/functions.inc:1488
 msgid "email address"
 msgstr "電郵地址"
 
-#: ../setup/functions.inc:1498
+#: ../setup/functions.inc:1499
 msgid "Your version of PHP handles this issue properly."
 msgstr "您目前的 PHP 版本可以處理此問題。"
 
-#: ../setup/functions.inc:1515
+#: ../setup/functions.inc:1516
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr "檔案遺失或無法讀取，請重新安裝並重新執行此測試。"
 
-#: ../setup/functions.inc:1519
+#: ../setup/functions.inc:1520
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr "請確定 %s 是最新版本。"
 
-#: ../setup/functions.inc:1524
+#: ../setup/functions.inc:1525
 #, php-format
 msgid "Testing status of %d files."
 msgstr "%d 份檔案的測試狀態。"
 
-#: ../setup/functions.inc:1531
+#: ../setup/functions.inc:1532
 #, php-format
 msgid "Cannot read file %s."
 msgstr "無法讀取檔案 %s。"
 
-#: ../setup/functions.inc:1533
+#: ../setup/functions.inc:1534
 msgid "File missing or unreadable."
 msgstr "檔案遺失或無法讀取。"
 
-#: ../setup/functions.inc:1538
+#: ../setup/functions.inc:1539
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr "無法找到 %s 的版本訊息，檔案為舊版本或已損毀。"
 
-#: ../setup/functions.inc:1540
+#: ../setup/functions.inc:1541
 msgid "Missing version"
 msgstr "遺失版本"
 
-#: ../setup/functions.inc:1547
+#: ../setup/functions.inc:1548
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr "%s 有問題，預期 %s 版本（或以上），但卻找到 %s。"
 
-#: ../setup/functions.inc:1549
+#: ../setup/functions.inc:1550
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr "預期 %s 版本（或以上），但卻找到 %s。"
 
-#: ../setup/functions.inc:1553
+#: ../setup/functions.inc:1554
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr "%s Ok。實際版本（%s）比預期的版本（%s）還新"
 
-#: ../setup/functions.inc:1555
+#: ../setup/functions.inc:1556
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr "預期 %s 版本，但卻找到 %s。"
 
-#: ../setup/functions.inc:1559
+#: ../setup/functions.inc:1560
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../setup/functions.inc:1561
+#: ../setup/functions.inc:1562
 #, php-format
 msgid "Found expected version %s."
 msgstr "找到預期的版本%s。"
 
-#: ../setup/functions.inc:1691
+#: ../setup/functions.inc:1692
 msgid "This email will be sent when new accounts are created."
 msgstr "本電郵在帳號建立後會自動被寄出。"
 
-#: ../setup/functions.inc:1692
+#: ../setup/functions.inc:1693
 #, fuzzy
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "將此處留空以複製預設訊息到其他語言中。預設訊息是："
 
-#: ../setup/functions.inc:1693
+#: ../setup/functions.inc:1694
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "下面檔案是最新的。"
@@ -3341,63 +3398,6 @@ msgstr "您不是沒有 %s 就是沒有 %s。"
 #: ../setup/write.inc:242
 msgid "Review Settings"
 msgstr "檢閱設定"
-
-#: ../html_wrap/frames/notebook/frame.def:5
-msgid "Spiral Notebook"
-msgstr "螺旋記事本"
-
-#: ../html_wrap/frames/notebook/frame.def:6
-msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr "白影框和在左側有螺旋釘裝的記事本"
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "陰影"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "PNG 透明影子在右邊和下面。除了黑色背景，適當的透明度可以用在所有背景上。"
-
-#: ../html_wrap/frames/polaroid/frame.def:3
-msgid "Polaroid"
-msgstr "寶麗萊"
-
-#: ../html_wrap/frames/polaroid/frame.def:4
-msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr "大白框圍繞一張相片，在下邊特有特別多空位。"
-
-#: ../html_wrap/frames/polaroids/frame.def:3
-msgid "Polaroids"
-msgstr "多張寶麗萊"
-
-#: ../html_wrap/frames/polaroids/frame.def:4
-msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr "大白框圍繞一疊相片，在下邊有特別多空位。"
-
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "金框"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "別出心裁的金質框"
-
-#: ../html_wrap/frames/simple_book/frame.def:3
-msgid "Original Style"
-msgstr "原來風格"
-
-#: ../html_wrap/frames/simple_book/frame.def:4
-#, php-format
-msgid "The original %s album frame style."
-msgstr "%s 相簿框原來風格"
-
-#: ../html_wrap/frames/wooden/frame.def:4
-msgid "Wood Frame"
-msgstr "木框"
-
-#: ../html_wrap/frames/wooden/frame.def:5
-msgid "A textured wooden frame"
-msgstr "木質框"
 
 #~ msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
 #~ msgstr "%s、%s 和 %s 將由新建立使用者的全名、使用者名稱及密碼所取代。"
