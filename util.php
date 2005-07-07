@@ -2670,6 +2670,8 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 /* End catch errors */
 
+    $subject .= (!empty($gallery->app->emailSubjPrefix)) ? ' '. $gallery->app->emailSubjPrefix : '';
+
     if (isset($gallery->app->email_notification) && 
         in_array("bcc", $gallery->app->email_notification)) {
 	$bcc .= $join . $gallery->app->adminEmail;

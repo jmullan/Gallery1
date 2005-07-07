@@ -980,7 +980,7 @@ class Album {
 							$gallery->app->comments_display_name),
 						$_SERVER['REMOTE_ADDR'],
 					       	$msg_str);
-			       	$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that &quot;Email me when other changes are made&quot; is unchecked (You'll need to login first).");
+			       	$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
 			       	$subject = sprintf(_("Changes to %s"), $this->fields['name']);
 			       	$logmsg = sprintf("Change to %s: %s.",
 						       	makeAlbumUrl($this->fields['name']),
@@ -1681,14 +1681,14 @@ class Album {
 		$photo->deleteComment($comment_index);
 	}
 
-	function getKeywords($index) {
+	function getKeyWords($index) {
 		$photo = $this->getPhoto($index);
-		return $photo->getKeywords();
+		return $photo->getKeyWords();
 	}
 
 	function setKeyWords($index, $keywords) {
 		$photo = &$this->getPhoto($index);
-		$photo->setKeywords($keywords);
+		$photo->setKeyWords($keywords);
         }
 
 	function rotatePhoto($index, $direction, $clearexifrotate=false) {
@@ -2381,7 +2381,7 @@ class Album {
 		$everybody = $gallery->userDB->getEverybody();
 		$everybodyUid = $everybody->getUid();
 
-                $user=$gallery->userDB->getUserByUid($this->getItemOwner($index));
+                $user = $gallery->userDB->getUserByUid($this->getItemOwner($index));
 
 		if ( !$user) {
 			return "";
@@ -2390,14 +2390,13 @@ class Album {
 			return "";
 		}
 
-		$fullName=$user->getFullname();	
+		$fullName = $user->getFullname();	
 		if (empty($fullName)) {
 			return ' - '. $user->getUsername();
 		} else {
 			return ' - '. $user->getFullname() .' ('. $user->getUsername() .')';
 		}
         }
-
 
 
        /*
