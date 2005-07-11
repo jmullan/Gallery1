@@ -3697,6 +3697,28 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
     usort($data, $sort_func); 
 } 
 
+/**
+ * @param	string	Optional former searchh string
+ * @param	string	Optional alignment
+ * @return	string	HTML code that contains a form for entering the searchstring
+ * @author	Jens Tkotz
+ */
+function addSearchForm($formerSearchString = '', $align = '') {
+    $html = '';
+
+    $html .= makeFormIntro('search.php', array(
+	'name'		=> 'search_form',
+	'method'        => 'post',
+	'style'		=> "text-align: $align")
+    );
+                
+    $html .= "\t". '<span class="search">'. _("Search") .': </span>';
+    $html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
+    $html .= "\n</form>\n";
+
+    return $html;
+}
+
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');

@@ -27,20 +27,11 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
         $width=' width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'" ';
 }
 
-// For rtl/ltr stuff
-if ($gallery->direction == 'ltr') {
-    $left ='left';
-    $right = 'right';
-} else {
-    $left ='right';
-    $right = 'left';
-}
-
 ?>
 <table<?php echo $width; ?> cellspacing="0" cellpadding="0" id="adminbox">
   <tr> 
-    <td align="<?php echo $left; ?>"><?php echo $adminbox["text"] ?></td>
-    <td align="<?php echo $right; ?>">
+    <td align="<?php echo langLeft(); ?>"><?php echo $adminbox["text"] ?></td>
+    <td align="<?php echo langRight(); ?>">
 	<form name="admin_options_form" action="view_album.php">
 	<?php echo $adminbox["commands"] ?>
 	</form>

@@ -15,14 +15,7 @@
 ?>
 <?php
 includeHtmlWrap("wrapper.header");
-if ($gallery->direction == 'ltr') {
-        $left="left";
-        $right="right";
-}
-else {
-        $left="right";
-        $right="left";
-}
+
 if (!includeTemplate('gallery.header.tpl')) {
 ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -34,11 +27,11 @@ if (!includeTemplate('gallery.header.tpl')) {
           <td>
             <table cellspacing="0" cellpadding="0" class="mod_toplight_bg">
               <tr>
-                <td class="mod_toplight_left" align="<?php echo $right ?>"></td>
-                <td nowrap class="head" align="<?php echo $left ?>">
+                <td class="mod_toplight_left" align="<?php echo langRight() ?>"></td>
+                <td nowrap class="head" align="<?php echo langLeft() ?>">
                   &nbsp;<?php echo $gallery->app->galleryTitle ?>&nbsp;
                 </td>
-                <td class="mod_toplight_right" align="<?php echo $left ?>"></td>
+                <td class="mod_toplight_right" align="<?php echo langLeft() ?>"></td>
               </tr>
             </table>
           </td>

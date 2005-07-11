@@ -84,18 +84,6 @@ $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
 
-/*
-** when direction is ltr(left to right) everything is fine)
-** when rtl(right to left), like in hebrew, we have to switch the alignment at some places.
-*/
-if ($gallery->direction == 'ltr') {
-	$left="left";
-	$right="right";
-}
-else {
-	$left="right";
-	$right="left";
-}
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -106,45 +94,45 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header() ;
 
 	/* prefetching/navigation */
-  if ($navigator['page'] > 1) { ?>
+    if ($navigator['page'] > 1) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
-<?php }
-  if ($navigator['page'] < $maxPages) { ?>
+<?php 
+    }
+    if ($navigator['page'] < $maxPages) { ?>
   <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
   <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
-<?php }
-	if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+<?php 
+    }
+    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
 ?>
   <link rel="alternate" title="<?php echo sprintf(_("%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
-<?php } ?>
+<?php 
+    } ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php }
-	includeHtmlWrap("gallery.header");
-	if (!$gallery->session->offline && 
-		( (!strcmp($gallery->app->showSearchEngine, "yes") && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE =='phpBB2')) {
+<?php 
+}
+
+includeHtmlWrap("gallery.header");
+if (!$gallery->session->offline && 
+  ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
 ?>
 <table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
 <tr>
 <?php
-	if ($GALLERY_EMBEDDED_INSIDE =='phpBB2') {
-		echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
-}
-	if ($numPhotos != 0) {
-		echo '<td valign="middle" align="right">';
-		echo makeFormIntro('search.php', array(
-							'name'		=> 'search_form',
-							'method'	=> 'post'));
-		echo '<span class="search">'. _("Search") .': </span>';
-		echo '<input class="fineprint" type="text" name="searchstring" value="" size="25">';
-		echo '</form></td>';
-	}
+    if ($GALLERY_EMBEDDED_INSIDE == 'phpBB2') {
+	echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
+    }
+    if ($numPhotos != 0) {
+	echo '<td align="'. langRight() .'">'. addSearchForm() .'</td>';
+    }
 ?>
 </tr>
 </table>
-<?php	}
+<?php
+}
 ?>
 
 <!-- admin section begin -->
@@ -340,7 +328,7 @@ for ($i = $start; $i <= $end; $i++) {
   </td>
   <!-- End Image Cell -->
   <!-- Begin Text Cell -->
-  <td align="<?php echo $left ?>" valign="top" class="albumdesc">
+  <td align="<?php echo langLeft() ?>" valign="top" class="albumdesc">
     <table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_title">
       <tr valign="middle">
         <td class="leftspacer"></td>

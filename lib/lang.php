@@ -808,4 +808,36 @@ function languageSelector() {
     }
     return $html;
 }
+
+/**
+ * @return string
+ * @author Jens Tkotz
+ */
+function langLeft() {
+    global $gallery;
+
+    if ($gallery->direction == 'ltr') {
+	return 'left';
+    }
+    else {
+	return 'right';
+    }
+}
+
+
+/**
+ * @return string
+ * @author Jens Tkotz
+ */
+function langRight() {
+    global $gallery;
+
+    if ($gallery->direction == 'ltr') {
+	return 'right';
+    }
+    else {
+	return 'left';
+    }
+}
+
 ?>

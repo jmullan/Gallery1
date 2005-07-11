@@ -49,17 +49,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 includeHtmlWrap("gallery.header");
 
 if (!empty($searchstring)) {
-    echo makeFormIntro("search.php");
-?>
-	<table width="100%" border="0" cellspacing="0">
-	<tr>
-		<td valign="middle" align="right"><span class="admin"><?php echo _("Search Again") ?>: </span>
-			<input class="searchform" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-		</td>
-	</tr>
-	</table>
-	</form>    
-<?php
+    echo addSearchForm($searchstring, langRight());
 }
 
 $adminbox['text'] = '<span class="head">'. _("Search") .'</span>';
@@ -278,21 +268,11 @@ if (!empty($searchstring)) {
 }
 else {
     /* No searchstring was given */
+    echo "\n<div align=\"center\">";
+    echo _("Search the Gallery's Album and Photo titles, descriptions and comments.");
     echo "\n<br>";
-    echo _("Search the Gallery's Album and Photo<br> titles, descriptions and comments:");
-    echo "\n<br>";
-     
-    echo makeFormIntro("search.php"); ?>
-	<table width="100%" border="0" cellspacing="0">
-	<tr>
-		<td valign="middle" align="left">
-			<input class="searchform" type="text" name="searchstring" value="<?php echo $searchstring ?>" size="25">
-			<input type="submit" name="go" value="<?php echo _("Go") ?>!">
-		</td>
-	</tr>
-	</table>
-</form>
-<?php
+    echo addSearchForm($searchstring, 'center');
+    echo "</div>";
 }
 
 echo '<hr width="100%">';
