@@ -110,6 +110,12 @@ switch ($cmd) {
 		$gallery->session->username = "";
 		$gallery->session->language = "";
 		destroyGallerySession();
+
+		// Prevent the 'you have to be logged in' error message
+		// when the user logs out of a protected album
+		createGallerySession();
+		$gallery->session->gRedirDone = true;
+
 		if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
 			$return = makeGalleryHeaderUrl($return);
 		}

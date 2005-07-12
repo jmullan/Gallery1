@@ -38,8 +38,9 @@ class GallerySession {}
 if (!function_exists('session_regenerate_id')) {
 	function make_seed() {
 	    list($usec, $sec) = explode(' ', microtime());
-	    return (float) $sec + ((float) $usec * 100000);
+	    return (float)$sec + ((float)$usec * 100000);
 	}
+
 	function php_combined_lcg() {
 		mt_srand(make_seed());
 		$tv = gettimeofday();
@@ -80,7 +81,7 @@ function destroyGallerySession() {
 	// If it's desired to kill the session, also delete the session cookie.
 	// Note: This will destroy the session, and not just the session data!
 	if (isset($_COOKIE[session_name()])) {
-	   setcookie(session_name(), '', time()-42000, '/');
+		setcookie(session_name(), '', time() - 42000, '/');
 	}
 
 	// Finally, destroy the session.
@@ -88,7 +89,7 @@ function destroyGallerySession() {
 }
 
 function createGallerySession($newSession = false) {
-	global $useStdClass;
+	global $gallery;
 
 	if (!session_id()) {
 		/* 
@@ -116,50 +117,48 @@ function createGallerySession($newSession = false) {
 	    session_regenerate_id();
 	}
 
-	return $useStdClass;
+	/*
+	 * Are we resuming an existing session?  Determine this by checking
+	 * to see if the session container variable is already set.  If not, then
+	 * create the appropriate container for it.
+	 */
+
+	if (empty($gallery->app->sessionVar)) {
+		$gSessionVar = "gallery_session_" . md5(getcwd()); 
+	} else {
+		$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
+	}
+
+	if (isset($_SESSION[$gSessionVar])) {
+		/* Get a simple reference to the session container (for convenience) */
+		$gallery->session =& $_SESSION[$gSessionVar];
+
+		/* DISABLED BY THE "0 &&" BELOW */
+		// Allow session-sharing in devMode so that pages can be validated using the W3 validation links
+		if (0 && ($gallery->app->devMode != "yes" && !empty($gallery->session->remoteHost)) && $gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
+			printf('Attempted session access from different IP address. Please <a href="%s">re-login</a>.', $gallery->app->photoAlbumURL . '?PHPSESSID=');
+			exit;
+		}
+	} else {
+		/* Create a new session container */
+		if (!empty($useStdClass)) {
+			$_SESSION[$gSessionVar] = new stdClass();
+		} else {
+			$_SESSION[$gSessionVar] = new GallerySession();
+		}
+
+		/* Get a simple reference to the session container (for convenience) */
+		$gallery->session =& $_SESSION[$gSessionVar];
+
+		/* Tag this session with the gallery version */
+		$gallery->session->version = $gallery->version;
+		$gallery->session->sessionStart = time();
+		$gallery->session->remoteHost = $_SERVER['REMOTE_ADDR'];
+	}
 }
 
 // Create or resume our session
-$useStdClass = createGallerySession();
-
-/*
- * Are we resuming an existing session?  Determine this by checking
- * to see if the session container variable is already set.  If not, then
- * create the appropriate container for it.
- */
-
-if (empty($gallery->app->sessionVar)) {
-	$gSessionVar = "gallery_session_" . md5(getcwd()); 
-} else {
-	$gSessionVar = $gallery->app->sessionVar . "_" . md5($gallery->app->userDir);
-}
-
-if (isset($_SESSION[$gSessionVar])) {
-	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $_SESSION[$gSessionVar];
-
-	/* DISABLED BY THE "0 &&" BELOW */
-	// Allow session-sharing in devMode so that pages can be validated using the W3 validation links
-	if (0 && ($gallery->app->devMode != "yes" && !empty($gallery->session->remoteHost)) && $gallery->session->remoteHost != $_SERVER['REMOTE_ADDR']) {
-		printf('Attempted session access from different IP address. Please <a href="%s">re-login</a>.', $gallery->app->photoAlbumURL . '?PHPSESSID=');
-		exit;
-	}
-} else {
-	/* Create a new session container */
-	if (!empty($useStdClass)) {
-		$_SESSION[$gSessionVar] = new stdClass();
-	} else {
-		$_SESSION[$gSessionVar] = new GallerySession();
-	}
-
-	/* Get a simple reference to the session container (for convenience) */
-	$gallery->session =& $_SESSION[$gSessionVar];
-
-	/* Tag this session with the gallery version */
-	$gallery->session->version = $gallery->version;
-	$gallery->session->sessionStart = time();
-	$gallery->session->remoteHost = $_SERVER['REMOTE_ADDR'];
-}
+createGallerySession();
 
 update_session_var("albumName");
 update_session_var("version");

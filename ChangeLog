@@ -1,3 +1,11 @@
+2005-07-12  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b58
+
+	* Change: Create a new session after destroying the old on logout, 
+	  and set $gallery->session->gRedirDone to true to prevent the 'you must be logged in'
+	  notice when logging out of a protected album.
+
+	* Change: Move some of the session creation logic into createGallerySession()
+
 2005-07-11 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b57
 
 	* "Fix": Added function addSearchForm() that return the Form for entering the searchstring.
