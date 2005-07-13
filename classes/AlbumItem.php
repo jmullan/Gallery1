@@ -652,6 +652,8 @@ class AlbumItem {
 	}
 
 	function getThumbnailTag($dir, $size=0, $attrs="") {
+		// Prevent non-integer data from being passed
+		$size = (int)$size;
 
 		if ($this->thumbnail) {
 			return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
@@ -661,6 +663,8 @@ class AlbumItem {
 	}
 
 	function getHighlightTag($dir, $size=0, $attrs='', $alttext='') {
+		// Prevent non-integer data from being passed
+		$size = (int)$size;
 
 		if (is_object($this->highlightImage)) {
 			if (!isset($alttext)) {

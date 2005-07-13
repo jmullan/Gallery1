@@ -156,6 +156,9 @@ class Image {
 	function getTag($dir, $full=0, $size=0, $attrs="",$alttext="") {
 		global $gallery;
 
+		// Prevent non-integer data
+		$size = (int)$size;
+
 		$name = $this->getName($dir);
 		$alttext = unhtmlentities(strip_tags($alttext));
 
