@@ -11,7 +11,18 @@
 **
 ** Jens Tkotz 25.04.2005
 */
-require_once(dirname(dirname(__FILE__)) . '/init.php');
+
+/*
+ * colorpicker is used in config wizard.
+ * At very first install gallery is not configured, so we cant load init.php
+ */
+
+require_once(dirname(dirname(__FILE__)) . '/util.php');
+if (getOS() == OS_WINDOWS) {
+    include_once(dirname(dirname(__FILE__)) . "/platform/fs_win32.php");
+} else {
+    include_once(dirname(dirname(__FILE__)) . "/platform/fs_unix.php");
+}
 
 $target = getRequestVar('target');
 

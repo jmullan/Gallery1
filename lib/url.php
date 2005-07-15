@@ -15,7 +15,7 @@
  *        (eg, array("index" => 1, "set_albumName" => "foo"))
  */
 
-function makeGalleryUrl($target, $args=array()) {
+function makeGalleryUrl($target = '', $args = array()) {
 
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
@@ -31,6 +31,8 @@ function makeGalleryUrl($target, $args=array()) {
 
 	/* Needed for CPGNuke */
 	global $mainindex;
+
+	$prefix = '';
 
 	if( isset($GALLERY_EMBEDDED_INSIDE)) {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
@@ -95,15 +97,24 @@ function makeGalleryUrl($target, $args=array()) {
 
 			// Maybe something went wrong, then we assume we are like standalone.
 			default:
-				$target = $gallery->app->photoAlbumURL . "/" . $target;
+			    if(isset($gallery->app->photoAlbumURL)) {
+				$prefix = $gallery->app->photoAlbumURL .'/';
+			    }
+			    else if (where_i_am() == 'config') {
+				$prefix = '../';
+			    }
 		}
 	}
 	else {
-		$prefix = isset($gallery->app->photoAlbumURL) ? $gallery->app->photoAlbumURL . "/" : "";
-		$target = $prefix . $target;
+	    if(isset($gallery->app->photoAlbumURL)) {
+		$prefix = $gallery->app->photoAlbumURL .'/';
+	    }
+	    else if (where_i_am() == 'config') {
+		$prefix = '../';
+	    }
 	}
        
-	$url = $target;
+	$url = $prefix . $target;
 	if ($args) {
 		$i = 0;
 		foreach ($args as $key => $value) {
@@ -184,6 +195,25 @@ function addUrlArg($url, $arg) {
 	} else {
 		return "$url?$arg";
 	}
+}
+
+function getImagePath($name, $skinname='') {
+    global $gallery;
+
+    if (!$skinname) {
+	$skinname = $gallery->app->skinname;
+    }
+
+    $base = makeGalleryUrl();
+    $defaultname = $base . "/images/$name";
+    $fullname = dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
+    $fullURL = $base . "/skins/$skinname/images/$name";
+
+    if (fs_file_exists($fullname) && !broken_link($fullname)) {
+	return "$fullURL";
+    } else {
+	return "$defaultname";
+    }
 }
 
 ?>

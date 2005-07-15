@@ -1,3 +1,14 @@
+2005-07-15 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b60
+
+	* Fix: colorpicker was not working in very first setup
+	   - Tweaked makeGalleryURL to return valid URL in config on first setup
+	   - Tweaked makeGalleryURL to work without target
+	   - Tweaked getImagePath() to work with makeGalleryUrl. Also moved to lib/url.php
+
+	* Change: Updated Manifest.
+
+	* Fix: Removed <> around From when sending via smtp.
+
 2005-07-12  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b59
 
 	* Fix: Prevent non-integer data from being passed into get*Tag functions

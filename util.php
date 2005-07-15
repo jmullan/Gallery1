@@ -1075,30 +1075,6 @@ function ImCmd($cmd, $args = "") {
 	return $cmd;
 }
 
-function getImagePath($name, $skinname='') {
-	global $gallery;
-
-	if (!$skinname) {
-		$skinname = $gallery->app->skinname;
-	}
-
-	if (isset($gallery->app->photoAlbumURL)) {
-		$base = $gallery->app->photoAlbumURL;
-	} else {
-		$base = '.';
-	}
-
-	$defaultname = $base . "/images/$name";
-	$fullname = dirname(__FILE__) . "/skins/$skinname/images/$name";
-	$fullURL = $base . "/skins/$skinname/images/$name";
-
-	if (fs_file_exists($fullname) && !broken_link($fullname)) {
-		return "$fullURL";
-	} else {
-		return "$defaultname";
-	}
-}
-
 function includeLayout($name, $skinname='') {
     global $gallery;
 
@@ -1179,9 +1155,9 @@ function getStyleSheetLink() {
 	$styleSheetLinks = _getStyleSheetLink("base");
 
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		$styleSheetLinks .= "\n" . _getStyleSheetLink("embedded_style");
+		$styleSheetLinks .= _getStyleSheetLink("embedded_style");
 	} else {
-		$styleSheetLinks .= "\n". _getStyleSheetLink("screen");
+		$styleSheetLinks .= _getStyleSheetLink("screen");
 	}
 
 	return $styleSheetLinks;
@@ -1214,7 +1190,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 	$url = "$base/${sheetdefaultname}.default";
     }
 
-    return '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+    return "\n". '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {

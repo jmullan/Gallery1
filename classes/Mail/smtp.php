@@ -255,7 +255,7 @@
 		function mail($from){
 
 			if($this->is_connected()
-				AND $this->send_data('MAIL FROM:<'.$from.'>')
+				AND $this->send_data('MAIL FROM:'. $from)
 				AND substr(trim($this->get_data()), 0, 2) === '250' ){
 
 				return TRUE;
@@ -271,7 +271,7 @@
 		function rcpt($to){
 
 			if($this->is_connected()
-				AND $this->send_data('RCPT TO:<'.$to.'>')
+				AND $this->send_data('RCPT TO:'. $to )
 				AND substr(trim($error = $this->get_data()), 0, 2) === '25' ){
 
 				return TRUE;
