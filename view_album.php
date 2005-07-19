@@ -324,11 +324,7 @@ $adminOptions = array(
 );
 
 /* sort the drop-down array by translated name */
-function sortJSAdmin($a, $b) {
-    return strcmp($a['name'], $b['name']);
-}
-uasort($adminOptions, "sortJSAdmin");
-reset($adminOptions);
+array_sort_by_fields($adminOptions, 'name', 'asc', true, true);
 
 $adminOptionHTML = '';
 $adminJavaScript = '';
@@ -367,7 +363,7 @@ if (!empty($adminOptionHTML)) {
     . "\tdocument.forms.admin_options_form.admin_select.blur();\n"
     . "\tswitch (adminOptions[key].action) {\n"
     . "\tcase 'popup':\n"
-    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=700,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
+    . "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
     . "\t\tnw.opener=self;\n"
     . "\t\tbreak;\n"
     . "\tcase 'url':\n"
@@ -852,7 +848,7 @@ if ($numPhotos) {
             if ($showAdminForm) {
                 $albumItemOptions = getItemActions($i, false);
                 echo drawSelect2("s$i", $albumItemOptions, array(
-                'onChange' => "imageEditChoice(document.vote_form.s$i)",
+		'onChange' => "imageEditChoice(document.vote_form.s$i)",
                 'class' => 'adminform'));
             }
             if (canVote()) {

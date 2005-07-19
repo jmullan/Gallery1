@@ -26,6 +26,9 @@ if (getOS() == OS_WINDOWS) {
 
 $target = getRequestVar('target');
 
+/* This is need to get the correct pathes when colorpicker is called from setup and Gallery is not configured. */
+define ('GALLERY_URL','..');
+
 doctype();
 ?>
 <html>

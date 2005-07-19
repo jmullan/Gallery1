@@ -493,17 +493,14 @@ class AlbumItem {
         function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
                 global $gallery;
                 $type = $this->image->type;
-		if (isMovie($type) || $this->isAlbum())
-		{
+		if (isMovie($type) || $this->isAlbum()) {
 			// currently there is no watermarking support for movies
 			return (0);
 		}
-		if ($wmSelect < 0)
-		{
+		if ($wmSelect < 0) {
 			$wmSelect = 0;
 		}
-		else if ($wmSelect > 2)
-		{
+		else if ($wmSelect > 2) {
 			$wmSelect = 2;
 		}
                 $name = $this->image->name;

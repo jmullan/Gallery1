@@ -56,11 +56,11 @@ if (!isset($wmSelect)) {
     $wmSelect = $gallery->app->watermarkSizes;
 }
 
-echo "\n<p>";
-
 if (!isset($wmAlign)) {
     $wmAlign = 0;
 }
+
+echo "\n<p>";
 
 // get a list of watermarks
 if ($wmDir = opendir($gallery->app->watermarkDir)) {
@@ -88,7 +88,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
             $options[] = array('value' => '', 'text' => _("* No Watermark *"), 'selected' => true);
         }
         $options = array_reverse($options);
-        echo drawSelect2('wmName', $options, array('size' => 1), array('prettyPrinting' => true));
+        echo drawSelect2('wmName', $options, array(), array('prettyPrinting' => true));
     }
     else {
         $err = sprintf(_("No files matching %s found in %s"),
@@ -142,21 +142,24 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 <b><?php echo _("Preview Size") ?>:</b><br>
 <table border="0">
 <tr>
-  <td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>><?php echo _("Resized"); ?> </input></td>
+  <td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>><?php echo _("Resized"); ?></td>
 </tr>
 <tr>
-  <td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>><?php echo _("Full"); ?> </input></td>
+  <td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>><?php echo _("Full"); ?></td>
 </tr>
 </table>
-<?php } // end if canViewFullImages ?>
+<?php } // end if canViewFullImages
+?>
 <br>
 <?php if ($watermarkForm["askRecursive"]) {
-    print '<input type="checkbox" name="recursive"';
     global $recursive;
-    if (isset($recursive)) echo " checked";
-    print ">" . _("Watermark subalbums") . "</input><br><br>";
-} ?>
-<?php echo _("Apply watermark to") ?> <select name="wmSelect">
+    print '<input type="checkbox" name="recursive"';
+    if (isset($recursive)) {
+        echo " checked";
+    }
+    print ">" . _("Watermark subalbums") . "<br><br>";
+}
+echo _("Apply watermark to") ?> <select name="wmSelect">
   <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo _("All photos");?></option>
   <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo _("Only sized photos");?></option>
   <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo _("Only full photos");?></option>

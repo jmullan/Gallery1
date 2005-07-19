@@ -131,24 +131,23 @@ function drawSelect($name, $options, $selected, $size, $attrList=array(), $prett
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
     $attrs = "";
     $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
-    if (!isset($args['size'])) {
+    if (!isset($attrList['size'])) {
 	$args['size'] = 1;
     }
 
     if (!empty($attrList)) {
-	$attrs = " ";
-	foreach ($attrList as $key => $value) {
+	foreach ($attrList as $attr => $value) {
 	    if ($value == NULL) {
-		$attrs .= " $key";
+		$attrs .= " $attr";
 	    }
 	    else {
-		$attrs .= " $key=\"$value\"";
+		$attrs .= " $attr=\"$value\"";
 	    }
 	}
     }
 
-    $buf = '';
-    $buf .= '<select name="'. $name .'" size="'. $args['size'] .'"'. $attrs .'">'. $crlf;
+    $buf = "<select name=\"$name\" $attrs>$crlf";
+
     foreach ($options as $nr => $option) {
 	$sel = '';
 	if (isset($option['selected'])) {
@@ -224,8 +223,13 @@ function emptyFormVar($name) {
 ** Jens Tkotz 25.04.2005
 */
 function showColorpicker($attrs = array()) {
+    $args = array(
+	'target' => $attrs['name'],
+	'gallery_popup' => true
+    );
+
+    $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', $args);
     $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16"></a></td>';
-    $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', array('target' => $attrs['name'], 'gallery_popup' => true));
 
     $html = '<table border="0" cellspacing="0">';
     $html .= '<tr>';

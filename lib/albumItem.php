@@ -221,6 +221,7 @@ function getItemActions($i, $withIcons = false) {
         );
     }
 
+    array_sort_by_fields($options, 'text');
     return $options;
 }
 

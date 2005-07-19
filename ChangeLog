@@ -1,3 +1,45 @@
+2005-07-19 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b61
+
+	* Fix: util.php
+	  - Previous change to _getStyleSheetLink failed when setup called from embedded at first time.
+	    Now uses getGalleryBaseUrl()
+	  - generating thumbnails of animated gifs with IM were broken due to wrong order of options.
+	 Found and fixed by Donald Webster.
+	  - where_i_am() now correctly returns "core" when GALLERY_OK is false, 
+	    but where are at startpage with an error.
+
+	* Fix: PHP 4.4.0 fixes in:
+	  - classes/Album.php
+	  - classes/Mail/htmlMimeMail.php
+	  - classes/Mail/smtp.php
+ 	Thanks to Andy Staudacher and Donald Webster
+
+	* Fix: $style was undefined in lib/lang.php
+	Again Donald ;)
+	
+	* Change: Watermarking
+	  - edit_watermark.php
+	  - watermark_album.php
+	  - layout/watermarkform.inc
+	    o indenting
+	    o added some phpdocs
+	    o added for gifs that watermarking on animated gifs is not supported.	
+	    o HTML 4.01 validation
+	    o correct validation link
+
+	* Change: util.php
+	  - indenting on some functions
+	  - added some phpdocs
+	  - more use of debugMessage()
+	  - moved getGalleryBase() to lib/url.php and renamed to getGalleryBaseUrl()
+	  - moved getGalleryPaths() to lib/url.php and renamed getGalleryPaths() to setGalleryPaths()
+	  - gallery_validation_link() now uses always referer instead 
+	    of given filename when not configured.
+	 - added Parameter $keepIndexes to function array_sort_by_fields:
+	   if set to true, then uasort instead of usort is used.
+
+	* Change: removed / from GALLERY_URL constant in index.php
+
 2005-07-15 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b60
 
 	* Fix: colorpicker was not working in very first setup

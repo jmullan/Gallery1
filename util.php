@@ -274,7 +274,7 @@ function exec_internal($cmd) {
 	$results=array();
 	
 	if (isDebugging()) {
-	    debugMessage(_("Executing:") ."<ul>$cmd</ul>", __FILE__, __LINE__);
+	    debugMessage(sprintf(_("Executing: %s"), $cmd), __FILE__, __LINE__);
 	    $debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 
@@ -309,18 +309,18 @@ function exec_internal($cmd) {
 }
 
 function exec_wrapper($cmd) {
-	global $gallery;
+    global $gallery;
 
-	list($results, $status) = exec_internal($cmd);
+    list($results, $status) = exec_internal($cmd);
 
-	if ($status == $gallery->app->expectedExecStatus) {
-		return 0;
-	} else {
-		if ($results) {
-			echo gallery_error(join("<br>", $results));
-		}
-		return 1;
+    if ($status == $gallery->app->expectedExecStatus) {
+	return true;
+    } else {
+	if ($results) {
+	    echo gallery_error(join("<br>", $results));
 	}
+        return false;
+    }
 }
 
 function getDimensions($file, $regs=false) {
@@ -354,10 +354,8 @@ function getDimensions($file, $regs=false) {
         break;
         
 	default:
-            if (isDebugging()) {
-                processingMsg(_("You have no graphics package configured for use!"));
-                return array(0, 0);
-            }
+	    echo debugMessage(_("You have no graphics package configured for use!"));
+	    return array(0,0);
         break;
     }
 
@@ -672,8 +670,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
          }
          break;
       default:
-         if (isDebugging())
-            echo "<br> ". _("You have no graphics package configured for use!") ."<br>";
+         echo debugMessage(_("You have no graphics package configured for use!"));
          return 0;
       }
    } else {
@@ -765,21 +762,18 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
    $wmAlignY = floor($wmAlignY);
 
    // Build command lines arguements
-   switch($gallery->app->graphics)
-   {
-   case "ImageMagick":
-      $args = "-geometry +".$wmAlignX."+"."$wmAlignY $overlayFile $src $out";
-      break;
-   case "NetPBM":
-      $args  = "-yoff=$wmAlignY ";
-      $args .= "-xoff=$wmAlignX ";
-      if ($alphaFile)
-      {
-         $args .= "-alpha=$alphaFile ";
-      }
-      $args .= $overlayFile;
-      break;
-   }
+   switch($gallery->app->graphics) {
+	case "ImageMagick":
+	    $args = "-geometry +$wmAlignX+$wmAlignY $overlayFile $src $out";
+	    break;
+	case "NetPBM":
+	    $args  = "-yoff=$wmAlignY -xoff=$wmAlignX ";
+	    if ($alphaFile) {
+		$args .= "-alpha=$alphaFile ";
+	    }
+	    $args .= $overlayFile;
+	    break;
+    }
 
     debugMessage("args = $args", __FILE__, __LINE__);    
 
@@ -1125,24 +1119,6 @@ function includeHtmlWrap($name, $skinname='', $adds='') {
 	return 1;
 }
 
-function getGalleryBase() {
-    global $gallery;
-
-    if (! defined("GALLERY_URL")) define ("GALLERY_URL","");
-	
-    if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
-	$base = $gallery->app->photoAlbumURL;
-    } elseif (stristr($_SERVER['REQUEST_URI'],"setup")) {
-	$base = '..';
-    } elseif (GALLERY_URL== "") {
-	$base = '.';
-    } else {
-	$base = GALLERY_URL;
-    }
-
-    return $base;
-}
-
 function getStyleSheetLink() {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_OK;
@@ -1163,6 +1139,13 @@ function getStyleSheetLink() {
 	return $styleSheetLinks;
 }
 
+/**
+ * Generates a HTML <link> to a css file.
+ *
+ * @param	string	$filename	Name of css file.
+ * @param	string	$skinname	Optional skinname, if omitted and not embedded, default skin is used.
+ * @return	string
+ */
 function _getStyleSheetLink($filename, $skinname='') {
     global $gallery;
     global $GALLERY_EMBEDDED_INSIDE;
@@ -1178,17 +1161,17 @@ function _getStyleSheetLink($filename, $skinname='') {
     $sheetdefaultname = "css/$filename.css";
     $sheetdefaultpath = dirname(__FILE__) . '/' . $sheetdefaultname;
 
-    $base = getGalleryBase();
-
     if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
-	$url = "$base/$sheetname";
+	$file = $sheetname;
     } elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
-	$url = "$base/$sheetdefaultname";
+	$file = $sheetdefaultname;
     } elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
-	$url = "$base/$sheetdefaultdomainname";
+	$file = $sheetdefaultdomainname;
     } else {
-	$url = "$base/${sheetdefaultname}.default";
+	$file = $sheetdefaultname. '.default';
     }
+
+    $url = getGalleryBaseUrl() ."/$file";
 
     return "\n". '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
 }
@@ -1360,20 +1343,20 @@ function gallerySanityCheck() {
 	       	return NULL;
        	}
 
-	getGalleryPaths();
+	setGalleryPaths();
 
 	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
                 broken_link(GALLERY_CONFDIR . "config.php") ||
                 !$gallery->app) {
-		$GALLERY_OK=false;
+		$GALLERY_OK = false;
 		return "unconfigured.php";
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
-		$GALLERY_OK=false;
+		$GALLERY_OK = false;
 		return "reconfigure.php";
 	}
-	$GALLERY_OK=true;
+	$GALLERY_OK = true;
 	return NULL;
 }
 
@@ -2458,22 +2441,23 @@ function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
 			}
 
 			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
+
+			$sizeCmd = '';
+			$geometryCmd = '';
+			if ($target) {
+			    $sizeCmd = "-size ${target}x${target} ";
+			    $geometryCmd = "-geometry ${target}x${target} ";
+			}
+
 			exec_wrapper(ImCmd('convert',
-					  "-quality $quality "
-					. ($target ? "-size ${target}x${target} " : '')
-					. $keepProfiles
-					. ' -coalesce ' /* Better support for animated GIFs */
-					. $srcFile
-					. ($target ? " -geometry ${target}x${target} " : ' ')
-					/* '-deconstruct' turns animated images back into the separate pieces which were merged using
-					'-coalesce', but causes problems with some images, so we don't want to use it. */
-					. $outFile));
+			   $srcFile .
+			   " -quality $quality $sizeCmd $keepProfiles -coalesce $geometryCmd $outFile"
+			));
+
 			break;
 		default:
-			if (isDebugging()) {
-				echo "<br>" . _("You have no graphics package configured for use!")."<br>";
-			}
-			break;
+		    echo debugMessage(_("You have no graphics package configured for use!"));
+		break;
 			
 	}
 }
@@ -3038,32 +3022,39 @@ function metatags($adds = array()) {
     echo "\n\n";
 }
 
-// uses makeGalleryURL
-function gallery_validation_link($file, $valid=true, $args='') {
-	global $gallery;
-	if ($gallery->app->devMode == "no") {
-		return "";
-	}
+/**
+ * Generates a link to w3c validator
+ * 
+ * @param	string	$file	file to validate, relative to gallery dir
+ * @param	boolean	$valid	true/false wether we know the result ;)
+ * @param	array	$arg	optional array with urlargs
+ * @return	string	$link	HTML hyperlink
+ */
+function gallery_validation_link($file, $valid=true, $args = array()) {
+    global $gallery;
 
-	if (!isset($args)) {
-		$args=array();
-	}
+    if (isset($gallery->app->devMode) && $gallery->app->devMode == "no") {
+	return '';
+    }
+
+    $args['PHPSESSID'] = session_id();
+    $url = makeGalleryURL($file, $args);
+
+    if (!empty($file) && isset($gallery->app->photoAlbumURL)) {
+	$uri = urlencode(eregi_replace("&amp;", "&", $url));
+    }
+    else {
+	$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
+    }
+
+    $link = '<a href="http://validator.w3.org:8001/check?uri='. $uri .'">'.
+	'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 	
-	$args['PHPSESSID']=session_id();
+    if (!$valid) {
+	$link .= _("Not valid yet");
+    }
 
-	if (!empty($file)) {
-		$uri = urlencode(eregi_replace("&amp;", "&", makeGalleryURL($file, $args)));
-	 }
-	else {
-		$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
-	}
-	$link='<a href="http://validator.w3.org/check?uri='. $uri .'">'.
-		'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-	if (!$valid) {
-		$link .= _("Not valid yet");
-	}
-
-	return $link;
+    return $link;
 }
 
 // uses makeAlbumURL
@@ -3074,7 +3065,7 @@ function album_validation_link($album, $photo='', $valid=true) {
 	}
 	$args=array();
 	$args['PHPSESSID']=session_id();
-	$link='<a href="http://validator.w3.org/check?uri='.
+	$link='<a href="http://validator.w3.org:8001/check?uri='.
 		urlencode(eregi_replace("&amp;", "&", 
 					makeAlbumURL($album, $photo, $args))).
 		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
@@ -3084,16 +3075,20 @@ function album_validation_link($album, $photo='', $valid=true) {
 	return $link;
 }
 
+/**
+ * @return string	$location	Location where Gallery assmes the user. Can be 'core' or 'config'
+ */
 function where_i_am() {
-	global $GALLERY_OK;
+    global $GALLERY_OK;
 
-	if ($GALLERY_OK == true && strpos($_SERVER['REQUEST_URI'],"setup") == 0) {
-		return "core";
-	} else {
-		return "config";
-	}
-
+    if (!stristr($_SERVER['REQUEST_URI'],'setup') || $GALLERY_OK) {
+	$location = 'core';
+    } else {
+	$location = 'config';
+    }
+    return $location;
 }
+
 function user_name_string($uid, $format='!!FULLNAME!! (!!USERNAME!!)') {
        	global $gallery;
        	if ($uid) {
@@ -3214,31 +3209,9 @@ function key_strip_slashes (&$arr) {
     }
 }
 
-/*
-** Define Constants for Gallery pathes.
-*/ 
-function getGalleryPaths() {
-	if (defined('GALLERY_BASE')) {
-		return;
-	}
-
-	$currentFile = __FILE__;
-	if ( $currentFile == '/usr/share/gallery/util.php') {
-		/* Gallery runs on as Debian Package */
-		define ("GALLERY_CONFDIR", "/etc/gallery");
-		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-	} else {
-		define ("GALLERY_CONFDIR", dirname(__FILE__));
-		define ("GALLERY_SETUPDIR", dirname(__FILE__) . "/setup");
-	}
-
-	define ("GALLERY_BASE", dirname(__FILE__));
-}
-
 function showOwner($owner) {
-
-global $GALLERY_EMBEDDED_INSIDE_TYPE;
-global $_CONF;				/* Needed for GeekLog */
+    global $GALLERY_EMBEDDED_INSIDE_TYPE;
+    global $_CONF;				/* Needed for GeekLog */
 
 	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		case 'GeekLog':
@@ -3634,9 +3607,17 @@ function check_email($email) {
 /**
  * This function is taken from
  * http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
+ *
+ * @param	array	$data		The array that is going to be sorted.
+ * @param	string	$sortby		Field which the array is sorted by
+ * @param	string	$order		Either 'asc' or 'desc'
+ * @param	boolean	$caseSensitive
+ * @param	boolean	$keepIndexes	if set to true, then uasort instead of usort is used.
  */
-function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true) { 
+function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true, $keepIndexes = false) { 
     static $sort_funcs = array();
+    static $code;
+
     $order = ($order == 'asc') ? 1 : -1;
 
     if (empty($sort_funcs[$sortby])) { 
@@ -3668,9 +3649,13 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
         $sort_func = $sort_funcs[$sortby];
     } 
 
-    debugMessage($code, __FILE__, __LINE__);
+    debugMessage($code, __FILE__, __LINE__,2);
 
-    usort($data, $sort_func); 
+    if($keepIndexes) {
+	uasort($data, $sort_func); 
+    } else {
+	usort($data, $sort_func); 
+    }
 } 
 
 /**

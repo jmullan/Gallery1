@@ -1,22 +1,68 @@
 <?php
 
-/*
+/**
+ * Functions that provide possibility to create and modify URLS
+ *
+ * @package	urls
+ */
+
+/**
+ * Define Constants for Gallery pathes.
+ */
+function setGalleryPaths() {
+    if (defined('GALLERY_BASE')) {
+	return;
+    }
+
+    $currentFile = __FILE__;
+    if ( $currentFile == '/usr/share/gallery/lib/url.php') {
+	/* We assum Gallery runs on as Debian Package */
+	define ("GALLERY_CONFDIR", "/etc/gallery");
+	define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
+    } else {
+	define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
+	define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
+    }
+
+    define ("GALLERY_BASE", dirname(dirname(__FILE__)));
+}
+
+/**
+ *
+ */
+function getGalleryBaseUrl() {
+    global $gallery;
+
+    $setupUrl = (stristr($_SERVER['REQUEST_URI'],"setup")) ? true : false;
+
+    if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
+        $base = $gallery->app->photoAlbumURL;
+    }
+    elseif(where_i_am() == 'config') {
+        $base = '..';
+    } elseif (defined('GALLERY_URL')) {
+        $base = GALLERY_URL;
+    } else {
+        $base = '.';
+    }
+
+    return $base;
+}
+/**
  * Any URL that you want to use can either be accessed directly
  * in the case of a standalone Gallery, or indirectly if we're
  * mbedded in another app such as Nuke.  makeGalleryUrl() will
  * always create the appropriate URL for you.
  *
- * Usage:  makeGalleryUrl(target, args [optional])
+ * @param	string	$target	File with a relative path to the gallery base
+ *				(eg, "album_permissions.php")
  *
- * target is a file with a relative path to the gallery base
- *        (eg, "album_permissions.php")
- *
- * args   are extra key/value pairs used to send data
- *        (eg, array("index" => 1, "set_albumName" => "foo"))
+ * @param	array	$args	Optional array containg additional Urlargs.
+ *				(eg, array("index" => 1, "set_albumName" => "foo"))
+ * @return	string
  */
 
 function makeGalleryUrl($target = '', $args = array()) {
-
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -32,9 +78,11 @@ function makeGalleryUrl($target = '', $args = array()) {
 	/* Needed for CPGNuke */
 	global $mainindex;
 
+	$url = '';
 	$prefix = '';
+	$isSetupUrl = (stristr($target,"setup")) ? true : false;
 
-	if( isset($GALLERY_EMBEDDED_INSIDE)) {
+	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
 				$cookiename = $board_config['cookie_name'];
@@ -73,10 +121,10 @@ function makeGalleryUrl($target = '', $args = array()) {
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
-					$target= $gallery->app->photoAlbumURL . "/index.php";
+					$target= 'index.php';
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
-						$target = $gallery->session->mambo->mosRoot . "index.php";
+						$url = $gallery->session->mambo->mosRoot . 'index.php';
 					} else {
 						$target = 'index.php';
 					}
@@ -97,24 +145,14 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 			// Maybe something went wrong, then we assume we are like standalone.
 			default:
-			    if(isset($gallery->app->photoAlbumURL)) {
-				$prefix = $gallery->app->photoAlbumURL .'/';
-			    }
-			    else if (where_i_am() == 'config') {
-				$prefix = '../';
-			    }
+			    $prefix = 'http://www.julia-reinsch.de';
 		}
 	}
-	else {
-	    if(isset($gallery->app->photoAlbumURL)) {
-		$prefix = $gallery->app->photoAlbumURL .'/';
-	    }
-	    else if (where_i_am() == 'config') {
-		$prefix = '../';
-	    }
+
+	if (empty($url)) {       
+	    $url = getGalleryBaseUrl() ."/$target";
 	}
-       
-	$url = $prefix . $target;
+
 	if ($args) {
 		$i = 0;
 		foreach ($args as $key => $value) {
@@ -197,23 +235,32 @@ function addUrlArg($url, $arg) {
 	}
 }
 
-function getImagePath($name, $skinname='') {
+/**
+ * @param	string	$name		Name of Image
+ * @param	string	$skinname	Optional Name skin, if file is not found, fallback to default location
+ * @return	string	$retUrl		Complete URL to the Image
+ */
+function getImagePath($name, $skinname = '') {
     global $gallery;
+    $retUrl = '';
 
     if (!$skinname) {
 	$skinname = $gallery->app->skinname;
     }
 
-    $base = makeGalleryUrl();
-    $defaultname = $base . "/images/$name";
+    /* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
+    $base = getGalleryBaseUrl();
+    $defaultname = "$base/images/$name";
     $fullname = dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
-    $fullURL = $base . "/skins/$skinname/images/$name";
+    $fullURL = "$base/skins/$skinname/images/$name";
 
     if (fs_file_exists($fullname) && !broken_link($fullname)) {
-	return "$fullURL";
+	$retUrl = $fullURL;
     } else {
-	return "$defaultname";
+	$retUrl = $defaultname;
     }
+
+    return $retUrl;
 }
 
 ?>

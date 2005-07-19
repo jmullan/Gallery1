@@ -251,18 +251,18 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             /* PHP-Nuke changed its "users" table field names in v.6.5 */
             /* Select the appropriate field names */
             if (isset($Version_Num) && $Version_Num >= "6.5") {
-                $gallery->database{'fields'} =
-                array ('name'  => 'name',
-                'uname' => 'username',
-                'email' => 'user_email',
-                'uid'   => 'user_id');
+                $gallery->database{'fields'} = array (
+		    'name'  => 'name',
+                    'uname' => 'username',
+                    'email' => 'user_email',
+                    'uid'   => 'user_id');
             }
             else {
-                $gallery->database{'fields'} =
-                array ('name'  => 'name',
-                'uname' => 'uname',
-                'email' => 'email',
-                'uid'   => 'uid');
+                $gallery->database{'fields'} = array (
+		    'name'  => 'name',
+                    'uname' => 'uname',
+                    'email' => 'email',
+                    'uid'   => 'uid');
             }
     
             /* Load our user database (and user object) */
@@ -291,10 +291,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             include_once(dirname(__FILE__) . "/classes/nsnnuke/User.php");
     
             $gallery->database{"nsnnuke"} = new MySQL_Database(
-            $GLOBALS['dbhost'],
-            $GLOBALS['dbuname'],
-            $GLOBALS['dbpass'],
-            $GLOBALS['dbname']);
+                $GLOBALS['dbhost'],
+                $GLOBALS['dbuname'],
+                $GLOBALS['dbpass'],
+                $GLOBALS['dbname']);
     
             if (isset($GLOBALS['user_prefix'])) {
                 $gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
@@ -306,11 +306,11 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             $gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
     
             /* Select the appropriate field names */
-            $gallery->database{'fields'} =
-            array ('name'  => 'realname',
-            'uname' => 'username',
-            'email' => 'user_email',
-            'uid'   => 'user_id');
+            $gallery->database{'fields'} = array (
+		'name'  => 'realname',
+		'uname' => 'username',
+		'email' => 'user_email',
+		'uid'   => 'user_id');
     
             /* Load our user database (and user object) */
             $gallery->userDB = new NsnNuke_UserDB;
@@ -336,11 +336,11 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             include_once(dirname(__FILE__) . "/classes/phpbb/UserDB.php");
             include_once(dirname(__FILE__) . "/classes/phpbb/User.php");
             $gallery->database{"phpbb"} = new MySQL_Database(
-            $GLOBALS['dbhost'],
-            $GLOBALS['dbuser'],
-            $GLOBALS['dbpasswd'],
-            $GLOBALS['dbname']);
-            //		$gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
+		$GLOBALS['dbhost'],
+		$GLOBALS['dbuser'],
+		$GLOBALS['dbpasswd'],
+		$GLOBALS['dbname']);
+//	    $gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
             $gallery->database{"prefix"} = $GLOBALS['table_prefix'];
             /* Load our user database (and user object) */
             $gallery->userDB = new phpbb_UserDB;

@@ -402,10 +402,11 @@ class htmlMimeMail
 		$params['encoding']     = $this->build_params['text_encoding'];
 		$params['charset']      = $this->build_params['text_charset'];
 		if (is_object($obj)) {
-			return $obj->addSubpart($text, $params);
+			$ret = & $obj->addSubpart($text, $params);
 		} else {
-			return new Mail_mimePart($text, $params);
+			$ret = & new Mail_mimePart($text, $params);
 		}
+		return $ret;
 	}
 
 /**
@@ -417,10 +418,11 @@ class htmlMimeMail
 		$params['encoding']     = $this->build_params['html_encoding'];
 		$params['charset']      = $this->build_params['html_charset'];
 		if (is_object($obj)) {
-			return $obj->addSubpart($this->html, $params);
+			$ret = & $obj->addSubpart($this->html, $params);
 		} else {
-			return new Mail_mimePart($this->html, $params);
+			$ret = & new Mail_mimePart($this->html, $params);
 		}
+		return $ret;
 	}
 
 /**
@@ -429,7 +431,8 @@ class htmlMimeMail
 	function &_addMixedPart()
 	{
 		$params['content_type'] = 'multipart/mixed';
-		return new Mail_mimePart('', $params);
+		$ret = & new Mail_mimePart('', $params);
+		return $ret;
 	}
 
 /**
@@ -439,10 +442,11 @@ class htmlMimeMail
 	{
 		$params['content_type'] = 'multipart/alternative';
 		if (is_object($obj)) {
-			return $obj->addSubpart('', $params);
+			$ret = & $obj->addSubpart('', $params);
 		} else {
-			return new Mail_mimePart('', $params);
+			$ret = & new Mail_mimePart('', $params);
 		}
+		return $ret;
 	}
 
 /**
@@ -452,10 +456,11 @@ class htmlMimeMail
 	{
 		$params['content_type'] = 'multipart/related';
 		if (is_object($obj)) {
-			return $obj->addSubpart('', $params);
+			$ret = & $obj->addSubpart('', $params);
 		} else {
-			return new Mail_mimePart('', $params);
+			$ret = & new Mail_mimePart('', $params);
 		}
+		return $ret;
 	}
 
 /**

@@ -210,13 +210,14 @@ class Album {
 		return $album;	
 	}
 
-	function &getParentAlbum($loadphotos=TRUE) {
-		if ($this->fields['parentAlbumName']) {
-			$parentAlbum = new Album();
-			$parentAlbum->load($this->fields['parentAlbumName'], $loadphotos);
-			return $parentAlbum;
-		}
-		return null;
+	function &getParentAlbum($loadphotos = TRUE) {
+	    $ret = NULL;
+	    if ($this->fields['parentAlbumName']) {
+		$parentAlbum = new Album();
+		$parentAlbum->load($this->fields['parentAlbumName'], $loadphotos);
+		$ret = $parentAlbum;
+	    }
+	    return ret;
 	}
 
 	/*
@@ -1729,7 +1730,8 @@ class Album {
 				// Watermarking of movies not supported
 			} else {
 				$photo->watermark($this->getAlbumDir(),
-						$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY,
+						$wmName, $wmAlphaName,
+						$wmAlign, $wmAlignX, $wmAlignY,
 						0, 0, // Not a preview
 					 	$wmSelect);
 			}

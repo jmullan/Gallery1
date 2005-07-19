@@ -776,13 +776,14 @@ function languageSelector() {
             }
             else {
                 $flagname = $value;
+		$style = ($gallery->language == $value) ? 'style="padding-bottom:10px"' : '';
                 $flagImage = "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
 
                 if ($gallery->language != $value) {
                     $langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
                 }
                 else {
-                    $langSelectTable->addElement(array('content' => $flagImage, 'cellArgs' => array('style' => 'margin:7px')));
+                    $langSelectTable->addElement(array('content' => $flagImage, 'cellArgs'));
                 }
                 /*
                 if ($count > $half && $half >10) {

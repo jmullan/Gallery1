@@ -44,7 +44,6 @@ $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
  */
 
 if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || isset($name)) {
-
 	/* 
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
@@ -52,7 +51,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 
 	if (isset($name)) {
 		$GALLERY_MODULENAME = $name;
-		define ('GALLERY_URL',"modules/$GALLERY_MODULENAME/");
+		define ('GALLERY_URL',"modules/$GALLERY_MODULENAME");
 	}
 	
 	if (isset($option)) {
