@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-07-19 22:23+0200\n"
+"POT-Creation-Date: 2005-07-20 14:25+0200\n"
 "PO-Revision-Date: 2004-08-17 13:57+0800\n"
 "Last-Translator: Kenneth Cheung\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -72,8 +72,8 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "請在下面的文字框內輸入您的評論。"
 
 #: ../add_comment.php:103 ../copy_photo.php:204 ../delete_album.php:66
-#: ../delete_photo.php:141 ../delete_user.php:85 ../edit_caption.php:185
-#: ../edit_field.php:66 ../edit_watermark.php:120
+#: ../delete_photo.php:141 ../delete_user.php:85 ../ecard_form.php:263
+#: ../edit_caption.php:185 ../edit_field.php:66 ../edit_watermark.php:120
 #: ../includes/add_photos/add_form.inc:107
 #: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
@@ -1040,6 +1040,119 @@ msgstr "正在重新建立 %d 份縮圖..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "正在重新建立 1 份縮圖..."
 
+#: ../ecard_form.php:43
+msgid "Error processing e-card. Please try later."
+msgstr ""
+
+#: ../ecard_form.php:44
+msgid "Some input fields are not correctly filled out. Please fill out."
+msgstr ""
+
+#: ../ecard_form.php:45
+msgid "You have an e-card as attachment. Click to see."
+msgstr ""
+
+#: ../ecard_form.php:80 ../ecard_form.php:171
+msgid "Send this photo as eCard"
+msgstr ""
+
+#: ../ecard_form.php:110
+msgid "Error, to send an E-C@rd\\nyou have to fill all fields.\\n Please fill this fields:"
+msgstr ""
+
+#: ../ecard_form.php:114
+msgid "- Your Name"
+msgstr ""
+
+#: ../ecard_form.php:120
+msgid "- Your Email"
+msgstr ""
+
+#: ../ecard_form.php:125
+msgid "- Recipient's Name"
+msgstr ""
+
+#: ../ecard_form.php:131
+msgid "- Recipient's Email"
+msgstr ""
+
+#: ../ecard_form.php:136
+#, fuzzy
+msgid "- Your Message"
+msgstr "訊息"
+
+#: ../ecard_form.php:140
+msgid "Please fill all fields next click >Send<."
+msgstr ""
+
+#: ../ecard_form.php:153
+#, php-format
+msgid "You have entered more than %d characters"
+msgstr ""
+
+#: ../ecard_form.php:193
+msgid "Your info"
+msgstr ""
+
+#: ../ecard_form.php:195
+msgid "Recipient's info"
+msgstr ""
+
+#: ../ecard_form.php:198 ../ecard_form.php:209
+#, fuzzy
+msgid "Name"
+msgstr "全名"
+
+#: ../ecard_form.php:213 ../ecard_form.php:216
+msgid "E-Mail"
+msgstr ""
+
+#: ../ecard_form.php:222
+msgid "Choose a Stamp"
+msgstr ""
+
+#: ../ecard_form.php:227
+#, php-format
+msgid "Stamp #%d"
+msgstr ""
+
+#: ../ecard_form.php:236
+msgid "Subject:"
+msgstr ""
+
+#: ../ecard_form.php:237
+#, php-format
+msgid "%s sent you an E-C@rd"
+msgstr ""
+
+#: ../ecard_form.php:241
+#, fuzzy
+msgid "Your Message:"
+msgstr "訊息："
+
+#: ../ecard_form.php:260 ../edit_watermark.php:119 ../watermark_album.php:151
+msgid "Preview"
+msgstr "預覽"
+
+#: ../ecard_form.php:261
+#, fuzzy
+msgid "Reset"
+msgstr "調整後大小"
+
+#: ../ecard_form.php:264
+#, fuzzy
+msgid "Send eCard"
+msgstr "以電郵通知我密碼"
+
+#: ../ecard_form.php:272
+#, php-format
+msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
+msgstr ""
+
+#: ../ecard_form.php:276
+msgid "Close this window"
+msgstr ""
+
 #: ../edit_appearance.php:57
 #, fuzzy, php-format
 msgid "Problem with input of field '%s'. %s"
@@ -1179,10 +1292,6 @@ msgstr "編輯水印"
 #: ../edit_watermark.php:106
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
-
-#: ../edit_watermark.php:119 ../watermark_album.php:151
-msgid "Preview"
-msgstr "預覽"
 
 #: ../extra_fields.php:77 ../extra_fields.php:81
 msgid "Configure Custom Fields"
@@ -2151,12 +2260,12 @@ msgstr "使用者是管理員"
 msgid "you can't un-admin yourself"
 msgstr "您不能解除自己的管理員權限"
 
-#: ../html/userData.inc:133
+#: ../html/userData.inc:134
 #, fuzzy
 msgid "Note: Admins can always create albums and are allowed to change their password."
 msgstr "注意：管理員可以隨時建立相簿"
 
-#: ../html/userData.inc:142
+#: ../html/userData.inc:143
 #, fuzzy
 msgid "Send email to user when account is created"
 msgstr "帳號建立後<br>發送電郵給使用者"
@@ -2474,7 +2583,7 @@ msgstr "全取消"
 msgid "Invert Selection"
 msgstr "反向選擇"
 
-#: ../lib/Form.php:238
+#: ../lib/Form.php:233
 msgid "Colorpicker"
 msgstr ""
 
@@ -3446,7 +3555,7 @@ msgstr "找到 %d 個 meta 檔案，這些檔案包含有關圖案的資料，包括標題及描述等等。"
 msgid "Add Files"
 msgstr "新增檔案"
 
-#: ../search.php:43 ../search.php:55 ../util.php:3675
+#: ../search.php:43 ../search.php:55 ../util.php:3676
 msgid "Search"
 msgstr "搜尋"
 
@@ -4989,9 +5098,6 @@ msgstr ""
 
 #~ msgid "not shown"
 #~ msgstr "不顯示"
-
-#~ msgid "Message"
-#~ msgstr "訊息"
 
 #~ msgid "Email sent"
 #~ msgstr "電郵已寄出"

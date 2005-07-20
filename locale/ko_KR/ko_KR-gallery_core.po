@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-07-19 22:23+0200\n"
+"POT-Creation-Date: 2005-07-20 14:25+0200\n"
 "PO-Revision-Date: 2005-03-18 17:59+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -72,8 +72,8 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "이 사진을 위한 당신의 코멘트를 아래의 박스에 입력하세요."
 
 #: ../add_comment.php:103 ../copy_photo.php:204 ../delete_album.php:66
-#: ../delete_photo.php:141 ../delete_user.php:85 ../edit_caption.php:185
-#: ../edit_field.php:66 ../edit_watermark.php:120
+#: ../delete_photo.php:141 ../delete_user.php:85 ../ecard_form.php:263
+#: ../edit_caption.php:185 ../edit_field.php:66 ../edit_watermark.php:120
 #: ../includes/add_photos/add_form.inc:107
 #: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
@@ -1021,6 +1021,119 @@ msgstr "%d 썸네일 재구성..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "1 썸네일 재구성..."
 
+#: ../ecard_form.php:43
+msgid "Error processing e-card. Please try later."
+msgstr ""
+
+#: ../ecard_form.php:44
+msgid "Some input fields are not correctly filled out. Please fill out."
+msgstr ""
+
+#: ../ecard_form.php:45
+msgid "You have an e-card as attachment. Click to see."
+msgstr ""
+
+#: ../ecard_form.php:80 ../ecard_form.php:171
+msgid "Send this photo as eCard"
+msgstr ""
+
+#: ../ecard_form.php:110
+msgid "Error, to send an E-C@rd\\nyou have to fill all fields.\\n Please fill this fields:"
+msgstr ""
+
+#: ../ecard_form.php:114
+msgid "- Your Name"
+msgstr ""
+
+#: ../ecard_form.php:120
+msgid "- Your Email"
+msgstr ""
+
+#: ../ecard_form.php:125
+msgid "- Recipient's Name"
+msgstr ""
+
+#: ../ecard_form.php:131
+msgid "- Recipient's Email"
+msgstr ""
+
+#: ../ecard_form.php:136
+#, fuzzy
+msgid "- Your Message"
+msgstr "메세지"
+
+#: ../ecard_form.php:140
+msgid "Please fill all fields next click >Send<."
+msgstr ""
+
+#: ../ecard_form.php:153
+#, php-format
+msgid "You have entered more than %d characters"
+msgstr ""
+
+#: ../ecard_form.php:193
+msgid "Your info"
+msgstr ""
+
+#: ../ecard_form.php:195
+msgid "Recipient's info"
+msgstr ""
+
+#: ../ecard_form.php:198 ../ecard_form.php:209
+#, fuzzy
+msgid "Name"
+msgstr "전체 이름"
+
+#: ../ecard_form.php:213 ../ecard_form.php:216
+msgid "E-Mail"
+msgstr ""
+
+#: ../ecard_form.php:222
+msgid "Choose a Stamp"
+msgstr ""
+
+#: ../ecard_form.php:227
+#, php-format
+msgid "Stamp #%d"
+msgstr ""
+
+#: ../ecard_form.php:236
+msgid "Subject:"
+msgstr ""
+
+#: ../ecard_form.php:237
+#, php-format
+msgid "%s sent you an E-C@rd"
+msgstr ""
+
+#: ../ecard_form.php:241
+#, fuzzy
+msgid "Your Message:"
+msgstr "메세지:"
+
+#: ../ecard_form.php:260 ../edit_watermark.php:119 ../watermark_album.php:151
+msgid "Preview"
+msgstr "미리보기"
+
+#: ../ecard_form.php:261
+#, fuzzy
+msgid "Reset"
+msgstr "조정된 크기"
+
+#: ../ecard_form.php:264
+#, fuzzy
+msgid "Send eCard"
+msgstr "내 비밀번호를 전송해주세요"
+
+#: ../ecard_form.php:272
+#, php-format
+msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
+msgstr ""
+
+#: ../ecard_form.php:276
+msgid "Close this window"
+msgstr ""
+
 #: ../edit_appearance.php:57
 #, fuzzy, php-format
 msgid "Problem with input of field '%s'. %s"
@@ -1160,10 +1273,6 @@ msgstr "워터마크 수정"
 #: ../edit_watermark.php:106
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
-
-#: ../edit_watermark.php:119 ../watermark_album.php:151
-msgid "Preview"
-msgstr "미리보기"
 
 #: ../extra_fields.php:77 ../extra_fields.php:81
 msgid "Configure Custom Fields"
@@ -2097,12 +2206,12 @@ msgstr "회원은 최고관리자입니다."
 msgid "you can't un-admin yourself"
 msgstr "당신 스스로 관리자포기를 할 수 없습니다."
 
-#: ../html/userData.inc:133
+#: ../html/userData.inc:134
 #, fuzzy
 msgid "Note: Admins can always create albums and are allowed to change their password."
 msgstr "주의: 관리자는 항상 앨범을 생성할 수 있습니다."
 
-#: ../html/userData.inc:142
+#: ../html/userData.inc:143
 #, fuzzy
 msgid "Send email to user when account is created"
 msgstr "계정이 생성되면<br> 회원에게 이메일 전송"
@@ -2415,7 +2524,7 @@ msgstr "모두 지우기"
 msgid "Invert Selection"
 msgstr "선택 반전"
 
-#: ../lib/Form.php:238
+#: ../lib/Form.php:233
 msgid "Colorpicker"
 msgstr ""
 
@@ -3380,7 +3489,7 @@ msgstr "%d 메타 파일 발견됨. 이러한 파일은 제목이나 설명과 같은 이미지에 대한 정
 msgid "Add Files"
 msgstr "파일 추가"
 
-#: ../search.php:43 ../search.php:55 ../util.php:3675
+#: ../search.php:43 ../search.php:55 ../util.php:3676
 msgid "Search"
 msgstr "검색"
 
@@ -4843,9 +4952,6 @@ msgstr ""
 
 #~ msgid "not shown"
 #~ msgstr "보이지 않음"
-
-#~ msgid "Message"
-#~ msgstr "메세지"
 
 #~ msgid "Email sent"
 #~ msgstr "이메일 전송"
