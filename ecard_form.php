@@ -107,37 +107,37 @@ function popup_win(theURL,winName,winOptions) {
  
  function check() {
    var error = false;
-   var error_message = "Error, to send an E-C@rd\nyou hve to fill all fields.\n Please fill this fields:\n\n";
+   var error_message = "<?php echo _('Error, to send an E-C@rd\nyou have to fill all fields.\n Please fill this fields:'); ?>\n\n";
 
    if (document.ecard_form["ecard[name_sender]"].value == "") {
      error = true;
-     error_message += "- Your Name\n";
+     error_message += "<?php echo _("- Your Name"); ?>\n";
    } 
  
    if ((document.ecard_form["ecard[email_sender]"].value == "") && 
       (document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1)) {
         error = true;
-        error_message += "- Your Email\n";
+        error_message += "<?php echo _("- Your Email"); ?>\n";
    }
   
    if (document.ecard_form["ecard[name_recepient]"].value == "") {
      error = true;
-     error_message += "- Recipient's Name\n";
+     error_message += "<?php echo _("- Recipient's Name"); ?>\n";
    } 
  
    if ((document.ecard_form["ecard[email_recepient]"].value == "") && 
       (document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1)) {
         error = true;
-        error_message += "- Recipient's Email\n";
+        error_message += "<?php echo _("- Recipient's Email"); ?>\n";
    }
   
    if (document.ecard_form["ecard[message]"].value == "") {
      error = true;
-     error_message += "- Your Message\n";
+     error_message += "<?php echo _("- Your Message"); ?>\n";
    }
 
    if (error) {
-     error_message += "\n\nPlease fill all fields\n next click 'Send'.";
+     error_message += "\n\n<?php echo _('Please fill all fields next click >Send<.'); ?>";
      alert(error_message);
      return false;  // Formular wird nicht abgeschickt.
    } else {
@@ -150,7 +150,7 @@ function popup_win(theURL,winName,winOptions) {
     max = <?php echo $max_length ?>;
     wert = max - document.ecard_form["ecard[message]"].value.length;
     if (wert < 0) {
-      alert("You have entered more than " + max + " characters!");
+      alert("<?php echo sprintf(_("You have entered more than %d characters"), $max_length); ?>");
       document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
       wert = 0;
       document.ecard_form.counter.value = wert;
