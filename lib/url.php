@@ -33,8 +33,6 @@ function setGalleryPaths() {
 function getGalleryBaseUrl() {
     global $gallery;
 
-    $setupUrl = (stristr($_SERVER['REQUEST_URI'],"setup")) ? true : false;
-
     if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
         $base = $gallery->app->photoAlbumURL;
     }
@@ -143,9 +141,9 @@ function makeGalleryUrl($target = '', $args = array()) {
 				$target = $mainindex;
 			break;
 
-			// Maybe something went wrong, then we assume we are like standalone.
+			// Maybe something went wrong, we do nothing as URL we be build later.
 			default:
-			    $prefix = 'http://www.julia-reinsch.de';
+			break;
 		}
 	}
 

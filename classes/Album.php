@@ -217,7 +217,7 @@ class Album {
 		$parentAlbum->load($this->fields['parentAlbumName'], $loadphotos);
 		$ret = $parentAlbum;
 	    }
-	    return ret;
+	    return $ret;
 	}
 
 	/*
@@ -1253,7 +1253,7 @@ class Album {
 		if (isImage($tag) && strlen($wmName)) {
 			processingMsg("- ". _("Watermarking Image"));
 			$photo->watermark($this->getAlbumDir(),
-				$wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect); 
+				$wmName, '', $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect); 
 		}
 
 		$this->fields['guid'] = genGUID();

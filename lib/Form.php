@@ -129,18 +129,15 @@ function drawSelect($name, $options, $selected, $size, $attrList=array(), $prett
 
 
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-    $attrs = "";
+    $attrs = '';
     $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
     if (!isset($attrList['size'])) {
-	$args['size'] = 1;
+	$attrList['size'] = 1;
     }
 
     if (!empty($attrList)) {
 	foreach ($attrList as $attr => $value) {
-	    if ($value == NULL) {
-		$attrs .= " $attr";
-	    }
-	    else {
+	    if ($value != NULL) {
 		$attrs .= " $attr=\"$value\"";
 	    }
 	}
@@ -149,12 +146,10 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
     $buf = "<select name=\"$name\" $attrs>$crlf";
 
     foreach ($options as $nr => $option) {
-	$sel = '';
-	if (isset($option['selected'])) {
-		$sel = " selected";
-	}
+	$sel = isset($option['selected']) ? ' selected' : '';
 	$buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
     }
+
     $buf .= "</select>". $crlf;
 
     return $buf;
