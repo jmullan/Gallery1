@@ -302,10 +302,7 @@ if ($fitToWindow) {
 }
 ?>
 <!-- Top Nav Bar -->
-<table border="0" width="<?php echo $mainWidth ?>" cellpadding="0" cellspacing="0">
-
-<tr>
-<td>
+<div class="topNavbar" style="width:<?php echo $mainWidth ?>">
 <?php
 
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
@@ -555,16 +552,13 @@ if(sizeof($albumItemOptions) > 2 && $useIcons) {
 
 includeLayout('navtablemiddle.inc');
 
-if ((!strcmp($gallery->album->fields["nav_thumbs_location"],"top") ||
-  !strcmp($gallery->album->fields["nav_thumbs_location"],"both")) &&
-  (!strcmp($gallery->album->fields["nav_thumbs"],"yes") ||
-  !strcmp($gallery->album->fields["nav_thumbs"],"both"))) {
+if ($gallery->album->fields['nav_thumbs'] != 'no' &&
+  $gallery->album->fields['nav_thumbs_location'] != 'bottom') {
     includeLayout('navmicro.inc');
+    includeLayout('navtablemiddle.inc');
 }
 
-includeLayout('navtablemiddle.inc');
-
-if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
+if ( $gallery->album->fields['nav_thumbs'] != 'yes') {
     includeLayout('navphoto.inc');
 }
 
@@ -578,10 +572,9 @@ if ($bordercolor) {
     $bordercolor = "bgcolor=$bordercolor";
 }
 ?>
-<br>
-</td>
-</tr>
-</table>
+<!-- End Top Nav Bar -->
+</div>
+
 
 <div style="width:<?php echo $mainWidth ?>"> 
 <?php includeHtmlWrap("inline_photo.header"); ?>
@@ -636,13 +629,12 @@ includeHtmlWrap("inline_photo.frame");
 ?>
 <div class="pview" align="center">
 <!-- caption -->
-<p align="center" class="pcaption"><?php echo editCaption($gallery->album, $index) ?>
+<p align="center" class="pcaption"><?php echo editCaption($gallery->album, $index) ?></p>
 
 <!-- Custom Fields -->
 <?php
 displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
 ?>
-</p>
 
 <!-- voting -->
 <?php
@@ -723,18 +715,17 @@ if ($gallery->user->isLoggedIn() &&
 }
 echo "</div>";
 includeLayout('navtablebegin.inc');
-if ( (!strcmp($gallery->album->fields["nav_thumbs_location"],"bottom") ||
-  !strcmp($gallery->album->fields["nav_thumbs_location"],"both")) &&
-  (!strcmp($gallery->album->fields["nav_thumbs"],"yes") ||
-  !strcmp($gallery->album->fields["nav_thumbs"],"both") ) ) {
-    includeLayout('navmicro.inc');
-}
-includeLayout('navtablemiddle.inc');
 
-if ( !strcmp($gallery->album->fields["nav_thumbs"],"no") || !strcmp($gallery->album->fields["nav_thumbs"],"both") ) {
-    includeLayout('navphoto.inc');
+if ($gallery->album->fields['nav_thumbs'] != 'no' &&
+  $gallery->album->fields['nav_thumbs_location'] != 'top') {
+    includeLayout('navmicro.inc');
+    includeLayout('navtablemiddle.inc');
 }
-includeLayout('navtablemiddle.inc');
+
+if ( $gallery->album->fields['nav_thumbs'] != 'yes') {
+    includeLayout('navphoto.inc');
+    includeLayout('navtablemiddle.inc');
+}
 
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
