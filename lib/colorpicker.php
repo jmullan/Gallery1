@@ -24,6 +24,10 @@ if (getOS() == OS_WINDOWS) {
     include_once(dirname(dirname(__FILE__)) . "/platform/fs_unix.php");
 }
 
+if (fs_file_exists(dirname(dirname(__FILE__)) . "/config.php")) {
+    include_once(dirname(dirname(__FILE__)) . "/config.php");
+}
+
 $target = getRequestVar('target');
 
 /* This is need to get the correct pathes when colorpicker is called from setup and Gallery is not configured. */
@@ -34,7 +38,7 @@ doctype();
 <html>
 <head>
   <title><?php echo _("Color Picker") ?></title>
-  <?php common_header(); ?>
+  <?php echo getStyleSheetLink();; ?>
 </head>
 
 <img src="<?php echo getImagePath('colorscale.png') ?>" alt="" title="" id="colorpicker" onclick="changeColor(getColor(event)); return false;" onmousemove="demoColor(getColor(event)); return false;" style="cursor:crosshair;background-color:white;padding:1px" />

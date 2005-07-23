@@ -107,8 +107,8 @@ function popup_win(theURL,winName,winOptions) {
  
  function check() {
    var error = false;
-   var error_message = "<?php echo _("Error: to send an eCard you need to fill out all fields.";) ?>";
-   error_message +="\n <?php echo_("Please fill this fields:"); ?>\n\n";
+   var error_message = "<?php echo _("Error: to send an eCard you need to fill out all fields."); ?>";
+   error_message +="\n <?php echo _("Please fill this fields:"); ?>\n\n";
 
    if (document.ecard_form["ecard[name_sender]"].value == "") {
      error = true;

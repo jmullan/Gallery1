@@ -78,7 +78,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
 }
-        
+
 includeHtmlWrap('gallery.header');
 
 $adminbox['text'] ='<span class="head">'. _("Admin options") .'</span>';

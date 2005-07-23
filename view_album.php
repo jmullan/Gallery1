@@ -178,6 +178,7 @@ if ($gallery->album->fields["textcolor"]) {
 
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
+
 includeHtmlWrap("album.header");
 
 if (!$gallery->session->offline) { ?>

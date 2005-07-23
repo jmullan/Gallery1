@@ -1,12 +1,20 @@
 <?php
 // $Id$
-// This header file detects whether Gallery is embedded in any 
-// known PHP applications and then decorates Gallery appropriately.
+?>
+<?php
+/**
+ * This header file detects whether Gallery is embedded in any 
+ * known PHP applications and then decorates Gallery appropriately.
+ * Also the css stylesheets are loaded if not already done.
+ */
 
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 if(isset($GALLERY_EMBEDDED_INSIDE)) {
+	// Import CSS Style_sheet if not already done.
+	echo getStyleSheetLink();
+
 	global $PHP_SELF;
 
 	if (

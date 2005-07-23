@@ -1119,24 +1119,35 @@ function includeHtmlWrap($name, $skinname='', $adds='') {
 	return 1;
 }
 
+/**
+ * Wrapper around _getStyleSheetLink, its defines which stylesheet link is generated.
+ * @return	string	$styleSheetLinks	The generated HTML <LINK> to load the stylesheets. Empty when already loaded.
+ */
 function getStyleSheetLink() {
-	global $GALLERY_EMBEDDED_INSIDE;
-	global $GALLERY_OK;
+    global $GALLERY_EMBEDDED_INSIDE;
+    global $GALLERY_OK;
 
-	$styleSheetLinks = '';
+    static $styleSheetSet;
+
+    $styleSheetLinks = '';
+    
+    if(! $styleSheetSet) {
 	if (isset($GALLERY_OK) && $GALLERY_OK == false) {
-		return _getStyleSheetLink("config");
-	}
-
-	$styleSheetLinks = _getStyleSheetLink("base");
-
-	if ($GALLERY_EMBEDDED_INSIDE) {
-		$styleSheetLinks .= _getStyleSheetLink("embedded_style");
+	    $styleSheetLinks = _getStyleSheetLink("config");
 	} else {
-		$styleSheetLinks .= _getStyleSheetLink("screen");
-	}
+	    $styleSheetLinks = _getStyleSheetLink("base");
 
-	return $styleSheetLinks;
+	    if ($GALLERY_EMBEDDED_INSIDE) {
+		$styleSheetLinks .= _getStyleSheetLink("embedded_style");
+	    } else {
+		$styleSheetLinks .= _getStyleSheetLink("screen");
+	    }
+	}
+	
+	$styleSheetSet = true;
+    }
+
+    return $styleSheetLinks;
 }
 
 /**
@@ -1786,7 +1797,7 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			echo gallery_error(sprintf(_("Could not open lock file (%s)!"),
+			echo gallery_error(sprintf(_("Could not open lock file (%s) for writing!"),
 						"$file.lock"));
 			return 0;
 		}
@@ -2998,13 +3009,13 @@ function common_header($adds = array()) {
     }
 
 // Do some meta tags
-	metatags($metaTagAdds);
-	
-// Import CSS Style_sheet
-	echo getStyleSheetLink();
+    metatags($metaTagAdds);
 
+// Import CSS Style_sheet
+    echo getStyleSheetLink();
+	
 // Set the Gallery Icon 
-	echo "\n  <link rel=\"shortcut icon\" href=\"". makeGalleryUrl('images/favicon.ico') . "\">\n";
+    echo "\n  <link rel=\"shortcut icon\" href=\"". makeGalleryUrl('images/favicon.ico') . "\">\n";
 }
 
 function metatags($adds = array()) {
@@ -3019,7 +3030,7 @@ function metatags($adds = array()) {
 	    echo "\n  ". '<meta name="'. $name .'" content="'. $content .'">';
 	}
     } 
-    echo "\n\n";
+    echo "\n";
 }
 
 /**

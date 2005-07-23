@@ -85,7 +85,12 @@ function fs_is_readable($filename) {
 }
 
 function fs_opendir($path) {
+    if (@opendir($path)) {
 	return opendir($path);
+    }
+    else {
+	echo gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+    }
 }
 
 function fs_rename($oldname, $newname) {
