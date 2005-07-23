@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+                                                                                                                        
+<sect1 id="gallery1-user.watermark">
+ <title>Watermarking</title>
+                                                                                                                        
+ <para>
+  Gallery has the ability watermark images or entire albums of images.  This
+  is done by overlaying an image on top of another image.
+ </para>
+
+ <para>
+  Limitations:
+  <itemizedlist>
+   <listitem>
+    <para>
+      NetPBM does not support steganography like ImageMagick.  Therefore,
+      only visible image watermarking is supported.
+    </para>
+   </listitem>
+   <listitem>
+    <warning>
+     <para>
+      Gallery does not store the original image.
+      When an image is watermarked, it is permanent, and can not be undone.
+      It is assumed that the user will archive any images that they want
+      without a watermark.
+     </para>
+    </warning>
+   </listitem>
+   <listitem>
+    <para>
+     Only .gif, .tif, and .png are supported watermark file types.  These
+     formats support either a transparent color (gif) or an alpha channel
+     (tif and png).
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     The size of the watermark, in pixels, is the same for the full size
+     and resized images.  In proportion to the entire image, the full
+     size image's watermark is smaller.  This <emphasis>could</emphasis>
+     be a problem when printing the images.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </para>
+ <para>
+  To use watermarking...
+  <itemizedlist>
+   <listitem>
+    <para>
+     Enable watermarking by entering a watermark directory in the 
+     Configuration Wizard under the "Locations and URLs" tab--fill out a 
+     directory containing the images you want to use as watermarks. 
+     Use the full system path.  When logged in as admin, you will now see 
+     [watermark album] as an option in each album. If you that option, you
+     will be presented with a page showing you the possible watermarking options.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Note that all files located in the watermark directory you defined 
+     earlier will now be available in the dropdown below the image. 
+     All you need to do to add a new watermark picture is to add it to the 
+     watermark directory, re-open the watermarking page and select it in the dropdown.
+     The preview button enables you to preview the watermark before applying it, helping
+     you visualize how it's going to look.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </para>
+
+</sect1>

@@ -1,0 +1,263 @@
+#!/bin/bash
+DIST=dist 
+
+# $Id$
+
+# Functions
+
+function gendate {
+	echo "<!ENTITY last-gen-date '"`date`"'>" > $DIST/gendate.ent
+}
+
+# End Functions
+
+case $1 in
+	html)
+		echo "Generating HTML Manual...";
+		
+		if [ ! -d $DIST/html ]; then
+			mkdir -p $DIST/html;
+		fi
+
+		gendate
+
+		cd $DIST/html
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/html/chunkfast.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../css/*.css .
+		;;
+
+	bightml)
+		echo "Generating Big HTML Manual...";
+
+		if [ ! -d $DIST/bightml ]; then
+			mkdir -p $DIST/bightml;
+		fi
+
+		gendate
+
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param toc.section.depth 1 docbook-xsl/html/docbook.xsl manual.xml > $DIST/bightml/index.html || exit 1
+
+		cp -Rf images $DIST/bightml
+		rm -rf $DIST/bightml/CVS
+
+		cp css/*.css $DIST/bightml
+		;;
+		
+	galleryweb)
+		echo "Generating Gallery Web Manual...";
+
+		if [ ! -d $DIST/galleryweb ]; then
+			mkdir -p $DIST/galleryweb;
+		fi
+
+		gendate
+
+		cd $DIST/galleryweb
+		xsltproc --param prettyhtml 0 --param galleryweb 1 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/galleryweb.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../css/*.css .
+		;;
+
+	g1package)
+		echo "Generating Gallery 1 Docs Only...";
+
+		if [ ! -d $DIST/g1package ]; then
+			mkdir -p $DIST/g1package;
+		fi
+
+		gendate
+
+		cd $DIST/g1package
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/g1-package.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../css/*.css .
+		;;
+
+	grpackage)
+		echo "Generating Gallery Remote Docs Only...";
+
+		if [ ! -d $DIST/grpackage ]; then
+			mkdir -p $DIST/grpackage;
+		fi
+
+		gendate
+
+		cd $DIST/grpackage
+		xsltproc --param toc-offset 2 --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 3 --param section.autolabel 1 ../../misc-xsl/gr-package.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		cp ../../css/*.css .
+		;;
+
+	prettyhtml)
+		echo "Generating Pretty HTML Docs...";
+
+		if [ ! -d $DIST/prettyhtml ]; then
+			mkdir -p $DIST/prettyhtml;
+		fi
+
+		gendate
+
+		cd $DIST/prettyhtml
+       		cp ../../css/*.css .
+                
+		xsltproc --param prettyhtml 1 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../misc-xsl/pretty-html.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		;;                
+
+	htmlhelp)
+		echo "Generating HTML Help Docs...";
+
+		if [ ! -d $DIST/htmlhelp ]; then
+			mkdir -p $DIST/htmlhelp;
+		fi
+
+		gendate
+
+		cd $DIST/htmlhelp
+       		cp ../../css/*.css .
+                
+		xsltproc --param prettyhtml 0 --param galleryweb 0 --param generate.section.toc.level 1 --param chunk.first.sections 1 --param toc.section.depth 1 ../../docbook-xsl/htmlhelp/htmlhelp.xsl ../../manual.xml || exit 1
+
+
+		cp -Rf ../../images .
+		rm -rf images/CVS
+
+		;;                
+
+
+	pdf)
+		echo "Generating PDF Manual...";
+
+		if [ ! -d $DIST/pdf ]; then
+			mkdir -p $DIST/pdf;
+		fi
+
+		if [ -e $DIST/pdf/manual-fop.pdf ]; then
+			rm -f $DIST/pdf/manual-fop.pdf;
+		fi
+
+		gendate
+
+		fop -d -xsl docbook-xsl/fo/docbook.xsl -xml manual.xml -pdf $DIST/pdf/manual-fop.pdf || exit 1
+
+		rm -f manual.fo
+		;;
+
+	pdf-htmldoc)
+		echo "Generating PDF Manual (htmldoc)...";
+
+		if [ ! -d $DIST/pdf ]; then
+			mkdir -p $DIST/pdf
+		fi
+
+		if [ -e $DIST/pdf/manual-htmldoc.pdf ]; then
+			rm -f $DIST/pdf/manual-htmldoc.pdf;
+		fi
+
+		$0 bightml
+
+		htmldoc -t pdf14 -f $DIST/pdf/manual-htmldoc.pdf --book $DIST/bightml/index.html
+
+		;;
+
+	autofaq)
+		if [ ! -d $DIST/autofaq ]; then
+			mkdir -p $DIST/autofaq;
+		fi
+
+		gendate
+
+		echo "Generating AutoFAQ data...";
+		cd $DIST/autofaq
+		xsltproc ../../misc-xsl/autofaq.xsl ../../manual.xml > autofaq_data.txt || exit 1
+		;;
+		
+	test-xmllint)
+		if [ ! -d $DIST ]; then
+			mkdir $DIST;
+		fi
+	
+		gendate
+
+		echo "Testing documentation (if you see no errors, everything is good)..."
+
+		gendate
+
+		xmllint --valid --noout manual.xml
+		;;
+		
+	contexthelp)
+		if [ ! -d $DIST ]; then
+			mkdir $DIST;
+		fi
+
+		echo "Generating Context Help Docs (requires perl in PATH)";
+		
+		cd context-help
+		perl gen.pl
+
+		cp -Rpv ../dist/context-help/* ../../gallery/docs/context-help
+		
+		;;				
+	help)
+		echo "Gallery Documentation Generation Script";
+		echo "---------------------------------------";
+		echo "Usage: ./gen [option]";
+		echo "";		
+		echo "Options:";
+		echo "html          Generate HTML documents";
+		echo "bightml       Generate one big HTML document";
+#		echo "pdf           Generate a PDF (requires fop)";
+		echo "galleryweb    Generate docs fitted for the Gallery Website";
+		echo "g1package     Generate only G1 docs";
+		echo "grpackage     Generate only GR docs";
+		echo "prettyhtml    Generate nice looking docs";
+		echo "htmlhelp      Generate Windows help docs (experimental)";
+		echo "dist          Generate all types";
+		echo "autofaq       Generates the forum AutoFAQ popup";
+		echo "contexthelp   Generates context help documentation";
+		echo "test-xmllint  Test for XML errors using xmllint";
+		echo "clean         Remove all generated manuals (created by html, bightml, etc..)";
+		echo "help          Display this help page"
+		;;
+
+	dist)
+		$0 html
+		$0 bightml
+#		$0 pdf
+		$0 galleryweb
+                $0 prettyhtml
+		$0 htmlhelp
+		;;
+
+	clean)
+		echo "Deleting generated documentation...";
+                
+                #Remove files
+		rm -rf $DIST
+		;;
+
+	*)
+		echo "Invalid Action.  Type './gen help' for help";;
+esac

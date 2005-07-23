@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.upgrade">
+ <title>Upgrading a Previous Gallery Installation</title>
+
+ <para>
+  This sections describes how to upgrade your Gallery from an old version to
+  a new one.  Upgrading is very easy, and you won't lose any data if you
+  follow all the directions.
+ </para>
+ 
+ <sect2 id="gallery1-install.upgrade.shell">
+  <title>Upgrading with Shell Access</title>
+  
+  <orderedlist>
+   <listitem>
+    <para>
+     <emphasis>Put your Gallery into configuration mode</emphasis>.
+     This is very important.  If you don't do this, then you won't be
+     able to back up your existing setup directory or install the new
+     setup code on top of it.
+     <screen>
+      cd gallery
+      sh configure.sh (or configure.bat for Windows)
+     </screen>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Make a backup of your old Gallery installation.  The easiest way to do
+     this is to use the <command>tar</command> command.
+     <screen>
+      tar -cz gallery > gallery-backup.tar.gz
+     </screen>
+     On Windows, use something like WinZip to create an archive of your Gallery
+     directory.
+    </para>
+   </listitem>
+   <listitem> 
+    <para>
+     Download Gallery from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=7130">
+     Gallery SF.net Download Page</ulink>.  Put the tarball in your gallery directory's
+     parent directory.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Untar the new Gallery version over the old one.
+     <screen>
+      tar -xvzf gallery-1.x.x.tar.gz
+      [list of new files]
+     </screen>
+     Windows users: use WinZip to extract Gallery over the old installation
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Re-run the <link linkend="gallery1-install.config-wizard">configuration
+     wizard</link>.  Afterward, put Gallery back into secure mode, as described
+     in that guide.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Some upgrades include changes to the Gallery data formats and
+     require you to upgrade all of your albums.  You can either let
+     this happen automatically the first time somebody views the
+     album, or you can upgrade the albums yourself when logged in as
+     an admin.  If you want to upgrade them all, open 
+     <blockquote>
+      <para>
+       http://www.example.com/gallery/upgrade_album.php
+      </para>
+     </blockquote>
+     in your web browser (use the real url to your Gallery, of course)
+     and then follow the instructions you find there.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Enjoy your upgraded Gallery!
+    </para>
+   </listitem>
+  </orderedlist>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.upgrade.ftp">
+  <title>Upgrading Gallery with FTP</title>
+  
+  <orderedlist>
+   <listitem>
+    <para>
+     <emphasis>Put your Gallery into configuration mode</emphasis>.
+     This is very important.  If you don't do this, then you won't be
+     able to back up your existing setup directory or install the new
+     setup code on top of it.  Do this by chmodding &htaccess;
+     and &config.php; 0777 and by chmodding the
+     <filename>setup/</filename> directory 0755.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Make a backup copy of your Gallery directory.  Use your FTP client to download
+     the old Gallery directory, just in case
+    </para>
+   </listitem>
+   <listitem> 
+    <para>
+     Download Gallery from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=7130">
+     Gallery SF.net Download Page</ulink>.  Untar it using <command>tar</command>
+     or WinZip on your computer.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Using your FTP client, upload the new Gallery files over the old Gallery files.
+     Yes, this will override the old Gallery files, but this is OK!
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Re-run the <link linkend="gallery1-install.config-wizard">configuration
+     wizard</link>.  Afterward, put Gallery back into secure mode, as described
+     in that guide.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Some upgrades include changes to the Gallery data formats and
+     require you to upgrade all of your albums.  You can either let
+     this happen automatically the first time somebody views the
+     album, or you can upgrade the albums yourself when logged in as
+     an admin.  If you want to upgrade them all, open 
+     <blockquote>
+      <para>
+       http://www.example.com/gallery/upgrade_album.php
+      </para>
+     </blockquote>
+     in your web browser (use the real url to your Gallery, of course)
+     and then follow the instructions you find there.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Enjoy your upgraded Gallery!
+    </para>
+   </listitem>
+  </orderedlist>
+  
+  <note>
+   <para>
+    If after you upgrade your Gallery, you get a blank screen or a PHP error
+    (e.g. "function not found", etc...), don't panic.  Your FTP client probably
+    didn't override all the files.  The solution is to delete all the Gallery
+    files except &config.php; and your albums directory and re-upload Gallery
+    (don't forget to re-run the configuration wizard).
+   </para>
+  </note>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.upgrade.modified">
+  <title>Upgrading a modified Gallery</title>
+  
+  <para>
+   Upgrading a Gallery installation you have modified can be difficult.  By modified,
+   we mean modifying the actual PHP code Gallery runs on.  If you just made changes
+   in the <filename>html_wrap/</filename> or <filename>css/</filename> directories, 
+   you should have no worries (you should have removed the .default extension from
+   the files before modifying them, so that they won't get overridden when upgrading) and
+   can proceed upgrading Gallery using one of the guides above.
+  </para>
+  <para>
+   If you indeed have modified some of the PHP code that Gallery uses, upgrading will
+   be more difficult, but not totally impossible.  It will be, however, extremely hard
+   or impossible to upgrade a modified Gallery without shell access to the server.  Keep
+   this in mind.  First, you'll need to download the original non-modified Gallery version
+   that corresponds to the version you are currently using (i.e. if you modified Gallery 1.3.4,
+   re-download an unmodified Gallery 1.3.4).  Unpack it in the same directory that your modified
+   Gallery is in, but name is something like <filename>orig_gallery/</filename>.  You should now
+   have two directories, <filename>gallery/</filename> (or whatever your modified Gallery's directory
+   name is) and <filename>orig_gallery/</filename>.  Next, run this command:
+   <screen>
+    diff -r -C 3 orig_gallery gallery &gt; changes.txt
+   </screen>
+  </para>
+  <para>
+   You now have a patch file containing the changes you made.  Next, download the newest version
+   of Gallery (the one you want to upgrade to).  "cd" to the parent directory of the new unpacked
+   Gallery.  Run this command:
+   <screen>
+    patch &lt; changes.txt
+   </screen>
+  </para>
+  <warning>
+   <para>
+    The odds are that this won't completely work, because we may have made changes to the same
+    line you changed, causing <command>patch</command> to get confused.  However, it's worth
+    a try.
+   </para>
+  </warning>
+ </sect2>
+      
+</sect1>

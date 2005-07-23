@@ -1,0 +1,512 @@
+/*
+	matrix.css - core Gallery 2 css
+	by Ross A. Reyman and Jon Huang
+
+*/
+
+/*	basic html defs	*/
+body {
+	font-family: Verdana, sans-serif;
+	font-size: 72%;
+}
+
+/*	spacers neeed for expanding layouts	*/
+.guSpacer, .gpSpacer, .gsSpacer, .gbSpacer, .giSpacer { clear: both; }
+
+/*
+    Page Definitions category 2
+    declare page layout of gallery data
+*/
+
+/*  main page container */
+#gallery { }
+
+/*
+    Section Definitons category 3
+    declare sections of gallery data
+*/
+
+#gsHeader { border-bottom: 1px solid #ddd; }
+
+#gsFooter {
+	clear: both;
+	padding: 8px;
+	border-top: 1px solid #ddd;
+	font-size: 0.8em;
+	color: #bbb;
+}
+
+#gsSidebar {
+	float: left;
+	width: 148px;
+	padding: 12px;
+	background-color: #eee;
+	border-left: 1px solid #ddd;
+}
+
+.gsSection1 { }
+.gsSection2 { }
+.gsSection3 { }
+
+#gsAlbumContents {
+	float: left;
+	width: 72%;
+	min-width: 596px;
+}
+
+#gsCommentBox {
+	padding: 8px;
+	border-top: 1px solid #bbb;
+}
+
+/*
+    itemBoxes c4
+    declare inner boxes inside of sections
+*/
+
+/*  #gsHeader    */
+.gbTitleBanner { }
+.gbBreadCrumb, .gbAdminHead { padding: 8px; }
+.gbBreadCrumb span + span:before { content: '\00BB \ '; }
+
+/*  #gsAlbumContents */
+#gbTopFlag {
+	display: block;
+	background-color: #eee;
+	padding: 0 8px;
+}
+
+.gbTitle {
+	float: left;
+	width: 256px;
+	padding: 8px 0;
+}
+
+.gbItemAlbum {
+	clear: both;
+	float: left;
+	width: 97%;
+	margin: 8px 8px 0 0;
+	padding: 8px;
+	background-color: #eee;
+	border: 0px solid #bbb;
+}
+
+.gbItemImage {
+	float: left;
+	/*	IE max-width >> http://www.svendtofte.com/code/max_width_in_ie/ */
+	min-height: 216px;
+	height: expression(this.scrollHeight < 216? '216px' : 'auto' );
+	max-width: 172px;
+	width: expression(document.body.clientWidth > 172? '172px': 'auto' );
+	margin: 8px 8px 0 0;
+	padding: 8px;
+	background-color: #fff;
+	border: 1px solid #bbb;
+}
+
+.gbItemMovie { }
+.gbItemOther1 { }
+.gbItemImage .giTitle { clear: both; }
+
+/*  --> #gsCommentBox    */
+.gbComment {
+	border-bottom: 1px solid #ddd;
+	padding: 8px 0 16px 0;
+}
+
+/*  #gsAlbumContents (continued) */
+.gbExif { }
+
+.gbBottomFlag {
+	display: block;
+	padding: 8px;
+	background-color: #eee;
+}
+
+/*  gsFooter */
+.gbMiniBanner {
+	float: left;
+	margin-right: 8px;
+}
+
+/*  gsSidebar */
+#gsSidebar div {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 16px;
+	margin-bottom: 16px;
+}
+
+/*	Tabs	*/
+.gbTabBar {
+	float: left;
+	width: 100%;
+	background: #eee url('images/tab_bg.jpg') repeat-x bottom;
+	font-size: 0.9em;
+	line-height: normal;
+}
+
+.gbTabBar ul {
+	margin: 0;
+	padding: 10px 10px 0 0;
+	list-style: none;
+}
+
+.gbTabBar li {
+	float: left;
+	background: url('images/tab_left.jpg') no-repeat left top;
+	margin: 0;
+	padding: 0 0 0 8px;
+	list-style: none;
+}
+
+.gbTabBar a {
+	float: left;
+	display: block;
+	background: url('images/tab_right.jpg') no-repeat right top;
+	padding: 6px 12px 4px 4px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #777;
+}
+
+/* Commented Backslash Hack
+	   hides rule from IE5-Mac \*/
+
+.gbTabBar a { float: none; }
+
+/* End IE5-Mac hack */
+.gbTabBar a:hover { color: #333; }
+.gbTabBar .giSelectedTab { background-image: url('images/tab_left_on.jpg'); }
+
+.gbTabBar .giSelectedTab a {
+	background-image: url('images/tab_right_on.jpg');
+	color: #333;
+	padding-bottom: 5px;
+}
+
+/*	Miscellaneous	*/
+.gbAdminMenu { }
+
+/*	icons for admin menu	*/
+.gbAdminMenu ul.icons li {
+	margin: 0 0 0 4px;
+	padding: 4px 0;
+}
+
+.gbAdminMenu li.comments:before { content: url('images/icon_comments.jpg'); }
+.gbAdminMenu li.general:before { content: url('images/icon_general.jpg'); }
+.gbAdminMenu li.users:before { content: url('images/icon_users.jpg'); }
+.gbAdminMenu li.groups:before { content: url('images/icon_groups.jpg'); }
+.gbAdminMenu li.modules:before { content: url('images/icon_modules.jpg'); }
+.gbAdminMenu li.layouts:before { content: url('images/icon_layouts.jpg'); }
+.gbAdminMenu li.debug:before { content: url('images/icon_debug.jpg'); }
+.gbListMenu { }
+.gbSearchMenu { }
+.gbBasicMenu { }
+.gbUserMenu { }
+.gbNavigationMenu { }
+.gbOtherMenu { }
+
+/*
+    items c5
+    declare inner items inside of boxes
+*/
+
+/*  gbBreadCrumb    
+.gbBreadCrumb.span {'È'}*/
+
+/*  .gbTopFlag */
+.giTitle {
+	font-size: 1.1em;
+	font-weight: 800;
+}
+
+.giDescription {
+	font-size: 0.85em;
+	width: 100%;
+	/*height: 100%;*/
+}
+
+.giInfo {
+	float: left;
+	font-size: 80%;
+	color: #888;
+	padding: 8px 0;
+}
+
+.giInfo span { display: block; }
+span.giDate { }
+span.giOwner { }
+span.giCount { }
+
+#gsAlbumContents div.giHorizontalLinks {
+	float: right;
+	font-size: 80%;
+	padding: 8px;
+}
+
+/*  gbItem* 
+	JON: added a 'thumbOther'
+*/
+
+.giThumbImage, .giThumbMovie, .giThumbOther {
+	float: left;
+	margin: 0 16px 8px 0;
+}
+
+.giThumbMovie { }
+
+.giActionSelect {
+	display: block;
+	margin-top: 4px;
+}
+
+.giDescription span { display: block; }
+span.giDate { }
+span.giOwner { }
+span.giCount { }
+
+/*  .giThumbBorder {}
+    ...giBorders...
+    discused the options of generating a table-based border (ie_test)
+    and alistapart.com http://www.alistapart.com/articles/customcorners/
+    method. Defer until completion of initial theme.
+*/
+
+/*  gbComment */
+.giComment { padding-bottom: 8px; }
+
+#gsCommentBox .gbComment div.giHorizontalLinks {
+	float: none;
+	padding: 0;
+}
+
+span.giDate { }
+span.giOwner { }
+span.giInternetAddress { }
+
+/*  .gbBottomFlag   */
+.giPageNumber, .gbBottomFlag div.giHorizontalLinks {
+	float: right;
+	font-size: 80%;
+	padding: 8px;
+}
+
+/*  gbXxxMenu   */
+
+/*  .giTitle
+    .giInfo     */
+
+#gsSidebar div h4 { margin: 0; }
+
+#gsSidebar div ul, #gsSidebar div ol {
+	font-size: 0.9em;
+	margin: 0 0 0 20px;
+	padding: 0 0 0 0;
+}
+
+#gsSidebar div ul { list-style-type: none; }
+#gsSidebar div li { margin: 0.5em 0 0 0; }
+
+.giSelected {
+	font-weight: bold;
+	list-style-type: disc;
+}
+
+/* ******** jon's search additions *********** */
+/* form elements that I used */
+.giFormButton, .giFormInput {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+/* checkboxes */
+.giFormCheckbox {
+	margin: 4px;
+	vertical-align: middle;
+}
+
+/*  note that this is a gi inside a gi.
+	(this covers the inline buttons needing to be the
+	same text size as the title element its embedded in in
+	the search more line)
+	While it would be possible to do this without embedding,
+	e.g. by not giving it a class and allowing the giTitle 
+	class to set the buttons as well or using a different
+	button class, it would be less powerful	and lessrobust. 
+	Since we've already allowed most everything
+	else to be nested, I can't see the harm in nesting
+	cat5 elements too. That seem okay to you?
+	
+	margins are set 0 to allow good wrapping on small screens.
+*/
+
+.giTitle .giFormButton {
+	font-size: 6pt;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/* The title banner is the light grey 'search' at the very top */
+.gbTitleBanner {
+	padding-top: 6px;
+	padding-bottom: 6px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+/* Text inside the title bar */
+.gbTitleBanner .giTitle {
+	color: #ccc;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+/* Search contents is along the same lines as the other gsXxxxContests
+	elements as a main 'holder' for the main stuff in the page. */
+
+#gsSearchContents { }
+
+/* A small spacing edit to the main area banner. Though this really should be 
+   univerally declared, I didn't want to mess with Ross's stuff yet. So I 
+   declared it gsSeachContents only  */
+
+#gsSearchContents .gbTopFlag {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* Same as above, but for the text */
+.gbTopFlag .giTitle { font-size: 12px; }
+
+/* small grey border around all the thumbnails */
+#gsSearchContents .giThumbImage, .giThumbMovie, .giThumbOther { border: 2px solid #ccc; }
+
+/* override the normal title clear so as to wrap information
+ on the right of the thumbnail */
+
+#gsSearchContents .gbItemImage .giTitle {
+	clear: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* This makes the images not wrap. But there's a weird bug on IE
+   that this seems to cause--see the html file for the workaround I found */
+
+#gsSearchContents .gbItemImage { clear: left; }
+
+/* here are other form elements we haven't used yet */
+
+/* generally speaking, only a few are really useful. For example,
+   this allows the themer to distinguish between different buttons
+   and different 'input' types. Some, like giHidden are pretty useless
+   but included for completeness.
+*/
+
+.gbForm,
+.giFormTextarea,
+.giFormHidden,
+.giFormRadio,
+.giFormSelect,
+.giFormFile,
+.giFormText,
+.giSubmitButton,
+.giClearButton, { }
+
+/* ********* admin additions ******** */
+#gsAdminContents {
+	float: left;
+	width: 72%;
+	background-color: #eee;
+}
+
+#gsAdminSidebar {
+	float: left;
+	width: 128px;
+	padding: 0 12px;
+	border-right: 1px solid #ddd;
+}
+
+#gsAdminSidebar div {
+	margin: 0px 0;
+	padding: 0 0 8px 0;
+	border-bottom: 1px solid #eee;
+}
+
+#gsAdminSidebar div ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.gbItemAdmin {
+	clear: both;
+	float: left;
+	width: 97%;
+	margin: 0px 8px 0 0;
+	padding: 8px;
+	border-bottom: 1px solid #bbb;
+	background-color: #fff;
+}
+
+* even and odd rows have different backgrounds */
+/* I count from 0, so the first row is even! */
+.gbEven {
+	background-color: #CDCDCD;
+	padding: 40px;
+}
+
+.gbOdd { background-color: #DCDCDC; }
+
+/* for tabular data */
+.gbDataTable {
+	border-width: 0;
+	margin: 4px;
+}
+
+/* cell padding */
+.gbDataTable td { padding: 4px; }
+
+/* Status classes */
+/* local error */
+.giError {
+	color: #AA4444;
+	font-weight: bold;
+	clear: both;
+}
+
+/* Status section */
+#gsStatus {
+	padding: 10px;
+	text-align: center;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+/* Error inside a gsStatus section */
+#gsStatus .giError {
+	color: #AA4444;
+	font-weight: normal;
+	font-size: 20px;
+	clear: both;
+}
+
+/* Warning inside a gsStatus section */
+#gsStatus .giWarning {
+	color: #DDDD77;
+	font-weight: normal;
+	font-size: 20px;
+	clear: both;
+}
+
+/* Status inside a gsStatus section */
+#gsStatus .giStatus {
+	color: #44AA44;
+	font-weight: normal;
+	font-size: 20px;
+	clear: both;
+}

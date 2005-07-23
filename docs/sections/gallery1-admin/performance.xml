@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-admin.performance">
+ <title>Performance Tips</title>
+ 
+ <para>
+  Gallery performance is very good for small to medium installations.  Because
+  of Gallery's architecture, larger numbers of photos and albums can cause
+  certain operations (like viewing the main page) to run slowly.  The sizes that
+  trigger slowdowns vary greatly from depending on the capabilities of your
+  server, but it's reasonable to say that over 5,000 photos will begin to
+  get slow on a PIII 800Mhz machine, over 10,000 on a P4 2Ghz machine.  There
+  are several things you can do to recover performance in these situations.
+ </para>
+ 
+ <itemizedlist>
+  <listitem>
+   <para>
+    <emphasis role="bold">Disable "Show Album Tree"</emphasis>.
+    Removing this option allows Gallery to generate the index page without
+    having to iterate through many different subalbums, requiring much time.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <emphasis role="bold">Disable "Accurate Photo Count"</emphasis>
+    (Introduced in 1.4.4-pl2).  Disabling this extremely slow method of counting 
+    the number of albums and photos on the main page allows Gallery to generate
+    the index page without recursing through all your albums.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <emphasis role="bold">Keep albums small</emphasis>.  Try to avoid having
+    albums that are huge -- split them further down into subalbums if possible.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <emphasis role="bold">Cache the main page</emphasis>.  This is more involved
+    than the other steps, and requires access to cron.  <emphasis>This method
+    will give you the most performance increase</emphasis>.  It's also worth
+    noting that if you using caching, the other features that we recommend
+    you disable above don't affect the performance anymore, since the whole
+    page is cached.
+   </para>
+   <para>
+    Gallery, if it finds a certain cache file in its base directory
+    (<filename>cache.html</filename>), will return the contents of that file
+    (if it's up to date) instead of regenerating the whole main page
+    for every user.  To reap the benefits of the cache, add this line to your
+    crontab (<literal>crontab -e</literal> from the command line)
+    <screen>
+     */15 * * * * wget -O /path/to/your/gallery/cache.html http://www.example.com/gallery?gallery_nocache=yes
+    </screen>
+   </para>
+   <para>
+    This does mean that any updates that affect the main page will take up to 15
+    minutes to appear for non-logged-in users, but it's a huge perforance
+    enhancement.
+   </para>
+  </listitem>
+ </itemizedlist>
+ 
+</sect1>
