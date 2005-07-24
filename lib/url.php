@@ -105,7 +105,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$target = "modules.php";
+				$url = "modules.php";
 			break;
 
 			case 'mambo':
@@ -119,12 +119,12 @@ function makeGalleryUrl($target = '', $args = array()) {
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
-					$target= 'index.php';
+					$url = 'index.php';
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$url = $gallery->session->mambo->mosRoot . 'index.php';
 					} else {
-						$target = 'index.php';
+						$url = 'index.php';
 					}
 				}
 			break;
@@ -138,7 +138,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$target = $mainindex;
+				$url = $mainindex;
 			break;
 
 			// Maybe something went wrong, we do nothing as URL we be build later.
