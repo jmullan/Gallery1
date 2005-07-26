@@ -12,8 +12,6 @@ global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
 if(isset($GALLERY_EMBEDDED_INSIDE)) {
-	// Import CSS Style_sheet if not already done.
-	echo getStyleSheetLink();
 
 	global $PHP_SELF;
 
@@ -123,6 +121,8 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	break;
 
 	}
+    /* Import Gallery CSS Stylesheet after embedding things are done. */
+    echo getStyleSheetLink();
 }
 
 includeTemplate('header.tpl');

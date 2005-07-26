@@ -15,6 +15,14 @@ if(!includeTemplate('navigator.tpl')) {
 		$begin = max(1, $end - 2 * $navigator["spread"]);
 	}
 
+	if($begin > $navigator["spread"]) {
+	   $beginNextBlock = max(1, $navigator["page"] - 2 * $navigator["spread"]);
+	}
+
+	if($end < $navigator["maxPages"]) {
+	   $endNextBlock = min($navigator["page"] + 2 * $navigator["spread"], $navigator["maxPages"]);
+	}
+
 	// If the border color is not passed in, we do a white one
 	if ($navigator["bordercolor"]) {
 		$borderIn = $navigator["bordercolor"];
@@ -77,6 +85,10 @@ if(!includeTemplate('navigator.tpl')) {
 		$ndUrl=getImagePath('nav_dot.gif');
 	
 		$mpContent = "\n\t\t". '<table border="0" cellpadding="0" cellspacing="0"><tr>';
+		if (isset($beginNextBlock)) {
+		     $title = sprintf(_("Jump to page %d"), $beginNextBlock);
+		     $mpContent .= "\n\t". '<td><a title="'. $title .'" href="'. $url . $navigator['pageVar'] .'='. $beginNextBlock .'">...</a></td>';
+		}
 		for ($i = $begin; $i <= $end; $i++) {
 			if ($i == $current) {
 				$number = '<span class="nav"><b>'. $i .'</b></span>';
@@ -98,7 +110,12 @@ if(!includeTemplate('navigator.tpl')) {
 			$rightdot = '<img src="'. $ndUrl .'" alt="rightdot">';
 		}
 
-		$mpContent .="\n\t<td>&nbsp;$rightdot&nbsp;</td></tr></table>";
+		$mpContent .="\n\t<td>&nbsp;$rightdot";
+		if (isset($endNextBlock)) {
+		    $title = sprintf(_("Jump to page %d"), $endNextBlock);
+                    $mpContent .= '<a title="'. $title .'" href="'. $url . $navigator['pageVar'] .'='. $endNextBlock .'">...</a>';
+                }		
+		$mpContent .= '</td></tr></table>';
 	} else {
 		$mpContent ='';
 	}
