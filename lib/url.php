@@ -119,7 +119,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
-					$url = 'index.php';
+					$target = 'index.php';
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$url = $gallery->session->mambo->mosRoot . 'index.php';
