@@ -341,7 +341,8 @@
 					$return .= $line;
 					$loops++;
 				}
-			} else
+			}
+			else {
 				$return = FALSE;
 			}
 			return $return;
