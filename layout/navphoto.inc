@@ -1,6 +1,8 @@
 <?php /* $Id$ */ ?>
 <?php
 global $navigator;
+global $full;
+
 if(!includeTemplate('navphoto.tpl')) {
     // Calculate the beginning and ending of the navigator range
     $begin = 0;
@@ -41,12 +43,12 @@ if(!includeTemplate('navphoto.tpl')) {
 
     #-- 'first' and 'previous button cell ---
     if ($navpage > 0) {
-        $fpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage) .'">';
+        $fpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) .'">';
         $fpContent .= '<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
         $fpContent .= '</a>';
 
         $prevPage = $navigator["allIds"][$navpage-1];
-        $ppContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $prevPage).'">';
+        $ppContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL) .'">';
         $ppContent .= '<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
         $ppContent .= '</a>';
 
@@ -64,11 +66,11 @@ if(!includeTemplate('navphoto.tpl')) {
     #-- 'next' and 'last' button cell ---
     if ($navpage < $navcount-1) {
         $nextPage = $navigator["allIds"][$navpage+1];
-        $npContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage) .'">';
+        $npContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL) .'">';
         $npContent .= '<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'">';
         $npContent .= '</a>';
 
-        $lpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage) .'">';
+        $lpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL) .'">';
         $lpContent .= '<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
         $lpContent .= '</a>';
 
