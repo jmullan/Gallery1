@@ -41,7 +41,7 @@
 list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
 
 if (isset($submit)) {
-	if(gallery_validate_email($email_address)) {
+	if(check_email($email_address)) {
 		$to = $email_address;
 		$subject = sprintf(_("Test email from %s"), Gallery());
 		$msg = _("This email was automatically generated."). "\n\n" .

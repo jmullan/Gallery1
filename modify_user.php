@@ -163,6 +163,7 @@ doctype();
 <br>
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>">
+<input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
 </form>
 </div>
 

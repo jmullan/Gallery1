@@ -650,11 +650,11 @@ function gallery_htmlentities($string) {
 /**
  * Convert all HTML entities to their applicable characters
 */
-function unhtmlentities ($string) {
+function unhtmlentities($string) {
 	global $gallery;
 
 	if (empty($string)) {
-		return "";
+		return '';
 	}
 
 	if (function_exists('html_entity_decode')) {
