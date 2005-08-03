@@ -182,13 +182,13 @@ $imageDir = $gallery->app->photoAlbumURL."/images";
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
   'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
-if (isset($gallery->album) && $gallery->album->fields['returnto'] != 'no') {
-    foreach ($gallery->album->getParentAlbums() as $navAlbum) {
+if (isset($gallery->album)) {
+    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
 	$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
 	  $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
     }
 }
-elseif (!isset($gallery->album)) {
+else {
     /* We're on mainpage */
     $breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
       $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
