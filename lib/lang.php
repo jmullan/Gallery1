@@ -713,7 +713,8 @@ function translateableFields() {
 /**
  * This "block" returns either a combobox with available languages or show flags for them.
  * Both are only displayed if at least 2 languages are available.
-*/
+ * @author	Jens Tkotz
+ */
 function languageSelector() {
     global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
@@ -731,13 +732,11 @@ function languageSelector() {
 
         $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
         $langSelectTable = new galleryTable();
-        $langSelectTable->setColumnCount(-1);
+        $langSelectTable->setColumnCount(20);
         $langSelectTable->setAttrs(array('class' => 'languageSelector', 'align' => 'right'));
 
         $nls = getNLS();
 
-        $count = 0;
-        $half = sizeof($gallery->app->available_lang)/2;
         foreach ($gallery->app->available_lang as $value) {
             /**
              * We only allow show languages which are available in gallery.
@@ -745,7 +744,6 @@ function languageSelector() {
             */
             if (! isset($nls['language'][$value])) continue;
 
-            $count++;
             if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
                 if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
                     /* postnuke */
@@ -776,21 +774,17 @@ function languageSelector() {
             }
             else {
                 $flagname = $value;
-		$style = ($gallery->language == $value) ? 'style="padding-bottom:10px"' : '';
-                $flagImage = "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
+                $flagImage = "<img src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
 
                 if ($gallery->language != $value) {
                     $langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
                 }
                 else {
-                    $langSelectTable->addElement(array('content' => $flagImage, 'cellArgs'));
+                    $langSelectTable->addElement(array(
+			'content' => $flagImage,
+			'cellArgs' => array('style' => 'padding-bottom:10px')
+		    ));
                 }
-                /*
-                if ($count > $half && $half >10) {
-                echo "<br>";
-                $count=0;
-                }
-                */
             }
         }
 
