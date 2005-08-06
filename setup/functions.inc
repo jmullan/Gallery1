@@ -24,8 +24,8 @@
 
 require_once(dirname(dirname(__FILE__)) . '/classes/HTML/table.php');
 
-function evenOdd_row($fields, $evenOdd) {
-	$buf='';
+function evenOdd_row($fields) {
+	$buf = '';
 
 	/* why was this added ? Jens Tkotz, 05.04.2005 */
 	// $f0 = str_replace(" ", "&nbsp;", $fields[0]);
@@ -287,7 +287,12 @@ function form_print_services($key, $arr) {
 function getPath() {
 
     /* Start with the server user's path */
-    $path = explode(":", getenv("PATH"));
+    if (getOS() != OS_WINDOWS) {
+    	$path = explode(":", getenv('PATH'));
+    }
+    else {
+    	$path = explode(';', getenv('PATH'));
+    }
 
     /* Add in a few relatively obvious locations */
     $path[] = "/usr/local/gallery";
@@ -312,14 +317,13 @@ function getPath() {
     return $path;
 }
 
-function locateDir($filename, $extraDir="", $ignorePath=0) {
-    
+function locateDir($filename, $extraDir = '', $ignorePath = false) {
 	if (fs_file_exists("$extraDir/$filename")) {
 		return $extraDir;
 	}
 
 	if ($ignorePath) {
-		return;
+		return '';
 	}
 
 	foreach (getPath() as $path) {
@@ -444,21 +448,21 @@ function check_mod_rewrite()  {
 	return array($success, $fail, $warn);
 }
 
-function check_exif($location="") {
+function check_exif($location = '') {
 	global $gallery;
 
 	$fail = array();
 	$success = array();
 	$warn = array();
 
-	$bin = fs_executable("jhead");
+	$bin = fs_executable('jhead');
 
 	if ($location) {
-		$d = locateDir($bin, $location);
+		$dir = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
+		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
-	if (!$d) {
+	if (empty($dir)) {
 		$warn["fail-exif"] = _("Can't find <i>jhead</i>");
 	} else {
 		$success[] = _("<b>jhead</b> binary located.");
@@ -467,24 +471,15 @@ function check_exif($location="") {
 	return array($success, $fail, $warn);
 }
 
-function check_graphics($location="", $graphtool = "") {
+function check_graphics($location = '', $graphtool = '') {
 	global $gallery;
 
 	$fail = array();
 	$success = array();
 	$warn = array();
-	if (!strcmp($graphtool, "ImageMagick")) {
-		$success[] = _("NetPBM not being used in this installation.");
-		return array($success, $fail, $warn);
-	}
-
-	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
-	    return array($success, $fail, $warn);
-	}
-
-	$dirs = array();
-	$missing = array();
+	
+	$missing_critical = array();
+	$missing = 0;
 	$netpbm = array(
 		fs_executable("jpegtopnm"), 
 		fs_executable("giftopnm"), 
@@ -510,83 +505,96 @@ function check_graphics($location="", $graphtool = "") {
 		fs_executable("pnmcomp") => 
 			_("Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
+	
 	$missing_optional = 0;
+	
+	/* Start checks */
+	
+	if ($graphtool == 'ImageMagick') {
+		$success[] = _("NetPBM not being used in this installation.");
+		return array($success, $fail, $warn);
+	}
+
+	if (!empty($location) && !inOpenBasedir($location)) {
+	    $warn[] = _("Cannot verify this path (it's not in your open_basedir list).");
+	    return array($success, $fail, $warn);
+	}
 
 	foreach ($netpbm as $bin) {
-		if ($location) {
-			$d = locateDir($bin, $location, 1);
-		} else {
-			$d = locateDir($bin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
+		if (!empty($location)) {
+			$dir = locateDir($bin, $location, true);
+		}
+		elseif (isset($gallery->app->pnmDir)) {
+			$dir = locateDir($bin, $gallery->app->pnmDir, true);
+		}
+		else {
+			$dir = locateDir($bin);
 		}
 
-		/*
-		 * If we can't find the primary file, look for the fallback file
-		 * instead.
-		 */
-		if (!$d && isset($fallback[$bin])) {
+		/* If we can't find the primary file, look for the fallback file instead. */
+		if (empty($dir) && isset($fallback[$bin])) {
 			$newbin = $fallback[$bin];
-			if ($location) {
-				$d = locateDir($newbin, $location, 1);
-			} else {
-				$d = locateDir($newbin, isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : "");
+			if (!empty($location)) {
+				$dir = locateDir($newbin, $location, true);
 			}
-			if ($d) {
+			elseif (isset($gallery->app->pnmDir)) {
+				$dir = locateDir($newbin, $gallery->app->pnmDir, true);
+			}
+			else {
+				$dir = locateDir($newbin);
+			}
+			if (!empty($dir)) {
 				$bin = $newbin;
 			}
 		}
-
-		if (!$d && isset($optional[$bin])) {
-			$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
-			$missing_optional++;
-		} else {
-			if (!$d) {
-				$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+		
+		if (empty($dir)) {
+			if ($optional[$bin]) {
+				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			}
+			else {
+				$missing_critical[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
+			$missing++;
+		}
 
-			if (!empty($d) && inOpenBasedir($d)) {
-			    if (!fs_is_executable("$d/$bin")) {
-				$missing[$bin] = sprintf(_("%s is not executable!"),
-						"<i>$bin</i> "); 
-			    }
+		if (!empty($dir) && inOpenBasedir($dir)) {
+		    if (!fs_is_executable("$dir/$bin")) {
+				$warn[$bin] = sprintf(_("%s is not executable!"),
+					"<i>$bin</i> "); 
 			}
 		}
 	}
-
-	if ($missing_optional) {
-		// $warn[] is already set
-		$warn[] = sprintf(_("%d of %d NetPBM binaries located."),
-				count($netpbm) - $missing_optional, count($netpbm) );
-	} else if (count($missing) == count($netpbm)) {
+	
+	if ($missing == count($netpbm)) {
 		$fail["fail-netpbm"] = 1;
-	} else if (count($missing)) {
-		$fail["fail-netpbm-partial"] = array_values($missing);
+		/* Any other warning doesnt care */
+		$warn = array();
+	}
+	elseif ($missing > 0) {
+		$warn[] = sprintf(_("%d of %d NetPBM binaries located."), 
+			count($netpbm) - $missing, count($netpbm));
+		
+		if(count($missing_critical) > 0) {
+			$fail["fail-netpbm-partial"] = array_values($missing_critical);
+		}
 	} else {
 		$success[] = sprintf(_("%d of %d NetPBM binaries located."),
-				count($netpbm), count($netpbm) );
+			count($netpbm), count($netpbm));
 	}
 
 	return array($success, $fail, $warn);
 }
 
-function check_graphics_im($location="", $graphtool="") {
+function check_graphics_im($location = '', $graphtool = '') {
 	global $gallery;
 
 	$fail = array();
 	$success = array();
 	$warn = array();
 
-	if (!strcmp($graphtool, "NetPBM")) {
-		$success[] = _("ImageMagick not being used in this installation.");
-	    	return array($success, $fail);
-	}
-
-	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
-	    return array($success, $fail);
-	}
-
-	$dirs = array();
-	$missing = array();
+	$missing_critical = array();
+	$missing = 0;
 	$imagick = array(
 		fs_executable("identify"), 
 		fs_executable("convert"),
@@ -597,48 +605,69 @@ function check_graphics_im($location="", $graphtool="") {
 		fs_executable("composite") => 
 			_("Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
 	);
-	$missing_optional = 0;
+
+
+	/* Begin Checks */
+	if ($graphtool == 'NetPBM') {
+		$success[] = _("ImageMagick not being used in this installation.");
+	    	return array($success, $fail, $warn);
+	}
+
+	if (!empty($location) && !inOpenBasedir($location)) {
+	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
+	    return array($success, $fail);
+	}
 
 	foreach ($imagick as $bin) {
-		if ($location) {
-			$d = locateDir($bin, $location, 1);
-		} else {
-			$d = locateDir($bin, isset($gallery->app->ImPath) ? $gallery->app->ImPath : "");
+		if (!empty($location)) {
+			$dir = locateDir($bin, $location, true);
+		}
+		elseif (isset($gallery->app->ImPath)) {
+			$dir = locateDir($bin, $gallery->app->ImPath, true);
+		}
+		else {
+			$dir = locateDir($bin);
 		}
 
-		if (!$d) {
+		if (empty($dir)) {
 			if ($optional[$bin]) {
 				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
-				$missing_optional++;
-			} else {
-				$missing[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
 			}
+			else {
+				$missing_critical[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
+			$missing++;
 		}
 
-		if (!empty($d) && inOpenBasedir($d)) {
-		    if (!fs_is_executable("$d/$bin")) {
-			$missing[$bin] = sprintf(_("%s is not executable!"),
+		if (!empty($dir) && inOpenBasedir($dir)) {
+		    if (!fs_is_executable("$dir/$bin")) {
+				$warn[$bin] = sprintf(_("%s is not executable!"),
 					"<i>$bin</i> "); 
-		    }
+			}
 		}
 	}
 	
-	if ($missing_optional) {
-		$warn[] = sprintf(_("%d of %d ImageMagick binaries located."),
-				count($imagick) - $missing_optional, count($imagick));
-	} else if (count($missing) == count($imagick)) {
+	if ($missing == count($imagick)) {
 		$fail["fail-imagemagick"] = 1;
-	} else if (count($missing)) {
-		$fail["fail-imagemagick"] = array_values($missing);
+		/* Any other warning doesnt care */
+		$warn = array();
+	}
+	elseif ($missing > 0) {
+		$warn[] = sprintf(_("%d of %d ImageMagick binaries located."), 
+			count($imagick) - $missing, count($imagick));
+		
+		if(count($missing_critical) > 0) {
+			$fail["fail-imagemagick-partial"] = array_values($missing_critical);
+		}
 	} else {
 		$success[] = sprintf(_("%d of %d ImageMagick binaries located."),
-				count($imagick), count($imagick));
+			count($imagick), count($imagick));
 	}
 
 	return array($success, $fail, $warn);
 }
 
-function check_jpegtran($location="") {
+function check_jpegtran($location = '') {
 	global $gallery;
 
 	$fail = array();
@@ -648,11 +677,11 @@ function check_jpegtran($location="") {
 	$bin = fs_executable("jpegtran");
 
 	if ($location) {
-		$d = locateDir($bin, $location);
+		$dir = locateDir($bin, $location);
 	} else {
-		$d = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : "");
+		$dir = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : "");
 	}
-	if (!$d) {
+	if (!$dir) {
 		$warn["fail-jpegtran"] = _("Can't find <i>jpegtran</i>!");
 	} else {
 		$success[] = _("<b>jpegtran</b> binary located.");
@@ -1259,6 +1288,7 @@ function array_urldecode($subject) {
 	}
 	return $ret;
 }
+
 function array_str_replace($search, $replace, $subject) {
 	if (is_string($subject)) {
 		return str_replace($search, $replace, $subject);
@@ -1606,7 +1636,7 @@ function makeSectionTabs($array, $break = 7, $initialtab = '') {
         	$tabcount++;
 		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
 		        $class = 'class="tab-hi"';
-			if ($initialtab == '') {
+			if (empty($initialtab)) {
 				$initialtab = $cell['name'];
 			}
 		}
