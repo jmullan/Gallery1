@@ -81,23 +81,18 @@ doctype();
  
 <script type="text/javascript">
 <!--
-function popup_win(theURL,winName,winOptions) {
+ function popup_win(theURL,winName,winOptions) {
    win = window.open(theURL,winName,winOptions);
    win.focus();
  }
 
  function make_preview() {
-   document.ecard_form.action = "ecard_preview.php";
-   popup_win('_templates/leer.htm','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
+   document.ecard_form.action = "<?php echo $gallery->app->photoAlbumURL ; ?>/ecard_preview.php";
+   popup_win('','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
    document.ecard_form.target = "ecard_preview";
    document.ecard_form.submit();
  }
- function take_stamp() {
-   document.ecard_form.action = "stamp_preview.php";
-   popup_win('stamp_preview.php','stamp_preview','resizable=yes,scrollbars=yes,width=300,height=600');
-   document.ecard_form.target = "stamp_preview";
-   document.ecard_form.submit();
- }
+
  function send_ecard() {
    document.ecard_form.action = "<?php echo $HTTP_SERVER_VARS["PHP_SELF"] ?>";
    document.ecard_form.target = "_self";
@@ -160,9 +155,7 @@ function popup_win(theURL,winName,winOptions) {
       }
   } // Ende function CountMax()
 
-function MM_openBrWindow(theURL,winName,features) { //v2.0
-  window.open(theURL,winName,features);
-}
+
 //-->
 </script>
 
@@ -220,17 +213,18 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
   <tr>
     <td colspan="5" align="center">
   	  <select id="ecardstamp" name="ecard[stamp]">
-            <option selected value="<?php echo $gallery->app->photoAlbumURL .'/images/ecard_images/08.gif' ?>"><?php echo _("Choose a Stamp"); ?></option>
+            <option selected value="<?php echo getImagePath('ecard_images/08.gif') ?>"><?php echo _("Choose a Stamp"); ?></option>
 <?php
 for($i = 1; $i <= 27; $i++) {
     $nr = sprintf("%02d", $i-1);
-    echo "\n\t" . '<option value="'. $gallery->app->photoAlbumURL .'/images/ecard_images/'. $nr .'.gif">';
+    echo "\n\t" . '<option value="'. getImagePath("ecard_images/$nr.gif") .'">';
     echo sprintf(_("Stamp #%d"), $i);
     echo "</option>";
 }
 ?>
         </select>
-        <img alt="helpIcon" height="15" hspace="5" onclick="MM_openBrWindow('stamp_preview.php','Francobolli','scrollbars=yes,width=130,height=300')" src="images/ecard_images/icon_help.gif" width="15">
+        <?php $stamp_previewURL = build_popup_url("stamp_preview.php"); ?>
+        <img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp Preview','scrollbars=yes,width=150,height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
     </td>
   </tr>
   <tr>

@@ -61,16 +61,22 @@ class PostNuke_User extends Abstract_User {
 	}
 
 	function loadByUserName($uname) {
-		list($dbconn) = pnDBGetConn();
-		$pntable = pnDBGetTables();
+		if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.5.0") {
+			list($dbconn) = pnDBGetConn();
+			$pntable = pnDBGetTables();
+		} else {
+			$dbconn =& pnDBGetConn(true);
+			$pntable =& pnDBGetTables();
+		}
 
 		$userscolumn = &$pntable['users_column'];
-		$userstable = $pntable['users'];	
+		$userstable = $pntable['users'];
 
 		/* Figure out the uid for this uname */
 		$query = "SELECT $userscolumn[uid] " .
-			 "FROM $userstable " .
-			 "WHERE $userscolumn[uname] = '" . pnVarPrepForStore($uname) ."'";
+			"FROM $userstable " .
+			"WHERE $userscolumn[uname] = '" . pnVarPrepForStore($uname) ."'";
+		
 		$result = $dbconn->Execute($query);
 		list($uid) = $result->fields;
 		$result->Close();

@@ -10,21 +10,21 @@
  * Define Constants for Gallery pathes.
  */
 function setGalleryPaths() {
-    if (defined('GALLERY_BASE')) {
-	return;
-    }
+	if (defined('GALLERY_BASE')) {
+		return;
+	}
 
-    $currentFile = __FILE__;
-    if ( $currentFile == '/usr/share/gallery/lib/url.php') {
-	/* We assum Gallery runs on as Debian Package */
-	define ("GALLERY_CONFDIR", "/etc/gallery");
-	define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-    } else {
-	define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
-	define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
-    }
+	$currentFile = __FILE__;
+	if ( $currentFile == '/usr/share/gallery/lib/url.php') {
+		/* We assum Gallery runs on as Debian Package */
+		define ("GALLERY_CONFDIR", "/etc/gallery");
+		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
+	} else {
+		define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
+		define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
+	}
 
-    define ("GALLERY_BASE", dirname(dirname(__FILE__)));
+	define ("GALLERY_BASE", dirname(dirname(__FILE__)));
 }
 
 /**
@@ -94,7 +94,6 @@ function makeGalleryUrl($target = '', $args = array()) {
 				}
 
 			case 'phpnuke':
-			case 'postnuke':
 			case 'nsnnuke':
 				$args["op"] = "modload";
 				$args["name"] = "$GALLERY_MODULENAME";
@@ -108,6 +107,25 @@ function makeGalleryUrl($target = '', $args = array()) {
 				$url = "modules.php";
 			break;
 
+			case 'postnuke':
+				if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.6.0") {
+					$args["op"] = "modload";
+					$args["file"] = "index";
+
+					$url = "modules.php";
+				}
+				else {
+					$url = pnGetBaseURI()."/index.php";
+				}
+				
+				$args["name"] = "$GALLERY_MODULENAME";
+				/*
+				 * include *must* be last so that the JavaScript code in
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+			break;
+							
 			case 'mambo':
 				$args['option'] = $GALLERY_MODULENAME;
 				$args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];

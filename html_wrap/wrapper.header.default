@@ -30,32 +30,6 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	case 'phpnuke':
 	case 'postnuke':
 	case 'cpgnuke':
-
-		/*
-		 * Nuke owns the <head> tag and doesn't share.  So, if we want to get our
-		 * style sheet in place we've got to intercept Nuke's header and modify it 
-		 * to insert a few lines of our own in place.  We could speed this process 
-		 * up greatly if we cached the results and saved it somewhere handy (like
-		 * the session) but then we'd be vulnerable to attack by somebody who has
-		 * write permissions in the directory that the session files live.  They
-		 * could create a bogus session file, set that ID into their cookie and 
-		 * then pass their own code into our eval() below.
-		 */
-		$header = "";
-		if ($fd = fopen("header.php", "r")) {
-			while (!feof($fd)) {
-				$line = fgets($fd, 1024);
-				$line = str_replace('<?php', '', $line);
-				$line = str_replace(' ?>', '', $line);
-				$header .= $line;
-				if (strstr($line, "<head")) {
-					$links = getStyleSheetLink();
-					$links = str_replace('"', '\"', $links);
-					$header .= 'echo "' . $links . '\n";' . "\n";
-				}
-			}
-		}
-
 		/*
 		 * We can control whether we see the right side blocks
 		 * by setting the value of the $index variable.  To
@@ -72,7 +46,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 		$tmp_index = $index;
 		$index = 0;
 
-		eval($header);
+		include_once('./header.php');
 
 		OpenTable();
 
