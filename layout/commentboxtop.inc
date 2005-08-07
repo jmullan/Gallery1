@@ -35,17 +35,20 @@
 	</td>
     <?php
 }
-else
-{
+else {
 ?>
 	<td width="150" valign="top" ><a href="<?php echo makeAlbumUrl($gallery->session->albumName, $id) ?>"><?php echo $gallery->album->getThumbnailTag($i) ?></a></td>
 	<td width="20">&nbsp;</td>
 	<td valign="top">
-<?php if ($gallery->album->isHidden($i)) 
-{
-	echo "  (". _("hidden") .")";
-} ?>
-	<form name="delete_comments>" action="view_comments.php" method="post">
+<?php 
+	if ($gallery->album->isHidden($i)) {
+		echo "  (". _("hidden") .")";
+	} 
+
+	echo makeFormIntro('view_comments.php',array(
+		'name' => 'delete_comments',
+		'method' => 'post'));
+?>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<table width="100%" border="0" cellspacing="0" cellpadding=0>
 	<tr>
