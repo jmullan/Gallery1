@@ -50,6 +50,18 @@
  * Alias for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
 	$nls['alias']['arabic'] =		'ar_EG' ;
+ 	$nls['alias']['ara'] =			'ar_EG';
+        $nls['alias']['ar_EG.ISO8859-6'] =	'ar_EG';
+
+/**
+ * phpNuke
+ **/
+        $nls['phpnuke']['ar_EG'] = 'arabic';
+
+/**
+ * postNuke
+ */
+        $nls['postnuke']['ar_EG'] = 'ara';
 
 /**
  * Charset
