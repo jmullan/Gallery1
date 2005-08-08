@@ -18,45 +18,48 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Ukranian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['uk_UA'] = '&#x0423;&#x043a;&#x0440;&#x0430;&#x0457;&#x043d;&#x0441;&#x044c;&#x043a;&#x0430;';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['uk'] = 'uk_UA';
+ * Aliases for languages with different browser and gettext codes
+ */
+	$nls['alias']['uk'] = 			'uk_UA';
+	$nls['alias']['uk_UK'] = 			'uk_UA';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['ukrainian'] =            'uk_UA' ;
 	$nls['alias']['uk_UA.KOI8-U'] =         'uk_UA' ;
 
 /**
- ** Charset
- **/	
+ * Charset
+ */
 	$nls['charset']['uk_UA'] =              'KOI8-U';
 
 /**
- ** phpNuke
- **/
+ * phpNuke
+ */
 	$nls['phpnuke']['uk_UA'] = 'ukrainian';
+
 ?>

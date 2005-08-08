@@ -18,41 +18,43 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Portual Portuguese
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['pt_PT'] = 		'Portugu&#234;s';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['pt'] = 'pt_PT';
+ * Aliases for languages with different browser and gettext codes
+ */
+	$nls['alias']['pt'] =			'pt_PT';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-	
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['portuguese'] =		'pt_PT' ;
 	$nls['alias']['pt_PT.ISO8859-1'] =	'pt_PT' ;
 	$nls['alias']['pt_PT.ISO8859-15'] =	'pt_PT' ;
-	
+
 /**
- ** phpNuke
- **/
-	$nls['phpnuke']['pt_PT'] = 'portuguese';
+ * phpNuke
+ */
+	$nls['phpnuke']['pt_PT'] =		'portuguese';
+
 ?>

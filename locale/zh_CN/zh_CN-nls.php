@@ -18,47 +18,44 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Simplified Chinese
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['zh_CN'] =		'&#31616;&#20307;&#20013;&#25991;';	// Simplified Chinese
 
 /**
- ** Native languagename
- **/
-	$nls['language']['zh_CN'] = 	'&#31616;&#20307;&#20013;&#25991;';	// Simplified Chinese
-
-/**
- ** Alias for languages which we substitte or send by NUKE or GeekLog
- **/
-
+ * Alias for languages which we substitte or send by NUKE or GeekLog, or Mambo
+ */
 	//$nls['alias']['chinese'] =		'zh_CN' ;
 	$nls['alias']['zh_CN.EUC'] =		'zh_CN' ;
 	$nls['alias']['chinese_gb2312'] =	'zh_CN' ;
+	$nls['alias']['simplified_chinese'] =	'zh_CN' ;
 
 /**
- ** Charset
- **/	
-	
-	$nls['charset']['zh_CN'] = 	'GB2312';
-	
-/**
- ** Multibyte charset
- **/
-
-	$nls['multibyte']['GB2312'] =   true;
+ * Charset
+ */
+	$nls['charset']['zh_CN'] =		'GB2312';
 
 /**
- ** phpNuke
- **/
-	//$nls['phpnuke']['zh_CN'] =	'chinese' ;
+ * phpNuke
+ */
+	//$nls['phpnuke']['zh_CN'] =		'chinese' ;
+
 ?>

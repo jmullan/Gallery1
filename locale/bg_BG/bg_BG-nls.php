@@ -18,36 +18,42 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Bulgarian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
- * The original filename was horde/config/nls.php.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The original filename was horde/config/nls.php.dist.
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/** 
+ * Native languagename
+ */
+$nls['language']['bg_BG'] = 			'&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['bg_BG'] = 		'&#x0411;&#x044a;&#x043b;&#x0433;&#x0430;&#x0440;&#x0441;&#x043a;&#x0438;';
+ * Alias for languages with different browser and gettext codes
+ */
+	$nls['alias']['bg'] = 			'bg_BG';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE or GeekLog
- **/
+ * Alias for languages which we substitte or send by NUKE
+ */
 	$nls['alias']['bg_BG.CP1251'] =		'bg_BG' ;
 	$nls['alias']['bulgarian'] =		'bg_BG' ;
 
 /**
- ** Charset
- **
- **/	
-
-	$nls['charset']['bg_BG'] =              'windows-1251';	
+ * Charset
+ */
+	$nls['charset']['bg_BG'] =		'windows-1251';
 
 ?>

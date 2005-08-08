@@ -18,35 +18,44 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
+  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Brazil Portuguese
  */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['pt_BR'] =		'Portugu&#234;s Brasileiro';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['pt_BR'] = 'Portugu&#234;s Brasileiro';
-
+ * Aliases for languages with different browser and gettext codes
+ * Commented out, as pt_PT is default for portuguese
+ */
+//$nls['alias']['pt'] = 			'pt_BR';
 /**
- ** Alias for languages which we substitte or send by NUKE or GeekLog
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['brazilian'] =            'pt_BR' ;
 	$nls['alias']['pt_BR.ISO8859-1'] =      'pt_BR' ;
 	$nls['alias']['portuguese_brazil'] =	'pt_BR' ;
+	$nls['alias']['brazilian_portuguese'] =	'pt_BR' ;
 
 /**
- ** phpNuke
- **/
-	$nls['phpnuke']['pt_BR'] = 'brazilian' ;
+ * phpNuke
+ */
+	$nls['phpnuke']['pt_BR'] =		'brazilian' ;
+
 ?>

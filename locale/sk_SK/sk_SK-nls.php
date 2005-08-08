@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2005 Bharat Mediratta
+ * Copyright (C) 2000-2004 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 /**
  * @version	1.5.1
  * @package	Languagepack
- * @subpackage	Icelandic
+ * @subpackage	Slovak
  */
 
 /**
@@ -31,36 +31,29 @@
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz.
+ * The modifications to fit it for Gallery were made by Jens Tkotz 
  * (jens@peino.de)
+ *
  */
 
 /**
  * Native languagename
  */
-	$nls['language']['is_IS'] =		'&#205;slenska';
+	$nls['language']['sk_SK'] =		'Slovensky (ISO-8859-2)';	// Slovak
 
 /**
- * Aliases for languages with different browser and gettext codes
+ * Alias for languages with different browser and gettext codes
  */
 
-	$nls['alias']['is'] =			'is_IS';
-
-/**
- * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
- */
-	$nls['alias']['icelandic']=		'is_IS' ;
-	$nls['alias']['isl']=			'is_IS' ;
-	$nls['alias']['is_IS.ISO8859-1'] =	'is_IS' ;
+	$nls['alias']['sk'] = 			'sk_SK';
 
 /**
- * phpNuke
+ * Aliases for languages which we substitte or send by NUKE
  */
-	$nls['phpnuke']['is_IS'] =		'icelandic';
 
 /**
- * postNuke
- */
-	$nls['postnuke']['is_IS'] =		'isl';
+ * Charset
+ */	
+	$nls['charset']['sk_SK'] =		'iso-8859-2';
 
 ?>
