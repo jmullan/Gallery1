@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2003-11-25 13:14+0100\n"
 "Last-Translator: Coyot <coyot AT i DOT love DOT pinknet DOT cz>\n"
 "Language-Team: CZ_Czech <coyot AT i DOT love DOT pinknet DOT cz>\n"
@@ -2277,7 +2277,8 @@ msgstr "Den "
 msgid "Member file"
 msgstr "Soubor uživatelù"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "Uživatelské jméno"
 
@@ -2623,6 +2624,220 @@ msgstr "zmìnit velikost"
 msgid "Only full photos"
 msgstr "zmìnit velikost"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Oznaèit vše"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Odoznaèit vše!"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Inverzní výbìr"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, fuzzy, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr "Poznámka: Toto je automaticky generovaný email ze serveru %s. Pokud jste jej obdrželi omylem, prosím ignorujte ho."
+
+#: ../lib/mail.php:45
+#, fuzzy, php-format
+msgid "Report abuse to %s"
+msgstr "Oznámit zneužití %s."
+
+#: ../lib/mail.php:71
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "Email nebyl poslán, v této Gallery je posílání emailù vypnuto"
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "Email nebyl poslán, %s není platná adresa"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "Email nebyl poslán, nebyla zadána adresa"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr "Adresa odesílatele %s není platná, použiji místo ní %s."
+
+#: ../lib/mail.php:157
+#, fuzzy, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+"Ahoj  !!FULLNAME!!,  \n"
+"\n"
+"Gratulujeme. Právì jste byli zaregistrování k %s na %s. Vaše uživatelské jméno je !!USERNAME!!.  Prosím, navštivte tuto galerii brzo a vytvoøte heslo klepnutím na tento odkaz:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Administrátor Gallery  @ %s."
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "název galerie"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "URL galerie"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "nastavení správy"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Celé jméno"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "zobraz komentáøe"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "zobraz komentáøe"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "zobraz komentáøe"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "Email nebyl poslán, nenalezl jsem žádné platné adresy"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "SELHALO"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr "Emailová aktivita"
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "Hlasovat"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Souèet bodù v závorkách"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "Prùmìr bodù v závorkách"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 hlasující"
+msgstr[1] "1 hlasující"
+msgstr[2] "1 hlasující"
+
+#: ../lib/voting.php:315
+#, fuzzy, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Výsledky z %s."
+msgstr[1] "Výsledky z %s."
+msgstr[2] "Výsledky z %s."
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s bodù; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Klíè - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Zatím žádné hlasy."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Výsledek hlasování:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Žádné hlasy"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "%d celkem."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Žádné hlasy"
+msgstr[1] "Žádné hlasy"
+msgstr[2] "Žádné hlasy"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "Videoklip"
@@ -2717,20 +2932,16 @@ msgstr "vlastnosti fotky"
 msgid "Change Owner"
 msgstr "Zmìnit vlastníka"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Oznaèit vše"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Odoznaèit vše!"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Inverzní výbìr"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2754,95 +2965,6 @@ msgstr "popis"
 msgid "description"
 msgstr "popis"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Chyba:"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Vytvoøeno %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Bìhá na %s v%s"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "Hlasovat"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Souèet bodù v závorkách"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "Prùmìr bodù v závorkách"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: ../lib/voting.php:303
-#, fuzzy, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "1 hlasující"
-msgstr[1] "1 hlasující"
-msgstr[2] "1 hlasující"
-
-#: ../lib/voting.php:315
-#, fuzzy, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Výsledky z %s."
-msgstr[1] "Výsledky z %s."
-msgstr[2] "Výsledky z %s."
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s bodù; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Klíè - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Zatím žádné hlasy."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Výsledek hlasování:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Žádné hlasy"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "%d celkem."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, fuzzy, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "Žádné hlasy"
-msgstr[1] "Žádné hlasy"
-msgstr[2] "Žádné hlasy"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2858,6 +2980,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Chyba:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Vytvoøeno %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Bìhá na %s v%s"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -5174,69 +5310,8 @@ msgstr "Zatím žádné hlasy."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Email nebyl poslán, nenalezl jsem žádné platné adresy"
-
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "Pøeskakuji neplatnou adresu %s"
-
-#, fuzzy
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "Poznámka: Toto je automaticky generovaný email ze serveru %s. Pokud jste jej obdrželi omylem, prosím ignorujte ho."
-
-#, fuzzy
-#~ msgid "Report abuse to %s"
-#~ msgstr "Oznámit zneužití %s."
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "Email nebyl poslán, v této Gallery je posílání emailù vypnuto"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "Email nebyl poslán, nebyla zadána adresa"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "Email nebyl poslán, %s není platná adresa"
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "Adresa odesílatele %s není platná, použiji místo ní %s."
-
-#~ msgid "FAILED"
-#~ msgstr "SELHALO"
-
-#~ msgid "Email activity"
-#~ msgstr "Emailová aktivita"
-
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "Ahoj  !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Gratulujeme. Právì jste byli zaregistrování k %s na %s. Vaše uživatelské jméno je !!USERNAME!!.  Prosím, navštivte tuto galerii brzo a vytvoøte heslo klepnutím na tento odkaz:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Administrátor Gallery  @ %s."
-
-#~ msgid "gallery title"
-#~ msgstr "název galerie"
-
-#~ msgid "gallery URL"
-#~ msgstr "URL galerie"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "nastavení správy"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Celé jméno"
 
 #, fuzzy
 #~ msgid "Watermarking photo."

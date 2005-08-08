@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2005-03-05 19:30+0100\n"
 "Last-Translator: Marjan Laznik <marjan@slo-foto.com>\n"
 "Language-Team: Slovenian <marjan AT slo-foto DOT com>\n"
@@ -2228,7 +2228,8 @@ msgstr "Datum/èas posnetka"
 msgid "Member file"
 msgstr "Èlanska datoteka"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "Uporabni¹ko ime"
 
@@ -2560,6 +2561,221 @@ msgstr "Pomanj¹ane fotke"
 msgid "Only full photos"
 msgstr "Samo fotografije polne velikosti"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Oznaèi vse"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Odznaèi vse"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Preobrni izbor"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr "To je samodejno generirano sporoèilo poslano s strani %s.  Èe ste ga dobili po pomoti, ga prosim ignorirajte."
+
+#: ../lib/mail.php:45
+#, php-format
+msgid "Report abuse to %s"
+msgstr "Zlorabe prijavite na %s."
+
+#: ../lib/mail.php:71
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "E-po¹ta ni poslana, ker je za to galerijo onemogoèena."
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "E-po¹ta ni poslana, ker %s ni pravilen e-naslov."
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "E-po¹ta ni poslana, ni e-po¹tnega naslova."
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr "E-naslov po¹iljatelja %s je neveljaven, uporabil bom %s."
+
+#: ../lib/mail.php:157
+#, fuzzy, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+"®ivjo !!FULLNAME!!,  \n"
+"\n"
+"Èestitam.  Ravnokar si bil(a) vpisan(a) k %s na %s.  Tvoje uporabni¹ko ime je !!USERNAME!!.  Kmalu obi¹èi galerijo in si ustvari geslo s klikom na to povezavo:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Urednik galerije na %s."
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "naslov galerije"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "URL naslov galerije"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "Administratorska pomoè"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Ime in priimek"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "i¹èi spam komentarje"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "poglej komentarje"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "poglej komentarje"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "Neposlana e-po¹ta zaradi napaènega e-naslova"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "NEUSPE©NO"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr "Uporaba e-po¹te"
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "Oceni"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Vse toèke v oklepajih"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "Povpreène toèke v oklepajih"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "%d  ocenjevalec"
+msgstr[1] "%d ocenjevalca"
+msgstr[2] "%d  ocenjevalci"
+msgstr[3] "%d  ocenjevalcev"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lib/voting.php:324
+#, fuzzy, php-format
+msgid "%s: %s points; "
+msgstr "%s, %s na %s"
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Kljuè - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Ni ocen."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Rezultati ocenjevanja:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Ni ocen"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "Od vseh %d."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "%d ocena"
+msgstr[1] "%d  oceni"
+msgstr[2] "%d ocene"
+msgstr[3] "%d  ocen"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 #, fuzzy
 msgid "Movie"
@@ -2653,20 +2869,16 @@ msgstr "lastnosti fotografije"
 msgid "Change Owner"
 msgstr "Spremeni urednika"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Oznaèi vse"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Odznaèi vse"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Preobrni izbor"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2689,96 +2901,6 @@ msgstr "Zaznamek"
 msgid "description"
 msgstr "zaznamek"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Napaka:"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Generiral %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Uporablja %s v%s"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "Oceni"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Vse toèke v oklepajih"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "Povpreène toèke v oklepajih"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "%d  ocenjevalec"
-msgstr[1] "%d ocenjevalca"
-msgstr[2] "%d  ocenjevalci"
-msgstr[3] "%d  ocenjevalcev"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../lib/voting.php:324
-#, fuzzy, php-format
-msgid "%s: %s points; "
-msgstr "%s, %s na %s"
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Kljuè - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Ni ocen."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Rezultati ocenjevanja:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Ni ocen"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "Od vseh %d."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "%d ocena"
-msgstr[1] "%d  oceni"
-msgstr[2] "%d ocene"
-msgstr[3] "%d  ocen"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2794,6 +2916,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Napaka:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Generiral %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Uporablja %s v%s"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -5037,67 +5173,8 @@ msgstr "Ni predmetov za vodni ¾ig."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Neposlana e-po¹ta zaradi napaènega e-naslova"
-
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "Izkljuèujem napaèen e-po¹tni naslov %s"
-
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "To je samodejno generirano sporoèilo poslano s strani %s.  Èe ste ga dobili po pomoti, ga prosim ignorirajte."
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "Zlorabe prijavite na %s."
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "E-po¹ta ni poslana, ker je za to galerijo onemogoèena."
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "E-po¹ta ni poslana, ni e-po¹tnega naslova."
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "E-po¹ta ni poslana, ker %s ni pravilen e-naslov."
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "E-naslov po¹iljatelja %s je neveljaven, uporabil bom %s."
-
-#~ msgid "FAILED"
-#~ msgstr "NEUSPE©NO"
-
-#~ msgid "Email activity"
-#~ msgstr "Uporaba e-po¹te"
-
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "®ivjo !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Èestitam.  Ravnokar si bil(a) vpisan(a) k %s na %s.  Tvoje uporabni¹ko ime je !!USERNAME!!.  Kmalu obi¹èi galerijo in si ustvari geslo s klikom na to povezavo:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Urednik galerije na %s."
-
-#~ msgid "gallery title"
-#~ msgstr "naslov galerije"
-
-#~ msgid "gallery URL"
-#~ msgstr "URL naslov galerije"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "Administratorska pomoè"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Ime in priimek"
 
 #~ msgid "Watermarking photo."
 #~ msgstr "Oznaèujem fotografijo."

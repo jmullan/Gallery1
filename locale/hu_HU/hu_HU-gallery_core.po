@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2004-07-31 20:31+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -2224,7 +2224,8 @@ msgstr "Felvételi idõ"
 msgid "Member file"
 msgstr "Tag fájl"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -2562,6 +2563,214 @@ msgstr "fotó újraméretezése"
 msgid "Only full photos"
 msgstr "fotó újraméretezése"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Összes kijelölése"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Kijelölések törlése"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Kijelölés invertálása"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr "Megjegyzés: ez egy automatikus üzenet a %s weboldalról. Ha tévedésbõl kaptad, kérlek hagyd figyelmen kívül. "
+
+#: ../lib/mail.php:45
+#, php-format
+msgid "Report abuse to %s"
+msgstr "A helytelen használatot jelentsd itt: %s"
+
+#: ../lib/mail.php:71
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "Email-t nem küldtem, ez a szolgáltatás jelenleg nem aktív"
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "%s címre nem küldtem email-t, mert ez a cím nem érvényes"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "Email-t nem küldtem, mivel nem lett cím megadva"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr "A küldõ &quot;%s&quot; címe érvénytelen, %s-t használom."
+
+#: ../lib/mail.php:157
+#, fuzzy, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+"Üdv !!FULLNAME!!, \n"
+"\n"
+"Üdvözüllek a(z) %s (%s) új felhasználói között! A felhasználóneved !!USERNAME!!. Kérlek, mielõtt látogasd meg a galériát, és készíts magadnak új jelszót ezen a linken:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "Galéria címe"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "Galéria URL"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "Adminisztrátor"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Teljes név"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "megjegyzések megtekintése"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "megjegyzések megtekintése"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "megjegyzések megtekintése"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "Nem sikerült emailt küldeni, mert nem találtam érvényes emailt"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "SIKERTELEN"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr ""
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "Szavazás"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Az összpontszám a zárójelben olvasható"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "A zárójelben az átlagos pontszám olvasható"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "%d szavazó"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Eredmény %d szavazótól"
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s pont; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Skála - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Még nem szavazott senki."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "A szavazás eredménye:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Nincs szavazat"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "%d.&nbsp;helyezés az abszolút listán."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "%d szavazat"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "Videó"
@@ -2654,20 +2863,16 @@ msgstr "fotó tulajdonságai"
 msgid "Change Owner"
 msgstr "Tulajdonos megváltoztatása"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Összes kijelölése"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Kijelölések törlése"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Kijelölés invertálása"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2691,89 +2896,6 @@ msgstr "Leírás"
 msgid "description"
 msgstr "Leírás"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Hiba:"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Elõállította a %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Ezt az oldalt a %s v%s mûködteti"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "Szavazás"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Az összpontszám a zárójelben olvasható"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "A zárójelben az átlagos pontszám olvasható"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "%d szavazó"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Eredmény %d szavazótól"
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s pont; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Skála - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Még nem szavazott senki."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "A szavazás eredménye:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Nincs szavazat"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "%d.&nbsp;helyezés az abszolút listán."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "%d szavazat"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2789,6 +2911,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Hiba:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Elõállította a %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Ezt az oldalt a %s v%s mûködteti"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -5066,64 +5202,8 @@ msgstr "Nincs vízjelezhetõ elem."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Nem sikerült emailt küldeni, mert nem találtam érvényes emailt"
-
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "%s érvénytelen email cím, kihagyva."
-
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "Megjegyzés: ez egy automatikus üzenet a %s weboldalról. Ha tévedésbõl kaptad, kérlek hagyd figyelmen kívül. "
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "A helytelen használatot jelentsd itt: %s"
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "Email-t nem küldtem, ez a szolgáltatás jelenleg nem aktív"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "Email-t nem küldtem, mivel nem lett cím megadva"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "%s címre nem küldtem email-t, mert ez a cím nem érvényes"
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "A küldõ &quot;%s&quot; címe érvénytelen, %s-t használom."
-
-#~ msgid "FAILED"
-#~ msgstr "SIKERTELEN"
-
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "Üdv !!FULLNAME!!, \n"
-#~ "\n"
-#~ "Üdvözüllek a(z) %s (%s) új felhasználói között! A felhasználóneved !!USERNAME!!. Kérlek, mielõtt látogasd meg a galériát, és készíts magadnak új jelszót ezen a linken:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-
-#~ msgid "gallery title"
-#~ msgstr "Galéria címe"
-
-#~ msgid "gallery URL"
-#~ msgstr "Galéria URL"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "Adminisztrátor"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Teljes név"
 
 #~ msgid "Watermarking photo."
 #~ msgstr "Fénykép vízjelzése."

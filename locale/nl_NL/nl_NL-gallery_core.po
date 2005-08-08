@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2004-05-17 00:39+0100\n"
 "Last-Translator: Edwin Mons <intosi at users.sourceforge.net>\n"
 "Language-Team: <gallery-translations@lists.sourceforge.net>\n"
@@ -2176,7 +2176,8 @@ msgstr "Filter op dag"
 msgid "Member file"
 msgstr "Gebruiker bestand"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "Gebruikersnaam"
 
@@ -2509,6 +2510,217 @@ msgstr "Enkel verkleinde foto's"
 msgid "Only full photos"
 msgstr "Enkel volledige foto's"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Allemaal"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Geen"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Selectie omkeren"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr "Opmerking: Dit is een automatisch gegenereerde e-mail verstuurd van de %s website. Als u dit bericht onterecht ontvangt, kunt u deze als niet verstuurd beschouwen."
+
+#: ../lib/mail.php:45
+#, php-format
+msgid "Report abuse to %s"
+msgstr "Rapporteer misbruik aan %s"
+
+#: ../lib/mail.php:71
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "E-mail is niet verzonden omdat dit is uitgeschakeld in deze Gallery"
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "E-mail is niet verstuurd aan %s omdat dit een ongeldig adres is"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "E-mail is niet verzonden omdat er geen adres is opgegeven"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr "Het adres %s is ongeldig als afzender, %s is gebruikt."
+
+#: ../lib/mail.php:157
+#, fuzzy, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+"Beste !!FULLNAME!!, \n"
+"\n"
+"Gefeliciteerd. U bent zojuist geregistreerd bij %s op %s. Uw gebruikersnaam is !!USERNAME!!. Bezoekt u de Gallery snel en creeer een wachtwoord door op deze link te klikken: \n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Beheerder."
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "Gallery Titel"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "Gallery Link"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "Help voor beheerders"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Volledige naam"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "vind commentaar spam"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "bekijk commentaar"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "bekijk commentaar"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "Geen e-mail verzonden omdat er geen geldige e-mail adressen zijn gevonden"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "MISLUKT"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr "E-mail activiteit"
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "Stem"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "Totale punten tussen haakjes"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "Gemiddelde punten tussen haakjes"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "Album: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 stemmer"
+msgstr[1] "%d stemmers"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Resultaten van een stemmer."
+msgstr[1] "Resultaten van %d stemmers."
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s punten;"
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Sleutel - %s."
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Er zijn nog geen stemmen."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Poll resultaten:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Geen stemmen"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "Nummer %d totaal."
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "een stem"
+msgstr[1] "%d stemmen"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "Filmpje"
@@ -2601,20 +2813,16 @@ msgstr "foto eigenschappen"
 msgid "Change Owner"
 msgstr "Wijzig eigenaar"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Allemaal"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Geen"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Selectie omkeren"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2639,92 +2847,6 @@ msgstr "Omschrijving"
 msgid "description"
 msgstr "omschrijving"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Fout"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Gegenereerd door %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Gegenereerd door %s v%s"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "Stem"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "Totale punten tussen haakjes"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "Gemiddelde punten tussen haakjes"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "Album: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "1 stemmer"
-msgstr[1] "%d stemmers"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Resultaten van een stemmer."
-msgstr[1] "Resultaten van %d stemmers."
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s punten;"
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Sleutel - %s."
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Er zijn nog geen stemmen."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Poll resultaten:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Geen stemmen"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "Nummer %d totaal."
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "een stem"
-msgstr[1] "%d stemmen"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2740,6 +2862,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Fout"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Gegenereerd door %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Gegenereerd door %s v%s"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -4955,67 +5091,8 @@ msgstr "Er zijn geen items om een watermerk op toe te passen."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Geen e-mail verzonden omdat er geen geldige e-mail adressen zijn gevonden"
-
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "Ongeldig e-mail adres %s overgeslagen"
-
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "Opmerking: Dit is een automatisch gegenereerde e-mail verstuurd van de %s website. Als u dit bericht onterecht ontvangt, kunt u deze als niet verstuurd beschouwen."
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "Rapporteer misbruik aan %s"
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "E-mail is niet verzonden omdat dit is uitgeschakeld in deze Gallery"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "E-mail is niet verzonden omdat er geen adres is opgegeven"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "E-mail is niet verstuurd aan %s omdat dit een ongeldig adres is"
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "Het adres %s is ongeldig als afzender, %s is gebruikt."
-
-#~ msgid "FAILED"
-#~ msgstr "MISLUKT"
-
-#~ msgid "Email activity"
-#~ msgstr "E-mail activiteit"
-
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "Beste !!FULLNAME!!, \n"
-#~ "\n"
-#~ "Gefeliciteerd. U bent zojuist geregistreerd bij %s op %s. Uw gebruikersnaam is !!USERNAME!!. Bezoekt u de Gallery snel en creeer een wachtwoord door op deze link te klikken: \n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Beheerder."
-
-#~ msgid "gallery title"
-#~ msgstr "Gallery Titel"
-
-#~ msgid "gallery URL"
-#~ msgstr "Gallery Link"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "Help voor beheerders"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Volledige naam"
 
 #~ msgid "Watermarking photo."
 #~ msgstr "Foto voorzien van watermerk"

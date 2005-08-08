@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2003-09-03 16:55+09:00\n"
 "Last-Translator: Dmytro Kovalov <kov AT tokyo DOT email DOT ne DOT jp>\n"
 "Language-Team: Ukrainian\n"
@@ -2304,7 +2304,8 @@ msgstr "Дата зйомки"
 msgid "Member file"
 msgstr ""
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "╤м'я користувача"
 
@@ -2651,6 +2652,220 @@ msgstr "зм╕нити розм╕р фото"
 msgid "Only full photos"
 msgstr "зм╕нити розм╕р фото"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "В╕дм╕тити вс╕"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Зняти в╕дм╕тку з ус╕х"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Зм╕нити на протилежне"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr ""
+
+#: ../lib/mail.php:45
+#, fuzzy, php-format
+msgid "Report abuse to %s"
+msgstr "Повернутись до Додати фото"
+
+#: ../lib/mail.php:71
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "Ви повинн╕ вказати ╕м'я"
+
+#: ../lib/mail.php:77
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "Ви повинн╕ вказати ╕м'я"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "Ви повинн╕ вказати ╕м'я"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr ""
+
+#: ../lib/mail.php:157
+#, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+#, fuzzy
+msgid "gallery title"
+msgstr "Мова галере╖"
+
+#: ../lib/mail.php:167
+#, fuzzy
+msgid "gallery URL"
+msgstr "Галерея"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "редагувати п╕дписи"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Повне ╕м'я"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "переглянути коментар╕"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "переглянути коментар╕"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "переглянути коментар╕"
+
+#: ../lib/mail.php:238
+#, fuzzy
+msgid "No email sent as no valid email addresses were found"
+msgstr "Ви повинн╕ вказати ╕м'я"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr ""
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr ""
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+#, fuzzy
+msgid "Vote"
+msgstr "Прим╕тка"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr ""
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr ""
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, fuzzy, php-format
+msgid "Album: %s"
+msgstr "Альбом"
+
+#: ../lib/voting.php:303
+#, fuzzy, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "Прим╕тка"
+msgstr[1] "Прим╕тка"
+msgstr[2] ""
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../lib/voting.php:324
+#, fuzzy, php-format
+msgid "%s: %s points; "
+msgstr "%s, %s на %s"
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr ""
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+#, fuzzy
+msgid "No votes so far."
+msgstr "Прим╕тка"
+
+#: ../lib/voting.php:356
+#, fuzzy
+msgid "Poll results:"
+msgstr "Результати:"
+
+#: ../lib/voting.php:359
+#, fuzzy
+msgid "No votes"
+msgstr "Прим╕тка"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr ""
+
+#: ../lib/voting.php:367
+#, fuzzy, php-format
+msgid "%s: %s"
+msgstr "%s, %s"
+
+#: ../lib/voting.php:368
+#, fuzzy, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "Прим╕тка"
+msgstr[1] "Прим╕тка"
+msgstr[2] ""
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "Ф╕льм"
@@ -2745,20 +2960,16 @@ msgstr "властивост╕ фото"
 msgid "Change Owner"
 msgstr "Зм╕нити власника"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "В╕дм╕тити вс╕"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Зняти в╕дм╕тку з ус╕х"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Зм╕нити на протилежне"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2783,98 +2994,6 @@ msgstr "опис"
 msgid "description"
 msgstr "опис"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Помилка:"
-
-#: ../lib/messages.php:74
-#, fuzzy, php-format
-msgid "Generated by %s v%s"
-msgstr "Власник:"
-
-#: ../lib/messages.php:76
-#, fuzzy, php-format
-msgid "Powered by %s v%s"
-msgstr "Власник:"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-#, fuzzy
-msgid "Vote"
-msgstr "Прим╕тка"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, fuzzy, php-format
-msgid "Album: %s"
-msgstr "Альбом"
-
-#: ../lib/voting.php:303
-#, fuzzy, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "Прим╕тка"
-msgstr[1] "Прим╕тка"
-msgstr[2] ""
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../lib/voting.php:324
-#, fuzzy, php-format
-msgid "%s: %s points; "
-msgstr "%s, %s на %s"
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr ""
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-#, fuzzy
-msgid "No votes so far."
-msgstr "Прим╕тка"
-
-#: ../lib/voting.php:356
-#, fuzzy
-msgid "Poll results:"
-msgstr "Результати:"
-
-#: ../lib/voting.php:359
-#, fuzzy
-msgid "No votes"
-msgstr "Прим╕тка"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr ""
-
-#: ../lib/voting.php:367
-#, fuzzy, php-format
-msgid "%s: %s"
-msgstr "%s, %s"
-
-#: ../lib/voting.php:368
-#, fuzzy, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "Прим╕тка"
-msgstr[1] "Прим╕тка"
-msgstr[2] ""
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2890,6 +3009,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Помилка:"
+
+#: ../lib/messages.php:74
+#, fuzzy, php-format
+msgid "Generated by %s v%s"
+msgstr "Власник:"
+
+#: ../lib/messages.php:76
+#, fuzzy, php-format
+msgid "Powered by %s v%s"
+msgstr "Власник:"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -5239,44 +5372,8 @@ msgid "Keep in mind that watermarking on animated gifs is currently not supporte
 msgstr ""
 
 #, fuzzy
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Ви повинн╕ вказати ╕м'я"
-
-#, fuzzy
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "Ви повинн╕ вказати ╕м'я"
-
-#, fuzzy
-#~ msgid "Report abuse to %s"
-#~ msgstr "Повернутись до Додати фото"
-
-#, fuzzy
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "Ви повинн╕ вказати ╕м'я"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "Ви повинн╕ вказати ╕м'я"
-
-#, fuzzy
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "Ви повинн╕ вказати ╕м'я"
-
-#, fuzzy
-#~ msgid "gallery title"
-#~ msgstr "Мова галере╖"
-
-#, fuzzy
-#~ msgid "gallery URL"
-#~ msgstr "Галерея"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "редагувати п╕дписи"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Повне ╕м'я"
 
 #, fuzzy
 #~ msgid "Watermarking photo."

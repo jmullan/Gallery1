@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2005-03-24 07:54+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -2161,7 +2161,8 @@ msgstr "日でフィルタ"
 msgid "Member file"
 msgstr "メンバーファイル"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "ユーザ名"
 
@@ -2493,6 +2494,215 @@ msgstr "リサイズ画像のみ"
 msgid "Only full photos"
 msgstr "完全画像のみ"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "全てチェック"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "全てクリア"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "選択を反転"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr "注意: これは %s ウェブサイトから自動的に生成されて送られたメールです。エラーを受け取っても、無視してください。"
+
+#: ../lib/mail.php:45
+#, php-format
+msgid "Report abuse to %s"
+msgstr "%sに不正使用報告する"
+
+#: ../lib/mail.php:71
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "このGalleryではメール機能は無効ですので、メールは送信されませんでした。"
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "メールアドレスが正しくなかったので、%s にメールは送信されませんでした。"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr "送信者アドレス %s は無効です。%s を使ってください"
+
+#: ../lib/mail.php:157
+#, fuzzy, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+"こんにちは !!FULLNAME!! さん\n"
+"\n"
+"おめでとうございます。%s (%s) に申し込みました。すぐにGalleryに訪れて、以下の情報でログインしてください:\n"
+"\n"
+"ユーザ名は !!USERNAME!!\n"
+"パスワードは !!PASSWORD!!\n"
+"\n"
+"Gallery @ %s 管理者"
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "gallery タイトル"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "gallery リンク"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "管理者ヘルプ"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "フルネーム"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "スパムコメントを探す"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "コメントを見る"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "コメントを見る"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "有効なメールアドレスがみつからなかったため、メールは送信されませんでした。"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "失敗"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr "メールの動作"
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "投票"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr "ブラケット内に総得点"
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr "括弧内に平均得点"
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "アルバム: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "%d 人の投票者"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "%d 人からの投票の結果"
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s 点; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "キー - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "今のところ投票はありません。"
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "投票結果:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "投票なし"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr "全体で %d 位"
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "%d 票"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "動画"
@@ -2585,20 +2795,16 @@ msgstr "画像のプロパティ"
 msgid "Change Owner"
 msgstr "所有者変更"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "全てチェック"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "全てクリア"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "選択を反転"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2621,89 +2827,6 @@ msgstr "詳細"
 msgid "description"
 msgstr "詳細"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "エラー:"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Generated by %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Powered by %s v%s"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "投票"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr "ブラケット内に総得点"
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr "括弧内に平均得点"
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "アルバム: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "%d 人の投票者"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "%d 人からの投票の結果"
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s 点; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "キー - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "今のところ投票はありません。"
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "投票結果:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "投票なし"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr "全体で %d 位"
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "%d 票"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2719,6 +2842,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "エラー:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "Generated by %s v%s"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Powered by %s v%s"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -4916,68 +5053,8 @@ msgstr "透かしにするアイテムなし"
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "有効なメールアドレスがみつからなかったため、メールは送信されませんでした。"
-
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "無効なメールアドレスのスキップ %s"
-
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "注意: これは %s ウェブサイトから自動的に生成されて送られたメールです。エラーを受け取っても、無視してください。"
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "%sに不正使用報告する"
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "このGalleryではメール機能は無効ですので、メールは送信されませんでした。"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "メールアドレスが正しくなかったので、%s にメールは送信されませんでした。"
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "送信者アドレス %s は無効です。%s を使ってください"
-
-#~ msgid "FAILED"
-#~ msgstr "失敗"
-
-#~ msgid "Email activity"
-#~ msgstr "メールの動作"
-
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,  \n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "こんにちは !!FULLNAME!! さん\n"
-#~ "\n"
-#~ "おめでとうございます。%s (%s) に申し込みました。すぐにGalleryに訪れて、以下の情報でログインしてください:\n"
-#~ "\n"
-#~ "ユーザ名は !!USERNAME!!\n"
-#~ "パスワードは !!PASSWORD!!\n"
-#~ "\n"
-#~ "Gallery @ %s 管理者"
-
-#~ msgid "gallery title"
-#~ msgstr "gallery タイトル"
-
-#~ msgid "gallery URL"
-#~ msgstr "gallery リンク"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "管理者ヘルプ"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "フルネーム"
 
 #~ msgid "Watermarking photo."
 #~ msgstr "透かし画像にしています。"

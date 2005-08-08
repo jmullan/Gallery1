@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-08 18:09+0200\n"
 "PO-Revision-Date: 2005-06-257 02:55+0200\n"
 "Last-Translator: Göker ISIK <admin@ansolon.com>\n"
 "Language-Team: Türkçe <admin AT ansolon DOT com>\n"
@@ -2189,7 +2189,8 @@ msgstr "Güne göre filtrele"
 msgid "Member file"
 msgstr "Üye dosyasý"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../login.php:147
 msgid "Username"
 msgstr "Kullanýcý Adý"
 
@@ -2522,6 +2523,211 @@ msgstr "resmin boyutunu yeniden ayarla"
 msgid "Only full photos"
 msgstr "Sadece tam fotolar"
 
+#: ../lib/Form.php:69
+msgid "Check All"
+msgstr "Hepsini Seç"
+
+#: ../lib/Form.php:71
+msgid "Clear All"
+msgstr "Hepsini Temizle"
+
+#: ../lib/Form.php:73
+msgid "Invert Selection"
+msgstr "Seçimi Ters Çevir"
+
+#: ../lib/Form.php:233
+msgid "Colorpicker"
+msgstr ""
+
+#: ../lib/mail.php:43
+#, php-format
+msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
+msgstr ""
+
+#: ../lib/mail.php:45
+#, php-format
+msgid "Report abuse to %s"
+msgstr "Kötü sözleri bildir %s"
+
+#: ../lib/mail.php:71
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery"
+msgstr "Geçersiz adres olmasý nedeniyle %s adresine email gönderilemedi"
+
+#: ../lib/mail.php:77
+#, php-format
+msgid "Email not sent to %s as it is not a valid address"
+msgstr "Geçersiz adres olmasý nedeniyle %s adresine email gönderilemedi"
+
+#: ../lib/mail.php:84
+#, fuzzy
+msgid "Email not sent as no reciepient address provided"
+msgstr "Adres belirtilmediðinden Email gönderilmedi"
+
+#: ../lib/mail.php:95
+#, php-format
+msgid "Sender address %s is invalid, using %s."
+msgstr ""
+
+#: ../lib/mail.php:157
+#, php-format
+msgid ""
+"Hi !!FULLNAME!!,\n"
+"\n"
+"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"\n"
+"!!NEWPASSWORDLINK!!\n"
+"\n"
+"Gallery @ %s Administrator."
+msgstr ""
+
+#: ../lib/mail.php:166 ../lib/mail.php:168
+msgid "gallery title"
+msgstr "galeri baþlýðý"
+
+#: ../lib/mail.php:167
+msgid "gallery URL"
+msgstr "galeri adresi"
+
+#: ../lib/mail.php:183
+msgid "The Url to your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:184
+msgid "Title of your Gallery."
+msgstr ""
+
+#: ../lib/mail.php:185
+#, fuzzy
+msgid "Admin email(s)"
+msgstr "Yönetici yardým"
+
+#: ../lib/mail.php:186
+msgid "Password for the newly created user."
+msgstr ""
+
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "Fullname"
+msgstr "Ýsim - Soyad"
+
+#: ../lib/mail.php:189
+msgid "Will be replaced by a link the new user can click on to create a new password."
+msgstr ""
+
+#: ../lib/mail.php:222
+#, php-format
+msgid "A comment has been added to %s by %s in album %s."
+msgstr ""
+
+#: ../lib/mail.php:227
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:229
+#, fuzzy
+msgid "***End comment ***"
+msgstr "spam yorumlarý bul"
+
+#: ../lib/mail.php:230
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:232
+#, fuzzy, php-format
+msgid "New comment for %s"
+msgstr "yorumlarý görüntüle"
+
+#: ../lib/mail.php:233
+#, fuzzy, php-format
+msgid "New comment for %s."
+msgstr "yorumlarý görüntüle"
+
+#: ../lib/mail.php:238
+msgid "No email sent as no valid email addresses were found"
+msgstr "Email gönderilmedi, hiç bir geçerli email adresi bulunamadý"
+
+#: ../lib/mail.php:245
+#, php-format
+msgid "FAILED"
+msgstr "BAÞARISIZ"
+
+#: ../lib/mail.php:255
+msgid "Email activity"
+msgstr ""
+
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:915
+msgid "Vote"
+msgstr "Oy"
+
+#: ../lib/voting.php:253
+msgid "Total points in brackets"
+msgstr ""
+
+#: ../lib/voting.php:257
+msgid "Average points in brackets"
+msgstr ""
+
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
+#: ../view_album.php:785
+#, php-format
+msgid "Album: %s"
+msgstr "Albüm: %s"
+
+#: ../lib/voting.php:303
+#, php-format
+msgid "1 voter"
+msgid_plural "%d voters"
+msgstr[0] "1 oy veren"
+msgstr[1] "%d oy veren"
+
+#: ../lib/voting.php:315
+#, php-format
+msgid "Result from one voter"
+msgid_plural "Result of %d voters"
+msgstr[0] "Sonuç oy veren sayýsý bir"
+msgstr[1] "Sonuç oy veren sayýsý %d "
+
+#: ../lib/voting.php:324
+#, php-format
+msgid "%s: %s points; "
+msgstr "%s: %s puan; "
+
+#: ../lib/voting.php:329
+#, php-format
+msgid "Key - %s"
+msgstr "Anahtar - %s"
+
+#: ../lib/voting.php:335 ../poll_results.php:163
+msgid "No votes so far."
+msgstr "Oy yok."
+
+#: ../lib/voting.php:356
+msgid "Poll results:"
+msgstr "Oylama sonuçlarý:"
+
+#: ../lib/voting.php:359
+msgid "No votes"
+msgstr "Oy yok"
+
+#: ../lib/voting.php:363
+#, php-format
+msgid "Number %d overall."
+msgstr ""
+
+#: ../lib/voting.php:367
+#, php-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: ../lib/voting.php:368
+#, php-format
+msgid "one vote"
+msgid_plural "%d votes"
+msgstr[0] "bir oy"
+msgstr[1] "%d oy"
+
 #: ../lib/albumItem.php:46 ../rearrange.php:112
 msgid "Movie"
 msgstr "Film"
@@ -2614,20 +2820,16 @@ msgstr "resim özellikleri"
 msgid "Change Owner"
 msgstr "Sahibi Deðiþtir"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "Hepsini Seç"
+#: ../lib/colorpicker.php:40
+msgid "Color Picker"
+msgstr ""
 
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "Hepsini Temizle"
+#: ../lib/colorpicker.php:52
+msgid "The Options window has closed. Exiting."
+msgstr ""
 
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "Seçimi Ters Çevir"
-
-#: ../lib/Form.php:233
-msgid "Colorpicker"
+#: ../lib/colorpicker.php:58
+msgid "This window must be called from an Options window"
 msgstr ""
 
 #: ../lib/lang.php:697
@@ -2650,92 +2852,6 @@ msgstr "Açýklama"
 msgid "description"
 msgstr "açýklama"
 
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "Hata:"
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "%s v%s tarafýndan üretildi"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Powered by %s v%s"
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
-msgid "Vote"
-msgstr "Oy"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
-#, php-format
-msgid "Album: %s"
-msgstr "Albüm: %s"
-
-#: ../lib/voting.php:303
-#, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "1 oy veren"
-msgstr[1] "%d oy veren"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] "Sonuç oy veren sayýsý bir"
-msgstr[1] "Sonuç oy veren sayýsý %d "
-
-#: ../lib/voting.php:324
-#, php-format
-msgid "%s: %s points; "
-msgstr "%s: %s puan; "
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr "Anahtar - %s"
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-msgid "No votes so far."
-msgstr "Oy yok."
-
-#: ../lib/voting.php:356
-msgid "Poll results:"
-msgstr "Oylama sonuçlarý:"
-
-#: ../lib/voting.php:359
-msgid "No votes"
-msgstr "Oy yok"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr ""
-
-#: ../lib/voting.php:367
-#, php-format
-msgid "%s: %s"
-msgstr "%s: %s"
-
-#: ../lib/voting.php:368
-#, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "bir oy"
-msgstr[1] "%d oy"
-
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."
 msgstr ""
@@ -2751,6 +2867,20 @@ msgstr ""
 #: ../lib/valchecks.php:78
 msgid "The given Value not a valid Integer."
 msgstr ""
+
+#: ../lib/messages.php:26
+msgid "Error:"
+msgstr "Hata:"
+
+#: ../lib/messages.php:74
+#, php-format
+msgid "Generated by %s v%s"
+msgstr "%s v%s tarafýndan üretildi"
+
+#: ../lib/messages.php:76
+#, php-format
+msgid "Powered by %s v%s"
+msgstr "Powered by %s v%s"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -4966,43 +5096,9 @@ msgstr "Watermarklanýcak öge yok."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Email gönderilmedi, hiç bir geçerli email adresi bulunamadý"
-
 #, fuzzy
 #~ msgid "Skipping invalid email address %s"
 #~ msgstr "Geçerli bir email adresi belirtmelisiniz."
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "Kötü sözleri bildir %s"
-
-#, fuzzy
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "Geçersiz adres olmasý nedeniyle %s adresine email gönderilemedi"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "Adres belirtilmediðinden Email gönderilmedi"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "Geçersiz adres olmasý nedeniyle %s adresine email gönderilemedi"
-
-#~ msgid "FAILED"
-#~ msgstr "BAÞARISIZ"
-
-#~ msgid "gallery title"
-#~ msgstr "galeri baþlýðý"
-
-#~ msgid "gallery URL"
-#~ msgstr "galeri adresi"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "Yönetici yardým"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Ýsim - Soyad"
 
 #~ msgid "Watermarking photo."
 #~ msgstr "Watermarking foto."
