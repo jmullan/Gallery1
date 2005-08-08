@@ -219,10 +219,10 @@ function emailComments($id, $comment_text, $commenter_name) {
 	$text = '';
 
 	if (!empty($to)) {
-		$text .= sprintf(_("A comment has been added to %s by %s in album %s."),
-			makeAlbumUrl($gallery->session->albumName, $id),
+		$text .= sprintf(_("A comment has been added to this %s by %s in this %s."),
+			'<a href="'. makeAlbumUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
 			$commenter_name,
-			makeAlbumUrl($gallery->session->albumName));
+			'<a href="'. makeAlbumUrl($gallery->session->albumName)) .'">'. _("Album") .'</a>';
 		
 		$text .= "\n\n". _("*** Begin comment ***")."\n";
 		$text .= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
@@ -235,7 +235,6 @@ function emailComments($id, $comment_text, $commenter_name) {
 		gallery_mail($to, $subject, $text, $logmsg, true);
 	}
 	elseif (isDebugging()) {
-		print _("No email sent as no valid email addresses were found");
 	}
 }
 

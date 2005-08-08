@@ -48,10 +48,11 @@ for all_CF in $Cfiles ; do
 	echo "$tab Updating ..."
 	echo "" >> $all_CF
 #	echo "===============================================================================" >> $all_CF
-	echo "2005-06-26 Jens Tkotz <jens AT peino DOT de> 1.5.1-cvs-b40" >> $all_CF
+	echo "2005-08-08 Jens Tkotz <jens AT peino DOT de> 1.5.1-RC2-cvs-b12" >> $all_CF
 	echo "" >> $all_CF
 #	echo " * Release of Gallery 1.5-RC2 langpack" >> $all_CF
-	echo " * Normal Sync" >> $all_CF
+	echo " * Changed format to be analog to phpDoc." >> $all_CF
+	echo " * Updated Version Numbers and sync against latest code" >> $all_CF
 #	echo "===============================================================================" >> $all_CF
 	echo "" >> $all_CF
 #read trash

@@ -61,9 +61,11 @@ for all_po in $pofiles ; do
 	echo "$tab Updating ..."
 	head -1 $all_po > tmp.po
 	echo "#" >> tmp.po
-	echo "# Version: $NEW_VERSION" >> tmp.po
+	echo "# @version$tab $NEW_VERSION" >> tmp.po
+	echo "# @package$tab Language" >> tmp.po
+	echo "# @subpackage  Languagepack" >> tmp.po
 	echo "#" >> tmp.po
-	tail +5 $all_po >> tmp.po
+	tail +7 $all_po >> tmp.po
 	mv tmp.po $all_po
 done
 
@@ -78,8 +80,10 @@ for all_nls in $nlsfiles ; do
 	echo "$tab Updating ..."
 	head -20 $all_nls > tmp.nls
 	echo " *" >> tmp.nls
-	echo " * Version: $NEW_VERSION" >> tmp.nls
-	tail +23 $all_nls >> tmp.nls
+	echo "# @version$tab $NEW_VERSION" >> tmp.po
+	echo "# @package$tab Language" >> tmp.po
+	echo "# @subpackage  Languagepack" >> tmp.po
+	tail +25 $all_nls >> tmp.nls
 	mv tmp.nls $all_nls
 done
 

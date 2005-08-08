@@ -47,8 +47,6 @@ if (empty($gallery->session->viewedAlbum[$albumName]) &&
 	$gallery->album->incrementClicks();
 } 
 
-
-
 $bordercolor = $gallery->album->fields["bordercolor"];
 
 #-- breadcrumb text ---

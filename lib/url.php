@@ -80,6 +80,14 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target,"setup")) ? true : false;
 
+	if (isset($_SERVER['HTTP_REFERER'])) {
+		$referer = parse_url($_SERVER['HTTP_REFERER']);
+		$urlprefix = $referer['scheme'] .'://'. $referer['host'];
+	}
+	else {
+		$urlprefix = '';
+	}
+    
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -104,7 +112,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$url = "modules.php";
+				$url = $urlprefix .'/modules.php';
 			break;
 
 			case 'postnuke':
@@ -112,10 +120,10 @@ function makeGalleryUrl($target = '', $args = array()) {
 					$args["op"] = "modload";
 					$args["file"] = "index";
 
-					$url = "modules.php";
+					$url = $urlprefix .'/modules.php';
 				}
 				else {
-					$url = pnGetBaseURI()."/index.php";
+					$url = $urlprefix . pnGetBaseURI()."/index.php";
 				}
 				
 				$args["name"] = "$GALLERY_MODULENAME";
@@ -140,9 +148,9 @@ function makeGalleryUrl($target = '', $args = array()) {
 					$target = 'index.php';
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
-						$url = $gallery->session->mambo->mosRoot . 'index.php';
+						$url = $urlprefix . $gallery->session->mambo->mosRoot . 'index.php';
 					} else {
-						$url = 'index.php';
+						$url ='index.php';
 					}
 				}
 			break;
@@ -156,7 +164,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$url = $mainindex;
+				$url = $urlprefix . "/$mainindex";
 			break;
 
 			// Maybe something went wrong, we do nothing as URL we be build later.

@@ -549,7 +549,7 @@ function check_graphics($location = '', $graphtool = '') {
 		}
 		
 		if (empty($dir)) {
-			if ($optional[$bin]) {
+			if (isset($optional[$bin])) {
 				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			}
 			else {
@@ -630,7 +630,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 		}
 
 		if (empty($dir)) {
-			if ($optional[$bin]) {
+			if (isset($optional[$bin])) {
 				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			}
 			else {
