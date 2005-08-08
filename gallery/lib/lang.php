@@ -97,66 +97,68 @@ function setLangDefaults($nls) {
  * This function tries to get the languge given by the Environment.
  * @return mixed The language the environment uses, or NULL if Gallery was not able to get it.
  * @author Jens Tkotz
-*/
+ */
 function getEnvLang() {
-    global $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-    global $board_config;                       /* Needed for phpBB2    */
-    global $_CONF;                              /* Needed for GeekLog   */
-    global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo     */
-    global $currentlang;                        /* Needed for CPGNuke   */
+	global $board_config;                       /* Needed for phpBB2    */
+	global $_CONF;                              /* Needed for GeekLog   */
+	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo     */
+	global $currentlang;                        /* Needed for CPGNuke   */
 
-    $envLang = NULL;
+	$envLang = NULL;
 
-    switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
-	case 'postnuke':
-	    if (isset($_SESSION['PNSVlang'])) {
-		  $envLang = $_SESSION['PNSVlang'];
-	    }
-	    break;
+	switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
+		case 'postnuke':
+			if (!empty($_SESSION['PNSVlang'])) {
+				$envLang = $_SESSION['PNSVlang'];
+			}
+			else  {
+				$envLang = pnSessionGetVar('lang');
+			}
+		break;
 
-	case 'phpnuke':
-	case 'nsnnuke':
-	    if (isset($_COOKIE['lang'])) {
-		  $envLang = $_COOKIE['lang'];
-	    }
+		case 'phpnuke':
+		case 'nsnnuke':
+			if (isset($_COOKIE['lang'])) {
+				$envLang = $_COOKIE['lang'];
+			}
+		break;
 
-	    break;
+		case 'phpBB2':
+			if (isset($board_config['default_lang'])) {
+				$envLang = $board_config['default_lang'];
+			}
+		break;
 
-	case 'phpBB2':
-	    if (isset($board_config['default_lang'])) {
-		  $envLang = $board_config['default_lang'];
-	    }				
-	    break;
+		case 'GeekLog':
+			/* Note: $_CONF is not a Superglobal ;) */
+			if (isset($_CONF['language'])) {
+				$envLang = $_CONF['language'];
+			} else if (isset($_CONF['locale'])) {
+				$envLang = $_CONF['locale'];
+			}
+		break;
 
-	case 'GeekLog':
-	    /* Note: $_CONF is not a Superglobal ;) */
-	    if (isset($_CONF['language'])) {
-		  $envLang = $_CONF['language'];
-	    } else if (isset($_CONF['locale'])) {
-		  $envLang = $_CONF['locale'];
-	    }				
-	    break;
+		case 'mambo':
+			$envLang = $mosConfig_lang;
+			if (! getLanguageAlias($envLang)) {
+				if (isset($mosConfig_locale)){
+					$envLang = $mosConfig_locale;
+				}
+			}
+		break;
 
-	case 'mambo':
-        $envLang = $mosConfig_lang;
-		if (! getLanguageAlias($envLang)) {
-	       if (isset($mosConfig_locale)){
-		      $envLang = $mosConfig_locale;
-	       }
-		}
-	    break;
+		case 'cpgnuke':
+			if (isset($currentlang)){
+				$envLang = $currentlang;
+			}
+		break;
 
-	case 'cpgnuke':
-	    if (isset($currentlang)){
-		  $envLang = $currentlang;
-	    }				
-	    break;
-
-	default:
-	    return NULL;
-	    break;
-   }
+		default:
+			$envLang = NULL;
+		break;
+	}
 
 	return $envLang;
 }
@@ -553,40 +555,40 @@ function getLanguageAlias(& $language) {
 }
 
 /**
- *returns all language relative that gallery could collect.
-*/
+ * returns all language relative that gallery could collect.
+ */
 function getNLS() {
-    static $nls;
+	static $nls;
 
-    if (empty($nls)) {
-    	$nls = array();
-	// Load defaults
-	include (dirname(dirname(__FILE__)) . '/nls.php');
+	if (empty($nls)) {
+		$nls = array();
+		// Load defaults
+		include (dirname(dirname(__FILE__)) . '/nls.php');
 
-	$modules = array('config','core');
-	$dir = dirname(dirname(__FILE__)) . '/locale';
-	if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
-	    while ($dirname = readdir($handle)) {
-	    	if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
-		    $locale = $dirname;
-		    $fc = 0;
-		    foreach ($modules as $module) {
-		    	if (gettext_installed()) {
-			    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
-			} else {
-			    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+		$modules = array('config','core');
+		$dir = dirname(dirname(__FILE__)) . '/locale';
+		if (fs_is_dir($dir) && is_readable($dir) && $handle = fs_opendir($dir)) {
+			while ($dirname = readdir($handle)) {
+				if (ereg("^([a-z]{2}_[A-Z]{2})", $dirname)) {
+					$locale = $dirname;
+					$fc = 0;
+					foreach ($modules as $module) {
+						if (gettext_installed()) {
+							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
+						} else {
+							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
+						}
+					}
+					if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
+						include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
+					}
+				}
 			}
-		    }
-		    if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
-		    	include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
-		    }
+			closedir($handle);
 		}
-	    }
-	    closedir($handle);
 	}
-    }
 
-    return $nls;
+	return $nls;
 }
 
 function i18n($buf) {
@@ -613,11 +615,11 @@ function isSupportedCharset($charset) {
 	);
 
         /*
-        ** Check if we are using PHP >= 4.1.0
-        ** If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
-        ** Otherwise they are messed.
-        ** Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
-        */
+         * Check if we are using PHP >= 4.1.0
+         * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+         * Otherwise they are messed.
+         * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
+         */
 	if (function_exists('version_compare')) {
 		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
 		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
@@ -636,7 +638,7 @@ function isSupportedCharset($charset) {
  * Gallery Version of htmlentities
  * Enhancement: Depending on PHP Version and Charset use 
  * optional 3rd Parameter of php's htmlentities
-*/
+ */
 function gallery_htmlentities($string) {
 	global $gallery;
 
@@ -649,12 +651,12 @@ function gallery_htmlentities($string) {
 
 /**
  * Convert all HTML entities to their applicable characters
-*/
-function unhtmlentities ($string) {
+ */
+function unhtmlentities($string) {
 	global $gallery;
 
 	if (empty($string)) {
-		return "";
+		return '';
 	}
 
 	if (function_exists('html_entity_decode')) {
@@ -689,7 +691,7 @@ return $return;
  * level, and are populated for each photo automatically, without the
  * user typing values.  The $value of each pair should be translated
  * as appropriate in the ML version.
-*/
+ */
 function automaticFieldsList() {
         return array(
 		'Upload Date' 	=> _("Upload Date"),
@@ -698,9 +700,9 @@ function automaticFieldsList() {
                 'EXIF' 		=> _("Additional EXIF Data"));
 }
 
-/* These are custom fields which can be entered manual by the User
-** Since they are used often, we translated them.
-*/
+/** These are custom fields which can be entered manual by the User
+ * Since they are used often, we translated them.
+ */
 function translateableFields() {
 	return array(
 		'Title'		=> _("Title"),
@@ -713,7 +715,8 @@ function translateableFields() {
 /**
  * This "block" returns either a combobox with available languages or show flags for them.
  * Both are only displayed if at least 2 languages are available.
-*/
+ * @author	Jens Tkotz
+ */
 function languageSelector() {
     global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
@@ -731,13 +734,11 @@ function languageSelector() {
 
         $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
         $langSelectTable = new galleryTable();
-        $langSelectTable->setColumnCount(-1);
+        $langSelectTable->setColumnCount(20);
         $langSelectTable->setAttrs(array('class' => 'languageSelector', 'align' => 'right'));
 
         $nls = getNLS();
 
-        $count = 0;
-        $half = sizeof($gallery->app->available_lang)/2;
         foreach ($gallery->app->available_lang as $value) {
             /**
              * We only allow show languages which are available in gallery.
@@ -745,7 +746,6 @@ function languageSelector() {
             */
             if (! isset($nls['language'][$value])) continue;
 
-            $count++;
             if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
                 if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
                     /* postnuke */
@@ -776,21 +776,17 @@ function languageSelector() {
             }
             else {
                 $flagname = $value;
-		$style = ($gallery->language == $value) ? 'style="padding-bottom:10px"' : '';
-                $flagImage = "<img $style src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" border=\"1\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
+                $flagImage = "<img src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
 
                 if ($gallery->language != $value) {
                     $langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
                 }
                 else {
-                    $langSelectTable->addElement(array('content' => $flagImage, 'cellArgs'));
+                    $langSelectTable->addElement(array(
+			'content' => $flagImage,
+			'cellArgs' => array('style' => 'padding-bottom:10px')
+		    ));
                 }
-                /*
-                if ($count > $half && $half >10) {
-                echo "<br>";
-                $count=0;
-                }
-                */
             }
         }
 
@@ -831,14 +827,13 @@ function langLeft() {
  * @author Jens Tkotz
  */
 function langRight() {
-    global $gallery;
+	global $gallery;
 
-    if ($gallery->direction == 'ltr') {
-	return 'right';
-    }
-    else {
-	return 'left';
-    }
+	if ($gallery->direction == 'ltr') {
+		return 'right';
+	}
+	else {
+		return 'left';
+	}
 }
-
 ?>

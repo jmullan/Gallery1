@@ -18,37 +18,46 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Czech
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
-
+ * Native languagename
+ */
 	$nls['language']['cs_CZ.cp1250'] =	'&#x010c;esky (Windows)'; // Czech (Windows)
 
-/**
- ** Aliases for languages with different browser and gettext codes
- **/
-
+/*
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['cs'] =			'cs_CZ.cp1250';	
 
+	/**
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
+	$nls['alias']['cs_CZ'] =		'cs_CZ.cp1250';
+	$nls['alias']['czech'] =		'cs_CZ.cp1250' ;
+	$nls['alias']['cs_CZ.ISO8859-1'] =	'cs_CZ.cp1250' ;
+ 	$nls['alias']['cs_CZ.ISO8859-2'] =	'cs_CZ.cp1250' ;
+ 	$nls['alias']['czechiso'] =		'cs_CZ.cp1250' ;
+ 	$nls['alias']['czech1250'] =		'cs_CZ.cp1250' ;
+ 	
 /**
- ** Charset
- **
- **/	
-	
+ * Charset
+ */
 	$nls['charset']['cs_CZ.cp1250'] =	'cp1250';
-	
+
 ?>

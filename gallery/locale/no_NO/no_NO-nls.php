@@ -18,46 +18,48 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
+  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Norwegian
  */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['no_NO'] = 		'Norsk bokm&#229;l';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['no'] = 			'no_NO';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['norwegian'] = 		'no_NO' ;
 	$nls['alias']['nor']=			'no_NO' ;
 	$nls['alias']['no_NO.ISO8859-1'] =	'no_NO' ;
 	
 /**
- ** phpNuke
- **/
+ * phpNuke
+ */
 	$nls['phpnuke']['no_NO'] = 		'norwegian';
 
 /**
- ** postNuke
- **/
+ * postNuke
+ */
 	$nls['postnuke']['no_NO'] = 		'nor';
+
 ?>

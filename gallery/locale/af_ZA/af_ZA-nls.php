@@ -18,41 +18,44 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Afrikaans
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
-/**
- ** Native languagename
- **/
+/** 
+ * Native languagename
+ */
 	$nls['language']['af_ZA']         =	'Afrikaans';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Alias for languages with different browser and gettext codes
+ */
 	$nls['alias']['af']               =	'af_ZA';
 	$nls['alias']['af_AF']            =	'af_ZA';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
+ * Alias for languages which we substitte or send by NUKE
+ */
 	$nls['alias']['afrikaans']        =	'af_ZA' ;
 	$nls['alias']['af_ZA.ISO8859-1']  =	'af_ZA' ;
-	
+
+
 /**
- ** phpNuke
- **/
+ * phpNuke
+ */
 	$nls['phpnuke']['af_ZA'] =		'afrikaans';
 
 ?>

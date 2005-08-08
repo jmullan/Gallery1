@@ -18,51 +18,54 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Russian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['ru_RU.koi8r'] = 	'&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (KOI8-R)';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
+ * Aliases for languages with different browser and gettext codes
+ * Commtented out as its not the default.
+ */
 	//$nls['alias']['ru'] = 		'ru_RU.koi8r';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-    
+ * Alias for languages which we substitte or send by NUKE, GeekLog or Mambo
+ * Commtented out as its not the default.
+ */
 	//$nls['alias']['russian'] =		'ru_RU.koi8r';
 	//$nls['alias']['rus'] =		'ru_RU.koi8r';
 
 /**
- ** Charset
- **
- **/	
-	
+ * Charset
+ */
 	$nls['charset']['ru_RU.koi8r'] =	'KOI8-R';
-	
+
 /**
- ** PHPnuke
- **/
+ * PHPnuke
+ */
 	//$nls['phpnuke']['ru_RU'] = 		'russian';
 
 /**
- ** postNuke
- **/
+ * postNuke
+ */
 	//$nls['postnuke']['ru_RU'] = 		'rus';
+
 ?>

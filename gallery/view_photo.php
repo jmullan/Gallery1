@@ -70,7 +70,7 @@ if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
     return;
 }
 
-if (!isset($full)) {
+if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
     $full = NULL;
 }
 

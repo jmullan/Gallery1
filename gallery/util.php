@@ -137,7 +137,7 @@ function editCaption($album, $index) {
 }
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album=false) {
-        global $gallery;
+	global $gallery;
 	global $commentdraw;
 	global $i;
 	global $commenter_name;
@@ -1427,25 +1427,28 @@ function preprocessImage($dir, $file) {
 	return 1;
 }
 
-/*
-** This function checks wether we are debugging with a given level.
-** If no level is given, it just returns wether we are debugging or not.
-** Debug is indicated by a debuglevel greater then 0
-*/
+/**
+ * This function checks wether we are debugging with a given level.
+ * If no level is given, it just returns wether we are debugging or not.
+ * Debug is indicated by a debuglevel greater then 0
+ */
 function isDebugging($level = NULL) {
-    global $gallery;
+	global $gallery;
 
-    if (isset($gallery->app->debuglevel)) {
-	if($gallery->app->debuglevel > 0) {
-	    if(isset($level) && $gallery->app->debuglevel < $level) {
+	if (isset($gallery->app->debuglevel)) {
+		if($gallery->app->debuglevel > 0) {
+			if(isset($level) && $gallery->app->debuglevel < $level) {
+				return false;
+			}
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
 		return false;
-	    }
-	    return true;
-   	}
-    }
-    else {
-	return false;
-    }    
+	}
 }
 
 function getNextPhoto($idx, $album=NULL) {
@@ -2265,59 +2268,59 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
     }
 }
 
-function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newAlbumDesc="") {
-        global $gallery;
+function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
+	global $gallery;
 
-        // get parent album name
-        $albumDB = new AlbumDB(FALSE);
+	// get parent album name
+	$albumDB = new AlbumDB(FALSE);
 
-        // set new album name from param or default
+	// set new album name from param or default
 	$gallery->session->albumName = $albumDB->newAlbumName($newAlbumName);
 
-        $gallery->album = new Album();
+	$gallery->album = new Album();
 	$gallery->album->fields["name"] = $gallery->session->albumName;
 
 	// guid is not created during new Album() as a performance optimization
 	// it only needs to be created when an album is created or modified by adding or deleting photos
 	$gallery->album->fields['guid'] = genGUID();
 
-        // set title and description
-        if (!empty($newAlbumTitle)) {
-                $gallery->album->fields["title"] = $newAlbumTitle;
-        }
-        if (!empty($newAlbumDesc)) {
-                $gallery->album->fields["description"] = $newAlbumDesc;
-        }
+	// set title and description
+	if (!empty($newAlbumTitle)) {
+		$gallery->album->fields["title"] = $newAlbumTitle;
+	}
+	if (!empty($newAlbumDesc)) {
+		$gallery->album->fields["description"] = $newAlbumDesc;
+	}
 
-        $gallery->album->setOwner($gallery->user->getUid());
+	$gallery->album->setOwner($gallery->user->getUid());
 
-        /* if this is a nested album, set nested parameters */
-        if (!empty($parentName)) {
-                $gallery->album->fields['parentAlbumName'] = $parentName;
-                $parentAlbum = $albumDB->getAlbumByName($parentName);
-                $parentAlbum->addNestedAlbum($gallery->session->albumName);
-                $parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
-                // Set default values in nested album to match settings of parent.
-                $gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
-		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];		
-                $gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
-                $gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
-                $gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
+	/* if this is a nested album, set nested parameters */
+	if (!empty($parentName)) {
+		$gallery->album->fields['parentAlbumName'] = $parentName;
+		$parentAlbum = $albumDB->getAlbumByName($parentName);
+		$parentAlbum->addNestedAlbum($gallery->session->albumName);
+		$parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
+		// Set default values in nested album to match settings of parent.
+		$gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
+		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];
+		$gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
+		$gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
+		$gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
 		$gallery->album->fields['background']      = $parentAlbum->fields['background'];
-                $gallery->album->fields["font"]            = $parentAlbum->fields["font"];
-                $gallery->album->fields["border"]          = $parentAlbum->fields["border"];
-                $gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
-                $gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
-                $gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
-                $gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
+		$gallery->album->fields["font"]            = $parentAlbum->fields["font"];
+		$gallery->album->fields["border"]          = $parentAlbum->fields["border"];
+		$gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
+		$gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
+		$gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
+		$gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
 		$gallery->album->fields['max_size']        = $parentAlbum->fields['max_size'];
 		$gallery->album->fields['max_file_size']   = $parentAlbum->fields['max_file_size'];
 		$gallery->album->fields['returnto']        = $parentAlbum->fields['returnto'];
-                $gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
-                $gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
-                $gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
-                $gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
-                $gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
+		$gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
+		$gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
+		$gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
+		$gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
+		$gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
 		$gallery->album->fields['slideshow_type']  = $parentAlbum->fields['slideshow_type'];
 		$gallery->album->fields['slideshow_recursive'] = $parentAlbum->fields['slideshow_recursive'];
 		$gallery->album->fields['slideshow_length'] = $parentAlbum->fields['slideshow_length'];
@@ -2325,30 +2328,30 @@ function createNewAlbum( $parentName, $newAlbumName="", $newAlbumTitle="", $newA
 		$gallery->album->fields['album_frame']    = $parentAlbum->fields['album_frame'];
 		$gallery->album->fields['thumb_frame']    = $parentAlbum->fields['thumb_frame'];
 		$gallery->album->fields['image_frame']    = $parentAlbum->fields['image_frame'];
-                $gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
-                $gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
+		$gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
+		$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
 		$gallery->album->fields["item_owner_display"] = $parentAlbum->fields["item_owner_display"];
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
 		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
 		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
 		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
-		
-                $returnVal = $gallery->album->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
-        } else {
-        	$gallery->album->save(array(i18n("Root album \"{$gallery->album->fields['name']}\" created.")));
-                /*
-                 * Get a new albumDB because our old copy is not up to
-                 * date after we created a new album
-                 */
-                $albumDB = new AlbumDB(FALSE);
 
-                /* move the album to the top if not a nested album*/
-                $numAlbums = $albumDB->numAlbums($gallery->user);
-                $albumDB->moveAlbum($gallery->user, $numAlbums, 1);
-                $returnVal = $albumDB->save();
-        }
+		$returnVal = $gallery->album->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
+	} else {
+		$gallery->album->save(array(i18n("Root album \"{$gallery->album->fields['name']}\" created.")));
+		/*
+		* Get a new albumDB because our old copy is not up to
+		* date after we created a new album
+		*/
+		$albumDB = new AlbumDB(FALSE);
 
-        if (!empty($returnVal)) {
+		/* move the album to the top if not a nested album*/
+		$numAlbums = $albumDB->numAlbums($gallery->user);
+		$albumDB->moveAlbum($gallery->user, $numAlbums, 1);
+		$returnVal = $albumDB->save();
+	}
+
+	if (!empty($returnVal)) {
 		return $gallery->session->albumName;
 	} else {
 		return 0;
@@ -2381,7 +2384,7 @@ function vd($x, $string="") {
 }       
 
 /*returns a link to the docs, if present, or NULL */
-function galleryDocs($class='') {
+function galleryDocs() {
 	global $gallery;
 
 	if (fs_file_exists(dirname(__FILE__) .'/docs/index.html')) {
@@ -2490,42 +2493,7 @@ function getOS () {
 	}
 }
 
-/*
- * The functions checks if the given email(s) is(are) in a valid format.
- * if $multiples is true, look to see if it's a list of comma separated addresses.
- * Return email(s) when email(s) is(are) correct, else false.
- */
-function gallery_validate_email($email, $multiples=false) {
-       	if (eregi('^([a-z0-9_]|\-|\.|\+)+@(([a-z0-9_]|\-)+\.)+[a-z]{2,4}$', $email)) {
-	       	return $email;
-	} elseif (!$multiples) {
-	       	return false;
-	} else {
-		$email = ereg_replace('([[:space:]]+)', '', $email);
-		$emails = array_filter(explode(',', $email));
-		$size  = sizeof($emails);
-		if ($size < 1) {
-			return false;
-		} else {
-			$email="";
-			$join="";
-		       	foreach ($emails as $email) {
-			       	if (gallery_validate_email($email)) {
-				       	$email .= "$join$email";
-				       	$join=", ";
-			       	} else {
-					if (isDebugging()) {
-						print sprintf(_("Skipping invalid email address %s"), $email);
-					}
-			       	}
-		       	}
-			return $email;
-	       	}
-	}
-}
-
-function generate_password($len = 10)
-{
+function generate_password($len = 10) {
 	$result = '';
 	$alpha  = 'abcdefghijklmnopqrstuvwxyz' .
 			  '0123456789' .
@@ -2549,8 +2517,7 @@ function generate_password($len = 10)
 	return $result;
 }
 
-function pretty_password($pass, $print, $pre = '    ')
-{
+function pretty_password($pass, $print, $pre = '    ') {
 	$idx = -1;
 	$len = strlen($pass);
 
@@ -2578,107 +2545,15 @@ function pretty_password($pass, $print, $pre = '    ')
 	return "$result\n";
 }
 
-function emailDisclaimer() {
-	global $gallery;
-	$msg = sprintf(_("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
-	     "  \r\n".
-	     sprintf(_("Report abuse to %s"),$gallery->app->adminEmail);
-	$msg2 = sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s",
-		$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
-	if ($msg != $msg2) {
-		return "[$msg\r\n$msg2]\r\n\r\n";
-	} else {
-		return "[$msg]\r\n\r\n";
+function logMessage ($msg, $logfile) {
+	
+	if ($fd = fs_fopen($logfile, "a")) {
+		fwrite($fd, strftime("%Y/%m/%d %H:%M.%S: $msg\n"));
+		fclose($fd);
 	}
-}
-
-/* 
- * This function is a wrapper around the Mail classes
- * It has currently the same structure as gallery_mail_old
- * Return is true when succesfully send, otherise false
- * Errormessages are printed immediately
- */
-
-function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL) {
-    global $gallery;
-
-    $bcc ='';
-    $join = '';
-
-/* Begin Catch errors */
-    if ($gallery->app->emailOn == "no") {
-	echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
-	return false;
-    }
-
-    if (empty($to)) {
-	echo "\n<br>". gallery_error(_("Email not sent as no reciepient address provided"));
-	return false;
-    }
-
-    if (!gallery_validate_email($to, true)) {
-	echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
-			'<i>' . $to . "</i>"));
-	return false;
-    }
-
-    if ($hide_recipients) {
-	$bcc = $to;
-	$to = '';
-	$join = ',';
-    }
-
-    if (!gallery_validate_email($from)) {
-	if (isDebugging() && $from) {
-	    echo "\n<br>". gallery_error(sprintf(_("Sender address %s is invalid, using %s."),
-				$from, $gallery->app->senderEmail));
+	elseif (isDebugging()) {
+		print sprintf(_("Cannot open logfile: %s"), $logfile);
 	}
-	$from = $gallery->app->senderEmail;
-	$reply_to = $gallery->app->adminEmail;
-    } else {
-	$reply_to = $from;
-    }
-
-/* End catch errors */
-
-    $subject .= (!empty($gallery->app->emailSubjPrefix)) ? ' '. $gallery->app->emailSubjPrefix : '';
-
-    if (isset($gallery->app->email_notification) && 
-        in_array("bcc", $gallery->app->email_notification)) {
-	$bcc .= $join . $gallery->app->adminEmail;
-    }
-
-   if (get_magic_quotes_gpc()) {
-	$msg = stripslashes($msg);
-    }
-
-    $gallery_mail = new htmlMimeMail();
-
-    $gallery_mail->setSubject($subject);
-    $gallery_mail->setText($msg);
-
-    $gallery_mail->setFrom($from);
-    $gallery_mail->setReturnPath($reply_to);
-
-    if ($bcc) {
-        $gallery_mail->setBcc($bcc);
-    }
-
-    if ($gallery->app->useOtherSMTP == "yes") {
-	$gallery_mail->setSMTPParams(
-		$gallery->app->smtpHost,
-		$gallery->app->smtpPort,
-		$gallery->app->smtpUserName,
-		FALSE,
-		$gallery->app->smtpUserName,
-		$gallery->app->smtpPassword
-	);
-    }
-
-    $result = $gallery_mail->send(array($to), ($gallery->app->useOtherSMTP != "yes") ? 'mail' : 'smtp');
-    emailLogMessage($logmsg, $result);
-
-    return $result;
 }
 
 /* Formats a nice string to print below an item with comments */
@@ -2697,193 +2572,90 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 	return $ret;
 }
 
-function emailLogMessage($logmsg, $result) {
-	global $gallery;
-	if (!$result) {
-		$logmsg = _("FAILED")."/FAILED: $logmsg";
-	}
-	if (isset($gallery->app->email_notification) &&
-			in_array("logfile", $gallery->app->email_notification)) {
-		$logfile=$gallery->app->userDir."/email.log";
-		logMessage($logmsg, $logfile);
-	}
-	if (isset($gallery->app->email_notification) &&
-			in_array("email", $gallery->app->email_notification)) {
-		$subject = _("Email activity");
-		if ($subject != "Email activity") {
-			$subject .= "/Email activity";
-		}
-		$subject .= ": ".  $gallery->app->galleryTitle;
-
-		if ($gallery->app->useOtherSMTP != "yes") {
-			mail($gallery->app->adminEmail, 
-				$subject,
-				emailDisclaimer().$logmsg,
-				"From: " . $gallery->app->senderEmail . "\r\n");
-		} else {
-			gallery_smtp($gallery->app->adminEmail, "", 
-				$subject, $logmsg, 
-				"From: " . $gallery->app->senderEmail . "\r\n");
-		}
-	}
-}
-function logMessage ($msg, $logfile) {
-	
-	if ($fd = fs_fopen($logfile, "a")) {
-		fwrite($fd, strftime("%Y/%m/%d %H:%M.%S: $msg\n"));
-		fclose($fd);
-	}
-	elseif (isDebugging()) {
-		print sprintf(_("Cannot open logfile: %s"), $logfile);
-	}
-}
-
-function welcome_email($show_default=false) {
-	global $gallery;
-
-	$default=_("Hi !!FULLNAME!!,  
-
-Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
-
-!!NEWPASSWORDLINK!!
-
-Gallery @ %s Administrator.");
-	if ($show_default) {
-		return sprintf($default, 
-		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>", 
-		       	"<b><nobr>&lt;" . _("gallery URL") . "&gt;</nobr></b>", 
-		       	"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>");
-	} elseif (empty($gallery->app->emailGreeting)) {
-		return sprintf($default, 
-			$gallery->app->galleryTitle,
-			$gallery->app->photoAlbumURL,
-			$gallery->app->galleryTitle);
-	} else {
-		return $gallery->app->emailGreeting;
-	}
-
-}
-
-
-function welcomeMsgPlaceholderList() {
-
-    $placeholders = array(
-	'galleryurl' => _("The Url to your Gallery."),
-	'gallerytitle' => _("Title of your Gallery."),
-	'adminemail' => _("Admin email(s)"),
-	'password' => _("Password for the newly created user."),
-	'username' => _("Username"),
-	'fullname' => _("Fullname"),
-	'newpasswordlink' =>  _("Will be replaced by a link the new user can click on to create a new password.")
-   );
-
-   return $placeholders;
-}
-
-/*
-** This function substitutes placeholder like !!USERNAME!! 
-** with the corresponding value in the welcome message for new users.
-*/
-function resolveWelcomeMsg($placeholders = array()) {
-    global $gallery;
-    $welcomeMsg =  welcome_email();
-
-    $placeholders['galleryurl'] = $gallery->app->photoAlbumURL;
-    $placeholders['gallerytitle'] = $gallery->app->galleryTitle;
-    $placeholders['adminemail'] = $gallery->app->adminEmail;
-
-    foreach (welcomeMsgPlaceholderList() as $key => $trash) {
-	$welcomeMsg = str_replace('!!'. strtoupper($key) .'!!', 
-		isset($placeholders[$key]) ? $placeholders[$key] : '', $welcomeMsg);
-    }
-
-    return $welcomeMsg;
-}
-
 function available_skins($description_only = false) {
-    global $gallery;
-    $version ='';
-    $last_update ='';
-    $possibleSkins = array();
+	global $gallery;
+	$version ='';
+	$last_update ='';
+	$possibleSkins = array();
 
-    if (isset($gallery->app->photoAlbumURL)) {
-        $base_url = $gallery->app->photoAlbumURL;
-    }
-    else {
-	$base_url = "..";
-    }
-
-    $dir = dirname(__FILE__) . '/skins';
-    $opts['none'] = 'No Skin';
-    $descriptions="<dl>";
-    $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
-    $descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
-    $skincount = 0;
-
-    if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
- 	while ($file = readdir($fd)) {
-	    $subdir="$dir/$file/css";
-	    $skincss="$subdir/screen.css";
-	    if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
-		$possibleSkins[] = $file;
-	    }
+	if (isset($gallery->app->photoAlbumURL)) {
+		$base_url = $gallery->app->photoAlbumURL;
 	}
-	
-	sort($possibleSkins);
-	foreach($possibleSkins as $file) {
-	    $subdir="$dir/$file/css";
-	    $skininc="$dir/$file/style.def";
-	    $name="";
-	    $description="";
-	    $skincss="$subdir/screen.css";
-	    $skincount++;
-			
-	    if (fs_file_exists($skininc)) {
-		require($skininc);
-	    }
-	
-	    if (empty($name)) {
-		$name = $file;
-	    }
-				
-	    $opts[$file]=$name;
-	    if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
-		$screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
-	    } elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
-		$screenshot = $base_url . "/skins/$file/images/screenshot.gif";
-	    } else {
-		$screenshot = "";
-	    }
-				
-	    if ($screenshot) {
-		$name = popup_link($name, $screenshot, 1, false,
-			500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
-	    }
-
-	    $descriptions.="\n<dt style=\"margin-top:5px;\">$name";
-	    if (!isset ($version)) {
-		$version = _("unknown");
-	    }
-				
-	    if (!isset($last_update)) {
-		$last_update = _("unknown");
-	    }
-				
-	    $descriptions .= '<span style="margin-left:10px; font-size:x-small">';
-	    $descriptions .= _("Version") .": $version";
-	    $descriptions .= "&nbsp;&nbsp;&nbsp;";
-	    $descriptions .= _("Last Update") . ": $last_update</span></dt>";
-	    $descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
+	else {
+		$base_url = "..";
 	}
 
-	$descriptions .="\n</dl>";
- 
-	if ($description_only) {
-	    return $descriptions;
-	} else {
-	    return $opts;
+	$dir = dirname(__FILE__) . '/skins';
+	$opts['none'] = 'No Skin';
+	$descriptions="<dl>";
+	$name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
+	$descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
+	$skincount = 0;
+
+	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
+		while ($file = readdir($fd)) {
+			$subdir="$dir/$file/css";
+			$skincss="$subdir/screen.css";
+			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
+				$possibleSkins[] = $file;
+			}
+		}
+
+		sort($possibleSkins);
+		foreach($possibleSkins as $file) {
+			$subdir="$dir/$file/css";
+			$skininc="$dir/$file/style.def";
+			$name="";
+			$description="";
+			$skincss="$subdir/screen.css";
+			$skincount++;
+
+			if (fs_file_exists($skininc)) {
+				require($skininc);
+			}
+
+			if (empty($name)) {
+				$name = $file;
+			}
+
+			$opts[$file]=$name;
+			if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
+				$screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
+			} elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
+				$screenshot = $base_url . "/skins/$file/images/screenshot.gif";
+			} else {
+				$screenshot = "";
+			}
+
+			if ($screenshot) {
+				$name = popup_link($name, $screenshot, 1, false,
+				500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
+			}
+
+			$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
+			if (!isset ($version)) {
+				$version = _("unknown");
+			}
+
+			if (!isset($last_update)) {
+				$last_update = _("unknown");
+			}
+
+			$descriptions .= '<span style="margin-left:10px; font-size:x-small">';
+			$descriptions .= _("Version") .": $version";
+			$descriptions .= "&nbsp;&nbsp;&nbsp;";
+			$descriptions .= _("Last Update") . ": $last_update</span></dt>";
+			$descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
+		}
+
+		$descriptions .="\n</dl>";
+
+		if ($description_only) {
+			return $descriptions;
+		} else {
+			return $opts;
+		}
 	}
-    }
 }
 
 function available_frames($description_only=false) {
@@ -3275,78 +3047,56 @@ function getExtraFieldsValues($index, $extra_fields, $full) {
     return $table;
 }
 
-/*
-** This function displays tables with the Fields of an Photo
-** $index		=> Fields of this photo are displayed.
-** $extra_fields	=> You need to give the extrafields ; hint: use getExtraFields()
-** $withExtraFields	=> if true, then the extra fields are displayed
-** $withExif		=> if true, then the EXIF Data are displayed
-** $full		=> Needed for getting dimensions of the photo
-** $forceRefresh	=> Needed for getting EXIF Data
-*/
+/**
+ * This function displays tables with the Fields of an Photo
+ * @param	integer	$index				Fields of this photo are displayed.
+ * @param	array	$extra_fields		You need to give the extrafields ; hint: use getExtraFields()
+ * @param	boolean	$withExtraFields	if true, then the extra fields are displayed
+ * @param 	boolean	$withExif			if true, then the EXIF Data are displayed
+ * @param	mixed	$full				Needed for getting dimensions of the photo
+ * @param	boolean	$forceRefresh		Needed for getting EXIF Data
+ */
 function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withExif=true, $full=NULL, $forceRefresh=0) {
-    global $gallery;
-
-    $photo = $gallery->album->getPhoto($index);
-
-    // if we have extra fiels and we want to show them, then get the values
-    if (isset($extra_fields) && $withExtraFields) {
-	$CF = getExtraFieldsValues($index, $extra_fields, $full);
-	if (!empty($CF)) {
-	    $tables = array('' => $CF);
-	   }
-    }
-
-    if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) && 
-	(eregi("jpe?g\$", $photo->image->type))) {
-	$myExif = $gallery->album->getExif($index, isset($forceRefresh));
-	if (!empty($myExif) && !isset($myExif['Error'])) {
-		// get rid of file name at beginnin
-		array_shift($myExif); 
-
-		$tables[_("EXIF Data")]  = $myExif;
-	} elseif (isset($myExif['status']) && $myExif['status'] == 1) {
-	    echo '<p class="warning">'. _("Display of EXIF data enabled, but no data found.") .'</p>';
-	}
-    }
-
-    if (!isset($tables)) {
-	return;
-    }
-
-    foreach ($tables as $caption => $fields) {
-	$customFieldsTable = new galleryTable();
-	$customFieldsTable->setAttrs(array('class' => 'customFieldsTable'));
-	$customFieldsTable->setCaption($caption, 'customFieldsTableCaption');
-
-	foreach ($fields as $key => $value) {
-	    $customFieldsTable->addElement(array('content' => $key));
-	    $customFieldsTable->addElement(array('content' => ':'));
-	    $customFieldsTable->addElement(array('content' => $value));
-	}
-	echo $customFieldsTable->render();
-    }
-}
-
-function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
-	$to = implode(", ", $gallery->album->getEmailMeList('comments', $id));
-	if (strlen($to) > 0) {
-		$text="";
-		$text.= sprintf("A comment has been added to %s by %s in album %s.",
-			makeAlbumUrl($gallery->session->albumName, $id),
-			$commenter_name,
-			makeAlbumUrl($gallery->session->albumName));
-		$text.= "\n\n"."****BEGIN COMMENT****"."\n";
-		$text.= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
-		$text.= "\n"."****END COMMENT****"."\n\n";
-		$text .= "If you no longer wish to receive emails about this image, follow the links above and ensure that \"Email me when comments are added\" is unchecked in both the photo and album page (You'll need to login first).";
-		$subject=sprintf("New comment for %s", $id);
-		$logmsg=sprintf("New comment for %s.", makeAlbumUrl($gallery->session->albumName, $id));
-		gallery_mail($to, $subject, $text, $logmsg, true);
-	} elseif (isDebugging()) {
-		print _("No email sent as no valid email addresses were found");
+	$photo = $gallery->album->getPhoto($index);
+
+	// if we have extra fiels and we want to show them, then get the values
+	if (isset($extra_fields) && $withExtraFields) {
+		$CF = getExtraFieldsValues($index, $extra_fields, $full);
+		if (!empty($CF)) {
+			$tables = array('' => $CF);
+		}
+	}
+
+	if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
+	(eregi("jpe?g\$", $photo->image->type))) {
+		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
+		if (!empty($myExif) && !isset($myExif['Error'])) {
+			// get rid of file name at beginnin
+			array_shift($myExif);
+
+			$tables[_("EXIF Data")]  = $myExif;
+		} elseif (isset($myExif['status']) && $myExif['status'] == 1) {
+			echo '<p class="warning">'. _("Display of EXIF data enabled, but no data found.") .'</p>';
+		}
+	}
+
+	if (!isset($tables)) {
+		return;
+	}
+
+	foreach ($tables as $caption => $fields) {
+		$customFieldsTable = new galleryTable();
+		$customFieldsTable->setAttrs(array('class' => 'customFieldsTable'));
+		$customFieldsTable->setCaption($caption, 'customFieldsTableCaption');
+
+		foreach ($fields as $key => $value) {
+			$customFieldsTable->addElement(array('content' => $key));
+			$customFieldsTable->addElement(array('content' => ':'));
+			$customFieldsTable->addElement(array('content' => $value));
+		}
+		echo $customFieldsTable->render();
 	}
 }
 
@@ -3450,8 +3200,7 @@ function recursiveCount (&$arr) {
 		}
 	}
 
-return $count;
-
+	return $count;
 }
 
 /*
@@ -3480,75 +3229,75 @@ function getParentAlbums($childAlbum, $addChild=false) {
 }
 
 function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrackets = true) {
-    global $gallery;
-    $text = $altText;
+	global $gallery;
+	$text = $altText;
 
-    if (!empty($overrideMode)) {
-	$iconMode = $overrideMode;
-    } elseif (isset($gallery->app->useIcons)) {
-	$iconMode = $gallery->app->useIcons;
-    } else {
-	$iconMode = 'no';
-    }
-
-    if ($iconMode != "no" && $iconName != '') {
-	if ($iconMode == 'both') {
-	    $altText = '';
-	}
-	
-	if (file_exists(dirname(__FILE__) .'/images/icons/'. $iconName)) {
-	    $imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
-	    $linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '" style="border: none;">';
-
-	    if ($iconMode == "both") {
-		$linkText .= "<br>$text";
-	    }
-	}
-    }
-
-    if (empty($linkText)) {
-	if($useBrackets) {
-	    $linkText = '['. $text . ']';
-	   } else {
-		$linkText = $text;
-	   }
+	if (!empty($overrideMode)) {
+		$iconMode = $overrideMode;
+	} elseif (isset($gallery->app->useIcons)) {
+		$iconMode = $gallery->app->useIcons;
+	} else {
+		$iconMode = 'no';
 	}
 
-    return $linkText;
+	if ($iconMode != "no" && $iconName != '') {
+		if ($iconMode == 'both') {
+			$altText = '';
+		}
+
+		if (file_exists(dirname(__FILE__) .'/images/icons/'. $iconName)) {
+			$imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
+			$linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '" style="border: none;">';
+
+			if ($iconMode == "both") {
+				$linkText .= "<br>$text";
+			}
+		}
+	}
+
+	if (empty($linkText)) {
+		if($useBrackets) {
+			$linkText = '['. $text . ']';
+		} else {
+			$linkText = $text;
+		}
+	}
+
+	return $linkText;
 }
 
 function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $linebreak = false) {
-    global $gallery;
+	global $gallery;
 
-    if (empty($iconElements)) {
-	return "";
-    }
-
-// For rtl/ltr stuff
-    if ($gallery->direction == 'rtl') {
-	$align = ($align == 'left') ? 'right' : 'left';
-    }
-
-    $html = "\n". '<table id="menu" align="'. $align .'"><tr>';
-    $i = 0;
-    foreach ($iconElements as $element) {
-	$i++;
-	if (stristr($element,'</a>')) {
-	    $html .= "\n\t". '<td>'. $element .'</td>';
-	} else {
-	    $html .= "\n\t". '<td class="noLink">'. $element .'</td>';
-	}	
-	if($i > sizeof($iconElements)/2 && $linebreak) {
-	    $html .= "\n</tr>\n</tr>";
-	    $i=0;
+	if (empty($iconElements)) {
+		return "";
 	}
-    }
 
-    if ($closeTable == true) {
-	$html .= "</tr>\n</table>";
-    }
+	// For rtl/ltr stuff
+	if ($gallery->direction == 'rtl') {
+		$align = ($align == 'left') ? 'right' : 'left';
+	}
 
-    return $html;
+	$html = "\n". '<table id="menu" align="'. $align .'"><tr>';
+	$i = 0;
+	foreach ($iconElements as $element) {
+		$i++;
+		if (stristr($element,'</a>')) {
+			$html .= "\n\t". '<td>'. $element .'</td>';
+		} else {
+			$html .= "\n\t". '<td class="noLink">'. $element .'</td>';
+		}
+		if($i > sizeof($iconElements)/2 && $linebreak) {
+			$html .= "\n</tr>\n</tr>";
+			$i=0;
+		}
+	}
+
+	if ($closeTable == true) {
+		$html .= "</tr>\n</table>";
+	}
+
+	return $html;
 }
 
 /* Ecard Function begin */ 
@@ -3581,40 +3330,28 @@ function parse_ecard_template($ecard,$ecard_data) {
     return $ecard_data;
   }
 
-function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
-    $ecard_mail = new htmlMimeMail();
-    $ecard_image = $ecard_mail->getFile($ecard["image_name"]);
+  function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
+  	$ecard_mail = new htmlMimeMail();
+  	$ecard_image = $ecard_mail->getFile($ecard["image_name"]);
 
-    if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
-        for ($i=0; $i<count($matchArray[0]); ++$i) {
-            $ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
-        }
-    }
-    $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data,'./');
-    $ecard_mail->setFrom($ecard["name_sender"].'<'.$ecard["email_sender"].'>');
-    if (empty($ecard['subject'])) {
-	$ecard['subject'] = sprintf(_("%s sent you an E-C@rd."), $ecard["name_sender"]);
-    }
-    $ecard_mail->setSubject($ecard['subject']);
-    $ecard_mail->setReturnPath($ecard["email_sender"]);
-	
-    $result = $ecard_mail->send(array($ecard["email_recepient"]));
-    
-    return $result;
-}
+  	if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
+  		for ($i=0; $i<count($matchArray[0]); ++$i) {
+  			$ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
+  		}
+  	}
+  	$ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data,'./');
+  	$ecard_mail->setFrom($ecard["name_sender"].'<'.$ecard["email_sender"].'>');
+  	if (empty($ecard['subject'])) {
+  		$ecard['subject'] = sprintf(_("%s sent you an E-C@rd."), $ecard["name_sender"]);
+  	}
+  	$ecard_mail->setSubject($ecard['subject']);
+  	$ecard_mail->setReturnPath($ecard["email_sender"]);
+
+  	$result = $ecard_mail->send(array($ecard["email_recepient"]));
+
+  	return $result;
+  }
   
-/**
- *
- */
-function check_email($email) {
-    if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
-	$mail_ok = false;
-    } else {
-	$mail_ok = true;
-    }
-    return $mail_ok;
-}
-
 /**
  * This function is taken from
  * http://www.phpinsider.com/smarty-forum/viewtopic.php?t=1079
@@ -3625,15 +3362,15 @@ function check_email($email) {
  * @param	boolean	$caseSensitive
  * @param	boolean	$keepIndexes	if set to true, then uasort instead of usort is used.
  */
-function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true, $keepIndexes = false) { 
-    static $sort_funcs = array();
-    static $code;
+function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true, $keepIndexes = false) {
+	static $sort_funcs = array();
+	static $code;
 
-    $order = ($order == 'asc') ? 1 : -1;
+	$order = ($order == 'asc') ? 1 : -1;
 
-    if (empty($sort_funcs[$sortby])) { 
-	if ($caseSensitive) {
-	    $code = "
+	if (empty($sort_funcs[$sortby])) {
+		if ($caseSensitive) {
+			$code = "
 	    if( \$a['$sortby'] == \$b['$sortby'] ) { 
 	        return 0;
 	    };
@@ -3642,9 +3379,9 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	    } else {
 	        return -1 * $order;
 	    }";
-	}
-	else {
-	    $code = "
+		}
+		else {
+			$code = "
 	    if(strtoupper(\$a['$sortby']) == strtoupper(\$b['$sortby'])) { 
 	        return 0;
 	    };
@@ -3653,21 +3390,21 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	    } else {
 	        return -1 * $order;
 	    }";
+		}
+
+		$sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
+	} else {
+		$sort_func = $sort_funcs[$sortby];
 	}
 
-	$sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
-    } else {
-        $sort_func = $sort_funcs[$sortby];
-    } 
+	debugMessage($code, __FILE__, __LINE__,3);
 
-    debugMessage($code, __FILE__, __LINE__,2);
-
-    if($keepIndexes) {
-	uasort($data, $sort_func); 
-    } else {
-	usort($data, $sort_func); 
-    }
-} 
+	if($keepIndexes) {
+		uasort($data, $sort_func);
+	} else {
+		usort($data, $sort_func);
+	}
+}
 
 /**
  * @param	string	Optional former searchh string
@@ -3695,5 +3432,6 @@ require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
 require_once(dirname(__FILE__) . '/lib/albumItem.php');
+require_once(dirname(__FILE__) . '/lib/mail.php');
 
 ?>

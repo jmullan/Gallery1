@@ -18,39 +18,64 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1-cvs
  */
+
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Arabian / Egypt
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-/**
- ** Native languagename
- **/
+/** 
+ * Native languagename
+ */
 	$nls['language']['ar_EG'] = 		'Arabic / Egypt (iso-8859-6)';
 
 /**
- ** Charset
- **/	
-	
-	$nls['charset']['ar_EG'] = 		'iso-8859-6';
+ * Alias for languages with different browser and gettext codes
+ */
+	$nls['alias']['ar'] =			'ar_EG';
+	$nls['alias']['ar_AR'] =		'af_EG';
 
 /**
- ** Direction
- **/
-	
-	$nls['direction']['ar_EG'] = 		'rtl' ;
+ * Alias for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
+	$nls['alias']['arabic'] =		'ar_EG' ;
+ 	$nls['alias']['ara'] =			'ar_EG';
+        $nls['alias']['ar_EG.ISO8859-6'] =	'ar_EG';
 
 /**
- ** Alignment
+ * phpNuke
  **/
-	
+        $nls['phpnuke']['ar_EG'] = 'arabic';
+
+/**
+ * postNuke
+ */
+        $nls['postnuke']['ar_EG'] = 'ara';
+
+/**
+ * Charset
+ */
+	$nls['charset']['ar_EG'] =		'iso-8859-6';
+
+/**
+ * Direction
+ */
+	$nls['direction']['ar_EG'] =		'rtl' ;
+
+/**
+ * Alignment
+ */
 	$nls['alignment']['ar_EG'] =		'right' ;
+
 ?>

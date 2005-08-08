@@ -1,3 +1,114 @@
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b14
+
+	* Fix: Added urlprefix via referer to embedded urls, so we get complete urls in mails.
+
+	* Fix: Possible security hole in postnuke by overriding global $name
+	  Thanks to msandersen
+
+	* Change: Format in nls.php
+
+	* Change: Make urls in comments mail a link.
+
+	* Fix: updated list of translateable core files.
+
+	* Fix: Added isset() around test for optional bins in setup to avoid warnings.
+
+	* Change: Some language related things.
+
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b13
+
+	* Fix: Deleting comments via overview when embedded.
+
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b12
+
+	* Change: Postnuke related adaptions for new Versions.
+		  - urls
+		  - user / userdb
+		  - language
+		  - stylesheets in wrapper.header
+	  Thanks to msandersen
+
+	* Change: Little more info in footer in Debugmode.	
+
+	* Fix: Ecard preview when embedded.
+	
+	* Fix: Stamp preview when embedded.
+
+2005-08-06 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b11
+
+	* Fix: Check for NetPBM and ImageMagick was not fully correct.
+
+	* Fix: Separator for PATH var under windows is ; not :
+
+	* Fix: Added message for partially found ImageMagick.
+
+2005-08-04 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b10
+
+	* Fix: Padding for current flag should belong to the td not img.
+
+	* Change: Added columncount 20 to flags table. removed old unused code.
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b9
+
+	* Fix: Fix in b7 was not good :-|
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b8
+
+	* Change: Just added a new frame. Thanks to 'demonhood'
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b7
+
+	* Fix: A link to mainpage was shown in slideshow breadcrumb,
+	       regardless wether return to was off.
+
+2005-07-30 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b6
+
+	* Change: Mailing
+	  o Moved Mail related functions into new lib/mail.php
+	  o Removed gallery_validate_email(), now only use check_email()
+	    - login.php
+	    - register.php
+	    - lib/mail.php
+	    - classes/Album.php
+	    - setup/check_mail.php
+	    - setup/functions.inc
+	 o reordered Notification mail. First now the message, then the disclaimer.
+
+	* Fix: Mailing
+	  o Recipients ($to) for gallery_mail() where mixed in some cases.
+	   Now always a proper array.
+	  o Emailprefix should be a prefix, not a suffix ;)
+	  o emailLogMessage() was not compliant to gallery_mail(). Tweaked both.
+	  o unhtmlentities() on some email subjects
+
+	* Change: Lots of intenting.
+
+	* Change: Added "done" Button in manage_users.php
+
+2005-07-29 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b5
+
+	* Fix: Added missing { in classes/Mail/smtp.php.
+	       Bug sneaked in in php 4.4.0 fixes in 1.5.1-cvs-b61.
+
+2005-07-29 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b4
+
+	* Fix: In Photoview, stay in the viewmode (full or normal) that the current photo is.
+
+2005-07-26 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b3
+
+	* Fix: Fix in RC2-b1 "fixed" too much.
+
+2005-07-26 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b2
+
+	* Fix: CSS Stylesheets were displayed to early when embedded.
+	       This caused warnings etc. when Environment sends headers.
+
+	* Change: Added ... in Navigator to jump to the next Block.
+
+2005-07-24 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b1
+
+	* Fix: Embedded Urls where generated wrong.
+
 2005-07-23  Chris Kelly <ckdake@users.sf.net> 1.5.1-RC1
 
 	* Release: 1.5.1-RC1

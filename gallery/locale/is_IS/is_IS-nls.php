@@ -18,47 +18,49 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Icelandic
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['is_IS'] =		'&#205;slenska';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['is_IS'] = '&#205;slenska';
+ * Aliases for languages with different browser and gettext codes
+ */
+
+	$nls['alias']['is'] =			'is_IS';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['is'] = 'is_IS';
-
-/**
- ** Aliases for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['icelandic']=		'is_IS' ;
 	$nls['alias']['isl']=			'is_IS' ;
 	$nls['alias']['is_IS.ISO8859-1'] =	'is_IS' ;
-	
-/**
- ** phpNuke
- **/
-	$nls['phpnuke']['is_IS'] = 'icelandic';
 
 /**
- ** postNuke
- **/
-	$nls['postnuke']['is_IS'] = 'isl';
+ * phpNuke
+ */
+	$nls['phpnuke']['is_IS'] =		'icelandic';
+
+/**
+ * postNuke
+ */
+	$nls['postnuke']['is_IS'] =		'isl';
 
 ?>

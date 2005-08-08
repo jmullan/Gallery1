@@ -10,21 +10,21 @@
  * Define Constants for Gallery pathes.
  */
 function setGalleryPaths() {
-    if (defined('GALLERY_BASE')) {
-	return;
-    }
+	if (defined('GALLERY_BASE')) {
+		return;
+	}
 
-    $currentFile = __FILE__;
-    if ( $currentFile == '/usr/share/gallery/lib/url.php') {
-	/* We assum Gallery runs on as Debian Package */
-	define ("GALLERY_CONFDIR", "/etc/gallery");
-	define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-    } else {
-	define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
-	define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
-    }
+	$currentFile = __FILE__;
+	if ( $currentFile == '/usr/share/gallery/lib/url.php') {
+		/* We assum Gallery runs on as Debian Package */
+		define ("GALLERY_CONFDIR", "/etc/gallery");
+		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
+	} else {
+		define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
+		define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
+	}
 
-    define ("GALLERY_BASE", dirname(dirname(__FILE__)));
+	define ("GALLERY_BASE", dirname(dirname(__FILE__)));
 }
 
 /**
@@ -80,6 +80,14 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target,"setup")) ? true : false;
 
+	if (isset($_SERVER['HTTP_REFERER'])) {
+		$referer = parse_url($_SERVER['HTTP_REFERER']);
+		$urlprefix = $referer['scheme'] .'://'. $referer['host'];
+	}
+	else {
+		$urlprefix = '';
+	}
+    
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -94,7 +102,6 @@ function makeGalleryUrl($target = '', $args = array()) {
 				}
 
 			case 'phpnuke':
-			case 'postnuke':
 			case 'nsnnuke':
 				$args["op"] = "modload";
 				$args["name"] = "$GALLERY_MODULENAME";
@@ -105,9 +112,28 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$target = "modules.php";
+				$url = $urlprefix .'/modules.php';
 			break;
 
+			case 'postnuke':
+				if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.6.0") {
+					$args["op"] = "modload";
+					$args["file"] = "index";
+
+					$url = $urlprefix .'/modules.php';
+				}
+				else {
+					$url = $urlprefix . pnGetBaseURI()."/index.php";
+				}
+				
+				$args["name"] = "$GALLERY_MODULENAME";
+				/*
+				 * include *must* be last so that the JavaScript code in
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+			break;
+							
 			case 'mambo':
 				$args['option'] = $GALLERY_MODULENAME;
 				$args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
@@ -119,12 +145,12 @@ function makeGalleryUrl($target = '', $args = array()) {
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
-					$target= 'index.php';
+					$target = 'index.php';
 				} else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
-						$url = $gallery->session->mambo->mosRoot . 'index.php';
+						$url = $urlprefix . $gallery->session->mambo->mosRoot . 'index.php';
 					} else {
-						$target = 'index.php';
+						$url ='index.php';
 					}
 				}
 			break;
@@ -138,7 +164,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$target = $mainindex;
+				$url = $urlprefix . "/$mainindex";
 			break;
 
 			// Maybe something went wrong, we do nothing as URL we be build later.

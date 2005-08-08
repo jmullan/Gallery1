@@ -18,55 +18,52 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
+  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Vietnamese
  */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['vi_VN'] =		'Ti&#7871;ng Vi&#7879;t Nam';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['vi_VN'] = 'Ti&#7871;ng Vi&#7879;t Nam';
-/**
- ** Alias for languages with different browser and gettext codes
- **/
-	$nls['alias']['vi'] = 'vi_VN';
+ * Aliases for languages with different browser and gettext codes
+ */
+	$nls['alias']['vi'] =			'vi_VN';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
- **/
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['vietnamese'] = 		'vi_VN' ;
 	$nls['alias']['vie'] 	= 		'vi_VN' ;
+
 /**
- ** Charset
- **
- **/	
-	
+ * Charset
+ */
 	$nls['charset']['vi_VN'] = 		'UTF-8';	
 
 /**
- ** Multibyte charset
- **/
-
-	$nls['multibyte']['UTF-8'] = 	true;	
-
-/**
- ** phpNuke
- **/
-	$nls['phpnuke']['vi_VN'] = 'vietnamese';
+ * phpNuke
+ */
+	$nls['phpnuke']['vi_VN'] =		'vietnamese';
 
 /**
- ** postNuke
- **/
-	$nls['postnuke']['vi_VN'] = 'vie';
+ * postNuke
+ */
+	$nls['postnuke']['vi_VN'] =		'vie';
 
 ?>

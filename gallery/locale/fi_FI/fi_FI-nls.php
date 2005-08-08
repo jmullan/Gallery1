@@ -18,46 +18,48 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Finnish
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
- * The original filename was horde/config/nls.php.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The original filename was horde/config/nls.php.dist.
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['fi_FI'] =		'Suomi';
 
 /**
- ** Aliases for language with different browser and gettext codes
- **/
-
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['fi'] = 			'fi_FI';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, or Mambo
+ */
 	$nls['alias']['finnish'] =		'fi_FI' ;
 	$nls['alias']['fin'] =			'fi_FI' ;
 	$nls['alias']['fi_FI.ISO8859-1'] =	'fi_FI' ;
 
 /**
- ** phpNuke
- **/
+ * phpNuke
+ */
 	$nls['phpnuke']['fi_FI'] = 		'finnish';
 
 /**
- ** postNuke
- **/
+ * postNuke
+**/
 	$nls['postnuke']['fi_FI'] = 		'fin';
+
 ?>

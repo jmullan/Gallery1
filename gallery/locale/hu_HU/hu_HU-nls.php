@@ -18,50 +18,50 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Hungarian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
 /**
- ** Native languagename
- **/
-	$nls['language']['hu_HU'] = 		'Magyar'; // Hungarian
+ * Native languagename
+ */
+	$nls['language']['hu_HU'] = 		'Magyar';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Alias for languages with different browser and gettext codes
+ */
 	$nls['alias']['hu'] = 			'hu_HU';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE or Mambo
+ */
 	$nls['alias']['hungarian'] =		'hu_HU' ;
 	$nls['alias']['hu_HU.ISO8859-2'] =	'hu_HU' ;
 	$nls['alias']['hu_HU.ISO8859-8'] =	'hu_HU' ;
+	$nls['alias']['hungarian_formal'] =	'hu_HU' ;
+	$nls['alias']['hungarian_informal'] =	'hu_HU' ;
 
 /**
- ** Charsets
- **
- ** Add your own charsets, if your system uses others than "normal"
- **
- **/	
-	
+ * Charset
+ */
 	$nls['charset']['hu_HU'] =		'ISO-8859-2';
 
 /**
- ** phpNuke
- **/
+ * phpNuke
+ */
 	$nls['phpnuke']['hu_HU'] = 		'hungarian';
 
 ?>

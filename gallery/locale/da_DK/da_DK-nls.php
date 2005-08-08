@@ -18,40 +18,42 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Danish
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['da_DK'] = 		'Dansk';
 
 /**
- ** Aliases for languages with different browser and gettext codes
- **/
-
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['da'] = 			'da_DK';
 
 /**
- ** Aliases for languages which we substitte or send by NUKE
- **/
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['danish'] =               'da_DK' ;
-        $nls['alias']['da_DK.ISO8859-1'] =      'da_DK' ;
+	$nls['alias']['da_DK.ISO8859-1'] =	'da_DK' ;
 
 /**
- ** phpNuke
- **/
-	$nls['phpnuke']['da_DK'] = 'danish';
+ * phpNuke
+ */
+	$nls['phpnuke']['da_DK'] =		'danish';
 
 ?>

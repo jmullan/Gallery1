@@ -63,8 +63,8 @@ $allowChange['create_albums'] = false;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
-$errorCount=0;
-if (!empty($formaction) && $formaction =='create') {
+$errorCount = 0;
+if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
 	$uname = removeTags($uname);
 
@@ -78,7 +78,7 @@ if (!empty($formaction) && $formaction =='create') {
 		$errorCount++;
 	}
 
-	if (!gallery_validate_email($email)) {
+	if (!check_email($email)) {
 		$gErrors['email'] = _("You must specify a valid email address.");
 		$errorCount++;
 	}

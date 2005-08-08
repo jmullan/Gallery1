@@ -26,7 +26,6 @@ class PostNuke_UserDB extends Abstract_UserDB {
 	var $prefix;
 
 	function PostNuke_UserDB() {
-		global $gallery;
 		$this->nobody = new NobodyUser();
 		$this->everybody = new EverybodyUser();
 		$this->loggedIn = new LoggedInUser();
@@ -35,8 +34,14 @@ class PostNuke_UserDB extends Abstract_UserDB {
 	function getUidList() {
 		$uidList = array();
 
-		list($dbconn) = pnDBGetConn();
-		$pntable = pnDBGetTables();
+		if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.5.0") {
+			list($dbconn) = pnDBGetConn();
+			$pntable = pnDBGetTables();
+		} else {
+			$dbconn =& pnDBGetConn(true);
+			$pntable =& pnDBGetTables();
+		}
+		
 		$userstable = $pntable['users'];
 		$userscolumn = &$pntable['users_column'];
 		
@@ -59,7 +64,7 @@ class PostNuke_UserDB extends Abstract_UserDB {
 		return $uidList;
 	}
 
-	function getUserByUsername($username, $level=0) {
+	function getUserByUsername($username) {
 		if (!strcmp($username, $this->nobody->getUsername())) {
 			return $this->nobody;
 		} else if (!strcmp($username, $this->everybody->getUsername())) {
@@ -74,9 +79,6 @@ class PostNuke_UserDB extends Abstract_UserDB {
 	}
 
 	function getUserByUid($uid) {
-		global $gallery;
-		$userDir = $gallery->app->userDir;
-
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
 			return $this->nobody;
 		} else if (!strcmp($uid, $this->everybody->getUid())) {

@@ -87,6 +87,10 @@ $common_messages["getting-imagemagick"] =
 			'<br><span class="emphasis">' . _("Note:"). '</span> ' .
 			_("The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
+$common_messages["fail-imagemagick-partial"] =
+			_("I've found part of ImageMagick , but some critical components are missing (see below).") . "  " .
+			$common_messages["getting-imagemagick"];
+						
 $common_messages["open-basedir-active"] =
 	'<span class="emphasis">' . _("Note:"). '</span>'.
 	sprintf(_("Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
@@ -187,6 +191,9 @@ $checklist = array(
 		'func' => "check_graphics_im",
 		'fail-imagemagick' => _("I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
 			$common_messages["getting-imagemagick"],
+		'fail-imagemagick-partial' => 
+			$common_messages["fail-imagemagick-partial"] .
+			"<p><b> " . _("If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.") ." </b>",
 		'open-basedir-note' => $common_messages["open-basedir-active"]
 	),
 	'exif' => array(

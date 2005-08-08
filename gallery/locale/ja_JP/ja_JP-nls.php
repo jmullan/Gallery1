@@ -18,50 +18,44 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Japanese
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
-
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['ja_JP'] = 		'&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['ja'] = 			'ja_JP';
 
 /**
- ** Alias for languages which we substitte or send by NUKE or GeekLog
- **/
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP' ;	
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP' ;
  	$nls['alias']['japanese'] =		'ja_JP' ;
 	
 /**
- ** Charset
- **
- **/	
-	
+ * Charset
+ */	
 	$nls['charset']['ja_JP'] = 		'EUC-JP';
-	
-/**
- ** Multibyte charset
- **/
-
-	$nls['multibyte']['EUC-JP'] =   	true;
 
 ?>

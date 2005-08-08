@@ -18,41 +18,43 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
+  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Lithuanian
  */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
 /**
- ** Native languagename
- **/
+ * Native languagename
+ */
 	$nls['language']['lt_LT'] = 		'Lietuvi&#x0173;';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Aliases for languages with different browser and gettext codes
+ */
 	$nls['alias']['lt'] = 			'lt_LT';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['lt_LT.ISO8859-4'] =	'lt_LT' ;
 	$nls['alias']['lt_LT.ISO8859-13'] =	'lt_LT' ;
-	
+	$nls['alias']['lithuanian'] =		'lt_LT' ;
+
 /**
- ** Charsets
- **
- **/	
-	
+ * Charset
+ */
 	$nls['charset']['lt_LT'] = 		'windows-1257';
+
 ?>

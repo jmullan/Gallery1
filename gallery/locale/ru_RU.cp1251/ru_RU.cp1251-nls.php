@@ -18,52 +18,52 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Russian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['ru_RU.cp1251'] = 	'&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['ru_RU.cp1251'] = 		'&#x0420;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439; (Windows)';
-
-/**
- ** Alias for languages with different browser and gettext codes
- **/
-
+ * Alias for languages with different browser and gettext codes
+ */
 	$nls['alias']['ru'] = 			'ru_RU.cp1251';
 
 /**
- ** Alias for languages which we substitte or send by NUKE
- **/
-
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
 	$nls['alias']['russian'] =		'ru_RU.cp1251';
 	$nls['alias']['rus'] =			'ru_RU.cp1251';
 
 /**
- ** Charset
- **
- **/	
-	
-	$nls['charset']['ru_RU.cp1251'] = 		'cp1251';
+ * Charset
+ */
+	$nls['charset']['ru_RU.cp1251'] = 	'cp1251';
 
 /**
- ** phpNuke
- **/
-	$nls['phpnuke']['ru_RU.cp1251'] = 		'russian';
+ * phpNuke
+ */
+	$nls['phpnuke']['ru_RU.cp1251'] = 	'russian';
 
 /**
- ** postNuke
- **/
-	$nls['postnuke']['ru_RU.cp1251'] = 		'rus';
+ * postNuke
+ */
+	$nls['postnuke']['ru_RU.cp1251'] = 	'rus';
+
 ?>

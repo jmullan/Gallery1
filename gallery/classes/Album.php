@@ -951,19 +951,19 @@ class Album {
 
 		    /* Create the new album serial file */
 		    if (!empty($this->updateSerial)) {
-			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
-			if ($fd = fs_fopen($serial, "w")) {
-			    /* This space intentionally left blank */
-			    fwrite($fd, trim($this->tsilb));
-			    fclose($fd);
-			}
+		    	$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
+		    	if ($fd = fs_fopen($serial, "w")) {
+		    		/* This space intentionally left blank */
+		    		fwrite($fd, trim($this->tsilb));
+		    		fclose($fd);
+		    	}
 
-			/* Update the master serial file */
-			if ($fd = fs_fopen($gallery->app->albumDir . "/serial.dat", "w")) {
-			    fwrite($fd, time() . "\n");
-			    fclose($fd);
-			}
-			$this->updateSerial = 0;
+		    	/* Update the master serial file */
+		    	if ($fd = fs_fopen($gallery->app->albumDir . "/serial.dat", "w")) {
+		    		fwrite($fd, time() . "\n");
+		    		fclose($fd);
+		    	}
+		    	$this->updateSerial = 0;
 		    }
 		}
 		if ($gallery->app->emailOn == 'yes' && $success && $msg) { // send email
@@ -972,25 +972,24 @@ class Album {
 				vd($msg);
 				return $success;
 			}
-		       	$to = implode(", ", $this->getEmailMeList('other'));
-			$msg_str=call_user_func_array('sprintf', $msg);
-		       	if (strlen($to) > 0) {
-			       	$text = sprintf(_("A change has been made to %s by %s (IP %s).  The change is: %s"),
-					       	makeAlbumUrl($this->fields['name']),
-						user_name_string($gallery->user->getUID(),
-							$gallery->app->comments_display_name),
-						$_SERVER['REMOTE_ADDR'],
-					       	$msg_str);
-			       	$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
-			       	$subject = sprintf(_("Changes to %s"), $this->fields['name']);
-			       	$logmsg = sprintf("Change to %s: %s.",
-						       	makeAlbumUrl($this->fields['name']),
-						       	$msg_str);
-			       	gallery_mail($to, $subject, $text, $logmsg, true);
+		    $to = $this->getEmailMeList('other');
+			$msg_str = call_user_func_array('sprintf', $msg);
+			if (!empty($to)) {
+				$text = sprintf(_("A change has been made to %s by %s (IP %s).  The change is: %s"),
+					makeAlbumUrl($this->fields['name']),
+					user_name_string($gallery->user->getUID(),
+					$gallery->app->comments_display_name),
+					$_SERVER['REMOTE_ADDR'],
+					$msg_str);
+
+				$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
+				$subject = sprintf(_("Changes to %s"), $this->fields['name']);
+				$logmsg = sprintf("Change to %s: %s.", makeAlbumUrl($this->fields['name']), $msg_str);
+				gallery_mail($to, $subject, $text, $logmsg, true);
 
 			} else if (isDebugging()) {
-			       	print "\n<br>". _("No email sent as no valid email addresses were found");
-		       	}
+			       	print "\n<br>". _("Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
+		    }
 		}
 		return $success;
 	}
@@ -2586,45 +2585,58 @@ class Album {
 			return false;
 		}
 	}
-	function getEmailMeList($type, $id=null) {
+
+	/**
+	 * Returns a list of emails of all people who wants to be informed.
+	 * @param	string	$type	The type of action the user wants to be informed on
+	 * @param 	integer	$id		Optional id, this is for testing on an album item.
+	 * @return	string	$emails
+	 */
+	function getEmailMeList($type, $id = null) {
 		global $gallery;
+		$emails = array();
+		$uids = array();
 
+		/* First check if someone assigned to "type" for this album */
 		if (isset($this->fields['email_me'][$type])) {
-			$uids=array_keys($this->fields['email_me'][$type]);
-		} else {
-			$uids=array();
+			$uids = array_keys($this->fields['email_me'][$type]);
 		}
-		$admin=$gallery->userDB->getUserByUsername('admin');
+		
+		/* Then check wether THE admin wants to be informed (set in config)
+		 * Someone may have remove this user, then this setting in config is senseless. 
+		 */
+		$admin = $gallery->userDB->getUserByUsername('admin');
 		if ($admin) {
-			if ($type == 'comments' && $gallery->app->adminCommentsEmail == "yes") {
-				$uids[]=$admin->getUid();
-			} else if ($type == 'other' && $gallery->app->adminOtherChangesEmail == "yes") {
-				$uids[]=$admin->getUid();
+			if ($type == 'comments' && $gallery->app->adminCommentsEmail == 'yes') {
+				$uids[] = $admin->getUid();
+			} else if ($type == 'other' && $gallery->app->adminOtherChangesEmail == 'yes') {
+				$uids[] = $admin->getUid();
 			}
 		}
-
+		
+		/* We are checking on a photo, get those emails */
 		if ($id) {
-			$index=$this->getPhotoIndex($id);
-			$photo=$this->getPhoto($index);
+			$index = $this->getPhotoIndex($id);
+			$photo = $this->getPhoto($index);
 			if ($photo) {
-			       	$uids=array_merge($uids,
-					$photo->getEmailMeListUid($type));
+				$uids = array_merge($uids, $photo->getEmailMeListUid($type));
 			}
 		}
-		$result=array();
-	       	foreach ($uids as $uid) {
-		       	$user=$gallery->userDB->getUserByUid($uid);
+		
+		foreach ($uids as $uid) {
+			$user = $gallery->userDB->getUserByUid($uid);
 			if ($user->isPseudo()) {
 				continue;
 			}
-		       	if (gallery_validate_email($user->getEmail())) {
-			       	$result[]=$user->getEmail();
-		       	} else if (isDebugging()) {
-				echo gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."), 
-							$user->getUsername(), $uid, $user->getEmail()));
-		       	}
-	       	}
-		return array_unique($result);
+			
+			if (check_email($user->getEmail())) {
+				$emails[] = $user->getEmail();
+			} else if (isDebugging()) {
+				echo gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."),
+					$user->getUsername(), $uid, $user->getEmail()));
+			}
+		}
+		return array_unique($emails);
 	}
 	
 	function setEmailMe($type, $user, $id=null) {

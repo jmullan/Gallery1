@@ -18,46 +18,48 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  * $Id$
- *
- * Version: 1.5.1
  */
+ 
+/**
+ * @version	1.5.1
+ * @package	Languagepack
+ * @subpackage	Italian
+ */
+
 /**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
  * The original filename was horde/config/nls.php.dist.
- * The modifications to fit it for Gallery were made by Jens Tkotz 
+ * The modifications to fit it for Gallery were made by Jens Tkotz.
  * (jens@peino.de)
- *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['it_IT'] =		'Italiano';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['it_IT'] = 'Italiano';
+ * Aliases for languages with different browser and gettext codes
+ */
+	$nls['alias']['it'] =			'it_IT';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['it'] = 'it_IT';
-
-/**
- ** Alias for languages which we substitte or send by NUKE
- **/
-	$nls['alias']['italian']=			'it_IT' ;
+ * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
+ */
+	$nls['alias']['italian']=		'it_IT' ;
 	$nls['alias']['ita']=			'it_IT' ;
 	$nls['alias']['it_IT.ISO8859-1'] =	'it_IT' ;
 
 /**
- ** phpNuke
- **/
-	$nls['phpnuke']['it_IT'] = 'italian';
+ * phpNuke
+ */
+	$nls['phpnuke']['it_IT'] =		'italian';
 
 /**
- ** postNuke
- **/
-	$nls['postnuke']['it_IT'] = 'ita';
+ * postNuke
+ */
+	$nls['postnuke']['it_IT'] =		'ita';
 
 ?>
