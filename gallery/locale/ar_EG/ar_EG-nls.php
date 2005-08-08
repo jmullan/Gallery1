@@ -37,20 +37,40 @@
 	$nls['language']['ar_EG'] = 		'Arabic / Egypt (iso-8859-6)';
 
 /**
- ** Charset
- **/	
-	
+ * Alignment
+ */
+	$nls['alignment']['ar_EG'] =		'right' ;
+
+/**
+ * Alias for languages with different browser and gettext codes
+ */
+        $nls['alias']['it'] = 'ar_EG';
+
+/**
+ * Alias for languages which we substitute or send by NUKE
+ */
+        $nls['alias']['arabic'] =		'ar_EG';
+        $nls['alias']['ara'] =			'ar_EG';
+        $nls['alias']['ar_EG.ISO8859-6'] =	'ar_EG';
+
+/**
+ * phpNuke
+ */
+        $nls['phpnuke']['ar_EG'] =		'arabic';
+
+/**
+ * postNuke
+ **/
+        $nls['postnuke']['ar_EG'] =		'ara';
+
+/**
+ * Charset
+ */	
 	$nls['charset']['ar_EG'] = 		'iso-8859-6';
 
 /**
- ** Direction
+ * Direction
  **/
-	
 	$nls['direction']['ar_EG'] = 		'rtl' ;
 
-/**
- ** Alignment
- **/
-	
-	$nls['alignment']['ar_EG'] =		'right' ;
 ?>
