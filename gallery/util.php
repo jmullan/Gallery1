@@ -326,7 +326,7 @@ function exec_wrapper($cmd) {
 function getDimensions($file, $regs=false) {
     global $gallery;				
 
-    debugMessage(sprintf(_("Getting Dimension of file: %s"), $file), __FILE__, __LINE__);
+    debugMessage(sprintf(_("Getting Dimension of file: %s"), $file), __FILE__, __LINE__,2);
 
     if (! fs_file_exists($file)) {
         debugMessage(_("The file does not exist ?!"), __FILE__, __LINE__);
