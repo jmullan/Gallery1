@@ -3319,6 +3319,8 @@ function get_ecard_template($template_name) {
 }
 
 function parse_ecard_template($ecard,$ecard_data) {
+    global $gallery;
+
     $ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_image_name%>/", $ecard["image_name"], $ecard_data);
@@ -3326,6 +3328,13 @@ function parse_ecard_template($ecard,$ecard_data) {
     $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_stamp%>/", $ecard["stamp"], $ecard_data);
+
+
+    $imagePath = $gallery->app->albumDir . str_replace ($gallery->app->albumDirURL, '', $ecard["image_name"]);
+    list ($width, $height) = getDimensions(urldecode($imagePath));
+    if ($width < 200) {
+	$ecard_data = preg_replace ("/<%ecard_width%>/", 'width="500"', $ecard_data);
+    }
 	
     return $ecard_data;
   }
