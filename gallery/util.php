@@ -3332,9 +3332,8 @@ function parse_ecard_template($ecard,$ecard_data) {
 
     $imagePath = $gallery->app->albumDir . str_replace ($gallery->app->albumDirURL, '', $ecard["image_name"]);
     list ($width, $height) = getDimensions(urldecode($imagePath));
-    if ($width < 200) {
-	$ecard_data = preg_replace ("/<%ecard_width%>/", 'width="500"', $ecard_data);
-    }
+    $widthReplace = ($width < 200) ? 'width="500"' : '';
+    $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 	
     return $ecard_data;
   }
