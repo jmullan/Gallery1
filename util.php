@@ -326,7 +326,7 @@ function exec_wrapper($cmd) {
 function getDimensions($file, $regs=false) {
     global $gallery;				
 
-    debugMessage(sprintf(_("Getting Dimension of file: %s"), $file), __FILE__, __LINE__);
+    debugMessage(sprintf(_("Getting Dimension of file: %s"), $file), __FILE__, __LINE__,2);
 
     if (! fs_file_exists($file)) {
         debugMessage(_("The file does not exist ?!"), __FILE__, __LINE__);
@@ -3319,6 +3319,8 @@ function get_ecard_template($template_name) {
 }
 
 function parse_ecard_template($ecard,$ecard_data) {
+    global $gallery;
+
     $ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_image_name%>/", $ecard["image_name"], $ecard_data);
@@ -3326,6 +3328,12 @@ function parse_ecard_template($ecard,$ecard_data) {
     $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_stamp%>/", $ecard["stamp"], $ecard_data);
+
+
+    $imagePath = $gallery->app->albumDir . str_replace ($gallery->app->albumDirURL, '', $ecard["image_name"]);
+    list ($width, $height) = getDimensions(urldecode($imagePath));
+    $widthReplace = ($width < 200) ? 'width="500"' : '';
+    $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 	
     return $ecard_data;
   }

@@ -135,9 +135,9 @@ doctype();
    if (error) {
      error_message += "\n\n<?php echo _('Please fill all fields next click >Send<.'); ?>";
      alert(error_message);
-     return false;  // Formular wird nicht abgeschickt.
+     return false;  // Form not sent
    } else {
-       return true;  // Formular wird abgeschickt.
+       return true;  // Form sent
      }
 
   } // Ende function check()
@@ -159,7 +159,7 @@ doctype();
 //-->
 </script>
 
-</HEAD>
+</head>
 
 <body class="popupbody" dir="<?php echo $gallery->direction ?>" onLoad="document.ecard_form['ecard[name_sender]'].focus()">
 <div class="popuphead"><?php echo _("Send this photo as eCard") ?></div>
@@ -224,7 +224,7 @@ for($i = 1; $i <= 27; $i++) {
 ?>
         </select>
         <?php $stamp_previewURL = build_popup_url("stamp_preview.php"); ?>
-        <img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp Preview','scrollbars=yes,width=150,height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
+        <img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp_Preview','scrollbars=yes, width=150, height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
     </td>
   </tr>
   <tr>
@@ -267,8 +267,8 @@ for($i = 1; $i <= 27; $i++) {
     echo sprintf(_("Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></p>
-<br>
-<a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
+  <br>
+  <a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
 <?php }
 ?>
 </div>
