@@ -83,11 +83,15 @@ function makeGalleryUrl($target = '', $args = array()) {
 	if (isset($_SERVER['HTTP_REFERER'])) {
 		$referer = parse_url($_SERVER['HTTP_REFERER']);
 		$urlprefix = $referer['scheme'] .'://'. $referer['host'];
+		/* make sure the urlprefix doesnt end with a / */
+		$urlprefix = ereg_replace("\/$", "", $urlprefix);
+		/* Add the folder to the url when *Nuke is not direct in the main folder */ 
+		$addpath = substr($referer['path'], 0, strrpos($referer['path'], '/'));
 	}
 	else {
 		$urlprefix = '';
 	}
-    
+
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -112,7 +116,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 * view_album.php can append a filename to the resulting URL.
 				 */
 				$args["include"] = $target;
-				$url = $urlprefix .'/modules.php';
+				$url = $urlprefix . $addpath .'/modules.php';
 			break;
 
 			case 'postnuke':
@@ -120,7 +124,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 					$args["op"] = "modload";
 					$args["file"] = "index";
 
-					$url = $urlprefix .'/modules.php';
+					$url = $urlprefix . $addpath . '/modules.php';
 				}
 				else {
 					$url = $urlprefix . pnGetBaseURI()."/index.php";
