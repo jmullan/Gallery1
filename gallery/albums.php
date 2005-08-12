@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2005 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -82,7 +82,7 @@ $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
-$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page 
+$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -98,25 +98,25 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
-<?php 
+<?php
     }
     if ($navigator['page'] < $maxPages) { ?>
   <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
   <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
-<?php 
+<?php
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
 ?>
   <link rel="alternate" title="<?php echo sprintf(_("%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
-<?php 
+<?php
     } ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php 
+<?php
 }
 
 includeHtmlWrap("gallery.header");
-if (!$gallery->session->offline && 
+if (!$gallery->session->offline &&
   ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
 ?>
 <table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
@@ -136,7 +136,7 @@ if (!$gallery->session->offline &&
 ?>
 
 <!-- admin section begin -->
-<?php 
+<?php
 /* Admin Text (left side) */
 $adminText = "";
 if ($numAccess == $numAlbums) {
@@ -145,7 +145,7 @@ if ($numAccess == $numAlbums) {
 	$toplevel_str= pluralize_n2(ngettext("1 top-level album","%d top-level albums",$numAlbums), $numAlbums, _("No top-level albums"));
 }
 
-$total_str= sprintf(_("%d total"), $numAccess); 
+$total_str= sprintf(_("%d total"), $numAccess);
 $image_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
 $page_str= pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("no pages"));
 
@@ -167,7 +167,7 @@ if (!empty($gallery->app->stats_foruser) && $numPhotos != 0) {
 /* Admin Text (right side) */
 
 $adminCommands = '';
-$iconElements = array(); 
+$iconElements = array();
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
@@ -180,7 +180,7 @@ if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
     $iconElements[] = '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) .'">'. $iconText .'</a>';
 }
 
-if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) { 
+if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
     $iconText = getIconText('folder_new.gif', _("new album"));
     $iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a>';
 }
@@ -200,7 +200,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
 		$iconText = getIconText('kdf.gif', _("admin page"));
 		$iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
-	}	
+	}
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 		$iconText = getIconText('exit.gif', _("logout"));
 		$iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';
@@ -209,7 +209,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 		$iconText = getIconText('identity.gif', _("login"));
 	        $iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
-			
+
             if (!strcmp($gallery->app->selfReg, 'yes')) {
 		$iconText = getIconText('yast_sysadmin2.gif', _("register"));
 	        $iconElements[] = popup_link($iconText, "register.php", false, true, 500, 500);
@@ -264,7 +264,7 @@ if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
         echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
         echo "\n<p class=\"head\"><u>". _("Attention!") ."</u></p>";
 
-	echo sprintf(_('The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not posess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(_("%s and try again."),
+	echo sprintf(_('The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(_("%s and try again."),
 		popup_link(_("Log in"), "login.php", false, true, 500, 500))));
         echo "\n</div></center>\n";
 	$gallery->session->gRedirDone = true;
@@ -289,7 +289,7 @@ for ($i = $start; $i <= $end; $i++) {
 	}
         $tmpAlbumName = $gallery->album->fields["name"];
         $albumURL = makeAlbumUrl($tmpAlbumName);
-?>     
+?>
 
   <!-- Begin Album Column Block -->
   <tr>
@@ -352,7 +352,7 @@ for ($i = $start; $i <= $end; $i++) {
       </tr>
     </table>
 
-  <?php 
+  <?php
 	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
 
 	$description=editField($gallery->album, "description") ;
@@ -381,18 +381,18 @@ for ($i = $start; $i <= $end; $i++) {
 			if (!$gallery->session->offline) {
 				echo '<br><span class="error">'.
 				  _("Hey!") .
-				  sprintf(_("%s so that the URL is not so generic!"), 
+				  sprintf(_("%s so that the URL is not so generic!"),
 					popup_link(_("Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
 				echo '</span>';
 			}
 		}
 
-	} 
+	}
 	?>
 
   <br>
   <span class="fineprint">
-   <?php 
+   <?php
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
 	$visibleItems=array_sum($gallery->album->numVisibleItems($gallery->user));
 	echo " "; // Need a space between these two text blocks
@@ -422,7 +422,7 @@ if($gallery->app->comments_enabled == 'yes') {
 ?>
 
   </span>
-<?php 
+<?php
 
     if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0)
 	if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') { ?>
@@ -440,16 +440,16 @@ if($gallery->app->comments_enabled == 'yes') {
 
 <?php
 } // if isRoot() close
-} // for() loop      
+} // for() loop
 ?>
 </table>
 <!-- album table end -->
-<?php 
-if ($displayCommentLegend) { 
+<?php
+if ($displayCommentLegend) {
 	//display legend for comments
 	echo '<p><span class="commentIndication">*</span>';
 	echo '<span class="fineprint">'. _("Comments available for this item.") .'</span></p>';
-} 
+}
 ?>
 <!-- bottom nav -->
 <?php
