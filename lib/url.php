@@ -80,17 +80,14 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target,"setup")) ? true : false;
 
-	if (isset($_SERVER['HTTP_REFERER'])) {
-		$referer = parse_url($_SERVER['HTTP_REFERER']);
-		$urlprefix = $referer['scheme'] .'://'. $referer['host'];
-		/* make sure the urlprefix doesnt end with a / */
-		$urlprefix = ereg_replace("\/$", "", $urlprefix);
-		/* Add the folder to the url when *Nuke is not direct in the main folder */ 
-		$addpath = substr($referer['path'], 0, strrpos($referer['path'], '/'));
-	}
-	else {
-		$urlprefix = '';
-	}
+	$gUrl = parse_url($gallery->app->photoAlbumURL);
+	$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+	
+	/* make sure the urlprefix doesnt end with a / */
+	$urlprefix = ereg_replace("\/$", "", $urlprefix);
+	
+	/* Add the folder to the url when *Nuke is not direct in the main folder */
+	$addpath = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/'));
 
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
