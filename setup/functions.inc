@@ -1596,29 +1596,31 @@ function checkVersions($verbose=false) {
        	return array($success, $fail, $warn);
 }
 
-/*
-** This function creates a table with tabs for navigating through Config Sections (Groups).
-**
-** It analyses a given Array which is in config_data Style:
-**
-** "<group_key>" => array (
-**			"type"          =>
-**			"name"          =>
-**			"default"       =>
-**			"title"		=>
-**			"desc"		=>
-**        )
-**
-** "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
-** "name"		: To identify the group you have to set a name.
-** "default"		: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
-** "title"		: When the group is visible, this title is displayed in the header line.
-** "desc"		: This optional Description is displayed under the title.
-** ""contains_required"	: Indicates that this Group contains field that are required
-**
-** Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
-**	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
-*/ 
+/**
+ * This function creates a table with tabs for navigating through Config Sections (Groups).
+ *
+ * It analyses a given Array which is in config_data Style:
+ *
+ * "<group_key>" => array (
+ *			"type"          =>
+ *			"name"          =>
+ *			"default"       =>
+ *			"title"		=>
+ *			"desc"		=>
+ *        )
+ *
+ * "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
+ * "name"		: To identify the group you have to set a name.
+ * "default"		: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
+ * "title"		: When the group is visible, this title is displayed in the header line.
+ * "desc"		: This optional Description is displayed under the title.
+ * ""contains_required"	: Indicates that this Group contains field that are required
+ *
+ * Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
+ *	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
+ *
+ * @author Jens Tkotz
+ */ 
 
 function makeSectionTabs($array, $break = 7, $initialtab = '') {
 	$tabs = array();

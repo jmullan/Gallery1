@@ -116,6 +116,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 
 includeHtmlWrap("gallery.header");
+
 if (!$gallery->session->offline &&
   ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
 ?>
@@ -138,7 +139,7 @@ if (!$gallery->session->offline &&
 <!-- admin section begin -->
 <?php
 /* Admin Text (left side) */
-$adminText = "";
+$adminText = '';
 if ($numAccess == $numAlbums) {
 	$toplevel_str= pluralize_n2(ngettext("1 album","%d albums",$numAlbums), $numAlbums, _("no albums"));
 } else {
@@ -355,7 +356,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?php
 	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
 
-	$description=editField($gallery->album, "description") ;
+	$description = editField($gallery->album, "description") ;
 	if ($description != "") {
 		echo "\n<div class=\"desc\">";
 		echo "\n\t$description";

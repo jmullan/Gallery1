@@ -897,7 +897,7 @@ class Album {
 	    recipient.  You will note that we don't currently translate these 
 	    messages.
 	 */
-	function save($msg=array(), $resetModDate=1) {
+	function save($msg = array(), $resetModDate = 1) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
 		$success = FALSE;
@@ -975,16 +975,16 @@ class Album {
 		    $to = $this->getEmailMeList('other');
 			$msg_str = call_user_func_array('sprintf', $msg);
 			if (!empty($to)) {
-				$text = sprintf(_("A change has been made to %s by %s (IP %s).  The change is: %s"),
-					makeAlbumUrl($this->fields['name']),
+				$text = sprintf(_("A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
+					'<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
 					user_name_string($gallery->user->getUID(),
 					$gallery->app->comments_display_name),
 					$_SERVER['REMOTE_ADDR'],
 					$msg_str);
 
 				$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
-				$subject = sprintf(_("Changes to %s"), $this->fields['name']);
-				$logmsg = sprintf("Change to %s: %s.", makeAlbumUrl($this->fields['name']), $msg_str);
+				$subject = sprintf(_("Changes to Album: %s"), $this->fields['name']);
+				$logmsg = sprintf("Change to %s: %s.", makeAlbumHeaderUrl($this->fields['name']), $msg_str);
 				gallery_mail($to, $subject, $text, $logmsg, true);
 
 			} else if (isDebugging()) {
