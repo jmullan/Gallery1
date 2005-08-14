@@ -88,13 +88,6 @@ if (!empty($votes)) {
     }
 }
 
-// is photo hidden?  should user see it anyway?
-if (($gallery->album->isHidden($index)) &&
-(!$gallery->user->canWriteToAlbum($gallery->album))){
-    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
-    return;
-}
-
 $albumName = $gallery->session->albumName;
 if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
   !$gallery->session->offline) {
