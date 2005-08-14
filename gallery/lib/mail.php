@@ -212,6 +212,13 @@ function resolveWelcomeMsg($placeholders = array()) {
 	return $welcomeMsg;
 }
 
+/**
+ * This functions sends a notification to all people that request an email when a comment was added
+ * to an item.
+ * @param	string	$photoid
+ * @param	string	$comment_text
+ * @param	string	$commenter_name
+ */
 function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
@@ -220,9 +227,9 @@ function emailComments($id, $comment_text, $commenter_name) {
 
 	if (!empty($to)) {
 		$text .= sprintf(_("A comment has been added to this %s by %s in this %s."),
-			'<a href="'. makeAlbumUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
 			$commenter_name,
-			'<a href="'. makeAlbumUrl($gallery->session->albumName)) .'">'. _("Album") .'</a>';
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName)) .'">'. _("Album") .'</a>';
 		
 		$text .= "\n\n". _("*** Begin comment ***")."\n";
 		$text .= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
@@ -230,7 +237,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 		$text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first).");
 
 		$subject = sprintf(_("New comment for %s"), $id);
-		$logmsg = sprintf(_("New comment for %s."), makeAlbumUrl($gallery->session->albumName, $id));
+		$logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
 		gallery_mail($to, $subject, $text, $logmsg, true);
 	}
@@ -245,7 +252,7 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 	}
 	if (isset($gallery->app->email_notification) &&
 	in_array("logfile", $gallery->app->email_notification)) {
-		$logfile=$gallery->app->userDir."/email.log";
+		$logfile = $gallery->app->userDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
 
