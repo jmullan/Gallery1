@@ -124,10 +124,10 @@ if (!$gallery->session->offline &&
 <tr>
 <?php
     if ($GALLERY_EMBEDDED_INSIDE == 'phpBB2') {
-	echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
+        echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
     }
     if ($numPhotos != 0) {
-	echo '<td align="'. langRight() .'">'. addSearchForm() .'</td>';
+        echo '<td align="'. langRight() .'">'. addSearchForm('', 'right') .'</td>';
     }
 ?>
 </tr>
@@ -337,7 +337,7 @@ for ($i = $start; $i <= $end; $i++) {
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>
               <td class="mod_title_left"></td>
-              <td nowrap class="title">
+              <td class="title">
                 <?php _("title") ?>
                 <?php echo editField($gallery->album, "title", $albumURL) ?>
               </td>

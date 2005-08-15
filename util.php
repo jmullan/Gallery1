@@ -3424,12 +3424,13 @@ function addSearchForm($formerSearchString = '', $align = '') {
     $html = '';
 
     $html .= makeFormIntro('search.php', array(
-	'name'		=> 'search_form',
-	'method'        => 'post',
-	'style'		=> "text-align: $align")
+    	'name'     => 'search_form',
+    	'method'   => 'post',
+    	'style'    => "text-align: $align",
+    	'class'   => 'search')
     );
                 
-    $html .= "\t". '<span class="search">'. _("Search") .': </span>';
+    $html .= "\t". _("Search:");
     $html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
     $html .= "\n</form>\n";
 
