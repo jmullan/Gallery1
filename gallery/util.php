@@ -141,17 +141,17 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 	global $commentdraw;
 	global $i;
 	global $commenter_name;
-	
+
 	$html = '';
 
-/*
+	/*
 	$borderColor = $gallery->app->default["bordercolor"];
 	$commentdraw["bordercolor"] = $borderColor;
-*/
+	*/
 	echo showComments($index, $album, $newestFirst);
 
 	if ($addComments) {
-		/* Default is the popup link. 
+		/* Default is the popup link.
 		** addType given through function call overrides default.
 		*/
 		if (empty($addType)) {
@@ -164,21 +164,21 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 		}
 		else {
 			$id = $gallery->album->getPhotoId($index);
-		       	$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-	       		echo "\n" .'<div align="center" class="editlink">' .
-				popup_link('[' . _("add comment") . ']', $url, 0) .
-				'</div><br>';
+			$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
+			echo "\n" .'<div align="center" class="editlink">' .
+			  popup_link('[' . _("add comment") . ']', $url, 0) .
+			  '</div><br>';
 		}
-       	}
+	}
 }
 
 function drawCommentAddForm($commenter_name = '', $cols = 50) {
-    global $gallery;
-    if ($gallery->user->isLoggedIn() ) {
-	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-	    $commenter_name=user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
+	global $gallery;
+	if ($gallery->user->isLoggedIn() ) {
+		if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
+			$commenter_name = user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
+		}
 	}
-    }
 ?>
 <table class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
@@ -189,16 +189,16 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 	<td class="commentboxhead">
 <?php
 
-    if (!$gallery->user->isLoggedIn() ) {
-    	echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
-    } else {
-    	if ($gallery->app->comments_anonymous == 'yes') {
-	    echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
-	    } else {
-	    echo $commenter_name;
-	    echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
-        }
-    }
+if (!$gallery->user->isLoggedIn() ) {
+	echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
+} else {
+	if ($gallery->app->comments_anonymous == 'yes') {
+		echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+	} else {
+		echo $commenter_name;
+		echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
+	}
+}
 ?>
 </td>
 </tr>
@@ -3424,12 +3424,13 @@ function addSearchForm($formerSearchString = '', $align = '') {
     $html = '';
 
     $html .= makeFormIntro('search.php', array(
-	'name'		=> 'search_form',
-	'method'        => 'post',
-	'style'		=> "text-align: $align")
+    	'name'     => 'search_form',
+    	'method'   => 'post',
+    	'style'    => "text-align: $align",
+    	'class'   => 'search')
     );
                 
-    $html .= "\t". '<span class="search">'. _("Search") .': </span>';
+    $html .= "\t". _("Search:");
     $html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
     $html .= "\n</form>\n";
 

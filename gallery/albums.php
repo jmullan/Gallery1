@@ -116,6 +116,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 
 includeHtmlWrap("gallery.header");
+
 if (!$gallery->session->offline &&
   ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0 ) || $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
 ?>
@@ -123,10 +124,10 @@ if (!$gallery->session->offline &&
 <tr>
 <?php
     if ($GALLERY_EMBEDDED_INSIDE == 'phpBB2') {
-	echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
+        echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
     }
     if ($numPhotos != 0) {
-	echo '<td align="'. langRight() .'">'. addSearchForm() .'</td>';
+        echo '<td align="'. langRight() .'">'. addSearchForm('', 'right') .'</td>';
     }
 ?>
 </tr>
@@ -138,7 +139,7 @@ if (!$gallery->session->offline &&
 <!-- admin section begin -->
 <?php
 /* Admin Text (left side) */
-$adminText = "";
+$adminText = '';
 if ($numAccess == $numAlbums) {
 	$toplevel_str= pluralize_n2(ngettext("1 album","%d albums",$numAlbums), $numAlbums, _("no albums"));
 } else {
@@ -336,7 +337,7 @@ for ($i = $start; $i <= $end; $i++) {
           <table cellspacing="0" cellpadding="0" border="0" class="mod_title_bg">
             <tr>
               <td class="mod_title_left"></td>
-              <td nowrap class="title">
+              <td class="title">
                 <?php _("title") ?>
                 <?php echo editField($gallery->album, "title", $albumURL) ?>
               </td>
@@ -355,7 +356,7 @@ for ($i = $start; $i <= $end; $i++) {
   <?php
 	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
 
-	$description=editField($gallery->album, "description") ;
+	$description = editField($gallery->album, "description") ;
 	if ($description != "") {
 		echo "\n<div class=\"desc\">";
 		echo "\n\t$description";

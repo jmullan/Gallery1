@@ -393,7 +393,7 @@ if (count($image_tags)) {
 </p>
 
 <?php 
-    echo _("Select the items you want to upload. To select multiple hold 'strg' (PC) or 'Command' (Mac)");
+    echo _("Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
     echo makeFormIntro("save_photos.php", 
 		array("name" => 'uploadurl_form',
 			"method" => "POST"), array('type' => 'popup')); 
