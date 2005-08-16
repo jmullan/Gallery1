@@ -20,7 +20,11 @@
  * $Id$
  */
 ?>
-
+<?php
+    /**
+     * @package setup
+     */
+?>
 <?php
 
 /*
@@ -48,103 +52,109 @@ if ($fd = @fs_fopen($outfile, "a")) {
 }
 
 
-/*
- * Read the .htaccess file
+/**
+ * Process the .htaccess file if present.
  */
-$htaccess = file(GALLERY_CONFDIR . '/.htaccess');
-$htaccess_save = array();
-$old_htaccess = true;
-$skipping = false;
-foreach ($htaccess as $line) {
-	if ($skipping && trim($line) == $end_string) {
-		$skipping = false;
-	} else if ($skipping) {
-		continue;
-	} else if (trim($line) == $start_string) {
-		$skipping = true;
-		$old_htaccess = false;
-	} else {
-		$htaccess_save[]=$line;
-	}
+if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
+    /* Read the .htaccess file */
+    $htaccess = file(GALLERY_CONFDIR . '/.htaccess');
+    $htaccess_save = array();
+    $old_htaccess = true;
+    $skipping = false;
+    foreach ($htaccess as $line) {
+        if ($skipping && trim($line) == $end_string) {
+            $skipping = false;
+        } else if ($skipping) {
+            continue;
+        } else if (trim($line) == $start_string) {
+            $skipping = true;
+            $old_htaccess = false;
+        } else {
+            $htaccess_save[]=$line;
+        }
+    }
+    if ($old_htaccess) {
+        $htaccess_save=array();
+    }
+
+    /*
+     * Begin the .htaccess file
+     */
+    $outfile = GALLERY_CONFDIR . '/.htaccess';
+
+    if ($fd = @fs_fopen($outfile, "w")) {
+        fwrite($fd, "$start_string\n");
+        fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
+        fwrite($fd, "# Note: still under development, so format may change.\n");
+        fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
+        fclose($fd);
+    }
+
+    /*
+     * Write the php_value lines, if they're permissable in the user's
+     * environment..
+     */
+    if (isset($GALLERY_PHP_VALUE_OK)) {
+        $htaccess = file("php_value.template");
+        if ($fd = @fs_fopen($outfile, "a")) {
+            foreach ($htaccess as $line) {
+                if (!ereg('^#', $line)) {
+                    eval("\$line = \"$line\";");
+                    fwrite($fd, $line);
+                }
+            }
+            fclose($fd);
+        }
+    }
+
+    /*
+     * Write the mod_rewrite lines, if that mod is available.
+     */
+    if ($GALLERY_REWRITE_OK) {
+        $htaccess = file("mod_rewrite.template");
+        if ($fd = @fs_fopen($outfile, "a")) {
+            foreach ($htaccess as $line) {
+                // If the gallery is in the root directory, then we need to
+                // make sure the .htaccess doesn't end up with "RewriteBase \/".
+                if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
+                    continue;
+                }
+                if (!ereg('^#', $line)) {
+                    eval("\$line = \"$line\";");
+                    fwrite($fd, $line);
+                }
+            }
+            fclose($fd);
+        }
+    }
+
+    /*
+     * End the .htaccess file gallery section
+     */
+
+    if ($fd = @fs_fopen($outfile, "a")) {
+        fwrite($fd, "$end_string\n");
+        fclose($fd);
+    }
+
+    /*
+     * Write the preserved data back to the .htaccess file
+     */
+
+    if ($fd = @fs_fopen($outfile, "a")) {
+        foreach ($htaccess_save as $line) {
+            fwrite($fd, $line);
+        }
+        fclose($fd);
+    }
+
 }
-if ($old_htaccess) {
-	$htaccess_save=array();
-}
 
-/*
- * Begin the .htaccess file
- */
-$outfile = GALLERY_CONFDIR . '/.htaccess';
-
-if ($fd = @fs_fopen($outfile, "w")) {
-	fwrite($fd, "$start_string\n");
-	fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
-	fwrite($fd, "# Note: still under development, so format may change.\n");
-	fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
-	fclose($fd);
-}
-
-/*
- * Write the php_value lines, if they're permissable in the user's
- * environment..
- */
-if (isset($GALLERY_PHP_VALUE_OK)) {
-	$htaccess = file("php_value.template");
-	if ($fd = @fs_fopen($outfile, "a")) {
-		foreach ($htaccess as $line) {
-			if (!ereg('^#', $line)) {
-				eval("\$line = \"$line\";");
-				fwrite($fd, $line);
-			}
-		}
-		fclose($fd);
-	}
-}
-
-/*
- * Write the mod_rewrite lines, if that mod is available.
- */
-if ($GALLERY_REWRITE_OK) {
-	$htaccess = file("mod_rewrite.template");
-	if ($fd = @fs_fopen($outfile, "a")) {
-		foreach ($htaccess as $line) {
-			// If the gallery is in the root directory, then we need to
-			// make sure the .htaccess doesn't end up with "RewriteBase \/".
-			if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
-				continue;
-			}
-	                if (!ereg('^#', $line)) { 		
-				eval("\$line = \"$line\";");
-				fwrite($fd, $line);
-			}
-		}
-		fclose($fd);
-	}
-}
-
-/*
- * End the .htaccess file gallery section
- */
-
-if ($fd = @fs_fopen($outfile, "a")) {
-       	fwrite($fd, "$end_string\n");
-       	fclose($fd);
-}
-
-/*
- * Write the preserved data back to the .htaccess file
- */
-
-if ($fd = @fs_fopen($outfile, "a")) {
-	foreach ($htaccess_save as $line) {
-	       	fwrite($fd, $line);
-       	}
-       	fclose($fd);
-}
 /*
  * Don't require UserDB before we've written and included config.php or it will
  * have a cow when it tries to verify that the $gallery->app->userDir exists.
  */
+
 include(GALLERY_BASE . '/config.php');
 include_once(GALLERY_BASE . '/classes/UserDB.php');
 include_once(GALLERY_BASE . '/classes/gallery/UserDB.php');

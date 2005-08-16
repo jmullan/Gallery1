@@ -1,3 +1,13 @@
+2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b9
+
+	* Fix: Moved and adapted setup/functions.inc to lib/setup.php.
+	       Some functions in this file are also used outside setup, 
+	       so when user protect the setup folder some functions where unavailable.
+
+	* New: Added functions fs_is_writable
+
+	* Fix: .htacces is optional, use function above to check to prevent error message.	
+
 2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b8
 
 	* Fix: Wording. 'strg' is german ;) 'ctrl' is more international.
