@@ -22,8 +22,6 @@
 ?>
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/classes/HTML/table.php');
-
 function evenOdd_row($fields) {
 	$buf = '';
 
@@ -1524,8 +1522,8 @@ function check_filedirective() {
 	$fail = array();
 	$warn = array();
 
-	if (strstr(__FILE__, 'setup/functions.inc') ||
-		strstr(__FILE__, 'setup\\functions.inc')) {
+	if (strstr(__FILE__, 'lib/setup.php') ||
+		strstr(__FILE__, 'lib\\setup.php')) {
 		$success[]=_("Your version of PHP handles this issue properly.");
 	} else {
 		$fail['buggy__FILE__'] = 1;
@@ -1709,13 +1707,12 @@ function configLogin($target) {
 		$gallery->userDB = new Gallery_UserDB();
 
 		// Check the UserDB for upgrades before trying to make someone login
-		if ($gallery->userDB->versionOutOfDate())
-		{
+		if ($gallery->userDB->versionOutOfDate()) {
 			include(GALLERY_BASE . "/upgrade_users.php");
 			exit;
 		}
 
-		include(dirname(__FILE__) . "/login.inc");
+		include(GALLERY_BASE . '/setup/login.inc');
 	}
 }
 

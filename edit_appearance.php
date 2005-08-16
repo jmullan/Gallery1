@@ -34,7 +34,7 @@ list($nv_pairs, $extra_fields, $num_user_fields) =
     getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
 
 include_once (dirname(__FILE__) . '/includes/definitions/services.php');
-include_once (dirname(__FILE__) . '/setup/functions.inc');
+include_once (dirname(__FILE__) . '/lib/setup.php');
 include_once (dirname(__FILE__) . '/js/sectionTabs.js.php');
 
 $infoMessages = array();
@@ -238,6 +238,7 @@ doctype();
 <?php echo infoLine($infoMessages, 'error'); ?>
 <div class="popup" align="center">
 <?php 
+
 echo makeFormIntro("edit_appearance.php",
     array("name" => "theform", "method" => "POST"),
     array("type" => "popup"));

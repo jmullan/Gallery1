@@ -81,6 +81,10 @@ function fs_is_readable($filename) {
 	return @is_readable($filename);
 }
 
+function fs_is_writable($filename) {
+	$filename = fs_import_filename($filename, 0);
+        return @is_writable($filename);
+}
 
 function fs_opendir($path) {
     $path = fs_import_filename($path, 0);
