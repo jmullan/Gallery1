@@ -1,12 +1,21 @@
+2005-08-17 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b10
+
+	* Fix: When using do_command.php e.g.for creating new album and Gallery is embedded,
+	       "Attempted security breach." occured due to new full url schema added in 
+	       1.5.1-RC2-cvs-b14 + 1.5.1-RC3-cvs-b3
+
+	* Fix: After creating a new album, with debug and email on, 
+	       an Error occured and dismiss button didnt work.
+
 2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b9
 
 	* Fix: Moved and adapted setup/functions.inc to lib/setup.php.
 	       Some functions in this file are also used outside setup, 
-	       so when user protected the setup folder some functions where unavailable.
+	       so when user protect the setup folder some functions where unavailable.
 
 	* New: Added functions fs_is_writable
 
-	* Fix: .htaccess is optional, use function above to check to prevent error message.	
+	* Fix: .htacces is optional, use function above to check to prevent error message.	
 
 2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b8
 
