@@ -36,6 +36,8 @@ $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
+$postnuke = defined('_PN_VERSION_ID') ? true : false;
+$phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
@@ -43,7 +45,12 @@ $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
  * config.php * Therefore we have to detect GeeLog in init.php.
  */
 
-if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || isset($name)) {
+if ($postnuke ||
+    $phpnuke ||
+    !strcmp($op, "modload") || 
+    !strcmp($mop, "modload") || 
+    isset($option) || 
+    isset($name)) {
 	/* 
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
@@ -64,7 +71,7 @@ if (!strcmp($op, "modload") || !strcmp($mop, "modload") || isset($option) || iss
 		$GALLERY_EMBEDDED_INSIDE='phpBB2';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'phpBB2';
 	}
-	elseif (isset($GLOBALS['pnconfig']) && function_exists('authorised')) {
+	elseif ($postnuke) {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke';
 	}

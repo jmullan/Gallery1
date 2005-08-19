@@ -2830,7 +2830,7 @@ function gallery_validation_link($file, $valid=true, $args = array()) {
 	$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
     }
 
-    $link = '<a href="http://validator.w3.org:8001/check?uri='. $uri .'">'.
+    $link = '<a href="http://validator.w3.org/check?uri='. $uri .'">'.
 	'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 	
     if (!$valid) {
@@ -2848,7 +2848,7 @@ function album_validation_link($album, $photo='', $valid=true) {
 	}
 	$args=array();
 	$args['PHPSESSID']=session_id();
-	$link='<a href="http://validator.w3.org:8001/check?uri='.
+	$link='<a href="http://validator.w3.org/check?uri='.
 		urlencode(eregi_replace("&amp;", "&", 
 					makeAlbumURL($album, $photo, $args))).
 		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';

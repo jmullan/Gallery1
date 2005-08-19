@@ -17,7 +17,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 
 	if (
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke' && !defined("LOADED_AS_MODULE")) ||
-		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF)) ||
+		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpnuke' && !eregi("modules.php", $PHP_SELF) && !isset($GLOBALS['nukeurl'])) ||
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'cpgnuke' && !defined('CPG_NUKE')) ||
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'nsnnuke' && !eregi("modules.php", $PHP_SELF)) ||
 		($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && !defined("LOADED_AS_MODULE"))
