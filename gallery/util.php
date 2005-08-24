@@ -1750,7 +1750,7 @@ function getExif($file) {
 			    break;
 			}
 			$path = $gallery->app->exiftags;
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -a '.
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -au ' .
 			  fs_import_filename($file, 1));
 
 			break;
@@ -1759,7 +1759,7 @@ function getExif($file) {
 			    break;
 			}
 			$path = $gallery->app->use_exif;
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' '.
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -v ' .
 			  fs_import_filename($file, 1));
 			
 			break;
@@ -1771,14 +1771,18 @@ function getExif($file) {
 	$myExif = array();
 	if ($status == 0) {
 	        foreach ($return as $value) {
-	        	$value=trim($value);
+	        	$value = trim($value);
 		    	if (!empty($value)) {
 				$explodeReturn = explode(':', $value, 2);
-				if (isset($myExif[trim($explodeReturn[0])])) { 
-			    		$myExif[trim($explodeReturn[0])] .= "<br>" . trim($explodeReturn[1]);
+				$exifDesc = trim(htmlentities($explodeReturn[0]));
+				$exifData = trim(htmlentities($explodeReturn[1]));
+				if (isset($myExif[$exifDesc])) { 
+					$myExif[$exifDesc] .= "<br>";
 				} else {
-			   		$myExif[trim($explodeReturn[0])] = trim($explodeReturn[1]);
+					$myExif[$exifDesc] = '';
 				}
+
+				$myExif[$exifDesc] .= trim($exifData);
 		    	}
 	        }
 	}
