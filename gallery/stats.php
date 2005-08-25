@@ -61,7 +61,7 @@ list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 list ($page, $set_albumListPage) =
 	getRequestVar(array('page', 'set_albumListPage'));
 
-if (empty($type)) {
+if (empty($type) || eregi('[^a-z]', $type)) {
 	/* We assume was called direct. So we call show defaults */
 	header("Location: ". unhtmlentities(defaultStatsUrl('views')));
 }
@@ -173,7 +173,7 @@ if (!empty( $sgr )) {
 }
 
 if (!empty( $rev )) {
-	$reverseOrder = $rev;
+	$reverseOrder = (bool)$rev;
 } else {
 	$reverseOrder = 0;
 }
@@ -583,6 +583,7 @@ switch ($type) {
 
 	default:
 	// 'views'
+	$type = 'views';
 	if ( !$reverseOrder ) {
 		$stats_title =  _(" - Images with the most views");
 	}
