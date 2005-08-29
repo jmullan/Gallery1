@@ -2010,7 +2010,14 @@ class Album {
 				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
 				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
 				$nestedAlbum->fields["ecards"] = $this->fields["ecards"];
-				$nestedAlbum->fields["email_me"] = array();
+				$nestedAlbum->fields["email_me"] = array(); 
+				$nestedAlbum->fields["poll_type"] = $this->fields["poll_type"];
+				$nestedAlbum->fields["poll_scale"] = $this->fields["poll_scale"];
+				$nestedAlbum->fields["poll_nv_pairs"] = $this->fields["poll_nv_pairs"];
+				$nestedAlbum->fields["poll_hint"] = $this->fields["poll_hint"];
+				$nestedAlbum->fields["poll_show_results"] = $this->fields["poll_show_results"];
+				$nestedAlbum->fields["poll_num_results"] = $this->fields["poll_num_results"];
+				$nestedAlbum->fields["voter_class"] = $this->fields["voter_class"];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
