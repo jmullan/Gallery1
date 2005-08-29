@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-29 07:51+0200\n"
 "PO-Revision-Date: 2004-09-18 23:43+0200\n"
 "Last-Translator: Suktas <suktas_ AT users DOT sourceforge DOT net>\n"
 "Language-Team: Vilius Ðumskas <vilius AT lnk DOT lt>\n"
@@ -37,6 +37,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3;     plural=n%10==1 && n%100!=11 ? 0 :            n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "Auksinis Rëmelis"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "Þavintis auksinis rëmelis"
+
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
 msgstr "Spiralinis Blonknotas"
@@ -44,14 +52,6 @@ msgstr "Spiralinis Blonknotas"
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
 msgstr "Baltas rëmelis su ðeðëliu ir su spiraliniu blonknotu, suriðtu kairëje pusëje"
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Ðeðëliai"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "PNG permatomi ðeðëliai krentantys á deðinæ ir þemyn. Teisingas permatomumas, todël turetø veikti su daugeliu foniniø spalvø, iðskyrus juodà."
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -69,14 +69,6 @@ msgstr "Polaroidai"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "Fotografijø rinkinys su dideliu baltu rëmeliu, ypatingai plaèiu apaèioje"
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Auksinis Rëmelis"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "Þavintis auksinis rëmelis"
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
 msgstr ""
@@ -84,6 +76,14 @@ msgstr ""
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
 msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "Ðeðëliai"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "PNG permatomi ðeðëliai krentantys á deðinæ ir þemyn. Teisingas permatomumas, todël turetø veikti su daugeliu foniniø spalvø, iðskyrus juodà."
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -101,6 +101,455 @@ msgstr "Medinis Rëmelis"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Tekstûrinis medinis rëmelis"
+
+#: ../lib/setup.php:147
+msgid "Please retype your password here"
+msgstr "Pakartokite savo slaptaþodá"
+
+#: ../lib/setup.php:161 ../lib/setup.php:1106
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: ../lib/setup.php:162 ../lib/setup.php:1106
+msgid "Value"
+msgstr "Reikðmë"
+
+#: ../lib/setup.php:200 ../lib/setup.php:243
+#, fuzzy
+msgid "No content"
+msgstr "RSS Turinys"
+
+#: ../lib/setup.php:370
+msgid "Missing value"
+msgstr "Reikðmë nenurodyta"
+
+#: ../lib/setup.php:392
+msgid "<b>exec()</b> is not disabled on this server."
+msgstr "<b>exec()</b> serveryje nëra uþdraustas."
+
+#: ../lib/setup.php:410
+msgid "I can read your <b>.htaccess</b> file."
+msgstr "Negaliu perskaityti <b>.htaccess</b> failo."
+
+#: ../lib/setup.php:429
+#, php-format
+msgid "PHP v%s is OK."
+msgstr "PHP v%s tinka."
+
+#: ../lib/setup.php:441
+msgid "<b>mod_rewrite</b> is enabled."
+msgstr "<b>mod_rewrite</b> galimybë ájungta."
+
+#: ../lib/setup.php:464
+msgid "Can't find <i>jhead</i>"
+msgstr "Negaliu rasti <i>jhead</i>"
+
+#: ../lib/setup.php:466
+msgid "<b>jhead</b> binary located."
+msgstr "<b>jhead</b> failai rasti."
+
+#: ../lib/setup.php:504
+#, fuzzy
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgstr "Be pnmcomp gallery negalës ið nuotraukø daryti vandenþenklius, nebent naudosite ImageMagick ir turësite ádiegtà composite programà."
+
+#: ../lib/setup.php:512
+msgid "NetPBM not being used in this installation."
+msgstr "NetPBM bus nenaudojama."
+
+#: ../lib/setup.php:517 ../lib/setup.php:615
+msgid "Cannot verify this path (it's not in your open_basedir list)."
+msgstr "Negaliu patvirtinti ðio kelio (jo nëra open_basedir sàraðe)."
+
+#: ../lib/setup.php:551 ../lib/setup.php:632
+#, php-format
+msgid "Missing optional binary %s. %s"
+msgstr "Trûksta neprivalomø binariniø bylø %s. %s"
+
+#: ../lib/setup.php:554 ../lib/setup.php:635
+#, php-format
+msgid "Can't find %s!"
+msgstr "Negaliu rasti %s!"
+
+#: ../lib/setup.php:561 ../lib/setup.php:642
+#, php-format
+msgid "%s is not executable!"
+msgstr "%s neprieinamas paleidimui!"
+
+#: ../lib/setup.php:573 ../lib/setup.php:580
+#, php-format
+msgid "%d of %d NetPBM binaries located."
+msgstr "Rasti %d ið %d NetPBM failø."
+
+#: ../lib/setup.php:604
+msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgstr "Be composite gallery negalës ið nuotraukø padaryti vandenþenklius, nebent turësite ádiegtas NetPBM ir pnmcomp programas."
+
+#: ../lib/setup.php:610
+#, fuzzy
+msgid "ImageMagick not being used in this installation."
+msgstr "NetPBM bus nenaudojama."
+
+#: ../lib/setup.php:654 ../lib/setup.php:661
+#, php-format
+msgid "%d of %d ImageMagick binaries located."
+msgstr "Rasti %d ið %d ImageMagick failø."
+
+#: ../lib/setup.php:683
+msgid "Can't find <i>jpegtran</i>!"
+msgstr "Negaliu rasti <i>jpegtran</i>!"
+
+#: ../lib/setup.php:685
+msgid "<b>jpegtran</b> binary located."
+msgstr "<b>jpegtran</b> failai rasti."
+
+#: ../lib/setup.php:696
+msgid "PHP has <b>GNU gettext</b> support."
+msgstr "PHP sukompiliuotas su <b>GNU gettext</b> palaikymu."
+
+#: ../lib/setup.php:698
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP sukompiliuotas be <b>GNU gettext</b> palaikymo."
+
+#: ../lib/setup.php:712
+msgid "No languages found."
+msgstr "Nerandu kalbø failø."
+
+#: ../lib/setup.php:714
+msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+msgstr "Atrodo, kad jûs neatsisiuntëte jokiø papildomø kalbø. Tai ne problema! Galerija bus rodoma tik anglø kalba. Pastaba: Jeigu tai netiesa, patikrinkite ar visi lokaliø failai gali bûti nuskaityti WWW serverio, arba susisiekite su Galerijos Komanda."
+
+#: ../lib/setup.php:717
+#, php-format
+msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+msgstr "Radau %d kalbø. Jeigu jums reikia trûkstamø kalbø, galite jas rasti %sGalerijos atsisiuntimo puslapyje%s."
+
+#: ../lib/setup.php:739
+#, php-format
+msgid "You can check for more recent versions by visiting %s."
+msgstr "Naujesnæ versijà galite rasti %s."
+
+#: ../lib/setup.php:741
+#, php-format
+msgid "This version of %s was released on %s."
+msgstr "Ði %s versija buvo iðleista %s."
+
+#: ../lib/setup.php:743
+#, php-format
+msgid "This is a development build of %s that was released on %s."
+msgstr "Tai yra beta %s versija, iðleista %s."
+
+#: ../lib/setup.php:752
+msgid "Please check regularly for updates."
+msgstr "Atnaujinkite Galerijà reguliariai."
+
+#: ../lib/setup.php:771
+msgid "All gallery locales are available on this host."
+msgstr "Serveris palaiko visas Galerijos kalbas."
+
+#: ../lib/setup.php:774
+#, php-format
+msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+msgstr "Galerija negali aptikti %d lokaliø. Datos formatà turësite nustatyti patys."
+
+#: ../lib/setup.php:780
+#, php-format
+msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+msgstr "Datos %d kalbose gali bûti neteisingos, nes trûksta kai kuriø lokaliø. Datos formatà ðioms kalboms turite nustatyti patys."
+
+#: ../lib/setup.php:785
+#, php-format
+msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+msgstr "Negaliu rasti lokaliø. Jûsø serveris sukonfigûruotas su %s parametru. Tai trukdo skriptui atpaþinti lokales. Tai reiðkia, kad datos formatas skirtingose kalbose iðliks toks pats. Taèiau galite tæsti."
+
+#: ../lib/setup.php:789
+#, php-format
+msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+msgstr "Negaliu rasti sisteminiø lokaliø. Galerijos kalbos bus iðjungtos. Ádiekite reikiamas lokales. Ði problema þinoma %s sistemose. Tokiu atveju skaitykite %sDebian locale HowTo%s dokumentacijà."
+
+#: ../lib/setup.php:791
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr "Ðiame serveryje egzistuoja tik pagrindinë lokalë, todël datos formatas skirtingose kalbose iðliks toks pats."
+
+#: ../lib/setup.php:950 ../lib/setup.php:1030 ../setup/config_data.inc:445
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:684
+#: ../setup/config_data.inc:1151
+msgid "Advanced"
+msgstr "Daugiau nustatymø"
+
+#: ../lib/setup.php:950
+#, php-format
+msgid "<b>System</b> locale selection required"
+msgstr "Bûtina pasirinkti lokalæ"
+
+#: ../lib/setup.php:951
+msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+msgstr "Ðiai kalbai yra ádiegta daugiau nei viena tinkama <b>system</b>lokalë. Pasirinkite vienà, Jûsø nuomone tinkamiausià."
+
+#: ../lib/setup.php:953 ../lib/setup.php:1033
+msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgstr "Tai galioja <b>tik</b> datos ir laiko formatui."
+
+#: ../lib/setup.php:964 ../lib/setup.php:988
+msgid "System locale"
+msgstr "Sistemos lokalë"
+
+#: ../lib/setup.php:1030
+#, php-format
+msgid "<b>System</b> locale problems"
+msgstr "Lokalës problemos"
+
+#: ../lib/setup.php:1031
+msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+msgstr "Ðiai kalbai nëra ádiegta nei vienos akivaizdþiai tinkamos sisteminës lokalës. Pasirinkite vienà, Jûsø nuomone tinkamiausià."
+
+#: ../lib/setup.php:1074
+msgid "<b>safe_mode</b> is off."
+msgstr "<b>saugus reþimas</b> iðjungtas."
+
+#: ../lib/setup.php:1086
+msgid "<b>magic_quotes</b> are off."
+msgstr "<b>magic_quotes</b> galimybë iðjunga."
+
+#: ../lib/setup.php:1104
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr "%s. Negaliu rasti %s eilutëje %d su %s %s."
+
+#: ../lib/setup.php:1105 ../lib/setup.php:1114 ../lib/setup.php:1119
+#: ../setup/config_data.inc:1604
+msgid "Vote words and values"
+msgstr "Balsavimo punktai ir reikðmës"
+
+#: ../lib/setup.php:1113
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr "%s. Eilutë %d tuðèia."
+
+#: ../lib/setup.php:1118
+#, php-format
+msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+msgstr "%s. Vardui %s (eilutëje %d) reikðmë %s turëtø bûti apvalus skaièius"
+
+#: ../lib/setup.php:1140
+#, fuzzy
+msgid "<b>register_globals</b> is off."
+msgstr "<b>saugus reþimas</b> iðjungtas."
+
+#: ../lib/setup.php:1310
+#, fuzzy
+msgid "Your passwords do not match!"
+msgstr "Jûsø administratoriaus slaptaþodþiai neatitinka!"
+
+#: ../lib/setup.php:1321 ../setup/check_imagemagick.php:75
+#: ../setup/check_netpbm.php:75
+msgid "OK"
+msgstr "GERAI"
+
+#: ../lib/setup.php:1326
+msgid "Valid admin email address given."
+msgstr "Áraðëte tikrà administratoriaus el. paðto adresà."
+
+#: ../lib/setup.php:1333
+msgid "You must specify valid admin email addresses"
+msgstr "Privalote áraðyti tikrà administratoriaus el. paðto adresà."
+
+#: ../lib/setup.php:1341
+#, php-format
+msgid "%s is not a valid email address."
+msgstr "%s nëra tikras el. paðto adresas."
+
+#: ../lib/setup.php:1350
+msgid "Valid sender email address given."
+msgstr "Áraðëte tikrà siuntëjo el. paðto adresà."
+
+#: ../lib/setup.php:1352
+msgid "You must specify a valid sender email address"
+msgstr "Privalote áraðyti tikrà siuntëjo el. paðto adresà."
+
+#: ../lib/setup.php:1355
+#, php-format
+msgid "You must include %s in your welcome email"
+msgstr "Á pasveikinimo laiðkà privalote átraukti %s"
+
+#: ../lib/setup.php:1360
+#, php-format
+msgid "You must include %s or %s in your welcome email"
+msgstr "Á pasveikinimo laiðkà privalote átraukti %s arba %s"
+
+#: ../lib/setup.php:1384
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr "Ðie failai yra pasenæ, sugadinti arba nerasti<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+
+#: ../lib/setup.php:1386
+msgid "This should be fixed before proceeding"
+msgstr "Prieð tæsiant, turite tai iðspræsti"
+
+#: ../lib/setup.php:1387 ../lib/setup.php:1391
+#, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "Detalesnë informacija %sVersijos patikrinimo puslapyje%s."
+
+#: ../lib/setup.php:1390
+#, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "%d failai yra naujesni nei tikëtasi. Jeigu naudojate ne stabilià, CVS arba kustomizuotà versijà, nekreipkite á tai dëmesio."
+
+#: ../lib/setup.php:1395
+#, php-format
+msgid "All tested files up-to-date."
+msgstr "Visos pratestuotos bylos nëra pasenæ."
+
+#: ../lib/setup.php:1397
+#, php-format
+msgid "All %d tested files up-to-date."
+msgstr "Visi %d failai tvarkingi."
+
+#: ../lib/setup.php:1406
+#, php-format
+msgid "this is new in version %s"
+msgstr "nauja galimybë nuo %s versijos"
+
+#: ../lib/setup.php:1411
+#, php-format
+msgid "Return to %s."
+msgstr "Gráþti á %s."
+
+#: ../lib/setup.php:1412
+msgid "Configuration Wizard"
+msgstr "Galerijos konfigûracijos procesas"
+
+#: ../lib/setup.php:1461
+#, php-format
+msgid "You must enter a password for the %s account."
+msgstr "%s vartotojo vardas reikalauja slaptaþodþio."
+
+#: ../lib/setup.php:1466
+#, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "Atrodo, kad Jûs jau sukonfigûravote Gallery, kadangi jau egzistuoja viena administratoriaus sàskaita, tiktai ji nëra - %s."
+
+#: ../lib/setup.php:1469
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "Atrodo, kad Jûs jau sukonfigûravote Gallery, kadangi jau egzistuoja %d administratoriaus sàskaita(-os), bet nëra vartotojo - %s."
+
+#: ../lib/setup.php:1471
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "Jûs neprivalote ávesti slaptaþodþio.  Bet jeigu já ávesite, galerija sukonfigûruos administratoriaus sàskaità kuri vadinsis %s su ðiuo slaptaþodþiu."
+
+#: ../lib/setup.php:1480
+#, php-format
+msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+msgstr "Atrodo kad jûs jau konfigûravote Galerija, nes vartotojas %s jau egzistuoja. Jûs neprivalote áraðyti slaptaþodþio. Taèiau jeigu taip padarysite, %s vartotojo slaptaþodis bus pakeistas."
+
+#: ../lib/setup.php:1487
+msgid "Admin password"
+msgstr "Administratoriaus slaptaþodis"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1506
+#: ../lib/setup.php:1514
+msgid "Full Name"
+msgstr "Pilnas Vardas"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1508
+#: ../lib/setup.php:1516 ../setup/login.inc:93
+msgid "Username"
+msgstr "Vartotojo vardas"
+
+#: ../lib/setup.php:1510
+msgid "Full name that you can click on to send email (mailto:)"
+msgstr "Pilnas vardas ant kurio galite spragtelti ir iðsiøsti e-paðto þinute (mailto:)"
+
+#: ../lib/setup.php:1512
+msgid "Username that you can click on to send email (mailto:)"
+msgstr "Vartotojo vardas ant kurio galite spragtelti ir iðsiøsti e-paðto þinute (mailto:)"
+
+#: ../lib/setup.php:1514 ../lib/setup.php:1516
+msgid "email address"
+msgstr "e-paðto adresas"
+
+#: ../lib/setup.php:1527
+msgid "Your version of PHP handles this issue properly."
+msgstr "Esama PHP versija teisingai palaiko ðià problemà."
+
+#: ../lib/setup.php:1544
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr "Byla nerasta arba neperskaitoma. Praðome ádiegti ir paskui dar kartà paleisti ðá testà."
+
+#: ../lib/setup.php:1548
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr "Praðome ásitikinti kad %s yra naujausios versijos."
+
+#: ../lib/setup.php:1553
+#, php-format
+msgid "Testing status of %d files."
+msgstr "Testuojame %d bylos(-ø) bûklæ.."
+
+#: ../lib/setup.php:1560
+#, php-format
+msgid "Cannot read file %s."
+msgstr "Negaliu perskaityti %s bylos(-ø)."
+
+#: ../lib/setup.php:1562
+msgid "File missing or unreadable."
+msgstr "Byla nerasta arba neperskaitoma."
+
+#: ../lib/setup.php:1567
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr "Informacija apie versijà nerasta bylai %s. Byla matyt yra labai senos versijos arba sugadinta."
+
+#: ../lib/setup.php:1569
+msgid "Missing version"
+msgstr "Trukstama versija"
+
+#: ../lib/setup.php:1576
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr "Problema su %s.  Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
+
+#: ../lib/setup.php:1578
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr "Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
+
+#: ../lib/setup.php:1582
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr "%s OK.  Dabartine (%s) versija þymiai aukðtesnë negu (%s), kurios buvo tikëtasi"
+
+#: ../lib/setup.php:1584
+#, php-format
+msgid "Expected version %s but found %s."
+msgstr "Tikëtasi %s versijos bet rasta %s."
+
+#: ../lib/setup.php:1588
+#, php-format
+msgid "%s OK"
+msgstr "%s OK"
+
+#: ../lib/setup.php:1590
+#, php-format
+msgid "Found expected version %s."
+msgstr "Rasta %s versija, kurios ir buvo tikëtasi."
+
+#: ../lib/setup.php:1721
+msgid "This email will be sent when new accounts are created."
+msgstr "Ðis laiðkas bus siunèiamas naujiems vartotojams."
+
+#: ../lib/setup.php:1722
+#, fuzzy
+msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+msgstr "Palikite ðá laukà tuðèià, jeigu norite kad bûtø panaudoti pradinës kalbos nustatymai. Standartinis laiðkas yra:"
+
+#: ../lib/setup.php:1723
+#, fuzzy
+msgid "The following placeholder can be used:"
+msgstr "Ðios bylos yra atnaujintos iki paskutinës versijos."
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -205,11 +654,6 @@ msgstr "Kraunu nustatymø failus. Jeigu èia matote daug klaidø, tai greièiausiai 
 #: ../setup/check_imagemagick.php:61 ../setup/check_netpbm.php:61
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Atrodo jûs nesukonfigûravote Galerijos. Pakartokite konfigûracijos procesà ið naujo."
-
-#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1323
-msgid "OK"
-msgstr "GERAI"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -898,12 +1342,6 @@ msgstr "taip"
 #: ../setup/config_data.inc:1693
 msgid "no"
 msgstr "ne"
-
-#: ../setup/config_data.inc:445 ../setup/config_data.inc:674
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1151
-#: ../setup/functions.inc:952 ../setup/functions.inc:1032
-msgid "Advanced"
-msgstr "Daugiau nustatymø"
 
 #: ../setup/config_data.inc:445
 msgid "JPEG Quality"
@@ -2268,11 +2706,6 @@ msgstr "Horizontaliai"
 msgid "Vertical"
 msgstr "Vertikaliai"
 
-#: ../setup/config_data.inc:1604 ../setup/functions.inc:1107
-#: ../setup/functions.inc:1116 ../setup/functions.inc:1121
-msgid "Vote words and values"
-msgstr "Balsavimo punktai ir reikðmës"
-
 #: ../setup/config_data.inc:1605
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Ðis parametras leidþia nustatyti pasirinkimø tekstà ir skaièiø kiekvienai reikðmei."
@@ -2728,7 +3161,7 @@ msgstr "^is puslapis skirtas %s atnaujinimams, kurie kelia problemas."
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Tai leis patikrinti ar turite teisingas versijas visø %s savo bylø."
 
-#: ../setup/frame_test.php:29 ../setup/index.php:42
+#: ../setup/frame_test.php:29 ../setup/index.php:46
 msgid "Gallery Configuration"
 msgstr "Galerijos konfigûracija"
 
@@ -2770,441 +3203,7 @@ msgstr "Negaliu atidaryti %s"
 msgid "Close Window"
 msgstr "Uþdaryti langà"
 
-#: ../setup/functions.inc:149
-msgid "Please retype your password here"
-msgstr "Pakartokite savo slaptaþodá"
-
-#: ../setup/functions.inc:163 ../setup/functions.inc:1108
-msgid "Name"
-msgstr "Pavadinimas"
-
-#: ../setup/functions.inc:164 ../setup/functions.inc:1108
-msgid "Value"
-msgstr "Reikðmë"
-
-#: ../setup/functions.inc:202 ../setup/functions.inc:245
-#, fuzzy
-msgid "No content"
-msgstr "RSS Turinys"
-
-#: ../setup/functions.inc:372
-msgid "Missing value"
-msgstr "Reikðmë nenurodyta"
-
-#: ../setup/functions.inc:394
-msgid "<b>exec()</b> is not disabled on this server."
-msgstr "<b>exec()</b> serveryje nëra uþdraustas."
-
-#: ../setup/functions.inc:412
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "Negaliu perskaityti <b>.htaccess</b> failo."
-
-#: ../setup/functions.inc:431
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s tinka."
-
-#: ../setup/functions.inc:443
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>mod_rewrite</b> galimybë ájungta."
-
-#: ../setup/functions.inc:466
-msgid "Can't find <i>jhead</i>"
-msgstr "Negaliu rasti <i>jhead</i>"
-
-#: ../setup/functions.inc:468
-msgid "<b>jhead</b> binary located."
-msgstr "<b>jhead</b> failai rasti."
-
-#: ../setup/functions.inc:506
-#, fuzzy
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "Be pnmcomp gallery negalës ið nuotraukø daryti vandenþenklius, nebent naudosite ImageMagick ir turësite ádiegtà composite programà."
-
-#: ../setup/functions.inc:514
-msgid "NetPBM not being used in this installation."
-msgstr "NetPBM bus nenaudojama."
-
-#: ../setup/functions.inc:519 ../setup/functions.inc:617
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "Negaliu patvirtinti ðio kelio (jo nëra open_basedir sàraðe)."
-
-#: ../setup/functions.inc:553 ../setup/functions.inc:634
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "Trûksta neprivalomø binariniø bylø %s. %s"
-
-#: ../setup/functions.inc:556 ../setup/functions.inc:637
-#, php-format
-msgid "Can't find %s!"
-msgstr "Negaliu rasti %s!"
-
-#: ../setup/functions.inc:563 ../setup/functions.inc:644
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s neprieinamas paleidimui!"
-
-#: ../setup/functions.inc:575 ../setup/functions.inc:582
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "Rasti %d ið %d NetPBM failø."
-
-#: ../setup/functions.inc:606
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "Be composite gallery negalës ið nuotraukø padaryti vandenþenklius, nebent turësite ádiegtas NetPBM ir pnmcomp programas."
-
-#: ../setup/functions.inc:612
-#, fuzzy
-msgid "ImageMagick not being used in this installation."
-msgstr "NetPBM bus nenaudojama."
-
-#: ../setup/functions.inc:656 ../setup/functions.inc:663
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "Rasti %d ið %d ImageMagick failø."
-
-#: ../setup/functions.inc:685
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "Negaliu rasti <i>jpegtran</i>!"
-
-#: ../setup/functions.inc:687
-msgid "<b>jpegtran</b> binary located."
-msgstr "<b>jpegtran</b> failai rasti."
-
-#: ../setup/functions.inc:698
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP sukompiliuotas su <b>GNU gettext</b> palaikymu."
-
-#: ../setup/functions.inc:700
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP sukompiliuotas be <b>GNU gettext</b> palaikymo."
-
-#: ../setup/functions.inc:714
-msgid "No languages found."
-msgstr "Nerandu kalbø failø."
-
-#: ../setup/functions.inc:716
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "Atrodo, kad jûs neatsisiuntëte jokiø papildomø kalbø. Tai ne problema! Galerija bus rodoma tik anglø kalba. Pastaba: Jeigu tai netiesa, patikrinkite ar visi lokaliø failai gali bûti nuskaityti WWW serverio, arba susisiekite su Galerijos Komanda."
-
-#: ../setup/functions.inc:719
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "Radau %d kalbø. Jeigu jums reikia trûkstamø kalbø, galite jas rasti %sGalerijos atsisiuntimo puslapyje%s."
-
-#: ../setup/functions.inc:741
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "Naujesnæ versijà galite rasti %s."
-
-#: ../setup/functions.inc:743
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "Ði %s versija buvo iðleista %s."
-
-#: ../setup/functions.inc:745
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "Tai yra beta %s versija, iðleista %s."
-
-#: ../setup/functions.inc:754
-msgid "Please check regularly for updates."
-msgstr "Atnaujinkite Galerijà reguliariai."
-
-#: ../setup/functions.inc:773
-msgid "All gallery locales are available on this host."
-msgstr "Serveris palaiko visas Galerijos kalbas."
-
-#: ../setup/functions.inc:776
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Galerija negali aptikti %d lokaliø. Datos formatà turësite nustatyti patys."
-
-#: ../setup/functions.inc:782
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "Datos %d kalbose gali bûti neteisingos, nes trûksta kai kuriø lokaliø. Datos formatà ðioms kalboms turite nustatyti patys."
-
-#: ../setup/functions.inc:787
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "Negaliu rasti lokaliø. Jûsø serveris sukonfigûruotas su %s parametru. Tai trukdo skriptui atpaþinti lokales. Tai reiðkia, kad datos formatas skirtingose kalbose iðliks toks pats. Taèiau galite tæsti."
-
-#: ../setup/functions.inc:791
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "Negaliu rasti sisteminiø lokaliø. Galerijos kalbos bus iðjungtos. Ádiekite reikiamas lokales. Ði problema þinoma %s sistemose. Tokiu atveju skaitykite %sDebian locale HowTo%s dokumentacijà."
-
-#: ../setup/functions.inc:793
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "Ðiame serveryje egzistuoja tik pagrindinë lokalë, todël datos formatas skirtingose kalbose iðliks toks pats."
-
-#: ../setup/functions.inc:952
-#, php-format
-msgid "<b>System</b> locale selection required"
-msgstr "Bûtina pasirinkti lokalæ"
-
-#: ../setup/functions.inc:953
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "Ðiai kalbai yra ádiegta daugiau nei viena tinkama <b>system</b>lokalë. Pasirinkite vienà, Jûsø nuomone tinkamiausià."
-
-#: ../setup/functions.inc:955 ../setup/functions.inc:1035
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr "Tai galioja <b>tik</b> datos ir laiko formatui."
-
-#: ../setup/functions.inc:966 ../setup/functions.inc:990
-msgid "System locale"
-msgstr "Sistemos lokalë"
-
-#: ../setup/functions.inc:1032
-#, php-format
-msgid "<b>System</b> locale problems"
-msgstr "Lokalës problemos"
-
-#: ../setup/functions.inc:1033
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Ðiai kalbai nëra ádiegta nei vienos akivaizdþiai tinkamos sisteminës lokalës. Pasirinkite vienà, Jûsø nuomone tinkamiausià."
-
-#: ../setup/functions.inc:1076
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>saugus reþimas</b> iðjungtas."
-
-#: ../setup/functions.inc:1088
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>magic_quotes</b> galimybë iðjunga."
-
-#: ../setup/functions.inc:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "%s. Negaliu rasti %s eilutëje %d su %s %s."
-
-#: ../setup/functions.inc:1115
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "%s. Eilutë %d tuðèia."
-
-#: ../setup/functions.inc:1120
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "%s. Vardui %s (eilutëje %d) reikðmë %s turëtø bûti apvalus skaièius"
-
-#: ../setup/functions.inc:1142
-#, fuzzy
-msgid "<b>register_globals</b> is off."
-msgstr "<b>saugus reþimas</b> iðjungtas."
-
-#: ../setup/functions.inc:1312
-#, fuzzy
-msgid "Your passwords do not match!"
-msgstr "Jûsø administratoriaus slaptaþodþiai neatitinka!"
-
-#: ../setup/functions.inc:1328
-msgid "Valid admin email address given."
-msgstr "Áraðëte tikrà administratoriaus el. paðto adresà."
-
-#: ../setup/functions.inc:1335
-msgid "You must specify valid admin email addresses"
-msgstr "Privalote áraðyti tikrà administratoriaus el. paðto adresà."
-
-#: ../setup/functions.inc:1343
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s nëra tikras el. paðto adresas."
-
-#: ../setup/functions.inc:1352
-msgid "Valid sender email address given."
-msgstr "Áraðëte tikrà siuntëjo el. paðto adresà."
-
-#: ../setup/functions.inc:1354
-msgid "You must specify a valid sender email address"
-msgstr "Privalote áraðyti tikrà siuntëjo el. paðto adresà."
-
-#: ../setup/functions.inc:1357
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "Á pasveikinimo laiðkà privalote átraukti %s"
-
-#: ../setup/functions.inc:1362
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "Á pasveikinimo laiðkà privalote átraukti %s arba %s"
-
-#: ../setup/functions.inc:1386
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "Ðie failai yra pasenæ, sugadinti arba nerasti<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-
-#: ../setup/functions.inc:1388
-msgid "This should be fixed before proceeding"
-msgstr "Prieð tæsiant, turite tai iðspræsti"
-
-#: ../setup/functions.inc:1389 ../setup/functions.inc:1393
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "Detalesnë informacija %sVersijos patikrinimo puslapyje%s."
-
-#: ../setup/functions.inc:1392
-#, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d failai yra naujesni nei tikëtasi. Jeigu naudojate ne stabilià, CVS arba kustomizuotà versijà, nekreipkite á tai dëmesio."
-
-#: ../setup/functions.inc:1397
-#, php-format
-msgid "All tested files up-to-date."
-msgstr "Visos pratestuotos bylos nëra pasenæ."
-
-#: ../setup/functions.inc:1399
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "Visi %d failai tvarkingi."
-
-#: ../setup/functions.inc:1408
-#, php-format
-msgid "this is new in version %s"
-msgstr "nauja galimybë nuo %s versijos"
-
-#: ../setup/functions.inc:1413
-#, php-format
-msgid "Return to %s."
-msgstr "Gráþti á %s."
-
-#: ../setup/functions.inc:1414
-msgid "Configuration Wizard"
-msgstr "Galerijos konfigûracijos procesas"
-
-#: ../setup/functions.inc:1463
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "%s vartotojo vardas reikalauja slaptaþodþio."
-
-#: ../setup/functions.inc:1468
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "Atrodo, kad Jûs jau sukonfigûravote Gallery, kadangi jau egzistuoja viena administratoriaus sàskaita, tiktai ji nëra - %s."
-
-#: ../setup/functions.inc:1471
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Atrodo, kad Jûs jau sukonfigûravote Gallery, kadangi jau egzistuoja %d administratoriaus sàskaita(-os), bet nëra vartotojo - %s."
-
-#: ../setup/functions.inc:1473
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Jûs neprivalote ávesti slaptaþodþio.  Bet jeigu já ávesite, galerija sukonfigûruos administratoriaus sàskaità kuri vadinsis %s su ðiuo slaptaþodþiu."
-
-#: ../setup/functions.inc:1482
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "Atrodo kad jûs jau konfigûravote Galerija, nes vartotojas %s jau egzistuoja. Jûs neprivalote áraðyti slaptaþodþio. Taèiau jeigu taip padarysite, %s vartotojo slaptaþodis bus pakeistas."
-
-#: ../setup/functions.inc:1489
-msgid "Admin password"
-msgstr "Administratoriaus slaptaþodis"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1508 ../setup/functions.inc:1516
-msgid "Full Name"
-msgstr "Pilnas Vardas"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1510 ../setup/functions.inc:1518
-#: ../setup/login.inc:93
-msgid "Username"
-msgstr "Vartotojo vardas"
-
-#: ../setup/functions.inc:1512
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "Pilnas vardas ant kurio galite spragtelti ir iðsiøsti e-paðto þinute (mailto:)"
-
-#: ../setup/functions.inc:1514
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "Vartotojo vardas ant kurio galite spragtelti ir iðsiøsti e-paðto þinute (mailto:)"
-
-#: ../setup/functions.inc:1516 ../setup/functions.inc:1518
-msgid "email address"
-msgstr "e-paðto adresas"
-
-#: ../setup/functions.inc:1529
-msgid "Your version of PHP handles this issue properly."
-msgstr "Esama PHP versija teisingai palaiko ðià problemà."
-
-#: ../setup/functions.inc:1546
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "Byla nerasta arba neperskaitoma. Praðome ádiegti ir paskui dar kartà paleisti ðá testà."
-
-#: ../setup/functions.inc:1550
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "Praðome ásitikinti kad %s yra naujausios versijos."
-
-#: ../setup/functions.inc:1555
-#, php-format
-msgid "Testing status of %d files."
-msgstr "Testuojame %d bylos(-ø) bûklæ.."
-
-#: ../setup/functions.inc:1562
-#, php-format
-msgid "Cannot read file %s."
-msgstr "Negaliu perskaityti %s bylos(-ø)."
-
-#: ../setup/functions.inc:1564
-msgid "File missing or unreadable."
-msgstr "Byla nerasta arba neperskaitoma."
-
-#: ../setup/functions.inc:1569
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "Informacija apie versijà nerasta bylai %s. Byla matyt yra labai senos versijos arba sugadinta."
-
-#: ../setup/functions.inc:1571
-msgid "Missing version"
-msgstr "Trukstama versija"
-
-#: ../setup/functions.inc:1578
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "Problema su %s.  Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
-
-#: ../setup/functions.inc:1580
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Tikimasi %s versijos (arba aukðtesnës) bet rasta %s."
-
-#: ../setup/functions.inc:1584
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s OK.  Dabartine (%s) versija þymiai aukðtesnë negu (%s), kurios buvo tikëtasi"
-
-#: ../setup/functions.inc:1586
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "Tikëtasi %s versijos bet rasta %s."
-
-#: ../setup/functions.inc:1590
-#, php-format
-msgid "%s OK"
-msgstr "%s OK"
-
-#: ../setup/functions.inc:1592
-#, php-format
-msgid "Found expected version %s."
-msgstr "Rasta %s versija, kurios ir buvo tikëtasi."
-
-#: ../setup/functions.inc:1722
-msgid "This email will be sent when new accounts are created."
-msgstr "Ðis laiðkas bus siunèiamas naujiems vartotojams."
-
-#: ../setup/functions.inc:1723
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "Palikite ðá laukà tuðèià, jeigu norite kad bûtø panaudoti pradinës kalbos nustatymai. Standartinis laiðkas yra:"
-
-#: ../setup/functions.inc:1724
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "Ðios bylos yra atnaujintos iki paskutinës versijos."
-
-#: ../setup/index.php:144
+#: ../setup/index.php:148
 msgid "Security violation"
 msgstr "Saugumo paþeidimas"
 
@@ -3305,71 +3304,83 @@ msgstr "Serverio IP adresas"
 msgid "Start over"
 msgstr "Pradëti ið pradþiø"
 
-#: ../setup/write.inc:157
+#: ../setup/write.inc:167
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "%s vartotojo slaptaþodis buvo pakeistas."
 
-#: ../setup/write.inc:161
+#: ../setup/write.inc:171
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "Vartotojo vardas %s su slaptaþodþiu, kurá ávedëte, sukurtas."
 
-#: ../setup/write.inc:175
+#: ../setup/write.inc:185
 msgid "Success!"
 msgstr "Atlikta!"
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "Jûsø nustatymai sëkmnigai iðsaugoti!"
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:196
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "Labai rekomenduojame paleisti secure.sh', arba uþdëti 644 teises .htaccess ir config.php byloms. Tai reikalinga didesniam saugumui."
 
-#: ../setup/write.inc:193
+#: ../setup/write.inc:203
 msgid "Note"
 msgstr "Pastaba"
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:205
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr "Privalote paðalinti '%s' bylà ið setup katalogo, kad Galerijos konfigûracija taptø saugi"
 
-#: ../setup/write.inc:208
+#: ../setup/write.inc:218
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "Bet kada galite perkonfigûruoti Galerijà."
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "Visi nustatymai bus iðsaugoti, todël jø visø nereikës ávesti kiekvienà kartà!"
 
-#: ../setup/write.inc:213
+#: ../setup/write.inc:223
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "Prisijunkite prie %s konferencijos. Tai labai nedidelë paðto konferencija kuri praneð jums apie svarbiausias %s pakeitimus. Èia mes paskelbiame naujas versijas, svarbius klaidø iðtaisymus ir kitas saugumo spragas bei jø paðalinimo bûdus."
 
-#: ../setup/write.inc:220
+#: ../setup/write.inc:230
 msgid "Enter the Gallery"
 msgstr "Áeiti á Galerijà"
 
-#: ../setup/write.inc:234
+#: ../setup/write.inc:244
 msgid "Failure"
 msgstr "Klaida"
 
-#: ../setup/write.inc:235
+#: ../setup/write.inc:245
 #, php-format
 msgid "Unable to write to %s."
 msgstr "Negaliu raðyti á %s."
 
-#: ../setup/write.inc:238
+#: ../setup/write.inc:248
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "Jûs neturite %s arba %s."
 
-#: ../setup/write.inc:242
+#: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Perþiûrëti nustatymus"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "Failas %s neegzistuoja."
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "<b>Pastaba:</b> Jûsø WWW serveris sukonfigûruotas su %s. Tai trukdo galerijai patikrinti visus reikalingus failus. Nesijaudinkite, jeigu ðis puslapis generuoja kokius nors perspëjimus; jûsø nustatymai vistiek bus iðsaugoti."
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "Pastaba"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "Jeigu kilo sunkumø, pagalbà galite rasti %sGalerijos pagalbos puslapyje%s."

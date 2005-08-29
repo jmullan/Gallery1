@@ -70,11 +70,12 @@ if (empty($type)) {
     header("Location: ". unhtmlentities(defaultStatsUrl('views')));
 }
 
-/* Start of HTML Output to show page in valida HTML when debug is ON */
+$reverse = (bool)$reverse;
 
+/* Start of HTML Output to show page in valid HTML when debug is ON */
 switch ($type) {
     case 'votes':
-        if ( $reverse) {
+        if ($reverse) {
             $stats_title =  _(" - Images with the least votes");
         }
         else {
@@ -83,7 +84,7 @@ switch ($type) {
     break;
 
     case 'ratings':
-        if ( $reverse ) {
+        if ($reverse ) {
             $stats_title =  _(" - Bottom rated images");
         }
     else {
@@ -92,7 +93,7 @@ switch ($type) {
     break;
 
     case 'date':
-        if ( $reverse ) {
+        if ($reverse ) {
             $stats_title =  _(" - Oldest images first");
         }
         else {
@@ -102,7 +103,7 @@ switch ($type) {
     break;
 
     case 'cdate':
-        if ( $reverse ) {
+        if ($reverse ) {
             $stats_title =  _(" - Oldest Capture Date");
         }
         else {
@@ -111,7 +112,7 @@ switch ($type) {
     break;
 
     case 'comments':
-        if ( $reverse ) {
+        if ($reverse ) {
             $stats_title =  _(" - Oldest Comments");
         }
         else {
@@ -125,7 +126,8 @@ switch ($type) {
 
     default:
     // 'views'
-    if ( $reverse ) {
+    $type = 'views';
+    if ($reverse ) {
         $stats_title =  _(" - Images with the least views");
     }
     else {
@@ -173,30 +175,30 @@ class cacheCtrl {
 define("CACHE_INDEX_FIELD_WIDTH", 16);
 
 // Always show comments if only displaying images that have comments.
-if ( $type == "comments" ) {
+if ($type == "comments" ) {
     $showComments = 1;
     $cache = new cacheCtrl( $gallery->app->stats_commentsCacheOn, $gallery->app->stats_commentsCacheExpireSecs );
 }
 /*
 ** Commented out, because the rating code is broken.
-else if ( $type == "ratings" ) {
+else if ($type == "ratings" ) {
 $showRatings = 1;
 $cache = new cacheCtrl( $gallery->app->stats_ratingsCacheOn, $gallery->app->stats_ratingsCacheExpireSecs );
 }
 */
-else if ( $type == "views" ) {
+else if ($type == "views" ) {
     $showViews = 1;
     $cache = new cacheCtrl($gallery->app->stats_viewsCacheOn, $gallery->app->stats_viewsCacheExpireSecs);
 }
-else if ( $type == "date" ) {
+else if ($type == "date" ) {
     $showUploadDate = 1;
     $cache = new cacheCtrl( $gallery->app->stats_dateCacheOn, $gallery->app->stats_dateCacheExpireSecs );
 }
-else if ( $type == "cdate" ) {
+else if ($type == "cdate" ) {
     $showCaptureDate = 1;
     $cache = new cacheCtrl( $gallery->app->stats_cDateCacheOn, $gallery->app->stats_cDateCacheExpireSecs );
 }
-else if ( $type == "votes" ) {
+else if ($type == "votes" ) {
     $showVotes = 1;
     $cache = new cacheCtrl( $gallery->app->stats_votesCacheOn, $gallery->app->stats_votesCacheExpireSecs );
 }
@@ -315,18 +317,18 @@ if (!isset($refreshcache) &&
     if (fs_file_exists($cacheFilename)) {
         $cacheState = fs_stat($cacheFilename);
         $cacheTime = $cacheState[9];
-        if ( $cache->expireSecs == -1 ||
+        if ($cache->expireSecs == -1 ||
         time() - $cacheTime < $cache->expireSecs) {
             debugMessage(sprintf (_("Time now = %s ; Cache time = %s"), time(), $cacheTime), __FILE__, __LINE__);
             $numPhotos = readCacheNumPhotos($cacheFilename);
-            if ( $numPhotos != -1 ) {
+            if ($numPhotos != -1 ) {
                 $arrPhotos = array_fill(0, $numPhotos, 0);
                 $useCache = true;
             }
         }
     }
 
-    if ( !$useCache ) {
+    if (!$useCache ) {
         $refreshcache = true;
     }
 
@@ -351,7 +353,7 @@ if (empty($useCache)) {
         $cutoffDate = 0;
     }
 
-    if ( $type == "random" ) {
+    if ($type == "random" ) {
         // Seed the random number generator.
         srand((double)microtime()*1000000);
     }
@@ -372,7 +374,7 @@ if (empty($useCache)) {
                 // Need to show nested images inside the requested album.
                 if (in_array($album, getParentAlbums($statsAlbum))) {
                     // Check if this album is the parent
-                    if ( $album == $statsAlbum->fields['name']) {
+                    if ($album == $statsAlbum->fields['name']) {
                         $albumobj = $statsAlbum;
                     }
                 }
@@ -382,7 +384,7 @@ if (empty($useCache)) {
                 }
             }
             else {
-                if ( $album == $statsAlbum->fields['name']) {
+                if ($album == $statsAlbum->fields['name']) {
                     $albumobj = $statsAlbum;
                 }
                 else {
@@ -397,7 +399,7 @@ if (empty($useCache)) {
 
             // Haplo code to make sense of the Gallery rankings.
             /*
-            if ( isset($showRatings) || $type == "ratings" ) {
+            if (isset($showRatings) || $type == "ratings" ) {
             $ratingAverageList = getRatingAverage();
             }
             */
@@ -408,12 +410,12 @@ if (empty($useCache)) {
                 if (! $statsAlbum->isAlbum($j) && (!$statsAlbum->isHidden($j) || $gallery->user->isAdmin())) {
                     $uploaddate = $statsAlbum->getUploadDate($j);
 
-                    if ( strftime("%Y",$uploaddate ) * 12 + strftime("%m",$uploaddate) >= $cutoffDate ) {
+                    if (strftime("%Y",$uploaddate ) * 12 + strftime("%m",$uploaddate) >= $cutoffDate ) {
                         // If displaying latest comments,
                         // then only list photos with comments;
                         // otherwise display all.
-                        if ( $type != "comments" || ( $statsAlbum->numComments($j) > 0 && $statsAlbum->canViewComments($uid) )) {
-                            if ( isset($showVotes) || $type == "votes" ) {
+                        if ($type != "comments" || ( $statsAlbum->numComments($j) > 0 && $statsAlbum->canViewComments($uid) )) {
+                            if (isset($showVotes) || $type == "votes" ) {
                                 debugMessage(_("Getting SVotes"), __FILE__, __LINE__, 2);
                                 $votes = $statsAlbum->getItemSVotes($j);
                             } else {
@@ -429,21 +431,21 @@ if (empty($useCache)) {
                             // If the user wants stats for a capture date of a
                             // specific year, month or day then filter out any images
                             // that do not match.
-                            if ( !empty($timeYear) && $timeYear != strftime("%Y",$captureDate)) {
+                            if (!empty($timeYear) && $timeYear != strftime("%Y",$captureDate)) {
                                 continue;
                             }
 
-                            if ( !empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
+                            if (!empty($timeMonth) && $timeMonth != strftime("%m", $captureDate)) {
                                 continue;
                             }
 
-                            if ( !empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
+                            if (!empty($timeDay) && $timeDay != strftime("%d", $captureDate)) {
                                 continue;
                             }
 
 
                             debugMessage(_("Getting Number of Comments"), __FILE__, __LINE__, 2);
-                            if ( $statsAlbum->numComments($j) > 0 )  {
+                            if ($statsAlbum->numComments($j) > 0 )  {
                                 debugMessage(_("Getting Comments"), __FILE__, __LINE__, 2);
                                 $comment = $statsAlbum->getComment( $j, $statsAlbum->numComments($j) );
                                 $commentDate = $comment->datePosted;
@@ -452,12 +454,12 @@ if (empty($useCache)) {
                                 $commentDate = 0;
                             }
                             /*
-                            if ( isset($showRatings) || $type == "ratings" ) {
+                            if (isset($showRatings) || $type == "ratings" ) {
                             debugMessage(_("Getting Ratings"), __FILE__, __LINE__, 2);
 
                             if (!empty($ratingAverageList[$j])) {
                             $ratingCount = $ratingAverageList[$j]['count'];
-                            if ( $ratingAverageList[$j]['average'] != 0 ) {
+                            if ($ratingAverageList[$j]['average'] != 0 ) {
                             // Only show rating when sufficient votes have been cast.
                             if ($ratingAverageList[$j]['count'] >= $votesNeededToShowRating ) {
                             $rating = $ratingAverageList[$j]['average'];
@@ -473,7 +475,7 @@ if (empty($useCache)) {
                             }
                             */
 
-                            if ( $type == "random" ) {
+                            if ($type == "random" ) {
                                 $randomNum = rand();
                             }
 
@@ -498,7 +500,7 @@ if (empty($useCache)) {
     }
 
     $order = ($reverse) ? 'asc' : 'desc';
-    if ( is_array($arrPhotos) ) {
+    if (is_array($arrPhotos) ) {
         // Do the search using the criteria specified by $type.
 	switch ($type) {
 	    case 'votes':
@@ -526,7 +528,7 @@ if (empty($useCache)) {
     }
 }
 
-if ( !empty($refreshcache) &&
+if (!empty($refreshcache) &&
     !isset($period) &&
     !isset($album) &&
     is_array($arrPhotos)) {
@@ -556,7 +558,7 @@ $lastpage = round( ($totalPhotosToDisplay / $photosPerPage) - 0.500001) + 1;
 debugMessage(sprintf(_("Total: %s ; Start: %s ; Last Page: %s"), $totalPhotosToDisplay, $startPhoto, $lastpage), __FILE__, __LINE__);
 
 $borderColor = $gallery->app->default["bordercolor"];
-if ( isset($tsz) ) {
+if (isset($tsz) ) {
     $thumbSize = $tsz;
 }
 else {
@@ -573,7 +575,7 @@ $adminText = "";
 
 if (isset($album)) {
     if (isset($albumobj)) {
-        if ( $type == "comments" ) {
+        if ($type == "comments" ) {
             $adminText .= sprintf(_("%d images with comments in album: %s"), count($arrPhotos), $albumLink);
         } else {
             $adminText .= sprintf(_("%d images in album: %s"), count($arrPhotos), $albumLink);
@@ -583,7 +585,7 @@ if (isset($album)) {
     }
 }
 else {
-    if ( $type == "comments" ) {
+    if ($type == "comments" ) {
         $adminText .= sprintf(_("%d images with comments in this Gallery"), count($arrPhotos));
     }
     else {
@@ -624,7 +626,7 @@ includeLayout('navtableend.inc');
 echo languageSelector();
 echo "<!-- End top nav -->";
 
-if ( $useCache ) {
+if ($useCache ) {
     readCache($cacheFilename, $startPhoto, $photosPerPage );
 }
 if (isset($stm)) {
@@ -654,7 +656,7 @@ $statsTable->setAttrs(array(
 for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosPerPage; $j+=1) {
     $photoInfo = $arrPhotos[$j];
     for ( $i = 0; $i < $numAlbums; ++$i ) {
-        if ( !strcmp($photoInfo['albumName'], $list[$i]->fields['name']) ) {
+        if (!strcmp($photoInfo['albumName'], $list[$i]->fields['name']) ) {
             $statsAlbum = $list[$i];
             break;
         }
@@ -667,7 +669,7 @@ for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosP
     else {
         $photoId = $photoInfo['photoId'];
         $photoIndex = $statsAlbum->getPhotoIndex($photoId);
-        if ( $photoIndex == -1 ) {
+        if ($photoIndex == -1 ) {
             $cacheReloadRequired = true;
         }
         else {
@@ -811,7 +813,7 @@ function readCache( $cacheFilename, $start, $numPhotos ) {
 
             for ( $i = 0; $i < $numPhotos; ++$i ) {
                 $data = fgetcsv($fd,$size,'|');
-                if ( $data ) {
+                if ($data ) {
                     debugMessage(sprintf(_("Album name : %s ; index: %s"), $data[0], $data[1]), __FILE__, __LINE__, 1);
 
                     $arrPhotos[$start+$i] = array("albumName" => $data[0],
@@ -898,19 +900,19 @@ function makeStatsUrl( $urlpage ) {
     "rows" => $numRows,
     "cols" => $cols,
     "total" => $totalPhotosReq);
-    if ( isset($period) ) {
+    if (isset($period) ) {
         $urlParams["period"] = $period;
     }
-    if ( isset($album) ) {
+    if (isset($album) ) {
         $urlParams["album"] = $album;
     }
-    if ( isset($timeYear) ) {
+    if (isset($timeYear) ) {
         $urlParams["ty"] = $timeYear;
     }
-    if ( isset($timeMonth) ) {
+    if (isset($timeMonth) ) {
         $urlParams["tm"] = $timeMonth;
     }
-    if ( isset($timeDay) ) {
+    if (isset($timeDay) ) {
         $urlParams["td"] = $timeDay;
     }
 
@@ -1037,7 +1039,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
         $captionText = '<a href="'. $statsUrl .'">'. $statsCaption .'</a>&nbsp;&nbsp;';
 
-        if ( $addLinksPos == 'oncaptionline' ) {
+        if ($addLinksPos == 'oncaptionline' ) {
             $captionText .= showAddVoteAddCommentLinks($photoId, $page);
         }
 
@@ -1067,12 +1069,12 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
     // End Caption
 
-    if ( $showAlbumLink ) {
+    if ($showAlbumLink ) {
         $albumLink = sprintf(_("From album: %s"),
         '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] . '</a>');
 
         $owner_var = '';
-        if ( $showAlbumOwner == 1 ) {
+        if ($showAlbumOwner == 1 ) {
             $owner_var = '<br>' . sprintf(_("Owned by: %s"), showOwner($statsAlbum->getOwner()));
         }
 
@@ -1086,7 +1088,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
         }
     }
 
-    if ( $addLinksPos == 'abovestats' ) {
+    if ($addLinksPos == 'abovestats' ) {
         $html .= showAddVoteAddCommentLinks($photoId, $page);
     }
 
@@ -1101,7 +1103,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
     $innerStatsTable->setColumnCount(2);
 
-    if ( $showCaptureDate ) {
+    if ($showCaptureDate ) {
         $captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
 
         $innerStatsTable->addElement(array(
@@ -1113,7 +1115,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
             'cellArgs' => array('class' => 'fineprint')));
     }
 
-    if ( $showUploadDate ) {
+    if ($showUploadDate ) {
         $time = $statsAlbum->getUploadDate($photoIndex);
         // Older albums may not have this field.
         if ($time) {
@@ -1128,9 +1130,9 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
         }
     }
 
-    if ( $showViews && 
-	($statsAlbum->fields["display_clicks"] == 'yes' || $gallery->user->isAdmin()) &&
-	!$gallery->session->offline) {
+    if ($showViews &&
+       ($statsAlbum->fields["display_clicks"] == 'yes' || $gallery->user->isAdmin()) &&
+       !$gallery->session->offline) {
 
         $innerStatsTable->addElement(array(
         'content' => _("Views:"),
@@ -1141,7 +1143,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
         'cellArgs' => array('class' => 'fineprint')));
     }
 
-    if ( !empty($showVotes )) {
+    if (!empty($showVotes )) {
         $innerStatsTable->addElement(array(
             'content' => _("Votes:"),
             'cellArgs' => array('width' => 100)));
@@ -1151,7 +1153,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
             'cellArgs' => array('class' => 'fineprint')));
     }
 
-    if ( !empty($showRatings)) {
+    if (!empty($showRatings)) {
         switch ($rating) {
             case -2:
                 $photoRateCounts = '';
@@ -1180,11 +1182,11 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
     $html .= $innerStatsTable->render(1);
     // End Innerstats
 
-    if ( $addLinksPos == 'abovecomments' ) {
+    if ($addLinksPos == 'abovecomments' ) {
         $html .= showAddVoteAddCommentLinks($photoId, $page);
     }
 
-    if ( $showComments &&
+    if ($showComments &&
     $statsAlbum->numComments($photoIndex) > 0 &&
     $statsAlbum->canViewComments($gallery->user->getUid()) ) {
 
@@ -1192,7 +1194,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
         $html .= '<br clear="all">'. showComments($photoIndex, $statsAlbum->fields['name']);
     }
 
-    if ( $addLinksPos == 'belowcomments' ) {
+    if ($addLinksPos == 'belowcomments' ) {
         $html .= showAddVoteAddCommentLinks($photoId, $page);
     }
 

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-29 07:51+0200\n"
 "PO-Revision-Date: 2005-05-23 11:55-0500\n"
 "Last-Translator: Bisser Dobrev <bdobrev AT comcast DOT net>\n"
 "Language-Team: Bisser Dobrev <bdobrev AT comcast DOT net>\n"
@@ -35,6 +35,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "Златна Рамка"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "Луксозна златна рамка"
+
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
 msgstr "Тетрадка"
@@ -42,14 +50,6 @@ msgstr "Тетрадка"
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
 msgstr "Бяла рамка със сянка и вид на тетрадка"
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Сенки"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "Прозрачни PNG сенки падащи наляво и надолу. С тази прозрачност ще работят с повечето фонове."
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -67,14 +67,6 @@ msgstr "Полароиди"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "Купчина снимки с голяма бяла рамка, резширена в долната част"
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Златна Рамка"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "Луксозна златна рамка"
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
 msgstr ""
@@ -82,6 +74,14 @@ msgstr ""
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
 msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "Сенки"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "Прозрачни PNG сенки падащи наляво и надолу. С тази прозрачност ще работят с повечето фонове."
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -99,6 +99,451 @@ msgstr "Дървена Рамка"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Дървена рамка"
+
+#: ../lib/setup.php:147
+msgid "Please retype your password here"
+msgstr "Моля въведете отново паролата си тук"
+
+#: ../lib/setup.php:161 ../lib/setup.php:1106
+msgid "Name"
+msgstr "Име"
+
+#: ../lib/setup.php:162 ../lib/setup.php:1106
+msgid "Value"
+msgstr "Стойност"
+
+#: ../lib/setup.php:200 ../lib/setup.php:243
+#, fuzzy
+msgid "No content"
+msgstr "Съдържание на RSS"
+
+#: ../lib/setup.php:370
+msgid "Missing value"
+msgstr "Липсваща стойност"
+
+#: ../lib/setup.php:392
+msgid "<b>exec()</b> is not disabled on this server."
+msgstr "Функцията <b>exec()</b> не е изключена."
+
+#: ../lib/setup.php:410
+msgid "I can read your <b>.htaccess</b> file."
+msgstr "Не мога да прочета вашия <b>.htaccess</b> файл."
+
+#: ../lib/setup.php:429
+#, php-format
+msgid "PHP v%s is OK."
+msgstr "PHP v%s e ОК."
+
+#: ../lib/setup.php:441
+msgid "<b>mod_rewrite</b> is enabled."
+msgstr "<b>'mod_rewrite'</b> е позволен."
+
+#: ../lib/setup.php:464
+msgid "Can't find <i>jhead</i>"
+msgstr "Не е намерен <i>jhead</i>!"
+
+#: ../lib/setup.php:466
+msgid "<b>jhead</b> binary located."
+msgstr "<b>'jhead'</b> е намерен"
+
+#: ../lib/setup.php:504
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgstr "Без 'pnmcomp' и 'pamcomp' Галерията няма да може да добава водни знаци към изображеният ви, освен ако не използвате 'ImageMagick' и нямате комбинираната версия инсталирана."
+
+#: ../lib/setup.php:512
+msgid "NetPBM not being used in this installation."
+msgstr "NetPBM не се използва в тази инсталация."
+
+#: ../lib/setup.php:517 ../lib/setup.php:615
+msgid "Cannot verify this path (it's not in your open_basedir list)."
+msgstr "Пътя към тази директория не може да бъде проверен (няма го в списъка на 'open_basedir')."
+
+#: ../lib/setup.php:551 ../lib/setup.php:632
+#, php-format
+msgid "Missing optional binary %s. %s"
+msgstr "Липсва незадължителния файл %s. %s"
+
+#: ../lib/setup.php:554 ../lib/setup.php:635
+#, php-format
+msgid "Can't find %s!"
+msgstr "Не можем да намерим %s!"
+
+#: ../lib/setup.php:561 ../lib/setup.php:642
+#, php-format
+msgid "%s is not executable!"
+msgstr "%s не е 'executable'!"
+
+#: ../lib/setup.php:573 ../lib/setup.php:580
+#, php-format
+msgid "%d of %d NetPBM binaries located."
+msgstr "Всички %d от общо %d файла на 'NetPBM' са намерени"
+
+#: ../lib/setup.php:604
+msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgstr "Без комбинираната 'ImageMagick' програма, Галерията няма да може да добава водни знаци към изображенията, освен ако не използвате 'NetPBM' и нямате програмата 'pnmcomp' инсталирана."
+
+#: ../lib/setup.php:610
+msgid "ImageMagick not being used in this installation."
+msgstr "ImageMagick не се използва в тази инсталация."
+
+#: ../lib/setup.php:654 ../lib/setup.php:661
+#, php-format
+msgid "%d of %d ImageMagick binaries located."
+msgstr "Всички %d от общо %d файла на 'ImageMagick' са намерени"
+
+#: ../lib/setup.php:683
+msgid "Can't find <i>jpegtran</i>!"
+msgstr "Не е намерен <i>jpegtran</i>!"
+
+#: ../lib/setup.php:685
+msgid "<b>jpegtran</b> binary located."
+msgstr "<b>jpegtran</b> е намерен"
+
+#: ../lib/setup.php:696
+msgid "PHP has <b>GNU gettext</b> support."
+msgstr "PHP поддържа <b>GNU gettext</b>."
+
+#: ../lib/setup.php:698
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP не поддържа <b>GNU gettext</b>."
+
+#: ../lib/setup.php:712
+msgid "No languages found."
+msgstr "Няма намерени езици."
+
+#: ../lib/setup.php:714
+msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+msgstr "По всичко личи, че не сте свалили никакви допълнителни езици. Това не е проблем! Галерията ще работи само на англииски. Забележка: Ако това не е вярно, проверете дали всички файлове от директорията 'locale' са разрешени за достъп от web-сървъра, или се свържете с екипа на Галерията."
+
+#: ../lib/setup.php:717
+#, php-format
+msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+msgstr "Само %d езика са на разположение. Ако ви липсва някой език, моля посетете %sGallery download page%s."
+
+#: ../lib/setup.php:739
+#, php-format
+msgid "You can check for more recent versions by visiting %s."
+msgstr "Можете да проверите за по-нова версия на %s."
+
+#: ../lib/setup.php:741
+#, php-format
+msgid "This version of %s was released on %s."
+msgstr "Тази версия на %s е публикувана на %s."
+
+#: ../lib/setup.php:743
+#, php-format
+msgid "This is a development build of %s that was released on %s."
+msgstr "Това е beta-версия на %s, която е публикувана на %s."
+
+#: ../lib/setup.php:752
+msgid "Please check regularly for updates."
+msgstr "Моля проверявайте често за по-нови версии. "
+
+#: ../lib/setup.php:771
+msgid "All gallery locales are available on this host."
+msgstr "Всички локализации на Галерията са на разположение в тази система."
+
+#: ../lib/setup.php:774
+#, php-format
+msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+msgstr "Има %d локализации които Галерията не успя да открие. Може да се наложи да изберете сами формата на датата."
+
+#: ../lib/setup.php:780
+#, php-format
+msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+msgstr "Датите в %d езика може да не бъдат форматирани правилно, защото съответстващите локализации липсват. Може да се наложи сами да изберете формата на датата за тях."
+
+#: ../lib/setup.php:785
+#, php-format
+msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+msgstr "Не успяхме да открием каквито и да е локализации. Ако сървъра ви е конфигуриран със забраната %s, това може да пречи на начина по който откриваме локализациите. За съжаление това означава, че формата на датата няма да се променя в зависимост от различните езици, но не пречи да продължите. "
+
+#: ../lib/setup.php:789
+#, php-format
+msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+msgstr "Не успяхме да открием каквито и да е локализации. Мулти-езиковите функции няма да работят. Моля инсталирайте желаните локализации или помолете Доставчика си да направи това. Този проблем се получава при %s системите. За повече информация моля погледнете тук: %sDebian local HowTo%s."
+
+#: ../lib/setup.php:791
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr "Само презададената локализация е на разположение за тази система, така че формата на датата няма да бъде променен за различните езици. "
+
+#: ../lib/setup.php:950 ../lib/setup.php:1030 ../setup/config_data.inc:445
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:684
+#: ../setup/config_data.inc:1151
+msgid "Advanced"
+msgstr "Advanced"
+
+#: ../lib/setup.php:950
+#, php-format
+msgid "<b>System</b> locale selection required"
+msgstr "Необходимо е да изберете локализация за <b>System</b>"
+
+#: ../lib/setup.php:951
+msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+msgstr "На машината ви има инсталирана повече от една подходяща <b>System</b>-локализация за следните езици. Моля изберете тази която мислите за най-подходяща. "
+
+#: ../lib/setup.php:953 ../lib/setup.php:1033
+msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgstr "Това е <b>само</b> за формата на датата и времето. Трябва да промените само за езиците които сте включили по-горе. "
+
+#: ../lib/setup.php:964 ../lib/setup.php:988
+msgid "System locale"
+msgstr "Системна локализация"
+
+#: ../lib/setup.php:1030
+#, php-format
+msgid "<b>System</b> locale problems"
+msgstr "Проблеми с локализацията на <b>System</b>"
+
+#: ../lib/setup.php:1031
+msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+msgstr "На системата ви няма намерени подходящи <b>системни</b>локализации за следните езици. Моля изберете тази която мислите за най-подходяща. "
+
+#: ../lib/setup.php:1074
+msgid "<b>safe_mode</b> is off."
+msgstr "<b>безопасния режим (safe mode)</b>  е изключен."
+
+#: ../lib/setup.php:1086
+msgid "<b>magic_quotes</b> are off."
+msgstr "<b>'magic quotes'</b> са изключени."
+
+#: ../lib/setup.php:1104
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr "В %s липсва %s на ред %d с %s %s."
+
+#: ../lib/setup.php:1105 ../lib/setup.php:1114 ../lib/setup.php:1119
+#: ../setup/config_data.inc:1604
+msgid "Vote words and values"
+msgstr "Думи и стойности на гласуването"
+
+#: ../lib/setup.php:1113
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr "В %s е празно на ред %d."
+
+#: ../lib/setup.php:1118
+#, php-format
+msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+msgstr "В %s, за името %s (ред %d) стойността %s трябва да е положително цяло число."
+
+#: ../lib/setup.php:1140
+msgid "<b>register_globals</b> is off."
+msgstr "<b>register_globals</b>  е изключено."
+
+#: ../lib/setup.php:1310
+msgid "Your passwords do not match!"
+msgstr "Паролите ви не съвпадат!"
+
+#: ../lib/setup.php:1321 ../setup/check_imagemagick.php:75
+#: ../setup/check_netpbm.php:75
+msgid "OK"
+msgstr "ОК"
+
+#: ../lib/setup.php:1326
+msgid "Valid admin email address given."
+msgstr "Дадения e-mail адрес е валиден."
+
+#: ../lib/setup.php:1333
+msgid "You must specify valid admin email addresses"
+msgstr "Трябва да въведете валиден e-mail адрес на администратора"
+
+#: ../lib/setup.php:1341
+#, php-format
+msgid "%s is not a valid email address."
+msgstr "%s не е валиден e-mail адрес."
+
+#: ../lib/setup.php:1350
+msgid "Valid sender email address given."
+msgstr "Дадения e-mail адрес на подателя е валиден."
+
+#: ../lib/setup.php:1352
+msgid "You must specify a valid sender email address"
+msgstr "Трябва да въведете валиден e-mail адрес на подател"
+
+#: ../lib/setup.php:1355
+#, php-format
+msgid "You must include %s in your welcome email"
+msgstr "Трябва да включите %s във вашия e-mail за Добре Дошли."
+
+#: ../lib/setup.php:1360
+#, php-format
+msgid "You must include %s or %s in your welcome email"
+msgstr "Трябва да включите %s или %s във вашия e-mail за Добре Дошли."
+
+#: ../lib/setup.php:1384
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr "Следните файлове са стари, повредени или липсват: <br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
+
+#: ../lib/setup.php:1386
+msgid "This should be fixed before proceeding"
+msgstr "Това трябва да се поправи преди да продължите."
+
+#: ../lib/setup.php:1387 ../lib/setup.php:1391
+#, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "Погледнете %sCheck Versions%s за повече подробности."
+
+#: ../lib/setup.php:1390
+#, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "Следните файлове на %d са по-нова версия от очакваната. Това е нормално, ако използвате 'pre-release', 'beta', 'CVS' или модифициран код."
+
+#: ../lib/setup.php:1395
+#, php-format
+msgid "All tested files up-to-date."
+msgstr "Всички проверени файлове са последна версия."
+
+#: ../lib/setup.php:1397
+#, php-format
+msgid "All %d tested files up-to-date."
+msgstr "Всички проверени файлoве на %d са последна версия."
+
+#: ../lib/setup.php:1406
+#, php-format
+msgid "this is new in version %s"
+msgstr "това е ново във версия %s"
+
+#: ../lib/setup.php:1411
+#, php-format
+msgid "Return to %s."
+msgstr "Назад към %s."
+
+#: ../lib/setup.php:1412
+msgid "Configuration Wizard"
+msgstr "Конфигуратор"
+
+#: ../lib/setup.php:1461
+#, php-format
+msgid "You must enter a password for the %s account."
+msgstr "Трябва да въведете парола за потребителя %s."
+
+#: ../lib/setup.php:1466
+#, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществуват един потребител с административни права, но не е наречен %s."
+
+#: ../lib/setup.php:1469
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществуват %d потребителя с административни права, но нито един от тях наречен %s."
+
+#: ../lib/setup.php:1471
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "Не е необходимо да въвеждате парола. Ако въведете парола, Галерията ще създаде потребител с административни права и името %s, и въведената парола."
+
+#: ../lib/setup.php:1480
+#, php-format
+msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществува потребител с името %s. Не е необходимо да въвеждате парола. Ако въведете парола, Галерията ще я използва като нова парола за потребителя %s."
+
+#: ../lib/setup.php:1487
+msgid "Admin password"
+msgstr "Парола на Администратора"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1506
+#: ../lib/setup.php:1514
+msgid "Full Name"
+msgstr "Вашето Име"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1508
+#: ../lib/setup.php:1516 ../setup/login.inc:93
+msgid "Username"
+msgstr "Потребител"
+
+#: ../lib/setup.php:1510
+msgid "Full name that you can click on to send email (mailto:)"
+msgstr "Пълното име на което цъквате за да изпратите e-mail (mailto:)"
+
+#: ../lib/setup.php:1512
+msgid "Username that you can click on to send email (mailto:)"
+msgstr "Потребителското име на което цъквате за да изпратите e-mail (mailto:)"
+
+#: ../lib/setup.php:1514 ../lib/setup.php:1516
+msgid "email address"
+msgstr "е-mail адреса"
+
+#: ../lib/setup.php:1527
+msgid "Your version of PHP handles this issue properly."
+msgstr "Версията на PHP която имате се справя нормално с тези проблеми."
+
+#: ../lib/setup.php:1544
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr "Файла липсва или не се чете. Моля преинсталирайте и пуснете теста отново."
+
+#: ../lib/setup.php:1548
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr "Моля уверете се че %s e последна версия."
+
+#: ../lib/setup.php:1553
+#, php-format
+msgid "Testing status of %d files."
+msgstr "Проверка на състоянието на %d файла."
+
+#: ../lib/setup.php:1560
+#, php-format
+msgid "Cannot read file %s."
+msgstr "Файла %s не се чете."
+
+#: ../lib/setup.php:1562
+msgid "File missing or unreadable."
+msgstr "Файла не съществува или не се чете."
+
+#: ../lib/setup.php:1567
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr "Няма информация за версията на %s. Файла или е стара версия или е развален."
+
+#: ../lib/setup.php:1569
+msgid "Missing version"
+msgstr "Липсваща версия"
+
+#: ../lib/setup.php:1576
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr "Има проблем с %s. Очакваната e версия %s (или по-нова), но е намерена версия %s."
+
+#: ../lib/setup.php:1578
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr "Очакваната e версия %s (или по-нова), но е намерена версия %s."
+
+#: ../lib/setup.php:1582
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr "%s e OK. Намерената версия (%s) е по-нова от очакваната (%s)"
+
+#: ../lib/setup.php:1584
+#, php-format
+msgid "Expected version %s but found %s."
+msgstr "Очакванaта версия e %s, но е намерена %s"
+
+#: ../lib/setup.php:1588
+#, php-format
+msgid "%s OK"
+msgstr "%s OK"
+
+#: ../lib/setup.php:1590
+#, php-format
+msgid "Found expected version %s."
+msgstr "Намерена е очакваната версия %s."
+
+#: ../lib/setup.php:1721
+msgid "This email will be sent when new accounts are created."
+msgstr "Този e-mail ще бъде изпратен когато са създадени нови потребители. "
+
+#: ../lib/setup.php:1722
+#, fuzzy
+msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+msgstr "Оставете това място празно за да бъде изпращано презададеното съобщение, което може да бъде преведено и на други езици. Презададеното съобщение е:"
+
+#: ../lib/setup.php:1723
+#, fuzzy
+msgid "The following placeholder can be used:"
+msgstr "Следните файлове са последна версия."
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -203,11 +648,6 @@ msgstr "Зареждане на конфигурацията. Ако видите грешка тук, най-вероятно е защот
 #: ../setup/check_imagemagick.php:61 ../setup/check_netpbm.php:61
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "По всичко личи, че не сте конфигурирали Галерията си. Моля стартирайте Конфигуратора и довършете конфигурацията."
-
-#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1323
-msgid "OK"
-msgstr "ОК"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -891,12 +1331,6 @@ msgstr "да"
 #: ../setup/config_data.inc:1693
 msgid "no"
 msgstr "не"
-
-#: ../setup/config_data.inc:445 ../setup/config_data.inc:674
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1151
-#: ../setup/functions.inc:952 ../setup/functions.inc:1032
-msgid "Advanced"
-msgstr "Advanced"
 
 #: ../setup/config_data.inc:445
 msgid "JPEG Quality"
@@ -1856,8 +2290,9 @@ msgid "(Advanced) If users complain about their RSS readers corrupting the chann
 msgstr "(Advanced) Ако потребителите се оплакват, че RSS програмите им развалят миниятюрните изображения, включете тази настройка. Ако я включите, RSS трансмисията ви няма да бъде виждана като RSS 2.0. "
 
 #: ../setup/config_data.inc:1256
+#, fuzzy
 msgid "Use Photo Tag"
-msgstr ""
+msgstr "Да използваме ли голяма снимка"
 
 #: ../setup/config_data.inc:1257
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
@@ -2245,11 +2680,6 @@ msgstr "Хоризонтално"
 #: ../setup/config_data.inc:1602
 msgid "Vertical"
 msgstr "Вертикално"
-
-#: ../setup/config_data.inc:1604 ../setup/functions.inc:1107
-#: ../setup/functions.inc:1116 ../setup/functions.inc:1121
-msgid "Vote words and values"
-msgstr "Думи и стойности на гласуването"
 
 #: ../setup/config_data.inc:1605
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
@@ -2705,7 +3135,7 @@ msgstr "Тази страница е за %s обновления които имат проблеми."
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Това позволява да проверите дали имате правилните версии на всички ваши %s файлове."
 
-#: ../setup/frame_test.php:29 ../setup/index.php:42
+#: ../setup/frame_test.php:29 ../setup/index.php:46
 msgid "Gallery Configuration"
 msgstr "Конфигурация на Галерията"
 
@@ -2747,437 +3177,7 @@ msgstr "Не може да се отвори %s"
 msgid "Close Window"
 msgstr "Затворете Прозореца"
 
-#: ../setup/functions.inc:149
-msgid "Please retype your password here"
-msgstr "Моля въведете отново паролата си тук"
-
-#: ../setup/functions.inc:163 ../setup/functions.inc:1108
-msgid "Name"
-msgstr "Име"
-
-#: ../setup/functions.inc:164 ../setup/functions.inc:1108
-msgid "Value"
-msgstr "Стойност"
-
-#: ../setup/functions.inc:202 ../setup/functions.inc:245
-#, fuzzy
-msgid "No content"
-msgstr "Съдържание на RSS"
-
-#: ../setup/functions.inc:372
-msgid "Missing value"
-msgstr "Липсваща стойност"
-
-#: ../setup/functions.inc:394
-msgid "<b>exec()</b> is not disabled on this server."
-msgstr "Функцията <b>exec()</b> не е изключена."
-
-#: ../setup/functions.inc:412
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "Не мога да прочета вашия <b>.htaccess</b> файл."
-
-#: ../setup/functions.inc:431
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s e ОК."
-
-#: ../setup/functions.inc:443
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>'mod_rewrite'</b> е позволен."
-
-#: ../setup/functions.inc:466
-msgid "Can't find <i>jhead</i>"
-msgstr "Не е намерен <i>jhead</i>!"
-
-#: ../setup/functions.inc:468
-msgid "<b>jhead</b> binary located."
-msgstr "<b>'jhead'</b> е намерен"
-
-#: ../setup/functions.inc:506
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "Без 'pnmcomp' и 'pamcomp' Галерията няма да може да добава водни знаци към изображеният ви, освен ако не използвате 'ImageMagick' и нямате комбинираната версия инсталирана."
-
-#: ../setup/functions.inc:514
-msgid "NetPBM not being used in this installation."
-msgstr "NetPBM не се използва в тази инсталация."
-
-#: ../setup/functions.inc:519 ../setup/functions.inc:617
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "Пътя към тази директория не може да бъде проверен (няма го в списъка на 'open_basedir')."
-
-#: ../setup/functions.inc:553 ../setup/functions.inc:634
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "Липсва незадължителния файл %s. %s"
-
-#: ../setup/functions.inc:556 ../setup/functions.inc:637
-#, php-format
-msgid "Can't find %s!"
-msgstr "Не можем да намерим %s!"
-
-#: ../setup/functions.inc:563 ../setup/functions.inc:644
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s не е 'executable'!"
-
-#: ../setup/functions.inc:575 ../setup/functions.inc:582
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "Всички %d от общо %d файла на 'NetPBM' са намерени"
-
-#: ../setup/functions.inc:606
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "Без комбинираната 'ImageMagick' програма, Галерията няма да може да добава водни знаци към изображенията, освен ако не използвате 'NetPBM' и нямате програмата 'pnmcomp' инсталирана."
-
-#: ../setup/functions.inc:612
-msgid "ImageMagick not being used in this installation."
-msgstr "ImageMagick не се използва в тази инсталация."
-
-#: ../setup/functions.inc:656 ../setup/functions.inc:663
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "Всички %d от общо %d файла на 'ImageMagick' са намерени"
-
-#: ../setup/functions.inc:685
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "Не е намерен <i>jpegtran</i>!"
-
-#: ../setup/functions.inc:687
-msgid "<b>jpegtran</b> binary located."
-msgstr "<b>jpegtran</b> е намерен"
-
-#: ../setup/functions.inc:698
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP поддържа <b>GNU gettext</b>."
-
-#: ../setup/functions.inc:700
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP не поддържа <b>GNU gettext</b>."
-
-#: ../setup/functions.inc:714
-msgid "No languages found."
-msgstr "Няма намерени езици."
-
-#: ../setup/functions.inc:716
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "По всичко личи, че не сте свалили никакви допълнителни езици. Това не е проблем! Галерията ще работи само на англииски. Забележка: Ако това не е вярно, проверете дали всички файлове от директорията 'locale' са разрешени за достъп от web-сървъра, или се свържете с екипа на Галерията."
-
-#: ../setup/functions.inc:719
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "Само %d езика са на разположение. Ако ви липсва някой език, моля посетете %sGallery download page%s."
-
-#: ../setup/functions.inc:741
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "Можете да проверите за по-нова версия на %s."
-
-#: ../setup/functions.inc:743
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "Тази версия на %s е публикувана на %s."
-
-#: ../setup/functions.inc:745
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "Това е beta-версия на %s, която е публикувана на %s."
-
-#: ../setup/functions.inc:754
-msgid "Please check regularly for updates."
-msgstr "Моля проверявайте често за по-нови версии. "
-
-#: ../setup/functions.inc:773
-msgid "All gallery locales are available on this host."
-msgstr "Всички локализации на Галерията са на разположение в тази система."
-
-#: ../setup/functions.inc:776
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Има %d локализации които Галерията не успя да открие. Може да се наложи да изберете сами формата на датата."
-
-#: ../setup/functions.inc:782
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "Датите в %d езика може да не бъдат форматирани правилно, защото съответстващите локализации липсват. Може да се наложи сами да изберете формата на датата за тях."
-
-#: ../setup/functions.inc:787
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "Не успяхме да открием каквито и да е локализации. Ако сървъра ви е конфигуриран със забраната %s, това може да пречи на начина по който откриваме локализациите. За съжаление това означава, че формата на датата няма да се променя в зависимост от различните езици, но не пречи да продължите. "
-
-#: ../setup/functions.inc:791
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "Не успяхме да открием каквито и да е локализации. Мулти-езиковите функции няма да работят. Моля инсталирайте желаните локализации или помолете Доставчика си да направи това. Този проблем се получава при %s системите. За повече информация моля погледнете тук: %sDebian local HowTo%s."
-
-#: ../setup/functions.inc:793
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "Само презададената локализация е на разположение за тази система, така че формата на датата няма да бъде променен за различните езици. "
-
-#: ../setup/functions.inc:952
-#, php-format
-msgid "<b>System</b> locale selection required"
-msgstr "Необходимо е да изберете локализация за <b>System</b>"
-
-#: ../setup/functions.inc:953
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "На машината ви има инсталирана повече от една подходяща <b>System</b>-локализация за следните езици. Моля изберете тази която мислите за най-подходяща. "
-
-#: ../setup/functions.inc:955 ../setup/functions.inc:1035
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr "Това е <b>само</b> за формата на датата и времето. Трябва да промените само за езиците които сте включили по-горе. "
-
-#: ../setup/functions.inc:966 ../setup/functions.inc:990
-msgid "System locale"
-msgstr "Системна локализация"
-
-#: ../setup/functions.inc:1032
-#, php-format
-msgid "<b>System</b> locale problems"
-msgstr "Проблеми с локализацията на <b>System</b>"
-
-#: ../setup/functions.inc:1033
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "На системата ви няма намерени подходящи <b>системни</b>локализации за следните езици. Моля изберете тази която мислите за най-подходяща. "
-
-#: ../setup/functions.inc:1076
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>безопасния режим (safe mode)</b>  е изключен."
-
-#: ../setup/functions.inc:1088
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>'magic quotes'</b> са изключени."
-
-#: ../setup/functions.inc:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "В %s липсва %s на ред %d с %s %s."
-
-#: ../setup/functions.inc:1115
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "В %s е празно на ред %d."
-
-#: ../setup/functions.inc:1120
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "В %s, за името %s (ред %d) стойността %s трябва да е положително цяло число."
-
-#: ../setup/functions.inc:1142
-msgid "<b>register_globals</b> is off."
-msgstr "<b>register_globals</b>  е изключено."
-
-#: ../setup/functions.inc:1312
-msgid "Your passwords do not match!"
-msgstr "Паролите ви не съвпадат!"
-
-#: ../setup/functions.inc:1328
-msgid "Valid admin email address given."
-msgstr "Дадения e-mail адрес е валиден."
-
-#: ../setup/functions.inc:1335
-msgid "You must specify valid admin email addresses"
-msgstr "Трябва да въведете валиден e-mail адрес на администратора"
-
-#: ../setup/functions.inc:1343
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s не е валиден e-mail адрес."
-
-#: ../setup/functions.inc:1352
-msgid "Valid sender email address given."
-msgstr "Дадения e-mail адрес на подателя е валиден."
-
-#: ../setup/functions.inc:1354
-msgid "You must specify a valid sender email address"
-msgstr "Трябва да въведете валиден e-mail адрес на подател"
-
-#: ../setup/functions.inc:1357
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "Трябва да включите %s във вашия e-mail за Добре Дошли."
-
-#: ../setup/functions.inc:1362
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "Трябва да включите %s или %s във вашия e-mail за Добре Дошли."
-
-#: ../setup/functions.inc:1386
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "Следните файлове са стари, повредени или липсват: <br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
-
-#: ../setup/functions.inc:1388
-msgid "This should be fixed before proceeding"
-msgstr "Това трябва да се поправи преди да продължите."
-
-#: ../setup/functions.inc:1389 ../setup/functions.inc:1393
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "Погледнете %sCheck Versions%s за повече подробности."
-
-#: ../setup/functions.inc:1392
-#, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "Следните файлове на %d са по-нова версия от очакваната. Това е нормално, ако използвате 'pre-release', 'beta', 'CVS' или модифициран код."
-
-#: ../setup/functions.inc:1397
-#, php-format
-msgid "All tested files up-to-date."
-msgstr "Всички проверени файлове са последна версия."
-
-#: ../setup/functions.inc:1399
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "Всички проверени файлoве на %d са последна версия."
-
-#: ../setup/functions.inc:1408
-#, php-format
-msgid "this is new in version %s"
-msgstr "това е ново във версия %s"
-
-#: ../setup/functions.inc:1413
-#, php-format
-msgid "Return to %s."
-msgstr "Назад към %s."
-
-#: ../setup/functions.inc:1414
-msgid "Configuration Wizard"
-msgstr "Конфигуратор"
-
-#: ../setup/functions.inc:1463
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "Трябва да въведете парола за потребителя %s."
-
-#: ../setup/functions.inc:1468
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществуват един потребител с административни права, но не е наречен %s."
-
-#: ../setup/functions.inc:1471
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществуват %d потребителя с административни права, но нито един от тях наречен %s."
-
-#: ../setup/functions.inc:1473
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Не е необходимо да въвеждате парола. Ако въведете парола, Галерията ще създаде потребител с административни права и името %s, и въведената парола."
-
-#: ../setup/functions.inc:1482
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "По всичко личи че вече сте конфигурирали Галерията, защото съществува потребител с името %s. Не е необходимо да въвеждате парола. Ако въведете парола, Галерията ще я използва като нова парола за потребителя %s."
-
-#: ../setup/functions.inc:1489
-msgid "Admin password"
-msgstr "Парола на Администратора"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1508 ../setup/functions.inc:1516
-msgid "Full Name"
-msgstr "Вашето Име"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1510 ../setup/functions.inc:1518
-#: ../setup/login.inc:93
-msgid "Username"
-msgstr "Потребител"
-
-#: ../setup/functions.inc:1512
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "Пълното име на което цъквате за да изпратите e-mail (mailto:)"
-
-#: ../setup/functions.inc:1514
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "Потребителското име на което цъквате за да изпратите e-mail (mailto:)"
-
-#: ../setup/functions.inc:1516 ../setup/functions.inc:1518
-msgid "email address"
-msgstr "е-mail адреса"
-
-#: ../setup/functions.inc:1529
-msgid "Your version of PHP handles this issue properly."
-msgstr "Версията на PHP която имате се справя нормално с тези проблеми."
-
-#: ../setup/functions.inc:1546
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "Файла липсва или не се чете. Моля преинсталирайте и пуснете теста отново."
-
-#: ../setup/functions.inc:1550
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "Моля уверете се че %s e последна версия."
-
-#: ../setup/functions.inc:1555
-#, php-format
-msgid "Testing status of %d files."
-msgstr "Проверка на състоянието на %d файла."
-
-#: ../setup/functions.inc:1562
-#, php-format
-msgid "Cannot read file %s."
-msgstr "Файла %s не се чете."
-
-#: ../setup/functions.inc:1564
-msgid "File missing or unreadable."
-msgstr "Файла не съществува или не се чете."
-
-#: ../setup/functions.inc:1569
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "Няма информация за версията на %s. Файла или е стара версия или е развален."
-
-#: ../setup/functions.inc:1571
-msgid "Missing version"
-msgstr "Липсваща версия"
-
-#: ../setup/functions.inc:1578
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "Има проблем с %s. Очакваната e версия %s (или по-нова), но е намерена версия %s."
-
-#: ../setup/functions.inc:1580
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Очакваната e версия %s (или по-нова), но е намерена версия %s."
-
-#: ../setup/functions.inc:1584
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s e OK. Намерената версия (%s) е по-нова от очакваната (%s)"
-
-#: ../setup/functions.inc:1586
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "Очакванaта версия e %s, но е намерена %s"
-
-#: ../setup/functions.inc:1590
-#, php-format
-msgid "%s OK"
-msgstr "%s OK"
-
-#: ../setup/functions.inc:1592
-#, php-format
-msgid "Found expected version %s."
-msgstr "Намерена е очакваната версия %s."
-
-#: ../setup/functions.inc:1722
-msgid "This email will be sent when new accounts are created."
-msgstr "Този e-mail ще бъде изпратен когато са създадени нови потребители. "
-
-#: ../setup/functions.inc:1723
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "Оставете това място празно за да бъде изпращано презададеното съобщение, което може да бъде преведено и на други езици. Презададеното съобщение е:"
-
-#: ../setup/functions.inc:1724
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "Следните файлове са последна версия."
-
-#: ../setup/index.php:144
+#: ../setup/index.php:148
 msgid "Security violation"
 msgstr "Нарушение на защитата"
 
@@ -3278,71 +3278,83 @@ msgstr "IP адрес на сървъра"
 msgid "Start over"
 msgstr "Започнете отново"
 
-#: ../setup/write.inc:157
+#: ../setup/write.inc:167
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "Променена е паролата за потребителя '%s'."
 
-#: ../setup/write.inc:161
+#: ../setup/write.inc:171
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "За вас е създаден потребител с името %s и с паролата която посочихте."
 
-#: ../setup/write.inc:175
+#: ../setup/write.inc:185
 msgid "Success!"
 msgstr "Успешно!"
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "Конфигурацията ви е записана успешно!"
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:196
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "За повишена сигурност на ващата система ви съветваме да използвате 'secure.sh' или да промените достъпа до файловете '.htaccess' и 'config.php' със 'chmod 644'"
 
-#: ../setup/write.inc:193
+#: ../setup/write.inc:203
 msgid "Note"
 msgstr "Внимание"
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:205
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr "За да увеличите сигурността на Галерията си, трябва да премахнете файла '%s' от директорията 'setup'."
 
-#: ../setup/write.inc:208
+#: ../setup/write.inc:218
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "Можете да пренастроите Галерията по всяко време, като стартирате Конфигуратора."
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "Данните ви ще бъдат записани, така че няма да се налага да ги въвеждате отново!"
 
-#: ../setup/write.inc:213
+#: ../setup/write.inc:223
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "Моля абонирайте се за '%s лист-а'. Тези кратки 'Email'-и ще ви държат информирани за важни промени в %s. В тях ние обявяваме нови версии, важни проблеми със стабилноста и сигурността на Галерията и техните решения."
 
-#: ../setup/write.inc:220
+#: ../setup/write.inc:230
 msgid "Enter the Gallery"
 msgstr "Влезте в Галерията"
 
-#: ../setup/write.inc:234
+#: ../setup/write.inc:244
 msgid "Failure"
 msgstr "Провал"
 
-#: ../setup/write.inc:235
+#: ../setup/write.inc:245
 #, php-format
 msgid "Unable to write to %s."
 msgstr "Не може да се записва в %s."
 
-#: ../setup/write.inc:238
+#: ../setup/write.inc:248
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "Липсва ви или %s или %s."
 
-#: ../setup/write.inc:242
+#: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Преглеждане на Настройките"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "Файла %s не съществува."
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "'PHP' инсталацията ви е конфигурирана с ограничението %s. Това може да попречи на Галерията да намери и провери необходимите файлове, дори и да сте минавали през Конфигуратора преди. Не се безпокойте прекалено много, ако тази страница ви покаже предупреждения; настройките ви независимо от това ще бъдат записани правилно. "
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "Внимание"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "Ако имате проблеми, можете да намерите помощ на %sСтраницата за Помощ на Галерията%s."

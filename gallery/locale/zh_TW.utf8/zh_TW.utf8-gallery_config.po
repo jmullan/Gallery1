@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-29 07:51+0200\n"
 "PO-Revision-Date: 2005-05-17 20:20+0800\n"
 "Last-Translator: \n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -35,6 +35,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "金質框"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "華麗金質框"
+
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
 msgstr "螺旋記事本"
@@ -42,14 +50,6 @@ msgstr "螺旋記事本"
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
 msgstr "在左側有白影框和螺旋記事本"
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "陰影"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "PNG透明影子在右邊和下面.除了黑色背景.適度的透明可以用在所有背景"
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -67,14 +67,6 @@ msgstr "拍立得集"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "大白框圍繞一疊相片.在下邊特別長"
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "金質框"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "華麗金質框"
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
 msgstr ""
@@ -82,6 +74,14 @@ msgstr ""
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
 msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "陰影"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "PNG透明影子在右邊和下面.除了黑色背景.適度的透明可以用在所有背景"
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -99,6 +99,451 @@ msgstr "木質框"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "木材質感框"
+
+#: ../lib/setup.php:147
+msgid "Please retype your password here"
+msgstr "請再輸入一次您的密碼"
+
+#: ../lib/setup.php:161 ../lib/setup.php:1106
+msgid "Name"
+msgstr "名稱"
+
+#: ../lib/setup.php:162 ../lib/setup.php:1106
+msgid "Value"
+msgstr "參數"
+
+#: ../lib/setup.php:200 ../lib/setup.php:243
+#, fuzzy
+msgid "No content"
+msgstr "RSS Content"
+
+#: ../lib/setup.php:370
+msgid "Missing value"
+msgstr "Missing value"
+
+#: ../lib/setup.php:392
+msgid "<b>exec()</b> is not disabled on this server."
+msgstr "<b>exec()</b> 在伺服器未被關閉"
+
+#: ../lib/setup.php:410
+msgid "I can read your <b>.htaccess</b> file."
+msgstr "可以讀取您的 .htaccess 檔案"
+
+#: ../lib/setup.php:429
+#, php-format
+msgid "PHP v%s is OK."
+msgstr "PHP v%s OK"
+
+#: ../lib/setup.php:441
+msgid "<b>mod_rewrite</b> is enabled."
+msgstr "<b>mod_rewrite</b> 開啟"
+
+#: ../lib/setup.php:464
+msgid "Can't find <i>jhead</i>"
+msgstr "無法找到<i>jhead</i>"
+
+#: ../lib/setup.php:466
+msgid "<b>jhead</b> binary located."
+msgstr "找到 jhead 可執行檔"
+
+#: ../lib/setup.php:504
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgstr "沒有 pnmcomp 和 pamcomp, Gallery無法製作浮水印影像, 除非您使用 Image Magick 和安裝可執行檔"
+
+#: ../lib/setup.php:512
+msgid "NetPBM not being used in this installation."
+msgstr "安裝過程中沒有使用 NetPBM"
+
+#: ../lib/setup.php:517 ../lib/setup.php:615
+msgid "Cannot verify this path (it's not in your open_basedir list)."
+msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
+
+#: ../lib/setup.php:551 ../lib/setup.php:632
+#, php-format
+msgid "Missing optional binary %s. %s"
+msgstr "遺失%s. %s"
+
+#: ../lib/setup.php:554 ../lib/setup.php:635
+#, php-format
+msgid "Can't find %s!"
+msgstr "找不到 %s! "
+
+#: ../lib/setup.php:561 ../lib/setup.php:642
+#, php-format
+msgid "%s is not executable!"
+msgstr "%s 不能執行! "
+
+#: ../lib/setup.php:573 ../lib/setup.php:580
+#, php-format
+msgid "%d of %d NetPBM binaries located."
+msgstr "需要 %2$d 個 NetPBM 可執行檔 找到 %1$d 個"
+
+#: ../lib/setup.php:604
+msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgstr "沒有合成, Gallery 無法製作浮水印影像,除非您使用 NetPBM 和安裝 pnmcomp "
+
+#: ../lib/setup.php:610
+msgid "ImageMagick not being used in this installation."
+msgstr "安裝過程中沒有使用 ImageMagick"
+
+#: ../lib/setup.php:654 ../lib/setup.php:661
+#, php-format
+msgid "%d of %d ImageMagick binaries located."
+msgstr "需要 %2$d 個 ImageMagick 可執行檔 找到 %1$d 個"
+
+#: ../lib/setup.php:683
+msgid "Can't find <i>jpegtran</i>!"
+msgstr "無法找到 <i>jpegtran</i>!"
+
+#: ../lib/setup.php:685
+msgid "<b>jpegtran</b> binary located."
+msgstr "找到 jpegtran"
+
+#: ../lib/setup.php:696
+msgid "PHP has <b>GNU gettext</b> support."
+msgstr "PHP 已支援 <b>GNU gettext</b>"
+
+#: ../lib/setup.php:698
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP 未支援 <b>GNU gettext</b>"
+
+#: ../lib/setup.php:712
+msgid "No languages found."
+msgstr "沒有找到任何語言. "
+
+#: ../lib/setup.php:714
+msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+msgstr "您並未下載任何額外的語言.這不是問題! Gallery會以英文顯示.注意: 如果不是如此,確認網路伺服器可以讀取所有資料夾的檔案或者請和Gallery團隊聯繫"
+
+#: ../lib/setup.php:717
+#, php-format
+msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+msgstr "有 %d 種語言存在, 如果您想要使用其他語言, 請在 %s 下載 %s. "
+
+#: ../lib/setup.php:739
+#, php-format
+msgid "You can check for more recent versions by visiting %s."
+msgstr "您可以點選 %s 察看是否有更新的版本. "
+
+#: ../lib/setup.php:741
+#, php-format
+msgid "This version of %s was released on %s."
+msgstr "這個版本的 %s 由第 %s 版釋出. "
+
+#: ../lib/setup.php:743
+#, php-format
+msgid "This is a development build of %s that was released on %s."
+msgstr "這是一個 %s 的發展版本, 由第 %s 版釋出. "
+
+#: ../lib/setup.php:752
+msgid "Please check regularly for updates."
+msgstr "請定期檢查是否有更新檔. "
+
+#: ../lib/setup.php:771
+msgid "All gallery locales are available on this host."
+msgstr "本伺服器支援所有的語系"
+
+#: ../lib/setup.php:774
+#, php-format
+msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+msgstr "Gallery有 %d 個語系無法確定,您可能要手動選擇日期格式"
+
+#: ../lib/setup.php:780
+#, php-format
+msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+msgstr "將有 %d 種語言的日期無法以正確格式顯示，因為所使用的語系不存在，但您仍可另外選擇新語系"
+
+#: ../lib/setup.php:785
+#, php-format
+msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+msgstr "無法偵測到任何的語系支援, 無法主動偵測語系的原因是您的伺服器有設定 %s 的限制條件. 很不幸地您的日期格式將不會隨著語系設定而有所改變, 不過您還是可以繼續下一步. "
+
+#: ../lib/setup.php:789
+#, php-format
+msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+msgstr "無法偵測到任何系統語系設定. 多國語系的功能將停用. 請安裝相關的語系設定或者洽詢您的網站提供者. 這是一個在 %s 系統的已知問題, 請參閱 %sDebian locale HowTo%s"
+
+#: ../lib/setup.php:791
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr "在這台機器上只有預設的語系存在, 所以日期格式將不會隨著語言的不同而有所改變. "
+
+#: ../lib/setup.php:950 ../lib/setup.php:1030 ../setup/config_data.inc:445
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:684
+#: ../setup/config_data.inc:1151
+msgid "Advanced"
+msgstr "進階"
+
+#: ../lib/setup.php:950
+#, php-format
+msgid "<b>System</b> locale selection required"
+msgstr "請選擇語系"
+
+#: ../lib/setup.php:951
+msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的. "
+
+#: ../lib/setup.php:953 ../lib/setup.php:1033
+msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgstr "本項僅供<b>日期與時間</b>格式設定. 您只需要修改上面的語言選項即可"
+
+#: ../lib/setup.php:964 ../lib/setup.php:988
+msgid "System locale"
+msgstr "系統語系"
+
+#: ../lib/setup.php:1030
+#, php-format
+msgid "<b>System</b> locale problems"
+msgstr "語系問題"
+
+#: ../lib/setup.php:1031
+msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+msgstr "在您的機器上沒有適合下列語言的語系, 請設定一個您認為最適合的"
+
+#: ../lib/setup.php:1074
+msgid "<b>safe_mode</b> is off."
+msgstr "<b>safe mode</b> 關閉"
+
+#: ../lib/setup.php:1086
+msgid "<b>magic_quotes</b> are off."
+msgstr "<b>magic quotes</b> 關閉"
+
+#: ../lib/setup.php:1104
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr "在 %s 中, 找不到 %s 在第 %d 列與 %s %s. "
+
+#: ../lib/setup.php:1105 ../lib/setup.php:1114 ../lib/setup.php:1119
+#: ../setup/config_data.inc:1604
+msgid "Vote words and values"
+msgstr "選項名稱與數值"
+
+#: ../lib/setup.php:1113
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr "在 %s 中, 第 %d 列為空白. "
+
+#: ../lib/setup.php:1118
+#, php-format
+msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+msgstr "在 %s 中, %s (第 %d 列) %s 應為正整數"
+
+#: ../lib/setup.php:1140
+msgid "<b>register_globals</b> is off."
+msgstr "<b>register_globals</b> 關閉"
+
+#: ../lib/setup.php:1310
+msgid "Your passwords do not match!"
+msgstr "您的管理者密碼不符合"
+
+#: ../lib/setup.php:1321 ../setup/check_imagemagick.php:75
+#: ../setup/check_netpbm.php:75
+msgid "OK"
+msgstr "OK"
+
+#: ../lib/setup.php:1326
+msgid "Valid admin email address given."
+msgstr "已指定正確的管理者電子信件地址. "
+
+#: ../lib/setup.php:1333
+msgid "You must specify valid admin email addresses"
+msgstr "您一定要輸入正確的管理者電子信件位址"
+
+#: ../lib/setup.php:1341
+#, php-format
+msgid "%s is not a valid email address."
+msgstr "%s 並非正確的管理者電子信件地址. "
+
+#: ../lib/setup.php:1350
+msgid "Valid sender email address given."
+msgstr "已指定正確的送信者電子信件地址. "
+
+#: ../lib/setup.php:1352
+msgid "You must specify a valid sender email address"
+msgstr "您一定要輸入正確的送信者信件地址"
+
+#: ../lib/setup.php:1355
+#, php-format
+msgid "You must include %s in your welcome email"
+msgstr "您必須將 %s 放入歡迎信件中"
+
+#: ../lib/setup.php:1360
+#, php-format
+msgid "You must include %s or %s in your welcome email"
+msgstr "您必須將 %s 或是 %s 放入歡迎信件中"
+
+#: ../lib/setup.php:1384
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr "下列檔案已過期損毀或遺失:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
+
+#: ../lib/setup.php:1386
+msgid "This should be fixed before proceeding"
+msgstr "這需要先被修復"
+
+#: ../lib/setup.php:1387 ../lib/setup.php:1391
+#, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "點選這裡 %s查看Version%s 進階資訊"
+
+#: ../lib/setup.php:1390
+#, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "%d檔案比預期更新.如果您是使用pre-release, bate, CVS或者修改過的編碼,這是可以的 "
+
+#: ../lib/setup.php:1395
+#, php-format
+msgid "All tested files up-to-date."
+msgstr "所有測試的檔案都是最新的"
+
+#: ../lib/setup.php:1397
+#, php-format
+msgid "All %d tested files up-to-date."
+msgstr "所有%d測試的檔案都是最新的"
+
+#: ../lib/setup.php:1406
+#, php-format
+msgid "this is new in version %s"
+msgstr "這是版本 %s 的新功能"
+
+#: ../lib/setup.php:1411
+#, php-format
+msgid "Return to %s."
+msgstr "返回 %s. "
+
+#: ../lib/setup.php:1412
+msgid "Configuration Wizard"
+msgstr "設定精靈"
+
+#: ../lib/setup.php:1461
+#, php-format
+msgid "You must enter a password for the %s account."
+msgstr "給%s帳號一個密碼"
+
+#: ../lib/setup.php:1466
+#, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "您已編輯Gallery因為已經有一個管理者的帳號但並不是%s."
+
+#: ../lib/setup.php:1469
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "您已編輯Gallery因為已經有 %d 個管理者帳號但並不是%s."
+
+#: ../lib/setup.php:1471
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "您不需要輸入密碼.但如果您輸入密碼,Gallery會用這密碼建立一個管理者的帳號%s "
+
+#: ../lib/setup.php:1480
+#, php-format
+msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+msgstr "您已編輯Gallery因為%s使用者已存在.您不需要輸入密碼.但您如果輸入密碼,Gallery會更改使用者%s的密碼"
+
+#: ../lib/setup.php:1487
+msgid "Admin password"
+msgstr "管理者密碼"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1506
+#: ../lib/setup.php:1514
+msgid "Full Name"
+msgstr "名稱"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1508
+#: ../lib/setup.php:1516 ../setup/login.inc:93
+msgid "Username"
+msgstr "使用者名稱"
+
+#: ../lib/setup.php:1510
+msgid "Full name that you can click on to send email (mailto:)"
+msgstr "寄email時的全名"
+
+#: ../lib/setup.php:1512
+msgid "Username that you can click on to send email (mailto:)"
+msgstr "寄email時的使用者姓名"
+
+#: ../lib/setup.php:1514 ../lib/setup.php:1516
+msgid "email address"
+msgstr "您的電子信箱地址："
+
+#: ../lib/setup.php:1527
+msgid "Your version of PHP handles this issue properly."
+msgstr "您目前PHP的版本可以處理此問題"
+
+#: ../lib/setup.php:1544
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr "檔案遺失或無法讀取.請重新安裝並重新執行此測試"
+
+#: ../lib/setup.php:1548
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr "請確定%s是最新的版本"
+
+#: ../lib/setup.php:1553
+#, php-format
+msgid "Testing status of %d files."
+msgstr "%d 檔案測試狀態"
+
+#: ../lib/setup.php:1560
+#, php-format
+msgid "Cannot read file %s."
+msgstr "無法讀取檔案%s"
+
+#: ../lib/setup.php:1562
+msgid "File missing or unreadable."
+msgstr "檔案遺失或無法讀取"
+
+#: ../lib/setup.php:1567
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr "無法找到%s的版本訊息.檔案為舊版本或已損毀"
+
+#: ../lib/setup.php:1569
+msgid "Missing version"
+msgstr "Missing version"
+
+#: ../lib/setup.php:1576
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr "%s有問題.預期%s版本或以上,但卻找到%s"
+
+#: ../lib/setup.php:1578
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr "預期%s版本或以上,但卻找到%s"
+
+#: ../lib/setup.php:1582
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr "%s Ok. 實際版本(%s)比預期的版本(%s)還新"
+
+#: ../lib/setup.php:1584
+#, php-format
+msgid "Expected version %s but found %s."
+msgstr "預期%s版本,但卻找到%s"
+
+#: ../lib/setup.php:1588
+#, php-format
+msgid "%s OK"
+msgstr "%s OK"
+
+#: ../lib/setup.php:1590
+#, php-format
+msgid "Found expected version %s."
+msgstr "找到預期的版本%s"
+
+#: ../lib/setup.php:1721
+msgid "This email will be sent when new accounts are created."
+msgstr "本封信件在帳號建立後自動寄出. "
+
+#: ../lib/setup.php:1722
+#, fuzzy
+msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+msgstr "此處空白時，代表拷貝預設值到其他語言選項中. 預設訊息是："
+
+#: ../lib/setup.php:1723
+#, fuzzy
+msgid "The following placeholder can be used:"
+msgstr "下面檔案是最新的"
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -203,11 +648,6 @@ msgstr "載入設定檔中. 如果有錯誤訊息產生, 有可能是您的設�
 #: ../setup/check_imagemagick.php:61 ../setup/check_netpbm.php:61
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "您的 Gallery 尚未設定完成, 請繼續執行設定精靈. "
-
-#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1323
-msgid "OK"
-msgstr "OK"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -891,12 +1331,6 @@ msgstr "是"
 #: ../setup/config_data.inc:1693
 msgid "no"
 msgstr "否"
-
-#: ../setup/config_data.inc:445 ../setup/config_data.inc:674
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1151
-#: ../setup/functions.inc:952 ../setup/functions.inc:1032
-msgid "Advanced"
-msgstr "進階"
 
 #: ../setup/config_data.inc:445
 msgid "JPEG Quality"
@@ -2246,11 +2680,6 @@ msgstr "水平"
 msgid "Vertical"
 msgstr "垂直"
 
-#: ../setup/config_data.inc:1604 ../setup/functions.inc:1107
-#: ../setup/functions.inc:1116 ../setup/functions.inc:1121
-msgid "Vote words and values"
-msgstr "選項名稱與數值"
-
 #: ../setup/config_data.inc:1605
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "允許您設定每個評比選項的實際顯示文字, 以及每個選項所代表的分數. "
@@ -2705,7 +3134,7 @@ msgstr "這頁是%s升級的問題"
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "這會讓您得知是否您的檔案 %s 使用正確的版本. "
 
-#: ../setup/frame_test.php:29 ../setup/index.php:42
+#: ../setup/frame_test.php:29 ../setup/index.php:46
 msgid "Gallery Configuration"
 msgstr "Gallery 設定"
 
@@ -2747,437 +3176,7 @@ msgstr "找不到 %s! "
 msgid "Close Window"
 msgstr "關閉視窗"
 
-#: ../setup/functions.inc:149
-msgid "Please retype your password here"
-msgstr "請再輸入一次您的密碼"
-
-#: ../setup/functions.inc:163 ../setup/functions.inc:1108
-msgid "Name"
-msgstr "名稱"
-
-#: ../setup/functions.inc:164 ../setup/functions.inc:1108
-msgid "Value"
-msgstr "參數"
-
-#: ../setup/functions.inc:202 ../setup/functions.inc:245
-#, fuzzy
-msgid "No content"
-msgstr "RSS Content"
-
-#: ../setup/functions.inc:372
-msgid "Missing value"
-msgstr "Missing value"
-
-#: ../setup/functions.inc:394
-msgid "<b>exec()</b> is not disabled on this server."
-msgstr "<b>exec()</b> 在伺服器未被關閉"
-
-#: ../setup/functions.inc:412
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "可以讀取您的 .htaccess 檔案"
-
-#: ../setup/functions.inc:431
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s OK"
-
-#: ../setup/functions.inc:443
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>mod_rewrite</b> 開啟"
-
-#: ../setup/functions.inc:466
-msgid "Can't find <i>jhead</i>"
-msgstr "無法找到<i>jhead</i>"
-
-#: ../setup/functions.inc:468
-msgid "<b>jhead</b> binary located."
-msgstr "找到 jhead 可執行檔"
-
-#: ../setup/functions.inc:506
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "沒有 pnmcomp 和 pamcomp, Gallery無法製作浮水印影像, 除非您使用 Image Magick 和安裝可執行檔"
-
-#: ../setup/functions.inc:514
-msgid "NetPBM not being used in this installation."
-msgstr "安裝過程中沒有使用 NetPBM"
-
-#: ../setup/functions.inc:519 ../setup/functions.inc:617
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "無法檢查該路徑 (不在您的 open_basedir 列表中)"
-
-#: ../setup/functions.inc:553 ../setup/functions.inc:634
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "遺失%s. %s"
-
-#: ../setup/functions.inc:556 ../setup/functions.inc:637
-#, php-format
-msgid "Can't find %s!"
-msgstr "找不到 %s! "
-
-#: ../setup/functions.inc:563 ../setup/functions.inc:644
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s 不能執行! "
-
-#: ../setup/functions.inc:575 ../setup/functions.inc:582
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "需要 %2$d 個 NetPBM 可執行檔 找到 %1$d 個"
-
-#: ../setup/functions.inc:606
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "沒有合成, Gallery 無法製作浮水印影像,除非您使用 NetPBM 和安裝 pnmcomp "
-
-#: ../setup/functions.inc:612
-msgid "ImageMagick not being used in this installation."
-msgstr "安裝過程中沒有使用 ImageMagick"
-
-#: ../setup/functions.inc:656 ../setup/functions.inc:663
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "需要 %2$d 個 ImageMagick 可執行檔 找到 %1$d 個"
-
-#: ../setup/functions.inc:685
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "無法找到 <i>jpegtran</i>!"
-
-#: ../setup/functions.inc:687
-msgid "<b>jpegtran</b> binary located."
-msgstr "找到 jpegtran"
-
-#: ../setup/functions.inc:698
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP 已支援 <b>GNU gettext</b>"
-
-#: ../setup/functions.inc:700
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP 未支援 <b>GNU gettext</b>"
-
-#: ../setup/functions.inc:714
-msgid "No languages found."
-msgstr "沒有找到任何語言. "
-
-#: ../setup/functions.inc:716
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "您並未下載任何額外的語言.這不是問題! Gallery會以英文顯示.注意: 如果不是如此,確認網路伺服器可以讀取所有資料夾的檔案或者請和Gallery團隊聯繫"
-
-#: ../setup/functions.inc:719
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "有 %d 種語言存在, 如果您想要使用其他語言, 請在 %s 下載 %s. "
-
-#: ../setup/functions.inc:741
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "您可以點選 %s 察看是否有更新的版本. "
-
-#: ../setup/functions.inc:743
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "這個版本的 %s 由第 %s 版釋出. "
-
-#: ../setup/functions.inc:745
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "這是一個 %s 的發展版本, 由第 %s 版釋出. "
-
-#: ../setup/functions.inc:754
-msgid "Please check regularly for updates."
-msgstr "請定期檢查是否有更新檔. "
-
-#: ../setup/functions.inc:773
-msgid "All gallery locales are available on this host."
-msgstr "本伺服器支援所有的語系"
-
-#: ../setup/functions.inc:776
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Gallery有 %d 個語系無法確定,您可能要手動選擇日期格式"
-
-#: ../setup/functions.inc:782
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "將有 %d 種語言的日期無法以正確格式顯示，因為所使用的語系不存在，但您仍可另外選擇新語系"
-
-#: ../setup/functions.inc:787
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "無法偵測到任何的語系支援, 無法主動偵測語系的原因是您的伺服器有設定 %s 的限制條件. 很不幸地您的日期格式將不會隨著語系設定而有所改變, 不過您還是可以繼續下一步. "
-
-#: ../setup/functions.inc:791
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "無法偵測到任何系統語系設定. 多國語系的功能將停用. 請安裝相關的語系設定或者洽詢您的網站提供者. 這是一個在 %s 系統的已知問題, 請參閱 %sDebian locale HowTo%s"
-
-#: ../setup/functions.inc:793
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "在這台機器上只有預設的語系存在, 所以日期格式將不會隨著語言的不同而有所改變. "
-
-#: ../setup/functions.inc:952
-#, php-format
-msgid "<b>System</b> locale selection required"
-msgstr "請選擇語系"
-
-#: ../setup/functions.inc:953
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的. "
-
-#: ../setup/functions.inc:955 ../setup/functions.inc:1035
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr "本項僅供<b>日期與時間</b>格式設定. 您只需要修改上面的語言選項即可"
-
-#: ../setup/functions.inc:966 ../setup/functions.inc:990
-msgid "System locale"
-msgstr "系統語系"
-
-#: ../setup/functions.inc:1032
-#, php-format
-msgid "<b>System</b> locale problems"
-msgstr "語系問題"
-
-#: ../setup/functions.inc:1033
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "在您的機器上沒有適合下列語言的語系, 請設定一個您認為最適合的"
-
-#: ../setup/functions.inc:1076
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>safe mode</b> 關閉"
-
-#: ../setup/functions.inc:1088
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>magic quotes</b> 關閉"
-
-#: ../setup/functions.inc:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "在 %s 中, 找不到 %s 在第 %d 列與 %s %s. "
-
-#: ../setup/functions.inc:1115
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "在 %s 中, 第 %d 列為空白. "
-
-#: ../setup/functions.inc:1120
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "在 %s 中, %s (第 %d 列) %s 應為正整數"
-
-#: ../setup/functions.inc:1142
-msgid "<b>register_globals</b> is off."
-msgstr "<b>register_globals</b> 關閉"
-
-#: ../setup/functions.inc:1312
-msgid "Your passwords do not match!"
-msgstr "您的管理者密碼不符合"
-
-#: ../setup/functions.inc:1328
-msgid "Valid admin email address given."
-msgstr "已指定正確的管理者電子信件地址. "
-
-#: ../setup/functions.inc:1335
-msgid "You must specify valid admin email addresses"
-msgstr "您一定要輸入正確的管理者電子信件位址"
-
-#: ../setup/functions.inc:1343
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s 並非正確的管理者電子信件地址. "
-
-#: ../setup/functions.inc:1352
-msgid "Valid sender email address given."
-msgstr "已指定正確的送信者電子信件地址. "
-
-#: ../setup/functions.inc:1354
-msgid "You must specify a valid sender email address"
-msgstr "您一定要輸入正確的送信者信件地址"
-
-#: ../setup/functions.inc:1357
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "您必須將 %s 放入歡迎信件中"
-
-#: ../setup/functions.inc:1362
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "您必須將 %s 或是 %s 放入歡迎信件中"
-
-#: ../setup/functions.inc:1386
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "下列檔案已過期損毀或遺失:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
-
-#: ../setup/functions.inc:1388
-msgid "This should be fixed before proceeding"
-msgstr "這需要先被修復"
-
-#: ../setup/functions.inc:1389 ../setup/functions.inc:1393
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "點選這裡 %s查看Version%s 進階資訊"
-
-#: ../setup/functions.inc:1392
-#, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d檔案比預期更新.如果您是使用pre-release, bate, CVS或者修改過的編碼,這是可以的 "
-
-#: ../setup/functions.inc:1397
-#, php-format
-msgid "All tested files up-to-date."
-msgstr "所有測試的檔案都是最新的"
-
-#: ../setup/functions.inc:1399
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "所有%d測試的檔案都是最新的"
-
-#: ../setup/functions.inc:1408
-#, php-format
-msgid "this is new in version %s"
-msgstr "這是版本 %s 的新功能"
-
-#: ../setup/functions.inc:1413
-#, php-format
-msgid "Return to %s."
-msgstr "返回 %s. "
-
-#: ../setup/functions.inc:1414
-msgid "Configuration Wizard"
-msgstr "設定精靈"
-
-#: ../setup/functions.inc:1463
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "給%s帳號一個密碼"
-
-#: ../setup/functions.inc:1468
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "您已編輯Gallery因為已經有一個管理者的帳號但並不是%s."
-
-#: ../setup/functions.inc:1471
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "您已編輯Gallery因為已經有 %d 個管理者帳號但並不是%s."
-
-#: ../setup/functions.inc:1473
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "您不需要輸入密碼.但如果您輸入密碼,Gallery會用這密碼建立一個管理者的帳號%s "
-
-#: ../setup/functions.inc:1482
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "您已編輯Gallery因為%s使用者已存在.您不需要輸入密碼.但您如果輸入密碼,Gallery會更改使用者%s的密碼"
-
-#: ../setup/functions.inc:1489
-msgid "Admin password"
-msgstr "管理者密碼"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1508 ../setup/functions.inc:1516
-msgid "Full Name"
-msgstr "名稱"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1510 ../setup/functions.inc:1518
-#: ../setup/login.inc:93
-msgid "Username"
-msgstr "使用者名稱"
-
-#: ../setup/functions.inc:1512
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "寄email時的全名"
-
-#: ../setup/functions.inc:1514
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "寄email時的使用者姓名"
-
-#: ../setup/functions.inc:1516 ../setup/functions.inc:1518
-msgid "email address"
-msgstr "您的電子信箱地址："
-
-#: ../setup/functions.inc:1529
-msgid "Your version of PHP handles this issue properly."
-msgstr "您目前PHP的版本可以處理此問題"
-
-#: ../setup/functions.inc:1546
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "檔案遺失或無法讀取.請重新安裝並重新執行此測試"
-
-#: ../setup/functions.inc:1550
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "請確定%s是最新的版本"
-
-#: ../setup/functions.inc:1555
-#, php-format
-msgid "Testing status of %d files."
-msgstr "%d 檔案測試狀態"
-
-#: ../setup/functions.inc:1562
-#, php-format
-msgid "Cannot read file %s."
-msgstr "無法讀取檔案%s"
-
-#: ../setup/functions.inc:1564
-msgid "File missing or unreadable."
-msgstr "檔案遺失或無法讀取"
-
-#: ../setup/functions.inc:1569
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "無法找到%s的版本訊息.檔案為舊版本或已損毀"
-
-#: ../setup/functions.inc:1571
-msgid "Missing version"
-msgstr "Missing version"
-
-#: ../setup/functions.inc:1578
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "%s有問題.預期%s版本或以上,但卻找到%s"
-
-#: ../setup/functions.inc:1580
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "預期%s版本或以上,但卻找到%s"
-
-#: ../setup/functions.inc:1584
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s Ok. 實際版本(%s)比預期的版本(%s)還新"
-
-#: ../setup/functions.inc:1586
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "預期%s版本,但卻找到%s"
-
-#: ../setup/functions.inc:1590
-#, php-format
-msgid "%s OK"
-msgstr "%s OK"
-
-#: ../setup/functions.inc:1592
-#, php-format
-msgid "Found expected version %s."
-msgstr "找到預期的版本%s"
-
-#: ../setup/functions.inc:1722
-msgid "This email will be sent when new accounts are created."
-msgstr "本封信件在帳號建立後自動寄出. "
-
-#: ../setup/functions.inc:1723
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "此處空白時，代表拷貝預設值到其他語言選項中. 預設訊息是："
-
-#: ../setup/functions.inc:1724
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "下面檔案是最新的"
-
-#: ../setup/index.php:144
+#: ../setup/index.php:148
 msgid "Security violation"
 msgstr "違反安全性原則"
 
@@ -3278,71 +3277,83 @@ msgstr "伺服器 IP 位置"
 msgid "Start over"
 msgstr "重來一次"
 
-#: ../setup/write.inc:157
+#: ../setup/write.inc:167
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "使用者%s的密碼已更改"
 
-#: ../setup/write.inc:161
+#: ../setup/write.inc:171
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "已為您建立 %s 帳號, 並使用您指定的密碼. "
 
-#: ../setup/write.inc:175
+#: ../setup/write.inc:185
 msgid "Success!"
 msgstr "成功! "
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "您的設定檔案已經成功儲存了! "
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:196
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "為了提高安全性,我們強烈建議您將.htacces和config.php改變至644"
 
-#: ../setup/write.inc:193
+#: ../setup/write.inc:203
 msgid "Note"
 msgstr "注意"
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:205
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr "若要確定您的Gallery設定安全.您必須從設定目錄移除%s檔案"
 
-#: ../setup/write.inc:208
+#: ../setup/write.inc:218
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "您可以在任何時候藉由這個設定精靈重新設定 Gallery. "
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "它會讀取您先前的設定, 這樣子您就不用重新輸入一遍了! "
 
-#: ../setup/write.inc:213
+#: ../setup/write.inc:223
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "請訂閱%s郵件.這是很小的郵件可通知您%s重要的更改.我們利用郵件公告新版本.重要bug修復和任何安全性問題與解決方式"
 
-#: ../setup/write.inc:220
+#: ../setup/write.inc:230
 msgid "Enter the Gallery"
 msgstr "進入 Gallery"
 
-#: ../setup/write.inc:234
+#: ../setup/write.inc:244
 msgid "Failure"
 msgstr "失敗"
 
-#: ../setup/write.inc:235
+#: ../setup/write.inc:245
 #, php-format
 msgid "Unable to write to %s."
 msgstr "無法寫入 %s. "
 
-#: ../setup/write.inc:238
+#: ../setup/write.inc:248
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "您不是沒有 %s 就是沒有 %s. "
 
-#: ../setup/write.inc:242
+#: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "重新瀏覽設定"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "檔案 %s 並不存在. "
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "您的PHP安裝設定受到 %s 的限制, 即使您已執行過設定精靈, 仍會導致 Gallery 檢測您的可執行檔時有某種程度的困難. 您可以不用太過於擔心這個警告, 您的設定還是會完整的儲存. "
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "注意"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "如果您碰到任何問題, 應該先在 %sGallery Help Page%s 上尋找答案. "

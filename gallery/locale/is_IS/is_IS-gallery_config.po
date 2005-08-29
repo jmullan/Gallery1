@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-29 07:51+0200\n"
 "PO-Revision-Date: 2005-05-09 22:07+0100\n"
 "Last-Translator: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
 "Language-Team: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
@@ -38,6 +38,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "Gylltur rammi"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "Flottur gylltur rammi"
+
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
 msgstr "Gormabók"
@@ -45,14 +53,6 @@ msgstr "Gormabók"
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
 msgstr "Hvítur skygður rammi í gormabók, með gorminn á vinstrihlið."
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Skuggar"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "Gegnsæir PNG skuggar munu falla til hægri og niður á við. Það ætti að ganga upp á móti flestum bakgrunnum, fyrir utan svart"
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -70,14 +70,6 @@ msgstr "Polaroid myndir"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "Stakkur af myndum með stórum hvítum ramma, frekar víður að neðan"
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Gylltur rammi"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "Flottur gylltur rammi"
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
 msgstr ""
@@ -85,6 +77,14 @@ msgstr ""
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
 msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "Skuggar"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "Gegnsæir PNG skuggar munu falla til hægri og niður á við. Það ætti að ganga upp á móti flestum bakgrunnum, fyrir utan svart"
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -102,6 +102,451 @@ msgstr "Viðarrammi"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr "Viðarrammi með áferð"
+
+#: ../lib/setup.php:147
+msgid "Please retype your password here"
+msgstr "Vinsamlegast stimplaðu aftur inn lykilorðið þitt hér"
+
+#: ../lib/setup.php:161 ../lib/setup.php:1106
+msgid "Name"
+msgstr "Nafn"
+
+#: ../lib/setup.php:162 ../lib/setup.php:1106
+msgid "Value"
+msgstr "Gildi"
+
+#: ../lib/setup.php:200 ../lib/setup.php:243
+#, fuzzy
+msgid "No content"
+msgstr "Innihald RSS"
+
+#: ../lib/setup.php:370
+msgid "Missing value"
+msgstr "Gildi vantar"
+
+#: ../lib/setup.php:392
+msgid "<b>exec()</b> is not disabled on this server."
+msgstr "<b>exec()</b> er ekki óvirkt á þessum þjóni"
+
+#: ../lib/setup.php:410
+msgid "I can read your <b>.htaccess</b> file."
+msgstr "Get lesið .htaccess skrána þína"
+
+#: ../lib/setup.php:429
+#, php-format
+msgid "PHP v%s is OK."
+msgstr "PHP útgáfa %s er í lagi."
+
+#: ../lib/setup.php:441
+msgid "<b>mod_rewrite</b> is enabled."
+msgstr "<b>mod_rewrite</b> er virkt."
+
+#: ../lib/setup.php:464
+msgid "Can't find <i>jhead</i>"
+msgstr "Finn ekki <i>jhead</i>"
+
+#: ../lib/setup.php:466
+msgid "<b>jhead</b> binary located."
+msgstr "<b>jhead</b> forritð fannst."
+
+#: ../lib/setup.php:504
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgstr "Án pnmcomp og pamcomp mun Gallery ekki geta vatnsmerkt myndirnar þínar, nema að þú notir ImageMagick og hafir composite forrit uppsett."
+
+#: ../lib/setup.php:512
+msgid "NetPBM not being used in this installation."
+msgstr "NetPBM er ekki í notkun í þessari uppsetningu."
+
+#: ../lib/setup.php:517 ../lib/setup.php:615
+msgid "Cannot verify this path (it's not in your open_basedir list)."
+msgstr "Get ekki staðfest þessa slóð (er ekki hluti af open_basedir lista)."
+
+#: ../lib/setup.php:551 ../lib/setup.php:632
+#, php-format
+msgid "Missing optional binary %s. %s"
+msgstr "Finn ekki valfrjálst hjálparforrit %s. %s"
+
+#: ../lib/setup.php:554 ../lib/setup.php:635
+#, php-format
+msgid "Can't find %s!"
+msgstr "Finn ekki %s!"
+
+#: ../lib/setup.php:561 ../lib/setup.php:642
+#, php-format
+msgid "%s is not executable!"
+msgstr "Hef ekki heimild til að keyra %s!"
+
+#: ../lib/setup.php:573 ../lib/setup.php:580
+#, php-format
+msgid "%d of %d NetPBM binaries located."
+msgstr "%d af %d NetPBM forritum fundin."
+
+#: ../lib/setup.php:604
+msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgstr "Gallery getur ekki vatnsmerkt myndirnar þínar á composite; nema að þú notir NetPBM og hafir pnmcomp forritið uppsett."
+
+#: ../lib/setup.php:610
+msgid "ImageMagick not being used in this installation."
+msgstr "ImageMagick er ekki í notkun í þessari uppsetningu."
+
+#: ../lib/setup.php:654 ../lib/setup.php:661
+#, php-format
+msgid "%d of %d ImageMagick binaries located."
+msgstr "%d af %d ImageMagick forritum fundin."
+
+#: ../lib/setup.php:683
+msgid "Can't find <i>jpegtran</i>!"
+msgstr "Get ekki fundið <i>jpegtran</i>!"
+
+#: ../lib/setup.php:685
+msgid "<b>jpegtran</b> binary located."
+msgstr "<b>jpegtran</b> forritð fannst."
+
+#: ../lib/setup.php:696
+msgid "PHP has <b>GNU gettext</b> support."
+msgstr "PHP uppsetningin styður <b>GNU gettext</b>."
+
+#: ../lib/setup.php:698
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP uppsetningin styður ekki <b>GNU gettext</b>."
+
+#: ../lib/setup.php:712
+msgid "No languages found."
+msgstr "Engin tungumál fundust"
+
+#: ../lib/setup.php:714
+msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+msgstr "Þú virðist ekki hafa náð í nein önnur tungumál. Það er ekki vandamál!  Gallery mun aðeins birtast á ensku.  Ath.: ef þetta er ekki rétt, aðgættu þá að allar skrár í locale möppunni séu lesanlegar fyrir vefþjónsnotandann, eða komdu þér í samband við Gallery hópinn."
+
+#: ../lib/setup.php:717
+#, php-format
+msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+msgstr "%d tungumál eru til staðar.  Ef þig vantar þýðingar, farðu þá á %sGallery niðurhals síðuna%s."
+
+#: ../lib/setup.php:739
+#, php-format
+msgid "You can check for more recent versions by visiting %s."
+msgstr "Þú getur gáð að nýrri útgáfum með því að fara á %s."
+
+#: ../lib/setup.php:741
+#, php-format
+msgid "This version of %s was released on %s."
+msgstr "Þessi útgáfa af %s var gefin út %s."
+
+#: ../lib/setup.php:743
+#, php-format
+msgid "This is a development build of %s that was released on %s."
+msgstr "Þetta er þróunarútgáfa af %s sem var gefin út þann %s."
+
+#: ../lib/setup.php:752
+msgid "Please check regularly for updates."
+msgstr "Vinsamlegast athugið reglulega hvort uppfærsla finnst."
+
+#: ../lib/setup.php:771
+msgid "All gallery locales are available on this host."
+msgstr "Allar Gallery þýðingar eru til staðar á þessum þjóni."
+
+#: ../lib/setup.php:774
+#, php-format
+msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+msgstr "Það eru %d þýðingar sem Gallery gat ekki fundið.  Þú gætir þurft að velja dagsetningarform handvirkt."
+
+#: ../lib/setup.php:780
+#, php-format
+msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+msgstr "Dagsetningar í %d tungumálum gætu birst á röngu formi, vegna þess að samsvarandi staðbundnar stillingar eru ekki til staðar. Þú gætir þurft að velja dagsetningarform handvirkt fyrir þessi tungumál."
+
+#: ../lib/setup.php:785
+#, php-format
+msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+msgstr "Við fundum engar staðbundnar stillingar.  Hins vegar er PHPuppsetning þín stillt með %s-takmörkuninni, sem gæti truflað það hvernig við veljum staðbundnar stillingar.  Því miður þýðir þetta að dagsetningarformið verður ekki mismunandi fyrir mismunandi tungumál.  En það er allt í lagi að halda áfram."
+
+#: ../lib/setup.php:789
+#, php-format
+msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+msgstr "Við fundum engar staðbundar stillingar.  Margtunguvirkni verður gerð óvirk.  Vinsamlegast settu upp viðeigandi staðbundar stillingar eða biddu umsjónarmanninn um að gera það.  Þetta vandamál er þekkt á %s kerfum.  Í þessu tilfelli ættir þú að líta á þetta: %sDebian locale HowTo%s."
+
+#: ../lib/setup.php:791
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr "Aðeins sjálfgefin staðbundin stilling á þessari vél er til boða, svo að dagsetningarsnið mun ekki breytast með mismunandi tungumálum."
+
+#: ../lib/setup.php:950 ../lib/setup.php:1030 ../setup/config_data.inc:445
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:684
+#: ../setup/config_data.inc:1151
+msgid "Advanced"
+msgstr "Fyrir lengra komna"
+
+#: ../lib/setup.php:950
+#, php-format
+msgid "<b>System</b> locale selection required"
+msgstr "Þú þarft að velja <b>staðbundar stillingar</b>"
+
+#: ../lib/setup.php:951
+msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+msgstr "Það eru fleiri en ein hentug <b>staðbundin stilling</b> uppsett á vélinni þinni fyrir eftirfarandi tungumál. Veldu eina sem þú heldur að sé hentug."
+
+#: ../lib/setup.php:953 ../lib/setup.php:1033
+msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgstr "Þetta er <b>aðeins</b> fyrir dagsetningar- og tímasnið. Það þarf einungis að breyta tungumálum sem þú virkjaðir hér á undan."
+
+#: ../lib/setup.php:964 ../lib/setup.php:988
+msgid "System locale"
+msgstr "Staðbundnar stillingar kerfisins"
+
+#: ../lib/setup.php:1030
+#, php-format
+msgid "<b>System</b> locale problems"
+msgstr "Villa við að finna <b>staðbundar stillingar fyrir kerfið</b>"
+
+#: ../lib/setup.php:1031
+msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+msgstr "Það virðast ekki vera neinar hentugar <b>kerfis</b> staðbundar stillingar uppsettar á vélinni þinni fyrir eftirfarandi tungumál. Veldu eina sem þú heldur að sé hentug."
+
+#: ../lib/setup.php:1074
+msgid "<b>safe_mode</b> is off."
+msgstr "<b>safe mode</b> er óvirkt."
+
+#: ../lib/setup.php:1086
+msgid "<b>magic_quotes</b> are off."
+msgstr "<b>magic_quotes</b> er óvirkt."
+
+#: ../lib/setup.php:1104
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr "Í %s vantar gildið %s í röð %d með %s %s."
+
+#: ../lib/setup.php:1105 ../lib/setup.php:1114 ../lib/setup.php:1119
+#: ../setup/config_data.inc:1604
+msgid "Vote words and values"
+msgstr "Orð og gildi í atkvæðagreiðslum"
+
+#: ../lib/setup.php:1113
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr "Í %s, tómt gildi í röð %d."
+
+#: ../lib/setup.php:1118
+#, php-format
+msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+msgstr "Í %s, fyrir nafn %s (röð %d) ætti gildið %s að vera jákvæð heiltala"
+
+#: ../lib/setup.php:1140
+msgid "<b>register_globals</b> is off."
+msgstr "<b>register_globals</b> er óvirkt."
+
+#: ../lib/setup.php:1310
+msgid "Your passwords do not match!"
+msgstr "Umsjónarlykilorðin þín passa ekki saman!"
+
+#: ../lib/setup.php:1321 ../setup/check_imagemagick.php:75
+#: ../setup/check_netpbm.php:75
+msgid "OK"
+msgstr "Í lagi"
+
+#: ../lib/setup.php:1326
+msgid "Valid admin email address given."
+msgstr "Gilt umsjónarmanns tölvupóstfang gefið upp."
+
+#: ../lib/setup.php:1333
+msgid "You must specify valid admin email addresses"
+msgstr "Þú verður að gefa upp gilt tölvupóstfang fyrir umsjónarmann"
+
+#: ../lib/setup.php:1341
+#, php-format
+msgid "%s is not a valid email address."
+msgstr "%s er ekki gilt tölvupóstfang."
+
+#: ../lib/setup.php:1350
+msgid "Valid sender email address given."
+msgstr "Gilt tölvupóstang sendanda gefið."
+
+#: ../lib/setup.php:1352
+msgid "You must specify a valid sender email address"
+msgstr "Þú verður að gefa upp gilt tölvupóstfang sendanda."
+
+#: ../lib/setup.php:1355
+#, php-format
+msgid "You must include %s in your welcome email"
+msgstr "Þú verður að hafa %s með í ávarpspóstinum"
+
+#: ../lib/setup.php:1360
+#, php-format
+msgid "You must include %s or %s in your welcome email"
+msgstr "Þú verður að hafa %s eða %s í ávarpspóstinum"
+
+#: ../lib/setup.php:1384
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr "Eftirfarandi skrár eru úreltar, skemmdar eða týndar.<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+
+#: ../lib/setup.php:1386
+msgid "This should be fixed before proceeding"
+msgstr "Þetta ætti að laga áður en lengra er haldið."
+
+#: ../lib/setup.php:1387 ../lib/setup.php:1391
+#, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "Líttu á %sskoða útgáfu%s til að fá nánari upplýsingar."
+
+#: ../lib/setup.php:1390
+#, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota for útgáfu, beta útgáfu, CVS útgáfu eða breyttan kóða."
+
+#: ../lib/setup.php:1395
+#, php-format
+msgid "All tested files up-to-date."
+msgstr "Allar skrár reyndust uppfærðar"
+
+#: ../lib/setup.php:1397
+#, php-format
+msgid "All %d tested files up-to-date."
+msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýlegar."
+
+#: ../lib/setup.php:1406
+#, php-format
+msgid "this is new in version %s"
+msgstr "þetta er nýtt í útgáfu %s"
+
+#: ../lib/setup.php:1411
+#, php-format
+msgid "Return to %s."
+msgstr "Til baka í %s"
+
+#: ../lib/setup.php:1412
+msgid "Configuration Wizard"
+msgstr "Gallery: uppsetningarferli"
+
+#: ../lib/setup.php:1461
+#, php-format
+msgid "You must enter a password for the %s account."
+msgstr "Þú verður að gefa upp lykilorð fyrir %s notandann."
+
+#: ../lib/setup.php:1466
+#, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "Það virðist sem þú hafir sett Gallery upp áður, því það er til stjórnandi, en hann heitir ekki %s."
+
+#: ../lib/setup.php:1469
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "Það virðist sem þú hafir sett Gallery upp áður, því það er til %d stjórnendur, en enginn þeirra heitir ekki %s."
+
+#: ../lib/setup.php:1471
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "Þú þarft ekki að gefa upp lykilorð. En ef þú gerir það, mun Gallery búa til stjórnand að nafni %s með því lykilorði."
+
+#: ../lib/setup.php:1480
+#, php-format
+msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+msgstr "Það virðist sem þú hafir sett Gallery upp áður, því notandi að nafni %s er til. Þú þarft ekki að gefa upp lykilorð. En ef þú gerir það, mun Gallery breyta lykilorði fyrir þann %s notanda."
+
+#: ../lib/setup.php:1487
+msgid "Admin password"
+msgstr "Lykilorð stjórnanda"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1506
+#: ../lib/setup.php:1514
+msgid "Full Name"
+msgstr "Fullt nafn"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1508
+#: ../lib/setup.php:1516 ../setup/login.inc:93
+msgid "Username"
+msgstr "Notandanafn"
+
+#: ../lib/setup.php:1510
+msgid "Full name that you can click on to send email (mailto:)"
+msgstr "Fullt nafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
+
+#: ../lib/setup.php:1512
+msgid "Username that you can click on to send email (mailto:)"
+msgstr "Notendanafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
+
+#: ../lib/setup.php:1514 ../lib/setup.php:1516
+msgid "email address"
+msgstr "tölvupóstfang"
+
+#: ../lib/setup.php:1527
+msgid "Your version of PHP handles this issue properly."
+msgstr "Þín útgáfa af PHP virkar vel undir þesum kringumstæðum."
+
+#: ../lib/setup.php:1544
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr "Skrá vantar eða ekki lesanleg. Vinsamlegast setjið inn og keyrið aftur þetta próf."
+
+#: ../lib/setup.php:1548
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr "Gangið úr skugga um að %s sé nýjasta útgáfa."
+
+#: ../lib/setup.php:1553
+#, php-format
+msgid "Testing status of %d files."
+msgstr "Athuga stöðu %d skráa"
+
+#: ../lib/setup.php:1560
+#, php-format
+msgid "Cannot read file %s."
+msgstr "Get ekki lesið skrá %s."
+
+#: ../lib/setup.php:1562
+msgid "File missing or unreadable."
+msgstr "Skrá vantar eða er ólæsileg."
+
+#: ../lib/setup.php:1567
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr "Útgáfu upplýsingar fyrir %s fundust ekki, Forritið er annað hvort of gamalt eða gallað."
+
+#: ../lib/setup.php:1569
+msgid "Missing version"
+msgstr "Röng útgáfa"
+
+#: ../lib/setup.php:1576
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr "Vandamál með %s. Vænti að finna útgáfu %s (eða nýrri) en fann %s."
+
+#: ../lib/setup.php:1578
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr "Vænti að finna útgáfu %s (eða nýrri) en fann einungis %s"
+
+#: ../lib/setup.php:1582
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr "%s er í lagi.  Útgáfa forrits (%s) er nýrri útgáfa en vonast var til (%s)"
+
+#: ../lib/setup.php:1584
+#, php-format
+msgid "Expected version %s but found %s."
+msgstr "Vænti þess að finna útgáfu %s en fann %s."
+
+#: ../lib/setup.php:1588
+#, php-format
+msgid "%s OK"
+msgstr "%s Í lagi"
+
+#: ../lib/setup.php:1590
+#, php-format
+msgid "Found expected version %s."
+msgstr "Fann útgáfu sem ég vænti %s."
+
+#: ../lib/setup.php:1721
+msgid "This email will be sent when new accounts are created."
+msgstr "Þetta tölvuskeyti verður sent þegar nýir notendur eru skráðir."
+
+#: ../lib/setup.php:1722
+#, fuzzy
+msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+msgstr "Skildu þetta svið eftir tómt til þess að fá sjálfgefin texta sem hægt er að þýða í önnur tungumál. Sjálfgefni textinn er:"
+
+#: ../lib/setup.php:1723
+#, fuzzy
+msgid "The following placeholder can be used:"
+msgstr "Eftirfarandi skrár eru ný uppfærðar."
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -206,11 +651,6 @@ msgstr "Hleð inn uppsetningarskrám.  Ef þú sérð villuboð hér, þá er það líklega 
 #: ../setup/check_imagemagick.php:61 ../setup/check_netpbm.php:61
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Þú virðist ekki hafa sett upp Gallery. Vinsamlegast keyrðu og kláraðu uppsetningarferilinn."
-
-#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1323
-msgid "OK"
-msgstr "Í lagi"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -894,12 +1334,6 @@ msgstr "já"
 #: ../setup/config_data.inc:1693
 msgid "no"
 msgstr "nei"
-
-#: ../setup/config_data.inc:445 ../setup/config_data.inc:674
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1151
-#: ../setup/functions.inc:952 ../setup/functions.inc:1032
-msgid "Advanced"
-msgstr "Fyrir lengra komna"
 
 #: ../setup/config_data.inc:445
 msgid "JPEG Quality"
@@ -2249,11 +2683,6 @@ msgstr "Lárétt"
 msgid "Vertical"
 msgstr "Lóðrétt"
 
-#: ../setup/config_data.inc:1604 ../setup/functions.inc:1107
-#: ../setup/functions.inc:1116 ../setup/functions.inc:1121
-msgid "Vote words and values"
-msgstr "Orð og gildi í atkvæðagreiðslum"
-
 #: ../setup/config_data.inc:1605
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "Þetta gerir þér kleift að stilla textann sem birtist fyrir hvern valkost í atkvæðagreiðslu, og að auki hversu margra stiga virði sá valkostur er."
@@ -2709,7 +3138,7 @@ msgstr "Þessi síða er fyrir %s uppfærslur sem hafa lent í vandræðum."
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Athuga hvort að nýjustu útgáfur af öllum %s Gallery skrám eru til staðar"
 
-#: ../setup/frame_test.php:29 ../setup/index.php:42
+#: ../setup/frame_test.php:29 ../setup/index.php:46
 msgid "Gallery Configuration"
 msgstr "Uppsetning Gallery"
 
@@ -2751,437 +3180,7 @@ msgstr "Finn ekki %s"
 msgid "Close Window"
 msgstr "Loka glugga"
 
-#: ../setup/functions.inc:149
-msgid "Please retype your password here"
-msgstr "Vinsamlegast stimplaðu aftur inn lykilorðið þitt hér"
-
-#: ../setup/functions.inc:163 ../setup/functions.inc:1108
-msgid "Name"
-msgstr "Nafn"
-
-#: ../setup/functions.inc:164 ../setup/functions.inc:1108
-msgid "Value"
-msgstr "Gildi"
-
-#: ../setup/functions.inc:202 ../setup/functions.inc:245
-#, fuzzy
-msgid "No content"
-msgstr "Innihald RSS"
-
-#: ../setup/functions.inc:372
-msgid "Missing value"
-msgstr "Gildi vantar"
-
-#: ../setup/functions.inc:394
-msgid "<b>exec()</b> is not disabled on this server."
-msgstr "<b>exec()</b> er ekki óvirkt á þessum þjóni"
-
-#: ../setup/functions.inc:412
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "Get lesið .htaccess skrána þína"
-
-#: ../setup/functions.inc:431
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP útgáfa %s er í lagi."
-
-#: ../setup/functions.inc:443
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>mod_rewrite</b> er virkt."
-
-#: ../setup/functions.inc:466
-msgid "Can't find <i>jhead</i>"
-msgstr "Finn ekki <i>jhead</i>"
-
-#: ../setup/functions.inc:468
-msgid "<b>jhead</b> binary located."
-msgstr "<b>jhead</b> forritð fannst."
-
-#: ../setup/functions.inc:506
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "Án pnmcomp og pamcomp mun Gallery ekki geta vatnsmerkt myndirnar þínar, nema að þú notir ImageMagick og hafir composite forrit uppsett."
-
-#: ../setup/functions.inc:514
-msgid "NetPBM not being used in this installation."
-msgstr "NetPBM er ekki í notkun í þessari uppsetningu."
-
-#: ../setup/functions.inc:519 ../setup/functions.inc:617
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "Get ekki staðfest þessa slóð (er ekki hluti af open_basedir lista)."
-
-#: ../setup/functions.inc:553 ../setup/functions.inc:634
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "Finn ekki valfrjálst hjálparforrit %s. %s"
-
-#: ../setup/functions.inc:556 ../setup/functions.inc:637
-#, php-format
-msgid "Can't find %s!"
-msgstr "Finn ekki %s!"
-
-#: ../setup/functions.inc:563 ../setup/functions.inc:644
-#, php-format
-msgid "%s is not executable!"
-msgstr "Hef ekki heimild til að keyra %s!"
-
-#: ../setup/functions.inc:575 ../setup/functions.inc:582
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "%d af %d NetPBM forritum fundin."
-
-#: ../setup/functions.inc:606
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "Gallery getur ekki vatnsmerkt myndirnar þínar á composite; nema að þú notir NetPBM og hafir pnmcomp forritið uppsett."
-
-#: ../setup/functions.inc:612
-msgid "ImageMagick not being used in this installation."
-msgstr "ImageMagick er ekki í notkun í þessari uppsetningu."
-
-#: ../setup/functions.inc:656 ../setup/functions.inc:663
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "%d af %d ImageMagick forritum fundin."
-
-#: ../setup/functions.inc:685
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "Get ekki fundið <i>jpegtran</i>!"
-
-#: ../setup/functions.inc:687
-msgid "<b>jpegtran</b> binary located."
-msgstr "<b>jpegtran</b> forritð fannst."
-
-#: ../setup/functions.inc:698
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP uppsetningin styður <b>GNU gettext</b>."
-
-#: ../setup/functions.inc:700
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP uppsetningin styður ekki <b>GNU gettext</b>."
-
-#: ../setup/functions.inc:714
-msgid "No languages found."
-msgstr "Engin tungumál fundust"
-
-#: ../setup/functions.inc:716
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "Þú virðist ekki hafa náð í nein önnur tungumál. Það er ekki vandamál!  Gallery mun aðeins birtast á ensku.  Ath.: ef þetta er ekki rétt, aðgættu þá að allar skrár í locale möppunni séu lesanlegar fyrir vefþjónsnotandann, eða komdu þér í samband við Gallery hópinn."
-
-#: ../setup/functions.inc:719
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "%d tungumál eru til staðar.  Ef þig vantar þýðingar, farðu þá á %sGallery niðurhals síðuna%s."
-
-#: ../setup/functions.inc:741
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "Þú getur gáð að nýrri útgáfum með því að fara á %s."
-
-#: ../setup/functions.inc:743
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "Þessi útgáfa af %s var gefin út %s."
-
-#: ../setup/functions.inc:745
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "Þetta er þróunarútgáfa af %s sem var gefin út þann %s."
-
-#: ../setup/functions.inc:754
-msgid "Please check regularly for updates."
-msgstr "Vinsamlegast athugið reglulega hvort uppfærsla finnst."
-
-#: ../setup/functions.inc:773
-msgid "All gallery locales are available on this host."
-msgstr "Allar Gallery þýðingar eru til staðar á þessum þjóni."
-
-#: ../setup/functions.inc:776
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Það eru %d þýðingar sem Gallery gat ekki fundið.  Þú gætir þurft að velja dagsetningarform handvirkt."
-
-#: ../setup/functions.inc:782
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "Dagsetningar í %d tungumálum gætu birst á röngu formi, vegna þess að samsvarandi staðbundnar stillingar eru ekki til staðar. Þú gætir þurft að velja dagsetningarform handvirkt fyrir þessi tungumál."
-
-#: ../setup/functions.inc:787
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "Við fundum engar staðbundnar stillingar.  Hins vegar er PHPuppsetning þín stillt með %s-takmörkuninni, sem gæti truflað það hvernig við veljum staðbundnar stillingar.  Því miður þýðir þetta að dagsetningarformið verður ekki mismunandi fyrir mismunandi tungumál.  En það er allt í lagi að halda áfram."
-
-#: ../setup/functions.inc:791
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "Við fundum engar staðbundar stillingar.  Margtunguvirkni verður gerð óvirk.  Vinsamlegast settu upp viðeigandi staðbundar stillingar eða biddu umsjónarmanninn um að gera það.  Þetta vandamál er þekkt á %s kerfum.  Í þessu tilfelli ættir þú að líta á þetta: %sDebian locale HowTo%s."
-
-#: ../setup/functions.inc:793
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "Aðeins sjálfgefin staðbundin stilling á þessari vél er til boða, svo að dagsetningarsnið mun ekki breytast með mismunandi tungumálum."
-
-#: ../setup/functions.inc:952
-#, php-format
-msgid "<b>System</b> locale selection required"
-msgstr "Þú þarft að velja <b>staðbundar stillingar</b>"
-
-#: ../setup/functions.inc:953
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "Það eru fleiri en ein hentug <b>staðbundin stilling</b> uppsett á vélinni þinni fyrir eftirfarandi tungumál. Veldu eina sem þú heldur að sé hentug."
-
-#: ../setup/functions.inc:955 ../setup/functions.inc:1035
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr "Þetta er <b>aðeins</b> fyrir dagsetningar- og tímasnið. Það þarf einungis að breyta tungumálum sem þú virkjaðir hér á undan."
-
-#: ../setup/functions.inc:966 ../setup/functions.inc:990
-msgid "System locale"
-msgstr "Staðbundnar stillingar kerfisins"
-
-#: ../setup/functions.inc:1032
-#, php-format
-msgid "<b>System</b> locale problems"
-msgstr "Villa við að finna <b>staðbundar stillingar fyrir kerfið</b>"
-
-#: ../setup/functions.inc:1033
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Það virðast ekki vera neinar hentugar <b>kerfis</b> staðbundar stillingar uppsettar á vélinni þinni fyrir eftirfarandi tungumál. Veldu eina sem þú heldur að sé hentug."
-
-#: ../setup/functions.inc:1076
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>safe mode</b> er óvirkt."
-
-#: ../setup/functions.inc:1088
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>magic_quotes</b> er óvirkt."
-
-#: ../setup/functions.inc:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "Í %s vantar gildið %s í röð %d með %s %s."
-
-#: ../setup/functions.inc:1115
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "Í %s, tómt gildi í röð %d."
-
-#: ../setup/functions.inc:1120
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "Í %s, fyrir nafn %s (röð %d) ætti gildið %s að vera jákvæð heiltala"
-
-#: ../setup/functions.inc:1142
-msgid "<b>register_globals</b> is off."
-msgstr "<b>register_globals</b> er óvirkt."
-
-#: ../setup/functions.inc:1312
-msgid "Your passwords do not match!"
-msgstr "Umsjónarlykilorðin þín passa ekki saman!"
-
-#: ../setup/functions.inc:1328
-msgid "Valid admin email address given."
-msgstr "Gilt umsjónarmanns tölvupóstfang gefið upp."
-
-#: ../setup/functions.inc:1335
-msgid "You must specify valid admin email addresses"
-msgstr "Þú verður að gefa upp gilt tölvupóstfang fyrir umsjónarmann"
-
-#: ../setup/functions.inc:1343
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s er ekki gilt tölvupóstfang."
-
-#: ../setup/functions.inc:1352
-msgid "Valid sender email address given."
-msgstr "Gilt tölvupóstang sendanda gefið."
-
-#: ../setup/functions.inc:1354
-msgid "You must specify a valid sender email address"
-msgstr "Þú verður að gefa upp gilt tölvupóstfang sendanda."
-
-#: ../setup/functions.inc:1357
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "Þú verður að hafa %s með í ávarpspóstinum"
-
-#: ../setup/functions.inc:1362
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "Þú verður að hafa %s eða %s í ávarpspóstinum"
-
-#: ../setup/functions.inc:1386
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "Eftirfarandi skrár eru úreltar, skemmdar eða týndar.<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-
-#: ../setup/functions.inc:1388
-msgid "This should be fixed before proceeding"
-msgstr "Þetta ætti að laga áður en lengra er haldið."
-
-#: ../setup/functions.inc:1389 ../setup/functions.inc:1393
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "Líttu á %sskoða útgáfu%s til að fá nánari upplýsingar."
-
-#: ../setup/functions.inc:1392
-#, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota for útgáfu, beta útgáfu, CVS útgáfu eða breyttan kóða."
-
-#: ../setup/functions.inc:1397
-#, php-format
-msgid "All tested files up-to-date."
-msgstr "Allar skrár reyndust uppfærðar"
-
-#: ../setup/functions.inc:1399
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýlegar."
-
-#: ../setup/functions.inc:1408
-#, php-format
-msgid "this is new in version %s"
-msgstr "þetta er nýtt í útgáfu %s"
-
-#: ../setup/functions.inc:1413
-#, php-format
-msgid "Return to %s."
-msgstr "Til baka í %s"
-
-#: ../setup/functions.inc:1414
-msgid "Configuration Wizard"
-msgstr "Gallery: uppsetningarferli"
-
-#: ../setup/functions.inc:1463
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "Þú verður að gefa upp lykilorð fyrir %s notandann."
-
-#: ../setup/functions.inc:1468
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "Það virðist sem þú hafir sett Gallery upp áður, því það er til stjórnandi, en hann heitir ekki %s."
-
-#: ../setup/functions.inc:1471
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Það virðist sem þú hafir sett Gallery upp áður, því það er til %d stjórnendur, en enginn þeirra heitir ekki %s."
-
-#: ../setup/functions.inc:1473
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Þú þarft ekki að gefa upp lykilorð. En ef þú gerir það, mun Gallery búa til stjórnand að nafni %s með því lykilorði."
-
-#: ../setup/functions.inc:1482
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "Það virðist sem þú hafir sett Gallery upp áður, því notandi að nafni %s er til. Þú þarft ekki að gefa upp lykilorð. En ef þú gerir það, mun Gallery breyta lykilorði fyrir þann %s notanda."
-
-#: ../setup/functions.inc:1489
-msgid "Admin password"
-msgstr "Lykilorð stjórnanda"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1508 ../setup/functions.inc:1516
-msgid "Full Name"
-msgstr "Fullt nafn"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1510 ../setup/functions.inc:1518
-#: ../setup/login.inc:93
-msgid "Username"
-msgstr "Notandanafn"
-
-#: ../setup/functions.inc:1512
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "Fullt nafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
-
-#: ../setup/functions.inc:1514
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "Notendanafn sem þú getur smellt á til að senda tölvupóst til (mailto:)"
-
-#: ../setup/functions.inc:1516 ../setup/functions.inc:1518
-msgid "email address"
-msgstr "tölvupóstfang"
-
-#: ../setup/functions.inc:1529
-msgid "Your version of PHP handles this issue properly."
-msgstr "Þín útgáfa af PHP virkar vel undir þesum kringumstæðum."
-
-#: ../setup/functions.inc:1546
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "Skrá vantar eða ekki lesanleg. Vinsamlegast setjið inn og keyrið aftur þetta próf."
-
-#: ../setup/functions.inc:1550
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "Gangið úr skugga um að %s sé nýjasta útgáfa."
-
-#: ../setup/functions.inc:1555
-#, php-format
-msgid "Testing status of %d files."
-msgstr "Athuga stöðu %d skráa"
-
-#: ../setup/functions.inc:1562
-#, php-format
-msgid "Cannot read file %s."
-msgstr "Get ekki lesið skrá %s."
-
-#: ../setup/functions.inc:1564
-msgid "File missing or unreadable."
-msgstr "Skrá vantar eða er ólæsileg."
-
-#: ../setup/functions.inc:1569
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "Útgáfu upplýsingar fyrir %s fundust ekki, Forritið er annað hvort of gamalt eða gallað."
-
-#: ../setup/functions.inc:1571
-msgid "Missing version"
-msgstr "Röng útgáfa"
-
-#: ../setup/functions.inc:1578
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "Vandamál með %s. Vænti að finna útgáfu %s (eða nýrri) en fann %s."
-
-#: ../setup/functions.inc:1580
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Vænti að finna útgáfu %s (eða nýrri) en fann einungis %s"
-
-#: ../setup/functions.inc:1584
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s er í lagi.  Útgáfa forrits (%s) er nýrri útgáfa en vonast var til (%s)"
-
-#: ../setup/functions.inc:1586
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "Vænti þess að finna útgáfu %s en fann %s."
-
-#: ../setup/functions.inc:1590
-#, php-format
-msgid "%s OK"
-msgstr "%s Í lagi"
-
-#: ../setup/functions.inc:1592
-#, php-format
-msgid "Found expected version %s."
-msgstr "Fann útgáfu sem ég vænti %s."
-
-#: ../setup/functions.inc:1722
-msgid "This email will be sent when new accounts are created."
-msgstr "Þetta tölvuskeyti verður sent þegar nýir notendur eru skráðir."
-
-#: ../setup/functions.inc:1723
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "Skildu þetta svið eftir tómt til þess að fá sjálfgefin texta sem hægt er að þýða í önnur tungumál. Sjálfgefni textinn er:"
-
-#: ../setup/functions.inc:1724
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "Eftirfarandi skrár eru ný uppfærðar."
-
-#: ../setup/index.php:144
+#: ../setup/index.php:148
 msgid "Security violation"
 msgstr "Öryggisbrot"
 
@@ -3282,71 +3281,83 @@ msgstr "IP tala netþjónsins"
 msgid "Start over"
 msgstr "Byrja aftur"
 
-#: ../setup/write.inc:157
+#: ../setup/write.inc:167
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "Lykilorði notandans %s var breytt."
 
-#: ../setup/write.inc:161
+#: ../setup/write.inc:171
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "Notandinn %s hefur verið stofnaður fyrir þig, með lykilorðið sem þú gafst upp."
 
-#: ../setup/write.inc:175
+#: ../setup/write.inc:185
 msgid "Success!"
 msgstr "Heppnaðist!"
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "Uppsetning vistuð án vandkvæða!"
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:196
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "Við mælum með að þú keyrir 'secure.sh' eða chmod 644 .htaccess og config.php til að auka öryggið."
 
-#: ../setup/write.inc:193
+#: ../setup/write.inc:203
 msgid "Note"
 msgstr "Athugið"
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:205
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr "Þú verður að fjarlægja skránna '%s' úr setup möppunni til að gera Gallery uppsetningu örugga."
 
-#: ../setup/write.inc:208
+#: ../setup/write.inc:218
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "Þú getur sett upp Gallery að nýju hvenær sem er, með því að keyra þennan uppsetningarferil."
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "Hann mun geyma uppsetninguna svo að þú þurfir ekki að stilla hana alla aftur!"
 
-#: ../setup/write.inc:213
+#: ../setup/write.inc:223
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "Gerðu svo vel að skrá þig á %s-póstlistann. Þetta er póstlisti með mjög lítilli umferð, sem mun upplýsa þig um mikilvægar breytingar í %s.  Þar tilkynnum við nýjar útgáfur, mikilvægar villuleiðréttingar, og hvaða öryggisvandamál sem kunna að koma upp ásamt lausnum þeirra."
 
-#: ../setup/write.inc:220
+#: ../setup/write.inc:230
 msgid "Enter the Gallery"
 msgstr "Opna Gallery"
 
-#: ../setup/write.inc:234
+#: ../setup/write.inc:244
 msgid "Failure"
 msgstr "Villa"
 
-#: ../setup/write.inc:235
+#: ../setup/write.inc:245
 #, php-format
 msgid "Unable to write to %s."
 msgstr "Gat ekki skrifað í %s."
 
-#: ../setup/write.inc:238
+#: ../setup/write.inc:248
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "Þig vantar annað hvort %s eða %s."
 
-#: ../setup/write.inc:242
+#: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Skoða uppsetningu"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "Skráin %s er ekki til."
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "PHP-uppsetning þín er stillt með %s-takmörkuninni. Þetta gæti torveldað Gallery að ganga úr skugga um að forritin þín séu í lagi, jafnvel þótt þú hafir þegar áður notað uppsetningarferlið vandræðalaust. Ekki hafa of miklar áhyggjur ef þessi síða gefur aðvaranir; stillingar þínar vistast samt rétt."
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "Athugið"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "Ef þú lendir í vandræðum, þá getur þú leitað hjálpar á %s hjálparsíðu Gallery%s."

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-08 15:52+0200\n"
+"POT-Creation-Date: 2005-08-29 07:51+0200\n"
 "PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -35,20 +35,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "¥´¡¼¥ë¥É¥Õ¥ì¡¼¥à"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr ""
+
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
 msgstr "¥¹¥Ñ¥¤¥é¥ë¥Î¡¼¥È¥Ö¥Ã¥¯"
 
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "¥·¥ã¥É¥¦"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
 msgstr ""
 
 #: ../html_wrap/frames/polaroid/frame.def:3
@@ -67,20 +67,20 @@ msgstr "¥Ý¥é¥í¥¤¥É2"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr ""
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "¥´¡¼¥ë¥É¥Õ¥ì¡¼¥à"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr ""
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
 msgstr ""
 
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
+msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "¥·¥ã¥É¥¦"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
 msgstr ""
 
 #: ../html_wrap/frames/simple_book/frame.def:3
@@ -99,6 +99,452 @@ msgstr "¥¦¥Ã¥É¥Õ¥ì¡¼¥à"
 #: ../html_wrap/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
 msgstr ""
+
+#: ../lib/setup.php:147
+msgid "Please retype your password here"
+msgstr "¤³¤³¤Ë¥Ñ¥¹¥ï¡¼¥É¤ò¤â¤¦°ìÅÙÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤"
+
+#: ../lib/setup.php:161 ../lib/setup.php:1106
+msgid "Name"
+msgstr "Ì¾Á°"
+
+#: ../lib/setup.php:162 ../lib/setup.php:1106
+msgid "Value"
+msgstr "ÃÍ"
+
+#: ../lib/setup.php:200 ../lib/setup.php:243
+#, fuzzy
+msgid "No content"
+msgstr "RSS ¥³¥ó¥Æ¥ó¥Ä"
+
+#: ../lib/setup.php:370
+msgid "Missing value"
+msgstr "·çÍî¤·¤¿ÃÍ"
+
+#: ../lib/setup.php:392
+msgid "<b>exec()</b> is not disabled on this server."
+msgstr "<b>exec()</b> ¤Ï¤³¤Î¥µ¡¼¥Ð¤Ç¤ÏÍ­¸ú¤Ç¤¹¡£"
+
+#: ../lib/setup.php:410
+msgid "I can read your <b>.htaccess</b> file."
+msgstr "<b>.htaccess</b> ¥Õ¥¡¥¤¥ë¤¬ÆÉ¤ß¹þ¤á¤Þ¤¹¡£"
+
+#: ../lib/setup.php:429
+#, php-format
+msgid "PHP v%s is OK."
+msgstr "PHP v%s ¤ÏOK¤Ç¤¹¡£"
+
+#: ../lib/setup.php:441
+msgid "<b>mod_rewrite</b> is enabled."
+msgstr "<b>mod_rewrite</b> ¤ÏÍ­¸ú¤Ç¤¹¡£"
+
+#: ../lib/setup.php:464
+msgid "Can't find <i>jhead</i>"
+msgstr "<i>jhead</i> ¤¬¸«ÉÕ¤«¤ê¤Þ¤»¤ó"
+
+#: ../lib/setup.php:466
+msgid "<b>jhead</b> binary located."
+msgstr "<b>jhead</b> ¥Ð¥¤¥Ê¥ê¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:504
+#, fuzzy
+msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgstr "ImageMagick¤ò»ÈÍÑ¤·¡¢composite¥Ð¥¤¥Ê¥ê¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¾ì¹ç¤ò¤Î¤¾¤­¡¢pnmcomp¤Î¤Ê¤¤gallery¤ÏÆ©¤«¤·²èÁü¤òÍøÍÑ¤Ç¤­¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:512
+msgid "NetPBM not being used in this installation."
+msgstr "NetPBM¤Ï¤³¤Î¥¤¥ó¥¹¥È¥ì¡¼¥·¥ç¥ó¤Ç¤Ï»ÈÍÑ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
+
+#: ../lib/setup.php:517 ../lib/setup.php:615
+msgid "Cannot verify this path (it's not in your open_basedir list)."
+msgstr "¤³¤Î¥Ñ¥¹¤ò³ÎÇ§¤Ç¤­¤Þ¤»¤ó¡£(open_basedir¥ê¥¹¥È¤ËÆþ¤Ã¤Æ¤¤¤Þ¤»¤ó)"
+
+#: ../lib/setup.php:551 ../lib/setup.php:632
+#, php-format
+msgid "Missing optional binary %s. %s"
+msgstr "¥ª¥×¥·¥ç¥ó¤Î¥Ð¥¤¥Ê¥ê %s ¤¬·çÍî¤·¤Æ¤¤¤Þ¤¹¡£%s"
+
+#: ../lib/setup.php:554 ../lib/setup.php:635
+#, php-format
+msgid "Can't find %s!"
+msgstr "%s¤¬¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£"
+
+#: ../lib/setup.php:561 ../lib/setup.php:642
+#, php-format
+msgid "%s is not executable!"
+msgstr "%s ¤Ï¼Â¹Ô²ÄÇ½¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:573 ../lib/setup.php:580
+#, php-format
+msgid "%d of %d NetPBM binaries located."
+msgstr "%2$d¸ÄÃæ%1$d¸Ä¤ÎNetPBM¥Ð¥¤¥Ê¥êÁ´¤Æ¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿"
+
+#: ../lib/setup.php:604
+msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgstr "NetPBM¤ò»ÈÍÑ¤·¡¢pnmcomp¥Ð¥¤¥Ê¥ê¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¾ì¹ç¤ò¤Î¤¾¤­¡¢composite¤Î¤Ê¤¤gallery¤ÏÆ©¤«¤·²èÁü¤òÍøÍÑ¤Ç¤­¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:610
+msgid "ImageMagick not being used in this installation."
+msgstr "ImageMacick¤Ï¤³¤Î¥¤¥ó¥¹¥È¥ì¡¼¥·¥ç¥ó¤Ç¤Ï»ÈÍÑ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
+
+#: ../lib/setup.php:654 ../lib/setup.php:661
+#, php-format
+msgid "%d of %d ImageMagick binaries located."
+msgstr "%2$d¸ÄÃæ%1$d¸Ä¤ÎImageMagick¥Ð¥¤¥Ê¥êÁ´¤Æ¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:683
+msgid "Can't find <i>jpegtran</i>!"
+msgstr "<i>jpegtran</i> ¤¬¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£"
+
+#: ../lib/setup.php:685
+msgid "<b>jpegtran</b> binary located."
+msgstr "<b>jpegtran</b> ¥Ð¥¤¥Ê¥ê¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿"
+
+#: ../lib/setup.php:696
+msgid "PHP has <b>GNU gettext</b> support."
+msgstr "PHP¤Ï <b>GNU gettext</b> ¤ò¥µ¥Ý¡¼¥È¤·¤Æ¤¤¤Þ¤¹¡£"
+
+#: ../lib/setup.php:698
+msgid "PHP does not have <b>GNU gettext</b> support."
+msgstr "PHP¤Ï <b>GNU gettext</b> ¤ò¥µ¥Ý¡¼¥È¤·¤Æ¤¤¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:712
+msgid "No languages found."
+msgstr "°ì¤Ä¤â¸À¸ì¤¬¸¡½Ð¤µ¤ì¤Þ¤»¤ó¤Ç¤·¤¿¡£(Ìõ¤·¤Æ°ÕÌ£¤¢¤ó¤Î¤«?"
+
+#: ../lib/setup.php:714
+msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+msgstr "ÄÉ²Ã¤Î¸À¸ì¤ò¤Ò¤È¤Ä¤â¥À¥¦¥ó¥í¡¼¥É¤·¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¡£¤³¤ì¤ÏÌäÂê¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£Gallery¤Ï±Ñ¸ì¤ÇÉ½¼¨¤µ¤ì¤ë¤À¤±¤Ç¤¹¡£Ãí°Õ: ¤³¤ì¤¬»ö¼Â¤Ç¤Ê¤¤¤Ê¤é¡¢Á´¤Æ¤Î¥í¥±¡¼¥ë¥Õ¥©¥ë¥À¤¬¥¦¥§¥Ö¥µ¡¼¥Ð¤«¤éÆÉ¤ß¹þ¤ß¤¬¤Ç¤­¤ë¤«¡¢Gallery¥Á¡¼¥à¤ËÏ¢Íí¤·¤Æ¤¯¤À¤µ¤¤¡£(¤³¤ì¤â°ÕÌ£¤Í¡¼"
+
+#: ../lib/setup.php:717
+#, php-format
+msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+msgstr "%d¸À¸ì¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£¸À¸ì¤¬ÉÔÂ­¤·¤Æ¤¤¤ì¤Ð¡¢%sGallery ¥À¥¦¥ó¥í¡¼¥É¥Ú¡¼¥¸%s ¤Ø¹Ô¤Ã¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:739
+#, php-format
+msgid "You can check for more recent versions by visiting %s."
+msgstr "%s¤Ë¹Ô¤±¤Ð¡¢¤è¤ê¿·¤·¤¤¥Ð¡¼¥¸¥ç¥ó¤¬¤Ê¤¤¤«³ÎÇ§¤Ç¤­¤Þ¤¹¡£"
+
+#: ../lib/setup.php:741
+#, php-format
+msgid "This version of %s was released on %s."
+msgstr "%s¤Î¤³¤Î¥Ð¡¼¥¸¥ç¥ó¤Ï%s¤Ë¥ê¥ê¡¼¥¹¤µ¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:743
+#, php-format
+msgid "This is a development build of %s that was released on %s."
+msgstr "¤³¤ì¤Ï%s¤Î³«È¯ÈÇ¥Ó¥ë¥É¤Ç¤¹¡£(¥ê¥ê¡¼¥¹Æü %s)"
+
+#: ../lib/setup.php:752
+msgid "Please check regularly for updates."
+msgstr "Àµ¼°ÈÇ¤¬¥ê¥ê¡¼¥¹¤µ¤ì¤Æ¤¤¤Ê¤¤¤«Äê´üÅª¤Ë³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:771
+msgid "All gallery locales are available on this host."
+msgstr "¤³¤Î¥Û¥¹¥È¤Ç¤ÏÁ´¤Æ¤ÎGallery¥í¥±¡¼¥ë¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£"
+
+#: ../lib/setup.php:774
+#, php-format
+msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+msgstr "Gallery¤¬¸¡½Ð¤Ç¤­¤Ê¤«¤Ã¤¿%d¤Î¥í¥±¡¼¥ë¤¬¤¢¤ê¤Þ¤¹¡£¼êÆ°¤ÇÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤òÁªÂò¤¹¤ë¤Ò¤Ä¤è¤¦¤¬¤¢¤ê¤Þ¤¹¡£"
+
+#: ../lib/setup.php:780
+#, php-format
+msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+msgstr "ÂÐ±þ¤¹¤ë¥í¥±¡¼¥ë¤¬¤Ê¤¤¤¿¤á¡¢%d¸À¸ì¤ÎÆüÉÕ¤ÏÀµ¤·¤¯¥Õ¥©¡¼¥Þ¥Ã¥È¤µ¤ì¤Þ¤»¤ó¡£¤³¤ì¤é¤Î¤¿¤á¤Ë¼êÆ°¤ÇÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤òÁªÂò¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹¡£"
+
+#: ../lib/setup.php:785
+#, php-format
+msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+msgstr "¥í¥±¡¼¥ë¤ÏÁ´¤¯¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£¤·¤«¤·¤Ê¤¬¤é¡¢PHP¤ÎÀßÄê¤Ë¤è¤ê%sÀ©Ìó¤¬¤«¤«¤Ã¤Æ¤¤¤Þ¤¹¤Î¤Ç¥í¥±¡¼¥ë¤ò¸¡½Ð¤¹¤ëÊýË¡¤¬Ë¸³²¤µ¤ì¤Æ¤¤¤Þ¤¹¡£ÉÔ¹¬¤Ë¤â¤³¤ì¤ÏÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤¬¸À¸ì¤Ë¤è¤Ã¤ÆÀÚ¤êÂØ¤ï¤é¤Ê¤¤¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£¤Ç¤â¡¢Âç¾æÉ×¤À¤«¤éÂ³¤±¤Þ¤·¤ç¤¦¡£"
+
+#: ../lib/setup.php:789
+#, php-format
+msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+msgstr "¤¤¤«¤Ê¤ë¥·¥¹¥Æ¥à¥í¥±¡¼¥ë¤â¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£Â¿¸À¸ìµ¡Ç½¤Ï»ÈÍÑ¤Ç¤­¤Þ¤»¤ó¡£³ºÅö¤¹¤ë¥í¥±¡¼¥ë¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤«¡¢¤³¤Îºî¶È¤ò¤¹¤ë¤è¤¦¤Ë´ÉÍý¼Ô¤ËÍê¤ó¤Ç¤¯¤À¤µ¤¤¡£¤³¤ÎÌäÂê¤Ï %s ¥·¥¹¥Æ¥à¾å¤ÇÃÎ¤é¤ì¤Æ¤¤¤Þ¤¹¡£¤³¤Î¾ì¹ç¤Ï %sDebian locale HowTo%s ¤ò¤´¤é¤ó¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:791
+msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+msgstr "¤³¤Î¥Þ¥·¥ó¤ËÂÐ¤¹¤ë¥Ç¥Õ¥©¥ë¥È¸À¸ì¤À¤±¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£¤è¤Ã¤Æ¡¢°Û¤Ê¤ë¸À¸ì¤ËÂÐ¤·¤Æ¤âÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤ÏÆ±¤¸¤â¤Î¤Ç¤¹¡£"
+
+#: ../lib/setup.php:950 ../lib/setup.php:1030 ../setup/config_data.inc:445
+#: ../setup/config_data.inc:674 ../setup/config_data.inc:684
+#: ../setup/config_data.inc:1151
+msgid "Advanced"
+msgstr "¹âÅÙ"
+
+#: ../lib/setup.php:950
+#, php-format
+msgid "<b>System</b> locale selection required"
+msgstr "<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ëÁªÂò¤¬É¬Í×¤Ç¤¹"
+
+#: ../lib/setup.php:951
+msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+msgstr "°Ê²¼¤Î¸À¸ì¤ËÂÐ±þ¤¹¤ë2¤Ä°Ê¾å¤Î<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Þ¤¹¡£ºÇ¤âÅ¬ÀÚ¤Ê¤â¤Î¤ò°ì¤ÄÁª¤ó¤Ç¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:953 ../lib/setup.php:1033
+msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgstr "¤³¤ì¤ÏÆüÉÕ¤È»þ´Ö¤Î¥Õ¥©¡¼¥Þ¥Ã¥È <b>¤Î¤ß</b> ¤Î¤¿¤á¤Î¤â¤Î¤Ç¤¹¡£¾å¤ÇÍ­¸ú¤Ë¤·¤¿¸À¸ì¤òÊÔ½¸¤¹¤ë¤³¤È¤À¤±É¬Í×¤Ç¤¹¡£"
+
+#: ../lib/setup.php:964 ../lib/setup.php:988
+msgid "System locale"
+msgstr "¥·¥¹¥Æ¥à¥í¥±¡¼¥ë"
+
+#: ../lib/setup.php:1030
+#, php-format
+msgid "<b>System</b> locale problems"
+msgstr "<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤ÎÉÔ¶ñ¹ç"
+
+#: ../lib/setup.php:1031
+msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+msgstr "°Ê²¼¤Î¸À¸ì¤ËÂÐ±þ¤¹¤ëÅ¬ÀÚ¤Ê<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¡£ºÇ¤âÅ¬Åö¤À¤È»×¤¦¤â¤Î¤òÁª¤ó¤Ç¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:1074
+msgid "<b>safe_mode</b> is off."
+msgstr "<b>safe_mode</b> ¤ÏOFF¤Ç¤¹"
+
+#: ../lib/setup.php:1086
+msgid "<b>magic_quotes</b> are off."
+msgstr "<b>magic_quotes</b> ¤ÏOFF¤Ç¤¹"
+
+#: ../lib/setup.php:1104
+#, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr "%1$s ¤Ë¤ª¤¤¤Æ¡¢%5$s ¤¬ %4$s ¤Ç¤¢¤ëÎó %3$d ¤Î %2$s¤¬·çÍî¤·¤Æ¤¤¤Þ¤¹¡£"
+
+#: ../lib/setup.php:1105 ../lib/setup.php:1114 ../lib/setup.php:1119
+#: ../setup/config_data.inc:1604
+msgid "Vote words and values"
+msgstr "ÅêÉ¼¤ÎÃ±¸ì¤ÈÃÍ"
+
+#: ../lib/setup.php:1113
+#, php-format
+msgid "In %s, blank in row %d."
+msgstr "%s ¤Ë¤ª¤¤¤Æ¡¢%d ÎóÌÜ¤¬¶õÇò¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1118
+#, php-format
+msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+msgstr "%s ¤Ë¤ª¤±¤ë¥é¥Ù¥ë %s (Îó %d) ¤ÎÃÍ %s ¤ÏÀµ¤Î¿ô¤Ç¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1140
+msgid "<b>register_globals</b> is off."
+msgstr "<b>register_glocals</b> ¤ÏOFF¤Ç¤¹"
+
+#: ../lib/setup.php:1310
+msgid "Your passwords do not match!"
+msgstr "¥Ñ¥¹¥ï¡¼¥É¤¬°ìÃ×¤·¤Þ¤»¤ó!"
+
+#: ../lib/setup.php:1321 ../setup/check_imagemagick.php:75
+#: ../setup/check_netpbm.php:75
+msgid "OK"
+msgstr "OK"
+
+#: ../lib/setup.php:1326
+msgid "Valid admin email address given."
+msgstr "Í­¸ú¤Ê´ÉÍý¼Ô¤Î¥¢¥É¥ì¥¹¤¬¤¢¤¿¤¨¤é¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:1333
+msgid "You must specify valid admin email addresses"
+msgstr "Í­¸ú¤Ê´ÉÍý¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1341
+#, php-format
+msgid "%s is not a valid email address."
+msgstr "%s ¤ÏÍ­¸ú¤Ê¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1350
+msgid "Valid sender email address given."
+msgstr "Í­¸ú¤ÊÁ÷¿®¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤¬¤¢¤¿¤¨¤é¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:1352
+msgid "You must specify a valid sender email address"
+msgstr "Í­¸ú¤ÊÁ÷¿®¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1355
+#, php-format
+msgid "You must include %s in your welcome email"
+msgstr "%s ¤ò¥¦¥§¥ë¥«¥à¥á¡¼¥ë¤Ë´Þ¤á¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1360
+#, php-format
+msgid "You must include %s or %s in your welcome email"
+msgstr "%s ¤« %s ¤ò¥¦¥§¥ë¥«¥à¥á¡¼¥ë¤Ë´Þ¤á¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1384
+#, php-format
+msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+msgstr "°Ê²¼¤Î¥Õ¥¡¥¤¥ë¤Ï¸Å¤¤¤â¤Î¤Ç¤¹¡£ÉÔÀµ¤Ç¤¢¤ë¤«·çÍî¤·¤Æ¤¤¤Þ¤¹¡£<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
+
+#: ../lib/setup.php:1386
+msgid "This should be fixed before proceeding"
+msgstr "Â³¤±¤ëÁ°¤Ë½¤Àµ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:1387 ../lib/setup.php:1391
+#, php-format
+msgid "Look at %sCheck Versions%s for more details."
+msgstr "¾ÜºÙ¤Ï %s¥Ð¡¼¥¸¥ç¥ó¤Î¥Á¥§¥Ã¥¯%s ¤ò¸«¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:1390
+#, php-format
+msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
+msgstr "%d¥Õ¥¡¥¤¥ë¤ÏÍ½´ü¤µ¤ì¤¿¤â¤Î¤è¤ê¿·¤·¤¤¤Ç¤¹¡£¥×¥ì¥ê¥ê¡¼¥¹¡¢¦ÂÈÇ¡¢CVSÈÇ¡¢¼ê¤ò²Ã¤¨¤¿¥³¡¼¥É¤ò»È¤Ã¤Æ¤¤¤ë¤Ê¤é¡¢ÌäÂê¤¢¤ê¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1395
+#, php-format
+msgid "All tested files up-to-date."
+msgstr "¥Æ¥¹¥È¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÏÁ´¤ÆºÇ¿·¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1397
+#, php-format
+msgid "All %d tested files up-to-date."
+msgstr "¥Æ¥¹¥È¤µ¤ì¤¿ %d ¥Õ¥¡¥¤¥ë¤ÏÁ´¤ÆºÇ¿·¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1406
+#, php-format
+msgid "this is new in version %s"
+msgstr "¤³¤ì¤Ï¥Ð¡¼¥¸¥ç¥ó%s¤Î¿·¤·¤¤¤â¤Î¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1411
+#, php-format
+msgid "Return to %s."
+msgstr "%s ¤ËÌá¤ë"
+
+#: ../lib/setup.php:1412
+msgid "Configuration Wizard"
+msgstr "¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥â¡¼¥É"
+
+#: ../lib/setup.php:1461
+#, php-format
+msgid "You must enter a password for the %s account."
+msgstr "¥¢¥«¥¦¥ó¥È %s ¤ËÂÐ¤¹¤ë¥Ñ¥¹¥ï¡¼¥É¤òÆþÎÏ¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1466
+#, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤ÏÂ¸ºß¤·¤Þ¤¹¡£¤·¤«¤·¡¢%s ¤È¤¤¤¦Ì¾Á°¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1469
+#, php-format
+msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢%d ¤Î´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤¬Â¸ºß¤·¤Þ¤¹¡£¤·¤«¤·¡¢%s ¤È¤¤¤¦Ì¾Á°¤Î¥æ¡¼¥¶¤Ï¤¤¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1471
+#, php-format
+msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+msgstr "¥Ñ¥¹¥ï¡¼¥É¤òÆþÎÏ¤¹¤ëÉ¬Í×¤Ï¤¢¤ê¤Þ¤»¤ó¡£¤·¤«¤·¡¢ÆþÎÏ¤¹¤ì¤Ð %s ¤È¤¤¤¦Ì¾Á°¤Ç´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤òºîÀ®¤·¤Þ¤¹¡£"
+
+#: ../lib/setup.php:1480
+#, php-format
+msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢%s ¥æ¡¼¥¶¤ÏÂ¸ºß¤·¤Þ¤¹¡£¥Ñ¥¹¥ï¡¼¥É¤ÏÆþÎÏ¤¹¤ëÉ¬Í×¤Ï¤¢¤ê¤Þ¤»¤ó¡£¤·¤«¤·¡¢ÆþÎÏ¤·¤¿¾ì¹ç¤Ï %s ¥æ¡¼¥¶¤Î¥Ñ¥¹¥ï¡¼¥É¤òÊÑ¹¹¤·¤Þ¤¹¡£"
+
+#: ../lib/setup.php:1487
+msgid "Admin password"
+msgstr "´ÉÍý¼Ô¥Ñ¥¹¥ï¡¼¥É"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1506
+#: ../lib/setup.php:1514
+msgid "Full Name"
+msgstr "Ì¾Á°"
+
+#: ../lib/setup.php:1502 ../lib/setup.php:1504 ../lib/setup.php:1508
+#: ../lib/setup.php:1516 ../setup/login.inc:93
+msgid "Username"
+msgstr "¥æ¡¼¥¶Ì¾"
+
+#: ../lib/setup.php:1510
+msgid "Full name that you can click on to send email (mailto:)"
+msgstr "Ì¾Á°¤Ï¥¯¥ê¥Ã¥¯¤·¤Æ¥á¡¼¥ë¤¬Á÷¤ì¤Þ¤¹¡£(mailto:)"
+
+#: ../lib/setup.php:1512
+msgid "Username that you can click on to send email (mailto:)"
+msgstr "¥æ¡¼¥¶Ì¾¤Ï¥¯¥ê¥Ã¥¯¤·¤Æ¥á¡¼¥ë¤¬Á÷¤ì¤Þ¤¹¡£(mailto:)"
+
+#: ../lib/setup.php:1514 ../lib/setup.php:1516
+msgid "email address"
+msgstr "¥á¡¼¥ë¥¢¥É¥ì¥¹"
+
+#: ../lib/setup.php:1527
+msgid "Your version of PHP handles this issue properly."
+msgstr "¤³¤Î¥Ð¡¼¥¸¥ç¥ó¤ÎPHP¤Ï¤³¤ÎÌäÂê¤òÀµ¤·¤¯°·¤¨¤Þ¤¹¡£"
+
+#: ../lib/setup.php:1544
+msgid "File missing or unreadable.  Please install then re-run this test."
+msgstr "¥Õ¥¡¥¤¥ë¤¬Â¸ºß¤·¤Ê¤¤¤«¡¢ÆÉ¤ß¹þ¤á¤Þ¤»¤ó¡£¥Õ¥¡¥¤¥ë¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤³¤Î¥Æ¥¹¥È¤òºÆ¼Â¹Ô¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:1548
+#, php-format
+msgid "Please ensure that %s is the latest version."
+msgstr "%s ¤¬ºÇ¿·¥Ð¡¼¥¸¥ç¥ó¤Ç¤¢¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+#: ../lib/setup.php:1553
+#, php-format
+msgid "Testing status of %d files."
+msgstr "%d ¥Õ¥¡¥¤¥ë¤Î¾õÂÖ¤Î¥Æ¥¹¥È¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1560
+#, php-format
+msgid "Cannot read file %s."
+msgstr "¥Õ¥¡¥¤¥ë %s ¤¬ÆÉ¤ß¹þ¤ß¤Ç¤­¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1562
+msgid "File missing or unreadable."
+msgstr "¥Õ¥¡¥¤¥ë¤ÏÂ¸ºß¤·¤Ê¤¤¤«¡¢ÆÉ¤ß¹þ¤ßÉÔ²Ä¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1567
+#, php-format
+msgid "Version information not found in %s.  File must be old version or corrupted."
+msgstr "%s¤Ë¤Ï¥Ð¡¼¥¸¥ç¥ó¾ðÊó¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¤Ç¤·¤¿¡£¥Õ¥¡¥¤¥ë¤ò¸Å¤¤¥Ð¡¼¥¸¥ç¥ó¤Ë¤¹¤ë¤«¡¢Àµ¤·¤¯¤·¤Ê¤¤¤È¤¤¤±¤Þ¤»¤ó¡£"
+
+#: ../lib/setup.php:1569
+msgid "Missing version"
+msgstr "¥Ð¡¼¥¸¥ç¥ó·çÍî"
+
+#: ../lib/setup.php:1576
+#, php-format
+msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+msgstr "%s¤¬ÌäÂê¤Ç¤¹¡£Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s(¤¢¤ë¤¤¤Ï¤½¤ì°Ê¾å)¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1578
+#, php-format
+msgid "Expected version %s (or greater) but found %s."
+msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s(¤¢¤ë¤¤¤Ï¤½¤ì°Ê¾å)¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1582
+#, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgstr "%s ¤ÏOK¤Ç¤¹¡£¼ÂºÝ¤Î¥Ð¡¼¥¸¥ç¥ó(%s)¤ÏÍ½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó(%s)¤è¤ê¤â¿·¤·¤¤¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1584
+#, php-format
+msgid "Expected version %s but found %s."
+msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
+
+#: ../lib/setup.php:1588
+#, php-format
+msgid "%s OK"
+msgstr "%s ¤ÏOK¤Ç¤¹"
+
+#: ../lib/setup.php:1590
+#, php-format
+msgid "Found expected version %s."
+msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó%s¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
+
+#: ../lib/setup.php:1721
+msgid "This email will be sent when new accounts are created."
+msgstr "¤³¤Î¥á¡¼¥ë¤Ï¿·¤·¤¤¥¢¥«¥¦¥ó¥È¤òºîÀ®¤·¤¿¤È¤­¤ËÁ÷¿®¤µ¤ì¤Þ¤¹¡£"
+
+#: ../lib/setup.php:1722
+#, fuzzy
+msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+msgstr "Â¾¤Î¸À¸ì¤ËËÝÌõ²ÄÇ½¤Ê¥Ç¥Õ¥©¥ë¥È¤Î¥á¥Ã¥»¡¼¥¸¤òÆÀ¤ë¤Ë¤Ï¡¢¤³¤Î¥Õ¥£¡¼¥ë¥É¤ò¶õ¤Î¤Þ¤Þ¤Ë¤·¤Æ¤ª¤¤¤Æ¤¯¤À¤µ¤¤¡£¥Ç¥Õ¥©¥ë¥È¥á¥Ã¥»¡¼¥¸¤Ï:"
+
+#: ../lib/setup.php:1723
+#, fuzzy
+msgid "The following placeholder can be used:"
+msgstr "°Ê²¼¤Î¥Õ¥¡¥¤¥ë¤ÏºÇ¿·¤Ç¤¹¡£"
 
 #: ../setup/check.inc:27 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -203,11 +649,6 @@ msgstr "¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹þ¤ßÃæ¤Ç¤¹¡£ ¤³¤³¤Ç¥¨¥é¡¼¤¬È¯À¸¤¹¤ë¤è¤
 #: ../setup/check_imagemagick.php:61 ../setup/check_netpbm.php:61
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Gallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤¬½ª¤ï¤Ã¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¡£¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥¦¥£¥¶¡¼¥É¤ò´°Î»¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:75
-#: ../setup/functions.inc:1323
-msgid "OK"
-msgstr "OK"
 
 #: ../setup/check_imagemagick.php:85 ../setup/check_netpbm.php:85
 msgid "Let us see if we can figure out what operating system you are using."
@@ -888,12 +1329,6 @@ msgstr "¤Ï¤¤"
 #: ../setup/config_data.inc:1693
 msgid "no"
 msgstr "¤¤¤¤¤¨"
-
-#: ../setup/config_data.inc:445 ../setup/config_data.inc:674
-#: ../setup/config_data.inc:684 ../setup/config_data.inc:1151
-#: ../setup/functions.inc:952 ../setup/functions.inc:1032
-msgid "Advanced"
-msgstr "¹âÅÙ"
 
 #: ../setup/config_data.inc:445
 msgid "JPEG Quality"
@@ -2243,11 +2678,6 @@ msgstr "¿åÊ¿Êý¸þ"
 msgid "Vertical"
 msgstr "¿âÄ¾Êý¸þ"
 
-#: ../setup/config_data.inc:1604 ../setup/functions.inc:1107
-#: ../setup/functions.inc:1116 ../setup/functions.inc:1121
-msgid "Vote words and values"
-msgstr "ÅêÉ¼¤ÎÃ±¸ì¤ÈÃÍ"
-
 #: ../setup/config_data.inc:1605
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "¤½¤ì¤¾¤ì¤ÎÅêÉ¼¥ª¥×¥·¥ç¥ó¤ËÂÐ¤·¤Æ¡¢¼ÂºÝ¤ËÉ½¼¨¤µ¤ì¤ë¥Æ¥­¥¹¥È¡¢¤ª¤è¤Ó¤½¤ÎÁªÂò»è¤ÎÅÀ¿ô¤ò¤òÀßÄê¤Ç¤­¤Þ¤¹¡£"
@@ -2701,7 +3131,7 @@ msgstr "¤³¤Î¥Ú¡¼¥¸¤ÏÌäÂê¤¬¤ï¤«¤Ã¤Æ¤¤¤ë %s ¥¢¥Ã¥×¥°¥ì¡¼¥É¤Î¤¿¤á¤Ç¤¹¡£"
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "¤³¤ì¤Ï¡¢¤¹¤Ù¤Æ¤Î%s¥Õ¥¡¥¤¥ë¤ÎÀµ³Î¤Ê¥Ð¡¼¥¸¥ç¥ó¤Ç¤¢¤ë¤³¤È¤ò¥Á¥§¥Ã¥¯¤·¤Þ¤¹¡£"
 
-#: ../setup/frame_test.php:29 ../setup/index.php:42
+#: ../setup/frame_test.php:29 ../setup/index.php:46
 msgid "Gallery Configuration"
 msgstr "Gallery ¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó"
 
@@ -2743,438 +3173,7 @@ msgstr "%s ¤¬³«¤±¤Þ¤»¤ó¤Ç¤·¤¿"
 msgid "Close Window"
 msgstr "¥¦¥£¥ó¥É¥¦¤òÊÄ¤¸¤ë"
 
-#: ../setup/functions.inc:149
-msgid "Please retype your password here"
-msgstr "¤³¤³¤Ë¥Ñ¥¹¥ï¡¼¥É¤ò¤â¤¦°ìÅÙÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤"
-
-#: ../setup/functions.inc:163 ../setup/functions.inc:1108
-msgid "Name"
-msgstr "Ì¾Á°"
-
-#: ../setup/functions.inc:164 ../setup/functions.inc:1108
-msgid "Value"
-msgstr "ÃÍ"
-
-#: ../setup/functions.inc:202 ../setup/functions.inc:245
-#, fuzzy
-msgid "No content"
-msgstr "RSS ¥³¥ó¥Æ¥ó¥Ä"
-
-#: ../setup/functions.inc:372
-msgid "Missing value"
-msgstr "·çÍî¤·¤¿ÃÍ"
-
-#: ../setup/functions.inc:394
-msgid "<b>exec()</b> is not disabled on this server."
-msgstr "<b>exec()</b> ¤Ï¤³¤Î¥µ¡¼¥Ð¤Ç¤ÏÍ­¸ú¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:412
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "<b>.htaccess</b> ¥Õ¥¡¥¤¥ë¤¬ÆÉ¤ß¹þ¤á¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:431
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s ¤ÏOK¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:443
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>mod_rewrite</b> ¤ÏÍ­¸ú¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:466
-msgid "Can't find <i>jhead</i>"
-msgstr "<i>jhead</i> ¤¬¸«ÉÕ¤«¤ê¤Þ¤»¤ó"
-
-#: ../setup/functions.inc:468
-msgid "<b>jhead</b> binary located."
-msgstr "<b>jhead</b> ¥Ð¥¤¥Ê¥ê¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:506
-#, fuzzy
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "ImageMagick¤ò»ÈÍÑ¤·¡¢composite¥Ð¥¤¥Ê¥ê¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¾ì¹ç¤ò¤Î¤¾¤­¡¢pnmcomp¤Î¤Ê¤¤gallery¤ÏÆ©¤«¤·²èÁü¤òÍøÍÑ¤Ç¤­¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:514
-msgid "NetPBM not being used in this installation."
-msgstr "NetPBM¤Ï¤³¤Î¥¤¥ó¥¹¥È¥ì¡¼¥·¥ç¥ó¤Ç¤Ï»ÈÍÑ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
-
-#: ../setup/functions.inc:519 ../setup/functions.inc:617
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "¤³¤Î¥Ñ¥¹¤ò³ÎÇ§¤Ç¤­¤Þ¤»¤ó¡£(open_basedir¥ê¥¹¥È¤ËÆþ¤Ã¤Æ¤¤¤Þ¤»¤ó)"
-
-#: ../setup/functions.inc:553 ../setup/functions.inc:634
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "¥ª¥×¥·¥ç¥ó¤Î¥Ð¥¤¥Ê¥ê %s ¤¬·çÍî¤·¤Æ¤¤¤Þ¤¹¡£%s"
-
-#: ../setup/functions.inc:556 ../setup/functions.inc:637
-#, php-format
-msgid "Can't find %s!"
-msgstr "%s¤¬¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£"
-
-#: ../setup/functions.inc:563 ../setup/functions.inc:644
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s ¤Ï¼Â¹Ô²ÄÇ½¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:575 ../setup/functions.inc:582
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "%2$d¸ÄÃæ%1$d¸Ä¤ÎNetPBM¥Ð¥¤¥Ê¥êÁ´¤Æ¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿"
-
-#: ../setup/functions.inc:606
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "NetPBM¤ò»ÈÍÑ¤·¡¢pnmcomp¥Ð¥¤¥Ê¥ê¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¾ì¹ç¤ò¤Î¤¾¤­¡¢composite¤Î¤Ê¤¤gallery¤ÏÆ©¤«¤·²èÁü¤òÍøÍÑ¤Ç¤­¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:612
-msgid "ImageMagick not being used in this installation."
-msgstr "ImageMacick¤Ï¤³¤Î¥¤¥ó¥¹¥È¥ì¡¼¥·¥ç¥ó¤Ç¤Ï»ÈÍÑ¤µ¤ì¤Æ¤¤¤Þ¤»¤ó"
-
-#: ../setup/functions.inc:656 ../setup/functions.inc:663
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "%2$d¸ÄÃæ%1$d¸Ä¤ÎImageMagick¥Ð¥¤¥Ê¥êÁ´¤Æ¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:685
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "<i>jpegtran</i> ¤¬¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£"
-
-#: ../setup/functions.inc:687
-msgid "<b>jpegtran</b> binary located."
-msgstr "<b>jpegtran</b> ¥Ð¥¤¥Ê¥ê¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿"
-
-#: ../setup/functions.inc:698
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP¤Ï <b>GNU gettext</b> ¤ò¥µ¥Ý¡¼¥È¤·¤Æ¤¤¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:700
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP¤Ï <b>GNU gettext</b> ¤ò¥µ¥Ý¡¼¥È¤·¤Æ¤¤¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:714
-msgid "No languages found."
-msgstr "°ì¤Ä¤â¸À¸ì¤¬¸¡½Ð¤µ¤ì¤Þ¤»¤ó¤Ç¤·¤¿¡£(Ìõ¤·¤Æ°ÕÌ£¤¢¤ó¤Î¤«?"
-
-#: ../setup/functions.inc:716
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "ÄÉ²Ã¤Î¸À¸ì¤ò¤Ò¤È¤Ä¤â¥À¥¦¥ó¥í¡¼¥É¤·¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¡£¤³¤ì¤ÏÌäÂê¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£Gallery¤Ï±Ñ¸ì¤ÇÉ½¼¨¤µ¤ì¤ë¤À¤±¤Ç¤¹¡£Ãí°Õ: ¤³¤ì¤¬»ö¼Â¤Ç¤Ê¤¤¤Ê¤é¡¢Á´¤Æ¤Î¥í¥±¡¼¥ë¥Õ¥©¥ë¥À¤¬¥¦¥§¥Ö¥µ¡¼¥Ð¤«¤éÆÉ¤ß¹þ¤ß¤¬¤Ç¤­¤ë¤«¡¢Gallery¥Á¡¼¥à¤ËÏ¢Íí¤·¤Æ¤¯¤À¤µ¤¤¡£(¤³¤ì¤â°ÕÌ£¤Í¡¼"
-
-#: ../setup/functions.inc:719
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "%d¸À¸ì¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£¸À¸ì¤¬ÉÔÂ­¤·¤Æ¤¤¤ì¤Ð¡¢%sGallery ¥À¥¦¥ó¥í¡¼¥É¥Ú¡¼¥¸%s ¤Ø¹Ô¤Ã¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:741
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "%s¤Ë¹Ô¤±¤Ð¡¢¤è¤ê¿·¤·¤¤¥Ð¡¼¥¸¥ç¥ó¤¬¤Ê¤¤¤«³ÎÇ§¤Ç¤­¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:743
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "%s¤Î¤³¤Î¥Ð¡¼¥¸¥ç¥ó¤Ï%s¤Ë¥ê¥ê¡¼¥¹¤µ¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:745
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "¤³¤ì¤Ï%s¤Î³«È¯ÈÇ¥Ó¥ë¥É¤Ç¤¹¡£(¥ê¥ê¡¼¥¹Æü %s)"
-
-#: ../setup/functions.inc:754
-msgid "Please check regularly for updates."
-msgstr "Àµ¼°ÈÇ¤¬¥ê¥ê¡¼¥¹¤µ¤ì¤Æ¤¤¤Ê¤¤¤«Äê´üÅª¤Ë³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:773
-msgid "All gallery locales are available on this host."
-msgstr "¤³¤Î¥Û¥¹¥È¤Ç¤ÏÁ´¤Æ¤ÎGallery¥í¥±¡¼¥ë¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:776
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Gallery¤¬¸¡½Ð¤Ç¤­¤Ê¤«¤Ã¤¿%d¤Î¥í¥±¡¼¥ë¤¬¤¢¤ê¤Þ¤¹¡£¼êÆ°¤ÇÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤òÁªÂò¤¹¤ë¤Ò¤Ä¤è¤¦¤¬¤¢¤ê¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:782
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "ÂÐ±þ¤¹¤ë¥í¥±¡¼¥ë¤¬¤Ê¤¤¤¿¤á¡¢%d¸À¸ì¤ÎÆüÉÕ¤ÏÀµ¤·¤¯¥Õ¥©¡¼¥Þ¥Ã¥È¤µ¤ì¤Þ¤»¤ó¡£¤³¤ì¤é¤Î¤¿¤á¤Ë¼êÆ°¤ÇÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤òÁªÂò¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:787
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "¥í¥±¡¼¥ë¤ÏÁ´¤¯¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£¤·¤«¤·¤Ê¤¬¤é¡¢PHP¤ÎÀßÄê¤Ë¤è¤ê%sÀ©Ìó¤¬¤«¤«¤Ã¤Æ¤¤¤Þ¤¹¤Î¤Ç¥í¥±¡¼¥ë¤ò¸¡½Ð¤¹¤ëÊýË¡¤¬Ë¸³²¤µ¤ì¤Æ¤¤¤Þ¤¹¡£ÉÔ¹¬¤Ë¤â¤³¤ì¤ÏÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤¬¸À¸ì¤Ë¤è¤Ã¤ÆÀÚ¤êÂØ¤ï¤é¤Ê¤¤¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£¤Ç¤â¡¢Âç¾æÉ×¤À¤«¤éÂ³¤±¤Þ¤·¤ç¤¦¡£"
-
-#: ../setup/functions.inc:791
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "¤¤¤«¤Ê¤ë¥·¥¹¥Æ¥à¥í¥±¡¼¥ë¤â¸¡½Ð¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£Â¿¸À¸ìµ¡Ç½¤Ï»ÈÍÑ¤Ç¤­¤Þ¤»¤ó¡£³ºÅö¤¹¤ë¥í¥±¡¼¥ë¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤«¡¢¤³¤Îºî¶È¤ò¤¹¤ë¤è¤¦¤Ë´ÉÍý¼Ô¤ËÍê¤ó¤Ç¤¯¤À¤µ¤¤¡£¤³¤ÎÌäÂê¤Ï %s ¥·¥¹¥Æ¥à¾å¤ÇÃÎ¤é¤ì¤Æ¤¤¤Þ¤¹¡£¤³¤Î¾ì¹ç¤Ï %sDebian locale HowTo%s ¤ò¤´¤é¤ó¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:793
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "¤³¤Î¥Þ¥·¥ó¤ËÂÐ¤¹¤ë¥Ç¥Õ¥©¥ë¥È¸À¸ì¤À¤±¤¬ÍøÍÑ²ÄÇ½¤Ç¤¹¡£¤è¤Ã¤Æ¡¢°Û¤Ê¤ë¸À¸ì¤ËÂÐ¤·¤Æ¤âÆüÉÕ¥Õ¥©¡¼¥Þ¥Ã¥È¤ÏÆ±¤¸¤â¤Î¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:952
-#, php-format
-msgid "<b>System</b> locale selection required"
-msgstr "<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ëÁªÂò¤¬É¬Í×¤Ç¤¹"
-
-#: ../setup/functions.inc:953
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "°Ê²¼¤Î¸À¸ì¤ËÂÐ±þ¤¹¤ë2¤Ä°Ê¾å¤Î<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Þ¤¹¡£ºÇ¤âÅ¬ÀÚ¤Ê¤â¤Î¤ò°ì¤ÄÁª¤ó¤Ç¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:955 ../setup/functions.inc:1035
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
-msgstr "¤³¤ì¤ÏÆüÉÕ¤È»þ´Ö¤Î¥Õ¥©¡¼¥Þ¥Ã¥È <b>¤Î¤ß</b> ¤Î¤¿¤á¤Î¤â¤Î¤Ç¤¹¡£¾å¤ÇÍ­¸ú¤Ë¤·¤¿¸À¸ì¤òÊÔ½¸¤¹¤ë¤³¤È¤À¤±É¬Í×¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:966 ../setup/functions.inc:990
-msgid "System locale"
-msgstr "¥·¥¹¥Æ¥à¥í¥±¡¼¥ë"
-
-#: ../setup/functions.inc:1032
-#, php-format
-msgid "<b>System</b> locale problems"
-msgstr "<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤ÎÉÔ¶ñ¹ç"
-
-#: ../setup/functions.inc:1033
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "°Ê²¼¤Î¸À¸ì¤ËÂÐ±þ¤¹¤ëÅ¬ÀÚ¤Ê<b>¥·¥¹¥Æ¥à</b>¥í¥±¡¼¥ë¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Ê¤¤¤è¤¦¤Ç¤¹¡£ºÇ¤âÅ¬Åö¤À¤È»×¤¦¤â¤Î¤òÁª¤ó¤Ç¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:1076
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>safe_mode</b> ¤ÏOFF¤Ç¤¹"
-
-#: ../setup/functions.inc:1088
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>magic_quotes</b> ¤ÏOFF¤Ç¤¹"
-
-#: ../setup/functions.inc:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "%1$s ¤Ë¤ª¤¤¤Æ¡¢%5$s ¤¬ %4$s ¤Ç¤¢¤ëÎó %3$d ¤Î %2$s¤¬·çÍî¤·¤Æ¤¤¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:1115
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "%s ¤Ë¤ª¤¤¤Æ¡¢%d ÎóÌÜ¤¬¶õÇò¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1120
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "%s ¤Ë¤ª¤±¤ë¥é¥Ù¥ë %s (Îó %d) ¤ÎÃÍ %s ¤ÏÀµ¤Î¿ô¤Ç¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1142
-msgid "<b>register_globals</b> is off."
-msgstr "<b>register_glocals</b> ¤ÏOFF¤Ç¤¹"
-
-#: ../setup/functions.inc:1312
-msgid "Your passwords do not match!"
-msgstr "¥Ñ¥¹¥ï¡¼¥É¤¬°ìÃ×¤·¤Þ¤»¤ó!"
-
-#: ../setup/functions.inc:1328
-msgid "Valid admin email address given."
-msgstr "Í­¸ú¤Ê´ÉÍý¼Ô¤Î¥¢¥É¥ì¥¹¤¬¤¢¤¿¤¨¤é¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:1335
-msgid "You must specify valid admin email addresses"
-msgstr "Í­¸ú¤Ê´ÉÍý¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1343
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s ¤ÏÍ­¸ú¤Ê¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1352
-msgid "Valid sender email address given."
-msgstr "Í­¸ú¤ÊÁ÷¿®¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤¬¤¢¤¿¤¨¤é¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:1354
-msgid "You must specify a valid sender email address"
-msgstr "Í­¸ú¤ÊÁ÷¿®¼Ô¥á¡¼¥ë¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1357
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "%s ¤ò¥¦¥§¥ë¥«¥à¥á¡¼¥ë¤Ë´Þ¤á¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1362
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "%s ¤« %s ¤ò¥¦¥§¥ë¥«¥à¥á¡¼¥ë¤Ë´Þ¤á¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1386
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "°Ê²¼¤Î¥Õ¥¡¥¤¥ë¤Ï¸Å¤¤¤â¤Î¤Ç¤¹¡£ÉÔÀµ¤Ç¤¢¤ë¤«·çÍî¤·¤Æ¤¤¤Þ¤¹¡£<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
-
-#: ../setup/functions.inc:1388
-msgid "This should be fixed before proceeding"
-msgstr "Â³¤±¤ëÁ°¤Ë½¤Àµ¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:1389 ../setup/functions.inc:1393
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "¾ÜºÙ¤Ï %s¥Ð¡¼¥¸¥ç¥ó¤Î¥Á¥§¥Ã¥¯%s ¤ò¸«¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:1392
-#, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-msgstr "%d¥Õ¥¡¥¤¥ë¤ÏÍ½´ü¤µ¤ì¤¿¤â¤Î¤è¤ê¿·¤·¤¤¤Ç¤¹¡£¥×¥ì¥ê¥ê¡¼¥¹¡¢¦ÂÈÇ¡¢CVSÈÇ¡¢¼ê¤ò²Ã¤¨¤¿¥³¡¼¥É¤ò»È¤Ã¤Æ¤¤¤ë¤Ê¤é¡¢ÌäÂê¤¢¤ê¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1397
-#, php-format
-msgid "All tested files up-to-date."
-msgstr "¥Æ¥¹¥È¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÏÁ´¤ÆºÇ¿·¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1399
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "¥Æ¥¹¥È¤µ¤ì¤¿ %d ¥Õ¥¡¥¤¥ë¤ÏÁ´¤ÆºÇ¿·¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1408
-#, php-format
-msgid "this is new in version %s"
-msgstr "¤³¤ì¤Ï¥Ð¡¼¥¸¥ç¥ó%s¤Î¿·¤·¤¤¤â¤Î¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1413
-#, php-format
-msgid "Return to %s."
-msgstr "%s ¤ËÌá¤ë"
-
-#: ../setup/functions.inc:1414
-msgid "Configuration Wizard"
-msgstr "¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥â¡¼¥É"
-
-#: ../setup/functions.inc:1463
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "¥¢¥«¥¦¥ó¥È %s ¤ËÂÐ¤¹¤ë¥Ñ¥¹¥ï¡¼¥É¤òÆþÎÏ¤·¤Ê¤¯¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1468
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤ÏÂ¸ºß¤·¤Þ¤¹¡£¤·¤«¤·¡¢%s ¤È¤¤¤¦Ì¾Á°¤Ç¤Ï¤¢¤ê¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1471
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢%d ¤Î´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤¬Â¸ºß¤·¤Þ¤¹¡£¤·¤«¤·¡¢%s ¤È¤¤¤¦Ì¾Á°¤Î¥æ¡¼¥¶¤Ï¤¤¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1473
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "¥Ñ¥¹¥ï¡¼¥É¤òÆþÎÏ¤¹¤ëÉ¬Í×¤Ï¤¢¤ê¤Þ¤»¤ó¡£¤·¤«¤·¡¢ÆþÎÏ¤¹¤ì¤Ð %s ¤È¤¤¤¦Ì¾Á°¤Ç´ÉÍý¼Ô¥¢¥«¥¦¥ó¥È¤òºîÀ®¤·¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:1482
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "¤¢¤Ê¤¿¤Ï¤¹¤Ç¤ËGallery¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò½ª¤¨¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¤Î¤Ç¡¢%s ¥æ¡¼¥¶¤ÏÂ¸ºß¤·¤Þ¤¹¡£¥Ñ¥¹¥ï¡¼¥É¤ÏÆþÎÏ¤¹¤ëÉ¬Í×¤Ï¤¢¤ê¤Þ¤»¤ó¡£¤·¤«¤·¡¢ÆþÎÏ¤·¤¿¾ì¹ç¤Ï %s ¥æ¡¼¥¶¤Î¥Ñ¥¹¥ï¡¼¥É¤òÊÑ¹¹¤·¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:1489
-msgid "Admin password"
-msgstr "´ÉÍý¼Ô¥Ñ¥¹¥ï¡¼¥É"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1508 ../setup/functions.inc:1516
-msgid "Full Name"
-msgstr "Ì¾Á°"
-
-#: ../setup/functions.inc:1504 ../setup/functions.inc:1506
-#: ../setup/functions.inc:1510 ../setup/functions.inc:1518
-#: ../setup/login.inc:93
-msgid "Username"
-msgstr "¥æ¡¼¥¶Ì¾"
-
-#: ../setup/functions.inc:1512
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "Ì¾Á°¤Ï¥¯¥ê¥Ã¥¯¤·¤Æ¥á¡¼¥ë¤¬Á÷¤ì¤Þ¤¹¡£(mailto:)"
-
-#: ../setup/functions.inc:1514
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "¥æ¡¼¥¶Ì¾¤Ï¥¯¥ê¥Ã¥¯¤·¤Æ¥á¡¼¥ë¤¬Á÷¤ì¤Þ¤¹¡£(mailto:)"
-
-#: ../setup/functions.inc:1516 ../setup/functions.inc:1518
-msgid "email address"
-msgstr "¥á¡¼¥ë¥¢¥É¥ì¥¹"
-
-#: ../setup/functions.inc:1529
-msgid "Your version of PHP handles this issue properly."
-msgstr "¤³¤Î¥Ð¡¼¥¸¥ç¥ó¤ÎPHP¤Ï¤³¤ÎÌäÂê¤òÀµ¤·¤¯°·¤¨¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:1546
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "¥Õ¥¡¥¤¥ë¤¬Â¸ºß¤·¤Ê¤¤¤«¡¢ÆÉ¤ß¹þ¤á¤Þ¤»¤ó¡£¥Õ¥¡¥¤¥ë¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤³¤Î¥Æ¥¹¥È¤òºÆ¼Â¹Ô¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:1550
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "%s ¤¬ºÇ¿·¥Ð¡¼¥¸¥ç¥ó¤Ç¤¢¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-#: ../setup/functions.inc:1555
-#, php-format
-msgid "Testing status of %d files."
-msgstr "%d ¥Õ¥¡¥¤¥ë¤Î¾õÂÖ¤Î¥Æ¥¹¥È¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1562
-#, php-format
-msgid "Cannot read file %s."
-msgstr "¥Õ¥¡¥¤¥ë %s ¤¬ÆÉ¤ß¹þ¤ß¤Ç¤­¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1564
-msgid "File missing or unreadable."
-msgstr "¥Õ¥¡¥¤¥ë¤ÏÂ¸ºß¤·¤Ê¤¤¤«¡¢ÆÉ¤ß¹þ¤ßÉÔ²Ä¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1569
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "%s¤Ë¤Ï¥Ð¡¼¥¸¥ç¥ó¾ðÊó¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¤Ç¤·¤¿¡£¥Õ¥¡¥¤¥ë¤ò¸Å¤¤¥Ð¡¼¥¸¥ç¥ó¤Ë¤¹¤ë¤«¡¢Àµ¤·¤¯¤·¤Ê¤¤¤È¤¤¤±¤Þ¤»¤ó¡£"
-
-#: ../setup/functions.inc:1571
-msgid "Missing version"
-msgstr "¥Ð¡¼¥¸¥ç¥ó·çÍî"
-
-#: ../setup/functions.inc:1578
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "%s¤¬ÌäÂê¤Ç¤¹¡£Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s(¤¢¤ë¤¤¤Ï¤½¤ì°Ê¾å)¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1580
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s(¤¢¤ë¤¤¤Ï¤½¤ì°Ê¾å)¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1584
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s ¤ÏOK¤Ç¤¹¡£¼ÂºÝ¤Î¥Ð¡¼¥¸¥ç¥ó(%s)¤ÏÍ½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó(%s)¤è¤ê¤â¿·¤·¤¤¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1586
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó¤Ï %s¤Ç¤¹¤¬¡¢¸¡½Ð¤µ¤ì¤¿¤Î¤Ï%s¤Ç¤¹¡£"
-
-#: ../setup/functions.inc:1590
-#, php-format
-msgid "%s OK"
-msgstr "%s ¤ÏOK¤Ç¤¹"
-
-#: ../setup/functions.inc:1592
-#, php-format
-msgid "Found expected version %s."
-msgstr "Í½´ü¤µ¤ì¤¿¥Ð¡¼¥¸¥ç¥ó%s¤¬¸¡½Ð¤µ¤ì¤Þ¤·¤¿¡£"
-
-#: ../setup/functions.inc:1722
-msgid "This email will be sent when new accounts are created."
-msgstr "¤³¤Î¥á¡¼¥ë¤Ï¿·¤·¤¤¥¢¥«¥¦¥ó¥È¤òºîÀ®¤·¤¿¤È¤­¤ËÁ÷¿®¤µ¤ì¤Þ¤¹¡£"
-
-#: ../setup/functions.inc:1723
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "Â¾¤Î¸À¸ì¤ËËÝÌõ²ÄÇ½¤Ê¥Ç¥Õ¥©¥ë¥È¤Î¥á¥Ã¥»¡¼¥¸¤òÆÀ¤ë¤Ë¤Ï¡¢¤³¤Î¥Õ¥£¡¼¥ë¥É¤ò¶õ¤Î¤Þ¤Þ¤Ë¤·¤Æ¤ª¤¤¤Æ¤¯¤À¤µ¤¤¡£¥Ç¥Õ¥©¥ë¥È¥á¥Ã¥»¡¼¥¸¤Ï:"
-
-#: ../setup/functions.inc:1724
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "°Ê²¼¤Î¥Õ¥¡¥¤¥ë¤ÏºÇ¿·¤Ç¤¹¡£"
-
-#: ../setup/index.php:144
+#: ../setup/index.php:148
 msgid "Security violation"
 msgstr "¥»¥­¥å¥ê¥Æ¥£¿¯³²"
 
@@ -3275,71 +3274,83 @@ msgstr "¥µ¡¼¥Ð¤ÎIP¥¢¥É¥ì¥¹"
 msgid "Start over"
 msgstr "½é¤á¤«¤é¤ä¤êÄ¾¤¹"
 
-#: ../setup/write.inc:157
+#: ../setup/write.inc:167
 #, php-format
 msgid "The password for user %s was changed."
 msgstr "¥æ¡¼¥¶ %s¤Î¥Ñ¥¹¥ï¡¼¥É¤¬ÊÑ¹¹¤µ¤ì¤Þ¤·¤¿¡£"
 
-#: ../setup/write.inc:161
+#: ../setup/write.inc:171
 #, php-format
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "%s ¤È¤¤¤¦¥¢¥«¥¦¥ó¥È¤¬»ØÄê¤Î¥Ñ¥¹¥ï¡¼¥É¤È¤È¤â¤ËºîÀ®¤µ¤ì¤Þ¤·¤¿¡£"
 
-#: ../setup/write.inc:175
+#: ../setup/write.inc:185
 msgid "Success!"
 msgstr "À®¸ù"
 
-#: ../setup/write.inc:178
+#: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "ÀßÄê¾ðÊó¤ÎÊÝÂ¸¤ËÀ®¸ù¤·¤Þ¤·¤¿¡£"
 
-#: ../setup/write.inc:186
+#: ../setup/write.inc:196
 msgid "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security."
 msgstr "¥»¥­¥å¥ê¥Æ¥£¤ò¸þ¾å¤µ¤»¤ë¤¿¤á¡¢'secure.sh'¤ò¼Â¹Ô¤¹¤ë¤«¡¢.htaccess¤Èconfig.php¤Î¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó¤ò644¤ËÊÑ¹¹¤¹¤ë¤³¤È¤ò¶¯¤¯¿ä¾©¤·¤Þ¤¹¡£"
 
-#: ../setup/write.inc:193
+#: ../setup/write.inc:203
 msgid "Note"
 msgstr "Ãí°Õ"
 
-#: ../setup/write.inc:195
+#: ../setup/write.inc:205
 #, php-format
 msgid "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"
 msgstr "Gallery ¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤ò¥»¥­¥å¥¢¤Ë¤¹¤ë¤¿¤á¤Ë¥»¥Ã¥È¥¢¥Ã¥×¥Ç¥£¥ì¥¯¥È¥ê¤«¤é'%s'¥Õ¥¡¥¤¥ë¤òºï½ü¤·¤Ê¤±¤ì¤Ð¤Ê¤ê¤Þ¤»¤ó¡£"
 
-#: ../setup/write.inc:208
+#: ../setup/write.inc:218
 msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
 msgstr "¤³¤Î¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥¦¥£¥¶¡¼¥É¤ò¼Â¹Ô¤¹¤ë¤³¤È¤Ç¡¢¤¤¤Ä¤Ç¤âGallery¤ò¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¤·Ä¾¤¹¤³¤È¤¬¤Ç¤­¤Þ¤¹¡£"
 
-#: ../setup/write.inc:210
+#: ../setup/write.inc:220
 msgid "It will save your data so you won't have to enter it all again!"
 msgstr "¥Ç¡¼¥¿¤Ï¥»¡¼¥Ö¤µ¤ì¤Þ¤¹¤Î¤Ç¡¢¤â¤¦°ìÅÙÆþÎÏ¤¹¤ëÉ¬Í×¤Ï¤Ê¤¤¤Ç¤·¤ç¤¦¡£"
 
-#: ../setup/write.inc:213
+#: ../setup/write.inc:223
 #, php-format
 msgid "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."
 msgstr "%s ¥á¡¼¥ê¥ó¥°¥ê¥¹¥È¤Ë»²²Ã¤·¤Æ¤¯¤À¤µ¤¤¡£¤³¤ì¤ÏÎ®ÎÌ¤Î¾¯¤Ê¤¤¥á¡¼¥ê¥ó¥°¥ê¥¹¥È¤Ç¡¢%s¤Î½ÅÍ×¤ÊÊÑ¹¹¤ËÄÉ½¾¤¹¤ë¤³¤È¤¬¤Ç¤­¤Þ¤¹¡£¤³¤ì¤Ï»ä¤¿¤Á¤¬¿·¤·¤¤¥Ð¡¼¥¸¥ç¥ó¤ä½ÅÍ×¤Ê¥Ð¥°½¤Àµ¡¢¤¢¤é¤æ¤ë¥»¥­¥å¥ê¥Æ¥£¤ÎÌäÂê¤ä¤½¤ì¤é¤Î·èÄê¤ò¥¢¥Ê¥¦¥ó¥¹¤¹¤ë¤È¤³¤í¤Ç¤¹¡£"
 
-#: ../setup/write.inc:220
+#: ../setup/write.inc:230
 msgid "Enter the Gallery"
 msgstr "Gallery¤ØÆþ¤ë"
 
-#: ../setup/write.inc:234
+#: ../setup/write.inc:244
 msgid "Failure"
 msgstr "¼ºÇÔ"
 
-#: ../setup/write.inc:235
+#: ../setup/write.inc:245
 #, php-format
 msgid "Unable to write to %s."
 msgstr "%s ¤Ë½ñ¤­¹þ¤á¤Þ¤»¤ó¡£"
 
-#: ../setup/write.inc:238
+#: ../setup/write.inc:248
 #, php-format
 msgid "You are missing either %s or %s."
 msgstr "%s ¤« %s ¤Î¤É¤Á¤é¤«¤¬·çÍî¤·¤Æ¤¤¤Þ¤¹¡¥"
 
-#: ../setup/write.inc:242
+#: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "ÀßÄê¤ò¸«Ä¾¤¹"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "¥Õ¥¡¥¤¥ë%s¤ÏÂ¸ºß¤·¤Þ¤»¤ó¡£"
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "¤³¤ÎPHP¥¤¥ó¥¹¥È¥ì¡¼¥·¥ç¥ó¤Ë¤Ï %s À©¸Â¤¬¤«¤«¤Ã¤Æ¤¤¤Þ¤¹¡£ ¤³¤ì¤Ï²áµî¤Ë¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥¦¥£¥¶¡¼¥É¤ò»È¤Ã¤ÆÀßÄê¤ËÀ®¸ù¤·¤Æ¤¤¤ë¤È¤·¤Æ¤â¡¢Gallery¤¬³Æ¥Ð¥¤¥Ê¥ê¤ò¸¡¾Ú¤¹¤ë¤Î¤¬º¤Æñ¤Ë¤Ê¤ê¤Þ¤¹¡£ ¤³¤Î·Ù¹ð¤¬¤Ç¤Æ¤â¤¢¤Þ¤êµ¤¤Ë¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£¤¢¤Ê¤¿¤ÎÀßÄê¤Ï¤Á¤ã¤ó¤ÈÊÝÂ¸¤µ¤ì¤ë¤Ç¤·¤ç¤¦¡£"
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "Ãí°Õ"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "ÌäÂê¤¬È¯À¸¤·¤¿¤é¡¢%sGallery ¥Ø¥ë¥×¥Ú¡¼¥¸%s¤òÃµ¤·¤Æ¤¯¤À¤µ¤¤¡£"
