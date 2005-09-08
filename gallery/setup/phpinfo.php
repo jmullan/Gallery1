@@ -21,9 +21,8 @@
  */
 ?>
 <?php
-	/* load necessary functions */
-	require (dirname(__FILE__) . '/init.php');	
-	require (GALLERY_SETUPDIR . '/functions.inc');
-	configLogin(basename(__FILE__));
-	phpinfo(); 
+    /* load necessary functions */
+    require (dirname(__FILE__) . '/init.php');	
+    configLogin(basename(__FILE__));
+    phpinfo(); 
 ?>
