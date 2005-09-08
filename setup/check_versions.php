@@ -21,13 +21,12 @@
  */
 ?>
 <?php 
-
     require_once(dirname(__FILE__) . '/init.php');
-    require(dirname(__FILE__) . '/functions.inc');
 
     $show_details = getRequestVar('show_details');
 
-    echo doctype(); ?>
+    echo doctype();
+?>
 <html>
 <head>
   <title> <?php echo _("Check Versions") ?> </title>

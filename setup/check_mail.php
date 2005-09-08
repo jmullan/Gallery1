@@ -21,9 +21,7 @@
  */
 ?>
 <?php 
-
-	require_once(dirname(__FILE__) . '/init.php');
-	require(dirname(__FILE__) . '/functions.inc');
+    require_once(dirname(__FILE__) . '/init.php');
 ?>
 
 <html>

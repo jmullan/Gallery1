@@ -43,7 +43,8 @@ if (getOS() == OS_WINDOWS) {
       
 @include (GALLERY_BASE . '/config.php');
 require (GALLERY_BASE . '/Version.php');
-require(GALLERY_BASE . "/session.php");
+require (GALLERY_BASE . '/session.php');
+require (GALLERY_BASE . '/lib/setup.php');
 
 // We can't set devMode until after config.php is loaded
 if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {

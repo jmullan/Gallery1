@@ -21,9 +21,7 @@
  */
 ?>
 <?php 
-
-	require_once(dirname(__FILE__) . '/init.php');
-	require(dirname(__FILE__) . '/functions.inc');
+    require_once(dirname(__FILE__) . '/init.php');
 ?>
 <html>
 <head>
@@ -38,8 +36,8 @@
 
 <div class="sitedesc">
 <?php 
-	echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
-	echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
+    echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
+    echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
 ?>
 </div>
 <p>

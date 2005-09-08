@@ -21,11 +21,9 @@
  */
 ?>
 <?php
+    require_once(dirname(__FILE__) . '/init.php');
 
-	require_once(dirname(__FILE__) . '/init.php');
-	require(dirname(__FILE__) . '/functions.inc');
-
-session_start();
+    session_start();
 
 // Pull the $count variable in also
 foreach($_SESSION as $key => $value) {

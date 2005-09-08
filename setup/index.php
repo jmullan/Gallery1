@@ -32,7 +32,6 @@
 	*/
 	require (dirname(__FILE__) . '/init.php');
 	
-	require (GALLERY_BASE . '/lib/setup.php');
 	require (dirname(__FILE__) . '/config_data.inc');
 	require (GALLERY_BASE . '/js/sectionTabs.js.php');
 
