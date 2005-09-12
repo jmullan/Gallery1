@@ -23,7 +23,7 @@
 <?php
 
 // Hack Prevention
-$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
+$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS', 'modpath');
 foreach ($sensitiveList as $sensitive) {
     if (!empty($_REQUEST[$sensitive])) {
         print _("Security violation") ."\n";

@@ -1,3 +1,16 @@
+2005-09-12 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b4
+
+	* New: Added function isRelativUrl()
+
+	* Fix: Relative URL in $gallery->app->photoAlbumURL did not longer work,
+	       due to new full url schema added in
+               1.5.1-RC2-cvs-b14 + 1.5.1-RC3-cvs-b3
+
+	* Fix: $name is not set when Gallery is startpage in *Nuke.
+	       So we try to extract it from $modpath.
+
+	* Fix: Url in stats-wizard was not generated on first load when embedded.
+
 2005-09-12 Rasmus Lerdorf 1.5.1-RC4-cvs-b3
 
 	* Fix: Some functions taking arguments by reference for no real reason
