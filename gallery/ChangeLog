@@ -1,3 +1,10 @@
+2005-09-12 Rasmus Lerdorf 1.5.1-RC4-cvs-b3
+
+	* Fix: Some functions taking arguments by reference for no real reason
+	       in gallery_remote2.php.
+	       It breaks under the latest versions of PHP because
+	       the reference checking has improved.
+
 2005-09-08 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b2
 
 	* "Fix": As we use now (1.5.1-RC3-cvs-b12) verbose output for exifdata, 
