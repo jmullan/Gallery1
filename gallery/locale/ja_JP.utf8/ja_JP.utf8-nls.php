@@ -56,5 +56,5 @@
  **
  **/	
 	
-	$nls['charset']['ja_JP.utf8'] = 		'EUC-JP';
+	$nls['charset']['ja_JP.utf8'] = 	'UTF-8';
 ?>
