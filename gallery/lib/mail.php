@@ -59,7 +59,7 @@ function emailDisclaimer() {
  * Return is true when succesfully send, otherise false
  * Errormessages are printed immediately
  */
-function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL, $isNotifyMail = false) {
+function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL, $isNotifyMail = false, $isHTML = false) {
 	global $gallery;
 	$bcc = array();
 
@@ -119,8 +119,15 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$gallery_mail = new htmlMimeMail();
 
 	$gallery_mail->setSubject($subject);
-	$gallery_mail->setText($msg);
 
+	if($isHTML) {
+	    $gallery_mail->setHtmlCharset($gallery->charset);
+            $gallery_mail->setHtml($msg,
+		_("This is a HTML mail, please have a look at the Attachment."));
+	}
+	else {
+	    $gallery_mail->setText($msg);
+	}
 	$gallery_mail->setFrom($from);
 	$gallery_mail->setReturnPath($reply_to);
 
@@ -223,23 +230,31 @@ function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
 	$to = $gallery->album->getEmailMeList('comments', $id);
+		$subject = sprintf(_("New comment for %s"), $id);
 	$text = '';
 
 	if (!empty($to)) {
-		$text .= sprintf(_("A comment has been added to this %s by %s in this %s."),
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
+	    $text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
+	    $text .= "\n\n<html>";
+	    $text .= "\n  <head>";
+	    $text .= "\n  <title>$subject</title>";
+	    $text .= "\n  </head>\n<body>\n<p>";
+	    $text .= sprintf(_("A new comment has been added Gallery: %s"), $gallery->app->galleryTitle);
+	    $text .= "\n</p>";
+	    $text .= sprintf(_("The comment was added by %s to this %s in this %s."),
 			$commenter_name,
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
 			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName)) .'">'. _("Album") .'</a>';
-		
-		$text .= "\n\n". _("*** Begin comment ***")."\n";
-		$text .= str_replace("\r", "\n", str_replace("\r\n", "\n", $comment_text));
-		$text .= "\n". _("***End comment ***") ."\n\n";
-		$text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first).");
+	    $text .= "\n<br>". _("*** Begin comment ***")."<br>\n";
+	    $text .= nl2br($comment_text);
+	    $text .= "<br>\n". _("***End comment ***") . "\n<p>\n";
+	    $text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first).");
+	    $text .= "\n</p>\n</body>\n</html>";
 
-		$subject = sprintf(_("New comment for %s"), $id);
-		$logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
+	    $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
-		gallery_mail($to, $subject, $text, $logmsg, true);
+//	    gallery_mail($to, $subject, $text, $logmsg, true);
+	    gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 	}
 	elseif (isDebugging()) {
 	}
