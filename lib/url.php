@@ -65,6 +65,13 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $GALLERY_MODULENAME;
+	global $modpath;
+
+        if (empty($GALLERY_MODULENAME)
+          && $GALLERY_EMBEDDED_INSIDE =='nuke'
+          && !empty($modpath)) {
+            $GALLERY_MODULENAME = basename(dirname($modpath));
+        }
 
 	/* Needed for phpBB2 */
 	global $userdata;
@@ -80,8 +87,13 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target,"setup")) ? true : false;
 
-	$gUrl = parse_url($gallery->app->photoAlbumURL);
-	$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
+		$gUrl = parse_url($gallery->app->photoAlbumURL);
+		$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+	}
+	else {
+	    $urlprefix = '';
+	}
 	
 	/* make sure the urlprefix doesnt end with a / */
 	$urlprefix = ereg_replace("\/$", "", $urlprefix);
@@ -105,7 +117,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 			case 'phpnuke':
 			case 'nsnnuke':
 				$args["op"] = "modload";
-				$args["name"] = "$GALLERY_MODULENAME";
+				$args["name"] = $GALLERY_MODULENAME;
 				$args["file"] = "index";
 
 				/*
@@ -127,7 +139,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 					$url = $urlprefix . pnGetBaseURI()."/index.php";
 				}
 				
-				$args["name"] = "$GALLERY_MODULENAME";
+				$args["name"] = $GALLERY_MODULENAME;
 				/*
 				 * include *must* be last so that the JavaScript code in
 				 * view_album.php can append a filename to the resulting URL.
@@ -286,6 +298,21 @@ function getImagePath($name, $skinname = '') {
     }
 
     return $retUrl;
+}
+
+/**
+ * Checkes wether an URL is relative or not
+ * @param	string	$url
+ * @return	boolean
+ * @author	Jens Tkotz
+ */
+function urlIsrelative($url) {
+     if (substr($url, 0,4) == 'http') {
+	return false;
+    }
+    else {
+	return true;
+    }
 }
 
 ?>

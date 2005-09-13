@@ -139,7 +139,7 @@ echo $response->listprops();
 
 
 
-function gr_login( &$gallery, &$response, &$uname, &$password ) {
+function gr_login( &$gallery, &$response, $uname, $password ) {
 	global $GR_STAT, $GR_VER;
 
 	if (!$uname | !$password) {
@@ -238,7 +238,7 @@ function gr_fetch_albums_prune( &$gallery, &$response, $check_writeable ) {
 
 }
 
-function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, &$caption, &$force_filename, &$auto_rotate ) {
+function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $caption, $force_filename, $auto_rotate ) {
 
 	global $GR_STAT, $temp_files;
 
@@ -355,7 +355,7 @@ function gr_album_properties( &$gallery, &$response ) {
 
 }
 
-function gr_new_album( &$gallery, &$response, &$newAlbumName, &$newAlbumTitle, &$newAlbumDesc ) {
+function gr_new_album( &$gallery, &$response, $newAlbumName, $newAlbumTitle, $newAlbumDesc ) {
 
 	global $GR_STAT;
 

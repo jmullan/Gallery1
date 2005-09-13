@@ -1638,26 +1638,26 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	}
 }
 
-/*
-** This function checks which tool
-** can we use for getting exif data from a photo.
-** returns false when no way works.
-*/
+/**
+ * This function checks which tool
+ * can we use for getting exif data from a photo.
+ * returns false when no way works.
+ */
 function getExifDisplayTool() {
-	global $gallery;
+    global $gallery;
 
-	if(isset($gallery->app->exiftags)) {
-		return 'exiftags';
-	} elseif (isset($gallery->app->use_exif)) {
-		return 'jhead';
-	} else {
-		return false;
-	}
+    if(isset($gallery->app->exiftags)) {
+	return 'exiftags';
+    } elseif (isset($gallery->app->use_exif)) {
+	return 'jhead';
+    } else {
+	return false;
+    }
 }
 
-/* This function does not really looks if EXIF Data is there or not.
-** It just looks at the extension
-*/
+/** This function does not really looks if EXIF Data is there or not.
+ * It just looks at the extension
+ */
 
 function hasExif($file) {
     if(eregi('jpe?g$', $file)) {
@@ -1667,62 +1667,70 @@ function hasExif($file) {
     }
 }
 
+/**
+ * If an exiftool is installed then gallery tries to pull out EXIF Data.
+ * Only fields with data are returned.
+ */
 function getExif($file) {
-	global $gallery;
+    global $gallery;
 
-	$return = array();
+    $return = array();
+    $myExif = array();
 
-	switch(getExifDisplayTool()) {
-		case 'exiftags':
-			if (empty($gallery->app->exiftags)) {
-			    break;
-			}
-			$path = $gallery->app->exiftags;
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -au ' .
-			  fs_import_filename($file, 1));
-
-			break;
-		case 'jhead':
-			if (empty($gallery->app->use_exif)) {
-			    break;
-			}
-			$path = $gallery->app->use_exif;
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -v ' .
-			  fs_import_filename($file, 1));
-			
-			break;
-		default:
-			return array(false,'');
+    switch(getExifDisplayTool()) {
+	case 'exiftags':
+	    if (empty($gallery->app->exiftags)) {
 		break;
-	}			
+	    }
+	    $path = $gallery->app->exiftags;
+	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -au ' .
+	      fs_import_filename($file, 1));
 
-	$myExif = array();
-	if ($status == 0) {
-	        foreach ($return as $value) {
-	        	$value = trim($value);
-		    	if (!empty($value)) {
-				$explodeReturn = explode(':', $value, 2);
-				$exifDesc = trim(htmlentities($explodeReturn[0]));
-				$exifData = trim(htmlentities($explodeReturn[1]));
-				if (isset($myExif[$exifDesc])) { 
-					$myExif[$exifDesc] .= "<br>";
-				} else {
-					$myExif[$exifDesc] = '';
-				}
+	    break;
+	
+	case 'jhead':
+	    if (empty($gallery->app->use_exif)) {
+		break;
+	    }
+	    $path = $gallery->app->use_exif;
+	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -v ' .
+	      fs_import_filename($file, 1));
+			
+	    break;
+	
+	default:
+	    return array(false,'');
+	    break;
+    }			
 
-				$myExif[$exifDesc] .= trim($exifData);
-		    	}
+    if ($status == 0) {
+	foreach ($return as $value) {
+	    $value = trim($value);
+	    if (!empty($value)) {
+		$explodeReturn = explode(':', $value, 2);
+		$exifDesc = trim(htmlentities($explodeReturn[0]));
+		$exifData = trim(htmlentities($explodeReturn[1]));
+		if(!empty($exifData)) {
+		    if (isset($myExif[$exifDesc])) { 
+			$myExif[$exifDesc] .= "<br>";
+		    } else {
+			$myExif[$exifDesc] = '';
+		    }
+
+		    $myExif[$exifDesc] .= trim($exifData);
 	        }
+	    }
 	}
+    }
 
-	return array($status, $myExif);
+    return array($status, $myExif);
 }
 
-/*
-** This function tries to get the ItemCaptureDate from Exif Data.
-** If exif is not supported, or no date was gotten, then the file creation date is returned.
-** Note: i used switch/case because this is easier to extend later.
-*/
+/**
+ * This function tries to get the ItemCaptureDate from Exif Data.
+ * If exif is not supported, or no date was gotten, then the file creation date is returned.
+ * Note: i used switch/case because this is easier to extend later.
+ */
 function getItemCaptureDate($file) {
 	$success = false;
 	$exifSupported = getExifDisplayTool();

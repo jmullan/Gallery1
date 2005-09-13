@@ -45,7 +45,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header() ;
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" onLoad="updateUrl()">
+<body dir="<?php echo $gallery->direction ?>">
 <?php  
 }
 
@@ -117,7 +117,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 <?php
 	echo makeFormIntro("stats.php", array("name" => "stats_form", 
-						"method" => "POST", 
+						"method" => "POST",
 						"onChange" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
@@ -146,11 +146,16 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	echo "\n". '<div align="left">';
 	echo _("Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
 	echo "\n<br>". '<form name="url_form" action="#">';
-	echo "\n". '<input type=text" name="stats_url" size="150" value="" readonly';
+	echo "\n". '<input type="text" name="stats_url" size="150" value="" readonly';
 	echo "\"</div>";
 	echo "\n</form>";
 
 ?>
+<script type="text/javascript">
+  // Run the script at the when page is showed.
+  // We could do this onLoad, but this doesnt work embedded.
+  updateUrl();
+</script>
 </div>
 <?php
 includeHtmlWrap("stats.footer");
