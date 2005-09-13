@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-29 07:42+0200\n"
+"POT-Creation-Date: 2005-09-13 11:21+0200\n"
 "PO-Revision-Date: 2005-03-05 19:30+0100\n"
 "Last-Translator: Marjan Laznik <marjan@slo-foto.com>\n"
 "Language-Team: Slovenian <marjan AT slo-foto DOT com>\n"
@@ -578,7 +578,7 @@ msgid "Untitled"
 msgstr "Nima naslova"
 
 #: ../classes/Album.php:241 ../classes/Album.php:253
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:232 ../lib/albumItem.php:48
+#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:48
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Album"
@@ -694,12 +694,12 @@ msgstr "Obdelujem sliko %d ..."
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2469
+#: ../classes/Album.php:2476
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2635
+#: ../classes/Album.php:2642
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problem s po¹iljanjem e-po¹te: po¹ta za %s (UID %s) ni poslana, ker naslov %s ni pravilen."
@@ -919,9 +919,10 @@ msgstr ""
 msgid "Create a new user here."
 msgstr "Dodaj novega uporabnika(co)."
 
-#: ../create_user.php:165 ../multi_create_user.php:199 ../register.php:141
-msgid "Create"
-msgstr "Dodaj"
+#: ../create_user.php:165
+#, fuzzy
+msgid "Create user"
+msgstr "Ustvari uporabnika(co)"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
 #: ../delete_photo.php:90 ../tools/validate_albums.php:128
@@ -2229,7 +2230,7 @@ msgstr "Datum/èas posnetka"
 msgid "Member file"
 msgstr "Èlanska datoteka"
 
-#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../html/userData.inc:26 ../lib/mail.php:194 ../login.php:85
 #: ../login.php:147
 msgid "Username"
 msgstr "Uporabni¹ko ime"
@@ -2607,7 +2608,11 @@ msgstr "E-po¹ta ni poslana, ni e-po¹tnega naslova."
 msgid "Sender address %s is invalid, using %s."
 msgstr "E-naslov po¹iljatelja %s je neveljaven, uporabil bom %s."
 
-#: ../lib/mail.php:157
+#: ../lib/mail.php:126
+msgid "This is a HTML mail, please have a look at the Attachment."
+msgstr ""
+
+#: ../lib/mail.php:164
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -2626,79 +2631,84 @@ msgstr ""
 "\n"
 "Urednik galerije na %s."
 
-#: ../lib/mail.php:166 ../lib/mail.php:168
+#: ../lib/mail.php:173 ../lib/mail.php:175
 msgid "gallery title"
 msgstr "naslov galerije"
 
-#: ../lib/mail.php:167
+#: ../lib/mail.php:174
 msgid "gallery URL"
 msgstr "URL naslov galerije"
 
-#: ../lib/mail.php:183
+#: ../lib/mail.php:190
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:191
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:185
+#: ../lib/mail.php:192
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Administratorska pomoè"
 
-#: ../lib/mail.php:186
+#: ../lib/mail.php:193
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:188
+#: ../lib/mail.php:195
 #, fuzzy
 msgid "Fullname"
 msgstr "Ime in priimek"
 
-#: ../lib/mail.php:189
+#: ../lib/mail.php:196
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../lib/mail.php:229
-#, php-format
-msgid "A comment has been added to this %s by %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:230
-#, fuzzy
-msgid "Item"
-msgstr "predmetov"
-
-#: ../lib/mail.php:234
-msgid "*** Begin comment ***"
-msgstr ""
-
-#: ../lib/mail.php:236
-#, fuzzy
-msgid "***End comment ***"
-msgstr "i¹èi spam komentarje"
-
-#: ../lib/mail.php:237
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:239
+#: ../lib/mail.php:233
 #, fuzzy, php-format
 msgid "New comment for %s"
 msgstr "poglej komentarje"
 
-#: ../lib/mail.php:240
+#: ../lib/mail.php:242
+#, php-format
+msgid "A new comment has been added Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:244
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:246
+#, fuzzy
+msgid "Item"
+msgstr "predmetov"
+
+#: ../lib/mail.php:248
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:250
+#, fuzzy
+msgid "***End comment ***"
+msgstr "i¹èi spam komentarje"
+
+#: ../lib/mail.php:251
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:254
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "poglej komentarje"
 
-#: ../lib/mail.php:251
+#: ../lib/mail.php:265
 #, php-format
 msgid "FAILED"
 msgstr "NEUSPE©NO"
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Uporaba e-po¹te"
 
@@ -3231,6 +3241,10 @@ msgstr "Ustvari uporabnika(co)"
 #, fuzzy
 msgid "Create multiple new users from a file."
 msgstr "Dodaj novega uporabnika(co)."
+
+#: ../multi_create_user.php:199 ../register.php:141
+msgid "Create"
+msgstr "Dodaj"
 
 #: ../multi_create_user.php:205
 msgid "Notes:"
@@ -4671,7 +4685,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHPjev %s ni mogel doloèiti velikosti."
 
 #: ../util.php:357 ../util.php:673 ../util.php:921 ../util.php:967
-#: ../util.php:2477
+#: ../util.php:2485
 msgid "You have no graphics package configured for use!"
 msgstr "Nimate name¹èenega paketa za manipulacijo grafik!"
 
@@ -4762,22 +4776,22 @@ msgstr "trenutna lokacija"
 msgid "self"
 msgstr "samostojno"
 
-#: ../util.php:1762
+#: ../util.php:1770
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Datum/èas posnetka:  %s"
 
-#: ../util.php:1807
+#: ../util.php:1815
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "Ne morem odpreti zaklenjene datoteke  (%s)!"
 
-#: ../util.php:1812
+#: ../util.php:1820
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Ne morem zakleniti (%s)!"
 
-#: ../util.php:1901 ../util.php:1940
+#: ../util.php:1909 ../util.php:1948
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
@@ -4786,118 +4800,118 @@ msgstr[1] "%d klika"
 msgstr[2] "%d klike"
 msgstr[3] "%d klikov"
 
-#: ../util.php:1906 ../util.php:1945
+#: ../util.php:1914 ../util.php:1953
 #, fuzzy
 msgid "Sub-albums"
 msgstr "%d pod-album"
 
-#: ../util.php:2113
+#: ../util.php:2121
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Preskakujem %s (%s format ni podprt)"
 
-#: ../util.php:2228
+#: ../util.php:2236
 #, php-format
 msgid "Adding %s"
 msgstr "Nalagam %s"
 
-#: ../util.php:2265
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Potrebuje¹ pomoè?  Poglej v  %s%s FAQ%s"
 
-#: ../util.php:2270
+#: ../util.php:2278
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Izkljuèujem %s (neznan format %s )"
 
-#: ../util.php:2440
+#: ../util.php:2448
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Ni bilo mo¾no ohraniti EXIF podatkov (jhead ni name¹èen)"
 
-#: ../util.php:2559
+#: ../util.php:2567
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Ne morem odpreti log datoteke:  %s"
 
-#: ../util.php:2570
+#: ../util.php:2578
 #, php-format
 msgid "Last comment %s."
 msgstr "Zadnji komentar: %s."
 
-#: ../util.php:2595
+#: ../util.php:2603
 msgid "No Skin"
 msgstr "Ni lupine(skin)"
 
-#: ../util.php:2596
+#: ../util.php:2604
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Prednastavljen izgled.</dd>"
 
-#: ../util.php:2641 ../util.php:2645
+#: ../util.php:2649 ../util.php:2653
 msgid "unknown"
 msgstr "neznano"
 
-#: ../util.php:2649
+#: ../util.php:2657
 msgid "Version"
 msgstr "Razlièica"
 
-#: ../util.php:2651
+#: ../util.php:2659
 msgid "Last Update"
 msgstr "Zadnja sprememba"
 
-#: ../util.php:2670 ../util.php:2675
+#: ../util.php:2678 ../util.php:2683
 msgid "None"
 msgstr "Nihèe"
 
-#: ../util.php:2671 ../util.php:2676
+#: ../util.php:2679 ../util.php:2684
 msgid "Dots"
 msgstr "Èrtkana"
 
-#: ../util.php:2672 ../util.php:2677
+#: ../util.php:2680 ../util.php:2685
 msgid "Solid"
 msgstr "Èrta"
 
-#: ../util.php:2675
+#: ../util.php:2683
 msgid "No frames"
 msgstr "Brez okvirjev"
 
-#: ../util.php:2676
+#: ../util.php:2684
 msgid "Just a simple dashed border around the thumb."
 msgstr "Le preprosta èrtkana èrta okolu slièice."
 
-#: ../util.php:2677
+#: ../util.php:2685
 msgid "Just a simple solid border around the thumb."
 msgstr "Le preprosta èrta okoli slièice."
 
-#: ../util.php:2698
+#: ../util.php:2706
 #, php-format
 msgid "Skipping %s."
 msgstr "Izkljuèujem %s."
 
-#: ../util.php:2704
+#: ../util.php:2712
 #, php-format
 msgid "Can't open %s"
 msgstr "Ne morem brati %s"
 
-#: ../util.php:2841 ../util.php:2860
+#: ../util.php:2849 ../util.php:2868
 msgid "Not valid yet"
 msgstr "©e ni v veljavi"
 
-#: ../util.php:3083
+#: ../util.php:3091
 msgid "EXIF Data"
 msgstr "EXIF podatki"
 
-#: ../util.php:3085
+#: ../util.php:3093
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3357
+#: ../util.php:3365
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:3437
+#: ../util.php:3445
 #, fuzzy
 msgid "Search:"
 msgstr "I¹èi po galeriji"

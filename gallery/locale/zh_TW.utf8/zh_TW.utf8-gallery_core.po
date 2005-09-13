@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-29 07:42+0200\n"
+"POT-Creation-Date: 2005-09-13 11:21+0200\n"
 "PO-Revision-Date: 2005-05-17 20:17+0800\n"
 "Last-Translator: \n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -553,7 +553,7 @@ msgid "Untitled"
 msgstr "無標題"
 
 #: ../classes/Album.php:241 ../classes/Album.php:253
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:232 ../lib/albumItem.php:48
+#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:48
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "相簿"
@@ -669,12 +669,12 @@ msgstr "處理第 %d 份檔案..."
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2469
+#: ../classes/Album.php:2476
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2635
+#: ../classes/Album.php:2642
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Email問題: 略過 %s (UID %s), 由於信箱 %s 不是合法的位址."
@@ -893,9 +893,10 @@ msgstr ""
 msgid "Create a new user here."
 msgstr "在這裡建立新的使用者。"
 
-#: ../create_user.php:165 ../multi_create_user.php:199 ../register.php:141
-msgid "Create"
-msgstr "建立"
+#: ../create_user.php:165
+#, fuzzy
+msgid "Create user"
+msgstr "建立使用者"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
 #: ../delete_photo.php:90 ../tools/validate_albums.php:128
@@ -2171,7 +2172,7 @@ msgstr "依照日篩選"
 msgid "Member file"
 msgstr "會員資料"
 
-#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../html/userData.inc:26 ../lib/mail.php:194 ../login.php:85
 #: ../login.php:147
 msgid "Username"
 msgstr "帳號"
@@ -2549,7 +2550,11 @@ msgstr "電子信件無法傳送，因為沒有提供地址"
 msgid "Sender address %s is invalid, using %s."
 msgstr "寄信人地址 %s 不合法, 使用 %s"
 
-#: ../lib/mail.php:157
+#: ../lib/mail.php:126
+msgid "This is a HTML mail, please have a look at the Attachment."
+msgstr ""
+
+#: ../lib/mail.php:164
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -2568,79 +2573,84 @@ msgstr ""
 "\n"
 "Gallery @ %s 管理員。"
 
-#: ../lib/mail.php:166 ../lib/mail.php:168
+#: ../lib/mail.php:173 ../lib/mail.php:175
 msgid "gallery title"
 msgstr "Gallery 標題"
 
-#: ../lib/mail.php:167
+#: ../lib/mail.php:174
 msgid "gallery URL"
 msgstr "Gallery 連結"
 
-#: ../lib/mail.php:183
+#: ../lib/mail.php:190
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:191
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:185
+#: ../lib/mail.php:192
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "管理幫助"
 
-#: ../lib/mail.php:186
+#: ../lib/mail.php:193
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:188
+#: ../lib/mail.php:195
 #, fuzzy
 msgid "Fullname"
 msgstr "全名"
 
-#: ../lib/mail.php:189
+#: ../lib/mail.php:196
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../lib/mail.php:229
-#, php-format
-msgid "A comment has been added to this %s by %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:230
-#, fuzzy
-msgid "Item"
-msgstr " 份檔案"
-
-#: ../lib/mail.php:234
-msgid "*** Begin comment ***"
-msgstr ""
-
-#: ../lib/mail.php:236
-#, fuzzy
-msgid "***End comment ***"
-msgstr "尋找評論廣告"
-
-#: ../lib/mail.php:237
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:239
+#: ../lib/mail.php:233
 #, fuzzy, php-format
 msgid "New comment for %s"
 msgstr "檢視評論"
 
-#: ../lib/mail.php:240
+#: ../lib/mail.php:242
+#, php-format
+msgid "A new comment has been added Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:244
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:246
+#, fuzzy
+msgid "Item"
+msgstr " 份檔案"
+
+#: ../lib/mail.php:248
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:250
+#, fuzzy
+msgid "***End comment ***"
+msgstr "尋找評論廣告"
+
+#: ../lib/mail.php:251
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:254
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "檢視評論"
 
-#: ../lib/mail.php:251
+#: ../lib/mail.php:265
 #, php-format
 msgid "FAILED"
 msgstr "失敗"
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Email activity"
 
@@ -3163,6 +3173,10 @@ msgstr "建立使用者"
 #: ../multi_create_user.php:170
 msgid "Create multiple new users from a file."
 msgstr "由一個檔案列表內建立新使用者群。"
+
+#: ../multi_create_user.php:199 ../register.php:141
+msgid "Create"
+msgstr "建立"
 
 #: ../multi_create_user.php:205
 msgid "Notes:"
@@ -4579,7 +4593,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP 的 %s 無法決定尺寸. "
 
 #: ../util.php:357 ../util.php:673 ../util.php:921 ../util.php:967
-#: ../util.php:2477
+#: ../util.php:2485
 msgid "You have no graphics package configured for use!"
 msgstr "您沒有設定可使用的圖形套件程式! "
 
@@ -4669,139 +4683,139 @@ msgstr "目前位置"
 msgid "self"
 msgstr "自己"
 
-#: ../util.php:1762
+#: ../util.php:1770
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "建立日期：%s"
 
-#: ../util.php:1807
+#: ../util.php:1815
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "無法開啟這個鎖定檔 (%s)! "
 
-#: ../util.php:1812
+#: ../util.php:1820
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "無法要求鎖定 (%s)! "
 
-#: ../util.php:1901 ../util.php:1940
+#: ../util.php:1909 ../util.php:1948
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 次"
 msgstr[1] "%d 次"
 
-#: ../util.php:1906 ../util.php:1945
+#: ../util.php:1914 ../util.php:1953
 msgid "Sub-albums"
 msgstr "子相簿"
 
-#: ../util.php:2113
+#: ../util.php:2121
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "略過 %s (尚未開啟 %s 的支援)"
 
-#: ../util.php:2228
+#: ../util.php:2236
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:2265
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要幫忙嗎? 請看 %s%s FAQ%s"
 
-#: ../util.php:2270
+#: ../util.php:2278
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "略過 %s (無法處理 %s 格式)"
 
-#: ../util.php:2440
+#: ../util.php:2448
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "無法保留EXIF資料 (沒有安裝jhead)"
 
-#: ../util.php:2559
+#: ../util.php:2567
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "無法開啟記錄檔檔：%s"
 
-#: ../util.php:2570
+#: ../util.php:2578
 #, php-format
 msgid "Last comment %s."
 msgstr "上次評論 %s. "
 
-#: ../util.php:2595
+#: ../util.php:2603
 msgid "No Skin"
 msgstr "No Skin"
 
-#: ../util.php:2596
+#: ../util.php:2604
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>原始的佈景主題.</dd>"
 
-#: ../util.php:2641 ../util.php:2645
+#: ../util.php:2649 ../util.php:2653
 msgid "unknown"
 msgstr "未知"
 
-#: ../util.php:2649
+#: ../util.php:2657
 msgid "Version"
 msgstr "版本"
 
-#: ../util.php:2651
+#: ../util.php:2659
 msgid "Last Update"
 msgstr "最後更新"
 
-#: ../util.php:2670 ../util.php:2675
+#: ../util.php:2678 ../util.php:2683
 msgid "None"
 msgstr "無"
 
-#: ../util.php:2671 ../util.php:2676
+#: ../util.php:2679 ../util.php:2684
 msgid "Dots"
 msgstr "點"
 
-#: ../util.php:2672 ../util.php:2677
+#: ../util.php:2680 ../util.php:2685
 msgid "Solid"
 msgstr "實線"
 
-#: ../util.php:2675
+#: ../util.php:2683
 msgid "No frames"
 msgstr "無外框"
 
-#: ../util.php:2676
+#: ../util.php:2684
 msgid "Just a simple dashed border around the thumb."
 msgstr "圍繞在縮圖外的簡單虛線。"
 
-#: ../util.php:2677
+#: ../util.php:2685
 msgid "Just a simple solid border around the thumb."
 msgstr "圍繞在縮圖外的簡單實線。"
 
-#: ../util.php:2698
+#: ../util.php:2706
 #, php-format
 msgid "Skipping %s."
 msgstr "略過相簿 %s. "
 
-#: ../util.php:2704
+#: ../util.php:2712
 #, php-format
 msgid "Can't open %s"
 msgstr "無法開啟 %s"
 
-#: ../util.php:2841 ../util.php:2860
+#: ../util.php:2849 ../util.php:2868
 msgid "Not valid yet"
 msgstr "使用者名稱不合法"
 
-#: ../util.php:3083
+#: ../util.php:3091
 msgid "EXIF Data"
 msgstr "詳細的 EXIF 資料"
 
-#: ../util.php:3085
+#: ../util.php:3093
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../util.php:3357
+#: ../util.php:3365
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:3437
+#: ../util.php:3445
 #, fuzzy
 msgid "Search:"
 msgstr "搜尋"

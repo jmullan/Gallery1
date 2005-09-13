@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-29 07:42+0200\n"
+"POT-Creation-Date: 2005-09-13 11:21+0200\n"
 "PO-Revision-Date: 2005-08-10 10:13+0100\n"
 "Last-Translator: Peter Liversten <skansberget@telia.com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -558,7 +558,7 @@ msgid "Untitled"
 msgstr "Ingen titel"
 
 #: ../classes/Album.php:241 ../classes/Album.php:253
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:232 ../lib/albumItem.php:48
+#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:48
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Album"
@@ -674,12 +674,12 @@ msgstr "Bearbetar bild %d..."
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Fel vid hämtning av EXIF-information.  Förväntad status 0, fick %s."
 
-#: ../classes/Album.php:2469
+#: ../classes/Album.php:2476
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2635
+#: ../classes/Album.php:2642
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problem med e-post: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
@@ -897,9 +897,10 @@ msgstr "Tillbaka till användarhandhavande"
 msgid "Create a new user here."
 msgstr "Skapa en ny användare här."
 
-#: ../create_user.php:165 ../multi_create_user.php:199 ../register.php:141
-msgid "Create"
-msgstr "Skapa"
+#: ../create_user.php:165
+#, fuzzy
+msgid "Create user"
+msgstr "Skapa användare"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
 #: ../delete_photo.php:90 ../tools/validate_albums.php:128
@@ -2149,7 +2150,7 @@ msgstr "Filtrera efter dag"
 msgid "Member file"
 msgstr "Medlemsfil"
 
-#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../html/userData.inc:26 ../lib/mail.php:194 ../login.php:85
 #: ../login.php:147
 msgid "Username"
 msgstr "Användarnamn:"
@@ -2519,7 +2520,11 @@ msgstr "E-post skickades inte eftersom ingen e-postadress för mottagare tillhand
 msgid "Sender address %s is invalid, using %s."
 msgstr "Avsändarens e-postadress %s är ogiltig, använder %s."
 
-#: ../lib/mail.php:157
+#: ../lib/mail.php:126
+msgid "This is a HTML mail, please have a look at the Attachment."
+msgstr ""
+
+#: ../lib/mail.php:164
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -2538,76 +2543,81 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratör."
 
-#: ../lib/mail.php:166 ../lib/mail.php:168
+#: ../lib/mail.php:173 ../lib/mail.php:175
 msgid "gallery title"
 msgstr "Gallerytitel"
 
-#: ../lib/mail.php:167
+#: ../lib/mail.php:174
 msgid "gallery URL"
 msgstr "Gallery URL"
 
-#: ../lib/mail.php:183
+#: ../lib/mail.php:190
 msgid "The Url to your Gallery."
 msgstr "Webbadressen till ditt Gallery."
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:191
 msgid "Title of your Gallery."
 msgstr "Titel på ditt Gallery"
 
-#: ../lib/mail.php:185
+#: ../lib/mail.php:192
 msgid "Admin email(s)"
 msgstr "E-post till administratör(er)"
 
-#: ../lib/mail.php:186
+#: ../lib/mail.php:193
 msgid "Password for the newly created user."
 msgstr "Lösenord för den nyligen skapade användaren."
 
-#: ../lib/mail.php:188
+#: ../lib/mail.php:195
 msgid "Fullname"
 msgstr "Fullständigt namn"
 
-#: ../lib/mail.php:189
+#: ../lib/mail.php:196
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Kommer att ersättas med en länk som den nya användaren kan klicka på för att skapa ett nytt lösenord."
 
-#: ../lib/mail.php:229
-#, fuzzy, php-format
-msgid "A comment has been added to this %s by %s in this %s."
-msgstr "En kommentar har lagts in på %s av %s i album %s."
-
-#: ../lib/mail.php:230
-#, fuzzy
-msgid "Item"
-msgstr "objekt"
-
-#: ../lib/mail.php:234
-msgid "*** Begin comment ***"
-msgstr "*** Start kommentar ***"
-
-#: ../lib/mail.php:236
-msgid "***End comment ***"
-msgstr "*** Slut kommentar ***"
-
-#: ../lib/mail.php:237
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
-msgstr "Om du inte längre önskar att mottaga e-post om denna bild, följ länkarna ovan och försäkra att 'Skicka e-post till mig när andra ändringar har gjorts' är avmarkerade på både foto- och albumsidan (Du  behöver logga in först)."
-
-#: ../lib/mail.php:239
+#: ../lib/mail.php:233
 #, php-format
 msgid "New comment for %s"
 msgstr "Ny kommentar för %s"
 
-#: ../lib/mail.php:240
+#: ../lib/mail.php:242
+#, fuzzy, php-format
+msgid "A new comment has been added Gallery: %s"
+msgstr "En kommentar har lagts in på %s av %s i album %s."
+
+#: ../lib/mail.php:244
+#, fuzzy, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr "En kommentar har lagts in på %s av %s i album %s."
+
+#: ../lib/mail.php:246
+#, fuzzy
+msgid "Item"
+msgstr "objekt"
+
+#: ../lib/mail.php:248
+msgid "*** Begin comment ***"
+msgstr "*** Start kommentar ***"
+
+#: ../lib/mail.php:250
+msgid "***End comment ***"
+msgstr "*** Slut kommentar ***"
+
+#: ../lib/mail.php:251
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr "Om du inte längre önskar att mottaga e-post om denna bild, följ länkarna ovan och försäkra att 'Skicka e-post till mig när andra ändringar har gjorts' är avmarkerade på både foto- och albumsidan (Du  behöver logga in först)."
+
+#: ../lib/mail.php:254
 #, php-format
 msgid "New comment for %s."
 msgstr "Ny kommentarer för %s."
 
-#: ../lib/mail.php:251
+#: ../lib/mail.php:265
 #, php-format
 msgid "FAILED"
 msgstr "MISSLYCKADES"
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "E-postaktivitet"
 
@@ -3122,6 +3132,10 @@ msgstr "Skapa användare"
 #: ../multi_create_user.php:170
 msgid "Create multiple new users from a file."
 msgstr "Skapa flera nya användare från en fil."
+
+#: ../multi_create_user.php:199 ../register.php:141
+msgid "Create"
+msgstr "Skapa"
 
 #: ../multi_create_user.php:205
 msgid "Notes:"
@@ -4531,7 +4545,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHPs %s oförmögen att fastställa storlekar."
 
 #: ../util.php:357 ../util.php:673 ../util.php:921 ../util.php:967
-#: ../util.php:2477
+#: ../util.php:2485
 msgid "You have no graphics package configured for use!"
 msgstr "Du har inga grafikpaket konfigurerade för att användas!"
 
@@ -4621,139 +4635,139 @@ msgstr "Nuvarande placering"
 msgid "self"
 msgstr "Eget"
 
-#: ../util.php:1762
+#: ../util.php:1770
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Fotodatum: %s"
 
-#: ../util.php:1807
+#: ../util.php:1815
 #, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "Kunde inte öppna låst fil (%s) för skrivning!"
 
-#: ../util.php:1812
+#: ../util.php:1820
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Kunde inte låsa (%s)!"
 
-#: ../util.php:1901 ../util.php:1940
+#: ../util.php:1909 ../util.php:1948
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 träff"
 msgstr[1] "%d träffar"
 
-#: ../util.php:1906 ../util.php:1945
+#: ../util.php:1914 ../util.php:1953
 msgid "Sub-albums"
 msgstr "Underliggande album"
 
-#: ../util.php:2113
+#: ../util.php:2121
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Utesluter %s (%s stöd är inte aktiverat)"
 
-#: ../util.php:2228
+#: ../util.php:2236
 #, php-format
 msgid "Adding %s"
 msgstr "Lägger till %s"
 
-#: ../util.php:2265
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behöver du hjälp?  Titta i  %s%s Frågor och Svar%s"
 
-#: ../util.php:2270
+#: ../util.php:2278
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Utesluter %s (kan inte hantera %s format)"
 
-#: ../util.php:2440
+#: ../util.php:2448
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Kunde inte bevara EXIF-information (jhead är inte installerat)"
 
-#: ../util.php:2559
+#: ../util.php:2567
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:2570
+#: ../util.php:2578
 #, php-format
 msgid "Last comment %s."
 msgstr "Senaste kommentar %s."
 
-#: ../util.php:2595
+#: ../util.php:2603
 msgid "No Skin"
 msgstr "Inget skal"
 
-#: ../util.php:2596
+#: ../util.php:2604
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>Original \"look and feel\".</dd>"
 
-#: ../util.php:2641 ../util.php:2645
+#: ../util.php:2649 ../util.php:2653
 msgid "unknown"
 msgstr "okänd"
 
-#: ../util.php:2649
+#: ../util.php:2657
 msgid "Version"
 msgstr "Version"
 
-#: ../util.php:2651
+#: ../util.php:2659
 msgid "Last Update"
 msgstr "Senast uppdaterad"
 
-#: ../util.php:2670 ../util.php:2675
+#: ../util.php:2678 ../util.php:2683
 msgid "None"
 msgstr "Ingen"
 
-#: ../util.php:2671 ../util.php:2676
+#: ../util.php:2679 ../util.php:2684
 msgid "Dots"
 msgstr "Punkter"
 
-#: ../util.php:2672 ../util.php:2677
+#: ../util.php:2680 ../util.php:2685
 msgid "Solid"
 msgstr "Enfärgad"
 
-#: ../util.php:2675
+#: ../util.php:2683
 msgid "No frames"
 msgstr "Inga ramar"
 
-#: ../util.php:2676
+#: ../util.php:2684
 msgid "Just a simple dashed border around the thumb."
 msgstr "Endast en enkel streckad kant runt miniatyrbilden."
 
-#: ../util.php:2677
+#: ../util.php:2685
 msgid "Just a simple solid border around the thumb."
 msgstr "Endast en enkel enfärgad kant runt miniatyrbilden."
 
-#: ../util.php:2698
+#: ../util.php:2706
 #, php-format
 msgid "Skipping %s."
 msgstr "Utesluter %s."
 
-#: ../util.php:2704
+#: ../util.php:2712
 #, php-format
 msgid "Can't open %s"
 msgstr "Kan inte öppna %s"
 
-#: ../util.php:2841 ../util.php:2860
+#: ../util.php:2849 ../util.php:2868
 msgid "Not valid yet"
 msgstr "Inte giltigt ännu"
 
-#: ../util.php:3083
+#: ../util.php:3091
 msgid "EXIF Data"
 msgstr "EXIF-information"
 
-#: ../util.php:3085
+#: ../util.php:3093
 msgid "Display of EXIF data enabled, but no data found."
 msgstr "Visning av EXIF-information aktiverad men ingen information hittades."
 
-#: ../util.php:3357
+#: ../util.php:3365
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s har skickat ett E-C@rd till dig."
 
-#: ../util.php:3437
+#: ../util.php:3445
 #, fuzzy
 msgid "Search:"
 msgstr "Sök"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-08-29 07:37+0200\n"
+"POT-Creation-Date: 2005-09-13 11:21+0200\n"
 "PO-Revision-Date: 2005-07-15 16:42+0100\n"
 "Last-Translator: jact <jachavar AT terra DOT es>\n"
 "Language-Team: spanish <jachavar AT terra DOT es>\n"
@@ -554,7 +554,7 @@ msgid "Untitled"
 msgstr "Sin título"
 
 #: ../classes/Album.php:241 ../classes/Album.php:253
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:232 ../lib/albumItem.php:48
+#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:48
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Álbum"
@@ -670,12 +670,12 @@ msgstr "Procesando imagen %d..."
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Error obteniendo datos EXIF. Estado esperado 0, se produjo %s."
 
-#: ../classes/Album.php:2469
+#: ../classes/Album.php:2476
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2635
+#: ../classes/Album.php:2642
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Error en el correo: saltando %s (UID %s) porque la dirección de correo %s no es válida."
@@ -893,9 +893,10 @@ msgstr "Volver a la gestión de usuarios"
 msgid "Create a new user here."
 msgstr "Cree un nuevo usuario aquí."
 
-#: ../create_user.php:165 ../multi_create_user.php:199 ../register.php:141
-msgid "Create"
-msgstr "Crear"
+#: ../create_user.php:165
+#, fuzzy
+msgid "Create user"
+msgstr "Crear usuario"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
 #: ../delete_photo.php:90 ../tools/validate_albums.php:128
@@ -2158,7 +2159,7 @@ msgstr "Filtrar por día"
 msgid "Member file"
 msgstr "Fichero miembro"
 
-#: ../html/userData.inc:26 ../lib/mail.php:187 ../login.php:85
+#: ../html/userData.inc:26 ../lib/mail.php:194 ../login.php:85
 #: ../login.php:147
 msgid "Username"
 msgstr "Usuario"
@@ -2534,7 +2535,11 @@ msgstr "Correo no enviado mientras no se proporcione una dirección"
 msgid "Sender address %s is invalid, using %s."
 msgstr "La dirección del remitente %s no es válido, se usará %s."
 
-#: ../lib/mail.php:157
+#: ../lib/mail.php:126
+msgid "This is a HTML mail, please have a look at the Attachment."
+msgstr ""
+
+#: ../lib/mail.php:164
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -2553,77 +2558,82 @@ msgstr ""
 "\n"
 "El administrador @ %s de Gallery."
 
-#: ../lib/mail.php:166 ../lib/mail.php:168
+#: ../lib/mail.php:173 ../lib/mail.php:175
 msgid "gallery title"
 msgstr "título de la galería"
 
-#: ../lib/mail.php:167
+#: ../lib/mail.php:174
 msgid "gallery URL"
 msgstr "URL de la galería"
 
-#: ../lib/mail.php:183
+#: ../lib/mail.php:190
 msgid "The Url to your Gallery."
 msgstr "URL de su galería."
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:191
 msgid "Title of your Gallery."
 msgstr "Título de su galería."
 
-#: ../lib/mail.php:185
+#: ../lib/mail.php:192
 msgid "Admin email(s)"
 msgstr "Correo(s) del administrador"
 
-#: ../lib/mail.php:186
+#: ../lib/mail.php:193
 msgid "Password for the newly created user."
 msgstr "Contraseña para el último usuario creado."
 
-#: ../lib/mail.php:188
+#: ../lib/mail.php:195
 msgid "Fullname"
 msgstr "Nombre completo"
 
-#: ../lib/mail.php:189
+#: ../lib/mail.php:196
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../lib/mail.php:229
-#, php-format
-msgid "A comment has been added to this %s by %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:230
-#, fuzzy
-msgid "Item"
-msgstr "elementos"
-
-#: ../lib/mail.php:234
-msgid "*** Begin comment ***"
-msgstr ""
-
-#: ../lib/mail.php:236
-#, fuzzy
-msgid "***End comment ***"
-msgstr "encontrar comentario basura"
-
-#: ../lib/mail.php:237
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:239
+#: ../lib/mail.php:233
 #, fuzzy, php-format
 msgid "New comment for %s"
 msgstr "ver comentarios"
 
-#: ../lib/mail.php:240
+#: ../lib/mail.php:242
+#, php-format
+msgid "A new comment has been added Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:244
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:246
+#, fuzzy
+msgid "Item"
+msgstr "elementos"
+
+#: ../lib/mail.php:248
+msgid "*** Begin comment ***"
+msgstr ""
+
+#: ../lib/mail.php:250
+#, fuzzy
+msgid "***End comment ***"
+msgstr "encontrar comentario basura"
+
+#: ../lib/mail.php:251
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:254
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "ver comentarios"
 
-#: ../lib/mail.php:251
+#: ../lib/mail.php:265
 #, php-format
 msgid "FAILED"
 msgstr "FALLO"
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Actividad del correo"
 
@@ -3144,6 +3154,10 @@ msgstr "Crear usuarios"
 #: ../multi_create_user.php:170
 msgid "Create multiple new users from a file."
 msgstr "Cree múltiples nuevos usuarios desde un fichero."
+
+#: ../multi_create_user.php:199 ../register.php:141
+msgid "Create"
+msgstr "Crear"
 
 #: ../multi_create_user.php:205
 msgid "Notes:"
@@ -4553,7 +4567,7 @@ msgid "PHP's %s unable to determine dimensions."
 msgstr "PHP's %s no es capaz de determinar las dimensiones."
 
 #: ../util.php:357 ../util.php:673 ../util.php:921 ../util.php:967
-#: ../util.php:2477
+#: ../util.php:2485
 msgid "You have no graphics package configured for use!"
 msgstr "No tienes ningún paquete gráfico configurado para usarlo"
 
@@ -4643,139 +4657,139 @@ msgstr "situación actual"
 msgid "self"
 msgstr "él mismo"
 
-#: ../util.php:1762
+#: ../util.php:1770
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Fecha de toma del elemento: %s"
 
-#: ../util.php:1807
+#: ../util.php:1815
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "¡No se puede abrir el fichero de cerrojo (%s)!"
 
-#: ../util.php:1812
+#: ../util.php:1820
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "¡No se puede adquirir el cerrojo (%s)!"
 
-#: ../util.php:1901 ../util.php:1940
+#: ../util.php:1909 ../util.php:1948
 #, php-format
 msgid "1 hit"
 msgid_plural "%d hits"
 msgstr[0] "1 coincidencia"
 msgstr[1] "%d coincidencias"
 
-#: ../util.php:1906 ../util.php:1945
+#: ../util.php:1914 ../util.php:1953
 msgid "Sub-albums"
 msgstr "Subálbumes"
 
-#: ../util.php:2113
+#: ../util.php:2121
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Saltando %s (soporte para %s no activado)"
 
-#: ../util.php:2228
+#: ../util.php:2236
 #, php-format
 msgid "Adding %s"
 msgstr "Añadiendo %s"
 
-#: ../util.php:2265
+#: ../util.php:2273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "¿Necesita ayuda? Mire en el %s%s FAQ%s"
 
-#: ../util.php:2270
+#: ../util.php:2278
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Saltando %s (no se puede hacer nada con el formato %s)"
 
-#: ../util.php:2440
+#: ../util.php:2448
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "No es posible preservar los datos EXIF (jhead no está instalado)"
 
-#: ../util.php:2559
+#: ../util.php:2567
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "No se puede abrir el fichero de log: %s"
 
-#: ../util.php:2570
+#: ../util.php:2578
 #, php-format
 msgid "Last comment %s."
 msgstr "Último comentario: %s."
 
-#: ../util.php:2595
+#: ../util.php:2603
 msgid "No Skin"
 msgstr "Sin piel"
 
-#: ../util.php:2596
+#: ../util.php:2604
 #, php-format
 msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
 msgstr "<dt>%s</dt><dd>El tema original.</dd>"
 
-#: ../util.php:2641 ../util.php:2645
+#: ../util.php:2649 ../util.php:2653
 msgid "unknown"
 msgstr "desconocido"
 
-#: ../util.php:2649
+#: ../util.php:2657
 msgid "Version"
 msgstr "Versión"
 
-#: ../util.php:2651
+#: ../util.php:2659
 msgid "Last Update"
 msgstr "Última modificación"
 
-#: ../util.php:2670 ../util.php:2675
+#: ../util.php:2678 ../util.php:2683
 msgid "None"
 msgstr "Ninguno"
 
-#: ../util.php:2671 ../util.php:2676
+#: ../util.php:2679 ../util.php:2684
 msgid "Dots"
 msgstr "Puntos"
 
-#: ../util.php:2672 ../util.php:2677
+#: ../util.php:2680 ../util.php:2685
 msgid "Solid"
 msgstr "Sólido"
 
-#: ../util.php:2675
+#: ../util.php:2683
 msgid "No frames"
 msgstr "Sin marcos"
 
-#: ../util.php:2676
+#: ../util.php:2684
 msgid "Just a simple dashed border around the thumb."
 msgstr "Borde simple discontinuo alrededor de la miniatura."
 
-#: ../util.php:2677
+#: ../util.php:2685
 msgid "Just a simple solid border around the thumb."
 msgstr "Borde simple continuo alrededor de la miniatura."
 
-#: ../util.php:2698
+#: ../util.php:2706
 #, php-format
 msgid "Skipping %s."
 msgstr "Saltando %s."
 
-#: ../util.php:2704
+#: ../util.php:2712
 #, php-format
 msgid "Can't open %s"
 msgstr "No se puede abrir %s"
 
-#: ../util.php:2841 ../util.php:2860
+#: ../util.php:2849 ../util.php:2868
 msgid "Not valid yet"
 msgstr "Todavía no es válido"
 
-#: ../util.php:3083
+#: ../util.php:3091
 msgid "EXIF Data"
 msgstr "Datos EXIF"
 
-#: ../util.php:3085
+#: ../util.php:3093
 msgid "Display of EXIF data enabled, but no data found."
 msgstr "La visualización de datos EXIF está activada pero no se han encontrado esa información."
 
-#: ../util.php:3357
+#: ../util.php:3365
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:3437
+#: ../util.php:3445
 #, fuzzy
 msgid "Search:"
 msgstr "Buscar"
