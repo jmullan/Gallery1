@@ -230,7 +230,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
 	$to = $gallery->album->getEmailMeList('comments', $id);
-		$subject = sprintf(_("New comment for %s"), $id);
+	$subject = sprintf(_("New comment for %s"), $id);
 	$text = '';
 
 	if (!empty($to)) {
@@ -253,7 +253,6 @@ function emailComments($id, $comment_text, $commenter_name) {
 
 	    $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
-//	    gallery_mail($to, $subject, $text, $logmsg, true);
 	    gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 	}
 	elseif (isDebugging()) {

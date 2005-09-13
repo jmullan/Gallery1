@@ -162,7 +162,7 @@ echo _("Create a new user here.");
 <br>
 
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">
+<input type="submit" name="create" value="<?php echo _("Create user") ?>" onclick="usercreate_form.formaction.value='create'">
 <input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
 </form>
 </div>
