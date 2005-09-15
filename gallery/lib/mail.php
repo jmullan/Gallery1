@@ -239,7 +239,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 	    $text .= "\n  <head>";
 	    $text .= "\n  <title>$subject</title>";
 	    $text .= "\n  </head>\n<body>\n<p>";
-	    $text .= sprintf(_("A new comment has been added Gallery: %s"), $gallery->app->galleryTitle);
+	    $text .= sprintf(_("A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
 	    $text .= "\n</p>";
 	    $text .= sprintf(_("The comment was added by %s to this %s in this %s."),
 			$commenter_name,
