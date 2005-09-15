@@ -1676,6 +1676,7 @@ function getExif($file) {
 
     $return = array();
     $myExif = array();
+    $unwantedFields = array();
 
     switch(getExifDisplayTool()) {
 	case 'exiftags':
@@ -1683,7 +1684,7 @@ function getExif($file) {
 		break;
 	    }
 	    $path = $gallery->app->exiftags;
-	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -au ' .
+	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -au '.
 	      fs_import_filename($file, 1));
 
 	    break;
@@ -1693,9 +1694,10 @@ function getExif($file) {
 		break;
 	    }
 	    $path = $gallery->app->use_exif;
-	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) . ' -v ' .
+	    list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' '. //. ' -v ' .
 	      fs_import_filename($file, 1));
-			
+		
+	    $unwantedFields = array('File name');	
 	    break;
 	
 	default:
@@ -1710,7 +1712,7 @@ function getExif($file) {
 		$explodeReturn = explode(':', $value, 2);
 		$exifDesc = trim(htmlentities($explodeReturn[0]));
 		$exifData = trim(htmlentities($explodeReturn[1]));
-		if(!empty($exifData)) {
+		if(!empty($exifData) && !in_array($exifDesc, $unwantedFields)) {
 		    if (isset($myExif[$exifDesc])) { 
 			$myExif[$exifDesc] .= "<br>";
 		    } else {
@@ -3085,8 +3087,6 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields=true, $withE
 	(eregi("jpe?g\$", $photo->image->type))) {
 		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
 		if (!empty($myExif) && !isset($myExif['Error'])) {
-			// get rid of file name at beginnin
-			array_shift($myExif);
 
 			$tables[_("EXIF Data")]  = $myExif;
 		} elseif (isset($myExif['status']) && $myExif['status'] == 1) {
