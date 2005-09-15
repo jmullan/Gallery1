@@ -27,14 +27,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-13 11:46+0200\n"
-"PO-Revision-Date: 2005-07-29 14:41+0100\n"
-"Last-Translator: Jens Tkotz <jens AT peino DOTde>\n"
+"POT-Creation-Date: 2005-09-13 11:21+0200\n"
+"PO-Revision-Date: 2005-08-14 16:09+0100\n"
+"Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../html_wrap/frames/golden/frame.def:4
+msgid "Gold Frame"
+msgstr "Goldener Rahmen"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr "Ein goldener Bilderahmen ;)"
 
 #: ../html_wrap/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
@@ -43,14 +51,6 @@ msgstr "Spiralbuch"
 #: ../html_wrap/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
 msgstr "Ein Rahmen der einen Spiralbuch imitiert."
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Schatten"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "Erzeugt einen transparente Schatten, der nach rechts unten f&auml;llt. Sollte auf den meisten Hintergr&uuml;nden funktionieren, ausser schwarz nat&uuml;rlich."
 
 #: ../html_wrap/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -68,21 +68,21 @@ msgstr "Polaroids"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "Dieser Rahmen simuliert einen Stapel von Polaroids."
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Goldener Rahmen"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr "Ein goldener Bilderahmen ;)"
-
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
-msgstr ""
+msgstr "Briefmarke"
 
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
-msgstr ""
+msgstr "Ein einfacher Briefmarken Effekt."
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr "Schatten"
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr "Erzeugt einen transparente Schatten, der nach rechts unten f&auml;llt. Sollte auf den meisten Hintergr&uuml;nden funktionieren, ausser schwarz nat&uuml;rlich."
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -912,9 +912,8 @@ msgid "The site also has binaries available for assorted operating systems.  If 
 msgstr "Dort finden Sie auch Binaries f&uuml;r die verschiedensten Systeme.  Falls Sie es nicht zum Laufen bekommen, lassen Sie den Pfad zu ImageMagick leer und benutzen NetPBM stattdessen."
 
 #: ../setup/config_data.inc:91
-#, fuzzy
 msgid "I've found part of ImageMagick , but some critical components are missing (see below)."
-msgstr "Es wurden Teile von NetPBM gefunden, jedoch fehlen wichtige Komponenten (siehe unten).  Vielleicht ist Ihre NetPBM Version veraltet ?"
+msgstr "Es wurden Teile von ImageMagick gefunden, jedoch fehlen wichtige Komponenten (siehe unten)."
 
 #: ../setup/config_data.inc:96
 #, php-format
@@ -1033,9 +1032,8 @@ msgid "I can't find ImageMagick.  If it's installed and not in the path of the w
 msgstr "Imagemagick wurde nicht gefunden.  Falls es installiert wurde, jedoch nicht im Pfad des Benutzers des Webserver, ist dies kein Problem. Sie k&ouml;nnen den Pfad zu ImageMagick selber auf der folgenden Seite angeben. Falls es nicht installiert ist, m&uuml;ssen Sie dies nachholen."
 
 #: ../setup/config_data.inc:196
-#, fuzzy
 msgid "If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page."
-msgstr "Wenn NetPBM installiert ist, aber Gallery es nicht automatisch finden kann, ist dies kein Problem  -- Sie k&ouml;nnen den Pfad zu NetPBM selber auf der folgenden Seite angeben."
+msgstr "Wenn ImageMagick installiert ist, aber Gallery es nicht automatisch finden kann, ist dies kein Problem  -- Sie k&ouml;nnen den Pfad zu ImageMagick selber auf der folgenden Seite angeben."
 
 #: ../setup/config_data.inc:201
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
@@ -1396,7 +1394,7 @@ msgstr "Ersetze Albumbaum durch Microvorschaubilder"
 
 #: ../setup/config_data.inc:494
 msgid "If you have set album tree to anything but off, this will display micro thumbs of the sub albums instead of the album tree."
-msgstr ""
+msgstr "Falls Sie die Einstellung zur Anzeige des Albumbaumes auf irgendwas anderes als \"Aus\" setzen, werden stattdessen die Microvorschaubilder für die Unteralben angezeigt."
 
 #: ../setup/config_data.inc:499
 msgid "Highlight size"
@@ -2727,7 +2725,7 @@ msgstr "Diese Einstellungen sind für die Mirco-Vorschau in der Photo-Navigation.
 
 #: ../setup/config_data.inc:1674
 msgid "Uses micro-thumbnails for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the micro thumb navigation system AND the old style navigation system."
-msgstr ""
+msgstr "Microvorschau einschalten. Die Microvorschau ist ein Balken, der eine verkleinerte Version der Vorschaubilder anzeigt. Dies ist etwas komfortabler, kostest aber auch mehr Platz. Sie können wenn Sie möchten auch beide Naivgationssysteme verwenden."
 
 #: ../setup/config_data.inc:1676
 msgid "both"
@@ -2739,7 +2737,7 @@ msgstr "Fest"
 
 #: ../setup/config_data.inc:1682
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
-msgstr ""
+msgstr "Es wird eine Gruppe der nächsten und vorherigen Bilder angezeigt, wobei sich nur die Anzeige der nächsten Bilder ändert."
 
 #: ../setup/config_data.inc:1683 ../setup/config_data.inc:1687
 msgid "Dynamic"
@@ -2747,7 +2745,7 @@ msgstr "Dynamisch"
 
 #: ../setup/config_data.inc:1684
 msgid "Displays previos & next images, with current image between."
-msgstr ""
+msgstr "Zeigt die nächsten und vorherigen Bilder mit dem aktuellen in der Mitte."
 
 #: ../setup/config_data.inc:1690
 msgid "Show Micro Thumb for First/Last"
@@ -2755,7 +2753,7 @@ msgstr "Zeige Micro-Vorschau für erstes und letztes Bild"
 
 #: ../setup/config_data.inc:1691
 msgid "This allows you to turn on and off the display of the first and last micro-thumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
-msgstr ""
+msgstr "Anzeige des letzten und ersten Bildes in der Microvorschau. Da diese Bilder immer gleich sind, ist es nicht jedermanns/frau Geschmack diese anzeigen zu lassen."
 
 #: ../setup/config_data.inc:1696
 msgid "Number of Previous Micro Thumbs"
@@ -2763,7 +2761,7 @@ msgstr "Anzahl der vorherigen Bilder"
 
 #: ../setup/config_data.inc:1697
 msgid "This is the number of previous micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
-msgstr ""
+msgstr "Anzahl der vorherigen Microvorschaubilder. Sie können auch unterschiedliche Werte für die nächsten und vorherigen Bilder verwenden."
 
 #: ../setup/config_data.inc:1704
 msgid "Number of Next Micro Thumbs"
@@ -2771,7 +2769,7 @@ msgstr "Anzahl der nächsten Bilder"
 
 #: ../setup/config_data.inc:1705
 msgid "This is the number of next micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."
-msgstr ""
+msgstr "Anzahl der nächsten Microvorschaubilder. Sie können auch unterschiedliche Werte für die nächsten und vorherigen Bilder verwenden."
 
 #: ../setup/config_data.inc:1712
 msgid "Location of Micro Thumb Navigation"
@@ -3330,6 +3328,3 @@ msgstr "Es fehlt entweder %s oder %s."
 #: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Betrachte Einstellungen"
-
-#~ msgid "Log me in"
-#~ msgstr "Anmelden"
