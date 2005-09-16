@@ -975,17 +975,25 @@ class Album {
 		    $to = $this->getEmailMeList('other');
 			$msg_str = call_user_func_array('sprintf', $msg);
 			if (!empty($to)) {
-				$text = sprintf(_("A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
+                $text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
+                $text .= "\n\n<html>";
+                $text .= "\n  <head>";
+                $text .= "\n  <title>$subject</title>";
+                $text .= "\n  </head>\n<body>\n<p>";
+                $text = sprintf(_("A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
 					'<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
 					user_name_string($gallery->user->getUID(),
 					$gallery->app->comments_display_name),
 					$_SERVER['REMOTE_ADDR'],
 					$msg_str);
 
-				$text .= "\n\n". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
+				$text .= "\n<p>". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
+				$text .= "\n</p>\n</body>\n</html>";
+				
 				$subject = sprintf(_("Changes to Album: %s"), $this->fields['name']);
 				$logmsg = sprintf("Change to %s: %s.", makeAlbumHeaderUrl($this->fields['name']), $msg_str);
-				gallery_mail($to, $subject, $text, $logmsg, true);
+				
+				gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 
 			} else if (isDebugging()) {
 			       	print "\n<br>". _("Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
