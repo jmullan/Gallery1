@@ -20,16 +20,16 @@
 # @version	1.5.1
 # @package	Languagepack
 # @subpackage	Japanese
-# @author	Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>, 2003-2005
+# @author	Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>, 2003-2005
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-13 11:21+0200\n"
-"PO-Revision-Date: 2005-03-24 07:20+0900\n"
-"Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
-"Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
+"POT-Creation-Date: 2005-09-16 11:50+0200\n"
+"PO-Revision-Date: 2005-08-05 23:39+0900\n"
+"Last-Translator: Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>\n"
+"Language-Team: Japanese <ken_w3m+nospam AT gmail DOT com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=EUC-JP\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1180,18 +1180,18 @@ msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that 
 msgstr "一時ファイルをおくディレクトリのパス。例えば  %s や %s。あなたのシステムで <b>open_basedir</b> の設定がされているのであれば、このテンポラリディレクトリは <b>open_basedir</b> 以下に入れないといけません。その場合自分でディレクトリを作成し、ウェブサーバのプロセスがそこに書き込み可能であることを確認してください。"
 
 #: ../setup/config_data.inc:332
-#, fuzzy, php-format
+#, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr "GalleryウェブアプリケーションヘのURL。(例 %s) Galleryは The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
+msgstr "Gallery ウェブアプリケーションヘのURL。(例 %s) Gallery は相対パスのURLで動作しますが、印刷などの一部の機能はできません。"
 
 #: ../setup/config_data.inc:341
 msgid "Albums URL"
 msgstr "アルバムのURL"
 
 #: ../setup/config_data.inc:343
-#, fuzzy, php-format
+#, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-msgstr "ウェブサーバ上のあなたのアルバムへの完全なURL。(例: %s) Galleryは関連するURL しかし、印刷などいくつかの機能は正しく機能しないかもしれません。"
+msgstr "ウェブサーバ上のあなたのアルバムへの完全なURL。(例: %s)Gallery は相対パスのURLで動作しますが、印刷などの一部の機能はできません。"
 
 #: ../setup/config_data.inc:353
 msgid "Thumbnail image"
@@ -1392,7 +1392,7 @@ msgstr "完全なツリー"
 
 #: ../setup/config_data.inc:493
 msgid "Replace album tree with micro thumbs"
-msgstr ""
+msgstr "アルバムツリーを極小サムネイルに入れ換えますか?"
 
 #: ../setup/config_data.inc:494
 msgid "If you have set album tree to anything but off, this will display micro thumbs of the sub albums instead of the album tree."
@@ -1641,7 +1641,6 @@ msgid "This option allows you to create many new user accounts at one time by cr
 msgstr "このオプションは、あなたが新しいユーザのファイルを作成することで、一度にたくさんのユーザを作成することができます。"
 
 #: ../setup/config_data.inc:777
-#, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr "これはアルバムにコメントが追加された時に、 &quot;admin&quot; アカウントがメールを受け取るようにします。"
 
@@ -1650,7 +1649,6 @@ msgid "Admin comment email"
 msgstr "管理者にコメントメール"
 
 #: ../setup/config_data.inc:783
-#, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr "これはアルバムに変更が加えられたときに、&quot;admin&quot; アカウントがメールを受け取るようにします。"
 
@@ -1878,7 +1876,6 @@ msgid "Commenter names of logged in users can be displayed in a variety of diffe
 msgstr "ログインユーザのコメント投稿者名はいろいろな方法で表示できます。"
 
 #: ../setup/config_data.inc:955
-#, fuzzy
 msgid "Add comments inside the photo page"
 msgstr "コメントを画像ページのなかに加える"
 
@@ -1895,7 +1892,6 @@ msgid "Inside"
 msgstr "内側"
 
 #: ../setup/config_data.inc:961
-#, fuzzy
 msgid "Maximum length of comments"
 msgstr "コメントの最大の長さ"
 
@@ -1904,12 +1900,10 @@ msgid "Enter a suitable value for the maximum length of comments to prevent abus
 msgstr "不正利用を防ぐためにコメントの最大の長さの適切な値を入力してください。Galleryはコメントを1000文字以下に制限しています。(訳注:1byte換算かも) この値は1000未満の場合に使用されます。"
 
 #: ../setup/config_data.inc:968
-#, fuzzy
 msgid "Can every permitted user see a comments overview"
 msgstr "だれでもコメントの概要を読めるようにする"
 
 #: ../setup/config_data.inc:969
-#, fuzzy
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "アルバムの全てのコメントの完全な概観ができるようにしますか?  &quot;いいえ &quot; に設定するとこの機能は管理者と所有者のみが使えるようになります。"
 
@@ -2059,15 +2053,13 @@ msgstr "このセクションの設定は詳しいユーザのためだけに用意されています。"
 
 #: ../setup/config_data.inc:1107
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
-msgstr ""
+msgstr "このタブの設定が変更された場合、パフォーマンスやセキュリティに深刻な結果をもたらすことに気を付け、自己の責任において変更を加えてください。"
 
 #: ../setup/config_data.inc:1110
-#, fuzzy
 msgid "Debug Level"
-msgstr "デバッグモード"
+msgstr "デバッグレベル"
 
 #: ../setup/config_data.inc:1111
-#, fuzzy
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr "問題の原因を探るためにデバッグモードをONにしますか?"
 
@@ -2738,14 +2730,12 @@ msgid "Uses micro-thumbnails for photo navigation. This creates a navigation pan
 msgstr ""
 
 #: ../setup/config_data.inc:1676
-#, fuzzy
 msgid "both"
 msgstr "両方"
 
 #: ../setup/config_data.inc:1681 ../setup/config_data.inc:1687
-#, fuzzy
 msgid "Fixed"
-msgstr "失敗"
+msgstr "固定"
 
 #: ../setup/config_data.inc:1682
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
@@ -2753,7 +2743,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1683 ../setup/config_data.inc:1687
 msgid "Dynamic"
-msgstr ""
+msgstr "ダイナミック"
 
 #: ../setup/config_data.inc:1684
 msgid "Displays previos & next images, with current image between."
@@ -2797,11 +2787,11 @@ msgstr ""
 
 #: ../setup/config_data.inc:1718
 msgid "Bottom"
-msgstr ""
+msgstr "下部"
 
 #: ../setup/config_data.inc:1721
 msgid "Height of Micro Thumbs"
-msgstr ""
+msgstr "極小サムネイルの高さ"
 
 #: ../setup/config_data.inc:1722
 msgid "The size of micro thumbnails will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
@@ -3339,60 +3329,3 @@ msgstr "%s か %s のどちらかが欠落しています．"
 #: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "設定を見直す"
-
-#, fuzzy
-#~ msgid "Find file \"%s\" does not exist or is not readable"
-#~ msgstr "ファイル%sは存在しません。"
-
-#, fuzzy
-#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
-#~ msgstr "このPHPインストレーションには %s 制限がかかっています。 これは過去にコンフィグレーションウィザードを使って設定に成功しているとしても、Galleryが各バイナリを検証するのが困難になります。 この警告がでてもあまり気にしないでください。あなたの設定はちゃんと保存されるでしょう。"
-
-#, fuzzy
-#~ msgid "Notes"
-#~ msgstr "注意"
-
-#~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
-#~ msgstr "問題が発生したら、%sGallery ヘルプページ%sを探してください。"
-
-#~ msgid "Gallery needs Reconfiguration"
-#~ msgstr "Gallery はコンフィグレーションし直す必要があります"
-
-#~ msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-#~ msgstr "Galleryコンフィグは古いバージョンのGalleryのウィザードで作成されたもので、これは旧式です。コンフィグレーションウィザードを実行し直してください。"
-
-#~ msgid "Launch the %sConfiguration Wizard%s."
-#~ msgstr "%sコンフィグレーションウィザード%sを開始してください"
-
-#~ msgid "Gallery Configuration Error"
-#~ msgstr "Gallery コンフィグレーションエラー"
-
-#~ msgid "Gallery has not been configured!"
-#~ msgstr "Gallery はまだコンフィグレーションが完了していません"
-
-#~ msgid "Gallery must be configured before you can use it."
-#~ msgstr "Galleryは使用前にコンフィグレーションしなければなりません。"
-
-#~ msgid "1."
-#~ msgstr "1."
-
-#~ msgid "Create an empty file .htaccess and an empty file config.php"
-#~ msgstr "空の.htaccessと空のconfig.phpファイルを作成してください。"
-
-#~ msgid "2."
-#~ msgstr "2."
-
-#~ msgid "Create an albums folder for your pictures and movies."
-#~ msgstr "画像や動画のためのアルバムフォルダを作成してください。"
-
-#~ msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-#~ msgstr "ウェブサーバのプロセスから読み書き可能なことを確認してください。"
-
-#~ msgid "Then start the %sConfiguration Wizard%s."
-#~ msgstr "そして%sコンフィグレーション ウィザード%sを開始してください。"
-
-#~ msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
-#~ msgstr "%s、 %s と %s は新しく作成されたユーザのフルネーム、ユーザ名、パスワードと置き換えられます。"
-
-#~ msgid "%s will be replaced by a link the new user can click on to create a new password"
-#~ msgstr "%s は新しいユーザが新しいパスワードを作成するためのリンクに置き換えられます。"
