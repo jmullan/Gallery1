@@ -151,8 +151,12 @@ common_header() ;
 }
 /* End of HTML begin, lets do some calculations etc. */
 
-if ($set_albumListPage < 0) {
+if (empty($set_albumListPage) || $set_albumListPage < 0 || !is_integer($set_albumListPage)){
     $set_albumListPage = 1;
+}
+
+if (empty($page) || $page < 0 || !is_integer($page)){
+    $page = $set_albumListPage;
 }
 
 $rating = '';
@@ -536,11 +540,6 @@ if (!empty($refreshcache) &&
 }
 
 $uid = $gallery->user->getUid();
-if (empty($page) && empty($set_albumListPage)) {
-    $page = 1;
-} elseif (!empty($set_albumListPage)) {
-    $page = $set_albumListPage;
-}
 
 if (!isset($totalPhotosToDisplay) || $totalPhotosToDisplay <= 0 || $totalPhotosToDisplay > sizeof($arrPhotos)) {
     $totalPhotosToDisplay = sizeof($arrPhotos);

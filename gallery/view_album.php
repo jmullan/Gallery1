@@ -35,7 +35,7 @@ if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($galler
 
 $gallery->session->offlineAlbums[$gallery->album->fields["name"]]=true;
 
-if (empty($page) || $page < 0) {
+if (empty($page) || $page < 0 || !is_integer($page)) {
     if (isset($gallery->session->albumPage[$gallery->album->fields['name']])) {
         $page = $gallery->session->albumPage[$gallery->album->fields["name"]];
     } else {
