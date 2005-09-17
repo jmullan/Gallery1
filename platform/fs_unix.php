@@ -89,8 +89,9 @@ function fs_is_writable($filename) {
 }
 
 function fs_opendir($path) {
-    if (@opendir($path)) {
-	return opendir($path);
+    $dir_handle = @opendir($path);
+    if ($dir_handle) {
+	return $dir_handle;
     }
     else {
 	echo gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
