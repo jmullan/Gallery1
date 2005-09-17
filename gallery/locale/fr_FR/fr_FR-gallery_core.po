@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-15 17:50+0200\n"
-"PO-Revision-Date: 2005-04-09 23:57-0000\n"
+"POT-Creation-Date: 2005-09-17 19:23+0200\n"
+"PO-Revision-Date: 2005-09-17 23:57-0000\n"
 "Last-Translator: Benoît Catelin <gallery AT catelin DOT net>\n"
 "Language-Team: François Simond <curio AT gplservice DOT fr>\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "Gestion des utilisateurs"
 msgid "Admin options"
 msgstr "options d'administration"
 
-#: ../admin-page.php:85 ../search.php:56 ../stats.php:600
+#: ../admin-page.php:85 ../search.php:56 ../stats.php:599
 #: ../stats-wizard.php:56 ../tools/find_orphans.php:211
 #: ../tools/despam-comments.php:56 ../tools/validate_albums.php:138
 #: ../tools/validate_albums.php:214
@@ -597,93 +597,93 @@ msgstr "Mise à jour de l'élément %d sur %d . . ."
 msgid "msg should be an array!"
 msgstr "msg devrait être un tableau !"
 
-#: ../classes/Album.php:978
+#: ../classes/Album.php:983
 #, php-format
 msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
-#: ../classes/Album.php:985
+#: ../classes/Album.php:990
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
 msgstr ""
 
-#: ../classes/Album.php:986
+#: ../classes/Album.php:993
 #, fuzzy, php-format
 msgid "Changes to Album: %s"
 msgstr "Impossible d'écrire dans le fichier %s."
 
-#: ../classes/Album.php:991
+#: ../classes/Album.php:999
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1058 ../classes/Album.php:1767
+#: ../classes/Album.php:1066 ../classes/Album.php:1775
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
-#: ../classes/Album.php:1063
+#: ../classes/Album.php:1071
 #, php-format
 msgid "Processing element %d..."
 msgstr "Traitement de l'image %d..."
 
-#: ../classes/Album.php:1077
+#: ../classes/Album.php:1085
 msgid "Doing the naming"
 msgstr ""
 
-#: ../classes/Album.php:1112
+#: ../classes/Album.php:1120
 msgid "Image Preprocessing"
 msgstr ""
 
-#: ../classes/Album.php:1118
+#: ../classes/Album.php:1126
 msgid "Resizing/compressing original image"
 msgstr "Redimensionnement/compression de l'image originale"
 
-#: ../classes/Album.php:1122
+#: ../classes/Album.php:1130
 msgid "Cannot resize/compress this filetype"
 msgstr "Impossible de redimensionner/compresser ce type de fichier"
 
-#: ../classes/Album.php:1126
+#: ../classes/Album.php:1134
 msgid "Adding Photo to the photo list"
 msgstr ""
 
-#: ../classes/Album.php:1180
+#: ../classes/Album.php:1188
 #, php-format
 msgid "Resizing %s"
 msgstr "Redimensionne %s"
 
-#: ../classes/Album.php:1245
+#: ../classes/Album.php:1253
 msgid "Photo auto-rotated/transformed"
 msgstr "Photo auto-pivotée/transformée"
 
-#: ../classes/Album.php:1253
+#: ../classes/Album.php:1261
 msgid "Watermarking Image"
 msgstr "Création d'un filigrane numérique dans l'image"
 
-#: ../classes/Album.php:1410 ../classes/Album.php:1420
+#: ../classes/Album.php:1418 ../classes/Album.php:1428
 #: ../classes/AlbumItem.php:673
 msgid "No highlight"
 msgstr "Pas d'image-titre"
 
-#: ../classes/Album.php:1574
+#: ../classes/Album.php:1582
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Index demandé [%d] hors limites [%d]"
 
-#: ../classes/Album.php:1781 ../do_command.php:87
+#: ../classes/Album.php:1789 ../do_command.php:87
 #, php-format
 msgid "Processing image %d..."
 msgstr "Traitement de l'image %d..."
 
-#: ../classes/Album.php:1940
+#: ../classes/Album.php:1948
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2476
+#: ../classes/Album.php:2484
 #, php-format
 msgid "#%d"
 msgstr "n°%d"
 
-#: ../classes/Album.php:2642
+#: ../classes/Album.php:2650
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problème d'email : %s (UID %s) ignoré car l'adresse électronique %s est invalide."
@@ -966,11 +966,10 @@ msgstr[0] "Même si vous recréez cet utilisateur, les permissions seront perdues.
 msgstr[1] "Même si vous recréez ces utilisateurs, les permissions seront perdues."
 
 #: ../delete_user.php:74
-#, fuzzy
 msgid "Do you really want to delete user:"
 msgid_plural "Do you really want to delete these users:"
-msgstr[0] "Voulez-vous vraiment supprimer l'utilisateur"
-msgstr[1] "Voulez-vous vraiment supprimer ces utilisateurs"
+msgstr[0] "Voulez-vous vraiment supprimer l'utilisateur:"
+msgstr[1] "Voulez-vous vraiment supprimer ces utilisateurs:"
 
 #: ../do_command.php:43
 msgid "Attempted security breach."
@@ -1216,9 +1215,8 @@ msgid "Close"
 msgstr "Fermer"
 
 #: ../edit_caption.php:68
-#, fuzzy
 msgid "Year must be between 1969 and 2070"
-msgstr "L'année doit être entre 1000 et 3000"
+msgstr "L'année doit être entre 1969 et 2070"
 
 #: ../edit_caption.php:73 ../lib/albumItem.php:96
 msgid "Edit Text"
@@ -2372,7 +2370,7 @@ msgstr "Connecté en tant que :"
 msgid "From: %s"
 msgstr "De:"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:966 ../util.php:169
+#: ../layout/commentboxbottom.inc:11 ../stats.php:965 ../util.php:169
 msgid "add comment"
 msgstr "ajouter un commentaire"
 
@@ -3961,202 +3959,202 @@ msgstr "- Images les moins visualisées"
 msgid " - Images with the most views"
 msgstr "- Images les plus visualisées"
 
-#: ../stats.php:300
+#: ../stats.php:304
 #, php-format
 msgid "Number Albums = %s"
 msgstr "Nombre d'albums = %s"
 
-#: ../stats.php:311
+#: ../stats.php:315
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr ""
 
-#: ../stats.php:322
+#: ../stats.php:326
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr ""
 
-#: ../stats.php:337
+#: ../stats.php:341
 msgid "Logged In - Disabling Cache"
 msgstr ""
 
-#: ../stats.php:343
+#: ../stats.php:347
 msgid "Using cache"
 msgstr ""
 
-#: ../stats.php:343
+#: ../stats.php:347
 msgid "Not using cache"
 msgstr ""
 
-#: ../stats.php:344
+#: ../stats.php:348
 msgid "Cache to be rebuilt"
 msgstr "Cache à reconstruire"
 
-#: ../stats.php:344
+#: ../stats.php:348
 #, fuzzy
 msgid "Cache will not rebuild."
 msgstr "Cache à reconstruire"
 
-#: ../stats.php:366
+#: ../stats.php:370
 msgid "Version out of date."
 msgstr "Version dépassée."
 
-#: ../stats.php:398
+#: ../stats.php:402
 #, php-format
 msgid "Checking album: %s"
 msgstr "Vérification de l'album %s"
 
-#: ../stats.php:408
+#: ../stats.php:412
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
-#: ../stats.php:419
+#: ../stats.php:423
 #, fuzzy
 msgid "Getting SVotes"
 msgstr "Commentaires correspondant"
 
-#: ../stats.php:425
+#: ../stats.php:429
 #, fuzzy
 msgid "Getting Item Clicks"
 msgstr "Date de prise de vue"
 
-#: ../stats.php:428
+#: ../stats.php:432
 #, fuzzy
 msgid "Getting Item Capture Date"
 msgstr "Date de prise de vue"
 
-#: ../stats.php:447
+#: ../stats.php:451
 #, fuzzy
 msgid "Getting Number of Comments"
 msgstr "Par nombre de Commentaires"
 
-#: ../stats.php:449
+#: ../stats.php:453
 #, fuzzy
 msgid "Getting Comments"
 msgstr "Commentaires correspondant"
 
-#: ../stats.php:492
+#: ../stats.php:496
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr ""
 
-#: ../stats.php:558
+#: ../stats.php:557
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr ""
 
-#: ../stats.php:579
+#: ../stats.php:578
 #, fuzzy, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d images au hasard depuis l'album :: %s"
 
-#: ../stats.php:581
+#: ../stats.php:580
 #, fuzzy, php-format
 msgid "%d images in album: %s"
 msgstr "%d images au hasard depuis l'album :: %s"
 
-#: ../stats.php:584
+#: ../stats.php:583
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr ""
 
-#: ../stats.php:589
+#: ../stats.php:588
 #, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "%d images avec un commentaire dans cette galerie"
 
-#: ../stats.php:592
+#: ../stats.php:591
 #, php-format
 msgid "%d images this Gallery"
 msgstr "%d images dans cette galerie"
 
-#: ../stats.php:598
+#: ../stats.php:597
 msgid "Back to stats-wizard"
 msgstr "Retourner à l'assistant de configuration des statistiques."
 
-#: ../stats.php:634
+#: ../stats.php:633
 #, php-format
 msgid "Data load time %d seconds"
 msgstr ""
 
-#: ../stats.php:700
+#: ../stats.php:699
 #, php-format
 msgid "Finished in %d seconds"
 msgstr ""
 
-#: ../stats.php:705
+#: ../stats.php:704
 msgid "Update"
 msgstr "Mise à jour"
 
-#: ../stats.php:706
+#: ../stats.php:705
 #, fuzzy
 msgid "Cache update required. "
 msgstr "Cache à reconstruire"
 
-#: ../stats.php:710
+#: ../stats.php:709
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Certains albums n'ont pas fait partie de la recherche parce qu'ils nécessitent d'abord une mise à jour vers la nouvelle version de %s"
 
-#: ../stats.php:713
+#: ../stats.php:712
 msgid "upgrade all albums"
 msgstr "mettre à jour tous les albums"
 
-#: ../stats.php:757
+#: ../stats.php:756
 #, fuzzy, php-format
 msgid "Recursing album: %s"
 msgstr "Vérification de l'album %s"
 
-#: ../stats.php:793
+#: ../stats.php:792
 msgid "Read cache num photos lock failed."
 msgstr ""
 
-#: ../stats.php:817
+#: ../stats.php:816
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr ""
 
-#: ../stats.php:828 ../stats.php:867
+#: ../stats.php:827 ../stats.php:866
 msgid "Read cache lock failed."
 msgstr ""
 
-#: ../stats.php:979
+#: ../stats.php:978
 msgid "add vote"
 msgstr "Ajouter un vote"
 
-#: ../stats.php:1073
+#: ../stats.php:1072
 #, fuzzy, php-format
 msgid "From album: %s"
 msgstr "De l'Album"
 
-#: ../stats.php:1078
+#: ../stats.php:1077
 #, fuzzy, php-format
 msgid "Owned by: %s"
 msgstr "Propriétaire:"
 
-#: ../stats.php:1110
+#: ../stats.php:1109
 msgid "Capture Date:"
 msgstr "Date de prise de vue:"
 
-#: ../stats.php:1124
+#: ../stats.php:1123
 msgid "Upload Date:"
 msgstr "Date d'envoi"
 
-#: ../stats.php:1138
+#: ../stats.php:1137
 msgid "Views:"
 msgstr "Vu:"
 
-#: ../stats.php:1148
+#: ../stats.php:1147
 msgid "Votes:"
 msgstr "Votes:"
 
-#: ../stats.php:1160
+#: ../stats.php:1159
 #, fuzzy
 msgid "not rated"
 msgstr "Pivoter"
 
-#: ../stats.php:1174
+#: ../stats.php:1173
 #, fuzzy
 msgid "Rating:"
 msgstr "Pluie"
@@ -5038,7 +5036,7 @@ msgstr "Cet album est vide."
 
 #: ../view_album.php:940
 msgid "Email me when one of the following actions are done to this album:"
-msgstr "Recevoir un courriel wuand une des actions suivantes est effectué sur cet album:"
+msgstr "Recevoir un courriel quand une des actions suivantes est effectuée sur cet album:"
 
 #: ../view_album.php:945
 msgid "Comments are added"
@@ -5145,10 +5143,6 @@ msgstr ""
 #~ msgid "Go"
 #~ msgstr "Aller"
 
-#, fuzzy
-#~ msgid "Diashow"
-#~ msgstr "diaporama"
-
 #~ msgid "adding %s"
 #~ msgstr "ajout de %s"
 
@@ -5167,24 +5161,8 @@ msgstr ""
 #~ msgid "Email not sent"
 #~ msgstr "Email non envoyé"
 
-#, fuzzy
-#~ msgid "Edit Text1"
-#~ msgstr "Modifier le texte"
-
 #~ msgid "Delete %s"
 #~ msgstr "Supprimer %s"
-
-#, fuzzy
-#~ msgid "Edit Text2"
-#~ msgstr "Modifier le texte"
-
-#, fuzzy
-#~ msgid "Edit Thumbnail2"
-#~ msgstr "Modifier la miniature"
-
-#, fuzzy
-#~ msgid "Rotate/Flip %s2"
-#~ msgstr "Pivoter / Renverser %s"
 
 #, fuzzy
 #~ msgid "Resize photo"
