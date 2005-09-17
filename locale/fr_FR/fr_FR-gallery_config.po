@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.1\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-13 11:46+0200\n"
+"POT-Creation-Date: 2005-09-17 19:25+0200\n"
 "PO-Revision-Date: 2005-04-14 23:37-0800\n"
 "Last-Translator: Benoît Catelin <gallery AT catelin DOT net>\n"
 "Language-Team: Mikael Berthe <mikael DOT berthe AT lilotux DOT net>\n"
@@ -76,8 +76,9 @@ msgid "Gold Frame"
 msgstr "Cadres dorés"
 
 #: ../html_wrap/frames/golden/frame.def:5
+#, fuzzy
 msgid "A fancy golden frame"
-msgstr ""
+msgstr "Un cadre avec texture bois."
 
 #: ../html_wrap/frames/postage_stamp/frame.def:2
 msgid "Postage Stamp"
@@ -1941,9 +1942,9 @@ msgid "Watermark directory"
 msgstr "Répertoire des filigranes"
 
 #: ../setup/config_data.inc:987
-#, php-format
+#, fuzzy, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
-msgstr ""
+msgstr "Le chemin complet sur le disque physique au répertoire ou vos photos seront stockées.  Ce répertoire est en général vide au débuty&#8212Gallery le remplira.  Notez que ce répertoire doit être en mode d'écriture pour l'utilisateur du processus du serveur web (dans votre cas, cet utilisateur est %s.)"
 
 #: ../setup/config_data.inc:997
 msgid "Which Imagetype is watermarked"
@@ -2299,8 +2300,9 @@ msgid "(Advanced) If users complain about their RSS readers corrupting the chann
 msgstr "(Avancé) Si un utilisateur se plaint du fait que le lecteur RSS affiche mal les vignettes, vous pouvez tenter d'activer cette option.  Votre feed RSS ne sera plus valide RSS 2.0 une fois activé."
 
 #: ../setup/config_data.inc:1256
+#, fuzzy
 msgid "Use Photo Tag"
-msgstr ""
+msgstr "Utiliser de grandes images"
 
 #: ../setup/config_data.inc:1257
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
@@ -3161,8 +3163,9 @@ msgid "Dots"
 msgstr "Dots"
 
 #: ../setup/frame_test.php:62
+#, fuzzy
 msgid "Just a simple dashed border around the thumb."
-msgstr ""
+msgstr "Une simple bordure autour de la vignette"
 
 #: ../setup/frame_test.php:63
 msgid "Solid"
@@ -3352,6 +3355,18 @@ msgstr "Il vous manque %s ou bien %s."
 #: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Revue des Paramètres"
+
+#, fuzzy
+#~ msgid "Find file \"%s\" does not exist or is not readable"
+#~ msgstr "Le fichier %s n'existe pas."
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"
+#~ msgstr "PHP est configuré avec la restriction %s.  Ceci rend plus difficile les détections et vérifications des binaires par Gallery, même si vous l'avez configuré avec succès par l'Assistant de Configuration précédemment. Ne vous faites pas trop de souci si cette page vous rapporte des avertissements; Vos paramètres seront tout de même sauvés correctement."
+
+#, fuzzy
+#~ msgid "Notes"
+#~ msgstr "Note"
 
 #~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 #~ msgstr "Au cas ou vous rencontreriez des problèmes, vous pouvez trouver de l'aide dans la  %s Page d'aide de Gallery%s"
