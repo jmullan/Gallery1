@@ -128,6 +128,18 @@ function makeGalleryUrl($target = '', $args = array()) {
 				$url = $urlprefix . $addpath .'/modules.php';
 			break;
 
+			case 'cpgnuke':
+				$args["name"] = "$GALLERY_MODULENAME";
+				$args["file"] = "index";
+
+				/*
+				 * include *must* be last so that the JavaScript code in
+				 * view_album.php can append a filename to the resulting URL.
+				 */
+				$args["include"] = $target;
+				$url = $urlprefix . $addpath . "/$mainindex";
+			break;
+
 			case 'postnuke':
 				if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.6.0") {
 					$args["op"] = "modload";
@@ -168,17 +180,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				}
 			break;
 
-			case 'cpgnuke':
-				$args["name"] = "$GALLERY_MODULENAME";
-				$args["file"] = "index";
 
-				/*
-				 * include *must* be last so that the JavaScript code in
-				 * view_album.php can append a filename to the resulting URL.
-				 */
-				$args["include"] = $target;
-				$url = $urlprefix . "/$mainindex";
-			break;
 
 			// Maybe something went wrong, we do nothing as URL we be build later.
 			default:
