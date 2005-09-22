@@ -151,13 +151,15 @@ common_header() ;
 }
 /* End of HTML begin, lets do some calculations etc. */
 
-if (empty($set_albumListPage) || $set_albumListPage < 0 || !is_integer($set_albumListPage)){
+$set_albumListPage = intval($set_albumListPage);
+if (empty($set_albumListPage) || $set_albumListPage < 0) {
     $set_albumListPage = 1;
 }
 
-if (empty($page) || $page < 0 || !is_integer($page)){
+//$page = intval($page);
+//if (empty($page) || $page < 0) {
     $page = $set_albumListPage;
-}
+//}
 
 $rating = '';
 $ratingCount = '';
