@@ -153,7 +153,16 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 </form>
 </div>
 
-<?php } /* End if-email-on */ ?>
+<?php } /* End if-email-on */
+if ($gallery->app->selfReg == 'yes') {
+?>
+<div class="popuphead"><?php echo _("No account at all?") ?></div>
+<div class="popup" align="center">
+<a href="<?php echo makeGalleryUrl('register.php') ?>"><?php echo _("Register a new account."); ?></a>
+</div>
+<?php
+}
+?>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
