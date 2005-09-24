@@ -851,8 +851,8 @@ if ($numPhotos) {
             if ($showAdminForm) {
                 $albumItemOptions = getItemActions($i, false);
                 echo drawSelect2("s$i", $albumItemOptions, array(
-		'onChange' => "imageEditChoice(document.vote_form.s$i)",
-                'class' => 'adminform'));
+                    'onChange' => "imageEditChoice(document.vote_form.s$i)",
+                    'class' => 'adminform'));
             }
             if (canVote()) {
                 print '</div>';

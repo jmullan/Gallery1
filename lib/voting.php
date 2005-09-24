@@ -154,52 +154,52 @@ function addPolling ($id, $form_pos=-1, $immediate=true) {
 		return;
 	}
 
-	if (isset($gallery->album->fields["votes"][$id][getVotingID()])) {
-	       	$current_vote = $gallery->album->fields["votes"][$id][getVotingID()];
+	if (isset($gallery->album->fields['votes'][$id][getVotingID()])) {
+	       	$current_vote = $gallery->album->fields['votes'][$id][getVotingID()];
 	} else {
 		$current_vote = -1;
 	}
 
 	$nv_pairs=$gallery->album->getVoteNVPairs();
 	print $gallery->album->getPollHint();
-	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == "critique") {
+	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() == 'critique') {
 		print "\n<input type=checkbox name=\"votes[$id]\" value=\"1\"";
 		if ($current_vote > 0) {
-			print "checked";
+			print 'checked';
 		}
-		print ">".$nv_pairs[0]["name"];
+		print '>'.$nv_pairs[0]['name'];
 	}
-	else if ($gallery->album->getPollType() == "rank") {
+	else if ($gallery->album->getPollType() == 'rank') {
 		if ($gallery->album->getPollHorizontal()) {
-			print "<table><tr>";
+			print '<table><tr>';
 			for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-				print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
+				print "\n<td align=\"center\"><input type=\"radio\" name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
 				$gallery->album->getPollScale().")\" ";
 				if ($current_vote === $i) {
-					print "checked";
+					print 'checked';
 				}
-				print "></td>";
+				print '></td>';
 			}
-			print "</tr><tr>";
+			print '</tr><tr>';
 			for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-				print "<td align=center>".$nv_pairs[$i]["name"]."</td>";
+				print '<td align="center" class="attention">'. $nv_pairs[$i]['name'] .'</td>';
 			}
-			print "</tr></table>";
+			print '</tr></table>';
 		    }
 		else {
-			print "<table>";
+			print '<table>';
 			for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-				print "<tr>";
-				print "\n<td align=center><input type=radio name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
+				print '<tr>';
+				print "\n<td align=\"center\"><input type=\"radio\" name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
 				$gallery->album->getPollScale().")\" ";
 				if ($current_vote === $i) {
-					print "checked";
+					print 'checked';
 				}
-				print "></td>";
-				print "<td >".$nv_pairs[$i]["name"]."</td>";
-				print "</tr><tr>";
+				print '></td>';
+				print '<td class="attention">'. $nv_pairs[$i]['name']. '</td>';
+				print '</tr><tr>';
 			}
-			print "</table>";
+			print '</table>';
 	    	}
 	}
 	else { // "critique"
@@ -212,17 +212,17 @@ function addPolling ($id, $form_pos=-1, $immediate=true) {
 		}
 
 		if ($current_vote == -1) {
-			print "<option value=NULL><< ". _("Vote") . " >></option>\n";
+			print '<option value="NULL"><< '. _("Vote") . " >></option>\n";
 		}
 
 		for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-			$sel="";
+			$sel='';
 			if ($current_vote === $i) {
-				$sel="selected";
+				$sel = 'selected';
 			}
-			print "<option value=$i $sel>".$nv_pairs[$i]["name"]."</option>\n";
+			print "<option value=\"$i\" $sel>". $nv_pairs[$i]['name']. "</option>\n";
 		}
-		print "</select>";
+		print '</select>';
 	}
 }
 
