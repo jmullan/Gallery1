@@ -639,7 +639,7 @@ $constants =  array_merge(
 		'optional' => 1, 
 		'desc' => sprintf(_("This is the language you will see as %s, and what users will see if no other preference is set."), '<b>admin</b>'),
 		'type' => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden", 
-		'choices' => gallery_languages(),
+		'choices' => array_merge(gallery_languages(), array('browser' => '>>> '. _("Language given by Browser") .' <<<')),
 		'value' => (!empty($gallery->language) && sizeof(gallery_languages()) >1 ) ? $gallery->language : "en_US",
 		'enabled' => $elawisyl
 	),

@@ -50,32 +50,33 @@ function pluralize_n2($singPlu, $count, $none='') {
  * Detect the first Language of users Browser
  * Some Browser only send 2 digits like he or de.
  * This is caught later with the aliases
+ * @author Jens Tkotz <jens@peino.de>
+ * @return string   $browserLang
 */
 function getBrowserLanguage() {
     if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
-	$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+        $lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
-	/* Maybe there are some extra infos we dont need, so we strip them. */
-	$spos = strpos($lang[0],";");
-	if ($spos >0) {
-	    $lang[0] = substr($lang[0],0,$spos);
-	}
-		
-	/* browser may send aa-bb, then we convert to aa_BB */
-	$lang_pieces = explode ("-",$lang[0]);
-	if (strlen($lang[0]) >2) {
-		$browserLang=strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
-	} else {
-		$browserLang = $lang[0];
-	}
+        /* Maybe there are some extra infos we dont need, so we strip them. */
+        $spos = strpos($lang[0],";");
+        if ($spos >0) {
+            $lang[0] = substr($lang[0],0,$spos);
+        }
+
+        /* browser may send aa-bb, then we convert to aa_BB */
+        $lang_pieces = explode ("-",$lang[0]);
+        if (strlen($lang[0]) >2) {
+            $browserLang = strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
+        } else {
+            $browserLang = $lang[0];
+        }
     }
     else {
-	$browserLang = false;
+        $browserLang = false;
     }
-	
+
     return $browserLang;
 }
-
 
 /**
  * Set Gallery Default:
@@ -164,6 +165,25 @@ function getEnvLang() {
 }
 
 /**
+ * Gets the default language for Gallery.
+ * If not set, fallback to browserlanguage.
+ * @author Jens Tkotz <jens@peino.de>
+ * @return string $defaultLanguage;
+ */
+function getDefaultLanguage() {
+    global $gallery;
+    if(isset($gallery->app->default_language) 
+      && $gallery->app->default_language != 'browser') {
+        $defaultLanguage = $gallery->app->default_language;
+    }
+    else {
+        $defaultLanguage = getBrowserLanguage();
+    }
+
+    return $defaultLanguage;
+}
+
+/**
  * In some Environments we dont want to allow the user
  * to change the language.
  * In this case we override Mode 3 with Mode 1 and
@@ -173,219 +193,213 @@ function forceStaticLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $gallery;
 
-	$useStatic=array('mambo', 'phpBB2', 'GeekLog');
+	$useStatic = array('mambo', 'phpBB2', 'GeekLog');
 
 	if (in_array($GALLERY_EMBEDDED_INSIDE_TYPE, $useStatic)) {
-		$gallery->app->ML_mode=1;
+		$gallery->app->ML_mode = 1;
 	}
 }	
 
 /**
- *
-*/
+ * This function does the initialization of language related things.
+ * @author Jens Tkotz <jens@peino.de>
+ */
 function initLanguage($sendHeader=true) {
-	static $languages_initialized = false;
+    static $languages_initialized = false;
 
-	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	// $locale is *NUKEs locale var
-	global $locale ;
+    /* $locale is *NUKEs locale var*/
+    global $locale ;
 
-	$nls = getNLS();
+    $nls = getNLS();
 
-	/* Set Defaults, they may be overwritten. */
-	setLangDefaults($nls);
+    /* Set Defaults, they may be overwritten. */
+    setLangDefaults($nls);
 
-	// before we do any tests or settings test if we are in mode 0
-	// If so, we skip language settings at all
+    /* Before we do any tests or settings test if we are in mode 0
+    If so, we skip language settings at all */
 
-	// Mode 0 means no Multilanguage at all.
-	if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0 && !$languages_initialized) {
-		// Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext
-		if (!gettext_installed()) {
-			function _($string) {
-				return $string ;
-			}
-		}
-		if (!ngettext_installed()) {
-			function ngettext($singular, $quasi_plural,$num=0) {
-                       		if ($num == 1) {
-                               		return $singular;
-	                        } else {
-       		                        return $quasi_plural;
-               		        }
-			}
-		}
+    /* Mode 0 means no Multilanguage at all. */
+    if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0 && !$languages_initialized) {
+        /* Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext*/
+        if (!gettext_installed()) {
+            function _($string) {
+                return $string ;
+            }
+        }
+        if (!ngettext_installed()) {
+            function ngettext($singular, $quasi_plural,$num=0) {
+                if ($num == 1) {
+                    return $singular;
+                } else {
+                    return $quasi_plural;
+                }
+            }
+        }
 
-		/* Skip rest*/
-		$languages_initialized = true;
-		return;
-	}
+        /* Skip rest*/
+        $languages_initialized = true;
+        return;
+    }
 
-	/* 
-	** Does the user wants a new lanuage ?
-	** This is used in Standalone and *Nuke
-	*/
-	$newlang = getRequestVar('newlang');
+    /**
+	 * Does the user wants a new lanuage ?
+	 * This is used in Standalone and *Nuke
+	 */
+    $newlang = getRequestVar('newlang');
 
-	/**
-	 ** Note: ML_mode is only used when not embedded
-	 **/
+    /**
+	 * Note: ML_mode is only used when not embedded
+	 */
 
-	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
-		/* Gallery is embedded
+    if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+        /* Gallery is embedded */
 
-		/* Gallery can set nukes language.
-		** For phpBB2, GeekLog and Mambo this is not possible, Gallery will always use their language.
-		*/
-		forceStaticLang();
+        /* Gallery can set nukes language.
+        * For phpBB2, GeekLog and Mambo this is not possible, Gallery will always use their language.
+        */
+        forceStaticLang();
 
-		if (!empty($newlang)) {
-			// Set Language to the User selected language.
-			$gallery->language=$newlang;
-		} else {
-			/* No new language.
-			** Lets see in which Environment were are and look for a language.
-			** Lets try to determ the used language
-			*/ 
-			$gallery->language = getEnvLang();
-		}
-	} else {
-		// We're not embedded.
-		// If we got a ML_mode from config.php we use it
-		// If not we use Mode 2 (Browserlanguage)
+        if (!empty($newlang)) {
+            /* Set Language to the User selected language. */
+            $gallery->language=$newlang;
+        } else {
+            /** No new language.
+			 * Lets see in which Environment were are and look for a language.
+			 * Lets try to determ the used language
+			 */ 
+            $gallery->language = getEnvLang();
+        }
+    } else {
+        /** We're not embedded.
+		 * If we got a ML_mode from config.php we use it
+		 * If not we use Mode 2 (Browserlanguage)
+		 */
+        if (isset($gallery->app->ML_mode)) {
+            $ML_mode = $gallery->app->ML_mode;
+        } else {
+            $ML_mode = 2;
+        }
 
-		if (isset($gallery->app->ML_mode)) {
-			$ML_mode=$gallery->app->ML_mode;
-		} else {
-			$ML_mode=2;
-		}
+        switch ($ML_mode) {
+            case 1:
+            /* Static Language */
+            $gallery->language = getDefaultLanguage();
+            break;
+            
+            case 3:
+            /* Does the user want a new language ?*/
+            if (!empty($newlang)) {
+                /* Set Language to the User selected language.*/
+                $gallery->language = $newlang;
+            } elseif (isset($gallery->session->language)) {
+                /* Maybe we already have a language*/
+                $gallery->language = $gallery->session->language;
+            } else {
+                $gallery->language = getDefaultLanguage();
+            }
+            break;
+            default:
+            /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
+            $gallery->browser_language = getBrowserLanguage();
 
-		switch ($ML_mode) {
-			case 1:
-				//Static Language
-				$gallery->language = $gallery->app->default_language;
-				break;
-			case 3:
-				// Does the user want a new language ?
-				if (!empty($newlang)) {
-					// Set Language to the User selected language.
-					$gallery->language=$newlang;
-				} elseif (isset($gallery->session->language)) {
-					//maybe we already have a language
-					$gallery->language=$gallery->session->language;
-				} elseif (isset($gallery->app->default_language)) {
-					// Maybe we have a defaultlanguage set in config.php
-		                        $gallery->language = $gallery->app->default_language;
-				}
-				break;
-			default:
-				// Use Browser Language or Userlanguage 
-				// when mode 2 or any other (wrong) mode
+            if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
+                $gallery->language = $gallery->user->getDefaultLanguage();
+            }
+            break;
+        }
+    }
 
-				$gallery->browser_language=getBrowserLanguage();
+    /* if an alias for the (new or Env) language is given, use it*/
+    getLanguageAlias($gallery->language) ;
 
-				if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != "") {
-					$gallery->language = $gallery->user->getDefaultLanguage();
-				} elseif (isset($gallery->browser_language)) {
-					$gallery->language=$gallery->browser_language;
-				}
-				break;
-		}
-	}
+    /**
+	 *  Fall back to Default Language if :
+	 *	- we cant detect Language
+	 *	- Nuke/phpBB2 sent an unsupported
+	 *	- User sent an undefined
+	 */
 
-	// if an alias for the (new or Env) language is given, use it
-	getLanguageAlias($gallery->language) ;
+    if (! isset($nls['language'][$gallery->language])) {
+        $gallery->language = getLanguageAlias(getDefaultLanguage());
+        /* when we REALLY REALLY cant detect a language */
+        if (! isset($nls['language'][$gallery->language])) {
+            $gallery->language = 'en_US';
+        }
+    }
 
-	/**
-	 **  Fall back to Default Language if :
-	 **	- we cant detect Language
-	 **	- Nuke/phpBB2 sent an unsupported
-	 **	- User sent an undefined
-	 **/
+    /* And now set this language into session*/
+    $gallery->session->language = $gallery->language;
 
-	if (! isset($nls['language'][$gallery->language])) {
-		if (isset($gallery->app->default_language)) {
-			$gallery->language = $gallery->app->default_language;
-		} elseif(isset($gallery->browser_language)) {
-			$gallery->language = $gallery->browser_language;
-		} else {
-			// when we REALLY REALLY cant detect a language
-			$gallery->language="en_US";
-		}
-	}
+    /* locale*/
+    if (isset($gallery->app->locale_alias[$gallery->language])) {
+        $gallery->locale = $gallery->app->locale_alias["$gallery->language"];
+    } else {
+        $gallery->locale = $gallery->language;
+    }
 
-	// And now set this language into session
-	$gallery->session->language = $gallery->language;
+    /* Override NUKEs locale :)))*/
+    $locale = $gallery->locale;
 
-	// locale
-	if (isset($gallery->app->locale_alias[$gallery->language])) {
-		$gallery->locale=$gallery->app->locale_alias["$gallery->language"];
-	} else {
-		$gallery->locale=$gallery->language;
-	}
+    /* Check defaults */
+    $checklist = array('direction', 'charset', 'alignment') ;
 
-	// Override NUKEs locale :)))	
-	$locale=$gallery->locale;
+    /**
+     * This checks wether the previously defined values are available.
+     * All available values are in $nls
+     * If they are not defined we used the defaults from nls.php
+     */
+    foreach($checklist as $check) {
+        /* if no ... is given, use default*/
+        if ( !isset($nls[$check][$gallery->language])) {
+            $gallery->$check = $nls['default'][$check] ;
+        } else {
+            $gallery->$check = $nls[$check][$gallery->language] ;
+        }
+    }
 
-	// Check defaults :
-	$checklist=array('direction', 'charset', 'alignment') ;
+    /* When all is done do the settings*/
 
-	/*
-	** This checks wether the previously defined values are available.
-	** All available values are in $nls
-	** If they are not defined we used the defaults from nls.php
-	*/
-	foreach($checklist as $check) {
-		// if no ... is given, use default
-		if ( !isset($nls[$check][$gallery->language])) {
-			$gallery->$check = $nls['default'][$check] ;
-		} else {
-			$gallery->$check = $nls[$check][$gallery->language] ;
-		}
-	}
+    /* There was previously a != SUNOS check around the LANG= line.  We've determined that it was
+     probably a bogus bug report, since all documentation says this is fine.*/
+    putenv("LANG=". $gallery->language);
+    putenv("LANGUAGE=". $gallery->language);
+    /* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
+    putenv("LC_ALL=". $gallery->language);
 
-	// When all is done do the settings
-	
-	// There was previously a != SUNOS check around the LANG= line.  We've determined that it was
-	// probably a bogus bug report, since all documentation says this is fine.
-	putenv("LANG=". $gallery->language);
-	putenv("LANGUAGE=". $gallery->language);
-	// This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10
-	putenv("LC_ALL=". $gallery->language);
+    /* Set Locale*/
+    setlocale(LC_ALL,$gallery->locale);
 
-	// Set Locale
-	setlocale(LC_ALL,$gallery->locale);
+    /**
+     * Set Charset header
+     * We do this only if we are not embedded and the "user" wants it.
+     * Because headers might be sent already.
+     */
+    if (! isset($GALLERY_EMBEDDED_INSIDE) || $sendHeader == false) {
+        header('Content-Type: text/html; charset=' . $gallery->charset);
+    }
 
-	/* 
-	** Set Charset header
-	** We do this only if we are not embedded and the "user" wants it.
-	** Because headers might be sent already.
-	*/
-	if (! isset($GALLERY_EMBEDDED_INSIDE) || $sendHeader == false) {
-		header('Content-Type: text/html; charset=' . $gallery->charset);
-	}
+    /**
+     * Test if we're using gettext.
+     * if yes, do some gettext settings.
+     * if not emulate _() function or ngettext()
+     */
 
-	/*
-	** Test if we're using gettext.
-	** if yes, do some gettext settings.
-	** if not emulate _() function or ngettext()
-	**/
+    if (gettext_installed()) {
+        bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
+        textdomain($gallery->language. "-gallery_". where_i_am());
 
-	if (gettext_installed()) {
-		bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
-		textdomain($gallery->language. "-gallery_". where_i_am());
+    } elseif (!$languages_initialized) {
+        emulate_gettext();
+    }
 
-	} elseif (!$languages_initialized) {
-		emulate_gettext();
-	}
+    // We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
+    if (!ngettext_installed() && !$languages_initialized) {
+        emulate_ngettext();
+    }
 
-	// We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
-	if (!ngettext_installed() && !$languages_initialized) {
-		emulate_ngettext();
-	}
-
-	$languages_initialized = true;
+    $languages_initialized = true;
 }
 
 
@@ -486,7 +500,7 @@ function emulate_gettext() {
 				&& ! stristr($lines[$key],"msgid_plural")
 				&& ! stristr($value,"msgid_plural")) {
 				$new_key=substr($value, 7,-1);
-				$translation[$new_key]=substr(trim($lines[$key+1]),8,-1);
+				$translation[$new_key] = substr(trim($lines[$key+1]),8,-1);
 //		echo "\n<br>NK". $new_key;
 //		echo "\n<br>NT". $translation[$new_key];
 			}
@@ -592,7 +606,7 @@ function getNLS() {
 }
 
 function i18n($buf) {
-       	return $buf;
+    return $buf;
 }
 
 function isSupportedCharset($charset) {
@@ -614,22 +628,22 @@ function isSupportedCharset($charset) {
 		'KOI8-R'
 	);
 
-        /*
-         * Check if we are using PHP >= 4.1.0
-         * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
-         * Otherwise they are messed.
-         * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
-         */
+	/**
+     * Check if we are using PHP >= 4.1.0
+     * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+     * Otherwise they are messed.
+     * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
+     */
 	if (function_exists('version_compare')) {
 		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
 		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
 			return true;
 		} else {
-			// Unsupported Charset
+			/* Unsupported Charset*/
 			return false;
 		}
 	} else {
-		// PHP too old
+		/* PHP too old*/
 		return false;
 	}
 }
@@ -646,7 +660,7 @@ function gallery_htmlentities($string) {
 		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
 	} else {
 		return htmlentities($string);
-        }
+    }
 }
 
 /**
@@ -660,11 +674,11 @@ function unhtmlentities($string) {
 	}
 
 	if (function_exists('html_entity_decode')) {
-		$nls=getNLS();
+		$nls = getNLS();
 		if (isset ($nls['charset'][$gallery->language])) {
-			$charset=$nls['charset'][$gallery->language];
+			$charset = $nls['charset'][$gallery->language];
 		} else {
-			$charset=$nls['default']['charset'];
+			$charset = $nls['default']['charset'];
 		}
 
 		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
@@ -693,11 +707,11 @@ return $return;
  * as appropriate in the ML version.
  */
 function automaticFieldsList() {
-        return array(
-		'Upload Date' 	=> _("Upload Date"),
-                'Capture Date' 	=> _("Capture Date"),
-                'Dimensions' 	=> _("Image Size"),
-                'EXIF' 		=> _("Additional EXIF Data"));
+    return array(
+        'Upload Date'   => _("Upload Date"),
+        'Capture Date' 	=> _("Capture Date"),
+        'Dimensions' 	=> _("Image Size"),
+        'EXIF'          => _("Additional EXIF Data"));
 }
 
 /** These are custom fields which can be entered manual by the User
