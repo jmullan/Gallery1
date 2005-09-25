@@ -53,13 +53,16 @@ class Comment {
 
 	function getName() {
 		global$gallery;
-		$name="";
-		if  ($gallery->app->comments_anonymous == "no") {
-			$name=user_name_string($this->UID, 
-					$gallery->app->comments_display_name);
+		
+		$name = '';
+		$user = $gallery->userDB->getUserByUid($this->UID);
+		
+		if  ($gallery->app->comments_anonymous == 'no') {
+		    $name = $user->printableName($gallery->app->comments_display_name);
 		}
+		
 		if (!$name) {
-			$name=$this->name;
+			$name = $this->name;
 		}
 		return $name;
 	}

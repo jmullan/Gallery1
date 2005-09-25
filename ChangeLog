@@ -1,3 +1,13 @@
+2005-09-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b4
+
+ * Change: Removed function user_name_string from util.php.
+           This is now all in method printableName() of classes/User.php
+   
+ * Fix: Bug #1199064. Tweaked method printableName(), 
+        so that not the username is returned if no fullname is given.
+        
+ * Change: Some indenting.
+
 2005-09-24 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b3
 
  * Fix: Voting instruction texts in some skins. Bug#1249919 .

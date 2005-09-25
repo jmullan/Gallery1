@@ -144,16 +144,12 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 
 	$html = '';
 
-	/*
-	$borderColor = $gallery->app->default["bordercolor"];
-	$commentdraw["bordercolor"] = $borderColor;
-	*/
 	echo showComments($index, $album, $newestFirst);
 
 	if ($addComments) {
-		/* Default is the popup link.
-		** addType given through function call overrides default.
-		*/
+		/** Default is the popup link.
+		 * addType given through function call overrides default.
+		 */
 		if (empty($addType)) {
 			$addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
 		}
@@ -173,12 +169,11 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 }
 
 function drawCommentAddForm($commenter_name = '', $cols = 50) {
-	global $gallery;
-	if ($gallery->user->isLoggedIn() ) {
-		if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-			$commenter_name = user_name_string($gallery->user->getUID(), $gallery->app->comments_display_name);
-		}
-	}
+    global $gallery;
+    if ($gallery->user->isLoggedIn() &&
+      (empty($commenter_name) || $gallery->app->comments_anonymous == 'no')) {
+        $commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
+    }
 ?>
 <table class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
@@ -190,10 +185,10 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 <?php
 
 if (!$gallery->user->isLoggedIn() ) {
-	echo "<input name=\"commenter_name\" value=\"". $commenter_name ."\" size=\"30\">";
+	echo '<input name="commenter_name" value="'. $commenter_name .'" size="30">';
 } else {
 	if ($gallery->app->comments_anonymous == 'yes') {
-		echo '<input name="commenter_name" value="'.$commenter_name.'" size="30">';
+		echo '<input name="commenter_name" value="'. $commenter_name. '" size="30">';
 	} else {
 		echo $commenter_name;
 		echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
@@ -2831,24 +2826,24 @@ function gallery_validation_link($file, $valid=true, $args = array()) {
     global $gallery;
 
     if (isset($gallery->app->devMode) && $gallery->app->devMode == "no") {
-	return '';
+        return '';
     }
 
     $args['PHPSESSID'] = session_id();
     $url = makeGalleryURL($file, $args);
 
     if (!empty($file) && isset($gallery->app->photoAlbumURL)) {
-	$uri = urlencode(eregi_replace("&amp;", "&", $url));
+        $uri = urlencode(eregi_replace("&amp;", "&", $url));
     }
     else {
-	$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
+        $uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
     }
 
     $link = '<a href="http://validator.w3.org/check?uri='. $uri .'">'.
-	'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-	
+    '<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
+
     if (!$valid) {
-	$link .= _("Not valid yet");
+        $link .= _("Not valid yet");
     }
 
     return $link;
@@ -2879,23 +2874,11 @@ function where_i_am() {
     global $GALLERY_OK;
 
     if (!stristr($_SERVER['REQUEST_URI'],'setup') || $GALLERY_OK) {
-	$location = 'core';
+        $location = 'core';
     } else {
-	$location = 'config';
+        $location = 'config';
     }
     return $location;
-}
-
-function user_name_string($uid, $format='!!FULLNAME!! (!!USERNAME!!)') {
-       	global $gallery;
-       	if ($uid) {
-		$user=$gallery->userDB->getUserByUid($uid);
-	}
-       	if (empty($user) || $user->isPseudo()) {
-	       	return "";
-       	} else {
-		return $user->printableName($format);
-	}
 }
 
 // Returns the CVS version as a string, NULL if file can't be read, or "" 

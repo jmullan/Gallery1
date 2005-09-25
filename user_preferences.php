@@ -32,7 +32,7 @@ if (!$gallery->user->isLoggedIn()) {
 	exit;	
 }
 
-$errorCount=0;
+$errorCount = 0;
 if (isset($save)) {
 	if (strcmp($gallery->user->getUsername(), $uname)) {
 		if ($gallery->user->isAdmin()) {
@@ -134,7 +134,7 @@ doctype();
 <br>
 
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
+<input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()">
 </form>
 </div>
 <script language="javascript1.2" type="text/JavaScript">

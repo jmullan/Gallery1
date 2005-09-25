@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-// Hack check
+/* Hack check*/
 if (!$gallery->user->canAddComments($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
 	exit;
@@ -35,8 +35,7 @@ list($save, $id, $commenter_name, $comment_text) = getRequestVar(array('save', '
 $error_text = '';
 if ($gallery->user->isLoggedIn() ) {
 	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-		$commenter_name=user_name_string($gallery->user->getUID(),
-		$gallery->app->comments_display_name);
+		$commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
 	}
 } elseif (!isset($commenter_name)) {
 	$commenter_name = '';
