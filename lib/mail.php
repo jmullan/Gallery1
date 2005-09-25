@@ -244,18 +244,16 @@ function emailComments($id, $comment_text, $commenter_name) {
 	    $text .= sprintf(_("The comment was added by %s to this %s in this %s."),
 			$commenter_name,
 			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName)) .'">'. _("Album") .'</a>';
-	    $text .= "\n<br>". _("*** Begin comment ***")."<br>\n";
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. _("Album") .'</a>');
+	    $text .= "\n<br>". _("*** Begin comment ***") ."<br>\n";
 	    $text .= nl2br($comment_text);
 	    $text .= "<br>\n". _("***End comment ***") . "\n<p>\n";
 	    $text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first).");
 	    $text .= "\n</p>\n</body>\n</html>";
 
-	    $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
+        $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
 	    gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
-	}
-	elseif (isDebugging()) {
 	}
 }
 
