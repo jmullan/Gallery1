@@ -173,7 +173,7 @@ if ($gallery->album->fields['returnto'] != 'no') {
     }
 }
 
-$extra_fields=$gallery->album->getExtraFields(false);
+$extra_fields = $gallery->album->getExtraFields(false);
 $title = NULL;
 if (in_array("Title", $extra_fields)) {
     $title = $gallery->album->getExtraField($index, "Title");

@@ -427,7 +427,7 @@ includeLayout('adminbox.inc');
 <?php
 $breadcrumb["top"] = true;
 $breadcrumb['bottom'] = false;
-if (!empty($breadcrumb["text"])) {
+if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
     includeLayout('navtablemiddle.inc');
     includeLayout('breadcrumb.inc');
 }

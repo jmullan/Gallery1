@@ -104,9 +104,9 @@ function editField($album, $field, $link=null) {
 			$buf = "<i>&lt;". _("Empty") . "&gt;</i>";
 		}
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
-		$buf .= " <span class=editlink>";
+		$buf .= ' <span class="editlink">';
 		$buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
-		$buf .= "</span>";
+		$buf .= '</span>';
 	}
 	return $buf;
 }
@@ -126,9 +126,9 @@ function editCaption($album, $index) {
 			$buf = "<i>&lt;". _("No Caption") ."&gt;</i>";
 		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
-		$abuf = "<span class=\"editlink\">";
+		$abuf = '<span class="editlink">';
 		$abuf .= popup_link("[". _("edit") ."]", $url);
-		$abuf .= "</span>";
+		$abuf .= '</span>';
 	}
 	$buf .= $album->getCaptionName($index);
 	$buf .= $abuf;
@@ -2780,7 +2780,7 @@ function testRequirement($test) {
 }
 
 function doctype() {
-	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' . "\n";
+	echo '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">' . "\n";
 }
 
 function common_header($adds = array()) {

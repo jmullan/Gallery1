@@ -638,14 +638,19 @@ class AlbumItem {
 		}
 	}
 
+	/**
+	 * @return	string	$alttext
+	 * @author	Jens Tkotz <jens@peino.de>
+	 */
 	function getAlttext() {
-		if (!empty($this->extraFields['AltText'])) {
-			return $this->extraFields['AltText'];
-		} elseif (!empty($this->caption)) {
-			return $this->caption;
-		} else {
-			return "";
-		}
+	    $alttext = '';
+	    if (!empty($this->extraFields['AltText'])) {
+		$alttext = $this->extraFields['AltText'];
+	    } elseif (!empty($this->caption)) {
+		$alttext = $this->caption;
+	    }
+
+	    return $alttext;
 	}
 
 	function getThumbnailTag($dir, $size=0, $attrs="") {

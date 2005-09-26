@@ -33,39 +33,39 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album-
 	echo _("You are not allowed to perform this action!");
 	exit;
 }
-$err = "";
+$err = '';
 
 doctype();
-echo "\n<html>";	
+echo "\n<html>";
 if (isset($save)) {
-    // Only allow dates which mktime() will operate on.  
+    // Only allow dates which mktime() will operate on.
     // 1970-2037 (Windows and some UNIXes) -- 1970-2069 (Some UNIXes)
-    // Two digit values between 0-69 mapping to 2000-2069 and 70-99 to 1970-1999 
-    if ((($capture_year < 2070) && ($capture_year > 1969)) || ($capture_year < 100)) { 
-	$gallery->album->setCaption($index, $data);
-	$gallery->album->setKeywords($index, $keywords);
-	$dateArray["year"] = $capture_year;	
-	$dateArray["mon"] = $capture_mon;
-	$dateArray["mday"] = $capture_mday;
-	$dateArray["hours"] = $capture_hours;
-	$dateArray["minutes"] = $capture_minutes;
-	$dateArray["seconds"] = $capture_seconds;
+    // Two digit values between 0-69 mapping to 2000-2069 and 70-99 to 1970-1999
+    if ((($capture_year < 2070) && ($capture_year > 1969)) || ($capture_year < 100)) {
+        $gallery->album->setCaption($index, $data);
+        $gallery->album->setKeywords($index, $keywords);
+        $dateArray["year"] = $capture_year;
+        $dateArray["mon"] = $capture_mon;
+        $dateArray["mday"] = $capture_mday;
+        $dateArray["hours"] = $capture_hours;
+        $dateArray["minutes"] = $capture_minutes;
+        $dateArray["seconds"] = $capture_seconds;
 
-	$timestamp = mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
-	$gallery->album->setItemCaptureDate($index, $timestamp);
-	if (isset($extra_fields)) {
-	    foreach ($extra_fields as $field => $value){
-		$gallery->album->setExtraField($index, $field, trim($value));
-	    }
-	}
-	$gallery->album->save(array(i18n("Captions and/or custom fields modified for %s"), 
-	    makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
-	dismissAndReload();
-	if (!isDebugging()) {
-	    return;
-	}
+        $timestamp = mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
+        $gallery->album->setItemCaptureDate($index, $timestamp);
+        if (isset($extra_fields)) {
+            foreach ($extra_fields as $field => $value){
+                $gallery->album->setExtraField($index, $field, trim($value));
+            }
+        }
+        $gallery->album->save(array(i18n("Captions and/or custom fields modified for %s"),
+        makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
+        dismissAndReload();
+        if (!isDebugging()) {
+            return;
+        }
     } else {
-	$err = _("Year must be between 1969 and 2070");
+        $err = _("Year must be between 1969 and 2070");
     }
 }
 ?>
@@ -83,33 +83,32 @@ if (isset($save)) {
 		array("type" => "popup"));
 ?>
 
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <table>
 <tr>
-	<td valign="top"><b><?php echo _("Caption") ?>:</b></td>
+	<td style="vertical-align: top"><b><?php echo _("Caption") ?>:</b></td>
 	<td><textarea name="data" rows="4" cols="40"><?php echo $gallery->album->getCaption($index) ?></textarea></td>
 </tr>
 <?php
 
-$translateableFields=translateableFields();
+$translateableFields = translateableFields();
 
-foreach ($gallery->album->getExtraFields() as $field)
-{
+foreach ($gallery->album->getExtraFields() as $field) {
 	if (in_array($field, array_keys(automaticFieldsList()))) {
 		continue;
 	}
-        $value=$gallery->album->getExtraField($index, $field);
+    $value = $gallery->album->getExtraField($index, $field);
 
 	if (in_array($field, array_keys($translateableFields))) {
-		$fieldLabel=$translateableFields[$field];
-		$rows=1;
+		$fieldLabel = $translateableFields[$field];
+		$rows = 1;
 	} else {
-		$fieldLabel=$field;
-		$rows=3;
+		$fieldLabel = $field;
+		$rows = 3;
 	}
 
 	echo "\n<tr>";		
-	echo "\n\t". '<td valign="top"><b>'. $fieldLabel .':</b></td>';
+	echo "\n\t". '<td style="vertical-align: top; font-weight:bold">'. $fieldLabel .':</td>';
 	echo "\n\t". '<td><textarea name="extra_fields['. $field .']" rows="'. $rows .'" cols="40">'. $value .'</textarea></td>';
 	echo "\n</tr>";
 }

@@ -191,11 +191,11 @@ correctPseudoUsers($uAdd, $ownerUid);
 echo makeFormIntro("album_permissions.php", 
 			array("name" => "albumperms_form"),
 			array("type" => "popup"));
-?>
 
-<?php if ($gallery->user->isAdmin) { ?>
-<?php echo _("Owner:") ?> <?php echo drawSelect("ownerUid", $uAll, $ownerUid, 1); ?>
-<?php } ?>
+if ($gallery->user->isAdmin) {
+    echo _("Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1);
+}
+?>
 
 <table border="0" cellspacing="0" cellpadding="0">
  <tr>
@@ -203,9 +203,9 @@ echo makeFormIntro("album_permissions.php",
    <?php echo drawSelect("allUid", $uAll, isset($allUid) ? $allUid : array(), 28); ?>
   </td>
 
-  <td> &nbsp; </td>
+  <td>&nbsp;</td>
 
-  <td valign=top>
+  <td style="vertical-align: top">
    <table border="0" cellspacing="3" cellpadding="0">
     <tr>
      <td colspan="2" class="popuptd">
