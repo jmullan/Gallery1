@@ -3242,7 +3242,7 @@ function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrac
 
 		if (file_exists(dirname(__FILE__) .'/images/icons/'. $iconName)) {
 			$imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
-			$linkText = '<img src="'. $imgSrc .'" title="'. $altText .'" alt="'. $altText. '" style="border: none;">';
+			$linkText = "<img src=\"$imgSrc\" title=\"$altText\" alt=\"$altText\" style=\"border: none;\">";
 
 			if ($iconMode == "both") {
 				$linkText .= "<br>$text";

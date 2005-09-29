@@ -328,6 +328,19 @@ class Abstract_User {
         }
     }
 
+   function hasAlbumPermission($perm, $album) {
+	/* Note: owners do not have explict every Permission via this method. Just admin. */
+	if ($this->isAdmin()) {
+            return true;
+        }
+
+	if ($album->getPerm($perm, $this->uid)) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    }
 }
 
 ?>

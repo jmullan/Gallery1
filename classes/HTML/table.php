@@ -116,7 +116,7 @@ class galleryTable {
 			$buf .= " $attr=\"$value\"";
 		    }
 		}
-		$buf .= '>'. $element['content'] ."</td>";
+		$buf .= '>'. $element['content'] .'</td>';
 		
 		if(isset($element['cellArgs']['colspan'])) {
 		    $i += $element['cellArgs']['colspan'];
