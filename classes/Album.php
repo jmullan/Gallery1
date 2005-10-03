@@ -220,15 +220,19 @@ class Album {
         return $ret;
     }
 
-    /*
-    ** Returns an array of the parent albums.
-    ** Each elemt contains a prefix Text, the title and the url.
-    ** Array is reverted, so the first Element is the topalbum.
-    ** If you set $addChild true, then the child album itself is added as last Element.
-    ** If you set $ignoreReturnto, then really ALL toplevel albums are added.
-    ** Based on code by Dariush Molavi
-    ** Note: the 30 is a limit to prevent unlimited recursing.
-    */
+    /**
+     * Returns an array of the parent albums.
+     * Each elemt contains a prefix Text, the title and the url.
+     * Array is reverted, so the first Element is the topalbum.
+     * If you set $addChild true, then the child album itself is added as last Element.
+     * If you set $ignoreReturnto, then really ALL toplevel albums are added.
+     * Based on code by Dariush Molavi
+     * Note: the 30 is a limit to prevent unlimited recursing.
+     * @param $addChild		boolean
+     * @param $ignoreReturnto	boolean
+     * @author Dari Molavi
+     * @author Jens Tkotz
+     */
     function getParentAlbums($addChild = false, $ignoreReturnto = false) {
         global $gallery;
 
@@ -238,33 +242,33 @@ class Album {
 
         if ($addChild == true) {
             $parentAlbumsArray[] = array(
-            'prefixText' => _("Album"),
-            'title' => $this->fields['title'],
-            'url' => makeAlbumUrl($this->fields['name']));
+                'prefixText' => _("Album"),
+                'title' => $this->fields['title'],
+                'url' => makeAlbumUrl($this->fields['name']));
         }
 
-        /* If there is a parent album and our current album allows the return link, or we ignore it,
-        ** then add it to the parent album to the list.
-        */
+        /** If there is a parent album and our current album allows the return link, or we ignore it,
+         * then add it to the parent album to the list.
+         */
         while (($parentAlbum = $currentAlbum->getParentAlbum(FALSE)) &&
-        $depth < 30 &&
-        ($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
+          $depth < 30 &&
+          ($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
             $parentAlbumsArray[] = array(
-            'prefixText' => _("Album"),
-            'title' => $parentAlbum->fields['title'],
-            'url' => makeAlbumUrl($parentAlbum->fields['name']));
+    	        'prefixText' => _("Album"),
+    	        'title' => $parentAlbum->fields['title'],
+    	        'url' => makeAlbumUrl($parentAlbum->fields['name']));
             $depth++;
             $currentAlbum = $parentAlbum;
         }
 
-        /* If the last album is a root album (= has no parent) and a returnto link is wanted,
-        ** add the link to Gallery mainpage
-        */
+        /** If the last album is a root album (= has no parent) and a returnto link is wanted,
+         * add the link to Gallery mainpage
+         */
         if (!isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
             $parentAlbumsArray[] = array(
-            'prefixText' => _("Gallery"),
-            'title' => $gallery->app->galleryTitle,
-            'url' => makeGalleryUrl("albums.php"));
+                'prefixText' => _("Gallery"),
+                'title' => $gallery->app->galleryTitle,
+                'url' => makeGalleryUrl("albums.php"));
         }
 
         $parentAlbumsArray = array_reverse($parentAlbumsArray, true);
