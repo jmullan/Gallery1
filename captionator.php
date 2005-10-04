@@ -1,24 +1,24 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2005 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id$
-*/
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2005 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
+ */
 ?>
 <?php
 
@@ -180,11 +180,20 @@ if ($numPhotos == 1) {
     }
 }
 
-$adminbox["text"] = $adminText;
-$adminbox["bordercolor"] = $bordercolor;
-includeLayout('adminbox.inc');
+$adminbox['text'] = $adminText;
+$adminbox['bordercolor'] = $bordercolor;
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' . 
+  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+$breadcrumb['text'][] = _("Album: ") .'<a class="bread" href="'. makeAlbumUrl($gallery->album->albumName) .'">'. $gallery->album->fields['title'] . '&nbsp;' 
+  . $upArrowURL . '</a>';
 
-echo makeFormIntro("captionator.php", array("method" => "POST")) ?>
+includeLayout('navtablebegin.inc');
+includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
+
+echo makeFormIntro("captionator.php") ?>
 <input type="hidden" name="page" value="<?php echo $page ?>">
 <input type="hidden" name="perPage" value="<?php echo $perPage ?>">
 <input type="hidden" name="captionedAlbum" value="<?php echo $gallery->album->fields['name']; ?>">
@@ -266,8 +275,7 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	    }
 	    echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 	    foreach ($gallery->album->getExtraFields() as $field) {
-	        if (in_array($field, array_keys(automaticFieldsList())))
-	        {
+	        if (in_array($field, array_keys(automaticFieldsList()))) {
 	            continue;
 	        }
 	        $value=$gallery->album->getExtraField($i, $field);
@@ -296,11 +304,9 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	$count++;
     }
 } else {
-    echo("\n<tr>");
-    echo("\n\t<td>");
-    echo(_("NO PHOTOS!"));
-    echo("\n\t</td>");
-    echo("\n</tr>");
+    echo "\n<tr>";
+    echo "\n\t<td>". _("NO PHOTOS!") ."\n\t</td>";
+    echo "\n</tr>";
 }
 ?>
 </table>

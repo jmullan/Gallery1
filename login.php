@@ -56,7 +56,7 @@ if (!empty($username) && !empty($gallerypassword)) {
 		$gallerypassword = null;
 		gallery_syslog("Failed login for $username from " . $_SERVER['REMOTE_ADDR']);
 	}
-} elseif (!empty($submitted)) {
+} elseif (!empty($login)) {
 	$error=_("Please enter username and password.");
 }
 
@@ -71,7 +71,7 @@ doctype();
 <div class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></div>
 <div class="popup" align="center">
 
-<?php echo makeFormIntro("login.php", array("name" => "login_form", "method" => "POST")); ?>
+<?php echo makeFormIntro('login.php', array('name' => 'login_form')); ?>
 <?php echo _("Logging in gives you greater permission to view, create, modify and delete albums.") ?>
 
 <table align="center">
@@ -103,7 +103,7 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 <div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
 <div class="popup" align="center">
 <?php
-    echo makeFormIntro("login.php", array("name" => "forgot_form", "method" => "POST"));
+    echo makeFormIntro('login.php', array('name' => 'forgot_form'));
 
     if (!empty($forgot)) {
     	$tmpUser = $gallery->userDB->getUserByUsername($username);

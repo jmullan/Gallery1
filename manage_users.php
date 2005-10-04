@@ -25,7 +25,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($create, $bulk_create, $modify, $delete, $unames) =
-                getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
+    getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
@@ -72,9 +72,7 @@ if (isset($error)) {
 	echo infoline(gallery_error($error),'error');
 }
 
-echo makeFormIntro("manage_users.php", array(
-			"name" => "manageusers_form", 
-			"method" => "POST"));
+echo makeFormIntro('manage_users.php', array('name' => 'manageusers_form'));
 
 echo _("You can create, modify and delete users here.");
 echo "\n<p>";
@@ -82,11 +80,7 @@ echo "\n<p>";
 if (!$displayUsers) {
 	print "<i>". _("There are no users!  Create one.") ."</i>";
 } else {
-	echo '<select name="unames[]" size="15" multiple>';
-	foreach ($displayUsers as $name) {
-		print "\t<option value=\"$name\">$name</option>\n";
-	}
-	echo "\n</select>";
+	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''), true);
 }	
 
 echo "\n</p>";
