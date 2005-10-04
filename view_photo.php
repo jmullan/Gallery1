@@ -166,11 +166,9 @@ $navigator["bordercolor"] = $bordercolor;
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
   'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
-if ($gallery->album->fields['returnto'] != 'no') {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-        $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-        $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
+foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
+    $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
+    $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
 }
 
 $extra_fields = $gallery->album->getExtraFields(false);

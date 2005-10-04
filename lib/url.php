@@ -99,7 +99,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$urlprefix = ereg_replace("\/$", "", $urlprefix);
 	
 	/* Add the folder to the url when *Nuke is not direct in the main folder */
-	$addpath = substr($_SERVER['SCRIPT_NAME'], 0, strrpos($_SERVER['SCRIPT_NAME'], '/'));
+	$addpath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
 
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
