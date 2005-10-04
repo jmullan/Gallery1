@@ -75,7 +75,7 @@ if (isset($gallery->session->resetAdminGuid)) {
 	exit;
 }
 elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in 
-	echo makeFormIntro("setup/" . $target, array("name" => "login_form", "method" => "POST"));
+	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
 ?>
 
 <div align="center">
@@ -109,4 +109,5 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 </html>
 <?php
 	exit;
-} // Not Logged In ?>
+} // Not Logged In
+?>

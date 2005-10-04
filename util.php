@@ -154,7 +154,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 			$addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
 		}
 		if ($addType == 'inside') {
-			echo '<form name="theform" method="post" action="'. $page_url .'">';
+		    echo makeFormIntro($page_url, array('name' => 'theform'));
 			drawCommentAddForm($commenter_name);
 			echo "</form>";
 		}
@@ -202,7 +202,7 @@ if (!$gallery->user->isLoggedIn() ) {
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>
-	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post") ?>"></td>
+	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post comment") ?>"></td>
 </tr>
 </table>
 <?php 
@@ -264,9 +264,9 @@ function gallery_syslog($message) {
 function exec_internal($cmd) {
 	global $gallery;
 
-	$debugfile = "";
-	$status="";
-	$results=array();
+	$debugfile = '';
+	$status = '';
+	$results = array();
 	
 	if (isDebugging()) {
 	    debugMessage(sprintf(_("Executing: %s"), $cmd), __FILE__, __LINE__);
@@ -3420,7 +3420,6 @@ function addSearchForm($formerSearchString = '', $align = '') {
 
     $html .= makeFormIntro('search.php', array(
     	'name'     => 'search_form',
-    	'method'   => 'post',
     	'style'    => "text-align: $align",
     	'class'   => 'search')
     );

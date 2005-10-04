@@ -90,7 +90,7 @@ function selectOptions($album, $field, $opts) {
     echo "\n";
 }
 
-function drawSelect($name, $options, $selected, $size, $attrList=array(), $prettyPrinting = false) {
+function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
     $attrs = '';
     $crlf = ($prettyPrinting) ? "\n\t" : '';
 
@@ -166,9 +166,11 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * makeFormIntro("add_photos.php",
  *                      array("name" => "count_form",
  *                              "enctype" => "multipart/form-data",
- *                              "method" => "POST"));
+ *                              "method" => "post"));
+ *
+ * If no method is given in attrList, then "post" is used.
  */
-function makeFormIntro($target, $attrList=array(), $urlargs=array()) {
+function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 
     // We don't want the result HTML escaped since we split on "&", below
     // use the header version of makeGalleryUrl()
@@ -176,12 +178,12 @@ function makeFormIntro($target, $attrList=array(), $urlargs=array()) {
 
     $result = split("\?", $url);
     $target = $result[0];
-    if (sizeof($result) > 1) {
-        $tmp = $result[1];
-    } else {
-        $tmp = '';
-    }
+    $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
+    if(!isset($attrList['method'])) {
+        $attrList['method'] = 'post';
+    }
+    
     $attrs = '';
     foreach ($attrList as $key => $value) {
         $attrs .= " $key=\"$value\"";

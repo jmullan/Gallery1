@@ -39,7 +39,10 @@ if ($gallery->app->feature["zip"] || $gallery->app->rar) {
     echo "</p>\n\t";
 }
 
-echo makeFormIntro("add_photos.php", array("name" => "count_form", "method" => "POST"), array('type' => 'popup')); ?>
+echo makeFormIntro("add_photos.php",
+    array("name" => "count_form"),
+    array('type' => 'popup'));
+?>
 <input type="hidden" name="mode" value="<?php echo $mode ?>"/>
 
 <table>
@@ -60,9 +63,9 @@ echo _("Select the number of meta data files you want to upload:");
 </form>
 
 <?php echo makeFormIntro("save_photos.php",
-	array("name" => "upload_form",
-		"enctype" => "multipart/form-data",
-		"method" => "POST"), array('type' => 'popup')); ?>
+	array("name" => "upload_form","enctype" => "multipart/form-data"),
+	array('type' => 'popup'));
+?>
 <table>
 <tr>
 	<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
@@ -77,7 +80,7 @@ echo _("Select the number of meta data files you want to upload:");
 		<td><input name="usercaption[]" type="text" size="40"><br><br></td>
 	</tr>
 <?php }
-	if ($metaboxes >0) {
+	if ($metaboxes > 0) {
 		echo '<tr><td colspan="2">' . _("3. Use the Browse button to find the meta data files on your computer") . '</td></tr>';
 		for ($i = 0; $i < $metaboxes;  $i++) {
 			echo "\n<tr>";

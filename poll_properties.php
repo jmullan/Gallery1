@@ -35,11 +35,11 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 	
-$error="";
+$error = '';
 if (!empty($apply)) {
-	for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
+	for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
 		//convert values to numbers
-		$nv_pairs[$i]["value"]=0+$nv_pairs[$i]["value"];
+		$nv_pairs[$i]["value"] = 0+$nv_pairs[$i]["value"];
 	}
 	$gallery->album->fields["poll_nv_pairs"]=$nv_pairs;
 	$gallery->album->fields["poll_hint"]=$poll_hint;
@@ -47,7 +47,7 @@ if (!empty($apply)) {
 	if ($voter_class == "Logged in" &&
 	    $gallery->album->fields["voter_class"] == "Everybody" &&
 	    sizeof($gallery->album->fields["votes"]) > 0) {
-		$error="<br>" .
+		$error = "<br>" .
 			sprintf(_("Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."),
 					"<i>". _("Everybody") ."</i>",
 					"<i>". _("Logged in") ."</i>");
@@ -60,8 +60,8 @@ if (!empty($apply)) {
 	$gallery->album->save(array(i18n("Poll properties change")));
 
 	if (getRequestVar('setNested')) {
-		$gallery->album->setNestedPollProperties();
-       	}
+	    $gallery->album->setNestedPollProperties();
+	}
 	reload();
 }
 
@@ -80,7 +80,7 @@ if (! empty($error)) {
 	echo "<p>". gallery_error($error) . "</p>";
 }
 	echo makeFormIntro("poll_properties.php", 
-			array("name" => "theform", "method" => "POST"),
+			array("name" => "theform"),
 			array("type" => "popup")); ?>
 <table border="0">
 <tr>
@@ -126,7 +126,7 @@ for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
 ?>
 <tr>
 	<td><input type="text" name="nv_pairs[<?php echo $i?>][name]" value="<?php echo $nv_pairs[$i]["name"] ?>"></td>
-	<td><input type=text name="nv_pairs[<?php echo $i?>][value]" value="<?php echo $nv_pairs[$i]["value"] ?>"></td>
+	<td><input type="text" name="nv_pairs[<?php echo $i?>][value]" value="<?php echo $nv_pairs[$i]["value"] ?>"></td>
 </tr>
 <?php
 }

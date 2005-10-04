@@ -79,7 +79,7 @@ if (isset($save)) {
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
 <?php echo makeFormIntro("edit_caption.php", 
-		array("name" => "theform", "method" => "POST"),
+		array("name" => "theform"),
 		array("type" => "popup"));
 ?>
 

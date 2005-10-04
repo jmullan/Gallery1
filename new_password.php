@@ -57,23 +57,23 @@ if (!empty($save)) {
 	       	}
        	}
 
-	if (!$error_string && !$errorCount) {
-	       	$tmpUser->setFullname($fullname);
-	       	$tmpUser->setEmail($email);
-	       	if (isset($defaultLanguage)) {
-		       	$tmpUser->setDefaultLanguage($defaultLanguage);
-		       	$gallery->session->language=$defaultLanguage;
-	       	}
-	      	if ($new_password1) {
-		       	$tmpUser->setPassword($new_password1);
-	       	}
-	       	$tmpUser->genRecoverPasswordHash(true);
-		$tmpUser->log("new_password_set");
-	       	$tmpUser->save();
+       	if (!$error_string && !$errorCount) {
+       	    $tmpUser->setFullname($fullname);
+       	    $tmpUser->setEmail($email);
+       	    if (isset($defaultLanguage)) {
+       	        $tmpUser->setDefaultLanguage($defaultLanguage);
+       	        $gallery->session->language=$defaultLanguage;
+       	    }
+       	    if ($new_password1) {
+       	        $tmpUser->setPassword($new_password1);
+       	    }
+       	    $tmpUser->genRecoverPasswordHash(true);
+       	    $tmpUser->log("new_password_set");
+       	    $tmpUser->save();
 
-		// Switch over to the new username in the session
-	       	$gallery->session->username = $uname;
-	       	header("Location: " . makeAlbumHeaderUrl());
+       	    // Switch over to the new username in the session
+       	    $gallery->session->username = $uname;
+       	    header("Location: " . makeAlbumHeaderUrl());
        	}
 }
 
@@ -109,9 +109,8 @@ echo _("You must enter the new password twice.");
 
 <p>
 
-<?php echo makeFormIntro("new_password.php", array(
-			"name" => "usermodify_form", 
-			"method" => "POST"));
+<?php 
+echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
@@ -120,7 +119,7 @@ $defaultLanguage = $tmpUser->getDefaultLanguage();
 
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 <p>
-<input type=hidden name="hash" value="<?php echo $hash ?>">
+<input type="hidden" name="hash" value="<?php echo $hash ?>">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
 </form>

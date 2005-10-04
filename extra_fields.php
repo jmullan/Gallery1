@@ -82,7 +82,7 @@ doctype();
 <div class="popup" align="center">
 <p>
 <?php echo makeFormIntro("extra_fields.php", 
-		array("name" => "theform", "method" => "POST"),
+		array("name" => "theform"),
 		array("type" => "popup")); 
 
 	$num_user_fields=sizeof($gallery->album->getExtraFields()) - num_special_fields($gallery->album->getExtraFields());
@@ -91,7 +91,7 @@ doctype();
 <table>
 
 <?php
-$extra_fields=$gallery->album->getExtraFields();
+$extra_fields = $gallery->album->getExtraFields();
 
 // Translate the first "Title" in the line below only
 ?>
@@ -134,8 +134,7 @@ foreach (automaticFieldsList() as $automatic => $printable_automatic) {
 <tr>
 	<td colspan="2">&nbsp;</td></tr>
 <?php
-$i=0;
-
+$i = 0;
 foreach ($extra_fields as $value) {
 	if (in_array($value, array_keys(automaticFieldsList())))
 		continue;
@@ -150,8 +149,7 @@ foreach ($extra_fields as $value) {
 }
 
 function num_special_fields($extra_fields) {
-
-	$num_special_fields=0;
+	$num_special_fields = 0;
 	foreach (array_keys(automaticFieldsList()) as $special_field) {
 		if (in_array($special_field, $extra_fields))
 			$num_special_fields++;

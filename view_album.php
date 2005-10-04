@@ -519,12 +519,9 @@ if ($gallery->album->getPollShowResults()) {
 ?>
 
    <script language="javascript1.2" type="text/JavaScript">
-   function chooseOnlyOne(i, form_pos, scale)
-   {
-       for(var j=0;j<scale;j++)
-       {
-           if(j != i)
-           {
+   function chooseOnlyOne(i, form_pos, scale) {
+       for(var j=0;j<scale;j++) {
+           if(j != i) {
                eval("document.vote_form['votes["+j+"]']["+form_pos+"].checked=false");
            }
        }
@@ -532,8 +529,9 @@ if ($gallery->album->getPollShowResults()) {
    </script>
 <?php
 
-echo makeFormIntro("view_album.php",
-array("name" => "vote_form", "method" => "POST", "style" => "margin-bottom: 0px;"));
+echo makeFormIntro('view_album.php',
+    array('name' => 'vote_form', 'style' => 'margin-bottom: 0px;'));
+    
 if (canVote()) {
     echo '<div align="left" class="vapoll">';
     $nv_pairs=$gallery->album->getVoteNVPairs();
@@ -541,11 +539,11 @@ if (canVote()) {
         $options = $nv_pairs[0]["name"];
     }
     else {
-        /* note to translators:
-        ** This produces (in English) a list of the form: "a, b, c or d".  Correct translation
-        ** of ", " and " or  " should produce a version that makes sense in your language.
-        */
-        $options = "";
+        /** note to translators:
+         * This produces (in English) a list of the form: "a, b, c or d".  Correct translation
+         * of ", " and " or  " should produce a version that makes sense in your language.
+         */
+        $options = '';
         for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
             $options .= $nv_pairs[$count]["name"]._(", ");
         }
@@ -936,8 +934,8 @@ $gallery->app->emailOn == "yes") {
             $gallery->album->unsetEmailMe('other', $gallery->user);
         }
     }
-    echo makeFormIntro("view_album.php",
-    array("name" => "email_me", "method" => "POST", "style" => "margin-bottom: 0px;"));
+    echo makeFormIntro("view_album.php", 
+        array("name" => "email_me", "style" => "margin-bottom: 0px;"));
     echo _("Email me when one of the following actions are done to this album:")."  ";
     $checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
     $checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";

@@ -94,9 +94,7 @@ if (!empty($error_text)) {
 <span class="error"><?php echo $error_text ?></span>
 <?php
 }
-?>
 
-<?php
 if (!isset($backup_method)) { $backup_method="zip";}
 if (!isset($target_files)) { $target_files="dat";}
 if (!isset($tar_path)) { $tar_path= ( ($path = findInPath ("tar")) ? $path : "/usr/bin/tar" );}
@@ -104,11 +102,9 @@ if (!isset($find_path)) { $find_path=( ($path = findInPath ("find")) ? $path : "
 if (!isset($xargs_path)) { $xargs_path=( ($path = findInPath ("xargs")) ? $path : "/usr/bin/xargs");}
 if (!isset($gzip_path)) { $gzip_path=( ($path = findInPath ("gzip")) ? $path : "/usr/bin/gzip");}
 if (!isset($zip_path)) { $zip_path="C:\bin\zip.exe";}
-?>
-<?php echo _("Choose archiving option and which files you wish to archive.") ?>
-<?php echo makeFormIntro("backup_albums.php", array(
-		"name" => "theform", 
-		"method" => "POST"));
+
+echo _("Choose archiving option and which files you wish to archive.");
+echo makeFormIntro('backup_albums.php', array('name' => 'theform', ));
 ?>
 <table>
 

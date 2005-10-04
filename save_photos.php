@@ -395,8 +395,8 @@ if (count($image_tags)) {
 <?php 
     echo _("Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
     echo makeFormIntro("save_photos.php", 
-		array("name" => 'uploadurl_form',
-			"method" => "POST"), array('type' => 'popup')); 
+		array("name" => 'uploadurl_form'),
+		array('type' => 'popup')); 
 
     /* Allow user to select which files to grab - only show url right now ( no image previews ) */
     sort($image_tags);
@@ -404,7 +404,7 @@ if (count($image_tags)) {
 	
     echo '<select name="urls[]" multiple="multiple" size="'. $selectSize ."\">\n";
     foreach ( $image_tags as $image_src) {
-	echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
+	   echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
     }
 
 echo "</select>\n";
@@ -426,7 +426,7 @@ echo "</select>\n";
 </span>
 <p>
 <?php
-        echo insertFormJSLinks('meta[]');
+    echo insertFormJSLinks('meta[]');
 ?>
 </p>
 <table>

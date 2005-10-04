@@ -184,8 +184,7 @@ $allowChange["admin"] = true;
 
 echo makeFormIntro("multi_create_user.php", array(
     "name" => "usercreate_form",
-    "enctype" => "multipart/form-data",
-    "method" => "POST",));
+    "enctype" => "multipart/form-data"));
 
 $canCreateChoices = array(1 => _("yes"), 0 => _("no"));
 $canCreate = 0;

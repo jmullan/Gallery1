@@ -91,7 +91,7 @@ if (!empty($error_text)) {
 }
 echo "<br><br>";
 echo makeFormIntro("add_comment.php",
-	array("name" => "theform", "method" => "POST"),
+	array("name" => "theform"),
 	array('type' => 'popup'));
 
 drawCommentAddForm($commenter_name, 35);

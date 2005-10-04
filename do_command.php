@@ -64,7 +64,7 @@ switch ($cmd) {
 			if (empty($rebuild_type)) {
 				echo _("Do you also want to rebuild the thumbnails in subalbums?");
 				echo makeFormIntro('do_command.php', 
-					array('method' => 'post'),
+					array(),
 					array('type' => 'popup', 'index' => $index, 'cmd' => $cmd, 
 						'return' => $return, 'parentName' => $parentName));
 ?>

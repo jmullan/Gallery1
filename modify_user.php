@@ -39,30 +39,31 @@ $errorCount = 0;
 $msg = '';
 $infoLineType = '';
 
-/* User pressed "save" Button
-** If (changed) user name is valid and password match,
-** then load former user as temp user and overwrite with new values
-** If one modified itself, changes current user.
-*/
+/**
+ * User pressed "save" Button
+ * If (changed) user name is valid and password match,
+ * then load former user as temp user and overwrite with new values
+ * If one modified itself, changes current user.
+ */
 if (!empty($save)) {
-   if (strcmp($old_uname, $uname)) {
-	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-	    if ($gErrors["uname"]) {
-		$errorCount++;
-		$uname = $old_uname;
-	    }
+    if (strcmp($old_uname, $uname)) {
+        $gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+        if ($gErrors["uname"]) {
+            $errorCount++;
+            $uname = $old_uname;
+        }
     }
 
     if ($new_password1 || $new_password2) {
-	if (strcmp($new_password1, $new_password2)) {
-	    $gErrors["new_password2"] = _("Passwords do not match!");
-	    $errorCount++;
-	} else {
-	    $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-	    if ($gErrors["new_password1"]) {
-		$errorCount++;
-	    }
-	}
+        if (strcmp($new_password1, $new_password2)) {
+            $gErrors["new_password2"] = _("Passwords do not match!");
+            $errorCount++;
+        } else {
+            $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
+            if ($gErrors["new_password1"]) {
+                $errorCount++;
+            }
+        }
     }
 
     if (!$errorCount) {
@@ -89,8 +90,8 @@ if (!empty($save)) {
         $infoLineType = 'success';
     }
     else {
-	$msg = gallery_error(_("User information was not succesfully updated !!"));
-	$infoLineType = 'error';
+        $msg = gallery_error(_("User information was not succesfully updated !!"));
+        $infoLineType = 'error';
     }
 } else if (isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
@@ -150,9 +151,7 @@ doctype();
 ?>
 <br>
 
-<?php echo makeFormIntro("modify_user.php", 
-				array("name" => "usermodify_form", 
-					"method" => "POST")); ?>
+<?php echo makeFormIntro("modify_user.php", array('name' => 'usermodify_form')); ?>
 
 <input type="hidden" name="old_uname" value="<?php echo $uname ?>">
 

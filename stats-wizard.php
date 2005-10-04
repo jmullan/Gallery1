@@ -48,7 +48,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php  
 }
-
     includeHtmlWrap("gallery.header");
 
     $adminbox['text'] ='<span class="head">'. _("Gallery statistics - Wizard") .'</span>';
@@ -116,9 +115,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </script>
 
 <?php
-	echo makeFormIntro("stats.php", array("name" => "stats_form", 
-						"method" => "POST",
-						"onChange" => 'updateUrl()'));
+	echo makeFormIntro("stats.php", array("name" => "stats_form", "onChange" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";

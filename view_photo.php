@@ -342,12 +342,11 @@ if (!$gallery->album->isMovie($id)) {
 
         list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 
-        /*
-        ** Now build the admin Texts / left colun
-        */
-
+        /**
+         * Now build the admin Texts / left colun
+         */
         function enablePrintForm($name) {
-            global $printEZPrintsForm, $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
+            global $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
 
             switch ($name) {
                 case 'shutterfly':
@@ -375,7 +374,7 @@ if (!$gallery->album->isMovie($id)) {
                 'shutterfly'  => 'Shutterfly',
                 'photoaccess' => 'PhotoWorks',
             ),
-            'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
+        '   Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
         );
 
         /* display a <select> menu if more than one option */
@@ -433,7 +432,7 @@ if (!$gallery->album->isMovie($id)) {
                     if (!in_array($name, $printServices)) {
                         continue;
                     } else {
-                        $iconText = getIconText('', sprintf(_('process this photo with %s'), $fullName));
+                        $iconText = getIconText('', sprintf(_("process this photo with %s"), $fullName));
                         $adminTextIconElemens[] = "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
                     }
                 }
@@ -636,8 +635,7 @@ displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields),
 
 if ( canVote()) {
     echo "\n<!-- Voting pulldown -->\n";
-    echo makeFormIntro("view_photo.php", array("name" => "vote_form",
-    "method" => "POST"));
+    echo makeFormIntro('view_photo.php', array('name' => 'vote_form'));
 ?>
 	<script language="javascript1.2" type="text/JavaScript">
 	function chooseOnlyOne(i, form_pos, scale) {

@@ -44,8 +44,8 @@
   $msgTextError2 = _("Some input fields are not correctly filled out. Please fill out.");
   $ecard_PLAIN_data = _("You have an e-card as attachment. Click to see.");
 
-  $error_msg = "";
-
+  $error_msg = '';
+  
   $ecard_send = false;
 
   if (! empty($submit_action)) {
@@ -173,8 +173,8 @@ doctype();
 	}
 
     echo makeFormIntro("ecard_form.php",
-                array("name" => "ecard_form", "method" => "POST"),
-                array("type" => "popup"));
+        array("name" => "ecard_form"),
+        array("type" => "popup"));
 ?>
   <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"] ?>">
   <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">

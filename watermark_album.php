@@ -135,7 +135,7 @@ if (!$gallery->album->numPhotos(1)) {
     }
 
     echo infoLine(_("Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."), 'notice');
-    echo makeFormIntro("watermark_album.php",  array("name" => "theform", "method" => "POST"));
+    echo makeFormIntro('watermark_album.php',  array('name' => 'theform'));
     global $watermarkForm;
     $watermarkForm["askRecursive"] = 1;
     $watermarkForm["askPreview"] = 1;

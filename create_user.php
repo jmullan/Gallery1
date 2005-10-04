@@ -150,10 +150,9 @@ echo _("Create a new user here.");
 ?>
 <br>
 
-<?php echo makeFormIntro("create_user.php", array(
-				"name" => "usercreate_form", 
-				"method" => "POST",
-				'onsubmit' => 'usercreate_form.create.disabled = true;'));
+<?php echo makeFormIntro('create_user.php', array(
+        'name'     => 'usercreate_form', 
+        'onsubmit' => 'usercreate_form.create.disabled = true;'));
 ?>
 <br>
 

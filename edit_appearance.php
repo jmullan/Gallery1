@@ -240,7 +240,7 @@ doctype();
 <?php 
 
 echo makeFormIntro("edit_appearance.php",
-    array("name" => "theform", "method" => "POST"),
+    array("name" => "theform"),
     array("type" => "popup"));
 
 $i = 0;

@@ -98,7 +98,7 @@ if (!strcmp($cmd, "login")) {
 if (!strcmp($cmd,"publish") || (isset($returnval) && $returnval == "Login Incorrect") ) { ?>
 <p align="center" class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></p>
 
-<?php echo  makeFormIntro("publish_xp.php", array("id" => "login", "method" => "POST")); ?>
+<?php echo  makeFormIntro('publish_xp.php', array('id' => 'login')); ?>
 
 <table border="0" align="center">
 <tr>

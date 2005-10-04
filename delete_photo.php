@@ -90,23 +90,20 @@ if ($gallery->album && isset($id)) {
 <div class="popuphead"><?php echo _("Delete Album") ?></div>
 <div class="popup" align="center">
 <?php 
-        echo makeFormIntro("delete_photo.php", 
-		array('name' => 'deletephoto_form','onsubmit' => "deletephoto_form.confirm.disabled = true;"),
-		array('type' => 'popup'));
-	echo _("Do you really want to delete this album?") 
-?>
+        echo makeFormIntro('delete_photo.php', 
+	    array('name'	=> 'deletephoto_form',
+		  'onsubmit'	=> 'deletephoto_form.confirm.disabled = true;'),
+	    array('type' => 'popup'));
 
-<?php
+	echo _("Do you really want to delete this album?");
+
 	$myAlbum = new Album();
 	$myAlbum->load($id);
 ?>
-<p>
-<?php echo $myAlbum->getHighlightTag() ?>
-</p>
 
-<b>
-<?php echo $myAlbum->fields['title'] ?>
-</b>
+<p><?php echo $myAlbum->getHighlightTag() ?></p>
+
+<b><?php echo $myAlbum->fields['title'] ?></b>
 <br>
 <br>
 <?php echo $myAlbum->fields['description'] ?>
@@ -120,9 +117,10 @@ if ($gallery->album && isset($id)) {
 <div class="popup" align="center">
 <?php 
 	echo _("Do you really want to delete this photo?") ;
-        echo makeFormIntro("delete_photo.php", 
-		array('name' => 'deletephoto_form', 'onsubmit' => "deletephoto_form.confirm.disabled = true;"),
-		array('type' => 'popup'));
+        echo makeFormIntro('delete_photo.php', 
+	    array('name'      => 'deletephoto_form',
+		      'onsubmit'  => 'deletephoto_form.confirm.disabled = true;'),
+	    array('type' => 'popup'));
 ?>
 
 <p><?php echo $gallery->album->getThumbnailTag($index) ?></p>

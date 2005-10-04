@@ -37,7 +37,7 @@ echo "\n<html>";
 
 if (isset($save)) {
     if (!strcmp($field, 'title')) {
-	$data = removeTags($data);
+        $data = removeTags($data);
     }
     $gallery->album->fields[$field] = $data;
     $gallery->album->save(array(i18n("%s modified"), $field));
@@ -56,7 +56,7 @@ if (isset($save)) {
 	echo sprintf(_("Edit the %s and click %s when you're done"), _($field), '<b>' . _("Save") . '</b>');
 
 	echo makeFormIntro("edit_field.php", 
-		array("name" => "theform", "method" => "POST"),
+		array("name" => "theform"),
 		array("type" => "popup")); 
 ?>
 	<input type="hidden" name="field" value="<?php echo $field ?>">

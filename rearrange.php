@@ -121,8 +121,7 @@ $explainTable->addElement(array('content' => _("Hidden") , 'cellArgs' => array('
 
 <div class="popup" align="center">
 <?php
-  echo makeFormIntro("rearrange.php",
-		   array("name" => "rearr_form", "method" => "POST"));
+  echo makeFormIntro('rearrange.php',array('name' => 'rearr_form'));
 ?>
 <input type="hidden" name="rearrList" value="">
 
@@ -134,7 +133,7 @@ $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
     'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'">'. 
-		 '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
+	'<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
     'cellArgs' => array('colspan' => $cols, 'align' => 'right')));
 
 $list = array();
@@ -144,25 +143,25 @@ $page = 1;
 for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
     if ($j++==($cols*$rows) || $page == 1) {
         $pictureTable->addElement(array(
-	    'content' => sprintf(_("******* Page %s *******"), $page), 
-	    'cellArgs' => array('colspan' => $cols, 'align' => 'center')));
+            'content' => sprintf(_("******* Page %s *******"), $page),
+            'cellArgs' => array('colspan' => $cols, 'align' => 'center')));
 
-	$j = 1;
-	$page++;
+        $j = 1;
+        $page++;
     }
 
     $attrs = 'id="im_'.$i.'" onclick="doclick('.$i.')" style="padding: 2px; border: '
-	. ($gallery->album->isHidden($i) ? ' red' : ' green');
-	
+    . ($gallery->album->isHidden($i) ? ' red' : ' green');
+
     if ($gallery->album->isAlbum($i)) {
-	$myAlbumName = $gallery->album->getAlbumName($i);
-	$myAlbum = new Album();
-	$myAlbum->load($myAlbumName);
-	$tag = $myAlbum->getHighlightTag(0,$attrs. ' 3px double"');
+        $myAlbumName = $gallery->album->getAlbumName($i);
+        $myAlbum = new Album();
+        $myAlbum->load($myAlbumName);
+        $tag = $myAlbum->getHighlightTag(0,$attrs. ' 3px double"');
     } elseif ($gallery->album->isMovieByIndex($i)) {
-	$tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px dotted"');	
+        $tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px dotted"');
     } else {
-	$tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px solid"');
+        $tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px solid"');
     }
 
     $pictureTable->addElement(array('content' => $tag, 'cellArgs' => array('align' => 'center')));
@@ -172,7 +171,7 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 
 $pictureTable->addElement(array(
     'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'">'. 
-		 '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
+	  '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
     'cellArgs' => array('colspan' => $cols, 'align' => 'right')));
 
 echo $pictureTable->render();

@@ -39,16 +39,15 @@ doctype();
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></div>
-<div class="popup" align="center">
+  <div class="popup" align="center">
 <?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
 	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
 	<br><br>
 	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
-	</div>
-	</div>
-	</body>
-	</html>
+  </div>
+</body>
+</html>
 <?php
     exit();
 }
@@ -85,38 +84,36 @@ if (!empty($formaction) && $formaction == 'create') {
 
 	if (!$errorCount) {
 
-		$password = generate_password(10);
-	       	$tmpUser = new Gallery_User();
-	       	$tmpUser->setUsername($uname);
-	       	$tmpUser->setPassword($password);
-	       	$tmpUser->setFullname($fullname);
-	       	$tmpUser->setCanCreateAlbums(($gallery->app->selfRegCreate == 'yes'));
-	       	$tmpUser->setEmail($email);
-	       	$tmpUser->origEmail=$email;
-	       	$tmpUser->log("self_register");
-		$tmpUser->setDefaultLanguage($defaultLanguage);
-		$msg = ereg_replace("!!PASSWORD!!", $password,
-                                        ereg_replace("!!USERNAME!!", $uname,
-					  ereg_replace("!!FULLNAME!!", $fullname,
-					    ereg_replace("!!NEWPASSWORDLINK!!", 
-						    $tmpUser->genRecoverPasswordHash(),
-						    welcome_email()))));
-		$logmsg = sprintf(_("%s has registered.  Email has been sent to %s."),
-			$uname, $email);
-		$logmsg2  = sprintf("%s has registered.  Email has been sent to %s.",
-			$uname, $email);
-		if ($logmsg != $logmsg2) {
-			$logmsg .= " <<<<>>>>> $logmsg2";
-		}
+	    $password = generate_password(10);
+	    $tmpUser = new Gallery_User();
+	    $tmpUser->setUsername($uname);
+	    $tmpUser->setPassword($password);
+	    $tmpUser->setFullname($fullname);
+	    $tmpUser->setCanCreateAlbums(($gallery->app->selfRegCreate == 'yes'));
+	    $tmpUser->setEmail($email);
+	    $tmpUser->origEmail=$email;
+	    $tmpUser->log("self_register");
+	    $tmpUser->setDefaultLanguage($defaultLanguage);
+	    $msg = ereg_replace("!!PASSWORD!!", $password,
+	       ereg_replace("!!USERNAME!!", $uname,
+	       ereg_replace("!!FULLNAME!!", $fullname,
+	       ereg_replace("!!NEWPASSWORDLINK!!",
+	       $tmpUser->genRecoverPasswordHash(),
+	        welcome_email()))));
+	    $logmsg = sprintf(_("%s has registered.  Email has been sent to %s."), $uname, $email);
+	    $logmsg2  = sprintf("%s has registered.  Email has been sent to %s.", $uname, $email);
+	    if ($logmsg != $logmsg2) {
+	        $logmsg .= " <<<<>>>>> $logmsg2";
+	    }
 
-		if (gallery_mail($email, _("Gallery Self Registration"),$msg, $logmsg)) {
-			$tmpUser->save();
-			echo "<p>".sprintf(_("An email has been sent to %s."), $email);
-			echo '<br>';
-			echo _("Your account information is contained within the email.");
-		} else {
-			echo gallery_error(_("Email could not be sent.  Please contact gallery administrator to register on this site"));
-		}
+	    if (gallery_mail($email, _("Gallery Self Registration"),$msg, $logmsg)) {
+	        $tmpUser->save();
+	        echo "<p>".sprintf(_("An email has been sent to %s."), $email);
+	        echo '<br>';
+	        echo _("Your account information is contained within the email.");
+	    } else {
+	        echo gallery_error(_("Email could not be sent.  Please contact gallery administrator to register on this site"));
+	    }
 ?>
 		<br><br>
 		<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
@@ -129,15 +126,14 @@ if (!empty($formaction) && $formaction == 'create') {
 }
 
 echo makeFormIntro('register.php', array(
-			'name' => 'usercreate_form',
-			'method' => 'POST',
-			'onsubmit' => "usercreate_form.create.disabled = true;"));
+    'name' => 'usercreate_form',
+    'onsubmit' => "usercreate_form.create.disabled = true;"));
 include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <p>
 <?php echo _("Your account information will be sent to the email address you provide.") ?>
 <br><br>
-<input type="hidden" name="formaction" value ="">
+<input type="hidden" name="formaction" value="">
 <input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value ='create'">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>

@@ -124,9 +124,7 @@ doctype();
 
 <br>
 
-<?php echo makeFormIntro("user_preferences.php", array(
-			"name" => "usermodify_form", 
-			"method" => "POST"));
+<?php echo makeFormIntro('user_preferences.php', array('name' => 'usermodify_form'));
 ?>
 
 <br>
