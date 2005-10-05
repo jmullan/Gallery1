@@ -18,6 +18,7 @@ Find:
  	{
  		$sessiondata = array();
  		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
+		$sessionmethod = SESSION_METHOD_GET;
 After add:
 		// Added for Gallery
 		if(!isset($_GET['sid'])) {
@@ -29,6 +30,7 @@ Again Find:
  	{
  		$sessiondata = array();
  		$session_id = ( isset($_GET['sid']) ) ? $_GET['sid'] : '';
+		$sessionmethod = SESSION_METHOD_GET;
 Again add:
 		// Added for Gallery
 		if(!isset($_GET['sid'])) {
