@@ -545,6 +545,10 @@ $constants =  array_merge(
 		'default' => "none",
 		'title' => _("Optional tools")
 	),
+	'subgroup_archives' => array (
+		'type' => "subgroup",
+		'title' => _("Archives")
+	),
 	'zipinfo' => array(
 		'prompt' => "Zipinfo",
 		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
@@ -569,6 +573,18 @@ $constants =  array_merge(
 		'type' => "text",
 		'attrs' => array('size' => 50)
 	),
+	'zip' => array(
+		'prompt' => "zip",
+		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
+			'<a href="http://www.info-zip.org/" target="_blank">rar</a>', '<i>/usr/local/bin/zip</i>', '<i>c:\\bin\\zip.exe</i>'),
+		'value' => locateFile("zip"),
+		'must-be-file' => 1,
+		'must-be-executable' => 1,
+		'optional' => 1,
+		'filename' => 1,
+		'type' => "text",
+		'attrs' => array('size' => 50)
+	),
 	'rar' => array(
 		'prompt' => "rar",
 		'desc' => sprintf(_("The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
@@ -580,6 +596,10 @@ $constants =  array_merge(
 		'filename' => 1,
 		'type' => "text",
 		'attrs' => array('size' => 50)
+	),
+	'subgroup_exif' => array (
+		'type' => "subgroup",
+		'title' => _("EXIF Data")
 	),
 	'use_exif' => array(
 		'prompt' => "Jhead EXIF Parser",
@@ -604,6 +624,10 @@ $constants =  array_merge(
 		'filename' => 1,
 		'type' => "text",
 		'attrs' => array('size' => 50)
+	),
+	'subgroup_tools_other' => array (
+		'type' => "subgroup",
+		'title' => _("Other")
 	),
 	'use_jpegtran' => array (
 		'prompt' => "Jpegtran",

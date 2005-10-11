@@ -57,6 +57,11 @@ foreach ($constants as $key => $val) {
 		continue;
 	}
 
+	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
+        echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
+        continue;
+    }
+    
 	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";

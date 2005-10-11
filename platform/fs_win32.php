@@ -21,12 +21,21 @@
  */
 ?>
 <?php
+
+/**
+ * Copies a file from $source to $dest.
+ * @param  string    $source    Full path to source file.
+ * @param  string    $dest      Full path to destination file.
+ * @return boolean   $result    true on success, otherwise false
+ */
 function fs_copy($source, $dest) {
-	$umask = umask(0133);
-	$results = copy(
-		fs_import_filename($source, 0), 
-		fs_import_filename($dest, 0));
-	umask($umask);
+    $umask = umask(0133);
+    $resultt = copy(
+	fs_import_filename($source, 0), 
+	fs_import_filename($dest, 0));
+    umask($umask);
+
+    return $result;	
 }
 
 function fs_file_exists($filename) {
@@ -143,11 +152,18 @@ function fs_executable($filename) {
 	return $filename;
 }
 
-function fs_mkdir($filename, $perms) {
-	$umask = umask(0);
-	$results = mkdir(fs_import_filename($filename, 0), $perms);
-	umask($umask);
-	return $results;
+/**
+ * Creates a directory
+ * @param  string    $dirname
+ * @param  string    $perms	Optional perms, given in octal format
+ * @return boolean   $result    true on success, otherwise false
+ */
+function fs_mkdir($dirname, $perms = 0700) {
+    $umask = umask(0);
+    $result = mkdir(fs_import_filename($dirname, 0), $perms);
+    umask($umask);
+
+    return $result;
 }
 
 function fs_import_filename($filename, $for_exec=1) {

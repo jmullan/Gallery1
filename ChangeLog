@@ -1,3 +1,29 @@
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b17 "Holly Release Part 1"
+
+ * NEW: Support for albumdownload as zipfile.
+   - Added new permission for zipdownload per album.
+   - Tweaked albums.php, when user is allowed to download and zip is installed, 
+     a little zipicon appears.
+   - Same for subalbums in view_album.php
+   - Added download.php. This is called when user presses icon.
+     User can choose between full, or resized download.
+   - Added Path to 'zip' in config wizard.
+
+   - new method getImageName() in classes/AlbumItem.php and classes/Image.php
+   - new method canDownloadAlbum() classes/User.php
+   - splitted canHandleArchive() into canDecompressArchive() and canCreateArchive()
+   - new function createZip()
+   - new function getMimeType()
+   - new internal function createTempAlbum()
+   - new function rmdirRecursive()
+   - new function downloadFile()
+   - new function arrayflaten()
+   - new method getAbsolutePhotoPath() in classes/Album.php
+   - new method numItems() in classes/Album.php
+   - new method getAlbumItemNames in classes/Album.php
+   - new method getAlbumSize() in classes/Album.php
+   - new function formatted_filesize()
+
 2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b16
 
  * Fix: manage_users.php were broken in in b12

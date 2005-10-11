@@ -39,12 +39,12 @@ $perms = array(
     'canAddTo'		=> _("Users who can add photos."),
     'canDeleteFrom'	=> _("Users who can delete photos."),
     'canWrite'		=> _("Users who can modify photos."),
-    'canCreateSubAlbum'	=> _("Users who can create sub albums."),
-//    'zipDownload' 	=> _("Allow user to download album (with subalbums) as archive"),
+    'canCreateSubAlbum' => _("Users who can create sub albums."),
+    'zipDownload' 	=> _("Users who can to download album (with subalbums) as archive"),
     'canViewComments' 	=> _("Users who can view comments."),
     'canAddComments'	=> _("Users who can add comments."),
     'canViewFullImages'	=> _("Users who can view full (original) images."),
-    'canChangeText'	=> _("Users who can change album text."),
+    'canChangeText' 	=> _("Users who can change album text."),
 );
 
 foreach ($gallery->userDB->getUidList() as $uid) {

@@ -695,6 +695,21 @@ class AlbumItem {
 		}
 	}
 
+	/**
+	 * @param	$full		boolean
+	 * @return	$imageName	string 
+	 * @author	Jens Tkotz<jens@peino.de
+	 */ 
+	function getImageName($full = false) {
+	    if($this->image) {
+		$imageName = $this->image->getImageName($full);
+	    }
+	    else {
+	        $imageName = "about:blank";
+	    }
+	    return $imageName;
+        }
+
 	function getPhotoId() {
 		if ($this->image) {
 			return $this->image->getId();

@@ -780,8 +780,17 @@ if ($numPhotos) {
             }
             if (isset($myAlbum)) {
                 $myDescription = $myAlbum->fields['description'];
-                $buf = "";
-                $buf = $buf."<center><b>". sprintf(_("Album: %s"), '<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>'). '</b></center>';
+		$buf = '';
+		$link = '';
+		if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
+		    $iconText = getIconText('compressed.png', _("Download as Archive"), 'yes');
+		    $link = popup_link($iconText, 'download.php?set_albumName='. $gallery->album->getAlbumName($i),false,false,500,500);
+                        }
+                $buf .="<center><b>";
+		$buf .= sprintf(_("Album: %s"), 
+			'<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
+		$buf .= "</b> $link</center>";
+
                 if ($myDescription != _("No description") &&
                 $myDescription != "No description" &&
                 $myDescription != "") {

@@ -24,10 +24,18 @@
  * @package Filesystem_unix
  */
 
+/**
+ * Copies a file from $source to $dest.
+ * @param  string    $source	Full path to source file.
+ * @param  string    $dest	Full path to destination file.
+ * @return boolean   $result    true on success, otherwise false
+ */
 function fs_copy($source, $dest) {
-	$umask = umask(0113);
-	$results = copy($source, $dest);
-	umask($umask);
+    $umask = umask(0113);
+    $result = copy($source, $dest);
+    umask($umask);
+
+    return $result;
 }
 
 function fs_exec($cmd, &$results, &$status, $debugfile="") {
@@ -133,25 +141,31 @@ function fs_executable($filename) {
 	return $filename;
 }
 
-function fs_mkdir($filename, $perms) {
-	$umask = umask(0);
+/**
+ * Creates a directory
+ * @param  string    $dirname
+ * @param  string    $perms     Optional perms, given in octal format
+ * @return boolean   $result    true on success, otherwise false
+ */
+function fs_mkdir($dirname, $perms = 0700) {
+    $umask = umask(0);
 
-	/*
-	 * PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
-	 * causes a seg fault if you specify modes.
-	 *
-	 * See: http://bugs.php.net/bug.php?id=16905
-	 *
-	 * We can't reliably determine the OS, so let's just turn off the
-	 * permissions for any Unix implementation.
-	 */
-	if (!strcmp(phpversion(), "4.2.0")) {
-	    $results = mkdir(fs_import_filename($filename, 0));
-	} else {
-	    $results = mkdir(fs_import_filename($filename, 0), $perms);
-	}
+    /*
+     * PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
+     * causes a seg fault if you specify modes.
+     *
+     * See: http://bugs.php.net/bug.php?id=16905
+     *
+     * We can't reliably determine the OS, so let's just turn off the
+     * permissions for any Unix implementation.
+     */
+    if ( phpversion() == '4.2.0') {
+	$result = mkdir(fs_import_filename($dirname, 0));
+    } else {
+	$result = mkdir(fs_import_filename($dirname, 0), $perms);
+    }
 	
-	umask($umask);
-	return $results;
+    umask($umask);
+    return $result;
 }
 ?>

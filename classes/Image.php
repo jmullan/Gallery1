@@ -216,6 +216,15 @@ class Image {
 		return "$dir/$name.$this->type";
 	}
 
+	function getImageName($full = false) {
+		if ($full || !$this->resizedName) {
+		    $name = $this->name;
+		} else {
+		    $name = $this->resizedName;
+		}
+		return "$name.$this->type";
+	}
+
 	function isResized() {
 		if ($this->resizedName) {
 			return 1;

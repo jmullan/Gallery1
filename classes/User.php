@@ -328,6 +328,16 @@ class Abstract_User {
         }
     }
 
+   function canDownloadAlbum($album) {
+	if ($this->hasAlbumPermission('zipDownload', $album) &&
+	  canCreateArchive('zip')) {
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    }
+
    function hasAlbumPermission($perm, $album) {
 	/* Note: owners do not have explict every Permission via this method. Just admin. */
 	if ($this->isAdmin()) {
