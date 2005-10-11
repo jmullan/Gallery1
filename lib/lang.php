@@ -102,10 +102,10 @@ function setLangDefaults($nls) {
 function getEnvLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	global $board_config;                       /* Needed for phpBB2    */
-	global $_CONF;                              /* Needed for GeekLog   */
-	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo     */
-	global $currentlang;                        /* Needed for CPGNuke   */
+	global $board_config;                       /* Needed for phpBB2    		*/
+	global $_CONF;                              /* Needed for GeekLog   		*/
+	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo / Joomla!	*/
+	global $currentlang;                        /* Needed for CPGNuke		*/
 
 	$envLang = NULL;
 
@@ -142,6 +142,7 @@ function getEnvLang() {
 		break;
 
 		case 'mambo':
+		case 'joomla':
 			$envLang = $mosConfig_lang;
 			if (! getLanguageAlias($envLang)) {
 				if (isset($mosConfig_locale)){
@@ -193,7 +194,7 @@ function forceStaticLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $gallery;
 
-	$useStatic = array('mambo', 'phpBB2', 'GeekLog');
+	$useStatic = array('joomla', 'mambo', 'phpBB2', 'GeekLog');
 
 	if (in_array($GALLERY_EMBEDDED_INSIDE_TYPE, $useStatic)) {
 		$gallery->app->ML_mode = 1;
@@ -257,7 +258,7 @@ function initLanguage($sendHeader=true) {
         /* Gallery is embedded */
 
         /* Gallery can set nukes language.
-        * For phpBB2, GeekLog and Mambo this is not possible, Gallery will always use their language.
+        * For phpBB2, GeekLog, Mambo and Joomla! this is not possible, Gallery will always use their language.
         */
         forceStaticLang();
 

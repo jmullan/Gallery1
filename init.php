@@ -353,6 +353,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             }
             break;
         case 'mambo':
+	case 'joomla':
             include_once(dirname(__FILE__) . '/classes/Database.php');
             include_once(dirname(__FILE__) . '/classes/database/mysql/Database.php');
             include_once(dirname(__FILE__) . '/classes/mambo/UserDB.php');

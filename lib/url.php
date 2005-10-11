@@ -77,7 +77,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $userdata;
 	global $board_config;
         
-	/* Needed for Mambo */
+	/* Needed for Mambo / Joomla! */
 	global $MOS_GALLERY_PARAMS;
 
 	/* Needed for CPGNuke */
@@ -160,13 +160,14 @@ function makeGalleryUrl($target = '', $args = array()) {
 			break;
 							
 			case 'mambo':
+			case 'joomla':
 				$args['option'] = $GALLERY_MODULENAME;
 				$args['Itemid'] = $MOS_GALLERY_PARAMS['itemid'];
 				$args['include'] = $target;
 
-				/* We cant/wantTo load the complete Mambo Environment into the pop up
+				/* We cant/wantTo load the complete Mambo / Joomla! Environment into the pop up
 				** E.g. the Upload Framwork does not work then
-				** So we need to put necessary infos of Mambo into session.
+				** So we need to put necessary infos of Mambo / Joomla! into session.
 				*/
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
@@ -303,10 +304,39 @@ function getImagePath($name, $skinname = '') {
 }
 
 /**
+ * @param	string	$name		Name of Image
+ * @param	string	$skinname	Optional Name skin, if file is not found, fallback to default location
+ * @return	string	$retPath	Complete Path to the Image
+ * @author	Jens Tkotz <jens@peino.de>
+ */
+function getAbsoluteImagePath($name, $skinname = '') {
+    global $gallery;
+    $retPath = '';
+
+    $base = dirname(dirname(__FILE__));
+
+    $defaultPath = "$base/images/$name";
+
+    /* Skin maybe 'none', but this is never found, so we fall back to default. */
+    if (!$skinname) {
+	$skinname = $gallery->app->skinname;
+    }
+    $skinPath = "$base/skins/$skinname/images/$name";
+
+    if (fs_file_exists($skinPath)) {
+	$retPath = $skinPath;
+    } else {
+	$retPath = $defaultPath;
+    }
+
+    return $retPath;
+}
+
+/**
  * Checkes wether an URL is relative or not
  * @param	string	$url
  * @return	boolean
- * @author	Jens Tkotz
+ * @author	Jens Tkotz <jens@peino.de>
  */
 function urlIsrelative($url) {
      if (substr($url, 0,4) == 'http') {
@@ -317,4 +347,11 @@ function urlIsrelative($url) {
     }
 }
 
+function broken_link($file) {
+    if (fs_is_link($file)) {
+        return !fs_is_file($file);
+    } else {
+        return 0;
+    }
+}
 ?>

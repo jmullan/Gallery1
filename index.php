@@ -28,7 +28,7 @@ global $GALLERY_EMBEDDED_INSIDE_TYPE;
 global $GALLERY_MODULENAME;
 global $MOS_GALLERY_PARAMS;
 
-// Mambo calls index.php directly for popups - we need to make
+// Mambo / Joomla calls index.php directly for popups - we need to make
 // sure that the option var has been extracted into the environment
 // otherwise it just won't work.
 $option = isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
@@ -66,6 +66,12 @@ if ($postnuke ||
 		$mamboDir = getcwd();
 		$GALLERY_EMBEDDED_INSIDE = 'mambo';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'mambo';
+
+		if (isset($GLOBALS['_VERSION']->PRODUCT) && 
+		  $GLOBALS['_VERSION']->PRODUCT == 'Joomla!') {
+		    $GALLERY_EMBEDDED_INSIDE = 'joomla';
+		    $GALLERY_EMBEDDED_INSIDE_TYPE = 'joomla';
+		}
 	}
 	elseif (isset($GLOBALS['phpbb_root_path'])) {
 		$GALLERY_EMBEDDED_INSIDE='phpBB2';
@@ -114,6 +120,7 @@ if ($postnuke ||
 		       "delete_photo.php",
 		       "delete_user.php",
 		       "do_command.php",
+		       "download.php",
 		       "ecard_form.php",
 		       "edit_appearance.php",
 		       "edit_caption.php",
