@@ -84,7 +84,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$ndrUrl=getImagePath('nav_dot_right.gif');
 		$ndUrl=getImagePath('nav_dot.gif');
 	
-		$mpContent = "\n\t\t". '<table border="0" cellpadding="0" cellspacing="0"><tr>';
+		$mpContent = "\n\t\t". '<table align="center" border="0" cellpadding="0" cellspacing="0"><tr>';
 		if (isset($beginNextBlock)) {
 		     $title = sprintf(_("Jump to page %d"), $beginNextBlock);
 		     $mpContent .= "\n\t". '<td><a title="'. $title .'" href="'. $url . $navigator['pageVar'] .'='. $beginNextBlock .'">...</a></td>';

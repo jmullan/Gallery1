@@ -54,9 +54,10 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 		continue;
 	}
 
-	array_push($displayUsers, $tmpUser->getUsername());
+	$tmpUserName = $tmpUser->getUsername();
+	$displayUsers[$tmpUserName] = $tmpUserName;
 }
-sort($displayUsers); 
+asort($displayUsers); 
 doctype();
 ?>
 <html>

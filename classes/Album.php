@@ -294,10 +294,10 @@ class Album {
         return 0;
     }
 
-    /*
-    * Whenever you change this code, you should bump the $gallery->album_version
-    * appropriately.
-    */
+    /**
+     * Whenever you change this code, you should bump the $gallery->album_version
+     * appropriately.
+     */
     function integrityCheck() {
         global $gallery;
         $gallery->album = $this;
@@ -364,10 +364,10 @@ class Album {
             }
         }
 
-        /*
-        * Copy the canRead permissions to viewFullImage if
-        * the album version is older than the feature.
-        */
+        /**
+         * Copy the canRead permissions to viewFullImage if
+         * the album version is older than the feature.
+         */
         if ($this->version < 5) {
             if (!empty($this->fields['perms']['canRead'])) {
                 foreach ($this->fields['perms']['canRead'] as $uid => $p) {
@@ -442,12 +442,12 @@ class Album {
             $this->fields["perms"] = $newPerms;
         }
 
-        /*
-        * Added for album revision 26:
-        * Changes "." to "-" in gallery names
-        *  Since we're not sure how the .'s are appearing in gallery names
-        *  this is worth running on any DB upgrade, for now
-        */
+        /**
+         * Added for album revision 26:
+         * Changes "." to "-" in gallery names
+         *  Since we're not sure how the .'s are appearing in gallery names
+         *  this is worth running on any DB upgrade, for now
+         */
         if (strpos($this->fields["name"], ".") !== false) {
             $oldName = $this->fields["name"];
             $newName = strtr($this->fields["name"], ".", "-");
@@ -541,9 +541,7 @@ class Album {
 
         print _("done").".<br>";
 
-        /*
-        * Check all items
-        */
+        /* Check all items */
         $count = $this->numPhotos(1);
         for ($i = 1; $i <= $count; $i++) {
             set_time_limit(30);
@@ -578,7 +576,13 @@ class Album {
         shuffle($this->photos);
     }
 
-    function sortPhotos($sort,$order) {
+    /**
+     * third param can be true, false , or NULL
+     * true  -> sort album again, subalbums first
+     * false -> sort album again, photos first
+     * NULL, no resorting.
+     */
+    function sortPhotos($sort , $order, $albumsFirst = NULL) {
         $this->updateSerial = 1;
 
         // if we are going to use sort, we need to set the historic dates.
@@ -604,6 +608,9 @@ class Album {
             $func = "sortByComment";
         }
         usort($this->photos, array('Album', $func));
+        if ($albumsFirst != NULL) {
+            usort($this->photos, array('Album', 'sortByType'));
+        }
         if ($order) {
             $this->photos = array_reverse($this->photos);
         }
@@ -613,6 +620,22 @@ class Album {
     *  Globalize the sort functions from sortPhotos()
     */
 
+    function sortByType($a, $b) {
+        $objA = (object)$a;
+        $objB = (object)$b;
+        
+        $aIsAlbum = $objA->isAlbum();
+        $bIsAlbum = $objB->isAlbum();
+        
+        if ($aIsAlbum == $bIsAlbum) {
+            return 0;
+        } elseif ($aIsAlbum < $bIsAlbum) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+    
     function sortByUpload($a, $b) {
         $objA = (object)$a;
         $objB = (object)$b;
@@ -872,11 +895,11 @@ class Album {
             }
         }
 
-        /*
-        * We used to pad TSILB with \n, but on win32 that gets
-        * converted to \r which causes problems.  So get rid of it
-        * when we load albums back.
-        */
+        /**
+         * We used to pad TSILB with \n, but on win32 that gets
+         * converted to \r which causes problems.  So get rid of it
+         * when we load albums back.
+         */
         $this->tsilb = trim($this->tsilb);
 
         $this->photos = $tmp;
@@ -897,11 +920,11 @@ class Album {
         return ($photo->isResized());
     }
 
-    /*  The parameter $msg should be an array ready to pass to sprintf.
-    This is so we can translate into appropriate languages for each
-    recipient.  You will note that we don't currently translate these
-    messages.
-    */
+    /**
+     *  The parameter $msg should be an array ready to pass to sprintf.
+     * This is so we can translate into appropriate languages for each
+     * recipient.  You will note that we don't currently translate these messages.
+     */
     function save($msg = array(), $resetModDate = 1) {
         global $gallery;
         $dir = $this->getAlbumDir();
@@ -1027,17 +1050,17 @@ class Album {
             fs_unlink("$dir/album.dat");
         }
 
-        /*
-        * Clean out everything else in the album dir.  I was
-        * trying to avoid having to do this, but now that we're
-        * no longer forcing the resize/thumbnail type to be a jpg
-        * it's possible that we're going strand some old JPGs
-        * in the system.
-        *
-        * Don't scrub things unless we've removed an album.dat
-        * file (which lets us know that 'dir' is a valid album
-        * directory.
-        */
+        /**
+         * Clean out everything else in the album dir.  I was
+         * trying to avoid having to do this, but now that we're
+         * no longer forcing the resize/thumbnail type to be a jpg
+         * it's possible that we're going strand some old JPGs
+         * in the system.
+         *
+         * Don't scrub things unless we've removed an album.dat
+         * file (which lets us know that 'dir' is a valid album
+         * directory.
+         */
         if ($safe_to_scrub) {
             if ($fd = fs_opendir($dir)) {
                 while (($file = readdir($fd)) != false) {
@@ -1260,7 +1283,7 @@ class Album {
                 processingMsg("- ". _("Photo auto-rotated/transformed"));
             }
         }
-        /*move to the beginning if needed */
+        /* move to the beginning if needed */
         if ($this->getAddToBeginning() ) {
             $this->movePhoto($this->numPhotos(1), 0);
         }
@@ -1300,7 +1323,7 @@ class Album {
         return $photo->isHidden();
     }
 
-    function isHiddenRecurse($index=0) {
+    function isHiddenRecurse($index = 0) {
         if ($index && $this->isHidden($index)) {
             return true;
         }
@@ -1445,9 +1468,14 @@ class Album {
         }
     }
 
-    function getPhotoPath($index, $full=0) {
+    function getPhotoPath($index, $full = false) {
         $photo = $this->getPhoto($index);
         return $photo->getPhotoPath($this->getAlbumDirURL("full"), $full);
+    }
+
+    function getAbsolutePhotoPath($index, $full = false) {
+        $photo = $this->getPhoto($index);
+        return $photo->getPhotoPath($this->getAlbumDir(), $full);
     }
 
     function getPhotoId($index) {
@@ -1537,6 +1565,40 @@ class Album {
         }
     }
 
+    function numItems($user = NULL, $visibleOnly = false, $recursive = false) {
+        if(empty($user)) {
+            return array(-1, -1, -1);
+        }
+
+        $uuid = $user->getUid();
+        $numPhotos = $numAlbums = 0;
+        $canWrite = $user->canWriteToAlbum($this);
+        $numItems = $numItemsTotal = $this->numPhotos(1);
+
+        for ($itemNr = 1; $itemNr <= $numItems; $itemNr++) {
+            $item = $this->getPhoto($itemNr);
+            if ($item->isAlbum()) {
+                $subalbum = new Album();
+                $subalbum->load($item->getAlbumName(), $recursive);
+                if (($user->canReadAlbum($subalbum) && !$item->isHidden()) || $user->canWriteToAlbum($subalbum)) {
+                    if(!$recursive) {
+                        $numAlbums++;
+                    }
+                    else {
+                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, false, $recursive);
+                        $numItemsTotal  += $subNumItems;
+                        $numAlbums++;
+                        $numAlbums += $subNumAlbums;
+                        $numPhotos += $subNumPhotos;
+                    }
+                }
+            } elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
+                $numPhotos++;
+            }
+        }
+        return (array($numItemsTotal, $numAlbums, $numPhotos));
+    }
+    
     function numVisibleItems($user, $returnVisibleItems=false) {
         $uuid = $user->getUid();
 
@@ -2105,26 +2167,26 @@ class Album {
             return true;
         }
 
-        /*
-        ** If loggedIn has the perm and we're logged in, then
-        ** we're ok also.
-        **
-        ** phpBB2's anonymous user are also "logged in", but we have to ignore this.
-        */
+        /**
+         * If loggedIn has the perm and we're logged in, then
+         * we're ok also.
+         *
+         * phpBB2's anonymous user are also "logged in", but we have to ignore this.
+         */
         global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
         $loggedIn = $gallery->userDB->getLoggedIn();
         if (isset($perm[$loggedIn->getUid()]) && strcmp($gallery->user->getUid(), $everybody->getUid()) &&
-        ! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
+          ! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
             return true;
         }
 
 
-        /* GEEKLOG MOD
-        ** We're also going to check to see if its possible that a
-        ** group membership can authenticate us.
-        */
-
+        /**
+         * GEEKLOG MOD
+         * We're also going to check to see if its possible that a
+         * group membership can authenticate us.
+         */
         if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog' && is_array($perm)) {
             foreach ($perm as $gid => $pbool) {
                 $group = $gallery->userDB->getUserByUid($gid);
@@ -2463,18 +2525,20 @@ class Album {
     function getPollHint() {
         global $gallery;
         $hint = $this->fields["poll_hint"];
-        if (is_string($hint))
-        return $hint;
-        if ($this->getPollScale() == 1 && $this->getPollType() != "rank")
-        return "I like this";
-        else if ($this->getPollType() == "rank")
-        return "Vote for this";
-        else
-        return "Do you like this? (1=love it)";
+        if (is_string($hint)) {
+            return $hint;
+        }
+        if ($this->getPollScale() == 1 && $this->getPollType() != "rank") {
+            return "I like this";
+        }
+        else if ($this->getPollType() == "rank") {
+            return "Vote for this";
+        }
+        else {
+            return "Do you like this? (1=love it)";
+        }
     }
-    /* Returns true if votes can be moved with images between $this and
-    $album
-    */
+    /* Returns true if votes can be moved with images between $this and $album */
     function pollsCompatible($album) {
         if ($this->fields["poll_type"] != "critique") {
             return false;
@@ -2646,5 +2710,66 @@ class Album {
         }
         $this->save(array(), false);
     }
+
+    /**
+     * This functions returns an array that contains the absolute pathes to albumItems.
+     * subalbums are in subarrays
+     */
+    function getAlbumItemNames($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
+        $albumItemNames = array();
+
+        if(empty($user)) {
+            return $albumItemNames;
+        }
+
+        $uuid = $user->getUid();
+
+        $canWrite = $user->canWriteToAlbum($this);
+        $numItems = $numItemsTotal = $this->numPhotos(1);
+
+        for ($itemNr = 1; $itemNr <= $numItems; $itemNr++) {
+            $item = $this->getPhoto($itemNr);
+            if ($item->isAlbum() && $recursive) {
+                $subalbumName = $item->getAlbumName();
+                $subalbum = new Album();
+                /* Always load complete subalbum recursive */
+                $subalbum->load($item->getAlbumName(), true);
+                $albumItemNames[$subalbumName] = $subalbum->getAlbumItemNames($user, $full, $visibleOnly, $recursive);
+/*
+                if (($user->canReadAlbum($subalbum) && !$item->isHidden()) || $user->canWriteToAlbum($subalbum)) {
+                    if(!$recursive) {
+                        $numAlbums++;
+                    }
+                    else {
+                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, false, $recursive);
+                        $numItemsTotal  += $subNumItems;
+                        $numAlbums++;
+                        $numAlbums += $subNumAlbums;
+                        $numPhotos += $subNumPhotos;
+                    }
+                }
+*/
+            } elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
+                $albumItemNames[] = $this->getAbsolutePhotoPath($itemNr, $full);
+            }
+        }
+        return $albumItemNames;
+    }
+    
+    /**
+     *
+    */
+    function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
+        
+        $albumSize = 0;
+        $albumItemNames = $this->getAlbumItemNames($user, $full, $visibleOnly, $recursive);
+        $justPureFileNames  = array_flaten($albumItemNames);
+        
+        foreach ($justPureFileNames as $absoluteFileName) {
+            $albumSize += fs_filesize($absoluteFileName);
+        }
+                    
+        return $albumSize;
+    }        
 }
 ?>
