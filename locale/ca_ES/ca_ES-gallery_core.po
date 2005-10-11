@@ -17,16 +17,16 @@
 #
 # $Id$
 #
-# @version	1.5.1
+# @version	1.5.2-cvs
 # @package	Languagepack
 # @subpackage	Catalan
 # @author	Sergi <sergi34 AT lleida DOT org>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.1\n"
+"Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-09-15 17:49+0200\n"
+"POT-Creation-Date: 2005-10-11 18:29+0200\n"
 "PO-Revision-Date: 2003-09-24 23:54-0000\n"
 "Last-Translator: Sergi <sergi34 AT lleida DOT org>\n"
 "Language-Team: catalan <sergi34 AT megacceso DOT com>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../add_comment.php:29 ../add_photos.php:31 ../album_permissions.php:43
+#: ../add_comment.php:29 ../add_photos.php:31 ../album_permissions.php:33
 #: ../copy_photo.php:29 ../create_user.php:34 ../delete_album.php:31
 #: ../delete_photo.php:38 ../delete_user.php:30 ../edit_appearance.php:29
 #: ../edit_caption.php:33 ../edit_field.php:31 ../edit_thumb.php:31
@@ -50,36 +50,36 @@ msgstr ""
 msgid "You are not allowed to perform this action!"
 msgstr "No hi ha votacions registrades en aquesta votació."
 
-#: ../add_comment.php:57 ../view_photo.php:193
+#: ../add_comment.php:56 ../view_photo.php:191
 msgid "Name and comment are both required to save a new comment!"
 msgstr "El nom i el comentari són tots dos requerits per guardar un nou comentari!"
 
-#: ../add_comment.php:59 ../view_photo.php:195
+#: ../add_comment.php:58 ../view_photo.php:193
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr ""
 
-#: ../add_comment.php:61 ../view_photo.php:197
+#: ../add_comment.php:60 ../view_photo.php:195
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr ""
 
-#: ../add_comment.php:80 ../add_comment.php:84
+#: ../add_comment.php:79 ../add_comment.php:83
 msgid "Add Comment"
 msgstr "Afegir comentari"
 
-#: ../add_comment.php:86
+#: ../add_comment.php:85
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Afegeix el teu comentari per aquesta foto al text de sota."
 
-#: ../add_comment.php:101 ../copy_photo.php:204 ../delete_album.php:66
-#: ../delete_photo.php:141 ../delete_user.php:85 ../ecard_form.php:258
-#: ../edit_caption.php:185 ../edit_field.php:66 ../edit_watermark.php:120
-#: ../includes/add_photos/add_form.inc:107
+#: ../add_comment.php:100 ../copy_photo.php:204 ../delete_album.php:66
+#: ../delete_photo.php:139 ../delete_user.php:85 ../ecard_form.php:264
+#: ../edit_caption.php:184 ../edit_field.php:66 ../edit_watermark.php:120
+#: ../includes/add_photos/add_form.inc:110
 #: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
-#: ../new_password.php:125 ../register.php:142 ../rename_album.php:131
-#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:114
-#: ../user_preferences.php:137 ../watermark_album.php:153
+#: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
+#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
+#: ../watermark_album.php:153
 msgid "Cancel"
 msgstr "Cancel·lar"
 
@@ -174,222 +174,226 @@ msgstr "Gestiona Usuaris"
 msgid "Admin options"
 msgstr "opcions d'administració"
 
-#: ../admin-page.php:85 ../search.php:56 ../stats.php:600
-#: ../stats-wizard.php:56 ../tools/find_orphans.php:211
+#: ../admin-page.php:85 ../search.php:56 ../stats.php:601
+#: ../stats-wizard.php:55 ../tools/find_orphans.php:211
 #: ../tools/despam-comments.php:56 ../tools/validate_albums.php:138
 #: ../tools/validate_albums.php:214
 #, fuzzy
 msgid "return to gallery"
 msgstr "Entra a Gallery"
 
-#: ../album_permissions.php:183 ../album_permissions.php:187
-msgid "Album Permissions"
-msgstr "Permisos d'Album"
-
-#: ../album_permissions.php:189
-#, php-format
-msgid "Changing permissions for %s"
-msgstr "Cambiant permisos per %s"
-
-#: ../album_permissions.php:197 ../albums.php:368
-msgid "Owner:"
-msgstr "Propietari:"
-
-#: ../album_permissions.php:212
+#: ../album_permissions.php:38
 msgid "Users who can see the album"
 msgstr "Usuaris que poden veure l'album"
 
-#: ../album_permissions.php:227
-msgid "Users who can change album text."
-msgstr "Usuaris que poden cambiar el text de l'album"
-
-#: ../album_permissions.php:242
+#: ../album_permissions.php:39
 msgid "Users who can add photos."
 msgstr "Usuaris que poden afegir fotos"
 
-#: ../album_permissions.php:257
-msgid "Users who can modify photos."
-msgstr "Usuaris que poden modificar fotos"
-
-#: ../album_permissions.php:272
+#: ../album_permissions.php:40
 msgid "Users who can delete photos."
 msgstr "Usuaris que poden borrar fotos"
 
-#: ../album_permissions.php:287
+#: ../album_permissions.php:41
+msgid "Users who can modify photos."
+msgstr "Usuaris que poden modificar fotos"
+
+#: ../album_permissions.php:42
 msgid "Users who can create sub albums."
 msgstr "Usuaris que poden crear sub albums"
 
-#: ../album_permissions.php:302
-msgid "Users who can view full (original) images."
-msgstr "Usuaris que poden veure les imatges en tamany original"
+#: ../album_permissions.php:43
+msgid "Users who can to download album (with subalbums) as archive"
+msgstr ""
 
-#: ../album_permissions.php:318
-#, fuzzy
-msgid "Users who can add comments."
-msgstr "Usuaris que poden afegir fotos"
-
-#: ../album_permissions.php:333
+#: ../album_permissions.php:44
 #, fuzzy
 msgid "Users who can view comments."
 msgstr "Usuaris que poden afegir fotos"
 
-#: ../album_permissions.php:351
+#: ../album_permissions.php:45
+#, fuzzy
+msgid "Users who can add comments."
+msgstr "Usuaris que poden afegir fotos"
+
+#: ../album_permissions.php:46
+msgid "Users who can view full (original) images."
+msgstr "Usuaris que poden veure les imatges en tamany original"
+
+#: ../album_permissions.php:47
+msgid "Users who can change album text."
+msgstr "Usuaris que poden cambiar el text de l'album"
+
+#: ../album_permissions.php:105 ../album_permissions.php:109
+msgid "Album Permissions"
+msgstr "Permisos d'Album"
+
+#: ../album_permissions.php:111
+#, php-format
+msgid "Changing permissions for %s"
+msgstr "Cambiant permisos per %s"
+
+#: ../album_permissions.php:117
+msgid "Owner:"
+msgstr "Propietari:"
+
+#: ../album_permissions.php:151
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../album_permissions.php:354 ../edit_caption.php:184 ../edit_field.php:56
-#: ../edit_field.php:65 ../edit_watermark.php:118 ../modify_user.php:164
-#: ../new_password.php:124 ../photo_owner.php:103 ../user_preferences.php:136
+#: ../album_permissions.php:154 ../edit_caption.php:183 ../edit_field.php:56
+#: ../edit_field.php:65 ../edit_watermark.php:118 ../modify_user.php:163
+#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:134
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Guardar"
 
-#: ../album_permissions.php:355 ../manage_users.php:105 ../modify_user.php:166
+#: ../album_permissions.php:155 ../manage_users.php:100 ../modify_user.php:165
 #: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61 ../view_photo_properties.php:134
 msgid "Done"
 msgstr "Fet"
 
-#: ../albums.php:110 ../view_album.php:129
+#: ../albums.php:110 ../view_album.php:130
 #, php-format
 msgid "%s RSS"
 msgstr ""
 
-#: ../albums.php:144
+#: ../albums.php:145
 #, fuzzy, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "1 àlbum"
 msgstr[1] "1 àlbum"
 
-#: ../albums.php:144
+#: ../albums.php:145
 #, fuzzy
 msgid "no albums"
 msgstr "No hi ha albums"
 
-#: ../albums.php:146
+#: ../albums.php:147
 #, fuzzy, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
 msgstr[0] "1 àlbum de nivell superior"
 msgstr[1] "1 àlbum de nivell superior"
 
-#: ../albums.php:146
+#: ../albums.php:147
 #, fuzzy
 msgid "No top-level albums"
 msgstr "albums de nivell superior"
 
-#: ../albums.php:149
+#: ../albums.php:150
 #, php-format
 msgid "%d total"
 msgstr "%d total"
 
-#: ../albums.php:150 ../view_album.php:211
+#: ../albums.php:151 ../view_album.php:212
 #, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "1 imatge"
 msgstr[1] "1 imatge"
 
-#: ../albums.php:150 ../view_album.php:211
+#: ../albums.php:151 ../view_album.php:212
 msgid "no images"
 msgstr "cap imatge"
 
-#: ../albums.php:151 ../view_album.php:212
+#: ../albums.php:152 ../view_album.php:213
 #, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] "1 pàgina"
 msgstr[1] "1 pàgina"
 
-#: ../albums.php:151
+#: ../albums.php:152
 msgid "no pages"
 msgstr "no hi ha pàgines"
 
-#: ../albums.php:154
+#: ../albums.php:155
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%s (%s), %s a %s"
 
-#: ../albums.php:157
+#: ../albums.php:158
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:159
+#: ../albums.php:160
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%s, %s en %s"
 
-#: ../albums.php:161
+#: ../albums.php:162
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:176
+#: ../albums.php:177
 #, php-format
 msgid "Welcome, %s"
 msgstr "Benvingut, %s"
 
-#: ../albums.php:180 ../view_album.php:386
+#: ../albums.php:181 ../view_album.php:387
 #, fuzzy
 msgid "slideshow"
 msgstr "slideshow"
 
-#: ../albums.php:185
+#: ../albums.php:186
 msgid "new album"
 msgstr "nou àlbum"
 
-#: ../albums.php:191
+#: ../albums.php:192
 msgid "preferences"
 msgstr "preferències"
 
-#: ../albums.php:198
+#: ../albums.php:199
 msgid "documentation"
 msgstr "documentació"
 
-#: ../albums.php:202
+#: ../albums.php:203
 #, fuzzy
 msgid "admin page"
 msgstr "no hi ha pàgines"
 
-#: ../albums.php:206 ../view_album.php:404 ../view_photo.php:515
+#: ../albums.php:207 ../view_album.php:405 ../view_photo.php:512
 msgid "logout"
 msgstr "sortir"
 
-#: ../albums.php:211 ../view_album.php:409 ../view_photo.php:520
+#: ../albums.php:212 ../view_album.php:410 ../view_photo.php:517
 msgid "login"
 msgstr "entrar"
 
-#: ../albums.php:215
+#: ../albums.php:216
 msgid "register"
 msgstr "resgitrsar"
 
-#: ../albums.php:241
+#: ../albums.php:242
 msgid "Attention Gallery Administrator!"
 msgstr "Atenció Administrador de Gallery!"
 
-#: ../albums.php:244
+#: ../albums.php:245
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s ha detectat els següents directoris: %s al teu directori d'àlbu (%s)."
 
-#: ../albums.php:250
+#: ../albums.php:251
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "Aquests no són àlbums vàlids. Si us plau mou-los fora del directori d'àlbums"
 
-#: ../albums.php:254
+#: ../albums.php:255
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:258
+#: ../albums.php:259
 #, fuzzy, php-format
 msgid "Please %s."
 msgstr "Espera si us plau..."
 
-#: ../albums.php:258
+#: ../albums.php:259
 #, fuzzy
 msgid "upgrade those albums"
 msgstr "actualitzar tots els àlbums"
@@ -419,66 +423,71 @@ msgstr "Login"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:324 ../view_album.php:667
+#: ../albums.php:324 ../view_album.php:666
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "Resaltar per Album:"
 
-#: ../albums.php:341
-msgid "title"
-msgstr "títol"
+#: ../albums.php:344 ../view_album.php:786
+msgid "Download as Archive"
+msgstr ""
 
 #: ../albums.php:373
+#, fuzzy, php-format
+msgid "Owner: %s"
+msgstr "Propietari:"
+
+#: ../albums.php:378
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:384
+#: ../albums.php:389
 msgid "Hey!"
 msgstr "Ep!"
 
-#: ../albums.php:385
+#: ../albums.php:390
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s aquest àlbum perquè la URL no sigui tant genèrica"
 
-#: ../albums.php:386
+#: ../albums.php:391
 #, fuzzy
 msgid "Rename this album"
 msgstr "Renombra Àlbum"
 
-#: ../albums.php:397
+#: ../albums.php:402
 #, php-format
 msgid "Last changed on %s."
 msgstr "Darrera modificació a %s"
 
-#: ../albums.php:400
+#: ../albums.php:405
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Aquest àlbum conté %s"
 msgstr[1] "Aquest àlbum conté %s"
 
-#: ../albums.php:405
+#: ../albums.php:410
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Aquest àlbum ha estat vist %s des de %s"
 
-#: ../albums.php:406 ../view_album.php:813 ../view_album.php:837
+#: ../albums.php:411 ../view_album.php:821 ../view_album.php:845
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 cop"
 msgstr[1] "1 cop"
 
-#: ../albums.php:406
+#: ../albums.php:411
 msgid "0 times"
 msgstr "0 cops"
 
-#: ../albums.php:412
+#: ../albums.php:417
 msgid "reset counter"
 msgstr "resetejar el comptador"
 
-#: ../albums.php:452 ../view_album.php:909
+#: ../albums.php:456 ../view_album.php:917
 msgid "Comments available for this item."
 msgstr "Comentaris disponibles per aquest element"
 
@@ -517,62 +526,72 @@ msgid_plural "%d pages"
 msgstr[0] "no hi ha pàgines"
 msgstr[1] "no hi ha pàgines"
 
-#: ../captionator.php:193 ../captionator.php:309
+#: ../captionator.php:186 ../slideshow.php:183 ../view_album.php:109
+#: ../view_comments.php:54 ../view_photo.php:167
+msgid "navigate UP"
+msgstr "navega Amunt"
+
+#: ../captionator.php:187
+#, fuzzy
+msgid "Album: "
+msgstr "Àlbum: %s"
+
+#: ../captionator.php:202 ../captionator.php:315
 msgid "Save and Exit"
 msgstr "Guardar i Sortir"
 
-#: ../captionator.php:196 ../captionator.php:312
+#: ../captionator.php:205 ../captionator.php:318
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "Guardar i Editar Següent %d"
 
-#: ../captionator.php:200 ../captionator.php:316
+#: ../captionator.php:209 ../captionator.php:322
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "Guardar i Editar Previ %d"
 
-#: ../captionator.php:204 ../captionator.php:320
+#: ../captionator.php:213 ../captionator.php:326
 msgid "Exit"
 msgstr "Sortir"
 
-#: ../captionator.php:235
+#: ../captionator.php:244
 msgid "(click to enlarge)"
 msgstr ""
 
-#: ../captionator.php:243 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:775
+#: ../captionator.php:252 ../layout/commentboxtop.inc:20
+#: ../layout/commentboxtop.inc:45 ../view_album.php:774
 msgid "hidden"
 msgstr "ocult"
 
-#: ../captionator.php:256
+#: ../captionator.php:265
 #, fuzzy
 msgid "Album Caption"
 msgstr "Llegenda d'àlbum:"
 
-#: ../captionator.php:263
+#: ../captionator.php:272
 #, fuzzy
 msgid "Movie Caption"
 msgstr "Sense llegenda"
 
-#: ../captionator.php:265
+#: ../captionator.php:274
 #, fuzzy
 msgid "Photo Caption"
 msgstr "Sense llegenda"
 
-#: ../captionator.php:275 ../edit_appearance.php:185 ../extra_fields.php:99
-#: ../lib/lang.php:708
+#: ../captionator.php:283 ../edit_appearance.php:185 ../extra_fields.php:99
+#: ../lib/lang.php:723
 msgid "Title"
 msgstr "Títol"
 
-#: ../captionator.php:284 ../edit_caption.php:119
+#: ../captionator.php:292 ../edit_caption.php:118
 msgid "Keywords"
 msgstr "Paraules clau"
 
-#: ../captionator.php:290 ../lib/lang.php:698
+#: ../captionator.php:298 ../lib/lang.php:713
 msgid "Capture Date"
 msgstr "Data de llegenda"
 
-#: ../captionator.php:301
+#: ../captionator.php:308
 msgid "NO PHOTOS!"
 msgstr "NO HI HA IMATGES!"
 
@@ -580,130 +599,130 @@ msgstr "NO HI HA IMATGES!"
 msgid "Untitled"
 msgstr "Sene títol"
 
-#: ../classes/Album.php:241 ../classes/Album.php:253
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:48
+#: ../classes/Album.php:245 ../classes/Album.php:257
+#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:69
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Àlbum"
 
-#: ../classes/Album.php:265 ../search.php:58 ../slideshow.php:193
+#: ../classes/Album.php:269 ../search.php:58 ../slideshow.php:193
 msgid "Gallery"
 msgstr "Gallery"
 
-#: ../classes/Album.php:306
+#: ../classes/Album.php:310
 msgid "Album up to date."
 msgstr "Album actualitzat"
 
-#: ../classes/Album.php:310
+#: ../classes/Album.php:314
 msgid "Upgrading album properties..."
 msgstr "Actualitzant propietats de l'àlbum"
 
-#: ../classes/Album.php:453
+#: ../classes/Album.php:458
 #, fuzzy, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "renombrar àlbum"
 
-#: ../classes/Album.php:537 ../classes/Album.php:554
+#: ../classes/Album.php:542 ../classes/Album.php:557
 msgid "done"
 msgstr "fet"
 
-#: ../classes/Album.php:545
+#: ../classes/Album.php:548
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "Actualitzant element %d de %d . . . "
 
-#: ../classes/Album.php:971
+#: ../classes/Album.php:999
 msgid "msg should be an array!"
 msgstr "missatge hauria de ser una matriu!"
 
-#: ../classes/Album.php:978
-#, php-format
-msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
-msgstr ""
-
-#: ../classes/Album.php:985
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
-msgstr ""
-
-#: ../classes/Album.php:986
+#: ../classes/Album.php:1008
 #, fuzzy, php-format
 msgid "Changes to Album: %s"
 msgstr "No es pot escriure a %s."
 
-#: ../classes/Album.php:991
+#: ../classes/Album.php:1016
+#, php-format
+msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
+msgstr ""
+
+#: ../classes/Album.php:1022
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
+msgstr ""
+
+#: ../classes/Album.php:1029
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1058 ../classes/Album.php:1767
+#: ../classes/Album.php:1096 ../classes/Album.php:1844
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
-#: ../classes/Album.php:1063
+#: ../classes/Album.php:1101
 #, fuzzy, php-format
 msgid "Processing element %d..."
 msgstr "Processant imatge %d..."
 
-#: ../classes/Album.php:1077
+#: ../classes/Album.php:1115
 msgid "Doing the naming"
 msgstr ""
 
-#: ../classes/Album.php:1112
+#: ../classes/Album.php:1150
 msgid "Image Preprocessing"
 msgstr ""
 
-#: ../classes/Album.php:1118
+#: ../classes/Album.php:1156
 msgid "Resizing/compressing original image"
 msgstr "Re-escalant/comprimint imatge original"
 
-#: ../classes/Album.php:1122
+#: ../classes/Album.php:1160
 msgid "Cannot resize/compress this filetype"
 msgstr "No es pot re-escalar/comprimir aquest tipus d'arxiu"
 
-#: ../classes/Album.php:1126
+#: ../classes/Album.php:1164
 msgid "Adding Photo to the photo list"
 msgstr ""
 
-#: ../classes/Album.php:1180
+#: ../classes/Album.php:1218
 #, php-format
 msgid "Resizing %s"
 msgstr "Re-escalant %s"
 
-#: ../classes/Album.php:1245
+#: ../classes/Album.php:1283
 msgid "Photo auto-rotated/transformed"
 msgstr "Imatge auto-rotada/transformada"
 
-#: ../classes/Album.php:1253
+#: ../classes/Album.php:1291
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "De l'Àlbum"
 
-#: ../classes/Album.php:1410 ../classes/Album.php:1420
-#: ../classes/AlbumItem.php:673
+#: ../classes/Album.php:1448 ../classes/Album.php:1458
+#: ../classes/AlbumItem.php:678
 msgid "No highlight"
 msgstr "Cap ressaltat"
 
-#: ../classes/Album.php:1574
+#: ../classes/Album.php:1651
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1781 ../do_command.php:87
+#: ../classes/Album.php:1858 ../do_command.php:87
 #, php-format
 msgid "Processing image %d..."
 msgstr "Processant imatge %d..."
 
-#: ../classes/Album.php:1940
+#: ../classes/Album.php:2017
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2476
+#: ../classes/Album.php:2514
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2642
+#: ../classes/Album.php:2677
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problema de correu: saltant %s (UID %s) perquè la direcció de correu %s no és vàlida"
@@ -726,7 +745,7 @@ msgstr "Impossible generar thumbnail"
 msgid "No preview"
 msgstr "Pàgina Prèvia"
 
-#: ../classes/AlbumItem.php:658
+#: ../classes/AlbumItem.php:663
 msgid "No thumbnail"
 msgstr "Cap thumbnail"
 
@@ -830,7 +849,7 @@ msgid "Skipping Album #%d"
 msgstr "Saltant Àlbum #%d"
 
 #: ../copy_photo.php:124 ../do_command.php:242 ../do_command.php:244
-#: ../login.php:127 ../register.php:47 ../register.php:122
+#: ../login.php:127 ../register.php:47 ../register.php:119
 #: ../save_photos.php:377
 msgid "Dismiss"
 msgstr "Descartar"
@@ -878,13 +897,13 @@ msgstr "Actualitza ara"
 msgid "Copy to Album!"
 msgstr "Copia a l'Àlbum!"
 
-#: ../copy_photo.php:208 ../delete_photo.php:146 ../edit_thumb.php:131
+#: ../copy_photo.php:208 ../delete_photo.php:144 ../edit_thumb.php:131
 #: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
 #: ../rotate_photo.php:95 ../view_photo_properties.php:129
 msgid "no album / index specified"
 msgstr "cap àlbum / índex especificat"
 
-#: ../create_user.php:46 ../modify_user.php:58 ../new_password.php:51
+#: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:51
 #: ../user_preferences.php:61
 msgid "Passwords do not match!"
 msgstr "Les contrasenyes no coincideixen!"
@@ -918,8 +937,8 @@ msgstr "Correu enviat a %s"
 msgid "Create another user"
 msgstr "Crea un nou usuari aquí."
 
-#: ../create_user.php:113 ../create_user.php:166 ../modify_user.php:165
-#: ../multi_create_user.php:148 ../multi_create_user.php:200
+#: ../create_user.php:113 ../create_user.php:165 ../modify_user.php:164
+#: ../multi_create_user.php:148 ../multi_create_user.php:199
 msgid "Back to usermanagement"
 msgstr ""
 
@@ -927,7 +946,7 @@ msgstr ""
 msgid "Create a new user here."
 msgstr "Crea un nou usuari aquí."
 
-#: ../create_user.php:165
+#: ../create_user.php:164
 #, fuzzy
 msgid "Create user"
 msgstr "Crear usuari"
@@ -938,27 +957,27 @@ msgstr "Crear usuari"
 msgid "Delete Album"
 msgstr "Borrar Àlbum"
 
-#: ../delete_album.php:55 ../delete_photo.php:96
+#: ../delete_album.php:55 ../delete_photo.php:98
 msgid "Do you really want to delete this album?"
 msgstr "Realment vols borrar aquest àlbum?"
 
-#: ../delete_album.php:65 ../delete_photo.php:140 ../delete_user.php:80
-#: ../layout/commentbox.inc:15 ../lib/albumItem.php:71
-#: ../lib/albumItem.php:173 ../lib/albumItem.php:179 ../manage_users.php:103
-#: ../tools/despam-comments.php:209 ../tools/despam-comments.php:348
+#: ../delete_album.php:65 ../delete_photo.php:138 ../delete_user.php:80
+#: ../layout/commentbox.inc:15 ../lib/albumItem.php:92
+#: ../lib/albumItem.php:194 ../lib/albumItem.php:200 ../manage_users.php:98
+#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "Borrar"
 
-#: ../delete_album.php:74 ../sort_album.php:119
+#: ../delete_album.php:74 ../sort_album.php:126
 msgid "no album specified"
 msgstr "cap àlbum especificat"
 
-#: ../delete_photo.php:82 ../delete_photo.php:119
+#: ../delete_photo.php:82 ../delete_photo.php:116
 #: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
 msgid "Delete Photo"
 msgstr "Borrar imatge"
 
-#: ../delete_photo.php:122
+#: ../delete_photo.php:119
 msgid "Do you really want to delete this photo?"
 msgstr "Realment vols borrar aquesta imatge?"
 
@@ -1033,7 +1052,7 @@ msgstr "Realment vols borrar aquest àlbum?"
 #: ../includes/definitions/albumProperties.php:391
 #: ../includes/definitions/albumProperties.php:433
 #: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
-#: ../multi_create_user.php:190 ../poll_properties.php:96
+#: ../multi_create_user.php:189 ../poll_properties.php:96
 msgid "yes"
 msgstr "si"
 
@@ -1053,7 +1072,7 @@ msgstr "si"
 #: ../includes/definitions/albumProperties.php:391
 #: ../includes/definitions/albumProperties.php:433
 #: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
-#: ../multi_create_user.php:190 ../poll_properties.php:96
+#: ../multi_create_user.php:189 ../poll_properties.php:96
 msgid "no"
 msgstr "no"
 
@@ -1071,122 +1090,122 @@ msgstr "Regenerant %d thumbnails..."
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Regenerant 1 thumbnail..."
 
-#: ../ecard_form.php:43
+#: ../ecard_form.php:45
 msgid "Error processing e-card. Please try later."
 msgstr ""
 
-#: ../ecard_form.php:44
+#: ../ecard_form.php:46
 msgid "Some input fields are not correctly filled out. Please fill out."
 msgstr ""
 
-#: ../ecard_form.php:45
+#: ../ecard_form.php:47
 msgid "You have an e-card as attachment. Click to see."
 msgstr ""
 
-#: ../ecard_form.php:80 ../ecard_form.php:165
+#: ../ecard_form.php:86 ../ecard_form.php:171
 msgid "Send this photo as eCard"
 msgstr ""
 
-#: ../ecard_form.php:105
+#: ../ecard_form.php:111
 msgid "Error: to send an eCard you need to fill out all fields."
 msgstr ""
 
-#: ../ecard_form.php:106
+#: ../ecard_form.php:112
 msgid "Please fill this fields:"
 msgstr ""
 
-#: ../ecard_form.php:110
+#: ../ecard_form.php:116
 msgid "- Your Name"
 msgstr ""
 
-#: ../ecard_form.php:116
+#: ../ecard_form.php:122
 #, fuzzy
 msgid "- Your Email"
 msgstr "Nom o email:"
 
-#: ../ecard_form.php:121
+#: ../ecard_form.php:127
 msgid "- Recipient's Name"
 msgstr ""
 
-#: ../ecard_form.php:127
+#: ../ecard_form.php:133
 msgid "- Recipient's Email"
 msgstr ""
 
-#: ../ecard_form.php:132
+#: ../ecard_form.php:138
 #, fuzzy
 msgid "- Your Message"
 msgstr "Missatge"
 
-#: ../ecard_form.php:136
+#: ../ecard_form.php:142
 msgid "Please fill all fields next click >Send<."
 msgstr ""
 
-#: ../ecard_form.php:149
+#: ../ecard_form.php:155
 #, php-format
 msgid "You have entered more than %d characters"
 msgstr ""
 
-#: ../ecard_form.php:187
+#: ../ecard_form.php:193
 msgid "Your info"
 msgstr ""
 
-#: ../ecard_form.php:189
+#: ../ecard_form.php:195
 msgid "Recipient's info"
 msgstr ""
 
-#: ../ecard_form.php:192 ../ecard_form.php:203
+#: ../ecard_form.php:198 ../ecard_form.php:209
 #, fuzzy
 msgid "Name"
 msgstr "Nom complet"
 
-#: ../ecard_form.php:207 ../ecard_form.php:210
+#: ../ecard_form.php:213 ../ecard_form.php:216
 msgid "E-Mail"
 msgstr ""
 
-#: ../ecard_form.php:216
+#: ../ecard_form.php:222
 msgid "Choose a Stamp"
 msgstr ""
 
-#: ../ecard_form.php:221
+#: ../ecard_form.php:227
 #, php-format
 msgid "Stamp #%d"
 msgstr ""
 
-#: ../ecard_form.php:231
+#: ../ecard_form.php:237
 msgid "Subject:"
 msgstr ""
 
-#: ../ecard_form.php:232
+#: ../ecard_form.php:238
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr ""
 
-#: ../ecard_form.php:236
+#: ../ecard_form.php:242
 #, fuzzy
 msgid "Your Message:"
 msgstr "Missatge"
 
-#: ../ecard_form.php:255 ../edit_watermark.php:119 ../watermark_album.php:151
+#: ../ecard_form.php:261 ../edit_watermark.php:119 ../watermark_album.php:151
 #, fuzzy
 msgid "Preview"
 msgstr "Pàgina Prèvia"
 
-#: ../ecard_form.php:256
+#: ../ecard_form.php:262
 #, fuzzy
 msgid "Reset"
 msgstr "Re-escalar Imatge"
 
-#: ../ecard_form.php:259
+#: ../ecard_form.php:265
 #, fuzzy
 msgid "Send eCard"
 msgstr "Envia'm la meva contrasenya"
 
-#: ../ecard_form.php:267
+#: ../ecard_form.php:273
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr ""
 
-#: ../ecard_form.php:271
+#: ../ecard_form.php:277
 msgid "Close this window"
 msgstr ""
 
@@ -1215,7 +1234,7 @@ msgstr "Registrats"
 msgid "untitled field"
 msgstr "Sene títol"
 
-#: ../edit_appearance.php:186 ../extra_fields.php:120 ../lib/lang.php:711
+#: ../edit_appearance.php:186 ../extra_fields.php:120 ../lib/lang.php:726
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1233,17 +1252,17 @@ msgstr "Propietats de l'Àlbum"
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Aplicar els valors al Àlbums fills (excepte Títol i Resum)"
 
-#: ../edit_appearance.php:298 ../extra_fields.php:174
+#: ../edit_appearance.php:298 ../extra_fields.php:172
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "Aplicar"
 
-#: ../edit_appearance.php:299 ../extra_fields.php:175
+#: ../edit_appearance.php:299 ../extra_fields.php:173
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "Desfer"
 
-#: ../edit_appearance.php:300 ../extra_fields.php:176
+#: ../edit_appearance.php:300 ../extra_fields.php:174
 #: ../poll_properties.php:142 ../rotate_photo.php:87
 msgid "Close"
 msgstr "Tancar"
@@ -1253,7 +1272,7 @@ msgstr "Tancar"
 msgid "Year must be between 1969 and 2070"
 msgstr "L'any ha d'estar comprès entre 1000 i 3000"
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:96
+#: ../edit_caption.php:73 ../lib/albumItem.php:117
 msgid "Edit Text"
 msgstr "Editar text"
 
@@ -1262,35 +1281,35 @@ msgstr "Editar text"
 msgid "Edit Caption"
 msgstr "editar llegendes"
 
-#: ../edit_caption.php:89 ../includes/add_photos/add_form.inc:76
+#: ../edit_caption.php:89 ../includes/add_photos/add_form.inc:79
 msgid "Caption"
 msgstr "Llegenda"
 
-#: ../edit_caption.php:143
+#: ../edit_caption.php:142
 msgid "Photo Capture Date"
 msgstr "Data de la llegenda de la imatge"
 
-#: ../edit_caption.php:146
+#: ../edit_caption.php:145
 msgid "Month"
 msgstr "Mes"
 
-#: ../edit_caption.php:147
+#: ../edit_caption.php:146
 msgid "Day"
 msgstr "Dia"
 
-#: ../edit_caption.php:148
+#: ../edit_caption.php:147
 msgid "Year"
 msgstr "Any"
 
-#: ../edit_caption.php:149
+#: ../edit_caption.php:148
 msgid "Hours"
 msgstr "Hores"
 
-#: ../edit_caption.php:150
+#: ../edit_caption.php:149
 msgid "Minutes"
 msgstr "Minuts"
 
-#: ../edit_caption.php:151
+#: ../edit_caption.php:150
 msgid "Seconds"
 msgstr "Segons"
 
@@ -1343,11 +1362,11 @@ msgstr "Configurar camps perosnalitzats"
 msgid "Number of user defined custom fields"
 msgstr "Nombre de camps personalitzats per l'usuari"
 
-#: ../extra_fields.php:146
+#: ../extra_fields.php:145
 msgid "Field"
 msgstr "Camp"
 
-#: ../extra_fields.php:171 ../poll_properties.php:137
+#: ../extra_fields.php:169 ../poll_properties.php:137
 #, fuzzy
 msgid "Apply values to nested albums."
 msgstr "Aplicar a Àlbums fills"
@@ -1407,39 +1426,39 @@ msgstr ""
 msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
 msgstr "Consell: Puja un fitxer ZIP ple de fotos i pel·lícules!"
 
-#: ../includes/add_photos/add_form.inc:47
+#: ../includes/add_photos/add_form.inc:50
 msgid "1. Select the number of files you want to upload:"
 msgstr "1. Selecciona el número de fitxers que vols enviar:"
 
-#: ../includes/add_photos/add_form.inc:52
+#: ../includes/add_photos/add_form.inc:55
 #, fuzzy
 msgid "Optional:"
 msgstr "Llegenda"
 
-#: ../includes/add_photos/add_form.inc:53
+#: ../includes/add_photos/add_form.inc:56
 #, fuzzy
 msgid "Select the number of meta data files you want to upload:"
 msgstr "1. Selecciona el número de fitxers que vols enviar:"
 
-#: ../includes/add_photos/add_form.inc:68
+#: ../includes/add_photos/add_form.inc:71
 msgid "2. Use the Browse button to find the photos on your computer"
 msgstr "2. Utilitza el botó de navegació per trobar les fotos al seu ordinador"
 
-#: ../includes/add_photos/add_form.inc:72
-#: ../includes/add_photos/add_form.inc:84
+#: ../includes/add_photos/add_form.inc:75
+#: ../includes/add_photos/add_form.inc:87
 msgid "File"
 msgstr "Arxiu"
 
-#: ../includes/add_photos/add_form.inc:81
+#: ../includes/add_photos/add_form.inc:84
 #, fuzzy
 msgid "3. Use the Browse button to find the meta data files on your computer"
 msgstr "2. Utilitza el botó de navegació per trobar les fotos al seu ordinador"
 
-#: ../includes/add_photos/add_form.inc:93
+#: ../includes/add_photos/add_form.inc:96
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:106
+#: ../includes/add_photos/add_form.inc:109
 msgid "Upload Now"
 msgstr "Enviar ara"
 
@@ -1503,7 +1522,7 @@ msgstr "Resum de l'Àlbum"
 msgid "Album Title"
 msgstr "Títol de l'Àlbum"
 
-#: ../includes/definitions/albumProperties.php:53 ../stats-wizard.php:134
+#: ../includes/definitions/albumProperties.php:53 ../stats-wizard.php:131
 #, fuzzy
 msgid "Layout"
 msgstr "Últim"
@@ -1755,7 +1774,7 @@ msgstr "Ofereix als visitants la possibilitat d'especificar<br>preferència per i
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Auto-ajusta a la finstra per<br>imatges sense còpia re-escalada"
 
-#: ../includes/definitions/albumProperties.php:380 ../lib/albumItem.php:188
+#: ../includes/definitions/albumProperties.php:380 ../lib/albumItem.php:209
 msgid "Permissions"
 msgstr "Permisos"
 
@@ -2426,23 +2445,23 @@ msgstr "moure àlbum"
 msgid "reorder album"
 msgstr "renombrar àlbum"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:249
+#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:250
 msgid "rename album"
 msgstr "renombrar àlbum"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:262
+#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:263
 msgid "edit captions"
 msgstr "editar llegendes"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:297
+#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:298
 msgid "permissions"
 msgstr "permisos"
 
-#: ../layout/adminAlbumCommands.inc:28 ../view_album.php:286
+#: ../layout/adminAlbumCommands.inc:28 ../view_album.php:287
 msgid "properties"
 msgstr "propietats"
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:396
+#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:397
 msgid "view&nbsp;comments"
 msgstr "veure comentaris"
 
@@ -2451,7 +2470,7 @@ msgstr "veure comentaris"
 msgid "watermark&nbsp;album"
 msgstr "De l'Àlbum"
 
-#: ../layout/breadcrumb.inc:39
+#: ../layout/breadcrumb.inc:40
 #, fuzzy
 msgid "Logged in as:"
 msgstr "Registrats"
@@ -2461,7 +2480,7 @@ msgstr "Registrats"
 msgid "From: %s"
 msgstr "De:"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:966 ../util.php:169
+#: ../layout/commentboxbottom.inc:11 ../stats.php:967
 msgid "add comment"
 msgstr "afegeix comentari"
 
@@ -2479,11 +2498,11 @@ msgstr "veure comentaris per aquest àlbum fill"
 msgid "Album contains no comments"
 msgstr "Àlbums que contenen %s"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:259
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:280
 msgid "From:"
 msgstr "De:"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:233
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:254
 msgid "delete comment"
 msgstr "borra comentari"
 
@@ -2529,7 +2548,7 @@ msgstr "Última Imatge"
 msgid "%d of %d"
 msgstr "%d de %d"
 
-#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:118
+#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:139
 #, fuzzy
 msgid "Watermark"
 msgstr "De l'Àlbum"
@@ -2634,7 +2653,7 @@ msgstr "Inicialitzar Tot"
 msgid "Invert Selection"
 msgstr "Invertir Selecció"
 
-#: ../lib/Form.php:233
+#: ../lib/Form.php:244
 msgid "Colorpicker"
 msgstr ""
 
@@ -2762,17 +2781,17 @@ msgstr ""
 msgid "New comment for %s."
 msgstr "veure comentaris"
 
-#: ../lib/mail.php:265
+#: ../lib/mail.php:263
 #, php-format
 msgid "FAILED"
 msgstr "FALLIT"
 
-#: ../lib/mail.php:275
+#: ../lib/mail.php:273
 msgid "Email activity"
 msgstr "Activitat de correu"
 
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:915
+#: ../lib/voting.php:215 ../view_album.php:556 ../view_album.php:572
+#: ../view_album.php:923
 msgid "Vote"
 msgstr "Votar"
 
@@ -2784,8 +2803,8 @@ msgstr "Punts totals en parèntesis"
 msgid "Average points in brackets"
 msgstr "Mitja de punts en parèntesis"
 
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:487
-#: ../view_album.php:785
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:488
+#: ../view_album.php:790
 #, php-format
 msgid "Album: %s"
 msgstr "Àlbum: %s"
@@ -2843,97 +2862,97 @@ msgid_plural "%d votes"
 msgstr[0] "Cap vot"
 msgstr[1] "Cap vot"
 
-#: ../lib/albumItem.php:46 ../rearrange.php:112
+#: ../lib/albumItem.php:67 ../rearrange.php:112
 msgid "Movie"
 msgstr "Pel·lícula"
 
-#: ../lib/albumItem.php:50
+#: ../lib/albumItem.php:71
 msgid "Photo"
 msgstr "Imatge"
 
-#: ../lib/albumItem.php:62
+#: ../lib/albumItem.php:83
 #, fuzzy, php-format
 msgid "%s actions"
 msgstr "documentació"
 
-#: ../lib/albumItem.php:80
+#: ../lib/albumItem.php:101
 msgid "Edit Title"
 msgstr "Editar Títol"
 
-#: ../lib/albumItem.php:84
+#: ../lib/albumItem.php:105
 msgid "Edit Description"
 msgstr "Editar Descripció"
 
-#: ../lib/albumItem.php:90 ../rename_album.php:39 ../rename_album.php:43
+#: ../lib/albumItem.php:111 ../rename_album.php:39 ../rename_album.php:43
 msgid "Rename Album"
 msgstr "Renombra Àlbum"
 
-#: ../lib/albumItem.php:105
+#: ../lib/albumItem.php:126
 #, fuzzy
 msgid "Edit Thumbnail"
 msgstr "Editar Thumbnail"
 
-#: ../lib/albumItem.php:109
+#: ../lib/albumItem.php:130
 #, fuzzy, php-format
 msgid "Rotate/Flip"
 msgstr "Rotar/Voltejar"
 
-#: ../lib/albumItem.php:113
+#: ../lib/albumItem.php:134
 #, fuzzy
 msgid "Resize"
 msgstr "Re-escalar Imatge"
 
-#: ../lib/albumItem.php:127
+#: ../lib/albumItem.php:148
 #, fuzzy, php-format
 msgid "Set as highlight"
 msgstr "Cap ressaltat"
 
-#: ../lib/albumItem.php:134
+#: ../lib/albumItem.php:155
 msgid "Reset Counter"
 msgstr "Reinicialitzar Contador"
 
-#: ../lib/albumItem.php:139
+#: ../lib/albumItem.php:160
 #, fuzzy
 msgid "Move"
 msgstr "Pel·lícula"
 
-#: ../lib/albumItem.php:143
+#: ../lib/albumItem.php:164
 #, fuzzy
 msgid "Reorder"
 msgstr "Reordenar"
 
-#: ../lib/albumItem.php:148
+#: ../lib/albumItem.php:169
 #, fuzzy
 msgid "Copy"
 msgstr "Copiar"
 
-#: ../lib/albumItem.php:158
+#: ../lib/albumItem.php:179
 #, fuzzy
 msgid "Show"
 msgstr "Mostrar"
 
-#: ../lib/albumItem.php:163
+#: ../lib/albumItem.php:184
 #, fuzzy
 msgid "Hide"
 msgstr "ocult"
 
-#: ../lib/albumItem.php:194 ../watermark_album.php:114
+#: ../lib/albumItem.php:215 ../watermark_album.php:114
 #: ../watermark_album.php:118
 #, fuzzy
 msgid "Watermark Album"
 msgstr "De l'Àlbum"
 
-#: ../lib/albumItem.php:200
+#: ../lib/albumItem.php:221
 #, fuzzy
 msgid "View Comments"
 msgstr "veure comentaris"
 
-#: ../lib/albumItem.php:211
+#: ../lib/albumItem.php:232
 #, fuzzy
 msgid "Photo properties"
 msgstr "propietats d'imatge"
 
-#: ../lib/albumItem.php:219 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:240 ../photo_owner.php:78 ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Canvia Propietari"
 
@@ -2949,24 +2968,24 @@ msgstr ""
 msgid "This window must be called from an Options window"
 msgstr ""
 
-#: ../lib/lang.php:697
+#: ../lib/lang.php:712
 msgid "Upload Date"
 msgstr "Data d'Enviament"
 
-#: ../lib/lang.php:699
+#: ../lib/lang.php:714
 msgid "Image Size"
 msgstr "Tamany d'Imatge"
 
-#: ../lib/lang.php:700
+#: ../lib/lang.php:715
 msgid "Additional EXIF Data"
 msgstr "Dades d'EXIF addicionals"
 
-#: ../lib/lang.php:709
+#: ../lib/lang.php:724
 #, fuzzy
 msgid "Description"
 msgstr "descripció"
 
-#: ../lib/lang.php:710
+#: ../lib/lang.php:725
 msgid "description"
 msgstr "descripció"
 
@@ -3081,58 +3100,66 @@ msgstr "Nom d'usuari invàlid"
 msgid "Send me my password"
 msgstr "Envia'm la meva contrasenya"
 
+#: ../login.php:159
+msgid "No account at all?"
+msgstr ""
+
+#: ../login.php:161
+msgid "Register a new account."
+msgstr ""
+
 #: ../manage_users.php:43
 msgid "Please select a user"
 msgstr "Elegeix un usuari, si us plau"
 
-#: ../manage_users.php:64 ../manage_users.php:68
+#: ../manage_users.php:65 ../manage_users.php:69
 msgid "Manage Users"
 msgstr "Gestiona Usuaris"
 
-#: ../manage_users.php:79
+#: ../manage_users.php:78
 msgid "You can create, modify and delete users here."
 msgstr "Pots crear, modificar i borrar usuaris aquí."
 
-#: ../manage_users.php:83
+#: ../manage_users.php:82
 msgid "There are no users!  Create one."
 msgstr "No hi ha usuaris! Crea'n un."
 
-#: ../manage_users.php:93
+#: ../manage_users.php:88
 msgid "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking."
 msgstr ""
 
-#: ../manage_users.php:97
+#: ../manage_users.php:92
 #, fuzzy
 msgid "Create new user"
 msgstr "Crea un nou usuari aquí."
 
-#: ../manage_users.php:99
+#: ../manage_users.php:94
 msgid "Bulk Create"
 msgstr "Crea Bulk"
 
-#: ../manage_users.php:102
+#: ../manage_users.php:97
 msgid "Modify"
 msgstr "Modifica"
 
-#: ../modify_user.php:88
+#: ../modify_user.php:89
 #, fuzzy
 msgid "User information succesfully updated."
 msgstr "Usuaris actualitzats satisfactòriament"
 
-#: ../modify_user.php:92
+#: ../modify_user.php:93
 #, fuzzy
 msgid "User information was not succesfully updated !!"
 msgstr "Usuaris actualitzats satisfactòriament"
 
-#: ../modify_user.php:103
+#: ../modify_user.php:104
 msgid "Invalid user"
 msgstr "Usuari invàlid"
 
-#: ../modify_user.php:141 ../modify_user.php:145
+#: ../modify_user.php:142 ../modify_user.php:146
 msgid "Modify User"
 msgstr "Modifica Usuari"
 
-#: ../modify_user.php:149
+#: ../modify_user.php:150
 msgid "You can change any information about the user using this form."
 msgstr "Pots canviar l'informació de l'usuari usant aquest formulari."
 
@@ -3302,40 +3329,40 @@ msgstr "Crear Usuaris"
 msgid "Create multiple new users from a file."
 msgstr "Crear múltiples nous usuaris des d'un arxiu."
 
-#: ../multi_create_user.php:199 ../register.php:141
+#: ../multi_create_user.php:198 ../register.php:137
 msgid "Create"
 msgstr "Crear"
 
-#: ../multi_create_user.php:205
+#: ../multi_create_user.php:204
 #, fuzzy
 msgid "Notes:"
 msgstr "Notes:"
 
-#: ../multi_create_user.php:208
+#: ../multi_create_user.php:207
 msgid "The members file should be one user per line, and the fields should be space separated."
 msgstr ""
 
-#: ../multi_create_user.php:209
+#: ../multi_create_user.php:208
 msgid "Each line must be in one of this formats:"
 msgstr ""
 
-#: ../multi_create_user.php:211
+#: ../multi_create_user.php:210
 msgid "<i>username emailaddress fullname</i>"
 msgstr ""
 
-#: ../multi_create_user.php:212
+#: ../multi_create_user.php:211
 msgid "<i>username fullname</i>"
 msgstr ""
 
-#: ../multi_create_user.php:213
+#: ../multi_create_user.php:212
 msgid "<i>username emailaddress</i>"
 msgstr ""
 
-#: ../multi_create_user.php:215
+#: ../multi_create_user.php:214
 msgid "Only username is required. Everything after the email address is the full name, so there can be spaces in it."
 msgstr ""
 
-#: ../multi_create_user.php:219
+#: ../multi_create_user.php:218
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "Les cadenes !!USERNAME!!, !!FULLNAME!! i !!PASSWORD!! seran substituïdes en el correu pels valors de l'arxiu de l'usuari. Un correu individual serà enviat per a cada membre amb una direcció de correu vàlida en l'arxiu de membres (si &quot;envia correus&quot; està ectivat)."
 
@@ -3619,17 +3646,17 @@ msgstr ""
 msgid "Hidden"
 msgstr "ocult"
 
-#: ../rearrange.php:136 ../rearrange.php:174
+#: ../rearrange.php:135 ../rearrange.php:173
 #, fuzzy
 msgid "save"
 msgstr "Guardar"
 
-#: ../rearrange.php:137 ../rearrange.php:175
+#: ../rearrange.php:136 ../rearrange.php:174
 #, fuzzy
 msgid "cancel"
 msgstr "Cancel·lar"
 
-#: ../rearrange.php:147
+#: ../rearrange.php:146
 #, php-format
 msgid "******* Page %s *******"
 msgstr ""
@@ -3643,38 +3670,38 @@ msgstr "Crear Usuari per %s"
 msgid "This Gallery does not support self-registration by visitors."
 msgstr "AQuesta Gallery no soporta autoregistre per visitants."
 
-#: ../register.php:77
+#: ../register.php:76
 msgid "You must specify a name."
 msgstr "Has d'especificar un nom."
 
-#: ../register.php:82
+#: ../register.php:81
 msgid "You must specify a valid email address."
 msgstr "Has d'especificar una direcció de correu vàlida."
 
-#: ../register.php:104
+#: ../register.php:103
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s s'ha registrat. S'ha enviat un correu a %s."
 
-#: ../register.php:112
+#: ../register.php:109
 msgid "Gallery Self Registration"
 msgstr "Autoregistre de Gallery"
 
-#: ../register.php:114
+#: ../register.php:111
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "Un correu ha estat enviat a %s"
 
-#: ../register.php:116
+#: ../register.php:113
 msgid "Your account information is contained within the email."
 msgstr "La teva informació de compta està inclosa en el correu"
 
-#: ../register.php:118
+#: ../register.php:115
 #, fuzzy
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "No es pot enviar un correu. Contacta amb l'administrador de Gallery per registrar-te en el lloc"
 
-#: ../register.php:138
+#: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "La teva informació de la compta serà enviada a la direcció de correu que has facilitat."
 
@@ -3957,11 +3984,6 @@ msgstr ""
 msgid "Compatible but limited"
 msgstr ""
 
-#: ../slideshow.php:183 ../view_album.php:108 ../view_comments.php:54
-#: ../view_photo.php:167
-msgid "navigate UP"
-msgstr "navega Amunt"
-
 #: ../slideshow.php:213
 msgid "Slide Show"
 msgstr "Presentació"
@@ -4006,15 +4028,32 @@ msgstr "Per Nombre de Comentaris"
 msgid "Randomly"
 msgstr "Aleatòriament"
 
-#: ../sort_album.php:106
+#: ../sort_album.php:105
+msgid "Sort Order:"
+msgstr ""
+
+#: ../sort_album.php:107
+msgid "Just sort"
+msgstr ""
+
+#: ../sort_album.php:108
+#, fuzzy
+msgid "Albums first"
+msgstr "Títol de l'Àlbum"
+
+#: ../sort_album.php:109
+msgid "Photos/Movies first"
+msgstr ""
+
+#: ../sort_album.php:112
 msgid "Ascending"
 msgstr "Asecndent"
 
-#: ../sort_album.php:107
+#: ../sort_album.php:113
 msgid "Descending"
 msgstr "Descendent"
 
-#: ../sort_album.php:113
+#: ../sort_album.php:120
 msgid "Sort"
 msgstr "Ordenar"
 
@@ -4092,241 +4131,241 @@ msgstr "Hi ha un error desconegut en la crida %s!"
 msgid " - Images with the most views"
 msgstr "Hi ha un error desconegut en la crida %s!"
 
-#: ../stats.php:300
+#: ../stats.php:306
 #, php-format
 msgid "Number Albums = %s"
 msgstr ""
 
-#: ../stats.php:311
+#: ../stats.php:317
 #, php-format
 msgid "Cache filename = %s ; enabled = %s ; expires = %s"
 msgstr ""
 
-#: ../stats.php:322
+#: ../stats.php:328
 #, php-format
 msgid "Time now = %s ; Cache time = %s"
 msgstr ""
 
-#: ../stats.php:337
+#: ../stats.php:343
 msgid "Logged In - Disabling Cache"
 msgstr ""
 
-#: ../stats.php:343
+#: ../stats.php:349
 msgid "Using cache"
 msgstr ""
 
-#: ../stats.php:343
+#: ../stats.php:349
 msgid "Not using cache"
 msgstr ""
 
-#: ../stats.php:344
+#: ../stats.php:350
 msgid "Cache to be rebuilt"
 msgstr ""
 
-#: ../stats.php:344
+#: ../stats.php:350
 msgid "Cache will not rebuild."
 msgstr ""
 
-#: ../stats.php:366
+#: ../stats.php:372
 msgid "Version out of date."
 msgstr ""
 
-#: ../stats.php:398
+#: ../stats.php:404
 #, fuzzy, php-format
 msgid "Checking album: %s"
 msgstr "Saltant àlbum %d..."
 
-#: ../stats.php:408
+#: ../stats.php:414
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
-#: ../stats.php:419
+#: ../stats.php:425
 #, fuzzy
 msgid "Getting SVotes"
 msgstr "Comentaris coincidents"
 
-#: ../stats.php:425
+#: ../stats.php:431
 #, fuzzy
 msgid "Getting Item Clicks"
 msgstr "Data de Llegenda de l'Element"
 
-#: ../stats.php:428
+#: ../stats.php:434
 #, fuzzy
 msgid "Getting Item Capture Date"
 msgstr "Data de Llegenda de l'Element"
 
-#: ../stats.php:447
+#: ../stats.php:453
 #, fuzzy
 msgid "Getting Number of Comments"
 msgstr "Per Nombre de Comentaris"
 
-#: ../stats.php:449
+#: ../stats.php:455
 #, fuzzy
 msgid "Getting Comments"
 msgstr "Comentaris coincidents"
 
-#: ../stats.php:492
+#: ../stats.php:498
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr ""
 
-#: ../stats.php:558
+#: ../stats.php:559
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr ""
 
-#: ../stats.php:579
+#: ../stats.php:580
 #, fuzzy, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%d Imatges Aleatòries de l'àlbum :: %s"
 
-#: ../stats.php:581
+#: ../stats.php:582
 #, fuzzy, php-format
 msgid "%d images in album: %s"
 msgstr "%d Imatges Aleatòries de l'àlbum :: %s"
 
-#: ../stats.php:584
+#: ../stats.php:585
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr ""
 
-#: ../stats.php:589
+#: ../stats.php:590
 #, fuzzy, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "Hi ha un error desconegut en la crida %s!"
 
-#: ../stats.php:592
+#: ../stats.php:593
 #, fuzzy, php-format
 msgid "%d images this Gallery"
 msgstr "Entra a Gallery"
 
-#: ../stats.php:598
+#: ../stats.php:599
 msgid "Back to stats-wizard"
 msgstr ""
 
-#: ../stats.php:634
+#: ../stats.php:635
 #, php-format
 msgid "Data load time %d seconds"
 msgstr ""
 
-#: ../stats.php:700
+#: ../stats.php:701
 #, php-format
 msgid "Finished in %d seconds"
 msgstr ""
 
-#: ../stats.php:705
+#: ../stats.php:706
 #, fuzzy
 msgid "Update"
 msgstr "Data d'Enviament"
 
-#: ../stats.php:706
+#: ../stats.php:707
 msgid "Cache update required. "
 msgstr ""
 
-#: ../stats.php:710
+#: ../stats.php:711
 #, fuzzy, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "Alguns àlbums no han estat cercats ja que es requereix primer la seva actualització a la última versió de %s"
 
-#: ../stats.php:713
+#: ../stats.php:714
 #, fuzzy
 msgid "upgrade all albums"
 msgstr "actualitzar tots els àlbums"
 
-#: ../stats.php:757
+#: ../stats.php:758
 #, fuzzy, php-format
 msgid "Recursing album: %s"
 msgstr "Re-escalant %s"
 
-#: ../stats.php:793
+#: ../stats.php:794
 msgid "Read cache num photos lock failed."
 msgstr ""
 
-#: ../stats.php:817
+#: ../stats.php:818
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr ""
 
-#: ../stats.php:828 ../stats.php:867
+#: ../stats.php:829 ../stats.php:868
 msgid "Read cache lock failed."
 msgstr ""
 
-#: ../stats.php:979
+#: ../stats.php:980
 #, fuzzy
 msgid "add vote"
 msgstr "1 vot"
 
-#: ../stats.php:1073
+#: ../stats.php:1074
 #, fuzzy, php-format
 msgid "From album: %s"
 msgstr "De l'Àlbum"
 
-#: ../stats.php:1078
+#: ../stats.php:1079
 #, fuzzy, php-format
 msgid "Owned by: %s"
 msgstr "Propietari:"
 
-#: ../stats.php:1110
+#: ../stats.php:1111
 #, fuzzy
 msgid "Capture Date:"
 msgstr "Data de llegenda"
 
-#: ../stats.php:1124
+#: ../stats.php:1125
 #, fuzzy
 msgid "Upload Date:"
 msgstr "Data d'Enviament"
 
-#: ../stats.php:1138
+#: ../stats.php:1139
 #, fuzzy
 msgid "Views:"
 msgstr "Vist:"
 
-#: ../stats.php:1148
+#: ../stats.php:1149
 #, fuzzy
 msgid "Votes:"
 msgstr "Notes:"
 
-#: ../stats.php:1160
+#: ../stats.php:1161
 #, fuzzy
 msgid "not rated"
 msgstr "Rotar"
 
-#: ../stats.php:1174
+#: ../stats.php:1175
 #, fuzzy
 msgid "Rating:"
 msgstr "Rank"
 
-#: ../stats-wizard.php:43 ../stats-wizard.php:54
+#: ../stats-wizard.php:43 ../stats-wizard.php:53
 msgid "Gallery statistics - Wizard"
 msgstr ""
 
-#: ../stats-wizard.php:55 ../tools/find_orphans.php:210
+#: ../stats-wizard.php:54 ../tools/find_orphans.php:210
 #: ../tools/despam-comments.php:55 ../tools/validate_albums.php:137
 #: ../tools/validate_albums.php:213
 #, fuzzy
 msgid "return to admin page"
 msgstr "tornar a l'àlbum"
 
-#: ../stats-wizard.php:125
+#: ../stats-wizard.php:122
 msgid "Type"
 msgstr ""
 
-#: ../stats-wizard.php:129 ../tools/despam-comments.php:394
+#: ../stats-wizard.php:126 ../tools/despam-comments.php:390
 #, fuzzy
 msgid "Options"
 msgstr "Llegenda"
 
-#: ../stats-wizard.php:138
+#: ../stats-wizard.php:135
 #, fuzzy
 msgid "Filter by Capture Date"
 msgstr "Data de llegenda"
 
-#: ../stats-wizard.php:143
+#: ../stats-wizard.php:140
 msgid "Show statistics"
 msgstr ""
 
-#: ../stats-wizard.php:147
+#: ../stats-wizard.php:144
 msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
 msgstr ""
 
@@ -4434,8 +4473,8 @@ msgstr "veure comentaris"
 msgid "Delete Comments"
 msgstr "borra comentari"
 
-#: ../tools/despam-comments.php:123 ../tools/despam-comments.php:252
-#: ../tools/despam-comments.php:263 ../tools/despam-comments.php:332
+#: ../tools/despam-comments.php:123 ../tools/despam-comments.php:249
+#: ../tools/despam-comments.php:260 ../tools/despam-comments.php:329
 #, fuzzy
 msgid "No action taken!"
 msgstr "Sense llegenda"
@@ -4457,106 +4496,106 @@ msgstr[1] "borra comentari"
 msgid "No comment deleted."
 msgstr "Cap arxiu seleccionat."
 
-#: ../tools/despam-comments.php:198
+#: ../tools/despam-comments.php:196
 #, php-format
 msgid "Scanned %d albums, %d photos, %d comments in %2.2f seconds"
 msgstr ""
 
-#: ../tools/despam-comments.php:204
+#: ../tools/despam-comments.php:202
 #, fuzzy
 msgid "No spam comments."
 msgstr "afegeix comentari"
 
-#: ../tools/despam-comments.php:209 ../tools/despam-comments.php:348
+#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 #, fuzzy
 msgid "Entry"
 msgstr "Buit"
 
-#: ../tools/despam-comments.php:213
+#: ../tools/despam-comments.php:210
 #, fuzzy
 msgid "Location"
 msgstr "documentació"
 
-#: ../tools/despam-comments.php:217
+#: ../tools/despam-comments.php:214
 #, fuzzy
 msgid "Commenter"
 msgstr "Crear"
 
-#: ../tools/despam-comments.php:221
+#: ../tools/despam-comments.php:218
 #, fuzzy
 msgid "Comment"
 msgstr "Crear"
 
-#: ../tools/despam-comments.php:235
+#: ../tools/despam-comments.php:232
 #, fuzzy
 msgid "Delete Checked Comments"
 msgstr "borra comentari"
 
-#: ../tools/despam-comments.php:250
+#: ../tools/despam-comments.php:247
 #, fuzzy
 msgid "Delete from blacklist"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:267 ../tools/despam-comments.php:311
+#: ../tools/despam-comments.php:264 ../tools/despam-comments.php:308
 #, fuzzy
 msgid "Error saving blacklist!"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:270
+#: ../tools/despam-comments.php:267
 #, fuzzy, php-format
 msgid "Deleted %d entry from blacklist."
 msgid_plural "Deleted %d entries from blacklist"
 msgstr[0] "situació actual"
 msgstr[1] "situació actual"
 
-#: ../tools/despam-comments.php:314
+#: ../tools/despam-comments.php:311
 #, fuzzy
 msgid "Added to blacklist:"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:323
+#: ../tools/despam-comments.php:320
 msgid "Following duplicates were not added:"
 msgstr ""
 
-#: ../tools/despam-comments.php:339
+#: ../tools/despam-comments.php:336
 #, fuzzy
 msgid "Current blacklist"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:341
+#: ../tools/despam-comments.php:338
 msgid "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful."
 msgstr ""
 
-#: ../tools/despam-comments.php:366 ../tools/despam-comments.php:383
+#: ../tools/despam-comments.php:362 ../tools/despam-comments.php:379
 #, fuzzy
 msgid "Update Blacklist"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:373
+#: ../tools/despam-comments.php:369
 #, fuzzy
 msgid "Enter new blacklist entries"
 msgstr "borra comentari"
 
-#: ../tools/despam-comments.php:374
+#: ../tools/despam-comments.php:370
 #, fuzzy
 msgid "Useful blacklists: "
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:379
+#: ../tools/despam-comments.php:375
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
 msgstr ""
 
-#: ../tools/despam-comments.php:389
+#: ../tools/despam-comments.php:385
 #, fuzzy
 msgid "Find blacklisted comments"
 msgstr "borra comentari"
 
-#: ../tools/despam-comments.php:390
+#: ../tools/despam-comments.php:386
 #, fuzzy
 msgid "View/Edit blacklist"
 msgstr "situació actual"
 
-#: ../tools/despam-comments.php:391
+#: ../tools/despam-comments.php:387
 #, fuzzy
 msgid "Add blacklist entries"
 msgstr "borra comentari"
@@ -4735,508 +4774,379 @@ msgstr "Si desitges canviar la teva contrasenya, hauries d'indicar la teva contr
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Pots canviar el teu nom d'usuari per qualsevol combinació de lletres i digits."
 
-#: ../util.php:104
-msgid "Empty"
-msgstr "Buit"
+#: ../user_preferences.php:135
+msgid "Close Window"
+msgstr ""
 
-#: ../util.php:108
-#, php-format
-msgid "edit %s"
-msgstr "edita %s"
-
-#: ../util.php:126
-msgid "No Caption"
-msgstr "Sense llegenda"
-
-#: ../util.php:130
-msgid "edit"
-msgstr "edita"
-
-#: ../util.php:185
-#, fuzzy
-msgid "Add your comment"
-msgstr "afegeix comentari"
-
-#: ../util.php:188
-#, fuzzy
-msgid "Commenter:"
-msgstr "Crear"
-
-#: ../util.php:206
-#, fuzzy
-msgid "Message:"
-msgstr "Missatge"
-
-#: ../util.php:210
-#, fuzzy
-msgid "Post"
-msgstr "Imatge"
-
-#: ../util.php:277
+#: ../util.php:154
 #, fuzzy, php-format
 msgid "Executing: %s"
 msgstr "Executant:"
 
-#: ../util.php:284
+#: ../util.php:161
 msgid "Results:"
 msgstr "Resultats:"
 
-#: ../util.php:288
+#: ../util.php:165
 msgid "none"
 msgstr "cap"
 
-#: ../util.php:293
+#: ../util.php:170
 #, fuzzy
 msgid "Debug messages:"
 msgstr "Missatge d'error:"
 
-#: ../util.php:304
+#: ../util.php:181
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "Estat: %s (%s esperat)"
 
-#: ../util.php:329
+#: ../util.php:206
 #, php-format
 msgid "Getting Dimension of file: %s"
 msgstr ""
 
-#: ../util.php:332
+#: ../util.php:209
 #, fuzzy
 msgid "The file does not exist ?!"
 msgstr "El fitxer &quot;%s&quot; no existeix"
 
-#: ../util.php:343
+#: ../util.php:220
 #, php-format
 msgid "PHP's %s unable to determine dimensions."
 msgstr "%s de PHP permet determinar les dimensions."
 
-#: ../util.php:357 ../util.php:673 ../util.php:921 ../util.php:967
-#: ../util.php:2487
+#: ../util.php:234 ../util.php:516 ../util.php:764 ../util.php:810
+#: ../util.php:1935
 msgid "You have no graphics package configured for use!"
 msgstr "No tens cap paquet de gràfics configurat per usar-lo!"
 
-#: ../util.php:380
+#: ../util.php:257
 #, fuzzy
 msgid "Unable to determine image dimensions!"
 msgstr "%s de PHP permet determinar les dimensions."
 
-#: ../util.php:445 ../util.php:464
-msgid "Not closing this window because debug mode is on"
-msgstr "No es tanca la finestra perquè el mode debug està actiu"
-
-#: ../util.php:481
+#: ../util.php:324
 #, fuzzy, php-format
 msgid "Resizing Image: %s"
 msgstr "Re-escalant %s"
 
-#: ../util.php:512
+#: ../util.php:355
 msgid "No resizing required"
 msgstr "No requereix re-escalat"
 
-#: ../util.php:542
+#: ../util.php:385
 #, php-format
 msgid "target file size %d kbytes"
 msgstr "tamany arxiu desitjat %d kbytes"
 
-#: ../util.php:548 ../util.php:578
+#: ../util.php:391 ../util.php:421
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> tamany arxiu %d kbytes"
 
-#: ../util.php:549
+#: ../util.php:392
 #, php-format
 msgid "trying quality %d%%"
 msgstr "provant qualitat %d%%"
 
-#: ../util.php:579
+#: ../util.php:422
 msgid "Done."
 msgstr "Fet."
 
-#: ../util.php:677
+#: ../util.php:520
 #, fuzzy
 msgid "No watermark name specified!"
 msgstr "Cap àlbum especificat!"
 
-#: ../util.php:985
+#: ../util.php:828
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Crida a %s fallida a %s per l'arxiu %s!"
 
-#: ../util.php:989
+#: ../util.php:832
 #, php-format
 msgid "File %s type %d."
 msgstr "Arxiu %s tipus %d."
 
-#: ../util.php:1024 ../util.php:1047
+#: ../util.php:867 ../util.php:890
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Tipus d'arxiu desconegut: %s"
 
-#: ../util.php:1087
-#, fuzzy, php-format
-msgid "Problem including file %s"
-msgstr "Problema afegint %s:"
-
-#: ../util.php:1417
+#: ../util.php:1024
 #, php-format
 msgid "Can't write to %s."
 msgstr "No es pot escriure a %s."
 
-#: ../util.php:1424
+#: ../util.php:1031
 #, php-format
 msgid "Can't read %s."
 msgstr "No es pot llegir %s."
 
-#: ../util.php:1542
-msgid "Select Album"
-msgstr "Seleccionar Àlbum"
-
-#: ../util.php:1548
-msgid "Top Level"
-msgstr "Nivell Superior"
-
-#: ../util.php:1569 ../util.php:1620
-msgid "current location"
-msgstr "situació actual"
-
-#: ../util.php:1623
-msgid "self"
-msgstr "ell mateix"
-
-#: ../util.php:1772
+#: ../util.php:1248
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "Data de Llegenda de l'Element"
 
-#: ../util.php:1817
+#: ../util.php:1293
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "No es pot obrir l'arxiu de bloqueig (%s)!"
 
-#: ../util.php:1822
+#: ../util.php:1298
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "No es pot adquirir el bloqueig (%s)!"
 
-#: ../util.php:1911 ../util.php:1950
-#, fuzzy, php-format
-msgid "1 hit"
-msgid_plural "%d hits"
-msgstr[0] "1 clic"
-msgstr[1] "1 clic"
+#: ../util.php:1386
+#, php-format
+msgid "extension of file %s is %s"
+msgstr ""
 
-#: ../util.php:1916 ../util.php:1955
-msgid "Sub-albums"
-msgstr "Sub-àlbums"
+#: ../util.php:1530
+msgid "No Support for creating Zips"
+msgstr ""
 
-#: ../util.php:2123
+#: ../util.php:1533
+#, php-format
+msgid "Creating Zipfile with %s"
+msgstr ""
+
+#: ../util.php:1547 ../util.php:2532
+#, php-format
+msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
+msgstr ""
+
+#: ../util.php:1587
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Saltant %s (soport ZIP inactiu)"
 
-#: ../util.php:2238
+#: ../util.php:1703
 #, php-format
 msgid "Adding %s"
 msgstr "Afegint %s"
 
-#: ../util.php:2275
+#: ../util.php:1740
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Necessites ajuda? Mira a %s%s FAQ%s"
 
-#: ../util.php:2280
+#: ../util.php:1745
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Saltant %s (no soporta el format %s)"
 
-#: ../util.php:2450
+#: ../util.php:1898
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Impossible preservar dades EXIF (jhead no instal·lat)"
 
-#: ../util.php:2569
+#: ../util.php:2017
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "No es pot obrir l'arxiu de log: %s"
 
-#: ../util.php:2580
+#: ../util.php:2366
 #, php-format
-msgid "Last comment %s."
-msgstr "Últim comentari %s."
-
-#: ../util.php:2605
-#, fuzzy
-msgid "No Skin"
-msgstr "Login"
-
-#: ../util.php:2606
-#, fuzzy, php-format
-msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
-msgstr "<dt>Cap</dt><dd>El look and feel original.</dd>"
-
-#: ../util.php:2651 ../util.php:2655
-msgid "unknown"
+msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:2659
-#, fuzzy
-msgid "Version"
-msgstr "Permisos"
-
-#: ../util.php:2661
-#, fuzzy
-msgid "Last Update"
-msgstr "Última Pàgina"
-
-#: ../util.php:2680 ../util.php:2685
-#, fuzzy
-msgid "None"
-msgstr "Cap"
-
-#: ../util.php:2681 ../util.php:2686
-msgid "Dots"
-msgstr "Punts"
-
-#: ../util.php:2682 ../util.php:2687
-msgid "Solid"
-msgstr "Sòlid"
-
-#: ../util.php:2685
-#, fuzzy
-msgid "No frames"
-msgstr "Sense marc"
-
-#: ../util.php:2686
-msgid "Just a simple dashed border around the thumb."
-msgstr "Simple marge de punts al voltant del thumb."
-
-#: ../util.php:2687
-msgid "Just a simple solid border around the thumb."
-msgstr "Simple marge sòlid al voltant del thumb."
-
-#: ../util.php:2708
-#, php-format
-msgid "Skipping %s."
-msgstr "Saltant %s."
-
-#: ../util.php:2714
-#, php-format
-msgid "Can't open %s"
-msgstr "No es pot obrir %s"
-
-#: ../util.php:2851 ../util.php:2870
-#, fuzzy
-msgid "Not valid yet"
-msgstr "Nom d'usuari invàlid"
-
-#: ../util.php:3091
-#, fuzzy
-msgid "EXIF Data"
-msgstr "Dades d'EXIF addicionals"
-
-#: ../util.php:3093
-msgid "Display of EXIF data enabled, but no data found."
-msgstr ""
-
-#: ../util.php:3365
+#: ../util.php:2443
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:3445
-#, fuzzy
-msgid "Search:"
-msgstr "Cerca"
-
-#: ../view_album.php:210
+#: ../view_album.php:211
 #, fuzzy, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "1 sub-àlbum"
 msgstr[1] "1 sub-àlbum"
 
-#: ../view_album.php:210
+#: ../view_album.php:211
 msgid "No albums"
 msgstr "No hi ha albums"
 
-#: ../view_album.php:212
+#: ../view_album.php:213
 msgid "0 pages"
 msgstr "0 pàgines"
 
-#: ../view_album.php:215
+#: ../view_album.php:216
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s i %s en aquest àlbum en %s"
 
-#: ../view_album.php:218
+#: ../view_album.php:219
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s i %s en aquest àlbum"
 
-#: ../view_album.php:221
+#: ../view_album.php:222
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s en aquest àlbum en %s"
 
-#: ../view_album.php:224
+#: ../view_album.php:225
 #, php-format
 msgid "%s in this album"
 msgstr "%s en aquest àlbum"
 
-#: ../view_album.php:231
+#: ../view_album.php:232
 #, php-format
 msgid "%s are hidden"
 msgstr "%s estan ocults"
 
-#: ../view_album.php:233
+#: ../view_album.php:234
 #, php-format
 msgid "%s is hidden"
 msgstr "%s és ocult"
 
-#: ../view_album.php:243
+#: ../view_album.php:244
 msgid "add photos"
 msgstr "afegir imatges"
 
-#: ../view_album.php:256
+#: ../view_album.php:257
 msgid "new nested album"
 msgstr "nou àlbum fill"
 
-#: ../view_album.php:268
+#: ../view_album.php:269
 #, fuzzy
 msgid "sort items"
 msgstr "ordena elements"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 msgid "resize all"
 msgstr "re-escala tot"
 
-#: ../view_album.php:280
+#: ../view_album.php:281
 msgid "rebuild thumbs"
 msgstr "regenera thumbs"
 
-#: ../view_album.php:292
+#: ../view_album.php:293
 #, fuzzy
 msgid "rearrange items"
 msgstr "cap element"
 
-#: ../view_album.php:303
+#: ../view_album.php:304
 msgid "poll results"
 msgstr "resultats de votació"
 
-#: ../view_album.php:309
+#: ../view_album.php:310
 msgid "poll reset"
 msgstr "reincicialita la votació"
 
-#: ../view_album.php:315
+#: ../view_album.php:316
 #, fuzzy
 msgid "view comments"
 msgstr "veure comentaris"
 
-#: ../view_album.php:321
+#: ../view_album.php:322
 #, fuzzy
 msgid "watermark album"
 msgstr "De l'Àlbum"
 
-#: ../view_album.php:379
+#: ../view_album.php:380
 #, fuzzy
 msgid "album actions"
 msgstr "Llegenda d'àlbum:"
 
-#: ../view_album.php:469
+#: ../view_album.php:470
 msgid "You have no votes recorded for this poll."
 msgstr "No hi ha votacions registrades en aquesta votació."
 
-#: ../view_album.php:473
+#: ../view_album.php:474
 msgid "Your current choices are"
 msgstr "Les teves eleccions actuals són"
 
-#: ../view_album.php:513
+#: ../view_album.php:514
 msgid "See full poll results"
 msgstr "Veure resultats complets de la votació"
 
-#: ../view_album.php:549
+#: ../view_album.php:548
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:551
+#: ../view_album.php:550
 msgid " or "
 msgstr " o "
 
-#: ../view_album.php:555
+#: ../view_album.php:554
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Per votar per una imatge, clica a %s."
 
-#: ../view_album.php:556
+#: ../view_album.php:555
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "HAS de clicar a %s perquè el vot es quedi registrat."
 
-#: ../view_album.php:561
+#: ../view_album.php:560
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "Tens un total de %s i poden canviar si ho desitges."
 
-#: ../view_album.php:562
+#: ../view_album.php:561
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "1 vot"
 msgstr[1] "1 vot"
 
-#: ../view_album.php:565
+#: ../view_album.php:564
 msgid "You can change your choices if you wish."
 msgstr "Pots canviar les teves eleccions si ho desitges."
 
-#: ../view_album.php:718 ../view_album.php:719
+#: ../view_album.php:717 ../view_album.php:718
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:780
+#: ../view_album.php:779
 #, fuzzy
 msgid "highlight"
 msgstr "Cap ressaltat"
 
-#: ../view_album.php:786
+#: ../view_album.php:794
 msgid "No description"
 msgstr "Sense descripció"
 
-#: ../view_album.php:794
+#: ../view_album.php:802
 msgid "Changed: "
 msgstr "Canviat: "
 
-#: ../view_album.php:797
+#: ../view_album.php:805
 msgid "Contains: "
 msgstr "Conté: "
 
-#: ../view_album.php:797
+#: ../view_album.php:805
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 element"
 msgstr[1] "1 element"
 
-#: ../view_album.php:813 ../view_album.php:837
+#: ../view_album.php:821 ../view_album.php:845
 msgid "Viewed:"
 msgstr "Vist:"
 
-#: ../view_album.php:893
+#: ../view_album.php:901
 msgid "Hey! Add some photos."
 msgstr "Ei! Afegeix imatges."
 
-#: ../view_album.php:895
+#: ../view_album.php:903
 msgid "This album is empty."
 msgstr "Aquest àlbum està buit."
 
-#: ../view_album.php:940
+#: ../view_album.php:948
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:945
+#: ../view_album.php:953
 msgid "Comments are added"
 msgstr "S'han afegit comentaris"
 
-#: ../view_album.php:948
+#: ../view_album.php:956
 msgid "Other changes are made"
 msgstr "S'han realitzat altres canvis"
 
@@ -5257,43 +5167,43 @@ msgstr "tornar a l'àlbum"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Disculpa. Aquest àlbum no permet comentaris."
 
-#: ../view_photo.php:314
+#: ../view_photo.php:312
 msgid "photo properties"
 msgstr "propietats d'imatge"
 
-#: ../view_photo.php:399
+#: ../view_photo.php:396
 #, fuzzy
 msgid "Send photo to..."
 msgstr "Re-escalant %d imatges..."
 
-#: ../view_photo.php:401
+#: ../view_photo.php:398
 #, fuzzy
 msgid "Print photo with..."
 msgstr "Re-escalant %d imatges..."
 
-#: ../view_photo.php:438
+#: ../view_photo.php:435
 #, fuzzy, php-format
 msgid "process this photo with %s"
 msgstr "imprimeix aquesta imatge amb %s"
 
-#: ../view_photo.php:480
+#: ../view_photo.php:477
 #, fuzzy
 msgid "View Images:"
 msgstr "Veure Imatges"
 
-#: ../view_photo.php:481
+#: ../view_photo.php:478
 msgid "normal"
 msgstr "normal"
 
-#: ../view_photo.php:482
+#: ../view_photo.php:479
 msgid "full"
 msgstr "ple"
 
-#: ../view_photo.php:500
+#: ../view_photo.php:497
 msgid "Send Photo as eCard"
 msgstr ""
 
-#: ../view_photo.php:702
+#: ../view_photo.php:698
 #, fuzzy
 msgid "Email me when comments are added"
 msgstr "S'han afegit comentaris"
@@ -5323,6 +5233,122 @@ msgstr "No més votacions."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "title"
+#~ msgstr "títol"
+
+#~ msgid "Empty"
+#~ msgstr "Buit"
+
+#~ msgid "edit %s"
+#~ msgstr "edita %s"
+
+#~ msgid "No Caption"
+#~ msgstr "Sense llegenda"
+
+#~ msgid "edit"
+#~ msgstr "edita"
+
+#, fuzzy
+#~ msgid "Add your comment"
+#~ msgstr "afegeix comentari"
+
+#, fuzzy
+#~ msgid "Commenter:"
+#~ msgstr "Crear"
+
+#, fuzzy
+#~ msgid "Message:"
+#~ msgstr "Missatge"
+
+#, fuzzy
+#~ msgid "Post"
+#~ msgstr "Imatge"
+
+#~ msgid "Not closing this window because debug mode is on"
+#~ msgstr "No es tanca la finestra perquè el mode debug està actiu"
+
+#, fuzzy
+#~ msgid "Problem including file %s"
+#~ msgstr "Problema afegint %s:"
+
+#~ msgid "Select Album"
+#~ msgstr "Seleccionar Àlbum"
+
+#~ msgid "Top Level"
+#~ msgstr "Nivell Superior"
+
+#~ msgid "current location"
+#~ msgstr "situació actual"
+
+#~ msgid "self"
+#~ msgstr "ell mateix"
+
+#, fuzzy
+#~ msgid "1 hit"
+#~ msgid_plural "%d hits"
+#~ msgstr[0] "1 clic"
+#~ msgstr[1] "1 clic"
+
+#~ msgid "Sub-albums"
+#~ msgstr "Sub-àlbums"
+
+#~ msgid "Last comment %s."
+#~ msgstr "Últim comentari %s."
+
+#, fuzzy
+#~ msgid "No Skin"
+#~ msgstr "Login"
+
+#, fuzzy
+#~ msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
+#~ msgstr "<dt>Cap</dt><dd>El look and feel original.</dd>"
+
+#, fuzzy
+#~ msgid "Version"
+#~ msgstr "Permisos"
+
+#, fuzzy
+#~ msgid "Last Update"
+#~ msgstr "Última Pàgina"
+
+#, fuzzy
+#~ msgid "None"
+#~ msgstr "Cap"
+
+#~ msgid "Dots"
+#~ msgstr "Punts"
+
+#~ msgid "Solid"
+#~ msgstr "Sòlid"
+
+#, fuzzy
+#~ msgid "No frames"
+#~ msgstr "Sense marc"
+
+#~ msgid "Just a simple dashed border around the thumb."
+#~ msgstr "Simple marge de punts al voltant del thumb."
+
+#~ msgid "Just a simple solid border around the thumb."
+#~ msgstr "Simple marge sòlid al voltant del thumb."
+
+#~ msgid "Skipping %s."
+#~ msgstr "Saltant %s."
+
+#~ msgid "Can't open %s"
+#~ msgstr "No es pot obrir %s"
+
+#, fuzzy
+#~ msgid "Not valid yet"
+#~ msgstr "Nom d'usuari invàlid"
+
+#, fuzzy
+#~ msgid "EXIF Data"
+#~ msgstr "Dades d'EXIF addicionals"
+
+#, fuzzy
+#~ msgid "Search:"
+#~ msgstr "Cerca"
 
 #~ msgid "No email sent as no valid email addresses were found"
 #~ msgstr "No s'ha enviat cap correu perquè no s'han trobat direccions correctes"

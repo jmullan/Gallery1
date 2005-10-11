@@ -21,7 +21,7 @@
   */
  
 /**
- * @version	1.5.1
+ * @version	1.5.2-cvs
  * @package	Languagepack
  * @subpackage	Lithuanian
  */
