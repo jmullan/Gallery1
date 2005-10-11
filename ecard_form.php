@@ -34,7 +34,9 @@
   require_once(dirname(__FILE__) . '/init.php');
 
   list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
-  $photo = $gallery->album->getPhoto($photoIndex);
+
+  $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
+  $photo = $gallery->album->getPhoto($ecard['photoIndex']);
 
   /* Get the dimensions of the sized Photo */
   list($width, $height) = $photo->getDimensions(0, false);  
@@ -47,17 +49,20 @@
   $error_msg = '';
   
   $ecard_send = false;
-
   if (! empty($submit_action)) {
-    if ( check_email($ecard["email_recepient"]) && check_email($ecard["email_sender"]) && ($ecard["email_recepient"] != "") && ($ecard["name_sender"] != "") )  {
+
+    if (check_email($ecard["email_recepient"]) && 
+      check_email($ecard["email_sender"]) && 
+      ! empty($ecard["email_recepient"]) && 
+      ! empty($ecard["name_sender"])) {
       if (strlen($ecard["message"]) > $max_length) {
-	$ecard["message"] = substr($ecard["message"],0,$max_length-1);
+          $ecard["message"] = substr($ecard["message"],0,$max_length-1);
       }
       list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
       if ($error) {
-        $error_msg = $msgTextError1;
-       } else {
-           $ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse);
+          $error_msg = $msgTextError1;
+      } else {
+	$ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse);
            $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
            if ($result) {
              $ecard_send = true;
@@ -70,7 +75,7 @@
       }
   } else {
 	if (!isset($ecard["image_name"])) {
-	    $ecard["image_name"] = $gallery->album->getPhotoPath($photoIndex, false);
+	    $ecard["image_name"] = $photo->getPhotoPath($gallery->album->fields['name'], false);
 	}
     }
 doctype();
@@ -178,7 +183,7 @@ doctype();
 ?>
   <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"] ?>">
   <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
-  <input name="photoIndex" type="hidden" value="<?php echo $photoIndex; ?>">
+  <input name="ecard[photoIndex]" type="hidden" value="<?php echo $photoIndex; ?>">
   <input name="submit_action" type="hidden" value="">
 
   <br>
@@ -213,11 +218,11 @@ doctype();
   <tr>
     <td colspan="5" align="center">
   	  <select id="ecardstamp" name="ecard[stamp]">
-            <option selected value="<?php echo getImagePath('ecard_images/08.gif') ?>"><?php echo _("Choose a Stamp"); ?></option>
+            <option selected value="08"><?php echo _("Choose a Stamp"); ?></option>
 <?php
 for($i = 1; $i <= 27; $i++) {
     $nr = sprintf("%02d", $i-1);
-    echo "\n\t" . '<option value="'. getImagePath("ecard_images/$nr.gif") .'">';
+    echo "\n\t" . '<option value="'. $nr .'">';
     echo sprintf(_("Stamp #%d"), $i);
     echo "</option>";
 }

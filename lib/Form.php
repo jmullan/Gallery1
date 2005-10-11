@@ -171,7 +171,6 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * If no method is given in attrList, then "post" is used.
  */
 function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
-
     // We don't want the result HTML escaped since we split on "&", below
     // use the header version of makeGalleryUrl()
     $url = makeGalleryHeaderUrl($target, $urlargs);
@@ -180,8 +179,15 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $target = $result[0];
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
-    if(!isset($attrList['method'])) {
-        $attrList['method'] = 'post';
+    $defaults = array(
+	'method' => 'post',
+	'name'	 => 'g1_form'
+    );
+
+    foreach($defaults as $attr => $value) {
+	if(!isset($attrList[$attr])) {
+	    $attrList[$attr] = $value;
+	}
     }
     
     $attrs = '';

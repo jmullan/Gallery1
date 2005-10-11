@@ -1236,7 +1236,7 @@ function make_separator($key, $arr)  {
     $buf ="\n<div class=\"inner\">";
     $buf .= "\n\t<div class=\"separator\">". $arr["title"] ."</div>";
     if( isset($arr["desc"])) {
-	$buf .= "\n<div class=\"desc\">". $arr["desc"] ."</div>";
+	   $buf .= "\n<div class=\"desc\">". $arr["desc"] ."</div>";
     }
     $buf .="\n</div>";
 
@@ -1250,10 +1250,11 @@ function array_stripslashes($subject) {
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	$ret=array();
+	$ret = array();
 	foreach ($subject as $key => $value) {
-		$ret[$key]=array_stripslashes($value);
+		$ret[$key] = array_stripslashes($value);
 	}
+	
 	return $ret;
 }
 
