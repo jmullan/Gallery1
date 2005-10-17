@@ -65,7 +65,7 @@ $allowChange["member_file"] = false;
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
-	$uname = removeTags($uname);
+	$uname = strip_tags($uname);
 
 	$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors['uname']) {

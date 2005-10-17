@@ -502,6 +502,12 @@ $constants =  array_merge(
 		'type' => "text",
 		'attrs' => array('size' => 5)
 	),
+	'highlight_ratio' => array(
+		'prompt' => _("Highlight Ratio"),
+		'desc' => _("The ratio in which the highlight are made"),
+		'choices' => array('0' => _("As the original image"), '1/1' => _("Square highlight")),
+		'value' => 0,
+	),
 	'showOwners' => array(
 		'prompt' => _("Show Owner"),
 		'desc' => _("Show album owner's name next to each album?"),
@@ -509,7 +515,6 @@ $constants =  array_merge(
 		'value' => "no"
 	),
 	'albumsPerPage' => array(
-
 		'prompt' => _("Albums per page"),
 		'desc' => _("How many albums should be displayed per Gallery page?"),
 		'value' => "5",
@@ -535,7 +540,6 @@ $constants =  array_merge(
 		'choices' => available_frames(),
 		'value' => "simple_book"
 	),
-
 	'group3_end' => array (
 		'type' => "group_end",
 	),
@@ -1133,7 +1137,11 @@ $constants = array_merge($constants,
 	'debuglevel' => array(
 		'prompt' => _("Debug Level"),
 		'desc' => _("Turn debug on so that you can diagnose problems?") .'<br><span class="emphasis">'. _("Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
-		'choices' => array(0 => _("No Debug"), 1 => _("Normal"), 2 => _("High (former Debug 'on')")),
+		'choices' => array(
+		              0 => _("No Debug"), 
+		              1 => _("Normal"), 
+		              2 => _("High (former Debug 'on')"),
+		              3 => _("Paranoid")),
 		'value' => 0,
 	),
 	'skipRegisterGlobals' => array(
@@ -1369,6 +1377,12 @@ $defaults = array(
 		'value' => 150,
 		'attrs' => array('size' => 10),
 		'type' => "text"
+	),
+	'thumb_ratio' => array(
+		'prompt' => _("Thumbnail Ratio"),
+		'desc' => _("The ratio in which the thumbnails are made"),
+		'choices' => array('0' => _("As the original image"), '1/1' => _("Square thumbs")),
+		'value' => 0,
 	),
 	'resize_size' => array(
 		'prompt' => _("Resized image size"),

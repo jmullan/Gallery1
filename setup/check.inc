@@ -60,12 +60,12 @@ foreach ($checklist as $check) {
 	<tr>
 		<td class="desc" width="50%" valign="top"><?php echo $check["desc"] ?></td>
 		<td width="5%">&nbsp;</td>
-		<td class="desc" valign="top">
+		<td class="desc" style="vertical-align: top">
 <?php
 	$func = $check["func"];
 	list($success, $fail, $warn) = $func();
 	foreach ($success as $key) {
-		echo "\t\t\t". '<p class="success">'. _("Success") . '</p>';
+		echo "\t\t\t". '<div class="success">'. _("Success") . '</div>';
 		if (strcmp($key, "")) {
 			$msg = "<i>$key</i>";
 		}
@@ -83,7 +83,7 @@ foreach ($checklist as $check) {
 				$text = _("Warning");
 				$class= "warning";
 			}
-			echo "\t\t\t<p class=\"$class\">$text!</p>";
+			echo "\t\t\t<div class=\"$class\">$text!</div>";
 			if (isset($check) && isset($check[$key])) {
 				echo "\n\t\t\t<p>$check[$key]</p>";
 			}
@@ -96,7 +96,7 @@ foreach ($checklist as $check) {
 				$text = _("Failed");
 			}
 
-			echo "\t\t\t<p class=\"error\">$text !</p>";
+			echo "\t\t\t<div class=\"error\">$text !</div>";
 		       	if (isset($check) && isset($check[$key])) {
 			       	echo "\n\t\t\t<p>" . $check[$key] ."</p>";
 			}
@@ -115,12 +115,12 @@ foreach ($checklist as $check) {
 			}
 		}
 		else if (is_string($val)) {
-			echo '<p>'. $val . '</p>';
+			echo "<p>$val</p>";
 		}
 	}
 
 	if (isset($warn) && !empty($warn)) {
-		echo "\t\t\t". '<p class="warning">'. _("Warning") . '</p>';
+		echo "\t\t\t". '<div class="warning">'. _("Warning") . '</div>';
 		foreach ($warn as $key => $val) {
 			if (isset($check[$key])) {
 				echo "\t\t\t<p>". $check[$key] . "</p>";

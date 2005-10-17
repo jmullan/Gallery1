@@ -52,39 +52,33 @@ class Album {
         $this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
         $this->fields["returnto"] = $gallery->app->default["returnto"];
         $this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
+        $this->fields["thumb_ratio"] = $gallery->app->default["thumb_ratio"];
         $this->fields["resize_size"] = $gallery->app->default["resize_size"];
         $this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
-        $this->fields['max_size'] = $gallery->app->default['max_size'];
-        $this->fields['max_file_size'] = $gallery->app->default['max_file_size'];
+        $this->fields["max_size"] = $gallery->app->default["max_size"];
+        $this->fields["max_file_size"] = $gallery->app->default["max_file_size"];
         $this->fields["rows"] = $gallery->app->default["rows"];
         $this->fields["cols"] = $gallery->app->default["cols"];
         $this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
         $this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
-        if (isset($gallery->app->default['print_photos'])) {
-            $this->fields["print_photos"] = $gallery->app->default["print_photos"];
-        }
-
+        $this->fields["print_photos"] = isset($gallery->app->default["print_photos"]) ? $gallery->app->default["print_photos"] : '';
+        $this->fields["use_exif"] = isset($gallery->app->use_exif) ? 'yes' : 'no';
         $this->fields["guid"] = 0;
-        if (isset($gallery->app->use_exif)) {
-            $this->fields["use_exif"] = "yes";
-        } else {
-            $this->fields["use_exif"] = "no";
-        }
 
         $standardPerm = ($gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody";
 
         switch($standardPerm) {
             case 'nobody':
-            $UserToPerm = $gallery->userDB->getNobody();
+                $UserToPerm = $gallery->userDB->getNobody();
             break;
 
             case 'loggedin':
-            $UserToPerm = $gallery->userDB->getLoggedIn();
+                $UserToPerm = $gallery->userDB->getLoggedIn();
             break;
 
             case 'everybody':
             default:
-            $UserToPerm= $gallery->userDB->getEverybody();
+                $UserToPerm= $gallery->userDB->getEverybody();
             break;
         }
 
@@ -318,6 +312,7 @@ class Album {
         $this->fields["last_quality"] = $gallery->app->jpegImageQuality;
         $check = array(
             'thumb_size',
+            'thumb_ratio',
             'resize_size',
             'resize_file_size',
             'max_size',
@@ -757,7 +752,7 @@ class Album {
         return $photo->getThumbDimensions($size);
     }
 
-    function getHighlightDimensions($size=0) {
+    function getHighlightDimensions($size = 0) {
         $index = $this->getHighlight();
         if (!isset($index)) {
             return array(0, 0);
@@ -781,6 +776,8 @@ class Album {
     }
 
     function getHighlight() {
+        debugMessage(_("Getting highlight"), __FILE__, __LINE__, 3);
+        
         if ($this->numPhotos(1) == 0) {
             return null;
         }
@@ -796,7 +793,8 @@ class Album {
 
     function getHighlightSize() {
         global $gallery;
-        $parentAlbum =& $this->getParentAlbum(FALSE);
+        
+        $parentAlbum = $this->getParentAlbum(FALSE);
         if (isset($parentAlbum)) {
             $size = $parentAlbum->fields["thumb_size"];
         } else {
@@ -805,7 +803,27 @@ class Album {
         return $size;
     }
 
+    /**
+     * Returns ratio of highlight, 
+     * which is either thumb ratio of parent album, or value from config if root.
+     * @return string   $size
+     * @author Jens Tkotz <jens@peino.de>
+     */
+    function getHighlightRatio() {
+        global $gallery;
+        
+        $parentAlbum = $this->getParentAlbum(FALSE);
+        if (isset($parentAlbum)) {
+            $ratio = getPropertyDefault('thumb_ratio', $parentAlbum, false);
+        } else {
+            $ratio = getPropertyDefault('highlight_ratio', false, true);
+        }
+        return $ratio;
+    }
+    
     function setHighlight($index) {
+        debugMessage(_("Setting highlight"), __FILE__, __LINE__, 3);
+        
         $this->updateSerial = 1;
         $numPhotos = $this->numPhotos(1);
 
@@ -926,6 +944,7 @@ class Album {
      * recipient.  You will note that we don't currently translate these messages.
      */
     function save($msg = array(), $resetModDate = 1) {
+        //print_r($this->fields);
         global $gallery;
         $dir = $this->getAlbumDir();
 
@@ -1350,7 +1369,7 @@ class Album {
         return false;
     }
 
-    function deletePhoto($index, $forceResetHighlight="0", $recursive=1) {
+    function deletePhoto($index, $forceResetHighlight = "0", $recursive = 1) {
         global $gallery;
 
         // Get rid of the block-random cache file, to prevent out-of-bounds
@@ -1440,20 +1459,20 @@ class Album {
         return array($album, $photo);
     }
 
-    function getHighlightAsThumbnailTag($size=0, $attrs="") {
+    function getHighlightAsThumbnailTag($size = 0, $attrs = '') {
         list ($album, $photo) = $this->getHighlightedItem();
         if ($photo) {
-            return $photo->getThumbnailTag($album->getAlbumDirURL("highlight"), $size, $attrs);
+            return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
         } else {
             return '<span class="title">'. _("No highlight") .'!</span>';
         }
     }
 
-    function getHighlightTag($size=0, $attrs="",$alttext="") {
+    function getHighlightTag($size = 0, $attrs = '', $alttext = '') {
         $index = $this->getHighlight();
         if (isset($index)) {
             $photo = $this->getPhoto($index);
-            return $photo->getHighlightTag($this->getAlbumDirURL("highlight"), $size, $attrs, $alttext);
+            return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs, $alttext);
         } else {
             return '<span class="title">'. _("No highlight") .'!</span>';
         }
@@ -1830,14 +1849,11 @@ class Album {
         }
     }
 
-    function makeThumbnailRecursive($index)
-    {
-        for ($i=1; $i <= $this->numPhotos(1); $i++)
-        {
-            if ($this->isAlbum($i))
-            {
+    function makeThumbnailRecursive($index) {
+        for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+            if ($this->isAlbum($i)) {
                 $nestedAlbum = new Album();
-                $index="all";
+                $index = 'all';
                 $nestedAlbum->load($this->getAlbumName($i));
 
                 $np = $nestedAlbum->numPhotos(1);
@@ -1847,14 +1863,12 @@ class Album {
 
                 $album = $this->getNestedAlbum($i);
                 $l = $album->getHighlight();
-                if (isset($l))
-                {
+                if (isset($l)) {
                     $album->setHighlight($l);
                     $album->save();
                 }
             }
-            else
-            {
+            else {
                 echo("<br> ". sprintf(_("Processing image %d..."), $i));
                 my_flush();
                 $this->makeThumbnail($i);
@@ -2054,6 +2068,7 @@ class Album {
                 $nestedAlbum->fields["bordercolor"] = $this->fields["bordercolor"];
                 $nestedAlbum->fields["border"] = $this->fields["border"];
                 $nestedAlbum->fields["thumb_size"] = $this->fields["thumb_size"];
+                $nestedAlbum->fields["thumb_ratio"] = $this->fields["thumb_ratio"];
                 $nestedAlbum->fields["resize_size"] = $this->fields["resize_size"];
                 $nestedAlbum->fields["resize_file_size"] = $this->fields["resize_file_size"];
                 $nestedAlbum->fields["max_size"] = $this->fields["max_size"];

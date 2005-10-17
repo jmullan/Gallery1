@@ -75,11 +75,7 @@ function editCaption($album, $index) {
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album = false) {
     global $gallery;
-    global $commentdraw;
-    global $i;
     global $commenter_name;
-
-    $html = '';
 
     echo showComments($index, $album, $newestFirst);
 
@@ -335,10 +331,9 @@ function printMicroChildren($albumName, $depth = 0) {
                 if ($depth == 0 && !$printedHeader++) {
                     echo '<br><br><strong>'. _("Sub-albums") .':</strong><br>';
                 }
-                echo '<a href="';
-                echo makeAlbumUrl($myName);
-                echo '">' . $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
-                  'class="nav_micro_img"', "$val2 $val3") . '</a>&nbsp';
+                $highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
+                  'class="nav_micro_img"', "$val2 $val3");
+                echo '<a href="'. makeAlbumUrl($myName). '">'. $highlightTag .'</a>&nbsp';
                 printMicroChildren($myName, $depth+1);
             }
         }
@@ -667,7 +662,7 @@ function includeLayout($name, $skinname='') {
     }
 }
 
-function includeHtmlWrap($name, $skinname='', $adds='') {
+function includeHtmlWrap($name, $skinname = '') {
 
     // define these globals to make them available to custom text
     global $gallery;
@@ -1138,3 +1133,27 @@ function album_validation_link($album, $photo='', $valid=true) {
     }
     return $link;
 }
+
+/**
+ * This function outputs the HTML Start elements of an Popup.
+ * It was made to beautify php code ;)
+ */
+function printPopupStart($title = '', $header = '', $align = 'center') {
+	global $gallery;
+	if (!empty($title) && empty($header)) {
+		$header = $title;
+	}
+?>
+<html>
+<head>
+  <title><?php echo $title; ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo $header; ?></div>
+<div class="popup" align="<?php echo $align; ?>">
+
+<?php
+}
+
+?>

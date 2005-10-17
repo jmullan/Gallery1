@@ -317,16 +317,14 @@ class AlbumItem {
 		return $this->hidden;
 	}
 
-	function setHighlight($dir, $bool, &$album,
-	    $name=null, $tag=null, $srcdir=null, $srcitem=null) {
+	function setHighlight($dir, $bool, &$album, $name = null, $tag = null, $srcdir = null, $srcitem = null) {
 		global $gallery;
 		
 		$this->highlight = $bool;
 		
 		/*
-		 * if it is now the highlight make sure it has a highlight
-                 * thumb otherwise get rid of it's thumb (ouch!).
-		 */
+		 * if it is now the highlight make sure it has a highlight thumb otherwise get rid of it's thumb (ouch!).
+		*/
 
 		if ($this->highlight) {
 			if (!isset($name)) {
@@ -366,9 +364,7 @@ class AlbumItem {
 
 				// Then resize it down
 				if ($ret) {
-					$ret = resize_image("$dir/$name.tmp.$tag", 
-							    "$dir/$name.highlight.$tag",
-							    $size);
+					$ret = resize_image("$dir/$name.tmp.$tag", "$dir/$name.highlight.$tag", $size);
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
 			} elseif ($srcitem->isMovie()) {
@@ -380,9 +376,19 @@ class AlbumItem {
 					$ret = 0;
 				}
 			} else {
-				$ret = resize_image("$srcdir/".$srcitem->image->name.".$tag",
-						    "$dir/$name.highlight.$tag",
-						    $size);
+			    $ratio = $album->getHighlightRatio();
+			    $src = "$srcdir/".$srcitem->image->name.".$tag";
+			    $dest = "$dir/$name.highlight.$tag";
+
+			    if(!empty($ratio)) {
+			        $ret = cropImageToRatio ($src, $dest, $size, $ratio);
+			    }
+			    
+			    if(isset($ret)) {
+			        $ret = resize_image($dest, $dest, $size);
+			    } else {
+			        $ret = resize_image($src, $dest, $size);
+			    }
 			}
 
 			if ($ret) {
@@ -454,7 +460,7 @@ class AlbumItem {
 		return $im->isResized();
 	}
 
-	function rotate($dir, $direction, $thumb_size, &$album, $clearexifrotate=false) {
+	function rotate($dir, $direction, $thumb_size, &$album, $clearexifrotate = false) {
 		global $gallery;
 
 		$name = $this->image->name;
@@ -555,7 +561,7 @@ class AlbumItem {
 		return ($retval);
         }
 
-	function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb="") {
+	function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb = '') {
 		global $gallery;
 
 		/*
@@ -574,15 +580,21 @@ class AlbumItem {
 		return $ret;
 	}
 
-	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb="") {
+	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb = '') {
 		global $gallery;
 		$name = $this->image->name;
 		$tag = $this->image->type;
 
+        $ratio = isset($album->fields["thumb_ratio"]) ? $album->fields["thumb_ratio"] : 0;
+
 		if (isDebugging()) {
-		     processingMsg(_("Generating thumbnail."));
+		     echo "\n". _("Generating thumbnail.");
 		}
 		
+		debugMessage(sprintf(_("Saved Dimensions: x:%d y: %d"), 
+		  $this->image->raw_width, $this->image->raw_height),
+		   __FILE__, __LINE__, 3);
+				
 		if ($this->isMovie()) {
 			/* Use a preset thumbnail */
 			fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
@@ -603,12 +615,22 @@ class AlbumItem {
 								 $this->image->thumb_width, 
 								 $this->image->thumb_height);
 				if ($ret) {
-					$ret = resize_image("$dir/$name.thumb.$tag", 
-										"$dir/$name.thumb.$tag", $thumb_size);
+					$ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size);
 				}
 			} else {
-				$ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag",
-					     $thumb_size);
+			    if(!empty($ratio)) {
+			        $ret = cropImageToRatio ("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, $ratio);
+			        if($ret) {
+			            $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+			        } else {
+			            $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+			        }
+			    }
+			    else {
+			        debugMessage(_("Generating normal thumbs"), __FILE__, __LINE__);
+			        // no resizing, use ratio for thumb as for the image itself;
+			        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+			    }
 			}
 
 			if ($ret) { 
@@ -630,7 +652,7 @@ class AlbumItem {
 		return 0;
 	}
 
-	function getPreviewTag($dir, $size=0, $attrs="") {
+	function getPreviewTag($dir, $size = 0, $attrs = '') {
 		if ($this->preview) {
 			return $this->preview->getTag($dir, 0, $size, $attrs);
 		} else {
@@ -755,9 +777,16 @@ class AlbumItem {
 		return $this->isAlbumName;
 	}
 
+	/**
+	 * Returns true or false wether the item is in acceptableMovieList or not
+	 * @return bool
+	 */
 	function isMovie() {
 		if (isset($this->image)) {
 			return isMovie($this->image->type);
+		}
+		else {
+		    return false;
 		}
 	}
 
@@ -766,28 +795,26 @@ class AlbumItem {
 			$this->image->resize($dir, $target, $filesize, $pathToResized);
 		}
 	}
-	function setExtraField($name, $value)
-	{
-		$this->extraFields[$name]=$value;
+	function setExtraField($name, $value) {
+		$this->extraFields[$name] = $value;
 	}
-	function getExtraField($name)
-	{
+	function getExtraField($name) {
 		if (isset($this->extraFields[$name])) {
 			return $this->extraFields[$name];
 		}
 		return null;
 	}
-	function lastCommentDate() 
-	{
+	function lastCommentDate()  {
 		global $gallery;
 		if ($this->numComments() == 0) {
 			return -1;
 		}
-		$comment=$this->getComment($this->numComments());
+		$comment = $this->getComment($this->numComments());
 		return $comment->datePosted; // returns the time()
        	}
+       	
 	function getEmailMe($type, $user) {
-		$uid=$user->getUid();
+		$uid = $user->getUid();
 		if (isset ($this->emailMe[$type])) {
 			return isset($this->emailMe[$type][$uid]);
 		} else {
@@ -805,14 +832,14 @@ class AlbumItem {
 		if ($this->getEmailMe($type, $user)) {
 		       	return;
 		}
-		$uid=$user->getUid();
+		$uid = $user->getUid();
 		$this->emailMe[$type][$uid]=true;
 	}
 	function unsetEmailMe($type, $user) {
 		if (!$this->getEmailMe($type, $user)) {
 		       	return;
 		}
-		$uid=$user->getUid();
+		$uid = $user->getUid();
 		unset($this->emailMe[$type][$uid]);
 	}
 }

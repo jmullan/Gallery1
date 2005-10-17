@@ -81,7 +81,7 @@ if (!empty($urls)) {
 	*/
 	if (fs_is_dir($url)) {
 		processingMsg(sprintf(_("Processing %s as a local directory."), 
-			'<i>' . htmlspecialchars(removeTags(urldecode($url))) . '</i>'));
+			'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>'));
 		$handle = fs_opendir($url);
 		while (($file = readdir($handle)) != false) {
 			if ($file != "." && $file != "..") {
@@ -119,7 +119,7 @@ if (!empty($urls)) {
 		if (!empty($url) && !fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
 				processingMsg(sprintf(_('Unable to find %s locally - trying %s.'), 
-					htmlspecialchars(removeTags(urldecode($url))), 'http'));
+					htmlspecialchars(strip_tags(urldecode($url))), 'http'));
 				$url = "http://$url";
 			}
 
@@ -307,7 +307,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 	$name = array_shift($_FILES['userfile']['name']);
 	$file = array_shift($_FILES['userfile']['tmp_name']);
 	if (!empty($usercaption) && is_array($usercaption)) {
-	    $caption = removeTags(array_shift($usercaption));
+	    $caption = strip_tags(array_shift($usercaption));
 	} else {
 	    $caption = '';
 	}

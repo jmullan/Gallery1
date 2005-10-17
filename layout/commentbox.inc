@@ -4,7 +4,7 @@
 
 	$fromString = wordwrap($comment->getName(), 50, " ", 1) .'&nbsp;&nbsp;'. $comment->getDatePosted();
 	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
-	    $fromString .= ' (@'. removeTags($comment->getIPNumber()) .')';
+	    $fromString .= ' (@'. strip_tags($comment->getIPNumber()) .')';
 	}
 ?>
 		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="albumdesc">

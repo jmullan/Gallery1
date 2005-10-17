@@ -46,9 +46,8 @@ if (getRequestVar('save')) {
      * 1.) get the values given by user, so we can put them into the album later.
      * 2.) Load the properties and check wether a user input is invalid.
      */
-
     include (dirname(__FILE__) . '/includes/definitions/albumProperties.php');
-    foreach ($gallery->album->fields as $fieldName => $values) {
+    foreach ($properties as $fieldName => $values) {
         ${$fieldName} = getRequestVar($fieldName);
         if (isset($properties[$fieldName]['vartype'])) {
             list($status, ${$fieldName}, $infoMessage) =
@@ -69,10 +68,11 @@ if (getRequestVar('save')) {
     $gallery->album->fields["border"] = $border;
     $gallery->album->fields["background"] = $background;
     $gallery->album->fields["thumb_size"] = $thumb_size;
+    $gallery->album->fields["thumb_ratio"] = $thumb_ratio;
     $gallery->album->fields["resize_size"] = $resize_size;
     $gallery->album->fields["resize_file_size"] = $resize_file_size;
-    $gallery->album->fields['max_size'] = $max_size;
-    $gallery->album->fields['max_file_size'] = $max_file_size;
+    $gallery->album->fields["max_size"] = $max_size;
+    $gallery->album->fields["max_file_size"] = $max_file_size;
     $gallery->album->fields["returnto"] = $returnto;
     $gallery->album->fields["rows"] = $rows;
     $gallery->album->fields["cols"] = $cols;

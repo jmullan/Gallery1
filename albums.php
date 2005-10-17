@@ -188,21 +188,27 @@ if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
-    if ($gallery->userDB->canModifyUser()) {
-        $iconText = getIconText('yast_sysadmin.gif', _("preferences"));
-        $iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
-    }
-
     if ($gallery->user->isAdmin()) {
+        
+        $iconText = getIconText('unsortedList.gif', _("rebuild highlights"));
+        $linkurl = doCommand('rebuild_highlights', array('type' => 'popup'));
+        $iconElements[] = popup_link($iconText, $linkurl, true);
+        
+        $iconText = getIconText('kdf.gif', _("admin page"));
+        $iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
+         
         $docsUrl = galleryDocs('admin');
         if ($docsUrl) {
             $iconText = getIconText('info.gif', _("documentation"));
             $iconElements[] = "<a href=\"$docsUrl\">". $iconText .'</a>';
         }
-
-        $iconText = getIconText('kdf.gif', _("admin page"));
-        $iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
     }
+    
+    if ($gallery->userDB->canModifyUser()) {
+        $iconText = getIconText('yast_sysadmin.gif', _("preferences"));
+        $iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
+    }
+    
     if (!$GALLERY_EMBEDDED_INSIDE) {
         $iconText = getIconText('exit.gif', _("logout"));
         $iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';

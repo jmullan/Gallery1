@@ -663,7 +663,7 @@ if ($numPhotos) {
             } elseif (isset($myAlbum)) {
                 // We already loaded this album - don't do it again, for performance reasons.
 
-                $gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album:"). " ". gallery_htmlentities(removeTags($myAlbum->fields['title'])));
+                $gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',_("Highlight for Album:"). " ". gallery_htmlentities(strip_tags($myAlbum->fields['title'])));
                 $gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
                 $frame= $gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
                 /*begin backwards compatibility */

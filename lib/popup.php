@@ -7,7 +7,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	if (isset($result[1])) {
 		$arglist = $result[1];
 	} else {
-		$arglist = "";
+		$arglist = '';
 	}
 
 	/* Parse the query string arguments */
@@ -77,24 +77,4 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	return "$a1";
 }
 
-/* This function outputs the HTML Start elements of an Popup.
-** It was made to beautify php code ;)
-*/
-function printPopupStart($title="", $header="") {
-	global $gallery;
-	if (!empty($title) && empty($header)) {
-		$header = $title;
-	}
-?>
-<html>
-<head>
-  <title><?php echo $title; ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo $header; ?></div>
-<div class="popup" align="center">
-
-<?php
-}
 ?>

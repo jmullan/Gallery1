@@ -1,25 +1,25 @@
 <?php
 // $Id$
 
+
 //-- shorten the variables for convinience ---
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
-$pixelImage = isset($gallery->html_wrap['pixelImage']) ?
-     $gallery->html_wrap['pixelImage'] :
-    dirname(dirname(__FILE__)) . '/images/pixel_trans.gif';
+$pixelImage = isset($gallery->html_wrap['pixelImage']) ? $gallery->html_wrap['pixelImage'] : getImagePath('pixel_trans.gif');
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];
 $tag = $gallery->html_wrap['imageTag'];
 $frame = $gallery->html_wrap['frame'];
-$attr=isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : "";
+$attr = isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : '';
 
+$base = '';
 if (isset($gallery->html_wrap['base'])) {
-	$base = $gallery->html_wrap['base'];
-	if (!realpath($base)) {
-		print _("Security violation") ."\n";
-		exit;
-	}
+    $base = $gallery->html_wrap['base'];
+}
+
+if (!realpath($base)) {
+    $base = getGalleryBaseUrl();
 }
 
 if (!empty($href) ) {
@@ -63,11 +63,7 @@ case "solid":
   <?php
   break;
 default: // use frames directory
-  if (isset($base)) {
-    $base = $base . "/html_wrap/frames/$frame";
-  } else {
-    $base = $gallery->app->photoAlbumURL . "/html_wrap/frames/$frame";
-  }
+  $base = $base . "/html_wrap/frames/$frame";
 
   include (dirname(__FILE__) . "/frames/$frame/frame.def");
   // Safari/Opera ignore height="100%" for table, but this ensures HTML

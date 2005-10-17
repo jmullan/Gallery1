@@ -57,16 +57,33 @@ if (empty($rebuild_type)) {
 }
 
 switch ($cmd) {
+    case 'rebuild_highlights':
+        $albumDB = new AlbumDB(true);
+        $albumList = $albumDB->albumList;
+        $i = 0;
+    
+        foreach($albumList as $nr => $album) {
+            if($album->isRoot()) {
+                $i++;
+                echo "\n<br><b>". sprintf (_("Rebuilding highlight %s"), $i) . '</b>';
+                $album->setHighlight($album->getHighlight());
+                $album->save();
+            }
+        }
+        dismissAndReload();
+    break;
+    
 	case 'remake-thumbnail':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
-			printPopupStart($title);
-
 			if (empty($rebuild_type)) {
+                printPopupStart($title, '', 'center');
 				echo _("Do you also want to rebuild the thumbnails in subalbums?");
-				echo makeFormIntro('do_command.php', 
-					array(),
-					array('type' => 'popup', 'index' => $index, 'cmd' => $cmd, 
-						'return' => $return, 'parentName' => $parentName));
+				echo makeFormIntro('do_command.php', array(),
+					array('type' => 'popup',
+					    'index' => $index,
+					    'cmd' => $cmd, 
+						'return' => $return,
+						'parentName' => $parentName));
 ?>
 		<br>
 		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("yes"); ?>
@@ -77,20 +94,22 @@ switch ($cmd) {
 <?php
 			}
 			else {
+			    printPopupStart($title, '', 'left');
 				if ($rebuild_type == "single") {
 					if ($gallery->session->albumName && isset($index)) {
 						if ($index == "all") {
 							$np = $gallery->album->numPhotos(1);
-							echo ("<br> " . sprintf(_("Rebuilding %d thumbnails..."), $np));
+							echo ("\n<h3>" . sprintf(_("Rebuilding %d thumbnails..."), $np) .'</h3>');
 							my_flush();
 							for ($i = 1; $i <= $np; $i++) {
-								echo("<br> ". sprintf(_("Processing image %d..."), $i));
+								echo("\n<h4>". sprintf(_("Processing image %d..."), $i) .'</h4>');
 								my_flush();
 								set_time_limit($gallery->app->timeLimit);
 								$gallery->album->makeThumbnail($i);
 							}
+							echo "\n<hr width=\"100%\">";
 						} else {
-							echo ("<br> " . _("Rebuilding 1 thumbnail..."));
+							echo ("\n<h3>" . _("Rebuilding 1 thumbnail...") .'</h3>');
 							my_flush();
 							set_time_limit($gallery->app->timeLimit);
 							$gallery->album->makeThumbnail($index);
@@ -112,8 +131,8 @@ switch ($cmd) {
 	
 	case 'logout':
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
-		$gallery->session->username = "";
-		$gallery->session->language = "";
+		$gallery->session->username = '';
+		$gallery->session->language = '';
 		destroyGallerySession();
 
 		// Prevent the 'you have to be logged in' error message

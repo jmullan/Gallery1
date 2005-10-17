@@ -27,7 +27,7 @@ require_once(dirname(__FILE__) . '/init.php');
 list($username, $gallerypassword, $forgot, $login) = getRequestVar(array('username', 'gallerypassword', 'forgot', 'login'));
 
 /* decode user data, remove tags, and then re-encode using html entities for safe page display */
-$username = htmlspecialchars(removeTags(urldecode($username)));
+$username = htmlspecialchars(strip_tags(urldecode($username)));
 
 if (!empty($username) && !empty($gallerypassword)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($username);

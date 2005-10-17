@@ -1529,7 +1529,6 @@ function check_filedirective() {
 	} else {
 		$fail['buggy__FILE__'] = 1;
 	}
-
 	return array($success, $fail, $warn);
 }
 

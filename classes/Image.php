@@ -109,7 +109,7 @@ class Image {
 			if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 				fs_unlink("$dir/$this->resizedName.$this->type");
 			}
-			$this->resizedName = "";
+			$this->resizedName = '';
 		/* doing a resize */
 		} else {
 			$name = $this->name;
@@ -118,9 +118,7 @@ class Image {
 			if ($pathToResized) {
 				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");	
 			} else {
-				$ret = resize_image("$dir/$name.$type",
-					     "$dir/$name.sized.$this->type",
-					     $target, $filesize);
+				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
 			}
 			
 			#-- resized image is not always a jpeg ---

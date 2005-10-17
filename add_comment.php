@@ -1,4 +1,4 @@
-<?php
+strip_tags<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2005 Bharat Mediratta
@@ -59,8 +59,8 @@ if (isset($save)) {
 	} elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
 		$error_text = _("Your Comment contains forbidden words. It will not be added.");
 	} else {
-		$comment_text = removeTags($comment_text);
-		$commenter_name = removeTags($commenter_name);
+		$comment_text = strip_tags($comment_text);
+		$commenter_name = strip_tags($commenter_name);
 		$IPNumber = $_SERVER['REMOTE_ADDR'];
 		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
 		

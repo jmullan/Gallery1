@@ -230,42 +230,41 @@ if (!strcmp($cmd, "select-album")) {
 
 if (!strcmp($cmd, "new-album")) {
 
-        // Do we have a logged in user?
-        if (!$gallery->user->isLoggedIn()) {
-		$error= _("Not Logged In!");
+    // Do we have a logged in user?
+    if (!$gallery->user->isLoggedIn()) {
+        $error= _("Not Logged In!");
 
-        	// Permission checks
-		// can the user create albums in the ROOT level
-        } elseif (isset($createNewAlbum) && ($set_albumName == '_xp_wiz_root') && !($gallery->user->canCreateAlbums()) ) {
-            $error = _("User cannot create ROOT level album.") ."<br>\n";
+        // Permission checks
+        // can the user create albums in the ROOT level
+    } elseif (isset($createNewAlbum) && ($set_albumName == '_xp_wiz_root') && !($gallery->user->canCreateAlbums()) ) {
+        $error = _("User cannot create ROOT level album.") ."<br>\n";
 
-		// can the user create nested albums in the specified album
-        } elseif (isset($createNewAlbum) && 
-			isset($set_albumName) && 
-			$set_albumName != '_xp_wiz_root' && 
-			!($gallery->user->canCreateSubAlbum($gallery->album))
-	) {
-            $error = sprintf(_("User cannot create nested album in %s."),
-			    $gallery->album->fields[title]);
-	} elseif (isset($createNewAlbum) && empty($set_albumName)) {
-		$error = _("No Parent Album Specified!");
-        } elseif (isset($createNewAlbum)) {
-		if ($set_albumName == '_xp_wiz_root') {
-			$parentName = '';
-		} elseif (isset($set_albumName)) {
-			$parentName = $set_albumName;
-		}
+        // can the user create nested albums in the specified album
+    } elseif (isset($createNewAlbum) &&
+    isset($set_albumName) &&
+      $set_albumName != '_xp_wiz_root' &&
+      !($gallery->user->canCreateSubAlbum($gallery->album))) {
+        $error = sprintf(_("User cannot create nested album in %s."),
+        $gallery->album->fields[title]);
+    } elseif (isset($createNewAlbum) && empty($set_albumName)) {
+        $error = _("No Parent Album Specified!");
+    } elseif (isset($createNewAlbum)) {
+        if ($set_albumName == '_xp_wiz_root') {
+            $parentName = '';
+        } elseif (isset($set_albumName)) {
+            $parentName = $set_albumName;
+        }
 
-		if ($set_albumName) {
-			$success = createNewAlbum($parentName);
-		}
+        if ($set_albumName) {
+            $success = createNewAlbum($parentName);
+        }
 
-                if ($newAlbumTitle) {
-			$newAlbumTitle = removeTags($newAlbumTitle);
-                        $gallery->album->fields["title"] = $newAlbumTitle;
-                	$gallery->album->save();
-                }
-	} else {
+        if ($newAlbumTitle) {
+            $newAlbumTitle = strip_tags($newAlbumTitle);
+            $gallery->album->fields["title"] = $newAlbumTitle;
+            $gallery->album->save();
+        }
+    } else {
 		if (empty($newAlbumTitle)) $newAlbumTitle = "Untitled";
 		?>
 <p class="popuphead" align="center"><?php echo _("Create New Album") ?></p>

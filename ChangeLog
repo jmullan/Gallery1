@@ -1,3 +1,31 @@
+2005-10-17 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b19
+
+ * Change: removed function removeTags(), which was just a wrapper for strip_tags()
+
+ * NEW: Added ratio for thumbnails (per album) and highlight (startpage).
+        0   - Ratio as the original
+	1/1 - Square
+
+       -> Config version bump
+ 
+ * New: Added "rebuild highlights" for admins. It rebuild all highlights on startpage.
+
+ * New: Added "Paranoia" debuglevel, not useful for normal debug ;)
+
+ * Change: reworked function getDimensions(), removed second parameter.
+
+ * Change: create lib/album.php and lib/imageManipulation.php, moved functions from util.php.
+
+ * New: method getHighlightRatio() in classes/Album.php
+
+ * Change: modified method makeThumbnail() in classes/AlbumItem.php to hence thumbnail ratio.
+
+ * New: function cropImageToRatio() in lib/imageManipulation.php
+
+ * Change: Some css changes in config to save space.
+
+ * Fix: Frames were broken due to wrond base url.
+
 2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b18
 
  * Change: Added subgroups in configwizard.
