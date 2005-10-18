@@ -425,12 +425,18 @@ function check_php() {
 
 	if (!function_exists('version_compare') || !version_compare($version, "4.1.0", ">=")) {
 		$fail['fail-too-old'] = 1;
-	} else {
-		$success[] = sprintf(_("PHP v%s is OK."), $version);
 	}
-
+	
+	if (strstr(__FILE__, 'lib/setup.php') ||
+	  strstr(__FILE__, 'lib\\setup.php')) {
+        $success[] = sprintf(_("PHP v%s is OK."), $version);
+	} else {
+		$fail['fail-buggy__FILE__'] = 1;
+	}
+	
 	return array($success, $fail, $warn);
 }
+
 function check_mod_rewrite()  {
 	global $GALLERY_REWRITE_OK;
 
@@ -736,8 +742,7 @@ function check_gallery_version() {
 
 	$link="<a href=\"$gallery->url\">$gallery->url</a>";
 
-	$visit=sprintf(_("You can check for more recent versions by visiting %s."), 
-			$link);
+	$visit = sprintf(_("You can check for more recent versions by visiting %s."), $link);
 	$this_version = sprintf(_("This version of %s was released on %s."),
 			Gallery(), strftime("%x", $gallery->last_change));
 	$this_beta_version = sprintf(_("This is a development build of %s that was released on %s."),
@@ -1516,20 +1521,6 @@ function displayNameOptions() {
 		"!!USERNAME!! (!!EMAIL!!)" =>
 			sprintf("%s (%s)", _("Username"), _("email address")),
 		     );
-}
-
-function check_filedirective() {
-	$success = array();
-	$fail = array();
-	$warn = array();
-
-	if (strstr(__FILE__, 'lib/setup.php') ||
-		strstr(__FILE__, 'lib\\setup.php')) {
-		$success[]=_("Your version of PHP handles this issue properly.");
-	} else {
-		$fail['buggy__FILE__'] = 1;
-	}
-	return array($success, $fail, $warn);
 }
 
 function checkVersions($verbose=false) {

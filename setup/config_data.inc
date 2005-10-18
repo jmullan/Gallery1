@@ -68,7 +68,7 @@ if (function_exists("posix_getpwuid")) {
 }
 
 
-$common_messages["getting-netpbm"] =
+$common_messages["getting-netpbm"] = '<br>'.
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
 				 "<a href=\"http://sourceforge.net/projects/gallery\">",
 				 "</a>",
@@ -81,7 +81,7 @@ $common_messages["fail-netpbm-partial"] =
 			_("I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date.") . "  " .
 			$common_messages["getting-netpbm"];
 
-$common_messages["getting-imagemagick"] =
+$common_messages["getting-imagemagick"] = '<br>'.
 			sprintf(_("Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ), 
 				'<a href="http://www.imagemagick.org">', '</a>') .
 			'<br><span class="emphasis">' . _("Note:"). '</span> ' .
@@ -98,26 +98,24 @@ $common_messages["open-basedir-active"] =
 			
 $checklist = array(
 	'gallery_version' => array(
+	    'prompt' => _("Gallery version"),
 		'optional' => 1,
 		'desc' => sprintf(_("Check to see how old %s version %s is."),
 			Gallery(),
 			"<i>$gallery->version</i>"),
-	     	'func' => "check_gallery_version"
+        'func' => "check_gallery_version"
 	),
 	'php' => array(
-		'desc' => _("Check to see if you are running PHP 4.1.0 or greater.") ."<br>".  _("Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."),
-	     	'func' => "check_php",
+	    'prompt' => _("PHP version"),
+		'desc' => _("Check to see if you are running a supported Version of PHP.") ."<br>".  _("Due to bugs and missing functionality in some PHP versions, the minimum PHP version for Gallery 1.5 and newer is at least PHP 4.1.0"),
+	    'func' => "check_php",
 		'fail-too-old' => sprintf(_("You're running PHP version %s.  You need to upgrade to PHP %s."), phpversion(), $MIN_PHP_MAJOR_VERSION),
 		'fail-incompatible' => sprintf(_("You're running PHP version %s which has known bugs that cause Gallery to fail."),  phpversion()),
+		'fail-buggy__FILE__' => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
 		'serious' => 1,
 	),
-	'buggy_php' => array(
-		'desc' => _("We are using predefined variables which some older version of PHP have problems with."),
-		'func' => "check_filedirective",
-		'buggy__FILE__' => _("It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"),
-		'serious' => 1
-	),
 	'register_globals' => array(
+	    'prompt' => _("Register globals"),
 		'desc' => _("Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."),
 		'func' => "check_register_globals",
 		'warn-register_globals' => _("The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."),
@@ -125,6 +123,7 @@ $checklist = array(
 		'optional' => 1,
 	),
 	'safe_mode' => array(
+	    'prompt' => _("PHPs safe mode disabled"),
 		'desc' => _("Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		'func' => "check_safe_mode",
 		'fail-safe-mode' => sprintf(_("<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
@@ -141,12 +140,14 @@ $checklist = array(
 		'serious' => 1
 	),
 	'exec' => array(
+	    'prompt' => _("PHPs exec() function enabled"),
 		'desc' => _("The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		'func' => "check_exec",
 		'fail-exec' => _("The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		'serious' => 1,
 	),
 	'htaccess' => array(
+	    'prompt' => _(".htaccess processed by apache"),
 		'desc' => _("Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
 		'func' => "check_htaccess",
 		'fail-htaccess' => _("Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") ."<br><pre>" .
@@ -157,15 +158,17 @@ $checklist = array(
 		'optional' => 1
 	),
 	'magic-quotes' => array(
+	    'prompt' => _("PHPs magic quotes off"),
 		'optional' => 1,
 		'desc' => sprintf(_("Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."),
-		 '<b><a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc" target="_blank">',
-		'</a></b>'),
-	     	'func' => "check_magic_quotes",
+		  '<b><a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc" target="_blank">',
+		  '</a></b>'),
+	    'func' => "check_magic_quotes",
 		'fail-magic-quotes' => sprintf(_("Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."),
 			": <pre>\n\tmagic_quotes_gpc = Off</pre>")
 	),
 	'mod-rewrite' => array(
+	    'prompt' => _("Apache mod_rewrite"),
 		'desc' => _("Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
 		'func' => "check_mod_rewrite",
 		'fail-mod-rewrite' => _("Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") .
@@ -173,19 +176,19 @@ $checklist = array(
 		'optional' => 1
 	),
 	'NetPBM' => array(
+	    'prompt' => _("NetPBM installed"),
 		'optional' => 1,
 		'desc' => _("Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."),
 		'func' => "check_graphics",
 		'fail-netpbm' => _("I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: " ) .
 			$common_messages["getting-netpbm"],
-
 		'fail-netpbm-partial' => 
 			$common_messages["fail-netpbm-partial"] .
 			"<p><b> " . _("If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page.") ." </b>",
-
 		'open-basedir-note' => $common_messages["open-basedir-active"]
 	),
 	'ImageMagick' => array(
+	    'prompt' => _("ImageMagick installed"),
 		'optional' => 1,
 		'desc' => _("Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."),
 		'func' => "check_graphics_im",
@@ -197,6 +200,7 @@ $checklist = array(
 		'open-basedir-note' => $common_messages["open-basedir-active"]
 	),
 	'exif' => array(
+	    'prompt' => _("Jhead installed"),
 		'optional' => 1,
 		'desc' => _("Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		'func' => "check_exif",
@@ -206,6 +210,7 @@ $checklist = array(
 		'open-basedir-note' => $common_messages["open-basedir-active"]
 	),
 	'jpegtran' => array (
+	    'prompt' => _("jpegtran installiert"),
 		'optional' => 1,
 		'desc' => _("Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		'func' => "check_jpegtran",
@@ -215,6 +220,7 @@ $checklist = array(
 		'open-basedir-note' => $common_messages["open-basedir-active"]
 	),	
 	'gettext' => array (
+	    'prompt' => _("Gettext support in PHP"),
 		'optional' => 1,
 		'desc' => _("Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."),
 		'func' => "check_gettext",
@@ -222,19 +228,22 @@ $checklist = array(
 			'<a href="http://www.php.net/manual/en/ref.gettext.php">', '</a>')
 	),
 	'gallery-locale' => array (
+	    'prompt' => _("Locales needed for Gallery"),
 		'optional' => 1,
 		'desc' => _("Check to see what languages are available."),
 		'func' => "check_gallery_languages"
 	),
 	'missing-locales' => array (
+        'prompt' => _("missing locales"),  
 		'optional' => 1,
 		'enabled' => (sizeof(gallery_languages()) > 1) ? "yes" :"no",
 		'desc' => _("Testing to see which <b>system</b> locales (if any) are absent.") . "<br>".
-				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to show date and time in the according format to the language."),
+				_("These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."),
 		'func' => "check_absent_locales",
 		'serious' => ( $elawisyl == "no" ) ? 1 : 0 ,
 	),
 	'check-versions' => array (
+	    'prompt' => _("File integrity"),
 		'desc' => _("Checking to see if you have the latest versions of all Gallery files."),
 		'func' => "check_gallery_versions",
 		'serious' => 1,
@@ -504,7 +513,7 @@ $constants =  array_merge(
 	),
 	'highlight_ratio' => array(
 		'prompt' => _("Highlight Ratio"),
-		'desc' => _("The ratio in which the highlight are made"),
+		'desc' => _("The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"),
 		'choices' => array('0' => _("As the original image"), '1/1' => _("Square highlight")),
 		'value' => 0,
 	),

@@ -1156,4 +1156,17 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 <?php
 }
 
+function galleryImage($filename, $alttext = '', $args = array(), $skin = '') {
+    $html = '';
+    $imgUrl = getImagePath($filename, $skin);
+    
+    $html = "<img src=\"$imgUrl\" alt=\"$alttext\" title=\"$alttext\"";
+    if(!empty($args)) {
+        foreach ($args as $key => $value) {
+            $html .= " $key=\"$value\"";
+        }
+    }
+    $html .= '>';
+    return $html;
+}
 ?>

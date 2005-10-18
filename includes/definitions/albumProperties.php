@@ -186,8 +186,8 @@ $properties = array(
         'vartype' => 'int_notnull'
     ),
     'thumb_ratio' => array(
-        'prompt' => _("Thumbnail Ratio"),
-        'desc' => _("The ratio in which the thumbnails are made"),
+        'prompt' => _("The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'"),
+        'desc' => '',
         'choices' => array('0' => _("As the original image"), '1/1' => _("Square thumbs")),
         'value' => getPropertyDefault('thumb_ratio', $gallery->album, false),
     ),

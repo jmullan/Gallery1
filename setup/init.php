@@ -81,7 +81,7 @@ $GALLERY_URL = dirname(dirname($tmp));
 // Make sure GALLERY_URL doesn't end in a slash
 $GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 
-$MIN_PHP_MAJOR_VERSION = 4;
+$MIN_PHP_MAJOR_VERSION = '4.1.0';
 
 if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
 	$GALLERY_REWRITE_OK = 1;
