@@ -107,7 +107,7 @@ foreach ($checklist as $short => $check) {
     // toogle button
     echo "\n\t<td class=\"desc\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
         "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
-        galleryImage('expand.png', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
+        galleryImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
         '</a>';
     echo "\n\t</td>";
     
