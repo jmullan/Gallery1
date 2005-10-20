@@ -38,6 +38,7 @@ doctype();
 <head>
   <title><?php echo _("Photo Properties") ?></title>
   <?php common_header(); ?>
+  <style> td { text-align: <?php echo langLeft() ?> } </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <?php
@@ -130,10 +131,12 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 }
 ?>
 <br><br>
-<form action="#">
-<input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
-</form>
 </div>
+<center>
+<form action="#">
+<input type="button" value="<?php echo _("Close Window") ?>" onclick='parent.close()'>
+</form>
+</center>
 
 <?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
 </div>

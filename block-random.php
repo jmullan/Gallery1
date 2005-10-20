@@ -59,9 +59,9 @@ if (fs_file_exists(CACHE_FILE)) {
 
 if ($rebuild) {
 	scanAlbums();
-	saveCache();
+	saveGalleryBlockRandomCache();
 } else {
-	readCache();
+	readGalleryBlockRandomCache();
 }
 
 $i = 0;
@@ -71,7 +71,7 @@ do {
 } while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
-	echo '<center>No photo chosen.</center>';
+	echo _("No photo chosen.");
 }
 
 function doPhoto() {
@@ -83,20 +83,16 @@ function doPhoto() {
 
 	if (!empty($index)) {
 		$id = $album->getPhotoId($index);
-		echo ""
-			. '<center><a href="' . makeAlbumUrl($album->fields['name'], $id) . '">'
-			. $album->getThumbnailTag($index)
-			. '</a></center>';
+		$caption = $album->getCaption($index) ? '<br><center>'. $album->getCaption($index) . '</center>': '';
 
-		$caption = $album->getCaption($index);
-		if ($caption) {
-			echo '<br><center>' . $caption . '</center>';
-		}
-
-		echo '<br><center>From: '
-			. '<a href="' .makeAlbumUrl($album->fields['name']) .'">'
-			. $album->fields['title']
-			. '</a></center>';
+	    echo "\n  ". '<div class="random-block">';
+	    echo "\n\t  ". '<div class="random-block-photo">';
+	    echo "\n\t\t  ". '<a href="'. makeAlbumUrl($album->fields['name'], $id) .'">'. $album->getThumbnailTag($index) .'</a>';
+	    echo $caption;
+	    echo "\n\t  </div>\n\t  ";
+	    printf (_("From: %s"),
+		'<a href="' .makeAlbumUrl($album->fields['name']) .'">'. $album->fields['title'] .'</a>');
+	    echo "\n  </div>\n";
 		return 1;
 	} else {
 		return 0;
@@ -109,12 +105,12 @@ function doPhoto() {
  * --------------------------------------------------
  */
 
-function saveCache() {
+function saveGalleryBlockRandomCache() {
 	global $cache;
 	safe_serialize($cache, CACHE_FILE);
 }
 
-function readCache() {
+function readGalleryBlockRandomCache() {
 	global $cache;
 
 	$sCache = getFile(CACHE_FILE);

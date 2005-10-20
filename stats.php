@@ -538,7 +538,7 @@ if (!empty($refreshcache) &&
     !isset($period) &&
     !isset($album) &&
     is_array($arrPhotos)) {
-    writeCache($cacheFilename);
+    writeGalleryStatsCache($cacheFilename);
 }
 
 $uid = $gallery->user->getUid();
@@ -628,7 +628,7 @@ echo languageSelector();
 echo "<!-- End top nav -->";
 
 if ($useCache ) {
-    readCache($cacheFilename, $startPhoto, $photosPerPage );
+    readGalleryStatsCache($cacheFilename, $startPhoto, $photosPerPage );
 }
 if (isset($stm)) {
     $time = getmicrotime() - $time_start;
@@ -799,7 +799,7 @@ function readCacheNumPhotos( $cacheFilename ) {
     return $numPhotos;
 }
 
-function readCache( $cacheFilename, $start, $numPhotos ) {
+function readGalleryStatsCache( $cacheFilename, $start, $numPhotos ) {
     global $arrPhotos;
 
     $size = filesize($cacheFilename) + 1;
@@ -832,7 +832,7 @@ function readCache( $cacheFilename, $start, $numPhotos ) {
     }
 }
 
-function writeCache( $cacheFilename ) {
+function writeGalleryStatsCache( $cacheFilename ) {
     global $arrPhotos;
 
     if ($fd = fs_fopen($cacheFilename, "wb")) {

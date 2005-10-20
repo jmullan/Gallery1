@@ -377,7 +377,7 @@ function initLanguage($sendHeader=true) {
      * We do this only if we are not embedded and the "user" wants it.
      * Because headers might be sent already.
      */
-    if (! isset($GALLERY_EMBEDDED_INSIDE) || $sendHeader == false) {
+    if (!headers_sent() && ($sendHeader == true  || ! isset($GALLERY_EMBEDDED_INSIDE))) {
         header('Content-Type: text/html; charset=' . $gallery->charset);
     }
 
