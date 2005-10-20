@@ -1,7 +1,7 @@
 #!/bin/bash
 # $Id$
 
-NEW_VERSION="1.5.1"
+NEW_VERSION="1.5.2-cvs"
 
 esc=`echo -en "\033"`
 tab="${esc}[5G"
@@ -59,13 +59,10 @@ for all_po in $pofiles ; do
 	echo "$tab Module = $module"
 
 	echo "$tab Updating ..."
-	head -1 $all_po > tmp.po
+	head -19 $all_po > tmp.po
 	echo "#" >> tmp.po
-	echo "# @version$tab $NEW_VERSION" >> tmp.po
-	echo "# @package$tab Language" >> tmp.po
-	echo "# @subpackage  Languagepack" >> tmp.po
-	echo "#" >> tmp.po
-	tail +7 $all_po >> tmp.po
+	echo "# @version      $NEW_VERSION" >> tmp.po
+	tail +21 $all_po >> tmp.po
 	mv tmp.po $all_po
 done
 
@@ -76,13 +73,9 @@ for all_nls in $nlsfiles ; do
 	lang=${lang1##*/}
 
 	echo "$tab Language = $lang"
-
 	echo "$tab Updating ..."
-	head -20 $all_nls > tmp.nls
-	echo " *" >> tmp.nls
-	echo "# @version$tab $NEW_VERSION" >> tmp.po
-	echo "# @package$tab Language" >> tmp.po
-	echo "# @subpackage  Languagepack" >> tmp.po
+	head -23 $all_nls > tmp.nls
+	echo " * @version     $NEW_VERSION" >> tmp.nls
 	tail +25 $all_nls >> tmp.nls
 	mv tmp.nls $all_nls
 done
