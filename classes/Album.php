@@ -1128,12 +1128,13 @@ class Album {
         global $gallery;
 
         $this->updateSerial = 1;
-
         $dir = $this->getAlbumDir();
+
         if (isDebugging()) {
             processingMsg(_("Doing the naming"));
         }
-        if (!strcmp($gallery->app->default["useOriginalFileNames"], "yes")) {
+        
+        if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
             $name = $originalFilename;
             // check to see if a file by that name already exists
             // or thumbnail conflict between movie and jpeg
@@ -1146,7 +1147,7 @@ class Album {
                     }
                     // increment the 3 digits until we get a unique filename
                     while ((file_exists("$dir/$name.$ext") || file_exists("$dir/$name.$tag")) ||
-                    ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
+                      ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
                         $name++;
                     }
                 }
@@ -1156,14 +1157,13 @@ class Album {
             // do filename checking here, too... users could introduce a duplicate 3 letter
             // name if they switch original file names on and off.
             while (file_exists("$dir/$name.$tag") ||
-            ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
+              ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
                 $name = $this->newPhotoName();
             }
         }
         /* Get the file */
         $newFile = "$dir/$name.$tag";
         fs_copy($file, $newFile);
-
 
         if (isDebugging()) {
             processingMsg(_("Image Preprocessing"));

@@ -324,21 +324,21 @@ function my_flush() {
 function valid_image($file) {
     if (($type = getimagesize($file)) == FALSE) {
         debugMessage(sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
-	return 0;
+        return 0;
     }
 
     debugMessage(sprintf(_("File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
 
     switch($type[2]) {
-	case 1: // GIF
-	case 2: // JPEG
-	case 3: // PNG
-	    return 1;
-	    break;
+        case 1: // GIF
+        case 2: // JPEG
+        case 3: // PNG
+            return 1;
+        break;
 
-	default:
-	    return 0;
-	break;
+        default:
+            return 0;
+        break;
     }
 }
 
@@ -551,6 +551,8 @@ function preprocessImage($dir, $file) {
  * This function checks wether we are debugging with a given level.
  * If no level is given, it just returns wether we are debugging or not.
  * Debug is indicated by a debuglevel greater then 0
+ * @param  integer   $level
+ * @return boolean
  */
 function isDebugging($level = NULL) {
 	global $gallery;
@@ -629,6 +631,7 @@ function getNextPhoto($idx, $album=NULL) {
  * This function checks which tool
  * can we use for getting exif data from a photo.
  * returns false when no way works.
+ * @return mixed
  * @author Jens Tkotz <jens@peino.de
  */
 function getExifDisplayTool() {
@@ -646,7 +649,9 @@ function getExifDisplayTool() {
 /**
  * This function does not really looks if EXIF Data is there or not.
  * It just looks at the extension.
- * @author Jens Tkotz <jens@peino.de>
+ * @package string  $file
+ * @return  boolean
+ * @author  Jens Tkotz <jens@peino.de>
  */
 function hasExif($file) {
     if(eregi('jpe?g$', $file)) {
@@ -910,7 +915,9 @@ function AcceptableArchive($ext) {
  * This function checks wether an archive can be decompressed via Gallery
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
-  * @param string $ext
+ * @param  string   $ext
+ * @return mixed
+ * @author Jens Tkotz <jens@peino.de>
  */
 function canDecompressArchive($ext) {
 	global $gallery;
@@ -953,7 +960,7 @@ function canDecompressArchive($ext) {
  * If the extension is handable the de/compressing tool is returned
  * @param   string $ext
  * @return  mixed
- * @authoer Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz <jens@peino.de>
  */
 function canCreateArchive($ext = 'zip') {
 	global $gallery;
@@ -1087,7 +1094,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
     global $gallery;
     global $temp_files;
 
-    /* Begin of code for the case the uploade file is an archive */
+    /* Begin of code for the case the uploaded file is an archive */
     if (acceptableArchive($ext)) {
         $tool = canDecompressArchive($ext);
         if (empty($tool)) {
@@ -1162,8 +1169,9 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
             }
         }
     } else {
-        /* Its a single file */
-        /* remove %20 and the like from name */
+        /* Its a single file
+         * remove %20 and the like from name
+         */
         $name = urldecode($name);
 
         /* parse out original filename without extension */
@@ -1207,8 +1215,6 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
                 $temp_files[$newFile] = 1;
             }
 
-            echo "\n<h3>******". sprintf(_("Adding %s"), $name) ."*****</h3>";
-
             /* What should the caption be, if no caption was given by user ?
              * See captionOptions.inc.php for options
             */
@@ -1222,17 +1228,21 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
             if (empty($caption)) {
                 switch ($setCaption) {
                     case 1:
-                    /* Use filename */
-                    $caption = strtr($originalFilename, '_', ' ');
-                    break;
+                        /* Use filename */
+                        $caption = strtr($originalFilename, '_', ' ');
+                        break;
                     case 2:
-                    /* Use file cration date */
-                    $caption = strftime($dateTimeFormat, filectime($file));
-                    break;
+                        /* Use file cration date */
+                        $caption = strftime($dateTimeFormat, filectime($file));
+                        break;
                     case 3:
-                    /* Use capture date */
-                    $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
-                    break;
+                        /* Use capture date */
+                        $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
+                        break;
+                    default:
+                        /* Use filename */
+                        $caption = strtr($originalFilename, '_', ' ');
+                        break;
                 }
             }
 
@@ -1240,8 +1250,24 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
                 $extra_fields = array();
             }
 
-            /* After all the preprocessing, NOW ADD THE element */
-            $err = $gallery->album->addPhoto($file, $ext, $mangledFilename, $caption, "", $extra_fields, $gallery->user->uid, NULL, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
+            echo "\n<h3>******". sprintf(_("Adding %s"), $name) ."*****</h3>";
+            
+            /* After all the preprocessing, NOW ADD THE element
+             * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
+             *                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
+            */
+            $err = $gallery->album->addPhoto( 
+                $file,
+                $ext,
+                $mangledFilename,
+                $caption,
+                '',
+                $extra_fields,
+                $gallery->user->uid,
+                NULL,
+                $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+            );
+            
             if ($err) {
                 processingMsg(gallery_error($err));
                 processingMsg("<b>". sprintf(_("Need help?  Look in the  %s%s FAQ%s"),
@@ -2088,7 +2114,7 @@ function downloadFile($filename) {
        header("Content-Length: $size");
     }
 
-    header("Content-Disposition: attachment; filename=". basename($filename));
+    header('Content-Disposition: attachment; filename="'. basename($filename) .'"');
 
     echo $filedata;
     

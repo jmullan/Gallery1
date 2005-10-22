@@ -19,21 +19,21 @@
  *
  * $Id$
  */
-
+?>
+<?php
 /**
  * @package Filesystem_unix
  */
 
 /**
  * Copies a file from $source to $dest.
- * @param  string    $source	Full path to source file.
- * @param  string    $dest	Full path to destination file.
+ * @param  string    $source    Full path to source file.
+ * @param  string    $dest      Full path to destination file.
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_copy($source, $dest) {
-    $umask = umask(0113);
     $result = copy($source, $dest);
-    umask($umask);
+    chmod ($dest, 0644);
 
     return $result;
 }
@@ -148,8 +148,6 @@ function fs_executable($filename) {
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
-    $umask = umask(0);
-
     /*
      * PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
      * causes a seg fault if you specify modes.
@@ -160,12 +158,12 @@ function fs_mkdir($dirname, $perms = 0700) {
      * permissions for any Unix implementation.
      */
     if ( phpversion() == '4.2.0') {
-	$result = mkdir(fs_import_filename($dirname, 0));
+	   $result = mkdir(fs_import_filename($dirname, 0));
+       chmod($dirname, $perms);
     } else {
-	$result = mkdir(fs_import_filename($dirname, 0), $perms);
+	   $result = mkdir(fs_import_filename($dirname, 0), $perms);
     }
-	
-    umask($umask);
+
     return $result;
 }
 ?>

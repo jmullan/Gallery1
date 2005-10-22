@@ -21,6 +21,9 @@
  */
 ?>
 <?php
+/**
+ * @package Filesystem_windows
+ */
 
 /**
  * Copies a file from $source to $dest.
@@ -29,11 +32,8 @@
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_copy($source, $dest) {
-    $umask = umask(0133);
-    $resultt = copy(
-	fs_import_filename($source, 0), 
-	fs_import_filename($dest, 0));
-    umask($umask);
+    $result = copy(fs_import_filename($source, 0), fs_import_filename($dest, 0));
+    chmod (fs_import_filename($dest, 0), 0644);
 
     return $result;	
 }
@@ -155,13 +155,11 @@ function fs_executable($filename) {
 /**
  * Creates a directory
  * @param  string    $dirname
- * @param  string    $perms	Optional perms, given in octal format
+ * @param  string    $perms     Optional perms, given in octal format
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
-    $umask = umask(0);
     $result = mkdir(fs_import_filename($dirname, 0), $perms);
-    umask($umask);
 
     return $result;
 }

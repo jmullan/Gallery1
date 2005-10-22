@@ -51,40 +51,6 @@
 echo "</div>";
 echo "<br>";
 
-function getCheckStatus($result, $check) {
-    /*
-     * 0 - success
-     * 5 - warning, optional
-     * 10 - serious warning, but optional
-     * 51 - serious warning
-     * 100 - failure
-    */
-    
-    list($success, $fail, $warn) = $result;
-    if(!empty($success)) {
-        return 0;
-    }
-    
-    if (isset($check['optional']) && $check['optional'] == 1) {
-        if (isset($check["serious"]) && $check["serious"] == 1) {
-            if(empty($fail)) {
-                return 5;
-            }
-            else {
-                return 10;
-            }
-        } else {
-            return 5;
-        }
-    } else {
-        if (isset($check["serious"]) && $check["serious"] == 1) {
-            return 51;
-        } else {
-            return 100;
-        }
-    }
-		
-}
 echo '<table class="inner" width="100%" cellspacing="0">';
 
 foreach ($checklist as $short => $check) {

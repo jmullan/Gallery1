@@ -36,7 +36,7 @@
  * *Nuke:
  * http://<URL to your Nuke>/modules.php?op=modload&name=gallery&file=index&include=block-random.php
  *
- * Mambo:
+ * Mambo / Joomla :
  * http://<URL to Mambo>/index.php?option=com_gallery&Itemid=XXX
  */
 
@@ -83,16 +83,21 @@ function doPhoto() {
 
 	if (!empty($index)) {
 		$id = $album->getPhotoId($index);
-		$caption = $album->getCaption($index) ? '<br><center>'. $album->getCaption($index) . '</center>': '';
-
-	    echo "\n  ". '<div class="random-block">';
-	    echo "\n\t  ". '<div class="random-block-photo">';
-	    echo "\n\t\t  ". '<a href="'. makeAlbumUrl($album->fields['name'], $id) .'">'. $album->getThumbnailTag($index) .'</a>';
-	    echo $caption;
-	    echo "\n\t  </div>\n\t  ";
-	    printf (_("From: %s"),
-		'<a href="' .makeAlbumUrl($album->fields['name']) .'">'. $album->fields['title'] .'</a>');
-	    echo "\n  </div>\n";
+		$caption = $album->getCaption($index) ? '<br>'. $album->getCaption($index) : '';
+		$photoUrl = makeAlbumUrl($album->fields['name'], $id);
+		$imageUrl = $album->getThumbnailTag($index);
+		$albumUrl = makeAlbumUrl($album->fields['name']);
+		$albumTitle = $album->fields['title'];
+?>
+  <div class="random-block">
+    <div class="random-block-photo">
+    <a href="<?php echo $photoUrl; ?>"><?php echo $imageUrl; ?></a>
+    <?php echo $caption; ?>
+    
+    </div>
+    <?php printf (_("From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>"); ?>
+  </div>
+<?php
 		return 1;
 	} else {
 		return 0;

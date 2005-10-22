@@ -1727,5 +1727,39 @@ function placeholderDescription() {
 	'</div>';
 
     return $placeholderDescription;
-}	
+}
+
+/**
+ * 0 - success
+ * 5 - warning, optional
+ * 10 - serious warning, but optional
+ * 51 - serious warning
+ * 100 - failure
+ */
+function getCheckStatus($result, $check) {
+    list($success, $fail, $warn) = $result;
+    if(!empty($success)) {
+        return 0;
+    }
+
+    if (isset($check['optional']) && $check['optional'] == 1) {
+        if (isset($check["serious"]) && $check["serious"] == 1) {
+            if(empty($fail)) {
+                return 5;
+            }
+            else {
+                return 10;
+            }
+        } else {
+            return 5;
+        }
+    } else {
+        if (isset($check["serious"]) && $check["serious"] == 1) {
+            return 51;
+        } else {
+            return 100;
+        }
+    }
+
+}
 ?>
