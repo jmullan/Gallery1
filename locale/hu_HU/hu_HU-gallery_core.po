@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-10-11 18:29+0200\n"
+"POT-Creation-Date: 2005-10-25 15:30+0200\n"
 "PO-Revision-Date: 2004-07-31 20:31+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -74,10 +74,10 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "Írd be a képhez tartozó megjegyzésed az alábbi szövegdobozba!"
 
 #: ../add_comment.php:100 ../copy_photo.php:204 ../delete_album.php:66
-#: ../delete_photo.php:139 ../delete_user.php:85 ../ecard_form.php:264
+#: ../delete_photo.php:139 ../delete_user.php:85 ../ecard_form.php:263
 #: ../edit_caption.php:184 ../edit_field.php:66 ../edit_watermark.php:120
 #: ../includes/add_photos/add_form.inc:110
-#: ../includes/add_photos/add_url.inc:60 ../login.php:96 ../move_album.php:118
+#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:118
 #: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
@@ -179,7 +179,8 @@ msgid "return to gallery"
 msgstr "Vissza a Galériához"
 
 #: ../album_permissions.php:38
-msgid "Users who can see the album"
+#, fuzzy
+msgid "Users who can see the album."
 msgstr "Az albumot láthatják"
 
 #: ../album_permissions.php:39
@@ -199,7 +200,7 @@ msgid "Users who can create sub albums."
 msgstr "Belsõ albumokat létrehozhatnak."
 
 #: ../album_permissions.php:43
-msgid "Users who can to download album (with subalbums) as archive"
+msgid "Users who can to download album (with subalbums) as archive."
 msgstr ""
 
 #: ../album_permissions.php:44
@@ -244,7 +245,7 @@ msgstr "Mentés"
 
 #: ../album_permissions.php:155 ../manage_users.php:100 ../modify_user.php:165
 #: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
-#: ../upgrade_users.php:61 ../view_photo_properties.php:134
+#: ../upgrade_users.php:61
 msgid "Done"
 msgstr "Kész"
 
@@ -323,7 +324,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Üdvözöllek %s!"
 
-#: ../albums.php:181 ../view_album.php:387
+#: ../albums.php:181 ../view_album.php:388
 msgid "slideshow"
 msgstr "diavetítés"
 
@@ -331,144 +332,149 @@ msgstr "diavetítés"
 msgid "new album"
 msgstr "új album"
 
-#: ../albums.php:192
-msgid "preferences"
-msgstr "beállítások"
+#: ../albums.php:193
+#, fuzzy
+msgid "rebuild highlights"
+msgstr "Nincs kiemelt kép"
 
-#: ../albums.php:199
-msgid "documentation"
-msgstr "súgó"
-
-#: ../albums.php:203
+#: ../albums.php:197
 #, fuzzy
 msgid "admin page"
 msgstr "%d oldal"
 
-#: ../albums.php:207 ../view_album.php:405 ../view_photo.php:512
+#: ../albums.php:202
+msgid "documentation"
+msgstr "súgó"
+
+#: ../albums.php:208
+msgid "preferences"
+msgstr "beállítások"
+
+#: ../albums.php:213 ../view_album.php:406 ../view_photo.php:512
 msgid "logout"
 msgstr "kilépés"
 
-#: ../albums.php:212 ../view_album.php:410 ../view_photo.php:517
+#: ../albums.php:218 ../view_album.php:411 ../view_photo.php:517
 msgid "login"
 msgstr "belépés"
 
-#: ../albums.php:216
+#: ../albums.php:222
 msgid "register"
 msgstr "regisztráció"
 
-#: ../albums.php:242
+#: ../albums.php:248
 msgid "Attention Gallery Administrator!"
 msgstr "Galéria Rendszergazda, figyelem!"
 
-#: ../albums.php:245
+#: ../albums.php:251
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "A(z) %s %d érvénytelen albumot talált az albumaid között <br>(%s):"
 
-#: ../albums.php:251
+#: ../albums.php:257
 msgid "Please move it/them out of the albums directory."
 msgstr "Kérlek, távolítsd el õket az album könyvtárból."
 
-#: ../albums.php:255
+#: ../albums.php:261
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:259
+#: ../albums.php:265
 #, php-format
 msgid "Please %s."
 msgstr "Kérlek %s."
 
-#: ../albums.php:259
+#: ../albums.php:265
 msgid "upgrade those albums"
 msgstr "frissítsd az albumokat"
 
-#: ../albums.php:266
+#: ../albums.php:272
 #, fuzzy
 msgid "Attention!"
 msgstr "súgó"
 
-#: ../albums.php:268
+#: ../albums.php:274
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"
 msgstr ""
 
-#: ../albums.php:268
+#: ../albums.php:274
 #, php-format
 msgid "%s and try again."
 msgstr ""
 
-#: ../albums.php:269
+#: ../albums.php:275
 #, fuzzy
 msgid "Log in"
 msgstr "Belépés"
 
-#: ../albums.php:283
+#: ../albums.php:289
 #, php-format
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:324 ../view_album.php:666
+#: ../albums.php:330 ../view_album.php:667
 msgid "Highlight for Album:"
 msgstr "Kiemelés az Albumhoz:"
 
-#: ../albums.php:344 ../view_album.php:786
+#: ../albums.php:350 ../view_album.php:787
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:373
+#: ../albums.php:379
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Tulajdonos:"
 
-#: ../albums.php:378
+#: ../albums.php:384
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:389
+#: ../albums.php:395
 msgid "Hey!"
 msgstr "Figyu!"
 
-#: ../albums.php:390
+#: ../albums.php:396
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s, hogy az URL egyértelmûbb legyen!"
 
-#: ../albums.php:391
+#: ../albums.php:397
 msgid "Rename this album"
 msgstr "Nevezd át ezt az albumot"
 
-#: ../albums.php:402
+#: ../albums.php:408
 #, php-format
 msgid "Last changed on %s."
 msgstr "Utoljára módosítva: %s."
 
-#: ../albums.php:405
+#: ../albums.php:411
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Ebben az albumban %d elem van."
 
-#: ../albums.php:410
+#: ../albums.php:416
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Ezt az albumot %s tekintették meg %s óta."
 
-#: ../albums.php:411 ../view_album.php:821 ../view_album.php:845
+#: ../albums.php:417 ../view_album.php:822 ../view_album.php:846
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "%d alkalommal"
 
-#: ../albums.php:411
+#: ../albums.php:417
 msgid "0 times"
 msgstr "egyszer sem"
 
-#: ../albums.php:417
+#: ../albums.php:423
 msgid "reset counter"
 msgstr "számláló nullázása"
 
-#: ../albums.php:456 ../view_album.php:917
+#: ../albums.php:462 ../view_album.php:918
 msgid "Comments available for this item."
 msgstr "Megjegyzések tartoznak ehhez az elemhez."
 
@@ -540,7 +546,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:252 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:774
+#: ../layout/commentboxtop.inc:45 ../view_album.php:775
 msgid "hidden"
 msgstr "rejtett"
 
@@ -577,152 +583,172 @@ msgstr "NINCS FOTÓ!"
 msgid "Untitled"
 msgstr "Cím nélkül"
 
-#: ../classes/Album.php:245 ../classes/Album.php:257
+#: ../classes/Album.php:239 ../classes/Album.php:251
 #: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:69
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Album"
 
-#: ../classes/Album.php:269 ../search.php:58 ../slideshow.php:193
+#: ../classes/Album.php:263 ../search.php:58 ../slideshow.php:193
 msgid "Gallery"
 msgstr "Galéria"
 
-#: ../classes/Album.php:310
+#: ../classes/Album.php:304
 msgid "Album up to date."
 msgstr "Az album naprakész."
 
-#: ../classes/Album.php:314
+#: ../classes/Album.php:308
 msgid "Upgrading album properties..."
 msgstr "Az album tulajdonságainak frissítése..."
 
-#: ../classes/Album.php:458
+#: ../classes/Album.php:453
 #, php-format
 msgid "Renaming album from %s to %s..."
 msgstr "Az album átnevezése %s-rõl %s-re"
 
-#: ../classes/Album.php:542 ../classes/Album.php:557
+#: ../classes/Album.php:537 ../classes/Album.php:552
 msgid "done"
 msgstr "kész"
 
-#: ../classes/Album.php:548
+#: ../classes/Album.php:543
 #, php-format
 msgid "Upgrading item %d of %d . . . "
 msgstr "A %d / %d elem frissítése . . ."
 
-#: ../classes/Album.php:999
+#: ../classes/Album.php:779
+#, fuzzy
+msgid "Getting highlight"
+msgstr "Nincs kiemelt kép"
+
+#: ../classes/Album.php:825
+#, fuzzy
+msgid "Setting highlight"
+msgstr "Nincs kiemelt kép"
+
+#: ../classes/Album.php:1018
 msgid "msg should be an array!"
 msgstr ""
 
-#: ../classes/Album.php:1008
+#: ../classes/Album.php:1027
 #, fuzzy, php-format
 msgid "Changes to Album: %s"
 msgstr "Nem tudok írni ide: %s."
 
-#: ../classes/Album.php:1016
+#: ../classes/Album.php:1035
 #, php-format
 msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
-#: ../classes/Album.php:1022
+#: ../classes/Album.php:1041
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
 msgstr ""
 
-#: ../classes/Album.php:1029
+#: ../classes/Album.php:1048
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1096 ../classes/Album.php:1844
+#: ../classes/Album.php:1115 ../classes/Album.php:1860
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
-#: ../classes/Album.php:1101
+#: ../classes/Album.php:1120
 #, fuzzy, php-format
 msgid "Processing element %d..."
 msgstr "%d. kép feldolgozása..."
 
-#: ../classes/Album.php:1115
+#: ../classes/Album.php:1134
 msgid "Doing the naming"
 msgstr ""
 
-#: ../classes/Album.php:1150
+#: ../classes/Album.php:1169
 msgid "Image Preprocessing"
 msgstr ""
 
-#: ../classes/Album.php:1156
+#: ../classes/Album.php:1175
 msgid "Resizing/compressing original image"
 msgstr "Az eredeti kép újraméretezése/tömörítése"
 
-#: ../classes/Album.php:1160
+#: ../classes/Album.php:1179
 msgid "Cannot resize/compress this filetype"
 msgstr "Ez a fájltípus nem tömöríthetõ/újraméretezhetõ"
 
-#: ../classes/Album.php:1164
+#: ../classes/Album.php:1183
 msgid "Adding Photo to the photo list"
 msgstr ""
 
-#: ../classes/Album.php:1218
+#: ../classes/Album.php:1237
 #, php-format
 msgid "Resizing %s"
 msgstr "%s átméretezése"
 
-#: ../classes/Album.php:1283
+#: ../classes/Album.php:1302
 msgid "Photo auto-rotated/transformed"
 msgstr "Fotó elforgatva/átalakítva"
 
-#: ../classes/Album.php:1291
+#: ../classes/Album.php:1310
 msgid "Watermarking Image"
 msgstr "Kép vízjelzése"
 
-#: ../classes/Album.php:1448 ../classes/Album.php:1458
-#: ../classes/AlbumItem.php:678
+#: ../classes/Album.php:1467 ../classes/Album.php:1477
+#: ../classes/AlbumItem.php:700
 msgid "No highlight"
 msgstr "Nincs kiemelt kép"
 
-#: ../classes/Album.php:1651
+#: ../classes/Album.php:1670
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1858 ../do_command.php:87
+#: ../classes/Album.php:1872 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "%d. kép feldolgozása..."
 
-#: ../classes/Album.php:2017
+#: ../classes/Album.php:2031
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2514
+#: ../classes/Album.php:2529
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2677
+#: ../classes/Album.php:2692
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Email probléma: %s-t (UID %s) kihagytam, mert a(z) %s emailcím érvénytelen."
 
-#: ../classes/AlbumItem.php:566
+#: ../classes/AlbumItem.php:572
 msgid "Invalid image"
 msgstr "Hibás kép"
 
-#: ../classes/AlbumItem.php:583
+#: ../classes/AlbumItem.php:591
 #, fuzzy
 msgid "Generating thumbnail."
 msgstr "Kiskép készítése"
 
-#: ../classes/AlbumItem.php:626
+#: ../classes/AlbumItem.php:594
+#, php-format
+msgid "Saved Dimensions: x:%d y: %d"
+msgstr ""
+
+#: ../classes/AlbumItem.php:630
+#, fuzzy
+msgid "Generating normal thumbs"
+msgstr "Kiskép készítése"
+
+#: ../classes/AlbumItem.php:648
 msgid "Unable to make thumbnail"
 msgstr "A kiskép elkészítése nem sikerült"
 
-#: ../classes/AlbumItem.php:637
+#: ../classes/AlbumItem.php:659
 #, fuzzy
 msgid "No preview"
 msgstr "Elõnézet"
 
-#: ../classes/AlbumItem.php:663
+#: ../classes/AlbumItem.php:685
 msgid "No thumbnail"
 msgstr "Nincs kiskép"
 
@@ -731,7 +757,7 @@ msgid "Anonymous User"
 msgstr "Anonim Felhasználó"
 
 #: ../classes/NobodyUser.php:27
-#: ../includes/definitions/albumProperties.php:319 ../poll_properties.php:104
+#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:104
 msgid "Nobody"
 msgstr "Senki"
 
@@ -824,7 +850,7 @@ msgstr "Kiskép készítése"
 msgid "Skipping Album #%d"
 msgstr "A #%d album kihagyása"
 
-#: ../copy_photo.php:124 ../do_command.php:242 ../do_command.php:244
+#: ../copy_photo.php:124 ../do_command.php:261 ../do_command.php:263
 #: ../login.php:127 ../register.php:47 ../register.php:119
 #: ../save_photos.php:377
 msgid "Dismiss"
@@ -875,7 +901,7 @@ msgstr "Másold az albumba!"
 
 #: ../copy_photo.php:208 ../delete_photo.php:144 ../edit_thumb.php:131
 #: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
-#: ../rotate_photo.php:95 ../view_photo_properties.php:129
+#: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "nem adtál meg albumot / indexet"
 
@@ -1004,62 +1030,69 @@ msgstr "Kisképek újrakészítése"
 msgid "Performing Operation.."
 msgstr "rendszergazdai opciók"
 
-#: ../do_command.php:65
+#: ../do_command.php:68
+#, fuzzy, php-format
+msgid "Rebuilding highlight %s"
+msgstr "Kisképek újrakészítése"
+
+#: ../do_command.php:80
 #, fuzzy
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Biztosan törölni akarod ezt az albumot?"
 
-#: ../do_command.php:72 ../includes/definitions/albumProperties.php:155
+#: ../do_command.php:89 ../includes/definitions/albumProperties.php:155
 #: ../includes/definitions/albumProperties.php:161
-#: ../includes/definitions/albumProperties.php:229
 #: ../includes/definitions/albumProperties.php:235
 #: ../includes/definitions/albumProperties.php:241
 #: ../includes/definitions/albumProperties.php:247
-#: ../includes/definitions/albumProperties.php:276
-#: ../includes/definitions/albumProperties.php:306
-#: ../includes/definitions/albumProperties.php:357
+#: ../includes/definitions/albumProperties.php:253
+#: ../includes/definitions/albumProperties.php:282
+#: ../includes/definitions/albumProperties.php:312
 #: ../includes/definitions/albumProperties.php:363
 #: ../includes/definitions/albumProperties.php:369
 #: ../includes/definitions/albumProperties.php:375
-#: ../includes/definitions/albumProperties.php:385
+#: ../includes/definitions/albumProperties.php:381
 #: ../includes/definitions/albumProperties.php:391
-#: ../includes/definitions/albumProperties.php:433
-#: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:397
+#: ../includes/definitions/albumProperties.php:439
+#: ../includes/definitions/albumProperties.php:451 ../html/userData.inc:13
 #: ../multi_create_user.php:189 ../poll_properties.php:96
-msgid "yes"
+#, fuzzy
+msgid "Yes"
 msgstr "igen"
 
-#: ../do_command.php:73 ../includes/definitions/albumProperties.php:155
+#: ../do_command.php:90 ../includes/definitions/albumProperties.php:155
 #: ../includes/definitions/albumProperties.php:161
-#: ../includes/definitions/albumProperties.php:229
 #: ../includes/definitions/albumProperties.php:235
 #: ../includes/definitions/albumProperties.php:241
 #: ../includes/definitions/albumProperties.php:247
-#: ../includes/definitions/albumProperties.php:276
-#: ../includes/definitions/albumProperties.php:306
-#: ../includes/definitions/albumProperties.php:357
+#: ../includes/definitions/albumProperties.php:253
+#: ../includes/definitions/albumProperties.php:282
+#: ../includes/definitions/albumProperties.php:312
 #: ../includes/definitions/albumProperties.php:363
 #: ../includes/definitions/albumProperties.php:369
 #: ../includes/definitions/albumProperties.php:375
-#: ../includes/definitions/albumProperties.php:385
+#: ../includes/definitions/albumProperties.php:381
 #: ../includes/definitions/albumProperties.php:391
-#: ../includes/definitions/albumProperties.php:433
-#: ../includes/definitions/albumProperties.php:445 ../html/userData.inc:13
+#: ../includes/definitions/albumProperties.php:397
+#: ../includes/definitions/albumProperties.php:439
+#: ../includes/definitions/albumProperties.php:451 ../html/userData.inc:13
 #: ../multi_create_user.php:189 ../poll_properties.php:96
-msgid "no"
-msgstr "nem"
+#, fuzzy
+msgid "No"
+msgstr "Egy sem"
 
-#: ../do_command.php:75
+#: ../do_command.php:92
 #, fuzzy
 msgid "Start"
 msgstr "Rendezés"
 
-#: ../do_command.php:84
+#: ../do_command.php:102
 #, php-format
 msgid "Rebuilding %d thumbnails..."
 msgstr "%d kiskép újrakészítése..."
 
-#: ../do_command.php:93
+#: ../do_command.php:112
 msgid "Rebuilding 1 thumbnail..."
 msgstr "1 kiskép újrakészítése..."
 
@@ -1075,112 +1108,112 @@ msgstr ""
 msgid "You have an e-card as attachment. Click to see."
 msgstr ""
 
-#: ../ecard_form.php:86 ../ecard_form.php:171
+#: ../ecard_form.php:85 ../ecard_form.php:170
 msgid "Send this photo as eCard"
 msgstr ""
 
-#: ../ecard_form.php:111
+#: ../ecard_form.php:110
 msgid "Error: to send an eCard you need to fill out all fields."
 msgstr ""
 
-#: ../ecard_form.php:112
+#: ../ecard_form.php:111
 msgid "Please fill this fields:"
 msgstr ""
 
-#: ../ecard_form.php:116
+#: ../ecard_form.php:115
 msgid "- Your Name"
 msgstr ""
 
-#: ../ecard_form.php:122
+#: ../ecard_form.php:121
 msgid "- Your Email"
 msgstr ""
 
-#: ../ecard_form.php:127
+#: ../ecard_form.php:126
 msgid "- Recipient's Name"
 msgstr ""
 
-#: ../ecard_form.php:133
+#: ../ecard_form.php:132
 msgid "- Recipient's Email"
 msgstr ""
 
-#: ../ecard_form.php:138
+#: ../ecard_form.php:137
 #, fuzzy
 msgid "- Your Message"
 msgstr "Üzenet"
 
-#: ../ecard_form.php:142
+#: ../ecard_form.php:141
 msgid "Please fill all fields next click >Send<."
 msgstr ""
 
-#: ../ecard_form.php:155
+#: ../ecard_form.php:154
 #, php-format
 msgid "You have entered more than %d characters"
 msgstr ""
 
-#: ../ecard_form.php:193
+#: ../ecard_form.php:192
 msgid "Your info"
 msgstr ""
 
-#: ../ecard_form.php:195
+#: ../ecard_form.php:194
 msgid "Recipient's info"
 msgstr ""
 
-#: ../ecard_form.php:198 ../ecard_form.php:209
+#: ../ecard_form.php:197 ../ecard_form.php:208
 #, fuzzy
 msgid "Name"
 msgstr "Teljes név"
 
-#: ../ecard_form.php:213 ../ecard_form.php:216
+#: ../ecard_form.php:212 ../ecard_form.php:215
 msgid "E-Mail"
 msgstr ""
 
-#: ../ecard_form.php:222
+#: ../ecard_form.php:221
 msgid "Choose a Stamp"
 msgstr ""
 
-#: ../ecard_form.php:227
+#: ../ecard_form.php:226
 #, php-format
 msgid "Stamp #%d"
 msgstr ""
 
-#: ../ecard_form.php:237
+#: ../ecard_form.php:236
 msgid "Subject:"
 msgstr ""
 
-#: ../ecard_form.php:238
+#: ../ecard_form.php:237
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr ""
 
-#: ../ecard_form.php:242
+#: ../ecard_form.php:241
 #, fuzzy
 msgid "Your Message:"
 msgstr "Üzenet:"
 
-#: ../ecard_form.php:261 ../edit_watermark.php:119 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:119 ../watermark_album.php:151
 msgid "Preview"
 msgstr "Elõnézet"
 
-#: ../ecard_form.php:262
+#: ../ecard_form.php:261
 #, fuzzy
 msgid "Reset"
 msgstr "Átméretezett"
 
-#: ../ecard_form.php:265
+#: ../ecard_form.php:264
 #, fuzzy
 msgid "Send eCard"
 msgstr "Küldd el a jelszavamat"
 
-#: ../ecard_form.php:273
+#: ../ecard_form.php:272
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr ""
 
-#: ../ecard_form.php:277
+#: ../ecard_form.php:276
 msgid "Close this window"
 msgstr ""
 
-#: ../edit_appearance.php:57
+#: ../edit_appearance.php:56
 #, fuzzy, php-format
 msgid "Problem with input of field '%s'. %s"
 msgstr "Nem sikerült a(z) %s címre levelet küldeni"
@@ -1190,12 +1223,12 @@ msgstr "Nem sikerült a(z) %s címre levelet küldeni"
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr "Figyelem: a szavazókat %s-ról %s-ra állítottad. Tanácsos a szavazás nullázása a korábbi szavazatok eltávolítására."
 
-#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:319
+#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:325
 #: ../poll_properties.php:52 ../poll_properties.php:104
 msgid "Everybody"
 msgstr "Mindenki"
 
-#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:319
+#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:325
 #: ../poll_properties.php:53 ../poll_properties.php:104
 msgid "Logged in"
 msgstr "Bejelentkezettek"
@@ -1324,7 +1357,7 @@ msgstr ""
 msgid "Configure Custom Fields"
 msgstr "Saját adatmezõk konfigurálása"
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:410
+#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:416
 msgid "Number of user defined custom fields"
 msgstr "A felhasználó által megadott saját adatmezõk száma"
 
@@ -1381,7 +1414,7 @@ msgid "Supported file types"
 msgstr "Támogatott fájltípusok"
 
 #: ../includes/add_photos/add_form.inc:37
-#: ../includes/add_photos/add_url.inc:31
+#: ../includes/add_photos/add_url.inc:29
 msgid "Tip:"
 msgstr "Tipp:"
 
@@ -1447,23 +1480,23 @@ msgstr "Windows XP Közzététel Varázsló"
 msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "<i>Megjegyzés:</i> ez a lehetõség csak kísérleti jelleggel él!"
 
-#: ../includes/add_photos/add_url.inc:26
+#: ../includes/add_photos/add_url.inc:25
 msgid "Upload any images found at this location."
 msgstr "Minden ezen a helyen található kép feltöltése."
 
-#: ../includes/add_photos/add_url.inc:27
+#: ../includes/add_photos/add_url.inc:26
 msgid "The location can either be a URL or a local directory on the server."
 msgstr "Megadhatsz URL-t vagy egy helyi könyvtárat a szerveren."
 
-#: ../includes/add_photos/add_url.inc:32
+#: ../includes/add_photos/add_url.inc:30
 msgid "FTP images to a directory on your server then provide that path here!"
 msgstr "Másold fel FTP-vel a képeket a szerver egy könytárába és add meg itt a könyvtár útvonalát!"
 
-#: ../includes/add_photos/add_url.inc:44
+#: ../includes/add_photos/add_url.inc:39
 msgid "What would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:59
+#: ../includes/add_photos/add_url.inc:54
 msgid "Submit URL or directory"
 msgstr "URL vagy könyvtár megadása"
 
@@ -1523,7 +1556,8 @@ msgid "Link Color"
 msgstr "Link szín"
 
 #: ../includes/definitions/albumProperties.php:109
-msgid "Border color"
+#, fuzzy
+msgid "Border Color"
 msgstr "Keretszín"
 
 #: ../includes/definitions/albumProperties.php:116
@@ -1553,6 +1587,8 @@ msgid "Slideshow Type"
 msgstr "A diavetítés típusa"
 
 #: ../includes/definitions/albumProperties.php:149
+#: ../includes/definitions/albumProperties.php:197
+#: ../includes/definitions/albumProperties.php:211
 msgid "Off"
 msgstr "Ki"
 
@@ -1586,234 +1622,244 @@ msgid "Thumbnail size"
 msgstr "Kiskép mérete"
 
 #: ../includes/definitions/albumProperties.php:189
+msgid "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'"
+msgstr ""
+
+#: ../includes/definitions/albumProperties.php:191
+#, fuzzy
+msgid "As the original image"
+msgstr "(Csak az eredeti képek használata)"
+
+#: ../includes/definitions/albumProperties.php:191
+#, fuzzy
+msgid "Square thumbs"
+msgstr "kisképek újrakészítése"
+
+#: ../includes/definitions/albumProperties.php:195
 msgid "Maximum dimensions of intermediate sized images"
 msgstr "A közepes méretû képek maximális szélessége vagy magassága"
 
-#: ../includes/definitions/albumProperties.php:191
-#: ../includes/definitions/albumProperties.php:205
-msgid "off"
-msgstr "ki"
-
-#: ../includes/definitions/albumProperties.php:196
+#: ../includes/definitions/albumProperties.php:202
 msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Maximális fájlméret a közepes méretû képekre kilobyte-ban (0 vagy üresen hagyva nincs megkötés)"
 
-#: ../includes/definitions/albumProperties.php:203
+#: ../includes/definitions/albumProperties.php:209
 msgid "Maximum dimensions of full sized images"
 msgstr "A teljes méretû képek maximális szélessége vagy magassága"
 
-#: ../includes/definitions/albumProperties.php:205
+#: ../includes/definitions/albumProperties.php:211
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
-#: ../includes/definitions/albumProperties.php:210
+#: ../includes/definitions/albumProperties.php:216
 msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
 msgstr "Maximális fájlméret a teljes méretû képekre kilobyte-ban (0 vagy üresen hagyva nincs megkötés)"
 
-#: ../includes/definitions/albumProperties.php:223
+#: ../includes/definitions/albumProperties.php:229
 #, fuzzy
 msgid "Display"
 msgstr "mehet"
 
-#: ../includes/definitions/albumProperties.php:227
+#: ../includes/definitions/albumProperties.php:233
 msgid "Display click counter for this album?"
 msgstr "Klikk-számláló megjelenítése?"
 
-#: ../includes/definitions/albumProperties.php:233
+#: ../includes/definitions/albumProperties.php:239
 msgid "Display owners name with caption"
 msgstr "A képaláírásban a tulajdonos nevének megjelenítése"
 
-#: ../includes/definitions/albumProperties.php:239
+#: ../includes/definitions/albumProperties.php:245
 msgid "Display clickable image dimensions"
 msgstr "Képméret linkek mutatása a képek alatt"
 
-#: ../includes/definitions/albumProperties.php:245
+#: ../includes/definitions/albumProperties.php:251
 msgid "Display EXIF data?"
 msgstr "EXIF adatok megjelenítése?"
 
-#: ../includes/definitions/albumProperties.php:258
+#: ../includes/definitions/albumProperties.php:264
 #, fuzzy
 msgid "Services"
 msgstr "Válassz szolgáltatást"
 
-#: ../includes/definitions/albumProperties.php:262
+#: ../includes/definitions/albumProperties.php:268
 msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Melyik fotóelõhívási szolgáltatást<br>szeretnéd felkínálni a látogatóknak?"
 
-#: ../includes/definitions/albumProperties.php:274
+#: ../includes/definitions/albumProperties.php:280
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:287 ../poll_properties.php:72
+#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:72
 #: ../poll_properties.php:76
 msgid "Poll Properties"
 msgstr "Felmérés tulajdonságai"
 
-#: ../includes/definitions/albumProperties.php:291 ../poll_properties.php:87
+#: ../includes/definitions/albumProperties.php:297 ../poll_properties.php:87
 msgid "Type of poll for this album"
 msgstr "A felmérés típusa"
 
-#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:88
+#: ../includes/definitions/albumProperties.php:299 ../poll_properties.php:88
 msgid "Rank"
 msgstr "Rang"
 
-#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:88
+#: ../includes/definitions/albumProperties.php:299 ../poll_properties.php:88
 msgid "Critique"
 msgstr "Kritika"
 
-#: ../includes/definitions/albumProperties.php:297 ../poll_properties.php:91
+#: ../includes/definitions/albumProperties.php:303 ../poll_properties.php:91
 msgid "Number of voting options"
 msgstr "Szavazási lehetõségek száma"
 
-#: ../includes/definitions/albumProperties.php:304 ../poll_properties.php:95
+#: ../includes/definitions/albumProperties.php:310 ../poll_properties.php:95
 msgid "Show results of voting to all visitors?"
 msgstr "A szavazás eredményeit minden látogató láthatja"
 
-#: ../includes/definitions/albumProperties.php:310 ../poll_properties.php:99
+#: ../includes/definitions/albumProperties.php:316 ../poll_properties.php:99
 msgid "Number of lines of results graph to display on the album page"
 msgstr "Hány sort mutassak az eredményekbõl az album oldalain?"
 
-#: ../includes/definitions/albumProperties.php:317
+#: ../includes/definitions/albumProperties.php:323
 #, fuzzy
 msgid "Who can vote?"
 msgstr "Ki szavazhat"
 
-#: ../includes/definitions/albumProperties.php:323 ../poll_properties.php:107
+#: ../includes/definitions/albumProperties.php:329 ../poll_properties.php:107
 msgid "Orientation of vote choices"
 msgstr "A szavazati lehetõségek megjelenítése"
 
-#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:108
+#: ../includes/definitions/albumProperties.php:331 ../poll_properties.php:108
 #: ../rotate_photo.php:82
 msgid "Horizontal"
 msgstr "Vízszintesen"
 
-#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:108
+#: ../includes/definitions/albumProperties.php:331 ../poll_properties.php:108
 #: ../rotate_photo.php:85
 msgid "Vertical"
 msgstr "Függõlegesen"
 
-#: ../includes/definitions/albumProperties.php:330 ../poll_properties.php:111
+#: ../includes/definitions/albumProperties.php:336 ../poll_properties.php:111
 msgid "Vote hint"
 msgstr "Szavazásra hívó szöveg"
 
-#: ../includes/definitions/albumProperties.php:337
+#: ../includes/definitions/albumProperties.php:343
 #, fuzzy
 msgid "Voting Options"
 msgstr "rendszergazdai opciók"
 
-#: ../includes/definitions/albumProperties.php:341 ../poll_properties.php:120
+#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:120
 #, fuzzy
 msgid "Displayed Value"
 msgstr "mehet"
 
-#: ../includes/definitions/albumProperties.php:341 ../poll_properties.php:121
+#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:121
 #, fuzzy
 msgid "Points"
 msgstr "Perc"
 
-#: ../includes/definitions/albumProperties.php:351
+#: ../includes/definitions/albumProperties.php:357
 msgid "Misc"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:355
+#: ../includes/definitions/albumProperties.php:361
 msgid "Add new items at beginning of album"
 msgstr "Az új elemek az album elejére kerüljenek"
 
-#: ../includes/definitions/albumProperties.php:361
+#: ../includes/definitions/albumProperties.php:367
 msgid "Show <i>Return to</i> link"
 msgstr "Mutasd a <i>Visszatérés</i> linket"
 
-#: ../includes/definitions/albumProperties.php:367
+#: ../includes/definitions/albumProperties.php:373
 msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
 msgstr "A felhasználó választhasson<br>a képméretek között"
 
-#: ../includes/definitions/albumProperties.php:373
+#: ../includes/definitions/albumProperties.php:379
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Az ablak igazítása az újraméretezett<br>példány nélküli képekhez"
 
-#: ../includes/definitions/albumProperties.php:380 ../lib/albumItem.php:209
+#: ../includes/definitions/albumProperties.php:386 ../lib/albumItem.php:209
+#: ../view_album.php:299
 msgid "Permissions"
 msgstr "Jogosultságok"
 
-#: ../includes/definitions/albumProperties.php:383
+#: ../includes/definitions/albumProperties.php:389
 msgid "Allow item owners to modify their images"
 msgstr "Az elem tulajdonosa megváltoztathatja képeit"
 
-#: ../includes/definitions/albumProperties.php:389
+#: ../includes/definitions/albumProperties.php:395
 msgid "Allow item owners to delete their images"
 msgstr "Az elem tulajdonosa törölheti képeit"
 
-#: ../includes/definitions/albumProperties.php:401
+#: ../includes/definitions/albumProperties.php:407
 #, fuzzy
 msgid "Custom Fields"
 msgstr "saját adatmezõk"
 
-#: ../includes/definitions/albumProperties.php:428
+#: ../includes/definitions/albumProperties.php:434
 msgid "Microthumbs"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:431
-msgid "Use micro thumb photo navigation"
+#: ../includes/definitions/albumProperties.php:437
+msgid "Use microthumb photo navigation"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:433
+#: ../includes/definitions/albumProperties.php:439
 #, fuzzy
 msgid "both"
 msgstr "Hónap"
 
-#: ../includes/definitions/albumProperties.php:437
-msgid "Micro thumb style"
+#: ../includes/definitions/albumProperties.php:443
+msgid "Microthumb style"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:439
+#: ../includes/definitions/albumProperties.php:445
 #, fuzzy
 msgid "Fixed"
 msgstr "Adatmezõ"
 
-#: ../includes/definitions/albumProperties.php:439
+#: ../includes/definitions/albumProperties.php:445
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:443
-msgid "Show first & last micro thumb"
+#: ../includes/definitions/albumProperties.php:449
+msgid "Show first & last microthumb"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:449
+#: ../includes/definitions/albumProperties.php:455
 #, fuzzy
 msgid "Number of previous thumbs"
 msgstr "Szavazási lehetõségek száma"
 
-#: ../includes/definitions/albumProperties.php:455
+#: ../includes/definitions/albumProperties.php:461
 #, fuzzy
 msgid "Number of next thumbs"
 msgstr "Szavazási lehetõségek száma"
 
-#: ../includes/definitions/albumProperties.php:461
-msgid "Position of micro-thumb navigation bar"
+#: ../includes/definitions/albumProperties.php:467
+msgid "Position of microthumb navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:463
+#: ../includes/definitions/albumProperties.php:469
 #: ../layout/watermarkform.inc:111
 msgid "Top"
 msgstr "Fel"
 
-#: ../includes/definitions/albumProperties.php:463
+#: ../includes/definitions/albumProperties.php:469
 #, fuzzy
 msgid "Both"
 msgstr "Hónap"
 
-#: ../includes/definitions/albumProperties.php:463
+#: ../includes/definitions/albumProperties.php:469
 #: ../layout/watermarkform.inc:127
 msgid "Bottom"
 msgstr "Le"
 
-#: ../includes/definitions/albumProperties.php:467
-msgid "Height of micro-thumbs in navigation bar"
+#: ../includes/definitions/albumProperties.php:473
+msgid "Height of microthumbs in navigation bar"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:474
-msgid "Bonus to height of current micro-thumb (pixels)"
+#: ../includes/definitions/albumProperties.php:480
+msgid "Bonus to height of current microthumb (pixels)"
 msgstr ""
 
 #: ../includes/definitions/services.php:45
@@ -2396,23 +2442,23 @@ msgstr "album áthelyezése"
 msgid "reorder album"
 msgstr "album mozgatása"
 
-#: ../layout/adminAlbumCommands.inc:13 ../view_album.php:250
+#: ../layout/adminAlbumCommands.inc:13
 msgid "rename album"
 msgstr "album átnevezése"
 
-#: ../layout/adminAlbumCommands.inc:20 ../view_album.php:263
+#: ../layout/adminAlbumCommands.inc:20
 msgid "edit captions"
 msgstr "képaláírások szerkesztése"
 
-#: ../layout/adminAlbumCommands.inc:27 ../view_album.php:298
+#: ../layout/adminAlbumCommands.inc:27
 msgid "permissions"
 msgstr "jogosultságok"
 
-#: ../layout/adminAlbumCommands.inc:28 ../view_album.php:287
+#: ../layout/adminAlbumCommands.inc:28
 msgid "properties"
 msgstr "tulajdonságok"
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:397
+#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:398
 msgid "view&nbsp;comments"
 msgstr "megjegyzések&nbsp;megtekintése"
 
@@ -2733,8 +2779,8 @@ msgstr "SIKERTELEN"
 msgid "Email activity"
 msgstr ""
 
-#: ../lib/voting.php:215 ../view_album.php:556 ../view_album.php:572
-#: ../view_album.php:923
+#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
+#: ../view_album.php:924
 msgid "Vote"
 msgstr "Szavazás"
 
@@ -2746,8 +2792,8 @@ msgstr "Az összpontszám a zárójelben olvasható"
 msgid "Average points in brackets"
 msgstr "A zárójelben az átlagos pontszám olvasható"
 
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:488
-#: ../view_album.php:790
+#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
+#: ../view_album.php:791
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -3396,7 +3442,7 @@ msgstr "Válaszd ki az albumot, ahová fel szeretnél tölteni"
 msgid "Use filenames as captions"
 msgstr "A fájlnevek legyenek a képaláírások"
 
-#: ../publish_xp.php:157 ../publish_xp.php:271
+#: ../publish_xp.php:157 ../publish_xp.php:270
 msgid "Create New Album"
 msgstr "Új album létrehozása"
 
@@ -3413,7 +3459,7 @@ msgstr "Nem adtál meg albumot!"
 msgid "This user cannot add photos in %s."
 msgstr "Ez a felhasználó nem adhat hozzá fotókat a %s albumhoz."
 
-#: ../publish_xp.php:214 ../publish_xp.php:313
+#: ../publish_xp.php:214 ../publish_xp.php:312
 msgid "Press the 'Back' button and try again!"
 msgstr "Nyomd meg a böngészõ 'Vissza' gombját, és próbálkozz újra!"
 
@@ -3421,40 +3467,40 @@ msgstr "Nyomd meg a böngészõ 'Vissza' gombját, és próbálkozz újra!"
 msgid "User cannot create ROOT level album."
 msgstr "A felhasználó nem hozhat létre GYÖKÉRszintû albumot."
 
-#: ../publish_xp.php:248
+#: ../publish_xp.php:247
 #, php-format
 msgid "User cannot create nested album in %s."
 msgstr "A felhasználó nem hozhat létre belsõ albumot a %s albumban."
 
-#: ../publish_xp.php:251
+#: ../publish_xp.php:250
 msgid "No Parent Album Specified!"
 msgstr "Nem adtál meg szülõalbumot!"
 
-#: ../publish_xp.php:275
+#: ../publish_xp.php:274
 msgid "Enter New Album Title"
 msgstr "Írd be az új album nevét"
 
-#: ../publish_xp.php:278
+#: ../publish_xp.php:277
 msgid "Select Parent Album"
 msgstr "Szülõ kiválasztása"
 
-#: ../publish_xp.php:285
+#: ../publish_xp.php:284
 msgid "NEW TOP LEVEL ALBUM"
 msgstr "ÚJ FÕALBUM"
 
-#: ../publish_xp.php:340
+#: ../publish_xp.php:339
 msgid "User cannot add to album"
 msgstr "A felhasználó nem adhat hozzá az albumhoz semmit"
 
-#: ../publish_xp.php:344
+#: ../publish_xp.php:343
 msgid "No file specified"
 msgstr "Nincs megadva fájl"
 
-#: ../publish_xp.php:441
+#: ../publish_xp.php:440
 msgid "Photo Upload"
 msgstr "Fotó feltöltése"
 
-#: ../publish_xp.php:441
+#: ../publish_xp.php:440
 msgid "Upload Photos to"
 msgstr "Fotók feltöltése ide: "
 
@@ -3832,7 +3878,7 @@ msgstr "Illeszkedõ megjegyzések"
 msgid "From Album"
 msgstr "Ebbõl az albumból:"
 
-#: ../search.php:209 ../view_photo_properties.php:111
+#: ../search.php:209 ../view_photo_properties.php:112
 msgid "KEYWORDS"
 msgstr "KULCSSZAVAK"
 
@@ -4692,7 +4738,7 @@ msgstr "Ha meg akarod változtatni a jelszavadat, meg kell adnod a régit, majd ké
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Az új felhasználóneved számokból és betûkbõl állhat. "
 
-#: ../user_preferences.php:135
+#: ../user_preferences.php:135 ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr ""
 
@@ -4728,146 +4774,118 @@ msgstr ""
 msgid "The file does not exist ?!"
 msgstr "A(z) %s fájl nem létezik ?!"
 
-#: ../util.php:220
+#: ../util.php:216
 #, php-format
-msgid "PHP's %s unable to determine dimensions."
+msgid "Dimensions: x: %d y: %d"
 msgstr ""
 
-#: ../util.php:234 ../util.php:516 ../util.php:764 ../util.php:810
-#: ../util.php:1935
+#: ../util.php:221
+#, php-format
+msgid "PHP's %s function is unable to determine dimensions."
+msgstr ""
+
+#: ../util.php:235 ../util.php:1468
 msgid "You have no graphics package configured for use!"
 msgstr ""
 
-#: ../util.php:257
+#: ../util.php:258
 msgid "Unable to determine image dimensions!"
 msgstr ""
 
-#: ../util.php:324
-#, fuzzy, php-format
-msgid "Resizing Image: %s"
-msgstr "%s átméretezése"
-
-#: ../util.php:355
-msgid "No resizing required"
-msgstr "Nincs szükség újraméretezésre"
-
-#: ../util.php:385
-#, php-format
-msgid "target file size %d kbytes"
-msgstr "a célzott fájlméret %d kbyte"
-
-#: ../util.php:391 ../util.php:421
-#, php-format
-msgid "-> file size %d kbytes"
-msgstr "-> fájlméret %d kbyte"
-
-#: ../util.php:392
-#, php-format
-msgid "trying quality %d%%"
-msgstr "a(z) %d%%-os képminõséggel próbálkozom"
-
-#: ../util.php:422
-msgid "Done."
-msgstr "Kész."
-
-#: ../util.php:520
-msgid "No watermark name specified!"
-msgstr "Nnem adtál meg vízjel nevet!"
-
-#: ../util.php:828
+#: ../util.php:326
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr ""
 
-#: ../util.php:832
+#: ../util.php:330
 #, php-format
 msgid "File %s type %d."
 msgstr "Fájl: %s típusa: %d."
 
-#: ../util.php:867 ../util.php:890
+#: ../util.php:361 ../util.php:384
 #, php-format
 msgid "Unknown file type: %s"
 msgstr "Ismeretlen fájltípus: %s"
 
-#: ../util.php:1024
+#: ../util.php:537
 #, php-format
 msgid "Can't write to %s."
 msgstr "Nem tudok írni ide: %s."
 
-#: ../util.php:1031
+#: ../util.php:544
 #, php-format
 msgid "Can't read %s."
 msgstr "Nem tudok olvasni innen: %s."
 
-#: ../util.php:1248
+#: ../util.php:765
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "Felvételi idõ"
 
-#: ../util.php:1293
+#: ../util.php:810
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "A(z) %s URL nem nyitható meg."
 
-#: ../util.php:1298
+#: ../util.php:815
 #, fuzzy, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "A(z) %s URL nem nyitható meg."
 
-#: ../util.php:1386
+#: ../util.php:898
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:1530
+#: ../util.php:1044
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:1533
+#: ../util.php:1047
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:1547 ../util.php:2532
+#: ../util.php:1061 ../util.php:2066
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1587
+#: ../util.php:1101
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "%s kihagyása (a ZIP fájlok támogatása ki van kapcsolva)"
 
-#: ../util.php:1703
+#: ../util.php:1253
 #, php-format
 msgid "Adding %s"
 msgstr "Hozzáad %s"
 
-#: ../util.php:1740
+#: ../util.php:1273
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Segítségre van szükséged? Olvasd el a %s%s GyIK%s-t"
 
-#: ../util.php:1745
+#: ../util.php:1278
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "%s-et kihagyom (nem ismerem a(z) %s formátumot)"
 
-#: ../util.php:1898
+#: ../util.php:1432
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Az EXIF adatokat nem tudom beolvasni (a jhead program nincs telepítve)"
 
-#: ../util.php:2017
+#: ../util.php:1550
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "A(z) %s log nem nyitható meg."
 
-#: ../util.php:2366
+#: ../util.php:1899
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:2443
+#: ../util.php:1977
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4917,145 +4935,169 @@ msgid "%s is hidden"
 msgstr "%s rejtett"
 
 #: ../view_album.php:244
-msgid "add photos"
-msgstr "fotók hozzáadása"
+#, fuzzy
+msgid "Add photos"
+msgstr "Új képek"
+
+#: ../view_album.php:250
+#, fuzzy
+msgid "Rename album"
+msgstr "album átnevezése"
 
 #: ../view_album.php:257
-msgid "new nested album"
+#, fuzzy
+msgid "New nested album"
 msgstr "új belsõ album"
 
+#: ../view_album.php:263
+#, fuzzy
+msgid "Edit captions"
+msgstr "képaláírások szerkesztése"
+
 #: ../view_album.php:269
-msgid "sort items"
+#, fuzzy
+msgid "Sort items"
 msgstr "elemek rendezése"
 
 #: ../view_album.php:275
-msgid "resize all"
+#, fuzzy
+msgid "Resize all"
 msgstr "mindet újraméretezi"
 
 #: ../view_album.php:281
-msgid "rebuild thumbs"
+#, fuzzy
+msgid "Rebuild thumbs"
 msgstr "kisképek újrakészítése"
+
+#: ../view_album.php:287
+#, fuzzy
+msgid "Properties"
+msgstr "tulajdonságok"
 
 #: ../view_album.php:293
 #, fuzzy
-msgid "rearrange items"
+msgid "Rearrange items"
 msgstr "%s átméretezése"
 
-#: ../view_album.php:304
-msgid "poll results"
-msgstr "szavazási eredmények"
+#: ../view_album.php:305
+#, fuzzy
+msgid "Poll results"
+msgstr "A szavazás eredménye:"
 
-#: ../view_album.php:310
-msgid "poll reset"
+#: ../view_album.php:311
+#, fuzzy
+msgid "Poll reset"
 msgstr "felmérés nullázása"
 
-#: ../view_album.php:316
-msgid "view comments"
-msgstr "megjegyzések megtekintése"
-
-#: ../view_album.php:322
-msgid "watermark album"
-msgstr "album vízjelezése"
-
-#: ../view_album.php:380
+#: ../view_album.php:317
 #, fuzzy
-msgid "album actions"
+msgid "View comments"
+msgstr "Megjegyzések megtekintése"
+
+#: ../view_album.php:323
+#, fuzzy
+msgid "Watermark album"
+msgstr "Album vízjelezése"
+
+#: ../view_album.php:381
+#, fuzzy
+msgid "Album Actions"
 msgstr "Album aláírás"
 
-#: ../view_album.php:470
+#: ../view_album.php:471
 msgid "You have no votes recorded for this poll."
 msgstr "Erre a felmérésre senki nem szavazott."
 
-#: ../view_album.php:474
+#: ../view_album.php:475
 msgid "Your current choices are"
 msgstr ""
 
-#: ../view_album.php:514
+#: ../view_album.php:515
 msgid "See full poll results"
 msgstr "Az összes szavazat megtekintése"
 
-#: ../view_album.php:548
+#: ../view_album.php:549
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:550
+#: ../view_album.php:551
 msgid " or "
 msgstr "vagy"
 
-#: ../view_album.php:554
+#: ../view_album.php:555
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "A képre történõ szavazáshoz kattints a %s gombra."
 
-#: ../view_album.php:555
+#: ../view_album.php:556
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "A %s-ra KELL kattintani, hogy a szavazat rögzítésre kerüljön."
 
-#: ../view_album.php:560
+#: ../view_album.php:561
 #, fuzzy, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "A választásodon módosíthatsz."
 
-#: ../view_album.php:561
+#: ../view_album.php:562
 #, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "%d szavazat"
 
-#: ../view_album.php:564
+#: ../view_album.php:565
 msgid "You can change your choices if you wish."
 msgstr "A választásodon módosíthatsz."
 
-#: ../view_album.php:717 ../view_album.php:718
+#: ../view_album.php:718 ../view_album.php:719
 #, php-format
 msgid "%dkB"
 msgstr "%d kB"
 
-#: ../view_album.php:779
+#: ../view_album.php:780
 #, fuzzy
 msgid "highlight"
 msgstr "Nincs kiemelt kép"
 
-#: ../view_album.php:794
+#: ../view_album.php:795
 msgid "No description"
 msgstr "Nincs leírás"
 
-#: ../view_album.php:802
+#: ../view_album.php:803
 msgid "Changed: "
 msgstr "Módosítva: "
 
-#: ../view_album.php:805
+#: ../view_album.php:806
 msgid "Contains: "
 msgstr "Tartalom: "
 
-#: ../view_album.php:805
+#: ../view_album.php:806
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "%d elem"
 
-#: ../view_album.php:821 ../view_album.php:845
+#: ../view_album.php:822 ../view_album.php:846
 msgid "Viewed:"
 msgstr "Megtekintve:"
 
-#: ../view_album.php:901
+#: ../view_album.php:902
 msgid "Hey! Add some photos."
 msgstr "Figyu! Tölts fel képeket!"
 
-#: ../view_album.php:903
+#: ../view_album.php:904
 msgid "This album is empty."
 msgstr "Ez az album üres."
 
-#: ../view_album.php:948
+#: ../view_album.php:949
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:953
+#: ../view_album.php:954
 msgid "Comments are added"
 msgstr "Megjegyzéseket adtak hozzá"
 
-#: ../view_album.php:956
+#: ../view_album.php:957
 msgid "Other changes are made"
 msgstr "Egyéb változások történtek"
 
@@ -5117,15 +5159,15 @@ msgstr ""
 msgid "Email me when comments are added"
 msgstr "Megjegyzéseket adtak hozzá"
 
-#: ../view_photo_properties.php:39 ../view_photo_properties.php:46
+#: ../view_photo_properties.php:39 ../view_photo_properties.php:47
 msgid "Photo Properties"
 msgstr "Fotó tulajdonságai"
 
-#: ../view_photo_properties.php:122
+#: ../view_photo_properties.php:123
 msgid "Reload EXIF Data From File"
 msgstr "Az EXIF adat újraolvasása a fájlból"
 
-#: ../view_photo_properties.php:125
+#: ../view_photo_properties.php:126
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(ha aktuális az adat, nem történik semmi)"
 
@@ -5140,6 +5182,46 @@ msgstr "Nincs vízjelezhetõ elem."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "no"
+#~ msgstr "nem"
+
+#~ msgid "off"
+#~ msgstr "ki"
+
+#, fuzzy
+#~ msgid "Resizing Image: %s"
+#~ msgstr "%s átméretezése"
+
+#~ msgid "No resizing required"
+#~ msgstr "Nincs szükség újraméretezésre"
+
+#~ msgid "target file size %d kbytes"
+#~ msgstr "a célzott fájlméret %d kbyte"
+
+#~ msgid "-> file size %d kbytes"
+#~ msgstr "-> fájlméret %d kbyte"
+
+#~ msgid "trying quality %d%%"
+#~ msgstr "a(z) %d%%-os képminõséggel próbálkozom"
+
+#~ msgid "Done."
+#~ msgstr "Kész."
+
+#~ msgid "No watermark name specified!"
+#~ msgstr "Nnem adtál meg vízjel nevet!"
+
+#~ msgid "add photos"
+#~ msgstr "fotók hozzáadása"
+
+#~ msgid "poll results"
+#~ msgstr "szavazási eredmények"
+
+#~ msgid "view comments"
+#~ msgstr "megjegyzések megtekintése"
+
+#~ msgid "watermark album"
+#~ msgstr "album vízjelezése"
 
 #~ msgid "title"
 #~ msgstr "cím"
@@ -5209,9 +5291,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Last Update"
 #~ msgstr "Utolsó oldal"
-
-#~ msgid "None"
-#~ msgstr "Egy sem"
 
 #~ msgid "Dots"
 #~ msgstr "Pöttyök"
