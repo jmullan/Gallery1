@@ -241,85 +241,86 @@ if ($gallery->user->canWriteToAlbum($gallery->album) &&
 /* admin items for drop-down menu */
 $adminOptions = array(
     'add_photos'	=> array(
-        'name' 	=> _('add photos'),
+        'name' 	=> _("Add photos"),
         'requirements' => array('canAddToAlbum'),
         'action' 	=> 'popup',
         'value' 	=> makeGalleryUrl('add_photos_frame.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'rename_album'    => array(
-        'name' => _('rename album'),
+        'name' => _("Rename album"),
         'requirements' => array('isAdminOrAlbumOwner'),
         'action' => 'popup',
         'value' => makeGalleryUrl('rename_album.php', array(
             'set_albumName' => $gallery->session->albumName,
             'type' => 'popup', 'useLoad' => 1))),
     'nested_album'    => array(
-        'name' => _('new nested album'),
+        'name' => _("New nested album"),
         'requirements' => array('canCreateSubAlbum', 'notOffline'),
         'action' => 'url',
         'value' => doCommand('new-album',
             array('parentName' => $gallery->session->albumName), 'view_album.php')),
     'edit_captions'   => array(
-        'name' => _('edit captions'),
+        'name' => _("Edit captions"),
         'requirements' => array('canChangeText','notOffline'),
         'action' => 'url',
         'value' => makeGalleryUrl('captionator.php',
             array('set_albumName' => $gallery->session->albumName, 'page' => $page, 'perPage' => $perPage))),
     'sort_items'      => array(
-        'name' => _('sort items'),
+        'name' => _("Sort items"),
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
         'value' => makeGalleryUrl('sort_album.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'resize_all'      => array(
-        'name' => _('resize all'),
+        'name' => _("Resize all"),
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
         'value' => makeGalleryUrl('resize_photo.php',
             array('set_albumName' => $gallery->session->albumName, 'index' => 'all', 'type' => 'popup'))),
     'rebuild_thumbs'  => array(
-        'name' => _('rebuild thumbs'),
+        'name' => _("Rebuild thumbs"),
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
         'value' => doCommand('remake-thumbnail',
             array('set_albumName' => $gallery->session->albumName, 'index' => 'all', 'type' => 'popup'))),
     'properties'      => array(
-        'name' => _('properties'),
+        'name' => _("Properties"),
         'requirements' => array('canWriteToAlbum'),
         'action' => 'popup',
         'value' => makeGalleryUrl('edit_appearance.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'rearrange' => array(
-        'name' => _('rearrange items'),
+        'name' => _("Rearrange items"),
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
         'value' => makeGalleryUrl('rearrange.php', 
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
-    'permissions'     => array('name' => _('permissions'),
+    'permissions'     => array(
+        'name' => _("Permissions"),
         'requirements' => array('isAdminOrAlbumOwner'),
         'action' => 'popup',
         'value' => makeGalleryUrl('album_permissions.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'poll_results'    => array(
-        'name' => _('poll results'),
+        'name' => _("Poll results"),
         'requirements' => array('isAdminOrAlbumOwner'),
         'action' => 'url',
         'value' => makeGalleryUrl('poll_results.php',
             array('set_albumName' => $gallery->session->albumName,))),
     'poll_reset'      => array(
-        'name' => _('poll reset'),
+        'name' => _("Poll reset"),
         'requirements' => array('isAdminOrAlbumOwner'),
         'action' => 'popup',
         'value' => makeGalleryUrl('reset_votes.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'view_comments'   => array(
-        'name' => _('view comments'),
+        'name' => _("View comments"),
         'requirements' => array('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments'),
         'action' => 'url',
         'value' => makeGalleryUrl('view_comments.php',
             array('set_albumName' => $gallery->session->albumName))),
     'watermark_album'   => array(
-        'name' => _('watermark album'),
+        'name' => _("Watermark album"),
         'requirements' => array('isAdminOrAlbumOwner','photosExist','watermarkingEnabled'),
         'action' => 'popup',
         'value' => makeGalleryUrl('watermark_album.php',
@@ -377,7 +378,7 @@ if (!empty($adminOptionHTML)) {
     . "</script>\n\n";
 
     $iconElements[] = "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n"
-    . "\t\t<option value=\"\">&laquo; " . _('album actions') . " &raquo;</option>\n"
+    . "\t\t<option value=\"\">&laquo; " . _('Album Actions') . " &raquo;</option>\n"
     . $adminOptionHTML
     . "\t</select>\n";
 }

@@ -10,7 +10,7 @@
  if (!isset($isAdmin)) { $isAdmin = 0; }
 
  $hidden = array();
- $yesNoChoices = array(1 => _("yes"), 0 => _("no"));
+ $yesNoChoices = array(1 => _("Yes"), 0 => _("No"));
 ?>
 <table>
 <?php if ($allowChange["member_file"] === true) { ?>

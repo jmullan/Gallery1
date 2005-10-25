@@ -446,7 +446,7 @@ $constants =  array_merge(
                 'prompt' => _("Auto-rotate images"),
 		'desc' => _("Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.") . '<br>' .
 				'<span class="attention">' . _("Requires Jhead EXIF parser v.1.9 or greater (See optional tools).") . '</span>',
-                'choices' => array('yes' => _("yes"), 'no' => _("no")),
+                'choices' => array('yes' => _("Yes"), 'no' => _("No")),
                 'value' => "yes"
         ),
 
@@ -499,9 +499,9 @@ $constants =  array_merge(
 		'value' => 1000,
 	),
 	'microTree' => array(
-		'prompt' => _("Replace album tree with micro thumbs"),
-		'desc' => _("If you have set album tree to anything but off, this will display micro thumbs of the sub albums instead of the album tree."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'prompt' => _("Replace album tree with microthumbs"),
+		'desc' => _("If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'highlight_size' => array(
@@ -520,7 +520,7 @@ $constants =  array_merge(
 	'showOwners' => array(
 		'prompt' => _("Show Owner"),
 		'desc' => _("Show album owner's name next to each album?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'albumsPerPage' => array(
@@ -533,13 +533,13 @@ $constants =  array_merge(
 	'showSearchEngine' => array(
 		'prompt' => _("Search Engine"),
 		'desc' => _("Display search engine on main Gallery page?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes"
 	),
 	'slowPhotoCount' => array(
 		'prompt' => _("Accurate Photo Count"),
 		'desc' => _("Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 	),
 	'gallery_thumb_frame_style' => array(
@@ -658,7 +658,7 @@ $constants =  array_merge(
 	'showContextHelp' => array(
 		'prompt' => _("Show context help"),
 		'desc' => _("Show context sensitive help links (little ? links that describe in-depth what each function of Gallery does)?") . newIn ("1.4.2"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes"
 	),
 */
@@ -703,7 +703,7 @@ $constants =  array_merge(
 		'prompt' => _("Show flags?"),
 		'type' => (sizeof(gallery_languages()) > 1) ? "choices" : "hidden",
 		'desc' => _("In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 		'enabled' => $elawisyl
 	),
@@ -748,11 +748,11 @@ $constants = array_merge($constants,
 	'emailOn' => array(
 		'prompt' => _("Enable email"),
 		'verify-func' => "verify_email",
-	       	'desc' => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . _("no") . '</i>' ) .  '<br>' .
+	       	'desc' => sprintf(_("Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . _("No") . '</i>' ) .  '<br>' .
 					'<span class="emphasis">' . _("Note:") . '</span> ' .
 					_("If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email.") . '<br>'. 
 					'<span class="attention">' . _("You need to enable this setting if you want to enable Self Registration.") . '</span>',
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'adminEmail' => array(
@@ -793,7 +793,7 @@ $constants = array_merge($constants,
 		'prompt' => _("Allow visitors to self register."),
 		'desc' => _("Enabling this will allow visitors to your site to create their own login accounts.") . '<br>' .
 			 	'<span class="attention">' . _("This option requires the Email feature to be enabled.") . '</span>',
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 		'requires-features' => array('emailOn' => _("Email"))
 	),
@@ -801,25 +801,25 @@ $constants = array_merge($constants,
 		'prompt' => _("Self registered users can create albums."),
 		'desc' => _("Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .
 		"<br>",
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"),
 	'multiple_create' => array(
 		'prompt' => _("Enable bulk account creation"),
 		'desc' => _("This option allows you to create many new user accounts at one time by creating a file of new users.") .
 		"<br>",
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'adminCommentsEmail' => array(
 		'desc' => _("This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"),
 		'prompt' => _("Admin comment email"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 		),
 	'adminOtherChangesEmail' => array(
 		'desc' => _("This allows the &quot;admin&quot; account to get email whenever a change is made to any album"),
 		'prompt' => _("Admin Other Changes email"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 		),
 
@@ -837,7 +837,7 @@ $constants = array_merge($constants,
                 'prompt' => _("Use non-local SMTP server."),
                 'desc' => _("Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."),
                 "<br>",
-                'choices' => array('no' => _("no"), 'yes' => _("yes")),
+                'choices' => array('no' => _("No"), 'yes' => _("Yes")),
                 'optional' => 1,
                 'value' => 'no',
         ),
@@ -912,7 +912,7 @@ $constants = array_merge($constants,
 			       	'ordered' => _("Ordered"),
 			       	'random' => _("Random"),
 				),
-		       	'value' => "off",
+		       	'value' => 'off',
 			),
 	'gallery_slideshow_length' => array(
 		'prompt' => _("Slideshow length"),
@@ -924,8 +924,8 @@ $constants = array_merge($constants,
 	),
 	'gallery_slideshow_loop' => array(
 		'prompt' => _("Allow slideshow to loop"),
-		'desc' => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'desc' => sprintf(_("This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("No")."</b>"),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 	       	'value' => "yes"
 	),
 	'slideshowMode' => array(
@@ -946,7 +946,7 @@ $constants = array_merge($constants,
 	'comments_enabled' => array(
 			'prompt' => _("Enable commenting"),
 			'desc' => _("This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."),
-			'choices' => array('yes' => _("yes"), 'no' => _("no")),
+			'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 			'value' => "yes"
 			),
 	'comments_indication' => array(
@@ -972,14 +972,14 @@ $constants = array_merge($constants,
 	'comments_indication_verbose' => array(
 		       	'prompt' => _("Display date of last comment?"),
 		       	'desc' => sprintf(_("If an item has comments, display date of last comment, rather than a %s."), '"*"'),
-			'choices' => array('yes' => _("yes"), 'no' => _("no")),
+			'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		       	'value' => "no",
 			),
 	'comments_anonymous' => array(
 		       	'prompt' => _("Anonymous comments from known users?"),
 		       	'desc' => sprintf(_("When logged in, comments will automatically use format described below, unless this is set to %s."), 
-				"<b>". _("yes"). "</b>"),
-			'choices' => array('yes' => _("yes"), 'no' => _("no")),
+				"<b>". _("Yes"). "</b>"),
+			'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		       	'value' => "no",
 			),
 	'comments_display_name' => array(
@@ -1004,7 +1004,7 @@ $constants = array_merge($constants,
 	'comments_overview_for_all' => array(
 			'prompt' => _("Can every permitted user see a comments overview"),
 			'desc' => _("Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."),
-			'choices' => array('yes' => _("yes"), 'no' => _("no")),
+			'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		       	'value' => "no",
 	),
 	'group_comments_end' => array (
@@ -1156,7 +1156,7 @@ $constants = array_merge($constants,
 	'skipRegisterGlobals' => array(
 		'prompt' => _('Disable register_globals check'),
 		'desc' => sprintf(_('<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don\'t occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;.'), Gallery(), Gallery(), Gallery(), Gallery()),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
                 'value' => "no",
 	),
         'timeLimit' => array(
@@ -1191,26 +1191,26 @@ $constants = array_merge($constants,
 	'cacheExif' => array(
 		'prompt' => "<b>(" . _("Advanced") . ")</b><br> ". _("Cache EXIF data"),
 		'desc' => _("The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 
 	'devMode' => array(
 		'prompt' => _("Developer Mode"),
 		'desc' => _("Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 	), 
 	'useSyslog' => array(
 		'prompt' => _("Use Syslog"),
 		'desc' => _("Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 	),
 	'use_flock' => array(
 		'prompt' => sprintf(_("Use %s"), " flock()"),
 		'desc' => _("Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes"),
 	'expectedExecStatus' => array(
 		'prompt' => _("Status code"),
@@ -1413,7 +1413,7 @@ $defaults = array(
 			'<br><span class="attention>'. _("Warning:") .'</span> '. 
 			_("Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
-		'choices' => array(0 => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
+		'choices' => array(0 => _("Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3))
 	),
 	'max_file_size' => array(
 		'prompt' => _('Maximum JPEG/PNG image file size'),
@@ -1427,26 +1427,26 @@ $defaults = array(
 	'useOriginalFileNames' => array(
 		'prompt' => _("Preserve Names"),
                 'desc' => _("When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."),
-                'choices' => array('yes' => _("yes"), 'no' => _("no")),
+                'choices' => array('yes' => _("Yes"), 'no' => _("No")),
                 'value' => "yes",
 	),
 	'add_to_beginning' => array(
 		'prompt' => _("Add to beginning"),
 		'desc' => _("New images added to beginning rather than end of albums."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 	),
 	'fit_to_window' => array(
 		'prompt' => _("Fit-to-window"),
 		'desc' => _("When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."),
 		'value' => "no",
-		'choices' => array('yes' => _("yes"), 'no' => _("no"))
+		'choices' => array('yes' => _("Yes"), 'no' => _("No"))
 	),
 	'use_fullOnly' => array(
 		'prompt' => _("Visitor size prefs"),
 		'desc' => _("Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."),
 		'value' => "no",
-		'choices' => array('yes' => _("yes"), 'no' => _("no"))
+		'choices' => array('yes' => _("Yes"), 'no' => _("No"))
 	),
 	'group3_end' => array (
 		'type' => 'group_end',
@@ -1488,14 +1488,14 @@ $defaults = array(
                 'prompt' => _("Enable Ecards ?"),
                 'desc' => _("Set this to 'yes' to allow users to send a picure as eCard via eMail") . '<br>'.
 			'<span class="attention">' . _("This option requires the Email feature to be enabled.") . '</span>',
-                'choices' => array("yes" => _("yes"), "no" => _("no")),
+                'choices' => array("yes" => _("Yes"), "no" => _("No")),
                 'value' => 'no'
         ),
 	'returnto' => array(
 		'prompt' => _("Gallery Link"),
 		'desc' => _("Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."),
 		'value' => "yes",
-		'choices' => array('yes' => _("yes"), 'no' => _("no"))
+		'choices' => array('yes' => _("Yes"), 'no' => _("No"))
 	),
 	'defaultPerms' => array(
 		'prompt' => _("Default Album Permissions"),
@@ -1519,7 +1519,7 @@ $defaults = array(
 	'display_clicks' => array(
 		'prompt' => _("Click counts"),
 		'desc' => _("Display click counts within Albums?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes",
 	),
 	'extra_fields' => array(
@@ -1533,7 +1533,7 @@ $defaults = array(
 	'showDimensions' => array(
 		'prompt' => _("Display clickable image dimensions"),
 		'desc' => _("Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'group5_end' => array (
@@ -1548,19 +1548,19 @@ $defaults = array(
 	'item_owner_modify' => array(
 		'prompt' => _("Photo owner modification"),
 		'desc' => _("Allow photo owners to edit and rotate/flip their own photos?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes",
 	),
 	'item_owner_delete' => array(
 		'prompt' => _("Photo owner deletion"),
 		'desc' => _("Allow photo owners to delete their own photos?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes",
 	),
 	'item_owner_display' => array(
 		'prompt' => _("Photo owner display"),
 		'desc' => _("Display the name of photo owners with the caption?"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 	),
 	'group6_end' => array (
@@ -1628,15 +1628,15 @@ $defaults = array(
 	'poll_show_results' => array(
 		'prompt' => _("Show vote results"),
 		'desc' => sprintf(_("Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."),
-			_("no")),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+			_("No")),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no",
 			), 
 	'poll_num_results' => array(
 		'prompt' => _("Number of results displayed"),
 		'desc' => sprintf(_("If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"),
 			'"'. _("Show vote results").'"' ,
-			'"'. _("yes").'"'),
+			'"'. _("Yes").'"'),
 		'value' => 3,
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9)),
 
@@ -1688,14 +1688,14 @@ $defaults = array(
 	),
 	'slideshow_recursive' => array(
 		'prompt' => _("Recursive slideshow"),
-		'desc' => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("yes")."</b>"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'desc' => sprintf(_("Set to %s if you want to include images in sub albums as part of the slideshow."), "<b>"._("Yes")."</b>"),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "no"
 	),
 	'slideshow_loop' => array(
 		'prompt' => _("Allow slideshow to loop"),
-		'desc' => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("no")."</b>"),
-		'choices' => array('yes' => _("yes"), 'no' => _("no")),
+		'desc' => sprintf(_("This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."), "<b>"._("No")."</b>"),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
 		'value' => "yes"
 	),
 	'slideshow_length' => array(
@@ -1713,17 +1713,17 @@ $defaults = array(
 		'type' => 'group_start',
 		'name' => 'group_photoMicroNav',
 		'default' => 'none',
-		'title' => _("Micro Thumb Photo Navigation"),
-		'desc' => _("These settings apply to the micro-thumb photo navigation system.  The micro thumbs are only visible when viewing individual images.")
+		'title' => _("Microthumb Photo Navigation"),
+		'desc' => _("These settings apply to the microthumb photo navigation system.  The microthumbs are only visible when viewing individual images.")
 	),
 	'nav_thumbs' => array(
-		'prompt' => _("Micro Thumb Photo Navigation"),
-		'desc' => _("Uses micro-thumbnails for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the micro thumb navigation system AND the old style navigation system."),
+		'prompt' => _("Microthumb Photo Navigation"),
+		'desc' => _("Uses microthumbs for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the microthumb navigation system AND the old style navigation system."),
 		'value' => "no",
-		'choices' => array('yes' => _("yes"), 'no' => _("no"), 'both' => _("both"))
+		'choices' => array('yes' => _("Yes"), 'no' => _("No"), 'both' => _("both"))
 	),
 	'nav_thumbs_style' => array(
-		'prompt' => _("Micro Thumb Photo Navigation"),
+		'prompt' => _("Microthumb Photo Navigation"),
                         'desc' => "<dl>"
                                 . "<dt>" . _("Fixed") ."</dt>"
                                 . "<dd>" . _("Displays prev+next groups of thumbs, changing only to display next group of thumbs.") . "</dd>"
@@ -1734,30 +1734,30 @@ $defaults = array(
 		'choices' => array('fixed' => _("Fixed"), 'dynamic' => _("Dynamic"))
 	),
 	'nav_thumbs_first_last' => array(
-		'prompt' => _("Show Micro Thumb for First/Last"),
-		'desc' => _("This allows you to turn on and off the display of the first and last micro-thumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."),
+		'prompt' => _("Show Microthumb for First/Last"),
+		'desc' => _("This allows you to turn on and off the display of the first and last microthumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."),
 		'value' => "no",
-		'choices' => array('yes' => _("yes"), 'no' => _("no"))
+		'choices' => array('yes' => _("Yes"), 'no' => _("No"))
 	),
 	'nav_thumbs_prev_shown' => array(
-		'prompt' => _("Number of Previous Micro Thumbs"),
-		'desc' => _("This is the number of previous micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."),
+		'prompt' => _("Number of Previous Microthumbs"),
+		'desc' => _("This is the number of previous microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."),
 		'value' => "no",
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4,
 				5 => 5, 6 => 6, 6 => 6, 7 => 7,
 				8 => 8, 9 => 9, 10 => 10)
 	),
 	'nav_thumbs_next_shown' => array(
-		'prompt' => _("Number of Next Micro Thumbs"),
-		'desc' => _("This is the number of next micro thumbs on the screen at a time.  You might prefer to show fewer previous micro thumbs and more next micro thumbs."),
+		'prompt' => _("Number of Next Microthumbs"),
+		'desc' => _("This is the number of next microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."),
 		'value' => "no",
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4,
 				5 => 5, 6 => 6, 6 => 6, 7 => 7,
 				8 => 8, 9 => 9, 10 => 10)
 	),
 	'nav_thumbs_location' => array(
-		'prompt' => _("Location of Micro Thumb Navigation"),
-		'desc' => _("Displays the micro-thumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the micro thumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."),
+		'prompt' => _("Location of Microthumb Navigation"),
+		'desc' => _("Displays the microthumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the microthumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."),
 		'value' => "top",
 		'choices' => array(
 			'top' => _("Top"), 
@@ -1765,14 +1765,14 @@ $defaults = array(
 			'bottom' => _("Bottom"))
 	),
 	'nav_thumbs_size' => array(
-		'prompt' => _("Height of Micro Thumbs"),
-		'desc' => _("The size of micro thumbnails will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."),
+		'prompt' => _("Height of Microthumbs"),
+		'desc' => _("The size of microthumbs will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."),
 		'value' => '45',
 		'type' => 'text'
 	),
 	'nav_thumbs_current_bonus' => array(
-		'prompt' => _("Bonus to Current Micro Thumb's Size"),
-		'desc' => _("This is the bonus in pixels to the size of the current micro-thumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other micro thumbs and a negative value will result in a smaller micro thumb."),
+		'prompt' => _("Bonus to Current Microthumb's Size"),
+		'desc' => _("This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."),
 		'value' => '15',
 		'type' => 'text'
 	),

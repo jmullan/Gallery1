@@ -86,8 +86,8 @@ switch ($cmd) {
 						'parentName' => $parentName));
 ?>
 		<br>
-		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("yes"); ?>
-		<input type="radio" name="rebuild_type" value="single" checked><?php echo _("no"); ?>
+		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("Yes"); ?>
+		<input type="radio" name="rebuild_type" value="single" checked><?php echo _("No"); ?>
 		<br><br>
 		<input type="submit" value="<?php echo _("Start") ?>"><br><br>
 	</form>

@@ -186,7 +186,7 @@ echo makeFormIntro("multi_create_user.php", array(
     "name" => "usercreate_form",
     "enctype" => "multipart/form-data"));
 
-$canCreateChoices = array(1 => _("yes"), 0 => _("no"));
+$canCreateChoices = array(1 => _("Yes"), 0 => _("No"));
 $canCreate = 0;
 ?>
 	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">

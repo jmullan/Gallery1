@@ -93,7 +93,7 @@ if (! empty($error)) {
 </tr>
 <tr>
 	<td><?php echo _("Show results of voting to all visitors?") ?></td>
-	<td><select name="poll_show_results"><?php selectOptions($gallery->album, "poll_show_results", array("no" => _("no"), "yes" => _("yes"))) ?></select></td>
+	<td><select name="poll_show_results"><?php selectOptions($gallery->album, "poll_show_results", array("no" => _("No"), "yes" => _("Yes"))) ?></select></td>
 </tr>
 <tr>
 	<td width="50%"><?php echo _("Number of lines of results graph to display on the album page") ?></td>

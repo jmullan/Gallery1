@@ -20,22 +20,17 @@
  * $Id$
  */
 ?>
-
-<p>
 <?php
-	echo _("Upload any images found at this location.");
+	echo "\n<p>";
+	echo _("Upload any images found at this location.") . ' ';
 	echo _("The location can either be a URL or a local directory on the server.");
-?>
-<br>
-<?php 
-	echo '<p><b>'. _("Tip:") . '</b> ';
-	echo _("FTP images to a directory on your server then provide that path here!");
-?>
-</p>
+	echo "\n<p>\n";
 
-<?php 
+	echo '<b>'. _("Tip:") . '</b> ';
+	echo _("FTP images to a directory on your server then provide that path here!");
+
 	echo makeFormIntro("save_photos.php",
-			array("name" => "uploadurl_form"),
+			array('name' => 'uploadurl_form'),
 			array('type' => 'popup'));
 ?>
 <input type="text" name="urls[]" size="40">

@@ -106,7 +106,7 @@ $properties = array(
         'value' => $gallery->album->fields["linkcolor"]
     ),
     'bordercolor' => array(
-        'prompt' => _("Border color"),
+        'prompt' => _("Border Color"),
         'desc' => '',
         'type' => 'colorpicker',
         'value' => $gallery->album->fields["bordercolor"]
@@ -152,13 +152,13 @@ $properties = array(
     'slideshow_recursive' => array(
         'prompt' => _("Include sub-albums in slideshow"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["slideshow_recursive"]
     ),
     'slideshow_loop' => array(
         'prompt' => _("Allow slideshow to loop"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["slideshow_loop"]
     ),
     'slideshow_length' => array(
@@ -194,7 +194,7 @@ $properties = array(
     'resize_size' => array(
         'prompt' => _("Maximum dimensions of intermediate sized images"),
         'desc' => '',
-        'choices' => array(0 => _("off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
+        'choices' => array(0 => _("Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
         'value' => $gallery->album->fields["resize_size"],
         'vartype' => 'int_empty'
     ),
@@ -208,7 +208,7 @@ $properties = array(
     'max_size' => array(
         'prompt' => _("Maximum dimensions of full sized images"),
         'desc' => '',
-        'choices' => array(0 => _('off'), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3)),
+        'choices' => array(0 => _("Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(_('%d (%d MPix)'), 1280, 1), 1600 => sprintf(_('%d (%d MPix)'), 1600, 2), 2048 => sprintf(_('%d (%d MPix)'), 2048, 3)),
         'value' => $gallery->album->fields["max_size"],
         'vartype' => 'int_empty'
     ),
@@ -232,25 +232,25 @@ $properties = array(
     'display_clicks' => array(
         'prompt' => _("Display click counter for this album?"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["display_clicks"]
     ),
     'item_owner_display' => array(
         'prompt' => _("Display owners name with caption"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["item_owner_display"]
     ),
     'showDimensions' => array(
         'prompt' => _("Display clickable image dimensions"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["showDimensions"]
     ),
     'use_exif' => array(
         'prompt' => _("Display EXIF data?"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["use_exif"],
         'skip' => (empty($gallery->app->use_exif)) ? true : false
     ),
@@ -279,7 +279,7 @@ $properties = array(
     'ecards' => array(
         'prompt' => _("Enable Ecards ?"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => isset($gallery->album->fields["ecards"]) ? $gallery->album->fields["ecards"] : 'no',
         'skip' => ($gallery->app->emailOn == 'yes') ? false : true
     ),
@@ -309,7 +309,7 @@ $properties = array(
     'poll_show_results' => array(
         'prompt' => _("Show results of voting to all visitors?"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["poll_show_results"]
     ),
     'poll_num_results' => array(
@@ -360,25 +360,25 @@ $properties = array(
     'add_to_beginning' => array(
         'prompt' => _("Add new items at beginning of album"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["add_to_beginning"]
     ),
     'returnto' => array(
         'prompt' => _("Show <i>Return to</i> link"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["returnto"]
     ),
     'use_fullOnly' => array(
         'prompt' => _("Offer visitors ability to specify<br>preference for full-size or resized images"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["use_fullOnly"]
     ),
     'fit_to_window' => array(
         'prompt' => _("Auto fit-to-window for<br>images without a resized copy"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["fit_to_window"]
     ),
     'subgroup_ermission' => array (
@@ -388,13 +388,13 @@ $properties = array(
     'item_owner_modify' => array(
         'prompt' => _("Allow item owners to modify their images"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["item_owner_modify"]
     ),
     'item_owner_delete' => array(
         'prompt' => _("Allow item owners to delete their images"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["item_owner_delete"]
     ),
     'group_misc_end' => array (
@@ -434,21 +434,21 @@ $properties = array_merge($properties, array(
         'title' => _("Microthumbs")
     ),
     'nav_thumbs' => array(
-        'prompt' => _("Use micro thumb photo navigation"),
+        'prompt' => _("Use microthumb photo navigation"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no"), "both" => _("both")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No"), "both" => _("both")),
         'value' => $gallery->album->fields["nav_thumbs"]
     ),
     'nav_thumbs_style' => array(
-        'prompt' => _("Micro thumb style"),
+        'prompt' => _("Microthumb style"),
         'desc' => '',
         'choices' => array("fixed" => _("Fixed"), "dynamic" => _("Dynamic")),
         'value' => $gallery->album->fields["nav_thumbs_style"]
     ),
     'nav_thumbs_first_last' => array(
-        'prompt' => _("Show first & last micro thumb"),
+        'prompt' => _("Show first & last microthumb"),
         'desc' => '',
-        'choices' => array("yes" => _("yes"), "no" => _("no")),
+        'choices' => array("yes" => _("Yes"), "no" => _("No")),
         'value' => $gallery->album->fields["nav_thumbs_first_last"]
     ),
     'nav_thumbs_prev_shown' => array(
@@ -464,20 +464,20 @@ $properties = array_merge($properties, array(
         'value' => $gallery->album->fields["nav_thumbs_next_shown"]
     ),
     'nav_thumbs_location' => array(
-        'prompt' => _("Position of micro-thumb navigation bar"),
+        'prompt' => _("Position of microthumb navigation bar"),
         'desc' => '',
         'choices' => array("top" => _("Top"), "both" => _("Both"), "bottom" => _("Bottom")),
         'value' => $gallery->album->fields["nav_thumbs_location"]
     ),
     'nav_thumbs_size' => array(
-        'prompt' => _("Height of micro-thumbs in navigation bar"),
+        'prompt' => _("Height of microthumbs in navigation bar"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_size"],
         'attrs' => array('size' => 3)
     ),
     'nav_thumbs_current_bonus' => array(
-        'prompt' => _("Bonus to height of current micro-thumb (pixels)"),
+        'prompt' => _("Bonus to height of current microthumb (pixels)"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_current_bonus"],

@@ -16,9 +16,7 @@ $attr = isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : '';
 $base = '';
 if (isset($gallery->html_wrap['base'])) {
     $base = $gallery->html_wrap['base'];
-}
-
-if (!realpath($base)) {
+} else {
     $base = getGalleryBaseUrl();
 }
 
