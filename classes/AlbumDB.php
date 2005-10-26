@@ -92,6 +92,23 @@ class AlbumDB {
         }
     }
 
+    function sortByField($fieldname = '', $order = 'desc') {
+	if(!empty($fieldname)) {
+	    if($fieldname == 'name') {
+		if($order == 'asc') {
+		    sort($this->albumOrder);
+		}
+		else {
+		    rsort($this->albumOrder);
+		}
+	    }
+	    else {
+//		array_sort_by_fields($this->albumList, $fieldname , $order, true, false, true);
+	    }
+	    $this->save();
+	}
+    }
+
     function renameAlbum($oldName, $newName) {
         global $gallery;
 

@@ -367,7 +367,6 @@ if (empty($useCache)) {
     for ($i = 0; $i<$numAlbums; $i++) {
         debugMessage("<hr>", __FILE__, __LINE__);
         $statsAlbum = $list[$i];
-        //		print_r($statsAlbum);
         if ($statsAlbum->versionOutOfDate()) {
             debugMessage(_("Version out of date."), __FILE__, __LINE__, 2);
             $skip[] = $statsAlbum;
@@ -506,6 +505,7 @@ if (empty($useCache)) {
     }
 
     $order = ($reverse) ? 'asc' : 'desc';
+
     if (is_array($arrPhotos) ) {
         // Do the search using the criteria specified by $type.
 	switch ($type) {

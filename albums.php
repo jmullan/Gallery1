@@ -55,6 +55,7 @@ $gallery->session->offlineAlbums["albums.php"] = true;
 
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
+
 $gallery->session->albumName = '';
 $page = 1;
 
@@ -190,8 +191,8 @@ if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if ($gallery->user->isAdmin()) {
         
-        $iconText = getIconText('unsortedList.gif', _("rebuild highlights"));
-        $linkurl = doCommand('rebuild_highlights', array('type' => 'popup'));
+        $iconText = getIconText('unsortedList.gif', _("Adminster startpage"));
+        $linkurl = makeGalleryUrl('manage-startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link($iconText, $linkurl, true);
         
         $iconText = getIconText('kdf.gif', _("admin page"));

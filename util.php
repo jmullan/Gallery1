@@ -1995,39 +1995,49 @@ function parse_ecard_template($ecard,$ecard_data) {
  * @param	boolean	$caseSensitive
  * @param	boolean	$keepIndexes	if set to true, then uasort instead of usort is used.
  */
-function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true, $keepIndexes = false) {
+function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = true, $keepIndexes = false, $special = false) {
 	static $sort_funcs = array();
 	static $code;
 
 	$order = ($order == 'asc') ? 1 : -1;
 
 	if (empty($sort_funcs[$sortby])) {
-		if ($caseSensitive) {
-			$code = "
-	    if( \$a['$sortby'] == \$b['$sortby'] ) { 
-	        return 0;
-	    };
-	    if ( \$a['$sortby'] > \$b['$sortby'] ) {
-	        return $order;
-	    } else {
-	        return -1 * $order;
-	    }";
-		}
-		else {
-			$code = "
-	    if(strtoupper(\$a['$sortby']) == strtoupper(\$b['$sortby'])) { 
-	        return 0;
-	    };
-	    if (strtoupper(\$a['$sortby']) > strtoupper(\$b['$sortby'])) {
-	        return $order;
-	    } else {
-	        return -1 * $order;
-	    }";
-		}
 
-		$sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
+	    if ($special) {
+		$a = "\$a->fields[\"$sortby\"]";
+		$b = "\$b->fields[\"$sortby\"]";
+	    }
+	    else {
+		$a = "\$a['$sortby']";
+		$b = "\$b['$sortby']";
+	    }
+
+	    if ($caseSensitive) {
+			$code = "
+	    if( $a == $b ) { 
+	        return 0;
+	    };
+	    if ( $a > $b ) {
+	        return $order;
+	    } else {
+	        return -1 * $order;
+	    }";
+		}
+	    else {
+			$code = "
+	    if(strtoupper($a) == strtoupper($b) { 
+	        return 0;
+	    };
+	    if (strtoupper($a) > strtoupper($b)) {
+	        return $order;
+	    } else {
+	        return -1 * $order;
+	    }";
+	    }
+	
+	    $sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
 	} else {
-		$sort_func = $sort_funcs[$sortby];
+	    $sort_func = $sort_funcs[$sortby];
 	}
 
 	debugMessage($code, __FILE__, __LINE__, 3);
