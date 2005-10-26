@@ -466,7 +466,7 @@ class htmlMimeMail
 /**
 * Adds an html image subpart to a mime_part object
 */
-	function &_addHtmlImagePart(&$obj, $value)
+	function _addHtmlImagePart(&$obj, $value)
 	{
 		$params['content_type'] = $value['c_type'];
 		$params['encoding']     = 'base64';
@@ -479,7 +479,7 @@ class htmlMimeMail
 /**
 * Adds an attachment subpart to a mime_part object
 */
-	function &_addAttachmentPart(&$obj, $value)
+	function _addAttachmentPart(&$obj, $value)
 	{
 		$params['content_type'] = $value['c_type'];
 		$params['encoding']     = $value['encoding'];

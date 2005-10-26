@@ -1972,7 +1972,7 @@ function parse_ecard_template($ecard,$ecard_data) {
       }
       */
       $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
-      $ecard_mail->setFrom($ecard["name_sender"].'<'.$ecard["email_sender"].'>');
+      $ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
       if (empty($ecard['subject'])) {
           $ecard['subject'] = sprintf(_("%s sent you an E-C@rd."), $ecard["name_sender"]);
       }
@@ -1980,7 +1980,7 @@ function parse_ecard_template($ecard,$ecard_data) {
       $ecard_mail->setSubject($ecard['subject']);
       $ecard_mail->setReturnPath($ecard["email_sender"]);
 
-      $result = $ecard_mail->send(array($ecard["email_recepient"]));
+      $result = $ecard_mail->send(array($ecard["name_recepient"] .' <'. $ecard["email_recepient"] .'>'));
 
       return $result;
   }
