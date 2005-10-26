@@ -192,7 +192,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if ($gallery->user->isAdmin()) {
         
         $iconText = getIconText('unsortedList.gif', _("Adminster startpage"));
-        $linkurl = makeGalleryUrl('manage-startpage.php', array('type' => 'popup'));
+        $linkurl = makeGalleryUrl('adminster_startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link($iconText, $linkurl, true);
         
         $iconText = getIconText('kdf.gif', _("admin page"));
