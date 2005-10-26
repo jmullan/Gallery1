@@ -110,6 +110,7 @@ if ($postnuke ||
 		       "add_photos.php",
 		       "add_photos_frame.php",
 		       "admin-page.php",
+		       "administer_startpage.php",
 		       "album_permissions.php",
 		       "albums.php",
 		       "block-random.php",

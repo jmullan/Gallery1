@@ -39,13 +39,13 @@ $adminOptions[] = array( 'text' => _("Rebuild highlights"),
 			 'longtext' => _("rebuild highlights"));
 
 $adminOptions[] = array( 'text' => _("Sort albumorder"),
-			 'url' => makeGalleryUrl('adminster_startpage.php', array('sort' => 1)),
+			 'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1)),
 			 'longtext' => _("Sort albumorder"));
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 doctype();
-printPopupStart(_("Adminster Startpage"));
+printPopupStart(_("Administer Startpage"));
 
 if(empty($sort)) {
     echo "\n<table width=\"100%\">";
@@ -63,7 +63,7 @@ if(empty($sort)) {
     echo "\n</table>";
 }
 elseif (empty($order)) {
-echo makeFormIntro('adminster_startpage.php');
+echo makeFormIntro('administer_startpage.php');
 ?>
 <table>
   <caption><?php echo _("Sort albums on startpage"); ?></caption>
