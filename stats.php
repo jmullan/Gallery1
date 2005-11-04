@@ -1136,12 +1136,12 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
        !$gallery->session->offline) {
 
         $innerStatsTable->addElement(array(
-        'content' => _("Views:"),
-        'cellArgs' => array('width' => 100)));
+            'content' => _("Views:"),
+            'cellArgs' => array('width' => 100)));
 
         $innerStatsTable->addElement(array(
-        'content' => pluralize_n2($statsAlbum->getItemClicks($photoIndex), "1 time", "times" , "0 times"),
-        'cellArgs' => array('class' => 'fineprint')));
+            'content' => gTranslate('core', "1 time", "times" , $statsAlbum->getItemClicks($photoIndex), _("0 times")),
+            'cellArgs' => array('class' => 'fineprint')));
     }
 
     if (!empty($showVotes )) {

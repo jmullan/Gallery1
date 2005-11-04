@@ -139,8 +139,8 @@ if ($formaction == 'create') {
         }
         echo "\n<p>";
         echo sprintf(_("%s added, %s skipped"),
-        pluralize_n2(ngettext("1 user", "%d users", $total_added), $total_added),
-        pluralize_n2(ngettext("1 user", "%d users", $total_skipped), $total_skipped));
+	    gTranslate('core', "1 user", "%d users", $total_added),
+	    gTranslate('core', "1 user", "%d users", $total_skipped));
         echo "\n</p>";      
 ?>
 

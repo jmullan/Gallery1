@@ -1584,15 +1584,17 @@ class Album {
         }
     }
 
-    function numItems($user = NULL, $visibleOnly = false, $recursive = false) {
+/* This is a new function for numVisibleItems */
+/* Old function should be removed */
+    function numItems($user = NULL, $recursive = false) {
         if(empty($user)) {
             return array(-1, -1, -1);
         }
 
         $uuid = $user->getUid();
-        $numPhotos = $numAlbums = 0;
+        $numItemsTotal = $numAlbums = $numPhotos = 0;
         $canWrite = $user->canWriteToAlbum($this);
-        $numItems = $numItemsTotal = $this->numPhotos(1);
+        $numItems = $this->numPhotos(1);
 
         for ($itemNr = 1; $itemNr <= $numItems; $itemNr++) {
             $item = $this->getPhoto($itemNr);
@@ -1604,8 +1606,7 @@ class Album {
                         $numAlbums++;
                     }
                     else {
-                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, false, $recursive);
-                        $numItemsTotal  += $subNumItems;
+                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, $recursive);
                         $numAlbums++;
                         $numAlbums += $subNumAlbums;
                         $numPhotos += $subNumPhotos;
@@ -1615,6 +1616,7 @@ class Album {
                 $numPhotos++;
             }
         }
+        $numItemsTotal = $numAlbums + $numPhotos;
         return (array($numItemsTotal, $numAlbums, $numPhotos));
     }
     
@@ -2756,7 +2758,7 @@ class Album {
                         $numAlbums++;
                     }
                     else {
-                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, false, $recursive);
+                        list($subNumItems, $subNumAlbums, $subNumPhotos) =  $subalbum->numItems($user, $recursive);
                         $numItemsTotal  += $subNumItems;
                         $numAlbums++;
                         $numAlbums += $subNumAlbums;

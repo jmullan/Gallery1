@@ -1,3 +1,32 @@
+2005-11-04 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b28
+
+ * New: Added creation date to album fields
+
+ * New: Added sort by last reset date and creation date to mainpage albums.
+
+ * Fix: Album permissions were broken in b17
+
+ * CHANGE: removed function pluralize_n2 !
+
+ * NEW: Added function gTranslate to lib/lang.php
+
+ * NEW: Added third translation file for common phrases used in config and core.
+        NOTE: only german is updated !
+
+ * CHANGE: --keyword=gTranslate:1,2 in po/create_po_template.sh
+
+ * Change: Some wording.
+
+ * Fix: breadcrumb in captionator
+
+ * Fix: Better handling in save_photos.php for unreadable dirs and files.
+
+ * Change: moved function createNewAlbum() from util.php to lib/album.php
+
+ * Change+Fix: tweaked array_sort_by_fields() to handle album fields (sorting by subarray)
+
+ * Fix: Element counter on mainpage was broken.
+
 2005-10-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b27
 
  * Fix: naming in b26 was wrong

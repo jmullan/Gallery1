@@ -10,9 +10,14 @@
 ##### CORE .pot ############
 cat copyright-header.txt > gallery-core.pot
 
-xgettext --files-from=filelist-core -LPHP --keyword=_ --no-wrap --msgid-bugs-address="gallery-translations@lists.sourceforge.net" -o - | tail +7 >> gallery-core.pot
+xgettext --files-from=filelist-core -LPHP --keyword=gTranslate:1,2 --no-wrap --msgid-bugs-address="gallery-translations@lists.sourceforge.net" -o - | tail +7 >> gallery-core.pot
 
 ##### CONFIG .pot
 cat copyright-header.txt > gallery-config.pot
 
-xgettext --files-from=filelist-config -LPHP --keyword=_ --no-wrap --msgid-bugs-address="gallery-translations@lists.sourceforge.net" -o - | tail +7 >> gallery-config.pot
+xgettext --files-from=filelist-config -LPHP --keyword=gTranslate:1,2 --no-wrap --msgid-bugs-address="gallery-translations@lists.sourceforge.net" -o - | tail +7 >> gallery-config.pot
+
+##### COMMON .pot
+cat copyright-header.txt > gallery-common.pot
+
+xgettext --files-from=filelist-common -LPHP --keyword=gTranslate:1,2 --no-wrap --msgid-bugs-address="gallery-translations@lists.sourceforge.net" -o - | tail +7 >> gallery-common.pot

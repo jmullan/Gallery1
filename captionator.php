@@ -174,18 +174,28 @@ $adminText = _("Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
     $adminText .= _("1 photo in this album") ;
 } else {
-    $adminText .= "$numPhotos ". _("items in this album") ;
     if ($maxPages > 1) {
-        $adminText .= " " . _("on") . " " . pluralize_n2(ngettext("one page", "%d pages", $maxPages), $maxPages);
+        $adminText .= sprintf (_("%s items in this album on %s"), 
+		$numPhotos, 
+		gTranslate('core',"one page", "%d pages", $maxPages));
+    }
+    else {
+        $adminText .= sprintf (_("%s items in this album"), $numPhotos);
     }
 }
 
 $adminbox['text'] = $adminText;
 $adminbox['bordercolor'] = $bordercolor;
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' . 
+
+$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' .
   'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-$breadcrumb['text'][] = _("Album: ") .'<a class="bread" href="'. makeAlbumUrl($gallery->album->albumName) .'">'. $gallery->album->fields['title'] . '&nbsp;' 
-  . $upArrowURL . '</a>';
+
+if ($gallery->album->fields['returnto'] != 'no') {
+    foreach ($gallery->album->getParentAlbums() as $navAlbum) {
+        $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
+        $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+    }
+}
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');

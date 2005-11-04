@@ -261,8 +261,8 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = pluralize_n2(ngettext(_("1 album"), _("%s albums"), $numAlbums), $numAlbums, _("no albums"));
-$image_str = pluralize_n2(ngettext(_("1 photo"), _("%s photos"), $numPhotos), $numPhotos, _("no photos"));
+$total_str = gTranslate('core', "1 album", "%s albums", $numAlbums, _("no albums"));
+$image_str = gTranslate('core', "1 photo", "%s photos", $numPhotos, _("no photos"));
 
 $description = sprintf(_("%s in %s"), $image_str, $total_str);
 

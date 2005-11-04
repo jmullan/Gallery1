@@ -33,8 +33,7 @@ if (!empty($doit)) {
     $zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
     downloadFile($zipfileName);
 } else {
-    list($numItems, $numAlbums, $numPhotos) =
-    $gallery->album->numItems($gallery->user, false, true);
+    list($numItems, $numAlbums, $numPhotos) = $gallery->album->numItems($gallery->user, true);
 
     $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
 

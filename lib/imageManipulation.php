@@ -485,6 +485,7 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
             fromPnmCmd($out));
         break;
         case "ImageMagick":
+        // Only for v6 !
             exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-crop ${width}x${height}+${offsetX}+${offsetY} +repage"));
         break;
         default:

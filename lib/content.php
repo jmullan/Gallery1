@@ -283,7 +283,7 @@ function printChildren($albumName,$depth=0) {
                 $val2 = $nestedAlbum->fields['title'];
                 if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
                   && !$gallery->session->offline) {
-                    $val3 = "(" . pluralize_n2(ngettext("1 hit", "%d hits", $nestedAlbum->getClicks()), $nestedAlbum->getClicks()) . ")";
+                    $val3 = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks()) . ")";
                 } else {
                     $val3 = '';
                 }
@@ -324,7 +324,7 @@ function printMicroChildren($albumName, $depth = 0) {
                 $val2 = $nestedAlbum->fields['title'];
                 if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
                   && !$gallery->session->offline) {
-                    $val3 = "(" . pluralize_n2(ngettext("1 hit", "%d hits", $nestedAlbum->getClicks()), $nestedAlbum->getClicks()) . ")";
+                    $val3 = "(" . gTranslate("1 view", "%d views", $nestedAlbum->getClicks()) . ")";
                 } else {
                     $val3 = '';
                 }

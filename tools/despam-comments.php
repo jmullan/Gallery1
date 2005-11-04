@@ -148,7 +148,7 @@ function deleteComments() {
         }
 
         printf("<h3> %s </h3>",
-            pluralize_n2(ngettext("Deleted %d spam comment.", "Deleted %d spam comments.", $removedTotal),
+            gTranslate('core', "Deleted %d spam comment.", "Deleted %d spam comments.",
             $removedTotal, _("No comment deleted.")));
     }
 }
@@ -264,7 +264,7 @@ function editBlacklist() {
                 printf("<h3>%s</h3>", _("Error saving blacklist!"));
             } else {
                 printf("<h3>%s</h3>",
-                pluralize_n2(ngettext("Deleted %d entry from blacklist.", "Deleted %d entries from blacklist", sizeof($removed)),
+                gTranslate('core', "Deleted %d entry from blacklist.", "Deleted %d entries from blacklist",
                 sizeof($removed)));
                 print "<ul>";
                 foreach (array_keys($removed) as $entry) {

@@ -67,47 +67,48 @@ if (!empty($urls)) {
 <div class="popup" align="center">
 <?php
 	/* Process all urls first.
-	** $urls contains all URLs given by the "URL Upload".
-	** $urls should be empty when using the "Form Upload".
+	 * $urls contains all URLs given by the "URL Upload".
+	 * $urls should be empty when using the "Form Upload".
 	*/
 	foreach ($urls as $url) {
 
-	/* Get rid of any extra white space */
-	$url = trim($url);
-		
-	/*
-	** Check to see if the URL is a local directory (inspired by
-	** code from Jared (hogalot))
-	*/
-	if (fs_is_dir($url)) {
-		processingMsg(sprintf(_("Processing %s as a local directory."), 
-			'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>'));
-		$handle = fs_opendir($url);
-		while (($file = readdir($handle)) != false) {
-			if ($file != "." && $file != "..") {
-				$tag = pathinfo($file);
-				$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
-				if (acceptableFormat($tag)) {
-					/* Add to userfile */
-					if (substr($url,-1) == "/") {
-						$image_tags[] = fs_export_filename($url . $file);
-						} else {
-						$image_tags[] = fs_export_filename($url . "/" . $file);
-					}
-				}
-					if ($tag == "csv") {
-						if (substr($url,-1) == "/") {
-							$info_tags[] = fs_export_filename($url . $file);
-						} else {
-							$info_tags[] = fs_export_filename($url . "/" . $file);
-						}
-					}
-				}
-			}
-			closedir($handle);
-			continue;
-		}
+	    /* Get rid of any extra white space */
+	    $url = trim($url);
 
+	    /*
+	    * Check to see if the URL is a local directory (inspired by
+	    * code from Jared (hogalot))
+	    */
+	    if (fs_is_dir($url)) {
+	        processingMsg(sprintf(_("Processing %s as a local directory."),
+	        '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>'));
+	        $handle = fs_opendir($url);
+	        if($handle) {
+	            while (($file = readdir($handle)) != false) {
+	                if ($file != "." && $file != "..") {
+	                    $tag = pathinfo($file);
+	                    $tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
+	                    if (acceptableFormat($tag)) {
+	                        /* Add to userfile */
+	                        if (substr($url,-1) == "/") {
+	                            $image_tags[] = fs_export_filename($url . $file);
+	                        } else {
+	                            $image_tags[] = fs_export_filename($url . "/" . $file);
+	                        }
+	                    }
+	                    if ($tag == "csv") {
+	                        if (substr($url,-1) == "/") {
+	                            $info_tags[] = fs_export_filename($url . $file);
+	                        } else {
+	                            $info_tags[] = fs_export_filename($url . "/" . $file);
+	                        }
+	                    }
+	                }
+	            }
+	            closedir($handle);
+	        }
+	        continue;
+	    }
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = ltrim($url);
 		
@@ -140,26 +141,22 @@ if (!empty($urls)) {
 		 * Do NOT use fs_fopen here because that will pre-process
 		 * the URL in win32 style (ie, convert / to \, etc).
 		 */
- 		$id = @fopen($url, "rb");
+		$urlArray = array($url, "$url/");
 		if (!ereg("http", $url)) {
-			if (!$id) {
-			    $url = "http://$url";
-			    $id = @fopen($url, "rb");
-			}
-			if (!$id) {
-			    $url = "http://$url/";
-                $id = @fopen($url, "rb");
-			}
+		    $urlArray[] = "http://$url";
+		    $urlArray[] = "http://$url/";
 		}
-		if (!$id) {
-		  $url = "$url/";
-		  $id = @fopen($url, "rb");
+
+		do {
+		    $tryUrl = array_shift($urlArray);
+		    $id = @fopen($tryUrl, "rb");
 		}
-		
+		while (!$id && !empty($urlArray));
+
 		if (!$id) {
-			processingMsg(sprintf(_("Could not open url: %s"), $url));
-			continue;
-		} 
+		    processingMsg(sprintf(_("Could not open url: %s"), $url));
+		    continue;
+		}
 	
 		/**
 		 * If this is an image or movie - 
@@ -259,7 +256,7 @@ if (!empty($urls)) {
 ?>
 
 <div class="popuphead"><?php echo _("Processing status...") ?></div>
-<div class="popup" align="center">
+<div class="popup">
 
 <?php
 $image_count = 0;
@@ -367,7 +364,7 @@ if (!empty($temp_files)) {
 }
 ?>
 
-<div align="center">
+<div class="popuptd" align="center">
 <?php
 if (empty($image_count) && $upload_started) {
 	print _("No images uploaded!");
@@ -376,6 +373,7 @@ if (empty($image_count) && $upload_started) {
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>
+
 <?php
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
@@ -384,18 +382,12 @@ if (count($image_tags)) {
 	** include JavaScript (de)selection and invert
 	*/
 	insertFormJS('uploadurl_form');
-?>
-</div>
-<p class="popuptd">
-<?php 
-	echo insertFormJSLinks('urls[]'); 
-?>
-</p>
 
-<?php 
+	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
+	
     echo _("Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
     echo makeFormIntro("save_photos.php", 
-		array("name" => 'uploadurl_form'),
+		array('name' => 'uploadurl_form'),
 		array('type' => 'popup')); 
 
     /* Allow user to select which files to grab - only show url right now ( no image previews ) */
@@ -407,43 +399,38 @@ if (count($image_tags)) {
 	   echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
     }
 
-echo "</select>\n";
+    echo "</select>\n";
 
-/* REVISIT - it'd be nice to have these functions get shoved
-  into util.php at some time - maybe added functionality to the makeFormIntro? */ 
-?>
+    /* REVISIT - it'd be nice to have these functions get shoved
+     * into util.php at some time - maybe added functionality to the makeFormIntro?
+    */ 
+    echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
 
-<p>
-<?php 
-	echo insertFormJSLinks('urls[]'); 
-?>
-</p>
-<?php if (count($info_tags)) { ?>
+    if (count($info_tags)) { ?>
 <span>
 <?php
-	processingMsg(sprintf(_("%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
+	   processingMsg(sprintf(_("%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
 ?>
 </span>
 <p>
 <?php
-    echo insertFormJSLinks('meta[]');
+        echo insertFormJSLinks('meta[]');
 ?>
 </p>
 <table>
 <tr>
 	<td>
 <?php
-	foreach ($info_tags as $info_tag) {
-		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br>\n";
-	}
-
+    	foreach ($info_tags as $info_tag) {
+    		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br>\n";
+    	}
 ?>
 	</td>
 </tr>
 </table>
 <p>
 <?php
-	echo insertFormJSLinks('meta[]');
+	   echo insertFormJSLinks('meta[]');
 ?>
 <?php } /* end if (count($info_tags)) */ ?>
 <p>
@@ -459,7 +446,8 @@ echo "</select>\n";
 </form>
 </div>
 </div>
-<?php } /* End if links slurped */ ?>
+<?php 
+} /* End if links slurped */ ?>
 </div>
 </body>
 </html>

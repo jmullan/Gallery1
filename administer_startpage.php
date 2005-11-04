@@ -34,15 +34,25 @@ if (!$gallery->user->isAdmin()) {
 
 list($sort, $order, $fieldname) = getRequestVar(array('sort', 'order', 'fieldname'));
 
-$adminOptions[] = array( 'text' => _("Rebuild highlights"),
-			 'url' =>  doCommand('rebuild_highlights'),
-			 'longtext' => _("rebuild highlights"));
+$adminOptions[] = array(
+    'text' => _("Rebuild highlights"),
+    'url' =>  doCommand('rebuild_highlights'),
+    'longtext' => _("rebuild highlights")
+);
 
-$adminOptions[] = array( 'text' => _("Sort albumorder"),
-			 'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1)),
-			 'longtext' => _("Sort albumorder"));
+$adminOptions[] = array(
+    'text' => _("Sort albumorder"),
+    'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1)),
+    'longtext' => _("Sort albumorder")
+);
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
+
+$sortOptions= array(
+    'name'          => _("By (physical) name"),
+    'clicks_date'   => _("By last reset date"),
+    'creation_date' => _("By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
+);
 
 doctype();
 printPopupStart(_("Administer Startpage"));
@@ -63,24 +73,27 @@ if(empty($sort)) {
     echo "\n</table>";
 }
 elseif (empty($order)) {
-echo makeFormIntro('administer_startpage.php');
+    echo makeFormIntro('administer_startpage.php');
 ?>
 <table>
-  <caption><?php echo _("Sort albums on startpage"); ?></caption>
-  <tr>
-    <td><input checked type="radio" name="fieldname" value="name"><?php echo _("By (physical) name") ?></td>
-  </tr>
-  <tr>
-    <td align="center">
+<caption"><?php echo _("Sort albums on startpage"); ?></caption>
+<?php
+    foreach ($sortOptions as $sortBy => $text) {
+        echo "\n <tr>";
+        echo "\n  <td><input checked type=\"radio\" name=\"fieldname\" value=\"$sortBy\"></td>";
+        echo "\n  <td>$text</td>";
+        echo "\n </tr>";
+    }
+?>
+</table>
+<p>
 <?php echo _("Sort Order:"); ?>
     <select name="order">
         <option value="asc"><?php echo _("Ascending") ?></option>
         <option value="desc"><?php echo _("Descending") ?></option>
     </select>
-    </td>
-  </tr>
-</table>
-<br><br>
+</p>
+
 <input type="hidden" name="sort" value="1">
 <input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>

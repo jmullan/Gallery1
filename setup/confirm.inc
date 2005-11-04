@@ -478,7 +478,7 @@ if (!$error) {
 	} else {
 		echo '<input type="submit" name="refresh" disabled="disabled" value="' . _("Refresh") . '">';
 		echo '<br><div class="error" id="top">';
-		echo pluralize_n2(ngettext("One error.", "%d errors.", $error), $error, _("No errors."));
+		echo gTranslate('config', "One error.", "%d errors.", $error, _("No errors."));
                 echo ' ';
 		echo _("See Details below.");
 		echo '</div>';

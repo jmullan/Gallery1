@@ -102,7 +102,8 @@ function fs_opendir($path) {
 	return $dir_handle;
     }
     else {
-	echo gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+	echo "\<br>". gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+	return false;
     }
 }
 

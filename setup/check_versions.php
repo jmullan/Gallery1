@@ -66,8 +66,8 @@ if  ($errors) { ?>
 <table class="inner" width="100%">
 <tr>
 	<td class="errorlong" colspan="2">
-		<?php echo pluralize_n2(ngettext("One file is missing, corrupt or older than expected.", 
-					"%d files are missing, corrupt or older than expected.", count($errors)), 
+		<?php echo gTranslate('config'"One file is missing, corrupt or older than expected.", 
+					"%d files are missing, corrupt or older than expected.", 
 						count($errors), _("All files okay."));
 		?>
 	</td>
@@ -97,8 +97,8 @@ if ($warnings) {
 <tr>
 
 	<td class="warninglong" colspan="2">
-	<?php echo pluralize_n2(ngettext("One file is more recent than expected.", 
-				"%d files are more recent than expected.", count($warnings)),
+	<?php echo gTranslate('config', "One file is more recent than expected.", 
+				"%d files are more recent than expected.",
 					count($warnings), _("All files okay.")); 
 	?>
 	</td>
@@ -125,8 +125,8 @@ if ($warnings) {
 <table class="inner" width="100%">
 <tr>
 	<td class="successlong" colspan="2">
-		<?php echo pluralize_n2(ngettext("One file is up-to-date.",
-					"%d files are up-to-date.", count($oks)),
+		<?php echo gTranslate('config', "One file is up-to-date.",
+					"%d files are up-to-date.",
 					count($oks),  _("All files are up-to-date."));
 		?>
 	</td>

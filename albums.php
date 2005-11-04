@@ -143,14 +143,14 @@ if (!$gallery->session->offline &&
 /* Admin Text (left side) */
 $adminText = '';
 if ($numAccess == $numAlbums) {
-	$toplevel_str= pluralize_n2(ngettext("1 album","%d albums",$numAlbums), $numAlbums, _("no albums"));
+	$toplevel_str = gTranslate('core', "1 album","%d albums", $numAlbums, _("no albums"));
 } else {
-	$toplevel_str= pluralize_n2(ngettext("1 top-level album","%d top-level albums",$numAlbums), $numAlbums, _("No top-level albums"));
+	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, _("No top-level albums"));
 }
 
-$total_str= sprintf(_("%d total"), $numAccess);
-$image_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
-$page_str= pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("no pages"));
+$total_str = sprintf(_("%d total"), $numAccess);
+$image_str = gTranslate('core', "1 image", "%d images", $numPhotos, _("no images"));
+$page_str = gTranslate('core', "1 page", "%d pages", $maxPages, _("no pages"));
 
 if (($numAccess != $numAlbums) && $maxPages > 1) {
 	$adminText .= sprintf(_("%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
@@ -322,7 +322,7 @@ for ($i = $start; $i <= $end; $i++) {
       $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
       $scaleTo = $gallery->app->highlight_size;
       list($iWidth, $iHeight) = $gallery->album->getHighlightDimensions($scaleTo);
-      if (!$iWidth) {
+      if (empty($iWidth)) {
           $iWidth = $gallery->app->highlight_size;
           $iHeight = 100;
       }
@@ -407,15 +407,15 @@ for ($i = $start; $i <= $end; $i++) {
   <span class="fineprint">
    <?php
 	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
-	$visibleItems = ($gallery->album->numVisibleItems($gallery->user));
+	list($visibleItems) = $gallery->album->numItems($gallery->user, true);
 	echo " "; // Need a space between these two text blocks
-	echo pluralize_n2(ngettext("This album contains 1 item.", "This album contains %d items.", $visibleItems), $visibleItems);
+	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 ?>
    <br><?php
 	$clickCount = $gallery->album->getClicks();
 	echo sprintf(_("This album has been viewed %s since %s."),
-		pluralize_n2(ngettext("1 time", "%d times", $clickCount), $clickCount, _("0 times")),
+		gTranslate('core', "1 time", "%d times", $clickCount, _("0 times")),
 		$gallery->album->getClicksDate());
 }
 $albumName = $gallery->album->fields["name"];

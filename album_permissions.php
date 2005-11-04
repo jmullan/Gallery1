@@ -35,16 +35,16 @@ if (!$gallery->user->isAdmin() &&
 }
 
 $perms = array(
-    'canRead'		=> _("Users who can see the album."),
-    'canAddTo'		=> _("Users who can add photos."),
-    'canDeleteFrom'	=> _("Users who can delete photos."),
-    'canWrite'		=> _("Users who can modify photos."),
+    'canRead'           => _("Users who can see the album."),
+    'canAddTo'          => _("Users who can add photos."),
+    'canDeleteFrom'     => _("Users who can delete photos."),
+    'canWrite'          => _("Users who can modify photos."),
     'canCreateSubAlbum' => _("Users who can create sub albums."),
-    'zipDownload' 	=> _("Users who can to download album (with subalbums) as archive."),
-    'canViewComments' 	=> _("Users who can view comments."),
-    'canAddComments'	=> _("Users who can add comments."),
-    'canViewFullImages'	=> _("Users who can view full (original) images."),
-    'canChangeText' 	=> _("Users who can change album text."),
+    'zipDownload'       => _("Users who can to download album (with subalbums) as archive."),
+    'canViewComments'   => _("Users who can view comments."),
+    'canAddComments'    => _("Users who can add comments."),
+    'canViewFullImages' => _("Users who can view full (original) images."),
+    'canChangeText'     => _("Users who can change album text."),
 );
 
 foreach ($gallery->userDB->getUidList() as $uid) {
@@ -61,13 +61,13 @@ if(empty($submit)) {
 foreach ($submit as $perm => $action) {
     if(isset($action) && isset($actionUid)) {
         if($action == '-->') {
-	    $gallery->album->setPerm($perm, $actionUid, true);
-	    $changed++;	
+            $gallery->album->setPerm($perm, $actionUid, true);
+            $changed++;
         }
-	if($action == '<--') {
-	    $gallery->album->setPerm($perm, $actionUid, false);
-	    $changed++;
-	}
+        if($action == '<--') {
+            $gallery->album->setPerm($perm, $actionUid, false);
+            $changed++;
+        }
     }
 }
 
@@ -79,7 +79,7 @@ if (isset($save) && $ownerUid) {
 if ($changed) {
     $gallery->album->save(array(i18n("Permissions have been changed")));
     if (getRequestVar('setNested')) {
-	$gallery->album->setNestedPermissions();
+        $gallery->album->setNestedPermissions();
     }
 }
 
@@ -114,14 +114,14 @@ echo makeFormIntro("album_permissions.php", array("name" =>
 			"albumperms_form"), array("type" => "popup"));
 
 if ($gallery->user->isAdmin) {
-    echo _("Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1);
+    echo _("Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
 }
 ?>
 
 <table border="0" cellspacing="0" cellpadding="0">
  <tr>
   <td align="center">
-   <?php echo drawSelect('actionUid', $uAll, isset($allUid) ? $allUid : array(), 28); ?>
+   <?php echo drawSelect('actionUid', $uAll, isset($allUid) ? $allUid : array(), 28, array(), true); ?>
   </td>
 
   <td>&nbsp;</td>
@@ -134,7 +134,7 @@ $permsTable->setColumnCount(2);
 foreach($perms as $perm => $permDesc) {
     $permsTable->addElement(array('content' => $permDesc, 'cellArgs' => array('colspan' => 2)));
     $permsTable->addElement(
-	array('content' => 
+	   array('content' => 
 	    "\n\t<input type=\"submit\" name=\"submit[$perm]\" value=\"-->\"><br>".
 	    "\n\t<input type=\"submit\" name=\"submit[$perm]\" value=\"<--\">"
 	));

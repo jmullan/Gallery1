@@ -93,6 +93,8 @@ class AlbumDB {
     }
 
     function sortByField($fieldname = '', $order = 'desc') {
+	$tmpOrder = array();
+
 	if(!empty($fieldname)) {
 	    if($fieldname == 'name') {
 		if($order == 'asc') {
@@ -103,7 +105,11 @@ class AlbumDB {
 		}
 	    }
 	    else {
-//		array_sort_by_fields($this->albumList, $fieldname , $order, true, false, true);
+		array_sort_by_fields($this->albumList, $fieldname , $order, true, false, true);
+		foreach ($this->albumList as $album) {
+		    $tmpOrder[] = $album->fields["name"];
+		}
+		$this->albumOrder = $tmpOrder;
 	    }
 	    $this->save();
 	}

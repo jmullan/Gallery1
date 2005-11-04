@@ -300,7 +300,7 @@ function showResultsGraph($num_rows) {
 		$name_string.= $desc;
 		$name_string.= "</a>";
 		$name_string.= " - ".
-		      	pluralize_n2(ngettext("1 voter", "%d voters", $results_count[$element]), $results_count[$element]);
+		      	gTranslate('common', "1 voter", "%d voters", $results_count[$element]);
 	       	$graph[$name_string]=$count;
 	}
 
@@ -311,10 +311,9 @@ function showResultsGraph($num_rows) {
 	$graph=arrayToBarGraph($graph, 300, "border=0");
 	$buf .="\n<br>";
 	if ($graph) {
-                $buf .="<span class=\"title\">".
-		      	pluralize_n2(ngettext("Result from one voter", 
-			"Result of %d voters", sizeof($voters)), sizeof($voters)).
-                        "</span>";
+            $buf .="<span class=\"title\">".
+		gTranslate('common', "Result from one voter", "Result of %d voters", sizeof($voters)).
+                "</span>";
                 if ($gallery->album->getPollType() == "critique") {
                         $key_string="";
                         foreach ($nv_pairs as $nv_pair) {
@@ -365,7 +364,7 @@ function showResults($id) {
 
 	foreach ($vote_tally as $key => $value) {
 		$buf .= sprintf(_("%s: %s"), $nv_pairs[$key]["name"],
-		      	pluralize_n2(ngettext("one vote", "%d votes", $value), $value)) . "<br>";
+		      	gTranslate('common', "one vote", "%d votes", $value)) . "<br>";
 
 	}
 	return $buf;

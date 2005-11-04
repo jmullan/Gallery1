@@ -106,7 +106,7 @@ $navigator["bordercolor"] = $bordercolor;
 
 $fullWidth = $navigator["fullWidth"] . $navigator["widthUnits"];
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' .
-'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 if ($gallery->album->fields['returnto'] != 'no') {
     foreach ($gallery->album->getParentAlbums() as $navAlbum) {
@@ -208,9 +208,9 @@ if (!$gallery->session->offline) { ?>
 <?php }
 
 $adminText = '';
-$albums_str= pluralize_n2(ngettext("1 sub-album", "%d sub-albums",$numAlbums), $numAlbums, _("No albums"));
-$imags_str= pluralize_n2(ngettext("1 image", "%d images", $numPhotos), $numPhotos, _("no images"));
-$pages_str=pluralize_n2(ngettext("1 page", "%d pages", $maxPages), $maxPages, _("0 pages"));
+$albums_str = gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, _("No albums"));
+$imags_str = gTranslate('core', "1 image", "%d images", $numPhotos, _("no images"));
+$pages_str = gTranslate('core', "1 page", "%d pages", $maxPages, _("0 pages"));
 
 if ($numAlbums && $maxPages > 1) {
     $adminText .= sprintf(_("%s and %s in this album on %s"),
@@ -558,11 +558,11 @@ if (canVote()) {
     if ($gallery->album->getPollType() == "rank") {
         $voteCount=$gallery->album->getPollScale();
         print "  ".
-        sprintf(_("You have a total of %s and can change them if you wish."),
-        pluralize_n2(ngettext("1 vote", "%d votes", $voteCount), $voteCount));
+          sprintf(_("You have a total of %s and can change them if you wish."),
+            gTranslate('core', "1 vote", "%d votes", $voteCount));
     }
     else {
-        print "  "._("You can change your choices if you wish.");
+        print "  ". _("You can change your choices if you wish.");
     }
     echo "</span>";
 ?>
@@ -800,13 +800,12 @@ if ($numPhotos) {
                 echo $buf;
 
                 echo '<div class="fineprint" style="margin-top:3px">';
-                echo _("Changed: ") ." ". $myAlbum->getLastModificationDate();
+                printf (_("Last change: %s"), $myAlbum->getLastModificationDate());
                 echo "\n<br>";
-                $visItems=array_sum($myAlbum->numVisibleItems($gallery->user));
-                echo _("Contains: ") ." ". pluralize_n2(ngettext("1 item", "%d items", $visItems), $visItems) . '. ';
+                $visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
+                printf (_("Contains: %s"), gTranslate('core', "1 item", "%d items", $visItems)) . '. ';
                 // If comments indication for either albums or both
                 switch ($gallery->app->comments_indication) {
-
                     case "albums":
                     case "both":
                     $lastCommentDate = $myAlbum->lastCommentDate(
@@ -819,7 +818,7 @@ if ($numPhotos) {
 
                 if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
                     echo '<div class="viewcounter" style="margin-top:3px">';
-                    echo _("Viewed:") . " ". pluralize_n2(ngettext("1 time", "%d times", $myAlbum->getClicks()), $myAlbum->getClicks());
+                    printf (_("Viewed: %s"), gTranslate('core', "1 time", "%d times", $myAlbum->getClicks()));
                     echo ".</div>";
                 }
             }
@@ -843,8 +842,8 @@ if ($numPhotos) {
 
                 if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
                     echo '<div class="viewcounter" style="margin-top:3px">';
-                    echo _("Viewed:") ." ". pluralize_n2(ngettext("1 time", "%d times", $gallery->album->getItemClicks($i)), $gallery->album->getItemClicks($i));
-                    echo ".</div>\n";
+                    echo gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i));
+                    echo "</div>\n";
                 }
             }
             echo "<br>\n";

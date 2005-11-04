@@ -29,21 +29,41 @@
  * This function is a wrapper around ngettext for two reasons
  * 1.) We can use %s and %d in translation
  * 2.) We can use a special "none" without modifying the plural definition.
- * Note: The redundant $count is always needed, when you use %d
  *
- * example: pluralize_n2(ngettext("1 car", "5 cars", $numCars), $numCars, _("No cars"));
- * @param	string    $singPlu   Already translated singlular/plural text
+ * @param	string    $domain
+ * @param	string    $singular
+ * @param	string    $plural
  * @param	int       $count
- * @param	string    $none
- * @return	mixed
+ * @param	string    $nonetext
+ * @return  string    $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author	Jens Tkotz
  */
-function pluralize_n2($singPlu, $count, $none='') {
-	if ($count == 0 && $none != '') {
-		return $none;
-	} else {
-		return sprintf($singPlu, $count);
-	}
+function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '') {
+    global $gallery;
+
+    $allowedDomain = array('config', 'common', 'core');
+    if(!in_array($domain, $allowedDomain)) {
+        return '<span class="error">'. ("-- Translation Domain wrong --") .'</span>';
+    }
+
+    if ($count == 0 && $nonetext != '') {
+        return $nonetext;
+    }
+
+    $gDomain = $gallery->language. "-gallery_$domain";
+    bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+    textdomain($gDomain);
+
+    if(!$plural) {
+        $translation = dgettext($gDomain, $singular);
+    }
+    else {
+        if (!empty($count) && intval($count) == 0) {
+            $count = 1;
+        }
+        $translation = sprintf(dngettext($gDomain, $singular, $plural, $count), $count);
+    }
+    return $translation;
 }
 
 /**
