@@ -66,7 +66,7 @@ if  ($errors) { ?>
 <table class="inner" width="100%">
 <tr>
 	<td class="errorlong" colspan="2">
-		<?php echo gTranslate('config'"One file is missing, corrupt or older than expected.", 
+		<?php echo gTranslate('config', "One file is missing, corrupt or older than expected.", 
 					"%d files are missing, corrupt or older than expected.", 
 						count($errors), _("All files okay."));
 		?>

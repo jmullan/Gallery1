@@ -231,7 +231,7 @@ if ($reorder ) { // Reorder, intra-album move
 <p>
 <?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
 <?php echo _("Select the new location:") ?> 
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
@@ -252,13 +252,13 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 } else if (!$reorder) { // Don't reorder, trans-album move
 if ($gallery->album->isAlbum($index)) {
-	echo _("Move the album to a new album:");
+	echo _("Move the album to different position in your gallery:");
 	echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form"));
 ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newAlbum">
 <?php
-	$uptodate=printAlbumOptionList(1,0,0);
+	$uptodate = printAlbumOptionList(1,0,0);
 ?>
 </select>
 <?php
@@ -267,7 +267,7 @@ if ($gallery->album->isAlbum($index)) {
 <i>(<?php echo _("To move just one photo, make First and Last the same.") ?>)</i><br>
 <i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 
 <?php
 // Display album list for a photo and display num photos to move
@@ -308,7 +308,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <td>
 <select name="newAlbum">
 <?php
-	$uptodate= printAlbumOptionList(0,0,1); 
+	$uptodate = printAlbumOptionList(0,0,1); 
 ?>
 </select>
 </td>
@@ -331,7 +331,7 @@ if (!$uptodate) {
 }
 ?>
 <p>
-<input type="submit" value="<?php echo _("Move to Album!") ?>">
+<input type="submit" value="<?php echo _("Move Album!") ?>">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php

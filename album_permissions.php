@@ -50,8 +50,13 @@ $perms = array(
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
 	$uname = $tmpUser->getUsername();
+	if ($tmpUser->isPseudo()) {
+	    $uname = "*$uname*";
+	}
 	$uAll[$uid] = $uname;
 }
+
+asort($uAll);
 
 $changed = 0;
 if(empty($submit)) {

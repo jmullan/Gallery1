@@ -389,7 +389,7 @@ function check_exec() {
 	}
 
 	if (empty($fail['fail-exec'])) {
-		$success[] = _("<b>exec()</b> is not disabled on this server.");
+		$success[] = _("<b>exec()</b> is enabled on this server.");
 	}
 
 	return array($success, $fail, $warn);

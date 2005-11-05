@@ -804,7 +804,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
     // create a ROOT option for the user to move the
     // album to the main display
     if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-        echo "<option value=\".root\">". _("Top Level") ."</option>";
+        echo "<option value=\".root\">". _("Move to top level") ."</option>";
     }
 
     // display all albums that the user can move album to
@@ -867,15 +867,15 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
             if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
               ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
                 $val2 = str_repeat("-- ", $level+1);
-                $val2 = $val2 . $nestedAlbum->fields['title'];
+                $val2 .= $nestedAlbum->fields['title'];
 
                 if (!$readOnly && ($nestedAlbum == $gallery->album)) {
                     // don't allow user to move to here (value=0), but
                     // notify them that this is their current location
-                    echo "<option value=0> $val2 (". _("current location") .")</option>\n";
+                    echo "<option value=0> $val2 (". _("Current location") .")</option>\n";
                 } elseif (!$readOnly && !$gallery->album->isRoot() &&
                   ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
-                    echo "<option value=0> $val2 (". _("self"). ")</option>\n";
+                    echo "<option value=0> $val2 (". _("This album itself"). ")</option>\n";
                 } else {
                     echo "<option value=\"$myName\"> $val2</option>\n";
                 }
@@ -897,11 +897,11 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
     if ($lastCommentDate  <= 0) {
         return  '';
     }
-    if ($gallery->app->comments_indication_verbose=="yes") {
+    if ($gallery->app->comments_indication_verbose == 'yes') {
         $ret = "<br>". 
           sprintf(_("Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
     } else {
-        $ret= "<span class=\"commentIndication\">*</span>";
+        $ret= '<span class="commentIndication">*</span>';
         $displayCommentLegend = 1;
     }
     return $ret;
@@ -925,7 +925,8 @@ function available_skins($description_only = false) {
     $opts['none'] = 'No Skin';
     $descriptions = '<dl>';
     $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
-    $descriptions .= sprintf (_('<dt>%s</dt><dd>The original look and feel.</dd>'), $name);
+    $descriptions .= sprintf("<dt>%s</dt>", $name);
+    $descriptions .= '<dd>'. _("The original look and feel.") .'</dd>';
     $skincount = 0;
 
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
