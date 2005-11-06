@@ -28,7 +28,7 @@ list($save, $field, $data) = getRequestVar(array('save', 'field', 'data'));
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -36,7 +36,7 @@ doctype();
 echo "\n<html>";
 
 if (isset($save)) {
-    if (!strcmp($field, 'title')) {
+    if ($field == 'title') {
         $data = strip_tags($data);
     }
     $gallery->album->fields[$field] = $data;
@@ -46,14 +46,15 @@ if (isset($save)) {
 }
 ?>
 <head>
-  <title><?php echo sprintf(_("Edit %s"), _($field)) ?></title>
+  <title><?php echo sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)) ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(_("Edit %s"), _($field)) ?></div>
+<div class="popuphead"><?php echo sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)) ?></div>
 <div class="popup" align="center">
 <?php 
-	echo sprintf(_("Edit the %s and click %s when you're done"), _($field), '<b>' . _("Save") . '</b>');
+	echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"), gTranslate('common', $field), 
+	  '<b>' . gTranslate('core', "Save") . '</b>');
 
 	echo makeFormIntro("edit_field.php", 
 		array("name" => "theform"),
@@ -62,8 +63,8 @@ if (isset($save)) {
 	<input type="hidden" name="field" value="<?php echo $field ?>">
 	<textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
 	<p>
-		<input type="submit" name="save" value="<?php echo _("Save") ?>">
-		<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+		<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+		<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 	</p>
 	</form>
 

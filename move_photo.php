@@ -331,7 +331,7 @@ if (!$uptodate) {
 }
 ?>
 <p>
-<input type="submit" value="<?php echo _("Move Album!") ?>">
+<input type="submit" value="<?php echo gTranslate('core', "Move Album!") ?>">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php

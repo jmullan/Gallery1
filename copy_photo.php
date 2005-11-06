@@ -200,7 +200,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 	}
 ?>
 <p>
-<input type="submit" value="<?php echo _("Copy to Album!") ?>">
+<input type="submit" value="<?php echo gTranslate('core', "Copy to Album!") ?>">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php

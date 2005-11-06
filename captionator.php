@@ -294,12 +294,12 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	            echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
 	        }
 	        else {
-	            echo "\n\t\t". '<br><span class="admin">'. $field .': </span><br>';
+	            echo "\n\t\t". '<br><span class="admin">'. _($field) .': </span><br>';
 	            echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
 	        }
 	    }
 
-	    echo "\n\t\t". '<p class="admin">'. _("Keywords") .': <br>';
+	    echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Keywords") .': <br>';
 	    echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
 
 	    $itemCaptureDate = $gallery->album->getItemCaptureDate($i);

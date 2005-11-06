@@ -481,7 +481,7 @@ function doPrintService(input) {
         if (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) {
             $adminTextIconElemens[] = $iconTextNormal;
             $adminTextIconElemens[] = '|';
-            $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[" . $iconTextFull .']</a>';
+            $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[". $iconTextFull .']</a>';
         } else {
             $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[" .$iconTextNormal .']</a>';
             $adminTextIconElemens[] = '|';

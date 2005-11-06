@@ -28,7 +28,7 @@ list($reorder, $index, $newAlbum, $newIndex) = getRequestVar(array('reorder', 'i
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -36,11 +36,11 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Move Album") ?></title>
+  <title><?php echo gTranslate('core', "Move Album") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Move Album") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Move Album") ?></div>
 <div class="popup" align="center">
 <?php
 /* Read the album list */
@@ -91,8 +91,8 @@ if ($gallery->session->albumName && isset($index)) {
     } else {
 	$visibleAlbums = $albumDB-> getVisibleAlbums($gallery->user);
 
-	echo sprintf(_("Select the new location of album: %s"), $gallery->album->fields["title"]);
-	echo "\n<br>" . _("Your Album will be moved to the position you choose below.");
+	echo sprintf(gTranslate('core', "Select the new location of album: %s"), $gallery->album->fields["title"]);
+	echo "\n<br>" . gTranslate('core', "Your Album will be moved to the position you choose below.");
 	echo '<p>' .  $gallery->album->getHighlightTag() . '</p>';
 
 	if (!empty($reorder)) { // Reorder, intra-album move
@@ -114,14 +114,14 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 ?>
 </select>
-<input type="submit" name="move" value="<?php echo _("Move it!") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="move" value="<?php echo gTranslate('core', "Move it!") ?>">
+<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </form>
 
 <p>
 <?php
 	} else { // Reorder, trans-album move
-	    echo _("Nest within another Album:"); 
+	    echo gTranslate('core', "Nest within another Album:"); 
 	    echo makeFormIntro("move_album.php", 
 		array("name" => "theform"),
 		array("type" => "popup"));
@@ -134,14 +134,14 @@ if ($gallery->session->albumName && isset($index)) {
 </select>
 <br><br>
 
-<input type="submit" name="move" value="<?php echo _("Move to Album!") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="move" value="<?php echo gTranslate('core', "Move to Album!") ?>">
+<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php
 	} // End Reorder
     }
 } else {
-    echo gallery_error(_("no album / index specified"));
+    echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 

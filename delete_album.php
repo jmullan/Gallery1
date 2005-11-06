@@ -52,10 +52,16 @@ if ($gallery->album) {
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <div class="popuphead"><?php echo _("Delete Album") ?></div>
 <div class="popup" align="center">
-<?php echo _("Do you really want to delete this album?") ?>
-<br>
-<b><?php echo $gallery->album->fields["title"] ?></b>
+<?php echo _("Do you really want to delete this album?"); ?>
 <p>
+<b><?php echo $gallery->album->fields["title"] ?></b>
+<?php
+    echo "\n<br>";
+    if ($gallery->album->numPhotos(1)) {
+	echo $gallery->album->getHighlightTag();
+    }
+?>
+</p>
 <?php echo makeFormIntro("delete_album.php", 
 	array('name' => 'deletealbum_form', 'onsubmit' => 'deletealbum_form.deleteButton.disabled = true;'),
  	array("type" => "popup"));
@@ -65,11 +71,7 @@ if ($gallery->album) {
 <input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.formaction.value='delete'">
 <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
-<p>
 <?php
-	if ($gallery->album->numPhotos(1)) {
-		echo $gallery->album->getHighlightTag();
-	}
 } else {
 	echo gallery_error(_("no album specified"));
 }

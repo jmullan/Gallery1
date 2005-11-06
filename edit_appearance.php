@@ -234,7 +234,7 @@ doctype();
 
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <?php if ($reloadOpener) reload(); ?>
-<div class="popuphead"><?php echo _("Album Properties") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Album Properties") ?></div>
 <?php echo infoLine($infoMessages, 'error'); ?>
 <div class="popup" align="center">
 <?php 

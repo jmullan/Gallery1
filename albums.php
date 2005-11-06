@@ -108,7 +108,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
 ?>
-  <link rel="alternate" title="<?php echo sprintf(_("%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
+  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
 <?php
     } ?>
 </head>
@@ -143,24 +143,24 @@ if (!$gallery->session->offline &&
 /* Admin Text (left side) */
 $adminText = '';
 if ($numAccess == $numAlbums) {
-	$toplevel_str = gTranslate('core', "1 album","%d albums", $numAlbums, _("no albums"));
+	$toplevel_str = gTranslate('core', "1 album","%d albums", $numAlbums, gTranslate('core', "no albums"));
 } else {
-	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, _("No top-level albums"));
+	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, gTranslate('core', "No top-level albums"));
 }
 
-$total_str = sprintf(_("%d total"), $numAccess);
-$image_str = gTranslate('core', "1 image", "%d images", $numPhotos, _("no images"));
-$page_str = gTranslate('core', "1 page", "%d pages", $maxPages, _("no pages"));
+$total_str = sprintf(gTranslate('core', "%d total"), $numAccess);
+$image_str = gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"));
+$page_str = gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"));
 
 if (($numAccess != $numAlbums) && $maxPages > 1) {
-	$adminText .= sprintf(_("%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
+	$adminText .= sprintf(gTranslate('core', "%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
 }
 else if ($numAccess != $numAlbums) {
-	$adminText .= sprintf(_("%s (%s), %s"), $toplevel_str, $total_str, $image_str);
+	$adminText .= sprintf(gTranslate('core', "%s (%s), %s"), $toplevel_str, $total_str, $image_str);
 } else if ($maxPages > 1) {
-	$adminText .= sprintf(_("%s, %s on %s"), $toplevel_str, $image_str, $page_str);
+	$adminText .= sprintf(gTranslate('core', "%s, %s on %s"), $toplevel_str, $image_str, $page_str);
 } else {
-	$adminText .= sprintf(_("%s, %s"), $toplevel_str, $image_str);
+	$adminText .= sprintf(gTranslate('core', "%s, %s"), $toplevel_str, $image_str);
 }
 
 if (!empty($gallery->app->stats_foruser) && $numPhotos != 0) {
@@ -175,52 +175,52 @@ $iconElements = array();
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
 	$displayName = $gallery->user->displayName();
-	$adminCommands .= sprintf(_("Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
+	$adminCommands .= sprintf(gTranslate('core', "Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
-    $iconText = getIconText('display.gif', _("slideshow"));
+    $iconText = getIconText('display.gif', gTranslate('core', "slideshow"));
     $iconElements[] = '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) .'">'. $iconText .'</a>';
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
-    $iconText = getIconText('folder_new.gif', _("new album"));
+    $iconText = getIconText('folder_new.gif', gTranslate('core', "new album"));
     $iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a>';
 }
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if ($gallery->user->isAdmin()) {
         
-        $iconText = getIconText('unsortedList.gif', _("Administer startpage"));
+        $iconText = getIconText('unsortedList.gif', gTranslate('core', "Administer startpage"));
         $linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link($iconText, $linkurl, true);
         
-        $iconText = getIconText('kdf.gif', _("admin page"));
+        $iconText = getIconText('kdf.gif', gTranslate('core', "admin page"));
         $iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
          
         $docsUrl = galleryDocs('admin');
         if ($docsUrl) {
-            $iconText = getIconText('info.gif', _("documentation"));
+            $iconText = getIconText('info.gif', gTranslate('core', "documentation"));
             $iconElements[] = "<a href=\"$docsUrl\">". $iconText .'</a>';
         }
     }
     
     if ($gallery->userDB->canModifyUser()) {
-        $iconText = getIconText('yast_sysadmin.gif', _("preferences"));
+        $iconText = getIconText('yast_sysadmin.gif', gTranslate('core', "preferences"));
         $iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
     }
     
     if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconText = getIconText('exit.gif', _("logout"));
+        $iconText = getIconText('exit.gif', gTranslate('core', "logout"));
         $iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';
     }
 } else {
     if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconText = getIconText('identity.gif', _("login"));
+        $iconText = getIconText('identity.gif', gTranslate('core', "login"));
         $iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
 
         if (!strcmp($gallery->app->selfReg, 'yes')) {
-            $iconText = getIconText('yast_sysadmin2.gif', _("register"));
+            $iconText = getIconText('yast_sysadmin2.gif', gTranslate('core', "register"));
             $iconElements[] = popup_link($iconText, "register.php", false, true, 500, 500);
         }
     }
@@ -246,34 +246,34 @@ echo "<!-- End top nav -->";
 if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $gallery->user->isAdmin()) {
 
 	echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px;\">";
-	echo "\n<p class=\"head\"><u>". _("Attention Gallery Administrator!") ."</u></p>";
+	echo "\n<p class=\"head\"><u>". gTranslate('core', "Attention Gallery Administrator!") ."</u></p>";
 
 	if (sizeof($albumDB->brokenAlbums)) {
-		echo sprintf(_("%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
+		echo sprintf(gTranslate('core', "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"),
 		    Gallery(), sizeof($albumDB->brokenAlbums), $gallery->app->albumDir);
 		echo "\n<p>";
 		foreach ($albumDB->brokenAlbums as $tmpAlbumName) {
 			echo "<br>$tmpAlbumName\n";
 		}
-	echo "\n</p>". _("Please move it/them out of the albums directory.") ;
+	echo "\n</p>". gTranslate('core', "Please move it/them out of the albums directory.") ;
 	}
 
 	if(sizeof($albumDB->outOfDateAlbums)) {
-		echo sprintf(_("%s has detected that %d of your albums are out of date."),
+		echo sprintf(gTranslate('core', "%s has detected that %d of your albums are out of date."),
 			Gallery(), sizeof($albumDB->outOfDateAlbums));
 
 		echo "\n<br>";
-		echo sprintf(_("Please %s."), popup_link(_("upgrade those albums"), "upgrade_album.php",0,0,500,500,"error"));
+		echo sprintf(gTranslate('core', "Please %s."), popup_link(gTranslate('core', "upgrade those albums"), "upgrade_album.php",0,0,500,500,"error"));
 	}
 	echo "\n</div></center>\n";
 }
 
 if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
     echo "\n<center><div style=\"width:60%; border-style:outset; border-width:5px; border-color:red; padding: 5px\">";
-    echo "\n<p class=\"head\"><u>". _("Attention!") ."</u></p>";
+    echo "\n<p class=\"head\"><u>". gTranslate('core', "Attention!") ."</u></p>";
 
-    echo sprintf(_('The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(_("%s and try again."),
-    popup_link(_("Log in"), "login.php", false, true, 500, 500))));
+    echo sprintf(gTranslate('core', 'The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s'), ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(gTranslate('core', "%s and try again."),
+    popup_link(gTranslate('core', "Log in"), "login.php", false, true, 500, 500))));
     echo "\n</div></center>\n";
     $gallery->session->gRedirDone = true;
 }
@@ -287,7 +287,7 @@ $start = ($gallery->session->albumListPage - 1) * $perPage + 1;
 $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
     if(!$gallery->album = $albumDB->getAlbum($gallery->user, $i)) {
-        echo gallery_error(sprintf(_("The requested album with index %s is not valid"), $i));
+        echo gallery_error(sprintf(gTranslate('core', "The requested album with index %s is not valid"), $i));
         continue;
     }
     $isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
@@ -328,7 +328,7 @@ for ($i = $start; $i <= $end; $i++) {
       }
       $gallery->html_wrap['imageWidth'] = $iWidth;
       $gallery->html_wrap['imageHeight'] = $iHeight;
-      $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', _("Highlight for Album:") ." ". $gallery->album->fields["title"]);
+      $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
       $gallery->html_wrap['imageHref'] = $albumURL;
       $gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
       includeHtmlWrap('inline_gallerythumb.frame');
@@ -348,7 +348,7 @@ for ($i = $start; $i <= $end; $i++) {
                 <?php
 			echo editField($gallery->album, "title", $albumURL);
 			if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
-			    $iconText = getIconText('compressed.png', _("Download as Archive"), 'yes');
+			    $iconText = getIconText('compressed.png', gTranslate('core', "Download as Archive"), 'yes');
 			    echo popup_link($iconText, "download.php?set_albumName=$tmpAlbumName",false,false,500,500); 
 			}
 		?>
@@ -377,12 +377,12 @@ for ($i = $start; $i <= $end; $i++) {
 
 	if (strcmp($gallery->app->showOwners, "no")) {
 		echo "\n<div class=\"desc\">";
-		echo sprintf(_("Owner: %s"),showOwner($owner));
+		echo sprintf(gTranslate('core', "Owner: %s"),showOwner($owner));
 		echo '</div>';
 	}
 
 	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
-		echo _("url:") . '<a href="'. $albumURL . '">';
+		echo gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
 		if (!$gallery->session->offline) {
 			echo breakString(urldecode($albumURL), 60, '&', 5);
 		} else {
@@ -393,9 +393,9 @@ for ($i = $start; $i <= $end; $i++) {
 		if (ereg("album[[:digit:]]+$", $albumURL)) {
 			if (!$gallery->session->offline) {
 				echo '<br><span class="error">'.
-				  _("Hey!") .
-				  sprintf(_("%s so that the URL is not so generic!"),
-					popup_link(_("Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
+				  gTranslate('core', "Hey!") .
+				  sprintf(gTranslate('core', "%s so that the URL is not so generic!"),
+					popup_link(gTranslate('core', "Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
 				echo '</span>';
 			}
 		}
@@ -406,7 +406,7 @@ for ($i = $start; $i <= $end; $i++) {
   <br>
   <span class="fineprint">
    <?php
-	echo sprintf(_("Last changed on %s."), $gallery->album->getLastModificationDate() );
+	echo sprintf(gTranslate('core', "Last changed on %s."), $gallery->album->getLastModificationDate() );
 	list($visibleItems) = $gallery->album->numItems($gallery->user, true);
 	echo " "; // Need a space between these two text blocks
 	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
@@ -414,14 +414,14 @@ for ($i = $start; $i <= $end; $i++) {
 ?>
    <br><?php
 	$clickCount = $gallery->album->getClicks();
-	echo sprintf(_("This album has been viewed %s since %s."),
-		gTranslate('core', "1 time", "%d times", $clickCount, _("0 times")),
+	echo sprintf(gTranslate('core', "This album has been viewed %s since %s."),
+		gTranslate('core', "1 time", "%d times", $clickCount, gTranslate('core', "0 times")),
 		$gallery->album->getClicksDate());
 }
 $albumName = $gallery->album->fields["name"];
 if ($gallery->user->canWriteToAlbum($gallery->album) &&
    (!($gallery->album->fields["display_clicks"] == "no"))) {
-	echo " ".popup_link("[" . _("reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
+	echo " ".popup_link("[" . gTranslate('core', "reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 }
 if($gallery->app->comments_enabled == 'yes') {
 	// if comments_indication are "albums" or "both"
@@ -460,7 +460,7 @@ if($gallery->app->comments_enabled == 'yes') {
 if ($displayCommentLegend) {
 	//display legend for comments
 	echo '<p><span class="commentIndication">*</span>';
-	echo '<span class="fineprint">'. _("Comments available for this item.") .'</span></p>';
+	echo '<span class="fineprint">'. gTranslate('core', "Comments available for this item.") .'</span></p>';
 }
 ?>
 <!-- bottom nav -->

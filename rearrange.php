@@ -104,16 +104,16 @@ function doclick(idx) {
 echo _("Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
 
 $explainTable = new galleryTable;
-$explainTable->setCaption(_("Meaning of the borderstyle"));
+$explainTable->setCaption(_("Meaning of the borderstyle"), 'attention');
 $explainTable->setAttrs(array('width' => 300, 'cellspacing' => 3, 'cellpadding' => 2));
 $explainTable->setColumnCount(4);
 
-$explainTable->addElement(array('content' => _("Picture"), 'cellArgs' => array('style' => 'border: 2px solid black')));
-$explainTable->addElement(array('content' => _("Movie"), 'cellArgs' => array('style' => 'border: 2px dotted black')));
-$explainTable->addElement(array('content' => _("Subalbum") , 'cellArgs' => array('style' => 'border: 3px double black')));
-$explainTable->addElement(array('content' => _("Selected") , 'cellArgs' => array('style' => 'border: 2px dashed black')));
-$explainTable->addElement(array('content' => _("Visible") , 'cellArgs' => array('align' => 'center', 'colspan' => 2, 'style' => 'color: green')));
-$explainTable->addElement(array('content' => _("Hidden") , 'cellArgs' => array(' align' => 'center', 'colspan' => 2, 'style' => 'color: red')));
+$explainTable->addElement(array('content' => _("Picture"), 'cellArgs' => array('style' => 'text-align: center; border: 2px solid black')));
+$explainTable->addElement(array('content' => _("Movie"), 'cellArgs' => array('style' => 'text-align: center; border: 2px dotted black')));
+$explainTable->addElement(array('content' => _("Subalbum") , 'cellArgs' => array('style' => 'text-align: center; border: 3px double black')));
+$explainTable->addElement(array('content' => _("Selected") , 'cellArgs' => array('style' => 'text-align: center; border: 2px dashed black')));
+$explainTable->addElement(array('content' => _("Visible") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: green')));
+$explainTable->addElement(array('content' => _("Hidden") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: red')));
 
 ?>
 <br><br><center><?php echo $explainTable->render(); ?></center>
@@ -133,7 +133,7 @@ $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
     'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'">'. 
-	'<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
+    '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
     'cellArgs' => array('colspan' => $cols, 'align' => 'right')));
 
 $list = array();

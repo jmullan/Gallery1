@@ -20,20 +20,20 @@
  * $Id$
  */
 ?>
-<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"><?php echo _("Leave blank.") ?></label>
+<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"><?php echo gTranslate('core', "Leave blank.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo _("Use filename as caption.") ?></label>
+<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo gTranslate('core', "Use filename as caption.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo _("Use file creation date/time stamp.") ?></label>
+<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
 <br>
 <?php
 if (isset($gallery->app->use_exif)) {
         echo '<input type="radio" name="setCaption" value="3" id="setCaption3">';
 	echo '<label for="setCaption3">';
-        echo _("Set photo captions with file capture times.");
+        echo gTranslate('core', "Set photo captions with file capture times.");
 	echo '</label>';
 }
 
 echo "\n<br><br>";
-echo _("For the last two options Gallery will use the format you specified in the config for date/time strings.");
+echo gTranslate('core', "For the last two options Gallery will use the format you specified in the config for date/time strings.");
 ?>

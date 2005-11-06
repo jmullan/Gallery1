@@ -1,4 +1,4 @@
-strip_tags<?php
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2005 Bharat Mediratta
@@ -26,7 +26,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 /* Hack check*/
 if (!$gallery->user->canAddComments($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -53,11 +53,11 @@ if (isset($gallery->app->comments_length)) {
 
 if (isset($save)) {
 	if ( empty($commenter_name) || empty($comment_text)) {
-		$error_text = _("Name and comment are both required to save a new comment!");
+		$error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
 	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
-		$error_text = sprintf(_("Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
+		$error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
 	} elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
-		$error_text = _("Your Comment contains forbidden words. It will not be added.");
+		$error_text = gTranslate('core', "Your Comment contains forbidden words. It will not be added.");
 	} else {
 		$comment_text = strip_tags($comment_text);
 		$commenter_name = strip_tags($commenter_name);
@@ -76,13 +76,13 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Add Comment") ?></title>
+  <title><?php echo gTranslate('core', "Add Comment") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Add Comment") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Add Comment") ?></div>
 <div class="popup" align="center">
-<p><?php echo _("Enter your comment for this picture in the text box below.") ?></p>
+<p><?php echo gTranslate('core', "Enter your comment for this picture in the text box below.") ?></p>
 
 <?php 
 echo $gallery->album->getThumbnailTagById($id);
@@ -97,7 +97,7 @@ echo makeFormIntro("add_comment.php",
 drawCommentAddForm($commenter_name, 35);
 ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<br><input type="button" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<br><input type="button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 
 </form>
 </div>

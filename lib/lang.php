@@ -729,10 +729,10 @@ return $return;
  */
 function automaticFieldsList() {
     return array(
-        'Upload Date'   => _("Upload Date"),
-        'Capture Date' 	=> _("Capture Date"),
-        'Dimensions' 	=> _("Image Size"),
-        'EXIF'          => _("Additional EXIF Data"));
+        'Upload Date'   => gTranslate('common', "Upload Date"),
+        'Capture Date' 	=> gTranslate('common', "Capture Date"),
+        'Dimensions' 	=> gTranslate('common', "Image Size"),
+        'EXIF'          => gTranslate('common', "Additional EXIF Data"));
 }
 
 /** These are custom fields which can be entered manual by the User
@@ -740,10 +740,11 @@ function automaticFieldsList() {
  */
 function translateableFields() {
 	return array(
-		'Title'		=> _("Title"),
-		'Description'	=> _("Description"),
-		'description'	=> _("description"),
-		'AltText'	=> _("Alt Text / onMouseOver")
+		'title'		=> gTranslate('common', "title"),
+		'Title'		=> gTranslate('common', "Title"),
+		'Description'	=> gTranslate('common', "Description"),
+		'description'	=> gTranslate('common', "description"),
+		'AltText'	=> gTranslate('common', "Alt Text / onMouseOver"),
 	);
 }
 

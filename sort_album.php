@@ -126,7 +126,7 @@ echo makeFormIntro("sort_album.php");
 	echo gallery_error(_("no album specified"));
 }
 ?>
-<?php print gallery_validation_link("sort_album.php"); ?>
 </div>
+<?php print gallery_validation_link("sort_album.php"); ?>
 </body>
 </html>

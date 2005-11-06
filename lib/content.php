@@ -38,11 +38,11 @@ function editField($album, $field, $link = null) {
     }
     if ($gallery->user->canChangeTextOfAlbum($album)) {
         if (!strcmp($buf, "")) {
-            $buf = "<i>&lt;". _("Empty") . "&gt;</i>";
+            $buf = "<i>&lt;". gTranslate('common', "Empty") . "&gt;</i>";
         }
         $url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
         $buf .= ' <span class="editlink">';
-        $buf .= popup_link( "[". sprintf(_("edit %s"), _($field)) . "]", $url) ;
+        $buf .= popup_link( "[". sprintf(gTranslate('common', "edit %s"), _($field)) . "]", $url) ;
         $buf .= '</span>';
     }
     return $buf;
@@ -60,11 +60,11 @@ function editCaption($album, $index) {
       !$gallery->session->offline) {
 
         if (empty($buf)) {
-            $buf = '<i>&lt;'. _("No Caption") .'&gt;</i>';
+            $buf = '<i>&lt;'. gTranslate('common', "No Caption") .'&gt;</i>';
         }
         $url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
         $abuf = '<span class="editlink">';
-        $abuf .= popup_link("[". _("edit") ."]", $url);
+        $abuf .= popup_link("[". gTranslate('common',"edit") ."]", $url);
         $abuf .= '</span>';
     }
     $buf .= $album->getCaptionName($index);
@@ -95,7 +95,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
             $id = $gallery->album->getPhotoId($index);
             $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
             echo "\n" .'<div align="center" class="editlink">' .
-            popup_link('[' . _("add comment") . ']', $url, 0) .
+            popup_link('[' . gTranslate('common', "add comment") . ']', $url, 0) .
             '</div><br>';
         }
     }
@@ -110,10 +110,10 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 ?>
 <table class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
-	<td colspan="2" class="commentboxhead"><?php echo _("Add your comment") ?></td>
+	<td colspan="2" class="commentboxhead"><?php echo gTranslate('common', "Add your comment") ?></td>
 </tr>
 <tr>
-	<td class="commentboxhead"><?php echo _("Commenter:") ?></td>
+	<td class="commentboxhead"><?php gTranslate('common', "Commenter:") ?></td>
 	<td class="commentboxhead">
 <?php
 
@@ -131,11 +131,11 @@ if (!$gallery->user->isLoggedIn() ) {
 </td>
 </tr>
 <tr>
-	<td class="commentlabel" valign="top"><?php echo _("Message:") ?></td>
+	<td class="commentlabel" valign="top"><?php gTranslate('common', "Message:") ?></td>
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>
-	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo _("Post comment") ?>"></td>
+	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>"></td>
 </tr>
 </table>
 <?php 
@@ -288,7 +288,7 @@ function printChildren($albumName,$depth=0) {
                     $val3 = '';
                 }
                 if ($depth==0 && !$printedHeader++) {
-                    echo '<b>'. _("Sub-albums") .":</b>\n";
+                    echo '<b>'. gTranslate('common', "Sub-albums") .":</b>\n";
                 }
                 echo "<div class='fineprint' style=\"white-space:nowrap; margin: 0px 0px 0px " . 20 * ($depth + 1) . "px\">";
                 echo '<a href="';
@@ -329,7 +329,7 @@ function printMicroChildren($albumName, $depth = 0) {
                     $val3 = '';
                 }
                 if ($depth == 0 && !$printedHeader++) {
-                    echo '<br><br><strong>'. _("Sub-albums") .':</strong><br>';
+                    echo '<br><br><strong>'. gTranslate('common', "Sub-albums") .':</strong><br>';
                 }
                 $highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
                   'class="nav_micro_img"', "$val2 $val3");
@@ -413,9 +413,9 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
         $myExif = $gallery->album->getExif($index, isset($forceRefresh));
         if (!empty($myExif) && !isset($myExif['Error'])) {
 
-            $tables[_("EXIF Data")]  = $myExif;
+            $tables[gTranslate('common', "EXIF Data")]  = $myExif;
         } elseif (isset($myExif['status']) && $myExif['status'] == 1) {
-            echo '<p class="warning">'. _("Display of EXIF data enabled, but no data found.") .'</p>';
+            echo '<p class="warning">'. gTranslate('common', "Display of EXIF data enabled, but no data found.") .'</p>';
         }
     }
 
@@ -571,7 +571,7 @@ function addSearchForm($formerSearchString = '', $align = '') {
         'class'   => 'search')
     );
 
-    $html .= "\t". _("Search:");
+    $html .= "\t". gTranslate('common', "Search:");
     $html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
     $html .= "\n</form>\n";
 
@@ -611,7 +611,7 @@ function dismissAndReload() {
     if (isDebugging()) {
         echo "\n<body onLoad='opener.location.reload();'>\n";
         echo '<p align="center" class="error">';
-        echo _("Not closing this window because debug mode is on") ;
+        echo gTranslate('common', "Not closing this window because debug mode is on") ;
         echo "\n<hr>\n</p>";
         echo "\n</body>";
     } else {
@@ -630,7 +630,7 @@ function dismissAndLoad($url) {
     if (isDebugging()) {
         echo("<BODY onLoad='opener.location = \"$url\"; '>");
         echo("Loading URL: $url");
-        echo("<center><b>" . _("Not closing this window because debug mode is on") ."</b></center>");
+        echo("<center><b>" . gTranslate('common', "Not closing this window because debug mode is on") ."</b></center>");
         echo("<hr>");
     } else {
         echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
@@ -658,7 +658,7 @@ function includeLayout($name, $skinname='') {
     } elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
         include ($defaultname);
     } else {
-        echo gallery_error(sprintf(_("Problem including file %s"), $name));
+        echo gallery_error(sprintf(gTranslate('common', "Problem including file %s"), $name));
     }
 }
 
@@ -798,13 +798,13 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
     $mynumalbums = $albumDB->numAlbums($gallery->user);
 
     if (!$readOnly) {
-        echo "<option value=0 selected> << ". _("Select Album") ." >> </option>\n";
+        echo "<option value=\"0\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n";
     }
 
     // create a ROOT option for the user to move the
     // album to the main display
     if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-        echo "<option value=\".root\">". _("Move to top level") ."</option>";
+        echo "<option value=\".root\">". gTranslate('common', "Move to top level") ."</option>";
     }
 
     // display all albums that the user can move album to
@@ -824,7 +824,7 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
             if (!$readOnly && ($myAlbum == $gallery->album)) {
                 // Don't allow the user to move to the current location with
                 // value=0, but notify them that this is the current location
-                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". _("current location"). ")</option>\n";
+                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "current location"). ")</option>\n";
             } else {
                 if (sizeof($gallery->album->fields["votes"]) && $gallery->album->pollsCompatible($myAlbum)) {
                     $myAlbumTitle .= " *";
@@ -872,10 +872,10 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
                 if (!$readOnly && ($nestedAlbum == $gallery->album)) {
                     // don't allow user to move to here (value=0), but
                     // notify them that this is their current location
-                    echo "<option value=0> $val2 (". _("Current location") .")</option>\n";
+                    echo "<option value=0> $val2 (". gTranslate('common', "Current location") .")</option>\n";
                 } elseif (!$readOnly && !$gallery->album->isRoot() &&
                   ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
-                    echo "<option value=0> $val2 (". _("This album itself"). ")</option>\n";
+                    echo "<option value=0> $val2 (". gTranslate('common', "This album itself"). ")</option>\n";
                 } else {
                     echo "<option value=\"$myName\"> $val2</option>\n";
                 }
@@ -899,7 +899,7 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
     }
     if ($gallery->app->comments_indication_verbose == 'yes') {
         $ret = "<br>". 
-          sprintf(_("Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
+          sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
     } else {
         $ret= '<span class="commentIndication">*</span>';
         $displayCommentLegend = 1;
@@ -924,9 +924,10 @@ function available_skins($description_only = false) {
     $dir = "$base/skins";
     $opts['none'] = 'No Skin';
     $descriptions = '<dl>';
-    $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". _("No Skin") ."</a>";
+    $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
+	gTranslate('common', "No Skin") . "</a>";
     $descriptions .= sprintf("<dt>%s</dt>", $name);
-    $descriptions .= '<dd>'. _("The original look and feel.") .'</dd>';
+    $descriptions .= '<dd>'. gTranslate('common', "The original look and feel.") .'</dd>';
     $skincount = 0;
 
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
@@ -971,17 +972,17 @@ function available_skins($description_only = false) {
 
             $descriptions.="\n<dt style=\"margin-top:5px;\">$name";
             if (!isset ($version)) {
-                $version = _("unknown");
+                $version = gTranslate('common', "unknown");
             }
 
             if (!isset($last_update)) {
-                $last_update = _("unknown");
+                $last_update = gTranslate('common', "unknown");
             }
 
             $descriptions .= '<span style="margin-left:10px; font-size:x-small">';
-            $descriptions .= _("Version") .": $version";
+            $descriptions .= sprintf(gTranslate('common', "Version: %s"),$version);
             $descriptions .= '&nbsp;&nbsp;&nbsp;';
-            $descriptions .= _("Last Update") . ": $last_update</span></dt>";
+            $descriptions .= sprintf(gTranslate('common', "Last Update: %s"), $last_update) ."</span></dt>";
             $descriptions .= "<dd style=\"font-weight:bold; background-color:white;\">$description<br></dd>";
         }
 
@@ -999,15 +1000,15 @@ function available_frames($description_only = false) {
     $GALLERY_BASE = dirname(dirname(__FILE__));
 
     $opts = array(
-        'none' => _("None"),
-        'dots' => _("Dots"),
-        'solid' => _("Solid"),
+        'none' => gTranslate('common', "None"),
+        'dots' => gTranslate('common', "Dots"),
+        'solid' => gTranslate('common', "Solid"),
         );
         
     $descriptions="<dl>" .
-        "<dt>" . popup_link(_("None"), "frame_test.php?frame=none", 1)  . "</dt><dd>". _("No frames")."</dd>" .
-        "<dt>" . popup_link(_("Dots"), "frame_test.php?frame=dots", 1)  . "</dt><dd>". _("Just a simple dashed border around the thumb.")."</dd>" .
-        "<dt>" . popup_link(_("Solid"), "frame_test.php?frame=solid", 1) . "</dt><dd>". _("Just a simple solid border around the thumb.")."</dd>" ;
+        "<dt>" . popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", 1)  . "</dt><dd>". gTranslate('common', "No frames")."</dd>" .
+        "<dt>" . popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", 1)  . "</dt><dd>". gTranslate('common', "Just a simple dashed border around the thumb.")."</dd>" .
+        "<dt>" . popup_link(gTranslate('common', "Solid"), "frame_test.php?frame=solid", 1) . "</dt><dd>". gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" ;
         
     $dir = $GALLERY_BASE . '/html_wrap/frames';
     
@@ -1029,13 +1030,13 @@ function available_frames($description_only = false) {
                 $descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</a></dt><dd>$description</dd>";
             } else {
                 if (false && isDebugging()) {
-                    echo gallery_error(sprintf(_("Skipping %s."),
+                    echo gallery_error(sprintf(gTranslate('common', "Skipping %s."),
                     $subdir));
                 }
             }
         }
     } else {
-        echo gallery_error(sprintf(_("Can't open %s"), $dir));
+        echo gallery_error(sprintf(gTranslate('common', "Can't open %s"), $dir));
     }
 
     $descriptions .= "\n</dl>";
@@ -1110,7 +1111,7 @@ function gallery_validation_link($file, $valid=true, $args = array()) {
       '<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 
     if (!$valid) {
-        $link .= _("Not valid yet");
+        $link .= gTranslate('common', "Not valid yet");
     }
 
     return $link;
@@ -1130,7 +1131,7 @@ function album_validation_link($album, $photo='', $valid=true) {
       '"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
     
     if (!$valid) {
-        $link .= _("Not valid yet");
+        $link .= gTranslate('common', "Not valid yet");
     }
     return $link;
 }

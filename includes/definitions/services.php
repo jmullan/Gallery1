@@ -42,7 +42,7 @@ $services = array(
     'mpush'       => array(
 	'name'    => 'mPUSH',
 	'url'     => 'http://www.mpush.cc/',
-	'description' => _("mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
+	'description' => gTranslate('common', "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
     )
 );
 ?>

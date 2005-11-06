@@ -115,7 +115,7 @@ foreach ($gallery->album->getExtraFields() as $field) {
 ?>
 
 <tr>
-	<td valign=top><b><?php echo _("Keywords") ?>:</b></td>
+	<td valign=top><b><?php echo gTranslate('core', "Keywords") ?>:</b></td>
 	<td><textarea name="keywords" rows="1" cols="40"><?php echo $gallery->album->getKeywords($index) ?></textarea></td>
 </tr>
 </table>
@@ -139,7 +139,7 @@ $year 	 = strftime('%Y', $itemCaptureDate);
 <br>
 <table border="0">
   <tr>
-	<td colspan="6" align="center"><?php echo _("Photo Capture Date") ?></td>
+	<td colspan="6" align="center"><?php echo gTranslate('core', "Photo Capture Date") ?></td>
   </tr>
   <tr>
     <td><?php echo _("Month") ?></td>

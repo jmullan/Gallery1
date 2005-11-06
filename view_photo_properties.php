@@ -134,7 +134,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 </div>
 <center>
 <form action="#">
-<input type="button" value="<?php echo _("Close Window") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
 </form>
 </center>
 
