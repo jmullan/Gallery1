@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($sort, $order, $albumsFist) = getRequestVar(array('sort', 'order', 'albumsFirst'));
+list($sort, $order, $albumsFirst) = getRequestVar(array('sort', 'order', 'albumsFirst'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -49,7 +49,7 @@ if ($gallery->session->albumName) {
 			dismissAndReload();
 			return;
 		} else {
-			$gallery->album->sortPhotos($sort,$order, $albumsFist);
+			$gallery->album->sortPhotos($sort,$order, $albumsFirst);
 			$gallery->album->save(array(i18n("Album resorted")));
 			dismissAndReload();
 			return;
@@ -104,13 +104,13 @@ echo makeFormIntro("sort_album.php");
     <td align="center">
 <?php echo _("Sort Order:"); ?>
     <select name="albumsFirst">
-        <option value="NULL"><?php echo _("Just sort") ?></option>
-        <option value="true"><?php echo _("Albums first") ?></option>
-        <option value="false"><?php echo _("Photos/Movies first") ?></option>
+        <option value=""><?php echo _("Just sort") ?></option>
+        <option value="1"><?php echo _("Albums first") ?></option>
+        <option value="-1"><?php echo _("Photos/Movies first") ?></option>
     </select>
     <select name="order">
-        <option value="0"><?php echo _("Ascending") ?></option>
-        <option value="1"><?php echo _("Descending") ?></option>
+        <option value="1"><?php echo _("Ascending") ?></option>
+        <option value="-1"><?php echo _("Descending") ?></option>
     </select>
     </td>
     

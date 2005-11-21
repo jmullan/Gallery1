@@ -577,8 +577,11 @@ class Album {
      * false -> sort album again, photos first
      * NULL, no resorting.
      */
-    function sortPhotos($sort , $order, $albumsFirst = NULL) {
+    function sortPhotos($sort , $order, $albumsFirst = '') {
         $this->updateSerial = 1;
+	global $func;
+	global $order;
+	global $albumsFirst;
 
         // if we are going to use sort, we need to set the historic dates.
         // the get Date functions set any null dates for us, so that's what
@@ -602,20 +605,25 @@ class Album {
         } elseif (!strcmp($sort, "comment")) {
             $func = "sortByComment";
         }
-        usort($this->photos, array('Album', $func));
-        if ($albumsFirst != NULL) {
+        
+        if ($albumsFirst != "") {
+	    //echo "presort by $func with order $order";
             usort($this->photos, array('Album', 'sortByType'));
         }
-        if ($order) {
-            $this->photos = array_reverse($this->photos);
-        }
+	else {
+            usort($this->photos, array('Album', $func));
+	}
+
     }
 
-    /*
-    *  Globalize the sort functions from sortPhotos()
-    */
+    /**
+     *  Globalize the sort functions from sortPhotos()
+     */
 
     function sortByType($a, $b) {
+	global $func;
+	global $albumsFirst;
+
         $objA = (object)$a;
         $objB = (object)$b;
         
@@ -623,15 +631,17 @@ class Album {
         $bIsAlbum = $objB->isAlbum();
         
         if ($aIsAlbum == $bIsAlbum) {
-            return 0;
+            return Album::$func($a, $b);
         } elseif ($aIsAlbum < $bIsAlbum) {
-            return 1;
+            return 1 * $albumsFirst;
         } else {
-            return -1;
+            return -1 * $albumsFirst;
         }
     }
     
     function sortByUpload($a, $b) {
+	global $order; 
+
         $objA = (object)$a;
         $objB = (object)$b;
         $timeA = $objA->getUploadDate();
@@ -639,29 +649,32 @@ class Album {
         if ($timeA == $timeB) {
             return 0;
         } elseif ($timeA < $timeB) {
-            return -1;
+            return -1 * $order;
         } else {
-            return 1;
+            return 1 * $order;
         }
     }
 
     function sortByItemCapture($a, $b) {
+	global $order;
+
         $objA = (object)$a;
         $objB = (object)$b;
         $timeA = $objA->getItemCaptureDate();
         $timeB = $objB->getItemCaptureDate();
-        //print "$timeA $timeB<br>";
 
         if ($timeA == $timeB) {
             return 0;
         } elseif ($timeA < $timeB) {
-            return -1;
+            return -1 * $order;
         } else {
-            return 1;
+            return 1 * $order;
         }
     }
 
     function sortByFileName($a, $b) {
+	global $order;
+
         $objA = (object)$a;
         $objB = (object)$b;
         if ($objA->isAlbum()) {
@@ -676,11 +689,14 @@ class Album {
             $filenameB = $objB->image->name;
         }
 
-        //print $filenameA $filenameB;
-        return (strnatcasecmp($filenameA, $filenameB));
+	$result = $order * strnatcasecmp($filenameA, $filenameB);
+
+	return $result;
     }
 
     function sortByClick($a, $b) {
+	global $order;
+
         $objA = (object)$a;
         $objB = (object)$b;
         $aClick = $objA->getItemClicks();
@@ -688,14 +704,16 @@ class Album {
         if ($aClick == $bClick) {
             return 0;
         } elseif ($aClick < $bClick) {
-            return -1;
+            return -1 * $order;
         } else {
-            return 1;
+            return 1 * $order;
         }
     }
 
     function sortByCaption($a, $b) {
         global $albumDB;
+	global $order;
+
         if (empty($albumDB)) {
             $albumDB = new AlbumDB(false);
         }
@@ -716,10 +734,14 @@ class Album {
             $captionB = $objB->getCaption();
         }
 
-        return (strnatcasecmp($captionA, $captionB));
+        $result = $order* strnatcasecmp($captionA, $captionB);
+
+	return $result;
     }
 
     function sortByComment($a, $b) {
+	global $order;
+
         // sort by number of comments
         $objA = (object)$a;
         $objB = (object)$b;
@@ -728,11 +750,13 @@ class Album {
         if ($numCommentsA == $numCommentsB) {
             return 0;
         } elseif ($numCommentsA < $numCommentsB) {
-            return -1;
+            return -1 * $order;
         } else {
-            return 1;
+            return 1 * $order;
         }
     }
+
+    /*** 	End of Sort methods	 	***/
 
     function getThumbDimensions($index, $size=0) {
         if (empty($index)) {
@@ -944,7 +968,6 @@ class Album {
      * recipient.  You will note that we don't currently translate these messages.
      */
     function save($msg = array(), $resetModDate = 1) {
-        //print_r($this->fields);
         global $gallery;
         $dir = $this->getAlbumDir();
 
@@ -1048,6 +1071,13 @@ class Album {
                 print "\n<br>". _("Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
             }
         }
+/*
+	if (!$success) {
+	    echo _("Save failed");
+	} else {
+	    echo _("Save OK");
+	}
+*/
         return $success;
     }
 
@@ -2379,15 +2409,23 @@ class Album {
         $this->fields["extra_fields"] = $extra_fields;
     }
 
+    /**
+     * Returns the values of an extrafield from a photo.
+     * @param   $index		integer	albumitemIndex
+     * @param   $field		string	fieldname
+     * @return	$fieldvalue	string
+     */
     function getExtraField($index, $field) {
-        $photo = $this->getPhoto($index);
-        return $photo->getExtraField($field);
+       $photo = $this->getPhoto($index);
+	   $fieldvalue = $photo->getExtraField($field);
+	return $fieldvalue;
     }
 
     function setExtraField($index, $field, $value) {
         $photo = &$this->getPhoto($index);
         $photo->setExtraField($field, $value);
     }
+
     function getItemOwnerById($id) {
         return $this->getItemOwner($this->getPhotoIndex($id));
     }
@@ -2788,5 +2826,58 @@ class Album {
                     
         return $albumSize;
     }        
+
+    /**
+     * Adds an imagearea to an album item
+     * @param	$index	integer	albumitem index
+     * @param	$area	string	area coordinates.
+     * @author	Jens Tkotz <jens@peino.de>
+    */
+    function addImageArea($index, $area) {
+        $photo = &$this->getPhoto($index);
+        if(!isset($photo->imageAreas)) {
+            $photo->imageAreas = array();
+        }
+        $photo->imageAreas[] = $area;
+    }
+
+    /**
+     * Returns all imageareas of an album item
+     * @param	$index	integer	albumitem index
+     * @return	$areas	array	array of imageareas
+     * @author	Jens Tkotz <jens@peino.de>
+    */
+    function getAllImageAreas($index) {
+        $photo = $this->getPhoto($index);
+        if(!isset($photo->imageAreas)) {
+            $photo->imageAreas = array();
+        }
+        $areas = $photo->imageAreas;
+        return $areas;
+    }
+
+    /**
+     * Deletes an imagearea of an album item
+     * @param	$photo_index	integer	albumitem index
+     * @param	$arean_index	integer	area index
+     * @author	Jens Tkotz <jens@peino.de>
+    */
+    function deleteImageArea($photo_index, $area_index) {
+        $photo = &$this->getPhoto($photo_index);
+        unset($photo->imageAreas[$area_index]);
+    }
+    /**
+     * Updates an imagearea of an album item
+     * @param	$photo_index  integer	albumitem index
+     * @param	$area_index	  integer	area index
+     * @param	$area_data	  array     updated array data
+     * @author	Jens Tkotz <jens@peino.de>
+    */
+    function updateImageArea($photo_index, $area_index, $area_data) {
+        $photo = &$this->getPhoto($photo_index);
+        foreach ($area_data as $key => $value) {
+            $photo->imageAreas[$area_index][$key] = $value;
+        }
+    }
 }
 ?>

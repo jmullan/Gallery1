@@ -166,9 +166,9 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * makeFormIntro("add_photos.php",
  *                      array("name" => "count_form",
  *                              "enctype" => "multipart/form-data",
- *                              "method" => "post"));
+ *                              "method" => "POST"));
  *
- * If no method is given in attrList, then "post" is used.
+ * If no method is given in attrList, then "POST" is used.
  */
 function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     // We don't want the result HTML escaped since we split on "&", below
@@ -180,7 +180,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-	'method' => 'post',
+	'method' => 'POST',
 	'name'	 => 'g1_form'
     );
 
@@ -258,13 +258,15 @@ function showChoice($label, $target, $args, $class="") {
     echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 
-function showChoice2($target, $args) {
+function showChoice2($target, $args, $popup = true) {
     global $gallery;
 
     if (empty($args['set_albumName'])) {
         $args['set_albumName'] = $gallery->session->albumName;
     }
-    $args['type'] = 'popup';
+    if($popup) {
+        $args['type'] = 'popup';
+    }
     return makeGalleryUrl($target, $args);
 }
 

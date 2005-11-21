@@ -533,11 +533,20 @@ includeLayout('breadcrumb.inc');
 if(sizeof($albumItemOptions) > 2 && $useIcons) {
     includeLayout('navtablemiddle.inc');
     $albumItemOptionElements = array();
+    $itemActionTable = new galleryTable();
+    $itemActionTable->setColumnCount(10);
+    $itemActionTable->setAttrs(array('align' => langLeft()));
     foreach ($albumItemOptions as $trash => $option) {
         if(!empty($option['value'])) {
-            echo "\n". popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
+            if (stristr($option['value'], 'popup')) {
+                $content = popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
+            } else {
+                $content = '<a class="iconLink" href="'. $option['value'] .'">'. $option['text'] . '</a>';
+            }
+            $itemActionTable->addElement(array('content' => $content));
         }
     }
+    echo $itemActionTable->render();
 }
 
 includeLayout('navtablemiddle.inc');
@@ -600,7 +609,16 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
     $frame = 'none';
 }
 
-$photoTag = $gallery->album->getPhotoTag($index, $full,'id="galleryImage"');
+echo showImageMap($index);
+
+$allImageAreas = $gallery->album->getAllImageAreas($index);
+
+if (!empty($allImageAreas)) {
+    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
+}
+else {
+    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\"");
+}
 
 list($width, $height) = $photo->getDimensions($full);
 $gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
@@ -773,8 +791,13 @@ if (isset($printPhotoAccessForm)) { ?>
   <input type="hidden" name="imgHeight" value="<?php echo $imageHeight ?>">
 </form>
 <?php }
-includeHtmlWrap("photo.footer");
-	if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+
+    includeHtmlWrap("photo.footer");
+    if (!empty($allImageAreas)) {
+        echo '<script language="JavaScript" type="text/javascript" src="'. makeGalleryUrl('wz_tooltip.js') .'"></script>';
+    }
+    if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<?php } ?>
+<?php } 
+?>

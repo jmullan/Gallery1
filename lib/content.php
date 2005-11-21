@@ -104,7 +104,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 function drawCommentAddForm($commenter_name = '', $cols = 50) {
     global $gallery;
     if ($gallery->user->isLoggedIn() &&
-    (empty($commenter_name) || $gallery->app->comments_anonymous == 'no')) {
+      (empty($commenter_name) || $gallery->app->comments_anonymous == 'no')) {
         $commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
     }
 ?>
@@ -113,7 +113,7 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 	<td colspan="2" class="commentboxhead"><?php echo gTranslate('common', "Add your comment") ?></td>
 </tr>
 <tr>
-	<td class="commentboxhead"><?php gTranslate('common', "Commenter:") ?></td>
+	<td class="commentboxhead"><?php echo gTranslate('common', "Commenter:"); ?></td>
 	<td class="commentboxhead">
 <?php
 
@@ -131,7 +131,7 @@ if (!$gallery->user->isLoggedIn() ) {
 </td>
 </tr>
 <tr>
-	<td class="commentlabel" valign="top"><?php gTranslate('common', "Message:") ?></td>
+	<td class="commentlabel" valign="top"><?php echo gTranslate('common', "Message:") ?></td>
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>
@@ -1169,6 +1169,30 @@ function galleryImage($filename, $alttext = '', $args = array(), $skin = '') {
         }
     }
     $html .= '>';
+    return $html;
+}
+
+function showImageMap($index) {
+    global $gallery;
+    
+    $allImageAreas = $gallery->album->getAllImageAreas($index);
+    $html = '';
+   
+    if (!empty($allImageAreas)) {
+        $html .= "\n". '<map name="myMap">';
+        foreach($allImageAreas as $nr => $area) {
+            $html .= "\n\t<area alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
+                "coords=\"". $area['coords'] ."\" ".
+                "onmouseover=\"return escape('". $area['hover_text'] ."')\"";
+
+            if(!empty($area['url'])) {
+                $html .=' href="'. $area['url'] .'"';
+            }
+            $html .='>';
+        }
+        $html .= "\n</map>\n";
+    }
+
     return $html;
 }
 ?>

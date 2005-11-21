@@ -20,7 +20,7 @@
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 
-body {
+body, html {
 }
 
 img {
@@ -116,14 +116,14 @@ form {
  	{
  	 float: none;
 	}
- 
-.vasummary /* controls the view of Album summary */
-	{
-        font-weight:bold;
-        padding:2px;
-        margin-top:10px;
-        width:80%;
-	}
+
+ /* controls the view of Album summary */ 
+.vasummary {
+    font-weight:bold;
+    padding:2px;
+    margin-top:10px;
+    width:80%;
+}
 
 .commentIndication {
     color: red;
@@ -423,8 +423,7 @@ a.error:hover {
     display: block;
     font-size: 10px;
     text-align:center;
-    float: right;
-    margin: 3px;
+    margin-top: 1px; margin-left: 3px;
 }
 
 #menu a:hover {

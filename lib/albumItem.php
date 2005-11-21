@@ -40,7 +40,7 @@ function getItemActions($i, $withIcons = false) {
     $override = ($withIcons) ? '' : 'no';
     $options = array();
 
-    if (!$gallery->session->offline && empty($javascriptSet)) { ?>
+    if (!$gallery->session->offline && empty($javascriptSet) && !$withIcons) { ?>
   <script language="javascript1.2" type="text/JavaScript">
   <!-- //
 
@@ -79,18 +79,14 @@ function getItemActions($i, $withIcons = false) {
         }
     }
 
-    $options[] = array(
-        'text' => '&laquo; '. sprintf(_("%s actions"), $label) . ' &raquo;',
-        'value' => ''
-    );
-
-    if ($gallery->album->getItemOwnerDelete() &&
+   if ($gallery->album->getItemOwnerDelete() &&
       $gallery->album->isItemOwner($gallery->user->getUid(), $i) &&
       !$gallery->album->isAlbum($i) &&
       !$gallery->user->canDeleteFromAlbum($gallery->album)) {
         $options[] = array(
-          'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
-            'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
+          'pure_text' => _("Delete"),
+          'text' => getIconText('delete.gif', _("Delete"), $override, $withIcons),
+          'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
         );
     }
 
@@ -98,23 +94,27 @@ function getItemActions($i, $withIcons = false) {
         if (isset($myAlbum)) {
             if ($gallery->user->canChangeTextOfAlbum($myAlbum)) {
                 $options[] = array(
-                    'text' => getIconText('',_('Edit Title'), $override, $withIcons),
+                    'pure_text' => _('Edit Title'),
+                    'text' => getIconText('', _('Edit Title'), $override, $withIcons),
                     'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "title"))
                 );
                 $options[] = array(
-                    'text' => getIconText('',_('Edit Description'), $override, $withIcons),
+                    'pure_text' => _('Edit Description'),
+                    'text' => getIconText('', _('Edit Description'), $override, $withIcons),
                     'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "description"))
                 );
             }
             if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
                 $options[] = array(
-                    'text' => getIconText('',_("Rename Album"), $override, $withIcons),
+                    'pure_text' => _("Rename Album"),
+                    'text' => getIconText('', _("Rename Album"), $override, $withIcons),
                     'value' => showChoice2("rename_album.php", array("set_albumName" => $myAlbum->fields["name"], "index" => $i))
                 );
             }
         } else {
             $options[] = array(
-                'text' => getIconText('kcmfontinst.gif',_("Edit Text"), $override, $withIcons),
+                'pure_text' => _("Edit Text"),
+                'text' => getIconText('kcmfontinst.gif', _("Edit Text"), $override, $withIcons),
                 'value' => showChoice2("edit_caption.php", array("index" => $i))
             );
         }
@@ -123,50 +123,64 @@ function getItemActions($i, $withIcons = false) {
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
         if (!$gallery->album->isMovieByIndex($i) && !$gallery->album->isAlbum($i)) {
             $options[] = array(
-                'text' => getIconText('thumbnail.gif',_("Edit Thumbnail"), $override, $withIcons),
+                'pure_text' => _("Edit Thumbnail"),
+                'text' => getIconText('thumbnail.gif', _("Edit Thumbnail"), $override, $withIcons),
                 'value' => showChoice2('edit_thumb.php', array('index' => $i))
             );
             $options[] = array(
-                'text' => getIconText('reload.gif',sprintf(_("Rotate/Flip"), $label), $override, $withIcons),
+                'pure_text' => sprintf(_("Rotate/Flip"), $label),
+                'text' => getIconText('reload.gif', sprintf(_("Rotate/Flip"), $label), $override, $withIcons),
                 'value' => showChoice2('rotate_photo.php', array('index' => $i))
             );
             $options[] = array(
-                'text' => getIconText('window_fullscreen.gif',_("Resize"), $override, $withIcons),
+                'pure_text' => _("Resize"), 
+                'text' => getIconText('window_fullscreen.gif', _("Resize"), $override, $withIcons),
                 'value' => showChoice2('resize_photo.php', array('index' => $i))
             );
             if (!empty($gallery->app->watermarkDir)) {
                 $options[] = array(
-                    'text' => getIconText('camera.gif',_("Watermark"), $override, $withIcons),
+                    'pure_text' => _("Watermark"),
+                    'text' => getIconText('camera.gif', _("Watermark"), $override, $withIcons),
                     'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
                 );
             }
+            $options[] = array(
+                'pure_text' => _("ImageMap"),
+                'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
+                'value' => showChoice2('imagemap.php', array('index' => $i), false)
+            );
         }
         if (!$gallery->album->isMovieByIndex($i)) {
             $nestedAlbum=$gallery->album->getNestedAlbum($i);
             if (!$gallery->album->isAlbum($i) || $nestedAlbum->hasHighlight()) {
                 $options[] = array(
-                    'text' => getIconText('viewmag1.gif',sprintf(_("Set as highlight"),$label), $override, $withIcons),
+                    'pure_text' => _("Set as highlight"),
+                    'text' => getIconText('viewmag1.gif', _("Set as highlight"), $override, $withIcons),
                     'value' => showChoice2('do_command.php', array('cmd' => 'highlight', 'index' => $i))
                 );
             }
         }
         if ($gallery->album->isAlbum($i)) {
             $options[] = array(
-                'text' => getIconText('',_("Reset Counter"), $override, $withIcons),
+                'pure_text' => _("Reset Counter"),
+                'text' => getIconText('', _("Reset Counter"), $override, $withIcons),
                 'value' => showChoice2("do_command.php", array("cmd" => "reset-album-clicks", "set_albumName" => $gallery->album->getAlbumName($i),"return" => urlencode(makeGalleryUrl("view_album.php"))))
             );
         }
         $options[] = array(
-            'text' => getIconText('tab_duplicate.gif',_("Move"), $override, $withIcons),
+            'pure_text' => _("Move"),
+            'text' => getIconText('tab_duplicate.gif', _("Move"), $override, $withIcons),
             'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0))
         );
         $options[] = array(
+            'pure_text' => _("Move"),
             'text' => getIconText('tab_duplicate.gif',_("Reorder"), $override, $withIcons),
             'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1))
         );
         if (!$gallery->album->isAlbum($i)) {
             $options[] = array(
-                'text' => getIconText('editcopy.gif',_("Copy"), $override, $withIcons),
+                'pure_text' => _("Copy"),
+                'text' => getIconText('editcopy.gif', _("Copy"), $override, $withIcons),
                 'value' => showChoice2("copy_photo.php", array("index" => $i))
             );
         }
@@ -176,12 +190,14 @@ function getItemActions($i, $withIcons = false) {
       $gallery->album->isItemOwner($gallery->user->getUid(), $i))) {
         if ($gallery->album->isHidden($i)) {
             $options[] = array(
-                'text' => getIconText('idea.gif',_("Show"), $override, $withIcons),
+                'pure_text' => _("Show"),
+                'text' => getIconText('idea.gif', _("Show"), $override, $withIcons),
                 'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i))
             );
         } else {
             $options[] = array(
-                'text' => getIconText('no_idea.gif',_("Hide"), $override, $withIcons),
+                'pure_text' => _("Hide"),
+                'text' => getIconText('no_idea.gif', _("Hide"), $override, $withIcons),
                 'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i))
             );
         }
@@ -191,12 +207,14 @@ function getItemActions($i, $withIcons = false) {
         if($gallery->album->isAlbum($i)) {
             if($gallery->user->canDeleteAlbum($myAlbum)) {
                 $options[] = array(
+                    'pure_text' => _("Delete"),
                     'text' =>getIconText('delete.gif', _("Delete"), $override, $withIcons),
                     'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1))
                 );
             }
         } else {
             $options[] = array(
+                'pure_text' => _("Delete"),
                 'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
                 'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
             );
@@ -206,19 +224,22 @@ function getItemActions($i, $withIcons = false) {
     if($gallery->album->isAlbum($i)) {
         if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($myAlbum)) {
             $options[] = array(
-                'text' => getIconText('decrypted.gif',_("Permissions"), $override, $withIcons),
+                'pure_text' => _("Permissions"),
+                'text' => getIconText('decrypted.gif', _("Permissions"), $override, $withIcons),
                 'value' => showChoice2("album_permissions.php", array("set_albumName" => $myAlbum->fields["name"]))
             );
             // Watermarking support is enabled and user is allowed to watermark images/albums /
             if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
                 $options[] = array(
-                    'text' => getIconText('',_("Watermark Album"), $override, $withIcons),
+                    'pure_text' => _("Watermark Album"),
+                    'text' => getIconText('', _("Watermark Album"), $override, $withIcons),
                     'value' => showChoice2("watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]))
                 );
             }
             if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
                 $options[] = array(
-                    'text' => getIconText('',_("View Comments"), $override, $withIcons),
+                    'pure_text' => _("View Comments"),
+                    'text' => getIconText('', _("View Comments"), $override, $withIcons),
                     'value' => showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url")
                 );
             }
@@ -229,7 +250,8 @@ function getItemActions($i, $withIcons = false) {
           (eregi("jpe?g\$", $photo->image->type)) &&
           (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
             $options[] = array(
-                'text' => getIconText('frame_query.gif',_("Photo properties"), $override, $withIcons),
+                'pure_text' => _("Photo properties"),
+                'text' => getIconText('frame_query.gif', _("Photo properties"), $override, $withIcons),
                 'value' => showChoice2("view_photo_properties.php", array("index" => $i))
             );
         }
@@ -237,12 +259,21 @@ function getItemActions($i, $withIcons = false) {
 
     if ($gallery->user->isAdmin() && !$gallery->album->isAlbum($i)) {
         $options[] = array(
-            'text' => getIconText('yast_kuser.gif',_("Change Owner"), $override, $withIcons),
+            'pure_text' => _("Change Owner"),
+            'text' => getIconText('yast_kuser.gif', _("Change Owner"), $override, $withIcons),
             'value' => showChoice2("photo_owner.php", array("id" => $id))
         );
     }
 
-    array_sort_by_fields($options, 'text');
+    array_sort_by_fields($options, 'pure_text', 'asc');
+    $options = array_merge(array(
+        array(
+            'pure_text' => sprintf(_("%s actions"), $label),
+            'text' => '&laquo; '. sprintf(_("%s actions"), $label) . ' &raquo;',
+            'value' => '',
+            'selected' => true)
+        ), $options
+    );
     return $options;
 }
 

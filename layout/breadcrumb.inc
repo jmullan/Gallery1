@@ -37,11 +37,11 @@ if(!includeTemplate('breadcrumb.tpl')
 			if (!$name) {
 				$name = $gallery->user->getUsername();
 			}
-			echo "\t". '<td style="padding-left:5px;" class="bread" height="18">'. _("Logged in as:") .' '. $name .'</td>';
+			echo "\t". '<td align="'. langLeft() .'" style="padding-left:5px;" class="bread" height="18">'. _("Logged in as:") .' '. $name .'</td>';
 		}
 	?>
 		
-	<td class="bread" height="18" align="right">
+	<td class="bread" height="18" align="<?php echo langRight(); ?>">
 	<?php
 	if (isset($breadcrumb['text'])) {
 	    foreach($breadcrumb["text"] as $nr => $text) {

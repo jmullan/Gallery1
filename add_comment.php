@@ -90,9 +90,7 @@ if (!empty($error_text)) {
 	echo "\n<br>". gallery_error($error_text);
 }
 echo "<br><br>";
-echo makeFormIntro("add_comment.php",
-	array("name" => "theform"),
-	array('type' => 'popup'));
+echo makeFormIntro("add_comment.php", array(), array('type' => 'popup'));
 
 drawCommentAddForm($commenter_name, 35);
 ?>
@@ -103,8 +101,8 @@ drawCommentAddForm($commenter_name, 35);
 </div>
 <script language="javascript1.2" type="text/JavaScript">
 <!--
-// position cursor in top form field
-document.theform.commenter_name.focus();
+  // position cursor in top form field
+  document.g1_form.commenter_name.focus();
 //-->
 </script>
 </div>

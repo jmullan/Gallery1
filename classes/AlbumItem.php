@@ -42,6 +42,7 @@ class AlbumItem {
 	var $rank;
 	var $version;
 	var $emailMe;
+	var $imageAreas;
 
 	function AlbumItem() {
 	        global $gallery;
@@ -796,14 +797,24 @@ class AlbumItem {
 		}
 	}
 	function setExtraField($name, $value) {
-		$this->extraFields[$name] = $value;
+	    $this->extraFields[$name] = $value;
 	}
+	
+	/**
+	 * Returns value of an extrafield
+	 * @param	$name	string	fieldname
+	 * @return	$value	mixed
+	 */
 	function getExtraField($name) {
 		if (isset($this->extraFields[$name])) {
-			return $this->extraFields[$name];
+			$value = $this->extraFields[$name];
 		}
-		return null;
+		else {
+		    $value = array();
+		}
+		return $value;
 	}
+
 	function lastCommentDate()  {
 		global $gallery;
 		if ($this->numComments() == 0) {
@@ -842,6 +853,24 @@ class AlbumItem {
 		$uid = $user->getUid();
 		unset($this->emailMe[$type][$uid]);
 	}
+
+       function addImageArea($area) {
+	    if(!isset($this->imageAreas)) {
+	        $this->imageAreas = array();
+	    }
+            $this->imageAreas[] = $area;
+       }
+
+       function getAllImageAreas() {
+	    if(!isset($this->imageAreas)) {
+                $this->imageAreas = array();
+            }
+            return $this->imageAreas;
+       }
+
+       function deleteImageArea($index) {
+            unset($this->imageAreas[$index]);
+       }
 }
 
 ?>
