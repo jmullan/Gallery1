@@ -246,6 +246,11 @@ $adminOptions = array(
         'action' 	=> 'popup',
         'value' 	=> makeGalleryUrl('add_photos_frame.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
+    'delete_album'    => array(
+        'name' => _("Delete this album"),
+        'requirements' => array('canDeleteAlbum'),
+        'action' => 'popup',
+        'value' => makeGalleryUrl('delete_album.php', array('type' => 'popup'))),
     'rename_album'    => array(
         'name' => _("Rename album"),
         'requirements' => array('isAdminOrAlbumOwner'),

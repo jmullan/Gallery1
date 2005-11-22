@@ -1484,6 +1484,10 @@ function testRequirement($test) {
 		case 'canAddToAlbum':
 			return $gallery->user->canAddToAlbum($gallery->album);
 		break;
+
+		case 'canDeleteAlbum':
+			return $gallery->user->canDeleteAlbum($gallery->album);
+		break;
 		
 		case 'extraFieldsExist':
 			$extraFields = $gallery->album->getExtraFields();
