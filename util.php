@@ -409,8 +409,11 @@ function netPbm($cmd, $args = '') {
  */
 function ImCmd($cmd, $src, $dest='', $args = '') {
     global $gallery;
-
-    $ImVersion = floor(getImVersion());
+    static $ImVersion;
+    
+    if(empty($ImVersion)) {
+        $ImVersion = floor(getImVersion());
+    }
     $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
     
     switch ($ImVersion) {
