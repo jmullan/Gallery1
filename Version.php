@@ -22,16 +22,7 @@
 ?>
 <?php
 
-/*
- * Protect against very old versions of 4.0 (like 4.0RC1) which
- * don't implicitly create a new stdClass() when you use a variable
- * like a class.
- */
-if (!isset($gallery)) {
-    $gallery = new stdClass();
-}
-
-$gallery->version = '1.5.2-cvs-b33';
+$gallery->version = '1.5.2-cvs-b34';
 $gallery->config_version = 94;
 $gallery->album_version = 37;
 $gallery->user_version = 6;
