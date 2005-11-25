@@ -424,14 +424,13 @@ if (!$gallery->album->isMovie($id)) {
 
             /* just print out text if only one option */
         } elseif ($numServices == 1) {
-            $name = @key($printServices);
 
-            enablePrintForm($name);
             foreach ($fullNames as $serviceGroupName => $serviceGroup) {
                 foreach ($serviceGroup as $name => $fullName) {
                     if (!in_array($name, $printServices)) {
                         continue;
                     } else {
+			enablePrintForm($name);
                         $iconText = getIconText('', sprintf(_("process this photo with %s"), $fullName));
                         $adminTextIconElemens[] = "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
                     }
