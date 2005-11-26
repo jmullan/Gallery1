@@ -53,20 +53,25 @@ if (isset($save) || isset($preview)) {
                 my_flush();
                 set_time_limit($gallery->app->timeLimit);
                 $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
-                isset($wmAlignX) ? $wmAlignX : 0,
-                isset($wmAlignY) ? $wmAlignY : 0,
-                0, 0, // Not a preview
-                isset($wmSelect) ? $wmSelect : 0);
+                  isset($wmAlignX) ? $wmAlignX : 0,
+                  isset($wmAlignY) ? $wmAlignY : 0,
+                  0, 0, // Not a preview
+                  isset($wmSelect) ? $wmSelect : 0
+                );
                 dismissAndReload();
                 return;
             }
             else {
-                $gallery->album->watermarkPhoto($index, $wmName, "",
-                $wmAlign,
-                isset($wmAlignX) ? $wmAlignX : 0,
-                isset($wmAlignY) ? $wmAlignY : 0,
-                1, // set as preview
-                isset($previewFull) ? $previewFull : 0);
+                $gallery->album->watermarkPhoto(
+                  $index,
+                  $wmName,
+                  '',
+                  $wmAlign,
+                  isset($wmAlignX) ? $wmAlignX : 0,
+                  isset($wmAlignY) ? $wmAlignY : 0,
+                  1, // set as preview
+                  isset($previewFull) ? $previewFull : 0
+                );
             }
         } else {
             $err = _("Please select a watermark.");

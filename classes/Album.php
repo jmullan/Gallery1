@@ -1831,8 +1831,17 @@ class Album {
     function watermarkPhoto($index, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
         $this->updateSerial = 1;
         $photo = &$this->getPhoto($index);
-        $retval = $photo->watermark($this->getAlbumDir(),
-        $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview,$previewSize, $wmSelect);
+        $retval = $photo->watermark(
+            $this->getAlbumDir(),
+            $wmName,
+            $wmAlphaName,
+            $wmAlign,
+            $wmAlignX,
+            $wmAlignY,
+            $preview,
+            $previewSize,
+            $wmSelect
+        );
         if (!$retval) {
             return $retval;
         }

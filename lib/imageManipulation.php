@@ -517,6 +517,7 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 function cropImageToRatio($src, $dest, $destSize, $ratio) {
     list($width, $height) = getDimensions($src);
     $size = 0;
+    
     switch($ratio) {
         case '1/1':
             debugMessage(sprintf(_("Generating squared Version to %dpx"), $destSize), __FILE__, __LINE__);
