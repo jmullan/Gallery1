@@ -87,7 +87,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
             $addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
         }
         if ($addType == 'inside') {
-            echo makeFormIntro($page_url, array('name' => 'theform'));
+            echo '<form action="'. $page_url .'" name="theform" method="POST">';
             drawCommentAddForm($commenter_name);
             echo '</form>';
         }
@@ -108,6 +108,7 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
         $commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
     }
 ?>
+
 <table class="commentbox" cellpadding="0" cellspacing="0">
 <tr>
 	<td colspan="2" class="commentboxhead"><?php echo gTranslate('common', "Add your comment") ?></td>
