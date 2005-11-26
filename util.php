@@ -405,7 +405,7 @@ function netPbm($cmd, $args = '') {
  * @param   string  $src    The sourcefile the command is perfomed on
  * @param   string  $dest   Optional destination file
  * @param   string  $args   Optional arguments
- * @return $string  $cmd    The complete commandline
+ * @return  $string $cmd    The complete commandline
  */
 function ImCmd($cmd, $src, $dest='', $args = '') {
     global $gallery;

@@ -107,6 +107,7 @@ if (!empty($err)) {
     echo '<p class="error">'. $err . '</p>';
 }
 
+
 if ($photo->image->type == 'gif') {
     echo infoLine(_("Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
 }
