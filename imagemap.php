@@ -109,18 +109,21 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html> 
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
-
-  <script language="JavaScript" type="text/javascript" src="<?php echo makeGalleryUrl('js/wz_jsgraphics.js'); ?>"></script>
-  <script language="JavaScript" type="text/javascript" src="<?php echo makeGalleryUrl('js/imagemap.js'); ?>"></script>
-
   <?php
 common_header();
 ?>
 </head>
-<body onLoad="init_mousemove()" dir="<?php echo $gallery->direction ?>">
+<body dir="<?php echo $gallery->direction ?>">
 <?php
 } // End if ! embedded
+?>
+  <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
+  <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
+  <script type="text/javascript">
+      init_mousemove();
+ </script>
 
+<?php
 includeHtmlWrap("photo.header");
 
 $rows = $gallery->album->fields["rows"];
@@ -282,7 +285,7 @@ echo languageSelector();
 includeHtmlWrap("photo.footer");
 
 if (!empty($allImageAreas)) {
-    echo '<script language="JavaScript" type="text/javascript" src="'. makeGalleryUrl('js/wz_tooltip.js') .'"></script>';
+    echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
 ?>    
     <script type="text/javascript">

@@ -793,7 +793,7 @@ if (isset($printPhotoAccessForm)) { ?>
 
     includeHtmlWrap("photo.footer");
     if (!empty($allImageAreas)) {
-        echo '<script language="JavaScript" type="text/javascript" src="'. makeGalleryUrl('js/wz_tooltip.js') .'"></script>';
+        echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
     }
     if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
