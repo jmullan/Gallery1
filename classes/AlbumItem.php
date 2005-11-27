@@ -1,23 +1,23 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2005 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id$
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2005 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
 */
 ?>
 <?php
@@ -525,10 +525,13 @@ class AlbumItem {
             } else {
                 $src_image = "$dir/$name.$type";
             }
-            $retval = watermark_image($src_image, "$dir/$name.$previewtag.$type",
-            $gallery->app->watermarkDir."/$wmName",
-            $gallery->app->watermarkDir."/$wmAlphaName",
-            $wmAlign, $wmAlignX, $wmAlignY);
+            $retval = watermark_image(
+              $src_image,
+              "$dir/$name.$previewtag.$type",
+              $gallery->app->watermarkDir."/$wmName",
+              $gallery->app->watermarkDir."/$wmAlphaName",
+              $wmAlign, $wmAlignX, $wmAlignY
+            );
             if ($retval) {
                 list($w, $h) = getDimensions("$dir/$name.$previewtag.$type");
 
@@ -540,10 +543,13 @@ class AlbumItem {
         } else {
             // $wmSelect of 0=both Sized and Full
             if ($wmSelect != 1) { // 1=Only Sized Photos
-            $retval = watermark_image("$dir/$name.$type", "$dir/$name.$type",
-            $gallery->app->watermarkDir."/$wmName",
-            $gallery->app->watermarkDir."/$wmAlphaName",
-            $wmAlign, $wmAlignX, $wmAlignY);
+            $retval = watermark_image(
+              "$dir/$name.$type",
+              "$dir/$name.$type",
+              $gallery->app->watermarkDir."/$wmName",
+              $gallery->app->watermarkDir."/$wmAlphaName",
+              $wmAlign, $wmAlignX, $wmAlignY
+            );
             }
             // 2=Only Full Photos
             if ($wmSelect != 2) {
@@ -816,7 +822,7 @@ class AlbumItem {
             $value = $this->extraFields[$name];
         }
         else {
-            $value = array();
+            $value = '';
         }
         return $value;
     }

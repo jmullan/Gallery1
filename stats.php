@@ -1072,7 +1072,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
     if ($showAlbumLink ) {
         $albumLink = sprintf(_("From album: %s"),
-        '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] . '</a>');
+          '<a href="'. makeAlbumUrl($statsAlbum->fields['name']) .'">'. $statsAlbum->fields['title'] . '</a>');
 
         $owner_var = '';
         if ($showAlbumOwner == 1 ) {
@@ -1136,11 +1136,11 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
        !$gallery->session->offline) {
 
         $innerStatsTable->addElement(array(
-            'content' => _("Views:"),
+            'content' => _("Viewed:"),
             'cellArgs' => array('width' => 100)));
 
         $innerStatsTable->addElement(array(
-            'content' => gTranslate('core', "1 time", "times" , $statsAlbum->getItemClicks($photoIndex), _("0 times")),
+            'content' => gTranslate('core', "Once", "%d times" , $statsAlbum->getItemClicks($photoIndex), _("Never viewed")),
             'cellArgs' => array('class' => 'fineprint')));
     }
 

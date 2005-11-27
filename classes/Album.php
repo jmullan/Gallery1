@@ -2400,7 +2400,7 @@ class Album {
         global $gallery;
         return $gallery->userDB->getUserByUid($this->fields["owner"]);
     }
-    function getExtraFields($all=true) {
+    function getExtraFields($all = true) {
         if ($all) {
             return $this->fields["extra_fields"];
         } else {
@@ -2427,7 +2427,7 @@ class Album {
     function getExtraField($index, $field) {
        $photo = $this->getPhoto($index);
 	   $fieldvalue = $photo->getExtraField($field);
-	return $fieldvalue;
+	   return $fieldvalue;
     }
 
     function setExtraField($index, $field, $value) {
