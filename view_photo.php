@@ -168,7 +168,7 @@ $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height
 
 foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
     $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-    $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+      $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
 }
 
 $extra_fields = $gallery->album->getExtraFields(false);

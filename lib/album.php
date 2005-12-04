@@ -149,4 +149,28 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 	}
 }
 
+/**
+ * Returns an array of the parent album names for a given child
+ * album.
+ * Array is reverted, so the first Element is the topalbum.
+ * If you set $addChild true, then the child album itself is added as last Element.
+ * Based on code by: Dariush Molavi
+ */
+function getParentAlbums($childAlbum, $addChild = false) {
+	$pAlbum = $childAlbum;
+	$parentNameArray = array();
+
+	if ($addChild == true) {
+		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
+	}
+
+	while ($pAlbum = $pAlbum->getParentAlbum(FALSE)) {
+		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
+	}
+
+	$parentNameArray = array_reverse($parentNameArray);
+
+	return $parentNameArray;
+}
+
 ?>

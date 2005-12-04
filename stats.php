@@ -365,7 +365,9 @@ if (empty($useCache)) {
     }
 
     for ($i = 0; $i<$numAlbums; $i++) {
-        debugMessage("<hr>", __FILE__, __LINE__);
+        if(isDebugging()) {
+	    echo "\n<hr>";
+	}
         $statsAlbum = $list[$i];
         if ($statsAlbum->versionOutOfDate()) {
             debugMessage(_("Version out of date."), __FILE__, __LINE__, 2);

@@ -320,114 +320,6 @@ function my_flush() {
     print str_repeat(" ", 4096);	// force a flush
 }
 
-
-function valid_image($file) {
-    if (($type = getimagesize($file)) == FALSE) {
-        debugMessage(sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
-        return 0;
-    }
-
-    debugMessage(sprintf(_("File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
-
-    switch($type[2]) {
-        case 1: // GIF
-        case 2: // JPEG
-        case 3: // PNG
-            return 1;
-        break;
-
-        default:
-            return 0;
-        break;
-    }
-}
-
-function toPnmCmd($file) {
-	global $gallery;
-
-	if (eregi("\.png\$", $file)) {
-		$cmd = "pngtopnm";
-	} elseif (eregi("\.jpe?g\$", $file)) {
-        $cmd = "jpegtopnm";
-	} elseif (eregi("\.gif\$", $file)) {
-		$cmd = "giftopnm";
-	}
-
-	if (!empty($cmd)) {
-		return NetPBM($cmd) .
-		 	" " .
-			fs_import_filename($file);
-	} else {
-		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
-		return "";
-	}
-}
-
-function fromPnmCmd($file, $quality=NULL) {
-	global $gallery;
-	if ($quality == NULL) {
-		$quality = $gallery->app->jpegImageQuality;
-	}
-
-	if (eregi("\.png(\.tmp)?\$", $file)) {
-		$cmd = NetPBM("pnmtopng");
-	} elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
-		$cmd = NetPBM($gallery->app->pnmtojpeg,
-			      "--quality=" . $quality);
-	} elseif (eregi("\.gif(\.tmp)?\$", $file)) {
-		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
-	}
-
-	if ($cmd) {
-		return "$cmd > " . fs_import_filename($file);
-	} else {
-		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
-		return '';
-	}
-}
-
-function netPbm($cmd, $args = '') {
-	global $gallery;
-
-	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
-	if (!isDebugging() && $cmd != 'ppmquant') {
-		// ppmquant doesn't like --quiet for some reason
-		$cmd  .= " --quiet";
-	}
-	$cmd .= " $args";
-	return $cmd;
-}
-
-/**
- * Returns the command line command for ImageMagick depending on Version.
- * If no Version is detected, we assume Version 5.x
- * @param   string  $cmd    The command, e.g. convert
- * @param   string  $src    The sourcefile the command is perfomed on
- * @param   string  $dest   Optional destination file
- * @param   string  $args   Optional arguments
- * @return  $string $cmd    The complete commandline
- */
-function ImCmd($cmd, $src, $dest='', $args = '') {
-    global $gallery;
-    static $ImVersion;
-    
-    if(empty($ImVersion)) {
-        $ImVersion = floor(getImVersion());
-    }
-    $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
-    
-    switch ($ImVersion) {
-        default:
-        case '5':
-            $cmd .= " $args $src $dest";
-        break;
-        case '6':
-            $cmd .= " $src $args $dest";
-        break;
-    }
-    return $cmd;
-}
-
 function correctPseudoUsers(&$array, $ownerUid) {
 	global $gallery;
 
@@ -1320,70 +1212,6 @@ function getImVersion() {
 	return $version[0];  // Only the first character
 }
 
-function compress_image($src, $out, $target, $quality, $keepProfiles=false) {
-	global $gallery;
-
-	if ($target === 'off') {
-		$target = '';
-	}
-	$srcFile = fs_import_filename($src);
-	$outFile = fs_import_filename($out);
-	
-	switch($gallery->app->graphics)	{
-		case "NetPBM":
-			exec_wrapper(toPnmCmd($src) .
-				(($target > 0) ? (' | ' .NetPBM('pnmscale',
-				" -xysize $target $target")) : '')
-				. ' | ' . fromPnmCmd($out, $quality));
-			/* copy over EXIF data if a JPEG if $keepProfiles is
-			 * set. Unfortunately, we can't also keep comments. */ 
-			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
-				if (isset($gallery->app->use_exif)) {
-					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
-						. $srcFile . ' ' . $outFile);
-				} else {
-					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
-				}
-			}
-			break;
-		case "ImageMagick":
-			/* we just need the first digit = major version */
-			$ImVersion = floor(getImVersion());
-			// Set the keepProfiles parameter based on the version
-			// of ImageMagick being used.  6.0.0 changed the
-			// parameters again.
-			switch ($ImVersion) {
-			    case '5':
-				    $keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
-				break;
-			    case '6':
-				    $keepProfiles = ($keepProfiles) ? '' : ' -strip ';
-				break;
-			    default:
-				    $keepProfiles = '';
-				break;
-			}
-
-			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
-
-			$sizeCmd = '';
-			$geometryCmd = '';
-			if ($target) {
-			    $sizeCmd = "-size ${target}x${target} ";
-			    $geometryCmd = "-geometry ${target}x${target} ";
-			}
-
-			exec_wrapper(ImCmd('convert', $srcFile, $outFile,
-			  "-quality $quality $sizeCmd $keepProfiles -coalesce $geometryCmd"));
-
-			break;
-		default:
-		    echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
-		break;
-			
-	}
-}
-
 define("OS_WINDOWS", "win");
 define("OS_LINUX", "linux");
 define("OS_SUNOS", "SunOS");
@@ -1773,30 +1601,6 @@ function recursiveCount (&$arr) {
 }
 
 /**
- * Returns an array of the parent album names for a given child
- * album.
- * Array is reverted, so the first Element is the topalbum.
- * If you set $addChild true, then the child album itself is added as last Element.
- * Based on code by: Dariush Molavi
- */
-function getParentAlbums($childAlbum, $addChild = false) {
-	$pAlbum = $childAlbum;
-	$parentNameArray = array();
-
-	if ($addChild == true) {
-		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
-	}
-
-	while ($pAlbum = $pAlbum->getParentAlbum(FALSE)) {
-		$parentNameArray[$pAlbum->fields['name']] = $pAlbum->fields['title'];
-	}
-
-	$parentNameArray = array_reverse($parentNameArray);
-
-	return $parentNameArray;
-}
-
-/**
  * Loads an array on extensions mapping to the mimetype
  * Returns the mimetype according to the extension of given filename
  * @param  string   $filename
@@ -1835,13 +1639,26 @@ function get_ecard_template($template_name) {
     return array($error,$file_data);
 }
 
-function parse_ecard_template($ecard,$ecard_data) {
+/**
+ * This function parses template and substitutes placeholders
+ * @param    array    $ecard		array which contains infos about the ecard
+ * @param    string   $ecard_data	string containing the slurped template
+ * @param    boolean  $preview		image source is different for preview or final card.
+ * @return   string   $ecard_data	modified template data
+ */
+function parse_ecard_template($ecard,$ecard_data, $preview = true) {
     global $gallery;
 
     $imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
     $photo = $gallery->album->getPhoto($ecard['photoIndex']);
-    $imageName = $photo->getImageName(false);
-    $stampName = $ecard['stamp'] .'.gif';
+    if($preview) {
+	$imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
+	$stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
+    }
+    else {
+	$imageName = $photo->getImageName(false);
+	$stampName = $ecard['stamp'] .'.gif';
+    }
 
     list ($width, $height) = getDimensions($imagePath);
     $widthReplace = ($width < 200) ? 'width="500"' : '';
@@ -1849,7 +1666,6 @@ function parse_ecard_template($ecard,$ecard_data) {
     $ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_image_name%>/", $ecard["image_name"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
@@ -1977,42 +1793,41 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
     global $gallery;
 
     if(empty($albumItemNames)) {
-	   return false;
+        return false;
     }
 
     $prefix = 'gallery_download_';
 
     if (empty($dir)) {
-	   $token = uniqid(rand());
-	   $dir = $gallery->app->tmpDir .'/'. $prefix . $token;
+        $token = uniqid(rand());
+        $dir = $gallery->app->tmpDir .'/'. $prefix . $token;
     }
 
-
     if(! fs_mkdir($dir)) {
-	echo gallery_error(
-	    sprintf(_("Your tempfolder is not writeable! Please check permissions of this dir: %s"),
-	      $gallery->app->tmpDir));
-	return false;
-    } 
+        echo gallery_error(
+        sprintf(_("Your tempfolder is not writeable! Please check permissions of this dir: %s"),
+        $gallery->app->tmpDir));
+        return false;
+    }
 
     //echo "<h3>Created dir: $dir</h3>";
 
     foreach($albumItemNames as $possibleAlbumName => $filename) {
-	if(is_array($filename)) {
-	   //echo "\n<ul>";
-	   createTempAlbum($filename, "$dir/$possibleAlbumName");
-	   //echo "\n</ul>";
-	}
-        else {
-	    $destination = $dir .'/'. basename ($filename);
-	    //echo "\n\t<li>$filename -->  $destination</li>";
-	       if(! fs_copy($filename, $destination)) {
-		      echo gallery_error("Copy Failed");
-	       }
+        if(is_array($filename)) {
+            //echo "\n<ul>";
+            createTempAlbum($filename, "$dir/$possibleAlbumName");
+            //echo "\n</ul>";
         }
-   }
+        else {
+            $destination = $dir .'/'. basename ($filename);
+            //echo "\n\t<li>$filename -->  $destination</li>";
+            if(! fs_copy($filename, $destination)) {
+                echo gallery_error("Copy Failed");
+            }
+        }
+    }
 
-  return $dir;
+    return $dir;
 }
 
 function rmdirRecursive($dir) {
@@ -2025,7 +1840,6 @@ function rmdirRecursive($dir) {
 }
 
 function downloadFile($filename) {
-
     $contentType = getMimeType($filename);
     $size = fs_filesize($filename);
 
@@ -2059,7 +1873,6 @@ function downloadFile($filename) {
  * @author Jens Tkotz <jens@peino.de>
  */
 function array_flaten($array) {
-    
     $flatArray = array();
     foreach($array as $value) {
         if(is_array($value)) {

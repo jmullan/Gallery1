@@ -3,8 +3,6 @@
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2005 Bharat Mediratta
  *
- * This file Copyright (C) 2003-2004 Joan McGalliard
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
@@ -42,7 +40,7 @@ list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 if (!empty($error)) {
     header("Location: " . makeGalleryHeaderUrl("includes/ecard/_templates/error.htm"));
 } else {
-    echo parse_ecard_template($ecard,$ecard_data_to_parse);
+    echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
 }
 
 ?>

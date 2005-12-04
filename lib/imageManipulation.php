@@ -1,4 +1,24 @@
 <?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2005 Bharat Mediratta
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
+ */
 
 /**
  * Functions that provide possibilities to manipulate images
@@ -13,7 +33,6 @@
  *  2:  Existing resized file should be removed
  */
 function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 0) {
-
     debugMessage(sprintf(_("Resizing Image: %s"), $src), __FILE__, __LINE__);
 
     global $gallery;
@@ -75,22 +94,22 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
 
         do {
             compress_image($src, $out, $target, $quality, $keepProfiles);
-            $prev_quality=$quality;
+            $prev_quality = $quality;
             printf(_("-> file size %d kbytes"), round($filesize));
             processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(_("trying quality %d%%"), $quality));
             clearstatcache();
             $filesize = (int)fs_filesize($out) >> 10;
             if ($filesize < $target_fs) {
-                $min_quality=$quality;
+                $min_quality = $quality;
                 //$min_filesize=$filesize;
             } elseif ($filesize > $target_fs){
-                $max_quality=$quality;
-                $max_filesize=$filesize;
+                $max_quality = $quality;
+                $max_filesize = $filesize;
             } elseif ($filesize == $target_fs){
-                $min_quality=$quality;
-                $max_quality=$quality;
+                $min_quality = $quality;
+                $max_quality = $quality;
                 // $min_filesize=$filesize;
-                $max_filesize=$filesize;
+                $max_filesize = $filesize;
             }
             $quality = ($max_quality + $min_quality)/2;
             $quality = round($quality);
@@ -104,7 +123,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
         } while ($max_quality-$min_quality > 2 &&
         abs(($filesize-$target_fs)/$target_fs) > .02 );
 
-        $gallery->album->fields['last_quality']=$prev_quality;
+        $gallery->album->fields['last_quality'] = $prev_quality;
         printf(_("-> file size %d kbytes"), round($filesize));
         processingMsg(_("Done."));
     }
@@ -119,9 +138,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     }
 }
 
-
-
-function netpbm_decompose_image($input, $format)
+function netpbm_decompose_image($input, $format) {
 /*
 In order for pnmcomp to support watermarking from formats other than pnm, the watermark
 first needs to be converted to .pnm. Second the alpha channel needs to be decomposed as a
@@ -130,8 +147,6 @@ second image
 Returns a list of 2 temporary files (overlay, and alphamask), these files should be deleted (unlinked)
 by the calling function
 */
-{
-
     global $gallery;
     $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
     $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
@@ -379,76 +394,75 @@ function rotate_image($src, $dest, $target, $type) {
         // -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
         exec_internal(fs_import_filename($path, 1) . " $args -trim -copy all -outfile $outFile $srcFile");
     } else {
-        switch($gallery->app->graphics)
-        {
+        switch($gallery->app->graphics) {
             case "NetPBM":
-            $args2 = '';
-            if (!strcmp($target, '-90')) {
-                /* NetPBM's docs mix up CW and CCW...
-                * We'll do it right. */
-                $args = '-r270';
-            } elseif (!strcmp($target, '180')) {
-                $args = '-r180';
-            } elseif (!strcmp($target, '90')) {
-                $args = '-r90';
-            } elseif (!strcmp($target, 'fv')) {
-                $args = '-tb';
-            } elseif (!strcmp($target, 'fh')) {
-                $args = '-lr';
-            } elseif (!strcmp($target, 'tr')) {
-                $args = '-xy';
-            } elseif (!strcmp($target, 'tv')) {
-                /* Because of NetPBM inconsistencies, the only
-                * way to do this transformation on *all*
-                * versions of NetPBM is to pipe two separate
-                * operations in sequence. Versions >= 10.13
-                * have the new -xform flag, and versions <=
-                * 10.6 could take the '-xy -r180' commands in
-                * sequence, but versions 10.7--> 10.12 can't
-                * do *either*, so we're left with this little
-                * workaround. -Beckett 9/9/2003 */
-                $args = '-xy';
-                $args2 = ' | ' . NetPBM('pnmflip', '-r180');
-            } else {
-                $args = '';
-            }
-
-            exec_wrapper(toPnmCmd($src) . ' | ' .
-            NetPBM('pnmflip', $args) .
-            $args2 .
-            ' | ' . fromPnmCmd($out));
-
-            // copy exif headers from original image to rotated image
-            if (isset($gallery->app->use_exif)) {
-                $path = $gallery->app->use_exif;
-                exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
-            }
+                $args2 = '';
+                if (!strcmp($target, '-90')) {
+                    /* NetPBM's docs mix up CW and CCW...
+                    * We'll do it right. */
+                    $args = '-r270';
+                } elseif (!strcmp($target, '180')) {
+                    $args = '-r180';
+                } elseif (!strcmp($target, '90')) {
+                    $args = '-r90';
+                } elseif (!strcmp($target, 'fv')) {
+                    $args = '-tb';
+                } elseif (!strcmp($target, 'fh')) {
+                    $args = '-lr';
+                } elseif (!strcmp($target, 'tr')) {
+                    $args = '-xy';
+                } elseif (!strcmp($target, 'tv')) {
+                    /* Because of NetPBM inconsistencies, the only
+                    * way to do this transformation on *all*
+                    * versions of NetPBM is to pipe two separate
+                    * operations in sequence. Versions >= 10.13
+                    * have the new -xform flag, and versions <=
+                    * 10.6 could take the '-xy -r180' commands in
+                    * sequence, but versions 10.7--> 10.12 can't
+                    * do *either*, so we're left with this little
+                    * workaround. -Beckett 9/9/2003 */
+                    $args = '-xy';
+                    $args2 = ' | ' . NetPBM('pnmflip', '-r180');
+                } else {
+                    $args = '';
+                }
+    
+                exec_wrapper(toPnmCmd($src) . ' | ' .
+                NetPBM('pnmflip', $args) .
+                $args2 .
+                ' | ' . fromPnmCmd($out));
+    
+                // copy exif headers from original image to rotated image
+                if (isset($gallery->app->use_exif)) {
+                    $path = $gallery->app->use_exif;
+                    exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
+                }
             break;
             case "ImageMagick":
-            if (!strcmp($target, '-90')) {
-                $im_cmd = '-rotate 90';
-            } elseif (!strcmp($target, '180')) {
-                $im_cmd = '-rotate 180';
-            } elseif (!strcmp($target, '90')) {
-                $im_cmd = '-rotate -90';
-            } elseif (!strcmp($target, 'fv')) {
-                $im_cmd = '-flip';
-            } elseif (!strcmp($target, 'fh')) {
-                $im_cmd = '-flop';
-            } elseif (!strcmp($target, 'tr')) {
-                $im_cmd = '-affine 0,1,1,0,0,0 -transform';
-            } elseif (!strcmp($target, 'tv')) {
-                $im_cmd = '-affine 0,-1,-1,0,0,0 -transform';
-            } else {
-                $im_cmd = '';
-            }
-
-            exec_wrapper(ImCmd('convert', $srcFile, $outFile, $im_cmd));
+                if (!strcmp($target, '-90')) {
+                    $im_cmd = '-rotate 90';
+                } elseif (!strcmp($target, '180')) {
+                    $im_cmd = '-rotate 180';
+                } elseif (!strcmp($target, '90')) {
+                    $im_cmd = '-rotate -90';
+                } elseif (!strcmp($target, 'fv')) {
+                    $im_cmd = '-flip';
+                } elseif (!strcmp($target, 'fh')) {
+                    $im_cmd = '-flop';
+                } elseif (!strcmp($target, 'tr')) {
+                    $im_cmd = '-affine 0,1,1,0,0,0 -transform';
+                } elseif (!strcmp($target, 'tv')) {
+                    $im_cmd = '-affine 0,-1,-1,0,0,0 -transform';
+                } else {
+                    $im_cmd = '';
+                }
+    
+                exec_wrapper(ImCmd('convert', $srcFile, $outFile, $im_cmd));
             break;
             default:
-            if (isDebugging())
-            echo "<br>". _("You have no graphics package configured for use!") ."<br>";
-            return 0;
+                if (isDebugging())
+                echo "<br>". _("You have no graphics package configured for use!") ."<br>";
+                return 0;
             break;
         }
     }
@@ -481,22 +495,22 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 
     switch($gallery->app->graphics) {
         case "NetPBM":
-        exec_wrapper(toPnmCmd($src) .
-        " | " .
-        NetPBM("pnmcut") .
-        " $offsetX $offsetY $width $height" .
-        " | " .
-        fromPnmCmd($out));
+            exec_wrapper(toPnmCmd($src) .
+            " | " .
+            NetPBM("pnmcut") .
+            " $offsetX $offsetY $width $height" .
+            " | " .
+            fromPnmCmd($out));
         break;
         case "ImageMagick":
-        // Only for v6 !
-        exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-crop ${width}x${height}+${offsetX}+${offsetY} +repage"));
+            // Only for v6 !
+            exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-crop ${width}x${height}+${offsetX}+${offsetY} +repage"));
         break;
         default:
-        if (isDebugging()) {
-            echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
-            return 0;
-        }
+            if (isDebugging()) {
+                echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
+                return 0;
+            }
         break;
     }
 
@@ -551,5 +565,174 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
         break;
     }
     return $ret;
+}
+
+function valid_image($file) {
+    if (($type = getimagesize($file)) == FALSE) {
+        debugMessage(sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
+        return 0;
+    }
+
+    debugMessage(sprintf(_("File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
+
+    switch($type[2]) {
+        case 1: // GIF
+        case 2: // JPEG
+        case 3: // PNG
+            return 1;
+        break;
+
+        default:
+            return 0;
+        break;
+    }
+}
+
+function toPnmCmd($file) {
+	global $gallery;
+
+	if (eregi("\.png\$", $file)) {
+		$cmd = "pngtopnm";
+	} elseif (eregi("\.jpe?g\$", $file)) {
+        $cmd = "jpegtopnm";
+	} elseif (eregi("\.gif\$", $file)) {
+		$cmd = "giftopnm";
+	}
+
+	if (!empty($cmd)) {
+		return NetPBM($cmd) .
+		 	" " .
+			fs_import_filename($file);
+	} else {
+		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
+		return "";
+	}
+}
+
+function fromPnmCmd($file, $quality=NULL) {
+	global $gallery;
+	if ($quality == NULL) {
+		$quality = $gallery->app->jpegImageQuality;
+	}
+
+	if (eregi("\.png(\.tmp)?\$", $file)) {
+		$cmd = NetPBM("pnmtopng");
+	} elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
+		$cmd = NetPBM($gallery->app->pnmtojpeg,
+			      "--quality=" . $quality);
+	} elseif (eregi("\.gif(\.tmp)?\$", $file)) {
+		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
+	}
+
+	if ($cmd) {
+		return "$cmd > " . fs_import_filename($file);
+	} else {
+		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
+		return '';
+	}
+}
+
+function netPbm($cmd, $args = '') {
+	global $gallery;
+
+	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
+	if (!isDebugging() && $cmd != 'ppmquant') {
+		// ppmquant doesn't like --quiet for some reason
+		$cmd  .= " --quiet";
+	}
+	$cmd .= " $args";
+	return $cmd;
+}
+
+/**
+ * Returns the command line command for ImageMagick depending on Version.
+ * If no Version is detected, we assume Version 5.x
+ * @param   string  $cmd    The command, e.g. convert
+ * @param   string  $src    The sourcefile the command is perfomed on
+ * @param   string  $dest   Optional destination file
+ * @param   string  $args   Optional arguments
+ * @return  $string $cmd    The complete commandline
+ */
+function ImCmd($cmd, $src, $dest = '', $args = '') {
+    global $gallery;
+    static $ImVersion;
+    
+    if(empty($ImVersion)) {
+        $ImVersion = floor(getImVersion());
+    }
+    $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
+    
+    switch ($ImVersion) {
+        default:
+        case '5':
+            $cmd .= " $args $src $dest";
+        break;
+        case '6':
+            $cmd .= " $src $args $dest";
+        break;
+    }
+    return $cmd;
+}
+
+function compress_image($src, $out, $target, $quality, $keepProfiles = false) {
+	global $gallery;
+
+	if ($target === 'off') {
+		$target = '';
+	}
+	$srcFile = fs_import_filename($src);
+	$outFile = fs_import_filename($out);
+	
+	switch($gallery->app->graphics)	{
+		case "NetPBM":
+			exec_wrapper(toPnmCmd($src) .
+				(($target > 0) ? (' | ' .NetPBM('pnmscale',
+				" -xysize $target $target")) : '')
+				. ' | ' . fromPnmCmd($out, $quality));
+			/* copy over EXIF data if a JPEG if $keepProfiles is
+			 * set. Unfortunately, we can't also keep comments. */ 
+			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
+				if (isset($gallery->app->use_exif)) {
+					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
+						. $srcFile . ' ' . $outFile);
+				} else {
+					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+				}
+			}
+        break;
+		case "ImageMagick":
+			/* we just need the first digit = major version */
+			$ImVersion = floor(getImVersion());
+			// Set the keepProfiles parameter based on the version
+			// of ImageMagick being used.  6.0.0 changed the
+			// parameters again.
+			switch ($ImVersion) {
+			    case '5':
+				    $keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
+				break;
+			    case '6':
+				    $keepProfiles = ($keepProfiles) ? '' : ' -strip ';
+				break;
+			    default:
+				    $keepProfiles = '';
+				break;
+			}
+
+			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
+
+			$sizeCmd = '';
+			$geometryCmd = '';
+			if ($target) {
+			    $sizeCmd = "-size ${target}x${target} ";
+			    $geometryCmd = "-geometry ${target}x${target} ";
+			}
+
+			exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-quality $quality $sizeCmd $keepProfiles -coalesce $geometryCmd"));
+        break;
+		default:
+		    echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
+		break;
+			
+	}
 }
 ?>

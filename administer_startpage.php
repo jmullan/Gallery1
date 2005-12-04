@@ -42,7 +42,7 @@ $adminOptions[] = array(
 
 $adminOptions[] = array(
     'text' => _("Sort albumorder"),
-    'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1)),
+    'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1, 'type' => 'popup')),
     'longtext' => _("Sort albumorder")
 );
 

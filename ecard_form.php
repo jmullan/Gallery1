@@ -62,7 +62,7 @@
       if ($error) {
           $error_msg = $msgTextError1;
       } else {
-	$ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse);
+	$ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse, false);
            $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
            if ($result) {
              $ecard_send = true;
