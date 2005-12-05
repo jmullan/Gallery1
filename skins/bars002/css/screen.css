@@ -1,31 +1,67 @@
-/* 
-	bars002
+/*
+   This is the style sheet used when Gallery running standalone and
+   'bars002' is selected.
+
+   If you would like to customize the styles please create
+   copy of this file called
+
+   "screen.css" (same name without ".default")
+
+   If that file is found in this directory it will be
+   used instead of this one.
+
+   Some of the styles below are overriden by specific
+   album properties. These are noted
+
+   $Id$
+*/
+
+
+/*
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
-BODY  
-	{ 
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt;
-	  color:#202020;
-	  background-color: #dddddd;
-	  margin-top: 25px;
-	  margin-left: 0px;
-	  margin-right: 0px;
-	}
-TD, P 
-	{ 
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
-	}
+
+body {
+    background-color: #749BFB;
+    color: #FFFFFF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    background-color: #dddddd;
+    color:#202020;
+}
+
+img {
+    border: none;
+}
+
+td,p {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+
 /* 
    link colors - overridden by the album 'linkcolor' property.
 */
+
 A   	{ color: #202020; text-decoration: none; }
 A:link	{ color: #202020; text-decoration: none; }
 A:visited { color: #202020; text-decoration: none; }
 A:active { color: #202020; }
 A:hover	{ color: #C51B1B; }
+
+popup a:hover {
+    color: #4E2192;
+}
+
+.popup td {
+    color: #000000;
+}
+
+.popup td.tab-hi {
+    color: #FFFFFF;
+}
+
 /* 
    text styles 
 */
@@ -387,7 +423,6 @@ A:hover	{ color: #C51B1B; }
 
 .popup /* controls the main text and message body */
 {
-    text-align:center;
     font-size: 12px;
     color: #202020;
     padding: 5px;

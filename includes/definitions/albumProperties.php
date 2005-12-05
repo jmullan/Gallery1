@@ -41,7 +41,8 @@ $properties = array(
         'prompt' => gTranslate('common', "Album Title"),
         'desc' => '',
         'type' => 'text',
-        'value' => $gallery->album->fields["title"]
+        'value' => $gallery->album->fields["title"],
+        'attrs' => array('size' => 50)
     ),
     'group_text_end' => array (
         'type' => "group_end",
@@ -293,6 +294,12 @@ $properties = array(
         'title' => gTranslate('common', "Poll Properties"),
         'desc' => ""
     ),
+    'voter_class' => array(
+        'prompt' => gTranslate('common', "Who can vote?"),
+        'desc' => gTranslate('common', "This enables/disable voting and if enabled it controlles who can vote."),
+        'choices' => array("Logged in" => gTranslate('common', "Logged in"), "Everybody" => gTranslate('common', "Everybody"), "Nobody" => gTranslate('common', "Nobody")),
+        'value' => $gallery->album->fields["voter_class"]
+    ),
     'poll_type' => array(
         'prompt' => gTranslate('common', "Type of poll for this album"),
         'desc' => '',
@@ -318,12 +325,6 @@ $properties = array(
         'type' => 'text',
         'value' => $gallery->album->getPollNumResults(),
         'vartype' => 'int_empty'
-    ),
-    'voter_class' => array(
-        'prompt' => gTranslate('common', "Who can vote?"),
-        'desc' => '',
-        'choices' => array("Logged in" => gTranslate('common', "Logged in"), "Everybody" => gTranslate('common', "Everybody"), "Nobody" => gTranslate('common', "Nobody")),
-        'value' => $gallery->album->fields["voter_class"]
     ),
     'poll_orientation' => array(
         'prompt' => gTranslate('common', "Orientation of vote choices"),

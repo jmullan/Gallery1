@@ -116,7 +116,7 @@ function make_fields($key, $arr) {
 
 function form_textarea($key, $arr) {
 	$attrs = make_attrs($arr["attrs"]);
-	return "<textarea name=\"$key\" $attrs>$arr[value]</textarea>";
+	return "<textarea name=\"$key\" $attrs>". $arr['value'] ."</textarea>";
 }
 
 function form_input($key, $arr) {
@@ -126,7 +126,7 @@ function form_input($key, $arr) {
 
     $name  = (isset($arr['name'])) ? $arr['name'] : $key;
 	
-    return "<input $type name=\"$name\" value=\"$arr[value]\" $attrs>";
+    return "<input $type name=\"$name\" value=\"". $arr['value'] ."\" $attrs>";
 }
 
 function form_password($key, $arr) {
@@ -1603,7 +1603,7 @@ function checkVersions($verbose=false) {
  * "default"		: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
  * "title"		: When the group is visible, this title is displayed in the header line.
  * "desc"		: This optional Description is displayed under the title.
- * ""contains_required"	: Indicates that this Group contains field that are required
+ * "contains_required"	: Indicates that this Group contains field that are required
  *
  * Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
  *	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
@@ -1623,6 +1623,8 @@ function makeSectionTabs($array, $break = 7, $initialtab = '') {
 	echo "\n<table width=\"100%\" cellspacing=\"0\">";
 	echo "\n<tr>";
 	$tabcount = 0;
+	array_sort_by_fields($tab, 'title');
+
 	foreach ($tab as $cell) {
         	$tabcount++;
 		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
