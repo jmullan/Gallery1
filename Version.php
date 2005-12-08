@@ -22,8 +22,8 @@
 ?>
 <?php
 
-$gallery->version = '1.5.2-cvs-b42';
-$gallery->config_version = 94;
+$gallery->version = '1.5.2-cvs-b43';
+$gallery->config_version = 95;
 $gallery->album_version = 37;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";

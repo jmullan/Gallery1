@@ -365,13 +365,15 @@ class AlbumItem {
 
                 // Then resize it down
                 if ($ret) {
-                    $ret = resize_image("$dir/$name.tmp.$tag", "$dir/$name.highlight.$tag", $size);
+		    // create highlight faster, also use lower quality
+                    $ret = resize_image("$dir/$name.tmp.$tag", "$dir/$name.highlight.$tag", $size, 0, 0, true, 70);
                 }
                 fs_unlink("$dir/$name.tmp.$tag");
             } elseif ($srcitem->isMovie()) {
                 if (fs_file_exists($gallery->app->movieThumbnail)) {
                     $tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
-                    $ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size);
+		    // create highlight faster, also use lower quality
+                    $ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size, 0, 0, true, 70);
                 }
                 else {
                     $ret = 0;
@@ -385,10 +387,11 @@ class AlbumItem {
                     $ret = cropImageToRatio($src, $dest, $size, $ratio);
                 }
 
+		// create highlight faster, also use lower quality
                 if(isset($ret)) {
-                    $ret = resize_image($dest, $dest, $size);
+                    $ret = resize_image($dest, $dest, $size, 0, 0, true, 70);
                 } else {
-                    $ret = resize_image($src, $dest, $size);
+                    $ret = resize_image($src, $dest, $size, 0, 0, true, 70);
                 }
             }
 
@@ -600,9 +603,7 @@ class AlbumItem {
 
         $ratio = isset($album->fields["thumb_ratio"]) ? $album->fields["thumb_ratio"] : 0;
 
-        if (isDebugging()) {
-            echo "\n". _("Generating thumbnail.");
-        }
+        echo debugMessage(_("Generating thumbnail."),__FILE__, __LINE__);
 
         debugMessage(sprintf(_("Saved Dimensions: x:%d y: %d"),
           $this->image->raw_width, $this->image->raw_height), __FILE__, __LINE__, 3);
@@ -628,21 +629,21 @@ class AlbumItem {
                   $this->image->thumb_width,
                   $this->image->thumb_height);
                 if ($ret) {
-                    $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+                    $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
                 }
             } else {
                 if(!empty($ratio)) {
-                    $ret = cropImageToRatio ("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, $ratio);
+                    $ret = cropImageToRatio("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, $ratio);
                     if($ret) {
-                        $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+                        $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
                     } else {
-                        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+                        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
                     }
                 }
                 else {
                     debugMessage(_("Generating normal thumbs"), __FILE__, __LINE__);
                     // no resizing, use ratio for thumb as for the image itself;
-                    $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size);
+                    $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0,true);
                 }
             }
 

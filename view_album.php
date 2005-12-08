@@ -246,11 +246,20 @@ $adminOptions = array(
         'action' 	=> 'popup',
         'value' 	=> makeGalleryUrl('add_photos_frame.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
-    'delete_album'    => array(
+    'delete_root_album'    => array(
         'name' => _("Delete this album"),
-        'requirements' => array('canDeleteAlbum'),
+        'requirements' => array('canDeleteAlbum', 'albumIsRoot'),
         'action' => 'popup',
         'value' => makeGalleryUrl('delete_album.php', array('type' => 'popup'))),
+    'delete_sub_album'    => array(
+        'name' => _("Delete this (sub)album"),
+        'requirements' => array('canDeleteAlbum', '!albumIsRoot'),
+        'action' => 'popup',
+        'value' => makeGalleryUrl('delete_photo.php', 
+			array('set_albumName' => $gallery->album->fields["parentAlbumName"],
+				'type' => 'popup', 
+				'id' => $gallery->album->fields["name"],
+				'albumDelete' => true))),
     'rename_album'    => array(
         'name' => _("Rename album"),
         'requirements' => array('isAdminOrAlbumOwner'),
@@ -861,7 +870,7 @@ if ($numPhotos) {
             }
 
             if ($showAdminForm) {
-                $albumItemOptions = getItemActions($i, false);
+                $albumItemOptions = getItemActions($i, false, true);
                 echo drawSelect2("s$i", $albumItemOptions, array(
                     'onChange' => "imageEditChoice(document.vote_form.s$i)",
                     'class' => 'adminform'));

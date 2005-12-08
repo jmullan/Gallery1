@@ -32,41 +32,40 @@ foreach ($stats['types'] as $key => $trash) {
 	}
 }
 	
-$locale_check=check_locale();
+$locale_check = check_locale();
 /* $elawisyl <=> Enable LAnguages WIthout SYstem Locales
 ** is set to "no" when we have no system locales and are in linux
 ** "no" disables all language settings 
 */
 
 if ($locale_check == NULL) {
-	$elawisyl = "no";
+    $elawisyl = 'no';
 } else {
-	$elawisyl = "yes";
+    $elawisyl = 'yes';
 }
 
-$netpbm_check=check_graphics();
-$IM_check=check_graphics_im();
+$netpbm_check = check_graphics();
+$IM_check = check_graphics_im();
 
 /* If all watermarking/overlay applications are missing */
 if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) && isset($IM_check[2]['composite']) ) {
-	$enablewatermark = "no";
+    $enablewatermark = 'no';
 } else {
-	$enablewatermark = "yes";
+    $enablewatermark = 'yes';
 }
 
 if (function_exists("posix_getpwuid")) {
-	$rec = @posix_getpwuid(posix_getuid());
-	$webserver_user = $rec["name"];
+    $rec = @posix_getpwuid(posix_getuid());
+    $webserver_user = $rec["name"];
 } else {
-	$whoami = locateFile("whoami");
-	if ($whoami) {
-		fs_exec($whoami, $results, $status);
-		$webserver_user = $results[0];
-	} else {
-		$webserver_user = _("unknown");
-	}
+    $whoami = locateFile("whoami");
+    if ($whoami) {
+	fs_exec($whoami, $results, $status);
+	$webserver_user = $results[0];
+    } else {
+	$webserver_user = _("unknown");
+    }
 }
-
 
 $common_messages["getting-netpbm"] = '<br>'.
 			sprintf(_("Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."), 
@@ -1167,6 +1166,12 @@ $constants = array_merge($constants,
 		'must-not-be-zero' => 1,
 		'value' => 30,
 		'attrs' => array('size' => 5),
+	),
+        'IM_HQ' => array(
+		'prompt' => _("ImageMagick high quality"),
+		'desc' => _("If this setting is 'yes' and you use ImageMagick then resized Images will have a slightly(!) higher quality, but with the drawback of a higher load and a higher creation time."),
+		'choices' => array('yes' => _("Yes"), 'no' => _("No")),
+                'value' => 'yes'
 	),
 	'blockRandomCache' => array(
 		'prompt' => _("Random Block Cache Time"),

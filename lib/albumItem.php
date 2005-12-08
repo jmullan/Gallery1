@@ -30,7 +30,7 @@
  * @param	integer $i	index number of the item
  * @return 	array		Array of all possible album item for the current user.
  */
-function getItemActions($i, $withIcons = false) {
+function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     global $gallery;
     global $nextId;
 
@@ -144,11 +144,13 @@ function getItemActions($i, $withIcons = false) {
                     'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
                 );
             }
-            $options[] = array(
-                'pure_text' => _("ImageMap"),
-                'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
-                'value' => showChoice2('imagemap.php', array('index' => $i), false)
-            );
+	    if(!$popupsOnly) {
+                $options[] = array(
+                    'pure_text' => _("ImageMap"),
+                    'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
+                    'value' => showChoice2('imagemap.php', array('index' => $i), false)
+                );
+            }
         }
         if (!$gallery->album->isMovieByIndex($i)) {
             $nestedAlbum=$gallery->album->getNestedAlbum($i);

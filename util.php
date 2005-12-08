@@ -228,7 +228,7 @@ function getDimensions($file) {
             break;
         case "ImageMagick":
             /* This fails under windows, IM isn't returning parsable status output. */
-              list($lines, $status) = exec_internal(ImCmd('identify', fs_import_filename($file)));
+              list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
         break;
         
 	default:
@@ -1123,21 +1123,18 @@ function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fi
             if (empty($caption)) {
                 switch ($setCaption) {
                     case 1:
-                        /* Use filename */
-                        $caption = strtr($originalFilename, '_', ' ');
-                        break;
-                    case 2:
-                        /* Use file cration date */
-                        $caption = strftime($dateTimeFormat, filectime($file));
-                        break;
-                    case 3:
-                        /* Use capture date */
-                        $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
-                        break;
                     default:
                         /* Use filename */
                         $caption = strtr($originalFilename, '_', ' ');
-                        break;
+                    break;
+                    case 2:
+                        /* Use file cration date */
+                        $caption = strftime($dateTimeFormat, filectime($file));
+                    break;
+                    case 3:
+                        /* Use capture date */
+                        $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
+                    break;
                 }
             }
 
@@ -1192,24 +1189,19 @@ function findInPath($program) {
 }
 
 /**
- * Little function useful for debugging.  no calls to this should be in committed code.
- */
-function vd($x, $string="") {
-	print "<pre>\n$string: ";
-	var_dump($x);
-	print "</pre>\n";
-}       
-
+ * Return the Version number of ImageMagick, identified by "convert -version"
+ * @return $version	string	Versionnumber as string
+*/
 function getImVersion() {
-	global $gallery;
-	$version = array();
+    global $gallery;
+    $version = array();
 
-	exec($gallery->app->ImPath .'/convert -version', $results);
+    exec($gallery->app->ImPath .'/convert -version', $results);
 
-	$pieces = explode(' ', $results[0]);
-	$version = $pieces[2];
+    $pieces = explode(' ', $results[0]);
+    $version = $pieces[2];
 
-	return $version[0];  // Only the first character
+    return $version;
 }
 
 define("OS_WINDOWS", "win");
@@ -1294,72 +1286,90 @@ function logMessage ($msg, $logfile) {
 
 /* simplify condition tests */
 function testRequirement($test) {
-	global $gallery;
-	switch ($test) {
-		case 'isAdminOrAlbumOwner':
-			return $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
-		break;
-		
-		case 'comments_enabled':
-			return $gallery->app->comments_enabled == 'yes';
-		break;
-		
-		case 'allowComments':
-			return $gallery->album->fields["perms"]['canAddComments'];
-		break;
-		
-		case 'hasComments':
-			return ($gallery->album->lastCommentDate("no") != -1);
-		break;
-		
-		case 'canAddToAlbum':
-			return $gallery->user->canAddToAlbum($gallery->album);
-		break;
+    global $gallery;
+    if(substr($test, 0,1 ) == "!") {
+        $test = substr($test, 1);
+        $negativeTest = true;
+    }
+    else {
+        $negativeTest = false;
+    }
 
-		case 'canDeleteAlbum':
-			return $gallery->user->canDeleteAlbum($gallery->album);
-		break;
-		
-		case 'extraFieldsExist':
-			$extraFields = $gallery->album->getExtraFields();
-			return !empty($extraFields);
-		break;
-		
-		case 'isAlbumOwner':
-			return $gallery->user->isOwnerOfAlbum($gallery->album);
-		break;
-		
-		case 'canCreateSubAlbum':
-			return $gallery->user->canCreateSubAlbum($gallery->album);
-		break;
-		
-		case 'notOffline':
-			return !$gallery->session->offline;
-		break;
-		
-		case 'canChangeText':
-			return $gallery->user->canChangeTextOfAlbum($gallery->album);
-		break;
-		
-		case 'canWriteToAlbum':
-			return $gallery->user->canWriteToAlbum($gallery->album);
-		break;
-		
-		case 'photosExist':
-			return $gallery->album->numPhotos(true);
-		break;
-		
-		case 'watermarkingEnabled':
-			return isset($gallery->app->watermarkDir);
-		break;
-		
-		default:
-			return false;
-	}
+    switch ($test) {
+        case 'albumIsRoot':
+            $result = $gallery->album->isRoot();
+        break;
+        case 'isAdminOrAlbumOwner':
+            $result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+        break;
+
+        case 'comments_enabled':
+            $result = $gallery->app->comments_enabled == 'yes';
+        break;
+
+        case 'allowComments':
+            $result = $gallery->album->fields["perms"]['canAddComments'];
+        break;
+
+        case 'hasComments':
+            $result = ($gallery->album->lastCommentDate("no") != -1);
+        break;
+
+        case 'canAddToAlbum':
+            $result = $gallery->user->canAddToAlbum($gallery->album);
+        break;
+
+        case 'canDeleteAlbum':
+            $result = $gallery->user->canDeleteAlbum($gallery->album);
+        break;
+
+        case 'extraFieldsExist':
+            $extraFields = $gallery->album->getExtraFields();
+            $result = !empty($extraFields);
+        break;
+
+        case 'isAlbumOwner':
+            $result = $gallery->user->isOwnerOfAlbum($gallery->album);
+        break;
+
+        case 'canCreateSubAlbum':
+            $result = $gallery->user->canCreateSubAlbum($gallery->album);
+        break;
+
+        case 'notOffline':
+            $result = !$gallery->session->offline;
+        break;
+
+        case 'canChangeText':
+            $result = $gallery->user->canChangeTextOfAlbum($gallery->album);
+        break;
+
+        case 'canWriteToAlbum':
+            $result = $gallery->user->canWriteToAlbum($gallery->album);
+        break;
+
+        case 'photosExist':
+            $result = $gallery->album->numPhotos(true);
+        break;
+
+        case 'watermarkingEnabled':
+            $result = isset($gallery->app->watermarkDir);
+        break;
+
+        default:
+            $result = false;
+        break;
+    }
+    if ($negativeTest) {
+        $result = ! $result;
+    }
+    
+    return $result;
 }
 
 /**
  * @return string	$location	Location where Gallery assmes the user. Can be 'core' or 'config'
+ * @author Jens Tkotz <jens@peino.de>
  */
 function where_i_am() {
     global $GALLERY_OK;
@@ -1377,24 +1387,24 @@ function where_i_am() {
 
 function getCVSVersion($file) {
 
-	$path= dirname(__FILE__) . "/$file";
-	if (!fs_file_exists($path)) {
-		return NULL;
-	} 
-	if (!fs_is_readable($path)) {
-	       	return NULL;
-       	}
-	$contents=file($path);
-	foreach ($contents as $line) {
-	       	if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24$", trim($line), $matches) ||
-		    ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24 ", trim($line), $matches)) {
-			if ($matches[1]) {
-			       	return $matches[1];
-			}
-	       	}
+    $path= dirname(__FILE__) . "/$file";
+    if (!fs_file_exists($path)) {
+        return NULL;
+    }
+    if (!fs_is_readable($path)) {
+        return NULL;
+    }
+    $contents=file($path);
+    foreach ($contents as $line) {
+        if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24$", trim($line), $matches) ||
+        ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24 ", trim($line), $matches)) {
+            if ($matches[1]) {
+                return $matches[1];
+            }
+        }
 
-	}
-	return "";
+    }
+    return '';
 }
 
 /* Return -1 if old version is greater than new version, 0 if they are the 

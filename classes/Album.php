@@ -160,9 +160,9 @@ class Album {
 
     function isRoot() {
         if ($this->fields["parentAlbumName"]) {
-            return 0;
+            return false;
         } else {
-            return 1;
+            return true;
         }
     }
 
@@ -1160,9 +1160,7 @@ class Album {
         $this->updateSerial = 1;
         $dir = $this->getAlbumDir();
 
-        if (isDebugging()) {
-            processingMsg(_("Doing the naming"));
-        }
+        echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
         
         if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
             $name = $originalFilename;
@@ -1195,16 +1193,14 @@ class Album {
         $newFile = "$dir/$name.$tag";
         fs_copy($file, $newFile);
 
-        if (isDebugging()) {
-            processingMsg(_("Image Preprocessing"));
-        }
+        echo debugMessage(_("Image Preprocessing"), __FILE__, __LINE__);
         /* Do any preprocessing necessary on the image file */
         preprocessImage($dir, "$name.$tag");
 
         /* Resize original image if necessary */
         processingMsg("&nbsp;&nbsp;&nbsp;". _('Resizing/compressing original image') . "\n");
         if (isImage($tag)) {
-            resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true);
+            resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
         } else {
             processingMsg(_('Cannot resize/compress this filetype'));
         }
@@ -1262,8 +1258,8 @@ class Album {
             $photo = $this->getPhoto($index);
             list($w, $h) = $photo->image->getRawDimensions();
             if ($w > $this->fields["resize_size"] ||
-            $h > $this->fields["resize_size"] ||
-            $this->fields["resize_file_size"] > 0) {
+              $h > $this->fields["resize_size"] ||
+              $this->fields["resize_file_size"] > 0) {
                 processingMsg("- " . sprintf(_("Resizing %s"), $name));
                 $this->resizePhoto($index,
                 $this->fields["resize_size"],
@@ -1323,7 +1319,7 @@ class Album {
                 break;
 
                 default:
-                $rotate = 0;
+                    $rotate = 0;
                 break;
             }
 

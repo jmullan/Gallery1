@@ -32,7 +32,7 @@
  *  1:  File resized, process normally
  *  2:  Existing resized file should be removed
  */
-function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 0) {
+function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 0, $createThumbnail = false, $quality = 0) {
     debugMessage(sprintf(_("Resizing Image: %s"), $src), __FILE__, __LINE__);
 
     global $gallery;
@@ -57,6 +57,10 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
         $target = 0;
     }
 
+    if ($quality == 0) {
+	$quality = $gallery->app->jpegImageQuality;
+    }
+
     /* Check for images smaller then target size, don't blow them up. */
     if ((empty($target) || ($width <= $target && $height <= $target))
     && (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
@@ -76,24 +80,22 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     }
     $target = min($target, max($width, $height));
 
-    /* Jens Tkotz, 02.10.2004.
-    ** Lines with $min_filesize commented because never used.
-    */
     if ($target_fs == 0) {
-        compress_image($src, $out, $target, $gallery->app->jpegImageQuality, $keepProfiles);
+        compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
     } else {
         $filesize = (int) fs_filesize($src) >> 10;
         $max_quality = $gallery->app->jpegImageQuality;
         $min_quality = 5;
         $max_filesize = $filesize;
-        //$min_filesize=0;
+
         if (!isset($quality)) {
             $quality = $gallery->album->fields['last_quality'];
         }
         processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(_("target file size %d kbytes"), $target_fs)."\n");
 
         do {
-            compress_image($src, $out, $target, $quality, $keepProfiles);
+            compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
+
             $prev_quality = $quality;
             printf(_("-> file size %d kbytes"), round($filesize));
             processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(_("trying quality %d%%"), $quality));
@@ -101,14 +103,12 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
             $filesize = (int)fs_filesize($out) >> 10;
             if ($filesize < $target_fs) {
                 $min_quality = $quality;
-                //$min_filesize=$filesize;
             } elseif ($filesize > $target_fs){
                 $max_quality = $quality;
                 $max_filesize = $filesize;
             } elseif ($filesize == $target_fs){
                 $min_quality = $quality;
                 $max_quality = $quality;
-                // $min_filesize=$filesize;
                 $max_filesize = $filesize;
             }
             $quality = ($max_quality + $min_quality)/2;
@@ -138,18 +138,19 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     }
 }
 
+/**
+ * In order for pnmcomp to support watermarking from formats other than pnm, the watermark
+ * first needs to be converted to .pnm. Second the alpha channel needs to be decomposed as a
+ * second image
+ *
+ * Returns a list of 2 temporary files (overlay, and alphamask), these files should be deleted (unlinked)
+ * by the calling function
+ */
 function netpbm_decompose_image($input, $format) {
-/*
-In order for pnmcomp to support watermarking from formats other than pnm, the watermark
-first needs to be converted to .pnm. Second the alpha channel needs to be decomposed as a
-second image
-
-Returns a list of 2 temporary files (overlay, and alphamask), these files should be deleted (unlinked)
-by the calling function
-*/
     global $gallery;
     $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
     $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
+    
     switch ($format) {
         case "png":
             $getOverlay = netPbm("pngtopnm", "$input > $overlay");
@@ -305,29 +306,19 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
     $wmAlignX = floor($wmAlignX);
     $wmAlignY = floor($wmAlignY);
 
-    // Build command lines arguements
+    // Execute
     switch($gallery->app->graphics) {
         case 'ImageMagick':
-            $args = "-geometry +$wmAlignX+$wmAlignY $overlayFile $src";
+            $settings = "-geometry +$wmAlignX+$wmAlignY $overlayFile";
+            exec_wrapper(ImCmd('composite', '', $src, '', $out, $settings));
         break;
+
         case 'NetPBM':
             $args  = "-yoff=$wmAlignY -xoff=$wmAlignX ";
             if ($alphaFile) {
                 $args .= "-alpha=$alphaFile ";
             }
             $args .= $overlayFile;
-        break;
-    }
-
-    debugMessage("args = $args", __FILE__, __LINE__);
-
-    // Execute
-    switch($gallery->app->graphics) {
-        case 'ImageMagick':
-            exec_wrapper(ImCmd("composite", '', $out, $args));
-        break;
-        
-        case 'NetPBM':
             exec_wrapper(toPnmCmd($src) ." | ". NetPBM($gallery->app->pnmcomp, $args) ." | " . fromPnmCmd($out));
         break;
     }
@@ -440,24 +431,24 @@ function rotate_image($src, $dest, $target, $type) {
             break;
             case "ImageMagick":
                 if (!strcmp($target, '-90')) {
-                    $im_cmd = '-rotate 90';
+                    $destOperator = '-rotate 90';
                 } elseif (!strcmp($target, '180')) {
-                    $im_cmd = '-rotate 180';
+                    $destOperator = '-rotate 180';
                 } elseif (!strcmp($target, '90')) {
-                    $im_cmd = '-rotate -90';
+                    $destOperator = '-rotate -90';
                 } elseif (!strcmp($target, 'fv')) {
-                    $im_cmd = '-flip';
+                    $destOperator = '-flip';
                 } elseif (!strcmp($target, 'fh')) {
-                    $im_cmd = '-flop';
+                    $destOperator = '-flop';
                 } elseif (!strcmp($target, 'tr')) {
-                    $im_cmd = '-affine 0,1,1,0,0,0 -transform';
+                    $destOperator = '-affine 0,1,1,0,0,0 -transform';
                 } elseif (!strcmp($target, 'tv')) {
-                    $im_cmd = '-affine 0,-1,-1,0,0,0 -transform';
+                    $destOperator = '-affine 0,-1,-1,0,0,0 -transform';
                 } else {
-                    $im_cmd = '';
+                    $destOperator = '';
                 }
     
-                exec_wrapper(ImCmd('convert', $srcFile, $outFile, $im_cmd));
+                exec_wrapper(ImCmd('convert', '', $srcFile, $destOperator, $outFile));
             break;
             default:
                 if (isDebugging())
@@ -503,8 +494,12 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
             fromPnmCmd($out));
         break;
         case "ImageMagick":
-            // Only for v6 !
-            exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-crop ${width}x${height}+${offsetX}+${offsetY} +repage"));
+	    if (floor(getImVersion()) < 6) {
+		$repage = "-page +0+0";
+	    } else {
+		$repage = "+repage";
+	    }
+            exec_wrapper(ImCmd('convert', '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
         break;
         default:
             if (isDebugging()) {
@@ -647,13 +642,14 @@ function netPbm($cmd, $args = '') {
 /**
  * Returns the command line command for ImageMagick depending on Version.
  * If no Version is detected, we assume Version 5.x
- * @param   string  $cmd    The command, e.g. convert
- * @param   string  $src    The sourcefile the command is perfomed on
- * @param   string  $dest   Optional destination file
- * @param   string  $args   Optional arguments
- * @return  $string $cmd    The complete commandline
+ * @param   string  $cmd	  The command, e.g. convert
+ * @param   string  $srcOperator
+ * @param   string  $src	  The sourcefile the command is perfomed on
+ * @param   string  $dest 	  Optional destination file
+ * @param   string  $destOperator
+ * @return  $string $cmdLine	  The complete commandline
  */
-function ImCmd($cmd, $src, $dest = '', $args = '') {
+function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest, $settings = '') {
     global $gallery;
     static $ImVersion;
     
@@ -662,77 +658,120 @@ function ImCmd($cmd, $src, $dest = '', $args = '') {
     }
     $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
     
-    switch ($ImVersion) {
-        default:
-        case '5':
-            $cmd .= " $args $src $dest";
-        break;
-        case '6':
-            $cmd .= " $src $args $dest";
-        break;
+    if($ImVersion < 6) {
+        $cmdLine = "$cmd $settings $src $dest";
     }
-    return $cmd;
+    else {
+        $cmdLine = "$cmd $settings $srcOperator $src $destOperator $dest";
+    }
+    
+    return $cmdLine;
 }
 
-function compress_image($src, $out, $target, $quality, $keepProfiles = false) {
-	global $gallery;
+function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepProfiles = false, $createThumbnail = false) {
+    global $gallery;
+    static $ImVersion;
 
-	if ($target === 'off') {
-		$target = '';
-	}
-	$srcFile = fs_import_filename($src);
-	$outFile = fs_import_filename($out);
+    if (empty($src) || empty($dest) || empty($targetSize)) {
+        echo gallery_error(_("Not all necessary params for resizing given."));
+        echo debugMessage(sprintf(_("Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
+        return false;
+    }
+
+    if(empty($ImVersion)) {
+        $ImVersion = floor(getImVersion());
+    }
+
+    if ($targetSize === 'off') {
+        $targetSize = '';
+    }
+    $srcFile = fs_import_filename($src);
+    $destFile = fs_import_filename($dest);
+
+    switch($gallery->app->graphics)	{
+        case "NetPBM":
+            exec_wrapper(toPnmCmd($src) . ' | ' .
+            NetPBM('pnmscale', " -xysize $targetSize $targetSize")  . ' | ' .
+            fromPnmCmd($dest, $quality)
+            );
+            /* copy over EXIF data if a JPEG if $keepProfiles is
+            * set. Unfortunately, we can't also keep comments. */
+            if ($keepProfiles && eregi('\.jpe?g$', $src)) {
+                if (isset($gallery->app->use_exif)) {
+                    exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
+                    . $srcFile . ' ' . $destFile);
+                } else {
+                    processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+                }
+            }
+        break;
+        case "ImageMagick":
+            if(!$createThumbnail) {
+                /* Set the keepProfiles parameter based on the version of ImageMagick being used.
+                * 6.0.0 changed the parameters again.
+                * Preserve comment, EXIF data if a JPEG if $keepProfiles is set.
+                */
+                switch ($ImVersion) {
+                    case '5':
+                        $keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
+                    break;
+                    case '6':
+                        $keepProfiles = ($keepProfiles) ? '' : ' -strip ';
+                    break;
+                    default:
+                        $keepProfiles = '';
+                    break;
+                }
+            }
+
+	    $settings = '';
+	    $destOperator = '';
+	    $srcOperator = '';
+	    /* If not targetSize is given, then this is just for setting (decreasing) quality */
+	    if ($ImVersion < 6) {
+                $settings = "-quality $quality";
+	    }
+            else {
+	        $destOperator = "-quality $quality";
+            }
+
+            if ($targetSize) {
+                if ($createThumbnail) {
+		    if ($ImVersion < 6) {
+                        $settings .= " -resize ${targetSize}x${targetSize}";
+                    }
+		    else {
+                        $srcOperator = "-size ${targetSize}x${targetSize}";
+                        $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
+                    }
+                }
+                else {
+		    if ($ImVersion < 6) {
+                        $settings .= " -resize ${targetSize}x${targetSize} $keepProfiles";
+                    }
+		    else {
+			if($gallery->app->IM_HQ == 'yes') {
+			    echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
+			}
+			else {
+			    $srcOperator = "-size ${targetSize}x${targetSize}";
+			    echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
+			}
+                        $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
+                    }
+                }
+                //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
+            }
 	
-	switch($gallery->app->graphics)	{
-		case "NetPBM":
-			exec_wrapper(toPnmCmd($src) .
-				(($target > 0) ? (' | ' .NetPBM('pnmscale',
-				" -xysize $target $target")) : '')
-				. ' | ' . fromPnmCmd($out, $quality));
-			/* copy over EXIF data if a JPEG if $keepProfiles is
-			 * set. Unfortunately, we can't also keep comments. */ 
-			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
-				if (isset($gallery->app->use_exif)) {
-					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
-						. $srcFile . ' ' . $outFile);
-				} else {
-					processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
-				}
-			}
+
+            return exec_wrapper(ImCmd('convert',$srcOperator, $srcFile, $destOperator, $destFile, $settings));
+            //return ImCmd('convert', $srcFile, $destFile, "-quality $quality $sizeCmd $keepProfiles $geometryCmd");
         break;
-		case "ImageMagick":
-			/* we just need the first digit = major version */
-			$ImVersion = floor(getImVersion());
-			// Set the keepProfiles parameter based on the version
-			// of ImageMagick being used.  6.0.0 changed the
-			// parameters again.
-			switch ($ImVersion) {
-			    case '5':
-				    $keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
-				break;
-			    case '6':
-				    $keepProfiles = ($keepProfiles) ? '' : ' -strip ';
-				break;
-			    default:
-				    $keepProfiles = '';
-				break;
-			}
-
-			/* Preserve comment, EXIF data if a JPEG if $keepProfiles is set. */
-
-			$sizeCmd = '';
-			$geometryCmd = '';
-			if ($target) {
-			    $sizeCmd = "-size ${target}x${target} ";
-			    $geometryCmd = "-geometry ${target}x${target} ";
-			}
-
-			exec_wrapper(ImCmd('convert', $srcFile, $outFile, "-quality $quality $sizeCmd $keepProfiles -coalesce $geometryCmd"));
+        default:
+            echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
+            return false;
         break;
-		default:
-		    echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
-		break;
-			
-	}
+
+    }
 }
 ?>
