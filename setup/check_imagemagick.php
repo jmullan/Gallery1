@@ -21,7 +21,7 @@
  */
 ?>
 <?php 
-    require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 ?>
 <html>
 <head>
@@ -36,8 +36,8 @@
 
 <div class="sitedesc">
 <?php 
-	echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
-	echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
+echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
+echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name)
 ?>
 </div>
 <p>
@@ -66,9 +66,9 @@ if (! file_exists(GALLERY_BASE . '/config.php')) {
 </body>
 </html>
 <?php
-	exit;
+exit;
 } else {
-	require(GALLERY_BASE . '/config.php');
+    require(GALLERY_BASE . '/config.php');
 ?>
 			<td class="Success"><?php echo _("OK") ?></td>
 		</tr>
@@ -92,13 +92,14 @@ if (! file_exists(GALLERY_BASE . '/config.php')) {
 			<p><?php echo _("Make sure that the values above make sense to you.") ?></p>
 			
 			<p>
-<?php echo "\t\t\t". sprintf(_("Look for keywords like %s, %s, %s etc. in the output above."), 
-		'&quot;Linux&quot;', '&quot;Windows&quot;', '&quot;FreeBSD&quot;');
-	echo _("If both the attempts above failed, you should ask your ISP what operating system you are using."); 
-	echo sprintf(_("You can check via %s, they can often tell you."),
-		'<a href="http://www.netcraft.com/whats?host=' .
-		$_SERVER['HTTP_HOST'] . 
-		'">Netcraft</a>') ;
+<?php 
+echo "\t\t\t". sprintf(_("Look for keywords like %s, %s, %s etc. in the output above."), 
+  '&quot;Linux&quot;', '&quot;Windows&quot;', '&quot;FreeBSD&quot;'
+);
+echo _("If both the attempts above failed, you should ask your ISP what operating system you are using.");
+echo sprintf(_("You can check via %s, they can often tell you."),
+  '<a href="http://www.netcraft.com/whats?host=' . $_SERVER['HTTP_HOST'] . '">Netcraft</a>'
+) ;
 ?>
 		</p>
 			</td>
@@ -117,16 +118,16 @@ if (! file_exists(GALLERY_BASE . '/config.php')) {
 			</td>
 		</tr>
 <?php
-	$debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
+$debugfile = tempnam($gallery->app->tmpDir, "gallerydbg");
 
-	if (! inOpenBasedir($gallery->app->ImPath)) {
+if (! inOpenBasedir($gallery->app->ImPath)) {
 ?>
 		<tr>
 			<td class="warningpct" width="100%"><?php echo sprintf(_("<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"), 
-						$app_name,
-						$gallery->app->ImPath,
-						'<ul>'.  ini_get('open_basedir') . '</ul>');
-						echo _("The open_basedir list is specified in php.ini.") . "<br>";
+			$app_name,
+			$gallery->app->ImPath,
+			'<ul>'.  ini_get('open_basedir') . '</ul>');
+			echo _("The open_basedir list is specified in php.ini.") . "<br>";
 						echo _("The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable.") ."\n"; ?>
 			</td>
 		</tr>
@@ -145,27 +146,23 @@ if (! file_exists(GALLERY_BASE . '/config.php')) {
 		<table class="inner" width="100%">
 <?php
 
-$binaries = array(
-        "identify",
-        "convert"
-        );
+$binaries = array('identify', 'convert');
 
 foreach ($binaries as $bin) {
-	$result=checkImageMagick($bin);
-	echo "\n\t\t<tr>";
-	echo "\n\t\t\t". '<td class="desc" width="100%">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
-	if (isset($result['error'])) {
-		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="errorpct">'. $result['error'] . '</td>';
-	} else {
-		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="successpct">'. $result['ok'] . '</td>';
-	}
-	echo "\n\t\t</tr>";
+    $result = checkImageMagick($bin);
+    echo "\n\t\t<tr>";
+    echo "\n\t\t\t". '<td class="desc" width="100%">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
+    if (isset($result['error'])) {
+        echo "\n\t\t\t". '<td style="white-space:nowrap;" class="errorpct">'. $result['error'] . '</td>';
+    } else {
+        echo "\n\t\t\t". '<td style="white-space:nowrap;" class="successpct">'. $result['ok'] . '</td>';
+    }
+    echo "\n\t\t</tr>";
 }
 
 if (fs_file_exists($debugfile)) {
     fs_unlink($debugfile);
 }
-    
 ?>
 	
 		</table>
@@ -176,13 +173,13 @@ if (fs_file_exists($debugfile)) {
 		<table class="inner" width="100%">
 		<tr>
 			<td class="desc"><?php 
-				echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
-					"<b>$debugfile</b>",
-					'<i>open_basedir</i>',
-					'<a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>') ;
-				echo "   ". sprintf(_("You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
-					'<a href="http://gallery.sourceforge.net/help.php">',
-					'</a>');
+			echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
+			  "<b>$debugfile</b>",
+			  '<i>open_basedir</i>',
+			  '<a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>') ;
+			echo "   ". sprintf(_("You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
+			  '<a href="http://gallery.sourceforge.net/help.php">',
+			  '</a>');
 
 ?>
 			<p><?php echo sprintf(_("For other errors, please refer to the list of possible responses in %s to get more information."), '<a href="http://gallery.sourceforge.net/faq.php">FAQ</a> C.2'); ?>
@@ -203,54 +200,53 @@ if (fs_file_exists($debugfile)) {
 <?php
 
 function checkImageMagick($cmd) {
-	global $gallery;
-	global $show_details;
-	global $debugfile;
+    global $gallery;
+    global $show_details;
+    global $debugfile;
 
-	$cmd = fs_executable($gallery->app->ImPath . "/$cmd");
-	$result[]= fs_import_filename($cmd);
+    $cmd = fs_executable($gallery->app->ImPath . "/$cmd");
+    $result[]= fs_import_filename($cmd);
 
-	$ok=1;
-	if (inOpenBasedir($gallery->app->ImPath)) {
-		if (! fs_file_exists($cmd)) {
-			$result['error'] = sprintf(_("File %s does not exist."), $cmd);
-			$ok = 0;
-		}
-	}
+    $ok = 1;
+    if (inOpenBasedir($gallery->app->ImPath)) {
+        if (! fs_file_exists($cmd)) {
+            $result['error'] = sprintf(_("File %s does not exist."), $cmd);
+            $ok = 0;
+        }
+    }
 
-	$cmd .= " -version";
-	
-	fs_exec($cmd, $results, $status, $debugfile);
+    $cmd .= " -version";
 
-	if ($ok) {
-		if ($status != $gallery->app->expectedExecStatus) {
-			$result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
-				$gallery->app->expectedExecStatus,
-				$status);
-			$ok = 0;
-		}
-	}
+    fs_exec($cmd, $results, $status, $debugfile);
 
-	/*
-	 * Windows does not appear to allow us to redirect STDERR output, which
-	 * means that we can't detect the version number.
-	 */
-	if ($ok) {
-		if (getOS() == OS_WINDOWS) {
-			$version = "<i>" . _("can't detect version on Windows") ."</i>";
-		}
-		else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
-			$version = $regs[1];
-        	} else {
-			$result['error'] = $results[0];
-			$ok = 0;
-		}
-	}
+    if ($ok) {
+        if ($status != $gallery->app->expectedExecStatus) {
+            $result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
+            $gallery->app->expectedExecStatus,
+            $status);
+            $ok = 0;
+        }
+    }
 
-	if (! empty($ok)) {
-		$result['ok']=sprintf(_("OK!  Version: %s"), $version);
-	}
-	return $result;
+    /*
+    * Windows does not appear to allow us to redirect STDERR output, which
+    * means that we can't detect the version number.
+    */
+    if ($ok) {
+        if (getOS() == OS_WINDOWS) {
+            $version = "<i>" . _("can't detect version on Windows") ."</i>";
+        }
+        else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
+            $version = $regs[1];
+        } else {
+            $result['error'] = $results[0];
+            $ok = 0;
+        }
+    }
+
+    if (! empty($ok)) {
+        $result['ok'] = sprintf(_("OK!  Version: %s"), $version);
+    }
+    return $result;
 }
-
 ?>
