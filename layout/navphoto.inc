@@ -26,30 +26,20 @@ if(!includeTemplate('navphoto.tpl')) {
     $npAltText = _("Next Photo");
     $lpAltText = _("Last Photo");
 
-    if ($gallery->direction == "ltr") {
-        $fpImgUrl = getImagePath('nav_first.gif');
-        $ppImgUrl = getImagePath('nav_prev.gif');
-        $npImgUrl = getImagePath('nav_next.gif');
-        $lpImgUrl = getImagePath('nav_last.gif');
-    } else {
-        $fpImgUrl = getImagePath('nav_last.gif');
-        $ppImgUrl = getImagePath('nav_next.gif');
-        $npImgUrl = getImagePath('nav_prev.gif');
-        $lpImgUrl = getImagePath('nav_first.gif');
-    }
-
+   	include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
+   	
     $firstPage = $navigator["allIds"][0];
     $lastPage = $navigator["allIds"][$navcount-1];
 
     #-- 'first' and 'previous button cell ---
     if ($navpage > 0) {
         $fpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) .'">';
-        $fpContent .= '<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
+        $fpContent .= '<img src="'. $fpImgUrl . '" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
         $fpContent .= '</a>';
 
         $prevPage = $navigator["allIds"][$navpage-1];
         $ppContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL) .'">';
-        $ppContent .= '<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
+        $ppContent .= '<img src="'. $ppImgUrl . '" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
         $ppContent .= '</a>';
 
         $pClass= 'borderright';
@@ -61,17 +51,17 @@ if(!includeTemplate('navphoto.tpl')) {
     }
 
     #-- 'page numbers' cell ---
-    $mpContent=sprintf(_("%d of %d"), $navpage+1, $navcount);
+    $mpContent = sprintf(_("%d of %d"), $navpage+1, $navcount);
 
     #-- 'next' and 'last' button cell ---
     if ($navpage < $navcount-1) {
         $nextPage = $navigator["allIds"][$navpage+1];
         $npContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL) .'">';
-        $npContent .= '<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'">';
+        $npContent .= '<img src="'. $npImgUrl . '" alt="'. $npAltText .'" title="'. $npAltText .'">';
         $npContent .= '</a>';
 
         $lpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL) .'">';
-        $lpContent .= '<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
+        $lpContent .= '<img src="'. $lpImgUrl . '" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
         $lpContent .= '</a>';
 
         $nClass = 'borderleft';

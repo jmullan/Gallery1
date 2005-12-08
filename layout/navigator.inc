@@ -27,7 +27,7 @@ if(!includeTemplate('navigator.tpl')) {
 	if ($navigator["bordercolor"]) {
 		$borderIn = $navigator["bordercolor"];
 	} else {
-		$borderIn = "";
+		$borderIn = '';
 	}
 
 	$url = $navigator["url"];
@@ -43,17 +43,7 @@ if(!includeTemplate('navigator.tpl')) {
 	$npAltText= _("Next Page");
 	$lpAltText= _("Last Page");
 
-	if ($gallery->direction == "ltr") {
-		$fpImgUrl= getImagePath('nav_first.gif');
-		$ppImgUrl= getImagePath('nav_prev.gif');
-		$npImgUrl= getImagePath('nav_next.gif');
-		$lpImgUrl= getImagePath('nav_last.gif');
-	} else {
-		$fpImgUrl= getImagePath('nav_last.gif');
-		$ppImgUrl= getImagePath('nav_next.gif');
-		$npImgUrl= getImagePath('nav_prev.gif');
-		$lpImgUrl= getImagePath('nav_first.gif');
-	}
+	include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
 
 	$current = $navigator["page"];
 	$prevPage = $current -1;
@@ -63,11 +53,11 @@ if(!includeTemplate('navigator.tpl')) {
 	#-- 'first' and 'previous button cell ---
 	if ($navigator["page"] != 1) {
 		$fpContent ='<a href="'. $url . $navigator['pageVar'] .'=1">';
-		$fpContent .='<img src="'. $fpImgUrl . '" border="0" width="27" height="11" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
+		$fpContent .='<img src="'. $fpImgUrl . '"  alt="'. $fpAltText .'" title="'. $fpAltText .'">';
 		$fpContent .='</a>';
 	
 		$ppContent ='<a href="'. $url . $navigator['pageVar'] .'='. $prevPage .'">';
-		$ppContent .='<img src="'. $ppImgUrl . '" border="0" width="72" height="11" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
+		$ppContent .='<img src="'. $ppImgUrl . '"  alt="'. $ppAltText .'" title="'. $ppAltText .'">';
 	        $ppContent .='</a>';
 
 		$pClass='borderright';
@@ -80,9 +70,9 @@ if(!includeTemplate('navigator.tpl')) {
 
 	#-- 'page numbers' cell ---                  
 	if ($begin != $end) {
-		$ndlUrl=getImagePath('nav_dot_left.gif');
-		$ndrUrl=getImagePath('nav_dot_right.gif');
-		$ndUrl=getImagePath('nav_dot.gif');
+		$ndlUrl = getImagePath('nav_dot_left.gif');
+		$ndrUrl = getImagePath('nav_dot_right.gif');
+		$ndUrl = getImagePath('nav_dot.gif');
 	
 		$mpContent = "\n\t\t". '<table align="center" border="0" cellpadding="0" cellspacing="0"><tr>';
 		if (isset($beginNextBlock)) {
@@ -123,11 +113,11 @@ if(!includeTemplate('navigator.tpl')) {
 	#-- 'next' and 'last' button cell ---
 	if ($current < $maxPages) {
 		$npContent ='<a href="'. $url . $navigator['pageVar'] .'='. $nextPage .'">';
-		$npContent .='<img src="'. $npImgUrl . '" border="0" width="72" height="11" alt="'. $npAltText .'" title="'. $npAltText .'">';
+		$npContent .='<img src="'. $npImgUrl . '"  alt="'. $npAltText .'" title="'. $npAltText .'">';
 	        $npContent .='</a>';
 
 		$lpContent ='<a href="'. $url . $navigator['pageVar'] .'='. $navigator['maxPages'] .'">';
-		$lpContent .='<img src="'. $lpImgUrl . '" border="0" width="27" height="11" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
+		$lpContent .='<img src="'. $lpImgUrl . '"  alt="'. $lpAltText .'" title="'. $lpAltText .'">';
 		$lpContent .='</a>';
 
 		$nClass='borderleft';
@@ -135,7 +125,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$npContent='&nbsp;';
 		$lpContent='&nbsp;';
 
-	        $nClass ='';
+	    $nClass ='';
 	}
 	?>
 
