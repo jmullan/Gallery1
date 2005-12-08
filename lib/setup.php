@@ -1611,21 +1611,24 @@ function checkVersions($verbose=false) {
  * @author Jens Tkotz
  */ 
 
-function makeSectionTabs($array, $break = 7, $initialtab = '') {
+function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = false) {
 	$tabs = array();
 
 	foreach ($array as $key => $var) {
         	if(isset($var['type']) && $var['type'] == 'group_start') {
-			$tab[]=$var;
+			$tabs[]=$var;
 		}
+	}
+
+	if ($sortByTitle) {
+	    array_sort_by_fields($tabs, 'title');
 	}
 
 	echo "\n<table width=\"100%\" cellspacing=\"0\">";
 	echo "\n<tr>";
 	$tabcount = 0;
-	array_sort_by_fields($tab, 'title');
 
-	foreach ($tab as $cell) {
+	foreach ($tabs as $cell) {
         	$tabcount++;
 		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
 		        $class = 'class="tab-hi"';
@@ -1763,5 +1766,54 @@ function getCheckStatus($result, $check) {
         }
     }
 
+}
+
+function checkImageMagick($cmd) {
+    global $gallery;
+    global $show_details;
+    global $debugfile;
+
+    $cmd = fs_executable($gallery->app->ImPath . "/$cmd");
+    $result[]= fs_import_filename($cmd);
+
+    $ok = 1;
+    if (inOpenBasedir($gallery->app->ImPath)) {
+        if (! fs_file_exists($cmd)) {
+            $result['error'] = sprintf(_("File %s does not exist."), $cmd);
+            $ok = 0;
+        }
+    }
+
+    fs_exec("$cmd -version", $results, $status, $debugfile);
+
+    if ($ok) {
+        if ($status != $gallery->app->expectedExecStatus) {
+            $result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
+            $gallery->app->expectedExecStatus,
+            $status);
+            $ok = 0;
+        }
+    }
+
+    /*
+    * Windows does not appear to allow us to redirect STDERR output, which
+    * means that we can't detect the version number.
+    */
+    if ($ok) {
+        if (getOS() == OS_WINDOWS) {
+            $version = "<i>" . _("can't detect version on Windows") ."</i>";
+        }
+        else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
+            $version = $regs[1];
+        } else {
+            $result['error'] = $results[0];
+            $ok = 0;
+        }
+    }
+
+    if (! empty($ok)) {
+        $result['ok'] = sprintf(_("OK!  Version: %s"), $version);
+    }
+    return $result;
 }
 ?>

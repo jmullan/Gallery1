@@ -923,7 +923,7 @@ function available_skins($description_only = false) {
     }
 
     $dir = "$base/skins";
-    $opts['none'] = 'No Skin';
+    $opts['none'] = gTranslate('common', "No Skin");
     $descriptions = '<dl>';
     $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
 	gTranslate('common', "No Skin") . "</a>";

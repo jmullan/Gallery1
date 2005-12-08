@@ -421,6 +421,7 @@ function initLanguage($sendHeader=true) {
     }
 
     $languages_initialized = true;
+    echo debugMessage(sprintf(_("Language initialized to: %s"), $gallery->language), __FILE__, __LINE__, 3);
 }
 
 

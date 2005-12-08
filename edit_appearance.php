@@ -244,7 +244,8 @@ echo makeFormIntro("edit_appearance.php",
     array("type" => "popup"));
 
 $i = 0;
-makeSectionTabs($properties,5, $initialtab);
+
+makeSectionTabs($properties,5, $initialtab, true);
 
 foreach ($properties as $key => $val) {
     if(!empty($val['skip'])) {

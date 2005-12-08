@@ -23,8 +23,6 @@
 <?php 
     require_once(dirname(__FILE__) . '/init.php');
 
-    $show_details = getRequestVar('show_details');
-
     echo doctype();
 ?>
 <html>
@@ -33,118 +31,70 @@
   <?php common_header(); ?>
   <style>
 	.shortdesc { width:30% }
-  </style>  
+  </style>
+  <script type="text/javascript" src="../js/toggle.js"></script>
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
 <?php configLogin(basename(__FILE__)); ?>
-<h1 class="header"><?php echo _("Check Versions") ?></h1>
+
+<div class="header"><?php echo _("Check Versions") ?></div>
+
 <div class="sitedesc"><?php
-	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),"Gallery");
+	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),Gallery());
+	echo "\n<br>";
 	echo _("If you see any error(s), we highly suggest to get the actual version of that file(s).");
 ?></div>
-
-<table class="inner" width="100%">
-<tr>
-	<td class="desc"><?php 
-if (!empty($show_details)) {
-       	print sprintf(_("%sClick here%s to hide the details"),
-		       	'<a href="check_versions.php?show_details=0">','</a>');
-} else {
-       	print sprintf(_("%sClick here%s to see more details"),
-		       	'<a href="check_versions.php?show_details=1">','</a>');
-}
-?></td>
-</tr>
-</table>             
-
+<br>
 <?php
 
 list($oks, $errors, $warnings) = checkVersions(false);
 
-if  ($errors) { ?>
-<table class="inner" width="100%">
-<tr>
-	<td class="errorlong" colspan="2">
-		<?php echo gTranslate('config', "One file is missing, corrupt or older than expected.", 
-					"%d files are missing, corrupt or older than expected.", 
-						count($errors), _("All files okay."));
-		?>
-	</td>
-</tr>
-<?php 
-	if ($show_details) { ?>
-<tr>
-	<td class="desc" colspan="2"><?php print sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery()); ?></td>
-</tr><?php
-		foreach ($errors as $file => $error) {
-			echo "\n<tr>";
-			echo "\n\t<td class=\"shortdesc\">$file:</td>";
-			echo "\n\t<td class=\"desc\">$error</td>";
-			echo "\n</tr>";
-	       	}
-	}
-?>
+$tests = array(
+    'errors' => array(
+        'text' => gTranslate('config', "One file is missing, corrupt or older than expected.", "%d files are missing, corrupt or older than expected.",  count($errors), _("All files okay.")),
+        'class' => 'errorpct',
+        'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
+    ),
+    'warnings' => array(
+        'text' => gTranslate('config', "One file is more recent than expected.", "%d files are more recent than expected.", count($warnings), _("All files okay.")),
+        'class' => 'warningpct',
+        'hinttext' => sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery())
+    ),
+    'oks' => array(
+        'text' => gTranslate('config', "One file is up-to-date.", "%d files are up-to-date.", count($oks),  _("All files are up-to-date.")),
+        'class' => 'successpct',
+        'hinttext' => _("The following files are up-to-date.")
+    )
+);
 
-</table>
+foreach($tests as $testname => $args) {
+    if  ($$testname) { ?>
+<div class="inner">
+  <div style="white-space:nowrap;">
+    <a href="#" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo galleryImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
+    <span class="<?php echo $args['class']; ?>"><?php echo $args['text']; ?></span>
+  </div>
+  <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">
+    <table>
+	  <tr>
+        <td class="desc" colspan="2"><?php echo $args['hinttext']; ?></td>
+	  </tr>
+	  <?php
+	  foreach ($$testname as $file => $result) {
+	    echo "\n<tr>";
+	    echo "\n\t<td class=\"shortdesc\">$file:</td>";
+	    echo "\n\t<td class=\"desc\">$result</td>";
+	    echo "\n</tr>";
+	  }
+      ?>
+      </table>
+  </div>
+</div>
 <?php
-}
-
-if ($warnings) {
-?>
-
-<table class="inner" width="100%">
-<tr>
-
-	<td class="warninglong" colspan="2">
-	<?php echo gTranslate('config', "One file is more recent than expected.", 
-				"%d files are more recent than expected.",
-					count($warnings), _("All files okay.")); 
-	?>
-	</td>
-</tr>
-<?php
-	if ($show_details) {?>
-<tr>
-	<td class="desc" colspan="2"><?php 
-		echo sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery());
-		echo "</td>";
-		echo "\n</tr>";
-		foreach ($warnings as $file => $warning) {
-			echo "\n<tr>";
-			echo "\n\t<td class=\"shortdesc\">$file:</td>";
-			echo "\n\t<td class=\"desc\">$warning</td>";
-			echo "\n</tr>";
-		}
-	}
-?>
-
-</table>
-<?php } ?>
-
-<table class="inner" width="100%">
-<tr>
-	<td class="successlong" colspan="2">
-		<?php echo gTranslate('config', "One file is up-to-date.",
-					"%d files are up-to-date.",
-					count($oks),  _("All files are up-to-date."));
-		?>
-	</td>
-</tr><?php 
-if ($show_details && $oks) {
-	echo "\n<tr>";
-	echo "\n\t<td class=\"desc\" colspan=\"2\">" . _("The following files are up-to-date.") . "</td>";
-	echo "\n</tr>";		
-	foreach ($oks as $file => $ok) {
-		echo "\n<tr>";
-		echo "\n\t<td class=\"shortdesc\">$file:</td>";
-		echo "\n\t<td class=\"desc\">$ok</td>";
-		echo "\n</tr>";
-	}
+    }
 }
 ?>
-
-</table>
 
 <p align="center"><?php echo returnToConfig(); ?></p>
 

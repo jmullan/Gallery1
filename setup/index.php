@@ -42,7 +42,7 @@ doctype();
 ?>
 <html>
 <head>
-	<title><?php echo _("Gallery Configuration") ?></title>
+	<title><?php echo gTranslate('config', "Gallery Configuration") ?></title>
 	<?php common_header(); ?>
 
 	<script language="JavaScript" type="text/javascript">
