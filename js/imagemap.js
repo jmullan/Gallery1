@@ -15,12 +15,17 @@
 
       getMyPicCoords();
       /* Update map coords */
-      for(i=0; i< map.length; ++i) {
+      var i = 0; var count = 0;
+      do {
+	if(map[i]) {	
           for (j=0; j< map[i]['x_coords'].length; ++j) {
               map[i]['x_coords'][j] = map[i]['x_coords'][j] + minX;
               map[i]['y_coords'][j] = map[i]['y_coords'][j] + minY;
           }
-      }
+	  ++count;
+        }
+	++i;
+      } while (count < map.length-1);
   }
 
     
