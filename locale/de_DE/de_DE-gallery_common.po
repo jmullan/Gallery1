@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-08 14:09+0100\n"
-"PO-Revision-Date: 2005-12-08 14:28+0100\n"
+"POT-Creation-Date: 2005-12-09 16:17+0100\n"
+"PO-Revision-Date: 2005-12-09 16:19+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -562,6 +562,7 @@ msgstr "Das aktuelle Album"
 msgid "Last comment %s."
 msgstr "Letztes Kommentar %s."
 
+#: ../lib/content.php:926
 #: ../lib/content.php:929
 msgid "No Skin"
 msgstr "Kein Skin"
@@ -1348,17 +1349,36 @@ msgstr "%s OK"
 msgid "Found expected version %s."
 msgstr "Erwartete Version %s gefunden."
 
-#: ../lib/setup.php:1714
+#: ../lib/setup.php:1717
 msgid "This email will be sent when new accounts are created."
 msgstr "Diese Email wird an jeden neuen Benutzer gesendet."
 
-#: ../lib/setup.php:1715
+#: ../lib/setup.php:1718
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "\"Lassen Sie leer um dem Standardtext zu benutzen, welche mehrsprachig vorhanden ist. Oder benutzen Sie Ihre eigene, welche jedoch nur exakt so benutzt und nicht nicht übersetztt wird."
 
-#: ../lib/setup.php:1716
+#: ../lib/setup.php:1719
 msgid "The following placeholder can be used:"
 msgstr "Die folgenden Platzhalter können benutzt werden:"
+
+#: ../lib/setup.php:1782
+#, php-format
+msgid "File %s does not exist."
+msgstr "Datei %s existiert nicht."
+
+#: ../lib/setup.php:1791
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
+msgstr "Erwarteter Status: %s, erhaltener Status: %s."
+
+#: ../lib/setup.php:1804
+msgid "can't detect version on Windows"
+msgstr "Version kann nicht unter Windows ermittelt werden"
+
+#: ../lib/setup.php:1815
+#, php-format
+msgid "OK!  Version: %s"
+msgstr "OK! Version: %s"
 
 #: ../lib/valchecks.php:68
 msgid "Value was set to given default. Because the original value is not numeric."

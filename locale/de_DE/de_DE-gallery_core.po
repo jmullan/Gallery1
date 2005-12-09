@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-08 14:09+0100\n"
-"PO-Revision-Date: 2005-12-08 14:33+0100\n"
+"POT-Creation-Date: 2005-12-09 16:17+0100\n"
+"PO-Revision-Date: 2005-12-09 16:24+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -406,12 +406,14 @@ msgid "preferences"
 msgstr "Meine Einstellungen"
 
 #: ../albums.php:214
+#: ../imagemap.php:137
 #: ../view_album.php:420
 #: ../view_photo.php:511
 msgid "logout"
 msgstr "Abmelden"
 
 #: ../albums.php:219
+#: ../imagemap.php:142
 #: ../view_album.php:425
 #: ../view_photo.php:516
 msgid "login"
@@ -579,6 +581,7 @@ msgid "%s items in this album"
 msgstr "%s Elemente in diesem Album"
 
 #: ../captionator.php:191
+#: ../imagemap.php:155
 #: ../slideshow.php:183
 #: ../view_album.php:109
 #: ../view_comments.php:54
@@ -1407,23 +1410,23 @@ msgstr "Feld %s:"
 msgid "Album Properties"
 msgstr "Albumeigenschaften"
 
-#: ../edit_appearance.php:295
+#: ../edit_appearance.php:296
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Einstellungen auch auf Unteralben anwenden.<br> (Au&szlig;er Albumtitel und -zusammenfassung)"
 
-#: ../edit_appearance.php:298
+#: ../edit_appearance.php:299
 #: ../extra_fields.php:172
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "Anwenden"
 
-#: ../edit_appearance.php:299
+#: ../edit_appearance.php:300
 #: ../extra_fields.php:173
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "R&uuml;ckg&auml;ngig"
 
-#: ../edit_appearance.php:300
+#: ../edit_appearance.php:301
 #: ../extra_fields.php:174
 #: ../poll_properties.php:142
 #: ../rotate_photo.php:87
@@ -1537,6 +1540,54 @@ msgstr "Feld"
 #: ../poll_properties.php:137
 msgid "Apply values to nested albums."
 msgstr "Einstellungen auch auf Unteralben anwenden."
+
+#: ../imagemap.php:208
+msgid "Here you can create, edit or delete imagemaps for the selected photo."
+msgstr "Hier können Sie sogenannte ImageMaps für das ausgewählte Photo anlegen, bearbeiten oder auch wieder löschen."
+
+#: ../imagemap.php:210
+msgid "Currently are following browsers supported: Firefox 1.x, IE 6.x"
+msgstr "Zur Zeit werden folgende Browser unterstützt: Firefox 1.x, IE 6.x"
+
+#: ../imagemap.php:212
+msgid "To create an imagemap, just draw it with mouseclicks on the photo and press the button at the left side."
+msgstr "Um eine ImageMap anzulegen zeichnen Sie einfach per Mausklicks im Bild. Zum Speichern den Button auf der linken Seite benutzen."
+
+#: ../imagemap.php:230
+msgid "Clear and reset canvas"
+msgstr "Zeichenfläche löschen."
+
+#: ../imagemap.php:232
+msgid "Optional link-url"
+msgstr "Optionale Link-URL"
+
+#: ../imagemap.php:234
+msgid "Description"
+msgstr "Beschriftung"
+
+#: ../imagemap.php:236
+msgid "Create new image area"
+msgstr "Neue ImageMap anlegen"
+
+#: ../imagemap.php:243
+msgid "Select entries to show image area in your photo."
+msgstr "Markieren Sie hier die Einträge um die ImageMaps im Bild anzuzeigen."
+
+#: ../imagemap.php:251
+msgid "Delete selected ImageMap(s)"
+msgstr "Markierte ImageMaps löschen."
+
+#: ../imagemap.php:254
+msgid "Update selected ImageMap(s)"
+msgstr "Markierte ImageMaps aktualisieren."
+
+#: ../imagemap.php:256
+msgid "Be aware, that the text of ALL selected entries will be updated!"
+msgstr "Vorsicht, bei einer Aktualisierung werden alle markierten Einträge verwendet."
+
+#: ../imagemap.php:259
+msgid "No ImageMaps"
+msgstr "Keine ImageMap bisher angelegt."
 
 #: ../includes/add_photos/add_admin.inc:26
 msgid "Admin help"
@@ -2319,8 +2370,8 @@ msgstr "N&auml;chste Seite"
 msgid "Last Page"
 msgstr "Letzte Seite"
 
-#: ../layout/navigator.inc:89
-#: ../layout/navigator.inc:115
+#: ../layout/navigator.inc:79
+#: ../layout/navigator.inc:105
 #, php-format
 msgid "Jump to page %d"
 msgstr "Springe zu Seite %d"
@@ -2341,7 +2392,7 @@ msgstr "N&auml;chstes Bild"
 msgid "Last Photo"
 msgstr "Letztes Bild"
 
-#: ../layout/navphoto.inc:64
+#: ../layout/navphoto.inc:54
 #, php-format
 msgid "%d of %d"
 msgstr "%d von %d"
