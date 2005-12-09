@@ -2869,8 +2869,7 @@ class Album {
     */
     function deleteImageArea($photo_index, $area_index) {
         $photo = &$this->getPhoto($photo_index);
-        //unset($photo->imageAreas[$area_index]);
-        for($i=$area_index; $i<sizeof($photo->imageAreas); $i++) {
+        for($i = $area_index; $i<sizeof($photo->imageAreas)-1; $i++) {
 	    $photo->imageAreas[$i] = $photo->imageAreas[$i+1];
 	}
 	array_pop($photo->imageAreas);
