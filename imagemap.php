@@ -207,9 +207,8 @@ else {
 <?php
 echo _("Here you can create, edit or delete imagemaps for the selected photo.");
 echo "\n<br>";
-echo _("Currently are following browsers supported: Firefox 1.x, IE 6.x");
-echo "\n<br>";
-echo _("To create an imagemap, just draw it with mouseclicks on the photo and press the button at the left side.");
+echo _("Click the questionmark icon for helpful instructions.");
+echo popup_link('<img src="'. getImagePath('icons/help.gif') .'">', 'help/imagemap.php');
 ?>
 </div>
 
@@ -233,7 +232,7 @@ echo makeFormIntro('imagemap.php',
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
 	<?php echo gTranslate('core', "Description"); ?><br>
 	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
-	<input type="submit" value="<?php echo _("Create new image area") ?>" onclick="document.areas.formaction.value='create'">
+	<input type="submit" value="<?php echo _("Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
     <hr>
 <?php
 //print_r($photo);

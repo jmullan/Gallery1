@@ -87,7 +87,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
             $addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
         }
         if ($addType == 'inside') {
-            echo '<form action="'. $page_url .'" name="theform" method="POST">';
+            echo '<br><form action="'. $page_url .'" name="theform" method="POST">';
             drawCommentAddForm($commenter_name);
             echo '</form>';
         }
