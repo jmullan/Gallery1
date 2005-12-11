@@ -107,10 +107,10 @@ if (getRequestVar('save')) {
     /* Poll properties */
     for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
         //convert values to numbers
-        $nv_pairs[$i]["value"]=0+$nv_pairs[$i]["value"];
+        $nv_pairs[$i]["value"] = 0+$nv_pairs[$i]["value"];
     }
-    $gallery->album->fields["poll_nv_pairs"]=$nv_pairs;
-    $gallery->album->fields["poll_hint"]=$poll_hint;
+    $gallery->album->fields["poll_nv_pairs"] = $nv_pairs;
+    $gallery->album->fields["poll_hint"] = $poll_hint;
     $gallery->album->fields["poll_type"] = $poll_type;
     if ($voter_class == "Logged in" &&
     $gallery->album->fields["voter_class"] == "Everybody" &&
@@ -137,7 +137,7 @@ if (getRequestVar('save')) {
         $extra_fields[$i] = str_replace('"', '&quot;', $extra_fields[$i]);
     }
 
-    $num_fields = $num_user_fields+num_special_fields($extra_fields);
+    $num_fields = $num_user_fields + num_special_fields($extra_fields);
 
     $gallery->album->setExtraFields($extra_fields);
 

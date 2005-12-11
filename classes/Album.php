@@ -78,7 +78,7 @@ class Album {
 
             case 'everybody':
             default:
-                $UserToPerm= $gallery->userDB->getEverybody();
+                $UserToPerm = $gallery->userDB->getEverybody();
             break;
         }
 
@@ -579,9 +579,9 @@ class Album {
      */
     function sortPhotos($sort , $order, $albumsFirst = '') {
         $this->updateSerial = 1;
-	global $func;
-	global $order;
-	global $albumsFirst;
+        global $func;
+        global $order;
+        global $albumsFirst;
 
         // if we are going to use sort, we need to set the historic dates.
         // the get Date functions set any null dates for us, so that's what
@@ -607,22 +607,21 @@ class Album {
         }
         
         if ($albumsFirst != "") {
-	    //echo "presort by $func with order $order";
+            //echo "presort by $func with order $order";
             usort($this->photos, array('Album', 'sortByType'));
         }
-	else {
+        else {
             usort($this->photos, array('Album', $func));
-	}
+        }
 
     }
 
     /**
      *  Globalize the sort functions from sortPhotos()
      */
-
     function sortByType($a, $b) {
-	global $func;
-	global $albumsFirst;
+        global $func;
+        global $albumsFirst;
 
         $objA = (object)$a;
         $objB = (object)$b;
@@ -640,7 +639,7 @@ class Album {
     }
     
     function sortByUpload($a, $b) {
-	global $order; 
+        global $order;
 
         $objA = (object)$a;
         $objB = (object)$b;
@@ -656,7 +655,7 @@ class Album {
     }
 
     function sortByItemCapture($a, $b) {
-	global $order;
+        global $order;
 
         $objA = (object)$a;
         $objB = (object)$b;
@@ -673,7 +672,7 @@ class Album {
     }
 
     function sortByFileName($a, $b) {
-	global $order;
+        global $order;
 
         $objA = (object)$a;
         $objB = (object)$b;
@@ -689,13 +688,13 @@ class Album {
             $filenameB = $objB->image->name;
         }
 
-	$result = $order * strnatcasecmp($filenameA, $filenameB);
+        $result = $order * strnatcasecmp($filenameA, $filenameB);
 
-	return $result;
+        return $result;
     }
 
     function sortByClick($a, $b) {
-	global $order;
+        global $order;
 
         $objA = (object)$a;
         $objB = (object)$b;
@@ -712,7 +711,7 @@ class Album {
 
     function sortByCaption($a, $b) {
         global $albumDB;
-	global $order;
+        global $order;
 
         if (empty($albumDB)) {
             $albumDB = new AlbumDB(false);
@@ -736,11 +735,11 @@ class Album {
 
         $result = $order* strnatcasecmp($captionA, $captionB);
 
-	return $result;
+        return $result;
     }
 
     function sortByComment($a, $b) {
-	global $order;
+        global $order;
 
         // sort by number of comments
         $objA = (object)$a;
@@ -897,8 +896,8 @@ class Album {
 
     function loadPhotos($dir){
         if (!$this->loadPhotosFromFile("$dir/photos.dat") &&
-        !$this->loadPhotosFromFile("$dir/photos.dat.bak") &&
-        !$this->loadPhotosFromFile("$dir/photos.bak")) {
+           !$this->loadPhotosFromFile("$dir/photos.dat.bak") &&
+          !$this->loadPhotosFromFile("$dir/photos.bak")) {
             /* Uh oh */
             return 0;
         }
@@ -959,7 +958,7 @@ class Album {
 
     function isResized($index) {
         $photo = $this->getPhoto($index);
-        return ($photo->isResized());
+        return $photo->isResized();
     }
 
     /**
@@ -1490,7 +1489,7 @@ class Album {
         if ($photo) {
             return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
         } else {
-            return '<span class="title">'. _("No highlight") .'!</span>';
+            return '<span class="title">'. _("No highlight!") .'</span>';
         }
     }
 
@@ -1500,7 +1499,7 @@ class Album {
             $photo = $this->getPhoto($index);
             return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs, $alttext);
         } else {
-            return '<span class="title">'. _("No highlight") .'!</span>';
+            return '<span class="title">'. _("No highlight!") .'</span>';
         }
     }
 
@@ -1682,7 +1681,7 @@ class Album {
         }
     }
 
-    function getIds($show_hidden=0) {
+    function getIds($show_hidden = 0) {
         foreach ($this->photos as $photo) {
             if ((!$photo->isHidden() || $show_hidden) && !$photo->getAlbumName()) {
                 $ids[] = $photo->getPhotoId();
@@ -1755,12 +1754,13 @@ class Album {
     function getUploadDate($index) {
         $photo = $this->getPhoto($index);
         $uploadDate = $photo->getUploadDate();
-        if (!$uploadDate) { // populating old photos with data
-        $this->setUploadDate($index);
-        $this->save();
-        $uploadDate = $this->getUploadDate($index);
-        }
-        return $uploadDate;
+         // populating old photos with data
+         if (!$uploadDate) {
+             $this->setUploadDate($index);
+             $this->save();
+             $uploadDate = $this->getUploadDate($index);
+         }
+         return $uploadDate;
     }
 
     function setUploadDate($index, $uploadDate="") {
@@ -1771,10 +1771,11 @@ class Album {
     function getItemCaptureDate($index) {
         $photo = $this->getPhoto($index);
         $itemCaptureDate = $photo->getItemCaptureDate();
-        if (!$itemCaptureDate) { // populating old photos with data
-        $this->setItemCaptureDate($index);
-        $this->save();
-        $itemCaptureDate = $this->getItemCaptureDate($index);
+        // populating old photos with data
+        if (!$itemCaptureDate) {
+            $this->setItemCaptureDate($index);
+            $this->save();
+            $itemCaptureDate = $this->getItemCaptureDate($index);
         }
         return $itemCaptureDate;
     }
@@ -1815,7 +1816,7 @@ class Album {
         $photo->setKeyWords($keywords);
     }
 
-    function rotatePhoto($index, $direction, $clearexifrotate=false) {
+    function rotatePhoto($index, $direction, $clearexifrotate = false) {
         $this->updateSerial = 1;
         $photo = &$this->getPhoto($index);
         $retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this, $clearexifrotate);
@@ -1951,8 +1952,7 @@ class Album {
         return $photo->isMovie();
     }
 
-    function isItemOwner($uid, $index)
-    {
+    function isItemOwner($uid, $index) {
         global $gallery;
         $nobody = $gallery->userDB->getNobody();
         $nobodyUid = $nobody->getUid();
@@ -1983,17 +1983,17 @@ class Album {
     function resetClicks() {
         $this->fields["clicks"] = 0;
         $this->fields["clicks_date"] = time();
-        $resetModDate=0;
+        $resetModDate = 0;
         $this->save(array(), $resetModDate);
 
     }
 
     function resetAllClicks() {
         $this->resetClicks();
-        for ($i=1; $i<=$this->numPhotos(1); $i++) {
+        for ($i=1; $i <= $this->numPhotos(1); $i++) {
             $this->resetItemClicks($i);
         }
-        $resetModDate=0;
+        $resetModDate = 0;
         $this->save(array(), $resetModDate);
     }
 
@@ -2042,7 +2042,8 @@ class Album {
         $photo = &$this->getPhoto($index);
         $photo->incrementItemClicks();
 
-        $resetModDate=0; //don't reset last_mod_date
+        //don't reset last_mod_date
+        $resetModDate = 0;
         $this->save(array(), $resetModDate);
     }
 
@@ -2070,7 +2071,8 @@ class Album {
         }
 
         if ($needToSave) {
-            $resetModDate=0; //don't reset last_mod_date
+             //don't reset last_mod_date
+            $resetModDate = 0;
             $this->save(array(), $resetModDate);
         }
 
@@ -2147,6 +2149,7 @@ class Album {
                 $nestedAlbum->fields["poll_show_results"] = $this->fields["poll_show_results"];
                 $nestedAlbum->fields["poll_num_results"] = $this->fields["poll_num_results"];
                 $nestedAlbum->fields["voter_class"] = $this->fields["voter_class"];
+                $nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
                 $nestedAlbum->save();
                 $nestedAlbum->setNestedProperties();
             }
