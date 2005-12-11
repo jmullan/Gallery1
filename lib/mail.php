@@ -119,14 +119,15 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$gallery_mail = new htmlMimeMail();
 
 	$gallery_mail->setSubject($subject);
+	$gallery_mail->setHeadCharset($gallery->charset);
 
 	if($isHTML) {
 	    $gallery_mail->setHtmlCharset($gallery->charset);
-            $gallery_mail->setHtml($msg,
-		_("This is a HTML mail, please have a look at the Attachment."));
+        $gallery_mail->setHtml($msg, _("This is a HTML mail, please have a look at the Attachment."));
 	}
 	else {
 	    $gallery_mail->setText($msg);
+	    $gallery_mail->setTextCharset($gallery->charset);
 	}
 	$gallery_mail->setFrom($from);
 	$gallery_mail->setReturnPath($reply_to);
@@ -146,7 +147,6 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 			$gallery->app->smtpPassword
 		);
 	}
-
 
 	$result = $gallery_mail->send($to, ($gallery->app->useOtherSMTP != "yes") ? 'mail' : 'smtp');
 
@@ -263,13 +263,13 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 		$logmsg = sprintf(_("FAILED") ." / FAILED: %s", $logmsg);
 	}
 	if (isset($gallery->app->email_notification) &&
-	in_array("logfile", $gallery->app->email_notification)) {
+	  in_array("logfile", $gallery->app->email_notification)) {
 		$logfile = $gallery->app->userDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
 
 	if (isset($gallery->app->email_notification) &&
-	in_array("email", $gallery->app->email_notification)) {
+	  in_array("email", $gallery->app->email_notification)) {
 		$subject = _("Email activity");
 		if ($subject != "Email activity") {
 			$subject .= "/Email activity";
