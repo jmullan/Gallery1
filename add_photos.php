@@ -74,16 +74,9 @@ if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	}
 }
 
-
 $modes["form"] = _("Form");
-// todo: this mode is broken. Fix it before enabling it again...
-//$modes["form_one"] = _("Form (1)");
 $modes["url"] = _("URL");
 $modes["other"] = _("Other");
-
-if ($gallery->user->isAdmin()) {
-    $modes["admin"] = _("Admin");
-}
 
 if (!isset($mode) || !isset($modes[$mode])) {
 	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";

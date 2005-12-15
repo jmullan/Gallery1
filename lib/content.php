@@ -1196,4 +1196,27 @@ function showImageMap($index) {
 
     return $html;
 }
+
+/**
+ * Generates a complete <img ...> html
+ * @param $relativPath  string  path to the images relativ to gallery root
+ * @param $altText      string  alt Text
+ * @param $attrs        array   optional additional attributs (id, name..)
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function gImage($relativPath, $altText, $attrs = array()) {
+    global $gallery;
+    $html = '';
+    $html .= '<img src="'. getImagePath($relativPath) .'" ';
+    $html .= "alt=\"$altText\" title=\"$altText\"";
+    if(!empty($attrs)) {
+        foreach ($attrs as $key => $value) {
+            $html .= " $key=\"$value\"";
+        }
+    }
+    $html .= '>';
+    
+    return $html;
+}
+            
 ?>

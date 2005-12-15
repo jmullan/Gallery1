@@ -37,18 +37,18 @@ list($sort, $order, $fieldname) = getRequestVar(array('sort', 'order', 'fieldnam
 $adminOptions[] = array(
     'text' => _("Rebuild highlights"),
     'url' =>  doCommand('rebuild_highlights'),
-    'longtext' => _("rebuild highlights")
+    'longtext' => _("Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)")
 );
 
 $adminOptions[] = array(
-    'text' => _("Sort albumorder"),
+    'text' => _("Albumorder"),
     'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1, 'type' => 'popup')),
-    'longtext' => _("Sort albumorder")
+    'longtext' => _("Sort the albums on the startpage(s).<br>(Opens an option dialog)")
 );
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
-$sortOptions= array(
+$sortOptions = array(
     'name'          => _("By (physical) name"),
     'clicks_date'   => _("By last reset date"),
     'creation_date' => _("By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
@@ -96,7 +96,7 @@ elseif (empty($order)) {
 
 <input type="hidden" name="sort" value="1">
 <input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick='parent.close()'>
 </form>
 <?php
 }

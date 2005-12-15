@@ -33,6 +33,7 @@ list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'met
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
 list($wmSelect) = getRequestVar(array('wmSelect'));
 
+print_r($_REQUEST);
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -40,7 +41,10 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 }
 
 if (!empty($_FILES['userfile']['name'])) {
-	$file_count = 0;
+	foreach ($_FILES['userfile'] as $key => $value) {
+	    $firstIsTrash = array_shift($_FILES['userfile'][$key]);
+	}
+    $file_count = 0;
 	foreach ($_FILES['userfile']['name'] as $file) {
 		if ($file) {
 			$file_count++;
@@ -48,6 +52,12 @@ if (!empty($_FILES['userfile']['name'])) {
 	}
 }
 
+if (!empty($_FILES['metafile']['name'])) {
+    foreach ($_FILES['metafile'] as $key => $value) {
+	    $firstIsTrash = array_shift($_FILES['metafile'][$key]);
+	}
+}
+	
 doctype();
 ?>
 <html>
@@ -260,6 +270,8 @@ if (!empty($urls)) {
 
 <?php
 $image_count = 0;
+
+// Begin Metadata fetching and preprocessing
 $image_info = array();
 // Get meta data
 if (isset($meta)) {
@@ -268,69 +280,56 @@ if (isset($meta)) {
 		$image_info = array_merge($image_info, parse_csv(fs_export_filename($data),";"));
 	}
 }
-while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp_name'])) {
-	$name = array_shift($_FILES['metafile']['name']);
-	$file = array_shift($_FILES['metafile']['tmp_name']);
-	$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
-}
-if (isDebugging()) {
-    // Print meta data
-    print "<table border=\"1\">\n";
-    $row = 0;
-    foreach ($image_info as $info) {
-	print "<tr>";
-	if ($row == 0) {
-	    $keys = array_keys($info);
-	    foreach ($keys as $key) {
-		print "<th>$key</th>";
-	    }
-	    print "</tr>\n<tr>";
-	}
-	foreach ($keys as $key) {
-	    print "<td>".$info[$key]."</td>";
-	}
-	$row++;
-	print "</tr>\n";
+
+print_r($_FILES);
+if(!empty($_FILES['metafile']['name')) {
+    echo debugMessage("metadata found", __FILE__, __LINE__);
+    while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp_name'])) {
+        $name = array_shift($_FILES['metafile']['name']);
+        echo debugMessage("name $name", __FILE__, __LINE__);
+        $file = array_shift($_FILES['metafile']['tmp_name']);
+        echo debugMessage("file $file", __FILE__, __LINE__);
+        $image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
     }
-    print "</table>\n";
+
+    $exampleMetaData = $image_info[0];
+    // Find the name of the file name field
+    foreach (array_keys($exampleMetaData) as $currKey) {
+        if (eregi("^\"?file\ ?name\"?$", $currKey)) {
+            $fileNameKey = $currKey;
+        }
+    }
+
+    // $captionMetaFields will store the names (in order of priority to set caption to)
+    $captionMetaFields = array("Caption", "Title", "Description");
+
 }
-// $captionMetaFields will store the names (in order of priority to set caption to)
-$captionMetaFields = array("Caption", "Title", "Description", "Persons");
+// End Metadata preprocessing
 
 $upload_started = false;
 /* Now we start processing the given Files */
 while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
     $upload_started = true;
-	$name = array_shift($_FILES['userfile']['name']);
-	$file = array_shift($_FILES['userfile']['tmp_name']);
-	if (!empty($usercaption) && is_array($usercaption)) {
-	    $caption = strip_tags(array_shift($usercaption));
-	} else {
-	    $caption = '';
-	}
-	if (!isset($caption)) {
-	       	$caption="";
-       	}
+    $name = array_shift($_FILES['userfile']['name']);
+    $file = array_shift($_FILES['userfile']['tmp_name']);
 
-	if ($name) {
-		$extra_fields = array();
-		if (!isset($setCaption)) {
-			$setCaption = '';
-		}
-		// Find in meta data array
-		$firstRow = 1;
-		$fileNameKey = "File Name";
-		foreach ($image_info as $info) {
-			if ($firstRow) {
-				// Find the name of the file name field
-				foreach (array_keys($info) as $currKey) {
-					if (eregi("^\"?file\ ?name\"?$", $currKey)) {
-						$fileNameKey = $currKey;
-					}
-				}
-				$firstRow = 0;
-			}
+    if ($name) {
+        if (!empty($usercaption) && is_array($usercaption)) {
+            $caption = strip_tags(array_shift($usercaption));
+        } else {
+            $caption = '';
+        }
+        if (!isset($caption)) {
+            $caption = '';
+        }
 
+        $extra_fields = array();
+        if (!isset($setCaption)) {
+            $setCaption = '';
+        }
+        
+        // Find in meta data array
+        foreach ($image_info as $info) {
 			if ($info[$fileNameKey] == $name) {
 				// Loop through fields
 				foreach ($captionMetaFields as $field) {
@@ -340,6 +339,10 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 					}
 				}
 				$extra_fields = $info;
+				if(isDebugging()) {
+				    echo "extrafields:";
+				    print_r($extra_fields);
+				}
 			}
 		}
 

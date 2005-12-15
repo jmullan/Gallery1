@@ -1,6 +1,5 @@
 <?php
 function build_popup_url($url, $url_is_complete=0) {
-
 	/* Separate the target from the arguments */
 	$result = explode('?', $url);
 	$target = $result[0];
@@ -11,7 +10,7 @@ function build_popup_url($url, $url_is_complete=0) {
 	}
 
 	/* Parse the query string arguments */
-	$args=array();
+	$args = array();
 	parse_str($arglist, $args);
 	$args['gallery_popup'] = 'true';
 
@@ -76,5 +75,4 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 
 	return "$a1";
 }
-
 ?>

@@ -985,7 +985,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
     }
 }
 
-function processNewImage($file, $ext, $name, $caption, $setCaption="", $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
+function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
     global $gallery;
     global $temp_files;
 
@@ -1448,6 +1448,7 @@ function contextHelp ($link) {
 }
 
 function parse_csv ($filename, $delimiter=";") {
+    echo debugMessage(sprintf(_("Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;
 	$return_array = array();
 	if ($fd = fs_fopen($filename, "rt")) {
@@ -1461,6 +1462,10 @@ function parse_csv ($filename, $delimiter=";") {
 			$return_array[] = $current_image;
 		}
 		fclose($fd);
+	}
+	if(isDebugging()){
+	   echo _("csv result:");
+	   print_r($return_array);
 	}
 	return $return_array;	
 }

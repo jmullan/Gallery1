@@ -629,21 +629,21 @@ class AlbumItem {
                   $this->image->thumb_width,
                   $this->image->thumb_height);
                 if ($ret) {
-                    $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
+                    $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
                 }
             } else {
                 if(!empty($ratio)) {
                     $ret = cropImageToRatio("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, $ratio);
                     if($ret) {
-                        $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
+                        $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
                     } else {
-                        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true);
+                        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
                     }
                 }
                 else {
                     debugMessage(_("Generating normal thumbs"), __FILE__, __LINE__);
                     // no resizing, use ratio for thumb as for the image itself;
-                    $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0,true);
+                    $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0,true, 50);
                 }
             }
 

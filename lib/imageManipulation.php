@@ -309,8 +309,8 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
     // Execute
     switch($gallery->app->graphics) {
         case 'ImageMagick':
-            $settings = "-geometry +$wmAlignX+$wmAlignY $overlayFile";
-            exec_wrapper(ImCmd('composite', '', $src, '', $out, $settings));
+            $srcOperator = "-geometry +$wmAlignX+$wmAlignY $overlayFile";
+            exec_wrapper(ImCmd('composite', $srcOperator, $src, '', $out));
         break;
 
         case 'NetPBM':
@@ -494,11 +494,12 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
             fromPnmCmd($out));
         break;
         case "ImageMagick":
-	    if (floor(getImVersion()) < 6) {
-		$repage = "-page +0+0";
-	    } else {
-		$repage = "+repage";
-	    }
+            if (floor(getImVersion()) < 6) {
+                $repage = "-page +0+0";
+            }
+            else {
+                $repage = "+repage";
+            }
             exec_wrapper(ImCmd('convert', '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
         break;
         default:
@@ -649,7 +650,7 @@ function netPbm($cmd, $args = '') {
  * @param   string  $destOperator
  * @return  $string $cmdLine	  The complete commandline
  */
-function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest, $settings = '') {
+function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest) {
     global $gallery;
     static $ImVersion;
     
@@ -659,10 +660,10 @@ function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest, $settings = '') {
     $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
     
     if($ImVersion < 6) {
-        $cmdLine = "$cmd $settings $src $dest";
+        $cmdLine = "$cmd $srcOperator $destOperator $src $dest";
     }
     else {
-        $cmdLine = "$cmd $settings $srcOperator $src $destOperator $dest";
+        $cmdLine = "$cmd $srcOperator $src $destOperator $dest";
     }
     
     return $cmdLine;
@@ -724,47 +725,41 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
                 }
             }
 
-	    $settings = '';
 	    $destOperator = '';
 	    $srcOperator = '';
 	    /* If not targetSize is given, then this is just for setting (decreasing) quality */
-	    if ($ImVersion < 6) {
-                $settings = "-quality $quality";
-	    }
-            else {
-	        $destOperator = "-quality $quality";
-            }
+        $destOperator = "-quality $quality";
 
-            if ($targetSize) {
-                if ($createThumbnail) {
-		    if ($ImVersion < 6) {
-                        $settings .= " -resize ${targetSize}x${targetSize}";
-                    }
-		    else {
-                        $srcOperator = "-size ${targetSize}x${targetSize}";
-                        $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
-                    }
-                }
-                else {
-		    if ($ImVersion < 6) {
-                        $settings .= " -resize ${targetSize}x${targetSize} $keepProfiles";
-                    }
-		    else {
-			if($gallery->app->IM_HQ == 'yes') {
-			    echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
-			}
-			else {
-			    $srcOperator = "-size ${targetSize}x${targetSize}";
-			    echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
-			}
-                        $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
-                    }
-                }
-                //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
-            }
+	    if ($targetSize) {
+	        if ($createThumbnail) {
+	            if ($ImVersion < 6) {
+	                $destOperator .= " -resize ${targetSize}x${targetSize}";
+	            }
+	            else {
+	                $srcOperator = "-size ${targetSize}x${targetSize}";
+	                $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
+	            }
+	        }
+	        else {
+	            if ($ImVersion < 6) {
+	                $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
+	            }
+	            else {
+	                if($gallery->app->IM_HQ == 'yes') {
+	                    echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
+	                }
+	                else {
+	                    $srcOperator = "-size ${targetSize}x${targetSize}";
+	                    echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
+	                }
+	                $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
+	            }
+	        }
+	        //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
+	    }
 	
 
-            return exec_wrapper(ImCmd('convert',$srcOperator, $srcFile, $destOperator, $destFile, $settings));
+            return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
             //return ImCmd('convert', $srcFile, $destFile, "-quality $quality $sizeCmd $keepProfiles $geometryCmd");
         break;
         default:

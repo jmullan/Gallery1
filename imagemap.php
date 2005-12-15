@@ -116,15 +116,17 @@ common_header();
 <body dir="<?php echo $gallery->direction ?>">
 <?php
 } // End if ! embedded
+
+includeHtmlWrap("photo.header");
+
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
       init_mousemove();
  </script>
-
+ 
 <?php
-includeHtmlWrap("photo.header");
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];

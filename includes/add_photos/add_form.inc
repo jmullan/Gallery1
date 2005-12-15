@@ -22,15 +22,12 @@
 ?>
 <?php
 
-list($boxes, $metaboxes) = getRequestVar(array('boxes','metaboxes'));
+include_once(dirname(dirname(dirname(__FILE__))) . '/js/multifile.js.php');
 
-list($boxes_status, $boxes, $boxes_msg) = isValidInteger($boxes, false, 5);
-list($metaboxes_status, $metaboxes, $metaboxes_msg) = isValidInteger($metaboxes, false, 0);
- 
 echo "\n\t<p>";
 echo _("Click the <b>Browse</b> button to locate a photo to upload.");
 echo '<br>';
-echo _("Supported file types") ?>: <?php echo join(", ", acceptableFormatList());
+printf(_("Supported file types: %s"),join(", ", acceptableFormatList()));
 echo '</p>';
 
 if ($gallery->app->feature["zip"] || $gallery->app->rar) {
@@ -39,59 +36,35 @@ if ($gallery->app->feature["zip"] || $gallery->app->rar) {
     echo "</p>\n\t";
 }
 
-echo makeFormIntro("add_photos.php",
-    array("name" => "count_form"),
-    array('type' => 'popup'));
-?>
-<input type="hidden" name="mode" value="<?php echo $mode ?>"/>
-
-<table>
-<tr>
-	<td><?php echo _("1. Select the number of files you want to upload:") ?></td>
-	<td><input type="text" size="2" maxlength="2" name="boxes" value="<?php echo $boxes; ?>" onChange="javascript:document.count_form.submit(); return false;"></td>
-</tr>
-<tr>
-    <td><?php
-echo '<b>'. _("Optional:") .'</b> ';
-echo _("Select the number of meta data files you want to upload:");
-?>
-    </td>
-    <td><input type="text" size="2" maxlength="2" name="metaboxes" value="<?php echo $metaboxes; ?>" onChange="javascript:document.count_form.submit(); return false;"></td>
-</tr>
-</table>
-
-</form>
-
-<?php echo makeFormIntro("save_photos.php",
+echo makeFormIntro("save_photos.php",
 	array("name" => "upload_form","enctype" => "multipart/form-data"),
 	array('type' => 'popup'));
-?>
-<table>
-<tr>
-	<td colspan="2"><?php echo _("2. Use the Browse button to find the photos on your computer") ?></td>
-</tr>
-<?php for ($i = 0; $i < $boxes;  $i++) { ?>
-<tr>
-	<td><?php echo _("File") ?></td>
-		<td><input name="userfile[]" type="file" size="40"></td>
-	</tr>
-	<tr>
-		<td><?php echo _("Caption") ?></td>
-		<td><input name="usercaption[]" type="text" size="40"><br><br></td>
-	</tr>
-<?php }
-	if ($metaboxes > 0) {
-		echo '<tr><td colspan="2">' . _("3. Use the Browse button to find the meta data files on your computer") . '</td></tr>';
-		for ($i = 0; $i < $metaboxes;  $i++) {
-			echo "\n<tr>";
-			echo "\n\t<td>" . _("File") .'</td>';
-			echo "\n\t<td>". '<input name="metafile[]" type="file" size="40"></td>';
-			echo "\n</tr>";
-		}
-	}
-?>
 
-	</table><br>
+echo "\n\t<input id=\"trash_userfile\" type=\"file\">";
+echo "\n\t<br>". _("Use the Browse button to find the photos on your computer");
+echo "\n<br><br>". _("Files:");
+?>
+    <div style="border: 1px solid black;" id="files_list"></div>
+<script type="text/javascript">
+    var userfile_selector = new MultiSelector(document.getElementById('files_list'), -1, 'userfile', true);
+    userfile_selector.addElement(document.getElementById('trash_userfile'));
+</script>
+
+<p><?php 
+    echo _("Do the same for optional metafiles.");
+    echo popup_link(gImage('icons/help.gif', _("Help")), 'help/metadataOnUpload.php');
+?>
+</p>
+<input id="trash_metafile" type="file">
+	<br>
+MetaFiles:
+
+<div style="border: 1px solid black;" id="metafiles_list"></div>
+<script type="text/javascript">
+    var userfile_selector = new MultiSelector(document.getElementById('metafiles_list'), -1, 'metafile', false);
+    userfile_selector.addElement(document.getElementById('trash_metafile'));
+</script>
+<br>
 <?php 
 	echo _("If no caption is set, what would you like the captions to default to?");
 	echo "\n<p>";
