@@ -795,21 +795,20 @@ function _getStyleSheetLink($filename, $skinname='') {
 //
 // -jpk
 
-function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $readOnly=false) {
+function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $movePhoto = false, $readOnly = false) {
     global $gallery, $albumDB, $index;
 
-    $uptodate=true;
-
+    $uptodate = true;
     $mynumalbums = $albumDB->numAlbums($gallery->user);
 
     if (!$readOnly) {
-        echo "<option value=\"0\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n";
+        echo "\n\t<option value=\"0\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n\t";
     }
 
     // create a ROOT option for the user to move the
     // album to the main display
     if ($gallery->user->canCreateAlbums() && $rootDisplay && !$readOnly) {
-        echo "<option value=\".root\">". gTranslate('common', "Move to top level") ."</option>";
+        echo "\n\t<option value=\".root\">". gTranslate('common', "Move to top level") ."</option>\n\t";
     }
 
     // display all albums that the user can move album to
@@ -819,22 +818,20 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
         $myAlbumTitle = $myAlbum->fields['title'];
 
         if ($gallery->user->canWriteToAlbum($myAlbum) ||
-        ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
-
+          ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
             if ($myAlbum->versionOutOfDate()) {
                 $uptodate = false;
                 continue;
             }
-
             if (!$readOnly && ($myAlbum == $gallery->album)) {
                 // Don't allow the user to move to the current location with
                 // value=0, but notify them that this is the current location
-                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "current location"). ")</option>\n";
+                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "current location"). ")</option>\n\t";
             } else {
                 if (sizeof($gallery->album->fields["votes"]) && $gallery->album->pollsCompatible($myAlbum)) {
-                    $myAlbumTitle .= " *";
+                    $myAlbumTitle .= ' *';
                 }
-                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n";
+                echo "<option value=\"$myAlbumName\">-- $myAlbumTitle</option>\n\t";
             }
         }
 
@@ -843,11 +840,9 @@ function printAlbumOptionList($rootDisplay=1, $moveRootAlbum=0, $movePhoto=0, $r
             // want to move it into its own album tree
 
         } elseif (!$readOnly && !$gallery->album->isRoot() &&
-          ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
-
+            ($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )  {
             // do nothing -- we are moving an album, and we don't
             // want to move it into its own album tree
-
         } else {
             printNestedVals(1, $myAlbumName, $movePhoto, $readOnly);
         }
@@ -877,12 +872,12 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
                 if (!$readOnly && ($nestedAlbum == $gallery->album)) {
                     // don't allow user to move to here (value=0), but
                     // notify them that this is their current location
-                    echo "<option value=0> $val2 (". gTranslate('common', "Current location") .")</option>\n";
+                    echo "<option value=\"0\"> $val2 (". gTranslate('common', "Current location") .")</option>\n\t";
                 } elseif (!$readOnly && !$gallery->album->isRoot() &&
                   ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
-                    echo "<option value=0> $val2 (". gTranslate('common', "This album itself"). ")</option>\n";
+                    echo "<option value=\"0\"> $val2 (". gTranslate('common', "This album itself"). ")</option>\n\t";
                 } else {
-                    echo "<option value=\"$myName\"> $val2</option>\n";
+                    echo "<option value=\"$myName\"> $val2</option>\n\t";
                 }
             }
 
