@@ -20,10 +20,10 @@ function MultiSelector(list_target, max, fieldname, withCaption){
 
     // Where to write the list
     this.list_target = list_target;
+
     // How many elements?
     this.count = 0;
-    // How many elements?
-    this.id = 0;
+
     // Is there a maximum?
     if( max ){
         this.max = max;
@@ -108,6 +108,9 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         caption.size = 60;
         caption.name = 'usercaption[]';
 
+	// horizontal line
+	var hr = document.createElement('hr');
+
         // References
         line.element = element;
 
@@ -146,6 +149,8 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         // Add button
         line.appendChild(deleteButton);
 
+        // Add button
+        line.appendChild(hr);
 
         // Add it to the list
         this.list_target.appendChild(line);

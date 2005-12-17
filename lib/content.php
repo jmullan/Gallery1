@@ -263,83 +263,87 @@ foreach ($overrides as $key => $value) {
 <?php
 }
 
-function printChildren($albumName,$depth=0) {
+function createTreeArray($albumName,$depth = 0) {
     global $gallery;
     $printedHeader = 0;
     $myAlbum = new Album();
     $myAlbum->load($albumName);
     $numPhotos = $myAlbum->numPhotos(1);
 
+    $tree = array();
     if ($depth >= $gallery->app->albumTreeDepth) {
-        return;
+        return $tree;
     }
 
-    for ($i=1; $i <= $numPhotos; $i++) {
+    for ($i = 1; $i <= $numPhotos; $i++) {
         set_time_limit($gallery->app->timeLimit);
         if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
             $myName = $myAlbum->getAlbumName($i, false);
             $nestedAlbum = new Album();
             $nestedAlbum->load($myName);
             if ($gallery->user->canReadAlbum($nestedAlbum)) {
-                $val2 = $nestedAlbum->fields['title'];
+                $title = $nestedAlbum->fields['title'];
                 if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
                   && !$gallery->session->offline) {
-                    $val3 = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks()) . ")";
+                    $clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks()) . ")";
                 } else {
-                    $val3 = '';
+                    $clicksText = '';
                 }
-                if ($depth==0 && !$printedHeader++) {
-                    echo '<b>'. gTranslate('common', "Sub-albums") .":</b>\n";
-                }
-                echo "<div class='fineprint' style=\"white-space:nowrap; margin: 0px 0px 0px " . 20 * ($depth + 1) . "px\">";
-                echo '<a href="';
-                echo makeAlbumUrl($myName);
-                echo "\">$val2 $val3</a>";
-                echo "</div>\n";
-                printChildren($myName, $depth+1);
+
+		$albumUrl = makeAlbumUrl($myName);
+		$subtree = createTreeArray($myName, $depth+1);
+		$highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
+                  'class="nav_micro_img"', "$title $clicksText");
+                $microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
+		$tree[] = array(
+		    'albumUrl' => $albumUrl,
+		    'albumName' => $myName, 
+		    'titel' => $title,
+		    'clicksText' => $clicksText,
+		    'microthumb' => $microthumb,
+		    'subTree' => $subtree);
             }
         }
+    }
+    return $tree;
+}
+
+function printChildren($tree, $depth = 0) {
+    if ($depth == 0 && !empty($tree)) {
+	echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+    }
+        
+    foreach($tree as $nr => $content) {
+	echo "\n<table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0px; padding: 0px; margin-". langLeft() .":". 20 * $depth ."px\">";
+	echo "<tr><td>";
+	if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
+	    echo gImage('icons/tree/join-'. langRight(). '.gif', '');
+	}
+	else {
+	    echo gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
+	}
+	echo "</td><td style=\"vertical-align:middle; padding-". langLeft().": 1px;\">";
+	echo '<a href="'. $content['albumName'] .'">';
+	echo $content['titel'] .' ';
+	echo $content['clicksText'] .'</a>';
+	echo "</td></tr></table>";
+	if(!empty($content['subTree'])) {
+	    printChildren($content['subTree'], $depth+1);
+	}
     }
 }
 
-function printMicroChildren($albumName, $depth = 0) {
-    global $gallery;
-    $printedHeader = 0;
-    $myAlbum = new Album();
-    $myAlbum->load($albumName);
-    $numPhotos = $myAlbum->numPhotos(1);
-
-    if ($depth >= $gallery->app->albumTreeDepth) {
-        return;
+function printMicroChildren2($tree, $depth = 0) {
+    if ($depth == 0 && !empty($tree)) {
+        echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
     }
-    for ($i = 1; $i <= $numPhotos; $i++) {
-        //set_time_limit($gallery->app->timeLimit);
-        if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
-            $myName = $myAlbum->getAlbumName($i, false);
-            $nestedAlbum = new Album();
-            $nestedAlbum->load($myName);
-            if ($gallery->user->canReadAlbum($nestedAlbum)) {
-                if (strstr($nestedAlbum->gethighlightTag(), "img") === false) {
-                    continue;
-                }
-                $val2 = $nestedAlbum->fields['title'];
-                if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
-                  && !$gallery->session->offline) {
-                    $val3 = "(" . gTranslate("1 view", "%d views", $nestedAlbum->getClicks()) . ")";
-                } else {
-                    $val3 = '';
-                }
-                if ($depth == 0 && !$printedHeader++) {
-                    echo '<br><br><strong>'. gTranslate('common', "Sub-albums") .':</strong><br>';
-                }
-                $highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
-                  'class="nav_micro_img"', "$val2 $val3");
-                echo '<a href="'. makeAlbumUrl($myName). '">'. $highlightTag .'</a>&nbsp';
-                printMicroChildren($myName, $depth+1);
-            }
+
+    foreach($tree as $nr => $content) {
+	echo $content['microthumb'];
+	if(!empty($content['subTree'])) {
+            printMicroChildren2($content['subTree'], $depth+1);
         }
     }
-
 }
 
 function printMetaData($image_info) {

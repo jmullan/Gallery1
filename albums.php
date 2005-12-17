@@ -439,11 +439,11 @@ if($gallery->app->comments_enabled == 'yes') {
     if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0)
 	if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') { ?>
   <div style="width: 100%;">
-    <?php echo printMicroChildren($albumName); ?>
+  <?php echo printMicroChildren2(createTreeArray($albumName,$depth = 0)); ?>
   </div>
 <?php } else { ?>
-  <td align="left" valign="top" class="albumdesc">
-   <?php echo printChildren($albumName); ?>
+  <td valign="top" class="albumdesc">
+<?php printChildren(createTreeArray($albumName,$depth = 0)); ?>
   </td>
 <?php } ?>
   </tr>

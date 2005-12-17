@@ -33,7 +33,6 @@ list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'met
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
 list($wmSelect) = getRequestVar(array('wmSelect'));
 
-print_r($_REQUEST);
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	echo _("You are not allowed to perform this action!");
@@ -41,23 +40,14 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 }
 
 if (!empty($_FILES['userfile']['name'])) {
-	foreach ($_FILES['userfile'] as $key => $value) {
-	    $firstIsTrash = array_shift($_FILES['userfile'][$key]);
-	}
     $file_count = 0;
-	foreach ($_FILES['userfile']['name'] as $file) {
-		if ($file) {
-			$file_count++;
-		}
+    foreach ($_FILES['userfile']['name'] as $file) {
+	if ($file) {
+	    $file_count++;
 	}
+    }
 }
 
-if (!empty($_FILES['metafile']['name'])) {
-    foreach ($_FILES['metafile'] as $key => $value) {
-	    $firstIsTrash = array_shift($_FILES['metafile'][$key]);
-	}
-}
-	
 doctype();
 ?>
 <html>
@@ -281,8 +271,8 @@ if (isset($meta)) {
 	}
 }
 
-print_r($_FILES);
-if(!empty($_FILES['metafile']['name')) {
+
+if(!empty($_FILES['metafile']['name'][0])) {
     echo debugMessage("metadata found", __FILE__, __LINE__);
     while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp_name'])) {
         $name = array_shift($_FILES['metafile']['name']);
@@ -340,7 +330,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 				}
 				$extra_fields = $info;
 				if(isDebugging()) {
-				    echo "extrafields:";
+				    echo _("Extrafields:");
 				    print_r($extra_fields);
 				}
 			}

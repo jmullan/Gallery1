@@ -24,27 +24,26 @@
 
 include_once(dirname(dirname(dirname(__FILE__))) . '/js/multifile.js.php');
 
-echo "\n\t<p>";
-echo _("Click the <b>Browse</b> button to locate a photo to upload.");
-echo '<br>';
-printf(_("Supported file types: %s"),join(", ", acceptableFormatList()));
+echo "\n<p>". _("Click the <b>Browse</b> button to locate a photo to upload.");
+echo '<br>'. sprintf(_("Supported file types: %s"),join(", ", acceptableFormatList()));
 echo '</p>';
 
 if ($gallery->app->feature["zip"] || $gallery->app->rar) {
     echo '<p><b>'. _("Tip:") . '</b> ';
     echo _("Upload a compressed file (zip, rar, ace ...) full of photos and movies!");
-    echo "</p>\n\t";
+    echo "</p>\n";
 }
 
 echo makeFormIntro("save_photos.php",
 	array("name" => "upload_form","enctype" => "multipart/form-data"),
 	array('type' => 'popup'));
 
-echo "\n\t<input id=\"trash_userfile\" type=\"file\">";
-echo "\n\t<br>". _("Use the Browse button to find the photos on your computer");
+echo "\n<input id=\"trash_userfile\" type=\"file\">";
+echo "\n<br>". _("Use the Browse button to find the photos on your computer");
 echo "\n<br><br>". _("Files:");
 ?>
-    <div style="border: 1px solid black;" id="files_list"></div>
+
+<div style="padding: 2px; border: 1px solid black;" id="files_list"></div>
 <script type="text/javascript">
     var userfile_selector = new MultiSelector(document.getElementById('files_list'), -1, 'userfile', true);
     userfile_selector.addElement(document.getElementById('trash_userfile'));
@@ -56,26 +55,25 @@ echo "\n<br><br>". _("Files:");
 ?>
 </p>
 <input id="trash_metafile" type="file">
-	<br>
-MetaFiles:
 
-<div style="border: 1px solid black;" id="metafiles_list"></div>
+<br><?php echo _("MetaFiles:"); ?>
+<div style="padding: 2px; border: 1px solid black;" id="metafiles_list"></div>
 <script type="text/javascript">
     var userfile_selector = new MultiSelector(document.getElementById('metafiles_list'), -1, 'metafile', false);
     userfile_selector.addElement(document.getElementById('trash_metafile'));
 </script>
 <br>
 <?php 
-	echo _("If no caption is set, what would you like the captions to default to?");
-	echo "\n<p>";
-	include(dirname(__FILE__) .'/captionOptions.inc.php');
+    echo _("If no caption is set, what would you like the captions to default to?");
+    echo "\n<p>";
+    include(dirname(__FILE__) .'/captionOptions.inc.php');
 
-if (isset($gallery->app->watermarkDir)) {
-    global $watermarkForm;
-    $watermarkForm["askRecursive"] = 0;
-    $watermarkForm["askPreview"] = 0;
-    $watermarkForm["allowNone"] = 1;
-    includeLayout('watermarkform.inc');
+    if (isset($gallery->app->watermarkDir)) {
+	global $watermarkForm;
+	$watermarkForm["askRecursive"] = 0;
+	$watermarkForm["askPreview"] = 0;
+	$watermarkForm["allowNone"] = 1;
+	includeLayout('watermarkform.inc');
 }
 ?>
 	<p align="center">

@@ -32,13 +32,13 @@ printPopupStart(_("Metadata on Upload Help"),'', langLeft());
       <li class="top"><?php echo _("What is meant with metadata in this context ?"); ?></li>
 
       <p>
-        <?php echo _("Photos in Gallery have descriptive fields, like caption, title and so on. You can also have your own custom fields."); ?>
-        <br><?php echo _("All this information are called metadata."); ?>
+        <?php echo _("Photos in Gallery have descriptive fields, like caption, title and other data fields. You can also define your own custom fields."); ?>
+        <br><?php echo _("This information is called Metadata."); ?>
       </p>
       
       <p>
         <?php echo _("Normally this info is added manually inside the Gallery for each photo."); ?>
-        <br><?php echo _("But you are also able to do this automatically during the upload."); ?>
+        <br><?php echo _("You can also do this automatically during your uploads."); ?>
       </p>
 
     </ul>
@@ -47,8 +47,8 @@ printPopupStart(_("Metadata on Upload Help"),'', langLeft());
       <li class="top"><?php echo _("How can i add the metadata?"); ?></li>
 
       <p>
-        <?php echo _("You have to create file that contain the info you want to give during the upload.."); ?>
-        <br><?php echo _("Upload this file together with your pictures."); ?>
+        <?php printf(_("Create a %s'csv-file (Comma Separated Values)'%s which contains the data you want associated with the files you are uploading."), '<a href="http://en.wikipedia.org/wiki/Comma-separated_values">', '</a>'); ?>
+        <br><?php echo _("Upload this file at the same time as you upload your files, you cannot upload it later and expect Gallery to import the metadata from it."); ?>
       </p>
     </ul>
 
@@ -56,21 +56,22 @@ printPopupStart(_("Metadata on Upload Help"),'', langLeft());
       <li class="top"><?php echo _("In which format has the data to be?"); ?></li>
 
       <p>
-	    <?php echo _("The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields. "); ?>
-	    <?php echo _("Order does not matter, but you have to you a <b>;</b> (Semicolon) as separator."); ?>
-        <ul><li><?php printf(_("Mandatory: %s"), "'filename'"); ?>
-            <li><?php printf(_("Predefined: %s, %s, %s"), "'caption'", "'title'", "'description'"); ?>
+	<?php echo _("The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."); ?>
+	<?php echo _("Order does not matter, but you have to you a <b>;</b> (Semicolon) as separator."); ?>
+        <ul><li><?php printf(_("Mandatory: %s"), "'Filename'"); ?>
+            <li><?php printf(_("Predefined: %s, %s, %s"), "'Caption'", "'Title'", "'Description'"); ?>
         </ul>
+
         <br><?php echo _("Then follow the lines containing the info it self"); ?>
-        <br><br><b><?php echo _("Example:"); ?></b>
-        <div style="border: 1px solid black">filename;Caption;Note
-        <br>myExGirlfriend.jpg;Joan;I miss her so
-        <br>car.jpg;Mercededes 200D/8;Some day i will own it
+	</ul>
+        
+	<b><?php echo _("Example:"); ?></b>
+        <div style="padding: 2px; border: 1px solid black">Filename;Caption;Title;Note
+	  <br>madonna.jpg;Madonna in Concert;Madonna Picture;Live in Concert in NYC
+          <br>myExGirlfriend.jpg;Joan;Joan;I miss her so
+          <br>car.jpg;Mercedes 200D/8;Mercedes Benz Diesel built in 1976;Some day i will own it
         </div>
-
       </p>
-
-    </ul>
 
     <div align="center">
       <input type="button" value="<?php echo _("Back to upload"); ?>" onclick="history.back()">
