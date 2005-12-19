@@ -349,7 +349,7 @@ function viewBlacklist() {
             $blacklistTable->addElement(array('content' => wordwrap($regex, 80, "<br>", true)));
 
             $blacklistTable->addElement(array(
-                'content' => '<input type="checkbox" name="delete[]" value="'. $key .'%s">',
+                'content' => '<input type="checkbox" name="delete[]" value="'. $key .'">',
                 'cellArgs' => array('align' => 'center')));
         }
         $blacklistTable->addElement(array(

@@ -271,7 +271,7 @@ for($i = 1; $i <= 27; $i++) {
 <?php } else {
     echo sprintf(_("Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
 ?>
-  <p align="center"><?php echo $gallery->album->getThumbnailTag($photoIndex); ?></p>
+  <p align="center"><?php echo $gallery->album->getThumbnailTag($ecard['photoIndex']); ?></p>
   <br>
   <a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
 <?php }
