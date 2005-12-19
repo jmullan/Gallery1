@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-10-25 15:30+0200\n"
+"POT-Creation-Date: 2005-12-19 13:24+0100\n"
 "PO-Revision-Date: 2003-08-27 18:13+0800\n"
 "Last-Translator: Merlin Ma <merlin AT turbolinux DOT com DOT cn>\n"
 "Language-Team: Simplified Chinese <naoki AT cmfans DOT cn>\n"
@@ -35,17 +35,17 @@ msgstr ""
 "Content-Type: text/plain; charset=GB2312\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../add_comment.php:29 ../add_photos.php:31 ../album_permissions.php:33
-#: ../copy_photo.php:29 ../create_user.php:34 ../delete_album.php:31
-#: ../delete_photo.php:38 ../delete_user.php:30 ../edit_appearance.php:29
-#: ../edit_caption.php:33 ../edit_field.php:31 ../edit_thumb.php:31
-#: ../edit_watermark.php:38 ../extra_fields.php:34 ../manage_users.php:31
-#: ../modify_user.php:34 ../move_album.php:31 ../move_photo.php:31
-#: ../multi_create_user.php:34 ../photo_owner.php:34 ../poll_properties.php:34
-#: ../poll_results.php:37 ../rearrange.php:28 ../rename_album.php:31
-#: ../reset_votes.php:37 ../resize_photo.php:31 ../rotate_photo.php:31
-#: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
-#: ../watermark_album.php:43
+#: ../add_comment.php:29 ../add_photos.php:31 ../administer_startpage.php:31
+#: ../album_permissions.php:33 ../copy_photo.php:29 ../create_user.php:34
+#: ../delete_album.php:31 ../delete_photo.php:38 ../delete_user.php:30
+#: ../edit_appearance.php:29 ../edit_caption.php:33 ../edit_field.php:31
+#: ../edit_thumb.php:31 ../edit_watermark.php:38 ../extra_fields.php:34
+#: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
+#: ../move_photo.php:31 ../multi_create_user.php:34 ../photo_owner.php:34
+#: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
+#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
+#: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
+#: ../user_preferences.php:31 ../watermark_album.php:43
 #, fuzzy
 msgid "You are not allowed to perform this action!"
 msgstr "您可以在这边更改个人信息. "
@@ -71,12 +71,12 @@ msgstr "添加评论"
 msgid "Enter your comment for this picture in the text box below."
 msgstr "请在下面的框框中输入您的评论. "
 
-#: ../add_comment.php:100 ../copy_photo.php:204 ../delete_album.php:66
-#: ../delete_photo.php:139 ../delete_user.php:85 ../ecard_form.php:263
-#: ../edit_caption.php:184 ../edit_field.php:66 ../edit_watermark.php:120
-#: ../includes/add_photos/add_form.inc:110
-#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:118
-#: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
+#: ../add_comment.php:98 ../copy_photo.php:204 ../delete_album.php:72
+#: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
+#: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
+#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
+#: ../move_album.php:134 ../move_photo.php:249 ../move_photo.php:335
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
 #: ../watermark_album.php:153
@@ -97,24 +97,18 @@ msgstr "套用"
 msgid "Applet (big)"
 msgstr "套用"
 
-#: ../add_photos.php:78
+#: ../add_photos.php:77
 #, fuzzy
 msgid "Form"
 msgstr "或者"
 
-#: ../add_photos.php:81
+#: ../add_photos.php:78
 msgid "URL"
 msgstr ""
 
-#: ../add_photos.php:82 ../layout/watermarkform.inc:134
-#, fuzzy
+#: ../add_photos.php:79 ../layout/watermarkform.inc:134
 msgid "Other"
-msgstr "所有者"
-
-#: ../add_photos.php:85
-#, fuzzy
-msgid "Admin"
-msgstr "修改说明"
+msgstr ""
 
 #: ../admin-page.php:36
 msgid "statistics"
@@ -174,13 +168,74 @@ msgstr "管理用户"
 msgid "Admin options"
 msgstr "修改说明"
 
-#: ../admin-page.php:85 ../search.php:56 ../stats.php:601
-#: ../stats-wizard.php:55 ../tools/find_orphans.php:211
-#: ../tools/despam-comments.php:56 ../tools/validate_albums.php:138
+#: ../admin-page.php:85 ../search.php:56 ../stats-wizard.php:55
+#: ../stats.php:603 ../tools/despam-comments.php:56
+#: ../tools/find_orphans.php:211 ../tools/validate_albums.php:138
 #: ../tools/validate_albums.php:214
 #, fuzzy
 msgid "return to gallery"
 msgstr "进入 Gallery"
+
+#: ../administer_startpage.php:38
+#, fuzzy
+msgid "Rebuild highlights"
+msgstr "没有封面"
+
+#: ../administer_startpage.php:40
+msgid "Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)"
+msgstr ""
+
+#: ../administer_startpage.php:44
+#, fuzzy
+msgid "Albumorder"
+msgstr "相册"
+
+#: ../administer_startpage.php:46
+msgid "Sort the albums on the startpage(s).<br>(Opens an option dialog)"
+msgstr ""
+
+#: ../administer_startpage.php:52
+#, fuzzy
+msgid "By (physical) name"
+msgstr "根据文件名称"
+
+#: ../administer_startpage.php:53
+msgid "By last reset date"
+msgstr ""
+
+#: ../administer_startpage.php:54
+msgid "By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)"
+msgstr ""
+
+#: ../administer_startpage.php:58
+msgid "Administer Startpage"
+msgstr ""
+
+#: ../administer_startpage.php:79
+msgid "Sort albums on startpage"
+msgstr ""
+
+#: ../administer_startpage.php:90 ../sort_album.php:105
+msgid "Sort Order:"
+msgstr ""
+
+#: ../administer_startpage.php:92 ../sort_album.php:112
+msgid "Ascending"
+msgstr "递增"
+
+#: ../administer_startpage.php:93 ../sort_album.php:113
+msgid "Descending"
+msgstr "递减"
+
+#: ../administer_startpage.php:98 ../sort_album.php:120
+msgid "Sort"
+msgstr "排序"
+
+#: ../administer_startpage.php:99 ../administer_startpage.php:109
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:135
+#: ../view_photo_properties.php:137
+msgid "Close Window"
+msgstr ""
 
 #: ../album_permissions.php:38
 #, fuzzy
@@ -225,274 +280,275 @@ msgstr "可以浏览完整图片"
 msgid "Users who can change album text."
 msgstr "可以更改说明"
 
-#: ../album_permissions.php:105 ../album_permissions.php:109
+#: ../album_permissions.php:110 ../album_permissions.php:114
 msgid "Album Permissions"
 msgstr "相册权限"
 
-#: ../album_permissions.php:111
+#: ../album_permissions.php:116
 #, php-format
 msgid "Changing permissions for %s"
 msgstr "更改 %s 的权限："
 
-#: ../album_permissions.php:117
+#: ../album_permissions.php:122
 msgid "Owner:"
 msgstr "所有者："
 
-#: ../album_permissions.php:151
+#: ../album_permissions.php:156
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../album_permissions.php:154 ../edit_caption.php:183 ../edit_field.php:56
-#: ../edit_field.php:65 ../edit_watermark.php:118 ../modify_user.php:163
+#: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
+#: ../edit_field.php:66 ../edit_watermark.php:124 ../modify_user.php:163
 #: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:134
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "储存"
 
-#: ../album_permissions.php:155 ../manage_users.php:100 ../modify_user.php:165
+#: ../album_permissions.php:160 ../manage_users.php:100 ../modify_user.php:165
 #: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
 msgstr "完成"
 
-#: ../albums.php:110 ../view_album.php:130
+#: ../albums.php:111 ../view_album.php:130
 #, php-format
 msgid "%s RSS"
 msgstr ""
 
-#: ../albums.php:145
+#: ../albums.php:146
 #, fuzzy, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "个相册"
 msgstr[1] "个相册"
 
-#: ../albums.php:145
+#: ../albums.php:146
 #, fuzzy
 msgid "no albums"
 msgstr "尚无相册"
 
-#: ../albums.php:147
+#: ../albums.php:148
 #, fuzzy, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
 msgstr[0] "个顶层相册"
 msgstr[1] "个顶层相册"
 
-#: ../albums.php:147
+#: ../albums.php:148
 #, fuzzy
 msgid "No top-level albums"
 msgstr "个顶层相册"
 
-#: ../albums.php:150
+#: ../albums.php:151
 #, php-format
 msgid "%d total"
 msgstr "全部有 %d 个相册"
 
-#: ../albums.php:151 ../view_album.php:212
+#: ../albums.php:152 ../view_album.php:212
 #, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "个文件"
 msgstr[1] "个文件"
 
-#: ../albums.php:151 ../view_album.php:212
+#: ../albums.php:152 ../view_album.php:212
 msgid "no images"
 msgstr "没有文件"
 
-#: ../albums.php:152 ../view_album.php:213
+#: ../albums.php:153 ../view_album.php:213
 #, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] "页"
 msgstr[1] "页"
 
-#: ../albums.php:152
+#: ../albums.php:153
 msgid "no pages"
 msgstr "0 页"
 
-#: ../albums.php:155
+#: ../albums.php:156
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%s (%s), %s 总共 %s"
 
-#: ../albums.php:158
+#: ../albums.php:159
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:160
+#: ../albums.php:161
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%s, %s 总共 %s"
 
-#: ../albums.php:162
+#: ../albums.php:163
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:177
+#: ../albums.php:178
 #, php-format
 msgid "Welcome, %s"
 msgstr "欢迎光临, %s"
 
-#: ../albums.php:181 ../view_album.php:388
+#: ../albums.php:182 ../view_album.php:402
 msgid "slideshow"
 msgstr "播放"
 
-#: ../albums.php:186
+#: ../albums.php:187
 msgid "new album"
 msgstr "添加相册"
 
-#: ../albums.php:193
-#, fuzzy
-msgid "rebuild highlights"
-msgstr "没有封面"
+#: ../albums.php:194
+msgid "Administer startpage"
+msgstr ""
 
-#: ../albums.php:197
+#: ../albums.php:198
 #, fuzzy
 msgid "admin page"
 msgstr "0 页"
 
-#: ../albums.php:202
+#: ../albums.php:203
 msgid "documentation"
 msgstr "说明文件"
 
-#: ../albums.php:208
+#: ../albums.php:209
 msgid "preferences"
 msgstr "个人设定"
 
-#: ../albums.php:213 ../view_album.php:406 ../view_photo.php:512
+#: ../albums.php:214 ../imagemap.php:139 ../view_album.php:420
+#: ../view_photo.php:511
 msgid "logout"
 msgstr "退出"
 
-#: ../albums.php:218 ../view_album.php:411 ../view_photo.php:517
+#: ../albums.php:219 ../imagemap.php:144 ../view_album.php:425
+#: ../view_photo.php:516
 msgid "login"
 msgstr "登录"
 
-#: ../albums.php:222
+#: ../albums.php:223
 msgid "register"
 msgstr ""
 
-#: ../albums.php:248
+#: ../albums.php:249
 msgid "Attention Gallery Administrator!"
 msgstr "管理者请注意!"
 
-#: ../albums.php:251
+#: ../albums.php:252
 #, fuzzy, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s 发现以下目录 %s 在您的 %s 相册中"
 
-#: ../albums.php:257
+#: ../albums.php:258
 #, fuzzy
 msgid "Please move it/them out of the albums directory."
 msgstr "这些都不是正确的相册, 请尽速移除. "
 
-#: ../albums.php:261
+#: ../albums.php:262
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:265
+#: ../albums.php:266
 #, fuzzy, php-format
 msgid "Please %s."
 msgstr "请耐心等候.."
 
-#: ../albums.php:265
+#: ../albums.php:266
 #, fuzzy
 msgid "upgrade those albums"
 msgstr "更新所有的相册"
 
-#: ../albums.php:272
+#: ../albums.php:273
 #, fuzzy
 msgid "Attention!"
 msgstr "说明文件"
 
-#: ../albums.php:274
+#: ../albums.php:275
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"
 msgstr ""
 
-#: ../albums.php:274
+#: ../albums.php:275
 #, php-format
 msgid "%s and try again."
 msgstr ""
 
-#: ../albums.php:275
+#: ../albums.php:276
 #, fuzzy
 msgid "Log in"
 msgstr "登录"
 
-#: ../albums.php:289
+#: ../albums.php:290
 #, php-format
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:330 ../view_album.php:667
+#: ../albums.php:331 ../view_album.php:681
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "Highlight 照片"
 
-#: ../albums.php:350 ../view_album.php:787
+#: ../albums.php:351 ../view_album.php:801
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:379
+#: ../albums.php:380
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "所有者："
 
-#: ../albums.php:384
+#: ../albums.php:385
 msgid "url:"
 msgstr ""
 
-#: ../albums.php:395
+#: ../albums.php:396
 msgid "Hey!"
 msgstr "嘿! "
 
-#: ../albums.php:396
+#: ../albums.php:397
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s 该相册, 换个好记一点的名称吧! "
 
-#: ../albums.php:397
+#: ../albums.php:398
 #, fuzzy
 msgid "Rename this album"
 msgstr "更改相册名称"
 
-#: ../albums.php:408
+#: ../albums.php:409
 #, php-format
 msgid "Last changed on %s."
 msgstr "上次更新：%s. "
 
-#: ../albums.php:411
+#: ../albums.php:412
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "<br>%s在这个相册里面. "
 msgstr[1] "<br>%s在这个相册里面. "
 
-#: ../albums.php:416
+#: ../albums.php:417
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "人气：%s (从 %s 开始计算)"
 
-#: ../albums.php:417 ../view_album.php:822 ../view_album.php:846
+#: ../albums.php:418 ../view_album.php:835
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "度"
 msgstr[1] "度"
 
-#: ../albums.php:417
+#: ../albums.php:418
 msgid "0 times"
 msgstr "0 次"
 
-#: ../albums.php:423
+#: ../albums.php:424
 msgid "reset counter"
 msgstr "人气归零"
 
-#: ../albums.php:462 ../view_album.php:918
+#: ../albums.php:463 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "代表有评论喔. "
 
@@ -516,88 +572,84 @@ msgstr "多重说明编辑器"
 msgid "1 photo in this album"
 msgstr "1 份文件在此相册中"
 
-#: ../captionator.php:177
-msgid "items in this album"
-msgstr "份文件在此相册中"
+#: ../captionator.php:178
+#, fuzzy, php-format
+msgid "%s items in this album on %s"
+msgstr "%s 在个这相册中, 共 %s"
 
-#: ../captionator.php:179
-msgid "on"
-msgstr "总共"
-
-#: ../captionator.php:179
+#: ../captionator.php:180
 #, fuzzy, php-format
 msgid "one page"
 msgid_plural "%d pages"
 msgstr[0] "0 页"
 msgstr[1] "0 页"
 
-#: ../captionator.php:186 ../slideshow.php:183 ../view_album.php:109
-#: ../view_comments.php:54 ../view_photo.php:167
+#: ../captionator.php:183
+#, fuzzy, php-format
+msgid "%s items in this album"
+msgstr "份文件在此相册中"
+
+#: ../captionator.php:191 ../imagemap.php:157 ../slideshow.php:183
+#: ../view_album.php:109 ../view_comments.php:54 ../view_photo.php:167
 msgid "navigate UP"
 msgstr ""
 
-#: ../captionator.php:187
-#, fuzzy
-msgid "Album: "
-msgstr "相册"
-
-#: ../captionator.php:202 ../captionator.php:315
+#: ../captionator.php:212 ../captionator.php:325
 msgid "Save and Exit"
 msgstr "储存且离开"
 
-#: ../captionator.php:205 ../captionator.php:318
+#: ../captionator.php:215 ../captionator.php:328
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "储存并编辑后面 %d 份"
 
-#: ../captionator.php:209 ../captionator.php:322
+#: ../captionator.php:219 ../captionator.php:332
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "储存并编辑前面 %d 份"
 
 # ../captionator.php:217 ../captionator.php:327
-#: ../captionator.php:213 ../captionator.php:326
+#: ../captionator.php:223 ../captionator.php:336
 msgid "Exit"
 msgstr "离开"
 
-#: ../captionator.php:244
+#: ../captionator.php:254
 msgid "(click to enlarge)"
 msgstr ""
 
-#: ../captionator.php:252 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:775
+#: ../captionator.php:262 ../layout/commentboxtop.inc:20
+#: ../layout/commentboxtop.inc:45 ../view_album.php:789
 msgid "hidden"
 msgstr "隐藏"
 
-#: ../captionator.php:265
+#: ../captionator.php:275
 #, fuzzy
 msgid "Album Caption"
 msgstr "相册说明："
 
-#: ../captionator.php:272
+#: ../captionator.php:282
 #, fuzzy
 msgid "Movie Caption"
 msgstr "没有说明"
 
-#: ../captionator.php:274
+#: ../captionator.php:284
 #, fuzzy
 msgid "Photo Caption"
 msgstr "没有说明"
 
-#: ../captionator.php:283 ../edit_appearance.php:185 ../extra_fields.php:99
-#: ../lib/lang.php:723
+#: ../captionator.php:293 ../edit_appearance.php:185 ../extra_fields.php:99
 msgid "Title"
 msgstr "标题"
 
-#: ../captionator.php:292 ../edit_caption.php:118
+#: ../captionator.php:302 ../edit_caption.php:118
 msgid "Keywords"
 msgstr "关键字"
 
-#: ../captionator.php:298 ../lib/lang.php:713
+#: ../captionator.php:308
 msgid "Capture Date"
 msgstr "建立日期"
 
-#: ../captionator.php:308
+#: ../captionator.php:318
 msgid "NO PHOTOS!"
 msgstr "没有照片! "
 
@@ -606,7 +658,7 @@ msgid "Untitled"
 msgstr "无标题"
 
 #: ../classes/Album.php:239 ../classes/Album.php:251
-#: ../layout/commentboxtop.inc:18 ../lib/mail.php:247 ../lib/albumItem.php:69
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:69
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "相册"
@@ -637,151 +689,155 @@ msgstr "完成"
 msgid "Upgrading item %d of %d . . . "
 msgstr "更新文件 %d 之 %d . . . "
 
-#: ../classes/Album.php:779
+#: ../classes/Album.php:802
 #, fuzzy
 msgid "Getting highlight"
 msgstr "没有封面"
 
-#: ../classes/Album.php:825
+#: ../classes/Album.php:848
 #, fuzzy
 msgid "Setting highlight"
 msgstr "没有封面"
 
-#: ../classes/Album.php:1018
+#: ../classes/Album.php:1040
 msgid "msg should be an array!"
 msgstr ""
 
-#: ../classes/Album.php:1027
+#: ../classes/Album.php:1049
 #, fuzzy, php-format
 msgid "Changes to Album: %s"
 msgstr "无法写入 %s. "
 
-#: ../classes/Album.php:1035
+#: ../classes/Album.php:1057
 #, php-format
 msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
-#: ../classes/Album.php:1041
+#: ../classes/Album.php:1063
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
 msgstr ""
 
-#: ../classes/Album.php:1048
+#: ../classes/Album.php:1070
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1115 ../classes/Album.php:1860
+#: ../classes/Album.php:1144 ../classes/Album.php:1898
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
-#: ../classes/Album.php:1120
+#: ../classes/Album.php:1149
 #, fuzzy, php-format
 msgid "Processing element %d..."
 msgstr "处理第 %d 份文件..."
 
-#: ../classes/Album.php:1134
+#: ../classes/Album.php:1162
 msgid "Doing the naming"
 msgstr ""
 
-#: ../classes/Album.php:1169
+#: ../classes/Album.php:1195
+#, fuzzy
 msgid "Image Preprocessing"
-msgstr ""
+msgstr "处理并储存文件"
 
-#: ../classes/Album.php:1175
+#: ../classes/Album.php:1200
 msgid "Resizing/compressing original image"
 msgstr ""
 
-#: ../classes/Album.php:1179
+#: ../classes/Album.php:1204
 msgid "Cannot resize/compress this filetype"
 msgstr ""
 
-#: ../classes/Album.php:1183
+#: ../classes/Album.php:1208
 msgid "Adding Photo to the photo list"
 msgstr ""
 
-#: ../classes/Album.php:1237
+#: ../classes/Album.php:1262
 #, php-format
 msgid "Resizing %s"
 msgstr "修改 %s 的大小"
 
-#: ../classes/Album.php:1302
+#: ../classes/Album.php:1327
 #, fuzzy
 msgid "Photo auto-rotated/transformed"
 msgstr "照片自动旋转 %s&deg;"
 
-#: ../classes/Album.php:1310
+#: ../classes/Album.php:1335
 #, fuzzy
 msgid "Watermarking Image"
 msgstr "从相册"
 
-#: ../classes/Album.php:1467 ../classes/Album.php:1477
-#: ../classes/AlbumItem.php:700
-msgid "No highlight"
+#: ../classes/Album.php:1492 ../classes/Album.php:1502
+#, fuzzy
+msgid "No highlight!"
 msgstr "没有封面"
 
-#: ../classes/Album.php:1670
+#: ../classes/Album.php:1697
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr ""
 
-#: ../classes/Album.php:1872 ../do_command.php:105
+#: ../classes/Album.php:1910 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "处理第 %d 份文件..."
 
-#: ../classes/Album.php:2031
+#: ../classes/Album.php:2069
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2529
+#: ../classes/Album.php:2577
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2692
+#: ../classes/Album.php:2740
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
 
-#: ../classes/AlbumItem.php:572
+#: ../classes/AlbumItem.php:588
 msgid "Invalid image"
 msgstr "不正确的文件"
 
-#: ../classes/AlbumItem.php:591
+#: ../classes/AlbumItem.php:606
 #, fuzzy
 msgid "Generating thumbnail."
 msgstr "建立缩略图中"
 
-#: ../classes/AlbumItem.php:594
+#: ../classes/AlbumItem.php:608
 #, php-format
 msgid "Saved Dimensions: x:%d y: %d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:630
+#: ../classes/AlbumItem.php:644
 #, fuzzy
 msgid "Generating normal thumbs"
 msgstr "建立缩略图中"
 
-#: ../classes/AlbumItem.php:648
+#: ../classes/AlbumItem.php:662
 msgid "Unable to make thumbnail"
 msgstr "无法制作缩略图"
 
-#: ../classes/AlbumItem.php:659
+#: ../classes/AlbumItem.php:673
 #, fuzzy
 msgid "No preview"
 msgstr "前一页"
 
-#: ../classes/AlbumItem.php:685
+#: ../classes/AlbumItem.php:699
 msgid "No thumbnail"
 msgstr "没有缩略图"
+
+#: ../classes/AlbumItem.php:714
+msgid "No highlight"
+msgstr "没有封面"
 
 #: ../classes/EverybodyUser.php:27 ../classes/LoggedInUser.php:27
 msgid "Anonymous User"
 msgstr "匿名用户"
 
-#: ../classes/NobodyUser.php:27
-#: ../includes/definitions/albumProperties.php:325 ../poll_properties.php:104
+#: ../classes/NobodyUser.php:27 ../poll_properties.php:104
 msgid "Nobody"
 msgstr "Nobody"
 
@@ -877,7 +933,7 @@ msgstr "跳过相册 #%d"
 
 #: ../copy_photo.php:124 ../do_command.php:261 ../do_command.php:263
 #: ../login.php:127 ../register.php:47 ../register.php:119
-#: ../save_photos.php:377
+#: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "关闭窗口"
 
@@ -927,7 +983,7 @@ msgid "Copy to Album!"
 msgstr "搬移到该相册"
 
 #: ../copy_photo.php:208 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
+#: ../move_album.php:140 ../move_photo.php:341 ../resize_photo.php:144
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "没有指定相册 / 索引"
@@ -991,14 +1047,16 @@ msgstr "删除相册"
 msgid "Do you really want to delete this album?"
 msgstr "您确定要删除该相册? "
 
-#: ../delete_album.php:65 ../delete_photo.php:138 ../delete_user.php:80
-#: ../layout/commentbox.inc:15 ../lib/albumItem.php:92
-#: ../lib/albumItem.php:194 ../lib/albumItem.php:200 ../manage_users.php:98
-#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
+#: ../delete_album.php:71 ../delete_photo.php:138 ../delete_user.php:80
+#: ../js/multifile.js.php:103 ../layout/commentbox.inc:15
+#: ../lib/albumItem.php:87 ../lib/albumItem.php:88 ../lib/albumItem.php:212
+#: ../lib/albumItem.php:213 ../lib/albumItem.php:219 ../lib/albumItem.php:220
+#: ../manage_users.php:98 ../tools/despam-comments.php:206
+#: ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "删除"
 
-#: ../delete_album.php:74 ../sort_album.php:126
+#: ../delete_album.php:76 ../sort_album.php:126
 msgid "no album specified"
 msgstr "没有指定相册"
 
@@ -1071,47 +1129,17 @@ msgstr "重新建立缩略图"
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "您确定要删除该相册? "
 
-#: ../do_command.php:89 ../includes/definitions/albumProperties.php:155
-#: ../includes/definitions/albumProperties.php:161
-#: ../includes/definitions/albumProperties.php:235
-#: ../includes/definitions/albumProperties.php:241
-#: ../includes/definitions/albumProperties.php:247
-#: ../includes/definitions/albumProperties.php:253
-#: ../includes/definitions/albumProperties.php:282
-#: ../includes/definitions/albumProperties.php:312
-#: ../includes/definitions/albumProperties.php:363
-#: ../includes/definitions/albumProperties.php:369
-#: ../includes/definitions/albumProperties.php:375
-#: ../includes/definitions/albumProperties.php:381
-#: ../includes/definitions/albumProperties.php:391
-#: ../includes/definitions/albumProperties.php:397
-#: ../includes/definitions/albumProperties.php:439
-#: ../includes/definitions/albumProperties.php:451 ../html/userData.inc:13
-#: ../multi_create_user.php:189 ../poll_properties.php:96
+#: ../do_command.php:89 ../html/userData.inc:13 ../multi_create_user.php:189
+#: ../poll_properties.php:96
 #, fuzzy
 msgid "Yes"
 msgstr "是"
 
-#: ../do_command.php:90 ../includes/definitions/albumProperties.php:155
-#: ../includes/definitions/albumProperties.php:161
-#: ../includes/definitions/albumProperties.php:235
-#: ../includes/definitions/albumProperties.php:241
-#: ../includes/definitions/albumProperties.php:247
-#: ../includes/definitions/albumProperties.php:253
-#: ../includes/definitions/albumProperties.php:282
-#: ../includes/definitions/albumProperties.php:312
-#: ../includes/definitions/albumProperties.php:363
-#: ../includes/definitions/albumProperties.php:369
-#: ../includes/definitions/albumProperties.php:375
-#: ../includes/definitions/albumProperties.php:381
-#: ../includes/definitions/albumProperties.php:391
-#: ../includes/definitions/albumProperties.php:397
-#: ../includes/definitions/albumProperties.php:439
-#: ../includes/definitions/albumProperties.php:451 ../html/userData.inc:13
-#: ../multi_create_user.php:189 ../poll_properties.php:96
+#: ../do_command.php:90 ../html/userData.inc:13 ../multi_create_user.php:189
+#: ../poll_properties.php:96
 #, fuzzy
 msgid "No"
-msgstr "完成"
+msgstr "注意"
 
 #: ../do_command.php:92
 #, fuzzy
@@ -1126,6 +1154,69 @@ msgstr "重新建立 %d 份缩略图..."
 #: ../do_command.php:112
 msgid "Rebuilding 1 thumbnail..."
 msgstr "重新建立 1 份缩略图..."
+
+#: ../download.php:44 ../download.php:48
+#, fuzzy
+msgid "Download album as archive"
+msgstr "没有指定相册"
+
+#: ../download.php:59
+#, fuzzy, php-format
+msgid "This album contains just one item in total."
+msgid_plural "This album contains %d items in total."
+msgstr[0] "<br>%s在这个相册里面. "
+msgstr[1] "<br>%s在这个相册里面. "
+
+#: ../download.php:60
+#, fuzzy, php-format
+msgid "One subalbum"
+msgid_plural "%d subalbums"
+msgstr[0] "个子相册"
+msgstr[1] "个子相册"
+
+#: ../download.php:60
+#, fuzzy
+msgid "No subalbums"
+msgstr "尚无相册"
+
+#: ../download.php:61
+#, fuzzy, php-format
+msgid "one photo/movie"
+msgid_plural "%d photos/movies"
+msgstr[0] "注意"
+msgstr[1] "注意"
+
+#: ../download.php:61
+msgid "no photo/movie"
+msgstr ""
+
+#: ../download.php:63
+#, fuzzy, php-format
+msgid "%s and %s."
+msgstr "错误!  %s"
+
+#: ../download.php:66
+#, php-format
+msgid "Approximitaly size of zipfile: %s"
+msgstr ""
+
+#: ../download.php:70
+#, fuzzy
+msgid "Full Version"
+msgstr "权限"
+
+#: ../download.php:71
+#, fuzzy
+msgid "Resized Version"
+msgstr "重新调整的影像大小"
+
+#: ../download.php:73
+msgid "Download"
+msgstr ""
+
+#: ../download.php:79
+msgid "This album album is not empty, but contains no photo or movie! Download would'nt make sense."
+msgstr ""
 
 #: ../ecard_form.php:45
 msgid "Error processing e-card. Please try later."
@@ -1152,8 +1243,9 @@ msgid "Please fill this fields:"
 msgstr ""
 
 #: ../ecard_form.php:115
+#, fuzzy
 msgid "- Your Name"
-msgstr ""
+msgstr "错误信息："
 
 #: ../ecard_form.php:121
 #, fuzzy
@@ -1196,8 +1288,9 @@ msgid "Name"
 msgstr "全名"
 
 #: ../ecard_form.php:212 ../ecard_form.php:215
+#, fuzzy
 msgid "E-Mail"
-msgstr ""
+msgstr "全选取"
 
 #: ../ecard_form.php:221
 msgid "Choose a Stamp"
@@ -1222,15 +1315,14 @@ msgstr ""
 msgid "Your Message:"
 msgstr "错误信息："
 
-#: ../ecard_form.php:260 ../edit_watermark.php:119 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:125 ../watermark_album.php:151
 #, fuzzy
 msgid "Preview"
 msgstr "前一页"
 
 #: ../ecard_form.php:261
-#, fuzzy
 msgid "Reset"
-msgstr "调整照片大小"
+msgstr ""
 
 #: ../ecard_form.php:264
 #, fuzzy
@@ -1256,13 +1348,13 @@ msgstr "无法写入 %s. "
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr ""
 
-#: ../edit_appearance.php:120 ../includes/definitions/albumProperties.php:325
-#: ../poll_properties.php:52 ../poll_properties.php:104
+#: ../edit_appearance.php:120 ../poll_properties.php:52
+#: ../poll_properties.php:104
 msgid "Everybody"
 msgstr ""
 
-#: ../edit_appearance.php:121 ../includes/definitions/albumProperties.php:325
-#: ../poll_properties.php:53 ../poll_properties.php:104
+#: ../edit_appearance.php:121 ../poll_properties.php:53
+#: ../poll_properties.php:104
 #, fuzzy
 msgid "Logged in"
 msgstr "登录"
@@ -1272,7 +1364,7 @@ msgstr "登录"
 msgid "untitled field"
 msgstr "无标题"
 
-#: ../edit_appearance.php:186 ../extra_fields.php:120 ../lib/lang.php:726
+#: ../edit_appearance.php:186 ../extra_fields.php:120
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1285,22 +1377,22 @@ msgstr "栏位"
 msgid "Album Properties"
 msgstr "相册属性"
 
-#: ../edit_appearance.php:295
+#: ../edit_appearance.php:296
 #, fuzzy
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "套用到同一层的相册中 (除了标题跟摘要). "
 
-#: ../edit_appearance.php:298 ../extra_fields.php:172
+#: ../edit_appearance.php:299 ../extra_fields.php:172
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "套用"
 
-#: ../edit_appearance.php:299 ../extra_fields.php:173
+#: ../edit_appearance.php:300 ../extra_fields.php:173
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "重来"
 
-#: ../edit_appearance.php:300 ../extra_fields.php:174
+#: ../edit_appearance.php:301 ../extra_fields.php:174
 #: ../poll_properties.php:142 ../rotate_photo.php:87
 msgid "Close"
 msgstr "关闭"
@@ -1310,7 +1402,7 @@ msgstr "关闭"
 msgid "Year must be between 1969 and 2070"
 msgstr "年份必须在 1000 与 3000 之间"
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:117
+#: ../edit_caption.php:73 ../lib/albumItem.php:116 ../lib/albumItem.php:117
 msgid "Edit Text"
 msgstr "修改文字"
 
@@ -1319,7 +1411,7 @@ msgstr "修改文字"
 msgid "Edit Caption"
 msgstr "修改说明"
 
-#: ../edit_caption.php:89 ../includes/add_photos/add_form.inc:79
+#: ../edit_caption.php:89
 msgid "Caption"
 msgstr "说明"
 
@@ -1373,22 +1465,22 @@ msgstr "重新制作缩略图..."
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "选择影像的一部份作为您的缩略图："
 
-#: ../edit_watermark.php:72 ../watermark_album.php:100
+#: ../edit_watermark.php:77 ../watermark_album.php:100
 #, fuzzy
 msgid "Please select a watermark."
 msgstr "请选择一个用户"
 
-#: ../edit_watermark.php:75 ../watermark_album.php:103
+#: ../edit_watermark.php:80 ../watermark_album.php:103
 #, fuzzy
 msgid "Please select an alignment."
 msgstr "请选择一个用户"
 
-#: ../edit_watermark.php:84 ../edit_watermark.php:88
+#: ../edit_watermark.php:89 ../edit_watermark.php:93
 #, fuzzy
 msgid "Edit Watermark"
 msgstr "从相册"
 
-#: ../edit_watermark.php:106
+#: ../edit_watermark.php:112
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
 
@@ -1396,7 +1488,7 @@ msgstr ""
 msgid "Configure Custom Fields"
 msgstr "自订栏位"
 
-#: ../extra_fields.php:130 ../includes/definitions/albumProperties.php:416
+#: ../extra_fields.php:130
 msgid "Number of user defined custom fields"
 msgstr "用户可以自订的栏位数量"
 
@@ -1409,24 +1501,357 @@ msgstr "栏位"
 msgid "Apply values to nested albums."
 msgstr "套用在同一层的相册中"
 
-#: ../includes/add_photos/add_admin.inc:26
+#: ../help/imagemap.php:26
 #, fuzzy
-msgid "Admin help"
-msgstr "修改说明"
+msgid "ImageMap Help"
+msgstr "文件大小"
 
-#: ../includes/add_photos/add_admin.inc:30
-msgid "To install or upgrade the Gallery Remote Applets, please refer to "
+#: ../help/imagemap.php:33
+msgid "This is a help for working with gallerys so called 'imagemaps'"
 msgstr ""
 
-#: ../includes/add_photos/add_admin.inc:31
-#, fuzzy
-msgid "the documentation page"
-msgstr "说明文件"
+#: ../help/imagemap.php:37
+msgid "An ImageMap is a predefined area of a picture, or a hotspot if you will."
+msgstr ""
 
-#: ../includes/add_photos/add_admin.inc:32
+#: ../help/imagemap.php:38
+msgid "A sample usage scenario is a family photo, where you can apply an ImageMap for each of the family members featured in the photo."
+msgstr ""
+
+#: ../help/imagemap.php:39
+msgid "The defined area can contain information you want displayed when a user places his mouse pointer on top of that area."
+msgstr ""
+
+#: ../help/imagemap.php:40
+msgid "You can add basic text, or even define an URL that gets activated when a user clicks the area you have defined as an ImageMap."
+msgstr ""
+
+#: ../help/imagemap.php:44
+msgid "How to create an ImageMap in Gallery?"
+msgstr ""
+
+#: ../help/imagemap.php:47
+msgid "It's as easy as it is fun. First, you need to create your ImageMap, this is done by clicking on the image, in the position where you want the first corner of the ImageMap to be."
+msgstr ""
+
+#: ../help/imagemap.php:48
+msgid "Click again on a new spot, and you'll see that Gallery creates a polygon shape based on the two spots you have created."
+msgstr ""
+
+#: ../help/imagemap.php:49
+msgid "Click again to create another spot. Add spots until your polygon shape surrounds the entire area you want to use as an ImageMap."
+msgstr ""
+
+#: ../help/imagemap.php:53
+msgid "When you are satisifed with your selection (e.g. a person or object), enter the describing text for your for your ImageMap in the 'Description' form on the left hand side."
+msgstr ""
+
+#: ../help/imagemap.php:54
+msgid "The text entered in the Description field, will be displayed when your users point their mousecursor over the ImageMap"
+msgstr ""
+
+#: ../help/imagemap.php:58
+msgid "Optionally you can enter a Link-Url for your ImageMap, which is activated when a user clicks your ImageMap selection."
+msgstr ""
+
+#: ../help/imagemap.php:59
+msgid "When you satisfied, click the 'Save ImageMap' button at the left side."
+msgstr ""
+
+#: ../help/imagemap.php:64
+msgid "How to update an ImageMap in Gallery?"
+msgstr ""
+
+#: ../help/imagemap.php:67
+msgid "Currently you can only modify the text and the url for an ImageMap. The polygon for the ImageMap is currently not changeable."
+msgstr ""
+
+#: ../help/imagemap.php:68
+msgid "If you do need to change the actual shape of the selection, you need to delete it and create a new selection in the shape you want."
+msgstr ""
+
+#: ../help/imagemap.php:71
+msgid "Select the ImageMap you want to edit in the box on the left hand side."
+msgstr ""
+
+#: ../help/imagemap.php:72
+msgid "The Image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
+msgstr ""
+
+#: ../help/imagemap.php:73
+msgid "You can then modify your 'Description', or edit the 'Link-URL'."
+msgstr ""
+
+#: ../help/imagemap.php:74
+msgid "When finished, click the 'Update ImageMap' button. "
+msgstr ""
+
+#: ../help/imagemap.php:79
+msgid "How to delete an ImageMap in Gallery?"
+msgstr ""
+
+#: ../help/imagemap.php:82
+msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selectes ImageMap(s)' button."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:26
+msgid "Metadata on Upload Help"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:32
+msgid "What is meant with metadata in this context ?"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:35
+msgid "Photos in Gallery have descriptive fields, like caption, title and other data fields. You can also define your own custom fields."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:36
 #, fuzzy
-msgid " on the Gallery web site."
+msgid "This information is called Metadata."
+msgstr "用户升级成功。"
+
+#: ../help/metadataOnUpload.php:40
+msgid "Normally this info is added manually inside the Gallery for each photo."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:41
+msgid "You can also do this automatically during your uploads."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:47
+msgid "How can i add the metadata?"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:50
+#, php-format
+msgid "Create a %s'csv-file (Comma Separated Values)'%s which contains the data you want associated with the files you are uploading."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:51
+msgid "Upload this file at the same time as you upload your files, you cannot upload it later and expect Gallery to import the metadata from it."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:56
+msgid "In which format has the data to be?"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:59
+msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:60
+msgid "Order does not matter, but you have to you a <b>;</b> (Semicolon) as separator."
+msgstr ""
+
+#: ../help/metadataOnUpload.php:61
+#, php-format
+msgid "Mandatory: %s"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:62
+#, php-format
+msgid "Predefined: %s, %s, %s"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:65
+msgid "Then follow the lines containing the info it self"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:68
+msgid "Example:"
+msgstr ""
+
+#: ../help/metadataOnUpload.php:77
+#, fuzzy
+msgid "Back to upload"
 msgstr "进入 Gallery"
+
+#: ../html/userData.inc:18
+msgid "Member file"
+msgstr ""
+
+#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+msgid "Username"
+msgstr "用户名"
+
+#: ../html/userData.inc:45
+msgid "Old Password"
+msgstr "旧口令"
+
+#: ../html/userData.inc:52
+msgid "New Password"
+msgstr "新口令"
+
+#: ../html/userData.inc:57
+msgid "New Password (again)"
+msgstr "新口令 (再输入一次)"
+
+#: ../html/userData.inc:64
+msgid "Full Name"
+msgstr "全名"
+
+#: ../html/userData.inc:71
+msgid "Email Address"
+msgstr "电子信箱"
+
+#: ../html/userData.inc:81
+msgid "Gallery language"
+msgstr "Gallery 语言"
+
+#: ../html/userData.inc:109
+msgid "User can change its own password"
+msgstr ""
+
+#: ../html/userData.inc:117
+msgid "User can create albums"
+msgstr "用户可以建立相册"
+
+#: ../html/userData.inc:125
+msgid "User is an admin"
+msgstr "该用户是管理员"
+
+#: ../html/userData.inc:130
+msgid "you can't un-admin yourself"
+msgstr "您不能解除自己的权限"
+
+#: ../html/userData.inc:134
+#, fuzzy
+msgid "Note: Admins can always create albums and are allowed to change their password."
+msgstr "管理员可以建立相册"
+
+#: ../html/userData.inc:143
+msgid "Send email to user when account is created"
+msgstr ""
+
+#: ../html_wrap/album.footer.default:45 ../html_wrap/gallery.footer.default:51
+#: ../html_wrap/photo.footer.default:44
+#: ../html_wrap/slideshow.footer.default:47
+#, fuzzy
+msgid "Donate to Gallery now!!"
+msgstr "进入 Gallery"
+
+#: ../html_wrap/frames/golden/frame.def:4
+#, fuzzy
+msgid "Gold Frame"
+msgstr "全名"
+
+#: ../html_wrap/frames/golden/frame.def:5
+msgid "A fancy golden frame"
+msgstr ""
+
+#: ../html_wrap/frames/notebook/frame.def:5
+msgid "Spiral Notebook"
+msgstr ""
+
+#: ../html_wrap/frames/notebook/frame.def:6
+msgid "A white shadowed frame with spiral notebook binding on the left side"
+msgstr ""
+
+#: ../html_wrap/frames/polaroid/frame.def:3
+msgid "Polaroid"
+msgstr ""
+
+#: ../html_wrap/frames/polaroid/frame.def:4
+msgid "A photo with a large white frame, extra wide at the bottom edge"
+msgstr ""
+
+#: ../html_wrap/frames/polaroids/frame.def:3
+msgid "Polaroids"
+msgstr ""
+
+#: ../html_wrap/frames/polaroids/frame.def:4
+msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
+msgstr ""
+
+#: ../html_wrap/frames/postage_stamp/frame.def:2
+msgid "Postage Stamp"
+msgstr ""
+
+#: ../html_wrap/frames/postage_stamp/frame.def:3
+msgid "A simple postage stamp effect."
+msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:3
+msgid "Shadows"
+msgstr ""
+
+#: ../html_wrap/frames/shadows/frame.def:4
+msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+msgstr ""
+
+#: ../html_wrap/frames/simple_book/frame.def:3
+msgid "Original Style"
+msgstr ""
+
+#: ../html_wrap/frames/simple_book/frame.def:4
+#, php-format
+msgid "The original %s album frame style."
+msgstr ""
+
+#: ../html_wrap/frames/wooden/frame.def:4
+#, fuzzy
+msgid "Wood Frame"
+msgstr "全名"
+
+#: ../html_wrap/frames/wooden/frame.def:5
+msgid "A textured wooden frame"
+msgstr ""
+
+#: ../html_wrap/wrapper.footer.default:62
+#, php-format
+msgid "Debug ON ! Level %s"
+msgstr ""
+
+#: ../html_wrap/wrapper.header.default:80 ../view_photo_properties.php:31
+msgid "Security violation"
+msgstr "安全妨害"
+
+#: ../imagemap.php:210
+msgid "Here you can create, edit or delete imagemaps for the selected photo."
+msgstr ""
+
+#: ../imagemap.php:212
+msgid "Click the questionmark icon for helpful instructions."
+msgstr ""
+
+#: ../imagemap.php:231
+msgid "Clear and reset canvas"
+msgstr ""
+
+#: ../imagemap.php:233
+#, fuzzy
+msgid "Optional link-url"
+msgstr "说明"
+
+#: ../imagemap.php:235
+msgid "Description"
+msgstr "说明"
+
+#: ../imagemap.php:237
+msgid "Save Imagemap"
+msgstr ""
+
+#: ../imagemap.php:244
+msgid "Select entries to show image area in your photo."
+msgstr ""
+
+#: ../imagemap.php:252
+msgid "Delete selected ImageMap(s)"
+msgstr ""
+
+#: ../imagemap.php:255
+msgid "Update selected ImageMap(s)"
+msgstr ""
+
+#: ../imagemap.php:257
+msgid "Be aware, that the text of ALL selected entries will be updated!"
+msgstr ""
+
+#: ../imagemap.php:260
+#, fuzzy
+msgid "No ImageMaps"
+msgstr "没有文件"
 
 #: ../includes/add_photos/add_applet.inc:24
 msgid "Use the Gallery Remote Applet to upload pictures. It will take a short while to download."
@@ -1446,57 +1871,53 @@ msgstr ""
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:31
+#: ../includes/add_photos/add_form.inc:27
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "点选 <b>浏览</b> 选择您要上传文件的位置"
 
-#: ../includes/add_photos/add_form.inc:33
-msgid "Supported file types"
+#: ../includes/add_photos/add_form.inc:28
+#, fuzzy, php-format
+msgid "Supported file types: %s"
 msgstr "支持的文件格式"
 
-#: ../includes/add_photos/add_form.inc:37
+#: ../includes/add_photos/add_form.inc:32
 #: ../includes/add_photos/add_url.inc:29
 msgid "Tip:"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:38
+#: ../includes/add_photos/add_form.inc:33
 #, fuzzy
 msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
 msgstr "小技巧：您可以把要上传的文件压缩起来以方便处理 :-)"
 
-#: ../includes/add_photos/add_form.inc:50
-msgid "1. Select the number of files you want to upload:"
-msgstr "1. 选择您想要上传的文件数量："
-
-#: ../includes/add_photos/add_form.inc:55
+#: ../includes/add_photos/add_form.inc:42
 #, fuzzy
-msgid "Optional:"
-msgstr "说明"
-
-#: ../includes/add_photos/add_form.inc:56
-#, fuzzy
-msgid "Select the number of meta data files you want to upload:"
-msgstr "1. 选择您想要上传的文件数量："
-
-#: ../includes/add_photos/add_form.inc:71
-msgid "2. Use the Browse button to find the photos on your computer"
+msgid "Use the Browse button to find the photos on your computer"
 msgstr "2. 使用 <b>浏览</b> 选择要上传文件的位置"
 
-#: ../includes/add_photos/add_form.inc:75
-#: ../includes/add_photos/add_form.inc:87
-msgid "File"
+#: ../includes/add_photos/add_form.inc:43
+#, fuzzy
+msgid "Files:"
 msgstr "文件"
 
-#: ../includes/add_photos/add_form.inc:84
-#, fuzzy
-msgid "3. Use the Browse button to find the meta data files on your computer"
-msgstr "2. 使用 <b>浏览</b> 选择要上传文件的位置"
+#: ../includes/add_photos/add_form.inc:53
+msgid "Do the same for optional metafiles."
+msgstr ""
 
-#: ../includes/add_photos/add_form.inc:96
+#: ../includes/add_photos/add_form.inc:54
+msgid "Help"
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:59
+#, fuzzy
+msgid "MetaFiles:"
+msgstr "文件"
+
+#: ../includes/add_photos/add_form.inc:67
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:109
+#: ../includes/add_photos/add_form.inc:80
 msgid "Upload Now"
 msgstr "开始上传"
 
@@ -1549,417 +1970,59 @@ msgstr ""
 msgid "Submit URL or directory"
 msgstr "送出 URL 或 目录"
 
-#: ../includes/definitions/albumProperties.php:30
-msgid "Texts"
+#: ../includes/add_photos/captionOptions.inc.php:23
+msgid "Leave blank."
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:34
-msgid "Album Summary"
-msgstr "相册摘要"
-
-#: ../includes/definitions/albumProperties.php:41
-msgid "Album Title"
-msgstr "相册标题"
-
-#: ../includes/definitions/albumProperties.php:53 ../stats-wizard.php:131
+#: ../includes/add_photos/captionOptions.inc.php:25
 #, fuzzy
-msgid "Layout"
-msgstr "尾"
+msgid "Use filename as caption."
+msgstr "使用文件名作为说明"
 
-#: ../includes/definitions/albumProperties.php:57
-#, fuzzy
-msgid "Background Image (URL)"
-msgstr "背景影像"
-
-#: ../includes/definitions/albumProperties.php:63
-msgid "Font"
-msgstr "字体"
-
-#: ../includes/definitions/albumProperties.php:69
-msgid "Rows"
-msgstr "列数"
-
-#: ../includes/definitions/albumProperties.php:75
-msgid "Columns"
-msgstr "行数"
-
-#: ../includes/definitions/albumProperties.php:81
-msgid "Borders"
-msgstr "表框大小"
-
-#: ../includes/definitions/albumProperties.php:88
-#, fuzzy
-msgid "Colors"
-msgstr "关闭"
-
-#: ../includes/definitions/albumProperties.php:91
-msgid "Background Color"
-msgstr "背景颜色"
-
-#: ../includes/definitions/albumProperties.php:97
-msgid "Text Color"
-msgstr "文字颜色"
-
-#: ../includes/definitions/albumProperties.php:103
-msgid "Link Color"
-msgstr "连结颜色"
-
-#: ../includes/definitions/albumProperties.php:109
-#, fuzzy
-msgid "Border Color"
-msgstr "表框颜色"
-
-#: ../includes/definitions/albumProperties.php:116
-#, fuzzy
-msgid "Frames"
-msgstr "尚无相册"
-
-#: ../includes/definitions/albumProperties.php:119
-#, fuzzy
-msgid "Album Frame"
-msgstr "相册数量"
-
-#: ../includes/definitions/albumProperties.php:125
-#, fuzzy
-msgid "Thumb Frame"
-msgstr "照片缩略图"
-
-#: ../includes/definitions/albumProperties.php:131
-#, fuzzy
-msgid "Image Frame"
-msgstr "文件大小"
-
-#: ../includes/definitions/albumProperties.php:143
-#, fuzzy
-msgid "Slideshow"
-msgstr "播放"
-
-#: ../includes/definitions/albumProperties.php:147
-#, fuzzy
-msgid "Slideshow Type"
-msgstr "播放"
-
-#: ../includes/definitions/albumProperties.php:149
-#: ../includes/definitions/albumProperties.php:197
-#: ../includes/definitions/albumProperties.php:211
-#, fuzzy
-msgid "Off"
-msgstr "关闭"
-
-#: ../includes/definitions/albumProperties.php:149
-msgid "Ordered"
+#: ../includes/add_photos/captionOptions.inc.php:27
+msgid "Use file creation date/time stamp."
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:149
+#: ../includes/add_photos/captionOptions.inc.php:33
 #, fuzzy
-msgid "Random"
-msgstr "以上乱数选一种"
+msgid "Set photo captions with file capture times."
+msgstr "设定文件的说明为原始文件名. "
 
-#: ../includes/definitions/albumProperties.php:153
-msgid "Include sub-albums in slideshow"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:159
-msgid "Allow slideshow to loop"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:165
-#, fuzzy
-msgid "Slideshow Length"
-msgstr "播放"
-
-#: ../includes/definitions/albumProperties.php:178
-#, fuzzy
-msgid "Sizes"
-msgstr "删除用户"
-
-#: ../includes/definitions/albumProperties.php:182
-msgid "Thumbnail size"
-msgstr "缩略图大小"
-
-#: ../includes/definitions/albumProperties.php:189
-msgid "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:191
-#, fuzzy
-msgid "As the original image"
-msgstr "可以浏览完整图片"
-
-#: ../includes/definitions/albumProperties.php:191
-#, fuzzy
-msgid "Square thumbs"
-msgstr "重建缩略图"
-
-#: ../includes/definitions/albumProperties.php:195
-msgid "Maximum dimensions of intermediate sized images"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:202
-#, fuzzy
-msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "自动调整文件大小 kilobytes (0 或者空白代表没有限制)"
-
-#: ../includes/definitions/albumProperties.php:209
-msgid "Maximum dimensions of full sized images"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:211
-#, php-format
-msgid "%d (%d MPix)"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:216
-#, fuzzy
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-msgstr "自动调整文件大小 kilobytes (0 或者空白代表没有限制)"
-
-#: ../includes/definitions/albumProperties.php:229
-#, fuzzy
-msgid "Display"
-msgstr "播放"
-
-#: ../includes/definitions/albumProperties.php:233
-msgid "Display click counter for this album?"
-msgstr "在这个相册显示人气值? "
-
-#: ../includes/definitions/albumProperties.php:239
-msgid "Display owners name with caption"
-msgstr "在说明中显示所有者名称"
-
-#: ../includes/definitions/albumProperties.php:245
-msgid "Display clickable image dimensions"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:251
-msgid "Display EXIF data?"
-msgstr "显示 EXIF 资料? "
-
-#: ../includes/definitions/albumProperties.php:264
-#, fuzzy
-msgid "Services"
-msgstr "删除用户"
-
-#: ../includes/definitions/albumProperties.php:268
-#, fuzzy
-msgid "Which photo printing services<br>do you want to let visitors use?"
-msgstr "您想要让访客使用何种网路列印服务呢? "
-
-#: ../includes/definitions/albumProperties.php:280
-msgid "Enable Ecards ?"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:293 ../poll_properties.php:72
-#: ../poll_properties.php:76
-#, fuzzy
-msgid "Poll Properties"
-msgstr "文件属性"
-
-#: ../includes/definitions/albumProperties.php:297 ../poll_properties.php:87
-#, fuzzy
-msgid "Type of poll for this album"
-msgstr "1 份文件在此相册中"
-
-#: ../includes/definitions/albumProperties.php:299 ../poll_properties.php:88
-#, fuzzy
-msgid "Rank"
-msgstr "以上乱数选一种"
-
-#: ../includes/definitions/albumProperties.php:299 ../poll_properties.php:88
-msgid "Critique"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:303 ../poll_properties.php:91
-#, fuzzy
-msgid "Number of voting options"
-msgstr "根据评论数量"
-
-#: ../includes/definitions/albumProperties.php:310 ../poll_properties.php:95
-msgid "Show results of voting to all visitors?"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:316 ../poll_properties.php:99
-msgid "Number of lines of results graph to display on the album page"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:323
-#, fuzzy
-msgid "Who can vote?"
-msgstr "没有东东"
-
-#: ../includes/definitions/albumProperties.php:329 ../poll_properties.php:107
-msgid "Orientation of vote choices"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:331 ../poll_properties.php:108
-#: ../rotate_photo.php:82
-msgid "Horizontal"
-msgstr "水平"
-
-#: ../includes/definitions/albumProperties.php:331 ../poll_properties.php:108
-#: ../rotate_photo.php:85
-msgid "Vertical"
-msgstr "垂直"
-
-#: ../includes/definitions/albumProperties.php:336 ../poll_properties.php:111
-#, fuzzy
-msgid "Vote hint"
-msgstr "注意"
-
-#: ../includes/definitions/albumProperties.php:343
-#, fuzzy
-msgid "Voting Options"
-msgstr "修改说明"
-
-#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:120
-msgid "Displayed Value"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:347 ../poll_properties.php:121
-#, fuzzy
-msgid "Points"
-msgstr "分"
-
-#: ../includes/definitions/albumProperties.php:357
-msgid "Misc"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:361
-msgid "Add new items at beginning of album"
-msgstr "将新加入的文件放在相册的开头"
-
-#: ../includes/definitions/albumProperties.php:367
-msgid "Show <i>Return to</i> link"
-msgstr "显示 <i>回去</i> 的连结"
-
-#: ../includes/definitions/albumProperties.php:373
-msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
-msgstr "提供访客设定要看<br>完整或是重新调整过的影像"
-
-#: ../includes/definitions/albumProperties.php:379
-msgid "Auto fit-to-window for<br>images without a resized copy"
-msgstr "影像自动贴齐窗口<br>但不另外建立一份调整过的影像"
-
-#: ../includes/definitions/albumProperties.php:386 ../lib/albumItem.php:209
-#: ../view_album.php:299
-msgid "Permissions"
-msgstr "权限"
-
-#: ../includes/definitions/albumProperties.php:389
-msgid "Allow item owners to modify their images"
-msgstr "允许文件所有者修改文件"
-
-#: ../includes/definitions/albumProperties.php:395
-msgid "Allow item owners to delete their images"
-msgstr "允许文件所有者删除文件"
-
-#: ../includes/definitions/albumProperties.php:407
-#, fuzzy
-msgid "Custom Fields"
-msgstr "自订栏位"
-
-#: ../includes/definitions/albumProperties.php:434
-msgid "Microthumbs"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:437
-msgid "Use microthumb photo navigation"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:439
-#, fuzzy
-msgid "both"
-msgstr "月"
-
-#: ../includes/definitions/albumProperties.php:443
-msgid "Microthumb style"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:445
-#, fuzzy
-msgid "Fixed"
-msgstr "栏位"
-
-#: ../includes/definitions/albumProperties.php:445
-msgid "Dynamic"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:449
-msgid "Show first & last microthumb"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:455
-#, fuzzy
-msgid "Number of previous thumbs"
-msgstr "根据评论数量"
-
-#: ../includes/definitions/albumProperties.php:461
-#, fuzzy
-msgid "Number of next thumbs"
-msgstr "根据评论数量"
-
-#: ../includes/definitions/albumProperties.php:467
-msgid "Position of microthumb navigation bar"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:469
-#: ../layout/watermarkform.inc:111
-msgid "Top"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:469
-#, fuzzy
-msgid "Both"
-msgstr "月"
-
-#: ../includes/definitions/albumProperties.php:469
-#: ../layout/watermarkform.inc:127
-msgid "Bottom"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:473
-msgid "Height of microthumbs in navigation bar"
-msgstr ""
-
-#: ../includes/definitions/albumProperties.php:480
-msgid "Bonus to height of current microthumb (pixels)"
-msgstr ""
-
-#: ../includes/definitions/services.php:45
-msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
+#: ../includes/add_photos/captionOptions.inc.php:38
+msgid "For the last two options Gallery will use the format you specified in the config for date/time strings."
 msgstr ""
 
 #: ../includes/errors/configure_help.php:2
-#, php-format
+#, fuzzy, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
-msgstr ""
+msgstr "如果您碰到任何问题, 应该先在 %s Gallery Help Page %s 上寻找答案. "
 
 #: ../includes/errors/reconfigure.php:9 ../includes/errors/reconfigure.php:15
-#, fuzzy
 msgid "Gallery needs Reconfiguration"
-msgstr "Gallery 设定"
+msgstr "Gallery 需要重新设定"
 
 #: ../includes/errors/reconfigure.php:18
+#, fuzzy
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-msgstr ""
+msgstr "您的设定档是由旧的 gallery 设置向导所建立. 这已经过期了, 请重新执行设置向导! "
 
 #: ../includes/errors/reconfigure.php:23
 #, fuzzy, php-format
 msgid "Launch the %sConfiguration Wizard%s."
-msgstr "自订栏位"
+msgstr "然后执行 %s设置向导%s"
 
 #: ../includes/errors/unconfigured.php:9
-#, fuzzy
 msgid "Gallery Configuration Error"
-msgstr "Gallery 设定"
+msgstr "Gallery 设定错误"
 
 #: ../includes/errors/unconfigured.php:15
 msgid "Gallery has not been configured!"
-msgstr ""
+msgstr "Gallery 没有设定完成! "
 
 #: ../includes/errors/unconfigured.php:19
+#, fuzzy
 msgid "Gallery must be configured before you can use it."
-msgstr ""
+msgstr "您必须修正这些错误才能进行下一步. "
 
 #: ../includes/errors/unconfigured.php:24
 msgid "1."
@@ -1984,7 +2047,7 @@ msgstr ""
 #: ../includes/errors/unconfigured.php:38
 #, fuzzy, php-format
 msgid "Then start the %sConfiguration Wizard%s."
-msgstr "下载 %sXP 设定档%s"
+msgstr "然后执行 %s设置向导%s. "
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
 #, fuzzy, php-format
@@ -2023,12 +2086,14 @@ msgid "Blinds"
 msgstr ""
 
 #: ../includes/slideshow/high.inc:234
+#, fuzzy
 msgid "Checkerboard"
-msgstr ""
+msgstr "检查 Sessions"
 
 #: ../includes/slideshow/high.inc:236
+#, fuzzy
 msgid "Diagonal"
-msgstr ""
+msgstr "选择性选项"
 
 #: ../includes/slideshow/high.inc:238
 #, fuzzy
@@ -2358,148 +2423,10 @@ msgstr "建立日期"
 msgid "Filter by day"
 msgstr "建立日期"
 
-#: ../html/userData.inc:18
-msgid "Member file"
-msgstr ""
-
-#: ../html/userData.inc:26 ../lib/mail.php:194 ../login.php:85
-#: ../login.php:147
-msgid "Username"
-msgstr "用户名"
-
-#: ../html/userData.inc:45
-msgid "Old Password"
-msgstr "旧口令"
-
-#: ../html/userData.inc:52
-msgid "New Password"
-msgstr "新口令"
-
-#: ../html/userData.inc:57
-msgid "New Password (again)"
-msgstr "新口令 (再输入一次)"
-
-#: ../html/userData.inc:64
-msgid "Full Name"
-msgstr "全名"
-
-#: ../html/userData.inc:71
-msgid "Email Address"
-msgstr "电子信箱"
-
-#: ../html/userData.inc:81
-msgid "Gallery language"
-msgstr "Gallery 语言"
-
-#: ../html/userData.inc:109
-msgid "User can change its own password"
-msgstr ""
-
-#: ../html/userData.inc:117
-msgid "User can create albums"
-msgstr "用户可以建立相册"
-
-#: ../html/userData.inc:125
-msgid "User is an admin"
-msgstr "该用户是管理员"
-
-#: ../html/userData.inc:130
-msgid "you can't un-admin yourself"
-msgstr "您不能解除自己的权限"
-
-#: ../html/userData.inc:134
+#: ../js/multifile.js.php:140
 #, fuzzy
-msgid "Note: Admins can always create albums and are allowed to change their password."
-msgstr "管理员可以建立相册"
-
-#: ../html/userData.inc:143
-msgid "Send email to user when account is created"
-msgstr ""
-
-#: ../html_wrap/album.footer.default:45 ../html_wrap/gallery.footer.default:51
-#: ../html_wrap/photo.footer.default:44
-#: ../html_wrap/slideshow.footer.default:47
-#, fuzzy
-msgid "Donate to Gallery now!!"
-msgstr "进入 Gallery"
-
-#: ../html_wrap/wrapper.footer.default:62
-#, php-format
-msgid "Debug ON ! Level %s"
-msgstr ""
-
-#: ../html_wrap/wrapper.header.default:80 ../view_photo_properties.php:31
-msgid "Security violation"
-msgstr "安全妨害"
-
-#: ../html_wrap/frames/notebook/frame.def:5
-msgid "Spiral Notebook"
-msgstr ""
-
-#: ../html_wrap/frames/notebook/frame.def:6
-msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
-
-#: ../html_wrap/frames/shadows/frame.def:3
-#, fuzzy
-msgid "Shadows"
-msgstr "显示"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr ""
-
-#: ../html_wrap/frames/polaroid/frame.def:3
-#, fuzzy
-msgid "Polaroid"
-msgstr "播放"
-
-#: ../html_wrap/frames/polaroid/frame.def:4
-msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr ""
-
-#: ../html_wrap/frames/polaroids/frame.def:3
-msgid "Polaroids"
-msgstr ""
-
-#: ../html_wrap/frames/polaroids/frame.def:4
-msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr ""
-
-#: ../html_wrap/frames/golden/frame.def:4
-#, fuzzy
-msgid "Gold Frame"
-msgstr "相册数量"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr ""
-
-#: ../html_wrap/frames/postage_stamp/frame.def:2
-msgid "Postage Stamp"
-msgstr ""
-
-#: ../html_wrap/frames/postage_stamp/frame.def:3
-msgid "A simple postage stamp effect."
-msgstr ""
-
-#: ../html_wrap/frames/simple_book/frame.def:3
-msgid "Original Style"
-msgstr ""
-
-#: ../html_wrap/frames/simple_book/frame.def:4
-#, php-format
-msgid "The original %s album frame style."
-msgstr ""
-
-#: ../html_wrap/frames/wooden/frame.def:4
-#, fuzzy
-msgid "Wood Frame"
-msgstr "尚无相册"
-
-#: ../html_wrap/frames/wooden/frame.def:5
-msgid "A textured wooden frame"
-msgstr ""
+msgid "Caption:"
+msgstr "说明"
 
 #: ../layout/adminAlbumCommands.inc:6
 msgid "delete album"
@@ -2530,7 +2457,7 @@ msgstr "权限设定"
 msgid "properties"
 msgstr "相册属性"
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:398
+#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:412
 msgid "view&nbsp;comments"
 msgstr "检视评论"
 
@@ -2549,7 +2476,7 @@ msgstr "登录"
 msgid "From: %s"
 msgstr "来自："
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:967
+#: ../layout/commentboxbottom.inc:11 ../stats.php:969
 msgid "add comment"
 msgstr "添加评论"
 
@@ -2567,11 +2494,11 @@ msgstr "观看这个相册的所有评论"
 msgid "Album contains no comments"
 msgstr "相册包含 %s"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:280
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:313
 msgid "From:"
 msgstr "来自："
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:254
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:287
 msgid "delete comment"
 msgstr "删除评论"
 
@@ -2591,7 +2518,7 @@ msgstr "下一页"
 msgid "Last Page"
 msgstr "最后一页"
 
-#: ../layout/navigator.inc:89 ../layout/navigator.inc:115
+#: ../layout/navigator.inc:79 ../layout/navigator.inc:105
 #, php-format
 msgid "Jump to page %d"
 msgstr ""
@@ -2612,12 +2539,13 @@ msgstr "下一张图"
 msgid "Last Photo"
 msgstr "最后一张图"
 
-#: ../layout/navphoto.inc:64
+#: ../layout/navphoto.inc:54
 #, php-format
 msgid "%d of %d"
 msgstr "%d 之 %d"
 
-#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:139
+#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:142
+#: ../lib/albumItem.php:143
 #, fuzzy
 msgid "Watermark"
 msgstr "从相册"
@@ -2645,6 +2573,10 @@ msgstr ""
 msgid "Upper&nbsp;Left"
 msgstr ""
 
+#: ../layout/watermarkform.inc:111
+msgid "Top"
+msgstr ""
+
 #: ../layout/watermarkform.inc:113
 msgid "Upper&nbsp;Right"
 msgstr ""
@@ -2664,6 +2596,10 @@ msgstr ""
 
 #: ../layout/watermarkform.inc:125
 msgid "Lower&nbsp;Left"
+msgstr ""
+
+#: ../layout/watermarkform.inc:127
+msgid "Bottom"
 msgstr ""
 
 #: ../layout/watermarkform.inc:129
@@ -2710,227 +2646,6 @@ msgstr "修改大小"
 msgid "Only full photos"
 msgstr "修改大小"
 
-#: ../lib/Form.php:69
-msgid "Check All"
-msgstr "全选取"
-
-#: ../lib/Form.php:71
-msgid "Clear All"
-msgstr "全取消"
-
-#: ../lib/Form.php:73
-msgid "Invert Selection"
-msgstr "反向选择"
-
-#: ../lib/Form.php:244
-msgid "Colorpicker"
-msgstr ""
-
-#: ../lib/mail.php:43
-#, php-format
-msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-msgstr ""
-
-#: ../lib/mail.php:45
-#, fuzzy, php-format
-msgid "Report abuse to %s"
-msgstr "回到增加多张照片"
-
-#: ../lib/mail.php:71
-#, fuzzy
-msgid "Email not sent as it is disabled for this gallery"
-msgstr "您一定要输入用户名"
-
-#: ../lib/mail.php:77
-#, fuzzy, php-format
-msgid "Email not sent to %s as it is not a valid address"
-msgstr "您一定要输入用户名"
-
-#: ../lib/mail.php:84
-#, fuzzy
-msgid "Email not sent as no reciepient address provided"
-msgstr "您一定要输入用户名"
-
-#: ../lib/mail.php:95
-#, php-format
-msgid "Sender address %s is invalid, using %s."
-msgstr ""
-
-#: ../lib/mail.php:126
-msgid "This is a HTML mail, please have a look at the Attachment."
-msgstr ""
-
-#: ../lib/mail.php:164
-#, php-format
-msgid ""
-"Hi !!FULLNAME!!,\n"
-"\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-"\n"
-"!!NEWPASSWORDLINK!!\n"
-"\n"
-"Gallery @ %s Administrator."
-msgstr ""
-
-#: ../lib/mail.php:173 ../lib/mail.php:175
-#, fuzzy
-msgid "gallery title"
-msgstr "Gallery 标题"
-
-#: ../lib/mail.php:174
-#, fuzzy
-msgid "gallery URL"
-msgstr "Gallery 连结"
-
-#: ../lib/mail.php:190
-msgid "The Url to your Gallery."
-msgstr ""
-
-#: ../lib/mail.php:191
-msgid "Title of your Gallery."
-msgstr ""
-
-#: ../lib/mail.php:192
-#, fuzzy
-msgid "Admin email(s)"
-msgstr "修改说明"
-
-#: ../lib/mail.php:193
-msgid "Password for the newly created user."
-msgstr ""
-
-#: ../lib/mail.php:195
-#, fuzzy
-msgid "Fullname"
-msgstr "全名"
-
-#: ../lib/mail.php:196
-msgid "Will be replaced by a link the new user can click on to create a new password."
-msgstr ""
-
-#: ../lib/mail.php:233
-#, fuzzy, php-format
-msgid "New comment for %s"
-msgstr "检视评论"
-
-#: ../lib/mail.php:242
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr ""
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:246
-#, fuzzy
-msgid "Item"
-msgstr "项"
-
-#: ../lib/mail.php:248
-msgid "*** Begin comment ***"
-msgstr ""
-
-#: ../lib/mail.php:250
-#, fuzzy
-msgid "***End comment ***"
-msgstr "检视评论"
-
-#: ../lib/mail.php:251
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:254
-#, fuzzy, php-format
-msgid "New comment for %s."
-msgstr "检视评论"
-
-#: ../lib/mail.php:263
-#, php-format
-msgid "FAILED"
-msgstr ""
-
-#: ../lib/mail.php:273
-msgid "Email activity"
-msgstr ""
-
-#: ../lib/voting.php:215 ../view_album.php:557 ../view_album.php:573
-#: ../view_album.php:924
-#, fuzzy
-msgid "Vote"
-msgstr "注意"
-
-#: ../lib/voting.php:253
-msgid "Total points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:257
-msgid "Average points in brackets"
-msgstr ""
-
-#: ../lib/voting.php:275 ../poll_results.php:148 ../view_album.php:489
-#: ../view_album.php:791
-#, fuzzy, php-format
-msgid "Album: %s"
-msgstr "相册"
-
-#: ../lib/voting.php:303
-#, fuzzy, php-format
-msgid "1 voter"
-msgid_plural "%d voters"
-msgstr[0] "注意"
-msgstr[1] "注意"
-
-#: ../lib/voting.php:315
-#, php-format
-msgid "Result from one voter"
-msgid_plural "Result of %d voters"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../lib/voting.php:324
-#, fuzzy, php-format
-msgid "%s: %s points; "
-msgstr "%s, %s 总共 %s"
-
-#: ../lib/voting.php:329
-#, php-format
-msgid "Key - %s"
-msgstr ""
-
-#: ../lib/voting.php:335 ../poll_results.php:163
-#, fuzzy
-msgid "No votes so far."
-msgstr "注意"
-
-#: ../lib/voting.php:356
-#, fuzzy
-msgid "Poll results:"
-msgstr "结果："
-
-#: ../lib/voting.php:359
-#, fuzzy
-msgid "No votes"
-msgstr "注意"
-
-#: ../lib/voting.php:363
-#, php-format
-msgid "Number %d overall."
-msgstr ""
-
-#: ../lib/voting.php:367
-#, fuzzy, php-format
-msgid "%s: %s"
-msgstr "%s, %s"
-
-#: ../lib/voting.php:368
-#, fuzzy, php-format
-msgid "one vote"
-msgid_plural "%d votes"
-msgstr[0] "注意"
-msgstr[1] "注意"
-
 #: ../lib/albumItem.php:67 ../rearrange.php:112
 msgid "Movie"
 msgstr "照片"
@@ -2939,156 +2654,102 @@ msgstr "照片"
 msgid "Photo"
 msgstr "图片"
 
-#: ../lib/albumItem.php:83
-#, fuzzy, php-format
-msgid "%s actions"
-msgstr "说明文件"
-
-#: ../lib/albumItem.php:101
+#: ../lib/albumItem.php:97 ../lib/albumItem.php:98
 msgid "Edit Title"
 msgstr "修改标题"
 
-#: ../lib/albumItem.php:105
+#: ../lib/albumItem.php:102 ../lib/albumItem.php:103
 msgid "Edit Description"
 msgstr "修改说明"
 
-#: ../lib/albumItem.php:111 ../rename_album.php:39 ../rename_album.php:43
+#: ../lib/albumItem.php:109 ../lib/albumItem.php:110 ../rename_album.php:39
+#: ../rename_album.php:43
 msgid "Rename Album"
 msgstr "更改相册名称"
 
-#: ../lib/albumItem.php:126
+#: ../lib/albumItem.php:126 ../lib/albumItem.php:127
 #, fuzzy
 msgid "Edit Thumbnail"
 msgstr "修改缩略图"
 
-#: ../lib/albumItem.php:130
+#: ../lib/albumItem.php:131 ../lib/albumItem.php:132
 #, fuzzy, php-format
 msgid "Rotate/Flip"
 msgstr "旋转"
 
-#: ../lib/albumItem.php:134
+#: ../lib/albumItem.php:136 ../lib/albumItem.php:137
 #, fuzzy
 msgid "Resize"
 msgstr "调整照片大小"
 
-#: ../lib/albumItem.php:148
-#, fuzzy, php-format
+#: ../lib/albumItem.php:149 ../lib/albumItem.php:150
+#, fuzzy
+msgid "ImageMap"
+msgstr "个文件"
+
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
+#, fuzzy
 msgid "Set as highlight"
 msgstr "没有封面"
 
-#: ../lib/albumItem.php:155
+#: ../lib/albumItem.php:167 ../lib/albumItem.php:168
 msgid "Reset Counter"
 msgstr "人气归零"
 
-#: ../lib/albumItem.php:160
+#: ../lib/albumItem.php:173 ../lib/albumItem.php:174 ../lib/albumItem.php:178
 #, fuzzy
 msgid "Move"
 msgstr "照片"
 
-#: ../lib/albumItem.php:164
+#: ../lib/albumItem.php:179
 #, fuzzy
 msgid "Reorder"
 msgstr "表框大小"
 
-#: ../lib/albumItem.php:169
+#: ../lib/albumItem.php:184 ../lib/albumItem.php:185
 #, fuzzy
 msgid "Copy"
 msgstr "搬移照片"
 
-#: ../lib/albumItem.php:179
+#: ../lib/albumItem.php:195 ../lib/albumItem.php:196
 #, fuzzy
 msgid "Show"
 msgstr "显示"
 
-#: ../lib/albumItem.php:184
+#: ../lib/albumItem.php:201 ../lib/albumItem.php:202
 #, fuzzy
 msgid "Hide"
 msgstr "隐藏"
 
-#: ../lib/albumItem.php:215 ../watermark_album.php:114
-#: ../watermark_album.php:118
+#: ../lib/albumItem.php:229 ../lib/albumItem.php:230 ../view_album.php:313
+msgid "Permissions"
+msgstr "权限"
+
+#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../watermark_album.php:114 ../watermark_album.php:118
 #, fuzzy
 msgid "Watermark Album"
 msgstr "从相册"
 
-#: ../lib/albumItem.php:221
+#: ../lib/albumItem.php:243 ../lib/albumItem.php:244
 #, fuzzy
 msgid "View Comments"
 msgstr "检视评论"
 
-#: ../lib/albumItem.php:232
+#: ../lib/albumItem.php:255 ../lib/albumItem.php:256
 #, fuzzy
 msgid "Photo properties"
 msgstr "文件属性"
 
-#: ../lib/albumItem.php:240 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:264 ../lib/albumItem.php:265 ../photo_owner.php:78
+#: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "更改所有者"
 
-#: ../lib/colorpicker.php:40
-msgid "Color Picker"
-msgstr ""
-
-#: ../lib/colorpicker.php:52
-msgid "The Options window has closed. Exiting."
-msgstr ""
-
-#: ../lib/colorpicker.php:58
-msgid "This window must be called from an Options window"
-msgstr ""
-
-#: ../lib/lang.php:712
-msgid "Upload Date"
-msgstr "上传日期"
-
-#: ../lib/lang.php:714
-msgid "Image Size"
-msgstr "文件大小"
-
-#: ../lib/lang.php:715
-msgid "Additional EXIF Data"
-msgstr "额外的 EXIF 资料"
-
-# Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:724
-#, fuzzy
-msgid "Description"
-msgstr "描述"
-
-# Neccessary infact of hardcoded function editField() in util.php
-#: ../lib/lang.php:725
-msgid "description"
-msgstr "描述"
-
-#: ../lib/valchecks.php:68
-msgid "Value was set to given default. Because the original value is not numeric."
-msgstr ""
-
-#: ../lib/valchecks.php:70
-msgid "The given Value is not numeric."
-msgstr ""
-
-#: ../lib/valchecks.php:76
-msgid "Value was set to given default. Because the original value is not a valid Integer"
-msgstr ""
-
-#: ../lib/valchecks.php:78
-msgid "The given Value not a valid Integer."
-msgstr ""
-
-#: ../lib/messages.php:26
-msgid "Error:"
-msgstr "错误："
-
-#: ../lib/messages.php:74
-#, php-format
-msgid "Generated by %s v%s"
-msgstr "Generated by %s v%s"
-
-#: ../lib/messages.php:76
-#, php-format
-msgid "Powered by %s v%s"
-msgstr "Powered by %s v%s"
+#: ../lib/albumItem.php:273 ../lib/albumItem.php:274
+#, fuzzy, php-format
+msgid "%s actions"
+msgstr "说明文件"
 
 #: ../login.php:51
 msgid "SUCCEEDED"
@@ -3099,9 +2760,8 @@ msgid "Invalid username or password"
 msgstr "不正确的用户名或口令"
 
 #: ../login.php:60
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "请输入用户名与口令"
+msgstr ""
 
 #: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
@@ -3252,15 +2912,15 @@ msgstr "选择这个相册的新存放位置"
 msgid "Your Album will be moved to the position you choose below."
 msgstr ""
 
-#: ../move_album.php:117 ../move_photo.php:248
+#: ../move_album.php:116 ../move_photo.php:248
 msgid "Move it!"
 msgstr "搬移"
 
-#: ../move_album.php:124
+#: ../move_album.php:123
 msgid "Nest within another Album:"
 msgstr "移入另一份相册中："
 
-#: ../move_album.php:137 ../move_photo.php:334
+#: ../move_album.php:133
 msgid "Move to Album!"
 msgstr "搬移到该相册"
 
@@ -3320,8 +2980,8 @@ msgid "Reorder it!"
 msgstr "表框大小"
 
 #: ../move_photo.php:255
-msgid "Move the album to a new album:"
-msgstr "移动到其他相册中："
+msgid "Move the album to different position in your gallery:"
+msgstr ""
 
 #: ../move_photo.php:266
 msgid "Move a range of photos to a new album:"
@@ -3363,9 +3023,9 @@ msgid "Upload went fine, but the file is not readable, please make sure %s is ac
 msgstr ""
 
 #: ../multi_create_user.php:101
-#, php-format
+#, fuzzy, php-format
 msgid "Adding %s (%s) with email: %s"
-msgstr ""
+msgstr "正在加入 %s"
 
 #: ../multi_create_user.php:102 ../multi_create_user.php:106
 msgid "No fullname given"
@@ -3434,8 +3094,9 @@ msgid "<i>username fullname</i>"
 msgstr ""
 
 #: ../multi_create_user.php:212
+#, fuzzy
 msgid "<i>username emailaddress</i>"
-msgstr ""
+msgstr "服务器 IP 地址"
 
 #: ../multi_create_user.php:214
 msgid "Only username is required. Everything after the email address is the full name, so there can be spaces in it."
@@ -3485,10 +3146,68 @@ msgstr "所有者"
 msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
 msgstr ""
 
+#: ../poll_properties.php:72 ../poll_properties.php:76
+#, fuzzy
+msgid "Poll Properties"
+msgstr "文件属性"
+
+#: ../poll_properties.php:87
+#, fuzzy
+msgid "Type of poll for this album"
+msgstr "1 份文件在此相册中"
+
+#: ../poll_properties.php:88
+#, fuzzy
+msgid "Rank"
+msgstr "以上乱数选一种"
+
+#: ../poll_properties.php:88
+msgid "Critique"
+msgstr ""
+
+#: ../poll_properties.php:91
+#, fuzzy
+msgid "Number of voting options"
+msgstr "根据评论数量"
+
+#: ../poll_properties.php:95
+msgid "Show results of voting to all visitors?"
+msgstr ""
+
+#: ../poll_properties.php:99
+msgid "Number of lines of results graph to display on the album page"
+msgstr ""
+
 #: ../poll_properties.php:103
 #, fuzzy
 msgid "Who can vote"
 msgstr "没有东东"
+
+#: ../poll_properties.php:107
+msgid "Orientation of vote choices"
+msgstr ""
+
+#: ../poll_properties.php:108 ../rotate_photo.php:82
+msgid "Horizontal"
+msgstr "水平"
+
+#: ../poll_properties.php:108 ../rotate_photo.php:85
+msgid "Vertical"
+msgstr "垂直"
+
+#: ../poll_properties.php:111
+msgid "Vote hint"
+msgstr ""
+
+#: ../poll_properties.php:120
+#, fuzzy
+msgid "Displayed Value"
+msgstr "播放"
+
+#: ../poll_properties.php:121
+#, fuzzy
+msgid "Points"
+msgstr "分"
 
 #: ../poll_results.php:38
 #, fuzzy
@@ -3508,6 +3227,16 @@ msgstr "回到增加多张照片"
 #: ../poll_results.php:121
 msgid "Results Breakdown"
 msgstr ""
+
+#: ../poll_results.php:148 ../view_album.php:503 ../view_album.php:805
+#, fuzzy, php-format
+msgid "Album: %s"
+msgstr "相册"
+
+#: ../poll_results.php:163
+#, fuzzy
+msgid "No votes so far."
+msgstr "注意"
 
 #: ../progress_uploading.php:35
 msgid "Uploading Photos"
@@ -3939,44 +3668,48 @@ msgstr "抓取 Url 中..."
 msgid "Processing %s as a local directory."
 msgstr "处理本地目录 %s"
 
-#: ../save_photos.php:121
+#: ../save_photos.php:122
 #, php-format
 msgid "Unable to find %s locally - trying %s."
 msgstr ""
 
-#: ../save_photos.php:160
+#: ../save_photos.php:157
 #, php-format
 msgid "Could not open url: %s"
 msgstr "无法开启 url：%s"
 
-#: ../save_photos.php:192
+#: ../save_photos.php:189
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "为影像解析 %s..."
 
-#: ../save_photos.php:254
+#: ../save_photos.php:251
 #, php-format
 msgid "Found %d images"
 msgstr "找到 %d 个影像"
 
-#: ../save_photos.php:261
+#: ../save_photos.php:258
 msgid "Processing status..."
 msgstr "处理进度..."
 
-#: ../save_photos.php:373
+#: ../save_photos.php:333
+msgid "Extrafields:"
+msgstr ""
+
+#: ../save_photos.php:363
 msgid "No images uploaded!"
 msgstr "文件上传失败! "
 
-#: ../save_photos.php:396
+#: ../save_photos.php:381
 msgid "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)"
 msgstr ""
 
-#: ../save_photos.php:424
+#: ../save_photos.php:405
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr ""
 
-#: ../save_photos.php:456
+#: ../save_photos.php:436
 msgid "Add Files"
 msgstr "添加文件"
 
@@ -4116,10 +3849,6 @@ msgstr "根据评论数量"
 msgid "Randomly"
 msgstr "以上乱数选一种"
 
-#: ../sort_album.php:105
-msgid "Sort Order:"
-msgstr ""
-
 #: ../sort_album.php:107
 msgid "Just sort"
 msgstr ""
@@ -4133,18 +3862,6 @@ msgstr "相册标题"
 msgid "Photos/Movies first"
 msgstr ""
 
-#: ../sort_album.php:112
-msgid "Ascending"
-msgstr "递增"
-
-#: ../sort_album.php:113
-msgid "Descending"
-msgstr "递减"
-
-#: ../sort_album.php:120
-msgid "Sort"
-msgstr "排序"
-
 #: ../stamp_preview.php:42
 #, fuzzy
 msgid "Poststamp preview"
@@ -4154,14 +3871,54 @@ msgstr "前一页"
 msgid "Choose a stamp:"
 msgstr ""
 
+#: ../stats-wizard.php:43 ../stats-wizard.php:53
+#, fuzzy
+msgid "Gallery statistics - Wizard"
+msgstr "Gallery 检测网页"
+
+#: ../stats-wizard.php:54 ../tools/despam-comments.php:55
+#: ../tools/find_orphans.php:210 ../tools/validate_albums.php:137
+#: ../tools/validate_albums.php:213
+#, fuzzy
+msgid "return to admin page"
+msgstr "回到相册"
+
+#: ../stats-wizard.php:122
+msgid "Type"
+msgstr ""
+
+#: ../stats-wizard.php:126 ../tools/despam-comments.php:390
+#, fuzzy
+msgid "Options"
+msgstr "修改说明"
+
+#: ../stats-wizard.php:131
+#, fuzzy
+msgid "Layout"
+msgstr "尾"
+
+#: ../stats-wizard.php:135
+#, fuzzy
+msgid "Filter by Capture Date"
+msgstr "建立日期"
+
+#: ../stats-wizard.php:140
+msgid "Show statistics"
+msgstr ""
+
+#: ../stats-wizard.php:144
+msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
+msgstr ""
+
 #: ../stats.php:79
 #, fuzzy
 msgid " - Images with the least votes"
 msgstr "%s call 产生不明原因的失败! "
 
 #: ../stats.php:82
+#, fuzzy
 msgid " - Images with the most votes"
-msgstr ""
+msgstr "%s call 产生不明原因的失败! "
 
 #: ../stats.php:88
 #, fuzzy
@@ -4214,8 +3971,9 @@ msgid " - Images with the least views"
 msgstr "%s call 产生不明原因的失败! "
 
 #: ../stats.php:134
+#, fuzzy
 msgid " - Images with the most views"
-msgstr ""
+msgstr "%s call 产生不明原因的失败! "
 
 #: ../stats.php:306
 #, php-format
@@ -4237,8 +3995,9 @@ msgid "Logged In - Disabling Cache"
 msgstr ""
 
 #: ../stats.php:349
+#, fuzzy
 msgid "Using cache"
-msgstr ""
+msgstr "Missing value"
 
 #: ../stats.php:349
 msgid "Not using cache"
@@ -4252,303 +4011,185 @@ msgstr ""
 msgid "Cache will not rebuild."
 msgstr ""
 
-#: ../stats.php:372
+#: ../stats.php:373
 msgid "Version out of date."
 msgstr ""
 
-#: ../stats.php:404
+#: ../stats.php:405
 #, fuzzy, php-format
 msgid "Checking album: %s"
 msgstr "跳过相册 %d..."
 
-#: ../stats.php:414
+#: ../stats.php:415
 #, php-format
 msgid "Reading info for photo index = %d , id = %d"
 msgstr ""
 
-#: ../stats.php:425
+#: ../stats.php:426
 #, fuzzy
 msgid "Getting SVotes"
 msgstr "符合的评论"
 
-#: ../stats.php:431
+#: ../stats.php:432
 #, fuzzy
 msgid "Getting Item Clicks"
 msgstr "文件建立时间"
 
-#: ../stats.php:434
+#: ../stats.php:435
 #, fuzzy
 msgid "Getting Item Capture Date"
 msgstr "文件建立时间"
 
-#: ../stats.php:453
+#: ../stats.php:454
 #, fuzzy
 msgid "Getting Number of Comments"
 msgstr "根据评论数量"
 
-#: ../stats.php:455
+#: ../stats.php:456
 #, fuzzy
 msgid "Getting Comments"
 msgstr "符合的评论"
 
-#: ../stats.php:498
+#: ../stats.php:499
 #, php-format
 msgid "Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"
 msgstr ""
 
-#: ../stats.php:559
+#: ../stats.php:561
 #, php-format
 msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr ""
 
-#: ../stats.php:580
+#: ../stats.php:582
 #, fuzzy, php-format
 msgid "%d images with comments in album: %s"
 msgstr "%s call 产生不明原因的失败! "
 
-#: ../stats.php:582
+#: ../stats.php:584
 #, fuzzy, php-format
 msgid "%d images in album: %s"
 msgstr "%s 在个这相册中, 共 %s"
 
-#: ../stats.php:585
+#: ../stats.php:587
 #, php-format
 msgid "Given albumname: '%s' is invalid !"
 msgstr ""
 
-#: ../stats.php:590
+#: ../stats.php:592
 #, fuzzy, php-format
 msgid "%d images with comments in this Gallery"
 msgstr "%s call 产生不明原因的失败! "
 
-#: ../stats.php:593
+#: ../stats.php:595
 #, fuzzy, php-format
 msgid "%d images this Gallery"
 msgstr "进入 Gallery"
 
-#: ../stats.php:599
+#: ../stats.php:601
 msgid "Back to stats-wizard"
 msgstr ""
 
-#: ../stats.php:635
+#: ../stats.php:637
 #, php-format
 msgid "Data load time %d seconds"
 msgstr ""
 
-#: ../stats.php:701
+#: ../stats.php:703
 #, php-format
 msgid "Finished in %d seconds"
 msgstr ""
 
-#: ../stats.php:706
+#: ../stats.php:708
 #, fuzzy
 msgid "Update"
 msgstr "上传日期"
 
-#: ../stats.php:707
+#: ../stats.php:709
 msgid "Cache update required. "
 msgstr ""
 
-#: ../stats.php:711
+#: ../stats.php:713
 #, fuzzy, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr "有些相册没有搜寻到, 因为他们需要先更新到最新版的 %s"
 
-#: ../stats.php:714
+#: ../stats.php:716
 #, fuzzy
 msgid "upgrade all albums"
 msgstr "更新所有的相册"
 
-#: ../stats.php:758
+#: ../stats.php:760
 #, fuzzy, php-format
 msgid "Recursing album: %s"
 msgstr "修改 %s 的大小"
 
-#: ../stats.php:794
+#: ../stats.php:796
 msgid "Read cache num photos lock failed."
 msgstr ""
 
-#: ../stats.php:818
+#: ../stats.php:820
 #, php-format
 msgid "Album name : %s ; index: %s"
 msgstr ""
 
-#: ../stats.php:829 ../stats.php:868
+#: ../stats.php:831 ../stats.php:870
 msgid "Read cache lock failed."
 msgstr ""
 
-#: ../stats.php:980
+#: ../stats.php:982
 #, fuzzy
 msgid "add vote"
 msgstr "注意"
 
-#: ../stats.php:1074
+#: ../stats.php:1076
 #, fuzzy, php-format
 msgid "From album: %s"
 msgstr "从相册"
 
-#: ../stats.php:1079
+#: ../stats.php:1081
 #, fuzzy, php-format
 msgid "Owned by: %s"
 msgstr "所有者："
 
-#: ../stats.php:1111
+#: ../stats.php:1113
 #, fuzzy
 msgid "Capture Date:"
 msgstr "建立日期"
 
-#: ../stats.php:1125
+#: ../stats.php:1127
 #, fuzzy
 msgid "Upload Date:"
 msgstr "上传日期"
 
-#: ../stats.php:1139
-#, fuzzy
-msgid "Views:"
+#: ../stats.php:1141
+msgid "Viewed:"
 msgstr "人气："
 
-#: ../stats.php:1149
+#: ../stats.php:1145
+#, fuzzy, php-format
+msgid "Once"
+msgid_plural "%d times"
+msgstr[0] "所有者"
+msgstr[1] "所有者"
+
+#: ../stats.php:1145
+msgid "Never viewed"
+msgstr ""
+
+#: ../stats.php:1151
 #, fuzzy
 msgid "Votes:"
 msgstr "注意"
 
-#: ../stats.php:1161
+#: ../stats.php:1163
 #, fuzzy
 msgid "not rated"
 msgstr "旋转"
 
-#: ../stats.php:1175
+#: ../stats.php:1177
 #, fuzzy
 msgid "Rating:"
 msgstr "以上乱数选一种"
-
-#: ../stats-wizard.php:43 ../stats-wizard.php:53
-msgid "Gallery statistics - Wizard"
-msgstr ""
-
-#: ../stats-wizard.php:54 ../tools/find_orphans.php:210
-#: ../tools/despam-comments.php:55 ../tools/validate_albums.php:137
-#: ../tools/validate_albums.php:213
-#, fuzzy
-msgid "return to admin page"
-msgstr "回到相册"
-
-#: ../stats-wizard.php:122
-msgid "Type"
-msgstr ""
-
-#: ../stats-wizard.php:126 ../tools/despam-comments.php:390
-#, fuzzy
-msgid "Options"
-msgstr "说明"
-
-#: ../stats-wizard.php:135
-#, fuzzy
-msgid "Filter by Capture Date"
-msgstr "建立日期"
-
-#: ../stats-wizard.php:140
-msgid "Show statistics"
-msgstr ""
-
-#: ../stats-wizard.php:144
-msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
-msgstr ""
-
-#: ../tools/find_orphans.php:200 ../tools/find_orphans.php:209
-msgid "Find Orphans"
-msgstr ""
-
-#: ../tools/find_orphans.php:226
-#, fuzzy
-msgid "Orphaned Albums:"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:227
-msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
-msgstr ""
-
-#: ../tools/find_orphans.php:231
-#, fuzzy
-msgid "Parent Album"
-msgstr "选择上层相册"
-
-#: ../tools/find_orphans.php:233
-#, fuzzy
-msgid "Orphaned Album"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:240
-#, fuzzy
-msgid "Gallery Root"
-msgstr "Gallery"
-
-#: ../tools/find_orphans.php:254
-#, fuzzy
-msgid "Re-Attach Orphaned Albums!"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:261
-#, fuzzy
-msgid "Orphaned Files:"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:262
-msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
-msgstr ""
-
-# ../add_photos.php:136
-#: ../tools/find_orphans.php:266
-#, fuzzy
-msgid "Album directory"
-msgstr "送出 URL 或 目录"
-
-#: ../tools/find_orphans.php:268
-#, fuzzy
-msgid "Orphaned file"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:291
-#, fuzzy
-msgid "Delete Orphaned Files!"
-msgstr "相册更新"
-
-#: ../tools/find_orphans.php:297
-msgid "No Orphans Found"
-msgstr ""
-
-#: ../tools/find_orphans.php:298
-#, fuzzy
-msgid "There are no orphaned elements in this Gallery."
-msgstr "%s call 产生不明原因的失败! "
-
-#: ../tools/find_orphans.php:302
-#, php-format
-msgid "Orphan %s Repaired"
-msgstr ""
-
-#: ../tools/find_orphans.php:302
-#, fuzzy
-msgid "Albums"
-msgstr "相册"
-
-#: ../tools/find_orphans.php:302
-#, fuzzy
-msgid "Files"
-msgstr "文件"
-
-#: ../tools/find_orphans.php:309
-msgid "The Webserver has not enough permission to delete the following files:"
-msgstr ""
-
-#: ../tools/find_orphans.php:315
-msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
-msgstr ""
-
-#: ../tools/find_orphans.php:316
-#, fuzzy
-msgid "Reload"
-msgstr "表框大小"
 
 #: ../tools/despam-comments.php:54
 #, fuzzy
@@ -4687,6 +4328,99 @@ msgstr "目前位置"
 msgid "Add blacklist entries"
 msgstr "删除评论"
 
+#: ../tools/find_orphans.php:200 ../tools/find_orphans.php:209
+msgid "Find Orphans"
+msgstr ""
+
+#: ../tools/find_orphans.php:226
+#, fuzzy
+msgid "Orphaned Albums:"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:227
+msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
+msgstr ""
+
+#: ../tools/find_orphans.php:231
+#, fuzzy
+msgid "Parent Album"
+msgstr "选择上层相册"
+
+#: ../tools/find_orphans.php:233
+#, fuzzy
+msgid "Orphaned Album"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:240
+#, fuzzy
+msgid "Gallery Root"
+msgstr "Gallery"
+
+#: ../tools/find_orphans.php:254
+#, fuzzy
+msgid "Re-Attach Orphaned Albums!"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:261
+#, fuzzy
+msgid "Orphaned Files:"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:262
+msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
+msgstr ""
+
+#: ../tools/find_orphans.php:266
+msgid "Album directory"
+msgstr "相册目录"
+
+#: ../tools/find_orphans.php:268
+#, fuzzy
+msgid "Orphaned file"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:291
+#, fuzzy
+msgid "Delete Orphaned Files!"
+msgstr "相册更新"
+
+#: ../tools/find_orphans.php:297
+#, fuzzy
+msgid "No Orphans Found"
+msgstr "没有找到任何语言. "
+
+#: ../tools/find_orphans.php:298
+#, fuzzy
+msgid "There are no orphaned elements in this Gallery."
+msgstr "%s call 产生不明原因的失败! "
+
+#: ../tools/find_orphans.php:302
+#, php-format
+msgid "Orphan %s Repaired"
+msgstr ""
+
+#: ../tools/find_orphans.php:302
+msgid "Albums"
+msgstr "相册"
+
+#: ../tools/find_orphans.php:302
+#, fuzzy
+msgid "Files"
+msgstr "文件"
+
+#: ../tools/find_orphans.php:309
+msgid "The Webserver has not enough permission to delete the following files:"
+msgstr ""
+
+#: ../tools/find_orphans.php:315
+msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
+msgstr ""
+
+#: ../tools/find_orphans.php:316
+#, fuzzy
+msgid "Reload"
+msgstr "表框大小"
+
 #: ../tools/validate_albums.php:181
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
@@ -4697,16 +4431,18 @@ msgid "Validate Albums"
 msgstr "删除相册"
 
 #: ../tools/validate_albums.php:230
+#, fuzzy
 msgid "Missing Files:"
-msgstr ""
+msgstr "Missing value"
 
 #: ../tools/validate_albums.php:231
 msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
 msgstr ""
 
 #: ../tools/validate_albums.php:235
+#, fuzzy
 msgid "Missing File"
-msgstr ""
+msgstr "Missing value"
 
 #: ../tools/validate_albums.php:237 ../tools/validate_albums.php:279
 #, fuzzy
@@ -4718,8 +4454,9 @@ msgid "delete photo"
 msgstr "删除文件"
 
 #: ../tools/validate_albums.php:262
+#, fuzzy
 msgid "No Missing Files"
-msgstr ""
+msgstr "Missing value"
 
 #: ../tools/validate_albums.php:263
 #, fuzzy
@@ -4866,10 +4603,6 @@ msgstr "如果您想更改口令, 您必须输入旧的口令并且输入两次新的口令. "
 msgid "You can change your username to any combination of letters and digits."
 msgstr "您可以更改用户名, 这必须是由数字与英文所组成. "
 
-#: ../user_preferences.php:135 ../view_photo_properties.php:137
-msgid "Close Window"
-msgstr ""
-
 #: ../util.php:154
 #, fuzzy, php-format
 msgid "Executing: %s"
@@ -4913,7 +4646,7 @@ msgstr ""
 msgid "PHP's %s function is unable to determine dimensions."
 msgstr "PHP 的 %s 无法决定 dimensions. "
 
-#: ../util.php:235 ../util.php:1468
+#: ../util.php:235
 msgid "You have no graphics package configured for use!"
 msgstr "您没有设定图形套件! "
 
@@ -4922,100 +4655,91 @@ msgstr "您没有设定图形套件! "
 msgid "Unable to determine image dimensions!"
 msgstr "PHP 的 %s 无法决定 dimensions. "
 
-#: ../util.php:326
-#, php-format
-msgid "Call to %s failed in %s for file %s!"
-msgstr ""
-
-#: ../util.php:330
-#, php-format
-msgid "File %s type %d."
-msgstr ""
-
-#: ../util.php:361 ../util.php:384
-#, php-format
-msgid "Unknown file type: %s"
-msgstr "未知的文件格式：%s"
-
-#: ../util.php:537
+#: ../util.php:432
 #, php-format
 msgid "Can't write to %s."
 msgstr "无法写入 %s. "
 
-#: ../util.php:544
+#: ../util.php:439
 #, php-format
 msgid "Can't read %s."
 msgstr "无法读取 %s. "
 
-#: ../util.php:765
+#: ../util.php:660
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "文件建立时间"
 
-#: ../util.php:810
+#: ../util.php:705
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "无法开启 lock file (%s)! "
 
-#: ../util.php:815
+#: ../util.php:710
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "无法获得 lock (%s)! "
 
-#: ../util.php:898
+#: ../util.php:793
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:1044
+#: ../util.php:939
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:1047
+#: ../util.php:942
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:1061 ../util.php:2066
+#: ../util.php:956 ../util.php:1823
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1101
+#: ../util.php:996
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "跳过 %s (ZIP 尚未支持)"
 
-#: ../util.php:1253
+#: ../util.php:1145
 #, php-format
 msgid "Adding %s"
 msgstr "正在加入 %s"
 
-#: ../util.php:1273
+#: ../util.php:1165
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "需要帮忙吗? 请看 %s%s FAQ%s"
 
-#: ../util.php:1278
+#: ../util.php:1170
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "跳过 %s (无法处理 %s 格式)"
 
-#: ../util.php:1432
-msgid "Unable to preserve EXIF data (jhead not installed)"
-msgstr ""
-
-#: ../util.php:1550
+#: ../util.php:1283
 #, fuzzy, php-format
 msgid "Cannot open logfile: %s"
 msgstr "无法开启 lock file (%s)! "
 
-#: ../util.php:1899
+#: ../util.php:1451
+#, php-format
+msgid "Parsing for csv data in file: %s"
+msgstr ""
+
+#: ../util.php:1467
+#, fuzzy
+msgid "csv result:"
+msgstr "结果："
+
+#: ../util.php:1635
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1977
+#: ../util.php:1725
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -5072,168 +4796,194 @@ msgstr "增加多张照片"
 
 #: ../view_album.php:250
 #, fuzzy
+msgid "Delete this album"
+msgstr "更改相册名称"
+
+#: ../view_album.php:255
+#, fuzzy
+msgid "Delete this (sub)album"
+msgstr "更改相册名称"
+
+#: ../view_album.php:264
+#, fuzzy
 msgid "Rename album"
 msgstr "更改名称"
 
-#: ../view_album.php:257
+#: ../view_album.php:271
 #, fuzzy
 msgid "New nested album"
 msgstr "添加相册"
 
-#: ../view_album.php:263
+#: ../view_album.php:277
 #, fuzzy
 msgid "Edit captions"
 msgstr "修改说明"
 
-#: ../view_album.php:269
+#: ../view_album.php:283
 #, fuzzy
 msgid "Sort items"
 msgstr "没有东东"
 
-#: ../view_album.php:275
+#: ../view_album.php:289
 #, fuzzy
 msgid "Resize all"
 msgstr "修改文件大小"
 
-#: ../view_album.php:281
+#: ../view_album.php:295
 #, fuzzy
 msgid "Rebuild thumbs"
 msgstr "重建缩略图"
 
-#: ../view_album.php:287
+#: ../view_album.php:301
 #, fuzzy
 msgid "Properties"
 msgstr "相册属性"
 
-#: ../view_album.php:293
+#: ../view_album.php:307
 #, fuzzy
 msgid "Rearrange items"
 msgstr "没有东东"
 
-#: ../view_album.php:305
+#: ../view_album.php:319
 #, fuzzy
 msgid "Poll results"
 msgstr "结果："
 
-#: ../view_album.php:311
+#: ../view_album.php:325
 #, fuzzy
 msgid "Poll reset"
 msgstr "结果："
 
-#: ../view_album.php:317
+#: ../view_album.php:331
 #, fuzzy
 msgid "View comments"
 msgstr "检视评论"
 
-#: ../view_album.php:323
+#: ../view_album.php:337
 #, fuzzy
 msgid "Watermark album"
 msgstr "从相册"
 
-#: ../view_album.php:381
+#: ../view_album.php:395
 #, fuzzy
 msgid "Album Actions"
 msgstr "相册说明："
 
-#: ../view_album.php:471
+#: ../view_album.php:485
 msgid "You have no votes recorded for this poll."
 msgstr ""
 
-#: ../view_album.php:475
+#: ../view_album.php:489
 msgid "Your current choices are"
 msgstr ""
 
-#: ../view_album.php:515
+#: ../view_album.php:529
 #, fuzzy
 msgid "See full poll results"
 msgstr "结果："
 
-#: ../view_album.php:549
+#: ../view_album.php:563
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:551
+#: ../view_album.php:565
 #, fuzzy
 msgid " or "
 msgstr "或者"
 
-#: ../view_album.php:555
+#: ../view_album.php:569
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr ""
 
-#: ../view_album.php:556
+#: ../view_album.php:570
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:561
+#: ../view_album.php:571 ../view_album.php:587 ../view_album.php:937
+#, fuzzy
+msgid "Vote"
+msgstr "注意"
+
+#: ../view_album.php:575
 #, fuzzy, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "您可以在这边更改个人信息. "
 
-#: ../view_album.php:562
+#: ../view_album.php:576
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "注意"
 msgstr[1] "注意"
 
-#: ../view_album.php:565
+#: ../view_album.php:579
 #, fuzzy
 msgid "You can change your choices if you wish."
 msgstr "您可以在这边更改个人信息. "
 
-#: ../view_album.php:718 ../view_album.php:719
+#: ../view_album.php:732 ../view_album.php:733
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:780
+#: ../view_album.php:794
 #, fuzzy
 msgid "highlight"
 msgstr "没有封面"
 
-#: ../view_album.php:795
+#: ../view_album.php:809
 msgid "No description"
 msgstr "无描述"
 
-#: ../view_album.php:803
-msgid "Changed: "
-msgstr "更新： "
+#: ../view_album.php:817
+#, fuzzy, php-format
+msgid "Last change: %s"
+msgstr "上次更新：%s. "
 
-#: ../view_album.php:806
-msgid "Contains: "
+#: ../view_album.php:820
+#, fuzzy, php-format
+msgid "Contains: %s"
 msgstr "内容： "
 
-#: ../view_album.php:806
+#: ../view_album.php:820
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "项"
 msgstr[1] "项"
 
-#: ../view_album.php:822 ../view_album.php:846
-msgid "Viewed:"
+#: ../view_album.php:835
+#, fuzzy, php-format
+msgid "Viewed: %s"
 msgstr "人气："
 
-#: ../view_album.php:902
+#: ../view_album.php:859
+#, fuzzy, php-format
+msgid "Viewed: 1 time."
+msgid_plural "Viewed: %d times."
+msgstr[0] "人气："
+msgstr[1] "人气："
+
+#: ../view_album.php:915
 msgid "Hey! Add some photos."
 msgstr "嘿! 放些东西吧～"
 
-#: ../view_album.php:904
+#: ../view_album.php:917
 msgid "This album is empty."
 msgstr "这个相册空空如也"
 
-#: ../view_album.php:949
+#: ../view_album.php:962
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:954
+#: ../view_album.php:967
+#, fuzzy
 msgid "Comments are added"
-msgstr ""
+msgstr "评论"
 
-#: ../view_album.php:957
+#: ../view_album.php:970
 msgid "Other changes are made"
 msgstr ""
 
@@ -5269,29 +5019,30 @@ msgstr "调整 %d 张照片中..."
 msgid "Print photo with..."
 msgstr "调整 %d 张照片中..."
 
-#: ../view_photo.php:435
+#: ../view_photo.php:434
 #, fuzzy, php-format
 msgid "process this photo with %s"
 msgstr "在 %s 上列印"
 
-#: ../view_photo.php:477
+#: ../view_photo.php:476
 #, fuzzy
 msgid "View Images:"
 msgstr "检视影像"
 
-#: ../view_photo.php:478
+#: ../view_photo.php:477
 msgid "normal"
 msgstr "一般"
 
-#: ../view_photo.php:479
+#: ../view_photo.php:478
 msgid "full"
 msgstr "原始"
 
-#: ../view_photo.php:497
+#: ../view_photo.php:496
+#, fuzzy
 msgid "Send Photo as eCard"
-msgstr ""
+msgstr "管理者口令"
 
-#: ../view_photo.php:698
+#: ../view_photo.php:715
 msgid "Email me when comments are added"
 msgstr ""
 
@@ -5321,11 +5072,1735 @@ msgstr "注意"
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "no"
-#~ msgstr "否"
+#, fuzzy
+#~ msgid "Move Album!"
+#~ msgstr "搬移相册"
+
+#, fuzzy
+#~ msgid "Value"
+#~ msgstr "失败"
+
+#, fuzzy
+#~ msgid "I can read your <b>.htaccess</b> file."
+#~ msgstr "可以读取您的 .htaccess 文件"
+
+#, fuzzy
+#~ msgid "PHP v%s is OK."
+#~ msgstr "PHP %s OK"
+
+#, fuzzy
+#~ msgid "<b>mod_rewrite</b> is enabled."
+#~ msgstr "mod_rewrite 开启"
+
+#, fuzzy
+#~ msgid "<b>jhead</b> binary located."
+#~ msgstr "找到 jhead 可执行档"
+
+#, fuzzy
+#~ msgid "NetPBM not being used in this installation."
+#~ msgstr "安装过程中没有使用 NetPBM"
+
+#, fuzzy
+#~ msgid "Cannot verify this path (it's not in your open_basedir list)."
+#~ msgstr "无法检查该路径 (不在您的 open_basedir 列表中)"
+
+#~ msgid "Can't find %s!"
+#~ msgstr "找不到 %s! "
+
+#~ msgid "%s is not executable!"
+#~ msgstr "%s 不能执行! "
+
+#, fuzzy
+#~ msgid "%d of %d NetPBM binaries located."
+#~ msgstr "找到 %d 个 NetPBM 可执行档"
+
+#, fuzzy
+#~ msgid "ImageMagick not being used in this installation."
+#~ msgstr "安装过程中没有使用 NetPBM"
+
+#, fuzzy
+#~ msgid "%d of %d ImageMagick binaries located."
+#~ msgstr "找到 %d 个 ImageMagick 可执行档"
+
+#, fuzzy
+#~ msgid "<b>jpegtran</b> binary located."
+#~ msgstr "找到 jpegtran"
+
+#, fuzzy
+#~ msgid "PHP has <b>GNU gettext</b> support."
+#~ msgstr "gettext 已安装"
+
+#, fuzzy
+#~ msgid "PHP does not have <b>GNU gettext</b> support."
+#~ msgstr "gettext 已安装"
+
+#, fuzzy
+#~ msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+#~ msgstr "只有 %d 分之 %d 种语言存在, 如果您想要使用其他语言, 请在 %s 下载 %s. "
+
+#~ msgid "You can check for more recent versions by visiting %s."
+#~ msgstr "您可以点选 %s 察看是否有更新的版本. "
+
+#~ msgid "This version of %s was released on %s."
+#~ msgstr "这个版本的 %s 是在 %s 释放出来的. "
+
+#, fuzzy
+#~ msgid "This is a development build of %s that was released on %s."
+#~ msgstr "这个 beta 版的 %s 是在 %s 释放出来的. "
+
+#~ msgid "Please check regularly for updates."
+#~ msgstr "请定期检查是否有更新档. "
+
+#, fuzzy
+#~ msgid "All gallery locales are available on this host."
+#~ msgstr "服务器支持所有 gallery 的 locales"
+
+#, fuzzy
+#~ msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+#~ msgstr "我们无法检测到任何的 locales, 况且您的服务器有 %s 的限制有可能导致这个情形产生. 这代表您的日期格式将不会随着语言的不同而有所改变, 不过您还是可以继续下一步. "
+
+#, fuzzy
+#~ msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+#~ msgstr "我们无法检测到任何系统 locale。 多语言功能将会被禁用。请安装正确的locale或者要你的ISP这么做。这是一个 %s 系统中的已知问题。 请察看 %sDebian locale HowTo%s"
+
+#~ msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+#~ msgstr "在这台机器上只有预设的 locale 存在, 所以日期格式将不会随着语言的不同而有所改变. "
+
+#~ msgid "Advanced"
+#~ msgstr "进阶"
+
+#, fuzzy
+#~ msgid "<b>System</b> locale selection required"
+#~ msgstr "Locale 选择"
+
+#, fuzzy
+#~ msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+#~ msgstr "下列语言在您的机器上有一个以上的 locales 可以选择, 请选一个择你认为最适合的. "
+
+#, fuzzy
+#~ msgid "System locale"
+#~ msgstr "系统检查网页"
+
+#, fuzzy
+#~ msgid "<b>System</b> locale problems"
+#~ msgstr "Locale 问题"
+
+#, fuzzy
+#~ msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+#~ msgstr "在您的机器上似乎没有下列语言适合的 locales, 请选择一个您认为最适合的. "
+
+#, fuzzy
+#~ msgid "<b>safe_mode</b> is off."
+#~ msgstr "safe mode 关闭"
+
+#, fuzzy
+#~ msgid "<b>magic_quotes</b> are off."
+#~ msgstr "magic quotes 关闭"
+
+#, fuzzy
+#~ msgid "<b>register_globals</b> is off."
+#~ msgstr "safe mode 关闭"
+
+#, fuzzy
+#~ msgid "Valid admin email address given."
+#~ msgstr "电子信箱"
+
+#, fuzzy
+#~ msgid "You must specify valid admin email addresses"
+#~ msgstr "您一定要输入口令"
+
+#, fuzzy
+#~ msgid "%s is not a valid email address."
+#~ msgstr "您一定要输入用户名"
+
+#, fuzzy
+#~ msgid "Valid sender email address given."
+#~ msgstr "服务器 IP 地址"
+
+#, fuzzy
+#~ msgid "You must specify a valid sender email address"
+#~ msgstr "您一定要输入用户名"
+
+#, fuzzy
+#~ msgid "Look at %sCheck Versions%s for more details."
+#~ msgstr "%s点选这里%s 隐藏进阶信息"
+
+#~ msgid "this is new in version %s"
+#~ msgstr "这是版本 %s 的新功能"
+
+#, fuzzy
+#~ msgid "Configuration Wizard"
+#~ msgstr "Gallery: 设定模式"
+
+#, fuzzy
+#~ msgid "You must enter a password for the %s account."
+#~ msgstr "您一定要输入口令"
+
+#~ msgid "Admin password"
+#~ msgstr "管理者口令"
+
+#, fuzzy
+#~ msgid "email address"
+#~ msgstr "服务器 IP 地址"
+
+#, fuzzy
+#~ msgid "Missing version"
+#~ msgstr "Missing value"
+
+#~ msgid "File %s does not exist."
+#~ msgstr "文件 %s 并不存在. "
+
+#~ msgid "Expected status: %s, but actually received status %s."
+#~ msgstr "我们希望收到信息：%s, 但传回来的状况是 %s. "
+
+#~ msgid "can't detect version on Windows"
+#~ msgstr "无法侦测 Windows 的版本"
+
+#, fuzzy
+#~ msgid "OK!  Version: %s"
+#~ msgstr "Ok!  版本：%s"
+
+#, fuzzy
+#~ msgid "Gallery Configuration Wizard: Step %d"
+#~ msgstr "Gallery: 设定模式"
+
+#~ msgid "This is the Gallery system check page."
+#~ msgstr "这是 Gallery 系统检查网页. "
+
+#~ msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
+#~ msgstr "在这里我们将检查您的安装是否正确, 以便确保所有元件以及权限都已经正确的设定完成"
+
+#~ msgid "Gallery Help Page"
+#~ msgstr "Gallery Help Page"
+
+#~ msgid "Having problems?  Try the %s, %s and %s."
+#~ msgstr "有任何疑问吗? 请看 %s、%s 以及 %s. "
+
+#~ msgid "Having problems?  Try the %s and %s."
+#~ msgstr "有任何疑问吗? 请看 %s 以及 %s. "
+
+#~ msgid "Success"
+#~ msgstr "没问题"
+
+#, fuzzy
+#~ msgid "Warning, but optional"
+#~ msgstr "这是非必要选项"
+
+#, fuzzy
+#~ msgid "Serious warning, but optional"
+#~ msgstr "严重警告"
+
+#, fuzzy
+#~ msgid "Serious warning, no go !"
+#~ msgstr "严重警告"
+
+#~ msgid "Failure"
+#~ msgstr "失败"
+
+#~ msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
+#~ msgstr "您的设定错误, Gallery 将无法正常执行"
+
+#~ msgid "You must fix them before you can continue."
+#~ msgstr "您必须修正这些错误才能进行下一步. "
+
+#, fuzzy
+#~ msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
+#~ msgstr "您的安装程序有 <b>严重警告</b>!  如果您要继续后果自负..."
+
+#~ msgid "Your installation has warnings, but this is usually OK.  Keep going!"
+#~ msgstr "您的安装程序有 警告, 通常可以忽略没有关系. 继续下一步吧! "
+
+#~ msgid "Your installation passed with flying colors!  Go go go!"
+#~ msgstr "您完成了集成flying colors的安装! Go go go!"
+
+#, fuzzy
+#~ msgid "Next Step"
+#~ msgstr "下一页"
+
+#, fuzzy
+#~ msgid "Gallery ImageMagick Check"
+#~ msgstr "Gallery 标题"
+
+#~ msgid "Check %s"
+#~ msgstr "检查 %s"
+
+#~ msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
+#~ msgstr "这个 script 是用来检查您的 %s 安装程序是否完成且可以在 Gallery 里面正常执行. "
+
+#~ msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
+#~ msgstr "如果您再安装 %s 时发生问题而程序没有检查出来, 请在执行设置向导 <b>之后</b> 执行这个 script. "
+
+#~ msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
+#~ msgstr "载入设定档中. 如果有错误信息产生, 有可能是您的设置向导设定失败. "
+
+#~ msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
+#~ msgstr "似乎您尚未设定好您的 Gallery, 请执行设置向导. "
+
+#~ msgid "Let us see if we can figure out what operating system you are using."
+#~ msgstr "让我们看看您的操作系统的信息. "
+
+#~ msgid "This is what your system reports"
+#~ msgstr "这是您的系统产生的报告"
+
+#~ msgid "This is the type of system on which PHP was compiled"
+#~ msgstr "这是编译的 PHP 系统版本"
+
+#~ msgid "Make sure that the values above make sense to you."
+#~ msgstr "请确定上面的数值对你而言是有意义的. "
+
+#~ msgid "Look for keywords like %s, %s, %s etc. in the output above."
+#~ msgstr "请找关键字如 %s, %s, %s 等等. "
+
+#~ msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
+#~ msgstr "如果上面的方式都无法成功, 请向您的 ISP 询问所使用的操作系统为何. "
+
+#~ msgid "You can check via %s, they can often tell you."
+#~ msgstr "您可以透过 %s 来检查, 他们通常会回答你. "
+
+#~ msgid "You told the config wizard that your %s binaries live here:"
+#~ msgstr "您说您的 %s 可执行档在这边："
+
+#~ msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
+#~ msgstr "如果上述信息不正确 (或者是空白), 请重新执行设置向导并输入 %s 的位置. "
+
+#, fuzzy
+#~ msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
+#~ msgstr "无法检查该路径 (不在您的 open_basedir 列表中)"
+
+#, fuzzy
+#~ msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+#~ msgstr "<b>注意：</b> 您的 %s 目录 (%s) 并不在 open_basedir 列表中 (在 php.ini 中定义) %s 所以我们无法进行所有的基本测试来确认文件是否存在而且可以执行. "
+
+#~ msgid "We are going to test each %s binary individually."
+#~ msgstr "我们准备单独测试每一个 %s 可执行档"
+
+#, fuzzy
+#~ msgid "Checking:"
+#~ msgstr "检查 %s 中"
+
+#~ msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
+#~ msgstr "如果出现任何有关读写 %s 的错误, 那有可能是您系统权限设定的问题. 如果提到 %s, 那是因为您的系统设定 %s 功能开启了. "
+
+#~ msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
+#~ msgstr "您应该告诉系统管理原有关上述的事情, 或者参考 %sGallery Help Page%s. "
+
+#~ msgid "For other errors, please refer to the list of possible responses in %s to get more information."
+#~ msgstr "其他的错误状况, 请参考 %s 里面所有的可能信息以获得更多信息. "
+
+#, fuzzy
+#~ msgid "Check Mail"
+#~ msgstr "全选取"
+
+#, fuzzy
+#~ msgid "You must use a valid email address"
+#~ msgstr "您一定要输入用户名"
+
+#~ msgid "Warning"
+#~ msgstr "警告"
+
+#, fuzzy
+#~ msgid "Your email address:"
+#~ msgstr "服务器 IP 地址"
+
+#, fuzzy
+#~ msgid "Send Email"
+#~ msgstr "全选取"
+
+#, fuzzy
+#~ msgid "Gallery NetPBM Check"
+#~ msgstr "Gallery 标题"
+
+#~ msgid "%sClick here%s to hide the details"
+#~ msgstr "%s点选这里%s 隐藏进阶信息"
+
+#~ msgid "If you see errors, you should %sclick here%s to see more details"
+#~ msgstr "如果您看到错误产生, 请 %s点这里%s 得到更多信息"
+
+#, fuzzy
+#~ msgid "This page gives you information about the version of each necessary %s file. "
+#~ msgstr "这一份网页提供了您的 ImageMagick 执行档信息. "
+
+#~ msgid "unknown"
+#~ msgstr "未知"
+
+#, fuzzy
+#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#~ msgstr "Gallery 建议使用 NetPBM 9.9 或者更新的版本. 您可以从 %sGallery on SourceForge%s 上下载可执行档, 或者从 %sNetPBM on SourceForge%s 下载原始档自行编译安装. "
+
+#~ msgid "Note:"
+#~ msgstr "注意："
+
+#, fuzzy
+#~ msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
+#~ msgstr "<b>注意：</b>即使您没有系统的 root 权限, 您也可以从 Gallery 的网站下载可执行档安装. 如果这样还无法顺利进行, 请把 NetPBM 的路径空白并试试看 ImageMagick. "
+
+#, fuzzy
+#~ msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
+#~ msgstr "我们找到部分的 NetPBM 程序, 但有些重要的元件消失了 (详见下方说明) 有没有可能是您的 NetPBM 版本太旧了呢? "
+
+#, fuzzy
+#~ msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s."
+#~ msgstr "Gallery 建议使用 ImageMagick 5.4.8 或者更新的版本. 您可以从 %s 取得 ImageMagick 的原始档来编译安装. "
+
+#, fuzzy
+#~ msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+#~ msgstr "<b>注意：</b>它也有各种平台的可执行档, 如果您无法顺利进行, 请将 ImageMagick 的路径空白并试试看 NetPBM. "
+
+#, fuzzy
+#~ msgid "I've found part of ImageMagick , but some critical components are missing (see below)."
+#~ msgstr "我们找到部分的 NetPBM 程序, 但有些重要的元件消失了 (详见下方说明) 有没有可能是您的 NetPBM 版本太旧了呢? "
+
+#, fuzzy
+#~ msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
+#~ msgstr "<b>注意：</b>您的网页服务器有设定 %s 的限制, 如此以来 Gallery 在检测您的可执行档上面有某种程度的困难, 即是您已经正确的使用设置向导. 您可以不用太过于担心这个警告, 您的设定还是会完整的储存. "
+
+#, fuzzy
+#~ msgid "Gallery version"
+#~ msgstr "Gallery Session 测试"
+
+#, fuzzy
+#~ msgid "Check to see how old %s version %s is."
+#~ msgstr "检查版本 %s 的 %s 有多旧. "
+
+#, fuzzy
+#~ msgid "PHP version"
+#~ msgstr "检查 Sessions"
+
+#, fuzzy
+#~ msgid "You're running PHP version %s.  You need to upgrade to PHP %s."
+#~ msgstr "您执行的是 %s. 请升级至 PHP %s"
+
+#, fuzzy
+#~ msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
+#~ msgstr "您所使用的版本 %s 有已知的臭虫导致 Gallery 无法正常执行. "
+
+#, fuzzy
+#~ msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
+#~ msgstr "检查 PHP 是否在 <b>Safe Mode</b>.  Safe mode 是 PHP 在共用环境下的一种安全功能. 因为限制太多的缘故, 所以 Gallery 将无法在 Safe mode 下执行. "
+
+#, fuzzy
+#~ msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
+#~ msgstr "Server 上已经开启 <b>Safe Mode</b>, 在您使用 Gallery 之前必须关掉. 请参考在 %sGallery 网站%s 的 FAQ, 讨论区还有 Help 网页, 以及 %sPHP 网站%s 得到进一步的信息. "
+
+#, fuzzy
+#~ msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
+#~ msgstr "<b>注意：</b>在某些罕见的状况下, Gallery 会认为 <b>safe mode</b> 是开启的, 但实际上已经关掉. 您可以看看 %sPHP Info%s 网页上的 <i>Local</i> 里的 safe_mode, 如果它显示 'Off' 或这 '0' 或者是 'undefined', 那就是 Gallery 误判, 您可以继续下一步没关系. 如果不是的话, 您必须在使用 Gallery 之前解决这个问题. "
+
+#, fuzzy
+#~ msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
+#~ msgstr "允许 Gallery 在 <b>.htaccess</b> 里面加入特殊的设定值. 这是由网页管理员所控制, 所以您不一定可以更改这个设定. 如果没有开启这个功能, 您将无法上传大于 2MB 的文件 (比如很大的 ZIP 文件) 而且也无法使用 mod_rewrite (见下面详述)"
+
+#, fuzzy
+#~ msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
+#~ msgstr "Apache 无法遵从您的 .htaccess 文件. 请试着将下面的设定输入您的网页服务器的 httpd.conf 设定档："
+
+#, fuzzy
+#~ msgid "PHPs magic quotes off"
+#~ msgstr "magic quotes 关闭"
+
+#, fuzzy
+#~ msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."
+#~ msgstr "检查 %smagic quotes%s 是否开启. 如果有开启, 当您在标题与说明中写入 ' (单引号), &quot; (双引号) or &#92; (反斜线) 时会产生奇怪的网页"
+
+#, fuzzy
+#~ msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
+#~ msgstr "Magic quotes 开启. 您的网页管理者可以藉由在 php.ini 中加入 %s 将他关掉. "
+
+#, fuzzy
+#~ msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
+#~ msgstr "检查您的网页服务器是否在编译时加入 <b>mod_rewrite</b>. Mod_rewrite 允许 Gallery 使用较短的 URL 以方便阅读也较美观, 这不是个必要的功能. "
+
+#, fuzzy
+#~ msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
+#~ msgstr "不是您的 <b>mod_rewrite</b> 没安装就是您的 .htaccess 没有开启. 不管是哪一种情形, 目前 Gallery 只能使用较长的 URL. 如果您想要开启这个功能, 请确定您的 .htaccess 能正措B作, 如果您还无法正常使用该功能, 请用以下的参数重新设定编译 Apache："
+
+#, fuzzy
+#~ msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
+#~ msgstr "检查 NetPBM 是否安装, 这可以让您的 Gallery 修改图片 (旋转、重新调整大小、建立缩略图等等). 您需要安装 ImageMagick <b>或者是</b> NetPBM. "
+
+#, fuzzy
+#~ msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
+#~ msgstr "找不到 NetPBM. 如果您已经安装而网页服务器找不到, 您可以在下一页指定 NetPBM 所在路径. 如果您尚未安装, 您有两种选择："
+
+#, fuzzy
+#~ msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
+#~ msgstr "如果已安装 NetPBM 而 Gallery 无法找到他在那边, 请在下一页设定 NetPBM 所在路径即可. "
+
+#, fuzzy
+#~ msgid "ImageMagick installed"
+#~ msgstr "找到 %d 个 ImageMagick 可执行档"
+
+#, fuzzy
+#~ msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
+#~ msgstr "检查 ImageMagick 是否安装, 这可以让您的 Gallery 修改图片 (旋转、重新调整大小、建立缩略图等等). 您需要安装 ImageMagick <b>或者是</b> NetPBM"
+
+#, fuzzy
+#~ msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
+#~ msgstr "找不到 ImageMagick. 如果您已经安装而网页服务器找不到, 您可以在下一页指定 ImageMagick 所在路径. 如果您尚未安装, 请安装吧! "
+
+#, fuzzy
+#~ msgid "If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page."
+#~ msgstr "如果已安装 NetPBM 而 Gallery 无法找到他在那边, 请在下一页设定 NetPBM 所在路径即可. "
+
+#, fuzzy
+#~ msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
+#~ msgstr "检查是否安装 jhead, 如此一来 Gallery 可以检视大部分由数位相机写在影像里面的 EXIF 档头信息. "
+
+#, fuzzy
+#~ msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
+#~ msgstr "找不到 jhead. 如果您已经安装而网页服务器找不到, 您可以在下一页指定 jhead 所在路径. 如果您尚未安装, 请赶快装吧! jhead 是 public domain 的 EXIF 解析器, 您可以在 %sjhead 网站%s 上找到 原始码, linux 以及 windows 的可执行档. "
+
+#, fuzzy
+#~ msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
+#~ msgstr "检查 jpegtran 是否安装, 如此一来 Gallery 可以提供较好的旋转 (只能用在 JPEG 影像档)"
+
+#, fuzzy
+#~ msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
+#~ msgstr "找不到 jhead. 如果您已经安装而网页服务器找不到, 您可以在下一页指定 jhead 所在路径. 如果您尚未安装, 请赶快装吧! 原始档放在 %sIJG 网站%s 中, 您也可在 %sJPEG club 网站%s 或者 Linux distribution 的 libjpeg package 中找到可执行档. "
+
+#, fuzzy
+#~ msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
+#~ msgstr "检查 PHP 是否有支持 gettext 以获得较快的翻译. "
+
+#, fuzzy
+#~ msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
+#~ msgstr "您的 PHP 并未支持 gettext. 如果要使您的 PHP 支持它, 请重新编译, 您可在 %s 得到更多信息. 不过您的 Gallery 还是有多国语系的功能, 只是载入时间会稍微久一点. "
+
+#, fuzzy
+#~ msgid "Check to see what languages are available."
+#~ msgstr "检查哪些语言可以使用"
+
+#, fuzzy
+#~ msgid "Testing to see which <b>system</b> locales (if any) are absent."
+#~ msgstr "测试看看有哪些 locales 不存在"
+
+#, fuzzy
+#~ msgid "General settings"
+#~ msgstr "重新浏览设定"
+
+#~ msgid "Gallery Title"
+#~ msgstr "Gallery 标题"
+
+#, fuzzy
+#~ msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
+#~ msgstr "您的 gallery 名称, 比如 <i>我的酷炫照片</i>"
+
+#, fuzzy
+#~ msgid "Skin Name"
+#~ msgstr "全名"
+
+#, fuzzy
+#~ msgid "Default upload method"
+#~ msgstr "预设字体"
+
+#~ msgid "REQUIRED"
+#~ msgstr "必须"
+
+#, fuzzy
+#~ msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
+#~ msgstr "在硬盘中储存照片的目录. 这个目录一开始应该是空的, Gallery 将会用文件塞满它 :-) 请注意目录的所有者要有写入的权限 (您的所有者为 %s)"
+
+#~ msgid "Temporary directory"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
+#~ msgstr "用来储存暂存文件的目录, 比如 %s 或 %s. 注意如果您有设定 open_basedir 列表, 那么暂存目录必须在 open_basedir 的路径里面! 您或许需要建立一个目录并且设定能让 webserver 写入. "
+
+#, fuzzy
+#~ msgid "Albums URL"
+#~ msgstr "相册"
+
+#~ msgid "Thumbnail image"
+#~ msgstr "照片缩略图"
+
+#, fuzzy
+#~ msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
+#~ msgstr "照片的缩略图所在路径, 如 %s"
+
+#~ msgid "Mirror sites"
+#~ msgstr "镜像网站"
+
+#, fuzzy
+#~ msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
+#~ msgstr "包含您的相册目录的镜射网站列表, 在每一行中输入一个 URL, 通常越上面的越稳定越好. 比如 %s"
+
+#, fuzzy
+#~ msgid "Graphics suite to use"
+#~ msgstr "使用哪一种图形套件? "
+
+#~ msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
+#~ msgstr "这个设定告诉 Gallery 您希望使用的图形工具为何, 如果 Gallery 都认为 ok (在前一页也有) 那这就是简单的用户设定, 不然的话请选择一个 Gallery 认为没有问题的设定. "
+
+#~ msgid "Path to NetPBM"
+#~ msgstr "NetPBM 的路径"
+
+#, fuzzy
+#~ msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
+#~ msgstr "系统中储存 NetPBM 程序的目录, 如果您从 Gallery 网站上下载 NetPBM, 别忘了设定执行权限喔.  比如 %s、%s 或者是 %s"
+
+#~ msgid "I can't find NetPBM at the location you provided."
+#~ msgstr "在您提供的目录中找不到 NetPBM 耶. "
+
+#~ msgid "PNM to JPEG converter"
+#~ msgstr "PNM to JPEG converter"
+
+#~ msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#~ msgstr "只有当您使用 NetPBM 时才需要设定, NetPBM 使用某种工具将内部影像格式塞入 JPEG 中, 依据版本的不同可能为 <i>ppmtojpeg</i> 或者是 <i>pnmtojpeg</i>. 请检查您的 NetPBM 目录确定您使用的为何种工具, 如果您不确定, 请任意选择一种, 我们会帮您进行检查. "
+
+#, fuzzy
+#~ msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#~ msgstr "只有当您使用 NetPBM 时才需要设定, NetPBM 使用某种工具将内部影像格式塞入 JPEG 中, 依据版本的不同可能为 <i>ppmtojpeg</i> 或者是 <i>pnmtojpeg</i>. 请检查您的 NetPBM 目录确定您使用的为何种工具, 如果您不确定, 请任意选择一种, 我们会帮您进行检查. "
+
+#~ msgid "Path to ImageMagick"
+#~ msgstr "ImageMagick 的路径"
+
+#~ msgid "The path to the directory containing ImageMagick on your system."
+#~ msgstr "系统中储存 ImageMagick 程序的目录. "
+
+#~ msgid "I can't find ImageMagick at the location you provided."
+#~ msgstr "无法在您指定的目录找到 ImageMagick. "
+
+#~ msgid "Auto-rotate images"
+#~ msgstr "自动旋转影像"
+
+#, fuzzy
+#~ msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
+#~ msgstr "开启这个选项的话, Gallery 会在你上传由照片中的 JPEG EXIF 资料决定是否要旋转影像. 需要 Jhead EXIF 解析器 1.9 版或更新 (详见上)"
+
+#~ msgid "JPEG Quality"
+#~ msgstr "JPEG 品质"
+
+#, fuzzy
+#~ msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
+#~ msgstr "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
+
+#, fuzzy
+#~ msgid "Embedded Gallery"
+#~ msgstr "进入 Gallery"
+
+#, fuzzy
+#~ msgid "Main Gallery page"
+#~ msgstr "Gallery Help Page"
+
+#, fuzzy
+#~ msgid "Show the album tree ?"
+#~ msgstr "显示相册树状结构"
+
+#, fuzzy
+#~ msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
+#~ msgstr "如果您开启了这个选项, 您将在顶层目录看到相册完整的目录列表. 如此一来要浏览每个目录会比较方便 (虽然这样会让 Gallery 的网页看起来很乱) 预设是 <b>no</b>. "
+
+#, fuzzy
+#~ msgid "No tree"
+#~ msgstr "注意"
+
+#~ msgid "Highlight size"
+#~ msgstr "Highlight 大小"
+
+#, fuzzy
+#~ msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
+#~ msgstr "在 Gallery 网页中影像缩略图的大小 (单位：像素)"
+
+#, fuzzy
+#~ msgid "Highlight Ratio"
+#~ msgstr "Highlight 大小"
+
+#, fuzzy
+#~ msgid "Square highlight"
+#~ msgstr "播放"
+
+#~ msgid "Show Owner"
+#~ msgstr "显示所有者"
+
+#, fuzzy
+#~ msgid "Show album owner's name next to each album?"
+#~ msgstr "要在 Gallery 的首页显示每个相册的所有者吗? "
+
+#~ msgid "Albums per page"
+#~ msgstr "相册数量"
+
+#~ msgid "How many albums should be displayed per Gallery page?"
+#~ msgstr "每一页要显示多少相册? "
+
+#~ msgid "Search Engine"
+#~ msgstr "搜寻引擎"
+
+#~ msgid "Display search engine on main Gallery page?"
+#~ msgstr "在 Gallery 的首页显示搜寻引擎吗? "
+
+#, fuzzy
+#~ msgid "Frame around albums"
+#~ msgstr "重建缩略图"
+
+#, fuzzy
+#~ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
+#~ msgstr "'unzip' 执行档所在的路径, 这是非必要选项, 所以即使您没有也没关系. "
+
+#, fuzzy
+#~ msgid "EXIF Data"
+#~ msgstr "快取 EXIF 资料"
+
+#, fuzzy
+#~ msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
+#~ msgstr "'jhead' 执行档所在的路径, 这是非必要选项, 所以即使您没有也没关系. 比如 %s 或 %s"
+
+#, fuzzy
+#~ msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
+#~ msgstr "'jhead' 执行档所在的路径, 这是非必要选项, 所以即使您没有也没关系. 比如 %s 或 %s"
+
+#, fuzzy
+#~ msgid "Default language"
+#~ msgstr "Gallery 语言"
+
+#, fuzzy
+#~ msgid "This is the language you will see as %s, and what users will see if no other preference is set."
+#~ msgstr "这是当你使用 %s 时会用到的语言, 或者是当用户没有自订语言时会使用到的语言. "
+
+#~ msgid "Multi language mode"
+#~ msgstr "多国语系模式"
+
+#, fuzzy
+#~ msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
+#~ msgstr "Gallery 有三种语系模式, 这会影响用户观看网站时所显示的语言. "
+
+#~ msgid "Gallery is only displayed in one language"
+#~ msgstr "Gallery 只显示某一种语言"
+
+#~ msgid "Gallery is displayed in the language the browser sends"
+#~ msgstr "Gallery 显示浏览器送出的语言"
+
+#, fuzzy
+#~ msgid "The User can choose the language via pulldown menu or national flags."
+#~ msgstr "用户可以通过下拉菜单或者国旗来选择语言"
+
+#, fuzzy
+#~ msgid "Available languages"
+#~ msgstr "Gallery 语言"
+
+#, fuzzy
+#~ msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
+#~ msgstr "如果您选择第三种模式, 用户拉下菜单时会出现上面的语言， 注册用户可以将其中之一设定为默认语言。"
+
+#, fuzzy
+#~ msgid "date without time"
+#~ msgstr "%s 没有赞助"
+
+#, fuzzy
+#~ msgid "date with time"
+#~ msgstr "%s 没有赞助"
+
+#, fuzzy
+#~ msgid "Check Email"
+#~ msgstr "全选取"
+
+#, fuzzy
+#~ msgid "Enable email"
+#~ msgstr "姓名或者电邮："
+
+#, fuzzy
+#~ msgid "Admin email address"
+#~ msgstr "电子信箱"
+
+#, fuzzy
+#~ msgid "Self registered users can create albums."
+#~ msgstr "用户可以建立相册"
+
+#, fuzzy
+#~ msgid "Send summary email"
+#~ msgstr "全选取"
+
+#, fuzzy
+#~ msgid "Send duplicate email"
+#~ msgstr "全选取"
+
+#, fuzzy
+#~ msgid "SMTP password"
+#~ msgstr "管理者口令"
+
+#, fuzzy
+#~ msgid "Gallery wide slideshow"
+#~ msgstr "Gallery 标题"
+
+#, fuzzy
+#~ msgid "Slideshow preferences"
+#~ msgstr "个人设定"
+
+#, fuzzy
+#~ msgid "Off"
+#~ msgstr "关闭"
+
+#, fuzzy
+#~ msgid "Random"
+#~ msgstr "以上乱数选一种"
+
+#, fuzzy
+#~ msgid "Slideshow length"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "Slideshow Mode"
+#~ msgstr "播放"
+
+#~ msgid "Comments"
+#~ msgstr "评论"
+
+#, fuzzy
+#~ msgid "Enable commenting"
+#~ msgstr "姓名或者电邮："
+
+#, fuzzy
+#~ msgid "Photos"
+#~ msgstr "图片"
+
+#, fuzzy
+#~ msgid "Both"
+#~ msgstr "月"
+
+#, fuzzy
+#~ msgid "Maximum length of comments"
+#~ msgstr "姓名或者电邮："
+
+#, fuzzy
+#~ msgid "Watermarking"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "Watermarking is not possible in this installation !"
+#~ msgstr "安装过程中没有使用 NetPBM"
+
+#, fuzzy
+#~ msgid "Watermark directory"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
+#~ msgstr "在硬盘中储存照片的目录. 这个目录一开始应该是空的, Gallery 将会用文件塞满它 :-) 请注意目录的所有者要有写入的权限 (您的所有者为 %s)"
+
+#, fuzzy
+#~ msgid "Watermark both resized and full images"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "Watermark resized image only"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "Watermark full sized image only"
+#~ msgstr "暂存目录"
+
+#, fuzzy
+#~ msgid "Turn debug on so that you can diagnose problems?"
+#~ msgstr "打开调试模式如果您想要检测问题"
+
+#~ msgid "Time Limit"
+#~ msgstr "时间上限"
+
+#~ msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
+#~ msgstr "每一个动作所能使用的最多时间 (秒). 如果您有 <b>Maximum execution time exceeded</b> 的问题, 请将数字设大一点. 请注意如果您设太大<i>有可能</i>会导致 process 卡太久, 预设 30 秒是理想值. "
+
+#, fuzzy
+#~ msgid "ImageMagick high quality"
+#~ msgstr "找到 %d 个 ImageMagick 可执行档"
+
+#~ msgid "Cache EXIF data"
+#~ msgstr "快取 EXIF 资料"
+
+#, fuzzy
+#~ msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
+#~ msgstr "当第一次由 JPEG 文件读取 EXIF 资料时将资料丢入 cache 中. 但如此一来您的相册资料档有可能会过大导致浏览速度缓慢, 可是没有 cache 的话, 用户每次检视照片的属性时也会很慢. 预设是 <b>no</b>"
+
+#, fuzzy
+#~ msgid "Use Syslog"
+#~ msgstr "使用 %s? "
+
+#, fuzzy
+#~ msgid "Use %s"
+#~ msgstr "使用 %s? "
+
+#, fuzzy
+#~ msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
+#~ msgstr "Gallery 使用 flock() 作为 locking system 以保护资料的正确性. 通常不是所有的平台都有支持, 如果您发现有错误情形比如 <i>Could not acquire lock</i> 那么您应该在这边设定为 <i>no</i>"
+
+#~ msgid "Status code"
+#~ msgstr "Status code"
+
+#, fuzzy
+#~ msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
+#~ msgstr "当 exec() 呼叫成功传回时 Gallery 希望得到的 status code. Gallery 会自行设定所以除非您碰到问题, 否则通常不需更改. "
+
+#~ msgid "Session variable"
+#~ msgstr "Session variable"
+
+#~ msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
+#~ msgstr "用来包含 Gallery session 信息的 session variable 名称, 如果有跟其他 PHP 应用程序起冲突请更改. "
+
+#, fuzzy
+#~ msgid "Album highlight"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "RSS Highlight"
+#~ msgstr "Highlight 大小"
+
+#, fuzzy
+#~ msgid "Display Hidden Albums"
+#~ msgstr "要显示照片的人气值吗? "
+
+#~ msgid "Default Columns"
+#~ msgstr "预设行数"
+
+#, fuzzy
+#~ msgid "The default number of columns in an album."
+#~ msgstr "设定一行有几笔资料"
+
+#~ msgid "Default Rows"
+#~ msgstr "预设列数"
+
+#, fuzzy
+#~ msgid "The default number of rows in an album."
+#~ msgstr "设定一列有几笔资料"
+
+#~ msgid "Border color"
+#~ msgstr "表框颜色"
+
+#, fuzzy
+#~ msgid "Default color of (image) borders. You can learn about %scolors%s here."
+#~ msgstr "影像边框的预设颜色, 请在%s这%s取得更多信息. "
+
+#~ msgid "Border width"
+#~ msgstr "边框宽度"
+
+#, fuzzy
+#~ msgid "Default width of (image) borders."
+#~ msgstr "预设影像边框宽度"
+
+#~ msgid "Default Font"
+#~ msgstr "预设字体"
+
+#, fuzzy
+#~ msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
+#~ msgstr "预设的字体, 比如 <i>arial</i> 或 <i>trebuchet</i>"
+
+#~ msgid "Thumbnail size"
+#~ msgstr "缩略图大小"
+
+#~ msgid "The default target size (in pixels) of album thumbnails."
+#~ msgstr "预设的缩略图大小 (单位：像素)"
+
+#, fuzzy
+#~ msgid "Thumbnail Ratio"
+#~ msgstr "缩略图大小"
+
+#, fuzzy
+#~ msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
+#~ msgstr "如果有太大的影像放到相册时, 会自动产生缩小版的大小. "
 
 #~ msgid "off"
 #~ msgstr "关闭"
+
+#, fuzzy
+#~ msgid "Resized JPEG/PNG images file size"
+#~ msgstr "重新调整的影像文件大小"
+
+#, fuzzy
+#~ msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
+#~ msgstr "预设 JPEG 影像重新调整的大小 (单位：KB). 设定之后也许会降低上传速度, 不过在浏览图片时会比较快速. 预设是 0 没有设限"
+
+#, fuzzy
+#~ msgid "Maximum image size"
+#~ msgstr "重新调整的影像大小"
+
+#, fuzzy
+#~ msgid "Warning:"
+#~ msgstr "警告"
+
+#, fuzzy
+#~ msgid "Maximum JPEG/PNG image file size"
+#~ msgstr "重新调整的影像文件大小"
+
+#, fuzzy
+#~ msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
+#~ msgstr "预设 JPEG 影像重新调整的大小 (单位：KB). 设定之后也许会降低上传速度, 不过在浏览图片时会比较快速. 预设是 0 没有设限"
+
+#~ msgid "Preserve Names"
+#~ msgstr "保留名称"
+
+#~ msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
+#~ msgstr "上传文件时是否要保留文件名称? 如果您选择 <i>no</i>, Gallery 将会为每一个上传的照片或影像指定新的名称. "
+
+#~ msgid "Add to beginning"
+#~ msgstr "添加文件放在最前面"
+
+#, fuzzy
+#~ msgid "New images added to beginning rather than end of albums."
+#~ msgstr "新加入的文件会放在最前面而不是最后面"
+
+#~ msgid "Fit-to-window"
+#~ msgstr "Fit-to-window"
+
+#, fuzzy
+#~ msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
+#~ msgstr "浏览照片的时候不使用过渡版本, Gallery 会自动重新调整大小适合浏览者的窗口 (利用 JavaScript). 这个功能可能在 Nuke 之类的环境之下无法使用. "
+
+#~ msgid "Visitor size prefs"
+#~ msgstr "访客浏览设定"
+
+#, fuzzy
+#~ msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
+#~ msgstr "允许访客能够一直浏览到完整照片而非过渡版本. 这个功能只有在访客的该 session 中有用. "
+
+#, fuzzy
+#~ msgid "Printing Services"
+#~ msgstr "列印服务"
+
+#, fuzzy
+#~ msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
+#~ msgstr "允许访客由网路上列印照片. 如果您选择 shutterfly, 每一张照片 (通常 4x6 是 49 cents) Gallery 将会得到额外的 2 cents, 其中 1.8 cents 将用来赞助 Gallery 计画. 这是您赞助本自由软体的最好途径. "
+
+#~ msgid "Gallery Link"
+#~ msgstr "Gallery 连结"
+
+#, fuzzy
+#~ msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
+#~ msgstr "要在 Gallery 的顶层目录显示相册的连结吗? 如果没有开启这个功能, 用户将无法浏览相册. 这个功能只有当你想要把相册放到某个网站上却又不想让别人轻易的浏览其他照片的时候才要开启. "
+
+#, fuzzy
+#~ msgid "Default Album Permissions"
+#~ msgstr "预设行数"
+
+#~ msgid "Click counts"
+#~ msgstr "人气值"
+
+#~ msgid "Display click counts within Albums?"
+#~ msgstr "要显示照片的人气值吗? "
+
+#~ msgid "Custom Fields"
+#~ msgstr "自订栏位"
+
+#, fuzzy
+#~ msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
+#~ msgstr "自订栏位可以增加照片的可读性, 您可以用逗号分隔您自订的栏位. 比如 <i>Description, Location, Film Type</i>"
+
+#, fuzzy
+#~ msgid "Item Owner"
+#~ msgstr "所有者"
+
+#~ msgid "Photo owner modification"
+#~ msgstr "照片所有者可以修改文件"
+
+#~ msgid "Allow photo owners to edit and rotate/flip their own photos?"
+#~ msgstr "允许照片的所有者修改、旋转、翻转他的照片? "
+
+#~ msgid "Photo owner deletion"
+#~ msgstr "照片所有者可以删除文件"
+
+#~ msgid "Allow photo owners to delete their own photos?"
+#~ msgstr "允许照片的所有者删除自己的照片? "
+
+#~ msgid "Photo owner display"
+#~ msgstr "显示照片所有者"
+
+#~ msgid "Display the name of photo owners with the caption?"
+#~ msgstr "在说明中显示照片的所有者? "
+
+#, fuzzy
+#~ msgid "Polling configuration"
+#~ msgstr "Gallery 设定"
+
+#, fuzzy
+#~ msgid "Number of choices"
+#~ msgstr "根据人气值"
+
+#, fuzzy
+#~ msgid "Vote for this image"
+#~ msgstr "在相册下的所有评论"
+
+#, fuzzy
+#~ msgid "Very Good"
+#~ msgstr "开始寻找"
+
+#, fuzzy
+#~ msgid "Good"
+#~ msgstr "开始寻找"
+
+#, fuzzy
+#~ msgid "Poor"
+#~ msgstr "图片"
+
+#, fuzzy
+#~ msgid "Album Slideshow"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "Slideshow Type"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "Recursive slideshow"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "月"
+
+#, fuzzy
+#~ msgid "Fixed"
+#~ msgstr "失败! "
+
+#, fuzzy
+#~ msgid "Number of Next Microthumbs"
+#~ msgstr "根据人气值"
+
+#, fuzzy
+#~ msgid "Frames"
+#~ msgstr "全名"
+
+#, fuzzy
+#~ msgid "Subalbum frames"
+#~ msgstr "子相册"
+
+#, fuzzy
+#~ msgid "This frame will appear around the thumbnail image representing a subalbum."
+#~ msgstr "照片的缩略图所在路径, 如 %s"
+
+#, fuzzy
+#~ msgid "Frame around thumbs"
+#~ msgstr "重建缩略图"
+
+#, fuzzy
+#~ msgid "This frame will appear around the thumbnail image representing a photo or movie."
+#~ msgstr "照片的缩略图所在路径, 如 %s"
+
+#, fuzzy
+#~ msgid "Frame around images"
+#~ msgstr "找到 %d 个影像"
+
+#, fuzzy
+#~ msgid "This frame will appear around fulled sized and resized photos."
+#~ msgstr "照片的缩略图所在路径, 如 %s"
+
+#, fuzzy
+#~ msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
+#~ msgstr "在您继续之前必须建立一份空文件 %s 并且 chmod 为 777, 详见 %s. "
+
+#, fuzzy
+#~ msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
+#~ msgstr "在您继续之前必须建立一份空文件 %s 并且 chmod 为 777, 详见 %s. "
+
+#, fuzzy
+#~ msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
+#~ msgstr "在您继续之前必须建立一份空文件 %s 并且 chmod 为 777, 详见 %s. "
+
+#~ msgid "missing"
+#~ msgstr "缺少"
+
+#~ msgid "it's optional"
+#~ msgstr "这是非必要选项"
+
+#~ msgid "%s: <b>%s</b> must be an absolute URL!"
+#~ msgstr "%s: <b>%s</b> 必须为绝对的 URL! "
+
+#~ msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
+#~ msgstr "%s: <b>%s</b> 必须是合法的文件 (而非目录)! "
+
+#~ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
+#~ msgstr "%s: <b>&quot;%s&quot;</b> 必须为正数"
+
+#, fuzzy
+#~ msgid "%s: <b>&quot;%s&quot;</b> must be a number"
+#~ msgstr "%s: <b>&quot;%s&quot;</b> 必须为正数"
+
+#~ msgid "%s: <b>%s</b> must not be zero"
+#~ msgstr "%s: <b>%s</b> 不得为零"
+
+#~ msgid "%s: <b>%s</b> must be an executable file!"
+#~ msgstr "%s: <b>%s</b> 必须是可执行档! "
+
+#~ msgid "Directory %s does not exist.  Please create it."
+#~ msgstr "目录 %s 并不存在, 请建立. "
+
+#~ msgid "%s exists but is not a directory.  Please fix this."
+#~ msgstr "%s 已经存在但并非目录, 请修正. "
+
+#~ msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
+#~ msgstr "%s: %s 存在, 但网页服务器无法写入. 请试试看：%s 如果不行请用 %s. 并确定如果您的服务器有 %s 的限制, 请确定您的暂存目录在 %s 路径之下"
+
+#, fuzzy
+#~ msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
+#~ msgstr "%s: <b>%s</b> 必须是可执行档! "
+
+#~ msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#~ msgstr "找不到 %s. 请检查您的 NetPBM 目录看看您所使用的 PNG->JPEG 转换程序是哪一个 (或者用 %s 取代). 请检查您的设定 (或者使用 ImageMagick)"
+
+#, fuzzy
+#~ msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#~ msgstr "找不到 %s. 请检查您的 NetPBM 目录看看您所使用的 PNG->JPEG 转换程序是哪一个 (或者用 %s 取代). 请检查您的设定 (或者使用 ImageMagick)"
+
+#~ msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
+#~ msgstr "%s 图形套件没有正确的设定好, 请在第二步检查您的 %s 可执行档目录"
+
+#~ msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
+#~ msgstr "您的服务器有 PHP open_basedir 的限制, 而您的某个路径设定并不再限制路径列表之中"
+
+#~ msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
+#~ msgstr "这并不表示它将无法正常运作, 而是我们无法正确的检查路径. 如果您无法正确的上传文件, 请见 FAQ 以及 %s检测%s 来解决这个问题. "
+
+#, fuzzy
+#~ msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
+#~ msgstr "确定您之前的设定没有问题, 除非您发现有红色的信息, 否则一些奇怪看不懂的信息您可以忽略没关系"
+
+#, fuzzy
+#~ msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
+#~ msgstr "确定您之前的设定没有问题, 除非您发现有红色的信息, 否则一些奇怪看不懂的信息您可以忽略没关系"
+
+#~ msgid "Edit Config"
+#~ msgstr "修改设定"
+
+#~ msgid "Save Config"
+#~ msgstr "储存设定"
+
+#, fuzzy
+#~ msgid "One error."
+#~ msgid_plural "%d errors."
+#~ msgstr[0] "错误"
+#~ msgstr[1] "错误"
+
+#, fuzzy
+#~ msgid "No errors."
+#~ msgstr "错误"
+
+#~ msgid "There are errors in your configuration."
+#~ msgstr "您在设定上有些许错误. "
+
+#~ msgid "Please go back and fix them!"
+#~ msgstr "请回到上一步修正这些问题! "
+
+#, fuzzy
+#~ msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
+#~ msgstr "在这个步骤中您可以自订 Gallery 的许多设定, 如果这是您第一次设定 Gallery, 您会注意到我们已经尽量试着帮您选择最合适的值. 尽管如此, 您也许需要调整一些小细节. 如果您已经设定过 Gallery, 您可以发现这一页已经包含您之前的设定值, 因此您可以不用作太多更动. "
+
+#, fuzzy
+#~ msgid "Previous Step"
+#~ msgstr "前一页"
+
+#, fuzzy
+#~ msgid "Previous Tab"
+#~ msgstr "前一页"
+
+#, fuzzy
+#~ msgid "Next Tab"
+#~ msgstr "下一页"
+
+#~ msgid "Use Defaults"
+#~ msgstr "使用预设"
+
+#, fuzzy
+#~ msgid "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
+#~ msgstr "在这个步骤中您可以自订 Gallery 的许多设定, 如果这是您第一次设定 Gallery, 您会注意到我们已经尽量试着帮您选择最合适的值. 尽管如此, 您也许需要调整一些小细节. 如果您已经设定过 Gallery, 您可以发现这一页已经包含您之前的设定值, 因此您可以不用作太多更动. "
+
+#~ msgid "Gallery Diagnostics"
+#~ msgstr "Gallery 检测"
+
+#~ msgid "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly."
+#~ msgstr "这个网页是用来提供一些检测来帮助确认您的服务器是否能正常使用 Gallery. "
+
+#~ msgid "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of."
+#~ msgstr "设置向导会用各种方式找出可能的方法让您的系统运作, 但有些时候我们不一定能将问题全部检查出来. "
+
+#~ msgid "You can use these tools to find out more about your setup"
+#~ msgstr "您可以使用下列工具来帮忙检测您的系统"
+
+#~ msgid "Tool"
+#~ msgstr "工具"
+
+#~ msgid "PHP Info"
+#~ msgstr "PHP 信息"
+
+#~ msgid "This page provides information about your PHP installation."
+#~ msgstr "这一份网页提供了您的 PHP 安装信息. "
+
+#~ msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)"
+#~ msgstr "这是个检查所有 PHP 设定的好方法, 并且可以找出您是用哪一种系统环境 (当您使用 ISP 所提供的服务器时并不一定知道该环境是何种平台)"
+
+#~ msgid "Check"
+#~ msgstr "检查"
+
+#~ msgid "This page provides information about your NetPBM binaries."
+#~ msgstr "这一份网页提供了您的 NetPBM 执行档信息. "
+
+#~ msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM)."
+#~ msgstr "您可以在完成设置向导之后再来使用这一份网页. (因为需要 NetPBM 的相关设定才可以进行检查)"
+
+#~ msgid "This page provides information about your ImageMagick binaries."
+#~ msgstr "这一份网页提供了您的 ImageMagick 执行档信息. "
+
+#~ msgid "You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick)."
+#~ msgstr "您可以在完成设置向导之后再来使用这一份网页. (因为需要 NetPBM 的相关设定才可以进行检查)"
+
+#~ msgid "Check Sessions"
+#~ msgstr "检查 Sessions"
+
+#~ msgid "This page runs a very simple test on your PHP session configuration."
+#~ msgstr "这一份网页执行一些简单的 PHP session 功能测试. "
+
+#~ msgid "Gallery requires that your PHP installation is configured with proper session support."
+#~ msgstr "Gallery 需要您的 PHP 有正确的 session 支持. "
+
+#, fuzzy
+#~ msgid "Check versions"
+#~ msgstr "检查 Sessions"
+
+#~ msgid "Gallery Configuration"
+#~ msgstr "Gallery 设定"
+
+#, fuzzy
+#~ msgid "None"
+#~ msgstr "注意"
+
+#, fuzzy
+#~ msgid "No frames"
+#~ msgstr "全名"
+
+#, fuzzy
+#~ msgid "Dots"
+#~ msgstr "图片"
+
+#, fuzzy
+#~ msgid "Can't open %s"
+#~ msgstr "找不到 %s! "
+
+#, fuzzy
+#~ msgid "%s configuration"
+#~ msgstr "Gallery 设定"
+
+#~ msgid "Gallery Session Test"
+#~ msgstr "Gallery Session 测试"
+
+#~ msgid "Session Test"
+#~ msgstr "Session 测试"
+
+#~ msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
+#~ msgstr "如果您 PHP 的 session 有正确设定, 您会在下面看到 session id. "
+
+#~ msgid "The &quot;page views&quot; number should increase every time you reload the page."
+#~ msgstr "当您重新载入这个网页时 &quot;网页浏览次数&quot; 应该会增加. "
+
+#~ msgid "Clicking %s should reset the page view number back to 1."
+#~ msgstr "点选 %s 会重新设定浏览次数为 1. "
+
+#~ msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
+#~ msgstr "如果这 <b>无法</b> 正常运作, 那您的 PHP 安装一定有问题. "
+
+#~ msgid "Gallery will not work properly until PHP's session management is configured properly."
+#~ msgstr "如果 PHP 的 session 管理没有设定好, 那么 Gallery 将无法正常运作. "
+
+#~ msgid "Your session id is"
+#~ msgstr "您的 session id 是"
+
+#~ msgid "Page views in this session"
+#~ msgstr "在 session 中浏览网页次数"
+
+#~ msgid "Server IP address"
+#~ msgstr "服务器 IP 地址"
+
+#~ msgid "Start over"
+#~ msgstr "重新来过"
+
+#~ msgid "An account called %s has been created for you with the password you specified."
+#~ msgstr "已经开启帐号 %s 给您, 用的是您指定的口令. "
+
+#~ msgid "Success!"
+#~ msgstr "成功! "
+
+#~ msgid "Your configuration has been successfully saved!"
+#~ msgstr "您的设定文件已经成功储存了! "
+
+#~ msgid "Note"
+#~ msgstr "注意"
+
+#~ msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
+#~ msgstr "您可以在任何时候藉由这个设置向导重新设定 Gallery. "
+
+#~ msgid "It will save your data so you won't have to enter it all again!"
+#~ msgstr "他会读取您先前的设定, 这样子您就不用重新输入一遍了! "
+
+#~ msgid "Unable to write to %s."
+#~ msgstr "无法写入 %s. "
+
+#~ msgid "You are missing either %s or %s."
+#~ msgstr "您不是没有 %s 就是没有 %s. "
+
+#~ msgid "Review Settings"
+#~ msgstr "重新浏览设定"
+
+#, fuzzy
+#~ msgid "%sClick here%s to see more details"
+#~ msgstr "%s点选这里%s 隐藏进阶信息"
+
+#, fuzzy
+#~ msgid "Failed"
+#~ msgstr "失败! "
+
+#~ msgid "yes"
+#~ msgstr "是"
+
+#~ msgid "no"
+#~ msgstr "否"
+
+#, fuzzy
+#~ msgid "Enable caching for ratings"
+#~ msgstr "姓名或者电邮："
+
+#, fuzzy
+#~ msgid "The full URL to the Gallery web application.  E.g. %s"
+#~ msgstr "Gallery 的完整 URL, 比如 %s. "
+
+#, fuzzy
+#~ msgid "The full URL to your album directory (specified above) on your web server.  E.g. %s"
+#~ msgstr "相册的完整 URL (指向上面设定的目录), 比如 %s. "
+
+#, fuzzy
+#~ msgid "Check to see if you are running PHP 4.  Note that some versions of PHP have bugs that cause Gallery to fail.  PHP 4.0.0 uses a different file upload protocol, and versions 4.0.3 and 4.0.3pl1 have a bug in the unserialization code that cause Gallery to be unable to read its own database.  Upgrade to at least PHP 4.0.4pl1 if you can. <p>"
+#~ msgstr "检查您是否使用 PHP 4. 注意有些版本的 PHP 里面存在一些会使 Gallery 出问题的臭虫. PHP 4.0.0 使用不同的上传协定, 4.0.3 以及 4.0.3pl1 存在 unserialization code 的臭虫, 导致 Gallery 无法读取 database. 如果可以的话请升级至 PHP 4.0.4pl1. "
+
+#, fuzzy
+#~ msgid "Embed Gallery"
+#~ msgstr "Gallery"
+
+#, fuzzy
+#~ msgid "with donation"
+#~ msgstr "%s 没有赞助"
+
+#, fuzzy
+#~ msgid "without donation"
+#~ msgstr "%s 没有赞助"
+
+#, fuzzy
+#~ msgid "The filesystem path to the <b>zipinfo</b> binary.  This is optional so if you don't have it, don't worry about it too much."
+#~ msgstr "'zipinfo' 执行档所在的路径, 这是非必要选项, 所以即使您没有也没关系. "
+
+#~ msgid "Gallery in Configuration Mode"
+#~ msgstr "Gallery 设定模式"
+
+#~ msgid "Gallery: Configuration Mode"
+#~ msgstr "Gallery: 设定模式"
+
+#, fuzzy
+#~ msgid "To configure gallery, run the %sConfiguration Wizard%s."
+#~ msgstr "要设定 gallery, 请开始%s设置向导%s"
+
+#~ msgid "If you've finished your configuration but you're still seeing this page, that's because for safety's sake we don't let you run Gallery in an insecure mode."
+#~ msgstr "如果您已经完成设定, 却还是看到这一个网页, 是因为您的 gallery 在 insecure 模式"
+
+#~ msgid "You need to switch to secure mode before you can use it.  Here's how:"
+#~ msgstr "在您使用之前需要切换到 secure 模式, 以下为方法："
+
+#~ msgid "Then just reload this page and all should be well."
+#~ msgstr "然后重新载入这个网页就可以了. "
+
+#~ msgid "%s with shell access"
+#~ msgstr "在 %s 下使用 shell"
+
+#~ msgid "/path/to/your/gallery"
+#~ msgstr "/您的gallery路径"
+
+#~ msgid "%s with FTP access"
+#~ msgstr "%s 下使用 FTP"
+
+#, fuzzy
+#~ msgid "Gallery must be configured before you can use it. First, you must put Gallery in Configuration Mode. Here's how:"
+#~ msgstr "要先设定好 Gallery 才可使用, 首先要让 Gallery 进入设定模式, 方法如下："
+
+#, fuzzy
+#~ msgid "Don't forget to run this to make your Gallery secure!"
+#~ msgstr "请不要忘记执行 %s 以确保您的 Gallery 的安全! "
+
+#, fuzzy
+#~ msgid "Gallery won't run if it is not in secure mode."
+#~ msgstr "如果没有设定在 secure mode, Gallery 将不会运作. "
+
+#, fuzzy
+#~ msgid "errors"
+#~ msgstr "错误"
+
+#, fuzzy
+#~ msgid "Gallery Configuration :: Frames"
+#~ msgstr "Gallery 设定"
+
+#~ msgid "Error:"
+#~ msgstr "错误："
+
+#, fuzzy
+#~ msgid "Here you can customize the default values for new albums that you create.  Note that these are not <b>master switches</b> (i.e., if you turn a setting on here, you can still turn it off in a given album).  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
+#~ msgstr "在这里您可以自订添加相册时的预设值. 注意这些并非 <b>主要设定</b> (您可能在这边将某个功能打开, 但您还是可以在其他地方将某些功能关闭) 如果这是您第一次使用, 您可以发现我们已经有一组预设值给您. 如果您先前有设定过, 那么您的设定值将会出现在下面的栏位之中, 以方便您的修改. "
+
+#, fuzzy
+#~ msgid "Admin"
+#~ msgstr "修改说明"
+
+#~ msgid "on"
+#~ msgstr "总共"
+
+#, fuzzy
+#~ msgid "Album: "
+#~ msgstr "相册"
+
+#, fuzzy
+#~ msgid "Admin help"
+#~ msgstr "修改说明"
+
+#, fuzzy
+#~ msgid "the documentation page"
+#~ msgstr "说明文件"
+
+#, fuzzy
+#~ msgid " on the Gallery web site."
+#~ msgstr "进入 Gallery"
+
+#~ msgid "1. Select the number of files you want to upload:"
+#~ msgstr "1. 选择您想要上传的文件数量："
+
+#, fuzzy
+#~ msgid "Optional:"
+#~ msgstr "说明"
+
+#, fuzzy
+#~ msgid "Select the number of meta data files you want to upload:"
+#~ msgstr "1. 选择您想要上传的文件数量："
+
+#~ msgid "File"
+#~ msgstr "文件"
+
+#, fuzzy
+#~ msgid "3. Use the Browse button to find the meta data files on your computer"
+#~ msgstr "2. 使用 <b>浏览</b> 选择要上传文件的位置"
+
+#~ msgid "Album Summary"
+#~ msgstr "相册摘要"
+
+#~ msgid "Album Title"
+#~ msgstr "相册标题"
+
+#, fuzzy
+#~ msgid "Background Image (URL)"
+#~ msgstr "背景影像"
+
+#~ msgid "Font"
+#~ msgstr "字体"
+
+#~ msgid "Rows"
+#~ msgstr "列数"
+
+#~ msgid "Columns"
+#~ msgstr "行数"
+
+#~ msgid "Borders"
+#~ msgstr "表框大小"
+
+#, fuzzy
+#~ msgid "Colors"
+#~ msgstr "关闭"
+
+#~ msgid "Background Color"
+#~ msgstr "背景颜色"
+
+#~ msgid "Text Color"
+#~ msgstr "文字颜色"
+
+#~ msgid "Link Color"
+#~ msgstr "连结颜色"
+
+#, fuzzy
+#~ msgid "Border Color"
+#~ msgstr "表框颜色"
+
+#, fuzzy
+#~ msgid "Album Frame"
+#~ msgstr "相册数量"
+
+#, fuzzy
+#~ msgid "Thumb Frame"
+#~ msgstr "照片缩略图"
+
+#, fuzzy
+#~ msgid "Image Frame"
+#~ msgstr "文件大小"
+
+#, fuzzy
+#~ msgid "Slideshow"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "Slideshow Length"
+#~ msgstr "播放"
+
+#, fuzzy
+#~ msgid "Sizes"
+#~ msgstr "删除用户"
+
+#, fuzzy
+#~ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#~ msgstr "自动调整文件大小 kilobytes (0 或者空白代表没有限制)"
+
+#, fuzzy
+#~ msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#~ msgstr "自动调整文件大小 kilobytes (0 或者空白代表没有限制)"
+
+#~ msgid "Display click counter for this album?"
+#~ msgstr "在这个相册显示人气值? "
+
+#~ msgid "Display owners name with caption"
+#~ msgstr "在说明中显示所有者名称"
+
+#~ msgid "Display EXIF data?"
+#~ msgstr "显示 EXIF 资料? "
+
+#, fuzzy
+#~ msgid "Services"
+#~ msgstr "删除用户"
+
+#, fuzzy
+#~ msgid "Which photo printing services<br>do you want to let visitors use?"
+#~ msgstr "您想要让访客使用何种网路列印服务呢? "
+
+#, fuzzy
+#~ msgid "Who can vote?"
+#~ msgstr "没有东东"
+
+#, fuzzy
+#~ msgid "Voting Options"
+#~ msgstr "修改说明"
+
+#~ msgid "Add new items at beginning of album"
+#~ msgstr "将新加入的文件放在相册的开头"
+
+#~ msgid "Show <i>Return to</i> link"
+#~ msgstr "显示 <i>回去</i> 的连结"
+
+#~ msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
+#~ msgstr "提供访客设定要看<br>完整或是重新调整过的影像"
+
+#~ msgid "Auto fit-to-window for<br>images without a resized copy"
+#~ msgstr "影像自动贴齐窗口<br>但不另外建立一份调整过的影像"
+
+#~ msgid "Allow item owners to modify their images"
+#~ msgstr "允许文件所有者修改文件"
+
+#~ msgid "Allow item owners to delete their images"
+#~ msgstr "允许文件所有者删除文件"
+
+#, fuzzy
+#~ msgid "Number of previous thumbs"
+#~ msgstr "根据评论数量"
+
+#, fuzzy
+#~ msgid "Number of next thumbs"
+#~ msgstr "根据评论数量"
+
+#~ msgid "Check All"
+#~ msgstr "全选取"
+
+#~ msgid "Clear All"
+#~ msgstr "全取消"
+
+#~ msgid "Invert Selection"
+#~ msgstr "反向选择"
+
+#, fuzzy
+#~ msgid "Report abuse to %s"
+#~ msgstr "回到增加多张照片"
+
+#, fuzzy
+#~ msgid "Email not sent as it is disabled for this gallery"
+#~ msgstr "您一定要输入用户名"
+
+#, fuzzy
+#~ msgid "Email not sent to %s as it is not a valid address"
+#~ msgstr "您一定要输入用户名"
+
+#, fuzzy
+#~ msgid "Email not sent as no reciepient address provided"
+#~ msgstr "您一定要输入用户名"
+
+#, fuzzy
+#~ msgid "gallery title"
+#~ msgstr "Gallery 标题"
+
+#, fuzzy
+#~ msgid "gallery URL"
+#~ msgstr "Gallery 连结"
+
+#, fuzzy
+#~ msgid "Admin email(s)"
+#~ msgstr "修改说明"
+
+#, fuzzy
+#~ msgid "Fullname"
+#~ msgstr "全名"
+
+#, fuzzy
+#~ msgid "New comment for %s"
+#~ msgstr "检视评论"
+
+#, fuzzy
+#~ msgid "Item"
+#~ msgstr "项"
+
+#, fuzzy
+#~ msgid "***End comment ***"
+#~ msgstr "检视评论"
+
+#, fuzzy
+#~ msgid "New comment for %s."
+#~ msgstr "检视评论"
+
+#, fuzzy
+#~ msgid "1 voter"
+#~ msgid_plural "%d voters"
+#~ msgstr[0] "注意"
+#~ msgstr[1] "注意"
+
+#, fuzzy
+#~ msgid "%s: %s points; "
+#~ msgstr "%s, %s 总共 %s"
+
+#, fuzzy
+#~ msgid "No votes"
+#~ msgstr "注意"
+
+#, fuzzy
+#~ msgid "%s: %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Upload Date"
+#~ msgstr "上传日期"
+
+#~ msgid "Additional EXIF Data"
+#~ msgstr "额外的 EXIF 资料"
+
+# Neccessary infact of hardcoded function editField() in util.php
+#~ msgid "description"
+#~ msgstr "描述"
+
+#~ msgid "Generated by %s v%s"
+#~ msgstr "Generated by %s v%s"
+
+#~ msgid "Powered by %s v%s"
+#~ msgstr "Powered by %s v%s"
+
+#~ msgid "Move the album to a new album:"
+#~ msgstr "移动到其他相册中："
+
+#, fuzzy
+#~ msgid "Views:"
+#~ msgstr "人气："
+
+#~ msgid "Unknown file type: %s"
+#~ msgstr "未知的文件格式：%s"
+
+#~ msgid "Changed: "
+#~ msgstr "更新： "
 
 #, fuzzy
 #~ msgid "Resizing Image: %s"
@@ -5432,40 +6907,12 @@ msgstr ""
 #~ msgstr "登录"
 
 #, fuzzy
-#~ msgid "Version"
-#~ msgstr "权限"
-
-#, fuzzy
 #~ msgid "Last Update"
 #~ msgstr "最后一页"
 
 #, fuzzy
-#~ msgid "Dots"
-#~ msgstr "注意"
-
-#, fuzzy
-#~ msgid "Solid"
-#~ msgstr "播放"
-
-#, fuzzy
-#~ msgid "No frames"
-#~ msgstr "尚无相册"
-
-#, fuzzy
-#~ msgid "Skipping %s."
-#~ msgstr "跳过相册 %d..."
-
-#, fuzzy
-#~ msgid "Can't open %s"
-#~ msgstr "无法读取 %s. "
-
-#, fuzzy
 #~ msgid "Not valid yet"
 #~ msgstr "不合法的用户"
-
-#, fuzzy
-#~ msgid "EXIF Data"
-#~ msgstr "额外的 EXIF 资料"
 
 #, fuzzy
 #~ msgid "Search:"
@@ -5584,10 +7031,6 @@ msgstr ""
 #~ msgid "Processing image"
 #~ msgstr "处理影像中"
 
-#, fuzzy
-#~ msgid "Images"
-#~ msgstr "个文件"
-
 #~ msgid "Do you really want to delete this Album?"
 #~ msgstr "您确定要删除这个相册吗? "
 
@@ -5602,10 +7045,6 @@ msgstr ""
 #~ msgid "Set photo captions with original filenames."
 #~ msgstr "设定文件的说明为原始文件名. "
 
-#, fuzzy
-#~ msgid "Set photo captions with file creation times."
-#~ msgstr "设定文件的说明为原始文件名. "
-
 #~ msgid "You must specify a username"
 #~ msgstr "您一定要输入用户名"
 
@@ -5614,14 +7053,6 @@ msgstr ""
 
 #~ msgid "There was an unknown failure in the %s call!"
 #~ msgstr "%s call 产生不明原因的失败! "
-
-#, fuzzy
-#~ msgid "with donation"
-#~ msgstr "%s 没有赞助"
-
-#, fuzzy
-#~ msgid "without donation"
-#~ msgstr "%s 没有赞助"
 
 #, fuzzy
 #~ msgid ""
@@ -5709,10 +7140,6 @@ msgstr ""
 #, fuzzy
 #~ msgid " to "
 #~ msgstr "或者"
-
-#, fuzzy
-#~ msgid "Cannot read file %s."
-#~ msgstr "无法读取 %s. "
 
 #~ msgid "not working for you? try the low-tech"
 #~ msgstr "无法播放吗? 试试看另一种方式"

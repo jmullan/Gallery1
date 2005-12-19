@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-15 21:03+0100\n"
-"PO-Revision-Date: 2005-12-14 14:50+0100\n"
+"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"PO-Revision-Date: 2005-12-16 11:38+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgstr ""
 #: ../move_photo.php:31 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
-#: ../rotate_photo.php:31 ../save_photos.php:39 ../upgrade_album.php:57
+#: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuführen!"
@@ -75,9 +75,9 @@ msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein."
 #: ../add_comment.php:98 ../copy_photo.php:204 ../delete_album.php:72
 #: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:83
-#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:118
-#: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
+#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
+#: ../move_album.php:134 ../move_photo.php:249 ../move_photo.php:335
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
 #: ../watermark_album.php:153
@@ -895,7 +895,7 @@ msgstr "&Uuml;berspringe Album #%d"
 
 #: ../copy_photo.php:124 ../do_command.php:261 ../do_command.php:263
 #: ../login.php:127 ../register.php:47 ../register.php:119
-#: ../save_photos.php:377
+#: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "Beenden"
 
@@ -941,7 +941,7 @@ msgid "Copy to Album!"
 msgstr "Kopieren"
 
 #: ../copy_photo.php:208 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
+#: ../move_album.php:140 ../move_photo.php:341 ../resize_photo.php:144
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "Kein Album/ Index gew&auml;hlt"
@@ -1521,74 +1521,74 @@ msgstr "Markieren Sie die ImageMap(s), die Sie löschen möchten, in der Auswahl. 
 
 #: ../help/metadataOnUpload.php:26
 msgid "Metadata on Upload Help"
-msgstr ""
+msgstr "Hilfe zu den Metadaten beim Upload"
 
 #: ../help/metadataOnUpload.php:32
 msgid "What is meant with metadata in this context ?"
-msgstr ""
+msgstr "Was ist mit Metadaten in diesem Umfeld gemeint?"
 
 #: ../help/metadataOnUpload.php:35
-msgid "Photos in Gallery have descriptive fields, like caption, title and so on. You can also have your own custom fields."
-msgstr ""
+msgid "Photos in Gallery have descriptive fields, like caption, title and other data fields. You can also define your own custom fields."
+msgstr "In der Gallery haben die Photos beschreibende Felder wie z.B. Beschriftung, Titel oder sonstige Datenfelder. Zudem können Sie Ihre eigenen Felder definieren."
 
 #: ../help/metadataOnUpload.php:36
-msgid "All this information are called metadata."
-msgstr ""
+msgid "This information is called Metadata."
+msgstr "Diese Infos werden Metadaten genannt."
 
 #: ../help/metadataOnUpload.php:40
 msgid "Normally this info is added manually inside the Gallery for each photo."
-msgstr ""
+msgstr "Normalerweise werden diese Infos händisch in der Gallery für jedes Photo eingetragen."
 
 #: ../help/metadataOnUpload.php:41
-msgid "But you are also able to do this automatically during the upload."
-msgstr ""
+msgid "You can also do this automatically during your uploads."
+msgstr "Sie haben aber auch die Möglichkeit dies direkt während des Uploads zu tun."
 
 #: ../help/metadataOnUpload.php:47
 msgid "How can i add the metadata?"
-msgstr ""
+msgstr "Wie werden die Metadaten hinzugefügt?"
 
 #: ../help/metadataOnUpload.php:50
-msgid "You have to create file that contain the info you want to give during the upload.."
-msgstr ""
+#, php-format
+msgid "Create a %s'csv-file (Comma Separated Values)'%s which contains the data you want associated with the files you are uploading."
+msgstr "Erzeugen Sie eine %s'CSV-Datei (Comma Separated Values)'%s welche die Infos enthält die zu den Photos die Sie hochladen hinzufügen möchten."
 
 #: ../help/metadataOnUpload.php:51
-msgid "Upload this file together with your pictures."
-msgstr ""
+msgid "Upload this file at the same time as you upload your files, you cannot upload it later and expect Gallery to import the metadata from it."
+msgstr "Laden Sie diese Datei gleichzeitig mit Ihren Photos in die Gallery. Sie können dies nicht später tun und erwarten, daß die Gallery dies Metadaten dann importiert."
 
 #: ../help/metadataOnUpload.php:56
 msgid "In which format has the data to be?"
-msgstr ""
+msgstr "In welchem Format müssen die Daten vorliegen?"
 
 #: ../help/metadataOnUpload.php:59
-msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields. "
-msgstr ""
+msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
+msgstr "Die erste Zeile enthält die Feldnamen, es gibt ein Pflichtfeld, einige vordefinierte Felder, aber Sie können natürlich auch Ihre eigenen Felder benutzen."
 
 #: ../help/metadataOnUpload.php:60
 msgid "Order does not matter, but you have to you a <b>;</b> (Semicolon) as separator."
-msgstr ""
+msgstr "Die Reihenfolge spielt keine Rolle, jedoch müssen Sie das <b>;</b> (Semikolon) als Separator verwenden."
 
 #: ../help/metadataOnUpload.php:61
 #, php-format
 msgid "Mandatory: %s"
-msgstr ""
+msgstr "Pflichtfeld: %s"
 
 #: ../help/metadataOnUpload.php:62
 #, php-format
 msgid "Predefined: %s, %s, %s"
-msgstr ""
-
-#: ../help/metadataOnUpload.php:64
-msgid "Then follow the lines containing the info it self"
-msgstr ""
+msgstr "Vordefinierte Felder: %s, %s, %s"
 
 #: ../help/metadataOnUpload.php:65
-msgid "Example:"
-msgstr ""
+msgid "Then follow the lines containing the info it self"
+msgstr "Anschließend folgen die Zeilen mit den Infos ansich."
 
-#: ../help/metadataOnUpload.php:76
-#, fuzzy
+#: ../help/metadataOnUpload.php:68
+msgid "Example:"
+msgstr "Beispiel:"
+
+#: ../help/metadataOnUpload.php:77
 msgid "Back to upload"
-msgstr "Zur&uuml;ck zur Gallery"
+msgstr "Zur&uuml;ck zum Upload"
 
 #: ../html/userData.inc:18
 msgid "Member file"
@@ -1770,22 +1770,6 @@ msgstr "Vorsicht, bei einer Aktualisierung werden alle markierten Einträge verwe
 msgid "No ImageMaps"
 msgstr "Keine ImageMap bisher angelegt."
 
-#: ../includes/add_photos/add_admin.inc:26
-msgid "Admin help"
-msgstr "Admin Hilfe"
-
-#: ../includes/add_photos/add_admin.inc:30
-msgid "To install or upgrade the Gallery Remote Applets, please refer to "
-msgstr "Um das Gallery Remote Applet zu installieren oder zu aktualisieren, werfen Sie einen Blick in die "
-
-#: ../includes/add_photos/add_admin.inc:31
-msgid "the documentation page"
-msgstr "Dokumentation"
-
-#: ../includes/add_photos/add_admin.inc:32
-msgid " on the Gallery web site."
-msgstr " auf den Gallery Webseiten."
-
 #: ../includes/add_photos/add_applet.inc:24
 msgid "Use the Gallery Remote Applet to upload pictures. It will take a short while to download."
 msgstr "Das <b>Gallery Remote Applet</b> ist ein Programm, &uuml;ber das Sie Bilder und Filme komfortabel in unterschiedliche Alben Ihrer Galerie hochladen k&ouml;nnen. Im Gegensatz zum Upload per Formular und Gallery Remote Mini k&ouml;nnen Sie mit diesem Programm beliebig viele Dateien f&uuml;r den Upload ausgew&auml;hlen und auch unterschiedliche Alben zeitgleich aktualisieren. Es kann allerdings einen kurzen Augenblick dauern, bis das Programm vollst&auml;ndig geladen wurde. "
@@ -1804,45 +1788,50 @@ msgstr "Ihr Browser unterst&uuml;tzt keine Appletts"
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
 msgstr "Das Gallery Remote Mini Applet ist eine Alternative f&uuml;r den Bilderupload. Es dauert eine kleine Weile um es herrunterzuladen."
 
-#: ../includes/add_photos/add_form.inc:28
+#: ../includes/add_photos/add_form.inc:27
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klicken Sie den <b>Durchsuchen</b>-Button, um jeweils eine Datei f&uuml;r den Upload auszuwählen."
 
-#: ../includes/add_photos/add_form.inc:30
-#, fuzzy, php-format
+#: ../includes/add_photos/add_form.inc:28
+#, php-format
 msgid "Supported file types: %s"
-msgstr "Unterst&uuml;tzte Dateitypen"
+msgstr "Unterst&uuml;tzte Dateitypen: %s"
 
-#: ../includes/add_photos/add_form.inc:34
+#: ../includes/add_photos/add_form.inc:32
 #: ../includes/add_photos/add_url.inc:29
 msgid "Tip:"
 msgstr "Tipp:"
 
-#: ../includes/add_photos/add_form.inc:35
+#: ../includes/add_photos/add_form.inc:33
 msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
 msgstr "Laden Sie eine Archivdatei (zip, rar, ace ...) mit Bildern und Filmen hoch!"
 
-#: ../includes/add_photos/add_form.inc:44
+#: ../includes/add_photos/add_form.inc:42
 msgid "Use the Browse button to find the photos on your computer"
 msgstr "Klicken Sie den <b>Durchsuchen</b>-Button, um eine (weitere) Datei auf Ihrem Computer f&uuml;r den Upload auszuwählen."
 
-#: ../includes/add_photos/add_form.inc:45
+#: ../includes/add_photos/add_form.inc:43
 msgid "Files:"
 msgstr "Dateien:"
 
-#: ../includes/add_photos/add_form.inc:54
+#: ../includes/add_photos/add_form.inc:53
 msgid "Do the same for optional metafiles."
 msgstr "Tuen Sie das Selbe f&uuml;r die Metadateien"
 
-#: ../includes/add_photos/add_form.inc:55
+#: ../includes/add_photos/add_form.inc:54
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
-#: ../includes/add_photos/add_form.inc:69
+#: ../includes/add_photos/add_form.inc:59
+#, fuzzy
+msgid "MetaFiles:"
+msgstr "Dateien:"
+
+#: ../includes/add_photos/add_form.inc:67
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "Falls keine Überschrift angegeben ist, worauf möchten Sie diese setzen ?"
 
-#: ../includes/add_photos/add_form.inc:82
+#: ../includes/add_photos/add_form.inc:80
 msgid "Upload Now"
 msgstr "Lade hoch"
 
@@ -2292,7 +2281,7 @@ msgstr "Nach Monat filtern"
 msgid "Filter by day"
 msgstr "Nach Tag filtern"
 
-#: ../js/multifile.js.php:137
+#: ../js/multifile.js.php:140
 msgid "Caption:"
 msgstr "Beschriftung:"
 
@@ -2744,15 +2733,15 @@ msgstr "W&auml;hlen Sie die neue Position des Albums: %s"
 msgid "Your Album will be moved to the position you choose below."
 msgstr "Ihr Album wird zu der unten angegebenen Position verschoben."
 
-#: ../move_album.php:117 ../move_photo.php:248
+#: ../move_album.php:116 ../move_photo.php:248
 msgid "Move it!"
 msgstr "Verschieben"
 
-#: ../move_album.php:124
+#: ../move_album.php:123
 msgid "Nest within another Album:"
 msgstr "Ordnen Sie es einem anderen Album unter:"
 
-#: ../move_album.php:137
+#: ../move_album.php:133
 msgid "Move to Album!"
 msgstr "Verschieben"
 
@@ -2826,10 +2815,6 @@ msgstr "Hinweis: Wenn Stimmen f&uuml;r ein Element abgegeben wurden, gehen diese
 #, php-format
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr "Hinweis: Wenn Stimmen f&uuml;r dieses Element abgegeben wurden, gehen diese beim Verschieben in ein Album mit unterschiedlichen Abstimmungseinstellungen verloren. Kompatibele Alben sind mit &quot;%s&quot; markiert."
-
-#: ../move_photo.php:334
-msgid "Move Album!"
-msgstr "Album verschieben!"
 
 #: ../multi_create_user.php:44 ../multi_create_user.php:48
 #: ../multi_create_user.php:164
@@ -3449,57 +3434,61 @@ msgstr "im Uhrzeigersinn"
 msgid "Flip"
 msgstr "Spiegeln"
 
-#: ../save_photos.php:65
+#: ../save_photos.php:55
 msgid "Processing and Saving Photos"
 msgstr "Verarbeite und speichere Bilder"
 
-#: ../save_photos.php:76
+#: ../save_photos.php:66
 msgid "Fetching Urls..."
 msgstr "Rufe URLs ab ..."
 
-#: ../save_photos.php:93
+#: ../save_photos.php:83
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr "Verarbeite %s als lokales Verzeichnis."
 
-#: ../save_photos.php:132
+#: ../save_photos.php:122
 #, php-format
 msgid "Unable to find %s locally - trying %s."
 msgstr "%s konnte nicht als lokales Verzeichnis gefunden werden. - Probiere %s stattdessen."
 
-#: ../save_photos.php:167
+#: ../save_photos.php:157
 #, php-format
 msgid "Could not open url: %s"
 msgstr "Konnte die URL %s nicht &ouml;ffnen."
 
-#: ../save_photos.php:199
+#: ../save_photos.php:189
 #, php-format
 msgid "Parsing %s for images..."
 msgstr "Durchsuche %s nach Bildern ..."
 
-#: ../save_photos.php:261
+#: ../save_photos.php:251
 #, php-format
 msgid "Found %d images"
 msgstr "Es wurden %d Bilder gefunden"
 
-#: ../save_photos.php:268
+#: ../save_photos.php:258
 msgid "Processing status..."
 msgstr "Verarbeitungsstatus ..."
 
-#: ../save_photos.php:373
+#: ../save_photos.php:333
+msgid "Extrafields:"
+msgstr "Extrafelder:"
+
+#: ../save_photos.php:363
 msgid "No images uploaded!"
 msgstr "Es wurden keine Bilder hochgeladen!"
 
-#: ../save_photos.php:391
+#: ../save_photos.php:381
 msgid "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)"
 msgstr "Wählen Sie die Elemente, die sie hochladen möchten. Halten Sie die 'strg' (PC) oder 'Command' (Mac) Taste um mehrere zu markieren."
 
-#: ../save_photos.php:415
+#: ../save_photos.php:405
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr "%d Metadateien gefunden.  Diese Dateien beinhalten Information &uuml;ber Ihre Bilder, etwa Titel und Beschriftung."
 
-#: ../save_photos.php:446
+#: ../save_photos.php:436
 msgid "Add Files"
 msgstr "Dateien hinzuf&uuml;gen"
 
@@ -4426,12 +4415,11 @@ msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 #: ../util.php:1451
 #, php-format
 msgid "Parsing for csv data in file: %s"
-msgstr ""
+msgstr "Parse nach CSV Daten in: %s"
 
 #: ../util.php:1467
-#, fuzzy
 msgid "csv result:"
-msgstr "Ergebnis:"
+msgstr "CSV Ergebnis:"
 
 #: ../util.php:1635
 #, php-format
@@ -4742,23 +4730,5 @@ msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Wasserzeichen auf animierten gif werden derzeit noch nicht unterstützt und werden daher ihr Bild verunstalten und 'unanimieren'"
 
-#~ msgid "Admin"
-#~ msgstr "Admin"
-
-#~ msgid "1. Select the number of files you want to upload:"
-#~ msgstr "1. W&auml;hlen Sie die Anzahl der Dateien, die Sie hochladen m&ouml;chten: "
-
-#~ msgid "Optional:"
-#~ msgstr "Optional:"
-
-#~ msgid "Select the number of meta data files you want to upload:"
-#~ msgstr "W&auml;hlen Sie die Anzahl der Metadateien, die Sie hochladen m&ouml;chten: "
-
-#~ msgid "File"
-#~ msgstr "Datei"
-
-#~ msgid "3. Use the Browse button to find the meta data files on your computer"
-#~ msgstr "3. Klicken Sie den <b>Durchsuchen</b>-Button, um die Metadateien auf Ihrem Computer f&uuml;r den Upload auszuw&auml;hlen.</br></br>"
-
-#~ msgid "Create new image area"
-#~ msgstr "Neue ImageMap anlegen"
+#~ msgid "Move Album!"
+#~ msgstr "Album verschieben!"
