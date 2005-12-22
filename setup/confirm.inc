@@ -105,17 +105,12 @@ $graphtool = '';
 $graphpath = '';
 $graphtest = array();
 
+$continueTypes = array('block_start', 'block_end', 'group_start', 'group_end', 'subgroup', 'subgroup_end');
 foreach ($constants as $key => $val) {
 	
 	if (isset($val['enabled']) && $val['enabled'] == 'no') continue;
 
-	if (isset($val['type']) && 
-			($val['type'] == 'block_start' || 
-			 $val['type'] == 'block_end' ||
-			 $val['type'] == 'separator' ||
-			 $val['type'] == 'group_start' ||
-			 $val['type'] == 'group_end' ||
-			 $val['type'] == 'subgroup')) { 
+	if (isset($val['type']) && in_array($val['type'], $continueTypes)) {
 		continue;
 	}
 

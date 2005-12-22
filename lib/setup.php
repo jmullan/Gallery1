@@ -182,18 +182,9 @@ function form_nv_pairs($key, $arr) {
 }
 
 function form_choice($key, $arr) {
-	
-	$buf = "\n\t<select name=$key>";
-	foreach ($arr["choices"] as $choice => $value) {
-		$selected = "";
-		if (!strcmp($choice, $arr["value"])) {
-			$selected = "SELECTED";
-		}
-		$buf .= "\n\t\t". '<option value="' . $choice . '" ' . $selected . '>'. $value . '</option>';
-	}
-	$buf .= "\n\t</select>\n";
-	return $buf;
-}
+    $attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
+    return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
+    }
 
 function form_multiple_choice($key, $arr) {
 	if (empty($arr["multiple_choices"])) {
@@ -1646,7 +1637,7 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 		}
 		echo '</td>';
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
-		if ($tabcount % $break == 0) {
+		if ($tabcount % $break == 0 && $tabcount < sizeof($tabs)) {
 			echo "\n</tr>\n</table>";
 			echo "\n<table width=\"100%\"cellspacing=\"0\" style=\"margin-top:5px;\">\n<tr>";
 		}
@@ -1815,5 +1806,17 @@ function checkImageMagick($cmd) {
         $result['ok'] = sprintf(_("OK!  Version: %s"), $version);
     }
     return $result;
+}
+/**
+ * returns the current graphicTool set in config.php
+ * if not found, then the default is returned
+ */
+function getCurrentGraphicTool() {
+    global $gallery;
+    if(isset($gallery->app->graphics)) {
+        return $gallery->app->graphics;
+    } else {
+        return default_graphics();
+    }
 }
 ?>

@@ -45,9 +45,25 @@
         <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
 </p>
 <?php
-	makeSectionTabs($constants);
 
-$i=0;
+makeSectionTabs($constants);
+
+?>
+<script type="text/javascript" language="Javascript">
+
+function toggleGraphics(show) {
+    if(show == 'ImageMagick') {
+	document.getElementById('subgroup_ImageMagick').style.display      = 'inline';
+	document.getElementById('subgroup_NetPBM').style.display      = 'none';
+    } else {
+	document.getElementById('subgroup_ImageMagick').style.display      = 'none';
+	document.getElementById('subgroup_NetPBM').style.display      = 'inline';
+    }
+}
+
+</script>
+<?php
+$i = 0;
 foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 	
@@ -58,10 +74,15 @@ foreach ($constants as $key => $val) {
 	}
 
 	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
+	    echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
         echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
         continue;
     }
     
+    if (isset($val["type"]) && ($val["type"] === 'subgroup_end' )) {
+        echo '</div>';
+        continue;
+    }
 	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
@@ -157,6 +178,7 @@ foreach ($constants as $key => $val) {
 	}
 }
 ?>
+
 <p align="center">
 	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
         <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">

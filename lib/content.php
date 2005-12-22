@@ -924,7 +924,7 @@ function available_skins($description_only = false) {
     $dir = "$base/skins";
     $opts['none'] = gTranslate('common', "No Skin");
     $descriptions = '<dl>';
-    $name = "<a href \"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
+    $name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
 	gTranslate('common', "No Skin") . "</a>";
     $descriptions .= sprintf("<dt>%s</dt>", $name);
     $descriptions .= '<dd>'. gTranslate('common', "The original look and feel.") .'</dd>';
@@ -1158,19 +1158,6 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 <?php
 }
 
-function galleryImage($filename, $alttext = '', $args = array(), $skin = '') {
-    $html = '';
-    $imgUrl = getImagePath($filename, $skin);
-    
-    $html = "<img src=\"$imgUrl\" alt=\"$alttext\" title=\"$alttext\"";
-    if(!empty($args)) {
-        foreach ($args as $key => $value) {
-            $html .= " $key=\"$value\"";
-        }
-    }
-    $html .= '>';
-    return $html;
-}
 
 function showImageMap($index) {
     global $gallery;
@@ -1201,13 +1188,17 @@ function showImageMap($index) {
  * @param $relativPath  string  path to the images relativ to gallery root
  * @param $altText      string  alt Text
  * @param $attrs        array   optional additional attributs (id, name..)
+ * @param $skin		string	optional input of skin, because the image could be in skindir.
  * @author Jens Tkotz <jens@peino.de>
  */
-function gImage($relativPath, $altText, $attrs = array()) {
+function gImage($relativePath, $altText, $attrs = array(), $skin = '') {
     global $gallery;
+
     $html = '';
-    $html .= '<img src="'. getImagePath($relativPath) .'" ';
-    $html .= "alt=\"$altText\" title=\"$altText\"";
+    $imgUrl = getImagePath($relativePath, $skin);
+
+    $html .= "<img src=\"$imgUrl\" alt=\"$altText\" title=\"$altText\"";
+
     if(!empty($attrs)) {
         foreach ($attrs as $key => $value) {
             $html .= " $key=\"$value\"";
@@ -1217,5 +1208,5 @@ function gImage($relativPath, $altText, $attrs = array()) {
     
     return $html;
 }
-            
+
 ?>

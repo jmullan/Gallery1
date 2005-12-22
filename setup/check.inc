@@ -36,7 +36,7 @@
 	echo '<br><br>';
 
 	$diagUrl='diagnostics.php';
-    $diagnostics_page='<a href="'. $diagUrl .'">' . _("Gallery Diagnostics Page").'</a>';
+        $diagnostics_page='<a href="'. $diagUrl .'">' . _("Gallery Diagnostics Page").'</a>';
 	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. _("Gallery Help Page"). '</a>';
 	$docs_page = galleryDocs();
 
@@ -51,19 +51,47 @@
 echo "</div>";
 echo "<br>";
 
-echo '<table class="inner" width="100%" cellspacing="0">';
+$configTestStatus = array(
+	0 => array(
+		'image' => gImage('green_trafficlight.gif', _("Success")),
+		'text' => _("Success"),
+	       	'border' => 'border: 1px solid #b2ffb2'
+	),
+	5 => array(
+		'image' => gImage('yellow_trafficlight.gif', _("Warning, but optional")),
+		'text' => _("Warning, but optional"),
+		'border' => 'border: 2px solid #ffff98'
+	),
+	10 => array(
+		'image' => gImage('yellow_red_trafficlight.gif', _("Serious warning, but optional")),
+		'text' => _("Serious warning, but optional"),
+		'border' => 'border: 2px solid #ff9898',
+	),
+	51 => array(
+		'image' => gImage('red_trafficlight.gif', _("Serious warning, no go !")),
+		'text' => _("Serious warning, no go !"),
+		'border' => 'border: 4px solid #ec000a'
+	),
+	100 => array(
+		'image' => gImage('red_trafficlight.gif', _("Failure")),
+		'text' => _("Failure"),
+		'border' => 'border: 4px solid #ec000a'
+	)
+);
 
+echo '<table class="inner" width="100%" cellspacing="0">';
 foreach ($checklist as $short => $check) {
     if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 
     $func = $check["func"];
     $result = $func();
-	list($success, $fail, $warn) = $result;
-	$status = getCheckStatus($result, $check);
+    
+    list($success, $fail, $warn) = $result;
+    $status = getCheckStatus($result, $check);
+    $usedStatus[$status] = $status;
     $warning = 0;
     
-		//print_r($func());
-	// new Line //
+    // new Line //
     echo "\n<tr style=\"margin-top: 2px\">";
     // shortdesc
     echo "\n\t<td class=\"desc\" width=\"40%\" style=\"font-weight: bold; vertical-align: top; border-bottom: 2px solid #ececec;\">". $check['prompt'];
@@ -73,45 +101,23 @@ foreach ($checklist as $short => $check) {
     // toogle button
     echo "\n\t<td class=\"desc\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
         "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
-        galleryImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
+        gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
         '</a>';
     echo "\n\t</td>";
     
     // traffic light
     echo "\n\t<td class=\"desc\" style=\"border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">";
-    $border = '';
-	switch($status) {
-	    case 0:
-	       echo galleryImage('green_trafficlight.gif', _("Success"));
-	       $border = 'border: 1px solid #b2ffb2';
-	       break;
-	   case 5:
-	       echo galleryImage('yellow_trafficlight.gif', _("Warning, but optional"));
-	       $border = 'border: 2px solid #ffff98';
-	       break;
-        case 10:
-	       echo galleryImage('yellow_red_trafficlight.gif', _("Serious warning, but optional"));
-	       $border = 'border: 2px solid #ff9898';
-	       break;
-	   case 51:
-	       echo galleryImage('red_trafficlight.gif', _("Serious warning, no go !"));
-	       $border = 'border: 4px solid #ec000a';
-	       break;
-	   case 100:
-	       echo galleryImage('red_trafficlight.gif', _("Failure"));
-	       $border = 'border: 4px solid #ec000a';
-	       break;
-    }
-
-	echo "\n\t</td>";
-	// result
-	echo "\n\t<td class=\"desc\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
-    echo "\n\t<div style=\"padding: 2px; $border\">";
-	foreach ($success as $key) {
+    echo $configTestStatus[$status]['image'];
+    echo "\n\t</td>";
+    
+    // result
+    echo "\n\t<td class=\"desc\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
+    echo "\n\t<div style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">';
+    foreach ($success as $key) {
 		if ($key != '') {
-		  echo $key;
+		    echo $key;
 		}
-	}
+    }
 	
 	$openBasedir = ini_get('open_basedir');
 	foreach ($fail as $key => $val) {
@@ -168,11 +174,20 @@ foreach ($checklist as $short => $check) {
 	echo "\n</tr>";
 }
 echo "\n</table>";
-	
-?>
 
-<div align="center">
-<?php 
+echo "\n<table width=\"100%\">";
+echo "\n<tr><td>";
+
+echo "\n<table>";
+echo "\n<tr><td colspan=\"2\" align=\"left\">". _("Legend:") . '</td></tr>';
+foreach ($usedStatus as $status) {
+    echo "\n<tr><td>". $configTestStatus[$status]['image'] .'</td>';
+    echo "<td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td></tr>';
+}
+echo "\n</table>";
+
+echo "\n</td>";
+echo "\n<td align=\"center\">";
 	if (isset($error)) {
 		echo '<p class="error" id="bottom">';
 		echo _("There are errors in your configuration that will prevent Gallery from functioning properly.");
@@ -193,7 +208,7 @@ echo "\n</table>";
 		}
 		echo '</p><p>';
 		echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Next Step") . ' ->">';
-		echo '</p><div>';
+		echo '</p>';
 }
 ?>
-</p>
+</td></tr></table>

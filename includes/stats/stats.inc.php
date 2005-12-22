@@ -104,11 +104,12 @@ $stats['options'] = array (
 /*	'svo'		=> array('type' => 'checkbox',
 				 'default' => '',
 				 'text' => _("Show the number of 'simplified' votes an image has")),
-*/
 	'sav'		=> array('type' => 'checkbox',
 				 'default' => '',
 				 'text' => _("Show the add vote link")),
+*/
 	'sao'		=> array('type' => 'checkbox',
+
 				 'default' => '',
 				 'text' => _("Show the album owners")),
 	'stm'		=> array('type' => 'checkbox',
