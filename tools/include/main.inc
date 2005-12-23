@@ -13,18 +13,18 @@
 	<table>
 <?php
 	$index = 0;
-	$nr=1;
-	$old_percentDone=0;
+	$nr = 1;
+	$old_percentDone = 0;
 	foreach ($reportData as $locale => $localeData) {
 		if (!($index % 5)) {
 			include(dirname(__FILE__) . '/row_header.inc');
 		}
 		$index++;
 		$class = $index % 2 ? 'dark' : 'light';
-		if ($localeData['plugins']['core']['percentDone'] <50) {
-			$wclass='kicked';
+		if (($localeData['plugins']['core']['percentDone'] < 50 || $localeData['plugins']['common']['percentDone'] <40) && $pluginData['percentDone'] <50) {
+			$wclass = 'kicked';
 		} else {
-			$wclass=$class;
+			$wclass = $class;
 		}
 ?>
 	<tr>

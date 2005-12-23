@@ -44,10 +44,13 @@ else
 fi
 
 for all_po in $pofiles ; do
-	echo -e "\nFound : $all_po"
+  echo -e "\nFound : $all_po"
 		
-	lang1=${all_po%-*}
-	lang=${lang1##*/}
+  lang1=${all_po%-*}
+  lang=${lang1##*/}
+  
+  if [ $lang != "en_US" ] ; then
+	
 	module1=${all_po##*_}
 	module=${module1/.po}
 
@@ -55,7 +58,9 @@ for all_po in $pofiles ; do
 	echo "$tab Module = $module"
 
 	echo "$tab Updating ..."
+	#msgmerge ../locale/$lang/compendium.po gallery-$module.pot -v -o $all_po --no-wrap || exit
 	msgmerge -v -U $all_po gallery-$module.pot --no-wrap || exit
+  fi
 done
 
 find ../locale/ -iname "*~" -exec rm {} \;

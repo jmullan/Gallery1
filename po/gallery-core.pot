@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-15 21:03+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: ../move_photo.php:31 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
-#: ../rotate_photo.php:31 ../save_photos.php:39 ../upgrade_album.php:57
+#: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr ""
@@ -74,9 +74,9 @@ msgstr ""
 #: ../add_comment.php:98 ../copy_photo.php:204 ../delete_album.php:72
 #: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:83
-#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:118
-#: ../move_album.php:138 ../move_photo.php:249 ../move_photo.php:335
+#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
+#: ../move_album.php:134 ../move_photo.php:249 ../move_photo.php:335
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
 #: ../watermark_album.php:153
@@ -469,61 +469,66 @@ msgstr ""
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, php-format
 msgid "Owner: %s"
 msgstr ""
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr ""
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr ""
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr ""
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr ""
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, php-format
+msgid "Created on %s, last changed on %s."
+msgstr ""
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr ""
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr ""
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr ""
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr ""
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr ""
 
@@ -747,17 +752,17 @@ msgstr ""
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -894,7 +899,7 @@ msgstr ""
 
 #: ../copy_photo.php:124 ../do_command.php:261 ../do_command.php:263
 #: ../login.php:127 ../register.php:47 ../register.php:119
-#: ../save_photos.php:377
+#: ../save_photos.php:367
 msgid "Dismiss"
 msgstr ""
 
@@ -940,7 +945,7 @@ msgid "Copy to Album!"
 msgstr ""
 
 #: ../copy_photo.php:208 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:144 ../move_photo.php:341 ../resize_photo.php:144
+#: ../move_album.php:140 ../move_photo.php:341 ../resize_photo.php:144
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr ""
@@ -1527,11 +1532,11 @@ msgid "What is meant with metadata in this context ?"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:35
-msgid "Photos in Gallery have descriptive fields, like caption, title and so on. You can also have your own custom fields."
+msgid "Photos in Gallery have descriptive fields, like caption, title and other data fields. You can also define your own custom fields."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:36
-msgid "All this information are called metadata."
+msgid "This information is called Metadata."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:40
@@ -1539,7 +1544,7 @@ msgid "Normally this info is added manually inside the Gallery for each photo."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:41
-msgid "But you are also able to do this automatically during the upload."
+msgid "You can also do this automatically during your uploads."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:47
@@ -1547,11 +1552,12 @@ msgid "How can i add the metadata?"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:50
-msgid "You have to create file that contain the info you want to give during the upload.."
+#, php-format
+msgid "Create a %s'csv-file (Comma Separated Values)'%s which contains the data you want associated with the files you are uploading."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:51
-msgid "Upload this file together with your pictures."
+msgid "Upload this file at the same time as you upload your files, you cannot upload it later and expect Gallery to import the metadata from it."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:56
@@ -1559,7 +1565,7 @@ msgid "In which format has the data to be?"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:59
-msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields. "
+msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:60
@@ -1576,15 +1582,15 @@ msgstr ""
 msgid "Predefined: %s, %s, %s"
 msgstr ""
 
-#: ../help/metadataOnUpload.php:64
+#: ../help/metadataOnUpload.php:65
 msgid "Then follow the lines containing the info it self"
 msgstr ""
 
-#: ../help/metadataOnUpload.php:65
+#: ../help/metadataOnUpload.php:68
 msgid "Example:"
 msgstr ""
 
-#: ../help/metadataOnUpload.php:76
+#: ../help/metadataOnUpload.php:77
 msgid "Back to upload"
 msgstr ""
 
@@ -1768,22 +1774,6 @@ msgstr ""
 msgid "No ImageMaps"
 msgstr ""
 
-#: ../includes/add_photos/add_admin.inc:26
-msgid "Admin help"
-msgstr ""
-
-#: ../includes/add_photos/add_admin.inc:30
-msgid "To install or upgrade the Gallery Remote Applets, please refer to "
-msgstr ""
-
-#: ../includes/add_photos/add_admin.inc:31
-msgid "the documentation page"
-msgstr ""
-
-#: ../includes/add_photos/add_admin.inc:32
-msgid " on the Gallery web site."
-msgstr ""
-
 #: ../includes/add_photos/add_applet.inc:24
 msgid "Use the Gallery Remote Applet to upload pictures. It will take a short while to download."
 msgstr ""
@@ -1802,45 +1792,49 @@ msgstr ""
 msgid "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:28
+#: ../includes/add_photos/add_form.inc:27
 msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:30
+#: ../includes/add_photos/add_form.inc:28
 #, php-format
 msgid "Supported file types: %s"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:34
+#: ../includes/add_photos/add_form.inc:32
 #: ../includes/add_photos/add_url.inc:29
 msgid "Tip:"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:35
+#: ../includes/add_photos/add_form.inc:33
 msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:44
+#: ../includes/add_photos/add_form.inc:42
 msgid "Use the Browse button to find the photos on your computer"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:45
+#: ../includes/add_photos/add_form.inc:43
 msgid "Files:"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:54
+#: ../includes/add_photos/add_form.inc:53
 msgid "Do the same for optional metafiles."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:55
+#: ../includes/add_photos/add_form.inc:54
 msgid "Help"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:69
+#: ../includes/add_photos/add_form.inc:59
+msgid "MetaFiles:"
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:67
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:82
+#: ../includes/add_photos/add_form.inc:80
 msgid "Upload Now"
 msgstr ""
 
@@ -2218,79 +2212,75 @@ msgstr ""
 msgid "Show the add comment link"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr ""
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr ""
 
-#: ../js/multifile.js.php:137
+#: ../js/multifile.js.php:140
 msgid "Caption:"
 msgstr ""
 
@@ -2742,15 +2732,15 @@ msgstr ""
 msgid "Your Album will be moved to the position you choose below."
 msgstr ""
 
-#: ../move_album.php:117 ../move_photo.php:248
+#: ../move_album.php:116 ../move_photo.php:248
 msgid "Move it!"
 msgstr ""
 
-#: ../move_album.php:124
+#: ../move_album.php:123
 msgid "Nest within another Album:"
 msgstr ""
 
-#: ../move_album.php:137
+#: ../move_album.php:133
 msgid "Move to Album!"
 msgstr ""
 
@@ -2825,10 +2815,6 @@ msgstr ""
 msgid "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."
 msgstr ""
 
-#: ../move_photo.php:334
-msgid "Move Album!"
-msgstr ""
-
 #: ../multi_create_user.php:44 ../multi_create_user.php:48
 #: ../multi_create_user.php:164
 msgid "Create Multiple Users"
@@ -2892,7 +2878,7 @@ msgstr ""
 msgid "Create multiple new users from a file."
 msgstr ""
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr ""
 
@@ -3277,7 +3263,7 @@ msgstr ""
 
 #: ../register.php:37 ../register.php:41
 #, php-format
-msgid "Create User for %s."
+msgid "Register new user for '%s'"
 msgstr ""
 
 #: ../register.php:45
@@ -3316,6 +3302,10 @@ msgstr ""
 
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
+msgstr ""
+
+#: ../register.php:137
+msgid "Send request"
 msgstr ""
 
 #: ../rename_album.php:95
@@ -3447,57 +3437,61 @@ msgstr ""
 msgid "Flip"
 msgstr ""
 
-#: ../save_photos.php:65
+#: ../save_photos.php:55
 msgid "Processing and Saving Photos"
 msgstr ""
 
-#: ../save_photos.php:76
+#: ../save_photos.php:66
 msgid "Fetching Urls..."
 msgstr ""
 
-#: ../save_photos.php:93
+#: ../save_photos.php:83
 #, php-format
 msgid "Processing %s as a local directory."
 msgstr ""
 
-#: ../save_photos.php:132
+#: ../save_photos.php:122
 #, php-format
 msgid "Unable to find %s locally - trying %s."
 msgstr ""
 
-#: ../save_photos.php:167
+#: ../save_photos.php:157
 #, php-format
 msgid "Could not open url: %s"
 msgstr ""
 
-#: ../save_photos.php:199
+#: ../save_photos.php:189
 #, php-format
 msgid "Parsing %s for images..."
 msgstr ""
 
-#: ../save_photos.php:261
+#: ../save_photos.php:251
 #, php-format
 msgid "Found %d images"
 msgstr ""
 
-#: ../save_photos.php:268
+#: ../save_photos.php:258
 msgid "Processing status..."
 msgstr ""
 
-#: ../save_photos.php:373
+#: ../save_photos.php:333
+msgid "Extrafields:"
+msgstr ""
+
+#: ../save_photos.php:363
 msgid "No images uploaded!"
 msgstr ""
 
-#: ../save_photos.php:391
+#: ../save_photos.php:381
 msgid "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)"
 msgstr ""
 
-#: ../save_photos.php:415
+#: ../save_photos.php:405
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr ""
 
-#: ../save_photos.php:446
+#: ../save_photos.php:436
 msgid "Add Files"
 msgstr ""
 
