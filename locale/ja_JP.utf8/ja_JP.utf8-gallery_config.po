@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -269,9 +269,9 @@ msgstr "いかなるシステムロケールも検出できませんでした。
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "このマシンに対するデフォルト言語だけが利用可能です。よって、異なる言語に対しても日付フォーマットは同じものです。"
 
-#: ../lib/setup.php:946 ../lib/setup.php:1026 ../setup/config_data.inc:469
-#: ../setup/config_data.inc:721 ../setup/config_data.inc:731
-#: ../setup/config_data.inc:1209
+#: ../lib/setup.php:946 ../lib/setup.php:1026 ../setup/config_data.inc:471
+#: ../setup/config_data.inc:736 ../setup/config_data.inc:746
+#: ../setup/config_data.inc:1279
 msgid "Advanced"
 msgstr "高度"
 
@@ -315,7 +315,7 @@ msgid "In %s, missing %s in row %d with %s %s."
 msgstr "%1$s において、%5$s が %4$s である列 %3$d の %2$sが欠落しています。"
 
 #: ../lib/setup.php:1101 ../lib/setup.php:1110 ../lib/setup.php:1115
-#: ../setup/config_data.inc:1669
+#: ../setup/config_data.inc:1812
 msgid "Vote words and values"
 msgstr "投票の単語と値"
 
@@ -598,54 +598,58 @@ msgstr "ドキュメント"
 msgid "Having problems?  Try the %s and %s."
 msgstr "問題が起きましたか? %s や %s を試してください。"
 
-#: ../setup/check.inc:76 ../setup/check_versions.php:75
-msgid "Show/hide more information"
-msgstr ""
-
-#: ../setup/check.inc:85
+#: ../setup/check.inc:56 ../setup/check.inc:57
 msgid "Success"
 msgstr "成功"
 
-#: ../setup/check.inc:89
+#: ../setup/check.inc:61 ../setup/check.inc:62
 #, fuzzy
 msgid "Warning, but optional"
 msgstr "これはオプションです"
 
-#: ../setup/check.inc:93
+#: ../setup/check.inc:66 ../setup/check.inc:67
 #, fuzzy
 msgid "Serious warning, but optional"
 msgstr "深刻な警告"
 
-#: ../setup/check.inc:97
+#: ../setup/check.inc:71 ../setup/check.inc:72
 #, fuzzy
 msgid "Serious warning, no go !"
 msgstr "深刻な警告"
 
-#: ../setup/check.inc:101 ../setup/write.inc:244
+#: ../setup/check.inc:76 ../setup/check.inc:77 ../setup/write.inc:244
 msgid "Failure"
 msgstr "失敗"
 
-#: ../setup/check.inc:178
+#: ../setup/check.inc:104 ../setup/check_versions.php:75
+msgid "Show/hide more information"
+msgstr ""
+
+#: ../setup/check.inc:182
+msgid "Legend:"
+msgstr ""
+
+#: ../setup/check.inc:193
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Galleryが適切に機能しないコンフィグレーションエラーがあります。"
 
-#: ../setup/check.inc:180
+#: ../setup/check.inc:195
 msgid "You must fix them before you can continue."
 msgstr "続ける前に修正してください。"
 
-#: ../setup/check.inc:185
+#: ../setup/check.inc:200
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "あなたのインストレーションには<b>深刻な警告</b>が存在します。<br>自己責任で続けてください..."
 
-#: ../setup/check.inc:188
+#: ../setup/check.inc:203
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "あなたの設定には警告がありますが、大抵は大丈夫です。 そのまま続けましょう。"
 
-#: ../setup/check.inc:192
+#: ../setup/check.inc:207
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "インストレーションはテストを堂々とパスしました。さあ次へ進めましょう!"
 
-#: ../setup/check.inc:195 ../setup/constants.inc:44 ../setup/constants.inc:179
+#: ../setup/check.inc:210 ../setup/constants.inc:44 ../setup/constants.inc:186
 #: ../setup/defaults.inc:46 ../setup/defaults.inc:132
 msgid "Next Step"
 msgstr "次のステップ"
@@ -897,7 +901,7 @@ msgstr "GalleryはNetPBM バージョン 9.9以上を推奨します。  バイ�
 
 #: ../setup/config_data.inc:76 ../setup/config_data.inc:86
 #: ../setup/config_data.inc:94 ../setup/config_data.inc:134
-#: ../setup/config_data.inc:761 ../setup/confirm.inc:396
+#: ../setup/config_data.inc:775 ../setup/confirm.inc:391
 msgid "Note:"
 msgstr "注意:"
 
@@ -1155,27 +1159,27 @@ msgstr ""
 msgid "Checking to see if you have the latest versions of all Gallery files."
 msgstr "すべてのGalleryのファイルが最新のバージョンであるかのチェックです。"
 
-#: ../setup/config_data.inc:265
+#: ../setup/config_data.inc:264
 msgid "General settings"
 msgstr "一般設定"
 
-#: ../setup/config_data.inc:269
+#: ../setup/config_data.inc:268
 msgid "Gallery Title"
 msgstr "Gallery タイトル"
 
-#: ../setup/config_data.inc:270
+#: ../setup/config_data.inc:269
 msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
 msgstr "あなたのGalleryの名前。例: <i>My Cool Photos</i>"
 
-#: ../setup/config_data.inc:271
+#: ../setup/config_data.inc:270
 msgid "Gallery"
 msgstr "Gallery"
 
-#: ../setup/config_data.inc:277
+#: ../setup/config_data.inc:276
 msgid "Use Icons ?"
 msgstr "アイコンの使用"
 
-#: ../setup/config_data.inc:278
+#: ../setup/config_data.inc:277
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
 msgstr "Galleryアイコンを使うか、テキストのみか、あるいは両方か選択できます。アイコンのみを選択した場合は onMouseoverTextが用意されます。"
 
@@ -1211,1783 +1215,1784 @@ msgstr "デフォルトのアップロード方法"
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
 msgstr "画像のアップロード方法を指定してないユーザのために、どの方法をデフォルトに設定しますか?"
 
-#: ../setup/config_data.inc:296
+#: ../setup/config_data.inc:297
 msgid "Form-based Upload"
 msgstr "フォームを使ったアップロード"
 
-#: ../setup/config_data.inc:297
+#: ../setup/config_data.inc:298
 msgid "Mini-Applet"
 msgstr "ミニアプレット"
 
-#: ../setup/config_data.inc:298
+#: ../setup/config_data.inc:299
 msgid "Full-Applet"
 msgstr "完全なアプレット"
 
-#: ../setup/config_data.inc:299
+#: ../setup/config_data.inc:300
 msgid "URL"
 msgstr "URL"
 
-#: ../setup/config_data.inc:310
+#: ../setup/config_data.inc:312
 msgid "Locations and URLs"
 msgstr "位置とURL"
 
-#: ../setup/config_data.inc:314
+#: ../setup/config_data.inc:316
 msgid "Album directory"
 msgstr "アルバムのディレクトリ"
 
-#: ../setup/config_data.inc:315 ../setup/config_data.inc:327
-#: ../setup/config_data.inc:339 ../setup/config_data.inc:350
+#: ../setup/config_data.inc:317 ../setup/config_data.inc:329
+#: ../setup/config_data.inc:341 ../setup/config_data.inc:352
 msgid "REQUIRED"
 msgstr "必須"
 
-#: ../setup/config_data.inc:316
+#: ../setup/config_data.inc:318
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
 msgstr "画像が保存される物理ディスク上のディレクトリのフルパス。このディレクトリは初めは空にしておいてください &#8212; Galleryが埋めます。このディレクトリは、ウェブサーバを動かしているユーザ(このシステムでは %s)による書き込み権限が必要であることに注意してください。"
 
-#: ../setup/config_data.inc:326
+#: ../setup/config_data.inc:328
 msgid "Temporary directory"
 msgstr "テンポラリディレクトリ"
 
-#: ../setup/config_data.inc:328
+#: ../setup/config_data.inc:330
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr "一時ファイルをおくディレクトリのパス。例えば  %s や %s。あなたのシステムで <b>open_basedir</b> の設定がされているのであれば、このテンポラリディレクトリは <b>open_basedir</b> 以下に入れないといけません。その場合自分でディレクトリを作成し、ウェブサーバのプロセスがそこに書き込み可能であることを確認してください。"
 
-#: ../setup/config_data.inc:340
+#: ../setup/config_data.inc:342
 #, fuzzy, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr "GalleryウェブアプリケーションヘのURL。(例 %s) Galleryは The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 
-#: ../setup/config_data.inc:349
+#: ../setup/config_data.inc:351
 msgid "Albums URL"
 msgstr "アルバムのURL"
 
-#: ../setup/config_data.inc:351
+#: ../setup/config_data.inc:353
 #, fuzzy, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr "ウェブサーバ上のあなたのアルバムへの完全なURL。(例: %s) Galleryは関連するURL しかし、印刷などいくつかの機能は正しく機能しないかもしれません。"
 
-#: ../setup/config_data.inc:361
+#: ../setup/config_data.inc:363
 msgid "Thumbnail image"
 msgstr "サムネイル画像"
 
-#: ../setup/config_data.inc:362
+#: ../setup/config_data.inc:364
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr "動画のためのサムネイル画像のファイルシステム上のパス。例: %s"
 
-#: ../setup/config_data.inc:368
+#: ../setup/config_data.inc:370
 msgid "Mirror sites"
 msgstr "ミラーサイト"
 
-#: ../setup/config_data.inc:369
+#: ../setup/config_data.inc:371
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr "あなたのアルバムディレクトリをミラーしているサイトのURLリストです。1行につき1URLを入力し、より信頼のおけるものを上のほうにしてください。例 %s"
 
-#: ../setup/config_data.inc:386
+#: ../setup/config_data.inc:388
 msgid "Toolkits / image processing"
 msgstr "ツールキット / 画像処理"
 
-#: ../setup/config_data.inc:390
+#: ../setup/config_data.inc:392
 msgid "Graphics suite to use"
 msgstr "使用するグラフィックスイート"
 
-#: ../setup/config_data.inc:391
+#: ../setup/config_data.inc:393
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr "この設定はどのグラフィックツールセットが使いたいかをGalleryに伝えます。(最初のページにおいて)両方利用可能なら、これは単にユーザの好みです。そうでなければ、エラーなくGalleryが検出できたほうを選択してください。"
 
-#: ../setup/config_data.inc:399
+#: ../setup/config_data.inc:401
 #, fuzzy
 msgid "ImageMagick Settings"
 msgstr "%2$d個中%1$d個のImageMagickバイナリ全てが検出されました。"
 
-#: ../setup/config_data.inc:404
+#: ../setup/config_data.inc:406
 msgid "Path to ImageMagick"
 msgstr "ImageMagickのパス"
 
-#: ../setup/config_data.inc:405
+#: ../setup/config_data.inc:407
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "システム上でImageMagickを含むディレクトリのパスです。"
 
-#: ../setup/config_data.inc:406 ../setup/config_data.inc:433
+#: ../setup/config_data.inc:408 ../setup/config_data.inc:435
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr "このパスは上で %s を選択した場合のみ必要です。そうでなければ、そのままにしておいても、空にしても構いません。"
 
-#: ../setup/config_data.inc:409
+#: ../setup/config_data.inc:411
 msgid "I can't find ImageMagick at the location you provided."
 msgstr "あなたが指定した場所にImageMagickは見付かりませんでした。"
 
-#: ../setup/config_data.inc:423
+#: ../setup/config_data.inc:425
 #, fuzzy
 msgid "NetPBM Settings"
 msgstr "設定を見直す"
 
-#: ../setup/config_data.inc:428
+#: ../setup/config_data.inc:430
 msgid "Path to NetPBM"
 msgstr "NetPBMのパス"
 
-#: ../setup/config_data.inc:429
+#: ../setup/config_data.inc:431
 #, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "システム上でNetPBMを含むディレクトリのパスです。NetPBMをGalleryのダウンロードページからダウンロードしたなら、ファイルを実行可能にすることを忘れないでください。たとえば、%s や %s や %s"
 
-#: ../setup/config_data.inc:436
+#: ../setup/config_data.inc:438
 msgid "I can't find NetPBM at the location you provided."
 msgstr "あなたが指定した場所にNetPBMは見付かりませんでした。"
 
-#: ../setup/config_data.inc:447
+#: ../setup/config_data.inc:449
 msgid "PNM to JPEG converter"
 msgstr "PNM to JPEG コンバータ"
 
-#: ../setup/config_data.inc:448
+#: ../setup/config_data.inc:450
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "この値はNetPBMを使う場合にのみ関係があります。NetPBMは内部の画像フォーマットをJPEGに変換するためにツールを使います。このツールは、 <i>ppmtojpeg</i> もしくは <i>pnmojpeg</i> と呼ばれ、この呼び名はインストールされているNetPBMのバージョンに依存します。NetPBMディレクトリをチェックして、インストールされているものを指定してください。分からないなら、推測して選べばシステムが検証しようとします。"
 
-#: ../setup/config_data.inc:453
+#: ../setup/config_data.inc:455
 msgid "PNM Composite (Overlay)"
 msgstr "PNM 合成 (オーバーレイ)"
 
-#: ../setup/config_data.inc:454
+#: ../setup/config_data.inc:456
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "この値はNetPBMを使う場合にのみ関係があります。NetPBMはある画像を他の画像にオーバーレイするツールを使います。このツールは <i>pnmcomp</i> や <i>pamcomp</i> と呼ばれ、インストールされているNetPBMのバージョンに依存します。NetPBMディレクトリをチェックして、インストールされているものをここに指定してください。分からないなら、推測して選べばシステムが検証しようとします。"
 
-#: ../setup/config_data.inc:462
+#: ../setup/config_data.inc:464
 msgid "Auto-rotate images"
 msgstr "画像の自動回転"
 
-#: ../setup/config_data.inc:463
+#: ../setup/config_data.inc:465
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr "このオプションを選択すると、アップロード時にGalleryが画像の自動回転をしようとします。比較的新しいディジタルカメラでサポートされる、JPEG EXIFデータに含まれる方向情報に基づいて処理されます。"
 
-#: ../setup/config_data.inc:464
+#: ../setup/config_data.inc:466
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "EXIF解析ツールのJhead v.1.9以上が必要です。(オプションツールを参照)"
 
-#: ../setup/config_data.inc:465 ../setup/config_data.inc:519
-#: ../setup/config_data.inc:538 ../setup/config_data.inc:551
-#: ../setup/config_data.inc:557 ../setup/config_data.inc:716
-#: ../setup/config_data.inc:764 ../setup/config_data.inc:806
-#: ../setup/config_data.inc:814 ../setup/config_data.inc:820
-#: ../setup/config_data.inc:826 ../setup/config_data.inc:832
-#: ../setup/config_data.inc:850 ../setup/config_data.inc:938
-#: ../setup/config_data.inc:959 ../setup/config_data.inc:985
-#: ../setup/config_data.inc:991 ../setup/config_data.inc:992
-#: ../setup/config_data.inc:1017 ../setup/config_data.inc:1170
-#: ../setup/config_data.inc:1185 ../setup/config_data.inc:1211
-#: ../setup/config_data.inc:1218 ../setup/config_data.inc:1224
-#: ../setup/config_data.inc:1230 ../setup/config_data.inc:1261
-#: ../setup/config_data.inc:1302 ../setup/config_data.inc:1310
-#: ../setup/config_data.inc:1318 ../setup/config_data.inc:1444
-#: ../setup/config_data.inc:1450 ../setup/config_data.inc:1457
-#: ../setup/config_data.inc:1463 ../setup/config_data.inc:1506
-#: ../setup/config_data.inc:1512 ../setup/config_data.inc:1537
-#: ../setup/config_data.inc:1551 ../setup/config_data.inc:1566
-#: ../setup/config_data.inc:1572 ../setup/config_data.inc:1578
-#: ../setup/config_data.inc:1650 ../setup/config_data.inc:1657
-#: ../setup/config_data.inc:1709 ../setup/config_data.inc:1710
-#: ../setup/config_data.inc:1716 ../setup/config_data.inc:1741
-#: ../setup/config_data.inc:1758
+#: ../setup/config_data.inc:467 ../setup/config_data.inc:525
+#: ../setup/config_data.inc:544 ../setup/config_data.inc:557
+#: ../setup/config_data.inc:563 ../setup/config_data.inc:731
+#: ../setup/config_data.inc:779 ../setup/config_data.inc:820
+#: ../setup/config_data.inc:830 ../setup/config_data.inc:838
+#: ../setup/config_data.inc:847 ../setup/config_data.inc:856
+#: ../setup/config_data.inc:877 ../setup/config_data.inc:963
+#: ../setup/config_data.inc:990 ../setup/config_data.inc:1019
+#: ../setup/config_data.inc:1027 ../setup/config_data.inc:1029
+#: ../setup/config_data.inc:1060 ../setup/config_data.inc:1235
+#: ../setup/config_data.inc:1253 ../setup/config_data.inc:1282
+#: ../setup/config_data.inc:1292 ../setup/config_data.inc:1301
+#: ../setup/config_data.inc:1310 ../setup/config_data.inc:1343
+#: ../setup/config_data.inc:1384 ../setup/config_data.inc:1392
+#: ../setup/config_data.inc:1400 ../setup/config_data.inc:1548
+#: ../setup/config_data.inc:1557 ../setup/config_data.inc:1567
+#: ../setup/config_data.inc:1576 ../setup/config_data.inc:1623
+#: ../setup/config_data.inc:1632 ../setup/config_data.inc:1660
+#: ../setup/config_data.inc:1677 ../setup/config_data.inc:1695
+#: ../setup/config_data.inc:1704 ../setup/config_data.inc:1712
+#: ../setup/config_data.inc:1790 ../setup/config_data.inc:1799
+#: ../setup/config_data.inc:1854 ../setup/config_data.inc:1856
+#: ../setup/config_data.inc:1865 ../setup/config_data.inc:1893
+#: ../setup/config_data.inc:1917
 msgid "Yes"
 msgstr "はい"
 
-#: ../setup/config_data.inc:465 ../setup/config_data.inc:519
-#: ../setup/config_data.inc:538 ../setup/config_data.inc:551
-#: ../setup/config_data.inc:557 ../setup/config_data.inc:716
-#: ../setup/config_data.inc:760 ../setup/config_data.inc:764
-#: ../setup/config_data.inc:806 ../setup/config_data.inc:814
-#: ../setup/config_data.inc:820 ../setup/config_data.inc:826
-#: ../setup/config_data.inc:832 ../setup/config_data.inc:850
-#: ../setup/config_data.inc:937 ../setup/config_data.inc:938
-#: ../setup/config_data.inc:959 ../setup/config_data.inc:985
-#: ../setup/config_data.inc:992 ../setup/config_data.inc:1017
-#: ../setup/config_data.inc:1170 ../setup/config_data.inc:1185
-#: ../setup/config_data.inc:1211 ../setup/config_data.inc:1218
-#: ../setup/config_data.inc:1224 ../setup/config_data.inc:1230
-#: ../setup/config_data.inc:1262 ../setup/config_data.inc:1303
-#: ../setup/config_data.inc:1311 ../setup/config_data.inc:1319
-#: ../setup/config_data.inc:1444 ../setup/config_data.inc:1450
-#: ../setup/config_data.inc:1457 ../setup/config_data.inc:1463
-#: ../setup/config_data.inc:1506 ../setup/config_data.inc:1512
-#: ../setup/config_data.inc:1537 ../setup/config_data.inc:1551
-#: ../setup/config_data.inc:1566 ../setup/config_data.inc:1572
-#: ../setup/config_data.inc:1578 ../setup/config_data.inc:1649
-#: ../setup/config_data.inc:1650 ../setup/config_data.inc:1710
-#: ../setup/config_data.inc:1715 ../setup/config_data.inc:1716
-#: ../setup/config_data.inc:1741 ../setup/config_data.inc:1758
+#: ../setup/config_data.inc:467 ../setup/config_data.inc:525
+#: ../setup/config_data.inc:544 ../setup/config_data.inc:557
+#: ../setup/config_data.inc:563 ../setup/config_data.inc:731
+#: ../setup/config_data.inc:774 ../setup/config_data.inc:780
+#: ../setup/config_data.inc:821 ../setup/config_data.inc:831
+#: ../setup/config_data.inc:839 ../setup/config_data.inc:848
+#: ../setup/config_data.inc:857 ../setup/config_data.inc:876
+#: ../setup/config_data.inc:961 ../setup/config_data.inc:964
+#: ../setup/config_data.inc:991 ../setup/config_data.inc:1020
+#: ../setup/config_data.inc:1030 ../setup/config_data.inc:1061
+#: ../setup/config_data.inc:1236 ../setup/config_data.inc:1254
+#: ../setup/config_data.inc:1283 ../setup/config_data.inc:1293
+#: ../setup/config_data.inc:1302 ../setup/config_data.inc:1311
+#: ../setup/config_data.inc:1344 ../setup/config_data.inc:1385
+#: ../setup/config_data.inc:1393 ../setup/config_data.inc:1401
+#: ../setup/config_data.inc:1549 ../setup/config_data.inc:1558
+#: ../setup/config_data.inc:1568 ../setup/config_data.inc:1577
+#: ../setup/config_data.inc:1624 ../setup/config_data.inc:1633
+#: ../setup/config_data.inc:1661 ../setup/config_data.inc:1678
+#: ../setup/config_data.inc:1696 ../setup/config_data.inc:1705
+#: ../setup/config_data.inc:1713 ../setup/config_data.inc:1788
+#: ../setup/config_data.inc:1791 ../setup/config_data.inc:1857
+#: ../setup/config_data.inc:1863 ../setup/config_data.inc:1866
+#: ../setup/config_data.inc:1894 ../setup/config_data.inc:1918
 msgid "No"
 msgstr "いいえ"
 
-#: ../setup/config_data.inc:469
+#: ../setup/config_data.inc:471
 msgid "JPEG Quality"
 msgstr "JPEGの画質"
 
-#: ../setup/config_data.inc:470
+#: ../setup/config_data.inc:472
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr "JPEGファイルの画質とサイズのトレードオフです。GalleryではJPEG画像のリサイズや回転やサムネイル作成時にJPEGの画質を調節できます。より高画質ではファイルサイズはより大きくなります。しかしながら多くの場合は画質をあげてもそれほど人間の目には差がなく、ファイルサイズだけが膨らむ点が存在します。サムネイルやリサイズ画像がオリジナル画像よりサイズが大きく、これを嫌う場合はより低い値を試してみてください。この値の変更は <i>今後</i> 変更が加えられる画像にのみ影響することに <b>注意して</b> ください。"
 
-#: ../setup/config_data.inc:483
+#: ../setup/config_data.inc:487
 msgid "Embedded Gallery"
 msgstr "組込みのGallery"
 
-#: ../setup/config_data.inc:484
+#: ../setup/config_data.inc:488
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
 msgstr "Galleryは、サポートされているCMSに組み込まれている場合は自動的に検出できます。しかし、特別なオプション設定をしなければならない場合があります。自動的に検出できなかったオプションはここで設定する必要があります。"
 
-#: ../setup/config_data.inc:484
+#: ../setup/config_data.inc:488
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
 msgstr "あなたのISPやCMSがregister_globalsを有効にすることを必要としている場合、テクニカルタブの「register_globalsチェックを無効にする」を「はい」にしなければなりません。"
 
-#: ../setup/config_data.inc:487
+#: ../setup/config_data.inc:491
 msgid "GeekLog Dir"
 msgstr "GeekLog ディレクトリ"
 
-#: ../setup/config_data.inc:489
+#: ../setup/config_data.inc:493
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
 msgstr "GeekLogを使っている場合、GeekLogのpublic_htmlディレクトリの場所を入力してください。例: '/path/to/geeklog/pulic_html'"
 
-#: ../setup/config_data.inc:501
+#: ../setup/config_data.inc:505
 msgid "Main Gallery page"
 msgstr "Gallery メインページ"
 
-#: ../setup/config_data.inc:504
+#: ../setup/config_data.inc:508
 msgid "Show the album tree ?"
 msgstr "アルバムツリー表示 ?"
 
-#: ../setup/config_data.inc:505
+#: ../setup/config_data.inc:509
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr "このオプションをONにした場合、Galleryのトップレベルを閲覧しているときにサブアルバムの完全なリストを見ることができるようになります。これは特定のサブアルバムへ移動するのがより容易になるでしょう。(それはGalleryのトップページの見かけを激しくかき乱すかも知れませんが)"
 
-#: ../setup/config_data.inc:506
+#: ../setup/config_data.inc:511
 msgid "No tree"
 msgstr "ツリーなし"
 
-#: ../setup/config_data.inc:507
+#: ../setup/config_data.inc:512
 #, php-format
 msgid "%d sublevel"
 msgstr "サブレベル %d"
 
-#: ../setup/config_data.inc:508 ../setup/config_data.inc:509
-#: ../setup/config_data.inc:510 ../setup/config_data.inc:511
-#: ../setup/config_data.inc:512
+#: ../setup/config_data.inc:513 ../setup/config_data.inc:514
+#: ../setup/config_data.inc:515 ../setup/config_data.inc:516
+#: ../setup/config_data.inc:517
 #, php-format
 msgid "%d sublevels"
 msgstr "サブレベル %d"
 
-#: ../setup/config_data.inc:513
+#: ../setup/config_data.inc:518
 msgid "Complete Tree"
 msgstr "完全なツリー"
 
-#: ../setup/config_data.inc:517
+#: ../setup/config_data.inc:523
 msgid "Replace album tree with microthumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:518
+#: ../setup/config_data.inc:524
 msgid "If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."
 msgstr ""
 
-#: ../setup/config_data.inc:523
+#: ../setup/config_data.inc:529
 msgid "Highlight size"
 msgstr "ハイライト画像のサイズ"
 
-#: ../setup/config_data.inc:524
+#: ../setup/config_data.inc:530
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr "ギャラリーページに表示されるサムネイル(ハイライト画像)のサイズ(ピクセル単位)です。"
 
-#: ../setup/config_data.inc:530
+#: ../setup/config_data.inc:536
 #, fuzzy
 msgid "Highlight Ratio"
 msgstr "ハイライト画像のサイズ"
 
-#: ../setup/config_data.inc:531
+#: ../setup/config_data.inc:537
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
 msgstr ""
 
-#: ../setup/config_data.inc:532 ../setup/config_data.inc:1407
+#: ../setup/config_data.inc:538 ../setup/config_data.inc:1489
 msgid "As the original image"
 msgstr ""
 
-#: ../setup/config_data.inc:532
+#: ../setup/config_data.inc:538
 #, fuzzy
 msgid "Square highlight"
 msgstr "アルバム ハイライト"
 
-#: ../setup/config_data.inc:536
+#: ../setup/config_data.inc:542
 msgid "Show Owner"
 msgstr "所有者を表示"
 
-#: ../setup/config_data.inc:537
+#: ../setup/config_data.inc:543
 msgid "Show album owner's name next to each album?"
 msgstr "アルバムの所有者名をそれぞれのアルバムのとなりに表示しますか?"
 
-#: ../setup/config_data.inc:542
+#: ../setup/config_data.inc:548
 msgid "Albums per page"
 msgstr "ページあたりのアルバム数"
 
-#: ../setup/config_data.inc:543
+#: ../setup/config_data.inc:549
 msgid "How many albums should be displayed per Gallery page?"
 msgstr "Galleryページ当たりいくつのアルバムを表示するか"
 
-#: ../setup/config_data.inc:549
+#: ../setup/config_data.inc:555
 msgid "Search Engine"
 msgstr "検索エンジン"
 
-#: ../setup/config_data.inc:550
+#: ../setup/config_data.inc:556
 msgid "Display search engine on main Gallery page?"
 msgstr "Galleryメインページに検索ボックスを表示するか"
 
-#: ../setup/config_data.inc:555
+#: ../setup/config_data.inc:561
 msgid "Accurate Photo Count"
 msgstr "厳密な画像カウント"
 
-#: ../setup/config_data.inc:556
+#: ../setup/config_data.inc:562
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr "アルバムと画像カウントを、正確ではあるがゆっくりカウントアップする方法でカウントしてGalleryルートページに表示します。これは多くのユーザの要望によって追加された機能ですが、大量のアルバムと画像を持つGalleryユーザにはお薦めできません。このオプションを有効にしたいくつかの例で、インデックスページを読み込むのに30秒ほどかかったことが示されています。"
 
-#: ../setup/config_data.inc:561
+#: ../setup/config_data.inc:567
 msgid "Frame around albums"
 msgstr "アルバムのフレーム"
 
-#: ../setup/config_data.inc:562
+#: ../setup/config_data.inc:568
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr "メインページ上では、アルバムを表す画像は周囲にフレームをもっています。以下のスタイルが利用できます:"
 
-#: ../setup/config_data.inc:574
+#: ../setup/config_data.inc:580
 msgid "Optional tools"
 msgstr "オプションのツール"
 
-#: ../setup/config_data.inc:578
+#: ../setup/config_data.inc:584
 msgid "Archives"
 msgstr ""
 
-#: ../setup/config_data.inc:583 ../setup/config_data.inc:595
-#: ../setup/config_data.inc:607 ../setup/config_data.inc:619
+#: ../setup/config_data.inc:589 ../setup/config_data.inc:601
+#: ../setup/config_data.inc:613 ../setup/config_data.inc:625
 #, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "<b>%s</b> バイナリのファイルシステム上のパスです。(例: %s や %s) これはオプションですので、バイナリがなくてもそんなに気にすることはありません。"
 
-#: ../setup/config_data.inc:631
+#: ../setup/config_data.inc:640
 msgid "EXIF Data"
 msgstr "EXIF データ"
 
-#: ../setup/config_data.inc:636 ../setup/config_data.inc:648
+#: ../setup/config_data.inc:645 ../setup/config_data.inc:657
 #, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "EXIFデータ解析をする <b>%s</b> のファイルシステム上のパスです。(例: %s や %s) これはオプションですので、jheadがなくてもそんなに気にすることはありません。"
 
-#: ../setup/config_data.inc:660
+#: ../setup/config_data.inc:672
 msgid "Other"
 msgstr "その他"
 
-#: ../setup/config_data.inc:665
+#: ../setup/config_data.inc:677
 #, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
 msgstr "<b>jpegtran</b> ユーティリティのファイルシステム上のパス。これはオプションですので、jpegtranがなくてもそんなに気にすることはありません。例えば %s や %s。"
 
-#: ../setup/config_data.inc:682
+#: ../setup/config_data.inc:697
 msgid "Languages and locales"
 msgstr "言語とロケール"
 
-#: ../setup/config_data.inc:685
+#: ../setup/config_data.inc:700
 msgid "Default language"
 msgstr "デフォルト言語"
 
-#: ../setup/config_data.inc:687
+#: ../setup/config_data.inc:702
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr "これは %s のとき表示される言語です、そして各ユーザが個別に設定していないときに表示されます。"
 
-#: ../setup/config_data.inc:689
+#: ../setup/config_data.inc:704
 msgid "Language given by Browser"
 msgstr ""
 
-#: ../setup/config_data.inc:694
+#: ../setup/config_data.inc:709
 msgid "Multi language mode"
 msgstr "多言語モード"
 
-#: ../setup/config_data.inc:695
+#: ../setup/config_data.inc:710
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr "Galleryには3つの多言語モードがあります。これらはユーザがサイトを訪れたときに表示される言語に影響します。"
 
-#: ../setup/config_data.inc:698
+#: ../setup/config_data.inc:713
 msgid "Gallery is only displayed in one language"
 msgstr "Galleryは1つの言語でのみ表示されます"
 
-#: ../setup/config_data.inc:699
+#: ../setup/config_data.inc:714
 msgid "Gallery is displayed in the language the browser sends"
 msgstr "Galleryはブラウザが送信する言語で表示されます"
 
-#: ../setup/config_data.inc:700
+#: ../setup/config_data.inc:715
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr "ユーザはプルダウンメニューか国旗によって言語を選択できます"
 
-#: ../setup/config_data.inc:704
+#: ../setup/config_data.inc:719
 msgid "Available languages"
 msgstr "利用可能な言語"
 
-#: ../setup/config_data.inc:707
+#: ../setup/config_data.inc:722
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr "これらの言語は言語モードを3にしているときに、ユーザがドロップダウンメニューや国旗アイコンで選択可能になります。そして、モード 2か3の場合に、登録ユーザのデフォルト言語として選択可能です。"
 
-#: ../setup/config_data.inc:713
+#: ../setup/config_data.inc:728
 msgid "Show flags?"
 msgstr "国旗を表示する?"
 
-#: ../setup/config_data.inc:715
+#: ../setup/config_data.inc:730
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "モード 3では有効な言語の小さなプルダウンメニューか国旗アイコンを表示するか選択できます。"
 
-#: ../setup/config_data.inc:721
+#: ../setup/config_data.inc:736
 msgid "Format for date strings."
 msgstr "日付のフォーマット"
 
-#: ../setup/config_data.inc:722 ../setup/config_data.inc:732
+#: ../setup/config_data.inc:737 ../setup/config_data.inc:747
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "このフォーマット文字列は%sを%sで表示するために使われます。選択言語に応じてフォーマットが変更される%sを使うことが推奨されています。しかしながら、これを変更したいなら、%sPHPドキュメント%sをご覧ください。"
 
-#: ../setup/config_data.inc:723
+#: ../setup/config_data.inc:738
 msgid "date without time"
 msgstr "日付のみ"
 
-#: ../setup/config_data.inc:724 ../setup/config_data.inc:734
+#: ../setup/config_data.inc:739 ../setup/config_data.inc:749
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/ja/function.strftime.php"
 
-#: ../setup/config_data.inc:725
+#: ../setup/config_data.inc:740
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr "例えば、%s は日付をこのように表示します: %s。"
 
-#: ../setup/config_data.inc:731
+#: ../setup/config_data.inc:746
 msgid "Format for date/time strings."
 msgstr "日付と時間のフォーマット"
 
-#: ../setup/config_data.inc:733
+#: ../setup/config_data.inc:748
 msgid "date with time"
 msgstr "日付と時間"
 
-#: ../setup/config_data.inc:735
+#: ../setup/config_data.inc:750
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr "例えば、%s は日付と時間をこのように表示します: %s"
 
-#: ../setup/config_data.inc:753
+#: ../setup/config_data.inc:767
 msgid "Email and Registration"
 msgstr "メールと登録"
 
-#: ../setup/config_data.inc:754
+#: ../setup/config_data.inc:768
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "電子メールに関して問題があるなら、%s診断を実行してください。(訳注:日本語のメールを送りたい場合は注意が必要です。)"
 
-#: ../setup/config_data.inc:755 ../setup/diagnostics.php:90
+#: ../setup/config_data.inc:769 ../setup/diagnostics.php:90
 msgid "Check Email"
 msgstr "メールのチェック"
 
-#: ../setup/config_data.inc:758
+#: ../setup/config_data.inc:772
 msgid "Enable email"
 msgstr "メールを有効にする"
 
-#: ../setup/config_data.inc:760
+#: ../setup/config_data.inc:774
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr "gallery全体においてメールを有効にします。これを %s にセットしたらこのセクションの以降の項目は適用されません。"
 
-#: ../setup/config_data.inc:762
+#: ../setup/config_data.inc:776
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr "これらの設定を有効にすると、ユーザは紛失したパスワードをGalleryからメールで受け取る機会があたえられます。"
 
-#: ../setup/config_data.inc:763
+#: ../setup/config_data.inc:777
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr "セルフ登録を有効にしたい場合、この設定を有効にする必要があります。"
 
-#: ../setup/config_data.inc:768
+#: ../setup/config_data.inc:785
 msgid "Admin email address"
 msgstr "管理者メールアドレス"
 
-#: ../setup/config_data.inc:769
+#: ../setup/config_data.inc:786
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr "この値はあるユーザのアクションや問題が起こっているユーザを知るためのメールを受け取る、有効なメールアドレスにしてください。カンマで区切って複数のアドレスが指定できます。"
 
-#: ../setup/config_data.inc:777
+#: ../setup/config_data.inc:793
 msgid "Sender email address"
 msgstr "送信者メールアドレス"
 
-#: ../setup/config_data.inc:778
+#: ../setup/config_data.inc:794
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr "この値は有効なメールアドレスを設定してください。Galleryによって自動的に送信されるメールアドレスの返信アドレスにはこれが使われます。You should monitor this email address for bounce messages and replies from recipients."
 
-#: ../setup/config_data.inc:786
+#: ../setup/config_data.inc:801
 msgid "Email subject prefix"
 msgstr "メールサブジェクトのプレフィックス"
 
-#: ../setup/config_data.inc:787
+#: ../setup/config_data.inc:802
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr "全てのGalleryのメールはサブジェクトの先頭にこの文字列が挿入されます。"
 
-#: ../setup/config_data.inc:795
+#: ../setup/config_data.inc:808
 msgid "Welcome email message text"
 msgstr "ウェルカムメールメッセージ"
 
-#: ../setup/config_data.inc:803
+#: ../setup/config_data.inc:816
 msgid "Allow visitors to self register."
 msgstr "訪問者が自分で登録することを許可する。"
 
-#: ../setup/config_data.inc:804
+#: ../setup/config_data.inc:817
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "これを有効にすると、サイトの訪問者が自分でアカウント作成をできるようになります。"
 
-#: ../setup/config_data.inc:805 ../setup/config_data.inc:1505
+#: ../setup/config_data.inc:818 ../setup/config_data.inc:1621
 msgid "This option requires the Email feature to be enabled."
 msgstr "このオプションを使うにははメール機能が有効であることが必要です。"
 
-#: ../setup/config_data.inc:808
+#: ../setup/config_data.inc:824
 msgid "Email"
 msgstr "メール"
 
-#: ../setup/config_data.inc:811
+#: ../setup/config_data.inc:827
 msgid "Self registered users can create albums."
 msgstr "自分でアカウント作成をしたユーザはアルバム作成可能にする。"
 
-#: ../setup/config_data.inc:812
+#: ../setup/config_data.inc:828
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr "これを有効にすると、自分で登録をしたユーザが登録すると即座に自分のアルバム作成ができるようになります。これを有効にしないと、登録ユーザがGalleryのあらゆるコンテンツを作成したり、手を加えたりするために手動でパーミッションを割り当てなければいけません。この設定は自分でアカウント作成ができるようになっていないと無視されます。"
 
-#: ../setup/config_data.inc:817
+#: ../setup/config_data.inc:835
 msgid "Enable bulk account creation"
 msgstr "大量のアカウント作成を有効にする"
 
-#: ../setup/config_data.inc:818
+#: ../setup/config_data.inc:836
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr "このオプションは、あなたが新しいユーザのファイルを作成することで、一度にたくさんのユーザを作成することができます。"
 
-#: ../setup/config_data.inc:824
+#: ../setup/config_data.inc:844
 #, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr "これはアルバムにコメントが追加された時に、 &quot;admin&quot; アカウントがメールを受け取るようにします。"
 
-#: ../setup/config_data.inc:825
+#: ../setup/config_data.inc:845
 msgid "Admin comment email"
 msgstr "管理者にコメントメール"
 
-#: ../setup/config_data.inc:830
+#: ../setup/config_data.inc:853
 #, fuzzy
 msgid "This allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr "これはアルバムに変更が加えられたときに、&quot;admin&quot; アカウントがメールを受け取るようにします。"
 
-#: ../setup/config_data.inc:831
+#: ../setup/config_data.inc:854
 msgid "Admin Other Changes email"
 msgstr "管理者に他の変更メール"
 
-#: ../setup/config_data.inc:836
+#: ../setup/config_data.inc:862
 msgid "Admin notification of email activity"
 msgstr "管理者通知メールの動作"
 
-#: ../setup/config_data.inc:837
+#: ../setup/config_data.inc:863
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr "Galleryによって送られるすべての電子メールの記録をとることができます。"
 
-#: ../setup/config_data.inc:840
+#: ../setup/config_data.inc:865
 msgid "Send summary email"
 msgstr "概要メールを送る"
 
-#: ../setup/config_data.inc:841
+#: ../setup/config_data.inc:866
 msgid "Log to a file"
 msgstr "ファイルにログを出力"
 
-#: ../setup/config_data.inc:842
+#: ../setup/config_data.inc:867
 msgid "Send duplicate email"
 msgstr "複製メールを送る"
 
-#: ../setup/config_data.inc:847
+#: ../setup/config_data.inc:873
 msgid "Use non-local SMTP server."
 msgstr "ローカルでないSMTPサーバを使う。"
 
-#: ../setup/config_data.inc:848
+#: ../setup/config_data.inc:874
 msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
 msgstr "他のコンピュータで動いているSMTPサーバ(プロバイダのメールサーバなど)を使います。"
 
-#: ../setup/config_data.inc:855
+#: ../setup/config_data.inc:883
 msgid "SMTP Server"
 msgstr "SMTPサーバ"
 
-#: ../setup/config_data.inc:856
+#: ../setup/config_data.inc:884
 msgid "The name or IP address of the SMTP Server you want to use."
 msgstr "使いたいSMTPサーバのホスト名かIPアドレス。"
 
-#: ../setup/config_data.inc:864
+#: ../setup/config_data.inc:891
 msgid "Sender hostname"
 msgstr "Sender ホスト名"
 
-#: ../setup/config_data.inc:865
+#: ../setup/config_data.inc:892
 msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
 msgstr "メールの送信元サーバの完全なホスト名(Galleryがインストールされているサーバ)。サーバがNATの後ろにある場合、ルータのDNS名を入れてください。"
 
-#: ../setup/config_data.inc:872
+#: ../setup/config_data.inc:899
 msgid "SMTP Port"
 msgstr "SMTP ポート"
 
-#: ../setup/config_data.inc:873
+#: ../setup/config_data.inc:900
 msgid "The port on the SMTP server you are connecting to."
 msgstr "接続するSMTPサーバのポート。"
 
-#: ../setup/config_data.inc:881
+#: ../setup/config_data.inc:907
 msgid "SMTP account name"
 msgstr "SMTP アカウント名"
 
-#: ../setup/config_data.inc:882
+#: ../setup/config_data.inc:908
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr "メールの送信をするのに、プロバイダがユーザ名を要求してくる場合はここに入力してください。要求されない場合は空欄にしてください。"
 
-#: ../setup/config_data.inc:890
+#: ../setup/config_data.inc:915
 msgid "SMTP password"
 msgstr "SMTP パスワード"
 
-#: ../setup/config_data.inc:891
+#: ../setup/config_data.inc:916
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
 msgstr "SMTPサーバを通してメールを送信する場合のパスワード。注意：このパスワードは平文でconfig.phpに保存されます。パーミッションが適切に設定されていることを確認してください。"
 
-#: ../setup/config_data.inc:906
+#: ../setup/config_data.inc:930
 msgid "Gallery wide slideshow"
 msgstr "Gallery 全体のスライドショー"
 
-#: ../setup/config_data.inc:907
+#: ../setup/config_data.inc:931
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "Galleryのメインページにスライドショーのリンクを追加します。大きなギャラリーだと実行するのが遅く、多くのシステムリソースを消費します。"
 
-#: ../setup/config_data.inc:908 ../setup/config_data.inc:1688
+#: ../setup/config_data.inc:932 ../setup/config_data.inc:1833
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "これらの設定は低レベルスライドショーには適用されません。"
 
-#: ../setup/config_data.inc:911
+#: ../setup/config_data.inc:935
 msgid "Slideshow preferences"
 msgstr "スライドショー設定"
 
-#: ../setup/config_data.inc:913 ../setup/config_data.inc:921
-#: ../setup/config_data.inc:965 ../setup/config_data.inc:975
-#: ../setup/config_data.inc:1080 ../setup/config_data.inc:1091
-#: ../setup/config_data.inc:1102 ../setup/config_data.inc:1113
-#: ../setup/config_data.inc:1124 ../setup/config_data.inc:1135
-#: ../setup/config_data.inc:1430 ../setup/config_data.inc:1693
-#: ../setup/config_data.inc:1701
+#: ../setup/config_data.inc:937 ../setup/config_data.inc:945
+#: ../setup/config_data.inc:998 ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1128 ../setup/config_data.inc:1142
+#: ../setup/config_data.inc:1156 ../setup/config_data.inc:1170
+#: ../setup/config_data.inc:1184 ../setup/config_data.inc:1198
+#: ../setup/config_data.inc:1523 ../setup/config_data.inc:1838
+#: ../setup/config_data.inc:1846
 msgid "Off"
 msgstr "オフ"
 
-#: ../setup/config_data.inc:914 ../setup/config_data.inc:1694
+#: ../setup/config_data.inc:938 ../setup/config_data.inc:1839
 msgid "No slideshow link will appear."
 msgstr "スライドショーのリンクは表示されません。"
 
-#: ../setup/config_data.inc:915 ../setup/config_data.inc:922
-#: ../setup/config_data.inc:1695 ../setup/config_data.inc:1702
+#: ../setup/config_data.inc:939 ../setup/config_data.inc:946
+#: ../setup/config_data.inc:1840 ../setup/config_data.inc:1847
 msgid "Ordered"
 msgstr "順番"
 
-#: ../setup/config_data.inc:916 ../setup/config_data.inc:1696
+#: ../setup/config_data.inc:940 ../setup/config_data.inc:1841
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "画像はGalleryで表示されている同じ並び順で表示されます。"
 
-#: ../setup/config_data.inc:917 ../setup/config_data.inc:923
-#: ../setup/config_data.inc:1697 ../setup/config_data.inc:1703
+#: ../setup/config_data.inc:941 ../setup/config_data.inc:947
+#: ../setup/config_data.inc:1842 ../setup/config_data.inc:1848
 msgid "Random"
 msgstr "ランダム"
 
-#: ../setup/config_data.inc:918 ../setup/config_data.inc:1698
+#: ../setup/config_data.inc:942 ../setup/config_data.inc:1843
 msgid "Images will appear in a random order."
 msgstr "画像はランダムに表示されます。"
 
-#: ../setup/config_data.inc:928 ../setup/config_data.inc:1720
+#: ../setup/config_data.inc:952 ../setup/config_data.inc:1871
 msgid "Slideshow length"
 msgstr "スライドショーの長さ"
 
-#: ../setup/config_data.inc:929 ../setup/config_data.inc:1721
+#: ../setup/config_data.inc:953 ../setup/config_data.inc:1872
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "スライドショーで表示される画像の数です。0か空白にすると全ての画像が表示されます。ランダムスライドショーで、画像の選択をしたい場合は、数をいれてください。"
 
-#: ../setup/config_data.inc:936 ../setup/config_data.inc:1714
+#: ../setup/config_data.inc:960 ../setup/config_data.inc:1862
 msgid "Allow slideshow to loop"
 msgstr "スライドショーのループを許可"
 
-#: ../setup/config_data.inc:937
+#: ../setup/config_data.inc:961
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "このオプションは訪問者がウィンドウを閉じるか他のページに移動するまでスライドショーを繰り返すことを許可します。帯域を抑えたいなら %s に設定してください。"
 
-#: ../setup/config_data.inc:942
+#: ../setup/config_data.inc:969
 msgid "Slideshow Mode"
 msgstr "スライドショーのモード"
 
-#: ../setup/config_data.inc:943
+#: ../setup/config_data.inc:970
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
 msgstr "これはスライドショーのデフォルトのモードを設定できます。&quot;Java アプレット&quot;はユーザがJava Runtime Envionmentをブラウザにインストールしている必要がありますが、フルスクリーンでの閲覧ができます。&quot;JavaScript&quot;は最近のブラウザではプラグイン無しで動作しますが、機能は制限されます。"
 
-#: ../setup/config_data.inc:944
+#: ../setup/config_data.inc:972
 msgid "Java Applet"
 msgstr "Java アプレット"
 
-#: ../setup/config_data.inc:944
+#: ../setup/config_data.inc:973
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../setup/config_data.inc:954
+#: ../setup/config_data.inc:984
 msgid "Comments"
 msgstr "コメント"
 
-#: ../setup/config_data.inc:957
+#: ../setup/config_data.inc:987
 msgid "Enable commenting"
 msgstr "コメントを有効にする"
 
-#: ../setup/config_data.inc:958
+#: ../setup/config_data.inc:988
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr "このオプションはユーザがコメントの投稿ができるかどうかを決めます。これを &quot;いいえ&quot; に設定すると全てのコメントの機能が無効化されます。"
 
-#: ../setup/config_data.inc:963
+#: ../setup/config_data.inc:996
 msgid "Indicate if there are comments available"
 msgstr "コメントがあれば表示する"
 
-#: ../setup/config_data.inc:966
+#: ../setup/config_data.inc:999
 msgid "No indication that an item has comments."
 msgstr "アイテムにコメントされているか表示しない。"
 
-#: ../setup/config_data.inc:967 ../setup/config_data.inc:976
+#: ../setup/config_data.inc:1000 ../setup/config_data.inc:1009
 msgid "Photos"
 msgstr "画像"
 
-#: ../setup/config_data.inc:968
+#: ../setup/config_data.inc:1001
 msgid "Images that have comments will be marked."
 msgstr "コメントのある画像はマークされます。"
 
-#: ../setup/config_data.inc:969 ../setup/config_data.inc:977
+#: ../setup/config_data.inc:1002 ../setup/config_data.inc:1010
 msgid "Albums"
 msgstr "アルバム"
 
-#: ../setup/config_data.inc:970
+#: ../setup/config_data.inc:1003
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "コメントのあるアルバムとサブアルバムはマークされます。"
 
-#: ../setup/config_data.inc:971 ../setup/config_data.inc:978
-#: ../setup/config_data.inc:1782
+#: ../setup/config_data.inc:1004 ../setup/config_data.inc:1011
+#: ../setup/config_data.inc:1947
 msgid "Both"
 msgstr "両方"
 
-#: ../setup/config_data.inc:972
+#: ../setup/config_data.inc:1005
 msgid "Images and albums that have comments will be marked."
 msgstr "コメントのある画像とアルバムはマークされます。"
 
-#: ../setup/config_data.inc:983
+#: ../setup/config_data.inc:1016
 msgid "Display date of last comment?"
 msgstr "最終コメント日を表示しますか?"
 
-#: ../setup/config_data.inc:984
+#: ../setup/config_data.inc:1017
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr "アイテムにコメントされていれば、%sの代わりに最後のコメントがされた日を表示します。"
 
-#: ../setup/config_data.inc:989
+#: ../setup/config_data.inc:1025
 msgid "Anonymous comments from known users?"
 msgstr "ログインユーザからの匿名コメントは?"
 
-#: ../setup/config_data.inc:990
+#: ../setup/config_data.inc:1026
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr "ログイン時、このオプションを %s にしない限り、コメントは下に示すフォーマットが自動的に使われます。"
 
-#: ../setup/config_data.inc:996
+#: ../setup/config_data.inc:1035
 msgid "Format for commenter names"
 msgstr "コメント投稿者名の表示フォーマット"
 
-#: ../setup/config_data.inc:997
+#: ../setup/config_data.inc:1036
 msgid "Commenter names of logged in users can be displayed in a variety of different ways"
 msgstr "ログインユーザのコメント投稿者名はいろいろな方法で表示できます。"
 
-#: ../setup/config_data.inc:1002
+#: ../setup/config_data.inc:1041
 #, fuzzy
 msgid "Add comments inside the photo page"
 msgstr "コメントを画像ページのなかに加える"
 
-#: ../setup/config_data.inc:1003
+#: ../setup/config_data.inc:1042
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
 msgstr "コメントを画像ページの内部で見るか、ポップアップへのリンクにするか、どちらですか"
 
-#: ../setup/config_data.inc:1004
+#: ../setup/config_data.inc:1044
 msgid "Popup"
 msgstr "ポップアップ"
 
-#: ../setup/config_data.inc:1004
+#: ../setup/config_data.inc:1045
 msgid "Inside"
 msgstr "内側"
 
-#: ../setup/config_data.inc:1008
+#: ../setup/config_data.inc:1050
 #, fuzzy
 msgid "Maximum length of comments"
 msgstr "コメントの最大の長さ"
 
-#: ../setup/config_data.inc:1009
+#: ../setup/config_data.inc:1051
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
 msgstr "不正利用を防ぐためにコメントの最大の長さの適切な値を入力してください。Galleryはコメントを1000文字以下に制限しています。(訳注:1byte換算かも) この値は1000未満の場合に使用されます。"
 
-#: ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1057
 #, fuzzy
 msgid "Can every permitted user see a comments overview"
 msgstr "だれでもコメントの概要を読めるようにする"
 
-#: ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1058
 #, fuzzy
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr "アルバムの全てのコメントの完全な概観ができるようにしますか?  &quot;いいえ &quot; に設定するとこの機能は管理者と所有者のみが使えるようになります。"
 
-#: ../setup/config_data.inc:1027
+#: ../setup/config_data.inc:1072
 msgid "Watermarking"
 msgstr "透かし"
 
-#: ../setup/config_data.inc:1029
+#: ../setup/config_data.inc:1074
 msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
 msgstr "透かしを有効にするか無効にするか選択してください。デフォルトを設定してください。"
 
-#: ../setup/config_data.inc:1030
+#: ../setup/config_data.inc:1075
 msgid "Watermarking is not possible in this installation !"
 msgstr "透かしはこのインストレーションでは使用できません。"
 
-#: ../setup/config_data.inc:1033
+#: ../setup/config_data.inc:1078
 msgid "Watermark directory"
 msgstr "透かしディレクトリ"
 
-#: ../setup/config_data.inc:1034
+#: ../setup/config_data.inc:1079
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr "透かし画像が保存される物理ディスク上のディレクトリのフルパス。This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels. <b>この欄を空にしておくと，透かしの機能は無効となります。</b>このディレクトリは、ウェブサーバを動かしているユーザ(このシステムでは %s)による読み込み権限が必要であることに注意してください。"
 
-#: ../setup/config_data.inc:1044
+#: ../setup/config_data.inc:1089
 msgid "Which Imagetype is watermarked"
 msgstr "どのタイプの画像に透かしを入れるか"
 
-#: ../setup/config_data.inc:1045
+#: ../setup/config_data.inc:1090
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr "ここでデフォルトで透かしを入れる画像を選択します。"
 
-#: ../setup/config_data.inc:1050
+#: ../setup/config_data.inc:1095
 msgid "Watermark both resized and full images"
 msgstr "リサイズ画像とオリジナル画像の両方に透かし"
 
-#: ../setup/config_data.inc:1051
+#: ../setup/config_data.inc:1096
 msgid "Watermark resized image only"
 msgstr "リサイズ画像のみ透かし"
 
-#: ../setup/config_data.inc:1052
+#: ../setup/config_data.inc:1097
 msgid "Watermark full sized image only"
 msgstr "オリジナル画像のみ透かし"
 
-#: ../setup/config_data.inc:1062
+#: ../setup/config_data.inc:1108
 msgid "Statistics"
 msgstr "統計"
 
-#: ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1109
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr ""
 
-#: ../setup/config_data.inc:1064
+#: ../setup/config_data.inc:1110
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr ""
 
-#: ../setup/config_data.inc:1065
+#: ../setup/config_data.inc:1111
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr ""
 
-#: ../setup/config_data.inc:1066
+#: ../setup/config_data.inc:1112
 msgid "Caches will also refresh themselves after they have expired."
 msgstr ""
 
-#: ../setup/config_data.inc:1067
+#: ../setup/config_data.inc:1113
 msgid "The expire time in seconds is specified for each cache below."
 msgstr ""
 
-#: ../setup/config_data.inc:1068
+#: ../setup/config_data.inc:1114
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr ""
 
-#: ../setup/config_data.inc:1072
+#: ../setup/config_data.inc:1118
 msgid "Available Stats for 'normal' users"
 msgstr ""
 
-#: ../setup/config_data.inc:1073
+#: ../setup/config_data.inc:1119
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr ""
 
-#: ../setup/config_data.inc:1074
+#: ../setup/config_data.inc:1120
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr ""
 
-#: ../setup/config_data.inc:1079
+#: ../setup/config_data.inc:1125
 msgid "View cache"
 msgstr "閲覧キャッシュ"
 
-#: ../setup/config_data.inc:1080 ../setup/config_data.inc:1091
-#: ../setup/config_data.inc:1102 ../setup/config_data.inc:1113
-#: ../setup/config_data.inc:1124 ../setup/config_data.inc:1135
+#: ../setup/config_data.inc:1127 ../setup/config_data.inc:1141
+#: ../setup/config_data.inc:1155 ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1183 ../setup/config_data.inc:1197
 msgid "On"
 msgstr "オン"
 
-#: ../setup/config_data.inc:1084
+#: ../setup/config_data.inc:1133
 msgid "View cache expiration"
 msgstr "閲覧キャッシュの有効期限"
 
-#: ../setup/config_data.inc:1090
+#: ../setup/config_data.inc:1139
 msgid "Comment cache"
 msgstr "コメントキャッシュ"
 
-#: ../setup/config_data.inc:1095
+#: ../setup/config_data.inc:1147
 msgid "Comment cache expiration"
 msgstr "コメントキャッシュの有効期限"
 
-#: ../setup/config_data.inc:1101
+#: ../setup/config_data.inc:1153
 msgid "Date cache"
 msgstr "日付キャッシュ"
 
-#: ../setup/config_data.inc:1106
+#: ../setup/config_data.inc:1161
 msgid "Date cache expiration"
 msgstr "日付キャッシュの有効期限"
 
-#: ../setup/config_data.inc:1112
+#: ../setup/config_data.inc:1167
 msgid "Vote cache"
 msgstr "投票キャッシュ"
 
-#: ../setup/config_data.inc:1117
+#: ../setup/config_data.inc:1175
 msgid "Vote cache expiration"
 msgstr "投票キャッシュの有効期限"
 
-#: ../setup/config_data.inc:1123
+#: ../setup/config_data.inc:1181
 msgid "Rating cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1128
+#: ../setup/config_data.inc:1189
 msgid "Rating cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1134
+#: ../setup/config_data.inc:1195
 msgid "Capturedate cache"
 msgstr ""
 
-#: ../setup/config_data.inc:1139
+#: ../setup/config_data.inc:1203
 msgid "Capturedate cache expiration"
 msgstr ""
 
-#: ../setup/config_data.inc:1151
+#: ../setup/config_data.inc:1215
 msgid "Technical"
 msgstr "テクニカル"
 
-#: ../setup/config_data.inc:1152
+#: ../setup/config_data.inc:1216
 msgid "The settings in this section are intended for advanced users only."
 msgstr "このセクションの設定は詳しいユーザのためだけに用意されています。"
 
-#: ../setup/config_data.inc:1154
+#: ../setup/config_data.inc:1218
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
 msgstr ""
 
-#: ../setup/config_data.inc:1158
+#: ../setup/config_data.inc:1222
 #, fuzzy
 msgid "Debug Level"
 msgstr "デバッグモード"
 
-#: ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1223
 #, fuzzy
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr "問題の原因を探るためにデバッグモードをONにしますか?"
 
-#: ../setup/config_data.inc:1159
+#: ../setup/config_data.inc:1223
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr "注意: 公開するシステム上ではこのオプションを on のままにしないでください。Galleryとシステムに関する情報をユーザに見せたくない限りは!"
 
-#: ../setup/config_data.inc:1161
+#: ../setup/config_data.inc:1225
 msgid "No Debug"
 msgstr ""
 
-#: ../setup/config_data.inc:1162
+#: ../setup/config_data.inc:1226
 msgid "Normal"
 msgstr ""
 
-#: ../setup/config_data.inc:1163
+#: ../setup/config_data.inc:1227
 msgid "High (former Debug 'on')"
 msgstr ""
 
-#: ../setup/config_data.inc:1164
+#: ../setup/config_data.inc:1228
 #, fuzzy
 msgid "Paranoid"
 msgstr "ポラロイド"
 
-#: ../setup/config_data.inc:1168
+#: ../setup/config_data.inc:1232
 msgid "Disable register_globals check"
 msgstr "register_globals チェックを無効にする"
 
-#: ../setup/config_data.inc:1169
+#: ../setup/config_data.inc:1233
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
 msgstr ""
 
-#: ../setup/config_data.inc:1174
+#: ../setup/config_data.inc:1241
 msgid "Time Limit"
 msgstr "時間制限"
 
-#: ../setup/config_data.inc:1175
+#: ../setup/config_data.inc:1242
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr "ひとつの命令を受け取る最大の秒数です。もし、<b>Maximum execution time exceeded</b> のエラーメッセージが出たら、これをもっと大きな値にしてみてください。あまり大きな値にすると、プロセスが長時間何もできずに固まる <i>かもしれない</i> ことを警告しておきます。デフォルト値は非常に適切である 30 です。"
 
-#: ../setup/config_data.inc:1183
+#: ../setup/config_data.inc:1250
 #, fuzzy
 msgid "ImageMagick high quality"
 msgstr "%2$d個中%1$d個のImageMagickバイナリ全てが検出されました。"
 
-#: ../setup/config_data.inc:1184
+#: ../setup/config_data.inc:1251
 msgid "If this setting is 'yes' and you use ImageMagick then resized Images will have a slightly(!) higher quality, but with the drawback of a higher load and a higher creation time."
 msgstr ""
 
-#: ../setup/config_data.inc:1189
+#: ../setup/config_data.inc:1259
 msgid "Random Block Cache Time"
 msgstr "ランダムブロック キャッシュ時間"
 
-#: ../setup/config_data.inc:1190
+#: ../setup/config_data.inc:1260
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr ""
 
-#: ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1263
 msgid "24 Hours"
 msgstr "24 時間"
 
-#: ../setup/config_data.inc:1194
+#: ../setup/config_data.inc:1264
 msgid "12 Hours"
 msgstr "12 時間"
 
-#: ../setup/config_data.inc:1195
+#: ../setup/config_data.inc:1265
 msgid "6 Hours"
 msgstr "6 時間"
 
-#: ../setup/config_data.inc:1196
+#: ../setup/config_data.inc:1266
 msgid "1 Hour"
 msgstr "1 時間"
 
-#: ../setup/config_data.inc:1197
+#: ../setup/config_data.inc:1267
 msgid "30 Minutes"
 msgstr "30 分"
 
-#: ../setup/config_data.inc:1201
+#: ../setup/config_data.inc:1271
 msgid "Random Block Retrieval Attempts"
 msgstr ""
 
-#: ../setup/config_data.inc:1202
+#: ../setup/config_data.inc:1272
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../setup/config_data.inc:1209
+#: ../setup/config_data.inc:1279
 msgid "Cache EXIF data"
 msgstr "EXIF データのキャッシュ"
 
-#: ../setup/config_data.inc:1210
+#: ../setup/config_data.inc:1280
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr "JPEGファイルから抽出されたEXIFデータは最初に1回読み出された後にキャッシュすることができます。このデータをキャッシュした場合のトレードオフは、アルバムデータファイルが巨大化し、アルバムを見るのに時間がかかるようになる可能性があることです。しかし、キャッシュしないと各ユーザが画像のプロパティを見るたびにこのデータを読み出す必要があるため、それによって遅くなります。"
 
-#: ../setup/config_data.inc:1216
+#: ../setup/config_data.inc:1289
 msgid "Developer Mode"
 msgstr "開発者モード"
 
-#: ../setup/config_data.inc:1217
+#: ../setup/config_data.inc:1290
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr "全てのPHPのwarningとnoticeを見るには、開発者モードを有効にします。PHPに詳しくないユーザにはお薦めできません。"
 
-#: ../setup/config_data.inc:1222
+#: ../setup/config_data.inc:1298
 msgid "Use Syslog"
 msgstr "Syslog を使う"
 
-#: ../setup/config_data.inc:1223
+#: ../setup/config_data.inc:1299
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr "ユーザのログインやログアウト、深刻なエラーについて syslog(UNIX) または システムイベントマネージャー(Windows) を通して報告します。"
 
-#: ../setup/config_data.inc:1228
+#: ../setup/config_data.inc:1307
 #, php-format
 msgid "Use %s"
 msgstr "%sを使う"
 
-#: ../setup/config_data.inc:1229
+#: ../setup/config_data.inc:1308
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr "Galleryはflock()と呼ばれるデータ改変を防ぐロック機構が使用できます。これは全てのプラットフォームでサポートされているわけではありません。<i>ロックできませんでした</i> といったエラーが発生していたら、 <i>いいえ</i> に設定してください。"
 
-#: ../setup/config_data.inc:1234
+#: ../setup/config_data.inc:1316
 msgid "Status code"
 msgstr "ステータスコード"
 
-#: ../setup/config_data.inc:1235
+#: ../setup/config_data.inc:1317
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr "ステータスコードとはGalleryが <i>exec()</i> コールに成功したかを知るためのものです。Galleryは自力でこの値を解決しようとするので、問題がない限りはこの値を変更する必要はないでしょう。"
 
-#: ../setup/config_data.inc:1241
+#: ../setup/config_data.inc:1323
 msgid "Session variable"
 msgstr "セッション変数"
 
-#: ../setup/config_data.inc:1242
+#: ../setup/config_data.inc:1324
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr "すべてのGalleryセッション情報が含まれる変数です。同じウェブサイト上の他のGalleryやPHPアプリケーションと衝突する場合は変更してください。"
 
-#: ../setup/config_data.inc:1254
+#: ../setup/config_data.inc:1336
 msgid "RSS Publisher"
 msgstr "RSS 発行"
 
-#: ../setup/config_data.inc:1255
+#: ../setup/config_data.inc:1337
 msgid "Options for the Gallery RSS Publisher"
 msgstr "GalleryのRSS発行に関するオプション"
 
-#: ../setup/config_data.inc:1258
+#: ../setup/config_data.inc:1340
 msgid "Enable RSS Generator"
 msgstr "RSS ジェネレータを有効にする"
 
-#: ../setup/config_data.inc:1259
+#: ../setup/config_data.inc:1341
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr "Gallery RSS ジェネレータを有効あるいは無効にする"
 
-#: ../setup/config_data.inc:1266
+#: ../setup/config_data.inc:1348
 msgid "RSS Content"
 msgstr "RSS コンテンツ"
 
-#: ../setup/config_data.inc:1267
+#: ../setup/config_data.inc:1349
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr "RSSフィードにどの情報を含めるか指定してください。"
 
-#: ../setup/config_data.inc:1269
+#: ../setup/config_data.inc:1351
 msgid "Basic information only"
 msgstr "基本的な情報のみ"
 
-#: ../setup/config_data.inc:1270
+#: ../setup/config_data.inc:1352
 msgid "Album highlight"
 msgstr "アルバム ハイライト"
 
-#: ../setup/config_data.inc:1271
+#: ../setup/config_data.inc:1353
 msgid "All image thumbnails"
 msgstr "全ての画像のサムネイル"
 
-#: ../setup/config_data.inc:1272
+#: ../setup/config_data.inc:1354
 msgid "All image thumbnails and captions"
 msgstr "全ての画像のサムネイルと説明文"
 
-#: ../setup/config_data.inc:1276
+#: ../setup/config_data.inc:1358
 msgid "RSS Highlight"
 msgstr "RSS ハイライト"
 
-#: ../setup/config_data.inc:1277
+#: ../setup/config_data.inc:1359
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr ""
 
-#: ../setup/config_data.inc:1283
+#: ../setup/config_data.inc:1365
 msgid "Maximum Albums Returned"
 msgstr "返すアルバムの最大数"
 
-#: ../setup/config_data.inc:1284
+#: ../setup/config_data.inc:1366
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr "この値はRSSフィードが表示するアルバムの最大数です。最近に変更されたアルバムのうちこの数だけが選択されます。"
 
-#: ../setup/config_data.inc:1291
+#: ../setup/config_data.inc:1373
 msgid "Visible Albums Only"
 msgstr "見えるアルバムのみ"
 
-#: ../setup/config_data.inc:1292
+#: ../setup/config_data.inc:1374
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../setup/config_data.inc:1294
+#: ../setup/config_data.inc:1376
 msgid "Display Visible Albums Only"
 msgstr "見えるアルバムのみを表示する"
 
-#: ../setup/config_data.inc:1295
+#: ../setup/config_data.inc:1377
 msgid "Display Hidden Albums"
 msgstr "アルバム内にクリック数を表示しますか?"
 
-#: ../setup/config_data.inc:1299
+#: ../setup/config_data.inc:1381
 msgid "Use dc:date"
 msgstr "dc:date を使う"
 
-#: ../setup/config_data.inc:1300
+#: ../setup/config_data.inc:1382
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:1307
+#: ../setup/config_data.inc:1389
 msgid "Use Big Photo"
 msgstr "大きい画像を使う"
 
-#: ../setup/config_data.inc:1308
+#: ../setup/config_data.inc:1390
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr ""
 
-#: ../setup/config_data.inc:1315
+#: ../setup/config_data.inc:1397
 msgid "Use Photo Tag"
 msgstr "画像タグを使う"
 
-#: ../setup/config_data.inc:1316
+#: ../setup/config_data.inc:1398
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../setup/config_data.inc:1343
+#: ../setup/config_data.inc:1425
 msgid "Layout"
 msgstr "レイアウト"
 
-#: ../setup/config_data.inc:1346
+#: ../setup/config_data.inc:1428
 msgid "Default Columns"
 msgstr "デフォルト列数"
 
-#: ../setup/config_data.inc:1347
+#: ../setup/config_data.inc:1429
 msgid "The default number of columns in an album."
 msgstr "アルバムでのデフォルトの列数です。"
 
-#: ../setup/config_data.inc:1352
+#: ../setup/config_data.inc:1434
 msgid "Default Rows"
 msgstr "デフォルト行数"
 
-#: ../setup/config_data.inc:1353
+#: ../setup/config_data.inc:1435
 msgid "The default number of rows in an album."
 msgstr "アルバムでのデフォルトの行数です。"
 
-#: ../setup/config_data.inc:1364
+#: ../setup/config_data.inc:1446
 msgid "Appearance"
 msgstr "外観"
 
-#: ../setup/config_data.inc:1367
+#: ../setup/config_data.inc:1449
 msgid "Border color"
 msgstr "枠線色"
 
-#: ../setup/config_data.inc:1368
+#: ../setup/config_data.inc:1450
 #, php-format
 msgid "Default color of (image) borders. You can learn about %scolors%s here."
 msgstr "デフォルトの(画像の)枠線色です。色については%sこちら%sに情報があります。"
 
-#: ../setup/config_data.inc:1375
+#: ../setup/config_data.inc:1456
 msgid "Border width"
 msgstr "枠線の太さ"
 
-#: ../setup/config_data.inc:1376
+#: ../setup/config_data.inc:1457
 msgid "Default width of (image) borders."
 msgstr "デフォルトの(画像の)枠線の太さ"
 
-#: ../setup/config_data.inc:1381
+#: ../setup/config_data.inc:1462
 msgid "Default Font"
 msgstr "デフォルトフォント"
 
-#: ../setup/config_data.inc:1382
+#: ../setup/config_data.inc:1463
 msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
 msgstr "デフォルトのフォント設定です。例: <i>arial</i> や <i>trebuchet</i>"
 
-#: ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1476
 msgid "Image Processing and Display"
 msgstr "画像の処理と表示"
 
-#: ../setup/config_data.inc:1398
+#: ../setup/config_data.inc:1479
 msgid "Thumbnail size"
 msgstr "サムネイルのサイズ"
 
-#: ../setup/config_data.inc:1399
+#: ../setup/config_data.inc:1480
 msgid "The default target size (in pixels) of album thumbnails."
 msgstr "アルバムのサムネイルのデフォルトの大きさ(ピクセル単位)です。"
 
-#: ../setup/config_data.inc:1405
+#: ../setup/config_data.inc:1486
 #, fuzzy
 msgid "Thumbnail Ratio"
 msgstr "サムネイルのサイズ"
 
-#: ../setup/config_data.inc:1406
+#: ../setup/config_data.inc:1487
 msgid "The ratio in which the thumbnails are made"
 msgstr ""
 
-#: ../setup/config_data.inc:1407
+#: ../setup/config_data.inc:1490
 msgid "Square thumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1411
+#: ../setup/config_data.inc:1495
 msgid "Resized image size"
 msgstr "リサイズ画像のサイズ"
 
-#: ../setup/config_data.inc:1412
+#: ../setup/config_data.inc:1496
 msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
 msgstr "大きな画像がアルバムに追加された場合、このサイズに合わせて中間ファイルが自動的に作成されます。"
 
-#: ../setup/config_data.inc:1414
+#: ../setup/config_data.inc:1499
 msgid "off"
 msgstr "off"
 
-#: ../setup/config_data.inc:1417
+#: ../setup/config_data.inc:1510
 msgid "Resized JPEG/PNG images file size"
 msgstr "リサイズ済画像のファイルサイズ"
 
-#: ../setup/config_data.inc:1418
+#: ../setup/config_data.inc:1511
 msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
 msgstr "JPEGフォーマットのリサイズ済画像のデフォルトのファイルサイズ(キロバイト指定)です。値を入力すると、アップロード時の画像処理に時間がかかりますが、特にダイアルアップユーザに対して画像の読み込みが速くなるでしょう。0を入力すると無指定となります。"
 
-#: ../setup/config_data.inc:1425
+#: ../setup/config_data.inc:1517
 msgid "Maximum image size"
 msgstr "最大の画像のサイズ"
 
-#: ../setup/config_data.inc:1426
+#: ../setup/config_data.inc:1518
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Galleryにアップロードする最大の画像の容量をオプションで設定できます。"
 
-#: ../setup/config_data.inc:1427 ../setup/config_data.inc:1435
+#: ../setup/config_data.inc:1519 ../setup/config_data.inc:1538
 msgid "Warning:"
 msgstr "警告:"
 
-#: ../setup/config_data.inc:1428
+#: ../setup/config_data.inc:1520
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "この機能を有効にすると、Galleryにおいて <b>元の完全な画像なし</b> の状態になりますが、制約のあるディスクスペースを節約することができます。Galleryは縮小したJPEG画像のコメントとEXIFデータを保存しようとしますが、<b>ImageMagick</b> かオプションの <b>jhead</b> のどちらかが必要になります。(ステップ2を参照)"
 
-#: ../setup/config_data.inc:1430
+#: ../setup/config_data.inc:1531 ../setup/config_data.inc:1532
+#: ../setup/config_data.inc:1533
 #, php-format
 msgid "%d (%d MPix)"
 msgstr "%d (%d メガピクセル)"
 
-#: ../setup/config_data.inc:1433
+#: ../setup/config_data.inc:1536
 msgid "Maximum JPEG/PNG image file size"
 msgstr "リサイズ画像の最大ファイルサイズ"
 
-#: ../setup/config_data.inc:1434
+#: ../setup/config_data.inc:1537
 msgid "You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery."
 msgstr "GalleryにアップロードするJPEG/PNG画像のファイルサイズの制限をオプションで設定できます。"
 
-#: ../setup/config_data.inc:1436
+#: ../setup/config_data.inc:1539
 msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
 msgstr "この機能を有効にすると、Galleryにおいて <b>元の画質の画像</b> なしにします。JPEGフォーマットのサイズ画像のデフォルトのファイルサイズ(キロバイト指定)を設定してください。値を入力すると、アップロード時の画像処理に時間がかかりますが、特にダイアルアップユーザに対して画像の読み込みが速くなるでしょう。0を入力すると無指定となります。"
 
-#: ../setup/config_data.inc:1442
+#: ../setup/config_data.inc:1545
 msgid "Preserve Names"
 msgstr "ファイル名の保存"
 
-#: ../setup/config_data.inc:1443
+#: ../setup/config_data.inc:1546
 msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
 msgstr "Galleryに画像をアップロードした際、元のファイル名をそのまま使いますか? <i>いいえ</i> を選択し場合、Galleryはアップロードされたそれぞれのファイルに新しい名前を割り当てるでしょう。"
 
-#: ../setup/config_data.inc:1448
+#: ../setup/config_data.inc:1554
 msgid "Add to beginning"
 msgstr "先頭に追加"
 
-#: ../setup/config_data.inc:1449
+#: ../setup/config_data.inc:1555
 msgid "New images added to beginning rather than end of albums."
 msgstr "新しい画像をアルバムの末尾でなく先頭に追加します"
 
-#: ../setup/config_data.inc:1454
+#: ../setup/config_data.inc:1563
 msgid "Fit-to-window"
 msgstr "ウィンドウにフィットさせる"
 
-#: ../setup/config_data.inc:1455
+#: ../setup/config_data.inc:1564
 msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
 msgstr "リサイズされた中間ファイルのない画像を見るとき、Galleryはブラウザのウィンドウサイズに合わせて自動的に画像をリサイズできます。(JavaScript使用) これはNukeなどに組み込まれた環境ではうまく動作しないかも知れません。"
 
-#: ../setup/config_data.inc:1460
+#: ../setup/config_data.inc:1572
 msgid "Visitor size prefs"
 msgstr "訪問者によるサイズ設定"
 
-#: ../setup/config_data.inc:1461
+#: ../setup/config_data.inc:1573
 msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
 msgstr "訪問者がリサイズ画像でなくフルサイズの画像を常に表示するような選択肢を提供します。この設定は訪問者のセッションの間続きます。"
 
-#: ../setup/config_data.inc:1472
+#: ../setup/config_data.inc:1584
 msgid "Options"
 msgstr "オプション"
 
-#: ../setup/config_data.inc:1476
+#: ../setup/config_data.inc:1588
 msgid "Printing Services"
 msgstr "プリントサービス"
 
-#: ../setup/config_data.inc:1477
+#: ../setup/config_data.inc:1589
 msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
 msgstr "訪問者がアルバムから直接画像を印刷できるようにします。Fotoserveはイギリスの、Fotokastenはドイツのプリントサービスで、ヨーロッパ市場向けです。EZ PrintsとPhotoAccess、Shutterflyは米国に本拠地があります。全てのサービスは、利用するたびにGalleryプロジェクトに少しの寄付をします。Shutterflyの&quot;寄付あり&quot;オプションを選択すれば、1回のプリントで2セント(US)余分に支払い、1.8セントがGalleryプロジェクトに還元されます。EZ PrintsとPhotoAccessとFotokastenは余分なGalleryへの寄付はありません。これらのサービスを利用することは、このフリーソフトウェアを支援する素晴らしい方法です。"
 
-#: ../setup/config_data.inc:1496
+#: ../setup/config_data.inc:1612
 msgid "Account for the mPUSH service"
 msgstr ""
 
-#: ../setup/config_data.inc:1497
+#: ../setup/config_data.inc:1613
 #, php-format
 msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr ""
 
-#: ../setup/config_data.inc:1503
+#: ../setup/config_data.inc:1619
 msgid "Enable Ecards ?"
 msgstr ""
 
-#: ../setup/config_data.inc:1504
+#: ../setup/config_data.inc:1620
 msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail"
 msgstr ""
 
-#: ../setup/config_data.inc:1510
+#: ../setup/config_data.inc:1629
 msgid "Gallery Link"
 msgstr "Gallery リンク"
 
-#: ../setup/config_data.inc:1511
+#: ../setup/config_data.inc:1630
 msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
 msgstr "アルバム中にGalleryのトップへのリンクを表示しますか? この機能をOFFにすると、ユーザはアルバムの外へ出られなくなります。これはアルバムをウェブサイトに埋め込んで、ユーザにギャラリー中の他のアルバムを(容易に)見せたくない場合にのみ役に立ちます。"
 
-#: ../setup/config_data.inc:1516
+#: ../setup/config_data.inc:1638
 msgid "Default Album Permissions"
 msgstr "デフォルトのアルバムパーミッション"
 
-#: ../setup/config_data.inc:1517
+#: ../setup/config_data.inc:1639
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr "アルバムに設定するデフォルトのパーミッションを定義します。具体的には，アルバムやその画像を閲覧できるユーザ。"
 
-#: ../setup/config_data.inc:1519 ../setup/config_data.inc:1607
-#: ../setup/config_data.inc:1614
+#: ../setup/config_data.inc:1641 ../setup/config_data.inc:1744
+#: ../setup/config_data.inc:1751
 msgid "Everybody"
 msgstr "誰でも"
 
-#: ../setup/config_data.inc:1520
+#: ../setup/config_data.inc:1642
 msgid "Logged-In Users"
 msgstr "ログイン済みユーザ"
 
-#: ../setup/config_data.inc:1521 ../setup/config_data.inc:1605
-#: ../setup/config_data.inc:1613
+#: ../setup/config_data.inc:1643 ../setup/config_data.inc:1742
+#: ../setup/config_data.inc:1750
 msgid "Nobody"
 msgstr "Nobody"
 
-#: ../setup/config_data.inc:1532
+#: ../setup/config_data.inc:1654
 msgid "Data displayed"
 msgstr "表示されるデータ"
 
-#: ../setup/config_data.inc:1535
+#: ../setup/config_data.inc:1657
 msgid "Click counts"
 msgstr "クリック数カウント"
 
-#: ../setup/config_data.inc:1536
+#: ../setup/config_data.inc:1658
 msgid "Display click counts within Albums?"
 msgstr "アルバム内にクリック数を表示しますか?"
 
-#: ../setup/config_data.inc:1541
+#: ../setup/config_data.inc:1666
 msgid "Custom Fields"
 msgstr "カスタムフィールド"
 
-#: ../setup/config_data.inc:1543
+#: ../setup/config_data.inc:1668
 msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
 msgstr "カスタムフィールドはそれぞれの画像について記述することができます。カンマで区切って複数指定できます。 (訳注:日本語非推奨) 例 <i>Description, Location, Film Type</i>"
 
-#: ../setup/config_data.inc:1549
+#: ../setup/config_data.inc:1674
 msgid "Display clickable image dimensions"
 msgstr "クリック可能な画像の外寸の表示"
 
-#: ../setup/config_data.inc:1550
+#: ../setup/config_data.inc:1675
 msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
 msgstr "サムネイルの下にクリックできる画像の寸法を表示します。アルバムのユーザパーミッション設定にしたがって、(あれば)最初にリサイズ画像の寸法を表示し、それからフルサイズ画像の寸法を表示します。サムネイルの代わりにこれらをクリックできます。"
 
-#: ../setup/config_data.inc:1561
+#: ../setup/config_data.inc:1689
 msgid "Item Owner"
 msgstr "アイテム所有者"
 
-#: ../setup/config_data.inc:1564
+#: ../setup/config_data.inc:1692
 msgid "Photo owner modification"
 msgstr "画像所有者による変更"
 
-#: ../setup/config_data.inc:1565
+#: ../setup/config_data.inc:1693
 msgid "Allow photo owners to edit and rotate/flip their own photos?"
 msgstr "画像所有者に画像編集、回転/反転を許可しますか?"
 
-#: ../setup/config_data.inc:1570
+#: ../setup/config_data.inc:1701
 msgid "Photo owner deletion"
 msgstr "画像所有者による削除"
 
-#: ../setup/config_data.inc:1571
+#: ../setup/config_data.inc:1702
 msgid "Allow photo owners to delete their own photos?"
 msgstr "画像所有者が自分の画像を削除することを許可しますか?"
 
-#: ../setup/config_data.inc:1576
+#: ../setup/config_data.inc:1709
 msgid "Photo owner display"
 msgstr "画像所有者の表示"
 
-#: ../setup/config_data.inc:1577
+#: ../setup/config_data.inc:1710
 msgid "Display the name of photo owners with the caption?"
 msgstr "タイトルとともに画像の所有者も表示しますか?"
 
-#: ../setup/config_data.inc:1588
+#: ../setup/config_data.inc:1724
 msgid "Polling configuration"
 msgstr "投票コンフィグレーション"
 
-#: ../setup/config_data.inc:1590
+#: ../setup/config_data.inc:1726
 #, fuzzy, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version then %s."
 msgstr "これは訪問者にアルバム内容に関して投票や評価ができるようにします。ここで、新しいアルバムや存在するアルバムを%sから最初にアップグレードするときに適用される、投票のデフォルト設定をします。"
 
-#: ../setup/config_data.inc:1593
+#: ../setup/config_data.inc:1729
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
 msgstr "各々のアルバムで投票はOFFにする、ログインユーザに限定する、全ての訪問者に公開する、にできます。"
 
-#: ../setup/config_data.inc:1595
+#: ../setup/config_data.inc:1731
 #, php-format
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "2種類の投票の種類があります: %sでは投票者はもっとも気に入った画像、そして2番目、3番目..、 と選びます。そして%sでは投票者は制限なしに全ての画像に対して評価をします。%sは全ての画像が(例えば)5ポイント取得できる、フィルムレビューに似ています。%sはスコアを争うのに便利です。"
 
-#: ../setup/config_data.inc:1596 ../setup/config_data.inc:1599
-#: ../setup/config_data.inc:1622 ../setup/config_data.inc:1628
+#: ../setup/config_data.inc:1732 ../setup/config_data.inc:1735
+#: ../setup/config_data.inc:1760 ../setup/config_data.inc:1766
 msgid "Rank"
 msgstr "ランク"
 
-#: ../setup/config_data.inc:1597 ../setup/config_data.inc:1598
-#: ../setup/config_data.inc:1624 ../setup/config_data.inc:1629
+#: ../setup/config_data.inc:1733 ../setup/config_data.inc:1734
+#: ../setup/config_data.inc:1762 ../setup/config_data.inc:1767
 msgid "Critique"
 msgstr "批評"
 
-#: ../setup/config_data.inc:1602
+#: ../setup/config_data.inc:1739
 msgid "Voter class"
 msgstr "投票者クラス"
 
-#: ../setup/config_data.inc:1603
+#: ../setup/config_data.inc:1740
 msgid "Voting is available to:"
 msgstr "投票が可能なのは:"
 
-#: ../setup/config_data.inc:1606
+#: ../setup/config_data.inc:1743
 msgid "Voting is off."
 msgstr "投票はOFFです。"
 
-#: ../setup/config_data.inc:1608
+#: ../setup/config_data.inc:1745
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "誰でも投票できます。投票はセッションIDで記録されます。"
 
-#: ../setup/config_data.inc:1609 ../setup/config_data.inc:1615
+#: ../setup/config_data.inc:1746 ../setup/config_data.inc:1752
 msgid "Logged in"
 msgstr "ログイン済み"
 
-#: ../setup/config_data.inc:1610
+#: ../setup/config_data.inc:1747
 msgid "Registered users can vote.  Votes are recorded against User ID, and voters can come back and change their choices."
 msgstr "登録ユーザが投票できます。投票はユーザIDで記録され、投票者は後から票を変更することができます。"
 
-#: ../setup/config_data.inc:1619
+#: ../setup/config_data.inc:1757
 msgid "Poll type"
 msgstr "投票のタイプ"
 
-#: ../setup/config_data.inc:1620
+#: ../setup/config_data.inc:1758
 msgid "Gallery offers two sorts of polls for voting for images.  See above for a more detailed explanation."
 msgstr "Galleryは画像に対する二つの投票タイプを提供します。詳しい説明は上をみてください。"
 
-#: ../setup/config_data.inc:1623
+#: ../setup/config_data.inc:1761
 msgid "Users have a set of votes which they can allocate to the images."
 msgstr "ユーザは画像に割り振ることのできる票のセットを持ちます。"
 
-#: ../setup/config_data.inc:1625
+#: ../setup/config_data.inc:1763
 msgid "Enables users to give all images points without restriction."
 msgstr "ユーザは全ての画像に対して制限なしの点数をつけられます。"
 
-#: ../setup/config_data.inc:1633
+#: ../setup/config_data.inc:1772
 msgid "Number of choices"
 msgstr "選択数"
 
-#: ../setup/config_data.inc:1634
+#: ../setup/config_data.inc:1773
 msgid "Number of choices that will be available to voters as radio buttons or in a pulldown menu."
 msgstr "投票者が選べるラジオボタンかプルダウンメニューからの選択肢の数です。"
 
-#: ../setup/config_data.inc:1639
+#: ../setup/config_data.inc:1778
 msgid "Vote hint"
 msgstr "投票のヒント"
 
-#: ../setup/config_data.inc:1640
+#: ../setup/config_data.inc:1779
 msgid "This is displayed above the voting options under each image."
 msgstr "これはそれぞれの画像の下で、投票オプションの上に表示されます。"
 
-#: ../setup/config_data.inc:1642
+#: ../setup/config_data.inc:1781
 msgid "Vote for this image"
 msgstr "この画像に投票"
 
-#: ../setup/config_data.inc:1647 ../setup/config_data.inc:1656
+#: ../setup/config_data.inc:1786 ../setup/config_data.inc:1798
 msgid "Show vote results"
 msgstr "投票結果の表示"
 
-#: ../setup/config_data.inc:1648
+#: ../setup/config_data.inc:1787
 #, php-format
 msgid "Display a summary and graph on the album page of images that have received the highest votes, and provide a link to the full results.  If this option is %s, results of voting will only be available to admins and album owners."
 msgstr "もっとも多くの投票があった画像のアルバム上に要約とグラフを表示し、完全な結果へのリンクを提供します。このオプションが %s だと、投票の結果は管理者とアルバム所有者にしか見えません"
 
-#: ../setup/config_data.inc:1654
+#: ../setup/config_data.inc:1796
 msgid "Number of results displayed"
 msgstr "結果表示の数"
 
-#: ../setup/config_data.inc:1655
+#: ../setup/config_data.inc:1797
 #, php-format
 msgid "If %s is %s, display a graph showing this many top results.  (Full results will be available on a linked page.)"
 msgstr "%s が %s なら、この数だけのトップの結果を示すグラフを表示します。(完全な結果はリンクされたページで見れます)"
 
-#: ../setup/config_data.inc:1662
+#: ../setup/config_data.inc:1804
 msgid "Orientation of vote choices?"
 msgstr "投票選択肢の方向"
 
-#: ../setup/config_data.inc:1663
+#: ../setup/config_data.inc:1805
 msgid "Rank poll choices can be displayed beside each other (horizontally) or underneath each other (vertically).  Has no effect on critique voting which is a pulldown menu."
 msgstr "ランクづけ投票の選択肢は、隣どうし(水平方向)もしくはそれぞれの下(垂直方向)に表示することができます。批評の投票では影響がなく、プルダウンメニューです。"
 
-#: ../setup/config_data.inc:1666
+#: ../setup/config_data.inc:1808
 msgid "Horizontal"
 msgstr "水平方向"
 
-#: ../setup/config_data.inc:1667
+#: ../setup/config_data.inc:1809
 msgid "Vertical"
 msgstr "垂直方向"
 
-#: ../setup/config_data.inc:1670
+#: ../setup/config_data.inc:1813
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "それぞれの投票オプションに対して、実際に表示されるテキスト、およびその選択肢の点数をを設定できます。"
 
-#: ../setup/config_data.inc:1672
+#: ../setup/config_data.inc:1815
 msgid "Excellent"
 msgstr "最高"
 
-#: ../setup/config_data.inc:1673
+#: ../setup/config_data.inc:1816
 msgid "Very Good"
 msgstr "いいんじゃねーの"
 
-#: ../setup/config_data.inc:1674
+#: ../setup/config_data.inc:1817
 msgid "Good"
 msgstr "いい感じ"
 
-#: ../setup/config_data.inc:1675
+#: ../setup/config_data.inc:1818
 msgid "Average"
 msgstr "普通だよ"
 
-#: ../setup/config_data.inc:1676
+#: ../setup/config_data.inc:1819
 msgid "Poor"
 msgstr "いまいち"
 
-#: ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:1832
 msgid "Album Slideshow"
 msgstr "アルバム スライドショー"
 
-#: ../setup/config_data.inc:1691
+#: ../setup/config_data.inc:1836
 msgid "Slideshow Type"
 msgstr "スライドショーのタイプ"
 
-#: ../setup/config_data.inc:1708
+#: ../setup/config_data.inc:1853
 msgid "Recursive slideshow"
 msgstr "スライドショーの再帰"
 
-#: ../setup/config_data.inc:1709
+#: ../setup/config_data.inc:1854
 #, php-format
 msgid "Set to %s if you want to include images in sub albums as part of the slideshow."
 msgstr "スライドショーでサブアルバムの内容もふくめて再帰的に表示したい場合は %s に設定してください。"
 
-#: ../setup/config_data.inc:1715
+#: ../setup/config_data.inc:1863
 #, php-format
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "このオプションは訪問者がウィンドウを閉じるか他のページへ移動するまでスライドショーを繰り返すことを許可します。帯域を抑えたい場合は %s に設定してください。"
 
-#: ../setup/config_data.inc:1734 ../setup/config_data.inc:1738
-#: ../setup/config_data.inc:1744
+#: ../setup/config_data.inc:1885 ../setup/config_data.inc:1889
+#: ../setup/config_data.inc:1899
 msgid "Microthumb Photo Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1735
+#: ../setup/config_data.inc:1886
 msgid "These settings apply to the microthumb photo navigation system.  The microthumbs are only visible when viewing individual images."
 msgstr ""
 
-#: ../setup/config_data.inc:1739
+#: ../setup/config_data.inc:1890
 msgid "Uses microthumbs for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the microthumb navigation system AND the old style navigation system."
 msgstr ""
 
-#: ../setup/config_data.inc:1741
+#: ../setup/config_data.inc:1895
 #, fuzzy
 msgid "both"
 msgstr "両方"
 
-#: ../setup/config_data.inc:1746 ../setup/config_data.inc:1752
+#: ../setup/config_data.inc:1901 ../setup/config_data.inc:1908
 #, fuzzy
 msgid "Fixed"
 msgstr "失敗"
 
-#: ../setup/config_data.inc:1747
+#: ../setup/config_data.inc:1902
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1748 ../setup/config_data.inc:1752
+#: ../setup/config_data.inc:1903 ../setup/config_data.inc:1909
 msgid "Dynamic"
 msgstr ""
 
-#: ../setup/config_data.inc:1749
+#: ../setup/config_data.inc:1904
 msgid "Displays previos & next images, with current image between."
 msgstr ""
 
-#: ../setup/config_data.inc:1755
+#: ../setup/config_data.inc:1913
 msgid "Show Microthumb for First/Last"
 msgstr ""
 
-#: ../setup/config_data.inc:1756
+#: ../setup/config_data.inc:1914
 msgid "This allows you to turn on and off the display of the first and last microthumb.  Since these two images are always the same, some might find that it is not very useful and would rather display more next/previous thumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1761
+#: ../setup/config_data.inc:1922
 msgid "Number of Previous Microthumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1762
+#: ../setup/config_data.inc:1923
 msgid "This is the number of previous microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1769
+#: ../setup/config_data.inc:1932
 #, fuzzy
 msgid "Number of Next Microthumbs"
 msgstr "選択数"
 
-#: ../setup/config_data.inc:1770
+#: ../setup/config_data.inc:1933
 msgid "This is the number of next microthumbs on the screen at a time.  You might prefer to show fewer previous microthumbs and more next microthumbs."
 msgstr ""
 
-#: ../setup/config_data.inc:1777
+#: ../setup/config_data.inc:1942
 msgid "Location of Microthumb Navigation"
 msgstr ""
 
-#: ../setup/config_data.inc:1778
+#: ../setup/config_data.inc:1943
 msgid "Displays the microthumb navigation bar at the Top, Bottom or Both of the photo viewing page.  Since the microthumb navigation system is larger than the original navigation system, you may want to display it at only the top or bottom to conserve space usage."
 msgstr ""
 
-#: ../setup/config_data.inc:1781
+#: ../setup/config_data.inc:1946
 msgid "Top"
 msgstr "上"
 
-#: ../setup/config_data.inc:1783
+#: ../setup/config_data.inc:1948
 msgid "Bottom"
 msgstr "下"
 
-#: ../setup/config_data.inc:1786
+#: ../setup/config_data.inc:1952
 msgid "Height of Microthumbs"
 msgstr ""
 
-#: ../setup/config_data.inc:1787
+#: ../setup/config_data.inc:1953
 msgid "The size of microthumbs will determine how clear the images are as well as how much room they take up.  This value is the height and is in pixels.  45 is a reasonable value for viewing at 1024x768."
 msgstr ""
 
-#: ../setup/config_data.inc:1792
+#: ../setup/config_data.inc:1958
 msgid "Bonus to Current Microthumb's Size"
 msgstr ""
 
-#: ../setup/config_data.inc:1793
+#: ../setup/config_data.inc:1959
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
 msgstr ""
 
-#: ../setup/config_data.inc:1804 ../setup/frame_test.php:29
+#: ../setup/config_data.inc:1970 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "フレーム"
 
-#: ../setup/config_data.inc:1805
+#: ../setup/config_data.inc:1971
 #, php-format
 msgid "Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"
 msgstr "%sの各々の画像(サムネイル、リサイズ及びフルサイズ画像)はフレームを持たせることができます。以下のスタイルが利用できます:"
 
-#: ../setup/config_data.inc:1809
+#: ../setup/config_data.inc:1975
 msgid "Subalbum frames"
 msgstr "サブアルバム フレーム"
 
-#: ../setup/config_data.inc:1810
+#: ../setup/config_data.inc:1976
 msgid "This frame will appear around the thumbnail image representing a subalbum."
 msgstr "このフレームはサブアルバムを示すためにサムネイルの周りに表示されます。"
 
-#: ../setup/config_data.inc:1815
+#: ../setup/config_data.inc:1982
 msgid "Frame around thumbs"
 msgstr "サムネイルのフレーム"
 
-#: ../setup/config_data.inc:1816
+#: ../setup/config_data.inc:1983
 msgid "This frame will appear around the thumbnail image representing a photo or movie."
 msgstr "このフレームは画像や動画を示すためにサムネイルの周りに表示されます。"
 
-#: ../setup/config_data.inc:1821
+#: ../setup/config_data.inc:1988
 msgid "Frame around images"
 msgstr "画像の周りのフレーム"
 
-#: ../setup/config_data.inc:1822
+#: ../setup/config_data.inc:1989
 msgid "This frame will appear around fulled sized and resized photos."
 msgstr "このフレームはフルサイズあるいはリサイズ画像の周りに表示されます。"
 
@@ -3006,7 +3011,7 @@ msgstr "%s ファイルはオプションですが、いくつかの %s 機能�
 msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
 msgstr "ファイル %s はウェブサーバから書き込みできません。次に進む前に、chmod 777 を実行してください。 詳細は %s を参照してください。"
 
-#: ../setup/confirm.inc:89 ../setup/confirm.inc:183
+#: ../setup/confirm.inc:89 ../setup/confirm.inc:178
 msgid "missing"
 msgstr "欠落"
 
@@ -3014,128 +3019,128 @@ msgstr "欠落"
 msgid "it's optional"
 msgstr "これはオプションです"
 
-#: ../setup/confirm.inc:183
+#: ../setup/confirm.inc:178
 msgid "optional"
 msgstr "オプション"
 
-#: ../setup/confirm.inc:203
+#: ../setup/confirm.inc:198
 #, php-format
 msgid "%s: <b>%s</b> must be an absolute URL!"
 msgstr "%s: <b>%s</b>は絶対パスのURLでなくてはなりません。"
 
-#: ../setup/confirm.inc:215
+#: ../setup/confirm.inc:210
 #, php-format
 msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
 msgstr "%s: <b>%s</b>は有効なファイルでなくてはなりません。(ディレクトリではだめです)"
 
-#: ../setup/confirm.inc:226
+#: ../setup/confirm.inc:221
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
 msgstr "%s: <b>&quot;%s&quot;</b>は正の数でなくてはいけません。"
 
-#: ../setup/confirm.inc:235
+#: ../setup/confirm.inc:230
 #, php-format
 msgid "%s: <b>&quot;%s&quot;</b> must be a number"
 msgstr "%s: <b>&quot;%s&quot;</b>は数字でなくてはいけません。"
 
-#: ../setup/confirm.inc:243
+#: ../setup/confirm.inc:238
 #, php-format
 msgid "%s: <b>%s</b> must not be zero"
 msgstr "%s: <b>%s</b> はゼロではいけません。"
 
-#: ../setup/confirm.inc:253
+#: ../setup/confirm.inc:248
 #, php-format
 msgid "%s: <b>%s</b> must be an executable file!"
 msgstr "%s: <b>%s</b> は実行ファイルでないといけません。"
 
-#: ../setup/confirm.inc:262
+#: ../setup/confirm.inc:257
 #, php-format
 msgid "Directory %s does not exist.  Please create it."
 msgstr "ディレクトリ %s は存在しません。作成してください。"
 
-#: ../setup/confirm.inc:268
+#: ../setup/confirm.inc:263
 #, php-format
 msgid "%s exists but is not a directory.  Please fix this."
 msgstr "%s は存在しますがディレクトリではありません。修正してください。"
 
-#: ../setup/confirm.inc:275
+#: ../setup/confirm.inc:270
 #, php-format
 msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
 msgstr "%s: %sは存在しますが、ウェブサーバを動作させているユーザによる書き込みは可能ではありません。%sを試して動かなければ、%sを試してください。また、%s制限を受けているようであればテンポラリディレクトリが%s以下にあるか確認してください。"
 
-#: ../setup/confirm.inc:340
+#: ../setup/confirm.inc:335
 #, php-format
 msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
 msgstr "%s: <b>%s</b> はこの機能が動作するために有効でないといけません。"
 
-#: ../setup/confirm.inc:365
+#: ../setup/confirm.inc:360
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%sが見つかりませんでした。あなたがどのPNG->JPEGコンバータを持っているか確認するため、NetPBMディレクトリをチェックしてください。(もしくは単に%sを試してください) コンフィグレーションをチェックしてください。(もしくは、ImageMagickを使ってください。)"
 
-#: ../setup/confirm.inc:373
+#: ../setup/confirm.inc:368
 #, php-format
 msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%s が見つかりませんでした。あなたがどのPNMコンポジット/オーバレイ実行ファイルを持っているか確認するため、NetPBMディレクトリをチェックしてください (もしくは単に%sを試してください)。 コンフィグレーションをチェックしてください。(もしくは、ImageMagickを使ってください)"
 
-#: ../setup/confirm.inc:385
+#: ../setup/confirm.inc:380
 #, php-format
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Galleryが機能するために、%s か %s へのパスのうちひとつは指定しなくてはいけません。"
 
-#: ../setup/confirm.inc:388 ../setup/confirm.inc:391
+#: ../setup/confirm.inc:383 ../setup/confirm.inc:386
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%sはグラフィックパッケージとして使うには不適切な設定となっています。ステップ2で%sバイナリのパスが入力されていたか確認してください。"
 
-#: ../setup/confirm.inc:397
+#: ../setup/confirm.inc:392
 msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
 msgstr "サーバはPHPのopen_basedir制限がかかっており、設定したパスは制限パスのリストにありません。"
 
-#: ../setup/confirm.inc:399
+#: ../setup/confirm.inc:394
 #, php-format
 msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
 msgstr "これはGalleryが動作しないわけではありませんが、パスが正しいかどうかの検証はできません。もし写真を正しくアップロードできないなら、FAQや%s検証ページ%sを参照して問題を解決してください。"
 
-#: ../setup/confirm.inc:468
+#: ../setup/confirm.inc:463
 msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
 msgstr "これまで入力してきた設定が正しく伝わっているか確認してください。このページで混乱が発生していたら、これを安全に無視することができます。"
 
-#: ../setup/confirm.inc:470
+#: ../setup/confirm.inc:465
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "これまで入力してきた設定が正しく伝わっていたか確認してください。赤色で示されたエラーは、設定を保存する前に修正しなくてはいけません。"
 
-#: ../setup/confirm.inc:475 ../setup/confirm.inc:494
+#: ../setup/confirm.inc:470 ../setup/confirm.inc:489
 msgid "Edit Config"
 msgstr "設定を編集"
 
-#: ../setup/confirm.inc:477 ../setup/confirm.inc:496
+#: ../setup/confirm.inc:472 ../setup/confirm.inc:491
 msgid "Save Config"
 msgstr "設定を保存"
 
-#: ../setup/confirm.inc:479 ../setup/login.inc:71
+#: ../setup/confirm.inc:474 ../setup/login.inc:71
 msgid "Refresh"
 msgstr "更新"
 
-#: ../setup/confirm.inc:481
+#: ../setup/confirm.inc:476
 #, php-format
 msgid "One error."
 msgid_plural "%d errors."
 msgstr[0] "%d 個のエラー。"
 
-#: ../setup/confirm.inc:481
+#: ../setup/confirm.inc:476
 msgid "No errors."
 msgstr "0 個のエラー。"
 
-#: ../setup/confirm.inc:483
+#: ../setup/confirm.inc:478
 msgid "See Details below."
 msgstr "詳細は以下。"
 
-#: ../setup/confirm.inc:499
+#: ../setup/confirm.inc:494
 msgid "There are errors in your configuration."
 msgstr "あなたのコンフィグレーションにはエラーが存在します。"
 
-#: ../setup/confirm.inc:500
+#: ../setup/confirm.inc:495
 msgid "Please go back and fix them!"
 msgstr "戻ってそれらを修正してください。"
 
@@ -3147,22 +3152,22 @@ msgstr "このステップではGalleryの多くの設定をカスタマイズ�
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr "対応するタブを切替えながら、必要な値を入力してください。ただし、全ての値が必須ではありません。このステップが完了したら、ボタンをクリックして次のステップへ進んでください。"
 
-#: ../setup/constants.inc:41 ../setup/constants.inc:176
+#: ../setup/constants.inc:41 ../setup/constants.inc:183
 #: ../setup/defaults.inc:43 ../setup/defaults.inc:129
 msgid "Previous Step"
 msgstr "前のステップ"
 
-#: ../setup/constants.inc:42 ../setup/constants.inc:177
+#: ../setup/constants.inc:42 ../setup/constants.inc:184
 #: ../setup/defaults.inc:44 ../setup/defaults.inc:130
 msgid "Previous Tab"
 msgstr "前のタブ"
 
-#: ../setup/constants.inc:43 ../setup/constants.inc:178
+#: ../setup/constants.inc:43 ../setup/constants.inc:185
 #: ../setup/defaults.inc:45 ../setup/defaults.inc:131
 msgid "Next Tab"
 msgstr "次のタブ"
 
-#: ../setup/constants.inc:45 ../setup/constants.inc:180
+#: ../setup/constants.inc:45 ../setup/constants.inc:187
 #: ../setup/defaults.inc:47 ../setup/defaults.inc:133
 msgid "Use Defaults"
 msgstr "デフォルトに戻す"

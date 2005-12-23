@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-09-14 10:00+0100\n"
 "Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -476,61 +476,66 @@ msgstr "Förgrundsbild till album:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Ägare: "
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "Webbadress:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Hej! "
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s så att webbadressen inte är så allmänt omfattande!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Döp om detta album"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Senaste ändring %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Senaste ändring %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Detta album innehåller ett objekt."
 msgstr[1] "Detta album innehåller %d objekt."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Detta album har visats %s sedan %s."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 gång"
 msgstr[1] "%d gånger"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 gånger"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "Nollställ räknare"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Kommentarer finns tillgängliga för detta objekt."
 
@@ -757,17 +762,17 @@ msgstr "Begärt index [%d] på förbjudet område [%d]"
 msgid "Processing image %d..."
 msgstr "Bearbetar bild %d..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Fel vid hämtning av EXIF-information.  Förväntad status 0, fick %s."
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problem med e-post: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
@@ -2231,75 +2236,71 @@ msgstr "Visa antal visningar"
 msgid "Show the add comment link"
 msgstr "Visa lämna kommentar länk"
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "Visa lägg till röst länk"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "Visa albumägarna"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr "Visa grundläggande tidinformation"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "Omvänder sorteringsordning - se ovan"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "Miniatyrbild-storlek i bildpunkter(pixlar)"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "Kontrollerar antal foton som visas på en sida"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Kontrollerar maximalt antal foton som listas, -1 för alla"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr "Använd rutnät-utseende"
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr "Kontrollerar antalet rader som visas i rutnätsläge"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr "Kontrollerar antal kolumner som visas i rutnätsläge"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "Ovanför kommentarerna"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "På rubrikraden"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Ovanför statistiken"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "Nedanför kommentarerna"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "Positionen för, lägg till röst och lägg till kommentar, länkar"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Filtrera efter år"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "Filtrera efter månad"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Filtrera efter dag"
 
@@ -2903,7 +2904,7 @@ msgstr "Skapa användare"
 msgid "Create multiple new users from a file."
 msgstr "Skapa flera nya användare från en fil."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Skapa"
 
@@ -3288,8 +3289,8 @@ msgid "******* Page %s *******"
 msgstr "******* Sida %s *******"
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Skapa användare för %s."
 
 #: ../register.php:45
@@ -3329,6 +3330,11 @@ msgstr "E-post kunde inte skickas.  Vänligen kontakta Gallery-administratörerna 
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Din kontoinformation kommer att skickas till e-postadressen du angav."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Begäran om nytt lösenord"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4773,6 +4779,9 @@ msgstr "Inga objekt att vattenstämpla."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Kom ihåg att vattenstämpling av animerade gif-bilder stöds för närvarande inte och kommer att 'vanställa & avanimera' dina bilder."
+
+#~ msgid "Show the add vote link"
+#~ msgstr "Visa lägg till röst länk"
 
 #, fuzzy
 #~ msgid "Move Album!"

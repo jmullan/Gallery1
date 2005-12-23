@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-05-23 11:55-0500\n"
 "Last-Translator: Bisser Dobrev <bdobrev AT comcast DOT net>\n"
 "Language-Team: Bisser Dobrev <bdobrev AT comcast DOT net>\n"
@@ -474,61 +474,66 @@ msgstr "Главна снимка за Албума:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Собственик:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "web-адрес: "
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Внимание! "
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s, така че web-адреса да не е толкова обикновен!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Преименувайте този албум"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Последно променен на %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Последно променен на %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Този албум съдържа 1 елемент."
 msgstr[1] "Този албум съдържа %d елемента."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Този албум е прегледан %s от %s до сега."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 път"
 msgstr[1] "%d пъти"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 пъти"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "нулирайте брояча"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Има коментари за този елемент."
 
@@ -755,17 +760,17 @@ msgstr "Желания индекс [%d] е извън границите [%d]"
 msgid "Processing image %d..."
 msgstr "Oбработване на изображение %d ..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Проблем с E-mail-a: пропуска се %s (UID %s) защото e-mail адреса %s не е валиден."
@@ -2242,77 +2247,73 @@ msgstr "Показване на броя на посещенията"
 msgid "Show the add comment link"
 msgstr "Показване на 'link'-а \"добавете коментар\""
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "Показване на 'link'-а \"гласувайте\""
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "Показване на притежателя на албума"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr "Показване на времеto за изпълнение"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "Обръщане на реда на сортиране - вижте по-горе"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "Големина на миниатюрното изображение в 'pixels'"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "Определя броя на снимките показани на една страница"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Определя максималния брой на показани снимки, -1 за всички"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 #, fuzzy
 msgid "Controls the number of rows to display in grid mode"
 msgstr "Определя броя на снимките показани на една страница"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 #, fuzzy
 msgid "Controls the number of columns to display in grid mode"
 msgstr "Определя броя на снимките показани на една страница"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "Над коментарите"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "В реда с надписа"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Над статистиките"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "Под коментарите"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "Местонахождение на 'links' на 'добавете глас' и 'добавете коментар'"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Филтриране по година"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "Филтриране по месец"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Филтриране по ден"
 
@@ -2929,7 +2930,7 @@ msgstr "Създайте Потребители"
 msgid "Create multiple new users from a file."
 msgstr "Създайте брой нови потребители от файл."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Създайте"
 
@@ -3319,8 +3320,8 @@ msgid "******* Page %s *******"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Създайте Потребител за %s."
 
 #: ../register.php:45
@@ -3360,6 +3361,11 @@ msgstr "Не успяхме да изпратим E-mail. Моля свържете се с администратора за да с
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Информацията за потребителско ви име ще бъде изпратена на посочения от вас E-mail адрес."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Запитване за нова парола"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4811,6 +4817,9 @@ msgstr "Нама елементи към които да добавим водни знаци."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Show the add vote link"
+#~ msgstr "Показване на 'link'-а \"гласувайте\""
 
 #, fuzzy
 #~ msgid "Move Album!"

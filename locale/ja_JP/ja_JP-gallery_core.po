@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-08-05 23:39+0900\n"
 "Last-Translator: Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>\n"
 "Language-Team: Japanese <ken_w3m+nospam AT gmail DOT com>\n"
@@ -468,60 +468,65 @@ msgstr "¥¢¥ë¥Ð¥à¤Î¥Ï¥¤¥é¥¤¥È²èÁü:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "½êÍ­¼Ô:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "URL:"
 
 # This word doesn't need in Japanese.
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr " "
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "¤³¤ÎURL¤¬°ìÈÌÅª¤Ç¤Ê¤¤¤â¤Î¤Ë¤Ê¤ë¤è¤¦¡¢ %s ¤·¤Æ¤¯¤À¤µ¤¤¡£"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "¤³¤Î¥¢¥ë¥Ð¥àÌ¾¤òÊÑ¹¹"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "ºÇ½ª¹¹¿·Æü %s"
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "ºÇ½ª¹¹¿·Æü %s"
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "¤³¤Î¥¢¥ë¥Ð¥à¤ÎÆâÍÆ¤Ï %d ¥¢¥¤¥Æ¥à ¤Ç¤¹¡£"
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "¤³¤Î¥¢¥ë¥Ð¥à¤Î±ÜÍ÷²ó¿ô %s (%s ¤«¤é)"
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "%d ²ó"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 ²ó"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "¥«¥¦¥ó¥¿¥ê¥»¥Ã¥È"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "¤³¤Î¥¢¥¤¥Æ¥à¤ËÂÐ¤¹¤ë¥³¥á¥ó¥È¤¬Í­¸ú¤Ç¤¹¡£"
 
@@ -747,17 +752,17 @@ msgstr ""
 msgid "Processing image %d..."
 msgstr "%d ¥¤¥á¡¼¥¸¤ò½èÍýÃæ..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "EXIF ¥Ç¡¼¥¿¼èÆÀÃæ¤Ë¥¨¥é¡¼È¯À¸¡£´üÂÔ¤µ¤ì¤¿¥¹¥Æ¡¼¥¿¥¹ 0¡¢¼ÂºÝ¤Î¥¹¥Æ¡¼¥¿¥¹ %s¡£"
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "¥á¡¼¥ë¤ÎÌäÂê: ¥á¡¼¥ë¥¢¥É¥ì¥¹ %3$s ¤ÏÌµ¸ú¤Ê¤¿¤á¡¢%1$s (UID %2$s) ¤ò¥¹¥­¥Ã¥×¡£"
@@ -2219,76 +2224,72 @@ msgstr "±ÜÍ÷¿ô¤òÉ½¼¨"
 msgid "Show the add comment link"
 msgstr "¥³¥á¥ó¥ÈÄÉ²Ã¤Î¥ê¥ó¥¯¤òÉ½¼¨"
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "ÅêÉ¼¤Î¥ê¥ó¥¯¤òÉ½¼¨"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "¥¢¥ë¥Ð¥à½êÍ­¼Ô¤òÉ½¼¨"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 #, fuzzy
 msgid "Show timing basic information"
 msgstr "´ðËÜÅª¤Ê¾ðÊó¤Î¤ß"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "¥½¡¼¥È½ç¤òµÕ¤Ë¤¹¤ë - ¾åµ­»²¾È"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "¥µ¥à¥Í¥¤¥ë¤Î¥µ¥¤¥º(¥Ô¥¯¥»¥ë)"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "1¥Ú¡¼¥¸¤ËÉ½¼¨¤µ¤ì¤ë²èÁü¤Î¿ô¤òÀ©¸æ¤¹¤ë"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "¥ê¥¹¥È¥¢¥Ã¥×¤¹¤ë²èÁü¤ÎºÇÂç¿ô¤òÀ©¸æ¤¹¤ë -1¤ÇÁ´¤Æ¥ê¥¹¥È"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr "¥°¥ê¥Ã¥É¥ì¥¤¥¢¥¦¥È¤ò»ÈÍÑ¤¹¤ë"
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr "¥°¥ê¥Ã¥É¤Î¹Ô¿ô¤òÀßÄê¤¹¤ë"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr "¥°¥ê¥Ã¥É¤ÎÎó¿ô¤òÀßÄê¤¹¤ë"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "¥³¥á¥ó¥È¤Î¾å"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "ÀâÌÀ¤Î¾å"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Åý·×¤Î¾å"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "¥³¥á¥ó¥È¤Î²¼"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "ÅêÉ¼¤È¥³¥á¥ó¥È¤Î¥ê¥ó¥¯¤ÎÉ½¼¨°ÌÃÖ"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Ç¯¤Ç¥Õ¥£¥ë¥¿"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "·î¤Ç¥Õ¥£¥ë¥¿"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Æü¤Ç¥Õ¥£¥ë¥¿"
 
@@ -2900,7 +2901,7 @@ msgstr "Ê£¿ô¥æ¡¼¥¶ºîÀ®"
 msgid "Create multiple new users from a file."
 msgstr "¥Õ¥¡¥¤¥ë¤«¤é¤ÎÂ¿¿ô¥æ¡¼¥¶¤ÎºîÀ®¡£"
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "ºîÀ®"
 
@@ -3285,8 +3286,8 @@ msgid "******* Page %s *******"
 msgstr "******* ¥Ú¡¼¥¸ %s *******"
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "%s¤Î¤¿¤á¤Î¥æ¡¼¥¶ºîÀ®"
 
 #: ../register.php:45
@@ -3326,6 +3327,11 @@ msgstr "¥á¡¼¥ë¤¬Á÷¿®¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£ÅÐÏ¿¤¹¤ë¤Ë¤Ï¤³¤Î¥µ¥¤¥È¤ÎGallery´ÉÍý¼Ô¤ËÏ¢Í
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "¥¢¥«¥¦¥ó¥È¾ðÊó¤ÏÆþÎÏ¤·¤¿¥á¡¼¥ë¥¢¥É¥ì¥¹¤ËÁ÷¿®¤µ¤ì¤Þ¤¹¡£"
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "¿·¤·¤¤¥Ñ¥¹¥ï¡¼¥É¤òÀßÄê"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4771,6 +4777,9 @@ msgstr "Æ©¤«¤·¤Ë¤¹¤ë¥¢¥¤¥Æ¥à¤Ê¤·"
 #, fuzzy
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "¤¢¤Ê¤¿¤Î²èÁü¤ÏGIF¤Ç¤¹¡£¥¢¥Ë¥á¡¼¥·¥ç¥óGIF¤ËÆ©¤«¤·¤òÆþ¤ì¤ë¤³¤È¤Ï¸½ºßÈóÂÐ±þ¤Ç¡¢¤¢¤Ê¤¿¤Î²èÁü¤ò'deface & unanimate'¤·¤Þ¤¹¡£"
+
+#~ msgid "Show the add vote link"
+#~ msgstr "ÅêÉ¼¤Î¥ê¥ó¥¯¤òÉ½¼¨"
 
 #, fuzzy
 #~ msgid "Move Album!"

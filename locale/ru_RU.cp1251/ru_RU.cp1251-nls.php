@@ -54,7 +54,7 @@
 /**
  * Charset
  */
-	$nls['charset']['ru_RU.cp1251'] = 	'cp1251';
+	$nls['charset']['ru_RU.cp1251'] = 	'Windows-1251';
 
 /**
  * phpNuke

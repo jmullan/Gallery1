@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2004-09-18 23:43+0200\n"
 "Last-Translator: Suktas <suktas_ AT users DOT sourceforge DOT net>\n"
 "Language-Team: Vilius Ðumskas <vilius AT lnk DOT lt>\n"
@@ -491,34 +491,39 @@ msgstr "Titulinë nuotrauka albumui:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Savininkas:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Ei!"
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s kadangi jo URL nëra unikalus!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Pervadinti ðá albumà"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Paskutiná kartà keistas %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Paskutiná kartà keistas %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
@@ -526,12 +531,12 @@ msgstr[0] "Ðiame albume yra 1 elementas"
 msgstr[1] "Ðiame albume yra %d elementai"
 msgstr[2] "Ðiame albume yra %d elementø"
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Ðis albumas buvo perþiûrëtas %s nuo %s."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -539,15 +544,15 @@ msgstr[0] "1 kartà"
 msgstr[1] "%d kartus"
 msgstr[2] "%d kartø"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 kartø"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "pradëti nuo nulio"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Yra komentarø."
 
@@ -776,17 +781,17 @@ msgstr "Reikalaujamas indeksas [%d] netelpa á ribas [%d]"
 msgid "Processing image %d..."
 msgstr "Apdoroju %d nuotraukà..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Paðto problema: praleidþiu %s (UID %s), nes el. paðto adreso %s nëra."
@@ -2304,85 +2309,80 @@ msgstr "Pagal populiarumà"
 msgid "Show the add comment link"
 msgstr "raðyti komentarà"
 
-#: ../includes/stats/stats.inc.php:110
-#, fuzzy
-msgid "Show the add vote link"
-msgstr "raðyti komentarà"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 #, fuzzy
 msgid "Show the album owners"
 msgstr "Ðiame albume yra %s %s"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 #, fuzzy
 msgid "Show timing basic information"
 msgstr "Tik Bazinë informacija"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 #, fuzzy
 msgid "Thumb size in pixels"
 msgstr "Maksimalus ilgis pikseliais"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 #, fuzzy
 msgid "Above the comments"
 msgstr "þiûrëti&nbsp;komentarus"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 #, fuzzy
 msgid "Above the stats"
 msgstr "þiûrëti&nbsp;komentarus"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 #, fuzzy
 msgid "Below the comments"
 msgstr "iðtrinti komentarà"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 #, fuzzy
 msgid "Position of the add vote and add comment links"
 msgstr "raðyti komentarà"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 #, fuzzy
 msgid "Filter by year"
 msgstr "Nuotraukos padarymo data"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 #, fuzzy
 msgid "Filter by month"
 msgstr "Nuotraukos padarymo data"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 #, fuzzy
 msgid "Filter by day"
 msgstr "Nuotraukos padarymo data"
@@ -3005,7 +3005,7 @@ msgstr "Vartotojo kûrimas"
 msgid "Create multiple new users from a file."
 msgstr "Sukurti keletà naujø vartotojø ið failo."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Sukurti"
 
@@ -3397,8 +3397,8 @@ msgid "******* Page %s *******"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Sukurti %s vartotojà."
 
 #: ../register.php:45
@@ -3438,6 +3438,11 @@ msgstr "Laiðkas neiðsiøstas. Susisiekite su ðios Galerijos administratoriumi."
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Visa jûsø prisijungimo informacija bus iðsiøsta el. paðto adresu, kurá áraðysite."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Naujo slaptaþodio praðymas"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4965,6 +4970,10 @@ msgstr "Nëra elementø á kuriuos galima bûtø ákelti vandens þenklus."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Show the add vote link"
+#~ msgstr "raðyti komentarà"
 
 #, fuzzy
 #~ msgid "Move Album!"

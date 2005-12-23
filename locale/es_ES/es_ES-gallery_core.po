@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-07-15 18:49+0100\n"
 "Last-Translator: jact <jachavar AT terra DOT es>\n"
 "Language-Team: spanish <jachavar AT terra DOT es>\n"
@@ -473,61 +473,66 @@ msgstr "Destacar para álbum:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Propietario: "
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "¡Oiga!"
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "¡%s este álbum para que la URL no sea tan genérica!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Renombrar este álbum"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Última modificación: %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Última modificación: %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Este álbum contiene un elemento."
 msgstr[1] "Este álbum contiene %d elementos."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Este álbum ha sido visto %s desde %s."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 vez"
 msgstr[1] "%d veces"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 veces"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "contador a cero"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Comentarios para este elemento."
 
@@ -754,17 +759,17 @@ msgstr "El índice solicitado [%d] está fuera de rango [%d]"
 msgid "Processing image %d..."
 msgstr "Procesando imagen %d..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Error obteniendo datos EXIF. Estado esperado 0, se produjo %s."
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Error en el correo: saltando %s (UID %s) porque la dirección de correo %s no es válida."
@@ -2237,75 +2242,71 @@ msgstr "Mostrar número de visitas"
 msgid "Show the add comment link"
 msgstr "Mostrar enlace para añadir comentario"
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "Mostrar enlace para sumar voto"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "Mostrar los propietarios del álbum"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr "Mostrar información básica de cronometraje"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "Invierte el orden de la ordenación - ver arriba"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "Tamaño de la miniatura en pixels"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "Controla el número de fotos mostradas en una página"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Control para poner el máximo número de fotos listadas, -1 para listar todas"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr "Usar formato tabla"
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr "Controla el número de filas a visualizar en modo tabla"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr "Controla el número de columnas a visualizar en modo tabla"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "Arriba los comentarios"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "En la línea de la leyenda"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Arriba las estadísticas"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "Debajo los comentarios"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "Posición de los enlaces para votar y añadir comentarios"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Filtrar por año"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "Filtrar por mes"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Filtrar por día"
 
@@ -2919,7 +2920,7 @@ msgstr "Crear usuarios"
 msgid "Create multiple new users from a file."
 msgstr "Cree múltiples nuevos usuarios desde un fichero."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Crear"
 
@@ -3304,8 +3305,8 @@ msgid "******* Page %s *******"
 msgstr "******* Página %s *******"
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Crear usuario para %s."
 
 #: ../register.php:45
@@ -3345,6 +3346,11 @@ msgstr "El correo no pudo ser enviado. Contacte con el administrador de la galer
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "La información sobre su cuenta será enviada a la dirección de correo que proporcione."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Solicitud de nueva contraseña"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4791,6 +4797,9 @@ msgstr "No hay elementos para marcar."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Show the add vote link"
+#~ msgstr "Mostrar enlace para sumar voto"
 
 #, fuzzy
 #~ msgid "Move Album!"

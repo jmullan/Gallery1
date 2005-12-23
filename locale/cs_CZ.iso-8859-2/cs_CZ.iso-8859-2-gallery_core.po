@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-02-12 17:01+0100\n"
 "Last-Translator: Misa <misa AT bayercz DOT com>\n"
 "Language-Team: CZ_Czech <misa AT bayercz DOT com>\n"
@@ -482,34 +482,39 @@ msgstr "Náhled alba:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Vlastník:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Hej!"
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s, aby jeho URL nebylo tak o¹klivé!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Pøejmenuj toto album"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Naposledy zmìnìno %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Naposledy zmìnìno %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
@@ -517,12 +522,12 @@ msgstr[0] "Toto album obsahuje jednu polo¾ku."
 msgstr[1] "Toto album obsahuje %d polo¾ky."
 msgstr[2] "Toto album obsahuje %d polo¾ek."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Toto album bylo zbrazeno %s od %s."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -530,15 +535,15 @@ msgstr[0] "jednou"
 msgstr[1] "%d krát"
 msgstr[2] "%d krát"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0krát"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "vynuluj poèítadlo"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Komentáøe k této polo¾ce"
 
@@ -767,17 +772,17 @@ msgstr ""
 msgid "Processing image %d..."
 msgstr "Zpracovávám fotku %d"
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problém s e-mailem: pøeskakuji %s (UID %s) proto¾e e-mailová  addresa %s není platná."
@@ -2279,84 +2284,79 @@ msgstr "Podle poètu náv¹tìv"
 msgid "Show the add comment link"
 msgstr "pøidat komentáø"
 
-#: ../includes/stats/stats.inc.php:110
-#, fuzzy
-msgid "Show the add vote link"
-msgstr "pøidat komentáø"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 #, fuzzy
 msgid "Show the album owners"
 msgstr "%s v tomto albu na %s"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 #, fuzzy
 msgid "Thumb size in pixels"
 msgstr "Maximální délka strany v bodech"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 msgid "Controls the number of rows to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 msgid "Controls the number of columns to display in grid mode"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 #, fuzzy
 msgid "Above the comments"
 msgstr "zobraz komentáøe"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 #, fuzzy
 msgid "Above the stats"
 msgstr "zobraz komentáøe"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 #, fuzzy
 msgid "Below the comments"
 msgstr "smazat komentáø"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 #, fuzzy
 msgid "Position of the add vote and add comment links"
 msgstr "pøidat komentáø"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 #, fuzzy
 msgid "Filter by year"
 msgstr "Den "
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 #, fuzzy
 msgid "Filter by month"
 msgstr "Den "
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 #, fuzzy
 msgid "Filter by day"
 msgstr "Den "
@@ -2975,7 +2975,7 @@ msgstr "Vytvoøit u¾ivatele"
 msgid "Create multiple new users from a file."
 msgstr "Hromadné vytvoøení nových u¾ivatelù ze souboru."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Vytvoøit"
 
@@ -3367,8 +3367,8 @@ msgid "******* Page %s *******"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Vytvoøit u¾ivatele pro %s."
 
 #: ../register.php:45
@@ -3408,6 +3408,11 @@ msgstr "E-mail nemohl být odeslán. Prosím, kontaktujte Gallery administrátora, a
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Informace o va¹em úètu budou zaslány na va¹í e-mailovou adresu."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Po¾adavek na nové heslo"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4883,6 +4888,10 @@ msgstr "®ádné polo¾ky pro aplikaci vodoznaku."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Show the add vote link"
+#~ msgstr "pøidat komentáø"
 
 #, fuzzy
 #~ msgid "Move Album!"

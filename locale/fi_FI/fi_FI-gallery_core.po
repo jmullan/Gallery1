@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2004-04-07 09:49+0200\n"
 "Last-Translator: Olli Salo <osalo AT orssi DOT jyu DOT fi>\n"
 "Language-Team: Finnish <osalo AT orssi DOT jyu DOT fi>\n"
@@ -475,61 +475,66 @@ msgstr "Esikatselukuva albumille:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Omistaja:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "Osoite:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Hei!"
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s jotta URL olisi j‰rkev‰mpi!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Nime&auml; t‰m‰ albumi uudelleen"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Muokattu viimeksi %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Muokattu viimeksi %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "T‰m‰ albumi sis‰lt‰‰ 1 kohteen."
 msgstr[1] "T‰m‰ albumi sis‰lt‰‰ %d kohdetta."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "T&auml;t&auml; albumia on katsottu %s %s l&auml;htien."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 kerran"
 msgstr[1] "%d kertaa"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 kertaa"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "nollaa laskuri"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "T‰ll‰ kohteella on kommentteja."
 
@@ -756,17 +761,17 @@ msgstr "Haettu indeksi [%d] rajojen ulkopuolella [%d]"
 msgid "Processing image %d..."
 msgstr "K&auml;sitell&auml;&auml;n valokuvaa %d..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "S‰hkˆpostiongelma: hyp‰t‰‰n %s (UID %s) yli, koska s‰hkˆpostiosoite %s ei ole k‰yp‰."
@@ -2245,77 +2250,73 @@ msgstr "N‰yt‰ katselukertojen m‰‰r‰"
 msgid "Show the add comment link"
 msgstr "N‰yt‰ lis‰‰ kommentti -linkki"
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "N‰yt‰ lis‰‰ ‰‰ni -linkki"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "N‰yt‰ albumin omistajat"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr "N‰yt‰ ajoituksen perustiedot"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "K‰‰nnetty lajitteluj‰rjestys - katso edellinen"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "Esikatselukuvan koko kuvapistein‰"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "Kontrolloi yhdell‰ sivulla n‰ytett‰vien kuvien m‰‰r‰‰"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Kontrolloi listattavien kuvien maksimim‰‰r‰‰, -1 kaikille"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 #, fuzzy
 msgid "Controls the number of rows to display in grid mode"
 msgstr "Kontrolloi yhdell‰ sivulla n‰ytett‰vien kuvien m‰‰r‰‰"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 #, fuzzy
 msgid "Controls the number of columns to display in grid mode"
 msgstr "Kontrolloi yhdell‰ sivulla n‰ytett‰vien kuvien m‰‰r‰‰"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "Kommenttien yl‰puolella"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "Kuvatekstirivill‰"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Tilastojen yl‰puolella"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "Kommentien alapuolella"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "Lis‰‰ ‰‰ni- ja lis‰‰ kommentti -linkkien sijainti"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Suodata vuoden mukaan"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "Suodata kuukauden mukaan"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Suodata p‰iv‰n mukaan"
 
@@ -2931,7 +2932,7 @@ msgstr "Luo k‰ytt‰ji‰"
 msgid "Create multiple new users from a file."
 msgstr "Luo monta k‰ytt‰j‰tunnusta tiedostosta."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Luo"
 
@@ -3321,8 +3322,8 @@ msgid "******* Page %s *******"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Tee %s:lle k‰ytt‰j‰tunnus"
 
 #: ../register.php:45
@@ -3362,6 +3363,11 @@ msgstr "S‰hkˆpostia ei l‰hetetty.  Ota yhteys gallerian yll‰pit‰j‰‰n, jos haluat
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Tunnuksesi tiedot l‰hetet‰‰n s‰hkˆpostissa antaamaasi osoitteeseen."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Uusi salasanakysely"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4813,6 +4819,9 @@ msgstr "Ei kohteita, joita voitaisiin vesileimata"
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Show the add vote link"
+#~ msgstr "N‰yt‰ lis‰‰ ‰‰ni -linkki"
 
 #, fuzzy
 #~ msgid "Move Album!"

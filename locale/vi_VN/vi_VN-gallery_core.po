@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-19 13:24+0100\n"
+"POT-Creation-Date: 2005-12-23 19:52+0100\n"
 "PO-Revision-Date: 2005-05-17 12:30+0300\n"
 "Last-Translator: A.L.T <leanh AT airland DOT kiev DOT ua>\n"
 "Language-Team: AIRLAND <admin AT airland DOT kiev DOT ua>\n"
@@ -474,61 +474,66 @@ msgstr "Đánh dấu cho album:"
 msgid "Download as Archive"
 msgstr ""
 
-#: ../albums.php:380
+#: ../albums.php:386
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "Người sở hữu:"
 
-#: ../albums.php:385
+#: ../albums.php:394
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "Hey!"
 msgstr "Lưu ý!"
 
-#: ../albums.php:397
+#: ../albums.php:406
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s để URL không bị trùng lặp!"
 
-#: ../albums.php:398
+#: ../albums.php:407
 msgid "Rename this album"
 msgstr "Sửa tên album này"
 
-#: ../albums.php:409
+#: ../albums.php:423
+#, fuzzy, php-format
+msgid "Created on %s, last changed on %s."
+msgstr "Thay đổi cuối vào %s."
+
+#: ../albums.php:426
 #, php-format
 msgid "Last changed on %s."
 msgstr "Thay đổi cuối vào %s."
 
-#: ../albums.php:412
+#: ../albums.php:435
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Album này bao gồm một mục/ảnh."
 msgstr[1] "Album này bao gồm %d mục/ảnh."
 
-#: ../albums.php:417
+#: ../albums.php:444
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Album này đã được xem %s kể từ %s."
 
-#: ../albums.php:418 ../view_album.php:835
+#: ../albums.php:445 ../view_album.php:835
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 lần"
 msgstr[1] "%d lần"
 
-#: ../albums.php:418
+#: ../albums.php:445
 msgid "0 times"
 msgstr "0 lần"
 
-#: ../albums.php:424
+#: ../albums.php:451
 msgid "reset counter"
 msgstr "xóa bộ đếm"
 
-#: ../albums.php:463 ../view_album.php:931
+#: ../albums.php:496 ../view_album.php:931
 msgid "Comments available for this item."
 msgstr "Có thể ghi bình luận cho mục/ảnh này."
 
@@ -755,17 +760,17 @@ msgstr "Yêu cầu index [%d] vượt quá [%d]"
 msgid "Processing image %d..."
 msgstr "Sử lý ảnh %d..."
 
-#: ../classes/Album.php:2069
+#: ../classes/Album.php:2070
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2577
+#: ../classes/Album.php:2593
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2740
+#: ../classes/Album.php:2756
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Vấn đề với email: bỏ qua %s (UID %s) bởi vì địa chỉ email %s là không hợp lệ."
@@ -2242,77 +2247,73 @@ msgstr "Hiển thị số lần xem"
 msgid "Show the add comment link"
 msgstr "Hiển thị liên kết thêm lời bình"
 
-#: ../includes/stats/stats.inc.php:110
-msgid "Show the add vote link"
-msgstr "Hiển thị liên kết thêm đánh giá"
-
-#: ../includes/stats/stats.inc.php:113
+#: ../includes/stats/stats.inc.php:114
 msgid "Show the album owners"
 msgstr "Hiển thị người sở hữu album"
 
-#: ../includes/stats/stats.inc.php:116
+#: ../includes/stats/stats.inc.php:117
 msgid "Show timing basic information"
 msgstr "Hiển thị thông tin thời gian cơ bản"
 
-#: ../includes/stats/stats.inc.php:122
+#: ../includes/stats/stats.inc.php:123
 msgid "Reverses sort order - see above"
 msgstr "Đảo chiều sắp xếp - xem bên trên"
 
-#: ../includes/stats/stats.inc.php:125
+#: ../includes/stats/stats.inc.php:126
 msgid "Thumb size in pixels"
 msgstr "Cỡ ảnh thumb bằng pixel"
 
-#: ../includes/stats/stats.inc.php:128
+#: ../includes/stats/stats.inc.php:129
 msgid "Controls the number of photos displayed on one page"
 msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
 
-#: ../includes/stats/stats.inc.php:131
+#: ../includes/stats/stats.inc.php:132
 msgid "Controls the maximum number of photos listed, -1 for all"
 msgstr "Kiểm soát số lượng tối đa ảnh liệt kê, -1 cho tất cả"
 
-#: ../includes/stats/stats.inc.php:134
+#: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
 msgstr ""
 
-#: ../includes/stats/stats.inc.php:137
+#: ../includes/stats/stats.inc.php:138
 #, fuzzy
 msgid "Controls the number of rows to display in grid mode"
 msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
 
-#: ../includes/stats/stats.inc.php:140
+#: ../includes/stats/stats.inc.php:141
 #, fuzzy
 msgid "Controls the number of columns to display in grid mode"
 msgstr "Kiểm soát số lượng ảnh trình bày trên một trang"
 
-#: ../includes/stats/stats.inc.php:142
+#: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
 msgstr "Trên bình luận"
 
-#: ../includes/stats/stats.inc.php:143
+#: ../includes/stats/stats.inc.php:144
 msgid "In the caption line"
 msgstr "Trong dòng chú thích"
 
-#: ../includes/stats/stats.inc.php:144
+#: ../includes/stats/stats.inc.php:145
 msgid "Above the stats"
 msgstr "Trên trạng thái"
 
-#: ../includes/stats/stats.inc.php:145
+#: ../includes/stats/stats.inc.php:146
 msgid "Below the comments"
 msgstr "Dưới bình luận"
 
-#: ../includes/stats/stats.inc.php:146
+#: ../includes/stats/stats.inc.php:147
 msgid "Position of the add vote and add comment links"
 msgstr "Vị trí của liên kết thêm đánh giá và thêm lời bình"
 
-#: ../includes/stats/stats.inc.php:151
+#: ../includes/stats/stats.inc.php:152
 msgid "Filter by year"
 msgstr "Lọc theo năm"
 
-#: ../includes/stats/stats.inc.php:154
+#: ../includes/stats/stats.inc.php:155
 msgid "Filter by month"
 msgstr "Lọc theo tháng"
 
-#: ../includes/stats/stats.inc.php:157
+#: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
 msgstr "Lọc theo ngày"
 
@@ -2929,7 +2930,7 @@ msgstr "Tạo thành viên"
 msgid "Create multiple new users from a file."
 msgstr "Tạo nhiều thành viên mới từ một file."
 
-#: ../multi_create_user.php:198 ../register.php:137
+#: ../multi_create_user.php:198
 msgid "Create"
 msgstr "Tạo"
 
@@ -3319,8 +3320,8 @@ msgid "******* Page %s *******"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
-#, php-format
-msgid "Create User for %s."
+#, fuzzy, php-format
+msgid "Register new user for '%s'"
 msgstr "Tạo thành viên cho %s."
 
 #: ../register.php:45
@@ -3360,6 +3361,11 @@ msgstr "Không gửi được email.  Xin hãy liên hệ quản trị thư vi�
 #: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Thông tin tài khoản của bạn sẽ được gửi tới địa chỉ email bạn cung cấp."
+
+#: ../register.php:137
+#, fuzzy
+msgid "Send request"
+msgstr "Yêu cầu gửi mật khẩu mới"
 
 #: ../rename_album.php:95
 msgid "There is already an album with that name!"
@@ -4811,6 +4817,9 @@ msgstr "Không có mục/ảnh nào để chèn."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Show the add vote link"
+#~ msgstr "Hiển thị liên kết thêm đánh giá"
 
 #, fuzzy
 #~ msgid "Move Album!"
