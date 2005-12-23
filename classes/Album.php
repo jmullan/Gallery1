@@ -2065,9 +2065,10 @@ class Album {
 
         if ($status != 0) {
             // An error occurred.
-            return array("junk1" => "",
-            "Error" => sprintf(_("Error getting EXIF data. Expected Status 0, got %s."),$status),
-            "status" => $status);
+            return array(
+            	'junk1' => '',
+            	'Error' => sprintf(_("Error getting EXIF data. Expected Status 0, got %s."),$status),
+            	'status' => $status);
         }
 
         if ($needToSave) {
@@ -2079,6 +2080,21 @@ class Album {
         return $exif;
     }
 
+    function getCreationDate() {
+    	global $gallery;
+    	
+    	if(!empty($this->fields['creation_date'])) {
+        	$creationDate = $this->fields['creation_date'];
+    	}
+    	
+        if (isset($creationDate)) {
+        	return strftime($gallery->app->dateString,$creationDate);
+        }
+        else {
+        	return false;
+        }
+    }
+    
     function getLastModificationDate() {
         global $gallery;
         $dir = $this->getAlbumDir();

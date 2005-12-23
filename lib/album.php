@@ -83,8 +83,8 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 	}
 
 	$gallery->album->setOwner($gallery->user->getUid());
-    $gallery->album->fields['creation_date']  = time();
-    
+	$gallery->album->fields['creation_date']  = time();
+
 	/* if this is a nested album, set nested parameters */
 	if (!empty($parentName)) {
 		$gallery->album->fields['parentAlbumName'] = $parentName;

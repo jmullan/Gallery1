@@ -62,14 +62,14 @@ if (isset($allowChange["password"]) && $allowChange["password"] === true) {
 if ($allowChange["fullname"] === true) { ?>
 <tr>
 	<td><?php echo _("Full Name") ?></td>
-	<td><input name="fullname" type="text" value="<?php echo $fullname ?>"></td>
+	<td><input name="fullname" type="text" size="25" value="<?php echo $fullname ?>"></td>
 </tr>
 <?php echo errorRow("fullname");
 }
 if ($allowChange["email"] === true) { ?>
 <tr>
 	<td><?php echo _("Email Address") ?></td>
-	<td><input name="email" type="text" value="<?php echo $email ?>"></td>
+	<td><input name="email" type="text" size="35" value="<?php echo $email ?>"></td>
 </tr>
 <?php echo errorRow("email");
 }

@@ -34,11 +34,11 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></title>
+  <title><?php echo sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(_("Create User for %s."), $gallery->app->galleryTitle) ?></div>
+<div class="popuphead"><?php echo sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle) ?></div>
   <div class="popup" align="center">
 <?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
@@ -134,7 +134,7 @@ include(dirname(__FILE__) . '/html/userData.inc');
 <?php echo _("Your account information will be sent to the email address you provide.") ?>
 <br><br>
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value ='create'">
+<input type="submit" name="create" value="<?php echo _("Send request") ?>" onclick="usercreate_form.formaction.value ='create'">
 <input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <script language="javascript1.2" type="text/JavaScript">

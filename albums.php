@@ -368,19 +368,28 @@ for ($i = $start; $i <= $end; $i++) {
   <?php
 	include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
 
+	/*
+	* Description
+	*/
 	$description = editField($gallery->album, "description") ;
 	if (!empty($description)) {
 		echo "\n<div class=\"desc\">";
 		echo "\n\t$description";
 		echo "\n</div>";
-  	}
+	}
 
+	/*
+	* Owner
+	*/
 	if (strcmp($gallery->app->showOwners, "no")) {
 		echo "\n<div class=\"desc\">";
 		echo sprintf(gTranslate('core', "Owner: %s"),showOwner($owner));
 		echo '</div>';
 	}
 
+	/*
+	* Url (only for admins and owner)
+	*/
 	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
 		echo gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
 		if (!$gallery->session->offline) {
@@ -393,49 +402,73 @@ for ($i = $start; $i <= $end; $i++) {
 		if (ereg("album[[:digit:]]+$", $albumURL)) {
 			if (!$gallery->session->offline) {
 				echo '<br><span class="error">'.
-				  gTranslate('core', "Hey!") .
-				  sprintf(gTranslate('core', "%s so that the URL is not so generic!"),
-					popup_link(gTranslate('core', "Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
+				gTranslate('core', "Hey!") .
+				sprintf(gTranslate('core', "%s so that the URL is not so generic!"),
+				popup_link(gTranslate('core', "Rename this album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",0,0,500,500,"error"));
 				echo '</span>';
 			}
 		}
 
 	}
-	?>
 
-  <br>
-  <span class="fineprint">
-   <?php
-	echo sprintf(gTranslate('core', "Last changed on %s."), $gallery->album->getLastModificationDate() );
+	echo "\n<br><span class=\"fineprint\">";
+
+	
+	/*
+	* Created / Last Changed
+	*/
+	$creationDate = $gallery->album->getCreationDate();
+	$lastModifiedDate = $gallery->album->getLastModificationDate();
+	if($creationDate) {
+		printf(_("Created on %s, last changed on %s."), $creationDate, $lastModifiedDate);
+	}
+	else {
+		printf(gTranslate('core', "Last changed on %s."), $lastModifiedDate);
+	}
+	
+	/*
+	* Amount of items
+	*/
+	echo ' '; // Need a space between these two text blocks
 	list($visibleItems) = $gallery->album->numItems($gallery->user, true);
-	echo " "; // Need a space between these two text blocks
-	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
-	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
-?>
-   <br><?php
-	$clickCount = $gallery->album->getClicks();
-	echo sprintf(gTranslate('core', "This album has been viewed %s since %s."),
-		gTranslate('core', "1 time", "%d times", $clickCount, gTranslate('core', "0 times")),
-		$gallery->album->getClicksDate());
-}
-$albumName = $gallery->album->fields["name"];
-if ($gallery->user->canWriteToAlbum($gallery->album) &&
-   (!($gallery->album->fields["display_clicks"] == "no"))) {
-	echo " ".popup_link("[" . gTranslate('core', "reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
-}
-if($gallery->app->comments_enabled == 'yes') {
-	// if comments_indication are "albums" or "both"
-	switch ($gallery->app->comments_indication) {
-	case "albums":
-        case "both":
-		$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
-		print lastCommentString($lastCommentDate, $displayCommentLegend);
-	} // end switch
-}
-?>
 
-  </span>
-<?php
+	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
+	
+	/*
+	* Click counter + reset for it
+	*/
+	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
+		$clickCount = $gallery->album->getClicks();
+		
+		echo "\n<br>";
+		printf(gTranslate('core', "This album has been viewed %s since %s."),
+		  gTranslate('core', "1 time", "%d times", $clickCount, gTranslate('core', "0 times")),
+		  $gallery->album->getClicksDate());
+	}
+	$albumName = $gallery->album->fields["name"];
+	if ($gallery->user->canWriteToAlbum($gallery->album) &&
+	(!($gallery->album->fields["display_clicks"] == "no"))) {
+		echo " ".popup_link("[" . gTranslate('core', "reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
+	}
+	
+	/*
+	* Comment Indicator
+	*/
+	if($gallery->app->comments_enabled == 'yes') {
+		// if comments_indication are "albums" or "both"
+		switch ($gallery->app->comments_indication) {
+			case "albums":
+			case "both":
+			$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
+			print lastCommentString($lastCommentDate, $displayCommentLegend);
+		} // end switch
+	}
+
+	echo "\n</span>";
+
+	// End Album Infos
+ 
+ // Start tree
     if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0)
 	if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') { ?>
   <div style="width: 100%;">
