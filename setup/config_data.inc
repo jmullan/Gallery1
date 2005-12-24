@@ -1378,7 +1378,7 @@ $constants = array_merge($constants, array(
 		'value' => 'yes',
 	),
 	'rssDCDate' => array(
-	'prompt' => gTranslate('config',"Use dc:date"),
+		'prompt' => gTranslate('config',"Use dc:date"),
 		'desc' => gTranslate('config',"(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."),
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
@@ -1468,7 +1468,6 @@ $defaults = array(
 	'group_appearance_end' => array (
 		'type' => 'group_end',
 	),
-	
 	'group3' => array (
 		'type' => 'group_start',
 		'name' => 'group_display',
@@ -1581,7 +1580,10 @@ $defaults = array(
 		'type' => 'group_end',
 	),
 	'group4' => array (
-		'title' => gTranslate('config',"Options")
+		'type' => 'group_start',
+		'name' => 'group_options2',
+		'title' => gTranslate('config',"Options"),
+		'default' => 'none',
 	),
 	/* old .. needs to be fixed */
 	'print_photos' => array(
