@@ -138,8 +138,8 @@ if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
     if ($gallery->user->isLoggedIn()) {
         $iconText = getIconText('exit.gif', _("logout"));
         $iconElements[] = '<a href="'.
-        doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-        '">'. $iconText .'</a>';
+          doCommand("logout", array(), "view_album.php", array("page" => $page)) .
+          '">'. $iconText .'</a>';
     } else {
         $iconText = getIconText('identity.gif', _("login"));
         $iconElements[] = popup_link($iconText, "login.php", false);
@@ -153,13 +153,18 @@ $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+$upArrowURL = gImage('nav_home.gif', _("navigate UP"));
 
 foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-    $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-    $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+    $breadcrumb["text"][] = $navAlbum['prefixText'] .': '.
+      galleryLink($navAlbum['url'], $navAlbum['title'] .'&nbsp;'. $upArrowURL, array('class' => 'bread'));
 }
+
+$breadcrumb["text"][] = galleryLink(
+	makeAlbumUrl($gallery->session->albumName, $id),
+	  _("Original photo") .'&nbsp;'. $upArrowURL,
+	  array('class' => 'bread')
+	);
 
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
 

@@ -81,31 +81,35 @@ function insertFormJSLinks($elementName) {
 */
 function selectOptions($album, $field, $opts) {
     foreach ($opts as $key => $value) {
-        $sel = "";
+        $sel = '';
         if (isset($album->fields[$field]) && !strcmp($key, $album->fields[$field])) {
-            $sel = "selected";
+            $sel = 'selected';
         }
         echo "\n\t<option value=\"$key\" $sel>$value</option>";
     }
     echo "\n";
 }
 
+function generateAttrs($attrList) {
+	$attrs = '';
+
+	if(!empty($attrList) && is_array($attrList)) {
+		foreach ($attrList as $key => $value) {
+			if ($value == NULL) {
+				$attrs .= " $key";
+			}
+			else {
+				$attrs .= " $key=\"$value\"";
+			}
+		}
+	}
+	
+	return $attrs;
+}
+
 function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
-    $attrs = '';
     $crlf = ($prettyPrinting) ? "\n\t" : '';
-
-    if (!empty($attrList)) {
-        $attrs = ' ';
-        foreach ($attrList as $key => $value) {
-            if ($value == NULL) {
-                $attrs .= " $key";
-            }
-            else {
-                $attrs .= " $key=\"$value\"";
-            }
-        }
-    }
-
+    $attrs = generateAttrs($attrList);
     $buf = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
     if(!empty($options)) {
@@ -128,21 +132,14 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 }
 
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-    $attrs = '';
     $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
 
     if (!isset($attrList['size'])) {
         $attrList['size'] = 1;
     }
 
-    if (!empty($attrList)) {
-        foreach ($attrList as $attr => $value) {
-            if ($value != NULL) {
-                $attrs .= " $attr=\"$value\"";
-            }
-        }
-    }
-
+    $attrs = generateAttrs($attrList);
+    
     $buf = "<select name=\"$name\" $attrs>$crlf";
 
     if(!empty($options)) {
@@ -180,22 +177,19 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-	'method' => 'POST',
-	'name'	 => 'g1_form'
+		'method' => 'POST',
+		'name'	 => 'g1_form'
     );
 
     foreach($defaults as $attr => $value) {
-	if(!isset($attrList[$attr])) {
-	    $attrList[$attr] = $value;
-	}
-    }
-    
-    $attrs = '';
-    foreach ($attrList as $key => $value) {
-        $attrs .= " $key=\"$value\"";
+    	if(!isset($attrList[$attr])) {
+    		$attrList[$attr] = $value;
+    	}
     }
 
-    $form = "\n<form action=\"$target\" $attrs>\n";
+    $attrs = generateAttrs($attrList);
+    
+    $form = "\n<form action=\"$target\"$attrs>\n";
 
     $args = split("&", $tmp);
     foreach ($args as $arg) {
@@ -215,7 +209,6 @@ function formVar($name) {
         return getRequestVar($name);
     }
 }
-
 
 function emptyFormVar($name) {
     return !isset($_REQUEST[$name]);

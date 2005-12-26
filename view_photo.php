@@ -500,9 +500,13 @@ function doPrintService(input) {
 }
 
 if(sizeof($albumItemOptions) > 2 && !$useIcons) {
-    $iconElements[] =  drawSelect2("itemOptions", $albumItemOptions, array(
-        'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
-        'class' => 'adminform')
+    $iconElements[] =  drawSelect2(
+    	'itemOptions',
+    	$albumItemOptions,
+    	array(
+        	'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
+        	'class' => 'adminform'
+        )
     );
 }
 
@@ -588,7 +592,7 @@ if (!$gallery->album->isMovie($id)) {
     if(!$do_fullOnly  && ($full || $fitToWindow || $gallery->album->isResized($index))) {
         switch(true) {
             case $fitToWindow:
-                $href="";
+                $href = '';
                 break;
             case $full:
                 $href = makeAlbumUrl($gallery->session->albumName, $id);
@@ -608,11 +612,8 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
     $frame = 'none';
 }
 
-echo showImageMap($index);
-
-$allImageAreas = $gallery->album->getAllImageAreas($index);
-
-if (!empty($allImageAreas)) {
+if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
+	echo showImageMap($index);
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
 }
 else {

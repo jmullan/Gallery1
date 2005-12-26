@@ -490,43 +490,40 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
         print "<table>\n";
         $nv_pairs=$gallery->album->getVoteNVPairs();
         foreach ($my_choices as $key => $id) {
-            print "<tr><td>".
-            $nv_pairs[$key]["name"].
-            ":</td>\n";
-            $index=$gallery->album->getIndexByVotingId($id);
+            print "<tr><td>". $nv_pairs[$key]["name"] .":</td>\n";
+            $index = $gallery->album->getIndexByVotingId($id);
             if ($gallery->album->isAlbum($index)) {
                 $albumName = $gallery->album->getAlbumName($index);
                 print "<td><a href=\n".
-                makeAlbumUrl($albumName). ">\n";
+                  makeAlbumUrl($albumName). ">\n";
                 $myAlbum = new Album();
                 $myAlbum->load($albumName);
                 print sprintf(_("Album: %s"), $myAlbum->fields['title']);
-                print  "</a></td></tr>\n";
+                print "</a></td></tr>\n";
             } else {
                 print "<td><a href=\n".
-                makeAlbumUrl($gallery->session->albumName, $id);
-                print  ">\n";
+                  makeAlbumUrl($gallery->session->albumName, $id) . ">\n";
                 $desc = $gallery->album->getCaption($index);
-                if (trim($desc) == "") {
-                    $desc=$gallery->album->getPhotoId($index);
+                if (trim($desc) == '') {
+                    $desc = $gallery->album->getPhotoId($index);
                 }
-                print  $desc;
-                print  "</a></td></tr>\n";
+                print $desc;
+                print "</a></td></tr>\n";
             }
         }
         print "</table>\n";
     }
     echo '</div>';
 }
-$results=1;
+$results = 1;
 if ($gallery->album->getPollShowResults()) {
     echo '<div align="left" class="vapoll">';
     list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
     print $buf;
     if ($results && testRequirement('isAdminOrAlbumOwner')) {
         print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
-        array("set_albumName" => $gallery->session->albumName)).
-        '">' ._("See full poll results") . '</a><br>';
+          array("set_albumName" => $gallery->session->albumName)).
+          '">' ._("See full poll results") . '</a><br>';
     }
     echo '</div>';
 }
@@ -550,7 +547,7 @@ echo makeFormIntro('view_album.php',
 if (canVote()) {
     echo '<div align="left" class="vapoll">';
     $nv_pairs=$gallery->album->getVoteNVPairs();
-    if ($gallery->album->getPollScale()==1) {
+    if ($gallery->album->getPollScale() == 1) {
         $options = $nv_pairs[0]["name"];
     }
     else {
@@ -560,9 +557,9 @@ if (canVote()) {
          */
         $options = '';
         for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
-            $options .= $nv_pairs[$count]["name"]._(", ");
+            $options .= $nv_pairs[$count]["name"] ._(", ");
         }
-        $options .= $nv_pairs[$count++]["name"]._(" or ");
+        $options .= $nv_pairs[$count++]["name"] ._(" or ");
         $options .= $nv_pairs[$count]["name"];
     }
     print '<span class="attention">';
@@ -635,8 +632,6 @@ if ($numPhotos) {
             $gallery->html_wrap['borderColor'] = $bordercolor;
             $borderwidth= $gallery->html_wrap['borderWidth'] = $borderwidth;
             $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
-
-
 
             if ($gallery->album->isAlbum($i)) {
                 $scaleTo = 0; //$gallery->album->fields["thumb_size"];
@@ -770,16 +765,16 @@ if ($numPhotos) {
 
             // put form outside caption to compress lines
             if (!$gallery->session->offline &&
-            (($gallery->user->canDeleteFromAlbum($gallery->album)) ||
-            ($gallery->user->canWriteToAlbum($gallery->album)) ||
-            ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
-            (($gallery->album->getItemOwnerModify() || $gallery->album->getItemOwnerDelete()) &&
-            ($gallery->album->isItemOwner($gallery->user->getUid(), $i) ||
-            (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum))))))
+              (($gallery->user->canDeleteFromAlbum($gallery->album)) ||
+              ($gallery->user->canWriteToAlbum($gallery->album)) ||
+              ($gallery->user->canChangeTextOfAlbum($gallery->album)) ||
+              (($gallery->album->getItemOwnerModify() || $gallery->album->getItemOwnerDelete()) &&
+              ($gallery->album->isItemOwner($gallery->user->getUid(), $i) ||
+              (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum))))))
             {
-                $showAdminForm = 1;
+            	$showAdminForm = 1;
             } else {
-                $showAdminForm = 0;
+            	$showAdminForm = 0;
             }
 
             // Caption itself
@@ -798,67 +793,67 @@ if ($numPhotos) {
 		$buf = '';
 		$link = '';
 		if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
-		    $iconText = getIconText('compressed.png', _("Download as Archive"), 'yes');
-		    $link = popup_link($iconText, 'download.php?set_albumName='. $gallery->album->getAlbumName($i),false,false,500,500);
-                        }
-                $buf .="<center><b>";
-		$buf .= sprintf(_("Album: %s"), 
-			'<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
+			$iconText = getIconText('compressed.png', _("Download entire album as archive"), 'yes');
+			$link = popup_link($iconText, 'download.php?set_albumName='. $gallery->album->getAlbumName($i),false,false,500,500);
+		}
+		$buf .="<center><b>";
+		$buf .= sprintf(_("Album: %s"),
+		'<a class="modcaption" href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
 		$buf .= "</b> $link</center>";
 
-                if ($myDescription != _("No description") &&
-                $myDescription != "No description" &&
-                $myDescription != "") {
-                    $buf = $buf."<br>".$myDescription."";
-                }
-                echo $buf;
+		if ($myDescription != _("No description") &&
+		$myDescription != "No description" &&
+		$myDescription != "") {
+			$buf = $buf."<br>".$myDescription."";
+		}
+		echo $buf;
 
-                echo '<div class="fineprint" style="margin-top:3px">';
-                printf (_("Last change: %s"), $myAlbum->getLastModificationDate());
-                echo "\n<br>";
-                $visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
-                printf (_("Contains: %s"), gTranslate('core', "1 item", "%d items", $visItems)) . '. ';
-                // If comments indication for either albums or both
-                switch ($gallery->app->comments_indication) {
-                    case "albums":
-                    case "both":
-                    $lastCommentDate = $myAlbum->lastCommentDate(
-                    $gallery->app->comments_indication_verbose);
-                    if ($lastCommentDate > 0) {
-                        print lastCommentString($lastCommentDate, $displayCommentLegend);
-                    }
-                }
-                echo '</div>';
+		echo '<div class="fineprint" style="margin-top:3px">';
+		printf (_("Last change: %s"), $myAlbum->getLastModificationDate());
+		echo "\n<br>";
+		$visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
+		printf (_("Contains: %s"), gTranslate('core', "1 item", "%d items", $visItems)) . '. ';
+		// If comments indication for either albums or both
+		switch ($gallery->app->comments_indication) {
+			case "albums":
+			case "both":
+			$lastCommentDate = $myAlbum->lastCommentDate(
+			$gallery->app->comments_indication_verbose);
+			if ($lastCommentDate > 0) {
+				print lastCommentString($lastCommentDate, $displayCommentLegend);
+			}
+		}
+		echo '</div>';
 
-                if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
-                    echo '<div class="viewcounter" style="margin-top:3px">';
-                    printf (_("Viewed: %s"), gTranslate('core', "1 time", "%d times", $myAlbum->getClicks()));
-                    echo ".</div>";
-                }
+		if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
+			echo '<div class="viewcounter" style="margin-top:3px">';
+			printf (_("Viewed: %s"), gTranslate('core', "1 time", "%d times", $myAlbum->getClicks()));
+			echo ".</div>";
+		}
             }
             else {
-                echo "<div align=\"center\">\n";
-                echo nl2br($gallery->album->getCaption($i));
-                echo $gallery->album->getCaptionName($i) . ' ';
-                // indicate with * if we have a comment for a given photo
-                if ($gallery->user->canViewComments($gallery->album)
-                && $gallery->app->comments_enabled == 'yes') {
-                    // If comments indication for either photos or both
-                    switch ($gallery->app->comments_indication) {
-                        case "photos":
-                        case "both":
-                        $lastCommentDate = $gallery->album->itemLastCommentDate($i);
-                        print lastCommentString($lastCommentDate, $displayCommentLegend);
-                    }
+            	echo "<div align=\"center\">\n";
+            	echo nl2br($gallery->album->getCaption($i));
+            	echo $gallery->album->getCaptionName($i) . ' ';
+            	// indicate with * if we have a comment for a given photo
+            	if ($gallery->user->canViewComments($gallery->album)
+            	&& $gallery->app->comments_enabled == 'yes') {
+            		// If comments indication for either photos or both
+            		switch ($gallery->app->comments_indication) {
+            			case "photos":
+            			case "both":
+            			$lastCommentDate = $gallery->album->itemLastCommentDate($i);
+            			print lastCommentString($lastCommentDate, $displayCommentLegend);
+            		}
 
-                }
-                echo "</div>\n";
+            	}
+            	echo "</div>\n";
 
-                if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
-                    echo '<div class="viewcounter" style="margin-top:3px">';
-                    echo gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i));
-                    echo "</div>\n";
-                }
+            	if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
+            		echo '<div class="viewcounter" style="margin-top:3px">';
+            		echo gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i));
+            		echo "</div>\n";
+            	}
             }
             echo "<br>\n";
             // End Caption

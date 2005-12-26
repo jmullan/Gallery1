@@ -295,9 +295,9 @@ function getImagePath($name, $skinname = '') {
     $fullURL = "$base/skins/$skinname/images/$name";
 
     if (fs_file_exists($fullname) && !broken_link($fullname)) {
-	$retUrl = $fullURL;
+    	$retUrl = $fullURL;
     } else {
-	$retUrl = $defaultname;
+    	$retUrl = $defaultname;
     }
 
     return $retUrl;
@@ -319,14 +319,14 @@ function getAbsoluteImagePath($name, $skinname = '') {
 
     /* Skin maybe 'none', but this is never found, so we fall back to default. */
     if (!$skinname) {
-	$skinname = $gallery->app->skinname;
+    	$skinname = $gallery->app->skinname;
     }
     $skinPath = "$base/skins/$skinname/images/$name";
 
     if (fs_file_exists($skinPath)) {
-	$retPath = $skinPath;
+    	$retPath = $skinPath;
     } else {
-	$retPath = $defaultPath;
+    	$retPath = $defaultPath;
     }
 
     return $retPath;
@@ -339,12 +339,12 @@ function getAbsoluteImagePath($name, $skinname = '') {
  * @author	Jens Tkotz <jens@peino.de>
  */
 function urlIsrelative($url) {
-     if (substr($url, 0,4) == 'http') {
-	return false;
-    }
-    else {
-	return true;
-    }
+	if (substr($url, 0,4) == 'http') {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 function broken_link($file) {
@@ -353,5 +353,12 @@ function broken_link($file) {
     } else {
         return 0;
     }
+}
+
+function galleryLink($url, $content, $attrList = array()) {
+	$attrs = generateAttrs($attrList);
+	$html = "<a href=\"$url\"$attrs>$content</a>";
+	
+	return $html;
 }
 ?>

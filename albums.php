@@ -348,7 +348,7 @@ for ($i = $start; $i <= $end; $i++) {
                 <?php
 			echo editField($gallery->album, "title", $albumURL);
 			if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
-			    $iconText = getIconText('compressed.png', gTranslate('core', "Download as Archive"), 'yes');
+			    $iconText = getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes');
 			    echo popup_link($iconText, "download.php?set_albumName=$tmpAlbumName",false,false,500,500); 
 			}
 		?>
