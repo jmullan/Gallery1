@@ -47,21 +47,23 @@ doctype();
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
-
-        if (!empty($newAlbum)) {	// we are copying from one album to another
-            	$postAlbum = $albumDB->getAlbumByName($newAlbum);
+	// we are copying from one album to another
+	if (!empty($newAlbum)) {
+		$postAlbum = $albumDB->getAlbumByName($newAlbum);
 		if (!$postAlbum) {
 			echo gallery_error(sprintf(_("Invalid album selected: %s"),
-						$newAlbum));
+			$newAlbum));
 		} else {
 			if ($gallery->album->isAlbum($index)) {
 				echo gallery_error(sprintf(_("Can't copy album #%d"),
-						       $index));
-			} else { // copying "picture" to another album
+				$index));
+			}
+			// copying "picture" to another album
+			else {
 
 				for ($index = $startPhoto; $index <= $endPhoto; $index++) {
 					if (!$gallery->album->isAlbum($index)) {
-					        set_time_limit($gallery->app->timeLimit);
+						set_time_limit($gallery->app->timeLimit);
 						processingMsg (sprintf(_("Copying photo #%d"),$index));
 						$mydir = $gallery->album->getAlbumDir();
 						$myphoto = $gallery->album->getPhoto($index);
@@ -71,10 +73,10 @@ if ($gallery->session->albumName && isset($index)) {
 						$myfile = "$mydir/$myname.$mytype";
 						$myhidden = $myphoto->isHidden();
 						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
-						    (!$myphoto->isMovie())) {
-							$pathToThumb="$mydir/$myname.thumb.$mytype";
+						(!$myphoto->isMovie())) {
+							$pathToThumb = "$mydir/$myname.thumb.$mytype";
 						} else {
-							$pathToThumb="";
+							$pathToThumb = '';
 							echo "- ". _("Creating Thumbnail") ."<br>";
 							my_flush();
 						}
@@ -82,16 +84,16 @@ if ($gallery->session->albumName && isset($index)) {
 
 						$id = $gallery->album->getPhotoId($index);
 
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname, 
-								$gallery->album->getCaption($index), 
-								$pathToThumb, $photo->extraFields, 
-								$gallery->album->getItemOwner($index));
+						$err = $postAlbum->addPhoto($myfile, $mytype, $myname,
+						$gallery->album->getCaption($index),
+						$pathToThumb, $photo->extraFields,
+						$gallery->album->getItemOwner($index));
 
 						if (!$err) {
 							if ($postAlbum->getAddToBeginning()) {
-							    $newPhotoIndex = 1;
-							} else {					
-							    $newPhotoIndex = $postAlbum->numPhotos(1);
+								$newPhotoIndex = 1;
+							} else {
+								$newPhotoIndex = $postAlbum->numPhotos(1);
 							}
 
 							// Save additional item settings... currently:
@@ -112,28 +114,33 @@ if ($gallery->session->albumName && isset($index)) {
 						} else {
 							echo gallery_error($err);
 							return;
-                				}
-			     		} else {
+						}
+					} else {
 						echo sprintf(_("Skipping Album #%d"), $index)."<br>";
-						$index++; // we hit an album... don't copy it... just increment the index
+						// we hit an album... don't copy it... just increment the index
+						$index++;
 					}
-	    			} //end for
-			} //end else
+					//end for
+				}
+				//end else
+			}
 		       	?>
 			<form>
 			<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 			</form>
 		       	<?php
 		       	return;
-	       	} //end if ($gallery->album != $postAlbum)
-	} //end if (isset($newAlbum))
+		       	//end if ($gallery->album != $postAlbum)
+		}
+		//end if (isset($newAlbum))
+	}
 	elseif (isset($newAlbum) && $newAlbum == 0) {
 		echo gallery_error(_("Please select the album where you want to copy the photo(s) to."));
 	}
 	if ($gallery->album->isAlbum($index)) {
 		echo gallery_error(sprintf(_("Can't copy album #%d"), $index));
 		return;
-	} else {  
+	} else {
 		echo $gallery->album->getThumbnailTag($index)
 ?>
 <p>
