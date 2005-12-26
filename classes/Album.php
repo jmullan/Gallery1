@@ -1153,7 +1153,7 @@ class Album {
         }
     }
 
-    function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL, $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
+    function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb = '', $extraFields = array(), $owner = '', $votes = NULL, $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0, $exifRotate = true) {
         global $gallery;
 
         $this->updateSerial = 1;
@@ -1232,7 +1232,7 @@ class Album {
             foreach ($extraFields as $field => $value) {
                 $item->setExtraField($field, $value);
             }
-            if (!strcmp($owner, "")) {
+            if (empty($owner)) {
                 $nobody = $gallery->userDB->getNobody();
                 $owner = $nobody->getUid();
             }
@@ -1246,7 +1246,7 @@ class Album {
         }
 
         if ($votes) {
-            $this->fields["votes"]["item.$name"]=$votes;
+            $this->fields["votes"]["item.$name"] = $votes;
         }
 
         /* resize the photo if needed */
@@ -1268,11 +1268,13 @@ class Album {
 
         /* auto-rotate the photo if needed */
         $index = $this->numPhotos(1);
-        if (hasExif($tag) &&
-          !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
-          (!empty($gallery->app->use_exif) && $gallery->app->use_exif) ||
-          (!empty($gallery->app->exiftags) && $gallery->app->exiftags)) {
-
+        
+        echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
+        if ($exifRotate && hasExif($tag) && 
+          !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  && 
+            (!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
+            (!empty($gallery->app->exiftags) && $gallery->app->exiftags))
+        ){
             $index = $this->numPhotos(1);
             $exifData = $this->getExif($index);
 

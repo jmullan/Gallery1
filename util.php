@@ -652,7 +652,8 @@ function getItemCaptureDate($file) {
 		}
 	}
 
-	if (!$success) { // we were not able to get the capture date from exif... use file creation time
+	// we were not able to get the capture date from exif... use file creation time
+	if (!$success) {
 		$itemCaptureTimeStamp = filemtime($file);
 	}
 
@@ -663,7 +664,7 @@ function getItemCaptureDate($file) {
 	return $itemCaptureTimeStamp;
 }
 
-function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array()) {
+function doCommand($command, $args = array(), $returnTarget = '', $returnArgs = array()) {
 
 	if ($returnTarget) {
 		$args["return"] = urlencode(makeGalleryHeaderUrl($returnTarget, $returnArgs));
@@ -673,14 +674,14 @@ function doCommand($command, $args=array(), $returnTarget="", $returnArgs=array(
 }
 
 function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
-	$result = "";
+	$result = '';
 	$col = 0;
 	for ($i = 0; $i < strlen($buf); $i++, $col++) {
 		$result .= $buf{$i};
 		if (($col > $desired_len && $buf{$i} == $space_char) ||
 		    ($col > $desired_len + $overflow)) {
 			$col = 0;
-			$result .= "<br>";
+			$result .= '<br>';
 		}
 	}
 	return $result;

@@ -24,7 +24,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list ($reorder, $index, $newAlbum, $newIndex, $startPhoto, $endPhoto) = getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex', 'startPhoto', 'endPhoto'));
+list ($reorder, $index, $newAlbum, $newIndex, $startPhoto, $endPhoto) = 
+  getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex', 'startPhoto', 'endPhoto'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -151,15 +152,19 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- ". _("Creating Thumbnail") ."<br>";
 							my_flush();
 						}
-						$photo=$gallery->album->getPhoto($index);
+						$photo = $gallery->album->getPhoto($index);
 
 						$id = $gallery->album->getPhotoId($index);
 						$err = $postAlbum->addPhoto($myfile, $mytype, $myname,
 						  $gallery->album->getCaption($index),
-						  $pathToThumb, $photo->extraFields,
+						  $pathToThumb,
+						  $photo->extraFields,
 						  $gallery->album->getItemOwner($index),
-						  $votes
+						  $votes,
+						  '', 0, 0, 0, 0,
+						  false
 						);
+						
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->getAddToBeginning() ? 1 : $postAlbum->numPhotos(1);
 

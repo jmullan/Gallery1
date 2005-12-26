@@ -60,7 +60,6 @@ if ($gallery->session->albumName && isset($index)) {
 			}
 			// copying "picture" to another album
 			else {
-
 				for ($index = $startPhoto; $index <= $endPhoto; $index++) {
 					if (!$gallery->album->isAlbum($index)) {
 						set_time_limit($gallery->app->timeLimit);
@@ -85,9 +84,13 @@ if ($gallery->session->albumName && isset($index)) {
 						$id = $gallery->album->getPhotoId($index);
 
 						$err = $postAlbum->addPhoto($myfile, $mytype, $myname,
-						$gallery->album->getCaption($index),
-						$pathToThumb, $photo->extraFields,
-						$gallery->album->getItemOwner($index));
+						  $gallery->album->getCaption($index),
+						  $pathToThumb, $photo->extraFields,
+						  $gallery->album->getItemOwner($index),
+						  NULL,
+						  '', 0, 0, 0, 0,
+						  false
+						);
 
 						if (!$err) {
 							if ($postAlbum->getAddToBeginning()) {
