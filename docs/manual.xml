@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!-- $Id$ -->
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+                      "./dtds/docbookx.dtd" [
+
+<!-- Include files entities -->
+<!ENTITY % files		SYSTEM "./files.ent">
+%files;
+
+<!-- Include global entities -->
+<!ENTITY % global		SYSTEM "./global.ent">
+%global;
+
+<!ENTITY % gendate		SYSTEM "./dist/gendate.ent">
+%gendate;
+
+]>
+
+<book id="manual" lang="en">
+ <title>Gallery Manual</title>
+
+ &bookinfo;
+<!-- &preface; -->
+
+ <chapter id="gallery1-install">
+  <title>Gallery 1.x Installation Guide</title>
+  &chapters.gallery1-install;
+ </chapter>
+
+ <chapter id="gallery1-admin">
+  <title>Gallery 1.x Administration Guide</title>
+  &chapters.gallery1-admin;
+ </chapter>
+
+ <chapter id="gallery1-user">
+  <title>Gallery 1.x User's Guide</title>
+  &chapters.gallery1-user;
+ </chapter>
+
+ <chapter id="gallery-remote">
+  <title>Gallery Remote</title>
+  &chapters.gallery-remote;
+ </chapter>
+ 
+ <chapter id="gallery2-devguide">
+  <title>Gallery 2.x Developer's Guide</title>
+  &chapters.gallery2-devguide;
+ </chapter>
+ 
+ <chapter id="guide-standards">
+  <title>Guide Standards</title>
+  &chapters.guide-standards;
+ </chapter>
+</book>

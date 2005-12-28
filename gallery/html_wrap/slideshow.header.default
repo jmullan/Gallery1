@@ -1,0 +1,49 @@
+<?php
+// $Id$
+// This is the default slideshow header (for the gallery slideshow
+// page: slideshow.php). It's companion is slideshow.footer.default.
+//
+// To override this header, create a file called slideshow.header
+// in this directory.
+//
+// NOTE: This header gets inserted below the <body> tag.
+//
+// Some tips:
+// * Some application variables:
+//      - Gallery Title: $gallery->app->galleryTitle
+//
+?>
+<?php
+includeHtmlWrap("wrapper.header");
+global $title;
+if(!includeTemplate('slideshow.header.tpl')) {
+?>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td>
+	<table cellpadding="0" cellspacing="0" width="100%" border="0" align="center" class="mod_headliner">
+        <tr valign="middle">
+		<td class="leftspacer"></td>
+		<td>
+		<table cellspacing="0" cellpadding="0" class="mod_toplight_bg">
+		<tr>
+            <td class="mod_toplight_left" align="right"></td>
+			<td class="head" align="left">&nbsp;<?php echo $title ?>&nbsp;</td>
+            <td class="mod_toplight_right" align="left"></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="mod_under_hl"></td>
+	</tr>
+	</table>
+	</td>
+</tr>
+<tr>
+	<td  align="center" valign="top">
+<?php 
+}
+?>

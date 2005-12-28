@@ -1,0 +1,1534 @@
+2005-12-28 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b61
+
+ * Fix: Use full/resized prev in microthumbs
+   Thanks to Kai.
+
+2005-12-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b60
+
+ * Fix: Aurotated photos (exif) were rotated again on copy/move.
+
+ * Fix: Autorotation code was executed even if pic is no jpeg.
+
+2005-12-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b59
+
+ * Fix: Enable ImageMaps only in resized view.
+
+ * Change: AltText on tipIcon
+
+ * New: functions galleryLink() & generateAttrs()
+
+ * Change: Added link back to photo from ImageMaps
+
+ * Change: some indenting.
+
+2005-12-24 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b58
+
+ * Fix: Step 3 in Config was little bit broken.
+   Thanks to Kai.
+
+ * Change: Updated Manifest.
+
+2005-12-23 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b57
+
+ * Change: Added display of creation date in albums.php
+
+ * Change: Wording in register.php
+
+ * New: Added method getCreationDate() in classes/Album.php
+
+ * Change: length for email and fullname field in html/userData.inc
+
+ * Change: change of bars002 skin.
+
+2005-12-19 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b56
+
+ * Change: Some css in config.php
+
+ * Fix: Disabled "Show the add vote link" in stats-wizard,
+        as this functionality is not implemented yet.
+
+ * Fix: removed redundant function galleryImage()
+
+ * Change: simplified form_choice(); lib/setup.php
+
+ * Fix: Some HTML fixes in config wizard.
+
+ * New: Show h0bbel(legend) for status appearing in step1 check page.
+
+ * New: Added Js to switch graphictoolkit settings.
+
+2005-12-19 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b55
+
+ * Fix: Thumbnail in Successmessage for eCards got lost.
+
+ * Fix: Remove commentspam blacklist entries was broken.
+
+ Thanks to Kai for catching this.
+
+2005-12-18 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b54
+
+ * Change forgot to commit new icon images.
+
+2005-12-17 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b53
+
+ * Change: Code and html nicify.
+
+ * Fix: Button value in move_photo.
+
+2005-12-17 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b52
+
+ * Change: refactored printChildren and printMicrochilder
+	   o Added nice tree pics (ready for rtl)
+	   o Created function createTreeArray
+
+ * Fix: Removed debugmessag in save_photos.php
+
+ * Fix: Use gTranslate as some places in classes/Album.php
+
+ * Change: Reword metadataOnUpload help messag.
+	   Thanks to Christian "H0bbel" Mohn.
+
+ * Change: Nicified add_form.inc
+
+ * Fix: removed add_admin.inc from list of translateable files.
+
+2005-12-15 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b51
+
+ * New: Added help for metadata on upload.
+
+ * Fix: Metadata on upload.
+
+ * Change: Removed not need 'admin' tab in upload photos.
+
+ * Change: Some text changes in administer startpage.
+
+ * Fix: imagemaps were not working inside Geeklog
+   (Thanks Georg)
+
+ * Change: No fix amount of upload files, instead use dynamic count of files.
+   	   Used script from  Stickman -- http://www.the-stickman.com
+
+ * Change: Added more debumessages in util.php
+
+ * Change: Set quality for thumbnails sticky to 50
+
+ * Fix: Typo in css/base
+
+ * New: Added function gImage that generates a complete <img ...> html
+
+ * Change/Fix: Internal param use for ImageMagick. (e.g. cropping for IM5 was broken)
+
+ * Change: Updated bars002 skin.
+
+2005-12-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b50
+
+ * New: Added help/ folder
+
+ * New: Added help (questionmark) icon
+
+ * Change: Added help for imagemap.php
+
+ * Fix: use gTranslate, not gtranslate in setup/configdata
+
+2005-12-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b49
+
+ * Fix: Bug #1299951, custom field options are not applied to nested albums
+
+2005-12-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b48
+
+ * Fix: Bug #1281140, charset in emails.
+
+2005-12-09 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b47
+
+ * Fix: Zlrofix JS. reverted to former JS and fixed it via PHP.
+
+2005-12-09 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b46
+
+ * Fix: Display of ImageMaps was broken when Imagemaps in the middle where removed.
+
+ * Fix: DebugMessage in lib/lang prevent login
+
+2005-12-09 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b45
+ 
+ * Change: New icons for navigation, placed into images/icons
+
+ * Change: Moved icon definition for navigation into includes/definitions/navIcons.php
+
+2005-12-08 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b44
+
+ * Change: Added sort parameter to makeSectionTabs
+
+ * "Fix": Translate "No Skin" in confwizard.
+
+ * Change: Move checkImageMagick() into lib/setup.php
+
+ * Change: Beautified setup/check_imagemagick.php and added check for optional bins.
+
+ * Change Beautified setup/check_versions.php
+
+ * Fix: More use of gTranslate in confwizard.
+
+ * Change: Little css Change in config.css
+
+2005-12-08 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b43
+
+ * Change: Params of ImCmd
+
+ * Change: ImCmd optimized for IM6
+
+ * New: Optimized thumbnail creation for IM6
+
+ * Change: removed unused function vd() (sorry joan ;))
+
+ * Change: Added posibility for negative test with ! in testRequirement()
+
+ * Change: Adde case 'albumIsRoot' to testRequirement()
+
+ * Fix: Splitted "delete album" in view_album into delete root album and delete subalbum
+
+ * Change: Only popup option are available in selectbox in view_album, ALL are available in view_photo
+
+ * Change: renamed compress_image to compressImage and changed params
+
+ * Change: Optimized compressImage for IM6
+
+ * Change: general code nicify.
+
+ * New: Added HQ Paramater for ImageMagick, if yes, then resized have a slightly higher quality.
+
+2005-12-05 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b42
+
+ * Change: Sort albumProperties alphabetically.
+
+ * Change: Added size 50 for album titles for better readability.
+
+ * Change: Moved "voter class" at first position in album properties.
+
+ * Change: Some code nicify.
+
+ * Change: Updated bars002 skin.
+
+2005-12-04 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b41
+
+ * Fix: administer_startpage.php should open itself as a "real" popup when embedded.
+
+ * Fix: Changed Windows lineendings to unix style in ecard_preview.php
+
+ * Change: Moved some functions from util.php into lib/album.php and lib/imageManipulation.php
+
+ * Fix: ecard parsing must be different for preview and final mail sending.
+   And again Kai did it :)
+
+ * Change: Some intending and code nicify.
+
+2005-11-27 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b40
+
+ * Fix: Imagemaps were not working embedded.
+  Thanks again Kai.
+
+2005-11-27 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b39
+
+ * Fix: Since change in b28 amount of views was no displayed correct.
+   Thanks to Toastmaster
+
+2005-11-27 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b38
+
+ * Fix: Add imagemap.php to $safe_to_include array
+   Thanks to Kai Tomalik
+
+2005-11-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b37
+
+ * Fix: Watermarking with ImageMagick was broken since b19.
+
+2005-11-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b36
+
+ * Fix: Commenting was broken when comments_addType was 'inside'
+   Thanks to Toastmaster from forums.
+
+2005-11-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b35
+
+ * Fix: Missing formvalues in view_photo.php when only one Service is selected.
+   Thanks to icerunner from forums.
+
+2005-11-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b34
+
+ * Change: Got almost definitely rid of an old relict :)
+
+2005-11-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b33
+
+ * Change: Little performance tweak for ImCmd(). Use static var for IM Version.
+
+2005-11-23 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b32
+
+ * Change: Add possibility to delete album via "main" album options selectbox.
+
+2005-11-22 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b31 "Holly Release Part 2"
+
+ * NEW: Added possibility to add imagemaps (areas) to a photo.
+
+ * Fix: Alignment breadcrumb
+
+ * Fix: Missing echo in drawCommentAddForm().
+
+ * Fix: Sorting content of album was broken.
+   Thanks to Brian Rademacher !
+
+ * Change: Layout of icons in view_photo.php
+
+ * Change: Added 'pure_text' field to albumItem options for sorting.
+
+ * Change: Prevent unnecessarey Javacript when getting albumItem options.
+
+2005-11-06 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b30
+
+ * Change: Lots of translation related things.
+  - Change a lot _() to gTranslate()
+  - wording
+  - introdcued common translation file
+  - added download.php and includes/add_photos/captionOptions.inc.php to list of translated files 
+
+ * Change: Little Layout change in delete_album.php and rearrange.php
+ 
+ * Change: Wording and checks in download.php
+ 
+2005-11-05 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b29
+
+ * Change: List of owner is now sorted again alphabetically.
+
+ * Change: Mark Pseudousers with * around in permission dialog.
+
+ * Change: Wordings.
+
+ * Fix: xgettext keyword parameter to catch gTranslate.
+
+ * Fix: Missing , in setup/check_versions.php
+
+2005-11-04 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b28
+
+ * New: Added creation date to album fields
+
+ * New: Added sort by last reset date and creation date to mainpage albums.
+
+ * Fix: Album permissions were broken in b17
+
+ * CHANGE: removed function pluralize_n2 !
+
+ * NEW: Added function gTranslate to lib/lang.php
+
+ * NEW: Added third translation file for common phrases used in config and core.
+        NOTE: only german is updated !
+
+ * CHANGE: --keyword=gTranslate:1,2 in po/create_po_template.sh
+
+ * Change: Some wording.
+
+ * Fix: breadcrumb in captionator
+
+ * Fix: Better handling in save_photos.php for unreadable dirs and files.
+
+ * Change: moved function createNewAlbum() from util.php to lib/album.php
+
+ * Change+Fix: tweaked array_sort_by_fields() to handle album fields (sorting by subarray)
+
+ * Fix: Element counter on mainpage was broken.
+
+2005-10-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b27
+
+ * Fix: naming in b26 was wrong
+
+ * Fix: added administer_startpage.php to safe to include list.
+
+   Thanks to dmolavi for catching this bugs.
+
+2005-10-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b26
+
+ * Change: Changed button for rebuild highlights to "Adminster startpage".
+
+ * New: Added popup "Adminster startpage".
+
+ * New: Added possibility to resort albmorder on startpage.
+
+2005-10-26 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b25
+
+ * Fix: Some php4.4.0 fixes in Richards Heyes' htmlMimeMail.php
+
+ * Change: Added Alias before receptient adress in ecards -> Jens <mail@example.com>
+
+2005-10-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b24
+
+ * Change: Standardified a lot texts.
+
+2005-10-22 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b23
+
+ * Change: Some more little changes in random-block.
+
+ * Fix: added quotes around filename in function downloadFile()
+
+ * Change: Some more space saving in config wizard.
+
+ * Change: Moved function getCheckStatus() into lib/setup.php
+
+ * CHANGE: Use of chmod in platform functions instead of umask as suggested in php docs.
+
+2005-10-20 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b22
+
+ * Change: renamed readCache() and writeCache() in stats.php and block-random.php 
+	    to more unique names, to avoid conflicts.
+
+ * Change: Change html output of block-random.php. Uses now <div> with classes instead of <center>.
+
+ * Fix: Do not send headers in initLanguage() if headers were already sent.
+
+ * Change: Display columns in view_photo_properties left/right aligned according to language direction.
+
+2005-10-20 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b21
+
+ * Fix: New Images were not committed in b20.
+
+ * Fix: Use correct gif, instead of non existing png in check.inc and js/toogle.js
+
+2005-10-18 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b20
+
+ * Change: Pimp my configwizard step 1.
+	   - New Layout
+	   - Changed wording
+	   - Combined some test.
+
+ * New: function galleryImage() in lib/content.php
+
+ * Change: Added more detaied description for thumbs ratio.
+
+ * New: Added js/toggle.js
+
+2005-10-17 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b19
+
+ * Change: Different param order for ImageMagick.
+
+ * Change: removed function removeTags(), which was just a wrapper for strip_tags()
+
+ * NEW: Added ratio for thumbnails (per album) and highlight (startpage).
+        0   - Ratio as the original
+	1/1 - Square
+
+       -> Config version bump
+ 
+ * New: Added "rebuild highlights" for admins. It rebuild all highlights on startpage.
+
+ * New: Added "Paranoia" debuglevel, not useful for normal debug ;)
+
+ * Change: reworked function getDimensions(), removed second parameter.
+
+ * Change: create lib/album.php and lib/imageManipulation.php, moved functions from util.php.
+
+ * New: method getHighlightRatio() in classes/Album.php
+
+ * Change: modified method makeThumbnail() in classes/AlbumItem.php to hence thumbnail ratio.
+
+ * New: function cropImageToRatio() in lib/imageManipulation.php
+
+ * Change: Some css changes in config to save space.
+
+ * Fix: Frames were broken due to wrond base url.
+
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b18
+
+ * Change: Added subgroups in configwizard.
+
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b17 "Holly Release Part 1"
+
+ * NEW: Support for albumdownload as zipfile.
+   - Added new permission for zipdownload per album.
+   - Tweaked albums.php, when user is allowed to download and zip is installed, 
+     a little zipicon appears.
+   - Same for subalbums in view_album.php
+   - Added download.php. This is called when user presses icon.
+     User can choose between full, or resized download.
+   - Added Path to 'zip' in config wizard.
+
+   - new method getImageName() in classes/AlbumItem.php and classes/Image.php
+   - new method canDownloadAlbum() classes/User.php
+   - splitted canHandleArchive() into canDecompressArchive() and canCreateArchive()
+   - new function createZip()
+   - new function getMimeType()
+   - new internal function createTempAlbum()
+   - new function rmdirRecursive()
+   - new function downloadFile()
+   - new function arrayflaten()
+   - new method getAbsolutePhotoPath() in classes/Album.php
+   - new method numItems() in classes/Album.php
+   - new method getAlbumItemNames in classes/Album.php
+   - new method getAlbumSize() in classes/Album.php
+   - new function formatted_filesize()
+
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b16
+
+ * Fix: manage_users.php were broken in in b12
+
+ * New: Its now possible to have an sorting by photo/Album, after normal sorting.
+
+ * Change: Numbers of pages in navigator are now centered.
+
+
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b15
+
+ * CHANGE: outsorced a lot functions that create output from util.php into lib/content.php
+
+ * Change: Images in ecard are now embedded.
+	   Benefit is more privacy and image dirs can be protected via .htaccess auth.
+
+ * Change: Added default name 'g1_form' to makeFormIntro()
+
+ * Change: Lots of indenting.
+
+
+2005-10-11 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b14
+
+ * New: Better Support for Joomla!
+
+
+2005-10-05 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b13
+
+ * Fix: phpBB2 people changed code a little. So patch didnt work.
+	Made Docu updates also. G1.5.2 works now with phpBB2 from 2.0.6 - 2.0.17
+
+
+2005-10-05 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b12
+
+ * "Fix": Adjust layout of captionator.
+
+ * Fix: Errormessage when nothing was entered in login.php never occured due to register globals.
+
+ * Change: use of function to draw userlist in manage_users.php
+
+ * Fix: Background of higlihted tab in config was broken.
+
+
+2005-10-04 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b11
+
+ * Change: Made "post" the default method for forms.
+
+ * Change: A lot indentings and use of default forms.
+
+
+2005-10-04 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b10
+
+ * Fix: Urls in at least phpNuke 7.8 where generated wrong.
+
+ * Fix: When "returnTo-Link" is off, you should still can go back to thumbnail view.
+
+
+2005-10-03 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b9
+
+ * Change: NOW use favicon.ico from gmc. :)
+
+
+2005-09-29 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b8
+
+ * Change: Rewrite of permission dialog code. MUCH simpler now.
+
+ * Change: Removed a lot set*** permission methods as they were redundant.
+
+ * Change: lots of indenting in classes/Album*.php
+
+ * Fix: forgot one user_name_string() in classes/Album.php
+
+
+2005-09-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b7
+
+ * "Fix": breadcrumb in view_album was also showed if there is no content.
+
+ * Fix: Bug #1299959. Title text in alt and title tag of image was not escaped.
+
+ * Fix: Some HTML 4.01.
+
+
+2005-09-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b6
+
+ * Fix: Typo in function emailComments() caused link to album to be wrong.
+
+
+2005-09-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b5
+
+  * Fix: Bug #1235007
+         html_wrap/stats.header.default does not contain a block to optionally
+         include a stats.header.tpl file, unlike every other *.header.default file.
+         
+
+2005-09-25 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b4
+
+ * Change: Removed function user_name_string from util.php.
+           This is now all in method printableName() of classes/User.php
+   
+ * Fix: Bug #1199064. Tweaked method printableName(), 
+        so that not the username is returned if no fullname is given.
+        
+ * Change: Some indenting.
+
+
+2005-09-24 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b3
+
+ * Fix: Voting instruction texts in some skins. Bug#1249919 .
+
+
+2005-09-24 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b2
+
+ * New: Its now possible to set "browser" as default language. Covers patch #1176481.
+ 
+ * New: New function getDefaultLanguage.
+ 
+ * Change: use of new function. Some code cleanup.
+ 
+
+2005-09-23 Jens Tkotz <jens@peino.de> 1.5.2-cvs-b1
+
+ * New: If selfregister is on, then inside the login popup is a link to register.
+        This covers Patch #1042354.
+        
+
+2005-09-22 Chris Kelly <ckdake@users.sf.net> 1.5.1
+
+	* Release:  1.5.1
+
+2005-09-22 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b13
+
+	* FixFix: b11 broke more then it fixed :-( FIXed it :-)
+
+2005-09-21 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b12
+
+	* Fix: Urls for Gallery embedded into CPGNuke didnt work.
+	       So we do the same for cpgnuke as for the other *nukes done in 1.5.1-RC3-cvs-b3.
+	
+2005-09-17 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b11
+
+	* "Fix": Cach invalid input for $page and set_albumListPage in view_album.php and stats.php
+	Found by Andrew Khlebutin
+
+2005-09-17 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b10
+
+	* Fix: fs_opendir leaks resources.
+	  Found and fixed by David Faulkner
+
+2005-09-17 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b9
+
+        * Fix: Make changeToAlbum emails HTML-mails, so links work correctly.
+	  Thanks to Ansolon.
+
+2005-09-15 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b8
+
+	* Fix: Typo.
+
+2005-09-15 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b7
+
+	* Fix: Turn of verbose display of exifdata with jhead.
+	       This caused problems as verbosed data has different structure.
+	
+	* Fix: First line of exifdata was always removed,
+	       regardless wether jhead or exiftags is used.
+
+2005-09-13 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b6
+
+	* Change: Added paramater to gallery_mail() to send mail as HTML-mail.
+
+	* Fix: Make comment emails HTML-mails, so links work correctly.
+
+2005-09-12 Dariush Molavi <dari@nukedgallery.net> 1.5.1-RC4-cvs-b5
+
+	* Change: New address for Free Software Foundation in GPL header.
+
+2005-09-12 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b4
+
+	* New: Added function urlIsrelative().
+
+	* Fix: Relative URL in $gallery->app->photoAlbumURL did not longer work,
+	       due to new full url schema added in
+               1.5.1-RC2-cvs-b14 + 1.5.1-RC3-cvs-b3.
+
+	* Fix: $name is not set when Gallery is startpage in *Nuke.
+	       So we try to extract it from $modpath.
+
+	* Fix: Url in stats-wizard was not generated on first load when embedded.
+
+2005-09-12 Rasmus Lerdorf 1.5.1-RC4-cvs-b3
+
+	* Fix: Some functions taking arguments by reference for no real reason
+	       in gallery_remote2.php.
+	       It breaks under the latest versions of PHP because
+	       the reference checking has improved.
+
+2005-09-08 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b2
+
+	* "Fix": As we use now (1.5.1-RC3-cvs-b12) verbose output for exifdata, 
+	   we now show only fields WITH data.
+
+2005-09-08 Jens Tkotz <jens@peino.de> 1.5.1-RC4-cvs-b1
+
+	* Fix: Issues with setup/functions.inc which not longer exists.
+
+2005-08-29  Chris Kelly <ckdake@users.sf.net> 1.5.1-RC3
+
+	* Release: 1.5.1-RC3
+
+2005-08-29 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b15
+
+	* Fix: Poll Properties were not set recursively.
+
+2005-08-29 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b14
+	
+	* Merged b12 and b13, language syncronisation for RC3.
+
+2005-08-24 Jay Rossiter <cryptographite@users.sf.net> 1.5.1-RC3-cvs-b13
+
+	* Fix: Prevent file exposure bug in stats module (thanks to ilia)
+
+2005-08-23 Jay Rossiter <cryptographite@users.sf.net> 1.5.1-RC3-cvs-b12
+
+	* Fix: Prevent HTML tags inside EXIF info from being displayed without
+	  escaping.
+
+2005-08-19 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b11
+
+	* Fix: Make it possible to have Gallery as startpage in Postnuke or phpNuke.
+
+	* Change: Url to w3c html validator.
+
+2005-08-17 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b10
+
+	* Fix: When using do_command.php e.g.for creating new album and Gallery is embedded,
+	       "Attempted security breach." occured due to new full url schema added in 
+	       1.5.1-RC2-cvs-b14 + 1.5.1-RC3-cvs-b3
+
+	* Fix: After creating a new album, with debug and email on, 
+	       an Error occured and dismiss button didnt work.
+
+2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b9
+
+	* Fix: Moved and adapted setup/functions.inc to lib/setup.php.
+	       Some functions in this file are also used outside setup, 
+	       so when user protect the setup folder some functions where unavailable.
+
+	* New: Added functions fs_is_writable
+
+	* Fix: .htacces is optional, use function above to check to prevent error message.	
+
+2005-08-16 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b8
+
+	* Fix: Wording. 'strg' is german ;) 'ctrl' is more international.
+
+	* Change: Some indenting.
+
+	* "Fix": Change some <td nowrap> and put it into css class.
+		 Affected are class "head" and "title".
+
+2005-08-14  Alan Harder <alan.harder@sun.com>  1.5.1-RC3-cvs-b7
+
+	* Allow access to hidden photos via direct url.
+	  (rollback change from Gallery 1.3.1)
+
+2005-08-14 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b6
+
+	* Fix: Use makeGalleryAlbumHeaderUrl() in links in Emails.
+	       - edit_appearance.php
+	       - classes/Album.php
+	       - lib/mail.php
+
+	Thanks to Ansolom.
+
+	* Change: Some indenting and phpdocs.
+
+2005-08-13 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b5
+
+	* Fix: Using referer for generating embedded urlprefix wasnt a good idea.
+	        Instead now use Gallery Url + script_name.
+
+	Thanks to Mark (SG7)
+
+2005-08-12  Bharat Mediratta  <bharat@menalto.com> 1.5.1-RC3-cvs-b4
+
+	* Fix: typo in albums.php 'posess' -> 'possess' (thanks driz)
+
+2005-08-12 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b3
+
+	* Fix: Added path to folder to the url when Gallery is embedded in *Nuke,
+	       but not in the document root.
+
+2005-08-11 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b2
+
+	* Fix: Even if clickcount display is off for an album
+	       an admin should see the click counts in stats.
+
+	Thanks to Lucent.
+
+2005-08-10 Jens Tkotz <jens@peino.de> 1.5.1-RC3-cvs-b1
+
+	%!@# ZLORFIX ! i shouldnt touch RC code.
+
+	* Fix: Minimum width change broke ecard with pictures >= 200px width.
+
+2005-08-09  Chris Kelly <ckdake@users.sf.net> 1.5.1-RC2
+
+	* Release: 1.5.1-RC2
+
+2005-08-09 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b15
+
+	* Fix: Ecard stamp preview failed in IE, due to space in title of popup.
+	  Thanks to Dariush Molavi.
+
+	* Change: Added minimum width of ecard.
+
+	* Change: used tidy on ecard template.
+
+	* Change: increased needed Debuglevel when got successfully dimensions of an image.
+
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b14
+
+	* Fix: Added urlprefix via referer to embedded urls, so we get complete urls in mails.
+
+	* Fix: Possible security hole in postnuke by overriding global $name
+	  Thanks to msandersen
+
+	* Change: Format in nls.php
+
+	* Change: Make urls in comments mail a link.
+
+	* Fix: updated list of translateable core files.
+
+	* Fix: Added isset() around test for optional bins in setup to avoid warnings.
+
+	* Change: Some language related things.
+
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b13
+
+	* Fix: Deleting comments via overview when embedded.
+
+2005-08-07 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b12
+
+	* Change: Postnuke related adaptions for new Versions.
+		  - urls
+		  - user / userdb
+		  - language
+		  - stylesheets in wrapper.header
+	  Thanks to msandersen
+
+	* Change: Little more info in footer in Debugmode.
+
+	* Fix: Ecard preview when embedded.
+
+	* Fix: Stamp preview when embedded.
+
+2005-08-06 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b11
+
+	* Fix: Check for NetPBM and ImageMagick was not fully correct.
+
+	* Fix: Separator for PATH var under windows is ; not :
+
+	* Fix: Added message for partially found ImageMagick.
+
+2005-08-04 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b10
+
+	* Fix: Padding for current flag should belong to the td not img.
+
+	* Change: Added columncount 20 to flags table. removed old unused code.
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b9
+
+	* Fix: Fix in b7 was not good :-|
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b8
+
+	* Change: Just added a new frame. Thanks to 'demonhood'
+
+2005-08-03 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b7
+
+	* Fix: A link to mainpage was shown in slideshow breadcrumb,
+	       regardless wether return to was off.
+
+2005-07-30 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b6
+
+	* Change: Mailing
+	  o Moved Mail related functions into new lib/mail.php
+	  o Removed gallery_validate_email(), now only use check_email()
+	    - login.php
+	    - register.php
+	    - lib/mail.php
+	    - classes/Album.php
+	    - setup/check_mail.php
+	    - setup/functions.inc
+	 o reordered Notification mail. First now the message, then the disclaimer.
+
+	* Fix: Mailing
+	  o Recipients ($to) for gallery_mail() where mixed in some cases.
+	   Now always a proper array.
+	  o Emailprefix should be a prefix, not a suffix ;)
+	  o emailLogMessage() was not compliant to gallery_mail(). Tweaked both.
+	  o unhtmlentities() on some email subjects
+
+	* Change: Lots of intenting.
+
+	* Change: Added "done" Button in manage_users.php
+
+2005-07-29 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b5
+
+	* Fix: Added missing { in classes/Mail/smtp.php.
+	       Bug sneaked in in php 4.4.0 fixes in 1.5.1-cvs-b61.
+
+2005-07-29 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b4
+
+	* Fix: In Photoview, stay in the viewmode (full or normal) that the current photo is.
+
+2005-07-26 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b3
+
+	* Fix: Fix in RC2-b1 "fixed" too much.
+
+2005-07-26 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b2
+
+	* Fix: CSS Stylesheets were displayed to early when embedded.
+	       This caused warnings etc. when Environment sends headers.
+
+	* Change: Added ... in Navigator to jump to the next Block.
+
+2005-07-24 Jens Tkotz <jens@peino.de> 1.5.1-RC2-cvs-b1
+
+	* Fix: Embedded Urls where generated wrong.
+
+2005-07-23  Chris Kelly <ckdake@users.sf.net> 1.5.1-RC1
+
+	* Release: 1.5.1-RC1
+
+2005-07-23 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b65
+
+	* Fix: CSS is now loaded correct when embedded.
+	       Now base and embedded.css are loaded when embedded.
+
+	* Fix: Typo in ecard_form.php
+
+	* Fix: Colorpicker in albumproperties didnt work when embedded and configured.
+
+2005-07-22 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b64
+
+	* Change: translations in ecard_form
+
+	* Change: topNavBar in view_photo is now a <div>, not a <table>
+
+	* Change: simplification of checks for mircothumbs in view_photo
+
+	* Fix: Borders around bottom Navigation when Mircothumbs off.
+	Found by (Flori)Dave
+
+2005-07-20 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b63
+
+	* FIX: When an admin changed something in his/her userdata, he/she lost the admin status.
+	Thanks to Iain Lea
+
+	* Fix: Translated JS messages in ecard_form.php
+
+	* Fix: Added ecard files to translation list.
+
+2005-07-20 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b62
+
+	* Fix: classes/Album.php
+	  - missing $ before a var
+	  - $wmAlphaName is not used when watermarking is wanted to during upload.
+
+	* Fix: removed/changed debug Code in lib/url.php
+
+	* Fix: size attribut in drawSelect2 was not correct handled.
+
+2005-07-19 Jens Tkotz <jens@peino.de> 1.5.1-cvs-b61
+
+	* Fix: util.php
+	  - Previous change to _getStyleSheetLink failed when setup called from embedded at first time.
+	    Now uses getGalleryBaseUrl()
+	  - generating thumbnails of animated gifs with IM were broken due to wrong order of options.
+	 Found and fixed by Donald Webster.
+	  - where_i_am() now correctly returns "core" when GALLERY_OK is false,
+	    but where are at startpage with an error.
+
+	* Fix: PHP 4.4.0 fixes in:
+	  - classes/Album.php
+	  - classes/Mail/htmlMimeMail.php
+	  - classes/Mail/smtp.php
+ 	Thanks to Andy Staudacher and Donald Webster
+
+	* Fix: $style was undefined in lib/lang.php
+	Again Donald ;)
+
+	* Change: Watermarking
+	  - edit_watermark.php
+	  - watermark_album.php
+	  - layout/watermarkform.inc
+	    o indenting
+	    o added some phpdocs
+	    o added for gifs that watermarking on animated gifs is not supported.
+	    o HTML 4.01 validation
+	    o correct validation link
+
+	* Change: util.php
+	  - indenting on some functions
+	  - added some phpdocs
+	  - more use of debugMessage()
+	  - moved getGalleryBase() to lib/url.php and renamed to getGalleryBaseUrl()
+	  - moved getGalleryPaths() to lib/url.php and renamed getGalleryPaths() to setGalleryPaths()
+	  - gallery_validation_link() now uses always referer instead
+	    of given filename when not configured.
+	 - added Parameter $keepIndexes to function array_sort_by_fields:
+	   if set to true, then uasort instead of usort is used.
+
+	* Change: removed / from GALLERY_URL constant in index.php
+
+2005-07-15 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b60
+
+	* Fix: colorpicker was not working in very first setup
+	   - Tweaked makeGalleryURL to return valid URL in config on first setup
+	   - Tweaked makeGalleryURL to work without target
+	   - Tweaked getImagePath() to work with makeGalleryUrl. Also moved to lib/url.php
+
+	* Change: Updated Manifest.
+
+	* Fix: Removed <> around From when sending via smtp.
+
+2005-07-12  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b59
+
+	* Fix: Prevent non-integer data from being passed into get*Tag functions
+
+2005-07-12  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b58
+
+	* Change: Create a new session after destroying the old on logout,
+	  and set $gallery->session->gRedirDone to true to prevent the 'you must be logged in'
+	  notice when logging out of a protected album.
+
+	* Change: Move some of the session creation logic into createGallerySession()
+
+2005-07-11 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b57
+
+	* "Fix": Added function addSearchForm() that return the Form for entering the searchstring.
+		 Benifit is unified layout and reuseability.
+		 While doing this created functions langLeft() and langRight()
+		 which returns "left" or "right" according to direction.
+
+2005-07-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b56
+
+	* Fix: Subjectprefix for emails got lost in b47
+
+	* Change: search.php
+		  - Name of album / photo is now searched also
+		  - lots of indenting
+		  - layout unified like tools/
+		  - removed html_wrap/ header and footer and use comman gallery h/f
+
+2005-07-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b55
+
+	* Fix: if useIcons set to no, options in viewphoto dropdown had brackets []
+	  Thanks to Iain Lea again :)
+
+2005-07-07 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b54
+
+	* Fix: Missing closing bracket in a gettext call
+	       when creating subject for a mail in classes/Album.php
+	  Thanks to Iain Lea.
+
+2005-07-06 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b53
+
+	* Fix: IP of Commenter was showed to everybody in comments overview.
+	       Now only admins or album owner can see it.
+
+2005-07-06 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b52
+
+	* Fix: Some Titles in stats where switched.
+
+	* Change: enhanced detection for nextId
+
+	* Change: Lots of indenting
+
+2005-07-05 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b51
+
+	* Fix: When deleting on photolevel, jump to next (or previous if at the end) photo.
+	  Thanks to Iain Lea.
+
+	* Fix: Sorting in stats was switched.
+	  Also thanks to Iain Lea.
+
+2005-07-05 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b50
+
+	* CHANGE: save_photos.php
+		  - Do the copy to local temp dir only for accepted formats (images, movies, archives)
+		  - Use fs_file_get_contents to get the content of the URL
+		  - Changed Regexp to catch files from an URL. (Thanks Valiant and Signe)
+		    o changed acceptableFormatRegexp() in util.php to fit with new regexp
+
+	* Change: phpdoc changes.
+
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b49
+
+	* Fix: Language was not correct set in popups when embedded into mambo
+	  Thanks to Kai Tomalik.
+
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b48
+
+	* Change: Added 4th to array_sort_by_fields: caseSensitive
+
+	* Change: Display watermakr files alphabetical case insensitve sorted.
+
+2005-07-04 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b47
+
+	* Change: 3rd Param of array_sort_by_fields is now 'asc' or 'desc' instead of 1/-1.
+
+	* Change: itemOptions in view_photo.php are now a dropdown when no icons are wanted.
+		  Settings at file beginning can force dropdown with icons on.
+
+	* Fix: Found untranslated text (!) in classes/Album.php
+	  Thanks to Gekow.
+
+	* New: Use phpDocumentor compatible documenting. Will be completed step by step.
+
+	* Change: When embeddd into Mambo $mosConfig_lang is now checked.
+
+	* Change: updated Manifest
+
+	* Fix: reworked bulk user creation.
+	       - register globals
+	       - email problems
+
+	* New: Added two more possible formats for bulk user creation.
+
+	* CHANGE: moved gallery_mail into a wrapper for MAIL class. Removed gallery_smtp
+
+	* Fix: use of gallery_error instead of errorRow classes/gallery/UserDB.php
+	       when creating new user.
+
+2005-06-30 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b46
+
+	* Fix: Fieldtype for Comment Overview in Setup.
+
+	* Change: moved /errors/ to includes/errors/
+
+	* Change: Added multiple headings in properties to reduce tabs.
+
+2005-06-28 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b45
+
+	* Change: Better Text in edit_appearance.php
+
+	* Change: Tweaked placeholder replace.
+
+	* Fix: Removed check for number of custom fields, as it has no default.
+
+	* Fix: Added lib/messages.php to list of translateable files.
+
+	* Fix: function for displaying errorRow was broken.
+
+2005-06-28 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b44
+
+	* Fix: removed some more <> inside a Mail header (see b39)
+
+	* Fix: Wrong description in css/screen.css
+
+2005-06-27 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b43
+
+	* Fix: Browserlanguange 'en' was not correct mapped to en_US.
+
+	* Fix: Custom Fields were broken in edit_appearance in b39
+
+	* Fix: Code for gifified. from b41.
+
+2005-06-27 Pierre-Luc Paour <paour@users.sourceforge.net>  1.5.1-cvs-b42
+
+        * Fix: fixed the warning in breadcrumb.php when album disallows
+	  upwards navigation.
+
+2005-06-26 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b41
+
+	* New: Added icons for item actions. gifified by famous Volksport.
+
+2005-06-26 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b40
+
+	* Fix: Added  lib/colorpicker.php and  rearrange.php to safeToInclude list in index.php
+	  Thanks to Kai Tomalik
+
+	* Change: Added modified Patch #1085388.
+		  Now we use a multi-select for selecting which items found in url.upload should be uploaded.
+	  Thanks to Jonathan Dowland
+
+	* Fix: rearrange.php opened wrong when embeded.
+	  Thanks to Kai Tomalik
+
+	* Fix: Again moved Javascript in view_photo.php as it were broken when embedded.
+
+	* Change: Tweaked Javascript for (de)selecting all/inverting to work with multi-select.
+
+	* Fix: removed Testcode in setup/config_data.inc that broke config wizard.
+
+2005-06-25 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b39
+
+	* Security FIX !!!: Added check for invalid input for values for sizes in edit_appearance.
+	  	   The values are used in exec() command.
+
+	* Change: outsourced albumProperties from edit_appearance into includes/definitions/albumProperties
+
+	* Fix: removed <> around some header fields when sending mails.
+	       This caused Emailadresses to become <Someone <someone@example.com>>
+	       Thanks to JohnH from the forums.
+
+	* Fix: Javascript before doctype in view_photo.php
+	       Thanks to Gaille.
+
+	* Change: Some CSS for tabs
+
+	* Change: lib/albumItem.php:
+		  - removed unused ifs
+		  - Text changes. Removed %s (label) at a couple commands.
+		  - Added icon for watermarks.
+
+	* Change: Tweaked infoLine() function. Now also acceptes array of messages.
+
+	* New: Added function sanitycheck in lib/valchecks.php
+
+	* Fix: Added more missing files to translation list for core.
+
+	* Changes: Change from "off" to 0 for no image size limitations
+
+	* Fix: Display of voting values.
+
+
+2005-06-23 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b38
+
+	* Fix: Bug #1217095, removed double stripslashes that breakes e.g. chinese.
+
+	* Fix: Added missing files to translation list for core.
+
+2005-06-23  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b37
+
+	* Change: getRequestVar to stripslashes recursively into arrays
+
+2005-06-21 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b36
+
+	* Change: Possibility to set columnCount to -1 for ALL elements in one row.
+		  (Fixes unnice lang selector with flags)
+
+	* Fix: Comments display was borked when not logged with admin/owner permission.
+
+	* Fix: added <br clear="all"> under language selector for proper table rendering in FF
+
+2005-06-21 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b35
+
+	* New: Added slightly modified Patch #875893 from Alan Harder.
+	       This adds a popup in which you can nicely reorder your item via clicking.
+
+2005-06-21 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b34
+
+	* Change: enhanced fitToWindow for panorama photos.
+		  Found by 'bolet' from the forums.
+
+2005-06-20 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b33
+
+	* Fix: Override in getIconText
+
+	* Change: css class in layout/navmicro.inc
+
+	* Change: css for iconLinks in view_photo.php and removed sorting for actions.
+
+	* Change: replaced "delete comment" under each comment with a little icon to save space.
+		  And css change.
+
+2005-06-19 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b32
+
+	* Change: moved some messages functions into lib/messages.php
+		  created new message functions for:
+		  - infolines
+		  - debugmessages
+
+	* Change: Added infoline and tweaked Emailtext in create_user.php
+
+	* Change: Added infoline in modify_user.php
+
+	* Change: Modified config var "debug" yes/no to "debuglevel" 0 means no debug.
+		  Tweaked isDebugging to recognize the level.
+		  Now you can give a Parameter to ask if debug in in given level.
+
+	* Change: stats-wizard.php, var 'sgr' renamed to 'showGrid'
+
+	* CHANGE: stats-php
+		  - lots of indenting
+		  - The complete statstable is now generated via class galleryTable !!
+		    o Thumbs are now just as they are, not anymore like in the albums.
+		    o show Commentes code tweaked to work with galleryTable
+		  - readded Grid mode, old code removed as the rendering is now done by galleryTable
+		  - replace debug code with much smarter debugMessage()
+		  - remove all 7 usort functions, replaced by one new
+		    array_sort_by_fields() function in util.php
+
+		  - renamed var 'rev' to 'reverse'
+
+	* Change: util.php
+		  - lots of indenting
+		  - tweaked getIconText(),
+		    o new parameter to override the iconMode
+		    o new parameter to use the [] around the Text when no icon is used.
+		  - Tweaked makeIconMenu(), added parameter to force a linebreak after the half of elements
+
+	* Change: Added lib/AlbumItem.php
+		  - New function getItemActions(),
+		    returns an array with all possible albumItem actions
+		  - New function showComments, return HTML with all comments for an item.
+
+	* Change: view_album.php
+		  - Use of getItemActions() under each thumb.
+		  - Show Navigator only if there is something to navigate.
+
+        * Change: view_photo.php
+                  - Use of getItemActions() under each thumb.
+                  - Show alle item actions as links (with or with out icons)
+
+	* Change: Tweaked class galleryTable
+		  - setAttr
+		  - setColumnCount
+		  - setHeaders
+		  - setCaption
+		  - adapted render()
+
+	* Change: Added infoline for debug info in html_wrap/wrapper.footer.default
+
+2005-06-13 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b31
+
+	* Fix: When copying a photo to an album where "add to beginning" is enabled,
+	       the additional Data was still added to last item.
+	  Thanks to Johnstar.
+
+2005-06-09 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b30
+
+	* Fix: Navigator change was in albums.php was wrong.
+
+2005-06-09 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b29
+
+	* Change: Only show Navigator if there is something to navigate in:
+		- albums.php
+
+	* Change: Add Errormessage for more info to user in copy_photo.php
+
+	* Change: Tweaked confusing mailmessage in multi_create_user.php
+
+	* Fix: Show "Apply to nested albums" only if we are resizing all elements of in album in resize_photo.php
+
+	* Fix: Highlights of albums where the higlight comes from a subalbum
+	       with non ascii chars where broken because the URL was not urlencoded.
+
+	* Fix: Typo in layout/navmicro.inc (found by Gaile)
+
+2005-05-27  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b28
+
+	* Fix: edit_captions was not displaying error messages due to variable
+	  misnaming.
+
+2005-05-24 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b27
+
+	* Fix: use_exif was not broken in album properties.
+	  Found by Johan Nenni
+
+	* Change: removed class tab-text, the font color is now controlled by the tab itself.
+
+2005-05-23 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b26
+
+	* Fix: register globals in setup/check_versions.php
+
+2005-05-23 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b25
+
+	* NEW: Added Donald Websters Microthumb Code. => album version and config bump.
+
+	* Change: removed ml_pulldown.inc,
+		  instead created function languageSelector() in lang.php
+
+	* Change: Unified layout for all admin pages.
+
+	* Change: Enhanced classes/HTML/table.php
+
+2005-05-20 Pierre-Luc Paour <paour@users.sourceforge.net>  1.5.1-cvs-b24
+
+	* Change: Applets version 1.4.2-b20.
+
+2005-05-10 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b23
+
+	* Change: Change input for count of files/meta files a input box instead of comboxbox
+
+	* New: added file:lib/valchecks.php with function isValidInteger. Its included via util.php.
+
+2005-05-09  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b22
+
+	* Change:  Config wiz typo
+
+2005-05-09 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b21
+
+	* Change: Merged Poll options and Custom fields into properties
+
+	* New: Made folder include/definitions, which is supposed to contain static definition.
+	       Currently added: (print) Services
+
+	* Change: Minor GUI changes.
+
+	* New: Added a classes/HTML folder, which is supposed to contain classes and method for html handling.
+	       Currently added is only a very rudimental table class :)
+
+2005-05-08 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b20
+
+	* Fix: Custom fields were not set recursively (register globals issue)
+
+	* Fix: remove Debug Code.
+
+2005-05-06 Jens Tkotz <jens@peino.de>  1.5.1-cvs-b19
+
+	* Fix: RFE #1192462  (catch invalid manuell input of $set_AlbumListPage and $page via URL)
+
+	* Change: minor tweak of getAlbum
+
+2005-05-02 Stupid Tkotz <jens@peino.de>  1.5.1-cvs-b18
+
+	* Fix: More typos. Sorry, next time i pay more attention.
+
+2005-05-02 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b17
+
+	* Fix: typo in classes/Album.php introduced in b16
+
+2005-05-02 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b16
+
+	* Change: Added 'nobody' as default permission set.
+ 	Thanks to Andrew A. Chen for this idea.
+
+2005-04-28 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b15
+
+	Fix: More spelling and validation fixes by Gaile in base.css
+
+	Fix: Initialtab was not correct set in edit_apperance
+
+	Fix: When editing properties via startpage the properties page broke after 2 apply.
+
+2005-04-27 Pierre-Luc Paour <paour@users.sourceforge.net>  1.5.1-cvs-b14
+
+	* Fix: htmlMimeMail.php was checked in with the wrong line endings
+	  which was causing the CVS build to fail on Windows.
+
+2005-04-25 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b13
+
+	* Fix: typos
+
+	* Fix: Missing quoting in colorpicker.php
+
+2005-04-25 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b12
+
+	* Fix: css and html fixes. (found by Gaile)
+
+2005-04-22 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b11
+
+	* New: Added nice colorpicker for easy color setting.
+	  Note: Coded and pictures were taken from the Horde Project (http://www.horde.org)
+
+	* Fix: Use of depricated var in html/userData.inc
+
+	* Change: Added hidden fields for sectionTabs that contains the current tab.
+		  This enables us to highlight it, when reloading the page.
+
+	* Change: Little Layout change in layout/commentdraw.inc
+
+	* Change: former solution for Jmullan, broke HTML validality.
+		  New solution: tweaked getPhotoTag() to accept attrs.
+
+2005-04-21 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b10
+
+	* Fix: eCard setting from setup was not used for new albums (thanks Judith)
+
+	* Change: Added tabindex order in eCard Form and focus on first field.
+
+	* Change: Admins can now created directly as new user.
+
+	* New: New flag for user to allow or disallow them to change their password.
+	  Note: User version bump. "Old" user automatically get this to true.
+
+	* Change: Stay in modify user view after having modified a user.
+
+	* New: added id="galleryImage" to img tags in view_photo (for jmullan)
+
+	* Fix: View Comments for not loggedIn User where displayed even if setting in setup was off,
+	       but everybody is allowed to see comments.
+
+	* "Fix": removed select:focus css (except in Jenskin) as FF on Linux is buggy on this.
+
+2005-04-20 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b9
+
+	* Fix: Create user were b0rked since b2.
+
+2005-04-20 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b8
+
+	* Fix: Wrong use of check for itemOwner caused error
+	       when user wants to see all comments in some circumstances.
+
+2005-04-19 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b7
+
+	* Fix: Wrong require in setup let Gallery config break on debian (thanks to tomukas)
+
+	* Fix: critical typo in classes/Album.php
+
+2005-04-19 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b6
+
+	* Change: Use Name and Email of logged in users as default for Sender in ecards.
+
+	* Change: Added Subject line for ecards.
+
+	* Fix: ecard enable/disable setting was not set for nested albums.
+
+2005-04-18 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b5
+
+	* Change: Added new parameter to makeIconMenu for alignment
+
+	* Change: Use IconMenu in view_photo for adminText
+
+	* Change: Make eCards an album option. (needs album version bump)
+
+	* Fix: Added ecard_form.php to allowed include list.
+
+	* Change: Little layout, text and css and html validation for ecard_form.php
+
+	* Fix: ecards opened popup with environment when Gallery is embedded.
+
+2005-04-18 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b4
+
+	* Fix: removed little debug code.
+
+2005-04-17 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b3
+
+	* Fix: invalid css in standalone css and some skins. (Thanks to pixelpoet)
+
+	* Change: Added cellpadding="0" cellspacing="0" to starting tables in html_wrap/*.header.default
+
+2005-04-16 Jens A. Tkotz <jens@peino.de>  1.5.1-cvs-b2
+
+	* Fix: HTML validation in view_photo.php, login.php
+
+	* Change: Added parameter to drawSelect for pretty printing.
+
+	* Change: Album properties are displayed in tabs.
+
+	* CHANGE: data structure of print services.
+		  reconfig forced and album version bumped.
+
+	  Note: code not finished ! Previous Values from config for print services not used.
+
+	* Change: eCard template changes
+
+	* Change: Modified eCard feature...
+
+	* Change: Show Albumnames in pulldown for reorder album.
+
+	* New: Added eCard Feature. (not completed yet.)
+
+	* New: Added more placeholders in Welcome Msg. Used Patch #847436 as inspiration.
+
+	* Change: Inform user when display of exifdate is enabled, but nothing found.
+	  (to avoid confusion)
+
+	* Change: Added Patch #842580 from Kennichi Uehara 'email transfer encoding to base64'
+
+2005-04-14  Jay Rossiter <cryptographite@users.sf.net>  1.5.1-cvs-b1
+
+	* Fix: Address PHP5 behavior change to unsetting string values
+
+2005-04-13  Chris Kelly <ckdake@users.sf.net>  1.5
+
+	* 1.5 Release
+
+FOR THE REST OF THE CHANGELOG, SEE ChangeLog.archive.gz

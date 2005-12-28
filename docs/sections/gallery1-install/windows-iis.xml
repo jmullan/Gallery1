@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.windows-iis">
+ <title>Installing on a Windows Server (IIS)</title>
+ 
+ &documentation.rewrite;
+ 
+ &gallery1.upgrade;
+ 
+ <note>
+  <simpara>
+   IIS is not officially supported by the Gallery Team.  These instructions are
+   provided as a guide to help you with setting up Gallery on IIS, but because
+   of major problems with PHP and IIS integration, IIS is not considered a
+   supported platform.
+  </simpara>
+ </note>
+ <para>
+  These instructions are a slightly modified and expanded version of the steps
+  previously found in the Wiki web, gathered from various forum users'
+  experiences.
+ </para>
+ <orderedlist>
+  <listitem>
+   <para>
+    Install PHP by running the installer program found at
+    <ulink url="http://www.php.net/downloads.php">the PHP downloads page</ulink>
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Find the &php.ini; file (should be in your system root directory, e.g.
+    <filename>C:\winnt\</filename> or <filename>C:\windows</filename>.  Open
+    it in Notepad.  Locate the line that starts with <literal>error_reporting
+    </literal>.  Change the line to read: <literal>error_reporting = 2039
+    </literal>.  Then change the line that starts with
+    <literal>session.bug_compat_warn</literal> to <literal>session.bug_compat_warn = 
+    0</literal>.  Next, find the line that starts with <literal>magic_quotes_gpc</literal>
+    and change it to read <literal>magic_quotes_gpc = 0</literal>.  Finally,
+    find the line that starts with <literal>session.save_path</literal> and make
+    sure it points to a valid directory, such as <literal>C:\winnt\temp</literal>
+    or <literal>C:\windows\temp</literal>.  Also find the line that starts with
+    <literal>upload_tmp_dir</literal>.  Set this directive to the same thing
+    as <literal>session.save_path</literal>.  <emphasis>Remember what you
+    specified for these directives for a later step</emphasis>.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Open the IIS panel (Start -&gt; Control Panel -&gt; Administrative Tools
+    -&gt; Internet Information Services).  Right click on the "Default Website"
+    (or the name of the website you're installing Gallery under) and choose
+    "Properties".  Click the "Documents" tab, and click "Add".  Enter "index.php"
+    and click OK.  Click OK and close the IIS panel.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Make sure the <literal>IUSR_[machinename]</literal> account has full read/write
+    access to your PHP session data and upload temp directories (see step 2).
+    Find the directory you specified in Windows Explorer and right click on it,
+    choosing "Properties" then "Security".  If you see the <literal>IUSR_[machinename]</literal>
+    account listed, make sure it has full read/write permissions.  If not, you will
+    have to add this account.  Click "Add..." then "Advanced" then "Find Now".  It
+    will show a list of all the user accounts available on the machine.  Find the
+    <literal>IUSR_[machinename]</literal> account and click "OK" and "OK" again.  Then
+    make sure the account has the proper permissions, as listed above.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Download <ulink url="http://www.imagemagick.org">ImageMagick</ulink> and
+    run the installation program.  <emphasis>Do NOT install it to the default
+    directory</emphasis>.  Instead, choose something like <filename>C:\ImageMagick</filename>
+    or another directory <emphasis>without a space</emphasis>.  Remember this
+    directory.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    If you are using <link linkend="gallery1-install.required-programs.jhead">jhead</link>
+    or other optional programs, install them <emphasis>in a directory without
+    a space</emphasis>.  Remember which directory you installed them in.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Download">
+    Download Gallery</ulink> and unpack it under your wwwroot directory.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Create two directories called <filename>albums</filename> and <filename>tmp
+    </filename> in the newly created directory where you unpacked Gallery.  Give
+    the <literal>IUSR_[machinename]</literal> user full read/write access to
+    these two directories.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Put Gallery into config mode by running <filename>configure.bat</filename>
+    in the root Gallery directory
+   </para>
+   <note>
+    <para>
+     In Gallery 1.4.4, the configure.bat and secure.bat files are no longer
+     necessary.  You can safely ignore any steps which mention those two files
+     if you are using Gallery 1.4.4
+    </para>
+   </note>
+  </listitem>
+  <listitem>
+   <para>
+    Run the <link linkend="gallery1-install.config-wizard">configuration wizard
+    </link>.  Input all necessary information, including where you put all the
+    programs you installed earlier and where you created your albums and temp
+    directories (see previous step).
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Complete the config wizard and run <filename>secure.bat</filename>.
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Search for <filename>cmd.exe</filename> on your system.  It should be in
+    the <filename>C:\windows\system32</filename> or <filename>C:\winnt\system32</filename>
+    folder.  Make sure the <literal>IUSR_[machinename]</literal> account has read
+    and execute permissions to it. Another possible solution may be to copy cmd.exe 
+    for your <filename>c:\windows\system32\</filename> folder to the same folder 
+    <filename>php.exe</filename> resides in. The problem might not just be permissions, 
+    but the ability to run <filename>cmd.exe</filename> from it's default location via IIS. 
+
+   </para>
+  </listitem>
+  <listitem>
+   <para>
+    Your Gallery should be successfully installed.  Enjoy!
+   </para>
+  </listitem>
+ </orderedlist>
+ <note>
+  <para>
+   If you are using NetPBM, instead of ImageMagick (not recommended), you may
+   need to refer to <link linkend="gallery1-install.faq.c.26">FAQ C.26</link>.
+  </para>
+ </note>
+</sect1>
+   
+     

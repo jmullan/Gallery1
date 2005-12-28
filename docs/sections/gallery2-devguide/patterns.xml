@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!-- $Id$ -->
+
+<sect1 id="gallery2-devguide.patterns">
+ <title>Patterns</title>
+ 
+ <para>
+  Gallery makes use of quite a few design patterns in the code.
+  These patterns are design and coding methodologies that make it
+  easier to implement and understand large systems.  If you're
+  working on the official Gallery codebase, you must understand and
+  use them in the code that you write.  If you're developing your own
+  module, we strongly recommend that you follow these patterns since
+  it'll make it that much easier to integrate your module into the
+  official module set (which is a good thing).
+ </para>
+ <sect2>
+  <title>
+   Code Generation
+  </title>
+  <para>
+   Gallery makes extensive use of code generation to save us time and
+   effort in creating and maintaining source code.  We embed special
+   tags into our entity and map classes which can be describe these
+   classes in such a way that we can extract this information and get
+   a very clear idea of what is in them.  This information is then
+   used to:
+   <itemizedlist>
+    <listitem>
+     <para>
+      Create getters and setters for all of our entity members
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Create convenience methods for maps to add, remove and update map
+      entries.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Create database specific SQL scripts (right now only MySQL and
+      Postgres, but we can add others).
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Generate UML diagrams (only partially supported at the moment)
+     </para>
+    </listitem>
+   </itemizedlist>
+   The way this works is that we embed tags in comments in the
+   code that contain the string "@g2".  After these @g2 tags come bits
+   of XML such that if you extract all of the @g2 tags in order from
+   the file (and strip off the @g2 part) you'll get a well formed XML
+   file that conforms to the lib/tools/dtd/GalleryClass2.0.dtd DTD
+   specification.  
+  </para>
+  <para>
+   For example, here's a snippet from modules/core/classes/GalleryItem.class
+   <programlisting>
+    /**
+     * Abstract base class for all objects in the Gallery
+     * composite tree
+     *
+     * Container for all functionality and data common objects that 
+     * Gallery can deal with.  Each GalleryItem has the capacity
+     * to own other GalleryItems in a parent-child relationship.
+     * That capacity can be enabled or disabled by subclasses of
+     * GalleryItem.
+     *
+     * @g2 &lt;class-name&gt;GalleryItem&lt;/class-name&gt;
+     * @g2 &lt;parent-class-name&gt;GalleryFileSystemEntity&lt;/parent-class-name&gt;
+     * @g2 &lt;schema&gt;
+     * @g2   &lt;schema-major&gt;1&lt;/schema-major&gt;
+     * @g2   &lt;schema-minor&gt;0&lt;/schema-minor&gt;
+     * @g2 &lt;/schema&gt;
+     * @g2 &lt;requires-id/&gt;
+     *
+     * @package GalleryCore
+     * @subpackage Classes
+     * @abstract
+     */
+    class GalleryItem_core extends GalleryFileSystemEntity {
+    
+        /**
+         * Can this item contain children?
+         *
+         * @g2 &lt;member&gt;
+         * @g2  &lt;member-name&gt;canContainChildren&lt;/member-name&gt;
+         * @g2  &lt;member-type&gt;BOOLEAN&lt;/member-type&gt;
+         * @g2 &lt;/member&gt;
+         *
+         * @var int $_canContainChildren
+         * @access private
+         */
+        var $_canContainChildren;
+   </programlisting>
+   In the above snippet, if you pull out the @g2 tags you wind up with:
+   <programlisting>
+    &lt;class-name&gt;GalleryItem&lt;/class-name&gt;
+    &lt;parent-class-name&gt;GalleryFileSystemEntity&lt;/parent-class-name&gt;
+    &lt;schema&gt;
+      &lt;schema-major&gt;1&lt;/schema-major&gt;
+      &lt;schema-minor&gt;0&lt;/schema-minor&gt;
+    &lt;/schema&gt;
+    &lt;requires-id/&gt;
+    &lt;member&gt;
+     &lt;member-name&gt;canContainChildren&lt;/member-name&gt;
+     &lt;member-type&gt;BOOLEAN&lt;/member-type&gt;
+    &lt;/member&gt;
+    &lt;member&gt;    
+   </programlisting>
+   This is only a partial listing; GalleryItem really has many more
+   members than that.  However, we take this XML and wrap it in a
+   &lt;class&gt; tag and it's now compliant XML.
+  </para>
+  <para>
+   You <emphasis>never need to modify the interface classes or SQL
+   files by hand</emphasis>.  You just need to keep the map and entity
+   files up to date and the code generator will take care of it for
+   you!  To generate the interface classes and SQL files for a module,
+   just cd into the module's classes directory and run "gmake".  You
+   must have the Saxon XSLT engine and an XML validator like rxp
+   installed for this to work.  The saxon and rxp command lines are
+   specified in lib/tools/GNUmakefile.inc, but you can override them
+   on the command line:
+   <programlisting>
+    % cd modules/<emphasis>module-name</emphasis>/classes
+    % gmake SAXON="java-jar /usr/local/share/java/classes/saxon.jar" VALIDATOR="rxp -d -s -V"
+   </programlisting>
+  </para>
+  <para>
+   The interface classes are generated by combining class XML file
+   with the modules/core/clases/interfaces/ClassCode.xsl XSL template.
+   This is fairly straightforward.
+  </para>
+  <para>
+   Generating the database SQL files is a little bit more complicated.
+   First we convert the XML from conforming to the GalleryClass2.0 DTD
+   into XML that conforms to the DatabaseTableDefinition2.0 DTD.  This
+   form allows us to describe a database table in neutral terms.  If
+   you want to create tables that do not draw directly from a
+   GalleryMap (this is unusual and you should avoid it, but the core
+   module has to do it for things like the Schema and Lock tables) you
+   can create XML files that conform to the DatabaseTableDefinition2.0
+   DTD and put them in
+   modules/<emphasis>module-name</emphasis>/classes/GalleryStorage/DatabaseStorage/schema/xml-src.
+   Next, we take these database table XML files and combine them with
+   database specific XSL templates which are found in the
+   .../DatabaseStorage/schema/platform directory.  Using this
+   technique, we can easily guarantee that any new entity, map or
+   other database table that we create will be well formed for each
+   database.  It also means that we can expand to new databases
+   relatively quickly since we won't have to hand-write SQL for each
+   one.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Entities
+  </title>
+  <para>
+   An entity in Gallery is an atomic chunk of data that can be loaded
+   from and saved to the database and has its own internal behaviour.
+   Each entity has its own unique id, creation timestamp,
+   modification timestamp, serial number and entity type.  All
+   entities are subclasses of GalleryEntity.  You never create an
+   instance of GalleryEntity itself; it's an abstract class even
+   though PHP doesn't explicitly support abstract classes.  When you
+   want a new instance of an entity you should create it using the
+   factory methods of GalleryCoreApi (described below).
+  </para>
+  <para>
+   There are a variety of different types of entities that server
+   different purposes.  In the Gallery object model we take advantage
+   of inheritance to create subclasses of entities that contain only
+   the data and behaviour that we need.  For example, groups and
+   users do not have a parent/child relationship with other entities
+   so they directly subclass GalleryEntity.  Everything else in the
+   system has a parent/child relationship so we have a new entity
+   type called GalleryChildEntity that subclasses GalleryEntity and
+   contains a <emphasis>parentId</emphasis> member.  Read the UML
+   diagram to see exactly how the various entities are related.
+  </para>
+  <para>
+   Gallery data is arranged in a tree starting with a single
+   GalleryAlbumItem as the root.  The root album contains other
+   GalleryItems which are either GalleryAlbumItems or
+   GalleryDataItems.  GalleryDataItems are the manageable data types
+   such as GalleryPhotoItem or GalleryMovieItem instances.  Modules
+   can introduce new item types by creating entities that extend
+   GalleryDataItem and registering them with the factory methods
+   of the GalleryCoreApi.
+  </para>
+  <para>
+   GalleryEntities contain contents that have special embedded
+   metadata in them.  We use this metadata to describe the entity in
+   such a way that our automated tools can automatically generate
+   interface classes and SQL table definitions for the entity.  This
+   saves a considerable amount of time writing code by hand.  Read
+   the "Code Generation" section for more details on how this works.
+  </para>
+  <para>
+   You create a new GalleryEntity by first getting an instance of it
+   from the GalleryCoreApi:
+   <programlisting>
+    list ($ret, $user) = GalleryCoreApi::newFactoryInstance('GalleryEntity', 'GalleryUser');
+    if ($ret->isError()) { 
+        return array($ret->wrap(__FILE__, __LINE__), null); 
+    }
+
+    if (!isset($user)) {
+        return array(GalleryStatus::error(ERROR_MISSING_OBJECT, __FILE__, __LINE__), null);      
+    }
+   </programlisting>
+   Note a couple of things about the above code.  First, we know that
+   we want to create a GalleryUser, and that GalleryUser extends
+   GalleryEntity.  This allows us to make the specific factory call
+   telling it to give us an instance of the GalleryUser class.  Now
+   the nice thing is that we don't actually care what GalleryUser we
+   get back as long as we get back something that fulfills the
+   GalleryUser API.  This is necessary since later on when we embed
+   Gallery inside another system we'll change the factory method to
+   return (for example) an instance of PostNukeGalleryUser and our
+   application logic will still function properly.
+  </para>
+  <para>
+   The other thing to note is that we don't actually know for sure
+   that we received back an instance of the class.  We may have asked
+   for a class type that is not registered, so not only do we have to
+   check for (and handle) an error code, but we have to handle the
+   situation where no object was returned.  Now in the case of
+   GalleryUser it's pretty unlikely that we won't have an
+   implementation handy, but it's still a good pattern to check so
+   that we can meet our reliability goal.
+  </para>
+  <para>
+   It's not always going to be the case that we know exactly what
+   type of entity we want, especially when we're creating new
+   GalleryItem types.  Typically, we want to create a GalleryItem
+   based on the mime type of the file the user just uploaded.  This
+   is when the factory code really shines, since we can allow modules
+   to create their own GalleryDataItem entities and register them
+   with the factory so that we can simply do this:
+   <programlisting>
+    list ($ret, $newItem) = GalleryCoreApi::newItemByMimeType($mimeType); 
+    if ($ret->isError()) { 
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+   Note that in this example, we're going to get back a GalleryItem
+   but we have no idea what the actual implementation is.  In the
+   core module, we map some mime types to GalleryPhotoItem, some to
+   GalleryMovieItem and the rest to GalleryUnknownItem.  But there
+   may be a new module in the system that has created a
+   FlashMovieItem type and registered it with the
+   <emphasis>application/x-shockwave-flash</emphasis> mime type, and
+   we might be getting one of those entities back if the user
+   uploaded a flash movie.  We don't know, and we don't care as long
+   as the entity returned is a GalleryItem.
+  </para>
+  <para>
+   You must write lock a GalleryEntity before you modify or delete
+   it.  However, you do not have to write lock it before creating the
+   entity, since nothing else can modify it before you create it.
+   However, you should read lock the parent to make sure that it does
+   not get modified while you're creating entities inside it.Entity
+   creation looks like this (without locking; see the locking section
+   for examples with locking also).
+   <programlisting>
+    // use the factory to get a new instance of GalleryUser, as shown above
+    // then call create.
+    $ret = $user->create("jdoe");
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+
+    $user->setEmail("jdoe@jdoe.com");
+
+    // Now we have a well formed instance of GalleryUser in memory so save
+    // it to the database:
+    $ret = $user->save();
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+   Modifying or deleting entities requires you to lock and refresh
+   the item before you change or delete it.
+   <programlisting>
+    // Let's assume $user is a loaded GalleryUser entity.  First we lock it:
+    list ($ret, $lockId) = GalleryCoreApi::acquireWriteLock($user->getId());
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+
+    // Then we refresh the user in case somebody modified it in the window between
+    // when we loaded it and when we acquired the lock
+    $ret = $user->refresh();
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+
+    // Then modify the item
+    $user->setEmail("jdoe@jdoe.com");
+
+    // Now save it:
+    $ret = $user->save();
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+
+    // And then release our write lock
+    list ($ret, $lockId) = GalleryCoreApi::releaseLocks($lockId);
+    if ($ret->isError()) {
+    return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+   Deleting is the same as saving, except that you use the delete()
+   method on the entity instead of save().  And you can also use the
+   <programlisting>GalleryCoreApi::deleteEntityById()</programlisting>
+   convenience method instead since that handles all the locking
+   issues and doesn't require you to actually load the entity just so
+   that you can delete it.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Maps
+  </title>
+  <para>
+   Maps are a means of storing data that is not included in entities.
+   All data in Gallery 2 falls within either an entity or a map.  As
+   with entities, the interfaces for map classes are generated for us
+   (see the Generated Code section below), but unlike entities the map
+   classes do not require locking and do not inherit behaviour from a
+   common base class.  In fact, maps do not inherit from other classes
+   at all.  For example, in the core module, maps are used to store:
+   <itemizedlist>
+    <listitem>
+     <para>
+      Item properties.  These are key/value pairs associated with any 
+      item.  They can be used by other modules to hang any data at all
+      onto an item.  We put this in a map because there is a one->many
+      cardinality from items to item properties.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Module parameters.  Can store any data they want in the module
+      map.  This is where modules keep track of their preferences (like
+      the core module's default language settings, or the NetPBM
+      module's path to the binaries).
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Item attributes.  Some attributes for items (like its view counts)
+      are placed in an item attribute map. The cardinality between items
+      and those attributes is one to one, so you'd think that it would
+      make sense to put them into the entity itself. However, you're
+      required to lock an entity before changing any of them. Since these
+      attributes are non-essential to the integrity of the entity itself,
+      we can have them in a map to allow faster updates.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      User/Group mapping.  This is a classic tie table where we associate
+      an user with a group.
+     </para>
+    </listitem>
+   </itemizedlist>
+   There are many other types of maps, these are just a few. Usually a 
+   map class is ends with "Map", so they are easy to find. Read the
+   API documentation for more specific details on each map type.
+  </para>
+  <para>
+   Maps are pure static classes.  They should never be instantiated, but
+   instead their methods should be called statically.  For example, to
+   add a user to a group you'd say:
+   <programlisting>
+    $ret = GalleryUserGroupMap::addMapEntry($userId, $groupId);
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+   Usually a map will also provide a helper-class that provides common
+   methods for manipulating its entries. In the above case, we have the
+   following API-call:
+   <programlisting>
+    $ret = GalleryCoreApi::addUserToGroup($userId, $groupId);
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Helpers
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Templates
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Locking
+  </title>
+  <para>
+   G2 employs a locking methodology called "Pessimistic
+   Locking".  What this means is that whenever the application
+   layer wants to change an entity that already exists in the
+   system, it must lock the entity before it begins editing and
+   release the lock when its done.  While this entity is
+   locked, no other session can touch the entity.
+  </para>
+  <para>
+   We use two types of locks: read locks and write locks.
+   Holding a read lock on an entity means that nobody can edit
+   it.  That's useful in the case where you want to make sure
+   that an entity (eg, an album) doesn't get moved while you're
+   working with it.  The other type of lock is a write lock.
+   It allows your session the exclusive ability to edit an
+   entity.
+  </para>
+  <para>
+   The general rule is that you acquire a lock as far upstream
+   as possible.  When performing complex operations (like
+   moving items, etc) only the application logic really knows
+   what's going on.  The framework can check to make sure that
+   a lock is acquired but in general, each framework call
+   doesn't know the context that it's getting called in so it
+   shouldn't be responsible for acquiring the lock.
+  </para>
+  <para>
+   For example if we're writing the the move or copy item
+   logic, at the app level we want to acquire a read lock on
+   the source and destination albums and on all of their
+   parents.  This prevents the source/destination containers
+   from getting moved around while we're moving items within
+   them.  Then we want to write-lock the items we're moving so
+   that nobody can fiddle with them while we're moving them.
+   Thus we can successfully move or copy the items safe in the
+   knowledge that our operation should complete successfully.
+  </para>
+  <para>
+   One of the interesting problems that we address in G2 is
+   avoiding data corruption.  If you're using G2 in a
+   transactional database, you should never get data corruption
+   in the database.  However, we don't have a journalling
+   filesystem and it's common for us to do filesystem
+   operations at the same time as the database operations.  If
+   the database transaction fails, the database changes will be
+   rolled back cleanly but we'll be left with corruption in the
+   filesystem (eg, an item gets moved to a new location but
+   then the database statement fails, it all rolls back but the
+   file gets stranded in the new place).  In a perfect world,
+   we will check our database operations and trying to undo any
+   filesystem changes if it looks like the database operation
+   failed.  It's not perfect (and we're not doing it properly
+   in a lot of places) but it's possible.
+  </para>
+  <para>
+   Pessimistic locking minimizes the above problem.  We assume
+   that there will be concurrency issues and try to lock all
+   objects that we're going to touch.  We read lock anything
+   that we're not going to change and write lock anything that
+   we are going to change.  The downside is that because not
+   all databases have row-level locking, the locking strategy
+   involves quite a few reads and writes to a lock table so
+   locking is somewhat expensive.  
+  </para>
+  <para>
+   Only GalleryEntities are locked.  Data in maps is considered
+   to be of a more transient nature and less susceptible to
+   concurrency issues.  So in order to minimize the expense,
+   we've moved some columns out of the entities and into the map
+   classes.  These columns (like view count, etc) are much
+   faster because they are not protected by locks, but the
+   downside is that it's possible for them to be updated
+   inaccurately so they're slightly less reliable.
+  </para>
+  <para>
+   One possible alternative to the above solution is to let the
+   framework handle all locking under the covers and not expose
+   it at the application logic level.  This would make new
+   application logic easier to write, since you wouldn't have
+   to worry about locking.  There are a few reasons why this
+   won't work:
+   <itemizedlist>
+    <listitem>
+     <para>
+      We don't know for sure that we have transactions, and
+      we don't want to fail in the middle of an operation
+      and corrupt our database and our filesystem, so we
+      should try to acquire all write locks up front to
+      ensure success before we make any changes.  That can
+      only be done in the controller, since no other part of
+      the code knows exactly what we need.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Locking is expensive in environments without good
+      row-level locking (eg, MySQL) so it's best to try to
+      acquire lots of locks at once instead of doing them as
+      we find out that we need them.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Right after you get the write lock for an entity, you
+      must refresh the entity, otherwise you don't know for
+      sure that you have the latest version (somebody else
+      might have had the write lock, modified the entity and
+      released the lock in between the time that you loaded
+      the entity and when you successfully acquire the write
+      lock).  This can also only be done safely at the top.
+     </para>
+    </listitem>
+   </itemizedlist>
+   The framework helps out by not allowing you to save an
+   entity unless it is write locked.  So the main issue is
+   knowing when to acquire read locks (more on that below).
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Factories
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Model-View-Controller
+  </title>
+  <para>
+   The Model-View-Controller (MVC) pattern is a way of organizing the code a
+   program's graphical user interface (GUI).  The basic premise is to separate
+   data from logic and display.
+  </para>
+  <para>
+   <ulink url="http://ootips.org/mvc-pattern.html">
+    <citetitle>
+     http://ootips.org/mvc-pattern.html
+    </citetitle>
+   </ulink>
+  </para>
+  <para>
+   <ulink url="http://www.phppatterns.com/index.php/article/articleprint/11/-1/1/">
+    <citetitle>
+     http://www.phppatterns.com/index.php/article/articleprint/11/-1/1/
+    </citetitle>
+   </ulink>
+  </para>
+  <para>
+   The "Model" is the information in the database (think of "data model") it's got
+   no logic.  it's just data.  The model is wrapped with logic in the core that
+   allows you to manipulate it safely without screwing things up.  These are the
+   entities/maps/utility classes, etc.
+  </para>
+  <para>
+   Anything you see in your browser is a View, which is just one way of looking at
+   any given model.  So you may have a GalleryUser entity as your data model. You
+   can have lots of different views of that user information, one might show the
+   email address, another might show a form where you can edit data.
+  </para>
+  <para>
+   If you are looking at a View that contains an HTML form, when you submit the
+   form it goes to a Controller. The Controller reads the form data and then
+   applies it to the model, then redirects you to the appropriate next View
+   which pulls data from the model and then shows it to you.
+  </para>
+  <para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      The model is the data and a set of functions that accept changes to the data
+      and supply the data to views.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The controller selects views and processes user input to supply to the model.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The views are methods for displaying the data supplied by the model.  They can
+      also provide the visible interface to add and change data.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </para>
+  <para>
+   We don't do view notification (which is a component of MVC) because we don't
+   actually have persistent views.  If G2 were a desktop UI application you
+   could have a persistent view which would need notification. Instead, upon
+   completion of a change to a model's data, a G2 controller will select a
+   different view, which asks the model for the data. The controller can
+   delegate to any view that it wants. We follow a pattern whereby if the
+   controller receives an error, it delegates back to the view that generated
+   the form.  If the controller completes successfully, it delegates (using
+   redirection) to a different "success" view.
+   See: Redirect-On-Post
+  </para>
+  <para>
+   Let's take the case of editing an item as an example.
+  </para>
+  <para>
+   The item itself is represented by a modules/core/classes/GalleryItem class.
+   All that we care about is that the item is a GalleryItem, even though we know
+   that it's almost definitely a GalleryPhotoItem or GalleryMovieItem, each of
+   which extend GalleryDataItem which extends GalleryItem.
+  </para>
+  <para>
+   The view (ItemEditItemView in modules/core/ItemEditItem.inc) doesn't care
+   which specific kind of item the model is because it knows that it can safely
+   treat the model as a GalleryItem (this is called polymorphism/abstraction).  The
+   ItemEditItemView uses the modules/core/templates/ItemEditItem.tpl template
+   to create an HTML form that it shows to the user.
+  </para>
+  <para>
+   The HTML form's submit button submits the data back to the ItemEditItemController
+   (also found in modules/core/ItemEditItem.inc) which loads the GalleryItem
+   model back into memory and makes any necessary changes to it.
+  </para>
+  <para>
+   The ItemEditItemController can then pass control back to the ItemEditItemView,
+   or it could pass control to any other view at that point.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Internationalization and Localization
+  </title>
+  <para>
+   We are striving to ensure that Gallery 2 runs equally well, no matter what the
+   language.  Gallery 2 has an international and multilingual team of developers.
+   We hope to carry our international userbase with us into the new version and
+   offer them a Gallery that speaks to them in their own language wherever possible.
+  </para>
+  <para>
+   What is UTF-8?
+  </para>
+  <para>
+   Okay, let's start with the most bsic character set, ASCII, which has values
+   0-255, representing control characters and the letters of the American
+   English alphabet (and some other stuff). Obviously, in all the world's
+   languages together there are more than 256 possible characters.
+  </para>
+  <para>
+   But let's take Greek for example - it has characters like Alpha and Omega
+   which can't be displayed using a single ASCII character So, someone came up
+   with a 16 bit character set for greek. However, every operating system (that
+   I know of) processes text using only eight-bit characters. If you want to
+   represent a 16-bit character in an eight-bit world, you would use two
+   eight-bit characters. Software is written for a particular character set,
+   and knows how to process those character pairs into 16 bit characters and
+   display the correct letter, whether it is alpha, omega, or aleph.
+  </para>
+  <para>
+   There are three at least three different greek character encodings - three
+   different ways to pair up special characters.  Software that supports Greek
+   should know all three, right? This is a nightmare.
+  </para>
+  <para>
+   Enter unicode. An international community got together and decided to define
+   a huge character set that encompasses every possible character, including
+   Greek, Chinese, and everything else.
+  </para>
+  <para>
+   <ulink url="http://www.unicode.org/standard/WhatIsUnicode.html">
+    <citetitle>
+     http://www.unicode.org/standard/WhatIsUnicode.html
+    </citetitle>
+   </ulink>
+  </para>
+  <para>
+   Unicode has a character set including thousands of characters, which is
+   terrific, but faces the same problem as Greek did - existing software
+   doesn't know how to deal with characters with more than 8 bits.
+   several ways of encoding these big characters into 8 bits were devised,
+   including UTF-2 and UTF-4 (for how many bytes were used to encode a
+   character), but the one that seems to have the strongest support is UTF-8.
+  </para>
+  <para>
+   <ulink url="http://www.cl.cam.ac.uk/~mgk25/unicode.html">
+    <citetitle>
+     http://www.cl.cam.ac.uk/~mgk25/unicode.html
+    </citetitle>
+   </ulink>
+  </para>
+  <para>
+   UTF-8 uses various tricks to be friendly to existing software so that
+   software won't know (or care) what character set it is processing
+   as long as the end-user's display understands UTF-8, life is good
+   Why is gallery 2 using UTF-8? It solves the essential problem of a
+   multi-language site - multiple languages on one page. If you leave a comment
+   in Spanish on a Japanese site - will that site know how to display the
+   diacritical marks in your words - or your name?
+  </para>
+  <para>
+   What's the practical difference between iso-whatever and UTF-8?
+  </para>
+  <para>
+   ISO-8859-* is a set of slightly different, language specific character sets.
+   Most browsers should understand them, but you end up having trouble when you
+   try to convert from one to another, or display more than one language on a
+   page.
+  </para>
+  <para>
+   That's why I suggested that we ask translators to do UTF-8. It's very
+   standard and usually well supported. Other character sets may require
+   specific options to be compiled into php, which isn't fun.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Storage
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Platform
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Cross-Module Interfaces
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Event Listeners
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Data Caching
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Graphics Toolkit
+  </title>
+  <para>&nbsp;
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Redirect-On-Post
+  </title>
+  <para>
+   One aggravating thing about may dynamic websites is the
+   situation where you want to reload a page, but the page was
+   created by a form submission and reloading the page will
+   submit the form again which may do something you did not
+   intend.  To avoid this problem, G2 will always redirect you to
+   a new page after you successfully complete an operation.  If
+   you do a form post and it *doesn't* do anything (ie, it gives
+   you an error) it won't redirect since it's safe to reload that
+   page again if you choose.  Of course, reloading that page will
+   just give you the same error, but at least it won't cause any
+   damage.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Check all return codes
+  </title>
+  <para>
+   Reliability is one of Gallery's fundamental goals.  The path
+   to reliability is to religiously check every single return
+   code and make sure that when something goes wrong we handle it
+   in the most appropriate way.
+  </para>
+  <para>
+   Sadly, PHP4 lacks exception handling which means that we have
+   to comeup with our own way to check return values.  G2 has its
+   own system for returning status values such that errors bubble
+   up to the top and can be handled at every step of the way.  We
+   build up a stack trace while handling these errors and this
+   stack trace can be used to diagnose problems when they occur.
+  </para>
+  <para>
+   Any method that can fail should return an instance of a
+   GalleryStatus object.  In the case of a successful result, it
+   should return:
+   <programlisting>
+    return GalleryStatus::success();
+   </programlisting>
+   Upon failure, it should return the appropriate error code along
+   with the relevant file name and line number like this:
+   <programlisting>
+    return GalleryStatus::error(ERROR_MISSING_OBJECT, __FILE__, __LINE__);
+   </programlisting>
+   The complete list of error codes can be found in the
+   modules/core/GalleryStatus class.  The code that calls a method that
+   returns a GalleryStatus object should check the error code and handle
+   it properly:
+   <programlisting>
+    $ret = methodThatReturnsStatus();
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+   </programlisting>
+   Note that we tag on the file and line numbers when we return the
+   status code.  This is how we build up the stack trace.  We follow
+   the convention that all status codes are called
+   <emphasis>$ret</emphasis>.  This is a good idea in case we wish to
+   refactor this code later on; it'll make those lines easier to
+   find.  Note also that if your method returns other values, it
+   should return an array so that the first element can be a status
+   code, like:
+   <programlisting>
+    function foo() {
+        ...
+        return array(GalleryStatus::success(), "actual results");
+    }
+   </programlisting>
+   The code calling this method should then split the return value
+   in an array and first handle the status object before continuing:
+   <programlisting>
+    list ($ret, $results) = foo();
+    if ($ret->isError()) {
+        return $ret->wrap(__FILE__, __LINE__);
+    }
+    // Now do something with the $results here
+   </programlisting>
+  </para>
+ </sect2>
+</sect1>

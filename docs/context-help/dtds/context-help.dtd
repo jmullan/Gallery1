@@ -1,0 +1,37 @@
+<!--
+DTD for the Context Sensitive Help XML for Gallery
+
+This is a pretty simple DTD, and it's pretty highly customized
+Copyright (C) 2003-2004 Andrew Lindeman and the Gallery Core Team
+Released under the terms of the GPL Version 2
+-->
+
+<!-- The root element -->
+<!ELEMENT item (title, (para | sect1)*>
+
+<!-- Title for things -->
+<!ELEMENT title (#PCDATA)>
+
+<!-- Paragraphs -->
+<!ELEMENT para (#PCDATA | strong | em | link | ulink | img)*>
+
+<!-- Strong (i.e. bold) text -->
+<!ELEMENT strong (#PCDATA | link | ulink | em)*>
+
+<!-- Emphasized (i.e. italics) text -->
+<!ELEMENT em (#PCDATA | link | ulink | strong)*>
+
+<!-- *Internal* Links -->
+<!ELEMENT link (#PCDATA)>
+<!ATTLIST link linkend	CDATA	#REQUIRED>
+
+<!-- *External* Links -->
+<!ELEMENT ulink (#PCDATA)>
+<!ATTLIST ulink url	CDATA	#REQUIRED>
+
+<!-- Images -->
+<!ELEMENT img>
+<!ATTLIST img src	CDATA	#REQUIRED
+	      width	CDATA	#IMPLIED
+	      height	CDATA	#IMPLIED
+	      border	CDATA	#IMPLIED>

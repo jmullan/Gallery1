@@ -1,0 +1,29 @@
+Preliminary release checklist
+
+Checklist
+- make sure all unit tests pass
+- review and update the README.html.
+  - Make sure that its logo buttons are correct
+- update all translations
+- bump modules/core/module.inc CoreModule::setGalleryVersion
+- Make sure modules/core/classes/GalleryTemplateAdapter.class has has correct logo and version text
+- bump core/module.inc CoreModule::setVersion (update modules/core/CoreModulesExtras::upgrade, too)
+- update all MANIFEST files
+- Sync a different workspace and verify:
+  - upgrading works
+  - installer system check doesn't report any missing/modified files
+    (verify on Unix and Windows)
+- make sure all image files are binary
+- create a branch (if necessary)
+  - cvs tag -b BRANCH_2_0
+- tag the release
+  - cvs update -r BRANCH_2_0
+  - cvs tag RELEASE_2_0
+- Update the BRANCH var in build.php
+- build.php scrub
+- build.php release
+- build.php export
+- Release the package on sf.net (hide the version N-2 ago).
+- Update Gallery2:Download on the codex
+- Update http://gallery.menalto.com/downloadblock
+- Post announcements/*

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.requirements">
+ <title>Installation Requirements</title>
+ 
+ <warning>
+  <para>
+   Please look through these requirements <emphasis>before</emphasis> attempting
+   to install Gallery!
+  </para>
+ </warning>
+ 
+ <sect2 id="gallery1-install.requirements.wwwserver">
+  <title>Web Server</title>
+  
+  <sect3 id="gallery1-install.requirements.wwwserver.apache">
+   <title>Apache</title>
+   
+   <para>
+    Apache is the preferred web server for a Gallery installation.  It's free,
+    open source and available from <ulink url="http://httpd.apache.org">the Apache
+    project's website</ulink>.  Apache runs on many different operating systems,
+    including BSD, Linux, and Windows.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.requirements.wwwserver.iis">
+   <title>Microsoft IIS</title>
+   
+   <para>
+    Gallery is known to run under Microsoft's web server, Internet Information
+    Services, though the Gallery team doesn't offically support it.  In almost
+    all cases, though, you will need administrative privileges on the server
+    to install Gallery under IIS.
+   </para>
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.requirements.php">
+  <title>PHP</title>
+  
+  <para>
+   Gallery is written in PHP, a language specifically crafted for web-based
+   applications.  PHP is available freely from <ulink url="http://www.php.net">
+   http://www.php.net</ulink>.  PHP can be installed under Apache or IIS; installation
+   procedures are available through PHP's <ulink url="http://www.php.net/install">
+   documentation</ulink>
+  </para>
+  
+  <sect3 id="gallery1-install.requirements.php.settings">
+   <title>Settings</title>
+   
+   <para>
+    In addition to just a PHP installation, Gallery requires certain PHP directives
+    or settings to be set a certain way.  In most cases, Gallery will run under
+    default settings, but if you host has changed some directives, it can affect
+    the way Gallery runs.
+   </para>
+   
+   <para>
+    To check the status of your PHP settings, navigate to http://www.example.com/gallery/setup/phpinfo.php,
+    where http://www.example.com/gallery is where you have uncompressed Gallery.
+    Search for the following directives and make sure they are set appropriately.
+   
+    <itemizedlist>
+     <listitem>
+      <para>
+       <emphasis>safe_mode</emphasis> - Safe mode <emphasis role="bold">must be
+       disabled</emphasis>
+      </para>
+     </listitem>
+     
+     <listitem>
+      <para>
+       <emphasis>disable_functions</emphasis> - <emphasis role="bold">exec()</emphasis>
+       must not be listed in PHP's disable_functions directive
+      </para>
+     </listitem>
+     
+     <listitem>
+      <para>
+       <emphasis>file_uploads</emphasis> - File uploads must be enabled (set to 'On')
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+    
+   <para>
+    If any of those conditions are not met, Gallery <emphasis>will not work on
+    your host</emphasis>
+   </para>
+    
+  </sect3>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.requirements.imageprocessing">
+  <title>Image Processing Library</title>
+  
+  <para>
+   Gallery requires you to install NetPBM or ImageMagick in order for it to perform
+   basic image operations (resize, rotate, crop, etc...).  It is possible that your
+   host already has one of these two libraries installed (only one or the other
+   is needed).  If not, you can download pre-compiled binaries for use on various
+   systems from our <ulink url="http://sourceforge.net/project/showfiles.php?group_id=7130&amp;package_id=14464">
+   download page</ulink>.  Just download the appropriate binaries that correspond
+   to the architecure and operating system of your server and upload them to a folder
+   in <emphasis>binary mode</emphasis> (if using FTP).
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.requirements.optional">
+  <title>Optional Items</title>
+  
+  <para>
+   Gallery has the ability to use several outside libraries and programs in order
+   to enhance functionality, though these programs aren't required for a basic
+   working Gallery
+  </para>
+
+  <sect3 id="gallery1-install.requirements.optional.modrewrite">
+   <title>mod_rewrite</title>
+   
+   <para>
+    mod_rewrite is an Apache module (not available on IIS installations) that allows
+    Gallery to use shorter URLs for your albums.  For instance, using mod_rewrite,
+    a URL referring to an album might appear like
+    http://www.example.com/gallery/trip_to_spain, instead of a longer
+    http://www.example.com/gallery/view_album.php?set_albumName=trip_to_spain
+   </para>
+   
+   <para>
+    mod_rewrite requires administrator access to install (if not previously enabled)
+    and modification to the AllowOverride directive in httpd.conf.  More information
+    is in <ulink url="http://httpd.apache.org/docs/mod/mod_rewrite.html">the Apache
+    documentation</ulink>
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.requirements.optional.jhead">
+   <title>jhead</title>
+   
+   <para>
+    jhead is a free tool that can be used to extract EXIF data from images, which
+    most digital cameras now add to photos.  If enabled, EXIF data will be available
+    for viewing by clicking on the [properties] link by individual images.
+   </para>
+   
+   <para>
+    More information can be found at the <ulink url="http://www.sentex.net/~mwandel/jhead/">
+    jhead website</ulink>
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.requirements.optional.zip">
+   <title>zipinfo</title>
+   
+   <para>
+    zipinfo is a free tool that allows Gallery to unzip ZIP archives so that you
+    can easily upload multiple photos.  If enabled, you will be able to upload
+    a ZIP archive as you would any other single picture, and Gallery will add all
+    the images in the archive.
+   </para>
+   
+   <para>
+    zipinfo can be obtained from the <ulink url="http://www.info-zip.org/pub/infozip/">
+    Info-ZIP website</ulink>
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.requirements.optional.jpegtran">
+   <title>jpegtran</title>
+   
+   <para>
+    jpegtran is a free tool that allows Gallery to loselessly rotate JPEG images.
+    While NetPBM and ImageMagick can rotate JPEG images, jpegtran allows you
+    to rotate images without risking degradation.
+   </para>
+   
+   <para>
+    More information can be found at the <ulink url="http://www.ijg.org/">Independent
+    JPEG Group's website</ulink>
+   </para>
+  </sect3>
+ </sect2>
+</sect1>

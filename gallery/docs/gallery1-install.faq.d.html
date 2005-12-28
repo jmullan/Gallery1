@@ -1,0 +1,80 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>D. Migrating Gallery</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-install.faq.html" title="Frequently Asked Questions"><link rel="previous" href="gallery1-install.faq.c.html" title="C. Troubleshooting Gallery"><link rel="next" href="gallery1-admin.html" title="Chapter 2. Gallery 1.x Administration Guide"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">D. Migrating Gallery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-install.faq.c.html">Prev</a> </td><th width="60%" align="center">Frequently Asked Questions</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-admin.html">Next</a></td></tr></table><hr></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-install.faq.d"></a>D. Migrating Gallery</h3></div></div><div></div></div><div class="qandaset"><dl></dl><table border="0" summary="Q and A Set"><col align="left" width="1%"><tbody><tr class="toc" colspan="2"><td align="left" valign="top" colspan="2"><dl><dt>D.1. <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.1">
+       How can I migrate my Gallery from one host to another?
+      </a></dt><dt>D.2. <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.2">
+       Why do I get this error after migration: Warning: fopen
+       ('.../albums/foo/album.dat.lock', 'a+')?
+      </a></dt><dt>D.3. <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.3">
+       Will moving my Gallery to another host cause me to lose data
+       (comment, images, etc..)?
+      </a></dt><dt>D.4. <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.4">
+       Something went wrong, it's not working! What do I do?
+      </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.d.1"></a><a name="id2526180"></a><b>D.1.</b></td><td align="left" valign="top"><p>
+       How can I migrate my Gallery from one host to another?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+        If you are moving between a Windows and non-Windows host, please
+	make sure your Gallery is upgraded to at least version 1.4
+	<span class="emphasis"><em>before</em></span> you attempt to migrate
+       </p></div><p>
+       The important data that needs to be saved is your albums directory.
+       You only need to save the actual Gallery files if you modified them.
+      </p><p>
+       To move your Gallery from one server to another, you must move your old
+       albums directory to the new host. To do this, either download the albums
+       directory via FTP (if you are using FTP) or use a utility like tar and/or
+       gzip/bzip (or zip) to make an archive of the albums directory (you can
+       only use the command line utilities if you have shell access). Note that
+       Gallery creates a <tt class="filename">.users</tt> folder in the albums
+       directory, which can be hidden by some FTP clients. This directory is
+       vital if you want to maintain your user database. See
+       <a href="gallery1-install.faq.c.html#gallery1-install.faq.c.19">FAQ C.19</a> if your
+       FTP client hides this directory and you can't download it. Once you have
+       a copy of the albums directory, upload it to your new host. If you used
+       FTP, just re-upload the albums directory to your new host. If you used 
+       something like tar, upload the archive to the new host and untar/unzip it.
+       Once you have the albums directory on the new host, you must chmod all the
+       files and directories 0777 (recursively) (see FAQ <a href="gallery1-install.faq.c.html#gallery1-install.faq.c.15">
+       C.15</a> for information). If you do not chmod the files correctly,
+       your new Gallery will not work correctly.
+      </p><p>
+       If you wish, you can also save your old <tt class="filename">config.php</tt>
+       file and upload it instead of creating a new, blank <tt class="filename">config.php</tt>
+       (as you would with a normal installation) before configuring
+       your new Gallery installation. You'll still have to re-run the
+       configuration wizard to specify new paths for everything, but saving
+       some host-independent information (e.g. album defaults, etc..) can save
+       you some time.
+      </p><p>
+       After you have your old albums directory on the new server, you should
+       download a copy of Gallery and upload it just as you would install any
+       other copy of Gallery (see the README file for installation instructions).
+       However, when you get to the configuration wizard, for the
+       'Albums Directory' configuration parameter, you should put the path to
+       the albums directory you just uploaded, not a blank directory, as you
+       would on a clean install of Gallery. After you secure Gallery, all your
+       data should show up intact!
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.d.2"></a><a name="id2526296"></a><b>D.2.</b></td><td align="left" valign="top"><p>
+       Why do I get this error after migration: <tt class="literal">Warning: fopen
+       ('.../albums/foo/album.dat.lock', 'a+')</tt>?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       This is caused by not recursively chmodding the new albums directory 0777.
+       See FAQ <a href="gallery1-install.faq.c.html#gallery1-install.faq.c.15">C.15</a> for information
+       on how to fix this.
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.d.3"></a><a name="id2526334"></a><b>D.3.</b></td><td align="left" valign="top"><p>
+       Will moving my Gallery to another host cause me to lose data
+       (comment, images, etc..)?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       If you follow the instructions in <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.1">FAQ D.1
+       </a>, there should be no lose of data whatsoever. However, because of Murphy's
+       law, it's a good idea not to delete your albums directory on your old host before
+       you know everything is working on the new host.
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.d.4"></a><a name="id2526368"></a><b>D.4.</b></td><td align="left" valign="top"><p>
+       Something went wrong, it's not working! What do I do?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       First, try again. Make sure you follow all the instructions in
+       <a href="gallery1-install.faq.d.html#gallery1-install.faq.d.1">FAQ D.1</a>.
+       If you still cannot get it to work, start a thread in the forums. As with
+       any forum post, include as much detail as possible -- exactly what you did
+       (don't just say 'I followed FAQ D.1'), what you expected to happen, and
+       what really happened, along with any error messages. We will probably be
+       able to sort you out!
+      </p></td></tr></tbody></table></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-install.faq.c.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-install.faq.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-admin.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">C. Troubleshooting Gallery </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 2. Gallery 1.x Administration Guide</td></tr></table></div></body></html>

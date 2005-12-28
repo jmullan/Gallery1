@@ -1,0 +1,278 @@
+/*
+	matrix.css - core Gallery 2 css
+	by Ross A. Reyman and Jon Huang
+
+*/
+
+/* ***************** DEBUG ********************** */
+
+
+/* try uncommenting this when working on the layout CSS alone to see the boxes*/
+/* div, table {border-width: 1;
+            border-style: inset;
+            border-color: #EEEEEE; 
+            padding: 1;
+            marging: 1; }
+*/
+
+
+/* ***************** GALLERY  ********************** */
+/*   Category 1: Gallery                             */
+/*    declare where to put Gallery Module            */
+
+/*  main container. Ignore in stand-alone install */
+#gallery {}
+
+
+/* ***************** SECTIONS ********************** */
+/*   Category 2: section definitions                 */
+/* declare relative or absolute section positions    */
+
+#gsHeader { 
+	position: absolute;
+	left: 10 px;
+	height: 10px;
+	padding: 0 200px; 
+ }
+
+#gsFooter {
+	position: absolute;
+	left: 15px;
+	height: 10px;	
+}
+
+#gsSidebar {
+	position: absolute;
+	top: 40px;
+	left: 12px;	
+	width: 75px;
+	padding: 5px;
+}
+
+#gsComments { 
+	position: absolute;
+	left: 580px;
+	top: 0px;
+	height: 500px;
+	overflow: scroll;
+	width: 200px;
+}
+
+/* Status message display section */
+#gsStatus {
+	padding: 10px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+ }
+
+#gsItemImages {
+	position: absolute;
+	left: 220px;
+	top: 0px;
+	height: 500px;
+	overflow: scroll;
+	width: 350px;
+
+}
+
+#gsAlbumImages {
+	position: absolute;
+	left: 0px;
+	top: 95px;
+	height: 405px;
+	overflow: scroll;
+	width: 210px;
+}
+
+
+/* gsXxxxContents	elements are the main 'holder' for the page. */
+
+#gsAlbumContents {
+	position: absolute;
+	top: 40px;
+	left: 150px;
+
+}
+
+#gsSearchContents { }
+
+#gsAdminContents {
+	float: left;
+	width: 72%;
+}
+
+#gsAdminSidebar {
+	float: left;
+	width: 128px;
+	padding: 0 4px;
+}
+
+
+/* ***************** BOXES ******************************* */
+/*   Category 3: box definitions                           */
+/* declare relative position of boxes inside main sections */
+/* Declare relative pos. in relation to containing section */
+
+/* ********** global    *************** */
+
+.gbDataEntry {
+	margin: 6 0px;
+}
+
+/* Menus don't need to be global, but currently are */
+.gbMenu { 
+	padding: 8px 0;
+	margin: 0px 0;
+}
+
+/* spacers neeed for expanding layouts */
+.guSpacer, .gpSpacer, .gsSpacer, .gbSpacer, .giSpacer { clear: both; }
+
+
+/* ** Tabs ** */
+
+.gbTabBar {
+	float: left;
+	width: 100%;
+}
+
+.gbTabBar li { float: left; }
+
+.gbTabBar a { float: left; }
+
+
+
+/* Commented Backslash Hack
+	   hides rule from IE5-Mac \*/
+.gbTabBar a { float: none; }
+/* End IE5-Mac hack */
+
+
+/* ********** default   *************** */
+
+
+
+/* ********** #gsHeader *************** */
+
+#gsHeader .gbTitleBanner { 
+	padding: 0px;
+}
+
+#gsHeader .gbBreadCrumb { padding: 0px; }
+
+/* ********** #gsAlbumContents ******** */
+
+#gsAlbumContents .gbTopFlag,
+#gsAdminContents .gbTopFlag  {
+	display: block;
+	padding: 0 8px;
+	width: 170px;
+}
+
+#gsAlbumContents .gbTitleBanner {
+	float: left;
+	width: 100%;	
+	padding: 4px 0px;
+	clear:both;
+}
+
+
+
+#gsAlbumContents .gbExif { }
+
+#gsAlbumContents .gbBottomFlag { 
+	position: absolute;
+	left: 0px;
+	top: 520px;
+	width: 780px;
+	height: 12px;
+}
+
+#gsAlbumContents div.giHorizontalLinks {
+	float: right;
+}
+
+
+/* ********* #gsAlbumImages *************** */
+
+#gsAlbumImages .gbItemAlbum {
+	margin-top: 5px;
+	padding: 4px 8px;
+	width: 170px;
+
+}
+
+
+/* ********* #gsItemImages *************** */
+
+/* individual items */
+#gsItemImages .gbItemImage,
+#gsItemImages .gbItemMovie,
+#gsItemImages .gbItemOther {
+	height: 160px;
+	width: 300px;
+	align: left;
+	display: block;
+	clear: all;
+}
+
+
+/* ************* #gsCommentBox ************ */
+
+#gsComments .gbComment { 
+			padding: 4px;
+}
+
+/* ************* #gsFooter **************** */
+
+#gsFooter .gbMiniBanner { 
+			float: left; 
+			margin-right: 8px;
+}
+
+/* ************* gsSidebar **************** */
+
+/* a default for any unknown div in #gsSideBar */
+#gsSidebar div { }
+
+
+/* ************* gsComments *************** */
+
+#gsComments .gbComment div.giHorizontalLinks {
+	float: none;
+}
+
+/* ************* #gsSearchContents *********** */
+
+/* The title banner is the light grey 'search' at the very top */
+#gsSearchContents .gbTitleBanner { }
+
+#gsSearchContents .gbItemImage { clear: left; }
+
+#gsSearchContents .gbForm { }
+
+/* ************* #gsAdminSideBar *************** */
+
+
+
+/* ************* #gsAdminContents *************** */
+
+#gsAdminContents .gbAdmin {
+		clear: both;
+		float: left;
+		width: 97%;
+		margin: 0px 8px 0 0;
+		padding: 8px;
+}
+
+* even and odd rows have different backgrounds */
+/* I count from 0, so the first row is even! */
+#gsAdminContents .gbEven { }
+#gsAdminContents .gbOdd { }
+
+/* for tabular data */
+#gsAdminContents .gbDataTable { 
+		margin: 4px;
+}
+
+/* ************** Status classes ***************** */

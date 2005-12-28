@@ -1,0 +1,60 @@
+diff -urEbB --strip-trailing-cr phpBB2-2.0.17/includes/page_header.php phpBB2.gallery/includes/page_header.php
+--- phpBB2-2.0.17/includes/page_header.php	2005-10-05 16:26:57.000000000 +0200
++++ phpBB2.gallery/includes/page_header.php	2005-10-05 16:36:09.000000000 +0200
+@@ -394,6 +394,7 @@
+ 	'U_VIEWONLINE' => append_sid('viewonline.'.$phpEx),
+ 	'U_LOGIN_LOGOUT' => append_sid($u_login_logout),
+ 	'U_GROUP_CP' => append_sid('groupcp.'.$phpEx),
++	'U_GALLERY' => append_sid('modules.'.$phpEx.'?op=modload&name=gallery&file=index'),
+ 
+ 	'S_CONTENT_DIRECTION' => $lang['DIRECTION'],
+ 	'S_CONTENT_ENCODING' => $lang['ENCODING'],
+diff -urEbB --strip-trailing-cr phpBB2-2.0.17/includes/sessions.php phpBB2.gallery/includes/sessions.php
+--- phpBB2-2.0.17/includes/sessions.php	2005-10-05 16:26:57.000000000 +0200
++++ phpBB2.gallery/includes/sessions.php	2005-10-05 16:38:48.000000000 +0200
+@@ -45,6 +45,11 @@
+ 		$sessiondata = array();
+ 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$sessionmethod = SESSION_METHOD_GET;
++		// Added for Gallery
++                if(!isset($_GET['sid'])) {
++			$session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
++                }
++                //
+ 	}
+ 
+ 	//
+@@ -239,6 +244,11 @@
+ 		$sessiondata = array();
+ 		$session_id = ( isset($HTTP_GET_VARS['sid']) ) ? $HTTP_GET_VARS['sid'] : '';
+ 		$sessionmethod = SESSION_METHOD_GET;
++		// Added for Gallery
++                if(!isset($_GET['sid'])) {
++                        $session_id = ( isset($_POST['sid']) ) ? $_POST['sid'] : '';
++                }
++                //
+ 	}
+ 
+ 	// 
+diff -urEbB --strip-trailing-cr phpBB2-2.0.17/templates/subSilver/overall_header.tpl phpBB2.gallery/templates/subSilver/overall_header.tpl
+--- phpBB2-2.0.17/templates/subSilver/overall_header.tpl	2005-10-05 16:26:57.000000000 +0200
++++ phpBB2.gallery/templates/subSilver/overall_header.tpl	2005-10-05 16:42:20.000000000 +0200
+@@ -209,6 +209,8 @@
+ @import url("templates/subSilver/formIE.css"); 
+ -->
+ </style>
++  <link rel="stylesheet" href="modules/gallery/css/base.css.default" type="text/css">
++  <link rel="stylesheet" href="modules/gallery/css/embedded_style.css.default" type="text/css">
+ <!-- BEGIN switch_enable_pm_popup -->
+ <script language="Javascript" type="text/javascript">
+ <!--
+@@ -233,6 +235,9 @@
+ 				<table cellspacing="0" cellpadding="2" border="0">
+ 					<tr> 
+ 						<td align="center" valign="top" nowrap="nowrap"><span class="mainmenu">&nbsp;<a href="{U_FAQ}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_faq.gif" width="12" height="13" border="0" alt="{L_FAQ}" hspace="3" />{L_FAQ}</a></span><span class="mainmenu">&nbsp; &nbsp;<a href="{U_SEARCH}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_search.gif" width="12" height="13" border="0" alt="{L_SEARCH}" hspace="3" />{L_SEARCH}</a>&nbsp; &nbsp;<a href="{U_MEMBERLIST}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_members.gif" width="12" height="13" border="0" alt="{L_MEMBERLIST}" hspace="3" />{L_MEMBERLIST}</a>&nbsp; &nbsp;<a href="{U_GROUP_CP}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_groups.gif" width="12" height="13" border="0" alt="{L_USERGROUPS}" hspace="3" />{L_USERGROUPS}</a>&nbsp; 
++						<!-- Gallery -->
++                                                &nbsp;&nbsp;<a href="{U_GALLERY}" class="mainmenu"><img src="modules/gallery/images/g1-phpBB2-icon.png" width="12" height="13" border="0" alt="{L_GALLERY}" />Gallery</a>&nbsp;
++                                                <!-- Gallery -->
+ 						<!-- BEGIN switch_user_logged_out -->
+ 						&nbsp;<a href="{U_REGISTER}" class="mainmenu"><img src="templates/subSilver/images/icon_mini_register.gif" width="12" height="13" border="0" alt="{L_REGISTER}" hspace="3" />{L_REGISTER}</a></span>&nbsp;
+ 						<!-- END switch_user_logged_out -->
