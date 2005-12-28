@@ -1,6 +1,8 @@
 <?php /* $Id$ */ ?>
 <?php
 global $navigator;
+global $full;
+
 if(!includeTemplate('navmicro.tpl')) {
 	// Calculate the beginning and ending of the navigator range
 	$begin = 0;
@@ -24,12 +26,14 @@ if(!includeTemplate('navmicro.tpl')) {
 
 /* If first/last thumbs are enabled, generate them here. */
 if ( !strcmp($gallery->album->fields["nav_thumbs_first_last"],"yes") ) {
-	$navThumbsFirst = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage) .'">';
+	$fpUrl =  makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) ;
+	$navThumbsFirst = "<a href=\"$fpUrl\">";
 	$navThumbsFirst .= $gallery->album->getThumbnailTagById($firstPage,
 	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_first_img\"");
 	$navThumbsFirst .='</a>&nbsp';
 
-	$navThumbsLast ='<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage) .'">';
+	$lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
+	$navThumbsLast = "<a href=\"$lpUrl\">";
 	$navThumbsLast .= $gallery->album->getThumbnailTagById($lastPage,
 	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_last_img\"");
 	$navThumbsLast .='</a>&nbsp';
@@ -48,7 +52,8 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 	for ($i = $gallery->album->fields["nav_thumbs_prev_shown"]; $i >= 1; $i--) {
 		if ( $navpage-$i < 0 ) { continue; }
 		$prevPage = $navigator["allIds"][$navpage-$i];
-		$navThumbsPrev .= '<a href="'. makeAlbumUrl($gallery->session->albumName, ($prevPage)).'">';
+		$ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
+		$navThumbsPrev .= "<a href=\$ppUrl\">";
 		$navThumbsPrev .= $gallery->album->getThumbnailTagById($prevPage,
 		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
 		$navThumbsPrev .='</a>&nbsp&nbsp';
@@ -59,7 +64,8 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 	for ($i = 1; $i <= $gallery->album->fields["nav_thumbs_next_shown"]; $i++) {
 		if ( $navpage+$i > $navcount-1 ) { break; }
 		$nextPage = $navigator["allIds"][$navpage+$i];
-		$navThumbsNext .= '&nbsp&nbsp<a href="'. makeAlbumUrl($gallery->session->albumName, ($nextPage)).'">';
+		$npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
+		$navThumbsNext .= "&nbsp&nbsp<a href=\"$npUrl\">";
 		$navThumbsNext .= $gallery->album->getThumbnailTagById($nextPage,
 		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
 		$navThumbsNext .='</a>';

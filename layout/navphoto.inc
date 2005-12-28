@@ -33,12 +33,14 @@ if(!includeTemplate('navphoto.tpl')) {
 
     #-- 'first' and 'previous button cell ---
     if ($navpage > 0) {
-        $fpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) .'">';
+    	$fpUrl =  makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) ;
+        $fpContent = "<a href=\"$fpUrl\">";
         $fpContent .= '<img src="'. $fpImgUrl . '" alt="'. $fpAltText .'" title="'. $fpAltText .'">';
         $fpContent .= '</a>';
 
         $prevPage = $navigator["allIds"][$navpage-1];
-        $ppContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL) .'">';
+        $ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
+        $ppContent = "<a href=\"$ppUrl\">";
         $ppContent .= '<img src="'. $ppImgUrl . '" alt="'. $ppAltText .'" title="'. $ppAltText .'">';
         $ppContent .= '</a>';
 
@@ -56,11 +58,13 @@ if(!includeTemplate('navphoto.tpl')) {
     #-- 'next' and 'last' button cell ---
     if ($navpage < $navcount-1) {
         $nextPage = $navigator["allIds"][$navpage+1];
-        $npContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL) .'">';
+        $npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
+        $npContent = "<a href=\"$npUrl\">";
         $npContent .= '<img src="'. $npImgUrl . '" alt="'. $npAltText .'" title="'. $npAltText .'">';
         $npContent .= '</a>';
 
-        $lpContent = '<a href="'. makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL) .'">';
+        $lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
+        $lpContent = "<a href=\"$lpUrl\">";
         $lpContent .= '<img src="'. $lpImgUrl . '" alt="'. $lpAltText .'" title="'. $lpAltText .'">';
         $lpContent .= '</a>';
 
