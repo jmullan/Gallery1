@@ -50,18 +50,30 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
         return $nonetext;
     }
 
-    $gDomain = $gallery->language. "-gallery_$domain";
-    bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
-    textdomain($gDomain);
+	if (gettext_installed()) {        	
+	    $gDomain = $gallery->language. "-gallery_$domain";
+	    bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+	    textdomain($gDomain);
+	}
 
     if(!$plural) {
-        $translation = dgettext($gDomain, $singular);
+    	if (gettext_installed()) {        	
+        	$translation = dgettext($gDomain, $singular);
+    	}
+    	else {
+    		$translation = _($singular);
+    	}
     }
     else {
         if (!empty($count) && intval($count) == 0) {
             $count = 1;
         }
-        $translation = sprintf(dngettext($gDomain, $singular, $plural, $count), $count);
+        if (ngettext_installed()) {
+        	$translation = sprintf(dngettext($gDomain, $singular, $plural, $count), $count);
+        }
+        else {
+        	$translation = sprintf(ngettext($singular, $plural, $count), $count);
+        }
     }
     return $translation;
 }
@@ -554,7 +566,8 @@ function gettext_installed() {
 }
 
 function ngettext_installed() {
-	if (in_array("ngettext", get_loaded_extensions()) || function_exists('ngettext')) {
+	if (in_array("ngettext", get_loaded_extensions()) || 
+	  (function_exists('ngettext') && function_exists('dngettext'))) {
 		return true;
 	}
 	else {
