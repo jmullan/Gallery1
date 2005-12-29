@@ -131,6 +131,8 @@ if ($postnuke ||
 		       "extra_fields.php",
 		       "gallery_remote.php",
 		       "gallery_remote2.php",
+		       "help/imagemap.php",
+		       "help/metadataOnUpload.php",
 		       "highlight_photo.php",
 		       "imagemap.php",
 		       "lib/colorpicker.php",
