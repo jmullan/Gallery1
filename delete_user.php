@@ -65,13 +65,13 @@ foreach ($unames as $user) {
 		$error++;
 	}
 }
-if (! isset($error)) {	
+if (! isset($error)) {
 	echo _("Users can have special permissions in each album.") .
-	ngettext("If you delete this user, any such permissions go away.", "if you delete these users, any permissions will go away", sizeof($unames)) .
+	gTranslate('core', "If you delete this user, any such permissions go away.", "if you delete these users, any permissions will go away", sizeof($unames)) .
 	_("Users cannot be recreated.") .
-	ngettext ("Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
+	gTranslate('core', "Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
 	
-	echo "\n<p>" . ngettext("Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));
+	echo "\n<p>" . gTranslate('core', "Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));
 	foreach ($unames as $key => $value) { 
 		echo "<input type=\"hidden\" name=\"unames[$key]\" value=\"$value\"><br>$value\n";
 	}

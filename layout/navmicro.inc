@@ -30,18 +30,18 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_first_last"],"yes") ) {
 	$navThumbsFirst = "<a href=\"$fpUrl\">";
 	$navThumbsFirst .= $gallery->album->getThumbnailTagById($firstPage,
 	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_first_img\"");
-	$navThumbsFirst .='</a>&nbsp';
+	$navThumbsFirst .='</a>&nbsp;';
 
 	$lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
 	$navThumbsLast = "<a href=\"$lpUrl\">";
 	$navThumbsLast .= $gallery->album->getThumbnailTagById($lastPage,
 	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_last_img\"");
-	$navThumbsLast .='</a>&nbsp';
+	$navThumbsLast .='</a>&nbsp;';
 
 /* If first/last thumbs are disabled, fill each with a space. */
 } else {
-	$navThumbsFirst = '&nbsp';
-	$navThumbsLast = '&nbsp';
+	$navThumbsFirst = '&nbsp;';
+	$navThumbsLast = '&nbsp;';
 }
 
 /* If the "Dynamic" style is selected, generate it */
@@ -53,10 +53,10 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		if ( $navpage-$i < 0 ) { continue; }
 		$prevPage = $navigator["allIds"][$navpage-$i];
 		$ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
-		$navThumbsPrev .= "<a href=\$ppUrl\">";
+		$navThumbsPrev .= "<a href=\"$ppUrl\">";
 		$navThumbsPrev .= $gallery->album->getThumbnailTagById($prevPage,
 		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
-		$navThumbsPrev .='</a>&nbsp&nbsp';
+		$navThumbsPrev .='</a>&nbsp;&nbsp;';
 	}
 	
 	/* Create a list of the next thumbs, starting from right after current. */
@@ -65,7 +65,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		if ( $navpage+$i > $navcount-1 ) { break; }
 		$nextPage = $navigator["allIds"][$navpage+$i];
 		$npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
-		$navThumbsNext .= "&nbsp&nbsp<a href=\"$npUrl\">";
+		$navThumbsNext .= "&nbsp;&nbsp;<a href=\"$npUrl\">";
 		$navThumbsNext .= $gallery->album->getThumbnailTagById($nextPage,
 		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
 		$navThumbsNext .='</a>';
@@ -119,7 +119,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
         	           $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
 		}
 		$navBlogThumb .= '</a>';
-		$navBlogThumb .= '&nbsp&nbsp';
+		$navBlogThumb .= '&nbsp;&nbsp;';
 	}
 }
 ?>
