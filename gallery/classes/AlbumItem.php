@@ -365,15 +365,29 @@ class AlbumItem {
 
                 // Then resize it down
                 if ($ret) {
-		    // create highlight faster, also use lower quality
-                    $ret = resize_image("$dir/$name.tmp.$tag", "$dir/$name.highlight.$tag", $size, 0, 0, true, 70);
+                    $ret = resize_image(
+                    	"$dir/$name.tmp.$tag",
+                    	"$dir/$name.highlight.$tag",
+                    	$size,
+                    	0,
+                    	0,
+                    	true,
+                    	$gallery->app->highlightJpegImageQuality
+                    );
                 }
                 fs_unlink("$dir/$name.tmp.$tag");
             } elseif ($srcitem->isMovie()) {
                 if (fs_file_exists($gallery->app->movieThumbnail)) {
                     $tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
-		    // create highlight faster, also use lower quality
-                    $ret = resize_image($gallery->app->movieThumbnail, "$dir/$name.highlight.$tag", $size, 0, 0, true, 70);
+		            $ret = resize_image(
+		            	$gallery->app->movieThumbnail,
+		            	"$dir/$name.highlight.$tag",
+		            	$size,
+		            	0,
+		            	0,
+		            	true,
+		            	$gallery->app->highlightJpegImageQuality
+		            );
                 }
                 else {
                     $ret = 0;
@@ -387,11 +401,10 @@ class AlbumItem {
                     $ret = cropImageToRatio($src, $dest, $size, $ratio);
                 }
 
-		// create highlight faster, also use lower quality
                 if(isset($ret)) {
-                    $ret = resize_image($dest, $dest, $size, 0, 0, true, 70);
+                    $ret = resize_image($dest, $dest, $size, 0, 0, true, $gallery->app->highlightJpegImageQuality);
                 } else {
-                    $ret = resize_image($src, $dest, $size, 0, 0, true, 70);
+                    $ret = resize_image($src, $dest, $size, 0, 0, true, $gallery->app->highlightJpegImageQuality);
                 }
             }
 
@@ -629,21 +642,58 @@ class AlbumItem {
                   $this->image->thumb_width,
                   $this->image->thumb_height);
                 if ($ret) {
-                    $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
+                    $ret = resize_image(
+                    	"$dir/$name.thumb.$tag",
+                    	"$dir/$name.thumb.$tag",
+                    	$thumb_size,
+                    	0,
+                    	0,
+                    	true,
+                    	$gallery->app->thumbJpegImageQuality
+                    );
                 }
             } else {
                 if(!empty($ratio)) {
-                    $ret = cropImageToRatio("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, $ratio);
+                    $ret = cropImageToRatio(
+                    	"$dir/$name.$tag",
+                    	"$dir/$name.thumb.$tag",
+                    	$thumb_size,
+                    	$ratio
+                    );
                     if($ret) {
-                        $ret = resize_image("$dir/$name.thumb.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
+                        $ret = resize_image(
+                        	"$dir/$name.thumb.$tag",
+                        	"$dir/$name.thumb.$tag",
+                        	$thumb_size,
+                        	0,
+                        	0,
+                        	true,
+                        	$gallery->app->thumbJpegImageQuality
+                        );
                     } else {
-                        $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0, true, 50);
+                        $ret = resize_image(
+                        	"$dir/$name.$tag",
+                        	"$dir/$name.thumb.$tag",
+                        	$thumb_size,
+                        	0,
+                        	0,
+                        	true,
+                        	$gallery->app->thumbJpegImageQuality
+                        );
                     }
                 }
                 else {
                     debugMessage(_("Generating normal thumbs"), __FILE__, __LINE__);
                     // no resizing, use ratio for thumb as for the image itself;
-                    $ret = resize_image("$dir/$name.$tag", "$dir/$name.thumb.$tag", $thumb_size, 0, 0,true, 50);
+                    $ret = resize_image(
+                    	"$dir/$name.$tag",
+                    	"$dir/$name.thumb.$tag",
+                    	$thumb_size,
+                    	0,
+                    	0,
+                    	true,
+                    	$gallery->app->thumbJpegImageQuality
+                    );
                 }
             }
 

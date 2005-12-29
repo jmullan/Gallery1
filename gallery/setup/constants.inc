@@ -52,13 +52,13 @@ makeSectionTabs($constants);
 <script type="text/javascript" language="Javascript">
 
 function toggleGraphics(show) {
-    if(show == 'ImageMagick') {
-	document.getElementById('subgroup_ImageMagick').style.display      = 'inline';
-	document.getElementById('subgroup_NetPBM').style.display      = 'none';
-    } else {
-	document.getElementById('subgroup_ImageMagick').style.display      = 'none';
-	document.getElementById('subgroup_NetPBM').style.display      = 'inline';
-    }
+	if(show == 'ImageMagick') {
+		document.getElementById('subgroup_ImageMagick').style.display      = 'inline';
+		document.getElementById('subgroup_NetPBM').style.display      = 'none';
+	} else {
+		document.getElementById('subgroup_ImageMagick').style.display      = 'none';
+		document.getElementById('subgroup_NetPBM').style.display      = 'inline';
+	}
 }
 
 </script>
@@ -76,6 +76,9 @@ foreach ($constants as $key => $val) {
 	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
 	    echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
         echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
+        if (isset($val['desc'])) {
+        	echo '<div class="inner desc">'. $val['desc'] .'</div>';
+        }
         continue;
     }
     

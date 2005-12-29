@@ -467,15 +467,44 @@ $constants =  array_merge(array(
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
 		'value' => 'yes'
 	),
-	'jpegImageQuality' => array(
-		'prompt' => "<b>(" . gTranslate('config',"Advanced") .")</b><br> ". gTranslate('config',"JPEG Quality"),
+	'subgroup_quality' => array (
+		'type' => 'subgroup',
+		'title' => gTranslate('config',"JPEG Quality <b>(Advanced)</b>"),
 		'desc' => gTranslate('config',"The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
+		'display' => 'inline'
+	),
+	'jpegImageQuality' => array(
+		'prompt' => gTranslate('config',"JPEG Quality for resized images"),
+		'desc' => '',
 		'choices' => array(
 			50 => 50, 55 => 55, 60 => 60, 65 => 65,
 			70 => 70, 75 => 75, 80 => 80, 85 => 85,
 			90 => 90, 95 => 95, 100 => 100
 		),
 		'value' => 90
+	),
+	'highlightJpegImageQuality' => array(
+		'prompt' => gTranslate('config',"JPEG Quality for highlight images on the startpage"),
+		'desc' => '',
+		'choices' => array(
+			50 => 50, 55 => 55, 60 => 60, 65 => 65,
+			70 => 70, 75 => 75, 80 => 80, 85 => 85,
+			90 => 90, 95 => 95, 100 => 100
+		),
+		'value' => 70
+	),
+	'thumbJpegImageQuality' => array(
+		'prompt' => gTranslate('config',"JPEG Quality for thumbs inside the albums"),
+		'desc' => '',
+		'choices' => array(
+			50 => 50, 55 => 55, 60 => 60, 65 => 65,
+			70 => 70, 75 => 75, 80 => 80, 85 => 85,
+			90 => 90, 95 => 95, 100 => 100
+		),
+		'value' => 50
+	),
+	'subgroup_quality_end' => array (
+		'type' => 'subgroup_end',
 	),
 	'groupToolkits_end' => array (
 		'type' => 'group_end',
