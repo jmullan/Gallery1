@@ -17,19 +17,19 @@
 #
 # $Id$
 #
-# @version	1.5.2-cvs
+# @version	1.5.2-RC2
 # @package	Languagepack
 # @subpackage	Danish
 # @author	Niels Elgaard Larsen <elgaard AT agol DOT dk>, 2003-2004
 # @author	Bjorn Graabek <bjorn AT graabek DOT com>, 2004
-# @author	Allan Beaufour <allan AT beaufour DOT dk>, 2005.4
+# @author	Allan Beaufour <allan AT beaufour DOT dk>, 2005
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.2-cvs\n"
+"Project-Id-Version: Gallery 1.5.2-RC2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-26 23:35+0100\n"
-"PO-Revision-Date: 2005-03-20 16:24+0100\n"
+"POT-Creation-Date: 2005-12-30 22:35+0100\n"
+"PO-Revision-Date: 2005-10-23 18:38+0200\n"
 "Last-Translator: Allan Beaufour <allan AT beaufour DOT dk>\n"
 "Language-Team:  <da@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,13 +40,13 @@ msgstr ""
 
 #: ../add_comment.php:29 ../add_photos.php:31 ../administer_startpage.php:31
 #: ../album_permissions.php:33 ../copy_photo.php:29 ../create_user.php:34
-#: ../delete_album.php:31 ../delete_photo.php:38 ../delete_user.php:30
+#: ../delete_album.php:31 ../delete_photo.php:42 ../delete_user.php:30
 #: ../edit_appearance.php:29 ../edit_caption.php:33 ../edit_field.php:31
-#: ../edit_thumb.php:31 ../edit_watermark.php:38 ../extra_fields.php:34
+#: ../edit_thumb.php:31 ../edit_watermark.php:45 ../extra_fields.php:34
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
+#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
 #: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
@@ -74,16 +74,16 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "Skriv din kommentar til dette billede i tekstfeltet nedenfor."
 
 #: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
-#: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
+#: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:83
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
-#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
+#: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
-msgstr "Fortryd"
+msgstr "Afbryd"
 
 #: ../add_photos.php:52 ../add_photos.php:64
 msgid "Add Photos"
@@ -105,7 +105,7 @@ msgstr "Formular"
 msgid "URL"
 msgstr "URL"
 
-#: ../add_photos.php:79 ../layout/watermarkform.inc:134
+#: ../add_photos.php:79 ../layout/watermarkform.inc:135
 msgid "Other"
 msgstr "Andre"
 
@@ -225,15 +225,14 @@ msgid "Sort"
 msgstr "Sortér"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:135
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:128
 #: ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr ""
 
 #: ../album_permissions.php:38
-#, fuzzy
 msgid "Users who can see the album."
-msgstr "Brugere som kan se albummet"
+msgstr "Brugere som kan se albummet."
 
 #: ../album_permissions.php:39
 msgid "Users who can add photos."
@@ -253,7 +252,7 @@ msgstr "Brugere som kan oprette underalbummer."
 
 #: ../album_permissions.php:43
 msgid "Users who can to download album (with subalbums) as archive."
-msgstr ""
+msgstr "Brugere som kan hente albummet (med underalbummer) som et arkiv."
 
 #: ../album_permissions.php:44
 msgid "Users who can view comments."
@@ -289,8 +288,8 @@ msgid "Apply permissions to all sub-albums"
 msgstr "Anvend rettigheder på underalbummer"
 
 #: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
-#: ../edit_field.php:66 ../edit_watermark.php:124 ../modify_user.php:163
-#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:134
+#: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
+#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:127
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Gem"
@@ -467,21 +466,21 @@ msgstr "Log ind"
 #: ../albums.php:290
 #, php-format
 msgid "The requested album with index %s is not valid"
-msgstr ""
+msgstr "Det ønskede album med indeks %s er ikke gyldigt"
 
 #: ../albums.php:331 ../view_album.php:676
 msgid "Highlight for Album:"
 msgstr "Forsidebillede for album:"
 
-#: ../albums.php:351 ../view_album.php:796
+#: ../albums.php:351 ../view_album.php:782
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "intet album angivet"
 
 #: ../albums.php:386
-#, fuzzy, php-format
+#, php-format
 msgid "Owner: %s"
-msgstr "Ejer:"
+msgstr "Ejer: %s"
 
 #: ../albums.php:394
 msgid "url:"
@@ -522,7 +521,7 @@ msgstr[1] "Dette album indeholder %d objekter."
 msgid "This album has been viewed %s since %s."
 msgstr "Dette album er blevet set %s siden %s."
 
-#: ../albums.php:445 ../view_album.php:830
+#: ../albums.php:445 ../view_album.php:817
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -537,7 +536,7 @@ msgstr "0 gange"
 msgid "reset counter"
 msgstr "nulstil tæller"
 
-#: ../albums.php:496 ../view_album.php:926
+#: ../albums.php:496 ../view_album.php:916
 msgid "Comments available for this item."
 msgstr "Der er kommentarer."
 
@@ -607,7 +606,7 @@ msgid "(click to enlarge)"
 msgstr "(klik for at forstørre)"
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:784
+#: ../layout/commentboxtop.inc:45 ../view_album.php:770
 msgid "hidden"
 msgstr "skjult"
 
@@ -644,7 +643,7 @@ msgid "Untitled"
 msgstr "Intet navn"
 
 #: ../classes/Album.php:239 ../classes/Album.php:251
-#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:69
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:71
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Album"
@@ -690,14 +689,14 @@ msgid "msg should be an array!"
 msgstr "besked skal være en tabel!"
 
 #: ../classes/Album.php:1049
-#, fuzzy, php-format
+#, php-format
 msgid "Changes to Album: %s"
-msgstr "Kan ikke skrive til %s."
+msgstr "Kan ikke skrive til album: %s"
 
 #: ../classes/Album.php:1057
 #, php-format
 msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
-msgstr ""
+msgstr "Der er foretaget en ændring i album: %s af %s (IP %s).  Ændringen er: %s"
 
 #: ../classes/Album.php:1063
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
@@ -707,7 +706,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1144 ../classes/Album.php:1900
+#: ../classes/Album.php:1144 ../classes/Album.php:1897
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Åbner album %s, behandler %d photos"
@@ -717,7 +716,7 @@ msgstr "Åbner album %s, behandler %d photos"
 msgid "Processing element %d..."
 msgstr "Behandler billede %d..."
 
-#: ../classes/Album.php:1162 ../classes/Album.php:1272
+#: ../classes/Album.php:1162 ../classes/Album.php:1269
 msgid "Doing the naming"
 msgstr "Navngiver"
 
@@ -733,84 +732,79 @@ msgstr "Ændrer størrelse på/komprimerer originalbilledet"
 msgid "Cannot resize/compress this filetype"
 msgstr "Kan ikke ændre størrelsen/komprimere denne filtype"
 
-#: ../classes/Album.php:1208
-msgid "Adding Photo to the photo list"
-msgstr "Tilføjer billede til billedlisten"
-
-#: ../classes/Album.php:1262
+#: ../classes/Album.php:1259
 #, php-format
 msgid "Resizing %s"
 msgstr "Ændrer størrelse på %s"
 
-#: ../classes/Album.php:1329
+#: ../classes/Album.php:1326
 msgid "Photo auto-rotated/transformed"
 msgstr "Billede autoroteret/tranformeret"
 
-#: ../classes/Album.php:1337
+#: ../classes/Album.php:1334
 msgid "Watermarking Image"
 msgstr "Sætter vandmærke for billede"
 
-#: ../classes/Album.php:1494 ../classes/Album.php:1504
-#, fuzzy
+#: ../classes/Album.php:1491 ../classes/Album.php:1501
 msgid "No highlight!"
-msgstr "Intet forsidebillede"
+msgstr "Intet forsidebillede!"
 
-#: ../classes/Album.php:1699
+#: ../classes/Album.php:1696
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Den angivne position [%d] er ugyldig [%d]"
 
-#: ../classes/Album.php:1912 ../do_command.php:105
+#: ../classes/Album.php:1909 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Behandler billede %d..."
 
-#: ../classes/Album.php:2072
+#: ../classes/Album.php:2078
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
-msgstr ""
+msgstr "Kunne ikke hente EXIF data. Forventet status 0, fik %s."
 
-#: ../classes/Album.php:2595
+#: ../classes/Album.php:2614
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2758
+#: ../classes/Album.php:2777
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Emailproblem: Springer %s (UID %s) over fordi email adressen %s ikke er gyldig."
 
-#: ../classes/AlbumItem.php:588
+#: ../classes/AlbumItem.php:601
 msgid "Invalid image"
 msgstr "Ugyldigt billede"
 
-#: ../classes/AlbumItem.php:606
+#: ../classes/AlbumItem.php:619
 msgid "Generating thumbnail."
 msgstr "Opretter ikon."
 
-#: ../classes/AlbumItem.php:608
+#: ../classes/AlbumItem.php:621
 #, php-format
 msgid "Saved Dimensions: x:%d y: %d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:644
+#: ../classes/AlbumItem.php:686
 #, fuzzy
 msgid "Generating normal thumbs"
 msgstr "Opretter ikon."
 
-#: ../classes/AlbumItem.php:662
+#: ../classes/AlbumItem.php:712
 msgid "Unable to make thumbnail"
 msgstr "Kan ikke lave ikon"
 
-#: ../classes/AlbumItem.php:673
+#: ../classes/AlbumItem.php:723
 msgid "No preview"
 msgstr "Ingen forhåndsvisning"
 
-#: ../classes/AlbumItem.php:699
+#: ../classes/AlbumItem.php:749
 msgid "No thumbnail"
 msgstr "Intet ikon"
 
-#: ../classes/AlbumItem.php:714
+#: ../classes/AlbumItem.php:764
 msgid "No highlight"
 msgstr "Intet forsidebillede"
 
@@ -959,8 +953,8 @@ msgstr "Opgrader nu"
 msgid "Copy to Album!"
 msgstr "Kopier til album!"
 
-#: ../copy_photo.php:218 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:144
+#: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
+#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "intet album / indeks angivet"
@@ -981,9 +975,9 @@ msgid "User %s created"
 msgstr "Bruger %s oprettet"
 
 #: ../create_user.php:94 ../multi_create_user.php:120
-#, fuzzy, php-format
+#, php-format
 msgid "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."
-msgstr "%s registreret af %s. En email er sendt til %s."
+msgstr "Ny bruger '%s' registreret af %s. Gallery har sendt en email til %s."
 
 #: ../create_user.php:102 ../multi_create_user.php:128
 msgid "Gallery Registration"
@@ -995,40 +989,37 @@ msgid "Email sent to %s."
 msgstr "Email sendt til %s."
 
 #: ../create_user.php:112
-#, fuzzy
 msgid "Create another user"
-msgstr "Opret ny bruger her."
+msgstr "Opret ny bruger"
 
 #: ../create_user.php:113 ../create_user.php:165 ../modify_user.php:164
 #: ../multi_create_user.php:148 ../multi_create_user.php:199
 msgid "Back to usermanagement"
-msgstr ""
+msgstr "Tilbage til brugerstyring"
 
 #: ../create_user.php:149
 msgid "Create a new user here."
 msgstr "Opret ny bruger her."
 
 #: ../create_user.php:164
-#, fuzzy
 msgid "Create user"
 msgstr "Opret bruger"
 
-#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
-#: ../delete_photo.php:90 ../tools/validate_albums.php:128
+#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:86
+#: ../delete_photo.php:94 ../tools/validate_albums.php:128
 #: ../tools/validate_albums.php:136
 msgid "Delete Album"
 msgstr "Slet album"
 
-#: ../delete_album.php:55 ../delete_photo.php:98
+#: ../delete_album.php:55 ../delete_photo.php:103
 msgid "Do you really want to delete this album?"
 msgstr "Vil du virkelig slette dette album?"
 
-#: ../delete_album.php:71 ../delete_photo.php:138 ../delete_user.php:80
-#: ../js/multifile.js.php:103 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:87 ../lib/albumItem.php:88 ../lib/albumItem.php:212
-#: ../lib/albumItem.php:213 ../lib/albumItem.php:219 ../lib/albumItem.php:220
-#: ../manage_users.php:98 ../tools/despam-comments.php:206
-#: ../tools/despam-comments.php:345
+#: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
+#: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
+#: ../lib/albumItem.php:254 ../lib/albumItem.php:255 ../lib/albumItem.php:261
+#: ../lib/albumItem.php:262 ../manage_users.php:98
+#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "Slet"
 
@@ -1036,12 +1027,12 @@ msgstr "Slet"
 msgid "no album specified"
 msgstr "intet album angivet"
 
-#: ../delete_photo.php:82 ../delete_photo.php:116
+#: ../delete_photo.php:86 ../delete_photo.php:121
 #: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
 msgid "Delete Photo"
 msgstr "Slet billede"
 
-#: ../delete_photo.php:119
+#: ../delete_photo.php:124
 msgid "Do you really want to delete this photo?"
 msgstr "Vil du virkelig slette dette billede?"
 
@@ -1074,11 +1065,10 @@ msgstr[0] "Selv om brugeren bliver genoprettet, er rettighederne væk."
 msgstr[1] "Selv om brugerene bliver genoprettet, er rettighederne væk."
 
 #: ../delete_user.php:74
-#, fuzzy
 msgid "Do you really want to delete user:"
 msgid_plural "Do you really want to delete these users:"
-msgstr[0] "Vil du virkelig slette denne bruger"
-msgstr[1] "Vil du virkelig slette disse brugere"
+msgstr[0] "Vil du virkelig slette denne bruger:"
+msgstr[1] "Vil du virkelig slette disse brugere:"
 
 #: ../do_command.php:43
 msgid "Attempted security breach."
@@ -1230,9 +1220,8 @@ msgid "- Recipient's Email"
 msgstr ""
 
 #: ../ecard_form.php:137
-#, fuzzy
 msgid "- Your Message"
-msgstr "Besked"
+msgstr "- Din besked"
 
 #: ../ecard_form.php:141
 msgid "Please fill all fields next click >Send<."
@@ -1252,9 +1241,8 @@ msgid "Recipient's info"
 msgstr ""
 
 #: ../ecard_form.php:197 ../ecard_form.php:208
-#, fuzzy
 msgid "Name"
-msgstr "Fulde navn"
+msgstr "Navn"
 
 #: ../ecard_form.php:212 ../ecard_form.php:215
 #, fuzzy
@@ -1280,11 +1268,10 @@ msgid "%s sent you an E-C@rd"
 msgstr ""
 
 #: ../ecard_form.php:241
-#, fuzzy
 msgid "Your Message:"
-msgstr "Besked:"
+msgstr "Din besked:"
 
-#: ../ecard_form.php:260 ../edit_watermark.php:125 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:129 ../watermark_album.php:151
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
@@ -1293,33 +1280,32 @@ msgid "Reset"
 msgstr "Nulstil"
 
 #: ../ecard_form.php:264
-#, fuzzy
 msgid "Send eCard"
-msgstr "Send min adgangskode til mig"
+msgstr "Send eKort"
 
 #: ../ecard_form.php:272
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
-msgstr ""
+msgstr "Dit eKort med det nedenstående billede er blevet sendt til %s &lt;%s&gt;."
 
 #: ../ecard_form.php:276
 msgid "Close this window"
-msgstr ""
+msgstr "Luk dette vindue"
 
 #: ../edit_appearance.php:56
-#, fuzzy, php-format
+#, php-format
 msgid "Problem with input of field '%s'. %s"
-msgstr "Problem med email til %s"
+msgstr "Problem med feltet '%s'. %s"
 
 #: ../edit_appearance.php:119
-#, fuzzy, php-format
+#, php-format
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr "Advarsel: du har ændret stemmer fra %s til %s. Det tilrådes at nulstille afstemningen så alle tidligere stemmer fjernes."
 
 #: ../edit_appearance.php:120 ../poll_properties.php:52
 #: ../poll_properties.php:104
 msgid "Everybody"
-msgstr "Alle"
+msgstr "Enhver"
 
 #: ../edit_appearance.php:121 ../poll_properties.php:53
 #: ../poll_properties.php:104
@@ -1335,9 +1321,9 @@ msgid "Alt Text / onMouseOver"
 msgstr "Alternativ tekst/onMouseOver"
 
 #: ../edit_appearance.php:216
-#, fuzzy, php-format
+#, php-format
 msgid "Field %s:"
-msgstr "Felt"
+msgstr "Felt %s:"
 
 #: ../edit_appearance.php:231 ../edit_appearance.php:237
 msgid "Album Properties"
@@ -1363,11 +1349,10 @@ msgid "Close"
 msgstr "Luk"
 
 #: ../edit_caption.php:68
-#, fuzzy
 msgid "Year must be between 1969 and 2070"
-msgstr "Årstal skal være mellem 1000 og 3000"
+msgstr "Årstal skal være mellem 1969 og 2070"
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:116 ../lib/albumItem.php:117
+#: ../edit_caption.php:73 ../lib/albumItem.php:104 ../lib/albumItem.php:105
 msgid "Edit Text"
 msgstr "Ret tekst"
 
@@ -1429,19 +1414,19 @@ msgstr "Gendanner ikon..."
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Vælg hvilken del af billedet, der skal udgøre dit ikon:"
 
-#: ../edit_watermark.php:77 ../watermark_album.php:100
+#: ../edit_watermark.php:81 ../watermark_album.php:100
 msgid "Please select a watermark."
 msgstr "Vælg et vandmærke."
 
-#: ../edit_watermark.php:80 ../watermark_album.php:103
+#: ../edit_watermark.php:84 ../watermark_album.php:103
 msgid "Please select an alignment."
 msgstr "Angiv venligst en placering."
 
-#: ../edit_watermark.php:89 ../edit_watermark.php:93
+#: ../edit_watermark.php:93 ../edit_watermark.php:97
 msgid "Edit Watermark"
 msgstr "Ændr vandmærke"
 
-#: ../edit_watermark.php:112
+#: ../edit_watermark.php:116
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
 
@@ -1841,47 +1826,51 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Tryk på <b>Gennemse</b> knappen for at finde et billede, der skal overføres."
 
 #: ../includes/add_photos/add_form.inc:28
+msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:29
+msgid "Its possible to enter a manual caption for each item you upload, or you can gallery set the captions."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:30
 #, fuzzy, php-format
 msgid "Supported file types: %s"
 msgstr "Understøttede filtyper"
 
-#: ../includes/add_photos/add_form.inc:32
-#: ../includes/add_photos/add_url.inc:29
-msgid "Tip:"
-msgstr "Tip:"
-
 #: ../includes/add_photos/add_form.inc:33
-msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
+#, fuzzy
+msgid "You can also upload compressed archive files (zip, rar, ...) full of photos and movies!"
 msgstr "Overfør en komprimeret fil (zip, rar, ace ...) med billeder og/eller film!"
 
-#: ../includes/add_photos/add_form.inc:42
+#: ../includes/add_photos/add_form.inc:44
 #, fuzzy
 msgid "Use the Browse button to find the photos on your computer"
 msgstr "2. Brug Gennemse-knappen for at finde billederne på din computer"
 
-#: ../includes/add_photos/add_form.inc:43
+#: ../includes/add_photos/add_form.inc:45
 #, fuzzy
 msgid "Files:"
 msgstr "Filer"
 
-#: ../includes/add_photos/add_form.inc:53
+#: ../includes/add_photos/add_form.inc:55
 msgid "Do the same for optional metafiles."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:54
+#: ../includes/add_photos/add_form.inc:56
 msgid "Help"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:59
+#: ../includes/add_photos/add_form.inc:61
 #, fuzzy
 msgid "MetaFiles:"
 msgstr "Filer"
 
-#: ../includes/add_photos/add_form.inc:67
+#: ../includes/add_photos/add_form.inc:69
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "Hvis billedteksten ikke er sat, hvad skal standard billedteksten så være?"
 
-#: ../includes/add_photos/add_form.inc:80
+#: ../includes/add_photos/add_form.inc:82
 msgid "Upload Now"
 msgstr "Overfør nu"
 
@@ -1916,6 +1905,10 @@ msgstr "Overfør alle billeder der findes på dette sted."
 #: ../includes/add_photos/add_url.inc:26
 msgid "The location can either be a URL or a local directory on the server."
 msgstr "Stedet kan enten være en URL eller et lokalt katalog på serveren."
+
+#: ../includes/add_photos/add_url.inc:29
+msgid "Tip:"
+msgstr "Tip:"
 
 #: ../includes/add_photos/add_url.inc:30
 msgid "FTP images to a directory on your server then provide that path here!"
@@ -1957,7 +1950,7 @@ msgstr "Hvis du får problemer kan du søge hjælp på %sGallery hjælpesiden%s."
 
 #: ../includes/errors/reconfigure.php:9 ../includes/errors/reconfigure.php:15
 msgid "Gallery needs Reconfiguration"
-msgstr "Gallery skal rekonfigureres"
+msgstr "Gallery kræver en genkonfigurering"
 
 #: ../includes/errors/reconfigure.php:18
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
@@ -1966,11 +1959,11 @@ msgstr "Din konfigurering af Gallery blev lavet med en konfigurationshjælper fra
 #: ../includes/errors/reconfigure.php:23
 #, php-format
 msgid "Launch the %sConfiguration Wizard%s."
-msgstr "Kør %skonfigurationshjælperen%s."
+msgstr "Start %sGallery Konfigurationen%s."
 
 #: ../includes/errors/unconfigured.php:9
 msgid "Gallery Configuration Error"
-msgstr "Konfigurationsfejl i Gallery"
+msgstr "Gallery konfigurationsfejl"
 
 #: ../includes/errors/unconfigured.php:15
 msgid "Gallery has not been configured!"
@@ -1978,7 +1971,7 @@ msgstr "Gallery er ikke konfigureret!"
 
 #: ../includes/errors/unconfigured.php:19
 msgid "Gallery must be configured before you can use it."
-msgstr "Galleriet skal konfigureres før du kan bruge det."
+msgstr "Gallery skal konfigureres før du kan bruge det."
 
 #: ../includes/errors/unconfigured.php:24
 msgid "1."
@@ -1994,16 +1987,16 @@ msgstr "2."
 
 #: ../includes/errors/unconfigured.php:29
 msgid "Create an albums folder for your pictures and movies."
-msgstr "Opret et albumbibiliotek til dine billeder og film."
+msgstr "Opret et albumbibliotek til dine billeder og film."
 
 #: ../includes/errors/unconfigured.php:32
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr "Kontroller at begge filer samt biblioteket kan læses og skrives af din webserver !"
+msgstr "Kontroller at begge filer og biblioteket kan læse og skrives af din webserver !"
 
 #: ../includes/errors/unconfigured.php:38
 #, php-format
 msgid "Then start the %sConfiguration Wizard%s."
-msgstr "Start så %skonfigurationshjælperen%s."
+msgstr "Start %sGallery Konfigurationen%s."
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
 #, php-format
@@ -2287,17 +2280,15 @@ msgstr "Bestemmer det maksimale antal billeder der skal vises, -1 for at vise al
 
 #: ../includes/stats/stats.inc.php:135
 msgid "Use Grid Layout"
-msgstr ""
+msgstr "Brug 'grid' visning"
 
 #: ../includes/stats/stats.inc.php:138
-#, fuzzy
 msgid "Controls the number of rows to display in grid mode"
-msgstr "Bestemmer hvor mange billeder der skal vises på en side"
+msgstr "Bestemmer antallet af rækker der skal vises i 'grid' tilstand"
 
 #: ../includes/stats/stats.inc.php:141
-#, fuzzy
 msgid "Controls the number of columns to display in grid mode"
-msgstr "Bestemmer hvor mange billeder der skal vises på en side"
+msgstr "Bestemmer hvor mange kolonner der skal vises i 'grid' tilstand"
 
 #: ../includes/stats/stats.inc.php:143
 msgid "Above the comments"
@@ -2331,7 +2322,7 @@ msgstr "Filtrer på måned"
 msgid "Filter by day"
 msgstr "Filtrer på dag"
 
-#: ../js/multifile.js.php:140
+#: ../js/multifile.js.php:143
 #, fuzzy
 msgid "Caption:"
 msgstr "Billedtekst: "
@@ -2377,9 +2368,9 @@ msgid "Logged in as:"
 msgstr "Logget ind som:"
 
 #: ../layout/commentbox.inc:12
-#, fuzzy, php-format
+#, php-format
 msgid "From: %s"
-msgstr "Fra:"
+msgstr "Fra: %s"
 
 #: ../layout/commentboxbottom.inc:11 ../stats.php:969
 msgid "add comment"
@@ -2397,11 +2388,11 @@ msgstr "vis kommentarer for dette under-album"
 msgid "Album contains no comments"
 msgstr "Albummet indeholder ingen kommentarer"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:313
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:327
 msgid "From:"
 msgstr "Fra:"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:287
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:301
 msgid "delete comment"
 msgstr "slet kommentar"
 
@@ -2424,7 +2415,7 @@ msgstr "Sidste side"
 #: ../layout/navigator.inc:79 ../layout/navigator.inc:105
 #, php-format
 msgid "Jump to page %d"
-msgstr ""
+msgstr "Hop til side %d"
 
 #: ../layout/navphoto.inc:24
 msgid "First Photo"
@@ -2442,20 +2433,19 @@ msgstr "Næste billede"
 msgid "Last Photo"
 msgstr "Sidste billede"
 
-#: ../layout/navphoto.inc:54
+#: ../layout/navphoto.inc:56
 #, php-format
 msgid "%d of %d"
 msgstr "%d af %d"
 
-#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:142
-#: ../lib/albumItem.php:143
-msgid "Watermark"
+#: ../layout/watermarkform.inc:84
+#, fuzzy
+msgid "Watermark:"
 msgstr "Vandmærke"
 
 #: ../layout/watermarkform.inc:88
-#, fuzzy
 msgid "* No Watermark *"
-msgstr "Vandmærke"
+msgstr "* Intet vandmærke *"
 
 #: ../layout/watermarkform.inc:94
 #, php-format
@@ -2468,177 +2458,173 @@ msgid "Could not open directory %s"
 msgstr "Kunne ikke åbne kataloget %s"
 
 #: ../layout/watermarkform.inc:105
-msgid "Alignment"
+#, fuzzy
+msgid "Alignment:"
 msgstr "Placering"
 
-#: ../layout/watermarkform.inc:109
+#: ../layout/watermarkform.inc:110
 msgid "Upper&nbsp;Left"
 msgstr "Øverst&nbsp;til&nbsp;venstre"
 
-#: ../layout/watermarkform.inc:111
+#: ../layout/watermarkform.inc:112
 msgid "Top"
 msgstr "I&nbsp;toppen"
 
-#: ../layout/watermarkform.inc:113
+#: ../layout/watermarkform.inc:114
 msgid "Upper&nbsp;Right"
 msgstr "Øverst&nbsp;til&nbsp;højre"
 
-#: ../layout/watermarkform.inc:117
+#: ../layout/watermarkform.inc:118
 msgid "Left"
 msgstr "Venstre"
 
 # kommer an på sammenhængen, men skal der muligvis stå: midten
-#: ../layout/watermarkform.inc:119
+#: ../layout/watermarkform.inc:120
 msgid "Center"
 msgstr "I&nbsp;midten"
 
-#: ../layout/watermarkform.inc:121
+#: ../layout/watermarkform.inc:122
 msgid "Right"
 msgstr "Højre"
 
-#: ../layout/watermarkform.inc:125
+#: ../layout/watermarkform.inc:126
 msgid "Lower&nbsp;Left"
 msgstr "Nederst&nbsp;til&nbsp;venstre"
 
-#: ../layout/watermarkform.inc:127
+#: ../layout/watermarkform.inc:128
 msgid "Bottom"
 msgstr "I&nbsp;bunden"
 
-#: ../layout/watermarkform.inc:129
+#: ../layout/watermarkform.inc:130
 msgid "Lower&nbsp;Right"
 msgstr "Nedest&nbsp;til&nbsp;højre"
 
-#: ../layout/watermarkform.inc:142
+#: ../layout/watermarkform.inc:144
 msgid "Preview Size"
 msgstr "Størrelse for forhåndsvisning"
 
-#: ../layout/watermarkform.inc:145
+#: ../layout/watermarkform.inc:147
 msgid "Resized"
 msgstr "Skaleret"
 
-#: ../layout/watermarkform.inc:148
+#: ../layout/watermarkform.inc:150
 msgid "Full"
 msgstr "Oprindelig"
 
-#: ../layout/watermarkform.inc:160
+#: ../layout/watermarkform.inc:162
 msgid "Watermark subalbums"
 msgstr "Sæt vandmærke på under-album"
 
-#: ../layout/watermarkform.inc:162
+#: ../layout/watermarkform.inc:164
 msgid "Apply watermark to"
 msgstr "Sæt vandmærke på"
 
-#: ../layout/watermarkform.inc:163
+#: ../layout/watermarkform.inc:165
 msgid "All photos"
 msgstr "Alle billeder"
 
-#: ../layout/watermarkform.inc:164
+#: ../layout/watermarkform.inc:166
 msgid "Only sized photos"
 msgstr "Kun mellemstørrelsebilleder"
 
-#: ../layout/watermarkform.inc:165
+#: ../layout/watermarkform.inc:167
 msgid "Only full photos"
 msgstr "Kun billeder i fuld størrelse"
 
-#: ../lib/albumItem.php:67 ../rearrange.php:112
+#: ../lib/albumItem.php:78 ../rearrange.php:112
 msgid "Movie"
 msgstr "Film"
 
-#: ../lib/albumItem.php:71
+#: ../lib/albumItem.php:81
 msgid "Photo"
 msgstr "billede"
 
-#: ../lib/albumItem.php:97 ../lib/albumItem.php:98
-msgid "Edit Title"
-msgstr "Ret titel"
-
-#: ../lib/albumItem.php:102 ../lib/albumItem.php:103
-msgid "Edit Description"
-msgstr "Ret beskrivelse"
-
-#: ../lib/albumItem.php:109 ../lib/albumItem.php:110 ../rename_album.php:39
-#: ../rename_album.php:43
-msgid "Rename Album"
-msgstr "Omdøb album"
-
-#: ../lib/albumItem.php:126 ../lib/albumItem.php:127
-#, fuzzy
+#: ../lib/albumItem.php:109 ../lib/albumItem.php:110
 msgid "Edit Thumbnail"
-msgstr "Ret ikon"
+msgstr "Ret miniature"
 
-#: ../lib/albumItem.php:131 ../lib/albumItem.php:132
-#, fuzzy, php-format
+#: ../lib/albumItem.php:114 ../lib/albumItem.php:115
+#, php-format
 msgid "Rotate/Flip"
-msgstr "Rotér/vend %s"
+msgstr "Rotér/vend"
 
-#: ../lib/albumItem.php:136 ../lib/albumItem.php:137
-#, fuzzy
+#: ../lib/albumItem.php:119 ../lib/albumItem.php:120
 msgid "Resize"
-msgstr "Skaleret"
+msgstr "Skaler"
 
-#: ../lib/albumItem.php:149 ../lib/albumItem.php:150
+#: ../lib/albumItem.php:125 ../lib/albumItem.php:126
+msgid "Watermark"
+msgstr "Vandmærke"
+
+#: ../lib/albumItem.php:132 ../lib/albumItem.php:133
 #, fuzzy
 msgid "ImageMap"
 msgstr "Billedramme"
 
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
-#, fuzzy
-msgid "Set as highlight"
-msgstr "forsidebillede"
+#: ../lib/albumItem.php:142 ../lib/albumItem.php:143
+msgid "Edit Title"
+msgstr "Ret titel"
 
-#: ../lib/albumItem.php:167 ../lib/albumItem.php:168
+#: ../lib/albumItem.php:147 ../lib/albumItem.php:148
+msgid "Edit Description"
+msgstr "Ret beskrivelse"
+
+#: ../lib/albumItem.php:153 ../lib/albumItem.php:154 ../rename_album.php:39
+#: ../rename_album.php:43
+msgid "Rename Album"
+msgstr "Omdøb album"
+
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
 msgid "Reset Counter"
 msgstr "Nulstil tæller"
 
-#: ../lib/albumItem.php:173 ../lib/albumItem.php:174 ../lib/albumItem.php:178
-#, fuzzy
-msgid "Move"
-msgstr "Film"
-
-#: ../lib/albumItem.php:179
-#, fuzzy
-msgid "Reorder"
-msgstr "Omplacer %s"
-
-#: ../lib/albumItem.php:184 ../lib/albumItem.php:185
-#, fuzzy
-msgid "Copy"
-msgstr "Kopier %s"
-
-#: ../lib/albumItem.php:195 ../lib/albumItem.php:196
-#, fuzzy
-msgid "Show"
-msgstr "Sne"
-
-#: ../lib/albumItem.php:201 ../lib/albumItem.php:202
-#, fuzzy
-msgid "Hide"
-msgstr "skjult"
-
-#: ../lib/albumItem.php:229 ../lib/albumItem.php:230 ../view_album.php:313
+#: ../lib/albumItem.php:171 ../lib/albumItem.php:172 ../view_album.php:313
 msgid "Permissions"
 msgstr "Rettigheder"
 
-#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../lib/albumItem.php:179 ../lib/albumItem.php:180
 #: ../watermark_album.php:114 ../watermark_album.php:118
 msgid "Watermark Album"
 msgstr "Sæt vandmærke på album"
 
-#: ../lib/albumItem.php:243 ../lib/albumItem.php:244
+#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
 msgid "View Comments"
 msgstr "Vis kommentarer"
 
-#: ../lib/albumItem.php:255 ../lib/albumItem.php:256
-#, fuzzy
-msgid "Photo properties"
-msgstr "oplysninger om billedet"
+#: ../lib/albumItem.php:196 ../lib/albumItem.php:213 ../lib/albumItem.php:214
+msgid "Move"
+msgstr "Flyt"
 
-#: ../lib/albumItem.php:264 ../lib/albumItem.php:265 ../photo_owner.php:78
+#: ../lib/albumItem.php:197
+msgid "Reorder"
+msgstr "Omplacer"
+
+#: ../lib/albumItem.php:204 ../lib/albumItem.php:205
+msgid "Set as highlight"
+msgstr "Sæt til forsidebillede"
+
+#: ../lib/albumItem.php:220 ../lib/albumItem.php:221
+msgid "Copy"
+msgstr "Kopier"
+
+#: ../lib/albumItem.php:226 ../lib/albumItem.php:227 ../photo_owner.php:78
 #: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Skift ejer"
 
-#: ../lib/albumItem.php:273 ../lib/albumItem.php:274
+#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+msgid "Show"
+msgstr "Vis"
+
+#: ../lib/albumItem.php:242 ../lib/albumItem.php:243
+msgid "Hide"
+msgstr "Skjul"
+
+#: ../lib/albumItem.php:274 ../lib/albumItem.php:275
+msgid "Photo properties"
+msgstr "Oplysninger om billedet"
+
+#: ../lib/albumItem.php:287 ../lib/albumItem.php:288
 #, php-format
 msgid "%s actions"
 msgstr "%s handlinger"
@@ -2649,11 +2635,11 @@ msgstr "SUCCESS"
 
 #: ../login.php:55
 msgid "Invalid username or password"
-msgstr "Ugyldigt brugernavn eller kodeord"
+msgstr "Ugyldigt brugernavn eller adgangskode"
 
 #: ../login.php:60
 msgid "Please enter username and password."
-msgstr "Indtast venligst brugernavn og kodeord."
+msgstr "Indtast brugernavn og adgangskode."
 
 #: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
@@ -2666,7 +2652,7 @@ msgstr "Hvis du logger ind, har du mulighed for at udføre de handlinger administ
 
 #: ../login.php:89
 msgid "Password"
-msgstr "Kodeord"
+msgstr "Adgangskode"
 
 #: ../login.php:95
 msgid "Login"
@@ -2725,11 +2711,11 @@ msgstr "Send min adgangskode til mig"
 
 #: ../login.php:159
 msgid "No account at all?"
-msgstr ""
+msgstr "Ingen konto overhovedet?"
 
 #: ../login.php:161
 msgid "Register a new account."
-msgstr ""
+msgstr "Opret en ny konto."
 
 #: ../manage_users.php:43
 msgid "Please select a user"
@@ -2752,9 +2738,8 @@ msgid "To select multiple users (only recognized for deletion), hold down the Co
 msgstr "For at vælge flere brugere (kun ved sletning), hold da Control (PC) eller Command (Mac) nede mens du klikker."
 
 #: ../manage_users.php:92
-#, fuzzy
 msgid "Create new user"
-msgstr "Opret ny bruger her."
+msgstr "Opret ny bruger"
 
 #: ../manage_users.php:94
 msgid "Bulk Create"
@@ -2765,14 +2750,12 @@ msgid "Modify"
 msgstr "Ændre"
 
 #: ../modify_user.php:89
-#, fuzzy
 msgid "User information succesfully updated."
-msgstr "Brugere opgraderet uden problemer."
+msgstr "Brugerinformationer opgraderet uden problemer."
 
 #: ../modify_user.php:93
-#, fuzzy
 msgid "User information was not succesfully updated !!"
-msgstr "Brugere opgraderet uden problemer."
+msgstr "Brugerinformationen kunne ikke opgraderes !!"
 
 #: ../modify_user.php:104
 msgid "Invalid user"
@@ -2791,13 +2774,13 @@ msgid "Move Album"
 msgstr "Flyt album"
 
 #: ../move_album.php:94
-#, fuzzy, php-format
+#, php-format
 msgid "Select the new location of album: %s"
-msgstr "Vælg ny placering for album"
+msgstr "Vælg ny placering for album: %s"
 
 #: ../move_album.php:95
 msgid "Your Album will be moved to the position you choose below."
-msgstr ""
+msgstr "Dit album vil blive flyttet til den position som du vælger nedenfor."
 
 #: ../move_album.php:116 ../move_photo.php:263
 msgid "Move it!"
@@ -2902,18 +2885,18 @@ msgid "Upload went fine, but the file is not readable, please make sure %s is ac
 msgstr "Overførslen lykkedes, men filen er ikke læsbar. Kontroller venligst at din webserver kan læse %s. (Kontroller også openbasedir restriktioner.)"
 
 #: ../multi_create_user.php:101
-#, fuzzy, php-format
+#, php-format
 msgid "Adding %s (%s) with email: %s"
-msgstr "Tilføjer %s"
+msgstr "Tilføjer %s (%s) med emailadresse: %s"
 
 #: ../multi_create_user.php:102 ../multi_create_user.php:106
 msgid "No fullname given"
 msgstr ""
 
 #: ../multi_create_user.php:105
-#, fuzzy, php-format
+#, php-format
 msgid "Adding %s (%s)"
-msgstr "Tilføjer %s"
+msgstr "Tilføjer %s (%s)"
 
 #: ../multi_create_user.php:113
 #, php-format
@@ -2970,9 +2953,8 @@ msgid "<i>username fullname</i>"
 msgstr ""
 
 #: ../multi_create_user.php:212
-#, fuzzy
 msgid "<i>username emailaddress</i>"
-msgstr "Afsender email-adresse"
+msgstr ""
 
 #: ../multi_create_user.php:214
 msgid "Only username is required. Everything after the email address is the full name, so there can be spaces in it."
@@ -3002,7 +2984,7 @@ msgstr "Lav ny adgangskode"
 msgid "Enter the Gallery"
 msgstr "Gå ind i Gallery"
 
-#: ../new_password.php:105 ../user_preferences.php:120
+#: ../new_password.php:105 ../user_preferences.php:113
 msgid "You can change your user information here."
 msgstr "Du kan ændre information om dig selv her."
 
@@ -3092,7 +3074,7 @@ msgstr "Vend tilbage til %s"
 msgid "Results Breakdown"
 msgstr "Opgørelse af resultater"
 
-#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:800
+#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:786
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -3302,33 +3284,28 @@ msgid "Picture"
 msgstr ""
 
 #: ../rearrange.php:113
-#, fuzzy
 msgid "Subalbum"
 msgstr "Underalbum"
 
 #: ../rearrange.php:114
-#, fuzzy
 msgid "Selected"
-msgstr "Slet"
+msgstr "Valgt"
 
 #: ../rearrange.php:115
 msgid "Visible"
-msgstr ""
+msgstr "Synlig"
 
 #: ../rearrange.php:116
-#, fuzzy
 msgid "Hidden"
-msgstr "skjult"
+msgstr "Skjult"
 
 #: ../rearrange.php:135 ../rearrange.php:173
-#, fuzzy
 msgid "save"
-msgstr "Gem"
+msgstr "gem"
 
 #: ../rearrange.php:136 ../rearrange.php:174
-#, fuzzy
 msgid "cancel"
-msgstr "Afbryd"
+msgstr "afbryd"
 
 #: ../rearrange.php:146
 #, php-format
@@ -3424,55 +3401,55 @@ msgstr "Ønsker du virkelig at fjerne alle stemmer i %s?"
 msgid "Remove Votes"
 msgstr "Fjern stemmer"
 
-#: ../resize_photo.php:39
+#: ../resize_photo.php:42
 msgid "Resize Photo"
 msgstr "Ændr billedstørrelse"
 
-#: ../resize_photo.php:46
+#: ../resize_photo.php:49
 msgid "Resizing photos"
 msgstr "Ændrer størrelse på billeder"
 
-#: ../resize_photo.php:61
+#: ../resize_photo.php:64
 msgid "Resizing 1 photo..."
 msgstr "Ændrer størrelse på 1 billede..."
 
-#: ../resize_photo.php:73
+#: ../resize_photo.php:76
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "Dette vil ændre størrelsen på mellemstørrelsebillederne så den længste side af billedet er lig med størrelsen valgt nedenfor og filstørrelsen vil være tæt på den valgte størrelse."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "Hvad skal størrelsen af mellemstørrelsebillederne være i dette album?"
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "Hvilken størrelse skal mellemstørrelsebilledet for dette billede være?"
 
-#: ../resize_photo.php:92
+#: ../resize_photo.php:95
 msgid "Target filesize"
 msgstr "Mål for filstørrelse"
 
-#: ../resize_photo.php:96
+#: ../resize_photo.php:99
 msgid "Maximum side length in pixels"
 msgstr "Maksimum sidebredde i billedpunkter (pixels)"
 
-#: ../resize_photo.php:111
+#: ../resize_photo.php:114
 msgid "(manual value)"
 msgstr "(selvvalgt værdi)"
 
-#: ../resize_photo.php:124
+#: ../resize_photo.php:127
 msgid "Apply to nested albums ?"
 msgstr "Anvend værdier på underalbummer?"
 
-#: ../resize_photo.php:130
+#: ../resize_photo.php:133
 msgid "Get rid of resized"
 msgstr "Fjern mellem-størrelse billeder"
 
-#: ../resize_photo.php:131
+#: ../resize_photo.php:134
 msgid "(Use only the original picture)"
 msgstr "(Brug kun det originale billede)"
 
-#: ../resize_photo.php:136
+#: ../resize_photo.php:139
 msgid "Change Size"
 msgstr "Ændr billedstørrelse"
 
@@ -3601,9 +3578,9 @@ msgid "No Album Matches"
 msgstr "Ingen albummer fundet"
 
 #: ../search.php:231
-#, fuzzy, php-format
+#, php-format
 msgid "Photos containing %s in caption, comment or name."
-msgstr "Billeder som indeholder %s i billedtekst eller kommentar"
+msgstr "Billeder som indeholder %s i billedtekst, kommentar eller navn."
 
 #: ../search.php:232
 msgid "No Photo Matches"
@@ -3619,9 +3596,8 @@ msgid "Upgrade all albums."
 msgstr "Opgrader alle albummer."
 
 #: ../search.php:272
-#, fuzzy
 msgid "Search the Gallery's Album and Photo titles, descriptions and comments."
-msgstr "Søg i Gallerys album- og billede-<br> titler, beskrivelser og kommentarer"
+msgstr "Søg i Gallerys album- og billedetitler, beskrivelser og kommentarer."
 
 #: ../slideshow.php:87
 msgid "play"
@@ -3645,9 +3621,8 @@ msgstr "Pause"
 
 # beaufour: Bedre ord søges
 #: ../slideshow.php:94
-#, fuzzy
 msgid "Loop:"
-msgstr "Sløjfe"
+msgstr "Sløjfe:"
 
 #: ../slideshow.php:101
 msgid "Fullscreen applet"
@@ -3710,13 +3685,12 @@ msgid "Just sort"
 msgstr ""
 
 #: ../sort_album.php:108
-#, fuzzy
 msgid "Albums first"
-msgstr "Titel på album"
+msgstr "Albummer først"
 
 #: ../sort_album.php:109
 msgid "Photos/Movies first"
-msgstr ""
+msgstr "Billeder/film først"
 
 #: ../stamp_preview.php:42
 #, fuzzy
@@ -3846,9 +3820,8 @@ msgid "Cache to be rebuilt"
 msgstr "Cachen skal genbygges"
 
 #: ../stats.php:350
-#, fuzzy
 msgid "Cache will not rebuild."
-msgstr "Cachen skal genbygges"
+msgstr "Cachen bliver ikke genbygget."
 
 #: ../stats.php:373
 msgid "Version out of date."
@@ -3973,14 +3946,14 @@ msgid "add vote"
 msgstr "tilføj stemme"
 
 #: ../stats.php:1076
-#, fuzzy, php-format
+#, php-format
 msgid "From album: %s"
-msgstr "Fra album"
+msgstr "Fra album: %s"
 
 #: ../stats.php:1081
-#, fuzzy, php-format
+#, php-format
 msgid "Owned by: %s"
-msgstr "Ejet af:"
+msgstr "Ejet af: %s"
 
 #: ../stats.php:1113
 msgid "Capture Date:"
@@ -4373,22 +4346,22 @@ msgstr "Forkert adgangskode"
 msgid "You must provide your old password to change it."
 msgstr "Du skal angive din gamle adgangskode for at ændre den."
 
-#: ../user_preferences.php:113 ../user_preferences.php:117
+#: ../user_preferences.php:111
 msgid "Change User Preferences"
 msgstr "Ændr brugervalg"
 
-#: ../user_preferences.php:121
+#: ../user_preferences.php:114
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "Hvis du vil ændre din adgangskode, skal du indtaste din gamle adgangskode og derefter den nye to gange."
 
-#: ../user_preferences.php:122
+#: ../user_preferences.php:115
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Du kan ændre dit brugernavn til enhver kombination af tal og bogstaver."
 
 #: ../util.php:154
-#, fuzzy, php-format
+#, php-format
 msgid "Executing: %s"
-msgstr "Udfører:"
+msgstr "Udfører: %s"
 
 #: ../util.php:161
 msgid "Results:"
@@ -4450,9 +4423,9 @@ msgid "Item Capture Date : %s"
 msgstr "Dato og tid da billedet blev taget: %s"
 
 #: ../util.php:706
-#, fuzzy, php-format
+#, php-format
 msgid "Could not open lock file (%s) for writing!"
-msgstr "Kunne ikke åbne \"lock\" fil (%s)!"
+msgstr "Kunne ikke åbne lock fil (%s) for skrivning!"
 
 #: ../util.php:711
 #, php-format
@@ -4473,7 +4446,7 @@ msgstr ""
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:957 ../util.php:1824
+#: ../util.php:957 ../util.php:1823
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
@@ -4483,42 +4456,42 @@ msgstr ""
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Springer %s over (%s-understøttelse ikke slået til)"
 
-#: ../util.php:1146
+#: ../util.php:1145
 #, php-format
 msgid "Adding %s"
 msgstr "Tilføjer %s"
 
-#: ../util.php:1166
+#: ../util.php:1165
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Har du brug for hjælp?  Se i  %s%s FAQ%s"
 
-#: ../util.php:1171
+#: ../util.php:1170
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Springer %s over (Kan ikke håndtere %s formatet)"
 
-#: ../util.php:1284
+#: ../util.php:1283
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan ikke åbne logfil: %s"
 
-#: ../util.php:1452
+#: ../util.php:1451
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1468
+#: ../util.php:1467
 #, fuzzy
 msgid "csv result:"
 msgstr "Afstemningsresultater:"
 
-#: ../util.php:1636
+#: ../util.php:1635
 #, fuzzy, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "Henter billedstørrelse for filen: %s"
 
-#: ../util.php:1726
+#: ../util.php:1725
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4569,7 +4542,6 @@ msgid "%s is hidden"
 msgstr "%s er skjult"
 
 #: ../view_album.php:244
-#, fuzzy
 msgid "Add photos"
 msgstr "Tilføj billeder"
 
@@ -4589,9 +4561,8 @@ msgid "Rename album"
 msgstr "omdøb album"
 
 #: ../view_album.php:271
-#, fuzzy
 msgid "New nested album"
-msgstr "nyt under-album"
+msgstr "Nyt under-album"
 
 #: ../view_album.php:277
 #, fuzzy
@@ -4599,9 +4570,8 @@ msgid "Edit captions"
 msgstr "ret billedtekster"
 
 #: ../view_album.php:283
-#, fuzzy
 msgid "Sort items"
-msgstr "sorter objekter"
+msgstr "Sorter objekter"
 
 #: ../view_album.php:289
 #, fuzzy
@@ -4609,9 +4579,8 @@ msgid "Resize all"
 msgstr "ændr størrelse på alle"
 
 #: ../view_album.php:295
-#, fuzzy
 msgid "Rebuild thumbs"
-msgstr "gendan ikoner"
+msgstr "Gendan ikoner"
 
 #: ../view_album.php:301
 #, fuzzy
@@ -4619,7 +4588,6 @@ msgid "Properties"
 msgstr "egenskaber"
 
 #: ../view_album.php:307
-#, fuzzy
 msgid "Rearrange items"
 msgstr "Går ind i album: %s"
 
@@ -4629,12 +4597,10 @@ msgid "Poll results"
 msgstr "Afstemningsresultater:"
 
 #: ../view_album.php:325
-#, fuzzy
 msgid "Poll reset"
-msgstr "nulstil afsteming"
+msgstr "Nulstil afsteming"
 
 #: ../view_album.php:331
-#, fuzzy
 msgid "View comments"
 msgstr "Vis kommentarer"
 
@@ -4678,7 +4644,7 @@ msgstr "Tryk på %s for at stemme på et billede."
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Du SKAL trykke på %s for at din stemme kan blive registreret."
 
-#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:932
+#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:922
 msgid "Vote"
 msgstr "Stem"
 
@@ -4703,60 +4669,60 @@ msgstr "Du kan ændre dine valg, hvis du ønsker det."
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:789
+#: ../view_album.php:775
 msgid "highlight"
 msgstr "forsidebillede"
 
-#: ../view_album.php:804
+#: ../view_album.php:790
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../view_album.php:812
-#, fuzzy, php-format
+#: ../view_album.php:798
+#, php-format
 msgid "Last change: %s"
-msgstr "Sidst ændret %s."
+msgstr "Sidst ændret: %s."
 
-#: ../view_album.php:815
-#, fuzzy, php-format
+#: ../view_album.php:801
+#, php-format
 msgid "Contains: %s"
-msgstr "Indeholder: "
+msgstr "Indeholder: %s"
 
-#: ../view_album.php:815
+#: ../view_album.php:801
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "1 objekt"
 msgstr[1] "%d objekter"
 
-#: ../view_album.php:830
+#: ../view_album.php:817
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "Vist:"
 
-#: ../view_album.php:854
+#: ../view_album.php:842
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Vist:"
 msgstr[1] "Vist:"
 
-#: ../view_album.php:910
+#: ../view_album.php:900
 msgid "Hey! Add some photos."
 msgstr "Hov! Tilføj nogle billeder."
 
-#: ../view_album.php:912
+#: ../view_album.php:902
 msgid "This album is empty."
 msgstr "Dette album er tomt."
 
-#: ../view_album.php:957
+#: ../view_album.php:947
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "Send email til mig når en af følgende handlinger sker for dette album:"
 
-#: ../view_album.php:962
+#: ../view_album.php:952
 msgid "Comments are added"
 msgstr "Kommentarer bliver tilføjet"
 
-#: ../view_album.php:965
+#: ../view_album.php:955
 msgid "Other changes are made"
 msgstr "Der er lavet andre ændringer"
 
@@ -4795,9 +4761,8 @@ msgid "process this photo with %s"
 msgstr "få dette billede trykt hos %s"
 
 #: ../view_photo.php:476
-#, fuzzy
 msgid "View Images:"
-msgstr "Billedstørrelse"
+msgstr "Vis billeder:"
 
 #: ../view_photo.php:477
 msgid "normal"
@@ -4840,2205 +4805,5 @@ msgstr "Ingen objekter at vandmærke."
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
 
-#~ msgid "Show the add vote link"
-#~ msgstr "Vis giv karakter link"
-
-#, fuzzy
-#~ msgid "Move Album!"
-#~ msgstr "Flyt album"
-
-#, fuzzy
-#~ msgid "Value"
-#~ msgstr "Fejl"
-
-#~ msgid "Missing value"
-#~ msgstr "værdi mangler"
-
-#, fuzzy
-#~ msgid "<b>exec()</b> is enabled on this server."
-#~ msgstr "<b>exec()</b> er ikke slået fra på din server."
-
-#~ msgid "I can read your <b>.htaccess</b> file."
-#~ msgstr "Jeg kan læse din <b>.htaccess</b> fil."
-
-#~ msgid "PHP v%s is OK."
-#~ msgstr "PHP v%s er OK."
-
-#~ msgid "<b>mod_rewrite</b> is enabled."
-#~ msgstr "<b>mod_rewrite</b> er slået til."
-
-#~ msgid "Can't find <i>jhead</i>"
-#~ msgstr "Kan ikke finde <i>jhead</i>"
-
-#~ msgid "<b>jhead</b> binary located."
-#~ msgstr "<i>jhead</i> programfil fundet."
-
-#~ msgid "NetPBM not being used in this installation."
-#~ msgstr "NetPBM bruges ikke i denne installation."
-
-#~ msgid "Cannot verify this path (it's not in your open_basedir list)."
-#~ msgstr "Kan ikke kontrollere denne sti (den er ikke i din open_basedir liste)."
-
-#~ msgid "Can't find %s!"
-#~ msgstr "Kan ikke finde %s!"
-
-#~ msgid "%s is not executable!"
-#~ msgstr "%s er ikke udførbar!"
-
-#~ msgid "%d of %d NetPBM binaries located."
-#~ msgstr "%d ud af %d NetPBM programmer fundet."
-
-#, fuzzy
-#~ msgid "ImageMagick not being used in this installation."
-#~ msgstr "ImageMagick bruges ikke i denne installation."
-
-#~ msgid "%d of %d ImageMagick binaries located."
-#~ msgstr "%d ud af %d ImageMagick programmer fundet."
-
-#~ msgid "Can't find <i>jpegtran</i>!"
-#~ msgstr "Kan ikke finde <i>jpegtran</i>!"
-
-#~ msgid "<b>jpegtran</b> binary located."
-#~ msgstr "<b>jpegtran</b> programfil fundet."
-
-#~ msgid "PHP has <b>GNU gettext</b> support."
-#~ msgstr "PHP har <b>GNU gettext</b> understøttelse."
-
-#~ msgid "PHP does not have <b>GNU gettext</b> support."
-#~ msgstr "PHP har ikke <b>GNU gettext</b> understøttelse."
-
-#~ msgid "No languages found."
-#~ msgstr "Ingen sprog fundet."
-
-#, fuzzy
-#~ msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-#~ msgstr "Kun %d ud af %d mulige sprog er tilgængelige. Hvis du vil have de manglende sprog, hen en ny kopi af %s fra %s"
-
-#~ msgid "You can check for more recent versions by visiting %s."
-#~ msgstr "Du kan se efter nyere version ved at besøge %s."
-
-#~ msgid "This version of %s was released on %s."
-#~ msgstr "Denne version af %s blev frigivet den %s."
-
-#~ msgid "This is a development build of %s that was released on %s."
-#~ msgstr "Dette er en udviklingsversion af %s som blev frigivet den %s."
-
-#~ msgid "Please check regularly for updates."
-#~ msgstr "Se venligst regelmæssigt efter opdateringer."
-
-#~ msgid "All gallery locales are available on this host."
-#~ msgstr "Alle sprogfiler for galleriet er tilgængelige på denne maskine."
-
-#~ msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-#~ msgstr "Kun standard regionaldata er tilgængelig på denne maskine, så datoformatet vil ikke skifte med forskellige sprog."
-
-#~ msgid "Advanced"
-#~ msgstr "Avanceret"
-
-#, fuzzy
-#~ msgid "<b>System</b> locale selection required"
-#~ msgstr "Regionaldata skal vælges"
-
-#, fuzzy
-#~ msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-#~ msgstr "Der er mere end et brugbart regionaldata installeret på din maskine for følgende sprog."
-
-#~ msgid "System locale"
-#~ msgstr "System sprogdata"
-
-#, fuzzy
-#~ msgid "<b>System</b> locale problems"
-#~ msgstr "Locale problemer"
-
-#, fuzzy
-#~ msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-#~ msgstr "Der er tilsyneladende ikke noget regionaldata installeret på din maskine for følgende sprog. Vælg venligst det som du mener er bedst."
-
-#~ msgid "<b>safe_mode</b> is off."
-#~ msgstr "<b>safe_mode</b> er slået fra."
-
-#~ msgid "<b>magic_quotes</b> are off."
-#~ msgstr "<b>magic_quotes</b> er slået fra."
-
-#~ msgid "<b>register_globals</b> is off."
-#~ msgstr "<b>register_globals</b> er slået fra."
-
-#~ msgid "Your passwords do not match!"
-#~ msgstr "Dine kodeord er forskellige!"
-
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgid "Valid admin email address given."
-#~ msgstr "Gyldig administrator e-post-adresse angivet."
-
-#~ msgid "You must specify valid admin email addresses"
-#~ msgstr "Du skal angive gyldige aministrator e-post-adresser"
-
-#~ msgid "%s is not a valid email address."
-#~ msgstr "%s er ikke en gyldig e-post-adresse."
-
-#, fuzzy
-#~ msgid "Valid sender email address given."
-#~ msgstr "Server IP adresse"
-
-#~ msgid "You must specify a valid sender email address"
-#~ msgstr "Du skal angive en gyldig afsenderadresse"
-
-#~ msgid "This should be fixed before proceeding"
-#~ msgstr "Dette bør rettes før der gås videre"
-
-#~ msgid "Look at %sCheck Versions%s for more details."
-#~ msgstr "Se %sKontroller versioner%s for flere detaljer."
-
-#~ msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-#~ msgstr "%d filer er nyere end forventet. Dette er OK hvis du bruger en beta, CVS eller modificeret kode."
-
-#~ msgid "All tested files up-to-date."
-#~ msgstr "Alle kontrollerede filer er up to date."
-
-#~ msgid "All %d tested files up-to-date."
-#~ msgstr "Alle %d kontrollerede filer er up to date."
-
-#~ msgid "this is new in version %s"
-#~ msgstr "dette er nyt i version %s"
-
-#~ msgid "Return to %s."
-#~ msgstr "Ved tilbage til %s."
-
-#~ msgid "Configuration Wizard"
-#~ msgstr "Konfigurationstilstand"
-
-#~ msgid "You must enter a password for the %s account."
-#~ msgstr "Du skal angive en adgangskode for %s kontoen."
-
-#~ msgid "Admin password"
-#~ msgstr "Administrator-adgangskode"
-
-#, fuzzy
-#~ msgid "email address"
-#~ msgstr "e-post-adresse"
-
-#~ msgid "Cannot read file %s."
-#~ msgstr "Kan ikke læse filen %s."
-
-#~ msgid "File missing or unreadable."
-#~ msgstr "Filen mangler eller kan ikke læses."
-
-#~ msgid "Version information not found in %s.  File must be old version or corrupted."
-#~ msgstr "Versionsinformation ikke fundet i %s. Filen må være en gammel version eller ugyldig."
-
-#~ msgid "Missing version"
-#~ msgstr "Mangler version"
-
-#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-#~ msgstr "Problem med %s.  Forventede version %s (eller større) men fandt %s."
-
-#~ msgid "Expected version %s (or greater) but found %s."
-#~ msgstr "Forventede version %s (eller større) men fandt %s."
-
-#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-#~ msgstr "%s OK. Den aktuelle version (%s) er nyere end den forventede version (%s)"
-
-#~ msgid "Expected version %s but found %s."
-#~ msgstr "Forventede version %s men fandt %s."
-
-#~ msgid "%s OK"
-#~ msgstr "%s OK"
-
-#~ msgid "Found expected version %s."
-#~ msgstr "Fandt den forventede version %s."
-
-#~ msgid "This email will be sent when new accounts are created."
-#~ msgstr "Denne email vil blive sendt når nye konti bliver oprettet."
-
-#, fuzzy
-#~ msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-#~ msgstr "Lad dette felt være tomt for at bruge standardbeskeden som kan blive oversat til andre sprog.  Standardbeskeden er:"
-
-#, fuzzy
-#~ msgid "The following placeholder can be used:"
-#~ msgstr "De følgende filer er up to date."
-
-#~ msgid "File %s does not exist."
-#~ msgstr "Filen %s eksisterer ikke."
-
-#~ msgid "Expected status: %s, but actually received status %s."
-#~ msgstr "Ventet status: %s, men modtagen status var %s."
-
-#~ msgid "can't detect version on Windows"
-#~ msgstr "Kan ikke detektere version af Windows"
-
-#~ msgid "OK!  Version: %s"
-#~ msgstr "Ok!  Version: %s"
-
-#~ msgid "Gallery Configuration Wizard: Step %d"
-#~ msgstr "Gallery Konfigurationstilstand: Trin %d"
-
-#~ msgid "This is the Gallery system check page."
-#~ msgstr "Dette er Gallery's systemundersøgelsesside."
-
-#~ msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
-#~ msgstr "Denne side vil undersøge installation for at sikre at du har alle nødvendige komponenter og tilladelser på systemet og at alt er konfigureret korrekt."
-
-#~ msgid "Gallery Help Page"
-#~ msgstr "Galleriets hjælpeside"
-
-#~ msgid "Having problems?  Try the %s, %s and %s."
-#~ msgstr "Har du problemer?  Prøv %s, %s og %s."
-
-#~ msgid "Having problems?  Try the %s and %s."
-#~ msgstr "Problemer?  Prøv %s og %s."
-
-#~ msgid "Success"
-#~ msgstr "Succes"
-
-#, fuzzy
-#~ msgid "Warning, but optional"
-#~ msgstr "det er valgfrit"
-
-#, fuzzy
-#~ msgid "Serious warning, but optional"
-#~ msgstr "Alvorlig advarsel"
-
-#, fuzzy
-#~ msgid "Serious warning, no go !"
-#~ msgstr "Alvorlig advarsel"
-
-#, fuzzy
-#~ msgid "Failure"
-#~ msgstr "Fejl"
-
-#~ msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
-#~ msgstr "Det er fejl i din konfiguration som forhindrer Gallery i at fungere korrekt."
-
-#~ msgid "You must fix them before you can continue."
-#~ msgstr "Du skal rette dem før du kan fortsætte."
-
-#~ msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
-#~ msgstr "Din installation giver <b>alvorlige advarsler</b>!<br>  Fortsæt for egen risiko..."
-
-#~ msgid "Your installation has warnings, but this is usually OK.  Keep going!"
-#~ msgstr "Din installation giver advarsler, men dette er normalt OK.  Fortsæt!"
-
-#~ msgid "Your installation passed with flying colors!  Go go go!"
-#~ msgstr "Din installation bestod med kryds og slange!  Gå gå gå!"
-
-#~ msgid "Next Step"
-#~ msgstr "Næste trin"
-
-#~ msgid "Gallery ImageMagick Check"
-#~ msgstr "Galleriets ImageMagick check"
-
-#~ msgid "Check %s"
-#~ msgstr "Check %s"
-
-#~ msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
-#~ msgstr "Dette skript er lavet for at undersøge din %s installation for at se om den kan bruges af Gallery."
-
-#~ msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
-#~ msgstr "Du burde køre dette skript <bt>efter</b> at du har kørt konfigurationshjælperen, hvis du har haft problemer med din %s installation som hjælperen ikke opdagede ."
-
-#~ msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
-#~ msgstr "Henter konfigurationsfiler.  Hvis du ser en fejl her, er det måske fordi du ikke har kørt konfigurationshjælperen med succsess."
-
-#~ msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
-#~ msgstr "Det virker som om du ikke har konfigureret GALLERY. Kør og afslut konfigurationshjælperen."
-
-#~ msgid "Let us see if we can figure out what operating system you are using."
-#~ msgstr "Lad os se, om vi kan finde ud af, hvilket operativsystem, du bruger."
-
-#~ msgid "This is what your system reports"
-#~ msgstr "Det her er hvad sit system siger:"
-
-#~ msgid "This is the type of system on which PHP was compiled"
-#~ msgstr "Det jer den type system, PHP blev oversat på"
-
-#~ msgid "Make sure that the values above make sense to you."
-#~ msgstr "Sørg for, at du forstår ovenstående værdier."
-
-#~ msgid "Look for keywords like %s, %s, %s etc. in the output above."
-#~ msgstr "Se efter nøgleord som %s, %s, %s osv. i teksten oven over."
-
-#~ msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
-#~ msgstr "Hvis begge forsøgene mislykkes bør du spørge din ISP om hvilket operativsystem du bruger."
-
-#~ msgid "You can check via %s, they can often tell you."
-#~ msgstr "Du kan undersøge det med %s, de kan ofte oplyse det."
-
-#~ msgid "You told the config wizard that your %s binaries live here:"
-#~ msgstr "Du fortalte konfigurationshjælperen, at dine %s filer er her:"
-
-#~ msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
-#~ msgstr "Hvis det ikke er korrekt (eller hvis det er tomt), kør konfigurationshjælperen igen og indtast placeringen af %s."
-
-#~ msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
-#~ msgstr "<b>Bemærk:</b> Dit %s bibliotek (%s) er ikke i din open_basedir liste %s"
-
-#~ msgid "The open_basedir list is specified in php.ini."
-#~ msgstr "open_basedir listen er ikke angivet i php.ini."
-
-#~ msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
-#~ msgstr "Resultatet er at vi ikke kan ikke udføre vores grundlæggende tjek af filene for at sikre at de eksisterer og er kørbare."
-
-#~ msgid "We are going to test each %s binary individually."
-#~ msgstr "Vi vil undersøge hver enkelt %s programfil individuelt."
-
-#~ msgid "Checking:"
-#~ msgstr "Tester:"
-
-#~ msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
-#~ msgstr "Hvis du ser en fejl over som klager over skriving eller læsing til %s er dette sandsynligvis et tilladelses/konfigureringsproblem på dit system.  Hvis den nævner %s er det fordi dit system er konfigureret med %s aktiveret."
-
-#~ msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
-#~ msgstr "Du burde snakke med din systemadministrator om dette, eller se %sGallery's hjælpeside%s."
-
-#~ msgid "For other errors, please refer to the list of possible responses in %s to get more information."
-#~ msgstr "For andre fejl, undersøg listen over mulige svar i %s for mere information."
-
-#~ msgid "Check Mail"
-#~ msgstr "Test e-post"
-
-#~ msgid "Test email from %s"
-#~ msgstr "Test email fra %s"
-
-#~ msgid "This email was automatically generated."
-#~ msgstr "Denne besked er genereret automatisk."
-
-#~ msgid "If you recevied this in error, then please disregard, as you should not receive any similar emails."
-#~ msgstr "Hvis det er en fejl at du har modtaget denne email, så ignorer den venligst da du ikke burde modtage lignende."
-
-#~ msgid "If you were expecting email from the %s installation at %s, then Congratulations!  Email is working and you can enable the %s email functions."
-#~ msgstr "Hvis du ventede email fra %s installationen på %s, så tillykke!  Email virker og du kan benytte %s email funktionaliteter."
-
-#~ msgid "SUCCESS!"
-#~ msgstr "SUCCESS!"
-
-#~ msgid "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"
-#~ msgstr "Test email er sendt til <b>%s</b>, og burde ankomme inden for få minutter. Hvis du ikke modtager den så kontroller venligst at emailadressen er korrekt.  Hvis du ikke kan modtaget emailen, så må det slås fra på denne server, og %s email funktioner kan ikke bruges indtil det er rettet"
-
-#~ msgid "You must use a valid email address"
-#~ msgstr "Du skal angive en gyldig emailadresse"
-
-#~ msgid "Try again?"
-#~ msgstr "Prøv igen?"
-
-#~ msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
-#~ msgstr "Her kan du bekræfte om email virker korrekt på dit system.  Indtast din emailadresse nedenunder, og en email vil blive sendt til dig. Hvis du modtager den, ved du at email virker på dit system"
-
-#~ msgid "Warning"
-#~ msgstr "Advarsel"
-
-#~ msgid "Your email address:"
-#~ msgstr "Din emailadresse:"
-
-#~ msgid "Send Email"
-#~ msgstr "Send Email"
-
-#~ msgid "Gallery NetPBM Check"
-#~ msgstr "Gallery NetPBM check"
-
-#~ msgid "%sClick here%s to hide the details"
-#~ msgstr "%sTryk her%s for at skjule detaljerne"
-
-#~ msgid "If you see errors, you should %sclick here%s to see more details"
-#~ msgstr "Hvis du ser fejl, %stryk her%s for at se flere detaljer"
-
-#~ msgid "Check Versions"
-#~ msgstr "Check Versioner"
-
-#~ msgid "This page gives you information about the version of each necessary %s file. "
-#~ msgstr "Denne side viser dig information om versionen af hver nødvendig %s fil. "
-
-#~ msgid "If you see any error(s), we highly suggest to get the actual version of that file(s)."
-#~ msgstr "Hvis du oplever fejl, så anbefaler vi at du henter den rigtige version af den/disse fil(er)."
-
-#~ msgid "One file is missing, corrupt or older than expected."
-#~ msgid_plural "%d files are missing, corrupt or older than expected."
-#~ msgstr[0] "En fil mangler, har fejl eller er ældre end forventet."
-#~ msgstr[1] "%d filer mangler, har fejl eller er ældre end forventet."
-
-#~ msgid "All files okay."
-#~ msgstr "Alle filer er ok."
-
-#~ msgid "There are problems with the following files.  Please correct them before configuring %s."
-#~ msgstr "Der er problemer med følgende filer.  Ret dem venligst før du konfigurerer %s."
-
-#~ msgid "One file is more recent than expected."
-#~ msgid_plural "%d files are more recent than expected."
-#~ msgstr[0] "En fil er nyere end forventet."
-#~ msgstr[1] "%d filer er nyere end forventet."
-
-#~ msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
-#~ msgstr "De følgende filer er nyere end forventet for denne version af %s.  Hvis du bruger en udviklingsversion af koden, så er dette ok."
-
-#~ msgid "One file is up-to-date."
-#~ msgid_plural "%d files are up-to-date."
-#~ msgstr[0] "En fil er up to date."
-#~ msgstr[1] "%d filer er up to date."
-
-#~ msgid "All files are up-to-date."
-#~ msgstr "Alle filer er up to date."
-
-#~ msgid "The following files are up-to-date."
-#~ msgstr "De følgende filer er up to date."
-
-#~ msgid "unknown"
-#~ msgstr "ukendt"
-
-#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
-#~ msgstr "Gallery foretrækker NetPBM 9.9 og højere.  Du kan nøjes med at installere  de filer Gallery behøver fra %sGallery download siden%s.  Eller du kan oversætte og installere hele NetPBM-pakken fra %sNetPBM hjemmesiden%s."
-
-#~ msgid "Note:"
-#~ msgstr "Obs:"
-
-#~ msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
-#~ msgstr "Du kan installere filene fra Gallery hjemmesiden selv om du ikke har root-adgang på din maskine!  Hvis du ikke kan få det til at virke, så prøv at lade stien til NetPBM være tom og brug ImageMagick i stedet."
-
-#~ msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
-#~ msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af NetPBM forældet."
-
-#~ msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s."
-#~ msgstr "Gallery foretrekker ImageMagick version 5.4.8 eller højere.  Du kan oversætte og installere hele ImageMagick pakken fra %sImageMagick hjemmesiden%s."
-
-#~ msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
-#~ msgstr "De har også programfiler for andre operativsystemer.  Hvis du ikke får det til at virke, så prøv at lade stien til ImageMagick være tom  og brug NetPBM i stedet."
-
-#, fuzzy
-#~ msgid "I've found part of ImageMagick , but some critical components are missing (see below)."
-#~ msgstr "Jeg har fundet dele af NetPBM, men der mangler nogle kritiske komponenter (se nedenfor).  Måske er din version af NetPBM forældet."
-
-#~ msgid "Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."
-#~ msgstr "Din PHP installation er konfigureret med restriktioner for %s. Dette kan gøre det vanskelig for Gallery at detektere dine filer, selv om du allerede har kørt konfigurationshjælperen med succes. Du behøver ikke at bekymre dig om at denne side giver advarsler; dine valg vil stadig blive gemt."
-
-#, fuzzy
-#~ msgid "Gallery version"
-#~ msgstr "Gallery Session Test"
-
-#~ msgid "Check to see how old %s version %s is."
-#~ msgstr "Undersøger hvor gammel %s version %s er."
-
-#, fuzzy
-#~ msgid "PHP version"
-#~ msgstr "Undersøg versioner"
-
-#, fuzzy
-#~ msgid "Check to see if you are running a supported Version of PHP."
-#~ msgstr "Undersøger om du kører PHP 4.1.0 eller nyere."
-
-#~ msgid "You're running PHP version %s.  You need to upgrade to PHP %s."
-#~ msgstr "Du kører PHP version %s.  Du må opgradere til PHP %s."
-
-#~ msgid "You're running PHP version %s which has known bugs that cause Gallery to fail."
-#~ msgstr "Du kører PHP version %s som har kendte fejl som gør at Gallery ikke fungerer."
-
-#~ msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent Version"
-#~ msgstr "Det virker som om at din PHO har et problem med __FILE__, opgrader venligst til en nyere version"
-
-#~ msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
-#~ msgstr "Gallery anbefaler kraftigt at PHP-variablen 'register_globals' slås fra af sikkerhedsmæssige årsager. Noget software, f.eks. 'Geeklog' CMS, kræver af 'register_globals' er slået til."
-
-#~ msgid "The PHP option 'register_globals' is enabled on your server. Gallery highly recommends that you disable 'register_globals' unless it is required by software on your site.  Gallery does not officially support 'register_globals' being enabled, and will attempt to disable it internally."
-#~ msgstr "PHP-variablen 'register_globals' er slået til på din server. Gallery anbefaler at 'register_globals' slås fra hvis den ikke behøves af andet software på din server. Gallery understøtter ikke officielt at 'register_globals' er slået til og vil prøve at slå den fra internt."
-
-#~ msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
-#~ msgstr "Undersøger om PHP kører i <b>safe_mode</b>.  safe_mode er en sikkerhedsfunktion i PHP ofte brugt i delte miljøer.  Gallery kan ikke køre i safe_mode fordi det indebærer for mange restriktioner."
-
-#~ msgid "<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."
-#~ msgstr "<b>safe_mode</b> er slået til på denne server.  Dette skal slås fra før du kan køre Gallery.  Læs i FAQ'en, forumet eller hjælpesiden på %sGallery hjemmesiden%s og %sPHP hjemmesiden%s for at få hjælp."
-
-#~ msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."
-#~ msgstr "I sjældne tilfælde tror Gallery at <b>safe mode</b> er slået til når den i virkeligheden er slået fra. Det kan du kontrollere ved at se i  <i>Local</i> kolonnen i safe_mode rækken på %sPHP Info%s siden. Hvis der står 'Fra' eller '0' eller 'udefineret' så tager Gallery muligvis fejl og du kan fortsætte. Hvis ikke, så må du løse problemet før du kan fortsætte."
-
-#~ msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
-#~ msgstr "<b>exec()</b> kommandoen bruges af Gallery til at udføre programmer såsom NetPBM, ImageMagick og jhead. Hvis <b>exec()</b> er slået fra på din server fungerer Gallery ikke ordentligt."
-
-#~ msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."
-#~ msgstr "<b>exec()</b> funktionen er slået fra på din server. Gallery kan ikke fungere med denne PHP konfiguration."
-
-#~ msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
-#~ msgstr "Tillader Gallerys <b>.htaccess</b> fil at sætte applikationspecifikke konfigurationsvalg. Dette styres af ejeres af webserveren så det er ikke altid muligt for dig at ændre det. Den største ulempe ved ikke at have dette er at det kan være at du ikke kan overføre filer > 2MB (fx store ZIP filer eller film)."
-
-#~ msgid "Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-#~ msgstr "Apache bruger ikke din <b>.htaccess</b> fil. Prøv at tilføje følgende i din webservers <b>httpd.conf</b> fil:"
-
-#~ msgid "If you are running PHP in CGI mode, this message is unavoidable."
-#~ msgstr "Hvis du kører php i CGI tilstand, så kan denne besked ikke undgås."
-
-#, fuzzy
-#~ msgid "PHPs magic quotes off"
-#~ msgstr "<b>magic_quotes</b> er slået fra."
-
-#~ msgid "Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."
-#~ msgstr "Kontroller om %smagic quotes%s er slået til på din PHP server. Hvis de er, så kan du opleve mærkelige ting hvis du kommer ' (single-quote), &quot; (double quote) or &#92; (backslash) tegn i titler eller billedtekster i galleriet."
-
-#~ msgid "Magic quotes are on.  Your webserver administrator can turn them off by putting %s in your <b>php.ini</b> file."
-#~ msgstr "Magic quotes er slået til. Ejeren af din webserver kan slå dem fra ved at tilføje %s til din <b>php.ini</b> fil."
-
-#~ msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
-#~ msgstr "Undersøger om din webserver er oversat med <b>mod_rewrite</b>. Mod_rewrite tillader Gallery at bruge kortere URL'er som er nemmere at læse og ser pænere ud når du sender dem til dine internetuvante familie. Det er ikke en væsentligt egenskab."
-
-#~ msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: "
-#~ msgstr "Enten er <b>mod_rewrite</b> ikke installeret eller din <b>.htaccess</b> fil er ikke slået til (se ovenfor). Uanset hvorfor, bliver vi nødt til at bruge længere URL'er i Gallery. Hvis du gerne vil slå det til, foreslår jeg at du sikrer dig at din <b>.htaccess</b> fil virker og hvis det så stadig ikke virker, kan du blive nødt til at rekonfigurere og genoversætte Apache med dette flag: "
-
-#~ msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
-#~ msgstr "Undersøger om NetPBM er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner, osv). Du behøver kun at have enten NetPBM <b>eller</b> ImageMagick installeret."
-
-#~ msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
-#~ msgstr "Jeg kan ikke finde NetPBM. Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK&#8212;Du kan selv angive stien til NetPBM på næste side. Hvis den ikke er installeret, har du to muligheder: "
-
-#~ msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
-#~ msgstr "Hvis NetPBM er installeret og Gallery ikke finder den automatisk er det OK&#8212;det betyder bare at du bliver nødt til at angive stien til NetPBM manueltpå næste side."
-
-#, fuzzy
-#~ msgid "ImageMagick installed"
-#~ msgstr "%d ud af %d ImageMagick programmer fundet."
-
-#~ msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
-#~ msgstr "Undersøger om ImageMagick er installeret så Gallery kan behandle billeder (roterer, ændre størrelsen, lave ikoner osv). Du behøver kun at have enten ImageMagick <b>eller</b> NetPBM installeret."
-
-#~ msgid "I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  "
-#~ msgstr "Jeg kan ikke finde ImageMagick. Hvis den er installeret og ikke er i webserverbrugerens sti, er det OK&#8212;du kan angive stien til ImageMagick manuelt på næste side. Hvis den ikke er installeret, er du nødt til at installere den.  "
-
-#, fuzzy
-#~ msgid "If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page."
-#~ msgstr "Hvis NetPBM er installeret og Gallery ikke finder den automatisk er det OK&#8212;det betyder bare at du bliver nødt til at angive stien til NetPBM manueltpå næste side."
-
-#~ msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
-#~ msgstr "Undersøger om <b>jhead</b> er installeret så Gallery kan undersøge EXIF headers gemt i billeder taget med de fleste digitalkameraer."
-
-#~ msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."
-#~ msgstr "Jeg kan ikke finde <b>jhead</b>. Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK&#8212;du kan angive stien manuelt på næste side. Hvis den ikke er installeret, kan du selv installere den. Jhead er en public domain EXIF fortolker. Kildekode, linux programmer og windows programmer kan findes på %sjhead hjemmesiden%s."
-
-#~ msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
-#~ msgstr "Undersøger om <b>jpegtran</b> er installeret så Gallery kan rotere JPEG billeder uden tab af information."
-
-#~ msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
-#~ msgstr "Jeg kan ikke finde <b>jpegtran</b>. Hvis den er installeret og ikke er i webserverbrugerens sti så er det OK&#8212;du kan angive stien manuelt på næste side. Hvis den ikke er installeret, kan du selv installere den. Jpegtran er et gratis værktøj distribueret af The Independent JPEG Group som en del af <i>libjpeg</i>. Kildekoden kan findes på %sIJG hjemmesiden%s. Oversatte programmer kan findes på %sJPEG Club hjemmesiden%s eller i Linux distributioners <i>libjpeg</i> pakke."
-
-#~ msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
-#~ msgstr "Undersøger om PHP er oversat med <b>GNU gettext</b> til hurtige oversættelser."
-
-#~ msgid "Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."
-#~ msgstr "Din PHP understøtter ikke <b>GNU gettext</b>. For at få <b>gettext</b> understøttelse, skal du genoversætte PHP (se %sPHP dokumentationen%s for mere information). Men der er stadig flersprogsunderstøttelse i Gallery uden <b>gettext</b>, men det vil tage længere tid at hente siderne."
-
-#~ msgid "Check to see what languages are available."
-#~ msgstr "Undersøger hvilke sprog der er tilgængelige."
-
-#, fuzzy
-#~ msgid "missing locales"
-#~ msgstr "værdi mangler"
-
-#~ msgid "Testing to see which <b>system</b> locales (if any) are absent."
-#~ msgstr "Undersøger hvilke <b>system</b> sprogdata (hvis nogen) der mangler."
-
-#, fuzzy
-#~ msgid "These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."
-#~ msgstr "Disse sprogdata er nødvendige for at bruge Gallerys flerprogsunderstøttelse når din PHP har gettext understøttelse. De er også nødvendige for at vise dato og tid korrekt for hvert sprog."
-
-#~ msgid "Checking to see if you have the latest versions of all Gallery files."
-#~ msgstr "Undersøger om du har de nyeste version af alle Gallery filerne."
-
-#~ msgid "General settings"
-#~ msgstr "Generel opsætning"
-
-#~ msgid "Gallery Title"
-#~ msgstr "Galleriets titel"
-
-#~ msgid "The name of your Gallery.  E.g. <i>My Cool Photos</i>"
-#~ msgstr "Navnet på dit galleriet.  F.eks. <i>Mine Seje Billeder</i>"
-
-#~ msgid "Use Icons ?"
-#~ msgstr "Brug ikoner?"
-
-#~ msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
-#~ msgstr "Du kan vælge om du vil bruge Gallery ikoner, kun tekst eller begge. Hvis du vælger kun at bruge ikoner vil der være en onMousoverText."
-
-#~ msgid "Icons and text"
-#~ msgstr "Ikoner og tekst"
-
-#~ msgid "Text only"
-#~ msgstr "Kun tekst"
-
-#~ msgid "Icons only"
-#~ msgstr "Kun ikoner"
-
-#~ msgid "Skin Name"
-#~ msgstr "Temanavn"
-
-#~ msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4."
-#~ msgstr "Vælg et tema for dit galleri. Du har et bredt udvalg af &quot;temaer&quot; der påvirker udseendet af alle sider på dit galleri. Prøv at eksperimentere med de tilgængelige temaer. Vælg &quot;None&quot; for at bruge udseendet fra v1.4."
-
-#~ msgid "Here you can get a more Gallery Skins by Drazan"
-#~ msgstr "Her kan du få flere Gallery temaer lavet af Drazan"
-
-#~ msgid "Default upload method"
-#~ msgstr "Standard overførselsmetode"
-
-#~ msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
-#~ msgstr "Hvilken metode skal bruges til overførsel af billeder hvis brugeren ikke specificerer nogen?"
-
-#~ msgid "Form-based Upload"
-#~ msgstr "Formularbaseret overførsel"
-
-#~ msgid "Mini-Applet"
-#~ msgstr "Miniapplet"
-
-#~ msgid "Full-Applet"
-#~ msgstr "Fuld applet"
-
-#~ msgid "Locations and URLs"
-#~ msgstr "Placering og URL'er"
-
-#~ msgid "REQUIRED"
-#~ msgstr "KRÆVES"
-
-#~ msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
-#~ msgstr "Den fulde sti på en fysisk disk til kataloget, hvor dine billeder gemmes. Dette katalog skal være tomt til at starte med&#8212;Gallery fylder billeder i det. Bemærk at katalog skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s)."
-
-#~ msgid "Temporary directory"
-#~ msgstr "Midlertidig katalog"
-
-#~ msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
-#~ msgstr "Stien til et katalog for midlertidlige filer.  Fx %s eller %s.  Bemærk at hvis du har konfigureret <b>open_basedir</b> på dit system, så skal dette katalog være i <b>open_basedir</b> stien.  I så fald kan det være du selv skal oprette biblioteket og være sikker på at webserveren kan skrive til biblioteket."
-
-#~ msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-#~ msgstr "Den fulde URL til Gallery hjemmesiden. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
-
-#~ msgid "Albums URL"
-#~ msgstr "Album URL"
-
-#~ msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
-#~ msgstr "Den fulde URL til album biblioteket på din webserver. (f.x. %s) Gallery kan godt fungere med relative URLer, men der kan være nogle funktioner, såsom udskrivning, der ikke vil virke."
-
-#~ msgid "Thumbnail image"
-#~ msgstr "Ikon"
-
-#~ msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
-#~ msgstr "Filsystemets sti til ikonet som vises for film. F.eks. %s"
-
-#~ msgid "Toolkits / image processing"
-#~ msgstr "Værktøjer / billedbehandling"
-
-#~ msgid "Graphics suite to use"
-#~ msgstr "Hvilken Grafikpakke du vil bruge"
-
-#~ msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
-#~ msgstr "Denne indstilling fortæller Gallery, hvilke grafikværktøjer, du foretrækker anvendt. Hvis Gallery siger begge er OK (på den første side) så er dette en preference"
-
-#~ msgid "Path to NetPBM"
-#~ msgstr "Sti til NetPBM"
-
-#~ msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
-#~ msgstr "Stien til kataloget, der indeholder NetPBM på dit system. Hvis du har hentet NetPBM fra Gallerys hjemmeside, så husk at gøre filerne eksekverbare. Fx. %s eller %s eller %s"
-
-#~ msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
-#~ msgstr "Dette sti er kun nødvendig hvis du valgte %s ovenfor. Ellers kan du lade den være som den er, eller lade den være tom."
-
-#~ msgid "I can't find NetPBM at the location you provided."
-#~ msgstr "Jeg kan ikke finne NetPBM på stedet du angav."
-
-#~ msgid "PNM to JPEG converter"
-#~ msgstr "PNM til JPEG-konverter"
-
-#~ msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-#~ msgstr "Denne værdi har kun betydning hvis du bruger NetPBM. NetPBM bruger et værktøj til at indkode fra sit interne format til JPG. Dette værktøj kaldes enten <i>ppmtojpeg</i> eller <i>pnmtojpeg</i> afhængigt af hvilken version af NetPBM, du har installeret. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker"
-
-#~ msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
-#~ msgstr "Denne værdi har kun betydning hvis du bruger NetPBM. NetPBM bruger et værktøj til at lægge et billede ovenpå et andet. Dette værktøj kaldes enten <i>pnmcomp</i> eller <i>pamcomp</i> afhængigt af hvilken version af NetPBM, du har installeret. Undersøg dit NETPBM bibliotek for at se hvilken et du har installeret og vælg det her. Hvis du ikke er sikker, så gæt bare; vi vil så undersøge om det virker."
-
-#~ msgid "Path to ImageMagick"
-#~ msgstr "Sti til ImageMagick"
-
-#~ msgid "The path to the directory containing ImageMagick on your system."
-#~ msgstr "Sti til kataloget som indeholder ImageMagick på dit system."
-
-#~ msgid "I can't find ImageMagick at the location you provided."
-#~ msgstr "Kan ikke finne ImageMagick på stedet du angav."
-
-#~ msgid "Auto-rotate images"
-#~ msgstr "Rotér billeder automatisk"
-
-#~ msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
-#~ msgstr "Hvis denne indstilling vælges vil Gallery automatisk forsøge at rotere billeder når de overføres, baseret på den retningsinformation, der er gemmes i JPEG EXIF data af nogle nyere digitalkameraer."
-
-#~ msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
-#~ msgstr "Kræver Jhead EXIF fortolker v.1.9 eller højere (Se valgfrie værktøjer)."
-
-#~ msgid "JPEG Quality"
-#~ msgstr "JPEG-Kvalitet"
-
-#~ msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
-#~ msgstr "JPEG filformatet kan prioritere størrelse i forhold til kvalitet. Gallery kan kontrollere kvaliteten af de JPEG's, som den laver når du ændrer størrelse, roterer eller laver ikoner af JPEG billeder. Højkvalitetsbilleder fylder mere end lavkvalitetsbilleder. Men i mange tilfælde er der en tærskel, hvor det at øge kvaliteten bare gør billedet større uden at det ser bedre ud. Det anbefales ikke at sætte værdien til &quot;100&quot;. Hvis du lægger mærke til at dine ikoner og billeder med ændret størrelse fylder mere end originalerne,og du ikke bryder dig om det, kan du bruge en lavere værdi her. <b>Bemærk</b> at dette kun har betydning for ændringer af billeder i <i>fremtiden</i>."
-
-#~ msgid "Embedded Gallery"
-#~ msgstr "Indlejret galleri"
-
-#~ msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
-#~ msgstr "Gallery detekterer automatisk når det er indlejret i en af de understøttede CMS systemet, men der kan dog være nogle miljøer der kræver at der foretages specielle valg.  Sådanne valg som ikke detekteres automatisk skal specificeres på denne skærm."
-
-#~ msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
-#~ msgstr "Hvis din internetudbyder eller CMS kræver at register_globals slås til, kan du være nødsaget til at tilvælge 'Slå register_globals kontrol fra' under fanebladet Teknisk."
-
-#~ msgid "GeekLog Dir"
-#~ msgstr "GeekLog bibliotek"
-
-#~ msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
-#~ msgstr "Hvis du bruger GeekLog, så indtast venligst stien til GeekLog public_html biblioteket. Dvs. '/sti/til/geeklog/public_html'"
-
-#~ msgid "Main Gallery page"
-#~ msgstr "Galleriets hovedside"
-
-#~ msgid "Show the album tree ?"
-#~ msgstr "Vis albumtræet ?"
-
-#~ msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
-#~ msgstr "Hvis du vælger denne indstilling, vil du se en liste at alle underalbummer når du gennemser det øverste niveau i dit galleri.  Det gør det meget nemmere at gå til et bestemt underalbum. Du kan vælge om du vil begrænse dybden af træet for ikke at gøre galleriets hovedside for rodet."
-
-#~ msgid "No tree"
-#~ msgstr "Intet træ"
-
-#~ msgid "%d sublevel"
-#~ msgstr "%d underniveau"
-
-#~ msgid "%d sublevels"
-#~ msgstr "%d underniveauer"
-
-#~ msgid "Complete Tree"
-#~ msgstr "Hele træet"
-
-#~ msgid "Highlight size"
-#~ msgstr "Størrelse på forsidebillede"
-
-#~ msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
-#~ msgstr "Målstørrelsen (i pixels) på ikoner som vises på gallerisiden (forsidebilleder)."
-
-#, fuzzy
-#~ msgid "Highlight Ratio"
-#~ msgstr "Størrelse på forsidebillede"
-
-#, fuzzy
-#~ msgid "Square highlight"
-#~ msgstr "Forsidebillede"
-
-#~ msgid "Show Owner"
-#~ msgstr "Vis ejer"
-
-#~ msgid "Show album owner's name next to each album?"
-#~ msgstr "Vise albumejerens navn ved siden af hvert album?"
-
-#~ msgid "Albums per page"
-#~ msgstr "Albums per side"
-
-#~ msgid "How many albums should be displayed per Gallery page?"
-#~ msgstr "Hvor mange albums skal vises per galleriside?"
-
-#~ msgid "Search Engine"
-#~ msgstr "Søgemaskine"
-
-#~ msgid "Display search engine on main Gallery page?"
-#~ msgstr "Vise søgemaskine på galleriets hovedside?"
-
-#~ msgid "Accurate Photo Count"
-#~ msgstr "Nøjagtigt billedantal"
-
-#~ msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
-#~ msgstr "Vis album og billedantal på galleriets hovedside ved at bruge en nøjagtig, men utroligt langsomt, optællingsmetode.  Denne funktionalitet blev tilføjet på mange brugeres opfordring, men det anbefales ikke i gallerier hvor du vil have mange albummer og billeder. Der er set eksempler på at denne funktionalitet har gjort at det har taget så meget som 30 sekunder at vise hovedsiden."
-
-#~ msgid "Frame around albums"
-#~ msgstr "Ramme om albummer"
-
-#~ msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
-#~ msgstr "På hovesiden vil hvert billede der repræsenterer et album have en ramme om sig.  Du kan vælge mellem følgende udseender:"
-
-#~ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Filsystemets sti til <b>%s</b> filen. F.eks. %s eller %s. Dette er valgfrit. Så det er ikke så væsentligt."
-
-#~ msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Stien til <b>%s</b> EXIF fortolkeren. F.eks. %s eller %s. Det er valgfrit så hvis du ikke har den, er der ikke grund til bekymring."
-
-#~ msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
-#~ msgstr "Stien til <b>jpegtran</b> programmet. F.eks. %s eller %s. Det er valgfrit så hvis du ikke har den, er der ikke grund til bekymring."
-
-#~ msgid "Languages and locales"
-#~ msgstr "Sprog og sprogdata"
-
-#~ msgid "Default language"
-#~ msgstr "Galleriets standardsprog"
-
-#~ msgid "This is the language you will see as %s, and what users will see if no other preference is set."
-#~ msgstr "Dette er det sprog som du vil se som %s, og hvad brugere vil se, hvis ikke andet er valgt."
-
-#~ msgid "Multi language mode"
-#~ msgstr "Multisprogstilstand"
-
-#~ msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
-#~ msgstr "Gallery har tre flersprogstilstande. Disse afgør, hvilket sprog en bruger vil se når galleriet besøges."
-
-#~ msgid "Gallery is only displayed in one language"
-#~ msgstr "Gallery vises kun i et sprog"
-
-#~ msgid "Gallery is displayed in the language the browser sends"
-#~ msgstr "Gallery vises i det sprog, den får fra netlæseren"
-
-#~ msgid "The User can choose the language via pulldown menu or national flags."
-#~ msgstr "Brugeren kan vælge sprog i en webmenu eller nationalflag."
-
-#~ msgid "Available languages"
-#~ msgstr "Tilgængelige sprog"
-
-#~ msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
-#~ msgstr "Disse sprog vil kan vælges af brugerene i en webmenu eller nationalflag, hvis du har valgt tilstand 3 og vil være tilgængelige for registrerede brugere i tilstand 2 og 3."
-
-#~ msgid "Show flags?"
-#~ msgstr "Vis flagene?"
-
-#~ msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
-#~ msgstr "I tilstand 3 kan du vælge at vise nationalflag i stedet for en webmenu for de tilgængelige flag."
-
-#~ msgid "Format for date strings."
-#~ msgstr "Datostrengsformat."
-
-#~ msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
-#~ msgstr "Dette strengformat vil bruge brugt for at vise %s i %s.  Det anbefales at bruge %s som vil skifte afhængig af det valgte sprog.  Men hvis du skifter denne streng så se venligst i %sPHP dokumentationen%s."
-
-#~ msgid "date without time"
-#~ msgstr "dato uden tid"
-
-#~ msgid "For example, %s will display date like this: %s."
-#~ msgstr "%s vil for eksempel blive vist som: %s."
-
-#~ msgid "Format for date/time strings."
-#~ msgstr "Format for dato/tid-strenge."
-
-#~ msgid "date with time"
-#~ msgstr "dato med tid"
-
-#~ msgid "For example, %s will display date and time like this: %s."
-#~ msgstr "%s vil for eksempel vise dato og tid som: %s."
-
-#~ msgid "Email and Registration"
-#~ msgstr "Email og registrering"
-
-#~ msgid "If you are having problems with email, please run the %s diagnostic."
-#~ msgstr "Hvis du har problemer med email, så kør venligst %s fejlfindingen."
-
-#~ msgid "Check Email"
-#~ msgstr "Kontroller email"
-
-#~ msgid "Enable email"
-#~ msgstr "Slå email til"
-
-#~ msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
-#~ msgstr "Slår email til for hele galleriet.  Hvis du sætter dette til %s så vil intet i resten af sektionen få betydning."
-
-#~ msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
-#~ msgstr "Hvis du slår disse funktioner til giver du dine brugere mulighed for at lade galleriet sende dem deres glemte kodeord via email."
-
-#~ msgid "You need to enable this setting if you want to enable Self Registration."
-#~ msgstr "Du skal slå denne indstilling til hvis du vil benytte selvregistrering."
-
-#~ msgid "Admin email address"
-#~ msgstr "Administrator email-adresse"
-
-#~ msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
-#~ msgstr "Sæt denne værdi til en gyldig email-adresse for at få email notificeringer om givne brugerhandlinger, og for at brugerene kan få at vide hvis de skal kontakte hvis der er problemer. Du kan specificere mere end en adresse ved at sætte komma imellem dem."
-
-#~ msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
-#~ msgstr "Sæt denne værdi til en gyldig email adresse.  Email som sendes af galleriet vil bruge dette som returadresse.  Du bør checke post til denne adresse for emails der sendes retur eller for svar fra modtagerne."
-
-#~ msgid "Welcome email message text"
-#~ msgstr "Velkomst-email indhold"
-
-#~ msgid "Allow visitors to self register."
-#~ msgstr "Tillad besøgende at registrere sig selv."
-
-#~ msgid "Enabling this will allow visitors to your site to create their own login accounts."
-#~ msgstr "Dette tillader at besøgende på din hjemmesiden selv kan oprette deres egen brugerkonto."
-
-#~ msgid "This option requires the Email feature to be enabled."
-#~ msgstr "Denne indstilling kræver at email er slået til."
-
-#~ msgid "Self registered users can create albums."
-#~ msgstr "Selvregistrerede brugere kan oprette albummer."
-
-#~ msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
-#~ msgstr "Slås dette til kan selvregistrerede brugere oprette deres egne album så snart de registrerer sig selv.  Hvis denne indstilling er slået fra skal du manuelt give dem adgang før de kan oprette albummer eller ændre indhold i galleriet.  Denne indstilling ignoreres hvis selvregistrering er slået fra."
-
-#~ msgid "Enable bulk account creation"
-#~ msgstr "Slå masseoprettelse af konti til"
-
-#~ msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
-#~ msgstr "Denne indstilling tillader dig at oprette en masse nye konti på samme tid ved at lave en fil med nye brugere."
-
-#, fuzzy
-#~ msgid "This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
-#~ msgstr "Dette tillader &quot;administratoren&quot; at modtage en email når der tilføjes en kommentar til et hvilket som helst album"
-
-#~ msgid "Admin comment email"
-#~ msgstr "Administrator kommentar-email"
-
-#, fuzzy
-#~ msgid "This allows the &quot;admin&quot; account to get email whenever a change is made to any album"
-#~ msgstr "Dette tillader &quot;administratoren&quot; at modtage en email når der foretages en ændring i et hvilket som helst album"
-
-#~ msgid "Admin Other Changes email"
-#~ msgstr "Administrator andre ændringer email"
-
-#~ msgid "Admin notification of email activity"
-#~ msgstr "Administrator notificering af email aktivitet"
-
-#~ msgid "You can keep a record of every email that is sent by Gallery."
-#~ msgstr "Du kan gemme en log af alle emails der bliver sendt af galleriet."
-
-#~ msgid "Send summary email"
-#~ msgstr "Send opsummeringsemail"
-
-#~ msgid "Log to a file"
-#~ msgstr "Log til en fil"
-
-#~ msgid "Send duplicate email"
-#~ msgstr "Send dublet-email"
-
-#~ msgid "Use non-local SMTP server."
-#~ msgstr "Brug en ikke-lokal SMTP-server."
-
-#~ msgid "Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."
-#~ msgstr "Brug en smtp server der kører på en anden maskine (f.eks. din internetudbyders postserver) til at processere udgående post fra galleriet."
-
-#~ msgid "SMTP Server"
-#~ msgstr "SMTP-server"
-
-#~ msgid "The name or IP address of the SMTP Server you want to use."
-#~ msgstr "Navnet eller IP-adressen for den SMTP-server du vil benytte."
-
-#~ msgid "Sender hostname"
-#~ msgstr "Afsender maskinnavn"
-
-#~ msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
-#~ msgstr "Det fulde maskinnavn på den server du sender emails fra (serveren galleriet er installeret på). Hvis din server befinder sig bag en NAT, så vil dette være DNS navnet for din router."
-
-#~ msgid "SMTP Port"
-#~ msgstr "SMTP port"
-
-#~ msgid "The port on the SMTP server you are connecting to."
-#~ msgstr "Porten der skal forbindes til på SMTP-serveren."
-
-#~ msgid "SMTP account name"
-#~ msgstr "SMTP kontonavn"
-
-#~ msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
-#~ msgstr "Hvis din udbyder kræver et brugernavn for udgående emails, så angiv det her, ellers lad feltet være tomt."
-
-#~ msgid "SMTP password"
-#~ msgstr "SMTP kodeord"
-
-#~ msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
-#~ msgstr "Kodeord for at sende email gennem SMTP-serveren. BEMÆRK: Dette kodeord gemmes i klartekst i config.php. Vær sikker på at er sat for at forhindre andre i at læse det!"
-
-#~ msgid "Gallery wide slideshow"
-#~ msgstr "Fremvisning af hele galleriet"
-
-#~ msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
-#~ msgstr "Tilføjer et fremvisningslink på galleriets hovedside.   Bemærk at for store gallerier kan dette køre meget langsomt og bruge en masse systemressourcer."
-
-#~ msgid "These settings do not apply to the low tech slideshow."
-#~ msgstr "Disse indstillinger anvendes ikke på den begrænsede fremvisningstype."
-
-#~ msgid "Slideshow preferences"
-#~ msgstr "Fremvisningsindstillinger"
-
-#~ msgid "Off"
-#~ msgstr "Slået fra"
-
-#~ msgid "No slideshow link will appear."
-#~ msgstr "Intet fremvisningslink vises."
-
-#~ msgid "Ordered"
-#~ msgstr "I rækkefølge"
-
-#~ msgid "Images will display in the same order as they appear in the Gallery."
-#~ msgstr "Billederne bliver vist i samme rækkefølge som de vises i galleriet."
-
-#~ msgid "Random"
-#~ msgstr "Tilfældigt"
-
-#~ msgid "Images will appear in a random order."
-#~ msgstr "Billederne vises i tilfældig rækkefølge."
-
-#~ msgid "Slideshow length"
-#~ msgstr "Fremvisningsantal"
-
-#~ msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
-#~ msgstr "Antal billeder der skal vises i fremvisningen.  Sæt det til 0 eller blank for at vise alle billeder.  Sæt et antal hvis du har valgt tilfældig rækkefølge og kun vil vise et udvalg af billederne."
-
-#~ msgid "Allow slideshow to loop"
-#~ msgstr "Tillad fremvisningen at gå i løkke"
-
-#~ msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
-#~ msgstr "Denne indstilling tillader besøgende at lade fremvisningen gentage sig indtil de lukker vinduet eller går til en anden side.  Sæt dette til %s hvis du vil spare båndbredde."
-
-#~ msgid "Slideshow Mode"
-#~ msgstr "Fremvisningstype"
-
-#~ msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
-#~ msgstr "Dette lader dig vælge en standard fremvisningstype. &quot;Java Applet&quot; kræver at brugeren har Java Runtime Environment installeret i deres browser, men tillader fuldskærmsvisning. &quot;JavaScript&quot; kan benyttes i alle moderne browsere uden ekstra plugins, men er begrænset i forhold til Java Applet."
-
-#~ msgid "Comments"
-#~ msgstr "Kommentarer"
-
-#~ msgid "Enable commenting"
-#~ msgstr "Tillad kommentarer"
-
-#~ msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
-#~ msgstr "Denne indstilling vælger om brugerne skal have mulighed for at skrive kommentarer. Hvis du sætter dette til &quot;nej&quot; vil al kommentarfunktionalitet blive slået fra."
-
-#~ msgid "Indicate if there are comments available"
-#~ msgstr "Vis om der er kommentarer"
-
-#~ msgid "No indication that an item has comments."
-#~ msgstr "Vis ikke om et element har kommentarer."
-
-#~ msgid "Photos"
-#~ msgstr "Billeder"
-
-#~ msgid "Both"
-#~ msgstr "Begge"
-
-#~ msgid "Watermarking"
-#~ msgstr "Vandmærkning"
-
-#~ msgid "Watermarking is not possible in this installation !"
-#~ msgstr "Vandmærkning bruges ikke i denne installation !"
-
-#~ msgid "Watermark directory"
-#~ msgstr "Vandmærkningsbibliotek"
-
-#, fuzzy
-#~ msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
-#~ msgstr "Den fulde sti på en fysisk disk til kataloget, hvor dine billeder gemmes. Dette katalog skal være tomt til at starte med--Gallery fylder billeder i det. Bemærk at katalog skal have skriveadgang for den bruger, der udfører webserveren (i dit tilfælde er denne bruger: %s.)"
-
-#, fuzzy
-#~ msgid "Watermark both resized and full images"
-#~ msgstr "Midlertidig katalog"
-
-#, fuzzy
-#~ msgid "Watermark resized image only"
-#~ msgstr "Midlertidig katalog"
-
-#, fuzzy
-#~ msgid "Watermark full sized image only"
-#~ msgstr "Midlertidig katalog"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistik"
-
-#~ msgid "Comment cache"
-#~ msgstr "Kommentarcache"
-
-#, fuzzy
-#~ msgid "Turn debug on so that you can diagnose problems?"
-#~ msgstr "Slå debug-tilstand til så du kan finde ud af hvad problemer er?"
-
-#~ msgid "Time Limit"
-#~ msgstr "Tidsfrist"
-
-#~ msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
-#~ msgstr "Den længste tid en enkelt operation må tage. Hvis du får <b>Maksimal udførelsestid overskredet</b> fejlen, kan du bruge et større tal her. Hvis du gør det for stort, <i>kan</i> du komme ud for at have en proces, der hænger meget længe uden at gøre noget. Standardværdien er 30, hvilket burde være rimeligt "
-
-#, fuzzy
-#~ msgid "ImageMagick high quality"
-#~ msgstr "%d ud af %d ImageMagick programmer fundet."
-
-#~ msgid "Cache EXIF data"
-#~ msgstr "cache EXIF-data"
-
-#, fuzzy
-#~ msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
-#~ msgstr "EXIF data taget fra JPEG filer kan caches efter det er læst første gang. Afvejningen er at hvis du cacher dette, kan dit albumdatafiler blive ret store, hvilket kan gøre det langsommeligt at se albumene. Men hvis du ikke cacher dem, skal det hentes hver gang en bruger ser på egenskaberne for et billede, hvilket også kan gøre det langsommere at se billederne. Sat til <b>Nej</b> som standard"
-
-#~ msgid "Use Syslog"
-#~ msgstr "Brug Syslog"
-
-#~ msgid "Use %s"
-#~ msgstr "Brug %s"
-
-#, fuzzy
-#~ msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
-#~ msgstr "Gallery bruger et låsningssystem, der hedder flock() for ekstra beskyttelse mod ødelagt data. Dette understøttes ikke på alle platforme. Hvis du får fejl som  <i>Could not acquire lock</i> så sæt denne indstilling til <i>nej</i>"
-
-#~ msgid "Status code"
-#~ msgstr "Statuskode"
-
-#, fuzzy
-#~ msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
-#~ msgstr "Statuskode Gallery forventer at se efter et vellykket exec() kald. Gallery vil prøve selv at finde frem til denne, så du behøver formodentlig ikke at ændre denne værdi medmindre du får problemer."
-
-#~ msgid "Session variable"
-#~ msgstr "Sessionsvariabel"
-
-#~ msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
-#~ msgstr "Dette er sessionsvariable, der indeholder al Gallery sessionsinformation. Ændr denne hvis der er konflikter mellem Gallerys andre PHP applikationer på dit websted."
-
-#~ msgid "Album highlight"
-#~ msgstr "Forsidebillede"
-
-#~ msgid "All image thumbnails"
-#~ msgstr "Alle billedikoner"
-
-#~ msgid "All image thumbnails and captions"
-#~ msgstr "Alle billedikoner og billedtekster"
-
-#, fuzzy
-#~ msgid "RSS Highlight"
-#~ msgstr "Størrelse på forsidebillede"
-
-#~ msgid "Display Visible Albums Only"
-#~ msgstr "Vis kun synlige albummer"
-
-#~ msgid "Display Hidden Albums"
-#~ msgstr "Vis skjulte albummer"
-
-#~ msgid "Default Columns"
-#~ msgstr "Standard kolonner"
-
-#, fuzzy
-#~ msgid "The default number of columns in an album."
-#~ msgstr "Antal kolonner som standard i et album"
-
-#~ msgid "Default Rows"
-#~ msgstr "Standard antal rækker"
-
-#, fuzzy
-#~ msgid "The default number of rows in an album."
-#~ msgstr "Antal rækker som standard i et album"
-
-#~ msgid "Border color"
-#~ msgstr "Farve på kantlinje"
-
-#, fuzzy
-#~ msgid "Default color of (image) borders. You can learn about %scolors%s here."
-#~ msgstr "Standard farve på billedrammer. Du kan lære mere om %sfarver%s her."
-
-#~ msgid "Border width"
-#~ msgstr "Bredde på kantlinje"
-
-#, fuzzy
-#~ msgid "Default width of (image) borders."
-#~ msgstr "Standard bredde på billedrammer"
-
-#~ msgid "Default Font"
-#~ msgstr "Standard skrifttype"
-
-#, fuzzy
-#~ msgid "Default font face.  E.g. <i>arial</i> or <i>trebuchet</i>"
-#~ msgstr "Standard skrifttype. F.eks. <i>arial</i> eller <i>trebuchet</i>"
-
-#, fuzzy
-#~ msgid "Image Processing and Display"
-#~ msgstr "Behandler og gemmer billeder"
-
-#~ msgid "Thumbnail size"
-#~ msgstr "Størrelse på ikon"
-
-#~ msgid "The default target size (in pixels) of album thumbnails."
-#~ msgstr "Standard målstørrelse (i piksler) for albumikoner."
-
-#, fuzzy
-#~ msgid "Thumbnail Ratio"
-#~ msgstr "Størrelse på ikon"
-
-#, fuzzy
-#~ msgid "When large images are added to an album, an intermediate version will automatically be generated at this size."
-#~ msgstr "Når et stort billede tilføjes et album, bliver en mellemversion af denne størrelse automatisk genereret"
-
-#~ msgid "off"
-#~ msgstr "fra"
-
-#, fuzzy
-#~ msgid "Resized JPEG/PNG images file size"
-#~ msgstr "Filstørrelse på ændrede billedstørrelser"
-
-#, fuzzy
-#~ msgid "The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."
-#~ msgstr "Standard målstørrelse (i kilobyte) for JPEG når størrelsen ændres. Hvis du angiver en værdi kan det gøre filoverførsler langsommere, men gøre det hurtigere at se en side for folk med modemopkoblinger. Sæt til 0 for ikke at angive målstørrelse."
-
-#, fuzzy
-#~ msgid "Maximum image size"
-#~ msgstr "Størrelse på ændret billedstørrelse"
-
-#~ msgid "Warning:"
-#~ msgstr "Advarsel:"
-
-#~ msgid "%d (%d MPix)"
-#~ msgstr "%d (%d MPix)"
-
-#, fuzzy
-#~ msgid "Maximum JPEG/PNG image file size"
-#~ msgstr "Filstørrelse på ændrede billedstørrelser"
-
-#, fuzzy
-#~ msgid "Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."
-#~ msgstr "Standard målstørrelse (i kilobyte) for JPEG når størrelsen ændres. Hvis du angiver en værdi kan det gøre filoverførsler langsommere, men gøre det hurtigere at se en side for folk med modemopkoblinger. Sæt til 0 for ikke at angive målstørrelse."
-
-#~ msgid "Preserve Names"
-#~ msgstr "Behold navn"
-
-#~ msgid "When uploading images to Gallery, should we preserve the original names?  If you select <i>no</i>, Gallery will assign a new name for each photo or movie that gets uploaded."
-#~ msgstr "Når billeder overføres til Gallery skal vi beholde de originale navne. Hvis du vælger <i>nej</i>, vil gallery give hvert overført billede et nyt navn."
-
-#~ msgid "Add to beginning"
-#~ msgstr "Tilføj i starten"
-
-#, fuzzy
-#~ msgid "New images added to beginning rather than end of albums."
-#~ msgstr "Nye billeder tilføjet i starten og ikke i enden af albumet."
-
-#~ msgid "Fit-to-window"
-#~ msgstr "tilpas til vindue"
-
-#, fuzzy
-#~ msgid "When viewing photos which don't have an intermediate version, Gallery can automatically resize the image to fit the viewer's browser window (using JavaScript).  This may not work in embedded environments such as Nuke."
-#~ msgstr "Når man ser på billeder uden en mellemversion, kan Gallery automatisk ændre billedets størrelse så det passer til netlæservinduet. Virker muligvis ikke i indlejrede omgivelser som Nuke"
-
-#~ msgid "Visitor size prefs"
-#~ msgstr "Besøgendes foretrukne størrelser"
-
-#, fuzzy
-#~ msgid "Offer visitors the choice of always viewing the full sized version of an image instead of the intermediate size.  This setting only lasts for the visitor's session."
-#~ msgstr "Til besøgende at vælge mellem altid at få det fulde billede i stedet for mellemstørrelsen. Denne indstilling varer kun i den besøgendes session."
-
-#, fuzzy
-#~ msgid "Printing Services"
-#~ msgstr "Fremkaldetjeneste"
-
-#, fuzzy
-#~ msgid "Allow visitors to print photos directly from the album.  Fotoserve is based in the United Kindom and Fotokasten is a print service based in Germany so they are good for the European market. EZ Prints, PhotoWorks and Shutterfly are based in the United States. mPUSH is a service that allows you to send photos to cellular phones worldwide. All services will give a small donation to the Gallery project for every print you make. Using these services is a great way for you to help support this free software."
-#~ msgstr "Tillad besøgende at udskrive billeder direkte fra albumet. Hvis du vælger shutterfly, vil Gallery opkræve 2 cents (US) mere for hvert billede (et 4x6 foto koster normalt 49 cents US) og 1.8 cents af disse vil blive doneret til Gallery projektet. Det er alletiders måde at hjælpe med at støtte fri software."
-
-#~ msgid "Gallery Link"
-#~ msgstr "Gallery link"
-
-#, fuzzy
-#~ msgid "Display a link navigation from your album to the top level Gallery link within the album?  If you turn this feature off, the user will not be able to navigate out of the album.  This is only useful when you want to embed an album within a website and not allow users to (easily) view the other albums in the gallery."
-#~ msgstr "Vis henvisning for det øverste Gallery i hvert album. Hvis du slår denne egenskab fra, vil brugere ikke kunne navigere ud af albumet. Det kan bruges når du ønsker at indlejre et album i en webside og ikke tillade at brugere (nemt) kan se andre albums i galleriet."
-
-#~ msgid "Default Album Permissions"
-#~ msgstr "Standard albumrettigheder"
-
-#~ msgid "Logged-In Users"
-#~ msgstr "Brugere der er logget ind"
-
-#~ msgid "Data displayed"
-#~ msgstr "Dato vist"
-
-#~ msgid "Click counts"
-#~ msgstr "Kliktællere"
-
-#~ msgid "Display click counts within Albums?"
-#~ msgstr "Vise kliktællere inde i albumene?"
-
-#~ msgid "Custom Fields"
-#~ msgstr "Selvvalgte felter"
-
-#, fuzzy
-#~ msgid "Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"
-#~ msgstr "Selvvalgt felter, tilgængelige til beskrivelse af hvert billede. De skal kommasepareres. Fx Eg. <i>Beskrivelse, Sted, Filmtype</i>"
-
-#~ msgid "Display clickable image dimensions"
-#~ msgstr "Vis størrelse på billede, der kan klikkes på"
-
-#~ msgid "Item Owner"
-#~ msgstr "Ejer"
-
-#~ msgid "Photo owner modification"
-#~ msgstr "Ændring af billedejer"
-
-#~ msgid "Allow photo owners to edit and rotate/flip their own photos?"
-#~ msgstr "Tillad ejere af billeder at rette og rotere/vende deres egne billeder?"
-
-#~ msgid "Photo owner deletion"
-#~ msgstr "Sleting av billedejer"
-
-#~ msgid "Allow photo owners to delete their own photos?"
-#~ msgstr "Tillad billedejere at slette sine egne billeder?"
-
-#~ msgid "Photo owner display"
-#~ msgstr "Vis billed-ejer"
-
-#~ msgid "Display the name of photo owners with the caption?"
-#~ msgstr "Vis navne på ejeren af billedet i billedteksten"
-
-#~ msgid "Polling configuration"
-#~ msgstr "Afstemningskonfiguration"
-
-#, fuzzy
-#~ msgid "Number of choices"
-#~ msgstr "Efter antal klik"
-
-#~ msgid "Vote for this image"
-#~ msgstr "Stem på dette billede"
-
-#~ msgid "Show vote results"
-#~ msgstr "Vis afstemningsresultater"
-
-#~ msgid "Excellent"
-#~ msgstr "Fantastisk"
-
-#~ msgid "Very Good"
-#~ msgstr "Meget godt"
-
-#~ msgid "Good"
-#~ msgstr "Godt"
-
-#~ msgid "Average"
-#~ msgstr "Middel"
-
-#~ msgid "Poor"
-#~ msgstr "Dårligt"
-
-#~ msgid "Album Slideshow"
-#~ msgstr "Fremvisning"
-
-#~ msgid "Slideshow Type"
-#~ msgstr "Fremvisningstype"
-
-#, fuzzy
-#~ msgid "Recursive slideshow"
-#~ msgstr "fremvisning"
-
-#, fuzzy
-#~ msgid "both"
-#~ msgstr "Begge"
-
-#, fuzzy
-#~ msgid "Fixed"
-#~ msgstr "Gav en fejl!"
-
-#, fuzzy
-#~ msgid "Number of Next Microthumbs"
-#~ msgstr "Efter antal klik"
-
-#, fuzzy
-#~ msgid "Frames"
-#~ msgstr "Fulde navn"
-
-#, fuzzy
-#~ msgid "Subalbum frames"
-#~ msgstr "Underalbum"
-
-#, fuzzy
-#~ msgid "This frame will appear around the thumbnail image representing a subalbum."
-#~ msgstr "Filsystemets sti til ikonet som vises for filmer. F.eks. %s"
-
-#, fuzzy
-#~ msgid "Frame around thumbs"
-#~ msgstr "gendan ikoner"
-
-#, fuzzy
-#~ msgid "This frame will appear around the thumbnail image representing a photo or movie."
-#~ msgstr "Filsystemets sti til ikonet som vises for filmer. F.eks. %s"
-
-#, fuzzy
-#~ msgid "Frame around images"
-#~ msgstr "Fandt %d billeder"
-
-#, fuzzy
-#~ msgid "This frame will appear around fulled sized and resized photos."
-#~ msgstr "Filsystemets sti til ikonet som vises for filmer. F.eks. %s"
-
-#, fuzzy
-#~ msgid "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."
-#~ msgstr "Du skal lave en tom fil %s og 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
-
-#, fuzzy
-#~ msgid "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."
-#~ msgstr "Du skal lave en tom fil %s og 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
-
-#, fuzzy
-#~ msgid "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
-#~ msgstr "Du skal lave en tom fil %s og 'chmod' den til 777 før du fortsætter. Se %s for flere detaljer"
-
-#~ msgid "missing"
-#~ msgstr "mangler"
-
-#~ msgid "it's optional"
-#~ msgstr "det er valgfrit"
-
-#~ msgid "optional"
-#~ msgstr "valgfrit"
-
-#~ msgid "%s: <b>%s</b> must be an absolute URL!"
-#~ msgstr "%s: <b>%s</b> skal være en absolut URL!"
-
-#~ msgid "%s: <b>%s</b> must be a valid file (not a directory)!"
-#~ msgstr "%s: <b>%s</b> skal være en gyldig fil (ikke et katalog)!"
-
-#~ msgid "%s: <b>&quot;%s&quot;</b> must be a positive number"
-#~ msgstr "%s: <b>&quot;%s&quot;</b> skal være et positivt heltal"
-
-#, fuzzy
-#~ msgid "%s: <b>&quot;%s&quot;</b> must be a number"
-#~ msgstr "%s: <b>&quot;%s&quot;</b> skal være et positivt heltal"
-
-#~ msgid "%s: <b>%s</b> must not be zero"
-#~ msgstr "%s: <b>%s</b> må ikke være nul"
-
-#~ msgid "%s: <b>%s</b> must be an executable file!"
-#~ msgstr "%s: <b>%s</b> skal være en udførbar fil!"
-
-#~ msgid "Directory %s does not exist.  Please create it."
-#~ msgstr "Kataloget %s eksisterer ikke.  Lav det."
-
-#~ msgid "%s exists but is not a directory.  Please fix this."
-#~ msgstr "%s eksisterer men er ikke et katalog. Gør noget ved det."
-
-#~ msgid "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"
-#~ msgstr "%s: %s eksisterer, men er ikke skrivbar for webserverbrugeren. Prøv: %s eller hvis det ikke virker: %s. Endvidere sørg for at hvis du har en %s restriktion så skal dette 'tmp' katalog være under %s stien"
-
-#, fuzzy
-#~ msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
-#~ msgstr "%s: <b>%s</b> skal være en udførbar fil!"
-
-#~ msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-#~ msgstr "Kunne ikke finde %s. Undersøg dit NetPBM katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
-
-#, fuzzy
-#~ msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
-#~ msgstr "Kunne ikke finde %s. Undersøg dit NetPBM katalog for at se hvilke PNG->JPEG omdanne, du har (eller prøv at bruge %s i stedet), Undersøg din konfiguration (eller brug ImageMagick)"
-
-#~ msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
-#~ msgstr "%s er ikke korrekt konfigureret til brug so grafikpakke. Kontroller at du indtastede en sti til %s programmet i trin 2."
-
-#~ msgid "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths"
-#~ msgstr "Din server har PHP open_basedir begrænsningen sat og visse af dine stier er ikke i listen at begrænsede stier."
-
-#~ msgid "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."
-#~ msgstr "Dette betyder ikke at det ikke vil virke, men det betyder at vi ikke kan kontrollere at stierne er korrekt. Hvis du ikke kan overføre din billeder korrekt, så læs FAQ'en og %sdiagnostics%s for at løse dit problem."
-
-#, fuzzy
-#~ msgid "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it."
-#~ msgstr "Bekræft at de angive indstillinger er rigtige. Hvis du synes at denne side er forvirrende, kan du formodentlig ignorere det (medmindre du ser noget rødt, hvilket indikerer en fejl)"
-
-#, fuzzy
-#~ msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
-#~ msgstr "Bekræft at de angive indstillinger er rigtige. Hvis du synes at denne side er forvirrende, kan du formodentlig ignorere det (medmindre du ser noget rødt, hvilket indikerer en fejl)"
-
-#~ msgid "Edit Config"
-#~ msgstr "Rediger konfiguration"
-
-#~ msgid "Save Config"
-#~ msgstr "Gem konfiguration"
-
-#~ msgid "Refresh"
-#~ msgstr "Genindlæs"
-
-#~ msgid "One error."
-#~ msgid_plural "%d errors."
-#~ msgstr[0] "En fejl."
-#~ msgstr[1] "%d fejl."
-
-#~ msgid "No errors."
-#~ msgstr "Ingen fejl."
-
-#~ msgid "See Details below."
-#~ msgstr "Se detaljerne nedenfor."
-
-#~ msgid "There are errors in your configuration."
-#~ msgstr "Der er fejl i din konfiguration."
-
-#~ msgid "Please go back and fix them!"
-#~ msgstr "Gå venligst tilbage og ret dem!"
-
-#, fuzzy
-#~ msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-#~ msgstr "I dette trin vil du tilpasse forskelleing indstillinger i Gallery. Hvis detter første gang du tilpasser Gallery, vil du bemærke at vi har prøvet at sætte rimelige standardværdier for dig. Alligevel vil du sikkert være nødt til at lave mindre ændringer. Hvis du har tilpasset Gallery før, vil du bemærk at denne side allerede indeholder din aktuelle konfigureringsinformation, så du skal sikkert ikke ændre meget."
-
-#~ msgid "Previous Step"
-#~ msgstr "Forrige trin"
-
-#~ msgid "Previous Tab"
-#~ msgstr "Forrige faneblad"
-
-#~ msgid "Next Tab"
-#~ msgstr "Næste faneblad"
-
-#~ msgid "Use Defaults"
-#~ msgstr "Brug standardindstillingerne"
-
-#, fuzzy
-#~ msgid "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
-#~ msgstr "I dette trin vil du tilpasse forskelleing indstillinger i Gallery. Hvis detter første gang du tilpasser Gallery, vil du bemærke at vi har prøvet at sætte rimelige standardværdier for dig. Alligevel vil du sikkert være nødt til at lave mindre ændringer. Hvis du har tilpasset Gallery før, vil du bemærk at denne side allerede indeholder din aktuelle konfigureringsinformation, så du skal sikkert ikke ændre meget."
-
-#~ msgid "Gallery Diagnostics"
-#~ msgstr "Gallery fejlfinding"
-
-#~ msgid "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly."
-#~ msgstr "Denne er designet til at give oplysninger om serveren, der kan hjælpe dig med at finde problemer, der forhindrer Gallery i at fungere ordentligt."
-
-#~ msgid "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of."
-#~ msgstr "konfigurationshjælperen prøver al slags fejlfinding for at finde og undgå problemer på dit system, men der kan være andre problemer, vi ikke har tænkt på."
-
-#~ msgid "You can use these tools to find out more about your setup"
-#~ msgstr "Du kan bruge disse værktøjer til at finde ud af mere om din opsætning"
-
-#~ msgid "Tool"
-#~ msgstr "Værktøj"
-
-#~ msgid "PHP Info"
-#~ msgstr "PHP Info"
-
-#~ msgid "This page provides information about your PHP installation."
-#~ msgstr "Denne side indeholder information om din PHP installation"
-
-#~ msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)"
-#~ msgstr "Dette er et godt sted at kigge for at undersøge alle de forskellige PHP konfigurationsvalg og finde ud af hvad slags system du kører på (Det kan være svært at finde ud af hvis Gallery kører på din ISP's server)"
-
-#~ msgid "Check"
-#~ msgstr "Check"
-
-#~ msgid "This page provides information about your NetPBM binaries."
-#~ msgstr "Denne side giver information om dine NetPBM programmer"
-
-#~ msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM)."
-#~ msgstr "Du kan først bruge denne side når du er færdig med konfigurationshjælperen uden fejl."
-
-#~ msgid "This page provides information about your ImageMagick binaries."
-#~ msgstr "Denne side giver information om dine ImageMagick programmer"
-
-#~ msgid "You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick)."
-#~ msgstr "Du kan først bruge denne side når du er færdig med konfigurationshjælperen uden fejl (fordi den forventer at du allerede har fundet og konfigureret Gallery med den korrekte sti til ImageMagick)."
-
-#~ msgid "Check Sessions"
-#~ msgstr "Check Sessions"
-
-#~ msgid "This page runs a very simple test on your PHP session configuration."
-#~ msgstr "Denne sider udfører en meget enkel afprøvning af din PHP sessionskonfiguration"
-
-#~ msgid "Gallery requires that your PHP installation is configured with proper session support."
-#~ msgstr "Gallery kræver at din PHP installation er konfigureret med rigtig sessionsunderstøttelse."
-
-#~ msgid "Check versions"
-#~ msgstr "Undersøg versioner"
-
-#~ msgid "Gallery Configuration"
-#~ msgstr "Gallery Konfiguration"
-
-#~ msgid "None"
-#~ msgstr "Ingen"
-
-#~ msgid "No frames"
-#~ msgstr "Ingen rammer"
-
-#~ msgid "Dots"
-#~ msgstr "Prikker"
-
-#~ msgid "Just a simple dashed border around the thumb."
-#~ msgstr "Enkel afbrudt kant omkring ikonet."
-
-#~ msgid "Solid"
-#~ msgstr "Ubrudt"
-
-#~ msgid "Just a simple solid border around the thumb."
-#~ msgstr "Simpel ubrudt kant omkring ikonet."
-
-#~ msgid "Skipping %s."
-#~ msgstr "Springer over %s."
-
-#~ msgid "User is not an admin - access denied"
-#~ msgstr "Bruger er ikke administrator - adgang nægtet"
-
-#~ msgid "Reset %s Password"
-#~ msgstr "Nulstil %s kodeord"
-
-#~ msgid "%s configuration"
-#~ msgstr "%s konfiguration"
-
-#~ msgid "Gallery Session Test"
-#~ msgstr "Gallery Session Test"
-
-#~ msgid "Session Test"
-#~ msgstr "Session test"
-
-#~ msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
-#~ msgstr "Hvis sessioner er konfigureret korrekt i din PHP installation, så skulle du se et \"session ID\" nedenunder."
-
-#~ msgid "The &quot;page views&quot; number should increase every time you reload the page."
-#~ msgstr "&quot;sidevisnings&quot; tallet skulle tælles op, hver gang du genindlæser siden."
-
-#~ msgid "Clicking %s should reset the page view number back to 1."
-#~ msgstr "At trykke %s skulle tilbageføre 'se side' tallet til 1."
-
-#~ msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
-#~ msgstr "Hvis dette <b>ikke</b> virker, så er der formodentlig et PHP konfigureringsproblem."
-
-#~ msgid "Gallery will not work properly until PHP's session management is configured properly."
-#~ msgstr "Gallery vil ikke virke ordentlig før PHP's sessionshåndtering er korrekt konfigureret"
-
-#~ msgid "Your session id is"
-#~ msgstr "Dit  session id er"
-
-#~ msgid "Page views in this session"
-#~ msgstr "Sidevisninger i denne session"
-
-#~ msgid "Server IP address"
-#~ msgstr "Server IP adresse"
-
-#~ msgid "Start over"
-#~ msgstr "Start forfra"
-
-#~ msgid "An account called %s has been created for you with the password you specified."
-#~ msgstr "Der er lavet en konto kaldet %s til dig med den adgangskode, du angav"
-
-#~ msgid "Success!"
-#~ msgstr "Succes!"
-
-#~ msgid "Your configuration has been successfully saved!"
-#~ msgstr "Din konfiguration er gemt!"
-
-#~ msgid "Note"
-#~ msgstr "Obs"
-
-#~ msgid "You can reconfigure Gallery at any time by re-running this configuration wizard."
-#~ msgstr "Du kan rekonfigurere Gallery nårsomhelst ved at udføre konfigureringshjælperen"
-
-#~ msgid "It will save your data so you won't have to enter it all again!"
-#~ msgstr "Det vil gemme dine data så du ikke behøver at taste dem ind igen!"
-
-#~ msgid "Unable to write to %s."
-#~ msgstr "Kan ikke skrive til %s."
-
-#~ msgid "You are missing either %s or %s."
-#~ msgstr "Du mangler enten %s eller %s"
-
-#~ msgid "Review Settings"
-#~ msgstr "Gennemse indstillinger"
-
-#~ msgid "EXIF Data"
-#~ msgstr "EXIF data"
-
-#~ msgid "Can't open %s"
-#~ msgstr "Kunne ikke åbne %s"
-
-#~ msgid "%sClick here%s to see more details"
-#~ msgstr "%sTryk her%s for at se flere detaljer"
-
-#~ msgid "Failed"
-#~ msgstr "Gav en fejl!"
-
-#~ msgid "Since Gallery 1.4.5 Gallery needs at least PHP 4.1.0, this is due to that some versions of PHP have bugs that cause Gallery to fail and that older Version does not have required functionality."
-#~ msgstr "Siden Gallery 1.4.5 har Gallery behøvet mindst PHP 4.1.0, hvilket er på grund af at nogle versioner af PHP har fejl som gør at Gallery ikke virker og nogle ældre versioner ikke har den nødvendige funktionalitet."
-
-#~ msgid "We are using predefined variables which some older version of PHP have problems with."
-#~ msgstr "We bruger nogle prædefinerede variable som nogle ældre version af PHP har problemer med."
-
-#~ msgid "yes"
-#~ msgstr "ja"
-
-#~ msgid "no"
-#~ msgstr "nej"
-
-#~ msgid "%s, %s and %s will be replaced by the fullname, user name and password of the newly created user."
-#~ msgstr "%s, %s og %s vil blive udskiftet med den nyoprettede brugers hhv. fulde navn, brugernavn og kodeord."
-
-#~ msgid "%s will be replaced by a link the new user can click on to create a new password"
-#~ msgstr "%s vil blive udskiftet med et link som den nye bruger kan klikke på for at skifte kodeord"
-
-#~ msgid "Admin"
-#~ msgstr "Administrator"
-
-#~ msgid "on"
-#~ msgstr "på"
-
-#, fuzzy
-#~ msgid "Album: "
-#~ msgstr "Album: %s"
-
-#~ msgid "Admin help"
-#~ msgstr "Administrator hjælp"
-
-#~ msgid "To install or upgrade the Gallery Remote Applets, please refer to "
-#~ msgstr "For at installere eller opgradere \"Gallery Remote Applets\", se venligst "
-
-#~ msgid "the documentation page"
-#~ msgstr "dokumentationssiden"
-
-#~ msgid " on the Gallery web site."
-#~ msgstr " på Gallery hjemmesiden."
-
-#~ msgid "1. Select the number of files you want to upload:"
-#~ msgstr "1. Angiv antallet af billeder, der skal overføres:"
-
-#~ msgid "Optional:"
-#~ msgstr "Valgfrit:"
-
-#~ msgid "Select the number of meta data files you want to upload:"
-#~ msgstr "Angiv antallet af metadata filer, der skal overføres:"
-
-#~ msgid "File"
-#~ msgstr "Fil"
-
-#~ msgid "3. Use the Browse button to find the meta data files on your computer"
-#~ msgstr "3. Brug Gennemse-knappen for at finde metadata filerne på din computer"
-
-#~ msgid "Album Summary"
-#~ msgstr "Albumopsummering"
-
-#~ msgid "Album Title"
-#~ msgstr "Titel på album"
-
-#, fuzzy
-#~ msgid "Background Image (URL)"
-#~ msgstr "Baggrundsbillede"
-
-#~ msgid "Font"
-#~ msgstr "Skrifttype"
-
-#~ msgid "Rows"
-#~ msgstr "Rækker"
-
-#~ msgid "Columns"
-#~ msgstr "Kolonner"
-
-#~ msgid "Borders"
-#~ msgstr "Kantlinjer"
-
-#, fuzzy
-#~ msgid "Colors"
-#~ msgstr "Luk"
-
-#~ msgid "Background Color"
-#~ msgstr "Baggrundsfarve"
-
-#~ msgid "Text Color"
-#~ msgstr "Tekstfarve"
-
-#~ msgid "Link Color"
-#~ msgstr "Henvisningsfarve (link)"
-
-#, fuzzy
-#~ msgid "Border Color"
-#~ msgstr "Farve på kantlinje"
-
-#~ msgid "Album Frame"
-#~ msgstr "Albumramme"
-
-#~ msgid "Thumb Frame"
-#~ msgstr "Ikonramme"
-
-#, fuzzy
-#~ msgid "Slideshow"
-#~ msgstr "fremvisning"
-
-#~ msgid "Include sub-albums in slideshow"
-#~ msgstr "Inkluder under-albummer i fremvisning"
-
-#~ msgid "Slideshow Length"
-#~ msgstr "Fremvisningslængde"
-
-#~ msgid "Maximum dimensions of intermediate sized images"
-#~ msgstr "Maksimal størrelse på mellemstørrelsebilleder"
-
-#~ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-#~ msgstr "Maksimal filstørrelse i kilobytes for mellemstørelse JPEG/PNG billeder (0 eller tom for ikke at have restriktioner)"
-
-#~ msgid "Maximum dimensions of full sized images"
-#~ msgstr "Maksimal størrelse for billeder i fuld størrelse"
-
-#~ msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
-#~ msgstr "Maksimal filstørrelse i kilobytes for JPEG/PNG billeder i fuld størrelse (0 eller tom for ikke at have restriktioner)"
-
-#, fuzzy
-#~ msgid "Display"
-#~ msgstr "fremvis"
-
-#~ msgid "Display click counter for this album?"
-#~ msgstr "Vis kliktæller for dette album?"
-
-#~ msgid "Display owners name with caption"
-#~ msgstr "Vis ejerens navn ved billedtekst"
-
-#~ msgid "Display EXIF data?"
-#~ msgstr "Vis EXIF-data?"
-
-#~ msgid "Which photo printing services<br>do you want to let visitors use?"
-#~ msgstr "Hvilke fotofremkaldelsestjenester<br>vil du lade besøgende bruge?"
-
-#, fuzzy
-#~ msgid "Who can vote?"
-#~ msgstr "Hvem kan stemme"
-
-#, fuzzy
-#~ msgid "Voting Options"
-#~ msgstr "Administratorindstillinger"
-
-#~ msgid "Add new items at beginning of album"
-#~ msgstr "Tilføj nye objekter i starten af albummet"
-
-#~ msgid "Show <i>Return to</i> link"
-#~ msgstr "Vis <i>Tilbage</i> henvisning"
-
-#~ msgid "Offer visitors ability to specify<br>preference for full-size or resized images"
-#~ msgstr "Giv besøgende mulighed for at angive om<br>de foretrækker billeder i fuld eller mellemstørrelse"
-
-#~ msgid "Auto fit-to-window for<br>images without a resized copy"
-#~ msgstr "Automatisk tilpasning til vinduesstørrelsen for<br>billeder uden mellemstørrelse kopi"
-
-#~ msgid "Allow item owners to modify their images"
-#~ msgstr "Tillad ejere af objekter at ændre deres billeder"
-
-#~ msgid "Allow item owners to delete their images"
-#~ msgstr "Tillad ejere af objekter at slette deres billeder"
-
-#, fuzzy
-#~ msgid "Number of previous thumbs"
-#~ msgstr "Antal afstemningsmuligheder"
-
-#, fuzzy
-#~ msgid "Number of next thumbs"
-#~ msgstr "Antal afstemningsmuligheder"
-
-#~ msgid "Check All"
-#~ msgstr "Afkryds alle"
-
-#~ msgid "Clear All"
-#~ msgstr "Fjern alle"
-
-#~ msgid "Invert Selection"
-#~ msgstr "Inverter valg"
-
-#~ msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
-#~ msgstr "Bemærk: Dette er en automatisk emailbesked sendt fra %s hjemmesiden. Hvis du har modtaget denne ved en fejl, så ignorer den venligst."
-
-#~ msgid "Report abuse to %s"
-#~ msgstr "Meld misbrug til %s"
-
-#~ msgid "Email not sent as it is disabled for this gallery"
-#~ msgstr "Ingen email sendt, da det er slået fra i dette galleri"
-
-#~ msgid "Email not sent to %s as it is not a valid address"
-#~ msgstr "Email ikke sendt til %s, da det ikke er en gyldig adresse"
-
-#, fuzzy
-#~ msgid "Email not sent as no reciepient address provided"
-#~ msgstr "Email ikke sendt, da ingen emailadresse blev angivet"
-
-#~ msgid "Sender address %s is invalid, using %s."
-#~ msgstr "Afsenderadressen %s er ugyldig, benytter %s."
-
-#, fuzzy
-#~ msgid ""
-#~ "Hi !!FULLNAME!!,\n"
-#~ "\n"
-#~ "Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administrator."
-#~ msgstr ""
-#~ "Hej !!FULLNAME!!  \n"
-#~ "\n"
-#~ "Tillykke.  Du er netop blevet tilmeldt til %s på %s.  Dit brugernavn er !!USERNAME!!.  Besøg snart galleriet, og opret en adgangskode ved at klikke på dette link:\n"
-#~ "\n"
-#~ "!!NEWPASSWORDLINK!!\n"
-#~ "\n"
-#~ "Gallery @ %s Administratoren."
-
-#~ msgid "gallery title"
-#~ msgstr "galleriets titel"
-
-#~ msgid "gallery URL"
-#~ msgstr "galleriets URL"
-
-#, fuzzy
-#~ msgid "Admin email(s)"
-#~ msgstr "Administrator hjælp"
-
-#, fuzzy
-#~ msgid "Fullname"
-#~ msgstr "Fulde navn"
-
-#, fuzzy
-#~ msgid "New comment for %s"
-#~ msgstr "vis kommentarer"
-
-#, fuzzy
-#~ msgid "Item"
-#~ msgstr "objekter"
-
-#, fuzzy
-#~ msgid "***End comment ***"
-#~ msgstr "find spam kommentarer"
-
-#, fuzzy
-#~ msgid "New comment for %s."
-#~ msgstr "vis kommentarer"
-
-#~ msgid "FAILED"
-#~ msgstr "MISLYKKEDES"
-
-#~ msgid "Email activity"
-#~ msgstr "Email aktivitet"
-
-#~ msgid "Total points in brackets"
-#~ msgstr "Total antal point i kantede parenteser"
-
-#~ msgid "Average points in brackets"
-#~ msgstr "Gennemsnitligt antal point i kantede parenteser"
-
-#~ msgid "1 voter"
-#~ msgid_plural "%d voters"
-#~ msgstr[0] "1 stemmeafgiver"
-#~ msgstr[1] "%d stemmeafgivere"
-
-#~ msgid "Result from one voter"
-#~ msgid_plural "Result of %d voters"
-#~ msgstr[0] "Resultat fra en stemmeafgiver"
-#~ msgstr[1] "Resultat fra %d stemmeafgivere"
-
-#~ msgid "%s: %s points; "
-#~ msgstr "%s: %s point; "
-
-#~ msgid "Key - %s"
-#~ msgstr "Nøgle - %s"
-
-#~ msgid "No votes"
-#~ msgstr "Ingen stemmer"
-
-#~ msgid "Number %d overall."
-#~ msgstr "Nummer %d i alt."
-
-#~ msgid "%s: %s"
-#~ msgstr "%s: %s"
-
-#~ msgid "Upload Date"
-#~ msgstr "Dato for overførsel"
-
-#~ msgid "Additional EXIF Data"
-#~ msgstr "Ekstra EXIF data"
-
-#~ msgid "description"
-#~ msgstr "beskrivelse"
-
-#~ msgid "Error:"
-#~ msgstr "Fejl:"
-
-#~ msgid "Generated by %s v%s"
-#~ msgstr "Fremstillet af %s v%s"
-
-# beaufour: Powered by, har vi ikke en dansk udgave af det?
-#~ msgid "Powered by %s v%s"
-#~ msgstr "Powered by %s v%s"
-
-#~ msgid "Move the album to a new album:"
-#~ msgstr "Flyt albummet til et nyt album:"
-
-#~ msgid "Views:"
-#~ msgstr "Visninger:"
-
-#~ msgid "Call to %s failed in %s for file %s!"
-#~ msgstr "Kald af %s mislykkedes i %s for filen %s!"
-
-#~ msgid "File %s type %d."
-#~ msgstr "Fil %s type %d."
-
-#~ msgid "Unknown file type: %s"
-#~ msgstr "Ukendt filtype: %s"
-
-#~ msgid "Unable to preserve EXIF data (jhead not installed)"
-#~ msgstr "Kunne ikke bevare EXIF data (jhead er ikke installeret)"
-
-#~ msgid "Changed: "
-#~ msgstr "Ændret: "
-
-#~ msgid "Resizing Image: %s"
-#~ msgstr "Ændrer størrelse på: %s"
-
-#~ msgid "No resizing required"
-#~ msgstr "Ikke nødvendigt at ændre størrelse"
-
-#~ msgid "target file size %d kbytes"
-#~ msgstr "mål filstørrelse %d kbyte"
-
-#~ msgid "-> file size %d kbytes"
-#~ msgstr "-> filstørrelse %d kbyte"
-
-#~ msgid "trying quality %d%%"
-#~ msgstr "prøver kvalitet %d%%"
-
-#~ msgid "Done."
-#~ msgstr "Udført."
-
-#~ msgid "No watermark name specified!"
-#~ msgstr "Intet vandmærkenavn er angivet!"
-
-#~ msgid "add photos"
-#~ msgstr "tilføj billeder"
-
-#~ msgid "poll results"
-#~ msgstr "afstemingsresultater"
-
-#~ msgid "view comments"
-#~ msgstr "vis kommentarer"
-
-#~ msgid "watermark album"
-#~ msgstr "sæt vandmærke på album"
-
-#~ msgid "title"
-#~ msgstr "titel"
-
-#~ msgid "Empty"
-#~ msgstr "Tom"
-
-#~ msgid "edit %s"
-#~ msgstr "ret %s"
-
-#~ msgid "No Caption"
-#~ msgstr "Ingen billedtekst"
-
-#~ msgid "edit"
-#~ msgstr "ret"
-
-#~ msgid "Add your comment"
-#~ msgstr "Tilføj din kommentar"
-
-# kommer an på sammenhængen, men skal der muligvis stå: midten
-#~ msgid "Commenter:"
-#~ msgstr "Dit navn:"
-
-#~ msgid "Message:"
-#~ msgstr "Besked:"
-
-#~ msgid "Post"
-#~ msgstr "Indsend"
-
-#~ msgid "Not closing this window because debug mode is on"
-#~ msgstr "Lukker ikke dette vindue fordi fejlfindingstilstand er slået til"
-
-#, fuzzy
-#~ msgid "Problem including file %s"
-#~ msgstr "Problem med at tilføje %s:"
-
-#~ msgid "Select Album"
-#~ msgstr "Vælg album"
-
-#~ msgid "Top Level"
-#~ msgstr "Øverste niveau"
-
-#~ msgid "current location"
-#~ msgstr "nuværende placering"
-
-#~ msgid "self"
-#~ msgstr "selv"
-
-#~ msgid "1 hit"
-#~ msgid_plural "%d hits"
-#~ msgstr[0] "1 klik"
-#~ msgstr[1] "%d klik"
-
-#~ msgid "Sub-albums"
-#~ msgstr "Underalbum"
-
-#~ msgid "Last comment %s."
-#~ msgstr "Sidste kommentar %s."
-
-#~ msgid "No Skin"
-#~ msgstr "Intet skind"
-
-#~ msgid "<dt>%s</dt><dd>The original look and feel.</dd>"
-#~ msgstr "<dt>%s</dt><dd>Det originale \"look and feel\".</dd>"
-
-#~ msgid "Last Update"
-#~ msgstr "Sidste opdatering"
-
-#~ msgid "Not valid yet"
-#~ msgstr "Endnu ikke gyldigt"
-
-#, fuzzy
-#~ msgid "Search:"
-#~ msgstr "Søg"
-
-#~ msgid "No email sent as no valid email addresses were found"
-#~ msgstr "Ingen email sendt da ingen gyldig emailadresse blev fundet"
-
-#~ msgid "Skipping invalid email address %s"
-#~ msgstr "Springer ugyldig emailadresse, %s, over"
-
-#~ msgid "Watermarking photo."
-#~ msgstr "Sætter vandmærke på billedet."
-
-#~ msgid "this may take a while"
-#~ msgstr "dette kan tage et stykke tid"
-
-#~ msgid "Search Again"
-#~ msgstr "Søg igen"
-
-#~ msgid "Go"
-#~ msgstr "Søg"
-
-#, fuzzy
-#~ msgid "Diashow"
-#~ msgstr "fremvisning"
-
-#~ msgid "adding %s"
-#~ msgstr "tilføjer %s"
-
-# skal det sidste <p> være der?
-#~ msgid "The members file should be one user per line, and the fields should be space separated.  Each line is of the form:<br> <i>username emailaddress fullname</i>.<br>  Only username is required. Everything after the email address is the full name, so there can be spaces in it.<p>"
-#~ msgstr "Medlemsfilen skal have een bruger på hver linie og felterne skal være adskilt af mellemrum. Hver linie skal have udformningen:<br> <i>brugernavn emailaddresse fuldt_navn</i>.<br> Kun brugernavnet er påkrævet. Alt efter emailadressen er det fulde navn, så det kan indeholde mellemrum.<p>"
-
-#~ msgid "not shown"
-#~ msgstr "ikke vist"
-
-#~ msgid "Email sent"
-#~ msgstr "Email sendt"
-
-#~ msgid "Email not sent"
-#~ msgstr "Email ikke sendt"
-
-#, fuzzy
-#~ msgid "Edit Text1"
-#~ msgstr "Ret tekst"
-
-#~ msgid "Delete %s"
-#~ msgstr "Slet %s"
-
-#, fuzzy
-#~ msgid "Edit Text2"
-#~ msgstr "Ret tekst"
-
-#, fuzzy
-#~ msgid "Edit Thumbnail2"
-#~ msgstr "Ret ikon"
-
-#, fuzzy
-#~ msgid "Rotate/Flip %s2"
-#~ msgstr "Rotér/vend %s"
-
-#, fuzzy
-#~ msgid "Resize photo"
-#~ msgstr "Ændr billedstørrelse"
-
-#~ msgid "Highlight %s"
-#~ msgstr "Fremhæv %s"
-
-#~ msgid "Move %s"
-#~ msgstr "Flyt %s"
-
-#~ msgid "Show %s"
-#~ msgstr "Vis %s"
-
-#~ msgid "Hide %s"
-#~ msgstr "Skjul %s"
-
-#~ msgid "resize photo"
-#~ msgstr "ændr størrelse på billedet"
-
-#~ msgid "Error %s getting EXIF data"
-#~ msgstr "Fejl %s ved hentning af EXIF-data"
-
-#~ msgid "Wizard"
-#~ msgstr "Statistikside"
-
-#~ msgid "poll properties"
-#~ msgstr "afstemningsegenskaber"
+#~ msgid "Adding Photo to the photo list"
+#~ msgstr "Tilføjer billede til billedlisten"
