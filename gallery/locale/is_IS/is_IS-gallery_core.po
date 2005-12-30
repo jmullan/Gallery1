@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-26 23:35+0100\n"
+"POT-Creation-Date: 2005-12-30 22:35+0100\n"
 "PO-Revision-Date: 2005-05-09 22:07+0100\n"
 "Last-Translator: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
 "Language-Team: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
@@ -40,13 +40,13 @@ msgstr ""
 
 #: ../add_comment.php:29 ../add_photos.php:31 ../administer_startpage.php:31
 #: ../album_permissions.php:33 ../copy_photo.php:29 ../create_user.php:34
-#: ../delete_album.php:31 ../delete_photo.php:38 ../delete_user.php:30
+#: ../delete_album.php:31 ../delete_photo.php:42 ../delete_user.php:30
 #: ../edit_appearance.php:29 ../edit_caption.php:33 ../edit_field.php:31
-#: ../edit_thumb.php:31 ../edit_watermark.php:38 ../extra_fields.php:34
+#: ../edit_thumb.php:31 ../edit_watermark.php:45 ../extra_fields.php:34
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
+#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
 #: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
@@ -74,13 +74,13 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "Sláðu inn athugasemd í kassann fyrir neðan myndina."
 
 #: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
-#: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
+#: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:83
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
-#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
+#: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
 msgstr "Hætta við"
@@ -105,7 +105,7 @@ msgstr "Form"
 msgid "URL"
 msgstr "Vefslóð"
 
-#: ../add_photos.php:79 ../layout/watermarkform.inc:134
+#: ../add_photos.php:79 ../layout/watermarkform.inc:135
 msgid "Other"
 msgstr "Annað"
 
@@ -225,7 +225,7 @@ msgid "Sort"
 msgstr "Raða"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:135
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:128
 #: ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr "Loka glugga"
@@ -289,8 +289,8 @@ msgid "Apply permissions to all sub-albums"
 msgstr "Breyta aðgangsheimildum fyrir öll undiralbúm"
 
 #: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
-#: ../edit_field.php:66 ../edit_watermark.php:124 ../modify_user.php:163
-#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:134
+#: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
+#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:127
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Vista"
@@ -473,7 +473,7 @@ msgstr ""
 msgid "Highlight for Album:"
 msgstr "Forsíðumynd fyrir albúm:"
 
-#: ../albums.php:351 ../view_album.php:796
+#: ../albums.php:351 ../view_album.php:782
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "ekkert albúm valið"
@@ -522,7 +522,7 @@ msgstr[1] "Þetta albúm inniheldur %d myndir."
 msgid "This album has been viewed %s since %s."
 msgstr "Albúmið hefur verið skoðað %s síðan %s."
 
-#: ../albums.php:445 ../view_album.php:830
+#: ../albums.php:445 ../view_album.php:817
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -537,7 +537,7 @@ msgstr "0 sinnum"
 msgid "reset counter"
 msgstr "núllstilla teljara"
 
-#: ../albums.php:496 ../view_album.php:926
+#: ../albums.php:496 ../view_album.php:916
 msgid "Comments available for this item."
 msgstr "Athugasemdir eru til fyrir þessa mynd."
 
@@ -606,7 +606,7 @@ msgid "(click to enlarge)"
 msgstr "(smellið til að stækka)"
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:784
+#: ../layout/commentboxtop.inc:45 ../view_album.php:770
 msgid "hidden"
 msgstr "falin"
 
@@ -644,7 +644,7 @@ msgid "Untitled"
 msgstr "Nafnlaust"
 
 #: ../classes/Album.php:239 ../classes/Album.php:251
-#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:69
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:71
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "Albúm"
@@ -707,7 +707,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1144 ../classes/Album.php:1900
+#: ../classes/Album.php:1144 ../classes/Album.php:1897
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Byrja í albúmi %s, vinn með %d myndir"
@@ -717,7 +717,7 @@ msgstr "Byrja í albúmi %s, vinn með %d myndir"
 msgid "Processing element %d..."
 msgstr "Vinn með mynd %d..."
 
-#: ../classes/Album.php:1162 ../classes/Album.php:1272
+#: ../classes/Album.php:1162 ../classes/Album.php:1269
 msgid "Doing the naming"
 msgstr "Vinn að nafnabreytingu"
 
@@ -733,84 +733,80 @@ msgstr "Breyti stærð/þjöppun upprunalegu myndarinnar"
 msgid "Cannot resize/compress this filetype"
 msgstr "Get ekki breytt stærð/þjöppun þessarar skráargerðar."
 
-#: ../classes/Album.php:1208
-msgid "Adding Photo to the photo list"
-msgstr "Bæti myndum við í myndalista"
-
-#: ../classes/Album.php:1262
+#: ../classes/Album.php:1259
 #, php-format
 msgid "Resizing %s"
 msgstr "Breyti stærð %s"
 
-#: ../classes/Album.php:1329
+#: ../classes/Album.php:1326
 msgid "Photo auto-rotated/transformed"
 msgstr "Sný/varpa mynd sjálfkrafa"
 
-#: ../classes/Album.php:1337
+#: ../classes/Album.php:1334
 msgid "Watermarking Image"
 msgstr "Vatnsmerki mynd"
 
-#: ../classes/Album.php:1494 ../classes/Album.php:1504
+#: ../classes/Album.php:1491 ../classes/Album.php:1501
 #, fuzzy
 msgid "No highlight!"
 msgstr "Engin forsíðumynd"
 
-#: ../classes/Album.php:1699
+#: ../classes/Album.php:1696
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Eftirspurður listi [%d] utan marka [%d]"
 
-#: ../classes/Album.php:1912 ../do_command.php:105
+#: ../classes/Album.php:1909 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Vinn með mynd %d..."
 
-#: ../classes/Album.php:2072
+#: ../classes/Album.php:2078
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2595
+#: ../classes/Album.php:2614
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2758
+#: ../classes/Album.php:2777
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Tölvupósts vandamál: sleppi %s (UID %s) vegna þess að tölvupóstfangið %s er ógilt."
 
-#: ../classes/AlbumItem.php:588
+#: ../classes/AlbumItem.php:601
 msgid "Invalid image"
 msgstr "Ógild mynd"
 
-#: ../classes/AlbumItem.php:606
+#: ../classes/AlbumItem.php:619
 msgid "Generating thumbnail."
 msgstr "Bý til smámynd."
 
-#: ../classes/AlbumItem.php:608
+#: ../classes/AlbumItem.php:621
 #, php-format
 msgid "Saved Dimensions: x:%d y: %d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:644
+#: ../classes/AlbumItem.php:686
 #, fuzzy
 msgid "Generating normal thumbs"
 msgstr "Bý til smámynd."
 
-#: ../classes/AlbumItem.php:662
+#: ../classes/AlbumItem.php:712
 msgid "Unable to make thumbnail"
 msgstr "Gat ekki búið til smámynd"
 
-#: ../classes/AlbumItem.php:673
+#: ../classes/AlbumItem.php:723
 msgid "No preview"
 msgstr "Ekkert sýnishorn"
 
-#: ../classes/AlbumItem.php:699
+#: ../classes/AlbumItem.php:749
 msgid "No thumbnail"
 msgstr "Engin smámynd"
 
-#: ../classes/AlbumItem.php:714
+#: ../classes/AlbumItem.php:764
 msgid "No highlight"
 msgstr "Engin forsíðumynd"
 
@@ -958,8 +954,8 @@ msgstr "Uppfæra núna"
 msgid "Copy to Album!"
 msgstr "Afrita yfir í albúm!"
 
-#: ../copy_photo.php:218 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:144
+#: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
+#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "Ekkert albúm / yfirlit valið"
@@ -1012,22 +1008,21 @@ msgstr "Búa til nýjan notanda hér."
 msgid "Create user"
 msgstr "Búa til notanda"
 
-#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
-#: ../delete_photo.php:90 ../tools/validate_albums.php:128
+#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:86
+#: ../delete_photo.php:94 ../tools/validate_albums.php:128
 #: ../tools/validate_albums.php:136
 msgid "Delete Album"
 msgstr "Eyða albúmi"
 
-#: ../delete_album.php:55 ../delete_photo.php:98
+#: ../delete_album.php:55 ../delete_photo.php:103
 msgid "Do you really want to delete this album?"
 msgstr "Viltu virkilega eyða þessu albúmi?"
 
-#: ../delete_album.php:71 ../delete_photo.php:138 ../delete_user.php:80
-#: ../js/multifile.js.php:103 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:87 ../lib/albumItem.php:88 ../lib/albumItem.php:212
-#: ../lib/albumItem.php:213 ../lib/albumItem.php:219 ../lib/albumItem.php:220
-#: ../manage_users.php:98 ../tools/despam-comments.php:206
-#: ../tools/despam-comments.php:345
+#: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
+#: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
+#: ../lib/albumItem.php:254 ../lib/albumItem.php:255 ../lib/albumItem.php:261
+#: ../lib/albumItem.php:262 ../manage_users.php:98
+#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "Eyða"
 
@@ -1035,12 +1030,12 @@ msgstr "Eyða"
 msgid "no album specified"
 msgstr "ekkert albúm valið"
 
-#: ../delete_photo.php:82 ../delete_photo.php:116
+#: ../delete_photo.php:86 ../delete_photo.php:121
 #: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
 msgid "Delete Photo"
 msgstr "Eyða mynd"
 
-#: ../delete_photo.php:119
+#: ../delete_photo.php:124
 msgid "Do you really want to delete this photo?"
 msgstr "Viltu virkilega eyða þessari mynd?"
 
@@ -1282,7 +1277,7 @@ msgstr ""
 msgid "Your Message:"
 msgstr "Skilaboð:"
 
-#: ../ecard_form.php:260 ../edit_watermark.php:125 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:129 ../watermark_album.php:151
 msgid "Preview"
 msgstr "Sýnishorn"
 
@@ -1366,7 +1361,7 @@ msgstr "Loka"
 msgid "Year must be between 1969 and 2070"
 msgstr "Ártalið verður að vera á milli 1000 og 3000"
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:116 ../lib/albumItem.php:117
+#: ../edit_caption.php:73 ../lib/albumItem.php:104 ../lib/albumItem.php:105
 msgid "Edit Text"
 msgstr "Breyta texta"
 
@@ -1428,19 +1423,19 @@ msgstr "Endursmíða smámynd..."
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Veldu hluta af myndinni sem á að vera smámynd:"
 
-#: ../edit_watermark.php:77 ../watermark_album.php:100
+#: ../edit_watermark.php:81 ../watermark_album.php:100
 msgid "Please select a watermark."
 msgstr "Vinsamlegast veldu vatnsmerki."
 
-#: ../edit_watermark.php:80 ../watermark_album.php:103
+#: ../edit_watermark.php:84 ../watermark_album.php:103
 msgid "Please select an alignment."
 msgstr "Vinsamlegast veljið staðsetningu."
 
-#: ../edit_watermark.php:89 ../edit_watermark.php:93
+#: ../edit_watermark.php:93 ../edit_watermark.php:97
 msgid "Edit Watermark"
 msgstr "Breyta vatnsmerki"
 
-#: ../edit_watermark.php:112
+#: ../edit_watermark.php:116
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
 
@@ -1839,47 +1834,51 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Smelltu á <b>Browse</b> hnappinn til að finna mynd."
 
 #: ../includes/add_photos/add_form.inc:28
+msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:29
+msgid "Its possible to enter a manual caption for each item you upload, or you can gallery set the captions."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:30
 #, fuzzy, php-format
 msgid "Supported file types: %s"
 msgstr "Leyfilegar skráargerðir:"
 
-#: ../includes/add_photos/add_form.inc:32
-#: ../includes/add_photos/add_url.inc:29
-msgid "Tip:"
-msgstr "Ráðlegging:"
-
 #: ../includes/add_photos/add_form.inc:33
-msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
+#, fuzzy
+msgid "You can also upload compressed archive files (zip, rar, ...) full of photos and movies!"
 msgstr "sendu inn þjappaða skrá(zip, rar, ace..) með mörgum myndum og myndböndum í einu lagi!"
 
-#: ../includes/add_photos/add_form.inc:42
+#: ../includes/add_photos/add_form.inc:44
 #, fuzzy
 msgid "Use the Browse button to find the photos on your computer"
 msgstr "2. Notaðu Browse-hnappinn til að finna myndirnar á vélinni hjá þér"
 
-#: ../includes/add_photos/add_form.inc:43
+#: ../includes/add_photos/add_form.inc:45
 #, fuzzy
 msgid "Files:"
 msgstr "Skrár"
 
-#: ../includes/add_photos/add_form.inc:53
+#: ../includes/add_photos/add_form.inc:55
 msgid "Do the same for optional metafiles."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:54
+#: ../includes/add_photos/add_form.inc:56
 msgid "Help"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:59
+#: ../includes/add_photos/add_form.inc:61
 #, fuzzy
 msgid "MetaFiles:"
 msgstr "Skrár"
 
-#: ../includes/add_photos/add_form.inc:67
+#: ../includes/add_photos/add_form.inc:69
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "Ef engin fyrirsögn er gefin, hvað viltu þá setja sem sjálfvalda fyrirsögn?"
 
-#: ../includes/add_photos/add_form.inc:80
+#: ../includes/add_photos/add_form.inc:82
 msgid "Upload Now"
 msgstr "Senda inn núna"
 
@@ -1914,6 +1913,10 @@ msgstr "Senda inn allar myndir sem finnast hér."
 #: ../includes/add_photos/add_url.inc:26
 msgid "The location can either be a URL or a local directory on the server."
 msgstr "Staðsetningin getur annaðhvort verið netslóð (URL) eða mappa á netþjóninum."
+
+#: ../includes/add_photos/add_url.inc:29
+msgid "Tip:"
+msgstr "Ráðlegging:"
 
 #: ../includes/add_photos/add_url.inc:30
 msgid "FTP images to a directory on your server then provide that path here!"
@@ -2328,7 +2331,7 @@ msgstr "Raða eftir mánuði"
 msgid "Filter by day"
 msgstr "Raða eftir degi"
 
-#: ../js/multifile.js.php:140
+#: ../js/multifile.js.php:143
 #, fuzzy
 msgid "Caption:"
 msgstr "Fyrirsögn:"
@@ -2394,11 +2397,11 @@ msgstr "skoða athugasemdir fyrir þetta undiralbúm"
 msgid "Album contains no comments"
 msgstr "Albúmið inniheldur engar athugasemdir"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:313
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:327
 msgid "From:"
 msgstr "Frá:"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:287
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:301
 msgid "delete comment"
 msgstr "eyða athugasemd"
 
@@ -2439,14 +2442,14 @@ msgstr "Næsta mynd"
 msgid "Last Photo"
 msgstr "Aftasta mynd"
 
-#: ../layout/navphoto.inc:54
+#: ../layout/navphoto.inc:56
 #, php-format
 msgid "%d of %d"
 msgstr "%d af %d"
 
-#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:142
-#: ../lib/albumItem.php:143
-msgid "Watermark"
+#: ../layout/watermarkform.inc:84
+#, fuzzy
+msgid "Watermark:"
 msgstr "Vatnsmerkja"
 
 #: ../layout/watermarkform.inc:88
@@ -2465,176 +2468,181 @@ msgid "Could not open directory %s"
 msgstr "Gat ekki opnað möppuna %s"
 
 #: ../layout/watermarkform.inc:105
-msgid "Alignment"
+#, fuzzy
+msgid "Alignment:"
 msgstr "Jöfnun"
 
-#: ../layout/watermarkform.inc:109
+#: ../layout/watermarkform.inc:110
 msgid "Upper&nbsp;Left"
 msgstr "Efra&nbsp;vinstra"
 
-#: ../layout/watermarkform.inc:111
+#: ../layout/watermarkform.inc:112
 msgid "Top"
 msgstr "Efst"
 
-#: ../layout/watermarkform.inc:113
+#: ../layout/watermarkform.inc:114
 msgid "Upper&nbsp;Right"
 msgstr "Efra&nbsp;hægra"
 
-#: ../layout/watermarkform.inc:117
+#: ../layout/watermarkform.inc:118
 msgid "Left"
 msgstr "Vinstri"
 
-#: ../layout/watermarkform.inc:119
+#: ../layout/watermarkform.inc:120
 msgid "Center"
 msgstr "Miðja"
 
-#: ../layout/watermarkform.inc:121
+#: ../layout/watermarkform.inc:122
 msgid "Right"
 msgstr "Hægri"
 
-#: ../layout/watermarkform.inc:125
+#: ../layout/watermarkform.inc:126
 msgid "Lower&nbsp;Left"
 msgstr "Neðra&nbsp;vinstra"
 
-#: ../layout/watermarkform.inc:127
+#: ../layout/watermarkform.inc:128
 msgid "Bottom"
 msgstr "Neðst"
 
-#: ../layout/watermarkform.inc:129
+#: ../layout/watermarkform.inc:130
 msgid "Lower&nbsp;Right"
 msgstr "Neðra&nbsp;hægra"
 
-#: ../layout/watermarkform.inc:142
+#: ../layout/watermarkform.inc:144
 msgid "Preview Size"
 msgstr "Stærð sýnishorns"
 
-#: ../layout/watermarkform.inc:145
+#: ../layout/watermarkform.inc:147
 msgid "Resized"
 msgstr "Breyta stærð"
 
-#: ../layout/watermarkform.inc:148
+#: ../layout/watermarkform.inc:150
 msgid "Full"
 msgstr "Full"
 
-#: ../layout/watermarkform.inc:160
+#: ../layout/watermarkform.inc:162
 msgid "Watermark subalbums"
 msgstr "Vatnsmerkja undiralbúm"
 
-#: ../layout/watermarkform.inc:162
+#: ../layout/watermarkform.inc:164
 msgid "Apply watermark to"
 msgstr "Setja vatnsmerki á"
 
-#: ../layout/watermarkform.inc:163
+#: ../layout/watermarkform.inc:165
 msgid "All photos"
 msgstr "Allar myndir"
 
-#: ../layout/watermarkform.inc:164
+#: ../layout/watermarkform.inc:166
 msgid "Only sized photos"
 msgstr "Bara breyttar myndir"
 
-#: ../layout/watermarkform.inc:165
+#: ../layout/watermarkform.inc:167
 msgid "Only full photos"
 msgstr "Einungis heilar myndir"
 
-#: ../lib/albumItem.php:67 ../rearrange.php:112
+#: ../lib/albumItem.php:78 ../rearrange.php:112
 msgid "Movie"
 msgstr "kvikmynd"
 
-#: ../lib/albumItem.php:71
+#: ../lib/albumItem.php:81
 msgid "Photo"
 msgstr "ljósmynd"
 
-#: ../lib/albumItem.php:97 ../lib/albumItem.php:98
-msgid "Edit Title"
-msgstr "Breyta titli"
-
-#: ../lib/albumItem.php:102 ../lib/albumItem.php:103
-msgid "Edit Description"
-msgstr "Breyta lýsingu"
-
-#: ../lib/albumItem.php:109 ../lib/albumItem.php:110 ../rename_album.php:39
-#: ../rename_album.php:43
-msgid "Rename Album"
-msgstr "Breyta nafni albúms"
-
-#: ../lib/albumItem.php:126 ../lib/albumItem.php:127
+#: ../lib/albumItem.php:109 ../lib/albumItem.php:110
 #, fuzzy
 msgid "Edit Thumbnail"
 msgstr "Breyta smámynd"
 
-#: ../lib/albumItem.php:131 ../lib/albumItem.php:132
+#: ../lib/albumItem.php:114 ../lib/albumItem.php:115
 #, fuzzy, php-format
 msgid "Rotate/Flip"
 msgstr "Snúa/fletta %s"
 
-#: ../lib/albumItem.php:136 ../lib/albumItem.php:137
+#: ../lib/albumItem.php:119 ../lib/albumItem.php:120
 #, fuzzy
 msgid "Resize"
 msgstr "Breyta stærð"
 
-#: ../lib/albumItem.php:149 ../lib/albumItem.php:150
+#: ../lib/albumItem.php:125 ../lib/albumItem.php:126
+msgid "Watermark"
+msgstr "Vatnsmerkja"
+
+#: ../lib/albumItem.php:132 ../lib/albumItem.php:133
 #, fuzzy
 msgid "ImageMap"
 msgstr "Rammi utan um mynd"
 
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
-#, fuzzy
-msgid "Set as highlight"
-msgstr "forsíðumynd"
+#: ../lib/albumItem.php:142 ../lib/albumItem.php:143
+msgid "Edit Title"
+msgstr "Breyta titli"
 
-#: ../lib/albumItem.php:167 ../lib/albumItem.php:168
+#: ../lib/albumItem.php:147 ../lib/albumItem.php:148
+msgid "Edit Description"
+msgstr "Breyta lýsingu"
+
+#: ../lib/albumItem.php:153 ../lib/albumItem.php:154 ../rename_album.php:39
+#: ../rename_album.php:43
+msgid "Rename Album"
+msgstr "Breyta nafni albúms"
+
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
 msgid "Reset Counter"
 msgstr "Endurstilla teljara"
 
-#: ../lib/albumItem.php:173 ../lib/albumItem.php:174 ../lib/albumItem.php:178
-#, fuzzy
-msgid "Move"
-msgstr "kvikmynd"
-
-#: ../lib/albumItem.php:179
-#, fuzzy
-msgid "Reorder"
-msgstr "Endurraða %s"
-
-#: ../lib/albumItem.php:184 ../lib/albumItem.php:185
-#, fuzzy
-msgid "Copy"
-msgstr "Afrita %s"
-
-#: ../lib/albumItem.php:195 ../lib/albumItem.php:196
-#, fuzzy
-msgid "Show"
-msgstr "Snjóa"
-
-#: ../lib/albumItem.php:201 ../lib/albumItem.php:202
-#, fuzzy
-msgid "Hide"
-msgstr "falin"
-
-#: ../lib/albumItem.php:229 ../lib/albumItem.php:230 ../view_album.php:313
+#: ../lib/albumItem.php:171 ../lib/albumItem.php:172 ../view_album.php:313
 msgid "Permissions"
 msgstr "Aðgangsleyfi"
 
-#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../lib/albumItem.php:179 ../lib/albumItem.php:180
 #: ../watermark_album.php:114 ../watermark_album.php:118
 msgid "Watermark Album"
 msgstr "Vatnsmerkja albúm"
 
-#: ../lib/albumItem.php:243 ../lib/albumItem.php:244
+#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
 msgid "View Comments"
 msgstr "Skoða athugasemdir"
 
-#: ../lib/albumItem.php:255 ../lib/albumItem.php:256
+#: ../lib/albumItem.php:196 ../lib/albumItem.php:213 ../lib/albumItem.php:214
 #, fuzzy
-msgid "Photo properties"
-msgstr "upplýsingar myndar"
+msgid "Move"
+msgstr "kvikmynd"
 
-#: ../lib/albumItem.php:264 ../lib/albumItem.php:265 ../photo_owner.php:78
+#: ../lib/albumItem.php:197
+#, fuzzy
+msgid "Reorder"
+msgstr "Endurraða %s"
+
+#: ../lib/albumItem.php:204 ../lib/albumItem.php:205
+#, fuzzy
+msgid "Set as highlight"
+msgstr "forsíðumynd"
+
+#: ../lib/albumItem.php:220 ../lib/albumItem.php:221
+#, fuzzy
+msgid "Copy"
+msgstr "Afrita %s"
+
+#: ../lib/albumItem.php:226 ../lib/albumItem.php:227 ../photo_owner.php:78
 #: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Breyta eiganda"
 
-#: ../lib/albumItem.php:273 ../lib/albumItem.php:274
+#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#, fuzzy
+msgid "Show"
+msgstr "Snjóa"
+
+#: ../lib/albumItem.php:242 ../lib/albumItem.php:243
+#, fuzzy
+msgid "Hide"
+msgstr "falin"
+
+#: ../lib/albumItem.php:274 ../lib/albumItem.php:275
+#, fuzzy
+msgid "Photo properties"
+msgstr "upplýsingar myndar"
+
+#: ../lib/albumItem.php:287 ../lib/albumItem.php:288
 #, php-format
 msgid "%s actions"
 msgstr "%s aðgerðir"
@@ -2998,7 +3006,7 @@ msgstr "Búa til nýtt lykilorð"
 msgid "Enter the Gallery"
 msgstr "Opna Gallery"
 
-#: ../new_password.php:105 ../user_preferences.php:120
+#: ../new_password.php:105 ../user_preferences.php:113
 msgid "You can change your user information here."
 msgstr "Þú getur breytt upplýsingum um þig hér."
 
@@ -3088,7 +3096,7 @@ msgstr "Aftur í %s"
 msgid "Results Breakdown"
 msgstr "Skipting niðurstaðna"
 
-#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:800
+#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:786
 #, php-format
 msgid "Album: %s"
 msgstr "Albúm: %s"
@@ -3419,55 +3427,55 @@ msgstr "Viltu virkilega fjarlægja öll atkvæði í %s?"
 msgid "Remove Votes"
 msgstr "Fjarlægja atkvæði"
 
-#: ../resize_photo.php:39
+#: ../resize_photo.php:42
 msgid "Resize Photo"
 msgstr "Breyta stærð myndar"
 
-#: ../resize_photo.php:46
+#: ../resize_photo.php:49
 msgid "Resizing photos"
 msgstr "Breyti stærð"
 
-#: ../resize_photo.php:61
+#: ../resize_photo.php:64
 msgid "Resizing 1 photo..."
 msgstr "Breyti stærð á einni mynd ..."
 
-#: ../resize_photo.php:73
+#: ../resize_photo.php:76
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "Þetta mun breyta stærð myndanna þinna svo að lengsta hlið hverrar myndar sé jöfn markstærðinni fyrir neðan og skráastærðin verður sem næst stærðinni sem þú valdir."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "Hver er markstærð mynda í millistærð í þessu albúmi?"
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "Hver er markstærð þessarar myndar í millistærð?"
 
-#: ../resize_photo.php:92
+#: ../resize_photo.php:95
 msgid "Target filesize"
 msgstr "Æskileg skráarstærð"
 
-#: ../resize_photo.php:96
+#: ../resize_photo.php:99
 msgid "Maximum side length in pixels"
 msgstr "Efri mörk á lengd hliðar í dílum"
 
-#: ../resize_photo.php:111
+#: ../resize_photo.php:114
 msgid "(manual value)"
 msgstr "(handvalin stærð)"
 
-#: ../resize_photo.php:124
+#: ../resize_photo.php:127
 msgid "Apply to nested albums ?"
 msgstr "Breyta líka undiralbúmum ?"
 
-#: ../resize_photo.php:130
+#: ../resize_photo.php:133
 msgid "Get rid of resized"
 msgstr "Eyða stækkuðum/smækkuðum myndum"
 
-#: ../resize_photo.php:131
+#: ../resize_photo.php:134
 msgid "(Use only the original picture)"
 msgstr "(Nota einungis upprunalega mynd)"
 
-#: ../resize_photo.php:136
+#: ../resize_photo.php:139
 msgid "Change Size"
 msgstr "Breyta stærð"
 
@@ -4362,15 +4370,15 @@ msgstr "Rangt Lykilorð"
 msgid "You must provide your old password to change it."
 msgstr "Þú verður að gefa upp gamla lykilorðið til að fá að breyta því."
 
-#: ../user_preferences.php:113 ../user_preferences.php:117
+#: ../user_preferences.php:111
 msgid "Change User Preferences"
 msgstr "Breyta stillingum notanda"
 
-#: ../user_preferences.php:121
+#: ../user_preferences.php:114
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "Ef þú vilt breyta lykilorðinu þínu verður þú að gefa upp gamla lykilorðið og slá inn nýtt tvisvar."
 
-#: ../user_preferences.php:122
+#: ../user_preferences.php:115
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Þú getur breytt notandanafninu þínu í hvaða samsetningu af bókstöfum og tölustöfum sem er."
 
@@ -4462,7 +4470,7 @@ msgstr ""
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:957 ../util.php:1824
+#: ../util.php:957 ../util.php:1823
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
@@ -4472,42 +4480,42 @@ msgstr ""
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Sleppi %s (%s stuðningur ekki virkur)"
 
-#: ../util.php:1146
+#: ../util.php:1145
 #, php-format
 msgid "Adding %s"
 msgstr "Bæti við %s"
 
-#: ../util.php:1166
+#: ../util.php:1165
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Vantar þig hjálp? Kíktu á %s%s FAQ%s"
 
-#: ../util.php:1171
+#: ../util.php:1170
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Sleppi %s (get ekki unnið úr %s formati)"
 
-#: ../util.php:1284
+#: ../util.php:1283
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Gat ekki opnað log-skrá (%s)"
 
-#: ../util.php:1452
+#: ../util.php:1451
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1468
+#: ../util.php:1467
 #, fuzzy
 msgid "csv result:"
 msgstr "Útkoma atkvæðagreiðslu:"
 
-#: ../util.php:1636
+#: ../util.php:1635
 #, fuzzy, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "Sæki stærð á skrá: %s"
 
-#: ../util.php:1726
+#: ../util.php:1725
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4667,7 +4675,7 @@ msgstr "Til að greiða atkvæði, smellið á %s."
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Þú VERÐUR að smella á %s til þess að atkvæði þitt verði skráð."
 
-#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:932
+#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:922
 msgid "Vote"
 msgstr "Atkvæði"
 
@@ -4692,60 +4700,60 @@ msgstr "Þú getur breytt vali þínu ef þú vilt."
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:789
+#: ../view_album.php:775
 msgid "highlight"
 msgstr "forsíðumynd"
 
-#: ../view_album.php:804
+#: ../view_album.php:790
 msgid "No description"
 msgstr "Engin lýsing"
 
-#: ../view_album.php:812
+#: ../view_album.php:798
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Síðast breytt þann %s."
 
-#: ../view_album.php:815
+#: ../view_album.php:801
 #, fuzzy, php-format
 msgid "Contains: %s"
 msgstr "Inniheldur:"
 
-#: ../view_album.php:815
+#: ../view_album.php:801
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "ein mynd"
 msgstr[1] "%d myndir"
 
-#: ../view_album.php:830
+#: ../view_album.php:817
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "Skoðað:"
 
-#: ../view_album.php:854
+#: ../view_album.php:842
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Skoðað:"
 msgstr[1] "Skoðað:"
 
-#: ../view_album.php:910
+#: ../view_album.php:900
 msgid "Hey! Add some photos."
 msgstr "Heyrðu! Settu inn nokkrar myndir."
 
-#: ../view_album.php:912
+#: ../view_album.php:902
 msgid "This album is empty."
 msgstr "Þetta albúm er tómt."
 
-#: ../view_album.php:957
+#: ../view_album.php:947
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "Senda tölvupóst þegar ein af eftirfarandi aðgerðum eru framkvæmdar í þessu albúmi"
 
-#: ../view_album.php:962
+#: ../view_album.php:952
 msgid "Comments are added"
 msgstr "Athugasemdum er bætt við"
 
-#: ../view_album.php:965
+#: ../view_album.php:955
 msgid "Other changes are made"
 msgstr "Aðrar breytingar eru gerðar"
 
@@ -4828,6 +4836,9 @@ msgstr "Engar myndir til að vatnsmerkja."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Adding Photo to the photo list"
+#~ msgstr "Bæti myndum við í myndalista"
 
 #~ msgid "Show the add vote link"
 #~ msgstr "Sýna tengil til að kjósa"

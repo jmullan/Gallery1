@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-26 23:35+0100\n"
+"POT-Creation-Date: 2005-12-30 22:35+0100\n"
 "PO-Revision-Date: 2005-03-18 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -40,13 +40,13 @@ msgstr ""
 
 #: ../add_comment.php:29 ../add_photos.php:31 ../administer_startpage.php:31
 #: ../album_permissions.php:33 ../copy_photo.php:29 ../create_user.php:34
-#: ../delete_album.php:31 ../delete_photo.php:38 ../delete_user.php:30
+#: ../delete_album.php:31 ../delete_photo.php:42 ../delete_user.php:30
 #: ../edit_appearance.php:29 ../edit_caption.php:33 ../edit_field.php:31
-#: ../edit_thumb.php:31 ../edit_watermark.php:38 ../extra_fields.php:34
+#: ../edit_thumb.php:31 ../edit_watermark.php:45 ../extra_fields.php:34
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:31
+#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
 #: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
@@ -74,13 +74,13 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "이 사진을 위한 당신의 코멘트를 아래의 박스에 입력하세요."
 
 #: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
-#: ../delete_photo.php:139 ../delete_user.php:85 ../download.php:74
+#: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:126 ../includes/add_photos/add_form.inc:81
+#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:83
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
-#: ../reset_votes.php:64 ../resize_photo.php:137 ../sort_album.php:121
+#: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
 msgstr "취소"
@@ -105,7 +105,7 @@ msgstr "양식"
 msgid "URL"
 msgstr "URL"
 
-#: ../add_photos.php:79 ../layout/watermarkform.inc:134
+#: ../add_photos.php:79 ../layout/watermarkform.inc:135
 msgid "Other"
 msgstr "기타"
 
@@ -225,7 +225,7 @@ msgid "Sort"
 msgstr "정렬"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:135
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:128
 #: ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr "창 닫기"
@@ -289,8 +289,8 @@ msgid "Apply permissions to all sub-albums"
 msgstr "모든 하위 앨범에 권한 적용"
 
 #: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
-#: ../edit_field.php:66 ../edit_watermark.php:124 ../modify_user.php:163
-#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:134
+#: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
+#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:127
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "저장"
@@ -469,7 +469,7 @@ msgstr ""
 msgid "Highlight for Album:"
 msgstr "앨범 하이라이트:"
 
-#: ../albums.php:351 ../view_album.php:796
+#: ../albums.php:351 ../view_album.php:782
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "정의된 앨범이 없습니다"
@@ -517,7 +517,7 @@ msgstr[0] "이 앨범은 %d개의 항목을 포함합니다."
 msgid "This album has been viewed %s since %s."
 msgstr "이 앨범은 %2$s부터 %1$s 조회되었습니다."
 
-#: ../albums.php:445 ../view_album.php:830
+#: ../albums.php:445 ../view_album.php:817
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -531,7 +531,7 @@ msgstr "0번"
 msgid "reset counter"
 msgstr "조회수 리셋"
 
-#: ../albums.php:496 ../view_album.php:926
+#: ../albums.php:496 ../view_album.php:916
 msgid "Comments available for this item."
 msgstr "이 아이템에 사용가능한 코멘트"
 
@@ -599,7 +599,7 @@ msgid "(click to enlarge)"
 msgstr "(확대하려면 클릭)"
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:784
+#: ../layout/commentboxtop.inc:45 ../view_album.php:770
 msgid "hidden"
 msgstr "숨김"
 
@@ -636,7 +636,7 @@ msgid "Untitled"
 msgstr "제목 없음"
 
 #: ../classes/Album.php:239 ../classes/Album.php:251
-#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:69
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:71
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr "앨범"
@@ -699,7 +699,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1144 ../classes/Album.php:1900
+#: ../classes/Album.php:1144 ../classes/Album.php:1897
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "앨범 %s 에 입장, %d 사진 처리중"
@@ -709,7 +709,7 @@ msgstr "앨범 %s 에 입장, %d 사진 처리중"
 msgid "Processing element %d..."
 msgstr "이미지 %d 처리중..."
 
-#: ../classes/Album.php:1162 ../classes/Album.php:1272
+#: ../classes/Album.php:1162 ../classes/Album.php:1269
 msgid "Doing the naming"
 msgstr "이름 만들기"
 
@@ -725,84 +725,80 @@ msgstr "원본 이미지 크기조정/압축중"
 msgid "Cannot resize/compress this filetype"
 msgstr "이 파일형식은 크기조정/압축할 수 없습니다."
 
-#: ../classes/Album.php:1208
-msgid "Adding Photo to the photo list"
-msgstr "사진 목록에 사진 추가중"
-
-#: ../classes/Album.php:1262
+#: ../classes/Album.php:1259
 #, php-format
 msgid "Resizing %s"
 msgstr "크기조정중 %s"
 
-#: ../classes/Album.php:1329
+#: ../classes/Album.php:1326
 msgid "Photo auto-rotated/transformed"
 msgstr "사진 회전/변형"
 
-#: ../classes/Album.php:1337
+#: ../classes/Album.php:1334
 msgid "Watermarking Image"
 msgstr "워터마킹 이미지"
 
-#: ../classes/Album.php:1494 ../classes/Album.php:1504
+#: ../classes/Album.php:1491 ../classes/Album.php:1501
 #, fuzzy
 msgid "No highlight!"
 msgstr "하이라이트 없음"
 
-#: ../classes/Album.php:1699
+#: ../classes/Album.php:1696
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "요청된 색인 [%d] 제한 초과 [%d]"
 
-#: ../classes/Album.php:1912 ../do_command.php:105
+#: ../classes/Album.php:1909 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "이미지 %d 처리중..."
 
-#: ../classes/Album.php:2072
+#: ../classes/Album.php:2078
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2595
+#: ../classes/Album.php:2614
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2758
+#: ../classes/Album.php:2777
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "이메일 문제: %s 무시 (UID %s) 이유 : 이메일 주소 %s가 올바르지 않음"
 
-#: ../classes/AlbumItem.php:588
+#: ../classes/AlbumItem.php:601
 msgid "Invalid image"
 msgstr "잘못된 이미지"
 
-#: ../classes/AlbumItem.php:606
+#: ../classes/AlbumItem.php:619
 msgid "Generating thumbnail."
 msgstr "미리보기 생성중."
 
-#: ../classes/AlbumItem.php:608
+#: ../classes/AlbumItem.php:621
 #, php-format
 msgid "Saved Dimensions: x:%d y: %d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:644
+#: ../classes/AlbumItem.php:686
 #, fuzzy
 msgid "Generating normal thumbs"
 msgstr "미리보기 생성중."
 
-#: ../classes/AlbumItem.php:662
+#: ../classes/AlbumItem.php:712
 msgid "Unable to make thumbnail"
 msgstr "미리보기 만들기 불가"
 
-#: ../classes/AlbumItem.php:673
+#: ../classes/AlbumItem.php:723
 msgid "No preview"
 msgstr "미리보기 없음"
 
-#: ../classes/AlbumItem.php:699
+#: ../classes/AlbumItem.php:749
 msgid "No thumbnail"
 msgstr "미리보기 없음"
 
-#: ../classes/AlbumItem.php:714
+#: ../classes/AlbumItem.php:764
 msgid "No highlight"
 msgstr "하이라이트 없음"
 
@@ -950,8 +946,8 @@ msgstr "지금 업그레이드"
 msgid "Copy to Album!"
 msgstr "앨범으로 복사!"
 
-#: ../copy_photo.php:218 ../delete_photo.php:144 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:144
+#: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
+#: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
 #: ../rotate_photo.php:95 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "앨범 없음 / 색인 지정됨"
@@ -1004,22 +1000,21 @@ msgstr "새 회원을 여기서 생성하세요"
 msgid "Create user"
 msgstr "회원 생성"
 
-#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:82
-#: ../delete_photo.php:90 ../tools/validate_albums.php:128
+#: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:86
+#: ../delete_photo.php:94 ../tools/validate_albums.php:128
 #: ../tools/validate_albums.php:136
 msgid "Delete Album"
 msgstr "앨범 삭제"
 
-#: ../delete_album.php:55 ../delete_photo.php:98
+#: ../delete_album.php:55 ../delete_photo.php:103
 msgid "Do you really want to delete this album?"
 msgstr "이 앨범을 정말 삭제하시겠습니까?"
 
-#: ../delete_album.php:71 ../delete_photo.php:138 ../delete_user.php:80
-#: ../js/multifile.js.php:103 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:87 ../lib/albumItem.php:88 ../lib/albumItem.php:212
-#: ../lib/albumItem.php:213 ../lib/albumItem.php:219 ../lib/albumItem.php:220
-#: ../manage_users.php:98 ../tools/despam-comments.php:206
-#: ../tools/despam-comments.php:345
+#: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
+#: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
+#: ../lib/albumItem.php:254 ../lib/albumItem.php:255 ../lib/albumItem.php:261
+#: ../lib/albumItem.php:262 ../manage_users.php:98
+#: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "삭제"
 
@@ -1027,12 +1022,12 @@ msgstr "삭제"
 msgid "no album specified"
 msgstr "정의된 앨범이 없습니다"
 
-#: ../delete_photo.php:82 ../delete_photo.php:116
+#: ../delete_photo.php:86 ../delete_photo.php:121
 #: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
 msgid "Delete Photo"
 msgstr "사진 삭제"
 
-#: ../delete_photo.php:119
+#: ../delete_photo.php:124
 msgid "Do you really want to delete this photo?"
 msgstr "이 사진을 정말 삭제하시겠습니까?"
 
@@ -1268,7 +1263,7 @@ msgstr ""
 msgid "Your Message:"
 msgstr "메세지:"
 
-#: ../ecard_form.php:260 ../edit_watermark.php:125 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:129 ../watermark_album.php:151
 msgid "Preview"
 msgstr "미리보기"
 
@@ -1352,7 +1347,7 @@ msgstr "닫기"
 msgid "Year must be between 1969 and 2070"
 msgstr "년도는 1000과 3000사이이어야 합니다."
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:116 ../lib/albumItem.php:117
+#: ../edit_caption.php:73 ../lib/albumItem.php:104 ../lib/albumItem.php:105
 msgid "Edit Text"
 msgstr "글 수정"
 
@@ -1414,19 +1409,19 @@ msgstr "썸네일 재생성"
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "썸네일을 어떤 형식으로 할 지 고르세요:"
 
-#: ../edit_watermark.php:77 ../watermark_album.php:100
+#: ../edit_watermark.php:81 ../watermark_album.php:100
 msgid "Please select a watermark."
 msgstr "워터마크를 선택하세요."
 
-#: ../edit_watermark.php:80 ../watermark_album.php:103
+#: ../edit_watermark.php:84 ../watermark_album.php:103
 msgid "Please select an alignment."
 msgstr "정렬방식을 선택하세요"
 
-#: ../edit_watermark.php:89 ../edit_watermark.php:93
+#: ../edit_watermark.php:93 ../edit_watermark.php:97
 msgid "Edit Watermark"
 msgstr "워터마크 수정"
 
-#: ../edit_watermark.php:112
+#: ../edit_watermark.php:116
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
 
@@ -1824,47 +1819,51 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "업로드하시려면 사진의 경로를 알기 위해 <b>찾아보기</b>를 클릭하세요."
 
 #: ../includes/add_photos/add_form.inc:28
+msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:29
+msgid "Its possible to enter a manual caption for each item you upload, or you can gallery set the captions."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:30
 #, fuzzy, php-format
 msgid "Supported file types: %s"
 msgstr "지원되는 파일 형식"
 
-#: ../includes/add_photos/add_form.inc:32
-#: ../includes/add_photos/add_url.inc:29
-msgid "Tip:"
-msgstr "팁:"
-
 #: ../includes/add_photos/add_form.inc:33
-msgid "Upload a compressed file (zip, rar, ace ...) full of photos and movies!"
+#, fuzzy
+msgid "You can also upload compressed archive files (zip, rar, ...) full of photos and movies!"
 msgstr "사진과 무비 모두 압축파일(zip, rar, ace ...)로 업로드!"
 
-#: ../includes/add_photos/add_form.inc:42
+#: ../includes/add_photos/add_form.inc:44
 #, fuzzy
 msgid "Use the Browse button to find the photos on your computer"
 msgstr "2. 당신의 컴퓨터에서 사진을 찾기 위해 찾아보기 버튼을 사용하세요"
 
-#: ../includes/add_photos/add_form.inc:43
+#: ../includes/add_photos/add_form.inc:45
 #, fuzzy
 msgid "Files:"
 msgstr "파일"
 
-#: ../includes/add_photos/add_form.inc:53
+#: ../includes/add_photos/add_form.inc:55
 msgid "Do the same for optional metafiles."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:54
+#: ../includes/add_photos/add_form.inc:56
 msgid "Help"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:59
+#: ../includes/add_photos/add_form.inc:61
 #, fuzzy
 msgid "MetaFiles:"
 msgstr "파일"
 
-#: ../includes/add_photos/add_form.inc:67
+#: ../includes/add_photos/add_form.inc:69
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "캡션이 지정되지 않으면 기본적으로 캡션과 같은 것을 어떻게 하시겠습니까?"
 
-#: ../includes/add_photos/add_form.inc:80
+#: ../includes/add_photos/add_form.inc:82
 msgid "Upload Now"
 msgstr "지금 업로드"
 
@@ -1899,6 +1898,10 @@ msgstr "이 경로에서 발견된 이미지들을 업로드."
 #: ../includes/add_photos/add_url.inc:26
 msgid "The location can either be a URL or a local directory on the server."
 msgstr "경로는 서버의 URL이거나 디렉토리가 될 수 있습니다."
+
+#: ../includes/add_photos/add_url.inc:29
+msgid "Tip:"
+msgstr "팁:"
 
 #: ../includes/add_photos/add_url.inc:30
 msgid "FTP images to a directory on your server then provide that path here!"
@@ -2321,7 +2324,7 @@ msgstr "월로 필터"
 msgid "Filter by day"
 msgstr "날짜로 필터"
 
-#: ../js/multifile.js.php:140
+#: ../js/multifile.js.php:143
 #, fuzzy
 msgid "Caption:"
 msgstr "캡션:"
@@ -2387,11 +2390,11 @@ msgstr "이 하위앨범의 코멘트 보기"
 msgid "Album contains no comments"
 msgstr "앨범에 코멘트 없음"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:313
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:327
 msgid "From:"
 msgstr "글쓴이:"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:287
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:301
 msgid "delete comment"
 msgstr "코멘트 삭제"
 
@@ -2432,14 +2435,14 @@ msgstr "다음 사진"
 msgid "Last Photo"
 msgstr "마지막 사진"
 
-#: ../layout/navphoto.inc:54
+#: ../layout/navphoto.inc:56
 #, php-format
 msgid "%d of %d"
 msgstr "%d of %d"
 
-#: ../layout/watermarkform.inc:84 ../lib/albumItem.php:142
-#: ../lib/albumItem.php:143
-msgid "Watermark"
+#: ../layout/watermarkform.inc:84
+#, fuzzy
+msgid "Watermark:"
 msgstr "워터마크"
 
 #: ../layout/watermarkform.inc:88
@@ -2458,176 +2461,181 @@ msgid "Could not open directory %s"
 msgstr "디렉토리 %s 를 열 수 없습니다"
 
 #: ../layout/watermarkform.inc:105
-msgid "Alignment"
+#, fuzzy
+msgid "Alignment:"
 msgstr "정렬"
 
-#: ../layout/watermarkform.inc:109
+#: ../layout/watermarkform.inc:110
 msgid "Upper&nbsp;Left"
 msgstr "왼쪽&nbsp;상단"
 
-#: ../layout/watermarkform.inc:111
+#: ../layout/watermarkform.inc:112
 msgid "Top"
 msgstr "상단"
 
-#: ../layout/watermarkform.inc:113
+#: ../layout/watermarkform.inc:114
 msgid "Upper&nbsp;Right"
 msgstr "오른쪽&nbsp;상단"
 
-#: ../layout/watermarkform.inc:117
+#: ../layout/watermarkform.inc:118
 msgid "Left"
 msgstr "왼쪽"
 
-#: ../layout/watermarkform.inc:119
+#: ../layout/watermarkform.inc:120
 msgid "Center"
 msgstr "중앙"
 
-#: ../layout/watermarkform.inc:121
+#: ../layout/watermarkform.inc:122
 msgid "Right"
 msgstr "오른쪽"
 
-#: ../layout/watermarkform.inc:125
+#: ../layout/watermarkform.inc:126
 msgid "Lower&nbsp;Left"
 msgstr "왼쪽&nbsp;하단"
 
-#: ../layout/watermarkform.inc:127
+#: ../layout/watermarkform.inc:128
 msgid "Bottom"
 msgstr "바닥"
 
-#: ../layout/watermarkform.inc:129
+#: ../layout/watermarkform.inc:130
 msgid "Lower&nbsp;Right"
 msgstr "오른쪽&nbsp;하단"
 
-#: ../layout/watermarkform.inc:142
+#: ../layout/watermarkform.inc:144
 msgid "Preview Size"
 msgstr "미리보기 크기"
 
-#: ../layout/watermarkform.inc:145
+#: ../layout/watermarkform.inc:147
 msgid "Resized"
 msgstr "조정된 크기"
 
-#: ../layout/watermarkform.inc:148
+#: ../layout/watermarkform.inc:150
 msgid "Full"
 msgstr "전체크기"
 
-#: ../layout/watermarkform.inc:160
+#: ../layout/watermarkform.inc:162
 msgid "Watermark subalbums"
 msgstr "하위앨범 워터마크"
 
-#: ../layout/watermarkform.inc:162
+#: ../layout/watermarkform.inc:164
 msgid "Apply watermark to"
 msgstr "워터마크를 어디에 적용할까요"
 
-#: ../layout/watermarkform.inc:163
+#: ../layout/watermarkform.inc:165
 msgid "All photos"
 msgstr "All photos"
 
-#: ../layout/watermarkform.inc:164
+#: ../layout/watermarkform.inc:166
 msgid "Only sized photos"
 msgstr "Only sized photos"
 
-#: ../layout/watermarkform.inc:165
+#: ../layout/watermarkform.inc:167
 msgid "Only full photos"
 msgstr "Only full photos"
 
-#: ../lib/albumItem.php:67 ../rearrange.php:112
+#: ../lib/albumItem.php:78 ../rearrange.php:112
 msgid "Movie"
 msgstr "영화"
 
-#: ../lib/albumItem.php:71
+#: ../lib/albumItem.php:81
 msgid "Photo"
 msgstr "사진"
 
-#: ../lib/albumItem.php:97 ../lib/albumItem.php:98
-msgid "Edit Title"
-msgstr "제목 수정"
-
-#: ../lib/albumItem.php:102 ../lib/albumItem.php:103
-msgid "Edit Description"
-msgstr "설명 수정"
-
-#: ../lib/albumItem.php:109 ../lib/albumItem.php:110 ../rename_album.php:39
-#: ../rename_album.php:43
-msgid "Rename Album"
-msgstr "앨범 이름바꾸기"
-
-#: ../lib/albumItem.php:126 ../lib/albumItem.php:127
+#: ../lib/albumItem.php:109 ../lib/albumItem.php:110
 #, fuzzy
 msgid "Edit Thumbnail"
 msgstr "미리보기 수정"
 
-#: ../lib/albumItem.php:131 ../lib/albumItem.php:132
+#: ../lib/albumItem.php:114 ../lib/albumItem.php:115
 #, fuzzy, php-format
 msgid "Rotate/Flip"
 msgstr "회전/반사 %s"
 
-#: ../lib/albumItem.php:136 ../lib/albumItem.php:137
+#: ../lib/albumItem.php:119 ../lib/albumItem.php:120
 #, fuzzy
 msgid "Resize"
 msgstr "조정된 크기"
 
-#: ../lib/albumItem.php:149 ../lib/albumItem.php:150
+#: ../lib/albumItem.php:125 ../lib/albumItem.php:126
+msgid "Watermark"
+msgstr "워터마크"
+
+#: ../lib/albumItem.php:132 ../lib/albumItem.php:133
 #, fuzzy
 msgid "ImageMap"
 msgstr "이미지 틀"
 
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
-#, fuzzy
-msgid "Set as highlight"
-msgstr "하이라이트"
+#: ../lib/albumItem.php:142 ../lib/albumItem.php:143
+msgid "Edit Title"
+msgstr "제목 수정"
 
-#: ../lib/albumItem.php:167 ../lib/albumItem.php:168
+#: ../lib/albumItem.php:147 ../lib/albumItem.php:148
+msgid "Edit Description"
+msgstr "설명 수정"
+
+#: ../lib/albumItem.php:153 ../lib/albumItem.php:154 ../rename_album.php:39
+#: ../rename_album.php:43
+msgid "Rename Album"
+msgstr "앨범 이름바꾸기"
+
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
 msgid "Reset Counter"
 msgstr "카운터 초기화"
 
-#: ../lib/albumItem.php:173 ../lib/albumItem.php:174 ../lib/albumItem.php:178
-#, fuzzy
-msgid "Move"
-msgstr "영화"
-
-#: ../lib/albumItem.php:179
-#, fuzzy
-msgid "Reorder"
-msgstr "재정렬 %s"
-
-#: ../lib/albumItem.php:184 ../lib/albumItem.php:185
-#, fuzzy
-msgid "Copy"
-msgstr "복사 %s"
-
-#: ../lib/albumItem.php:195 ../lib/albumItem.php:196
-#, fuzzy
-msgid "Show"
-msgstr "보이기 %s"
-
-#: ../lib/albumItem.php:201 ../lib/albumItem.php:202
-#, fuzzy
-msgid "Hide"
-msgstr "숨김"
-
-#: ../lib/albumItem.php:229 ../lib/albumItem.php:230 ../view_album.php:313
+#: ../lib/albumItem.php:171 ../lib/albumItem.php:172 ../view_album.php:313
 msgid "Permissions"
 msgstr "권한"
 
-#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../lib/albumItem.php:179 ../lib/albumItem.php:180
 #: ../watermark_album.php:114 ../watermark_album.php:118
 msgid "Watermark Album"
 msgstr "워터마크 앨범"
 
-#: ../lib/albumItem.php:243 ../lib/albumItem.php:244
+#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
 msgid "View Comments"
 msgstr "코멘트 보기"
 
-#: ../lib/albumItem.php:255 ../lib/albumItem.php:256
+#: ../lib/albumItem.php:196 ../lib/albumItem.php:213 ../lib/albumItem.php:214
 #, fuzzy
-msgid "Photo properties"
-msgstr "사진 등록정보"
+msgid "Move"
+msgstr "영화"
 
-#: ../lib/albumItem.php:264 ../lib/albumItem.php:265 ../photo_owner.php:78
+#: ../lib/albumItem.php:197
+#, fuzzy
+msgid "Reorder"
+msgstr "재정렬 %s"
+
+#: ../lib/albumItem.php:204 ../lib/albumItem.php:205
+#, fuzzy
+msgid "Set as highlight"
+msgstr "하이라이트"
+
+#: ../lib/albumItem.php:220 ../lib/albumItem.php:221
+#, fuzzy
+msgid "Copy"
+msgstr "복사 %s"
+
+#: ../lib/albumItem.php:226 ../lib/albumItem.php:227 ../photo_owner.php:78
 #: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "소유자 변경"
 
-#: ../lib/albumItem.php:273 ../lib/albumItem.php:274
+#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#, fuzzy
+msgid "Show"
+msgstr "보이기 %s"
+
+#: ../lib/albumItem.php:242 ../lib/albumItem.php:243
+#, fuzzy
+msgid "Hide"
+msgstr "숨김"
+
+#: ../lib/albumItem.php:274 ../lib/albumItem.php:275
+#, fuzzy
+msgid "Photo properties"
+msgstr "사진 등록정보"
+
+#: ../lib/albumItem.php:287 ../lib/albumItem.php:288
 #, fuzzy, php-format
 msgid "%s actions"
 msgstr "기능"
@@ -2990,7 +2998,7 @@ msgstr "새 비밀번호 만들기"
 msgid "Enter the Gallery"
 msgstr "갤러리 들어가기"
 
-#: ../new_password.php:105 ../user_preferences.php:120
+#: ../new_password.php:105 ../user_preferences.php:113
 msgid "You can change your user information here."
 msgstr "당신의 정보를 여기에서 바꿀 수 있습니다."
 
@@ -3080,7 +3088,7 @@ msgstr "%s로 돌아가기"
 msgid "Results Breakdown"
 msgstr "결과 분석"
 
-#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:800
+#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:786
 #, php-format
 msgid "Album: %s"
 msgstr "앨범: %s"
@@ -3411,55 +3419,55 @@ msgstr "%s에 있는 모든 투표결과를 삭제하시겠습니까?"
 msgid "Remove Votes"
 msgstr "투표 삭제"
 
-#: ../resize_photo.php:39
+#: ../resize_photo.php:42
 msgid "Resize Photo"
 msgstr "사진 크기조정"
 
-#: ../resize_photo.php:46
+#: ../resize_photo.php:49
 msgid "Resizing photos"
 msgstr "사진 크기조정"
 
-#: ../resize_photo.php:61
+#: ../resize_photo.php:64
 msgid "Resizing 1 photo..."
 msgstr "1개의 사진 크기조정"
 
-#: ../resize_photo.php:73
+#: ../resize_photo.php:76
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "이것은  가장 큰 폭의 사진이 아래의 목표 파일 폭과 파일크기가 선택된 크기에 가깝도록 당신의 사진을 크기조정할 것입니다."
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "이 앨범내의 모든 사진들의 목표 크기가 얼마입니까?"
 
-#: ../resize_photo.php:81
+#: ../resize_photo.php:84
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "이 사진의 조정된 버젼을 위한 대상 크기는 얼마입니까?"
 
-#: ../resize_photo.php:92
+#: ../resize_photo.php:95
 msgid "Target filesize"
 msgstr "목표 파일크기"
 
-#: ../resize_photo.php:96
+#: ../resize_photo.php:99
 msgid "Maximum side length in pixels"
 msgstr "최대 폭(픽셀)"
 
-#: ../resize_photo.php:111
+#: ../resize_photo.php:114
 msgid "(manual value)"
 msgstr "(사용자값)"
 
-#: ../resize_photo.php:124
+#: ../resize_photo.php:127
 msgid "Apply to nested albums ?"
 msgstr "하위 앨범까지 적용?"
 
-#: ../resize_photo.php:130
+#: ../resize_photo.php:133
 msgid "Get rid of resized"
 msgstr "리사이즈 제거"
 
-#: ../resize_photo.php:131
+#: ../resize_photo.php:134
 msgid "(Use only the original picture)"
 msgstr "(원본 사진만 사용)"
 
-#: ../resize_photo.php:136
+#: ../resize_photo.php:139
 msgid "Change Size"
 msgstr "크기변경"
 
@@ -4351,15 +4359,15 @@ msgstr "틀린 비밀번호"
 msgid "You must provide your old password to change it."
 msgstr "비밀번호를 변경하기 위해 반드시 이전 비밀번호를 준비해야 합니다."
 
-#: ../user_preferences.php:113 ../user_preferences.php:117
+#: ../user_preferences.php:111
 msgid "Change User Preferences"
 msgstr "회원 설정 변경"
 
-#: ../user_preferences.php:121
+#: ../user_preferences.php:114
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "암호를 변경하시려면 이전 비밀번호를 입력하고, 새 비밀번호를 두 번 입력하세요."
 
-#: ../user_preferences.php:122
+#: ../user_preferences.php:115
 msgid "You can change your username to any combination of letters and digits."
 msgstr "아이디는 문자와 숫자의 조합으로 된 것으로 변경할 수 있습니다."
 
@@ -4451,7 +4459,7 @@ msgstr ""
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:957 ../util.php:1824
+#: ../util.php:957 ../util.php:1823
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
@@ -4461,42 +4469,42 @@ msgstr ""
 msgid "Skipping %s (%s support not enabled)"
 msgstr "%s 지나침 (%s 지원이 가능하지 않음)"
 
-#: ../util.php:1146
+#: ../util.php:1145
 #, php-format
 msgid "Adding %s"
 msgstr "추가중 %s"
 
-#: ../util.php:1166
+#: ../util.php:1165
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "도움이 필요하세요?  %s%s FAQ%s를 보시기 바랍니다."
 
-#: ../util.php:1171
+#: ../util.php:1170
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "건너뛰기 %s (%s 형식은 취급할 수 없습니다)"
 
-#: ../util.php:1284
+#: ../util.php:1283
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "로그파일을 열 수 없습니다: %s"
 
-#: ../util.php:1452
+#: ../util.php:1451
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1468
+#: ../util.php:1467
 #, fuzzy
 msgid "csv result:"
 msgstr "설문 결과:"
 
-#: ../util.php:1636
+#: ../util.php:1635
 #, fuzzy, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "파일 크기 수집중: %s"
 
-#: ../util.php:1726
+#: ../util.php:1725
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -4655,7 +4663,7 @@ msgstr "이미지에 대해 투표하시려면, %s를 클릭하세요."
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "투표가 기록되려면 반드시 %s를 클릭하셔야 합니다."
 
-#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:932
+#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:922
 msgid "Vote"
 msgstr "투표"
 
@@ -4679,58 +4687,58 @@ msgstr "원하신다면 선택을 변경할 수 있습니다."
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:789
+#: ../view_album.php:775
 msgid "highlight"
 msgstr "하이라이트"
 
-#: ../view_album.php:804
+#: ../view_album.php:790
 msgid "No description"
 msgstr "설명 없음"
 
-#: ../view_album.php:812
+#: ../view_album.php:798
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "최근 변경일 :  %s."
 
-#: ../view_album.php:815
+#: ../view_album.php:801
 #, fuzzy, php-format
 msgid "Contains: %s"
 msgstr "내용: "
 
-#: ../view_album.php:815
+#: ../view_album.php:801
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "%d 항목"
 
-#: ../view_album.php:830
+#: ../view_album.php:817
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "조회:"
 
-#: ../view_album.php:854
+#: ../view_album.php:842
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "조회:"
 
-#: ../view_album.php:910
+#: ../view_album.php:900
 msgid "Hey! Add some photos."
 msgstr "사진을 추가해 주세요."
 
-#: ../view_album.php:912
+#: ../view_album.php:902
 msgid "This album is empty."
 msgstr "이 앨범은 비었습니다."
 
-#: ../view_album.php:957
+#: ../view_album.php:947
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "이 앨범에 다음의 작용중 하나가 이루어질 때 이메일 통보:"
 
-#: ../view_album.php:962
+#: ../view_album.php:952
 msgid "Comments are added"
 msgstr "코멘트 추가됨"
 
-#: ../view_album.php:965
+#: ../view_album.php:955
 msgid "Other changes are made"
 msgstr "다른 변화가 생겼습니다"
 
@@ -4813,6 +4821,9 @@ msgstr "워터마크할 항목 없음."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#~ msgid "Adding Photo to the photo list"
+#~ msgstr "사진 목록에 사진 추가중"
 
 #~ msgid "Show the add vote link"
 #~ msgstr "추가된 투표 링크 보이기"
