@@ -62,9 +62,9 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     }
 
     /* Check for images smaller then target size, don't blow them up. */
-    if ((empty($target) || ($width <= $target && $height <= $target))
-    && (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
-        processingMsg("&nbsp;&nbsp;&nbsp;". _("No resizing required"));
+    if ((empty($target) || ($width <= $target && $height <= $target)) && 
+      (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
+        echo debugMessage("&nbsp;&nbsp;&nbsp;". _("No resizing required"), __FILE__, __LINE__,1);
 
         /* If the file is already smaller than the target filesize, don't
         * create a new sized image.  return 2 indicates that the current .sized.

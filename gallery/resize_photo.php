@@ -24,10 +24,13 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecursive) = getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized', 'resizeRecursive'));
+list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecursive) = 
+  getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized', 'resizeRecursive'));
 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+if (! $gallery->user->canWriteToAlbum($gallery->album) &&
+  ! $gallery->album->getItemOwnerModify() &&
+  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
 	echo _("You are not allowed to perform this action!");
 	exit;
 }

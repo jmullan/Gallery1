@@ -33,15 +33,19 @@
  */
 require_once(dirname(__FILE__) . '/init.php');
 
+list($index, $save, $preview, $previewFull) = 
+	getRequestVar(array('index', 'save', 'preview', 'previewFull'));
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) = 
+	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
+
 // Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    echo _("You are not allowed to perform this action!");
-    exit;
+if (! $gallery->user->canWriteToAlbum($gallery->album) &&
+  ! $gallery->album->getItemOwnerModify() &&
+  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+	echo _("You are not allowed to perform this action!");
+	exit;
 }
 
-list($index, $save, $preview, $previewFull) = getRequestVar(array('index', 'save', 'preview', 'previewFull'));
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
-list($wmSelect) = getRequestVar(array('wmSelect'));
 
 $photo = $gallery->album->getPhoto($index);
 $err = '';

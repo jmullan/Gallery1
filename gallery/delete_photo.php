@@ -28,13 +28,17 @@ list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) =
     getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
 
 if (isset($id)) {
-        $index = $gallery->album->getPhotoIndex($id);
+	$index = $gallery->album->getPhotoIndex($id);
+} 
+if (isset($albumDelete)) {
+	$index = $gallery->album->getAlbumIndex($id);
+	$myAlbum = $gallery->album->getNestedAlbum($index, false);
 }
 
 // Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album) 
-	&& (!$gallery->album->getItemOwnerDelete()
-	|| !$gallery->album->isItemOwner($gallery->user->getUid(), $index))) {
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) && 
+	(!$gallery->album->getItemOwnerDelete() || !$gallery->album->isItemOwner($gallery->user->getUid(), $index)) &&
+	(isset($myAlbum) && !$myAlbum->isOwner($gallery->user->getUid()))) {
 	echo _("You are not allowed to perform this action!");
 	exit;
 }
@@ -47,17 +51,17 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 		/* Track down the corresponding photo index and remove it */
 		$index = 0;
 		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {
-		    $photo = $gallery->album->getPhoto($i);
-		    if ($photo->isAlbum() && !strcmp($photo->getAlbumName(), $id)) {
-			$myAlbum = new Album();
-			$myAlbum->load($id, false);
-			if ($myAlbum->fields['guid'] == $albumDelete) {
-				/* Found it */
-				$index = $i;
-				$albumMatch = 1;
-				break;
+			$photo = $gallery->album->getPhoto($i);
+			if ($photo->isAlbum() && !strcmp($photo->getAlbumName(), $id)) {
+				$myAlbum = new Album();
+				$myAlbum->load($id, false);
+				if ($myAlbum->fields['guid'] == $albumDelete) {
+					/* Found it */
+					$index = $i;
+					$albumMatch = 1;
+					break;
+				}
 			}
-		    }
 		}
 	}
 
@@ -90,15 +94,16 @@ if ($gallery->album && isset($id)) {
 <div class="popuphead"><?php echo _("Delete Album") ?></div>
 <div class="popup" align="center">
 <?php 
-        echo makeFormIntro('delete_photo.php', 
-	    array('name'	=> 'deletephoto_form',
-		  'onsubmit'	=> 'deletephoto_form.confirm.disabled = true;'),
-	    array('type' => 'popup'));
+		echo makeFormIntro('delete_photo.php', array(
+	      'name' => 'deletephoto_form',
+		  'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
+	      array('type' => 'popup')
+	    );
 
-	echo _("Do you really want to delete this album?");
+	      echo _("Do you really want to delete this album?");
 
-	$myAlbum = new Album();
-	$myAlbum->load($id);
+	      $myAlbum = new Album();
+	      $myAlbum->load($id);
 ?>
 
 <p><?php echo $myAlbum->getHighlightTag() ?></p>
@@ -116,11 +121,12 @@ if ($gallery->album && isset($id)) {
 <div class="popuphead"><?php echo _("Delete Photo") ?></div>
 <div class="popup" align="center">
 <?php 
-	echo _("Do you really want to delete this photo?") ;
-        echo makeFormIntro('delete_photo.php', 
-	    array('name'      => 'deletephoto_form',
-		      'onsubmit'  => 'deletephoto_form.confirm.disabled = true;'),
-	    array('type' => 'popup'));
+		echo _("Do you really want to delete this photo?") ;
+		echo makeFormIntro('delete_photo.php', array(
+		  'name' => 'deletephoto_form',
+		  'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
+		  array('type' => 'popup')
+		);
 ?>
 
 <p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
@@ -131,7 +137,7 @@ if ($gallery->album && isset($id)) {
 <?php 
 		if (isset($nextId)) {
 			echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
-		} 
+		}
 	}
 ?>
 <input type="hidden" name="formaction" value="">

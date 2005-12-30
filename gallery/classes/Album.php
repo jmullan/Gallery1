@@ -1197,16 +1197,13 @@ class Album {
         preprocessImage($dir, "$name.$tag");
 
         /* Resize original image if necessary */
-        processingMsg("&nbsp;&nbsp;&nbsp;". _('Resizing/compressing original image') . "\n");
+        echo debugMessage("&nbsp;&nbsp;&nbsp;". _('Resizing/compressing original image'), __FILE__, __LINE__,1);
         if (isImage($tag)) {
             resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
         } else {
             processingMsg(_('Cannot resize/compress this filetype'));
         }
 
-        if (isDebugging()) {
-            processingMsg(_("Adding Photo to the photo list"));
-        }
         /* Add the photo to the photo list */
         $item = new AlbumItem();
         $err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
@@ -1955,16 +1952,25 @@ class Album {
     }
 
     function isItemOwner($uid, $index) {
-        global $gallery;
-        $nobody = $gallery->userDB->getNobody();
-        $nobodyUid = $nobody->getUid();
-        $everybody = $gallery->userDB->getEverybody();
-        $everybodyUid = $everybody->getUid();
+    	global $gallery;
 
-        if ($uid == $nobodyUid || $uid == $everybodyUid) {
-            return false;
-        }
-        return ($uid == $this->getItemOwner($index));
+    	if($uid == $this->getItemOwner($index)) {
+    		return true;
+    	}
+    	
+    	$everybody = $gallery->userDB->getEverybody();
+    	$everybodyUid = $everybody->getUid();
+    	if($this->getItemOwner($index) == $everybodyUid) {
+    		return true;
+    	}
+    	
+    	$nobody = $gallery->userDB->getNobody();
+    	$nobodyUid = $nobody->getUid();
+    	if ($uid == $nobodyUid) {
+    		return false;
+    	}
+
+    	return false;
     }
 
     function isAlbum($index) {
@@ -2406,7 +2412,19 @@ class Album {
 
     // -------------
     function isOwner($uid) {
-        return (!strcmp($uid, $this->fields["owner"]));
+    	global $gallery;
+       
+    	if($uid == $this->fields["owner"]) {
+    		return true;
+    	}
+    	
+    	$everybody = $gallery->userDB->getEverybody();
+    	$everybodyUid = $everybody->getUid();
+    	if($this->fields["owner"] == $everybodyUid) {
+    		return true;
+    	}
+    	
+    	return false;
     }
 
     function setOwner($uid) {
@@ -2457,14 +2475,13 @@ class Album {
     }
 
     function setItemOwnerById($id, $owner) {
-        $index=$this->getPhotoIndex($id);
+        $index = $this->getPhotoIndex($id);
         $this->setItemOwner($index, $owner);
     }
 
     function getItemOwnerDisplay() {
         if (isset($this->fields["item_owner_display"])) {
-            if (strcmp($this->fields["item_owner_display"], "yes"))
-            {
+            if (strcmp($this->fields["item_owner_display"], "yes")) {
                 return false;
             }
         }
@@ -2472,21 +2489,23 @@ class Album {
     }
 
     function getItemOwnerModify() {
-        if (isset($this->fields["item_owner_modify"])) {
-            if ($this->fields["item_owner_modify"] == 'yes') {
-                return false;
-            }
-        }
-        return true;
+    	if (isset($this->fields["item_owner_modify"]) &&
+    	  $this->fields["item_owner_modify"] == 'yes') {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     function getItemOwnerDelete() {
-        if (isset($this->fields["item_owner_delete"])) {
-            if ($this->fields["item_owner_delete"] == 'yes') {
-                return false;
-            }
-        }
-        return true;
+    	if (isset($this->fields["item_owner_delete"]) &&
+    	  $this->fields["item_owner_delete"] == 'yes') {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     function getAddToBeginning() {
@@ -2642,9 +2661,9 @@ class Album {
     function getIndexByVotingId($vote_id) {
         global $gallery;
         if (ereg("^item\.(.*)$", $vote_id, $matches)) {
-            $index=$this->getPhotoIndex($matches[1]);
+            $index = $this->getPhotoIndex($matches[1]);
         } else if (ereg("^album\.(.*)$", $vote_id, $matches)) {
-            $index=$this->getAlbumIndex($matches[1]);
+            $index = $this->getAlbumIndex($matches[1]);
             if ($index > 0) {
                 $myAlbum = new Album();
                 $myAlbum->load($matches[1]);

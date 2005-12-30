@@ -254,6 +254,10 @@ class Abstract_User {
             return true;
         }
 
+        if ($album->isOwner($this->uid)) {
+            return true;
+        }
+        
         return false;
     }
 
