@@ -1123,6 +1123,9 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 
             if (empty($caption)) {
                 switch ($setCaption) {
+                    case 0:
+			$caption = '';
+		    break;
                     case 1:
                     default:
                         /* Use filename */
@@ -1137,10 +1140,6 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
                         $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
                     break;
                 }
-            }
-
-            if (!$extra_fields) {
-                $extra_fields = array();
             }
 
             echo "\n<h3>******". sprintf(_("Adding %s"), $name) ."*****</h3>";
