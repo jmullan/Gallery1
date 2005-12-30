@@ -107,19 +107,12 @@ $allowChange["admin"] = true;
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
 doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Change User Preferences") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Change User Preferences") ?></div>
-<div class="popup" align="center">
-<?php 
-	echo _("You can change your user information here.");
-	echo _("If you want to change your password, you must provide your old password and then enter the new one twice.");
-	echo _("You can change your username to any combination of letters and digits.");
+
+printPopupStart(_("Change User Preferences"), _("Change User Preferences"), langLeft());
+
+echo _("You can change your user information here.");
+echo _("If you want to change your password, you must provide your old password and then enter the new one twice.");
+echo _("You can change your username to any combination of letters and digits.");
 ?>
 
 <br>
@@ -130,9 +123,10 @@ doctype();
 <br>
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 <br>
-
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()">
+<div align="center">
+	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()">
+</div>
 </form>
 </div>
 <script language="javascript1.2" type="text/JavaScript">

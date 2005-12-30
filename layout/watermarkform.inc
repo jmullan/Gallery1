@@ -81,7 +81,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
     closedir($wmDir);
     
     if(sizeof($options) > 0) {
-        echo "<b>" . _("Watermark") . ":</b>&nbsp;";
+        echo "<b>". _("Watermark:") ."</b>&nbsp;";
         
         array_sort_by_fields($options, 'text', 'desc', false);
         if ($watermarkForm["allowNone"]) {
@@ -102,7 +102,8 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 ?>
 </p>
 
-<p><b><?php echo _("Alignment") ?>:</b></p>
+<b><?php echo _("Alignment:") ?></b>
+<div align="<?php echo langLeft(); ?>">
 <table border="1" width="100%">
 <tr>
  <td><input <?php if ($wmAlign==1) echo " checked"; ?> type="radio" name="wmAlign" value="1">
@@ -114,9 +115,9 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
 </tr>
 <tr>
  <td><input <?php if ($wmAlign==4) echo " checked"; ?> type="radio" name="wmAlign" value="4">
-     <?php echo _("Left") ?></td>
+ 	<?php echo _("Left") ?></td>
  <td><input <?php if ($wmAlign==5) echo " checked"; ?> type="radio" name="wmAlign" value="5">
-     <?php echo _("Center") ?></td>
+ 	<?php echo _("Center") ?></td>
  <td><input <?php if ($wmAlign==6) echo " checked"; ?> type="radio" name="wmAlign" value="6">
      <?php echo _("Right") ?></td>
 </tr>
@@ -137,6 +138,7 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
   </td>
 </tr>
 </table>
+</div>
 <br>
 <?php if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) { ?>
 <b><?php echo _("Preview Size") ?>:</b><br>

@@ -1142,7 +1142,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
                 }
             }
 
-            echo "\n<h3>******". sprintf(_("Adding %s"), $name) ."*****</h3>";
+            echo "\n<p><b>******". sprintf(_("Adding %s"), $name) ."*****<b></p>";
             
             /* After all the preprocessing, NOW ADD THE element
              * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,

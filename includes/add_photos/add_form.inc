@@ -25,14 +25,16 @@
 include_once(dirname(dirname(dirname(__FILE__))) . '/js/multifile.js.php');
 
 echo "\n<p>". _("Click the <b>Browse</b> button to locate a photo to upload.");
+echo '<br>'. _("After you added a file, you can add more files on the sane way, just use the browse button as often as you want.");
+echo '<br>'. _("Its possible to enter a manual caption for each item you upload, or you can gallery set the captions.");
 echo '<br>'. sprintf(_("Supported file types: %s"),join(", ", acceptableFormatList()));
-echo '</p>';
 
 if ($gallery->app->feature["zip"] || $gallery->app->rar) {
-    echo '<p><b>'. _("Tip:") . '</b> ';
-    echo _("Upload a compressed file (zip, rar, ace ...) full of photos and movies!");
-    echo "</p>\n";
+    echo "\n<br><br>". _("You can also upload compressed archive files (zip, rar, ...) full of photos and movies!");
+
 }
+
+echo "</p>\n";
 
 echo makeFormIntro("save_photos.php",
 	array("name" => "upload_form","enctype" => "multipart/form-data"),

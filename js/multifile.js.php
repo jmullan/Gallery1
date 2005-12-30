@@ -92,6 +92,9 @@ function MultiSelector(list_target, max, fieldname, withCaption){
 
         var line = document.createElement('div');
         line.style.textAlign='right';
+        if(! (this.count % 2)) {
+        	line.style.backgroundColor='white';
+        }
         var filenameCaptionDiv = document.createElement('div');
         filenameCaptionDiv.style.textAlign='left';
 
@@ -137,13 +140,13 @@ function MultiSelector(list_target, max, fieldname, withCaption){
 
         if(withCaption) {
             // Set row value
-            filenameCaptionDiv.innerHTML = element.value +'<br><?php echo _("Caption:"); ?> ';
+            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'</b><br><?php echo _("Caption:"); ?> ';
             // Add caption
             filenameCaptionDiv.appendChild(caption);
         }
         else {
             // Set row value
-            filenameCaptionDiv.innerHTML = element.value;
+            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'</b>';
         }
         
         // Add button
