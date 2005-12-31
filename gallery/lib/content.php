@@ -309,28 +309,28 @@ function createTreeArray($albumName,$depth = 0) {
 }
 
 function printChildren($tree, $depth = 0) {
-    if ($depth == 0 && !empty($tree)) {
-	echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
-    }
-        
-    foreach($tree as $nr => $content) {
-	echo "\n<table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0px; padding: 0px; margin-". langLeft() .":". 20 * $depth ."px\">";
-	echo "<tr><td>";
-	if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
-	    echo gImage('icons/tree/join-'. langRight(). '.gif', '');
+	if ($depth == 0 && !empty($tree)) {
+		echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
 	}
-	else {
-	    echo gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
+
+	foreach($tree as $nr => $content) {
+		echo "\n<table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0px; padding: 0px; margin-". langLeft() .":". 20 * $depth ."px\">";
+		echo "<tr><td>";
+		if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
+			echo gImage('icons/tree/join-'. langRight(). '.gif', '');
+		}
+		else {
+			echo gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
+		}
+		echo "</td><td style=\"vertical-align:middle; padding-". langLeft().": 1px;\">";
+		echo '<a href="'. $content['albumUrl'] .'">';
+		echo $content['titel'] .' ';
+		echo $content['clicksText'] .'</a>';
+		echo "</td></tr></table>";
+		if(!empty($content['subTree'])) {
+			printChildren($content['subTree'], $depth+1);
+		}
 	}
-	echo "</td><td style=\"vertical-align:middle; padding-". langLeft().": 1px;\">";
-	echo '<a href="'. $content['albumName'] .'">';
-	echo $content['titel'] .' ';
-	echo $content['clicksText'] .'</a>';
-	echo "</td></tr></table>";
-	if(!empty($content['subTree'])) {
-	    printChildren($content['subTree'], $depth+1);
-	}
-    }
 }
 
 function printMicroChildren2($tree, $depth = 0) {
