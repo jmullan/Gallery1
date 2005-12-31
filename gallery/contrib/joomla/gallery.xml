@@ -17,44 +17,45 @@
  | along with this program; if not, write to the Free Software
  | Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  |
- | Gallery Component for Mambo Open Source CMS v4.5 or newer
+ | Gallery Component for Joomla! Open Source CMS v1.02 or newer
  | Original author: Beckett Madden-Woods <beckett@beckettmw.com>
+ | Last author: Kai Tomalik <kai@gallery-addons.com>
  |
  | $Id$
 -->
-<mosinstall type="component" version="1.02">
+<mosinstall type="component" version="1.05">
 	<name>Gallery</name>
-	<creationDate>October, 10th 2005</creationDate>
+	<creationDate>December, 31st 2005</creationDate>
 	<author>Gallery Development Team</author>
 	<copyright>This component is released under the Gallery license (GNU General Public License)</copyright>
 	<authorEmail>gallery-devel@lists.sourceforge.net</authorEmail>
 	<authorUrl>gallery.sourceforge.net</authorUrl>
 	<version>1.5.2</version>
-	<description>Gallery Component For Joomla 1.02 or newer</description>
+	<description>Gallery Component For Joomla! 1.02 or newer</description>
 	<files>
 		<filename>gallery.php</filename>
 	</files>
 	<install>
 		<queries>
-			<query id="1">CREATE TABLE IF NOT EXISTS `jos_gallery`
+			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery`
 			           ( `field` varchar(128) PRIMARY KEY,
 				     `value` text default '')
 			</query>
-			<query id="2">INSERT INTO `jos_gallery` (`field`, `value`)
+			<query id="2">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('path',          '')
 			</query>
-			<query id="3">INSERT INTO `jos_gallery` (`field`, `value`)
+			<query id="3">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('minAuthType',   '20')
 			</query>
-			<query id="4">INSERT INTO `jos_gallery` (`field`, `value`)
+			<query id="4">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('hideRightSide', '1')
 			</query>
 		</queries>
 	</install>
 	<uninstall>
 		<queries>
-			<query id="1">DELETE FROM `jos_gallery`;</query>
-			<query id="2">DROP TABLE `jos_gallery`;</query>
+			<query id="1">DELETE FROM `#__gallery`;</query>
+			<query id="2">DROP TABLE `#__gallery`;</query>
 		</queries>
 	</uninstall>
 	<administration>
