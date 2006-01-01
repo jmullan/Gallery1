@@ -117,7 +117,7 @@ if (!empty($searchstring)) {
         $matchSummary = eregi("$searchstring", $searchSummary);
         $matchName = eregi("$searchstring", $searchName);
 
-        if ($matchTitle || $matchDescription || $matchSummary | $searchName) {
+        if ($matchTitle || $matchDescription || $matchSummary | $matchName) {
             $searchTitle = preg_replace($searchExpr, $searchRepl, $searchTitle); // cause search word to be bolded
 
             $searchDescription = preg_replace($searchExpr, $searchRepl, $searchDescription); // cause search word to be bolded
@@ -279,7 +279,7 @@ echo '<hr width="100%">';
 includeHtmlWrap("gallery.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-?> 
+?>
 </body>
 </html>
 <?php } ?>
