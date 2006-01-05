@@ -153,11 +153,9 @@ foreach ($constants as $key => $val) {
 				$val["value"] = $gallery->session->configForm->$key;
 	
 			}
-			if (get_magic_quotes_gpc()) {
+			if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 				if (is_array($val["value"])) {
-					if (function_exists('array_map')) { 
-						$val["value"] = array_map("stripslashes", $val["value"]);
-					}
+					$val["value"] = array_map("stripslashes", $val["value"]);
 				} else {
 					$val["value"] = stripslashes($val["value"]);
 				}
