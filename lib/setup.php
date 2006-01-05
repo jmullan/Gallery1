@@ -544,20 +544,17 @@ function check_graphics($location = '', $graphtool = '') {
 		}
 		
 		if (empty($dir)) {
-			if (isset($optional[$bin])) {
-				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
-			}
-			else {
-				$missing_critical[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
-			}
-			$missing++;
+		    if (isset($optional[$bin])) {
+			$warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
+		    }
+		else {
+			$missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
+		    }
+		$missing++;
 		}
 
-		if (!empty($dir) && inOpenBasedir($dir)) {
-		    if (!fs_is_executable("$dir/$bin")) {
-				$warn[$bin] = sprintf(_("%s is not executable!"),
-					"<i>$bin</i> "); 
-			}
+		if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
+		    $warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> "); 
 		}
 	}
 	
@@ -614,32 +611,29 @@ function check_graphics_im($location = '', $graphtool = '') {
 	}
 
 	foreach ($imagick as $bin) {
-		if (!empty($location)) {
-			$dir = locateDir($bin, $location, true);
-		}
-		elseif (isset($gallery->app->ImPath)) {
-			$dir = locateDir($bin, $gallery->app->ImPath, true);
+	    if (!empty($location)) {
+		$dir = locateDir($bin, $location, true);
+	    }
+	    elseif (isset($gallery->app->ImPath)) {
+		$dir = locateDir($bin, $gallery->app->ImPath, true);
+	    }
+	    else {
+		$dir = locateDir($bin);
+	    }
+
+	    if (empty($dir)) {
+		if (isset($optional[$bin])) {
+		    $warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
 		}
 		else {
-			$dir = locateDir($bin);
+		    $missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
 		}
+		$missing++;
+	    }
 
-		if (empty($dir)) {
-			if (isset($optional[$bin])) {
-				$warn[$bin] = sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
-			}
-			else {
-				$missing_critical[$bin] = sprintf(_("Can't find %s!"), "<i>$bin</i>");
-			}
-			$missing++;
-		}
-
-		if (!empty($dir) && inOpenBasedir($dir)) {
-		    if (!fs_is_executable("$dir/$bin")) {
-				$warn[$bin] = sprintf(_("%s is not executable!"),
-					"<i>$bin</i> "); 
-			}
-		}
+	    if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
+		$warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> ");
+	    }
 	}
 	
 	if ($missing == count($imagick)) {

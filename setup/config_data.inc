@@ -323,6 +323,7 @@ $constants =  array_merge(array(
 		'type' => 'text',
 		'attrs' => array('size' => 50),
 		'required' => true,
+		'noStripSlash' => true
 	),
 	'tmpDir' => array(
 		'prompt' => gTranslate('config',"Temporary directory"),
@@ -335,6 +336,7 @@ $constants =  array_merge(array(
 		'type' => 'text',
 		'attrs' => array('size' => 50),
 		'required' => true,
+		'noStripSlash' => true,
 	),
 	'photoAlbumURL' => array(
 		'prompt' => "Gallery URL",
@@ -358,13 +360,13 @@ $constants =  array_merge(array(
 		'attrs' => array('size' => 50),
 		'required' => true,
 	),
-	
 	'movieThumbnail' => array(
 		'prompt' => gTranslate('config',"Thumbnail image"),
 		'desc' => sprintf(gTranslate('config','The filesystem path to the thumbnail image to show for movies. E.g. %s'), '<i>/home/foo/thumbnail.jpg</i>'),
 		'value' => GALLERY_BASE . '/images/movie.thumb.jpg',
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'mirrorSites' => array(
 		'prompt' => gTranslate('config',"Mirror sites"),
@@ -416,6 +418,7 @@ $constants =  array_merge(array(
 		'type' => 'text',
 		'verify-func-takes-graphics-type' => true,
 		'required' => true,
+		'noStripSlash' => true,
 	),
 	'subgroup_imagemagick_end' => array (
 		'type' => 'subgroup_end',
@@ -444,6 +447,7 @@ $constants =  array_merge(array(
 		'type' => 'text',
 		'verify-func-takes-graphics-type' => true,
 		'required' => true,
+		'noStripSlash' => true,
 		),
 	'pnmtojpeg' => array(
 		'prompt' => gTranslate('config',"PNM to JPEG converter"),
@@ -522,7 +526,8 @@ $constants =  array_merge(array(
 		'desc' => gTranslate('config',"If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"),
 		'attrs' => array('size' => 80),
 		'type' => 'text',
-		'value' => ''
+		'value' => '',
+		'noStripSlash' => true,
 	),
 	'group_embedded_end' => array (
 		'type' => 'group_end'
@@ -623,7 +628,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'unzip' => array(
 		'prompt' => "Unzip",
@@ -635,7 +641,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'zip' => array(
 		'prompt' => "zip",
@@ -647,7 +654,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'rar' => array(
 		'prompt' => "rar",
@@ -659,7 +667,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'subgroup_archives_end' => array (
 		'type' => 'subgroup_end',
@@ -679,7 +688,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'exiftags' => array(
 		'prompt' => "exiftags EXIF Parser",
@@ -691,7 +701,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
+		'noStripSlash' => true,
 	),
 	'subgroup_exif_end' => array (
 		'type' => 'subgroup_end',
@@ -711,7 +722,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'filename' => 1,
 		'type' => 'text',
-		'attrs' => array ('size' => 50)
+		'attrs' => array ('size' => 50),
+		'noStripSlash' => true,
 	),
 	'subgroup_tools_other_end' => array (
 		'type' => 'subgroup_end',

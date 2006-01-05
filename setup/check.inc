@@ -79,6 +79,7 @@ $configTestStatus = array(
 	)
 );
 
+$warning = 0;
 echo '<table class="inner" width="100%" cellspacing="0">';
 foreach ($checklist as $short => $check) {
     if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
@@ -89,7 +90,6 @@ foreach ($checklist as $short => $check) {
     list($success, $fail, $warn) = $result;
     $status = getCheckStatus($result, $check);
     $usedStatus[$status] = $status;
-    $warning = 0;
     
     // new Line //
     echo "\n<tr style=\"margin-top: 2px\">";

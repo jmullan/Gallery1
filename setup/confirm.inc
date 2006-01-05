@@ -139,7 +139,7 @@ foreach ($constants as $key => $val) {
 		$real = '';
         }
 
-	if (get_magic_quotes_gpc()) {
+	if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 		$real = array_stripslashes($real);
 	}
 
@@ -414,7 +414,7 @@ foreach ($defaults as $key => $val) {
 		$gallery->session->configData .= error_missing($defaults[$key]['prompt'], $key);
 		$error++;
 	} elseif (isset($gallery->session->configForm->$key)) {
-		if (get_magic_quotes_gpc()) {
+		if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 			$gallery->session->configForm->$key = array_stripslashes($gallery->session->configForm->$key);
 		}
 		// Protect quote characters to avoid screwing up HTML forms
