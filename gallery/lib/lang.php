@@ -176,7 +176,8 @@ function getEnvLang() {
 		case 'mambo':
 		case 'joomla':
 			$envLang = $mosConfig_lang;
-			if (! getLanguageAlias($envLang)) {
+			/* if Alias and Lang are equal, then now Alias was defined */
+			if (getLanguageAlias($envLang) == $envLang) {
 				if (isset($mosConfig_locale)){
 					$envLang = $mosConfig_locale;
 				}
@@ -345,7 +346,7 @@ function initLanguage($sendHeader=true) {
     }
 
     /* if an alias for the (new or Env) language is given, use it*/
-    getLanguageAlias($gallery->language) ;
+    $gallery->language = getLanguageAlias($gallery->language) ;
 
     /**
 	 *  Fall back to Default Language if :
@@ -586,19 +587,18 @@ function gallery_languages() {
 
 /**
  * This function tries to find an alias for an given "language".
- * Given language is set to Alias if found.
+ * Alias or the original input is returned.
  * @param	string	$language
- * @return 	boolean true if Alias was found and set.
+ * @return 	string  If alias was found that, else the input
  * @author	Jens Tkotz
  */
-function getLanguageAlias(& $language) {
+function getLanguageAlias($language) {
     $nls = getNLS();
 
     if (isset($nls['alias'][$language])) {
-	   $language = $nls['alias'][$language];
-	   return true;
+	   return $nls['alias'][$language];
     } else {
-        return false;
+        return $language;
     }
 }
 
@@ -869,7 +869,6 @@ function langLeft() {
 	return 'right';
     }
 }
-
 
 /**
  * @return string
