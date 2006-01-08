@@ -57,7 +57,6 @@ function getPropertyDefault($property, $album = false, $global = false) {
     return $retProperty;
 } 
 
-
 function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
 	global $gallery;
 

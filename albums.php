@@ -412,7 +412,6 @@ for ($i = $start; $i <= $end; $i++) {
 	}
 
 	echo "\n<br><span class=\"fineprint\">";
-
 	
 	/*
 	* Created / Last Changed

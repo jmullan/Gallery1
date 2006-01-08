@@ -94,11 +94,9 @@ foreach ($modes as $m => $mt) {
 		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
 	}
 }
-?>
-	</ul>
-<?php
-include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
-?>
+echo "\n\t</ul>";
+
+include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");?>
 	</div>
 </div>
 </body>

@@ -28,9 +28,10 @@ textarea:focus, input:focus, select:focus {
     background-color: #FFFFDA;
 }
 
-.commentbox	{ border-width:1px; border-style:solid; border-color: #000000;
-		  padding:2px;
-		}
+.commentbox	{ 
+    border-width:1px; border-style:solid; border-color: #000000;
+    padding:2px;
+}
 		
 .commentboxhead	{ background-color: #FCFCF3; padding:2px;
 		  border-bottom-width:1px; border-bottom-style: solid; border-color: #000000;
@@ -154,6 +155,7 @@ a.error, a.error:link, a.error:visited, a.error:active {
 	{ 
 	  font-size: 12px; 
 	}
+	
 .navtableborderbegin{
 	border:1px solid #000000;
 }
@@ -218,27 +220,25 @@ input, select, option, textarea
 	  font-size: 10px; 
 	  font-weight: bold;
 	}
-
-.popupbody  /* controls the background of popup. */
-	{
-	  margin: 25px;
-	  background-color: #808080;
-	  font-size: 12px;
+	
+/* controls the background of popup. */
+.popupbody {
+    margin: 5px;
+    background-color: #808080;
+    font-size: 12px;
  }
 
-.popuphead
-	{ 
-	  font-size: 16px; font-weight:bold;
-	  text-align: center;
-	  background-color: #FCFCF3;
-	  -Moz-Border-Radius: 20px;
-	  padding: 5px; margin: 10px;
-	  border-width: 1px; border-color: black; border-style:solid;
-	}
+.popuphead { 
+    font-size: 16px; font-weight: bold;
+    text-align: center;
+    background-color: #FCFCF3;
+    -Moz-Border-Radius: 20px;
+    padding: 3px; margin: 10px;
+    border: 1px solid black;
+}
 
 .popup /* controls the main text and message body */
  {
-   padding: 5px;
  }
 
 .popupform /* controls form textarea */
@@ -332,4 +332,8 @@ input, select, option, textarea
 .noLink {
     font-size: 10px;
 //	padding: 3px;
+}
+
+.debugmessage {
+    font-size: 10px;
 }

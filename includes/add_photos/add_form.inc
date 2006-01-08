@@ -29,9 +29,16 @@ echo '<br>'. _("After you added a file, you can add more files on the sane way, 
 echo '<br>'. _("Its possible to enter a manual caption for each item you upload, or you can gallery set the captions.");
 echo '<br>'. sprintf(_("Supported file types: %s"),join(", ", acceptableFormatList()));
 
-if ($gallery->app->feature["zip"] || $gallery->app->rar) {
-    echo "\n<br><br>". _("You can also upload compressed archive files (zip, rar, ...) full of photos and movies!");
-
+if (isset($gallery->app->feature["zip"]) || isset($gallery->app->rar)) {
+    $ftype = '';
+    if(isset($gallery->app->feature["zip"])) {
+        $ftype .= "zip";
+    }
+    if(isset($gallery->app->rar)) {
+        $ftype .= ($ftype) ? _(" or " ) : '';
+        $ftype .= ("rar");
+    }
+    echo "\n<br><br>". sprintf(_("You can also upload compressed archive files (%s) full of photos and movies!"), $ftype);
 }
 
 echo "</p>\n";
