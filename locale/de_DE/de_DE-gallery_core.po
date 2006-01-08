@@ -17,7 +17,7 @@
 #
 # $Id$
 #
-# @version	1.5.2-cvs
+# @version	1.5.2-RC2
 # @package	Languagepack
 # @subpackage	German
 # @author	Jens Tkotz <jens AT peino DOT de>, 2003-2005
@@ -26,10 +26,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.2-cvs\n"
+"Project-Id-Version: Gallery 1.5.2-RC2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-08 21:26+0100\n"
-"PO-Revision-Date: 2005-12-16 11:38+0100\n"
+"POT-Creation-Date: 2006-01-08 21:39+0100\n"
+"PO-Revision-Date: 2006-01-08 21:35+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -1798,11 +1798,11 @@ msgstr "Klicken Sie den <b>Durchsuchen</b>-Button, um jeweils eine Datei f&uuml;
 
 #: ../includes/add_photos/add_form.inc:28
 msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
-msgstr ""
+msgstr "Nachdem Sie eine Datei hinzugefügt haben, können Sie auf gleichem Wege weitere hinzufügen. Benutzen Sie hierzu einfach wieder den Durchsuchen Button."
 
 #: ../includes/add_photos/add_form.inc:29
 msgid "Its possible to enter a manual caption for each item you upload, or you can gallery set the captions."
-msgstr ""
+msgstr "Es ist möglich für jedes Bild eine Überschrift manuell einzugeben, Sie können dies aber auch von Gallery erledigen lassen."
 
 #: ../includes/add_photos/add_form.inc:30
 #, php-format
@@ -1814,9 +1814,9 @@ msgid " or "
 msgstr " oder "
 
 #: ../includes/add_photos/add_form.inc:41
-#, fuzzy, php-format
+#, php-format
 msgid "You can also upload compressed archive files (%s) full of photos and movies!"
-msgstr "Laden Sie eine Archivdatei (zip, rar, ace ...) mit Bildern und Filmen hoch!"
+msgstr "Sie können ausserdem Archivdateien (%s) mit Bildern und Filmen hochladen!"
 
 #: ../includes/add_photos/add_form.inc:51
 msgid "Use the Browse button to find the photos on your computer"
@@ -2408,9 +2408,8 @@ msgid "%d of %d"
 msgstr "%d von %d"
 
 #: ../layout/watermarkform.inc:84
-#, fuzzy
 msgid "Watermark:"
-msgstr "Wasserzeichen"
+msgstr "Wasserzeichen:"
 
 #: ../layout/watermarkform.inc:88
 msgid "* No Watermark *"
@@ -2427,9 +2426,8 @@ msgid "Could not open directory %s"
 msgstr "Konnte das Verzeichnis %s nicht &ouml;ffnen."
 
 #: ../layout/watermarkform.inc:105
-#, fuzzy
 msgid "Alignment:"
-msgstr "Ausrichtung"
+msgstr "Ausrichtung:"
 
 #: ../layout/watermarkform.inc:110
 msgid "Upper&nbsp;Left"
@@ -4394,14 +4392,14 @@ msgid "extension of file %s is %s"
 msgstr "Erweiterung der Datei %s is %s"
 
 #: ../util.php:903
-#, fuzzy, php-format
+#, php-format
 msgid "Extracting: %s with %s"
-msgstr "Erzeuge Zipdatei mit %s"
+msgstr "Extrahiere: %s mit %s"
 
 #: ../util.php:921
 #, php-format
 msgid "%s with extension %s is not an supported archive."
-msgstr ""
+msgstr "%s mit der Dateiendung %s ist kein unterstützes Archivformat."
 
 #: ../util.php:935
 msgid "No Support for creating Zips"
@@ -4418,14 +4416,14 @@ msgid "Your tempfolder is not writeable! Please check permissions of this dir: %
 msgstr "Ihr 'temp' Ordner ist nicht beschreibbar! Bitte prüfen Sie die Berechtigungen für dieses Verzeichnus: %s"
 
 #: ../util.php:988
-#, fuzzy, php-format
+#, php-format
 msgid "Processing file: %s"
-msgstr "Verarbeite Bild %d ..."
+msgstr "Verarbeite Bild %s"
 
 #: ../util.php:991
-#, fuzzy, php-format
+#, php-format
 msgid "Processing file '%s' as archive"
-msgstr "Verarbeite %s als lokales Verzeichnis."
+msgstr "Verarbeite '%s' als Archiv"
 
 #: ../util.php:994
 #, php-format
@@ -4434,25 +4432,25 @@ msgstr "%s wird &uuml;bersprungen (%s wird von Ihrer Installation nicht unterst&
 
 #: ../util.php:1003
 msgid "Getting archive content Filenames"
-msgstr ""
+msgstr "Hole Dateinames des Archivinhaltes."
 
 #: ../util.php:1021
 msgid "No Metadata"
-msgstr ""
+msgstr "Keine Metadaten"
 
 #: ../util.php:1025
 msgid "Processing files in archive"
-msgstr ""
+msgstr "Verarbeite Dateien des Archives"
 
 #: ../util.php:1031
-#, fuzzy, php-format
+#, php-format
 msgid "%d. %s"
-msgstr "%s, %s"
+msgstr "%d. %s"
 
 #: ../util.php:1034
-#, fuzzy, php-format
+#, php-format
 msgid "Could not extract %s"
-msgstr "Konnte das Verzeichnis %s nicht &ouml;ffnen."
+msgstr "Konnte %s nicht entpacken"
 
 #: ../util.php:1154
 #, php-format
@@ -4787,6 +4785,3 @@ msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Wasserzeichen auf animierten gif werden derzeit noch nicht unterstützt und werden daher ihr Bild verunstalten und 'unanimieren'"
-
-#~ msgid "Adding Photo to the photo list"
-#~ msgstr "Füge Bild der Photoliste hinzu"
