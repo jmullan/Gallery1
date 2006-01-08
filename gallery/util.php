@@ -191,11 +191,11 @@ function exec_wrapper($cmd) {
     list($results, $status) = exec_internal($cmd);
 
     if ($status == $gallery->app->expectedExecStatus) {
-	return true;
+        return true;
     } else {
-	if ($results) {
-	    echo gallery_error(join("<br>", $results));
-	}
+        if ($results) {
+            echo '<hr><p>'. gallery_error("") . join("<br>", $results) .'</p>';
+        }
         return false;
     }
 }
@@ -796,10 +796,10 @@ function getExtension($filename) {
 }
 
 function acceptableArchiveList() {
-	return array('zip', 'rar', 'cab', 'arj', 'lzh', 'tar', 'gz', 'bz2', 'ace', 'uue', 'jar', 'z');
+	return array('zip', 'rar');
 }
 
-function AcceptableArchive($ext) {
+function acceptableArchive($ext) {
 	if (in_array($ext, acceptableArchiveList())) {
 		return true;
 	} else {
@@ -812,50 +812,40 @@ function AcceptableArchive($ext) {
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
  * @param  string   $ext
- * @return mixed
+ * @return mixed    $tool   String containting the tool that handles $ext, FALSE when unsupported.
  * @author Jens Tkotz <jens@peino.de>
  */
 function canDecompressArchive($ext) {
 	global $gallery;
-
+    $tool = false;
+    
 	$ext = strtolower($ext);
 	switch ($ext) {
-		case 'zip':
-			if ($gallery->app->feature["zip"] == 1) {
-				return 'zip';
-			}
+	    case 'zip':
+	        if ($gallery->app->feature["zip"] == 1) {
+	            $tool = 'zip';
+	        }
+	        break;
 
-		case 'rar':
-		case 'cab':
-		case 'arj':
-		case 'lzh':
-		case 'tar':
-		case 'gz' :
-		case 'bz2':
-		case 'ace':
-		case 'uue':
-		case 'jar':
-		case 'z':
-			if (!empty($gallery->app->rar)) {
-				return 'rar';
-			}
-			
-			/* No suitable tool found */
-			return false;
-		break;
-
-		/* Extension not supported */
-		default:
-			return false;
-		break;
+	    case 'rar':
+	        if (!empty($gallery->app->rar)) {
+	            $tool = 'rar';
+	        }
+        break;
+        
+	    default:
+	        /* Extension not supported, $tool stays fals */
+	        break;
 	}
+	return $tool;
 }
+
 /** 
  * This function checks wether an archive can be created via Gallery
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
  * @param   string $ext
- * @return  mixed
+ * @return  mixed   The tool which can create an archive with type $ext, or false.
  * @author  Jens Tkotz <jens@peino.de>
  */
 function canCreateArchive($ext = 'zip') {
@@ -872,10 +862,6 @@ function canCreateArchive($ext = 'zip') {
 	    /* No suitable tool found */
 	    return false;
 	}
-
-/*
- maybe later: 'tar', 'gz', 'bz2', 'ace'
-*/
 }
 
 function getArchiveFileNames($archive, $ext) {
@@ -884,22 +870,25 @@ function getArchiveFileNames($archive, $ext) {
 	$cmd = '';
 	$files = array();
 	
-	switch (canDecompressArchive($ext)) {
-		case 'zip':
-			$cmd = fs_import_filename($gallery->app->zipinfo, 1) ." -1 ". fs_import_filename($archive, 1);
-		break;
+	if ($tool = canDecompressArchive($ext)) {
+	    $filename = fs_import_filename($archive);
+	    switch ($tool) {
+	        case 'zip':
+	            $cmd = fs_import_filename($gallery->app->zipinfo) ." -1 ". $filename;
+	            break;
 
-		case 'rar':
-			$cmd = fs_import_filename($gallery->app->rar, 1) ." lb ". fs_import_filename($archive, 1);
-		break;
+	        case 'rar':
+	            $cmd = fs_import_filename($gallery->app->rar) ." vb ". $filename;
+	            break;
+	    }
+
+	    list($files, $status) = exec_internal($cmd);
+
+	    if (!empty($files)) {
+	        sort($files);
+	    }
 	}
 	
-	list($files, $status) = exec_internal($cmd);
-
-	if (!empty($files)) {
-		sort($files);
-	}
-
 	return $files;
 }
 
@@ -910,21 +899,27 @@ function extractFileFromArchive($archive, $ext, $file) {
 	$cmd_pic_path = str_replace("[", "\[", $file);
 	$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
 	
-	$tool = canDecompressArchive($ext);
-	switch($tool) {
-		case 'zip':
-			$cmd = fs_import_filename($gallery->app->unzip, 1) . " -j -o " .
-				fs_import_filename($archive, 1) . ' ' . fs_import_filename($cmd_pic_path) .
-				' -d ' . fs_import_filename($gallery->app->tmpDir, 1);
-		break;
-		
-		case 'rar':
-			$cmd = fs_import_filename($gallery->app->rar, 1) ." x ".
-				fs_import_filename($archive, 1) .' -x '. fs_import_filename($cmd_pic_path) .' '.
-				fs_import_filename($gallery->app->tmpDir, 1);
-		break;
+	if($tool = canDecompressArchive($ext)) {
+	    echo debugMessage(sprintf(_("Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
+	    switch($tool) {
+	        case 'zip':
+	            $cmd = fs_import_filename($gallery->app->unzip) . " -j -o " .
+	            fs_import_filename($archive) . ' ' . fs_import_filename($cmd_pic_path) .
+	            ' -d ' . fs_import_filename($gallery->app->tmpDir);
+	            break;
+
+	        case 'rar':
+	            $cmd = fs_import_filename($gallery->app->rar) ." e ".
+	            fs_import_filename($archive) .' -x '. fs_import_filename($cmd_pic_path) .' '.
+	            fs_import_filename($gallery->app->tmpDir);
+	            break;
+	    }
+	    
+	    return exec_wrapper($cmd);
 	}
-	exec_wrapper($cmd);
+	else {
+	    echo debugMessage(sprintf(_("%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
+	}
 }
 
 function createZip($folderName = '', $zipName = '', $deleteSource = true) {
@@ -989,12 +984,15 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
     global $gallery;
     global $temp_files;
-
+    
+    echo debugMessage(sprintf(_("Processing file: %s"), $file), __FILE__, __LINE__,3);
     /* Begin of code for the case the uploaded file is an archive */
     if (acceptableArchive($ext)) {
+        processingMsg(sprintf(_("Processing file '%s' as archive"), $name));
         $tool = canDecompressArchive($ext);
-        if (empty($tool)) {
+        if (!$tool) {
             processingMsg(sprintf(_("Skipping %s (%s support not enabled)"), $name, $ext));
+            echo "<br>";
             return;
         }
 
@@ -1002,29 +1000,40 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
          * Figure out what files inside the archive we can handle.
          * Put all Filenames into $files.
         */
+        echo debugMessage(_("Getting archive content Filenames"), __FILE__, __LINE__);
         $files = getArchiveFileNames($file, $ext);
 
         /* Get meta data */
-
         $image_info = array();
         foreach ($files as $pic_path) {
             $pic = basename($pic_path);
-            $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-            $tag = strtolower($tag);
-            if (!strcmp($tag, "csv")) {
+            $tag = getExtension($pic);
+            if ($tag == 'csv') {
                 extractFileFromArchive($file, $ext, $pic_path);
                 $image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
             }
         }
 
-        debugMessage(printMetaData($image_info), __FILE__, __LINE__);
+        if(!empty($image_info)) {
+            debugMessage(printMetaData($image_info), __FILE__, __LINE__);
+        }
+        else {
+            echo debugMessage(_("No Metadata"), __FILE__, __LINE__);
+        }
 
         /* Now process all valid files we found */
+        echo debugMessage(_("Processing files in archive"), __FILE__, __LINE__);
+        $loop = 0;
         foreach ($files as $pic_path) {
+            $loop++;
             $pic = basename($pic_path);
             $tag = getExtension($pic);
+            echo debugMessage(sprintf(_("%d. %s"), $loop, $pic_path), __FILE__, __LINE__);
             if (acceptableFormat($tag) || acceptableArchive($tag)) {
-                extractFileFromArchive($file, $ext, $pic_path);
+                if(!extractFileFromArchive($file, $ext, $pic_path)) {
+                    echo '<br>'. gallery_error(sprintf(_("Could not extract %s"), $pic_path));
+                    continue;
+                }
 
                 /* Now process the metadates. */
                 $extra_fields = array();
@@ -1142,7 +1151,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
                 }
             }
 
-            echo "\n<p><b>******". sprintf(_("Adding %s"), $name) ."*****<b></p>";
+            echo "\n<p><b>******". sprintf(_("Adding %s"), $name) ."*****</b></p>";
             
             /* After all the preprocessing, NOW ADD THE element
              * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,

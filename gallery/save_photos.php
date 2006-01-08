@@ -42,9 +42,9 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 if (!empty($_FILES['userfile']['name'])) {
     $file_count = 0;
     foreach ($_FILES['userfile']['name'] as $file) {
-	if ($file) {
-	    $file_count++;
-	}
+        if ($file) {
+            $file_count++;
+        }
     }
 }
 
@@ -88,7 +88,7 @@ if (!empty($urls)) {
 	                if ($file != "." && $file != "..") {
 	                    $tag = pathinfo($file);
 	                    $tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
-	                    if (acceptableFormat($tag)) {
+	                    if (acceptableFormat($tag) || canDecompressArchive($tag)) {
 	                        /* Add to userfile */
 	                        if (substr($url,-1) == "/") {
 	                            $image_tags[] = fs_export_filename($url . $file);
@@ -271,7 +271,6 @@ if (isset($meta)) {
 	}
 }
 
-
 if(!empty($_FILES['metafile']['name'][0])) {
     echo debugMessage("metadata found", __FILE__, __LINE__);
     while (isset($_FILES['metafile']['tmp_name']) && sizeof($_FILES['metafile']['tmp_name'])) {
@@ -363,6 +362,7 @@ if (empty($image_count) && $upload_started) {
 	print _("No images uploaded!");
 }
 ?>
+<br>
 <form>
 <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
 </form>

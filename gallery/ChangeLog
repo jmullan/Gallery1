@@ -1,3 +1,22 @@
+2006-01-08 Jens Tkotz <jens@peino.de> 1.5.2-RC2-cvs-b14
+
+ * FIX: rar cmdline tool can only handle RAR.
+	- NOT handled: 'cab', 'arj', 'lzh', 'tar', 'gz', 'bz2', 'ace', 'uue', 'jar', 'z'
+	- Adjust text in upload form.
+
+ * Fix: Supported archives were not showed in selected box for url upload.
+
+ * Fix: AcceptableArchive() should be acceptableArchive()
+
+ * Fix: Dont extract content of rar archives with full path.
+        The results in problems when content files have spaces.
+
+ * Fix: Use of gTranslate in layout/adminAlbumCommands.inc
+
+ * Change: Added a lot more debugmessages (sorry translators)
+
+ * Change: Some layout regarding to upload process.
+
 2006-01-06 Jens Tkotz <jens@peino.de> 1.5.2-RC2-cvs-b13
 
  * Fix: getLanguageAlias() was buggy,

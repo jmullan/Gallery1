@@ -126,9 +126,10 @@ function fs_is_executable($filename) {
 	return is_executable($filename);
 }
 
-function fs_import_filename($filename, $for_exec=1) {
+function fs_import_filename($filename, $for_exec = true) {
 	if ($for_exec) {
-		$filename = escapeshellarg ($filename); // Might as well use the function PHP provides!
+	    echo debugMessage("fs_import_filename",__FILE__,__LINE__);
+		$filename = escapeshellarg($filename); // Might as well use the function PHP provides!
 	}
 	
 	return $filename;
