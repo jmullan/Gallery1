@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2005-12-30 22:35+0100\n"
+"POT-Creation-Date: 2006-01-08 21:17+0100\n"
 "PO-Revision-Date: 2005-09-14 10:00+0100\n"
 "Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -77,7 +77,7 @@ msgstr "Skriv in din kommentar till denna bild i textrutan nedan."
 #: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:83
+#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
@@ -499,44 +499,44 @@ msgstr "%s så att webbadressen inte är så allmänt omfattande!"
 msgid "Rename this album"
 msgstr "Döp om detta album"
 
-#: ../albums.php:423
+#: ../albums.php:422
 #, fuzzy, php-format
 msgid "Created on %s, last changed on %s."
 msgstr "Senaste ändring %s."
 
-#: ../albums.php:426
+#: ../albums.php:425
 #, php-format
 msgid "Last changed on %s."
 msgstr "Senaste ändring %s."
 
-#: ../albums.php:435
+#: ../albums.php:434
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Detta album innehåller ett objekt."
 msgstr[1] "Detta album innehåller %d objekt."
 
-#: ../albums.php:444
+#: ../albums.php:443
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Detta album har visats %s sedan %s."
 
-#: ../albums.php:445 ../view_album.php:817
+#: ../albums.php:444 ../view_album.php:817
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "1 gång"
 msgstr[1] "%d gånger"
 
-#: ../albums.php:445
+#: ../albums.php:444
 msgid "0 times"
 msgstr "0 gånger"
 
-#: ../albums.php:451
+#: ../albums.php:450
 msgid "reset counter"
 msgstr "Nollställ räknare"
 
-#: ../albums.php:496 ../view_album.php:916
+#: ../albums.php:495 ../view_album.php:916
 msgid "Comments available for this item."
 msgstr "Kommentarer finns tillgängliga för detta objekt."
 
@@ -1830,39 +1830,43 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Filtyper som stöds"
 
-#: ../includes/add_photos/add_form.inc:33
-#, fuzzy
-msgid "You can also upload compressed archive files (zip, rar, ...) full of photos and movies!"
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:562
+msgid " or "
+msgstr " eller "
+
+#: ../includes/add_photos/add_form.inc:41
+#, fuzzy, php-format
+msgid "You can also upload compressed archive files (%s) full of photos and movies!"
 msgstr "Ladda upp en komprimerad fil (zip, rar, ace ...) full med foton och/eller filmer!"
 
-#: ../includes/add_photos/add_form.inc:44
+#: ../includes/add_photos/add_form.inc:51
 #, fuzzy
 msgid "Use the Browse button to find the photos on your computer"
 msgstr "2. Använd Bläddra-knappen för att hitta fotona på din dator"
 
-#: ../includes/add_photos/add_form.inc:45
+#: ../includes/add_photos/add_form.inc:52
 #, fuzzy
 msgid "Files:"
 msgstr "Filer"
 
-#: ../includes/add_photos/add_form.inc:55
+#: ../includes/add_photos/add_form.inc:62
 msgid "Do the same for optional metafiles."
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:56
+#: ../includes/add_photos/add_form.inc:63
 msgid "Help"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:61
+#: ../includes/add_photos/add_form.inc:68
 #, fuzzy
 msgid "MetaFiles:"
 msgstr "Filer"
 
-#: ../includes/add_photos/add_form.inc:69
+#: ../includes/add_photos/add_form.inc:76
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "Om ingen objektrubrik anges vad vill du att förvalda objektrubriker skall vara?"
 
-#: ../includes/add_photos/add_form.inc:82
+#: ../includes/add_photos/add_form.inc:89
 msgid "Upload Now"
 msgstr "Ladda upp nu"
 
@@ -3516,11 +3520,11 @@ msgstr "Hittade %d bilder"
 msgid "Processing status..."
 msgstr "Bearbetningsstatus..."
 
-#: ../save_photos.php:333
+#: ../save_photos.php:332
 msgid "Extrafields:"
 msgstr ""
 
-#: ../save_photos.php:363
+#: ../save_photos.php:362
 msgid "No images uploaded!"
 msgstr "Inga bilder upladdade!"
 
@@ -4420,61 +4424,103 @@ msgstr "Kunde inte låsa (%s)!"
 msgid "extension of file %s is %s"
 msgstr "Hämtar storlek på fil: %s"
 
-#: ../util.php:940
+#: ../util.php:903
+#, fuzzy, php-format
+msgid "Extracting: %s with %s"
+msgstr "Verkställer: %s"
+
+#: ../util.php:921
+#, php-format
+msgid "%s with extension %s is not an supported archive."
+msgstr ""
+
+#: ../util.php:935
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:943
+#: ../util.php:938
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:957 ../util.php:1823
+#: ../util.php:952 ../util.php:1832
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:997
+#: ../util.php:988
+#, fuzzy, php-format
+msgid "Processing file: %s"
+msgstr "Bearbetar bild %d..."
+
+#: ../util.php:991
+#, fuzzy, php-format
+msgid "Processing file '%s' as archive"
+msgstr "Bearbetar %s som en lokal katalog."
+
+#: ../util.php:994
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Utesluter %s (%s stöd är inte aktiverat)"
 
-#: ../util.php:1145
+#: ../util.php:1003
+msgid "Getting archive content Filenames"
+msgstr ""
+
+#: ../util.php:1021
+msgid "No Metadata"
+msgstr ""
+
+#: ../util.php:1025
+msgid "Processing files in archive"
+msgstr ""
+
+#: ../util.php:1031
+#, fuzzy, php-format
+msgid "%d. %s"
+msgstr "%s, %s"
+
+#: ../util.php:1034
+#, fuzzy, php-format
+msgid "Could not extract %s"
+msgstr "Kunde inte öppna katalog %s"
+
+#: ../util.php:1154
 #, php-format
 msgid "Adding %s"
 msgstr "Lägger till %s"
 
-#: ../util.php:1165
+#: ../util.php:1174
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behöver du hjälp?  Titta i  %s%s Frågor och Svar%s"
 
-#: ../util.php:1170
+#: ../util.php:1179
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Utesluter %s (kan inte hantera %s format)"
 
-#: ../util.php:1283
+#: ../util.php:1292
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:1451
+#: ../util.php:1460
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1467
+#: ../util.php:1476
 #, fuzzy
 msgid "csv result:"
 msgstr "Omröstningsresultat:"
 
-#: ../util.php:1635
+#: ../util.php:1644
 #, fuzzy, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "Hämtar storlek på fil: %s"
 
-#: ../util.php:1725
+#: ../util.php:1734
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s har skickat ett E-C@rd till dig."
@@ -4619,10 +4665,6 @@ msgstr "Se fullständigt röstningsresultat"
 #: ../view_album.php:560
 msgid ", "
 msgstr ", "
-
-#: ../view_album.php:562
-msgid " or "
-msgstr " eller "
 
 #: ../view_album.php:566
 #, php-format
