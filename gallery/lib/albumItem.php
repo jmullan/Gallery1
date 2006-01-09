@@ -70,7 +70,7 @@ $javascriptSet = true;
     if ($gallery->album->isAlbum($i)) {
     	$label = _("Album");
     	if(!isset($myAlbum)) {
-    		$myAlbum = $gallery->album->getNestedAlbum($i, false);
+    		$myAlbum = $gallery->album->getNestedAlbum($i, true);
     	}
     	$isAlbum = true;
     }
@@ -199,7 +199,7 @@ $javascriptSet = true;
     	);
     	
     	/* ----- Item is photo, or subalbum with highlight ----- */
-    	if ($isPhoto || (isset($myAlbum) &&$myAlbum->hasHighlight())) {
+    	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
     		$options[] = array(
 	    		'pure_text' => _("Set as highlight"),
 	    		'text' => getIconText('viewmag1.gif', _("Set as highlight"), $override, $withIcons),

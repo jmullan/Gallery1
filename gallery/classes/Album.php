@@ -176,6 +176,7 @@ class Album {
             return $photo->lastCommentDate();
         }
     }
+    
     function lastCommentDate($verbose = "yes") {
         global $gallery;
         if (!$gallery->user->canViewComments($this)) {
@@ -562,8 +563,6 @@ class Album {
         }
         return $changed;
     }
-
-
 
     function shufflePhotos() {
         $this->updateSerial = 1;
@@ -1461,6 +1460,7 @@ class Album {
             return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"), $size, $attrs);
         }
     }
+    
     function getThumbnailTagById($id, $size=0, $attrs="") {
         return $this->getThumbnailTag($this->getPhotoIndex($id), $size, $attrs);
     }
@@ -1745,6 +1745,7 @@ class Album {
         $photo = $this->getPhoto($index);
         return $photo->getRank();
     }
+    
     function setRank($index, $rank) {
         $photo = &$this->getPhoto($index);
         $photo->setRank($rank);
@@ -2191,6 +2192,7 @@ class Album {
             }
         }
     }
+    
     function setNestedPollProperties() {
         for ($i=1; $i <= $this->numPhotos(1); $i++) {
             if ($this->isAlbum($i)) {
@@ -2225,7 +2227,6 @@ class Album {
             }
         }
     }
-
 
     function getPerm($permName, $uid) {
         if (isset($this->fields["perms"][$permName])) {
@@ -2435,6 +2436,7 @@ class Album {
         global $gallery;
         return $gallery->userDB->getUserByUid($this->fields["owner"]);
     }
+    
     function getExtraFields($all = true) {
         if ($all) {
             return $this->fields["extra_fields"];
@@ -2544,7 +2546,6 @@ class Album {
         }
     }
 
-
     /**
      * Voting type can either be Rank (first, second, third) or critique
      * (1 point, 2 point 3 point).  The difference is with rank there
@@ -2638,6 +2639,7 @@ class Album {
             return "Do you like this? (1=love it)";
         }
     }
+    
     /* Returns true if votes can be moved with images between $this and $album */
     function pollsCompatible($album) {
         if ($this->fields["poll_type"] != "critique") {
