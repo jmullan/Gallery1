@@ -58,7 +58,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     }
 
     if ($quality == 0) {
-	$quality = $gallery->app->jpegImageQuality;
+        $quality = $gallery->app->jpegImageQuality;
     }
 
     /* Check for images smaller then target size, don't blow them up. */
@@ -163,9 +163,10 @@ function netpbm_decompose_image($input, $format) {
         $getOverlay = netPbm("tifftopnm", "-alphaout=$alpha $input > $overlay");
         break;
     }
-    list($results, $status) = exec_internal($getOverlay);
+    
+    exec_wrapper($getOverlay);
     if (isset($getAlpha)) {
-        list($results, $status) = exec_internal($getAlpha);
+        exec_wrapper($getAlpha);
     }
     return array($overlay, $alpha);
 }
@@ -199,13 +200,13 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
             break;
 
             case 'NetPBM':
-                if (eregi("\.png$",$wmName, $regs)) {
+                if (eregi('\.png$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
                     $tmpOverlay = 1;
-                } elseif (eregi("\.tiff?$",$wmName, $regs)) {
+                } elseif (eregi('\.tiff?$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
                     $tmpOverlay = 1;
-                } elseif (eregi("\.gif$",$wmName, $regs)) {
+                } elseif (eregi('\.gif$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
                     $tmpOverlay = 1;
                 } else {
@@ -587,11 +588,11 @@ function valid_image($file) {
 function toPnmCmd($file) {
 	global $gallery;
 
-	if (eregi("\.png\$", $file)) {
+	if (eregi('\.png\$', $file)) {
 		$cmd = "pngtopnm";
-	} elseif (eregi("\.jpe?g\$", $file)) {
+	} elseif (eregi('\.jpe?g\$', $file)) {
         $cmd = "jpegtopnm";
-	} elseif (eregi("\.gif\$", $file)) {
+	} elseif (eregi('\.gif\$', $file)) {
 		$cmd = "giftopnm";
 	}
 
@@ -611,12 +612,12 @@ function fromPnmCmd($file, $quality=NULL) {
 		$quality = $gallery->app->jpegImageQuality;
 	}
 
-	if (eregi("\.png(\.tmp)?\$", $file)) {
+	if (eregi('\.png(\.tmp)?\$', $file)) {
 		$cmd = NetPBM("pnmtopng");
-	} elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
+	} elseif (eregi('\.jpe?g(\.tmp)?\$', $file)) {
 		$cmd = NetPBM($gallery->app->pnmtojpeg,
 			      "--quality=" . $quality);
-	} elseif (eregi("\.gif(\.tmp)?\$", $file)) {
+	} elseif (eregi('\.gif(\.tmp)?\$', $file)) {
 		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
 	}
 
@@ -679,6 +680,8 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
         return false;
     }
 
+    $stripProfiles = '';
+    
     if(empty($ImVersion)) {
         $ImVersion = floor(getImVersion());
     }
@@ -691,82 +694,84 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 
     switch($gallery->app->graphics)	{
         case "NetPBM":
-            exec_wrapper(toPnmCmd($src) . ' | ' .
-            NetPBM('pnmscale', " -xysize $targetSize $targetSize")  . ' | ' .
-            fromPnmCmd($dest, $quality)
+            $result = exec_wrapper(toPnmCmd($src) . ' | ' .
+              NetPBM('pnmscale', " -xysize $targetSize $targetSize")  . ' | ' .
+              fromPnmCmd($dest, $quality)
             );
-            /* copy over EXIF data if a JPEG if $keepProfiles is
-            * set. Unfortunately, we can't also keep comments. */
+            if (!$result) {
+                return false;
+            }
+            
+            /* copy over EXIF data if a JPEG if $keepProfiles is set.
+            *  Unfortunately, we can't also keep comments.
+            */
             if ($keepProfiles && eregi('\.jpe?g$', $src)) {
                 if (isset($gallery->app->use_exif)) {
                     exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
                     . $srcFile . ' ' . $destFile);
+                    return true;
                 } else {
                     processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+                    return true;
                 }
             }
         break;
         case "ImageMagick":
-            if(!$createThumbnail) {
-                /* Set the keepProfiles parameter based on the version of ImageMagick being used.
-                * 6.0.0 changed the parameters again.
-                * Preserve comment, EXIF data if a JPEG if $keepProfiles is set.
-                */
+            /* Set the stripProfiles parameter based on the version of ImageMagick being used.
+            * 6.0.0 changed the parameters.
+            * Preserve comment, EXIF data if a JPEG if $keepProfiles is set.
+            */
+            if(!$keepProfiles || $createThumbnail) {   
                 switch ($ImVersion) {
                     case '5':
-                        $keepProfiles = ($keepProfiles) ? '' : ' +profile \'*\' ';
-                    break;
+                        $stripProfiles = ' +profile \'*\' ';
+                        break;
                     case '6':
-                        $keepProfiles = ($keepProfiles) ? '' : ' -strip ';
-                    break;
-                    default:
-                        $keepProfiles = '';
-                    break;
+                        $stripProfiles = ' -strip ';
+                        break;
                 }
             }
 
-	    $destOperator = '';
-	    $srcOperator = '';
-	    /* If not targetSize is given, then this is just for setting (decreasing) quality */
-        $destOperator = "-quality $quality";
+            $destOperator = '';
+            $srcOperator = '';
+            /* If not targetSize is given, then this is just for setting (decreasing) quality */
+            $destOperator = "-quality $quality";
 
-	    if ($targetSize) {
-	        if ($createThumbnail) {
-	            if ($ImVersion < 6) {
-	                $destOperator .= " -resize ${targetSize}x${targetSize}";
-	            }
-	            else {
-	                $srcOperator = "-size ${targetSize}x${targetSize}";
-	                $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
-	            }
-	        }
-	        else {
-	            if ($ImVersion < 6) {
-	                $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
-	            }
-	            else {
-	                if($gallery->app->IM_HQ == 'yes') {
-	                    echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
-	                }
-	                else {
-	                    $srcOperator = "-size ${targetSize}x${targetSize}";
-	                    echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
-	                }
-	                $destOperator .= " -resize ${targetSize}x${targetSize} $keepProfiles";
-	            }
-	        }
-	        //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
-	    }
-	
+            if ($targetSize) {
+                if ($createThumbnail) {
+                    if ($ImVersion < 6) {
+                        $destOperator .= " -resize ${targetSize}x${targetSize}";
+                    }
+                    else {
+                        $srcOperator = "-size ${targetSize}x${targetSize}";
+                        $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
+                    }
+                }
+                else {
+                    if ($ImVersion < 6) {
+                        $destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
+                    }
+                    else {
+                        if($gallery->app->IM_HQ == 'yes') {
+                            echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
+                        }
+                        else {
+                            $srcOperator = "-size ${targetSize}x${targetSize}";
+                            echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
+                        }
+                        $destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
+                    }
+                }
+                //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
+            }
 
-            return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
-            //return ImCmd('convert', $srcFile, $destFile, "-quality $quality $sizeCmd $keepProfiles $geometryCmd");
+            return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile)); 
         break;
         default:
             echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
             return false;
         break;
-
     }
+    return false;
 }
 ?>
