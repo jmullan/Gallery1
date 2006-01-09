@@ -892,6 +892,7 @@ class Album {
         return 1;
     }
 
+
     function loadPhotos($dir){
         if (!$this->loadPhotosFromFile("$dir/photos.dat") &&
            !$this->loadPhotosFromFile("$dir/photos.dat.bak") &&
