@@ -209,7 +209,7 @@ $checklist = array(
 		'open-basedir-note' => $common_messages['open-basedir-active']
 		),
 	'jpegtran' => array (
-		'prompt' => gTranslate('config',"jpegtran installiert"),
+		'prompt' => gTranslate('config',"jpegtran installed"),
 		'optional' => 1,
 		'desc' => gTranslate('config',"Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		'func' => 'check_jpegtran',
