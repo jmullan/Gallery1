@@ -53,7 +53,7 @@ foreach ($outfile_list as $outfile => $optional) {
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	} else {
 		$error++;
-		$viewheader .= gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= '<br>'. gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
 }
@@ -195,7 +195,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]['must-be-url'])) {
 			if (!ereg('^http', $real)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real)));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>%s</b> must be an absolute URL!"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -207,7 +207,7 @@ foreach ($constants as $key => $val) {
 				$warn_about_open_basedir = 1;
 			} else {
 				if (!@is_file($real)) {
-					$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real)));
+					$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real));
 					$error++;
 					continue;
 				}
@@ -218,7 +218,7 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]['must-be-integer'])) {
 			$int_real = intval($real);
 			if (! is_numeric($int_real) || $int_real < 0) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)) . gettype($real));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)) . gettype($real);
 				$error++;
 				continue;
 			}
@@ -227,7 +227,7 @@ foreach ($constants as $key => $val) {
 		/* Either a positive or negative number */
 		if (isset($constants[$key]['must-be-number'])) {
 			if (!is_numeric($real)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a number"), $key, $real)));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>&quot;%s&quot;</b> must be a number"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -235,7 +235,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]['must-not-be-zero'])) {
 			if ($real == 0) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real)));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>%s</b> must not be zero"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -245,7 +245,7 @@ foreach ($constants as $key => $val) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real)));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>%s</b> must be an executable file!"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -254,20 +254,20 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]['require-write-dir'])) {
 			$dir = $real;
 			if (!file_exists($dir)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>")));
+				$gallery->session->configData .= gallery_error(sprintf(_("Directory %s does not exist.  Please create it."), "<b>$dir</b>"));
 				$error++;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>")));
+				$gallery->session->configData .= gallery_error(sprintf(_("%s exists but is not a directory.  Please fix this."), "<b>$dir</b>"));
 				$error++;
 				continue;
 			}
 
 			if (!is_writeable($dir) ||
 			    !test_write_to_dir($dir)) {
-				$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+				$gallery->session->configData .= gallery_error(sprintf(_("%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
 						$key, $dir,
 						'<br><b><code>' .
 						"chown -R $webserver_user  $dir" .
@@ -276,7 +276,7 @@ foreach ($constants as $key => $val) {
 						"chmod -R 777 $dir</code>" .
 						'</code></b><br><br>', 
 						'<a href="phpinfo.php">open_basedir</a>', 
-						'open_basedir')));
+						'open_basedir'));
 				$error++;
 				continue;
 			}
@@ -303,14 +303,14 @@ foreach ($constants as $key => $val) {
 			
 			foreach ($fail as $fkey => $fval) {
 				if (isset($fkey) && isset($constants[$key][$fkey])) {
-					$gallery->session->configData .= error_row_wrap(gallery_error($constants[$key][$fkey]));
+					$gallery->session->configData .= gallery_error($constants[$key][$fkey]);
 				}
 				if (is_string($fval)) {
-					$gallery->session->configData .= error_row_wrap(gallery_error($fval));
+					$gallery->session->configData .= gallery_error($fval);
 				} else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$gallery->session->configData .= error_row_wrap(gallery_error($msg));
+							$gallery->session->configData .= gallery_error($msg);
 						}
 					}
 				}
@@ -332,7 +332,7 @@ foreach ($constants as $key => $val) {
 			$reqFeatures = $constants[$key]['requires-features'];
 			foreach ($reqFeatures as $reqFeatKey => $desc) {
 				if ($gallery->session->configForm->$reqFeatKey  == 'no') {
-					$gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc)));
+					$gallery->session->configData .= gallery_error(sprintf(_("%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc));
 					$error++;
 				}
 			}
@@ -356,18 +356,18 @@ if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
 		$pnmtojpeg = $gallery->session->configForm->pnmtojpeg;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmtojpeg))) {
 			$error++;
-			$gallery->session->configData .= error_row_wrap(gallery_error(
+			$gallery->session->configData .= gallery_error(
 				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
-					($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg'))));
+					($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
 		}
 		$pnmcomp = $gallery->session->configForm->pnmcomp;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmcomp))) {
 			$error++;
-			$gallery->session->configData .= error_row_wrap(gallery_error(
+			$gallery->session->configData .= gallery_error(
 				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmcomp</i>",
-					($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp'))));
+					($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
 		}
 	}
 }
@@ -377,13 +377,13 @@ if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>")));
+    $gallery->session->configData .= gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
     $error++;
 } else if (!strcmp($graphtool, 'ImageMagick') && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick')));
+    $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
     $error++;
 } else if (!strcmp($graphtool, 'NetPBM') && !empty($graphtest['pnmDir'])) {
-    $gallery->session->configData .= error_row_wrap(gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM')));
+    $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
     $error++;
 }
 
@@ -441,11 +441,11 @@ foreach ($defaults as $key => $val) {
 			list($success, $fail) = $func($gallery->session->configForm->$key);
 			foreach ($fail as $fkey => $fval) {
 				if (is_string($fval)) {
-					$gallery->session->configData .= error_row_wrap(gallery_error($fval));
+					$gallery->session->configData .= gallery_error($fval);
 				} else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$gallery->session->configData .= error_row_wrap(gallery_error($msg));
+							$gallery->session->configData .= gallery_error($msg);
 						}
 					}
 				}

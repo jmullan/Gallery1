@@ -356,13 +356,9 @@ function no_feature($feature, $cause) {
 
 function error_missing($desc, $key) {
 	if (empty($desc)) {
-		$desc=$key;
+		$desc = $key;
 	}
-	return gallery_error("// " . _("Missing value") . ": <b>$desc</b>!");
-}
-
-function error_row_wrap($buf) {
-	return "// $buf";
+	return gallery_error(sprintf(_("Missing value: %s"),"<b>$desc</b>!"));
 }
 
 function check_exec() {

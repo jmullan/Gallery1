@@ -52,7 +52,7 @@
 			</td>
 
 <?php
-if (! file_exists(GALLERY_BASE . '/config.php')) {
+if (gallerySanityCheck() != NULL) {
 ?>
 		</tr>
 		<tr>

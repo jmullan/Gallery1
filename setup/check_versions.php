@@ -72,7 +72,7 @@ foreach($tests as $testname => $args) {
     if  ($$testname) { ?>
 <div class="inner">
   <div style="white-space:nowrap;">
-    <a href="#" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo galleryImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
+    <a href="#" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
     <span class="<?php echo $args['class']; ?>"><?php echo $args['text']; ?></span>
   </div>
   <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">

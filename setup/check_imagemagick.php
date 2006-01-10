@@ -48,7 +48,7 @@ echo sprintf(_("You should run this script <b>after</b> you have run the config 
     <?php echo _("Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
   </td>
 <?php
-if (! file_exists(GALLERY_BASE . '/config.php')) {
+if (gallerySanityCheck() != NULL) {
 ?>
 </tr>
 <tr>
