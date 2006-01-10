@@ -1,3 +1,12 @@
+2006-01-10 Jens Tkotz <jens@peino.de> 1.5.2-RC3-cvs-b1
+
+ * Fix: galleryImage() in setup/check_versions.php should be gImage()
+
+ * Fix: check_imagemagick.php and setup/check_netpbm.php just check for existence of config.php,
+	instead of doing proper test. Using gallerySanityCheck() now.
+
+ * Change: Removed function error_row_wrap(),just use gallery_error() in confirm.inc.
+
 2006-01-09 Chris Kelly <ckdake@ckdake.com> 1.5.2-RC2
 
  * Release: 1.5.2-RC2
