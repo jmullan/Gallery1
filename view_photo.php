@@ -107,16 +107,18 @@ $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." .
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
-                !strcmp($gallery->session->fullOnly,"on") &&
-                !strcmp($gallery->album->fields["use_fullOnly"],"yes");
+    !strcmp($gallery->session->fullOnly,"on") &&
+    strcmp($gallery->album->fields["use_fullOnly"],"yes");
+    
 if ($do_fullOnly) {
     $full = $gallery->user->canViewFullImages($gallery->album);
 }
 
-$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes")
-                && !$gallery->album->isResized($index)
-                && !$full
-                && (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
+$fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") &&
+    !$gallery->album->isMovieByIndex($index) &&
+    !$gallery->album->isResized($index) &&
+    !$full &&
+    (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
