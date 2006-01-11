@@ -153,14 +153,14 @@ function netpbm_decompose_image($input, $format) {
     
     switch ($format) {
         case "png":
-            $getOverlay = netPbm("pngtopnm", "$input > $overlay");
-            $getAlpha   = netPbm("pngtopnm", "-alpha $input > $alpha");
+            $getOverlay = netPBM("pngtopnm", "$input > $overlay");
+            $getAlpha   = netPBM("pngtopnm", "-alpha $input > $alpha");
         break;
         case "gif":
-            $getOverlay = netPbm("giftopnm", "--alphaout=$alpha $input > $overlay");
+            $getOverlay = netPPM("giftopnm", "--alphaout=$alpha $input > $overlay");
         break;
             case "tif":
-        $getOverlay = netPbm("tifftopnm", "-alphaout=$alpha $input > $overlay");
+        $getOverlay = netPBM("tifftopnm", "-alphaout=$alpha $input > $overlay");
         break;
     }
     
@@ -586,50 +586,59 @@ function valid_image($file) {
 }
 
 function toPnmCmd($file) {
-	global $gallery;
+    global $gallery;
 
-	if (eregi('\.png\$', $file)) {
-		$cmd = "pngtopnm";
-	} elseif (eregi('\.jpe?g\$', $file)) {
-        $cmd = "jpegtopnm";
-	} elseif (eregi('\.gif\$', $file)) {
-		$cmd = "giftopnm";
-	}
+    $type = getExtension($file);
+    switch($type) {
+	case 'png':
+	    $cmd = "pngtopnm";
+	break;
+	case 'jpg':
+	case 'jpeg':
+	    $cmd = "jpegtopnm";
+	break;	
+	case 'gif':
+	    $cmd = "giftopnm";
+	break;
+    }
 
-	if (!empty($cmd)) {
-		return NetPBM($cmd) .
-		 	" " .
-			fs_import_filename($file);
-	} else {
-		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
-		return "";
-	}
+    if (!empty($cmd)) {
+	return netPBM($cmd) .' '. fs_import_filename($file);
+    }
+    else {
+	echo gallery_error(
+	  sprintf(_("Files with type %s are not supported by Gallery with netPBM"), $type)
+	);
+	return '';
+    }
 }
 
-function fromPnmCmd($file, $quality=NULL) {
-	global $gallery;
-	if ($quality == NULL) {
-		$quality = $gallery->app->jpegImageQuality;
-	}
+function fromPnmCmd($file, $quality = NULL) {
+    global $gallery;
+    if ($quality == NULL) {
+	$quality = $gallery->app->jpegImageQuality;
+    }
 
-	if (eregi('\.png(\.tmp)?\$', $file)) {
-		$cmd = NetPBM("pnmtopng");
-	} elseif (eregi('\.jpe?g(\.tmp)?\$', $file)) {
-		$cmd = NetPBM($gallery->app->pnmtojpeg,
-			      "--quality=" . $quality);
-	} elseif (eregi('\.gif(\.tmp)?\$', $file)) {
-		$cmd = NetPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
-	}
+    if (eregi("\.png(\.tmp)?\$", $file)) {
+	$cmd = netPBM("pnmtopng");
+    } elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
+	$cmd = netPBM($gallery->app->pnmtojpeg, "--quality=$quality");
+    } elseif (eregi("\.gif(\.tmp)?\$", $file)) {
+	$cmd = netPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
+    }
 
-	if ($cmd) {
-		return "$cmd > " . fs_import_filename($file);
-	} else {
-		echo gallery_error(sprintf(_("Unknown file type: %s"), $file));
-		return '';
-	}
+    if (!empty($cmd)) {
+	return "$cmd > " . fs_import_filename($file);
+    } else {
+	echo gallery_error(
+	  sprintf(_("Files with type %s are not supported by Gallery with netPBM"), 
+	  getExtension($file))
+	);
+	return '';
+    }
 }
 
-function netPbm($cmd, $args = '') {
+function netPBM($cmd, $args = '') {
 	global $gallery;
 
 	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
@@ -671,6 +680,7 @@ function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest) {
 }
 
 function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepProfiles = false, $createThumbnail = false) {
+    debugMessage(sprintf(_("Compressing image: %s"), $src), __FILE__, __LINE__); 
     global $gallery;
     static $ImVersion;
 
