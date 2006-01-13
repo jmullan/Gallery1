@@ -314,7 +314,7 @@ function printChildren($tree, $depth = 0) {
 	}
 
 	foreach($tree as $nr => $content) {
-		echo "\n<table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0px; padding: 0px; margin-". langLeft() .":". 20 * $depth ."px\">";
+		echo "\n<table cellpadding=\"0\" cellspacing=\"0\" class=\"subalbumTreeLine\" style=\"margin-". langLeft() .":". 20 * $depth ."px\">";
 		echo "<tr><td>";
 		if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
 			echo gImage('icons/tree/join-'. langRight(). '.gif', '');
@@ -322,7 +322,7 @@ function printChildren($tree, $depth = 0) {
 		else {
 			echo gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
 		}
-		echo "</td><td style=\"vertical-align:middle; padding-". langLeft().": 1px;\">";
+		echo "</td><td class=\"subalbumTreeElement\">";
 		echo '<a href="'. $content['albumUrl'] .'">';
 		echo $content['titel'] .' ';
 		echo $content['clicksText'] .'</a>';
