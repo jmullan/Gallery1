@@ -972,9 +972,9 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	   return false;
     }
     else {
-	   chdir($currentDir);
+        chdir($currentDir);
 	   if($deleteSource) {
-        rmdirRecursive($folderName);
+	       rmdirRecursive($folderName);
 	   }
 	
 	return $fullZipName;
@@ -1538,23 +1538,24 @@ function getExtraFieldsValues($index, $extra_fields, $full) {
 }
 
 if (!function_exists('glob')) {
-	function glob($pattern) {
-		$path_parts = pathinfo($pattern);
-		$pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
-		$dir = fs_opendir($path_parts['dirname']);
-		while ($file = readdir($dir)) {
-			if (ereg($pattern, $file)) {
-				$result[] = "{$path_parts['dirname']}/$file";
-			}
-		}
-		closedir($dir);
+    function glob($pattern) {
+        $path_parts = pathinfo($pattern);
+        $pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
+        $dir = fs_opendir($path_parts['dirname']);
+        while ($file = readdir($dir)) {
+            if ($file != '.' && $file != '..' && ereg($pattern, $file)) {
+                 $result[] = "{$path_parts['dirname']}/$file";
+            }
+        }
+        closedir($dir);
 
-		// my changes here
-		if (isset($result))
-			return $result;
-
-		return (array)null;
-	} 
+        // my changes here
+        if (isset($result)) {
+            return $result;
+        }
+        
+        return array();
+    } 
 }
 
 function genGUID() {
@@ -1855,9 +1856,14 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 }
 
 function rmdirRecursive($dir) {
-   if($objs = glob($dir."/*")){
-       foreach($objs as $obj) {
-           is_dir($obj)? rmdirRecursive($obj) : unlink($obj);
+    if($objs = glob($dir."/*")){
+        foreach($objs as $obj) {
+            if(is_dir($obj)) {
+                rmdirRecursive($obj);
+           }
+           else {
+             unlink($obj);
+           }
        }
    }
    rmdir($dir);
