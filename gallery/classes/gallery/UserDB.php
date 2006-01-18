@@ -274,22 +274,26 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return $uidList;
 	}
 
-	function validNewUsername($username) {
+	function validNewUserName($username) {
+
+		if (strlen($username) == 0) {
+			return _("Please enter a username.");
+		}
 
 		if (strlen($username) < 2) {
-			return sprintf(_("Illegal username %s: must at least 2 characters"),
-					"<i>" . $username . "</i>");
+			return sprintf(_("Username '%s' is to short. Must be at least 2 characters."),
+					"<i>". htmlentities ($username) ."</i>");
 		}
 
 		if (strlen($username) > 15) {
-			return sprintf(_("Illegal username %s: must at most 15 characters"),
-					"<i>" . $username . "</i>");
+			return sprintf(_("Username '%s' too long. Must be at most 15 characters."),
+					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
-			return sprintf(_("Illegal username %s: must contain only letters or digits"),
-					"<i>" . $username . "</i>");
+			return sprintf(_("Illegal username '%s'. Only letters and digits allowed."),
+					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
