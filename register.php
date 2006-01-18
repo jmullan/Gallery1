@@ -65,9 +65,13 @@ $allowChange["member_file"] = false;
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
-	$uname = strip_tags($uname);
+        if($fullname != strip_tags($fullname)) {
+            $gErrors["fullname"] = _("Your fullname containes invalid data!");
+            $errorCount++;
+        }
 
 	$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
+
 	if ($gErrors['uname']) {
 		$errorCount++;
 	}

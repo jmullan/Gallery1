@@ -1,4 +1,14 @@
-2001-01-17 Pierre-Luc Paour <paour@users.sourceforge.net>  1.5.2-RC3-cvs-b7
+2006-01-18 Jens Tkotz <jens@peino.de> 1.5.2-RC3-cvs-b8
+
+ * Security-Fix: Fullname for users was not sanitized.
+                 Thus an unnince user could do a XSS injection
+	         as the fullname is displayed when owner is displayed.
+   Thanks to Peter Schmucher!
+
+ * Fix: 'fitToWindow' was broken for Internet Explorer.
+   Thanks to petorian from forum.
+
+2006-01-17 Pierre-Luc Paour <paour@users.sourceforge.net>  1.5.2-RC3-cvs-b7
 
  * Fix: applets work again in Joomla-embeded mode. Thanks Mike Henin.
 

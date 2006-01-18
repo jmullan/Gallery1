@@ -279,8 +279,9 @@ if (!empty($gallery->album->fields["textcolor"])) {
 }
 ?>
   </style> 
+
   </head>
-  <body dir="<?php echo $gallery->direction ?>"<?php echo ($fitToWindow) ? ' onResize="calculateNewSize()"' : '' ?>>
+  <body dir="<?php echo $gallery->direction ?>">
 <?php
 } // End if ! embedded
 
@@ -442,6 +443,7 @@ if (!$gallery->album->isMovie($id)) {
 
 ?>
 <script language="javascript1.2" type="text/JavaScript">
+
 function doPrintService(input) {
     if (!input) {
         input = document.print_form.print_services.value;
@@ -739,15 +741,7 @@ if ( $gallery->album->fields['nav_thumbs'] != 'yes') {
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 echo languageSelector();
-if ($fitToWindow) {
-?>
-<script type="text/javascript">
-<!--
-calculateNewSize();
-//-->
-</script>
-<?php 
-}
+
 if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">
@@ -798,8 +792,18 @@ if (isset($printPhotoAccessForm)) { ?>
     if (!empty($allImageAreas)) {
         echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
     }
+    if ($fitToWindow) {
+?>
+<script type="text/javascript">
+<!--
+calculateNewSize();
+//-->
+</script>
+<?php
+    }
     if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
-<?php } 
+<?php
+}
 ?>

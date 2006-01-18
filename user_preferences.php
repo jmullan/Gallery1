@@ -34,7 +34,14 @@ if (!$gallery->user->isLoggedIn()) {
 
 $errorCount = 0;
 if (isset($save)) {
-	if (strcmp($gallery->user->getUsername(), $uname)) {
+	// security check;
+	if($fullname != strip_tags($fullname)) {
+	    $gErrors["fullname"] = 
+		sprintf(_("%s contained invalid data, resetting input."), htmlentities($fullname));
+	    $errorCount++;
+        }
+
+	if ($gallery->user->getUsername() != $uname) {
 		if ($gallery->user->isAdmin()) {
 			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 			if ($gErrors["uname"]) {
@@ -68,6 +75,11 @@ if (isset($save)) {
 		}
 	}
 
+	if (!empty($email) && !check_email($email)) {
+                $gErrors['email'] = _("You must specify a valid email address.");
+                $errorCount++;
+        }
+
 	if (!$errorCount) {
 		$gallery->user->setUsername($uname);
 		$gallery->user->setFullname($fullname);
@@ -84,7 +96,7 @@ if (isset($save)) {
 
 		// Switch over to the new username in the session
 		$gallery->session->username = $uname;
-		dismissAndReload();
+		$saveOK = true;
 	}
 }
 
@@ -110,18 +122,23 @@ doctype();
 
 printPopupStart(_("Change User Preferences"), _("Change User Preferences"), langLeft());
 
+if(isset($saveOK)) {  
+    echo infoLine(_("User successfully updated."), 'success');
+    echo "\n<br>\n";
+}
+
 echo _("You can change your user information here.");
 echo _("If you want to change your password, you must provide your old password and then enter the new one twice.");
 echo _("You can change your username to any combination of letters and digits.");
+
+echo "\n<br>\n";
+
+echo makeFormIntro('user_preferences.php', array('name' => 'usermodify_form'));
+
+echo "\n<br>";
+include(dirname(__FILE__) . '/html/userData.inc');
+
 ?>
-
-<br>
-
-<?php echo makeFormIntro('user_preferences.php', array('name' => 'usermodify_form'));
-?>
-
-<br>
-<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 <br>
 <div align="center">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">

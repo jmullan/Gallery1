@@ -79,7 +79,7 @@ class Abstract_User {
     }
 
     function setUsername($username) {
-        $this->username = $username;
+        $this->username = strip_tags($username);
     }
 
     function getUsername() {
@@ -116,7 +116,7 @@ class Abstract_User {
     }
 
     function setFullName($fullname) {
-        $this->fullname = $fullname;
+        $this->fullname = strip_tags($fullname);
     }
 
     function getFullName() {

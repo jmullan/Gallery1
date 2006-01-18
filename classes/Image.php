@@ -181,10 +181,11 @@ class Image {
 
 	    if ($this->resizedName && $size == 0) {
 		if ($full) {
-		    return "<img src=\"$dir/$fullImage\" " .
-			"width=\"$this->raw_width\" height=\"$this->raw_height\" $attrs alt=\"$alttext\" title=\"$alttext\">";
+		    return "<img src=\"$dir/$fullImage\" ".
+			"width=\"$this->raw_width\" height=\"$this->raw_height\" .
+			$attrs alt=\"$alttext\" title=\"$alttext\">";
 		} else {
-		    return "<img src=\"$dir/$resizedImage\" " .
+		    return "<img src=\"$dir/$resizedImage\" ".
 			"width=\"$this->width\" height=\"$this->height\" " .
 			"$attrs alt=\"$alttext\" title=\"$alttext\">";
 		}
