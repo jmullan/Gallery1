@@ -17,7 +17,9 @@
 #
 # $Id$
 #
-# @version	1.5.2
+#
+# @version      1.5.2
+# @version      1.5.3-cvs
 # @package	Languagepack
 # @subpackage	German
 # @author	Jens Tkotz <jens AT peino DOT de>, 2003-2005
@@ -28,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-13 17:14+0100\n"
+"POT-Creation-Date: 2006-01-19 19:07+0100\n"
 "PO-Revision-Date: 2006-01-08 21:35+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -78,7 +80,7 @@ msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein."
 #: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
-#: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
+#: ../new_password.php:138 ../register.php:142 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
@@ -220,7 +222,7 @@ msgid "Sort"
 msgstr "Sortieren"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:128
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:145
 #: ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr "Fenster schließen"
@@ -284,7 +286,7 @@ msgstr "Berechtigungen auf die Unteralben &uuml;bertragen"
 
 #: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
 #: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
-#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:127
+#: ../new_password.php:137 ../photo_owner.php:103 ../user_preferences.php:144
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Speichern"
@@ -399,12 +401,12 @@ msgid "preferences"
 msgstr "Meine Einstellungen"
 
 #: ../albums.php:214 ../imagemap.php:139 ../view_album.php:420
-#: ../view_photo.php:517
+#: ../view_photo.php:519
 msgid "logout"
 msgstr "Abmelden"
 
 #: ../albums.php:219 ../imagemap.php:144 ../view_album.php:425
-#: ../view_photo.php:522
+#: ../view_photo.php:524
 msgid "login"
 msgstr "Anmelden"
 
@@ -824,44 +826,49 @@ msgid "Your Userfile is not writeable"
 msgstr "Die Datei für die Benutzerdaten ist nicht beschreibbar"
 
 #: ../classes/gallery/UserDB.php:280
-#, php-format
-msgid "Illegal username %s: must at least 2 characters"
-msgstr "Der Benutzername %s ist nicht g&uuml;tig: Er muss mindestens 2 Zeichen lang sein"
+#, fuzzy
+msgid "Please enter a username."
+msgstr "Bitte geben Sie Benutzernamen und Passwort ein."
 
-#: ../classes/gallery/UserDB.php:285
-#, php-format
-msgid "Illegal username %s: must at most 15 characters"
+#: ../classes/gallery/UserDB.php:284
+#, fuzzy, php-format
+msgid "Username '%s' is to short. Must be at least 2 characters."
+msgstr "Das Passwort muss mindestens 3 Zeichen lang sein."
+
+#: ../classes/gallery/UserDB.php:289
+#, fuzzy, php-format
+msgid "Username '%s' too long. Must be at most 15 characters."
 msgstr "Der Benutzername %s ist nicht g&uuml;ltig: Er darf h&ouml;chstens 15 Zeichen lang sein"
 
-#: ../classes/gallery/UserDB.php:291
-#, php-format
-msgid "Illegal username %s: must contain only letters or digits"
+#: ../classes/gallery/UserDB.php:295
+#, fuzzy, php-format
+msgid "Illegal username '%s'. Only letters and digits allowed."
 msgstr "Der Benutzername %s ist nicht g&uuml;ltig: Er darf nur Buchstaben und Zahlen enthalten"
 
-#: ../classes/gallery/UserDB.php:298
+#: ../classes/gallery/UserDB.php:302
 #, php-format
 msgid "%s is reserved and cannot be used."
 msgstr "%s ist reserviert und darf nicht benutzt werden."
 
-#: ../classes/gallery/UserDB.php:304
+#: ../classes/gallery/UserDB.php:308
 #, php-format
 msgid "A user with the username of %s already exists"
 msgstr "Ein Benutzer mit dem Namen %s existiert bereits."
 
-#: ../classes/gallery/UserDB.php:313
+#: ../classes/gallery/UserDB.php:317
 msgid "Password must be at least 3 characters"
 msgstr "Das Passwort muss mindestens 3 Zeichen lang sein."
 
-#: ../classes/gallery/UserDB.php:344
+#: ../classes/gallery/UserDB.php:348
 #, php-format
 msgid "Checking user %d of %d . . . . "
 msgstr "Pr&uuml;fe Benutzer %d von %d . . ."
 
-#: ../classes/gallery/UserDB.php:349
+#: ../classes/gallery/UserDB.php:353
 msgid "skipped"
 msgstr "&Uuml;bersprungen"
 
-#: ../classes/gallery/UserDB.php:395
+#: ../classes/gallery/UserDB.php:399
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Es gab ein Problem beim hinzuf&uuml;gen von %s:"
@@ -895,7 +902,7 @@ msgid "Skipping Album #%d"
 msgstr "&Uuml;berspringe Album #%d"
 
 #: ../copy_photo.php:132 ../do_command.php:261 ../do_command.php:263
-#: ../login.php:127 ../register.php:47 ../register.php:119
+#: ../login.php:127 ../register.php:47 ../register.php:123
 #: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "Beenden"
@@ -947,8 +954,8 @@ msgstr "Kopieren"
 msgid "no album / index specified"
 msgstr "Kein Album/ Index gew&auml;hlt"
 
-#: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:51
-#: ../user_preferences.php:61
+#: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:54
+#: ../user_preferences.php:68
 msgid "Passwords do not match!"
 msgstr "Die Passw&ouml;rter stimmen nicht &uuml;berein!"
 
@@ -2666,7 +2673,7 @@ msgstr "Die Email konnte nicht gesendet werden. Bitte wenden Sie sich an den %s 
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
 msgstr "Es wurde keine g&uuml;ltige Email f&uuml;r diesen Account angegeben.  Bitte wenden Sie sich an den %s Admin f&uuml;r ein neues Passwort"
 
-#: ../login.php:140 ../new_password.php:35 ../new_password.php:39
+#: ../login.php:140 ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr "Ung&uuml;ltiger Benutzername"
 
@@ -2929,31 +2936,40 @@ msgstr "Nur der Benutzername ist Pflicht. Alles nach der Email wird als vollst&a
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "Die Symbole !!USERNAME!!, !!FULLNAME!! und !!PASSWORD!! werden in den Email an die Benutzer ersezt durch die Werte in der Datei.  Es wird an jeden neuen Benutzer eine Email geschickt, wenn Sie &quot;Email senden&quot; aktiviert haben."
 
-#: ../new_password.php:32
+#: ../new_password.php:35
 msgid "missing hash parameter"
 msgstr "Der Hash Parameter fehlt."
 
-#: ../new_password.php:41
+#: ../new_password.php:44
 msgid "The recovery password is not the expected value, please try again"
 msgstr "Das neue Passwort ist fehlerhaft, bitte versuchen Sie es erneut."
 
-#: ../new_password.php:48
+#: ../new_password.php:51
 msgid "You must provide your new password."
 msgstr "Sie m&uuml;ssen Ihr neues Passwort eingeben."
 
-#: ../new_password.php:92 ../new_password.php:96
+#: ../new_password.php:66 ../user_preferences.php:40
+#, php-format
+msgid "%s contained invalid data, resetting input."
+msgstr ""
+
+#: ../new_password.php:71 ../register.php:85 ../user_preferences.php:79
+msgid "You must specify a valid email address."
+msgstr "Sie m&uuml;ssen eine g&uuml;ltige Emailadresse eingeben."
+
+#: ../new_password.php:107 ../new_password.php:111
 msgid "Make New Password"
 msgstr "Neues Passwort erzeugen"
 
-#: ../new_password.php:101
+#: ../new_password.php:116
 msgid "Enter the Gallery"
 msgstr "Betreten Sie die Gallery"
 
-#: ../new_password.php:105 ../user_preferences.php:113
+#: ../new_password.php:120 ../user_preferences.php:130
 msgid "You can change your user information here."
 msgstr "Hier k&ouml;nnen Sie Ihre Angaben &auml;ndern."
 
-#: ../new_password.php:106
+#: ../new_password.php:121
 msgid "You must enter the new password twice."
 msgstr "Sie m&uuml;ssen Ihr neues Passwort zweimal eingeben."
 
@@ -3285,41 +3301,41 @@ msgstr "Neuen Benutzer registrieren in '%s'"
 msgid "This Gallery does not support self-registration by visitors."
 msgstr "Diese Gallery unterst&uuml;tzt keine Selbstregistrierung."
 
-#: ../register.php:76
+#: ../register.php:69
+msgid "Your fullname containes invalid data!"
+msgstr ""
+
+#: ../register.php:80
 msgid "You must specify a name."
 msgstr "Sie m&uuml;ssen einen Nnamen angeben"
 
-#: ../register.php:81
-msgid "You must specify a valid email address."
-msgstr "Sie m&uuml;ssen eine g&uuml;ltige Emailadresse eingeben."
-
-#: ../register.php:103
+#: ../register.php:107
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s hat sich registriert.  Es wurde eine Email an %s gesendet."
 
-#: ../register.php:109
+#: ../register.php:113
 msgid "Gallery Self Registration"
 msgstr "Gallery Registrierung"
 
-#: ../register.php:111
+#: ../register.php:115
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "Es wurde eine Email an %s gesendet."
 
-#: ../register.php:113
+#: ../register.php:117
 msgid "Your account information is contained within the email."
 msgstr "Ihre Zugangsdaten sind in der Mail enthalten."
 
-#: ../register.php:115
+#: ../register.php:119
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "Die Email konnte nicht gesendet werden.  Bitte wenden Sie sich an den Gallery Admin, um einen Zugang zu bekommen."
 
-#: ../register.php:134
+#: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Ihre Zugangsdaten werden Ihnen per Mail an die angegebene Adresse geschickt."
 
-#: ../register.php:137
+#: ../register.php:141
 msgid "Send request"
 msgstr "Anfrage abschicken"
 
@@ -4288,27 +4304,32 @@ msgstr "Neustart"
 msgid "Users upgraded successfully."
 msgstr "Die Benutzer wurden erfolgreich aktualisiert."
 
-#: ../user_preferences.php:44
+#: ../user_preferences.php:51
 msgid "You are not allowed to change your username."
 msgstr "Es ist Ihnen nicht gestattet, Ihren Benutzernamen zu ändern."
 
-#: ../user_preferences.php:50
+#: ../user_preferences.php:57
 msgid "Incorrect password"
 msgstr "Falsches Passwort"
 
-#: ../user_preferences.php:56
+#: ../user_preferences.php:63
 msgid "You must provide your old password to change it."
 msgstr "Sie m&uuml;ssen Ihr altes Passwort eingeben um es zu &auml;ndern."
 
-#: ../user_preferences.php:111
+#: ../user_preferences.php:123
 msgid "Change User Preferences"
 msgstr "Benutzereinstellungen bearbeiten"
 
-#: ../user_preferences.php:114
+#: ../user_preferences.php:126
+#, fuzzy
+msgid "User successfully updated."
+msgstr "Die Benutzerinformationen wurden erfolgreich aktualisiert."
+
+#: ../user_preferences.php:131
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "Wenn Sie Ihr Passwort &auml;ndern m&ouml;chten, m&uuml;ssen Sie zuerst Ihr altes und dann zweimal Ihr neues Passwort eingeben."
 
-#: ../user_preferences.php:115
+#: ../user_preferences.php:132
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Sie k&ouml;nnen Ihren Benutzernamen in jede Kombination aus Buchstaben und Zahlen &auml;ndern."
 
@@ -4725,40 +4746,40 @@ msgstr "Zur&uuml;ck zum Album"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Sorry, dieses Album erlaubt keine Kommentare."
 
-#: ../view_photo.php:314
+#: ../view_photo.php:315
 msgid "photo properties"
 msgstr "Bildeigenschaften"
 
-#: ../view_photo.php:398
+#: ../view_photo.php:399
 msgid "Send photo to..."
 msgstr "Sende Photo an..."
 
-#: ../view_photo.php:400
+#: ../view_photo.php:401
 msgid "Print photo with..."
 msgstr "Lasse Photo drucken von..."
 
-#: ../view_photo.php:436
+#: ../view_photo.php:437
 #, php-format
 msgid "process this photo with %s"
 msgstr "Ein Abzug des Bildes via %s bestellen."
 
-#: ../view_photo.php:478
+#: ../view_photo.php:480
 msgid "View Images:"
 msgstr "Bildanzeige:"
 
-#: ../view_photo.php:479
+#: ../view_photo.php:481
 msgid "normal"
 msgstr "Normal"
 
-#: ../view_photo.php:480
+#: ../view_photo.php:482
 msgid "full"
 msgstr "Voll"
 
-#: ../view_photo.php:498
+#: ../view_photo.php:500
 msgid "Send Photo as eCard"
 msgstr "Photo als eCard senden"
 
-#: ../view_photo.php:718
+#: ../view_photo.php:720
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
 
@@ -4785,3 +4806,6 @@ msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Wasserzeichen auf animierten gif werden derzeit noch nicht unterstützt und werden daher ihr Bild verunstalten und 'unanimieren'"
+
+#~ msgid "Illegal username %s: must at least 2 characters"
+#~ msgstr "Der Benutzername %s ist nicht g&uuml;tig: Er muss mindestens 2 Zeichen lang sein"

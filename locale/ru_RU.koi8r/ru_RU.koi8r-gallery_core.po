@@ -17,7 +17,9 @@
 #
 # $Id$
 #
-# @version	1.5.2-cvs
+#
+# @version      1.5.2
+# @version      1.5.3-cvs
 # @package	Languagepack
 # @subpackage	Russian
 # @author	Yuri Gural <yurigural AT inbox DOT ru>, 2003-2004.
@@ -26,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-08 21:26+0100\n"
+"POT-Creation-Date: 2006-01-19 19:07+0100\n"
 "PO-Revision-Date: 2004-08-04 23:10+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -50,16 +52,16 @@ msgstr ""
 msgid "You are not allowed to perform this action!"
 msgstr "Вам не разрешается выполнять это действие !"
 
-#: ../add_comment.php:56 ../view_photo.php:191
+#: ../add_comment.php:56 ../view_photo.php:193
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Поля имя и комментарий должны быть заполнены!"
 
-#: ../add_comment.php:58 ../view_photo.php:193
+#: ../add_comment.php:58 ../view_photo.php:195
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr "Ваш комментарий слишком большой, администратором была установлена максимальная длина - %d сомволов"
 
-#: ../add_comment.php:60 ../view_photo.php:195
+#: ../add_comment.php:60 ../view_photo.php:197
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr ""
 
@@ -77,7 +79,7 @@ msgstr "Введите ваш комментарий для этой фотографии в текстовом поле ниже."
 #: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
-#: ../new_password.php:124 ../register.php:138 ../rename_album.php:131
+#: ../new_password.php:138 ../register.php:142 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
@@ -245,7 +247,7 @@ msgid "Sort"
 msgstr "Сортировать"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:128
+#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:145
 #: ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr "Закрыть окно"
@@ -323,7 +325,7 @@ msgstr ""
 #
 #: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
 #: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
-#: ../new_password.php:123 ../photo_owner.php:103 ../user_preferences.php:127
+#: ../new_password.php:137 ../photo_owner.php:103 ../user_preferences.php:144
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Сохранить"
@@ -457,13 +459,13 @@ msgstr "настройки"
 
 #
 #: ../albums.php:214 ../imagemap.php:139 ../view_album.php:420
-#: ../view_photo.php:515
+#: ../view_photo.php:519
 msgid "logout"
 msgstr "выход"
 
 #
 #: ../albums.php:219 ../imagemap.php:144 ../view_album.php:425
-#: ../view_photo.php:520
+#: ../view_photo.php:524
 msgid "login"
 msgstr "вход"
 
@@ -657,7 +659,7 @@ msgid "%s items in this album"
 msgstr "позиций в альбоме"
 
 #: ../captionator.php:191 ../imagemap.php:156 ../slideshow.php:183
-#: ../view_album.php:109 ../view_comments.php:54 ../view_photo.php:167
+#: ../view_album.php:109 ../view_comments.php:54 ../view_photo.php:169
 msgid "navigate UP"
 msgstr "перейти ВВЕРХ"
 
@@ -785,101 +787,101 @@ msgstr "Нет обложки"
 msgid "Setting highlight"
 msgstr "Нет обложки"
 
-#: ../classes/Album.php:1038
+#: ../classes/Album.php:1039
 msgid "msg should be an array!"
 msgstr "msg должно быть массивом!"
 
 #
-#: ../classes/Album.php:1047
+#: ../classes/Album.php:1048
 #, fuzzy, php-format
 msgid "Changes to Album: %s"
 msgstr "Не могу записать в %s."
 
-#: ../classes/Album.php:1055
+#: ../classes/Album.php:1056
 #, php-format
 msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
-#: ../classes/Album.php:1061
+#: ../classes/Album.php:1062
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
 msgstr ""
 
-#: ../classes/Album.php:1068
+#: ../classes/Album.php:1069
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1142 ../classes/Album.php:1897
+#: ../classes/Album.php:1143 ../classes/Album.php:1898
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
 #
-#: ../classes/Album.php:1147
+#: ../classes/Album.php:1148
 #, fuzzy, php-format
 msgid "Processing element %d..."
 msgstr "Обработка изображения %d..."
 
-#: ../classes/Album.php:1160 ../classes/Album.php:1267
+#: ../classes/Album.php:1161 ../classes/Album.php:1268
 msgid "Doing the naming"
 msgstr ""
 
 #
-#: ../classes/Album.php:1193
+#: ../classes/Album.php:1194
 #, fuzzy
 msgid "Image Preprocessing"
 msgstr "Обработка и показ изображений"
 
-#: ../classes/Album.php:1198
+#: ../classes/Album.php:1199
 msgid "Resizing/compressing original image"
 msgstr "Изменение размера/сжатие исходного изображения"
 
-#: ../classes/Album.php:1202
+#: ../classes/Album.php:1203
 msgid "Cannot resize/compress this filetype"
 msgstr "Не могу изменить размер/сжать файл этого типа"
 
 #
-#: ../classes/Album.php:1257
+#: ../classes/Album.php:1258
 #, php-format
 msgid "Resizing %s"
 msgstr "Изменение размера %s"
 
 #
-#: ../classes/Album.php:1324
+#: ../classes/Album.php:1325
 msgid "Photo auto-rotated/transformed"
 msgstr "Авторазворот/преобразование фотографии"
 
-#: ../classes/Album.php:1332
+#: ../classes/Album.php:1333
 msgid "Watermarking Image"
 msgstr "Установка водяного знака на фотографию"
 
 #
-#: ../classes/Album.php:1490 ../classes/Album.php:1500
+#: ../classes/Album.php:1491 ../classes/Album.php:1501
 #, fuzzy
 msgid "No highlight!"
 msgstr "Нет обложки"
 
-#: ../classes/Album.php:1695
+#: ../classes/Album.php:1696
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]"
 msgstr "Запрошенный индекс [%d] выходит за пределы [%d]"
 
 #
-#: ../classes/Album.php:1909 ../do_command.php:105
+#: ../classes/Album.php:1910 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Обработка изображения %d..."
 
-#: ../classes/Album.php:2078
+#: ../classes/Album.php:2079
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2614
+#: ../classes/Album.php:2615
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2778
+#: ../classes/Album.php:2779
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Проблема с e-mail: пропущен %s (UID %s) потому что e-mail адрес %s неправильный."
@@ -955,52 +957,57 @@ msgstr ""
 msgid "Your Userfile is not writeable"
 msgstr ""
 
-#
 #: ../classes/gallery/UserDB.php:280
-#, php-format
-msgid "Illegal username %s: must at least 2 characters"
-msgstr "Недопустимое имя пользователя %s: должно содержать не менее 2 символов"
+#, fuzzy
+msgid "Please enter a username."
+msgstr "Пожалуйста введите имя пользователя и пароль."
 
 #
-#: ../classes/gallery/UserDB.php:285
-#, php-format
-msgid "Illegal username %s: must at most 15 characters"
+#: ../classes/gallery/UserDB.php:284
+#, fuzzy, php-format
+msgid "Username '%s' is to short. Must be at least 2 characters."
+msgstr "Пароль должен содержать не менее 3 символов"
+
+#
+#: ../classes/gallery/UserDB.php:289
+#, fuzzy, php-format
+msgid "Username '%s' too long. Must be at most 15 characters."
 msgstr "Недопустимое имя пользователя %s: должно содержать не больше 15 символов"
 
-#: ../classes/gallery/UserDB.php:291
-#, php-format
-msgid "Illegal username %s: must contain only letters or digits"
+#: ../classes/gallery/UserDB.php:295
+#, fuzzy, php-format
+msgid "Illegal username '%s'. Only letters and digits allowed."
 msgstr "Недопустимое имя пользователя %s: должно содержать только буквы или цифры"
 
 #
-#: ../classes/gallery/UserDB.php:298
+#: ../classes/gallery/UserDB.php:302
 #, php-format
 msgid "%s is reserved and cannot be used."
 msgstr "%s зарезервировано и не может использоваться"
 
 #
-#: ../classes/gallery/UserDB.php:304
+#: ../classes/gallery/UserDB.php:308
 #, php-format
 msgid "A user with the username of %s already exists"
 msgstr "Пользователь с именем %s уже существует"
 
 #
-#: ../classes/gallery/UserDB.php:313
+#: ../classes/gallery/UserDB.php:317
 msgid "Password must be at least 3 characters"
 msgstr "Пароль должен содержать не менее 3 символов"
 
 #
-#: ../classes/gallery/UserDB.php:344
+#: ../classes/gallery/UserDB.php:348
 #, php-format
 msgid "Checking user %d of %d . . . . "
 msgstr "Проверка пользователя %d из %d . . . . "
 
-#: ../classes/gallery/UserDB.php:349
+#: ../classes/gallery/UserDB.php:353
 msgid "skipped"
 msgstr "пропущен"
 
 #
-#: ../classes/gallery/UserDB.php:395
+#: ../classes/gallery/UserDB.php:399
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Проблема добавления %s:"
@@ -1040,7 +1047,7 @@ msgstr "Пропущен альбом #%d"
 
 #
 #: ../copy_photo.php:132 ../do_command.php:261 ../do_command.php:263
-#: ../login.php:127 ../register.php:47 ../register.php:119
+#: ../login.php:127 ../register.php:47 ../register.php:123
 #: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "Закрыть"
@@ -1102,8 +1109,8 @@ msgid "no album / index specified"
 msgstr "не указан альбом / индекс"
 
 #
-#: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:51
-#: ../user_preferences.php:61
+#: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:54
+#: ../user_preferences.php:68
 msgid "Passwords do not match!"
 msgstr "Пароли не совпадают!"
 
@@ -3116,7 +3123,7 @@ msgid "There is no valid email for this account.  Please contact %s administrato
 msgstr "Неправильный e-mail для этой учётной записи. Пожалуйста обратитесь к администраторам %s за новым паролем"
 
 #
-#: ../login.php:140 ../new_password.php:35 ../new_password.php:39
+#: ../login.php:140 ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr "Неправильное имя пользователя"
 
@@ -3423,36 +3430,45 @@ msgstr ""
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "Строки !!USERNAME!!, !!FULLNAME!! и !!PASSWORD!! будут заменены в e-mail значениями из файла участников. Будут отправлены индивидуальные e-mail на каждого участника с правильным e-mail адресом в файле участников (если включено &quot;отправлять e-mail&quot;)"
 
-#: ../new_password.php:32
+#: ../new_password.php:35
 msgid "missing hash parameter"
 msgstr "отсутствует хеш параметр"
 
-#: ../new_password.php:41
+#: ../new_password.php:44
 msgid "The recovery password is not the expected value, please try again"
 msgstr "Восстановление пароля не ожидаемое значение, пожалуйста попробуйте снова"
 
 #
-#: ../new_password.php:48
+#: ../new_password.php:51
 msgid "You must provide your new password."
 msgstr "Вы должны указать свой новый пароль."
 
+#: ../new_password.php:66 ../user_preferences.php:40
+#, php-format
+msgid "%s contained invalid data, resetting input."
+msgstr ""
+
+#: ../new_password.php:71 ../register.php:85 ../user_preferences.php:79
+msgid "You must specify a valid email address."
+msgstr "Вы должны указать правильный e-mail адрес."
+
 #
-#: ../new_password.php:92 ../new_password.php:96
+#: ../new_password.php:107 ../new_password.php:111
 msgid "Make New Password"
 msgstr "Создание нового пароля"
 
 #
-#: ../new_password.php:101
+#: ../new_password.php:116
 msgid "Enter the Gallery"
 msgstr "Вход в галерею"
 
 #
-#: ../new_password.php:105 ../user_preferences.php:113
+#: ../new_password.php:120 ../user_preferences.php:130
 msgid "You can change your user information here."
 msgstr "Здесь вы можете изменить информацию о себе."
 
 #
-#: ../new_password.php:106
+#: ../new_password.php:121
 msgid "You must enter the new password twice."
 msgstr "Вы должны дважды ввести новый пароль."
 
@@ -3845,42 +3861,42 @@ msgstr "Создание пользователя для %s."
 msgid "This Gallery does not support self-registration by visitors."
 msgstr "Эта галерея не поддерживает самостоятельную регистрацию посетителями."
 
-#: ../register.php:76
+#: ../register.php:69
+msgid "Your fullname containes invalid data!"
+msgstr ""
+
+#: ../register.php:80
 msgid "You must specify a name."
 msgstr "Вы должны указать имя."
 
-#: ../register.php:81
-msgid "You must specify a valid email address."
-msgstr "Вы должны указать правильный e-mail адрес."
-
-#: ../register.php:103
+#: ../register.php:107
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s зарегистрирован. Отправлен e-mail на %s."
 
-#: ../register.php:109
+#: ../register.php:113
 msgid "Gallery Self Registration"
 msgstr "Самостоятельная регистрация в галереи"
 
-#: ../register.php:111
+#: ../register.php:115
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "E-mail отправлен на %s."
 
-#: ../register.php:113
+#: ../register.php:117
 msgid "Your account information is contained within the email."
 msgstr "Информация вашей учётной записи содержится в e-mail."
 
-#: ../register.php:115
+#: ../register.php:119
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "Не возможно отправить e-mail. Пожалуйста обратитесь к администратору галереи, чтобы зарегистрироваться на этом сайте"
 
-#: ../register.php:134
+#: ../register.php:138
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Ваша учётная информация будет отправлена на e-mail адрес, который вы укажите."
 
 #
-#: ../register.php:137
+#: ../register.php:141
 #, fuzzy
 msgid "Send request"
 msgstr "Запрос нового пароля"
@@ -5058,33 +5074,38 @@ msgstr "Повторить"
 msgid "Users upgraded successfully."
 msgstr "Пользователи обновлены успешно."
 
-#: ../user_preferences.php:44
+#: ../user_preferences.php:51
 #, fuzzy
 msgid "You are not allowed to change your username."
 msgstr "Вам не разрешается выполнять это действие."
 
 #
-#: ../user_preferences.php:50
+#: ../user_preferences.php:57
 msgid "Incorrect password"
 msgstr "Неверный пароль"
 
 #
-#: ../user_preferences.php:56
+#: ../user_preferences.php:63
 msgid "You must provide your old password to change it."
 msgstr "Для изменения вы должны указать свой прежний пароль."
 
 #
-#: ../user_preferences.php:111
+#: ../user_preferences.php:123
 msgid "Change User Preferences"
 msgstr "Изменение настроек пользователя"
 
+#: ../user_preferences.php:126
+#, fuzzy
+msgid "User successfully updated."
+msgstr "Пользователи обновлены успешно."
+
 #
-#: ../user_preferences.php:114
+#: ../user_preferences.php:131
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "Если вы хотите изменить пароль, вы должный указать ваш прежний пароль и ввести два раза новый."
 
 #
-#: ../user_preferences.php:115
+#: ../user_preferences.php:132
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Вы можете изменить своё имя пользователя на любую комбинацию символов и цифр."
 
@@ -5196,7 +5217,7 @@ msgstr ""
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:952 ../util.php:1832
+#: ../util.php:952 ../util.php:1833
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
@@ -5275,12 +5296,12 @@ msgstr ""
 msgid "csv result:"
 msgstr "Результаты опроса:"
 
-#: ../util.php:1644
+#: ../util.php:1645
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1734
+#: ../util.php:1735
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
@@ -5575,49 +5596,49 @@ msgid "Sorry.  This album does not allow comments."
 msgstr "К сожалению, в этом альбоме комментарии запрещены."
 
 #
-#: ../view_photo.php:312
+#: ../view_photo.php:315
 msgid "photo properties"
 msgstr "свойства фото"
 
-#: ../view_photo.php:396
+#: ../view_photo.php:399
 #, fuzzy
 msgid "Send photo to..."
 msgstr "Изменение размера %d фотографий..."
 
-#: ../view_photo.php:398
+#: ../view_photo.php:401
 #, fuzzy
 msgid "Print photo with..."
 msgstr "Изменение размера %d фотографий..."
 
 #
-#: ../view_photo.php:434
+#: ../view_photo.php:437
 #, fuzzy, php-format
 msgid "process this photo with %s"
 msgstr "распечатать это фото на %s"
 
 #
-#: ../view_photo.php:476
+#: ../view_photo.php:480
 #, fuzzy
 msgid "View Images:"
 msgstr "Вид фотографий"
 
 #
-#: ../view_photo.php:477
+#: ../view_photo.php:481
 msgid "normal"
 msgstr "обычный"
 
 #
-#: ../view_photo.php:478
+#: ../view_photo.php:482
 msgid "full"
 msgstr "развёрнутый"
 
 #
-#: ../view_photo.php:496
+#: ../view_photo.php:500
 #, fuzzy
 msgid "Send Photo as eCard"
 msgstr "Отправить мне мой пароль"
 
-#: ../view_photo.php:716
+#: ../view_photo.php:720
 #, fuzzy
 msgid "Email me when comments are added"
 msgstr "Добавлен комментарий"
@@ -5649,6 +5670,10 @@ msgstr "Голосов пока нет."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#
+#~ msgid "Illegal username %s: must at least 2 characters"
+#~ msgstr "Недопустимое имя пользователя %s: должно содержать не менее 2 символов"
 
 #
 #, fuzzy
