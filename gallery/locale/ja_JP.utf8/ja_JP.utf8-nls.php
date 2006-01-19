@@ -21,7 +21,7 @@
  *
  * Version: 1.5.2-cvs
  */
-/**
+ * @version     1.5.2
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
