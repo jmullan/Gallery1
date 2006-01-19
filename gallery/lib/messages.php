@@ -39,16 +39,15 @@ function infoLine($messages, $type = '') {
 }
 
 function errorRow($key) {
-        global $gErrors;
+    global $gErrors;
 
-        if (isset($gErrors[$key])) {
-                $error = $gErrors[$key];
-        } else {
-                $error = NULL;
-        }
-        if ($error) {
-                include(dirname(dirname(__FILE__)) . "/html/errorRow.inc");
-        }
+    if (!empty($gErrors[$key])) {
+        echo "\n<tr>";
+        echo "\n  <td colspan=\"2\">";
+	echo "\n  ". gallery_error($gErrors[$key]);
+	echo "  </td>";
+        echo "\n</tr>";
+    }
 }
 
 function processingMsg($buf) {

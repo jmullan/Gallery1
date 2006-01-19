@@ -24,10 +24,13 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($hash, $uname, $save, $new_password1, $new_password2) = getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
-list($fullname, $email, $defaultLanguage) = getRequestVar(array('fullname', 'email', 'defaultLanguage'));
+list($hash, $uname, $save, $new_password1, $new_password2) = 
+    getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
+list($fullname, $email, $defaultLanguage) = 
+    getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
-$error_string="";
+$error_string = '';
+
 if (!isset($hash)) {
        	$error_string .= _("missing hash parameter") . "<br>";
 }
@@ -42,7 +45,7 @@ if (empty($uname) ) {
 	}
 }
 
-$errorCount=0;
+$errorCount = 0;
 if (!empty($save)) {
 	if (empty($new_password1) ) {
 	       	$gErrors["new_password1"] = _("You must provide your new password.");
@@ -56,6 +59,18 @@ if (!empty($save)) {
 		       	$errorCount++;
 	       	}
        	}
+
+	// security check;
+	if($fullname != strip_tags($fullname)) {
+            $gErrors["fullname"] =
+                sprintf(_("%s contained invalid data, resetting input."), htmlentities($fullname));
+            $errorCount++;
+        }
+
+	if (!empty($email) && !check_email($email)) {
+                $gErrors['email'] = _("You must specify a valid email address.");
+                $errorCount++;
+        }
 
        	if (!$error_string && !$errorCount) {
        	    $tmpUser->setFullname($fullname);
@@ -98,30 +113,29 @@ doctype();
 <?php 
 if ($error_string) {
        	echo gallery_error($error_string);
-       	echo "<a href='albums.php'>" . _("Enter the Gallery") . "</a></body></html>"; 
+       	echo "<a href='albums.php'>" . _("Enter the Gallery") . "</a></div></body></html>"; 
 	exit;
 }
 
 echo _("You can change your user information here.");
 echo _("You must enter the new password twice.");
 
-?>
+echo "\<p>";
 
-<p>
-
-<?php 
 echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
-?>
-<p>
 
-<?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
+echo "\n<p>";
+
+include(dirname(__FILE__) . '/html/userData.inc');
+
+?>
 <p>
 <input type="hidden" name="hash" value="<?php echo $hash ?>">
 <input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="location.href='<?php echo $gallery->app->photoAlbumURL; ?>'">
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
@@ -131,5 +145,6 @@ document.usermodify_form.new_password1.focus();
 //--> 
 </script>
 </div>
+
 </body>
 </html>
