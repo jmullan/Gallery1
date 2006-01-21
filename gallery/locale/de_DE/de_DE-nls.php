@@ -22,7 +22,7 @@
  
 /**
  * @version     1.5.2
- * @package			Languagepack
+ * @package		Languagepack
  * @subpackage	German
  */
 
@@ -68,5 +68,4 @@
  * postNuke
  */
 	$nls['postnuke']['de_DE'] = 'deu';
-
 ?>
