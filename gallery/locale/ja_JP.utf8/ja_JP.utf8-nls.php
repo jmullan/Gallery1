@@ -18,10 +18,15 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- *
- * Version: 1.5.2-cvs
  */
+ 
+/**
  * @version     1.5.2
+ * @package		Languagepack
+ * @subpackage	Japanese
+ */
+
+/**
  * NLS (National Language System) array.
  *
  * The basic idea and values was taken from then Horde Framework (http://horde.org)
@@ -31,30 +36,25 @@
  *
  */
 
+/**
+ * Native languagename
+ */
+	$nls['language']['ja_JP.utf8'] = 	'&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
 
 /**
- ** Native languagename
- **/
-	$nls['language']['ja_JP.utf8'] = 		'&#x65e5;&#x672c;&#x8a9e; (EUC-JP)';
+ * Alias for languages with different browser and gettext codes
+ */
+	$nls['alias']['ja'] = 			    'ja_JP.utf8';
 
 /**
- ** Alias for languages with different browser and gettext codes
- **/
-
-	$nls['alias']['ja'] = 			'ja_JP.utf8';
-
-/**
- ** Alias for languages which we substitte or send by NUKE or GeekLog
- **/
-
+ * Alias for languages which we substitte or send by NUKE or GeekLog
+ */
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP.utf8' ;	
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP.utf8' ;
- 	$nls['alias']['japanese'] =		'ja_JP.utf8' ;
+ 	$nls['alias']['japanese'] =		    'ja_JP.utf8' ;
 	
 /**
- ** Charset
- **
- **/	
-	
-	$nls['charset']['ja_JP.utf8'] = 		'EUC-JP';
+ * Charset
+ */		
+	$nls['charset']['ja_JP.utf8'] = 	'EUC-JP';
 ?>
