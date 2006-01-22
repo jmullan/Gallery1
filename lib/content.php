@@ -105,7 +105,7 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
     global $gallery;
     if ($gallery->user->isLoggedIn() &&
       (empty($commenter_name) || $gallery->app->comments_anonymous == 'no')) {
-        $commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
+        $commenter_name = $gallery->user->printableName($gallery->app->name_display);
     }
 ?>
 
@@ -479,24 +479,20 @@ function includeTemplate($tplName, $skinname='') {
  * @author Jens Tkotz <jens@peino.de
  */
 function showOwner($owner) {
+    global $gallery;
     global $GALLERY_EMBEDDED_INSIDE_TYPE;
     global $_CONF;				/* Needed for GeekLog */
 
     switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
         case 'GeekLog':
-        return '<a href="'. $_CONF['site_url'] .'/users.php?mode=profile&uid='. $owner->uid .'">'. $owner->displayName() .'</a>';
+            $name = '<a href="'. $_CONF['site_url'] .'/users.php?mode=profile&uid='. $owner->uid .'">'. $owner->displayName() .'</a>';
         break;
 
         default:
-        $name = $owner->displayName();
-
-        if (!$owner->getEmail()) {
-            return $name;
-        } else {
-            return '<a href="mailto:' . $owner->getEmail() . '">' . $name . '</a>';
-        }
+            $name = $owner->printableName($gallery->app->name_display);
         break;
     }
+    return $name;
 }
 
 function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrackets = true) {

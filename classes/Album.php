@@ -1055,7 +1055,7 @@ class Album {
                 $text .= "\n  </head>\n<body>\n<p>";
                 $text .= sprintf(_("A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
                   '<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
-                $gallery->user->printableName($gallery->app->comments_display_name),
+                  $gallery->user->printableName($gallery->app->name_display),
                   $_SERVER['REMOTE_ADDR'],
                 $msg_str);
 

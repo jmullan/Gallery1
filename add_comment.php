@@ -30,12 +30,13 @@ if (!$gallery->user->canAddComments($gallery->album)) {
 	exit;
 }
 
-list($save, $id, $commenter_name, $comment_text) = getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
+list($save, $id, $commenter_name, $comment_text) = 
+    getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
 
 $error_text = '';
 if ($gallery->user->isLoggedIn() ) {
 	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-		$commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
+		$commenter_name = $gallery->user->printableName($gallery->app->name_display);
 	}
 } elseif (!isset($commenter_name)) {
 	$commenter_name = '';

@@ -282,6 +282,12 @@ $constants =  array_merge(array(
 			),
 		'value' => 'no'
 	),
+	'name_display' => array(
+		'prompt' => gTranslate('config',"Format for commenter and owner names"),
+		'desc' => gTranslate('config',"Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"),
+		'choices' => displayNameOptions(),
+		'value' => '!!FULLNAME!! (!!USERNAME!!)',
+	),
 	'skinname' => array(
 		'prompt' => gTranslate('config',"Skin Name"),
 		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") .
@@ -1071,12 +1077,6 @@ $constants = array_merge($constants, array(
 			'no' => gTranslate('config',"No")
 		),
 		'value' => 'no',
-	),
-	'comments_display_name' => array(
-		'prompt' => gTranslate('config',"Format for commenter names"),
-		'desc' => gTranslate('config',"Commenter names of logged in users can be displayed in a variety of different ways"),
-		'choices' => displayNameOptions(),
-		'value' => '!!FULLNAME!! (!!USERNAME!!)',
 	),
 	'comments_addType' => array(
 		'prompt' => gTranslate('config',"Add comments inside the photo page"),
