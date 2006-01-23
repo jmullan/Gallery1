@@ -23,21 +23,17 @@
 <?php
     require_once(dirname(__FILE__) . '/init.php');
 
-    session_start();
-
-// Pull the $count variable in also
-foreach($_SESSION as $key => $value) {
-	$$key =& $_SESSION[$key];
-}
-session_register("count");
-
-
 if (isset($_REQUEST['destroy'])) {
     session_destroy();
     header("Location: session_test.php");
     exit;
 }
-$count++;
+
+if(!isset($_SESSION['count'])) {
+    $_SESSION['count'] = 0;
+}
+
+$_SESSION['count']++;
 ?>
 
 <html>
@@ -70,7 +66,7 @@ $count++;
 		</tr>
 		<tr>
 			<td class="shortdesc"><?php echo _("Page views in this session") ?></td>
-			<td class="desc"><?php echo $count ?></td>
+			<td class="desc"><?php echo $_SESSION['count'] ?></td>
 		</tr>
 		<tr>
 			<td class="shortdesc"><?php echo _("Server IP address") ?></td>
