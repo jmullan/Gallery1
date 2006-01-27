@@ -1041,8 +1041,8 @@ class Album {
                 return $success;
             }
 
+            $to = $this->getEmailMeList('other');
             if (!empty($to)) {
-                $to = $this->getEmailMeList('other');
                 $text = '';
                 $msg_str = call_user_func_array('sprintf', $msg);
                 $subject = sprintf(_("Changes to Album: %s"), $this->fields['name']);
