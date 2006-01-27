@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery2-devguide.concepts">
+ <title>Concepts</title>
+ 
+ <sect2>
+  <title>
+   Test Driven Development
+  </title>
+  <para>
+   Writing a application that must run on many different
+   platforms, works with multiple databases and is based on
+   emerging technologies can be very challenging. Especially when
+   the development is distributed and has been in progress over a
+   long period of time. As we've worked on Gallery2 we've found
+   issues with the design and implementation that make us want to
+   rework large parts of the system. However, we fear making
+   large changes because even though G2 is modular and well
+   written there are still interdependencies between different
+   parts of the system and there's the chance that we're breaking
+   something critical. After all, how do we have to know that our
+   change is going to work on all of our platforms and databases
+   without doing a lot of exhaustive and manual testing? This can
+   be daunting and it tends to impose a conservative mindset
+   where we fear to enact change because we know that we won't be
+   able to find out the consequences until its too late. That is
+   unacceptable; we must be willing to make large changes or
+   we'll get stuck with an inferior design.
+  </para>
+  <para>
+   Enter Test Driven Development.
+  </para>
+  <para>
+   This is a strategy whereby every new bit of functionality
+   starts its life as a test. We envision the feature and then
+   write a test that will only succeed when the feature is
+   complete. Initially when we run the test it fails because we
+   haven't written the feature yet. Then we go and write the
+   feature until it satisfies the test. If we think of a new
+   twist or restrictrion on the feature then we write a new test
+   and then keep working on the code until that test passes
+   also. Pretty soon we have a very large set of tests, and all
+   of our code is getting tested regularly. If we find something
+   that doesn't look right, or can be combined with other code we
+   can feel free to make as many small or large changes as we
+   want, as long as when we check the changes in the tests still
+   run. Find a bug? Write a test that fails until the bug is
+   fixed. Want to add a feature? Write a test first. Code running
+   slow? Refactor and optimize at will as long as the tests still
+   run. Want to know if your code is going to work on a different
+   platform? Go to that platform and run the tests. Find a bug on
+   that platform? Write a test to expose the bug, fix the bug so
+   that the test works, check it all in and then go and run the
+   tests on the first platform.
+  </para>
+  <para>
+   G2 uses a system called phpunit to do unit testing and at the time
+   of this writing has about 1300 tests covering all of the features
+   in the product.  If you want to see what the test suite looks like,
+   install G2 and browse to gallery2/lib/tools/phpunit/index.php.  All
+   the tests should be green, at all times.
+  </para>
+  <para>
+   Test Driven Development is not our idea. It stems from a
+   methodology called Extreme Programming. Bharat learned about
+   Extreme Programming while doing development on SourceForge,
+   grew enamored of it and decided that while not all principles
+   could be applied to an open source project like Gallery, at
+   least some of them were of tremendous value. For more
+   information about Extreme Programming read these links:
+   <itemizedlist>
+    <listitem>
+     <para>
+      <ulink url="http://www.google.com/search?q=extreme+programming">
+       <citetitle>
+        Extreme Programming Google Links
+       </citetitle>
+      </ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://junit.sourceforge.net/doc/testinfected/testing.htm">
+       <citetitle>
+        Test Infected
+       </citetitle>
+      </ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://www.artima.com/intv/testdriven4.html">
+       <citetitle>
+        Test Driven Development
+       </citetitle>
+      </ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://www.xprogramming.com/xpmag/whatisxp.htm">
+       <citetitle>
+        What is Extreme Programming?
+       </citetitle>
+      </ulink>
+     </para>
+    </listitem>
+   </itemizedlist>
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Embedding Gallery in Other Applications
+  </title>
+  <para>
+   Gallery is designed very specifically to manage your
+   multimedia online.  It's not a content management system or a
+   blog or a website editor.  However, there's no reason why
+   Gallery can't be the multimedia management portion of a much
+   larger system which does much more context content management
+   or blogging, etc.  Many such systems focus on their core
+   competency and provide a very weak multimedia management
+   system.  Gallery is designed to work within those larger
+   systems and provide the functionality that they lack.
+  </para>
+  <para>
+   In order to make this process of embedding easier, Gallery is
+   very careful about not polluting global namespaces.  Core
+   classes, constants, database tables, etc are prefixed with
+   different forms of "gallery" to identify them as separate from
+   the outer program.
+  </para>
+  <para>
+   How we actually go about embedding Gallery into another
+   program depends heavily on which program we are going to work
+   with.  For PHP CMS systems like PostNuke/PHP-Nuke, we will
+   need to create a new entry point into G2 that replaces
+   main.php. This new entry point will be PostNuke/PHP-Nuke
+   specific and will give us a way to interoperate between the
+   two.  Then we need to extend the database storage layer so
+   that it understands that the user/group information is now
+   stored in a different table/column arrangement so that our
+   queries continue to function. Then we need disable certain
+   functionality (like user management) and provide some new
+   templates for the administration console so that we can tie
+   the G2 site admin interface into the CMS' admin system.
+  </para>
+  <para>
+   I'm envisioning shipping a snap-on pack for each CMS that
+   converts your G2 install into one that works for the specific
+   CMS. It'll work by adding new files/modules to the G2 install
+   (but not replacing existing files).  This is in the
+   speculative stage so no substantive work has been done on it
+   yet.
+  </para>
+ </sect2>
+ <sect2>
+  <title>
+   Coding standards
+  </title>
+  <para>
+   Clean code is important, especially when many developers are
+   collaborating.  Read and obey the Gallery 2
+   <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=GalleryDocs&amp;file=index&amp;page=gallery2-devguide.coding-standards.php">
+    Coding Standards
+   </ulink>
+   document
+  </para>
+ </sect2>
+</sect1>

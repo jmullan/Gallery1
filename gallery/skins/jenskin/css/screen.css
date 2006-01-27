@@ -1,0 +1,339 @@
+/* 
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+/*
+  $Id$
+ 
+  Gallery - a web based photo album viewer and editor
+  Copyright (C) 2000-2006 Bharat Mediratta
+ 
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or (at
+  your option) any later version.
+ 
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+
+*/ 
+
+textarea:focus, input:focus, select:focus {
+    background-color: #FFFFDA;
+}
+
+.commentbox	{ 
+    border-width:1px; border-style:solid; border-color: #000000;
+    padding:2px;
+}
+		
+.commentboxhead	{ background-color: #FCFCF3; padding:2px;
+		  border-bottom-width:1px; border-bottom-style: solid; border-color: #000000;
+		  font-size:10pt;
+		}
+
+.commentlabel	{ background-color: #DCDCC0; padding:5px; font-weight: bold;
+		  font-size:10pt;
+		}
+
+.commentboxfooter { 
+	background-color: #FCFCF3; padding:2px;
+	border-top-width:1px; border-top-style: solid; border-color: #000000;
+	font-size:10pt;
+}
+
+.sitedesc	{ background-color: #FCFCF3; margin-top:25px; padding:5px;
+		  border-style: solid; border-width: 1px ; border-color: #000000;
+		}
+
+.inner		{ padding: 5px; margin-top:20px;
+		  border-style: solid; border-color: #000000; border-width:1px;
+		}
+
+.shortdesc	{ background-color: #DCDCC0; padding:5px; font-weight: bold;
+		}
+
+body	{ 
+	  color: #000000;
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  background-image: url(../images/simplex-bkg.gif);
+	}
+
+a:link, a:visited { 
+	color: #000000;
+		}
+
+a:hover { 
+    color: #000099;
+    text-decoration: none;
+}
+
+/* 
+   text styles 
+*/
+.title                          /* album titles on main page */
+	{ 
+	  font-size: 14px; 
+	  font-weight: bold; 
+	}
+
+.mod_title			/* album title -- Text is controlled by .title */
+	{
+	  border:1px solid #000000;
+	  border-right-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+
+.albumdesc  /*album description includes all text and background*/
+	{
+	color:#000000;
+	}
+
+.desc	{ background-color: #FCFCF3 ; padding:3px; margin:8px; font-size:1.0em;
+	  width:80%;
+	  border-style: solid; border-color: #000000; 
+	  border-width:1px; -Moz-Border-Radius: 20px;
+	}
+
+.caption                        /* photo captions on all pages */
+	{ 
+	  font-size: 10px; 
+	}
+.modcaption  /* modifies background for caption text to reside */
+	{
+	  font-size: 10px; 
+	}
+
+.error {
+    background-color: #CC0000; color: #FFFFFF ;
+    padding:3px;
+    -Moz-Border-Radius: 20px;
+    margin:5px;
+}
+
+a.error, a.error:link, a.error:visited, a.error:active {
+    color: #FFFFFF;
+}
+
+.attention                          /* so far, just for voting instructions*/
+        {
+          font-family: Verdana, Arial, Helvetica, sans-serif;
+          font-weight: normal;
+          color: blue;
+          font-size: 12px;
+        }
+
+/*
+.warning        { font-weight:bold; background-color: #FFFF33; color: #000000 ;
+		  width: 150px; padding:2px; 
+		}
+*/
+
+.headbox { 
+	  background-color: #E6E6DC; font-size: 1.5em;  font-weight:bold; padding:10px;
+	  border-style: solid; border-width: 1px; border-color: #F0F0F0;
+	}
+
+.head                           /* page headers */
+	{ 
+	  font-size: 16px; 
+	  font-weight: bold; 
+	}
+
+.bread                          /* used in breadcrumb bars */
+	{ 
+	  font-size: 10px; 
+	}
+.nav                            /* used in navigation bars */
+	{ 
+	  font-size: 12px; 
+	}
+	
+.navtableborderbegin{
+	border:1px solid #000000;
+}
+
+.navtableborderend {
+	border:1px solid #000000;
+	border-top-width:0px;
+
+}
+
+.bordertop
+	{
+	  border:1px solid #000000;
+	  border-right-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+.borderright
+	{
+	  border:1px solid #000000;
+	  border-top-width:0px;
+	  border-bottom-width:0px;
+	  border-left-width:0px;
+	}
+.borderleft
+	{
+	  border:1px solid #000000;
+	  border-top-width:0px;
+	  border-bottom-width:0px;
+	  border-right-width:0px;
+	}
+
+.fineprint                      /* used for fine print */
+	{
+	  font-size: 10px;
+	}
+
+input, select, option, textarea
+	{ 
+	  background-color: #FCFCFF; padding-left:5px; -Moz-Border-Radius: 20px;
+	}
+
+
+.editlink                       /* Used for the [edit] tags */
+	{
+	  font-size: 10px;
+	}
+
+.admin                          /* used in admin bars */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold; 
+}
+
+.adminform { 
+    font-size: 10px; 
+    font-weight: bold; 
+}
+
+.search                          /* used in search text */
+	{ 
+	  font-size: 10px; 
+	  font-weight: bold;
+	}
+	
+/* controls the background of popup. */
+.popupbody {
+    margin: 5px;
+    background-color: #808080;
+    font-size: 12px;
+ }
+
+.popuphead { 
+    font-size: 16px; font-weight: bold;
+    text-align: center;
+    background-color: #FCFCF3;
+    -Moz-Border-Radius: 20px;
+    padding: 3px; margin: 10px;
+    border: 1px solid black;
+}
+
+.popup /* controls the main text and message body */
+ {
+ }
+
+.popupform /* controls form textarea */
+ {
+ }
+
+.commentIndication {
+        color: red;
+	font-weight: bold; font-size: 12px;
+	vertical-align:top;
+}.pview /* brackets both the image and all text in one frame */
+{
+	margin:7px;
+	padding: 7px;
+ }
+
+.pcaption /* brackets all text below photo */
+{ 
+	padding:2px;
+	margin-top:2px;
+ }
+
+.vatable /* width of the div set for all photo sets - view albums  */
+ { 
+ 	width: 100%;
+ }
+
+.vathumbs /* full background bracket for images and text - veiw albums  */
+ { 
+	margin:17px;
+ }
+
+.vafloat /* float for view album - text */
+ {
+	float: none; 
+ }
+
+.vafloat2 /* float for view album - images */
+ {
+	float: none; 
+ }
+
+.vasummary /* controls the view of Album summary */
+{
+        font-weight:bold;
+        padding:2px;
+        margin-top:10px;
+        width:80%;
+}
+
+#adminbox {
+    color: #000000;
+    background-color: #FCFCF3;
+}
+
+#adminbox td {
+    font-size: 10px; font-weight: bold;
+    background-color: #FCFCF3;
+    padding-left:2px; padding-right:2px;
+    padding-top:1px; padding-bottom:1px;
+}
+
+#adminbox a {
+}
+
+#adminbox a:hover {
+}
+
+#menu {
+}
+
+#menu td{
+}
+
+#menu a {
+    white-space: nowrap;
+    padding: 2px;
+    -moz-border-radius: 3px;
+    text-decoration: none;
+}
+
+#menu a:hover {
+   white-space: nowrap;
+   border-bottom: 1px solid #66A;
+   border-right: 1px solid #66A;
+   border-top: 1px solid #224;
+   border-left: 1px solid #224;
+   padding: 1px;
+}
+
+.noLink {
+    font-size: 10px;
+//	padding: 3px;
+}
+
+.debugmessage {
+    font-size: 10px;
+}

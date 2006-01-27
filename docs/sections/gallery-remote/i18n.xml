@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery-remote.i18n">
+	<title>Gallery Remote Internationalization and Localization</title>
+
+	<sect2 id="gallery-remote.i18n.translators">
+		<title>Instructions for translators</title>
+
+		<para>
+   First, thank you for considering helping the project by donating time and effort
+   to translate Gallery Remote to a new language or improving an existing translation.
+		</para>
+
+  <para>
+   The process for creating or updating Gallery Remote translations is significantly
+   different from that of Gallery (1 and 2) translations. Please read this document carefully.
+  </para>
+
+  <sect3>
+   <title>Setting up Gallery Remote for localization work</title>
+
+   <sect4>
+    <title>Installation</title>
+
+    <para>
+     First, you need to install Gallery Remote. Grab a recent build from the
+     <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Gallery%20Remote">download page</ulink> and install it.
+    </para>
+    <para>
+     Also install the latest <ulink url="http://jpmullan.com/galleryupdates/">beta patch</ulink> to make sure
+     the language you intend to work on hasn't already been integrated. You can find help on how to do
+     that in the <link linkend="gallery-remote.faq.1">FAQ</link> 
+    </para>
+
+   </sect4>
+
+   <sect4>
+    <title>Configuration</title>
+
+    <para>
+     You then need to change a few things to put Gallery Remote in a mode that will make it more comfortable
+     to work on translation.
+    </para>
+
+    <para>
+     Find the <link linkend="gallery-remote.using.preferences">preferences file</link> and add the following line:
+     <screen>uiLocaleDev=true</screen>
+    </para>
+
+   </sect4>
+
+   <sect4>
+    <title>New language file</title>
+
+    <para>
+     Then go to the <filename>img</filename> folder in your Gallery Remote folder and create an empty file for your
+     language, with the following naming convention:
+    </para>
+    <itemizedlist spacing="compact">
+     <listitem><para>if the language you intend to work on is a competely new language, the
+      filename will be <filename>GRResources_<replaceable>languagecode</replaceable>.properties</filename>
+     </para></listitem>
+     <listitem><para>if the language you intend to work on is a national modification of an existing base language, the
+      filename will be <filename>GRResources_<replaceable>languagecode</replaceable>_<replaceable>countrycode</replaceable>.properties</filename>
+     </para>
+     <para>
+      In this case you also need to extract the main language from <filename>GalleryRemote.jar</filename>
+      (the Java SDK must be in your path) and you must have a console in the Gallery Remote
+      installation folder):
+      <command>
+       jar xfv GalleryRemote.jar com/gallery/GalleryRemote/resources/GRResources.properties
+      </command>
+      and move it to the <filename>img</filename> folder.
+     </para>
+     </listitem>
+    </itemizedlist>
+    <para>
+     You can find the standardized list of language codes <ulink url="http://ftp.ics.uci.edu/pub/ietf/http/related/iso639.txt">here</ulink>.
+    </para>
+    <para>
+     You can find the standardized list of country codes <ulink url="http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html">here</ulink>.
+    </para>
+    <para>
+     Capitalization is important: language codes are lowercase, while country codes are uppercase.
+    </para>
+
+   </sect4>
+
+   <sect4>
+    <title>Selecting the new language in Gallery Remote</title>
+
+    <para>
+     Run Gallery Remote, go in the Preferences dialog. Your new language should be available
+     in the Language selection. You need to restart Gallery Remote for the language to
+     be used in the user interface.
+    </para>
+   </sect4>
+  </sect3>
+
+  <sect3>
+   <title>Installing and running the localization application: ResBundleEdit</title>
+
+   <para>
+    You can download RedBundleEdit from the <ulink url="http://sourceforge.net/project/showfiles.php?group_id=94241">Sourceforge project page</ulink>.
+   </para>
+
+   <para>
+    To install it, just put the resulting file in a convenient place on your hard-drive, for example
+    your Gallery Remote folder.
+   </para>
+
+   <para>
+    If Java is installed on your machine, running ResBundleEdit is as simple as double-clicking on the JAR file.
+    If that doesn't work, you can open a console or Command Window, set the current directory to the
+    directory you put the JAR in and type <command>java -jar ResBundleEdit.jar</command>.
+   </para>
+
+   <para>
+    When it's launched for the first time, ResBundleEdit show the properties files in the folder
+    it was started from. You can change this in the Options dialog, and set the default directory
+    to the <filename>img</filename> folder inside your Gallery Remote installation.
+   </para>
+
+   <para>
+    You should then be able to double-click on <filename>GRResources.properties</filename> in the
+    list of files on the left.
+   </para>
+
+   <para>
+    The resource file will open in the right part of the window. There should be one column for
+    resource keys, then one column for each language file in the folder. Your new language should be
+    a column with nothing in it.
+   </para>
+
+   <para>
+    The translation process is just a matter of translating every key and adding the translation to
+    your language. Good luck...
+   </para>
+  </sect3>
+
+  <sect3>
+   <title>Translation guidelines</title>
+
+   <itemizedlist>
+    <listitem>
+     <para>Start with an empty language file, do not copy the main language file.</para>
+     <para>Gallery Remote will automatically default to the text in the main language (English) file if
+     a given key is absent in your language file, and will signal this by
+     appending *** before the English text.</para>
+     <para>If you copy text from the English file to your file, you'll make it harder for
+     yourself and the Gallery team to identify which strings have been translated and which have not.</para>
+    </listitem>
+    <listitem>
+     <para>Always use ResourceBundleEditor to edit a language file, do not use a standard
+     text editor. Java requires a special encoding for language files.</para>
+    </listitem>
+    <listitem>
+     <para>You can ask ResBundleEdit to close those locales that you don't need to work
+     on to have more room for your locale and the default/main/English locale.</para>
+    </listitem>
+    <listitem>
+     <para>If a string has text like:
+     <screen>{0}</screen>
+     <screen>{1, number, integer}</screen>
+     do not translate the text inside the brackets, it will be replaced at runtime by
+     the application.</para>
+    </listitem>
+    <listitem>
+     <para>Test your translation often by running Gallery Remote and making sure that your translation makes sense.
+     You have to restart Gallery Remote for it to take new translations into account; translations
+     are not loaded dynamically.</para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+
+  <sect3>
+   <title>Sending completed translations</title>
+
+   <para>
+    When your translation is complete, you can either add it to the
+    <ulink url="http://sourceforge.net/tracker/?atid=582564&amp;group_id=7130">Gallery language tracker</ulink>
+    (preferred), with a title like:
+    <command>[GR] language file for <replaceable>language</replaceable></command>
+    or send it to me via email (paour AT users DOT sourceforge DOT net).
+   </para>
+  </sect3>
+	</sect2>
+
+	<sect2 id="gallery-remote.i18n.users">
+		<title>Using Gallery Remote with a non-roman Gallery</title>
+
+		<para>
+		</para>
+	</sect2>
+
+</sect1>

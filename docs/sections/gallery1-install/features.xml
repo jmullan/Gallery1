@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-install.features">
+ <title>Features</title>
+ 
+ <sect2 id="gallery1-install.features.summary">
+  <title>Summary</title>
+ 
+  <para>
+   A Gallery is a collection of photo albums. You can have as many Galleries
+   as you want on your web server. Each gallery contains as many photo albums
+   as you want. Configuration of Gallery and administration of the photo albums
+   is done entirely via an intuitive, web interface. You don't need special
+   privileges on your webserver to install, configure and maintain Gallery.
+   It's free, and we (the Gallery team) support it.
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery1-install.features.detail">
+  <title>Detail</title>
+  
+  <sect3 id="gallery1-install.features.detail.config-wizard">
+   <title>Configuration Wizard</title>
+  
+   <para>
+    Gallery comes with a handy web based configuration wizard. This wizard
+    helps to make sure that your web server and operating system are set up
+    correctly. It allows you to configure many of Gallery's options while
+    determining as much as it can from your environment. The wizard will
+    create an admin account for you. This is a special account that allows
+    you to create other user accounts, create albums, and set album permissions.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.administrator">
+   <title>Administrator</title>
+   
+   <para>
+    You start off with only one user, the Administrator (login name: admin).
+    This account can do anything with Gallery. Typically you'll want to use
+    the admin to create other users. Users can be granted permission to create
+    and maintain their own albums.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.adding-photos">
+   <title>Adding photos to Albums</title>
+   
+   <para>
+    If you have the appropriate permissions, you can add photos to an album.
+    You can add them one at a time or up to 10 at a time using the "Add Photos"
+    dialog. If your server has ZIP file support, a faster alternative is to
+    upload a ZIP file full of photos and movies. A third option is to specify
+    a web page and let Gallery go and slurp all the photos and movies off of
+    that page for you (it'll let you pick which ones you want). A fourth option
+    is to copy images to your web server and let Gallery copy them directly
+    into your album. As photos and movies are added to the album, Gallery will
+    resize and make thumbnails of them for you.
+   </para>
+   <para>
+    Gallery also allows you have albums within albums so you can organize sets
+    of albums together. You can choose which album you want to be the highlight,
+    just as if it were a photo. You can move albums and ranges of photos in and
+    out of other albums.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.maintaining-photos">
+   <title>Maintaining Photos</title>
+   
+   <para>
+    A photo or movie is the basic unit of Gallery. Photos and movies are grouped
+    together into albums. Once you have the photos in your album the fun begins.
+    Typically an intermediate resized version and a thumbnail of the image are
+    created for you. You can:
+    <itemizedlist>
+     <listitem>
+      <para>
+       Add captions
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Edit the thumbnail. Gallery comes with a small Java applet that lets
+       you select a part of the image as the source for your thumbnail.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Rotate your photo (in 90 degree increments)
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Highlight a photo (pick a photo to represent the album in the main Gallery)
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Reorder the photos in the album
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Hide photos (so that they're only visible to the owner)
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Delete photos
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Sort your album based on popularity, title, number of comments, and photo
+       capture date.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Edit multiple captions at once
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.maintaining-albums">
+   <title>Maintaining Albums</title>
+   
+   <para>
+    Each album's appearance can be customized by its owner in a variety of ways.
+    You can change the title, colors, background, fonts, and borders. You can 
+    also specify a target thumbnail size and a target intermediate photo size
+    (so that folks with lesser bandwidth can view scaled versions of big photos).
+    The number of rows and columns in an album is customizable, as well as a
+    variety of viewer options.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.mirroring">
+   <title>Mirroring Albums</title>
+   
+   <para>
+    Gallery lets you mirror your albums on as many remote servers as you like.
+    This lets you run your Gallery on a machine with limited bandwidth
+    (like over a DSL line) but still serve up your images quickly from a high
+    bandwidth source like an ISP. Gallery will not actually mirror the files
+    for you. You're responsible for doing it yourself. I use a program called
+    <ulink url="http://rsync.samba.org">rsync</ulink>. You can use whatever
+    you want. If the remote album is up to date, Gallery will use it.
+    If not, Gallery will use the local one.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.gallery-remote">
+   <title>Gallery Remote</title>
+   
+   <para>
+    Gallery comes with a Java application called Gallery Remote that your users
+    can use to upload photos to your Gallery via a drag-and-drop interface.
+    You can download Gallery Remote from the
+    <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Download">
+    Download Page</ulink>
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.users">
+   <title>Users</title>
+   
+   <para>
+    A user (provided the admin allows it) can create a new album. This user
+    (the creator of the album) is the album's owner and can modify the
+    album's permissions. You can grant read, write, modify and delete
+    permissions to individual users on a per-album basis. Owners and the
+    Administrator always have all permissions.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.embedding">
+   <title>Embedding Gallery</title>
+   
+   <para>
+    Gallery is compatible with <ulink url="http://www.phpnuke.org">PHPNuke 5.0+</ulink>,
+    <ulink url="http://www.postnuke.com">PostNuke</ulink>, 
+    <ulink url="http://www.geeklog.net/">GeekLog</ulink> and 
+    <ulink url="http://www.mamboserver.com/">Mambo</ulink>, as an add-on module.
+    Once configured, Gallery will take on the look and feel of whatever application it's
+    embedded into. 
+    Since each CMS has slightly different requirements to enable embedding, specifications
+    are included in the "contrib" directory of the Gallery install.
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.customizing">
+   <title>Customizing Gallery</title>
+   
+   <para>
+    You can change much of Gallery's look with style sheets. You can also wrap
+    it inside your own website in a seamless fashion
+    (<ulink url="http://www.coronanightclub.ca/gallery/">example 1</ulink>,
+    <ulink url="http://photos.motoworldracing.com/gallery/albums.php">example 2</ulink>)
+    using our HTML wrapping system. The one thing you can't easily do right now
+    is to change the layout from a grid format to something else. However,
+    in v2.0 we plan to introduce a templating system that will let you write
+    your own HTML to do customized themes and layouts (or use the ones that we
+    and other users provide). You can find out more about MANY more
+    customizations further down in the user guide underneath the
+    <ulink url="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Customizing%20%2F%20Hacks">Customization area</ulink>
+    <!-- FIXME: Fix link after integration -->
+   </para>
+  </sect3>
+  
+  <sect3 id="gallery1-install.features.detail.viewer-options">
+   <title>Viewer Options</title>
+   
+   <para>
+    Users viewing your album can easily navigate around using the navigation
+    bars at the top and bottom of every album page. Each album can be given
+    its own unique URL. Each photo within the album in turn has its own unique
+    URL. You can use these URLs to get directly to a specific photo from outside
+    the Gallery (useful when you want to email photo links to a friend). In
+    addition to this, the album owner can allow the user to use the following
+    features:
+    <itemizedlist>
+     <listitem>
+      <para>
+       Fit-to-window -- This feature will scale any photos that don't have
+       intermediate resized versions so that they fit on the screen of the
+       viewer (experimental) This is an optional feature that can be disabled
+       by the Administrator.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Full-vs-Resized -- Viewers can specify that they want to view "only" the
+       full sized versions.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Photo printing -- Gallery is integrated with various photo printing
+       services. Your viewers can order prints via them with a single click.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Short URL's -- If you have the mod_rewrite capability on your webserver
+       (this is a module for Apache, and many ISPs enable it) you can use very
+       short URLs for each picture which makes it easier to email them around.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Keyword searching -- Gallery allows you to search your album and photo
+       names and descriptions for keywords. This is a configurable option.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       EXIF headers -- Gallery displays the EXIF data embedded into images by
+       most of the newer digital cameras. This is a configurable option.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Click counting -- Gallery tracks how many times an album or photo has
+       been viewed and displays it for you to see. This is an optional feature
+       that can be disabled by the Administrator.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Public commenting -- Visitors can write their own comments on individual
+       photos for all to see. Admins can manage these comments. This is an
+       optional feature that can be disabled by the Administrator.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Slideshow -- Visitors can view the contents of an album using a slideshow.
+      </para>
+     </listitem>
+    </itemizedlist>
+   </para>
+  </sect3>
+  
+ </sect2>
+
+</sect1>

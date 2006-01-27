@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery-remote.software">
+ <title>Bundled Software</title>
+ <para>
+  The following software is bundled with Gallery Remote, to provide some of the functions provided.
+  No particular action is necessary to install these packages. The following information is provided
+  for the benefit of curious users and developers only.
+ </para>
+ 
+ <sect2 id="gallery-remote.software.imagemagick">
+  <title>ImageMagick</title>
+  <para>
+   ImageMagick can be found <ulink url="http://www.imagemagick.org/">here</ulink>.
+   We use ImageMagick to resize images prior to uploading them.
+   In the future, we'll implement features such as watermarking or arbitrary ImageMagick manipulation.
+  </para>
+  <para>
+   <ulink url="http://www.imagemagick.org/www/Copyright.html">ImageMagick</ulink> is licensed under its own license.
+  </para>
+ </sect2>
+ 
+ <sect2 id="gallery-remote.software.jsx">
+  <title>JSX</title>
+  <para>
+   JSX can be found <ulink url="http://www.gnu.org/directory/devel/conversion/JavaSerialization.html">here</ulink>.
+   We use JSX to provide save/load support. In the future, this may be used to allow external tools to 
+   automatically generate projects that can then be loaded into Gallery Remote.
+  </para>
+  <para>
+   JSX is licensed under the GPL.
+  </para>
+  <para>
+   Since we started including JSX into our build, the free and open version of JSX has
+   vanished from the above URL, to be replaced by a new, but neither free nor open
+   version (JSX 2). Despite this, the license for JSX 1.0.7.4, which Gallery uses, remains
+   valid, although the corresponding package is no longer available.
+  </para>
+ </sect2>
+
+ <sect2 id="gallery-remote.software.jpegtran">
+  <title>Jpegtran</title>
+  <para>
+   The Win32 version of Jpegtran, compiled and patched by <ulink url="http://sylvana.net/jpegcrop/">Guido Vollbeding</ulink>.
+   We use Jpegtran to rotate JPEG pictures before upload. In the future, it may also be used to crop pictures.
+  </para>
+  <para>
+   Jpegtran doesn't appear to have any particular license, but is obviously redistributable, 
+   since it comes with most Linux distributions. Guido's version is freely downloadable.
+  </para>
+ </sect2>
+
+ <sect2 id="gallery-remote.software.jarbundler">
+  <title>Jar Bundler Ant Task</title>
+  <para>
+   The Mac executable is made with the Jar Bundler Ant task, which is made available by Seth Morabito.
+   The Ant task is available <ulink url="http://www.loomcom.com/jarbundler/index.html">here</ulink>.
+  </para>
+  <para>
+   The Jar Bundler Ant Task is licensed under the GPL.
+  </para>
+ </sect2>
+
+ <sect2 id="gallery-remote.software.metadata">
+  <title>MetadataExtractor</title>
+  <para>
+   Gallery Remote uses the MetadataExtractor library, by Drew Noakes, to read the EXIF Orientation
+   tags, in order to figure out whether it should automatically rotate the images.
+   The library is available <ulink url="http://drewnoakes.com/code/exif/index.html">here</ulink>.
+  </para>
+  <para>
+   MetadataExtractor has been placed in the public domain by its author.
+  </para>
+ </sect2>
+</sect1>

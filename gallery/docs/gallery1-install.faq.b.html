@@ -1,0 +1,107 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>B. Configuring Gallery</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-install.faq.html" title="Frequently Asked Questions"><link rel="previous" href="gallery1-install.faq.a.html" title="A. Getting Gallery"><link rel="next" href="gallery1-install.faq.c.html" title="C. Troubleshooting Gallery"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">B. Configuring Gallery</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-install.faq.a.html">Prev</a> </td><th width="60%" align="center">Frequently Asked Questions</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-install.faq.c.html">Next</a></td></tr></table><hr></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gallery1-install.faq.b"></a>B. Configuring Gallery</h3></div></div><div></div></div><div class="qandaset"><dl></dl><table border="0" summary="Q and A Set"><col align="left" width="1%"><tbody><tr class="toc" colspan="2"><td align="left" valign="top" colspan="2"><dl><dt>B.1. <a href="gallery1-install.faq.b.html#gallery1-install.faq.b.1">
+       The setup page tells me that mod_rewrite is not installed. Since mod_rewrite is
+       optional, how do I configure this option?
+      </a></dt><dt>B.2. <a href="gallery1-install.faq.b.html#gallery1-install.faq.b.2">
+       Does Gallery work under Windows?
+      </a></dt><dt>B.3. <a href="gallery1-install.faq.b.html#gallery1-install.faq.b.3">
+       How do I run PHP as a CGI?
+      </a></dt><dt>B.4. <a href="gallery1-install.faq.b.html#gallery1-install.faq.b.4">
+       How do I force .php files to use PHP4?
+      </a></dt><dt>B.5. <a href="gallery1-install.faq.b.html#gallery1-install.faq.b.5">
+       Where can I find the unzip and zipinfo
+       binaries?
+      </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.b.1"></a><a name="id2522989"></a><b>B.1.</b></td><td align="left" valign="top"><p>
+       The setup page tells me that mod_rewrite is not installed. Since mod_rewrite is
+       optional, how do I configure this option?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       Mod_rewrite is a module that is compiled with Apache.  To enable it, you
+       must have root access to the server.  Unless you compiled Apache by
+       yourself, most distributions will include mod_rewrite, but not necessarily
+       enabled it.  The most common way to do so is this:
+       </p><pre class="screen">
+        LoadModule rewrite_module libexec/mod_rewrite.so
+        AddModule mod_rewrite.c
+       </pre><p>
+       For more information on mod_rewrite check out the
+       <a href="http://httpd.apache.org/docs/mod/mod_rewrite.html" target="_top">Apache
+       module mod_rewrite</a> page.
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.b.2"></a><a name="id2523032"></a><b>B.2.</b></td><td align="left" valign="top"><p>
+       Does Gallery work under Windows?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       Many people have gotten Gallery to work under Windows using Apache.  However,
+       Gallery does not interact well with IIS, because PHP still has some issues
+       with executing programs like NetPBM and ImageMagick.
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.b.3"></a><a name="id2523056"></a><b>B.3.</b></td><td align="left" valign="top"><p>
+       How do I run PHP as a CGI?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       Running PHP as a CGI is usually done when PHP is not available on your
+       server (but you can execute cgi-bin scripts) or when the normal PHP
+       installation is running in safe mode.  Note that in order for this to
+       work, your server must be configured to read <tt class="filename">.htaccess</tt> files, which your
+       host can disable!
+      </p><div class="orderedlist"><ol type="1"><li><p>
+         Obtain a CGI version of PHP for your platform. You can downloads PHP
+         binaries for various platforms on the
+         <a href="https://sourceforge.net/project/showfiles.php?group_id=7130&amp;release_id=167649" target="_top">
+         Gallery SourceForge Download Page</a>.  If you can't find a binary
+         for your platform, but you have access to compile programs, you
+         can configure PHP with this <span><b class="command">configure</b></span> line.
+         </p><pre class="screen">
+          ./configure --enable-force-cgi-redirect --disable-safe-mode
+          --with-config-file-path=/usr/local/lib/php-cgi
+         </pre><p>
+         Then run <span><b class="command">make</b></span>.  The resulting binary will be called
+         <span><b class="command">php</b></span> in the <tt class="filename">sapi/cgi/</tt> directory
+         of the PHP source.  Please submit the binary to
+         <a href="mailto:joyoflinux@yahoo.com" target="_top">Andrew Lindeman</a>, so
+         he can include it on the download page.  Please only submit binaries
+         that use that exact <span><b class="command">configure</b></span> line, for consistancy
+         reasons.
+        </p></li><li><p>
+         Upload the CGI version of PHP to the <tt class="filename">cgi-bin</tt>
+         directory and call it <tt class="filename">php.cgi</tt>.  Upload it in
+         BINARY FTP mode.
+        </p></li><li><p>
+         Chmod <tt class="filename">php.cgi</tt> 755 (<span><b class="command">chmod 755 php.cgi</b></span>)
+        </p></li><li><p>
+         Create a new directory in your webserver root called <tt class="filename">php-cgi
+         </tt>
+        </p></li><li><p>
+         Create a new <tt class="filename">.htaccess</tt> file in your <tt class="filename">php-cgi</tt> directory
+         and put the following lines in it:
+         </p><pre class="screen">
+          RemoveHandler .php
+          AddType application/cgi-php php
+          Action application/cgi-php /cgi-bin/php.cgi
+         </pre><p>
+        </p></li></ol></div><p>
+       That should be it!  Install Gallery in your <tt class="filename">php-cgi</tt>
+       directory.  <span class="emphasis"><em>It is extremely difficult to provide support for
+       this, because there are many things that can go wrong and it's hard to
+       diagnose the problem.</em></span>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.b.4"></a><a name="id2523258"></a><b>B.4.</b></td><td align="left" valign="top"><p>
+       How do I force .php files to use PHP4?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       In the rare case that your ISP has PHP3 and PHP4 installed on the same server,
+       sometimes .php files will end up being parsed by the PHP3 parser, which Gallery
+       can't run under.  To force .php files to use the PHP4 parser, add these to your
+       <tt class="filename">.htaccess</tt> file.
+       </p><pre class="screen">
+        &lt;Files *.php&gt;
+         ForceType application/x-httpd-php
+        &lt;/Files&gt;
+       </pre><p>
+      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="gallery1-install.faq.b.5"></a><a name="id2523299"></a><b>B.5.</b></td><td align="left" valign="top"><p>
+       Where can I find the <span><b class="command">unzip</b></span> and <span><b class="command">zipinfo</b></span>
+       binaries?
+      </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+       You can download the latest unzip binary from the 
+       <a href="http://www.info-zip.org/pub/infozip/UnZip.html" target="_top">Info-Zip website
+       </a>.
+      </p><p>
+       The recent releases of unzip no longer come with a zipinfo binary. That's
+       ok, though because it's really just the same binary as unzip with a
+       different name. Just make a copy of unzip and call it zipinfo and then
+       tell Gallery about that on page 2 of the config wizard and you'll be all
+       set.
+      </p></td></tr></tbody></table></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-install.faq.a.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-install.faq.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-install.faq.c.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">A. Getting Gallery </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> C. Troubleshooting Gallery</td></tr></table></div></body></html>

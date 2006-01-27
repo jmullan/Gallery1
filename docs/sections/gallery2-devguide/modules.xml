@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!-- $Id$ -->
+
+<sect1 id="gallery2-devguide.modules">
+ <title>Modules</title>
+ 
+ <para>
+  Modules are where all of the Gallery functionality lives.  Even
+  the core Gallery framework is a module.  Modules can be added and
+  removed from the Gallery framework and each module can add
+  virtually unlimited functionality.  Modules can use existing
+  database tables, they can use APIs from other modules, they can
+  introduce new item types into the gallery.  In short, they are
+  where all functionality lives.
+ </para>
+ <sect2 id="gallery2-devguide.modules.layout">
+  <title>
+   Module Layout
+  </title>
+  <para>
+   Modules only have one hard requirement, which is that you must
+   have a module.inc file in the top level of the module directory.
+   However, we do suggest a layout for your module files to make it
+   consistent with the rest of the Gallery modules.
+   <screen>
+     <emphasis>module</emphasis>
+     |-- module.inc   <lineannotation>this is the only mandatory file</lineannotation>
+     |-- classes/
+     |   |-- GNUmakefile
+     |   |-- <lineannotation>all necessary classes for this module</lineannotation>
+     |   |-- GalleryPlatform/
+     |   |-- GalleryStorage/
+     |   |   `-- DatabaseStorage/
+     |   |       `-- schema/
+     |   |           |-- GNUmakefile
+     |   |           |-- platform/
+     |   |           |   |-- GNUmakefile
+     |   |           |   |-- mysql/
+     |   |           |   |   |-- GNUmakefile
+     |   |           |   |   `-- <lineannotation>MySQL specific SQL scripts</lineannotation>
+     |   |           |   `-- postgres/
+     |   |           |       |-- GNUmakefile
+     |   |           |       `-- <lineannotation>PostgreSQL specific SQL scripts</lineannotation>
+     |   |           |-- xml-out/
+     |   |           `-- xml-src/
+     |   |               `-- GNUmakefile
+     |   `-- interfaces/
+     |       |-- GNUmakefile
+     |       `-- <lineannotation>generated entity and map interfaces</lineannotation>
+     |-- locale/
+     |   `-- <lineannotation>a tree of generated gettext .mo files</lineannotation>
+     |-- po/
+     |   |-- GNUmakefile
+     |   `-- <lineannotation>hand written gettext .po translation files</lineannotation>
+     |-- templates/
+     |   `-- <lineannotation>Smarty template files </lineannotation>
+     `-- test/
+         |-- data/
+         |   `-- <lineannotation>PHPUnit test data</lineannotation>
+         `-- phpunit/
+             `-- <lineannotation>PHPUnit tests</lineannotation>
+   </screen>
+   Several notes about this layout:
+   <itemizedlist>
+    <listitem>
+     <para>
+      The GNUmakefile files are used to create all generated files
+      (like class interfaces, SQL scripts, translations, etc.).
+      Typically you just need to copy the GNUmakefile from the same
+      spot in an existing module (say the comment module, since it
+      has all of them).  You shouldn't have to tweak the file at all
+      if you put it into the same spot in your module.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      You only need to include the GalleryStorage/ tree if you're
+      going to create database tables.  Gallery provides a way to
+      create tables that work on any of our supported databases
+      without you having to write the SQL yourself.  This is also a
+      good idea because it will version these tables, install them
+      for you and help the user through the upgrade process.  You're
+      not <emphasis>required</emphasis> to do it this way but we
+      strongly suggest it.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </para>
+ </sect2>
+ <sect2 id="gallery2-devguide.modules.lifecycle">
+  <title>
+   Module Life Cycle
+  </title>
+  <para>
+   Modules arrive in your Gallery either as part of the core Gallery
+   package, or they're downloaded and unpacked into the modules
+   directory.  In order to be used, a module must be installed, then
+   activated via the Site Admin interface.  Each active module is
+   loaded upon every request so that it has an opportunity to
+   register factory implementations, views, event listeners, etc.
+   We'll explain what all of those are in detail below.  Ultimately,
+   a module can be deactivated and uninstalled via the Site Admin
+   interface and then deleted from the modules directory.
+  </para>
+ </sect2>
+ <sect2 id="gallery2-devguide.modules.components">
+  <title>
+   Module Components
+  </title>
+  <sect3>
+   <title>
+    module.inc
+   </title>
+   <para>
+    All modules live within the modules/ directory inside the Gallery
+    directory.  Each module must contain a file called "module.inc" at
+    the top level which contains a PHP class that extends
+    GalleryModule.  The GalleryModule class provides a very simple
+    module implementation designed to be a framework that you can
+    build on.  You must override some of the GalleryModule methods in
+    your own module implementation to give it the behaviour that you
+    want.  
+    <itemizedlist>
+     <listitem>
+      <para>
+       install()
+      </para>
+      <para>
+       Perform any install/upgrade tasks required at this point.  This
+       method is called if the module version in the module.inc does
+       not match the version number in the database.  If this method
+       completes successfully, it should have set its version number
+       in the database appropriately so that it will not be called
+       again.  Typically a module will call upon the storage system to
+       load any new tables or alter existing ones, upgrade any module
+       parameters, and register any new permissions.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       registerEventListeners()
+      </para>
+      <para>
+       This will be called for you to register any event handling code
+       using the GalleryCoreApi::registerEventListener() call.  If an
+       event is fired somewhere and you registered an implementation for
+       that event here, your implementation will be called.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       performFactoryRegistrations()
+      </para>
+      <para>
+       Here the module has the oportunity to register an implementation
+       of one or more interfaces by calling
+       GalleryCoreApi::registerFactoryImplementation().
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getSiteAdminViews()
+      </para>
+      <para>
+       Using this method you can return a list of views (see the
+       Model-View-Controller pattern below) that this module will
+       display in the <emphasis>Site Admin</emphasis> section of
+       Gallery.
+      </para>
+      <para>
+       The returned views should be in an array of the format:
+       <programlisting>
+        array('name' => $this->translate('Layouts'),
+              'view' => 'core:AdminLayouts');
+       </programlisting>
+       Note that the text value is localized since it will be
+       displayed directly to the user.
+      </para>
+      <para>
+       This example would create a "Layouts" entry in the Site 
+       Admin. The link would make the Site Admin load the 
+       "core:AdminLayouts" view as a subView or SiteAdmin.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getItemAdminViews()
+      </para>
+      <para>
+       Using this method you can return a list of item administration
+       views (see the Model-View-Controller pattern below) that this
+       module wants to display for each item.  The module should check
+       permissions and item type to determine which views are
+       applicable for the authenticated user.  As with
+       getSiteAdminViews(), the view title text must be localized.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getUserAdminViews()
+      </para>
+      <para>
+       Get the list of GalleryViews containing the various user
+       administration views for this module.  The module should check
+       permissions and item type to determine which views are applicable
+       for the authenticated user.  As with getSiteAdminViews(), the view
+       title text must be localized.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getConfigurationView()
+      </para>
+      <para>
+       Get the name of the GalleryView containing the administration
+       view specifically for configuring this module.  It may be one
+       that is also listed in getSiteAdminViews().  As with
+       getSiteAdminViews(), the view title text must be localized.
+      </para>  
+     </listitem>
+
+     <listitem>
+      <para>
+       getSystemLinks()
+      </para>
+      <para>
+       Return links to system level views.  These are views that are
+       relevant throughout the system but are unrelated to any given
+       item.  The login, logout and site admin links are examples of
+       these types of links.  As with getSiteAdminViews(), the view
+       title text must be localized.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       loadSystemContent()
+      </para>
+      <para>
+       Return system level content.  This is similar to system links, but
+       it's actually HTML content and not a link to a view.  It should
+       fill the template adapter with proper information, and return a
+       named list of template files that can be shown as a system
+       content.  This is useful for things like the search module that
+       want to embed a search box on every page.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getItemLinks()
+      </para>
+      <para>
+       Return item specific links.  These are links to item specific
+       module views.  For example, the comments module uses this to
+       link to the "add comments" view.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       getItemSummaries()
+      </para>
+      <para>
+       Return item specific summaries.  This is localized content
+       specific to a given item.  For example, the comments module
+       uses this to display the last few comments about an item.
+      </para>
+     </listitem>
+
+     <listitem>
+      <para>
+       loadItemDetails()
+      </para>
+      <para>
+       Return item specific details.  This is not a HTML fragment, but a
+       reference to a file containing a template to display for each
+       item. This method should have filled the template adapter with the
+       variables needed by the template file.  You can use this display
+       in-depth item content.  In theory it should be more detailed than
+       the item summaries.
+      </para>
+     </listitem>
+
+    </itemizedlist>
+   </para>
+  </sect3>
+  <sect3>
+   <title>
+    classes
+   </title>
+   <para>
+    This is the home for any entities, items and helper classes that
+    you create.  See the comment and search modules for examples of
+    these.
+   </para>
+  </sect3>
+  <sect3>
+   <title>
+    PHPUnit Tests
+   </title>
+   <para>
+    You should create your PHPUnit tests inside the test/phpunit
+    directory.  Framework tests should extend GalleryTestCase, and
+    controller tests should extend GalleryControllerTestCase.  Examine
+    those classes (in gallery2/lib/tools/phpunit) to find common
+    convenience methods that you can use in your tests.
+   </para>
+   <para>
+    Unit tests should make an effort to avoid messing with existing
+    data and to leave the database in a clean state when they're
+    done.  It's ok for the tests to screw with the database when they
+    fail (what can ya do), but not when they run successfully.  You
+    should be able to run tests repeatedly without having to rebuild
+    the database, etc.
+   </para>
+  </sect3>
+ </sect2>
+ <sect2>
+  <title>
+   Official Modules
+  </title>
+  <itemizedlist>
+   <listitem>
+    <para>
+     core
+    </para>
+    <para>
+     As the name implies, this is the home of the core Gallery 2
+     functionality.  This is standard module, with the exception that
+     it gets loaded up first so that it can provide a framework for
+     all the rest of the modules.  It contains all the relevant
+     underlying technologies like the platform, storage subsystem,
+     implementation factories, toolkits, caching system, entities, maps,
+     events, etc.
+    </para>
+    <para>
+     The core module provides the base set of GalleryEntities and
+     GalleryMaps that form the framework for all managed data.  Here
+     is a
+     <ulink url="http://gallery.menalto.com/modules.php?set_albumName=userguide&amp;id=aab&amp;op=modload&amp;name=gallery&amp;file=index&amp;include=view_photo.php">
+      UML diagram of all GalleryEntities
+     </ulink>
+     .  At the moment, this diagram only contains the core entities
+     and their members.  It does not include core maps, helper
+     classes, entities from other modules or entity methods.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     search
+    </para>
+    <para>
+     This module provides a means of searching all other Gallery
+     modules.  It accomplishes this by publishing a search interface
+     that all other modules (that wish to be searchable) implement.
+     The search module provides views and controllers that allow it
+     to perform searches on the other modules via this interface.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     imagemagick
+    </para>
+    <para>
+     This is an ImageMagick implementation of the GalleryToolkit API.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     netpbm
+    </para>
+    <para>
+     This is a NetPBM implementation of the GalleryToolkit API.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     comments
+    </para>
+    <para>
+     This module provides support for adding comments to
+     GalleryItems.  It creates its own table in the database for
+     storing comments as well as views for adding, editing and
+     removing comments.  It implements the search interface so that
+     comments are searchable.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </sect2>
+</sect1>

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head><title>Rendering Image Frames with CSS-defined Appearance</title>
+<style type="text/css">
+td img { display:block }
+
+.image_1 { float:left; margin:0px 6px 3px 0px; }
+.image_1 img { margin:0px; padding:0px; border:0px; }
+.image_1 .TL { width:30px; height:30px; background: url(frames/wooden/TL.gif) no-repeat; }
+.image_1 .TT { height:30px; background: url(frames/wooden/TT.gif) repeat-x; }
+.image_1 .TR { width:30px; height:30px; background: url(frames/wooden/TR.gif) no-repeat; }
+.image_1 .LL { width:30px; background: url(frames/wooden/LL.gif) repeat-y; }
+.image_1 .RR { width:30px; background: url(frames/wooden/RR.gif) repeat-y; }
+.image_1 .BL { width:30px; height:30px; background: url(frames/wooden/BL.gif) no-repeat; }
+.image_1 .BB { height:30px; background: url(frames/wooden/BB.gif) repeat-x; }
+.image_1 .BR { width:30px; height:30px; background: url(frames/wooden/BR.gif) no-repeat; }
+
+.image_2 { float:right; margin:0px 0px 3px 6px; }
+.image_2 img { margin:0px; padding:0px; border:0px; }
+.image_2 .TL { width:30px; height:14px; background: url(frames/notebook/TL.gif) no-repeat; }
+.image_2 .TT { height:14px; background: url(frames/notebook/TT.gif) repeat-x; }
+.image_2 .TR { width:15px; height:14px; background: url(frames/notebook/TR.gif) no-repeat; }
+.image_2 .LL { width:30px; background: url(frames/notebook/LL.gif) repeat-y; }
+.image_2 .RR { width:15px; background: url(frames/notebook/RR.gif) repeat-y; }
+.image_2 .BL { width:30px; height:15px; background: url(frames/notebook/BL.gif) no-repeat; }
+.image_2 .BB { height:15px; background: url(frames/notebook/BB.gif) repeat-x; }
+.image_2 .BR { width:15px; height:15px; background: url(frames/notebook/BR.gif) no-repeat; }
+
+.grid { float:left; margin:0px 6px 3px 0px; border-spacing:3px; text-align:center; font-size:70% }
+.grid td { background-color:lightblue; }
+.grid td.img { font-size:150%; width:150px; height:120px; }
+.grid td.TTL, .grid td.TTR, .grid td.BBL, .grid td.BBR { width:1px; }
+.grid td.LLT, .grid td.RRT, .grid td.LLB, .grid td.RRB { height:1px; }
+
+.image_3 { float:right; margin:0px 0px 3px 6px; }
+.image_3 td { background-color:red }
+.image_3 .RRT { height:10px; background: url(frames/shadow/RRT.png) no-repeat; }
+.image_3 .RR { width:7px; background: url(frames/shadow/RR.png) repeat-y; }
+.image_3 .BBL { width:9px; background: url(frames/shadow/BBL.png) no-repeat; }
+.image_3 .BB { height:7px; background: url(frames/shadow/BB.png) repeat-x; }
+.image_3 .BR { width:7px; height:7px; background: url(frames/shadow/BR.png) no-repeat; }
+
+td div.H { width:1px; height:0px; }
+td div.V { width:0px; height:1px; }
+
+.image_4 { float:left; margin:0px 6px 3px 0px; }
+.image_4 td { background-color:red }
+.image_4 .RRT { height:10px; background: url(frames/shadow/RRT.png) no-repeat; }
+.image_4 .RR { height:expression((document.images.image_4.height-10)+'px'); width:7px; background: url(frames/shadow/RR.png) repeat-y; }
+.image_4 .BBL { width:9px; background: url(frames/shadow/BBL.png) no-repeat; }
+.image_4 .BB { width:expression((document.images.image_4.width-9)+'px'); height:7px; background: url(frames/shadow/BB.png) repeat-x; }
+.image_4 .BR { width:7px; height:7px; background: url(frames/shadow/BR.png) no-repeat; }
+
+.image { float:left; margin:0px 6px 3px 0px; }
+.image img { margin:0px; padding:0px; border:0px; }
+.image table { font-size:1px; } /* Need TT,BB content so they expand to width */
+.image .TL { width:0px; height:0px; }
+.image .TTL { width:0px; }
+.image .TT { height:0px; }
+.image .TTR { width:0px; }
+.image .TR { width:7px; height:0px; }
+.image .LLT { height:0px; }
+.image .LL { width:0px; }
+.image .LLB { height:0px; } /* IE does height 1px anyway; Moz ok */
+.image .RRT { height:10px; background: url(frames/shadow/RRT.png) no-repeat; }
+.image .RR { width:7px; background: url(frames/shadow/RR.png) repeat-y; }
+.image .RRB { height:0px; }
+.image .BL { width:0px; height:7px; }
+.image .BBL { width:9px; background: url(frames/shadow/BBL.png) no-repeat; }
+.image .BB { height:7px; background: url(frames/shadow/BB.png) repeat-x; }
+.image .BBR { width:0px; }
+.image .BR { width:7px; height:7px; background: url(frames/shadow/BR.png) no-repeat; }
+
+</style></head><body>
+
+<h3>Rendering Image Frames with CSS-defined Appearance</h3>
+
+<table class="image_1" border="0" cellspacing="0" cellpadding="0"><tr>
+<td class="TL"></td> <td class="TT"></td> <td class="TR"></td>
+</tr><tr>
+<td class="LL"></td>
+<td><img src="frames/sample.jpg" alt=""></td>
+<td class="RR"></td>
+</tr><tr>
+<td class="BL"></td> <td class="BB"></td> <td class="BR"></td>
+</tr></table>
+
+<table class="image_2" border="0" cellspacing="0" cellpadding="0"><tr>
+<td class="TL"></td> <td class="TT"></td> <td class="TR"></td>
+</tr><tr>
+<td class="LL"></td>
+<td><img src="frames/sample.jpg" alt=""></td>
+<td class="RR"></td>
+</tr><tr>
+<td class="BL"></td> <td class="BB"></td> <td class="BR"></td>
+</tr></table>
+
+The first method wraps the image in a table with 9 cells: 4 corners, 4 sides
+and one for the image.  This works well for any frame where the content on each
+side is repeated for the full length (ie CSS can use repeat-x or repeat-y).. it
+doesn't work as well for an offset type frame like "shadows".  We can partially
+get around this by making a very long or very tall image for those sides and
+adding the background with no-repeat; but this places an upper limit on the size
+of image that can be put inside the frame and also makes for a larger image to
+download.
+
+<pre style="clear:both">
+&lt;table class="image" border="0" cellspacing="0" cellpadding="0"&gt;&lt;tr&gt;
+&lt;td class="TL"&gt;&lt;/td&gt; &lt;td class="TT"&gt;&lt;/td&gt; &lt;td class="TR"&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class="LL"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="images/sample.jpg" alt="image"&gt;&lt;/td&gt;
+&lt;td class="RR"&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;tr&gt;
+&lt;td class="BL"&gt;&lt;/td&gt; &lt;td class="BB"&gt;&lt;/td&gt; &lt;td class="BR"&gt;&lt;/td&gt;
+&lt;/tr>&lt;/table&gt;
+</pre>
+
+<pre>
+.image img { margin:0px; padding:0px; border:0px; }
+.image .TL { width:30px; height:30px; background: url(frames/wooden/TL.gif) no-repeat; }
+.image .TT { height:30px; background: url(frames/wooden/TT.gif) repeat-x; }
+.image .TR { width:30px; height:30px; background: url(frames/wooden/TR.gif) no-repeat; }
+.image .LL { width:30px; background: url(frames/wooden/LL.gif) repeat-y; }
+.image .RR { width:30px; background: url(frames/wooden/RR.gif) repeat-y; }
+.image .BL { width:30px; height:30px; background: url(frames/wooden/BL.gif) no-repeat; }
+.image .BB { height:30px; background: url(frames/wooden/BB.gif) repeat-x; }
+.image .BR { width:30px; height:30px; background: url(frames/wooden/BR.gif) no-repeat; }
+</pre>
+
+<hr width="90%"/>
+
+<table class="grid">
+<tr><td class="TL">TL</td><td class="TTL">TTL</td><td class="TT">TT</td>
+    <td class="TTR">TTR</td><td class="TR">TR</td></tr>
+<tr><td class="LLT">LLT</td><td rowspan="3" colspan="3" class="img">IMAGE</td>
+    <td class="RRT">RRT</td></tr>
+<tr><td class="LL">LL</td><td class="RR">RR</td></tr>
+<tr><td class="LLB">LLB</td><td class="RRB">RRB</td></tr>
+<tr><td class="BL">BL</td><td class="BBL">BBL</td><td class="BB">BB</td>
+    <td class="BBR">BBR</td><td class="BR">BR</td></tr>
+</table>
+
+<table class="image_3" border="0" cellspacing="0" cellpadding="0">
+<tr><td class="TL"></td><td class="TTL"></td><td class="TT"></td>
+    <td class="TTR"></td><td class="TR"></td></tr>
+<tr><td class="LLT"></td><td rowspan="3" colspan="3"
+    ><img src="frames/sample.jpg" alt=""></td>
+    <td class="RRT"></td></tr>
+<tr><td class="LL"></td><td class="RR"><div class="V"></div></td></tr>
+<tr><td class="LLB"></td><td class="RRB"></td></tr>
+<tr><td class="BL"></td><td class="BBL"></td><td class="BB"><div class="H"></div></td>
+    <td class="BBR"></td><td class="BR"></td></tr>
+</table>
+
+The second method wraps the image in a table with 17 cells: 4 corners, 3 on each side
+and one for the image.  It works well with Mozilla but not at all with IE6, which can't
+render zero height table cells (min height is one) and won't size table cells to the
+content (TTL,TTR,etc get more space than they need).
+
+<pre style="clear:both">
+&lt;table class="image" border="0" cellspacing="0" cellpadding="0"&gt;
+&lt;tr&gt;&lt;td class="TL"&gt;&lt;/td&gt;&lt;td class="TTL"&gt;&lt;/td&gt;&lt;td class="TT"&gt;&lt;/td&gt;
+    &lt;td class="TTR"&gt;&lt;/td&gt;&lt;td class="TR"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="LLT"&gt;&lt;/td&gt;
+    &lt;td rowspan="3" colspan="3"&gt;&lt;img src="images/sample.jpg" alt=""&gt;&lt;/td&gt;
+    &lt;td class="RRT"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="LL"&gt;&lt;/td&gt;&lt;td class="RR"&gt;&lt;div class="V"&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="LLB"&gt;&lt;/td&gt;&lt;td class="RRB"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="BL"&gt;&lt;/td&gt;&lt;td class="BBL"&gt;&lt;/td&gt;&lt;td class="BB"&gt;&lt;div class="H"&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="BBR"&gt;&lt;/td&gt;&lt;td class="BR"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<pre>
+.image .RRT { height:10px; background: url(frames/shadow/RRT.png) no-repeat; }
+.image .RR { width:7px; background: url(frames/shadow/RR.png) repeat-y; }
+.image .BBL { width:9px; background: url(frames/shadow/BBL.png) no-repeat; }
+.image .BB { height:7px; background: url(frames/shadow/BB.png) repeat-x; }
+.image .BR { width:7px; height:7px; background: url(frames/shadow/BR.png) no-repeat; }
+td div.H { width:1px; height:0px; }
+td div.V { width:0px; height:1px; }
+.image td { background-color:red } /* to show brokenness in IE6 */
+</pre>
+
+<hr width="90%" style="clear:both">
+
+<table class="image_4" border="0" cellspacing="0" cellpadding="0">
+<tr><td rowspan="2" colspan="2"
+    ><img name="image_4" src="frames/sample.jpg" alt=""></td>
+    <td class="RRT"></td></tr>
+<tr><td class="RR"><div class="V"></div></td></tr>
+<tr><td class="BBL"></td><td class="BB"><div class="H"></div></td><td class="BR"></td></tr>
+</table>
+
+The third method is a series of hacks to support IE6.  First the server side must generate
+a table with only the rows that are needed (to avoid min-height of 1px problem), then
+IE-CSS-expressions are used to set some cell sizes (to avoid the cell-sizing problem).
+For other browsers the non-standard CSS expressions are ignored.
+
+<pre style="clear:both">
+&lt;table class="image" border="0" cellspacing="0" cellpadding="0"&gt;
+&lt;tr&gt;&lt;td rowspan="2" colspan="2"&gt;&lt;img name="theimage" src="images/sample.jpg" alt=""&gt;&lt;/td&gt;
+    &lt;td class="RRT"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="RR"&gt;&lt;div class="V"&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="BBL"&gt;&lt;/td&gt;&lt;td class="BB"&gt;&lt;div class="H"&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="BR"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<pre>
+.image .RRT { height:10px; background: url(frames/shadow/RRT.png) no-repeat; }
+.image .RR { height:expression((document.images.theimage.height-10)+'px'); width:7px; background: url(frames/shadow/RR.png) repeat-y; }
+.image .BBL { width:9px; background: url(frames/shadow/BBL.png) no-repeat; }
+.image .BB { width:expression((document.images.theimage.width-9)+'px'); height:7px; background: url(frames/shadow/BB.png) repeat-x; }
+.image .BR { width:7px; height:7px; background: url(frames/shadow/BR.png) no-repeat; }
+</pre>
+
+<hr width="90%" style="clear:both">
+
+Based on this analysis I recommend the third method.. erg, gotta support IE.
+
+</body></html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="guide-standards.formatting">
+ <title>Formatting</title>
+ 
+ <para>
+  In order for this kind of documentation to work, things have to be kept
+  consistent.  Though this can be a pain, in the long run, good formatting
+  standards will make people's lives much easier.  Remember that you're
+  not the only one working on this documentation.
+ </para>
+ <para>
+  First of all, I'll talk about indentation.  <emphasis>Do not use tabs</emphasis>.
+  Tabs are horrible if you're ever trying to reformat a document like this.  If
+  you accidentally use tabs for indentation, there is a perl shell script called
+  <filename>tab2space</filename> in the docs module that will help you convert it
+  (it's a perl script, so you may have to edit it and adjust it to your
+  perl binary).  Also, when indenting use one space per tag.  An example is
+  listed below.
+  <screen>
+<![CDATA[
+<para>
+ I am a good paragraph with good indentations.
+ <orderedlist>
+  <listitem>
+   <simpara>
+    Look at all the great indentations.
+   </simpara>
+  </listitem>
+  <listitem>
+   <simpara>
+    Thanks for helping with the documentation!
+   </simpara>
+  </listitem>
+ </orderedlist>
+</para>
+]]>
+  </screen>
+  Beyond all the silliness, it is important to keep code consistent.    
+ </para>
+ <para>
+  Secondly, lines should go no longer than 100 characters, unless a link
+  or other line that can't be broken prevents this.
+ </para> 
+ <para>
+  If you're ever in doubt about something, try looking for something similar
+  in another file and use it as a guide.  If not, feel free to ask another
+  author or editor.
+ </para>
+</sect1> 

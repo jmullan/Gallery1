@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery1-user.import">
+ <title>Importing into gallery</title>
+ 
+ <para>
+  Gallery has the ability to import (captions, descriptions, etc) from external
+  formats.  Importing is currently only available at upload time.  Form and URL
+  uploads are supported.
+  <itemizedlist>
+   <listitem>
+    <para>
+    When uploading by form, follow steps 3 and 4.  Specify the number of meta
+    data files in step 3.  Specify the meta data files in step 4, these files'
+    data will be applied to the newly added items.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     When uploading by URL, place the meta data files in the same directory as
+     the images.  When gallery reads the URL(s), it will list the images, movies,
+     and other support formats for your selection.  Below, it will list any meta
+     data files that were found, if any.  Only the selected meta data files will
+     be read and applied to the newly added items.
+    </para>
+   </listitem>
+  </itemizedlist>
+ </para> 
+ <para>
+  Meta data file requirements:
+  <itemizedlist>
+   <listitem>
+    <para>
+    For .csv files, a text file with semicolon seperated fields. The first
+    line (or row) defines each column.  A column of "File Name" or "Filename"
+    must exist, this field name <emphasis>is not</emphasis> case sensitive. All
+    other field names <emphasis>are case sensitive</emphasis>.  The remainder of
+    the fields will be used to populate the custom fields.  If the custom fields
+    are not set, then they will be ignored.  If no caption field is specified,
+    the first of the following non empty fields will be used: Title, Description,
+    Persons. (in order)
+    </para>
+   </listitem>
+  </itemizedlist>
+ </para>
+</sect1>

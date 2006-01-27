@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+<sect1 id="gallery-remote.protocol">
+  <title>Gallery Remote Protocol</title>
+  <sect2 id="gallery-remote.protocol.introduction">
+    <title>Introduction</title>
+    <para>This document describes version 2 of the Gallery remote application protocol, and its minor revisions.</para>
+    <para>The &quot;Gallery Remote&quot; remote administration program is this protocol&apos;s <foreignphrase>raison d&apos;être</foreignphrase>. Version 1 of the protocol was tied very tightly to that application. It is clear that in addition to Gallery Remote users, there is a growing number of users that would like to query and control Gallery installations with their own programs.</para>
+    <para>Version 2 adds some extra features but (hopefully) greater potential for other remote applications based on Gallery. If you would like to make suggestions for future work on the Gallery Remote protocol, please submit them to either of the authors.</para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.g2">
+    <title>G2 support</title>
+    <para>
+     The long-term plan for G2 remote access is to design a protocol based on SOAP. However,
+     as a stopgap, we have implemented very basic for protocol 2 in G2, with some small differences.
+    </para>
+    <para>
+     Only <link linkend="gallery-remote.protocol.cmd.login">login</link>,
+     <link linkend="gallery-remote.protocol.cmd.fetch-albums-prune">fetch-albums-prune</link> and
+     <link linkend="gallery-remote.protocol.cmd.add-item">add-item</link> are supported.
+    </para>
+    <para>
+     Also, because of G2-specific constraints, the format of the URLs is a bit different:
+    <itemizedlist spacing="compact">
+     <listitem>
+      <para>The base URL is <literal><replaceable>http://www.example.com/g2_path</replaceable>/main.php</literal></para>
+     </listitem>
+     <listitem>
+      <para>An additional URL parameter needs to always be added: <literal>g2_controller=remote:GalleryRemote</literal></para>
+     </listitem>
+     <listitem>
+      <para>Each parameter needs to be modified to <literal>g2_form[<replaceable>name</replaceable>]=<replaceable>value</replaceable></literal></para>
+     </listitem>
+     <listitem>
+      <para>except in <link linkend="gallery-remote.protocol.cmd.add-item">add-item</link>,
+       where <literal>userfile</literal> and <literal>userfile_name</literal> become
+       <literal>g2_userfile</literal> and <literal>g2_userfile_name</literal> respectively.</para>
+     </listitem>
+    </itemizedlist>
+    </para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.overview">
+    <title>Overview</title>
+    <para>Gallery remote queries and sends information from a Gallery server through a protocol based on HTTP and form-data. The protocol leverages the same user authentication (and session cookies) as the web/HTML interface to the site. It is implemented in the PHP source file gallery_remote2.php.</para>
+    <para>Each query from client to server corresponds to one action. Multiple actions require multiple HTTP requests.</para>
+    <para>The protocol is stateful and depends on the client supporting cookies. The client must provide login credentials for the session to be validated by sending a login request before any other requests will succeed.</para>
+    <para>Permissions for actions performed by <filename>gallery_remote2.php</filename> are controlled in the same way they are controlled for regular web/HTML users of Gallery. <filename>init.php</filename> is called before each request is processed by the server.</para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.interactions">
+    <title>Client-server interactions</title>
+    <para>All client-server interaction follows the standard HTTP model. The client initiates all interactions with a <link linkend="gallery-remote.protocol.requests">request</link>. The server always responds with one response. The data format of each request is HTTP form-data key/value pairs. The data format of each response is plain text key/value pairs.</para>
+    <para>Each request specifies a command value (and possibly some corresponding parameters) which determines the content of the response. Command-specific responses are defined in the context of each command below).</para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.requests">
+    <title>Requests</title>
+    <para>Each request from the client is sent to the server through an HTTP POST. Parameters of the request are expressed as HTTP form data. Form data uses a key / value format referred to in <ulink url="http://www.w3.org/TR/REC-html40/interact/forms.html#control-name">the spec</ulink> as &quot;control-name / current value.&quot; Here we simply refer to <emphasis>key</emphasis> and <emphasis>value</emphasis>.</para>
+    <para>Each request must specify a command (the <varname>cmd</varname> key). Depending on which command is specified, other key/value pairs are required in the form-data set (as parameters).</para>
+    <para>Each request must specify a protocol version (the <varname>protocol_version</varname> key).</para>
+    <para>The server&apos;s response to the <link linkend="gallery-remote.protocol.cmd.login">login</link> command includes the version of the protocol it implements (with the <varname>server_version </varname>key). Protocol numbers obey the following convention:</para>
+    <para><varname><replaceable>maj</replaceable>.<replaceable>min</replaceable></varname></para>
+    <para>where <varname><replaceable>maj</replaceable></varname> is the major version number and <varname><replaceable>min</replaceable></varname> is the minor version number. Different major versions of the protocol use different <filename>gallery_remote<varname><replaceable>maj</replaceable></varname>.php</filename> files. Each such file may provide support for various minor versions.</para>
+    <para>Each command is described in the <link linkend="gallery-remote.protocol.cmd">Commands</link> section below. After a brief description of the command, template form data appears and the contents of the server&apos;s response is described.</para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.responses">
+    <title>Responses</title>
+    <para>After the client POSTs a request, the server sends a response to the client. The format of the response is a key/value format compatible with the Java &quot;Properties&quot; stream format.</para>
+    <para>In a nutshell: lines beginning with a <literal>#</literal> character are ignored. The text before the first <literal>=</literal> character is the key. The remainder of the text after the <literal>=</literal> until the end-of-line character(s) is the value.</para>
+    <para>Each response must begin with the text <literal>#__GR2PROTO__</literal>. Clients should ignore any text above this tag: it might be debug output from the server.</para>
+    <para>Each response must contain at least the keys: <varname>status</varname> and <varname>status_text</varname>.</para>
+    <para>The value associated with the <varname>status</varname> key is an integer status code (the codes are defined in <link linkend="gallery-remote.protocol.retcodes">Appendix A</link>. For example, if the server was able to complete the command in the client&apos;s request, the value of the <varname>status</varname> code will be <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>.</para>
+    <para>The <varname>status</varname> key is definitive, yet the <varname>status_text</varname> may contain human-readable additional information (likely to be English language only).</para>
+    <para>Otherwise, if the server was not able to successfully complete the request, the status will be a non-zero integer (see <link linkend="gallery-remote.protocol.retcodes">Appendix A: Response Status Codes</link>).</para>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.cmd">
+    <title>Commands</title>
+    <para></para>
+    <sect3 id="gallery-remote.protocol.cmd.login">
+      <title>Login</title>
+      <para>The <varname>login</varname> command adds the proper user object to the session (if the username and password are correct). It also returns to the client the version of the protocol the server is prepared to support.</para>
+      <para>The <varname>login</varname> command is not strictly necessary: if it is not used, the server will assume anonymous access and the protocol will be able to access data that is accessible by anybody. In this mode, it is unlikely the new albums can be created and photos uploaded.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command may be made at any time -- there are no prerequisites.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=login
+protocol_version=<replaceable>2.0</replaceable>
+uname=<replaceable>gallery-user-name</replaceable>
+password=<replaceable>cleartext-password</replaceable></programlisting>
+        <para>where <varname><replaceable>gallery-user-name</replaceable></varname> is a valid gallery user name and <varname><replaceable>cleartext-password</replaceable></varname> is the corresponding password.</para>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+#__GR2PROTO__
+status=<replaceable>result-code</replaceable>
+status_text=<replaceable>explanatory-text</replaceable>
+server_version=<replaceable>major-version</replaceable>.<replaceable>minor-version</replaceable></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the login completed successfully and the user's session has been updated. Any other command can now be used in requests to this server.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.fetch-albums">
+      <title>Getting a list of albums</title>
+      <para>The <varname>fetch-albums</varname> command asks the server to return a list of all albums (visible with the client&apos;s logged in user permissions).</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command must be made before the <varname>fetch-albums</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=fetch-albums
+protocol_version=<replaceable>2.0</replaceable></programlisting>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+          #__GR2PROTO__
+         status=result-code
+         status_text=<replaceable>explanatory-text</replaceable>
+        /album.name.<replaceable>ref-num</replaceable>=<replaceable>album-url-name</replaceable>
+        |album.title.<replaceable>ref-num</replaceable>=<replaceable>album-display-name</replaceable>
+        |album.summary.<replaceable>ref-num</replaceable>=<replaceable>album-summary</replaceable><productnumber> [since 2.8]</productnumber>
+        |album.parent.<replaceable>ref-num</replaceable>=<replaceable>parent-ref-num</replaceable>
+        |album.resize_size.<replaceable>ref-num</replaceable>=<replaceable>image-resize-size</replaceable><productnumber> [since 2.8]</productnumber>
+        |album.max_size.<replaceable>ref-num</replaceable>=<replaceable>image-max-size</replaceable><productnumber> [since 2.15]</productnumber>
+  0...n |album.perms.add.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.write.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.del_item.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.del_alb.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.create_sub.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        \album.info.extrafields.<replaceable>ref-num</replaceable>=<replaceable>extra-fields</replaceable><productnumber> [since 2.3]</productnumber>
+         album_count=<replaceable>number-of-albums</replaceable>
+       	 can_create_root=<replaceable>yes/no</replaceable><productnumber> [since 2.11]</productnumber></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the album data was fetched successfully.</para>
+        <para>If successful, a response to the <varname>fetch-albums</varname> command returns several keys for each album in the gallery, where</para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para><varname><replaceable>ref-num</replaceable></varname> is a reference number,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-url-name</replaceable></varname> is the name of the partial URL for the gallery,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-display-name</replaceable></varname> is the gallery&apos;s visual name,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-summary</replaceable></varname> is the summary of the album,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>parent-ref-num</replaceable></varname> refers to some other album&apos;s ref-num. A <varname><replaceable>parent-ref-num</replaceable></varname> of <varname>0</varname> (zero) indicates that the album is a &quot;top-level&quot; album (it has no parent).</para>
+          </listitem>
+         <listitem>
+           <para><varname><replaceable>image-resize-size</replaceable></varname> is the intermediate size of images created when a large image is added to an album,</para>
+         </listitem>
+         <listitem>
+           <para><varname><replaceable>image-max-size</replaceable></varname> is the maximum size of images created when a large image is added to an album,</para>
+         </listitem>
+          <listitem>
+            <para><varname><replaceable>extra-fields</replaceable></varname> is a comma-separated list of extra fields names,</para>
+          </listitem>
+          <listitem>
+            <para>and <varname><replaceable>boolean</replaceable></varname> represents a boolean value. <varname>true</varname> is considered true, any other value false.</para>
+          </listitem>
+          </itemizedlist>
+            <para>Several &quot;permissions&quot; are reported for each album. The reported permissions are the effective permissions of the currently logged in user:</para>
+          <itemizedlist>
+          <listitem>
+            <para>the <varname>add</varname> permission allows the user to add a picture to the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>write</varname> permission allows the user to add and change pictures in the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>del_item</varname> permission allows the user remove pictures from the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>del_alb</varname> permission allows the user to delete the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>create_sub</varname> permission allows the user to create nested albums in the album.</para>
+          </listitem>
+        </itemizedlist>
+        <para>The number of albums in the response is returned as <varname><replaceable>number-of-albums</replaceable></varname>.</para>
+	       <para>can_create_root will be set to either yes or no depending on the user's permissions to create albums at the root level.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.fetch-albums-prune">
+      <title>Getting a list of albums v2, more efficient <productnumber>[since 2.2]</productnumber></title>
+      <para>The <varname>fetch-albums-prune</varname> command asks the server to return a list of all albums that the user can either write to, or that are visible to the user and contain a sub-album that is writable (including sub-albums several times removed).</para>
+      <para>The reason for this slightly altered version of <varname>fetch-albums</varname> is two-fold: the previous version was slow on the server-side, because of the way it was structured, and limitation in the Gallery mode of operation; it returns all albums the the user can read, even if writing is not allowed. This new version is faster, because it uses a more efficient algorithm to find albums; it is more efficient because it only sends albums that are useful to the client. It also doesn&apos;t parse the pictures database, which makes it run much faster on the server.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command must be made before the <varname>fetch-albums-prune</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=fetch-albums-prune
+protocol_version=<replaceable>2.2</replaceable>
+check_writeable=<replaceable>yes/no</replaceable> <productnumber>[since 2.13]</productnumber></programlisting>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+          #__GR2PROTO__
+         status=result-code
+         status_text=<replaceable>explanatory-text</replaceable>
+        /album.name.<replaceable>ref-num</replaceable>=<replaceable>album-url-name</replaceable>
+        |album.title.<replaceable>ref-num</replaceable>=<replaceable>album-display-name</replaceable>
+        |album.summary.<replaceable>ref-num</replaceable>=<replaceable>album-summary</replaceable><productnumber> [since 2.8]</productnumber>
+        |album.parent.<replaceable>ref-num</replaceable>=<replaceable>parent-name</replaceable>
+        |album.resize_size.<replaceable>ref-num</replaceable>=<replaceable>image-resize-size</replaceable><productnumber> [since 2.8]</productnumber>
+        |album.thumb_size.<replaceable>ref-num</replaceable>=<replaceable>image-thumb-size</replaceable><productnumber> [since 2.9]</productnumber>
+        |album.max_size.<replaceable>ref-num</replaceable>=<replaceable>image-max-size</replaceable><productnumber> [since 2.15]</productnumber>
+  0...n |album.perms.add.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.write.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.del_item.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.del_alb.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        |album.perms.create_sub.<replaceable>ref-num</replaceable>=<replaceable>boolean</replaceable>
+        \album.info.extrafields.<replaceable>ref-num</replaceable>=<replaceable>extra-fields</replaceable><productnumber> [since 2.3]</productnumber>
+         album_count=<replaceable>number-of-albums</replaceable>
+	 can_create_root=<replaceable>yes/no</replaceable><productnumber> [since 2.11]</productnumber></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the album data was fetched successfully.</para>
+        <para>If successful, a response to the <varname>fetch-albums-prune</varname> command returns several keys for each album in the gallery, where</para>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para><varname><replaceable>ref-num</replaceable></varname> is a reference number,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-url-name</replaceable></varname> is the name of the partial URL for the gallery,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-display-name</replaceable></varname> is the gallery&apos;s visual name,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-summary</replaceable></varname> is the summary of the album,</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>parent-name</replaceable></varname> refers to the parent album&apos;s name (this is different from the <link linkend="gallery-remote.protocol.cmd.fetch-albums">fetch-albums</link> command. A <varname><replaceable>parent-name</replaceable></varname> of <varname>0</varname> (zero) indicates that the album is a &quot;top-level&quot; album (it has no parent).</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>image-resize-size</replaceable></varname> is the intermediate size of images created when a large image is added to an album,</para>
+          </listitem>
+         <listitem>
+           <para><varname><replaceable>image-max-size</replaceable></varname> is the maximum size of images created when a large image is added to an album,</para>
+         </listitem>
+          <listitem>
+            <para><varname><replaceable>extra-fields</replaceable></varname> is a comma-separated list of extra fields names,</para>
+          </listitem>
+          <listitem>
+            <para>and <varname><replaceable>boolean</replaceable></varname> represents a boolean value. <varname>true</varname> is considered true, any other value false.</para>
+          </listitem>
+          </itemizedlist>
+            <para>Several &quot;permissions&quot; are reported for each album. The reported permissions are the effective permissions of the currently logged in user:</para>
+          <itemizedlist>
+          <listitem>
+            <para>the <varname>add</varname> permission allows the user to add a picture to the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>write</varname> permission allows the user to add and change pictures in the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>del_item</varname> permission allows the user remove pictures from the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>del_alb</varname> permission allows the user to delete the album.</para>
+          </listitem>
+          <listitem>
+            <para>the <varname>create_sub</varname> permission allows the user to create nested albums in the album.</para>
+          </listitem>
+        </itemizedlist>
+        <para>The number of albums in the response is returned as <varname><replaceable>number-of-albums</replaceable></varname>.</para>
+        <para>can_create_root will be set to either yes or no depending on the user's permissions to create albums at the root level.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.add-item">
+      <title>Uploading a photo to an album</title>
+      <para>The <varname>add-item</varname> command asks the server to add a photo to a specified album.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command must be made before the <varname>add-item</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=add-item
+protocol_version=<replaceable>2.0</replaceable>
+set_albumName=<replaceable>album name</replaceable>
+userfile=<replaceable>form-data-encoded image data</replaceable> <productnumber>[since 2.0]</productnumber> or <replaceable>URL of image</replaceable> <productnumber>[since 2.12]</productnumber>
+userfile_name=<replaceable>file name</replaceable> (usually inserted automatically by HTTP library, which is why we also have <varname>force_filename</varname>
+caption=<replaceable>caption</replaceable> (optional) <productnumber>[since 2.0]</productnumber>
+force_filename=<replaceable>name of the file on the server</replaceable> (optional) <productnumber>[since 2.0]</productnumber>
+auto_rotate=<replaceable>yes/no</replaceable> (optional) <productnumber>[since 2.5]</productnumber>
+extrafield.<replaceable>fieldname</replaceable>=<replaceable>value of the extra field fieldname</replaceable> (optional) <productnumber>[since 2.3]</productnumber></programlisting>
+        <para>Multiple <varname>extrafield</varname> lines with different <varname><replaceable>fieldname</replaceable></varname> values can be used.</para>
+	<para>Only gallery administrators can specify a URL as the <varname>userfile</varname>.</para>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+#__GR2PROTO__
+status=<replaceable>result-code</replaceable>
+status_text=<replaceable>explanatory-text</replaceable></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the file upload succeeded.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.album-properties">
+      <title>Getting information about an album <productnumber>[since 2.0]</productnumber></title>
+      <para>The <varname>album-properties</varname> command asks the server for information about an album.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command must be made before the <varname>album-properties</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=album-properties
+protocol_version=<replaceable>2.0</replaceable>
+set_albumName=<replaceable>album name</replaceable></programlisting>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+#__GR2PROTO__
+status=<replaceable>result-code</replaceable>
+status_text=<replaceable>explanatory-text</replaceable>
+auto_resize=<replaceable>resize-dimension</replaceable>
+max_size=<replaceable>max-dimension</replaceable> <productnumber>[since 2.15]</productnumber>
+add_to_beginning=<replaceable>yes/no</replaceable></programlisting>
+        <para>If the <varname>status</varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the request succeeded.</para>
+        <para>If an image is uploaded such that its largest dimension is greater than <varname>max-dimension</varname>, the server will resize it. Otherwise, the server will use the original image that was uploaded for both the full-sized and the resized size. In all cases a thumbnail-sized image will be created. The creation of a thumbnail is highly dependant on the size of the image that was uploaded.</para>
+        <para>If the value is <replaceable>0</replaceable> (zero), the Gallery server does not intend to resize uploaded images.</para>
+        <para><varname>add_to_beginning</varname> will contain yes or no based on whether the album will add images to the beginning or the end of the album. <productnumber>[since 2.10]</productnumber></para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.new-album">
+      <title>Creating a new album <productnumber>[since 2.1]</productnumber></title>
+      <para>The <varname>new-album</varname> command asks the server to add a new album to the gallery installation.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command must be made before the <varname>new-album</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=new-album
+protocol_version=<replaceable>2.1</replaceable>
+set_albumName=<replaceable>parent-album-name</replaceable>
+newAlbumName=<replaceable>album-name</replaceable> (optional)
+newAlbumTitle=<replaceable>album-title</replaceable> (optional)
+newAlbumDesc=<replaceable>album-description</replaceable> (optional)</programlisting>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para><varname><replaceable>parent-album-name</replaceable></varname> is the name of the gallery that the new album should be created under, or 0 to create the album at the top-level;</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-name</replaceable></varname> is the new album's desired name. The name must be unique within the Gallery. If it is not, then Gallery will assign an automatically-generated name. An automatically generated name will also be used if this parameter is not provided or is empty;</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-title</replaceable></varname> is the new album's desired title;</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>album-description</replaceable></varname> is the new album's desired description.</para>
+          </listitem>
+        </itemizedlist>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+#__GR2PROTO__
+status=<replaceable>result-code</replaceable>
+status_text=<replaceable>explanatory-text</replaceable>
+album_name=<replaceable>actual-name</replaceable> <productnumber>[since 2.5]</productnumber></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the request succeeded.</para>
+        <para>If the <varname>result-code</varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_NO_CREATE_ALBUM_PERMISSION</varname></link>, the logged-in user doesn&apos;t have permission to create an album in the specified location.</para>
+        <para>If an album is created with the same name as an already existing album or <replaceable>album-title</replaceable> is left blank, gallery will automatically generate an album name. <replaceable>actual-name</replaceable> will return the name of the newly created album.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.fetch-album-images">
+      <title>Getting the list of photos in an album <productnumber>[since 2.4]</productnumber></title>
+      <para>The <varname>fetch-album-images</varname> command asks the server to return information about all the images in an album. It ignores sub-albums.</para>
+      <sect4>
+        <title>Context</title>
+        <para>A request with the <varname>login</varname> command can be made before the <varname>fetch-album-images</varname> command is used, but since viewing photos in an album is generally (but not always) open to non logged-in users, a login is not always necessary.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+        <programlisting>
+cmd=fetch-album-images
+protocol_version=<replaceable>2.4</replaceable>
+set_albumName=<replaceable>album-name</replaceable>
+albums_too=<replaceable>yes/no</replaceable> <productnumber>[since 2.13]</productnumber></programlisting>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para>If <varname>set_albumName</varname> empty, the root albums are listed. Of course, this only works in G1 if <varname>albums_too</varname> is also used, since no pictures are in the root album. In G2, it can be used without <varname>albums_too</varname> <productnumber>[since 2.13]</productnumber></para>
+          </listitem>
+        </itemizedlist>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+        <programlisting>
+         #__GR2PROTO__
+         status=<replaceable>result-code</replaceable>
+         status_text=<replaceable>explanatory-text</replaceable>
+        /image.name.<replaceable>ref_num</replaceable>=<replaceable>filename of the image</replaceable>
+        |image.raw_width.<replaceable>ref_num</replaceable>=<replaceable>the width of the full-sized image</replaceable>
+        |image.raw_height.<replaceable>ref_num</replaceable>=<replaceable>the height of the full-sized image</replaceable>
+        |image.resizedName.<replaceable>ref_num</replaceable>=<replaceable>filename of the resized image, if there is one</replaceable>
+        |image.resized_width.<replaceable>ref_num</replaceable>=<replaceable>the width of the resized image, if there is one</replaceable> <productnumber>[since 2.9]</productnumber>
+        |image.resized_height.<replaceable>ref_num</replaceable>=<replaceable>the height of the resized image, if there is one</replaceable> <productnumber>[since 2.9]</productnumber>
+        |image.thumbName.<replaceable>ref_num</replaceable>=<replaceable>filename of the thumbnail</replaceable> <productnumber>[since 2.9]</productnumber>
+        |image.thumb_width.<replaceable>ref_num</replaceable>=<replaceable>the width of the thumbnail</replaceable> <productnumber>[since 2.9]</productnumber>
+        |image.thumb_height.<replaceable>ref_num</replaceable>=<replaceable>the height of the thumbnail</replaceable> <productnumber>[since 2.9]</productnumber>
+        |image.raw_filesize.<replaceable>ref_num</replaceable>=<replaceable>size of the full-sized image</replaceable>
+        |image.caption.<replaceable>ref_num</replaceable>=<replaceable>caption associated with the image</replaceable>
+  0...n |image.extrafield.<replaceable>fieldname</replaceable>.<replaceable>ref_num</replaceable>=<replaceable>value of the extra field of key fieldname</replaceable>
+        |image.clicks.<replaceable>ref_num</replaceable>=<replaceable>number of clicks on the image</replaceable>
+        |image.capturedate.year.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (year)</replaceable>
+        |image.capturedate.mon.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (month)</replaceable>
+        |image.capturedate.mday.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (day of the month)</replaceable>
+        |image.capturedate.hours.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (hour)</replaceable>
+        |image.capturedate.minutes.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (minute)</replaceable>
+        |image.capturedate.seconds.<replaceable>ref_num</replaceable>=<replaceable>date of capture of the image (second)</replaceable>
+        \image.hidden.<replaceable>ref_num</replaceable>=<replaceable>yes/no</replaceable> <productnumber>[since 2.14]</productnumber>
+  OR     album.name.<replaceable>ref_num</replaceable>=<replaceable>name of the album</replaceable> <productnumber>[since 2.13]</productnumber>
+         image_count=<replaceable>total number of images in the album</replaceable>
+         baseurl=<replaceable>URL of the album</replaceable></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the request succeeded.</para>
+        <para>The baseurl contains a fully-qualified URL. A URL to each image can be obtained by appending the filename of the image to this.</para>
+        <para>The name and resizedName include the type (extension), but do not include any path information.</para>
+        <para>Multiple <varname>extrafield</varname> lines with different <varname><replaceable>fieldname</replaceable></varname> values can be used.</para>
+        <para>If <varname>albums_too</varname> is <replaceable>yes</replaceable>, the list of results can contain album references. In this case, none of the <varname>image.<replaceable>*.ref_num</replaceable></varname> fields will be present. Instead, <varname>album.name.<replaceable>ref_num</replaceable></varname> will provide the reference to the sub-album. This allows reursive getting of all images in an album hierarchy.</para>
+		<para>Starting with <productnumber>2.14</productnumber>, the protocol will honor access control and will not return full-size information if the album is set to refuse full-size and will not return non-readable albums.</para>
+      </sect4>
+    </sect3>
+    <sect3 id="gallery-remote.protocol.cmd.move-album">
+      <title>Moving an album <productnumber>[since 2.7]</productnumber></title>
+      <para>The <varname>move-album</varname> command asks the server to move an album to a new location within the photo gallery.</para>
+      <sect4>
+        <title>Context</title>
+	<para>A request with the <varname>login</varname> command must be made before the <varname>move-album</varname> command is used.</para>
+      </sect4>
+      <sect4>
+        <title>Form data</title>
+	<programlisting>
+cmd=move-album
+protocol_version=<replaceable>2.7</replaceable>
+set_albumName=<replaceable>source-album</replaceable>
+set_destalbumName=<replaceable>destination-album</replaceable></programlisting>
+        <itemizedlist spacing="compact">
+          <listitem>
+            <para><varname><replaceable>source-album</replaceable></varname> is the name of the album that you intend to move;</para>
+          </listitem>
+          <listitem>
+            <para><varname><replaceable>destination-album</replaceable></varname> is the name of the album that the <replaceable>source-album</replaceable> will be moved into, or 0 if the <replaceable>source-album</replaceable> should be moved to the root level;</para>
+	  </listitem>
+        </itemizedlist>
+      </sect4>
+      <sect4>
+        <title>Results</title>
+	<programlisting>
+#__GR2PROTO__
+status=<replaceable>result-code</replaceable>
+status_text=<replaceable>explanatory-text</replaceable></programlisting>
+        <para>If the <varname><replaceable>result-code</replaceable></varname> is equal to <link linkend="gallery-remote.protocol.retcodes"><varname>GR_STAT_SUCCESS</varname></link>, the album move succeeded.</para>
+      </sect4>
+    </sect3>
+  </sect2>
+  <sect2 id="gallery-remote.protocol.retcodes">
+    <title>Appendix A: Response Status Codes</title>
+    <table>
+      <title>Response Status Codes</title>
+      <tgroup cols="3">
+        <colspec colnum="1" colname="status" colwidth="*"/>
+        <colspec colnum="2" colname="code" colwidth="*"/>
+        <colspec colnum="3" colname="description" colwidth="*"/>
+        <thead>
+          <row>
+            <entry>Status name</entry>
+            <entry>Code</entry>
+            <entry>Description</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>GR_STAT_SUCCESS</entry>
+            <entry>0</entry>
+            <entry>The command the client sent in the request completed successfully. The data (if any) in the response should be considered valid.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_PROTO_MAJ_VER_INVAL</entry>
+            <entry>101</entry>
+            <entry>The protocol major version the client is using is not supported.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_PROTO_MIN_VER_INVAL</entry>
+            <entry>102</entry>
+            <entry>The protocol minor version the client is using is not supported.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_PROTO_VER_FMT_INVAL</entry>
+            <entry>103</entry>
+            <entry>The format of the protocol version string the client sent in the request is invalid.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_PROTO_VER_MISSING</entry>
+            <entry>104</entry>
+            <entry>The request did not contain the required <varname>protocol_version</varname> key.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_PASSWD_WRONG</entry>
+            <entry>201</entry>
+            <entry>The password and/or username the client send in the request is invalid.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_LOGIN_MISSING</entry>
+            <entry>202</entry>
+            <entry>The client used the login command in the request but failed to include either the username or password (or both) in the request.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_UNKNOWN_CMD</entry>
+            <entry>301</entry>
+            <entry>The value of the <varname>cmd</varname> key is not valid.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_NO_ADD_PERMISSION</entry>
+            <entry>401</entry>
+            <entry>The user does not have permission to add an item to the gallery.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_NO_FILENAME</entry>
+            <entry>402</entry>
+            <entry>No filename was specified.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_UPLOAD_PHOTO_FAIL</entry>
+            <entry>403</entry>
+            <entry>The file was received, but could not be processed or added to the album.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_NO_WRITE_PERMISSION</entry>
+            <entry>404</entry>
+            <entry>No write permission to destination album.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_NO_CREATE_ALBUM_PERMISSION</entry>
+            <entry>501</entry>
+            <entry>A new album could not be created because the user does not have permission to do so.</entry>
+          </row>
+          <row>
+            <entry>GR_STAT_CREATE_ALBUM_FAILED</entry>
+            <entry>502</entry>
+            <entry>A new album could not be created, for a different reason (name conflict).</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </sect2>
+</sect1>

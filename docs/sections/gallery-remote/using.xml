@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery-remote.using">
+	<title>Using Gallery Remote</title>
+
+	<sect2 id="gallery-remote.using.platforms">
+		<title>Running GR on platforms without an installer</title>
+
+		<para>
+   Gallery Remote was written in Java. If you have Java 1.3 or later installed on your machine,
+   you may be able to run the app with the command:
+			<command>java -jar GalleryRemote.jar</command>
+   assuming you are in the same directory as the <filename>GalleryRemote.jar</filename> file.
+		</para>
+		<para> 
+   This will not include some libraries that GR needs to run effectively; most notably
+   icons will be missing, and file saving may be disabled and EXIF information may be ignored.
+   This is only available in Gallery Remote 1.3 and later.
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.preferences">
+		<title>Preferences</title>
+
+		<para>
+   Even though there is now a Preferences dialog, the preference files can still be edited. You should not 
+   modify the <filename>defaults.properties</filename> file, but you should read it to understand
+   what each preference does.  Then, you can edit the <filename>GalleryRemote.properties</filename>
+   (it is created the first time GR is run) and add or replace the preferences you want to change.
+		</para>
+		<para>
+   The preferences files used to be stored in the same directory as the GalleryRemote executable, 
+   and has been moved (and renamed) to the current user's home directory.
+		</para>
+		<para>
+   On recent versions of Windows, this is the <filename>Documents and Settings/username</filename> directory in
+   the boot partition. 
+   When you upgrade from versions older than 1.0b6, you will lose your current preferences unless you copy
+   the previously used <filename>remote.properties</filename> to <filename>~/.GalleryRemote/GalleryRemote.properties
+   </filename> (~ means your home directory).
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.imagemagick">
+		<title>ImageMagick setup</title>
+
+		<para>
+   GR will use ImageMagick (IM) to speed up (very greatly) the computation of resized images for 
+   thumbnails, previews and image uploads. On Windows, the installer will automatically install
+   and set up a subset of the IM functionality, so there is nothing special to do.On other platforms,
+   you should install IM separately (<ulink url="http://www.imagemagick.org/">http://www.imagemagick.org</ulink>) 
+   and tell GR by renaming the <filename>im.properties.preinstalled</filename> to <filename>im.properties</filename>
+   and set the <literal>imConvertPath</literal> to the exact path to the Convert executable in your ImageMagick
+   installation.
+		</para>
+		<para>
+   We will add more platform support as time goes on, but we may need help. 
+   If you compiled ImageMagick for a platform we don't already have support for, 
+   please get in touch with me at (paour at users dot sourceforge dot net) so we can include your binaries in our standard
+   distributions.
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.logging">
+		<title>Logging</title>
+
+		<para>
+If you encounter a problem, the logging system may be some help, and we will definitely request it
+if you ask for support.  By default, GR writes most log information to the file <filename>GalleryRemoteLog.txt
+</filename> in the temporary directory for your platform. If you want to see more detailed information
+there, you can set the Log level to "Detailed, very verbose" in the Gallery Remote preferences dialog.
+		</para>
+		<para>
+If you would like to see the log unfold as you use the application rather than having
+it go to a file, you should change the following:
+			<itemizedlist>
+				<listitem>
+					<para>
+In file <filename>GalleryRemote.properties</filename> (this is the preferences file, explained in the
+						<link linkend="gallery-remote.using.preferences">Preferences section</link>), set
+						<screen>
+toSysOut=true
+						</screen>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+In file <filename>Gallery Remote.lax</filename> (in the directory where Gallery Remote was installed),
+set:
+						<screen>
+lax.stdout.redirect=console
+						</screen>
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+		<para>
+Caution: Be careful before posting your log to forums or sending it to anyone: your password is printed in clear text in several places.
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.saveload">
+		<title>Saving/loading</title>
+
+		<para>
+   In order to attempt to guarantee that you will not lose your hard work if the upload doesn't work
+   and Gallery Remote doesn't recover gracefully, it will save the project before attempting to
+   upload into the same folder your Gallery Remote options file resides. If something does happen,
+   you can load the project again, and even modify it (it's XML). You can also save and open a project
+   at any time.  Project files use the extension .grg (for Gallery Remote gallery); this extension is
+   not automatically mapped to Gallery Remote (you can't double click the project files and expect
+   something useful to happen).
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.https">
+		<title>Using HTTPS</title>
+
+		<para>
+	  You can use https:// URLs with Gallery Remote to connect to secured web sites. This functionality
+	  is only available on Java 1.4 and later.  If the site you are attempting to connect to uses a
+	  server certificate that is not certified by a trusted certificate authority, Gallery Remote will
+	  be unable to connect. If that happens, you will need to add the site's certificate to the Java
+	  registry of trusted certificates:
+			<itemizedlist>
+				<listitem><para>go to the site with Internet Explorer</para></listitem>
+				<listitem><para>go to menu File>Properties</para></listitem>
+				<listitem><para>in the Properties window, click Certificates</para></listitem>
+				<listitem><para>on the Details tab, click Copy to File...</para></listitem>
+ 				<listitem><para>in the wizard, select DER-encoded X.509 certificate and save it to a file</para></listitem>
+ 				<listitem><para>open a console window (cmd.exe)</para></listitem>
+ 				<listitem>
+ 					<para>type the following command-line:</para>
+					<para><command>keytool -import -trustcacerts -file <replaceable>path_to_cer_file</replaceable> -keystore %JAVA_HOME%/jre/lib/security/cacerts -alias <replaceable>arbitrary_name</replaceable></command></para>
+				</listitem>
+ 				<listitem><para>you'll be prompted for the store password, which by default is changeit</para></listitem>
+			</itemizedlist>
+		</para>
+	</sect2>
+
+	<sect2 id="gallery-remote.using.quickconfig">
+		<title>Using QuickConfig (for administrators)</title>
+
+		<para>
+	  QuickConfig allows Gallery administrators to make it easy for end-users to set up their Gallery
+		 Remote installation. End-users will only have to enter a URL, which they can copy from an
+		 email from the administator, into the QuickConfig tab of the Gallery Remote preferences dialog
+		 to set up pretty much anything.
+		</para>
+		<para>
+		To create said URL, the administrator can just deploy on a web site a file that contains a
+ 		specially-formatted copy of a GalleryRemote.properties file. Within this
+			<link linkend="gallery-remote.using.preferences">properties file</link>, the
+		administrator will include keys and values that correspond to what they want to override in the
+ 		end-user's preferences. This file can the be deployed anywhere, and the URL to it communicated
+		to end-users.
+		</para>
+		<para>
+		Special case: Gallery URLs: include keys like <varname><replaceable>url.99</replaceable></varname>,
+			<varname><replaceable>username=99</replaceable></varname>, etc to specify the URL and
+ 		type of your Gallery. You need to use 99 for the Gallery preset number for Gallery Remote to
+ 		find the key. The new Gallery URL will be added after the last existing URL on the end-users
+		Gallery Remote installation. If you omit the username and/or password, Gallery Remote will
+		interactively ask the end-user to enter them when he first tries to log on.
+		</para>
+	</sect2>
+
+</sect1>

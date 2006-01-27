@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery-remote.problems">
+ <title>Known Problems</title>
+
+	<sect2 id="gallery-remote.problems.bundled">
+		<title>Bundled (or not) software</title>
+		<para>Gallery Remote uses two external and native applications to manipulate images.
+ 			The reason for this is primarily that the loading large images in the Java VM
+ 			is not a good idea and so ImageMagick is used to create thumbnails, previews
+ 			and prepare images for uploading; all in a separate memory space.</para>
+		<para>Anyway... this means that ImageMagick and jpegtran (both open-source
+ 			packages) need to be set up and Gallery Remote has to be configured to
+ 			use them. This depends on the platform you're running...</para>
+        <para>Newer versions of ImageMagick can yield substancial improvements
+            in the time it takes to load images into GR, often speeding that up by a factor
+            of 2.</para>
+
+        <sect3 id="gallery-remote.problems.bundled.win">
+			<title>Windows</title>
+			<para>The Windows installer for Gallery Remote includes both ImageMagick and
+				jpegtran, so you shouldn't have to do anything to set them up.</para>
+			<para>However, there have been reports of ImageMagick being broken
+				in some installs. The most common is an error message that
+				goes like this:
+				<literal>This application has failed to start because MSVCR70.dll was not found. Reinstalling may fix this problem.</literal>.
+				You can fix this by <ulink url="http://www.dll-files.com/dllindex/dll-files.shtml?msvcr70">downloading MSVCR70.dll</ulink>
+				and copying it into your <filename>C:\windows\system32</filename>
+ 				(or <filename>C:\WINNT\system32</filename> on older NT-based systems).
+				</para>
+			<para>If that doesn't work, you should <ulink url="http://www.imagemagick.org/">download the full version of
+				ImageMagick</ulink> and install it. Gallery Remote (1.4.2-b24 and later) should automatically
+                locate ImageMagick (if the reg.exe utility is available, which is the case on W2k anx XP).
+                If it doesn't find it automatically, you need to edit the Gallery
+				Remote configuration file <filename>imagemagick/im.properties</filename>
+				(inside the Gallery Remote installation directory) and change the
+				value of <varname>imConvertPath</varname> to point to the convert.exe
+ 				executable in the installation of ImageMagick.</para>
+		</sect3>
+
+		<sect3 id="gallery-remote.problems.bundled.mac">
+			<title>Mac OS X</title>
+			<para>The Mac package includes jpegtran, but it does not include ImageMagick,
+ 				so you need to <ulink url="http://www.entropy.ch/software/macosx/#imagemagick">download ImageMagick from Apple</ulink> 
+ 				and install it.</para>
+			<para>No other action should be necessary: the package is always installed
+				in <filename>/usr/local/bin</filename>.</para>
+			<para>If you have already installed ImageMagick using Fink, it is probably installed in
+				<filename>/sw/bin</filename>. In that case, you can either create symlinks for
+				<filename>/sw/bin/convert</filename> to <filename>/usr/local/bin</filename> or
+				edit the file <filename>im.properties</filename> in <filename>Gallery Remote.app/Contents/Resource/Java/img.jar</filename>
+				to change <varname>imConvertPath</varname> to the real path for the <filename>convert</filename> executable.
+            </para>
+		</sect3>
+
+		<sect3 id="gallery-remote.problems.bundled.linux">
+			<title>Linux</title>
+			<para>The Linux package includes neither utility, but luckily, most
+				Linux distributions include ImageMagick and/or jpegtran.</para>
+			<para>If yours doesn't, the <ulink url="http://www.imagemagick.org">ImageMagick site</ulink>
+				has pre-built packages. RPMs and such of jpegtran can be found
+				everywhere.
+			</para>
+			<para>If the packages are installed in your PATH, no further action should
+				be necessary. If it doesn't work, you may want to edit the Gallery
+				Remote configuration file <filename>imagemagick/im.properties</filename>
+				and <filename>jpegtran/jpegtran.properties</filename>
+				(inside the Gallery Remote installation directory) and change the
+				value of <varname>imConvertPath</varname> (<varname>jpegtranPath</varname>)
+ 				to point to the respective executables.</para>
+		</sect3>
+	</sect2>
+
+</sect1>

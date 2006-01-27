@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $Id$ -->
+
+<sect1 id="gallery2-devguide.coding-standards">
+ <title>Coding Standards</title>
+
+ <sect2 id="gallery2-devguide.coding-standards.introduction">
+  <title>Introduction</title>
+  <para>
+    The purpose of this document is to lay out a clear set of guidelines for developing code for the
+    Gallery project. The scope of this document is limited mainly to PHP code, although Gallery will
+    occasionally use SQL and HTML.
+  </para>
+  <sect3>
+   <title>Why have Code Conventions?</title>
+   <para>
+    Code conventions are important to programmers for a number of reasons:
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      80% of the lifetime cost of a piece of software goes to maintenance.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Hardly any software is maintained for its whole life by the original author.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Code conventions improve the readability of the software, allowing engineers to understand new
+      code more quickly and thoroughly. If you ship your source code as a product, you need to make
+      sure it is as well packaged and clean as any other product you create.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.acknowledgments">
+   <title>Acknowledgments</title>
+   <para>
+    This document has been largely created by culling information from the following documents:
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      <ulink url="http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html">Code Conventions for
+      the JavaTM Programming Language</ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://pear.php.net/manual/en/standards.php">Pear Coding Standards</ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://area51.phpbb.com/docs/guide-standards.html">phpBB Coding Standard
+      Guidelines</ulink>
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <ulink url="http://www.phpdoc.de/doc">PHPDoc</ulink>
+     </para>
+    </listitem>
+   </itemizedlist>
+   <para>
+    In some places we've copied it verbatim. Please don't sue us, we've got no money anyway. If you
+    modify and redistribute this document please maintain the above credits and give us some
+    also. It was mostly written by Bharat Mediratta with input from Chris Smith, Matthew McEachen,
+    Jesse Mullan and Beckett Madden-Woods. Try not to blame us too much for it.
+   </para>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.indentation">
+  <title>Indentation</title>
+  <para>
+   Four columns is the basic unit of indentation.  The most efficient
+   way to achieve this is to use a mixture of 8-column tabs and
+   spaces, as in the example below:
+  </para>
+  <screen>
+function myFunction() {
+    /* 4 spaces */
+    code;
+    code;
+
+    if (indentAnotherLevel) {
+        /* 8 spaces, or 1 tab */
+        moreCode;
+        moreCode;
+
+        if (indentAnotherLevel) {
+            /* 12 spaces, or 1 tab and 4 spaces */
+            moreCode;
+            moreCode;
+        }
+    }
+}
+  </screen>
+  <para>
+   Some people prefer to achieve 4 column indentation by having their
+   editor define a tab as 4 columns.  <emphasis role="bold">Do not do
+   this when you edit Gallery code!</emphasis>.  This is bad because
+   it requires everybody who views this file to redefine their tab
+   character or the code does not appear the way you intended it to
+   look.  For example, other viewers like the sourceforge.net CVS
+   browser, or via Unix utilities like "less" and "cat") will treat
+   the tab as the standard 8 columns and now all your code will appear
+   different.  Stick with the standard 8 column tab.
+  </para>
+  <para>
+   Some editors, like Emacs and VI, will create this mixture of tabs
+   and spaces for you automatically (in Emacs this is called "smart
+   tabs" mode).  This is more efficient than using only spaces because
+   it cuts down considerably on the number of bytes in a file (since
+   many lines of code will start with one or more levels of
+   indentation).  If for some reason your editor does not support
+   smart tabs and you're finding it too difficult, you can use only
+   spaces and the next person to edit the file with a smart editor
+   will fix it.
+  </para>
+  <sect3 id="gallery2-devguide.coding-standards.indentation.line-length">
+   <title>Line Length</title>
+   <para>
+    Avoid lines greater than 100 characters. Yes, <emphasis
+    role="bold">100</emphasis> not 80. We're in the new millenium now
+    and we've got bigger screens.
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.indentation.wrapping-lines">
+   <title>Wrapping Lines</title>
+   <itemizedlist>
+    <listitem>
+     <para>
+      Break after a comma.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Break before an operator.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Prefer higher-level breaks to lower-level breaks.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      Align the new line with the beginning of the expression at the same level on the previous
+      line.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      If the above rules lead to confusing code or to code that's squished up against the right
+      margin, just indent 8 columns instead (<emphasis role="bold">not</emphasis> 4 columns).
+     </para>
+    </listitem>
+   </itemizedlist>
+   <para>
+    Here are some examples of breaking method calls:
+    <screen>
+    someMethod(longExpression1, longExpression2, longExpression3,
+        longExpression4, longExpression5);
+
+    var = someMethod1(longExpression1,
+        someMethod2(longExpression2,
+            longExpression3));
+    </screen>
+    Following are two examples of breaking an arithmetic expression. The first is preferred, since
+    the break occurs outside the parenthesized expression, which is at a higher level.
+    <screen>
+    <lineannotation>/* <emphasis role="bold">PREFER</emphasis> */</lineannotation>
+    longName1 = longName2 * (longName3 + longName4 - longName5)
+        + 4 * longname6;
+
+    <lineannotation>/* <emphasis role="bold">AVOID</emphasis> */</lineannotation>
+    longName1 = longName2 * (longName3 + longName4
+        - longName5) + 4 * longname6;
+    </screen>
+    Following are two examples of indenting function declarations. The
+    first is the conventional case where the arguments are indented
+    under the open parenthesis.  In the second case, the function name
+    is so long that indenting under the parenthesis would require us
+    to put many parameters on their own line which is not visually
+    appealing.  But we can't indent the follow on lines by 4 columns
+    because then it would be hard to differentiate them from the code
+    that follows, so we indent them 8 columns, as we do when indenting
+    wrapping if-clauses (see below).
+    <screen>
+    <lineannotation>/* <emphasis role="bold">CONVENTIONAL INDENTATION</emphasis> */</lineannotation>
+    function someFunction($anArg, $anotherArg, $yetAnotherArg,
+		          $andStillAnother) {
+        codeHere;
+    }
+
+    <lineannotation>/* <emphasis role="bold">INDENT 8 COLUMNS TO AVOID VERY DEEP INDENTS</emphasis> */</lineannotation>
+    function superExtraHorkingLongMethodName($anArg, $anArg, $anArg,
+            $anotherArg, $yetAnotherArg, $yetMoreArg, $anArg, $anArg
+            $andStillAnother) {
+        codeHere;
+    }
+    </screen>
+    Line wrapping for if statements should generally use the 8 column
+    rule, since conventional 4 column indentation makes it difficult
+    to differentiate the predicate of the if-clause from its
+    condition.  For example:
+    <screen>
+    <lineannotation>/* <emphasis role="bold">DON'T USE THIS INDENTATION</emphasis> */</lineannotation>
+    if ((condition1 &amp;&amp; condition2)
+        || (condition3 &amp;&amp; condition4)
+        ||!(condition5 &amp;&amp; condition6)) { <lineannotation>/* <emphasis role="bold">BAD WRAPS</emphasis> */</lineannotation>
+        doSomethingAboutIt();            <lineannotation>/* <emphasis role="bold">MAKE THIS LINE EASY TO MISS</emphasis> */</lineannotation>
+    }
+
+    <lineannotation>/* <emphasis role="bold">USE THIS INDENTATION INSTEAD</emphasis> */</lineannotation>
+    if ((condition1 &amp;&amp; condition2)
+            || (condition3 &amp;&amp; condition4)
+            ||!(condition5 &amp;&amp; condition6)) {
+        doSomethingAboutIt();
+    }
+
+    <lineannotation>/* <emphasis role="bold">OR USE THIS</emphasis> */</lineannotation>
+    if ((condition1 &amp;&amp; condition2) || (condition3 &amp;&amp; condition4)
+            ||!(condition5 &amp;&amp; condition6)) {
+        doSomethingAboutIt();
+    }
+    </screen>
+    Expressions using the ternary operator should be parenthesized. Here are three acceptable ways
+    to format ternary expressions:
+    <screen>
+    $alpha = (aLongBooleanExpression) ? $beta : $gamma;
+
+    $alpha = (aLongBooleanExpression) ? $beta
+                                      : $gamma;
+
+    $alpha = (aLongBooleanExpression)
+             ? $beta
+             : $gamma;
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.indentation.line-termination">
+   <title>Line Termination</title>
+   <para>
+    Ensure that your editor is saving files in the Unix format. This means lines are terminated with
+    a newline, not with a CR/LF combo as they are on Win32, or whatever the Mac uses. Any decent
+    Win32 editor should be able to do this, but it might not always be the default. Know your
+    editor.
+   </para>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.naming-convention">
+  <title>Naming Convention</title>
+  <para>
+   Naming conventions make programs more understandable by making them easier to read. They can also
+   give information about the function of the identifier-for example, whether it's a constant,
+   package, or class-which can be helpful in understanding the code.
+  </para>
+  <para>
+   In the block below, we'll refer to a capitalization strategy called <emphasis
+   role="bold">StudlyCaps</emphasis>. In this strategy, multiple words are combined into one where
+   the beginning of each internal word is capitalized.  Acronyms are capitalized like regular words.
+   For example a variable expressing the "maximum cpu speed" would be called
+   <varname>$maximumCpuSpeed</varname>.
+  </para>
+  <informaltable frame="all">
+   <tgroup cols="3" align="left" colsep="0" rowsep="0">
+    <colspec colname="c1" colwidth="100px"/>
+    <colspec colname="c2" colwidth="300px"/>
+    <colspec colname="c3" colwidth="200px"/>
+    <thead>
+     <row>
+      <entry align="center">Type</entry>
+      <entry>Description</entry>
+      <entry>Examples</entry>
+     </row>
+    </thead>
+    <tbody>
+     <row>
+      <entry>Files</entry>
+      <entry>
+       <para>
+        File names are in <emphasis role="bold">StudlyCaps</emphasis> with the first letter
+        capitalized. Try to keep your file names simple and descriptive.
+       </para>
+       <para>
+        Files that can be viewed directly by the browser should terminate in
+        <filename>.php</filename> or <filename>.html</filename>. Files that are only intended to be
+        included or required, should end in <filename>.inc</filename>. This is a security precaution
+        to prevent code from being run out of context. Files that contain a PHP class definition
+        should end in <filename>.class</filename>, and should also contain a class of the same name
+        as the file.
+       </para>
+      </entry>
+      <entry>
+       <screen>
+Album.php
+CommentDraw.inc
+       </screen>
+      </entry>
+     </row>
+     <row>
+      <entry>Classes</entry>
+      <entry>
+       <para>
+        Class names are in <emphasis role="bold">StudlyCaps</emphasis> and should be nouns. Try to
+        keep your class names simple and descriptive. Use whole words&#8212;avoid acronyms and
+        abbreviations (unless the abbreviation is much more widely used than the long form, such as
+        URL or HTML).
+       </para>
+      </entry>
+      <entry>
+       <screen>
+class GalleryMap
+class UserDatabase
+class UrlGenerator
+       </screen>
+      </entry>
+     </row>
+     <row>
+      <entry>Variables</entry>
+      <entry>
+       <para>
+        Variables are in <emphasis role="bold">StudlyCaps</emphasis> and should have a lowercase
+        first letter. Variable names should not start with underscore (<varname>_</varname>) or
+        dollar sign (<varname>$</varname>) characters, even though both are allowed.
+       </para>
+       <para>
+        Variable names should be short yet meaningful. The choice of a variable name should be
+        mnemonic&#8212;that is, designed to indicate to the casual observer the intent of its
+        use. One-character variable names should be avoided except for temporary "throwaway"
+        variables such as loop indices. Common names for temporary variables are
+        <varname>i</varname>, <varname>j</varname>, <varname>k</varname>, <varname>m</varname>, and
+        <varname>n</varname> for integers; <varname>c</varname>, <varname>d</varname>, and
+        <varname>e</varname> for characters.
+       </para>
+      </entry>
+      <entry>
+       <screen>
+var $fields;
+var $userInformation;
+var $albumUrl;
+       </screen>
+      </entry>
+     </row>
+     <row>
+      <entry>Functions</entry>
+      <entry>
+       <para>
+        Functions are in <emphasis role="bold">StudlyCaps</emphasis> and should be verbs. Functions
+        that return boolean values should be in the form of a question as in
+        <function>isEnabled</function>. The noun-verb formation makes code easier to read, eg "Is
+        the user enabled?" becomes <function>if ($user->isEnabled)</function>.
+       </para>
+      </entry>
+      <entry>
+       <screen>
+function getField()
+function setField()
+function isEnabled()
+       </screen>
+      </entry>
+     </row>
+     <row>
+      <entry>Constants</entry>
+      <entry>
+       <para>
+        The names of variables declared class constants and of ANSI constants should be all
+        uppercase with words separated by underscores (<varname>_</varname>) (ANSI constants should
+        be avoided, for ease of debugging).  Constants used in localization should begin with an
+        underscore.
+       </para>
+      </entry>
+      <entry>
+       <screen>
+$MIN_WIDTH = 4;
+$FULL_ONLY_MODE = 2;
+       </screen>
+      </entry>
+     </row>
+    </tbody>
+   </tgroup>
+  </informaltable>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.class-and-function-declarations">
+  <title>Class and Function Declarations</title>
+  <para>
+   When coding classes and functions, the following formatting rules should be followed:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     No space between a method name and the parenthesis "<computeroutput>(</computeroutput>" starting its parameter list
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Open brace "<computeroutput>{</computeroutput>" appears at the end of the same line as the declaration statement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+      Closing brace "<computeroutput>}</computeroutput>" starts a line by itself indented to match its corresponding opening
+      statement, except when it is a null statement the "<computeroutput>}</computeroutput>" should appear immediately after the "<computeroutput>{</computeroutput>"
+    </para>
+   </listitem>
+  </itemizedlist>
+  <para>
+   The above rules are sometimes referred to as the K&amp;R style. Example:
+   <screen>
+    class Foo {
+        function getBar($a, $b) {
+        }
+    }
+   </screen>
+  </para>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.statements">
+  <title>Statements</title>
+  <sect3 id="gallery2-devguide.coding-standards.statements.simple">
+   <title>Simple Statements</title>
+   <para>
+    Each line should contain at most one statement. Example:
+    <screen>
+    $argv++;                <lineannotation>/* <emphasis role="bold">Correct</emphasis> */</lineannotation>
+    $argc--;                <lineannotation>/* <emphasis role="bold">Correct</emphasis> */</lineannotation>
+    $argv++; $argc--;       <lineannotation>/* <emphasis role="bold">AVOID!</emphasis> */</lineannotation>
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.compound">
+   <title>Compound Statements</title>
+   <para>
+    Compound statements are statements that contain lists of statements enclosed in braces
+    "<computeroutput>{ statements }</computeroutput>".
+   </para>
+   <para>
+    The enclosed statements should be indented one more level than the compound statement. The
+    opening brace should be at the end of the line that begins the compound statement; the closing
+    brace should begin a line and be indented to the beginning of the compound statement.  Braces
+    are used around all statements, even single statements, when they are part of a control
+    structure, such as an <function>if-else</function> or <function>for</function> statement. This
+    makes it easier to add statements without accidentally introducing bugs due to forgetting to add
+    braces.
+   </para>
+   <para>
+    Each line should contain at most one statement. Example:
+    <screen>
+    $argv++;                <lineannotation>/* <emphasis role="bold">Correct</emphasis> */</lineannotation>
+    $argc--;                <lineannotation>/* <emphasis role="bold">Correct</emphasis> */</lineannotation>
+    $argv++; $argc--;       <lineannotation>/* <emphasis role="bold">AVOID!</emphasis> */</lineannotation>
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.return">
+   <title>"<function>return</function>" Statements</title>
+   <para>
+    A <function>return</function> statement with a value should not use parentheses unless they make
+    the return value more obvious in some way. Example:
+    <screen>
+    return;
+
+    return myDisk.size();
+
+    return (size ? size : defaultSize);
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.if-else">
+   <title>"<function>if</function>", "<function>if else</function>", "<function>if else-if else</function>" Statements</title>
+   <para>
+    The <function>if-else</function> class of statements should have the following form:
+    <screen>
+    if (condition) {
+        statements;
+    }
+
+    if (condition) {
+        statements;
+    } else {
+        statements;
+    }
+
+    if (condition) {
+        statements;
+    } else if (condition) {
+        statements;
+    } else {
+        statements;
+    }
+    </screen>
+    Note: <function>if</function> statements always use braces <varname>{}</varname>. Avoid the
+    following error-prone form:
+    <screen>
+    if (condition) <lineannotation>/* <emphasis role="bold">AVOID! THIS OMITS THE BRACES {}!</emphasis> */</lineannotation>
+        statement;
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.for">
+   <title>"<function>for</function>" Statements</title>
+   <para>
+    A <function>for</function> statement should have the following form:
+    <screen>
+    for (initialization; condition; update) {
+        statements;
+    }
+    </screen>
+    An empty <function>for</function> statement (one in which all the work is done in the
+    initialization, condition, and update clauses) should have the following form:
+    <screen>
+    for (initialization; condition; update);
+    </screen>
+    When using the comma operator in the initialization or update clause of a
+    <function>for</function> statement, avoid the complexity of using more than three variables. If
+    needed, use separate statements before the <function>for</function> loop (for the initialization
+    clause) or at the end of the loop (for the update clause).
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.while">
+   <title>"<function>while</function>" Statements</title>
+   <para>
+    A <function>while</function> statement should have the following form:
+    <screen>
+    while (condition) {
+        statements;
+    }
+    </screen>
+    An empty <function>while</function> statement should have the following form:
+    <screen>
+    while (condition);
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.do-while">
+   <title>"<function>do-while</function>" Statements</title>
+   <para>
+    A <function>do-while</function> statement should have the following form:
+    <screen>
+    do {
+        statements;
+    } while (condition);
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.statements.switch">
+   <title>"<function>switch</function>" Statements</title>
+   <para>
+    A <function>switch</function> statement should have the following form:
+    <screen>
+    switch (condition) {
+    case ABC:
+        statements;
+        /* falls through */
+
+    case DEF:
+        statements;
+        break;
+
+    case XYZ:
+        statements;
+        break;
+
+    default:
+        statements;
+        break;
+    }
+    </screen>
+    Every time a case falls through (doesn't include a <function>break</function> statement), add a
+    comment where the <function>break</function> statement would normally be. This is shown in the
+    preceding code example with the <computeroutput>/* falls through */</computeroutput>
+    comment. Every <function>switch</function> statement should include a default case. The
+    <function>break</function> in the default case is redundant, but it prevents a fall-through
+    error if later another case is added.
+   </para>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.white-space">
+  <title>White Space</title>
+  <para>
+   Blank lines improve readability by setting off sections of code that are logically related. Two
+   blank lines should always be used in the following circumstances:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Between sections of a source file
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Between class and interface definitions
+    </para>
+   </listitem>
+  </itemizedlist>
+  <para>
+   One blank line should always be used in the following circumstances:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Between methods
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Between the local variables in a method and its first statement
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Between logical sections inside a method to improve readability
+    </para>
+   </listitem>
+  </itemizedlist>
+  <sect3 id="gallery2-devguide.coding-standards.white-space.blank-spaces">
+   <title>Blank Spaces</title>
+   <para>
+    Blank spaces should be used in the following circumstances: A keyword followed by a parenthesis
+    should be separated by a space. Example:
+    <screen>
+    while (true) {
+        ...
+    }
+    </screen>
+    Note that a blank space should not be used between a method name and its opening
+    parenthesis. This helps to distinguish keywords from function calls. A blank space should appear
+    after commas in argument lists. All binary operators except <computeroutput>.</computeroutput>
+    should be separated from their operands by spaces. Blank spaces should never separate unary
+    operators such as unary minus, increment ("<function>++</function>"), and decrement
+    ("<function>--</function>") from their operands. Example:
+    <screen>
+    $a += $c + $d;
+    $a = ($a + $b) / ($c * $d);
+    while ($n &lt; $s) {
+        $n++;
+    }
+    print("size is " . $foo . "\n");
+    </screen>
+    The expressions in a for statement should be separated by blank spaces. Example:
+    <screen>
+    for (expr1; expr2; expr3)
+    </screen>
+    Casts should be followed by a blank space. Examples:
+    <screen>
+    myFunction((int) $a, (int) $b);
+    </screen>
+   </para>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.comments">
+  <title>Comments</title>
+  <para>
+   All code should be well commented.  Good comments explain why a
+   code is written in a particular way.  You don't need to explain how
+   it works -- that much we can figure out from reading the code.  The
+   reasoning behind your choices is the interesting part.
+   <screen>
+     /* This is a good single line comment */
+
+     /*
+      * This is a good block comment.  Note how the
+      * Open and closing comment tokens are on their own lines.
+      */
+
+     // Bad -- no // style comments please.
+
+     /* Bad block comments should have the open and closing
+      * comment on their own line
+      */
+
+     /* Worse.  Block comments should have the open and closing
+      * comment on their own line */
+    </screen>
+  </para>
+  <para>
+   We prefer C-style block comments (<computeroutput>/*
+   */</computeroutput>).  USe of Perl/shell style comments
+   (<computeroutput>#</computeroutput>) and C++ single line comments
+   (<computeroutput>//</computeroutput>) are not allowed.  Multiple
+   line C style comments should see the asterisks aligned in a column
+   (including the first line).
+  </para>
+  <para>
+   In addition, commenting any tricky, obscure, or otherwise not-immediately-obvious code is clearly
+   something we should be doing.  Especially important to document are any assumptions your code
+   makes, or preconditions for its proper operation. Any one of the developers should be able to
+   look at any part of the application and figure out what's going on in a reasonable amount of
+   time.
+  </para>
+  <sect3 id="gallery2-devguide.coding-standards.comments.class-package">
+   <title>Class/Package Comments</title>
+   <para>
+    These should appear at the beginning of every file, and help to explain the purpose of the file,
+    and its place in the Gallery hierarchy. For example, the Gallery's core module is named the
+    <function>GalleryCore</function> package. Files in the <filename>classes</filename> directory
+    are part of the <function>Classes</function> supbackage. When these comments apply to classes,
+    they become the class comments. Such a comment might look like:
+    <screen>
+    /**
+     * Short explanation (1 line!)
+     *
+     * Some more text which explains in more detail what
+     * the file does and who might be interested
+     * in understanding that.
+     *
+     * @version $Id$
+     * @package GalleryCore
+     * @subpackage Classes
+     * @module GalleryModuleName
+     */
+    </screen>
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      The first line should be short but meaningful.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The longer explanation may span several lines. Currently HTML markup is not retained, so try
+      to avoid it.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      An <function>@author</function> statement might be present&#8212;see function comments below
+      for details.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The <function>@version</function> statement should be used unchanged. CVS will magically
+      transform this into the actual version info of the file.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The <function>@package</function> statement identifies the file with its package.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The <function>@subpackage</function> statement further classifies the file.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The <function>@module</function> statement gives the file a more meaningful name.  Usually it
+      should be the filename without the suffix .php. Dots are not allowed in the name, so convert
+      them to underscore if needed.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.comments.function-method">
+   <title>Function/Method Comments</title>
+   <para>
+    These explain in detail what a function does, what parameters it expects and what is returned by
+    the function. Function comments apply to classes as well, here they magically turn into method
+    comments.  Such a comment appears directly above a function definition looks like this:
+    <screen>
+    /**
+     * Short explanation (1 line!)
+     *
+     * Some more text which explains in more detail what
+     * the function does and who might be interested
+     * in understanding that.
+     *
+     * @author Name &lt;email address&gt;, Name2 &lt;other email address&gt;
+     * @param type description
+     * @return type description
+     */
+    function functionName( ...
+    </screen>
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      The first line should be short but meaningful.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      The longer explanation may span several lines. Currently HTML markup is not retained, so try
+      to avoid it.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      One <function>@author</function> statement may be present. More than one author may appear in
+      the statement, consisting of his/her name and optionally the email address in &lt; and &gt;
+      signs, individual authors separated by colons. If given, the email address will be converted
+      into a hyperlink automagically.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      One or more <function>@param</function> statements describing the arguments the function
+      expects. They must be given in the order in which they appear in the function definition. A
+      <function>@return</function> statement, if the function returns something.
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.comments.variable-include">
+   <title>Class Variable and Include File Comments</title>
+   <para>
+    These are simple: They just quickly explain what a class varibale is used for, or what an
+    included file does, or why we need it. These comments may be longer, if you have to explain
+    more. They should appear just above the corresponding variable or include/require
+    statement. They can be just one line and look like this:
+    <screen>
+    /**
+     * Some explanation of the variable or file just below this comment.
+     */
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.comments.document-header">
+   <title>Document Header</title>
+   <para>
+    All files should contain the following text in a form where it will not interfere with the
+    purpose of the file (i.e., commented out). In this example, it's presented in a commented out
+    form for inclusion into PHP files.
+    <screen>
+    &lt;?
+     /*
+      * Gallery - a web based photo album viewer and editor
+      * Copyright (C) 2000-2004 Bharat Mediratta
+      *
+      * This program is free software; you can redistribute it and/or modify
+      * it under the terms of the GNU General Public License as published by
+      * the Free Software Foundation; either version 2 of the License, or (at
+      * your option) any later version.
+      *
+      * This program is distributed in the hope that it will be useful, but
+      * WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+      * General Public License for more details.
+      *
+      * You should have received a copy of the GNU General Public License
+      * along with this program; if not, write to the Free Software
+      * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+      *
+      * $Id$
+      */
+    ?&gt;
+    </screen>
+   </para>
+  </sect3>
+ <sect3 id="gallery2-devguide.coding-standards.comments.special">
+   <title>Special Comments</title>
+   <para>
+    Occasionally you wind up checking in code that's not totally satisfactory. Sometimes this is
+    inevitable. In order to locate these bits of code so that we find and resolve it later, use the
+    following tags in a comment, above the code in question:
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      <computeroutput>REVISIT</computeroutput>&#8212;this is an optimization waiting to happen, or
+      something that could be improved on later. Optionally. If we're bored. And have itchy
+      <computeroutput>C-x v v</computeroutput> fingers.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <computeroutput>TODO</computeroutput>&#8212;this is missing functionality (so by definition,
+      it's broken) that needs to be addressed at some point.
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      <computeroutput>FIXME</computeroutput>&#8212;this is stubbed/broken functionality, but I need
+      to commit. It can limp for now.
+     </para>
+    </listitem>
+   </itemizedlist>
+   <para>
+    Keep in mind that you may not get back to this code for a while. You may not even be the one to
+    fix the thing, so the more information that you provide while it's still fresh in your mind, the
+    better. Potential solutions or workarounds are great, and may prove invaluable to whomever gets
+    around to addressing the issue.
+   </para>
+   <para>
+    If the comment isn't clear it may be ignored and eventually deleted.
+   </para>
+   <para>
+    At some point in the future this will enable us to dictate the following:
+   </para>
+   <itemizedlist>
+    <listitem>
+     <para>
+      No point release with <computeroutput>FIXME</computeroutput>s
+     </para>
+    </listitem>
+    <listitem>
+     <para>
+      No major release with <computeroutput>TODO</computeroutput>s
+     </para>
+    </listitem>
+   </itemizedlist>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.php-specific">
+  <title>PHP-Specific Guidelines</title>
+  <sect3 id="gallery2-devguide.coding-standards.php-specific.associative-array-keys">
+   <title>Associative Array Keys</title>
+   <para>
+    In PHP, it's legal to use a literal string as a key to an associative array without quoting that
+    string. We don't want to do this&#8212;the string should always be quoted to avoid
+    confusion. Note that this is only when we're using a literal, not when we're using a
+    variable. Examples:
+    <screen>
+    $foo = $assoc_array[blah];   <lineannotation>/* <emphasis role="bold">WRONG</emphasis> */</lineannotation>
+
+    $foo = $assoc_array['blah']; <lineannotation>/* <emphasis role="bold">RIGHT</emphasis> */</lineannotation>
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.php-specific.string-quotes">
+   <title>Quoting Strings</title>
+   <para>
+    There are two different ways to quote strings in PHP - either with single quotes or with double
+    quotes. The main difference is that the parser does variable interpolation in double-quoted
+    strings, but not in single quoted strings. Because of this, you should always use single quotes
+    unless you specifically need variable interpolation to be done on that string. This way, we can
+    save the parser the trouble of parsing a bunch of strings where no interpolation needs to be
+    done.  Also, if you are using a string variable as part of a function call, you do not need to
+    enclose that variable in quotes. Again, this will just make unnecessary work for the
+    parser. Note, however, that nearly all of the escape sequences that exist for double-quoted
+    strings will not work with single-quoted strings. Be careful, and feel free to break this
+    guideline if it's making your code harder to read.  Examples:
+    <screen>
+      <lineannotation>/* <emphasis role="bold">WRONG</emphasis> */</lineannotation>
+      $str = "This is a really long string with no variables for the parser to find.";
+      do_stuff("$str");
+
+      <lineannotation>/* <emphasis role="bold">RIGHT</emphasis> */</lineannotation>
+      $str = 'This is a really long string with no variables for the parser to find.';
+      do_stuff($str);
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.php-specific.including-code">
+   <title>Including Code</title>
+   <para>
+    Anywhere you are unconditionally including a class file, use
+    <function>require_once()</function>. Anywhere you are conditionally including a class file (for
+    example, factory methods), use <function>include_once()</function>. Either of these will ensure
+    that class files are included only once. They share the same file list, so you don't need to
+    worry about mixing them&#8212;a file included with <function>require_once()</function> will not
+    be included again by <function>include_once()</function>.
+   </para>
+   <para>
+    <emphasis role="bold">Note</emphasis>: <function>include_once()</function> and
+    <function>require_once()</function> are statements, not functions.  You don't need parentheses
+    around the filename to be included.
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.php-specific.php-tags">
+   <title>PHP Code Tags</title>
+   <para>
+    Always use <computeroutput>&lt;?php ?&gt;</computeroutput> to delimit PHP code, not the
+    <computeroutput>&lt;? ?&gt;</computeroutput> shorthand. This is the most portable way to include
+    PHP code on differing operating systems and setups.
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.php-specific.uninitialized-variables">
+   <title>Uninitialized Variables</title>
+   <para>
+    Don't use uninitialized variables. Gallery will use a high level of run-time error
+    reporting. This will mean that the use of an uninitialized variable will be reported as an
+    error. This will come up most often when checking which HTML form variables were passed. These
+    errors can be avoided by using the built-in <function>isset()</function> function to check
+    whether a variable has been set. Examples:
+    <screen>
+    <lineannotation>/* <emphasis role="bold">old way</emphasis> */</lineannotation>
+    if ($forum) ...
+
+    <lineannotation>/* <emphasis role="bold">new way</emphasis> */</lineannotation>
+    if (isset($forum)) ...
+    </screen>
+   </para>
+  </sect3>
+ </sect2>
+ <sect2 id="gallery2-devguide.coding-standards.miscellaneous">
+  <title>Miscellaneous</title>
+  <sect3 id="gallery2-devguide.coding-standards.miscellaneous.magic-numbers">
+   <title>Magic Numbers</title>
+   <para>
+    Don't use them. Use named constants for any literal value other than obvious special
+    cases. Basically, it's OK to check if an array has 0 elements by using the literal 0. It's not
+    OK to assign some special meaning to a number and then use it everywhere as a literal. This
+    hurts readability <emphasis>and</emphasis> maintainability. Included in this guideline is that
+    we should be using the constants <varname>true</varname> and <varname>false</varname> in place
+    of the literals 1 and 0&#8212;even though they have the same values, it's more obvious what the
+    actual logic is when you use the named constants.
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.miscellaneous.shortcut-operators">
+   <title>Shortcut Operators</title>
+   <para>
+    The only shortcut operators that cause readability problems are the shortcut increment
+    (<function>$i++</function>) and decrement (<function>$j--</function>) operators. These operators
+    should not be used as part of an expression. They can, however, be used on their own line. Using
+    them in expressions is just not worth the headaches when debugging. Examples:
+    <screen>
+    <lineannotation>/* <emphasis role="bold">WRONG</emphasis> */</lineannotation>
+    $array[++$i] = $j;
+    $array[$i++] = $k;
+
+    <lineannotation>/* <emphasis role="bold">RIGHT</emphasis> */</lineannotation>
+    $i++;
+    $array[$i] = $j;
+
+    $array[$i] = $k;
+    $i++;
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.miscellaneous.operator-precedence">
+   <title>Operator Precedence</title>
+   <para>
+    Do you know the exact precedence of all the operators in PHP? Neither do I. Don't guess. Always
+    make it obvious by using brackets to force the precedence of an equation so you know what it
+    does.
+    <screen>
+    <lineannotation>/* <emphasis role="bold">what's the result? who knows.</emphasis> */</lineannotation>
+    $bool = ($i &lt; 7 &amp;&amp; $j &gt; 8 || $k == 4);
+
+    <lineannotation>/* <emphasis role="bold">now you can be certain what I'm doing here.</emphasis> */</lineannotation>
+    $bool = (($i &lt; 7) &amp;&amp; (($j &lt; 8) || ($k == 4)))
+    </screen>
+   </para>
+  </sect3>
+  <sect3 id="gallery2-devguide.coding-standards.miscellaneous.sql-code-layout">
+   <title>SQL Code Layout</title>
+   <para>
+    Capitalize the SQL keywords and put major keywords on their own lines.  Don't put variables
+    into your SQL, use markers instead.  Use 2 column indentation.  Put the entire query into a
+    single multiline string where possible.
+    <screen>
+    /*
+     * <emphasis role="bold">GOOD!</emphasis>  This is an example of Gallery 2 SQL statements.
+     * In Gallery 2 we use an abstraction for table and column names so the syntax is slightly different
+     * than it is with regular SQL statements.
+     */
+    $query = '
+    SELECT
+      [GalleryEntity::creationTimestamp],
+      [GalleryEntity::modificationTimestamp]
+    FROM
+      [GalleryEntity]
+    WHERE
+      [GalleryEntity::id] = ?
+      AND
+      ([GalleryEntity::modificationTimestamp] > ?
+       OR
+       [GalleryEntity::creationTimestamp] > ?)
+    ';
+
+    /*
+     * <emphasis role="bold">BAD!</emphasis>  This example embeds a variable inside the query
+     * which is prone to SQL injection exploits, and puts the whole statement on a single line
+     * which is harder to parse visually.
+     */
+    $query = "SELECT field1 FROM table a WHERE columnA = '$value'";
+    </screen>
+   </para>
+  </sect3>
+ </sect2>
+</sect1>
