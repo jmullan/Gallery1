@@ -745,31 +745,36 @@ function getStyleSheetLink() {
  * @param	string	$skinname	Optional skinname, if omitted and not embedded, default skin is used.
  * @return	string
  */
-function _getStyleSheetLink($filename, $skinname='') {
+function _getStyleSheetLink($filename, $skinname = '') {
     global $gallery;
     global $GALLERY_EMBEDDED_INSIDE;
 
     $base = dirname(dirname(__FILE__));
 
-    if (!$skinname && isset($gallery->app) && isset($gallery->app->skinname) && !$GALLERY_EMBEDDED_INSIDE) {
+    if (!$skinname && 
+      isset($gallery->app) && 
+      isset($gallery->app->skinname) &&
+      !$GALLERY_EMBEDDED_INSIDE) {
         $skinname = $gallery->app->skinname;
     }
 
     $sheetname = "skins/$skinname/css/$filename.css";
-    $sheetpath = "$base/$sheetname";
-
     $sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
     $sheetdefaultname = "css/$filename.css";
-    $sheetdefaultpath = "$base/$sheetdefaultname";
-
-    if (fs_file_exists($sheetpath) && !broken_link($sheetpath)) {
+    $sheetdefaultpath = "$base/css/$filename.css";
+    
+    if (fs_file_exists($sheetname)) {
         $file = $sheetname;
-    } elseif (fs_file_exists($sheetdefaultpath) && !broken_link($sheetdefaultpath)) {
+    }
+    elseif (fs_file_exists("${sheetname}.default")) {
+        $file = "${sheetname}.default";
+    }
+    elseif (fs_file_exists($sheetdefaultpath)) {
         $file = $sheetdefaultname;
-    } elseif (fs_file_exists($sheetdefaultdomainname) && !broken_link($sheetdefaultdomainname)) {
+    } elseif (fs_file_exists($sheetdefaultdomainname)) {
         $file = $sheetdefaultdomainname;
     } else {
-        $file = $sheetdefaultname. '.default';
+        $file = "${sheetdefaultname}.default";
     }
 
     $url = getGalleryBaseUrl() ."/$file";
@@ -1004,20 +1009,48 @@ function available_skins($description_only = false) {
     }
 }
 
-function available_frames($description_only = false) {
-    $GALLERY_BASE = dirname(dirname(__FILE__));
+function availableRandomBlockFrames() {
+    $html = gTranslate('config', sprintf("In Addition to the %s, you also use the following opportunities:", 
+        popup_link(gTranslate('config', "usual thumbs"), makeGalleryURL('setup/frame_test.php'), true)));
 
-    $opts = array(
+    $html .=
+        "<dt><u>". gTranslate('common',"Album image frames") ."</u></dt><dd>". 
+            gTranslate('common',"Frame defined for images in the corresponding album") ."</dd>".
+        "<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt><dd>". 
+            gTranslate('common',"Frame defined for thumbs in the corresponding album") ."</dd>".
+        "<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt><dd>". 
+            gTranslate('common',"Frame defined for thumbs on mainpage") . "</dd>";
+        
+   return $html;
+}
+
+function available_frames($description_only = false, $forRandomBlock = false) {
+    $GALLERY_BASE = dirname(dirname(__FILE__));
+    $opts = array();
+    
+    if ($forRandomBlock) {
+	   $opts = array(
+            'albumImageFrame' => '* '. gTranslate('common',"Album image frames") .' *',
+            'albumThumbFrame' => '* '. gTranslate('common',"Album thumb frames") .' *',
+            'mainThumbFrame' => '* '. gTranslate('common',"Mainpage thumb frames") .' *'
+        );
+    }
+    
+    $opts = array_merge($opts, array(
         'none' => gTranslate('common', "None"),
         'dots' => gTranslate('common', "Dots"),
         'solid' => gTranslate('common', "Solid"),
-        );
+        )
+    );
         
-    $descriptions="<dl>" .
-        "<dt>" . popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", 1)  . "</dt><dd>". gTranslate('common', "No frames")."</dd>" .
-        "<dt>" . popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", 1)  . "</dt><dd>". gTranslate('common', "Just a simple dashed border around the thumb.")."</dd>" .
-        "<dt>" . popup_link(gTranslate('common', "Solid"), "frame_test.php?frame=solid", 1) . "</dt><dd>". gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" ;
-        
+    $descriptions= "<dl>" .
+        "<dt>". popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", true)  ."</dt><dd>". 
+            gTranslate('common', "No frames")."</dd>";
+        "<dt>". popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", true)  ."</dt><dd>". 
+            gTranslate('common', "Just a simple dashed border around the thumb.")."</dd>" .
+        "<dt>". popup_link(gTranslate('common', "Solid"), "frame_test.php?frame=solid", true) ."</dt><dd>".
+            gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" ;
+
     $dir = $GALLERY_BASE . '/html_wrap/frames';
     
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {

@@ -80,7 +80,7 @@ $configTestStatus = array(
 );
 
 $warning = 0;
-echo '<table class="inner" width="100%" cellspacing="0">';
+echo '<table class="inner" width="80%" cellspacing="0" align="center">';
 foreach ($checklist as $short => $check) {
     if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 

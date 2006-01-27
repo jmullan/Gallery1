@@ -1249,6 +1249,65 @@ $constants = array_merge($constants, array(
 	'group_stats_end' => array(
 		'type'		=> 'group_end'
 	),
+	'group_blocks' => array (
+		'type' => 'group_start',
+		'name' => 'group_blocks',
+		'default' => 'none',
+		'title' => gTranslate('config', "Blocks"),
+		'desc' => gTranslate('config', "These settings are for the blocks provided by Gallery."),
+	),
+	'subgroup_randomBlock' => array (
+		'type' => 'subgroup',
+		'title' => gTranslate('config',"RandomBlock Settings"),
+		'display' => 'inline'
+	),
+	'blockRandomFrame' => array(
+    	'prompt' => gTranslate('config',"Frame around random photo."),
+    	'desc' => availableRandomBlockFrames(),
+    	'choices' => available_frames(false, true),
+    	'value' => 'none'
+	),
+	'blockRandomFrameBorderWidth' => array(
+    	'prompt' => gTranslate('config',"Width of solid/dotted frameborder around random photo."),
+    	'desc' => '',
+    	'type' => 'text',
+		'must-be-integer' => 1,
+		'must-not-be-zero' => 1,
+		'optional' => 1,
+		'value' => 1
+	),
+	'blockRandomFrameBorderColor' => array(
+    	'prompt' => gTranslate('config',"Color of solid/dotted frameborder around random photo."),
+    	'desc' => '',
+    	'value' => 'black',
+		'type' => 'colorpicker'
+	),
+	'blockRandomCache' => array(
+		'prompt' => gTranslate('config',"Random Block Cache Time"),
+		'desc' => gTranslate('config',"This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."),
+		'value' => 86400,
+		'choices' => array(
+			86400 => gTranslate('config',"24 Hours"),
+			43200 => gTranslate('config',"12 Hours"),
+			21600 => gTranslate('config',"6 Hours"),
+			1440 => gTranslate('config',"1 Hour"),
+			720 => gTranslate('config',"30 Minutes")
+		)
+	),
+	'blockRandomAttempts' => array(
+		'prompt' => gTranslate('config',"Random Block Retrieval Attempts"),
+		'desc' => gTranslate('config',"This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."),
+		'value' => 2,
+		'must-be-integer' => 1,
+		'must-not-be-zero' => 1,
+		'type' => 'text',
+	),
+    'subgroup_randomBlock_end' => array (
+		'type' => 'subgroup_end',
+	),
+	'group_blocks_end' => array(
+		'type'		=> 'group_end'
+	),
 	'group_technical' => array (
 		'type' => 'group_start',
 		'name' => 'group_technical',
@@ -1296,26 +1355,7 @@ $constants = array_merge($constants, array(
 		),
 		'value' => 'yes'
 	),
-	'blockRandomCache' => array(
-		'prompt' => gTranslate('config',"Random Block Cache Time"),
-		'desc' => gTranslate('config',"This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."),
-		'value' => 86400,
-		'choices' => array(
-			86400 => gTranslate('config',"24 Hours"),
-			43200 => gTranslate('config',"12 Hours"),
-			21600 => gTranslate('config',"6 Hours"),
-			1440 => gTranslate('config',"1 Hour"),
-			720 => gTranslate('config',"30 Minutes")
-		)
-	),
-	'blockRandomAttempts' => array(
-		'prompt' => gTranslate('config',"Random Block Retrieval Attempts"),
-		'desc' => gTranslate('config',"This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."),
-		'value' => 2,
-		'must-be-integer' => 1,
-		'must-not-be-zero' => 1,
-		'type' => 'text',
-	),
+	
 	'cacheExif' => array(
 		'prompt' => "<b>(" . gTranslate('config',"Advanced") . ")</b><br> ". gTranslate('config',"Cache EXIF data"),
 		'desc' => gTranslate('config',"The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),

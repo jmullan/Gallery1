@@ -351,7 +351,7 @@ function broken_link($file) {
     if (fs_is_link($file)) {
         return !fs_is_file($file);
     } else {
-        return 0;
+        return false;
     }
 }
 

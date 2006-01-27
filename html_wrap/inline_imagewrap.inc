@@ -26,49 +26,38 @@ if (!empty($href) ) {
   $href_tag= '<a '. $attr .">$tag</a>";
 }
 
+if (!in_array($frame, array('none', 'dots', 'solid')) &&
+    !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def")) {
+        $frame = 'none';
+}
+
 switch ($frame) {
-
-// special cases
-case "none":
-  echo $href_tag;
-  break;
-case "dots":
+    // special cases
+    case "none":
+	echo $href_tag;
+    break;
+    case "dots":
 ?>
-  <table style="border-width:1px; border-style:dashed; border-color:<?php echo $borderColor ?>">
-    <tr>
-      <td>
+  <div style="width: <?php echo $imageWidth; ?>; border:<?php echo "${borderWidth}px dashed $borderColor"; ?>">
         <?php echo $href_tag ?>
-      </td>
-    </tr>
-  </table>
+  </div>
 <?php
-  break;
-case "solid":
+    break;
+    case "solid":
 ?>
-  <table width="1%" border="0" cellspacing="0" cellpadding="0">
-    <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" height="1" alt=""></td>
-    </tr>
-    <tr>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" alt=""></td>
-      <td align="center"><?php echo $href_tag ?></td>
-      <td bgcolor="<?php echo $borderColor ?>" width="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
-    </tr>
-    <tr bgcolor="<?php echo $borderColor ?>">
-      <td colspan="3" height="<?php echo $borderWidth ?>"><img src="<?php echo $pixelImage ?>" width="<?php echo $borderWidth ?>" height="1" alt=""></td>
-    </tr>
-  </table>
-  <?php
-  break;
-default: // use frames directory
-  $base = $base . "/html_wrap/frames/$frame";
-
-  include (dirname(__FILE__) . "/frames/$frame/frame.def");
-  // Safari/Opera ignore height="100%" for table, but this ensures HTML
-  // standards, so do it for all browsers
-  $hLL = $imageHeight - $heightLLT - $heightLLB;
-  $hRR = $imageHeight - $heightRRT - $heightRRB;
-  ?>
+  <div style="width: <?php echo $imageWidth; ?>; border:<?php echo "${borderWidth}px solid $borderColor"; ?>">
+        <?php echo $href_tag ?>
+  </div>
+<?php
+    break;
+    default: // use frames directory
+	$base = $base . "/html_wrap/frames/$frame";
+	include (dirname(__FILE__) . "/frames/$frame/frame.def");
+	// Safari/Opera ignore height="100%" for table, but this ensures HTML
+	// standards, so do it for all browsers
+	$hLL = $imageHeight - $heightLLT - $heightLLB;
+	$hRR = $imageHeight - $heightRRT - $heightRRB;
+?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr">
   <tr>

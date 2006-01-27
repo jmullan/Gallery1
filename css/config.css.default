@@ -35,7 +35,7 @@ body {
 
 .sitedesc {
     background-color: #FCFCF3;
-    margin-top:10px; padding:5px;
+    margin-top:5px; padding:5px;
     border: 1px solid #000000;
 }
 
@@ -100,17 +100,17 @@ div#top {
 
 
 .subgroup {
-    text-align:center;
+    text-align: center;
     font-size: 16px; font-weight: bold;
-    background-color: #9191FF; color:#FFFFFF;
-    padding:2px;
+    background-color: #5e78dd; color:#FFFFFF;
+    padding: 2px;
     width: 60%;
-    margin-top: -10px; margin-bottom: 5px;
+    margin-top: -5px; margin-bottom: 5px;
 }
 
 .inner {
-    padding: 5px; margin-bottom:15px;
-    border-style: solid; border-color: #000000; border-width:1px;
+    margin-bottom: 7px;
+    border-bottom: 3px double #000000;
 }
 
 .shortdesc {
@@ -135,33 +135,41 @@ div#top {
 a:link		{ color: #000099;
 		}
 
-a:visited,
-a:hover		{ color: #409D27;
-		}
-
-.tab 		{  border-style:solid; border-width:1px;border-color: black;
-		   background-color:white; color: #000000;
-		   -moz-border-radius-topleft:10px; -moz-border-radius-topright:10px;
-		   cursor: pointer;
-		   text-align:center;
-		   padding:5px; margin-left:10px;
-		}
-
-.tab-hi 	{
-    border-style:solid; border-width:1px;border-color: #000000;
-    background-color: #000099; color:#FFFFFF;
-    -moz-border-radius-topleft:10px; -moz-border-radius-topright:10px;
-    cursor: pointer;
-    text-align:center;
-    padding:5px; margin-left:10px;
+a:visited, a:hover {
+    color: #409D27;
 }
 
-.tab-text	{ text-decoration:underline; font-weight:bold; font-size:13px;
-		}
+.tab {
+    border:1px solid black;
+    background-color: white; color: #000000;
+    -moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px;
+    cursor: pointer;
+    text-align: center;
+    padding: 3px; margin-left:10px;
+}
 
-.littlered	{ font-size: 10px; color:red; vertical-align:top; 
-		}
+.tab-hi 	{
+    border: 1px solid #FFFFFF;
+    border-bottom: 1px solid #000000;
+    background-color: #000099; color:#FFFFFF;
+    -moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px;
+    cursor: pointer;
+    text-align: center;
+    padding: 3px; margin-left:10px;
+}
+
+.tab-text{
+    text-decoration: underline;
+    font-weight:bold; font-size:13px;
+    }
+
+.littlered	{
+    font-size: 10px;
+    color:red;
+    vertical-align:top; 
+}
 		
-td.tabspacer	{  border-bottom-width: 1px; border-bottom-style:solid;
-                   border-color: black;
-		}
+td.tabspacer {
+    border-bottom-width: 1px; border-bottom-style:solid;
+    border-color: black;
+}

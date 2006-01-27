@@ -1629,7 +1629,7 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 		echo "\n\t<td class=\"tabspacer\">&nbsp;</td>";
 		if ($tabcount % $break == 0 && $tabcount < sizeof($tabs)) {
 			echo "\n</tr>\n</table>";
-			echo "\n<table width=\"100%\"cellspacing=\"0\" style=\"margin-top:5px;\">\n<tr>";
+			echo "\n<table width=\"100%\"cellspacing=\"0\" style=\"margin-top: 2px;\">\n<tr>";
 		}
 	}
 	echo "\n</tr>";
