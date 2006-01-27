@@ -17,27 +17,25 @@
 #
 # $Id$
 #
-#
-# @version      1.5.2
 # @version      1.5.3-cvs
 # @package	Languagepack
 # @subpackage	German
-# @author	Jens Tkotz <jens AT peino DOT de>, 2003-2005
+# @author	Jens Tkotz <jens AT peino DOT de>, 2003-2006
 # @author	Michael Köhler <mkoehler AT psr DOT de>, 2003
-# @author	Kerstin Strasser <kerstin AT peino DOT de>2005
+# @author	Kerstin Strasser <kerstin AT peino DOT de>2005-2006
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.2\n"
+"Project-Id-Version: Gallery 1.5.3\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-19 19:07+0100\n"
+"POT-Creation-Date: 2006-01-28 00:28+0100\n"
 "PO-Revision-Date: 2006-01-08 21:35+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../add_comment.php:29 ../add_photos.php:31 ../administer_startpage.php:31
 #: ../album_permissions.php:33 ../copy_photo.php:29 ../create_user.php:34
@@ -48,33 +46,33 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
-#: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
+#: ../rotate_photo.php:33 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuführen!"
 
-#: ../add_comment.php:56 ../view_photo.php:193
+#: ../add_comment.php:57 ../view_photo.php:193
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Name und Kommentar (!) müssen angegeben werden, um den Eintrag zu speichern."
 
-#: ../add_comment.php:58 ../view_photo.php:195
+#: ../add_comment.php:59 ../view_photo.php:195
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr "Ihr Kommentar ist zu lang, der Administrator hat die maximale Länge auf %d Zeichen festgesetzt."
 
-#: ../add_comment.php:60 ../view_photo.php:197
+#: ../add_comment.php:61 ../view_photo.php:197
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr "Ihr Kommentar enthält nicht erlaubte Wörter. Er wurde nicht hinzugefügt."
 
-#: ../add_comment.php:79 ../add_comment.php:83
+#: ../add_comment.php:80 ../add_comment.php:84
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
 
-#: ../add_comment.php:85
+#: ../add_comment.php:86
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein."
 
-#: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
+#: ../add_comment.php:99 ../copy_photo.php:214 ../delete_album.php:72
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
 #: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
 #: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:90
@@ -950,7 +948,7 @@ msgstr "Kopieren"
 
 #: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
 #: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
-#: ../rotate_photo.php:95 ../view_photo_properties.php:130
+#: ../rotate_photo.php:141 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "Kein Album/ Index gew&auml;hlt"
 
@@ -1012,8 +1010,8 @@ msgstr "Möchten Sie dieses Album wirklich löschen?"
 
 #: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
 #: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:254 ../lib/albumItem.php:255 ../lib/albumItem.php:261
-#: ../lib/albumItem.php:262 ../manage_users.php:98
+#: ../lib/albumItem.php:253 ../lib/albumItem.php:254 ../lib/albumItem.php:260
+#: ../lib/albumItem.php:261 ../manage_users.php:98
 #: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "Löschen"
@@ -1332,7 +1330,7 @@ msgid "Undo"
 msgstr "R&uuml;ckg&auml;ngig"
 
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:87
+#: ../poll_properties.php:142 ../rotate_photo.php:135
 msgid "Close"
 msgstr "Schlie&szlig;en"
 
@@ -2364,11 +2362,11 @@ msgstr "Kommentare f&uuml;r dieses Unteralbum anschauen"
 msgid "Album contains no comments"
 msgstr "Dieses Album enth&auml;lt keinen Kommentar."
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:327
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:326
 msgid "From:"
 msgstr "Von:"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:301
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:300
 msgid "delete comment"
 msgstr "Kommentar l&ouml;schen"
 
@@ -2533,70 +2531,70 @@ msgstr "Wasserzeichen"
 msgid "ImageMap"
 msgstr "ImageMap"
 
-#: ../lib/albumItem.php:142 ../lib/albumItem.php:143
+#: ../lib/albumItem.php:140 ../lib/albumItem.php:141
+msgid "Move"
+msgstr "Verschieben"
+
+#: ../lib/albumItem.php:148 ../lib/albumItem.php:149
 msgid "Edit Title"
 msgstr "Titel bearbeiten"
 
-#: ../lib/albumItem.php:147 ../lib/albumItem.php:148
+#: ../lib/albumItem.php:153 ../lib/albumItem.php:154
 msgid "Edit Description"
 msgstr "Beschriftungen bearbeiten"
 
-#: ../lib/albumItem.php:153 ../lib/albumItem.php:154 ../rename_album.php:39
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160 ../rename_album.php:39
 #: ../rename_album.php:43
 msgid "Rename Album"
 msgstr "Albumnamen &auml;ndern"
 
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
+#: ../lib/albumItem.php:165 ../lib/albumItem.php:166
 msgid "Reset Counter"
 msgstr "Klick-Zähler zurücksetzen"
 
-#: ../lib/albumItem.php:171 ../lib/albumItem.php:172 ../view_album.php:313
+#: ../lib/albumItem.php:177 ../lib/albumItem.php:178 ../view_album.php:313
 msgid "Permissions"
 msgstr "Berechtigungen"
 
-#: ../lib/albumItem.php:179 ../lib/albumItem.php:180
+#: ../lib/albumItem.php:185 ../lib/albumItem.php:186
 #: ../watermark_album.php:114 ../watermark_album.php:118
 msgid "Watermark Album"
 msgstr "Wasserzeichen setzen"
 
-#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
+#: ../lib/albumItem.php:192 ../lib/albumItem.php:193
 msgid "View Comments"
 msgstr "Kommentare betrachten"
 
-#: ../lib/albumItem.php:196 ../lib/albumItem.php:213 ../lib/albumItem.php:214
-msgid "Move"
-msgstr "Verschieben"
+#: ../lib/albumItem.php:200 ../lib/albumItem.php:201
+msgid "Copy"
+msgstr "Kopieren"
 
-#: ../lib/albumItem.php:197
+#: ../lib/albumItem.php:209 ../lib/albumItem.php:210
 msgid "Reorder"
 msgstr "Umordnen"
 
-#: ../lib/albumItem.php:204 ../lib/albumItem.php:205
+#: ../lib/albumItem.php:217 ../lib/albumItem.php:218
 msgid "Set as highlight"
 msgstr "Setze als Titelbild"
-
-#: ../lib/albumItem.php:220 ../lib/albumItem.php:221
-msgid "Copy"
-msgstr "Kopieren"
 
 #: ../lib/albumItem.php:226 ../lib/albumItem.php:227 ../photo_owner.php:78
 #: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr "Besitzer/in"
 
-#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../lib/albumItem.php:235 ../lib/albumItem.php:236
 msgid "Show"
 msgstr "Anzeigen"
 
-#: ../lib/albumItem.php:242 ../lib/albumItem.php:243
+#: ../lib/albumItem.php:241 ../lib/albumItem.php:242
 msgid "Hide"
 msgstr "Verstecken"
 
-#: ../lib/albumItem.php:274 ../lib/albumItem.php:275
+#: ../lib/albumItem.php:273 ../lib/albumItem.php:274
 msgid "Photo properties"
 msgstr "Bildeigenschaften"
 
-#: ../lib/albumItem.php:287 ../lib/albumItem.php:288
+#: ../lib/albumItem.php:286 ../lib/albumItem.php:287
 #, php-format
 msgid "%s actions"
 msgstr "%s Aktionen"
@@ -3018,11 +3016,11 @@ msgstr "Wer kann eine Stimme abgeben?"
 msgid "Orientation of vote choices"
 msgstr "Ausrichtung der Stimmm&ouml;glichkeiten"
 
-#: ../poll_properties.php:108 ../rotate_photo.php:82
+#: ../poll_properties.php:108 ../rotate_photo.php:107
 msgid "Horizontal"
 msgstr "Horizontal"
 
-#: ../poll_properties.php:108 ../rotate_photo.php:85
+#: ../poll_properties.php:108 ../rotate_photo.php:113
 msgid "Vertical"
 msgstr "Vertikal"
 
@@ -3432,39 +3430,45 @@ msgstr "(Nur das Originalbild verwenden)"
 msgid "Change Size"
 msgstr "Bildgr&ouml;&szlig;e ver&auml;ndern"
 
-#: ../rotate_photo.php:40 ../rotate_photo.php:46
+#: ../rotate_photo.php:42 ../rotate_photo.php:60
 msgid "Rotate/Flip Photo"
 msgstr "Bild drehen/ spiegeln"
 
-#: ../rotate_photo.php:51
+#: ../rotate_photo.php:65
 msgid "Rotating/Flipping photo."
 msgstr "Bild drehen/ spiegeln."
 
-#: ../rotate_photo.php:53 ../watermark_album.php:65
+#: ../rotate_photo.php:67 ../watermark_album.php:65
 msgid "(this may take a while)"
 msgstr "(Dies k&ouml;nnte eine Weile dauern)"
 
-#: ../rotate_photo.php:62
+#: ../rotate_photo.php:76
 msgid "Manipulate again?"
 msgstr "M&ouml;chten Sie den Vorgang wiederholen?"
 
-#: ../rotate_photo.php:64
+#: ../rotate_photo.php:78
 msgid "How do you want to manipulate this photo?"
 msgstr "Wie m&ouml;chten Sie dieses Bild ver&auml;ndern?"
 
-#: ../rotate_photo.php:70
+#: ../rotate_photo.php:88
+#, fuzzy
+msgid "Clockwise 90&deg"
+msgstr "im Uhrzeigersinn"
+
+#: ../rotate_photo.php:94
+msgid "180&deg"
+msgstr ""
+
+#: ../rotate_photo.php:100
+#, fuzzy
+msgid "Counter-Clockwise 90&deg"
+msgstr "gegen den Uhrzeigersinn "
+
+#: ../rotate_photo.php:121
 msgid "Rotate"
 msgstr "Drehen"
 
-#: ../rotate_photo.php:73
-msgid "Counter-Clockwise"
-msgstr "gegen den Uhrzeigersinn "
-
-#: ../rotate_photo.php:79
-msgid "Clockwise"
-msgstr "im Uhrzeigersinn"
-
-#: ../rotate_photo.php:80
+#: ../rotate_photo.php:125
 msgid "Flip"
 msgstr "Spiegeln"
 
