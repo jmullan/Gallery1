@@ -85,61 +85,7 @@ $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-  <title><?php echo $gallery->app->galleryTitle ?></title>
-  <?php
-	common_header() ;
 
-	/* prefetching/navigation */
-    if ($navigator['page'] > 1) { ?>
-  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
-<?php
-    }
-    if ($navigator['page'] < $maxPages) { ?>
-  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
-  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
-<?php
-    }
-    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-?>
-  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
-<?php
-    } ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php
-}
-
-includeHtmlWrap("gallery.header");
-
-if (!$gallery->session->offline &&
-  ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0) || 
-  $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
-?>
-<table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
-<tr>
-<?php
-    if ($GALLERY_EMBEDDED_INSIDE == 'phpBB2') {
-        echo '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
-    }
-    if ($numPhotos != 0) {
-        echo '<td align="'. langRight() .'">'. addSearchForm('', 'right') .'</td>';
-    }
-?>
-</tr>
-</table>
-<?php
-}
-?>
-
-<!-- admin section begin -->
-<?php
 /* Admin Text (left side) */
 $adminText = '';
 if ($numAccess == $numAlbums) {
@@ -230,6 +176,70 @@ $adminbox["text"] = $adminText;
 $adminbox["commands"] = $adminCommands . makeIconMenu($iconElements, 'right');
 $adminbox["bordercolor"] = $borderColor;
 
+
+/**
+ * Searchfield and when inside phpBB2 a link back to home
+ */
+$searchBar = '';
+if (!$gallery->session->offline &&
+  ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0) ||
+  $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
+
+    $searchBar = "\n". '<table width="100%" border="0" cellspacing="0" style="margin-bottom: 2px">';
+    $searchBar.= "\n<tr>";
+
+    if ($GALLERY_EMBEDDED_INSIDE == 'phpBB2') {
+        $searchBar .= '<td class="nav"><a href="index.php">'. sprintf($lang['Forum_Index'], $board_config['sitename']) . '</a></td>';
+    }
+    if ($numPhotos != 0) {
+        $searchBar .= '<td align="'. langRight() .'">'. addSearchForm('', 'right') .'</td>';
+    }
+
+    $searchBar .= "\n</tr>";
+    $searchBar .= "\n</table>";
+}
+
+
+/**
+ * Beginn HTML Output
+ */
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo $gallery->app->galleryTitle ?></title>
+  <?php
+	common_header() ;
+
+	/* prefetching/navigation */
+    if ($navigator['page'] > 1) { ?>
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
+<?php
+    }
+    if ($navigator['page'] < $maxPages) { ?>
+  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
+  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
+<?php
+    }
+    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+?>
+  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
+<?php
+    } ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
+}
+
+includeHtmlWrap("gallery.header");
+
+echo $searchBar;
+
+echo "\n<!-- admin section begin -->\n";
+
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 if ($navigator["maxPages"] > 1) {
@@ -238,9 +248,9 @@ if ($navigator["maxPages"] > 1) {
     includeLayout('navigator.inc');
 }
 includeLayout('navtableend.inc');
+echo "<!-- End top nav -->\n";
 
 echo languageSelector();
-echo "<!-- End top nav -->";
 
 /* Display warnings about broken albums */
 if ( (sizeof($albumDB->brokenAlbums) || sizeof($albumDB->outOfDateAlbums)) && $gallery->user->isAdmin()) {
