@@ -157,7 +157,7 @@ function netpbm_decompose_image($input, $format) {
             $getAlpha   = netPBM("pngtopnm", "-alpha $input > $alpha");
         break;
         case "gif":
-            $getOverlay = netPPM("giftopnm", "--alphaout=$alpha $input > $overlay");
+            $getOverlay = netPBM("giftopnm", "--alphaout=$alpha $input > $overlay");
         break;
             case "tif":
         $getOverlay = netPBM("tifftopnm", "-alphaout=$alpha $input > $overlay");
