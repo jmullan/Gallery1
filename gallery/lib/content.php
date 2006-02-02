@@ -182,8 +182,19 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
             break;
             case 'mambo':
 	    case 'joomla':
-                $cookie1_name = 'sessioncookie';
-                $cookie1_value = $_COOKIE[$cookie1_name];
+		if (!empty($_COOKIE['sessioncookie'])) {
+                    // really mambo
+                    $cookie1_name = 'sessioncookie';
+                    $cookie1_value = $_COOKIE[$cookie1_name];
+                } else {
+                    // try to find Joomla cookie (this is shaky)
+                    foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
+                        if (strlen($cookie1_name) == 32 && strlen($cookie1_value) == 32) {
+                           // this is probably the right cookie...
+                           break;
+                        }
+                    }
+                }
             break;
         }
     }
