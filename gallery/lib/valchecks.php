@@ -38,6 +38,14 @@ function sanityCheck($var, $type, $default = NULL) {
 	case 'int_empty':
 	    return isValidInteger($var, true, $default, true);
 	    break;
+	case 'pictureFrame':
+	    if(array_key_exists($var, available_frames())) {
+		return array(0, $var, '');
+	    }
+	    else {
+	        return array(2, $var, _("The given frame is not valid."));
+	    }
+	    break;
 	default:
 	    return array(0, $var, '');
 	    break;

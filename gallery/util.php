@@ -1590,12 +1590,17 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 			$divCellAdd =  $borderwidth +3;
 		break;
                   
-
-		default: // use frames directory
+		default: // use frames directory or fallback to none.
+		    if(array_key_exists($frame, available_frames())) {
 			require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
                     
 			$divCellWidth = $thumbsize + $widthTL + $widthTR;
 			$divCellAdd = $heightTT + $heightBB;
+		    }
+		    else {
+			$divCellWidth = $thumbsize + 3;
+			$divCellAdd =  3;
+		    }
 		break;
 	} // end of switch
 
