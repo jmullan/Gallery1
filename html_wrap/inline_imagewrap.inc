@@ -50,13 +50,14 @@ switch ($frame) {
   </div>
 <?php
     break;
-    default: // use frames directory
-	$base = $base . "/html_wrap/frames/$frame";
-	include (dirname(__FILE__) . "/frames/$frame/frame.def");
-	// Safari/Opera ignore height="100%" for table, but this ensures HTML
-	// standards, so do it for all browsers
-	$hLL = $imageHeight - $heightLLT - $heightLLB;
-	$hRR = $imageHeight - $heightRRT - $heightRRB;
+    default: // use frames directory or fallback to none
+	if(array_key_exists($frame, available_frames())) {
+	    $base .= "/html_wrap/frames/$frame";
+	    require(dirname(__FILE__) . "/frames/$frame/frame.def");
+	    // Safari/Opera ignore height="100%" for table, but this ensures HTML
+	    // standards, so do it for all browsers
+	    $hLL = $imageHeight - $heightLLT - $heightLLB;
+	    $hRR = $imageHeight - $heightRRT - $heightRRB;
 ?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr">
@@ -144,4 +145,11 @@ switch ($frame) {
 	<td><img src="<?php echo "$base/$imageBR" ?>" border="0" width="<?php echo $widthBR ?>" height="<?php echo $heightBR ?>" alt=""></td>
   </tr>
   </table>
-<?php } // end of switch ?>
+<?php 
+    }
+    else {
+	echo $href_tag;
+    }
+    break;
+}
+?>
