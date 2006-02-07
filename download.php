@@ -30,9 +30,19 @@ getRequestVar(array('doit', 'full'));
 if (!empty($doit)) {
     $albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
     $albumcopyName = createTempAlbum($albumItemNames);
-    $zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
-    downloadFile($zipfileName);
-} else {
+    if($albumcopyName) {
+        $zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
+        if($zipfileName) {
+            if(!isDebugging()) {
+                downloadFile($zipfileName);
+            }
+            else {
+                echo gallery_error('<br>'. _("Zipdownload would work, but is disabled when debugging."));
+            }
+        }
+    }
+}
+else {
     list($numItems, $numAlbums, $numPhotos) = $gallery->album->numItems($gallery->user, true);
 
     $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
