@@ -54,7 +54,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
                 new_element.type = 'file';
 
                 // Add new element
-                this.parentNode.insertBefore(new_element, this);
+                this.parentNode.insertBefore(new_element, this.nextSibling);
 
                 // Apply 'update' to element
                 this.multi_selector.addElement(new_element);
