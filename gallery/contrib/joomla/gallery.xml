@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!--
+ | Gallery - a web based photo album viewer and editor
+ | Copyright (C) 2000-2006 Bharat Mediratta
+ |
+ | This program is free software; you can redistribute it and/or modify
+ | it under the terms of the GNU General Public License as published by
+ | the Free Software Foundation; either version 2 of the License, or (at
+ | your option) any later version.
+ |
+ | This program is distributed in the hope that it will be useful, but
+ | WITHOUT ANY WARRANTY; without even the implied warranty of
+ | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ | General Public License for more details.
+ |
+ | You should have received a copy of the GNU General Public License
+ | along with this program; if not, write to the Free Software
+ | Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ |
+ | Gallery Component for Joomla! Open Source CMS v1.02 or newer
+ | Original author: Beckett Madden-Woods <beckett@beckettmw.com>
+ | Last author: Kai Tomalik <kai@gallery-addons.com>
+ |
+ | $Id$
+-->
+<mosinstall type="component" version="1.05">
+	<name>Gallery</name>
+	<creationDate>December, 31st 2005</creationDate>
+	<author>Gallery Development Team</author>
+	<copyright>This component is released under the Gallery license (GNU General Public License)</copyright>
+	<authorEmail>gallery-devel@lists.sourceforge.net</authorEmail>
+	<authorUrl>gallery.sourceforge.net</authorUrl>
+	<version>1.5.2</version>
+	<description>Gallery Component For Joomla! 1.02 or newer</description>
+	<files>
+		<filename>gallery.php</filename>
+	</files>
+	<install>
+		<queries>
+			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery`
+			           ( `field` varchar(128) PRIMARY KEY,
+				     `value` text default '')
+			</query>
+			<query id="2">INSERT INTO `#__gallery` (`field`, `value`)
+			           VALUES ('path',          '')
+			</query>
+			<query id="3">INSERT INTO `#__gallery` (`field`, `value`)
+			           VALUES ('minAuthType',   '20')
+			</query>
+			<query id="4">INSERT INTO `#__gallery` (`field`, `value`)
+			           VALUES ('hideRightSide', '1')
+			</query>
+		</queries>
+	</install>
+	<uninstall>
+		<queries>
+			<query id="1">DELETE FROM `#__gallery`;</query>
+			<query id="2">DROP TABLE `#__gallery`;</query>
+		</queries>
+	</uninstall>
+	<administration>
+		<menu link="option=com_gallery">Gallery</menu>
+		<files>
+			<filename>admin.gallery.php</filename>
+			<filename>admin.gallery.html.php</filename>
+			<filename>toolbar.gallery.php</filename>
+		</files>
+		<images>
+			<filename>images/logo-228x67.png</filename>
+		</images>
+        </administration>
+</mosinstall>
