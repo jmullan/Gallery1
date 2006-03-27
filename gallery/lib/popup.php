@@ -45,7 +45,7 @@ function popup_status($url, $height=150, $width=350) {
 	$width = (int)$width;
 
 	$attrs = "height=$height,width=$width,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes";
-	return "open('" . unhtmlentities(makeGalleryUrl($url)) . "','Status','$attrs');";
+	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
 function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='') {
