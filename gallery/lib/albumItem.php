@@ -202,6 +202,20 @@ $javascriptSet = true;
 	    		'value' => showChoice2("copy_photo.php", array("index" => $i))
     	    );
     	}
+
+    	if ($gallery->album->isHidden($i)) {
+    		$options[] = array(
+	    		'pure_text' => _("Show"),
+	    		'text' => getIconText('idea.gif', _("Show"), $override, $withIcons),
+	    		'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i))
+    		);
+    	} else {
+    		$options[] = array(
+	    		'pure_text' => _("Hide"),
+	    		'text' => getIconText('no_idea.gif', _("Hide"), $override, $withIcons),
+	    		'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i))
+    		);
+    	}
     }
 
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -228,22 +242,6 @@ $javascriptSet = true;
 	    		'value' => showChoice2("photo_owner.php", array("id" => $id))
     		);
     	}
-
-    if (isset($isOwner)) {
-    	if ($gallery->album->isHidden($i)) {
-    		$options[] = array(
-	    		'pure_text' => _("Show"),
-	    		'text' => getIconText('idea.gif', _("Show"), $override, $withIcons),
-	    		'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i))
-    		);
-    	} else {
-    		$options[] = array(
-	    		'pure_text' => _("Hide"),
-	    		'text' => getIconText('no_idea.gif', _("Hide"), $override, $withIcons),
-	    		'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i))
-    		);
-    	}
-    }
 
     if ($gallery->user->canDeleteFromAlbum($gallery->album) ||
       ($gallery->album->getItemOwnerDelete() && isset($isOwner))) {
