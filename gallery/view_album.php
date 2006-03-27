@@ -47,7 +47,7 @@ if (empty($page) || $page < 0) {
 }
 
 $albumName = $gallery->session->albumName;
-/* save the info that this album was viewed in this session and increment clickcounter */
+
 if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
     $gallery->session->viewedAlbum[$albumName] = 1;
     $gallery->album->incrementClicks();
@@ -411,8 +411,8 @@ if ( $numVisibleItems != 0 && ($gallery->app->comments_enabled == 'yes' && $gall
 $gallery->user->canViewComments($gallery->album))) {
     $iconText = getIconText('showcomment.gif', _("view&nbsp;comments"));
     $iconElements[] = '<a href="'.
-      makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)) .
-    '">'. $iconText .'</a>';
+    makeGalleryUrl("view_comments.php",
+    array("set_albumName" => $gallery->session->albumName)) . '">'. $iconText .'</a>';
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
@@ -790,7 +790,7 @@ if ($numPhotos) {
             	if ($myDescription != _("No description") &&
             	  $myDescription != "No description" &&
             	  $myDescription != "") {
-            		$buf .= '<br>'. $myDescription;
+            		$buf = $buf."<br>".$myDescription."";
             	}
             	echo $buf;
 
@@ -812,9 +812,7 @@ if ($numPhotos) {
             	}
             	echo '</div>';
 
-            	if ($gallery->album->fields["display_clicks"] == 'yes' && 
-            	  !$gallery->session->offline &&
-            	  $myAlbum->getClicks() > 0) {
+            	if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) &&  !$gallery->session->offline && ($myAlbum->getClicks() > 0)) {
             		echo '<div class="viewcounter" style="margin-top:3px">';
             		printf (_("Viewed: %s"), gTranslate('core', "1 time", "%d times", $myAlbum->getClicks()));
             		echo ".</div>";
@@ -839,9 +837,7 @@ if ($numPhotos) {
             	}
             	echo "</div>\n";
 
-            	if ($gallery->album->fields["display_clicks"] == 'yes' &&
-            	  !$gallery->session->offline && 
-            	  $gallery->album->getItemClicks($i) > 0) {
+            	if (!(strcmp($gallery->album->fields["display_clicks"] , "yes")) && !$gallery->session->offline && ($gallery->album->getItemClicks($i) > 0)) {
             		echo '<div class="viewcounter" style="margin-top:3px">';
             		echo gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i));
             		echo "</div>\n";

@@ -89,7 +89,6 @@ function stripslashes_deep($value) {
     return $value;
 }
 
-
 function getBlacklistFilename() {
     global $gallery;
     return sprintf("%s/blacklist.dat", $gallery->app->albumDir);
@@ -919,6 +918,7 @@ function extractFileFromArchive($archive, $ext, $file) {
 	}
 	else {
 	    echo debugMessage(sprintf(_("%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
+	    return false;
 	}
 }
 
@@ -953,25 +953,21 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
           $gallery->app->tmpDir));
         return false;
     }
+    /* Keep Current Dir in mind */
     $currentDir = getcwd();
+    /* Switch to the folder that content is going to be zipped */
     chdir($folderName);
     
-    switch($tool) {
-		case 'zip':
 			$cmd = fs_import_filename($gallery->app->zip) ." -r $fullZipName *";
-		break;
-		
-		case 'rar':
-			$cmd = '';
-		break;
-	}
     
     if (! exec_wrapper($cmd)) {
 	   echo gallery_error("Zipping failed");
+	   /* Go back */
 	   chdir($currentDir);
 	   return false;
     }
     else {
+       /* Go back */
         chdir($currentDir);
 	   if($deleteSource) {
 	       rmdirRecursive($folderName);
@@ -1590,12 +1586,17 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 			$divCellAdd =  $borderwidth +3;
 		break;
                   
-
-		default: // use frames directory
+		default: // use frames directory or fallback to none.
+		    if(array_key_exists($frame, available_frames())) {
 			require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
                     
 			$divCellWidth = $thumbsize + $widthTL + $widthTR;
 			$divCellAdd = $heightTT + $heightBB;
+		    }
+		    else {
+			$divCellWidth = $thumbsize + 3;
+			$divCellAdd =  3;
+		    }
 		break;
 	} // end of switch
 
@@ -1830,22 +1831,17 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
     if(! fs_mkdir($dir)) {
         echo gallery_error(
-        sprintf(_("Your tempfolder is not writeable! Please check permissions of this dir: %s"),
+          sprintf(_("Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"),
         $gallery->app->tmpDir));
         return false;
     }
 
-    //echo "<h3>Created dir: $dir</h3>";
-
     foreach($albumItemNames as $possibleAlbumName => $filename) {
         if(is_array($filename)) {
-            //echo "\n<ul>";
             createTempAlbum($filename, "$dir/$possibleAlbumName");
-            //echo "\n</ul>";
         }
         else {
             $destination = $dir .'/'. basename ($filename);
-            //echo "\n\t<li>$filename -->  $destination</li>";
             if(! fs_copy($filename, $destination)) {
                 echo gallery_error("Copy Failed");
             }
@@ -1870,6 +1866,27 @@ function rmdirRecursive($dir) {
 }
 
 function downloadFile($filename) {
+    global $gallery;
+    
+    /* Verify its really a file */
+    if(!fs_is_file($filename) || broken_link($filename)) {
+        echo gallery_error(sprintf(_("'%s' seems not to be a valid file. Download aborted."),
+            $filename));
+        return false;
+    }
+    
+    /* Verify $filename is inside the temp dir */
+    $validFileName = strncmp($filename, $gallery->app->tmpDir, strlen($filename));
+    if($validFileName < 0) {
+        echo gallery_error(sprintf(_("The file '%s' seems not inside Gallery tempdir %s, download aborted."),
+            $filename,  $gallery->app->tmpDir));
+        return false;
+    }
+    elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
+        echo gallery_error(_("We are trying to download the tempdir itself ?! Download aborted."));
+        return false;
+    }
+    
     $contentType = getMimeType($filename);
     $size = fs_filesize($filename);
 
@@ -1889,7 +1906,9 @@ function downloadFile($filename) {
 
     echo $filedata;
     
-    /* Now delete the file */
+    /* As downloadable files are always created in a subfolder of the tempdir,
+     * we delete this folder and its content
+    */
     rmdirRecursive(dirname($filename));
     
     return true;

@@ -1,3 +1,54 @@
+2006-02-06 Chris Kelly <ckdake@ckdake.com> 1.5.2-pl2
+
+* Release: 1.5.2-pl2
+
+2006-02-07 Jens Tkotz <jens@peino.de> 1.5.2-pl2-cvs-b1
+
+ * FIX: If zipdownload is enabled and zipping failed,
+        gallery regardless tried to delete the parentfolder of the non existing file.
+        This deletes A LOT MORE then we want.
+
+2006-02-06 Chris Kelly <ckdake@ckdake.com> 1.5.2-pl1
+
+  * Release: 1.5.2-pl1
+
+2006-02-06 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b6
+
+ * SECURITY-FIX:
+   If you trick an admin or a ser who has owner privs in a gallery into
+   clicking on prepared link and it will cause them to insert a bad file path
+   into their album data which could then cause a local file execution bug.
+   
+   The Team would like to thank 
+   Tom Saville (seregon@bughunter.net) and his team from http://digitalarmaments.com
+
+2006-02-02 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b5
+
+* Fix: Typo in lib/imageManipulation (netPPM instead netPBM).
+       This causes watermarking to fail when watermark is a gif.
+
+2006-02-02 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b4
+
+* Fix: adminOtherChangesEmail was not working.
+  Thanks to rbeuker from forums.
+
+2006-02-02 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b3
+
+ * Fix: setup/session_test.php didnt work correct with register globals off.
+
+2006-02-02 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b2
+
+* Fix: "move" and "copy" an item was restricted to admins.
+       Reverted to people who have permissions to edit an album.
+
+2006-02-02 Jens Tkotz <jens@peino.de> 1.5.2-pl1-cvs-b1
+
+ * Fix: Pierres Fix from 1.5.2-RC3-cvs-b7 was only in HEAD.
+
+2006-01-19 Chris Kelly <ckdake@ckdake.com> 1.5.2
+
+ * Release: 1.5.2 Final
+
 2006-01-19 Jens Tkotz <jens@peino.de> 1.5.2-RC3-cvs-b9
 
  * Change: "sanitize" fullname in new_password.php also.

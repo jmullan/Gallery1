@@ -120,19 +120,22 @@ $properties = array(
         'prompt' => gTranslate('common', "Album Frame"),
         'desc' => '',
         'choices' => available_frames(),
-        'value' => $gallery->album->fields["album_frame"]
+        'value' => $gallery->album->fields["album_frame"],
+        'vartype' => 'pictureFrame'
     ),
     'thumb_frame' => array(
         'prompt' => gTranslate('common', "Thumb Frame"),
         'desc' => '',
         'choices' => available_frames(),
-        'value' => $gallery->album->fields["thumb_frame"]
+        'value' => $gallery->album->fields["thumb_frame"],
+        'vartype' => 'pictureFrame'
     ),
     'image_frame' => array(
         'prompt' => gTranslate('common', "Image Frame"),
         'desc' => '',
         'choices' => available_frames(),
-        'value' => $gallery->album->fields["image_frame"]
+        'value' => $gallery->album->fields["image_frame"],
+        'vartype' => 'pictureFrame'
     ),
     'group_layout_end' => array (
         'type' => "group_end"
