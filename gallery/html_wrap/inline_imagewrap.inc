@@ -32,33 +32,29 @@ if (!in_array($frame, array('none', 'dots', 'solid')) &&
 }
 
 switch ($frame) {
-// special cases
-case "none":
-  echo $href_tag;
-  break;
-case "dots":
+    // special cases
+    case "none":
+	echo $href_tag;
+    break;
+    case "dots":
 ?>
-  <div style="width: <?php echo $imageWidth; ?>; border:<?php echo "${borderWidth}px dashed $borderColor"; ?>">
-        <?php echo $href_tag ?>
-  </div>
+   <div style="<?php echo "width:${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
-  break;
-case "solid":
+    break;
+    case "solid":
 ?>
-  <div style="width: <?php echo $imageWidth; ?>; border:<?php echo "${borderWidth}px solid $borderColor"; ?>">
-        <?php echo $href_tag ?>
-  </div>
-  <?php
-  break;
+  <div style="<?php echo "width:${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
+<?php
+    break;
     default: // use frames directory or fallback to none
 	if(array_key_exists($frame, available_frames())) {
 	    $base .= "/html_wrap/frames/$frame";
 	    require(dirname(__FILE__) . "/frames/$frame/frame.def");
-  // Safari/Opera ignore height="100%" for table, but this ensures HTML
-  // standards, so do it for all browsers
-  $hLL = $imageHeight - $heightLLT - $heightLLB;
-  $hRR = $imageHeight - $heightRRT - $heightRRB;
-  ?>
+	    // Safari/Opera ignore height="100%" for table, but this ensures HTML
+	    // standards, so do it for all browsers
+	    $hLL = $imageHeight - $heightLLT - $heightLLB;
+	    $hRR = $imageHeight - $heightRRT - $heightRRB;
+?>
 
   <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr">
   <tr>
