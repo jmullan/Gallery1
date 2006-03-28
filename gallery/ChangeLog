@@ -1,3 +1,19 @@
+2006-03-28 Jens Tkotz <jens@peino.de> 1.5.3-cvs-b18
+
+ * SECURITY FIX *
+
+  It was possible to use/"inject" Javascript inside various places to abuse this as a XSS Exploit.
+
+  Now every userinput got from $_REQUEST is sanitized.
+  We use the PEAR packages HTML_Safe and XML_HTMLSax3 to do this.
+  Nice benefit is that HTML is now again possible in captions, titles, etc.
+
+  The Team would like to thank Aditya Mooley for catching and reporting this.
+  And giving us the time to fix it before going to public.
+
+  Aditya Mooley is member of the Coppermine-Gallery Development team.
+  So have a look at http://coppermine.sf.net, the page of our friendly competittion application.
+
 2006-03-27 Jens Tkotz <jens@peino.de> 1.5.3-cvs-b17
 
  * Fix: In some dropdown boxes the wrong items is selected.
