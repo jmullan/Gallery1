@@ -1,0 +1,55 @@
+Preliminary release checklist
+
+Checklist
+- before RC-1 of any release:
+  - check for available updates of adodb, smarty, etc
+  - bump version in GalleryTemplate.class to trigger clear of smarty cache for upgraders
+  - bump version number in header images for installer/upgrader
+- commit language updates from translations tracker
+- add/update Gallery2:module:* codex pages
+- make sure all unit tests pass
+- review and update the README.html.
+  - Make sure that its title, codename/introduction and logo buttons are correct
+- bump version for every plugin that has changed since last release but hasn't changed version
+  - something like: cvs -q log -h -S -d ">2006-02-01" | perl -naF: -e '$F[1]=~s/^\s*(.*?)\s*$/$1/; ($f=$F[1])=~s|^.*?gallery2/([^/]*(?:/[^/]*)?).*,v$|$1| if ($F[0] eq "RCS file"); $h=$F[1] if ($F[0] eq "head"); print "$f\n" if ($F[0] =~ /RELEASE_2_1_RC_2$/ and $h ne $F[1])' | sort -u
+  - (replace 2006-02-01 with any cutoff date just to limit the amount of data to parse,
+     and replace RELEASE_2_1_RC_2 with the last tagged release)
+- bump modules/core/module.inc CoreModule::setGalleryVersion
+- bump core/module.inc CoreModule::setVersion (update modules/core/CoreModulesExtras::upgrade, too)
+- Make sure modules/core/classes/GalleryTemplateAdapter.class has has correct logo and version text
+- update all translations
+- update all MANIFEST files
+- Sync a different workspace and verify:
+  - upgrading works
+  - installer system check doesn't report any missing/modified files
+    (verify on Unix and Windows)
+- make sure all image files are binary
+- create a branch (if necessary)   <---------- DON'T FORGET TO DO THIS FOR EACH OFFICIAL RELEASE!
+  - cvs tag -b BRANCH_2_0
+- tag the release
+  - cvs update -r BRANCH_2_0
+  - cvs tag RELEASE_2_0
+- Update the BRANCH and PATCH_FOR vars in build.php
+- build.php scrub
+- build.php release
+- run find-already-uploaded-packages.php to find any packages that already
+  exist in sf.net.  Make sure those packages didn't miss a version bump, and
+  if they didn't change since the last release delete them from dist/
+- build.php export
+- Release the package on sf.net
+  - Create a new release in the 'gallery2' release (if necessary) and upload the
+    distributions via the web interface
+  - Create a new release in the 'gallery2 plugins' release (if necessary) and add
+    all the modules and themes to the release via the web interface
+  - use releaseforge.sf.net to set the file types and architecture
+  - hide the N-2 releases
+- Update Gallery2:Download on the codex
+  - Edit RELEASE in update-codex-download-page.php
+  - Run update-codex-download-page.php
+  - Cut and paste its output on to Gallery2:Download
+  - Click "show changes" and verify what you see
+- For RC releases, post forum topic for reporting/tracking issues
+- Update http://gallery.menalto.com/downloadblock
+- Update http://gallery.menalto.com/downloads
+- Post announcements/*
+- check http://gallery.menalto.com/sfvote/stats and send emails for completed items
