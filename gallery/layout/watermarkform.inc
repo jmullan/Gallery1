@@ -30,6 +30,7 @@ global $wmAlignX;
 global $wmAlignY;
 global $previewFull;
 global $wmName;
+global $wmSelect;
 
 $err = "";
 if (!isset($wmAlignX) || ($wmAlignX <= 0)) {
@@ -75,7 +76,12 @@ if ($wmDir = opendir($gallery->app->watermarkDir)) {
             }
         }
         if ($matches_ext) {
-             $options[] = array('value' => $wmFile, 'text' => $wmFile);
+        	if(!empty($wmName) && $wmName == $wmFile) {
+        		$options[] = array('value' => $wmFile, 'text' => $wmFile, 'selected' => true);
+        	}
+        	else {
+        		$options[] = array('value' => $wmFile, 'text' => $wmFile);
+        	}
         }
     }
     closedir($wmDir);

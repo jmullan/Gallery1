@@ -86,16 +86,8 @@ if (isset($save) || isset($preview)) {
 }
 
 doctype();
-
+printPopupStart(_("Edit Watermark"));
 ?>
-<html>
-<head>
-  <title><?php echo _("Edit Watermark") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Edit Watermark") ?></div>
-<div class="popup" align="center">
 <p>
 <?php
 if (isset($preview)) {
@@ -111,12 +103,11 @@ if (!empty($err)) {
     echo '<p class="error">'. $err . '</p>';
 }
 
-
 if ($photo->image->type == 'gif') {
     echo infoLine(_("Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
 }
 
-echo makeFormIntro('edit_watermark.php', array('name' => 'theform'));
+echo makeFormIntro('edit_watermark.php');
 global $watermarkForm;
 $watermarkForm["askRecursive"] = 0;
 $watermarkForm["askPreview"] = 1;
@@ -134,7 +125,7 @@ includeLayout ('watermarkform.inc');
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.theform.cancel.focus();
+document.g1_form.cancel.focus();
 //-->
 </script>
 </div>

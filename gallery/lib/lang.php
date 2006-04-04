@@ -319,7 +319,7 @@ function initLanguage($sendHeader=true) {
         switch ($ML_mode) {
             case 1:
             /* Static Language */
-            $gallery->language = getDefaultLanguage();
+                $gallery->language = getDefaultLanguage();
             break;
             
             case 3:
@@ -334,9 +334,11 @@ function initLanguage($sendHeader=true) {
                 $gallery->language = getDefaultLanguage();
             }
             break;
+            
             default:
             /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
             $gallery->browser_language = getBrowserLanguage();
+            $gallery->language = $gallery->browser_language;
 
             if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
                 $gallery->language = $gallery->user->getDefaultLanguage();
