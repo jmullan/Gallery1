@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-01-19 18:28+0100\n"
+"POT-Creation-Date: 2006-04-05 00:19+0200\n"
 "PO-Revision-Date: 2004-10-12 11:55+0100\n"
 "Last-Translator: Jens Tkotz <jens AT peino DOT de>\n"
 "Language-Team: Tamer Yahia <tamer_yahia AT hotmail DOT com >\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
-#: ../rotate_photo.php:31 ../save_photos.php:38 ../upgrade_album.php:57
+#: ../rotate_photo.php:33 ../save_photos.php:38 ../upgrade_album.php:57
 #: ../user_preferences.php:31 ../watermark_album.php:43
 #, fuzzy
 msgid "You are not allowed to perform this action!"
@@ -75,9 +75,9 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr "÷Ÿ  Ÿ‰Í‚„ Ÿ‰È Á–Á «‰’Ë—… ·È ’ÊœË‚ «‰Ê’ «‰ÂËÃËœ √”·‰Á "
 
 #: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
-#: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:74
-#: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_field.php:67
-#: ../edit_watermark.php:130 ../includes/add_photos/add_form.inc:90
+#: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
+#: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_watermark.php:121
+#: ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:138 ../register.php:142 ../rename_album.php:131
@@ -106,7 +106,7 @@ msgstr "«‰‘„‰"
 msgid "URL"
 msgstr "ŸÊË«Ê «‰ÂË‚Ÿ Ÿ‰È «‰≈Ê —Ê "
 
-#: ../add_photos.php:79 ../layout/watermarkform.inc:135
+#: ../add_photos.php:79 ../layout/watermarkform.inc:141
 msgid "Other"
 msgstr "√Œ—È"
 
@@ -232,8 +232,8 @@ msgid "Sort"
 msgstr "·—“"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:81 ../help/imagemap.php:88 ../user_preferences.php:145
-#: ../view_photo_properties.php:137
+#: ../download.php:91 ../edit_field.php:66 ../help/imagemap.php:88
+#: ../user_preferences.php:145 ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr ""
 
@@ -297,8 +297,8 @@ msgstr "«‰Â«‰„"
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:57
-#: ../edit_field.php:66 ../edit_watermark.php:128 ../modify_user.php:163
+#: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:55
+#: ../edit_field.php:65 ../edit_watermark.php:119 ../modify_user.php:163
 #: ../new_password.php:137 ../photo_owner.php:103 ../user_preferences.php:144
 #: ../watermark_album.php:148
 msgid "Save"
@@ -310,250 +310,250 @@ msgstr "Õ·ÿ"
 msgid "Done"
 msgstr " Â"
 
-#: ../albums.php:111 ../view_album.php:130
+#: ../albums.php:110 ../view_album.php:130
 #, php-format
 msgid "%s RSS"
 msgstr ""
 
-#: ../albums.php:146
+#: ../albums.php:148
 #, fuzzy, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "√‰»ËÂ Ë«Õœ"
 msgstr[1] "√‰»ËÂ Ë«Õœ"
 
-#: ../albums.php:146
+#: ../albums.php:148
 #, fuzzy
 msgid "no albums"
 msgstr "‰«  ËÃœ √‰»ËÂ« Ó"
 
-#: ../albums.php:148
+#: ../albums.php:150
 #, fuzzy, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
 msgstr[0] "√‰»ËÂ Ë«Õœ Ÿ«‰Í «‰Â” ËÈ "
 msgstr[1] "√‰»ËÂ Ë«Õœ Ÿ«‰Í «‰Â” ËÈ "
 
-#: ../albums.php:148
+#: ../albums.php:150
 #, fuzzy
 msgid "No top-level albums"
 msgstr "√‰»ËÂ«  Ÿ«‰Í… «‰Â” ËÈ "
 
-#: ../albums.php:151
+#: ../albums.php:153
 #, php-format
 msgid "%d total"
 msgstr "%d ÂÃÂËŸ"
 
-#: ../albums.php:152 ../view_album.php:212
+#: ../albums.php:154 ../view_album.php:215
 #, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
 msgstr[0] "’Ë—… Ë«Õœ…"
 msgstr[1] "’Ë—… Ë«Õœ…"
 
-#: ../albums.php:152 ../view_album.php:212
+#: ../albums.php:154 ../view_album.php:215
 msgid "no images"
 msgstr "‰« ËÃœ ’Ë—"
 
-#: ../albums.php:153 ../view_album.php:213
+#: ../albums.php:155 ../view_album.php:216
 #, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] "’·Õ… Ë«Õœ…"
 msgstr[1] "’·Õ… Ë«Õœ…"
 
-#: ../albums.php:153
+#: ../albums.php:155
 msgid "no pages"
 msgstr "‰« ËÃœ ’·Õ« "
 
-#: ../albums.php:156
+#: ../albums.php:158
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%s (%s) , %s Ÿ‰È %s"
 
-#: ../albums.php:159
+#: ../albums.php:161
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:161
+#: ../albums.php:163
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%s, %s on %s"
 
-#: ../albums.php:163
+#: ../albums.php:165
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:178
+#: ../albums.php:180
 #, php-format
 msgid "Welcome, %s"
 msgstr "Â—Õ»«, %s"
 
-#: ../albums.php:182 ../view_album.php:402
+#: ../albums.php:184 ../view_album.php:405
 msgid "slideshow"
 msgstr "Ÿ—÷ «‰‘—«∆Õ"
 
-#: ../albums.php:187
+#: ../albums.php:189
 msgid "new album"
 msgstr "√‰»ËÂ ÃœÍœ"
 
-#: ../albums.php:194
+#: ../albums.php:196
 msgid "Administer startpage"
 msgstr ""
 
-#: ../albums.php:198
+#: ../albums.php:200
 #, fuzzy
 msgid "admin page"
 msgstr "‰« ËÃœ ’·Õ« "
 
-#: ../albums.php:203
+#: ../albums.php:205
 msgid "documentation"
 msgstr "ËÀÍ‚…. "
 
-#: ../albums.php:209
+#: ../albums.php:211
 msgid "preferences"
 msgstr "«‰ ·÷Í‰« "
 
-#: ../albums.php:214 ../imagemap.php:139 ../view_album.php:420
+#: ../albums.php:216 ../imagemap.php:139 ../view_album.php:423
 #: ../view_photo.php:519
 msgid "logout"
 msgstr " ”ÃÍ‰ «‰Œ—ËÃ"
 
-#: ../albums.php:219 ../imagemap.php:144 ../view_album.php:425
+#: ../albums.php:221 ../imagemap.php:144 ../view_album.php:428
 #: ../view_photo.php:524
 msgid "login"
 msgstr " ”ÃÍ‰ «‰œŒË‰"
 
-#: ../albums.php:223
+#: ../albums.php:225
 msgid "register"
 msgstr " ”ÃÍ‰"
 
-#: ../albums.php:249
+#: ../albums.php:251
 msgid "Attention Gallery Administrator!"
 msgstr "≈‰È ÂœÍ— «‰ÂŸ—÷!"
 
-#: ../albums.php:252
+#: ../albums.php:254
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s ≈„ ‘·Ó ËÃËœ %d √‰»ËÂ«  ⁄Í— ’ÕÍÕ… ·Í œ‰Í‰ √‰»ËÂ« „Ó <br> (%s):"
 
-#: ../albums.php:258
+#: ../albums.php:260
 msgid "Please move it/them out of the albums directory."
 msgstr "—Ã«¡Î Õ—Ò„ÚÁ / Õ—„ÁÂ Œ«—Ã œ‰Í‰ «‰√‰»ËÂ« Ó."
 
-#: ../albums.php:262
+#: ../albums.php:264
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr ""
 
-#: ../albums.php:266
+#: ../albums.php:268
 #, fuzzy, php-format
 msgid "Please %s."
 msgstr "ÂÊ ·÷‰„ «Ê ÿ—"
 
-#: ../albums.php:266
+#: ../albums.php:268
 #, fuzzy
 msgid "upgrade those albums"
 msgstr " —‚Í… ÃÂÍŸ «‰√‰»ËÂ« "
 
-#: ../albums.php:273
+#: ../albums.php:275
 #, fuzzy
 msgid "Attention!"
 msgstr " ËÀÍ‚"
 
-#: ../albums.php:275
+#: ../albums.php:277
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"
 msgstr ""
 
-#: ../albums.php:275
+#: ../albums.php:277
 #, php-format
 msgid "%s and try again."
 msgstr ""
 
-#: ../albums.php:276
+#: ../albums.php:278
 #, fuzzy
 msgid "Log in"
 msgstr " ”ÃÍ‰ «‰œŒË‰"
 
-#: ../albums.php:290
+#: ../albums.php:292
 #, php-format
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:331 ../view_album.php:676
+#: ../albums.php:333 ../view_album.php:679
 #, fuzzy
 msgid "Highlight for Album:"
 msgstr "Ã“¡ ÂÁÂ ‰‰√‰»ËÂ:"
 
-#: ../albums.php:351 ../view_album.php:782
+#: ../albums.php:353 ../view_album.php:785
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "‰Â Í Â  ÕœÍœ √‰»ËÂ"
 
-#: ../albums.php:386
+#: ../albums.php:388
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "«‰Â«‰„"
 
-#: ../albums.php:394
+#: ../albums.php:396
 msgid "url:"
 msgstr "—«»◊ ‰‰«Ê —Ê "
 
-#: ../albums.php:405
+#: ../albums.php:407
 msgid "Hey!"
 msgstr "Í«!"
 
-#: ../albums.php:406
+#: ../albums.php:408
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s Á–« «‰√‰»ËÂ ‰„Í‰« Í’»Õ «‰—«»◊ Ÿ«Â«"
 
-#: ../albums.php:407
+#: ../albums.php:409
 #, fuzzy
 msgid "Rename this album"
 msgstr "√Ÿœ  ”ÂÍ… «|‰√‰»ËÂ"
 
-#: ../albums.php:422
+#: ../albums.php:424
 #, fuzzy, php-format
 msgid "Created on %s, last changed on %s."
 msgstr "%s.¬Œ—  ⁄ÍÍ— ·È"
 
-#: ../albums.php:425
+#: ../albums.php:427
 #, php-format
 msgid "Last changed on %s."
 msgstr "%s.¬Œ—  ⁄ÍÍ— ·È"
 
-#: ../albums.php:434
+#: ../albums.php:436
 #, fuzzy, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Á–« «‰√‰»ËÂ ÍÓÕ ËÍ Ÿ‰È %s."
 msgstr[1] "Á–« «‰√‰»ËÂ ÍÓÕ ËÍ Ÿ‰È %s."
 
-#: ../albums.php:443
+#: ../albums.php:445
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Á–« «‰√‰»ËÂ ‘ËÁœ %s ÂÊ– %s."
 
-#: ../albums.php:444 ../view_album.php:817
+#: ../albums.php:446 ../view_album.php:820
 #, fuzzy, php-format
 msgid "1 time"
 msgid_plural "%d times"
 msgstr[0] "Â—… Ë«Õœ…"
 msgstr[1] "Â—… Ë«Õœ…"
 
-#: ../albums.php:444
+#: ../albums.php:446
 msgid "0 times"
 msgstr "0 Â—« "
 
-#: ../albums.php:450
+#: ../albums.php:452
 msgid "reset counter"
 msgstr "√ŸœÚ  ‘⁄Í‰ «‰Ÿœ«œ"
 
-#: ../albums.php:495 ../view_album.php:916
+#: ../albums.php:497 ../view_album.php:919
 msgid "Comments available for this item."
 msgstr " Ÿ‰Í‚«  Â «Õ… ‰Á–« «‰ŸÊ’—."
 
@@ -622,7 +622,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:770
+#: ../layout/commentboxtop.inc:45 ../view_album.php:773
 msgid "hidden"
 msgstr "Œ·È"
 
@@ -985,7 +985,7 @@ msgstr "Ê”Œ ‰‰√‰»ËÂ"
 
 #: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
 #: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
-#: ../rotate_photo.php:95 ../view_photo_properties.php:130
+#: ../rotate_photo.php:130 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "‰«ÍËÃœ √‰»ËÂ √Ë ·Á—” ÂÕœœ"
 
@@ -1049,8 +1049,8 @@ msgstr "Á‰  —Íœ Õ‚« Õ–· «‰√‰»ËÂø"
 
 #: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
 #: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:254 ../lib/albumItem.php:255 ../lib/albumItem.php:261
-#: ../lib/albumItem.php:262 ../manage_users.php:98
+#: ../lib/albumItem.php:251 ../lib/albumItem.php:252 ../lib/albumItem.php:258
+#: ../lib/albumItem.php:259 ../manage_users.php:98
 #: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr "Õ–·"
@@ -1154,66 +1154,70 @@ msgstr "«Ÿ«œ… »Ê«¡ «‰’Ë— «‰Â’⁄—… %d"
 msgid "Rebuilding 1 thumbnail..."
 msgstr "«Ÿ«œ… »Ê«¡ ’Ë—… Â’⁄—…"
 
-#: ../download.php:44 ../download.php:48
+#: ../download.php:40
+msgid "Zipdownload would work, but is disabled when debugging."
+msgstr ""
+
+#: ../download.php:54 ../download.php:58
 #, fuzzy
 msgid "Download album as archive"
 msgstr "‰Â Í Â  ÕœÍœ √‰»ËÂ"
 
-#: ../download.php:59
+#: ../download.php:69
 #, fuzzy, php-format
 msgid "This album contains just one item in total."
 msgid_plural "This album contains %d items in total."
 msgstr[0] "Á–« «‰√‰»ËÂ ÍÓÕ ËÍ Ÿ‰È %s."
 msgstr[1] "Á–« «‰√‰»ËÂ ÍÓÕ ËÍ Ÿ‰È %s."
 
-#: ../download.php:60
+#: ../download.php:70
 #, fuzzy, php-format
 msgid "One subalbum"
 msgid_plural "%d subalbums"
 msgstr[0] "√‰»ËÂ ·—ŸÈ Ë«Õœ"
 msgstr[1] "√‰»ËÂ ·—ŸÈ Ë«Õœ"
 
-#: ../download.php:60
+#: ../download.php:70
 #, fuzzy
 msgid "No subalbums"
 msgstr "‰«  ËÃœ √‰»ËÂ« Ó"
 
-#: ../download.php:61
+#: ../download.php:71
 #, fuzzy, php-format
 msgid "one photo/movie"
 msgid_plural "%d photos/movies"
 msgstr[0] "‰« ÍËÃœ √’Ë« "
 msgstr[1] "‰« ÍËÃœ √’Ë« "
 
-#: ../download.php:61
+#: ../download.php:71
 msgid "no photo/movie"
 msgstr ""
 
-#: ../download.php:63
+#: ../download.php:73
 #, fuzzy, php-format
 msgid "%s and %s."
 msgstr "‰Â Í Â  ŸÍÍÊ %s "
 
-#: ../download.php:66
+#: ../download.php:76
 #, php-format
 msgid "Approximitaly size of zipfile: %s"
 msgstr ""
 
-#: ../download.php:70
+#: ../download.php:80
 #, fuzzy
 msgid "Full Version"
 msgstr "√–ËÊ« "
 
-#: ../download.php:71
+#: ../download.php:81
 #, fuzzy
 msgid "Resized Version"
 msgstr "ÕÃÂ ’Ë—… Â ⁄Í—… «‰ÕÃÂ"
 
-#: ../download.php:73
+#: ../download.php:83
 msgid "Download"
 msgstr ""
 
-#: ../download.php:79
+#: ../download.php:89
 msgid "This album album is not empty, but contains no photo or movie! Download would'nt make sense."
 msgstr ""
 
@@ -1313,7 +1317,7 @@ msgstr ""
 msgid "Your Message:"
 msgstr "—”«‰…"
 
-#: ../ecard_form.php:260 ../edit_watermark.php:129 ../watermark_album.php:151
+#: ../ecard_form.php:260 ../edit_watermark.php:120 ../watermark_album.php:151
 #, fuzzy
 msgid "Preview"
 msgstr "«‰’·Õ… «‰”«»‚…"
@@ -1390,7 +1394,7 @@ msgid "Undo"
 msgstr "≈‰⁄«¡ «‰√Â—"
 
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:87
+#: ../poll_properties.php:142 ../rotate_photo.php:124
 msgid "Close"
 msgstr "≈⁄‰«‚"
 
@@ -1439,12 +1443,12 @@ msgstr "«‰œ‚«∆‚"
 msgid "Seconds"
 msgstr "«‰ÀË«ÊÈ"
 
-#: ../edit_field.php:49 ../edit_field.php:53
+#: ../edit_field.php:46 ../edit_field.php:51
 #, php-format
 msgid "Edit %s"
 msgstr " Õ—Í— «‰t %s"
 
-#: ../edit_field.php:56
+#: ../edit_field.php:54
 #, php-format
 msgid "Edit the %s and click %s when you're done"
 msgstr "Õ—Ò—Ú %s Ë≈Ê‚—Ú %s ÕÍÊÂ«  Ê ÁÈ"
@@ -1469,11 +1473,11 @@ msgstr "ÂÊ ·÷‰„ «Œ — Ÿ‰«Â… Â«∆Í…"
 msgid "Please select an alignment."
 msgstr "—Ã«¡ ≈Œ —Ú ÊËŸ «‰« ’◊·«·Ó"
 
-#: ../edit_watermark.php:93 ../edit_watermark.php:97
+#: ../edit_watermark.php:89
 msgid "Edit Watermark"
 msgstr " Õ—Í— Ÿ‰«Â… Â«∆Í…"
 
-#: ../edit_watermark.php:116
+#: ../edit_watermark.php:107
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr ""
 
@@ -1886,7 +1890,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "√ÊË«Ÿ ÂœŸËÂ… ÂÊ «‰Â‰·« "
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:562
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:565
 msgid " or "
 msgstr "√Ë"
 
@@ -2444,7 +2448,7 @@ msgstr "√–ËÊ« "
 msgid "properties"
 msgstr "Œ’«∆’"
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:412
+#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:415
 msgid "view&nbsp;comments"
 msgstr "«” Ÿ—÷&nbspª  Ÿ‰Í‚« "
 
@@ -2462,11 +2466,11 @@ msgstr "Â”Ã‰"
 msgid "From: %s"
 msgstr "ÂÊ"
 
-#: ../layout/commentboxbottom.inc:11 ../stats.php:969
+#: ../layout/commentboxbottom.inc:12 ../stats.php:969
 msgid "add comment"
 msgstr "√÷·  Ÿ‰Í‚«"
 
-#: ../layout/commentboxbottom.inc:14
+#: ../layout/commentboxbottom.inc:16
 #, fuzzy
 msgid "Delete marked comments"
 msgstr "«Õ–·  Ÿ‰Í‚«"
@@ -2480,11 +2484,11 @@ msgstr "«” Ÿ—÷  Ÿ‰Í‚«  ‰Á–« «‰√‰»ËÂ «‰Â œ«Œ‰"
 msgid "Album contains no comments"
 msgstr "√‰»ËÂ«   Õ ËÈ Ÿ‰È %s"
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:327
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:324
 msgid "From:"
 msgstr "ÂÊ"
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:301
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:298
 msgid "delete comment"
 msgstr "«Õ–·  Ÿ‰Í‚«"
 
@@ -2530,103 +2534,103 @@ msgstr "«‰’Ë—… «‰√ŒÍ—…"
 msgid "%d of %d"
 msgstr "%d ÂÊ %d"
 
-#: ../layout/watermarkform.inc:84
+#: ../layout/watermarkform.inc:90
 #, fuzzy
 msgid "Watermark:"
 msgstr "Ÿ‰«Â… Â«∆Í…"
 
-#: ../layout/watermarkform.inc:88
+#: ../layout/watermarkform.inc:94
 #, fuzzy
 msgid "* No Watermark *"
 msgstr "Ÿ‰«Â… Â«∆Í…"
 
-#: ../layout/watermarkform.inc:94
+#: ../layout/watermarkform.inc:100
 #, fuzzy, php-format
 msgid "No files matching %s found in %s"
 msgstr "Œ◊√: ‰«  ËÃœ Â‰·«   ◊«»‚%s ·Í %s"
 
-#: ../layout/watermarkform.inc:100
+#: ../layout/watermarkform.inc:106
 #, php-format
 msgid "Could not open directory %s"
 msgstr "‰Â Í Â„Ê ÂÊ · Õ «‰œ‰Í‰%s"
 
-#: ../layout/watermarkform.inc:105
+#: ../layout/watermarkform.inc:111
 #, fuzzy
 msgid "Alignment:"
 msgstr "«’◊·«·"
 
-#: ../layout/watermarkform.inc:110
+#: ../layout/watermarkform.inc:116
 msgid "Upper&nbsp;Left"
 msgstr "√Ÿ‰È&nbspª Í”«—"
 
-#: ../layout/watermarkform.inc:112
+#: ../layout/watermarkform.inc:118
 msgid "Top"
 msgstr "‚Â…"
 
-#: ../layout/watermarkform.inc:114
+#: ../layout/watermarkform.inc:120
 msgid "Upper&nbsp;Right"
 msgstr "√Ÿ‰È&nbspª ÍÂÍÊ"
 
-#: ../layout/watermarkform.inc:118
+#: ../layout/watermarkform.inc:124
 msgid "Left"
 msgstr "Í”«—"
 
-#: ../layout/watermarkform.inc:120
+#: ../layout/watermarkform.inc:126
 msgid "Center"
 msgstr "ÂÊ ’·"
 
-#: ../layout/watermarkform.inc:122
+#: ../layout/watermarkform.inc:128
 msgid "Right"
 msgstr "ÍÂÍÊ"
 
-#: ../layout/watermarkform.inc:126
+#: ../layout/watermarkform.inc:132
 msgid "Lower&nbsp;Left"
 msgstr "√”·‰&nbspªÍ”«—"
 
-#: ../layout/watermarkform.inc:128
+#: ../layout/watermarkform.inc:134
 msgid "Bottom"
 msgstr "√”·‰"
 
-#: ../layout/watermarkform.inc:130
+#: ../layout/watermarkform.inc:136
 msgid "Lower&nbsp;Right"
 msgstr "√”·‰&nbspª ÍÂÍÊ"
 
-#: ../layout/watermarkform.inc:144
+#: ../layout/watermarkform.inc:150
 #, fuzzy
 msgid "Preview Size"
 msgstr "«‰’·Õ… «‰”«»‚…"
 
-#: ../layout/watermarkform.inc:147
+#: ../layout/watermarkform.inc:153
 #, fuzzy
 msgid "Resized"
 msgstr " ⁄ÍÍ— ÕÃÂ «‰’Ë—…."
 
-#: ../layout/watermarkform.inc:150
+#: ../layout/watermarkform.inc:156
 #, fuzzy
 msgid "Full"
 msgstr "„«Â‰"
 
-#: ../layout/watermarkform.inc:162
+#: ../layout/watermarkform.inc:168
 #, fuzzy
 msgid "Watermark subalbums"
 msgstr "ŸÂ‰ Ÿ‰«Â… Â«∆Í… ‰‰√‰»ËÂ"
 
-#: ../layout/watermarkform.inc:164
+#: ../layout/watermarkform.inc:170
 #, fuzzy
 msgid "Apply watermark to"
 msgstr "ŸÂ‰ Ÿ‰«Â… Â«∆Í… ‰‰√‰»ËÂ"
 
-#: ../layout/watermarkform.inc:165
+#: ../layout/watermarkform.inc:171
 #, fuzzy
 msgid "All photos"
 msgstr "√÷· ’Ë—«"
 
-#: ../layout/watermarkform.inc:166
+#: ../layout/watermarkform.inc:172
 #, fuzzy
 msgid "Only sized photos"
 msgstr " ⁄ÍÍ— ÕÃÂ «‰’Ë—…"
 
-#: ../layout/watermarkform.inc:167
+#: ../layout/watermarkform.inc:173
 #, fuzzy
 msgid "Only full photos"
 msgstr " ⁄ÍÍ— ÕÃÂ «‰’Ë—…"
@@ -2662,78 +2666,78 @@ msgstr "Ÿ‰«Â… Â«∆Í…"
 msgid "ImageMap"
 msgstr "«◊«— «‰’Ë—…"
 
-#: ../lib/albumItem.php:142 ../lib/albumItem.php:143
-msgid "Edit Title"
-msgstr " Õ—Í— ŸÊË«Ê"
-
-#: ../lib/albumItem.php:147 ../lib/albumItem.php:148
-msgid "Edit Description"
-msgstr " Õ—Í— Ë’·"
-
-#: ../lib/albumItem.php:153 ../lib/albumItem.php:154 ../rename_album.php:39
-#: ../rename_album.php:43
-msgid "Rename Album"
-msgstr "√Ÿœ  ”ÂÍ… «|‰√‰»ËÂ"
-
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160
-msgid "Reset Counter"
-msgstr "≈Ÿ«œ…  ŸÍÍÊ «‰Ÿœ«œ"
-
-#: ../lib/albumItem.php:171 ../lib/albumItem.php:172 ../view_album.php:313
-msgid "Permissions"
-msgstr "√–ËÊ« "
-
-#: ../lib/albumItem.php:179 ../lib/albumItem.php:180
-#: ../watermark_album.php:114 ../watermark_album.php:118
-msgid "Watermark Album"
-msgstr "ŸÂ‰ Ÿ‰«Â… Â«∆Í… ‰‰√‰»ËÂ"
-
-#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
-#, fuzzy
-msgid "View Comments"
-msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
-
-#: ../lib/albumItem.php:196 ../lib/albumItem.php:213 ../lib/albumItem.php:214
+#: ../lib/albumItem.php:140 ../lib/albumItem.php:141
 #, fuzzy
 msgid "Move"
 msgstr "·Í‰Â"
 
-#: ../lib/albumItem.php:197
-#, fuzzy
-msgid "Reorder"
-msgstr "√Ÿœ  — Í»"
+#: ../lib/albumItem.php:148 ../lib/albumItem.php:149
+msgid "Edit Title"
+msgstr " Õ—Í— ŸÊË«Ê"
 
-#: ../lib/albumItem.php:204 ../lib/albumItem.php:205
-#, fuzzy
-msgid "Set as highlight"
-msgstr "‰« ÍËÃœ  ÕœÍœ "
+#: ../lib/albumItem.php:153 ../lib/albumItem.php:154
+msgid "Edit Description"
+msgstr " Õ—Í— Ë’·"
 
-#: ../lib/albumItem.php:220 ../lib/albumItem.php:221
+#: ../lib/albumItem.php:159 ../lib/albumItem.php:160 ../rename_album.php:39
+#: ../rename_album.php:43
+msgid "Rename Album"
+msgstr "√Ÿœ  ”ÂÍ… «|‰√‰»ËÂ"
+
+#: ../lib/albumItem.php:165 ../lib/albumItem.php:166
+msgid "Reset Counter"
+msgstr "≈Ÿ«œ…  ŸÍÍÊ «‰Ÿœ«œ"
+
+#: ../lib/albumItem.php:177 ../lib/albumItem.php:178 ../view_album.php:316
+msgid "Permissions"
+msgstr "√–ËÊ« "
+
+#: ../lib/albumItem.php:185 ../lib/albumItem.php:186
+#: ../watermark_album.php:114 ../watermark_album.php:118
+msgid "Watermark Album"
+msgstr "ŸÂ‰ Ÿ‰«Â… Â«∆Í… ‰‰√‰»ËÂ"
+
+#: ../lib/albumItem.php:192 ../lib/albumItem.php:193
+#, fuzzy
+msgid "View Comments"
+msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
+
+#: ../lib/albumItem.php:200 ../lib/albumItem.php:201
 #, fuzzy
 msgid "Copy"
 msgstr "Ê”Œ"
 
-#: ../lib/albumItem.php:226 ../lib/albumItem.php:227 ../photo_owner.php:78
-#: ../photo_owner.php:82
-msgid "Change Owner"
-msgstr "⁄Í— «‰Â«‰„"
-
-#: ../lib/albumItem.php:236 ../lib/albumItem.php:237
+#: ../lib/albumItem.php:208 ../lib/albumItem.php:209
 #, fuzzy
 msgid "Show"
 msgstr "«‰Ã‰Íœ"
 
-#: ../lib/albumItem.php:242 ../lib/albumItem.php:243
+#: ../lib/albumItem.php:214 ../lib/albumItem.php:215
 #, fuzzy
 msgid "Hide"
 msgstr "«Œ·«¡"
 
-#: ../lib/albumItem.php:274 ../lib/albumItem.php:275
+#: ../lib/albumItem.php:223 ../lib/albumItem.php:224
+#, fuzzy
+msgid "Reorder"
+msgstr "√Ÿœ  — Í»"
+
+#: ../lib/albumItem.php:231 ../lib/albumItem.php:232
+#, fuzzy
+msgid "Set as highlight"
+msgstr "‰« ÍËÃœ  ÕœÍœ "
+
+#: ../lib/albumItem.php:240 ../lib/albumItem.php:241 ../photo_owner.php:78
+#: ../photo_owner.php:82
+msgid "Change Owner"
+msgstr "⁄Í— «‰Â«‰„"
+
+#: ../lib/albumItem.php:271 ../lib/albumItem.php:272
 #, fuzzy
 msgid "Photo properties"
 msgstr "Œ’«∆’ «‰’Ë—…"
 
-#: ../lib/albumItem.php:287 ../lib/albumItem.php:288
+#: ../lib/albumItem.php:284 ../lib/albumItem.php:285
 #, fuzzy, php-format
 msgid "%s actions"
 msgstr "Õ——  Ÿ‰Í‚« "
@@ -3162,11 +3166,11 @@ msgstr "ÂÊ ‰Á Õ‚ «‰ ’ËÍ "
 msgid "Orientation of vote choices"
 msgstr " ËÃÍÁ ŒÍ«—«  «‰ ’ËÍ "
 
-#: ../poll_properties.php:108 ../rotate_photo.php:82
+#: ../poll_properties.php:108 ../rotate_photo.php:96
 msgid "Horizontal"
 msgstr "√·‚È."
 
-#: ../poll_properties.php:108 ../rotate_photo.php:85
+#: ../poll_properties.php:108 ../rotate_photo.php:102
 msgid "Vertical"
 msgstr "—√”È."
 
@@ -3201,7 +3205,7 @@ msgstr "ŸËœ… ≈‰È %s"
 msgid "Results Breakdown"
 msgstr " Ÿ◊Í‰ «‰Ê «∆Ã"
 
-#: ../poll_results.php:148 ../view_album.php:501 ../view_album.php:786
+#: ../poll_results.php:148 ../view_album.php:504 ../view_album.php:789
 #, php-format
 msgid "Album: %s"
 msgstr "√‰»ËÂ:%s"
@@ -3590,39 +3594,45 @@ msgstr "( «” ŒœÂ «‰’Ë—… «‰√’‰Í… ·‚◊)"
 msgid "Change Size"
 msgstr "⁄Í— «‰ÕÃÂ."
 
-#: ../rotate_photo.php:40 ../rotate_photo.php:46
+#: ../rotate_photo.php:42 ../rotate_photo.php:49
 msgid "Rotate/Flip Photo"
 msgstr "√œ—/ «Ÿ„” «‰’Ë—…."
 
-#: ../rotate_photo.php:51
+#: ../rotate_photo.php:54
 msgid "Rotating/Flipping photo."
 msgstr "«” œ«—… / «ÊŸ„«” «‰’Ë—…."
 
-#: ../rotate_photo.php:53 ../watermark_album.php:65
+#: ../rotate_photo.php:56 ../watermark_album.php:65
 msgid "(this may take a while)"
 msgstr "(‚œ Í” ⁄—‚ –‰„ »Ÿ÷ «‰Ë‚ )"
 
-#: ../rotate_photo.php:62
+#: ../rotate_photo.php:65
 msgid "Manipulate again?"
 msgstr "ÂŸ«‰Ã… √Œ—Èø"
 
-#: ../rotate_photo.php:64
+#: ../rotate_photo.php:67
 msgid "How do you want to manipulate this photo?"
 msgstr "„Í·  —Íœ ÂŸ«‰Ã… Á–Á «‰’Ë—…ø"
 
-#: ../rotate_photo.php:70
+#: ../rotate_photo.php:77
+#, fuzzy
+msgid "Clockwise 90&deg;"
+msgstr "»« Ã«Á Õ—„… Ÿ‚«—» «‰”«Ÿ…."
+
+#: ../rotate_photo.php:83
+msgid "180&deg;"
+msgstr ""
+
+#: ../rotate_photo.php:89
+#, fuzzy
+msgid "Counter-Clockwise 90&deg;"
+msgstr "Ÿ„” « Ã«Á Ÿ‚«—» «‰”«Ÿ…."
+
+#: ../rotate_photo.php:110
 msgid "Rotate"
 msgstr "√œ—."
 
-#: ../rotate_photo.php:73
-msgid "Counter-Clockwise"
-msgstr "Ÿ„” « Ã«Á Ÿ‚«—» «‰”«Ÿ…."
-
-#: ../rotate_photo.php:79
-msgid "Clockwise"
-msgstr "»« Ã«Á Õ—„… Ÿ‚«—» «‰”«Ÿ…."
-
-#: ../rotate_photo.php:80
+#: ../rotate_photo.php:114
 msgid "Flip"
 msgstr "«ÊŸ„«”"
 
@@ -4569,421 +4579,440 @@ msgstr "≈–« √—œ   Ó⁄ÍÍ— „‰Â… «‰Â—Ë— ‰œÍ„¨ ÍÃ» √ÓÊ  œŒ‰ „‰Â… «‰Â—Ë— «‰‚œÍÂ… ÀÂ »
 msgid "You can change your username to any combination of letters and digits."
 msgstr "ÔÍÂÚ„Ê √ÓÊ  Ô⁄Í— «”Â„ «‰Â” ŒœÂ ≈‰È √Í ÂÃÂËŸ… ÂÊ «‰Õ—Ë· √Ë «‰√—‚«Â."
 
-#: ../util.php:154
+#: ../util.php:156
 #, fuzzy, php-format
 msgid "Executing: %s"
 msgstr " Ê·Í–"
 
-#: ../util.php:161
+#: ../util.php:163
 msgid "Results:"
 msgstr "Ê «∆Ã"
 
-#: ../util.php:165
+#: ../util.php:167
 msgid "none"
 msgstr "‰« ÍËÃœ"
 
-#: ../util.php:170
+#: ../util.php:172
 #, fuzzy
 msgid "Debug messages:"
 msgstr "—”«∆‰ √Œ◊«¡"
 
-#: ../util.php:181
+#: ../util.php:183
 #, php-format
 msgid "Status: %s (expected %s)"
 msgstr "«‰Õ«‰…  : %s (Â Ë‚Ÿ %s)"
 
-#: ../util.php:206
+#: ../util.php:208
 #, php-format
 msgid "Getting Dimension of file: %s"
 msgstr ""
 
-#: ../util.php:209
+#: ../util.php:211
 #, fuzzy
 msgid "The file does not exist ?!"
 msgstr "«‰Â‰· %s ‰« ÍËÃœø!"
 
-#: ../util.php:216
+#: ../util.php:218
 #, php-format
 msgid "Dimensions: x: %d y: %d"
 msgstr ""
 
-#: ../util.php:221
+#: ../util.php:223
 #, fuzzy, php-format
 msgid "PHP's %s function is unable to determine dimensions."
 msgstr "PHP's %s ⁄Í— ‚«œ— Ÿ‰È  ÕœÍœ «‰√»Ÿ«œ"
 
-#: ../util.php:235
+#: ../util.php:237
 msgid "You have no graphics package configured for use!"
 msgstr "‰Í” ‰œÍ„ Õ“Â… —”ËÂ«  ÂŸœ… ‰‰«” Œœ«Â "
 
-#: ../util.php:258
+#: ../util.php:260
 #, fuzzy
 msgid "Unable to determine image dimensions!"
 msgstr "PHP's %s ⁄Í— ‚«œ— Ÿ‰È  ÕœÍœ «‰√»Ÿ«œ"
 
-#: ../util.php:432
+#: ../util.php:434
 #, php-format
 msgid "Can't write to %s."
 msgstr "‰Â Í Â„Ê ÂÊ «‰„ «»… Ÿ‰È %s."
 
-#: ../util.php:439
+#: ../util.php:441
 #, php-format
 msgid "Can't read %s."
 msgstr "‰Â Í Â„Ê ÂÊ ‚—«¡… %s."
 
-#: ../util.php:661
+#: ../util.php:663
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr " «—ÍŒ «‰Ê‚‰ Ë«‰Õ·ÿ "
 
-#: ../util.php:706
+#: ../util.php:708
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "‰Â Í Â · Õ Â‰· «‰⁄‰‚ (%s)!"
 
-#: ../util.php:711
+#: ../util.php:713
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "‰Â Í Â «‰Õ’Ë‰ Ÿ‰È ‚·‰  (%s)!"
 
-#: ../util.php:794
+#: ../util.php:796
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:903
+#: ../util.php:905
 #, fuzzy, php-format
 msgid "Extracting: %s with %s"
 msgstr " Ê·Í–"
 
-#: ../util.php:921
+#: ../util.php:923
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr ""
 
-#: ../util.php:935
+#: ../util.php:938
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:938
+#: ../util.php:941
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:952 ../util.php:1833
+#: ../util.php:955
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:988
+#: ../util.php:987
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Ã«—Í ÂŸ«‰Ã… «‰’Ë—…."
 
-#: ../util.php:991
+#: ../util.php:990
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "ÂŸ«‰Ã… «‰ %s „Â”«— ÂÕ‰È"
 
-#: ../util.php:994
+#: ../util.php:993
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr " Œ◊È %s!  (‰Â Í Â  Â„ÍÊ œŸÂ «‰÷⁄◊)"
 
-#: ../util.php:1003
+#: ../util.php:1002
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../util.php:1021
+#: ../util.php:1020
 msgid "No Metadata"
 msgstr ""
 
-#: ../util.php:1025
+#: ../util.php:1024
 #, fuzzy
 msgid "Processing files in archive"
 msgstr "Ã«—Í ÂŸ«‰Ã… «‰’Ë—…."
 
-#: ../util.php:1031
+#: ../util.php:1030
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../util.php:1034
+#: ../util.php:1033
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "‰Â Í Â„Ê ÂÊ · Õ «‰œ‰Í‰%s"
 
-#: ../util.php:1154
+#: ../util.php:1153
 #, php-format
 msgid "Adding %s"
 msgstr "≈÷«·…: %s! "
 
-#: ../util.php:1174
+#: ../util.php:1173
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Á‰  Õ «Ã Â”«Ÿœ…ø «Êÿ— ≈‰È «‰ %s%s FAQ%s "
 
-#: ../util.php:1179
+#: ../util.php:1178
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr " Œ◊È %s (‰«ÍÂ„Ê ÂŸ«‰Ã…  Ê”Í‚ %s )"
 
-#: ../util.php:1292
+#: ../util.php:1291
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "‰« ÍÂ„Ê · Õ Â‰· «‰”Ã‰ : %s"
 
-#: ../util.php:1460
+#: ../util.php:1459
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1476
+#: ../util.php:1475
 #, fuzzy
 msgid "csv result:"
 msgstr "Ê «∆Ã «‰≈‚ —«Ÿ"
 
-#: ../util.php:1645
+#: ../util.php:1649
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1735
+#: ../util.php:1739
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../view_album.php:211
+#: ../util.php:1837
+#, php-format
+msgid "Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"
+msgstr ""
+
+#: ../util.php:1876
+#, php-format
+msgid "'%s' seems not to be a valid file. Download aborted."
+msgstr ""
+
+#: ../util.php:1884
+#, php-format
+msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
+msgstr ""
+
+#: ../util.php:1889
+msgid "We are trying to download the tempdir itself ?! Download aborted."
+msgstr ""
+
+#: ../view_album.php:214
 #, fuzzy, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "√‰»ËÂ ·—ŸÈ Ë«Õœ"
 msgstr[1] "√‰»ËÂ ·—ŸÈ Ë«Õœ"
 
-#: ../view_album.php:211
+#: ../view_album.php:214
 msgid "No albums"
 msgstr "‰«  ËÃœ √‰»ËÂ« Ó"
 
-#: ../view_album.php:213
+#: ../view_album.php:216
 msgid "0 pages"
 msgstr "‰«  ËÃœ ’·Õ« "
 
-#: ../view_album.php:216
+#: ../view_album.php:219
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "  Ÿ‰È %s ·È Á–« «‰√‰»ËÂ %s Ë %s"
 
-#: ../view_album.php:219
+#: ../view_album.php:222
 #, php-format
 msgid "%s and %s in this album"
 msgstr " ·È Á–« «‰√‰»ËÂ %s Ë %s"
 
-#: ../view_album.php:222
+#: ../view_album.php:225
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s ·È Á–« «‰√‰»ËÂ Ÿ‰È%s"
 
-#: ../view_album.php:225
+#: ../view_album.php:228
 #, php-format
 msgid "%s in this album"
 msgstr "%s ·È Á–« «‰√‰»ËÂ"
 
-#: ../view_album.php:232
+#: ../view_album.php:235
 #, php-format
 msgid "%s are hidden"
 msgstr "%s ÂŒ ·Í…"
 
-#: ../view_album.php:234
+#: ../view_album.php:237
 #, php-format
 msgid "%s is hidden"
 msgstr "%s ÂŒ ·È"
 
-#: ../view_album.php:244
+#: ../view_album.php:247
 #, fuzzy
 msgid "Add photos"
 msgstr "√÷· ’Ë—"
 
-#: ../view_album.php:250
+#: ../view_album.php:253
 #, fuzzy
 msgid "Delete this album"
 msgstr "√Ÿœ  ”ÂÍ… «|‰√‰»ËÂ"
 
-#: ../view_album.php:255
+#: ../view_album.php:258
 #, fuzzy
 msgid "Delete this (sub)album"
 msgstr "√Ÿœ  ”ÂÍ… «|‰√‰»ËÂ"
 
-#: ../view_album.php:264
+#: ../view_album.php:267
 #, fuzzy
 msgid "Rename album"
 msgstr "√Ÿœ  ”ÂÍ… √‰»ËÂ"
 
-#: ../view_album.php:271
+#: ../view_album.php:274
 #, fuzzy
 msgid "New nested album"
 msgstr "√‰»ËÂ ÃœÍœ Â œ«Œ‰"
 
-#: ../view_album.php:277
+#: ../view_album.php:280
 #, fuzzy
 msgid "Edit captions"
 msgstr "Õ——  Ÿ‰Í‚« "
 
-#: ../view_album.php:283
+#: ../view_album.php:286
 #, fuzzy
 msgid "Sort items"
 msgstr "·—“ «‰ŸÊ«’—"
 
-#: ../view_album.php:289
+#: ../view_album.php:292
 #, fuzzy
 msgid "Resize all"
 msgstr " ⁄ÍÍ— ÕÃÂ «‰„‰"
 
-#: ../view_album.php:295
+#: ../view_album.php:298
 #, fuzzy
 msgid "Rebuild thumbs"
 msgstr "≈Ÿ«œ… »Ê«¡ «‰√‘„«‰ «‰Â’⁄—…"
 
-#: ../view_album.php:301
+#: ../view_album.php:304
 #, fuzzy
 msgid "Properties"
 msgstr "Œ’«∆’"
 
-#: ../view_album.php:307
+#: ../view_album.php:310
 #, fuzzy
 msgid "Rearrange items"
 msgstr " #%d  Œ◊Í «‰√‰»ËÂ"
 
-#: ../view_album.php:319
+#: ../view_album.php:322
 #, fuzzy
 msgid "Poll results"
 msgstr "Ê «∆Ã «‰≈‚ —«Ÿ"
 
-#: ../view_album.php:325
+#: ../view_album.php:328
 #, fuzzy
 msgid "Poll reset"
 msgstr "≈Ÿ«œ…  — Í» «‰≈‚ —«Ÿ"
 
-#: ../view_album.php:331
+#: ../view_album.php:334
 #, fuzzy
 msgid "View comments"
 msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
 
-#: ../view_album.php:337
+#: ../view_album.php:340
 #, fuzzy
 msgid "Watermark album"
 msgstr "ŸÂ‰ Ÿ‰«Â… Â«∆Í… ‰‰√‰»ËÂ"
 
-#: ../view_album.php:395
+#: ../view_album.php:398
 #, fuzzy
 msgid "Album Actions"
 msgstr " Ÿ‰Í‚ √‰»ËÂ:"
 
-#: ../view_album.php:485
+#: ../view_album.php:488
 msgid "You have no votes recorded for this poll."
 msgstr "‰Í”  ‰œÍ„ √’Ë«  Â”Ã‰… ‰Á–« «‰≈‚ —«Ÿ"
 
-#: ../view_album.php:489
+#: ../view_album.php:492
 msgid "Your current choices are"
 msgstr "≈Œ Í«—« „ «‰Õ«‰Í… ÁÍ"
 
-#: ../view_album.php:526
+#: ../view_album.php:529
 msgid "See full poll results"
 msgstr "«Êÿ— «‰Ê «∆Ã «‰„«Â‰… ‰‰≈‚ —«Ÿ"
 
-#: ../view_album.php:560
+#: ../view_album.php:563
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:566
+#: ../view_album.php:569
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "‰‰ ’ËÍ  ‰’Ë—… Â« «÷⁄◊ Ÿ‰È  %s."
 
-#: ../view_album.php:567
+#: ../view_album.php:570
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "‰«»œ √Ê  ÷⁄◊ Ÿ‰È %s ‰ ”ÃÍ‰  ’ËÍ „"
 
-#: ../view_album.php:568 ../view_album.php:584 ../view_album.php:922
+#: ../view_album.php:571 ../view_album.php:587 ../view_album.php:925
 msgid "Vote"
 msgstr "’Ë "
 
-#: ../view_album.php:572
+#: ../view_album.php:575
 #, php-format
 msgid "You have a total of %s and can change them if you wish."
 msgstr "ÂÃÂËŸ Â« ‰œÍ„ ÁË%s ËÍÂ„Ê„  ⁄ÍÍ—Á« ≈–« √Õ»» "
 
-#: ../view_album.php:573
+#: ../view_album.php:576
 #, fuzzy, php-format
 msgid "1 vote"
 msgid_plural "%d votes"
 msgstr[0] "1 ’Ë "
 msgstr[1] "1 ’Ë "
 
-#: ../view_album.php:576
+#: ../view_album.php:579
 msgid "You can change your choices if you wish."
 msgstr "ÍÂ„Ê„  ⁄ÍÍ— «Œ Í«—« „ ≈–« √—œ "
 
-#: ../view_album.php:727 ../view_album.php:728
+#: ../view_album.php:730 ../view_album.php:731
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:775
+#: ../view_album.php:778
 #, fuzzy
 msgid "highlight"
 msgstr "‰« ÍËÃœ  ÕœÍœ "
 
-#: ../view_album.php:790
+#: ../view_album.php:793
 msgid "No description"
 msgstr "‰«ÍËÃœ Ë’·"
 
-#: ../view_album.php:798
+#: ../view_album.php:801
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "%s.¬Œ—  ⁄ÍÍ— ·È"
 
-#: ../view_album.php:801
+#: ../view_album.php:804
 #, fuzzy, php-format
 msgid "Contains: %s"
 msgstr "ÂÕ ËÍ« "
 
-#: ../view_album.php:801
+#: ../view_album.php:804
 #, fuzzy, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "Â«œ… 1"
 msgstr[1] "Â«œ… 1"
 
-#: ../view_album.php:817
+#: ../view_album.php:820
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr " Â Ÿ—÷Á«"
 
-#: ../view_album.php:842
+#: ../view_album.php:845
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] " Â Ÿ—÷Á«"
 msgstr[1] " Â Ÿ—÷Á«"
 
-#: ../view_album.php:900
+#: ../view_album.php:903
 msgid "Hey! Add some photos."
 msgstr "Â—Õ»«! √÷· »Ÿ÷ «‰’Ë—"
 
-#: ../view_album.php:902
+#: ../view_album.php:905
 msgid "This album is empty."
 msgstr "Á–« «‰√‰»ËÂ ·«—⁄"
 
-#: ../view_album.php:947
+#: ../view_album.php:950
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:952
+#: ../view_album.php:955
 msgid "Comments are added"
 msgstr "√÷Í·   Ÿ‰Í‚« "
 
-#: ../view_album.php:955
+#: ../view_album.php:958
 msgid "Other changes are made"
 msgstr "√Ã—Í   ⁄Í—«  √Œ—È"
 
