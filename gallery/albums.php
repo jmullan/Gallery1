@@ -107,8 +107,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+    	$title = sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle);
+    	$rssHref = $gallery->app->photoAlbumURL . "/rss.php"
 ?>
-  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
+  <link rel="alternate" title="<?php echo $title?>" href="<?php echo $rssHref ?>" type="application/rss+xml">
 <?php
     } ?>
 </head>
@@ -419,7 +421,7 @@ for ($i = $start; $i <= $end; $i++) {
 	$creationDate = $gallery->album->getCreationDate();
 	$lastModifiedDate = $gallery->album->getLastModificationDate();
 	if($creationDate) {
-		printf(_("Created on %s, last changed on %s."), $creationDate, $lastModifiedDate);
+		printf(gTranslate('core', "Created on %s, last changed on %s."), $creationDate, $lastModifiedDate);
 	}
 	else {
 		printf(gTranslate('core', "Last changed on %s."), $lastModifiedDate);

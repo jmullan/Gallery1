@@ -166,7 +166,7 @@ $navigator["bordercolor"] = $bordercolor;
 
 #-- breadcrumb text ---
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+  'alt="' . gTranslate('core', "navigate UP") .'" title="' . gTranslate('core', "navigate UP") .'" border="0">';
 
 foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
     $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
@@ -190,11 +190,11 @@ if (isset($gallery->app->comments_length)) {
 
 if (!empty($save)) {
     if ( empty($commenter_name) || empty($comment_text)) {
-        $error_text = _("Name and comment are both required to save a new comment!");
+        $error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
     } elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
-        $error_text = sprintf(_("Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
+        $error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
     } elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
-        $error_text = _("Your Comment contains forbidden words. It will not be added.");
+        $error_text = gTranslate('core', "Your Comment contains forbidden words. It will not be added.");
     } else {
         $comment_text = strip_tags($comment_text);
         $commenter_name = strip_tags($commenter_name);
@@ -312,7 +312,7 @@ if (!$gallery->album->isMovie($id)) {
       (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
       sizeof($albumItemOptions) == 2) {
         $albumName = $gallery->session->albumName;
-        $iconText = getIconText('frame_query.gif', _("photo properties"));
+        $iconText = getIconText('frame_query.gif', gTranslate('core', "photo properties"));
         $iconElements[] =  popup_link($iconText, "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
     }
 
@@ -396,9 +396,9 @@ if (!$gallery->album->isMovie($id)) {
             $options = array();
 
             if (isset($serviceGroups['Mobile Service'])) {
-                $options[] = _("Send photo to...") ;
+                $options[] = gTranslate('core', "Send photo to...") ;
             } else {
-                $options[] = _("Print photo with...");
+                $options[] = gTranslate('core', "Print photo with...");
             }
 
             $firstGroup = true;
@@ -434,7 +434,7 @@ if (!$gallery->album->isMovie($id)) {
                         continue;
                     } else {
 			enablePrintForm($name);
-                        $iconText = getIconText('', sprintf(_("process this photo with %s"), $fullName));
+                        $iconText = getIconText('', sprintf(gTranslate('core', "process this photo with %s"), $fullName));
                         $adminTextIconElemens[] = "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
                     }
                 }
@@ -478,8 +478,8 @@ function doPrintService(input) {
         $lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
         $link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
         $adminTextIconElemens[] = _('View Images:');
-        $iconTextNormal = _("normal");
-        $iconTextFull = _("full");
+        $iconTextNormal = gTranslate('core', "normal");
+        $iconTextFull = gTranslate('core', "full");
 
         if (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) {
             $adminTextIconElemens[] = $iconTextNormal;
@@ -497,7 +497,7 @@ function doPrintService(input) {
     */
     if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
       $gallery->app->emailOn == 'yes') {
-        $iconText = getIconText('ecard.gif', _("Send Photo as eCard"));
+        $iconText = getIconText('ecard.gif', gTranslate('core', "Send Photo as eCard"));
         $adminTextIconElemens[] = popup_link($iconText,
             makeGalleryUrl('ecard_form.php', array('photoIndex' => $index,'gallery_popup' => 'true' )), 1, true, 550, 600);
     }
@@ -516,12 +516,12 @@ if(sizeof($albumItemOptions) > 2 && !$useIcons) {
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
     if ($gallery->user->isLoggedIn()) {
-        $iconText = getIconText('exit.gif', _("logout"));
+        $iconText = getIconText('exit.gif', gTranslate('core', "logout"));
         $iconElements[] = '<a href="'.
           doCommand("logout", array(), "view_album.php", array("page" => $page)) .
           '">'. $iconText .'</a>';
     } else {
-        $iconText = getIconText('identity.gif', _("login"));
+        $iconText = getIconText('identity.gif', gTranslate('core', "login"));
         $iconElements[] = popup_link($iconText, "login.php", false);
     }
 }
@@ -717,7 +717,7 @@ if ($gallery->user->isLoggedIn() &&
         'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
         );
 
-        echo _("Email me when comments are added");
+        echo gTranslate('core', "Email me when comments are added");
 ?>
 	<input type="checkbox" name="comments" <?php echo ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? "checked" : "" ?> onclick="location.href='<?php echo $url; ?>'" >
 	</form>
