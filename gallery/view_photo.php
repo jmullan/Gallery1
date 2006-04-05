@@ -617,14 +617,19 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 }
 
 if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
-	echo showImageMap($index);
+    echo showImageMap($index);
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
 }
 else {
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\"");
 }
 
-list($width, $height) = $photo->getDimensions($full);
+if($gallery->album->isMovie($id)) {
+    list($width, $height) = $photo->getThumbDimensions();
+}
+else {
+    list($width, $height) = $photo->getDimensions($full);
+}
 $gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
 $gallery->html_wrap['borderWidth'] = $gallery->album->fields["border"];
 $gallery->html_wrap['frame'] = $frame;
