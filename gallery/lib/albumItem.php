@@ -27,10 +27,11 @@
 
 /**
  * This function shows all possible actions for an album item.
- * @param	integer $i	index number of the item
- * @return 	array		Array of all possible album item for the current user.
+ * @param	integer $i		index number of the item
+ * @param	boolean	$withIcons	Wether icons should be used, or not.
+ * @return 	array			Array of all possible album item for the current user.
  */
-function getItemActions($i, $withIcons = false, $popupsOnly = false) {
+function getItemActions($i, $withIcons = false) {
 	global $gallery;
 	global $nextId;
 
@@ -127,13 +128,13 @@ $javascriptSet = true;
 	    			'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
     			);
     		}
-    		if(!$popupsOnly) {
-    			$options[] = array(
+    		$options[] = array(
 	    			'pure_text' => _("ImageMap"),
 	    			'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
-	    			'value' => showChoice2('imagemap.php', array('index' => $i), false)
+	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
+				'attrs' => array('class' => 'url')
+				
     			);
-    		}
     	}
 
     	$options[] = array(

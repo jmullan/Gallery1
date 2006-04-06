@@ -855,7 +855,7 @@ if ($numPhotos) {
                 $form_pos++;
             }
 
-            $albumItemOptions = getItemActions($i, false, true);
+            $albumItemOptions = getItemActions($i, false);
             if (sizeof($albumItemOptions) > 2 || 
               (sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif']))) {
                 echo drawSelect2("s$i", $albumItemOptions, array(

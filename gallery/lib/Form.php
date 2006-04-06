@@ -145,7 +145,8 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
     if(!empty($options)) {
         foreach ($options as $nr => $option) {
             $sel = isset($option['selected']) ? ' selected' : '';
-            $buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
+            $optAttrs = isset($option['attrs']) ? generateAttrs($option['attrs']) : '';
+            $buf .= "\n\t". "<option $optAttrs value=\"". $option['value'] ."\" $sel>". $option['text'] ."</option>$crlf";
         }
     }
 
@@ -239,16 +240,6 @@ function showColorpicker($attrs = array()) {
     $html .= '</tr></table>';
 
     return $html;
-}
-
-function showChoice($label, $target, $args, $class="") {
-    global $gallery;
-
-    if (empty($args['set_albumName'])) {
-        $args['set_albumName'] = $gallery->session->albumName;
-    }
-    $args['type'] = 'popup';
-    echo "\t<option class=\"$class\" value='" . makeGalleryUrl($target, $args) . "'>$label</option>\n";
 }
 
 function showChoice2($target, $args, $popup = true) {
