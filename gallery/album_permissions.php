@@ -65,6 +65,7 @@ if(empty($submit)) {
 
 foreach ($submit as $perm => $action) {
     if(isset($action) && isset($actionUid)) {
+        $action = unhtmlentities($action);
         if($action == '-->') {
             $gallery->album->setPerm($perm, $actionUid, true);
             $changed++;
