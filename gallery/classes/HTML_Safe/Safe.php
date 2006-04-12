@@ -19,8 +19,10 @@
 /**
  * This package requires HTMLSax3 package
  */
-require_once (dirname(dirname(__FILE__)) .'/XML_HTMLSax3/HTMLSax3.php');
 
+if (! class_exists('xml_htmlsax3_stateparser')) {
+    require_once(dirname(dirname(__FILE__)) .'/XML_HTMLSax3/HTMLSax3.php');
+}
 
 /**
  *
