@@ -32,33 +32,27 @@ if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 	exit;
 }
 
-doctype();
-echo "\n<html>";
 
 if (!empty($formaction) && $formaction == 'delete') {
-	if ($guid == $gallery->album->fields['guid']) {
-		$gallery->album->delete();
-	}
-	dismissAndReload();
-	return;
+    if ($guid == $gallery->album->fields['guid']) {
+        $gallery->album->delete();
+    }
+
+    doctype();
+    echo "\n<html>";
+    dismissAndReload();
+    return;
 }
 
+printPopupStart(_("Delete Album"));
 if ($gallery->album) {
-?>
-<head>
-  <title><?php echo _("Delete Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Delete Album") ?></div>
-<div class="popup" align="center">
-<?php echo _("Do you really want to delete this album?"); ?>
+    echo _("Do you really want to delete this album?"); ?>
 <p>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <?php
     echo "\n<br>";
     if ($gallery->album->numPhotos(1)) {
-	echo $gallery->album->getHighlightTag();
+        echo $gallery->album->getHighlightTag();
     }
 ?>
 </p>
@@ -68,8 +62,8 @@ if ($gallery->album) {
 ?>
 <input type="hidden" name="guid" value="<?php echo $gallery->album->fields['guid']; ?>">
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.formaction.value='delete'">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.formaction.value='delete'" class="g-button">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
 } else {

@@ -521,7 +521,7 @@ function slideshow_controlPanel() {
 
 	echo makeIconMenu($iconElements, 'right', false);
 ?>
-    <td class="noLink"><script type="text/javascript">
+    <td class="g-icon-nolink"><script type="text/javascript">
     <!--
     /* show the blend select if appropriate */
     if (browserCanBlend) {

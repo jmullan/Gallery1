@@ -31,7 +31,7 @@ list($formaction, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin, $send
 getRequestVar(array('formaction', 'defaultLanguage', 'canCreate', 'canChangeOwnPw', 'isAdmin', 'send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;
 }
 
@@ -41,20 +41,20 @@ if ($formaction == 'create') {
     ?>
 <html>
 <head>
-  <title><?php echo _("Create Multiple Users") ?></title>
+  <title><?php echo gTranslate('core', "Create Multiple Users") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Create Multiple Users") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Create Multiple Users") ?></div>
 <div class="popup">
 <?php
     if (empty($_FILES['membersfile']['name'])) {
-        $gErrors["membersfile"] = _("No file selected.");
+        $gErrors["membersfile"] = gTranslate('core', "No file selected.");
         $errorCount++;
     } else {
         if (!is_uploaded_file($_FILES['membersfile']['tmp_name'])) {
             $gErrors["membersfile"] =
-            sprintf(_("Upload failed: %s."), $_FILES['membersfile']['name']);
+            sprintf(gTranslate('core', "Upload failed: %s."), $_FILES['membersfile']['name']);
             $errorCount++;
         }
     }
@@ -68,7 +68,7 @@ if ($formaction == 'create') {
     }
     if (sizeof($users) == 0) {
         $gErrors["membersfile"] =
-        sprintf(_("Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"),
+        sprintf(gTranslate('core', "Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"),
         dirname($_FILES['membersfile']));
         $errorCount++;
     }
@@ -84,7 +84,7 @@ if ($formaction == 'create') {
         foreach ($users as $user) {
             set_time_limit($gallery->app->timeLimit);
             $uname = $user[0];
-            
+
             if (sizeof($user) == 2) {
                 if(check_email($user[1])) {
                     $email = $user[1];
@@ -98,26 +98,26 @@ if ($formaction == 'create') {
                 $fullname = $user[2];
             }
             if ($email) {
-                processingMsg("- ". sprintf (_("Adding %s (%s) with email: %s"),
-                    $uname, (!empty($fullname) ? $fullname : '<i>' . _("No fullname given") .'</i>'), $email));
+                processingMsg("- ". sprintf (gTranslate('core', "Adding %s (%s) with email: %s"),
+                    $uname, (!empty($fullname) ? $fullname : '<i>' . gTranslate('core', "No fullname given") .'</i>'), $email));
             }
             else {
-                processingMsg("- ". sprintf (_("Adding %s (%s)"),
-                    $uname, (!empty($fullname) ? $fullname : '<i>' . _("No fullname given") .'</i>')));
-            } 
+                processingMsg("- ". sprintf (gTranslate('core', "Adding %s (%s)"),
+                    $uname, (!empty($fullname) ? $fullname : '<i>' . gTranslate('core', "No fullname given") .'</i>')));
+            }
             $password = generate_password(10);
             $tmpUser = $gallery->userDB->CreateUser($uname, $email, $password, $fullname, $canCreate, $defaultLanguage, "bulk_register");
             if ($tmpUser) {
                 $total_added++;
                 if ($send_email && !empty($email)) {
-                    processingMsg("- " . sprintf(_("Send email to %s"),$email));
+                    processingMsg("- " . sprintf(gTranslate('core', "Send email to %s"),$email));
                     $msg = ereg_replace("!!PASSWORD!!", $password,
                         ereg_replace("!!USERNAME!!", $uname,
                         ereg_replace("!!FULLNAME!!", $fullname,
                         ereg_replace("!!NEWPASSWORDLINK!!",
                         $tmpUser->genRecoverPasswordHash(),
                         welcome_email()))));
-                    $logmsg = sprintf(_("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
+                    $logmsg = sprintf(gTranslate('core', "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
                         $uname, $gallery->user->getUsername(), $email);
                     $logmsg2  = sprintf("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s.",
                         $uname, $gallery->user->getUsername(), $email);
@@ -125,8 +125,8 @@ if ($formaction == 'create') {
                         $logmsg .= " <<<<>>>>> $logmsg2";
                     }
 
-                    if (!gallery_mail($email, _("Gallery Registration"),$msg, $logmsg)) {
-                        processingMsg(sprintf(_("Problem with email to %s"), $uname));
+                    if (!gallery_mail($email, gTranslate('core', "Gallery Registration"),$msg, $logmsg)) {
+                        processingMsg(sprintf(gTranslate('core', "Problem with email to %s"), $uname));
                         print "<br>";
                     } else {
                         clearstatcache();
@@ -138,14 +138,14 @@ if ($formaction == 'create') {
             }
         }
         echo "\n<p>";
-        echo sprintf(_("%s added, %s skipped"),
+        echo sprintf(gTranslate('core', "%s added, %s skipped"),
 	    gTranslate('core', "1 user", "%d users", $total_added),
 	    gTranslate('core', "1 user", "%d users", $total_skipped));
-        echo "\n</p>";      
+        echo "\n</p>";
 ?>
 
 <center>
-    <form><input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>"></form>
+    <form><input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>"></form>
 </center>
 </div>
 </body>
@@ -161,13 +161,13 @@ if ($formaction == 'create') {
 ?>
 <html>
 <head>
-  <title><?php echo _("Create Multiple Users") ?></title>
+  <title><?php echo gTranslate('core', "Create Multiple Users") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo _("Create Users") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Create Users") ?></div>
 <div class="popup" align="center">
-<?php echo _("Create multiple new users from a file.") ?>
+<?php echo gTranslate('core', "Create multiple new users from a file.") ?>
 <p>
 <?php
 $allowChange["uname"] = false;
@@ -186,7 +186,7 @@ echo makeFormIntro("multi_create_user.php", array(
     "name" => "usercreate_form",
     "enctype" => "multipart/form-data"));
 
-$canCreateChoices = array(1 => _("Yes"), 0 => _("No"));
+$canCreateChoices = array(1 => gTranslate('core', "Yes"), 0 => gTranslate('core', "No"));
 $canCreate = 0;
 ?>
 	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
@@ -195,27 +195,27 @@ $canCreate = 0;
 
 <br>
 	<input type="hidden" name="formaction" value="">
-    <input type="submit" name="create" value="<?php echo _("Create") ?>" onclick="usercreate_form.formaction.value='create'">   
-    <input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
+    <input type="submit" name="create" value="<?php echo gTranslate('core', "Create") ?>" onclick="usercreate_form.formaction.value='create'">
+    <input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
 </form>
 
 </div>
 <div class="popup">
-<b><?php echo _("Notes:") ?> </b>
+<b><?php echo gTranslate('core', "Notes:") ?> </b>
 <ul>
 <li>
-<?php echo _("The members file should be one user per line, and the fields should be space separated."); ?>
-<br><?php echo _("Each line must be in one of this formats:"); ?>
+<?php echo gTranslate('core', "The members file should be one user per line, and the fields should be space separated."); ?>
+<br><?php echo gTranslate('core', "Each line must be in one of these formats:"); ?>
     <ul>
-    <li><?php echo _("<i>username emailaddress fullname</i>"); ?></li>
-    <li><?php echo _("<i>username fullname</i>"); ?></li>
-    <li><?php echo _("<i>username emailaddress</i>"); ?></li>
+    <li><?php echo gTranslate('core', "<i>username emailaddress fullname</i>"); ?></li>
+    <li><?php echo gTranslate('core', "<i>username fullname</i>"); ?></li>
+    <li><?php echo gTranslate('core', "<i>username emailaddress</i>"); ?></li>
     </ul>
-<?php echo _("Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
+<?php echo gTranslate('core', "Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
 </li>
 <br>
 <li>
-<?php echo _("The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
+<?php echo gTranslate('core', "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
 </li>
 </ul>
 </div>

@@ -27,49 +27,53 @@
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
+</div>
 
-<div class="sitedesc">
+<div class="g-sitedesc">
 <?php 
 	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
 	echo '<br>';
 	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
 ?>
+
 </div>
 
 <div align="center" style="margin: 5px; margin-bottom: 10px">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
+        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
+        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
+        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
 </div>
 <?php
 
-makeSectionTabs($constants, 6);
+$initialtab = makeSectionTabs($constants);
+echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
 ?>
 <script type="text/javascript" language="Javascript">
 
 function toggleGraphics(show) {
 	if(show == 'ImageMagick') {
-		document.getElementById('subgroup_ImageMagick').style.display      = 'inline';
+		document.getElementById('subgroup_ImageMagick').style.display = 'inline';
 		document.getElementById('subgroup_NetPBM').style.display      = 'none';
 	} else {
-		document.getElementById('subgroup_ImageMagick').style.display      = 'none';
+		document.getElementById('subgroup_ImageMagick').style.display = 'none';
 		document.getElementById('subgroup_NetPBM').style.display      = 'inline';
 	}
 }
 
 </script>
-<div style="height: 2px"></div>
+
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 	
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
-		echo "\n<table width=\"100%\" class=\"inner\">";
+		echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
 		echo evenOdd_row(make_fields($key, $val), $i % 2);
 		continue;
 	}
@@ -78,7 +82,7 @@ foreach ($constants as $key => $val) {
 	    echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
         echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
         if (isset($val['desc'])) {
-        	echo '<div class="inner desc">'. $val['desc'] .'</div>';
+        	echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
         }
         continue;
     }
@@ -128,7 +132,7 @@ foreach ($constants as $key => $val) {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
 	} else {
-		echo "\n<table width=\"100%\" class=\"inner\">";
+		echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {
 			$val["value"] = $app->$key;
@@ -182,9 +186,9 @@ foreach ($constants as $key => $val) {
 ?>
 
 <div align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
+        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
+        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
+        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
 </div>

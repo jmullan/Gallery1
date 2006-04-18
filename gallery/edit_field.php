@@ -32,48 +32,41 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	exit;
 }
 
-doctype();
-echo "\n<html>";
-
 if (isset($save)) {
     if ($field == 'title') {
         $data = strip_tags($data);
     }
     $gallery->album->fields[$field] = $data;
     $gallery->album->save(array(i18n("%s modified"), $field));
+    doctype();
+    echo "\n<html>";
     dismissAndReload();
     return;
 }
-?>
-<head>
-  <title><?php echo sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)) ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)) ?></div>
-<div class="popup" align="center">
-<?php 
-	echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"), gTranslate('common', $field), 
-	  '<b>' . gTranslate('core', "Save") . '</b>');
 
-	echo makeFormIntro("edit_field.php", 
-		array("name" => "theform"),
-		array("type" => "popup")); 
-?>
-	<input type="hidden" name="field" value="<?php echo $field ?>">
-	<textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
-	<p>
-		<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-		<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
-	</p>
-	</form>
+printPopupStart(sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)));
 
-	<script language="javascript1.2" type="text/JavaScript">
-	<!--   
-	// position cursor in top form field
-	document.theform.data.focus();
-	//-->
-	</script>
+echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"), 
+    gTranslate('common', $field),
+    '<b>' . gTranslate('core', "Save") . '</b>'
+);
+
+echo makeFormIntro("edit_field.php", array(), array("type" => "popup"));
+?>
+  <input type="hidden" name="field" value="<?php echo $field ?>">
+  <textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
+  <p>
+    <input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>" class="g-button">
+    <input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
+    </p>
+  </form>
+
+    <script language="javascript1.2" type="text/JavaScript">
+    <!--   
+    // position cursor in top form field
+    document.g1_form.data.focus();
+    //-->
+    </script>
 </div>
 <?php print gallery_validation_link("edit_field.php",true,array('field' => $field)); ?>
 </body>

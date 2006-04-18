@@ -37,7 +37,7 @@ include_once (dirname(__FILE__) . '/includes/definitions/services.php');
 include_once (dirname(__FILE__) . '/lib/setup.php');
 include_once (dirname(__FILE__) . '/js/sectionTabs.js.php');
 
-$infoMessages = array();
+$notice_messages = array();
 $reloadOpener = false;
 
 if (getRequestVar('save')) {
@@ -51,9 +51,12 @@ if (getRequestVar('save')) {
         ${$fieldName} = getRequestVar($fieldName);
         if (isset($properties[$fieldName]['vartype'])) {
             list($status, ${$fieldName}, $infoMessage) =
-            sanityCheck(${$fieldName}, $properties[$fieldName]['vartype'], $gallery->app->default[$fieldName]);
+                sanityCheck(${$fieldName}, $properties[$fieldName]['vartype'], $gallery->app->default[$fieldName]);
             if (!empty($infoMessage)) {
-                $infoMessages[] .= sprintf (_("Problem with input of field '%s'. %s"), $fieldName, $infoMessage);
+                $notice_messages[] = array(
+                    'type' => 'error',
+                    'text' => sprintf (_("Problem with input of field '%s'. %s"), $fieldName, $infoMessage)
+                );
             }
         }
     }
@@ -225,27 +228,28 @@ include (dirname(__FILE__) . '/includes/definitions/albumProperties.php');
 $initialtab = getRequestVar('initialtab');
 
 doctype();
+
 ?>
+
 <html>
 <head>
   <title><?php echo _("Album Properties") ?></title>
   <?php common_header(); ?>
 </head>
 
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<body dir="<?php echo $gallery->direction ?>" class="g-popup">
 <?php if ($reloadOpener) reload(); ?>
-<div class="popuphead"><?php echo gTranslate('core', "Album Properties") ?></div>
-<?php echo infoLine($infoMessages, 'error'); ?>
-<div class="popup" align="center">
-<?php 
-
-echo makeFormIntro("edit_appearance.php",
-    array("name" => "theform"),
-    array("type" => "popup"));
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Album Properties"); ?></div>
+</div>
+<?php echo infoBox($notice_messages); ?>
+<div class="g-content-popup" align="center">
+<?php
 
 $i = 0;
-
-makeSectionTabs($properties,5, $initialtab, true);
+$initialtab = makeSectionTabs($properties,5, $initialtab, true);
+echo makeFormIntro("edit_appearance.php", array(),
+    array("type" => "popup", 'initialtab' => $initialtab));
 
 foreach ($properties as $key => $val) {
     if(!empty($val['skip'])) {
@@ -260,7 +264,7 @@ foreach ($properties as $key => $val) {
         }
         echo "\n<div id=\"". $val["name"] ."\" style=\"display: $display\">";
         echo make_separator($key, $val);
-        echo "\n<table width=\"100%\" class=\"inner\">";
+        echo "\n<table width=\"100%\">";
         continue;
     }
 
@@ -296,9 +300,9 @@ foreach ($properties as $key => $val) {
 <input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo _("Apply values to nested albums (except album title and summary).") ?></label>
 <br>
 <br>
-<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
-<input type="reset" value="<?php echo _("Undo") ?>">
-<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+<input type="submit" name="apply" value="<?php echo _("Apply") ?>" class="g-button">
+<input type="reset" value="<?php echo _("Undo") ?>" class="g-button">
+<input type="button" name="close" value="<?php echo _("Close") ?>" onclick="parent.close()" class="g-button">
 
 </form>
 

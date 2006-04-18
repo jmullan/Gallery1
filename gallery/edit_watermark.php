@@ -33,9 +33,9 @@
  */
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $save, $preview, $previewFull) = 
+list($index, $save, $preview, $previewFull) =
 	getRequestVar(array('index', 'save', 'preview', 'previewFull'));
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) = 
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
 	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
 
 // Hack check
@@ -85,17 +85,8 @@ if (isset($save) || isset($preview)) {
     }
 }
 
-doctype();
-
+printPopupStart(_("Edit Watermark"));
 ?>
-<html>
-<head>
-  <title><?php echo _("Edit Watermark") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Edit Watermark") ?></div>
-<div class="popup" align="center">
 <p>
 <?php
 if (isset($preview)) {
@@ -105,40 +96,38 @@ if (isset($preview)) {
 }
 ?>
 </p>
-<?php 
+<?php
 
 if (!empty($err)) {
-    echo '<p class="error">'. $err . '</p>';
+    echo '<p class="g-error">'. $err .'</p>';
 }
-
 
 if ($photo->image->type == 'gif') {
     echo infoLine(_("Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
 }
 
-echo makeFormIntro('edit_watermark.php', array('name' => 'theform'));
+echo makeFormIntro('edit_watermark.php');
 global $watermarkForm;
 $watermarkForm["askRecursive"] = 0;
 $watermarkForm["askPreview"] = 1;
 $watermarkForm["allowNone"] = 0;
 includeLayout ('watermarkform.inc');
 ?>
-<p>
+<br><br>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>">
 	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
 	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</p>
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.theform.cancel.focus();
+document.g1_form.cancel.focus();
 //-->
 </script>
 </div>
-<?php 
+<?php
 print gallery_validation_link("edit_watermark.php", false,
   array('index' => $index, 'set_albumName' => $gallery->album->fields["name"]));
 ?>

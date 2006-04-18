@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -44,13 +44,10 @@ if (isset($mode)) {
 	    $mode = $modeCookie;
 	}
 }
-doctype();
+printPopupStart(_("Add Photos"), '', 'left');
+
 ?>
 
-<html>
-<head>
-  <title><?php echo _("Add Photos") ?></title>
-  <?php common_header(); ?>
   <script type="text/javascript" language="Javascript">
   <!--
 	function reloadPage() {
@@ -59,16 +56,12 @@ doctype();
 	}
   // -->
   </script>
-</head>
-<body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody">
-<div class="popuphead"><?php echo _("Add Photos") ?></div>
-<div class="popup">
-<?php
+<?php /* <body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody"> */
 
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar")) {
     $modes["applet_mini"] = _("Applet");
-	
+
 	if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteApplet.jar")) {
 	    $modes["applet"] = _("Applet (big)");
 	}
@@ -83,21 +76,21 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 ?>
 
-	<div id="container">
-	<ul id="tabnav">
+	<div class="g-tabset">
 <?php
 foreach ($modes as $m => $mt) {
 	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
 	if ($m == $mode) {
-		echo "\t\t<li><a href=\"$url\" class=\"active\">$mt</a></li>\n";
+		echo "\t\t<a href=\"$url\" class=\"g-activeTab\">$mt</a>\n";
 	} else {
-		echo "\t\t<li><a href=\"$url\">$mt</a></li>\n";
+		echo "\t\t<a href=\"$url\">$mt</a>\n";
 	}
 }
-echo "\n\t</ul>";
+echo "\n\t</div>";
 
-include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");?>
-	</div>
+include (dirname(__FILE__) . "/includes/add_photos/add_$mode.inc");
+?>
+
 </div>
 </body>
 </html>

@@ -42,7 +42,9 @@ $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $numPhotos = $gallery->album->numPhotos(1);
 
-doctype() ?>
+doctype();
+
+?>
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></title>
@@ -96,9 +98,10 @@ function doclick(idx) {
 }
 </script>
 </head>
-
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
+<body dir="ltr" class="g-popup">
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
+</div>
 <div class="admin" align="center">
 <?php 
 echo _("Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
@@ -119,7 +122,7 @@ $explainTable->addElement(array('content' => _("Hidden") , 'cellArgs' => array('
 <br><br><center><?php echo $explainTable->render(); ?></center>
 </div>
 
-<div class="popup" align="center">
+<div class="g-content-popup" align="center">
 <?php
   echo makeFormIntro('rearrange.php',array('name' => 'rearr_form'));
 ?>
@@ -132,9 +135,9 @@ $pictureTable->setAttrs(array('width' => '100%', 'cellspacing' => 0, 'cellpaddin
 $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
-    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'">'. 
-    '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
-    'cellArgs' => array('colspan' => $cols, 'align' => 'right')));
+    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'" class="g-button">'. 
+    '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'" class="g-button">',
+    'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 $list = array();
 $j = 1;
@@ -170,9 +173,9 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 }
 
 $pictureTable->addElement(array(
-    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'">'. 
-	  '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'">',
-    'cellArgs' => array('colspan' => $cols, 'align' => 'right')));
+    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'" class="g-button">'. 
+	  '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'" class="g-button">',
+    'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 echo $pictureTable->render();
 ?>

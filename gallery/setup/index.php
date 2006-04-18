@@ -21,14 +21,15 @@
  */
 ?>
 <?php
-    /**
-     * @package setup
-     */
+/**
+ * @package setup
+ */
 
-	/** 
-	 * Its important to have this as first position.
-	 * Otherwise constants are not defined.
-	 */
+/** 
+ * Its important to have this as first position.
+ * Otherwise constants are not defined.
+ */
+
 	require (dirname(__FILE__) . '/init.php');
 	
 	require (dirname(__FILE__) . '/config_data.inc');
@@ -93,7 +94,6 @@ doctype();
 // If Gallery has not been configured before, allow to continue without logging in
 configLogin(basename(__FILE__));
 
-
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
 } else if (isset($go_next)) {
@@ -147,9 +147,6 @@ if (in_array($setup_page, $legit)) {
 	print _("Security violation") .".\n";
 	exit;
 }
-?>
-
-<?php
 
 function embed_hidden($key) {
 	global $$key;

@@ -179,21 +179,7 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-
-if (isset($gallery->album)) {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-	$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-	  $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
-}
-else {
-    /* We're on mainpage */
-    $breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
-      $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-}
-
+$breadcrumb["text"] = @returnToPathArray($gallery->album, true);
 $breadcrumb["bordercolor"] = $borderColor;
 
 $adminbox["commands"] = "";
@@ -216,17 +202,13 @@ $adminbox["bordercolor"] = $borderColor;
 $navigator["fullWidth"] = '100';
 $navigator["widthUnits"] = '%';
 
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
+
 includeLayout('breadcrumb.inc');
-includeLayout('navtablemiddle.inc');
 
 slideshow_controlPanel();
 
-includeLayout('navtableend.inc');
-
-echo "\n<br>";
+echo "\n<br clear=\"all\">";
 
 slideshow_image();
 

@@ -73,19 +73,10 @@ if (isset($save)) {
 		return;
 	}
 }
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Add Comment") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Add Comment") ?></div>
-<div class="popup" align="center">
-<p><?php echo gTranslate('core', "Enter your comment for this picture in the text box below.") ?></p>
+printPopupStart(gTranslate('core', "Add Comment"));
 
-<?php 
+echo "\n<p>". gTranslate('core', "Enter your comment for this picture in the text box below.") . '</p>';
+
 echo $gallery->album->getThumbnailTagById($id);
 if (!empty($error_text)) {
 	echo "\n<br>". gallery_error($error_text);

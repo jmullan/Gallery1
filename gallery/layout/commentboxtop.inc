@@ -19,13 +19,17 @@
     <?php if ($gallery->album->isHidden($i)) {
 		echo "  (". _("hidden") .")";
 	}
-	if ((!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||
-                        $gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->user->isOwnerOfAlbum($myAlbum))) { ?>
+	if (!$gallery->album->isHidden($i) ||
+	  $gallery->user->isAdmin() ||
+      $gallery->user->isOwnerOfAlbum($gallery->album) ||
+      $gallery->user->isOwnerOfAlbum($myAlbum)) {
+?>
       			<span class="admin"><?php if ($myAlbum->lastCommentDate("no") != -1) { ?>
-<br><a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbumName)) ?>">[<?php echo _("view comments for this nested album") ?>]</a>
-       <?php } else {
-       print "<br>"._("Album contains no comments")."\n";
-       } ?>
+                <br><a href="<?php echo makeGalleryUrl("view_comments.php", array("set_albumName" => $myAlbumName)) ?>">[<?php echo _("view comments for this nested album") ?>]</a>
+<?php }
+    else {
+        print "<br>"._("Album contains no comments")."\n";
+    } ?>
       			</span>
     <?php } ?>
 
@@ -37,7 +41,7 @@
 }
 else {
 ?>
-	<td width="150" valign="top" ><a href="<?php echo makeAlbumUrl($gallery->session->albumName, $id) ?>"><?php echo $gallery->album->getThumbnailTag($i) ?></a></td>
+	<td width="150" align="center" valign="top" ><a href="<?php echo makeAlbumUrl($gallery->session->albumName, $id) ?>"><?php echo $gallery->album->getThumbnailTag($i) ?></a></td>
 	<td width="20">&nbsp;</td>
 	<td style="vertical-align: top">
 <?php 

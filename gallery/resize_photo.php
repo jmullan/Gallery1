@@ -35,20 +35,13 @@ if (! $gallery->user->canWriteToAlbum($gallery->album) &&
 	exit;
 }
 
-doctype();
+printPopupStart(_("Resize Photo"));
 ?>
-<html>
-<head>
-  <title><?php echo _("Resize Photo") ?></title>
-  <?php common_header(); ?>
-  <style>
-	.nowrap { white-space:nowrap; }
-  </style>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Resizing photos") ?></div>
-<div class="popup" align="center">
+<style>
+    .nowrap { white-space:nowrap; }
+ </style>
 <?php
+
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($manual) && $manual > 0) {
@@ -101,7 +94,7 @@ if ($gallery->session->albumName && isset($index)) {
 	<table border="0" class="popuptd">
 	<?php 
 		$choices=array(1280,1024,700,800,640,600,500,400);
-		for ($i=0; $i<count($choices); $i=$i+2) {
+		for ($i = 0; $i<count($choices); $i = $i+2) {
 			echo "\n\t<tr>";
 			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' . $choices[$i] .'" id="size_' . $choices[$i] .'">'. '<label for="size_' . $choices[$i] .'">'. $choices[$i] .'</label></td>';
 			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' .$choices[$i+1].'" id="size_' .$choices[$i+1].'">'. '<label for="size_' .$choices[$i+1].'">'.$choices[$i+1].'</label></td>';
@@ -130,14 +123,14 @@ if ($gallery->session->albumName && isset($index)) {
 <?php } ?>
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="remove_resized" value="<?php echo _("Get rid of resized") ?>">
+	<input type="submit" name="remove_resized" value="<?php echo _("Get rid of resized") ?>" class="g-button">
 	<?php echo _("(Use only the original picture)"); ?>
 
 </p>
 <br>
 
-<input type="submit" name="change_size" value="<?php echo _("Change Size") ?>">
-<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()">
+<input type="submit" name="change_size" value="<?php echo _("Change Size") ?>" class="g-button">
+<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 
 </form>
 

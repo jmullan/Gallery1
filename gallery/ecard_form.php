@@ -39,21 +39,21 @@
   $photo = $gallery->album->getPhoto($ecard['photoIndex']);
 
   /* Get the dimensions of the sized Photo */
-  list($width, $height) = $photo->getDimensions(0, false);  
+  list($width, $height) = $photo->getDimensions(0, false);
 
   $max_length = 300;   // Maximum length of the e-Card text
-  $msgTextError1 = _("Error processing e-card. Please try later.");
-  $msgTextError2 = _("Some input fields are not correctly filled out. Please fill out.");
-  $ecard_PLAIN_data = _("You have an e-card as attachment. Click to see.");
+  $msgTextError1 = gTranslate('core', "Error processing e-card. Please try later.");
+  $msgTextError2 = gTranslate('core', "Some input fields are not correctly filled out. Please fill out.");
+  $ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click to see.");
 
   $error_msg = '';
-  
+
   $ecard_send = false;
   if (! empty($submit_action)) {
 
-    if (check_email($ecard["email_recepient"]) && 
-      check_email($ecard["email_sender"]) && 
-      ! empty($ecard["email_recepient"]) && 
+    if (check_email($ecard["email_recepient"]) &&
+      check_email($ecard["email_sender"]) &&
+      ! empty($ecard["email_recepient"]) &&
       ! empty($ecard["name_sender"])) {
       if (strlen($ecard["message"]) > $max_length) {
           $ecard["message"] = substr($ecard["message"],0,$max_length-1);
@@ -82,8 +82,8 @@ doctype();
 ?>
 <html>
   <?php common_header(); ?>
-  <title><?php echo _("Send this photo as eCard") ?></title>
- 
+  <title><?php echo gTranslate('core', "Send this photo as eCard") ?></title>
+
 <script type="text/javascript">
 <!--
  function popup_win(theURL,winName,winOptions) {
@@ -104,41 +104,41 @@ doctype();
    document.ecard_form["submit_action"].value = "send";
    if (check()) { document.ecard_form.submit(); }
  }
- 
+
  function check() {
    var error = false;
-   var error_message = "<?php echo _("Error: to send an eCard you need to fill out all fields."); ?>";
-   error_message +="\n <?php echo _("Please fill this fields:"); ?>\n\n";
+   var error_message = "<?php echo gTranslate('core', "Error: to send an eCard you need to fill out all fields."); ?>";
+   error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
 
    if (document.ecard_form["ecard[name_sender]"].value == "") {
      error = true;
-     error_message += "<?php echo _("- Your Name"); ?>\n";
-   } 
- 
-   if ((document.ecard_form["ecard[email_sender]"].value == "") && 
+     error_message += "<?php echo gTranslate('core', "- Your Name"); ?>\n";
+   }
+
+   if ((document.ecard_form["ecard[email_sender]"].value == "") &&
       (document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1)) {
         error = true;
-        error_message += "<?php echo _("- Your Email"); ?>\n";
+        error_message += "<?php echo gTranslate('core', "- Your Email"); ?>\n";
    }
-  
+
    if (document.ecard_form["ecard[name_recepient]"].value == "") {
      error = true;
-     error_message += "<?php echo _("- Recipient's Name"); ?>\n";
-   } 
- 
-   if ((document.ecard_form["ecard[email_recepient]"].value == "") && 
+     error_message += "<?php echo gTranslate('core', "- Recipient's Name"); ?>\n";
+   }
+
+   if ((document.ecard_form["ecard[email_recepient]"].value == "") &&
       (document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1)) {
         error = true;
-        error_message += "<?php echo _("- Recipient's Email"); ?>\n";
+        error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
    }
-  
+
    if (document.ecard_form["ecard[message]"].value == "") {
      error = true;
-     error_message += "<?php echo _("- Your Message"); ?>\n";
+     error_message += "<?php echo gTranslate('core', "- Your Message"); ?>\n";
    }
 
    if (error) {
-     error_message += "\n\n<?php echo _('Please fill all fields next click >Send<.'); ?>";
+     error_message += "\n\n<?php echo gTranslate('core', 'Please fill all fields next click >Send<.'); ?>";
      alert(error_message);
      return false;  // Form not sent
    } else {
@@ -146,12 +146,12 @@ doctype();
      }
 
   } // Ende function check()
-  
+
   function CountMax() {
     max = <?php echo $max_length ?>;
     wert = max - document.ecard_form["ecard[message]"].value.length;
     if (wert < 0) {
-      alert("<?php echo sprintf(_("You have entered more than %d characters"), $max_length); ?>");
+      alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters"), $max_length); ?>");
       document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
       wert = 0;
       document.ecard_form.counter.value = wert;
@@ -167,10 +167,10 @@ doctype();
 </head>
 
 <body class="popupbody" dir="<?php echo $gallery->direction ?>" onLoad="document.ecard_form['ecard[name_sender]'].focus()">
-<div class="popuphead"><?php echo _("Send this photo as eCard") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Send this photo as eCard") ?></div>
 <div align="center" class="popup">
 
-<?php 
+<?php
     if (! $ecard_send) {
 	echo $gallery->album->getThumbnailTag($photoIndex);
 	if (!empty($error_msg)) {
@@ -189,12 +189,12 @@ doctype();
   <br>
   <table border="0" cellpadding="0" cellspacing="4" align="center">
   <tr>
-    <td class="columnheader" colspan="2"><?php echo _("Your info"); ?></td>
+    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
     <td width="10">&nbsp;</td>
-    <td class="columnheader" colspan="2"><?php echo _("Recipient's info"); ?></td>
+    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
   </tr>
   <tr>
-    <td><?php echo _("Name") ?></td>
+    <td><?php echo gTranslate('core', "Name") ?></td>
     <?php
         $defaultSenderName = '';
 	$defaultSenderEmail = '';
@@ -205,25 +205,25 @@ doctype();
     ?>
     <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $defaultSenderName; ?>"></td>
     <td></td>
-    <td><?php echo _("Name") ?></td>
+    <td><?php echo gTranslate('core', "Name") ?></td>
     <td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
-    <td><?php echo _("E-Mail"); ?></td>
+    <td><?php echo gTranslate('core', "E-Mail"); ?></td>
     <td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $defaultSenderEmail; ?>"></td>
     <td></td>
-    <td><?php echo _("E-Mail"); ?></td>
+    <td><?php echo gTranslate('core', "E-Mail"); ?></td>
     <td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value=""></td>
   </tr>
   <tr>
     <td colspan="5" align="center">
   	  <select id="ecardstamp" name="ecard[stamp]">
-            <option selected value="08"><?php echo _("Choose a Stamp"); ?></option>
+            <option selected value="08"><?php echo gTranslate('core', "Choose a Stamp"); ?></option>
 <?php
 for($i = 1; $i <= 27; $i++) {
     $nr = sprintf("%02d", $i-1);
     echo "\n\t" . '<option value="'. $nr .'">';
-    echo sprintf(_("Stamp #%d"), $i);
+    echo sprintf(gTranslate('core', "Stamp #%d"), $i);
     echo "</option>";
 }
 ?>
@@ -233,12 +233,12 @@ for($i = 1; $i <= 27; $i++) {
     </td>
   </tr>
   <tr>
-    <td><?php echo _("Subject:"); ?></td>
-    <?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(_("%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
+    <td><?php echo gTranslate('core', "Subject:"); ?></td>
+    <?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
     <td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
   </tr>
   <tr>
-    <td colspan="5"><?php echo _("Your Message:"); ?></td>
+    <td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
   </tr>
   <tr>
     <td align="center" colspan="5">
@@ -257,11 +257,11 @@ for($i = 1; $i <= 27; $i++) {
      <td colspan="5" align="center">
      <table>
       <tr>
-        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo _("Preview"); ?>"></td>
-        <td><input type="reset" value="<?php echo _("Reset"); ?>"></td>
+        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>"></td>
+        <td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>"></td>
 	<td width="100%">&nbsp;</td>
-        <td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo _("Cancel"); ?>"></td>
-	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo _("Send eCard"); ?>"></td>
+        <td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>"></td>
+	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>"></td>
       </tr>
      </table>
      </td>
@@ -269,11 +269,11 @@ for($i = 1; $i <= 27; $i++) {
   </table>
   </form>
 <?php } else {
-    echo sprintf(_("Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
+    echo sprintf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($ecard['photoIndex']); ?></p>
   <br>
-  <a href="javascript:window.close()"><?php echo _("Close this window") ?></a>
+  <a href="javascript:window.close()"><?php echo gTranslate('core', "Close this window") ?></a>
 <?php }
 ?>
 </div>

@@ -49,20 +49,7 @@ if (empty($gallery->session->viewedAlbum[$albumName]) &&
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
-#-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-                'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-
-if ($gallery->album->fields['returnto'] != 'no') {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-        $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-          $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
-}
-
 $breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["top"] = true;
-$breadcrumb["bottom"] = true;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -103,7 +90,7 @@ if ($gallery->album->fields["textcolor"]) {
 /* User wants to delete comments */
 list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
 if (!empty($comment_index)) {
-	$saveMsg = "";
+	$saveMsg = '';
 	/* First we reverse the index array, as we want to delete backwards */
 	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
 		$comment=$gallery->album->getComment($index, $com_index);
@@ -118,7 +105,7 @@ if (!empty($comment_index)) {
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
-			);
+        );
 		$gallery->album->deleteComment($index, $com_index);
 		$gallery->album->save($saveMsg);
 	}
@@ -126,66 +113,62 @@ if (!empty($comment_index)) {
 
 includeHtmlWrap("album.header");
 $adminbox["text"] = _("Comments for this Album");
-$adminbox["commands"] = "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
+$adminbox["commands"] = galleryLink(makeGalleryUrl($gallery->session->albumName), _("return to _album"), array(), '', true);
 $adminbox["bordercolor"] = $bordercolor;
 
-$navigator['fullWidth'] = '100';
-$navigator['widthUnits'] ='%';
-
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
+
+$breadcrumb["text"] = returnToPathArray($gallery->album, true);
 includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
-	echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
+    echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
 } else {
     $numPhotos = $gallery->album->numPhotos(1);
     $commentbox["bordercolor"] = $bordercolor;
     $i = 1;
     while($i <= $numPhotos) {
-	set_time_limit($gallery->app->timeLimit);
+        set_time_limit($gallery->app->timeLimit);
         $id = $gallery->album->getPhotoId($i);
         $index = $gallery->album->getPhotoIndex($id);
         if ($gallery->album->isAlbum($i)) {
-		$myAlbumName = $gallery->album->getAlbumName($i);
-		$myAlbum = new Album();
-		$myAlbum->load($myAlbumName);
-		if ( $myAlbum->lastCommentDate("no") != -1 && 
-			((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) || 
-			$gallery->user->isAdmin() || 
-			$gallery->user->isOwnerOfAlbum($gallery->album) || 
-			$gallery->user->isOwnerOfAlbum($myAlbum))) {
-			$embeddedAlbum = 1;
-			$myHighlightTag = $myAlbum->getHighlightTag();
-			includeLayout('commentboxtop.inc');
-			includeLayout('commentboxbottom.inc');
-	        }
-	}
-        elseif (!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||  
-		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($gallery->user, $i)) {
-		$comments = $gallery->album->numComments($i);
-		if($comments > 0) {
-			includeLayout('commentboxtop.inc');
-			for($j = 1; $j <= $comments; $j++) {
+            $myAlbumName = $gallery->album->getAlbumName($i);
+            $myAlbum = new Album();
+            $myAlbum->load($myAlbumName);
+            if ( $myAlbum->lastCommentDate("no") != -1 &&
+            ((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
+            $gallery->user->isAdmin() ||
+            $gallery->user->isOwnerOfAlbum($gallery->album) ||
+            $gallery->user->isOwnerOfAlbum($myAlbum))) {
+                $embeddedAlbum = 1;
+                $myHighlightTag = $myAlbum->getHighlightTag();
+                includeLayout('commentboxtop.inc');
+                includeLayout('commentboxbottom.inc');
+            }
+        }
+        elseif (!$gallery->album->isHidden($i) || 
+          $gallery->user->isAdmin() ||
+          $gallery->user->isOwnerOfAlbum($gallery->album) || 
+          $gallery->album->isItemOwner($gallery->user, $i)) {
+            $comments = $gallery->album->numComments($i);
+            if($comments > 0) {
+                includeLayout('commentboxtop.inc');
+                for($j = 1; $j <= $comments; $j++) {
                     $comment = $gallery->album->getComment($index, $j);
-		    includeLayout('commentbox.inc');
+                    includeLayout('commentbox.inc');
                 }
-		includeLayout('commentboxbottom.inc');
+                includeLayout('commentboxbottom.inc');
             }
         }
         $embeddedAlbum = 0;
         $i = getNextPhoto($i);
     }
 }
-$breadcrumb["top"] = true;
-$breadcrumb["bottom"] = true;
-includeLayout('navtablebegin.inc');
+
 includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
 
 echo languageSelector();
+
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
 includeHtmlWrap("general.footer");

@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -32,20 +32,10 @@ if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)
 	exit;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Rename Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Rename Album") ?></div>
-<div class="popup" align="center">
-<?php
+printPopupStart(gTranslate('core', "Rename Album"));
 
 if (!isset($useLoad)) {
-	$useLoad="";
+	$useLoad = '';
 }
 
 /* Read the album list */
@@ -92,7 +82,10 @@ if (!empty($newName)) {
 		}
 		$dismiss = 1;
 	} else {
-		echo gallery_error(_("There is already an album with that name!"));
+	    echo infoBox(array(array(
+    	    'type' => 'error',
+    	    'text' => gTranslate('core', "There is already an album with that name!")))
+	    );
 	}
 
 	// Dismiss and reload if requested
@@ -111,30 +104,27 @@ if (!empty($newName)) {
 }
 
 ?>
-<br>
 <?php echo _("What do you want to name this album?") ?>
 <br>
 <?php echo _("The name cannot contain any of the following characters") ?>:
-<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br>
-<p><?php echo _("Those characters will be ignored in your new album name.") ?></p>
+<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b>
+<br><?php echo _("Those characters will be ignored in your new album name.") ?>
 
-<br>
-<?php echo makeFormIntro("rename_album.php", 
-	array("name" => "theform"),
-	array("type" => "popup"));
+<?php echo makeFormIntro("rename_album.php",  array(), array("type" => "popup"));
 ?>
-<input type="text" name="newName" value="<?php echo $newName?>">
-<input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
-<input type="hidden" name="useLoad" value="<?php echo $useLoad?>">    
 <p>
-<input type="submit" name="rename" value="<?php echo _("Rename") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="text" name="newName" value="<?php echo $newName; ?>">
+<input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
+<input type="hidden" name="useLoad" value="<?php echo $useLoad; ?>">
+</p>
+<input type="submit" name="rename" value="<?php echo _("Rename") ?>" class="g-button" >
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
-<!--   
+<!--
 // position cursor in top form field
-document.theform.newName.focus();
+document.g1_form.newName.focus();
 //-->
 </script>
 </div>

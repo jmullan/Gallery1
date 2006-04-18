@@ -32,20 +32,10 @@ if (!$gallery->user->canReadAlbum($gallery->album)) {
 	return;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Photo Properties") ?></title>
-  <?php common_header(); ?>
-  <style> td { text-align: <?php echo langLeft() ?> } </style>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<?php
+echo printPopupStart(gTranslate('core',"Photo Properties"));
+
 if ($gallery->session->albumName && $index) {
 ?>
-<div class="popuphead"><?php echo _("Photo Properties") ?></div>
-<div class="popup" align="center">
 <span>
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 	<br>
@@ -130,13 +120,14 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 	echo gallery_error(_("no album / index specified"));
 }
 ?>
-<br><br>
 </div>
-<center>
+
+<div align="center">
 <form action="#">
-<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick="parent.close()" class="g-button">
 </form>
-</center>
+<br>
+</div>
 
 <?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
 </div>

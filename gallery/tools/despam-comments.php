@@ -42,40 +42,36 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
 <title><?php echo $gallery->app->galleryTitle ?></title>
-<?php 
+<?php
 common_header() ;
 ?>
 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php  
+<?php
 }
 includeHtmlWrap("gallery.header");
 $adminbox['text'] ='<span class="head">'. _("Find and remove comment spam") .'</span>';
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+$adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
+$adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
-$adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
 $breadcrumb['text'][] = languageSelector();
 
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
 ?>
-<div class="popup">
+<div class="g-content-popup">
 <table width="100%">
 <tr>
 <?php
-echo '<td style="vertical-align:top; white-space:nowrap; width:280px;">';
+echo '<td style="vertical-align:top;">';
 offerOptions();
 echo "</td>";
 
-$g1_mode=getRequestVar('g1_mode');
+$g1_mode = getRequestVar('g1_mode');
 
-echo '<td class="borderleft-popup">';
+echo '<td class="g-border-left" style="padding-left: 10px;">';
 switch($g1_mode) {
     case 'deleteComments':
         deleteComments();
@@ -229,7 +225,7 @@ function findBlacklistedComments() {
         }
         print("<input type=\"hidden\" name=\"g1_mode\" value=\"deleteComments\"/>");
         print "</table>";
-        printf("<input type=\"submit\" value=\"%s\"/>", _("Delete Checked Comments"));
+        printf("<input type=\"submit\" value=\"%s\" class=\"g-button\">", _("Delete Checked Comments"));
         print "</form>";
     }
 }
@@ -264,8 +260,8 @@ function editBlacklist() {
                 printf("<h3>%s</h3>", _("Error saving blacklist!"));
             } else {
                 printf("<h3>%s</h3>",
-                gTranslate('core', "Deleted %d entry from blacklist.", "Deleted %d entries from blacklist",
-                sizeof($removed)));
+                  gTranslate('core', "Deleted %d entry from blacklist.", "Deleted %d entries from blacklist",
+                  sizeof($removed)));
                 print "<ul>";
                 foreach (array_keys($removed) as $entry) {
                     printf("<li> %s </li>", $entry);
@@ -359,7 +355,7 @@ function viewBlacklist() {
         echo $blacklistTable->render();
 
         print "\n<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\">";
-        printf("\n<input type=\"submit\" value=\"%s\">", _("Update Blacklist"));
+        printf("\n<input type=\"submit\" value=\"%s\" class=\"g-button\">", _("Update Blacklist"));
         print "\n</form>";
     }
 }
@@ -376,7 +372,7 @@ function showAddBox() {
     print "<br><textarea rows=\"10\" cols=\"80\" name=\"newBlacklistEntries\"></textarea>";
     print "<br>";
     print "<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\">";
-    printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
+    printf("<input type=\"submit\" value=\"%s\" class=\"g-button\">", _("Update Blacklist"));
     print "</form>";
 }
 
@@ -387,12 +383,11 @@ function offerOptions() {
         "addBlacklistEntries" => _("Add blacklist entries")
     );
 
-    echo _("Options");
-    echo "\n<ol>";
+    echo "<b>". _("Options") ."</b>";
+    echo "\n<br><br>";
     foreach ($options as $key => $text) {
-        printf("\n\t<li><a href=\"%s\">%s</a></li>",
+        printf("\n\t<div class=\"g-adm-options\"><a href=\"%s\">%s</a></div>",
         makeGalleryUrl('tools/despam-comments.php', array('g1_mode' => $key)), $text);
     }
-    echo "\n</ol>";
 }
 ?>

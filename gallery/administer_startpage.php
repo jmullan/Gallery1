@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -54,20 +54,19 @@ $sortOptions = array(
     'creation_date' => _("By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
 );
 
-doctype();
-printPopupStart(_("Administer Startpage"));
+printPopupStart(_("Administer Startpage"), '', langLeft());
 
 if(empty($sort)) {
     echo "\n<table width=\"100%\">";
     foreach ($adminOptions as $option) {
 	echo "\n<tr>";
 	if (isset($option['url'])) {
-		$link = '<a class="admin" href="'. $option['url'] .'">'. $option['text'] .'</a>';
+		$link = '<a href="'. $option['url'] .'"><b>'. $option['text'] .'</b></a>';
 	} else {
 		$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
 	}
-	echo "\n<td class=\"adm_options\">$link</td>";
-	echo "\n<td class=\"adm_options\">". $option['longtext'] ."</td>";
+	echo "\n<td>$link</td>";
+	echo "\n<td>". $option['longtext'] ."</td>";
 	echo "\n</tr>";
     }
     echo "\n</table>";
@@ -94,10 +93,12 @@ elseif (empty($order)) {
     </select>
 </p>
 
+<div style="text-align:center">
 <input type="hidden" name="sort" value="1">
-<input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
-<input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick='parent.close()'>
+<input type="submit" name="confirm" value="<?php echo _("Sort") ?>" class="g-button">
+<input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
 </form>
+</div>
 <?php
 }
 else {
@@ -106,7 +107,7 @@ else {
     $albumDB->sortByField($fieldname, $order);
     dismissAndReload();
 ?>
-    <input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick='parent.close()'>
+    <input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
 <?php
 }
 ?>

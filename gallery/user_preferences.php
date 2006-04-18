@@ -118,8 +118,6 @@ $allowChange["admin"] = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
-doctype();
-
 printPopupStart(_("Change User Preferences"), _("Change User Preferences"), langLeft());
 
 if(isset($saveOK)) {  
@@ -141,8 +139,8 @@ include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <br>
 <div align="center">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-	<input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()">
+    <input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
+    <input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
 </div>
 </form>
 </div>

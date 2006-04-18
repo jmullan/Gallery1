@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,34 +24,25 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list ($reorder, $index, $newAlbum, $newIndex, $startPhoto, $endPhoto) = 
+list ($reorder, $index, $newAlbum, $newIndex, $startPhoto, $endPhoto) =
   getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex', 'startPhoto', 'endPhoto'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 $albumDB = new AlbumDB(FALSE); // read album database
 
 if ($gallery->album->isAlbum($index)) {
-	$title = !empty($reorder) ? _("Reorder Album") : _("Move Album");
+	$title = !empty($reorder) ? gTranslate('core',"Reorder Album") : gTranslate('core',"Move Album");
 } else {
-	$title = !empty($reorder) ? _("Reorder Photo") : _("Move Photo");
+	$title = !empty($reorder) ? gTranslate('core',"Reorder Photo") : gTranslate('core',"Move Photo");
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo $title ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo $title ?></div>
-<div class="popup" align="center">
-<?php
+printPopupStart($title);
+
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
 
@@ -63,12 +54,12 @@ if ($gallery->session->albumName && isset($index)) {
 	// we are moving from one album to another
 	if (isset($newAlbum)) {
 		if ($gallery->session->albumName == $newAlbum) {
-			echo gallery_error(_("You can't move photos into the album they already exist in."));
+			echo gallery_error(gTranslate('core',"You can't move photos into the album they already exist in."));
 			exit;
 		}
 		$postAlbum = $albumDB->getAlbumByName($newAlbum);
 		if (!$gallery->user->canWriteToAlbum($postAlbum)) {
-			printf(_("You do not have the required permissions to write to %s!"), $newAlbum);
+			printf(gTranslate('core',"You do not have the required permissions to write to %s!"), $newAlbum);
 			exit;
 		}
 		if ((isset($postAlbum->fields['name']) || $newAlbum == ".root") &&
@@ -135,7 +126,7 @@ if ($gallery->session->albumName && isset($index)) {
 				while ($startPhoto <= $endPhoto) {
 					if (!$gallery->album->isAlbum($index)) {
 						set_time_limit($gallery->app->timeLimit);
-						echo _("Moving photo #").$startPhoto."<br>";
+						echo gTranslate('core',"Moving photo #").$startPhoto."<br>";
 						my_flush();
 						$mydir = $gallery->album->getAlbumDir();
 						$myphoto = $gallery->album->getPhoto($index);
@@ -149,7 +140,7 @@ if ($gallery->session->albumName && isset($index)) {
 							$pathToThumb="$mydir/$myname.thumb.$mytype";
 						} else {
 							$pathToThumb="";
-							echo "- ". _("Creating Thumbnail") ."<br>";
+							echo "- ". gTranslate('core',"Creating Thumbnail") ."<br>";
 							my_flush();
 						}
 						$photo = $gallery->album->getPhoto($index);
@@ -164,7 +155,7 @@ if ($gallery->session->albumName && isset($index)) {
 						  '', 0, 0, 0, 0,
 						  false
 						);
-						
+
 						if (!$err) {
 							$newPhotoIndex = $postAlbum->getAddToBeginning() ? 1 : $postAlbum->numPhotos(1);
 
@@ -190,7 +181,7 @@ if ($gallery->session->albumName && isset($index)) {
 								if (!$gallery->album->hasHighlight()) {
 									$resetHighlight = 1;
 									$gallery->album->deletePhoto($index,$resetHighlight);
-									echo _("- Creating New Album Highlight") ."<br>";
+									echo gTranslate('core',"- Creating New Album Highlight") ."<br>";
 								} else {
 									$gallery->album->deletePhoto($index);
 								}
@@ -209,7 +200,7 @@ if ($gallery->session->albumName && isset($index)) {
 							return;
 						}
 					} else {
-						echo sprintf(_("Skipping Album #%d"), $startPhoto)."<br>";
+						echo sprintf(gTranslate('core',"Skipping Album #%d"), $startPhoto)."<br>";
 						 // we hit an album... don't move it... just increment the index
 						$index++;
 					}
@@ -236,16 +227,15 @@ if ($gallery->session->albumName && isset($index)) {
 		echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
 		if ($reorder ) { // Reorder, intra-album move
 		if ($gallery->album->isAlbum($index)) {
-			echo _("Reorder this album within the album:") ."<br>";
+			echo gTranslate('core',"Reorder this album within the album:") ."<br>";
 		} else {
-			echo _("Reorder this photo within the album:") ."<br>";
+			echo gTranslate('core',"Reorder this photo within the album:") ."<br>";
 		}
 ?>
-<i>(<?php echo sprintf(_("Current Location is %s"), $index) ?>)</i>
-<p>
-<p>
-<?php echo makeFormIntro("move_photo.php", array("name" => "theform")); ?>
-<?php echo _("Select the new location:") ?> 
+<i>(<?php echo sprintf(gTranslate('core',"Current Location is %s"), $index) ?>)</i>
+
+<?php echo makeFormIntro("move_photo.php", array("name" => "g1_form")); ?>
+<?php echo gTranslate('core',"Select the new location:") ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
 <select name="newIndex">
 <?php
@@ -259,16 +249,16 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 }
 ?>
 </select>
-<p>
-<input type="submit" value=<?php echo '"' . $reorder ? _('Reorder it!') : _('Move it!') . '"' ?>>
-<input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<br><br>
+<input type="submit" value="<?php echo '"' . $reorder ? gTranslate('core','Reorder it!') : gTranslate('core','Move it!') . '"' ?>" class="g-button">
+<input type="button" name="close" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 
 <?php
 // Don't reorder, trans-album move
 		} else if (!$reorder) {
 			if ($gallery->album->isAlbum($index)) {
-				echo _("Move the album to different position in your gallery:");
+				echo gTranslate('core',"Move the album to different position in your gallery:");
 				echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form"));
 ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
@@ -279,10 +269,10 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </select>
 <?php
 			} else {
-				echo _("Move a range of photos to a new album:");
+				echo gTranslate('core',"Move a range of photos to a new album:");
 ?><br>
-<i>(<?php echo _("To move just one photo, make First and Last the same.") ?>)</i><br>
-<i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
+<i>(<?php echo gTranslate('core',"To move just one photo, make First and Last the same.") ?>)</i><br>
+<i>(<?php echo gTranslate('core',"Nested albums in this range will be ignored.") ?>)</i>
 <?php echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form")); ?>
 <input type="hidden" name="index" value="<?php echo $index ?>">
 
@@ -291,9 +281,9 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 ?>
 <table>
 <tr>
-<td align="center"><b><?php echo _("First") ?></b></td>
-<td align="center"><b><?php echo _("Last") ?></b></td>
-<td align="center"><b><?php echo _("New Album") ?></b></td>
+<td align="center"><b><?php echo gTranslate('core',"First") ?></b></td>
+<td align="center"><b><?php echo gTranslate('core',"Last") ?></b></td>
+<td align="center"><b><?php echo gTranslate('core',"New Album") ?></b></td>
 </tr>
 <tr>
 <td align="center">
@@ -325,7 +315,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <td>
 <select name="newAlbum">
 <?php
-	$uptodate = printAlbumOptionList(0,0,1); 
+	$uptodate = printAlbumOptionList(0,0,1);
 ?>
 </select>
 </td>
@@ -336,35 +326,36 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 if (sizeof($gallery->album->fields["votes"])> 0) {
 	print "<br>";
        	if ($gallery->album->fields["poll_type"] == "rank") {
-	       	echo "<font color=red>". _("Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
+	       	echo "<font color=red>". gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
       	} else {
-	       	echo "<font color=red>". sprintf(_("Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</font>";
+	       	echo "<font color=red>". sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</font>";
        	}
+	echo "\n<br>";
 }
 
 if (!$uptodate) {
-	echo '<span class="error">' . sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
-	echo '<a href="' . makeGalleryUrl("upgrade_album.php") . '"><br>' . _("Upgrade now") . '</a>';
+	echo '<span class="error">' . sprintf(gTranslate('core',"WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
+	echo '<a href="' . makeGalleryUrl("upgrade_album.php") . '"><br>' . gTranslate('core',"Upgrade now") . '</a>';
 }
 ?>
-<p>
-<input type="submit" value="<?php echo $title ?>">
-<input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<br>
+<input type="submit" value="<?php echo $title ?>" class="g-button">
+<input type="button" name="close" value="<?php echo gTranslate('core',"Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
-} // end reorder    
-}
+		} // end reorder
+	}
 } else {
-	echo gallery_error(_("no album / index specified"));
+    echo gallery_error(gTranslate('core',"no album / index specified"));
 }
 ?>
 
 <script language="javascript1.2" type="text/JavaScript">
-<!--   
+<!--
 // position cursor in top form field
-<?php 
+<?php
 if ($reorder) {
-	echo 'document.theform.newIndex.focus()';
+	echo 'document.g1_form.newIndex.focus()';
 } else {
 	echo 'document.move_to_album_form.newAlbum.focus()';
 } ?>

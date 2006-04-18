@@ -69,7 +69,8 @@ $i = 0;
 do { 
 	$success = doPhoto();
 	$i++;
-} while (empty($success) && $i < $gallery->app->blockRandomAttempts);
+}
+while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
 	echo _("No photo chosen.");

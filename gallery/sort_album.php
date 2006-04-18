@@ -31,16 +31,8 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Sort Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+printPopupStart(gTranslate('core', "Sort Album"));
 
-<?php
 if ($gallery->session->albumName) {
 	if (getRequestVar('confirm')) {
 		if (!strcmp($sort,"random")) {
@@ -56,8 +48,7 @@ if ($gallery->session->albumName) {
 		}
 	} else {
 ?>
-<div class="popuphead"><?php echo _("Sort Album"); ?></div>
-<div class="popup" align="center">
+
 <p>
 <?php echo _("Select your sorting criteria for this album below") ?>
 <br>
@@ -117,8 +108,8 @@ echo makeFormIntro("sort_album.php");
   </tr>
 </table>
 <br>
-<input type="submit" name="confirm" value="<?php echo _("Sort") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="confirm" value="<?php echo _("Sort") ?>" class="g-button">
+<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
 	}

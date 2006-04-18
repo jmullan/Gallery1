@@ -497,7 +497,7 @@ if (empty($useCache)) {
                                 "ratingcount" => $ratingCount,
                                 "random" => $randomNum );
                             debugMessage(sprintf (_("Album: %s ; Index: %d ; Votes: %d ; Views: %d; Date: %s; Capture: %s; Comment Date: %s; Rating: %s; Rating count: %d; Random: %d"). "<br>",
-                                $statsAlbum->fields['name'], $j, $votes, $views, $uploaddate, $captureDate, $commentDate, $rating, $ratingCount, $randomNum) 
+                                $statsAlbum->fields['name'], $j, $votes, $views, $uploaddate, $captureDate, $commentDate, $rating, $ratingCount, $randomNum)
 				, __FILE__, __LINE__, 1);
                         }
                     }
@@ -598,9 +598,9 @@ else {
 
 $adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
-    $adminbox["commands"] = '[<a href="'. makeGalleryURL('stats-wizard.php') .'">'. _("Back to stats-wizard") .'</a>] ';
+    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("Back to stats-_wizard"), array(), '', true);
 }
-$adminbox["commands"] .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>]';
+$adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
 
 if (!empty($gallery->app->stats_foruser)) {
@@ -619,13 +619,10 @@ $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
 
 echo "<!-- Begin top nav -->";
 includeLayout('navigator.inc');
-includeLayout('navtableend.inc');
 echo languageSelector();
 echo "<!-- End top nav -->";
 
@@ -733,9 +730,7 @@ echo "<br>";
 
 // <!-- bottom nav -->
 
-includeLayout('navtablebegin.inc');
 includeLayout('navigator.inc');
-includeLayout('navtableend.inc');
 
 echo languageSelector();
 includeHtmlWrap("stats.footer");
@@ -962,11 +957,11 @@ function getRatingAverage() {
 }
 
 // Show the add comment link
-function showAddCommentLink( $photoId ) {
+function showAddCommentLink($photoId) {
     global $statsAlbum;
 
     $url = "add_comment.php?set_albumName={$statsAlbum->fields['name']}&id=$photoId";
-    return '<span class="fineprint">' . popup_link('[' . _("add comment") . ']', $url, 0) . "</span>";
+    return popup_link(gTranslate('core',"add comment"), $url, 0, false, 500, 500, 'g-small', '', '', false);
 }
 
 // Show the add vote link
@@ -976,13 +971,9 @@ function showAddVoteLink( $photoId, $page ) {
     $urlargs['set_albumName'] = $statsAlbum->fields['name'];
     $urlargs['id'] = $photoId;
     $urlargs['url'] = urlencode(makeStatsUrl( $page ));
+    $url = makeGalleryUrl("vote.php", $urlargs);
 
-    $addVoteLink = '<span class="fineprint">';
-    $addVoteLink .= '<a href="'. makeGalleryUrl("vote.php", $urlargs) . '">';
-    $addVoteLink .= "[". _("add vote") ."]";
-    $addVoteLink .= "</a></span>";
-
-    return $addVoteLink;
+    return galleryLink($url, gTranslate('core', "add vote"), array('class' => 'g-small'));
 }
 
 
@@ -1005,15 +996,13 @@ function showAddVoteAddCommentLinks($photoId, $page) {
     $text = '';
 
     if ($showAddComment || $showAddVote) {
-        $text = '&nbsp;<span class="fineprint">';
         if ($showAddComment) {
             $text .= showAddCommentLink($photoId);
         }
        if ($showAddVote) {
-            $text .= "&nbsp;";
+            $text .= (empty($text)) ? '' : '&nbsp;';
             $text .= showAddVoteLink($photoId, $page);
         }
-        $text .= '</span>';
     }
     return $text;
 }
@@ -1081,13 +1070,13 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
             $owner_var = '<br>' . sprintf(_("Owned by: %s"), showOwner($statsAlbum->getOwner()));
         }
 
-        $html .= "\n    " . '<div class="fineprint">'. $albumLink . $owner_var . '</div>';
+        $html .= "\n    " . '<div class="g-small">'. $albumLink . $owner_var . '</div>';
     }
 
     if ($showDescription) {
         $description = $statsAlbum->getExtraField($photoIndex, "Description");
         if ($description != "") {
-            $html .= "\n    ". '<div class="fineprint" style="margin-top:10px;">'. $description .'</div>';
+            $html .= "\n    ". '<div class="g-small" style="margin-top:10px;">'. $description .'</div>';
         }
     }
 
@@ -1099,10 +1088,9 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
     $innerStatsTable = new galleryTable();
     $innerStatsTable->setAttrs(array(
-        'border' => 0,
         'cellspacing' => 0,
         'cellpadding' => 0,
-        'class' => 'fineprint'));
+        'class' => 'g-small'));
 
     $innerStatsTable->setColumnCount(2);
 
@@ -1115,7 +1103,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
         $innerStatsTable->addElement(array(
             'content' => $captureDate,
-            'cellArgs' => array('class' => 'fineprint')));
+            'cellArgs' => array('class' => 'g-small')));
     }
 
     if ($showUploadDate ) {
@@ -1129,7 +1117,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
             $innerStatsTable->addElement(array(
                 'content' => $time,
-                'cellArgs' => array('class' => 'fineprint')));
+                'cellArgs' => array('class' => 'g-small')));
         }
     }
 
@@ -1143,7 +1131,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
         $innerStatsTable->addElement(array(
             'content' => gTranslate('core', "Once", "%d times" , $statsAlbum->getItemClicks($photoIndex), _("Never viewed")),
-            'cellArgs' => array('class' => 'fineprint')));
+            'cellArgs' => array('class' => 'g-small')));
     }
 
     if (!empty($showVotes )) {
@@ -1153,7 +1141,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
         $innerStatsTable->addElement(array(
             'content' => $statsAlbum->getItemSVotes($photoIndex),
-            'cellArgs' => array('class' => 'fineprint')));
+            'cellArgs' => array('class' => 'g-small')));
     }
 
     if (!empty($showRatings)) {
@@ -1179,7 +1167,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
         $innerStatsTable->addElement(array(
             'content' => $photoRate .' | '. $photoRateCounts,
-            'cellArgs' => array('class' => 'fineprint')));
+            'cellArgs' => array('class' => 'g-small')));
     }
 
     $html .= $innerStatsTable->render(1);

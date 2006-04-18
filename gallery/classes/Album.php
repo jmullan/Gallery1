@@ -1488,7 +1488,7 @@ class Album {
         if ($photo) {
             return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
         } else {
-            return '<span class="title">'. gTranslate('core', "No highlight!") .'</span>';
+            return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
     }
 
@@ -1498,7 +1498,7 @@ class Album {
             $photo = $this->getPhoto($index);
             return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs, $alttext);
         } else {
-            return '<span class="title">'. gTranslate('core', "No highlight!") .'</span>';
+            return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
     }
 
@@ -2521,29 +2521,23 @@ class Album {
 
     function getCaptionName($index) {
         global $gallery;
+
         if (!$this->getItemOwnerDisplay()) {
             return '';
         }
+
         $nobody = $gallery->userDB->getNobody();
         $nobodyUid = $nobody->getUid();
         $everybody = $gallery->userDB->getEverybody();
         $everybodyUid = $everybody->getUid();
 
-        $user = $gallery->userDB->getUserByUid($this->getItemOwner($index));
+        $owner = $gallery->userDB->getUserByUid($this->getItemOwner($index));
 
-        if ( !$user) {
-            return '';
-        }
-        if ( !strcmp($user->getUid(), $nobodyUid) || !strcmp($user->getUid(), $everybodyUid) ) {
+        if ( !$owner) {
             return '';
         }
 
-        $fullName = $user->getFullname();
-        if (empty($fullName)) {
-            return ' - '. $user->getUsername();
-        } else {
-            return ' - '. $user->getFullname() .' ('. $user->getUsername() .')';
-        }
+	return '('. showOwner($owner) .')';
     }
 
     /**

@@ -9,9 +9,9 @@ function insertSectionToggle() {
 
                 this.toggle = function(id) {
                         document.getElementById(this.oldtab).style.display 	= 'none';
-                        document.getElementById('tab_' + this.oldtab).className = 'tab';
+                        document.getElementById('tab_' + this.oldtab).className = '';
                         document.getElementById(id).style.display 		= 'inline';
-                        document.getElementById('tab_' + id).className 		= 'tab-hi';
+                        document.getElementById('tab_' + id).className 		= 'g-activeTab';
 
                         this.oldtab=id;
 			document.getElementById('initialtab').value = id;

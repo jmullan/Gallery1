@@ -756,9 +756,8 @@ class AlbumItem {
 
         if (is_object($this->highlightImage)) {
             if (!isset($alttext)) {
-                $alltext=$this->getAlttext();
+                $alltext = $this->getAlttext();
             }
-
             return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
         } else {
             return "<i>". _("No highlight") ."</i>";

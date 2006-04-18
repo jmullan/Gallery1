@@ -20,15 +20,52 @@
  * $Id$
  */
 ?>
+<?php
+
+$configTestStatus = array(
+	0 => array(
+		'image' => gImage('green_trafficlight.gif', _("Success")),
+		'text' => _("Success"),
+	       	'border' => 'border: 1px solid #b2ffb2',
+		'type' => 'success'
+	),
+	5 => array(
+		'image' => gImage('yellow_trafficlight.gif', _("Warning, but optional")),
+		'text' => _("Warning, but optional"),
+		'border' => 'border: 2px solid #ffff98',
+		'type' => 'warning'
+	),
+	10 => array(
+		'image' => gImage('yellow_red_trafficlight.gif', _("Serious warning, but optional")),
+		'text' => _("Serious warning, but optional"),
+		'border' => 'border: 2px solid #ff9898',
+		'type' => 'error'
+	),
+	51 => array(
+		'image' => gImage('red_trafficlight.gif', _("Serious warning, no go !")),
+		'text' => _("Serious warning, no go !"),
+		'border' => 'border: 4px solid #ec000a',
+		'type' => 'nogo'
+	),
+	100 => array(
+		'image' => gImage('red_trafficlight.gif', _("Failure")),
+		'text' => _("Failure"),
+		'border' => 'border: 4px solid #ec000a',
+		'type' => 'nogo'
+	)
+);
+?>
 
 <script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js'); ?>"></script>
 
 <input type="hidden" name="this_page" value="check">
 <input type="hidden" name="next_page" value="constants">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),1); ?></div>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),1); ?></div>
+</div>
 
-<div class="sitedesc">
+<div class="g-sitedesc">
 <?php 
 	echo _("This is the Gallery system check page.") . "  ";
 	echo _("This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ;
@@ -48,39 +85,11 @@
 			$diagnostics_page, $help_page);
 	}
 
-echo "</div>";
-echo "<br>";
-
-$configTestStatus = array(
-	0 => array(
-		'image' => gImage('green_trafficlight.gif', _("Success")),
-		'text' => _("Success"),
-	       	'border' => 'border: 1px solid #b2ffb2'
-	),
-	5 => array(
-		'image' => gImage('yellow_trafficlight.gif', _("Warning, but optional")),
-		'text' => _("Warning, but optional"),
-		'border' => 'border: 2px solid #ffff98'
-	),
-	10 => array(
-		'image' => gImage('yellow_red_trafficlight.gif', _("Serious warning, but optional")),
-		'text' => _("Serious warning, but optional"),
-		'border' => 'border: 2px solid #ff9898',
-	),
-	51 => array(
-		'image' => gImage('red_trafficlight.gif', _("Serious warning, no go !")),
-		'text' => _("Serious warning, no go !"),
-		'border' => 'border: 4px solid #ec000a'
-	),
-	100 => array(
-		'image' => gImage('red_trafficlight.gif', _("Failure")),
-		'text' => _("Failure"),
-		'border' => 'border: 4px solid #ec000a'
-	)
-);
+echo "\n</div>";
+echo "\n<br>";
 
 $warning = 0;
-echo '<table class="inner" width="80%" cellspacing="0" align="center">';
+echo "\n\t". '<table class="g-double-bottom-border-spacer" width="80%" cellspacing="0" align="center">';
 foreach ($checklist as $short => $check) {
     if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 
@@ -94,39 +103,39 @@ foreach ($checklist as $short => $check) {
     // new Line //
     echo "\n<tr style=\"margin-top: 2px\">";
     // shortdesc
-    echo "\n\t<td class=\"desc\" width=\"40%\" style=\"font-weight: bold; vertical-align: top; border-bottom: 2px solid #ececec;\">". $check['prompt'];
+    echo "\n\t<td class=\"g-desc-cell\" width=\"35%\" style=\"font-weight: bold; vertical-align: top; border-bottom: 2px solid #ececec;\">". $check['prompt'];
     echo "\n\t\t". '<br><div style="font-weight: normal; display:none;" id="toogleFrame_'. $short .'">'. $check["desc"] .'</div>';
     echo "\n</td>"; 
     
     // toogle button
-    echo "\n\t<td class=\"desc\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
+    echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
         "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
         gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
         '</a>';
     echo "\n\t</td>";
     
     // traffic light
-    echo "\n\t<td class=\"desc\" style=\"border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">";
+    echo "\n\t<td class=\"g-desc-cell\" style=\"border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">";
     echo $configTestStatus[$status]['image'];
     echo "\n\t</td>";
     
     // result
-    echo "\n\t<td class=\"desc\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
-    echo "\n\t<div style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">';
+    echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
+    $message = '';
     foreach ($success as $key) {
-		if ($key != '') {
-		    echo $key;
-		}
+	if ($key != '') {
+	    $message .= $key;
+	}
     }
-	
-	$openBasedir = ini_get('open_basedir');
-	foreach ($fail as $key => $val) {
+
+    $openBasedir = ini_get('open_basedir');
+    foreach ($fail as $key => $val) {
 	    if (isset($check['optional']) && $check['optional'] == 1) {
 	        if (isset($check["serious"]) && $check["serious"] == 1) {
 	            $serious_warning = true;
 	        }
 	        if (isset($check) && isset($check[$key])) {
-	            echo "\n\t\t\t". $check[$key];
+		    $message .= $check[$key];
 	        }
 	        $warning++;
 	    } else {
@@ -135,48 +144,53 @@ foreach ($checklist as $short => $check) {
 	        }
 
 	        if (isset($check) && isset($check[$key])) {
-	            echo "\n\t\t\t". $check[$key];
+		    $message .= $check[$key];
 	        }
 	        $error = 1;
 	    }
 
 	    if (isset($check["open-basedir-note"]) && !empty($openBasedir)) {
-	        print '<p>'. $check["open-basedir-note"] . '</p>';
+		    $message .= '<p>'. $check["open-basedir-note"] . '</p>';
 	    }
 
 	    if (is_array($val)) {
 	        foreach ($val as $msg) {
 	            if ($val) {
-	                echo $msg;
+		        $message .= $msg;
 	            }
 	        }
 	    }
 	    else if (is_string($val)) {
-	        echo $val;
+		$message .= $val;
 	    }
-	}
+    }
 
-	// Nothing failed, just warnings
-	if (isset($warn) && !empty($warn)) {
-	    foreach ($warn as $key => $val) {
-	        if (isset($check[$key])) {
-	            echo "\t\t\t". $check[$key];
-	        } else {
-	            echo "\n\t\t\t". $val;
-	        }
-	        $warning++;
+    // Nothing failed, just warnings
+   if (isset($warn) && !empty($warn)) {
+	foreach ($warn as $key => $val) {
+	    if (isset($check[$key])) {
+		$message .= $check[$key];
 	    }
+	    else {
+ 		$message .= $val;
+	    }
+	    $warning++;
 	}
+    }
 
+    echo infoBox(array(array(
+	'type' => $configTestStatus[$status]['type'],
+	'text' => $message)
+	), '', false
+    );
+    echo "</td>"; 
 	
-    echo "\n</div></td>"; 
-	
-	echo "\n</tr>";
+    echo "\n</tr>";
 }
 echo "\n</table>";
 
 echo "\n<table width=\"100%\">";
-echo "\n<tr><td>";
+echo "\n<tr><td width=\"30%\">";
 
 echo "\n<table>";
 echo "\n<tr><td colspan=\"2\" align=\"left\">". _("Legend:") . '</td></tr>';
@@ -188,27 +202,36 @@ echo "\n</table>";
 
 echo "\n</td>";
 echo "\n<td align=\"center\">";
-	if (isset($error)) {
-		echo '<p class="error" id="bottom">';
-		echo _("There are errors in your configuration that will prevent Gallery from functioning properly.");
-		echo '<br>';
-		echo _("You must fix them before you can continue.");
-	} else {
-		if ($warning > 0) {
-			if (isset($serious_warning)) {
-				echo '<p class="error" id="bottom">';
-				echo _("Your installation has <b>serious warnings</b>!<br>Continue at your own risk...");
-			} else {
-				echo '<p class="warning" id="bottom">';
-				echo _("Your installation has warnings, but this is usually OK.  Keep going!");
-			}
-		} else {
-			echo '<p class="success" id="bottom">';
-			echo _("Your installation passed with flying colors!  Go go go!");
-		}
-		echo '</p><p>';
-		echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Next Step") . ' ->">';
-		echo '</p>';
+if (isset($error)) {
+    echo infoBox(array(array(
+	'type' => 'error',
+        'text' => _("There are errors in your configuration that will prevent Gallery from functioning properly.") .
+                  '<br>'.
+		  _("You must fix them before you can continue.")
+    )));
+}
+else {
+    if ($warning > 0) {
+	if (isset($serious_warning)) {
+	   echo infoBox(array(array(
+		'type' => 'error',
+                'text' => _("Your installation has <b>serious warnings</b>!<br>Continue at your own risk...")
+	    )));
+	}
+	else {
+	    echo infoBox(array(array(
+		'type' => 'warning',
+		'text' =>  _("Your installation has warnings, but this is usually OK.  Keep going!")
+	    )));
+	}
+    }
+    else {
+	echo infoBox(array(array(
+	    'type' => 'success',
+	    'text' =>  ("Your installation passed with flying colors!  Go go go!")
+	)));
+    }
+    echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Next Step") . ' ->" class="g-button">';
 }
 ?>
 </td></tr></table>

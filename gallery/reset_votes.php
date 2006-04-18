@@ -38,8 +38,8 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->is
 	exit;
 }
 
-doctype();
-echo "\n<html>";
+printPopupStart(_("Reset Voting"));
+
 if (!empty($confirm)) {
 	$gallery->album->fields["votes"]=array();
 	$gallery->album->save(array(i18n("All votes removed")));
@@ -48,22 +48,16 @@ if (!empty($confirm)) {
 }
 ?>
 
-<head>
-  <title><?php echo _("Reset Voting") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Reset Voting") ?></div>
-<div class="popup" align="center">
 <p>
-<?php echo sprintf(_("Do you really want to remove all votes in %s?"), "<b>{$gallery->album->fields['title']}</b>") ?>
+<?php echo sprintf(_("Do you really want to remove all votes from album <b>%s</b>?"), $gallery->album->fields['title']) ?>
 </p>
 
 <?php echo makeFormIntro("reset_votes.php"); ?>
-<input type=submit name=confirm value="<?php echo _("Remove Votes") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type="submit" name="confirm" value="<?php echo _("Remove Votes") ?>" class="g-button">
+<input type="submit" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
-<?php print gallery_validation_link("reset_votes.php"); ?>
 </div>
+
+<?php print gallery_validation_link("reset_votes.php"); ?>
 </body>
 </html>

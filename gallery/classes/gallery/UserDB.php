@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -27,12 +27,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 	var $everybody;
 	var $loggedIn;
 	var $version;
-	
+
 	function Gallery_UserDB() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
 
-		// assuming revision 4 ensures that if the user_version is 
+		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes
 		// that we perform the necessary upgrade.
 		$this->version = 4;
@@ -58,7 +58,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				fwrite($fd, "Order deny,allow\nDeny from all\n");
 				fclose($fd);
 			} else {
-				echo gallery_error(sprintf(_("The folder folder which contain your userinformation (%s) is not writable."), 
+				echo gallery_error(sprintf(_("The folder folder which contains your user information (%s) is not writable for the webserver."),
 								$userDir));
 				exit;
 			}
@@ -68,7 +68,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (fs_file_exists("$userDir/userdb.dat") && is_writeable("$userDir/userdb.dat")) {
 			$tmp = getFile("$userDir/userdb.dat");
 
-			/* 
+			/*
 			 * We moved from class UserDB.php to class Gallery_UserDB.php
 			 * in v1.2.  If we're upgrading from an old version, just ignore
 			 * the old cache file (it'll get rebuilt automatically).
@@ -146,7 +146,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		} else {
 			return $user;
 		}
-		
+
 	}
 
 	function getUserByUid($uid, $tryOldFormat=false) {
@@ -240,7 +240,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function getUidList() {
 		global $gallery;
-		
+
 		$uidList = array();
 		if ($fd = fs_opendir($gallery->app->userDir)) {
 			while ($file = readdir($fd)) {
@@ -258,7 +258,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
 				    $tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
 				}
-				
+
 				$user = unserialize($tmp);
 				if (!strcasecmp(get_class($user), "gallery_user")) {
 					array_push($uidList, $user->uid);
@@ -368,7 +368,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return $success;
 	}
 
-	function CreateUser($uname, $email, $new_password, 
+	function CreateUser($uname, $email, $new_password,
 			$fullname, $canCreate, $language, $log) {
 		global $gErrors;
 	       	$errorCount=0;
@@ -395,7 +395,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	$tmpUser->log($log);
 		       	$tmpUser->save();
 		       	return $tmpUser;
-	       	} else { 
+	       	} else {
 			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
 		       	foreach ($gErrors as $key_var => $value_var) {
 			       	echo "\n<br>". gallery_error($gErrors[$key_var]);

@@ -85,11 +85,11 @@ switch ($cmd) {
 						'return' => $return,
 						'parentName' => $parentName));
 ?>
-		<br>
-		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("Yes"); ?>
-		<input type="radio" name="rebuild_type" value="single" checked><?php echo _("No"); ?>
-		<br><br>
-		<input type="submit" value="<?php echo _("Start") ?>"><br><br>
+		<p>
+		<input type="radio" name="rebuild_type" value="recursive"> <?php echo _("Yes"); ?>
+		<input type="radio" name="rebuild_type" value="single" checked> <?php echo _("No"); ?>
+		</p>
+		<input type="submit" value="<?php echo _("Start") ?>" class="g-button">
 	</form>
 <?php
 			}
@@ -258,9 +258,9 @@ switch ($cmd) {
 	<div align="center">
 	<form>
 <?php if (isset($backUrl)) :?>
-		<input type="button" value="<?php echo _("Dismiss") ?>" onclick="document.location='<?php echo $backUrl; ?>'">
+		<input type="button" value="<?php echo _("Close window") ?>" onclick="document.location='<?php echo $backUrl; ?>'" class="g-button">
 <?php else : ?>
-		<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()">
+		<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 <?php endif ?>
 	</form>
 	</div>

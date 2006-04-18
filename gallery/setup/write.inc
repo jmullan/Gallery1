@@ -21,15 +21,13 @@
  */
 ?>
 <?php
-    /**
-     * @package setup
-     */
-?>
-<?php
-
-/*
-** We assume setup/init.php was loaded !
+/**
+  * @package setup
 */
+
+/**
+ * We assume setup/init.php was loaded !
+ */
 
 require_once(GALLERY_BASE . '/classes/User.php');
 require_once(GALLERY_BASE . '/classes/gallery/User.php');
@@ -184,9 +182,11 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 
 <title><?php echo _("Success!") ?></title>
 <center>
-<div style="width:60%; text-align:center">
-	<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
+<div class="g-header" text-align:center">
+    <span class="g-pagetitle"><?php echo _("Your configuration has been successfully saved!") ?></span>
+</div>
 
+<div class="g-sitedesc">
 <?php
 if (getOS() != OS_WINDOWS) {
 	if (!empty($message))
@@ -206,31 +206,27 @@ if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 			. '</span>' ;
 }
 if (isset($message)) {
-	echo '<p class="sitedesc">';
-	echo "\n\t$message";
-	echo "\n</p>";
+    echo "\n\t<p>$message</p>";
 }
 ?>
-</div>
 
-<p style="width:80%; text-align:center">
+<p class="g-sitedesc" style="width:80%; text-align:center">
 <?php 
 	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
 	echo _("It will save your data so you won't have to enter it all again!");
 	echo '<br>';
-	echo '<span class="emphasis">';
+	echo '<b>';
 	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
 		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
 	       Gallery());
 ?>
-	</span>
-	<p>
-
-	<font size=+2><a href="../albums.php"><?php echo _("Enter the Gallery") ?></a></font>
-
-	<p><img src="../images/gallery-tag.png"></p>
+	</b>
 </div>
+<p style="font-size: 125%"><a href="../albums.php"><?php echo _("Enter the Gallery") ?></a></p>
+
+<p><img src="../images/gallery-tag.png"></p>
+
 </body>
 </html>
 

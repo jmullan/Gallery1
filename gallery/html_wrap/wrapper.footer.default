@@ -67,20 +67,24 @@ if (isDebugging()) {
 		$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
 		
 		switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
-			case 'phpnuke':
-			break;
-			case 'postnuke':
-				$infoText .= ' '. _PN_VERSION_NUM;
-			break;
-			case 'cpgnuke':
-			break;
-			case 'phpBB2':
-			break;
-			case 'GeekLog':
-			break;
+		    case 'phpnuke':
+		        break;
+		    case 'postnuke':
+		        $infoText .= ' '. _PN_VERSION_NUM;
+		        break;
+		    case 'cpgnuke':
+		        break;
+		    case 'phpBB2':
+		        break;
+		    case 'GeekLog':
+		        break;
 		}
 	}
 	
-    echo infoLine($infoText, 'error');
+    echo infoBox(array(array('text' => $infoText, 'type' => 'information')));
 }
+
+// End of g-main
+echo "\n</div>";
+
 ?>

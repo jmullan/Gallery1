@@ -8,10 +8,10 @@ if(!$embeddedAlbum == 1)
         </tr>
         </table>
 
-	<input type="button" onClick="javascript:<?php echo popup($url) ?>" value="<?php echo _("add comment") ?>">
+	<input type="button" onClick="javascript:<?php echo popup($url) ?>" value="<?php echo _("add comment") ?>" class="g-button">
 	<?php
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-	echo '<input type="submit" value="'. _("Delete marked comments") .'">';
+	echo '<input type="submit" value="'. _("Delete marked comments") .'" class="g-button">';
 	}
 	?>
 	</form>

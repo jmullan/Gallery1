@@ -50,8 +50,8 @@ if (isset($gallery->app->watermarkDir)) {
    includeLayout('watermarkform.inc');
 }
 ?>
-<p align="center">
-<input type=submit value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</p>
+<div align="center">
+<input type=submit value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">
+<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()' class="g-button">
+</div>
 </form>

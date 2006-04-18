@@ -207,18 +207,14 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } 
     includeHtmlWrap("gallery.header");
     $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
+    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
-    $adminbox["commands"] = $adminCommands;
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
 
-    includeLayout('navtablebegin.inc');
     includeLayout('adminbox.inc');
-    includeLayout('navtablemiddle.inc');
     includeLayout('breadcrumb.inc');
-    includeLayout('navtableend.inc');
 
 echo '<div class="popup">';
 if (empty($action)) { 

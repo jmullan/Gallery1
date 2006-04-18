@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -35,7 +35,7 @@ list($wmSelect) = getRequestVar(array('wmSelect'));
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -52,7 +52,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Processing and Saving Photos") ?></title>
+  <title><?php echo gTranslate('core', "Processing and Saving Photos") ?></title>
   <?php common_header(); ?>
 
 </head>
@@ -63,7 +63,7 @@ $image_tags = array();
 $info_tags = array();
 if (!empty($urls)) {
 ?>
-<div class="popuphead"><?php echo _("Fetching Urls...") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Fetching Urls...") ?></div>
 <div class="popup" align="center">
 <?php
 	/* Process all urls first.
@@ -80,7 +80,7 @@ if (!empty($urls)) {
 	    * code from Jared (hogalot))
 	    */
 	    if (fs_is_dir($url)) {
-	        processingMsg(sprintf(_("Processing %s as a local directory."),
+	        processingMsg(sprintf(gTranslate('core', "Processing %s as a local directory."),
 	        '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>'));
 	        $handle = fs_opendir($url);
 	        if($handle) {
@@ -111,31 +111,31 @@ if (!empty($urls)) {
 	    }
 		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
 		$url = ltrim($url);
-		
+
 		$urlParts = parse_url($url);
 		$urlPathInfo = isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
 		$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
-		
+
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!empty($url) && !fs_is_file($url)) {
 			if (!ereg("^(http|ftp)", $url)) {
-				processingMsg(sprintf(_('Unable to find %s locally - trying %s.'), 
+				processingMsg(sprintf(gTranslate('core', 'Unable to find %s locally - trying %s.'),
 					htmlspecialchars(strip_tags(urldecode($url))), 'http'));
 				$url = "http://$url";
 			}
 
 			/* Parse URL for name and file type */
 			$url_stuff = @parse_url($url);
-			if (!isset($url_stuff["path"])) { 
+			if (!isset($url_stuff["path"])) {
 				$url_stuff["path"]="";
 			}
 			$name = basename($url_stuff["path"]);
 		} else {
 			$name = basename($url);
 		}
-		
+
 		/* Dont output warning messages if we cant open url */
-	
+
 		/*
 		 * Try to open the url in lots of creative ways.
 		 * Do NOT use fs_fopen here because that will pre-process
@@ -154,12 +154,12 @@ if (!empty($urls)) {
 		while (!$id && !empty($urlArray));
 
 		if (!$id) {
-		    processingMsg(sprintf(_("Could not open url: %s"), $url));
+		    processingMsg(sprintf(gTranslate('core', "Could not open url: %s"), $url));
 		    continue;
 		}
-	
+
 		/**
-		 * If this is an image or movie - 
+		 * If this is an image or movie -
 		 * copy it locally and add it to the processor array
 		 */
 		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
@@ -179,14 +179,14 @@ if (!empty($urls)) {
 		    }
 		    /* Make sure we delete this file when we're through... */
 		    $temp_files[$file]=1;
-		    
+
 		    /* Add it to userfile */
 		    $_FILES['userfile']['name'][] = $name;
 		    $_FILES['userfile']['tmp_name'][] = $file;
 
 		} else {
 		    /* Slurp the file */
-		    processingMsg(sprintf(_("Parsing %s for images..."), $url));
+		    processingMsg(sprintf(gTranslate('core', "Parsing %s for images..."), $url));
 		    $contents = fs_file_get_contents($url);
 
 		    /* We'll need to add some stuff to relative links */
@@ -225,7 +225,7 @@ if (!empty($urls)) {
             /* Add each unique link to an array we scan later */
 			foreach (array_keys($things) as $thing) {
 
-				/* 
+				/*
 				 * Some sites (slashdot) have images that start with // and this
 				 * confuses Gallery.  Prepend 'http:'
 				 */
@@ -246,16 +246,16 @@ if (!empty($urls)) {
 					$image_tags[] = $base_url . $base_dir . $thing;
 				}
 			}
-	
+
 			/* Tell user how many links we found, but delay processing */
-			processingMsg(sprintf(_("Found %d images"), count($image_tags)));
+			processingMsg(sprintf(gTranslate('core', "Found %d images"), count($image_tags)));
 		}
 	}
 	echo "</div>\n";
 } /* if ($urls) */
 ?>
 
-<div class="popuphead"><?php echo _("Processing status...") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Processing status...") ?></div>
 <div class="popup">
 
 <?php
@@ -316,7 +316,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
         if (!isset($setCaption)) {
             $setCaption = '';
         }
-        
+
         // Find in meta data array
         foreach ($image_info as $info) {
 			if ($info[$fileNameKey] == $name) {
@@ -329,7 +329,7 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 				}
 				$extra_fields = $info;
 				if(isDebugging()) {
-				    echo _("Extrafields:");
+				    echo gTranslate('common', "Extra fields:");
 				    print_r($extra_fields);
 				}
 			}
@@ -359,12 +359,12 @@ if (!empty($temp_files)) {
 <div class="popuptd" align="center">
 <?php
 if (empty($image_count) && $upload_started) {
-	print _("No images uploaded!");
+	print gTranslate('core', "No images uploaded!");
 }
 ?>
 <br>
 <form>
-<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick='parent.close()'>
 </form>
 
 <?php
@@ -377,16 +377,16 @@ if (count($image_tags)) {
 	insertFormJS('uploadurl_form');
 
 	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
-	
-    echo _("Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
-    echo makeFormIntro("save_photos.php", 
+
+    echo gTranslate('core', "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
+    echo makeFormIntro("save_photos.php",
 		array('name' => 'uploadurl_form'),
-		array('type' => 'popup')); 
+		array('type' => 'popup'));
 
     /* Allow user to select which files to grab - only show url right now ( no image previews ) */
     sort($image_tags);
     $selectSize = (sizeof($image_tags) > 20) ? 20 : sizeof($image_tags);
-	
+
     echo '<select name="urls[]" multiple="multiple" size="'. $selectSize ."\">\n";
     foreach ( $image_tags as $image_src) {
 	   echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
@@ -396,13 +396,13 @@ if (count($image_tags)) {
 
     /* REVISIT - it'd be nice to have these functions get shoved
      * into util.php at some time - maybe added functionality to the makeFormIntro?
-    */ 
+    */
     echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
 
     if (count($info_tags)) { ?>
 <span>
 <?php
-	   processingMsg(sprintf(_("%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
+	   processingMsg(sprintf(gTranslate('core', "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
 ?>
 </span>
 <p>
@@ -433,13 +433,13 @@ if (count($image_tags)) {
 <input type="hidden" name="wmAlignX" value="<?php echo $wmAlignX ?>">
 <input type="hidden" name="wmAlignY" value="<?php echo $wmAlignY ?>">
 <input type="hidden" name="wmSelect" value="<?php echo $wmSelect ?>">
-<input type="button" value="<?php echo _("Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
+<input type="button" value="<?php echo gTranslate('core', "Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
 </p>
 
 </form>
 </div>
 </div>
-<?php 
+<?php
 } /* End if links slurped */ ?>
 </div>
 </body>

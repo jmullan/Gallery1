@@ -11,12 +11,12 @@
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 
-<div align="center">
-<p class="header"><?php echo _("Gallery needs Reconfiguration") ?></p>
+<div class="g-header" align="center">
+    <span class="g-pagetitle"><?php echo _("Gallery needs Reconfiguration") ?></span>
+</div>
 
-<p class="sitedesc">
+<div class="g-sitedesc" align="center">
     <?php echo _("Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") ?>
-</p>
 
 <p>
 <?php 

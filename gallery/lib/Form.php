@@ -20,7 +20,7 @@
  * $Id$
  */
 ?>
-<?php 
+<?php
 
 function insertFormJS($formName) {
 
@@ -91,20 +91,23 @@ function selectOptions($album, $field, $opts) {
 }
 
 function generateAttrs($attrList) {
-	$attrs = '';
+    $attrs = '';
 
-	if(!empty($attrList) && is_array($attrList)) {
-		foreach ($attrList as $key => $value) {
-			if ($value == NULL) {
-				$attrs .= " $key";
-			}
-			else {
-				$attrs .= " $key=\"$value\"";
-			}
-		}
-	}
-	
-	return $attrs;
+    if(!empty($attrList) && is_array($attrList)) {
+        foreach ($attrList as $key => $value) {
+            if ($value === false) {
+                continue;
+            }
+            elseif ($value == NULL) {
+                $attrs .= " $key";
+            }
+            else {
+                $attrs .= " $key=\"$value\"";
+            }
+        }
+    }
+
+    return $attrs;
 }
 
 function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
@@ -120,7 +123,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
                     $sel = ' selected';
                 }
             }
-            else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected == '__ALL__') {
+            else if ($value == $selected || $text == $selected || $selected === '__ALL__') {
                 $sel = ' selected';
             }
             $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
@@ -139,7 +142,7 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $buf = "<select name=\"$name\" $attrs>$crlf";
 
     if(!empty($options)) {
@@ -188,7 +191,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $form = "\n<form action=\"$target\"$attrs>\n";
 
     $args = split("&", $tmp);
@@ -197,7 +200,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
             continue;
         }
         list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
+        $form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
     }
     return $form;
 }
@@ -263,4 +266,74 @@ function showChoice2($target, $args, $popup = true) {
     return makeGalleryUrl($target, $args);
 }
 
+function gSubmit($name, $value) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'submit';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+
+    $attrs = generateAttrs($attrList);
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
+
+function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $class = false) {
+    $attrList['name'] = $name;
+    $attrList['type'] = $type;
+    $attrList['accesskey'] = getAndSetAccessKey($label);
+    $attrList['size'] = $size;
+    if (!empty($value)) $attrList['value'] = $value;
+    $attrList['class'] = $class;
+
+    if(!$class) {
+        switch ($type) {
+        	case 'text':
+        	case 'password':
+        	    $attrList['class'] = 'g-form-text';
+        	break;
+        }
+    }
+
+    $attrs = generateAttrs($attrList);
+
+    if($tableElement){
+        if($label) {
+            $html = "<tr>\n";
+            $html .= "\t<td>$label</td>\n";
+            $html .= "\t<td><input$attrs></td>\n";
+            $html .= "</tr>\n";
+        }
+        else {
+            $html = "<tr>\n";
+            $html = "<td><input$attrs></td>\n";
+            $html .= "</tr>\n";
+        }
+    }
+    else {
+        if($label) {
+            $html = "$label<input$attrs>\n";
+        }
+        else {
+            $html = "<input$attrs>\n";
+        }
+    }
+
+    return $html;
+}
+
+function gButton($name, $value, $onClick) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'button';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+    $attrList['onClick'] = $onClick;
+
+    $attrs = generateAttrs($attrList);
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
 ?>

@@ -30,17 +30,11 @@ list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create'
 list($uname, $old_password, $new_password1, $new_password2) = getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
 list($fullname, $email, $send_email, $defaultLanguage) = getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle) ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle) ?></div>
-  <div class="popup" align="center">
-<?php if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
+echo printPopupStart(
+    sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle)
+);
+
+if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
 	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
 	<br><br>

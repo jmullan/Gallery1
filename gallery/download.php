@@ -27,6 +27,8 @@ require_once(dirname(__FILE__) . '/init.php');
 list($doit, $full) =
 getRequestVar(array('doit', 'full'));
 
+printPopupStart(gTranslate('core', "Download album as archive"));
+
 if (!empty($doit)) {
     $albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
     $albumcopyName = createTempAlbum($albumItemNames);
@@ -47,21 +49,11 @@ else {
 
     $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
 
-    doctype();
-    echo "\n<html>";
-?>
-<head>
-  <title><?php echo gTranslate('core', "Download album as archive") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Download album as archive") ?></div>
-<div class="popup" align="center">
-<p class="title">
-<?php
+    echo "\n<p class=\"title\">";
+
     if ($gallery->album->numPhotos(1)) {
-	echo $gallery->album->getHighlightTag();
-	echo "<br>";
+        echo $gallery->album->getHighlightTag();
+        echo "<br>";
     }
     echo $gallery->album->fields["title"];
     echo "</p>";
@@ -73,22 +65,22 @@ else {
     echo sprintf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
     if($numPhotos > 0) {
-        echo '<p>'. sprintf(gTranslate('core', "Approximitaly size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
+        echo '<p>'. sprintf(gTranslate('core', "Approximated size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
 
         echo makeFormIntro('download.php', array('onChange' => 'document.g1_form.submit()'), array('gallery_popup' => 'true'));
 
         echo "\n". '<input type="radio" name="full" value="1"'. ($full ? ' checked' : '') .'>'. gTranslate('core', "Full Version") .'<br>';
         echo "\n". '<input type="radio" name="full" value="0"'. (!$full ? ' checked' : '') .'>'. gTranslate('core', "Resized Version") .'<br>';
         echo "\n<br>";
-        echo "\n". '<input type="submit" name="doit" value="'. gTranslate('core', "Download") .'">';
-        echo "\n". '<input type="button" value="'. gTranslate('core', "Cancel") .'" onclick="parent.close()">';
+        echo "\n". '<input type="submit" name="doit" value="'. gTranslate('core', "Download") .'" class="g-button">';
+        echo "\n". '<input type="button" value="'. gTranslate('core', "Cancel") .'" onclick="parent.close()" class="g-button">';
         echo "\n</form>";
     }
     else {
 	echo "<br><br>";
-	echo _("This album album is not empty, but contains no photo or movie! Download would'nt make sense.");
+	echo _("This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
 	echo "<br><br>";
-        echo "\n". '<input type="button" value="'. gTranslate('core', "Close Window") .'" onclick="parent.close()">';
+        echo "\n". '<input type="button" value="'. gTranslate('core', "Close Window") .'" onclick="parent.close()" class="g-button">';
     }
 }
 ?>

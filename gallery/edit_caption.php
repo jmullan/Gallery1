@@ -35,8 +35,6 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album-
 }
 $err = '';
 
-doctype();
-echo "\n<html>";
 if (isset($save)) {
     // Only allow dates which mktime() will operate on.
     // 1970-2037 (Windows and some UNIXes) -- 1970-2069 (Some UNIXes)
@@ -68,19 +66,11 @@ if (isset($save)) {
         $err = _("Year must be between 1969 and 2070");
     }
 }
-?>
-<head>
-  <title><?php echo _("Edit Text") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Edit Caption"); ?></div>
-<div class="popup" align="center">
-	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
-<?php echo makeFormIntro("edit_caption.php", 
-		array("name" => "theform"),
-		array("type" => "popup"));
+printPopupStart(_("Edit Text"), _("Edit Caption"));
+
+echo $gallery->album->getThumbnailTag($index);
+echo makeFormIntro("edit_caption.php", array(), array("type" => "popup"));
 ?>
 
 <input type="hidden" name="index" value="<?php echo $index ?>">
@@ -137,9 +127,9 @@ $year 	 = strftime('%Y', $itemCaptureDate);
 ?>
 
 <br>
-<table border="0">
+<table>
   <tr>
-	<td colspan="6" align="center"><?php echo gTranslate('core', "Photo Capture Date") ?></td>
+    <td colspan="6" align="center"><?php echo gTranslate('core', "Photo Capture Date") ?></td>
   </tr>
   <tr>
     <td><?php echo _("Month") ?></td>
@@ -179,17 +169,16 @@ echo "</td>";
   </tr>
 </table>
 
-<p>
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</p>
+<br>
+  <input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
+  <input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
-document.theform.data.focus();
+document.g1_form.data.focus();
 //-->
 </script>
 </div>

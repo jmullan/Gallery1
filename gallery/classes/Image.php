@@ -160,37 +160,36 @@ class Image {
 	    $name = $this->getName($dir);
 	    $alttext = htmlspecialchars(strip_tags($alttext));
 
-	    $attrs .= ' border="0"';
 	    if ($size) {
-		if ($this->width > $this->height) {
-		    $width = $size;
-		    $height = round($size * ($this->height / $this->width));
-		} else {
-		    $width = round($size * ($this->width / $this->height));
-		    $height = $size;
-		}
-		$size_val = "width=\"$width\" height=\"$height\"";
+	        if ($this->width > $this->height) {
+	            $width = $size;
+	            $height = round($size * ($this->height / $this->width));
+	        } else {
+	            $width = round($size * ($this->width / $this->height));
+	            $height = $size;
+	        }
+	        $size_val = "width=\"$width\" height=\"$height\"";
 	    } else if ($full || !$this->resizedName) {
-		$size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
+	        $size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
 	    } else {
-		$size_val = "width=\"$this->width\" height=\"$this->height\"";
+	        $size_val = "width=\"$this->width\" height=\"$this->height\"";
 	    }
 
 	    $fullImage = urlencode($this->name) .".$this->type";
 	    $resizedImage = urlencode($this->resizedName) .".$this->type";
 
 	    if ($this->resizedName && $size == 0) {
-		if ($full) {
-		    return "<img src=\"$dir/$fullImage\" ".
-			"width=\"$this->raw_width\" height=\"$this->raw_height\" .
-			$attrs alt=\"$alttext\" title=\"$alttext\">";
-		} else {
-		    return "<img src=\"$dir/$resizedImage\" ".
-			"width=\"$this->width\" height=\"$this->height\" " .
-			"$attrs alt=\"$alttext\" title=\"$alttext\">";
-		}
+	        if ($full) {
+	            return "<img src=\"$dir/$fullImage\" ".
+	              "width=\"$this->raw_width\" height=\"$this->raw_height\" .
+			      $attrs alt=\"$alttext\" title=\"$alttext\">";
+	        } else {
+	            return "<img src=\"$dir/$resizedImage\" ".
+	              "width=\"$this->width\" height=\"$this->height\" " .
+	              "$attrs alt=\"$alttext\" title=\"$alttext\">";
+	        }
 	    } else {
-		return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
+	        return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
 	    }
 	}
 

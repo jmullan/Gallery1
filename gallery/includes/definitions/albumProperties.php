@@ -333,7 +333,7 @@ $properties = array(
         'prompt' => gTranslate('common', "Orientation of vote choices"),
         'desc' => '',
         'choices' => array('horizontal' => gTranslate('common', "Horizontal"), 'vertical' => gTranslate('common', "Vertical")),
-        'value' => isset($gallery->album->fields['poll_orientation']) ? 
+        'value' => isset($gallery->album->fields['poll_orientation']) ?
           $gallery->album->fields['poll_orientation'] : ''
         ),
     'poll_hint' => array(
@@ -440,7 +440,10 @@ $properties = array_merge($properties, array(
     'nav_thumbs' => array(
         'prompt' => gTranslate('common', "Use microthumb photo navigation"),
         'desc' => '',
-        'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No"), "both" => gTranslate('common', "both")),
+        'choices' => array(
+            "yes" => gTranslate('common', "Yes, only navigation"),
+            "no" => gTranslate('common', "No, just the normal navigation"),
+            "both" => gTranslate('common', "Both kinds of Navigation")),
         'value' => $gallery->album->fields["nav_thumbs"]
     ),
     'nav_thumbs_style' => array(
@@ -470,8 +473,8 @@ $properties = array_merge($properties, array(
     'nav_thumbs_location' => array(
         'prompt' => gTranslate('common', "Position of microthumb navigation bar"),
         'desc' => '',
-        'choices' => array("top" => gTranslate('common', "Top"), 
-			   "both" => gTranslate('common', "Both"), 
+        'choices' => array("top" => gTranslate('common', "Top"),
+			   "both" => gTranslate('common', "Both"),
 			   "bottom" => gTranslate('common', "Bottom")),
         'value' => $gallery->album->fields["nav_thumbs_location"]
     ),

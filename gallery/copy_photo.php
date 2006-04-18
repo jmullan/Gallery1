@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -34,17 +34,8 @@ $albumDB = new AlbumDB(FALSE); // read album database
 
 list($index, $startPhoto, $endPhoto, $newAlbum) = getRequestVar(array('index', 'startPhoto', 'endPhoto', 'newAlbum'));
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Copy Photo") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Copy Photo") ?></div>
-<div class="popup" align="center">
-<?php
+printPopupStart(_("Copy Photo"));
+
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
 	// we are copying from one album to another
@@ -129,7 +120,7 @@ if ($gallery->session->albumName && isset($index)) {
 			}
 		       	?>
 			<form>
-			<input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'>
+			<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()" class="g-button">
 			</form>
 		       	<?php
 		       	return;
@@ -150,11 +141,11 @@ if ($gallery->session->albumName && isset($index)) {
 <?php echo _("Copy a range of photos to a new album:") ?><br>
 <i>(<?php echo _("To copy just one photo, make First and Last the same.") ?>)</i><br>
 <i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
-<?php echo makeFormIntro("copy_photo.php", 
+<?php echo makeFormIntro("copy_photo.php",
 	array("name" => "copy_to_album_form"),
 	array("type" => "popup"));
 ?>
-<input type=hidden name="index" value="<?php echo $index ?>">
+<input type="hidden" name="index" value="<?php echo $index ?>">
 
 <?php
 // Display album list for a photo and display num photos to copy
@@ -195,7 +186,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 	<td>
 	<select name="newAlbum">
 <?php
-	$uptodate= printAlbumOptionList(0,0,1); 
+	$uptodate= printAlbumOptionList(0,0,1);
 ?>
 	</select>
 	</td>
@@ -209,9 +200,9 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 		echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
 	}
 ?>
-<p>
-<input type="submit" value="<?php echo gTranslate('core', "Copy to Album!") ?>">
-<input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<br>
+<input type="submit" value="<?php echo gTranslate('core', "Copy to Album!") ?>" class="g-button">
+<input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
 } else {

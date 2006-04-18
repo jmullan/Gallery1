@@ -24,9 +24,11 @@
 <input type="hidden" name="next_page" value="confirm">
 <input type="hidden" name="back_page" value="constants">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),3); ?></div>
+<div class="g-header">
+    <div class="g-pagetitle"><?php printf (_("Gallery Configuration Wizard: Step %d"),3); ?></div>
+</div>
 
-<div class="sitedesc">
+<div class="g-sitedesc">
 <?php
 	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
 	echo "\n<br>";
@@ -39,17 +41,20 @@
 ?>
 </div>
 
-<p align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
-</p>
+<div align="center" style="margin: 5px; margin-bottom: 10px">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
+	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
+	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
+	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
+</div>
 
 <?php
-	makeSectionTabs($defaults);
 
+$initialtab = makeSectionTabs($defaults);
+echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
+
+echo '<br clear="all">';
 $i = 0;
 foreach ($defaults as $key => $val) {
 
@@ -102,7 +107,7 @@ foreach ($defaults as $key => $val) {
 
 	if (!isset($go_defaults) && isset($gallery->session->configForm->$key)) {
 		$val["value"] = $gallery->session->configForm->$key;
-		
+
 		if (get_magic_quotes_gpc()) {
 			$val["value"] = array_stripslashes($val["value"]);
 		}
@@ -120,15 +125,15 @@ foreach ($defaults as $key => $val) {
 
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
-	
+
 	echo "\n</table>";
 }
 ?>
 
 <p align="center">
-	<input type=submit name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type=submit name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
+	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
+	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
+	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
 </p>

@@ -54,14 +54,8 @@ if (isset($save) || isset($preview)) {
     if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
         if (isset($wmName) && !empty($wmName)) {
             if (isset($save)) {
+                printPopupStart(gTranslate('core', "Watermarking album..."));
 ?>
-<html>
-<head>
-  <title><?php echo _("Watermarking album.") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Watermarking album."); ?></div>
 <div class="popup" align="center"><?php echo _("(this may take a while)"); ?></div>
 <div class="popup">
 <?php
@@ -107,17 +101,9 @@ if (isset($save) || isset($preview)) {
         $recursive = 1;
     }
 }
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Watermark Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body class="popupbody" dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo _("Watermark Album") ?></div>
-<div class="popup" align="center">
-<?php
+
+printPopupStart(gTranslate('core', "Watermark Album"));
+
 if (!$gallery->album->numPhotos(1)) {
     echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";
 } else {

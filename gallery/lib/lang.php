@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -35,29 +35,30 @@
  * @param	string    $plural
  * @param	int       $count
  * @param	string    $nonetext
- * @return  string    $translation	string with translation on success, otherwise '--- TranslationError --'
+ * @return      string    $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author	Jens Tkotz
  */
-function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '') {
+function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '', $short = false) {
     global $gallery;
 
     $allowedDomain = array('config', 'common', 'core');
     if(!in_array($domain, $allowedDomain)) {
-        return '<span class="error">'. ("-- Translation Domain wrong --") .'</span>';
+        return '<span class="g-error">'. ("-- Translation Domain wrong --") .'</span>';
     }
+
 
     if ($count == 0 && $nonetext != '') {
-        return $nonetext;
+	return _($nonetext);
     }
 
-	if (gettext_installed()) {        	
-	    $gDomain = $gallery->language. "-gallery_$domain";
-	    bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
-	    textdomain($gDomain);
-	}
+    if (gettext_installed()) {
+	$gDomain = $gallery->language. "-gallery_$domain";
+	bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+	textdomain($gDomain);
+    }
 
     if(!$plural) {
-    	if (gettext_installed()) {        	
+    	if (gettext_installed()) {
         	$translation = dgettext($gDomain, $singular);
     	}
     	else {
@@ -69,12 +70,16 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
             $count = 1;
         }
         if (ngettext_installed()) {
-        	$translation = sprintf(dngettext($gDomain, $singular, $plural, $count), $count);
+        	$translation = dngettext($gDomain, $singular, $plural, $count);
         }
         else {
-        	$translation = sprintf(ngettext($singular, $plural, $count), $count);
+        	$translation = ngettext($singular, $plural, $count);
         }
+	if($short) {
+	    $translation = sprintf($translation, $count);
+	}
     }
+
     return $translation;
 }
 
@@ -206,7 +211,7 @@ function getEnvLang() {
  */
 function getDefaultLanguage() {
     global $gallery;
-    if(isset($gallery->app->default_language) 
+    if(isset($gallery->app->default_language)
       && $gallery->app->default_language != 'browser') {
         $defaultLanguage = $gallery->app->default_language;
     }
@@ -232,7 +237,7 @@ function forceStaticLang() {
 	if (in_array($GALLERY_EMBEDDED_INSIDE_TYPE, $useStatic)) {
 		$gallery->app->ML_mode = 1;
 	}
-}	
+}
 
 /**
  * This function does the initialization of language related things.
@@ -302,7 +307,7 @@ function initLanguage($sendHeader=true) {
             /** No new language.
 			 * Lets see in which Environment were are and look for a language.
 			 * Lets try to determ the used language
-			 */ 
+			 */
             $gallery->language = getEnvLang();
         }
     } else {
@@ -321,7 +326,7 @@ function initLanguage($sendHeader=true) {
             /* Static Language */
             $gallery->language = getDefaultLanguage();
             break;
-            
+
             case 3:
             /* Does the user want a new language ?*/
             if (!empty($newlang)) {
@@ -333,14 +338,16 @@ function initLanguage($sendHeader=true) {
             } else {
                 $gallery->language = getDefaultLanguage();
             }
+
             break;
             default:
             /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
-            $gallery->browser_language = getBrowserLanguage();
+		$gallery->browser_language = getBrowserLanguage();
+		$gallery->language = $gallery->browser_language;
 
-            if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
-                $gallery->language = $gallery->user->getDefaultLanguage();
-            }
+		if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
+		    $gallery->language = $gallery->user->getDefaultLanguage();
+		}
             break;
         }
     }
@@ -529,8 +536,8 @@ function emulate_gettext() {
 		foreach ($lines as $key => $value) {
 			/* We trim the String to get rid of cr/lf */
 			$value=trim($value);
-			if (stristr($value, "msgid") 
-				&& ! stristr($lines[$key-1],"fuzzy") 
+			if (stristr($value, "msgid")
+				&& ! stristr($lines[$key-1],"fuzzy")
 				&& ! stristr($lines[$key],"msgid_plural")
 				&& ! stristr($value,"msgid_plural")) {
 				$new_key=substr($value, 7,-1);
@@ -567,7 +574,7 @@ function gettext_installed() {
 }
 
 function ngettext_installed() {
-	if (in_array("ngettext", get_loaded_extensions()) || 
+	if (in_array("ngettext", get_loaded_extensions()) ||
 	  (function_exists('ngettext') && function_exists('dngettext'))) {
 		return true;
 	}
@@ -681,10 +688,10 @@ function isSupportedCharset($charset) {
 		return false;
 	}
 }
-	
+
 /**
  * Gallery Version of htmlentities
- * Enhancement: Depending on PHP Version and Charset use 
+ * Enhancement: Depending on PHP Version and Charset use
  * optional 3rd Parameter of php's htmlentities
  */
 function gallery_htmlentities($string) {
@@ -753,11 +760,11 @@ function automaticFieldsList() {
  */
 function translateableFields() {
 	return array(
-		'title'		=> gTranslate('common', "title"),
-		'Title'		=> gTranslate('common', "Title"),
+		'title'		    => gTranslate('common', "title"),
+		'Title'		    => gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
-		'AltText'	=> gTranslate('common', "Alt Text / onMouseOver"),
+		'AltText'	    => gTranslate('common', "Alt Text / onMouseOver"),
 	);
 }
 
@@ -781,10 +788,10 @@ function languageSelector() {
             $html .= "\n" . '</script>';
         }
 
-        $html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'MLForm'));
+        $html .= makeFormIntro('#', array('name' => 'MLForm'));
         $langSelectTable = new galleryTable();
         $langSelectTable->setColumnCount(20);
-        $langSelectTable->setAttrs(array('class' => 'languageSelector', 'align' => 'right'));
+        $langSelectTable->setAttrs(array('align' => langRight()));
 
         $nls = getNLS();
 

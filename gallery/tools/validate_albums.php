@@ -134,18 +134,14 @@ if (empty($action)) {
 
     includeHtmlWrap("gallery.header");
     $adminbox['text'] ='<span class="head">'. ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
+    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
-    $adminbox["commands"] = $adminCommands;
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
 
-    includeLayout('navtablebegin.inc');
     includeLayout('adminbox.inc');
-    includeLayout('navtablemiddle.inc');
     includeLayout('breadcrumb.inc');
-    includeLayout('navtableend.inc');
 
 ?>
 <div class="popup" align="center">
@@ -166,22 +162,26 @@ if (empty($action)) {
 	case 'deleteMissingPhoto':
 	    list ($verified, $album, $id) = getRequestVar(array('verified', 'album', 'id'));
 	    if ($verified) {
-		$targetAlbum = new Album();
-		$targetAlbum->load($album);
-		$photoIndex = $targetAlbum->getPhotoIndex($id);
-		$targetAlbum->deletePhoto($photoIndex);
-		$targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
-		dismiss();
+	        $targetAlbum = new Album();
+	        $targetAlbum->load($album);
+	        $photoIndex = $targetAlbum->getPhotoIndex($id);
+	        $targetAlbum->deletePhoto($photoIndex);
+	        $targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
+	        dismiss();
 	    } else {
-		echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'album' => $album, 'id' => $id));
-		$targetAlbum = new Album();
-		$targetAlbum->load($album);
-		echo $targetAlbum->getThumbnailTagById($id);
-		echo "<p><input type='submit' name='verified' value='Delete $album/$id'></p>";
-		echo "<p>" . _("Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
-		echo "</form>";
+	        echo makeFormIntro(
+	           'tools/validate_albums.php',
+	           array(),
+	           array('action' => $action, 'album' => $album, 'id' => $id)
+	        );
+	        $targetAlbum = new Album();
+	        $targetAlbum->load($album);
+	        echo $targetAlbum->getThumbnailTagById($id);
+	        echo "<p><input type='submit' name='verified' value='Delete $album/$id'></p>";
+	        echo "<p>" . _("Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
+	        echo "</form>";
 	    }
-	    break;
+	break;
 
 	default:
 	    echo '<p>Invalid Action</p>';
@@ -208,26 +208,23 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php 
 } 
-    includeHtmlWrap("gallery.header");
-    $adminbox['text'] ='<span class="head">'.  _("Validate Albums") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+includeHtmlWrap("gallery.header");
+$adminbox['text'] ='<span class="head">'.  _("Validate Albums") .'</span>';
+$adminCommands = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
+$adminCommands .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
-    $adminbox["commands"] = $adminCommands;
-    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-    $breadcrumb['text'][] = languageSelector();
+$adminbox["commands"] = $adminCommands;
+$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+$breadcrumb['text'][] = languageSelector();
 
-    includeLayout('navtablebegin.inc');
-    includeLayout('adminbox.inc');
-    includeLayout('navtablemiddle.inc');
-    includeLayout('breadcrumb.inc');
-    includeLayout('navtableend.inc');
+includeLayout('adminbox.inc');
 
+includeLayout('breadcrumb.inc');
 
 echo '<div class="popup">';
 if (empty($action)) {
 	if (!empty($results['file_missing'])) { ?>
-		<p><?php echo _("Missing Files:") . " " . sizeof($results['file_missing']) ?></p>
+		<p><?php echo sprintf(_("Missing Files: %s"), sizeof($results['file_missing'])); ?></p>
 		<p><?php echo _("The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table.") ?></p>
 		<center>
 		<table>

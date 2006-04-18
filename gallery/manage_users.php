@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -29,8 +29,10 @@ list($create, $bulk_create, $modify, $delete, $unames) =
 
 if (!$gallery->user->isAdmin()) {
 	echo _("You are not allowed to perform this action!");
-	exit;	
+	exit;
 }
+
+$notice_messages = array();
 
 if (!empty($create)) {
 	header("Location: " . makeGalleryHeaderUrl("create_user.php"));
@@ -40,7 +42,7 @@ if (!empty($bulk_create)) {
 }
 
 if ( (isset($modify) || isset($delete)) && ! isset($unames)) {
-	$error=_("Please select a user");
+	$notice_messages[] = array('type' => 'error', 'text' => gTranslate('core', "Please select a user"));
 } elseif (isset($modify)) {
 	header("Location: " . makeGalleryHeaderUrl("modify_user.php", array('uname' => $unames[0])));
 } elseif (isset($delete)) {
@@ -57,47 +59,37 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUserName = $tmpUser->getUsername();
 	$displayUsers[$tmpUserName] = $tmpUserName;
 }
-asort($displayUsers); 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Manage Users") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Manage Users") ?></div>
-<div class="popup" align="center">
-<?php 
-if (isset($error)) {
-	echo infoline(gallery_error($error),'error');
-}
+asort($displayUsers);
 
-echo makeFormIntro('manage_users.php', array('name' => 'manageusers_form'));
+printPopupStart(_("Manage Users"));
+
+echo infoBox($notice_messages);
 
 echo _("You can create, modify and delete users here.");
+
+echo makeFormIntro('manage_users.php', array('name' => 'manageusers_form'));
 echo "\n<p>";
 
 if (!$displayUsers) {
 	print "<i>". _("There are no users!  Create one.") ."</i>";
 } else {
 	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''), true);
-}	
+}
 
 echo "\n</p>";
 echo _("To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking.");
 ?>
 
 <p>
-<input type="submit" name="create" value="<?php echo _("Create new user") ?>">
+<input type="submit" name="create" value="<?php echo _("Create new user") ?>" class="g-button">
 <?php if ($gallery->app->multiple_create == "yes") { ?>
-	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>"> 
+	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>" class="g-button">
 <?php }
 if (count($displayUsers)) { ?>
-<input type="submit" name="modify" value="<?php echo _("Modify") ?>">
-<input type="submit" name="delete" value="<?php echo _("Delete") ?>">
+<input type="submit" name="modify" value="<?php echo _("Modify") ?>" class="g-button">
+<input type="submit" name="delete" value="<?php echo _("Delete") ?>" class="g-button">
 <?php } ?>
-<input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="button" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
 </form>
 
 </div>

@@ -65,6 +65,7 @@ if(empty($submit)) {
 
 foreach ($submit as $perm => $action) {
     if(isset($action) && isset($actionUid)) {
+        $action = unhtmlentities($action);
         if($action == '-->') {
             $gallery->album->setPerm($perm, $actionUid, true);
             $changed++;
@@ -103,17 +104,9 @@ foreach($perms as $perm => $trash)  {
     correctPseudoUsers($uids[$perm], $ownerUid);
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Album Permissions") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Album Permissions") ?></div>
-<div class="popup" align="center">
-<?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
+printPopupStart(gTranslate('core', "Album Permissions"));
+
+echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", array("name" =>
 			"albumperms_form"), array("type" => "popup"));
@@ -156,8 +149,8 @@ echo $permsTable->render();
 <label for="setNested"><?php echo _("Apply permissions to all sub-albums"); ?></label>
 <input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 <br><br>
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
+<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
 </form>
 </div>
 <?php print gallery_validation_link("album_permissions.php"); ?>

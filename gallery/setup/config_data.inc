@@ -1261,25 +1261,32 @@ $constants = array_merge($constants, array(
 		'title' => gTranslate('config',"RandomBlock Settings"),
 		'display' => 'inline'
 	),
+	'blockRandomAlbum' => array(
+		'prompt' => gTranslate('config',"RandomBlock Source"),
+		'desc' => gTranslate('config',"You can either use a random pictures from the whole Gallery or from certain albums."),
+		'choices' => array(),
+		'value' => 'none',
+		'optional' => true
+	),
 	'blockRandomFrame' => array(
-    	'prompt' => gTranslate('config',"Frame around random photo."),
-    	'desc' => availableRandomBlockFrames(),
-    	'choices' => available_frames(false, true),
-    	'value' => 'none'
+		'prompt' => gTranslate('config',"Frame around random photo."),
+		'desc' => availableRandomBlockFrames(),
+		'choices' => available_frames(false, true),
+		'value' => 'none'
 	),
 	'blockRandomFrameBorderWidth' => array(
-    	'prompt' => gTranslate('config',"Width of solid/dotted frameborder around random photo."),
-    	'desc' => '',
-    	'type' => 'text',
+		'prompt' => gTranslate('config',"Width of solid/dotted frameborder around random photo."),
+		'desc' => '',
+		'type' => 'text',
 		'must-be-integer' => 1,
 		'must-not-be-zero' => 1,
 		'optional' => 1,
 		'value' => 1
 	),
 	'blockRandomFrameBorderColor' => array(
-    	'prompt' => gTranslate('config',"Color of solid/dotted frameborder around random photo."),
-    	'desc' => '',
-    	'value' => 'black',
+		'prompt' => gTranslate('config',"Color of solid/dotted frameborder around random photo."),
+		'desc' => '',
+		'value' => 'black',
 		'type' => 'colorpicker'
 	),
 	'blockRandomCache' => array(
@@ -1302,7 +1309,7 @@ $constants = array_merge($constants, array(
 		'must-not-be-zero' => 1,
 		'type' => 'text',
 	),
-    'subgroup_randomBlock_end' => array (
+	'subgroup_randomBlock_end' => array (
 		'type' => 'subgroup_end',
 	),
 	'group_blocks_end' => array(

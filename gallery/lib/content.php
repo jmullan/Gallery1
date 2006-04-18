@@ -25,52 +25,60 @@
  * @author	Jens Tkotz
  */
 
-function editField($album, $field, $link = null) {
+/** Shows the content of a field and if permitted also a link to the edit popup
+ * @param   object  $album
+ * @param   string  $field
+ * @param   string  $url
+ * @return  string  $html
+*/
+function editField($album, $field, $url = null) {
     global $gallery;
 
-    $buf = '';
-    if ($link) {
-        $buf .= "<a href=\"$link\">";
+    if($url) {
+        $html = galleryLink($url, $album->fields[$field]);
     }
-    $buf .= $album->fields[$field];
-    if ($link) {
-        $buf .= '</a>';
+    else {
+        $html = $album->fields[$field];
     }
+
     if ($gallery->user->canChangeTextOfAlbum($album)) {
-        if (!strcmp($buf, "")) {
-            $buf = "<i>&lt;". gTranslate('common', "Empty") . "&gt;</i>";
+        if (empty($album->fields[$field])) {
+            $html = "<i>&lt;". gTranslate('common', "Empty") . "&gt;</i>";
         }
-        $url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
-        $buf .= ' <span class="editlink">';
-        $buf .= popup_link( "[". sprintf(gTranslate('common', "edit %s"), _($field)) . "]", $url) ;
-        $buf .= '</span>';
+        // should replace with &amp; for validatation
+        $url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
+
+        $html .= ' '. popup_link(sprintf(gTranslate('common', "edit %s"), _($field)), $url, 0,true, 500, 500, 'g-small');
     }
-    return $buf;
+
+    return $html;
 }
 
+/** Shows the caption of an albumitem and if permitted also a link to the edit popup
+ * @param   object  $album
+ * @param   integer $index	albumitem index
+ * @return  string  $html
+*/
 function editCaption($album, $index) {
     global $gallery;
 
-    $abuf ='';
-    $buf  = nl2br($album->getCaption($index));
+    $html  = nl2br($album->getCaption($index));
 
     if (($gallery->user->canChangeTextOfAlbum($album) ||
       ($gallery->album->getItemOwnerModify() &&
-      $gallery->album->isItemOwner($gallery->user->getUid(), $index))) && 
+      $gallery->album->isItemOwner($gallery->user->getUid(), $index))) &&
       !$gallery->session->offline) {
 
-        if (empty($buf)) {
-            $buf = '<i>&lt;'. gTranslate('common', "No Caption") .'&gt;</i>';
+        if (empty($html)) {
+            $html = '<i>&lt;'. gTranslate('common', "No Caption") .'&gt;</i>';
         }
         $url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
-        $abuf = '<span class="editlink">';
-        $abuf .= popup_link("[". gTranslate('common',"edit") ."]", $url);
-        $abuf .= '</span>';
+        $html .= popup_link(gTranslate('common',"edit"), $url);
     }
-    $buf .= $album->getCaptionName($index);
-    $buf .= $abuf;
 
-    return $buf;
+    $html .= $album->getCaptionName($index);
+
+    return $html;
 }
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album = false) {
@@ -87,16 +95,16 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
             $addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
         }
         if ($addType == 'inside') {
-            echo '<br><form action="'. $page_url .'" name="theform" method="POST">';
+            echo '<br>'. makeFormIntro($page_url);
             drawCommentAddForm($commenter_name);
             echo '</form>';
         }
         else {
             $id = $gallery->album->getPhotoId($index);
             $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-            echo "\n" .'<div align="center" class="editlink">' .
-            popup_link('[' . gTranslate('common', "add comment") . ']', $url, 0) .
-            '</div><br>';
+            echo "<br>";
+            echo popup_link(gTranslate('common', "add comment"), $url);
+            echo "<p>";
         }
     }
 }
@@ -109,13 +117,13 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
     }
 ?>
 
-<table class="commentbox" cellpadding="0" cellspacing="0">
+<table class="g-commentadd-box" cellpadding="0" cellspacing="0">
 <tr>
-	<td colspan="2" class="commentboxhead"><?php echo gTranslate('common', "Add your comment") ?></td>
+	<th colspan="2"><?php echo gTranslate('common', "Add your comment") ?></th>
 </tr>
 <tr>
-	<td class="commentboxhead"><?php echo gTranslate('common', "Commenter:"); ?></td>
-	<td class="commentboxhead">
+	<td class="g-commentadd-box-head left"><?php echo gTranslate('common', "Commenter:"); ?></td>
+	<td class="g-commentadd-box-head">
 <?php
 
 if (!$gallery->user->isLoggedIn() ) {
@@ -132,14 +140,16 @@ if (!$gallery->user->isLoggedIn() ) {
 </td>
 </tr>
 <tr>
-	<td class="commentlabel" valign="top"><?php echo gTranslate('common', "Message:") ?></td>
+	<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
 	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
 <tr>
-	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>"></td>
+	<td colspan="2" class="g-commentadd-box-footer right">
+	  <input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>" class="g-button">
+        </td>
 </tr>
 </table>
-<?php 
+<?php
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
@@ -275,7 +285,7 @@ foreach ($overrides as $key => $value) {
 <?php
 }
 
-function createTreeArray($albumName,$depth = 0) {
+function createTreeArray($albumName,$depth = 0, $fromSetup = false) {
     global $gallery;
     $printedHeader = 0;
     $myAlbum = new Album();
@@ -293,11 +303,11 @@ function createTreeArray($albumName,$depth = 0) {
             $myName = $myAlbum->getAlbumName($i, false);
             $nestedAlbum = new Album();
             $nestedAlbum->load($myName);
-            if ($gallery->user->canReadAlbum($nestedAlbum)) {
+            if ($gallery->user->canReadAlbum($nestedAlbum) || $fromSetup) {
                 $title = $nestedAlbum->fields['title'];
                 if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
                   && !$gallery->session->offline) {
-                    $clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks()) . ")";
+                    $clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks(), '', true) . ")";
                 } else {
                     $clicksText = '';
                 }
@@ -305,11 +315,11 @@ function createTreeArray($albumName,$depth = 0) {
 		$albumUrl = makeAlbumUrl($myName);
 		$subtree = createTreeArray($myName, $depth+1);
 		$highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
-                  'class="nav_micro_img"', "$title $clicksText");
+                  '', "$title $clicksText");
                 $microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 		$tree[] = array(
 		    'albumUrl' => $albumUrl,
-		    'albumName' => $myName, 
+		    'albumName' => $myName,
 		    'titel' => $title,
 		    'clicksText' => $clicksText,
 		    'microthumb' => $microthumb,
@@ -321,41 +331,45 @@ function createTreeArray($albumName,$depth = 0) {
 }
 
 function printChildren($tree, $depth = 0) {
+    $html = '';
 	if ($depth == 0 && !empty($tree)) {
-		echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+		$html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
 	}
 
 	foreach($tree as $nr => $content) {
-		echo "\n<table cellpadding=\"0\" cellspacing=\"0\" class=\"subalbumTreeLine\" style=\"margin-". langLeft() .":". 20 * $depth ."px\">";
-		echo "<tr><td>";
+		$html .= "\n<table cellpadding=\"0\" cellspacing=\"0\" class=\"g-subalbumTreeLine\" style=\"margin-". langLeft() .":". 20 * $depth ."px\">";
+		$html .= "<tr><td>";
 		if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
-			echo gImage('icons/tree/join-'. langRight(). '.gif', '');
+			$html .= gImage('icons/tree/join-'. langRight(). '.gif', '');
 		}
 		else {
-			echo gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
+			$html .= gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
 		}
-		echo "</td><td class=\"subalbumTreeElement\">";
-		echo '<a href="'. $content['albumUrl'] .'">';
-		echo $content['titel'] .' ';
-		echo $content['clicksText'] .'</a>';
-		echo "</td></tr></table>";
+		$html .= "</td><td class=\"g-subalbumTreeElement\">";
+		$html .= '<a href="'. $content['albumUrl'] .'">';
+		$html .= $content['titel'] .' ';
+		$html .= $content['clicksText'] .'</a>';
+		$html .= "</td></tr></table>";
 		if(!empty($content['subTree'])) {
-			printChildren($content['subTree'], $depth+1);
+			$html .= printChildren($content['subTree'], $depth+1);
 		}
 	}
+	return $html;
 }
 
 function printMicroChildren2($tree, $depth = 0) {
+    $html = '';
     if ($depth == 0 && !empty($tree)) {
-        echo '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+        $html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
     }
 
     foreach($tree as $nr => $content) {
-	echo $content['microthumb'];
-	if(!empty($content['subTree'])) {
-            printMicroChildren2($content['subTree'], $depth+1);
+        $html .= $content['microthumb'];
+        if(!empty($content['subTree'])) {
+            $html .= printMicroChildren2($content['subTree'], $depth+1);
         }
     }
+    return $html;
 }
 
 function printMetaData($image_info) {
@@ -442,8 +456,8 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 
     foreach ($tables as $caption => $fields) {
         $customFieldsTable = new galleryTable();
-        $customFieldsTable->setAttrs(array('class' => 'customFieldsTable'));
-        $customFieldsTable->setCaption($caption, 'customFieldsTableCaption');
+        $customFieldsTable->setAttrs(array('class' => 'g-customFieldsTable'));
+        $customFieldsTable->setCaption($caption, 'g-customFieldsTableCaption');
 
         foreach ($fields as $key => $value) {
             $customFieldsTable->addElement(array('content' => $key));
@@ -454,7 +468,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
     }
 }
 
-function includeTemplate($tplName, $skinname='') {
+function includeTemplate($tplName, $skinname = '') {
     global $gallery;
 
     $base = dirname(dirname(__FILE__));
@@ -495,10 +509,13 @@ function showOwner($owner) {
     return $name;
 }
 
-function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrackets = true) {
+function getIconText($iconName = '', $text = '', $overrideMode = '', $addBrackets = true, $altText = '') {
     global $gallery;
 
-    $text = $altText;
+    if(empty($altText)) {
+        $altText = $text;
+    }
+
     $base = dirname(dirname(__FILE__));
 
     if (!empty($overrideMode)) {
@@ -515,8 +532,7 @@ function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrac
         }
 
         if (file_exists("$base/images/icons/$iconName")) {
-            $imgSrc = $gallery->app->photoAlbumURL .'/images/icons/'. $iconName;
-            $linkText = "<img src=\"$imgSrc\" title=\"$altText\" alt=\"$altText\" style=\"border: none;\">";
+            $linkText = gImage("icons/$iconName",$altText);
 
             if ($iconMode == "both") {
                 $linkText .= "<br>$text";
@@ -525,7 +541,10 @@ function getIconText($iconName = '', $altText = '', $overrideMode = '', $useBrac
     }
 
     if (empty($linkText)) {
-        if($useBrackets) {
+	if(empty($text)) {
+	    $text = $altText;
+	}
+        if($addBrackets) {
             $linkText = '['. $text . ']';
         } else {
             $linkText = $text;
@@ -543,27 +562,27 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
     }
 
     // For rtl/ltr stuff
-    if ($gallery->direction == 'rtl') {
+    if ($gallery->direction == 'rtl' && isset($align) && $align != 'center') {
         $align = ($align == 'left') ? 'right' : 'left';
     }
 
-    $html = "\n". '<table id="menu" align="'. $align .'"><tr>';
+    $html = "\n<table class=\"g-iconmenu\" align=\"$align\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>";
     $i = 0;
     foreach ($iconElements as $element) {
         $i++;
         if (stristr($element,'</a>')) {
-            $html .= "\n\t". '<td>'. $element .'</td>';
+            $html .= "\n\t<td>$element</td>";
         } else {
-            $html .= "\n\t". '<td class="noLink">'. $element .'</td>';
+            $html .= "\n\t<td style=\"padding: 2px;\" class=\"g-icon-nolink\">$element</td>";
         }
         if($i > sizeof($iconElements)/2 && $linebreak) {
-            $html .= "\n</tr>\n</tr>";
-            $i=0;
+            $html .= "\n</tr>\n<tr>";
+            $i = 0;
         }
     }
 
     if ($closeTable == true) {
-        $html .= "</tr>\n</table>";
+        $html .= "\n</tr>\n</table>";
     }
 
     return $html;
@@ -575,27 +594,26 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
  * @return	string	$html			HTML code that contains a form for entering the searchstring
  * @author	Jens Tkotz <jens@peino.de>
  */
-function addSearchForm($formerSearchString = '', $align = '') {
+function addSearchForm($formerSearchString = '') {
     $html = '';
 
     $html .= makeFormIntro('search.php', array(
-        'name'     => 'search_form',
-        'style'    => "text-align: $align",
-        'class'   => 'search')
+        'name'    => 'search_form',
+        'class'   => 'g-search-form')
     );
 
-    $html .= "\t". gTranslate('common', "Search:");
-    $html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
-    $html .= "\n</form>\n";
+    $html .= gInput('text', 'searchstring',
+        gTranslate('common', "_Search:"), false, 25, $formerSearchString, 'g-search-form');
+    $html .= "</form>\n";
 
     return $html;
 }
 
 /**
- * This is either a wrapper around fs_file_size(), 
+ * This is either a wrapper around fs_file_size(),
  * or just a formatter for a filesize given in bytes.
  * Return a human readable filesize.
- * 
+ *
  * @param   string  $filesize   if omitted, function gets filesize of given filename
  * @param	string	$filename
  * @return	string  the formated filesize
@@ -607,7 +625,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
     if($filesize == 0 || $filename != '') {
         $filesize = fs_filesize($filename);
     }
-    
+
     $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $unit_count = (count($units) - 1);
 
@@ -623,9 +641,11 @@ function formatted_filesize($filesize = 0, $filename = '') {
 function dismissAndReload() {
     if (isDebugging()) {
         echo "\n<body onLoad='opener.location.reload();'>\n";
-        echo '<p align="center" class="error">';
-        echo gTranslate('common', "Not closing this window because debug mode is on") ;
-        echo "\n<hr>\n</p>";
+        common_header();
+        echo infoBox(array(
+            array('type' => 'information',
+            'text' => gTranslate('common', "Not closing this window because debug mode is on.")
+        )));
         echo "\n</body>";
     } else {
         echo "<body onLoad='opener.location.reload(); parent.close()'></body>";
@@ -641,10 +661,18 @@ function reload() {
 
 function dismissAndLoad($url) {
     if (isDebugging()) {
-        echo("<BODY onLoad='opener.location = \"$url\"; '>");
-        echo("Loading URL: $url");
-        echo("<center><b>" . gTranslate('common', "Not closing this window because debug mode is on") ."</b></center>");
-        echo("<hr>");
+        echo "<BODY onLoad='opener.location = \"$url\"; '>";
+        common_header();
+        echo infoBox(array(
+            array(
+                'type' => 'information',
+                'text' => sprintf(gTranslate('core', "Loading URL: %s"), $url)
+            ),
+            array(
+                'type' => 'information',
+                'text' => gTranslate('common', "Not closing this window because debug mode is on.")
+            )
+        ));
     } else {
         echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
     }
@@ -712,25 +740,31 @@ function includeHtmlWrap($name, $skinname = '') {
  * @return	string	$styleSheetLinks	The generated HTML <LINK> to load the stylesheets. Empty when already loaded.
  */
 function getStyleSheetLink() {
-    global $GALLERY_EMBEDDED_INSIDE;
-    global $GALLERY_OK;
-
+    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_OK;
     static $styleSheetSet;
 
     $styleSheetLinks = '';
 
     if(! $styleSheetSet) {
-        if (isset($GALLERY_OK) && $GALLERY_OK == false) {
-            $styleSheetLinks = _getStyleSheetLink("config");
-        } else {
-            $styleSheetLinks = _getStyleSheetLink("base");
+        $styleSheetLinks = _getStyleSheetLink("base");
+        if(isset($gallery->direction) && $gallery->direction == 'rtl') {
+           $styleSheetLinks .= _getStyleSheetLink("rtl");
+        }
+	else {
+           $styleSheetLinks .= _getStyleSheetLink("ltr");
+        }
 
+/*
+        if (isset($GALLERY_OK) && $GALLERY_OK == false) {
+            $styleSheetLinks .= _getStyleSheetLink("config");
+        } else {
+*/
             if ($GALLERY_EMBEDDED_INSIDE) {
                 $styleSheetLinks .= _getStyleSheetLink("embedded_style");
             } else {
                 $styleSheetLinks .= _getStyleSheetLink("screen");
             }
-        }
+//        }
 
         $styleSheetSet = true;
     }
@@ -751,8 +785,8 @@ function _getStyleSheetLink($filename, $skinname = '') {
 
     $base = dirname(dirname(__FILE__));
 
-    if (!$skinname && 
-      isset($gallery->app) && 
+    if (!$skinname &&
+      isset($gallery->app) &&
       isset($gallery->app->skinname) &&
       !$GALLERY_EMBEDDED_INSIDE) {
         $skinname = $gallery->app->skinname;
@@ -762,7 +796,7 @@ function _getStyleSheetLink($filename, $skinname = '') {
     $sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
     $sheetdefaultname = "css/$filename.css";
     $sheetdefaultpath = "$base/css/$filename.css";
-    
+
     if (fs_file_exists($sheetname)) {
         $file = $sheetname;
     }
@@ -904,20 +938,25 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
     }
 }
 
-/* Formats a nice string to print below an item with comments */
+/**
+ * Formats a nice string to print below an item with comments
+ * @param  int		$lastCommentDate		Timestamp of last comment
+ * @param  boolean	$displayCommentLegend	indicator wether a Legend showed be showed later.
+ * @return string	$html
+ */
 function lastCommentString($lastCommentDate, &$displayCommentLegend) {
     global $gallery;
     if ($lastCommentDate  <= 0) {
         return  '';
     }
     if ($gallery->app->comments_indication_verbose == 'yes') {
-        $ret = "<br>". 
+        $html = "<br>".
           sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
     } else {
-        $ret= '<span class="commentIndication">*</span>';
-        $displayCommentLegend = 1;
+        $html= '<span class="g-commentIndication">*</span>';
+        $displayCommentLegend = true;
     }
-    return $ret;
+    return $html;
 }
 
 function available_skins($description_only = false) {
@@ -937,7 +976,7 @@ function available_skins($description_only = false) {
     $dir = "$base/skins";
     $opts['none'] = gTranslate('common', "No Skin");
     $descriptions = '<dl>';
-    $name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
+    $name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">".
 	gTranslate('common', "No Skin") . "</a>";
     $descriptions .= sprintf("<dt>%s</dt>", $name);
     $descriptions .= '<dd>'. gTranslate('common', "The original look and feel.") .'</dd>';
@@ -1010,24 +1049,24 @@ function available_skins($description_only = false) {
 }
 
 function availableRandomBlockFrames() {
-    $html = gTranslate('config', sprintf("In Addition to the %s, you also use the following opportunities:", 
+    $html = gTranslate('config', sprintf("In Addition to the %s, you also use the following opportunities:",
         popup_link(gTranslate('config', "usual thumbs"), makeGalleryURL('setup/frame_test.php'), true)));
 
     $html .=
-        "<dt><u>". gTranslate('common',"Album image frames") ."</u></dt><dd>". 
+        "<dt><u>". gTranslate('common',"Album image frames") ."</u></dt><dd>".
             gTranslate('common',"Frame defined for images in the corresponding album") ."</dd>".
-        "<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt><dd>". 
+        "<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt><dd>".
             gTranslate('common',"Frame defined for thumbs in the corresponding album") ."</dd>".
-        "<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt><dd>". 
+        "<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt><dd>".
             gTranslate('common',"Frame defined for thumbs on mainpage") . "</dd>";
-        
+
    return $html;
 }
 
 function available_frames($description_only = false, $forRandomBlock = false) {
     $GALLERY_BASE = dirname(dirname(__FILE__));
     $opts = array();
-    
+
     if ($forRandomBlock) {
 	   $opts = array(
             'albumImageFrame' => '* '. gTranslate('common',"Album image frames") .' *',
@@ -1035,24 +1074,27 @@ function available_frames($description_only = false, $forRandomBlock = false) {
             'mainThumbFrame' => '* '. gTranslate('common',"Mainpage thumb frames") .' *'
         );
     }
-    
+
     $opts = array_merge($opts, array(
         'none' => gTranslate('common', "None"),
         'dots' => gTranslate('common', "Dots"),
         'solid' => gTranslate('common', "Solid"),
+        'siriux' => 'Siriux',
         )
     );
-        
+
     $descriptions= "<dl>" .
-        "<dt>". popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", true)  ."</dt><dd>". 
-            gTranslate('common', "No frames")."</dd>";
-        "<dt>". popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", true)  ."</dt><dd>". 
+        "<dt>". popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", true)  ."</dt><dd>".
+            gTranslate('common', "No frames")."</dd>".
+        "<dt>". popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", true)  ."</dt><dd>".
             gTranslate('common', "Just a simple dashed border around the thumb.")."</dd>" .
         "<dt>". popup_link(gTranslate('common', "Solid"), "frame_test.php?frame=solid", true) ."</dt><dd>".
-            gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" ;
+            gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" .
+        "<dt>". popup_link('Siriux', "frame_test.php?frame=siriux", true) ."</dt><dd>" .
+            gTranslate('common', "The frame from Nico Kaisers Siriux theme.")."</dd>" ;
 
     $dir = $GALLERY_BASE . '/html_wrap/frames';
-    
+
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
         while ($file = readdir($fd)) {
             $subdir = "$dir/$file";
@@ -1125,7 +1167,7 @@ function metatags($adds = array()) {
 
 /**
  * Generates a link to w3c validator
- * 
+ *
  * @param	string	$file	file to validate, relative to gallery dir
  * @param	boolean	$valid	true/false wether we know the result ;)
  * @param	array	$arg	optional array with urlargs
@@ -1170,7 +1212,7 @@ function album_validation_link($album, $photo='', $valid=true) {
       urlencode(eregi_replace("&amp;", "&",
       makeAlbumURL($album, $photo, $args))).
       '"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-    
+
     if (!$valid) {
         $link .= gTranslate('common', "Not valid yet");
     }
@@ -1182,30 +1224,33 @@ function album_validation_link($album, $photo='', $valid=true) {
  * It was made to beautify php code ;)
  */
 function printPopupStart($title = '', $header = '', $align = 'center') {
-	global $gallery;
-	if (!empty($title) && empty($header)) {
-		$header = $title;
-	}
+    global $gallery;
+    if (!empty($title) && empty($header)) {
+	$header = $title;
+    }
+
+    doctype();
 ?>
 <html>
 <head>
   <title><?php echo $title; ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo $header; ?></div>
-<div class="popup" align="<?php echo $align; ?>">
+<body dir="<?php echo $gallery->direction ?>" class="g-popup">
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo $header ?></div>
+</div>
+<div class="g-content-popup" align="<?php echo $align; ?>">
 
 <?php
 }
 
-
 function showImageMap($index) {
     global $gallery;
-    
+
     $allImageAreas = $gallery->album->getAllImageAreas($index);
     $html = '';
-   
+
     if (!empty($allImageAreas)) {
         $html .= "\n". '<map name="myMap">';
         foreach($allImageAreas as $nr => $area) {
@@ -1232,22 +1277,112 @@ function showImageMap($index) {
  * @param $skin		string	optional input of skin, because the image could be in skindir.
  * @author Jens Tkotz <jens@peino.de>
  */
-function gImage($relativePath, $altText, $attrs = array(), $skin = '') {
+function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
     global $gallery;
 
     $html = '';
     $imgUrl = getImagePath($relativePath, $skin);
+    getAndRemoveAccessKey($altText);
 
-    $html .= "<img src=\"$imgUrl\" alt=\"$altText\" title=\"$altText\"";
-
-    if(!empty($attrs)) {
-        foreach ($attrs as $key => $value) {
-            $html .= " $key=\"$value\"";
-        }
+    if(!empty($imgUrl)) {
+        $attrs = generateAttrs($attrList);
+        $html .= "<img src=\"$imgUrl\" alt=\"$altText\" title=\"$altText\"$attrs>";
     }
-    $html .= '>';
-    
+
     return $html;
 }
 
+function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
+    global $gallery;
+
+    $pathArray = array();
+
+    if (!empty($album)) {
+        if ($album->fields['returnto'] != 'no') {
+            $upArrow = gImage('icons/navigation/nav_home.gif', gTranslate('core', "navigate UP"));
+
+            foreach ($album->getParentAlbums($withCurrentAlbum) as $navAlbum) {
+                $pathArray[] = $navAlbum['prefixText'] .': '.
+                  galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+                  array(), '', false, false);
+            }
+        }
+    }
+    else {
+	$pathArray[] = sprintf(gTranslate('core', "Gallery: %s"),
+	  galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$upArrow",
+	    array(), '', false, false));
+    }
+
+    return $pathArray;
+}
+
+/**
+ * Returns a html string that represents the login/logout button, or just the text.
+ * @return string	$html
+ * @author Jens Tkotz<jens@peino.de>
+*/
+function LoginLogoutButton($returnUrl) {
+	global $gallery, $GALLERY_EMBEDDED_INSIDE;
+	$html = '';
+
+	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
+		if ($gallery->user->isLoggedIn()) {
+			$html = galleryLink($returnUrl, gTranslate('core', "log_out"), array(), 'logout.png');
+		}
+		else {
+			$html = popup_link(
+				gTranslate('core', "_login"),
+				'login.php', false, true, 500, 500, '','','login.png');
+		}
+	}
+	return $html;
+}
+
+function makeAccessKeyString($text) {
+    $accesskey = false;
+    $pos = strpos($text, '_');
+
+    if ($pos !== false) {
+        $accesskey = substr($text,$pos+1,1);
+        $text = substr_replace($text, '<span class="g-accesskey">'. $accesskey .'</span>', $pos,2);
+    }
+    return $text;
+}
+
+/**
+ * Modifies a string so that the access is surrounded by span tagg
+ * returns the access key.
+ * @param   string  $text
+ * @return  mixed   $accesskey  the accesskey, or null if no accesskey found
+ * @author  Jens Tkotz
+ */
+function getAndSetAccessKey(& $text) {
+    $accesskey = false;
+    $pos = strpos($text, '_');
+
+    if ($pos !== false) {
+        $accesskey = substr($text,$pos+1,1);
+        $altText = substr_replace($text, '', $pos,1);
+        $text = substr_replace($text, '<span class="g-accesskey">'. $accesskey .'</span>', $pos,2);
+    }
+    return $accesskey;
+}
+
+/**
+ * Returns a string so that the access is surrounded by span tag
+ * @param   string  $text
+ * @return  string  $text
+ * @author  Jens Tkotz
+ */
+function getAndRemoveAccessKey(& $text) {
+    $pos = strpos($text, '_');
+    $accesskey = false;
+
+    if ($pos !== false) {
+        $accesskey = substr($text,$pos+1,1);
+        $text = substr_replace($text, '', $pos,1);
+    }
+    return $accesskey;
+}
 ?>

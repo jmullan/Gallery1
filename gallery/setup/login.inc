@@ -64,11 +64,15 @@ elseif (!empty($login)) {
 
 if (isset($gallery->session->resetAdminGuid)) {
 ?>
-<div align="center">
-<div class="header"><?php echo sprintf(_("Reset %s Password"), "admin"); ?></div>
-<div class="desc"><?php echo sprintf(_("To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin"); ?></div>
-<br>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo sprintf(_("Reset %s Password"), "admin"); ?></div>
+</div>
+<div class="g-sitedesc"><?php 
+    printf(_("To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin");
+?></div>
+<p align="center">
 <input type="button" onclick="location.reload()" value="<?php echo _("Refresh"); ?>">
+</p>
 </body>
 </html>
 <?php
@@ -78,13 +82,19 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
 ?>
 
-<div align="center">
-<div class="header"><?php echo sprintf (_("%s configuration"), gallery()) ?></div>
-<div class="desc"><?php echo _("You must log in as an administrator to edit this server's configuration.") ?></div>
-<div class="desc"><?php echo sprintf(_("If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR) ?></div>
-<p>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo sprintf (_("%s configuration"), gallery()) ?></div>
+</div>
+<div class="g-sitedesc"><?php 
+    echo _("You must log in as an administrator to edit this server's configuration.");
+    echo "\n<br>";
+    echo _("If you have forgotten the password to your admin account, you can easily reset it.");
+    echo "\n<br>";
+    printf (_("Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR);
+?></div>
+<center>
 <?php if(isset($error)) {
-	echo gallery_error($error) ."</p>\n<p>";
+    echo '<div style="margin:5px">'. gallery_error($error) ."</div>";
 }
 ?>
 
@@ -100,10 +110,11 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 </table>
 </p>
 
-<input type="submit" name="login" value="<?php echo _("Login") ?>">
+<input type="submit" name="login" value="<?php echo _("Log me in") ?>">
 <input type="reset" name="reset" value="<?php echo _("Reset") ?>">
 <input type="button" name="cacle" value="<?php echo _("Cancel") ?>" onClick="javascript:location.href='../'">
 </form>
+</center>
 
 </body>
 </html>

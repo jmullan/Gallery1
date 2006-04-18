@@ -55,7 +55,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		$ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
 		$navThumbsPrev .= "<a href=\"$ppUrl\">";
 		$navThumbsPrev .= $gallery->album->getThumbnailTagById($prevPage,
-		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
+		   $gallery->album->fields["nav_thumbs_size"]);
 		$navThumbsPrev .='</a>&nbsp;&nbsp;';
 	}
 	
@@ -67,7 +67,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		$npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
 		$navThumbsNext .= "&nbsp;&nbsp;<a href=\"$npUrl\">";
 		$navThumbsNext .= $gallery->album->getThumbnailTagById($nextPage,
-		   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
+		   $gallery->album->fields["nav_thumbs_size"]);
 		$navThumbsNext .='</a>';
 	}
 	
@@ -116,32 +116,27 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 		/* All other images get another CSS */
 		} else {
 			$navBlogThumb .= $gallery->album->getThumbnailTagById($navigator["allIds"][$i],
-        	           $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_img\"");
+        	           $gallery->album->fields["nav_thumbs_size"]);
 		}
 		$navBlogThumb .= '</a>';
 		$navBlogThumb .= '&nbsp;&nbsp;';
 	}
 }
+
 ?>
 
-<!-- Photo Navigator -->
-<table<?php echo $width ?> border="0" cellspacing="0" cellpadding="0" class="modnavboxthumbs">
-<tr>
-	<td colspan="5">
-		<table width="100%" border="0" align="center">
-			<tr valign="bottom" align="center">
-				<td><?php echo $navThumbsFirst; ?></td>
-<?php if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) { ?>
-			        <td nowrap width="40%" align="right"><?php echo $navThumbsPrev; ?></td>
-			        <td width="5"><?php echo $navThumbsCur; ?></td>
-			        <td nowrap width="40%" align="left"><?php echo $navThumbsNext; ?></td>
-<?php } elseif ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) { ?>
-				<td colspan="3"><?php echo $navBlogThumb; ?></td>
-<?php } ?>
-				<td><?php echo $navThumbsLast; ?></td>
-			</tr>
-		</table>
-	</td>
+<!-- Microthumb Photo Navigator -->
+<table width="100%" border="0" align="center">
+<tr valign="bottom" align="center">
+	<td><?php echo $navThumbsFirst; ?></td>
+	<?php if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) { ?>
+	<td nowrap width="40%" class="right"><?php echo $navThumbsPrev; ?></td>
+	<td width="5"><?php echo $navThumbsCur; ?></td>
+	<td nowrap width="40%" class="left"><?php echo $navThumbsNext; ?></td>
+	<?php } elseif ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) { ?>
+	<td colspan="3"><?php echo $navBlogThumb; ?></td>
+	<?php } ?>
+	<td><?php echo $navThumbsLast; ?></td>
 </tr>
 </table>
 <?php } ?>

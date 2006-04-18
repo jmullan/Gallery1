@@ -31,18 +31,11 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isIt
 	echo _("You are not allowed to perform this action!");
 	exit;
 }
-doctype();
-?>
 
-<html>
-<head>
-  <title><?php echo _("Custom Thumbnail") ?></title>
-  <?php common_header(); ?>
-</head>
-
-<?php
 if (isset($action)) {
 	if ($action == "doit") {
+	    doctype();
+            echo "<html>";
 		
 		#-- rebuild the thumbnail, cropped) ---
 		echo(_("Remaking the Thumbnail..."));
@@ -58,18 +51,18 @@ if (isset($action)) {
 		
 		#-- close and reload parent ---
 		dismissAndReload();
-	
-	} else if ($action == "cancel") {
+	} 
+	else if ($action == "cancel") {
 		#-- just close ---
+		doctype();	
+		echo "<html>";
 		dismiss();
 	}
 } else {
 	#-- show the applet ---
-?>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Custom Thumbnail") ?></div>
-<div class="popup" align="center">
-<?php
+
+    printPopupStart(_("Custom Thumbnail"));
+
 	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) { 
 
