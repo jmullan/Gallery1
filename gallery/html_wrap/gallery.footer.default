@@ -19,7 +19,7 @@
 
 includeTemplate('gallery.footer.tpl');
 
-require_once(dirname(__FILE__) .'/info_donation-block.tpl');
+require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
 
 global $GALLERY_EMBEDDED_INSIDE;
 if (! isset($GALLERY_EMBEDDED_INSIDE)) {
