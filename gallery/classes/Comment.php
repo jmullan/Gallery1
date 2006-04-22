@@ -57,7 +57,7 @@ class Comment {
 		$name = '';
 		$user = $gallery->userDB->getUserByUid($this->UID);
 		
-		if  ($gallery->app->comments_anonymous == 'no') {
+		if (!$user->isPseudo()) {
 		    $name = $user->printableName($gallery->app->comments_display_name);
 		}
 		
