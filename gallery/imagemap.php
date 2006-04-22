@@ -135,30 +135,31 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $iconElements = array();
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
-    if ($gallery->user->isLoggedIn()) {
-        $iconText = getIconText('exit.gif', gTranslate('core', "logout"));
-        $iconElements[] = '<a href="'.
-          doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-          '">'. $iconText .'</a>';
-    } else {
-        $iconText = getIconText('identity.gif', gTranslate('core', "login"));
-        $iconElements[] = popup_link($iconText, "login.php", false);
-    }
+        if ($gallery->user->isLoggedIn()) {
+                $iconElements[] = galleryLink(
+			doCommand("logout", array(), "view_album.php", array("page" => $page)),
+                        gTranslate('core', "log_out"),
+                        array(),
+                        'exit.gif'
+                );
+        } else {
+                $iconElements[] = popup_link(
+                        gTranslate('core', "_login"),
+                        'login.php', false, true, 500, 500, '','','identity.gif'
+                );
+        }
 }
 
 $navigator["id"] = $id;
 $navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
-$navigator["fullWidth"] = "100";
-$navigator["widthUnits"] = "%";
-$navigator["url"] = ".";
 
 #-- breadcrumb text ---
 $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 
 $breadcrumb["text"][] = galleryLink(
 	makeAlbumUrl($gallery->session->albumName, $id),
-	  gTranslate('core', "Original photo") .'&nbsp;'. $upArrowURL,
-	  array('class' => 'bread')
+	  gTranslate('core', "Original photo"). "&nbsp;". gImage('icons/navigation/nav_home.gif'),
+	  array('class' => 'bread'), '', false, false
 	);
 
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
@@ -226,13 +227,13 @@ echo makeFormIntro('imagemap.php',
 	<input type="<?php echo $type; ?>" name="xvals">
 	<input type="<?php echo $type; ?>" name="yvals">
 	<br>
-	<input type="button" onClick="resetAndClear();" value="<?php echo gTranslate('core', "Clear and reset canvas"); ?>">
+	<input type="button" class="g-button" onClick="resetAndClear();" value="<?php echo gTranslate('core', "Clear and reset canvas"); ?>">
 	<hr>
 	<?php echo gTranslate('core', "Optional link-url"); ?><br>
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
 	<?php echo gTranslate('core', "Description"); ?><br>
 	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
-	<input type="submit" value="<?php echo gTranslate('core', "Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
+	<input type="submit" class="g-button" value="<?php echo gTranslate('core', "Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
     <hr>
 <?php
 //print_r($photo);
@@ -247,10 +248,10 @@ if (!empty($allImageAreas)) {
     echo "\n</select>";
 
     echo "\n<hr>";
-    echo "<input type=\"submit\" value=\"". gTranslate('core', "Delete selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='delete'\">";
+    echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Delete selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='delete'\">";
 
     echo "\n<hr>";
-    echo "<input type=\"submit\" value=\"". gTranslate('core', "Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
+    echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
 
     echo '<div class="attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
 }

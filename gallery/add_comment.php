@@ -33,61 +33,73 @@ if (!$gallery->user->canAddComments($gallery->album)) {
 list($save, $id, $commenter_name, $comment_text) = 
     getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
 
-$error_text = '';
+$notice_messages = array();
+
 if ($gallery->user->isLoggedIn() ) {
-	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-		$commenter_name = $gallery->user->printableName($gallery->app->name_display);
-	}
+    if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
+	$commenter_name = $gallery->user->printableName($gallery->app->name_display);
+    }
 } elseif (!isset($commenter_name)) {
-	$commenter_name = '';
+    $commenter_name = '';
 }
 
 if (empty($comment_text)) {
-	$comment_text = '';
+    $comment_text = '';
 }
 
-if (isset($gallery->app->comments_length)) {
-	$maxlength = $gallery->app->comments_length;
-} else {
-	$maxlength = 0;
-}
+$maxlength = isset($gallery->app->comments_length) ? $gallery->app->comments_length : 0;
 
 if (isset($save)) {
-	if ( empty($commenter_name) || empty($comment_text)) {
-		$error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
-	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
-		$error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
-	} elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
-		$error_text = gTranslate('core', "Your Comment contains forbidden words. It will not be added.");
-	} else {
-		$comment_text = strip_tags($comment_text);
-		$commenter_name = strip_tags($commenter_name);
-		$IPNumber = $_SERVER['REMOTE_ADDR'];
-		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
+    if (empty($commenter_name) || empty($comment_text)) {
+	$notice_messages[] = array(
+                'type' => 'error',
+                'text' => gTranslate('core', "Name and comment are both required to save a new comment!")
+	);
+    }
+
+    if ($maxlength >0 && strlen($comment_text) > $maxlength) {
+	$notice_messages[] = array(
+                'type' => 'error',
+                'text' => sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength)
+	);
+    }
+
+    if (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
+	$notice_messages[] = array(
+                'type' => 'error',
+                'text' => gTranslate('core', "Your Comment contains forbidden words. It will not be added.")
+	);
+    }
+
+    // Everything went fine, add the comment
+    if(empty($notice_messages)) {
+	$comment_text = strip_tags($comment_text);
+	$commenter_name = strip_tags($commenter_name);
+	$IPNumber = $_SERVER['REMOTE_ADDR'];
+	$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
 		
-		$gallery->album->save();
-		emailComments($id, $comment_text, $commenter_name);
+	$gallery->album->save();
+	emailComments($id, $comment_text, $commenter_name);
 		
-		// Note: In stats.php this causes the browser to show a message about POST data ...
-		dismissAndReload();
-		return;
-	}
+	// Note: In stats.php this causes the browser to show a message about POST data ...
+	dismissAndReload();
+	return;
+    }
 }
 printPopupStart(gTranslate('core', "Add Comment"));
 
 echo "\n<p>". gTranslate('core', "Enter your comment for this picture in the text box below.") . '</p>';
 
 echo $gallery->album->getThumbnailTagById($id);
-if (!empty($error_text)) {
-	echo "\n<br>". gallery_error($error_text);
-}
-echo "<br><br>";
+
+echo infoBox($notice_messages);
+
 echo makeFormIntro("add_comment.php", array(), array('type' => 'popup'));
 
 drawCommentAddForm($commenter_name, 35);
 ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<br><input type="button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+<br><input type="button" class="g-button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 
 </form>
 </div>
