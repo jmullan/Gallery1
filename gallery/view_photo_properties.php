@@ -99,25 +99,26 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
     displayPhotoFields($index, $extra_fields, false, true,NULL,$forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {
-        echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+        echo '<div class="left"><b>'. _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index) .'</div>';
     }
 
-    if ($gallery->user->canWriteToAlbum($gallery->album) &&
-        !strcmp($gallery->app->cacheExif, "yes")) {
-        echo "<br>";
-        echo "<a href=\"" .
+
+    if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes') {
+        echo "\n</div>\n";
+        echo '<div style="padding: 2px;">';
+        echo galleryLink(
             makeGalleryUrl("view_photo_properties.php",
                     array("reloadExifFromFile" => 1,
                         "set_albumName" => $gallery->session->albumName,
-                        "index" => $index)) .
-            "\">[". _("Reload EXIF Data From File") ."]</a>";
-        echo "<br></span>";
-        echo "<span class=popup>";
-        echo _("(if the data is current, this will not appear to do anything)");
-        echo "</span>";
+                        "index" => $index)),
+	    gTranslate('core', "Reload EXIF Data From File")
+	);
+        echo "<br>";
+
+        echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
     }
 } else {
-	echo gallery_error(_("no album / index specified"));
+    echo gallery_error(_("no album / index specified"));
 }
 ?>
 </div>
@@ -126,10 +127,8 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 <form action="#">
 <input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick="parent.close()" class="g-button">
 </form>
-<br>
 </div>
 
 <?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
-</div>
 </body>
 </html>
