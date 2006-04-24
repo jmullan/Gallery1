@@ -110,9 +110,9 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 </table>
 </p>
 
-<input type="submit" name="login" value="<?php echo _("Log me in") ?>">
-<input type="reset" name="reset" value="<?php echo _("Reset") ?>">
-<input type="button" name="cacle" value="<?php echo _("Cancel") ?>" onClick="javascript:location.href='../'">
+<input class="g-button" type="submit" name="login" value="<?php echo _("Log me in") ?>">
+<input class="g-button" type="reset" name="reset" value="<?php echo _("Reset") ?>">
+<input class="g-button" type="button" name="cancel" value="<?php echo _("Cancel") ?>" onClick="javascript:location.href='../'">
 </form>
 </center>
 

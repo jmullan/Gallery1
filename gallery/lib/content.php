@@ -661,7 +661,7 @@ function reload() {
 
 function dismissAndLoad($url) {
     if (isDebugging()) {
-        echo "<BODY onLoad='opener.location = \"$url\"; '>";
+        echo "<body onLoad='opener.location = \"$url\"; '>";
         common_header();
         echo infoBox(array(
             array(
@@ -674,12 +674,12 @@ function dismissAndLoad($url) {
             )
         ));
     } else {
-        echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
+        echo("<body onLoad='opener.location = \"$url\"; parent.close()'>");
     }
 }
 
 function dismiss() {
-    echo("<BODY onLoad='parent.close()'>");
+    echo("<body onLoad='parent.close()'>");
 }
 
 function includeLayout($name, $skinname='') {

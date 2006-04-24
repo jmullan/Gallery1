@@ -84,12 +84,13 @@ $configTestStatus = array(
 		echo sprintf(_("Having problems?  Try the %s and %s."),
 			$diagnostics_page, $help_page);
 	}
+?>
+</div>
+<br>
 
-echo "\n</div>";
-echo "\n<br>";
-
+<table class="g-double-bottom-border-spacer" width="80%" cellspacing="0" align="center">
+<?php
 $warning = 0;
-echo "\n\t". '<table class="g-double-bottom-border-spacer" width="80%" cellspacing="0" align="center">';
 foreach ($checklist as $short => $check) {
     if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 
@@ -187,21 +188,27 @@ foreach ($checklist as $short => $check) {
 	
     echo "\n</tr>";
 }
-echo "\n</table>";
+?>
+</table>
 
-echo "\n<table width=\"100%\">";
-echo "\n<tr><td width=\"30%\">";
-
-echo "\n<table>";
-echo "\n<tr><td colspan=\"2\" align=\"left\">". _("Legend:") . '</td></tr>';
+<div class="floatleft left" style="width: 30%">
+  <table>
+    <tr>
+      <td colspan="2" class="left"><?php echo gTranslate ('config', "Legend:"); ?></td>
+    </tr>
+<?php
 foreach ($usedStatus as $status) {
-    echo "\n<tr><td>". $configTestStatus[$status]['image'] .'</td>';
-    echo "<td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td></tr>';
+    echo "\n    <tr>";
+    echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
+    echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
+    echo "\n    </tr>";
 }
-echo "\n</table>";
+?>
+  </table>
+</div>
 
-echo "\n</td>";
-echo "\n<td align=\"center\">";
+<div class="floatleft center">
+<?php
 if (isset($error)) {
     echo infoBox(array(array(
 	'type' => 'error',
@@ -231,7 +238,11 @@ else {
 	    'text' =>  ("Your installation passed with flying colors!  Go go go!")
 	)));
     }
-    echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Next Step") . ' ->" class="g-button">';
+    echo gSubmit(
+	'go_next',
+	gTranslate('config', "_Next Step ->"),
+	array('disabled' => 'disabled', 'title' => gTranslate('config', "Next Step"))
+    );
 }
 ?>
-</td></tr></table>
+</div>

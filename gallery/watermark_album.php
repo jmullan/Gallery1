@@ -55,10 +55,8 @@ if (isset($save) || isset($preview)) {
         if (isset($wmName) && !empty($wmName)) {
             if (isset($save)) {
                 printPopupStart(gTranslate('core', "Watermarking album..."));
-?>
-<div class="popup" align="center"><?php echo _("(this may take a while)"); ?></div>
-<div class="popup">
-<?php
+		
+		echo gTranslate('core', "(this may take a while)");
                 my_flush();
                 set_time_limit($gallery->app->timeLimit);
                 $gallery->album->watermarkAlbum(
@@ -71,13 +69,13 @@ if (isset($save) || isset($preview)) {
                     $wmSelect
                 );
                 $gallery->album->save();
+		echo '<br><br>';
+    		echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
 ?>
 </div>
 </body>
 </html>
 <?php
-                dismissAndReload();
-                return;
             } else {
                 // create a preview of the highlight image
                 $gallery->album->watermarkPhoto(
@@ -120,7 +118,10 @@ if (!$gallery->album->numPhotos(1)) {
         echo "\n<p>". gallery_error($err) . "</p>";
     }
 
-    echo infoLine(_("Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."), 'notice');
+    echo infoBox(array(array(
+	'type' => 'information',
+	'text' => gTranslate('core', "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures.")
+    )));
     echo makeFormIntro('watermark_album.php',  array('name' => 'theform'));
     global $watermarkForm;
     $watermarkForm["askRecursive"] = 1;
@@ -131,12 +132,15 @@ if (!$gallery->album->numPhotos(1)) {
 
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<?php // only allow preview if there is a highlight
- if (isset($highlightIndex)) { ?>
-	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
-<?php } ?>
-	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<?php
+
+echo gSubmit('save', gTranslate('core', "_Save"));
+// only allow preview if there is a highlight
+if (isset($highlightIndex)) {
+    echo gSubmit('preview', gTranslate('core', "_Preview"));
+}
+    echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
+?>
 </p>
 </form>
 

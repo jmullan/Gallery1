@@ -266,13 +266,18 @@ function showChoice2($target, $args, $popup = true) {
     return makeGalleryUrl($target, $args);
 }
 
-function gSubmit($name, $value) {
+function gSubmit($name, $value, $additionalAttrs = array()) {
     $attrList['name'] = $name;
     $attrList['type'] = 'submit';
     $attrList['accesskey'] = getAndRemoveAccessKey($value);
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    if($attrList['accesskey'] != '') {
+	$attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
 
+    $attrList = array_merge($attrList, $additionalAttrs);
     $attrs = generateAttrs($attrList);
     $html = "<input$attrs>\n";
 
@@ -323,13 +328,17 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
     return $html;
 }
 
-function gButton($name, $value, $onClick) {
+function gButton($name, $value, $onClick, $additionalAttrs = array()) {
     $attrList['name'] = $name;
     $attrList['type'] = 'button';
     $attrList['accesskey'] = getAndRemoveAccessKey($value);
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
     $attrList['onClick'] = $onClick;
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    if($attrList['accesskey'] != '') {
+        $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
 
     $attrs = generateAttrs($attrList);
     $html = "<input$attrs>\n";
