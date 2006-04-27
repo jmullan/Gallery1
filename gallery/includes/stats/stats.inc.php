@@ -159,48 +159,48 @@ $stats['filter'] = array(
 );
 
 function generateStatsLinks() {
-    global $gallery;
-    global $stats;
-    $links = '';
+	global $gallery;
+	global $stats;
+	$links = '';
 
-    if (!empty($gallery->app->stats_foruser)) {
-	foreach ($gallery->app->stats_foruser as $key) {
-	    if (isset($stats['types'][$key])) {
-	        $links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
-	    }
+	if (!empty($gallery->app->stats_foruser)) {
+		foreach ($gallery->app->stats_foruser as $key) {
+			if (isset($stats['types'][$key])) {
+				$links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
+			}
+		}
 	}
-    }
 
 	return $links;
 }
 
 /* Layout function */
 function stats_showBlock($block, $caption=null) {
-	echo "\n<table>";
+	echo "\n<table width=\"100%\">";
 	if (isset($caption)) {
 		echo "\n<caption>$caption</caption>"; 
 	}
 	foreach ($block as $option => $attr) {
 		echo "\n<tr>";
+		echo "\n\t<td>". $attr['text'] ."</td>";
 		switch ($attr['type']) {
 			case 'radio':
-					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $attr['name'] .'" value="'. $option .'" '. $attr['default'] .'></td>';
+					echo "\n\t". '<td width="30%"><input type="'. $attr['type'] .'" name="'. $attr['name'] .'" value="'. $option .'" '. $attr['default'] .'></td>';
 			break;
 			case 'checkbox':
-					echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $option .'" value="1" '. $attr['default'] .'></td>';
+					echo "\n\t". '<td width="30%"><input type="'. $attr['type'] .'" name="'. $option .'" value="1" '. $attr['default'] .'></td>';
 			break;
 			case 'select':
-					echo "\n\t". '<td><select name="'. $option .'">';
+					echo "\n\t". '<td width="30%"><select name="'. $option .'">';
 					foreach ($attr['options'] as $optkey => $optvalue) {
 							echo "\n\t\t<option value=\"$optkey\">$optvalue</option>";
 					}
 					echo "\n\t</select></td>";
 			break;
 			default:
-				echo "\n\t". '<td><input type="'. $attr['type'] .'" name="'. $option .'" value="'. $attr['default'] .'" size="5"></td>';
+				echo "\n\t". '<td width="30%"><input type="'. $attr['type'] .'" name="'. $option .'" value="'. $attr['default'] .'" size="5"></td>';
 			break;
 		}
-		echo "\n\t<td>". $attr['text'] ."</td>";
 		echo "\n</tr>";
 	}
 	echo "\n</table>";

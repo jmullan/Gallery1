@@ -52,9 +52,12 @@ a {
     font-size: 9pt;
 }
 
-.g-header {
+.g-header, .g-header-popup, .g-columnheader {
     color: #fff;
     background: #66a;
+}
+
+.g-header {
     border-bottom: 2px solid #000;
     height: 32px;
     padding: 5px 3px 3px 3px;
@@ -62,8 +65,6 @@ a {
 }
 
 .g-header-popup {
-    color: #fff;
-    background: #66a;
     border-bottom: 2px solid #000;
     height: 25px;
     padding: 5px;
@@ -163,6 +164,11 @@ a {
     margin-bottom: 10px;
 }
 
+.g-content-popup caption {
+    font-weight: bold;
+    margin: 5px;
+}
+
 .g-form-text {
 }
 
@@ -209,8 +215,8 @@ a {
 
 .g-iconmenu a:hover {
    white-space: nowrap;
-   border-bottom: 1px solid #66A;
-   border-right: 1px solid #66A;
+   border-bottom: 1px solid #66a;
+   border-right: 1px solid #66a;
    border-top: 1px solid #224;
    border-left: 1px solid #224;
    padding: 1px;
@@ -640,4 +646,9 @@ input:focus, textarea:focus, select:focus {
 .g-comment-box {
 	border: 1px solid green;
 	text-align: left;
+}
+
+.g-columnheader {
+    padding: 2px;
+    border: 1px solid #fff;
 }

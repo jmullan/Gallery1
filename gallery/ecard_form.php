@@ -31,12 +31,19 @@
 ####################################################################################
 */
 
-  require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/init.php');
 
-  list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
+list($photoIndex, $ecard, $submit_action) = 
+    getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
 
-  $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
-  $photo = $gallery->album->getPhoto($ecard['photoIndex']);
+printPopupStart(gTranslate('core', "Send this photo as eCard"));
+
+$ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
+if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
+    echo infoBox($global_notice_messages);
+    echo galleryLink(makeGalleryUrl(), "_Back to Gallery");
+    exit;
+}
 
   /* Get the dimensions of the sized Photo */
   list($width, $height) = $photo->getDimensions(0, false);
@@ -78,11 +85,7 @@
 	    $ecard["image_name"] = $photo->getPhotoPath($gallery->album->fields['name'], false);
 	}
     }
-doctype();
 ?>
-<html>
-  <?php common_header(); ?>
-  <title><?php echo gTranslate('core', "Send this photo as eCard") ?></title>
 
 <script type="text/javascript">
 <!--
@@ -102,6 +105,7 @@ doctype();
    document.ecard_form.action = "<?php echo $HTTP_SERVER_VARS["PHP_SELF"] ?>";
    document.ecard_form.target = "_self";
    document.ecard_form["submit_action"].value = "send";
+//	document.ecard_form.submit();
    if (check()) { document.ecard_form.submit(); }
  }
 
@@ -163,13 +167,6 @@ doctype();
 
 //-->
 </script>
-
-</head>
-
-<body class="popupbody" dir="<?php echo $gallery->direction ?>" onLoad="document.ecard_form['ecard[name_sender]'].focus()">
-<div class="popuphead"><?php echo gTranslate('core', "Send this photo as eCard") ?></div>
-<div align="center" class="popup">
-
 <?php
     if (! $ecard_send) {
 	echo $gallery->album->getThumbnailTag($photoIndex);
@@ -177,6 +174,7 @@ doctype();
 	    echo '<p>'. gallery_error($error_msg) .'</p>';
 	}
 
+    echo "<br><br>";
     echo makeFormIntro("ecard_form.php",
         array("name" => "ecard_form"),
         array("type" => "popup"));
@@ -186,12 +184,11 @@ doctype();
   <input name="ecard[photoIndex]" type="hidden" value="<?php echo $photoIndex; ?>">
   <input name="submit_action" type="hidden" value="">
 
-  <br>
   <table border="0" cellpadding="0" cellspacing="4" align="center">
   <tr>
-    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
+    <td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
     <td width="10">&nbsp;</td>
-    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
+    <td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
   </tr>
   <tr>
     <td><?php echo gTranslate('core', "Name") ?></td>
@@ -235,7 +232,7 @@ for($i = 1; $i <= 27; $i++) {
   <tr>
     <td><?php echo gTranslate('core', "Subject:"); ?></td>
     <?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
-    <td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
+    <td colspan="4"><input type="text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
   </tr>
   <tr>
     <td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
@@ -250,18 +247,18 @@ for($i = 1; $i <= 27; $i++) {
   </tr>
   <tr>
     <td align="center" colspan="5">
-	<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text">
+	<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="text">
     </td>
   </tr>
   <tr>
      <td colspan="5" align="center">
      <table>
       <tr>
-        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>"></td>
-        <td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>"></td>
+        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>" class="g-button"></td>
+        <td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>" class="g-button"></td>
 	<td width="100%">&nbsp;</td>
-        <td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>"></td>
-	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>"></td>
+        <td class="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>" class="g-button"></td>
+	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>" class="g-button"></td>
       </tr>
      </table>
      </td>
@@ -269,7 +266,10 @@ for($i = 1; $i <= 27; $i++) {
   </table>
   </form>
 <?php } else {
-    echo sprintf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
+    printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."),
+	$ecard["name_recepient"],
+	$ecard["email_recepient"]
+    );
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($ecard['photoIndex']); ?></p>
   <br>

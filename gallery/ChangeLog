@@ -1,3 +1,17 @@
+2006-04-26 Jens Tkotz <jens@peino.de> 1.5.4-cvs-b4 / 1.6-svn-b1-j25-UNSTABLE
+
+ * Fix: Often bots access the ecardform without having correct photo loaded etc.
+        This leaves unnecessary Errormessage in Apaches logfile
+
+   Thanks to Peter Schumacher from forums.
+
+ * Fix: Only do userinput sanitation if value contains html tags.
+
+ * FIX: Compressing an Image with having maximum filesize failed.
+   Thanks to Scott Barnes (atomsmith) from forums.
+
+ * FIX: Just compressing(no resize) an Image with NetPBM failed.
+
 2006-04-24 Jens Tkotz <jens@peino.de> 1.6-cvs-b1-j24-UNSTABLE
 
  * Fixed css of upgrade_users.php

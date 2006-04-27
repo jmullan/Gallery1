@@ -382,7 +382,7 @@ if (!$gallery->album->isMovie($id)) {
 	if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
 	  $gallery->app->emailOn == 'yes') {
 		$adminTextIconElemens[] = popup_link(
-			gTranslate('core', "Send photo as eCard"),
+			gTranslate('core', "Send photo as e_Card"),
 			makeGalleryUrl('ecard_form.php', array('photoIndex' => $index,'gallery_popup' => 'true' )),
 			true, true,550, 600,'', '','ecard.gif'
 		);

@@ -42,20 +42,19 @@ doctype();
     <title><?php echo _("Poststamp preview"); ?></title>
 </head>
 
-<body class="popupbody" dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo _("Choose a stamp:"); ?></div>
-<div align="center" class="popup">
+<body class="g-popup">
+<div class="g-header-popup"><?php echo _("Choose a stamp:"); ?></div>
 
 <table width="100" border="0" cellspacing="2" cellpadding="2">
 <?php
 for($i = 1; $i <= 27; $i++) {
-  $nr = sprintf("%02d", $i-1);
-  echo "\n<tr>";
-    echo "\n". '<td width="20" align="center" valign="middle" bgcolor="#CCCCCC" scope="col">'. $i .'</td>';
-    echo "\n". '<td bgcolor="#CCCCCC" scope="col">';
-    echo "\n\t" . '<img src="'. $gallery->app->photoAlbumURL .'/images/ecard_images/'. $nr .'.gif">';
+    $nr = sprintf("%02d", $i-1);
+    echo "\n<tr>";
+    echo "\n". '<td width="20" align="center" valign="middle" bgcolor="#ccc" scope="col">'. $i .'</td>';
+    echo "\n". '<td bgcolor="#ccc" scope="col">';
+    echo "\n\t" . gImage("/ecard_images/$nr.gif");
     echo "\n</td>";
-  echo "\n</tr>";
+    echo "\n</tr>";
 }
 ?>
 

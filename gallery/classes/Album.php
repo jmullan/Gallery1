@@ -1690,11 +1690,29 @@ class Album {
     }
 
     function &getPhoto($index) {
+	global $global_notice_messages;
+	if (!isset($global_notice_messages)) {
+	    $global_notice_messages = array();
+	}
+
         if ($index >= 1 && $index <= sizeof($this->photos)) {
-            return $this->photos[$index-1];
-        } else {
-            echo gallery_error(sprintf(_("Requested index [%d] out of bounds [%d]"),$index,sizeof($this->photos)));
+            $photo = & $this->photos[$index-1];
         }
+	else {
+	    $errortext = sprintf(
+		gTranslate('core',"Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."),
+		$index,
+		sizeof($this->photos)
+	    );
+	    echo debugMessage($errortext, __FILE__, __LINE__);
+            $global_notice_messages[] = array(
+		'type' => 'error',
+		'text' => $errortext
+	    );
+            $photo = false;
+        }
+
+	return $photo;
     }
 
     function getPhotoIndex($id) {

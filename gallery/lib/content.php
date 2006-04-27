@@ -457,7 +457,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
     foreach ($tables as $caption => $fields) {
         $customFieldsTable = new galleryTable();
         $customFieldsTable->setAttrs(array('class' => 'g-customFieldsTable'));
-        $customFieldsTable->setCaption($caption, 'g-customFieldsTableCaption');
+        $customFieldsTable->setCaption($caption, 'g-columnheader');
 
         foreach ($fields as $key => $value) {
             $customFieldsTable->addElement(array('content' => $key));
@@ -1236,7 +1236,7 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
   <title><?php echo $title; ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>" class="g-popup">
+<body class="g-popup">
 <div class="g-header-popup">
   <div class="g-pagetitle-popup"><?php echo $header ?></div>
 </div>

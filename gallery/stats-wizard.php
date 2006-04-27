@@ -40,28 +40,35 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle ?>::<?php echo _("Gallery statistics - Wizard") ?></title>
+<title><?php echo $gallery->app->galleryTitle ?>::<?php echo gTranslate('core',"Gallery statistics - Wizard") ?></title>
 <?php 
 	common_header() ;
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
+
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Gallery statistics - Wizard"); ?></div>
+</div>
 <?php  
 }
-    includeHtmlWrap("gallery.header");
+    $adminbox["commands"] = galleryLink(
+    	makeGalleryUrl("admin-page.php"),
+    	gTranslate('core',"return to _admin page"),
+    	array(), '', true
+    );
+    $adminbox["commands"] .= galleryLink(
+    	makeAlbumUrl(),
+    	gTranslate('core',"return to _gallery"),
+    	array(),'', true);
 
-    $adminbox['text'] ='<span class="head">'. _("Gallery statistics - Wizard") .'</span>';
-    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
-    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
-
-    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
 
     includeLayout('adminbox.inc');
     includeLayout('breadcrumb.inc');
 
 ?>
-<div class="popup" align="center">
+<div class="g-content-popup">
 <?php
 /* note: the script is below as the header of the environment needs to loaded before. */
 ?>
@@ -106,49 +113,50 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
 		}
 	}
-	document.url_form.stats_url.value = url;
+	document.getElementById('stats_url').value = url;
 }
 </script>
 
 <?php
 	echo makeFormIntro("stats.php", array("name" => "stats_form", "onChange" => 'updateUrl()'));
-	echo "\n<table width=\"100%\" border=\"0\">";
-	echo "\n<tr>";
-	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['types'], _("Type"));
-	echo "\n</td>";
-
-	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['options'], _("Options"));
-	echo "\n\t</td>";
-	echo "\n</tr>";
-	echo "\n<tr>";
-	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['layout'], _("Layout"));
-	echo "\n\t</td>";
-	
-	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['filter'], _("Filter by Capture Date"));
-	echo "\n\t</td>";
-	
-	echo "\n</tr>";
-	echo "\n</table>";
-	echo "\n". '<input type="submit" name="submitbutton" value="'. _("Show statistics") . '" class="g-button">';
-	echo "\n</form>";
-
-	echo "\n". '<div align="left">';
-	echo _("Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
-	echo "\n<br>". '<form name="url_form" action="#">';
-	echo "\n". '<input type="text" name="stats_url" size="150" value="" readonly';
-	echo "\"</div>";
-	echo "\n</form>";
-
 ?>
-<script type="text/javascript">
-  // Run the script at the when page is showed.
-  // We could do this onLoad, but this doesnt work embedded.
-  updateUrl();
-</script>
+	<table width="100%" class="g-stats-wizard">
+	<tr>
+	  <td width="50%">
+		<?php stats_showBlock($stats['types'], gTranslate('core',"Type")); ?>
+	  </td>
+
+	  <td width="50%">
+		<?php stats_showBlock($stats['options'], gTranslate('core',"Options")); ?>
+	  </td>
+	</tr>
+	<tr>
+	  <td width="50%">
+		<?php stats_showBlock($stats['layout'], gTranslate('core',"Layout")); ?>
+	  </td>
+	
+	  <td width="50%">
+		<?php stats_showBlock($stats['filter'], gTranslate('core',"Filter by Capture Date")); ?>
+	  </td>
+	
+	</tr>
+	</table>
+	<br>
+	<input type="submit" name="submitbutton" value="<?php echo gTranslate('core',"Show statistics"); ?>" class="g-button">
+	</form>
+	
+	<br>
+<?php
+	echo gTranslate('core',"Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
+	?>
+	
+	<input type="text" id="stats_url" size="150" value="" readonly>
+	
+	<script type="text/javascript">
+	  // Run the script at the when page is showed.
+	  // We could do this onLoad, but this doesnt work embedded.
+	  updateUrl();
+	</script>
 </div>
 <?php
 includeHtmlWrap("stats.footer");

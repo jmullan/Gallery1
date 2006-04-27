@@ -124,9 +124,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 </div>
 
 <div align="center">
-<form action="#">
-<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick="parent.close()" class="g-button">
-</form>
+<?php echo gButton('close', gTranslate('core', "_Close Window") , 'parent.close()'); ?>
 </div>
 
 <?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
