@@ -39,6 +39,7 @@ function infoLine($messages, $type = '') {
 function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
     $html = '';
 
+    $types = array('success', 'warning', 'error', 'informaion');
     if(!empty($messages)) {
         if($withOuterBorder) {
             $html = "\n<div class=\"g-notice\">";
@@ -50,6 +51,10 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 
 	ksort($messages);
         foreach ($messages as $message) {
+	    if(! in_array($message['type'], $types)) {
+		$message['type'] = 'information';
+	    }
+
             $html .= "\n  ". '<div class="g-'. $message['type'] .' left">';
             $html .= gImage('icons/notice/'. $message['type'] .'.png');
             $html .= ' '. $message['text'];

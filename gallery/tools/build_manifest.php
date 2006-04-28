@@ -70,29 +70,59 @@ foreach ($files as $file => $version) {
 
 fwrite($fd, "?>\n");
 fclose($fd);
-print "Done\n";
+print "\nDone\n";
 
-function getManifestFiles($dir) {
+function getManifestFiles($folder) {
     $results = array();
-    
-    if (fs_file_exists("$dir/CVS/Entries")) {
-	$fd = fs_fopen("$dir/CVS/Entries", "rb");
-	while ($line = fgets($fd, 4096)) {
-	    if ($line[0] == 'D') {
-		preg_match('|^D/(.*?)/|', $line, $regs);
-		if (!empty($regs)) {
-		    $results = array_merge($results, getManifestFiles("$dir/$regs[1]"));
+    $filename = "$folder/.svn/entries";
+    $skipfolder = array('docs', 'po', 'tools');
+    $skipfiles = array('ChangeLog.archive.gz');
+
+    printf("\nFolder: %s", $folder);
+
+    if(in_array(substr($folder,2), $skipfolder)) {
+	printf("\n\t Skipping Folder: %s", $folder);
+	return null;
+    }
+
+    if (fs_file_exists($filename)) {
+	$data = fs_file_get_contents($filename);
+	$parser = xml_parser_create();
+	xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+	xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+	xml_parse_into_struct($parser, $data, $values, $tags);
+	xml_parser_free($parser);
+
+	$i = 0;
+	foreach($values as $nr => $content) {
+	    if($content['tag'] == 'entry') {
+		echo ".";
+		if($content['attributes']['kind'] == 'file') {
+	    	    $i++;
+		    $filename = $content['attributes']['name'];
+		    $fullFilename = $folder . '/'. $filename;
+
+		    if(in_array($filename, $skipfiles)) {
+			continue;
+		    }
+
+		    $localRevision = getSVNRevision($fullFilename);
+/*
+		    printf("\nName: %s, Repository Revision: %s, LocalRevision: %s",
+			$content['attributes']['name'],
+			$content['attributes']['committed-rev'],
+			$localRevision
+		    );
+*/
+		    $results[substr($fullFilename,2)] = $localRevision;
 		}
-	    } else {
-		preg_match('|^/(.*?)/|', $line, $regs);
-		$file = substr("$dir/$regs[1]", 2);
-		$version = getCVSVersion($file);
-		if (!empty($version)) {
-		    $results[$file] = $version;
+		elseif($content['attributes']['kind'] == 'dir' && !empty($content['attributes']['name'])) {
+		    //printf("\nDir: %s<ul>", $content['attributes']['name']);
+		    $results = array_merge($results, getManifestFiles($folder . '/'. $content['attributes']['name']));
+		    //echo "</ul>";
 		}
 	    }
 	}
-	fclose($fd);
     }
 
     return $results;

@@ -14,8 +14,10 @@
 	  isset($gallery->app->rssEnabled) && $gallery->app->rssEnabled == "yes") {
 ?>
           <td class="left"><?php echo galleryLink(
-	$gallery->app->photoAlbumURL . "/rss.php",
-	gImage('icons/rss-feed.png', gTranslate('common', "RSS")));?></td>
+		$gallery->app->photoAlbumURL . "/rss.php",
+		getIconText('rss-feed.png', gTranslate('common', "RSS"))
+		);?>
+	</td>
 <?php
 }
 if ($gallery->user->isAdmin() ) { ?>

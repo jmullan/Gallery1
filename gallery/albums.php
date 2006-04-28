@@ -131,7 +131,7 @@ if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
     $iconElements[] = galleryLink(
         doCommand("new-album", array(), "view_album.php"),
-        gTranslate('core', "_new album"), array(), 'new_album.png'
+        gTranslate('core', "_new album"), array(), 'new_album.png', true
     );
 }
 
@@ -145,14 +145,14 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
         $iconElements[] = galleryLink(
             makeGalleryUrl('admin-page.php'),
-            gTranslate('core', "_admin page"), array(), 'admin.png'
+            gTranslate('core', "_admin page"), array(), 'admin.png', true
         );
 
         $docsUrl = galleryDocs('admin');
         if ($docsUrl) {
             $iconElements[] = galleryLink(
                 $docsUrl,
-                gTranslate('core', "_documentation"), array(), 'about.png'
+                gTranslate('core', "_documentation"), array(), 'about.png', true
             );
         }
     }
@@ -167,14 +167,14 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if (!$GALLERY_EMBEDDED_INSIDE) {
         $iconElements[] = galleryLink(
             doCommand("logout", array(), "albums.php"),
-            gTranslate('core', "log_out"), array(), 'logout.png'
+            gTranslate('core', "log_out"), array(), 'logout.png', true
         );
     }
 } else {
     if (!$GALLERY_EMBEDDED_INSIDE) {
         $iconElements[] = popup_link(
             gTranslate('core', "_login"),
-            'login.php', false, true, 500, 500, '','','login.png'
+            'login.php', false, true, 500, 500, '','','login.png', true
         );
 
         if (!strcmp($gallery->app->selfReg, 'yes')) {
@@ -319,11 +319,11 @@ for ($i = $start; $i <= $end; $i++) {
         // <!-- Begin Text Cell -->
         $rootAlbum[$tmpAlbumName]['albumdesc']['title'] = editField($gallery->album, "title", $albumURL);
         if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
-            $rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= popup_link(
+            $rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= ' '. popup_link(
             getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes'),
             "download.php?set_albumName=$tmpAlbumName",
-            false, false, 500, 500, '', '', '',
-            false
+            false, false, 500, 500, 'g-small', '', '',
+            false, false
             );
         }
 

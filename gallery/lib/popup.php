@@ -47,7 +47,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='', $icon ='', $addBrackets = true) {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='', $icon ='', $addBrackets = true, $accesskey = true) {
 	global $gallery;
 
 	if ( !empty($gallery->session->offline) && $online_only ) {
@@ -64,7 +64,7 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	   'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
-	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets);
+	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
 	return $html;
 }
 

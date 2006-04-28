@@ -245,7 +245,7 @@ function fail($file) {
 	</font>
 	<p>
 	<input type="hidden" name="back_page" value="confirm">
-	<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo _("Review Settings") ?>">
+	<input type="submit" name="go_back" class="g-button" disabled="disabled" value="<- <?php echo _("Review Settings") ?>">
 
 <?php
 	return;

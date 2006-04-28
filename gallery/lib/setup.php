@@ -1479,16 +1479,16 @@ function checkVersions($verbose=false) {
 	global $gallery;
 	/* we assume setup/init.php was loaded ! */
 
-	$manifest=GALLERY_BASE . '/manifest.inc';
-	$success=array();
-	$fail=array();
-	$warn=array();
+	$manifest = GALLERY_BASE . '/manifest.inc';
+	$success = array();
+	$fail = array();
+	$warn = array();
 	if (!fs_file_exists($manifest)) {
 	       	$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
 		return array($success, $fail, $warn);
 	}
-	if (!function_exists('getCVSVersion')) {
-		$fail['util.php']=sprintf(_("Please ensure that %s is the latest version."), "util.php");
+	if (!function_exists('getSVNRevision')) {
+		$fail['util.php'] = sprintf(_("Please ensure that %s is the latest version."), "util.php");
 		return array($success, $fail, $warn);
 	}
 	include (GALLERY_BASE . '/manifest.inc');
@@ -1496,7 +1496,7 @@ function checkVersions($verbose=false) {
 	       	print sprintf(_("Testing status of %d files."), count($versions));
 	}
 	foreach ($versions as $file => $version) {
-		$found_version=getCVSVersion($file);
+		$found_version = getSVNRevision($file);
 		if ($found_version === NULL) {
 		       	if ($verbose) {
 			       	print "<br>\n";
@@ -1504,13 +1504,25 @@ function checkVersions($verbose=false) {
 			}
 			$fail[$file]=_("File missing or unreadable.");
 			continue;
-		} else if ($found_version === "") {
+		}
+		else if ($found_version === "" ) {
+		    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|Changelog)$/i', $file, $matches)) {
+			if($verbose) {
+			    echo "<br>\n";
+			    printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
+			    continue;
+		        }
+			$success[$file] = sprintf("No comparabel Rev for type: %s", $matches[1]);
+			continue;
+		    }
+		    else {
 			if ($verbose) {
 			       	print "<br>\n";
 			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
 		       	}
 		       	$fail[$file]=_("Missing version");
 		       	continue;
+		    }
 	       	}
 		$compare=compareVersions($version, $found_version);
 		if ($compare < 0) {

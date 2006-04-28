@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-03-13 12:34+0100\n"
+"POT-Creation-Date: 2006-04-28 16:15+0200\n"
 "PO-Revision-Date: 2006-02-11 21:24+0100\n"
 "Last-Translator: Kai <kai DOT tomalik AT gmail DOT com>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -489,72 +489,72 @@ msgstr "Fehler beim Lesen von %s."
 msgid "File missing or unreadable."
 msgstr "Datei fehlt oder ist nicht lesbar."
 
-#: ../lib/setup.php:1510
+#: ../lib/setup.php:1521
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr "Die Versionsnummer in %s konnte nicht extrahiert werden.  Die Datei ist veraltet, oder defekt."
 
-#: ../lib/setup.php:1512
+#: ../lib/setup.php:1523
 msgid "Missing version"
 msgstr "Fehlende Versionsnummer"
 
-#: ../lib/setup.php:1519
+#: ../lib/setup.php:1531
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr "Es gab ein Problem mit %s.  Es wurde Version %s (oder h&ouml;her) erwartet, aber %s gefunden."
 
-#: ../lib/setup.php:1521
+#: ../lib/setup.php:1533
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr "Version %s (oder h&ouml;her) erwartet, %s gefunden."
 
-#: ../lib/setup.php:1525
+#: ../lib/setup.php:1537
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr "%s OK. Die erkannte Version (%s) ist neuer als die erwartete (%s)"
 
-#: ../lib/setup.php:1527
+#: ../lib/setup.php:1539
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr "Version %s (oder h&ouml;her) erwartet, %s gefunden."
 
-#: ../lib/setup.php:1531
+#: ../lib/setup.php:1543
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../lib/setup.php:1533
+#: ../lib/setup.php:1545
 #, php-format
 msgid "Found expected version %s."
 msgstr "Erwartete Version %s gefunden."
 
-#: ../lib/setup.php:1662
+#: ../lib/setup.php:1674
 msgid "This email will be sent when new accounts are created."
 msgstr "Diese Mail wird an neue Benutzer gesendet."
 
-#: ../lib/setup.php:1663
+#: ../lib/setup.php:1675
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Lassen Sie leer um dem Standardtext zu benutzen, welche mehrsprachig vorhanden ist. Oder benutzen Sie Ihre eigene, welche jedoch nur exact so benutzt wird."
 
-#: ../lib/setup.php:1664
+#: ../lib/setup.php:1676
 msgid "The following placeholder can be used:"
 msgstr "Die folgenden Platzhalter können benutzt werden:"
 
-#: ../lib/setup.php:1727 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "Die Datei %s existiert nicht."
 
-#: ../lib/setup.php:1736 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1748 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Erwarteter Status: %s, tats&auml;chlich erhaltener Status: %s."
 
-#: ../lib/setup.php:1749 ../setup/check_netpbm.php:275
+#: ../lib/setup.php:1761 ../setup/check_netpbm.php:275
 msgid "can't detect version on Windows"
 msgstr "Es ist nicht m&ouml;glich, die Version unter Windows herauszufinden"
 
-#: ../lib/setup.php:1760 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1772 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK ! Version: %s"
@@ -615,31 +615,36 @@ msgstr "Dokumentation"
 msgid "Having problems?  Try the %s and %s."
 msgstr "Haben Sie Probleme? Besuchen Sie die %s und %s."
 
-#: ../setup/check.inc:113 ../setup/check_versions.php:75
+#: ../setup/check.inc:114 ../setup/check_versions.php:63
 msgid "Show/hide more information"
 msgstr "Zeige/Verstecke weitere Informationen"
 
-#: ../setup/check.inc:196
+#: ../setup/check.inc:197
 msgid "Legend:"
 msgstr "Legende:"
 
-#: ../setup/check.inc:208
+#: ../setup/check.inc:215
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
 msgstr "Es bestehen Fehler in Ihrer Konfiguration, die Gallery darin hindern, korrekt zu funktionieren."
 
-#: ../setup/check.inc:210
+#: ../setup/check.inc:217
 msgid "You must fix them before you can continue."
 msgstr "Sie m&uuml;ssen diese zuerst beheben, bevor Sie fortfahren."
 
-#: ../setup/check.inc:218
+#: ../setup/check.inc:225
 msgid "Your installation has <b>serious warnings</b>!<br>Continue at your own risk..."
 msgstr "Ihre Installation hat <b>ernstzunehmende Warnungen</b> <br>Fortsetzung auf eigene Gefahr ..."
 
-#: ../setup/check.inc:224
+#: ../setup/check.inc:231
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr "Ihre Installation erzeugt Warnungen, was im allgemeinen jedoch kein Problem ist."
 
-#: ../setup/check.inc:234 ../setup/constants.inc:47 ../setup/constants.inc:192
+#: ../setup/check.inc:243
+#, fuzzy
+msgid "_Next Step ->"
+msgstr "N&auml;chster Schritt"
+
+#: ../setup/check.inc:244 ../setup/constants.inc:47 ../setup/constants.inc:192
 #: ../setup/defaults.inc:48 ../setup/defaults.inc:137
 msgid "Next Step"
 msgstr "N&auml;chster Schritt"
@@ -827,59 +832,59 @@ msgstr "%sKlicken Sie hier%s, um die Details auszublenden"
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Wenn Fehler auftreten, sollten Sie %shier klicken%s, um mehr Details zu sehen"
 
-#: ../setup/check_versions.php:30 ../setup/check_versions.php:41
+#: ../setup/check_versions.php:26
 msgid "Check Versions"
 msgstr "Versions Test"
 
-#: ../setup/check_versions.php:44
+#: ../setup/check_versions.php:33
 #, php-format
 msgid "This page gives you information about the version of each necessary %s file. "
 msgstr "Diese Seite gibt Ihnen Informationen &uuml;ber die Version der von %s ben&ouml;tigten Dateien."
 
-#: ../setup/check_versions.php:46
+#: ../setup/check_versions.php:35
 msgid "If you see any error(s), we highly suggest to get the actual version of that file(s)."
 msgstr "Falls hier Fehler auftreten empfehlen wir dringend, dass Sie die aktuellen Dateien aufspielen."
 
-#: ../setup/check_versions.php:55
+#: ../setup/check_versions.php:44
 #, php-format
 msgid "One file is missing, corrupt or older than expected."
 msgid_plural "%d files are missing, corrupt or older than expected."
 msgstr[0] "Eine Datei fehlt, ist defekt, oder &auml;lter als erwartet."
 msgstr[1] "%d Dateien fehlen, sind defekt, oder &auml;lter als erwartet."
 
-#: ../setup/check_versions.php:55 ../setup/check_versions.php:60
+#: ../setup/check_versions.php:44 ../setup/check_versions.php:49
 msgid "All files okay."
 msgstr "Alle getesteten Dateien sind aktuell!"
 
-#: ../setup/check_versions.php:57
+#: ../setup/check_versions.php:46
 #, php-format
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr "Es gibt Probleme mit folgenden Dateien.  Bitte korrigieren Sie dies bevor Sie Ihre %s konfigurieren."
 
-#: ../setup/check_versions.php:60
+#: ../setup/check_versions.php:49
 #, php-format
 msgid "One file is more recent than expected."
 msgid_plural "%d files are more recent than expected."
 msgstr[0] "Eine Datei ist neuer als erwartet."
 msgstr[1] "%d Dateien sind neuer als erwartet."
 
-#: ../setup/check_versions.php:62
+#: ../setup/check_versions.php:51
 #, php-format
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "Die folgenden Dateien Ihrer %s scheinen neuer zu sein als erwartet.  Dies ist OK wenn Sie eine Vorabversion, CVS-Version oder sonstig modifizierten Code verwenden."
 
-#: ../setup/check_versions.php:65
+#: ../setup/check_versions.php:54
 #, php-format
 msgid "One file is up-to-date."
 msgid_plural "%d files are up-to-date."
 msgstr[0] "Eine Datei ist aktuell."
 msgstr[1] "%d Dateien sind aktuell."
 
-#: ../setup/check_versions.php:65
+#: ../setup/check_versions.php:54
 msgid "All files are up-to-date."
 msgstr "Alle Dateien sind aktuell."
 
-#: ../setup/check_versions.php:67
+#: ../setup/check_versions.php:56
 msgid "The following files are up-to-date."
 msgstr "Die folgenden Dateien sind aktuell."
 

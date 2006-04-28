@@ -502,9 +502,9 @@ if (!$error) {
 	$gallery->session->configData = $header . $gallery->session->configData . $footer;
 ?>
 <p align="center">
-<input type="submit" name="go_back" disabled="disabled" value="&lt;- <?php echo _("Edit Config") ?>">
+<input type="submit" name="go_back" disabled="disabled" value="&lt;- <?php echo _("Edit Config") ?>" class="g-button">
 <?php if (!$error) {
-	echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Save Config") . '-&gt;">';
+	echo '<input type="submit" name="go_next" disabled="disabled" value="'. _("Save Config") . '-&gt;" class="g-button">';
 } else {
 	echo '<p class="g-error">';
 	echo _("There are errors in your configuration.");

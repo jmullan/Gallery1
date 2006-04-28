@@ -516,8 +516,6 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
         $altText = $text;
     }
 
-    $base = dirname(dirname(__FILE__));
-
     if (!empty($overrideMode)) {
         $iconMode = $overrideMode;
     } elseif (isset($gallery->app->useIcons)) {
@@ -531,12 +529,10 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
             $altText = '';
         }
 
-        if (file_exists("$base/images/icons/$iconName")) {
-            $linkText = gImage("icons/$iconName",$altText);
+        $linkText = gImage("icons/$iconName",$altText);
 
-            if ($iconMode == "both") {
-                $linkText .= "<br>$text";
-            }
+        if ($iconMode == "both") {
+            $linkText .= "<br>$text";
         }
     }
 
