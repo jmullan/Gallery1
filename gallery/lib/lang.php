@@ -35,7 +35,7 @@
  * @param	string    $plural
  * @param	int       $count
  * @param	string    $nonetext
- * @return  string    $translation	string with translation on success, otherwise '--- TranslationError --'
+ * @return      string    $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author	Jens Tkotz
  */
 function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '') {
@@ -50,11 +50,11 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
         return $nonetext;
     }
 
-	if (gettext_installed()) {        	
-	    $gDomain = $gallery->language. "-gallery_$domain";
-	    bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
-	    textdomain($gDomain);
-	}
+    if (gettext_installed()) {        	
+	$gDomain = $gallery->language. "-gallery_$domain";
+	bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+	textdomain($gDomain);
+    }
 
     if(!$plural) {
     	if (gettext_installed()) {        	

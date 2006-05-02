@@ -118,8 +118,13 @@ function isValidText($text, $default = NULL) {
 }
 
 function sanitizeInput($value) {
+    if(!is_array($value) && strip_tags($value) == $value) {
+        return $value;
+    }
+
     require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
     static $safehtml;
+
     if (empty($safehtml)) {
         $safehtml =& new HTML_Safe();
     }

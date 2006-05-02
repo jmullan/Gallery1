@@ -1390,22 +1390,22 @@ function where_i_am() {
     return $location;
 }
 
-// Returns the CVS version as a string, NULL if file can't be read, or "" 
+// Returns the SVN revision  as a string, NULL if file can't be read, or ""
 // if version can't be found.
+function getSVNRevision($file) {
 
-function getCVSVersion($file) {
-
-    $path= dirname(__FILE__) . "/$file";
+    $path = dirname(__FILE__) . "/$file";
     if (!fs_file_exists($path)) {
         return NULL;
     }
     if (!fs_is_readable($path)) {
         return NULL;
     }
-    $contents=file($path);
+
+    $contents = file($path);
     foreach ($contents as $line) {
-        if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24$", trim($line), $matches) ||
-        ereg("\\\x24\x49\x64: [A-Za-z_.0-9]*,v ([0-9.]*) .*\x24 ", trim($line), $matches)) {
+        if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24$", trim($line), $matches) ||
+        ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches)) {
             if ($matches[1]) {
                 return $matches[1];
             }

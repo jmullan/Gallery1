@@ -27,18 +27,17 @@
 ?>
 <html>
 <head>
-  <title> <?php echo _("Check Versions") ?> </title>
+  <title> <?php echo gTranslate('config', "Check Versions"); ?> </title>
   <?php common_header(); ?>
   <style>
 	.shortdesc { width:30% }
   </style>
   <script type="text/javascript" src="../js/toggle.js"></script>
-</head>
+  </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<?php configLogin(basename(__FILE__)); ?>
-
-<div class="header"><?php echo _("Check Versions") ?></div>
+ <div class="header"><?php echo _("Check Versions") ?></div>
+<?php    configLogin(basename(__FILE__)); ?>
 
 <div class="sitedesc"><?php
 	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),Gallery());
@@ -52,18 +51,18 @@ list($oks, $errors, $warnings) = checkVersions(false);
 
 $tests = array(
     'errors' => array(
-        'text' => gTranslate('config', "One file is missing, corrupt or older than expected.", "%d files are missing, corrupt or older than expected.",  count($errors), _("All files okay.")),
-        'class' => 'errorpct',
+        'text' => gTranslate('config', "One file is missing, corrupt or older than expected.", "%d files are missing, corrupt or older than expected.",  count($errors), _("All files okay."), true),
+	'class' => 'errorpct',
         'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
     ),
     'warnings' => array(
-        'text' => gTranslate('config', "One file is more recent than expected.", "%d files are more recent than expected.", count($warnings), _("All files okay.")),
-        'class' => 'warningpct',
+        'text' => gTranslate('config', "One file is more recent than expected.", "%d files are more recent than expected.", count($warnings), _("All files okay."), true),
+	'class' => 'warningpct',
         'hinttext' => sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery())
     ),
     'oks' => array(
-        'text' => gTranslate('config', "One file is up-to-date.", "%d files are up-to-date.", count($oks),  _("All files are up-to-date.")),
-        'class' => 'successpct',
+        'text' => gTranslate('config', "One file is up-to-date.", "%d files are up-to-date.", count($oks),  _("All files are up-to-date."), true),
+	'class' => 'successpct',
         'hinttext' => _("The following files are up-to-date.")
     )
 );

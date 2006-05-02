@@ -1,3 +1,8 @@
+<?php
+/**
+* $Id$
+*/
+?>
 <html>
 <head>
 <title>Refresh</title>

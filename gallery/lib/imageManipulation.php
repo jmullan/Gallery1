@@ -93,7 +93,10 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
         }
         processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(_("target file size %d kbytes"), $target_fs)."\n");
 
+        $loop = 0;
         do {
+            $loop ++;
+            processingMsg("Loop: $loop"); 
             compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
 
             $prev_quality = $quality;
@@ -684,7 +687,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
     global $gallery;
     static $ImVersion;
 
-    if (empty($src) || empty($dest) || empty($targetSize)) {
+    if (empty($src) || empty($dest)) {
         echo gallery_error(_("Not all necessary params for resizing given."));
         echo debugMessage(sprintf(_("Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
         return false;
@@ -697,17 +700,25 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
     }
 
     if ($targetSize === 'off') {
-        $targetSize = '';
+        $targetSize = 0;
     }
+
     $srcFile = fs_import_filename($src);
     $destFile = fs_import_filename($dest);
 
     switch($gallery->app->graphics)	{
         case "NetPBM":
-            $result = exec_wrapper(toPnmCmd($src) . ' | ' .
-              NetPBM('pnmscale', " -xysize $targetSize $targetSize")  . ' | ' .
-              fromPnmCmd($dest, $quality)
-            );
+            if ($targetSize) {
+                 $result = exec_wrapper(toPnmCmd($src) .' | '.
+                        NetPBM('pnmscale', " -xysize $targetSize $targetSize")  .' | '.
+                        fromPnmCmd($dest, $quality)
+                );
+            }
+            else {
+                 /* If no targetSize is given, then this is just for setting (decreasing) quality */
+                 $result = exec_wrapper(toPnmCmd($src) .' | '. fromPnmCmd($dest, $quality));
+            }
+
             if (!$result) {
                 return false;
             }
@@ -744,7 +755,8 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 
             $destOperator = '';
             $srcOperator = '';
-            /* If not targetSize is given, then this is just for setting (decreasing) quality */
+
+            /* If no targetSize is given, then this is just for setting (decreasing) quality */
             $destOperator = "-quality $quality";
 
             if ($targetSize) {

@@ -1,3 +1,19 @@
+2006-04-26 Jens Tkotz <jens@peino.de> 1.5.4-svn-b4
+
+ * Fix: Often bots access the ecardform without having correct photo loaded etc.
+        This leaves unnecessary Errormessage in Apaches logfile
+
+   Thanks to Peter Schumacher from forums.
+
+ * Fix: Only do userinput sanitation if value contains html tags.
+
+ * FIX: Compressing an Image with having maximum filesize failed.
+   Thanks to Scott Barnes (atomsmith) from forums.
+
+ * FIX: Just compressing(no resize) an Image with NetPBM failed.
+
+ * Changing Checks in setup to SVN.
+
 2006-04-22 Jens Tkotz <jens@peino.de> 1.5.4-cvs-b3
 
  * Fix: Name of not logged in commenters was displayed as "anonymous" instead of entered name.

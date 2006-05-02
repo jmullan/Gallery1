@@ -35,8 +35,15 @@
 
   list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
 
+  printPopupStart(gTranslate('core', "Send this photo as eCard"));
   $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
-  $photo = $gallery->album->getPhoto($ecard['photoIndex']);
+
+  if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
+    echo gallery_error($errortext);
+    echo "\n<p></p>";
+    echo galleryLink(makeGalleryUrl(), "Back to Gallery");
+    exit;
+  }
 
   /* Get the dimensions of the sized Photo */
   list($width, $height) = $photo->getDimensions(0, false);  
@@ -78,12 +85,7 @@
 	    $ecard["image_name"] = $photo->getPhotoPath($gallery->album->fields['name'], false);
 	}
     }
-doctype();
-?>
-<html>
-  <?php common_header(); ?>
-  <title><?php echo _("Send this photo as eCard") ?></title>
- 
+?> 
 <script type="text/javascript">
 <!--
  function popup_win(theURL,winName,winOptions) {
@@ -163,12 +165,6 @@ doctype();
 
 //-->
 </script>
-
-</head>
-
-<body class="popupbody" dir="<?php echo $gallery->direction ?>" onLoad="document.ecard_form['ecard[name_sender]'].focus()">
-<div class="popuphead"><?php echo _("Send this photo as eCard") ?></div>
-<div align="center" class="popup">
 
 <?php 
     if (! $ecard_send) {
