@@ -1,5 +1,10 @@
 <?php
 /**
+ * Gallery SVN info
+ * $Id$
+*/
+
+/**
  * Filename.......: class.html.mime.mail.inc
  * Project........: HTML Mime mail class
  * Last Modified..: $Date$

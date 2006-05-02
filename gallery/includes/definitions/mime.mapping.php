@@ -1,5 +1,9 @@
 <?php
 /**
+ * Gallery SVN info
+ * $Id$
+ *
+ *
  * This file contains a mapping of common file extensions to
  * MIME types.
  *

@@ -1,5 +1,10 @@
 <?php
 /**
+ * Gallery SVN info
+ * $Id$
+*/
+
+/**
 * RFC 822 Email address list validation Utility
 *
 * What is it?
@@ -20,6 +25,7 @@
 * @author  Chuck Hagenbuch <chuck@horde.org>
 * @version $Revision$
 * @package Mail
+* 
 */
 
 class Mail_RFC822

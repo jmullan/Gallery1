@@ -1,3 +1,9 @@
+<?php
+/**
+ * Gallery SVN info
+ * $Id$
+*/
+?>
 <!-- Begin adminAlbumCommands -->
 <div class="admin"><?php
 

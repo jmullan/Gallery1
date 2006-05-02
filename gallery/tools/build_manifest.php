@@ -75,7 +75,7 @@ print "\nDone\n";
 function getManifestFiles($folder) {
     $results = array();
     $filename = "$folder/.svn/entries";
-    $skipfolder = array('docs', 'locale', 'po', 'tools', 'skins', 'contrib');
+    $skipfolder = array('docs', 'locale', 'po', 'tools', 'skins', 'contrib', 'html_wrap/frames');
     $skipfiles = array('ChangeLog.archive.gz');
 
     printf("\nFolder: %s", $folder);

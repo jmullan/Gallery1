@@ -1,5 +1,10 @@
 <?php
 /**
+ * Gallery SVN info
+ * $Id$
+*/
+
+/**
 * Filename.......: class.smtp.inc
 * Project........: SMTP Class
 * Version........: 1.0.5

@@ -1509,6 +1509,13 @@ function checkVersions($verbose=false) {
         /* we assume setup/init.php was loaded ! */
 
         $manifest = GALLERY_BASE . '/manifest.inc';
+	$fileskiplist = array(
+		'includes/ecard/templates/error.htm',
+		'includes/ecard/templates/leer.htm',
+		'js/imagemap.js',
+		'js/toggle.js',
+		'js/wz_jsgraphics.js',
+		'js/wz_tooltip.js');
         $success = array();
         $fail = array();
         $warn = array();
@@ -1524,7 +1531,7 @@ function checkVersions($verbose=false) {
         if ($verbose) {
                 print sprintf(_("Testing status of %d files."), count($versions));
         }
-foreach ($versions as $file => $version) {
+	foreach ($versions as $file => $version) {
                 $found_version = getSVNRevision($file);
                 if ($found_version === NULL) {
                         if ($verbose) {
@@ -1535,13 +1542,17 @@ foreach ($versions as $file => $version) {
                         continue;
                 }
                 else if ($found_version === "" ) {
-                    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|Changelog)$/i', $file, $matches)) {
+                    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|\.tpl|Changelog)$/i', $file, $matches)) {
                         if($verbose) {
                             echo "<br>\n";
                             printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
                             continue;
                         }
                         $success[$file] = sprintf("No comparabel Rev for type: %s", $matches[1]);
+                        continue;
+                    }
+		    elseif (in_array($file, $fileskiplist)) {
+                        $success[$file] = sprintf("File '%s' is in skiplist", $file);
                         continue;
                     }
                     else {

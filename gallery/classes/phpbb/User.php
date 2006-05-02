@@ -16,16 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
  */
 
 /* This class is written for phpBB2 and provides full integration of the phpbb users database
-** Instead of using or duplicating memberships manually in Gallery.
-**
-** Gallery <-> phpBB2 integration ver. (www.snailsource.com)
-** Written by Martin Smallridge       <info@snailsource.com>
-**
-** This file was modified for official integration into Gallery 1.4.3 by
-** Jens Tkotz
+ * Instead of using or duplicating memberships manually in Gallery.
+ *
+ * Gallery <-> phpBB2 integration ver. (www.snailsource.com)
+ * Written by Martin Smallridge       <info@snailsource.com>
+ *
+ * This file was modified for official integration into Gallery 1.4.3 by
+ * Jens Tkotz
 */
 
 class phpbb_User extends Abstract_User {

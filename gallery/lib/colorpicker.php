@@ -7,9 +7,11 @@
  */
 
 /* This file was taken from the Horde Framework (http://www.horde.org)
-** The Version was: horde/services/images/colorpicker.php,v 1.21
-**
-** Jens Tkotz 25.04.2005
+ * The Version was: horde/services/images/colorpicker.php,v 1.21
+ *
+ * Jens Tkotz 25.04.2005
+ *
+ * $Id$
 */
 
 /*
