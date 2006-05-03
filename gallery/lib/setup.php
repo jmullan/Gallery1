@@ -1506,7 +1506,7 @@ function checkVersions($verbose=false) {
 			continue;
 		}
 		else if ($found_version === "" ) {
-		    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|Changelog)$/i', $file, $matches)) {
+		    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|Changelog)$/i', $file, $matches)) {
 			if($verbose) {
 			    echo "<br>\n";
 			    printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
