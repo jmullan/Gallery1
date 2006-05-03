@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-04-05 00:31+0200\n"
+"POT-Creation-Date: 2006-05-03 17:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,17 +63,17 @@ msgstr ""
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr ""
 
-#: ../add_comment.php:79 ../add_comment.php:83
+#: ../add_comment.php:80 ../add_comment.php:84
 msgid "Add Comment"
 msgstr ""
 
-#: ../add_comment.php:85
+#: ../add_comment.php:86
 msgid "Enter your comment for this picture in the text box below."
 msgstr ""
 
-#: ../add_comment.php:98 ../copy_photo.php:214 ../delete_album.php:72
+#: ../add_comment.php:99 ../copy_photo.php:214 ../delete_album.php:72
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
-#: ../ecard_form.php:263 ../edit_caption.php:184 ../edit_watermark.php:121
+#: ../ecard_form.php:259 ../edit_caption.php:184 ../edit_watermark.php:121
 #: ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
@@ -264,31 +264,31 @@ msgstr ""
 msgid "Users who can change album text."
 msgstr ""
 
-#: ../album_permissions.php:110 ../album_permissions.php:114
+#: ../album_permissions.php:111 ../album_permissions.php:115
 msgid "Album Permissions"
 msgstr ""
 
-#: ../album_permissions.php:116
+#: ../album_permissions.php:117
 #, php-format
 msgid "Changing permissions for %s"
 msgstr ""
 
-#: ../album_permissions.php:122
+#: ../album_permissions.php:123
 msgid "Owner:"
 msgstr ""
 
-#: ../album_permissions.php:156
+#: ../album_permissions.php:157
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../album_permissions.php:159 ../edit_caption.php:183 ../edit_field.php:55
+#: ../album_permissions.php:160 ../edit_caption.php:183 ../edit_field.php:55
 #: ../edit_field.php:65 ../edit_watermark.php:119 ../modify_user.php:163
 #: ../new_password.php:137 ../photo_owner.php:103 ../user_preferences.php:144
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr ""
 
-#: ../album_permissions.php:160 ../manage_users.php:100 ../modify_user.php:165
+#: ../album_permissions.php:161 ../manage_users.php:100 ../modify_user.php:165
 #: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
@@ -634,7 +634,7 @@ msgid "Untitled"
 msgstr ""
 
 #: ../classes/Album.php:240 ../classes/Album.php:252
-#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:71
+#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:72
 #: ../upgrade_album.php:84 ../upgrade_album.php:96
 msgid "Album"
 msgstr ""
@@ -695,7 +695,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1143 ../classes/Album.php:1898
+#: ../classes/Album.php:1143 ../classes/Album.php:1909
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -738,27 +738,27 @@ msgstr ""
 msgid "No highlight!"
 msgstr ""
 
-#: ../classes/Album.php:1696
+#: ../classes/Album.php:1700
 #, php-format
-msgid "Requested index [%d] out of bounds [%d]"
+msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1910 ../do_command.php:105
+#: ../classes/Album.php:1921 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2079
+#: ../classes/Album.php:2090
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2615
+#: ../classes/Album.php:2626
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2779
+#: ../classes/Album.php:2790
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -1007,9 +1007,9 @@ msgid "Do you really want to delete this album?"
 msgstr ""
 
 #: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
-#: ../js/multifile.js.php:106 ../layout/commentbox.inc:15
-#: ../lib/albumItem.php:251 ../lib/albumItem.php:252 ../lib/albumItem.php:258
-#: ../lib/albumItem.php:259 ../manage_users.php:98
+#: ../js/multifile.js.php:112 ../layout/commentbox.inc:15
+#: ../lib/albumItem.php:252 ../lib/albumItem.php:253 ../lib/albumItem.php:259
+#: ../lib/albumItem.php:260 ../manage_users.php:98
 #: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
 msgid "Delete"
 msgstr ""
@@ -1168,115 +1168,115 @@ msgstr ""
 msgid "This album album is not empty, but contains no photo or movie! Download would'nt make sense."
 msgstr ""
 
-#: ../ecard_form.php:45
-msgid "Error processing e-card. Please try later."
-msgstr ""
-
-#: ../ecard_form.php:46
-msgid "Some input fields are not correctly filled out. Please fill out."
-msgstr ""
-
-#: ../ecard_form.php:47
-msgid "You have an e-card as attachment. Click to see."
-msgstr ""
-
-#: ../ecard_form.php:85 ../ecard_form.php:170
+#: ../ecard_form.php:38
 msgid "Send this photo as eCard"
 msgstr ""
 
-#: ../ecard_form.php:110
+#: ../ecard_form.php:52
+msgid "Error processing e-card. Please try later."
+msgstr ""
+
+#: ../ecard_form.php:53
+msgid "Some input fields are not correctly filled out. Please fill out."
+msgstr ""
+
+#: ../ecard_form.php:54
+msgid "You have an e-card as attachment. Click to see."
+msgstr ""
+
+#: ../ecard_form.php:112
 msgid "Error: to send an eCard you need to fill out all fields."
 msgstr ""
 
-#: ../ecard_form.php:111
+#: ../ecard_form.php:113
 msgid "Please fill this fields:"
 msgstr ""
 
-#: ../ecard_form.php:115
+#: ../ecard_form.php:117
 msgid "- Your Name"
 msgstr ""
 
-#: ../ecard_form.php:121
+#: ../ecard_form.php:123
 msgid "- Your Email"
 msgstr ""
 
-#: ../ecard_form.php:126
+#: ../ecard_form.php:128
 msgid "- Recipient's Name"
 msgstr ""
 
-#: ../ecard_form.php:132
+#: ../ecard_form.php:134
 msgid "- Recipient's Email"
 msgstr ""
 
-#: ../ecard_form.php:137
+#: ../ecard_form.php:139
 msgid "- Your Message"
 msgstr ""
 
-#: ../ecard_form.php:141
+#: ../ecard_form.php:143
 msgid "Please fill all fields next click >Send<."
 msgstr ""
 
-#: ../ecard_form.php:154
+#: ../ecard_form.php:156
 #, php-format
 msgid "You have entered more than %d characters"
 msgstr ""
 
-#: ../ecard_form.php:192
+#: ../ecard_form.php:188
 msgid "Your info"
 msgstr ""
 
-#: ../ecard_form.php:194
+#: ../ecard_form.php:190
 msgid "Recipient's info"
 msgstr ""
 
-#: ../ecard_form.php:197 ../ecard_form.php:208
+#: ../ecard_form.php:193 ../ecard_form.php:204
 msgid "Name"
 msgstr ""
 
-#: ../ecard_form.php:212 ../ecard_form.php:215
+#: ../ecard_form.php:208 ../ecard_form.php:211
 msgid "E-Mail"
 msgstr ""
 
-#: ../ecard_form.php:221
+#: ../ecard_form.php:217
 msgid "Choose a Stamp"
 msgstr ""
 
-#: ../ecard_form.php:226
+#: ../ecard_form.php:222
 #, php-format
 msgid "Stamp #%d"
 msgstr ""
 
-#: ../ecard_form.php:236
+#: ../ecard_form.php:232
 msgid "Subject:"
 msgstr ""
 
-#: ../ecard_form.php:237
+#: ../ecard_form.php:233
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr ""
 
-#: ../ecard_form.php:241
+#: ../ecard_form.php:237
 msgid "Your Message:"
 msgstr ""
 
-#: ../ecard_form.php:260 ../edit_watermark.php:120 ../watermark_album.php:151
+#: ../ecard_form.php:256 ../edit_watermark.php:120 ../watermark_album.php:151
 msgid "Preview"
 msgstr ""
 
-#: ../ecard_form.php:261
+#: ../ecard_form.php:257
 msgid "Reset"
 msgstr ""
 
-#: ../ecard_form.php:264
+#: ../ecard_form.php:260
 msgid "Send eCard"
 msgstr ""
 
-#: ../ecard_form.php:272
+#: ../ecard_form.php:268
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr ""
 
-#: ../ecard_form.php:276
+#: ../ecard_form.php:272
 msgid "Close this window"
 msgstr ""
 
@@ -1340,7 +1340,7 @@ msgstr ""
 msgid "Year must be between 1969 and 2070"
 msgstr ""
 
-#: ../edit_caption.php:73 ../lib/albumItem.php:104 ../lib/albumItem.php:105
+#: ../edit_caption.php:73 ../lib/albumItem.php:105 ../lib/albumItem.php:106
 msgid "Edit Text"
 msgstr ""
 
@@ -2299,43 +2299,43 @@ msgstr ""
 msgid "Filter by day"
 msgstr ""
 
-#: ../js/multifile.js.php:143
+#: ../js/multifile.js.php:149
 msgid "Caption:"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:6
+#: ../layout/adminAlbumCommands.inc:12
 msgid "delete album"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:11
+#: ../layout/adminAlbumCommands.inc:17
 msgid "move album"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:12
+#: ../layout/adminAlbumCommands.inc:18
 msgid "reorder album"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:13
+#: ../layout/adminAlbumCommands.inc:19
 msgid "rename album"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:20
+#: ../layout/adminAlbumCommands.inc:26
 msgid "edit captions"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:27
+#: ../layout/adminAlbumCommands.inc:33
 msgid "permissions"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:28
+#: ../layout/adminAlbumCommands.inc:34
 msgid "properties"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:35 ../view_album.php:415
+#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:415
 msgid "view&nbsp;comments"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:40
+#: ../layout/adminAlbumCommands.inc:46
 msgid "watermark&nbsp;album"
 msgstr ""
 
@@ -2364,11 +2364,11 @@ msgstr ""
 msgid "Album contains no comments"
 msgstr ""
 
-#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:324
+#: ../layout/commentdraw.inc:23 ../lib/albumItem.php:325
 msgid "From:"
 msgstr ""
 
-#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:298
+#: ../layout/commentdraw.inc:48 ../lib/albumItem.php:299
 msgid "delete comment"
 msgstr ""
 
@@ -2504,28 +2504,28 @@ msgstr ""
 msgid "Only full photos"
 msgstr ""
 
-#: ../lib/albumItem.php:78 ../rearrange.php:112
+#: ../lib/albumItem.php:79 ../rearrange.php:112
 msgid "Movie"
 msgstr ""
 
-#: ../lib/albumItem.php:81
+#: ../lib/albumItem.php:82
 msgid "Photo"
 msgstr ""
 
-#: ../lib/albumItem.php:109 ../lib/albumItem.php:110
+#: ../lib/albumItem.php:110 ../lib/albumItem.php:111
 msgid "Edit Thumbnail"
 msgstr ""
 
-#: ../lib/albumItem.php:114 ../lib/albumItem.php:115
+#: ../lib/albumItem.php:115 ../lib/albumItem.php:116
 #, php-format
 msgid "Rotate/Flip"
 msgstr ""
 
-#: ../lib/albumItem.php:119 ../lib/albumItem.php:120
+#: ../lib/albumItem.php:120 ../lib/albumItem.php:121
 msgid "Resize"
 msgstr ""
 
-#: ../lib/albumItem.php:125 ../lib/albumItem.php:126
+#: ../lib/albumItem.php:126 ../lib/albumItem.php:127
 msgid "Watermark"
 msgstr ""
 
@@ -2533,70 +2533,70 @@ msgstr ""
 msgid "ImageMap"
 msgstr ""
 
-#: ../lib/albumItem.php:140 ../lib/albumItem.php:141
+#: ../lib/albumItem.php:141 ../lib/albumItem.php:142
 msgid "Move"
 msgstr ""
 
-#: ../lib/albumItem.php:148 ../lib/albumItem.php:149
+#: ../lib/albumItem.php:149 ../lib/albumItem.php:150
 msgid "Edit Title"
 msgstr ""
 
-#: ../lib/albumItem.php:153 ../lib/albumItem.php:154
+#: ../lib/albumItem.php:154 ../lib/albumItem.php:155
 msgid "Edit Description"
 msgstr ""
 
-#: ../lib/albumItem.php:159 ../lib/albumItem.php:160 ../rename_album.php:39
+#: ../lib/albumItem.php:160 ../lib/albumItem.php:161 ../rename_album.php:39
 #: ../rename_album.php:43
 msgid "Rename Album"
 msgstr ""
 
-#: ../lib/albumItem.php:165 ../lib/albumItem.php:166
+#: ../lib/albumItem.php:166 ../lib/albumItem.php:167
 msgid "Reset Counter"
 msgstr ""
 
-#: ../lib/albumItem.php:177 ../lib/albumItem.php:178 ../view_album.php:316
+#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:316
 msgid "Permissions"
 msgstr ""
 
-#: ../lib/albumItem.php:185 ../lib/albumItem.php:186
+#: ../lib/albumItem.php:186 ../lib/albumItem.php:187
 #: ../watermark_album.php:114 ../watermark_album.php:118
 msgid "Watermark Album"
 msgstr ""
 
-#: ../lib/albumItem.php:192 ../lib/albumItem.php:193
+#: ../lib/albumItem.php:193 ../lib/albumItem.php:194
 msgid "View Comments"
 msgstr ""
 
-#: ../lib/albumItem.php:200 ../lib/albumItem.php:201
+#: ../lib/albumItem.php:201 ../lib/albumItem.php:202
 msgid "Copy"
 msgstr ""
 
-#: ../lib/albumItem.php:208 ../lib/albumItem.php:209
+#: ../lib/albumItem.php:209 ../lib/albumItem.php:210
 msgid "Show"
 msgstr ""
 
-#: ../lib/albumItem.php:214 ../lib/albumItem.php:215
+#: ../lib/albumItem.php:215 ../lib/albumItem.php:216
 msgid "Hide"
 msgstr ""
 
-#: ../lib/albumItem.php:223 ../lib/albumItem.php:224
+#: ../lib/albumItem.php:224 ../lib/albumItem.php:225
 msgid "Reorder"
 msgstr ""
 
-#: ../lib/albumItem.php:231 ../lib/albumItem.php:232
+#: ../lib/albumItem.php:232 ../lib/albumItem.php:233
 msgid "Set as highlight"
 msgstr ""
 
-#: ../lib/albumItem.php:240 ../lib/albumItem.php:241 ../photo_owner.php:78
+#: ../lib/albumItem.php:241 ../lib/albumItem.php:242 ../photo_owner.php:78
 #: ../photo_owner.php:82
 msgid "Change Owner"
 msgstr ""
 
-#: ../lib/albumItem.php:271 ../lib/albumItem.php:272
+#: ../lib/albumItem.php:272 ../lib/albumItem.php:273
 msgid "Photo properties"
 msgstr ""
 
-#: ../lib/albumItem.php:284 ../lib/albumItem.php:285
+#: ../lib/albumItem.php:285 ../lib/albumItem.php:286
 #, php-format
 msgid "%s actions"
 msgstr ""
@@ -4801,7 +4801,7 @@ msgstr ""
 msgid "Send Photo as eCard"
 msgstr ""
 
-#: ../view_photo.php:720
+#: ../view_photo.php:725
 msgid "Email me when comments are added"
 msgstr ""
 
