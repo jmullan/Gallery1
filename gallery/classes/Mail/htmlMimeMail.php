@@ -2,10 +2,11 @@
 /**
  * Filename.......: class.html.mime.mail.inc
  * Project........: HTML Mime mail class
- * Last Modified..: $Date$
- * CVS Revision...: $Revision$
+ * Last Modified..: Date: 2005-10-26 15:34:40 +0200 (Wed, 26 Oct 2005)
+ * CVS Revision...: Revision: 11888
  * Copyright......: 2001, 2002 Richard Heyes
  * @package Mail
+ * Gallery SVN ID.: $Id$
 */
 
 /**

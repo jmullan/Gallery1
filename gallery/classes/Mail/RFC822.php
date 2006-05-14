@@ -18,8 +18,9 @@
 *
 * @author  Richard Heyes <richard@phpguru.org>
 * @author  Chuck Hagenbuch <chuck@horde.org>
-* @version $Revision$
+* @version Revision: 9767
 * @package Mail
+* Gallery SVN ID $Id$
 */
 
 class Mail_RFC822
