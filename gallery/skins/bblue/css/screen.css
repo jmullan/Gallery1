@@ -1,10 +1,28 @@
-/* 
-	skin bblue
+/*
+   This is the style sheet used when Gallery running standalone and
+   'bars002' is selected.
+
+   If you would like to customize the styles please create
+   copy of this file called
+
+   "screen.css" (same name without ".default")
+
+   If that file is found in this directory it will be
+   used instead of this one.
+
+   Some of the styles below are overriden by specific
+   album properties. These are noted
+
+   $Id$
+*/
+
+/*
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
-BODY  
-	{ 
+
+BODY
+	{
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt;
 	  color:#404040;
@@ -14,12 +32,12 @@ BODY
 	  margin-left: 0px;
 	  margin-right: 0px;
 	}
-TD, P 
-	{ 
+TD, P
+	{
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	}
-/* 
+/*
    link colors - overridden by the album 'linkcolor' property.
 */
 A   	{ color: #404040; text-decoration: none; }
@@ -27,11 +45,11 @@ A:link	{ color: #404040; text-decoration: none; }
 A:visited { color: #404040; text-decoration: none; }
 A:active { color: #404040; }
 A:hover	{ color: #C0C0C0; }
-/* 
-   text styles 
+/*
+   text styles
 */
 .title                          /* album titles on main page */
-	{ 
+	{
 	  line-height:140%;
 	  padding-right:2px;
 	  padding-left:3px;
@@ -44,34 +62,34 @@ A:hover	{ color: #C0C0C0; }
 	  color:#000000;
 	  font-size:x-small;
 	  font-weight:bold;
-	  letter-spacing: .2em;  
+	  letter-spacing: .2em;
 	  text-decoration: none;
 	}
 .title a:hover {
 	  color: #C0C0C0;
 	  text-decoration: none;
-	} 
-	
-.mod_title	/* album title  Text is controled by .title */ 
-	{ 
+	}
+
+.mod_title	/* album title  Text is controled by .title */
+	{
 	  background-image: url(../images/mod_headliner.jpg);
 	  width: 100%;
 	  height: 28px;
 	}
-.mod_title_bg	/* album title hightlight Text is controled by .title */ 
-	{ 
+.mod_title_bg	/* album title hightlight Text is controled by .title */
+	{
 	  direction: ltr;
 	  background-image: url(../images/mod_toplight_bg.jpg);
 	  height: 28px;
 	}
-.mod_title_right  /* album title hightlight  Text is controled by .title*/ 
-	{ 
+.mod_title_right  /* album title hightlight  Text is controled by .title*/
+	{
 	  background-image: url(../images/mod_toplight_right.jpg);
 	  height: 28px;
 	  width: 9px;
 	}
-.mod_title_left  /* album title hightlight  Text is controled by .title */ 
-	{ 
+.mod_title_left  /* album title hightlight  Text is controled by .title */
+	{
 	  background-image: url(../images/mod_toplight_left.jpg);
 	  height: 28px;
 	  width: 10px;
@@ -85,23 +103,23 @@ A:hover	{ color: #C0C0C0; }
 	  background-color: #ffffff;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
+	  margin-top:2px;
 	  border:0px solid #404040;
 	}
 .desc  /* album descriptions on main page just description and author*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#404040;
 	  font-size:x-small;
 	  font-weight:bold;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
-	  letter-spacing: .2em; 
+	  margin-top:2px;
+	  letter-spacing: .2em;
 	}
 .caption  /* photo captions on all pages */
-	{ 
-	  font-size: 10px; 	
+	{
+	  font-size: 10px;
 	}
 
 .modcaption  /* modifies background for caption text to reside */
@@ -113,7 +131,7 @@ A:hover	{ color: #C0C0C0; }
 	  background-color: #202020;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
+	  margin-top:2px;
 	  border:0px dashed #404040;
 	}
 
@@ -134,7 +152,7 @@ a.modcaption:hover {
 	  background-color: #202020;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
+	  margin-top:2px;
 	  border:0px dashed #404040;
 	}
 
@@ -159,18 +177,18 @@ a.modcaption:hover {
 	}
 
 .vatable /* width of the div set for all photo sets - view albums  */
-	 { 
+	 {
 	 }
 .vathumbs /* full background bracket for images and text - veiw albums  */
-	 { 
+	 {
 	 }
 .vafloat /* float for view album - text */
 	 {
-		float: none; 
+		float: none;
 	 }
 .vafloat2 /* float for view album - images */
 	 {
-	 	float: none; 
+	 	float: none;
 	 }
 
 .vasummary /* controls the view of Album summary */
@@ -186,16 +204,16 @@ a.modcaption:hover {
 .dim /* controls the dimension text under the image */
 	{
 	}
-.commentIndication /* for the (star) indicating comment */ 
-	{ 
-	  color: red; 
-	  font-size: 12px; 
+.commentIndication /* for the (star) indicating comment */
+	{
+	  color: red;
+	  font-size: 12px;
 	}
 
 .error  /* all error text */
-	{ 
-	  color: red; 
-	  font-size: 12px; 
+	{
+	  color: red;
+	  font-size: 12px;
 	}
 .attention  /*voting instructions */
 {
@@ -206,7 +224,7 @@ a.modcaption:hover {
 	{
 	}
 .head  /* page headers behind the Gallery title*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#000000;
 	  font-size: 16px;
@@ -216,35 +234,35 @@ a.modcaption:hover {
 	  line-height:140%;
 	  letter-spacing: .2em;
 	  border:0px dashed #404040;
-	  height: 28px;  
+	  height: 28px;
 	}
-.mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_headliner  /* Gallery & Album titles. Text is controled by .head */
+	{
 	  background-image: url(../images/mod_headliner.jpg);
 	  width: 100%;
 	  height: 28px;
 	}
-.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */
+	{
 	  direction: ltr;
 	  background-image: url(../images/mod_toplight_bg.jpg);
 	  height: 28px;
 	}
-.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/ 
-	{ 
+.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/
+	{
 	  background-image: url(../images/mod_toplight_right.jpg);
 	  height: 28px;
 	  width: 9px;
 	}
-.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */
+	{
 	  background-image: url(../images/mod_toplight_left.jpg);
 	  height: 28px;
 	  width: 10px
 	}
 .bread  /* used in breadcrumb bars */
-	{ 
-	  font-size: 10px; 
+	{
+	  font-size: 10px;
 	}
 .nav    /* used in navigation bars */
 	{
@@ -260,8 +278,8 @@ a.modcaption:hover {
 	{
 	}
 .fineprint  /* used for fine print */
-	{ 
-	  font-size: 10px; 
+	{
+	  font-size: 10px;
 	}
 
 .editlink,  /* Used for the [edit] tags */
@@ -272,13 +290,13 @@ a.modcaption:hover {
 	{
 	  font-size: 10px;
 	  font-weight: normal;
-	  color: #404040;	  
+	  color: #404040;
 	}
-.modnavbox  /* main navigation bar next and previous */ 
-	{ 
-	  font-family:verdana, arial, sans-serif;	
+.modnavbox  /* main navigation bar next and previous */
+	{
+	  font-family:verdana, arial, sans-serif;
 	  color:#404040;
-	  font-size: 12px; 
+	  font-size: 12px;
 	  font-weight:bold;
 	  background-image: url(../images/mod_navbar.jpg);
 	  line-height:140%;
@@ -301,10 +319,10 @@ a.modcaption:hover {
 	  text-decoration: underline;
 	}
 .admin
-	{ 
+	{
 	  font-size: 10px;
 	  font-weight: bold;
-	  color: #65B4FF; 
+	  color: #65B4FF;
 	}
 
 .adminform {
@@ -313,9 +331,9 @@ a.modcaption:hover {
 	  color: #6666FF ;
 	}
 .search  /* used in admin bars - the search text*/
-	{ 
+	{
 	  font-size: 10px;
-	  color: #404040; 
+	  color: #404040;
 	  font-weight: bold;
 	}
 .searchform /* defines form for search */
@@ -329,11 +347,11 @@ a.modcaption:hover {
 .pollresults /* poll result text */
 	{
 	  font-size: 12px;
-	  color: #404040; 
+	  color: #404040;
 	  font-weight: bold;
 	}
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color: #ffffff;
 	  font-size: 10px;
@@ -342,7 +360,7 @@ a.modcaption:hover {
 	  line-height:140%;
 	  letter-spacing: .1em;
 	  border:0px dashed #404040;
-	  width: 100%  
+	  width: 100%
 	}
 .modnavboxtop a,
 .modnavboxtop a:link,
@@ -358,7 +376,7 @@ a.modcaption:hover {
 	  text-decoration: none;
 	}
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color: #202020;
 	  font-size: 10px;
@@ -366,7 +384,7 @@ a.modcaption:hover {
 	  background-color: #c0c0c0;
 	  line-height:140%;
 	  border:0px dashed #404040;
-	  width: 100%  
+	  width: 100%
 	}
 .modnavboxmid a,
 .modnavboxmid a:link,
@@ -382,7 +400,7 @@ a.modcaption:hover {
 	  text-decoration: underline;
 	}
 .modfooter  /*footer where the Gallery version is located*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#ffffff;
 	  font-size: 8px;
@@ -391,7 +409,7 @@ a.modcaption:hover {
 	  line-height:140%;
 	  padding:2px;
 	  border:0px dashed #404040;
-	  width:100%   
+	  width:100%
 	}
 .modfooter a,
 .modfooter a:link,
@@ -407,13 +425,13 @@ a.modcaption:hover {
 
 /* popups */
 
-.popupbody  /* controls the background of popup. */ 
+.popupbody  /* controls the background of popup. */
 	 {
  		margin: 25px;
   		background-color: #808080;
 	 }
-	
-.popuphead  /* controls the title and background */ 
+
+.popuphead  /* controls the title and background */
 	 {
 	   text-align:center;
 	   font-size: 14px;
@@ -436,7 +454,7 @@ a.modcaption:hover {
 	   padding: 5px;
 	   border: 1px solid #000000;
 	   background-color: #ffffff;
-	   margin-bottom: 10px;  
+	   margin-bottom: 10px;
 	 }
 
 .popupform /* controls form textarea */

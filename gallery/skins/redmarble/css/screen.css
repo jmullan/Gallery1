@@ -1,9 +1,28 @@
-/* 
+/*
+   This is the style sheet used when Gallery running standalone and
+   'bars002' is selected.
+
+   If you would like to customize the styles please create
+   copy of this file called
+
+   "screen.css" (same name without ".default")
+
+   If that file is found in this directory it will be
+   used instead of this one.
+
+   Some of the styles below are overriden by specific
+   album properties. These are noted
+
+   $Id$
+*/
+
+/*
    default text styles - background and colors overriden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
-BODY  
-	{ 
+
+BODY
+	{
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
 	  font-size: 10pt;
 	  color:#ffffff;
@@ -13,23 +32,23 @@ BODY
 	  margin-left: 0px;
 	  margin-right: 0px;
 	}
-TD, P 
-	{ 
+TD, P
+	{
 	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	}
-/* 
+/*
    link colors - overridden by the album 'linkcolor' property.
 */
 A   	{ color: #C0C0C0; text-decoration: none; }
 A:link	{ color: #C0C0C0; text-decoration: none; }
 A:active { color: #C0C0C0; }
 A:hover	{ color: #FFFFFF; }
-/* 
-   text styles 
+/*
+   text styles
 */
 .title                          /* album titles on main page */
-	{ 
+	{
 	  line-height:140%;
 	  padding:2px;
 	  margin-top:2px;
@@ -42,23 +61,23 @@ A:hover	{ color: #FFFFFF; }
 	  font-family:verdana, arial, sans-serif;
 	  font-size:x-small;
 	  font-weight:bold;
-	  letter-spacing: .2em;  
+	  letter-spacing: .2em;
 }
 
-.mod_title	/* album title  Text is controled by .title */ 
-	{ 
+.mod_title	/* album title  Text is controled by .title */
+	{
           background-image: url(../images/mod_titlebar.jpg);
           width: 100%;
           height: 28px;
 	}
-.mod_title_bg	/* album title hightlight Text is controled by .title */ 
-	{ 
+.mod_title_bg	/* album title hightlight Text is controled by .title */
+	{
 	}
-.mod_title_right  /* album title hightlight  Text is controled by .title*/ 
-	{ 
+.mod_title_right  /* album title hightlight  Text is controled by .title*/
+	{
 	}
-.mod_title_left  /* album title hightlight  Text is controled by .title */ 
-	{ 
+.mod_title_left  /* album title hightlight  Text is controled by .title */
+	{
 	}
 .albumdesc  /*album description includes all text and background*/
 	{
@@ -69,23 +88,23 @@ A:hover	{ color: #FFFFFF; }
 	  background-color: #92846A;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
+	  margin-top:2px;
 	  border:0px solid #000000;
 	}
 .desc  /* album descriptions on main page just description and author*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#ffffff;
 	  font-size:x-small;
 	  font-weight:bold;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
-	  letter-spacing: .2em; 
+	  margin-top:2px;
+	  letter-spacing: .2em;
 	}
 .caption  /* photo captions on all pages */
-	{ 
-	  font-size: 10px; 	
+	{
+	  font-size: 10px;
 	}
 .modcaption  /* modifies background for caption text to reside */
 	{
@@ -96,13 +115,13 @@ A:hover	{ color: #FFFFFF; }
 	  background-color: #363636;
 	  line-height:140%;
 	  padding:2px;
-	  margin-top:2px;		
+	  margin-top:2px;
 	  border:0px dashed #000000;
 	}
 .error  /* all error text */
-	{ 
-	  color: red; 
-	  font-size: 12px; 
+	{
+	  color: red;
+	  font-size: 12px;
 	}
 .attention /* voting instructions */
 	{
@@ -111,7 +130,7 @@ A:hover	{ color: #FFFFFF; }
 	{
 	}
 .head  /* page headers behind the Gallery title*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#ffffff;
 	  font-size: 16px;
@@ -120,30 +139,30 @@ A:hover	{ color: #FFFFFF; }
 	  line-height:140%;
 	  letter-spacing: .2em;
 	  border:0px dashed #000000;
-	  height: 28px;  
+	  height: 28px;
 	}
 
 .head a {
 }
 
-.mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_headliner  /* Gallery & Album titles. Text is controled by .head */
+	{
           background-image: url(../images/mod_titlebar.jpg);
           width: 100%;
           height: 28px;
 	}
-.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */
+	{
 	}
-.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/ 
-	{ 
+.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/
+	{
 	}
-.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */ 
-	{ 
+.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */
+	{
 	}
 .bread  /* used in breadcrumb bars */
-	{ 
-	  font-size: 10px; 
+	{
+	  font-size: 10px;
 	}
 .bordertop
 	{
@@ -155,8 +174,8 @@ A:hover	{ color: #FFFFFF; }
 	{
 	}
 .fineprint  /* used for fine print */
-	{ 
-	  font-size: 10px; 
+	{
+	  font-size: 10px;
 	}
 
 .popupbody {
@@ -174,7 +193,7 @@ A:hover	{ color: #FFFFFF; }
 .popup {
 	  font-size: 12px;
 	  font-weight: bold;
-	  color: #BBBBBB;	  
+	  color: #BBBBBB;
 	}
 .editlink,  /* Used for the [edit] tags */
 .editlink a,
@@ -184,14 +203,14 @@ A:hover	{ color: #FFFFFF; }
 	{
 	  font-size: 10px;
 	  font-weight: normal;
-	  color: #ffffff;	  
+	  color: #ffffff;
 	}
 
-.modnavbox  /* main navigation bar next and previous */ 
-	{ 
-	  font-family:verdana, arial, sans-serif;	
+.modnavbox  /* main navigation bar next and previous */
+	{
+	  font-family:verdana, arial, sans-serif;
 	  color:#ffffff;
-	  font-size: 12px; 
+	  font-size: 12px;
 	  font-weight:bold;
 	  background-image: url(../images/mod_navbar.jpg);
 	  line-height:140%;
@@ -204,9 +223,9 @@ A:hover	{ color: #FFFFFF; }
 }
 
 .admin  /* used in admin bars - the serch text*/
-	{ 
+	{
 	  font-size: 10px;
-	  color: #ffffff; 
+	  color: #ffffff;
 	  font-weight: bold;
 	}
 .adminform
@@ -216,9 +235,9 @@ A:hover	{ color: #FFFFFF; }
           color: #551F1F;
         }
 .search  /* used in admin bars - the serch text*/
-	{ 
+	{
 	  font-size: 10px;
-	  color: #ffffff; 
+	  color: #ffffff;
 	  font-weight: bold;
 	}
 .leftspacer /* amount of space to the left of the header and titles */
@@ -226,7 +245,7 @@ A:hover	{ color: #FFFFFF; }
 	  width: 50px;
 	}
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color: #ffffff;
 	  font-size: 10px;
@@ -235,13 +254,13 @@ A:hover	{ color: #FFFFFF; }
 	  line-height:140%;
 	  letter-spacing: .1em;
 	  border:0px dashed #000000;
-	  width: 100%  
+	  width: 100%
 	}
 .modnavboxtop a {
 }
 
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color: #ffffff;
 	  font-size: 10px;
@@ -249,14 +268,14 @@ A:hover	{ color: #FFFFFF; }
 	  background-color: #363636;
 	  line-height:140%;
 	  border:0px dashed #000000;
-	  width: 100%  
+	  width: 100%
 	}
 
 .modnavboxmid {
 	}
 
 .modfooter  /*footer where the Gallery version is located*/
-	{ 
+	{
 	  font-family:verdana, arial, sans-serif;
 	  color:#ffffff;
 	  font-size: 8px;
@@ -265,7 +284,7 @@ A:hover	{ color: #FFFFFF; }
 	  line-height:140%;
 	  padding:2px;
 	  border:0px dashed #000000;
-	  width:100%   
+	  width:100%
 	}
 .modfooter a,
 .modfooter a:link,
@@ -286,29 +305,29 @@ A:hover	{ color: #FFFFFF; }
  }
 
 .pcaption /* brackets all text below photo */
-{ 
+{
 	padding:2px;
 	margin-top:2px;
  }
 
 .vatable /* width of the div set for all photo sets - view albums  */
- { 
+ {
  	width: 100%;
  }
 
 .vathumbs /* full background bracket for images and text - veiw albums  */
- { 
+ {
 	margin:17px;
  }
 
 .vafloat /* float for view album - text */
  {
-	float: none; 
+	float: none;
  }
 
 .vafloat2 /* float for view album - images */
  {
- 	float: none; 
+ 	float: none;
  }
 .vasummary /* controls the view of Album summary */
 {
