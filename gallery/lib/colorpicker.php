@@ -4,16 +4,15 @@
  *
  * See the enclosed file COPYING for license information (LGPL).  If you
  * did not receive this file, see http://www.fsf.org/copyleft/lgpl.html.
- */
 
-/* This file was taken from the Horde Framework (http://www.horde.org)
-** The Version was: horde/services/images/colorpicker.php,v 1.21
-**
-** Jens Tkotz 25.04.2005
-*/
 
-/*
- * colorpicker is used in config wizard.
+ * This file was taken from the Horde Framework (http://www.horde.org)
+ * The Version was: horde/services/images/colorpicker.php,v 1.21
+ *
+ * Jens Tkotz 25.04.2005
+ * Gallery SVN ID:
+ * $Id$
+ *
  * At very first install gallery is not configured, so we cant load init.php
  */
 

@@ -22,14 +22,14 @@
 ?>
 <?php
 
-$gallery->version = '1.6-svn-b1-j26-UNSTABLE';
+$gallery->version = '1.6-svn-b1-j28-UNSTABLE';
 $gallery->config_version = 97;
 $gallery->album_version = 37;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";
 
-/* do not edit the date!! modified by CVS */
-$gallery->last_change = strtotime(substr('$Date$', 7, -1));
+/* do not edit the date!! modified by SVN */
+$gallery->last_change = strtotime(substr('$Date$', 7, -21));
 /*
  * PostNuke version info
  */

@@ -1,5 +1,10 @@
 <?php
-// $Id$
+
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
 global $breadcrumb, $navigator, $gallery;
 // If the border color is not passed in, we do a black/white combo
 
@@ -24,7 +29,7 @@ if (!isset($navigator) && !isset($adminbox) && !isset($adminText)) {
 }
 ?>
 <table style="<?php echo $style; ?>" width="<?php echo $navigator["fullWidth"] . $navigator["widthUnits"] ?>" border="0" cellspacing="0" cellpadding="0" class="bread">
-<tr> 
+<tr>
 <?php
 	if ($gallery->user->isLoggedIn()) {
 		$name = $gallery->user->getFullName();
@@ -34,13 +39,13 @@ if (!isset($navigator) && !isset($adminbox) && !isset($adminText)) {
 		echo "\t". '<td style="padding-left:5px;" class="bread" height="18">'. _("Logged in as:") .' '. $name .'</td>';
 	}
 ?>
-	
+
 	<td class="bread" height="18" align="right">
 <?php
 for ($i = 0; isset($breadcrumb["text"][$i]); $i++) {
 	echo "\t\t&nbsp;".$breadcrumb["text"][$i]."&nbsp;\n";
 }
 ?>
-	</td> 
+	</td>
 </tr>
-</table>  
+</table>

@@ -1,5 +1,10 @@
-<?php /* $Id$ */ ?>
 <?php
+
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
 global $navigator;
 
 // Calculate the beginning and ending of the navigator range
@@ -61,12 +66,12 @@ if ($navpage > 0) {
 	$pClass='';
 }
 
-#-- 'page numbers' cell ---                  
+#-- 'page numbers' cell ---
 	$mpContent=sprintf(_("%d of %d"), $navpage+1, $navcount);
 
 #-- 'next' and 'last' button cell ---
 if ($navpage < $navcount-1) {
-	
+
 	$nextPage = $navigator["allIds"][$navpage+1];
 	$npContent ='<a href="'. makeAlbumUrl($gallery->session->albumName, $nextPage) .'">';
 	$npContent .='<img src="'. $npImgUrl . '" border="0" width="39" height="36" alt="'. $npAltText .'" title="'. $npAltText .'">';
@@ -77,12 +82,12 @@ if ($navpage < $navcount-1) {
 	$lpContent .='</a>';
 
 	$nClass='borderleft';
-} else {   
+} else {
 	$npContent='&nbsp;';
 	$lpContent='&nbsp;';
 
         $nClass='';
-} 
+}
 ?>
 
 <!-- Photo Navigator -->
@@ -95,7 +100,7 @@ if ($navpage < $navcount-1) {
 			<td class="<?php echo $nClass ?>" align="center" width="39" height="36"><span class="nav"><?php echo $npContent ?></span></td>
 		</tr>
 		</table>
-	</td> 
+	</td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
@@ -104,4 +109,3 @@ if ($navpage < $navcount-1) {
 			<?php include ('menu.tpl'); ?>
     </td>
 	<td valign="top" align="center" style="padding-left: 10px;">
-      
