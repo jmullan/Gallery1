@@ -84,27 +84,27 @@ if (empty($albumName)) {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText = getIconText('1rightarrow.gif', _("play"));
-$stopIconText = getIconText('2downarrow.gif', _("stop"));
-$normalSizeIconText = getIconText('window_nofullscreen.gif', _("normal size"));
-$fullSizeIconText = getIconText('window_fullscreen.gif', _("full size"));
-$forwardIconText = getIconText('1rightarrow.gif', _("forward direction"));
-$backwardIconText = getIconText('1leftarrow.gif', _("reverse direction"));
-$delayIconText = getIcontext('history.gif', _("Delay"));
-$loopIconText =  getIcontext('reload.gif', _("Loop:"));
+$playIconText = getIconText('1rightarrow.gif', gTranslate('core', "play"));
+$stopIconText = getIconText('2downarrow.gif', gTranslate('core', "stop"));
+$normalSizeIconText = getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
+$fullSizeIconText = getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
+$forwardIconText = getIconText('1rightarrow.gif', gTranslate('core', "forward direction"));
+$backwardIconText = getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
+$delayIconText = getIcontext('history.gif', gTranslate('core', "Delay"));
+$loopIconText =  getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar") &&
 	! $gallery->session->offline) {
-	$modes["applet"] = _("Fullscreen applet");
+	$modes["applet"] = gTranslate('core', "Fullscreen applet");
 }
 
-$modes["high"] = _("Modern browsers");
+$modes["high"] = gTranslate('core', "Modern browsers");
 
 if (!empty($albumName) && !$gallery->session->offline) {
-    $modes["low"] = _("Compatible but limited");
+    $modes["low"] = gTranslate('core', "Compatible but limited");
 }
 
 if (!isset($mode) || !isset($modes[$mode])) {
@@ -122,7 +122,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $title; ?></title>
-<?php 
+<?php
 	common_header();
 
 // the link colors have to be done here to override the style sheet
@@ -196,7 +196,7 @@ if ( !$gallery->session->offline) {
 	}
 }
 
-$adminbox["text"] = _("Slide Show");
+$adminbox["text"] = gTranslate('core', "Slide Show");
 $adminbox["bordercolor"] = $borderColor;
 
 $navigator["fullWidth"] = '100';
