@@ -10,14 +10,14 @@
             </span>
           </td>
 <?php
-	if (!$gallery->session->offline && 
+	if (!$gallery->session->offline &&
 	  isset($gallery->app->rssEnabled) && $gallery->app->rssEnabled == "yes") {
 ?>
-          <td class="left"><?php echo galleryLink(
-		$gallery->app->photoAlbumURL . "/rss.php",
-		getIconText('rss-feed.png', gTranslate('common', "RSS"))
-		);?>
-	</td>
+		<td class="center">
+			<a href="<?php echo $gallery->app->photoAlbumURL . "/rss.php"; ?>">
+			<?php echo getIconText('rss-feed.png', gTranslate('common', "RSS")); ?>
+			</a>
+		</td>
 <?php
 }
 if ($gallery->user->isAdmin() ) { ?>

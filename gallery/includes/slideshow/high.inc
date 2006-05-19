@@ -29,10 +29,10 @@ function slideshow_initialize() {
     // default settings ---
     $defaultLoop = 0;
     $defaultTransition = 0;
-    $defaultPause = 3; 
+    $defaultPause = 3;
 
     $full_option = false;
-    
+
     define('PHOTO_URL', 1 << 0);
     define('PHOTO_CAPTION', 1 << 1);
     define('PHOTO_URL_AS_HREF', 1 << 2);
@@ -45,23 +45,23 @@ function slideshow_initialize() {
     if ($photo_count > 0) {
         if ($number == 0 || $number > $photo_count) {
             $number = $photo_count;
-        } 
+        }
         if ($random) {
             $random_full_urls = array();
             $random_photos = array();
             $rand_keys = array_rand ($urls, $number);
             if ($number == 1) {
                 $rand_keys = array($rand_keys);
-            } 
+            }
             foreach ($rand_keys as $key) {
                 $random_urls[] = $urls[$key];
                 $random_full_urls[] = $full_urls[$key];
                 $random_captions[] = $captions[$key];
-            } 
+            }
             $urls = $random_urls;
             $full_urls = $random_full_urls;
             $captions = $random_captions;
-        } 
+        }
         if (empty($albumName)) {
             if ($random) {
                 $title = sprintf(_("%s Random Images from %s"),
@@ -70,7 +70,7 @@ function slideshow_initialize() {
             } else {
                 $title = sprintf(_("Slide Show for Gallery :: %s"),
                     $gallery->app->galleryTitle);
-            } 
+            }
         } else {
             if ($random) {
                 $title = sprintf(_("%d Random Images from album :: %s"),
@@ -78,10 +78,10 @@ function slideshow_initialize() {
                     $gallery->album->fields["title"]);
             } else {
                 $title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"]);
-            } 
-        } 
-    } 
-} 
+            }
+        }
+    }
+}
 
 function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $recursive = true) {
     global $gallery, $full_option;
@@ -96,16 +96,16 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
             $subAlbum = $albumDB->getAlbum($gallery->user, $i);
             if (!$gallery->user->canReadAlbum($subAlbum)) {
                 continue;
-            } 
+            }
             $photo_count += buildSlideshowPhotos($full_urls, $urls, $captions, $subAlbum, $recursive);
-        } 
+        }
         return $photo_count;
-    } 
+    }
     if (!$gallery->user->canReadAlbum($album)) {
         return $photo_count;
-    } 
+    }
     $numPhotos = $album->numPhotos(1);
-    $numDisplayed = 0; 
+    $numDisplayed = 0;
     // Find the correct starting point, accounting for hidden photos
     $index = getNextPhoto(0, $album);
     $photo_count = 0;
@@ -116,15 +116,15 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
   * an album that we can't read.
   */
             break;
-        } 
+        }
 
         $photo = $album->getPhoto($index);
-        $numDisplayed++; 
+        $numDisplayed++;
         // Skip movies
         if ($photo->isMovie()) {
             $index = getNextPhoto($index, $album);
             continue;
-        } 
+        }
         if ($photo->isAlbum()) {
             if ($recursive) {
                 $subAlbumName = $album->getAlbumName($index);
@@ -133,11 +133,11 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
                 $subAlbum->load($subAlbumName);
                 if ($gallery->user->canReadAlbum($subAlbum)) {
                     $photo_count += buildSlideshowPhotos($full_urls, $urls, $captions, $subAlbum, $recursive);
-                } 
-            } 
+                }
+            }
             $index = getNextPhoto($index, $album);
             continue;
-        } 
+        }
         $photo_count++;
 
         $urls[] = $album->getPhotoPath($index, 0);
@@ -146,24 +146,24 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
             $full_urls[] = $album->getPhotoPath($index, 1);
         } else {
             $full_urls[] = $album->getPhotoPath($index, 0);
-        } 
+        }
 
         $caption = $album->getCaption($index);
         if ($recursive) {
             $caption .= ' (<a href="' . makeAlbumURL($album->fields["name"]) . '">' . $album->fields['title'] . '</a>)';
-        } 
+        }
         $caption .= $album->getCaptionName($index);
         $caption = str_replace("\"", " ", $caption);
         $caption = str_replace("\n", " ", $caption);
-        $caption = str_replace("\r", " ", $caption); 
+        $caption = str_replace("\r", " ", $caption);
         // Print out the entry for this image as Javascript
-        $captions[] = $caption; 
+        $captions[] = $caption;
         // Go to the next photo
         $index = getNextPhoto($index, $album);
-    } 
+    }
 
     return $photo_count;
-} 
+}
 
 function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count) {
     $count = 0;
@@ -171,18 +171,18 @@ function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count)
         $count++;
         if (($what &PHOTO_URL) != 0) {
             print "photo_urls[$count] = \"" . $urls[$index] . "\";\n";
-        } 
+        }
 
         if (($what &PHOTO_URL_AS_HREF) != 0) {
             print "<a id=\"photo_urls_$count\" href=\"" . $urls[$index] . "\"></a>\n";
             print "<a id=\"full_photo_urls_$count\" href=\"" . $full_urls[$index] . "\"></a>\n";
-        } 
+        }
         if (($what &PHOTO_CAPTION) != 0) {
             // Print out the entry for this image as Javascript
             print "photo_captions[$count] = \"" . $captions[$index] . "\";\n";
-        } 
-    } 
-} 
+        }
+    }
+}
 
 function slideshow_body() {
     global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
@@ -267,7 +267,7 @@ var loop = <?php echo $defaultLoop ?>;
     foreach ($transitions as $definition) {
         print "transitions[$trans_i] = \"$definition\";\n";
         $trans_i++;
-    } 
+    }
     print "var transition_count = $transitionCount;\n";
 
     ?>
@@ -394,7 +394,7 @@ function go_to_next_photo() {
 		wait_for_current_photo();
 		return 0;
 	}
-	
+
 	preload_next_photo();
 	reset_timer();
 }
@@ -510,14 +510,14 @@ function slideshow_controlPanel() {
 				60 => _("1 Minute")),
 				$defaultPause, // default value
 				1, // select size
-				array('onchange' => 'reset_timer()', 'class' => 'adminform')
+				array('onchange' => 'reset_timer()', 'class' => 'g-admin')
 			);
 
 	if ($loop) {
 		$checked = ($defaultLoop) ? 'checked' : '';
 		$iconElements[] = $loopIconText;
 		$iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
-	} 
+	}
 
 	echo makeIconMenu($iconElements, 'right', false);
 ?>
@@ -530,43 +530,38 @@ function slideshow_controlPanel() {
                   $transitionNames,
                   $defaultTransition,
                   1,
-                 array('onchange' => 'change_transition()', 'class' => 'adminform'))); ?>');
+                 array('onchange' => 'change_transition()', 'class' => 'g-admin'))); ?>');
     }
     // -->
     </script></td></tr></table>
 </form>
 <?php
-    } 
+    }
 
 
-    function slideshow_image() {
+function slideshow_image() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
 			$transitionCount, $pixelImage;
-		
-        if ($photo_count > 0) {
 
-            ?>
+	if ($photo_count > 0) {
+?>
 
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td><script type="text/javascript">
+<div class="center">
+  <script type="text/javascript">
 	<!--
 		firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
 		document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src=\"");
 		document.write(firstPhotoURL);
 		document.write("\" name=slide>");
 	// -->
-	</script></td>
-</tr>
-</table>
-<br>
+  </script>
 
 <script type="text/javascript">
 <!--
 /* show the caption */
-document.write("<div class='pcaption' id='caption'><\/div>");
+document.write('<div class="g-photo-caption" id="caption"><\/div>');
 
 /* Load the first picture */
 setCaption(photo_captions[1]);
@@ -576,20 +571,12 @@ preload_photo(1);
 play();
 // -->
 </script>
+</div>
 
 <?php
-        } else {
-
-            ?>
-
-<br><b><?php echo _("This album has no photos to show in a slide show.") ?></b>
-<br><br>
-<span class="admin">
-<a href="<?php echo makeGalleryUrl("view_album.php",
-                array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
-</span>
-
-<?php
-        } 
-    } 
-    ?>
+	}
+	else {
+		echo "<p><b>". _("This album has no photos to show in a slide show.") ."</b></p>";
+	}
+}
+?>

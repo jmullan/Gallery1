@@ -72,15 +72,11 @@ if (empty($albumName)) {
 	$number		= (int)$gallery->app->gallery_slideshow_length;
 	$random		= ($gallery->app->gallery_slideshow_type == "random");
 	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
-	$borderColor	= $gallery->app->default["bordercolor"];
-	$borderwidth	= $gallery->app->default["border"];
 } else {
 	$recursive	= ($album->fields["slideshow_recursive"] == "yes");
 	$loop		= ($album->fields["slideshow_loop"] == "yes");
 	$random		= ($album->fields["slideshow_type"] == "random");
 	$number		= (int)$album->fields["slideshow_length"];
-	$borderColor	= $gallery->album->fields["bordercolor"];
-	$borderwidth	= $gallery->album->fields["border"];
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
@@ -112,7 +108,6 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
-
 
 slideshow_initialize();
 
@@ -152,7 +147,7 @@ if ($albumName) {
 ?>
 </head>
 
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 
 <?php }
 
@@ -174,33 +169,25 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 </script>
 
 <?php
-	slideshow_body();
+
+slideshow_body();
 
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
 $breadcrumb["text"] = @returnToPathArray($gallery->album, true);
-$breadcrumb["bordercolor"] = $borderColor;
-
-$adminbox["commands"] = "";
 
 // todo: on the client, prevent old browsers from using High, and remove High from the bar
 if ( !$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
-		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
+		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
-			$adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"$url\">[" .$modes[$m] ."]</a>";
+			$adminbox["commands"] .= "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
 		} else {
 			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
 		}
 	}
 }
-
-$adminbox["text"] = gTranslate('core', "Slide Show");
-$adminbox["bordercolor"] = $borderColor;
-
-$navigator["fullWidth"] = '100';
-$navigator["widthUnits"] = '%';
 
 includeLayout('adminbox.inc');
 
