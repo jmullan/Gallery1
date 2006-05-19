@@ -21,20 +21,15 @@
  */
 ?>
 <?php 
-    require_once(dirname(__FILE__) . '/init.php');
+
+require_once(dirname(__FILE__) . '/init.php');
+
+printPopupStart(gTranslate('config', "Gallery Diagnostics Page"));
+
+configLogin(basename(__FILE__));
 ?>
-<html>
-<head>
-	<title><?php echo _("Gallery Diagnostics Page") ?></title>
-	<?php echo getStyleSheetLink() ?>
-</head>
 
-<body dir="<?php echo $gallery->direction ?>">
-<?php configLogin(basename(__FILE__)); ?>
-
-<div class="header"><?php echo _("Gallery Diagnostics") ?></div>
-<p></p>
-<div class="sitedesc">
+<div class="g-sitedesc">
 <?php echo _("This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>
 <?php echo ' ' . _("The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
 <?php echo ' ' . _("You can use these tools to find out more about your setup") ?>:

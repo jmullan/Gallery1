@@ -41,7 +41,7 @@
 ?>
 </div>
 
-<div align="center" style="margin: 5px; margin-bottom: 10px">
+<div align="center" style="margin: 5px">
 	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
 	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
 	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
@@ -49,12 +49,12 @@
 	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
 </div>
 
+<div style="margin: 10px 30px 0; font-size: 8.5pt">
 <?php
 
 $initialtab = makeSectionTabs($defaults);
 echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
-echo '<br clear="all">';
 $i = 0;
 foreach ($defaults as $key => $val) {
 
@@ -129,6 +129,8 @@ foreach ($defaults as $key => $val) {
 	echo "\n</table>";
 }
 ?>
+
+</div>
 
 <p align="center">
 	<input type=submit name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">

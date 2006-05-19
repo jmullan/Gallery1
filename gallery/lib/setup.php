@@ -1,24 +1,24 @@
 <?php
 /*
- * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2006 Bharat Mediratta
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or (at
- * your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
- *
- * $Id$
- */
+* Gallery - a web based photo album viewer and editor
+* Copyright (C) 2000-2006 Bharat Mediratta
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or (at
+* your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+*
+* $Id$
+*/
 ?>
 <?php
 
@@ -27,7 +27,7 @@ function evenOdd_row($fields) {
 
 	$f0 = $fields[0];
 	if (isset($fields[4])) {
-	    $f0 .= '&nbsp;<span class="littlered">*</span>';
+		$f0 .= '&nbsp;<span class="littlered">*</span>';
 	}
 	if ($fields[3] == "block_element") {
 		$buf .= "\n<tr><td class=\"g-shortdesc\" width=\"30%\">$f0</td><td class=\"g-shortdesc\">".$fields[1]."</td></tr>";
@@ -59,7 +59,7 @@ function make_fields($key, $arr) {
 		$col1 = '';
 	}
 	if (isset($arr['type']) &&
-		($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
+	($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
 		$col2 = form_input($key, $arr);
 	} else if (isset($arr['choices'])) {
 		$col2 = form_choice($key, $arr);
@@ -98,25 +98,25 @@ function form_textarea($key, $arr) {
 }
 
 function form_input($key, $arr) {
-    $type  = (isset($arr['type'])) ? 'type="'.$arr['type'].'"' : '';
+	$type  = (isset($arr['type'])) ? 'type="'.$arr['type'].'"' : '';
 
-    $attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
+	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
-    $name  = (isset($arr['name'])) ? $arr['name'] : $key;
+	$name  = (isset($arr['name'])) ? $arr['name'] : $key;
 
-    return "<input $type name=\"$name\" value=\"". $arr['value'] ."\" $attrs>";
+	return "<input $type name=\"$name\" value=\"". $arr['value'] ."\" $attrs>";
 }
 
 function form_password($key, $arr) {
-    $attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
+	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
-    if (empty($arr['value'])) {
-	$arr['value'] = array('', '', '', '');
-    } elseif (!is_array($arr['value'])) {
-	$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
-    }
+	if (empty($arr['value'])) {
+		$arr['value'] = array('', '', '', '');
+	} elseif (!is_array($arr['value'])) {
+		$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
+	}
 
-    return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
+	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. _('Please retype your password here')
@@ -125,7 +125,7 @@ function form_password($key, $arr) {
 }
 
 function form_nv_pairs($key, $arr) {
-    $attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
+	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
 	$x=0;
 	$buf="\n<table>"
@@ -137,9 +137,9 @@ function form_nv_pairs($key, $arr) {
 		$name=$result["name"];
 		$value=$result["value"];
 		$buf .= '<tr>'
-			. '<td><input type="text" name="' . $key ."[$x][name] \" value=\"$name\" $attrs></td>\n";
+		. '<td><input type="text" name="' . $key ."[$x][name] \" value=\"$name\" $attrs></td>\n";
 		$buf .= '<td><input type="text" name="' . $key  ."[$x][value]\" value=\"$value\" $attrs></td>"
-			. "</tr>\n";
+		. "</tr>\n";
 		$x++;
 		if ($x >= $arr["size"]) {
 			break;
@@ -154,21 +154,22 @@ function form_nv_pairs($key, $arr) {
 }
 
 function form_choice($key, $arr) {
-    $attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
-    return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
-    }
+	$attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
+
+	return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
+}
 
 function form_multiple_choice($key, $arr) {
 	if (empty($arr["multiple_choices"])) {
-	   return _("No content");
+		return _("No content");
 	}
 
-	$buf= '<table><tr><td valign="top">';
-	$count=0;
-	$column=0;
+	$buf = '<table><tr><td valign="top">';
+	$count = 0;
+	$column = 0;
 	foreach ($arr["multiple_choices"] as $item => $value) {
 		if ($item == 'addon') continue;
-		if ($count%15 ==0) {
+		if ($count%15 == 0) {
 			$buf .= "</td>\n<td valign=\"top\">";
 		}
 		$count++;
@@ -184,98 +185,100 @@ function form_multiple_choice($key, $arr) {
 		$buf .="\n<tr><td colspan=$column>++". $arr['multiple_choices']['addon'] . "\n++</td></tr>";
 	}
 	$buf .="</table>";
+
 	return $buf;
 }
 
 function makeMultipleChoiceContent($array) {
-    $multipleChoiceContent = array();
+	$multipleChoiceContent = array();
 
-    foreach($array as $key => $content) {
-	$multipleChoiceContent[$key] = '<a href="'. $content['url'] .'">'. $content['name'] .'</a>';
-	if (isset($content['description'])) {
-	    $multipleChoiceContent[$key] .= ' '. $content['description'];
+	foreach($array as $key => $content) {
+		$multipleChoiceContent[$key] = '<a href="'. $content['url'] .'">'. $content['name'] .'</a>';
+		if (isset($content['description'])) {
+			$multipleChoiceContent[$key] .= ' '. $content['description'];
+		}
 	}
-    }
 
-    return $multipleChoiceContent;
+	return $multipleChoiceContent;
 }
 
 /* in progress */
 function form_table_values($key, $arr) {
-    if (empty($arr['elements'])) {
-	return _("No content");
-    }
+	if (empty($arr['elements'])) {
+		return _("No content");
+	}
 
-    $jTable = new galleryTable();
+	$jTable = new galleryTable();
 
-    $jTable->setHeaders($arr['columns']);
-    $jTable->setColumnCount(sizeof($arr['columns']));
+	$jTable->setHeaders($arr['columns']);
+	$jTable->setColumnCount(sizeof($arr['columns']));
 
-    foreach($arr['elements'] as $element) {
-	$jTable->addElement(array('content' => $element));
-    }
+	foreach($arr['elements'] as $element) {
+		$jTable->addElement(array('content' => $element));
+	}
 
-    return $jTable->render();
+	return $jTable->render();
 }
 
 function form_print_services($key, $arr) {
 
 	$buf= "\n\t<table border=\"0\">";
 	foreach ($arr['services'] as $item => $data) {
-	    if (isset($arr['value'][$item])) {
-		if (is_array($arr['value'][$item])) {
-			$value = $arr['value'][$item];
-			if (!isset($value['checked'])) {
-				$value['checked'] = false;
+		if (isset($arr['value'][$item])) {
+			if (is_array($arr['value'][$item])) {
+				$value = $arr['value'][$item];
+				if (!isset($value['checked'])) {
+					$value['checked'] = false;
+				}
+			} else {
+				$value = array('checked' => true);
 			}
 		} else {
-			$value = array('checked' => true);
+			$value = array('checked' => false);
 		}
-	    } else {
-		$value = array('checked' => false);
-	    }
-	    $checked = $value['checked'] ? ' checked' : '';
-	    $buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
-            if (!empty($data['desc'])) {
-		$buf .= ' - ' . $data['desc'];
-	    }
-	    $buf .= "\n\t\t</td></tr>";
+		$checked = $value['checked'] ? ' checked' : '';
+		$buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
+		if (!empty($data['desc'])) {
+			$buf .= ' - ' . $data['desc'];
+		}
+		$buf .= "\n\t\t</td></tr>";
 	}
 	$buf .="\n\t</table>\n\t";
+
 	return $buf;
 }
 
 function getPath() {
 
-    /* Start with the server user's path */
-    if (getOS() != OS_WINDOWS) {
-    	$path = explode(":", getenv('PATH'));
-    }
-    else {
-    	$path = explode(';', getenv('PATH'));
-    }
+	/* Start with the server user's path */
+	if (getOS() != OS_WINDOWS) {
+		$path = explode(":", getenv('PATH'));
+	}
+	else {
+		$path = explode(';', getenv('PATH'));
+	}
 
-    /* Add in a few relatively obvious locations */
-    $path[] = "/usr/local/gallery";
-    $path[] = "/usr/local/gallery/bin";
-    $path[] = "/usr/local/gallery/jhead";
-    $path[] = "/usr/local/gallery/netpbm";
-    $path[] = "/usr/local/bin";
-    $path[] = "/usr/local/bin/jhead";
-    $path[] = "/usr/local/bin/netpbm";
-    $path[] = "/usr/local/netpbm";
-    $path[] = "/usr/local/netpbm/bin";
-    $path[] = "/usr/local/jhead";
-    $path[] = "/usr/local/jhead/bin";
-    $path[] = "/usr/bin/gallery";
-    $path[] = "/usr/bin/gallery/jhead";
-    $path[] = "/usr/bin/gallery/netpbm";
-    $path[] = GALLERY_BASE . "/netpbm";
-    $path[] = GALLERY_BASE . "/bin";
-    $path[] = GALLERY_BASE . "/bin/netpbm";
-    $path[] = GALLERY_BASE . "/bin/jhead";
+	/* Add in a few relatively obvious locations */
+	$path[] = "/usr/local/gallery";
+	$path[] = "/usr/local/gallery/bin";
+	$path[] = "/usr/local/gallery/jhead";
+	$path[] = "/usr/local/gallery/netpbm";
+	$path[] = "/usr/local/bin";
+	$path[] = "/usr/local/bin/jhead";
+	$path[] = "/usr/local/bin/netpbm";
+	$path[] = "/usr/local/netpbm";
+	$path[] = "/usr/local/netpbm/bin";
+	$path[] = "/usr/local/jhead";
+	$path[] = "/usr/local/jhead/bin";
+	$path[] = "/usr/bin/gallery";
+	$path[] = "/usr/bin/gallery/jhead";
+	$path[] = "/usr/bin/gallery/netpbm";
+	$path[] = GALLERY_BASE . "/netpbm";
+	$path[] = GALLERY_BASE . "/bin";
+	$path[] = GALLERY_BASE . "/bin/netpbm";
+	$path[] = GALLERY_BASE . "/bin/jhead";
 
-    return $path;
+	return $path;
 }
 
 function locateDir($filename, $extraDir = '', $ignorePath = false) {
@@ -354,21 +357,24 @@ function check_exec() {
 	return array($success, $fail, $warn);
 }
 
+/**
+ * the .htaccess file in the parent directory tries to auto_prepend the got-htaccess.php file.
+ * If that worked, then GALLERY_PHP_VALUE_OK will be set.
+*/
 function check_htaccess() {
 	global $GALLERY_PHP_VALUE_OK;
 
-	/*
-	 * the .htaccess file in the parent directory tries to
-	 * auto_prepend the got-htaccess.php file.  If that worked,
-	 * then GALLERY_PHP_VALUE_OK will be set.
-	 */
 	$success = array();
 	$fail = array();
 	$warn = array();
-	if ($GALLERY_PHP_VALUE_OK) {
+
+	if(!fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
+		$fail['fail-nohtaccess'] = true;
+	}
+	else if ($GALLERY_PHP_VALUE_OK) {
 		$success[] = _("I can read your <b>.htaccess</b> file.");
 	} else {
-		$fail["fail-htaccess"] = 1;
+		$fail['fail-htaccess'] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -387,8 +393,8 @@ function check_php() {
 	}
 
 	if (strstr(__FILE__, 'lib/setup.php') ||
-	  strstr(__FILE__, 'lib\\setup.php')) {
-        $success[] = sprintf(_("PHP v%s is OK."), $version);
+	strstr(__FILE__, 'lib\\setup.php')) {
+		$success[] = sprintf(_("PHP v%s is OK."), $version);
 	} else {
 		$fail['fail-buggy__FILE__'] = 1;
 	}
@@ -397,15 +403,24 @@ function check_php() {
 }
 
 function check_mod_rewrite()  {
-	global $GALLERY_REWRITE_OK;
-
 	$success = array();
 	$fail = array();
 	$warn = array();
-	if ($GALLERY_REWRITE_OK) {
-		$success[] = _("<b>mod_rewrite</b> is enabled.");
-	} else {
-		$fail["fail-mod-rewrite"] = 1;
+
+	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
+		if (!$init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
+			$success[] = _("<b>mod_rewrite</b> is enabled.");
+			if (strstr($init_mod_rewrite, "ampersandbroken")) {
+				$GALLERY_REWRITE_SEPARATOR = "\&";
+			} else {
+				$GALLERY_REWRITE_SEPARATOR = "&";
+			}
+		} else {
+			$fail["fail-mod-rewrite"] = true;
+		}
+	}
+	else {
+		$fail["fail-mod-rewrite-nohtaccess"] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -466,7 +481,7 @@ function check_graphics($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable("pnmcomp") =>
-			_("Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
+		_("Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 
 	$missing_optional = 0;
@@ -479,8 +494,8 @@ function check_graphics($location = '', $graphtool = '') {
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $warn[] = _("Cannot verify this path (it's not in your open_basedir list).");
-	    return array($success, $fail, $warn);
+		$warn[] = _("Cannot verify this path (it's not in your open_basedir list).");
+		return array($success, $fail, $warn);
 	}
 
 	foreach ($netpbm as $bin) {
@@ -512,17 +527,17 @@ function check_graphics($location = '', $graphtool = '') {
 		}
 
 		if (empty($dir)) {
-		    if (isset($optional[$bin])) {
-			$warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
-		    }
-		else {
-			$missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
-		    }
-		$missing++;
+			if (isset($optional[$bin])) {
+				$warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
+			}
+			else {
+				$missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
+			$missing++;
 		}
 
 		if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
-		    $warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> ");
+			$warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> ");
 		}
 	}
 
@@ -533,14 +548,14 @@ function check_graphics($location = '', $graphtool = '') {
 	}
 	elseif ($missing > 0) {
 		$warn[] = sprintf(_("%d of %d NetPBM binaries located."),
-			count($netpbm) - $missing, count($netpbm));
+		count($netpbm) - $missing, count($netpbm));
 
 		if(count($missing_critical) > 0) {
 			$fail["fail-netpbm-partial"] = array_values($missing_critical);
 		}
 	} else {
 		$success[] = sprintf(_("%d of %d NetPBM binaries located."),
-			count($netpbm), count($netpbm));
+		count($netpbm), count($netpbm));
 	}
 
 	return array($success, $fail, $warn);
@@ -563,45 +578,45 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable("composite") =>
-			_("Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
+		_("Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
 	);
 
 
 	/* Begin Checks */
 	if ($graphtool == 'NetPBM') {
 		$success[] = _("ImageMagick not being used in this installation.");
-	    	return array($success, $fail, $warn);
+		return array($success, $fail, $warn);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-	    $success[] = _("Cannot verify this path (it's not in your open_basedir list).");
-	    return array($success, $fail);
+		$success[] = _("Cannot verify this path (it's not in your open_basedir list).");
+		return array($success, $fail);
 	}
 
 	foreach ($imagick as $bin) {
-	    if (!empty($location)) {
-		$dir = locateDir($bin, $location, true);
-	    }
-	    elseif (isset($gallery->app->ImPath)) {
-		$dir = locateDir($bin, $gallery->app->ImPath, true);
-	    }
-	    else {
-		$dir = locateDir($bin);
-	    }
-
-	    if (empty($dir)) {
-		if (isset($optional[$bin])) {
-		    $warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
+		if (!empty($location)) {
+			$dir = locateDir($bin, $location, true);
+		}
+		elseif (isset($gallery->app->ImPath)) {
+			$dir = locateDir($bin, $gallery->app->ImPath, true);
 		}
 		else {
-		    $missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			$dir = locateDir($bin);
 		}
-		$missing++;
-	    }
 
-	    if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
-		$warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> ");
-	    }
+		if (empty($dir)) {
+			if (isset($optional[$bin])) {
+				$warn[$bin] = '<br>'. sprintf(_("Missing optional binary %s. %s"), $bin, $optional[$bin]);
+			}
+			else {
+				$missing_critical[$bin] = '<br>'. sprintf(_("Can't find %s!"), "<i>$bin</i>");
+			}
+			$missing++;
+		}
+
+		if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
+			$warn[$bin] = '<br>'. sprintf(_("%s is not executable!"), "<i>$bin</i> ");
+		}
 	}
 
 	if ($missing == count($imagick)) {
@@ -611,14 +626,14 @@ function check_graphics_im($location = '', $graphtool = '') {
 	}
 	elseif ($missing > 0) {
 		$warn[] = sprintf(_("%d of %d ImageMagick binaries located."),
-			count($imagick) - $missing, count($imagick));
+		count($imagick) - $missing, count($imagick));
 
 		if(count($missing_critical) > 0) {
 			$fail["fail-imagemagick-partial"] = array_values($missing_critical);
 		}
 	} else {
 		$success[] = sprintf(_("%d of %d ImageMagick binaries located."),
-			count($imagick), count($imagick));
+		count($imagick), count($imagick));
 	}
 
 	return array($success, $fail, $warn);
@@ -651,6 +666,7 @@ function check_gettext() {
 	$fail = array();
 	$success = array();
 	$warn = array();
+
 	if (gettext_installed()) {
 		$success[] = _("PHP has <b>GNU gettext</b> support.");
 	} else {
@@ -673,10 +689,10 @@ function check_gallery_languages() {
 		$warn['only_english'] = _("It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
-	$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
-					sizeof($languages),
-					"<a href=\"$gallery->url\">",
-					'</a>');
+		$success[] = sprintf(_("%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
+		sizeof($languages),
+		"<a href=\"$gallery->url\">",
+		'</a>');
 	}
 	return array($success, $fail, $warn);
 }
@@ -693,13 +709,13 @@ function check_gallery_version() {
 	/* is this a beta or RC version? */
 	$beta = ereg('-(b|RC)[0-9]*$', $gallery->version);
 
-	$link="<a href=\"$gallery->url\">$gallery->url</a>";
+	$link = "<a href=\"$gallery->url\">$gallery->url</a>";
 
-	$visit = sprintf(_("You can check for more recent versions by visiting %s."), $link);
+	$visit = '<br>'. sprintf(_("You can check for more recent versions by visiting %s."), $link);
 	$this_version = sprintf(_("This version of %s was released on %s."),
-			Gallery(), strftime("%x", $gallery->last_change));
+		Gallery(), strftime("%x", $gallery->last_change));
 	$this_beta_version = sprintf(_("This is a development build of %s that was released on %s."),
-			Gallery(), strftime("%x", $gallery->last_change));
+		Gallery(), strftime("%x", $gallery->last_change));
 
 	if ($age > 180) {
 		$fail["too_old"] = "$this_version  $visit";
@@ -707,7 +723,7 @@ function check_gallery_version() {
 		$fail["too_old"] = "$this_beta_version  $visit";
 	} else if ($beta) {
 		$success["ok"] = "$this_beta_version  $visit" . "  "
-			. _("Please check regularly for updates.");
+		. _("Please check regularly for updates.");
 	} else {
 		$success["ok"] = "$this_version  $visit";
 	}
@@ -741,7 +757,7 @@ function check_absent_locales() {
 	} else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
 			$warn[] = sprintf(_("We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
-				'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
+			'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 		} else {
 			if (getOS() == OS_LINUX) {
 				$fail[] = sprintf(_("We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', "</a>");
@@ -808,25 +824,25 @@ function check_locale() {
 			$aliases = $keylist;
 			if (getOS() != OS_WINDOWS) {
 				$sub='^(' . implode('|', $keylist) . '|' . substr($locale,0,5) . ')';
-                                foreach ($system_locales as $key => $value) {
-                                        if (ereg($sub, $value)) {
-                                                $aliases[] = $value;
-                                        }
+				foreach ($system_locales as $key => $value) {
+					if (ereg($sub, $value)) {
+						$aliases[] = $value;
+					}
 					elseif (ereg('^' . substr($locale,0,2),$value)) {
 						$aliases[] = $value;
 					}
-                                }
+				}
 			}
 		} else {
-                        foreach ($system_locales as $key => $value) {
-                                if (ereg('^' . substr($locale,0,2), $value)) {
-                                        $aliases[] = $value;
-                                }
-                        }
+			foreach ($system_locales as $key => $value) {
+				if (ereg('^' . substr($locale,0,2), $value)) {
+					$aliases[] = $value;
+				}
+			}
 		}
 
-		$aliases=array_unique($aliases);
-		$noway=Array ('zh_TW.eucTW');
+		$aliases = array_unique($aliases);
+		$noway = array('zh_TW.eucTW');
 		if ($aliases) {
 			foreach ($aliases as $test) {
 				// We do this because all locales in $noway seem to crash at least some NetBSD
@@ -838,13 +854,12 @@ function check_locale() {
 				}
 			}
 			if (! isset($maybe_locales[$locale])) {
-                                $unavailable_locales[] = $locale;
-                        }
+				$unavailable_locales[] = $locale;
+			}
 		} else {
-			$unavailable_locales[]=$locale;
+			$unavailable_locales[] = $locale;
 		}
 	}
-
 
 	// Set locale correct back
 	if (isset($gallery->locale)) {
@@ -854,14 +869,14 @@ function check_locale() {
 	}
 
 	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
-        if( sizeof($available_locales) == 0 && sizeof($maybe_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
-                return NULL;
-        }
+	if( sizeof($available_locales) == 0 && sizeof($maybe_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+		return NULL;
+	}
 
 	return array(
-		"available_locales" => $available_locales,
-		"maybe_locales" => $maybe_locales,
-		"unavailable_locales" => $unavailable_locales
+		'available_locales'   => $available_locales,
+		'maybe_locales'		  => $maybe_locales,
+		'unavailable_locales' => $unavailable_locales
 	);
 }
 
@@ -882,33 +897,33 @@ function config_maybe_locales() {
 
 	$block_start_done = false;
 
-	$nr=0;
+	$nr = 0;
 	foreach ($maybe as $key => $aliases) {
 		if (sizeof($aliases) < 1) {
 			$unavailable[]=$key;
 			continue;
 		}
-/*
+		/*
 		if (sizeof($aliases) == 1) {
-			$results["locale_alias['$key']"] = array (
-				"type" => "hidden",
-				"value" => array_pop($aliases),
-				"desc" => "locale_alias[$key]",
-				"prompt" => "locale_alias[$key]"
-				);
-			continue;
+		$results["locale_alias['$key']"] = array (
+		"type" => "hidden",
+		"value" => array_pop($aliases),
+		"desc" => "locale_alias[$key]",
+		"prompt" => "locale_alias[$key]"
+		);
+		continue;
 		}
-*/
+		*/
 		$nr++;
 		if (!$block_start_done) {
 			$block_start_done=true;
 			$results[] = array (
-					"type" => "block_start",
-					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale selection required")),
-					"desc" => _("There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
-					"<p></p>" .
-					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
-					);
+				"type" => "block_start",
+				"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale selection required")),
+				"desc" => _("There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+				"<p></p>" .
+				_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+			);
 		}
 		$index = $nls['language'][$key] ;
 
@@ -931,10 +946,10 @@ function config_maybe_locales() {
 			"value" => (getOS() != OS_WINDOWS) ? key($choices) : "",
 			"allow_empty" => true,
 			"remove_empty" => true
-			);
+		);
 
 
-        }
+	}
 
 	if ($block_start_done) {
 		$results[] = array ("type" => "block_end");
@@ -942,13 +957,13 @@ function config_maybe_locales() {
 	$block_start_done=false;
 
 	$choices=array();
-	if (getOS() != OS_WINDOWS) $choices=array("" => _("System locale"));
+	if (getOS() != OS_WINDOWS) $choices = array('' => _("System locale"));
 	if (sizeof($available) > 0) {
 		foreach ($available as $choice => $value) {
-			$choices[$choice]=$nls['language'][$value];
+			$choices[$choice] = $nls['language'][$value];
 		}
 
-		$avail_keys=array_keys($available);
+		$avail_keys = array_keys($available);
 	} elseif (sizeof($maybe) > 0) {
 		foreach ($maybe as $key => $aliases) {
 			foreach ($aliases as $choice) {
@@ -956,55 +971,55 @@ function config_maybe_locales() {
 			}
 		}
 
-		$avail_keys=array_keys($choices);
+		$avail_keys = array_keys($choices);
 	} else {
 		if (getOS() == OS_OTHER) {
 			$array_keys=$choices;
 		} else {
-			$skip=true;
+			$skip = true;
 		}
 	}
 
 	if (! isset ($skip)) {
-	$avail_keys=array_keys($choices);
-        foreach ($unavailable as $key) {
-		if (sizeof($choices) == 1) {
-			$results["locale_alias['$key']"] = array (
-				"type" => "hidden",
-				"value" => $avail_keys[0],
-				"desc" => "locale_alias[$key]",
-				"prompt" => "locale_alias[$key]",
-				"allow_empty" => true,
-				"remove_empty" => true
+		$avail_keys=array_keys($choices);
+		foreach ($unavailable as $key) {
+			if (sizeof($choices) == 1) {
+				$results["locale_alias['$key']"] = array (
+					"type" => "hidden",
+					"value" => $avail_keys[0],
+					"desc" => "locale_alias[$key]",
+					"prompt" => "locale_alias[$key]",
+					"allow_empty" => true,
+					"remove_empty" => true
 				);
-			continue;
-		}
+				continue;
+			}
 
-		if (!$block_start_done) {
-			$block_start_done=true;
-			$results[] = array (
+			if (!$block_start_done) {
+				$block_start_done=true;
+				$results[] = array (
 					"type" => "block_start",
 					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale problems")),
-						"desc" => _("There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
-							"<p></p>" .
-							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
-							);
-		}
-		$index = $nls['language'][$key] ;
-		$results["locale_alias['$key']"] = array (
-			"prompt" => $nls['language'][$key],
-			"name" => "locale_alias",
-			"key" => $key,
-			"type" => "block_element",
-			"choices" => $choices,
-			"value" => "",
-			"allow_empty" => true,
-			"remove_empty" => true
+					"desc" => _("There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+					"<p></p>" .
+					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+				);
+			}
+			$index = $nls['language'][$key] ;
+			$results["locale_alias['$key']"] = array (
+				"prompt" => $nls['language'][$key],
+				"name" => "locale_alias",
+				"key" => $key,
+				"type" => "block_element",
+				"choices" => $choices,
+				"value" => "",
+				"allow_empty" => true,
+				"remove_empty" => true
 			);
-        }
-	if ($block_start_done) {
-		$results[] = array ("type" => "block_end");
-	}
+		}
+		if ($block_start_done) {
+			$results[] = array ("type" => "block_end");
+		}
 	}
 	return $results;
 }
@@ -1025,9 +1040,9 @@ function check_safe_mode() {
 	$warn = array();
 	$safe_mode = ini_get("safe_mode");
 	if (empty($safe_mode) ||
-	    !strcasecmp($safe_mode, "off") ||
-	    !strcasecmp($safe_mode, "0") ||
-	    !strcasecmp($safe_mode, "false")) {
+	  !strcasecmp($safe_mode, "off") ||
+	  !strcasecmp($safe_mode, "0") ||
+	  !strcasecmp($safe_mode, "false")) {
 		$success[] = _("<b>safe_mode</b> is off.");
 	} else {
 		$fail["fail-safe-mode"] = 1;
@@ -1052,27 +1067,27 @@ function check_poll_nv_pairs($var) {
 	$fail = array();
 	$success = array();
 	$finished = false;
-	$rownum=0;
+	$rownum = 0;
 	foreach ($var as $element) {
 		$rownum++;
 		if (!$element["name"]) {
 			$finished=true;
 			if ($element["value"]) {
 				$fail[]=sprintf(_("In %s, missing %s in row %d with %s %s."),
-					_("Vote words and values"),
-					_("Name"), $rownum, _("Value"),
-					$element["value"]);
+				_("Vote words and values"),
+				_("Name"), $rownum, _("Value"),
+				$element["value"]);
 				break;
 			}
 			continue;
 		} else {
 			if ($finished) {
-				$fail[]=sprintf(_("In %s, blank in row %d."),
+				$fail[] = sprintf(_("In %s, blank in row %d."),
 					_("Vote words and values"),
 					$rownum-1);
 				break;
 			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
-				$fail[]=sprintf(_("In %s, for name %s (row %d) value %s should be a positive whole number"),
+				$fail[] = sprintf(_("In %s, for name %s (row %d) value %s should be a positive whole number"),
 					_("Vote words and values"),
 					$element["name"],
 					$rownum, $element["value"]);
@@ -1155,9 +1170,9 @@ function detect_exec_status() {
 }
 
 /*
- * Actually try to write to a file inside the directory.  This detects
- * open_basedir restrictions.
- */
+* Actually try to write to a file inside the directory.  This detects
+* open_basedir restrictions.
+*/
 function test_write_to_dir($dir) {
 	$tmpfile = tempnam($dir, "dbg");
 	if ($fd = fs_fopen($tmpfile, "w")) {
@@ -1170,34 +1185,34 @@ function test_write_to_dir($dir) {
 }
 
 function inOpenBasedir($dir) {
-    $openBasedir = ini_get('open_basedir');
-    if (empty($openBasedir)) {
-	return true;
-    }
-
-    /*
-     * XXX: this is not perfect.  For example, if the open_basedir list
-     * contains "/usr/localx" this code will match "/usr/local".  Let's not
-     * worry too much about that now.
-     */
-    foreach (explode(':', $openBasedir) as $basedir) {
-	if (!strncmp($basedir, $dir, strlen($basedir))) {
-	    return true;
+	$openBasedir = ini_get('open_basedir');
+	if (empty($openBasedir)) {
+		return true;
 	}
-    }
 
-    return false;
+	/*
+	* XXX: this is not perfect.  For example, if the open_basedir list
+	* contains "/usr/localx" this code will match "/usr/local".  Let's not
+	* worry too much about that now.
+	*/
+	foreach (explode(':', $openBasedir) as $basedir) {
+		if (!strncmp($basedir, $dir, strlen($basedir))) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 function make_separator($key, $arr)  {
-    $buf ="\n<div class=\"g-double-bottom-border-spacer\">";
-    $buf .= "\n\t<div class=\"g-separator\">". $arr["title"] ."</div>";
-    if( isset($arr["desc"])) {
-	   $buf .= "\n<div class=\"g-desc-cell\">". $arr["desc"] ."</div>";
-    }
-    $buf .="\n</div>";
+	$buf ="\n<div class=\"g-double-bottom-border-spacer\">";
+	$buf .= "\n\t<div class=\"g-separator\">". $arr["title"] ."</div>";
+	if( isset($arr["desc"])) {
+		$buf .= "\n<div class=\"g-desc-cell\">". $arr["desc"] ."</div>";
+	}
+	$buf .="\n</div>";
 
-    return $buf;
+	return $buf;
 }
 
 function array_stripslashes($subject) {
@@ -1222,12 +1237,12 @@ function array_stripslashes($subject) {
 ** Jens Tkotz, 02/2004
 */
 function stripWQuotesON($mixed) {
-        if (get_magic_quotes_gpc()) {
-                return array_stripslashes($mixed);
-        }
-        else {
-                return $mixed;
-        }
+	if (get_magic_quotes_gpc()) {
+		return array_stripslashes($mixed);
+	}
+	else {
+		return $mixed;
+	}
 
 }
 
@@ -1238,9 +1253,9 @@ function array_urldecode($subject) {
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	$ret=array();
+	$ret = array();
 	foreach ($subject as $key => $value) {
-		$ret[$key]=array_urldecode($value);
+		$ret[$key] = array_urldecode($value);
 	}
 	return $ret;
 }
@@ -1252,9 +1267,9 @@ function array_str_replace($search, $replace, $subject) {
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	$ret=array();
+	$ret = array();
 	foreach ($subject as $key => $value) {
-		$ret[$key]=array_str_replace($search, $replace, $value);
+		$ret[$key] =array_str_replace($search, $replace, $value);
 	}
 	return $ret;
 }
@@ -1275,9 +1290,9 @@ function verify_email($emailMaster) {
 
 	$fail = array();
 	$success = array();
-       	if ($emailMaster == "no") {
-	       	$success[] = _("OK");
-	       	return array($success, $fail);
+	if ($emailMaster == "no") {
+		$success[] = _("OK");
+		return array($success, $fail);
 	}
 
 	if (check_email($gallery->session->configForm->adminEmail)) {
@@ -1290,46 +1305,46 @@ function verify_email($emailMaster) {
 		if ($size < 1) {
 			$fail[]= _("You must specify valid admin email addresses");
 		} else {
-			$adminEmail="";
-			$join="";
-		       	foreach ($emails as $email) {
-			       	$adminEmail .= "$join$email";
-			       	$join=",";
+			$adminEmail = '';
+			$join = '';
+			foreach ($emails as $email) {
+				$adminEmail .= "$join$email";
+				$join=",";
 				if (! check_email($email)) {
-				       	$fail[] = sprintf(_("%s is not a valid email address."),
-							$email);
-			       	} else {
-				       	$success[] = "Valid admin email given.";
-			       	}
-		       	}
-	       	}
+					$fail[] = sprintf(_("%s is not a valid email address."),
+					$email);
+				} else {
+					$success[] = "Valid admin email given.";
+				}
+			}
+		}
 	}
 	if (check_email($gallery->session->configForm->senderEmail)) {
-	       	$success[] = _("Valid sender email address given.");
-       	} else {
-	       	$fail[]= _("You must specify a valid sender email address");
-       	}
+		$success[] = _("Valid sender email address given.");
+	} else {
+		$fail[] = _("You must specify a valid sender email address");
+	}
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
-	       	$fail[]= sprintf(_("You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
-       	}
-       	if (!empty($emailGreeting) &&
-			!strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
-			!strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
-	       	$fail[]= sprintf(_("You must include %s or %s in your welcome email"),
-				"<b>!!PASSWORD!!</b>",
-				"<b>!!NEWPASSWORDLINK!!</b>");
-       	}
-       	return array($success, $fail);
+		$fail[] = sprintf(_("You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
+	}
+	if (!empty($emailGreeting) &&
+	  !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
+	  !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
+		$fail[]= sprintf(_("You must include %s or %s in your welcome email"),
+			"<b>!!PASSWORD!!</b>",
+			"<b>!!NEWPASSWORDLINK!!</b>");
+	}
+	return array($success, $fail);
 }
 
 function check_ecards($num) {
-    if ($num < 15 || $num > 365) {
+	if ($num < 15 || $num > 365) {
 		$fail = array();
 		$fail["fail-ecardPrune"]++;
 	} else {
 		$success = array();
 		$success[] = "Valid value specified.";
-    }
+	}
 	return array($success, $fail);
 }
 
@@ -1337,22 +1352,22 @@ function check_gallery_versions()  {
 	$fail = array();
 	$success = array();
 	$warn = array();
-       	list($oks, $errors, $warnings) = checkVersions(false);
+	list($oks, $errors, $warnings) = checkVersions(false);
 	if ($errors)  {
-		$fail[]=sprintf(_("The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
-				implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
+		$fail[] = sprintf(_("The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
+		implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
 			"<br>" . _("This should be fixed before proceeding") .
-		      	"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."),
-					"<a href=check_versions.php>", "</a>");
+			"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."),
+			"<a href=check_versions.php>", "</a>");
 	} else if ($warnings) {
-		$warn[]=sprintf(_("%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
-		      	"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."),
-					"<a href=check_versions.php>", "</a>");
+		$warn[] = sprintf(_("%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
+			"<br>" . sprintf(_("Look at %sCheck Versions%s for more details."),
+			"<a href=check_versions.php>", "</a>");
 	} else {
 		if (count($oks) == 0) {
 			$success[] = sprintf(_("All tested files up-to-date."));
 		} else {
-			$success[]=sprintf(_("All %d tested files up-to-date."), count($oks));
+			$success[] = sprintf(_("All %d tested files up-to-date."), count($oks));
 		}
 	}
 	return array($success, $fail, $warn);
@@ -1367,16 +1382,16 @@ function newIn($version) {
 
 function returnToConfig() {
 	$buf = sprintf(_("Return to %s."), '<a href="index.php">' .
-			_("Configuration Wizard") . '</a>');
+		_("Configuration Wizard") . '</a>');
 	return $buf;
 }
 if (!function_exists('array_filter1')) {
-       	function array_filter1($input, $function=NULL) {
-		$output=array();
-	       	foreach ($input as $name => $value) {
-		       	if ($function && $function($value)) {
-			       	$output[$name]=$value;
-		       	} else if ($value) {
+	function array_filter1($input, $function=NULL) {
+		$output = array();
+		foreach ($input as $name => $value) {
+			if ($function && $function($value)) {
+				$output[$name]=$value;
+			} else if ($value) {
 				$output[$name]=$value;
 			}
 		}
@@ -1385,10 +1400,9 @@ if (!function_exists('array_filter1')) {
 }
 
 function check_admins() {
-
 	global $gallery;
 
-	$admins=array();
+	$admins = array();
 
 	if (isset($gallery->app->userDir) && fs_is_dir($gallery->app->userDir)) {
 		require_once(GALLERY_BASE . '/classes/User.php');
@@ -1402,29 +1416,29 @@ function check_admins() {
 
 		$userDB = new Gallery_UserDB();
 
-		$admins=array();
-	       	if (isset($userDB)) {
-		       	foreach ($userDB->getUidList() as $uid) {
-			       	$tmpUser = $userDB->getUserByUid($uid, true);
+		$admins = array();
+		if (isset($userDB)) {
+			foreach ($userDB->getUidList() as $uid) {
+				$tmpUser = $userDB->getUserByUid($uid, true);
 
 				if ($tmpUser->isAdmin()) {
-				       	$admins[]=$tmpUser->getUsername();
-			       	}
-		       	}
-	       	}
+					$admins[]=$tmpUser->getUsername();
+				}
+			}
+		}
 	}
 
 	if (empty($admins)) {
-		$result=array(
-			'desc' => sprintf(_('You must enter a password for the %s account.'), '<b>admin</b>')
+		$result = array(
+		'desc' => sprintf(_('You must enter a password for the %s account.'), '<b>admin</b>')
 		);
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
-			$desc_text=sprintf(_("It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
+			$desc_text = sprintf(_("It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
 		}
 		else {
-			$desc_text=sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
+			$desc_text = sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
 		}
 		$desc_text .= "  " . sprintf (_("You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
@@ -1448,34 +1462,27 @@ function check_admins() {
 		'verify-func' => 'verify_password',
 		"value" => "",
 		"attrs" => array("size" => 20),
-		"required" => true,
-	));
+		"required" => true
+		)
+	);
 
 	return $result;
 }
 
 function displayNameOptions() {
 	return array (
-		"!!FULLNAME!! (!!USERNAME!!)" =>
-			sprintf("%s (%s)", _("Full Name"), _("Username")),
-		"!!USERNAME!! (!!FULLNAME!!)" =>
-			sprintf("%s (%s)", _("Username"), _("Full Name")),
-		"!!FULLNAME!!" =>
-			_("Full Name"),
-		"!!USERNAME!!" =>
-			_("Username"),
-		"!!MAILTO_FULLNAME!!" =>
-			_("Full name that you can click on to send email (mailto:)"),
-		"!!MAILTO_USERNAME!!" =>
-			_("Username that you can click on to send email (mailto:)"),
-		"!!FULLNAME!! (!!EMAIL!!)" =>
-			sprintf("%s (%s)", _("Full Name"), _("email address")),
-		"!!USERNAME!! (!!EMAIL!!)" =>
-			sprintf("%s (%s)", _("Username"), _("email address")),
-		     );
+		"!!FULLNAME!! (!!USERNAME!!)" => sprintf("%s (%s)", _("Full Name"), _("Username")),
+		"!!USERNAME!! (!!FULLNAME!!)" => sprintf("%s (%s)", _("Username"), _("Full Name")),
+		"!!FULLNAME!!" => _("Full Name"),
+		"!!USERNAME!!" => _("Username"),
+		"!!MAILTO_FULLNAME!!" => _("Full name that you can click on to send email (mailto:)"),
+		"!!MAILTO_USERNAME!!" => _("Username that you can click on to send email (mailto:)"),
+		"!!FULLNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", _("Full Name"), _("email address")),
+		"!!USERNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", _("Username"), _("email address")),
+	);
 }
 
-function checkVersions($verbose=false) {
+function checkVersions($verbose = false) {
 	global $gallery;
 	/* we assume setup/init.php was loaded ! */
 
@@ -1484,7 +1491,7 @@ function checkVersions($verbose=false) {
 	$fail = array();
 	$warn = array();
 	if (!fs_file_exists($manifest)) {
-	       	$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
+		$fail["manifest.inc"]=_("File missing or unreadable.  Please install then re-run this test.");
 		return array($success, $fail, $warn);
 	}
 	if (!function_exists('getSVNRevision')) {
@@ -1492,61 +1499,61 @@ function checkVersions($verbose=false) {
 		return array($success, $fail, $warn);
 	}
 	include (GALLERY_BASE . '/manifest.inc');
-       	if ($verbose) {
-	       	print sprintf(_("Testing status of %d files."), count($versions));
+	if ($verbose) {
+		print sprintf(_("Testing status of %d files."), count($versions));
 	}
 	foreach ($versions as $file => $version) {
 		$found_version = getSVNRevision($file);
 		if ($found_version === NULL) {
-		       	if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Cannot read file %s."), $file);
+			if ($verbose) {
+				print "<br>\n";
+				print sprintf(_("Cannot read file %s."), $file);
 			}
 			$fail[$file]=_("File missing or unreadable.");
 			continue;
 		}
-		else if ($found_version === "" ) {
-		    if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|Changelog)$/i', $file, $matches)) {
-			if($verbose) {
-			    echo "<br>\n";
-			    printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
-			    continue;
-		        }
-			$success[$file] = sprintf("No comparabel Rev for type: %s", $matches[1]);
-			continue;
-		    }
-		    else {
-			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
-		       	}
-		       	$fail[$file]=_("Missing version");
-		       	continue;
-		    }
-	       	}
-		$compare=compareVersions($version, $found_version);
+		else if ($found_version === '' ) {
+			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|Changelog)$/i', $file, $matches)) {
+				if($verbose) {
+					echo "<br>\n";
+					printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
+					continue;
+				}
+				$success[$file] = sprintf("No comparable Rev for type: %s", $matches[1]);
+				continue;
+			}
+			else {
+				if ($verbose) {
+					print "<br>\n";
+					printf(_("Version information not found in %s.  File must be old version or corrupted."), $file);
+				}
+				$fail[$file] = _("Missing version");
+				continue;
+			}
+		}
+		$compare = compareVersions($version, $found_version);
 		if ($compare < 0) {
 			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
-		       	}
-		       	$fail[$file]=sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
-	       	} else if ($compare > 0) {
+				print "<br>\n";
+				printf(_("Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
+			}
+			$fail[$file] = sprintf(_("Expected version %s (or greater) but found %s."), $version, $found_version);
+		} else if ($compare > 0) {
 			if ($verbose) {
-			       	print "<br>\n";
-				print sprintf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+				print "<br>\n";
+				printf(_("%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
 			}
 			$warn[$file]=sprintf(_("Expected version %s but found %s."), $version, $found_version);
 		} else {
 			if ($verbose) {
-			       	print "<br>\n";
-			       	print sprintf(_("%s OK"), $file);
-		       	}
+				print "<br>\n";
+				printf(_("%s OK"), $file);
+			}
 			$success[$file]=sprintf(_("Found expected version %s."), $version);
 		}
 
 	}
-       	return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 /**
@@ -1578,34 +1585,34 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 	$tabs = array();
 
 	foreach ($array as $key => $var) {
-	    if(isset($var['type']) && $var['type'] == 'group_start') {
-	        $tabs[] = $var;
-	    }
+		if(isset($var['type']) && $var['type'] == 'group_start') {
+			$tabs[] = $var;
+		}
 	}
 
 	if ($sortByTitle) {
-	    array_sort_by_fields($tabs, 'title');
+		array_sort_by_fields($tabs, 'title');
 	}
 
-    echo "\n<div class=\"g-tabset\">";
+	echo "\n<div class=\"g-tabset\">";
 	$tabcount = 0;
 
 	foreach ($tabs as $cell) {
-	    $tabcount++;
-	    $class = '';
-	    if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
-	        $class = ' class="g-activeTab"';
-	        if (empty($initialtab)) {
-	            $initialtab = $cell['name'];
-	        }
-	    }
+		$tabcount++;
+		$class = '';
+		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
+			$class = ' class="g-activeTab"';
+			if (empty($initialtab)) {
+				$initialtab = $cell['name'];
+			}
+		}
 
-	    echo "\n\t<a$class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
-	    echo $cell['title'];
-	    if (!empty($cell['contains_required'])) {
-	        echo '<span class="g-littlered">*</span>';
-	    }
-	    echo '</a>';
+		echo "\n\t<a$class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
+		echo $cell['title'];
+		if (!empty($cell['contains_required'])) {
+			echo '<span class="g-littlered">*</span>';
+		}
+		echo '</a>';
 	}
 
 	echo "\n</div>\n";
@@ -1615,10 +1622,10 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 	$i = 0;
 	echo "\n\t". 'var Sections=new Array()';
 	foreach ($array as $key => $var) {
-	    if(isset($var['type']) && $var['type'] == 'group_start') {
-	        echo "\n\tSections[$i] ='". $var['name'] ."' ;";
-	        $i++;
-	    }
+		if(isset($var['type']) && $var['type'] == 'group_start') {
+			echo "\n\tSections[$i] ='". $var['name'] ."' ;";
+			$i++;
+		}
 	}
 
 	echo "\n\tsection_tabs = new configSection('$initialtab')";
@@ -1670,25 +1677,24 @@ function configLogin($target) {
 }
 
 function placeholderDescription() {
-    $placeholderDescription =
-	_("This email will be sent when new accounts are created.") .
-	_("Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
-	_("The following placeholder can be used:") .
-	'<p><table>';
+	$placeholderDescription =
+		_("This email will be sent when new accounts are created.") .
+		_("Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
+		_("The following placeholder can be used:") .
+		'<p><table>';
 
-    foreach(welcomeMsgPlaceholderList() as $placeholder => $description) {
-	$placeholderDescription .= '<tr>'.
-				   '<td>!!'. strtoupper($placeholder) . '!!</td>'.
-				   "<td>$description</td>".
-				   '</tr>';
-    }
-    $placeholderDescription .= '</table></p>'.
-
-	'<div style="border: 1px black solid; padding-left:10%; padding-right:10%">'.
+	foreach(welcomeMsgPlaceholderList() as $placeholder => $description) {
+		$placeholderDescription .= '<tr>'.
+			'<td>!!'. strtoupper($placeholder) . '!!</td>'.
+			"<td>$description</td>".
+			'</tr>';
+	}
+	$placeholderDescription .= '</table></p>'.
+		'<div style="border: 1px black solid; padding-left:10%; padding-right:10%">'.
 		nl2br(welcome_email(true)) .
-	'</div>';
+		'</div>';
 
-    return $placeholderDescription;
+	return $placeholderDescription;
 }
 
 /**
@@ -1699,90 +1705,149 @@ function placeholderDescription() {
  * 100 - failure
  */
 function getCheckStatus($result, $check) {
-    list($success, $fail, $warn) = $result;
-    if(!empty($success)) {
-        return 0;
-    }
+	list($success, $fail, $warn) = $result;
+	if(!empty($success)) {
+		return 0;
+	}
 
-    if (isset($check['optional']) && $check['optional'] == 1) {
-        if (isset($check["serious"]) && $check["serious"] == 1) {
-            if(empty($fail)) {
-                return 5;
-            }
-            else {
-                return 10;
-            }
-        } else {
-            return 5;
-        }
-    } else {
-        if (isset($check["serious"]) && $check["serious"] == 1) {
-            return 51;
-        } else {
-            return 100;
-        }
-    }
+	if (isset($check['optional']) && $check['optional'] == 1) {
+		if (isset($check["serious"]) && $check["serious"] == 1) {
+			if(empty($fail)) {
+				return 5;
+			}
+			else {
+				return 10;
+			}
+		} else {
+			return 5;
+		}
+	} else {
+		if (isset($check["serious"]) && $check["serious"] == 1) {
+			return 51;
+		} else {
+			return 100;
+		}
+	}
 
 }
 
 function checkImageMagick($cmd) {
-    global $gallery;
-    global $show_details;
-    global $debugfile;
+	global $gallery;
+	global $debugfile;
 
-    $cmd = fs_executable($gallery->app->ImPath . "/$cmd");
-    $result[]= fs_import_filename($cmd);
+	$status = '';
+	$cmd = fs_executable($gallery->app->ImPath . "/$cmd");
+	$result[] = fs_import_filename($cmd);
+	$ok = true;
 
-    $ok = 1;
-    if (inOpenBasedir($gallery->app->ImPath)) {
-        if (! fs_file_exists($cmd)) {
-            $result['error'] = sprintf(_("File %s does not exist."), $cmd);
-            $ok = 0;
-        }
-    }
+	if (inOpenBasedir($gallery->app->ImPath)) {
+		if (! fs_file_exists($cmd)) {
+			$result['error'] = sprintf(_("File %s does not exist."), $cmd);
+			return $result;
+		}
+	}
 
-    fs_exec("$cmd -version", $results, $status, $debugfile);
+	$cmd .= ' -version';
+	fs_exec($cmd, $results, $status, $debugfile);
 
-    if ($ok) {
-        if ($status != $gallery->app->expectedExecStatus) {
-            $result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
-            $gallery->app->expectedExecStatus,
-            $status);
-            $ok = 0;
-        }
-    }
+	if ($status != $gallery->app->expectedExecStatus) {
+		$result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
+			$gallery->app->expectedExecStatus,
+			$status);
+		return $result;
+	}
 
-    /*
-    * Windows does not appear to allow us to redirect STDERR output, which
-    * means that we can't detect the version number.
-    */
-    if ($ok) {
-        if (getOS() == OS_WINDOWS) {
-            $version = "<i>" . _("can't detect version on Windows") ."</i>";
-        }
-        else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
-            $version = $regs[1];
-        } else {
-            $result['error'] = $results[0];
-            $ok = 0;
-        }
-    }
+	/*
+	* Windows does not appear to allow us to redirect STDERR output, which
+	* means that we can't detect the version number.
+	*/
+	if (getOS() == OS_WINDOWS) {
+		$result['warning'] = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
+	}
+	else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
+		$version = $regs[1];
+		$result['ok'] = sprintf(_("OK!  Version: %s"), $version);
+	} else {
+		$result['error'] = $output[0];
+	}
 
-    if (! empty($ok)) {
-        $result['ok'] = sprintf(_("OK!  Version: %s"), $version);
-    }
-    return $result;
+	return $result;
 }
+
+function checkNetPbm($cmd) {
+	global $gallery;
+	global $debugfile;
+
+	$status = '';
+	$cmd = fs_executable($gallery->app->pnmDir . "/$cmd");
+	$result[] = fs_import_filename($cmd);
+	$ok = true;
+
+	if (inOpenBasedir($gallery->app->pnmDir)) {
+		if (! fs_file_exists($cmd)) {
+			$result['error'] = sprintf(_("File %s does not exist."), $cmd);
+			$ok = false;
+		}
+	}
+
+	$cmd .= " --version";
+
+	fs_exec($cmd, $results, $status, $debugfile);
+
+	if ($status != $gallery->app->expectedExecStatus) {
+		$result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
+			$gallery->app->expectedExecStatus,
+			$status);
+
+		$ok = false;
+	}
+
+	/*
+	* Windows does not appear to allow us to redirect STDERR output, which
+	* means that we can't detect the version number.
+	*/
+	if ($ok) {
+		if (getOS() == OS_WINDOWS) {
+			$result['warning'] = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
+		} else {
+			$output = array();
+			if (file_exists($debugfile)) {
+				if ($fd = fs_fopen($debugfile, "r")) {
+					while (!feof($fd)) {
+						$output[] = fgets($fd, 4096);
+					}
+					fclose($fd);
+				}
+				unlink($debugfile);
+			}
+
+			if (eregi("using lib(pbm|netpbm) from netpbm version: netpbm (.*)[\n\r]$",  $output[0], $regs)) {
+				$version = $regs[2];
+				$result['ok'] = sprintf(_("OK!  Version: %s"), $version);
+			} else {
+				$result['error'] = $output[0];
+				$ok = false;
+			}
+		}
+
+	}
+	else {
+		$result['error'] = gTranslate('config', "Unknown error occured.");
+	}
+
+	return $result;
+}
+
 /**
  * returns the current graphicTool set in config.php
  * if not found, then the default is returned
  */
 function getCurrentGraphicTool() {
-    global $gallery;
-    if(isset($gallery->app->graphics)) {
-        return $gallery->app->graphics;
-    } else {
-        return default_graphics();
-    }
+	global $gallery;
+	if(isset($gallery->app->graphics)) {
+		return $gallery->app->graphics;
+	} else {
+		return default_graphics();
+	}
 }
 ?>

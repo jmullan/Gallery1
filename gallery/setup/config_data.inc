@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -149,11 +149,12 @@ $checklist = array(
 		'prompt' => gTranslate('config',".htaccess processed by apache"),
 		'desc' => gTranslate('config',"Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
 		'func' => 'check_htaccess',
-		'fail-htaccess' => gTranslate('config',"Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") .'<br><pre>' .
+		'fail-htaccess' => gTranslate('config',"Your webserver is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") .'<br><pre>' .
 		  '&lt;Directory ' . GALLERY_BASE . "&gt;\n" .
 		  "\tAllowOverride Options FileInfo\n" .
 		  "&lt;/Directory&gt;</pre>\n" .
 		  gTranslate('config',"If you are running PHP in CGI mode, this message is unavoidable."),
+		  'fail-nohtaccess' => gTranslate('config',"Gallery could not test if your webserver is obeying the 'php_value' lines in your <b>.htaccess</b> as the (original) .htaccess file in your setup folder is missing."),
 		'optional' => 1
 	),
 	'magic-quotes' => array(
@@ -172,6 +173,7 @@ $checklist = array(
 		'func' => 'check_mod_rewrite',
 		'fail-mod-rewrite' => gTranslate('config',"Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).  Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") .
 		  "<pre>\t--enable-module=rewrite</pre>",
+		'fail-mod-rewrite-nohtaccess' => gTranslate('config',"Gallery could not test if <b>mod_rewrite</b> is working, as the (original) .htaccess file in your setup folder is missing."),
 		'optional' => 1
 	),
 	'NetPBM' => array(
@@ -307,7 +309,7 @@ $constants =  array_merge(array(
 			),
 		'value' => 'form',
 		),
-	
+
 	'group_mandatory_end' => array (
 		'type' => 'group_end',
 	),
@@ -388,7 +390,7 @@ $constants =  array_merge(array(
 	'groupLocations_end' => array (
 		'type' => 'group_end',
 	),
-	
+
 	'groupToolkits' => array (
 		'type' => 'group_start',
 		'name' => 'group_toolkits',
@@ -1154,7 +1156,7 @@ $constants = array_merge($constants, array(
 		  gTranslate('config',"The expire time in seconds is specified for each cache below."). "\n<br>".
 		  gTranslate('config',"If the expire time is set to -1 then the cache will not auto refresh.")
 	),
-	
+
 	'stats_foruser'	=> array(
 		'prompt'		=> gTranslate('config',"Available Stats for 'normal' users"),
 		'desc'			=> gTranslate('config',"Gallery can give a lot of statistics for admins, however you can enable some of them to normal users.") ."\n<br>".
@@ -1362,7 +1364,7 @@ $constants = array_merge($constants, array(
 		),
 		'value' => 'yes'
 	),
-	
+
 	'cacheExif' => array(
 		'prompt' => "<b>(" . gTranslate('config',"Advanced") . ")</b><br> ". gTranslate('config',"Cache EXIF data"),
 		'desc' => gTranslate('config',"The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."),
@@ -1372,7 +1374,7 @@ $constants = array_merge($constants, array(
 		),
 		'value' => 'no'
 	),
-	
+
 	'devMode' => array(
 		'prompt' => gTranslate('config',"Developer Mode"),
 		'desc' => gTranslate('config',"Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."),
@@ -2065,7 +2067,7 @@ $defaults = array(
 		'prompt' => gTranslate('config',"Subalbum frames"),
 		'desc' => gTranslate('config',"This frame will appear around the thumbnail image representing a subalbum."),
 		'choices' => available_frames(),
-		'value' => 
+		'value' =>
 		'simple_book'
 	),
 	'thumb_frame' => array(
