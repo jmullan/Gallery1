@@ -407,8 +407,10 @@ function check_mod_rewrite()  {
 	$fail = array();
 	$warn = array();
 
+	global $GALLERY_REWRITE_OK;
+
 	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
-		if (!$init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
+		if ($GALLERY_REWRITE_OK) {
 			$success[] = _("<b>mod_rewrite</b> is enabled.");
 			if (strstr($init_mod_rewrite, "ampersandbroken")) {
 				$GALLERY_REWRITE_SEPARATOR = "\&";

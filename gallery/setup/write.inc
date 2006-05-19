@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -49,7 +49,6 @@ if ($fd = @fs_fopen($outfile, "a")) {
 	return;
 }
 
-
 /**
  * Process the .htaccess file if present.
  */
@@ -68,7 +67,7 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
             $skipping = true;
             $old_htaccess = false;
         } else {
-            $htaccess_save[]=$line;
+            $htaccess_save[] = $line;
         }
     }
     if ($old_htaccess) {
@@ -182,7 +181,7 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 
 <title><?php echo _("Success!") ?></title>
 <center>
-<div class="g-header" text-align:center">
+<div class="g-header">
     <span class="g-pagetitle"><?php echo _("Your configuration has been successfully saved!") ?></span>
 </div>
 
@@ -200,7 +199,7 @@ if (getOS() != OS_WINDOWS) {
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 	if (!empty($message)) $message .= "<br><br>";
 	$message .= '<span class="attention">'
-			. _("Note") 
+			. _("Note")
 			. ':<br>'
 			. sprintf(_("You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
 			. '</span>' ;
@@ -211,14 +210,14 @@ if (isset($message)) {
 ?>
 
 <p class="g-sitedesc" style="width:80%; text-align:center">
-<?php 
+<?php
 	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
 	echo _("It will save your data so you won't have to enter it all again!");
 	echo '<br>';
 	echo '<b>';
-	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
-		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
+	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
+		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>',
 	       Gallery());
 ?>
 	</b>

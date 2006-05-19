@@ -25,21 +25,22 @@
  * @package setup
  */
 
-/** 
+/**
  * Its important to have this as first position.
  * Otherwise constants are not defined.
  */
 
 	require (dirname(__FILE__) . '/init.php');
-	
+
 	require (dirname(__FILE__) . '/config_data.inc');
 	require (GALLERY_BASE . '/js/sectionTabs.js.php');
 
 	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
 	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
+	$GALLERY_REWRITE_OK = getRequestVar('init_mod_rewrite');
 
-doctype(); 
+doctype();
 ?>
 <html>
 <head>
@@ -100,7 +101,7 @@ if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $next_page;
 } else if (isset($go_back)) {
 	$setup_page = $back_page;
-}	
+}
 
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
