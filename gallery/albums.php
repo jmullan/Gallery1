@@ -41,7 +41,7 @@ if (empty($gallery->session->username)) {
                             print fread($fp, 4096);
                         }
                         fclose($fp);
-                        printf("<!-- From %s, created at %s -->", 
+                        printf("<!-- From %s, created at %s -->",
 				$cache_file_basename, strftime("%D %T", $cache_stat[9]));
                         return;
                     }
@@ -224,7 +224,7 @@ if (!$gallery->session->offline &&
         if (sizeof($albumDB->brokenAlbums)) {
             $message = sprintf(
 			gTranslate('core',
-				"%s has detected one invalid folders in your albums directory<br>(%s):", 
+				"%s has detected one invalid folders in your albums directory<br>(%s):",
 				"%s has detected the following invalid folders in your albums directory<br>(%s):",
 				sizeof($albumDB->brokenAlbums)),
 			Gallery(), $gallery->app->albumDir);
@@ -296,20 +296,24 @@ for ($i = $start; $i <= $end; $i++) {
         $albumURL = makeAlbumUrl($tmpAlbumName);
 
         $rootAlbum[$tmpAlbumName]['url'] = $albumURL;
+        $highlightIndex = $gallery->album->getHighlight(true);
+        $highlight = $gallery->album->getPhoto($highlightIndex);
+        $getAlbumDirURL = $gallery->album->getAlbumDirURL('highlight');
 
         // <!-- Begin Album Column Block -->
         // <!-- Begin Image Cell -->
         $gallery->html_wrap['borderColor'] = $borderColor;
         $gallery->html_wrap['borderWidth'] = 1;
         $scaleTo = $gallery->app->highlight_size;
-        list($iWidth, $iHeight) = $gallery->album->getHighlightDimensions($scaleTo);
+        list($iWidth, $iHeight) = $highlight->getHighlightDimensions($scaleTo);
         if (empty($iWidth)) {
             $iWidth = $gallery->app->highlight_size;
             $iHeight = 100;
         }
         $gallery->html_wrap['imageWidth'] = $iWidth;
         $gallery->html_wrap['imageHeight'] = $iHeight;
-        $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'' , gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
+        $gallery->html_wrap['imageTag'] =
+        	$highlight->getHighlightTag($getAlbumDirURL, $scaleTo,'' , gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
         $gallery->html_wrap['imageHref'] = $albumURL;
         $gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
 
@@ -398,10 +402,10 @@ for ($i = $start; $i <= $end; $i++) {
 
             $rootAlbum[$tmpAlbumName]['albumdesc']['clickCounter'] =
                 sprintf(
-		  gTranslate('core', 
+		  gTranslate('core',
 			"This album has been viewed %d time since %s.",
 			"This album has been viewed %d times since %s.",
-			$clickCount, 
+			$clickCount,
 			sprintf(gTranslate('core', "This album has never been viewed since %s."), $resetDate)),
                 $clickCount, $resetDate);
         }
