@@ -73,7 +73,7 @@ $common_messages['getting-netpbm'] = '<br>'.
   '</a>',
   "<a href=\"http://sourceforge.net/projects/netpbm\">",
   '</a>')  .
-  '<br><span class="emphasis">' . gTranslate('config',"Note:"). '</span> ' .
+  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
 
 $common_messages['fail-netpbm-partial'] =
@@ -81,9 +81,9 @@ $common_messages['fail-netpbm-partial'] =
   $common_messages['getting-netpbm'];
 
 $common_messages['getting-imagemagick'] = '<br>'.
-  sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ),
+  sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s." ),
   '<a href="http://www.imagemagick.org">', '</a>') .
-  '<br><span class="emphasis">' . gTranslate('config',"Note:"). '</span> ' .
+  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
 $common_messages['fail-imagemagick-partial'] =
@@ -91,7 +91,7 @@ $common_messages['fail-imagemagick-partial'] =
   $common_messages['getting-imagemagick'];
 
 $common_messages['open-basedir-active'] =
-  '<span class="emphasis">' . gTranslate('config',"Note:"). '</span>'.
+  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   sprintf(gTranslate('config',"Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
   "<b><a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\" target=\"_blank\">open_basedir</a></b>" );
 
@@ -131,7 +131,7 @@ $checklist = array(
 		  '<a href="http://www.php.net/manual/en/features.safe-mode.php">',
 		  '</a>') .
 		  '<br><br>' .
-		  '<span class="emphasis">' . gTranslate('config',"Note:"). '</span>'.
+		  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
 		  sprintf(gTranslate('config',"In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
 		  '<a href="phpinfo.php">',
 		  '</a>'),
@@ -322,7 +322,7 @@ $constants =  array_merge(array(
 	),
 	'albumDir' => array(
 		'prompt' => gTranslate('config',"Album directory"),
-		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
+		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
 		  sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 		  '<b>'. $webserver_user . '</b>'),
 		'value' => getenv('DOCUMENT_ROOT') . '/albums',
@@ -335,7 +335,7 @@ $constants =  array_merge(array(
 	),
 	'tmpDir' => array(
 		'prompt' => gTranslate('config',"Temporary directory"),
-		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
+		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
 		  sprintf(gTranslate('config',"The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."),
 		  '<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
 		'value' => getenv('TMP'),
@@ -348,7 +348,7 @@ $constants =  array_merge(array(
 	),
 	'photoAlbumURL' => array(
 		'prompt' => "Gallery URL",
-		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
+		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
 		  sprintf(gTranslate('config',"The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
 		  '<i>http://www.example.com/gallery</i>'),
 		'value' => 'http://' . getenv('SERVER_NAME') . $GALLERY_URL,
@@ -359,7 +359,7 @@ $constants =  array_merge(array(
 	),
 	'albumDirURL' => array(
 		'prompt' => gTranslate('config',"Albums URL"),
-		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
+		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
 		  sprintf(gTranslate('config',"The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
 		  '<i>http://www.example.com/albums</i>'),
 		'value' => 'http://' . getenv('SERVER_NAME') . '/albums',
@@ -475,7 +475,7 @@ $constants =  array_merge(array(
 	'autorotate' => array(
 		'prompt' => gTranslate('config',"Auto-rotate images"),
 		'desc' => gTranslate('config',"Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.") . '<br>' .
-		'<span class="attention">' . gTranslate('config',"Requires Jhead EXIF parser v.1.9 or greater (See optional tools).") . '</span>',
+		'<span class="g-attention">' . gTranslate('config',"Requires Jhead EXIF parser v.1.9 or greater (See optional tools).") . '</span>',
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
 		'value' => 'yes'
 	),
@@ -503,7 +503,7 @@ $constants =  array_merge(array(
 			70 => 70, 75 => 75, 80 => 80, 85 => 85,
 			90 => 90, 95 => 95, 100 => 100
 		),
-		'value' => 70
+		'value' => 80
 	),
 	'thumbJpegImageQuality' => array(
 		'prompt' => gTranslate('config',"JPEG Quality for thumbs inside the albums"),
@@ -513,7 +513,7 @@ $constants =  array_merge(array(
 			70 => 70, 75 => 75, 80 => 80, 85 => 85,
 			90 => 90, 95 => 95, 100 => 100
 		),
-		'value' => 50
+		'value' => 80
 	),
 	'subgroup_quality_end' => array (
 		'type' => 'subgroup_end',
@@ -821,9 +821,9 @@ $constants = array_merge($constants, array(
 		'prompt' => gTranslate('config',"Enable email"),
 		'verify-func' => 'verify_email',
 		'desc' => sprintf(gTranslate('config',"Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . gTranslate('config',"No") . '</i>' ) .  '<br>' .
-		  '<span class="emphasis">' . gTranslate('config',"Note:") . '</span> ' .
+		  '<p style="font-weight: bold;">' . gTranslate('config',"Note:") . '</span> ' .
 		  gTranslate('config',"If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email.") . '<br>'.
-		  '<span class="attention">' . gTranslate('config',"You need to enable this setting if you want to enable Self Registration.") . '</span>',
+		  '<span class="g-attention">' . gTranslate('config',"You need to enable this setting if you want to enable Self Registration.") . '</span>',
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")
@@ -864,7 +864,7 @@ $constants = array_merge($constants, array(
 	'selfReg' => array(
 		'prompt' => gTranslate('config',"Allow visitors to self register."),
 		'desc' => gTranslate('config',"Enabling this will allow visitors to your site to create their own login accounts.") . '<br>' .
-		  '<span class="attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
+		  '<span class="g-attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")
@@ -1115,7 +1115,7 @@ $constants = array_merge($constants, array(
 		'title'		=> gTranslate('config',"Watermarking"),
 		'desc'		=> ($enablewatermark == 'yes') ?
 		  gTranslate('config',"Choose wether you want to enable or disable watermarking. And set the defaults") :
-		  '<span class="attention">' . gTranslate('config',"Watermarking is not possible in this installation !") . '</span>'
+		  '<span class="g-attention">' . gTranslate('config',"Watermarking is not possible in this installation !") . '</span>'
 	),
 	'watermarkDir' => array(
 		'prompt' => gTranslate('config',"Watermark directory"),
@@ -1323,13 +1323,14 @@ $constants = array_merge($constants, array(
 		'default' => 'none',
 		'title' => gTranslate('config',"Technical"),
 		'desc' => gTranslate('config',"The settings in this section are intended for advanced users only.") .
-		  '<br><span class="attention">'.
+		  '<div class="g-attention">'.
 		  gTranslate('config',"Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.") .
-		'<span>'
+		  '<div>'
 	),
 	'debuglevel' => array(
 		'prompt' => gTranslate('config',"Debug Level"),
-		'desc' => gTranslate('config',"Turn debug on so that you can diagnose problems?") .'<br><span class="emphasis">'. gTranslate('config',"Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</span>',
+		'desc' => gTranslate('config',"Turn debug on so that you can diagnose problems?") .
+			'<p style="font-weight: bold;">'. gTranslate('config',"Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!") . '</p>',
 		'choices' => array(
 			0 => gTranslate('config',"No Debug"),
 			1 => gTranslate('config',"Normal"),
@@ -1605,7 +1606,7 @@ $defaults = array(
 	'max_size' => array(
 		'prompt' => gTranslate('config','Maximum image size'),
 		'desc' => gTranslate('config',"You can optionally limit the dimensions your images on upload to Gallery.") .
-		  '<br><span class="attention>'. gTranslate('config',"Warning:") .'</span> '.
+		  '<br><span class="g-attention>'. gTranslate('config',"Warning:") .'</span> '.
 		  gTranslate('config',"Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
 		'choices' => array(
@@ -1624,7 +1625,7 @@ $defaults = array(
 	'max_file_size' => array(
 		'prompt' => gTranslate('config','Maximum JPEG/PNG image file size'),
 		'desc' => gTranslate('config',"You can optionally limit the filesize of your JPEG/PNG images on upload to Gallery.") .
-		  '<br><span class="attention">'. gTranslate('config',"Warning:") . '</span> '.
+		  '<br><span class="g-attention">'. gTranslate('config',"Warning:") . '</span> '.
 		  gTranslate('config',"Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."),
 		'value' => 0,
 		'optional' => 1,
@@ -1709,8 +1710,8 @@ $defaults = array(
 	),
 	'ecards' => array(
 		'prompt' => gTranslate('config',"Enable Ecards ?"),
-		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picure as eCard via eMail") . '<br>'.
-		  '<span class="attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
+		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picure as eCard via eMail.") .
+		  '<div class="g-attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</div>',
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")
