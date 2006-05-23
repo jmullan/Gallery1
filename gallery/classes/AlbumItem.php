@@ -458,7 +458,7 @@ class AlbumItem {
     function getFileSize($full = 0) {
         global $gallery;
         $stat = fs_stat($this->image->getPath($gallery->album->getAlbumDir(), $full));
-        
+
         if (is_array($stat)) {
             return $stat[7];
         } else {
@@ -760,7 +760,7 @@ class AlbumItem {
             }
             return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
         } else {
-            return "<i>". _("No highlight") ."</i>";
+            return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
     }
 
@@ -782,9 +782,9 @@ class AlbumItem {
 
     /**
 	 * @param	$full		boolean
-	 * @return	$imageName	string 
+	 * @return	$imageName	string
 	 * @author	Jens Tkotz<jens@peino.de
-	 */ 
+	 */
     function getImageName($full = false) {
         if($this->image) {
             $imageName = $this->image->getImageName($full);

@@ -82,22 +82,38 @@ $navigator["spread"] = 6;
 $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
-$displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
+// this determines if we display "* Item contains a comment" at end of page
+$displayCommentLegend = 0;
 
 /* Admin Text (left side) */
 $adminText = '';
 if ($numAccess == $numAlbums) {
-	$toplevel_str = gTranslate('core', "1 album","%d albums", $numAlbums, gTranslate('core', "no albums"), true);
+	$toplevel_str = gTranslate(
+        'core',
+        "1 album","%d albums",
+        $numAlbums,
+        gTranslate('core', "no albums"), true
+    );
 } else {
-	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, gTranslate('core', "No top-level albums"), true);
+	$toplevel_str = gTranslate(
+        'core',
+        "1 top-level album",
+        "%d top-level albums",
+        $numAlbums,
+        gTranslate('core', "No top-level albums"), true
+    );
 }
 
 $total_str = sprintf(gTranslate('core', "%d total"), $numAccess);
 $image_str = gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"), true);
 $page_str = gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"), true);
 
-if (($numAccess != $numAlbums) && $maxPages > 1) {
-	$adminText .= sprintf(gTranslate('core', "%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
+if ( $numAccess != $numAlbums && $maxPages > 1) {
+	$adminText .= sprintf(gTranslate('core',"%s (%s), %s on %s"),
+	   $toplevel_str,
+	   $total_str,
+	   $image_str, $page_str
+    );
 }
 else if ($numAccess != $numAlbums) {
 	$adminText .= sprintf(gTranslate('core', "%s (%s), %s"), $toplevel_str, $total_str, $image_str);
@@ -292,42 +308,52 @@ for ($i = $start; $i <= $end; $i++) {
     }
     $isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
     if($isRoot) {
-        $tmpAlbumName = $gallery->album->fields["name"];
-        $albumURL = makeAlbumUrl($tmpAlbumName);
-
-        $rootAlbum[$tmpAlbumName]['url'] = $albumURL;
+    	$tmpAlbumName = $gallery->album->fields["name"];
+    	$albumURL = makeAlbumUrl($tmpAlbumName);
+    	$scaleTo = $gallery->app->highlight_size;
         $highlightIndex = $gallery->album->getHighlight(true);
-        $highlight = $gallery->album->getPhoto($highlightIndex);
-        $getAlbumDirURL = $gallery->album->getAlbumDirURL('highlight');
 
-        // <!-- Begin Album Column Block -->
-        // <!-- Begin Image Cell -->
-        $gallery->html_wrap['borderColor'] = $borderColor;
-        $gallery->html_wrap['borderWidth'] = 1;
-        $scaleTo = $gallery->app->highlight_size;
-        list($iWidth, $iHeight) = $highlight->getHighlightDimensions($scaleTo);
-        if (empty($iWidth)) {
-            $iWidth = $gallery->app->highlight_size;
-            $iHeight = 100;
-        }
+    	$rootAlbum[$tmpAlbumName]['url'] = $albumURL;
+
+    	if($highlightIndex) {
+    		$highlight = $gallery->album->getPhoto($highlightIndex);
+    		$getAlbumDirURL = $gallery->album->getAlbumDirURL('highlight');
+
+    		list($iWidth, $iHeight) = $highlight->getHighlightDimensions($scaleTo);
+
+    		$imageTag = $highlight->getHighlightTag($getAlbumDirURL, $scaleTo,'' , gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
+    	}
+    	else {
+    	    $imageTag = '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
+    	}
+
+    	if (empty($iWidth)) {
+    	    $iWidth = $gallery->app->highlight_size;
+    	    $iHeight = 100;
+    	}
+
+		// <!-- Begin Album Column Block -->
+		// <!-- Begin Image Cell -->
+		$gallery->html_wrap['borderColor'] = $borderColor;
+		$gallery->html_wrap['borderWidth'] = 1;
+
         $gallery->html_wrap['imageWidth'] = $iWidth;
         $gallery->html_wrap['imageHeight'] = $iHeight;
-        $gallery->html_wrap['imageTag'] =
-        	$highlight->getHighlightTag($getAlbumDirURL, $scaleTo,'' , gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
+        $gallery->html_wrap['imageTag'] = $imageTag;
         $gallery->html_wrap['imageHref'] = $albumURL;
         $gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
 
         $rootAlbum[$tmpAlbumName]['imageCell'] = $gallery->html_wrap;
-
         // <!-- End Image Cell -->
+
         // <!-- Begin Text Cell -->
         $rootAlbum[$tmpAlbumName]['albumdesc']['title'] = editField($gallery->album, "title", $albumURL);
         if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
             $rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= ' '. popup_link(
-            getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes'),
-            "download.php?set_albumName=$tmpAlbumName",
-            false, false, 500, 500, 'g-small', '', '',
-            false, false
+                getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes'),
+                "download.php?set_albumName=$tmpAlbumName",
+                false, false, 500, 500, 'g-small', '', '',
+                false, false
             );
         }
 
@@ -336,20 +362,23 @@ for ($i = $start; $i <= $end; $i++) {
         $rootAlbum[$tmpAlbumName]['albumdesc']['adminAlbumCommands'] = $adminAlbumCommands;
 
         /* Description */
-        $rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;
+        $rootAlbum[$tmpAlbumName]['albumdesc']['description'] =
+            editField($gallery->album, "description") ;
 
         /* Owner */
         if ($gallery->app->showOwners == 'yes') {
             $owner = $gallery->album->getOwner();
-            $rootAlbum[$tmpAlbumName]['albumdesc']['owner'] = sprintf(gTranslate('core', "Owner: %s"),showOwner($owner));
+            $rootAlbum[$tmpAlbumName]['albumdesc']['owner'] =
+                sprintf(gTranslate('core', "Owner: %s"),showOwner($owner));
         }
 
         /* Url (only for admins and owner) */
         if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
             $rootAlbum[$tmpAlbumName]['albumdesc']['url'] =
-            gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
+                gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
             if (!$gallery->session->offline) {
-                $rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= breakString(urldecode($albumURL), 60, '&', 5);
+                $rootAlbum[$tmpAlbumName]['albumdesc']['url'] .=
+                    breakString(urldecode($albumURL), 60, '&', 5);
             } else {
                 $rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= $tmpAlbumName;
             }
