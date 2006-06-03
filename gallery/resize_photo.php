@@ -36,11 +36,6 @@ if (! $gallery->user->canWriteToAlbum($gallery->album) &&
 }
 
 printPopupStart(_("Resize Photo"));
-?>
-<style>
-    .nowrap { white-space:nowrap; }
- </style>
-<?php
 
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
@@ -96,8 +91,8 @@ if ($gallery->session->albumName && isset($index)) {
 		$choices=array(1280,1024,700,800,640,600,500,400);
 		for ($i = 0; $i<count($choices); $i = $i+2) {
 			echo "\n\t<tr>";
-			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' . $choices[$i] .'" id="size_' . $choices[$i] .'">'. '<label for="size_' . $choices[$i] .'">'. $choices[$i] .'</label></td>';
-			echo "\n\t\t". '<td class="nowrap"><input type="radio" name="resize" value="' .$choices[$i+1].'" id="size_' .$choices[$i+1].'">'. '<label for="size_' .$choices[$i+1].'">'.$choices[$i+1].'</label></td>';
+			echo "\n\t\t". '<td style="white-space:nowrap"><input type="radio" name="resize" value="' . $choices[$i] .'" id="size_' . $choices[$i] .'">'. '<label for="size_' . $choices[$i] .'">'. $choices[$i] .'</label></td>';
+			echo "\n\t\t". '<td style="white-space:nowrap"><input type="radio" name="resize" value="' .$choices[$i+1].'" id="size_' .$choices[$i+1].'">'. '<label for="size_' .$choices[$i+1].'">'.$choices[$i+1].'</label></td>';
 			echo "\n\t</tr>\n";
 		}
 ?>

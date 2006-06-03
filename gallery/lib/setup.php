@@ -42,10 +42,8 @@ function evenOdd_row($fields) {
 		$buf .= "\n\t<td class=\"g-shortdesc\" width=\"40%\">$fields[0]</td>";
 		$buf .= "\n\t<td class=\"g-shortdesc\">$fields[1]</td>";
 		$buf .= "\n</tr>";
-		$buf .= "\n<tr>";
 		if (!empty($fields[2])) {
-			$buf .= "\n\t<td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td>";
-			$buf .= "\n</tr>\n";
+			$buf .= "\n\t<tr><td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td></tr>";
 		}
 	}
 

@@ -97,8 +97,8 @@ elseif (empty($order)) {
 <input type="hidden" name="sort" value="1">
 <input type="submit" name="confirm" value="<?php echo _("Sort") ?>" class="g-button">
 <input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
-</form>
 </div>
+</form>
 <?php
 }
 else {

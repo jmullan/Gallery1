@@ -231,15 +231,15 @@ function showColorpicker($attrs = array()) {
     );
 
     $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', $args);
-    $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16"></a></td>';
+    $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16" alt="colorpicker">';
 
-    $html = '<table border="0" cellspacing="0">';
-    $html .= '<tr>';
-    $html .= '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
-    $html .= '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
-    $html .= "<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
-    $html .= '<td><div id="colorpicker_' . $attrs['name'] . '" class="control"></div></td>';
-    $html .= '</tr></table>';
+    $html = "\n<table cellspacing=\"0\">";
+    $html .= "\n<tr>";
+    $html .= "\n". '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
+    $html .= "\n". '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
+    $html .= "\n<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
+    $html .= "\n". '<td><div id="colorpicker_' . $attrs['name'] . '" class="control"></div></td>';
+    $html .= "\n</tr></table>\n";
 
     return $html;
 }

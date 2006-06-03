@@ -364,6 +364,6 @@ if ($reorder) {
 
 </div>
 <?php print gallery_validation_link("move_photo.php", true, array('index' => $index)); ?>
-</div>
+
 </body>
 </html>
