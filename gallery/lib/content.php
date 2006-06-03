@@ -104,7 +104,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
             $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
             echo "<br>";
             echo popup_link(gTranslate('common', "add comment"), $url);
-            echo "<p>";
+            echo "<br><br>";
         }
     }
 }
@@ -314,13 +314,15 @@ function createTreeArray($albumName,$depth = 0, $fromSetup = false) {
 
 		$albumUrl = makeAlbumUrl($myName);
 		$subtree = createTreeArray($myName, $depth+1);
-		$highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
-                  '', "$title $clicksText");
-                $microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
+		$highlightTag = $nestedAlbum->getHighlightTag(
+				$gallery->app->default["nav_thumbs_size"],
+                array('alt' => "$title $clicksText")
+        );
+		$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 		$tree[] = array(
 		    'albumUrl' => $albumUrl,
 		    'albumName' => $myName,
-		    'titel' => $title,
+		    'title' => $title,
 		    'clicksText' => $clicksText,
 		    'microthumb' => $microthumb,
 		    'subTree' => $subtree);
@@ -513,38 +515,38 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
     global $gallery;
 
     if(empty($altText)) {
-        $altText = $text;
+    	$altText = $text;
     }
 
     if (!empty($overrideMode)) {
-        $iconMode = $overrideMode;
+    	$iconMode = $overrideMode;
     } elseif (isset($gallery->app->useIcons)) {
-        $iconMode = $gallery->app->useIcons;
+    	$iconMode = $gallery->app->useIcons;
     } else {
-        $iconMode = 'no';
+    	$iconMode = 'no';
     }
 
     if ($iconMode != "no" && $iconName != '') {
-        if ($iconMode == 'both') {
-            $altText = '';
-        }
+    	if ($iconMode == 'both') {
+    		$altText = '';
+    	}
 
-        $linkText = gImage("icons/$iconName",$altText);
+    	$linkText = gImage("icons/$iconName",$altText);
 
-        if ($iconMode == "both") {
-            $linkText .= "<br>$text";
-        }
+    	if ($iconMode == "both") {
+    		$linkText .= "<br>$text";
+    	}
     }
 
     if (empty($linkText)) {
-	if(empty($text)) {
-	    $text = $altText;
-	}
-        if($addBrackets) {
-            $linkText = '['. $text . ']';
-        } else {
-            $linkText = $text;
-        }
+    	if(empty($text)) {
+    		$text = $altText;
+    	}
+    	if($addBrackets) {
+    		$linkText = '['. $text . ']';
+    	} else {
+    		$linkText = $text;
+    	}
     }
 
     return $linkText;

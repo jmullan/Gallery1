@@ -716,7 +716,7 @@ class AlbumItem {
         return 0;
     }
 
-    function getPreviewTag($dir, $size = 0, $attrs = '') {
+    function getPreviewTag($dir, $size = 0, $attrs = array()) {
         if ($this->preview) {
             return $this->preview->getTag($dir, 0, $size, $attrs);
         } else {
@@ -730,6 +730,7 @@ class AlbumItem {
 	 */
     function getAlttext() {
         $alttext = '';
+        
         if (!empty($this->extraFields['AltText'])) {
             $alttext = $this->extraFields['AltText'];
         } elseif (!empty($this->caption)) {
@@ -739,40 +740,48 @@ class AlbumItem {
         return $alttext;
     }
 
-    function getThumbnailTag($dir, $size = 0, $attrs = '') {
+    function getThumbnailTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-
+		
+        if(empty($attrs['alt'])) {
+        	$attrs['alt'] = $this->getAlttext();
+        }
+		
         if ($this->thumbnail) {
-            return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
+            return $this->thumbnail->getTag($dir, false, $size, $attrs);
         } else {
             return "<i>". _("No thumbnail") ."</i>";
         }
     }
 
-    function getHighlightTag($dir, $size = 0, $attrs = '', $alttext = '') {
+    function getHighlightTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-
+         
         if (is_object($this->highlightImage)) {
-            if (!isset($alttext)) {
-                $alltext = $this->getAlttext();
+            if (empty($attrs['alt'])) {
+                $attrs['alt'] = $this->getAlttext();
             }
-            return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
+            return $this->highlightImage->getTag($dir, 0, $size, $attrs);
         } else {
             return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
     }
 
-    function getPhotoTag($dir, $full = 0, $attrs) {
+    function getPhotoTag($dir, $full = false, $attrs) {
+    	if (empty($attrs['alt'])) {
+    		$attrs['alt'] = $this->getAlttext();
+    	}
+            
         if ($this->image) {
-            return $this->image->getTag($dir, $full, '', $attrs, $this->getAlttext());
+            return $this->image->getTag($dir, $full, 0, $attrs);
         } else {
             return "about:blank";
         }
     }
 
-    function getPhotoPath($dir, $full = 0) {
+    function getPhotoPath($dir, $full = false) {
         if ($this->image) {
             return $this->image->getPath($dir, $full);
         } else {

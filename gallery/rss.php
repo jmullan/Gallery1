@@ -62,15 +62,13 @@ function bestDate($album) {
 }
 
 function getThumbs($album) {
-	$tags = "border=0 vspace=2 hspace=0 align=top";
-	
-	$photos = "";
+	$photos = '';
 	$photoCount = $album->numPhotos(1);
 	
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
-			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$imgtag = $album->getThumbnailTag($i);
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
 		}
 	}
@@ -79,18 +77,16 @@ function getThumbs($album) {
 }
 
 function getThumbsAndCaptions($album) {
-	$tags = "border=0 vspace=2 hspace=0 align=top";
-	
-	$photos = "";
+	$photos = '';
 	$photoCount = $album->numPhotos(1);
 	
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
-			$imgtag = $album->getThumbnailTag($i, 0, $tags);
+			$imgtag = $album->getThumbnailTag($i);
 			$caption = $photo->getCaption();
-			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) .
-"\">" . $imgtag . "</a>$caption<br />\n";
+			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>";
+			$photos .= $caption . "<br>\n";
 		}
 	}
 	

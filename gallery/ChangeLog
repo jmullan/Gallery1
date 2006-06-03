@@ -1,3 +1,37 @@
+2006-06-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j37-UNSTABLE
+
+ ** API CHANGE **
+
+ Changed $attrs = '' to $attrs = array() in:
+
+ - classes/Album.php
+	getPreviewTag()
+	getThumbnailTag()
+	getThumbnailTagById()
+	getHighlightAsThumbnailTag()
+	getHighlightTag()
+	getThumbnailTagById()
+	getHighlightAsThumbnailTag()
+	getHighlightTag()
+	
+ - classes/AlbumItem.php
+	getPreviewTag()
+	getThumbnailTag()
+	getHighlightTag()
+	getPhotoTag()
+	
+ - classes/Image.php
+	getTag()
+
+Affects:
+	rearrange.php
+	view_album.php
+	lib/content.php
+	layout/navmicro.inc
+	rss.php
+	albums.php
+	view_photo.php
+ 
 2006-06-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j36-UNSTABLE
 
  * HTML fixes in:

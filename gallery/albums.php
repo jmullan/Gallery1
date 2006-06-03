@@ -301,9 +301,9 @@ $end = min($start + $perPage - 1, $numAlbums);
 for ($i = $start; $i <= $end; $i++) {
     if(!$gallery->album = $albumDB->getAlbum($gallery->user, $i)) {
         $notice_messages[] = array(
-		'type' => 'error',
-		'text' => sprintf(gTranslate('core', "The requested album with index %s is not valid"), $i)
-	);
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "The requested album with index %s is not valid"), $i)
+		);
         continue;
     }
     $isRoot = $gallery->album->isRoot(); // Only display album if it is a root album
@@ -321,7 +321,11 @@ for ($i = $start; $i <= $end; $i++) {
 
     		list($iWidth, $iHeight) = $highlight->getHighlightDimensions($scaleTo);
 
-    		$imageTag = $highlight->getHighlightTag($getAlbumDirURL, $scaleTo,'' , gTranslate('core', "Highlight for Album:") ." ". $gallery->album->fields["title"]);
+    		$imageTag = $highlight->getHighlightTag(
+    			$getAlbumDirURL,
+    			$scaleTo, 
+    			array('alt' => sprintf(gTranslate('core', "Highlight for album: %s"),$gallery->album->fields["title"]))
+    		);
     	}
     	else {
     	    $imageTag = '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';

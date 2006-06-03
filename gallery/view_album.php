@@ -551,7 +551,11 @@ if ($numPhotos) {
 			elseif (isset($myAlbum)) {
 				// We already loaded this album - don't do it again, for performance reasons.
 
-				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag($scaleTo,'',gTranslate('core', "Highlight for Album:"). " ". gallery_htmlentities(strip_tags($myAlbum->fields['title'])));
+				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag(
+					$scaleTo,
+					array('alt' => sprintf(gTranslate('core', "Highlight for album: %s"),
+						gallery_htmlentities(strip_tags($myAlbum->fields['title']))))
+					);
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
 				$frame = $gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 				$gallery->html_wrap['type'] = 'inline_albumthumb.frame';

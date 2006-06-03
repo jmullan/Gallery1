@@ -95,7 +95,7 @@ if (!empty($votes)) {
 
 $albumName = $gallery->session->albumName;
 if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
-!$gallery->session->offline) {
+  !$gallery->session->offline) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
 }
@@ -120,10 +120,10 @@ if ($do_fullOnly) {
 }
 
 $fitToWindow = $gallery->album->fields["fit_to_window"] == "yes" &&
-!$gallery->album->isMovieByIndex($index) &&
-!$gallery->album->isResized($index) &&
-!$full &&
-(!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
+  !$gallery->album->isMovieByIndex($index) &&
+  !$gallery->album->isResized($index) &&
+  !$full &&
+  (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
@@ -476,10 +476,10 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 
 if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
 	$imageMapHTML = showImageMap($index);
-	$photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
+	$photoTag = $gallery->album->getPhotoTag($index, $full, array('id' => '"galleryImage', 'usemap' => '"#myMap'));
 }
 else {
-	$photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\"");
+	$photoTag = $gallery->album->getPhotoTag($index, $full, array('id' => 'galleryImage'));
 }
 
 list($width, $height) = $photo->getDimensions($full);

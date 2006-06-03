@@ -29,13 +29,13 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_first_last"],"yes") ) {
 	$fpUrl =  makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) ;
 	$navThumbsFirst = "<a href=\"$fpUrl\">";
 	$navThumbsFirst .= $gallery->album->getThumbnailTagById($firstPage,
-	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_first_img\"");
+	   $gallery->album->fields["nav_thumbs_size"], array('class' => 'nav_micro_first_img'));
 	$navThumbsFirst .='</a>&nbsp;';
 
 	$lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
 	$navThumbsLast = "<a href=\"$lpUrl\">";
 	$navThumbsLast .= $gallery->album->getThumbnailTagById($lastPage,
-	   $gallery->album->fields["nav_thumbs_size"],"class=\"nav_micro_last_img\"");
+	   $gallery->album->fields["nav_thumbs_size"], array('class' => 'nav_micro_last_img'));
 	$navThumbsLast .='</a>&nbsp;';
 
 /* If first/last thumbs are disabled, fill each with a space. */
@@ -72,8 +72,11 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 	}
 	
 	/* Create the current thumb. */
-	$navThumbsCur = $gallery->album->getThumbnailTagById($navigator["allIds"][$navpage],($gallery->album->fields["nav_thumbs_size"]
-	 +$gallery->album->fields["nav_thumbs_current_bonus"]),"class=\"nav_micro_current_img\"");
+	$navThumbsCur = $gallery->album->getThumbnailTagById(
+		$navigator["allIds"][$navpage],
+		($gallery->album->fields["nav_thumbs_size"] + $gallery->album->fields["nav_thumbs_current_bonus"]),
+		array('class' => 'nav_micro_current_img')
+	);
 }
 
 /* If style is "Fixed" begin generation of fixed micro thumb navigation */
@@ -110,9 +113,11 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 
 		/* Current image gets special CSS */
 		if ( $i == $navpage ) {
-			$navBlogThumb .= $gallery->album->getThumbnailTagById($navigator["allIds"][$i],
-        	           $gallery->album->fields["nav_thumbs_size"]+$gallery->album->fields["nav_thumbs_current_bonus"]
-			   ,"class=\"nav_micro_current_img\"");
+			$navBlogThumb .= $gallery->album->getThumbnailTagById(
+				$navigator["allIds"][$i],
+				$gallery->album->fields["nav_thumbs_size"] + $gallery->album->fields["nav_thumbs_current_bonus"],
+			   	array('class' => 'nav_micro_current_img')
+			);
 		/* All other images get another CSS */
 		} else {
 			$navBlogThumb .= $gallery->album->getThumbnailTagById($navigator["allIds"][$i],

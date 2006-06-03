@@ -1450,7 +1450,7 @@ class Album {
         return $this->fields["nextname"]++;
     }
 
-    function getPreviewTag($index, $size=0, $attrs="") {
+    function getPreviewTag($index, $size = 0, $attrs = array()) {
         if ($index === null) {
             return '';
         }
@@ -1464,7 +1464,7 @@ class Album {
         }
     }
 
-    function getThumbnailTag($index, $size=0, $attrs="") {
+    function getThumbnailTag($index, $size = 0, $attrs = array()) {
         if ($index === null) {
             return '';
         }
@@ -1477,7 +1477,7 @@ class Album {
         }
     }
 
-    function getThumbnailTagById($id, $size=0, $attrs="") {
+    function getThumbnailTagById($id, $size = 0, $attrs = array()) {
         return $this->getThumbnailTag($this->getPhotoIndex($id), $size, $attrs);
     }
 
@@ -1499,7 +1499,7 @@ class Album {
         return array($album, $photo);
     }
 
-    function getHighlightAsThumbnailTag($size = 0, $attrs = '') {
+    function getHighlightAsThumbnailTag($size = 0, $attrs = array()) {
         list ($album, $photo) = $this->getHighlightedItem();
         if ($photo) {
             return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
@@ -1508,12 +1508,12 @@ class Album {
         }
     }
 
-    function getHighlightTag($size = 0, $attrs = '', $alttext = '') {
+    function getHighlightTag($size = 0, $attrs = array()) {
         $index = $this->getHighlight();
 
         if (isset($index)) {
             $photo = $this->getPhoto($index);
-            return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs, $alttext);
+            return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs);
         } else {
             return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }

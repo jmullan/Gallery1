@@ -153,20 +153,26 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
         $page++;
     }
 
-    $attrs = 'id="im_'.$i.'" onclick="doclick('.$i.')" style="padding: 2px; border: '
-    . ($gallery->album->isHidden($i) ? ' red' : ' green');
+    $attrs = array(
+    	'id' => "im_$i",
+    	'onclick' => "doclick($i)",
+    	'style' => 'padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
+	);
 
     if ($gallery->album->isAlbum($i)) {
         $myAlbumName = $gallery->album->getAlbumName($i);
         $myAlbum = new Album();
         $myAlbum->load($myAlbumName);
-        $tag = $myAlbum->getHighlightTag(0,$attrs. ' 3px double"');
+        $attrs['style'] .= ' 3px double';
+        $tag = $myAlbum->getHighlightTag(0, $attrs);
     } elseif ($gallery->album->isMovieByIndex($i)) {
-        $tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px dotted"');
+    	$attrs['style'] .= ' 2px dotted';
+    	$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
     } else {
-        $tag = $gallery->album->getThumbnailTag($i,0,$attrs.' 2px solid"');
+    	$attrs['style'] .= ' 2px solid';
+		$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
     }
-
+    
     $pictureTable->addElement(array('content' => $tag, 'cellArgs' => array('align' => 'center')));
 
     $list[] = $i;
