@@ -5,140 +5,140 @@ global $navc;
 $navc++;
 
 if(!includeTemplate('navigator.tpl')) {
-    if ($navigator["maxPages"] > 1) {
-        // Calculate the beginning and ending of the navigator range
-        $begin = max($navigator["page"] - $navigator["spread"], 1);
-        $end = min($navigator["page"] + $navigator["spread"], $navigator["maxPages"]);
+	if ($navigator["maxPages"] > 1) {
+		// Calculate the beginning and ending of the navigator range
+		$begin = max($navigator["page"] - $navigator["spread"], 1);
+		$end = min($navigator["page"] + $navigator["spread"], $navigator["maxPages"]);
 
-        // If we're pinned at the beginning or the end, expand as far as we can
-        // in the opposite direction
-        if ($begin == 1 && $end <= $navigator["maxPages"]) {
-            $end = min(2 * $navigator["spread"], $navigator["maxPages"]);
-        }
-        if ($end == $navigator["maxPages"]) {
-            $begin = max(1, $end - 2 * $navigator["spread"]);
-        }
+		// If we're pinned at the beginning or the end, expand as far as we can
+		// in the opposite direction
+		if ($begin == 1 && $end <= $navigator["maxPages"]) {
+			$end = min(2 * $navigator["spread"], $navigator["maxPages"]);
+		}
+		if ($end == $navigator["maxPages"]) {
+			$begin = max(1, $end - 2 * $navigator["spread"]);
+		}
 
-        if($begin > $navigator["spread"]) {
-            $beginNextBlock = max(1, $navigator["page"] - 2 * $navigator["spread"]);
-        }
+		if($begin > $navigator["spread"]) {
+			$beginNextBlock = max(1, $navigator["page"] - 2 * $navigator["spread"]);
+		}
 
-        if($end < $navigator["maxPages"]) {
-            $endNextBlock = min($navigator["page"] + 2 * $navigator["spread"], $navigator["maxPages"]);
-        }
+		if($end < $navigator["maxPages"]) {
+			$endNextBlock = min($navigator["page"] + 2 * $navigator["spread"], $navigator["maxPages"]);
+		}
 
-        // If the border color is not passed in, we do a white one
-        if ($navigator["bordercolor"]) {
-            $borderIn = $navigator["bordercolor"];
-        } else {
-            $borderIn = '';
-        }
+		// If the border color is not passed in, we do a white one
+		if ($navigator["bordercolor"]) {
+			$borderIn = $navigator["bordercolor"];
+		} else {
+			$borderIn = '';
+		}
 
-        $url = $navigator["url"];
-        if (!strstr($url, "?")) {
-            $url .= "?";
-        }
-        else {
-            $url .= "&amp;";
-        }
+		$url = $navigator["url"];
+		if (!strstr($url, "?")) {
+			$url .= "?";
+		}
+		else {
+			$url .= "&amp;";
+		}
 
-        $fpAltText= _("First Page ");
-        $ppAltText= _("Previous Page (_back)");
-        $npAltText= _("Next Page (_forward)");
-        $lpAltText= _("Last Page");
+		$fpAltText= _("First Page ");
+		$ppAltText= _("Previous Page (_back)");
+		$npAltText= _("Next Page (_forward)");
+		$lpAltText= _("Last Page");
 
-        include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
+		include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
 
-        $current = $navigator["page"];
-        $prevPage = $current -1;
-        $nextPage = $current +1;
-        $maxPages = $navigator["maxPages"];
+		$current = $navigator["page"];
+		$prevPage = $current -1;
+		$nextPage = $current +1;
+		$maxPages = $navigator["maxPages"];
 
-        #-- 'first' and 'previous button cell ---
-        if ($navigator["page"] != 1) {
-            $fpContent = '<a href="'. $url . $navigator['pageVar'] .'=1">';
-            $fpContent .= gImage($fpImg, $fpAltText);
-            $fpContent .= '</a>';
+		#-- 'first' and 'previous button cell ---
+		if ($navigator["page"] != 1) {
+			$fpContent = '<a href="'. $url . $navigator['pageVar'] .'=1">';
+			$fpContent .= gImage($fpImg, $fpAltText);
+			$fpContent .= '</a>';
 
-	    $ppContent = "<a href=\"${url}${navigator['pageVar']}=$prevPage\"";
-	    $ppContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($ppAltText) .'"' : '' . '>';
-	    $ppContent .= gImage($ppImg, $ppAltText);
-	    $ppContent .= '</a>';
+			$ppContent = "<a href=\"${url}${navigator['pageVar']}=$prevPage\"";
+			$ppContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($ppAltText) .'">' : '>';
+			$ppContent .= gImage($ppImg, $ppAltText);
+			$ppContent .= '</a>';
 
-            $pClass = 'g-borderright';
-        } else {
-            $fpContent = '&nbsp;';
-            $ppContent = '&nbsp;';
+			$pClass = 'g-borderright';
+		} else {
+			$fpContent = '&nbsp;';
+			$ppContent = '&nbsp;';
 
-            $pClass = '';
-        }
+			$pClass = '';
+		}
 
-        #-- 'page numbers' cell ---
-        if ($begin != $end) {
-            $ndl = 'icons/navigation/nav_dot_left.gif';
-            $ndr = 'icons/navigation/nav_dot_right.gif';
-            $nd =  'icons/navigation/nav_dot.gif';
+		#-- 'page numbers' cell ---
+		if ($begin != $end) {
+			$ndl = 'icons/navigation/nav_dot_left.gif';
+			$ndr = 'icons/navigation/nav_dot_right.gif';
+			$nd =  'icons/navigation/nav_dot.gif';
 
-            $mpContent = "\n\t\t". '<table align="center" cellpadding="0" cellspacing="0"><tr>';
-            if (isset($beginNextBlock)) {
-                $title = sprintf(_("Jump to page %d (Accesskey '_r')"), $beginNextBlock);
-		$accesskey = getAndRemoveAccessKey($title);
-		$link = galleryLink("{$url}${navigator['pageVar']}=$beginNextBlock",
-			  '...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
-                $mpContent .= "\n\t<td>$link</td>";
-            }
-            for ($i = $begin; $i <= $end; $i++) {
-                if ($i == $current) {
-                    $number = "<b>$i</b>";
-                    $leftdot = gImage($ndl, "leftdot");
-                } else {
-		    $number = galleryLink("${url}${navigator['pageVar']}=$i", $i, array(), '', false, ($navc == 1));
-                    if ($i-1 == $current) {
-                        $leftdot = gImage($ndr, "leftdot");
-                    } else {
-                        $leftdot = gImage($nd, "leftdot");
-                    }
-                }
-                $mpContent .= "\n\t<td>&nbsp;$leftdot&nbsp;$number</td>";
-            }
+			$mpContent = "\n\t\t". '<table align="center" cellpadding="0" cellspacing="0"><tr>';
+			if (isset($beginNextBlock)) {
+				$title = sprintf(_("Jump to page %d (Accesskey '_r')"), $beginNextBlock);
+				$accesskey = getAndRemoveAccessKey($title);
+				$link = galleryLink("{$url}${navigator['pageVar']}=$beginNextBlock",
+				'...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
+				$mpContent .= "\n\t<td>$link</td>";
+			}
+			for ($i = $begin; $i <= $end; $i++) {
+				if ($i == $current) {
+					$number = "<b>$i</b>";
+					$leftdot = gImage($ndl, "leftdot");
+				} else {
+					$number = galleryLink("${url}${navigator['pageVar']}=$i", $i, array(), '', false, ($navc == 1));
+					if ($i-1 == $current) {
+						$leftdot = gImage($ndr, "leftdot");
+					} else {
+						$leftdot = gImage($nd, "leftdot");
+					}
+				}
+				$mpContent .= "\n\t<td>&nbsp;$leftdot&nbsp;$number</td>";
+			}
 
-            if ($end == $current) {
-                $rightdot = gImage($ndr, "rightdot");
-            } else {
-                $rightdot = gImage($nd, "rightdot");
-            }
+			if ($end == $current) {
+				$rightdot = gImage($ndr, "rightdot");
+			} else {
+				$rightdot = gImage($nd, "rightdot");
+			}
 
-            $mpContent .="\n\t<td>&nbsp;$rightdot";
-            if (isset($endNextBlock)) {
-                $title = sprintf(_("Jump to page %d (Accesskey '_j')"), $endNextBlock);
-		$accesskey = getAndRemoveAccessKey($title);
-		$link = galleryLink("{$url}${navigator['pageVar']}=$endNextBlock",
-			  '...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
-                $mpContent .= "\n\t</td><td>$link";
-            }
-            $mpContent .= '</td></tr></table>';
-        } else {
-            $mpContent = '';
-        }
+			$mpContent .="\n\t<td>&nbsp;$rightdot";
+			if (isset($endNextBlock)) {
+				$title = sprintf(_("Jump to page %d (Accesskey '_j')"), $endNextBlock);
+				$accesskey = getAndRemoveAccessKey($title);
+				$link = galleryLink("{$url}${navigator['pageVar']}=$endNextBlock",
+				'...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
+				$mpContent .= "\n\t</td><td>$link";
+			}
+			$mpContent .= '</td></tr></table>';
+		} else {
+			$mpContent = '';
+		}
 
-        #-- 'next' and 'last' button cell ---
-        if ($current < $maxPages) {
-            $npContent = "<a href=\"${url}${navigator['pageVar']}=$nextPage\"";
-	    $npContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($npAltText) .'"' : '' . '>';
-            $npContent .= gImage($npImg, $npAltText);
-            $npContent .= '</a>';
+		#-- 'next' and 'last' button cell ---
+		if ($current < $maxPages) {
+			$npContent = "<a href=\"${url}${navigator['pageVar']}=$nextPage\"";
+			$npContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($npAltText) .'">' : '>';
+			$npContent .= gImage($npImg, $npAltText);
+			$npContent .= '</a>';
 
-            $lpContent = '<a href="'. $url . $navigator['pageVar'] .'='. $navigator['maxPages'] .'">';
-            $lpContent .= gImage($lpImg, $lpAltText);
-            $lpContent .= '</a>';
+			$lpContent = '<a href="'. $url . $navigator['pageVar'] .'='. $navigator['maxPages'] .'">';
+			$lpContent .= gImage($lpImg, $lpAltText);
+			$lpContent .= '</a>';
 
-            $nClass='g-borderleft';
-        } else {
-            $npContent = '&nbsp;';
-            $lpContent = '&nbsp;';
+			$nClass='g-borderleft';
+		} else {
+			$npContent = '&nbsp;';
+			$lpContent = '&nbsp;';
 
-            $nClass = '';
-        }
+			$nClass = '';
+		}
 ?>
 
 <!-- Navigator -->

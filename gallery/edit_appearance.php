@@ -282,12 +282,11 @@ foreach ($properties as $key => $val) {
     // Protect quote characters to avoid screwing up HTML forms
     $val["value"] = array_str_replace('"', "&quot;", $val["value"]);
 
-    if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
+    if (isset($val["type"]) && $val["type"] == 'hidden') {
         list($f1, $f2) = make_fields($key, $val);
         echo $f2;
     } else {
-        echo evenOdd_row(make_fields($key, $val),
-        $i++ % 2);
+        echo evenOdd_row(make_fields($key, $val), $i++ % 2);
     }
 
     $onThisPage[$key] = 1;

@@ -40,7 +40,7 @@ doctype();
   <?php echo getStyleSheetLink();; ?>
 </head>
 
-<img src="<?php echo getImagePath('colorscale.png') ?>" alt="" title="" id="colorpicker" onclick="changeColor(getColor(event)); return false;" onmousemove="demoColor(getColor(event)); return false;" style="cursor:crosshair;background-color:white;padding:1px" />
+<img src="<?php echo getImagePath('colorscale.png') ?>" alt="colorscale" title="" id="colorpicker" onclick="changeColor(getColor(event)); return false;" onmousemove="demoColor(getColor(event)); return false;" style="cursor:crosshair;background-color:white;padding:1px" />
 
 <div id="colorDemo" style="background-color:white;width:100px;height:20px;padding:1px"></div>
 <script language="Javascript" type="text/javascript">

@@ -70,7 +70,10 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 	/* Begin Catch errors */
 	if ($gallery->app->emailOn == "no") {
-		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
+		echo infoBox(array(array(
+		  'type' => 'error',
+		  'text' => gTranslate('common', "Email not sent as it is disabled for this gallery"))
+          ));
 		return false;
 	}
 

@@ -39,9 +39,9 @@ if ( isset($save) && $owner) {
     $gallery->album->setItemOwnerById($id, $owner);
     $user = $gallery->userDB->getUserByUid($owner);
     $gallery->album->save(array(
-	i18n("New owner %s for %s"),
-	$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
-	makeAlbumURL($gallery->album->fields["name"], $id)
+		i18n("New owner %s for %s"),
+		$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
+		makeAlbumURL($gallery->album->fields["name"], $id)
       )
     );
 
@@ -74,20 +74,20 @@ printPopupStart(_("Change Owner"));
 
 $index = $gallery->album->getPhotoIndex($id);
 echo $gallery->album->getThumbnailTag($index);
-$gallery->album->getCaption($index);
+echo "\n<br>";
+echo $gallery->album->getCaption($index);
+
+echo "\n<br>";
+echo makeFormIntro('photo_owner.php',
+	array('name' => 'photoowner_form'),
+	array('type' => 'popup'));
+
+if ($gallery->user->isAdmin) {
+	echo gTranslate('core', "Owner: ");
+	echo drawSelect("owner", $uAll, $owner, 1);
+}
 ?>
 
-<p>
-<?php
-	echo makeFormIntro("photo_owner.php",
-		array("name" => "photoowner_form"),
-		array("type" => "popup"));
-	if ($gallery->user->isAdmin) {
-		echo _("Owner") .": ";
-		echo drawSelect("owner", $uAll, $owner, 1);
-	}
-?>
-<br><br>
 	<input type="hidden" name="id" value="<?php echo $id ?>">
 	<input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
 	<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
