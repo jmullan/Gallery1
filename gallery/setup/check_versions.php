@@ -65,7 +65,7 @@ foreach($tests as $testname => $args) {
   <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">
     <table>
 	  <tr>
-        <td class="desc" colspan="2"><?php echo $args['hinttext']; ?></td>
+        <td class="g-sitedesc" colspan="2"><?php echo $args['hinttext']; ?></td>
 	  </tr>
 	  <?php
 	  foreach ($$testname as $file => $result) {
@@ -83,7 +83,11 @@ foreach($tests as $testname => $args) {
 }
 ?>
 
-<p align="center"><?php echo returnToConfig(); ?></p>
+</div>
+
+<div class="center">
+	  <?php echo returnToConfig(); ?>
+</div>
 
 </body>
 </html>

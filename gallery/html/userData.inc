@@ -128,12 +128,12 @@ if ($gallery->user->isAdmin()) { ?>
 		    if ($uname=$gallery->user->getUsername() == $uname) {
 			echo '<td>'. $yesNoChoices[$isAdmin] .'</td></tr>';
 			echo '<tr><td colspan="2"><i>('. _("you can't un-admin yourself") . ')</i></td>';
-			$hidden[]=array('isAdmin', $isAdmin);
+			$hidden[]= array('isAdmin', $isAdmin);
 		    } else {
 			echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . '</td>';
-			echo '<tr><td colspan="2"><i>('. _("Note: Admins can always create albums and are allowed to change their password.") .')</i>';
+			echo '<tr><td colspan="2"><i>('. _("Note: Admins can always create albums and are allowed to change their password.") .')</i></td>';
 		    }
-		} ?></td>
+		} ?>
 </tr>
 <?php 
 }

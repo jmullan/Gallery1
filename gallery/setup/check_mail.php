@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 
@@ -29,6 +29,8 @@ printPopupStart(gTranslate('config', "Check Mail"),'', 'left');
 configLogin(basename(__FILE__));
 
 list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
+
+$messages = array();
 
 if (isset($submit)) {
 	if(check_email($email_address)) {
@@ -45,54 +47,67 @@ if (isset($submit)) {
 
 		$ret = gallery_mail($to, $subject, $msg, $logmsg);
 		if ($ret) {
-			echo '<table class="inner" width="100%"><tr>';
-			echo '<td class="successpct">'. gTranslate('config', "SUCCESS!"). '</td></tr>';
-			echo '<tr><td class="desc">' . sprintf(gTranslate('config', "Test email sent to <b>%s</b>, and should arrive in a few minutes.  If you don't receive it please confirm the email address used was correct.  If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified"), $email_address, Gallery()) .'</td>';
+			$messages[] = array(
+				'type' => 'success',
+				'text' => sprintf(gTranslate('config', "Test email sent to <b>%s</b>, and should arrive in a few minutes."), $email_address) .
+					"\n<br>" .
+					gTranslate('config', "If you don't receive it please confirm the email address used was correct.") .
+					"\n<br>" .
+					sprintf(gTranslate('config', "If you cannot receive the email, then it must be disabled for this server, and %s email functions cannot be used until that is rectified."), Gallery())
+			);
 		}
-	} else {
-	    echo infoBox(array(array(
-            'type' => 'error',
-            'text' => gTranslate('config', "You must use a valid email address")
-                .'<br>'. gTranslate('config', "Try again?")))
-        );
 	}
-} else {
+	else {
+		$messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('config', "You must use a valid email address") .
+				'<br>' .
+				gTranslate('config', "Try again?")
+		);
+	}
+}
+else {
 	echo '<div class="g-sitedesc">';
 	print sprintf(gTranslate('config', "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"));
 	echo '</div>';
 	if (getOS() != OS_WINDOWS) {
-	       	if (! ini_get("sendmail_path")) {
-		       	$warning[] = sprintf(gTranslate('config', "%s not set."),
-					"sendmail_path");
-	       	}
-	} else {
-		if (!ini_get("SMTP")) {
-		       	$warning[] = sprintf(gTranslate('config', "%s not set."), "SMTP");
+		if (! ini_get("sendmail_path")) {
+			$messages[] = array(
+				'type' => 'warning',
+				'text' => sprintf(gTranslate('config', "%s not set in php.ini."), "sendmail_path")
+			);
 		}
 	}
-	if (isset($warning)) {
-		echo '<table class="inner" width="100%">';
-		foreach ($warning as $value) {
-			echo '<tr><td class="warningpct">' . gTranslate('config', "Warning") .
-				": " .  $value .'</td></tr>';
+	else {
+		if (! ini_get("SMTP")) {
+			$messages[] = array(
+				'type' => 'warning',
+				'text' => sprintf(gTranslate('config', "%s not set in php.ini."), "SMTP")
+			);
 		}
-//		echo '<td class="desc">' . gTranslate('config', "Please fix this before you continue!") .'</td>';
-		echo '</table>';
 	}
 }
+
+echo infoBox($messages);
+
+echo makeFormIntro('setup/check_mail.php');
+
+echo gInput('text', 'email_address', gTranslate('config', "Your _email address:"), false, 50);
+
+echo gSubmit('submit', gTranslate('config', "_Send Email"));
 ?>
 
-<form action="check_mail.php" method="POST">
-
-<?php echo gTranslate('config', "Your email address:") ?><input name="email_address" width="50">
-<input type="submit" name="submit" class="g-button" value="<?php echo gTranslate('config', "Send Email") ?>">
 </form>
 
-<table class="inner" width="100%">
-<tr>
-	<td class="desc" align="center"><?php echo returnToConfig(); ?></td>
-</tr>
-</table>
+</div>
+	
+<div class="center">
+	<?php echo returnToConfig(); ?>
+</div>
+
+<script type="text/javascript">
+	document.g1_form.email_adress.focus();
+</script>
 
 </body>
 </html>

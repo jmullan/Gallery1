@@ -1381,10 +1381,12 @@ function newIn($version) {
 }
 
 function returnToConfig() {
-	$buf = sprintf(_("Return to %s."), '<a href="index.php">' .
-		_("Configuration Wizard") . '</a>');
-	return $buf;
+	$link = galleryLink('index.php', gTranslate('config', "_Configuration Wizard"));
+		
+	$html = sprintf(gTranslate('config', "Return to %s."), $link);
+	return $html;
 }
+
 if (!function_exists('array_filter1')) {
 	function array_filter1($input, $function=NULL) {
 		$output = array();

@@ -89,7 +89,7 @@ doctype();
 
 </head>
 
-<body dir="<?php echo $gallery->direction ?>" onload="enableButtons()">
+<body onload="enableButtons()">
 <?php
 // Require a user to be logged in before allowing them to configure the server.
 // If Gallery has not been configured before, allow to continue without logging in

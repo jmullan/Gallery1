@@ -345,4 +345,21 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 
     return $html;
 }
+
+function gReset($name, $value, $additionalAttrs = array()) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'reset';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    if($attrList['accesskey'] != '') {
+        $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
+
+    $attrs = generateAttrs($attrList);
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
 ?>

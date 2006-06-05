@@ -34,7 +34,8 @@ configLogin(basename(__FILE__));
 <?php echo ' ' . _("The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
 <?php echo ' ' . _("You can use these tools to find out more about your setup") ?>:
 </div>
-<p></p>
+
+<br>
 	<table class="inner" width="100%">
 	  <tr>
 	    <th class="separator"> <?php echo _("Tool") ?> </th>
@@ -101,11 +102,11 @@ configLogin(basename(__FILE__));
 	  </tr>
 	</table>
 
-	<p> </p>
-
-	<center>
+	</div>
+	
+	<div class="center">
 	  <?php echo returnToConfig(); ?>
-	</center>
+	</div>
 
     </body>
   </html>

@@ -103,7 +103,7 @@ if (!empty($formaction) && $formaction == 'create') {
 	       	}
 	?>
 	<br><br>
-	<form>
+	<form action="create_user.php" method="post">
 		<input type="submit" name="moreuser" value="<?php echo _("Create another user") ?>" class="g-button">
 		<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>" class="g-button">
 	</form>
