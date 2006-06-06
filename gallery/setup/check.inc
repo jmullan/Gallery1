@@ -24,32 +24,32 @@
 
 $configTestStatus = array(
 	0 => array(
-		'image' => gImage('green_trafficlight.gif', _("Success")),
-		'text' => _("Success"),
+		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success")),
+		'text' => gTranslate('config', "Success"),
 	       	'border' => 'border: 1px solid #b2ffb2',
 		'type' => 'success'
 	),
 	5 => array(
-		'image' => gImage('yellow_trafficlight.gif', _("Warning, but optional")),
-		'text' => _("Warning, but optional"),
+		'image' => gImage('yellow_trafficlight.gif', gTranslate('config', "Warning, but optional")),
+		'text' => gTranslate('config', "Warning, but optional"),
 		'border' => 'border: 2px solid #ffff98',
 		'type' => 'warning'
 	),
 	10 => array(
-		'image' => gImage('yellow_red_trafficlight.gif', _("Serious warning, but optional")),
-		'text' => _("Serious warning, but optional"),
+		'image' => gImage('yellow_red_trafficlight.gif', gTranslate('config', "Serious warning, but optional")),
+		'text' => gTranslate('config', "Serious warning, but optional"),
 		'border' => 'border: 2px solid #ff9898',
 		'type' => 'error'
 	),
 	51 => array(
-		'image' => gImage('red_trafficlight.gif', _("Serious warning, no go !")),
-		'text' => _("Serious warning, no go !"),
+		'image' => gImage('red_trafficlight.gif', gTranslate('config', "Serious warning, no go !")),
+		'text' => gTranslate('config', "Serious warning, no go !"),
 		'border' => 'border: 4px solid #ec000a',
 		'type' => 'nogo'
 	),
 	100 => array(
-		'image' => gImage('red_trafficlight.gif', _("Failure")),
-		'text' => _("Failure"),
+		'image' => gImage('red_trafficlight.gif', gTranslate('config', "Failure")),
+		'text' => gTranslate('config', "Failure"),
 		'border' => 'border: 4px solid #ec000a',
 		'type' => 'nogo'
 	)
@@ -62,26 +62,26 @@ $configTestStatus = array(
 <input type="hidden" name="next_page" value="constants">
 
 <div class="g-header">
-    <div class="g-pagetitle"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),1); ?></div>
+    <div class="g-pagetitle"><?php echo sprintf (gTranslate('config', "Gallery Configuration Wizard: Step %d"),1); ?></div>
 </div>
 
 <div class="g-sitedesc">
 <?php 
-	echo _("This is the Gallery system check page.") . "  ";
-	echo _("This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ;
+	echo gTranslate('config', "This is the Gallery system check page.") . "  ";
+	echo gTranslate('config', "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ;
 
 	echo '<br><br>';
 
 	$diagUrl='diagnostics.php';
-        $diagnostics_page='<a href="'. $diagUrl .'">' . _("Gallery Diagnostics Page").'</a>';
-	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. _("Gallery Help Page"). '</a>';
+        $diagnostics_page='<a href="'. $diagUrl .'">' . gTranslate('config', "Gallery Diagnostics Page").'</a>';
+	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. gTranslate('config', "Gallery Help Page"). '</a>';
 	$docs_page = galleryDocs();
 
 	if ($docs_page) {
-		echo sprintf(_("Having problems?  Try the %s, %s and %s."),
-				'<a href="'. $docs_page .'">'. _("documentation") .'</a>', $diagnostics_page, $help_page);
+		echo sprintf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
+				'<a href="'. $docs_page .'">'. gTranslate('config', "documentation") .'</a>', $diagnostics_page, $help_page);
 	} else {
-		echo sprintf(_("Having problems?  Try the %s and %s."),
+		echo sprintf(gTranslate('config', "Having problems?  Try the %s and %s."),
 			$diagnostics_page, $help_page);
 	}
 ?>
@@ -111,7 +111,7 @@ foreach ($checklist as $short => $check) {
     // toogle button
     echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
         "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
-        gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$short")) .
+        gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$short")) .
         '</a>';
     echo "\n\t</td>";
     
@@ -212,9 +212,9 @@ foreach ($usedStatus as $status) {
 if (isset($error)) {
     echo infoBox(array(array(
 	'type' => 'error',
-        'text' => _("There are errors in your configuration that will prevent Gallery from functioning properly.") .
+        'text' => gTranslate('config', "There are errors in your configuration that will prevent Gallery from functioning properly.") .
                   '<br>'.
-		  _("You must fix them before you can continue.")
+		  gTranslate('config', "You must fix them before you can continue.")
     )));
 }
 else {
@@ -222,13 +222,13 @@ else {
 	if (isset($serious_warning)) {
 	   echo infoBox(array(array(
 		'type' => 'error',
-                'text' => _("Your installation has <b>serious warnings</b>!<br>Continue at your own risk...")
+                'text' => gTranslate('config', "Your installation has <b>serious warnings</b>!<br>Continue at your own risk...")
 	    )));
 	}
 	else {
 	    echo infoBox(array(array(
 		'type' => 'warning',
-		'text' =>  _("Your installation has warnings, but this is usually OK.  Keep going!")
+		'text' =>  gTranslate('config', "Your installation has warnings, but this is usually OK.  Keep going!")
 	    )));
 	}
     }
@@ -241,7 +241,7 @@ else {
     echo gSubmit(
 	'go_next',
 	gTranslate('config', "_Next Step ->"),
-	array('disabled' => 'disabled', 'title' => gTranslate('config', "Next Step"))
+	array('disabled' => 'disabled')
     );
 }
 ?>

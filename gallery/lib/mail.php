@@ -175,9 +175,9 @@ Congratulations.  You have just been subscribed to %s at %s.  Your account name 
 Gallery @ %s Administrator.");
 	if ($show_default) {
 		return sprintf($default,
-		"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>",
-		"<b><nobr>&lt;" . _("gallery URL") . "&gt;</nobr></b>",
-		"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>");
+		'<b><span style="white-space: nowrap;">&lt;' . _("gallery title") . "&gt;</span></b>",
+		'<b><span style="white-space: nowrap;">&lt;' . _("gallery URL") . "&gt;</span></b>",
+		'<b><span style="white-space: nowrap;">&lt;' . _("gallery title") . "&gt;</span></b>");
 	} elseif (empty($gallery->app->emailGreeting)) {
 		return sprintf($default,
 		$gallery->app->galleryTitle,

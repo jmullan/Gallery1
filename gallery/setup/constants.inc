@@ -72,42 +72,42 @@ function toggleGraphics(show) {
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
-	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
+    if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 
-	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
-		echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
-		echo evenOdd_row(make_fields($key, $val), $i % 2);
-		continue;
+    if (isset($val["type"]) && $val["type"] === 'block_start') {
+	echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+	echo evenOdd_row(make_fields($key, $val), $i % 2);
+	continue;
+    }
+
+    if (isset($val["type"]) && $val["type"] === 'subgroup') {
+	echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
+	echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
+	if (isset($val['desc'])) {
+	    echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
 	}
+	continue;
+    }
 
-	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
-	    echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
-        echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
-        if (isset($val['desc'])) {
-        	echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
-        }
+    if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
+	echo '</div>';
         continue;
     }
 
-    if (isset($val["type"]) && ($val["type"] === 'subgroup_end' )) {
-        echo '</div>';
-        continue;
+    if (isset($val["type"]) && $val["type"] === 'block_end') {
+	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+	echo "\n</table>";
+	continue;
     }
-	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
-		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
-		echo "\n</table>";
-		continue;
-	}
 
-	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
+	if (isset($val["type"]) && $val["type"] === 'group_start') {
 		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
 		echo make_separator($key, $val);
 		continue;
 
 	}
 
-	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+	if (isset($val["type"]) && $val["type"] === 'group_end') {
 		echo "\n</div>";
 		continue;
 	}
@@ -134,7 +134,9 @@ foreach ($constants as $key => $val) {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
 	} else {
+	    if (!isset($val["type"]) || $val["type"] !== 'block_element') {
 		echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+	    }
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {
 			$val["value"] = $app->$key;
@@ -180,12 +182,12 @@ foreach ($constants as $key => $val) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
 
-	if (isset($val['type']) && ($val['type'] === 'hidden')) {
-	} else {
-		echo "\n</table>";
+	if (!isset($val['type']) || ($val['type'] !== 'hidden' && $val['type'] !== 'block_element')) {
+	    echo "\n</table>";
 	}
 }
 ?>
+
 </div>
 
 <div align="center">

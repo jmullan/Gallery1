@@ -1051,12 +1051,14 @@ function availableRandomBlockFrames() {
         popup_link(gTranslate('config', "usual thumbs"), makeGalleryURL('setup/frame_test.php'), true)));
 
     $html .=
-        "<dt><u>". gTranslate('common',"Album image frames") ."</u></dt><dd>".
-            gTranslate('common',"Frame defined for images in the corresponding album") ."</dd>".
-        "<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt><dd>".
-            gTranslate('common',"Frame defined for thumbs in the corresponding album") ."</dd>".
-        "<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt><dd>".
-            gTranslate('common',"Frame defined for thumbs on mainpage") . "</dd>";
+	"\n<dl>".
+        "\n<dt><u>". gTranslate('common',"Album image frames") ."</u></dt>" .
+		"<dd>". gTranslate('common',"Frame defined for images in the corresponding album") ."</dd>".
+        "\n<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt>" .
+		"<dd>". gTranslate('common',"Frame defined for thumbs in the corresponding album") ."</dd>".
+        "\n<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt>" . 
+		"<dd>". gTranslate('common',"Frame defined for thumbs on mainpage") . "</dd>" .
+	"\n</dl>";
 
    return $html;
 }
@@ -1108,7 +1110,7 @@ function available_frames($description_only = false, $forRandomBlock = false) {
                     $description = $file;
                 }
                 $opts[$file] = $name;
-                $descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</a></dt><dd>$description</dd>";
+                $descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</dt><dd>$description</dd>";
             } else {
                 if (false && isDebugging()) {
                     echo gallery_error(sprintf(gTranslate('common', "Skipping %s."),

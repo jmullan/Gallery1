@@ -292,7 +292,7 @@ $constants =  array_merge(array(
 	),
 	'skinname' => array(
 		'prompt' => gTranslate('config',"Skin Name"),
-		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the look from v1.4.") .
+		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin.") .
 		  '<br><a href="http://www.pownuke.com/galleryskins/">'. gTranslate('config',"Here you can get a more Gallery Skins by Drazan") .'</a>'.
 		  available_skins(true),
 		'choices' => available_skins(),
@@ -689,7 +689,7 @@ $constants =  array_merge(array(
 	'use_exif' => array(
 		'prompt' => "Jhead EXIF Parser",
 		'desc' => sprintf(gTranslate('config',"The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-		  '<a href="http://www.sentex.net/~mwandel/jhead/" target=_"blank">jhead</a>', '<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
+		  '<a href="http://www.sentex.net/~mwandel/jhead/" target="_blank">jhead</a>', '<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
 		'value' => locateFile('jhead'),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -821,7 +821,7 @@ $constants = array_merge($constants, array(
 		'prompt' => gTranslate('config',"Enable email"),
 		'verify-func' => 'verify_email',
 		'desc' => sprintf(gTranslate('config',"Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."), '<i>' . gTranslate('config',"No") . '</i>' ) .  '<br>' .
-		  '<p style="font-weight: bold;">' . gTranslate('config',"Note:") . '</span> ' .
+		  '<span style="font-weight: bold;">' . gTranslate('config',"Note:") . '</span> ' .
 		  gTranslate('config',"If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email.") . '<br>'.
 		  '<span class="g-attention">' . gTranslate('config',"You need to enable this setting if you want to enable Self Registration.") . '</span>',
 		'choices' => array(
@@ -1325,7 +1325,7 @@ $constants = array_merge($constants, array(
 		'desc' => gTranslate('config',"The settings in this section are intended for advanced users only.") .
 		  '<div class="g-attention">'.
 		  gTranslate('config',"Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.") .
-		  '<div>'
+		  '</div>'
 	),
 	'debuglevel' => array(
 		'prompt' => gTranslate('config',"Debug Level"),
@@ -1606,7 +1606,7 @@ $defaults = array(
 	'max_size' => array(
 		'prompt' => gTranslate('config','Maximum image size'),
 		'desc' => gTranslate('config',"You can optionally limit the dimensions your images on upload to Gallery.") .
-		  '<br><span class="g-attention>'. gTranslate('config',"Warning:") .'</span> '.
+		  '<br><span class="g-attention">'. gTranslate('config',"Warning:") .'</span> '.
 		  gTranslate('config',"Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
 		'choices' => array(
