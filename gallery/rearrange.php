@@ -25,7 +25,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-        echo _("You are not allowed to perform this action!");
+        echo gTranslate('core', "You are not allowed to perform this action!");
         exit;
 }
 
@@ -47,7 +47,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo sprintf (gTranslate('core', "Rearrange Album: %s"),$gallery->album->fields["title"]) ?></title>
   <?php common_header(); ?>
 
 <script language="javascript" type="text/javascript">
@@ -98,25 +98,25 @@ function doclick(idx) {
 }
 </script>
 </head>
-<body dir="ltr" class="g-popup">
+<body>
 <div class="g-header-popup">
-  <div class="g-pagetitle-popup"><?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
+  <div class="g-pagetitle-popup"><?php echo sprintf (gTranslate('core', "Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
 </div>
-<div class="admin" align="center">
+<div class="g-sitedesc">
 <?php 
-echo _("Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
+echo gTranslate('core', "Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
 
 $explainTable = new galleryTable;
-$explainTable->setCaption(_("Meaning of the borderstyle"), 'attention');
+$explainTable->setCaption(gTranslate('core', "Meaning of the borderstyle"), 'attention');
 $explainTable->setAttrs(array('width' => 300, 'cellspacing' => 3, 'cellpadding' => 2));
 $explainTable->setColumnCount(4);
 
-$explainTable->addElement(array('content' => _("Picture"), 'cellArgs' => array('style' => 'text-align: center; border: 2px solid black')));
-$explainTable->addElement(array('content' => _("Movie"), 'cellArgs' => array('style' => 'text-align: center; border: 2px dotted black')));
-$explainTable->addElement(array('content' => _("Subalbum") , 'cellArgs' => array('style' => 'text-align: center; border: 3px double black')));
-$explainTable->addElement(array('content' => _("Selected") , 'cellArgs' => array('style' => 'text-align: center; border: 2px dashed black')));
-$explainTable->addElement(array('content' => _("Visible") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: green')));
-$explainTable->addElement(array('content' => _("Hidden") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: red')));
+$explainTable->addElement(array('content' => gTranslate('core', "Picture"), 'cellArgs' => array('style' => 'text-align: center; border: 2px solid black')));
+$explainTable->addElement(array('content' => gTranslate('core', "Movie"), 'cellArgs' => array('style' => 'text-align: center; border: 2px dotted black')));
+$explainTable->addElement(array('content' => gTranslate('core', "Subalbum") , 'cellArgs' => array('style' => 'text-align: center; border: 3px double black')));
+$explainTable->addElement(array('content' => gTranslate('core', "Selected") , 'cellArgs' => array('style' => 'text-align: center; border: 2px dashed black')));
+$explainTable->addElement(array('content' => gTranslate('core', "Visible") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: green')));
+$explainTable->addElement(array('content' => gTranslate('core', "Hidden") , 'cellArgs' => array('colspan' => 2, 'style' => 'text-align: center; color: red')));
 
 ?>
 <br><br><center><?php echo $explainTable->render(); ?></center>
@@ -135,8 +135,8 @@ $pictureTable->setAttrs(array('width' => '100%', 'cellspacing' => 0, 'cellpaddin
 $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
-    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'" class="g-button">'. 
-    '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'" class="g-button">',
+    'content' => '<input type="button" onclick="save();return false" value="' . gTranslate('core', "save") .'" class="g-button">'. 
+    '<input type="button" onclick="window.close();return false" value="'. gTranslate('core', "cancel") .'" class="g-button">',
     'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 $list = array();
@@ -146,7 +146,7 @@ $page = 1;
 for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
     if ($j++==($cols*$rows) || $page == 1) {
         $pictureTable->addElement(array(
-            'content' => sprintf(_("******* Page %s *******"), $page),
+            'content' => sprintf(gTranslate('core', "******* Page %s *******"), $page),
             'cellArgs' => array('colspan' => $cols, 'align' => 'center')));
 
         $j = 1;
@@ -179,8 +179,8 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 }
 
 $pictureTable->addElement(array(
-    'content' => '<input type="button" onclick="save();return false" value="' . _("save") .'" class="g-button">'. 
-	  '<input type="button" onclick="window.close();return false" value="'. _("cancel") .'" class="g-button">',
+    'content' => gButton('save', gTranslate('core', "_Save"), 'save();return false') .
+		 gButton('cancel', gTranslate('core', "_Cancel"), 'window.close();return false'),
     'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 echo $pictureTable->render();

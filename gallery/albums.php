@@ -354,7 +354,7 @@ for ($i = $start; $i <= $end; $i++) {
         $rootAlbum[$tmpAlbumName]['albumdesc']['title'] = editField($gallery->album, "title", $albumURL);
         if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
             $rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= ' '. popup_link(
-                getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes'),
+                gImage('icons/compressed.png', gTranslate('core', "Download entire album as archive")),
                 "download.php?set_albumName=$tmpAlbumName",
                 false, false, 500, 500, 'g-small', '', '',
                 false, false

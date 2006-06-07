@@ -80,4 +80,15 @@ $GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 
 $MIN_PHP_MAJOR_VERSION = '4.1.0';
 
+if(fs_file_exists('./htaccess')) {
+    if ($GALLERY_REWRITE_OK) {
+	if (strstr($GALLERY_REWRITE_OK, "ampersandbroken")) {
+	    $GALLERY_REWRITE_SEPARATOR = "\&";
+	}
+	else {
+	    $GALLERY_REWRITE_SEPARATOR = "&";
+	}
+    }
+}
+
 ?>

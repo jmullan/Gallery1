@@ -1704,7 +1704,7 @@ $defaults = array(
 	'mPUSHAccount' => array(
 		'prompt' => gTranslate('config',"Account for the mPUSH service"),
 		'desc' => sprintf(gTranslate('config',"If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."),
-		  '<a href="http://mpush.msolutions.cc/safe.php?p=Register&ref=gallery" target="_blank">', '</a>'),
+		  '<a href="http://mpush.msolutions.cc/safe.php?p=Register&amp;ref=gallery" target="_blank">', '</a>'),
 		'value' => 'gallery',
 		'type' => 'text',
 	),
@@ -1992,9 +1992,9 @@ $defaults = array(
 		'prompt' => gTranslate('config',"Microthumb Photo Navigation"),
 		'desc' => '<dl>'
 		  .'<dt>'. gTranslate('config',"Fixed") .'</dt>'
-		  .'<dd>'. gTranslate('config',"Displays prev+next groups of thumbs, changing only to display next group of thumbs.") . '</dd>'
+		  .'<dd>'. gTranslate('config',"Displays prev and next groups of thumbs, changing only to display next group of thumbs.") . '</dd>'
 		  .'<dt>'. gTranslate('config',"Dynamic") . '</dt>'
-		  .'<dd>'. gTranslate('config',"Displays previos & next images, with current image between.") . '</dd>'
+		  .'<dd>'. gTranslate('config',"Displays previos and next images, with current image between.") . '</dd>'
 		  .'</dl>',
 		'value' => 'fixed',
 		'choices' => array(

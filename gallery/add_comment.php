@@ -109,7 +109,7 @@ drawCommentAddForm($commenter_name, 35);
   document.g1_form.commenter_name.focus();
 //-->
 </script>
-</div>
+
 <?php print gallery_validation_link("add_comment.php", true, array('id' => $id)); ?>
 </body>
 </html>

@@ -652,8 +652,12 @@ if ($numPhotos) {
 				$link = '';
 
 				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
-					$iconText = getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes');
-					$link = popup_link( $iconText, 'download.php?set_albumName='. $gallery->album->getAlbumName($i), false, true, 500, 500, '', '', '', false);
+					$iconText = gImage('icons/compressed.png', gTranslate('core', "Download entire album as archive"));
+					$link = popup_link(
+						$iconText,
+						'download.php?set_albumName='. $gallery->album->getAlbumName($i),
+						false, true, 500, 500, '', '', '', false, false
+					);
 				}
 
 				$buf .="<b>";

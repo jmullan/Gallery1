@@ -54,6 +54,14 @@ $configTestStatus = array(
 		'type' => 'nogo'
 	)
 );
+
+        $diagnostics_page = galleryLink(
+		makeGalleryUrl('setup/diagnostics.php'),
+		gTranslate('config', "Gallery Dia_gnostics Page"));
+	$help_page = galleryLink(
+		'http://gallery.sourceforge.net/help.php',
+		gTranslate('config', "Gallery _help page"));
+	$docs_page = galleryLink(galleryDocs(), gTranslate('config', "_documentation"));
 ?>
 
 <script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js'); ?>"></script>
@@ -72,17 +80,18 @@ $configTestStatus = array(
 
 	echo '<br><br>';
 
-	$diagUrl='diagnostics.php';
-        $diagnostics_page='<a href="'. $diagUrl .'">' . gTranslate('config', "Gallery Diagnostics Page").'</a>';
-	$help_page='<a href="http://gallery.sourceforge.net/help.php">'. gTranslate('config', "Gallery Help Page"). '</a>';
-	$docs_page = galleryDocs();
-
-	if ($docs_page) {
-		echo sprintf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
-				'<a href="'. $docs_page .'">'. gTranslate('config', "documentation") .'</a>', $diagnostics_page, $help_page);
-	} else {
-		echo sprintf(gTranslate('config', "Having problems?  Try the %s and %s."),
-			$diagnostics_page, $help_page);
+	if (galleryDocs()) {
+	    printf(gTranslate('config', "Having problems?  Try the %s, %s and %s."),
+		$docs_page,
+		$diagnostics_page,
+		$help_page
+	    );
+	}
+	else {
+	    printf(gTranslate('config', "Having problems?  Try the %s and %s."),
+		$diagnostics_page,
+		$help_page
+	    );
 	}
 ?>
 </div>

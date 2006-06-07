@@ -31,11 +31,11 @@ list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecurs
 if (! $gallery->user->canWriteToAlbum($gallery->album) &&
   ! $gallery->album->getItemOwnerModify() &&
   ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
-printPopupStart(_("Resize Photo"));
+printPopupStart(gTranslate('core', "Resize Photo"));
 
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
@@ -49,7 +49,7 @@ if ($gallery->session->albumName && isset($index)) {
 		if (!strcmp($index, "all")) {
 			$gallery->album->resizeAllPhotos($resize,$resize_file_size,"", $resizeRecursive);
 		} else {
-			echo("<br> ". _("Resizing 1 photo..."));
+			echo("<br> ". gTranslate('core', "Resizing 1 photo..."));
 			my_flush();
 			set_time_limit($gallery->app->timeLimit);
 			$gallery->album->resizePhoto($index, $resize, $resize_file_size);
@@ -61,7 +61,7 @@ if ($gallery->session->albumName && isset($index)) {
 		return;
 	} else {
 ?>
-<p><?php echo _("This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
+<p><?php echo gTranslate('core', "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
 </p>
 
 <?php echo makeFormIntro("resize_photo.php", 
@@ -69,7 +69,7 @@ if ($gallery->session->albumName && isset($index)) {
 			array("type" => "popup"));
 ?>
 
-<h3><?php echo $all ? _("What is the target size for all the intermediate photos in this album?") : _("What is the target size for the intermediate version of this photo?");?></h3>
+<h3><?php echo $all ? gTranslate('core', "What is the target size for all the intermediate photos in this album?") : gTranslate('core', "What is the target size for the intermediate version of this photo?");?></h3>
 <?php
 		if (!$all) {
 			echo "\n<p>";
@@ -78,15 +78,15 @@ if ($gallery->session->albumName && isset($index)) {
 		}
 ?>
 
-<table style="border-width:1px; border-style:solid; padding:10px; padding-left:20px; padding-right:20px" class="popuptd">
+<table style="border: 1px solid; padding:10px 20px;">
 <tr>
-	<td><?php echo _("Target filesize"); ?></td>
+	<td><?php echo gTranslate('core', "Target filesize"); ?></td>
 	<td><input type="text" size="4" name="resize_file_size" value="<?php print $gallery->album->fields["resize_file_size"] ?>" >  kbytes</td>
 </tr>
 <tr>
-	<td valign="middle"><?php print _("Maximum side length in pixels") ?></td>
+	<td style="vertical-align: middle"><?php print gTranslate('core', "Maximum side length in pixels") ?></td>
 	<td><br>
-	<table border="0" class="popuptd">
+	<table>
 	<?php 
 		$choices=array(1280,1024,700,800,640,600,500,400);
 		for ($i = 0; $i<count($choices); $i = $i+2) {
@@ -99,7 +99,7 @@ if ($gallery->session->albumName && isset($index)) {
 	<tr>
 		<td colspan="2">
 			<input id="none" type="radio" name="resize" value="manual">
-			<input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;"><label for="none"> <?php echo _("(manual value)"); ?></label>
+			<input type="text" size="5" name="manual" onFocus="document.getElementById('none').checked=true;"><label for="none"> <?php echo gTranslate('core', "(manual value)"); ?></label>
 		</td>
 	</tr>
 
@@ -112,27 +112,27 @@ if ($gallery->session->albumName && isset($index)) {
 <?php
      if (!strcmp($index, "all")) { ?>
 <p>
-	<?php echo _("Apply to nested albums ?"); ?>
+	<?php echo gTranslate('core', "Apply to nested albums ?"); ?>
 	<input type="checkbox" name="resizeRecursive" value="false">
 </p>
 <?php } ?>
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="remove_resized" value="<?php echo _("Get rid of resized") ?>" class="g-button">
-	<?php echo _("(Use only the original picture)"); ?>
+	<?php echo gSubmit('remove_resized', gTranslate('core', "Get _rid of resized")); ?>
+	<?php echo gTranslate('core', "(Use only the original picture)"); ?>
 
 </p>
 <br>
 
-<input type="submit" name="change_size" value="<?php echo _("Change Size") ?>" class="g-button">
-<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit('change_size', gTranslate('core', "Change _Size")) ?>
+<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 
 </form>
 
 <?php
 	}
 } else {
-	echo gallery_error(_("no album / index specified"));
+	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 </div>
