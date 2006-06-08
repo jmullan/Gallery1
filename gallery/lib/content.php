@@ -349,7 +349,7 @@ function printChildren($tree, $depth = 0) {
 		}
 		$html .= "</td><td class=\"g-subalbumTreeElement\">";
 		$html .= '<a href="'. $content['albumUrl'] .'">';
-		$html .= $content['titel'] .' ';
+		$html .= $content['title'] .' ';
 		$html .= $content['clicksText'] .'</a>';
 		$html .= "</td></tr></table>";
 		if(!empty($content['subTree'])) {

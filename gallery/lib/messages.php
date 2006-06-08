@@ -81,7 +81,7 @@ function errorRow($key) {
 }
 
 function processingMsg($buf) {
-    echo "\n<br>$buf";
+    echo "\n- $buf<br>";
     my_flush();
 }
 

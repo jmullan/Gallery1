@@ -24,30 +24,16 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-function image($name) {
-	return getImagePath("$name");
-}
+printPopupStart(gTranslate('core', "Uploading Photos"));
 
-doctype();
+echo gTranslate('core', "This page will go away automatically when the upload is complete.  Please be patient!");
+
+echo "\n<br><br>";
+
+echo gImage("computer.gif",'computer');
+echo gImage("uploading.gif",'upload');
+echo gImage("computer.gif", 'computer');
 ?>
-<html>
-<head>
-  <title><?php echo _("Uploading Photos") ?></title>
-  <?php common_header(); ?>
-</head>
-
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("File upload in progress!") ?></div>
-<div class="popup" align="center">
-<?php echo _("This page will go away automatically when the upload is complete.  Please be patient!") ?>
-<p>
-<table border=0 cellpadding=0 cellspacing=0>
- <tr>
-  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
-  <td> <img src="<?php echo image("uploading.gif") ?>" width="160" height="11"> </td>
-  <td> <img src="<?php echo image("computer.gif") ?>" width="31" height="32"> </td>
- </tr>
-</table>
 
 </div>
 </body>

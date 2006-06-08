@@ -25,13 +25,15 @@
 require_once(dirname(__FILE__) . '/init.php');
 ?>
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+
 <html>
 <head>
-  <title><?php echo _("Add Photos") ?></title>
+  <title><?php echo gTranslate('core', "Add Photos") ?></title>
 </head>
-<frameset rows="100%, 0%" border=0 frameborder=0 framespacing=0>
-  <frame src="<?php echo makeGalleryUrl('add_photos.php', array('set_albumName' => $gallery->session->albumName, "type" => "popup")); ?>" noresize />
-  <frame name="hack" src="" noresize noscroll />
+<frameset rows="100%, 0%" border="0" frameborder="0" framespacing="0">
+  <frame src="<?php echo makeGalleryUrl('add_photos.php', array('set_albumName' => $gallery->session->albumName, "type" => "popup")); ?>" noresize>
+  <frame name="hack" src="" noresize noscroll>
 </frameset>
 
 <!-- This is a hack that's needed for the GR applet to be able to

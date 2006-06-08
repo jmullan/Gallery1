@@ -37,17 +37,8 @@ if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 
 $errorCount = 0;
 if ($formaction == 'create') {
-    doctype();
-    ?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Create Multiple Users") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Create Multiple Users") ?></div>
-<div class="popup">
-<?php
+    printPopupStart(gTranslate('core', "Create Multiple Users"));
+    
     if (empty($_FILES['membersfile']['name'])) {
         $gErrors["membersfile"] = gTranslate('core', "No file selected.");
         $errorCount++;
@@ -145,7 +136,7 @@ if ($formaction == 'create') {
 ?>
 
 <center>
-    <form><input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>"></form>
+    <form><input class="g-button" type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>"></form>
 </center>
 </div>
 </body>
@@ -156,20 +147,13 @@ if ($formaction == 'create') {
 } else if ($formaction == 'cancel' || isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 } else {
-    doctype();
+
+    printPopupStart(gTranslate('core', "Create Multiple Users"));
 }
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Create Multiple Users") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo gTranslate('core', "Create Users") ?></div>
-<div class="popup" align="center">
-<?php echo gTranslate('core', "Create multiple new users from a file.") ?>
-<p>
-<?php
+    echo gTranslate('core', "Create multiple new users from a file.");
+
+    echo "\n<br><br>";
+
 $allowChange["uname"] = false;
 $allowChange["email"] = false;
 $allowChange["password"] = false;
@@ -194,13 +178,14 @@ $canCreate = 0;
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 
 <br>
-	<input type="hidden" name="formaction" value="">
-    <input type="submit" name="create" value="<?php echo gTranslate('core', "Create") ?>" onclick="usercreate_form.formaction.value='create'">
-    <input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
+    <input type="hidden" name="formaction" value="">
+    <input class="g-button" type="submit" name="create" value="<?php echo gTranslate('core', "Create") ?>" onclick="usercreate_form.formaction.value='create'">
+    <input class="g-button" type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
 </form>
 
 </div>
-<div class="popup">
+
+<div class="g-sitedesc">
 <b><?php echo gTranslate('core', "Notes:") ?> </b>
 <ul>
 <li>

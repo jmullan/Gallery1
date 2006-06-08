@@ -29,9 +29,10 @@
  */
 require_once(dirname(__FILE__) . '/init.php');
 
-list($urls, $meta, $usercaption, $setCaption) = getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY) = getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY'));
-list($wmSelect) = getRequestVar(array('wmSelect'));
+list($urls, $meta, $usercaption, $setCaption) =
+	getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
+	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
@@ -48,173 +49,197 @@ if (!empty($_FILES['userfile']['name'])) {
     }
 }
 
+$image_tags = array();
+$info_tags = array();
+
 doctype();
 ?>
 <html>
 <head>
   <title><?php echo gTranslate('core', "Processing and Saving Photos") ?></title>
   <?php common_header(); ?>
-
 </head>
-<body dir="<?php echo $gallery->direction ?>" onLoad='parent.opener.hideProgressAndReload();' class="popupbody">
-<?php
+<body class="g-popup" onLoad="parent.opener.hideProgressAndReload();">
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Fetching Urls...") ?></div>
+</div>
 
-$image_tags = array();
-$info_tags = array();
+<?php
+// Were an Url given ?
 if (!empty($urls)) {
 ?>
-<div class="popuphead"><?php echo gTranslate('core', "Fetching Urls...") ?></div>
-<div class="popup" align="center">
+<div class="g-content-popup center">
 <?php
-	/* Process all urls first.
-	 * $urls contains all URLs given by the "URL Upload".
-	 * $urls should be empty when using the "Form Upload".
+    /* Process all urls first.
+     * $urls contains all URLs given by the "URL Upload".
+     * $urls should be empty when using the "Form Upload".
+    */
+    $messages = array();
+    foreach ($urls as $url) {
+	/* Get rid of any extra white space */
+	$url = trim($url);
+
+	/*
+	 * Check to see if the URL is a local directory (inspired by
+	 * code from Jared (hogalot))
 	*/
-	foreach ($urls as $url) {
-
-	    /* Get rid of any extra white space */
-	    $url = trim($url);
-
-	    /*
-	    * Check to see if the URL is a local directory (inspired by
-	    * code from Jared (hogalot))
-	    */
-	    if (fs_is_dir($url)) {
-	        processingMsg(sprintf(gTranslate('core', "Processing %s as a local directory."),
-	        '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>'));
-	        $handle = fs_opendir($url);
-	        if($handle) {
-	            while (($file = readdir($handle)) != false) {
-	                if ($file != "." && $file != "..") {
-	                    $tag = pathinfo($file);
-	                    $tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
-	                    if (acceptableFormat($tag) || canDecompressArchive($tag)) {
-	                        /* Add to userfile */
-	                        if (substr($url,-1) == "/") {
-	                            $image_tags[] = fs_export_filename($url . $file);
-	                        } else {
-	                            $image_tags[] = fs_export_filename($url . "/" . $file);
-	                        }
+	if (fs_is_dir($url)) {
+	    echo infobox(array(array(
+		'type' => 'information',
+		'text' =>sprintf(gTranslate('core', "Processing %s as a local directory."),
+	          '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
+	    )));
+	    $handle = fs_opendir($url);
+	    if($handle) {
+		while (($file = readdir($handle)) != false) {
+		    if ($file != "." && $file != "..") {
+			$tag = pathinfo($file);
+			$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
+			if (acceptableFormat($tag) || canDecompressArchive($tag)) {
+			    /* File seems to be valid, so add to userfile */
+			    if (substr($url,-1) == "/") {
+				$image_tags[] = fs_export_filename($url . $file);
 	                    }
-	                    if ($tag == "csv") {
-	                        if (substr($url,-1) == "/") {
-	                            $info_tags[] = fs_export_filename($url . $file);
-	                        } else {
-	                            $info_tags[] = fs_export_filename($url . "/" . $file);
-	                        }
-	                    }
+			    else {
+				$image_tags[] = fs_export_filename($url . "/" . $file);
+			    }
+	                }
+	                if ($tag == 'csv') {
+			    if (substr($url,-1) == "/") {
+				$info_tags[] = fs_export_filename($url . $file);
+			    }
+			    else {
+				$info_tags[] = fs_export_filename($url . "/" . $file);
+			    }
 	                }
 	            }
-	            closedir($handle);
 	        }
-	        continue;
+	        closedir($handle);
 	    }
-		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
-		$url = ltrim($url);
+	    continue;
+	}
+	else {
+	    echo infoBox(array(array(
+		'type' => 'information',
+		'text' => sprintf(gTranslate('core', "Processing '%s'."),
+	          '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
+	    )));
+	}
 
-		$urlParts = parse_url($url);
-		$urlPathInfo = isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
-		$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
+	/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
+	$url = ltrim($url);
 
-		/* If the URI doesn't start with a scheme, prepend 'http://' */
-		if (!empty($url) && !fs_is_file($url)) {
-			if (!ereg("^(http|ftp)", $url)) {
-				processingMsg(sprintf(gTranslate('core', 'Unable to find %s locally - trying %s.'),
-					htmlspecialchars(strip_tags(urldecode($url))), 'http'));
-				$url = "http://$url";
-			}
+	$urlParts = parse_url($url);
+	$urlPathInfo = isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
+	$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
 
-			/* Parse URL for name and file type */
-			$url_stuff = @parse_url($url);
-			if (!isset($url_stuff["path"])) {
-				$url_stuff["path"]="";
-			}
-			$name = basename($url_stuff["path"]);
-		} else {
-			$name = basename($url);
-		}
+	/* If the URI doesn't start with a scheme, prepend 'http://' */
+	if (!empty($url) && !fs_is_file($url)) {
+	    if (!ereg("^(http|ftp)", $url)) {
+		echo infoBox(array(array(
+		    'type' => 'warning',
+		    'text' => sprintf(gTranslate('core', 'Unable to find %s locally - trying %s.'),
+		        htmlspecialchars(strip_tags(urldecode($url))), 'http')
+		)));
+		$url = "http://$url";
+	    }
 
-		/* Dont output warning messages if we cant open url */
+	    /* Parse URL for name and file type */
+	    $url_stuff = @parse_url($url);
+	    if (!isset($url_stuff["path"])) {
+		$url_stuff["path"]="";
+	    }
+	    $name = basename($url_stuff["path"]);
+	}
+	else {
+	    $name = basename($url);
+	}
 
-		/*
-		 * Try to open the url in lots of creative ways.
-		 * Do NOT use fs_fopen here because that will pre-process
-		 * the URL in win32 style (ie, convert / to \, etc).
-		 */
-		$urlArray = array($url, "$url/");
-		if (!ereg("http", $url)) {
-		    $urlArray[] = "http://$url";
-		    $urlArray[] = "http://$url/";
-		}
+	/* Dont output warning messages if we cant open url */
 
-		do {
-		    $tryUrl = array_shift($urlArray);
-		    $id = @fopen($tryUrl, "rb");
-		}
-		while (!$id && !empty($urlArray));
+	/*
+	 * Try to open the url in lots of creative ways.
+	 * Do NOT use fs_fopen here because that will pre-process
+	 * the URL in win32 style (ie, convert / to \, etc).
+	 */
+	$urlArray = array($url, "$url/");
+	if (!ereg("http", $url)) {
+	    $urlArray[] = "http://$url";
+	    $urlArray[] = "http://$url/";
+	}
 
-		if (!$id) {
-		    processingMsg(sprintf(gTranslate('core', "Could not open url: %s"), $url));
-		    continue;
-		}
+	do {
+	    $tryUrl = array_shift($urlArray);
+	    $id = @fopen($tryUrl, "rb");
+	}
+	while (!$id && !empty($urlArray));
 
-		/**
-		 * If this is an image or movie -
-		 * copy it locally and add it to the processor array
-		 */
-		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
+	if (!$id) {
+	    echo infoBox(array(array(
+		'type' => 'error',
+		'text' => sprintf(gTranslate('core', "Could not open url: %s"), $url)
+	    )));
+	    continue;
+	}
 
-		    /* copy file locally
-		    * use fopen instead of fs_fopen to prevent directory and filename disclosure
-		    */
-		    $file = $gallery->app->tmpDir . "/upload." . genGUID();
-		    $od = @fopen($file, "wb");
-		    if ($id && $od) {
-		        while (!feof($id)) {
-		            fwrite($od, fread($id, 65536));
-		            set_time_limit($gallery->app->timeLimit);
-		        }
-		        fclose($id);
-		        fclose($od);
-		    }
-		    /* Make sure we delete this file when we're through... */
-		    $temp_files[$file]=1;
+	/**
+	 * If this is an image or movie -
+	 * copy it locally and add it to the processor array
+	 */
+	if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
+	    /* copy file locally
+	     * use fopen instead of fs_fopen to prevent directory and filename disclosure
+	    */
+	    $file = $gallery->app->tmpDir . "/upload." . genGUID();
+	    $od = @fopen($file, "wb");
+	    if ($id && $od) {
+	        while (!feof($id)) {
+	            fwrite($od, fread($id, 65536));
+	            set_time_limit($gallery->app->timeLimit);
+	        }
+	        fclose($id);
+	        fclose($od);
+	    }
+	    /* Make sure we delete this file when we're through... */
+	    $temp_files[$file] = 1;
 
-		    /* Add it to userfile */
-		    $_FILES['userfile']['name'][] = $name;
-		    $_FILES['userfile']['tmp_name'][] = $file;
+	    /* Add it to userfile */
+	    $_FILES['userfile']['name'][] = $name;
+	    $_FILES['userfile']['tmp_name'][] = $file;
 
-		} else {
-		    /* Slurp the file */
-		    processingMsg(sprintf(gTranslate('core', "Parsing %s for images..."), $url));
-		    $contents = fs_file_get_contents($url);
+	}
+	else {
+	    /* Slurp the file */
+	    processingMsg(sprintf(gTranslate('core', "Parsing %s for images..."), $url));
+	    $contents = fs_file_get_contents($url);
 
-		    /* We'll need to add some stuff to relative links */
-		    $base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
-		    $base_dir = '';
-		    if (isset($url_stuff["port"])) {
-		        $base_url .= ':' . $url_stuff["port"];
-		    }
+	    /* We'll need to add some stuff to relative links */
+	    $base_url = $url_stuff["scheme"] . '://' . $url_stuff["host"];
+	    $base_dir = '';
+	    if (isset($url_stuff["port"])) {
+	        $base_url .= ':' . $url_stuff["port"];
+	    }
 
-		    /* Hack to account for broken dirname
-		    * This has to make the ugly assumption that the URL is either a
-		    * directory (with or without trailing /), or a filename containing a "."
-		    * This prevents a directory without a trailing / from being inadvertantly
-		    * dropped from resulting URLs.
-		    */
-		    if (ereg("/$", $url_stuff["path"]) || !ereg("\.", $name)) {
-		        $base_dir = $url_stuff["path"];
-		    } else {
-		        $base_dir = dirname($url_stuff["path"]);
-		    }
+	    /* Hack to account for broken dirname
+	    * This has to make the ugly assumption that the URL is either a
+	    * directory (with or without trailing /), or a filename containing a "."
+	    * This prevents a directory without a trailing / from being inadvertantly
+	    * dropped from resulting URLs.
+	    */
+	    if (ereg("/$", $url_stuff["path"]) || !ereg("\.", $name)) {
+	        $base_dir = $url_stuff["path"];
+	    }
+	    else {
+	       $base_dir = dirname($url_stuff["path"]);
+	    }
 
-		    /* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
-		    if (!ereg("/$", $base_dir)) {
-		        $base_dir .= '/';
-		    }
+	    /* Make sure base_dir ends in a / ( accounts for empty base_dir ) */
+	    if (!ereg("/$", $base_dir)) {
+	        $base_dir .= '/';
+	    }
 
-			$things = array();
-			$results =array();
+	    $things = array();
+	    $results =array();
 
             if (preg_match_all('{(?:src|href)\s*=\s*(["\'])([^\'">]+\.'. acceptableFormatRegexp() .')(?:\1)}i', $contents, $matches)) {
                 foreach ($matches[2] as $url) {
@@ -223,42 +248,35 @@ if (!empty($urls)) {
             }
 
             /* Add each unique link to an array we scan later */
-			foreach (array_keys($things) as $thing) {
-
-				/*
-				 * Some sites (slashdot) have images that start with // and this
-				 * confuses Gallery.  Prepend 'http:'
-				 */
-				if (!strcmp(substr($thing, 0, 2), "//")) {
-					$thing = "http:$thing";
-				}
-
-				/* Absolute Link ( http://www.foo.com/bar ) */
-				if (substr($thing, 0, 4) == 'http') {
-					$image_tags[] = $thing;
-
-				/* Relative link to the host ( /foo.bar )*/
-				} elseif (substr($thing, 0, 1) == '/') {
-					$image_tags[] = $base_url . $thing;
-
-				/* Relative link to the dir ( foo.bar ) */
-				} else {
-					$image_tags[] = $base_url . $base_dir . $thing;
-				}
-			}
-
-			/* Tell user how many links we found, but delay processing */
-			processingMsg(sprintf(gTranslate('core', "Found %d images"), count($image_tags)));
+	    foreach (array_keys($things) as $thing) {
+		/*
+		* Some sites (slashdot) have images that start with // and this
+		* confuses Gallery.  Prepend 'http:'
+		*/
+		if (substr($thing, 0, 2) == '//') {
+		    $thing = "http:$thing";
 		}
+
+		/* Absolute Link ( http://www.foo.com/bar ) */
+		if (substr($thing, 0, 4) == 'http') {
+		    $image_tags[] = $thing;
+		}
+		/* Relative link to the host ( /foo.bar )*/
+		elseif (substr($thing, 0, 1) == '/') {
+		    $image_tags[] = $base_url . $thing;
+		}
+		/* Relative link to the dir ( foo.bar ) */
+		else {
+		    $image_tags[] = $base_url . $base_dir . $thing;
+		}
+	    }
+
+	    /* Tell user how many links we found, but delay processing */
+	    processingMsg(sprintf(gTranslate('core', "Found %d images"), count($image_tags)));
 	}
-	echo "</div>\n";
+    }
 } /* if ($urls) */
-?>
 
-<div class="popuphead"><?php echo gTranslate('core', "Processing status...") ?></div>
-<div class="popup">
-
-<?php
 $image_count = 0;
 
 // Begin Metadata fetching and preprocessing
@@ -354,31 +372,27 @@ if (!empty($temp_files)) {
         fs_unlink($tf);
     }
 }
-?>
 
-<div class="popuptd" align="center">
-<?php
 if (empty($image_count) && $upload_started) {
 	print gTranslate('core', "No images uploaded!");
 }
-?>
-<br>
-<form>
-<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick='parent.close()'>
-</form>
+echo "\n<br>";
+echo gButton('close', gTranslate('core', "Dismiss"), 'parent.close()');
 
-<?php
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
 
-	/*
-	** include JavaScript (de)selection and invert
-	*/
-	insertFormJS('uploadurl_form');
+    /*
+    ** include JavaScript (de)selection and invert
+    */
+    insertFormJS('uploadurl_form');
 
-	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
+    echo "\n<p>". insertFormJSLinks('urls[]') ."</p>\n";
 
+    echo '<div class="left">';
     echo gTranslate('core', "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
+    echo "\n</div>";
+
     echo makeFormIntro("save_photos.php",
 		array('name' => 'uploadurl_form'),
 		array('type' => 'popup'));
@@ -389,7 +403,7 @@ if (count($image_tags)) {
 
     echo '<select name="urls[]" multiple="multiple" size="'. $selectSize ."\">\n";
     foreach ( $image_tags as $image_src) {
-	   echo "\t<option value=\"$image_src\" selected>$image_src</option><br>\n";
+	   echo "\t<option value=\"$image_src\" selected>$image_src</option>\n";
     }
 
     echo "</select>\n";
@@ -400,32 +414,26 @@ if (count($image_tags)) {
     echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
 
     if (count($info_tags)) { ?>
-<span>
+<div class="g-content-popup left">
 <?php
-	   processingMsg(sprintf(gTranslate('core', "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags)));
+    printf(gTranslate('core', "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."), count($info_tags));
 ?>
-</span>
-<p>
+</div>
 <?php
-        echo insertFormJSLinks('meta[]');
+    echo insertFormJSLinks('meta[]');
+    echo "\n<br><br>";
+    
+    foreach ($info_tags as $info_tag) {
+	echo "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked>$info_tag<br>\n";
+    }
+	
+    echo "\n<br>";
+    
+    echo insertFormJSLinks('meta[]');
+}
+/* end if (count($info_tags)) */
 ?>
-</p>
-<table>
-<tr>
-	<td>
-<?php
-    	foreach ($info_tags as $info_tag) {
-    		print "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked/>$info_tag</input><br>\n";
-    	}
-?>
-	</td>
-</tr>
-</table>
-<p>
-<?php
-	   echo insertFormJSLinks('meta[]');
-?>
-<?php } /* end if (count($info_tags)) */ ?>
+
 <p>
 <input type="hidden" name="setCaption" value="<?php echo isset($setCaption) ? $setCaption : '' ?>">
 <input type="hidden" name="wmName" value="<?php echo $wmName ?>">
@@ -433,12 +441,11 @@ if (count($image_tags)) {
 <input type="hidden" name="wmAlignX" value="<?php echo $wmAlignX ?>">
 <input type="hidden" name="wmAlignY" value="<?php echo $wmAlignY ?>">
 <input type="hidden" name="wmSelect" value="<?php echo $wmSelect ?>">
-<input type="button" value="<?php echo gTranslate('core', "Add Files") ?>" onClick="parent.opener.showProgress(); document.uploadurl_form.submit()">
+<?php echo gButton('addFiles', gTranslate('core', "_Add Files"), 'parent.opener.showProgress(); document.uploadurl_form.submit()'); ?>
 </p>
 
 </form>
-</div>
-</div>
+
 <?php
 } /* End if links slurped */ ?>
 </div>

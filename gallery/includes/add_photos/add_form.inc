@@ -61,7 +61,7 @@ echo "\n<br><br>". gTranslate('core', "Files:");
 <p><?php
     echo gTranslate('core', "Do the same for optional metafiles.");
     echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/metadataOnUpload.php',
-	 false, false, 500, 500, '', '', '', false);
+	 false, false, 500, 500, '', '', '', false, false);
 ?>
 </p>
 <input id="trash_metafile" type="file">
@@ -87,7 +87,7 @@ echo "\n<br><br>". gTranslate('core', "Files:");
 }
 ?>
 	<p align="center">
-	<input type="button" value="<?php echo gTranslate('core', "Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()' class="g-button">
-	<input type="submit" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()' class="g-button">
+	<?php echo gButton('upload', gTranslate('core', "_Upload Now"), 'parent.opener.showProgress(); document.upload_form.submit()'); ?>
+	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 	</p>
 	</form>

@@ -100,42 +100,32 @@ $allowChange["old_password"] = false;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Make New Password") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Make New Password") ?></div>
-<div class="popup" align="center">
-<?php 
-if ($error_string) {
-       	echo gallery_error($error_string);
+printPopupStart(gTranslate('core', "Make New Password"));
+
+if (!empty($messages)) {
+       	echo infobox($messages);
        	echo "<a href='albums.php'>" . _("Enter the Gallery") . "</a></div></body></html>"; 
 	exit;
 }
 
+echo '<div class="g-sitedesc">';
 echo _("You can change your user information here.");
 echo _("You must enter the new password twice.");
 
-echo "\<p>";
+echo "\n</div>";
 
 echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-echo "\n<p>";
-
 include(dirname(__FILE__) . '/html/userData.inc');
 
 ?>
 <p>
 <input type="hidden" name="hash" value="<?php echo $hash ?>">
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="location.href='<?php echo $gallery->app->photoAlbumURL; ?>'">
+<?php echo gSubmit('save', _("_Save")); ?>
+<?php echo gButton('cancel', _("_Cancel"), "location.href='$gallery->app->photoAlbumURL'"); ?>
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
