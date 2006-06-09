@@ -1139,18 +1139,18 @@ class Album {
         rmdir($dir);
     }
 
-    function resizePhoto($index, $target, $filesize=0, $pathToResized="") {
+    function resizePhoto($index, $target, $filesize = 0, $pathToResized = '') {
         $this->updateSerial = 1;
 
         $photo = &$this->getPhoto($index);
         if (!$photo->isMovie()) {
             $photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized);
         } else {
-            echo ("Skipping Movie");
+            echo gTranslate('core', "Skipping Movie");
         }
     }
 
-    function resizeAllPhotos($target,$filesize=0,$pathToResized="", $recursive=false) {
+    function resizeAllPhotos($target,$filesize = 0,$pathToResized = '', $recursive = false) {
         for ($i=1; $i <= $this->numPhotos(1); $i++) {
             if ($this->isAlbum($i) && $recursive == true) {
                 $nestedAlbum = new Album();
@@ -2771,6 +2771,7 @@ class Album {
         global $gallery;
         $emails = array();
         $uids = array();
+	$messages = array();
 
         /* First check if someone assigned to "type" for this album */
         if (isset($this->fields['email_me'][$type])) {
@@ -2804,13 +2805,30 @@ class Album {
                 continue;
             }
 
-            if (check_email($user->getEmail())) {
-                $emails[] = $user->getEmail();
-            } else if (isDebugging()) {
-                echo gallery_error( sprintf(_("Email problem: skipping %s (UID %s) because email address %s is not valid."),
-                $user->getUsername(), $uid, $user->getEmail()));
+	    $email = $user->getEmail();
+            if (check_email($email)) {
+                $emails[] = $email;
+            } else {
+		if(empty($email)) {
+		    $text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because no email address was set."),
+				$user->getUsername(), $uid);
+		}
+		else {
+		    $test = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
+                                $user->getUsername(), $uid, $email);
+		}
+
+                $messages[] = array('type' => 'error', 'text' => $text);
             }
         }
+
+	if(isDebugging() && !empty($messages)) {
+	    if(!headers_sent()) {
+		printPopupStart(gTranslate('core', "Email problems"));
+	    }
+	    echo infoBox($messages);
+	}
+
         return array_unique($emails);
     }
 

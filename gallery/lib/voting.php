@@ -310,11 +310,11 @@ function showResultsGraph($num_rows) {
 		$gallery->album->save();
 	}
 
-	$graph = arrayToBarGraph($graph, 300, "border=0");
+	$graph = arrayToBarGraph($graph, 300);
 	if ($graph) {
-            $buf .="<span class=\"title\">".
-		gTranslate('common', "Result from one voter", "Result of %d voters", sizeof($voters), '', true).
-                "</span>";
+            $buf .="<div class=\"g-sitedesc\"><span class=\"g-admin\">".
+		gTranslate('common', "Result from one voter", "Result of %d voters", sizeof($voters), '', true) . '</span>';
+
                 if ($gallery->album->getPollType() == "critique") {
                         $key_string="";
                         foreach ($nv_pairs as $nv_pair) {
@@ -330,9 +330,13 @@ function showResultsGraph($num_rows) {
 						$key_string)." $summary<br>";
 			}
 		}
-                $buf .= $graph;
-        } else if ($num_rows > 0 && $gallery->user->canWriteToAlbum($gallery->album)) {
-		$buf .= "<span class=\"title\">". gTranslate('common',"No votes so far.")."<br></span>";
+                $buf .= $graph . '</div>';
+        }
+	else if ($num_rows > 0 && $gallery->user->canWriteToAlbum($gallery->album)) {
+	    $buf .= infoBox(array(array(
+			'type' => 'information',
+			'text' =>gTranslate('core', "No votes so far.")
+   	     )));
 	}
 	return array($buf, $results);
 }
@@ -366,7 +370,7 @@ function showResults($id) {
 
 	foreach ($vote_tally as $key => $value) {
 		$html .= sprintf("\n<tr><td>%s</td><td>:</td><td>%s</td>", $nv_pairs[$key]["name"],
-		      	gTranslate('common', "one vote", "%d votes", $value, '', true)) . "<br>";
+		      	gTranslate('common', "one vote", "%d votes", $value, '', true));
 
 	}
  	$html .= "</table>";
