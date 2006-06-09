@@ -187,37 +187,38 @@ if ($navigator["maxPages"] > 1) {
       ?>
       </div>
       <div align="center" class="g-va-thumb-texts">
-<?php if(!empty($item['dimensions'])) :?>
+    <?php if(!empty($item['dimensions'])) :?>
         <div class="g-dim"><?php echo $item['dimensions']; ?></div>
-<?php endif ?>
+    <?php endif ?>
         <?php echo $item['note']; ?>
         <div class="g-thumb-caption"><?php echo $item['caption']; ?></div>
-<?php if(!empty($item['infos'])) :?>
+    <?php if(!empty($item['infos'])) :?>
         <div class="g-va-infos">
-<?php foreach ($item['infos'] as $info) : ?>
+        <?php foreach ($item['infos'] as $info) : ?>
           <?php echo $info; ?>
           <br>
-<?php endforeach ?>
+        <?php endforeach ?>
         </div>
-<?php endif ?>
-<?php if(!empty($item['clickcounter'])) :?>
+    <?php endif ?>
+
+    <?php if(!empty($item['clickcounter'])) :?>
         <div class="g-va-viewcounter"><?php echo $item['clickcounter']; ?></div>
-<?php endif ?>
+    <?php endif ?>
 
-<?php if(!empty($item['voting'])) :?>
+    <?php if(!empty($item['voting'])) :?>
         <?php echo $item['voting']; ?>
-<?php endif ?>
+    <?php endif ?>
 
-<?php if(!empty($item['options'])) :?>
+    <?php if(!empty($item['options'])) :?>
         <br>
         <?php echo $item['options']; ?>
-<?php endif ?>
+    <?php endif ?>
       </div>
     </td>
-<?php if( !($nr % $cols) && $nr < $cols*$rows && $nr < sizeof($albumItems)) :?>
+    <?php if( !($nr % $cols) && $nr < $cols*$rows && $nr < sizeof($albumItems)) :?>
   </tr>
   <tr>
-<?php endif ?>
+    <?php endif ?>
 <?php endforeach ?>
   </tr>
 </table>
