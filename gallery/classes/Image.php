@@ -174,8 +174,8 @@ class Image {
 			$attrs['width']		= $this->raw_width;
 			$attrs['height']	= $this->raw_height;
 		} else {
-			$attrs['width']		= $width;
-			$attrs['height']	= $height;
+			$attrs['width']		= $this->width;
+			$attrs['height']	= $this->height;
 		}
 
 		$fullImage = urlencode($this->name) .".$this->type";
