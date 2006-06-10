@@ -448,7 +448,9 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 
             $tables[gTranslate('common', "EXIF Data")]  = $myExif;
         } elseif (isset($myExif['status']) && $myExif['status'] == 1) {
-            echo '<p class="warning">'. gTranslate('common', "Display of EXIF data enabled, but no data found.") .'</p>';
+            echo infoBox(array(array(
+		'text' => gTranslate('core', "Display of EXIF data enabled, but no data found.")
+	    )), '', false);
         }
     }
 

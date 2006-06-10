@@ -250,8 +250,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 ?>
 </select>
 <br><br>
-<input type="submit" value="<?php echo '"' . $reorder ? gTranslate('core','Reorder it!') : gTranslate('core','Move it!') . '"' ?>" class="g-button">
-<input type="button" name="close" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit ('submit', $reorder ? gTranslate('core','Re_order it!') : gTranslate('core','_Move it!')); ?>
+<?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 
 <?php
@@ -326,21 +326,21 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 if (sizeof($gallery->album->fields["votes"])> 0) {
 	print "<br>";
        	if ($gallery->album->fields["poll_type"] == "rank") {
-	       	echo "<font color=red>". gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
+	       	echo '<span class="g-attention">' . gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</span>"; // can't move rank votes, doesn't  make sense.
       	} else {
-	       	echo "<font color=red>". sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</font>";
+	       	echo '<span class="g-attention">' . sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</span>";
        	}
 	echo "\n<br>";
 }
 
 if (!$uptodate) {
-	echo '<span class="error">' . sprintf(gTranslate('core',"WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
+	echo '<span class="g-attention">' . sprintf(gTranslate('core',"WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
 	echo '<a href="' . makeGalleryUrl("upgrade_album.php") . '"><br>' . gTranslate('core',"Upgrade now") . '</a>';
 }
 ?>
 <br>
-<input type="submit" value="<?php echo $title ?>" class="g-button">
-<input type="button" name="close" value="<?php echo gTranslate('core',"Cancel") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit('submit'), $title); ?>
+<?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
 		} // end reorder

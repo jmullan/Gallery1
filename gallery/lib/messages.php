@@ -51,7 +51,7 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 
 	ksort($messages);
         foreach ($messages as $message) {
-	    if(! in_array($message['type'], $types)) {
+	    if(!isset($message['type']) || ! in_array($message['type'], $types)) {
 		$message['type'] = 'information';
 	    }
 
