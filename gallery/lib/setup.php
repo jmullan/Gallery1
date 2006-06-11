@@ -26,8 +26,8 @@ function evenOdd_row($fields) {
     $html = '';
 
     $f0 = $fields[0];
-    if (isset($fields[4])) {
-	$f0 .= '&nbsp;<span class="littlered">*</span>';
+    if ($fields[4]) {
+	$f0 .= '&nbsp;<span class="g-littlered">*</span>';
     }
 
     if ($fields[3] == "block_start") {
@@ -37,7 +37,7 @@ function evenOdd_row($fields) {
     }
     else {
 	$html .= "\n<tr>" .
-		 "\n\t<td class=\"g-shortdesc\" width=\"40%\">$fields[0]</td>" .
+		 "\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
 		 "\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
 		 "\n</tr>";
 

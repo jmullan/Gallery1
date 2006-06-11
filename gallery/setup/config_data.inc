@@ -322,8 +322,7 @@ $constants =  array_merge(array(
 	),
 	'albumDir' => array(
 		'prompt' => gTranslate('config',"Album directory"),
-		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
+		'desc' => sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 		  '<b>'. $webserver_user . '</b>'),
 		'value' => getenv('DOCUMENT_ROOT') . '/albums',
 		'require-write-dir' => 1,
@@ -335,8 +334,7 @@ $constants =  array_merge(array(
 	),
 	'tmpDir' => array(
 		'prompt' => gTranslate('config',"Temporary directory"),
-		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."),
+		'desc' => sprintf(gTranslate('config',"The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."),
 		  '<i>/tmp</i>','<i>c:\\windows\\temp</i>'),
 		'value' => getenv('TMP'),
 		'filename' => 1,
@@ -348,8 +346,7 @@ $constants =  array_merge(array(
 	),
 	'photoAlbumURL' => array(
 		'prompt' => "Gallery URL",
-		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
+		'desc' => sprintf(gTranslate('config',"The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
 		  '<i>http://www.example.com/gallery</i>'),
 		'value' => 'http://' . getenv('SERVER_NAME') . $GALLERY_URL,
 		'no-trailing-slash' => 1,
@@ -359,8 +356,7 @@ $constants =  array_merge(array(
 	),
 	'albumDirURL' => array(
 		'prompt' => gTranslate('config',"Albums URL"),
-		'desc' => '(<span class="g-attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
+		'desc' => sprintf(gTranslate('config',"The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."),
 		  '<i>http://www.example.com/albums</i>'),
 		'value' => 'http://' . getenv('SERVER_NAME') . '/albums',
 		'no-trailing-slash' => 1,

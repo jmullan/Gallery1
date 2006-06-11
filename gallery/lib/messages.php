@@ -23,7 +23,7 @@
 <?php
 
 function gallery_error($message) {
-    return '<span class="g-error">'. _("Error:") . " $message</span>\n";
+    return '<span class="g-error">'. sprintf(gTranslate('common', "Error: %s") , $message) ."</span>\n";
 }
 
 function infoLine($messages, $type = '') {
@@ -110,7 +110,7 @@ function debugMessage($msg, $file, $line, $level = NULL) {
     global $gallery;
 
     if (isDebugging($level)) {
-        echo "\n<div class=\"debugmessage\">". basename($file) ."::$line -> $msg</div>\n";
+        echo "\n<div class=\"g-debugmessage\">". basename($file) ."::$line -> $msg</div>\n";
     }
 }
 

@@ -30,49 +30,42 @@
  * assumes bar.gif, located in images/
  * modified from example in PHP Bible
  */
-function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $col_1_head=null, $col_2_head=null) {
-	global $gallery;
-	foreach ($array as $value) {
-		if ((IsSet($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
-			$max_value = $value;
-		}
+function arrayToBarGraph ($array, $max_width) {
+    global $gallery;
+    foreach ($array as $value) {
+	if ((isset($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
+	    $max_value = $value;
+	}
+    }
+
+    if (!isset($max_value)) {
+	// no results!
+	return null;
+    }
+
+    $string_to_return = "\n  <table>";
+
+    if ($max_value > 0) {
+	$pixels_per_value = ((double) $max_width) / $max_value;
+    }
+    else {
+	$pixels_per_value = 0;
+    }
+
+    $counter = 0;
+    $img_url= getImagePath('bar.gif');
+    foreach ($array as $name => $value) {
+	$bar_width = $value * $pixels_per_value;
+	$string_to_return .= "\n\t<tr>" .
+	    "\n\t<td>(". ++$counter .")</td>" .
+	    "\n\t<td>$name ($value)</td>" .
+	    "\n\t<td><img src=\"$img_url\" width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>" .
+	    "\n\t</tr>";
 	}
 
-	if (!isSet($max_value)) {
-		// no results!
-		return null;
-	}
-
-	$string_to_return = "\n  <table $table_values>";
-	if ($col_1_head || $col_2_head) {
-		$string_to_return .=	'<tr>' .
-					"\n\t<td></td>".
-					"\n\t<td class=\"admin\">$col_1_head</td>".
-					"\n\t<td class=\"admin\">$col_2_head</td>".
-					"</tr>";
-	}
-
-	if ($max_value > 0) {
-		$pixels_per_value = ((double) $max_width)
-			/ $max_value;
-	}
-	else {
-		$pixels_per_value = 0;
-	}
-
-	$counter = 0;
-	foreach ($array as $name => $value) {
-		$bar_width = $value * $pixels_per_value;
-		$img_url= getImagePath('bar.gif');
-		$string_to_return .= "\n\t<tr>"
-			. "\n\t<td>(". ++$counter .")</td>"
-			. "\n\t<td>$name ($value)</td>"
-			. "\n\t<td><img src=\"". $img_url ."\" border=\"1\""
-			. " width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>"
-			. "\n\t</tr>";
-	}
-	$string_to_return .= "\n  </table>";
-	return($string_to_return);
+    $string_to_return .= "\n  </table>";
+	
+    return($string_to_return);
 }
 
 function saveResults($votes) {
@@ -183,7 +176,7 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 			}
 			$html .= '</tr><tr>';
 			for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-				$html .= "\n". '<td align="center" class="attention">'. $nv_pairs[$i]['name'] .'</td>';
+				$html .= "\n". '<td class="g-admin">'. $nv_pairs[$i]['name'] .'</td>';
 			}
 			$html .= '</tr></table>';
 		    }
@@ -191,13 +184,13 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 			$html .= "\n<table align=\"center\">";
 			for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
 				$html .= '<tr>';
-				$html .= "\n<td align=\"center\"><input type=\"radio\" name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
+				$html .= "\n<td ><input type=\"radio\" name=\"votes[$i]\" value=$id onclick=\"chooseOnlyOne($i, $form_pos,".
 				$gallery->album->getPollScale().")\" ";
 				if ($current_vote === $i) {
 					$html .= 'checked';
 				}
 				$html .= '></td>';
-				$html .= '<td class="attention">'. $nv_pairs[$i]['name']. '</td>';
+				$html .= '<td class="g-admin">'. $nv_pairs[$i]['name']. '</td>';
 				$html .= '</tr><tr>';
 			}
 			$html .= '</table>';
