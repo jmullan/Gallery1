@@ -62,7 +62,7 @@ if (!$gallery->session->offline ||
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
 <?php }
 
-if( ! empty($gallery->album->fields["linkcolor"]) || 
+    if( !empty($gallery->album->fields["linkcolor"]) || 
 	!empty($gallery->album->fields["bgcolor"]) || 
 	!empty($gallery->album->fields["textcolor"])) {
 
@@ -87,7 +87,7 @@ if( ! empty($gallery->album->fields["linkcolor"]) ||
 	}
 
 	echo "\n  </style>";
-	}
+    }
 ?>
 </head>
 

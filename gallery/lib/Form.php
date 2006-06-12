@@ -238,13 +238,13 @@ function showColorpicker($attrs = array()) {
     $html .= "\n". '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
     $html .= "\n". '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
     $html .= "\n<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
-    $html .= "\n". '<td><div id="colorpicker_' . $attrs['name'] . '" class="control"></div></td>';
+    $html .= "\n". '<td><div id="colorpicker_' . $attrs['name'] . '"></div></td>';
     $html .= "\n</tr></table>\n";
 
     return $html;
 }
 
-function showChoice($label, $target, $args, $class="") {
+function showChoice($label, $target, $args, $class = '') {
     global $gallery;
 
     if (empty($args['set_albumName'])) {

@@ -58,33 +58,37 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
-  <style type="text/css">
-<?php
-// the link colors have to be done here to override the style sheet 
-if ($gallery->album->fields["linkcolor"]) {
-?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php
-}
-if ($gallery->album->fields["bgcolor"]) {
-	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
-}
-if ($gallery->album->fields["background"]) {
-	echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
-}
-if ($gallery->album->fields["textcolor"]) {
-	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
-}
-?>
-  </style>
+  <?php
+    if( !empty($gallery->album->fields["linkcolor"]) ||
+        !empty($gallery->album->fields["bgcolor"]) ||
+        !empty($gallery->album->fields["textcolor"])) {
+
+        echo "\n<style type=\"text/css\">";
+        // the link colors have to be done here to override the style sheet
+        if ($gallery->album->fields["linkcolor"]) {
+                echo "\n  a:link, a:visited, a:active {";
+                echo "\n        color: ".$gallery->album->fields['linkcolor'] ."; }";
+                echo "\n  a:hover { color: #ff6600; }";
+
+        }
+        if ($gallery->album->fields["bgcolor"]) {
+                echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+                echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+        }
+        if ($gallery->album->fields["textcolor"]) {
+                echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+                echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+                echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+
+        echo "\n  </style>";
+    }
+  ?>
 </head>
 
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php } 
 
 /* User wants to delete comments */
@@ -140,10 +144,9 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
             $gallery->user->isAdmin() ||
             $gallery->user->isOwnerOfAlbum($gallery->album) ||
             $gallery->user->isOwnerOfAlbum($myAlbum))) {
-                $embeddedAlbum = 1;
+                $subAlbum = true;
                 $myHighlightTag = $myAlbum->getHighlightTag();
-                includeLayout('commentboxtop.inc');
-                includeLayout('commentboxbottom.inc');
+                require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
             }
         }
         elseif (!$gallery->album->isHidden($i) || 
@@ -152,15 +155,10 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
           $gallery->album->isItemOwner($gallery->user, $i)) {
             $comments = $gallery->album->numComments($i);
             if($comments > 0) {
-                includeLayout('commentboxtop.inc');
-                for($j = 1; $j <= $comments; $j++) {
-                    $comment = $gallery->album->getComment($index, $j);
-                    includeLayout('commentbox.inc');
-                }
-                includeLayout('commentboxbottom.inc');
-            }
+                require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
+	    }
         }
-        $embeddedAlbum = 0;
+        $subAlbum = false;
         $i = getNextPhoto($i);
     }
 }
