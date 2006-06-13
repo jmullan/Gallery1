@@ -110,10 +110,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
   <?php
-common_header();
-?>
+	common_header();
+  ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 } // End if ! embedded
 
@@ -124,7 +124,7 @@ includeHtmlWrap("photo.header");
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
       init_mousemove();
- </script>
+  </script>
 
 <?php
 
@@ -159,7 +159,7 @@ $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 $breadcrumb["text"][] = galleryLink(
 	makeAlbumUrl($gallery->session->albumName, $id),
 	  gTranslate('core', "Original photo"). "&nbsp;". gImage('icons/navigation/nav_home.gif'),
-	  array('class' => 'bread'), '', false, false
+	  array(), '', false, false
 	);
 
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
@@ -168,12 +168,6 @@ includeLayout('adminbox.inc');
 
 $breadcrumb["bordercolor"] = $gallery->album->fields["bordercolor"];
 includeLayout('breadcrumb.inc');
-
-echo "</td></tr>\n";
-echo "\n<!-- End Header Part -->";
-
-echo "\n<!-- Real Content -->";
-echo "\n<tr><td>\n\t";
 
 list($width, $height) = $photo->getDimensions($full);
 
@@ -196,20 +190,20 @@ if (!empty($allImageAreas)) {
 
     echo "\n</script>";
 
-    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"myPic\" usemap=\"myMap\"");
+    $photoTag = $gallery->album->getPhotoTag($index, $full,array('id' => 'myPic', 'usemap' => 'myMap'));
 }
 else {
-    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"myPic\"");
+    $photoTag = $gallery->album->getPhotoTag($index, $full,array('id' => 'myPic'));
 }
 ?>
 
-<div class="popup" style="text-align: <?php echo langLeft(); ?>">
+<div class="g-sitedesc">
 <?php
 echo gTranslate('core', "Here you can create, edit or delete imagemaps for the selected photo.");
 echo "\n<br>";
 echo gTranslate('core', "Click the question mark icon for helpful instructions.");
 echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/imagemap.php',
-         false, false, 500, 500, '', '', '', false);
+         false, false, 500, 500, '', '', '', false, false);
 ?>
 </div>
 
@@ -219,7 +213,7 @@ echo makeFormIntro('imagemap.php',
     array('index' => $index, 'formaction' => '')
     );
 ?>
-<table width="100%" border="0">
+<table width="100%">
 <tr>
   <td width="300" style="vertical-align: top;">
     <?php $type = (isDebugging()) ? 'text':'hidden'; ?>
@@ -253,7 +247,7 @@ if (!empty($allImageAreas)) {
     echo "\n<hr>";
     echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
 
-    echo '<div class="attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
+    echo '<div class="g-attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
 }
 else {
     echo gTranslate('core', "No ImageMaps");
@@ -269,12 +263,6 @@ else {
 </table>
 </form>
 
-  </td>
-</tr>
-<!-- End Real Content -->
-<!-- Start Footer Part -->
-<tr>
-  <td>
 <?php
 
 includeLayout('breadcrumb.inc');

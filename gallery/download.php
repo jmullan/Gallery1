@@ -39,7 +39,7 @@ if (!empty($doit)) {
                 downloadFile($zipfileName);
             }
             else {
-                echo gallery_error('<br>'. _("Zipdownload would work, but is disabled when debugging."));
+                echo gallery_error('<br>'. gTranslate('core', "Zipdownload would work, but is disabled when debugging."));
             }
         }
     }
@@ -49,7 +49,7 @@ else {
 
     $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
 
-    echo "\n<p class=\"title\">";
+    echo "\n<p class=\"g-title g-emphasis\">";
 
     if ($gallery->album->numPhotos(1)) {
         echo $gallery->album->getHighlightTag();
@@ -59,8 +59,8 @@ else {
     echo "</p>";
 
     $textNumItems = sprintf(gTranslate('core', "This album contains just one item in total.", "This album contains %d items in total.", $numItems), $numItems);
-    $textNumSubAlbums = sprintf(gTranslate('core', "One subalbum", "%d subalbums", $numAlbums, _("No subalbums")), $numAlbums);
-    $textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies", $numPhotos , _("no photo/movie")), $numPhotos);
+    $textNumSubAlbums = sprintf(gTranslate('core', "One subalbum", "%d subalbums", $numAlbums, gTranslate('core', "No subalbums")), $numAlbums);
+    $textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies", $numPhotos , gTranslate('core', "no photo/movie")), $numPhotos);
 
     echo sprintf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
@@ -78,7 +78,7 @@ else {
     }
     else {
 	echo "<br><br>";
-	echo _("This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
+	echo gTranslate('core', "This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
 	echo "<br><br>";
         echo "\n". '<input type="button" value="'. gTranslate('core', "Close Window") .'" onclick="parent.close()" class="g-button">';
     }

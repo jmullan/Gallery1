@@ -128,7 +128,6 @@ if ($postnuke ||
 		       "edit_field.php",
 		       "edit_thumb.php",
 		       "edit_watermark.php",
-		       "extra_fields.php",
 		       "gallery_remote.php",
 		       "gallery_remote2.php",
 		       "help/imagemap.php",

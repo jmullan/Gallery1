@@ -13,11 +13,8 @@ $tag = $gallery->html_wrap['imageTag'];
 $frame = $gallery->html_wrap['frame'];
 $attrlist = isset($gallery->html_wrap['attrlist']) ? $gallery->html_wrap['attrlist'] : array();
 
-if(isset($gallery->html_wrap['attr'])) {
-    echo "FRAAAAAAAME";
-}
-
 $base = '';
+
 if (isset($gallery->html_wrap['base'])) {
     $base = $gallery->html_wrap['base'];
 } else {

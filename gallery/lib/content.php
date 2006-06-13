@@ -1258,7 +1258,7 @@ function showImageMap($index) {
         foreach($allImageAreas as $nr => $area) {
             $html .= "\n\t<area alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
                 "coords=\"". $area['coords'] ."\" ".
-                "onmouseover=\"return escape('". $area['hover_text'] ."')\"";
+                "onmouseover=\"return escape('". $area['hover_text'] ."')\" href=\"#\"";
 
             if(!empty($area['url'])) {
                 $html .=' href="'. $area['url'] .'"';

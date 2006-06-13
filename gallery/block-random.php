@@ -116,8 +116,8 @@ function doPhoto() {
 	    $gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
 	    $gallery->html_wrap['attr'] = '';
 
-	    echo "\n<div class=\"random-block\">";
-	    echo "\n  <div class=\"random-block-photo\">";
+	    echo "\n<div class=\"g-random-block\">";
+	    echo "\n  <div class=\"g-random-block-photo\">";
 
 	    includeHtmlWrap("inline_photo.frame");
 	    if (!in_array($frame, array('dots', 'solid')) &&

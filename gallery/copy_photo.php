@@ -194,18 +194,22 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </table>
 <?php
 } // end else
-
-	if (!$uptodate) {
-		echo '<span class="error"><br>'. sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) . '</span>';
-		echo '<a href="'. makeGalleryUrl("upgrade_album.php").'"><br>'. _("Upgrade now") . '</a>';
-	}
 ?>
 <br>
 <input type="submit" value="<?php echo gTranslate('core', "Copy to Album!") ?>" class="g-button">
 <input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
-} else {
+
+    if (!$uptodate) {
+	echo "<br>". infoBox(array(array(
+	    'type' => 'warning',
+	    'text' => sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
+		      galleryLink(makeGalleryUrl("upgrade_album.php"), _("Upgrade now"))
+	)));
+    }
+}
+else {
 	echo gallery_error(_("no album / index specified"));
 }
 ?>

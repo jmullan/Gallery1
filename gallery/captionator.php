@@ -132,30 +132,34 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo gTranslate('core', "Captionator") ?></title>
   <?php common_header(); ?>
-  <style type="text/css">
-<?php
-// the link colors have to be done here to override the style sheet
-if ($gallery->album->fields["linkcolor"]) {
-    ?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php
-}
-if ($gallery->album->fields["bgcolor"]) {
-    echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
-}
-if ($gallery->album->fields["background"]) {
-    echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
-}
-if ($gallery->album->fields["textcolor"]) {
-    echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-    echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-    echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
-}
+  <?php
+    if( !empty($gallery->album->fields["linkcolor"]) ||
+        !empty($gallery->album->fields["bgcolor"]) ||
+        !empty($gallery->album->fields["textcolor"])) {
+
+        echo "\n<style type=\"text/css\">";
+        // the link colors have to be done here to override the style sheet
+        if ($gallery->album->fields["linkcolor"]) {
+                echo "\n  a:link, a:visited, a:active {";
+                echo "\n        color: ".$gallery->album->fields['linkcolor'] ."; }";
+                echo "\n  a:hover { color: #ff6600; }";
+
+        }
+        if ($gallery->album->fields["bgcolor"]) {
+                echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+                echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+        }
+        if ($gallery->album->fields["textcolor"]) {
+                echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+                echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+                echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+
+        echo "\n  </style>";
+    }
 ?>
-  </style>
 </head>
 
 <body>
@@ -230,12 +234,14 @@ if ($numPhotos) {
     // Go trough the album
     while ($count < $perPage && $i <= $numPhotos) {
 	$photo = $gallery->album->getPhoto($i);
-	list($width, $height) = $photo->getDimensions();
-	list($twidth, $theight) = $photo->thumbnail->getDimensions();
+	if($photo->getAlbumName() === NULL) {
+	    list($width, $height) = $photo->getDimensions();
+	    list($twidth, $theight) = $photo->thumbnail->getDimensions();
+	}
 ?>
 	<!-- Picture #<?php echo $i-1 ?> -->
 <tr>
-	<td class="g-album-image-cell" width1="<?php echo $twidth; ?>">
+	<td class="g-album-image-cell" style="border-top: 1px solid #000; vertical-align: middle;">
 <?php
 	if (!($photo->isMovie())) {
 	    echo popup_link2(
@@ -266,7 +272,7 @@ if ($numPhotos) {
 	    $myAlbum->load($myAlbumName);
 	    $oldCaption = $myAlbum->fields['description'];
 
-	    echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Album Caption") . ': ';
+	    echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Album Caption: ");
 	    echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 	} else {
 	    $oldCaption = $gallery->album->getCaption($i);
@@ -274,9 +280,9 @@ if ($numPhotos) {
 	    $translateableFields = translateableFields();
 
 	    if ($gallery->album->photos[$i-1]->isMovie()) {
-	        echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Movie Caption") . ': ';
+	        echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Movie Caption: ");
 	    } else {
-	        echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Photo Caption") . ': ';
+	        echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Photo Caption: ");
 	    }
 	    echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 	    foreach ($gallery->album->getExtraFields() as $field) {
@@ -285,22 +291,22 @@ if ($numPhotos) {
 	        }
 	        $value = $gallery->album->getExtraField($i, $field);
 	        if ($field == "Title") {
-	            echo "\n\t\t". '<div class="admin">' . gTranslate('core', "Title: ") .'</div>';
+	            echo "\n\t\t". '<div class="g-admin">' . gTranslate('core', "Title: ") .'</div>';
 	            echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
 	        }
 	        else {
-	            echo "\n\t\t". '<br><span class="admin">'. $translateableFields[$field] .": </span><br>";
+	            echo "\n\t\t". '<br><span class="g-admin">'. $translateableFields[$field] .": </span><br>";
 	            echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
 	        }
 	    }
 
-	    echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Keywords") .': <br>';
+	    echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Keywords: ") . '<br>';
 	    echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
 
 	    $itemCaptureDate = $gallery->album->getItemCaptureDate($i);
 	    $capturedate = strftime($gallery->app->dateTimeString , $itemCaptureDate);
 
-	    echo "\n\t\t". '<p class="admin">'. sprintf(gTranslate('core', "Capture Date: %s"),$capturedate) . '</p><br>';
+	    echo "\n\t\t". '<p class="g-admin">'. sprintf(gTranslate('core', "Capture Date: %s"),$capturedate) . '</p><br>';
 	}
 	echo "\n\t</td>";
 	echo "\n</tr>";

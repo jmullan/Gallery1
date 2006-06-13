@@ -28,7 +28,7 @@ $mode = getRequestVar('mode');
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -44,7 +44,7 @@ if (isset($mode)) {
 	    $mode = $modeCookie;
 	}
 }
-printPopupStart(_("Add Photos"), '', 'left');
+printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
 
 ?>
 
@@ -56,20 +56,20 @@ printPopupStart(_("Add Photos"), '', 'left');
 	}
   // -->
   </script>
-<?php /* <body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody"> */
+<?php
 
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar")) {
-    $modes["applet_mini"] = _("Applet");
+    $modes["applet_mini"] = gTranslate('core', "Applet");
 
 	if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteApplet.jar")) {
-	    $modes["applet"] = _("Applet (big)");
+	    $modes["applet"] = gTranslate('core', "Applet (big)");
 	}
 }
 
-$modes["form"] = _("Form");
-$modes["url"] = _("URL");
-$modes["other"] = _("Other");
+$modes["form"] = gTranslate('core', "Form");
+$modes["url"] = gTranslate('core', "URL");
+$modes["other"] = gTranslate('core', "Other");
 
 if (!isset($mode) || !isset($modes[$mode])) {
 	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";

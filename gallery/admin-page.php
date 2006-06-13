@@ -33,34 +33,34 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-$adminOptions[] = array( 'text' => _("_statistics"),
+$adminOptions[] = array( 'text' => gTranslate('core', "_statistics"),
 			 'url' => makeGalleryUrl('stats-wizard.php'),
-			 'longtext' => _("View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
+			 'longtext' => gTranslate('core', "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
 
-$adminOptions[] = array( 'text' => _("configuration _wizard"),
+$adminOptions[] = array( 'text' => gTranslate('core', "configuration _wizard"),
 			 'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
-			 'longtext' => _("Use the config wizard to reconfigure or tweak your Gallery"));
+			 'longtext' => gTranslate('core', "Use the config wizard to reconfigure or tweak your Gallery"));
 
-$adminOptions[] = array( 'text' => _("find _orphans"),
+$adminOptions[] = array( 'text' => gTranslate('core', "find _orphans"),
 			 'url' => makeGalleryUrl('tools/find_orphans.php'),
-			 'longtext' => _("Find, remove or re-attach orphaned elements."));
+			 'longtext' => gTranslate('core', "Find, remove or re-attach orphaned elements."));
 
-$adminOptions[] = array( 'text' => _("find _comment spam"),
+$adminOptions[] = array( 'text' => gTranslate('core', "find _comment spam"),
 			 'url' => makeGalleryUrl('tools/despam-comments.php'),
-			 'longtext' => _("Find and remove comments that contains spam."));
+			 'longtext' => gTranslate('core', "Find and remove comments that contains spam."));
 
-$adminOptions[] = array( 'text' => _("_validate albums"),
+$adminOptions[] = array( 'text' => gTranslate('core', "_validate albums"),
 			 'url' => makeGalleryUrl('tools/validate_albums.php'),
-			 'longtext' => _("Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
+			 'longtext' => gTranslate('core', "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
 
-#$adminOptions[] = array( 'text' => _("Gallery backup"),
+#$adminOptions[] = array( 'text' => gTranslate('core', "Gallery backup"),
 #			 'url' => makeGalleryUrl('backup_albums.php'),
-#			 'longtext' => _("Make a backup of your Gallery."));
+#			 'longtext' => gTranslate('core', "Make a backup of your Gallery."));
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    $adminOptions[]  = array('text' => _("manage _users"),
+    $adminOptions[]  = array('text' => gTranslate('core', "manage _users"),
 			 'popupFile' => 'manage_users.php',
-			 'longtext' => _("Manage your users."));
+			 'longtext' => gTranslate('core', "Manage your users."));
 }
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
@@ -70,19 +70,19 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle; ?>::<?php echo _("Admin options") ?></title>
+<title><?php echo $gallery->app->galleryTitle; ?>::<?php echo gTranslate('core', "Admin options") ?></title>
 <?php
 	common_header() ;
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 }
 
 includeHtmlWrap('gallery.header');
 
-$adminbox['text'] ='<span class="head">'. _("Admin options") .'</span>';
-$adminbox['commands'] = galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
+$adminbox['text'] = gTranslate('core', "Admin options");
+$adminbox['commands'] = galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
 $breadcrumb['text'][] = languageSelector();
 
 includeLayout('adminbox.inc');
