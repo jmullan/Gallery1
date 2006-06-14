@@ -278,12 +278,12 @@ function sortByPercentDone($a, $b) {
 function percentColor($percent) {
     $border=50;
     if ($percent < $border) {
-        $color = dechex(255 - $percent * 2) . "0000";
+        $color = "#". dechex(255 - $percent * 2) . "0000";
     } else {
-        $color= "00" . dechex( 55 + $percent * 2 ). "00";
+        $color= "#00" . dechex( 55 + $percent * 2 ). "00";
     }
     if (strlen($color) <6) {
-        $color= "0" . $color;
+        $color= "#0" . $color;
     }
 
     return $color;
