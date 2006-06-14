@@ -21,11 +21,11 @@ global $validation_file;
 global $validation_args;
 global $GALLERY_EMBEDDED_INSIDE;
 
-require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+includeTemplate('info_donation-block');
 
 if (! isset($GALLERY_EMBEDDED_INSIDE) && isset($validation_file)) {
     echo gallery_validation_link($validation_file, true, $validation_args);
 }
 
-includeHtmlWrap("wrapper.footer");
+includeTemplate("overall.footer");
 ?>

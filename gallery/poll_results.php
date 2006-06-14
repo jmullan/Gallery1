@@ -95,19 +95,19 @@ if( ! empty($gallery->album->fields["linkcolor"]) ||
 <body>
 <?php } 
 
-includeHtmlWrap("album.header");
-$breadcrumb["top"] = true;
+includeTemplate('album.header');
+
 $breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["text"][] = sprintf(gTranslate('core', "Return to  %s"), 
-		"<a href=\"" .  makeAlbumUrl($gallery->session->albumName) .
-      		"\">" . $pAlbum->fields['title'] . "</a>");
+$breadcrumb["text"][] = sprintf(
+	makeAccessKeyString(gTranslate('core', "_Return to  %s")),
+		galleryLink(makeAlbumUrl($gallery->session->albumName), $pAlbum->fields['title'])
+);
 
 includeLayout('breadcrumb.inc');
 
 $navigator["page"] = 1;
 $navigator["pageVar"] = "page";
 $navigator["maxPages"] = 1;
-$navigator["fullWidth"] = $fullWidth;
 $navigator["url"] = makeAlbumUrl($gallery->session->albumName);
 $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
@@ -168,7 +168,7 @@ if (!empty($resultTable->elements)) {
 }
 
 $validation_file = basename(__FILE__);
-includeHtmlWrap("general.footer");
+includeHtmlWrapLEGACY("general.footer");
 
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

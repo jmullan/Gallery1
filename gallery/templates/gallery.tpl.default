@@ -1,0 +1,184 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2006 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id: albums.tpl.default 13820 2006-06-14 12:03:36Z jenst $
+ */
+?>
+<?php
+if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
+    echo 'Security violation while includiding template for startpage.';
+    exit;
+}
+?>
+<?php
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo $gallery->app->galleryTitle ?></title>
+  <?php
+	common_header() ;
+
+	/* prefetching/navigation */
+    if ($navigator['page'] > 1) { ?>
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
+<?php
+    }
+    if ($navigator['page'] < $maxPages) { ?>
+  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
+  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
+<?php
+    }
+    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+?>
+  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
+<?php
+    } ?>
+</head>
+<body>
+<?php
+}
+
+includeTemplate("gallery.header");
+
+echo $searchBar;
+
+includeLayout('adminbox.inc');
+
+if ($navigator["maxPages"] > 1) {
+    echo '<div class="g-navbar-top">';
+    includeLayout('navigator.inc');
+    echo '</div>';
+}
+
+echo languageSelector();
+
+echo infoBox($notice_messages, $notice_caption);
+$cells = 2;
+?>
+
+<!-- album table begin -->
+<table cellpadding="0" cellspacing="0" class="g-albums-table">
+<?php
+    foreach ($rootAlbum as $name => $content) {
+    ?>
+    <!-- Begin Album Column Block -->
+    <tr>
+        <!-- Begin Image Cell -->
+        <td class="g-album-image-cell"><?php
+            $gallery->html_wrap = $content['imageCell'];
+            includeHtmlWrapLEGACY('inline_gallerythumb.frame');
+            ?>
+        </td>
+        <!-- Begin Text Cell -->
+        <td class="g-albumdesc-cell left">
+           <table cellspacing="0" cellpadding="0">
+              <tr>
+                 <td class="g-title-left"></td>
+                 <td class="g-title g-title-background">
+                   <?php echo $content['albumdesc']['title']; ?>
+                 </td>
+                 <td class="g-title-right"></td>
+              </tr>
+            </table>
+
+            <?php echo $content['albumdesc']['adminAlbumCommands']; ?>
+
+<?php if (!empty($content['albumdesc']['description'])) :?>
+            <div class="g-album-desc"><?php echo $content['albumdesc']['description'] ?></div>
+<?php endif ?>
+
+<?php if (!empty($content['albumdesc']['owner'])) :?>
+            <div class="g-album-owner"><?php echo $content['albumdesc']['owner'] ?></div>
+<?php endif ?>
+
+            <div class="g-album-infos">
+<?php if (!empty($content['albumdesc']['url'])) : ?>
+                <?php echo $content['albumdesc']['url']; ?>
+                <br>
+<?php endif ?>
+                <?php echo $content['albumdesc']['changeDate'] ?>
+
+                <br>
+                <?php echo $content['albumdesc']['numItems'] ?>
+
+<?php if (!empty($content['albumdesc']['clickCounter'])) :?>
+                <br>
+                <?php echo $content['albumdesc']['clickCounter'] ?>
+<?php endif ?>
+
+<?php if (!empty($content['albumdesc']['commentIndication'])) :?>
+                <?php echo $content['albumdesc']['commentIndication'] ?>
+<?php endif ?>
+
+<?php if (!empty($content['albumdesc']['microthumbs'])) :?>
+		      <div class="g-microthumbsTree-box"><?php echo $content['albumdesc']['microthumbs'] ?></div>
+<?php endif ?>
+            </div>
+        </td>
+        <!-- End Text Cell -->
+
+<?php if (!empty($content['subalbumTree'])) { $cells=3; ?>
+        <!-- Subalbumtree -->
+        <td class="g-subalbumTree-box"><?php echo $content['albumdesc']['subalbumTree'] ?></td>
+<?php } ?>
+    </tr>
+    <tr><td class="g-album-vertical-spacer" colspan="<?php echo $cells; ?>"></td></tr>
+
+<?php
+    }
+?>
+</table>
+<!-- album table end -->
+
+<?php if ($displayCommentLegend) :?>
+<p><span class="g-commentIndication">*</span>
+   <span class="g-small"><?php echo gTranslate('core', "Comments available for this item.") ;?></span>
+</p>
+<?php endif ?>
+
+<?php
+if ($navigator["maxPages"] > 1) {
+    echo '<div class="g-navbar-bottom">';
+    includeLayout('navigator.inc');
+    echo '</div>';
+}
+?>
+<p>
+<!-- gallery.footer begin -->
+<?php
+
+require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+
+if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+    echo gallery_validation_link("albums.php");
+}
+
+includeTemplate("overall.footer");
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+</body>
+</html>
+<?php
+}
+?>

@@ -480,6 +480,6 @@ for ($i = $start; $i <= $end; $i++) {
 }
 
 define('READY_TO_INCLUDE', 'DISCO');
-require(dirname(__FILE__) .'/templates/albums.tpl.default');
+require(dirname(__FILE__) .'/templates/gallery.tpl.default');
 
 ?>

@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id$
+ * $Id: view_photo.tpl.default 13821 2006-06-14 12:48:40Z jenst $
  */
 ?>
 <?php
@@ -93,14 +93,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-// Overall header, better not to remove this.
-includeHtmlWrap("wrapper.header");
-?>
-    <div class="g-header">
-	<div class="g-pagetitle"><?php echo $gallery->app->galleryTitle ?></div>
-    </div>
-
-<?php
+includeTemplate("photo.header");
 
 echo $javascript;
 
@@ -176,13 +169,13 @@ if(isset($imageMapHTML)) {
 
 <!-- image -->
 <a name="image"></a>
-<?php includeHtmlWrap("inline_photo.header"); ?>
+<?php includeHtmlWrapLEGACY("inline_photo.header"); ?>
 
 <div class="g-photo" align="center">
 	<?php include (dirname(dirname(__FILE__)) .'/html_wrap/inline_imagewrap.inc'); ?>
 </div>
 
-<?php includeHtmlWrap("inline_photo.footer"); ?>
+<?php includeHtmlWrapLEGACY("inline_photo.footer"); ?>
 
 <div class="g-photo-texts">
 
@@ -229,7 +222,7 @@ if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_
 }
 
 if(isset($emailMeForm)) {
-	echo $emailMeForm;
+    echo $emailMeForm;
 }
 
 // end g-photo-texts
@@ -260,7 +253,7 @@ echo languageSelector();
 /* 
  * Begin footer
 */
-require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+includeTemplate('info_donation-block');
 
 global $GALLERY_EMBEDDED_INSIDE;
 if (! isset($GALLERY_EMBEDDED_INSIDE)) {
@@ -273,7 +266,7 @@ if (! isset($GALLERY_EMBEDDED_INSIDE)) {
  * Dont change anything below !
 */
 
-includeHtmlWrap("wrapper.footer");
+includeTemplate("overall.footer");
 
 include_once(dirname(dirname(__FILE__)) .'/includes/view_photo/hidden_print_services.php');
 

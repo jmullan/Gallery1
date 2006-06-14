@@ -472,6 +472,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
     }
 }
 
+/*
 function includeTemplate($tplName, $skinname = '') {
     global $gallery;
 
@@ -489,6 +490,7 @@ function includeTemplate($tplName, $skinname = '') {
         return false;
     }
 }
+*/
 
 /**
  * Displays the ownename, if an email is available, then as mailto: link
@@ -703,9 +705,45 @@ function includeLayout($name, $skinname='') {
     }
 }
 
-function includeHtmlWrap($name, $skinname = '') {
+function includeTemplate($name, $skinname = '') {
+    global $gallery;
 
-    // define these globals to make them available to custom text
+    $base = dirname(dirname(__FILE__));
+    $domainname = $base . '/templates/' . $_SERVER['HTTP_HOST'] . "/$name";
+
+    $name = "$name.tpl";
+
+    if (!$skinname) {
+        $skinname = $gallery->app->skinname;
+    }
+
+    if (fs_file_exists($domainname) && !broken_link($domainname)) {
+        require($domainname);
+    }
+    else {
+        $defaultname = "$base/templates/$name";
+        $fullname = "$base/skins/$skinname/templates/$name";
+
+        if (fs_file_exists($fullname) && !broken_link($fullname)) {
+            require ($fullname);
+        }
+        elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+            require($defaultname);
+        }
+        elseif (fs_file_exists("$defaultname.default") && !broken_link("$defaultname.default")) {
+            require("$defaultname.default");
+        }
+	else {
+	    return false;
+	}
+    }
+
+    return true;
+}
+
+
+/**** !!!!!! REMOVE THIS SOON !!!!!! ***** */
+function includeHtmlWrapLEGACY($name, $skinname = '') {
     global $gallery;
 
     $base = dirname(dirname(__FILE__));
@@ -716,23 +754,35 @@ function includeHtmlWrap($name, $skinname = '') {
     }
 
     if (fs_file_exists($domainname) && !broken_link($domainname)) {
-        include ($domainname);
+        require($domainname);
     }
     else {
         $defaultname = "$base/html_wrap/$name";
         $fullname = "$base/skins/$skinname/html_wrap/$name";
 
         if (fs_file_exists($fullname) && !broken_link($fullname)) {
-            include ($fullname);
+            require ($fullname);
         }
         elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
-            include ($defaultname);
-        } else {
-            include ("$defaultname.default");
+            require($defaultname);
         }
+        elseif (fs_file_exists("$defaultname.default") && !broken_link("$defaultname.default")) {
+            require("$defaultname.default");
+        }
+	else {
+	    echo debugMessage("$name could not included", __FILE__, __LINE);
+	    return false;
+	}
     }
 
-    return 1;
+    echo '<br clear="all">';
+    echo infoBox(array(array(
+	'type' => 'warning',
+	'text' => 'use of includeHtmlWrapLEGACY'
+    )));
+    echo '<br clear="all">';
+
+    return true;
 }
 
 /**

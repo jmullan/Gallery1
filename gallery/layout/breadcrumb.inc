@@ -4,7 +4,7 @@
 <?php
 global $breadcrumb, $gallery;
 
-if(!includeTemplate('breadcrumb.tpl')
+if(!includeTemplate('breadcrumb')
   && (!empty($breadcrumb['text']) || $gallery->user->isLoggedIn())) {
 ?>
 

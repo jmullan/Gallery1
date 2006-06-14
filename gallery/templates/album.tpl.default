@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id$
+ * $Id: view_album.tpl.default 13820 2006-06-14 12:03:36Z jenst $
  */
 ?>
 <?php
@@ -132,14 +132,8 @@ if (!$gallery->session->offline) { ?>
     echo $va_javascript;
 }
 
-// General Header, its better to leave it here.
-includeHtmlWrap("wrapper.header");
-?>
-    <div class="g-header">
-	<div class="g-pagetitle"><?php echo $gallery->app->galleryTitle ?></div>
-    </div>
+includeTemplate("album.header");
 
-<?php
 includeLayout('adminbox.inc');
 
 if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
@@ -189,7 +183,7 @@ if ($navigator["maxPages"] > 1) {
       <div <?php echo $item['thumb']['style'] ?> class="g-vathumb">
       <?php
         $gallery->html_wrap = $item['thumb'];
-        includeHtmlWrap($item['thumb']['type']);
+        includeHtmlWrapLEGACY($item['thumb']['type']);
       ?>
       </div>
       <div align="center" class="g-va-thumb-texts">
@@ -278,22 +272,21 @@ if($numVisibleItems != 0) {
     if ($navigator["maxPages"] > 1) {
     	echo '<div class="g-navbar-bottom">';
         includeLayout('navigator.inc');
-		echo '</div>';
+	echo '</div>';
     }
     includeLayout('breadcrumb.inc');
 }
 
 echo languageSelector();
 
-
 // Its better not to touch anything below this.
-require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+includeTemplate('info_donation-block');
 
 if (! isset($GALLERY_EMBEDDED_INSIDE)) {
     echo album_validation_link($gallery->session->albumName, NULL);
 }
 
-includeHtmlWrap("wrapper.footer");
+includeTemplate("overall.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

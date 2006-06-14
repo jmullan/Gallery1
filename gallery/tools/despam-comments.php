@@ -47,11 +47,12 @@ common_header() ;
 ?>
 
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 }
-includeHtmlWrap("gallery.header");
-$adminbox['text'] ='<span class="head">'. _("Find and remove comment spam") .'</span>';
+includeTemplate("gallery.header");
+
+$adminbox['text'] = _("Find and remove comment spam");
 $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
 $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
@@ -105,7 +106,7 @@ echo "</td></tr>";
 </table>
 </div>
 <?php
-includeHtmlWrap("gallery.footer");
+includeHtmlWrapLEGACY("general.footer");
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>

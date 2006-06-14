@@ -202,11 +202,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header();
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php 
 } 
-    includeHtmlWrap("gallery.header");
-    $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
+    includeTemplate("gallery.header");
+
+    $adminbox['text'] = _("Find Orphans");
     $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
     $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
@@ -216,7 +217,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
     includeLayout('adminbox.inc');
     includeLayout('breadcrumb.inc');
 
-echo '<div class="popup">';
+echo '<div class="g-content-popup" align="center">';
 if (empty($action)) { 
 	if (!empty($orphanAlbums)) { ?>
 		<p><?php echo _("Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
@@ -316,7 +317,7 @@ else {
 ?>
 </div>
 <?php
-    includeHtmlWrap("gallery.footer"); 
+    includeHtmlWrapLEGACY("general.footer"); 
     if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>

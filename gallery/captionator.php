@@ -165,7 +165,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php }
 
-includeHtmlWrap("album.header");
+includeTemplate("album.header");
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
@@ -346,7 +346,7 @@ if ($numPhotos) {
 echo languageSelector();
 
 $validation_file = 'captionator.php';
-includeHtmlWrap('general.footer');
+includeHtmlWrapLEGACY('general.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

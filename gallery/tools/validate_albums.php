@@ -128,12 +128,13 @@ if (empty($action)) {
   <title><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
     }
 
-    includeHtmlWrap("gallery.header");
-    $adminbox['text'] ='<span class="head">'. ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") .'</span>';
+    includeTemplate("gallery.header");
+
+    $adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo");
     $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
     $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
@@ -144,7 +145,7 @@ if (empty($action)) {
     includeLayout('breadcrumb.inc');
 
 ?>
-<div class="popup" align="center">
+<div class="g-content-popup" align="center">
 <?php
     switch ($action) {
 	case 'unlinkInvalidAlbum':
@@ -205,11 +206,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header();
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php 
 } 
-includeHtmlWrap("gallery.header");
-$adminbox['text'] ='<span class="head">'.  _("Validate Albums") .'</span>';
+includeTemplate("gallery.header");
+
+$adminbox['text'] =_("Validate Albums");
 $adminCommands = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
 $adminCommands .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
 
@@ -221,7 +223,7 @@ includeLayout('adminbox.inc');
 
 includeLayout('breadcrumb.inc');
 
-echo '<div class="popup">';
+echo '<div class="g-content-popup" align="center">';
 if (empty($action)) {
 	if (!empty($results['file_missing'])) { ?>
 		<p><?php echo sprintf(_("Missing Files: %s"), sizeof($results['file_missing'])); ?></p>
@@ -306,7 +308,8 @@ if (empty($action)) {
 ?>
 </div>
 <?php
-includeHtmlWrap("gallery.footer"); 
+includeHtmlWrapLEGACY('general.footer'); 
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>

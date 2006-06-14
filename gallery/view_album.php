@@ -774,6 +774,6 @@ else {
 }
 
 define('READY_TO_INCLUDE', 'DISCO');
-require(dirname(__FILE__) .'/templates/view_album.tpl.default');
+require(dirname(__FILE__) .'/templates/album.tpl.default');
 
 ?>

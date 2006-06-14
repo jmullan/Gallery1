@@ -79,7 +79,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeHtmlWrap('gallery.header');
+includeTemplate('gallery.header');
 
 $adminbox['text'] = gTranslate('core', "Admin options");
 $adminbox['commands'] = galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
@@ -105,8 +105,9 @@ if(!empty($adminOptions)) {
 	echo "\n</table>";
 }
 
-$validation_file = basename(__FILE__);
-includeHtmlWrap("general.footer");
+includeTemplate('info_donation-block');
+
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

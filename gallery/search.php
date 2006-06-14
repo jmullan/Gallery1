@@ -43,10 +43,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo gTranslate('core', "Search") ?></title>
   <?php common_header(); ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php }
 
-includeHtmlWrap("gallery.header");
+includeTemplate("gallery.header");
 
 echo '<div class="right">';
 if (!empty($searchstring)) {
@@ -270,7 +270,10 @@ else {
 }
 
 echo '<hr width="100%">';
-includeHtmlWrap("gallery.footer");
+
+includeTemplate('info_donation-block');
+
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>

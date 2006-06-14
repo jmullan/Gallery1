@@ -103,7 +103,7 @@ if (!empty($comment_index)) {
 			continue;
 		}
 		if (isDebugging()) {
-			echo "\n<br>". sprintf(_("Deleting comment %d from item with index: %d"), $com_index, $index);
+			echo "\n<br>". sprintf(gTranslate('core', "Deleting comment %d from item with index: %d"), $com_index, $index);
 		}
 		$saveMsg = array(i18n("Comment \"%s\" by %s deleted from %s"),
 			$comment->getCommentText(),
@@ -115,9 +115,10 @@ if (!empty($comment_index)) {
 	}
 }
 
-includeHtmlWrap("album.header");
-$adminbox["text"] = _("Comments for this Album");
-$adminbox["commands"] = galleryLink(makeGalleryUrl($gallery->session->albumName), _("return to _album"), array(), '', true);
+includeTemplate('album.header');
+
+$adminbox["text"] = gTranslate('core', "Comments for this Album");
+$adminbox["commands"] = galleryLink(makeGalleryUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
 $adminbox["bordercolor"] = $bordercolor;
 
 includeLayout('adminbox.inc');
@@ -126,7 +127,7 @@ $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 includeLayout('breadcrumb.inc');
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
-    echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
+    echo "<p>". gallery_error(gTranslate('core', "Sorry.  This album does not allow comments.")) ."</p>";
 } else {
     $numPhotos = $gallery->album->numPhotos(1);
     $commentbox["bordercolor"] = $bordercolor;
@@ -169,7 +170,8 @@ echo languageSelector();
 
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
-includeHtmlWrap("general.footer");
+
+includeHtmlWrapLEGACY("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 

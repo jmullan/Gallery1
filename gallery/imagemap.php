@@ -117,7 +117,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 } // End if ! embedded
 
-includeHtmlWrap("photo.header");
+includeTemplate("photo.header");
 
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
@@ -268,8 +268,6 @@ else {
 includeLayout('breadcrumb.inc');
 echo languageSelector();
 
-includeHtmlWrap("photo.footer");
-
 if (!empty($allImageAreas)) {
     echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
@@ -280,6 +278,9 @@ if (!empty($allImageAreas)) {
     //-->
     </script>
 <?php
+
+includeHtmlWrapLEGACY("general.footer");
+
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

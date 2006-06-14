@@ -518,10 +518,10 @@ if ($gallery->user->isLoggedIn() &&
 
 		$emailMeForm .= gTranslate('core', "Email me when comments are added");
 		$checked = ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? " checked" : "";
-		$emailMeForm .= "<input type=\"checkbox\" name=\"comments $checked onclick=\"location.href='$url'\">";
+		$emailMeForm .= "<input type=\"checkbox\" name=\"comments\" $checked onclick=\"location.href='$url'\">";
 		$emailMeForm .= "\n</form>";
 	}
 }
     define('READY_TO_INCLUDE', 'DISCO');
-    require(dirname(__FILE__) .'/templates/view_photo.tpl.default');
+    require(dirname(__FILE__) .'/templates/photo.tpl.default');
 ?>
