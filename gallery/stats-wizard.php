@@ -159,7 +159,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	</script>
 </div>
 <?php
-includeHtmlWrap("stats.footer");
+includeHtmlWrapLEGACY("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

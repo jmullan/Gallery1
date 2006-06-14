@@ -569,13 +569,9 @@ else {
 }
 
 // <!-- stats.header begin -->
-includeHtmlWrap("stats.header");
+includeTemplate("stats.header");
 
-$navigator["fullWidth"] = 100;
-$navigator["widthUnits"] = "%";
-
-$adminText = "";
-
+$adminText = '';
 if (isset($album)) {
     if (isset($albumobj)) {
         if ($type == "comments" ) {
@@ -615,16 +611,17 @@ $navigator["pageVar"] = "set_albumListPage";
 $navigator["url"] = makeStatsUrl( $page );
 $navigator["maxPages"] = $lastpage;
 $navigator["spread"] = 6;
-$navigator["fullWidth"] = 100;
-$navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 
 includeLayout('adminbox.inc');
 
-echo "<!-- Begin top nav -->";
-includeLayout('navigator.inc');
+if ($navigator["maxPages"] > 1) {
+    echo '<div class="g-navbar-top">';
+    includeLayout('navigator.inc');
+    echo '</div>';
+}
+
 echo languageSelector();
-echo "<!-- End top nav -->";
 
 if ($useCache ) {
     readGalleryStatsCache($cacheFilename, $startPhoto, $photosPerPage );
@@ -643,13 +640,13 @@ if (empty($showGrid)) {
     $style = '';
 }
 
-echo '<br clear="all">';
+//echo '<br clear="all">';
 
 $statsTable = new galleryTable();
 $statsTable->setColumnCount(2 * $cols);
 $statsTable->setAttrs(array(
     'id' => 'statsTable',
-    'width' => $navigator["fullWidth"] . $navigator["widthUnits"],
+    'class' => 'g-vatable',
     'border' => 0,
     'cellspacing' => 7));
 
@@ -681,13 +678,15 @@ for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosP
 
                     // Image Cell
                     $statsTable->addElement(array(
-                        'content' => "<a href=\"$statsUrl\">". $statsAlbum->getThumbnailTag($photoIndex, $thumbSize) . "</a>",
-                        'cellArgs' => array('align' => 'center', 'valign' => 'top')));
+                        'content' => '<div class="g-vathumb">'.
+				"<a href=\"$statsUrl\">". $statsAlbum->getThumbnailTag($photoIndex, $thumbSize) . "</a>" .
+				'</div>',
+                        'cellArgs' => array('class' => 'g-vathumb-cell')));
 
                     //  Text Cell -->
                     $statsTable->addElement(array(
                     'content' => displayTextCell($statsAlbum, $photoIndex, $photoId, $photoInfo['rating'], $photoInfo['ratingcount']),
-                    'cellArgs' => array('align' => 'left', 'valign' => 'top', 'class' => 'albumdesc')));
+                    'cellArgs' => array('class' => 'g-va-thumb-texts', 'style' => 'vertical-align: top')));
                 }
             }
         }
@@ -697,7 +696,10 @@ for ($j = $startPhoto; $j < $totalPhotosToDisplay && $j < $startPhoto + $photosP
 echo $statsTable->render();
 
 $time = getmicrotime() - $time_start;
-echo infoLine(sprintf (_("Finished in %d seconds"), $time), 'success1');
+echo infoBox(array(array(
+	'type' => 'success',
+	'text' => sprintf (_("Finished in %d seconds"), $time)
+)));
 
 if ($cacheReloadRequired) {
     $url = makeStatsUrl( $page );
@@ -730,10 +732,15 @@ echo "<br>";
 
 // <!-- bottom nav -->
 
-includeLayout('navigator.inc');
+if ($navigator["maxPages"] > 1) {
+        echo '<div class="g-navbar-bottom">';
+        includeLayout('navigator.inc');
+        echo '</div>';
+    }
 
 echo languageSelector();
-includeHtmlWrap("stats.footer");
+
+includeHtmlWrapLEGACY("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

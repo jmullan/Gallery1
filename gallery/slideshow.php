@@ -151,7 +151,7 @@ if ($albumName) {
 
 <?php }
 
-includeHtmlWrap("slideshow.header"); ?>
+includeTemplate("slideshow.header"); ?>
 
 <script src="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -200,7 +200,7 @@ echo "\n<br clear=\"all\">";
 slideshow_image();
 
 echo languageSelector();
-includeHtmlWrap("slideshow.footer");
+includeHtmlWrapLEGACY("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
