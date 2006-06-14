@@ -59,16 +59,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeHtmlWrap("gallery.header");
+// General Overall Header, better do not remove it.
+
+includeHtmlWrap("wrapper.header");
+?>
+
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo $gallery->app->galleryTitle ?></div>
+</div>
+<?php
 
 echo $searchBar;
 
 includeLayout('adminbox.inc');
 
 if ($navigator["maxPages"] > 1) {
-	echo '<div class="g-navbar-top">';
+    echo '<div class="g-navbar-top">';
     includeLayout('navigator.inc');
-	echo '</div>';
+    echo '</div>';
 }
 
 echo languageSelector();
@@ -159,16 +167,22 @@ $cells = 2;
 
 <?php
 if ($navigator["maxPages"] > 1) {
-	echo '<div class="g-navbar-bottom">';
+    echo '<div class="g-navbar-bottom">';
     includeLayout('navigator.inc');
-	echo '</div>';
+    echo '</div>';
 }
 ?>
 <p>
 <!-- gallery.footer begin -->
 <?php
 
-includeHtmlWrap("gallery.footer");
+require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+
+if (! isset($GALLERY_EMBEDDED_INSIDE)) {
+    echo gallery_validation_link("albums.php");
+}
+
+includeHtmlWrap("wrapper.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
