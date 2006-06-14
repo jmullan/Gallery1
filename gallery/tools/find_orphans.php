@@ -291,12 +291,15 @@ if (empty($action)) {
 <?php 
 	} else {
 		// No Orphans
-		echo "\n<p align=\"center\" class=\"warning\">" .  _("No Orphans Found") . "</p>";
-		echo "\n<p align=\"center\">". _("There are no orphaned elements in this Gallery.") . "</p>\n";
+		echo "\n<p align=\"center\" class=\"g-success\">" .
+			_("There are no orphaned elements in this Gallery.") . "</p>\n";
 	}
 } // !isset(update) 
 else { 
-	echo "\n<p align=\"center\" class=\"warning\">" .  sprintf(_("Orphan %s Repaired"), ($action == "albums") ? _("Albums") : _("Files")) . "</p>";
+	echo "\n<div class=\"g-success\">";
+	echo ($action == "albums") ? _("Orphaned albums repaired.") : _("Orphaned files repaired.");
+	echo "</div>\n";
+
 	if ($action == "albums") {
 		attachOrphanedAlbums($orphanAlbums);
 	}
