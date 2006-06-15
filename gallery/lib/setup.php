@@ -400,21 +400,15 @@ function check_php() {
 }
 
 function check_mod_rewrite()  {
+    global $GALLERY_REWRITE_OK;
+
     $success = array();
     $fail = array();
     $warn = array();
 
-    global $GALLERY_REWRITE_OK;
-
     if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
 	if ($GALLERY_REWRITE_OK) {
 	    $success[] = gTranslate('config', "<b>mod_rewrite</b> is enabled.");
-	    if (strstr($GALLERY_REWRITE_OK, "ampersandbroken")) {
-		$GALLERY_REWRITE_SEPARATOR = "\&";
-	    }
-	    else {
-		$GALLERY_REWRITE_SEPARATOR = "&";
-	    }
 	}
 	else {
 	    $fail["fail-mod-rewrite"] = true;

@@ -30,15 +30,13 @@
  * Otherwise constants are not defined.
  */
 
-	require (dirname(__FILE__) . '/init.php');
+require (dirname(__FILE__) . '/init.php');
 
-	require (dirname(__FILE__) . '/config_data.inc');
-	require (GALLERY_BASE . '/js/sectionTabs.js.php');
+require (dirname(__FILE__) . '/config_data.inc');
+require (GALLERY_BASE . '/js/sectionTabs.js.php');
 
-	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
-	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
-
-	$GALLERY_REWRITE_OK = getRequestVar('init_mod_rewrite');
+list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
+    getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
 doctype();
 ?>

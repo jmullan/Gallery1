@@ -182,14 +182,17 @@ class Image {
 		$resizedImage = urlencode($this->resizedName) .".$this->type";
 
 		if ($this->resizedName && $size == 0) {
-			$attrs['width']		= $this->raw_width;
-			$attrs['height']	= $this->raw_height;
 			if ($full) {
+				$attrs['width']		= $this->raw_width;
+				$attrs['height']	= $this->raw_height;
 				$attrs['src']	= "$dir/$fullImage";
 			} else {
+				$attrs['width']		= $this->width;
+				$attrs['height']	= $this->height;
 				$attrs['src']	= "$dir/$resizedImage";
 			}
-		} else {
+		}
+		else {
 			$attrs['src']		= "$dir/$fullImage";
 		}
 
