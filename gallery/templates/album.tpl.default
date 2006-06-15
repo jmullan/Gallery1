@@ -183,7 +183,8 @@ if ($navigator["maxPages"] > 1) {
       <div <?php echo $item['thumb']['style'] ?> class="g-vathumb">
       <?php
         $gallery->html_wrap = $item['thumb'];
-        includeHtmlWrapLEGACY($item['thumb']['type']);
+        includeLayout('inline_imagewrap.inc');
+        //includeHtmlWrapLEGACY($item['thumb']['type']);
       ?>
       </div>
       <div align="center" class="g-va-thumb-texts">

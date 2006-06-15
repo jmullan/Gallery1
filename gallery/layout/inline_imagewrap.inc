@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: inline_imagewrap.inc 13817 2006-06-13 11:11:49Z jenst $
 
 
 //-- shorten the variables for convinience ---

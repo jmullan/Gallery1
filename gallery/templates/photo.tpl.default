@@ -169,16 +169,12 @@ if(isset($imageMapHTML)) {
 
 <!-- image -->
 <a name="image"></a>
-<?php includeHtmlWrapLEGACY("inline_photo.header"); ?>
 
 <div class="g-photo" align="center">
-	<?php include (dirname(dirname(__FILE__)) .'/html_wrap/inline_imagewrap.inc'); ?>
+	<?php includeLayout('inline_imagewrap.inc'); ?>
 </div>
 
-<?php includeHtmlWrapLEGACY("inline_photo.footer"); ?>
-
 <div class="g-photo-texts">
-
 	<!-- caption -->
 	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
 	
@@ -188,27 +184,27 @@ if(isset($imageMapHTML)) {
 	?>
 
 <?php if (canVote() || $gallery->album->getPollShowResults()) : ?>
-<div class="g-vote-box">
-    <!-- Voting pulldown / radiobuttons -->
-	<?php echo makeFormIntro('view_photo.php', array('name' => 'vote_form'), array('id' => $id)); ?>
-		<script language="javascript1.2" type="text/JavaScript">
-		function chooseOnlyOne(i, form_pos, scale) {
-			for(var j=0;j<scale;j++) {
-				if(j != i) {
-					eval("document.vote_form['votes["+j+"]'].checked=false");
+	<div class="g-vote-box">
+	    <!-- Voting pulldown / radiobuttons -->
+		<?php echo makeFormIntro('view_photo.php', array('name' => 'vote_form'), array('id' => $id)); ?>
+			<script language="javascript1.2" type="text/JavaScript">
+			function chooseOnlyOne(i, form_pos, scale) {
+				for(var j=0;j<scale;j++) {
+					if(j != i) {
+						eval("document.vote_form['votes["+j+"]'].checked=false");
+					}
 				}
+				document.vote_form.submit("Vote");
 			}
-			document.vote_form.submit("Vote");
-		}
-		</script>
-		<?php echo addPolling("item.$id"); ?>
-		</form>
-<?php if ($gallery->album->getPollShowResults()) {
-	echo "\n\t<!-- Voting Results -->\n";
-	echo showResults("item.$id");
-}
-?>
-</div>
+			</script>
+			<?php echo addPolling("item.$id"); ?>
+			</form>
+	<?php if ($gallery->album->getPollShowResults()) {
+		echo "\n\t<!-- Voting Results -->\n";
+		echo showResults("item.$id");
+	}
+	?>
+	</div>
 <?php endif ?>
 
 	<!-- Comments -->
