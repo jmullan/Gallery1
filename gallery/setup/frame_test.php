@@ -25,7 +25,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 global $gallery;
 
-printPopupStart(_("Gallery Configuration") .':: '. _("Frames"));
+printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate('config', "Frames"));
 ?>
 	<!--
 		This Javascript and the Tabs are inspired by the Horde Forms code
@@ -50,16 +50,16 @@ printPopupStart(_("Gallery Configuration") .':: '. _("Frames"));
 $descriptions = array();
 $names = array();
 
-$names["none"] = _("None");
-$descriptions["none"] = _("No frames");
-$names["dots"] = _("Dots");
-$descriptions["dots"] = _("Just a simple dashed border around the thumb.");
-$names["solid"] = _("Solid");
-$descriptions["solid"] = _("Just a simple solid border around the thumb.");
+$names["none"] = gTranslate('config', "None");
+$descriptions["none"] = gTranslate('config', "No frames");
+$names["dots"] = gTranslate('config', "Dots");
+$descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
+$names["solid"] = gTranslate('config', "Solid");
+$descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
 $names["siriux"] = 'Siriux';
-$descriptions["siriux"] = _("The frame from Nico Kaisers Siriux theme.") ;
+$descriptions["siriux"] = gTranslate('config', "The frame from Nico Kaisers Siriux theme.") ;
 
-$dir = GALLERY_BASE . '/html_wrap/frames';
+$dir = GALLERY_BASE . '/layout/frames';
 if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
     while ($file = readdir($fd)) {
         $subdir = "$dir/$file";
@@ -78,12 +78,12 @@ if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
             $descriptions[$file] = $description;
         } else {
             if (false && isDebugging()) {
-                echo gallery_error(sprintf(_("Skipping %s."), $subdir));
+                echo gallery_error(sprintf(gTranslate('config', "Skipping %s."), $subdir));
             }
         }
     }
 } else {
-    echo '<--' . sprintf(_("Can't open %s"), $dir) . '-->';
+    echo '<--' . sprintf(gTranslate('config', "Can't open %s"), $dir) . '-->';
 }
 
 ?>
@@ -134,13 +134,13 @@ foreach (array_keys($names) as $key) {
     print "<div id=\"group_$key\" style=\"display: $display\">";
     print "<p>".$descriptions[$key]."</p>";
     $gallery->html_wrap['frame'] = $key;
-    includeHtmlWrap('inline_gallerythumb.frame');
+    includeLayout('inline_imagewrap.inc');
     print "</div>";
 }
 ?>
 </div>
 <p align="center">
-    <input type="button" name="close" value="<?php echo _("Close Window") ?>" onClick="window.close()" class="g-button">
+    <input type="button" name="close" value="<?php echo gTranslate('config', "Close Window") ?>" onClick="window.close()" class="g-button">
 </p>
 </body>
 </html>
