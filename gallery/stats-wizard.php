@@ -47,9 +47,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </head>
 <body>
 
-<div class="g-header-popup">
-  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Gallery statistics - Wizard"); ?></div>
-</div>
+<div class="g-main">
+	<div class="g-header-popup">
+		<div class="g-pagetitle-popup"><?php echo gTranslate('core', "Gallery statistics - Wizard"); ?></div>
+	</div>
 <?php  
 }
     $adminbox["commands"] = galleryLink(
@@ -142,7 +143,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	</tr>
 	</table>
 	<br>
-	<input type="submit" name="submitbutton" value="<?php echo gTranslate('core',"Show statistics"); ?>" class="g-button">
+	<?php echo gSubmit('submitbutton', gTranslate('core',"_Show statistics")); ?>
 	</form>
 	
 	<br>
@@ -157,9 +158,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	  // We could do this onLoad, but this doesnt work embedded.
 	  updateUrl();
 	</script>
+
 </div>
+
 <?php
-includeHtmlWrapLEGACY("general.footer");
+includeTemplate('general.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

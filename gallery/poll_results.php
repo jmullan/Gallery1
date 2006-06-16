@@ -168,8 +168,7 @@ if (!empty($resultTable->elements)) {
 }
 
 $validation_file = basename(__FILE__);
-includeHtmlWrapLEGACY("general.footer");
-
+includeTemplate("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

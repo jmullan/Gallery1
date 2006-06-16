@@ -171,7 +171,7 @@ echo languageSelector();
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
 
-includeHtmlWrapLEGACY("general.footer");
+includeTemplate('general.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 

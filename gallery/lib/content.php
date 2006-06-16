@@ -741,85 +741,37 @@ function includeTemplate($name, $skinname = '') {
     return true;
 }
 
-
-/**** !!!!!! REMOVE THIS SOON !!!!!! ***** */
-function includeHtmlWrapLEGACY($name, $skinname = '') {
-    global $gallery;
-
-    $base = dirname(dirname(__FILE__));
-    $domainname = $base . '/html_wrap/' . $_SERVER['HTTP_HOST'] . "/$name";
-
-    if (!$skinname) {
-        $skinname = $gallery->app->skinname;
-    }
-
-    if (fs_file_exists($domainname) && !broken_link($domainname)) {
-        require($domainname);
-    }
-    else {
-        $defaultname = "$base/html_wrap/$name";
-        $fullname = "$base/skins/$skinname/html_wrap/$name";
-
-        if (fs_file_exists($fullname) && !broken_link($fullname)) {
-            require ($fullname);
-        }
-        elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
-            require($defaultname);
-        }
-        elseif (fs_file_exists("$defaultname.default") && !broken_link("$defaultname.default")) {
-            require("$defaultname.default");
-        }
-	else {
-	    echo debugMessage("$name could not included", __FILE__, __LINE);
-	    return false;
-	}
-    }
-
-    echo '<br clear="all">';
-    echo infoBox(array(array(
-	'type' => 'warning',
-	'text' => 'use of includeHtmlWrapLEGACY'
-    )));
-    echo '<br clear="all">';
-
-    return true;
-}
-
 /**
  * Wrapper around _getStyleSheetLink, its defines which stylesheet link is generated.
  * @return	string	$styleSheetLinks	The generated HTML <LINK> to load the stylesheets. Empty when already loaded.
  */
 function getStyleSheetLink() {
-    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_OK;
-    static $styleSheetSet;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_OK;
+	static $styleSheetSet;
 
-    $styleSheetLinks = '';
+	$styleSheetLinks = '';
 
-    if(! $styleSheetSet) {
-        $styleSheetLinks = _getStyleSheetLink("base");
-        if(isset($gallery->direction) && $gallery->direction == 'rtl') {
-           $styleSheetLinks .= _getStyleSheetLink("rtl");
-        }
-	else {
-           $styleSheetLinks .= _getStyleSheetLink("ltr");
-        }
+	if(! $styleSheetSet) {
+		$styleSheetLinks = _getStyleSheetLink("base");
+		if(isset($gallery->direction) && $gallery->direction == 'rtl') {
+			$styleSheetLinks .= _getStyleSheetLink("rtl");
+		}
+		else {
+			$styleSheetLinks .= _getStyleSheetLink("ltr");
+		}
 
-/*
-        if (isset($GALLERY_OK) && $GALLERY_OK == false) {
-            $styleSheetLinks .= _getStyleSheetLink("config");
-        } else {
-*/
-            if ($GALLERY_EMBEDDED_INSIDE) {
-                $styleSheetLinks .= _getStyleSheetLink("embedded_style");
-            } else {
-                $styleSheetLinks .= _getStyleSheetLink("screen");
-            }
-//        }
 
-        $styleSheetSet = true;
-    }
+		if ($GALLERY_EMBEDDED_INSIDE) {
+			$styleSheetLinks .= _getStyleSheetLink("embedded_style");
+		} else {
+			$styleSheetLinks .= _getStyleSheetLink("screen");
+		}
 
-    return $styleSheetLinks;
+
+		$styleSheetSet = true;
+	}
+
+	return $styleSheetLinks;
 }
 
 /**
@@ -1145,7 +1097,7 @@ function available_frames($description_only = false, $forRandomBlock = false) {
         "<dt>". popup_link('Siriux', "frame_test.php?frame=siriux", true) ."</dt><dd>" .
             gTranslate('common', "The frame from Nico Kaisers Siriux theme.")."</dd>" ;
 
-    $dir = $GALLERY_BASE . '/html_wrap/frames';
+    $dir = $GALLERY_BASE . '/layout/frames';
 
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
         while ($file = readdir($fd)) {

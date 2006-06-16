@@ -266,6 +266,7 @@ else {
 <?php
 
 includeLayout('breadcrumb.inc');
+
 echo languageSelector();
 
 if (!empty($allImageAreas)) {
@@ -279,7 +280,7 @@ if (!empty($allImageAreas)) {
     </script>
 <?php
 
-includeHtmlWrapLEGACY("general.footer");
+includeTemplate('general.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

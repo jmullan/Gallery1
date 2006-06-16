@@ -125,7 +125,7 @@ if (empty($action)) {
 ?>
 <html>
 <head>
-  <title><?php echo ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo") ?></title>
+  <title><?php echo ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo") ?></title>
   <?php common_header(); ?>
 </head>
 <body>
@@ -134,9 +134,9 @@ if (empty($action)) {
 
     includeTemplate("gallery.header");
 
-    $adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? _("Delete Album") : _("Delete Photo");
-    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
-    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
+    $adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo");
+    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
+    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
 
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
@@ -179,7 +179,7 @@ if (empty($action)) {
 	        $targetAlbum->load($album);
 	        echo $targetAlbum->getThumbnailTagById($id);
 	        echo "<p><input type='submit' name='verified' value='Delete $album/$id'></p>";
-	        echo "<p>" . _("Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
+	        echo "<p>" . gTranslate('core', "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
 	        echo "</form>";
 	    }
 	break;
@@ -201,7 +201,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle ?>::<?php echo _("Validate Albums") ?></title>
+<title><?php echo $gallery->app->galleryTitle ?>::<?php echo gTranslate('core', "Validate Albums") ?></title>
 <?php 
 	common_header();
 ?>
@@ -211,9 +211,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } 
 includeTemplate("gallery.header");
 
-$adminbox['text'] =_("Validate Albums");
-$adminCommands = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
-$adminCommands .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
+$adminbox['text'] =gTranslate('core', "Validate Albums");
+$adminCommands = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
+$adminCommands .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
 
 $adminbox["commands"] = $adminCommands;
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
@@ -226,14 +226,14 @@ includeLayout('breadcrumb.inc');
 echo '<div class="g-content-popup" align="center">';
 if (empty($action)) {
 	if (!empty($results['file_missing'])) { ?>
-		<p><?php echo sprintf(_("Missing Files: %s"), sizeof($results['file_missing'])); ?></p>
-		<p><?php echo _("The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table.") ?></p>
+		<p><?php echo sprintf(gTranslate('core', "Missing Files: %s"), sizeof($results['file_missing'])); ?></p>
+		<p><?php echo gTranslate('core', "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table.") ?></p>
 		<center>
 		<table>
 		<tr>
-			<th><?php echo _("Missing File") ?></th>
+			<th><?php echo gTranslate('core', "Missing File") ?></th>
 			<th>&nbsp;</th>
-			<th><?php echo _("Action") ?></th>
+			<th><?php echo gTranslate('core', "Action") ?></th>
 		</tr>
 <?php
 		foreach ($results['file_missing'] as $fileName) {
@@ -242,7 +242,7 @@ if (empty($action)) {
 			echo "\t<tr>";
 			echo "\n\t<td><a href='" . makeAlbumUrl($contents[0], $contents[1]) . "'>" . $fileName . "</a></td>";
 			echo "\n\t<td>=&gt;</td>";			
-			echo "\n\t<td>" . popup_link(_('delete photo'), 
+			echo "\n\t<td>" . popup_link(gTranslate('core', 'delete photo'), 
 				"tools/validate_albums.php?action=deleteMissingPhoto" . 
 					"&album={$contents[0]}&id={$contents[1]}", 
 				false, true, 500, 500) . '</td>';
@@ -258,8 +258,8 @@ if (empty($action)) {
 ?>
 		<center>
 		<table>
-		<tr><th><?php echo _("No Missing Files") ?></th></tr>
-		<tr><td><?php echo _("There are no missing files in this Gallery.") ?></td></tr>
+		<tr><th><?php echo gTranslate('core', "No Missing Files") ?></th></tr>
+		<tr><td><?php echo gTranslate('core', "There are no missing files in this Gallery.") ?></td></tr>
 		</table>
 		</center>
 <?php
@@ -268,21 +268,21 @@ if (empty($action)) {
 	if (!empty($results['invalid_album'])) {
 ?>
 
-		<p><?php echo _("Invalid Albums:") . " " . sizeof($results['invalid_album']) ?></p>
-		<p><?php echo _("Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0") ?></p>
+		<p><?php echo gTranslate('core', "Invalid Albums:") . " " . sizeof($results['invalid_album']) ?></p>
+		<p><?php echo gTranslate('core', "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0") ?></p>
 		<center>
 		<table>
 		<tr>
-			<th><?php echo _("Invalid Album") ?></th>
+			<th><?php echo gTranslate('core', "Invalid Album") ?></th>
 			<th>&nbsp;</th>
-			<th><?php echo _("Action") ?></th>
+			<th><?php echo gTranslate('core', "Action") ?></th>
 		</tr>
 <?php
 		foreach ($results['invalid_album'] as $invalidAlbum) {
 			echo "\n\t<tr>";
 			echo "\n\t<td>$invalidAlbum</td>";
 			echo "\n\t<td>=&gt;</td>";
-			echo "\n\t<td>" . popup_link(_('delete directory'), 
+			echo "\n\t<td>" . popup_link(gTranslate('core', 'delete directory'), 
 				"tools/validate_albums.php?action=unlinkInvalidAlbum" . 
 					"&invalidAlbum={$invalidAlbum}", 
 				false, true, 500, 500) . '</td>';
@@ -298,8 +298,8 @@ if (empty($action)) {
 ?>
 		<center>
 		<table>
-		<tr><th><?php echo _("No Invalid Albums Found") ?></th></tr>
-		<tr><td><?php echo _("There are no invalid albums present in this Gallery.") ?></td></tr>
+		<tr><th><?php echo gTranslate('core', "No Invalid Albums Found") ?></th></tr>
+		<tr><td><?php echo gTranslate('core', "There are no invalid albums present in this Gallery.") ?></td></tr>
 		</table>
 		</center>
 <?php
@@ -308,7 +308,7 @@ if (empty($action)) {
 ?>
 </div>
 <?php
-includeHtmlWrapLEGACY('general.footer'); 
+includeTemplate('general.footer'); 
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>

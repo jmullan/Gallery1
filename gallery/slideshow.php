@@ -182,9 +182,9 @@ if ( !$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
 		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
-			$adminbox["commands"] .= "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
+			$adminbox["commands"] = "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
 		} else {
-			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
+			$adminbox["commands"] = "&nbsp;" .$modes[$m];
 		}
 	}
 }
@@ -200,7 +200,8 @@ echo "\n<br clear=\"all\">";
 slideshow_image();
 
 echo languageSelector();
-includeHtmlWrapLEGACY("general.footer");
+
+includeTemplate("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

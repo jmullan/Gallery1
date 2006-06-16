@@ -320,7 +320,7 @@ else {
 ?>
 </div>
 <?php
-    includeHtmlWrapLEGACY("general.footer"); 
+    includeTemplate('general.footer'); 
     if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>

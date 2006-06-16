@@ -50,7 +50,7 @@ switch ($frame) {
 
     default: // use frames directory or fallback to none
         if(array_key_exists($frame, available_frames())) {
-            $base .= "/html_wrap/frames/$frame";
+            $base .= "/layout/frames/$frame";
             require(dirname(__FILE__) . "/frames/$frame/frame.def");
             // Safari/Opera ignore height="100%" for table, but this ensures HTML
             // standards, so do it for all browsers

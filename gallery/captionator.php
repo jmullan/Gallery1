@@ -346,7 +346,7 @@ if ($numPhotos) {
 echo languageSelector();
 
 $validation_file = 'captionator.php';
-includeHtmlWrapLEGACY('general.footer');
+includeTemplate('general.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

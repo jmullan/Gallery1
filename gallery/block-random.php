@@ -119,9 +119,10 @@ function doPhoto() {
 	    echo "\n<div class=\"g-random-block\">";
 	    echo "\n  <div class=\"g-random-block-photo\">";
 
-	    includeHtmlWrap("inline_photo.frame");
+	    includeLayout('inline_imagewrap.inc');
+	    
 	    if (!in_array($frame, array('dots', 'solid')) &&
-	      !fs_file_exists(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def")) {
+	      !fs_file_exists(dirname(__FILE__) . "/layout/frames/$frame/frame.def")) {
 	        echo "\n<br>";
 	    }
 	    echo $caption;

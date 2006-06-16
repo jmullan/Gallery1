@@ -147,8 +147,13 @@ if (!empty($searchstring)) {
             $searchCaption = gTranslate('core', "Caption: ") . $photo->getCaption();
             $searchCaption .= $searchAlbum->getCaptionName($j);
             $searchKeywords = $photo->getKeywords();
-            $searchName = $photo->image->name;
-
+            if(empty($photo->isAlbumName)) {
+            	$searchName = $photo->image->name;
+            }
+            else {
+            	$searchName = $photo->isAlbumName;
+            }
+            
             $commentMatch = 0;
             $commentText = '';
             if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {
