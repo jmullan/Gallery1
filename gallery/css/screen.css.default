@@ -36,6 +36,11 @@ a {
     color: #4E2192;
 }
 
+/******************** Begin superglobal ********************
+ *
+ * The complete Gallery is inside a <div>
+ * Use this classes to define "superglobal" styles
+*/
 .g-main {
 }
 
@@ -45,6 +50,11 @@ a {
 .g-main a:hover {
 }
 
+/******************** End superglobal ********************/
+
+
+/******************** Headers and Pagetitle ********************/
+ 
 .g-popup a {
 }
 
@@ -73,8 +83,9 @@ a {
 
 .g-pagetitle, .g-pagetitle-popup {
     margin-left: 20px;
-    padding: 2px; padding-left: 5px; padding-right: 5px;
-    border: 1px solid; border-color: #ccf;
+    padding: 2px;
+    padding-left: 5px; padding-right: 5px;
+    border: 1px solid #ccf;
     -Moz-Border-Radius: 20px;
 }
 
@@ -86,6 +97,8 @@ a {
     font-size: 12pt;
     font-weight: bold;
 }
+
+/******************** End Headers and Pagetitle ********************/
 
 /* Album titles */
 .g-title {
@@ -237,7 +250,8 @@ a {
     vertical-align: bottom;
 }
 
-/***** Begin Navigation Styles ***** /
+/******************** Begin Navigation Styles ********************/
+
 .g-navbar-top, g-microthumbnavbar-bottom, .g-microthumbnavbar-bottom, .g-microthumbnavbar-top {
     font-size: 9pt;
     width: 100%;
@@ -245,45 +259,45 @@ a {
 
 /* Style for top navigation bar specified */
 .g-navbar-top {
-    border: 1px dashed brown;
+    border-bottom: 1px dashed grey;
+    margin-bottom: 1px;
 }
 
 /* Style for bottom navigation bar specified */
 .g-navbar-bottom {
-    border: 1px dashed brown;
+    border: 1px dashed grey;
 }
 
 .g-microthumbnavbar-top {
-    border: 1px dotted brown;
+    border-bottom: 1px dashed grey;
 }
 
 .g-microthumbnavbar-bottom {
-    border: 1px dotted brown;
+    border-bottom: 1px dashed grey;
 }
 
 .g-navbar-top td, .g-navbar-bottom td {
      font-size: 9pt;
-     border-color: brown;
      text-align: center;
 }
 
 .g-borderright {
-     border-right: 1px solid;
+     border-right: 1px dashed;
 
 }
 
 .g-borderleft {
-    border-left: 1px solid;
+    border-left: 1px dashed;
 }
 
-/***** End Navigation Styles *****/
-
+/******************** End Navigation Styles ********************/
 
 /****** Style for breadcrumb bar if nothing special was specified ******/
 .g-breadcrumb {
     width: 100%;
     font-size: 9pt;
     margin-bottom: 2px;
+    border-bottom: 1px dashed grey;
 }
 
 .g-breadcrumb td {
@@ -291,6 +305,7 @@ a {
 }
 
 /***** End breadcrumb *****/
+
 .g-adm-options {
     padding: 5px;
 }
@@ -452,13 +467,13 @@ a {
     font-size: 7pt;
 }
 
+/******************** Begin album thumbnail view ********************/
 .g-album-summary, .g-separator {
     text-align: center;
     width: 75%;
     margin: 3px auto;
     color: #fff;
     background: #66a;
-    border: 2px double #fff;
     font: italic bold 8pt Verdana,Arial,serif;
     padding: 5px;
     -moz-border-radius: 3px;
@@ -466,34 +481,37 @@ a {
 
 /* The table that contains the thumbnails in album view */
 .g-vatable {
-    border: 3px dashed silver;
+    margin-top: 5px;
 }
 
+/* The table cell that contains the thumbnail */
 .g-vathumb-cell {
-    border: 1px solid green;
     font-size: 7pt;
 }
 
+/* The thumbnail itself */
 .g-vathumb {
-    border: 1px solid blue;
+}
+
+/* This class controlls the box around all texts below the thumbnail.
+ * It has the same width as the cell, not the thumbnail.
+ */
+.g-va-thumb-texts {
 }
 
 .g-thumb-caption {
-    border: 1px solid orange;
 }
 
 .g-va-infos {
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
 .g-va-viewcounter{
-    margin-top: 3px;
+    margin-top: 2px;
 }
 
-.g-va-thumb-texts {
-    border: 1px dashed blue;
-}
 
+/******************** End album thumbnail view ********************/
 
 /***** Begin Styles for comments *****/
 
@@ -528,8 +546,15 @@ a {
 
 
 .g-comment-box {
-	border: 1px solid green;
-	text-align: left;
+    margin: 2px 5px;
+    padding-left: 30px;
+    width: 75%;
+    border: 1px solid silver;
+}
+
+.g-comment-text-cell {
+    padding-left:10px;
+    border-top:1px solid black;
 }
 
 /***** End Styles for comments *****/
@@ -585,20 +610,27 @@ a {
     vertical-align: top;
 }
 
+/******************** Begin single photo view ********************/
+
+/* Box around photo. Currently a Photo is ALWAYS centered. */
+.g-photo {
+}
+
+/* Box around all Texts below the photo. Including captions, comments etc. */
 .g-photo-texts {
     font-size: 8pt;
     text-align: center;
-    border: 1px dashed green;
+    width: 100%;
 }
 
 .g-photo-caption {
     color: black;
-    border: 1px solid red;
 }
 
 .g-customFieldsTable {
      font-size: 9pt;
      margin: 0 auto;
+     text-align: left;
 }
 
 .g-voting-results {
@@ -650,7 +682,7 @@ input:focus, textarea:focus, select:focus {
     background: #fdc;
     padding: 3px 2px 3px 2px;
     width: 500px;
-    margin: 0 2px;
+    margin: 0 2px 3px;
     -moz-border-radius: 5px;
 }
 
@@ -671,3 +703,4 @@ input:focus, textarea:focus, select:focus {
     font-weight: bold;
     font-size: 10pt;
 }
+

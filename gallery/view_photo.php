@@ -510,15 +510,17 @@ if ($gallery->user->isLoggedIn() &&
 	}
 
 	if (! $gallery->album->getEmailMe('comments', $gallery->user)) {
-		$emailMeForm = "\n<form name=\"emailMe\" action=\"#\">";
+		$emailMeForm = "\n<form name=\"emailMe\" class=\"g-emailMe-box\" action=\"#\">";
 
 		$url= makeAlbumUrl($gallery->session->albumName, $id, array(
 			'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
 		);
 
-		$emailMeForm .= gTranslate('core', "Email me when comments are added");
 		$checked = ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? " checked" : "";
-		$emailMeForm .= "<input type=\"checkbox\" name=\"comments\" $checked onclick=\"location.href='$url'\">";
+		$emailMeForm .= "<input type=\"checkbox\" name=\"comments\" $checked onclick=\"location.href='$url'\"> ";
+		
+		$emailMeForm .= gTranslate('core', "Email me when comments are added");
+		
 		$emailMeForm .= "\n</form>";
 	}
 }

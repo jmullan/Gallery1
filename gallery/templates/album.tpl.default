@@ -252,11 +252,13 @@ if ($gallery->user->isLoggedIn() && $gallery->user->getEmail() &&
 ?>
         
   <ul>
-    <li><?php echo gTranslate('core', "Comments are added"); ?>
+    <li>
       <input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
+      <?php echo gTranslate('core', "Comments are added"); ?>
     </li>
-    <li><?php print gTranslate('core', "Other changes are made") ?>
+    <li>
       <input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
+      <?php print gTranslate('core', "Other changes are made") ?>
     </li>
   </ul>
   <input type="hidden" name="submitEmailMe" value="true">

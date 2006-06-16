@@ -102,7 +102,6 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
         else {
             $id = $gallery->album->getPhotoId($index);
             $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-            echo "<br>";
             echo popup_link(gTranslate('common', "add comment"), $url);
             echo "<br><br>";
         }

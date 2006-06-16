@@ -300,9 +300,6 @@ function showComments ($index, $albumName, $reverse = false) {
 
     $commentTable = new galleryTable();
     $commentTable->setAttrs(array(
-        'width' => '75%',
-        'style' => 'padding-left:30px;',
-        'border' => 0,
         'cellspacing' => 0,
         'cellpadding' => 0,
         'class' => 'g-comment-box')
@@ -345,7 +342,7 @@ function showComments ($index, $albumName, $reverse = false) {
 
         $commentTable->addElement(array(
             'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-            'cellArgs' => array('colspan' => $columns, 'style' => 'padding-left:10px; border-top:1px solid black', 'class' => 'g-desc-cell'))
+            'cellArgs' => array('colspan' => $columns, 'class' => 'left g-desc-cell g-comment-text-cell'))
         );
     }
     if ($reverse) {
