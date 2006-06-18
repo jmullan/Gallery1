@@ -1370,31 +1370,6 @@ function check_ecards($num) {
 	return array($success, $fail);
 }
 
-function check_gallery_versions()  {
-	$fail = array();
-	$success = array();
-	$warn = array();
-	list($oks, $errors, $warnings) = checkVersions(false);
-	if ($errors)  {
-		$fail[] = sprintf(gTranslate('config', "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
-		implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
-			"<br>" . gTranslate('config', "This should be fixed before proceeding") .
-			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-			"<a href=check_versions.php>", "</a>");
-	} else if ($warnings) {
-		$warn[] = sprintf(gTranslate('config', "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
-			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-			"<a href=check_versions.php>", "</a>");
-	} else {
-		if (count($oks) == 0) {
-			$success[] = sprintf(gTranslate('config', "All tested files up-to-date."));
-		} else {
-			$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($oks));
-		}
-	}
-	return array($success, $fail, $warn);
-}
-
 function newIn($version) {
 	$buf = "\n\t<br><font color=blue><b>(";
 	$buf .= sprintf(gTranslate('config', "this is new in version %s"), $version);
@@ -1506,6 +1481,35 @@ function displayNameOptions() {
 	);
 }
 
+function check_gallery_versions()  {
+	$fail = array();
+	$success = array();
+	$warn = array();
+	
+	list($oks, $errors, $warnings) = checkVersions(false);
+	
+	if ($errors)  {
+		$fail[] = sprintf(gTranslate('config', "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
+		implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
+			"<br>" . gTranslate('config', "This should be fixed before proceeding") .
+			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+			"<a href=check_versions.php>", "</a>");
+	}
+	else if ($warnings) {
+		$warn[] = sprintf(gTranslate('config', "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
+			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+			"<a href=check_versions.php>", "</a>");
+	}
+	else {
+		if (count($oks) == 0) {
+			$success[] = sprintf(gTranslate('config', "All tested files up-to-date."));
+		} else {
+			$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($oks));
+		}
+	}
+	return array($success, $fail, $warn);
+}
+
 function checkVersions($verbose = false) {
 	global $gallery;
 	/* we assume setup/init.php was loaded ! */
@@ -1514,18 +1518,23 @@ function checkVersions($verbose = false) {
 	$success = array();
 	$fail = array();
 	$warn = array();
+	
 	if (!fs_file_exists($manifest)) {
 		$fail["manifest.inc"]=gTranslate('config', "File missing or unreadable.  Please install then re-run this test.");
 		return array($success, $fail, $warn);
 	}
+	
 	if (!function_exists('getSVNRevision')) {
 		$fail['util.php'] = sprintf(gTranslate('config', "Please ensure that %s is the latest version."), "util.php");
 		return array($success, $fail, $warn);
 	}
+	
 	include (GALLERY_BASE . '/manifest.inc');
+	
 	if ($verbose) {
 		print sprintf(gTranslate('config', "Testing status of %d files."), count($versions));
 	}
+	
 	foreach ($versions as $file => $version) {
 		$found_version = getSVNRevision($file);
 		if ($found_version === NULL) {
@@ -1555,7 +1564,9 @@ function checkVersions($verbose = false) {
 				continue;
 			}
 		}
+		
 		$compare = compareVersions($version, $found_version);
+		
 		if ($compare < 0) {
 			if ($verbose) {
 				print "<br>\n";
