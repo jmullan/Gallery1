@@ -102,21 +102,23 @@ class AlbumItem {
         }
     }
 
-    function getExif($dir, $forceRefresh = 0) {
+    function getExif($dir, $forceRefresh = false) {
         global $gallery;
         $file = $dir . "/" . $this->image->name . "." . $this->image->type;
+        
+        echo debugMessage(sprintf(gTranslate('core', "Getting of file '%s'"), $file),__FILE__, __LINE__);
 
         /*
         * If we don't already have the exif data, get it now.
         * Otherwise return what we have.
         */
-        $needToSave = 0;
+        $needToSave = false;
         if ($gallery->app->cacheExif != 'yes') {
             if (empty($this->exifData) || $forceRefresh) {
                 /* Cache the current EXIF data and update the item capture date */
                 list($status, $this->exifData) = getExif($file);
                 $this->setItemCaptureDate();
-                $needToSave = 1;
+                $needToSave = true;
             } else {
                 /* We have a cached value and are not forcing a refresh */
                 $status = 0;
@@ -126,7 +128,7 @@ class AlbumItem {
             /* If the data is cached but the feature is disabled, remove the cache */
             if (!empty($this->exifData)) {
                 unset($this->exifData);
-                $needToSave = 1;
+                $needToSave = true;
             }
             list($status, $returnExifData) = getExif($file);
         }

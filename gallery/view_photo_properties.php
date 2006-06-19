@@ -36,14 +36,11 @@ echo printPopupStart(gTranslate('core',"Photo Properties"));
 
 if ($gallery->session->albumName && $index) {
 ?>
-<span>
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 	<br>
 	<?php echo $gallery->album->getCaption($index) ?>
 	<?php echo $gallery->album->getCaptionName($index) ?>
 	<br><br>
-</span>
-
 <?php
 /* 
 Here is the EXIF parsing code...
@@ -87,16 +84,16 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
     jhead binary -- BM 2/23/2002
 
 */
-    $forceRefresh = 0;
+    $forceRefresh = false;
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
         if (isset($reloadExifFromFile)) {
-            $forceRefresh = 1;
+            $forceRefresh = true;
         }
     }
 
     $extra_fields = $gallery->album->getExtraFields(false);
 
-    displayPhotoFields($index, $extra_fields, false, true,NULL,$forceRefresh);
+    displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {
         echo '<div class="left"><b>'. _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index) .'</div>';
