@@ -177,8 +177,7 @@ a {
     margin-bottom: 10px;
 }
 
-.g-content-popup caption {
-    font-weight: bold;
+.g-content-popup {
     margin: 5px;
 }
 
@@ -629,8 +628,9 @@ a {
 
 .g-customFieldsTable {
      font-size: 9pt;
-     margin: 0 auto;
      text-align: left;
+     margin: 0 auto;
+     border: 1px solid silver;
 }
 
 .g-voting-results {
@@ -641,6 +641,7 @@ a {
 .g-vote-box {
     border: 1px dotted blue;
     text-align: center;
+    vertical-align: top;
 }
 
 /***** General Form styles  ******/
@@ -686,7 +687,8 @@ input:focus, textarea:focus, select:focus {
     -moz-border-radius: 5px;
 }
 
-.g-columnheader {
+.g-columnheader, caption {
+    font-size: bold;
     padding: 2px;
     border: 1px solid #fff;
 }
@@ -703,4 +705,3 @@ input:focus, textarea:focus, select:focus {
     font-weight: bold;
     font-size: 10pt;
 }
-

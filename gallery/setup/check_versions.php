@@ -37,38 +37,70 @@
 <br>
 <?php
 
-list($oks, $errors, $warnings) = checkVersions(false);
+$versionStatus = checkVersions(false);
 
 $tests = array(
-    'errors' => array(
-        'text' => gTranslate('config', "One file is missing, corrupt or older than expected.", "%d files are missing, corrupt or older than expected.",  count($errors), _("All files okay."), true),
+    'missing' => array(
+        'text' => gTranslate('config',
+        		"One file is missing or corrupt.",
+        		"%d files are missing or corrupt.",
+        		count($versionStatus['missing']),
+        		'', true),
         'type' => 'error',
         'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
     ),
-    'warnings' => array(
-        'text' => gTranslate('config', "One file is more recent than expected.", "%d files are more recent than expected.", count($warnings), _("All files okay."), true),
+    'older' => array(
+        'text' => gTranslate('config',
+        		"One file is older than expected.",
+        		"%d files are older than expected.",
+        		count($versionStatus['older']),
+        		'', true),
+        'type' => 'error',
+        'hinttext' => sprintf(_("The following files are older than expected for this version of %s. Please update them as soon as possible."), Gallery())
+    ),
+    'unkown' => array(
+        'text' => gTranslate('config',
+        		"One file is not in the manifest file, but has a Version number.",
+        		"%d files are not in the manifest file, but have a Version number.",
+        		count($versionStatus['unkown']),
+        		'',
+        		true),
+        'type' => 'warning',
+        'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
+    ),
+    'newer' => array(
+        'text' => gTranslate('config',
+        	"One file is more recent than expected.",
+        	"%d files are more recent than expected.",
+        	count($versionStatus['newer']),
+        	'', true),
         'type' => 'warning',
         'hinttext' => sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery())
     ),
-    'oks' => array(
-        'text' => gTranslate('config', "One file is up-to-date.", "%d files are up-to-date.", count($oks),  _("All files are up-to-date."), true),
+    'ok' => array(
+        'text' => gTranslate('config',
+        		"One file is up-to-date.",
+        		"%d files are up-to-date.",
+        		count($versionStatus['ok']),
+        		gTranslate('config', "All files are up-to-date."),
+        		true),
         'type' => 'success',
         'hinttext' => _("The following files are up-to-date.")
-    )
+    ),
 );
 
 foreach($tests as $testname => $args) {
-    if  ($$testname) { ?>
+    if  (!empty($versionStatus[$testname])) { ?>
 <div class="g-notice left">
     <a href="#" style="float: left;" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
     <?php echo infobox(array(array('type' => $args['type'], 'text' => $args['text'])), '', false); ?>
   <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">
     <table>
-	  <tr>
+      <tr>
         <td class="g-sitedesc" colspan="2"><?php echo $args['hinttext']; ?></td>
-	  </tr>
+      </tr>
 	  <?php
-	  foreach ($$testname as $file => $result) {
+	  foreach ($versionStatus[$testname] as $file => $result) {
 	    echo "\n<tr>";
 	    echo "\n\t<td class=\"g-shortdesc\">$file:</td>";
 	    echo "\n\t<td class=\"g-desc\">$result</td>";
@@ -81,6 +113,15 @@ foreach($tests as $testname => $args) {
 <?php
     }
 }
+
+if(!empty($versionStatus['fail'])) {
+    foreach($versionStatus['fail'] as $error => $message) {
+	echo infoBox(array(array(
+		'type' => 'error',
+		'text' => $message)));
+    }
+}
+
 ?>
 
 </div>

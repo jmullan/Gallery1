@@ -279,27 +279,35 @@ function getPath() {
 }
 
 function locateDir($filename, $extraDir = '', $ignorePath = false) {
-	if (fs_file_exists("$extraDir/$filename")) {
-		return $extraDir;
-	}
-
-	if ($ignorePath) {
-		return '';
-	}
-
+    if (fs_file_exists("$extraDir/$filename")) {
+	$dir = $extraDir;
+    }
+    elseif ($ignorePath) {
+	$dir =  '';
+    }
+    else {
 	foreach (getPath() as $path) {
-		if (fs_file_exists("$path/$filename") && !empty($path)) {
-			return $path;
-		}
-	}
+	    if (fs_file_exists("$path/$filename") && !empty($path)) {
+		$dir = $path;
+		break;
+	    }
+        }
+    }
+    
+    return $dir;
 }
 
 function locateFile($filename) {
-	foreach (getPath() as $path) {
-		if (fs_file_exists("$path/$filename") && !empty($path)) {
-			return "$path/$filename";
-		}
+    $file = null;
+
+    foreach (getPath() as $path) {
+	if (fs_file_exists("$path/$filename") && !empty($path)) {
+	    $file = "$path/$filename";
+	    break;
 	}
+    }
+    
+    return $file;
 }
 
 function one_constant($key, $value) {
@@ -307,7 +315,7 @@ function one_constant($key, $value) {
 }
 
 function array_constant($key, $value) {
-	$buf="";
+	$buf = '';
 	foreach ($value as $item) {
 		$buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
 	}
@@ -385,7 +393,7 @@ function check_php() {
 	$fail = array();
 	$warn = array();
 
-	if (!function_exists('version_compare') || !version_compare($version, "4.1.0", ">=")) {
+	if (!function_exists('version_compare') || !version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
 		$fail['fail-too-old'] = 1;
 	}
 
@@ -432,12 +440,15 @@ function check_exif($location = '') {
 
 	if ($location) {
 		$dir = locateDir($bin, $location);
-	} else {
+	}
+	else {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
+	
 	if (empty($dir)) {
 		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>");
-	} else {
+	}
+	else {
 		$success[] = gTranslate('config', "<b>jhead</b> binary located.");
 	}
 
@@ -478,8 +489,6 @@ function check_graphics($location = '', $graphtool = '') {
 		fs_executable("pnmcomp") =>
 		gTranslate('config', "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
-
-	$missing_optional = 0;
 
 	/* Start checks */
 
@@ -675,9 +684,8 @@ function check_gallery_languages() {
 	$fail = array();
 	$success = array();
 	$warn = array();
-	$nls = getNLS();
 
-	$languages=gallery_languages();
+	$languages = gallery_languages();
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = gTranslate('config', "No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
@@ -707,8 +715,10 @@ function check_gallery_version() {
 	$link = "<a href=\"$gallery->url\">$gallery->url</a>";
 
 	$visit = '<br>'. sprintf(gTranslate('config', "You can check for more recent versions by visiting %s."), $link);
+
 	$this_version = sprintf(gTranslate('config', "This version of %s was released on %s."),
 		Gallery(), strftime("%x", $gallery->last_change));
+
 	$this_beta_version = sprintf(gTranslate('config', "This is a development build of %s that was released on %s."),
 		Gallery(), strftime("%x", $gallery->last_change));
 
@@ -727,6 +737,7 @@ function check_gallery_version() {
 
 function check_absent_locales() {
     global $locale_check;
+    
     $fail = array();
     $success = array();
     $warn = array();
@@ -1026,6 +1037,7 @@ function config_maybe_locales() {
 	    }
 
 	    $index = $nls['language'][$key] ;
+	    
 	    $results["locale_alias['$key']"] = array (
 		'prompt' => $nls['language'][$key],
 		'name' => 'locale_alias',
@@ -1060,6 +1072,7 @@ function check_safe_mode() {
 	$fail = array();
 	$success = array();
 	$warn = array();
+	
 	$safe_mode = ini_get("safe_mode");
 	if (empty($safe_mode) ||
 	  !strcasecmp($safe_mode, "off") ||
@@ -1241,9 +1254,11 @@ function array_stripslashes($subject) {
 	if (is_string($subject)) {
 		return stripslashes($subject);
 	}
+	
 	if (!is_array($subject)) {
 		return ($subject);
 	}
+	
 	$ret = array();
 	foreach ($subject as $key => $value) {
 		$ret[$key] = array_stripslashes($value);
@@ -1272,10 +1287,13 @@ function array_urldecode($subject) {
 	if (is_string($subject)) {
 		return urldecode($subject);
 	}
+	
 	if (!is_array($subject)) {
 		return ($subject);
 	}
+	
 	$ret = array();
+	
 	foreach ($subject as $key => $value) {
 		$ret[$key] = array_urldecode($value);
 	}
@@ -1286,13 +1304,16 @@ function array_str_replace($search, $replace, $subject) {
 	if (is_string($subject)) {
 		return str_replace($search, $replace, $subject);
 	}
+	
 	if (!is_array($subject)) {
 		return ($subject);
 	}
+	
 	$ret = array();
 	foreach ($subject as $key => $value) {
-		$ret[$key] =array_str_replace($search, $replace, $value);
+		$ret[$key] = array_str_replace($search, $replace, $value);
 	}
+	
 	return $ret;
 }
 
@@ -1428,9 +1449,9 @@ function check_admins() {
 	}
 
 	if (empty($admins)) {
-		$result = array(
+	    $result = array(
 		'desc' => sprintf(gTranslate('config', 'You must enter a password for the %s account.'), '<b>admin</b>')
-		);
+	    );
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
@@ -1439,6 +1460,7 @@ function check_admins() {
 		else {
 			$desc_text = sprintf(gTranslate('config', "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
 		}
+		
 		$desc_text .= "  " . sprintf (gTranslate('config', "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
 			"desc" => $desc_text,
@@ -1486,27 +1508,40 @@ function check_gallery_versions()  {
 	$success = array();
 	$warn = array();
 	
-	list($oks, $errors, $warnings) = checkVersions(false);
+	$versionStatus = checkVersions(false);
 	
-	if ($errors)  {
-		$fail[] = sprintf(gTranslate('config', "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
-		implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
-			"<br>" . gTranslate('config', "This should be fixed before proceeding") .
-			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-			"<a href=check_versions.php>", "</a>");
+	$fail = $versionStatus['fail'];
+
+	$problems = array_merge(
+		$versionStatus['missing'],
+		$versionStatus['older'],
+		$versionStatus['unkown']
+	);
+
+	$hint = "<p>" . gTranslate('config', "This should be fixed before proceeding") .
+		"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+		"<a href=check_versions.php>", "</a>") . '</p>';
+
+	if(!empty($versionStatus['newer'])) {
+	    $warn[] = gTranslate('config',
+		"%d file is newer then expected.",
+		"%d files are newer then expected.",
+                count($versionStatus['newer']), '', true) . 
+		$hint;
 	}
-	else if ($warnings) {
-		$warn[] = sprintf(gTranslate('config', "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."), count($warnings)) .
-			"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-			"<a href=check_versions.php>", "</a>");
+
+	if(!empty($problems)) {
+	    $fail[] = gTranslate('config',
+		"%s file is out of date, corrupted or missing.",
+		"%s files are out of date, corrupted or missing.",
+	    	count($problems), '', true) .
+		(empty($versionStatus['newer']) ? $hint : '<br>');	
 	}
-	else {
-		if (count($oks) == 0) {
-			$success[] = sprintf(gTranslate('config', "All tested files up-to-date."));
-		} else {
-			$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($oks));
-		}
-	}
+
+	if (empty($warn) && empty($fail)) {
+		$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
+        }
+	
 	return array($success, $fail, $warn);
 }
 
@@ -1515,18 +1550,23 @@ function checkVersions($verbose = false) {
 	/* we assume setup/init.php was loaded ! */
 
 	$manifest = GALLERY_BASE . '/manifest.inc';
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$versionStatus = array(
+		'ok'		=> array(),
+		'fail'		=> array(),
+		'older'		=> array(),
+		'newer'		=> array(),
+		'missing'	=> array(),
+		'unkown'	=> array()
+	);
 	
 	if (!fs_file_exists($manifest)) {
-		$fail["manifest.inc"]=gTranslate('config', "File missing or unreadable.  Please install then re-run this test.");
-		return array($success, $fail, $warn);
+		$versionStatus['fail']['manifest'] = gTranslate('config', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
+		return $versionStatus;
 	}
 	
 	if (!function_exists('getSVNRevision')) {
-		$fail['util.php'] = sprintf(gTranslate('config', "Please ensure that %s is the latest version."), "util.php");
-		return array($success, $fail, $warn);
+		$versionStatus['fail']['util.php'] = sprintf(gTranslate('config', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
+		return $versionStatus;
 	}
 	
 	include (GALLERY_BASE . '/manifest.inc');
@@ -1542,17 +1582,17 @@ function checkVersions($verbose = false) {
 				print "<br>\n";
 				print sprintf(gTranslate('config', "Cannot read file %s."), $file);
 			}
-			$fail[$file]=gTranslate('config', "File missing or unreadable.");
+			$versionStatus['missing'][$file] = gTranslate('config', "File missing or unreadable.");
 			continue;
 		}
-		else if ($found_version === '' ) {
-			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|Changelog)$/i', $file, $matches)) {
+		elseif ($found_version === '' ) {
+			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|\.mo|\.ico|Changelog)$|^includes\/ecard\/templates/i', $file, $matches)) {
 				if($verbose) {
 					echo "<br>\n";
-					printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
+					printf("File with type: %s can not have a compareable Revision Nr.", $matches[0]);
 					continue;
 				}
-				$success[$file] = sprintf("No comparable Rev for type: %s", $matches[1]);
+				$versionStatus['ok'][$file] = sprintf("No comparable Rev for type: %s", $matches[0]);
 				continue;
 			}
 			else {
@@ -1560,9 +1600,14 @@ function checkVersions($verbose = false) {
 					print "<br>\n";
 					printf(gTranslate('config', "Version information not found in %s.  File must be old version or corrupted."), $file);
 				}
-				$fail[$file] = gTranslate('config', "Missing version");
+				$versionStatus['missing'][$file] = gTranslate('config', "Missing version");
 				continue;
 			}
+		}
+		elseif (empty($version)) {
+			$versionStatus['unkown'][$file] = sprintf(gTranslate('config',
+				"Found Version: %s"), $found_version);
+			continue;
 		}
 		
 		$compare = compareVersions($version, $found_version);
@@ -1572,23 +1617,27 @@ function checkVersions($verbose = false) {
 				print "<br>\n";
 				printf(gTranslate('config', "Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
 			}
-			$fail[$file] = sprintf(gTranslate('config', "Expected version %s (or greater) but found %s."), $version, $found_version);
-		} else if ($compare > 0) {
+			$versionStatus['older'][$file] =
+				sprintf(gTranslate('config', "Expected version %s (or greater) but found %s."), $version, $found_version);
+		}
+		else if ($compare > 0) {
 			if ($verbose) {
 				print "<br>\n";
 				printf(gTranslate('config', "%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
 			}
-			$warn[$file]=sprintf(gTranslate('config', "Expected version %s but found %s."), $version, $found_version);
+			$versionStatus['newer'][$file] =
+				sprintf(gTranslate('config', "Expected version %s but found %s."), $version, $found_version);
 		} else {
 			if ($verbose) {
 				print "<br>\n";
 				printf(gTranslate('config', "%s OK"), $file);
 			}
-			$success[$file]=sprintf(gTranslate('config', "Found expected version %s."), $version);
+			$versionStatus['ok'][$file] = sprintf(gTranslate('config', "Found expected version %s."), $version);
 		}
 
 	}
-	return array($success, $fail, $warn);
+
+	return $versionStatus;
 }
 
 /**

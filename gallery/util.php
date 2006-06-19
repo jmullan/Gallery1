@@ -581,7 +581,7 @@ function getExif($file) {
                 break;
             }
             $path = $gallery->app->use_exif;
-            list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' '. //. ' -v ' .
+            list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -v ' .
             fs_import_filename($file, 1));
 
             $unwantedFields = array('File name');

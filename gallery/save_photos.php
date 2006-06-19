@@ -314,7 +314,10 @@ if(!empty($_FILES['metafile']['name'][0])) {
 // End Metadata preprocessing
 
 $upload_started = false;
+
+echo "\n</div>";
 /* Now we start processing the given Files */
+echo '<div class="g-content-popup left">';
 while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
     $upload_started = true;
     $name = array_shift($_FILES['userfile']['name']);
@@ -372,6 +375,9 @@ if (!empty($temp_files)) {
         fs_unlink($tf);
     }
 }
+
+echo "\n</div>";
+echo '<div class="g-content-popup center">';
 
 if (empty($image_count) && $upload_started) {
 	print gTranslate('core', "No images uploaded!");

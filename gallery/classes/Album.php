@@ -39,7 +39,7 @@ class Album {
     function Album() {
         global $gallery;
 
-        $this->fields["title"] = _("Untitled");
+        $this->fields["title"] = gTranslate('core', "Untitled");
         $this->fields["description"] = "";
         $this->fields["summary"]="";
         $this->fields["nextname"] = "aaa";
@@ -239,7 +239,7 @@ class Album {
 
         if ($addChild == true) {
             $parentAlbumsArray[] = array(
-                'prefixText' => _("Album"),
+                'prefixText' => gTranslate('core', "Album"),
                 'title' => $this->fields['title'],
                 'url' => makeAlbumUrl($this->fields['name']));
         }
@@ -251,7 +251,7 @@ class Album {
           $depth < 30 &&
           ($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
             $parentAlbumsArray[] = array(
-    	        'prefixText' => _("Album"),
+    	        'prefixText' => gTranslate('core', "Album"),
     	        'title' => $parentAlbum->fields['title'],
     	        'url' => makeAlbumUrl($parentAlbum->fields['name']));
             $depth++;
@@ -263,7 +263,7 @@ class Album {
          */
         if (!isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
             $parentAlbumsArray[] = array(
-                'prefixText' => _("Gallery"),
+                'prefixText' => gTranslate('core', "Gallery"),
                 'title' => $gallery->app->galleryTitle,
                 'url' => makeGalleryUrl("albums.php"));
         }
@@ -304,11 +304,11 @@ class Album {
         }
 
         if (!strcmp($this->version, $gallery->album_version)) {
-            print _("Album up to date.") ." <br>";
+            print gTranslate('core', "Album up to date.") ." <br>";
             return 0;
         }
 
-        print _("Upgrading album properties...");
+        print gTranslate('core', "Upgrading album properties...");
         my_flush();
 
         $changed = 0;
@@ -453,7 +453,7 @@ class Album {
             global $albumDB;
             $albumDB->renameAlbum($oldName, $newName);
             $albumDB->save();
-            printf(_("Renaming album from %s to %s..."), $oldName, $newName);
+            printf(gTranslate('core', "Renaming album from %s to %s..."), $oldName, $newName);
 
             // AlbumDB will set this value .. but it will be set in a different
             // instance of this album, so we have to do it here also so that
@@ -544,13 +544,13 @@ class Album {
             $changed = 1;
         }
 
-        print _("done").".<br>";
+        print gTranslate('core', "done").".<br>";
 
         /* Check all items */
         $count = $this->numPhotos(1);
         for ($i = 1; $i <= $count; $i++) {
             set_time_limit(30);
-            print sprintf(_("Upgrading item %d of %d . . . "), $i, $count);
+            print sprintf(gTranslate('core', "Upgrading item %d of %d . . . "), $i, $count);
             my_flush();
 
             $photo = &$this->getPhoto($i);
@@ -559,7 +559,7 @@ class Album {
                 $this->updateSerial = 1;
             }
 
-            print _("done").".<br>";
+            print gTranslate('core', "done").".<br>";
         }
 
         if (strcmp($this->version, $gallery->album_version)) {
@@ -807,7 +807,7 @@ class Album {
     }
 
     function getHighlight($verbose = false) {
-    	debugMessage(sprintf(_("Getting highlight of album with name: %s"), $this->fields['name'])
+    	debugMessage(sprintf(gTranslate('core', "Getting highlight of album with name: %s"), $this->fields['name'])
     		, __FILE__, __LINE__, 3);
 
         if ($this->numPhotos(1) == 0) {
@@ -859,7 +859,7 @@ class Album {
     }
 
     function setHighlight($index) {
-        debugMessage(_("Setting highlight"), __FILE__, __LINE__, 3);
+        debugMessage(gTranslate('core', "Setting highlight"), __FILE__, __LINE__, 3);
 
         $this->updateSerial = 1;
         $numPhotos = $this->numPhotos(1);
@@ -1052,7 +1052,7 @@ class Album {
         // send email
         if ($gallery->app->emailOn == 'yes' && $success && $msg) {
             if (!is_array($msg)) {
-                echo gallery_error(_("msg should be an array!"));
+                echo gallery_error(gTranslate('core', "msg should be an array!"));
                 vd($msg);
                 return $success;
             }
@@ -1061,7 +1061,7 @@ class Album {
             if (!empty($to)) {
                 $text = '';
                 $msg_str = call_user_func_array('sprintf', $msg);
-                $subject = sprintf(_("Changes to Album: %s"), $this->fields['name']);
+                $subject = sprintf(gTranslate('core', "Changes to Album: %s"), $this->fields['name']);
                 $logmsg = sprintf("Change to %s: %s.", makeAlbumHeaderUrl($this->fields['name']), $msg_str);
 
                 $text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
@@ -1069,27 +1069,27 @@ class Album {
                 $text .= "\n  <head>";
                 $text .= "\n  <title>$subject</title>";
                 $text .= "\n  </head>\n<body>\n<p>";
-                $text .= sprintf(_("A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
+                $text .= sprintf(gTranslate('core', "A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
                   '<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
                   $gallery->user->printableName($gallery->app->name_display),
                   $_SERVER['REMOTE_ADDR'],
                 $msg_str);
 
-                $text .= "\n<p>". _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
+                $text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
                 $text .= "\n</p>\n</body>\n</html>";
 
 
                 gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 
             } else if (isDebugging()) {
-                print "\n<br>". _("Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
+                print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
             }
         }
 /*
 	if (!$success) {
-	    echo _("Save failed");
+	    echo gTranslate('core', "Save failed");
 	} else {
-	    echo _("Save OK");
+	    echo gTranslate('core', "Save OK");
 	}
 */
         return $success;
@@ -1156,12 +1156,12 @@ class Album {
                 $nestedAlbum = new Album();
                 $nestedAlbum->load($this->getAlbumName($i));
                 $np = $nestedAlbum->numPhotos(1);
-                echo "\n<br>". sprintf (_("Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
+                echo "\n<br>". sprintf (gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
                 $nestedAlbum->resizeAllPhotos($target,$filesize=0,$pathToResized="", $recursive);
                 $nestedAlbum->save();
             }
             else {
-                echo "<br>". sprintf(_("Processing element %d..."), $i);
+                echo "<br>". sprintf(gTranslate('core', "Processing element %d..."), $i);
                 my_flush();
                 $this->resizePhoto($i, $target, $filesize=0, $pathToResized="");
             }
@@ -1174,7 +1174,7 @@ class Album {
         $this->updateSerial = 1;
         $dir = $this->getAlbumDir();
 
-        echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Doing the naming"), __FILE__, __LINE__);
 
         if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
             $name = $originalFilename;
@@ -1207,16 +1207,16 @@ class Album {
         $newFile = "$dir/$name.$tag";
         fs_copy($file, $newFile);
 
-        echo debugMessage(_("Image Preprocessing"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Image Preprocessing"), __FILE__, __LINE__);
         /* Do any preprocessing necessary on the image file */
         preprocessImage($dir, "$name.$tag");
 
         /* Resize original image if necessary */
-        echo debugMessage("&nbsp;&nbsp;&nbsp;". _('Resizing/compressing original image'), __FILE__, __LINE__,1);
+        echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', 'Resizing/compressing original image'), __FILE__, __LINE__,1);
         if (isImage($tag)) {
             resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
         } else {
-            processingMsg(_('Cannot resize/compress this filetype'));
+            processingMsg(gTranslate('core', 'Cannot resize/compress this filetype'));
         }
 
         /* Add the photo to the photo list */
@@ -1271,7 +1271,7 @@ class Album {
             if ($w > $this->fields["resize_size"] ||
               $h > $this->fields["resize_size"] ||
               $this->fields["resize_file_size"] > 0) {
-                processingMsg("- " . sprintf(_("Resizing %s"), $name));
+                processingMsg("- " . sprintf(gTranslate('core', "Resizing %s"), $name));
                 $this->resizePhoto($index,
                 $this->fields["resize_size"],
                 $this->fields["resize_file_size"]);
@@ -1281,7 +1281,7 @@ class Album {
         /* auto-rotate the photo if needed */
         $index = $this->numPhotos(1);
 
-        echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Check if image needs to be rotated"), __FILE__, __LINE__);
         if ($exifRotate && hasExif($tag) &&
           !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
             (!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
@@ -1301,16 +1301,19 @@ class Album {
             $photo = $this->getPhoto($index);
             switch ($orientation) {
                 case "Right-Hand, Top":    // exiftags
+                case "Top, Right-Hand":
                 case "rotate 90":          // jhead
                     $rotate = -90;
                 break;
 
-                case "Bottom, Right-Hand": // exiftags
+                case "Right-Hand, Bottom": // exiftags
+                case "Bottom, Right-Hand":
                 case "rotate 180":	   // jhead
                     $rotate = 180;
                 break;
 
                 case "Left-Hand, Bottom":  // exiftags
+                case "Bottom, Left-Hand":
                 case "rotate 270":	   // jhead
                     $rotate = 90;
                 break;
@@ -1338,7 +1341,10 @@ class Album {
 
             if ($rotate) {
                 $this->rotatePhoto($index, $rotate, true);
-                processingMsg("- ". _("Photo auto-rotated/transformed"));
+                processingMsg(gTranslate('core', "Photo auto-rotated/transformed"));
+            }
+            else {
+            	processingMsg(gTranslate('core', "Photo NOT auto-rotated/transformed"));
             }
         }
         /* move to the beginning if needed */
@@ -1346,7 +1352,7 @@ class Album {
             $this->movePhoto($this->numPhotos(1), 0);
         }
         if (isImage($tag) && strlen($wmName)) {
-            processingMsg("- ". _("Watermarking Image"));
+            processingMsg("- ". gTranslate('core', "Watermarking Image"));
             $photo->watermark($this->getAlbumDir(),
             $wmName, '', $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect);
         }
@@ -1932,7 +1938,7 @@ class Album {
                 $nestedAlbum->load($this->getAlbumName($i));
 
                 $np = $nestedAlbum->numPhotos(1);
-                echo "<br>". sprintf(_("Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
+                echo "<br>". sprintf(gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
                 $nestedAlbum->makeThumbnailRecursive($index);
                 $nestedAlbum->save();
 
@@ -1944,7 +1950,7 @@ class Album {
                 }
             }
             else {
-                echo("<br> ". sprintf(_("Processing image %d..."), $i));
+                echo("<br> ". sprintf(gTranslate('core', "Processing image %d..."), $i));
                 my_flush();
                 $this->makeThumbnail($i);
             }
@@ -2098,7 +2104,7 @@ class Album {
         $photo->resetItemClicks();
     }
 
-    function getExif($index, $forceRefresh=0) {
+    function getExif($index, $forceRefresh = false) {
         global $gallery;
 
         if (empty($gallery->app->use_exif)) {
@@ -2113,7 +2119,7 @@ class Album {
             // An error occurred.
             return array(
             	'junk1' => '',
-            	'Error' => sprintf(_("Error getting EXIF data. Expected Status 0, got %s."),$status),
+            	'Error' => sprintf(gTranslate('core', "Error getting EXIF data. Expected Status 0, got %s."),$status),
             	'status' => $status);
         }
 
@@ -2643,8 +2649,8 @@ class Album {
         }
         for ($i = sizeof($nv_pairs); $i<$this->getPollScale() ; $i++) {
             if ($this->getPollType() == "rank") {
-                $nv_pairs[$i]["name"]=sprintf(_("#%d"),($i));
-                $nv_pairs[$i]["value"]=$this->getPollScale()-$i+1;
+                $nv_pairs[$i]["name"] = sprintf(gTranslate('core', "#%d"),($i));
+                $nv_pairs[$i]["value"] = $this->getPollScale()-$i+1;
             }
             else {
                 $nv_pairs[$i]["name"]=$i;
@@ -2814,7 +2820,7 @@ class Album {
 				$user->getUsername(), $uid);
 		}
 		else {
-		    $test = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
+		    $text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
                                 $user->getUsername(), $uid, $email);
 		}
 

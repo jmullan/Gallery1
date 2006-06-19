@@ -427,7 +427,7 @@ function galleryDocs() {
  * @param	mixed	$full				Needed for getting dimensions of the photo
  * @param	boolean	$forceRefresh		Needed for getting EXIF Data
  */
-function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = 0) {
+function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = false) {
     global $gallery;
 
     $photo = $gallery->album->getPhoto($index);
@@ -442,11 +442,12 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 
     if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
       (eregi("jpe?g\$", $photo->image->type))) {
-        $myExif = $gallery->album->getExif($index, isset($forceRefresh));
+        $myExif = $gallery->album->getExif($index, $forceRefresh);
+        
         if (!empty($myExif) && !isset($myExif['Error'])) {
-
-            $tables[gTranslate('common', "EXIF Data")]  = $myExif;
-        } elseif (isset($myExif['status']) && $myExif['status'] == 1) {
+            $tables[gTranslate('core', "EXIF Data")]  = $myExif;
+        }
+        elseif (isset($myExif['status']) && $myExif['status'] == 1) {
             echo infoBox(array(array(
 		'text' => gTranslate('core', "Display of EXIF data enabled, but no data found.")
 	    )), '', false);
@@ -470,26 +471,6 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
         echo $customFieldsTable->render();
     }
 }
-
-/*
-function includeTemplate($tplName, $skinname = '') {
-    global $gallery;
-
-    $base = dirname(dirname(__FILE__));
-
-    if (!$skinname) {
-        $skinname = $gallery->app->skinname;
-    }
-
-    $filename = "$base/skins/$skinname/tpl/$tplName";
-    if (fs_is_readable($filename)) {
-        include($filename);
-        return true;
-    } else {
-        return false;
-    }
-}
-*/
 
 /**
  * Displays the ownename, if an email is available, then as mailto: link
