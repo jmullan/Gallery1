@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-15 14:46+0200\n"
+"POT-Creation-Date: 2006-06-19 16:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Admin options"
 msgstr ""
 
-#: ../admin-page.php:85 ../search.php:57 ../stats-wizard.php:62
+#: ../admin-page.php:85 ../search.php:57 ../stats-wizard.php:63
 #: ../stats.php:599 ../tools/despam-comments.php:57
 #: ../tools/find_orphans.php:212 ../tools/validate_albums.php:139
 #: ../tools/validate_albums.php:216
@@ -216,7 +216,7 @@ msgid "Sort"
 msgstr ""
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:110
-#: ../download.php:83 ../help/imagemap.php:88 ../user_preferences.php:143
+#: ../download.php:83 ../help/imagemap.php:88 ../user_preferences.php:144
 msgid "Close Window"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 
 #: ../album_permissions.php:152 ../edit_caption.php:173 ../edit_field.php:51
 #: ../edit_field.php:59 ../edit_watermark.php:118 ../modify_user.php:158
-#: ../photo_owner.php:92 ../user_preferences.php:142
+#: ../photo_owner.php:92 ../user_preferences.php:143
 msgid "Save"
 msgstr ""
 
@@ -454,8 +454,8 @@ msgstr ""
 msgid "Highlight for album: %s"
 msgstr ""
 
-#: ../albums.php:331 ../classes/Album.php:1507 ../classes/Album.php:1518
-#: ../classes/AlbumItem.php:768
+#: ../albums.php:331 ../classes/Album.php:1511 ../classes/Album.php:1522
+#: ../classes/AlbumItem.php:770
 msgid "No highlight!"
 msgstr ""
 
@@ -687,7 +687,7 @@ msgstr ""
 msgid "Skipping Movie"
 msgstr ""
 
-#: ../classes/Album.php:1159 ../classes/Album.php:1935
+#: ../classes/Album.php:1159 ../classes/Album.php:1939
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -697,7 +697,7 @@ msgstr ""
 msgid "Processing element %d..."
 msgstr ""
 
-#: ../classes/Album.php:1177 ../classes/Album.php:1284
+#: ../classes/Album.php:1177
 msgid "Doing the naming"
 msgstr ""
 
@@ -718,74 +718,87 @@ msgstr ""
 msgid "Resizing %s"
 msgstr ""
 
-#: ../classes/Album.php:1341
+#: ../classes/Album.php:1284
+msgid "Check if image needs to be rotated"
+msgstr ""
+
+#: ../classes/Album.php:1342
 msgid "Photo auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:1349
+#: ../classes/Album.php:1345
+msgid "Photo NOT auto-rotated/transformed"
+msgstr ""
+
+#: ../classes/Album.php:1353
 msgid "Watermarking Image"
 msgstr ""
 
-#: ../classes/Album.php:1720
+#: ../classes/Album.php:1724
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1947 ../do_command.php:105
+#: ../classes/Album.php:1951 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2116
+#: ../classes/Album.php:2120
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2646
+#: ../classes/Album.php:2650
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2813
+#: ../classes/Album.php:2817
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr ""
 
-#: ../classes/Album.php:2817
+#: ../classes/Album.php:2821
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr ""
 
-#: ../classes/Album.php:2827
+#: ../classes/Album.php:2831
 msgid "Email problems"
 msgstr ""
 
-#: ../classes/AlbumItem.php:601
+#: ../classes/AlbumItem.php:109
+#, php-format
+msgid "Getting of file '%s'"
+msgstr ""
+
+#: ../classes/AlbumItem.php:603
 msgid "Invalid image"
 msgstr ""
 
-#: ../classes/AlbumItem.php:619
+#: ../classes/AlbumItem.php:621
 msgid "Generating thumbnail."
 msgstr ""
 
-#: ../classes/AlbumItem.php:621
+#: ../classes/AlbumItem.php:623
 #, php-format
 msgid "Saved Dimensions: x:%d y: %d"
 msgstr ""
 
-#: ../classes/AlbumItem.php:686
+#: ../classes/AlbumItem.php:688
 msgid "Generating normal thumbs"
 msgstr ""
 
-#: ../classes/AlbumItem.php:712
+#: ../classes/AlbumItem.php:714
 msgid "Unable to make thumbnail"
 msgstr ""
 
-#: ../classes/AlbumItem.php:723
+#: ../classes/AlbumItem.php:725
 msgid "No preview"
 msgstr ""
 
-#: ../classes/AlbumItem.php:754
+#: ../classes/AlbumItem.php:756
 msgid "No thumbnail"
 msgstr ""
 
@@ -891,7 +904,7 @@ msgid "Skipping Album #%d"
 msgstr ""
 
 #: ../copy_photo.php:123 ../login.php:122 ../register.php:41
-#: ../register.php:117 ../save_photos.php:380
+#: ../register.php:117 ../save_photos.php:386
 msgid "Dismiss"
 msgstr ""
 
@@ -938,7 +951,7 @@ msgstr ""
 
 #: ../copy_photo.php:213 ../delete_photo.php:137 ../edit_thumb.php:124
 #: ../move_album.php:127 ../move_photo.php:349 ../resize_photo.php:135
-#: ../rotate_photo.php:131 ../view_photo_properties.php:121
+#: ../rotate_photo.php:131 ../view_photo_properties.php:118
 msgid "no album / index specified"
 msgstr ""
 
@@ -998,7 +1011,7 @@ msgid "Do you really want to delete this album?"
 msgstr ""
 
 #: ../delete_album.php:65 ../delete_photo.php:132 ../delete_user.php:75
-#: ../js/multifile.js.php:106 ../lib/albumItem.php:251
+#: ../js/multifile.js.php:112 ../lib/albumItem.php:251
 #: ../lib/albumItem.php:257 ../manage_users.php:90
 #: ../tools/despam-comments.php:203 ../tools/despam-comments.php:342
 #: ../templates/commentbox.tpl.default:67
@@ -1637,71 +1650,6 @@ msgstr ""
 msgid "Send email to user when account is created"
 msgstr ""
 
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr ""
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame"
-msgstr ""
-
-#: ../html_wrap/frames/notebook/frame.def:5
-msgid "Spiral Notebook"
-msgstr ""
-
-#: ../html_wrap/frames/notebook/frame.def:6
-msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
-
-#: ../html_wrap/frames/polaroid/frame.def:3
-msgid "Polaroid"
-msgstr ""
-
-#: ../html_wrap/frames/polaroid/frame.def:4
-msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr ""
-
-#: ../html_wrap/frames/polaroids/frame.def:3
-msgid "Polaroids"
-msgstr ""
-
-#: ../html_wrap/frames/polaroids/frame.def:4
-msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr ""
-
-#: ../html_wrap/frames/postage_stamp/frame.def:5
-msgid "Postage Stamp"
-msgstr ""
-
-#: ../html_wrap/frames/postage_stamp/frame.def:6
-msgid "A simple postage stamp effect."
-msgstr ""
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr ""
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr ""
-
-#: ../html_wrap/frames/simple_book/frame.def:3
-msgid "Original Style"
-msgstr ""
-
-#: ../html_wrap/frames/simple_book/frame.def:4
-#, php-format
-msgid "The original %s album frame style."
-msgstr ""
-
-#: ../html_wrap/frames/wooden/frame.def:4
-msgid "Wood Frame"
-msgstr ""
-
-#: ../html_wrap/frames/wooden/frame.def:5
-msgid "A textured wooden frame"
-msgstr ""
-
 #: ../imagemap.php:161
 msgid "Original photo"
 msgstr ""
@@ -2270,7 +2218,7 @@ msgstr ""
 msgid "Filter by day"
 msgstr ""
 
-#: ../js/multifile.js.php:143
+#: ../js/multifile.js.php:149
 msgid "Caption:"
 msgstr ""
 
@@ -2553,7 +2501,7 @@ msgstr ""
 msgid "delete comment"
 msgstr ""
 
-#: ../lib/albumItem.php:323
+#: ../lib/albumItem.php:320
 msgid "From:"
 msgstr ""
 
@@ -2924,7 +2872,7 @@ msgstr ""
 msgid "Enter the Gallery"
 msgstr ""
 
-#: ../new_password.php:112 ../user_preferences.php:128
+#: ../new_password.php:112 ../user_preferences.php:129
 msgid "You can change your user information here."
 msgstr ""
 
@@ -3400,24 +3348,24 @@ msgstr ""
 msgid "Found %d images"
 msgstr ""
 
-#: ../save_photos.php:350
+#: ../save_photos.php:353
 msgid "Extra fields:"
 msgstr ""
 
-#: ../save_photos.php:377
+#: ../save_photos.php:383
 msgid "No images uploaded!"
 msgstr ""
 
-#: ../save_photos.php:393
+#: ../save_photos.php:399
 msgid "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)"
 msgstr ""
 
-#: ../save_photos.php:419
+#: ../save_photos.php:425
 #, php-format
 msgid "%d meta file(s) found.  These files contain information about the images, such as titles and descriptions."
 msgstr ""
 
-#: ../save_photos.php:444
+#: ../save_photos.php:450
 msgid "_Add Files"
 msgstr ""
 
@@ -3429,46 +3377,46 @@ msgstr ""
 msgid "Caption: "
 msgstr ""
 
-#: ../search.php:165
+#: ../search.php:170
 msgid "Matching Comments"
 msgstr ""
 
-#: ../search.php:197
+#: ../search.php:202
 msgid "From Album"
 msgstr ""
 
-#: ../search.php:204 ../view_photo_properties.php:102
+#: ../search.php:209 ../view_photo_properties.php:99
 msgid "KEYWORDS"
 msgstr ""
 
-#: ../search.php:222
+#: ../search.php:227
 #, php-format
 msgid "Albums containing %s"
 msgstr ""
 
-#: ../search.php:223
+#: ../search.php:228
 msgid "No Album Matches"
 msgstr ""
 
-#: ../search.php:226
+#: ../search.php:231
 #, php-format
 msgid "Photos containing %s in caption, comment or name."
 msgstr ""
 
-#: ../search.php:227
+#: ../search.php:232
 msgid "No Photo Matches"
 msgstr ""
 
-#: ../search.php:247
+#: ../search.php:252
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
 msgstr ""
 
-#: ../search.php:250
+#: ../search.php:255
 msgid "Upgrade all albums."
 msgstr ""
 
-#: ../search.php:267
+#: ../search.php:272
 msgid "Search the Gallery's Album and Photo titles, descriptions and comments."
 msgstr ""
 
@@ -3568,37 +3516,37 @@ msgstr ""
 msgid "Choose a stamp:"
 msgstr ""
 
-#: ../stats-wizard.php:43 ../stats-wizard.php:51
+#: ../stats-wizard.php:43 ../stats-wizard.php:52
 msgid "Gallery statistics - Wizard"
 msgstr ""
 
-#: ../stats-wizard.php:57 ../tools/despam-comments.php:56
+#: ../stats-wizard.php:58 ../tools/despam-comments.php:56
 #: ../tools/find_orphans.php:211 ../tools/validate_albums.php:138
 #: ../tools/validate_albums.php:215
 msgid "return to _admin page"
 msgstr ""
 
-#: ../stats-wizard.php:126
+#: ../stats-wizard.php:127
 msgid "Type"
 msgstr ""
 
-#: ../stats-wizard.php:130 ../tools/despam-comments.php:387
+#: ../stats-wizard.php:131 ../tools/despam-comments.php:387
 msgid "Options"
 msgstr ""
 
-#: ../stats-wizard.php:135
+#: ../stats-wizard.php:136
 msgid "Layout"
 msgstr ""
 
-#: ../stats-wizard.php:139
+#: ../stats-wizard.php:140
 msgid "Filter by Capture Date"
 msgstr ""
 
-#: ../stats-wizard.php:145
-msgid "Show statistics"
+#: ../stats-wizard.php:146
+msgid "_Show statistics"
 msgstr ""
 
-#: ../stats-wizard.php:150
+#: ../stats-wizard.php:151
 msgid "Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox."
 msgstr ""
 
@@ -3815,48 +3763,48 @@ msgstr ""
 msgid "add vote"
 msgstr ""
 
-#: ../stats.php:1072
+#: ../stats.php:1070
 #, php-format
 msgid "From album: %s"
 msgstr ""
 
-#: ../stats.php:1077
+#: ../stats.php:1075
 #, php-format
 msgid "Owned by: %s"
 msgstr ""
 
-#: ../stats.php:1108
+#: ../stats.php:1106
 msgid "Capture Date:"
 msgstr ""
 
-#: ../stats.php:1122
+#: ../stats.php:1120
 msgid "Upload Date:"
 msgstr ""
 
-#: ../stats.php:1136
+#: ../stats.php:1134
 msgid "Viewed:"
 msgstr ""
 
-#: ../stats.php:1140
+#: ../stats.php:1138
 #, php-format
 msgid "Once"
 msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../stats.php:1140
+#: ../stats.php:1138
 msgid "Never viewed"
 msgstr ""
 
-#: ../stats.php:1146
+#: ../stats.php:1144
 msgid "Votes:"
 msgstr ""
 
-#: ../stats.php:1158
+#: ../stats.php:1156
 msgid "not rated"
 msgstr ""
 
-#: ../stats.php:1172
+#: ../stats.php:1170
 msgid "Rating:"
 msgstr ""
 
@@ -3878,11 +3826,11 @@ msgstr ""
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../templates/album.tpl.default:255
+#: ../templates/album.tpl.default:257
 msgid "Comments are added"
 msgstr ""
 
-#: ../templates/album.tpl.default:258
+#: ../templates/album.tpl.default:261
 msgid "Other changes are made"
 msgstr ""
 
@@ -3890,28 +3838,28 @@ msgstr ""
 msgid "Find and remove comment spam"
 msgstr ""
 
-#: ../tools/despam-comments.php:118
+#: ../tools/despam-comments.php:119
 msgid "Delete Comments"
 msgstr ""
 
-#: ../tools/despam-comments.php:120 ../tools/despam-comments.php:246
+#: ../tools/despam-comments.php:121 ../tools/despam-comments.php:246
 #: ../tools/despam-comments.php:257 ../tools/despam-comments.php:326
 msgid "No action taken!"
 msgstr ""
 
-#: ../tools/despam-comments.php:144
+#: ../tools/despam-comments.php:145
 #, php-format
 msgid "Deleted %d spam comments"
 msgstr ""
 
-#: ../tools/despam-comments.php:148
+#: ../tools/despam-comments.php:149
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../tools/despam-comments.php:149
+#: ../tools/despam-comments.php:150
 msgid "No comment deleted."
 msgstr ""
 
@@ -4241,11 +4189,11 @@ msgstr ""
 msgid "User successfully updated."
 msgstr ""
 
-#: ../user_preferences.php:129
+#: ../user_preferences.php:130
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr ""
 
-#: ../user_preferences.php:130
+#: ../user_preferences.php:131
 msgid "You can change your username to any combination of letters and digits."
 msgstr ""
 
@@ -4679,7 +4627,7 @@ msgstr ""
 msgid "Send photo as e_Card"
 msgstr ""
 
-#: ../view_photo.php:519
+#: ../view_photo.php:522
 msgid "Email me when comments are added"
 msgstr ""
 
@@ -4691,15 +4639,15 @@ msgstr ""
 msgid "Photo Properties"
 msgstr ""
 
-#: ../view_photo_properties.php:114
+#: ../view_photo_properties.php:111
 msgid "Reload EXIF Data From File"
 msgstr ""
 
-#: ../view_photo_properties.php:118
+#: ../view_photo_properties.php:115
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr ""
 
-#: ../view_photo_properties.php:127
+#: ../view_photo_properties.php:124
 msgid "_Close Window"
 msgstr ""
 
