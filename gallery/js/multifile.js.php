@@ -1,3 +1,9 @@
+<?php
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+?>
 <script language="JavaScript" type="text/javascript">
 /**
  *

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
 function insertSectionToggle() {
 ?>
 

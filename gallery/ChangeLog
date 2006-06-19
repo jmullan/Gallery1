@@ -1,3 +1,23 @@
+2006-06-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j61-UNSTABLE
+
+ * Fix: init_language() is not called redundant in init.php
+
+ * Change: When user updates his language, the parent page is reloaded with the new language.
+
+ * PHP5 fix:
+   In classes/Mail/htmlMimeMail.php, ecard_form.php was $HTTP_SERVER_VARS used,
+   which is not longer present in PHP5
+
+
+ * Added svn IDs:
+	js/sectionTabs.js.php
+	js/wz_tooltip.js
+	js/wz_jsgraphics.js
+	js/imagemap.js
+	js/toggle.js
+	js/fitToWindow.js.php
+	templates/setup/im-netpbm-test.tpl
+
 2006-06-16 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j60-UNSTABLE
 
  * Translation in Setup fix.

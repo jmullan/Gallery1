@@ -1,12 +1,16 @@
 <?php
 /**
+ * Gallery SVN info
+ * $Id$
+*/
+
+/**
  * Filename.......: class.html.mime.mail.inc
  * Project........: HTML Mime mail class
- * Last Modified..: Date: 2005-10-26 15:34:40 +0200 (Wed, 26 Oct 2005)
- * CVS Revision...: Revision: 11888
+ * Last Modified..: $Date$
+ * CVS Revision...: $Revision$
  * Copyright......: 2001, 2002 Richard Heyes
  * @package Mail
- * Gallery SVN ID.: $Id$
 */
 
 /**
@@ -133,10 +137,10 @@ class htmlMimeMail
 		/**
         * Defaults for smtp sending
         */
-		if (!empty($GLOBALS['HTTP_SERVER_VARS']['HTTP_HOST'])) {
-			$helo = $GLOBALS['HTTP_SERVER_VARS']['HTTP_HOST'];
-		} elseif (!empty($GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'])) {
-			$helo = $GLOBALS['HTTP_SERVER_VARS']['SERVER_NAME'];
+		if (!empty($_SERVER['HTTP_HOST'])) {
+			$helo = $_SERVER['HTTP_HOST'];
+		} elseif (!empty($_SERVER['SERVER_NAME'])) {
+			$helo = $_SERVER['SERVER_NAME'];
 		} else {
 			$helo = 'localhost';
 		}

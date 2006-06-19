@@ -102,7 +102,7 @@ if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
  }
 
  function send_ecard() {
-   document.ecard_form.action = "<?php echo $HTTP_SERVER_VARS["PHP_SELF"] ?>";
+   document.ecard_form.action = "<?php echo $_SERVER["PHP_SELF"] ?>";
    document.ecard_form.target = "_self";
    document.ecard_form["submit_action"].value = "send";
 //	document.ecard_form.submit();

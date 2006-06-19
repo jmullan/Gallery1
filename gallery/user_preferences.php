@@ -123,6 +123,7 @@ printPopupStart(_("Change User Preferences"), _("Change User Preferences"), lang
 if(isset($saveOK)) {  
     echo infoLine(_("User successfully updated."), 'success');
     echo "\n<br>\n";
+    echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
 }
 
 echo _("You can change your user information here.");
