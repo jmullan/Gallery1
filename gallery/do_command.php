@@ -130,7 +130,7 @@ switch ($cmd) {
 	break;
 	
 	case 'logout':
-		gallery_syslog("Logout by ". $gallery->session->username ." from ". $HTTP_SERVER_VARS['REMOTE_ADDR']);
+		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
 		$gallery->session->username = '';
 		$gallery->session->language = '';
 		destroyGallerySession();

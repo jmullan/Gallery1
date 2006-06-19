@@ -1,3 +1,14 @@
+2006-06-19 Jens Tkotz <jens@peino.de> 1.5.4-svn-b7
+
+ * PHP5 fix:
+   In classes/Mail/htmlMimeMail.php and do_command.php was $HTTP_SERVER_VARS used,
+   which is not longer present in PHP5
+
+ * Fix: Correct use of $MIN_PHP_MAJOR_VERSION in lib/setup.php
+
+ * SVN-Fix:
+   Date of last change in Version.php was wrong extracted.
+ 
 2006-05-10 Jens Tkotz <jens@peino.de> 1.5.4-svn-b6
 
  * Added php-gettext

@@ -403,24 +403,25 @@ function check_htaccess() {
 }
 
 function check_php() {
-	global $MIN_PHP_MAJOR_VERSION;
+    global $MIN_PHP_MAJOR_VERSION;
 
-	$version = phpversion();
-	$success = array();
-	$fail = array();
-	$warn = array();
+    $version = phpversion();
+    $success = array();
+    $fail = array();
+    $warn = array();
 
-	if (!function_exists('version_compare') || !version_compare($version, "4.1.0", ">=")) {
-		$fail['fail-too-old'] = 1;
+    if (!function_exists('version_compare') || 
+	!version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
+	$fail['fail-too-old'] = 1;
+    }
+    else {	
+	if (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
+	    $success[] = sprintf(_("PHP v%s is OK."), $version);
 	}
-	
-	if (strstr(__FILE__, 'lib/setup.php') ||
-	  strstr(__FILE__, 'lib\\setup.php')) {
-        $success[] = sprintf(_("PHP v%s is OK."), $version);
-	} else {
+	else {
 		$fail['fail-buggy__FILE__'] = 1;
 	}
-	
+    }
 	return array($success, $fail, $warn);
 }
 
@@ -711,6 +712,7 @@ function check_gallery_languages() {
 
 function check_gallery_version() {
 	global $gallery;
+
 	$fail = array();
 	$success = array();
 	$warn = array();
@@ -726,6 +728,7 @@ function check_gallery_version() {
 	$visit = sprintf(_("You can check for more recent versions by visiting %s."), $link);
 	$this_version = sprintf(_("This version of %s was released on %s."),
 			Gallery(), strftime("%x", $gallery->last_change));
+
 	$this_beta_version = sprintf(_("This is a development build of %s that was released on %s."),
 			Gallery(), strftime("%x", $gallery->last_change));
 
