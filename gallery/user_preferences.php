@@ -86,7 +86,7 @@ if (isset($save)) {
 		$gallery->user->setEmail($email);
 		if (isset($defaultLanguage)) {
 			$gallery->user->setDefaultLanguage($defaultLanguage);
-			$gallery->session->language=$defaultLanguage;
+			$gallery->session->language = $defaultLanguage;
 		}
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
@@ -125,6 +125,7 @@ printPopupStart(_("Change User Preferences"), _("Change User Preferences"), lang
 if(isset($saveOK)) {  
     echo infoLine(_("User successfully updated."), 'success');
     echo "\n<br>\n";
+    echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
 }
 
 echo _("You can change your user information here.");
