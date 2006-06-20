@@ -400,10 +400,6 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 	}
     }
 
-    if($accessKeyUsed[$attrList['accesskey']]) {
-	$accessKeyUsed[$attrList['accesskey']] = true;
-    }
-
     if (!empty($attrList['altText'])) {
 	$altText = $attrList['altText'];
 	unset($attrList['altText']);
@@ -438,31 +434,26 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
     static $accessKeyUsed = array();
 
     $html = '';
+    $altText = '';
 
     $accesskey = isset($attrList['accesskey']) ? $attrList['accesskey'] : getAccessKey($text);
     $iconMode = !empty($iconMode) ? $iconMode : $gallery->app->useIcons;
 
-    if(!$accessKeyUsed[$accesskey]) {
+    if(!isset($accessKeyUsed[$accesskey])) {
         $attrList['accesskey'] = $accesskey;
 	$accessKeyUsed[$accesskey] = true;
     }
 
-    if(!empty($accesskey)) {
-	if($iconMode == 'yes') {
-	    $altText = $text;
-	}
-
-	if($iconMode != 'both') {
-	    $altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
-	}
+    if($iconMode == 'yes') {
+	$altText = $text;
     }
-
+    
+    if(!empty($accesskey) && $iconMode != 'both') {
+	$altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
+    }
 
     $content = getIconText($icon, $text, $iconMode, false, $altText, true);
 
-    /*if($iconMode == 'yes') {
-        $attrList['title'] = $altText;
-    }*/
     $attrs = generateAttrs($attrList);
 
     if (!empty($url)) {
