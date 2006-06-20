@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-19 16:20+0200\n"
+"POT-Creation-Date: 2006-06-20 12:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,11 +72,11 @@ msgid "Enter your comment for this picture in the text box below."
 msgstr ""
 
 #: ../add_comment.php:102 ../copy_photo.php:200 ../delete_album.php:66
-#: ../delete_photo.php:133 ../do_command.php:263 ../download.php:76
-#: ../ecard_form.php:260 ../edit_caption.php:174 ../edit_field.php:60
-#: ../edit_watermark.php:120 ../includes/add_photos/add_url.inc:55
-#: ../move_album.php:108 ../move_album.php:121 ../register.php:136
-#: ../rename_album.php:121 ../reset_votes.php:57 ../sort_album.php:112
+#: ../do_command.php:263 ../download.php:76 ../ecard_form.php:260
+#: ../edit_caption.php:174 ../edit_field.php:60 ../edit_watermark.php:120
+#: ../includes/add_photos/add_url.inc:55 ../move_album.php:108
+#: ../move_album.php:121 ../register.php:136 ../rename_album.php:121
+#: ../reset_votes.php:57 ../sort_album.php:112
 msgid "Cancel"
 msgstr ""
 
@@ -385,11 +385,11 @@ msgstr ""
 msgid "_preferences"
 msgstr ""
 
-#: ../albums.php:186 ../imagemap.php:141 ../view_photo.php:408
+#: ../albums.php:186 ../imagemap.php:141
 msgid "log_out"
 msgstr ""
 
-#: ../albums.php:192 ../imagemap.php:147 ../view_photo.php:414
+#: ../albums.php:192 ../imagemap.php:147
 msgid "_login"
 msgstr ""
 
@@ -454,7 +454,7 @@ msgstr ""
 msgid "Highlight for album: %s"
 msgstr ""
 
-#: ../albums.php:331 ../classes/Album.php:1511 ../classes/Album.php:1522
+#: ../albums.php:331 ../classes/Album.php:1513 ../classes/Album.php:1524
 #: ../classes/AlbumItem.php:770
 msgid "No highlight!"
 msgstr ""
@@ -687,7 +687,7 @@ msgstr ""
 msgid "Skipping Movie"
 msgstr ""
 
-#: ../classes/Album.php:1159 ../classes/Album.php:1939
+#: ../classes/Album.php:1159 ../classes/Album.php:1941
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -722,49 +722,49 @@ msgstr ""
 msgid "Check if image needs to be rotated"
 msgstr ""
 
-#: ../classes/Album.php:1342
+#: ../classes/Album.php:1344
 msgid "Photo auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:1345
+#: ../classes/Album.php:1347
 msgid "Photo NOT auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:1353
+#: ../classes/Album.php:1355
 msgid "Watermarking Image"
 msgstr ""
 
-#: ../classes/Album.php:1724
+#: ../classes/Album.php:1726
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1951 ../do_command.php:105
+#: ../classes/Album.php:1953 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2120
+#: ../classes/Album.php:2122
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2650
+#: ../classes/Album.php:2652
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2817
+#: ../classes/Album.php:2819
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr ""
 
-#: ../classes/Album.php:2821
+#: ../classes/Album.php:2823
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr ""
 
-#: ../classes/Album.php:2831
+#: ../classes/Album.php:2833
 msgid "Email problems"
 msgstr ""
 
@@ -949,9 +949,9 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: ../copy_photo.php:213 ../delete_photo.php:137 ../edit_thumb.php:124
+#: ../copy_photo.php:213 ../delete_photo.php:139 ../edit_thumb.php:124
 #: ../move_album.php:127 ../move_photo.php:349 ../resize_photo.php:135
-#: ../rotate_photo.php:131 ../view_photo_properties.php:118
+#: ../rotate_photo.php:130 ../view_photo_properties.php:118
 msgid "no album / index specified"
 msgstr ""
 
@@ -1010,11 +1010,9 @@ msgstr ""
 msgid "Do you really want to delete this album?"
 msgstr ""
 
-#: ../delete_album.php:65 ../delete_photo.php:132 ../delete_user.php:75
-#: ../js/multifile.js.php:112 ../lib/albumItem.php:251
-#: ../lib/albumItem.php:257 ../manage_users.php:90
-#: ../tools/despam-comments.php:203 ../tools/despam-comments.php:342
-#: ../templates/commentbox.tpl.default:67
+#: ../delete_album.php:65 ../delete_user.php:75 ../js/multifile.js.php:112
+#: ../manage_users.php:90 ../tools/despam-comments.php:203
+#: ../tools/despam-comments.php:342 ../templates/commentbox.tpl.default:67
 msgid "Delete"
 msgstr ""
 
@@ -1029,6 +1027,17 @@ msgstr ""
 
 #: ../delete_photo.php:112
 msgid "Do you really want to delete this photo?"
+msgstr ""
+
+#: ../delete_photo.php:133 ../lib/albumItem.php:251 ../lib/albumItem.php:257
+msgid "_Delete"
+msgstr ""
+
+#: ../delete_photo.php:134 ../includes/add_photos/add_form.inc:91
+#: ../login.php:86 ../move_photo.php:254 ../move_photo.php:343
+#: ../new_password.php:128 ../rearrange.php:183 ../resize_photo.php:128
+#: ../watermark_album.php:142
+msgid "_Cancel"
 msgstr ""
 
 #: ../delete_user.php:44
@@ -1334,15 +1343,16 @@ msgid "Apply values to nested albums (except album title and summary)."
 msgstr ""
 
 #: ../edit_appearance.php:302
-msgid "Apply"
+msgid "_Apply"
 msgstr ""
 
 #: ../edit_appearance.php:303
-msgid "Undo"
+msgid "_Undo"
 msgstr ""
 
-#: ../edit_appearance.php:304 ../rotate_photo.php:125
-msgid "Close"
+#: ../edit_appearance.php:304 ../rotate_photo.php:124
+#: ../watermark_album.php:73
+msgid "_Close"
 msgstr ""
 
 #: ../edit_caption.php:66
@@ -1768,12 +1778,6 @@ msgstr ""
 
 #: ../includes/add_photos/add_form.inc:90
 msgid "_Upload Now"
-msgstr ""
-
-#: ../includes/add_photos/add_form.inc:91 ../login.php:86
-#: ../move_photo.php:254 ../move_photo.php:343 ../new_password.php:128
-#: ../rearrange.php:183 ../resize_photo.php:128 ../watermark_album.php:142
-msgid "_Cancel"
 msgstr ""
 
 #: ../includes/add_photos/add_other.inc:24
@@ -2268,45 +2272,45 @@ msgid "Logged in as: %s"
 msgstr ""
 
 #: ../layout/navigator.inc:45
-msgid "First Page "
+msgid "_First Page "
 msgstr ""
 
 #: ../layout/navigator.inc:46
-msgid "Previous Page (_back)"
+msgid "_Previous Page"
 msgstr ""
 
 #: ../layout/navigator.inc:47
-msgid "Next Page (_forward)"
+msgid "_Next Page"
 msgstr ""
 
 #: ../layout/navigator.inc:48
-msgid "Last Page"
+msgid "_Last Page"
 msgstr ""
 
-#: ../layout/navigator.inc:84
+#: ../layout/navigator.inc:79
 #, php-format
 msgid "Jump to page %d (Accesskey '_r')"
 msgstr ""
 
-#: ../layout/navigator.inc:113
+#: ../layout/navigator.inc:108
 #, php-format
 msgid "Jump to page %d (Accesskey '_j')"
 msgstr ""
 
 #: ../layout/navphoto.inc:24
-msgid "First Photo"
+msgid "_First Photo"
 msgstr ""
 
 #: ../layout/navphoto.inc:25
-msgid "Previous Photo"
+msgid "_Previous Photo"
 msgstr ""
 
 #: ../layout/navphoto.inc:26
-msgid "Next Photo"
+msgid "_Next Photo"
 msgstr ""
 
 #: ../layout/navphoto.inc:27
-msgid "Last Photo"
+msgid "_Last Photo"
 msgstr ""
 
 #: ../layout/navphoto.inc:52
@@ -2417,7 +2421,7 @@ msgid "Edit Thumbnail"
 msgstr ""
 
 #: ../lib/albumItem.php:117
-msgid "Rotate/Flip"
+msgid "_Rotate/Flip"
 msgstr ""
 
 #: ../lib/albumItem.php:122
@@ -2429,7 +2433,7 @@ msgid "Watermark"
 msgstr ""
 
 #: ../lib/albumItem.php:135
-msgid "ImageMap"
+msgid "Image_Map"
 msgstr ""
 
 #: ../lib/albumItem.php:143
@@ -3294,19 +3298,19 @@ msgstr ""
 msgid "Counter-Clockwise 90&deg;"
 msgstr ""
 
-#: ../rotate_photo.php:97
+#: ../rotate_photo.php:96
 msgid "Horizontal"
 msgstr ""
 
-#: ../rotate_photo.php:103
+#: ../rotate_photo.php:102
 msgid "Vertical"
 msgstr ""
 
-#: ../rotate_photo.php:111
+#: ../rotate_photo.php:110
 msgid "Rotate"
 msgstr ""
 
-#: ../rotate_photo.php:115
+#: ../rotate_photo.php:114
 msgid "Flip"
 msgstr ""
 
@@ -4627,7 +4631,7 @@ msgstr ""
 msgid "Send photo as e_Card"
 msgstr ""
 
-#: ../view_photo.php:522
+#: ../view_photo.php:509
 msgid "Email me when comments are added"
 msgstr ""
 
@@ -4653,10 +4657,6 @@ msgstr ""
 
 #: ../watermark_album.php:57
 msgid "Watermarking album..."
-msgstr ""
-
-#: ../watermark_album.php:73
-msgid "_Close"
 msgstr ""
 
 #: ../watermark_album.php:106
