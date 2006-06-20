@@ -42,10 +42,10 @@ if(!includeTemplate('navigator.tpl')) {
 			$url .= "&amp;";
 		}
 
-		$fpAltText= _("First Page ");
-		$ppAltText= _("Previous Page (_back)");
-		$npAltText= _("Next Page (_forward)");
-		$lpAltText= _("Last Page");
+		$fpAltText= gTranslate('core', "_First Page ");
+		$ppAltText= gTranslate('core', "_Previous Page");
+		$npAltText= gTranslate('core', "_Next Page");
+		$lpAltText= gTranslate('core', "_Last Page");
 
 		include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
 
@@ -56,14 +56,9 @@ if(!includeTemplate('navigator.tpl')) {
 
 		#-- 'first' and 'previous button cell ---
 		if ($navigator["page"] != 1) {
-			$fpContent = '<a href="'. $url . $navigator['pageVar'] .'=1">';
-			$fpContent .= gImage($fpImg, $fpAltText);
-			$fpContent .= '</a>';
+			$fpContent .= galleryIconLink($url . $navigator['pageVar'] .'=1', $fpImg, $fpAltText,'yes');
 
-			$ppContent = "<a href=\"${url}${navigator['pageVar']}=$prevPage\"";
-			$ppContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($ppAltText) .'">' : '>';
-			$ppContent .= gImage($ppImg, $ppAltText);
-			$ppContent .= '</a>';
+			$ppContent = galleryIconLink($url . $navigator['pageVar'] ."=$prevPage", $ppImg, $ppAltText, 'yes');
 
 			$pClass = 'g-borderright';
 		} else {
@@ -79,12 +74,12 @@ if(!includeTemplate('navigator.tpl')) {
 			$ndr = 'icons/navigation/nav_dot_right.gif';
 			$nd =  'icons/navigation/nav_dot.gif';
 
-			$mpContent = "\n\t\t". '<table align="center" cellpadding="0" cellspacing="0"><tr>';
+			$mpContent = "\n\t\t". '<table align="center" cellpadding="0" cellspacing="0" class="g-nav-pages"><tr>';
 			if (isset($beginNextBlock)) {
-				$title = sprintf(_("Jump to page %d (Accesskey '_r')"), $beginNextBlock);
+				$title = sprintf(gTranslate('core', "Jump to page %d (Accesskey '_r')"), $beginNextBlock);
 				$accesskey = getAndRemoveAccessKey($title);
 				$link = galleryLink("{$url}${navigator['pageVar']}=$beginNextBlock",
-				'...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
+				'...', array('title' => $title, 'accesskey' => $accesskey));
 				$mpContent .= "\n\t<td>$link</td>";
 			}
 			for ($i = $begin; $i <= $end; $i++) {
@@ -92,7 +87,7 @@ if(!includeTemplate('navigator.tpl')) {
 					$number = "<b>$i</b>";
 					$leftdot = gImage($ndl, "leftdot");
 				} else {
-					$number = galleryLink("${url}${navigator['pageVar']}=$i", $i, array(), '', false, ($navc == 1));
+					$number = galleryLink("${url}${navigator['pageVar']}=$i", $i);
 					if ($i-1 == $current) {
 						$leftdot = gImage($ndr, "leftdot");
 					} else {
@@ -110,10 +105,10 @@ if(!includeTemplate('navigator.tpl')) {
 
 			$mpContent .="\n\t<td>&nbsp;$rightdot";
 			if (isset($endNextBlock)) {
-				$title = sprintf(_("Jump to page %d (Accesskey '_j')"), $endNextBlock);
+				$title = sprintf(gTranslate('core', "Jump to page %d (Accesskey '_j')"), $endNextBlock);
 				$accesskey = getAndRemoveAccessKey($title);
 				$link = galleryLink("{$url}${navigator['pageVar']}=$endNextBlock",
-				'...', array('title' => $title, 'accesskey' => $accesskey), '', false, ($navc == 1));
+				'...', array('title' => $title, 'accesskey' => $accesskey));
 				$mpContent .= "\n\t</td><td>$link";
 			}
 			$mpContent .= '</td></tr></table>';
@@ -123,14 +118,9 @@ if(!includeTemplate('navigator.tpl')) {
 
 		#-- 'next' and 'last' button cell ---
 		if ($current < $maxPages) {
-			$npContent = "<a href=\"${url}${navigator['pageVar']}=$nextPage\"";
-			$npContent .= ($navc == 1) ? ' accesskey="'. getAndRemoveAccessKey($npAltText) .'">' : '>';
-			$npContent .= gImage($npImg, $npAltText);
-			$npContent .= '</a>';
+			$npContent = galleryIconLink($url . $navigator['pageVar'] ."=$nextPage", $npImg, $npAltText, 'yes');
 
-			$lpContent = '<a href="'. $url . $navigator['pageVar'] .'='. $navigator['maxPages'] .'">';
-			$lpContent .= gImage($lpImg, $lpAltText);
-			$lpContent .= '</a>';
+			$lpContent = galleryIconLink($url . $navigator['pageVar'] .'='. $navigator['maxPages'], $lpImg, $lpAltText, 'yes');
 
 			$nClass='g-borderleft';
 		} else {

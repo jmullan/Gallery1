@@ -401,21 +401,8 @@ if(sizeof($albumItemOptions) > 2 && !$useIcons) {
 	);
 }
 
-if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
-	if ($gallery->user->isLoggedIn()) {
-		$iconElements[] = galleryLink(
-			doCommand("logout", array(), "albums.php"),
-			gTranslate('core', "log_out"),
-			array(),
-			'exit.gif'
-		);
-	} else {
-		$iconElements[] = popup_link(
-			gTranslate('core', "_login"),
-			'login.php', false, true, 500, 500, '','','identity.gif'
-		);
-	}
-}
+$logoutReturn = doCommand("logout", array(), "albums.php");
+$iconElements[] = LoginLogoutButton($logoutReturn);
 
 $adminbox["text"] = makeIconMenu($adminTextIconElemens, 'left');
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
@@ -432,8 +419,8 @@ if(sizeof($albumItemOptions) > 2 && $useIcons) {
 				$option['text'], $option['value'],
 				true, false, 500, 500, '', '', $option['icon']);
 			} else {
-				$content = galleryLink(
-				$option['value'], $option['text'], array(), $option['icon']);
+				$content = galleryIconLink(
+				$option['value'], $option['icon'], $option['text']);
 			}
 			$itemActions[] = $content;
 		}

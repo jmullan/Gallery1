@@ -21,10 +21,10 @@ if(!includeTemplate('navphoto.tpl')) {
         $width=' width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'"';
     }
 
-    $fpAltText = _("First Photo");
-    $ppAltText = _("Previous Photo");
-    $npAltText = _("Next Photo");
-    $lpAltText = _("Last Photo");
+    $fpAltText = gTranslate('core', "_First Photo");
+    $ppAltText = gTranslate('core', "_Previous Photo");
+    $npAltText = gTranslate('core', "_Next Photo");
+    $lpAltText = gTranslate('core', "_Last Photo");
 
     include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
    	
@@ -34,11 +34,11 @@ if(!includeTemplate('navphoto.tpl')) {
     #-- 'first' and 'previous button cell ---
     if ($navpage > 0) {
     	$fpUrl =  makeAlbumUrl($gallery->session->albumName, $firstPage, ($full) ? array('full' => 1) : NULL) ;
-        $fpContent = "<a href=\"$fpUrl\">". gImage($fpImg, $fpAltText) .'</a>';
+	$fpContent = galleryIconLink($fpUrl, $fpImg, $fpAltText, 'yes');
 
         $prevPage = $navigator["allIds"][$navpage-1];
         $ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
-        $ppContent = "<a href=\"$ppUrl\">". gImage($ppImg, $ppAltText) .'</a>';
+	$ppContent = galleryIconLink($ppUrl, $ppImg, $ppAltText, 'yes');
 
         $pClass= 'g-borderright';
     } else {
@@ -49,16 +49,16 @@ if(!includeTemplate('navphoto.tpl')) {
     }
 
     #-- 'page numbers' cell ---
-    $mpContent = sprintf(_("%d of %d"), $navpage+1, $navcount);
+    $mpContent = sprintf(gTranslate('core', "%d of %d"), $navpage+1, $navcount);
 
     #-- 'next' and 'last' button cell ---
     if ($navpage < $navcount-1) {
         $nextPage = $navigator["allIds"][$navpage+1];
         $npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
-        $npContent = "<a href=\"$npUrl\">". gImage($npImg, $npAltText) .'</a>';
+	$npContent = galleryIconLink($npUrl, $npImg, $npAltText, 'yes');
 
         $lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
-        $lpContent = "<a href=\"$lpUrl\">". gImage($lpImg, $lpAltText) .'</a>';
+	$lpContent = galleryIconLink($lpUrl, $lpImg, $lpAltText, 'yes');
 
         $nClass = 'g-borderleft';
     } else {
@@ -71,11 +71,11 @@ if(!includeTemplate('navphoto.tpl')) {
 <!-- 'Classic' Photo Navigator -->
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>
-	<td class="<?php echo $pClass ?>" width="30" height="18"><?php echo $fpContent ?></td>
-	<td class="<?php echo $pClass ?>" width="100" height="18"><?php echo $ppContent ?></td>
-	<td height="18"><?php echo $mpContent; ?></td>
-	<td class="<?php echo $nClass ?>" width="100" height="18"><?php echo $npContent ?></td>
-	<td class="<?php echo $nClass ?>"width="30" height="18"><?php echo $lpContent ?></td>
+	<td class="<?php echo $pClass ?>" height="18"><?php echo $fpContent ?></td>
+	<td class="<?php echo $pClass ?>" height="18"><?php echo $ppContent ?></td>
+	<td height="18" width ="100%"><?php echo $mpContent; ?></td>
+	<td class="<?php echo $nClass ?>" height="18"><?php echo $npContent ?></td>
+	<td class="<?php echo $nClass ?>" height="18"><?php echo $lpContent ?></td>
 </tr>
 </table>
 	<?php 

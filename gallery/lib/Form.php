@@ -147,6 +147,7 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
 
     if(!empty($options)) {
         foreach ($options as $nr => $option) {
+	    $option['text'] = removeAccessKey($option['text']);
             $sel = isset($option['selected']) ? ' selected' : '';
             $buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
         }

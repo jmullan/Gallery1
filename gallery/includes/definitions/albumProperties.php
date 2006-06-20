@@ -27,18 +27,18 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_text",
         'default' => "inline",
-        'title' => gTranslate('common', "Texts"),
+        'title' => gTranslate('common', "_Texts"),
         'contains_required' => false,
     ),
     'summary' => array(
-        'prompt' => gTranslate('common', "Album Summary"),
+        'prompt' => gTranslate('common', "Album summary"),
         'desc' => '',
         'value' => $gallery->album->fields["summary"],
         'type' => "textarea",
         'attrs' => array('cols' => 40, 'rows' => 6)
     ),
     'title' => array(
-        'prompt' => gTranslate('common', "Album Title"),
+        'prompt' => gTranslate('common', "Album title"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["title"],
@@ -51,7 +51,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_layout",
         'default' => "none",
-        'title' => gTranslate('common', "Layout"),
+        'title' => gTranslate('common', "_Layout"),
         'desc' => ""
     ),
     'background' => array(
@@ -144,7 +144,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_slideshow",
         'default' => "none",
-        'title' => gTranslate('common', "Slideshow"),
+        'title' => gTranslate('common', "_Slideshow"),
         'desc' => ""
     ),
     'slideshow_type' => array(
@@ -179,7 +179,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_sizes",
         'default' => "none",
-        'title' => gTranslate('common', "Sizes"),
+        'title' => gTranslate('common', "Si_zes"),
         'desc' => ""
     ),
     'thumb_size' => array(
@@ -230,7 +230,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_display",
         'default' => "none",
-        'title' => gTranslate('common', "Display"),
+        'title' => gTranslate('common', "_Display"),
         'desc' => ""
     ),
     'display_clicks' => array(
@@ -265,7 +265,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_services",
         'default' => "none",
-        'title' => gTranslate('common', "Services"),
+        'title' => gTranslate('common', "Ser_vices"),
         'desc' => ""
     ),
     'print_photos' => array(
@@ -294,7 +294,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_pollProperties",
         'default' => "none",
-        'title' => gTranslate('common', "Poll Properties"),
+        'title' => gTranslate('common', "_Poll Properties"),
         'desc' => ""
     ),
     'voter_class' => array(
@@ -358,7 +358,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_misc",
         'default' => "none",
-        'title' => gTranslate('common', "Misc"),
+        'title' => gTranslate('common', "_Misc"),
         'desc' => ""
     ),
     'add_to_beginning' => array(
@@ -408,7 +408,7 @@ $properties = array(
         'type' => "group_start",
         'name' => "group_CustomFields",
         'default' => "none",
-        'title' => gTranslate('common', "Custom Fields")
+        'title' => gTranslate('common', "Custom _Fields")
     ),
     'extra_fields' => array(
         'prompt' => '',
@@ -435,7 +435,7 @@ $properties = array_merge($properties, array(
         'type' => "group_start",
         'name' => "group_MicroThumbs",
         'default' => "none",
-        'title' => gTranslate('common', "Microthumbs")
+        'title' => gTranslate('common', "M_icrothumbs")
     ),
     'nav_thumbs' => array(
         'prompt' => gTranslate('common', "Use microthumb photo navigation"),

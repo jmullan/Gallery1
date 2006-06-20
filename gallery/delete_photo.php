@@ -129,8 +129,10 @@ if ($gallery->album && isset($id)) {
 	}
 ?>
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="confirm" value="<?php echo _("Delete") ?>" onclick="deletephoto_form.formaction.value='delete'" class="g-button">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<?php 
+echo gButton('confirm', _("_Delete"), "deletephoto_form.formaction.value='delete'; deletephoto_form.submit()");
+echo gButton('cancel', _("_Cancel"), 'parent.close()');
+?>
 </form>
 <?php
 } else {

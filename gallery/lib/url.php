@@ -379,10 +379,12 @@ function broken_link($file) {
 }
 
 function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
+   static $accessKeyUsed;
+
    $html = '';
    $altText = $text;
 
-   if($accesskey == true && empty($attrList['accesskey']) && !empty($text)) {
+   if($accesskey && empty($attrList['accesskey']) && !empty($text)) {
 	if(is_int($text) && $text < 10) {
 	    $attrList['accesskey'] = $text;
 	    $altText = $text;
@@ -398,8 +400,8 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 	}
     }
 
-    if (!$accesskey) {
-	unset($attrList['accesskey']);
+    if($accessKeyUsed[$attrList['accesskey']]) {
+	$accessKeyUsed[$attrList['accesskey']] = true;
     }
 
     if (!empty($attrList['altText'])) {
@@ -419,6 +421,49 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
             $content = $text;
         }
     }
+
+    if (!empty($url)) {
+	   $html .= "<a href=\"$url\"$attrs>$content</a>";
+    }
+    else {
+        $html .= "<a$attrs>$content</a>";
+    }
+
+    return $html;
+}
+
+
+function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()) {
+    global $gallery;
+    static $accessKeyUsed = array();
+
+    $html = '';
+
+    $accesskey = isset($attrList['accesskey']) ? $attrList['accesskey'] : getAccessKey($text);
+    $iconMode = !empty($iconMode) ? $iconMode : $gallery->app->useIcons;
+
+    if(!$accessKeyUsed[$accesskey]) {
+        $attrList['accesskey'] = $accesskey;
+	$accessKeyUsed[$accesskey] = true;
+    }
+
+    if(!empty($accesskey)) {
+	if($iconMode == 'yes') {
+	    $altText = $text;
+	}
+
+	if($iconMode != 'both') {
+	    $altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
+	}
+    }
+
+
+    $content = getIconText($icon, $text, $iconMode, false, $altText, true);
+
+    /*if($iconMode == 'yes') {
+        $attrList['title'] = $altText;
+    }*/
+    $attrs = generateAttrs($attrList);
 
     if (!empty($url)) {
 	   $html .= "<a href=\"$url\"$attrs>$content</a>";

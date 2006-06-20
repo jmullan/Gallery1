@@ -1240,6 +1240,7 @@ function inOpenBasedir($dir) {
 }
 
 function make_separator($key, $arr)  {
+	getAndRemoveAccessKey($arr["title"]);
 	$buf ="\n<div class=\"g-double-bottom-border-spacer\">";
 	$buf .= "\n\t<div class=\"g-separator\">". $arr["title"] ."</div>";
 	if( isset($arr["desc"])) {
@@ -1682,21 +1683,24 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 	$tabcount = 0;
 
 	foreach ($tabs as $cell) {
+		$attrList = array();
 		$tabcount++;
 		$class = '';
 		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
-			$class = ' class="g-activeTab"';
+			$attrList['class'] = 'g-activeTab';
 			if (empty($initialtab)) {
 				$initialtab = $cell['name'];
 			}
 		}
 
-		echo "\n\t<a$class id=\"tab_". $cell['name'] ."\" onClick=\"section_tabs.toggle('" . $cell['name'] ."')\">";
-		echo $cell['title'];
+		$attrList['id'] = 'tab_'. $cell['name'];
+		$attrList['onClick'] = "section_tabs.toggle('" . $cell['name'] ."')";
+		$text = $cell['title'];
 		if (!empty($cell['contains_required'])) {
-			echo '<span class="g-littlered">*</span>';
+			$text .= '<span class="g-littlered">*</span>';
 		}
-		echo '</a>';
+
+		echo galleryLink('', $text, $attrList);
 	}
 
 	echo "\n</div>\n";

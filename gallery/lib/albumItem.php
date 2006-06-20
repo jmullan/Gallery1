@@ -114,7 +114,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	    		'icon' => ($withIcons) ? 'thumbnail.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => sprintf(gTranslate('core', "Rotate/Flip"), $label),
+	    		'text' => sprintf(gTranslate('core', "_Rotate/Flip"), $label),
 	    		'value' => showChoice2('rotate_photo.php', array('index' => $i)),
 	    		'icon' => ($withIcons) ? 'reload.gif' : ''
     		);
@@ -132,7 +132,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     		}
     		if(!$popupsOnly) {
     			$options[] = array(
-	    			'text' => gTranslate('core', "ImageMap"),
+	    			'text' => gTranslate('core', "Image_Map"),
 	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
 	    			'icon' => ($withIcons) ? 'behavior-capplet.gif' : ''
     			);
@@ -248,13 +248,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	if($isAlbum) {
     		if($gallery->user->canDeleteAlbum($myAlbum)) {
     			$options[] = array(
-	    			'text' => gTranslate('core', "Delete"),
+	    			'text' => gTranslate('core', "_Delete"),
 	    			'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1)),
     			);
     		}
     	} else {
     		$options[] = array(
-	    		'text' => gTranslate('core', "Delete"),
+	    		'text' => gTranslate('core', "_Delete"),
 	    		'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId)),
 	    		'icon' => ($withIcons) ? 'delete.gif' : ''
     		);

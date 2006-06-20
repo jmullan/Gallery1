@@ -1807,6 +1807,8 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 
 	    if ($caseSensitive) {
 			$code = "
+	    $a = removeAccessKey($a);
+	    $b = removeAccessKey($b);
 	    if( $a == $b ) {
 	        return 0;
 	    };
@@ -1818,6 +1820,8 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 		}
 	    else {
 			$code = "
+	    $a = removeAccessKey($a);
+	    $b = removeAccessKey($b);
 	    if(strtoupper($a) == strtoupper($b)) {
 	        return 0;
 	    };

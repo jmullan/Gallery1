@@ -1,3 +1,23 @@
+2006-06-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j64-UNSTABLE
+
+ * Accesskey Changes:
+	- Additional param to getIconText() to set a stickyAlt, regardless the iconmode
+	- New function getAccessKey($text)
+	- New function removeAccessKey($text)
+	- make_separator() now works with accesskeys
+	- array_sort now doesnt fall over accesskeys
+
+ * Accesskey Use in
+	includes/definitions/albumProperties.php
+	delete_photo.php
+	lib/albumItem.php
+	layout/navigator.inc
+	layout/navphoto.inc
+
+ * Change: Use of LoginLogoutButton in view_photo.php
+
+ * NEW: function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array())
+ 
 2006-06-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j63-UNSTABLE
 
  * Change: Reworked checkVersions().

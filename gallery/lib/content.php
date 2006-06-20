@@ -102,7 +102,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
         else {
             $id = $gallery->album->getPhotoId($index);
             $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-            echo popup_link(gTranslate('common', "add comment"), $url);
+            echo popup_link(gTranslate('common', "_Add comment"), $url);
             echo "<br><br>";
         }
     }
@@ -445,11 +445,11 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
         $myExif = $gallery->album->getExif($index, $forceRefresh);
         
         if (!empty($myExif) && !isset($myExif['Error'])) {
-            $tables[gTranslate('core', "EXIF Data")]  = $myExif;
+            $tables[gTranslate('common', "EXIF Data")]  = $myExif;
         }
         elseif (isset($myExif['status']) && $myExif['status'] == 1) {
             echo infoBox(array(array(
-		'text' => gTranslate('core', "Display of EXIF data enabled, but no data found.")
+		'text' => gTranslate('common', "Display of EXIF data enabled, but no data found.")
 	    )), '', false);
         }
     }
@@ -495,12 +495,15 @@ function showOwner($owner) {
     return $name;
 }
 
-function getIconText($iconName = '', $text = '', $overrideMode = '', $addBrackets = true, $altText = '') {
+function getIconText($iconName = '', $text = '', $overrideMode = '', $addBrackets = true, $altText = '', $stickyAlt = false) {
     global $gallery;
 
     if(empty($altText)) {
     	$altText = $text;
     }
+
+    $text = makeAccessKeyString($text);
+    getAndRemoveAccessKey($altText);
 
     if (!empty($overrideMode)) {
     	$iconMode = $overrideMode;
@@ -511,11 +514,11 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
     }
 
     if ($iconMode != "no" && $iconName != '') {
-    	if ($iconMode == 'both') {
+    	if ($iconMode == 'both' && !$stickyAlt) {
     		$altText = '';
     	}
 
-    	$linkText = gImage("icons/$iconName",$altText);
+    	$linkText = gImage("icons/$iconName", $altText);
 
     	if ($iconMode == "both") {
     		$linkText .= "<br>$text";
@@ -648,7 +651,7 @@ function dismissAndLoad($url) {
         echo infoBox(array(
             array(
                 'type' => 'information',
-                'text' => sprintf(gTranslate('core', "Loading URL: %s"), $url)
+                'text' => sprintf(gTranslate('common', "Loading URL: %s"), $url)
             ),
             array(
                 'type' => 'information',
@@ -1265,12 +1268,15 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
     global $gallery;
 
     $html = '';
-    $imgUrl = getImagePath($relativePath, $skin);
-    getAndRemoveAccessKey($altText);
 
-    if(!empty($imgUrl)) {
+    getAndRemoveAccessKey($altText);
+    $attrList['src'] = getImagePath($relativePath, $skin);
+    $attrList['alt'] = $altText;
+    $attrList['title'] = $altText;
+ 
+    if(!empty($attrList['src'])) {
         $attrs = generateAttrs($attrList);
-        $html .= "<img src=\"$imgUrl\" alt=\"$altText\" title=\"$altText\"$attrs>";
+        $html .= "<img$attrs>";
     }
 
     return $html;
@@ -1283,7 +1289,7 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
 
     if (!empty($album)) {
         if ($album->fields['returnto'] != 'no') {
-            $upArrow = gImage('icons/navigation/nav_home.gif', gTranslate('core', "navigate UP"));
+            $upArrow = gImage('icons/navigation/nav_home.gif', gTranslate('common', "navigate UP"));
 
             foreach ($album->getParentAlbums($withCurrentAlbum) as $navAlbum) {
                 $pathArray[] = $navAlbum['prefixText'] .': '.
@@ -1293,7 +1299,7 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
         }
     }
     else {
-	$pathArray[] = sprintf(gTranslate('core', "Gallery: %s"),
+	$pathArray[] = sprintf(gTranslate('common', "Gallery: %s"),
 	  galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$upArrow",
 	    array(), '', false, false));
     }
@@ -1312,15 +1318,31 @@ function LoginLogoutButton($returnUrl) {
 
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
-			$html = galleryLink($returnUrl, gTranslate('core', "log_out"), array(), 'logout.png');
+			$html = galleryIconLink($returnUrl, 'logout.png', gTranslate('common', "log_out"));
 		}
 		else {
 			$html = popup_link(
-				gTranslate('core', "_login"),
+				gTranslate('common', "log_in"),
 				'login.php', false, true, 500, 500, '','','login.png');
 		}
 	}
 	return $html;
+}
+
+/**
+ * Returns the accesskey of a string
+ * @param   string  $text
+ * @return  string  $accesskey
+ * @author  Jens Tkotz
+ */
+function getAccessKey($text) {
+    $pos = strpos($text, '_');
+    $accesskey = false;
+
+    if ($pos !== false) {
+        $accesskey = substr($text,$pos+1,1);
+    }
+    return $accesskey;
 }
 
 function makeAccessKeyString($text) {
@@ -1335,7 +1357,7 @@ function makeAccessKeyString($text) {
 }
 
 /**
- * Modifies a string so that the access is surrounded by span tagg
+ * Modifies a string so that the accesskey is surrounded by span tag.
  * returns the access key.
  * @param   string  $text
  * @return  mixed   $accesskey  the accesskey, or null if no accesskey found
@@ -1354,9 +1376,9 @@ function getAndSetAccessKey(& $text) {
 }
 
 /**
- * Returns a string so that the access is surrounded by span tag
- * @param   string  $text
- * @return  string  $text
+ * Modifies the input string, remove the accesskey and returns it.
+ * @param   string  & $text
+ * @return  string  $accesskey
  * @author  Jens Tkotz
  */
 function getAndRemoveAccessKey(& $text) {
@@ -1369,4 +1391,22 @@ function getAndRemoveAccessKey(& $text) {
     }
     return $accesskey;
 }
+
+/**
+ * Removes an accesskey from a string
+ * @param   string  $text
+ * @return  string  $text
+ * @author  Jens Tkotz
+ */
+function removeAccessKey($text) {
+    $pos = strpos($text, '_');
+    $accesskey = false;
+
+    if ($pos !== false) {
+        $accesskey = substr($text,$pos+1,1);
+        $text = substr_replace($text, '', $pos,1);
+    }
+    return $text;
+}
+
 ?>

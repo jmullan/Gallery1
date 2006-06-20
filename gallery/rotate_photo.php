@@ -73,34 +73,33 @@ if ($gallery->session->albumName && isset($index)) {
     $args = array("albumName" => $gallery->album->fields["name"], "index" => $index, 'type' => 'popup');
 
     $args["rotate"] = "90";
-    $rotateElements[] = galleryLink(
-      makeGalleryUrl("rotate_photo.php", $args),
-      getIconText('imageedit/rotate-90.gif', gTranslate('core', "Clockwise 90&deg;")),array(),'',false, false
+    $rotateElements[] = galleryIconLink(
+	makeGalleryUrl("rotate_photo.php", $args),
+	'imageedit/rotate-90.gif', gTranslate('core', "Clockwise 90&deg;"), '', array('accesskey' => 1)
     );
 
     $args["rotate"] = "180";
-    $rotateElements[] = galleryLink(
+    $rotateElements[] = galleryIconLink(
       makeGalleryUrl("rotate_photo.php", $args),
-      getIconText('imageedit/rotate-180.gif', gTranslate('core', "180&deg;")),array(),'',false, false
+      'imageedit/rotate-180.gif', gTranslate('core', "180&deg;"), '', array('accesskey' => 2)
     );
 
     $args["rotate"] = "-90";
-    $rotateElements[] = galleryLink(
+    $rotateElements[] = galleryIconLink(
       makeGalleryUrl("rotate_photo.php", $args),
-      getIconText('imageedit/rotate-270.gif', gTranslate('core', "Counter-Clockwise 90&deg;")),array(),'',false, false
+      'imageedit/rotate-270.gif', gTranslate('core', "Counter-Clockwise 90&deg;"), '', array('accesskey' => 3)
     );
 
-
     $args["rotate"] = "fh";
-    $rotateElements[] = galleryLink(
+    $rotateElements[] = galleryIconLink(
       makeGalleryUrl("rotate_photo.php", $args),
-      getIconText('imageedit/mirror.gif', gTranslate('core', "Horizontal")),array(),'',false, false
+      'imageedit/mirror.gif', gTranslate('core', "Horizontal"), '', array('accesskey' => 4)
     );
 
     $args["rotate"] = "fl";
-    $rotateElements[] = galleryLink(
+    $rotateElements[] = galleryIconLink(
       makeGalleryUrl("rotate_photo.php", $args),
-      getIconText('imageedit/flip.gif', gTranslate('core', "Vertical")),array(),'',false, false
+      'imageedit/flip.gif', gTranslate('core', "Vertical"), '', array('accesskey' => 5)
     );
 
     $actionTable = new galleryTable();
@@ -122,7 +121,7 @@ if ($gallery->session->albumName && isset($index)) {
     echo $actionTable->render();
 ?>
 <br>
-<input type="button" onClick="javascript:void(parent.close())" value="<?php echo gTranslate('core', "Close") ?>" class="g-button">
+<?php echo gButton('close', gTranslate('core', "_Close"), 'parent.close()'); ?>
 
 <p>
 <?php 
