@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-22 15:36+0200\n"
+"POT-Creation-Date: 2006-06-22 16:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1372,7 +1372,7 @@ msgstr ""
 msgid "Year must be between 1969 and 2070"
 msgstr ""
 
-#: ../edit_caption.php:70 ../lib/albumItem.php:107
+#: ../edit_caption.php:70
 msgid "Edit Text"
 msgstr ""
 
@@ -1460,6 +1460,14 @@ msgstr ""
 
 #: ../edit_watermark.php:119 ../watermark_album.php:140
 msgid "_Preview"
+msgstr ""
+
+#: ../gallery_remote.php:118 ../publish_xp.php:364
+msgid "User cannot add to album"
+msgstr ""
+
+#: ../gallery_remote.php:122 ../publish_xp.php:368
+msgid "No file specified"
 msgstr ""
 
 #: ../help/imagemap.php:26
@@ -2243,6 +2251,20 @@ msgstr ""
 msgid "Filter by day"
 msgstr ""
 
+#: ../index.php:181
+#, php-format
+msgid "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>$safe_to_include</i> array"
+msgstr ""
+
+#: ../init.php:29 ../init.php:107 ../view_photo_properties.php:31
+#: ../templates/overall.header.tpl.default:80
+msgid "Security violation"
+msgstr ""
+
+#: ../init.php:401
+msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
+msgstr ""
+
 #: ../js/multifile.js.php:149
 msgid "Caption:"
 msgstr ""
@@ -2437,20 +2459,24 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
+#: ../lib/albumItem.php:107
+msgid "Edit _Text"
+msgstr ""
+
 #: ../lib/albumItem.php:112
-msgid "Edit Thumbnail"
+msgid "Edit Th_umbnail"
 msgstr ""
 
 #: ../lib/albumItem.php:117
-msgid "_Rotate/Flip"
+msgid "Rotate/_Flip"
 msgstr ""
 
 #: ../lib/albumItem.php:122
-msgid "Resize"
+msgid "Re_size"
 msgstr ""
 
 #: ../lib/albumItem.php:128
-msgid "Watermark"
+msgid "_Watermark"
 msgstr ""
 
 #: ../lib/albumItem.php:135
@@ -2458,7 +2484,7 @@ msgid "Image_Map"
 msgstr ""
 
 #: ../lib/albumItem.php:143
-msgid "Move"
+msgid "Mo_ve"
 msgstr ""
 
 #: ../lib/albumItem.php:151
@@ -2490,31 +2516,31 @@ msgid "View Comments"
 msgstr ""
 
 #: ../lib/albumItem.php:198
-msgid "Copy"
+msgid "Cop_y"
 msgstr ""
 
 #: ../lib/albumItem.php:207
-msgid "Reorder"
+msgid "_Reorder"
 msgstr ""
 
 #: ../lib/albumItem.php:215
-msgid "Set as highlight"
+msgid "Set as high_light"
 msgstr ""
 
-#: ../lib/albumItem.php:224 ../photo_owner.php:73
-msgid "Change Owner"
+#: ../lib/albumItem.php:224
+msgid "Change Ow_ner"
 msgstr ""
 
 #: ../lib/albumItem.php:233
-msgid "Show"
+msgid "_Show"
 msgstr ""
 
 #: ../lib/albumItem.php:239
-msgid "Hide"
+msgid "_Hide"
 msgstr ""
 
 #: ../lib/albumItem.php:270
-msgid "Photo properties"
+msgid "Photo _properties"
 msgstr ""
 
 #: ../lib/albumItem.php:283 ../lib/albumItem.php:284
@@ -2909,6 +2935,10 @@ msgstr ""
 msgid "You must enter the new password twice."
 msgstr ""
 
+#: ../photo_owner.php:73
+msgid "Change Owner"
+msgstr ""
+
 #: ../photo_owner.php:86
 msgid "Owner: "
 msgstr ""
@@ -3041,14 +3071,6 @@ msgstr ""
 
 #: ../publish_xp.php:306
 msgid "NEW TOP LEVEL ALBUM"
-msgstr ""
-
-#: ../publish_xp.php:364
-msgid "User cannot add to album"
-msgstr ""
-
-#: ../publish_xp.php:368
-msgid "No file specified"
 msgstr ""
 
 #: ../publish_xp.php:465
@@ -4703,10 +4725,6 @@ msgstr ""
 
 #: ../view_photo.php:509
 msgid "Email me when comments are added"
-msgstr ""
-
-#: ../view_photo_properties.php:31 ../templates/overall.header.tpl.default:80
-msgid "Security violation"
 msgstr ""
 
 #: ../view_photo_properties.php:35

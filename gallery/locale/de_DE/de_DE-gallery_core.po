@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-22 15:36+0200\n"
+"POT-Creation-Date: 2006-06-22 16:02+0200\n"
 "PO-Revision-Date: 2006-06-20 00:30+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -211,9 +211,8 @@ msgid "Descending"
 msgstr "Absteigend"
 
 #: ../administer_startpage.php:98
-#, fuzzy
 msgid "_Sort"
-msgstr "Sortieren"
+msgstr "_Sortieren"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:110
 #: ../user_preferences.php:146 ../view_photo_properties.php:124
@@ -944,9 +943,8 @@ msgid "New Album"
 msgstr "Neues Album"
 
 #: ../copy_photo.php:199
-#, fuzzy
 msgid "Cop_y to Album!"
-msgstr "Kopieren"
+msgstr "Ko_pieren"
 
 #: ../copy_photo.php:200 ../delete_photo.php:134 ../edit_caption.php:174
 #: ../edit_field.php:60 ../edit_watermark.php:120
@@ -1093,9 +1091,8 @@ msgid "Attempted security breach."
 msgstr "Verletzung der Sicherheitsregeln entdeckt."
 
 #: ../do_command.php:54
-#, fuzzy
 msgid "Rebuilding Thumbnails"
-msgstr "Erneuere %d Thumbnails ..."
+msgstr "Erneuere Thumbnails"
 
 #: ../do_command.php:56
 msgid "Performing Operation.."
@@ -1376,7 +1373,7 @@ msgstr "_Schlie&szlig;en"
 msgid "Year must be between 1969 and 2070"
 msgstr "Das Jahr muss zwischen 1969 und 2070 liegen"
 
-#: ../edit_caption.php:70 ../lib/albumItem.php:107
+#: ../edit_caption.php:70
 msgid "Edit Text"
 msgstr "Beschriftung bearbeiten"
 
@@ -1465,6 +1462,14 @@ msgstr "Ihr Bild ist ein gif. Wasserzeichen auf animierten gif werden derzeit no
 #: ../edit_watermark.php:119 ../watermark_album.php:140
 msgid "_Preview"
 msgstr "_Vorschau"
+
+#: ../gallery_remote.php:118 ../publish_xp.php:364
+msgid "User cannot add to album"
+msgstr "Benutzer darf keine Alben anlegen"
+
+#: ../gallery_remote.php:122 ../publish_xp.php:368
+msgid "No file specified"
+msgstr "Keine Datei ausgew&auml;hlt"
 
 #: ../help/imagemap.php:26
 msgid "ImageMap Help"
@@ -2247,6 +2252,20 @@ msgstr "Nach Monat filtern"
 msgid "Filter by day"
 msgstr "Nach Tag filtern"
 
+#: ../index.php:181
+#, php-format
+msgid "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>$safe_to_include</i> array"
+msgstr ""
+
+#: ../init.php:29 ../init.php:107 ../view_photo_properties.php:31
+#: ../templates/overall.header.tpl.default:80
+msgid "Security violation"
+msgstr "Schutz Verletzung"
+
+#: ../init.php:401
+msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
+msgstr ""
+
 #: ../js/multifile.js.php:149
 msgid "Caption:"
 msgstr "Beschriftung:"
@@ -2441,29 +2460,33 @@ msgstr "Film"
 msgid "Photo"
 msgstr "Photo"
 
+#: ../lib/albumItem.php:107
+msgid "Edit _Text"
+msgstr "Beschrif_tung bearbeiten"
+
 #: ../lib/albumItem.php:112
-msgid "Edit Thumbnail"
-msgstr "Thumbnail bearbeiten"
+msgid "Edit Th_umbnail"
+msgstr "Th_umbnail bearbeiten"
 
 #: ../lib/albumItem.php:117
-msgid "_Rotate/Flip"
+msgid "Rotate/_Flip"
 msgstr "D_rehen/ spiegeln"
 
 #: ../lib/albumItem.php:122
-msgid "Resize"
-msgstr "Größe ändern"
+msgid "Re_size"
+msgstr "_Größe ändern"
 
 #: ../lib/albumItem.php:128
-msgid "Watermark"
-msgstr "Wasserzeichen"
+msgid "_Watermark"
+msgstr "_Wasserzeichen"
 
 #: ../lib/albumItem.php:135
 msgid "Image_Map"
 msgstr "_ImageMap"
 
 #: ../lib/albumItem.php:143
-msgid "Move"
-msgstr "Verschieben"
+msgid "Mo_ve"
+msgstr "_Verschieben"
 
 #: ../lib/albumItem.php:151
 msgid "Edit Title"
@@ -2494,32 +2517,32 @@ msgid "View Comments"
 msgstr "Kommentare betrachten"
 
 #: ../lib/albumItem.php:198
-msgid "Copy"
-msgstr "Kopieren"
+msgid "Cop_y"
+msgstr "Ko_pieren"
 
 #: ../lib/albumItem.php:207
-msgid "Reorder"
-msgstr "Umordnen"
+msgid "_Reorder"
+msgstr "Um_ordnen"
 
 #: ../lib/albumItem.php:215
-msgid "Set as highlight"
-msgstr "Setze als Titelbild"
+msgid "Set as high_light"
+msgstr "Setze als Titelbil_d"
 
-#: ../lib/albumItem.php:224 ../photo_owner.php:73
-msgid "Change Owner"
-msgstr "Besitzer/in"
+#: ../lib/albumItem.php:224
+msgid "Change Ow_ner"
+msgstr "Be_sitzer/in"
 
 #: ../lib/albumItem.php:233
-msgid "Show"
-msgstr "Anzeigen"
+msgid "_Show"
+msgstr "An_zeigen"
 
 #: ../lib/albumItem.php:239
-msgid "Hide"
-msgstr "Verstecken"
+msgid "_Hide"
+msgstr "Verste_cken"
 
 #: ../lib/albumItem.php:270
-msgid "Photo properties"
-msgstr "Bildeigenschaften"
+msgid "Photo _properties"
+msgstr "Bild_eigenschaften"
 
 #: ../lib/albumItem.php:283 ../lib/albumItem.php:284
 #, php-format
@@ -2913,6 +2936,10 @@ msgstr "Hier k&ouml;nnen Sie Ihre Angaben &auml;ndern."
 msgid "You must enter the new password twice."
 msgstr "Sie m&uuml;ssen Ihr neues Passwort zweimal eingeben."
 
+#: ../photo_owner.php:73
+msgid "Change Owner"
+msgstr "Besitzer/in"
+
 #: ../photo_owner.php:86
 msgid "Owner: "
 msgstr "Besitzer/in : "
@@ -3046,14 +3073,6 @@ msgstr "W&auml;hlen Sie das Stammalbum"
 #: ../publish_xp.php:306
 msgid "NEW TOP LEVEL ALBUM"
 msgstr "Neues Hauptalbum"
-
-#: ../publish_xp.php:364
-msgid "User cannot add to album"
-msgstr "Benutzer darf keine Alben anlegen"
-
-#: ../publish_xp.php:368
-msgid "No file specified"
-msgstr "Keine Datei ausgew&auml;hlt"
 
 #: ../publish_xp.php:465
 msgid "Photo Upload"
@@ -4710,10 +4729,6 @@ msgstr "Photo als e_Card senden"
 #: ../view_photo.php:509
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
-
-#: ../view_photo_properties.php:31 ../templates/overall.header.tpl.default:80
-msgid "Security violation"
-msgstr "Schutz Verletzung"
 
 #: ../view_photo_properties.php:35
 msgid "Photo Properties"
