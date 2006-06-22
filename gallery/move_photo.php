@@ -339,7 +339,7 @@ if (!$uptodate) {
 }
 ?>
 <br>
-<?php echo gSubmit('submit'), $title); ?>
+<?php echo gSubmit('submit', $title); ?>
 <?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
