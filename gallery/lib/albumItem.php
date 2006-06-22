@@ -104,28 +104,28 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     if (isset($canModify)) {
     	if ($isPhoto) {
     		$options[] = array(
-	    		'text' => gTranslate('core', "Edit Text"),
+	    		'text' => gTranslate('core', "Edit _Text"),
 	    		'value' => showChoice2("edit_caption.php", array("index" => $i)),
 	    		'icon' => ($withIcons) ? 'kcmfontinst.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => gTranslate('core', "Edit Thumbnail"),
+	    		'text' => gTranslate('core', "Edit Th_umbnail"),
 	    		'value' => showChoice2('edit_thumb.php', array('index' => $i)),
 	    		'icon' => ($withIcons) ? 'thumbnail.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => sprintf(gTranslate('core', "_Rotate/Flip"), $label),
+	    		'text' => sprintf(gTranslate('core', "Rotate/_Flip"), $label),
 	    		'value' => showChoice2('rotate_photo.php', array('index' => $i)),
 	    		'icon' => ($withIcons) ? 'reload.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => gTranslate('core', "Resize"),
+	    		'text' => gTranslate('core', "Re_size"),
 	    		'value' => showChoice2('resize_photo.php', array('index' => $i)),
 	    		'icon' => ($withIcons) ? 'window_fullscreen.gif' : ''
     		);
     		if (!empty($gallery->app->watermarkDir)) {
     			$options[] = array(
-	    			'text' => gTranslate('core', "Watermark"),
+	    			'text' => gTranslate('core', "_Watermark"),
 	    			'value' =>  showChoice2('edit_watermark.php', array('index' => $i)),
 	    			'icon' => ($withIcons) ? 'camera.gif' : ''
     			);
@@ -140,7 +140,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	}
     	
     	$options[] = array(
-	    	'text' => gTranslate('core', "Move"),
+	    	'text' => gTranslate('core', "Mo_ve"),
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
 	    	'icon' => ($withIcons) ? 'tab_duplicate.gif' : ''
     	);
@@ -195,7 +195,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	}
     	if (! $isAlbum) {
     	    $options[] = array(
-        	    'text' => gTranslate('core', "Copy"),
+        	    'text' => gTranslate('core', "Cop_y"),
         	    'value' => showChoice2("copy_photo.php", array("index" => $i)),
         	    'icon' => ($withIcons) ? 'editcopy.gif' : ''
     	    );
@@ -204,7 +204,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
     	$options[] = array(
-	    	'text' => gTranslate('core', "Reorder"),
+	    	'text' => gTranslate('core', "_Reorder"),
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1)),
 	    	'icon' => ($withIcons) ? 'tab_duplicate.gif' : ''
     	);
@@ -212,7 +212,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	/* ----- Item is photo, or subalbum with highlight ----- */
     	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
     		$options[] = array(
-	    		'text' => gTranslate('core', "Set as highlight"),
+	    		'text' => gTranslate('core', "Set as high_light"),
 	    		'value' => showChoice2('do_command.php', array('cmd' => 'highlight', 'index' => $i)),
 	    		'icon' => ($withIcons) ? 'viewmag1.gif' : ''
     		);
@@ -221,7 +221,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 
     if (isset($isAdmin)) {
         $options[] = array(
-            'text' => gTranslate('core', "Change Owner"),
+            'text' => gTranslate('core', "Change Ow_ner"),
             'value' => showChoice2("photo_owner.php", array("id" => $id)),
             'icon' => ($withIcons) ? 'yast_kuser.gif' : ''
         );
@@ -230,13 +230,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     if (isset($isOwner)) {
     	if ($gallery->album->isHidden($i)) {
     		$options[] = array(
-	    		'text' => gTranslate('core', "Show"),
+	    		'text' => gTranslate('core', "_Show"),
 	    		'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i)),
 	    		'icon' => ($withIcons) ? 'idea.gif' : ''
     		);
     	} else {
     		$options[] = array(
-	    		'text' => gTranslate('core', "Hide"),
+	    		'text' => gTranslate('core', "_Hide"),
 	    		'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i)),
 	    		'icon' => ($withIcons) ? 'no_idea.gif' : ''
     		);
@@ -267,7 +267,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	  (eregi("jpe?g\$", $photo->image->type)) &&
     	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
     		$options['showExif'] = array(
-	    		'text' => gTranslate('core', "Photo properties"),
+	    		'text' => gTranslate('core', "Photo _properties"),
 	    		'value' => showChoice2("view_photo_properties.php", array("index" => $i)),
 	    		'icon' => ($withIcons) ? 'frame_query.gif' : ''
     		);
