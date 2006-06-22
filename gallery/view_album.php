@@ -215,10 +215,17 @@ $adminOptions = array(
 		'requirements' => array('canWriteToAlbum', 'photosExist'),
 		'action' => 'popup',
 		'value' => makeGalleryUrl('resize_photo.php',
-			array(
-				'set_albumName' => $gallery->session->albumName,
-				'index' => 'all',
-				'type' => 'popup'))
+			array('set_albumName' => $gallery->session->albumName,
+			      'index' => 'all',
+			      'type' => 'popup'))
+	),
+	'recreate_captions'  => array(
+		'name' => gTranslate('core', "Recreate captions"),
+		'requirements' => array('canWriteToAlbum', 'photosExist'),
+		'action' => 'popup',
+		'value' => makeGalleryUrl('popups/recreate_captions.php',
+                        array('set_albumName' => $gallery->session->albumName,
+                              'type' => 'popup'))
 	),
 	'rebuild_thumbs'  => array(
 		'name' => gTranslate('core', "Rebuild thumbs"),

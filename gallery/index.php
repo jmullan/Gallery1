@@ -104,9 +104,8 @@ if ($postnuke ||
 	 * then you need to add the name of the file including any relevant path components to this
 	 * array.
 	 */
-	$safe_to_include =
-		 array(
-		       "add_comment.php",
+	$safe_to_include = array(
+		"add_comment.php",
 		       "add_photos.php",
 		       "add_photos_frame.php",
 		       "admin-page.php",
@@ -144,6 +143,7 @@ if ($postnuke ||
 		       "photo_owner.php",
 		       "poll_properties.php",
 		       "poll_results.php",
+		'popups/recreate_captions.php',
 		       "progress_uploading.php",
 		       "publish_xp.php",
 		       "publish_xp_docs.php",

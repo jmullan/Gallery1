@@ -20,16 +20,16 @@
  * $Id$
  */
 ?>
-<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"><?php echo gTranslate('core', "Leave blank.") ?></label>
+<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"> <?php echo gTranslate('core', "Leave blank.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo gTranslate('core', "Use filename as caption.") ?></label>
+<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"> <?php echo gTranslate('core', "Use filename as caption.") ?></label>
 <br>
-<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
+<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"> <?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
 <br>
 <?php
 if (isset($gallery->app->use_exif)) {
         echo '<input type="radio" name="setCaption" value="3" id="setCaption3">';
-	echo '<label for="setCaption3">';
+	echo '<label for="setCaption3"> ';
         echo gTranslate('core', "Set photo captions with file capture times.");
 	echo '</label>';
 }

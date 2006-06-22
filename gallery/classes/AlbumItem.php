@@ -106,7 +106,7 @@ class AlbumItem {
         global $gallery;
         $file = $dir . "/" . $this->image->name . "." . $this->image->type;
         
-        echo debugMessage(sprintf(gTranslate('core', "Getting of file '%s'"), $file),__FILE__, __LINE__);
+        echo debugMessage(sprintf(gTranslate('core', "Getting Exif of file '%s'"), $file), __FILE__, __LINE__);
 
         /*
         * If we don't already have the exif data, get it now.
@@ -831,8 +831,38 @@ class AlbumItem {
         }
     }
 
-    function setCaption($cap) {
-        $this->caption = $cap;
+    function setCaption($caption) {
+        $this->caption = $caption;
+    }
+
+    function createCaption($dir, $captionType) {
+	global $gallery;
+	$dateTimeFormat = $gallery->app->dateTimeString;
+	$path = $this->image->getPath($dir, true);
+
+	switch ($captionType) {
+	    case 0:
+		$caption = '';
+	    break;
+
+	    case 1:
+	    default:
+		/* Use filename */
+		$caption = strtr($this->image->name, '_', ' ');
+	    break;
+
+	    case 2:
+		/* Use file cration date */
+		$caption = strftime($dateTimeFormat, filectime($path));
+	    break;
+
+	    case 3:
+		/* Use capture date */
+		$caption = strftime($dateTimeFormat, getItemCaptureDate($path));
+	    break;
+	}
+	
+	$this->setCaption($caption);
     }
 
     function getCaption() {

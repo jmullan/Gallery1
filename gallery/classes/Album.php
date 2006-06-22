@@ -1,4 +1,4 @@
-<?php
+<?php		
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
@@ -1772,6 +1772,35 @@ class Album {
     function setCaption($index, $caption) {
         $photo = &$this->getPhoto($index);
         $photo->setCaption($caption);
+    }
+
+    function createCaption($index, $captionType, $recursive = 'no') {
+	$np = $this->numPhotos(1);
+	echo "\n<h3>" . sprintf(_("Recreating %d captions..."), $np) .'</h3>';
+	for ($i = 1; $i <= $np; $i++) {
+	    debugMessage(sprintf(_("Processing image %d..."), $i), __FILE__, __LINE__);
+	    if ($this->isAlbum($i)) {
+		if($recursive == 'yes') {
+		    $nestedAlbum = new Album();
+		    $nestedAlbum->load($this->getAlbumName($i));
+
+		    $npn = $nestedAlbum->numPhotos(1);
+		    echo "<br>". sprintf(gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $npn);
+                    $nestedAlbum->createCaption(false, $captionType, $recursive);
+		    $nestedAlbum->save();
+		}
+	    }
+	    else {
+		$photo = $this->getPhoto($i);
+		$photo->createCaption($this->getAlbumDir("full"), $captionType);
+	    }
+	}
+	if($this->save()) {
+	   return true;
+	}
+	else {
+	    return false;
+	}
     }
 
     function getItemOwner($index) {
