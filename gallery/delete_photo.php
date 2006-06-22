@@ -39,7 +39,7 @@ if (isset($albumDelete)) {
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) && 
 	(!$gallery->album->getItemOwnerDelete() || !$gallery->album->isItemOwner($gallery->user->getUid(), $index)) &&
 	(isset($myAlbum) && !$myAlbum->isOwner($gallery->user->getUid()))) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -81,7 +81,7 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 	return;
 }
 
-printPopupStart(isset($albumDelete) ? _("Delete Album") : _("Delete Photo"));
+printPopupStart(isset($albumDelete) ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo"));
 
 if ($gallery->album && isset($id)) {
     if (isset($albumDelete)) {
@@ -91,7 +91,7 @@ if ($gallery->album && isset($id)) {
 	      array('type' => 'popup')
 	);
 
-	echo _("Do you really want to delete this album?");
+	echo gTranslate('core', "Do you really want to delete this album?");
 
 	$myAlbum = new Album();
 	$myAlbum->load($id);
@@ -109,7 +109,7 @@ if ($gallery->album && isset($id)) {
 <?php
 	} 
 	else {
-	    echo _("Do you really want to delete this photo?") ;
+	    echo gTranslate('core', "Do you really want to delete this photo?") ;
 	    echo makeFormIntro('delete_photo.php', array(
 		  'name' => 'deletephoto_form',
 		  'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
@@ -130,13 +130,13 @@ if ($gallery->album && isset($id)) {
 ?>
 <input type="hidden" name="formaction" value="">
 <?php 
-echo gButton('confirm', _("_Delete"), "deletephoto_form.formaction.value='delete'; deletephoto_form.submit()");
-echo gButton('cancel', _("_Cancel"), 'parent.close()');
+echo gButton('confirm', gTranslate('core', "_Delete"), "deletephoto_form.formaction.value='delete'; deletephoto_form.submit()");
+echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
 ?>
 </form>
 <?php
 } else {
-	echo gallery_error(_("no album / index specified"));
+	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 </div>

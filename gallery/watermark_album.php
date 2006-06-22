@@ -40,7 +40,7 @@ list($wmAlignX, $wmAlignY, $recursive, $previewFull) =
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;
 }
 
@@ -89,10 +89,10 @@ if (isset($save) || isset($preview)) {
                     isset($previewFull) ? $previewFull : 0);
             }
         } else {
-            $err = _("Please select a watermark.");
+            $err = gTranslate('core', "Please select a watermark.");
         }
     } else {
-        $err = _("Please select an alignment.");
+        $err = gTranslate('core', "Please select an alignment.");
     }
 } else {
     if (!isset($recursive)) {
@@ -103,7 +103,7 @@ if (isset($save) || isset($preview)) {
 printPopupStart(gTranslate('core', "Watermark Album"));
 
 if (!$gallery->album->numPhotos(1)) {
-    echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";
+    echo "\n<p>". gallery_error(gTranslate('core', "No items to watermark.")) . "</p>";
 } else {
     $highlightIndex = $gallery->album->getHighlight();
     if (isset($highlightIndex)) {

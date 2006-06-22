@@ -30,21 +30,21 @@ list($save, $ownerUid, $submit, $actionUid) =
 // Hack check
 if (!$gallery->user->isAdmin() && 
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 $perms = array(
-    'canRead'           => _("Users who can see the album."),
-    'canAddTo'          => _("Users who can add photos."),
-    'canDeleteFrom'     => _("Users who can delete photos."),
-    'canWrite'          => _("Users who can modify photos."),
-    'canCreateSubAlbum' => _("Users who can create sub albums."),
-    'zipDownload'       => _("Users who can to download album (with subalbums) as archive."),
-    'canViewComments'   => _("Users who can view comments."),
-    'canAddComments'    => _("Users who can add comments."),
-    'canViewFullImages' => _("Users who can view full (original) images."),
-    'canChangeText'     => _("Users who can change album text."),
+    'canRead'           => gTranslate('core', "Users who can see the album."),
+    'canAddTo'          => gTranslate('core', "Users who can add photos."),
+    'canDeleteFrom'     => gTranslate('core', "Users who can delete photos."),
+    'canWrite'          => gTranslate('core', "Users who can modify photos."),
+    'canCreateSubAlbum' => gTranslate('core', "Users who can create sub albums."),
+    'zipDownload'       => gTranslate('core', "Users who can to download album (with subalbums) as archive."),
+    'canViewComments'   => gTranslate('core', "Users who can view comments."),
+    'canAddComments'    => gTranslate('core', "Users who can add comments."),
+    'canViewFullImages' => gTranslate('core', "Users who can view full (original) images."),
+    'canChangeText'     => gTranslate('core', "Users who can change album text."),
 );
 
 foreach ($gallery->userDB->getUidList() as $uid) {
@@ -106,13 +106,13 @@ foreach($perms as $perm => $trash)  {
 
 printPopupStart(gTranslate('core', "Album Permissions"));
 
-echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
+echo sprintf(gTranslate('core', "Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro("album_permissions.php", array("name" =>
 			"albumperms_form"), array("type" => "popup"));
 
 if ($gallery->user->isAdmin) {
-    echo _("Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
+    echo gTranslate('core', "Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
 }
 ?>
 
@@ -146,11 +146,11 @@ echo $permsTable->render();
  </tr>
 </table>
 
-<label for="setNested"><?php echo _("Apply permissions to all sub-albums"); ?></label>
+<label for="setNested"><?php echo gTranslate('core', "Apply permissions to all sub-albums"); ?></label>
 <input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 <br><br>
-<input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
-<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+<?php echo gButton('done', gTranslate('core', "_Done")), 'parent.close()'); ?>
 </form>
 </div>
 <?php print gallery_validation_link("album_permissions.php"); ?>

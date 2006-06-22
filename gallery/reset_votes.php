@@ -34,11 +34,11 @@ if (isset($id)) {
 
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->isItemOwner($gallery->user, $index)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
-printPopupStart(_("Reset Voting"));
+printPopupStart(gTranslate('core', "Reset Voting"));
 
 if (!empty($confirm)) {
 	$gallery->album->fields["votes"]=array();
@@ -49,12 +49,12 @@ if (!empty($confirm)) {
 ?>
 
 <p>
-<?php echo sprintf(_("Do you really want to remove all votes from album <b>%s</b>?"), $gallery->album->fields['title']) ?>
+<?php echo sprintf(gTranslate('core', "Do you really want to remove all votes from album <b>%s</b>?"), $gallery->album->fields['title']) ?>
 </p>
 
 <?php echo makeFormIntro("reset_votes.php"); ?>
-<input type="submit" name="confirm" value="<?php echo _("Remove Votes") ?>" class="g-button">
-<input type="submit" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<input type="submit" name="confirm" value="<?php echo gTranslate('core', "Remove Votes") ?>" class="g-button">
+<input type="submit" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 </div>
 

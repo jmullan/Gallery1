@@ -31,7 +31,7 @@ list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
 // Hack check
 if (!$gallery->user->isAdmin() &&
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -70,7 +70,7 @@ if ($gallery->userDB->getUserByUid($owner) == NULL) {
 
 asort($uAll);
 
-printPopupStart(_("Change Owner"));
+printPopupStart(gTranslate('core', "Change Owner"));
 
 $index = $gallery->album->getPhotoIndex($id);
 echo $gallery->album->getThumbnailTag($index);
@@ -89,8 +89,8 @@ if ($gallery->user->isAdmin) {
 ?>
 
 	<input type="hidden" name="id" value="<?php echo $id ?>">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
-	<input type="button" name="done" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>" class="g-button">
+	<input type="button" name="done" value="<?php echo gTranslate('core', "Done") ?>" onclick="parent.close()" class="g-button">
 </form>
 </div>
 <?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>

@@ -26,7 +26,7 @@
 $sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
 foreach ($sensitiveList as $sensitive) {
     if (!empty($_REQUEST[$sensitive])) {
-        print _("Security violation") ."\n";
+        print gTranslate('core', "Security violation") ."\n";
         exit;
     }
 }
@@ -104,7 +104,7 @@ if (!empty($gallery->app->geeklog_dir) && $gallery->app->geeklog_dir == "/path/t
 
 // Verify that the geeklog_dir isn't overwritten with a remote exploit
 if (!empty($gallery->app->geeklog_dir) && !realpath($gallery->app->geeklog_dir)) {
-    print _("Security violation") ."\n";
+    print gTranslate('core', "Security violation") ."\n";
     exit;
 } elseif (!empty($gallery->app->geeklog_dir)) {
     $GALLERY_EMBEDDED_INSIDE='GeekLog';
@@ -398,7 +398,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
                 $gallery->session->mambo->mosConfig_lang     = $mosConfig_lang;
                 $gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
             } else {
-                echo 'init.php: ' . _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
+                echo 'init.php: ' . gTranslate('core', "Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
                 exit;
             }
 

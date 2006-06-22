@@ -24,11 +24,13 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
-list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
+list($save, $old_password, $new_password1, $new_password2) = 
+    getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+list($uname, $email, $fullname, $defaultLanguage) = 
+    getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 if (!$gallery->user->isLoggedIn()) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;	
 }
 
@@ -37,7 +39,7 @@ if (isset($save)) {
 	// security check;
 	if($fullname != strip_tags($fullname)) {
 	    $gErrors["fullname"] = 
-		sprintf(_("%s contained invalid data, resetting input."), htmlentities($fullname));
+		sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
 	    $errorCount++;
         }
 
@@ -48,24 +50,24 @@ if (isset($save)) {
 				$errorCount++;
 			}
 		} else {
-			$gErrors['uname'] = _("You are not allowed to change your username.");
+			$gErrors['uname'] = gTranslate('core', "You are not allowed to change your username.");
 			$errorCount++;
 		}
 	}
 
 	if (!empty($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
-		$gErrors["old_password"] = _("Incorrect password") ;
+		$gErrors["old_password"] = gTranslate('core', "Incorrect password") ;
 		$errorCount++;
 	}
 
 	if (!empty($new_password1) || !empty($new_password2)) {
 		if (empty($old_password)) {
-			$gErrors["old_password"] = _("You must provide your old password to change it.");
+			$gErrors["old_password"] = gTranslate('core', "You must provide your old password to change it.");
 			$errorCount++;
 		}
 
 		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = _("Passwords do not match!");
+			$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
 			$errorCount++;
 		} else {
 			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
@@ -76,7 +78,7 @@ if (isset($save)) {
 	}
 
 	if (!empty($email) && !check_email($email)) {
-                $gErrors['email'] = _("You must specify a valid email address.");
+                $gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
                 $errorCount++;
         }
 
@@ -118,17 +120,17 @@ $allowChange["admin"] = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
-printPopupStart(_("Change User Preferences"), _("Change User Preferences"), langLeft());
+printPopupStart(gTranslate('core', "Change User Preferences"), gTranslate('core', "Change User Preferences"), langLeft());
 
 if(isset($saveOK)) {  
-    echo infoLine(_("User successfully updated."), 'success');
+    echo infoLine(gTranslate('core', "User successfully updated."), 'success');
     echo "\n<br>\n";
     echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
 }
 
-echo _("You can change your user information here.");
-echo _("If you want to change your password, you must provide your old password and then enter the new one twice.");
-echo _("You can change your username to any combination of letters and digits.");
+echo gTranslate('core', "You can change your user information here.");
+echo gTranslate('core', "If you want to change your password, you must provide your old password and then enter the new one twice.");
+echo gTranslate('core', "You can change your username to any combination of letters and digits.");
 
 echo "\n<br>\n";
 
@@ -140,8 +142,8 @@ include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <br>
 <div align="center">
-    <input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
-    <input type="button" name="close" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
+    <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+    <?php echo gButton('close', gTranslate('core', "_Close Window"), 'parent.close()'): ?>
 </div>
 </form>
 </div>

@@ -26,7 +26,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -34,7 +34,7 @@ $albumDB = new AlbumDB(FALSE); // read album database
 
 list($index, $startPhoto, $endPhoto, $newAlbum) = getRequestVar(array('index', 'startPhoto', 'endPhoto', 'newAlbum'));
 
-printPopupStart(_("Copy Photo"));
+printPopupStart(gTranslate('core', "Copy Photo"));
 
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
@@ -42,11 +42,11 @@ if ($gallery->session->albumName && isset($index)) {
 	if (!empty($newAlbum)) {
 		$postAlbum = $albumDB->getAlbumByName($newAlbum);
 		if (!$postAlbum) {
-			echo gallery_error(sprintf(_("Invalid album selected: %s"),
+			echo gallery_error(sprintf(gTranslate('core', "Invalid album selected: %s"),
 			$newAlbum));
 		} else {
 			if ($gallery->album->isAlbum($index)) {
-				echo gallery_error(sprintf(_("Can't copy album #%d"),
+				echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"),
 				$index));
 			}
 			// copying "picture" to another album
@@ -54,7 +54,7 @@ if ($gallery->session->albumName && isset($index)) {
 				for ($index = $startPhoto; $index <= $endPhoto; $index++) {
 					if (!$gallery->album->isAlbum($index)) {
 						set_time_limit($gallery->app->timeLimit);
-						processingMsg (sprintf(_("Copying photo #%d"),$index));
+						processingMsg (sprintf(gTranslate('core', "Copying photo #%d"),$index));
 						$mydir = $gallery->album->getAlbumDir();
 						$myphoto = $gallery->album->getPhoto($index);
 						$myname = $myphoto->image->name;
@@ -67,7 +67,7 @@ if ($gallery->session->albumName && isset($index)) {
 							$pathToThumb = "$mydir/$myname.thumb.$mytype";
 						} else {
 							$pathToThumb = '';
-							echo "- ". _("Creating Thumbnail") ."<br>";
+							echo "- ". gTranslate('core', "Creating Thumbnail") ."<br>";
 							my_flush();
 						}
 						$photo = $gallery->album->getPhoto($index);
@@ -110,7 +110,7 @@ if ($gallery->session->albumName && isset($index)) {
 							return;
 						}
 					} else {
-						echo sprintf(_("Skipping Album #%d"), $index)."<br>";
+						echo sprintf(gTranslate('core', "Skipping Album #%d"), $index)."<br>";
 						// we hit an album... don't copy it... just increment the index
 						$index++;
 					}
@@ -120,7 +120,7 @@ if ($gallery->session->albumName && isset($index)) {
 			}
 		       	?>
 			<form>
-			<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()" class="g-button">
+			<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick="parent.close()" class="g-button">
 			</form>
 		       	<?php
 		       	return;
@@ -129,18 +129,18 @@ if ($gallery->session->albumName && isset($index)) {
 		//end if (isset($newAlbum))
 	}
 	elseif (isset($newAlbum) && $newAlbum == 0) {
-		echo gallery_error(_("Please select the album where you want to copy the photo(s) to."));
+		echo gallery_error(gTranslate('core', "Please select the album where you want to copy the photo(s) to."));
 	}
 	if ($gallery->album->isAlbum($index)) {
-		echo gallery_error(sprintf(_("Can't copy album #%d"), $index));
+		echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"), $index));
 		return;
 	} else {
 		echo $gallery->album->getThumbnailTag($index)
 ?>
 <p>
-<?php echo _("Copy a range of photos to a new album:") ?><br>
-<i>(<?php echo _("To copy just one photo, make First and Last the same.") ?>)</i><br>
-<i>(<?php echo _("Nested albums in this range will be ignored.") ?>)</i>
+<?php echo gTranslate('core', "Copy a range of photos to a new album:") ?><br>
+<i>(<?php echo gTranslate('core', "To copy just one photo, make First and Last the same.") ?>)</i><br>
+<i>(<?php echo gTranslate('core', "Nested albums in this range will be ignored.") ?>)</i>
 <?php echo makeFormIntro("copy_photo.php",
 	array("name" => "copy_to_album_form"),
 	array("type" => "popup"));
@@ -152,9 +152,9 @@ if ($gallery->session->albumName && isset($index)) {
 ?>
 <table>
 <tr>
-	<td align="center"><b><?php echo _("First") ?></b></td>
-	<td align="center"><b><?php echo _("Last") ?></b></td>
-	<td align="center"><b><?php echo _("New Album") ?></b></td>
+	<td align="center"><b><?php echo gTranslate('core', "First") ?></b></td>
+	<td align="center"><b><?php echo gTranslate('core', "Last") ?></b></td>
+	<td align="center"><b><?php echo gTranslate('core', "New Album") ?></b></td>
 </tr>
 <tr>
 	<td align="center">
@@ -196,21 +196,21 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 } // end else
 ?>
 <br>
-<input type="submit" value="<?php echo gTranslate('core', "Copy to Album!") ?>" class="g-button">
-<input type="button" name="close" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit('copy', gTranslate('core', "Cop_y to Album!")); ?>
+<?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
 
     if (!$uptodate) {
 	echo "<br>". infoBox(array(array(
 	    'type' => 'warning',
-	    'text' => sprintf(_("WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
-		      galleryLink(makeGalleryUrl("upgrade_album.php"), _("Upgrade now"))
+	    'text' => sprintf(gTranslate('core', "WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
+		      galleryLink(makeGalleryUrl("upgrade_album.php"), gTranslate('core', "Upgrade now"))
 	)));
     }
 }
 else {
-	echo gallery_error(_("no album / index specified"));
+	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 </div>

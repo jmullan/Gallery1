@@ -54,7 +54,7 @@ if ($gallery->session->albumName) {
 
 // Hack check
 if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -78,10 +78,10 @@ function process($album=null) {
 	global $albumDB;
 
 	print "<br>";
-	print "<b>" . _("Progress") .":</b>";
+	print "<b>" . gTranslate('core', "Progress") .":</b>";
 	print "<ul>";
 	if ($album) {
-		print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
+		print "<b>". gTranslate('core', "Album") . ": " . $album->fields["title"] . "</b><br>";
 		// Upgrade the album
 		if ($album->integrityCheck()) {
 			$album->save(array(), 0);
@@ -93,7 +93,7 @@ function process($album=null) {
 			// Retrieve the album
 			$album = $albumDB->getAlbumByName($albumName);
 
-			print "<b>". _("Album") . ": " . $album->fields["title"] . "</b><br>";
+			print "<b>". gTranslate('core', "Album") . ": " . $album->fields["title"] . "</b><br>";
 
 			// Upgrade the album
 			if ($album->integrityCheck()) {
@@ -111,15 +111,15 @@ doctype();
 printPopupStart(gTranslate('core', "Upgrade Albums"), '', langleft());
 
 echo "<p>";
-echo _("The following albums in your gallery were created with an older version of the software and are out of date.");
+echo gTranslate('core', "The following albums in your gallery were created with an older version of the software and are out of date.");
 echo '<br>';
-echo _("This is not a problem!");
+echo gTranslate('core', "This is not a problem!");
 echo '<p>';
-echo _("We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.");
+echo gTranslate('core', "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.");
 echo '<br>';
-echo _("None of your photos will be harmed in any way by this process.");
+echo gTranslate('core', "None of your photos will be harmed in any way by this process.");
 echo '<br>';
-echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
+echo gTranslate('core', "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
 
 echo "\n</p>";
 
@@ -144,12 +144,12 @@ if (isset($upgradeall) && sizeof($albumDB->outOfDateAlbums)) {
 
 
 if (!sizeof($albumDB->outOfDateAlbums)) {
-	print "<b>". _("All albums are up to date.") ."</b>";
+	print "<b>". gTranslate('core', "All albums are up to date.") ."</b>";
 } else {
 
 	echo "\n<p>";
-	echo sprintf(_("The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
-		'<a class="g-error" href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1, 'type' => 'popup')) . '"><b>' . _("upgrade them all at once") . '</b></a>');
+	echo sprintf(gTranslate('core', "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
+		'<a class="g-error" href="' . makeGalleryUrl("upgrade_album.php", array("upgradeall" => 1, 'type' => 'popup')) . '"><b>' . gTranslate('core', "upgrade them all at once") . '</b></a>');
 
 	echo '</p>';
 	echo "\n<table align=\"center\">";
@@ -157,11 +157,11 @@ if (!sizeof($albumDB->outOfDateAlbums)) {
 		$album = $albumDB->getAlbumByName($albumName);
 		echo "\n<tr>";
 		echo '<td><b>'. $album->fields["title"] . '</b></td>';
-		echo '<td>('. $album->numPhotos(1) .' '. _("items"). ')</td>';
+		echo '<td>('. $album->numPhotos(1) .' '. gTranslate('core', "items"). ')</td>';
 		echo '<td>'. galleryLink(
 		  makeGalleryUrl("upgrade_album.php",
 		      array("upgrade_albumname" => $album->fields["name"], 'type' => 'popup')),
-		      _("upgrade"), '', '', true
+		      gTranslate('core', "upgrade"), '', '', true
 		  ) .'</td>';
 		echo '</tr>';
 	}

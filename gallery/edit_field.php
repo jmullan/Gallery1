@@ -56,9 +56,9 @@ echo makeFormIntro("edit_field.php", array(), array("type" => "popup"));
   <input type="hidden" name="field" value="<?php echo $field ?>">
   <textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
   <p>
-    <input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>" class="g-button">
-    <input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
-    </p>
+    <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+    <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
+  </p>
   </form>
 
     <script language="javascript1.2" type="text/JavaScript">

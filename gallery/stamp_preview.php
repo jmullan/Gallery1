@@ -39,11 +39,11 @@ doctype();
 ?>
 <html>
     <?php common_header(); ?>
-    <title><?php echo _("Poststamp preview"); ?></title>
+    <title><?php echo gTranslate('core', "Poststamp preview"); ?></title>
 </head>
 
 <body class="g-popup">
-<div class="g-header-popup"><?php echo _("Choose a stamp:"); ?></div>
+<div class="g-header-popup"><?php echo gTranslate('core', "Choose a stamp:"); ?></div>
 
 <table width="100" border="0" cellspacing="2" cellpadding="2">
 <?php

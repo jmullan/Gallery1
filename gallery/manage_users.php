@@ -28,7 +28,7 @@ list($create, $bulk_create, $modify, $delete, $unames) =
     getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -61,35 +61,35 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 }
 asort($displayUsers);
 
-printPopupStart(_("Manage Users"));
+printPopupStart(gTranslate('core', "Manage Users"));
 
 echo infoBox($notice_messages);
 
-echo _("You can create, modify and delete users here.");
+echo gTranslate('core', "You can create, modify and delete users here.");
 
 echo makeFormIntro('manage_users.php', array('name' => 'manageusers_form'));
 echo "\n<p>";
 
 if (!$displayUsers) {
-	print "<i>". _("There are no users!  Create one.") ."</i>";
+	print "<i>". gTranslate('core', "There are no users!  Create one.") ."</i>";
 } else {
 	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''), true);
 }
 
 echo "\n</p>";
-echo _("To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking.");
+echo gTranslate('core', "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking.");
 ?>
 
 <p>
-<input type="submit" name="create" value="<?php echo _("Create new user") ?>" class="g-button">
+<input type="submit" name="create" value="<?php echo gTranslate('core', "Create new user") ?>" class="g-button">
 <?php if ($gallery->app->multiple_create == "yes") { ?>
-	<input type="submit" name="bulk_create" value="<?php echo _("Bulk Create") ?>" class="g-button">
+	<input type="submit" name="bulk_create" value="<?php echo gTranslate('core', "Bulk Create") ?>" class="g-button">
 <?php }
 if (count($displayUsers)) { ?>
-<input type="submit" name="modify" value="<?php echo _("Modify") ?>" class="g-button">
-<input type="submit" name="delete" value="<?php echo _("Delete") ?>" class="g-button">
+<input type="submit" name="modify" value="<?php echo gTranslate('core', "Modify") ?>" class="g-button">
+<input type="submit" name="delete" value="<?php echo gTranslate('core', "Delete") ?>" class="g-button">
 <?php } ?>
-<input type="button" value="<?php echo _("Done") ?>" onclick="parent.close()" class="g-button">
+<input type="button" value="<?php echo gTranslate('core', "Done") ?>" onclick="parent.close()" class="g-button">
 </form>
 
 </div>

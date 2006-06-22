@@ -40,7 +40,7 @@ if (!empty($return) && $return[0] != '/' && strstr($return, '://') !== false) {
       strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
       strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0
       ) {
-	die(_('Attempted security breach.'));
+	die(gTranslate('core', 'Attempted security breach.'));
     }
 }	
 
@@ -51,9 +51,9 @@ if (!empty($albumName)) {
 }
 
 if (empty($rebuild_type)) {
-	$title = _("Rebuilding Thumbnails");
+	$title = gTranslate('core', "Rebuilding Thumbnails");
 } else {
-	$title = _("Performing Operation..");
+	$title = gTranslate('core', "Performing Operation..");
 }
 
 switch ($cmd) {
@@ -65,7 +65,7 @@ switch ($cmd) {
         foreach($albumList as $nr => $album) {
             if($album->isRoot()) {
                 $i++;
-                echo "\n<br><b>". sprintf (_("Rebuilding highlight %s"), $i) . '</b>';
+                echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
                 $album->setHighlight($album->getHighlight());
                 $album->save();
             }
@@ -77,7 +77,7 @@ switch ($cmd) {
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			if (empty($rebuild_type)) {
                 printPopupStart($title, '', 'center');
-				echo _("Do you also want to rebuild the thumbnails in subalbums?");
+				echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
 				echo makeFormIntro('do_command.php', array(),
 					array('type' => 'popup',
 					    'index' => $index,
@@ -86,10 +86,10 @@ switch ($cmd) {
 						'parentName' => $parentName));
 ?>
 		<p>
-		<input type="radio" name="rebuild_type" value="recursive"> <?php echo _("Yes"); ?>
-		<input type="radio" name="rebuild_type" value="single" checked> <?php echo _("No"); ?>
+		<input type="radio" name="rebuild_type" value="recursive"> <?php echo gTranslate('core', "Yes"); ?>
+		<input type="radio" name="rebuild_type" value="single" checked> <?php echo gTranslate('core', "No"); ?>
 		</p>
-		<input type="submit" value="<?php echo _("Start") ?>" class="g-button">
+		<input type="submit" value="<?php echo gTranslate('core', "Start") ?>" class="g-button">
 	</form>
 <?php
 			}
@@ -99,17 +99,17 @@ switch ($cmd) {
 					if ($gallery->session->albumName && isset($index)) {
 						if ($index == "all") {
 							$np = $gallery->album->numPhotos(1);
-							echo ("\n<h3>" . sprintf(_("Rebuilding %d thumbnails..."), $np) .'</h3>');
+							echo ("\n<h3>" . sprintf(gTranslate('core', "Rebuilding %d thumbnails..."), $np) .'</h3>');
 							my_flush();
 							for ($i = 1; $i <= $np; $i++) {
-								echo("\n<h4>". sprintf(_("Processing image %d..."), $i) .'</h4>');
+								echo("\n<h4>". sprintf(gTranslate('core', "Processing image %d..."), $i) .'</h4>');
 								my_flush();
 								set_time_limit($gallery->app->timeLimit);
 								$gallery->album->makeThumbnail($i);
 							}
 							echo "\n<hr width=\"100%\">";
 						} else {
-							echo ("\n<h3>" . _("Rebuilding 1 thumbnail...") .'</h3>');
+							echo ("\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>');
 							my_flush();
 							set_time_limit($gallery->app->timeLimit);
 							$gallery->album->makeThumbnail($index);
@@ -258,9 +258,9 @@ switch ($cmd) {
 	<div align="center">
 	<form>
 <?php if (isset($backUrl)) :?>
-		<input type="button" value="<?php echo _("Close window") ?>" onclick="document.location='<?php echo $backUrl; ?>'" class="g-button">
+		<input type="button" value="<?php echo gTranslate('core', "Close window") ?>" onclick="document.location='<?php echo $backUrl; ?>'" class="g-button">
 <?php else : ?>
-		<input type="button" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+		<input type="button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
 <?php endif ?>
 	</form>
 	</div>

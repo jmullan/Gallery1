@@ -27,8 +27,9 @@ require_once(dirname(__FILE__) . '/init.php');
 list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) = getRequestVar(array('action', 'index', 'crop_x', 'crop_y', 'crop_w', 'crop_h'));
 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
-	echo _("You are not allowed to perform this action!");
+if (!$gallery->user->canWriteToAlbum($gallery->album) && 
+    !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -38,7 +39,7 @@ if (isset($action)) {
             echo "<html>";
 		
 		#-- rebuild the thumbnail, cropped) ---
-		echo(_("Remaking the Thumbnail..."));
+		echo(gTranslate('core', "Remaking the Thumbnail..."));
 		my_flush();
 		if ($gallery->session->albumName && isset($index)) { 
 			$photo = $gallery->album->getPhoto($index);
@@ -61,7 +62,7 @@ if (isset($action)) {
 } else {
 	#-- show the applet ---
 
-    printPopupStart(_("Custom Thumbnail"));
+    printPopupStart(gTranslate('core', "Custom Thumbnail"));
 
 	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) { 
@@ -101,7 +102,7 @@ if (isset($action)) {
 ?>
 
 <span>
-<?php echo _("Choose which part of the image will compose your thumbnail:") ?>
+<?php echo gTranslate('core', "Choose which part of the image will compose your thumbnail:") ?>
 </span>
 
 <APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $gallery->app->photoAlbumURL .'/java' ?>" ARCHIVE="ImageTools.jar">
@@ -121,7 +122,7 @@ if (isset($action)) {
 <?php 
 //    	-- we're not a go. abort! abort! ---
 	} else { 
-		echo gallery_error(_("no album / index specified"));
+		echo gallery_error(gTranslate('core', "no album / index specified"));
 	} 
 } 
 ?>

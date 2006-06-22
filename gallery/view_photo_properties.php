@@ -28,7 +28,7 @@ $index = getRequestVar('index');
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-        print _("Security violation") ."\n";
+        print gTranslate('core', "Security violation") ."\n";
 	return;
 }
 
@@ -96,7 +96,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
     displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {
-        echo '<div class="left"><b>'. _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index) .'</div>';
+        echo '<div class="left"><b>'. gTranslate('core', "KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index) .'</div>';
     }
 
 
@@ -115,7 +115,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
         echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
     }
 } else {
-    echo gallery_error(_("no album / index specified"));
+    echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 </div>

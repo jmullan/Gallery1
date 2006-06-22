@@ -28,7 +28,7 @@ list($formaction, $guid) = getRequestVar(array('formaction', 'guid'));
 
 // Hack check
 if (!$gallery->user->canDeleteAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -44,9 +44,9 @@ if (!empty($formaction) && $formaction == 'delete') {
     return;
 }
 
-printPopupStart(_("Delete Album"));
+printPopupStart(gTranslate('core', "Delete Album"));
 if ($gallery->album) {
-    echo _("Do you really want to delete this album?"); ?>
+    echo gTranslate('core', "Do you really want to delete this album?"); ?>
 <p>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <?php
@@ -62,12 +62,12 @@ if ($gallery->album) {
 ?>
 <input type="hidden" name="guid" value="<?php echo $gallery->album->fields['guid']; ?>">
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.formaction.value='delete'" class="g-button">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deletealbum_form.formaction.value='delete'" class="g-button">
+<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
 } else {
-	echo gallery_error(_("no album specified"));
+	echo gallery_error(gTranslate('core', "no album specified"));
 }
 ?>
 </div>

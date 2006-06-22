@@ -31,7 +31,7 @@ list($formaction, $canCreate, $canChangeOwnPw, $isAdmin, $send_email, $dismiss) 
     getRequestVar(array('formaction', 'canCreate', 'canChangeOwnPw', 'isAdmin', 'send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin()) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -43,7 +43,7 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (strcmp($new_password1, $new_password2)) {
-		$gErrors["new_password2"] = _("Passwords do not match!");
+		$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
 		$errorCount++;
 	} else {
 		$gErrors["new_password1"] =
@@ -86,7 +86,7 @@ if (!empty($formaction) && $formaction == 'create') {
 
 			echo "\n<p><pre>". wordwrap($msg,80) ."\n</pre></p>";
 
-		       	$logmsg = sprintf(_("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
+		       	$logmsg = sprintf(gTranslate('core', "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
 				       	$uname, $gallery->user->getUsername(), $email);
 		       	$logmsg2  = sprintf("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s.",
 				       	$uname, $gallery->user->getUsername(), $email);
@@ -94,18 +94,18 @@ if (!empty($formaction) && $formaction == 'create') {
 			       	$logmsg .= " <<<<>>>>> $logmsg2";
 		       	}
 
-			if (gallery_mail($email, _("Gallery Registration"),$msg, $logmsg)) {
+			if (gallery_mail($email, gTranslate('core', "Gallery Registration"),$msg, $logmsg)) {
 			       	clearstatcache();
 			       	$tmpUser->save();
-			       	print sprintf(_("Email sent to %s."), $email);
+			       	print sprintf(gTranslate('core', "Email sent to %s."), $email);
 			       	print "<br><br>";
 		       	}
 	       	}
 	?>
 	<br><br>
 	<form action="create_user.php" method="post">
-		<input type="submit" name="moreuser" value="<?php echo _("Create another user") ?>" class="g-button">
-		<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>" class="g-button">
+		<input type="submit" name="moreuser" value="<?php echo gTranslate('core', "Create another user") ?>" class="g-button">
+		<input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" class="g-button">
 	</form>
 	</div>
 </body>
@@ -132,7 +132,7 @@ $allowChange["default_language"] = true;
 $allowChange["member_file"] = false;
 $allowChange["admin"] = true;
 
-echo "\n<center>". _("Create a new user here.") .'</center>';
+echo "\n<center>". gTranslate('core', "Create a new user here.") .'</center>';
 
 echo makeFormIntro('create_user.php', array(
         'name'     => 'usercreate_form',
@@ -146,8 +146,8 @@ echo makeFormIntro('create_user.php', array(
 
   <div style="text-align: center">
     <input type="hidden" name="formaction" value="">
-    <input type="submit" name="create" value="<?php echo _("Create user") ?>" onclick="usercreate_form.formaction.value='create'" class="g-button">
-    <input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'" class="g-button">
+    <input type="submit" name="create" value="<?php echo gTranslate('core', "Create user") ?>" onclick="usercreate_form.formaction.value='create'" class="g-button">
+    <input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'" class="g-button">
   </div>
 </form>
 </div>

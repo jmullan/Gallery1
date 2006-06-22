@@ -150,23 +150,23 @@ function exec_internal($cmd) {
 	$results = array();
 
 	if (isDebugging()) {
-	    debugMessage(sprintf(_("Executing: %s"), $cmd), __FILE__, __LINE__);
+	    debugMessage(sprintf(gTranslate('core', "Executing: %s"), $cmd), __FILE__, __LINE__);
 	    $debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if (isDebugging()) {
-		print "\n<br>". _("Results:") ."<pre>";
+		print "\n<br>". gTranslate('core', "Results:") ."<pre>";
 		if ($results) {
 			print join("\n", $results);
 		} else {
-			print "<b>" ._("none") ."</b>";
+			print "<b>" .gTranslate('core', "none") ."</b>";
 		}
 		print "</pre>";
 
 		if (file_exists($debugfile)) {
-			print "\n<br> ". _("Debug messages:") ." <pre>";
+			print "\n<br> ". gTranslate('core', "Debug messages:") ." <pre>";
 			if ($fd = fs_fopen($debugfile, "r")) {
 				while (!feof($fd)) {
 					$buf = fgets($fd, 4096);
@@ -177,7 +177,7 @@ function exec_internal($cmd) {
 			unlink($debugfile);
 			print "</pre>";
 		}
-		print "\n<br> ". sprintf(_("Status: %s (expected %s)"),
+		print "\n<br> ". sprintf(gTranslate('core', "Status: %s (expected %s)"),
 				$status, $gallery->app->expectedExecStatus);
 	}
 
@@ -202,22 +202,22 @@ function exec_wrapper($cmd) {
 function getDimensions($file) {
     global $gallery;
 
-    debugMessage(sprintf(_("Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
+    debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
 
     if (! fs_file_exists($file)) {
-        debugMessage(_("The file does not exist ?!"), __FILE__, __LINE__);
+        debugMessage(gTranslate('core', "The file does not exist ?!"), __FILE__, __LINE__);
         return array(0, 0);
     }
 
     list($width, $height) = getimagesize($file);
 
     if ($width > 1 && $height > 1) {
-        debugMessage(sprintf(_("Dimensions: x: %d y: %d"), $width, $height), __FILE__, __LINE__, 3);
+        debugMessage(sprintf(gTranslate('core', "Dimensions: x: %d y: %d"), $width, $height), __FILE__, __LINE__, 3);
 
         return array($width, $height);
     }
 
-    debugMessage(sprintf(_("PHP's %s function is unable to determine dimensions."), "getimagesize()"), __FILE__, __LINE__);
+    debugMessage(sprintf(gTranslate('core', "PHP's %s function is unable to determine dimensions."), "getimagesize()"), __FILE__, __LINE__);
 
     /* Just in case php can't determine dimensions. */
     switch($gallery->app->graphics) {
@@ -231,7 +231,7 @@ function getDimensions($file) {
         break;
 
 	default:
-	    echo debugMessage(_("You have no graphics package configured for use!"));
+	    echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"));
 	    return array(0, 0);
         break;
     }
@@ -254,7 +254,7 @@ function getDimensions($file) {
         }
     }
 
-    debugMessage(_("Unable to determine image dimensions!"), __FILE__, __LINE__);
+    debugMessage(gTranslate('core', "Unable to determine image dimensions!"), __FILE__, __LINE__);
 
     return array(0, 0);
 }
@@ -428,14 +428,14 @@ function preprocessImage($dir, $file) {
 					fs_unlink($tempfile);
 				}
 			} else {
-				echo gallery_error(sprintf(_("Can't write to %s."),
+				echo gallery_error(sprintf(gTranslate('core', "Can't write to %s."),
 							$tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
 		fclose($fd);
 	} else {
-		echo gallery_error(sprintf(_("Can't read %s."), "$dir/$file"));
+		echo gallery_error(sprintf(gTranslate('core', "Can't read %s."), "$dir/$file"));
 	}
 
 	return 1;
@@ -657,7 +657,7 @@ function getItemCaptureDate($file) {
 	}
 
 	if (!isDebugging()) {
-		sprintf (_("Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
+		sprintf (gTranslate('core', "Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
 	}
 
 	return $itemCaptureTimeStamp;
@@ -702,12 +702,12 @@ function safe_serialize($obj, $file) {
 		/* Acquire an advisory lock */
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
-			echo gallery_error(sprintf(_("Could not open lock file (%s) for writing!"),
+			echo gallery_error(sprintf(gTranslate('core', "Could not open lock file (%s) for writing!"),
 						"$file.lock"));
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
-			echo gallery_error(sprintf(_("Could not acquire lock (%s)!"),
+			echo gallery_error(sprintf(gTranslate('core', "Could not acquire lock (%s)!"),
 						"$file.lock"));
 			return 0;
 		}
@@ -790,7 +790,7 @@ function getExtension($filename) {
 	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
 	$ext = strtolower($ext);
 
-	echo debugMessage(sprintf(_("extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
+	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
 	return $ext;
 }
 
@@ -899,7 +899,7 @@ function extractFileFromArchive($archive, $ext, $file) {
 	$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
 
 	if($tool = canDecompressArchive($ext)) {
-	    echo debugMessage(sprintf(_("Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
+	    echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
 	    switch($tool) {
 	        case 'zip':
 	            $cmd = fs_import_filename($gallery->app->unzip) . " -j -o " .
@@ -917,7 +917,7 @@ function extractFileFromArchive($archive, $ext, $file) {
 	    return exec_wrapper($cmd);
 	}
 	else {
-	    echo debugMessage(sprintf(_("%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
+	    echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
 	    return false;
 	}
 }
@@ -932,7 +932,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
     $tool = canCreateArchive('zip');
 
     if (! $tool) {
-        debugMessage(_("No Support for creating Zips"), __FILE__, __LINE__, 2);
+        debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
         return false;
     } else {
         debugMessage(sprintf(gTranslate('core', "Creating Zip file with %s"), $tool), __FILE__, __LINE__, 2);
@@ -1482,7 +1482,7 @@ function contextHelp ($link) {
 }
 
 function parse_csv ($filename, $delimiter=";") {
-    echo debugMessage(sprintf(_("Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
+    echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;
 	$return_array = array();
 	if ($fd = fs_fopen($filename, "rt")) {
@@ -1498,7 +1498,7 @@ function parse_csv ($filename, $delimiter=";") {
 		fclose($fd);
 	}
 	if(isDebugging()){
-	   echo _("csv result:");
+	   echo gTranslate('core', "csv result:");
 	   print_r($return_array);
 	}
 	return $return_array;
@@ -1555,7 +1555,7 @@ function getExtraFieldsValues($index, $extra_fields, $full) {
             $value = $gallery->album->getExtraField($index, $key);
             if (!empty($value)) {
                 /* Might be look strange, but $key could be in translateableFields() */
-                $table[_($key)] = str_replace("\n", "<br>", $value);
+                $table[gTranslate('core', $key)] = str_replace("\n", "<br>", $value);
             }
         }
     }
@@ -1677,7 +1677,7 @@ function getMimeType($filename) {
     $extension = getExtension($filename);
     $mimetype = $mime_extension_map[$extension];
 
-    echo debugMessage(sprintf(_("MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
+    echo debugMessage(sprintf(gTranslate('core', "MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
     return $mimetype;
 }
 
@@ -1767,7 +1767,7 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
       $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
       $ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
       if (empty($ecard['subject'])) {
-          $ecard['subject'] = sprintf(_("%s sent you an E-C@rd."), $ecard["name_sender"]);
+          $ecard['subject'] = sprintf(gTranslate('core', "%s sent you an E-C@rd."), $ecard["name_sender"]);
       }
 
       $ecard_mail->setSubject($ecard['subject']);
@@ -1869,7 +1869,7 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
     if(! fs_mkdir($dir)) {
         echo gallery_error(
-          sprintf(_("Gallery was unable to create a tempory subfolder in your temp folder. Please check permissions of this dir: %s"),
+          sprintf(gTranslate('core', "Gallery was unable to create a tempory subfolder in your temp folder. Please check permissions of this dir: %s"),
           $gallery->app->tmpDir));
         return false;
     }
@@ -1908,7 +1908,7 @@ function downloadFile($filename) {
 
     /* Verify its really a file */
     if(!fs_is_file($filename) || broken_link($filename)) {
-        echo gallery_error(sprintf(_("'%s' seems not to be a valid file. Download aborted."),
+        echo gallery_error(sprintf(gTranslate('core', "'%s' seems not to be a valid file. Download aborted."),
             $filename));
         return false;
     }
@@ -1916,12 +1916,12 @@ function downloadFile($filename) {
     /* Verify $filename is inside the temp dir */
     $validFileName = strncmp($filename, $gallery->app->tmpDir, strlen($filename));
     if($validFileName < 0) {
-        echo gallery_error(sprintf(_("The file '%s' seems not inside Gallery tempdir %s, download aborted."),
+        echo gallery_error(sprintf(gTranslate('core', "The file '%s' seems not inside Gallery tempdir %s, download aborted."),
             $filename,  $gallery->app->tmpDir));
         return false;
     }
     elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
-        echo gallery_error(_("We are trying to download the tempdir itself ?! Download aborted."));
+        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself ?! Download aborted."));
         return false;
     }
 

@@ -257,10 +257,10 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = gTranslate('core', "1 album", "%s albums", $numAlbums, _("no albums"));
-$image_str = gTranslate('core', "1 photo", "%s photos", $numPhotos, _("no photos"));
+$total_str = gTranslate('core', "1 album", "%s albums", $numAlbums, gTranslate('core', "no albums"));
+$image_str = gTranslate('core', "1 photo", "%s photos", $numPhotos, gTranslate('core', "no photos"));
 
-$description = sprintf(_("%s in %s"), $image_str, $total_str);
+$description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 
 header("Content-Type: application/xml");
 

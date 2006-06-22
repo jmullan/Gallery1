@@ -27,18 +27,20 @@
 require_once(dirname(__FILE__) . '/init.php'); 
 
 list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create', 'cancel'));
-list($uname, $old_password, $new_password1, $new_password2) = getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
-list($fullname, $email, $send_email, $defaultLanguage) = getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
+list($uname, $old_password, $new_password1, $new_password2) =
+    getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
+list($fullname, $email, $send_email, $defaultLanguage) =
+    getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
 echo printPopupStart(
-    sprintf(_("Register new user for '%s'"), $gallery->app->galleryTitle)
+    sprintf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle)
 );
 
 if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
-	<?php echo _("This Gallery does not support self-registration by visitors.") ?>
+	<?php echo gTranslate('core', "This Gallery does not support self-registration by visitors.") ?>
 	<br><br>
-	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
+	<form> <input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick='parent.close()'> </form>
   </div>
 </body>
 </html>
@@ -60,7 +62,7 @@ $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
         if($fullname != strip_tags($fullname)) {
-            $gErrors["fullname"] = _("Your fullname containes invalid data!");
+            $gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
             $errorCount++;
         }
 
@@ -71,12 +73,12 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (empty($fullname) || !strcmp($fullname, '')) {
-		$gErrors['fullname'] = _("You must specify a name.");
+		$gErrors['fullname'] = gTranslate('core', "You must specify a name.");
 		$errorCount++;
 	}
 
 	if (!check_email($email)) {
-		$gErrors['email'] = _("You must specify a valid email address.");
+		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
 		$errorCount++;
 	}
 
@@ -98,23 +100,23 @@ if (!empty($formaction) && $formaction == 'create') {
 	       ereg_replace("!!NEWPASSWORDLINK!!",
 	       $tmpUser->genRecoverPasswordHash(),
 	        welcome_email()))));
-	    $logmsg = sprintf(_("%s has registered.  Email has been sent to %s."), $uname, $email);
+	    $logmsg = sprintf(gTranslate('core', "%s has registered.  Email has been sent to %s."), $uname, $email);
 	    $logmsg2  = sprintf("%s has registered.  Email has been sent to %s.", $uname, $email);
 	    if ($logmsg != $logmsg2) {
 	        $logmsg .= " <<<<>>>>> $logmsg2";
 	    }
 
-	    if (gallery_mail($email, _("Gallery Self Registration"),$msg, $logmsg)) {
+	    if (gallery_mail($email, gTranslate('core', "Gallery Self Registration"),$msg, $logmsg)) {
 	        $tmpUser->save();
-	        echo "<p>".sprintf(_("An email has been sent to %s."), $email);
+	        echo "<p>".sprintf(gTranslate('core', "An email has been sent to %s."), $email);
 	        echo '<br>';
-	        echo _("Your account information is contained within the email.");
+	        echo gTranslate('core', "Your account information is contained within the email.");
 	    } else {
-	        echo gallery_error(_("Email could not be sent.  Please contact gallery administrator to register on this site"));
+	        echo gallery_error(gTranslate('core', "Email could not be sent.  Please contact gallery administrator to register on this site"));
 	    }
 ?>
 		<br><br>
-		<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
+		<form> <input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick='parent.close()'> </form>
 		</center>
 		</body>
 		</html>
@@ -129,11 +131,11 @@ echo makeFormIntro('register.php', array(
 include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <p>
-<?php echo _("Your account information will be sent to the email address you provide.") ?>
+<?php echo gTranslate('core', "Your account information will be sent to the email address you provide.") ?>
 <br><br>
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="create" value="<?php echo _("Send request") ?>" onclick="usercreate_form.formaction.value ='create'">
-<input type="submit" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<?php echo gButton('create', gTranslate('core', "_Send request"), "usercreate_form.formaction.value ='create'; usercreate_form.submit()"); ?>
+<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <script language="javascript1.2" type="text/JavaScript">
 <!--

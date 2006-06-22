@@ -115,11 +115,11 @@ if (!strcmp($cmd, "add-item")) {
 
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-    	$error = _("User cannot add to album");
+    	$error = gTranslate('core', "User cannot add to album");
 	}
 
 	else if (!$userfile_name) {
-    	$error = _("No file specified");
+    	$error = gTranslate('core', "No file specified");
 	}
 
 	else {

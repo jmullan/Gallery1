@@ -73,7 +73,7 @@ do {
 while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
-	echo _("No photo chosen.");
+	echo gTranslate('core', "No photo chosen.");
 }
 
 function doPhoto() {
@@ -128,7 +128,7 @@ function doPhoto() {
 	    echo $caption;
 
 	    echo "\n  </div>";
-	    printf ("\n  ". _("From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
+	    printf ("\n  ". gTranslate('core', "From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
 	    echo "\n</div>";
 
 	    return true;

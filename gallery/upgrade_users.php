@@ -30,18 +30,18 @@ if (!$gallery->version) {
 $noticeMessages = array();
 printPopupStart(gTranslate('core', "Upgrading Users"), '', 'left');
 
-echo _("The user database in your gallery was created with an older version of the software and is out of date.");
+echo gTranslate('core', "The user database in your gallery was created with an older version of the software and is out of date.");
 echo "\n<br>";
-echo _("This is not a problem!");
-echo _("We will upgrade it.  This may take some time.");
+echo gTranslate('core', "This is not a problem!");
+echo gTranslate('core', "We will upgrade it.  This may take some time.");
 echo "\n<br>";
-echo _("Your data will not be harmed in any way by this process.");
+echo gTranslate('core', "Your data will not be harmed in any way by this process.");
 echo "\n<br>";
-echo _("Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
+echo gTranslate('core', "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
 echo "\n<p>";
-echo _("If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users.");
+echo gTranslate('core', "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users.");
 echo "\n<br>";
-processingMsg(_("Please Wait..."));
+processingMsg(gTranslate('core', "Please Wait..."));
 
 if (!$gallery->userDB->integrityCheck() ) {
     $noticeMessages[] = array(

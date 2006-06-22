@@ -50,9 +50,9 @@ if ($gallery->session->albumName) {
 ?>
 
 <p>
-<?php echo _("Select your sorting criteria for this album below") ?>
+<?php echo gTranslate('core', "Select your sorting criteria for this album below") ?>
 <br>
-<b><?php echo _("Warning:  This operation can't be undone.") ?></b>
+<b><?php echo gTranslate('core', "Warning:  This operation can't be undone.") ?></b>
 </p>
 
 <p>
@@ -71,50 +71,50 @@ echo makeFormIntro("sort_album.php");
 
 <table>
   <tr>
-    <td><input checked type="radio" name="sort" value="upload"><?php echo _("By Upload Date") ?></td>
+    <td><input checked type="radio" name="sort" value="upload"><?php echo gTranslate('core', "By Upload Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="itemCapture"><?php echo _("By Picture-Taken Date") ?></td>
+    <td><input type="radio" name="sort" value="itemCapture"><?php echo gTranslate('core', "By Picture-Taken Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="filename"><?php echo _("By Filename") ?></td>
+    <td><input type="radio" name="sort" value="filename"><?php echo gTranslate('core', "By Filename") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="click"><?php echo _("By Number of Clicks") ?></td>
+    <td><input type="radio" name="sort" value="click"><?php echo gTranslate('core', "By Number of Clicks") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="caption"><?php echo _("By Caption") ?></td>
+    <td><input type="radio" name="sort" value="caption"><?php echo gTranslate('core', "By Caption") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="comment"><?php echo _("By Number of Comments") ?></td>
+    <td><input type="radio" name="sort" value="comment"><?php echo gTranslate('core', "By Number of Comments") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="random"> <?php echo _("Randomly") ?></td>
+    <td><input type="radio" name="sort" value="random"> <?php echo gTranslate('core', "Randomly") ?></td>
   </tr>
   <tr>
     <td align="center">
-<?php echo _("Sort Order:"); ?>
+<?php echo gTranslate('core', "Sort Order:"); ?>
     <select name="albumsFirst">
-        <option value=""><?php echo _("Just sort") ?></option>
-        <option value="1"><?php echo _("Albums first") ?></option>
-        <option value="-1"><?php echo _("Photos/Movies first") ?></option>
+        <option value=""><?php echo gTranslate('core', "Just sort") ?></option>
+        <option value="1"><?php echo gTranslate('core', "Albums first") ?></option>
+        <option value="-1"><?php echo gTranslate('core', "Photos/Movies first") ?></option>
     </select>
     <select name="order">
-        <option value="1"><?php echo _("Ascending") ?></option>
-        <option value="-1"><?php echo _("Descending") ?></option>
+        <option value="1"><?php echo gTranslate('core', "Ascending") ?></option>
+        <option value="-1"><?php echo gTranslate('core', "Descending") ?></option>
     </select>
     </td>
     
   </tr>
 </table>
 <br>
-<input type="submit" name="confirm" value="<?php echo _("Sort") ?>" class="g-button">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+<input type="submit" name="confirm" value="<?php echo gTranslate('core', "Sort") ?>" class="g-button">
+<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">
 </form>
 <?php
 	}
 } else {
-	echo gallery_error(_("no album specified"));
+	echo gallery_error(gTranslate('core', "no album specified"));
 }
 ?>
 </div>

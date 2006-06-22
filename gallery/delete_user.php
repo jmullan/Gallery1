@@ -27,7 +27,7 @@ require_once(dirname(__FILE__) . '/init.php');
 list($formaction, $unames) = getRequestVar(array('formaction', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -41,7 +41,7 @@ if (!empty($formaction)) {
 	header("Location: ". makeGalleryHeaderUrl("manage_users.php"));
 }
 
-printPopupStart(_("Delete User"), '', langLeft());
+printPopupStart(gTranslate('core', "Delete User"), '', langLeft());
 
 foreach ($unames as $key => $user) {
 	if ($gallery->user->getUsername() == $user) {
@@ -53,7 +53,7 @@ foreach ($unames as $key => $user) {
 	}
 }
 if (! empty($unames)) {
-	echo "\n<p>". _("Users can have special permissions in each album.") .
+	echo "\n<p>". gTranslate('core', "Users can have special permissions in each album.") .
 	gTranslate('core', "If you delete this user, any such permissions go away.", "If you delete these users, any permissions will go away.", sizeof($unames)) .
 	gTranslate('core', "Deleted users cannot be recovered.") .
 	gTranslate('core', "Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
@@ -72,14 +72,14 @@ if (! empty($unames)) {
 	}
 ?>
 <br><br>
-<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deleteuser_form.formaction.value='delete'" class="g-button">
+<input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deleteuser_form.formaction.value='delete'" class="g-button">
 <?php
 } else {
     echo gTranslate('core', "No user available for deletion.");
 }
 ?>
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="deleteuser_form.formaction.value='back'" class="g-button">
+<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="deleteuser_form.formaction.value='back'" class="g-button">
 </form>
 </center>
 </div>

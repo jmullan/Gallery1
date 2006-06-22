@@ -31,7 +31,7 @@ list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
     getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
 
 if (!$gallery->user->isAdmin()) {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;
 }
 
@@ -57,7 +57,7 @@ if (!empty($save)) {
 
     if ($new_password1 || $new_password2) {
         if (strcmp($new_password1, $new_password2)) {
-            $gErrors["new_password2"] = _("Passwords do not match!");
+            $gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
             $errorCount++;
         } else {
             $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
@@ -93,7 +93,7 @@ if (!empty($save)) {
         );
     }
     else {
-        $msg = gallery_error(_("User information was not succesfully updated !!"));
+        $msg = gallery_error(gTranslate('core', "User information was not succesfully updated !!"));
         $infoLineType = 'error';
     }
 } else if (isset($dismiss)) {
@@ -103,7 +103,7 @@ if (!empty($save)) {
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 
 if (!$tmpUser) {
-    echo gallery_error(_("Invalid user") ." <i>$uname</i>");
+    echo gallery_error(gTranslate('core', "Invalid user") ." <i>$uname</i>");
     exit;
 }
 
@@ -141,7 +141,7 @@ printPopupStart(gTranslate('core', "Modify User"), '', langLeft());
 
 echo infoBox($notice_messages);
 
-echo _("You can change any information about the user using this form.");
+echo gTranslate('core', "You can change any information about the user using this form.");
 
 echo "\n<br>";
 
@@ -155,8 +155,8 @@ echo makeFormIntro("modify_user.php",
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 
 <div align="center">
-<input type="submit" name="save" value="<?php echo _("Save") ?>" class="g-button">
-<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>" class="g-button">
+<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>" class="g-button">
+<input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" class="g-button">
 </div>
 </form>
 </div>

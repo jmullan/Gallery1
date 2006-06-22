@@ -28,7 +28,7 @@ list($oldName, $newName, $useLoad) = getRequestVar(array('oldName', 'newName', '
 
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -104,11 +104,11 @@ if (!empty($newName)) {
 }
 
 ?>
-<?php echo _("What do you want to name this album?") ?>
+<?php echo gTranslate('core', "What do you want to name this album?") ?>
 <br>
-<?php echo _("The name cannot contain any of the following characters") ?>:
-<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b>
-<br><?php echo _("Those characters will be ignored in your new album name.") ?>
+<?php echo gTranslate('core', "The name cannot contain any of the following characters") ?>:
+<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo gTranslate('core', "or") ?><b> <?php echo gTranslate('core', "spaces") ?></b>
+<br><?php echo gTranslate('core', "Those characters will be ignored in your new album name.") ?>
 
 <?php echo makeFormIntro("rename_album.php",  array(), array("type" => "popup"));
 ?>
@@ -117,8 +117,9 @@ if (!empty($newName)) {
 <input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
 <input type="hidden" name="useLoad" value="<?php echo $useLoad; ?>">
 </p>
-<input type="submit" name="rename" value="<?php echo _("Rename") ?>" class="g-button" >
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="parent.close()" class="g-button">
+
+<?php echo gSubmit('rename', gTranslate('core', "_Rename")); ?>
+<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">

@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-22 14:19+0200\n"
+"POT-Creation-Date: 2006-06-22 15:36+0200\n"
 "PO-Revision-Date: 2006-06-20 00:30+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: ../popups/recreate_captions.php:31 ../rearrange.php:28
 #: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
 #: ../rotate_photo.php:33 ../save_photos.php:39 ../upgrade_album.php:57
-#: ../user_preferences.php:31 ../watermark_album.php:43
+#: ../user_preferences.php:33 ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuführen!"
 
@@ -72,12 +72,10 @@ msgstr "Kommentar hinzufügen"
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein."
 
-#: ../add_comment.php:102 ../copy_photo.php:200 ../delete_album.php:66
-#: ../do_command.php:321 ../download.php:76 ../ecard_form.php:260
-#: ../edit_caption.php:174 ../edit_watermark.php:120
+#: ../add_comment.php:102 ../delete_album.php:66 ../do_command.php:263
+#: ../download.php:76 ../ecard_form.php:260
 #: ../includes/add_photos/add_url.inc:55 ../move_album.php:108
-#: ../move_album.php:121 ../register.php:136 ../reset_votes.php:57
-#: ../sort_album.php:112
+#: ../move_album.php:121 ../reset_votes.php:57 ../sort_album.php:112
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -212,14 +210,15 @@ msgstr "Aufsteigend"
 msgid "Descending"
 msgstr "Absteigend"
 
-#: ../administer_startpage.php:98 ../sort_album.php:111
-msgid "Sort"
+#: ../administer_startpage.php:98
+#, fuzzy
+msgid "_Sort"
 msgstr "Sortieren"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:110
-#: ../download.php:83 ../help/imagemap.php:88 ../user_preferences.php:144
-msgid "Close Window"
-msgstr "Fenster schließen"
+#: ../user_preferences.php:146 ../view_photo_properties.php:124
+msgid "_Close Window"
+msgstr "Fenster _schließen"
 
 #: ../album_permissions.php:38
 msgid "Users who can see the album."
@@ -278,24 +277,25 @@ msgstr "Besitzer/in : "
 msgid "Apply permissions to all sub-albums"
 msgstr "Berechtigungen auf die Unteralben &uuml;bertragen"
 
-#: ../album_permissions.php:152 ../edit_caption.php:173 ../edit_field.php:51
-#: ../edit_watermark.php:118 ../modify_user.php:158 ../photo_owner.php:92
-#: ../user_preferences.php:143
-msgid "Save"
-msgstr "Speichern"
+#: ../album_permissions.php:152 ../edit_caption.php:173 ../edit_field.php:59
+#: ../edit_watermark.php:118 ../new_password.php:127 ../rearrange.php:182
+#: ../user_preferences.php:145 ../watermark_album.php:137
+msgid "_Save"
+msgstr "_Speichern"
 
-#: ../album_permissions.php:153 ../manage_users.php:92 ../photo_owner.php:93
-msgid "Done"
-msgstr "Fertig"
+#: ../album_permissions.php:153 ../upgrade_album.php:66
+#: ../upgrade_album.php:172 ../upgrade_users.php:58
+msgid "_Done"
+msgstr "_Fertig"
 
-#: ../albums.php:93
+#: ../albums.php:93 ../rss.php:260
 #, php-format
 msgid "1 album"
 msgid_plural "%d albums"
 msgstr[0] "Ein Album"
 msgstr[1] "%d Alben"
 
-#: ../albums.php:95
+#: ../albums.php:95 ../rss.php:260
 msgid "no albums"
 msgstr "Keine Alben"
 
@@ -741,13 +741,12 @@ msgstr "Wasserzeichen setzen"
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Angeforderter index [%d] ist ausserhalb der erlaubten Menge [%d]. Gallery konnte das angeforderte Albumelement nicht laden."
 
-#: ../classes/Album.php:1779 ../do_command.php:162
+#: ../classes/Album.php:1779
 #, php-format
 msgid "Recreating %d captions..."
 msgstr ""
 
-#: ../classes/Album.php:1781 ../classes/Album.php:1982 ../do_command.php:99
-#: ../do_command.php:165
+#: ../classes/Album.php:1781 ../classes/Album.php:1982 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Verarbeite Bild %d ..."
@@ -911,8 +910,8 @@ msgstr "Thumbnails erzeugen"
 msgid "Skipping Album #%d"
 msgstr "&Uuml;berspringe Album #%d"
 
-#: ../copy_photo.php:123 ../login.php:122 ../register.php:41
-#: ../register.php:117 ../save_photos.php:386
+#: ../copy_photo.php:123 ../login.php:122 ../register.php:43
+#: ../register.php:119 ../save_photos.php:386
 msgid "Dismiss"
 msgstr "Beenden"
 
@@ -945,8 +944,18 @@ msgid "New Album"
 msgstr "Neues Album"
 
 #: ../copy_photo.php:199
-msgid "Copy to Album!"
+#, fuzzy
+msgid "Cop_y to Album!"
 msgstr "Kopieren"
+
+#: ../copy_photo.php:200 ../delete_photo.php:134 ../edit_caption.php:174
+#: ../edit_field.php:60 ../edit_watermark.php:120
+#: ../includes/add_photos/add_form.inc:91 ../login.php:86
+#: ../move_photo.php:254 ../move_photo.php:343 ../new_password.php:128
+#: ../rearrange.php:183 ../register.php:138 ../rename_album.php:122
+#: ../resize_photo.php:128 ../watermark_album.php:142
+msgid "_Cancel"
+msgstr "A_bbrechen"
 
 #: ../copy_photo.php:207 ../move_photo.php:337
 #, php-format
@@ -964,7 +973,7 @@ msgid "no album / index specified"
 msgstr "Kein Album/ Index gew&auml;hlt"
 
 #: ../create_user.php:46 ../modify_user.php:60 ../new_password.php:54
-#: ../user_preferences.php:68
+#: ../user_preferences.php:70
 msgid "Passwords do not match!"
 msgstr "Die Passw&ouml;rter stimmen nicht &uuml;berein!"
 
@@ -1041,14 +1050,6 @@ msgstr "M&ouml;chten Sie dieses Bild wirklich l&ouml;schen?"
 msgid "_Delete"
 msgstr "_Löschen"
 
-#: ../delete_photo.php:134 ../edit_field.php:60
-#: ../includes/add_photos/add_form.inc:91 ../login.php:86
-#: ../move_photo.php:254 ../move_photo.php:343 ../new_password.php:128
-#: ../rearrange.php:183 ../rename_album.php:122 ../resize_photo.php:128
-#: ../watermark_album.php:142
-msgid "_Cancel"
-msgstr "A_bbrechen"
-
 #: ../delete_user.php:44
 msgid "Delete User"
 msgstr "Benutzer l&ouml;schen"
@@ -1091,59 +1092,48 @@ msgstr "Es sind Benutzer mehr zu L&ouml;schen vorgemerkt."
 msgid "Attempted security breach."
 msgstr "Verletzung der Sicherheitsregeln entdeckt."
 
-#: ../do_command.php:62
+#: ../do_command.php:54
+#, fuzzy
+msgid "Rebuilding Thumbnails"
+msgstr "Erneuere %d Thumbnails ..."
+
+#: ../do_command.php:56
+msgid "Performing Operation.."
+msgstr ""
+
+#: ../do_command.php:68
 #, php-format
 msgid "Rebuilding highlight %s"
 msgstr "Erneuere Vorschaubild %s"
 
-#: ../do_command.php:71
-msgid "Recreating thumbnails"
-msgstr "Thumbnails erzeugen"
-
-#: ../do_command.php:75
+#: ../do_command.php:80
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "M&ouml;chten Sie auch die Vorschaubilder der Unteralben erneuern?"
 
-#: ../do_command.php:84 ../do_command.php:149 ../html/userData.inc:13
-#: ../multi_create_user.php:173 ../popups/recreate_captions.php:64
+#: ../do_command.php:89 ../html/userData.inc:13 ../multi_create_user.php:173
+#: ../popups/recreate_captions.php:64
 msgid "Yes"
 msgstr "Ja"
 
-#: ../do_command.php:85 ../do_command.php:150 ../html/userData.inc:13
-#: ../multi_create_user.php:173 ../popups/recreate_captions.php:65
+#: ../do_command.php:90 ../html/userData.inc:13 ../multi_create_user.php:173
+#: ../popups/recreate_captions.php:65
 msgid "No"
 msgstr "Nein"
 
-#: ../do_command.php:87 ../do_command.php:153
+#: ../do_command.php:92
 msgid "Start"
 msgstr "Starten"
 
-#: ../do_command.php:96
+#: ../do_command.php:102
 #, php-format
 msgid "Rebuilding %d thumbnails..."
 msgstr "Erneuere %d Thumbnails ..."
 
-#: ../do_command.php:107
+#: ../do_command.php:112
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Erneuere ein Thumbnail ..."
 
-#: ../do_command.php:129 ../view_album.php:223
-msgid "Recreate captions"
-msgstr "Beschriftungen erzeugen"
-
-#: ../do_command.php:135 ../popups/recreate_captions.php:54
-msgid "Choose the type you want to recreate the captions."
-msgstr ""
-
-#: ../do_command.php:146 ../popups/recreate_captions.php:61
-msgid "Do you also want to recreate the captions in subalbums?"
-msgstr "M&ouml;chten Sie auch die Beschriftungen in den Unteralben erneuern?"
-
-#: ../do_command.php:173
-msgid "Recreating one caption..."
-msgstr ""
-
-#: ../do_command.php:319
+#: ../do_command.php:261
 msgid "Close window"
 msgstr "Fenster schließen"
 
@@ -1209,6 +1199,10 @@ msgstr "Herunterladen"
 #: ../download.php:81
 msgid "This album is not empty, but contains no photo or movie! Download wouldn't make sense."
 msgstr "Dieses Album ist zwar nicht leer, enthält aber weder Photos noch Filme. Ein Download macht daher keinen Sinn."
+
+#: ../download.php:83 ../help/imagemap.php:88
+msgid "Close Window"
+msgstr "Fenster schließen"
 
 #: ../ecard_form.php:39
 msgid "Send this photo as eCard"
@@ -1301,7 +1295,7 @@ msgstr "%s hat dir eine eC@rd geschickt."
 msgid "Your Message:"
 msgstr "Ihre Nachricht:"
 
-#: ../ecard_form.php:257 ../edit_watermark.php:119
+#: ../ecard_form.php:257
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -1436,10 +1430,9 @@ msgstr "%s bearbeiten"
 msgid "Edit the %s and click %s when you're done"
 msgstr "Bearbeiten Sie %s und klicken Sie %s, wenn Sie fertig sind."
 
-#: ../edit_field.php:59 ../new_password.php:127 ../rearrange.php:182
-#: ../watermark_album.php:137
-msgid "_Save"
-msgstr "_Speichern"
+#: ../edit_field.php:51 ../modify_user.php:158 ../photo_owner.php:92
+msgid "Save"
+msgstr "Speichern"
 
 #: ../edit_thumb.php:42
 msgid "Remaking the Thumbnail..."
@@ -1468,6 +1461,10 @@ msgstr "Wasserzeichen bearbeiten"
 #: ../edit_watermark.php:106
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."
 msgstr "Ihr Bild ist ein gif. Wasserzeichen auf animierten gif werden derzeit noch nicht unterstützt und werden daher ihr Bild verunstalten und 'unanimieren'."
+
+#: ../edit_watermark.php:119 ../watermark_album.php:140
+msgid "_Preview"
+msgstr "_Vorschau"
 
 #: ../help/imagemap.php:26
 msgid "ImageMap Help"
@@ -2661,6 +2658,10 @@ msgstr "Massenverarbeitung"
 msgid "Modify"
 msgstr "Ver&auml;ndere"
 
+#: ../manage_users.php:92 ../photo_owner.php:93
+msgid "Done"
+msgstr "Fertig"
+
 #: ../modify_user.php:92
 msgid "User information succesfully updated."
 msgstr "Die Benutzerinformationen wurden erfolgreich aktualisiert."
@@ -2887,12 +2888,12 @@ msgstr "Das neue Passwort ist fehlerhaft, bitte versuchen Sie es erneut."
 msgid "You must provide your new password."
 msgstr "Sie m&uuml;ssen Ihr neues Passwort eingeben."
 
-#: ../new_password.php:66 ../user_preferences.php:40
+#: ../new_password.php:66 ../user_preferences.php:42
 #, php-format
 msgid "%s contained invalid data, resetting input."
 msgstr "%s enthält ungültige Daten, Eingabe zurückgesetzt."
 
-#: ../new_password.php:71 ../register.php:79 ../user_preferences.php:79
+#: ../new_password.php:71 ../register.php:81 ../user_preferences.php:81
 msgid "You must specify a valid email address."
 msgstr "Sie m&uuml;ssen eine g&uuml;ltige Emailadresse eingeben."
 
@@ -2904,7 +2905,7 @@ msgstr "Neues Passwort erzeugen"
 msgid "Enter the Gallery"
 msgstr "Betreten Sie die Gallery"
 
-#: ../new_password.php:112 ../user_preferences.php:129
+#: ../new_password.php:112 ../user_preferences.php:131
 msgid "You can change your user information here."
 msgstr "Hier k&ouml;nnen Sie Ihre Angaben &auml;ndern."
 
@@ -2947,6 +2948,7 @@ msgid "This page will go away automatically when the upload is complete.  Please
 msgstr "Diese Seite wird automatisch verschwinden, wenn der Upload fertig ist. Bitte haben Sie etwas Geduld."
 
 #: ../popups/recreate_captions.php:35
+#, php-format
 msgid "Recreate captions for album: %s"
 msgstr "Beschriftungen erzeugen f&uuml;r Album: %s"
 
@@ -2957,6 +2959,14 @@ msgstr "Die Bildbeschriftungen wurden erfolgreich erzeugt."
 #: ../popups/recreate_captions.php:48
 msgid "Captions not successfully recreated."
 msgstr "Die Bildbeschriftungen wurden nicht erfolgreich erzeugt."
+
+#: ../popups/recreate_captions.php:54
+msgid "Choose the type you want to recreate the captions."
+msgstr ""
+
+#: ../popups/recreate_captions.php:61
+msgid "Do you also want to recreate the captions in subalbums?"
+msgstr "M&ouml;chten Sie auch die Beschriftungen in den Unteralben erneuern?"
 
 #: ../popups/recreate_captions.php:70
 msgid "_Start"
@@ -3174,51 +3184,52 @@ msgstr "Abbrechen"
 msgid "******* Page %s *******"
 msgstr "********** Seite %s **********"
 
-#: ../register.php:34
+#: ../register.php:36
 #, php-format
 msgid "Register new user for '%s'"
 msgstr "Neuen Benutzer registrieren in '%s'"
 
-#: ../register.php:39
+#: ../register.php:41
 msgid "This Gallery does not support self-registration by visitors."
 msgstr "Diese Gallery unterst&uuml;tzt keine Selbstregistrierung."
 
-#: ../register.php:63
+#: ../register.php:65
 msgid "Your fullname containes invalid data!"
 msgstr "Ihr vollständiger Name enthält ungültige Daten!"
 
-#: ../register.php:74
+#: ../register.php:76
 msgid "You must specify a name."
 msgstr "Sie m&uuml;ssen einen Nnamen angeben"
 
-#: ../register.php:101
+#: ../register.php:103
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s hat sich registriert.  Es wurde eine Email an %s gesendet."
 
-#: ../register.php:107
+#: ../register.php:109
 msgid "Gallery Self Registration"
 msgstr "Gallery Registrierung"
 
-#: ../register.php:109
+#: ../register.php:111
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "Es wurde eine Email an %s gesendet."
 
-#: ../register.php:111
+#: ../register.php:113
 msgid "Your account information is contained within the email."
 msgstr "Ihre Zugangsdaten sind in der Mail enthalten."
 
-#: ../register.php:113
+#: ../register.php:115
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "Die Email konnte nicht gesendet werden.  Bitte wenden Sie sich an den Gallery Admin, um einen Zugang zu bekommen."
 
-#: ../register.php:132
+#: ../register.php:134
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Ihre Zugangsdaten werden Ihnen per Mail an die angegebene Adresse geschickt."
 
-#: ../register.php:135
-msgid "Send request"
+#: ../register.php:137
+#, fuzzy
+msgid "_Send request"
 msgstr "Anfrage abschicken"
 
 #: ../rename_album.php:87
@@ -3357,6 +3368,23 @@ msgstr "Drehen"
 #: ../rotate_photo.php:114
 msgid "Flip"
 msgstr "Spiegeln"
+
+#: ../rss.php:261
+#, fuzzy, php-format
+msgid "1 photo"
+msgid_plural "%s photos"
+msgstr[0] "Alle Bilder"
+msgstr[1] "Alle Bilder"
+
+#: ../rss.php:261
+#, fuzzy
+msgid "no photos"
+msgstr "Alle Bilder"
+
+#: ../rss.php:263
+#, fuzzy, php-format
+msgid "%s in %s"
+msgstr "%s und %s."
 
 #: ../save_photos.php:59
 msgid "Processing and Saving Photos"
@@ -3555,6 +3583,10 @@ msgstr "Alben zuerst"
 #: ../sort_album.php:100
 msgid "Photos/Movies first"
 msgstr "Bilder/Filme zuerst"
+
+#: ../sort_album.php:111
+msgid "Sort"
+msgstr "Sortieren"
 
 #: ../stamp_preview.php:42
 msgid "Poststamp preview"
@@ -4132,10 +4164,6 @@ msgstr "Keine ungültigen Alben gefunden."
 msgid "There are no invalid albums present in this Gallery."
 msgstr "Es gibt keine ungültigen Alben in dieser Galerie."
 
-#: ../upgrade_album.php:66 ../upgrade_album.php:172 ../upgrade_users.php:58
-msgid "_Done"
-msgstr "_Fertig"
-
 #: ../upgrade_album.php:81
 msgid "Progress"
 msgstr "Fortschritt"
@@ -4217,31 +4245,31 @@ msgstr "_Neustart"
 msgid "Users upgraded successfully."
 msgstr "Die Benutzer wurden erfolgreich aktualisiert."
 
-#: ../user_preferences.php:51
+#: ../user_preferences.php:53
 msgid "You are not allowed to change your username."
 msgstr "Es ist Ihnen nicht gestattet, Ihren Benutzernamen zu ändern."
 
-#: ../user_preferences.php:57
+#: ../user_preferences.php:59
 msgid "Incorrect password"
 msgstr "Falsches Passwort"
 
-#: ../user_preferences.php:63
+#: ../user_preferences.php:65
 msgid "You must provide your old password to change it."
 msgstr "Sie m&uuml;ssen Ihr altes Passwort eingeben um es zu &auml;ndern."
 
-#: ../user_preferences.php:121
+#: ../user_preferences.php:123
 msgid "Change User Preferences"
 msgstr "Benutzereinstellungen bearbeiten"
 
-#: ../user_preferences.php:124
+#: ../user_preferences.php:126
 msgid "User successfully updated."
 msgstr "Die Benutzerinformationen wurden erfolgreich aktualisiert."
 
-#: ../user_preferences.php:130
+#: ../user_preferences.php:132
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr "Wenn Sie Ihr Passwort &auml;ndern m&ouml;chten, m&uuml;ssen Sie zuerst Ihr altes und dann zweimal Ihr neues Passwort eingeben."
 
-#: ../user_preferences.php:131
+#: ../user_preferences.php:133
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Sie k&ouml;nnen Ihren Benutzernamen in jede Kombination aus Buchstaben und Zahlen &auml;ndern."
 
@@ -4509,6 +4537,10 @@ msgstr "Elemente sortieren"
 msgid "Resize all"
 msgstr "Größen der Elemente ändern"
 
+#: ../view_album.php:223
+msgid "Recreate captions"
+msgstr "Beschriftungen erzeugen"
+
 #: ../view_album.php:231
 msgid "Rebuild thumbs"
 msgstr "Thumbnails erneuern"
@@ -4695,10 +4727,6 @@ msgstr "Lade EXIF-Daten erneut "
 msgid "(if the data is current, this will not appear to do anything)"
 msgstr "(Wenn die Daten aktuell sind, wird nichts passieren)"
 
-#: ../view_photo_properties.php:124
-msgid "_Close Window"
-msgstr "Fenster _schließen"
-
 #: ../watermark_album.php:57
 msgid "Watermarking album..."
 msgstr "Lege Wasserzeichen auf alle Bilder des Albums..."
@@ -4710,10 +4738,6 @@ msgstr "Keine Elemente f&uuml;r Wasserzeichen vorhanden."
 #: ../watermark_album.php:123
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Wasserzeichen auf animierten gif werden derzeit noch nicht unterstützt und werden daher ihr Bild verunstalten und 'unanimieren'"
-
-#: ../watermark_album.php:140
-msgid "_Preview"
-msgstr "_Vorschau"
 
 #: ../templates/commentbox.tpl.default:27
 msgid "view comments for this nested album"
@@ -4753,3 +4777,6 @@ msgstr "RSS"
 #: ../templates/info_donation-block.tpl.default:36
 msgid "Donate to Gallery now!!"
 msgstr "Spenden Sie der Gallery jetzt!!"
+
+#~ msgid "Recreating thumbnails"
+#~ msgstr "Thumbnails erzeugen"

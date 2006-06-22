@@ -28,33 +28,33 @@ if (!isset($gallery->version)) {
 }
 
 if (!$gallery->user->isAdmin()) {
-        echo _("You are not allowed to perform this action!");
+        echo gTranslate('core', "You are not allowed to perform this action!");
         exit;
 }
 
 list($sort, $order, $fieldname) = getRequestVar(array('sort', 'order', 'fieldname'));
 
 $adminOptions[] = array(
-    'text' => _("Rebuild highlights"),
+    'text' => gTranslate('core', "Rebuild highlights"),
     'url' =>  doCommand('rebuild_highlights'),
-    'longtext' => _("Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)")
+    'longtext' => gTranslate('core', "Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)")
 );
 
 $adminOptions[] = array(
-    'text' => _("Albumorder"),
+    'text' => gTranslate('core', "Albumorder"),
     'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1, 'type' => 'popup')),
-    'longtext' => _("Sort the albums on the startpage(s).<br>(Opens an option dialog)")
+    'longtext' => gTranslate('core', "Sort the albums on the startpage(s).<br>(Opens an option dialog)")
 );
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 $sortOptions = array(
-    'name'          => _("By (physical) name"),
-    'clicks_date'   => _("By last reset date"),
-    'creation_date' => _("By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
+    'name'          => gTranslate('core', "By (physical) name"),
+    'clicks_date'   => gTranslate('core', "By last reset date"),
+    'creation_date' => gTranslate('core', "By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
 );
 
-printPopupStart(_("Administer Startpage"), '', langLeft());
+printPopupStart(gTranslate('core', "Administer Startpage"), '', langLeft());
 
 if(empty($sort)) {
     echo "\n<table width=\"100%\">";
@@ -75,7 +75,7 @@ elseif (empty($order)) {
     echo makeFormIntro('administer_startpage.php');
 ?>
 <table>
-<caption"><?php echo _("Sort albums on startpage"); ?></caption>
+<caption"><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
 <?php
     foreach ($sortOptions as $sortBy => $text) {
         echo "\n <tr>";
@@ -86,17 +86,17 @@ elseif (empty($order)) {
 ?>
 </table>
 <p>
-<?php echo _("Sort Order:"); ?>
+<?php echo gTranslate('core', "Sort Order:"); ?>
     <select name="order">
-        <option value="asc"><?php echo _("Ascending") ?></option>
-        <option value="desc"><?php echo _("Descending") ?></option>
+        <option value="asc"><?php echo gTranslate('core', "Ascending") ?></option>
+        <option value="desc"><?php echo gTranslate('core', "Descending") ?></option>
     </select>
 </p>
 
 <div style="text-align:center">
 <input type="hidden" name="sort" value="1">
-<input type="submit" name="confirm" value="<?php echo _("Sort") ?>" class="g-button">
-<input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
+<?php echo gSubmit('confirm', gTranslate('core', "_Sort")); ?>
+<?php echo gButton('cancel', gTranslate('core', "_Close Window"), 'parent.close()'); ?>
 </div>
 </form>
 <?php
@@ -106,9 +106,8 @@ else {
     $albumDB = new AlbumDB(FALSE);
     $albumDB->sortByField($fieldname, $order);
     dismissAndReload();
-?>
-    <input type="button" name="cancel" value="<?php echo _("Close Window") ?>" onclick="parent.close()" class="g-button">
-<?php
+
+    echo gButton('cancel', gTranslate('core', "_Close Window"), 'parent.close()"');
 }
 ?>
 </div>

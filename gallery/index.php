@@ -178,7 +178,7 @@ if ($postnuke ||
 	
 	if (!in_array($include, $safe_to_include)) {
 	    $include = htmlentities($include);
-	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), 
+	    print sprintf(gTranslate('core', "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), 
 			    'Gallery', $include);
 	    exit;
 	}
