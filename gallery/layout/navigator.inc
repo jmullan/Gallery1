@@ -56,7 +56,7 @@ if(!includeTemplate('navigator.tpl')) {
 
 		#-- 'first' and 'previous button cell ---
 		if ($navigator["page"] != 1) {
-			$fpContent .= galleryIconLink($url . $navigator['pageVar'] .'=1', $fpImg, $fpAltText,'yes');
+			$fpContent = galleryIconLink($url . $navigator['pageVar'] .'=1', $fpImg, $fpAltText,'yes');
 
 			$ppContent = galleryIconLink($url . $navigator['pageVar'] ."=$prevPage", $ppImg, $ppAltText, 'yes');
 
