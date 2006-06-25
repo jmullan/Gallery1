@@ -231,11 +231,9 @@ $adminOptions = array(
 		'name' => gTranslate('core', "Rebuild thumbs"),
 		'requirements' => array('canWriteToAlbum', 'photosExist'),
 		'action' => 'popup',
-		'value' => doCommand('remake-thumbnail',
-			array(
-				'set_albumName' => $gallery->session->albumName,
-				'index' => 'all',
-				'type' => 'popup'))
+		'value' => makeGalleryUrl('rebuild_thumbs.php',
+                        array('set_albumName' => $gallery->session->albumName,
+                              'type' => 'popup'))
 	),
 	'properties'      => array(
 		'name' => gTranslate('core', "Properties"),

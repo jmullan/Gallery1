@@ -57,77 +57,32 @@ if (empty($rebuild_type)) {
 }
 
 switch ($cmd) {
-    case 'rebuild_highlights':
-        $albumDB = new AlbumDB(true);
-        $albumList = $albumDB->albumList;
-        $i = 0;
-    
-        foreach($albumList as $nr => $album) {
-            if($album->isRoot()) {
-                $i++;
-                echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
-                $album->setHighlight($album->getHighlight());
-                $album->save();
-            }
-        }
-        dismissAndReload();
-    break;
-    
-	case 'remake-thumbnail':
-		if ($gallery->user->canWriteToAlbum($gallery->album)) {
-			if (empty($rebuild_type)) {
-                printPopupStart($title, '', 'center');
-				echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
-				echo makeFormIntro('do_command.php', array(),
-					array('type' => 'popup',
-					    'index' => $index,
-					    'cmd' => $cmd, 
-						'return' => $return,
-						'parentName' => $parentName));
-?>
-		<p>
-		<input type="radio" name="rebuild_type" value="recursive"> <?php echo gTranslate('core', "Yes"); ?>
-		<input type="radio" name="rebuild_type" value="single" checked> <?php echo gTranslate('core', "No"); ?>
-		</p>
-		<input type="submit" value="<?php echo gTranslate('core', "Start") ?>" class="g-button">
-	</form>
-<?php
-			}
-			else {
-			    printPopupStart($title, '', 'left');
-				if ($rebuild_type == "single") {
-					if ($gallery->session->albumName && isset($index)) {
-						if ($index == "all") {
-							$np = $gallery->album->numPhotos(1);
-							echo ("\n<h3>" . sprintf(gTranslate('core', "Rebuilding %d thumbnails..."), $np) .'</h3>');
-							my_flush();
-							for ($i = 1; $i <= $np; $i++) {
-								echo("\n<h4>". sprintf(gTranslate('core', "Processing image %d..."), $i) .'</h4>');
-								my_flush();
-								set_time_limit($gallery->app->timeLimit);
-								$gallery->album->makeThumbnail($i);
-							}
-							echo "\n<hr width=\"100%\">";
-						} else {
-							echo ("\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>');
-							my_flush();
-							set_time_limit($gallery->app->timeLimit);
-							$gallery->album->makeThumbnail($index);
-						}
-						$gallery->album->save();
-						//-- this is expected to be loaded in a popup, so dismiss ---
-						dismissAndReload();
-					}
-				} else if ($rebuild_type == "recursive") {
-					if ($gallery->session->albumName && isset($index)) {
-						$gallery->album->makeThumbnailRecursive($index);
-						$gallery->album->save();
-						dismissAndReload();
-					}
-				}
+	case 'rebuild_highlights':
+		$albumDB = new AlbumDB(true);
+		$albumList = $albumDB->albumList;
+		$i = 0;
+
+		foreach($albumList as $nr => $album) {
+			if($album->isRoot()) {
+				$i++;
+				echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
+				$album->setHighlight($album->getHighlight());
+				$album->save();
 			}
 		}
+		dismissAndReload();
 	break;
+
+	case 'remake-thumbnail':
+	    echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
+	    my_flush();
+	    set_time_limit($gallery->app->timeLimit);
+	    $gallery->album->makeThumbnail($index);
+	
+	    $gallery->album->save();
+	    //-- this is expected to be loaded in a popup, so dismiss ---
+	    dismissAndReload();
+    	break;
 	
 	case 'logout':
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
