@@ -107,7 +107,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 	$url = '';
 	$prefix = '';
-	$isSetupUrl = (stristr($target,"setup")) ? true : false;
+	$isSetupUrl = (stristr($target, 'setup')) ? true : false;
 
 	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
@@ -123,6 +123,12 @@ function makeGalleryUrl($target = '', $args = array()) {
 	/* Add the folder to the url when *Nuke is not direct in the main folder */
 	$addpath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
 
+	if (stristr($target, 'help') === false) {
+	    if((isset($args['type']) && $args['type'] == 'popup') || !empty($args['gallery_popup'])) {
+		$target = "popups/$target";
+	    }
+	}
+	
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -240,7 +246,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	return htmlspecialchars($url);
 }
 
-function makeGalleryHeaderUrl($target, $args=array()) {
+function makeGalleryHeaderUrl($target, $args = array()) {
 	$url = makeGalleryUrl($target, $args);
 	return unhtmlentities($url);
 }

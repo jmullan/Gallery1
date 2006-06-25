@@ -170,10 +170,6 @@ if ($navigator["maxPages"] > 1) {
 
 require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
 
-if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-    echo gallery_validation_link("albums.php");
-}
-
 includeTemplate("overall.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

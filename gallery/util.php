@@ -669,7 +669,7 @@ function doCommand($command, $args = array(), $returnTarget = '', $returnArgs = 
 		$args["return"] = urlencode(makeGalleryHeaderUrl($returnTarget, $returnArgs));
 	}
 	$args["cmd"] = $command;
-	return makeGalleryUrl("do_command.php", $args);
+	return makeGalleryUrl('popups/do_command.php', $args);
 }
 
 function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
@@ -1795,7 +1795,6 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	$order = ($order == 'asc') ? 1 : -1;
 
 	if (empty($sort_funcs[$sortby])) {
-
 	    if ($special) {
 		$a = "\$a->fields[\"$sortby\"]";
 		$b = "\$b->fields[\"$sortby\"]";

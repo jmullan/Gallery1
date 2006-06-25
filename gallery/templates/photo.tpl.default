@@ -244,24 +244,14 @@ includeLayout('breadcrumb.inc');
 
 echo languageSelector();
 
-/* 
- * Begin footer
-*/
+
 includeTemplate('info_donation-block');
-
-global $GALLERY_EMBEDDED_INSIDE;
-if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-    echo album_validation_link($gallery->session->albumName, $GLOBALS['id']);
-}
-
-/*
- * End footer
- * 
- * Dont change anything below !
-*/
 
 includeTemplate("overall.footer");
 
+/*
+ * Dont change anything below !
+*/
 include_once(dirname(dirname(__FILE__)) .'/includes/view_photo/hidden_print_services.php');
 
 if (!empty($allImageAreas)) {

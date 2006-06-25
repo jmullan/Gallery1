@@ -175,19 +175,19 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     // We don't want the result HTML escaped since we split on "&", below
     // use the header version of makeGalleryUrl()
     $url = makeGalleryHeaderUrl($target, $urlargs);
-
+	
     $result = split("\?", $url);
     $target = $result[0];
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-		'method' => 'POST',
-		'name'	 => 'g1_form'
+	'method' => 'POST',
+	'name'	 => 'g1_form'
     );
 
     foreach($defaults as $attr => $value) {
     	if(!isset($attrList[$attr])) {
-    		$attrList[$attr] = $value;
+    	    $attrList[$attr] = $value;
     	}
     }
 
@@ -197,12 +197,13 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 
     $args = split("&", $tmp);
     foreach ($args as $arg) {
-        if (strlen($arg) == 0) {
-            continue;
-        }
-        list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
+	if (strlen($arg) == 0) {
+	    continue;
+	}
+	list($key, $val) = split("=", $arg);
+	$form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
     }
+        
     return $form;
 }
 

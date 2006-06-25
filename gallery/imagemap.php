@@ -27,7 +27,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($full, $index, $imageareas, $formaction) = getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
+list($full, $index, $imageareas, $formaction) =
+    getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
 
 // Hack check and prevent errors
 if (! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
