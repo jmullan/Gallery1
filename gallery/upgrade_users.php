@@ -40,22 +40,22 @@ echo "\n<br>";
 echo gTranslate('core', "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
 echo "\n<p>";
 echo gTranslate('core', "If you get an error, and only some users are upgraded, try refreshing the page to upgrade remaining users.");
-echo "\n<br>";
-processingMsg(gTranslate('core', "Please Wait..."));
+echo "\n<br><br>";
+echo gTranslate('core', "Please Wait...") . "\n<br>";
 
 if (!$gallery->userDB->integrityCheck() ) {
     $noticeMessages[] = array(
 	'type' => 'error',
 	'text' => gTranslate('core', "There was a problem upgrading users.  Please check messages above, and try again.")
     );
-    $button = gButtom('disco', gTranslate('core', "_Retry"), 'location.reload()');
+    $button = gButton('retry', gTranslate('core', "_Retry"), 'location.reload()');
 }
 else {
     $noticeMessages[] = array(
 	'type' => 'success',
 	'text' => gTranslate('core', "Users upgraded successfully.")
     );
-    $button = gButton('disco', gTranslate('core', "_Done"), 'location.reload()');
+    $button = gButton('done', gTranslate('core', "_Done"), 'location.reload()');
 }
 echo infobox($noticeMessages);
 ?>

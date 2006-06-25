@@ -183,7 +183,7 @@ if ($numPhotos == 1) {
     if ($maxPages > 1) {
         $adminText .= sprintf (gTranslate('core', "%s items in this album on %s"),
 		$numPhotos,
-		gTranslate('core',"one page", "%d pages", $maxPages));
+		gTranslate('core', "one page", "%d pages", $maxPages,'', true));
     }
     else {
         $adminText .= sprintf (gTranslate('core', "%s items in this album"), $numPhotos);
@@ -295,7 +295,8 @@ if ($numPhotos) {
 	            echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
 	        }
 	        else {
-	            echo "\n\t\t". '<br><span class="g-admin">'. $translateableFields[$field] .": </span><br>";
+	            $fieldname = isset($translateableFields[$field]) ? $translateableFields[$field] : $field;
+	            echo "\n\t\t". '<br><span class="g-admin">'. $fieldname .": </span><br>";
 	            echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
 	        }
 	    }

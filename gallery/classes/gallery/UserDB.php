@@ -111,6 +111,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function getUserByUsername($username, $level=0) {
 		global $gallery;
 
+		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
+		echo debugMessage(sprintf("Geting user by username '%s'", $saveToDisplayUserName),
+			__FILE__, __LINE__, 4);
+			
 		if ($level > 1) {
 			// We've recursed too many times.  Abort;
 			return;
@@ -275,38 +279,43 @@ class Gallery_UserDB extends Abstract_UserDB {
 	}
 
 	function validNewUserName($username) {
-
+		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
+		
+		echo debugMessage(sprintf(gTranslate('core',
+			"Checking username '%s' for validity"), $saveToDisplayUserName),
+			__FILE__, __LINE__, 4);
+			
 		if (strlen($username) == 0) {
 			return gTranslate('core', "Please enter a username.");
 		}
 
 		if (strlen($username) < 2) {
 			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
-					"<i>". htmlentities ($username) ."</i>");
+					$saveToDisplayUserName);
 		}
 
 		if (strlen($username) > 15) {
 			return sprintf(gTranslate('core', "Username '%s' too long. Must be at most 15 characters."),
-					"<i>". htmlentities($username) ."</i>");
+					$saveToDisplayUserName);
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
 			return sprintf(gTranslate('core', "Illegal username '%s'. Only letters and digits allowed."),
-					"<i>". htmlentities($username) ."</i>");
+					$saveToDisplayUserName);
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
 		    !strcmp($username, $this->everybody->getUsername()) ||
 		    !strcmp($username, $this->loggedIn->getUsername())) {
-			return sprintf(gTranslate('core', "%s is reserved and cannot be used."),
-					"<i>$username</i> ");
+			return sprintf(gTranslate('core', "'%s' is reserved and cannot be used."),
+					$saveToDisplayUserName);
 		}
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
-			return sprintf(gTranslate('core', "A user with the username of %s already exists"),
-				" <i>$username</i> ");
+			return sprintf(gTranslate('core', "A user with the username of '%s' already exists"),
+				$saveToDisplayUserName);
 		}
 
 		return null;
@@ -341,16 +350,16 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$nobody = $this->nobody->getUsername();
 		$everybody = $this->everybody->getUsername();
 		$loggedin = $this->loggedIn->getUsername();
-		processingMsg("");
-		$count=1;
-		$total=sizeof($this->getUidList());
+		
+		$count = 1;
+		$total = sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
-			processingMsg (sprintf(gTranslate('core', "Checking user %d of %d . . . . "), $count++, $total));
-			$user=$this->getUserByUid($uid, true);
+			printf("\n<br>". gTranslate('core', "Checking user %d of %d . . . .") .' ', $count++, $total);
+			$user = $this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 			    $user->username == $everybody ||
 			    $user->username == $loggedin) {
-				print gTranslate('core', "skipped");
+				printf(gTranslate('core', "Skipped %s (Reserved username from Gallery)"), $user->username);
 				continue;
 			}
 			if (!$user->integrityCheck()) {
@@ -368,11 +377,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return $success;
 	}
 
-	function CreateUser($uname, $email, $new_password,
-			$fullname, $canCreate, $language, $log) {
+	function CreateUser($uname, $email, $new_password, $fullname, $canCreate, $language, $log) {
 		global $gErrors;
-	       	$errorCount=0;
-	       	$gErrors=array();
+	       	$errorCount = 0;
+	       	$gErrors = array();
 	       	$gErrors["uname"] = $this->validNewUserName($uname);
 	       	if ($gErrors["uname"]) {
 		       	$errorCount++;
