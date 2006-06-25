@@ -41,12 +41,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!fs_file_exists($userDir)) {
 			if (!mkdir($userDir, 0777)) {
-				echo gallery_error(_("Unable to create dir") .": $userDir");
+				echo gallery_error(gTranslate('core', "Unable to create dir") .": $userDir");
 				return;
 			}
 		} else {
 			if (!fs_is_dir($userDir)) {
-				echo gallery_error(sprintf(_("%s exists, but is not a directory!"),
+				echo gallery_error(sprintf(gTranslate('core', "%s exists, but is not a directory!"),
 							$userDir));
 				return;
 			}
@@ -58,7 +58,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				fwrite($fd, "Order deny,allow\nDeny from all\n");
 				fclose($fd);
 			} else {
-				echo gallery_error(sprintf(_("The folder folder which contains your user information (%s) is not writable for the webserver."),
+				echo gallery_error(sprintf(gTranslate('core', "The folder folder which contains your user information (%s) is not writable for the webserver."),
 								$userDir));
 				exit;
 			}
@@ -79,7 +79,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				}
 			}
 		} elseif (fs_file_exists("$userDir/userdb.dat") && !is_writeable("$userDir/userdb.dat")) {
-			echo gallery_error(_("Your Userfile is not writeable"));
+			echo gallery_error(gTranslate('core', "Your Userfile is not writeable"));
 			exit;
 		}
 
@@ -277,35 +277,35 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function validNewUserName($username) {
 
 		if (strlen($username) == 0) {
-			return _("Please enter a username.");
+			return gTranslate('core', "Please enter a username.");
 		}
 
 		if (strlen($username) < 2) {
-			return sprintf(_("Username '%s' is to short. Must be at least 2 characters."),
+			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
 					"<i>". htmlentities ($username) ."</i>");
 		}
 
 		if (strlen($username) > 15) {
-			return sprintf(_("Username '%s' too long. Must be at most 15 characters."),
+			return sprintf(gTranslate('core', "Username '%s' too long. Must be at most 15 characters."),
 					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
-			return sprintf(_("Illegal username '%s'. Only letters and digits allowed."),
+			return sprintf(gTranslate('core', "Illegal username '%s'. Only letters and digits allowed."),
 					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
 		    !strcmp($username, $this->everybody->getUsername()) ||
 		    !strcmp($username, $this->loggedIn->getUsername())) {
-			return sprintf(_("%s is reserved and cannot be used."),
+			return sprintf(gTranslate('core', "%s is reserved and cannot be used."),
 					"<i>$username</i> ");
 		}
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
-			return sprintf(_("A user with the username of %s already exists"),
+			return sprintf(gTranslate('core', "A user with the username of %s already exists"),
 				" <i>$username</i> ");
 		}
 
@@ -314,7 +314,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function validPassword($password) {
 		if (strlen($password) < 3) {
-			return _("Password must be at least 3 characters");
+			return gTranslate('core', "Password must be at least 3 characters");
 		}
 
 		return null;
@@ -345,12 +345,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$count=1;
 		$total=sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
-			processingMsg (sprintf(_("Checking user %d of %d . . . . "), $count++, $total));
+			processingMsg (sprintf(gTranslate('core', "Checking user %d of %d . . . . "), $count++, $total));
 			$user=$this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 			    $user->username == $everybody ||
 			    $user->username == $loggedin) {
-				print _("skipped");
+				print gTranslate('core', "skipped");
 				continue;
 			}
 			if (!$user->integrityCheck()) {
@@ -396,7 +396,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	$tmpUser->save();
 		       	return $tmpUser;
 	       	} else {
-			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
+			processingMsg( "<b>" . sprintf(gTranslate('core', "Problem adding %s:"), $uname)."</b>");
 		       	foreach ($gErrors as $key_var => $value_var) {
 			       	echo "\n<br>". gallery_error($gErrors[$key_var]);
 		       	}
