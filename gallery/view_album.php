@@ -223,7 +223,7 @@ $adminOptions = array(
 		'name' => gTranslate('core', "Recreate captions"),
 		'requirements' => array('canWriteToAlbum', 'photosExist'),
 		'action' => 'popup',
-		'value' => makeGalleryUrl('popups/recreate_captions.php',
+		'value' => makeGalleryUrl('recreate_captions.php',
                         array('set_albumName' => $gallery->session->albumName,
                               'type' => 'popup'))
 	),

@@ -53,7 +53,7 @@ if(!empty($setCaption) && !empty($recursive)) {
 
     echo gTranslate('core', "Choose the type you want to recreate the captions.");
 
-    echo makeFormIntro('popups/recreate_captions.php', array(), array('type' => 'popup'));
+    echo makeFormIntro('recreate_captions.php', array(), array('type' => 'popup'));
 		    
     include(dirname(dirname(__FILE__)) .'/includes/add_photos/captionOptions.inc.php');
 
