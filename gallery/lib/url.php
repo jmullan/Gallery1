@@ -385,7 +385,7 @@ function broken_link($file) {
 }
 
 function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
-   static $accessKeyUsed;
+   static $accessKeyUsed = array();
 
    $html = '';
    $altText = $text;
@@ -409,6 +409,15 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
     if (!empty($attrList['altText'])) {
 	$altText = $attrList['altText'];
 	unset($attrList['altText']);
+    }
+
+    if(isset($attrList['accesskey'])) {
+	if(!isset($accessKeyUsed[$attrList['accesskey']])) {
+	    $accessKeyUsed[$attrList['accesskey']] = true;
+	}
+	else {
+	    unset($attrList['accesskey']);
+	}
     }
 
     $attrs = generateAttrs($attrList);

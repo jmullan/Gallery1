@@ -1287,21 +1287,39 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
 
     $pathArray = array();
 
+    $upArrowAltText = gTranslate('common', "navigate _UP");
+    $upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
+
+    $accesskey = getAccessKey($upArrowAltText);
+    $lastUpArrowAltText = $upArrowAltText . ' '. 
+	sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
+
+    $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
+
     if (!empty($album)) {
         if ($album->fields['returnto'] != 'no') {
-            $upArrow = gImage('icons/navigation/nav_home.gif', gTranslate('common', "navigate UP"));
-
-            foreach ($album->getParentAlbums($withCurrentAlbum) as $navAlbum) {
-                $pathArray[] = $navAlbum['prefixText'] .': '.
-                  galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
-                  array(), '', false, false);
+	    $parents = $album->getParentAlbums($withCurrentAlbum);
+	    $numParents = sizeof($parents);
+	    $i = 0;
+            foreach ($parents as $navAlbum) {
+		$i++;
+                $link = $navAlbum['prefixText'] .': ';
+		if($i == $numParents) {
+		    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
+                        array('accesskey' => $accesskey), '', false, false);
+		}
+		else {
+		    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+                        array(), '', false, false);
+		}
+	        $pathArray[] = $link;
             }
         }
     }
     else {
 	$pathArray[] = sprintf(gTranslate('common', "Gallery: %s"),
-	  galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$upArrow",
-	    array(), '', false, false));
+	  galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$lastUpArrow",
+	    array('accesskey' => $accesskey), '', false, false));
     }
 
     return $pathArray;
