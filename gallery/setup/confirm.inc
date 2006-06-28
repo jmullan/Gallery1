@@ -20,7 +20,18 @@
  * $Id$
  */
 ?>
+<?php
 
+$features = array(
+        'zip' => array('zipinfo', 'unzip'),
+        'rewrite' => array('GALLERY_REWRITE_OK', 'htaccess_file'),
+        'mirror' => array('mirrorSites'),
+);
+
+require (dirname(dirname(__FILE__)) . '/includes/setup/constants.inc');
+require (dirname(dirname(__FILE__)) . '/includes/setup/defaults.inc');
+
+?>
 <input type="hidden" name="back_page" value="defaults">
 <input type="hidden" name="next_page" value="write">
 <input type="hidden" name="this_page" value="confirm">

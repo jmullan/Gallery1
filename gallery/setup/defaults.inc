@@ -20,6 +20,11 @@
  * $Id$
  */
 ?>
+<?php
+    require(GALLERY_BASE . '/includes/setup/defaults.inc');
+    require(GALLERY_BASE . '/js/sectionTabs.js.php');
+?>
+
 <input type="hidden" name="this_page" value="defaults">
 <input type="hidden" name="next_page" value="confirm">
 <input type="hidden" name="back_page" value="constants">

@@ -22,6 +22,8 @@
 ?>
 <?php
 
+require(GALLERY_BASE . '/includes/setup/checks.inc');
+
 $configTestStatus = array(
 	0 => array(
 		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success")),

@@ -21,6 +21,9 @@
  */
 ?>
 <?php
+	require(GALLERY_BASE . '/includes/setup/constants.inc');
+	require(GALLERY_BASE . '/js/sectionTabs.js.php');
+
 	insertFormJS('config');
 ?>
 <input type="hidden" name="this_page" value="constants">

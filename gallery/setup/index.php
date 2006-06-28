@@ -32,9 +32,6 @@
 
 require (dirname(__FILE__) . '/init.php');
 
-require (dirname(__FILE__) . '/config_data.inc');
-require (GALLERY_BASE . '/js/sectionTabs.js.php');
-
 list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
     getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
