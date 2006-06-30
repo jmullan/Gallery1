@@ -51,7 +51,7 @@ echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"),
     '<b>' . gTranslate('core', "Save") . '</b>'
 );
 
-echo makeFormIntro('edit_fields', array(), array('type' => 'popup'));
+echo makeFormIntro('edit_field.php', array(), array('type' => 'popup'));
 ?>
   <input type="hidden" name="field" value="<?php echo $field ?>">
   <textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
