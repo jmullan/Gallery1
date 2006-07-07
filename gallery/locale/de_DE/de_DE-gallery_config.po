@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-07 16:19+0200\n"
-"PO-Revision-Date: 2006-07-07 16:19+0100\n"
+"POT-Creation-Date: 2006-07-07 21:25+0200\n"
+"PO-Revision-Date: 2006-07-07 21:23+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -382,17 +382,17 @@ msgstr "Werfen Sie einen Blick auf den %sVersionscheck%s um weitere Details zu s
 
 #: ../lib/setup.php:1528
 #, fuzzy, php-format
-msgid "%d file is newer then expected."
+msgid "One file is newer then expected."
 msgid_plural "%d files are newer then expected."
 msgstr[0] "Eine Datei ist neuer als erwartet."
 msgstr[1] "%d Dateien sind neuer als erwartet."
 
 #: ../lib/setup.php:1536
 #, fuzzy, php-format
-msgid "%s file is out of date, corrupted or missing."
-msgid_plural "%s files are out of date, corrupted or missing."
-msgstr[0] "Die folgenden Dateien sind veraltet, defekt, oder fehlen:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
-msgstr[1] "Die folgenden Dateien sind veraltet, defekt, oder fehlen:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
+msgid "One file is out of date, corrupted or missing."
+msgid_plural "%d files are out of date, corrupted or missing."
+msgstr[0] "%s Datei ist veraltet, defekt, oder fehlt."
+msgstr[1] "%s Dateien sind veraltet, defekt, oder fehlt."
 
 #: ../lib/setup.php:1543
 #, php-format
@@ -432,6 +432,7 @@ msgid "Missing version"
 msgstr "Fehlende Versionsnummer"
 
 #: ../lib/setup.php:1610
+#, php-format
 msgid "Found Version: %s"
 msgstr "Gefundene Version: %s"
 
@@ -532,9 +533,9 @@ msgstr "Es wurden Teile von NetPBM gefunden, jedoch fehlen wichtige Komponenten 
 
 #: ../includes/setup/checks.inc:74 ../includes/setup/constants.inc:86
 #: ../setup/config_data.inc:84
-#, fuzzy, php-format
+#, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s."
-msgstr "Gallery bevorzugt ImageMagick 5.4.8 und h&ouml;her. Sie k&ouml;nnen aber auch das gesamte ImageMagick Packet von der %sImageMagick website%s herunterladen und selber installieren."
+msgstr "Gallery bevorzugt ImageMagick 5.4.8 und höher (Wir empfehlen Version 6.x) . Sie können aber auch das gesamte ImageMagick Packet von der %sImageMagick website%s herunterladen und selber installieren."
 
 #: ../includes/setup/checks.inc:77 ../includes/setup/constants.inc:89
 #: ../setup/config_data.inc:87
@@ -636,18 +637,16 @@ msgid "Allow the Gallery <b>.htaccess</b> file to set application specific confi
 msgstr "Dies erlaubt der Gallery die <b>.htaccess</b> Datei zu nutzen, um eigene Einstellungen der Konfiguration zu speichern.  Diese Datei wird vom Benutzer des Webserver kontrolliert, so dass es nicht immer m&ouml;glich ist, diese zu ver&auml;ndern. Der gr&ouml;ßte Nachteil ist meistens, dass es Ihnen dadurch nicht m&ouml;glich sein wird, Dateien > 2MB (Grosse Zip Files) upzuloaden und dass Sie vielleicht mod_rewrite nicht benutzen k&ouml;nnen (siehe unten)."
 
 #: ../includes/setup/checks.inc:142 ../setup/config_data.inc:152
-#, fuzzy
 msgid "Your webserver is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:"
-msgstr "Apache beachtet Ihre <b>.htaccess</b> Datei nicht.  Versuchen Sie folgende Zeilen in der <b>http.conf</b> Datei Ihres Webservers zu erg&auml;nzen:"
+msgstr "Ihr Webserver beachtet Ihre <b>.htaccess</b> Datei nicht.  Versuchen Sie folgende Zeilen in der <b>http.conf</b> Datei Ihres Webservers zu ergänzen:"
 
 #: ../includes/setup/checks.inc:146 ../setup/config_data.inc:156
 msgid "If you are running PHP in CGI mode, this message is unavoidable."
 msgstr "Falls Ihr PHP im CGI Modus l&auml;ft, ist diese Meldung immer vorhanden."
 
 #: ../includes/setup/checks.inc:147 ../setup/config_data.inc:157
-#, fuzzy
 msgid "Gallery could not test if your webserver is obeying the 'php_value' lines in your <b>.htaccess</b> as the (original) .htaccess file in your setup folder is missing."
-msgstr "Apache beachtet Ihre <b>.htaccess</b> Datei nicht.  Versuchen Sie folgende Zeilen in der <b>http.conf</b> Datei Ihres Webservers zu erg&auml;nzen:"
+msgstr "Gallery konnte nicht testen ob Ihr Webserver die Anweisungen in .htaccess Dateien verarbeitet, da die (original) .htaccess Datei in Ihrem Setup Ordner fehlt."
 
 #: ../includes/setup/checks.inc:151 ../setup/config_data.inc:161
 msgid "PHPs magic quotes off"
@@ -676,9 +675,8 @@ msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file 
 msgstr "Entweder ist <b>mod_rewrite</b> nicht installiert, oder Ihre <b>.htaccess</b> Datei wird nicht verarbeitet (siehe oben).   Wenn Sie dieses Feature nutzen wollen, schlagen wir vor, dass Sie sicherstellen, dass Ihre <b>.htaccess</b> erkannt wird. Falls dies nicht aussreicht, m&uuml;ssen Sie Ihren Webserver neu kompilieren mit:"
 
 #: ../includes/setup/checks.inc:166 ../setup/config_data.inc:176
-#, fuzzy
 msgid "Gallery could not test if <b>mod_rewrite</b> is working, as the (original) .htaccess file in your setup folder is missing."
-msgstr "Apache beachtet Ihre <b>.htaccess</b> Datei nicht.  Versuchen Sie folgende Zeilen in der <b>http.conf</b> Datei Ihres Webservers zu erg&auml;nzen:"
+msgstr "Gallery konnte nicht testen ob Ihr Webserver mod_rewrite unterstützt, da die (original) .htaccess Datei in Ihrem Setup Ordner fehlt."
 
 #: ../includes/setup/checks.inc:170 ../setup/config_data.inc:180
 msgid "NetPBM installed"
@@ -2359,7 +2357,6 @@ msgid "Enable Ecards ?"
 msgstr "eCards aktivieren ?"
 
 #: ../includes/setup/defaults.inc:229 ../setup/config_data.inc:1709
-#, fuzzy
 msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail."
 msgstr "Setzen Sie dies auf 'Ja' um es Benutzern zu erlauben eine Grußkarte via eMail zu senden."
 
@@ -2649,7 +2646,6 @@ msgid "Fixed"
 msgstr "Fest"
 
 #: ../includes/setup/defaults.inc:511 ../setup/config_data.inc:1991
-#, fuzzy
 msgid "Displays prev and next groups of thumbs, changing only to display next group of thumbs."
 msgstr "Es wird eine Gruppe der nächsten und vorherigen Bilder angezeigt, wobei sich nur die Anzeige der nächsten Bilder ändert."
 
@@ -2659,7 +2655,6 @@ msgid "Dynamic"
 msgstr "Dynamisch"
 
 #: ../includes/setup/defaults.inc:513 ../setup/config_data.inc:1993
-#, fuzzy
 msgid "Displays previos and next images, with current image between."
 msgstr "Zeigt die nächsten und vorherigen Bilder mit dem aktuellen in der Mitte."
 
@@ -2758,7 +2753,7 @@ msgstr "Dieser Rahmen wird um die Bilder gezeichnet."
 msgid "Gallery configuration wizard"
 msgstr "Gallery Konfigurationsassistent"
 
-#: ../setup/welcome.inc:39 ../setup/index.php:137
+#: ../setup/welcome.inc:39 ../setup/index.php:136
 msgid "Welcome"
 msgstr "Willkommen"
 
@@ -2772,9 +2767,8 @@ msgid "Welcome to the configuration wizard of Gallery."
 msgstr "Willkommen zum Konfigurationsassistenten der Gallery"
 
 #: ../setup/welcome.inc:53
-#, fuzzy
 msgid "Gallery must be configured before you can use it."
-msgstr "Sie m&uuml;ssen diese zuerst beheben, bevor Sie fortfahren."
+msgstr "Sie müssen Ihre Gallery zuerst konfigurieren, bevor Sie sie benutzen können."
 
 #: ../setup/welcome.inc:57
 msgid "1."
@@ -2782,24 +2776,24 @@ msgstr "1."
 
 #: ../setup/welcome.inc:58
 msgid "Create an empty file .htaccess and an empty file config.php in the mainfolder of your Gallery."
-msgstr ""
+msgstr "Erzeugen Sie zwei leere Dateien in Ihrem Gallery Ordner. Nennen Sie eine <i>.htaccess</i> und die andere <i>config.php</i>."
 
 #: ../setup/welcome.inc:61
 msgid "2."
 msgstr "2."
 
 #: ../setup/welcome.inc:62
-msgid "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to "
+msgid "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to put it in your Gallery folder. But thats up to you."
 msgstr ""
 
 #: ../setup/welcome.inc:65
 msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr ""
+msgstr "Stellen Sie sicher, daß der Webserver für die beiden Dateien und der Ordner Lese/- und Schreibrechte hat."
 
 #: ../setup/welcome.inc:71 ../setup/welcome.inc:83
 #, php-format
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
-msgstr ""
+msgstr "Falls Sie Probleme haben, werfen Sie einen Blick auf die %sGallery Hilfeseite%s."
 
 #: ../setup/welcome.inc:77
 msgid "Your Gallery needs a reconfiguration,"
@@ -2807,7 +2801,7 @@ msgstr "Ihre Gallery muss erneut konfiguriert werden,"
 
 #: ../setup/welcome.inc:79
 msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-msgstr ""
+msgstr "Ihre Gallery-Einstellungen wurden mit einer älteren Gallery-Version gemacht und müssen aktualisiert werden. Führen Sie Konfigurationsassitenten erneut durch."
 
 #: ../setup/welcome.inc:90
 msgid "To configure/install Galery there are only five steps in this simple procedure."
@@ -3396,6 +3390,7 @@ msgid "Skipping %s."
 msgstr ""
 
 #: ../setup/frame_test.php:86
+#, php-format
 msgid "Can't open %s"
 msgstr "Konnte %s nicht &ouml;ffnen"
 
@@ -3403,34 +3398,33 @@ msgstr "Konnte %s nicht &ouml;ffnen"
 msgid "Close Window"
 msgstr "Schliesse Fenster"
 
-#: ../setup/index.php:138
+#: ../setup/index.php:137
 msgid "1- Installation Check"
 msgstr "1 - Installationscheck"
 
-#: ../setup/index.php:139
+#: ../setup/index.php:138
 msgid "2 - Settings"
 msgstr "2- Einstellungen"
 
-#: ../setup/index.php:140
+#: ../setup/index.php:139
 msgid "3 - Defaults"
 msgstr "3 -Standardwerte"
 
-#: ../setup/index.php:141
+#: ../setup/index.php:140
 msgid "4 - Confirm"
 msgstr "4 - Best&auml;tigung"
 
-#: ../setup/index.php:142
+#: ../setup/index.php:141
 msgid "5 - Save"
 msgstr "5 - Speichern"
 
-#: ../setup/index.php:152
+#: ../setup/index.php:151
 msgid "Security violation"
 msgstr ""
 
 #: ../setup/login.inc:43
-#, fuzzy
 msgid "Please enter username and password."
-msgstr "Bitte geben Sie hier Ihr Passwort erneut ein."
+msgstr "Bitte geben Sie Benutzername und Passwort ein."
 
 #: ../setup/login.inc:65
 msgid "Invalid username or password"
@@ -3451,9 +3445,9 @@ msgid "To continue the password reset process, you must edit the file &quot;%s&q
 msgstr ""
 
 #: ../setup/login.inc:100
-#, fuzzy, php-format
+#, php-format
 msgid "%s configuration"
-msgstr "Umfrage-Konfiguration"
+msgstr "%s Konfiguration"
 
 #: ../setup/login.inc:106
 msgid "You must log in as an administrator to edit this server's configuration."
@@ -3477,22 +3471,20 @@ msgid "_Password"
 msgstr "_Passwort"
 
 #: ../setup/login.inc:128
-#, fuzzy
 msgid "_Log me in"
-msgstr "Eingeloggter Benutzer"
+msgstr "An_melden"
 
 #: ../setup/login.inc:129
 msgid "_Reset"
-msgstr ""
+msgstr "_Reset"
 
 #: ../setup/login.inc:130
 msgid "_Cancel"
-msgstr ""
+msgstr "Ab_brechen"
 
 #: ../setup/session_test.php:38
-#, fuzzy
 msgid "Session Test"
-msgstr "Session-Variable"
+msgstr "Session Test"
 
 #: ../setup/session_test.php:41
 msgid "If sessions are configured properly in your PHP installation, then you should see a session id below."
@@ -3524,14 +3516,12 @@ msgid "Page views in this session"
 msgstr ""
 
 #: ../setup/session_test.php:61
-#, fuzzy
 msgid "Server IP address"
-msgstr "Absender Adresse der Emails"
+msgstr "Server IP Adresse"
 
 #: ../setup/session_test.php:65
-#, fuzzy
 msgid "Start over"
-msgstr "Statuscode"
+msgstr "Erneuet starten"
 
 #: ../setup/write.inc:164
 #, php-format
@@ -3554,7 +3544,7 @@ msgstr ""
 
 #: ../setup/write.inc:208
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: ../setup/write.inc:216
 msgid "Your configuration has been successfully saved!"
@@ -3575,7 +3565,7 @@ msgstr ""
 
 #: ../setup/write.inc:235
 msgid "Enter your Gallery"
-msgstr ""
+msgstr "Betreten Sie Ihre Gallery"
 
 #: ../setup/write.inc:254
 #, php-format
@@ -3588,6 +3578,5 @@ msgid "You are missing either %s or %s."
 msgstr ""
 
 #: ../setup/write.inc:261
-#, fuzzy
 msgid "Review Settings"
-msgstr "Einstellungen"
+msgstr "Einstellungen überprüfen"

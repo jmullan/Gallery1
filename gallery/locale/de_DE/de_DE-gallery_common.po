@@ -28,9 +28,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-07 16:03+0200\n"
-"PO-Revision-Date: 2006-02-11 21:22+0100\n"
-"Last-Translator: Kai <kai DOT tomalik AT gmail DOT com>\n"
+"POT-Creation-Date: 2006-07-07 21:29+0200\n"
+"PO-Revision-Date: 2006-07-07 20:35+0100\n"
+"Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -38,21 +38,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../layout/frames/golden/frame.def:4
-#, fuzzy
 msgid "Gold Frame"
-msgstr "Rahmen der Alben"
+msgstr "Goldrahmen"
 
 #: ../layout/frames/golden/frame.def:5
 msgid "A fancy golden frame"
-msgstr ""
+msgstr "Ein geschmackvoller goldener Rahmen"
 
 #: ../layout/frames/notebook/frame.def:5
 msgid "Spiral Notebook"
-msgstr ""
+msgstr "Spiral Ringbuch"
 
 #: ../layout/frames/notebook/frame.def:6
 msgid "A white shadowed frame with spiral notebook binding on the left side"
-msgstr ""
+msgstr "Ein Rahmen mit weißabfallendem Schatten der an der linken Seite ein Spiralbindung hat."
 
 #: ../layout/frames/polaroid/frame.def:3
 msgid "Polaroid"
@@ -60,7 +59,7 @@ msgstr "Poloroid"
 
 #: ../layout/frames/polaroid/frame.def:4
 msgid "A photo with a large white frame, extra wide at the bottom edge"
-msgstr ""
+msgstr "Ein Rahmen der ein Polaroid simulieren soll."
 
 #: ../layout/frames/polaroids/frame.def:3
 msgid "Polaroids"
@@ -68,41 +67,40 @@ msgstr "Polaroids"
 
 #: ../layout/frames/polaroids/frame.def:4
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
-msgstr ""
+msgstr "Ein Rahmen der einen Stapel von Polaroids simulieren soll."
 
 #: ../layout/frames/postage_stamp/frame.def:5
 msgid "Postage Stamp"
-msgstr ""
+msgstr "Briefmarke"
 
 #: ../layout/frames/postage_stamp/frame.def:6
 msgid "A simple postage stamp effect."
-msgstr ""
+msgstr "Ein einfach Briefmarkeneffekt"
 
 #: ../layout/frames/shadows/frame.def:3
 msgid "Shadows"
-msgstr ""
+msgstr "Schatten"
 
 #: ../layout/frames/shadows/frame.def:4
 msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr ""
+msgstr "Ein transparenter Schatten nach rechtsunten fallen. Sollte auf den meisten Untergründen zur Geltung kommen. Ausgenommen schwarz natürlich."
 
 #: ../layout/frames/simple_book/frame.def:3
 msgid "Original Style"
-msgstr ""
+msgstr "&quot;Original Style&quot;"
 
 #: ../layout/frames/simple_book/frame.def:4
-#, fuzzy, php-format
+#, php-format
 msgid "The original %s album frame style."
-msgstr "Das original &quot;Look and Feel&quot;"
+msgstr "Das original %s Look and Feel."
 
 #: ../layout/frames/wooden/frame.def:4
-#, fuzzy
 msgid "Wood Frame"
-msgstr "Keine Rahmen"
+msgstr "Holzrahmen"
 
 #: ../layout/frames/wooden/frame.def:5
 msgid "A textured wooden frame"
-msgstr ""
+msgstr "Ein Rahmen mit hölzerner Textur."
 
 #: ../includes/definitions/albumProperties.php:30
 msgid "_Texts"
@@ -216,6 +214,7 @@ msgstr "Unteralben in die Diashow einbeziehen?"
 #: ../includes/definitions/albumProperties.php:385
 #: ../includes/definitions/albumProperties.php:395
 #: ../includes/definitions/albumProperties.php:401
+#: ../includes/definitions/albumProperties.php:444
 #: ../includes/definitions/albumProperties.php:458
 msgid "Yes"
 msgstr "Ja"
@@ -440,20 +439,16 @@ msgid "M_icrothumbs"
 msgstr "_Microvorschau"
 
 #: ../includes/definitions/albumProperties.php:441
-msgid "Use microthumb photo navigation"
-msgstr "Microvorschau benutzen ?"
-
-#: ../includes/definitions/albumProperties.php:444
-msgid "Yes, only navigation"
-msgstr ""
+msgid "Use microthumb for photo navigation"
+msgstr "Microvorschau zur Photonavigation benutzen ?"
 
 #: ../includes/definitions/albumProperties.php:445
 msgid "No, just the normal navigation"
-msgstr ""
+msgstr "Nein, nur die normale Navigation"
 
 #: ../includes/definitions/albumProperties.php:446
 msgid "Both kinds of Navigation"
-msgstr ""
+msgstr "Beide Varianten der Navigation"
 
 #: ../includes/definitions/albumProperties.php:450
 msgid "Microthumb style"
@@ -523,15 +518,15 @@ msgstr "Invertiere Auswahl"
 msgid "Colorpicker"
 msgstr "Farbauswahl"
 
-#: ../lib/colorpicker.php:39
+#: ../popups/colorpicker.php:39
 msgid "Color Picker"
 msgstr "Farbauswahl"
 
-#: ../lib/colorpicker.php:51
+#: ../popups/colorpicker.php:51
 msgid "The Options window has closed. Exiting."
 msgstr "Das Fenster mit den Einstellungsoptionen wurde geschlossen. Es wird abgebrochen."
 
-#: ../lib/colorpicker.php:57
+#: ../popups/colorpicker.php:57
 msgid "This window must be called from an Options window"
 msgstr "Dieses Fenster kann nur vom Options-Dialog aus aufgerufen werden."
 
@@ -727,14 +722,13 @@ msgid "Not valid yet"
 msgstr "Nicht validiert"
 
 #: ../lib/content.php:1290
-#, fuzzy
 msgid "navigate _UP"
-msgstr "Ebene hoch"
+msgstr "Ebene _hoch"
 
 #: ../lib/content.php:1295
 #, php-format
 msgid "(accesskey '%s')"
-msgstr ""
+msgstr "(Accesskey: '%s')"
 
 #: ../lib/content.php:1320
 #, php-format
@@ -1213,9 +1207,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Es ist mehr als eine passende <b>System</b> locale Information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden.  Bitte w&auml;hlen Sie das naheliegenste aus."
 
 #: ../lib/setup.php:943 ../lib/setup.php:1035
-#, fuzzy
 msgid "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above."
-msgstr "Dies ist <b>nur<b> f&uuml;r das Zeit- und Datumsformat. Sie brauchen auch nur Werte f&uuml;r Sprachen angeben, die Sie weiter oben angeklickt haben."
+msgstr "Dies ist <b>nur<b> für das Zeit- und Datumsformat. Sie brauchen auch nur Werte für Sprachen angeben, die Sie weiter oben angeklickt haben."
 
 #: ../lib/setup.php:956 ../lib/setup.php:984
 msgid "System locale"
@@ -1370,17 +1363,17 @@ msgstr "Werfen Sie einen Blick auf den %sVersionscheck%s um weitere Details zu s
 
 #: ../lib/setup.php:1528
 #, php-format
-msgid "%d file is newer then expected."
+msgid "One file is newer then expected."
 msgid_plural "%d files are newer then expected."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eine Datei ist neuer als erwartet."
+msgstr[1] "%d Dateien sind neuer als erwartet."
 
 #: ../lib/setup.php:1536
-#, fuzzy, php-format
-msgid "%s file is out of date, corrupted or missing."
-msgid_plural "%s files are out of date, corrupted or missing."
-msgstr[0] "Die folgende Dateien ist veraltet, defekt, oder fehlen:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s\"."
-msgstr[1] "Die folgenden Dateien sind veraltet, defekt, oder fehlen:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s\"."
+#, php-format
+msgid "One file is out of date, corrupted or missing."
+msgid_plural "%d files are out of date, corrupted or missing."
+msgstr[0] "Eine Datei ist veraltet, defekt, oder fehlt."
+msgstr[1] "%d Dateieb sind veraltet, defekt, oder fehlen."
 
 #: ../lib/setup.php:1543
 #, php-format
@@ -1389,12 +1382,12 @@ msgstr "Alle %d getesteten Dateien sind aktuell."
 
 #: ../lib/setup.php:1564
 msgid "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page."
-msgstr ""
+msgstr "Das Manifest fehlt, oder ist nicht lesbar.  Gallery ist nicht in der Lage ein Versionscheck durchzuführen.  Bitte installieren Sie dieses Datei nach und laden anschließend diese Seite neu."
 
 #: ../lib/setup.php:1569
 #, php-format
 msgid "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."
-msgstr ""
+msgstr "Bitte stellen Sie sicher, daß Ihre %s auf dem neuesten Stand ist. Gallery war nicht in der Lage den Versionscheck durchzuführen. Bitte aktualisieren Sie Ihre Gallery und laden dann erneut diese Seite."
 
 #: ../lib/setup.php:1576
 #, php-format
@@ -1420,9 +1413,9 @@ msgid "Missing version"
 msgstr "Fehlende Versionsnummer"
 
 #: ../lib/setup.php:1610
-#, fuzzy, php-format
+#, php-format
 msgid "Found Version: %s"
-msgstr "Version: %s"
+msgstr "Gefundene Version: %s"
 
 #: ../lib/setup.php:1619
 #, php-format
@@ -1487,7 +1480,7 @@ msgstr "OK! Version: %s"
 
 #: ../lib/setup.php:1924
 msgid "Unknown error occured."
-msgstr ""
+msgstr "Ein nicht identifizierter Fehler trat auf."
 
 #: ../lib/valchecks.php:46
 msgid "The given frame is not valid."
@@ -1573,29 +1566,3 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "Eine Stimme"
 msgstr[1] "%d Stimmen"
-
-#, fuzzy
-#~ msgid "Check Email"
-#~ msgstr "W&auml;hle alle"
-
-#, fuzzy
-#~ msgid "Gallery Configuration"
-#~ msgstr "Konfigurations-Assistent"
-
-#~ msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, CVS or modified code."
-#~ msgstr "%d Dateien scheinen neuer zu sein als erwartet.  Dies ist OK wenn Sie eine Vorabversion, CVS-Version oder sonstig modifizierten Code verwenden."
-
-#~ msgid "All tested files up-to-date."
-#~ msgstr "Alle getesteten Dateien sind aktuell."
-
-#~ msgid "File missing or unreadable.  Please install then re-run this test."
-#~ msgstr "Datei fehlt oder ist nicht lesbar.  Bitte korrigieren Sie dies und starten diesen Test erneut."
-
-#~ msgid "Please ensure that %s is the latest version."
-#~ msgstr "Bitte stellen Sie sicher, dass %s in der aktuellen Version vorhanden ist."
-
-#~ msgid "both"
-#~ msgstr "Beides"
-
-#~ msgid "Vote"
-#~ msgstr "Abstimmen"
