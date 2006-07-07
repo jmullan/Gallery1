@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-06-26 00:08+0200\n"
+"POT-Creation-Date: 2006-07-07 16:04+0200\n"
 "PO-Revision-Date: 2006-06-20 00:30+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -170,7 +170,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Willkommen, %s"
 
-#: ../albums.php:143 ../view_album.php:353
+#: ../albums.php:143 ../view_album.php:351
 msgid "_slideshow"
 msgstr "D_iashow"
 
@@ -258,7 +258,7 @@ msgstr "Anmeldeseite"
 msgid "The requested album with index %s is not valid"
 msgstr "Das angeforderte Album mit dem Index %s ist nicht gültig."
 
-#: ../albums.php:327 ../view_album.php:563
+#: ../albums.php:327 ../view_album.php:561
 #, php-format
 msgid "Highlight for album: %s"
 msgstr "Titelbild des Albums: %s"
@@ -268,7 +268,7 @@ msgstr "Titelbild des Albums: %s"
 msgid "No highlight!"
 msgstr "Kein Titelbild!"
 
-#: ../albums.php:357 ../view_album.php:662
+#: ../albums.php:357 ../view_album.php:660
 msgid "Download entire album as archive"
 msgstr "Ganzes Album als Archiv herunterladen"
 
@@ -311,7 +311,7 @@ msgid_plural "This album contains %d items."
 msgstr[0] "Dieses Album enthält ein Element"
 msgstr[1] "Dieses Album enthält %d Elemente"
 
-#: ../albums.php:427 ../view_album.php:778
+#: ../albums.php:427 ../view_album.php:776
 msgid "This album is empty."
 msgstr "Dieses Album ist leer."
 
@@ -391,7 +391,7 @@ msgid "(click to enlarge)"
 msgstr "(Für Vergrößerung anklicken)"
 
 #: ../captionator.php:262 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:645
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:643
 msgid "hidden"
 msgstr "versteckt"
 
@@ -549,11 +549,11 @@ msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the reque
 msgstr "Angeforderter index [%d] ist ausserhalb der erlaubten Menge [%d]. Gallery konnte das angeforderte Albumelement nicht laden."
 
 #: ../classes/Album.php:1779
+#, php-format
 msgid "Recreating %d captions..."
 msgstr "Eruege %d Beschriftungen"
 
 #: ../classes/Album.php:1781 ../classes/Album.php:1982
-#: ../popups/do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Verarbeite Bild %d ..."
@@ -624,70 +624,73 @@ msgstr "Anonymer Benutzer"
 msgid "Nobody"
 msgstr "Niemand"
 
-#: ../classes/gallery/UserDB.php:44
+#: ../classes/gallery/UserDB.php:54
 msgid "Unable to create dir"
 msgstr "Es war nicht m&ouml;glich,den folgenden Ordner zu erstellen"
 
-#: ../classes/gallery/UserDB.php:49
+#: ../classes/gallery/UserDB.php:59
 #, php-format
 msgid "%s exists, but is not a directory!"
 msgstr "%s existiert, ist aber kein Ordner !"
 
-#: ../classes/gallery/UserDB.php:61
+#: ../classes/gallery/UserDB.php:71
 #, php-format
 msgid "The folder folder which contains your user information (%s) is not writable for the webserver."
 msgstr "Der Ordner in dem sich die Benutzerdaten befinden (%s) ist nicht beschreibbar durch den Webserver."
 
-#: ../classes/gallery/UserDB.php:82
+#: ../classes/gallery/UserDB.php:92
 msgid "Your Userfile is not writeable"
 msgstr "Die Datei für die Benutzerdaten ist nicht beschreibbar"
 
-#: ../classes/gallery/UserDB.php:285
+#: ../classes/gallery/UserDB.php:295
 #, php-format
 msgid "Checking username '%s' for validity"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:289
+#: ../classes/gallery/UserDB.php:299
 msgid "Please enter a username."
 msgstr "Bitte geben Sie den Benutzernamen."
 
-#: ../classes/gallery/UserDB.php:293
+#: ../classes/gallery/UserDB.php:303
 #, php-format
 msgid "Username '%s' is to short. Must be at least 2 characters."
 msgstr "Der Benutzername '%s' ist zu kurz, bitte verwenden Sie mindestens zwei Zeichen."
 
-#: ../classes/gallery/UserDB.php:298
+#: ../classes/gallery/UserDB.php:308
 #, php-format
 msgid "Username '%s' too long. Must be at most 15 characters."
 msgstr "Der Benutzername '%s' ist zu lang, bitte verwenden Sie maximal 15 Zeichen."
 
-#: ../classes/gallery/UserDB.php:304
+#: ../classes/gallery/UserDB.php:314
 #, php-format
 msgid "Illegal username '%s'. Only letters and digits allowed."
 msgstr "Der Benutzername %s ist nicht gültig. Es dürfen nur Buchstaben und Zahlen enthalten sein."
 
-#: ../classes/gallery/UserDB.php:311
+#: ../classes/gallery/UserDB.php:321
+#, php-format
 msgid "'%s' is reserved and cannot be used."
 msgstr "'%s' ist reserviert und darf nicht benutzt werden."
 
-#: ../classes/gallery/UserDB.php:317
+#: ../classes/gallery/UserDB.php:327
+#, php-format
 msgid "A user with the username of '%s' already exists"
 msgstr "Ein Benutzer mit dem Namen '%s' existiert bereits."
 
-#: ../classes/gallery/UserDB.php:326
+#: ../classes/gallery/UserDB.php:336
 msgid "Password must be at least 3 characters"
 msgstr "Das Passwort muss mindestens 3 Zeichen lang sein."
 
-#: ../classes/gallery/UserDB.php:357
+#: ../classes/gallery/UserDB.php:367
+#, php-format
 msgid "Checking user %d of %d . . . ."
 msgstr "Pr&uuml;fe Benutzer %d von %d . . . ."
 
-#: ../classes/gallery/UserDB.php:362
+#: ../classes/gallery/UserDB.php:372
 #, php-format
 msgid "Skipped %s (Reserved username from Gallery)"
 msgstr ""
 
-#: ../classes/gallery/UserDB.php:407
+#: ../classes/gallery/UserDB.php:417
 #, php-format
 msgid "Problem adding %s:"
 msgstr "Es gab ein Problem beim hinzuf&uuml;gen von %s:"
@@ -870,13 +873,11 @@ msgstr "Beispiel:"
 msgid "_Back to upload"
 msgstr "_Zur&uuml;ck zum Upload"
 
-#: ../html/userData.inc:13 ../popups/do_command.php:89
-#: ../popups/multi_create_user.php:177
+#: ../html/userData.inc:13 ../popups/multi_create_user.php:177
 msgid "Yes"
 msgstr "Ja"
 
-#: ../html/userData.inc:13 ../popups/do_command.php:90
-#: ../popups/multi_create_user.php:177
+#: ../html/userData.inc:13 ../popups/multi_create_user.php:177
 msgid "No"
 msgstr "Nein"
 
@@ -1023,7 +1024,7 @@ msgstr "Es ist möglich für jedes Bild eine Überschrift manuell einzugeben, Sie k
 msgid "Supported file types: %s"
 msgstr "Unterst&uuml;tzte Dateitypen: %s"
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:468
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:466
 msgid " or "
 msgstr " oder "
 
@@ -1118,7 +1119,7 @@ msgid "Submit URL or directory"
 msgstr "URL oder Ordner &uuml;bergeben"
 
 #: ../includes/add_photos/add_url.inc:55 ../popups/add_comment.php:102
-#: ../popups/delete_album.php:65 ../popups/do_command.php:263
+#: ../popups/delete_album.php:65 ../popups/do_command.php:218
 #: ../popups/download.php:78 ../popups/ecard_form.php:260
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -1142,61 +1143,6 @@ msgstr "Aufnahmedatum."
 #: ../includes/add_photos/captionOptions.inc.php:38
 msgid "For the last two options Gallery will use the format you specified in the config for date/time strings."
 msgstr "Für die letzten zwei Optionen wird das Format verwendet, welches Sie für Datum/Zeit im Setup angegeben haben."
-
-#: ../includes/errors/configure_help.php:2
-#, php-format
-msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
-msgstr "Wenn Sie Probleme haben, werfen einen Blick auf die %sGallery-Hilfeseiten%s."
-
-#: ../includes/errors/reconfigure.php:9 ../includes/errors/reconfigure.php:15
-msgid "Gallery needs Reconfiguration"
-msgstr "Ihre Gallery muss erneut konfiguriert werden"
-
-#: ../includes/errors/reconfigure.php:19
-msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
-msgstr "Ihre Gallery-Konfiguration wurde mit einer &auml;lteren Gallery-Version erzeugt. Sie ist dadurch veraltet. Bitte f&uuml;hren Sie den Konfigurations-Assisten erneut aus!"
-
-#: ../includes/errors/reconfigure.php:23
-#, php-format
-msgid "Launch the %sConfiguration Wizard%s."
-msgstr "Starten Sie den %sKonfigurationsassistenten%s."
-
-#: ../includes/errors/unconfigured.php:5
-msgid "Gallery Configuration Error"
-msgstr "Gallery Konfigurationsfehler"
-
-#: ../includes/errors/unconfigured.php:5
-msgid "Gallery has not been configured!"
-msgstr "Ihre Gallery wurde nicht konfiguriert!"
-
-#: ../includes/errors/unconfigured.php:9
-msgid "Gallery must be configured before you can use it."
-msgstr "Sie m&uuml;ssen Ihre Gallery zuerst konfigurieren bevor Sie sie benutzen k&ouml;nnen."
-
-#: ../includes/errors/unconfigured.php:13
-msgid "1."
-msgstr "1."
-
-#: ../includes/errors/unconfigured.php:14
-msgid "Create an empty file .htaccess and an empty file config.php"
-msgstr "Erstellen Sie jeweils eine leere Datei .htaccess und config.php"
-
-#: ../includes/errors/unconfigured.php:17
-msgid "2."
-msgstr "2."
-
-#: ../includes/errors/unconfigured.php:18
-msgid "Create an albums folder for your pictures and movies."
-msgstr "Erstellen Sie einen Album-Ordner f&uuml;r Ihre Bilder und/oder Filme"
-
-#: ../includes/errors/unconfigured.php:21
-msgid "Make sure that both files and the folder are read and writeable for your webserver !"
-msgstr "Vergewissern Sie sich, dass beide Dateien und der Ordner sowohl les- als auch schreibbar f&uuml;r den Webserver ist."
-
-#: ../includes/errors/unconfigured.php:28
-#, php-format
-msgid "Then start the %sConfiguration Wizard%s."
-msgstr "Anschliessend starten Sie den %sKonfigurationsassistenten%s."
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
 #, php-format
@@ -1522,12 +1468,12 @@ msgstr "Nach Tag filtern"
 msgid "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>$safe_to_include</i> array"
 msgstr ""
 
-#: ../init.php:29 ../init.php:107 ../popups/view_photo_properties.php:31
+#: ../init.php:29 ../init.php:115 ../popups/view_photo_properties.php:31
 #: ../templates/overall.header.tpl.default:80
 msgid "Security violation"
 msgstr "Schutz Verletzung"
 
-#: ../init.php:401
+#: ../init.php:400
 msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
 msgstr ""
 
@@ -1779,7 +1725,7 @@ msgstr "Albumnamen &auml;ndern"
 msgid "Reset Counter"
 msgstr "Klick-Zähler zurücksetzen"
 
-#: ../lib/albumItem.php:178 ../view_album.php:255
+#: ../lib/albumItem.php:178 ../view_album.php:253
 msgid "Permissions"
 msgstr "Berechtigungen"
 
@@ -1923,7 +1869,7 @@ msgstr "Abstimmungsergebnis"
 msgid "_Return to  %s"
 msgstr "_Zurück zu %s"
 
-#: ../poll_results.php:144 ../view_album.php:425 ../view_album.php:671
+#: ../poll_results.php:144 ../view_album.php:423 ../view_album.php:669
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -2286,24 +2232,11 @@ msgstr ""
 msgid "Rebuilding highlight %s"
 msgstr "Erneuere Vorschaubild %s"
 
-#: ../popups/do_command.php:80
-msgid "Do you also want to rebuild the thumbnails in subalbums?"
-msgstr "M&ouml;chten Sie auch die Vorschaubilder der Unteralben erneuern?"
-
-#: ../popups/do_command.php:92
-msgid "Start"
-msgstr "Starten"
-
-#: ../popups/do_command.php:102
-#, php-format
-msgid "Rebuilding %d thumbnails..."
-msgstr "Erneuere %d Thumbnails ..."
-
-#: ../popups/do_command.php:112
+#: ../popups/do_command.php:77
 msgid "Rebuilding 1 thumbnail..."
 msgstr "Erneuere ein Thumbnail ..."
 
-#: ../popups/do_command.php:261
+#: ../popups/do_command.php:216
 msgid "Close window"
 msgstr "Fenster schließen"
 
@@ -3995,7 +3928,7 @@ msgid "%s RSS"
 msgstr "%s RSS"
 
 #: ../templates/album.tpl.default:173 ../templates/album.tpl.default:229
-#: ../view_album.php:474
+#: ../view_album.php:472
 msgid "Vote"
 msgstr "Abstimmen"
 
@@ -4385,152 +4318,152 @@ msgstr "Sie haben kein Bearbeitungsprogramm f&uuml;r Graphiken angegeben"
 msgid "Unable to determine image dimensions!"
 msgstr "Es nicht m&ouml;glich, die Dimensionen zu erkennen."
 
-#: ../util.php:431
+#: ../util.php:438
 #, php-format
 msgid "Can't write to %s."
 msgstr "Fehler beim Schreiben nach %s"
 
-#: ../util.php:438
+#: ../util.php:445
 #, php-format
 msgid "Can't read %s."
 msgstr "Fehler beim Lesen von %s"
 
-#: ../util.php:660
+#: ../util.php:667
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Aufnahmedatum: %s"
 
-#: ../util.php:705
+#: ../util.php:712
 #, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "Konnte die lock Datei (%s) nicht &ouml;ffnen!"
 
-#: ../util.php:710
+#: ../util.php:717
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Konnte die Datei nicht entsperren (%s)!"
 
-#: ../util.php:793
+#: ../util.php:800
 #, php-format
 msgid "extension of file %s is %s"
 msgstr "Erweiterung der Datei %s is %s"
 
-#: ../util.php:902
+#: ../util.php:909
 #, php-format
 msgid "Extracting: %s with %s"
 msgstr "Extrahiere: %s mit %s"
 
-#: ../util.php:920
+#: ../util.php:927
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr "%s mit der Dateiendung %s ist kein unterstützes Archivformat."
 
-#: ../util.php:935
+#: ../util.php:942
 msgid "No Support for creating Zips"
 msgstr "Keine Unterstützung zur Erstellung von Zip Archiven."
 
-#: ../util.php:938
+#: ../util.php:945
 #, php-format
 msgid "Creating Zip file with %s"
 msgstr "Erzeuge Zipdatei mit %s"
 
-#: ../util.php:952
+#: ../util.php:959
 #, php-format
 msgid "Your temp folder is not writeable! Please check permissions of this dir: %s"
 msgstr "Ihr 'temp' Ordner ist nicht beschreibbar! Bitte prüfen Sie die Berechtigungen für dieses Verzeichnus: %s"
 
-#: ../util.php:984
+#: ../util.php:991
 #, php-format
 msgid "Processing file: %s"
 msgstr "Verarbeite Bild %s"
 
-#: ../util.php:987
+#: ../util.php:994
 #, php-format
 msgid "Processing file '%s' as archive"
 msgstr "Verarbeite '%s' als Archiv"
 
-#: ../util.php:990
+#: ../util.php:997
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "%s wird &uuml;bersprungen (%s wird von Ihrer Installation nicht unterst&uuml;tzt)"
 
-#: ../util.php:999
+#: ../util.php:1006
 msgid "Getting archive content Filenames"
 msgstr "Hole Dateinames des Archivinhaltes."
 
-#: ../util.php:1017
+#: ../util.php:1024
 msgid "No Metadata"
 msgstr "Keine Metadaten"
 
-#: ../util.php:1021
+#: ../util.php:1028
 msgid "Processing files in archive"
 msgstr "Verarbeite Dateien des Archives"
 
-#: ../util.php:1027
+#: ../util.php:1034
 #, php-format
 msgid "%d. %s"
 msgstr "%d. %s"
 
-#: ../util.php:1030
+#: ../util.php:1037
 #, php-format
 msgid "Could not extract %s"
 msgstr "Konnte %s nicht entpacken"
 
-#: ../util.php:1153
+#: ../util.php:1160
 #, php-format
 msgid "Adding %s"
 msgstr "F&uuml;ge hinzu: %s"
 
-#: ../util.php:1173
+#: ../util.php:1180
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Brauchen Sie Hilfe? Schauen Sie in die %s%s F.A.Q.%s."
 
-#: ../util.php:1178
+#: ../util.php:1185
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "%s wird &uuml;bersprungen (%s Format kann nicht verarbeitet werden)"
 
-#: ../util.php:1291
+#: ../util.php:1298
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 
-#: ../util.php:1485
+#: ../util.php:1492
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr "Parse nach CSV Daten in: %s"
 
-#: ../util.php:1501
+#: ../util.php:1508
 msgid "csv result:"
 msgstr "CSV Ergebnis:"
 
-#: ../util.php:1680
+#: ../util.php:1687
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "MIMEtype der Datei %s ist %s"
 
-#: ../util.php:1770
+#: ../util.php:1777
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s hat dir eine eC@rd geschickt."
 
-#: ../util.php:1871
+#: ../util.php:1878
 #, php-format
 msgid "Gallery was unable to create a tempory subfolder in your temp folder. Please check permissions of this dir: %s"
 msgstr "Gallery ist nicht in der Lage einen Unterodner in ihrem 'temp' Verzeichnis anzulegen! Bitte prüfen Sie die Berechtigungen für dieses Verzeichnis: %s"
 
-#: ../util.php:1910
+#: ../util.php:1917
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr "'%s' ist keine gültige Datei. Herunterladen abgebrochen."
 
-#: ../util.php:1918
+#: ../util.php:1925
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr "Die Datei '%s' scheint sich nicht innerhalb Gallery tempdir %s zu befinden, Herunterladen abgebrochen."
 
-#: ../util.php:1923
+#: ../util.php:1930
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr "Es wird versucht das Tempverzeichnis selber herunterzuladen ?! Herunterladen abgebrochen"
 
@@ -4608,115 +4541,115 @@ msgstr "Beschriftungen erzeugen"
 msgid "Rebuild thumbs"
 msgstr "Thumbnails erneuern"
 
-#: ../view_album.php:241
+#: ../view_album.php:239
 msgid "Properties"
 msgstr "Eigenschaften"
 
-#: ../view_album.php:248
+#: ../view_album.php:246
 msgid "Rearrange items"
 msgstr "Elemente umordnen"
 
-#: ../view_album.php:262
+#: ../view_album.php:260
 msgid "Poll results"
 msgstr "Abstimmungsergebnisse"
 
-#: ../view_album.php:269
+#: ../view_album.php:267
 msgid "Poll reset"
 msgstr "Abstimmung zurücksetzen"
 
-#: ../view_album.php:276
+#: ../view_album.php:274
 msgid "View comments"
 msgstr "Kommentare betrachten"
 
-#: ../view_album.php:283
+#: ../view_album.php:281
 msgid "Watermark album"
 msgstr "Wasserzeichen setzen"
 
-#: ../view_album.php:343
+#: ../view_album.php:341
 msgid "Album Actions"
 msgstr "Album Aktionen"
 
-#: ../view_album.php:366
+#: ../view_album.php:364
 msgid "view&nbsp;_comments"
 msgstr "_Kommentare betrachten"
 
-#: ../view_album.php:403
+#: ../view_album.php:401
 msgid "You have currently no votes recorded for this poll."
 msgstr "Sie haben bisher keine Stimme f&uuml;r diese Umfrage abgegeben."
 
-#: ../view_album.php:409
+#: ../view_album.php:407
 msgid "Your votes in the current session are:"
 msgstr "Ihre Stimmen in der aktuellen Session sind:"
 
-#: ../view_album.php:449
+#: ../view_album.php:447
 msgid "See full poll results"
 msgstr "Vollst&auml;ndiges Abstimmungsergebnis anzeigen"
 
-#: ../view_album.php:466
+#: ../view_album.php:464
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:472
+#: ../view_album.php:470
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Sie haben die M&ouml;glichkeit, die einzelnen Element zu bewerten. Um f&uuml;r ein Element abzustimmen, klicken Sie auf <i>%s</i>."
 
-#: ../view_album.php:474
+#: ../view_album.php:472
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Damit ihr Stimme gewertet wird, klicken Sie anschließend bitte auf %s."
 
-#: ../view_album.php:479
+#: ../view_album.php:477
 #, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] "Sie haben insgesamt %d Stimme und k&ouml;nnen diese auch nachtr&auml;glich wieder &auml;ndern."
 msgstr[1] "Sie haben insgesamt %d Stimmen und k&ouml;nnen diese auch nachtr&auml;glich wieder &auml;ndern."
 
-#: ../view_album.php:483
+#: ../view_album.php:481
 msgid "You can change your votes later, if you wish."
 msgstr "Wenn Sie m&ouml;chten, k&ouml;nnen Sie ihre Angabe jederzeit wieder ver&auml;ndern."
 
-#: ../view_album.php:604 ../view_album.php:605
+#: ../view_album.php:602 ../view_album.php:603
 #, php-format
 msgid "%dkB"
 msgstr "%d Kb"
 
-#: ../view_album.php:650
+#: ../view_album.php:648
 msgid "highlight"
 msgstr "Titelbild"
 
-#: ../view_album.php:675
+#: ../view_album.php:673
 msgid "No description"
 msgstr "Keine Beschreibung"
 
-#: ../view_album.php:683
+#: ../view_album.php:681
 #, php-format
 msgid "Last change: %s"
 msgstr "Letzte &Auml;nderung am %s."
 
-#: ../view_album.php:686
+#: ../view_album.php:684
 #, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Enth&auml;lt: Ein Element"
 msgstr[1] "Enth&auml;lt: %d Elemente"
 
-#: ../view_album.php:703
+#: ../view_album.php:701
 #, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Betrachtet: 1 Mal"
 msgstr[1] "Betrachtet: %d Mal"
 
-#: ../view_album.php:728
+#: ../view_album.php:726
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Betrachtet: 1 Mal"
 msgstr[1] "Betrachtet: %d Mal"
 
-#: ../view_album.php:776
+#: ../view_album.php:774
 msgid "Hey! Add some photos."
 msgstr "F&uuml;gen Sie Bilder/Filme hinzu!"
 
@@ -4773,6 +4706,54 @@ msgstr "Photo als e_Card senden"
 #: ../view_photo.php:509
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
+
+#~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
+#~ msgstr "Wenn Sie Probleme haben, werfen einen Blick auf die %sGallery-Hilfeseiten%s."
+
+#~ msgid "Gallery needs Reconfiguration"
+#~ msgstr "Ihre Gallery muss erneut konfiguriert werden"
+
+#~ msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
+#~ msgstr "Ihre Gallery-Konfiguration wurde mit einer &auml;lteren Gallery-Version erzeugt. Sie ist dadurch veraltet. Bitte f&uuml;hren Sie den Konfigurations-Assisten erneut aus!"
+
+#~ msgid "Launch the %sConfiguration Wizard%s."
+#~ msgstr "Starten Sie den %sKonfigurationsassistenten%s."
+
+#~ msgid "Gallery Configuration Error"
+#~ msgstr "Gallery Konfigurationsfehler"
+
+#~ msgid "Gallery has not been configured!"
+#~ msgstr "Ihre Gallery wurde nicht konfiguriert!"
+
+#~ msgid "Gallery must be configured before you can use it."
+#~ msgstr "Sie m&uuml;ssen Ihre Gallery zuerst konfigurieren bevor Sie sie benutzen k&ouml;nnen."
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#~ msgid "Create an empty file .htaccess and an empty file config.php"
+#~ msgstr "Erstellen Sie jeweils eine leere Datei .htaccess und config.php"
+
+#~ msgid "2."
+#~ msgstr "2."
+
+#~ msgid "Create an albums folder for your pictures and movies."
+#~ msgstr "Erstellen Sie einen Album-Ordner f&uuml;r Ihre Bilder und/oder Filme"
+
+#~ msgid "Make sure that both files and the folder are read and writeable for your webserver !"
+#~ msgstr "Vergewissern Sie sich, dass beide Dateien und der Ordner sowohl les- als auch schreibbar f&uuml;r den Webserver ist."
+
+#~ msgid "Then start the %sConfiguration Wizard%s."
+#~ msgstr "Anschliessend starten Sie den %sKonfigurationsassistenten%s."
+
+#~ msgid "Do you also want to rebuild the thumbnails in subalbums?"
+#~ msgstr "M&ouml;chten Sie auch die Vorschaubilder der Unteralben erneuern?"
+
+#~ msgid "Start"
+#~ msgstr "Starten"
+
+#~ msgid "Rebuilding %d thumbnails..."
+#~ msgstr "Erneuere %d Thumbnails ..."
 
 #~ msgid "skipped"
 #~ msgstr "&Uuml;bersprungen"
