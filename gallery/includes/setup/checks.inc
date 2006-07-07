@@ -59,9 +59,9 @@ if (function_exists('posix_getpwuid')) {
 
 $common_messages['getting-netpbm'] = '<br>'.
   sprintf(gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
-  "<a href=\"http://sourceforge.net/projects/gallery\">",
+  '"<a href="http://sourceforge.net/projects/gallery" target="_blank">',
   '</a>',
-  "<a href=\"http://sourceforge.net/projects/netpbm\">",
+  '<a href="http://sourceforge.net/projects/netpbm" target="_blank">',
   '</a>')  .
   '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
@@ -72,7 +72,7 @@ $common_messages['fail-netpbm-partial'] =
 
 $common_messages['getting-imagemagick'] = '<br>'.
   sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s." ),
-  '<a href="http://www.imagemagick.org">', '</a>') .
+  '<a href="http://www.imagemagick.org" target="_blank">', '</a>') .
   '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
@@ -83,7 +83,7 @@ $common_messages['fail-imagemagick-partial'] =
 $common_messages['open-basedir-active'] =
   '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
   sprintf(gTranslate('config',"Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
-  "<b><a href=\"http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir\" target=\"_blank\">open_basedir</a></b>" );
+  '<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 
 $checklist = array(
 	'gallery_version' => array(
@@ -116,14 +116,14 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		'func' => 'check_safe_mode',
 		'fail-safe-mode' => sprintf(gTranslate('config',"<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
-		  '<a href="http://gallery.sourceforge.net">',
+		  '<a href="http://gallery.sourceforge.net" target="_blank">',
 		  '</a>',
-		  '<a href="http://www.php.net/manual/en/features.safe-mode.php">',
+		  '<a href="http://www.php.net/manual/en/features.safe-mode.php" target="_blank">',
 		  '</a>') .
 		  '<br><br>' .
 		  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
 		  sprintf(gTranslate('config',"In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
-		  '<a href="phpinfo.php">',
+		  '<a href="phpinfo.php" target="_blank">',
 		  '</a>'),
 		'optional' => 1,
 		'serious' => 1
@@ -196,7 +196,7 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		'func' => 'check_exif',
 		'fail-exif' => sprintf(gTranslate('config',"I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
-		  '<a href="http://www.sentex.net/~mwandel/jhead/index.html">',
+		  '<a href="http://www.sentex.net/~mwandel/jhead/index.html" target="_blank">',
 		  '</a>'),
 		'open-basedir-note' => $common_messages['open-basedir-active']
 		),
@@ -206,8 +206,8 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		'func' => 'check_jpegtran',
 		'fail-jpegtran' => sprintf(gTranslate('config',"I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."),
-		  '<a href="http://www.ijg.org">', '</a>',
-		  '<a href="http://jpegclub.org/">', '</a>'),
+		  '<a href="http://www.ijg.org" target="_blank">', '</a>',
+		  '<a href="http://jpegclub.org/" target="_blank">', '</a>'),
 		  'open-basedir-note' => $common_messages['open-basedir-active']
 	),
 	'gettext' => array (
@@ -216,7 +216,7 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."),
 		'func' => 'check_gettext',
 		'fail-gettext' => sprintf(gTranslate('config',"Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."),
-		  '<a href="http://www.php.net/manual/en/ref.gettext.php">', '</a>')
+		  '<a href="http://www.php.net/manual/en/ref.gettext.php" target="_blank">', '</a>')
 	),
 	'gallery-locale' => array (
 		'prompt' => gTranslate('config',"Locales needed for Gallery"),

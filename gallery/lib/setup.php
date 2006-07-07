@@ -694,7 +694,7 @@ function check_gallery_languages() {
 	else {
 		$success[] = sprintf(gTranslate('config', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
 		sizeof($languages),
-		"<a href=\"$gallery->url\">",
+		"<a href=\"$gallery->url\" target=\"_blank\">",
 		'</a>');
 	}
 	return array($success, $fail, $warn);
@@ -712,7 +712,7 @@ function check_gallery_version() {
 	/* is this a beta or RC version? */
 	$beta = ereg('-(b|RC)[0-9]*$', $gallery->version);
 
-	$link = "<a href=\"$gallery->url\">$gallery->url</a>";
+	$link = galleryLink($gallery->url, $gallery->url, array('target' => '_blank'));
 
 	$visit = '<br>'. sprintf(gTranslate('config', "You can check for more recent versions by visiting %s."), $link);
 
@@ -771,10 +771,12 @@ function check_absent_locales() {
 	}
 	else {
 	    if (getOS() == OS_LINUX) {
-		$fail[] = sprintf(gTranslate('config', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),"Debian", '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', "</a>");
+		$fail[] = sprintf(gTranslate('config', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),
+		  'Debian',
+		  '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', '</a>');
 	    }
 	    else {
-		$warn[] = gTranslate('config', "Only the default locale for this machine is available, so date format will not change for different languages.");
+		  $warn[] = gTranslate('config', "Only the default locale for this machine is available, so date format will not change for different languages.");
 	    }
 	}
     }
@@ -1521,7 +1523,7 @@ function check_gallery_versions()  {
 
 	$hint = "<p>" . gTranslate('config', "This should be fixed before proceeding") .
 		"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-		"<a href=check_versions.php>", "</a>") . '</p>';
+		'<a href="check_versions.php">', '</a>') . '</p>';
 
 	if(!empty($versionStatus['newer'])) {
 	    $warn[] = gTranslate('config',

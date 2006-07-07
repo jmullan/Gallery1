@@ -59,13 +59,18 @@ $configTestStatus = array(
 
 $diagnostics_page = galleryLink(
     makeGalleryUrl('setup/diagnostics.php'),
-    gTranslate('config', "Gallery Dia_gnostics Page"));
+    gTranslate('config', "Gallery Dia_gnostics Page"),
+    array('target' => '_blank'));
 
 $help_page = galleryLink(
     'http://gallery.sourceforge.net/help.php',
-    gTranslate('config', "Gallery _help page"));
+    gTranslate('config', "Gallery _help page"),
+    array('target' => '_blank'));
 
-$docs_page = galleryLink(galleryDocs(), gTranslate('config', "_documentation"));
+$docs_page = galleryLink(
+    galleryDocs(),
+    gTranslate('config', "_documentation"),
+    array('target' => '_blank'));
 ?>
 
 <script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js'); ?>"></script>
