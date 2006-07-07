@@ -242,4 +242,19 @@ $checklist = array(
 	),
 );
 
+$checkPriority = array(
+    'mandatory' => array(
+        'checks' => array('gallery_version', 'php', 'safe_mode', 'exec',
+                          'NetPBM', 'ImageMagick', 'check-versions'),
+        'shortdesc' => gTranslate('config',"Mandatory checks"),
+        'longdesc' => gTranslate('config' ,"If any of these items are highlighted in red then please take actions to correct them. Failure to do so could lead to your Gallery installation not functioning correctly.")
+    ),
+    'recommend' => array(
+        'checks' => array('register_globals', 'htaccess', 'magic-quotes', 'mod-rewrite', 'exif',
+                          'jpegtran', 'gettext', 'gallery-locale', 'missing-locales'),
+        'shortdesc' => gTranslate('config',"Recommended things"),
+        'longdesc' => gTranslate('config' ,"Nice to have.")
+    )
+);
+
 ?>

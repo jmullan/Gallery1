@@ -177,55 +177,69 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 	}
 	$admin->save();
 }
-?>
 
-<title><?php echo gTranslate('config', "Success!") ?></title>
-<center>
-<div class="g-header">
-    <span class="g-pagetitle"><?php echo gTranslate('config', "Your configuration has been successfully saved!") ?></span>
-</div>
+$messages = array();
 
-<div class="g-sitedesc">
-<?php
 if (getOS() != OS_WINDOWS) {
-	if (!empty($message))
-		$message .= "<br><br>";
-	else
-		$message = "";
-	$message .= gTranslate('config', "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.");
+    $messages[] = array(
+        'type' => 'information',
+        'text' => gTranslate('config', "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.")
+    );
 }
 
-// Inform the user that their gallery is not secure until they remove the 'resetadmin' file
+/* Inform the user that their gallery is not secure until they remove the 'resetadmin' file */
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-	if (!empty($message)) $message .= "<br><br>";
-	$message .= '<span class="g-attention">'
-			. gTranslate('config', "Note")
-			. ':<br>'
-			. sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
-			. '</span>' ;
+        $messages[] = array(
+        'type' => 'warning',
+        'text' => sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
+    );
 }
-if (isset($message)) {
-    echo "\n\t<p>$message</p>";
-}
-?>
 
-<p class="g-sitedesc" style="width:80%; text-align:center">
-<?php
-	echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
-	echo '<br>';
-	echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
-	echo '<br>';
-	echo '<b>';
-	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
-		'<a href="http://gallery.sourceforge.net/lists.php">gallery-announce</a>',
-	       Gallery());
+/* Begin HTML Output */
 ?>
-	</b>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
 </div>
-<p style="font-size: 125%"><a href="../albums.php"><?php echo gTranslate('config', "Enter the Gallery") ?></a></p>
 
-<p><img src="../images/gallery-tag.png"></p>
+<div class="g-config">
+    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
+    <div class="g-config-content">
+        <div class="g-config-step floatleft"><?php echo gTranslate('config', "Save"); ?></div>
+
+        <div class="clear"></div>
+
+        <div class="g-config-main">
+        <?php
+            echo infoBox(array(array(
+                'type' => 'success',
+                'text' => gTranslate('config', "Your configuration has been successfully saved!")
+            )), '', false);
+
+            echo infoBox($messages, '', false);
+        ?>
+            <div class="g-emphasis" style="margin: 5px 0">
+        <?php
+        	echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
+        	echo '<br>';
+        	echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
+        ?>
+            </div>
+
+        <?php
+        	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
+        		'<a href="http://gallery.sourceforge.net/lists.php">gallery-announce</a>',
+        	       Gallery());
+        ?>
+            <p class="g-emphasis center" style="font-size: large">
+                <a href="../albums.php"><?php echo gTranslate('config', "Enter your Gallery") ?></a>
+            </p>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
 </body>
 </html>
 

@@ -128,50 +128,28 @@ if (isset($gallery->session->configForm->smtpPassword) && (!empty($gallery->sess
 	$_REQUEST['smtpPassword'] = $gallery->session->configForm->smtpPassword;
 }
 
-?>
-
-<form method="post" action="index.php" name="config" enctype="application/x-www-form-urlencoded">
-<?php
 if (!isset($setup_page)) {
-	$setup_page = "check";
+	$setup_page = 'welcome';
 }
 
-$legit = array("check", "constants", "defaults", "confirm", "write");
-if (in_array($setup_page, $legit)) {
+$steps = array(
+    'welcome' => gTranslate('config', "Welcome"),
+    'check' => gTranslate('config', "1- Installation Check"),
+    'constants' => gTranslate('config', "2 - Settings"),
+    'defaults' => gTranslate('config', "3 - Defaults"),
+    'confirm' => gTranslate('config', "4 - Confirm"),
+    'write' => gTranslate('config', "5 - Save")
+);
+
+?>
+<form method="post" action="index.php" name="config" enctype="application/x-www-form-urlencoded">
+<?php
+
+if (array_key_exists($setup_page, $steps)) {
 	include(dirname(__FILE__) ."/$setup_page.inc");
 } else {
 	print _("Security violation") .".\n";
 	exit;
-}
-
-function embed_hidden($key) {
-	global $$key;
-
-	$buf = "";
-	$real = $$key;
-
-	if (is_array($real)) {
-		foreach ($real as $real_key => $value) {
-			if (is_array($value)) {
-				foreach($value as $sub_key => $sub_value) {
-					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
-					$buf .= '<input type="hidden" name="'. $name .'" value="';
-					$buf .= urlencode($sub_value);
-					$buf .= "\">\n";
-				}
-			} else {
-				$name = stripWQuotesON("$key" . "[$real_key]");
-				$buf .= '<input type="hidden" name="'. $name .'" value="';
-				$buf .= urlencode($value);
-				$buf .= "\">\n";
-			}
-		}
-	} else {
-		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
-		$buf .= urlencode($real);
-		$buf .= "\">\n";
-	}
-	return $buf;
 }
 
 foreach ($preserve as $key => $val) {

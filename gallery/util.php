@@ -361,27 +361,34 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	}
 }
 
+/**
+ * Checks wether our Gallery configuration is configured
+ *
+ * @return mixed    NULL, 'unconfigured', 'reconfigure'
+ */
 function gallerySanityCheck() {
-	global $gallery;
-	global $GALLERY_OK;
-       	if (!empty($gallery->backup_mode)) {
-	       	return NULL;
-       	}
+	global $gallery, $GALLERY_OK;
+
+    if (!empty($gallery->backup_mode)) {
+        return NULL;
+    }
 
 	setGalleryPaths();
 
 	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
-                broken_link(GALLERY_CONFDIR . "config.php") ||
-                !$gallery->app) {
-		$GALLERY_OK = false;
-		return "unconfigured.php";
+        broken_link(GALLERY_CONFDIR . "config.php") ||
+        !$gallery->app) {
+
+        $GALLERY_OK = false;
+		return 'unconfigured';
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK = false;
-		return "reconfigure.php";
+		return 'reconfigure';
 	}
 	$GALLERY_OK = true;
+
 	return NULL;
 }
 

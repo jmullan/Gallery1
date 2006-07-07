@@ -26,38 +26,11 @@
 
 	insertFormJS('config');
 ?>
+
 <input type="hidden" name="this_page" value="constants">
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">
 
-<div class="g-header">
-    <div class="g-pagetitle"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
-</div>
-
-<div class="g-sitedesc">
-<?php
-	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
-	echo '<br>';
-	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
-?>
-
-</div>
-
-<div align="center" style="margin: 5px">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
-</div>
-
-<div style="margin: 10px 30px 0; font-size: 8.5pt">
-<?php
-
-$initialtab = makeSectionTabs($constants);
-echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
-
-?>
 <script type="text/javascript" language="Javascript">
 
 function toggleGraphics(show) {
@@ -72,35 +45,70 @@ function toggleGraphics(show) {
 
 </script>
 
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
+</div>
+
+<div class="g-config">
+    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
+
+    <div class="g-config-content">
+        <div class="g-config-step floatleft"><?php echo gTranslate('config', "Settings"); ?></div>
+        <div class="floatright">
+        	<?php echo gSubmit('go_back', gTranslate('config', "&lt;&lt; _Previous Step"), array('disabled' => 'disabled')); ?>
+            <?php echo gSubmit('go_next', gTranslate('config', "_Next Step &gt;&gt;"), array('disabled' => 'disabled')); ?>
+        </div>
+
+        <div class="g-album-desc clear">
+        <?php
+            echo gTranslate('config', "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
+            echo '<br>';
+            echo gTranslate('config',"Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
+        ?>
+        </div>
+    </div>
+
+    <div style="clear: right; height: 35px"></div>
+
+    <div class="g-config-main">
+        <div align="center" style="margin: 5px 0">
+            <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+            <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
+            <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+        </div>
 <?php
+
+$initialtab = makeSectionTabs($constants);
+echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
+
 $i = 0;
 foreach ($constants as $key => $val) {
     if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 
     if (isset($val["type"]) && $val["type"] === 'block_start') {
-	echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
-	echo evenOdd_row(make_fields($key, $val), $i % 2);
-	continue;
+    	echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+    	echo evenOdd_row(make_fields($key, $val), $i % 2);
+    	continue;
     }
 
     if (isset($val["type"]) && $val["type"] === 'subgroup') {
-	echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
-	echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
-	if (isset($val['desc'])) {
-	    echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
-	}
-	continue;
+    	echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
+    	echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
+    	if (isset($val['desc'])) {
+    	    echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
+    	}
+    	continue;
     }
 
     if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
-	echo '</div>';
+        echo '</div>';
         continue;
     }
 
     if (isset($val["type"]) && $val["type"] === 'block_end') {
-	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-	echo "\n</table>";
-	continue;
+    	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+    	echo "\n</table>";
+    	continue;
     }
 
 	if (isset($val["type"]) && $val["type"] === 'group_start') {
@@ -125,8 +133,8 @@ foreach ($constants as $key => $val) {
 			$val["value"] = $gallery->app->$key;
 		}
 		elseif (is_array($val["value"])) {
-			$key=$key."[]";
-			$val["value"]=$val["value"][0];
+			$key = $key."[]";
+			$val["value"] = $val["value"][0];
 		}
 		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
 			unset($preserve[$key]);
@@ -136,9 +144,10 @@ foreach ($constants as $key => $val) {
 		}
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
-	} else {
+	}
+	else {
 	    if (!isset($val["type"]) || $val["type"] !== 'block_element') {
-		echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+            echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
 	    }
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {
@@ -190,13 +199,14 @@ foreach ($constants as $key => $val) {
 	}
 }
 ?>
+        <div align="center">
+        	<input type="submit" name="go_back" disabled="disabled" value="&lt;&lt; <?php echo gTranslate('config', "Previous Step") ?>" class="g-button">
+                <input type="button" name="go_backTab" disabled="disabled" value="&lt; <?php echo gTranslate('config', "Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab") ?> &gt;" onClick="section_tabs.nextTab()" class="g-button">
+                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step") ?> &gt;&gt;" class="g-button">
+                <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+        </div>
 
-</div>
-
-<div align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>" class="g-button">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()" class="g-button">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;" class="g-button">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>" class="g-button">
+        <div class="clear"></div>
+    </div>
 </div>

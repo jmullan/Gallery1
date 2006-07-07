@@ -68,6 +68,14 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
     set_time_limit($gallery->app->timeLimit);
 }
 
+$gallerySanity = gallerySanityCheck();
+
+/* Make sure that Gallery is set up properly */
+if ($gallerySanity != NULL) {
+    header("Location: " . makeGalleryHeaderUrl('setup/index.php'));
+    exit;
+}
+
 /*
  *  We TRY to make sure that register_globals is disabled.  If the user has not disabled
  *  register_globals in their php.ini, we try to emulate its functionality by unsetting all
@@ -178,15 +186,6 @@ require(dirname(__FILE__) . "/classes/Comment.php");
 
 if (!isset($GALLERY_NO_SESSIONS)) {
     require(dirname(__FILE__) . "/session.php");
-}
-
-$gallerySanity = gallerySanityCheck();
-
-/* Make sure that Gallery is set up properly */
-if ($gallerySanity != NULL) {
-    initLanguage();
-    include_once(dirname(__FILE__) . "/includes/errors/$gallerySanity");
-    exit;
 }
 
 if (isset($GALLERY_EMBEDDED_INSIDE)) {

@@ -30,6 +30,16 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function Gallery_UserDB() {
 		global $gallery;
+		
+		if(empty($gallery->app->userDir)) {
+            echo infoBox(array(array(
+                'type' => 'error',
+                'text' => sprintf("No Userdir defined ! Please rerun the %sconfiguration wizard%s.",
+                    '<a href="setup">', '</a>')
+            )));
+            exit;
+		}
+		
 		$userDir = $gallery->app->userDir;
 
 		// assuming revision 4 ensures that if the user_version is

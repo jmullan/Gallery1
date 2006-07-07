@@ -293,7 +293,7 @@ function locateDir($filename, $extraDir = '', $ignorePath = false) {
 	    }
         }
     }
-    
+
     return $dir;
 }
 
@@ -306,7 +306,7 @@ function locateFile($filename) {
 	    break;
 	}
     }
-    
+
     return $file;
 }
 
@@ -444,7 +444,7 @@ function check_exif($location = '') {
 	else {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
-	
+
 	if (empty($dir)) {
 		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>");
 	}
@@ -737,7 +737,7 @@ function check_gallery_version() {
 
 function check_absent_locales() {
     global $locale_check;
-    
+
     $fail = array();
     $success = array();
     $warn = array();
@@ -778,7 +778,7 @@ function check_absent_locales() {
 	    }
 	}
     }
-    
+
     return array($success, $fail, $warn);
 }
 
@@ -930,20 +930,20 @@ function config_maybe_locales() {
 		continue;
 	}
 	*/
-	
+
 	$nr++;
 	if (!$block_start_done) {
 	    $block_start_done = true;
 	    $results[] = array (
 		'type' => 'block_start',
-		'prompt' => '<b>(' . gTranslate('config', "Advanced") . ') </b><br>' . 
+		'prompt' => '<b>(' . gTranslate('config', "Advanced") . ') </b><br>' .
 			    sprintf(gTranslate('config', "<b>System</b> locale selection required")),
 		'desc' => gTranslate('config', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 			  '<br><br>' .
 			  gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
 		);
 	}
-	
+
 	$index = $nls['language'][$key];
 
 	$choices = array();
@@ -951,12 +951,12 @@ function config_maybe_locales() {
 	foreach ($aliases as $value) {
 	    $choices[$value] = $value;
 	}
-	
+
 	if (getOS() != OS_WINDOWS) {
 	    $choices[''] = gTranslate('config', "System locale");
 	    next($choices);
 	}
-	
+
 	$results["locale_alias['$key']"] = array (
 	    'prompt' => $nr . '.) ' . $nls['language'][$key],
 	    'optional' => true,
@@ -1037,13 +1037,13 @@ function config_maybe_locales() {
 	    }
 
 	    $index = $nls['language'][$key] ;
-	    
+
 	    $results["locale_alias['$key']"] = array (
 		'prompt' => $nls['language'][$key],
 		'name' => 'locale_alias',
-		'key' => $key, 
+		'key' => $key,
 		'type' => 'block_element',
-		'choices' => $choices, 
+		'choices' => $choices,
 		'value' => '',
 		'allow_empty' => true,
 		'remove_empty' => true
@@ -1072,7 +1072,7 @@ function check_safe_mode() {
 	$fail = array();
 	$success = array();
 	$warn = array();
-	
+
 	$safe_mode = ini_get("safe_mode");
 	if (empty($safe_mode) ||
 	  !strcasecmp($safe_mode, "off") ||
@@ -1241,25 +1241,25 @@ function inOpenBasedir($dir) {
 
 function make_separator($key, $arr)  {
 	getAndRemoveAccessKey($arr["title"]);
-	$buf ="\n<div class=\"g-double-bottom-border-spacer\">";
-	$buf .= "\n\t<div class=\"g-separator\">". $arr["title"] ."</div>";
-	if( isset($arr["desc"])) {
-		$buf .= "\n<div class=\"g-desc-cell\">". $arr["desc"] ."</div>";
-	}
-	$buf .="\n</div>";
 
-	return $buf;
+	$html = "\n\t<h1>". $arr["title"] .'</h1>';
+
+	if( isset($arr["desc"])) {
+		$html .= "\n<div class=\"g-desc-cell\">". $arr["desc"] ."</div>";
+	}
+
+	return $html;
 }
 
 function array_stripslashes($subject) {
 	if (is_string($subject)) {
 		return stripslashes($subject);
 	}
-	
+
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	
+
 	$ret = array();
 	foreach ($subject as $key => $value) {
 		$ret[$key] = array_stripslashes($value);
@@ -1288,13 +1288,13 @@ function array_urldecode($subject) {
 	if (is_string($subject)) {
 		return urldecode($subject);
 	}
-	
+
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	
+
 	$ret = array();
-	
+
 	foreach ($subject as $key => $value) {
 		$ret[$key] = array_urldecode($value);
 	}
@@ -1305,16 +1305,16 @@ function array_str_replace($search, $replace, $subject) {
 	if (is_string($subject)) {
 		return str_replace($search, $replace, $subject);
 	}
-	
+
 	if (!is_array($subject)) {
 		return ($subject);
 	}
-	
+
 	$ret = array();
 	foreach ($subject as $key => $value) {
 		$ret[$key] = array_str_replace($search, $replace, $value);
 	}
-	
+
 	return $ret;
 }
 
@@ -1401,7 +1401,7 @@ function newIn($version) {
 
 function returnToConfig() {
 	$link = galleryLink('index.php', gTranslate('config', "_Configuration Wizard"));
-		
+
 	$html = sprintf(gTranslate('config', "Return to %s."), $link);
 	return $html;
 }
@@ -1461,7 +1461,7 @@ function check_admins() {
 		else {
 			$desc_text = sprintf(gTranslate('config', "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
 		}
-		
+
 		$desc_text .= "  " . sprintf (gTranslate('config', "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
 			"desc" => $desc_text,
@@ -1508,9 +1508,9 @@ function check_gallery_versions()  {
 	$fail = array();
 	$success = array();
 	$warn = array();
-	
+
 	$versionStatus = checkVersions(false);
-	
+
 	$fail = $versionStatus['fail'];
 
 	$problems = array_merge(
@@ -1527,7 +1527,7 @@ function check_gallery_versions()  {
 	    $warn[] = gTranslate('config',
 		"%d file is newer then expected.",
 		"%d files are newer then expected.",
-                count($versionStatus['newer']), '', true) . 
+                count($versionStatus['newer']), '', true) .
 		$hint;
 	}
 
@@ -1536,13 +1536,13 @@ function check_gallery_versions()  {
 		"%s file is out of date, corrupted or missing.",
 		"%s files are out of date, corrupted or missing.",
 	    	count($problems), '', true) .
-		(empty($versionStatus['newer']) ? $hint : '<br>');	
+		(empty($versionStatus['newer']) ? $hint : '<br>');
 	}
 
 	if (empty($warn) && empty($fail)) {
 		$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
         }
-	
+
 	return array($success, $fail, $warn);
 }
 
@@ -1559,23 +1559,23 @@ function checkVersions($verbose = false) {
 		'missing'	=> array(),
 		'unkown'	=> array()
 	);
-	
+
 	if (!fs_file_exists($manifest)) {
 		$versionStatus['fail']['manifest'] = gTranslate('config', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
 		return $versionStatus;
 	}
-	
+
 	if (!function_exists('getSVNRevision')) {
 		$versionStatus['fail']['util.php'] = sprintf(gTranslate('config', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
 		return $versionStatus;
 	}
-	
+
 	include (GALLERY_BASE . '/manifest.inc');
-	
+
 	if ($verbose) {
 		print sprintf(gTranslate('config', "Testing status of %d files."), count($versions));
 	}
-	
+
 	foreach ($versions as $file => $version) {
 		$found_version = getSVNRevision($file);
 		if ($found_version === NULL) {
@@ -1610,9 +1610,9 @@ function checkVersions($verbose = false) {
 				"Found Version: %s"), $found_version);
 			continue;
 		}
-		
+
 		$compare = compareVersions($version, $found_version);
-		
+
 		if ($compare < 0) {
 			if ($verbose) {
 				print "<br>\n";
@@ -1740,7 +1740,8 @@ function configLogin($target) {
 
 	// The gallery has never been configured, or the admin password has been lost and needs to be reset - ignore login requirement
 	// If the user has already logged in, and is viewing one of the setup pages, they will be logged in automatically by the form
-	if (!isset($gallery->app->userDir) || (isset($gallery->session->resetAdminGuid) && $gallery->session->resetAdminGuid == $resetFile)) {
+	if (!isset($gallery->app->userDir) ||
+	   (isset($gallery->session->resetAdminGuid) && $gallery->session->resetAdminGuid == $resetFile)) {
 		return;
 	}
 	else {
@@ -1937,5 +1938,35 @@ function getCurrentGraphicTool() {
 	} else {
 		return default_graphics();
 	}
+}
+
+function embed_hidden($key) {
+	global $$key;
+
+	$buf = "";
+	$real = $$key;
+
+	if (is_array($real)) {
+		foreach ($real as $real_key => $value) {
+			if (is_array($value)) {
+				foreach($value as $sub_key => $sub_value) {
+					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
+					$buf .= '<input type="hidden" name="'. $name .'" value="';
+					$buf .= urlencode($sub_value);
+					$buf .= "\">\n";
+				}
+			} else {
+				$name = stripWQuotesON("$key" . "[$real_key]");
+				$buf .= '<input type="hidden" name="'. $name .'" value="';
+				$buf .= urlencode($value);
+				$buf .= "\">\n";
+			}
+		}
+	} else {
+		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
+		$buf .= urlencode($real);
+		$buf .= "\">\n";
+	}
+	return $buf;
 }
 ?>

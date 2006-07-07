@@ -275,12 +275,14 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    
     if($attrList['accesskey'] != '') {
-	$attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+	   $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrList = array_merge($attrList, $additionalAttrs);
     $attrs = generateAttrs($attrList);
+    
     $html = "<input$attrs>\n";
 
     return $html;
@@ -291,7 +293,10 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
     $attrList['type'] = $type;
     $attrList['accesskey'] = getAndSetAccessKey($label);
     $attrList['size'] = $size;
-    if (!empty($value)) $attrList['value'] = $value;
+    
+    if (!empty($value)) {
+        $attrList['value'] = $value;
+    }
     $attrList['class'] = $class;
 
     if(!$class) {
@@ -338,11 +343,13 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
     $attrList['class'] = 'g-button';
     $attrList['onClick'] = $onClick;
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    
     if($attrList['accesskey'] != '') {
         $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrs = generateAttrs($attrList);
+    
     $html = "<input$attrs>\n";
 
     return $html;
@@ -355,11 +362,13 @@ function gReset($name, $value, $additionalAttrs = array()) {
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+    
     if($attrList['accesskey'] != '') {
         $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrs = generateAttrs($attrList);
+    
     $html = "<input$attrs>\n";
 
     return $html;
