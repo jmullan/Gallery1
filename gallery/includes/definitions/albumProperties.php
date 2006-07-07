@@ -438,10 +438,10 @@ $properties = array_merge($properties, array(
         'title' => gTranslate('common', "M_icrothumbs")
     ),
     'nav_thumbs' => array(
-        'prompt' => gTranslate('common', "Use microthumb photo navigation"),
+        'prompt' => gTranslate('common', "Use microthumb for photo navigation"),
         'desc' => '',
         'choices' => array(
-            "yes" => gTranslate('common', "Yes, only navigation"),
+            "yes" => gTranslate('common', "Yes"),
             "no" => gTranslate('common', "No, just the normal navigation"),
             "both" => gTranslate('common', "Both kinds of Navigation")),
         'value' => $gallery->album->fields["nav_thumbs"]

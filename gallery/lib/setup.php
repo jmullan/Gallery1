@@ -1525,7 +1525,7 @@ function check_gallery_versions()  {
 
 	if(!empty($versionStatus['newer'])) {
 	    $warn[] = gTranslate('config',
-		"%d file is newer then expected.",
+		"One file is newer then expected.",
 		"%d files are newer then expected.",
                 count($versionStatus['newer']), '', true) .
 		$hint;
@@ -1533,8 +1533,8 @@ function check_gallery_versions()  {
 
 	if(!empty($problems)) {
 	    $fail[] = gTranslate('config',
-		"%s file is out of date, corrupted or missing.",
-		"%s files are out of date, corrupted or missing.",
+		"One file is out of date, corrupted or missing.",
+		"%d files are out of date, corrupted or missing.",
 	    	count($problems), '', true) .
 		(empty($versionStatus['newer']) ? $hint : '<br>');
 	}

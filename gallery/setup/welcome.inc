@@ -59,7 +59,7 @@ $gallerySanity = gallerySanityCheck();
                 </tr>
                 <tr>
                     <td><?php echo gTranslate('core', "2."); ?></td>
-                    <td><?php echo gTranslate('core', "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to "); ?></td>
+                    <td><?php echo gTranslate('core', "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to put it in your Gallery folder. But thats up to you."); ?></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="g-emphasis"><?php echo gTranslate('core', "Make sure that both files and the folder are read and writeable for your webserver !"); ?></td>
