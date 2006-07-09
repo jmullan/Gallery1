@@ -556,9 +556,10 @@ if (!empty($gallery->session->albumName)) {
     $ret = $gallery->album->load($gallery->session->albumName);
     if (!$ret) {
         $gallery->session->albumName = "";
-    } else {
+    }
+    else {
         if ($gallery->album->versionOutOfDate()) {
-            include_once(dirname(__FILE__) . "/upgrade_album.php");
+            include_once(dirname(__FILE__) . "/popups/upgrade_album.php");
             exit;
         }
     }
