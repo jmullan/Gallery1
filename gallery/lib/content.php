@@ -443,7 +443,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
     if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
       (eregi("jpe?g\$", $photo->image->type))) {
         $myExif = $gallery->album->getExif($index, $forceRefresh);
-        
+
         if (!empty($myExif) && !isset($myExif['Error'])) {
             $tables[gTranslate('common', "EXIF Data")]  = $myExif;
         }
@@ -1043,7 +1043,7 @@ function availableRandomBlockFrames() {
 		"<dd>". gTranslate('common',"Frame defined for images in the corresponding album") ."</dd>".
         "\n<dt><u>". gTranslate('common',"Album thumb frames") ."</u></dt>" .
 		"<dd>". gTranslate('common',"Frame defined for thumbs in the corresponding album") ."</dd>".
-        "\n<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt>" . 
+        "\n<dt><u>". gTranslate('common',"Mainpage thumb frames") ."</u></dt>" .
 		"<dd>". gTranslate('common',"Frame defined for thumbs on mainpage") . "</dd>" .
 	"\n</dl>";
 
@@ -1273,7 +1273,7 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
     $attrList['src'] = getImagePath($relativePath, $skin);
     $attrList['alt'] = $altText;
     $attrList['title'] = $altText;
- 
+
     if(!empty($attrList['src'])) {
         $attrs = generateAttrs($attrList);
         $html .= "<img$attrs>";
@@ -1291,35 +1291,35 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
     $upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
 
     $accesskey = getAccessKey($upArrowAltText);
-    $lastUpArrowAltText = $upArrowAltText . ' '. 
+    $lastUpArrowAltText = $upArrowAltText . ' '.
 	sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
 
     $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
 
     if (!empty($album)) {
         if ($album->fields['returnto'] != 'no') {
-	    $parents = $album->getParentAlbums($withCurrentAlbum);
-	    $numParents = sizeof($parents);
-	    $i = 0;
+            $parents = $album->getParentAlbums($withCurrentAlbum);
+            $numParents = sizeof($parents);
+            $i = 0;
             foreach ($parents as $navAlbum) {
-		$i++;
+                $i++;
                 $link = $navAlbum['prefixText'] .': ';
-		if($i == $numParents) {
-		    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
-                        array('accesskey' => $accesskey), '', false, false);
-		}
-		else {
-		    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
-                        array(), '', false, false);
-		}
-	        $pathArray[] = $link;
+                if($i == $numParents) {
+                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
+                    array('accesskey' => $accesskey), '', false, false);
+                }
+                else {
+                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+                    array(), '', false, false);
+                }
+                $pathArray[] = $link;
             }
         }
     }
     else {
-	$pathArray[] = sprintf(gTranslate('common', "Gallery: %s"),
-	  galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$lastUpArrow",
-	    array('accesskey' => $accesskey), '', false, false));
+        $pathArray[] = sprintf(gTranslate('common', "Gallery: %s"),
+        galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$lastUpArrow",
+        array('accesskey' => $accesskey), '', false, false));
     }
 
     return $pathArray;
