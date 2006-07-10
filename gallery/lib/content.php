@@ -1292,7 +1292,7 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
 
     $accesskey = getAccessKey($upArrowAltText);
     $lastUpArrowAltText = $upArrowAltText . ' '.
-	sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
+	   sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
 
     $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
 

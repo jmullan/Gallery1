@@ -89,11 +89,11 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $GALLERY_MODULENAME;
 	global $modpath;
 
-        if (empty($GALLERY_MODULENAME)
-          && $GALLERY_EMBEDDED_INSIDE =='nuke'
-          && !empty($modpath)) {
-            $GALLERY_MODULENAME = basename(dirname($modpath));
-        }
+	if (empty($GALLERY_MODULENAME) &&
+	    $GALLERY_EMBEDDED_INSIDE =='nuke' &&
+	    !empty($modpath)) {
+	    $GALLERY_MODULENAME = basename(dirname($modpath));
+	}
 
 	/* Needed for phpBB2 */
 	global $userdata;
@@ -124,11 +124,12 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$addpath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
 
 	if (stristr($target, 'help') === false) {
-	    if((isset($args['type']) && $args['type'] == 'popup') || !empty($args['gallery_popup'])) {
-		$target = "popups/$target";
+	    if((isset($args['type']) && $args['type'] == 'popup') ||
+	        !empty($args['gallery_popup'])) {
+    		$target = "popups/$target";
 	    }
 	}
-	
+
 	if( isset($GALLERY_EMBEDDED_INSIDE) && !$isSetupUrl && where_i_am() != 'config') {
 		switch ($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpBB2':
@@ -204,12 +205,10 @@ function makeGalleryUrl($target = '', $args = array()) {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$url = $urlprefix . $gallery->session->mambo->mosRoot . 'index.php';
 					} else {
-						$url ='index.php';
+						$url = 'index.php';
 					}
 				}
 			break;
-
-
 
 			// Maybe something went wrong, we do nothing as URL we be build later.
 			default:
@@ -462,7 +461,7 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
     if($iconMode == 'yes') {
 	$altText = $text;
     }
-    
+
     if(!empty($accesskey) && $iconMode != 'both') {
 	$altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
     }
