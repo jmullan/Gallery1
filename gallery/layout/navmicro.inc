@@ -58,7 +58,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		   $gallery->album->fields["nav_thumbs_size"]);
 		$navThumbsPrev .='</a>&nbsp;&nbsp;';
 	}
-	
+
 	/* Create a list of the next thumbs, starting from right after current. */
 	$navThumbsNext = '';
 	for ($i = 1; $i <= $gallery->album->fields["nav_thumbs_next_shown"]; $i++) {
@@ -70,7 +70,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 		   $gallery->album->fields["nav_thumbs_size"]);
 		$navThumbsNext .='</a>';
 	}
-	
+
 	/* Create the current thumb. */
 	$navThumbsCur = $gallery->album->getThumbnailTagById(
 		$navigator["allIds"][$navpage],
@@ -81,7 +81,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 
 /* If style is "Fixed" begin generation of fixed micro thumb navigation */
 if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
-	
+
 	/* Add previous + next to get our image block size */
 	$navBlockSize = $gallery->album->fields["nav_thumbs_next_shown"]+$gallery->album->fields["nav_thumbs_prev_shown"];
 	if ( $navBlockSize <= 2 ) { $navBlockSize += 1; }
@@ -131,14 +131,14 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 ?>
 
 <!-- Microthumb Photo Navigator -->
-<table width="100%" border="0" align="center">
-<tr valign="bottom" align="center">
+<table width="100%" align="center">
+<tr
 	<td><?php echo $navThumbsFirst; ?></td>
-	<?php if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) { ?>
+	<?php if ($gallery->album->fields["nav_thumbs_style"] == 'dynamic') { ?>
 	<td nowrap width="40%" class="right"><?php echo $navThumbsPrev; ?></td>
 	<td width="5"><?php echo $navThumbsCur; ?></td>
 	<td nowrap width="40%" class="left"><?php echo $navThumbsNext; ?></td>
-	<?php } elseif ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) { ?>
+	<?php } elseif ($gallery->album->fields["nav_thumbs_style"] == 'fixed') { ?>
 	<td colspan="3"><?php echo $navBlogThumb; ?></td>
 	<?php } ?>
 	<td><?php echo $navThumbsLast; ?></td>

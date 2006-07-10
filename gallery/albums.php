@@ -140,7 +140,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
     $iconElements[] = galleryLink(
         makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-        gTranslate('core', "_slideshow"), array(), 'presentation.png'
+        gTranslate('core', "sl_ideshow"), array(), 'presentation.png'
     );
 }
 

@@ -348,22 +348,22 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
-		gTranslate('core', "_slideshow"),
+		gTranslate('core', "sl_ideshow"),
 		array(),
-		'display.gif'
+		'presentation.png'
 	);
 }
 
 /* User is allowed to view ALL comments */
 if ( $numVisibleItems != 0 &&
-($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
-((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
-$gallery->user->canViewComments($gallery->album))) {
+   ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
+   ((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
+    $gallery->user->canViewComments($gallery->album))) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl( "view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "view&nbsp;_comments"),
 		array(),
-		'presentation.png'
+		'view_comment.gif'
 	);
 }
 
@@ -419,7 +419,7 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 
 				$pollInfoTable->addElement(array('content' =>
                     		  galleryLink(
-					makeAlbumUrl($albumName), 
+					makeAlbumUrl($albumName),
 					sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
                 ));
 			} else {
