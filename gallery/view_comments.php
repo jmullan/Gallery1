@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -41,11 +41,11 @@ if (!$gallery->album->isLoaded()) {
 
 $albumName = $gallery->session->albumName;
 
-if (empty($gallery->session->viewedAlbum[$albumName]) && 
+if (empty($gallery->session->viewedAlbum[$albumName]) &&
 	!$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
-} 
+}
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
@@ -54,7 +54,7 @@ $breadcrumb["bordercolor"] = $bordercolor;
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
@@ -89,7 +89,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </head>
 
 <body>
-<?php } 
+<?php }
 
 /* User wants to delete comments */
 list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
@@ -118,7 +118,7 @@ if (!empty($comment_index)) {
 includeTemplate('album.header');
 
 $adminbox["text"] = gTranslate('core', "Comments for this Album");
-$adminbox["commands"] = galleryLink(makeGalleryUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
+$adminbox["commands"] = galleryLink(makeAlbumUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
 $adminbox["bordercolor"] = $bordercolor;
 
 includeLayout('adminbox.inc');
@@ -150,9 +150,9 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
                 require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
             }
         }
-        elseif (!$gallery->album->isHidden($i) || 
+        elseif (!$gallery->album->isHidden($i) ||
           $gallery->user->isAdmin() ||
-          $gallery->user->isOwnerOfAlbum($gallery->album) || 
+          $gallery->user->isOwnerOfAlbum($gallery->album) ||
           $gallery->album->isItemOwner($gallery->user, $i)) {
             $comments = $gallery->album->numComments($i);
             if($comments > 0) {

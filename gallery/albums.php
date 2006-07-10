@@ -168,7 +168,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
         if ($docsUrl) {
             $iconElements[] = galleryLink(
                 $docsUrl,
-                gTranslate('core', "_documentation"), array(), 'about.png', true
+                gTranslate('core', "_documentation"), array('target' => '_blank'), 'about.png', true
             );
         }
     }
@@ -323,7 +323,7 @@ for ($i = $start; $i <= $end; $i++) {
 
     		$imageTag = $highlight->getHighlightTag(
     			$getAlbumDirURL,
-    			$scaleTo, 
+    			$scaleTo,
     			array('alt' => sprintf(gTranslate('core', "Highlight for album: %s"),$gallery->album->fields["title"]))
     		);
     	}
