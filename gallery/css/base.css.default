@@ -87,24 +87,51 @@ caption {
     text-align: center;
 }
 
-.g-navbar-top, g-microthumbnavbar-top, g-navbar-bottom, .g-microthumbnavbar-bottom {
+/******************** Begin Navigation Styles ********************/
+
+.g-navbar-top, g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
+    width: 100%;
 }
 
 /* Style for top navigation bar */
 .g-navbar-top {
+    border: 1px dashed grey;
+    margin-bottom: 1px;
 }
 
-/* Style for bottom navigation bar specified */
+/* Style for bottom navigation bar */
 .g-navbar-bottom {
-    border: 1px solid #000;
+    border: 1px dashed grey;
     margin-bottom: 2px;
 }
 
-.g-navbar-top td, .g-navbar-bottom td, .g-microthumbnavbar-top td, .g-microthumbnavbar-bottom td {
-     text-align: center;
-     white-space:nowrap;
-     padding: 0 15px;
+.g-microthumbnavbar-top {
+    border-bottom: 1px dashed grey;
 }
+
+.g-microthumbnavbar-bottom {
+    border-bottom: 1px dashed grey;
+}
+
+div.g-navbar-top td, div.g-navbar-bottom td, div.g-microthumbnavbar-top td, div.g-microthumbnavbar-bottom td {
+    text-align: center;
+    white-space: nowrap;
+    padding: 0 10px;
+}
+
+table.g-nav-pages td {
+     padding: 0;
+}
+
+.g-borderright {
+     border-right: 1px dashed;
+}
+
+.g-borderleft {
+    border-left: 1px dashed;
+}
+
+/******************** End Navigation Styles ********************/
 
 /* Style for breadcrumb bar if nothing special was specified */
 .g-breadcrumb {
@@ -173,15 +200,6 @@ caption {
 
 .g-small {
     font-size: 7pt;
-}
-
-.g-album-image-cell {
-    vertical-align: top;
-    padding: 0 5px 10px 0;
-    text-align: center;
-}
-
-.g-albumdesc-cell {
 }
 
 /* Siriux Frame */
@@ -257,4 +275,73 @@ caption {
 .nowrap {
     vertical-align: top;
     white-space: nowrap;
+}
+
+/******************** Begin Mainpage Styles ********************/
+
+/* The table containing the thumbs and text etc. for the albums */
+.g-albums-table {
+    width: 100%;
+    padding: 0 2px;
+}
+
+/* Vertical space between the albums. */
+.g-album-vertical-spacer {
+    height: 10px;
+}
+
+/* Cell for thumbnail */
+.g-album-image-cell {
+    vertical-align: middle ;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+/* Cell for the albumdescription on mainpage */
+table.g-albums-table .g-albumdesc-cell {
+    padding: 0 10px;
+    vertical-align: top;
+    border-top: 1px solid #000;
+}
+
+/* Box where the microthumb "tree" is showed in on mainpage */
+.g-microthumbTree-box {
+    width: 100%
+}
+
+/* Cell for the "normal" subalbum tree on mainpage */
+.g-subalbumTree-box {
+    vertical-align: top;
+}
+
+******************** Begin single photo view ********************/
+
+/* Box around photo. */
+.g-photo {
+     text-align: center;
+     width: 100%
+}
+
+/* Box around all Texts below the photo. Including captions, comments etc. */
+.g-photo-texts {
+    width: 100%;
+    text-align: center;
+}
+
+.g-photo-caption {
+}
+
+.g-customFieldsTable {
+    margin: 0 auto;
+    border: 1px solid silver;
+}
+
+.g-voting-results {
+    margin: 0 auto;
+}
+
+.g-vote-box {
+    text-align: center;
+    vertical-align: top;
 }

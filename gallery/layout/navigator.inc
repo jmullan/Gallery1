@@ -79,7 +79,7 @@ if(!includeTemplate('navigator.tpl')) {
 				$title = sprintf(gTranslate('core', "Jump to page %d (Accesskey '_r')"), $beginNextBlock);
 				$accesskey = getAndRemoveAccessKey($title);
 				$link = galleryLink("{$url}${navigator['pageVar']}=$beginNextBlock",
-				'...', array('title' => $title, 'accesskey' => $accesskey));
+				    '...', array('title' => $title, 'accesskey' => $accesskey));
 				$mpContent .= "\n\t<td>$link</td>";
 			}
 			for ($i = $begin; $i <= $end; $i++) {
@@ -108,7 +108,7 @@ if(!includeTemplate('navigator.tpl')) {
 				$title = sprintf(gTranslate('core', "Jump to page %d (Accesskey '_j')"), $endNextBlock);
 				$accesskey = getAndRemoveAccessKey($title);
 				$link = galleryLink("{$url}${navigator['pageVar']}=$endNextBlock",
-				'...', array('title' => $title, 'accesskey' => $accesskey));
+				    '...', array('title' => $title, 'accesskey' => $accesskey));
 				$mpContent .= "\n\t</td><td>$link";
 			}
 			$mpContent .= '</td></tr></table>';
@@ -134,11 +134,11 @@ if(!includeTemplate('navigator.tpl')) {
 <!-- Navigator -->
 <table cellspacing="0" cellpadding="0" width="100%">
 <tr>
-	<td class="<?php echo $pClass ?>" width="30" height="18"><?php echo $fpContent ?></td>
-	<td class="<?php echo $pClass ?>" width="100" height="18"><?php echo $ppContent ?></td>
+	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $fpContent ?></td>
+	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $ppContent ?></td>
 	<td height="18"><?php echo $mpContent; ?></td>
-	<td class="<?php echo $nClass ?>" width="100" height="18"><?php echo $npContent ?></td>
-	<td class="<?php echo $nClass ?>" width="30" height="18"><?php echo $lpContent ?></td>
+	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $npContent ?></td>
+	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $lpContent ?></td>
 </tr>
 </table>
 	<?php

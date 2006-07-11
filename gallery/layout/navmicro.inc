@@ -132,7 +132,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 
 <!-- Microthumb Photo Navigator -->
 <table width="100%" align="center">
-<tr
+<tr>
 	<td><?php echo $navThumbsFirst; ?></td>
 	<?php if ($gallery->album->fields["nav_thumbs_style"] == 'dynamic') { ?>
 	<td nowrap width="40%" class="right"><?php echo $navThumbsPrev; ?></td>
