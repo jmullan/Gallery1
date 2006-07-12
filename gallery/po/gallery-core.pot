@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-07 21:29+0200\n"
+"POT-Creation-Date: 2006-07-12 13:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,7 +170,7 @@ msgid "Welcome, %s"
 msgstr ""
 
 #: ../albums.php:143 ../view_album.php:351
-msgid "_slideshow"
+msgid "sl_ideshow"
 msgstr ""
 
 #: ../albums.php:150
@@ -795,9 +795,9 @@ msgid "Just select the ImageMap(s) you want to delete in the box. Then click the
 msgstr ""
 
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:99
-#: ../popups/administer_startpage.php:110 ../popups/register.php:43
-#: ../popups/register.php:119 ../popups/user_preferences.php:151
-#: ../popups/view_photo_properties.php:123
+#: ../popups/administer_startpage.php:110 ../popups/download.php:93
+#: ../popups/register.php:43 ../popups/register.php:119
+#: ../popups/user_preferences.php:151 ../popups/view_photo_properties.php:123
 msgid "_Close Window"
 msgstr ""
 
@@ -1056,16 +1056,17 @@ msgstr ""
 msgid "_Upload Now"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:91 ../new_password.php:128
+#: ../includes/add_photos/add_form.inc:91
+#: ../includes/add_photos/add_url.inc:96 ../new_password.php:128
 #: ../popups/copy_photo.php:200 ../popups/delete_photo.php:132
-#: ../popups/edit_caption.php:177 ../popups/edit_field.php:60
-#: ../popups/edit_watermark.php:123 ../popups/login.php:86
-#: ../popups/move_album.php:111 ../popups/move_album.php:139
-#: ../popups/move_photo.php:258 ../popups/move_photo.php:352
-#: ../popups/rearrange.php:185 ../popups/register.php:140
-#: ../popups/rename_album.php:121 ../popups/reset_votes.php:59
-#: ../popups/resize_photo.php:128 ../popups/sort_album.php:112
-#: ../popups/watermark_album.php:146
+#: ../popups/download.php:86 ../popups/edit_caption.php:177
+#: ../popups/edit_field.php:60 ../popups/edit_watermark.php:123
+#: ../popups/login.php:86 ../popups/move_album.php:111
+#: ../popups/move_album.php:139 ../popups/move_photo.php:258
+#: ../popups/move_photo.php:352 ../popups/rearrange.php:185
+#: ../popups/register.php:140 ../popups/rename_album.php:121
+#: ../popups/reset_votes.php:59 ../popups/resize_photo.php:128
+#: ../popups/sort_album.php:112 ../popups/watermark_album.php:146
 msgid "_Cancel"
 msgstr ""
 
@@ -1093,34 +1094,32 @@ msgstr ""
 msgid "<i>Note:</i> this feature is still experimental!"
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:25
+#: ../includes/add_photos/add_url.inc:62
 msgid "Upload any images found at this location."
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:26
+#: ../includes/add_photos/add_url.inc:63
 msgid "The location can either be a URL or a local directory on the server."
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:29
+#: ../includes/add_photos/add_url.inc:66
 msgid "Tip:"
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:30
+#: ../includes/add_photos/add_url.inc:67
 msgid "FTP images to a directory on your server then provide that path here!"
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:39
+#: ../includes/add_photos/add_url.inc:74
+msgid "Path to your image(s):"
+msgstr ""
+
+#: ../includes/add_photos/add_url.inc:80
 msgid "What would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_url.inc:54
+#: ../includes/add_photos/add_url.inc:95
 msgid "Submit URL or directory"
-msgstr ""
-
-#: ../includes/add_photos/add_url.inc:55 ../popups/add_comment.php:102
-#: ../popups/delete_album.php:65 ../popups/do_command.php:218
-#: ../popups/download.php:78 ../popups/ecard_form.php:260
-msgid "Cancel"
 msgstr ""
 
 #: ../includes/add_photos/captionOptions.inc.php:23
@@ -1460,11 +1459,6 @@ msgstr ""
 
 #: ../includes/stats/stats.inc.php:158
 msgid "Filter by day"
-msgstr ""
-
-#: ../index.php:181
-#, php-format
-msgid "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>$safe_to_include</i> array"
 msgstr ""
 
 #: ../init.php:29 ../init.php:115 ../popups/view_photo_properties.php:31
@@ -1898,6 +1892,11 @@ msgstr ""
 msgid "Enter your comment for this picture in the text box below."
 msgstr ""
 
+#: ../popups/add_comment.php:102 ../popups/delete_album.php:65
+#: ../popups/do_command.php:218 ../popups/ecard_form.php:260
+msgid "Cancel"
+msgstr ""
+
 #: ../popups/add_photos.php:47 ../popups/add_photos_frame.php:32
 msgid "Add Photos"
 msgstr ""
@@ -2239,71 +2238,67 @@ msgstr ""
 msgid "Close window"
 msgstr ""
 
-#: ../popups/download.php:30
-msgid "Download album as archive"
-msgstr ""
-
-#: ../popups/download.php:42
+#: ../popups/download.php:43
 msgid "Zipdownload would work, but is disabled when debugging."
 msgstr ""
 
-#: ../popups/download.php:61
+#: ../popups/download.php:49
+msgid "Download album as archive"
+msgstr ""
+
+#: ../popups/download.php:66
 #, php-format
 msgid "This album contains just one item in total."
 msgid_plural "This album contains %d items in total."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../popups/download.php:62
+#: ../popups/download.php:67
 #, php-format
 msgid "One subalbum"
 msgid_plural "%d subalbums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../popups/download.php:62
+#: ../popups/download.php:67
 msgid "No subalbums"
 msgstr ""
 
-#: ../popups/download.php:63
+#: ../popups/download.php:68
 #, php-format
 msgid "one photo/movie"
 msgid_plural "%d photos/movies"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../popups/download.php:63
+#: ../popups/download.php:68
 msgid "no photo/movie"
 msgstr ""
 
-#: ../popups/download.php:65
+#: ../popups/download.php:70
 #, php-format
 msgid "%s and %s."
 msgstr ""
 
-#: ../popups/download.php:68
+#: ../popups/download.php:73
 #, php-format
 msgid "Approximated size of zipfile: %s"
 msgstr ""
 
-#: ../popups/download.php:74
+#: ../popups/download.php:78
 msgid "Full Version"
 msgstr ""
 
-#: ../popups/download.php:75
+#: ../popups/download.php:81
 msgid "Resized Version"
 msgstr ""
 
-#: ../popups/download.php:77
-msgid "Download"
-msgstr ""
-
-#: ../popups/download.php:83
-msgid "This album is not empty, but contains no photo or movie! Download wouldn't make sense."
-msgstr ""
-
 #: ../popups/download.php:85
-msgid "Close Window"
+msgid "_Download"
+msgstr ""
+
+#: ../popups/download.php:91
+msgid "This album is not empty, but contains no photo or movie! Download wouldn't make sense."
 msgstr ""
 
 #: ../popups/ecard_form.php:39
