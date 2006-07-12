@@ -105,8 +105,8 @@ if (!empty($formaction) && $formaction == 'create') {
 	echo "\n<br><br>";
 	echo makeFormIntro('create_user.php', array(), array('type' => 'popup'));
 	echo gSubmit('moreuser', gTranslate('core', "Create a_nother user"));
-	?>	echo gSubmit('dismiss', gTranslate('core', "_Back to usermanagement"))
-		
+	echo gSubmit('dismiss', gTranslate('core', "_Back to usermanagement"));
+	?>		
 	</form>
 	</div>
 </body>
@@ -135,9 +135,9 @@ $allowChange["admin"] = true;
 
 echo "\n<center>". gTranslate('core', "Create a new user here.") .'</center>';
 
-echo makeFormIntro('#', array(
-        'name'     => 'usercreate_form',
-        'onsubmit' => 'usercreate_form.create.disabled = true;'));
+echo makeFormIntro('create_user.php',
+    array('name' => 'usercreate_form', 'onSubmit' => 'usercreate_form.create.disabled = true;'),
+    array('type' => 'popup'));
 ?>
 <br>
 

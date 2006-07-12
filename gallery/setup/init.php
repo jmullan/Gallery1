@@ -31,7 +31,7 @@ if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 
 /* define the constants */
 setGalleryPaths();
-if (!isset($gallery->app->photoAlbumURL)) {
+if (!isset($gallery) || !isset($gallery->app->photoAlbumURL)) {
     define ('GALLERY_URL','..');
 }
 

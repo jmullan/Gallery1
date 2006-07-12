@@ -142,7 +142,7 @@ if ($gallery->user->isAdmin()) { ?>
 if ($allowChange["send_email"] === true && $gallery->app->emailOn == "yes") { ?>
 <tr>
 	<td><?php echo gTranslate('core', "Send email to user when account is created") ?></td>
-	<td><input checked name="send_email" type="checkbox"></td>
+	<td><input name="send_email" type="checkbox"></td>
 </tr>
 <?php 
 } else { 
