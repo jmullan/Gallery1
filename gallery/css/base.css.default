@@ -345,3 +345,49 @@ table.g-albums-table .g-albumdesc-cell {
     text-align: center;
     vertical-align: top;
 }
+
+/******************** Begin autocomplete ********************/
+/* set width of widget here*/
+.YUIsearchdiv {
+    position: relative;
+}
+
+.YUIsearchinput {
+    position: relative; display: block;
+}
+
+.YUIsearchcontainer {
+    position: relative;
+    bottom: 4px; right: 4px;
+    border: 1px solid #404040;
+    background: #fff;
+    font-size: 90%;
+    overflow: hidden;
+    display: none;
+}
+
+.YUIsearchcontainer ul {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.YUIsearchcontainer li {
+    padding: 0 5px;
+    white-space: nowrap;
+    display: list-item;
+}
+
+.YUIsearchcontainer li.highlight {
+    background: #a0a0a0;
+}
+
+.YUIsearchshadow {
+    position: absolute;
+    width: 75%;
+    margin: .3em;
+    z-index: 5;
+    background: #a0a0a0;
+}

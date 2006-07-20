@@ -1235,7 +1235,7 @@ $constants = array_merge($constants, array(
 		'desc' => gTranslate('config',"The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."),
 		'value' => detect_exec_status(),
 		'type' => 'text',
-		'attrs' => array('size' => 5),
+		'attrs' => array('size' => 5)
 	),
 	'sessionVar' => array(
 		'prompt' => gTranslate('config',"Session variable"),
@@ -1320,6 +1320,26 @@ $constants = array_merge($constants, array(
 		'value' => 'yes',
 	),
 	'group_rss_end' => array(
+		'type' => 'group_end'
+	),
+    'group_uploadPaths' => array (
+		'type' => 'group_start',
+		'name' => 'group_uploadPaths',
+		'default' => 'inline',
+		'title' => gTranslate('config',"Paths for upload from server"),
+	),
+	'uploadPaths' => array(
+		'prompt' => gTranslate('config', "Allowed paths for upload from Server"),
+		'desc' => gTranslate('config', "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the URL method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"),
+		'value' => '',
+		'type' => 'text',
+        'multiInput' => true,
+        'remove_empty' => true,
+        'optional' => 1,
+        'autocomplete' => 'path'
+
+	),
+	'group_uploadPaths_end' => array(
 		'type' => 'group_end'
 	),
 	// Keep these two at the end of the list because they're hidden

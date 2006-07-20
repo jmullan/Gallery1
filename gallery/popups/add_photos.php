@@ -32,12 +32,12 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-$cookieName = $gallery->app->sessionVar . "_add_photos_mode";
+$cookieName = $gallery->app->sessionVar . '_add_photos_mode';
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+	    setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
 	}
 } else {
 	if (isset($modeCookie)) {
@@ -58,21 +58,22 @@ printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
   </script>
 <?php
 
-if (file_exists(dirname(dirname(__FILE__)) . "/java/GalleryRemoteAppletMini.jar") &&
-	file_exists(dirname(dirname(__FILE__)) . "/java/GalleryRemoteHTTPClient.jar")) {
-    $modes["applet_mini"] = gTranslate('core', "Applet");
+if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteAppletMini.jar') &&
+	file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteHTTPClient.jar')) {
+    $modes['applet_mini'] = gTranslate('core', "Applet");
 
-	if (file_exists(dirname(dirname(__FILE__)) . "/java/GalleryRemoteApplet.jar")) {
-	    $modes["applet"] = gTranslate('core', "Applet (big)");
+	if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteApplet.jar')) {
+	    $modes['applet'] = gTranslate('core', "Applet (big)");
 	}
 }
 
-$modes["form"] = gTranslate('core', "Form");
-$modes["url"] = gTranslate('core', "URL");
-$modes["other"] = gTranslate('core', "Other");
+$modes['form'] = gTranslate('core', "Form");
+$modes['url'] = gTranslate('core', "URL");
+$modes['local'] = gTranslate('core', "From local Server");
+$modes['other'] = gTranslate('core', "Other");
 
 if (!isset($mode) || !isset($modes[$mode])) {
-	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : "form";
+	$mode = isset($modes[$gallery->app->uploadMode]) ? $gallery->app->uploadMode : 'form';
 }
 ?>
 

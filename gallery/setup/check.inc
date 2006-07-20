@@ -71,6 +71,11 @@ $docs_page = galleryLink(
     galleryDocs(),
     gTranslate('config', "_documentation"),
     array('target' => '_blank'));
+
+$openBasedir = ini_get('open_basedir');
+
+$error = 0;
+$warning = 0;
 ?>
 
 <script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js'); ?>"></script>
@@ -83,7 +88,7 @@ $docs_page = galleryLink(
 </div>
 
 <div class="g-config">
-    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
+<?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
     <div class="g-config-content">
         <div class="g-config-step floatleft"><?php echo gTranslate('config', "Installation check"); ?></div>
@@ -109,17 +114,15 @@ $docs_page = galleryLink(
         }
         ?>
         </div>
-
         <?php foreach ($checkPriority as $key => $content) {
-            echo "\n\t<h1>". $content['shortdesc'] . '</h1>';
+        echo "\n\t<h1>". $content['shortdesc'] . '</h1>';
 
-            echo "\n\t<div class=\"1g-checks-text\">". $content['longdesc'] . '</div>';
-        ?>
+        echo "\n\t" . $content['longdesc'];
+?>
 
         <div class="g-config-main">
             <table cellspacing="0" align="center">
-            <?php
-            $warning = 0;
+<?php
             foreach ($content['checks'] as $short) {
                 $check = $checklist[$short];
                 if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
@@ -140,9 +143,9 @@ $docs_page = galleryLink(
 
                 // toogle button
                 echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
-                "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
-                gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$short")) .
-                '</a>';
+                    "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
+                    gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$short")) .
+                    '</a>';
                 echo "\n\t</td>";
 
                 // traffic light
@@ -152,6 +155,7 @@ $docs_page = galleryLink(
 
                 // result
                 echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
+
                 $message = '';
                 foreach ($success as $key) {
                     if ($key != '') {
@@ -159,7 +163,6 @@ $docs_page = galleryLink(
                     }
                 }
 
-                $openBasedir = ini_get('open_basedir');
                 foreach ($fail as $key => $val) {
                     if (isset($check['optional']) && $check['optional'] == 1) {
                         if (isset($check["serious"]) && $check["serious"] == 1) {
@@ -178,7 +181,7 @@ $docs_page = galleryLink(
                         if (isset($check) && isset($check[$key])) {
                             $message .= $check[$key];
                         }
-                        $error = 1;
+                        $error++;
                     }
 
                     if (isset($check["open-basedir-note"]) && !empty($openBasedir)) {
@@ -219,37 +222,36 @@ $docs_page = galleryLink(
 
                 echo "\n</tr>";
             }
-            ?>
+?>
             </table>
 
         </div>
 
         <div class="clear"></div>
-        <?php
+<?php
         }
-        ?>
+?>
     </div>
 
-<div class="floatleft left" style="width: 30%">
-  <table>
-    <tr>
-      <td colspan="2" class="left"><?php echo gTranslate ('config', "Legend:"); ?></td>
-    </tr>
-<?php
-foreach ($usedStatus as $status) {
-    echo "\n    <tr>";
-    echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
-    echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
-    echo "\n    </tr>";
-}
+    <div class="floatleft left" style="width: 30%">
+      <table>
+        <tr>
+          <td colspan="2" class="left"><?php echo gTranslate ('config', "Legend:"); ?></td>
+        </tr><?php
+    foreach ($usedStatus as $status) {
+        echo "\n    <tr>";
+        echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
+        echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
+        echo "\n    </tr>";
+    }
 ?>
-  </table>
-</div>
+      </table>
+    </div>
 
-<div class="floatleft center">
-<br>
+    <div class="floatleft center">
+        <div style="width: 100%; padding: 10px 15px 2px 15px;">
 <?php
-if (isset($error)) {
+if ($error > 0) {
     echo infoBox(array(array(
         'type' => 'error',
         'text' => gTranslate('config', "There are errors in your configuration that will prevent Gallery from functioning properly.") .
@@ -278,6 +280,9 @@ else {
             'text' =>  ("Your installation passed with flying colors!  Go go go!")
         )));
     }
+?>
+        </div>
+<?php
     echo gSubmit(
         'go_next',
         gTranslate('config', "_Next Step &gt;&gt;"),
@@ -285,8 +290,6 @@ else {
     );
 }
 ?>
-</div>
-
-
+    </div>
     <div class="clear"></div>
 </div>

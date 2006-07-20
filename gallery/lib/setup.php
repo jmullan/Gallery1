@@ -56,8 +56,8 @@ function make_fields($key, $arr) {
 		$col1 = '';
 	}
 	if (isset($arr['type']) &&
-	($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
-		$col2 = form_input($key, $arr);
+	  ($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
+        $col2 = form_input($key, $arr);
 	} else if (isset($arr['choices'])) {
 		$col2 = form_choice($key, $arr);
 	} else if (isset($arr['multiple_choices'])) {
@@ -95,13 +95,37 @@ function form_textarea($key, $arr) {
 }
 
 function form_input($key, $arr) {
-	$type  = (isset($arr['type'])) ? 'type="'.$arr['type'].'"' : '';
+    $html = '';
 
-	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
+    $name  = (isset($arr['name'])) ? $arr['name'] : $key;
 
-	$name  = (isset($arr['name'])) ? $arr['name'] : $key;
+    $multiInput = false;
+    if(!empty($arr['multiInput'])) {
+        $arr['attrs']['id'] = $name;
+        $name .= '[]';
+        $multiInput = true;
+    }
+    $autocomplete = (isset($arr['autocomplete'])) ? true : false;
 
-	return "<input $type name=\"$name\" value=\"". $arr['value'] ."\" $attrs>";
+    $attrs = (isset($arr['attrs'])) ? $arr['attrs'] : array();
+
+    if(is_array($arr['value'])) {
+        foreach ($arr['value'] as $subkey => $value) {
+            $html .= gInput($arr['type'], $name,
+                     null, false, false, $value, false, $attrs,
+                     $multiInput, $autocomplete
+            );
+            if (!$multiInput) $html .= "\n<br>";
+            $multiInput = false;
+            $autocomplete = false;
+        }
+    }
+    else {
+        $html = gInput($arr['type'], $name, null, false, false, $arr['value'], false, $attrs, $multiInput, $autocomplete);
+    }
+
+    return $html;
+
 }
 
 function form_password($key, $arr) {
@@ -280,17 +304,17 @@ function getPath() {
 
 function locateDir($filename, $extraDir = '', $ignorePath = false) {
     if (fs_file_exists("$extraDir/$filename")) {
-	$dir = $extraDir;
+        $dir = $extraDir;
     }
     elseif ($ignorePath) {
-	$dir =  '';
+        $dir =  '';
     }
     else {
-	foreach (getPath() as $path) {
-	    if (fs_file_exists("$path/$filename") && !empty($path)) {
-		$dir = $path;
-		break;
-	    }
+        foreach (getPath() as $path) {
+            if (fs_file_exists("$path/$filename") && !empty($path)) {
+                $dir = $path;
+                break;
+            }
         }
     }
 
@@ -314,11 +338,18 @@ function one_constant($key, $value) {
 	return "\$gallery->app->$key = \"{$value}\";\n";
 }
 
-function array_constant($key, $value) {
+function array_constant($key, $value, $removeEmpty = false) {
 	$buf = '';
+
 	foreach ($value as $item) {
-		$buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+	    if($removeEmpty && empty($item)) {
+	        continue;
+	    }
+        else {
+		  $buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+	    }
 	}
+
 	return $buf;
 }
 
@@ -1472,9 +1503,8 @@ function check_admins() {
 		);
 	}
 	else {
-		$result=array(
+		$result = array(
 			"desc" => sprintf(gTranslate('config', "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>'),
-			"optional" => 1,
 			"remove_empty" => true
 		);
 	}
@@ -1507,45 +1537,45 @@ function displayNameOptions() {
 }
 
 function check_gallery_versions()  {
-	$fail = array();
-	$success = array();
-	$warn = array();
+    $fail = array();
+    $success = array();
+    $warn = array();
 
-	$versionStatus = checkVersions(false);
+    $versionStatus = checkVersions(false);
 
-	$fail = $versionStatus['fail'];
+    $fail = $versionStatus['fail'];
 
-	$problems = array_merge(
-		$versionStatus['missing'],
-		$versionStatus['older'],
-		$versionStatus['unkown']
-	);
+    $problems = array_merge(
+        $versionStatus['missing'],
+        $versionStatus['older'],
+        $versionStatus['unkown']
+    );
 
-	$hint = "<p>" . gTranslate('config', "This should be fixed before proceeding") .
-		"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-		'<a href="check_versions.php">', '</a>') . '</p>';
+    $hint = "<p>" . gTranslate('config', "This should be fixed before proceeding") .
+        "<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+        '<a href="check_versions.php">', '</a>') . '</p>';
 
-	if(!empty($versionStatus['newer'])) {
-	    $warn[] = gTranslate('config',
-		"One file is newer then expected.",
-		"%d files are newer then expected.",
-                count($versionStatus['newer']), '', true) .
-		$hint;
-	}
+    if(!empty($versionStatus['newer'])) {
+        $warn[] = gTranslate('config',
+            "One file is newer then expected.",
+            "%d files are newer then expected.",
+            count($versionStatus['newer']), '', true) .
+            $hint;
+    }
 
-	if(!empty($problems)) {
-	    $fail[] = gTranslate('config',
-		"One file is out of date, corrupted or missing.",
-		"%d files are out of date, corrupted or missing.",
-	    	count($problems), '', true) .
-		(empty($versionStatus['newer']) ? $hint : '<br>');
-	}
+    if(!empty($problems)) {
+        $fail[] = gTranslate('config',
+            "One file is out of date, corrupted or missing.",
+            "%d files are out of date, corrupted or missing.",
+            count($problems), '', true) .
+            (empty($versionStatus['newer']) ? $hint : '<br>');
+    }
 
-	if (empty($warn) && empty($fail)) {
-		$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
-        }
+    if (empty($warn) && empty($fail)) {
+        $success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
+    }
 
-	return array($success, $fail, $warn);
+    return array($success, $fail, $warn);
 }
 
 function checkVersions($verbose = false) {

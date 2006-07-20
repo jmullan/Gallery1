@@ -153,7 +153,7 @@ foreach ($constants as $key => $val) {
 	}
 	else {
 		$real = '';
-        }
+    }
 
 	if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 		$real = array_stripslashes($real);
@@ -166,7 +166,7 @@ foreach ($constants as $key => $val) {
 		eval("\$real = $tmp;");
 	}
 
-	if (!strcmp($key, 'graphics')) {
+	if ($key == 'graphics') {
 		$graphtool = $real;
 	}
 
@@ -176,26 +176,30 @@ foreach ($constants as $key => $val) {
 	}
 
 	if ((is_array($real) && join('', $real) === '') || $real == '') {
-		if (isset($constants[$key]['remove_empty'])) {
-			continue;
-		}
-		if (isset($constants[$key]['allow_empty'])) {
-			$line = one_constant($key, $real);
-			$gallery->session->configData .= $line;
-			continue;
-		}
-		if (!strcmp($key, 'pnmDir')) {
-		        $graphtest['pnmDir'] = 1;
-		}
-		else if (!strcmp($key, 'ImPath')) {
-		        $graphtest['ImPath'] = 1;
-		}
-		if (isset($constants[$key]['optional'])) {
-			$gallery->session->configData .= '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
-		} else {
-			$gallery->session->configData .= error_missing($constants[$key]['prompt'], $key).'<br>';
-			$error++;
-		}
+	    if (isset($constants[$key]['remove_empty']) && !isset($constants[$key]['optional'])) {
+	        continue;
+	    }
+
+	    if (isset($constants[$key]['allow_empty'])) {
+	        $line = one_constant($key, $real);
+	        $gallery->session->configData .= $line;
+	        continue;
+	    }
+
+	    if ($key == 'pnmDir') {
+	        $graphtest['pnmDir'] = 1;
+	    }
+	    else if ($key == 'ImPath') {
+	        $graphtest['ImPath'] = 1;
+	    }
+
+	    if (isset($constants[$key]['optional'])) {
+	        $gallery->session->configData .= '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
+	    }
+	    else {
+	        $gallery->session->configData .= error_missing($constants[$key]['prompt'], $key).'<br>';
+	        $error++;
+	    }
 	}
 	else {
 		if (isset($constants[$key]['filename'])) {
@@ -300,14 +304,22 @@ foreach ($constants as $key => $val) {
 		}
 
 		if (!isset($constants[$key]['dont-write'])) {
-			if (is_array($real) && (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password')) {
-				$line = array_constant($key, $real);
-			} elseif (is_array($real) && $constants[$key]['type'] == 'password') {
-				$line = one_constant($key, $real[2]);
-			} else {
-				$line = one_constant($key, $real);
-			}
-			$gallery->session->configData .= $line;
+		    if (is_array($real) && (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password')) {
+		        $line = array_constant($key, $real, isset($constants[$key]['remove_empty']));
+
+		    }
+		    elseif (is_array($real) && $constants[$key]['type'] == 'password') {
+		        $line = one_constant($key, $real[2]);
+		    }
+		    else {
+		        $line = one_constant($key, $real);
+		    }
+
+		   	if (isset($constants[$key]['optional']) && empty($line)) {
+		        $line = '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
+		    }
+
+		    $gallery->session->configData .= $line;
 		}
 
 		if (isset($constants[$key]['verify-func'])) {
@@ -324,7 +336,8 @@ foreach ($constants as $key => $val) {
 				}
 				if (is_string($fval)) {
 					$gallery->session->configData .= gallery_error($fval);
-				} else if (is_array($fval)) {
+				}
+				else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
 							$gallery->session->configData .= gallery_error($msg);
@@ -335,7 +348,7 @@ foreach ($constants as $key => $val) {
 			}
 
 			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
-			if (!strcmp($key, 'pnmDir')) {
+			if ($key == 'pnmDir') {
 				$graphpath  = $real;
 			}
 		}
@@ -364,7 +377,7 @@ foreach ($constants as $key => $val) {
  *
  * Don't bother if we are configuring for ImageMagick.
  */
-if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
+if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
 	/*
 	 * If the graph path is not in the open_basedir list, then we can't tell.
      * Assume whatever they entered is correct and hope for the best
@@ -397,11 +410,11 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
     $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
     $error++;
 }
-else if (!strcmp($graphtool, 'ImageMagick') && !empty($graphtest['ImPath'])) {
+else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
     $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
     $error++;
 }
-else if (!strcmp($graphtool, 'NetPBM') && !empty($graphtest['pnmDir'])) {
+else if ($graphtool == 'NetPBM' && !empty($graphtest['pnmDir'])) {
     $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
     $error++;
 }

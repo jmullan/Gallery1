@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -22,7 +22,7 @@
 ?>
 <?php
 
-list($login, $username, $gallerypassword) = 
+list($login, $username, $gallerypassword) =
 	getRequestVar(array('login', 'username', 'gallerypassword'));
 
 if (isset($gallery->session->username) && !empty($gallery->session->username)) {
@@ -51,7 +51,7 @@ elseif (!empty($login)) {
 			$gallery->session->username = $username;
 			gallery_syslog("Successful config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
 			if ($tmpUser->getDefaultLanguage() != "") {
-				$gallery->session->language = 
+				$gallery->session->language =
 					$tmpUser->getDefaultLanguage();
 			}
 		}
@@ -59,7 +59,7 @@ elseif (!empty($login)) {
 			$tmpUser = null;
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
-			
+
 			$messages[] = array(
 				'type' => 'error',
 				'text' => gTranslate('config', "Invalid username or password")
@@ -68,7 +68,7 @@ elseif (!empty($login)) {
 		elseif (!$tmpUser->isAdmin()) {
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
-			
+
 			$messages[] = array(
 				'type' => 'error',
 				'text' => gTranslate('config', "User is not an admin - access denied")
@@ -82,7 +82,7 @@ if (isset($gallery->session->resetAdminGuid)) {
 <div class="g-header">
     <div class="g-pagetitle"><?php echo sprintf(gTranslate('config', "Reset %s Password"), "admin"); ?></div>
 </div>
-<div class="g-sitedesc"><?php 
+<div class="g-sitedesc"><?php
     printf(gTranslate('config', "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin");
 ?></div>
 <p align="center">
@@ -93,7 +93,7 @@ if (isset($gallery->session->resetAdminGuid)) {
 <?php
 	exit;
 }
-elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in 
+elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 ?>
 
 <div class="g-header">
@@ -102,15 +102,15 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 
 <div class="g-content-popup">
 
-<div class="g-sitedesc left"><?php 
-    echo gTranslate('config', "You must log in as an administrator to edit this server's configuration.");
+<div class="g-sitedesc left"><?php
+    echo gTranslate('config', "You must log in as an administrator to edit this Gallery configuration.");
     echo "\n<br>";
     echo gTranslate('config', "If you have forgotten the password to your admin account, you can easily reset it.");
     echo "\n<br>";
     printf (gTranslate('config', "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR);
 ?></div>
 
-<?php 
+<?php
 	echo infoBox($messages);
 	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
 ?>
@@ -124,11 +124,11 @@ echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true
 </table>
 
 <p class="center">
-<?php 
+<?php
 	echo gSubmit('login', gTranslate('config', "_Log me in"));
 	echo gReset('reset', gTranslate('config', "_Reset"));
 	echo gButton('cancel', gTranslate('config', "_Cancel"), "javascript:location.href='../'");
-?>	
+?>
 </p>
 
 </form>

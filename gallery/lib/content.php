@@ -1427,4 +1427,70 @@ function removeAccessKey($text) {
     return $text;
 }
 
+/**
+ * Returns the HTML code for loading YUI autocomplete Javascript
+ * @return  $html   string
+ * @author  Jens Tkotz <jens@peino.de
+*/
+function autoCompleteJS() {
+    global $gallery;
+
+    $html = '
+    <!-- Dependencies -->
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/yahoo-min.js"></script>
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/dom-min.js"></script>
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/event-min.js"></script>
+
+    <!-- OPTIONAL: Connection (required only if using XHR DataSource) -->
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/connection-min.js"></script>
+
+    <!-- OPTIONAL: Animation (required only if enabling animation) -->
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/animation-min.js"></script>
+
+    <!-- Source file -->
+    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/autocomplete-min.js"></script>
+';
+
+    return $html;
+}
+
+/**
+ * Returns the HTML/Javascript code that initializes an autocomplete field
+ * if 3rd param is false, then just an input field is returned.
+ *
+ * @param   $label          string  descriptive Text
+ * @param   $inputName      string  name of the input field
+ * @param   $id             string  id of the input field
+ * @return  $html           string
+ * @author  Jens Tkotz <jens@peino.de>
+ */
+function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete, $disabled = false) {
+    global $gallery;
+
+    $disable = ($disabled) ? ' disabled' : '';
+
+    $html = "
+    <div class=\"YUIsearchdiv right5\">$label
+        <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"50\"$disable>
+        <div class=\"YUIsearchshadow\"><div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div></div>
+    </div>
+    ";
+
+    if($enableAutocomplete) {
+        $html .= '
+<script type="text/javascript">
+    oACDS = new YAHOO.widget.DS_XHR("' . $gallery->app->photoAlbumURL .'/lib/autocomplete/YUIsearch_files.php", ["\n", "\t"]);
+    oACDS.responseType = YAHOO.widget.DS_XHR.prototype.TYPE_FLAT;
+    oACDS.maxCacheEntries = 60;
+    oACDS.queryMatchSubset = true;
+
+    // Instantiate auto complete
+    oAutoComp = new YAHOO.widget.AutoComplete(\''. $id .'\',\''. $id .'_container\', oACDS);
+    oAutoComp.queryDelay = 0;
+    oAutoComp.typeAhead = true;
+</script>';
+    }
+
+    return $html;
+}
 ?>

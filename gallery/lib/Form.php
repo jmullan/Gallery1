@@ -98,7 +98,7 @@ function generateAttrs($attrList) {
             if ($value === false) {
                 continue;
             }
-            elseif ($value == NULL) {
+            elseif ($value === NULL) {
                 $attrs .= " $key";
             }
             else {
@@ -143,13 +143,13 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
 
     $attrs = generateAttrs($attrList);
 
-    $buf = "<select name=\"$name\" $attrs>$crlf";
+    $buf = "$crlf<select name=\"$name\"$attrs>$crlf";
 
     if(!empty($options)) {
         foreach ($options as $nr => $option) {
-	    $option['text'] = removeAccessKey($option['text']);
+            $option['text'] = removeAccessKey($option['text']);
             $sel = isset($option['selected']) ? ' selected' : '';
-            $buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
+            $buf .= '<option value="'. $option['value'] ."\"$sel>". $option['text'] .'</option>' . $crlf;
         }
     }
 
@@ -175,14 +175,14 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     // We don't want the result HTML escaped since we split on "&", below
     // use the header version of makeGalleryUrl()
     $url = makeGalleryHeaderUrl($target, $urlargs);
-	
+
     $result = split("\?", $url);
     $target = $result[0];
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-	'method' => 'POST',
-	'name'	 => 'g1_form'
+    	'method' => 'POST',
+    	'name'	 => 'g1_form'
     );
 
     foreach($defaults as $attr => $value) {
@@ -197,13 +197,13 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 
     $args = split("&", $tmp);
     foreach ($args as $arg) {
-	if (strlen($arg) == 0) {
-	    continue;
-	}
-	list($key, $val) = split("=", $arg);
-	$form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
+        if (strlen($arg) == 0) {
+            continue;
+        }
+        list($key, $val) = split("=", $arg);
+        $form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
     }
-        
+
     return $form;
 }
 
@@ -275,28 +275,31 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
-    
+
     if($attrList['accesskey'] != '') {
 	   $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrList = array_merge($attrList, $additionalAttrs);
     $attrs = generateAttrs($attrList);
-    
+
     $html = "<input$attrs>\n";
 
     return $html;
 }
 
-function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $class = false) {
+function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $class = false, $attrList = array(), $multiInput = false, $autocomplete = false) {
+    global $browser;
+
     $attrList['name'] = $name;
     $attrList['type'] = $type;
     $attrList['accesskey'] = getAndSetAccessKey($label);
     $attrList['size'] = $size;
-    
-    if (!empty($value)) {
+
+    if (!empty($value) || $value == 0) {
         $attrList['value'] = $value;
     }
+
     $attrList['class'] = $class;
 
     if(!$class) {
@@ -310,6 +313,19 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
 
     $attrs = generateAttrs($attrList);
 
+    if($autocomplete) {
+        $input = initAutocompleteJS(
+            $label,
+            $name,
+            $attrList['id'],
+            $browser->hasFeature('xmlhttpreq')
+        );
+        $label = null;
+    }
+    else {
+        $input = "<input$attrs>";
+    }
+
     if($tableElement){
         if($label) {
             $html = "<tr>\n";
@@ -319,7 +335,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
         }
         else {
             $html = "<tr>\n";
-            $html = "<td><input$attrs></td>\n";
+            $html = "<td>$input</td>\n";
             $html .= "</tr>\n";
         }
     }
@@ -328,8 +344,18 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
             $html = "$label<input$attrs>\n";
         }
         else {
-            $html = "<input$attrs>\n";
+            $html = "$input\n";
         }
+    }
+
+    if($multiInput) {
+        $id = $attrList['id'];
+        $html .= gButton('addField', gTranslate('common', "Add field"), "${id}obj.newField()");
+        $html .= "\n<div id=\"${id}_Container\"></div>\n\n";
+
+        $html .= '<script language="JavaScript" type="text/javascript">';
+        $html .= "\n\tvar ${id}obj = new MultiInput('$id', '${id}_Container')";
+        $html .= "\n</script>\n";
     }
 
     return $html;
@@ -343,13 +369,13 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
     $attrList['class'] = 'g-button';
     $attrList['onClick'] = $onClick;
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
-    
+
     if($attrList['accesskey'] != '') {
         $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $html = "<input$attrs>\n";
 
     return $html;
@@ -362,13 +388,13 @@ function gReset($name, $value, $additionalAttrs = array()) {
     $attrList['value'] = $value;
     $attrList['class'] = 'g-button';
     $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
-    
+
     if($attrList['accesskey'] != '') {
         $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $html = "<input$attrs>\n";
 
     return $html;

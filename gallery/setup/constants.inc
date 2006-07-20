@@ -23,6 +23,17 @@
 <?php
 	require(GALLERY_BASE . '/includes/setup/constants.inc');
 	require(GALLERY_BASE . '/js/sectionTabs.js.php');
+    require(GALLERY_BASE . '/js/multiInput.js.php');
+
+    include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+
+    if (class_exists('Browser')) {
+        $browser = &Browser::singleton();
+    }
+
+    if($browser->hasFeature('xmlhttpreq')) {
+        echo autoCompleteJS();
+    }
 
 	insertFormJS('config');
 ?>
@@ -200,10 +211,10 @@ foreach ($constants as $key => $val) {
 }
 ?>
         <div align="center">
-        	<input type="submit" name="go_back" disabled="disabled" value="&lt;&lt; <?php echo gTranslate('config', "Previous Step") ?>" class="g-button">
-                <input type="button" name="go_backTab" disabled="disabled" value="&lt; <?php echo gTranslate('config', "Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab") ?> &gt;" onClick="section_tabs.nextTab()" class="g-button">
-                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step") ?> &gt;&gt;" class="g-button">
+        	<input type="submit" name="go_back" disabled="disabled" value="<?php echo gTranslate('config', "&lt;&lt; Previous Step") ?>" class="g-button">
+                <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
+                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step &gt;&gt;") ?>" class="g-button">
                 <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
         </div>
 
