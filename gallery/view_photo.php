@@ -333,7 +333,7 @@ if (!$gallery->album->isMovie($id)) {
 			$printServicesText .= drawSelect('print_services',
 				$options,
 				'',
-				1,	
+				1,
 				array('onChange' =>'doPrintService()', 'class' => 'g-admin'),
 				true
 			);
@@ -416,11 +416,10 @@ if(sizeof($albumItemOptions) > 2 && $useIcons) {
 		if(!empty($option['value'])) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
-				$option['text'], $option['value'],
-				true, false, 500, 500, '', '', $option['icon']);
+				    $option['text'], $option['value'],
+				    true, false, 500, 500, '', '', $option['icon']);
 			} else {
-				$content = galleryIconLink(
-				$option['value'], $option['icon'], $option['text']);
+				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
 			}
 			$itemActions[] = $content;
 		}
@@ -505,9 +504,9 @@ if ($gallery->user->isLoggedIn() &&
 
 		$checked = ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? " checked" : "";
 		$emailMeForm .= "<input type=\"checkbox\" name=\"comments\" $checked onclick=\"location.href='$url'\"> ";
-		
+
 		$emailMeForm .= gTranslate('core', "Email me when comments are added");
-		
+
 		$emailMeForm .= "\n</form>";
 	}
 }
