@@ -140,18 +140,20 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
     $iconElements[] = galleryLink(
         makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-        gTranslate('core', "sl_ideshow"), array(), 'presentation.png'
+        gTranslate('core', "sl_ideshow"), array(), 'presentation.gif'
     );
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
     $iconElements[] = galleryLink(
         doCommand("new-album", array(), "view_album.php"),
-        gTranslate('core', "_new album"), array(), 'new_album.png', true
+        gTranslate('core', "_new album"), array(), 'new_album.gif', true
     );
 }
 
-if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
+$loggedIn = ($gallery->user->isLoggedIn() && !$gallery->session->offline);
+
+if ($loggedIn) {
     if ($gallery->user->isAdmin()) {
         $linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link(
@@ -161,14 +163,14 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 
         $iconElements[] = galleryLink(
             makeGalleryUrl('admin-page.php'),
-            gTranslate('core', "_admin page"), array(), 'admin.png', true
+            gTranslate('core', "_admin page"), array(), 'admin.gif', true
         );
 
         $docsUrl = galleryDocs('admin');
         if ($docsUrl) {
             $iconElements[] = galleryLink(
                 $docsUrl,
-                gTranslate('core', "_documentation"), array('target' => '_blank'), 'about.png', true
+                gTranslate('core', "_documentation"), array('target' => '_blank'), 'docs.gif', true
             );
         }
     }
@@ -176,30 +178,18 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if ($gallery->userDB->canModifyUser()) {
         $iconElements[] = popup_link(
             gTranslate('core', "_preferences"),
-            'user_preferences.php', false, true, 500, 500, '','','preferences.png'
+            'user_preferences.php', false, true, 500, 500, '','','preferences.gif'
         );
     }
+ }
 
-    if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconElements[] = galleryLink(
-            doCommand("logout", array(), "albums.php"),
-            gTranslate('core', "log_out"), array(), 'logout.png', true
-        );
-    }
-} else {
-    if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconElements[] = popup_link(
-            gTranslate('core', "_login"),
-            'login.php', false, true, 500, 500, '','','login.png', true
-        );
+$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "albums.php"));
 
-        if (!strcmp($gallery->app->selfReg, 'yes')) {
-            $iconElements[] = popup_link(
-                gTranslate('core', "_register"),
-                'register.php', false, true, 500, 500, '','','register.png'
-            );
-        }
-    }
+if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
+    $iconElements[] = popup_link(
+        gTranslate('core', "_register"),
+            'register.php', false, true, 500, 500, '','','register.gif'
+    );
 }
 
 $adminbox["text"] = $adminText;
@@ -354,7 +344,7 @@ for ($i = $start; $i <= $end; $i++) {
         $rootAlbum[$tmpAlbumName]['albumdesc']['title'] = editField($gallery->album, "title", $albumURL);
         if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
             $rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= ' '. popup_link(
-                gImage('icons/compressed.png', gTranslate('core', "Download entire album as archive")),
+                gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive")),
                 "download.php?set_albumName=$tmpAlbumName",
                 false, false, 500, 500, 'g-small', '', '',
                 false, false

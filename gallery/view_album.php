@@ -350,7 +350,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
 		gTranslate('core', "sl_ideshow"),
 		array(),
-		'presentation.png'
+		'presentation.gif'
 	);
 }
 
@@ -657,7 +657,7 @@ if ($numPhotos) {
 				$link = '';
 
 				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
-					$iconText = gImage('icons/compressed.png', gTranslate('core', "Download entire album as archive"));
+					$iconText = gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive"));
 					$link = popup_link(
 						$iconText,
 						'download.php?set_albumName='. $gallery->album->getAlbumName($i),

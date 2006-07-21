@@ -1336,12 +1336,12 @@ function LoginLogoutButton($returnUrl) {
 
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
-			$html = galleryIconLink($returnUrl, 'logout.png', gTranslate('common', "log_out"));
+			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "log_out"));
 		}
 		else {
 			$html = popup_link(
 				gTranslate('common', "log_in"),
-				'login.php', false, true, 500, 500, '','','login.png');
+				'login.php', false, true, 500, 500, '','','login.gif');
 		}
 	}
 	return $html;
