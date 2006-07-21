@@ -20,7 +20,7 @@
  * $Id$
  */
 ?>
-<?php 
+<?php
 
 function insertFormJS($formName) {
 
@@ -103,7 +103,7 @@ function generateAttrs($attrList) {
 			}
 		}
 	}
-	
+
 	return $attrs;
 }
 
@@ -120,7 +120,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
                     $sel = ' selected';
                 }
             }
-            else if ($value == $selected || $text == $selected || $selected === '__ALL__') {
+            else if ($value == $selected || $text === $selected || $selected === '__ALL__') {
                 $sel = ' selected';
             }
             $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
@@ -139,7 +139,7 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $buf = "<select name=\"$name\" $attrs>$crlf";
 
     if(!empty($options)) {
@@ -189,7 +189,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $form = "\n<form action=\"$target\"$attrs>\n";
 
     $args = split("&", $tmp);
