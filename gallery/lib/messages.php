@@ -56,7 +56,7 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 	    }
 
             $html .= "\n  ". '<div class="g-'. $message['type'] .' left">';
-            $html .= gImage('icons/notice/'. $message['type'] .'.png');
+            $html .= gImage('icons/notice/'. $message['type'] .'.gif');
             $html .= ' '. $message['text'];
             $html .= "\n  </div>";
         }
