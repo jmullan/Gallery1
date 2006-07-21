@@ -334,8 +334,7 @@ if (!$gallery->album->isMovie($id)) {
 				$options,
 				'',
 				1,
-				array('onChange' =>'doPrintService()', 'class' => 'g-admin'),
-				true
+				array('onChange' =>'doPrintService()', 'class' => 'g-admin')
 			);
 			$printServicesText .= '</form>';
 			$adminTextIconElemens[] = $printServicesText;

@@ -181,7 +181,7 @@ function form_nv_pairs($key, $arr) {
 function form_choice($key, $arr) {
 	$attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
 
-	return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
+	return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs);
 }
 
 function form_multiple_choice($key, $arr) {

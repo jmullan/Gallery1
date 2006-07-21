@@ -71,7 +71,7 @@ function slideshow_initialize() {
 	}
 
 	$bgcolor = $gallery->album->fields['bgcolor'];
-	$title = _("Slide Show for album") ." :: ". $gallery->album->fields["title"];
+	$title = gTranslate('core', "Slide Show for album") ." :: ". $gallery->album->fields["title"];
 }
 
 function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
@@ -169,13 +169,13 @@ var photo_count = <?php echo $photo_count ?>;
 
 function stop() {
     onoff = 0;
-    status = "<?php echo unhtmlentities(_("The slide show is stopped, Click [play] to resume.")) ?>";
+    status = "<?php echo unhtmlentities(gTranslate('core', "The slide show is stopped, Click [play] to resume.")) ?>";
     clearTimeout(timer);
 }
 
 function play() {
     onoff = 1;
-    status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
+    status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>";
     wait_for_current_photo();
 }
 
@@ -204,8 +204,8 @@ function wait_for_current_photo() {
 	 * The current photo isn't loaded yet.  Set a short timer just to wait
 	 * until the current photo is loaded.
 	 */
-	 status = "<?php echo unhtmlentities(_("Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(_("of")) ?> " + photo_count +
-		 ").  <?php echo unhtmlentities(_("Please Wait...")) ?>" ;
+	 status = "<?php echo unhtmlentities(gTranslate('core', "Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(gTranslate('core', "of")) ?> " + photo_count +
+		 ").  <?php echo unhtmlentities(gTranslate('core', "Please Wait...")) ?>" ;
 
 	clearTimeout(timer);
 	timer = setTimeout('wait_for_current_photo()', 500);
@@ -311,15 +311,16 @@ if ($gallery->user->canViewFullImages($gallery->album)) {
 }
 
     $iconElements[] = $delayIconText .":";
-    $iconElements[] = drawSelect("time", array(1 => _("1 second"),
-				2 => _("2 seconds"),
-				3 => _("3 seconds"),
-				5 => _("5 seconds"),
-				10 => _("10 seconds"),
-				15 => _("15 seconds"),
-				30 => _("30 seconds"),
-				45 => _("45 seconds"),
-				60 => _("1 Minute")),
+    $iconElements[] = drawSelect("time", array(
+                1 => gTranslate('core', "1 second"),
+				2 => gTranslate('core', "2 seconds"),
+				3 => gTranslate('core', "3 seconds"),
+				5 => gTranslate('core', "5 seconds"),
+				10 => gTranslate('core', "10 seconds"),
+				15 => gTranslate('core', "15 seconds"),
+				30 => gTranslate('core', "30 seconds"),
+				45 => gTranslate('core', "45 seconds"),
+				60 => gTranslate('core', "1 Minute")),
 				$defaultPause, // default value
 				1, // select size
 				array('onchange' => 'reset_timer()', 'class' => 'g-admin')
@@ -357,7 +358,7 @@ if ($photo_count > 0) {
 
 <script type="text/javascript">
 /* show the caption either in a nice div or an ugly form textarea */
-document.write("<div class='g-photo-caption'>" + "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
+document.write("<div class='g-photo-caption'>" + "[" + current_location + " <?php echo gTranslate('core', "of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
 
 /* Start the show. */
 play();
@@ -367,7 +368,7 @@ play();
 <?php
 	}
 	else {
-		echo "<p><b>". _("This album has no photos to show in a slide show.") ."</b></p>";
+		echo "<p><b>". gTranslate('core', "This album has no photos to show in a slide show.") ."</b></p>";
 	}
 ?>
 </div>

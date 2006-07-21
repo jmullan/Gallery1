@@ -53,9 +53,7 @@
             $options[] = array('text' => $value, 'value' => $value);
         }
 
-        echo drawSelect2('prefix', $options,
-                         array('onChange' => 'setUploadPath()'),
-                         array('prettyPrinting' => true));
+        echo drawSelect2('prefix', $options, array('onChange' => 'setUploadPath()'));
         echo "<br>";
     }
 

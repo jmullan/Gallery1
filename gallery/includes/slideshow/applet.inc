@@ -25,10 +25,10 @@ function slideshow_initialize() {
 	global $albumName, $gallery, $title;
 
 	if (empty($albumName)) {
-        $title = sprintf(_("Slide Show for Gallery :: %s"),
+        $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
             $gallery->app->galleryTitle);
 	} else {
-        $title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"]);
+        $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
 	}
 }
 
@@ -37,7 +37,7 @@ function slideshow_body() {}
 function slideshow_controlPanel() {
 	echo infobox(array(array(
 		'type' => 'information',
-		'text' => _("If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
+		'text' => gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
 	)));
 }
 
@@ -63,7 +63,7 @@ function slideshow_image() {
 		),
 		array("toSysOut" => "true"),
 		dirname(__FILE__) . "/applet.cfg",
-		_("Your browser doesn't support applets; you should use one of the other slideshow methods.")
+		gTranslate('core', "Your browser doesn't support applets; you should use one of the other slideshow methods.")
 	);
 ?>
 

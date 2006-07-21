@@ -43,9 +43,11 @@ if (!empty($bulk_create)) {
 
 if ( (isset($modify) || isset($delete)) && ! isset($unames)) {
 	$notice_messages[] = array('type' => 'error', 'text' => gTranslate('core', "Please select a user"));
-} elseif (isset($modify)) {
+}
+elseif (isset($modify)) {
 	header('Location: ' . makeGalleryHeaderUrl('modify_user.php', array('uname' => $unames[0], 'type' => 'popup')));
-} elseif (isset($delete)) {
+}
+elseif (isset($delete)) {
 	header('Location: ' . makeGalleryHeaderUrl('delete_user.php', array('unames' => $unames, 'type' => 'popup')));
 }
 
@@ -71,9 +73,10 @@ echo makeFormIntro('manage_users.php', array(), array('type' => 'popup'));
 echo "\n<p>";
 
 if (!$displayUsers) {
-	print "<i>". gTranslate('core', "There are no users!  Create one.") ."</i>";
-} else {
-	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''), true);
+	echo "<i>". gTranslate('core', "There are no users!  Create one.") ."</i>";
+}
+else {
+	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''));
 }
 
 echo "\n</p>";

@@ -21,6 +21,13 @@
  */
 ?>
 <?php
+
+include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+
+if (class_exists('Browser')) {
+    $browser = &Browser::singleton();
+}
+
 function slideshow_initialize() {
     global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
@@ -64,20 +71,20 @@ function slideshow_initialize() {
         }
         if (empty($albumName)) {
             if ($random) {
-                $title = sprintf(_("%s Random Images from %s"),
+                $title = sprintf(gTranslate('core', "%s Random Images from %s"),
                     $number,
                     $gallery->app->galleryTitle);
             } else {
-                $title = sprintf(_("Slide Show for Gallery :: %s"),
+                $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
                     $gallery->app->galleryTitle);
             }
         } else {
             if ($random) {
-                $title = sprintf(_("%d Random Images from album :: %s"),
+                $title = sprintf(gTranslate('core', "%d Random Images from album :: %s"),
                     $number,
                     $gallery->album->fields["title"]);
             } else {
-                $title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"]);
+                $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
             }
         }
     }
@@ -227,38 +234,38 @@ var loop = <?php echo $defaultLoop ?>;
 <?php
     printSlideshowPhotos($full_urls, $urls, $captions, PHOTO_CAPTION, $photo_count);
 
-    $transitionNames[] = _("Blend");
+    $transitionNames[] = gTranslate('core', "Blend");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Fade(duration=1)';
-    $transitionNames[] = _("Blinds");
+    $transitionNames[] = gTranslate('core', "Blinds");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Blinds(Duration=1,bands=20)';
-    $transitionNames[] = _("Checkerboard");
+    $transitionNames[] = gTranslate('core', "Checkerboard");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Checkerboard(Duration=1,squaresX=20,squaresY=20)';
-    $transitionNames[] = _("Diagonal");
+    $transitionNames[] = gTranslate('core', "Diagonal");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Strips(Duration=1,motion=rightdown)';
-    $transitionNames[] = _("Doors");
+    $transitionNames[] = gTranslate('core', "Doors");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Barn(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Gradient");
+    $transitionNames[] = gTranslate('core', "Gradient");
     $transitions[] = 'progid:DXImageTransform.Microsoft.GradientWipe(duration=1)';
-    $transitionNames[] = _("Iris");
+    $transitionNames[] = gTranslate('core', "Iris");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Iris(Duration=1,motion=out)';
-    $transitionNames[] = _("Pinwheel");
+    $transitionNames[] = gTranslate('core', "Pinwheel");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Wheel(Duration=1,spokes=12)';
-    $transitionNames[] = _("Pixelate");
+    $transitionNames[] = gTranslate('core', "Pixelate");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Pixelate(maxSquare=10,duration=1)';
-    $transitionNames[] = _("Radial");
+    $transitionNames[] = gTranslate('core', "Radial");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RadialWipe(Duration=1,wipeStyle=clock)';
-    $transitionNames[] = _("Rain");
+    $transitionNames[] = gTranslate('core', "Rain");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RandomBars(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Slide");
+    $transitionNames[] = gTranslate('core', "Slide");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Slide(Duration=1,slideStyle=push)';
-    $transitionNames[] = _("Snow");
+    $transitionNames[] = gTranslate('core', "Snow");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RandomDissolve(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Spiral");
+    $transitionNames[] = gTranslate('core', "Spiral");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Spiral(Duration=1,gridSizeX=40,gridSizeY=40)';
-    $transitionNames[] = _("Stretch");
+    $transitionNames[] = gTranslate('core', "Stretch");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Stretch(Duration=1,stretchStyle=push)';
 
-    $transitionNames[] = _("RANDOM!");
+    $transitionNames[] = gTranslate('core', "RANDOM!");
     $transitions[] = 'special case';
 
     $transitionCount = sizeof($transitions) - 1;
@@ -314,7 +321,7 @@ function stop() {
 	changeElementText("stopOrStartText", '<?php echo $playIconText; ?>');
 
 	onoff = 0;
-	status = "<?php echo unhtmlentities(_("The slide show is stopped, Click [play] to resume.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide show is stopped, Click [play] to resume.")) ?>";
 	clearTimeout(timer);
 
 }
@@ -322,21 +329,21 @@ function stop() {
 function play() {
 	changeElementText("stopOrStartText", '<?php echo $stopIconText; ?>');
 	onoff = 1;
-	status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>";
 	go_to_next_photo();
 }
 
 function full() {
 	changeElementText("fullOrNormalText", '<?php echo $normalSizeIconText; ?>');
 	fullsized = 1;
-	status = "<?php echo unhtmlentities(_("The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
 }
 
 function normal() {
 	changeElementText("fullOrNormalText", '<?php echo $fullSizeIconText; ?>');
 
 	fullsized = 0;
-	status = "<?php echo unhtmlentities(_("The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
 }
 
 function changeDirection() {
@@ -374,12 +381,12 @@ function wait_for_current_photo() {
 		** The current photo isn't loaded yet.  Set a short timer just to wait
 		** until the current photo is loaded.
 		*/
-		status = "<?php echo unhtmlentities(_("Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(_("of")) ?>" + photo_count + ").  " + "<?php echo unhtmlentities(_("Please Wait...")) ?>" ;
+		status = "<?php echo unhtmlentities(gTranslate('core', "Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(gTranslate('core', "of")) ?>" + photo_count + ").  " + "<?php echo unhtmlentities(gTranslate('core', "Please Wait...")) ?>" ;
 		clearTimeout(timer);
 		timer = setTimeout('wait_for_current_photo()', 500);
 		return 0;
 	} else {
-		status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>" ;
+		status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>" ;
 		preload_next_photo();
 		reset_timer();
 	}
@@ -469,7 +476,7 @@ function preload_photo(index) {
 }
 
 function setCaption(text) {
-	changeElementText("caption", "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + text);
+	changeElementText("caption", "[" + current_location + " <?php echo gTranslate('core', "of") ?> " + photo_count + "] " + text);
 }
 // -->
 </script>
@@ -480,7 +487,7 @@ function slideshow_controlPanel() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
-			$transitionCount, $pixelImage, $stopIconText;
+			$transitionCount, $pixelImage, $stopIconText, $browser;
 
 	global $delayIconText, $loopIconText;
         ?>
@@ -490,24 +497,24 @@ function slideshow_controlPanel() {
 	$startStopIconText = $stopIconText;
         $iconElements[] = '<a href="#" onClick="stopOrStart(); return false;" style="display: block"><span id="stopOrStartText">'. $startStopIconText . '</span></a>';
 
-	$directionIconText =  getIconText('1leftarrow.gif', _("reverse direction"));
+	$directionIconText =  getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
         $iconElements[] = '<a href="#" onClick="changeDirection(); return false;" style="display: block"><span id="changeDirText">'. $directionIconText .'</span></a>';
 
         if ($full_option) {
-		$fullIconText = getIcontext('window_fullscreen.gif',_("full size"));
+		$fullIconText = getIcontext('window_fullscreen.gif',gTranslate('core', "full size"));
 		$iconElements[] = '<a href="#" onClick="fullOrNormal(); return false;" style="display: block"><span id="fullOrNormalText">'. $fullIconText .'</span></a>';
         }
 
         $iconElements[] = $delayIconText .':';
-	$iconElements[] = drawSelect("time", array(1 => _("1 second"),
-				2 => _("2 seconds"),
-				3 => _("3 seconds"),
-				5 => _("5 seconds"),
-				10 => _("10 seconds"),
-				15 => _("15 seconds"),
-				30 => _("30 seconds"),
-				45 => _("45 seconds"),
-				60 => _("1 Minute")),
+	$iconElements[] = drawSelect("time", array(1 => gTranslate('core', "1 second"),
+				2 => gTranslate('core', "2 seconds"),
+				3 => gTranslate('core', "3 seconds"),
+				5 => gTranslate('core', "5 seconds"),
+				10 => gTranslate('core', "10 seconds"),
+				15 => gTranslate('core', "15 seconds"),
+				30 => gTranslate('core', "30 seconds"),
+				45 => gTranslate('core', "45 seconds"),
+				60 => gTranslate('core', "1 Minute")),
 				$defaultPause, // default value
 				1, // select size
 				array('onchange' => 'reset_timer()', 'class' => 'g-admin')
@@ -521,19 +528,21 @@ function slideshow_controlPanel() {
 
 	echo makeIconMenu($iconElements, 'right', false);
 ?>
-    <td class="g-icon-nolink"><script type="text/javascript">
-    <!--
-    /* show the blend select if appropriate */
-    if (browserCanBlend) {
-	document.write('<?php echo _("Transition:"); ?><\/td>');
-	document.write('<td><?php echo str_replace("/", "\/", drawSelect("transitionType",
+    <td class="g-icon-nolink">
+    <?php
+    if ($browser->isBrowser('msie') && $browser->getMajor() >= 4) {
+        echo gTranslate('core', "Transition:");
+        echo "</td><td>";
+        echo drawSelect("transitionType",
                   $transitionNames,
                   $defaultTransition,
                   1,
-                 array('onchange' => 'change_transition()', 'class' => 'g-admin'))); ?>');
+                 array('onchange' => 'change_transition()', 'class' => 'g-admin'));
     }
-    // -->
-    </script></td></tr></table>
+    ?>
+    </td>
+    </tr>
+    </table>
 </form>
 <?php
     }
@@ -576,7 +585,7 @@ play();
 <?php
 	}
 	else {
-		echo "<p><b>". _("This album has no photos to show in a slide show.") ."</b></p>";
+		echo "<p><b>". gTranslate('core', "This album has no photos to show in a slide show.") ."</b></p>";
 	}
 }
 ?>

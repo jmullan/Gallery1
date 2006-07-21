@@ -851,8 +851,9 @@ function languageSelector() {
             $options,
             $nls['language'][$gallery->language],
             1,
-            array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
-            true);
+            array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
+            );
+
             $langSelectTable->addElement(array('content' => $content));
         }
 

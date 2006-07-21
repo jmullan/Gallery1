@@ -110,8 +110,8 @@ function generateAttrs($attrList) {
     return $attrs;
 }
 
-function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
-    $crlf = ($prettyPrinting) ? "\n\t" : '';
+function drawSelect($name, $options, $selected, $size, $attrList = array()) {
+    $crlf = "\n\t";
     $attrs = generateAttrs($attrList);
     $buf = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
@@ -123,7 +123,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
                     $sel = ' selected';
                 }
             }
-            else if ($value == $selected || $text == $selected || $selected === '__ALL__') {
+            else if ($value === $selected || $text === $selected || $selected === '__ALL__') {
                 $sel = ' selected';
             }
             $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
@@ -135,7 +135,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 }
 
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-    $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+    $crlf = "\n\t";
 
     if (!isset($attrList['size'])) {
         $attrList['size'] = 1;

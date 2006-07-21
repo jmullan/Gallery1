@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -28,7 +28,7 @@ list($save, $ownerUid, $submit, $actionUid) =
 	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUid'));
 
 // Hack check
-if (!$gallery->user->isAdmin() && 
+if (!$gallery->user->isAdmin() &&
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
@@ -113,14 +113,14 @@ echo makeFormIntro('album_permissions.php',
     array('type' => 'popup'));
 
 if ($gallery->user->isAdmin) {
-    echo gTranslate('core', "Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
+    echo gTranslate('core', "Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1);
 }
 ?>
 
 <table border="0" cellspacing="0" cellpadding="0">
  <tr>
   <td align="center">
-   <?php echo drawSelect('actionUid', $uAll, isset($allUid) ? $allUid : array(), 28, array(), true); ?>
+   <?php echo drawSelect('actionUid', $uAll, isset($allUid) ? $allUid : array(), 28); ?>
   </td>
 
   <td>&nbsp;</td>
@@ -133,16 +133,14 @@ $permsTable->setColumnCount(2);
 foreach($perms as $perm => $permDesc) {
     $permsTable->addElement(array('content' => $permDesc, 'cellArgs' => array('colspan' => 2)));
     $permsTable->addElement(
-	   array('content' => 
+	   array('content' =>
 	    "\n\t". gSubmit("submit[$perm]", '-->') .'<br>'.
 	    "\n\t" .gSubmit("submit[$perm]", '<--')
 	));
-    $permsTable->addElement(
-	array('content' => drawSelect("actionUid", $uids[$perm], '', 3, array(), true))
-    );
+    $permsTable->addElement(array('content' => drawSelect("actionUid", $uids[$perm], '', 3)));
 }
 echo $permsTable->render();
-?>    
+?>
   </td>
  </tr>
 </table>
