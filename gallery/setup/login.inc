@@ -102,37 +102,36 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 
 <div class="g-content-popup">
 
-<div class="g-sitedesc left"><?php
-    echo gTranslate('config', "You must log in as an administrator to edit this Gallery configuration.");
-    echo "\n<br>";
-    echo gTranslate('config', "If you have forgotten the password to your admin account, you can easily reset it.");
-    echo "\n<br>";
-    printf (gTranslate('config', "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR);
-?></div>
+    <div class="g-sitedesc left"><?php
+        echo gTranslate('config', "You must log in as an administrator to edit this Gallery configuration.");
+        echo "\n<br>";
+        echo gTranslate('config', "If you have forgotten the password to your admin account, you can easily reset it.");
+        echo "\n<br>";
+        printf (gTranslate('config', "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR);
+    ?></div>
 
-<?php
-	echo infoBox($messages);
-	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
-?>
-<table align="center">
-<?php
+    <div class="center">
+    <?php
+    	echo infoBox($messages);
+    	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
+    ?>
 
-echo gInput('text', 'username', gTranslate('core', "_Username"), true, false, $username);
+    <table align="center">
+    <?php
 
-echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
-?>
-</table>
+    echo gInput('text', 'username', gTranslate('core', "_Username"), true, false, $username);
+    echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
+    ?>
+    </table>
+    <br>
+    <?php
+    	echo gSubmit('login', gTranslate('config', "_Log me in"));
+    	echo gReset('reset', gTranslate('config', "_Reset"));
+    	echo gButton('cancel', gTranslate('config', "_Cancel"), "javascript:location.href='../'");
+    ?>
+    </form>
 
-<p class="center">
-<?php
-	echo gSubmit('login', gTranslate('config', "_Log me in"));
-	echo gReset('reset', gTranslate('config', "_Reset"));
-	echo gButton('cancel', gTranslate('config', "_Cancel"), "javascript:location.href='../'");
-?>
-</p>
-
-</form>
-
+    </div>
 </div>
 <script type="text/javascript">
 	document.login_form.username.focus();
