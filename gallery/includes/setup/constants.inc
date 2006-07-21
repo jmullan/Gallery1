@@ -1325,7 +1325,7 @@ $constants = array_merge($constants, array(
     'group_uploadPaths' => array (
 		'type' => 'group_start',
 		'name' => 'group_uploadPaths',
-		'default' => 'inline',
+		'default' => 'none',
 		'title' => gTranslate('config',"Paths for upload from server"),
 	),
 	'uploadPaths' => array(

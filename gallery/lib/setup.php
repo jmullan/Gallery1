@@ -111,17 +111,21 @@ function form_input($key, $arr) {
 
     if(is_array($arr['value'])) {
         foreach ($arr['value'] as $subkey => $value) {
-            $html .= gInput($arr['type'], $name,
-                     null, false, false, $value, false, $attrs,
-                     $multiInput, $autocomplete
-            );
-            if (!$multiInput) $html .= "\n<br>";
+            $html .= gInput($arr['type'], $name, null, false, false, $value, $attrs, $multiInput,
+                            $autocomplete);
+
+            if (!$multiInput) {
+                $html .= "\n<br>";
+            }
+
             $multiInput = false;
             $autocomplete = false;
         }
     }
     else {
-        $html = gInput($arr['type'], $name, null, false, false, $arr['value'], false, $attrs, $multiInput, $autocomplete);
+        $attrs['class'] = 'floatleft';
+        $html = gInput($arr['type'], $name, null, false, false, $arr['value'], $attrs,
+                       $multiInput, $autocomplete);
     }
 
     return $html;
@@ -189,22 +193,30 @@ function form_multiple_choice($key, $arr) {
 	$count = 0;
 	$column = 0;
 	foreach ($arr["multiple_choices"] as $item => $value) {
-		if ($item == 'addon') continue;
+		if ($item == 'addon') {
+		    continue;
+		}
+
 		if ($count%15 == 0) {
 			$buf .= "</td>\n<td valign=\"top\">";
 		}
+
 		$count++;
 		$column++;
-		$selected = "";
+		$selected = '';
+
 		if (is_array($arr["value"]) && in_array($item, $arr["value"])) {
 			$selected = "CHECKED";
 		}
 		$buf .= "\n\t<br><input name=\"${key}[]\" value=\"$item\" type=\"checkbox\" $selected>" . $value ;
 	}
+
 	$buf .="</td></tr>";
+
 	if (isset($arr['multiple_choices']['addon'])) {
 		$buf .="\n<tr><td colspan=$column>++". $arr['multiple_choices']['addon'] . "\n++</td></tr>";
 	}
+
 	$buf .="</table>";
 
 	return $buf;
@@ -257,8 +269,10 @@ function form_print_services($key, $arr) {
 		} else {
 			$value = array('checked' => false);
 		}
+
 		$checked = $value['checked'] ? ' checked' : '';
 		$buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
+
 		if (!empty($data['desc'])) {
 			$buf .= ' - ' . $data['desc'];
 		}

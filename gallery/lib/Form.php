@@ -288,7 +288,7 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
     return $html;
 }
 
-function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $class = false, $attrList = array(), $multiInput = false, $autocomplete = false) {
+function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
     global $browser;
 
     $attrList['name'] = $name;
@@ -300,9 +300,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $size = fals
         $attrList['value'] = $value;
     }
 
-    $attrList['class'] = $class;
-
-    if(!$class) {
+    if(!isset($attrList['class'])) {
         switch ($type) {
         	case 'text':
         	case 'password':

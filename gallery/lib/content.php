@@ -574,9 +574,9 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
 }
 
 /**
- * @param	string	$formerSearchString	Optional former searchh string
- * @param	string	$align			Optional alignment
- * @return	string	$html			HTML code that contains a form for entering the searchstring
+ * @param	string	$formerSearchString    Optional former search string
+ * @param	string	$align                 Optional alignment
+ * @return	string	$html                  HTML code that contains a form for entering the searchstring
  * @author	Jens Tkotz <jens@peino.de>
  */
 function addSearchForm($formerSearchString = '') {
@@ -587,8 +587,8 @@ function addSearchForm($formerSearchString = '') {
         'class'   => 'g-search-form')
     );
 
-    $html .= gInput('text', 'searchstring',
-        gTranslate('common', "_Search:"), false, 25, $formerSearchString, 'g-search-form');
+    $html .= gInput('text', 'searchstring', gTranslate('common', "_Search:"), false, 25,
+                    $formerSearchString, array('class' => 'g-search-form'));
     $html .= "</form>\n";
 
     return $html;
@@ -1470,7 +1470,7 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete, $disa
     $disable = ($disabled) ? ' disabled' : '';
 
     $html = "
-    <div class=\"YUIsearchdiv right5\">$label
+    <div class=\"YUIsearchdiv right5 floatleft\">$label
         <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"50\"$disable>
         <div class=\"YUIsearchshadow\"><div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div></div>
     </div>

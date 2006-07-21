@@ -56,24 +56,24 @@
         echo drawSelect2('prefix', $options,
                          array('onChange' => 'setUploadPath()'),
                          array('prettyPrinting' => true));
-        echo "<br><br>";
+        echo "<br>";
     }
 
     echo initAutocompleteJS(
-        gTranslate('core', "Path or URL to your image(s):"),
+        gTranslate('core', "Path to your image(s):"),
         'urls[]',
         'YUIsearchinput',
         $browser->hasFeature('xmlhttpreq') && isset($gallery->app->uploadPaths),
         isset($gallery->app->uploadPaths)
     );
 
-    echo "\n<p>";
+    echo "\n<div class=\"clear\" style=\"padding-top: 5px\">";
+	echo gTranslate('core', "What would you like the captions to default to?");
+	echo "\n</div>";
 
-	echo _("What would you like the captions to default to?");
-    echo "\n<br><br>";
+    echo "\n<div style=\"padding-top: 5px\">";
 	include(dirname(__FILE__) .'/captionOptions.inc.php');
-
-    echo "\n</p>";
+    echo "\n</div>";
 
     if (isset($gallery->app->watermarkDir)) {
         global $watermarkForm;
@@ -84,7 +84,7 @@
     }
 ?>
 <div align="center">
-<input type="submit" value="<?php echo _("Submit directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">
+<input type="submit" value="<?php echo gTranslate('core', "Submit directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">
 <?php echo gButton('cancel', gTranslate('core', '_Cancel'), 'parent.close()'); ?>
 </div>
 </form>

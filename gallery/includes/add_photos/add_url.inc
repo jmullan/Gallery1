@@ -27,24 +27,24 @@
 	echo makeFormIntro('save_photos.php',
 			array('name' => 'uploadurl_form'),
 			array('type' => 'popup'));
-?>
-<input type="text" name="urls[]" size="50">
-<p>
-<?php
 
-echo gTranslate('core', "What would you like the captions to default to?");
-echo "\n<br><br>";
-include(dirname(__FILE__) .'/captionOptions.inc.php');
+    echo gInput('text', 'urls[]', '', false, 50);
 
-echo "\n</p>";
+    echo "\n<div style=\"padding-top: 5px\">";
+	echo gTranslate('core', "What would you like the captions to default to?");
+	echo "\n</div>";
 
-if (isset($gallery->app->watermarkDir)) {
-   global $watermarkForm;
-   $watermarkForm['askRecursive'] = 0;
-   $watermarkForm['askPreview'] = 0;
-   $watermarkForm['allowNone'] = 1;
-   includeLayout('watermarkform.inc');
-}
+    echo "\n<div style=\"padding-top: 5px\">";
+	include(dirname(__FILE__) .'/captionOptions.inc.php');
+    echo "\n</div>";
+
+    if (isset($gallery->app->watermarkDir)) {
+       global $watermarkForm;
+       $watermarkForm['askRecursive'] = 0;
+       $watermarkForm['askPreview'] = 0;
+       $watermarkForm['allowNone'] = 1;
+       includeLayout('watermarkform.inc');
+    }
 ?>
 <div align="center">
 <input type=submit value="<?php echo gTranslate('core', "Submit URL") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">
