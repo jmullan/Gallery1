@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-17 19:43+0200\n"
+"POT-Creation-Date: 2006-07-21 04:19+0200\n"
 "PO-Revision-Date: 2006-07-07 20:41+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -1058,7 +1058,7 @@ msgid "_Upload Now"
 msgstr "Lade _hoch"
 
 #: ../includes/add_photos/add_form.inc:91
-#: ../includes/add_photos/add_url.inc:72 ../new_password.php:128
+#: ../includes/add_photos/add_local.inc:88 ../new_password.php:128
 #: ../popups/copy_photo.php:200 ../popups/delete_photo.php:132
 #: ../popups/download.php:86 ../popups/edit_caption.php:177
 #: ../popups/edit_field.php:60 ../popups/edit_watermark.php:123
@@ -1070,6 +1070,44 @@ msgstr "Lade _hoch"
 #: ../popups/sort_album.php:112 ../popups/watermark_album.php:146
 msgid "_Cancel"
 msgstr "A_bbrechen"
+
+#: ../includes/add_photos/add_local.inc:36
+#, fuzzy
+msgid "Upload any images found at this location on your server."
+msgstr "Diese Methode zum Hinzuf&uuml;gen von Bildern und Filmen sollten Sie dann nutzen, wenn die Dateien nicht lokal bei Ihnen auf den Computer gespeichert sind, sondern bereits in einem Ordner auf dem Server der Gallery bzw. auf einem anderen - &uuml;ber Internet erreichbaren - Computer gespeichert sind. "
+
+#: ../includes/add_photos/add_local.inc:38
+msgid "Hint:"
+msgstr "Tip:"
+
+#: ../includes/add_photos/add_local.inc:39
+msgid "FTP images to a directory on your server then provide that path here!"
+msgstr "Laden Sie die Dateien per FTP in einen Ordner auf Ihren Server. Danach geben Sie hier den Pfad ein!"
+
+#: ../includes/add_photos/add_local.inc:46
+msgid "Choose one of these legal paths:"
+msgstr "W&auml;hlen Sie einen der erlaubten Pfade:"
+
+#: ../includes/add_photos/add_local.inc:49
+msgid "<< Choose path >>"
+msgstr "<< Pfadauswahl >>"
+
+#: ../includes/add_photos/add_local.inc:63
+msgid "Path to your image(s):"
+msgstr "Pfad zu Ihren Bildern:"
+
+#: ../includes/add_photos/add_local.inc:71
+#: ../includes/add_photos/add_url.inc:34
+msgid "What would you like the captions to default to?"
+msgstr "Wie soll die Überschrift standardmässig sein?"
+
+#: ../includes/add_photos/add_local.inc:87
+msgid "Submit directory"
+msgstr "Pfad &uuml;bergeben"
+
+#: ../includes/add_photos/add_local.inc:118
+msgid "No legal upload pathes defined. Autocomplete is switched off."
+msgstr ""
 
 #: ../includes/add_photos/add_other.inc:24
 msgid "You can use one of these desktop agents to drag and drop photos from your desktop"
@@ -1095,33 +1133,19 @@ msgstr "Windows XP Ver&ouml;ffentlichungs Agent"
 msgid "<i>Note:</i> this feature is still experimental!"
 msgstr "<i>Hinweis:</i> Dieses Feature ist noch experimentell!"
 
-#: ../includes/add_photos/add_url.inc:36
+#: ../includes/add_photos/add_url.inc:25
 msgid "Upload any images found at this location."
 msgstr "Diese Methode zum Hinzuf&uuml;gen von Bildern und Filmen sollten Sie dann nutzen, wenn die Dateien nicht lokal bei Ihnen auf den Computer gespeichert sind, sondern bereits in einem Ordner auf dem Server der Gallery bzw. auf einem anderen - &uuml;ber Internet erreichbaren - Computer gespeichert sind. "
 
-#: ../includes/add_photos/add_url.inc:37
-msgid "The location can either be a URL or a local directory on the server."
-msgstr "Dieser Ort kann entweder eine URL oder ein lokaler Ordner auf diesem Server sein."
+#: ../includes/add_photos/add_url.inc:50
+msgid "Submit URL"
+msgstr "URL &uuml;bergeben"
 
-#: ../includes/add_photos/add_url.inc:40
-msgid "Tip:"
-msgstr "Tipp:"
-
-#: ../includes/add_photos/add_url.inc:41
-msgid "FTP images to a directory on your server then provide that path here!"
-msgstr "Laden Sie die Dateien per FTP in einen Ordner auf Ihren Server. Danach geben Sie hier den Pfad ein!"
-
-#: ../includes/add_photos/add_url.inc:48
-msgid "Path to your image(s):"
-msgstr "Pfad zu Ihren Bildern:"
-
-#: ../includes/add_photos/add_url.inc:56
-msgid "What would you like the captions to default to?"
-msgstr "Wie soll die Überschrift standardmässig sein?"
-
-#: ../includes/add_photos/add_url.inc:71
-msgid "Submit URL or directory"
-msgstr "URL oder Ordner &uuml;bergeben"
+#: ../includes/add_photos/add_url.inc:51 ../popups/add_comment.php:102
+#: ../popups/delete_album.php:65 ../popups/do_command.php:218
+#: ../popups/ecard_form.php:260
+msgid "Cancel"
+msgstr "Abbrechen"
 
 #: ../includes/add_photos/captionOptions.inc.php:23
 msgid "Leave blank."
@@ -1631,7 +1655,7 @@ msgstr "Unten mitte"
 msgid "Lower&nbsp;Right"
 msgstr "Unten rechts"
 
-#: ../layout/watermarkform.inc:155 ../popups/add_photos.php:72
+#: ../layout/watermarkform.inc:155 ../popups/add_photos.php:73
 msgid "Other"
 msgstr "Andere"
 
@@ -1893,11 +1917,6 @@ msgstr "Kommentar hinzufügen"
 msgid "Enter your comment for this picture in the text box below."
 msgstr "Geben Sie einen Kommentar zu diesem Bild in das Eingabefeld ein."
 
-#: ../popups/add_comment.php:102 ../popups/delete_album.php:65
-#: ../popups/do_command.php:218 ../popups/ecard_form.php:260
-msgid "Cancel"
-msgstr "Abbrechen"
-
 #: ../popups/add_photos.php:47 ../popups/add_photos_frame.php:32
 msgid "Add Photos"
 msgstr "Bilder hinzufügen"
@@ -1917,6 +1936,10 @@ msgstr "Formular"
 #: ../popups/add_photos.php:71
 msgid "URL"
 msgstr "URL"
+
+#: ../popups/add_photos.php:72
+msgid "From local Server"
+msgstr "Vom Server"
 
 #: ../popups/administer_startpage.php:38
 msgid "Rebuild highlights"
@@ -4699,9 +4722,15 @@ msgstr "Voll"
 msgid "Send photo as e_Card"
 msgstr "Photo als e_Card senden"
 
-#: ../view_photo.php:509
+#: ../view_photo.php:508
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
+
+#~ msgid "The location can either be a URL or a local directory on the server."
+#~ msgstr "Dieser Ort kann entweder eine URL oder ein lokaler Ordner auf diesem Server sein."
+
+#~ msgid "Tip:"
+#~ msgstr "Tipp:"
 
 #~ msgid "Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>$safe_to_include</i> array"
 #~ msgstr "Sicherheitsverletzung !  Die Datei die Sie einbinden möchten ist nicht in der Liste der erlaubten Dateien.  Um diese Datein einzubinden müssen Sie die index.php Seite der %s bearbeiten und <b>%s</b> zum <i>$safe_to_include</i> Array hinzufügen."
