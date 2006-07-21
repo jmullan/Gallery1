@@ -2,6 +2,9 @@
 Copyright (c) 2006, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
+
+ * Gallery SVN ID:
+ * $Id: imagemap.js 13850 2006-06-19 12:37:37Z jenst $
 */
 YAHOO.util.Connect={_msxml_progid:['MSXML2.XMLHTTP.5.0','MSXML2.XMLHTTP.4.0','MSXML2.XMLHTTP.3.0','MSXML2.XMLHTTP','Microsoft.XMLHTTP'],_http_header:{},_has_http_headers:false,_isFormSubmit:false,_sFormData:null,_poll:[],_polling_interval:50,_transaction_id:0,setProgId:function(id)
 {this.msxml_progid.unshift(id);},setPollingInterval:function(i)

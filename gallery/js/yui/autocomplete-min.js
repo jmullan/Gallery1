@@ -1,3 +1,7 @@
+/**
+ * Gallery SVN ID:
+ * $Id: imagemap.js 13850 2006-06-19 12:37:37Z jenst $
+*/
 
 YAHOO.widget.AutoComplete=function(inputEl,containerEl,oDataSource,oConfigs){if(inputEl&&containerEl&&oDataSource){if(oDataSource.getResults){this.dataSource=oDataSource;}
 else{return;}

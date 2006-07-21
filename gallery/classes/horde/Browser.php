@@ -1,4 +1,8 @@
 <?php
+/**
+ * Gallery SVN info
+ * $Id: htmlMimeMail.php 13850 2006-06-19 12:37:37Z jenst $
+*/
 
 /**
  * The Browser:: class provides capability information for the current
@@ -19,6 +23,8 @@
  * @author  Jon Parise <jon@horde.org>
  * @since   Horde 1.3
  * @package Horde_Browser
+ *
+ *
  */
 class Browser {
 
