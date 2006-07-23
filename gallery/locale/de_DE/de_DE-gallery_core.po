@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-23 08:59+0200\n"
+"POT-Creation-Date: 2006-07-23 09:02+0200\n"
 "PO-Revision-Date: 2006-07-23 00:51+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -867,12 +867,12 @@ msgid "_Back to upload"
 msgstr "_Zur&uuml;ck zum Upload"
 
 #: ../html/userData.inc:13 ../popups/multi_create_user.php:177
-#: ../popups/rebuild_thumbs.php:63
+#: ../popups/rebuild_thumbs.php:63 ../popups/recreate_captions.php:64
 msgid "Yes"
 msgstr "Ja"
 
 #: ../html/userData.inc:13 ../popups/multi_create_user.php:177
-#: ../popups/rebuild_thumbs.php:64
+#: ../popups/rebuild_thumbs.php:64 ../popups/recreate_captions.php:65
 msgid "No"
 msgstr "Nein"
 
@@ -1869,11 +1869,11 @@ msgstr "_Speichern"
 #: ../popups/modify_user.php:34 ../popups/move_album.php:32
 #: ../popups/move_photo.php:32 ../popups/multi_create_user.php:37
 #: ../popups/photo_owner.php:34 ../popups/rearrange.php:28
-#: ../popups/rebuild_thumbs.php:30 ../popups/rename_album.php:31
-#: ../popups/reset_votes.php:37 ../popups/resize_photo.php:34
-#: ../popups/rotate_photo.php:33 ../popups/save_photos.php:39
-#: ../popups/upgrade_album.php:57 ../popups/user_preferences.php:33
-#: ../popups/watermark_album.php:43
+#: ../popups/rebuild_thumbs.php:30 ../popups/recreate_captions.php:31
+#: ../popups/rename_album.php:31 ../popups/reset_votes.php:37
+#: ../popups/resize_photo.php:34 ../popups/rotate_photo.php:33
+#: ../popups/save_photos.php:39 ../popups/upgrade_album.php:57
+#: ../popups/user_preferences.php:33 ../popups/watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuführen!"
 
@@ -2497,7 +2497,8 @@ msgid "_Undo"
 msgstr "_R&uuml;ckg&auml;ngig"
 
 #: ../popups/edit_appearance.php:305 ../popups/rebuild_thumbs.php:69
-#: ../popups/rotate_photo.php:124 ../popups/watermark_album.php:73
+#: ../popups/recreate_captions.php:71 ../popups/rotate_photo.php:124
+#: ../popups/watermark_album.php:73
 msgid "_Close"
 msgstr "_Schlie&szlig;en"
 
@@ -3001,13 +3002,33 @@ msgstr "Erneuere %d Thumbnails ..."
 msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Möchten Sie auch die Vorschaubilder der Unteralben erneuern ?"
 
-#: ../popups/rebuild_thumbs.php:68
+#: ../popups/rebuild_thumbs.php:68 ../popups/recreate_captions.php:70
 msgid "_Start"
 msgstr "_Start"
 
-#: ../popups/rebuild_thumbs.php:68
+#: ../popups/rebuild_thumbs.php:68 ../popups/recreate_captions.php:70
 msgid "_Start over"
 msgstr "_Erneut starten"
+
+#: ../popups/recreate_captions.php:35
+msgid "Recreate captions for album: %s"
+msgstr "Beschriftungen erzeugen f&uuml;r Album: %s"
+
+#: ../popups/recreate_captions.php:42
+msgid "Captions successfully recreated."
+msgstr "Die Beschriftungen wurden erfolgreich erzeugt."
+
+#: ../popups/recreate_captions.php:48
+msgid "Captions not successfully recreated."
+msgstr "Die Beschriftungen wurden NICHT erfolgreich erzeugt."
+
+#: ../popups/recreate_captions.php:54
+msgid "Choose the type you want to recreate the captions."
+msgstr "W&auml;hlen Sie aus wie Gallery Iher Beschriftungen erzeugen soll."
+
+#: ../popups/recreate_captions.php:61
+msgid "Do you also want to recreate the captions in subalbums?"
+msgstr "Möchten Sie auch die Beschriftungen in den Unteralben erzeugen ?"
 
 #: ../popups/register.php:36
 #, php-format
