@@ -5,7 +5,7 @@
 //-- shorten the variables for convinience ---
 $borderWidth = $gallery->html_wrap['borderWidth'];
 $borderColor = $gallery->html_wrap['borderColor'];
-$pixelImage = isset($gallery->html_wrap['pixelImage']) ? $gallery->html_wrap['pixelImage'] : getImagePath('pixel_trans.gif');
+$pixelImage = getImagePath('pixel_trans.gif');
 $imageWidth = $gallery->html_wrap['imageWidth'];
 $imageHeight = $gallery->html_wrap['imageHeight'];
 $href = $gallery->html_wrap['imageHref'];

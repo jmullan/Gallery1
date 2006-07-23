@@ -371,10 +371,24 @@ $constants =  array_merge(array(
 		'name' => 'group_mainpage',
 		'default' => 'none',
 		'title' => gTranslate('config',"Main Gallery page"),
+		'contains_required' => true,
+	),
+	'theme' => array(
+	   'prompt' => gTranslate('config', "Theme"),
+	   'desc'  => gTranslate('config', "Choose the theme for the mainpage"),
+	   'choices' => array(
+	       'classic' => gTranslate('config', "The classic layout since Gallery 1.0"),
+	       'matrix' => gTranslate('config', "A more smart layout inspired by G2 Matrix")
+        ),
+        'required' => true,
+        'value' => 'classic'
 	),
 	'albumTreeDepth' => array(
 		'prompt' => gTranslate('config',"Show the album tree ?"),
-		'desc' => gTranslate('config',"If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."),
+		'desc' => gTranslate('config',"If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page.") .
+		          '<br><b>'.
+		          gTranslate('config', "This setting has no effect in matrix theme.") .
+		          '</b>',
 		'choices' => array(
 			0 => gTranslate('config',"No tree"),
 			1 => sprintf (gTranslate('config',"%d sublevel"),1),
@@ -389,7 +403,10 @@ $constants =  array_merge(array(
 	),
 	'microTree' => array(
 		'prompt' => gTranslate('config',"Replace album tree with microthumbs"),
-		'desc' => gTranslate('config',"If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."),
+		'desc' => gTranslate('config',"If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree.") .
+		          '<br><b>'.
+		          gTranslate('config', "This setting has no effect in matrix theme.") .
+		          '</b>',
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
 		'value' => 'no'
 	),

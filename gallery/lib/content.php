@@ -688,13 +688,17 @@ function includeLayout($name, $skinname='') {
     }
 }
 
-function includeTemplate($name, $skinname = '') {
+function includeTemplate($name, $skinname = '', $theme = '') {
     global $gallery;
 
     $base = dirname(dirname(__FILE__));
     $domainname = $base . '/templates/' . $_SERVER['HTTP_HOST'] . "/$name";
 
     $name = "$name.tpl";
+
+    if(!$theme) {
+        $theme = $gallery->app->theme;
+    }
 
     if (!$skinname) {
         $skinname = $gallery->app->skinname;
@@ -705,16 +709,23 @@ function includeTemplate($name, $skinname = '') {
     }
     else {
         $defaultname = "$base/templates/$name";
-        $fullname = "$base/skins/$skinname/templates/$name";
+        $defaultThemeName = "$base/templates/$theme/$name";
+        $fullName = "$base/skins/$skinname/templates/$name";
 
-        if (fs_file_exists($fullname) && !broken_link($fullname)) {
-            require ($fullname);
+        if (fs_file_exists($fullName) && !broken_link($fullName)) {
+            require ($fullName);
         }
         elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
             require($defaultname);
         }
         elseif (fs_file_exists("$defaultname.default") && !broken_link("$defaultname.default")) {
             require("$defaultname.default");
+        }
+        elseif (fs_file_exists("$defaultThemeName") && !broken_link("$defaultThemeName")) {
+            require("$defaultThemeName");
+        }
+        elseif (fs_file_exists("$defaultThemeName.default") && !broken_link("$defaultThemeName.default")) {
+            require("$defaultThemeName.default");
         }
         else {
             return false;

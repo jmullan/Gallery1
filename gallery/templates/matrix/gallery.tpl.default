@@ -59,7 +59,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeTemplate("gallery.header");
+includeTemplate("gallery.header", '', 'classic');
 
 echo $searchBar;
 
@@ -74,24 +74,28 @@ if ($navigator["maxPages"] > 1) {
 echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
-$cells = 2;
-?>
 
-<!-- album table begin -->
-<table cellpadding="0" cellspacing="0" class="g-albums-table">
+$columns = 3;
+$boxWidth = floor(100/$columns)-1;
+$boxheight = $gallery->app->highlight_size+100;
+
+?>
+<div style="width: 80%; margin: 0 auto;">
 <?php
-    foreach ($rootAlbum as $name => $content) {
+foreach ($rootAlbum as $name => $content) {
     ?>
     <!-- Begin Album Column Block -->
-    <tr>
+    <div style="width: <?php echo $boxWidth ?>%; margin: 5px;" class="floatleft">
+
         <!-- Begin Image Cell -->
-        <td class="g-album-image-cell"><?php
-            $gallery->html_wrap = $content['imageCell'];
-            includeLayout('inline_imagewrap.inc');
-            ?>
-        </td>
+        <div class="g-album-image-cell" style="height: <?php echo $gallery->app->highlight_size+5; ?>px"><?php
+        $gallery->html_wrap = $content['imageCell'];
+        includeLayout('inline_imagewrap.inc');
+        ?>
+        </div>
+
         <!-- Begin Text Cell -->
-        <td class="g-albumdesc-cell left">
+        <div class="g-albumdesc-cell left" style="height: 150px; overflow: auto;">
            <table cellspacing="0" cellpadding="0">
               <tr>
                  <td class="g-title-left"></td>
@@ -102,7 +106,7 @@ $cells = 2;
               </tr>
             </table>
 
-            <?php echo $content['albumdesc']['adminAlbumCommands']; ?>
+            <?php //echo $content['albumdesc']['adminAlbumCommands']; ?>
 
 <?php if (!empty($content['albumdesc']['description'])) :?>
             <div class="g-album-desc"><?php echo $content['albumdesc']['description'] ?></div>
@@ -130,26 +134,15 @@ $cells = 2;
 <?php if (!empty($content['albumdesc']['commentIndication'])) :?>
                 <?php echo $content['albumdesc']['commentIndication'] ?>
 <?php endif ?>
-
-<?php if (!empty($content['albumdesc']['microthumbs'])) :?>
-		      <div class="g-microthumbsTree-box"><?php echo $content['albumdesc']['microthumbs'] ?></div>
-<?php endif ?>
             </div>
-        </td>
+        </div>
         <!-- End Text Cell -->
-
-<?php if (!empty($content['subalbumTree'])) { $cells=3; ?>
-        <!-- Subalbumtree -->
-        <td class="g-subalbumTree-box"><?php echo $content['albumdesc']['subalbumTree'] ?></td>
-<?php } ?>
-    </tr>
-    <tr><td class="g-album-vertical-spacer" colspan="<?php echo $cells; ?>"></td></tr>
-
-<?php
-    }
+    </div>
+    <?php
+}
 ?>
-</table>
-<!-- album table end -->
+    <div class="clear"></div>
+</div>
 
 <?php if ($displayCommentLegend) :?>
 <p><span class="g-commentIndication">*</span>
@@ -168,7 +161,7 @@ if ($navigator["maxPages"] > 1) {
 <!-- gallery.footer begin -->
 <?php
 
-require_once(dirname(dirname(__FILE__)) .'/templates/info_donation-block.tpl.default');
+require_once(GALLERY_BASE .'/templates/info_donation-block.tpl.default');
 
 includeTemplate("overall.footer");
 
