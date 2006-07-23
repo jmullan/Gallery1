@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-21 04:21+0200\n"
+"POT-Creation-Date: 2006-07-23 04:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,7 +270,7 @@ msgstr ""
 msgid "Your passwords do not match!"
 msgstr ""
 
-#: ../lib/setup.php:1385
+#: ../lib/setup.php:1385 ../templates/setup/im-netpbm-test.tpl:62
 msgid "OK"
 msgstr ""
 
@@ -2176,7 +2176,7 @@ msgid "Allowed paths for upload from Server"
 msgstr ""
 
 #: ../includes/setup/constants.inc:1333
-msgid "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the URL method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"
+msgid "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the 'From local Server' method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"
 msgstr ""
 
 #: ../includes/setup/defaults.inc:32 ../setup/config_data.inc:1512
@@ -2820,6 +2820,46 @@ msgstr ""
 msgid "To configure/install Galery there are only five steps in this simple procedure."
 msgstr ""
 
+#: ../setup/welcome.inc:95
+msgid "Step 1:"
+msgstr ""
+
+#: ../setup/welcome.inc:96
+msgid "The installer will check to see if your web space can run Gallery."
+msgstr ""
+
+#: ../setup/welcome.inc:99
+msgid "Step 2:"
+msgstr ""
+
+#: ../setup/welcome.inc:100
+msgid "You will be asked to enter settings needed to run Gallery such as the location of Gallery, language settings, etc."
+msgstr ""
+
+#: ../setup/welcome.inc:103
+msgid "Step 3:"
+msgstr ""
+
+#: ../setup/welcome.inc:104
+msgid "Define default settings for new albums. Predefined values are provided or you can customize them as needed."
+msgstr ""
+
+#: ../setup/welcome.inc:107
+msgid "Step 4:"
+msgstr ""
+
+#: ../setup/welcome.inc:108
+msgid "Installation confirmation"
+msgstr ""
+
+#: ../setup/welcome.inc:111
+msgid "Step 5:"
+msgstr ""
+
+#: ../setup/welcome.inc:112
+msgid "Saving the configuration"
+msgstr ""
+
 #: ../setup/check.inc:29 ../setup/check.inc:30
 msgid "Success"
 msgstr ""
@@ -3216,25 +3256,25 @@ msgid "Switch through the corresponding tab and fill the values you need. Some, 
 msgstr ""
 
 #: ../setup/constants.inc:86 ../setup/constants.inc:215
-#: ../setup/defaults.inc:63 ../setup/defaults.inc:148
+#: ../setup/defaults.inc:63 ../setup/defaults.inc:147
 msgid "&lt; Previous Tab"
 msgstr ""
 
 #: ../setup/constants.inc:87 ../setup/constants.inc:216
-#: ../setup/defaults.inc:64 ../setup/defaults.inc:149
+#: ../setup/defaults.inc:64 ../setup/defaults.inc:148
 msgid "Next Tab &gt;"
 msgstr ""
 
 #: ../setup/constants.inc:88 ../setup/constants.inc:218
-#: ../setup/defaults.inc:65 ../setup/defaults.inc:151
+#: ../setup/defaults.inc:65 ../setup/defaults.inc:150
 msgid "Use Defaults"
 msgstr ""
 
-#: ../setup/constants.inc:214 ../setup/defaults.inc:147
+#: ../setup/constants.inc:214 ../setup/defaults.inc:146
 msgid "&lt;&lt; Previous Step"
 msgstr ""
 
-#: ../setup/constants.inc:217 ../setup/defaults.inc:150
+#: ../setup/constants.inc:217 ../setup/defaults.inc:149
 msgid "Next Step &gt;&gt;"
 msgstr ""
 
@@ -3354,7 +3394,7 @@ msgid "Gallery Configuration"
 msgstr ""
 
 #: ../setup/frame_test.php:53
-msgid "None"
+msgid "No Frame"
 msgstr ""
 
 #: ../setup/frame_test.php:54
@@ -3391,7 +3431,7 @@ msgstr ""
 msgid "Can't open %s"
 msgstr ""
 
-#: ../setup/frame_test.php:143
+#: ../setup/frame_test.php:134
 msgid "Close Window"
 msgstr ""
 
@@ -3459,11 +3499,11 @@ msgstr ""
 msgid "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."
 msgstr ""
 
-#: ../setup/login.inc:120
+#: ../setup/login.inc:122
 msgid "_Username"
 msgstr ""
 
-#: ../setup/login.inc:122
+#: ../setup/login.inc:123
 msgid "_Password"
 msgstr ""
 
@@ -3492,32 +3532,35 @@ msgid "The &quot;page views&quot; number should increase every time you reload t
 msgstr ""
 
 #: ../setup/session_test.php:45
-#, php-format
-msgid "Clicking %s should reset the page view number back to 1."
+msgid "Clicking &quot;Start over&quot; should reset the page view number back to 1."
 msgstr ""
 
-#: ../setup/session_test.php:47
+#: ../setup/session_test.php:50
 msgid "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation."
 msgstr ""
 
-#: ../setup/session_test.php:48
+#: ../setup/session_test.php:52
 msgid "Gallery will not work properly until PHP's session management is configured properly."
 msgstr ""
 
-#: ../setup/session_test.php:53
+#: ../setup/session_test.php:60
 msgid "Your session id is"
 msgstr ""
 
-#: ../setup/session_test.php:57
+#: ../setup/session_test.php:64
 msgid "Page views in this session"
 msgstr ""
 
-#: ../setup/session_test.php:61
+#: ../setup/session_test.php:68
 msgid "Server IP address"
 msgstr ""
 
-#: ../setup/session_test.php:65
-msgid "Start over"
+#: ../setup/session_test.php:76
+msgid "_Reload"
+msgstr ""
+
+#: ../setup/session_test.php:77
+msgid "Start _over"
 msgstr ""
 
 #: ../setup/write.inc:164
@@ -3576,4 +3619,99 @@ msgstr ""
 
 #: ../setup/write.inc:261
 msgid "Review Settings"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:25
+#, php-format
+msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:26
+#, php-format
+msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:34
+msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:43
+msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:69
+msgid "Let us see if we can figure out what operating system you are using."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:73
+msgid "This is what your system reports"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:76
+msgid "This is the type of system on which PHP was compiled"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:79
+msgid "Make sure that the values above make sense to you."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:82
+#, php-format
+msgid "Look for keywords like %s, %s, %s etc. in the output above."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:85
+msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:86
+#, php-format
+msgid "You can check via %s, they can often tell you."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:98
+#, php-format
+msgid "You told the config wizard that your %s binaries live here:"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:101
+#, php-format
+msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:107
+#, php-format
+msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:112
+msgid "The open_basedir list is specified in php.ini."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:113
+msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:128
+#, php-format
+msgid "We are going to test each %s binary individually."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:133
+msgid "Checking:"
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:162
+#, php-format
+msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:166
+#, php-format
+msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
+msgstr ""
+
+#: ../templates/setup/im-netpbm-test.tpl:171
+#, php-format
+msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr ""
