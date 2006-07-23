@@ -50,7 +50,7 @@ printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate
 $descriptions = array();
 $names = array();
 
-$names["none"] = gTranslate('config', "None");
+$names["none"] = gTranslate('config', "No Frame");
 $descriptions["none"] = gTranslate('config', "No frames");
 $names["dots"] = gTranslate('config', "Dots");
 $descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
@@ -90,45 +90,36 @@ if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 <div class="g-tabset">
 <?php
 $count = 0;
+$initialtab = isset($_GET['frame']) ? $_GET['frame'] : 'none';
 
 foreach (array_keys($names) as $key) {
     $class = '';
-    if (isset($_GET['frame'])) {
-        if ($key == $_GET['frame']) {
-            $firstkey = $key;
- 	    $class = ' class="g-activeTab"';
-        }
+    if ($key == $initialtab) {
+        $class = ' class="g-activeTab"';
     }
     echo "<a$class id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</a>\n";
 }
 
 ?>
 </div>
-<?php if (isset($firstkey)) { ?>
+<?php if (isset($initialtab)) { ?>
     <script language="JavaScript" type="text/javascript">
-    section_tabs = new configSection('group_<?php echo $firstkey ?>')
+    section_tabs = new configSection('group_<?php echo $initialtab ?>')
     </script>
- 
 <?php }
-
 
 list($iWidth, $iHeight) = getDimensions("../images/movie.thumb.jpg");
 
 $gallery->html_wrap['imageWidth']  = $iWidth;
 $gallery->html_wrap['imageHeight'] = $iHeight;
-
-if(!isset($borderColor)) {
-    $borderColor = '#FF00FF';
-}
-$gallery->html_wrap['borderColor'] = $borderColor;
+$gallery->html_wrap['borderColor'] = '#f0f';
 $gallery->html_wrap['borderWidth'] = 1;
-$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 $gallery->html_wrap['imageTag'] = '<img src="../images/movie.thumb.jpg" alt="movie_thumb">';
 $gallery->html_wrap['imageHref'] = '';
 $gallery->html_wrap['base'] = "..";
 foreach (array_keys($names) as $key) {
     $display = "none";
-    if ($key == $firstkey) {
+    if ($key == $initialtab) {
         $display = "inline";
     }
     print "<div id=\"group_$key\" style=\"display: $display\">";
