@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-23 04:08+0200\n"
+"POT-Creation-Date: 2006-07-23 08:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -545,6 +545,7 @@ msgid "Recreating %d captions..."
 msgstr ""
 
 #: ../classes/Album.php:1781 ../classes/Album.php:1982
+#: ../popups/rebuild_thumbs.php:41
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
@@ -865,10 +866,12 @@ msgid "_Back to upload"
 msgstr ""
 
 #: ../html/userData.inc:13 ../popups/multi_create_user.php:177
+#: ../popups/rebuild_thumbs.php:63
 msgid "Yes"
 msgstr ""
 
 #: ../html/userData.inc:13 ../popups/multi_create_user.php:177
+#: ../popups/rebuild_thumbs.php:64
 msgid "No"
 msgstr ""
 
@@ -1865,10 +1868,11 @@ msgstr ""
 #: ../popups/modify_user.php:34 ../popups/move_album.php:32
 #: ../popups/move_photo.php:32 ../popups/multi_create_user.php:37
 #: ../popups/photo_owner.php:34 ../popups/rearrange.php:28
-#: ../popups/rename_album.php:31 ../popups/reset_votes.php:37
-#: ../popups/resize_photo.php:34 ../popups/rotate_photo.php:33
-#: ../popups/save_photos.php:39 ../popups/upgrade_album.php:57
-#: ../popups/user_preferences.php:33 ../popups/watermark_album.php:43
+#: ../popups/rebuild_thumbs.php:30 ../popups/rename_album.php:31
+#: ../popups/reset_votes.php:37 ../popups/resize_photo.php:34
+#: ../popups/rotate_photo.php:33 ../popups/save_photos.php:39
+#: ../popups/upgrade_album.php:57 ../popups/user_preferences.php:33
+#: ../popups/watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr ""
 
@@ -2491,8 +2495,8 @@ msgstr ""
 msgid "_Undo"
 msgstr ""
 
-#: ../popups/edit_appearance.php:305 ../popups/rotate_photo.php:124
-#: ../popups/watermark_album.php:73
+#: ../popups/edit_appearance.php:305 ../popups/rebuild_thumbs.php:69
+#: ../popups/rotate_photo.php:124 ../popups/watermark_album.php:73
 msgid "_Close"
 msgstr ""
 
@@ -2980,6 +2984,28 @@ msgstr ""
 #: ../popups/rearrange.php:151
 #, php-format
 msgid "******* Page %s *******"
+msgstr ""
+
+#: ../popups/rebuild_thumbs.php:34
+#, php-format
+msgid "Rebuilding Thumbnails: %s"
+msgstr ""
+
+#: ../popups/rebuild_thumbs.php:38
+#, php-format
+msgid "Rebuilding %d thumbnails..."
+msgstr ""
+
+#: ../popups/rebuild_thumbs.php:58
+msgid "Do you also want to rebuild the thumbnails in subalbums?"
+msgstr ""
+
+#: ../popups/rebuild_thumbs.php:68
+msgid "_Start"
+msgstr ""
+
+#: ../popups/rebuild_thumbs.php:68
+msgid "_Start over"
 msgstr ""
 
 #: ../popups/register.php:36
@@ -3939,7 +3965,9 @@ msgstr ""
 msgid "Rating:"
 msgstr ""
 
-#: ../templates/album.tpl.default:40 ../templates/gallery.tpl.default:54
+#: ../templates/album.tpl.default:40
+#: ../templates/classic/gallery.tpl.default:54
+#: ../templates/matrix/gallery.tpl.default:54
 #, php-format
 msgid "%s RSS"
 msgstr ""
@@ -3949,7 +3977,9 @@ msgstr ""
 msgid "Vote"
 msgstr ""
 
-#: ../templates/album.tpl.default:239 ../templates/gallery.tpl.default:156
+#: ../templates/album.tpl.default:239
+#: ../templates/classic/gallery.tpl.default:156
+#: ../templates/matrix/gallery.tpl.default:149
 msgid "Comments available for this item."
 msgstr ""
 
