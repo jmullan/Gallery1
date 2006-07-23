@@ -716,9 +716,9 @@ function includeTemplate($name, $skinname = '') {
         elseif (fs_file_exists("$defaultname.default") && !broken_link("$defaultname.default")) {
             require("$defaultname.default");
         }
-	else {
-	    return false;
-	}
+        else {
+            return false;
+        }
     }
 
     return true;
