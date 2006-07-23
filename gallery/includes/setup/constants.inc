@@ -105,6 +105,14 @@ $constants =  array_merge(array(
 		'attrs' => array('size' => 50)
 	),
 	'editPassword' => check_admins(),
+	'skinname' => array(
+		'prompt' => gTranslate('config',"Skin Name"),
+		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin.") .
+		  '<br><a href="http://www.pownuke.com/galleryskins/">'. gTranslate('config',"Here you can get a more Gallery Skins by Drazan") .'</a>'.
+		  available_skins(true),
+		'choices' => available_skins(),
+		'value' => 'none'
+	),
 	'useIcons' => array(
 		'prompt' => gTranslate('config',"Use Icons ?"),
 		'desc' => gTranslate('config',"You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
@@ -114,20 +122,6 @@ $constants =  array_merge(array(
 			'yes' => gTranslate('config',"Icons only")
 			),
 		'value' => 'no'
-	),
-	'name_display' => array(
-		'prompt' => gTranslate('config',"Format for commenter and owner names"),
-		'desc' => gTranslate('config',"Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"),
-		'choices' => displayNameOptions(),
-		'value' => '!!FULLNAME!! (!!USERNAME!!)',
-	),
-	'skinname' => array(
-		'prompt' => gTranslate('config',"Skin Name"),
-		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin.") .
-		  '<br><a href="http://www.pownuke.com/galleryskins/">'. gTranslate('config',"Here you can get a more Gallery Skins by Drazan") .'</a>'.
-		  available_skins(true),
-		'choices' => available_skins(),
-		'value' => 'none'
 	),
 	'uploadMode' => array(
 		'prompt' => gTranslate('config',"Default upload method"),
@@ -140,7 +134,12 @@ $constants =  array_merge(array(
 			),
 		'value' => 'form',
 		),
-
+	'name_display' => array(
+		'prompt' => gTranslate('config',"Format for commenter and owner names"),
+		'desc' => gTranslate('config',"Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"),
+		'choices' => displayNameOptions(),
+		'value' => '!!FULLNAME!! (!!USERNAME!!)',
+	),
 	'group_mandatory_end' => array (
 		'type' => 'group_end',
 	),
