@@ -1093,9 +1093,9 @@ $constants = array_merge($constants, array(
 	'blockRandomAlbum' => array(
 		'prompt' => gTranslate('config',"RandomBlock Source"),
 		'desc' => gTranslate('config',"You can either use a random pictures from the whole Gallery or from certain albums."),
-		'choices' => array(),
 		'value' => 'none',
-		'optional' => true
+		'optional' => true,
+		'type' => 'hidden' //     'choices' => array(),
 	),
 	'blockRandomFrame' => array(
 		'prompt' => gTranslate('config',"Frame around random photo."),
@@ -1330,7 +1330,7 @@ $constants = array_merge($constants, array(
 	),
 	'uploadPaths' => array(
 		'prompt' => gTranslate('config', "Allowed paths for upload from Server"),
-		'desc' => gTranslate('config', "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the URL method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"),
+		'desc' => gTranslate('config', "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the 'From local Server' method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"),
 		'value' => '',
 		'type' => 'text',
         'multiInput' => true,

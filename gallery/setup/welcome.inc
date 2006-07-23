@@ -1,23 +1,23 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2006 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id: check.inc 13903 2006-06-28 13:46:35Z jenst $
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2006 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id: check.inc 13903 2006-06-28 13:46:35Z jenst $
 */
 ?>
 <?php
@@ -69,7 +69,7 @@ $gallerySanity = gallerySanityCheck();
                 <br>
                 <?php
                     printf(gTranslate('config',"If you experience problems, you can find help on the %sGallery Help Page%s."),
-                        '<a href="http://gallery.sourceforge.net/help.php">', '</a>');
+                        '<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
                 }
                 else if($gallerySanity == 'reconfigure') {
                     echo infobox(array(array(
@@ -81,7 +81,7 @@ $gallerySanity = gallerySanityCheck();
                         )));
                     echo "\n<p>";
                     printf(gTranslate('config',"If you experience problems, you can find help on the %sGallery Help Page%s."),
-                        '<a href="http://gallery.sourceforge.net/help.php">', '</a>');
+                        '<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
 
                     echo "\n</p>";
                 }
@@ -92,24 +92,24 @@ $gallerySanity = gallerySanityCheck();
 
             <table>
             <tr>
-                <td class="g-emphasis nowrap">Step 1:</td>
-                <td>The installer will check to see if your web space can run Gallery.</td>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 1:"); ?></td>
+                <td><?php echo gTranslate('config', "The installer will check to see if your web space can run Gallery."); ?></td>
             </tr>
             <tr>
-                <td class="g-emphasis nowrap">Step 2:</td>
-                <td>You will be asked to enter settings needed to run Gallery such as the location of Gallery, language settings, etc.</td>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 2:"); ?></td>
+                <td><?php echo gTranslate('config', "You will be asked to enter settings needed to run Gallery such as the location of Gallery, language settings, etc."); ?></td>
             </tr>
             <tr>
-                <td class="g-emphasis nowrap">Step 3:</td>
-                <td>Define default settings for new albums. Predefined values are provided or you can customize them as needed.</td>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 3:"); ?></td>
+                <td><?php echo gTranslate('config', "Define default settings for new albums. Predefined values are provided or you can customize them as needed."); ?></td>
             </tr>
             <tr>
-                <td class="g-emphasis nowrap">Step 4:</td>
-                <td>Installation confirmation</td>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 4:"); ?></td>
+                <td><?php echo gTranslate('config', "Installation confirmation"); ?></td>
             </tr>
             <tr>
-                <td class="g-emphasis nowrap">Step 5:</td>
-                <td>Saving the configuration</td>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 5:"); ?></td>
+                <td><?php echo gTranslate('config', "Saving the configuration"); ?></td>
             </tr>
             </table>
         </div>
@@ -119,5 +119,3 @@ $gallerySanity = gallerySanityCheck();
 
     <div class="clear"></div>
 </div>
-
-

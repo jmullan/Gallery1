@@ -27,7 +27,7 @@ printPopupStart(gTranslate('config', "Gallery NetPBM Check"));
 
 configLogin(basename(__FILE__));
 
-$app_name='NetPBM';
+$app_name = 'NetPBM';
 
 $tpl->appPath = $gallery->app->pnmDir;
 

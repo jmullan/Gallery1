@@ -94,13 +94,4 @@ else {
     $GALLERY_REWRITE_OK = false;
 }
 
-
-
-
-
-
-
-
-
-
 ?>

@@ -97,8 +97,14 @@ foreach ($constants as $key => $val) {
     if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 
     if (isset($val["type"]) && $val["type"] === 'block_start') {
-    	echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+    	echo "\n<table class=\"g-setup-block\">";
     	echo evenOdd_row(make_fields($key, $val), $i % 2);
+    	continue;
+    }
+
+    if (isset($val["type"]) && $val["type"] === 'block_end') {
+    	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+    	echo "\n</table>";
     	continue;
     }
 
@@ -106,7 +112,7 @@ foreach ($constants as $key => $val) {
     	echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
     	echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
     	if (isset($val['desc'])) {
-    	    echo '<div class="g-double-bottom-border-spacer g-desc-cell">'. $val['desc'] .'</div>';
+    	    echo '<div>'. $val['desc'] .'</div>';
     	}
     	continue;
     }
@@ -114,12 +120,6 @@ foreach ($constants as $key => $val) {
     if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
         echo '</div>';
         continue;
-    }
-
-    if (isset($val["type"]) && $val["type"] === 'block_end') {
-    	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-    	echo "\n</table>";
-    	continue;
     }
 
 	if (isset($val["type"]) && $val["type"] === 'group_start') {
@@ -158,7 +158,7 @@ foreach ($constants as $key => $val) {
 	}
 	else {
 	    if (!isset($val["type"]) || $val["type"] !== 'block_element') {
-            echo "\n<table width=\"100%\" class=\"g-double-bottom-border-spacer\">";
+            echo "\n<table class=\"g-setup-fields\">";
 	    }
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {

@@ -71,20 +71,19 @@ echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialt
 
 $i = 0;
 foreach ($defaults as $key => $val) {
+    if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
+        echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
+        echo make_separator($key, $val);
+        continue;
 
-	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
-                echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
-                echo make_separator($key, $val);
-                continue;
+    }
 
-        }
+    if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+        echo "\n</div>";
+        continue;
+    }
 
-        if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
-                echo "\n</div>";
-                continue;
-        }
-
-	echo "\n<table width=\"100%\">";
+    echo "\n<table class=\"g-setup-fields\">";
 
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 		echo evenOdd_row(make_fields($key, $val), $i % 2);
@@ -93,7 +92,7 @@ foreach ($defaults as $key => $val) {
 	}
 	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
+		echo "\n<tr><td colspan=\"2\">&nbsp;</td></tr>";
 		echo "\n</table>";
 		continue;
 	}
@@ -111,7 +110,7 @@ foreach ($defaults as $key => $val) {
 	/* Convert custom fields for compatibility */
 	if ($key == "extra_fields" && strrpos($val["value"], "&quot;")) {
 	    /* Convert:
-             *    "&quot;Description&quot;, &quot;Foo Bar&quot;"
+         *    "&quot;Description&quot;, &quot;Foo Bar&quot;"
 	     * to
 	     *    "Description, Foo Bar"
 	     */
@@ -129,7 +128,7 @@ foreach ($defaults as $key => $val) {
 	// Protect quote characters to avoid screwing up HTML forms
 	$val["value"] = array_str_replace('"', "&quot;", $val["value"]);
 
-	if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
+	if (isset($val["type"]) && $val["type"] == 'hidden') {
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
 	} else {
