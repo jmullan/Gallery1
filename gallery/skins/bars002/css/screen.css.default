@@ -1,6 +1,6 @@
 /*
    This is the style sheet used when Gallery running standalone and
-   'no skin' is selected.
+   'bars002' is selected.
 
    If you would like to customize the styles please create
    copy of this file called
@@ -13,7 +13,7 @@
    Some of the styles below are overriden by specific
    album properties. These are noted
 
-   $Id$
+   $Id: screen.css.default 14036 2006-07-23 02:46:40Z jenst $
 */
 
 /*
@@ -22,13 +22,23 @@
 */
 
 body {
+    background-color: #749BFB;
+    color: #fff;
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    background: #fff;
-    color: #000;
+    font-size: 10px;
+    background-color: #ddd;
+    color:#202020;
+    padding: 7px;
 }
 
 a {
-    color: #4E2192;
+    color: #202020;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C51B1B;
+    text-decoration: none;
 }
 
 /******************** Begin superglobal ********************
@@ -53,44 +63,47 @@ a {
 .g-popup a {
 }
 
+.g-popup a:hover {
+}
+
+
 .g-popup {
     font-size: 9pt;
 }
 
 .g-header, .g-header-popup, .g-columnheader {
-    color: #fff;
-    background: #66a;
 }
 
 .g-header {
-    border-bottom: 2px solid #000;
-    height: 32px;
-    padding: 5px 3px 3px 3px;
-    margin-bottom: 1px;
+    background-image: url(../images/topbar.jpg);
+    background-repeat: repeat-x;
+    width: 100%;
 }
 
 .g-header-popup {
-    border-bottom: 2px solid #000;
-    height: 25px;
-    padding: 5px;
-    margin-bottom: 1px;
+    padding: 0 5px;
 }
 
 .g-pagetitle, .g-pagetitle-popup {
-    margin-left: 20px;
-    padding: 2px;
-    padding-left: 5px; padding-right: 5px;
-    border: 1px solid #ccf;
-    -Moz-Border-Radius: 20px;
+    font-family:verdana, arial, sans-serif;
+    color:#000;
 }
 
 .g-pagetitle {
-    font-size: 16pt;
+    font-size: 16px;
+    font-weight:bold;
+    line-height: 140%;
+    padding: 0 50px;
 }
 
 .g-pagetitle-popup {
-    font-size: 12pt;
+    background-image: url(../images/navbar.jpg);
+    text-align:center;
+    font-size: 14px;
     font-weight: bold;
+    color: #202020;
+    padding-left: 5px;
+    border: 1px solid #000;
 }
 
 /******************** End Headers and Pagetitle ********************/
@@ -112,10 +125,12 @@ a {
 
 /* Cell for the albumdescription on mainpage */
 .g-albumdesc-cell {
-    vertical-align: top;
-    border-top: 1px solid #000;
-    background-color: #f8f8f8;
-    padding-top: 2px;
+    font-family: verdana, arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #202020;
+    font-size: xx-small;
+    line-height: 140%;
+    border: 1px solid #000;
     -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
 }
 
@@ -126,11 +141,11 @@ a {
 
 /* Cell for the "normal" subalbum tree on mainpage */
 .g-subalbumTree-box {
-    vertical-align: top;
-    font-size: 7pt;
-    background-color: #f8f8f8;
-    border-top: 1px solid #000;
-    -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
+    1vertical-align: top;
+    1font-size: 7pt;
+    1background-color: #f8f8f8;
+    1border-top: 1px solid #000;
+    1-moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
 }
 
 /* Box for the album description text on mainpage */
@@ -162,44 +177,108 @@ a {
 }
 
 .g-search-form {
-    font-size: 8pt;
+    font-size: 10px;
+    color: #202020;
     font-weight: bold;
 }
 
 /******************** End Common Styles ********************/
 
+/******************** Begin album thumbnail view ********************/
+
+.g-album-summary {
+    text-align: center;
+    width: 75%;
+    margin: 3px auto;
+    color: #fff;
+    background: #66a;
+    font: italic bold 8pt Verdana,Arial,serif;
+    padding: 5px;
+    -moz-border-radius: 3px;
+}
+
+/* The table that contains the thumbnails in album view */
+.g-vatable {
+    margin-top: 5px;
+}
+
+/* The table cell that contains the thumbnail */
+.g-vathumb-cell {
+    border: 2px solid #c0c0c0;
+    background-color: #f0f0f0;
+    padding: 3px;
+}
+
+/* The thumbnail itself */
+.g-vathumb {
+    float: left;
+}
+
+/* This class controlls the box around all texts below the thumbnail.
+ * It has the same width as the cell, not the thumbnail.
+ */
+.g-va-thumb-texts {
+    font-weight: bold;
+}
+
+.g-thumb-caption {
+}
+
+.g-va-infos {
+    margin-top: 2px;
+}
+
+.g-va-viewcounter{
+    margin-top: 2px;
+    margin-bottom: 5px
+}
+
+
+/******************** End album thumbnail view ********************/
+
 /* Album titles */
 .g-title {
-    font-size: 12pt;
-    padding: 3px 0;
+    font-family: verdana, arial, sans-serif;
+    color: #000;
+    font-size: x-small;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .g-title-background {
+    background-image: url(../images/topbar.jpg);
+    background-repeat: repeat-x;
+    line-height: 18pt;
 }
 
 .g-title-right {
 }
 
 .g-title-left {
+    width: 50px;
+    background-image: url(../images/topbar.jpg);
+    background-repeat: repeat-x;
+    line-height: 18pt;
 }
 
 .g-adminbar {
-    font-size: 7.2pt;
-    border: 1px solid #006;
-    background: #e9e9ff;
-    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 2px;
+    border: 1px solid #000;
 }
 
 .g-adminbartext {
+    font-weight: bold;
     vertical-align: bottom;
-    padding: 1px;
+
 }
 
 .g-adminbartext a {
-    font-size: 7.1pt;
 }
+
 .g-adminbarcommands {
     vertical-align: bottom;
+    font-weight: bold;
 }
 
 .g-adminbarcommands a {
@@ -209,25 +288,15 @@ a {
 }
 
 .g-iconmenu {
-    font-size: 7.2pt;
-    margin-bottom: 3px;
 }
 
 .g-iconmenu a {
-    -moz-border-radius: 3px;
-    text-decoration: none;
-    text-align: center;
     font-weight: bold;
+    text-align: center;
 }
 
 .g-iconmenu a:hover {
    white-space: nowrap;
-   border-bottom: 1px solid #66a;
-   border-right: 1px solid #66a;
-   border-top: 1px solid #224;
-   border-left: 1px solid #224;
-   padding: 1px;
-   text-decoration: none;
    font-weight: bold;
 }
 
@@ -235,10 +304,7 @@ a {
 }
 
 .g-icon-nolink {
-    color: #4E2192;
     white-space: nowrap;
-    padding: 2px;
-    text-decoration: none;
     text-align: center;
     font-weight: bold;
     vertical-align: bottom;
@@ -317,17 +383,28 @@ a {
 /******************** Begin Navigation Styles ********************/
 
 .g-navbar-top, .g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
-    font-size: 9pt;
+    font-family: verdana, arial, sans-serif;
+    width: 100%;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
 }
 
 /* Style for top navigation bar */
 .g-navbar-top {
-    border: none;
-    border-bottom: 1px dashed grey;
+    line-height: 140%;
+    background-image: url(../images/navbar.jpg);
+    background-repeat: repeat-x;
+    height: 20px;
 }
 
 /* Style for bottom navigation bar */
 .g-navbar-bottom {
+    line-height: 140%;
+    background-image: url(../images/navbar.jpg);
+    background-repeat: repeat-x;
+    height: 20px;
 }
 
 .g-microthumbnavbar-top {
@@ -341,15 +418,17 @@ a {
  }
 
 .g-borderright {
+    border-right: 1px solid #000;
 }
 
 .g-borderleft {
+    border-left: 1px solid #000;
 }
 
 /******************** End Navigation Styles ********************/
 
-
 /****** Style for breadcrumb bar if nothing special was specified ******/
+
 .g-breadcrumb {
     width: 100%;
     font-size: 9pt;
@@ -461,52 +540,6 @@ a {
     white-space:nowrap;
 }
 
-/******************** Begin album thumbnail view ********************/
-.g-album-summary {
-    text-align: center;
-    width: 75%;
-    margin: 3px auto;
-    color: #fff;
-    background: #66a;
-    font: italic bold 8pt Verdana,Arial,serif;
-    padding: 5px;
-    -moz-border-radius: 3px;
-}
-
-/* The table that contains the thumbnails in album view */
-.g-vatable {
-    margin-top: 5px;
-}
-
-/* The table cell that contains the thumbnail */
-.g-vathumb-cell {
-    font-size: 7pt;
-}
-
-/* The thumbnail itself */
-.g-vathumb {
-}
-
-/* This class controlls the box around all texts below the thumbnail.
- * It has the same width as the cell, not the thumbnail.
- */
-.g-va-thumb-texts {
-}
-
-.g-thumb-caption {
-}
-
-.g-va-infos {
-    margin-top: 2px;
-}
-
-.g-va-viewcounter{
-    margin-top: 2px;
-}
-
-
-/******************** End album thumbnail view ********************/
-
 /***** Begin Styles for comments *****/
 
 /* Box in add_comment */
@@ -555,7 +588,8 @@ a {
 
 .g-va-poll-box1 {
     font-size: 8pt;
-    border: 3px double green;
+    padding: 2px;
+    border: 2px solid red;
 }
 
 .g-va-poll-box2 {
@@ -566,7 +600,8 @@ a {
 
 .g-va-poll-box3 {
     font-size: 9pt;
-    border: 3px double green;
+    padding: 2px;
+    border: 2px solid red;
 }
 
 .g-dim a {
@@ -777,4 +812,3 @@ input:focus, textarea:focus, select:focus {
     background: #99f;
     font-weight: bold;
 }
-

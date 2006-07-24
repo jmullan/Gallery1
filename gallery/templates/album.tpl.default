@@ -62,8 +62,8 @@ if (!$gallery->session->offline ||
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
 <?php }
 
-    if( !empty($gallery->album->fields["linkcolor"]) || 
-	!empty($gallery->album->fields["bgcolor"]) || 
+    if( !empty($gallery->album->fields["linkcolor"]) ||
+	!empty($gallery->album->fields["bgcolor"]) ||
 	!empty($gallery->album->fields["textcolor"])) {
 
 	echo "\n<style type=\"text/css\">";
@@ -176,7 +176,7 @@ if ($navigator["maxPages"] > 1) {
 
 <?php if(!empty($albumItems)) : ?>
 <!-- image grid table -->
-<table cellspacing="0" cellpadding="0" class="g-vatable">
+<table cellspacing="5" cellpadding="0" class="g-vatable">
   <tr>
 <?php foreach($albumItems as $nr => $item) : ?>
     <td class="g-vathumb-cell" align="center">
@@ -250,7 +250,7 @@ if ($gallery->user->isLoggedIn() && $gallery->user->getEmail() &&
         $checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
         $checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
 ?>
-        
+
   <ul>
     <li>
       <input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
