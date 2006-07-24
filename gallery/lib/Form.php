@@ -123,7 +123,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array()) {
                     $sel = ' selected';
                 }
             }
-            else if ($value === $selected || $text === $selected || $selected === '__ALL__') {
+            else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
                 $sel = ' selected';
             }
             $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
