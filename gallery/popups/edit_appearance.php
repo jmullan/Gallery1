@@ -33,9 +33,9 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 list($nv_pairs, $extra_fields, $num_user_fields) =
     getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
 
-include_once(dirname(dirname(__FILE__)) . '/includes/definitions/services.php');
-include_once(dirname(dirname(__FILE__)) . '/lib/setup.php');
-include_once(dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
+include_once(GALLERY_BASE . '/includes/definitions/services.php');
+include_once(GALLERY_BASE . '/lib/setup.php');
+include_once(GALLERY_BASE . '/js/sectionTabs.js.php');
 
 $notice_messages = array();
 $reloadOpener = false;
@@ -46,16 +46,16 @@ if (getRequestVar('save')) {
      * 1.) get the values given by user, so we can put them into the album later.
      * 2.) Load the properties and check wether a user input is invalid.
      */
-    include (dirname(dirname(__FILE__)) . '/includes/definitions/albumProperties.php');
-    foreach ($properties as $fieldName => $values) {
+    include(GALLERY_BASE . '/includes/definitions/albumProperties.php');
+    foreach($properties as $fieldName => $values) {
         ${$fieldName} = getRequestVar($fieldName);
         if (isset($properties[$fieldName]['vartype'])) {
             list($status, ${$fieldName}, $infoMessage) =
                 sanityCheck(${$fieldName}, $properties[$fieldName]['vartype'], $gallery->app->default[$fieldName]);
             if (!empty($infoMessage)) {
                 $notice_messages[] = array(
-                    'type' => 'error',
-                    'text' => sprintf (gTranslate('core', "Problem with input of field '%s'. %s"), $fieldName, $infoMessage)
+                'type' => 'error',
+                'text' => sprintf (gTranslate('core', "Problem with input of field '%s'. %s"), $fieldName, $infoMessage)
                 );
             }
         }

@@ -789,21 +789,18 @@ function _getStyleSheetLink($filename, $skinname = '') {
     }
 
     $sheetname = "skins/$skinname/css/$filename.css";
-    $sheetdefaultdomainname = 'css/'. $_SERVER['HTTP_HOST'] ."/$filename.css";
     $sheetdefaultname = "css/$filename.css";
-    $sheetdefaultpath = "$base/css/$filename.css";
 
-    if (fs_file_exists($sheetname)) {
+    if (fs_file_exists("$base/$sheetname")) {
         $file = $sheetname;
     }
-    elseif (fs_file_exists("${sheetname}.default")) {
+    elseif (fs_file_exists("$base/${sheetname}.default")) {
         $file = "${sheetname}.default";
     }
-    elseif (fs_file_exists($sheetdefaultpath)) {
+    elseif (fs_file_exists("$base/$sheetdefaultname")) {
         $file = $sheetdefaultname;
-    } elseif (fs_file_exists($sheetdefaultdomainname)) {
-        $file = $sheetdefaultdomainname;
-    } else {
+    }
+    else {
         $file = "${sheetdefaultname}.default";
     }
 
@@ -1224,7 +1221,7 @@ function album_validation_link($album, $photo='', $valid=true) {
 function printPopupStart($title = '', $header = '', $align = 'center') {
     global $gallery;
     if (!empty($title) && empty($header)) {
-	$header = $title;
+        $header = $title;
     }
 
     doctype();

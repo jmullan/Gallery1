@@ -66,17 +66,18 @@ $properties = array(
         'type' => 'text',
         'value' => $gallery->album->fields["font"]
     ),
-    'rows' => array(
-        'prompt' => gTranslate('common', "Rows"),
-        'desc' => '',
-        'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-        'value' => $gallery->album->fields["rows"]
-    ),
     'cols' => array(
         'prompt' => gTranslate('common', "Columns"),
         'desc' => '',
         'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
         'value' => $gallery->album->fields["cols"]
+    ),
+
+    'rows' => array(
+        'prompt' => gTranslate('common', "Rows"),
+        'desc' => '',
+        'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
+        'value' => $gallery->album->fields["rows"]
     ),
     'border' => array(
         'prompt' => gTranslate('common', "Borders"),
@@ -453,7 +454,7 @@ $properties = array_merge($properties, array(
         'value' => $gallery->album->fields["nav_thumbs_style"]
     ),
     'nav_thumbs_first_last' => array(
-        'prompt' => gTranslate('common', "Show first & last microthumb"),
+        'prompt' => gTranslate('common', "Show first &amp; last microthumb"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["nav_thumbs_first_last"]
