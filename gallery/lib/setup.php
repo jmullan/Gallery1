@@ -27,23 +27,23 @@ function evenOdd_row($fields) {
 
     $f0 = $fields[0];
     if ($fields[4]) {
-	$f0 .= '&nbsp;<span class="g-littlered">*</span>';
+        $f0 .= '&nbsp;<span class="g-littlered">*</span>';
     }
 
     if ($fields[3] == "block_start") {
-	$html .= "\n<tr>" .
-		 "\n\t<td class=\"g-shortdesc\" colspan=\"2\">$f0<p>" . $fields[2] ."</p></td>" .
-		 "\n</tr>";
+        $html .= "\n<tr>" .
+        "\n\t<td class=\"g-shortdesc\" colspan=\"2\">$f0<p>" . $fields[2] ."</p></td>" .
+        "\n</tr>";
     }
     else {
-	$html .= "\n<tr>" .
-		 "\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
-		 "\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
-		 "\n</tr>";
+        $html .= "\n<tr>" .
+        "\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
+        "\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
+        "\n</tr>";
 
-	if (!empty($fields[2])) {
-	    $html .= "\n\t<tr><td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td></tr>";
-	}
+        if (!empty($fields[2])) {
+            $html .= "\n\t<tr><td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td></tr>";
+        }
     }
 
     return $html;
@@ -58,31 +58,42 @@ function make_fields($key, $arr) {
 	if (isset($arr['type']) &&
 	  ($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
         $col2 = form_input($key, $arr);
-	} else if (isset($arr['choices'])) {
+	}
+	else if (isset($arr['choices'])) {
 		$col2 = form_choice($key, $arr);
-	} else if (isset($arr['multiple_choices'])) {
+	}
+	else if (isset($arr['multiple_choices'])) {
 		$col2 = form_multiple_choice($key, $arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'textarea') {
+	}
+	else if (isset($arr['type']) && $arr['type'] == 'textarea') {
 		$col2 = form_textarea($key, $arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'table_values') {
+	}
+	else if (isset($arr['type']) && $arr['type'] == 'table_values') {
 		$col2 = form_table_values($key, $arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'colorpicker') {
+	}
+	else if (isset($arr['type']) && $arr['type'] == 'colorpicker') {
 		$arr['name'] = $key;
 		$col2 = showColorpicker($arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'password') {
+	}
+	else if (isset($arr['type']) && $arr['type'] == 'password') {
 		$col2 = form_password($key, $arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'nv_pairs') {
+	}
+	else if (isset($arr['type']) && $arr['type'] == 'nv_pairs') {
 		$col2 = form_nv_pairs($key, $arr);
-	} else if (isset($arr['type']) && $arr['type'] == 'print_services') {
+	}
+    else if (isset($arr['type']) && $arr['type'] == 'print_services') {
 		$col2 = form_print_services($key, $arr);
-	} else {
+	}
+	else {
 		$col2 ='';
 	}
+
 	if (isset($arr['desc'])) {
 		$col3 = $arr['desc'];
 	} else {
 		$col3 = '';
 	}
+
 	$col4 = isset($arr['type']) ?  $arr['type'] : NULL;
 	$col5 = isset($arr['required']) ? true : NULL;
 
