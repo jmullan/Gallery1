@@ -119,7 +119,7 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
     <table align="center">
     <?php
 
-    echo gInput('text', 'username', gTranslate('core', "_Username"), true, false, $username);
+    echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
     echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
     ?>
     </table>

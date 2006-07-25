@@ -122,7 +122,7 @@ function form_input($key, $arr) {
 
     if(is_array($arr['value'])) {
         foreach ($arr['value'] as $subkey => $value) {
-            $html .= gInput($arr['type'], $name, null, false, false, $value, $attrs, $multiInput,
+            $html .= gInput($arr['type'], $name, null, false, $value, $attrs, $multiInput,
                             $autocomplete);
 
             if (!$multiInput) {
@@ -135,7 +135,7 @@ function form_input($key, $arr) {
     }
     else {
         $attrs['class'] = 'floatleft';
-        $html = gInput($arr['type'], $name, null, false, false, $arr['value'], $attrs,
+        $html = gInput($arr['type'], $name, null, false, $arr['value'], $attrs,
                        $multiInput, $autocomplete);
     }
 

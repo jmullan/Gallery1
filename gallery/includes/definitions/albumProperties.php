@@ -24,9 +24,9 @@
 
 $properties = array(
     'group_text_start' => array (
-        'type' => "group_start",
-        'name' => "group_text",
-        'default' => "inline",
+        'type' => 'group_start',
+        'name' => 'group_text',
+        'default' => 'inline',
         'title' => gTranslate('common', "_Texts"),
         'contains_required' => false,
     ),
@@ -34,7 +34,7 @@ $properties = array(
         'prompt' => gTranslate('common', "Album summary"),
         'desc' => '',
         'value' => $gallery->album->fields["summary"],
-        'type' => "textarea",
+        'type' => 'textarea',
         'attrs' => array('cols' => 40, 'rows' => 6)
     ),
     'title' => array(
@@ -45,14 +45,14 @@ $properties = array(
         'attrs' => array('size' => 50)
     ),
     'group_text_end' => array (
-        'type' => "group_end",
+        'type' => 'group_end',
     ),
     'group_layout_start' => array (
-        'type' => "group_start",
-        'name' => "group_layout",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_layout',
+        'default' => 'none',
         'title' => gTranslate('common', "_Layout"),
-        'desc' => ""
+        'desc' => ''
     ),
     'background' => array(
         'prompt' => gTranslate('common', "Background Image (URL)"),
@@ -86,7 +86,7 @@ $properties = array(
         'value' => $gallery->album->fields["border"]
     ),
     'subgroup_colors' => array (
-        'type' => "subgroup",
+        'type' => 'subgroup',
         'title' => gTranslate('common', "Colors")
     ),
     'bgcolor' => array(
@@ -114,7 +114,7 @@ $properties = array(
         'value' => $gallery->album->fields["bordercolor"]
     ),
     'subgroup_frams' => array (
-        'type' => "subgroup",
+        'type' => 'subgroup',
         'title' => gTranslate('common', "Frames")
     ),
     'album_frame' => array(
@@ -139,14 +139,14 @@ $properties = array(
         'vartype' => 'pictureFrame'
     ),
     'group_layout_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_slideshow_start' => array (
-        'type' => "group_start",
-        'name' => "group_slideshow",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_slideshow',
+        'default' => 'none',
         'title' => gTranslate('common', "_Slideshow"),
-        'desc' => ""
+        'desc' => ''
     ),
     'slideshow_type' => array(
         'prompt' => gTranslate('common', "Slideshow Type"),
@@ -174,14 +174,14 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'group_slideshow_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_sizes_start' => array (
-        'type' => "group_start",
-        'name' => "group_sizes",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_sizes',
+        'default' => 'none',
         'title' => gTranslate('common', "Si_zes"),
-        'desc' => ""
+        'desc' => ''
     ),
     'thumb_size' => array(
         'prompt' => gTranslate('common', "Thumbnail size"),
@@ -225,14 +225,14 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'group_sizes_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_display_start' => array (
-        'type' => "group_start",
-        'name' => "group_display",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_display',
+        'default' => 'none',
         'title' => gTranslate('common', "_Display"),
-        'desc' => ""
+        'desc' => ''
     ),
     'display_clicks' => array(
         'prompt' => gTranslate('common', "Display click counter for this album?"),
@@ -260,24 +260,24 @@ $properties = array(
         'skip' => (empty($gallery->app->use_exif)) ? true : false
     ),
     'group_display_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_services_start' => array (
-        'type' => "group_start",
-        'name' => "group_services",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_services',
+        'default' => 'none',
         'title' => gTranslate('common', "Ser_vices"),
-        'desc' => ""
+        'desc' => ''
     ),
     'print_photos' => array(
         'prompt' => gTranslate('common', "Which photo printing services<br>do you want to let visitors use?"),
         'desc' => '',
         'multiple_choices' => array(
-            'photoaccess' => '<a href="http://www.photoworks.com/">PhotoWorks</a>',
-            'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
-            'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
-            'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
-            'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>'
+            'photoaccess' => '<a href="http://www.photoworks.com/" target="_blank">PhotoWorks</a>',
+            'shutterfly'  => '<a href="http://www.shutterfly.com/" target="_blank">Shutterfly</a>',
+            'fotoserve'   => '<a href="http://www.fotoserve.com/" target="_blank">Fotoserve.com</a>',
+            'fotokasten'  => '<a href="http://www.fotokasten.de/" target="_blank">Fotokasten</a>',
+            'mpush'       => '<a href="http://www.mpush.cc/" target="_blank">mPush</a>'
         ),
         'value' => $gallery->album->fields['print_photos']
     ),
@@ -289,14 +289,14 @@ $properties = array(
         'skip' => ($gallery->app->emailOn == 'yes') ? false : true
     ),
     'group_services_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_pollProperties_start' => array (
-        'type' => "group_start",
-        'name' => "group_pollProperties",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_pollProperties',
+        'default' => 'none',
         'title' => gTranslate('common', "_Poll Properties"),
-        'desc' => ""
+        'desc' => ''
     ),
     'voter_class' => array(
         'prompt' => gTranslate('common', "Who can vote?"),
@@ -340,9 +340,9 @@ $properties = array(
     'poll_hint' => array(
         'prompt' => gTranslate('common', "Vote hint"),
         'desc' => '',
-        'type' => 'text',
         'value' => $gallery->album->getPollHint(),
-        'attrs' => array('size' => 60)
+        'type' => 'textarea',
+        'attrs' => array('cols' => 40, 'rows' => 2)
     ),
     'poll_displayed_values' => array(
         'prompt' => gTranslate('common', "Voting Options"),
@@ -353,14 +353,14 @@ $properties = array(
         'value' => ''
     ),
     'group_pollProperties_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_misc_start' => array (
-        'type' => "group_start",
-        'name' => "group_misc",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_misc',
+        'default' => 'none',
         'title' => gTranslate('common', "_Misc"),
-        'desc' => ""
+        'desc' => ''
     ),
     'add_to_beginning' => array(
         'prompt' => gTranslate('common', "Add new items at beginning of album"),
@@ -387,7 +387,7 @@ $properties = array(
         'value' => $gallery->album->fields["fit_to_window"]
     ),
     'subgroup_ermission' => array (
-        'type' => "subgroup",
+        'type' => 'subgroup',
         'title' => gTranslate('common', "Permissions")
     ),
     'item_owner_modify' => array(
@@ -403,12 +403,12 @@ $properties = array(
         'value' => $gallery->album->fields["item_owner_delete"]
     ),
     'group_misc_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_CustomFields_start' => array (
-        'type' => "group_start",
-        'name' => "group_CustomFields",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_CustomFields',
+        'default' => 'none',
         'title' => gTranslate('common', "Custom _Fields")
     ),
     'extra_fields' => array(
@@ -430,12 +430,12 @@ if (isset($customFields)) {
 }
 $properties = array_merge($properties, array(
     'group_CustomFields_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
     'group_MicroThumbs_start' => array (
-        'type' => "group_start",
-        'name' => "group_MicroThumbs",
-        'default' => "none",
+        'type' => 'group_start',
+        'name' => 'group_MicroThumbs',
+        'default' => 'none',
         'title' => gTranslate('common', "M_icrothumbs")
     ),
     'nav_thumbs' => array(
@@ -494,7 +494,7 @@ $properties = array_merge($properties, array(
         'attrs' => array('size' => 3)
     ),
     'group_MicroThumbs_end' => array (
-        'type' => "group_end"
+        'type' => 'group_end'
     ),
   )
 );

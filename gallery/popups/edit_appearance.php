@@ -243,7 +243,7 @@ doctype();
   <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Album Properties"); ?></div>
 </div>
 <?php echo infoBox($notice_messages); ?>
-<div class="g-content-popup" align="center">
+<div class="g-content-popup">
 <?php
 
 $i = 0;
@@ -297,13 +297,14 @@ foreach ($properties as $key => $val) {
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="set_albumName" value="<?php echo $gallery->session->albumName ?>">
 <hr>
-<input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo gTranslate('core', "Apply values to nested albums (except album title and summary).") ?></label>
-<br>
-<br>
-<?php echo gSubmit('apply', gTranslate('core', "_Apply")); ?>
-<?php echo gReset('reset', gTranslate('core', "_Undo")); ?>
-<?php echo gButton('close', gTranslate('core', "_Close"), 'parent.close()'); ?>
-
+<div class="center">
+    <input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo gTranslate('core', "Apply values to nested albums (except album title and summary).") ?></label>
+    <br>
+    <br>
+    <?php echo gSubmit('apply', gTranslate('core', "_Apply")); ?>
+    <?php echo gReset('reset', gTranslate('core', "_Undo")); ?>
+    <?php echo gButton('close', gTranslate('core', "_Close"), 'parent.close()'); ?>
+</div>
 </form>
 
 </div>

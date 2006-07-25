@@ -288,13 +288,12 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
     return $html;
 }
 
-function gInput($type, $name, $label = null, $tableElement = false, $size = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
+function gInput($type, $name, $label = null, $tableElement = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
     global $browser;
 
     $attrList['name'] = $name;
     $attrList['type'] = $type;
     $attrList['accesskey'] = getAndSetAccessKey($label);
-    $attrList['size'] = $size;
 
     if (!empty($value) || $value == 0) {
         $attrList['value'] = $value;

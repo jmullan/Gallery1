@@ -92,7 +92,8 @@ echo infoBox($messages);
 
 echo makeFormIntro('setup/check_mail.php');
 
-echo gInput('text', 'email_address', gTranslate('config', "Your _email address:"), false, 50);
+echo gInput('text', 'email_address', gTranslate('config', "Your _email address:"), false, false,
+            array('size' => 50));
 
 echo gSubmit('submit', gTranslate('config', "_Send Email"));
 ?>
@@ -100,7 +101,7 @@ echo gSubmit('submit', gTranslate('config', "_Send Email"));
 </form>
 
 </div>
-	
+
 <div class="center">
 	<?php echo returnToConfig(); ?>
 </div>

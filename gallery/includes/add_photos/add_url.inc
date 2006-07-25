@@ -28,7 +28,7 @@
 			array('name' => 'uploadurl_form'),
 			array('type' => 'popup'));
 
-    echo gInput('text', 'urls[]', '', false, 50);
+    echo gInput('text', 'urls[]', '', false, false, array('size' => 50));
 
     echo "\n<div style=\"padding-top: 5px\">";
 	echo gTranslate('core', "What would you like the captions to default to?");

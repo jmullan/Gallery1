@@ -587,8 +587,8 @@ function addSearchForm($formerSearchString = '') {
         'class'   => 'g-search-form')
     );
 
-    $html .= gInput('text', 'searchstring', gTranslate('common', "_Search:"), false, 25,
-                    $formerSearchString, array('class' => 'g-search-form'));
+    $html .= gInput('text', 'searchstring', gTranslate('common', "_Search:"), false, $formerSearchString,
+            array('class' => 'g-search-form', 'size' => 25));
     $html .= "</form>\n";
 
     return $html;
