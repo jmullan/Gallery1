@@ -1,0 +1,846 @@
+/*
+   This is the style sheet used when Gallery running standalone and
+   'bars002' is selected.
+
+   If you would like to customize the styles please create
+   copy of this file called 'black'
+
+   "screen.css" (same name without ".default")
+
+   If that file is found in this directory it will be
+   used instead of this one.
+
+   Some of the styles below are overriden by specific
+   album properties. These are noted
+
+   $Id$
+*/
+
+/*
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: #fff;
+    font-weight: bold;
+    background-color: #000;
+    1margin-top: 25px;
+}
+
+a {
+    color: #ddd;
+    text-decoration: none;
+}
+
+a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup a:hover,
+         .g-setup-fields a:hover, .g-message a:hover, .g-config-content a:hover {
+    color: #E91414;
+    text-decoration: none;
+}
+
+/******************** Begin superglobal ********************
+ *
+ * The complete Gallery is inside a <div>
+ * Use this classes to define "superglobal" styles
+*/
+.g-main {
+     margin-top: 20px;
+}
+
+.g-main a {
+}
+
+.g-main a:hover {
+}
+
+/******************** End superglobal ********************/
+
+
+/******************** Headers and Pagetitle ********************/
+
+.g-popup {
+    margin-top: 15px;
+    font-size: 9pt;
+}
+
+.g-popup a {
+    color: #666;
+}
+
+.g-popup a:hover {
+}
+
+.g-header, .g-header-popup, .g-columnheader {
+    background-image: url(../images/mod_titlebar.jpg);
+    font-family: verdana, arial, sans-serif;
+}
+
+.g-header {
+    width: 100%;
+}
+
+.g-header-popup {
+    width: 100%;
+    padding: 0 5px;
+}
+
+.g-pagetitle, .g-pagetitle-popup {
+    color: #FFF;
+    font-weight: bold;
+    height: 28px;
+}
+
+.g-pagetitle {
+    font-size: 16px;
+    line-height: 140%;
+    padding: 0 50px;
+    letter-spacing: .2em;
+}
+
+.g-pagetitle-popup {
+    text-align: center;
+}
+
+/******************** End Headers and Pagetitle ********************/
+
+/******************** Begin Mainpage Styles ********************/
+
+/* The table containing the thumbs and text etc. for the albums */
+.g-albums-table {
+    margin-top: 2px;
+}
+
+/* Vertical space between the albums. */
+.g-album-vertical-spacer {
+}
+
+/* Cell for thumbnail */
+.g-album-image-cell {
+    padding: 0 5px 10px 0;
+}
+
+/* Cell for the albumdescription on mainpage */
+.g-albumdesc-cell {
+    font-family: verdana, arial, sans-serif;
+    color: #fff;
+    font-size: x-small;
+    font-weight: bold;
+    background-color: #363636;
+    line-height:140%;
+    padding:2px;
+    margin-top:2px;
+    -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
+}
+
+/* Box where the microthumb "tree" is showed in on mainpag */
+.g-microthumbTree-box {
+    width: 100%
+}
+
+/* Cell for the "normal" subalbum tree on mainpage */
+.g-subalbumTree-box {
+    font-family: verdana, arial, sans-serif;
+    color: #fff;
+    font-size: x-small;
+    font-weight: bold;
+    background-color: #363636;
+    line-height: 140%;
+    padding:2px;
+    margin-top:2px;
+    -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+/* Box for the album description text on mainpage */
+.g-album-desc {
+    font-size: 9pt;
+}
+
+/* Box for the album owner text on mainpage */
+.g-album-owner {
+    font-size: 7.5pt;
+    margin-top: 5px;
+}
+
+/* Box for the album infoes like
+ * "viewed x times
+ * url
+ * Last change
+ * etc. on mainpage */
+.g-album-infos {
+    margin-top: 5px;
+    font-size: 7pt;
+}
+
+/******************** End Mainpage Styles ********************/
+
+/******************** Beginn Common Styles ********************/
+
+.g-searchbar {
+}
+
+.g-search-form {
+    font-size: 10px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+/******************** End Common Styles ********************/
+
+/******************** Begin album thumbnail view ********************/
+
+.g-album-summary {
+    font-weight: bold;
+    padding: 2px;
+    margin: 3px auto;
+    margin-top: 10px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+/* The table that contains the thumbnails in album view */
+.g-vatable {
+    margin-top: 5px;
+}
+
+/* The table cell that contains the thumbnail */
+.g-vathumb-cell {
+    padding: 3px;
+}
+
+/* The thumbnail itself */
+.g-vathumb {
+}
+
+/* This class controlls the box around all texts below the thumbnail.
+ * It has the same width as the cell, not the thumbnail.
+ */
+.g-va-thumb-texts {
+    font-weight: bold;
+}
+
+.g-thumb-caption {
+}
+
+.g-va-infos {
+    margin-top: 2px;
+}
+
+.g-va-viewcounter{
+    margin-top: 2px;
+    margin-bottom: 5px
+}
+
+/******************** End album thumbnail view ********************/
+
+/* Album titles */
+.g-title {
+    font-family: verdana, arial, sans-serif;
+    padding: 2px;
+    margin-top: 2px;
+    padding: 0 50px;
+}
+
+.g-title-background {
+    background-image: url(../images/mod_titlebar.jpg);
+    width: 100%;
+    height: 28px;
+}
+
+.g-title-right {
+}
+
+.g-title-left {
+}
+
+.g-adminbar {
+    font-family: verdana, arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: bold;
+    background-color: #363636;
+    padding: 2px;
+    margin: 2px;
+}
+
+.g-adminbartext {
+    vertical-align: bottom;
+}
+
+.g-adminbartext a {
+}
+
+.g-adminbarcommands {
+    vertical-align: bottom;
+}
+
+.g-adminbarcommands a {
+}
+
+.g-adminbarcommands a:hover {
+}
+
+.g-iconmenu {
+    font-size: 7.5pt;
+}
+
+.g-iconmenu a {
+    font-weight: bold;
+    text-align: center;
+}
+
+.g-iconmenu a:hover {
+   white-space: nowrap;
+   font-weight: bold;
+}
+
+.g-iconmenu td {
+}
+
+.g-icon-nolink {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+.g-sectioncaption-popup {
+    color: #000;
+    height: 15px;
+    padding: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.g-content-popup {
+    font-size: 9pt;
+    font-weight: normal;
+    color: #202020;
+    padding: 5px;
+    border: 1px solid #FFF;
+    background-color: #F0F0F0;
+    margin-bottom: 10px;
+}
+
+.g-content-popup a {
+    color: #666;
+}
+
+.g-content-popup form {
+    margin-top: 2px;
+    padding: 2px;
+    background-color: #E0E0E0;
+}
+
+.g-content-popup p {
+    margin-bottom: 10px;
+}
+
+.g-content-popup {
+    margin: 5px;
+}
+
+.g-form-text {
+}
+
+.g-error {
+    color: #000;
+    background-color: #ffd5d4;
+
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-error a {
+    background-color: #ffd5d4;
+    color: red;
+    font-weight: bold;
+}
+
+.g-nogo {
+    color: white;
+    background-color: #ec000a;
+    font-size: 10pt;
+    font-weight: bold;
+
+    border: 4px solid #ff9898;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-border-left {
+    border-left: 1px solid black;
+}
+
+/******************** Begin Navigation Styles ********************/
+
+.g-navbar-top, .g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
+    font-family: verdana, arial, sans-serif;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    background-image: url(../images/mod_navbar.jpg);
+    line-height: 140%;
+    letter-spacing: .2em;
+    width: 100%;
+    height: 14px;
+    border: none;
+}
+
+/* Style for top navigation bar */
+.g-navbar-top {
+}
+
+/* Style for bottom navigation bar */
+.g-navbar-bottom {
+}
+
+.g-microthumbnavbar-top {
+}
+
+.g-microthumbnavbar-bottom {
+}
+
+.g-navbar-top td, .g-navbar-bottom td {
+     font-size: 9pt;
+ }
+
+.g-borderright {
+    border-right: 1px solid #000;
+}
+
+.g-borderleft {
+    border-left: 1px solid #000;
+}
+
+/******************** End Navigation Styles ********************/
+
+/****** Style for breadcrumb bar if nothing special was specified ******/
+
+.g-breadcrumb {
+    width: 100%;
+    font-size: 9pt;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #555;
+}
+
+.g-breadcrumb td {
+    padding: 1px 5px 1px 5px;
+}
+
+/***** End breadcrumb *****/
+
+.g-adm-options {
+    padding: 5px;
+}
+
+.g-adm-options a {
+    font-weight: bold;
+    white-space:nowrap;
+}
+
+.g-tabset {
+}
+
+.g-tabset a {
+    color: #000;
+    background-color: #fff;
+    border-color: #777789;
+}
+
+.g-tabset a:hover {
+    background-color: #aaa;
+}
+
+.g-tabset a.g-activeTab {
+    color: #fff;
+    background: #444;
+    border-bottom: 1px solid #66a;
+}
+
+.g-notice {
+    color: #000;
+    background: #e0e0e0;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 2px;
+    -moz-border-radius: 8px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.g-notice-caption {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.g-notice img {
+    margin: 2px 2px 0 0;
+}
+
+.g-notice a {
+    color: #000;
+    font-weight: bold;
+}
+
+.g-notice a:hover {
+    color: #E91414;
+}
+
+
+/* Warning message */
+.g-warning {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+/* Information message */
+.g-information {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-success {
+    color: #000;
+    background-color: #cbffaf;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+/* Paragraph inside a notice */
+.g-notice p {
+     font-weight: bold;
+}
+
+.g-message a {
+    color: #666;
+}
+
+.g-admin {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.g-admin a {
+    white-space:nowrap;
+}
+
+/***** Begin Styles for comments *****/
+
+/* Box in add_comment */
+.g-commentadd-box {
+    border: 1px solid #fff;
+    background-color: #e9e9ff;
+    margin-top: 5px;
+}
+
+.g-commentadd-box th {
+}
+
+/* Header fields in add_comment */
+.g-commentadd-box-head {
+}
+
+.g-commentadd-box td {
+    padding: 0 2px 0 2px;
+}
+
+.g-commentadd-box-middle {
+    vertical-align: top;
+}
+
+.g-commentadd-box-footer {
+}
+
+.g-commentIndication {
+    color: red;
+}
+
+
+.g-comment-box {
+    margin: 2px 5px;
+    padding-left: 30px;
+    width: 75%;
+    border: 1px solid silver;
+}
+
+.g-comment-text-cell {
+    padding-left:10px;
+    border-top:1px solid black;
+}
+
+/***** End Styles for comments *****/
+
+.g-va-poll-box1 {
+    font-size: 8pt;
+    padding: 2px;
+    margin-bottom: 2px;
+    color: yellow;
+}
+
+.g-va-poll-box2 {
+    font-size: 8pt;
+    color: yellow;
+}
+
+
+.g-va-poll-box3 {
+    font-size: 9pt;
+    padding: 2px;
+    color: yellow;
+}
+
+.g-dim a {
+    color: grey;
+}
+
+.g-sitedesc {
+    border: 1px solid #006;
+    color: #000;
+    background: #888;
+    margin: 3px 10px 0 10px;
+    padding: 5px;
+    font-size: 10pt;
+}
+
+.g-desc-cell {
+    background-color: #F7F7F7;
+    padding: 3px;
+    font-size: 8pt;
+}
+
+.g-shortdesc {
+    background-color: #DCDCDC;
+    padding:5px;
+    vertical-align: top;
+}
+
+.g-longdesc {
+    background-color: #363636;
+    color: #FFF;
+    padding: 5px;
+    vertical-align: top;
+}
+
+/******************** Begin single photo view ********************/
+
+/* Box around photo. */
+.g-photo {
+     text-align: center;
+     width: 100%
+}
+
+/* Box around all Texts below the photo. Including captions, comments etc. */
+.g-photo-texts {
+    font-size: 8pt;
+    text-align: center;
+    width: 100%;
+}
+
+.g-photo-caption {
+    color: black;
+}
+
+.g-customFieldsTable {
+     font-size: 9pt;
+     text-align: left;
+     margin: 0 auto;
+     border: 1px solid silver;
+}
+
+.g-voting-results {
+}
+
+.g-vote-box {
+}
+
+/***** General Form styles  ******/
+input, textarea, select {
+    color: #000;
+    background: #f3f3f9;
+    border: 1px solid #669;
+}
+
+input:focus, textarea:focus, select:focus {
+    background: #fff;
+    border: 1px solid #99f;
+}
+
+.g-button {
+    color: #fff;
+    background: #333;
+    border-bottom: thin solid #5d5d60;
+    border-right: thin solid #5d5d60;
+    border-top: thin solid #777789;
+    border-left: thin solid #777789;
+    -moz-border-radius: 5px;
+}
+
+.g-button:hover {
+    background: #666;
+}
+
+.g-button:focus {
+    background: #555;
+}
+
+/****** End general Form Styles *****/
+
+.g-emailMe-box {
+    font-size: 8.5pt;
+    padding: 3px 2px 3px 2px;
+    width: 500px;
+    margin: 0 2px 3px;
+    -moz-border-radius: 5px;
+    border: 1px solid #666;
+}
+
+.g-columnheader, caption {
+    font-weight: bold;
+    padding: 2px;
+    border: 1px solid #fff;
+    color: #FFF;
+}
+
+/****** Styles used in config *****/
+
+/* Indicates an important setting. */
+.g-attention {
+    color: red;
+    font-weight: bold;
+}
+
+.g-subgroup {
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+.g-config {
+    margin: 10px auto;
+	padding: 10px;
+	border: 1px solid #ccc;
+	width: 805px;
+	background: #F7F7F7;
+	font-size: 9pt;
+	color: #000;
+}
+
+.g-stepbar {
+	width: 155px;
+}
+
+.g-step {
+	color: #999;
+	background-color: #F1F1F1;
+    font-size: 11px;
+	font-weight: bold;
+	padding: 7px 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 2px;
+}
+
+.g-current-step {
+	color: #fff;
+	background-color: #555;
+}
+
+.g-config-content {
+/* defined in ltr/rtl */
+    color: #000;
+}
+
+.g-config-step {
+	font-size: 30px;
+	font-weight: bold;
+	color: #666;
+	white-space: nowrap;
+	margin: 0 20px;
+}
+
+.far-right {
+	text-align: right;
+	float: right;
+}
+
+.g-config h1, .g-content-popup h1 {
+	font-size: 15px;
+	font-weight: bold;
+ 	color: #c64934;
+	padding: 0 10px 4px 0;
+	border-bottom: 1px solid #c64934;
+	margin-bottom: 5px;
+}
+
+.g-config-main {
+    margin-top: 5px;
+	border: 1px solid #ccc;
+	background: #E9ECEF;
+	padding: 5px;
+	color: #000;
+}
+
+.g-double-bottom-border-spacer {
+    margin-bottom: 7px;
+    border-bottom: 3px double #000;
+}
+
+.g-setup-block, .g-setup-fields {
+   border: 1px solid #a1a1a1;
+}
+
+.g-config-main div.g-desc-cell {
+    border: 1px solid red;
+}
+
+.g-config-main a {
+    color: #333;
+}
+
+.g-setup-fields a {
+    color: #aaa;
+}
+
+/******************** Begin autocomplete ********************/
+.YUIsearchcontainer {
+    border: 1px solid #404040;
+    font-size: 85%;
+}
+
+.YUIsearchcontainer li.highlight {
+    background: #99f;
+    font-weight: bold;
+}
+
+/* Overrides base.css */
+
+.g-siriux a img {
+    border: 1px solid #000;
+}
+
+.g-siriux a:hover img{
+    border: 2px solid #fff;
+}

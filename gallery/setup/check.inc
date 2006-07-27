@@ -93,7 +93,7 @@ $warning = 0;
     <div class="g-config-content">
         <div class="g-config-step floatleft"><?php echo gTranslate('config', "Installation check"); ?></div>
 
-        <div class="g-album-desc clear">
+        <div class="g-albumdesc-cell clear">
         <?php
 
         echo gTranslate('config', "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ;

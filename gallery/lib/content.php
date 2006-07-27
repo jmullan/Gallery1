@@ -977,9 +977,11 @@ function available_skins($description_only = false) {
 
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
         while ($file = readdir($fd)) {
+            if($file === '.' || $file === '..') continue;
             $subdir = "$dir/$file/css";
             $skincss = "$subdir/screen.css";
-            if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
+            if (fs_is_dir($subdir) &&
+               (fs_file_exists($skincss. '.default') || fs_file_exists($skincss))) {
                 $possibleSkins[] = $file;
             }
         }
@@ -990,7 +992,6 @@ function available_skins($description_only = false) {
             $skininc = "$dir/$file/style.def";
             $name = '';
             $description = '';
-            $skincss = "$subdir/screen.css";
             $skincount++;
 
             if (fs_file_exists($skininc)) {
@@ -1001,7 +1002,7 @@ function available_skins($description_only = false) {
                 $name = $file;
             }
 
-            $opts[$file]=$name;
+            $opts[$file] = $name;
             if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
                 $screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
             } elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
@@ -1098,7 +1099,7 @@ function available_frames($description_only = false, $forRandomBlock = false) {
                 $name = NULL;
                 $description = NULL;
                 require($frameinc);
-                if (empty($name )) {
+                if (empty($name)) {
                     $name = $file;
                 }
                 if (empty($description )) {

@@ -20,7 +20,7 @@
  * $Id$
  */
 ?>
-<?php 
+<?php
     require_once(dirname(__FILE__) . '/init.php');
 
     printPopupStart(gTranslate('config', "Check Versions"));
@@ -121,13 +121,13 @@ if(!empty($versionStatus['fail'])) {
 		'text' => $message)));
     }
 }
-
 ?>
 
 </div>
 
 <div class="center">
-	  <?php echo returnToConfig(); ?>
+    <?php echo returnToConfig(); ?>
+
 </div>
 
 </body>
