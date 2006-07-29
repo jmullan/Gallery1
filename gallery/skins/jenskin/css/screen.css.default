@@ -1,11 +1,9 @@
 /*
    This is the style sheet used when Gallery running standalone and
-   'bars002' is selected.
+   'jenskin' is selected.
 
    If you would like to customize the styles please create
-   copy of this file called
-
-   "screen.css" (same name without ".default")
+   copy of this file called "screen.css" (same name without ".default")
 
    If that file is found in this directory it will be
    used instead of this one.
@@ -21,303 +19,262 @@
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 
-textarea:focus, input:focus, select:focus {
-    background-color: #FFFFDA;
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-image: url(../images/simplex-bkg.gif);
+    color: #000;
 }
-
-.commentbox	{
-    border-width:1px; border-style:solid; border-color: #000000;
-    padding:2px;
-}
-
-.commentboxhead	{ background-color: #FCFCF3; padding:2px;
-		  border-bottom-width:1px; border-bottom-style: solid; border-color: #000000;
-		  font-size:10pt;
-		}
-
-.commentlabel	{ background-color: #DCDCC0; padding:5px; font-weight: bold;
-		  font-size:10pt;
-		}
-
-.commentboxfooter {
-	background-color: #FCFCF3; padding:2px;
-	border-top-width:1px; border-top-style: solid; border-color: #000000;
-	font-size:10pt;
-}
-
-.sitedesc	{ background-color: #FCFCF3; margin-top:25px; padding:5px;
-		  border-style: solid; border-width: 1px ; border-color: #000000;
-		}
-
-.inner		{ padding: 5px; margin-top:20px;
-		  border-style: solid; border-color: #000000; border-width:1px;
-		}
-
-.shortdesc	{ background-color: #DCDCC0; padding:5px; font-weight: bold;
-		}
-
-body	{
-	  color: #000000;
-	  font-family: Verdana, Arial, Helvetica, sans-serif;
-	  background-image: url(../images/simplex-bkg.gif);
-	}
 
 a:link, a:visited {
-	color: #000000;
-		}
+    color: #000;
+}
 
-a:hover {
-    color: #000099;
+a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup a:hover,
+         .g-setup-fields a:hover, .g-message a:hover, .g-config-content a:hover {
+    color: #009;
     text-decoration: none;
 }
 
-/*
-   text styles
+/******************** Begin superglobal ********************
+ *
+ * The complete Gallery is inside a <div>
+ * Use this classes to define "superglobal" styles
 */
-.title                          /* album titles on main page */
-	{
-	  font-size: 14px;
-	  font-weight: bold;
-	}
+.g-main {
+     margin-top: 5px;
+     padding: 0 3px;
+}
 
-.mod_title			/* album title -- Text is controlled by .title */
-	{
-	  border:1px solid #000000;
-	  border-right-width:0px;
-	  border-bottom-width:0px;
-	  border-left-width:0px;
-	}
+.g-main a {
+}
 
-.albumdesc  /*album description includes all text and background*/
-	{
-	color:#000000;
-	}
+.g-main a:hover {
+}
 
-.desc	{ background-color: #FCFCF3 ; padding:3px; margin:8px; font-size:1.0em;
-	  width:80%;
-	  border-style: solid; border-color: #000000;
-	  border-width:1px; -Moz-Border-Radius: 20px;
-	}
+/******************** End superglobal ********************/
 
-.caption                        /* photo captions on all pages */
-	{
-	  font-size: 10px;
-	}
-.modcaption  /* modifies background for caption text to reside */
-	{
-	  font-size: 10px;
-	}
 
-.error {
-    background-color: #CC0000; color: #FFFFFF ;
-    padding:3px;
+/******************** Headers and Pagetitle ********************/
+
+.g-popup {
+    margin-top: 15px;
+    font-size: 9pt;
+}
+
+.g-popup a {
+    color: #666;
+}
+
+.g-popup a:hover {
+}
+
+.g-header, .g-header-popup, .g-columnheader {
+}
+
+.g-header {
+    width: 100%;
+}
+
+.g-header-popup {
+    width: 100%;
+    padding: 0 5px;
+}
+
+.g-pagetitle, .g-pagetitle-popup {
+}
+
+.g-pagetitle {
+    font-size: 16px;
+    font-weight:bold;
+    line-height: 140%;
+    padding: 0 50px;
+    margin-top: 10px;
+    letter-spacing: .2em;
+    background-color: #E6E6DC;
+    border: 1px solid #000;
+}
+
+.g-pagetitle-popup, .g-sectioncaption-popup {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #FCFCF3;
+    padding: 3px;
+    margin: 10px;
+    border: 1px solid black;
     -Moz-Border-Radius: 20px;
-    margin:5px;
 }
 
-a.error, a.error:link, a.error:visited, a.error:active {
-    color: #FFFFFF;
+/******************** End Headers and Pagetitle ********************/
+
+/******************** Begin Mainpage Styles ********************/
+
+/* The table containing the thumbs and text etc. for the albums */
+.g-albums-table {
+    margin-top: 2px;
 }
 
-.attention                          /* so far, just for voting instructions*/
-        {
-          font-family: Verdana, Arial, Helvetica, sans-serif;
-          font-weight: normal;
-          color: blue;
-          font-size: 12px;
-        }
-
-/*
-.warning        { font-weight:bold; background-color: #FFFF33; color: #000000 ;
-		  width: 150px; padding:2px;
-		}
-*/
-
-.headbox {
-	  background-color: #E6E6DC; font-size: 1.5em;  font-weight:bold; padding:10px;
-	  border-style: solid; border-width: 1px; border-color: #F0F0F0;
-	}
-
-.head                           /* page headers */
-	{
-	  font-size: 16px;
-	  font-weight: bold;
-	}
-
-.bread                          /* used in breadcrumb bars */
-	{
-	  font-size: 10px;
-	}
-.nav                            /* used in navigation bars */
-	{
-	  font-size: 12px;
-	}
-
-.navtableborderbegin{
-	border:1px solid #000000;
+/* Vertical space between the albums. */
+.g-album-vertical-spacer {
 }
 
-.navtableborderend {
-	border:1px solid #000000;
-	border-top-width:0px;
-
+/* Cell for thumbnail */
+.g-album-image-cell {
+    padding: 0 20px 5px 15px;
 }
 
-.bordertop
-	{
-	  border:1px solid #000000;
-	  border-right-width:0px;
-	  border-bottom-width:0px;
-	  border-left-width:0px;
-	}
-.borderright
-	{
-	  border:1px solid #000000;
-	  border-top-width:0px;
-	  border-bottom-width:0px;
-	  border-left-width:0px;
-	}
-.borderleft
-	{
-	  border:1px solid #000000;
-	  border-top-width:0px;
-	  border-bottom-width:0px;
-	  border-right-width:0px;
-	}
-
-.fineprint                      /* used for fine print */
-	{
-	  font-size: 10px;
-	}
-
-input, select, option, textarea
-	{
-	  background-color: #FCFCFF; padding-left:5px; -Moz-Border-Radius: 20px;
-	}
-
-
-.editlink                       /* Used for the [edit] tags */
-	{
-	  font-size: 10px;
-	}
-
-.admin                          /* used in admin bars */
-	{
-	  font-size: 10px;
-	  font-weight: bold;
+/* Cell for the albumdescription on mainpage */
+.g-albumdesc-cell {
+    border-top: 1px solid #000;
 }
 
-.adminform {
+/* Box where the microthumb "tree" is showed in on mainpag */
+.g-microthumbTree-box {
+    width: 100%
+}
+
+/* Cell for the "normal" subalbum tree on mainpage */
+.g-subalbumTree-box {
+}
+
+/* Box for the album description text on mainpage */
+.g-album-desc, .g-album-owner {
+    background-color: #FCFCF3 ;
+    padding: 3px;
+    margin: 8px;
+    font-size: 1.0em;
+    border: 1px solid #000;
+    -Moz-Border-Radius: 20px;
+}
+
+/* Box for the album owner text on mainpage */
+.g-album-owner {
+    font-size: 7.5pt;
+    margin-top: 5px;
+}
+
+/* Box for the album infoes like
+ * "viewed x times
+ * url
+ * Last change
+ * etc. on mainpage */
+.g-album-infos {
+    margin-top: 5px;
+    font-size: 7pt;
+}
+
+/******************** End Mainpage Styles ********************/
+
+/******************** Beginn Common Styles ********************/
+
+.g-searchbar {
+}
+
+.g-search-form {
     font-size: 10px;
     font-weight: bold;
 }
 
-.search                          /* used in search text */
-	{
-	  font-size: 10px;
-	  font-weight: bold;
-	}
+/******************** End Common Styles ********************/
 
-/* controls the background of popup. */
-.popupbody {
-    margin: 5px;
-    background-color: #808080;
-    font-size: 12px;
- }
+/******************** Begin album thumbnail view ********************/
 
-.popuphead {
-    font-size: 16px; font-weight: bold;
-    text-align: center;
-    background-color: #FCFCF3;
-    -Moz-Border-Radius: 20px;
-    padding: 3px; margin: 10px;
-    border: 1px solid black;
-}
-
-.popup /* controls the main text and message body */
- {
- }
-
-.popupform /* controls form textarea */
- {
- }
-
-.commentIndication {
-        color: red;
-	font-weight: bold; font-size: 12px;
-	vertical-align:top;
-}.pview /* brackets both the image and all text in one frame */
-{
-	margin:7px;
-	padding: 7px;
- }
-
-.pcaption /* brackets all text below photo */
-{
-	padding:2px;
-	margin-top:2px;
- }
-
-.vatable /* width of the div set for all photo sets - view albums  */
- {
- 	width: 100%;
- }
-
-.vathumbs /* full background bracket for images and text - veiw albums  */
- {
-	margin:17px;
- }
-
-.vafloat /* float for view album - text */
- {
-	float: none;
- }
-
-.vafloat2 /* float for view album - images */
- {
-	float: none;
- }
-
-.vasummary /* controls the view of Album summary */
-{
-        font-weight:bold;
-        padding:2px;
-        margin-top:10px;
-        width:80%;
-}
-
-#adminbox {
-    color: #000000;
-    background-color: #FCFCF3;
-}
-
-#adminbox td {
-    font-size: 10px; font-weight: bold;
-    background-color: #FCFCF3;
-    padding-left:2px; padding-right:2px;
-    padding-top:1px; padding-bottom:1px;
-}
-
-#adminbox a {
-}
-
-#adminbox a:hover {
-}
-
-#menu {
-}
-
-#menu td{
-}
-
-#menu a {
-    white-space: nowrap;
+.g-album-summary {
+    font-weight: bold;
     padding: 2px;
+    margin: 3px auto;
+    margin-top: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+/* The table that contains the thumbnails in album view */
+.g-vatable {
+    margin-top: 5px;
+}
+
+/* The table cell that contains the thumbnail */
+.g-vathumb-cell {
+    padding: 3px;
+}
+
+/* The thumbnail itself */
+.g-vathumb {
+}
+
+/* This class controlls the box around all texts below the thumbnail.
+ * It has the same width as the cell, not the thumbnail.
+ */
+.g-va-thumb-texts {
+    font-size: 8pt;
+}
+
+.g-thumb-caption {
+}
+
+.g-va-infos {
+    margin-top: 2px;
+}
+
+.g-va-viewcounter{
+    margin-top: 2px;
+    margin-bottom: 5px
+}
+
+/******************** End album thumbnail view ********************/
+
+/* Album titles */
+.g-title {
+    font-weight: bold;
+}
+
+.g-title-background {
+}
+
+.g-title-right {
+}
+
+.g-title-left {
+}
+
+.g-adminbar {
+    font-size: 7.5pt;
+    background-color: #FCFCF3;
+    font-weight: bold;
+    border: 1px solid #000;
+    -moz-border-radius: 10px;
+
+}
+
+.g-adminbartext {
+    vertical-align: bottom;
+}
+
+.g-adminbartext a {
+}
+
+.g-adminbarcommands {
+    vertical-align: bottom;
+}
+
+.g-adminbarcommands a {
+}
+
+.g-adminbarcommands a:hover {
+}
+
+.g-iconmenu {
+    font-size: 7.5pt;
+}
+
+.g-iconmenu a {
+    white-space: nowrap;
     -moz-border-radius: 3px;
     text-decoration: none;
+    padding: 2px;
 }
 
-#menu a:hover {
+.g-iconmenu a:hover {
    white-space: nowrap;
    border-bottom: 1px solid #66A;
    border-right: 1px solid #66A;
@@ -326,20 +283,535 @@ input, select, option, textarea
    padding: 1px;
 }
 
-.noLink {
+.g-iconmenu td {
+}
+
+.g-icon-nolink {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+.g-sectioncaption-popup {
+    font-size: 12px;
+}
+
+.g-content-popup {
+    font-size: 9pt;
+    font-weight: normal;
+    color: #202020;
+    padding: 5px;
+    border: 1px solid #FFF;
+    background-color: #F0F0F0;
+    margin-bottom: 10px;
+    -moz-border-radius: 10px;
+}
+
+.g-content-popup a {
+    color: #666;
+}
+
+.g-content-popup form {
+    margin-top: 2px;
+    padding: 2px;
+    background-color: #E0E0E0;
+}
+
+.g-content-popup p {
+    margin-bottom: 10px;
+}
+
+.g-content-popup {
+    margin: 5px;
+}
+
+.g-form-text {
+}
+
+.g-error {
+    color: #000;
+    background-color: #ffd5d4;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    border: 1px solid #aaa;
+    -moz-border-radius: 8px;
+}
+
+.g-error a {
+    background-color: #ffd5d4;
+    color: red;
+    font-weight: bold;
+}
+
+.g-nogo {
+    color: white;
+    background-color: #ec000a;
+    font-size: 10pt;
+    font-weight: bold;
+    border: 4px solid #ff9898;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-border-left {
+    border-left: 1px solid black;
+}
+
+/******************** Begin Navigation Styles ********************/
+
+.g-navbar-top, .g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
+    width: auto;
+}
+
+/* Style for top navigation bar */
+.g-navbar-top {
+    border-top: none;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;
+    margin-bottom: 2px;
+}
+
+/* Style for bottom navigation bar */
+.g-navbar-bottom {
+    -moz-border-radius: 8px;
+}
+
+.g-microthumbnavbar-top {
+}
+
+.g-microthumbnavbar-bottom {
+}
+
+.g-navbar-top td, .g-navbar-bottom td {
+     font-size: 9pt;
+ }
+
+.g-borderright {
+    border-right: 1px dashed #000;
+}
+
+.g-borderleft {
+    border-left: 1px dashed #000;
+}
+
+/******************** End Navigation Styles ********************/
+
+/****** Style for breadcrumb bar if nothing special was specified ******/
+
+.g-breadcrumb {
+    font-size: 9pt;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #555;
+    width: 100%;
+}
+
+.g-breadcrumb td {
+    padding: 1px 5px 1px 5px;
+}
+
+/***** End breadcrumb *****/
+
+.g-adm-options {
+    padding: 5px;
+}
+
+.g-adm-options a {
+    font-weight: bold;
+    white-space:nowrap;
+}
+
+.g-tabset {
+}
+
+.g-tabset a {
+    color: #000;
+    background-color: #fff;
+    border-color: #777789;
+}
+
+.g-tabset a:hover {
+    background-color: #FCFCE3;
+}
+
+.g-tabset a.g-activeTab {
+    color: #fff;
+    background-color: #009;
+    border-bottom: 1px solid #66a;
+}
+
+.g-notice {
+    color: #000;
+    background: #e0e0e0;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 2px;
+    -moz-border-radius: 8px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.g-notice-caption {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.g-notice img {
+    margin: 2px 2px 0 0;
+}
+
+.g-notice a {
+    color: #000;
+    font-weight: bold;
+}
+
+.g-notice a:hover {
+    color: #E91414;
+}
+
+
+/* Warning message */
+.g-warning {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+/* Information message */
+.g-information {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-success {
+    color: #000;
+    background-color: #cbffaf;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+/* Paragraph inside a notice */
+.g-notice p {
+     font-weight: bold;
+}
+
+.g-message a {
+    color: #666;
+}
+
+.g-admin {
     font-size: 10px;
+    font-weight: bold;
 }
 
-.debugmessage {
-    font-size: 10px;
+.g-admin a {
+    white-space:nowrap;
 }
 
-.subalbumTreeLine {
+/***** Begin Styles for comments *****/
+
+/* Box in add_comment */
+.g-commentadd-box {
+    border: 1px solid #fff;
+    background-color: #e9e9ff;
+    margin-top: 5px;
 }
 
-.subalbumTreeElement a {
+.g-commentadd-box th {
+}
+
+/* Header fields in add_comment */
+.g-commentadd-box-head {
+}
+
+.g-commentadd-box td {
+    padding: 0 2px 0 2px;
+}
+
+.g-commentadd-box-middle {
+    vertical-align: top;
+}
+
+.g-commentadd-box-footer {
+}
+
+.g-commentIndication {
+    color: red;
+}
+
+
+.g-comment-box {
+    margin: 2px 5px;
+    padding-left: 30px;
+    width: 75%;
+    border: 1px solid silver;
+}
+
+.g-comment-text-cell {
+    padding-left: 10px;
+    border-top: 1px solid black;
+}
+
+/***** End Styles for comments *****/
+
+.g-va-poll-box1 {
+    font-size: 8pt;
+    padding: 2px;
+    margin-bottom: 2px;
+}
+
+.g-va-poll-box2 {
+    font-size: 8pt;
+}
+
+
+.g-va-poll-box3 {
+    font-size: 9pt;
+    padding: 2px;
+}
+
+.g-dim a {
+    color: grey;
+}
+
+.g-sitedesc {
+    font-size: 10pt;
+    background-color: #FCFCF3;
+    margin: 3px 10px 0 10px;
+    padding: 5px;
+    border: 1px solid #000;
+    -moz-border-radius: 10px;
+}
+
+.g-desc-cell {
+    background-color: #F7F7F7;
+    padding: 3px;
+    font-size: 8pt;
+}
+
+.g-shortdesc {
+    background-color: #DCDCC0;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.g-longdesc {
+    background-color: #FCFCF3 ;
+    padding: 3px;
+    vertical-align: top;
+}
+
+/******************** Begin single photo view ********************/
+
+/* Box around photo. */
+.g-photo {
+    margin-top: 5px;
+    text-align: center;
+    width: 100%
+}
+
+/* Box around all Texts below the photo. Including captions, comments etc. */
+.g-photo-texts {
+    font-size: 8pt;
+    text-align: center;
+    width: 100%;
+}
+
+.g-photo-caption {
+    color: black;
+}
+
+.g-customFieldsTable {
+     font-size: 9pt;
+     text-align: left;
+     margin: 0 auto;
+     border: 1px solid silver;
+}
+
+.g-voting-results {
+}
+
+.g-vote-box {
+}
+
+/***** General Form styles  ******/
+input, textarea, select {
+    color: #000;
+    background-color: #FCFCFF;
+    -Moz-Border-Radius: 20px;
+}
+
+input:focus, textarea:focus, select:focus {
+    background-color: #FFFFDA;
+}
+
+.g-button {
+    color: #333;
+    background: #f9f9f8;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #C4C4B8;
+    border-top: 1px solid #C4C4B8;
+    -moz-border-radius: 10px;
+}
+
+.g-button:hover {
+    background: #fffff0;
+}
+
+.g-button:focus {
+    background: #FFFFDA;
+}
+
+/****** End general Form Styles *****/
+
+.g-emailMe-box {
+    font-size: 8.5pt;
+    padding: 3px 2px 3px 2px;
+    width: 500px;
+    margin: 0 2px 3px;
+    border: 1px solid #666;
+    -moz-border-radius: 5px;
+}
+
+.g-columnheader, caption {
+    font-weight: bold;
+    padding: 2px;
+    border: 1px solid #fff;
+    color: #FFF;
+}
+
+/****** Styles used in config *****/
+
+/* Indicates an important setting. */
+.g-attention {
+    color: red;
+    font-weight: bold;
+}
+
+.g-subgroup {
+    font-weight: bold;
     font-size: 10pt;
 }
 
-.shortdesc {
+.g-config {
+    margin: 10px auto;
+	padding: 10px;
+	border: 1px solid #ccc;
+	width: 805px;
+	background: #F7F7F7;
+	font-size: 9pt;
+	color: #000;
+}
+
+.g-stepbar {
+	width: 155px;
+}
+
+.g-step {
+	color: #999;
+	background-color: #F1F1F1;
+    font-size: 11px;
+	font-weight: bold;
+	padding: 7px 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 2px;
+}
+
+.g-current-step {
+	color: #000;
+	background-color: #FCFCF3;
+}
+
+.g-config-content {
+/* defined in ltr/rtl */
+    color: #000;
+}
+
+.g-config-step {
+	font-size: 30px;
+	font-weight: bold;
+	color: #666;
+	white-space: nowrap;
+	margin: 0 20px;
+}
+
+.far-right {
+	text-align: right;
+	float: right;
+}
+
+.g-config h1, .g-content-popup h1 {
+	font-size: 15px;
+	font-weight: bold;
+ 	color: #c64934;
+	padding: 0 10px 4px 0;
+	border-bottom: 1px solid #c64934;
+	margin-bottom: 5px;
+}
+
+.g-config-main {
+    margin-top: 5px;
+	border: 1px solid #ccc;
+	background: #E9ECEF;
+	padding: 5px;
+	color: #000;
+}
+
+.g-double-bottom-border-spacer {
+    margin-bottom: 7px;
+    border-bottom: 3px double #000;
+}
+
+.g-setup-block, .g-setup-fields {
+   border: 1px solid #a1a1a1;
+}
+
+.g-config-main div.g-desc-cell {
+    border: 1px solid red;
+}
+
+.g-config-main a {
+    color: #333;
+}
+
+.g-setup-fields a {
+    color: #aaa;
+}
+
+/******************** Begin autocomplete ********************/
+.YUIsearchcontainer {
+    border: 1px solid #404040;
+    font-size: 85%;
+}
+
+.YUIsearchcontainer li.highlight {
+    background: #99f;
+    font-weight: bold;
+}
+
+/* Overrides base.css */
+
+.g-siriux a img {
+    border: 1px solid #000;
+}
+
+.g-siriux a:hover img{
+    border: 2px solid #fff;
 }
