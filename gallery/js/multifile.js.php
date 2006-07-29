@@ -37,7 +37,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         this.max = -1;
     };
     this.fieldname = fieldname;
-    
+
     /**
     * Add a new file input element
     */
@@ -60,7 +60,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
                 new_element.type = 'file';
 
                 // Add new element
-                this.parentNode.insertBefore(new_element, this);
+                this.parentNode.insertBefore(new_element, this.nextSibling);
 
                 // Apply 'update' to element
                 this.multi_selector.addElement(new_element);
@@ -154,7 +154,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
             // Set row value
             filenameCaptionDiv.innerHTML = '<b>'+ element.value +'</b>';
         }
-        
+
         // Add button
         line.appendChild(deleteButton);
 
