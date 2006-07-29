@@ -122,27 +122,32 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 // the link colors have to be done here to override the style sheet
 if ($albumName) {
-	echo "\n". '<style type="text/css">';
-	if ($gallery->album->fields["linkcolor"]) {
-?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php
-       	}
-       	if ($gallery->album->fields["bgcolor"]) {
-	       	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
-       	}
-       	if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
-	       	echo "BODY { background-image:url(" . $gallery->album->fields['background'] . "); } ";
-       	}
-       	if ($gallery->album->fields["textcolor"]) {
-	       	echo "BODY, TD {color:" . $gallery->album->fields['textcolor']."; }";
-	       	echo ".head {color:" . $gallery->album->fields['textcolor'] . "; }";
-	       	echo ".headbox {background-color:" . $gallery->album->fields['bgcolor'] . "; }";
-       	}
-	echo "\n</style>\n";
+    if( !empty($gallery->album->fields["linkcolor"]) ||
+    !empty($gallery->album->fields["bgcolor"]) ||
+    !empty($gallery->album->fields["textcolor"])) {
+
+        echo "\n<style type=\"text/css\">";
+        // the link colors have to be done here to override the style sheet
+        if ($gallery->album->fields["linkcolor"]) {
+            echo "\n  a:link, a:visited, a:active {";
+            echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+            echo "\n  a:hover { color: #ff6600; }";
+
+        }
+        if ($gallery->album->fields["bgcolor"]) {
+            echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+            echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+        }
+        if ($gallery->album->fields["textcolor"]) {
+            echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+            echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+            echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+
+        echo "\n  </style>";
+    }
 }
 ?>
 </head>
@@ -201,7 +206,7 @@ slideshow_image();
 
 echo languageSelector();
 
-includeTemplate("general.footer");
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

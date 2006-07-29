@@ -291,7 +291,7 @@ function slideshow_controlPanel() {
 		$backwardIconText, $normalSizeIconText, $fullSizeIconText,
 		$loopIconText;
 ?>
-<form name="TopForm">
+<form name="TopForm" action="#">
 <?php
     $iconElements[] = '<a href="#" onClick="stop(); return false;">'. $stopIconText .'</a>';
     $iconElements[] = '<a href="#" onClick="play(); return false;">'. $playIconText .'</a>';
@@ -352,13 +352,13 @@ function slideshow_image() {
 if ($photo_count > 0) {
 ?>
 	<script type="text/javascript">
-	    document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src="+photo_urls[<?php echo $slide_index ?>]+" name=slide>");
+	    document.write('<img border="<?php echo $borderwidth ?>" bgcolor="<?php echo $borderColor ?>" src="' + photo_urls[<?php echo $slide_index ?>] + '" name="slide">');
 	</script>
 <br>
 
 <script type="text/javascript">
 /* show the caption either in a nice div or an ugly form textarea */
-document.write("<div class='g-photo-caption'>" + "[" + current_location + " <?php echo gTranslate('core', "of") ?> " + photo_count + "] " + photo_captions[<?php echo $slide_index ?>] + "</div>");
+document.write('<div class="g-photo-caption">[' + current_location + ' <?php echo gTranslate('core', "of") ?> ' + photo_count + '] ' + photo_captions[<?php echo $slide_index ?>] + '<\/div>');
 
 /* Start the show. */
 play();

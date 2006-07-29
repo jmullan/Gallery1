@@ -681,9 +681,11 @@ function includeLayout($name, $skinname='') {
 
     if (fs_file_exists($fullname) && !broken_link($fullname)) {
         include ($fullname);
-    } elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+    }
+    elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
         include ($defaultname);
-    } else {
+    }
+    else {
         echo gallery_error(sprintf(gTranslate('common', "Problem including file %s"), $name));
     }
 }
@@ -981,7 +983,9 @@ function available_skins($description_only = false) {
             $subdir = "$dir/$file/css";
             $skincss = "$subdir/screen.css";
             if (fs_is_dir($subdir) &&
-               (fs_file_exists($skincss. '.default') || fs_file_exists($skincss))) {
+               /* When all 1.6 skins are converted use this line ! */
+               //(fs_file_exists($skincss. '.default') || fs_file_exists($skincss))) {
+               fs_file_exists($skincss. '.default')) {
                 $possibleSkins[] = $file;
             }
         }
