@@ -14,16 +14,19 @@
       jg.setColor("#FFFFFF");
 
       getMyPicCoords();
-      /* Update map coords */
-      for(i=0; i< map.length; ++i) {
-          for (j=0; j< map[i]['x_coords'].length; ++j) {
-              map[i]['x_coords'][j] = map[i]['x_coords'][j] + minX;
-              map[i]['y_coords'][j] = map[i]['y_coords'][j] + minY;
+
+      if(typeof map != "undefined") {
+          /* Update map coords */
+          for(i=0; i< map.length; ++i) {
+              for (j=0; j< map[i]['x_coords'].length; ++j) {
+                  map[i]['x_coords'][j] = map[i]['x_coords'][j] + minX;
+                  map[i]['y_coords'][j] = map[i]['y_coords'][j] + minY;
+              }
           }
       }
   }
 
-    
+
   // find out if ie runs in quirks mode
   var docEl = (typeof document.compatMode != "undefined" && document.compatMode != "BackCompat")? "documentElement" : "body";
 
@@ -68,7 +71,7 @@
       // for the dino pass event
       if (document.layers) routeEvent(e);
   }
-  
+
   function dpl_mouse_click(e) {
       getMyPicCoords();
       // position where mousemove fired
@@ -113,7 +116,7 @@
 
   function getMyPicCoords() {
       element = document.getElementById('myPic');
-    
+
       width   = element.width;
       height  = element.height;
 
@@ -125,7 +128,7 @@
       }
   };
 
-    
+
   function resetAndClear() {
       jg.clear();
       xVals = new Array();
@@ -135,7 +138,7 @@
       document.areas.xvals.value    =  xVals;
       document.areas.yvals.value    =  yVals;
   }
-  
+
   function updatePictureAndArea () {
       el = document.getElementById('imageareas');
       areaurl = document.getElementById('areaurl');
