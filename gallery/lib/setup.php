@@ -125,10 +125,11 @@ function form_input($key, $arr) {
             $html .= gInput($arr['type'], $name, null, false, $value, $attrs, $multiInput,
                             $autocomplete);
 
-            if (!$multiInput) {
-                $html .= "\n<br>";
+            if ($multiInput) {
+                $html .= gInput($arr['type'], $name, null, false, $value, $attrs, false, false);
             }
 
+            $html .= "\n<br>";
             $multiInput = false;
             $autocomplete = false;
         }

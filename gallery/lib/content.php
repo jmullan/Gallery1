@@ -1484,7 +1484,7 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete, $disa
 
     $html = "
     <div class=\"YUIsearchdiv right5 floatleft\">$label
-        <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"50\"$disable>
+        <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"75\"$disable>
         <div class=\"YUIsearchshadow\"><div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div></div>
     </div>
     ";
