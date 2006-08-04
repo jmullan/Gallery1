@@ -59,6 +59,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-popup {
     margin-top: 15px;
     font-size: 9pt;
+    padding: 0 5px;
 }
 
 .g-popup a {
@@ -68,24 +69,32 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-popup a:hover {
 }
 
-.g-header, .g-header-popup, .g-columnheader {
+.g-header, .g-header-popup {
+    width: 100%;
+    margin-bottom: 2px;
 }
 
 .g-header {
-    width: 100%;
 }
 
 .g-header-popup {
-    width: 100%;
-    padding: 0 5px;
 }
 
-.g-pagetitle, .g-pagetitle-popup {
+.g-pagetitle, .g-pagetitle-popup, .g-sectioncaption-popup {
+    font-weight: bold;
+    margin-bottom: 2px;
+    -Moz-Border-Radius: 10px;
+}
+
+.g-pagetitle-popup, .g-sectioncaption-popup {
+    text-align: center;
+    background-color: #FCFCF3;
+    padding: 3px;
+    border: 1px solid black;
 }
 
 .g-pagetitle {
     font-size: 16px;
-    font-weight:bold;
     line-height: 140%;
     padding: 0 50px;
     margin-top: 10px;
@@ -94,18 +103,43 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     border: 1px solid #000;
 }
 
-.g-pagetitle-popup, .g-sectioncaption-popup {
+.g-pagetitle-popup {
     font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    background-color: #FCFCF3;
-    padding: 3px;
-    margin: 10px;
-    border: 1px solid black;
-    -Moz-Border-Radius: 20px;
 }
 
 /******************** End Headers and Pagetitle ********************/
+
+/******************** Begin general Popup Styles ********************/
+.g-content-popup {
+    font-size: 9pt;
+    font-weight: normal;
+    color: #202020;
+    padding: 5px;
+    border: 1px solid #FFF;
+    background-color: #F0F0F0;
+    -moz-border-radius: 10px;
+    margin-bottom: 2px;
+}
+
+.g-content-popup a {
+    color: #666;
+}
+
+.g-content-popup form {
+    margin-top: 2px;
+    padding: 2px;
+    background-color: #E0E0E0;
+}
+
+.g-content-popup p {
+    margin-bottom: 10px;
+}
+
+.g-sectioncaption-popup {
+    font-size: 12px;
+}
+
+/******************** End general Popup Styles ********************/
 
 /******************** Begin Mainpage Styles ********************/
 
@@ -144,7 +178,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     margin: 8px;
     font-size: 1.0em;
     border: 1px solid #000;
-    -Moz-Border-Radius: 20px;
+    -Moz-Border-Radius: 10px;
 }
 
 /* Box for the album owner text on mainpage */
@@ -291,39 +325,6 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     text-align: center;
     font-weight: bold;
     vertical-align: bottom;
-}
-
-.g-sectioncaption-popup {
-    font-size: 12px;
-}
-
-.g-content-popup {
-    font-size: 9pt;
-    font-weight: normal;
-    color: #202020;
-    padding: 5px;
-    border: 1px solid #FFF;
-    background-color: #F0F0F0;
-    margin-bottom: 10px;
-    -moz-border-radius: 10px;
-}
-
-.g-content-popup a {
-    color: #666;
-}
-
-.g-content-popup form {
-    margin-top: 2px;
-    padding: 2px;
-    background-color: #E0E0E0;
-}
-
-.g-content-popup p {
-    margin-bottom: 10px;
-}
-
-.g-content-popup {
-    margin: 5px;
 }
 
 .g-form-text {
@@ -654,7 +655,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 input, textarea, select {
     color: #000;
     background-color: #FCFCFF;
-    -Moz-Border-Radius: 20px;
+    -Moz-Border-Radius: 5px;
 }
 
 input:focus, textarea:focus, select:focus {

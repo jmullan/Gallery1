@@ -338,7 +338,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
     }
     else {
         if($label) {
-            $html = "$label<input$attrs>\n";
+            $html = "$label <input$attrs>\n";
         }
         else {
             $html = "$input\n";
