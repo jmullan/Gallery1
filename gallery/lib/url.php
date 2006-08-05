@@ -384,39 +384,39 @@ function broken_link($file) {
 }
 
 function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
-   static $accessKeyUsed = array();
+    static $accessKeyUsed = array();
 
-   $html = '';
-   $altText = $text;
+    $html = '';
+    $altText = $text;
 
-   if($accesskey && empty($attrList['accesskey']) && !empty($text)) {
-	if(is_int($text) && $text < 10) {
-	    $attrList['accesskey'] = $text;
-	    $altText = $text;
-	}
-	else {
-	    $pos = strpos($text, '_');
+    if($accesskey && empty($attrList['accesskey']) && !empty($text)) {
+        if(is_int($text) && $text < 10) {
+            $attrList['accesskey'] = $text;
+            $altText = $text;
+        }
+        else {
+            $pos = strpos($text, '_');
 
-	    if ($pos !== false) {
-		$attrList['accesskey'] = substr($text,$pos+1,1);
-		$altText = substr_replace($text, '', $pos,1);
-		$text = substr_replace($text, '<span class="g-accesskey">'. $attrList['accesskey'] .'</span>', $pos,2);
-	    }
-	}
+            if ($pos !== false) {
+                $attrList['accesskey'] = substr($text,$pos+1,1);
+                $altText = substr_replace($text, '', $pos,1);
+                $text = substr_replace($text, '<span class="g-accesskey">'. $attrList['accesskey'] .'</span>', $pos,2);
+            }
+        }
     }
 
     if (!empty($attrList['altText'])) {
-	$altText = $attrList['altText'];
-	unset($attrList['altText']);
+        $altText = $attrList['altText'];
+        unset($attrList['altText']);
     }
 
     if(isset($attrList['accesskey'])) {
-	if(!isset($accessKeyUsed[$attrList['accesskey']])) {
-	    $accessKeyUsed[$attrList['accesskey']] = true;
-	}
-	else {
-	    unset($attrList['accesskey']);
-	}
+        if(!isset($accessKeyUsed[$attrList['accesskey']])) {
+            $accessKeyUsed[$attrList['accesskey']] = true;
+        }
+        else {
+            unset($attrList['accesskey']);
+        }
     }
 
     $attrs = generateAttrs($attrList);
@@ -433,7 +433,7 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
     }
 
     if (!empty($url)) {
-	   $html .= "<a href=\"$url\"$attrs>$content</a>";
+        $html .= "<a href=\"$url\"$attrs>$content</a>";
     }
     else {
         $html .= "<a$attrs>$content</a>";
