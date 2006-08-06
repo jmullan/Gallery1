@@ -54,8 +54,8 @@
 	$nls['alias']['de_LU'] =            'de_DE' ;
 	$nls['alias']['de_CH'] =            'de_DE' ;
 	$nls['alias']['de_AT'] =            'de_DE' ;
-	$nls['alias']['de_DE.ISO8859-1'] =	'de_DE' ;
-	$nls['alias']['german_formal'] =	'de_DE' ;
+	$nls['alias']['de_DE.ISO8859-1'] =  'de_DE' ;
+	$nls['alias']['german_formal'] =    'de_DE' ;
 	$nls['alias']['germanf'] =          'de_DE' ;
 	$nls['alias']['germani'] =          'de_DE' ;
 
