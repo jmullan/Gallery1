@@ -508,7 +508,7 @@ $footer = "?>\n";
 </div>
 
 <div class="g-config">
-    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
+<?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
     <div class="g-config-content">
         <div class="g-config-step floatleft"><?php echo gTranslate('config', "Confirmation"); ?></div>
@@ -535,38 +535,44 @@ $footer = "?>\n";
         ?>
         </div>
 
-        <div class="g-config-main">
-
 <?php
-if ($error) {
-    $notice_messages[0] = array(
-        'type' => 'information',
-        'text' => gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."), true).
-            ' ' . gTranslate('config', "See Details below.")
-    );
-}
+    if ($error) {
+        $notice_messages[0] = array(
+            'type' => 'information',
+            'text' => gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."), true).
+                ' ' . gTranslate('config', "See Details below.")
+        );
+    }
+
     echo infoBox($notice_messages);
-
-	echo "<pre style=\"font-size: 8.5pt\" width=\"90\"><code>{$gallery->session->configData}</code></pre>";
-	$gallery->session->configData = $header . $gallery->session->configData . $footer;
 ?>
-            <p align="center">
-            <?php
-                echo gSubmit('go_back', gTranslate('config', "&lt;&lt; Edit Config"), array('disabled' => 'disabled'));
-                if (!$error) {
-                    echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
-                }
-                else {
-                    echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
-                	echo '<p class="g-error">';
-                	echo gTranslate('config', "There are errors in your configuration.");
-                	echo '<br>' . gTranslate('config', "Please go back and fix them!");
-                    echo '</p>';
-            } ?>
-            </p>
-
-
-        </div>
     </div>
     <div class="clear"></div>
+
+    <div class="g-config-main">
+<?php
+    echo "<pre style=\"font-size: 8.5pt\"><code>{$gallery->session->configData}</code></pre>";
+    $gallery->session->configData = $header . $gallery->session->configData . $footer;
+?>
+
+    <div class="center">
+<?php
+    echo gSubmit('go_back', gTranslate('config', "&lt;&lt; Edit Config"), array('disabled' => 'disabled'));
+    if (!$error) {
+        echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
+    }
+    else {
+        echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
+        echo "\n<br>";
+        echo infoBox(array(array(
+            'type' => 'error',
+            'text' => gTranslate('config', "There are errors in your configuration.") .
+                      '<br>' .
+                      gTranslate('config', "Please go back and fix them!")
+        )));
+    }
+?>
+    </div>
+
+    </div>
 </div>

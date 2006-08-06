@@ -29,7 +29,8 @@ $defaults = array(
 		'type' => 'group_start',
 		'name' => 'group_layout',
 		'default' => 'inline',
-		'title' => gTranslate('config',"Layout")
+		'title' => gTranslate('config',"Layout"),
+		'inst_type' => 'easy'
 	),
 	'cols' => array(
 		'prompt' => gTranslate('config',"Default Columns"),
@@ -79,7 +80,8 @@ $defaults = array(
 		'type' => 'group_start',
 		'name' => 'group_display',
 		'default' => 'none',
-		'title' => gTranslate('config',"Image Processing and Display")
+		'title' => gTranslate('config',"Image Processing and Display"),
+		'inst_type' => 'easy'
 	),
 	'thumb_size' => array(
 		'prompt' => gTranslate('config',"Thumbnail size"),
@@ -96,6 +98,7 @@ $defaults = array(
 			'1/1' => gTranslate('config',"Square thumbs")
 		),
 		'value' => 0,
+		'inst_type' => 'advanced'
 	),
 	'resize_size' => array(
 		'prompt' => gTranslate('config',"Resized image size"),
@@ -116,8 +119,9 @@ $defaults = array(
 		'prompt' => gTranslate('config',"Resized JPEG/PNG images file size"),
 		'desc' => gTranslate('config',"The default target size (in kilobytes) of resized JPEG/PNG images.  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections.  Set to 0 for no target size."),
 		'value' => 0,
-		'optional' => 1,
-		'type' => 'text'
+		'optional' => true,
+		'type' => 'text',
+		'inst_type' => 'advanced'
 	),
 	'max_size' => array(
 		'prompt' => gTranslate('config','Maximum image size'),
@@ -136,7 +140,8 @@ $defaults = array(
 			1024 => 1024,
 			1280 => sprintf(gTranslate('config','%d (%d MPix)'), 1280, 1),
 			1600 => sprintf(gTranslate('config','%d (%d MPix)'), 1600, 2),
-			2048 => sprintf(gTranslate('config','%d (%d MPix)'), 2048, 3))
+			2048 => sprintf(gTranslate('config','%d (%d MPix)'), 2048, 3)),
+        'inst_type' => 'advanced'
 	),
 	'max_file_size' => array(
 		'prompt' => gTranslate('config','Maximum JPEG/PNG image file size'),
@@ -144,8 +149,9 @@ $defaults = array(
 		  '<br><span class="g-attention">'. gTranslate('config',"Warning:") . '</span> '.
 		  gTranslate('config',"Enabling this feature will leave you <b>without an original quality image</b> in your Gallery. Set the default target filesize (in kilobytes).  Including a value may slow down file uploads, but will speed up page viewing time especially for people with dialup connections. Set to 0 if you don't want to restrict filesize."),
 		'value' => 0,
-		'optional' => 1,
-		'type' => 'text'
+		'optional' => true,
+		'type' => 'text',
+		'inst_type' => 'advanced'
 	),
 	'useOriginalFileNames' => array(
 		'prompt' => gTranslate('config',"Preserve Names"),
@@ -155,6 +161,7 @@ $defaults = array(
 			'no' => gTranslate('config',"No")
 		),
 		'value' => 'yes',
+		'inst_type' => 'advanced'
 	),
 	'add_to_beginning' => array(
 		'prompt' => gTranslate('config',"Add to beginning"),
@@ -172,7 +179,8 @@ $defaults = array(
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")
-		)
+		),
+		'inst_type' => 'advanced'
 	),
 	'use_fullOnly' => array(
 		'prompt' => gTranslate('config',"Visitor size prefs"),
@@ -181,7 +189,8 @@ $defaults = array(
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")
-		)
+		),
+		'inst_type' => 'advanced'
 	),
 	'group3_end' => array (
 		'type' => 'group_end',
@@ -260,7 +269,8 @@ $defaults = array(
 		'type' => 'group_start',
 		'name' => 'group_displayed_data',
 		'default' => 'none',
-		'title' => gTranslate('config',"Data displayed")
+		'title' => gTranslate('config',"Data displayed"),
+		'inst_type' => 'easy'
 	),
 	'display_clicks' => array(
 		'prompt' => gTranslate('config',"Click counts"),
@@ -277,7 +287,8 @@ $defaults = array(
 		'desc' => gTranslate('config',"Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"),
 		'attrs' => array('size' => 80),
 		'type' => 'text',
-		'value' => 'Description'
+		'value' => 'Description',
+		'inst_type' => 'advanced'
 	),
 	'showDimensions' => array(
 		'prompt' => gTranslate('config',"Display clickable image dimensions"),
@@ -439,7 +450,8 @@ $defaults = array(
 		'name' => 'group_albumSlidshow',
 		'default' => 'none',
 		'title' => gTranslate('config',"Album Slideshow"),
-		'desc' => gTranslate('config',"These settings do not apply to the low tech slideshow.")
+		'desc' => gTranslate('config',"These settings do not apply to the low tech slideshow."),
+		'inst_type' => 'easy'
 	),
 	'slideshow_type' => array(
 		'prompt' => gTranslate('config',"Slideshow Type"),

@@ -23,8 +23,9 @@
 <?php
 
 $gallerySanity = gallerySanityCheck();
-?>
+$install = ($gallerySanity == 'unconfigured') ? true : false;
 
+?>
 <input type="hidden" name="this_page" value="welcome">
 <input type="hidden" name="next_page" value="check">
 
@@ -38,21 +39,42 @@ $gallerySanity = gallerySanityCheck();
     <div class="g-config-content">
         <div class="g-config-step floatleft"><?php echo gTranslate('config', "Welcome"); ?></div>
 
-        <div class="floatright">
-        	<?php echo gSubmit('go_next', '_Next >>'); ?>
+        <div class="floatright right">
+        	<?php echo gSubmit('go_next', '_Next Step >>'); ?>
+        	<?php if ($install): ?>
+        	<div class="g-emphasis" style="margin-top: 2px;">
+            	<?php echo gTranslate('config', "Installation Type:"); ?>
+            	<select name="inst_type">
+            	   <option><?php echo gTranslate('config', "easy"); ?></option>
+            	   <option><?php echo gTranslate('config', "advanced"); ?></option>
+            	</select>
+            </div>
+            <?php
+            $onThisPage['inst_type'] = true;
+            $preserve['inst_type'] = true;
+            endif; ?>
         </div>
 
         <div class="clear"></div>
 
-        <h1><?php printf(gTranslate('config',"Installation of '%s' version: %s"), Gallery(), "<i>$gallery->version</i>"); ?></h1>
+        <h1><?php
+            if($install) {
+                printf(gTranslate('config',"Installation of '%s' version: %s"), Gallery(), "<i>$gallery->version</i>");
+            }
+            else {
+                printf(gTranslate('config',"Configuration of '%s' version: %s"), Gallery(), "<i>$gallery->version</i>");
+            }
+        ?></h1>
 
         <div class="g-config-main">
             <?php
                 echo gTranslate('config', "Welcome to the configuration wizard of Gallery.");
-                if($gallerySanity == 'unconfigured') {
+                if ($install) {
+                    echo "\n<br>";
                     echo gTranslate('core', "Gallery must be configured before you can use it.");
-                ?>
-                <table class="g-sitedesc">
+            ?>
+
+            <table class="g-sitedesc">
                 <tr>
                     <td><?php echo gTranslate('core', "1."); ?></td>
                     <td><?php echo gTranslate('core', "Create an empty file .htaccess and an empty file config.php in the mainfolder of your Gallery."); ?></td>
@@ -64,14 +86,11 @@ $gallerySanity = gallerySanityCheck();
                 <tr>
                     <td colspan="2" class="g-emphasis"><?php echo gTranslate('core', "Make sure that both files and the folder are read and writeable for your webserver !"); ?></td>
                 </tr>
-                </table>
+            </table>
 
-                <br>
-                <?php
-                    printf(gTranslate('config',"If you experience problems, you can find help on the %sGallery Help Page%s."),
-                        '<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
+            <?php
                 }
-                else if($gallerySanity == 'reconfigure') {
+                else if(!install) {
                     echo infobox(array(array(
                         'type' => 'warning',
                         'text' => gTranslate('config', "Your Gallery needs a reconfiguration,") .
@@ -79,18 +98,22 @@ $gallerySanity = gallerySanityCheck();
                                    gTranslate('config', "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") .
                                   '</p>'
                         )));
-                    echo "\n<p>";
-                    printf(gTranslate('config',"If you experience problems, you can find help on the %sGallery Help Page%s."),
-                        '<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
-
-                    echo "\n</p>";
                 }
-
-                echo "\n<br>";
-                echo gTranslate('config', "To configure/install Galery there are only five steps in this simple procedure.");
             ?>
+            <p>
+
+            <?php
+                echo gTranslate('config', "To configure/install Gallery there are only five steps in this simple procedure.");
+            ?>
+            </p>
 
             <table>
+            <?php if ($install): ?>
+            <tr>
+                <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Start:"); ?></td>
+                <td><?php echo gTranslate('core', "Basic instructions and the choice for installation type."); ?></td>
+            </tr>
+            <?php endif; ?>
             <tr>
                 <td class="g-emphasis nowrap"><?php echo gTranslate('config',"Step 1:"); ?></td>
                 <td><?php echo gTranslate('config', "The installer will check to see if your web space can run Gallery."); ?></td>
@@ -114,6 +137,15 @@ $gallerySanity = gallerySanityCheck();
             </table>
         </div>
 
+        <br>
+
+        <?php
+            printf(gTranslate('config',"If you experience problems, you can find help on the %sGallery Help Page%s."),
+                        '<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
+        ?>
+        <div class="floatright right">
+        	<?php echo gSubmit('go_next', '_Next Step >>'); ?>
+        </div>
         <div class="clear"></div>
     </div>
 

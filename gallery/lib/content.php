@@ -1448,20 +1448,22 @@ function removeAccessKey($text) {
 function autoCompleteJS() {
     global $gallery;
 
+    $baseUrl = getGalleryBaseUrl();
+
     $html = '
     <!-- Dependencies -->
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/yahoo-min.js"></script>
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/dom-min.js"></script>
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/event-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/yahoo-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/dom-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/event-min.js"></script>
 
     <!-- OPTIONAL: Connection (required only if using XHR DataSource) -->
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/connection-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/connection-min.js"></script>
 
     <!-- OPTIONAL: Animation (required only if enabling animation) -->
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/animation-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrlL . '/js/yui/animation-min.js"></script>
 
     <!-- Source file -->
-    <script type="text/javascript" src="' . $gallery->app->photoAlbumURL . '/js/yui/autocomplete-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/autocomplete-min.js"></script>
 ';
 
     return $html;

@@ -100,18 +100,19 @@ if (isset($go_defaults) || isset($refresh)) {
 
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
-	$tmp = explode(" ", urldecode($preserve));
-	$preserve = array();
-	foreach ($tmp as $key) {
-		$preserve[$key] = 1;
-		if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
-			$gallery->session->configForm->$key = "";
-			continue;
-		}
-	}
-        $preserve = array();
-} else {
-	$preserve = array();
+    $tmp = explode(" ", urldecode($preserve));
+    $preserve = array();
+    foreach ($tmp as $key) {
+        $preserve[$key] = true;
+        if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
+            $gallery->session->configForm->$key = "";
+            continue;
+        }
+    }
+    $preserve = array();
+}
+else {
+    $preserve = array();
 }
 
 /* Cache passwords in order to prevent them from being erased.

@@ -310,7 +310,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 
     $attrs = generateAttrs($attrList);
 
-    if($autocomplete) {
+    if($autocomplete && isset($browser)) {
         $input = initAutocompleteJS(
             $label,
             $name,

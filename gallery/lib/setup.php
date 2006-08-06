@@ -101,14 +101,20 @@ function make_fields($key, $arr) {
 }
 
 function form_textarea($key, $arr) {
-	$attrs = generateAttrs($arr["attrs"]);
-	return "<textarea name=\"$key\" $attrs>". $arr['value'] ."</textarea>";
+    $attrs = generateAttrs($arr['attrs']);
+    $html = "<textarea name=\"$key\" $attrs>{$arr['value']}</textarea>";
+
+    return $html;
 }
 
 function form_input($key, $arr) {
     $html = '';
 
     $name  = (isset($arr['name'])) ? $arr['name'] : $key;
+
+    if($arr['type'] == 'hidden') {
+        return "\n<input name=\"$name\" type=\"hidden\" value=\"{$arr['value']}\">";
+    }
 
     $multiInput = false;
     if(!empty($arr['multiInput'])) {
@@ -1724,12 +1730,17 @@ function checkVersions($verbose = false) {
  *
  * @author Jens Tkotz
  */
-function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = false) {
+function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = false, $visibilityKeyword = '', $visibilityValue = '') {
 	$tabs = array();
 
 	foreach ($array as $key => $var) {
 		if(isset($var['type']) && $var['type'] == 'group_start') {
-			$tabs[] = $var;
+		    if(!empty($visibilityKeyword)) {
+		        if($var[$visibilityKeyword] != $visibilityValue) {
+		            continue;
+		        }
+		    }
+			$tabs[$key] = $var;
 		}
 	}
 
@@ -1737,7 +1748,7 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 		array_sort_by_fields($tabs, 'title');
 	}
 
-	echo "\n<div class=\"g-tabset\">";
+	echo "\n<div class=\"g-tabset floatleft\">\n";
 	$tabcount = 0;
 
 	foreach ($tabs as $cell) {
@@ -1761,13 +1772,12 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 		echo galleryLink('', $text, $attrList);
 	}
 
-	echo "\n</div>\n";
+	echo "</div>\n";
 
-	echo "\n". '<script language="JavaScript" type="text/javascript">';
-
-	$i = 0;
+    $i = 0;
+	echo '<script language="JavaScript" type="text/javascript">';
 	echo "\n\t". 'var Sections=new Array()';
-	foreach ($array as $key => $var) {
+	foreach ($tabs as $key => $var) {
 		if(isset($var['type']) && $var['type'] == 'group_start') {
 			echo "\n\tSections[$i] ='". $var['name'] ."' ;";
 			$i++;
@@ -1778,7 +1788,6 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 	insertSectionToggle();
 
 	echo "\n</script>\n";
-	echo "\n<br clear=\"all\">";
 
 	return $initialtab;
 }

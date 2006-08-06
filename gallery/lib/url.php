@@ -433,10 +433,10 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
     }
 
     if (!empty($url)) {
-        $html .= "<a href=\"$url\"$attrs>$content</a>";
+        $html .= "<a href=\"$url\"$attrs>$content</a>\n";
     }
     else {
-        $html .= "<a$attrs>$content</a>";
+        $html .= "<a$attrs>$content</a>\n";
     }
 
     return $html;

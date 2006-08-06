@@ -21,18 +21,30 @@
  */
 ?>
 <?php
-	require(GALLERY_BASE . '/includes/setup/constants.inc');
-	require(GALLERY_BASE . '/js/sectionTabs.js.php');
+    require(GALLERY_BASE . '/includes/setup/constants.inc');
+    require(GALLERY_BASE . '/js/sectionTabs.js.php');
     require(GALLERY_BASE . '/js/multiInput.js.php');
 
-    include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+    $inst_type = '';
 
-    if (class_exists('Browser')) {
-        $browser = &Browser::singleton();
+    if(!empty($gallery->session->configForm->inst_type)) {
+        $inst_type = $gallery->session->configForm->inst_type;
     }
 
-    if($browser->hasFeature('xmlhttpreq')) {
-        echo autoCompleteJS();
+    if($inst_type == 'easy') {
+        $visibilityKeyword = 'inst_type';
+        $visibilityValue = 'easy';
+    }
+    else {
+        $visibilityKeyword = '';
+        $visibilityValue = '';
+
+        include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+        $browser = &Browser::singleton();
+
+        if($browser->hasFeature('xmlhttpreq')) {
+            echo autoCompleteJS();
+        }
     }
 
 	insertFormJS('config');
@@ -61,13 +73,18 @@ function toggleGraphics(show) {
 </div>
 
 <div class="g-config">
-    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
+<?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
     <div class="g-config-content">
         <div class="g-config-step floatleft"><?php echo gTranslate('config', "Settings"); ?></div>
         <div class="floatright">
-        	<?php echo gSubmit('go_back', gTranslate('config', "&lt;&lt; _Previous Step"), array('disabled' => 'disabled')); ?>
+        <span style="white-space: nowrap;">
+            <?php echo gSubmit('go_back', gTranslate('config', "&lt;&lt; _Previous Step"), array('disabled' => 'disabled')); ?>
             <?php echo gSubmit('go_next', gTranslate('config', "_Next Step &gt;&gt;"), array('disabled' => 'disabled')); ?>
+        </span>
+            <?php if(!empty($inst_type)) :?>
+            <div class="g-columnheader" style="-moz-border-radius: 5px;"><?php printf(gTranslate('config', "Installation type: %s"), $inst_type); ?></div>
+            <?php endif; ?>
         </div>
 
         <div class="g-album-desc clear">
@@ -89,7 +106,7 @@ function toggleGraphics(show) {
         </div>
 <?php
 
-$initialtab = makeSectionTabs($constants);
+$initialtab = makeSectionTabs($constants, 7, '', false, $visibilityKeyword, $visibilityValue);
 echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
 $i = 0;
@@ -109,24 +126,37 @@ foreach ($constants as $key => $val) {
     }
 
     if (isset($val["type"]) && $val["type"] === 'subgroup') {
-    	echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
-    	echo '<center><div class="g-subgroup">'. $val['title'] .'</div></center>';
+        if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+	        $visibility = 'none';
+	    }
+	    else {
+	        $visibility =  $val['display'];
+	    }
+
+    	echo "\n<div id=\"$key\" style=\"display: $visibility\">";
+    	echo "\n\t<div class=\"g-subgroup center\">{$val['title']}</div>";
     	if (isset($val['desc'])) {
-    	    echo '<div>'. $val['desc'] .'</div>';
+    	    echo "\n\t<div>{$val['desc']}</div>";
     	}
     	continue;
     }
 
     if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
-        echo '</div>';
+        echo "\n</div>";
         continue;
     }
 
 	if (isset($val["type"]) && $val["type"] === 'group_start') {
-		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
+	    if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+	        $visibility = 'none';
+	    }
+	    else {
+	        $visibility = $val["default"];
+	    }
+
+		echo "\n<div id=\"{$val["name"]}\" style=\"display: {$visibility}\">";
 		echo make_separator($key, $val);
 		continue;
-
 	}
 
 	if (isset($val["type"]) && $val["type"] === 'group_end') {
@@ -134,27 +164,34 @@ foreach ($constants as $key => $val) {
 		continue;
 	}
 
-	$onThisPage[$key] = 1;
-	$preserve[$key] = 1;
+	$onThisPage[$key] = true;
+	$preserve[$key] = true;
+
+	if(!empty($visibilityKeyword) && isset($val[$visibilityKeyword]) &&
+	  $val[$visibilityKeyword] != $visibilityValue) {
+        $val["type"] = 'hidden';
+        $val["persistent"] = true;
+	}
 
 	/* if the variable is hidden, lock it in as we don't want to use previous values*/
-	if (isset($val["type"]) && ($val["type"] === "hidden")) {
-	       	if (!empty($val["persistent"]) &&
-				isset($gallery->app->$key)) {
-			$val["value"] = $gallery->app->$key;
-		}
-		elseif (is_array($val["value"])) {
-			$key = $key."[]";
-			$val["value"] = $val["value"][0];
-		}
-		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-			unset($preserve[$key]);
-			$preserve[$matches[1]] = 1;
-			unset($onThisPage[$key]);
-			$onThisPage[$matches[1]] = 1;
-		}
-		list($f1, $f2) = make_fields($key, $val);
-		echo $f2;
+	if (isset($val["type"]) && $val["type"] === 'hidden') {
+	    if (!empty($val["persistent"]) && isset($gallery->app->$key)) {
+	        $val["value"] = $gallery->app->$key;
+	    }
+	    elseif (is_array($val["value"])) {
+	        $key = $key."[]";
+	        $val["value"] = $val["value"][0];
+	    }
+
+	    if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+	        unset($preserve[$key]);
+	        $preserve[$matches[1]] = true;
+	        unset($onThisPage[$key]);
+	        $onThisPage[$matches[1]] = true;
+	    }
+
+	    list($f1, $f2) = make_fields($key, $val);
+	    echo $f2;
 	}
 	else {
 	    if (!isset($val["type"]) || $val["type"] !== 'block_element') {

@@ -96,13 +96,14 @@ $constants =  array_merge(array(
 		'default' => 'inline',
 		'title' => gTranslate('config',"General settings"),
 		'contains_required' => true,
+		'inst_type' => 'easy',
 	),
 	'galleryTitle' => array(
 		'prompt' => gTranslate('config',"Gallery Title"),
 		'desc' => gTranslate('config',"The name of your Gallery.  E.g. <i>My Cool Photos</i>"),
 		'value' => gTranslate('config',"Gallery"),
 		'type' => 'text',
-		'attrs' => array('size' => 50)
+		'attrs' => array('size' => 50),
 	),
 	'editPassword' => check_admins(),
 	'skinname' => array(
@@ -133,12 +134,14 @@ $constants =  array_merge(array(
 			'url' => gTranslate('config',"URL")
 			),
 		'value' => 'form',
+        'inst_type' => 'advanced'
 		),
 	'name_display' => array(
 		'prompt' => gTranslate('config',"Format for commenter and owner names"),
 		'desc' => gTranslate('config',"Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"),
 		'choices' => displayNameOptions(),
 		'value' => '!!FULLNAME!! (!!USERNAME!!)',
+		'inst_type' => 'advanced'
 	),
 	'group_mandatory_end' => array (
 		'type' => 'group_end',
@@ -149,6 +152,7 @@ $constants =  array_merge(array(
 		'default' => 'none',
 		'title' => gTranslate('config',"Locations and URLs"),
 		'contains_required' => true,
+		'inst_type' => 'easy',
 	),
 	'albumDir' => array(
 		'prompt' => gTranslate('config',"Album directory"),
@@ -201,6 +205,7 @@ $constants =  array_merge(array(
 		'type' => 'text',
 		'attrs' => array('size' => 50),
 		'noStripSlash' => true,
+		'inst_type' => 'advanced'
 	),
 	'mirrorSites' => array(
 		'prompt' => gTranslate('config',"Mirror sites"),
@@ -211,7 +216,8 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'type' => 'textarea',
 		'value' => NULL,
-		'attrs' => array('cols' => 50, 'rows' => 5)
+		'attrs' => array('cols' => 50, 'rows' => 5),
+		'inst_type' => 'advanced'
 	),
 	'groupLocations_end' => array (
 		'type' => 'group_end',
@@ -223,6 +229,7 @@ $constants =  array_merge(array(
 		'default' => 'none',
 		'title' => gTranslate('config',"Toolkits / image processing"),
 		'contains_required' => true,
+		'inst_type' => 'easy',
 	),
 	'graphics' => array(
 		'prompt' => gTranslate('config',"Graphics suite to use"),
@@ -235,7 +242,8 @@ $constants =  array_merge(array(
 	'subgroup_ImageMagick' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('config',"ImageMagick Settings"),
-		'display' => (getCurrentGraphicTool() == 'ImageMagick') ? 'inline' : 'none'
+		'display' => (getCurrentGraphicTool() == 'ImageMagick') ? 'inline' : 'none',
+		'inst_type' => 'easy'
 	),
 	'ImPath' => array(
 		'optional' => 1,
@@ -260,8 +268,9 @@ $constants =  array_merge(array(
 	'subgroup_NetPBM' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('config',"NetPBM Settings"),
-		'display' => (getCurrentGraphicTool() == 'NetPBM') ? 'inline' : 'none'
-		),
+		'display' => (getCurrentGraphicTool() == 'NetPBM') ? 'inline' : 'none',
+		'inst_type' => 'easy'
+    ),
 	'pnmDir' => array(
 		'optional' => 1,
 		'prompt' => gTranslate('config',"Path to NetPBM"),
@@ -282,7 +291,7 @@ $constants =  array_merge(array(
 		'verify-func-takes-graphics-type' => true,
 		'required' => true,
 		'noStripSlash' => true,
-		),
+    ),
 	'pnmtojpeg' => array(
 		'prompt' => gTranslate('config',"PNM to JPEG converter"),
 		'desc' => gTranslate('config',"This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
@@ -303,13 +312,14 @@ $constants =  array_merge(array(
 		'desc' => gTranslate('config',"Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras.") . '<br>' .
 		'<span class="g-attention">' . gTranslate('config',"Requires Jhead EXIF parser v.1.9 or greater (See optional tools).") . '</span>',
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
-		'value' => 'yes'
+		'value' => 'yes',
+		'inst_type' => 'advanced'
 	),
 	'subgroup_quality' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('config',"JPEG Quality <b>(Advanced)</b>"),
 		'desc' => gTranslate('config',"The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."),
-		'display' => 'inline'
+		'display' => 'inline',
 	),
 	'jpegImageQuality' => array(
 		'prompt' => gTranslate('config',"JPEG Quality for resized images"),
@@ -372,6 +382,7 @@ $constants =  array_merge(array(
 		'default' => 'none',
 		'title' => gTranslate('config',"Main Gallery page"),
 		'contains_required' => true,
+		'inst_type' => 'easy',
 	),
 	'theme' => array(
 	   'prompt' => gTranslate('config', "Theme"),
@@ -400,6 +411,7 @@ $constants =  array_merge(array(
 			1000 => gTranslate('config',"Complete Tree")
 		),
 		'value' => 1000,
+		'inst_type' => 'advanced'
 	),
 	'microTree' => array(
 		'prompt' => gTranslate('config',"Replace album tree with microthumbs"),
@@ -408,26 +420,30 @@ $constants =  array_merge(array(
 		          gTranslate('config', "This setting has no effect in matrix theme.") .
 		          '</b>',
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
-		'value' => 'no'
+		'value' => 'no',
+		'inst_type' => 'advanced'
 	),
 	'highlight_size' => array(
 		'prompt' => gTranslate('config',"Highlight size"),
 		'desc' => gTranslate('config',"The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."),
 		'value' => 200,
 		'type' => 'text',
-		'attrs' => array('size' => 5)
+		'attrs' => array('size' => 5),
+		'inst_type' => 'advanced'
 	),
 	'highlight_ratio' => array(
 		'prompt' => gTranslate('config',"Highlight Ratio"),
 		'desc' => gTranslate('config',"The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"),
 		'choices' => array('0' => gTranslate('config',"As the original image"), '1/1' => gTranslate('config',"Square highlight")),
 		'value' => 0,
+		'inst_type' => 'advanced'
 	),
 	'showOwners' => array(
 		'prompt' => gTranslate('config',"Show Owner"),
 		'desc' => gTranslate('config',"Show album owner's name next to each album?"),
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
-		'value' => 'no'
+		'value' => 'no',
+		'inst_type' => 'advanced'
 	),
 	'albumsPerPage' => array(
 		'prompt' => gTranslate('config',"Albums per page"),
@@ -447,6 +463,7 @@ $constants =  array_merge(array(
 		'desc' => gTranslate('config',"Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."),
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
 		'value' => 'no',
+		'inst_type' => 'advanced'
 	),
 	'gallery_thumb_frame_style' => array(
 		'prompt' => gTranslate('config',"Frame around albums"),
@@ -587,6 +604,7 @@ $constants =  array_merge(array(
 		'name' => 'group_languages',
 		'default' => 'none',
 		'title' => gTranslate('config',"Languages and locales"),
+		'inst_type' => 'easy',
 	),
 	'default_language' => array(
 		'prompt' => gTranslate('config',"Default language"),
@@ -632,7 +650,8 @@ $constants =  array_merge(array(
 		  sprintf(gTranslate('config',"For example, %s will display date like this: %s."), "<b>%b %d, %Y</b>", "<b>" . strftime("%b %d, %Y") . "</b>"),
 		'value' => '%x',
 		'type' => 'text',
-		'attrs' => array('size' => 20)
+		'attrs' => array('size' => 20),
+		'inst_type' => 'advanced'
 		),
 	'dateTimeString' => array(
 		'prompt' => "<b>(" . gTranslate('config',"Advanced") .")</b><br> ". gTranslate('config',"Format for date/time strings."),
@@ -642,7 +661,8 @@ $constants =  array_merge(array(
 		  sprintf(gTranslate('config',"For example, %s will display date and time like this: %s."), "<b>%H:%M, %b %d, %Y</b>", "<b>" . strftime("%H:%M, %b %d, %Y") . "</b>"),
 		'value' => '%c',
 		'type' => 'text',
-		'attrs' => array('size' => 20)
+		'attrs' => array('size' => 20),
+		'inst_type' => 'advanced'
 	),
 ),
 	config_maybe_locales()
