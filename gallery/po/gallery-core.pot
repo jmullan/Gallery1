@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-07-27 11:25+0200\n"
+"POT-Creation-Date: 2006-08-06 03:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -879,7 +879,7 @@ msgstr ""
 msgid "Member file"
 msgstr ""
 
-#: ../html/userData.inc:27 ../popups/login.php:146
+#: ../html/userData.inc:27 ../popups/login.php:178
 msgid "Username"
 msgstr ""
 
@@ -1064,7 +1064,7 @@ msgstr ""
 #: ../popups/copy_photo.php:200 ../popups/delete_photo.php:132
 #: ../popups/download.php:86 ../popups/edit_caption.php:177
 #: ../popups/edit_field.php:60 ../popups/edit_watermark.php:123
-#: ../popups/login.php:86 ../popups/move_album.php:111
+#: ../popups/login.php:165 ../popups/move_album.php:111
 #: ../popups/move_album.php:139 ../popups/move_photo.php:258
 #: ../popups/move_photo.php:352 ../popups/rearrange.php:185
 #: ../popups/register.php:140 ../popups/rename_album.php:121
@@ -1806,7 +1806,7 @@ msgstr ""
 msgid "missing hash parameter"
 msgstr ""
 
-#: ../new_password.php:38 ../new_password.php:42 ../popups/login.php:138
+#: ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr ""
 
@@ -2086,8 +2086,7 @@ msgstr ""
 msgid "Skipping Album #%d"
 msgstr ""
 
-#: ../popups/copy_photo.php:124 ../popups/login.php:122
-#: ../popups/save_photos.php:386
+#: ../popups/copy_photo.php:124 ../popups/save_photos.php:386
 msgid "Dismiss"
 msgstr ""
 
@@ -2595,91 +2594,98 @@ msgstr ""
 msgid "_Preview"
 msgstr ""
 
-#: ../popups/login.php:51
+#: ../popups/login.php:58
 msgid "SUCCEEDED"
 msgstr ""
 
-#: ../popups/login.php:55
-msgid "Invalid username or password"
-msgstr ""
-
-#: ../popups/login.php:60 ../publish_xp.php:91
-msgid "Please enter username and password."
-msgstr ""
-
-#: ../popups/login.php:63 ../publish_xp.php:100
-#, php-format
-msgid "Login to %s"
-msgstr ""
-
 #: ../popups/login.php:65
-msgid "Logging in gives you greater permission to view, create, modify and delete albums."
+msgid "Invalid username or password."
 msgstr ""
 
-#: ../popups/login.php:77 ../publish_xp.php:107
-msgid "_Username"
+#: ../popups/login.php:74
+msgid "Please enter username and password!"
 msgstr ""
 
-#: ../popups/login.php:79 ../publish_xp.php:109
-msgid "_Password"
-msgstr ""
-
-#: ../popups/login.php:85
-msgid "_Login"
-msgstr ""
-
-#: ../popups/login.php:93
-msgid "Forgotten your password?"
-msgstr ""
-
-#: ../popups/login.php:106
+#: ../popups/login.php:86
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
 msgstr ""
 
-#: ../popups/login.php:112
+#: ../popups/login.php:91
 msgid "New password request"
 msgstr ""
 
-#: ../popups/login.php:113
+#: ../popups/login.php:92
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr ""
 
-#: ../popups/login.php:114
+#: ../popups/login.php:93
 #, php-format
 msgid "Click to reset your password: %s"
 msgstr ""
 
-#: ../popups/login.php:116
+#: ../popups/login.php:95
 #, php-format
 msgid "New password request %s"
 msgstr ""
 
-#: ../popups/login.php:119
+#: ../popups/login.php:101
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr ""
 
-#: ../popups/login.php:127
-#, php-format
-msgid "Email could not be sent.  Please contact %s administrators for a new password"
+#: ../popups/login.php:107
+msgid "Email could not be sent."
 msgstr ""
 
-#: ../popups/login.php:132
-#, php-format
-msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
+#: ../popups/login.php:116
+msgid "There is no valid email for this account."
 msgstr ""
 
-#: ../popups/login.php:151
+#: ../popups/login.php:118
+#, php-format
+msgid "Please contact %s administrators for a new password."
+msgstr ""
+
+#: ../popups/login.php:125
+msgid "Invalid username."
+msgstr ""
+
+#: ../popups/login.php:130 ../publish_xp.php:100
+#, php-format
+msgid "Login to %s"
+msgstr ""
+
+#: ../popups/login.php:150
+msgid "Logging in gives you greater permission to view, create, modify and delete albums."
+msgstr ""
+
+#: ../popups/login.php:156 ../publish_xp.php:107
+msgid "_Username"
+msgstr ""
+
+#: ../popups/login.php:158 ../publish_xp.php:109
+msgid "_Password"
+msgstr ""
+
+#: ../popups/login.php:164
+msgid "_Login"
+msgstr ""
+
+#: ../popups/login.php:173
+msgid "Forgotten your password?"
+msgstr ""
+
+#: ../popups/login.php:180
 msgid "_Send me my password"
 msgstr ""
 
-#: ../popups/login.php:158
+#: ../popups/login.php:190
 msgid "No account at all?"
 msgstr ""
 
-#: ../popups/login.php:160
+#: ../popups/login.php:192
 msgid "_Register a new account."
 msgstr ""
 
@@ -3445,6 +3451,10 @@ msgstr ""
 
 #: ../publish_xp.php:82
 msgid "Username and Password are not correct."
+msgstr ""
+
+#: ../publish_xp.php:91
+msgid "Please enter username and password."
 msgstr ""
 
 #: ../publish_xp.php:127 ../publish_xp.php:196
