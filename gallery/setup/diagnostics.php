@@ -20,19 +20,21 @@
  * $Id$
  */
 ?>
-<?php 
+<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
-printPopupStart(gTranslate('config', "Gallery Diagnostics Page"));
+printPopupStart(gTranslate('config', "Gallery Diagnostics Page"), '', 'left');
 
 configLogin(basename(__FILE__));
 ?>
 
 <div class="g-sitedesc">
-<?php echo gTranslate('config', "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>
-<?php echo ' ' . gTranslate('config', "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
-<?php echo ' ' . gTranslate('config', "You can use these tools to find out more about your setup") ?>:
+<?php
+    echo gTranslate('config', "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.");
+    echo ' ' . gTranslate('config', "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.");
+    echo ' ' . gTranslate('config', "You can use these tools to find out more about your setup");
+?>
 </div>
 
 <br>
@@ -56,7 +58,7 @@ configLogin(basename(__FILE__));
 	      <a href="check_netpbm.php"><?php echo gTranslate('config', "Check") ?> NetPBM</a>
 	    </td>
 	    <td class="g-longdesc">
-	      <?php echo gTranslate('config', "This page provides information about your NetPBM binaries.") ?> 
+	      <?php echo gTranslate('config', "This page provides information about your NetPBM binaries.") ?>
 		<?php echo gTranslate('config', "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM).") ?>
 	    </td>
 	  </tr>
@@ -66,7 +68,7 @@ configLogin(basename(__FILE__));
 	      <a href="check_imagemagick.php"><?php echo gTranslate('config', "Check") ?> ImageMagick</a>
 	    </td>
 	    <td class="g-longdesc">
-		<?php echo gTranslate('config', "This page provides information about your ImageMagick binaries.") ?> 
+		<?php echo gTranslate('config', "This page provides information about your ImageMagick binaries.") ?>
 		<?php echo gTranslate('config', "You can only use this page after you have successfully complete the configuration wizard (as it expects that you've already located and configured Gallery with the right path to ImageMagick).") ?>
 	    </td>
 	  </tr>
@@ -103,11 +105,10 @@ configLogin(basename(__FILE__));
 	</table>
 
 	</div>
-	
+
 	<div class="center">
 	  <?php echo returnToConfig(); ?>
 	</div>
 
     </body>
 </html>
- 

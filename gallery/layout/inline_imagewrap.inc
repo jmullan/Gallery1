@@ -45,7 +45,7 @@ switch ($frame) {
 <?php
     break;
     case "siriux":
-        echo "\n\t<div style=\"margin: 0 auto;\" class=\"g-siriux\">\n\t\t$href_tag\n\t</div>\n";
+        echo "\n\t<div style=\"margin: 0 auto;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
     break;
 
     default: // use frames directory or fallback to none

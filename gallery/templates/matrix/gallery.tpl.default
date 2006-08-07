@@ -77,7 +77,7 @@ echo infoBox($notice_messages, $notice_caption);
 
 $columns = 3;
 $boxWidth = floor(100/$columns)-1;
-$boxheight = $gallery->app->highlight_size+100;
+$boxheight = $gallery->app->highlight_size+195;
 
 ?>
 <div style="width: 80%; margin: 0 auto;">
@@ -85,13 +85,14 @@ $boxheight = $gallery->app->highlight_size+100;
 foreach ($rootAlbum as $name => $content) {
     ?>
     <!-- Begin Album Column Block -->
-    <div style="width: <?php echo $boxWidth ?>%; margin: 5px;" class="floatleft">
-
+    <div style="width: <?php echo $boxWidth ?>%; height: <?php echo $boxheight ?>px; margin: 0 5px;" class="floatleft">
         <!-- Begin Image Cell -->
-        <div class="g-album-image-cell" style="height: <?php echo $gallery->app->highlight_size+5; ?>px"><?php
+        <div class="g-album-image-cell" style="height: <?php echo $gallery->app->highlight_size+15; ?>px">
+            <?php
         $gallery->html_wrap = $content['imageCell'];
         includeLayout('inline_imagewrap.inc');
-        ?>
+?>
+
         </div>
 
         <!-- Begin Text Cell -->

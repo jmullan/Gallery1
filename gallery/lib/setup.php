@@ -1465,10 +1465,19 @@ function newIn($version) {
 }
 
 function returnToConfig() {
-	$link = galleryLink('index.php', gTranslate('config', "_Configuration Wizard"));
+    $link = galleryLink(
+        makeGalleryUrl('setup/index.php', array('refresh' => 1, 'this_page' => 'check')),
+        gTranslate('config', "_Configuration Wizard"), array(), '', true);
 
-	$html = sprintf(gTranslate('config', "Return to %s."), $link);
-	return $html;
+	return $link;
+}
+
+function returnToDiag() {
+    $link = galleryLink(
+        makeGalleryUrl('setup/diagnostics.php'),
+        gTranslate('config', "Gallery Dia_gnostics Page"), array(), '', true);
+
+	return $link;
 }
 
 if (!function_exists('array_filter1')) {
@@ -1476,9 +1485,9 @@ if (!function_exists('array_filter1')) {
 		$output = array();
 		foreach ($input as $name => $value) {
 			if ($function && $function($value)) {
-				$output[$name]=$value;
+				$output[$name] = $value;
 			} else if ($value) {
-				$output[$name]=$value;
+				$output[$name] = $value;
 			}
 		}
 		return $output;

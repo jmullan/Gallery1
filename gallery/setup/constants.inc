@@ -83,7 +83,9 @@ function toggleGraphics(show) {
             <?php echo gSubmit('go_next', gTranslate('config', "_Next Step &gt;&gt;"), array('disabled' => 'disabled')); ?>
         </span>
             <?php if(!empty($inst_type)) :?>
-            <div class="g-columnheader" style="-moz-border-radius: 5px;"><?php printf(gTranslate('config', "Installation type: %s"), $inst_type); ?></div>
+            <div class="g-columnheader" style="-moz-border-radius: 5px;">
+            <?php printf(gTranslate('config', "Installation type: %s"), gTranslate('config', $inst_type)); ?>
+            </div>
             <?php endif; ?>
         </div>
 
@@ -126,7 +128,7 @@ foreach ($constants as $key => $val) {
     }
 
     if (isset($val["type"]) && $val["type"] === 'subgroup') {
-        if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+        if($inst_type == 'easy' && !isset($val["inst_type"])) {
 	        $visibility = 'none';
 	    }
 	    else {
@@ -147,7 +149,7 @@ foreach ($constants as $key => $val) {
     }
 
 	if (isset($val["type"]) && $val["type"] === 'group_start') {
-	    if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+	    if($inst_type == 'easy' && !isset($val["inst_type"])) {
 	        $visibility = 'none';
 	    }
 	    else {

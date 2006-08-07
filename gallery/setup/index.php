@@ -43,7 +43,7 @@ doctype();
 	<?php common_header(); ?>
 
 	<script language="JavaScript" type="text/javascript">
-        <!--
+    <!--
 
 	function localGetElementsByTagName(tagName) {
 		var eleArray;
@@ -86,6 +86,7 @@ doctype();
 
 <body onload="enableButtons()">
 <?php
+
 // Require a user to be logged in before allowing them to configure the server.
 // If Gallery has not been configured before, allow to continue without logging in
 configLogin(basename(__FILE__));

@@ -103,11 +103,11 @@ echo gSubmit('submit', gTranslate('config', "_Send Email"));
 </div>
 
 <div class="center">
-	<?php echo returnToConfig(); ?>
+	<?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
 </div>
 
 <script type="text/javascript">
-	document.g1_form.email_adress.focus();
+	document.g1_form.email_address.focus();
 </script>
 
 </body>

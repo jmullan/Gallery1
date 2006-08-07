@@ -97,11 +97,14 @@ foreach (array_keys($names) as $key) {
     if ($key == $initialtab) {
         $class = ' class="g-activeTab"';
     }
-    echo "<a$class id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</a>\n";
+    echo "\t<a$class id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</a>\n";
 }
 
 ?>
+<div class="clear"></div>
 </div>
+
+
 <?php if (isset($initialtab)) { ?>
     <script language="JavaScript" type="text/javascript">
     section_tabs = new configSection('group_<?php echo $initialtab ?>')
@@ -131,7 +134,8 @@ foreach (array_keys($names) as $key) {
 ?>
 </div>
 <p align="center">
-    <input type="button" name="close" value="<?php echo gTranslate('config', "Close Window") ?>" onClick="window.close()" class="g-button">
+<?php echo gButton('close', gTranslate('config', "_Close Window"), 'window.close()'); ?>
 </p>
+
 </body>
 </html>

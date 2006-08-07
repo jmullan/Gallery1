@@ -182,8 +182,6 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 ?>
 </div>
 
-</form>
-
 <?php } /* End if-email-on */
 if ($gallery->app->selfReg == 'yes') {
 ?>
@@ -194,6 +192,8 @@ if ($gallery->app->selfReg == 'yes') {
 <?php
 }
 ?>
+
+</form>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--

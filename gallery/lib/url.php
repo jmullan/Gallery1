@@ -455,23 +455,25 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
 
     if(!isset($accessKeyUsed[$accesskey])) {
         $attrList['accesskey'] = $accesskey;
-	$accessKeyUsed[$accesskey] = true;
+        $accessKeyUsed[$accesskey] = true;
     }
 
     if($iconMode == 'yes') {
-	$altText = $text;
+        $altText = $text;
     }
 
     if(!empty($accesskey) && $iconMode != 'both') {
-	$altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
+        $altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $accesskey);
     }
 
-    $content = getIconText($icon, $text, $iconMode, false, $altText, true);
+    $addBrackets = ($iconMode == 'no') ? true : false;
+
+    $content = getIconText($icon, $text, $iconMode, $addBrackets, $altText, true);
 
     $attrs = generateAttrs($attrList);
 
     if (!empty($url)) {
-	   $html .= "<a href=\"$url\"$attrs>$content</a>";
+        $html .= "<a href=\"$url\"$attrs>$content</a>";
     }
     else {
         $html .= "<a$attrs>$content</a>";

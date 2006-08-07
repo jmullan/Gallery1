@@ -158,7 +158,7 @@ if ($loggedIn) {
         $linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link(
                 gTranslate('core', "administer fron_tpage"),
-                $linkurl, true, true, 500, 500, '','','unsortedList.gif'
+                $linkurl, true, true, 500, 500, '', '', 'unsortedList.gif'
         );
 
         $iconElements[] = galleryLink(

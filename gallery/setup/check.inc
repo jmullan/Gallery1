@@ -59,8 +59,7 @@ $configTestStatus = array(
 
 $diagnostics_page = galleryLink(
     makeGalleryUrl('setup/diagnostics.php'),
-    gTranslate('config', "Gallery Dia_gnostics Page"),
-    array('target' => '_blank'));
+    gTranslate('config', "Gallery Dia_gnostics Page"));
 
 $help_page = galleryLink(
     'http://gallery.sourceforge.net/help.php',
@@ -96,7 +95,7 @@ $warning = 0;
         <div class="g-albumdesc-cell clear">
         <?php
 
-        echo gTranslate('config', "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably.") ;
+        echo gTranslate('config', "This page will validate your system to make sure that you have all the necessary components installed, permissions set and that everything is configured reasonably.") ;
 
         echo '<br><br>';
         if (galleryDocs()) {

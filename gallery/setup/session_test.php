@@ -55,6 +55,7 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
         ?>
 	</div>
 
+	<br>
 	<table width="50%" align="center">
 		<tr>
 			<td class="g-shortdesc"><?php echo gTranslate('config', "Your session id is") ?></td>
@@ -77,7 +78,7 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
     <?php echo gButton('reload', gTranslate('config', "Start _over"), 'location.href=\'session_test.php?destroy=1\''); ?>
 
     <br><br>
-    <?php echo returnToConfig(); ?>
+    <?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
   </div>
 
 </div>

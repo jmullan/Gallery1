@@ -47,7 +47,7 @@ if (gallerySanityCheck() != NULL) {
 </div>
 
 <div class="center">
-	  <?php echo returnToConfig(); ?>
+    <?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
 </div>
 
 </body>
@@ -177,7 +177,7 @@ foreach ($results as $nr => $result) {
 </div>
 
 <div class="center">
-	  <?php echo returnToConfig(); ?>
+    <?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
 </div>
 
 <br>

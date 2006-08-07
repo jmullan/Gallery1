@@ -46,15 +46,14 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
         return '<span class="g-error">'. ("-- Translation Domain wrong --") .'</span>';
     }
 
-
     if ($count == 0 && $nonetext != '') {
-	return _($nonetext);
+	   return _($nonetext);
     }
 
     if (gettext_installed()) {
-	$gDomain = $gallery->language. "-gallery_$domain";
-	bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
-	textdomain($gDomain);
+    	$gDomain = $gallery->language. "-gallery_$domain";
+    	bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+    	textdomain($gDomain);
     }
 
     if(!$plural) {
@@ -75,9 +74,9 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
         else {
         	$translation = ngettext($singular, $plural, $count);
         }
-	if($short) {
-	    $translation = sprintf($translation, $count);
-	}
+        if($short) {
+            $translation = sprintf($translation, $count);
+        }
     }
 
     return $translation;
@@ -104,7 +103,8 @@ function getBrowserLanguage() {
         $lang_pieces = explode ("-",$lang[0]);
         if (strlen($lang[0]) >2) {
             $browserLang = strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
-        } else {
+        }
+        else {
             $browserLang = $lang[0];
         }
     }
@@ -120,7 +120,6 @@ function getBrowserLanguage() {
  * - language
  * - charset
  * - direction
- * - alignment
 */
 function setLangDefaults($nls) {
 	global $gallery;
@@ -128,7 +127,6 @@ function setLangDefaults($nls) {
 	$gallery->language 	= 'en_US';
 	$gallery->charset  	= $nls['default']['charset'];
 	$gallery->direction	= $nls['default']['direction'];
-	$gallery->align		= $nls['default']['alignment'];
 }
 
 /**
@@ -211,6 +209,7 @@ function getEnvLang() {
  */
 function getDefaultLanguage() {
     global $gallery;
+
     if(isset($gallery->app->default_language)
       && $gallery->app->default_language != 'browser') {
         $defaultLanguage = $gallery->app->default_language;
@@ -243,7 +242,7 @@ function forceStaticLang() {
  * This function does the initialization of language related things.
  * @author Jens Tkotz <jens@peino.de>
  */
-function initLanguage($sendHeader=true) {
+function initLanguage($sendHeader = true) {
     static $languages_initialized = false;
 
     global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -302,52 +301,54 @@ function initLanguage($sendHeader=true) {
 
         if (!empty($newlang)) {
             /* Set Language to the User selected language. */
-            $gallery->language=$newlang;
-        } else {
+            $gallery->language = $newlang;
+        }
+        else {
             /** No new language.
 			 * Lets see in which Environment were are and look for a language.
 			 * Lets try to determ the used language
 			 */
             $gallery->language = getEnvLang();
         }
-    } else {
+    }
+    else {
         /** We're not embedded.
 		 * If we got a ML_mode from config.php we use it
 		 * If not we use Mode 2 (Browserlanguage)
 		 */
         if (isset($gallery->app->ML_mode)) {
             $ML_mode = $gallery->app->ML_mode;
-        } else {
+        }
+        else {
             $ML_mode = 2;
         }
 
         switch ($ML_mode) {
             case 1:
-            /* Static Language */
-            $gallery->language = getDefaultLanguage();
+                /* Static Language */
+                $gallery->language = getDefaultLanguage();
             break;
 
             case 3:
-            /* Does the user want a new language ?*/
-            if (!empty($newlang)) {
-                /* Set Language to the User selected language.*/
-                $gallery->language = $newlang;
-            } elseif (isset($gallery->session->language)) {
-                /* Maybe we already have a language*/
-                $gallery->language = $gallery->session->language;
-            } else {
-                $gallery->language = getDefaultLanguage();
-            }
-
+                /* Does the user want a new language ?*/
+                if (!empty($newlang)) {
+                    /* Set Language to the User selected language.*/
+                    $gallery->language = $newlang;
+                } elseif (isset($gallery->session->language)) {
+                    /* Maybe we already have a language*/
+                    $gallery->language = $gallery->session->language;
+                } else {
+                    $gallery->language = getDefaultLanguage();
+                }
             break;
-            default:
-            /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
-		$gallery->browser_language = getBrowserLanguage();
-		$gallery->language = $gallery->browser_language;
 
-		if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
-		    $gallery->language = $gallery->user->getDefaultLanguage();
-		}
+            default:
+                /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
+                $gallery->language = getBrowserLanguage();
+
+                if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
+                    $gallery->language = $gallery->user->getDefaultLanguage();
+                }
             break;
         }
     }
@@ -361,7 +362,6 @@ function initLanguage($sendHeader=true) {
 	 *	- Nuke/phpBB2 sent an unsupported
 	 *	- User sent an undefined
 	 */
-
     if (! isset($nls['language'][$gallery->language])) {
         $gallery->language = getLanguageAlias(getDefaultLanguage());
         /* when we REALLY REALLY cant detect a language */
@@ -384,7 +384,7 @@ function initLanguage($sendHeader=true) {
     $locale = $gallery->locale;
 
     /* Check defaults */
-    $checklist = array('direction', 'charset', 'alignment') ;
+    $checklist = array('direction', 'charset') ;
 
     /**
      * This checks wether the previously defined values are available.
@@ -604,7 +604,8 @@ function getLanguageAlias($language) {
 
     if (isset($nls['alias'][$language])) {
 	   return $nls['alias'][$language];
-    } else {
+    }
+    else {
         return $language;
     }
 }

@@ -79,7 +79,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeTemplate('gallery.header');
+includeTemplate("gallery.header", '', 'classic');
 
 $adminbox['text'] = gTranslate('core', "Admin options");
 $adminbox['commands'] = galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);

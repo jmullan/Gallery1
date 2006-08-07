@@ -126,8 +126,7 @@ if(!empty($versionStatus['fail'])) {
 </div>
 
 <div class="center">
-    <?php echo returnToConfig(); ?>
-
+    <?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
 </div>
 
 </body>
