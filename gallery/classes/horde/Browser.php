@@ -1,7 +1,7 @@
 <?php
 /**
  * Gallery SVN info
- * $Id: htmlMimeMail.php 13850 2006-06-19 12:37:37Z jenst $
+ * $Id: Browser.php 14237 2006-08-09 05:00:16Z jenst $
 */
 
 /**
