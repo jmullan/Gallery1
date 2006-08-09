@@ -11,7 +11,7 @@
  * Browser identification is performed by examining the HTTP_USER_AGENT
  * environment variable provided by the web server.
  *
- * $Horde: framework/Browser/Browser.php,v 1.209 2006/06/23 08:24:04 jan Exp $
+ * Horde: framework/Browser/Browser.php,v 1.210 2006/07/17 09:41:31 jan Exp
  *
  * Copyright 1999-2006 Chuck Hagenbuch <chuck@horde.org>
  * Copyright 1999-2006 Jon Parise <jon@horde.org>
@@ -23,8 +23,6 @@
  * @author  Jon Parise <jon@horde.org>
  * @since   Horde 1.3
  * @package Horde_Browser
- *
- *
  */
 class Browser {
 
@@ -389,7 +387,6 @@ class Browser {
                     $this->setFeature('accesskey');
                     $this->setFeature('optgroup');
                     $this->setFeature('xmlhttpreq');
-                    $this->setQuirk('scrollbar_in_way');
                     break;
 
                 case 6:
@@ -939,7 +936,7 @@ class Browser {
             return true;
         } elseif (($error == UPLOAD_ERR_INI_SIZE) ||
                   ($error == UPLOAD_ERR_FORM_SIZE)) {
-            return PEAR::raiseError(sprintf(_("There was a problem with the file upload: The %s was larger than the maximum allowed size (%d bytes)."), $name, $uploadSize), $error);
+            return PEAR::raiseError(sprintf(_("There was a problem with the file upload: The %s was larger than the maximum allowed size (%d bytes)."), $name, min($uploadSize, Util::getFormData('MAX_FILE_SIZE'))), $error);
         } elseif ($error == UPLOAD_ERR_PARTIAL) {
             return PEAR::raiseError(sprintf(_("There was a problem with the file upload: The %s was only partially uploaded."), $name), $error);
         }
