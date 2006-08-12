@@ -1,3 +1,792 @@
+2006-08-12 Jens Tkotz <jens@peino.de> 1.6-svn-b1
+
+ * Merge from DEV_1_6 branch.
+   See Changelog below
+
+   Start of official Gallery 1.6 Development.
+
+2006-08-09 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j109-UNSTABLE
+
+ * Update wz_tooltip.js to 3.38
+
+2006-08-09 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j108-UNSTABLE
+
+ * Update Yahoo! YUI to 0.11.2 (tough IN the files 0.11.0 is written)
+
+ * Update horder/Browser.php
+
+2006-08-07 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j107-UNSTABLE
+
+ * Change: Removed $nls['default']['alignment'] from nls.php and 
+	   check against it in lib/lang.php
+
+ * Made returnToConfig() to point to step 1
+
+ * New: returnToDiag()
+
+ * Change: Removed $gallery->browser_language !!
+
+ * Fix: Iconslink gets [] around when no icons are wanted.
+
+ * Little HTML fix slipped in in 106
+
+ * Fix include of header in admin-page. Slipped in in b94.
+
+ * Little siriux change.
+
+ * Fixed layout for Matrix theme when vieving with IE.
+
+ * Fixed appearance in setup/frame_test.php
+
+ * Make Diagnostics Page NOT to open in _blank.
+
+ * General Nicify.
+
+2006-08-06 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j106-UNSTABLE
+
+ ***** NEW *****
+
+ * In new installations you can now choose the installation type.
+   "easy" or "advanced".
+
+ * Fix: Autocomplete didnt work in new installs.
+
+ * CSS fixes for RTL languages (especially tabs)
+
+2006-08-05 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j105-UNSTABLE
+
+ * Jenskin updates.
+
+ * popups/login.php nicify
+
+2006-08-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j104-UNSTABLE
+
+ * Higher width for autocomplete fields.
+
+ * Fix: Not all uploadpathes were shown in config wizard
+   Thanks to Kai.
+
+2006-08-02 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j103-UNSTABLE
+
+ * Fix: JS warning in ImageMap when no ImageMap is available.
+   Thanks to StephaneT from forums.
+
+ * Fix in view_photo.
+
+ * Little CSS changes in jenskin.
+
+2006-07-29 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j102-UNSTABLE
+
+ * Fix: HTML ans JS Fixes in slideshow.
+
+ * Show only skins with a .default file in config wizard
+   (Will be reverted when all skins are 1.6 compliant)
+
+ * Some indenting.
+ 
+2006-07-29 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j101-UNSTABLE
+
+ * Jenskin -> 1.6
+
+2006-07-27 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j100-UNSTABLE
+
+ * Black skin -> 1.6
+
+ * Fix: recognize .default files for available skins
+
+2006-07-25 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j99-UNSTABLE
+
+ * Change: Remove param $size in gInput(), now handled via $attrs
+
+ * Changed some " to '
+
+ * Little layout fix in popups/edit_appearance.php
+
+2006-07-24 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j98-UNSTABLE
+
+ * Adjust bars002 skin -> 1.6
+
+ * Little layot changes in templates.
+ 
+2006-07-24 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j97-UNSTABLE
+
+ * Switched rows and columns in album properties.
+
+ * CHANGE: Removed Support for:  $_SERVER['HTTP_HOST'] in css files 
+
+2006-07-24 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j96-UNSTABLE
+
+ * Fix: ZLORIFX == vs. ===, using strcmp() now in drawselect.
+
+2006-07-23 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j95-UNSTABLE
+
+ ***** CHANGE *****
+ 
+ Removed following skins:
+	bblue
+	bgreen
+	bgreen2
+	bluemod
+	bpurple
+	greenpurple
+	paint
+	redmarble
+
+2006-07-23 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j94-UNSTABLE
+
+ ***** NEW ******
+
+ * Mainpage is now themeable.
+ 
+2006-07-23 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j93-UNSTABLE
+
+ * Hide RandomBlock Source in setup as its currently unused.
+
+ * CSS things in Setup.
+
+ * Make some Texts tranlateable
+
+ * Some layout and wording things.
+
+2006-07-23 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j92-UNSTABLE
+
+ * Fix: Popup for frames didnt work in frames for randomblock.
+
+2006-07-21 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j91-UNSTABLE
+
+ * Fix: drawSelect in slideshow misbehaved and selected the wrong.
+ 
+ * Use Horde Browser in slideshow to avoid document.write()
+   As a result drawSelect() uses now always pretty printing.
+
+ * drawSelect() now also uses always pretty printing.
+
+ * Found _() -> gTranslate()
+
+2006-07-21 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j90-UNSTABLE
+
+ * Added new icons for navigation
+
+ * Converted a couple of png icons to gif icons (DARN IE !)
+
+2006-07-21 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j89-UNSTABLE
+
+ * Added icons for notice messages.
+
+2006-07-21 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j88-UNSTABLE
+
+ * Removed $class param from gInput
+
+ * Little layout changes
+
+2006-07-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j87-UNSTABLE
+
+ * Change: Splitted Add_URL into "URL" and "from local Server"
+
+ * NEW: Added YAHOO! YUI , AJAX Autocomplete.
+	- Use of horde browser class to detect wether Autocomplete is supported.
+	- Added CSS
+	- Currently only for local paths
+
+ * NEW: Add possibility to define legal pathes for upload from local server.
+	If a legal path is defined autocomplete in the upload dialog is used.
+
+ * NEW: js/multiInput.js.php
+ 
+2006-07-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j86-UNSTABLE
+
+ * UPS: forget to add rebuild_thumbs.php into SVN with b1-j72.
+
+2006-07-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j85-UNSTABLE
+
+ * NEW: Added Browser.php class from the HORDE (http://www.horde.org) framework.
+        Credits added in the classes/horde/ folder.
+
+2006-07-13 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j84-UNSTABLE
+
+ * NEW: Added fs_fileIsHidden() to platform functions.
+
+2006-07-12 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j83-UNSTABLE
+
+ * Send_email to new users now default unchecked.
+
+ * Fix: popups/create_user.php were not reloaed correct on Submit
+
+ * Fix: Little warning in setup/init.php
+
+2006-07-11 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j82-UNSTABLE
+
+ * Layout changes. Mostly to make Gallery look better when embedded :)
+
+2006-07-11 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j81-UNSTABLE
+
+ * FIX: Headers were sent after the header were sent ;) in download.php
+   Thanks to Kai.
+
+2006-07-10 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j80-UNSTABLE
+
+ * Fix: Acceskey 's' was double on mainpage
+
+ * Fix: Use same icon for slideshow on mainpage and album view.
+
+ * Added view_comment.gif, removed display.gif
+
+ * Fix: Added ecard_form to $safe_to_include array
+
+ * Some CSS adjustments for embedded Gallery.
+
+ Thanks to Kai for all above !
+
+2006-07-10 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j79-UNSTABLE
+
+ * Fix: Translateable errormessage in index.php was showed before langinit.
+   Thanks to Kai.
+
+ * Fix: Adjust $safe_to_include array to popups/
+
+ * Fix: Wrong use of makeGalleryUrl insted of makeAlbumUrl in view_comments.php
+
+ * Make docs link in startpage to open in _blank
+
+2006-07-09 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j78-UNSTABLE
+
+ * Fix: Path to upgrade_album.php was wrong in init.php
+   Thanks to Kai.
+
+2006-07-08 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j77-UNSTABLE
+
+ * Use target="_blank" for all external links in wizard.
+   Thanks to Robert -you are fired- Volksport
+
+2006-07-07 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j76-UNSTABLE
+
+ * Fix: Moved colorpicker.php into popus and adjust showColorpicker()
+
+ * Wording fixes.
+
+2006-07-07 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j75-UNSTABLE
+
+ ***** CHANGE *****
+
+ * Nicified Config Wizard
+   
+   - Stepbar in every step
+   - New Welcome page
+   - Removed errorpages and instead integrated into welcome page
+   - A lot more CSS
+   - Splitted Checks into mandatory and recommended
+   - Moved embed_hidden() from setup/index.php into lib/setup
+
+2006-06-28 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j74-UNSTABLE
+
+ * Created includes/setup folder.
+
+ * Splitted setup/configdata.inc
+
+2006-06-26 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j73-UNSTABLE
+
+ * Last UpArrow in returnToLink gets an accesskey.
+
+ * Prevention of double use of accesskey via galleryLink.
+
+2006-06-26 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j72-UNSTABLE
+
+ * Moved rebuilding thumbs into its own rebuild_thumbs.php
+
+2006-06-26 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j71-UNSTABLE
+
+ * New: Added popups/recreate_captions.php
+
+2006-06-25 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j70-UNSTABLE
+
+ *** !!! CHANGE !!! ***
+
+ * Created popups/ folder and moved nearly all popups in it
+
+ * Removed HTML Validation link everywhere.
+ 
+ * Adjust includes etc. in popups
+
+ * Tweaked makeGalleryURL
+ 
+2006-06-25 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j69-UNSTABLE
+
+ * Fix: Statusbar was little broken in captionar.php
+
+ * Fix: Error when custom field was not translateable in captionator.php
+
+ * Added debugmessages in classes/gallery/UserDB.php
+
+ * Changed Wording for User integritycheck
+
+ * Nicified layout/watermarkform.inc
+
+ * Fix: invalid css
+
+2006-06-22 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j68-UNSTABLE
+
+ * Accesskeys in item Commands.
+
+2006-06-22 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j67-UNSTABLE
+
+ * Change from _() to gTranslate at various places.
+
+2006-06-22 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j66-UNSTABLE
+
+ * NEW: Functionality to recreate all captions of an album (recursiv if wanted)
+
+ * New: Folder for popups
+
+2006-06-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j65-UNSTABLE
+
+ * Bugfix for b64 ;)
+
+2006-06-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j64-UNSTABLE
+
+ * Accesskey Changes:
+	- Additional param to getIconText() to set a stickyAlt, regardless the iconmode
+	- New function getAccessKey($text)
+	- New function removeAccessKey($text)
+	- make_separator() now works with accesskeys
+	- array_sort now doesnt fall over accesskeys
+
+ * Accesskey Use in
+	includes/definitions/albumProperties.php
+	delete_photo.php
+	lib/albumItem.php
+	layout/navigator.inc
+	layout/navphoto.inc
+
+ * Change: Use of LoginLogoutButton in view_photo.php
+
+ * NEW: function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array())
+ 
+2006-06-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j63-UNSTABLE
+
+ * Change: Reworked checkVersions().
+   It not returns one array and the calling procedure needs to figure out what to do.
+
+ * Change: Adjust check_gallery_versions() and setup/check_versions.php to above changes.
+
+ * Change: Reenabled verbose output of jhead in util.php.
+
+ * Cleanups in classes/Album.php
+
+ * Removed OLD function includeTemplate()
+
+ * Nicify of some files.
+
+2006-06-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j62-UNSTABLE
+
+ * Use of true/false instead 0 / 1
+	view_photo_properties.php
+	classes/AlbumItem.php
+
+2006-06-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j61-UNSTABLE
+
+ * Fix: init_language() is not called redundant in init.php
+
+ * Change: When user updates his language, the parent page is reloaded with the new language.
+
+ * PHP5 fix:
+   In classes/Mail/htmlMimeMail.php, ecard_form.php was $HTTP_SERVER_VARS used,
+   which is not longer present in PHP5
+
+
+ * Added svn IDs:
+	js/sectionTabs.js.php
+	js/wz_tooltip.js
+	js/wz_jsgraphics.js
+	js/imagemap.js
+	js/toggle.js
+	js/fitToWindow.js.php
+	templates/setup/im-netpbm-test.tpl
+
+2006-06-16 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j60-UNSTABLE
+
+ * Translation in Setup fix.
+
+2006-06-16 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j59-UNSTABLE
+
+ * CSS nicify.
+
+2006-06-16 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j58-UNSTABLE
+
+ *** CHANGE ***
+
+ * removed html_wrap folder !!! *
+
+ * Moved frames into Layout
+
+ * Moved general footer into templates.
+
+ * Removed unneeded function includeHtmlWrap(); use of includeTemplate instead.
+
+ * Adjustments to the above
+
+2006-06-16 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j58-UNSTABLE
+
+ * Fix: mod_rewrite was broken in b29
+
+ * Fix: getTag was broken ib b37
+
+2006-06-15 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j56-UNSTABLE
+
+ *** CHANGE ***
+
+ * Moved inline_imagewrap.inc from html_wrap to layout
+
+ * Removed (!):
+	html_wrap/inline_photo.header.default
+	html_wrap/inline_photo.frame.default
+	html_wrap/inline_photothumb.frame.default
+	html_wrap/inline_photo.footer.default
+	html_wrap/inline_albumthumb.header.default
+	html_wrap/inline_moviethumb.frame.default
+	html_wrap/inline_albumthumb.frame.default
+	html_wrap/inline_albumthumb.footer.default
+	
+ * Adjustments in
+	templates/gallery.tpl.default
+	templates/album.tpl.default
+	templates/photo.tpl.default (!)
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j55-UNSTABLE
+
+ * css -> 1.6
+	tools/find_orphans.php
+
+YEEEEEEEHA ! The last one. alpha-1 is near
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j54-UNSTABLE
+
+*** CHANGE ***
+
+ Template renaming, added stats and slideshow header files in template dir.
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j53-UNSTABLE
+
+ *** CHANGE ***
+
+ Template renaming, added gallery, album and photo header files in template dir.
+
+ * General cleanup.
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j52-UNSTABLE
+
+ *** CHANGE ***
+
+ Remove of html_wrap/gallery.photo.default and html_wrap/photo.footer.default
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j51-UNSTABLE
+
+ *** CHANGE ***
+
+ Remove of html_wrap/gallery.album.default and html_wrap/album.footer.default
+
+2006-06-14 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j50-UNSTABLE
+
+ *** CHANGE ***
+
+ Remove of html_wrap/gallery.header.default and html_wrap/gallery.footer.default
+
+2006-06-13 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j49-UNSTABLE
+
+ * More use of gTranslate()
+
+ * css -> 1.6
+	includes/errors/unconfigured.php
+	captionator.php
+	copy_photo.php
+	imagemap.php
+
+ * removed unneeded extra_fields.php
+
+ * General Cleanups and HTML fixes
+
+2006-06-12 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j48-UNSTABLE
+
+ CHANGE:
+ * combined (removed + create new template file)
+	layout/commentbox.inc
+	layout/commentboxtop.inc
+	layout/commentboxbottom.inc
+
+ * css -> 1.6
+	view_comments.php
+
+ * Cleanups
+	lib/Form.php
+	layout/breadcrumb.inc
+	css/screen.css.default
+	templates/view_album.tpl.default
+ 
+2006-06-11 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j47-UNSTABLE
+
+ * Very little Wording in config_data.
+
+ * Fix: Added littlered * to necessary fields.
+
+ * Removed unneeded things in arrayToBarGraph()
+
+ * CSS-> 1.6
+	lib/voting.php
+	lib/messages.php
+
+2006-06-10 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j46-UNSTABLE
+
+ * Fix: Typo in getTag introduce in 1.6-svn-b1-j37-UNSTABLE
+
+2006-06-10 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j45-UNSTABLE
+
+ * use of gSubmit etc. in move_photo.php
+
+ * css->1.6
+	lib/content.php
+	
+ * removed unneeded files
+	poll_properties.php
+	layout/navtableend.inc
+	layout/navtablemiddle.inc
+	layout/navtableend.inc
+
+2006-06-09 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j44-UNSTABLE
+
+ * Error nicify in class/Album.php
+
+ * css-> 1.6 / HTML fixes
+	poll_results.php
+	lib/voting.php
+
+2006-06-08 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j43-UNSTABLE
+  
+ FIX: PHP5 fixes change $HTTP_ to $_
+	classes/Mail/htmlMimeMail.php
+	do_command.php
+
+ * CSS -> 1.6
+	progress_uploading.php
+	multi_create_user.php
+	publish_xp.php
+	save_photos.php
+	publish_xp_docs.php
+	new_password.php
+
+ * HTML Fixes
+
+ * More use of gTranslate
+
+ * General Cleanup
+
+2006-06-07 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j42-UNSTABLE
+
+ * More use of gTranslate
+
+ * CSS -> 1.6
+	rearrange.php
+	setup/write.inc
+	
+ * HTML Fixes
+
+ * Rewrite Fix in setup/init.php
+
+ * General Cleanup
+	
+2006-06-07 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j41-UNSTABLE
+
+ * Typo in Varname.
+
+2006-06-06 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j40-UNSTABLE
+
+ * HTML/CSS Fixes
+
+2006-06-06 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j39-UNSTABLE
+
+ * HTML Fixes in:
+	create_user.php
+	setup/diagnostics.php
+	html/userData.inc
+
+ * CSS -> 1.6
+	setup/login.inc
+	setup/check_versions.php
+	setup/index.php
+	setup/session_test.php
+	setup/check_mail.php
+
+ * Added gReset()
+
+ * General cleanup and fixes, more use of gTranslate()
+
+2006-06-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j38-UNSTABLE
+
+ * General cleanup and fixes, more use of gTranslate()
+
+ * CSS -> 1.6
+	setup/check_mail.php
+
+2006-06-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j37-UNSTABLE
+
+ ** API CHANGE **
+
+ Changed $attrs = '' to $attrs = array() in:
+
+ - classes/Album.php
+	getPreviewTag()
+	getThumbnailTag()
+	getThumbnailTagById()
+	getHighlightAsThumbnailTag()
+	getHighlightTag()
+	getThumbnailTagById()
+	getHighlightAsThumbnailTag()
+	getHighlightTag()
+	
+ - classes/AlbumItem.php
+	getPreviewTag()
+	getThumbnailTag()
+	getHighlightTag()
+	getPhotoTag()
+	
+ - classes/Image.php
+	getTag()
+
+Affects:
+	rearrange.php
+	view_album.php
+	lib/content.php
+	layout/navmicro.inc
+	rss.php
+	albums.php
+	view_photo.php
+ 
+2006-06-03 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j36-UNSTABLE
+
+ * HTML fixes in:
+	- move_photo.php
+	- administer_startpage.php
+	- resize_photo.php
+	- lib/setup.php
+	- lib/Form.php
+	
+2006-05-23 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j35-UNSTABLE
+
+ * b30 change was not complete.
+
+2006-05-21 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j34-UNSTABLE
+
+ * CSS -> 1.6 config_data.inc
+
+2006-05-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j33-UNSTABLE
+
+ * Updated tool for generating manifest.
+
+2006-05-20 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j32-UNSTABLE
+
+ * CSS -> 1.6 slideshow
+
+2006-05-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j31-UNSTABLE
+
+ * Fix: mod_rewrite changes in b29 were not complete.
+
+2006-05-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j30-UNSTABLE
+
+ * CHANGE: 
+	Move index of highlight into albumdata.
+	So we dont need to go through the complete album.
+
+	Album-Version bump.
+
+2006-05-19 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j29-UNSTABLE
+
+ * Layout:
+    o setup/defaults.inc
+    o setup/constants.inc
+
+ * CSS -> 1.6
+    o setup/check_imagemagick.php
+    o setup/check_netpbm.php
+    o setup/backup_albums.php
+
+ * Moved checks for mod_rewrite completely into lib/setup.php
+
+ * Improved check for .htaccess (check for existance)
+
+ * Moved checkNetPbm() into lib/setup.php
+
+ * Added template for check ImageMagick and NetPBM
+
+ * Consolidation for check ImageMagick and NetPBM.
+
+2006-05-14/17 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j27/j28-UNSTABLE
+
+ * Added <DOLLAR>Id: at various Places.
+
+2006-04-28 Jens Tkotz <jens@peino.de> 1.6-svn-b1-j26-UNSTABLE
+
+ * New: function getSVNRevision()
+
+ * Tweaked tools/build_manifest.php to work with svn
+
+ * Use of gTranslate at various places.
+
+ * Layout of setup/check_versions.php
+
+ * Use of class="g-button" at various places.
+
+ * General Layout.
+
+2006-04-26 Jens Tkotz <jens@peino.de> 1.5.4-cvs-b4 / 1.6-svn-b1-j25-UNSTABLE
+
+ * Fix: Often bots access the ecardform without having correct photo loaded etc.
+        This leaves unnecessary Errormessage in Apaches logfile
+
+   Thanks to Peter Schumacher from forums.
+
+ * Fix: Only do userinput sanitation if value contains html tags.
+
+ * FIX: Compressing an Image with having maximum filesize failed.
+   Thanks to Scott Barnes (atomsmith) from forums.
+
+ * FIX: Just compressing(no resize) an Image with NetPBM failed.
+
+2006-04-24 Jens Tkotz <jens@peino.de> 1.6-cvs-b1-j24-UNSTABLE
+
+ * Fixed css of upgrade_users.php
+
+2006-04-24 Jens Tkotz <jens@peino.de> 1.6-cvs-b1-j23-UNSTABLE
+
+ * Tweaked css/layout in watermark_album.php
+
+2006-04-24 Jens Tkotz <jens@peino.de> 1.6-cvs-b1-j22-UNSTABLE
+
+ * Use of gSubmit() and gButton at some places
+
+ * Added title to gSubmit and gButton
+
+ * Layout/css adjustment in watermark_album.php
+
+ * Added class floatleft in ltr.css and rtl.css
+
+ * Little HTML change in setup/check.inc
+
+2006-04-22 Jens Tkotz <jens@peino.de> 1.6-cvs-b1-j21-UNSTABLE
+
+ * Added g-button to some buttons
+
+ * Fixed up arrow in imagemap
+
+ * Use of same login button in imagemap then elsewhere
+
+ * Fix: Show correct name for anonymous commenters.
+
+ * use Infobox for errormessage in add_comment
+
+ * Use correct path to donation-block template in general footer
+
+2006-04-11 Jens Tkotz <jens@peino.de> 1.5.4-cvs-b1
+ * Fix: Album Permissions were not working proper.
+	Thanks to Jonathan Stanley (SHS in IRC)
+
 2006-03-01 Jens Tkotz <jens@peino.de> 1.5.3-cvs-b11
 
  * Fix: Order of file upload fields was "wrong" in Firefox. 

@@ -20,64 +20,99 @@
  * $Id$
  */
 ?>
+<?php
+    require(GALLERY_BASE . '/includes/setup/defaults.inc');
+    require(GALLERY_BASE . '/js/sectionTabs.js.php');
+
+    $inst_type = '';
+
+    if(!empty($gallery->session->configForm->inst_type)) {
+        $inst_type = $gallery->session->configForm->inst_type;
+    }
+
+    if($inst_type == 'easy') {
+        $visibilityKeyword = 'inst_type';
+        $visibilityValue = 'easy';
+    }
+    else {
+        $visibilityKeyword = '';
+        $visibilityValue = '';
+    }
+?>
+
 <input type="hidden" name="this_page" value="defaults">
 <input type="hidden" name="next_page" value="confirm">
 <input type="hidden" name="back_page" value="constants">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),3); ?></div>
-
-<div class="sitedesc">
-<?php
-	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
-	echo "\n<br>";
-	echo _("Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
-	echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
-	echo "\n<br>";
-	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
-	echo "\n<br><br>". '<div class="attention">' . _('Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .'</div>';
-
-?>
+<div class="g-header">
+    <div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
 </div>
 
-<p align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
-</p>
+<div class="g-config">
+    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
+    <div class="g-config-content">
+        <div class="g-config-step floatleft"><?php echo gTranslate('config', "Defaults"); ?></div>
+        <div class="floatright">
+        <span style="white-space: nowrap;">
+        	<?php echo gSubmit('go_back', gTranslate('config', "&lt;&lt; _Previous Step"), array('disabled' => 'disabled')); ?>
+            <?php echo gSubmit('go_next', gTranslate('config', "_Next Step &gt;&gt;"), array('disabled' => 'disabled')); ?>
+        </span>
+            <?php if(!empty($inst_type)) :?>
+            <div class="g-columnheader" style="-moz-border-radius: 5px;">
+            <?php printf(gTranslate('config', "Installation type: %s"), gTranslate('config', $inst_type)); ?>
+            </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="g-album-desc clear">
+        <?php
+            echo gTranslate('config', "Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
+        	echo "\n<br>";
+        	echo gTranslate('config', "Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
+        	echo gTranslate('config', "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
+        	echo "\n<br>";
+        	echo gTranslate('config', "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
+        	echo "\n<br><br>".
+        	     '<div class="g-attention">' .
+        	     gTranslate('config', 'Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .
+        	     '</div>';
+        ?>
+        </div>
+    </div>
+
+    <div style="clear: right; height: 2px"></div>
+
+    <div class="g-config-main">
+        <div align="center" style="margin: 5px 0">
+            <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+            <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
+            <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+        </div>
 <?php
-	makeSectionTabs($defaults);
+
+$initialtab = makeSectionTabs($defaults, 7, '', false, $visibilityKeyword, $visibilityValue);
+echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
 $i = 0;
 foreach ($defaults as $key => $val) {
+    if (isset($val["type"]) && $val["type"] === 'group_start') {
+	    if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+	        $visibility = 'none';
+	    }
+	    else {
+	        $visibility = $val["default"];
+	    }
 
-	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
-                echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
-                echo make_separator($key, $val);
-                continue;
-
-        }
-
-        if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
-                echo "\n</div>";
-                continue;
-        }
-
-	echo "\n<table width=\"100%\" class=\"inner\">";
-
-	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
-		echo evenOdd_row(make_fields($key, $val), $i % 2);
-		echo "\n</table>";
+		echo "\n<div id=\"{$val["name"]}\" style=\"display: {$visibility}\">";
+		echo make_separator($key, $val);
 		continue;
 	}
-	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
-		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
-		echo "\n</table>";
-		continue;
-	}
+
+    if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+        echo "\n</div>";
+        continue;
+    }
 
 	/* Support $app-> for backwards compatibility */
 	if (isset($app->default) && isset($app->default[$key])) {
@@ -92,7 +127,7 @@ foreach ($defaults as $key => $val) {
 	/* Convert custom fields for compatibility */
 	if ($key == "extra_fields" && strrpos($val["value"], "&quot;")) {
 	    /* Convert:
-             *    "&quot;Description&quot;, &quot;Foo Bar&quot;"
+         *    "&quot;Description&quot;, &quot;Foo Bar&quot;"
 	     * to
 	     *    "Description, Foo Bar"
 	     */
@@ -102,7 +137,7 @@ foreach ($defaults as $key => $val) {
 
 	if (!isset($go_defaults) && isset($gallery->session->configForm->$key)) {
 		$val["value"] = $gallery->session->configForm->$key;
-		
+
 		if (get_magic_quotes_gpc()) {
 			$val["value"] = array_stripslashes($val["value"]);
 		}
@@ -110,25 +145,33 @@ foreach ($defaults as $key => $val) {
 	// Protect quote characters to avoid screwing up HTML forms
 	$val["value"] = array_str_replace('"', "&quot;", $val["value"]);
 
-	if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
-		list($f1, $f2) = make_fields($key, $val);
-		echo $f2;
-	} else {
-		echo evenOdd_row(make_fields($key, $val),
-				$i++ % 2);
+	if(!empty($visibilityKeyword) && isset($val[$visibilityKeyword]) &&
+	  $val[$visibilityKeyword] != $visibilityValue) {
+        $val["type"] = 'hidden';
 	}
 
-	$onThisPage[$key] = 1;
-	$preserve[$key] = 1;
-	
-	echo "\n</table>";
+	if (isset($val["type"]) && $val["type"] == 'hidden') {
+	    list($f1, $f2) = make_fields($key, $val);
+	    echo $f2;
+	}
+	else {
+        echo "\n<table class=\"g-setup-fields\">";
+	    echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+        echo "\n</table>";
+	}
+
+	$onThisPage[$key] = true;
+	$preserve[$key] = true;
 }
 ?>
+        <div align="center">
+        	<input type="submit" name="go_back" disabled="disabled" value="<?php echo gTranslate('config', "&lt;&lt; Previous Step") ?>" class="g-button">
+                <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
+                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step &gt;&gt;") ?>" class="g-button">
+                <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+        </div>
 
-<p align="center">
-	<input type=submit name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
-</p>
+        <div class="clear"></div>
+    </div>
+</div>

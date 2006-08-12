@@ -23,36 +23,22 @@
 <?php
 function slideshow_initialize() {
 	global $albumName, $gallery, $title;
-	
+
 	if (empty($albumName)) {
-        $title = sprintf(_("Slide Show for Gallery :: %s"),
+        $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
             $gallery->app->galleryTitle);
 	} else {
-        $title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"]);
+        $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
 	}
 }
 
 function slideshow_body() {}
 
 function slideshow_controlPanel() {
-	global $pixelImage;
-?>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td align="center" valign="middle"><span class="admin">
-<?php echo _("If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.") ?>
-    </span></td>
-    <td width="1"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-</table>
-<?php
+	echo infobox(array(array(
+		'type' => 'information',
+		'text' => gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
+	)));
 }
 
 function slideshow_image() {
@@ -65,8 +51,8 @@ function slideshow_image() {
 		300,
 		430,
 		"com.gallery.GalleryRemote.GRAppletSlideshow",
-                $gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," . 
-                        $gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," . 
+                $gallery->app->photoAlbumURL . "/java/GalleryRemoteAppletMini.jar," .
+                        $gallery->app->photoAlbumURL . "/java/GalleryRemoteHTTPClient.jar," .
                         $gallery->app->photoAlbumURL . "/java/applet_img.jar",
 		isset($gallery->album) ? $gallery->album->fields["name"] : "",
 		array(
@@ -77,7 +63,7 @@ function slideshow_image() {
 		),
 		array("toSysOut" => "true"),
 		dirname(__FILE__) . "/applet.cfg",
-		_("Your browser doesn't support applets; you should use one of the other slideshow methods.")
+		gTranslate('core', "Your browser doesn't support applets; you should use one of the other slideshow methods.")
 	);
 ?>
 

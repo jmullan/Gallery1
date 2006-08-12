@@ -32,26 +32,26 @@ list($fullname, $email, $defaultLanguage) =
 $error_string = '';
 
 if (!isset($hash)) {
-       	$error_string .= _("missing hash parameter") . "<br>";
+       	$error_string .= gTranslate('core', "missing hash parameter") . "<br>";
 }
 if (empty($uname) ) {
-       	$error_string .= _("Not a valid username") . "<br>";
+       	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
 } else {
        	$tmpUser = $gallery->userDB->getUserByUsername($uname);
        	if (empty($tmpUser)) {
-	       	$error_string .= _("Not a valid username") . "<br>";
+	       	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
        	} else if (!$tmpUser->checkRecoverPasswordHash($hash)) {
-	       	$error_string .= _("The recovery password is not the expected value, please try again") . "<br>";
+	       	$error_string .= gTranslate('core', "The recovery password is not the expected value, please try again") . "<br>";
 	}
 }
 
 $errorCount = 0;
 if (!empty($save)) {
 	if (empty($new_password1) ) {
-	       	$gErrors["new_password1"] = _("You must provide your new password.");
+	       	$gErrors["new_password1"] = gTranslate('core', "You must provide your new password.");
 	       	$errorCount++;
 	} else if (strcmp($new_password1, $new_password2)) {
-	       	$gErrors["new_password2"] = _("Passwords do not match!");
+	       	$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
 	       	$errorCount++;
        	} else {
 	       	$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
@@ -63,12 +63,12 @@ if (!empty($save)) {
 	// security check;
 	if($fullname != strip_tags($fullname)) {
             $gErrors["fullname"] =
-                sprintf(_("%s contained invalid data, resetting input."), htmlentities($fullname));
+                sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
             $errorCount++;
         }
 
 	if (!empty($email) && !check_email($email)) {
-                $gErrors['email'] = _("You must specify a valid email address.");
+                $gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
                 $errorCount++;
         }
 
@@ -100,42 +100,32 @@ $allowChange["old_password"] = false;
 $allowChange["send_email"] = false;
 $allowChange["member_file"] = false;
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Make New Password") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Make New Password") ?></div>
-<div class="popup" align="center">
-<?php 
-if ($error_string) {
-       	echo gallery_error($error_string);
-       	echo "<a href='albums.php'>" . _("Enter the Gallery") . "</a></div></body></html>"; 
+printPopupStart(gTranslate('core', "Make New Password"));
+
+if (!empty($messages)) {
+       	echo infobox($messages);
+       	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>"; 
 	exit;
 }
 
-echo _("You can change your user information here.");
-echo _("You must enter the new password twice.");
+echo '<div class="g-sitedesc">';
+echo gTranslate('core', "You can change your user information here.");
+echo gTranslate('core', "You must enter the new password twice.");
 
-echo "\<p>";
+echo "\n</div>";
 
 echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-echo "\n<p>";
-
 include(dirname(__FILE__) . '/html/userData.inc');
 
 ?>
 <p>
 <input type="hidden" name="hash" value="<?php echo $hash ?>">
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick="location.href='<?php echo $gallery->app->photoAlbumURL; ?>'">
+<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+<?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='$gallery->app->photoAlbumURL'"); ?>
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">

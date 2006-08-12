@@ -4,6 +4,7 @@
 * Project........: SMTP Class
 * Version........: 1.0.5
 * Last Modified..: 21 December 2001
+* Gallery SVN ID $Id$
 */
 
 	define('SMTP_STATUS_NOT_CONNECTED', 1, TRUE);

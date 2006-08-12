@@ -1,3 +1,9 @@
+<?php
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+?>
 <script language="JavaScript" type="text/javascript">
 /**
  *
@@ -31,7 +37,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         this.max = -1;
     };
     this.fieldname = fieldname;
-    
+
     /**
     * Add a new file input element
     */
@@ -103,7 +109,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         // Delete button
         var deleteButton = document.createElement('input');
         deleteButton.type = 'button';
-        deleteButton.value = '<?php echo _("Delete"); ?>';
+        deleteButton.value = '<?php echo gTranslate('core', "Delete"); ?>';
 
         // Caption field
         var caption = document.createElement('input');
@@ -140,15 +146,15 @@ function MultiSelector(list_target, max, fieldname, withCaption){
 
         if(withCaption) {
             // Set row value
-            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'</b><br><?php echo _("Caption:"); ?> ';
+            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'<\/b><br><?php echo gTranslate('core', "Caption:"); ?> ';
             // Add caption
             filenameCaptionDiv.appendChild(caption);
         }
         else {
             // Set row value
-            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'</b>';
+            filenameCaptionDiv.innerHTML = '<b>'+ element.value +'<\/b>';
         }
-        
+
         // Add button
         line.appendChild(deleteButton);
 

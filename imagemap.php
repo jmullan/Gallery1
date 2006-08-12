@@ -27,7 +27,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($full, $index, $imageareas, $formaction) = getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
+list($full, $index, $imageareas, $formaction) =
+    getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
 
 // Hack check and prevent errors
 if (! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
@@ -67,7 +68,7 @@ switch($formaction) {
         if (isset($xvals) && isset($yvals)) {
             $xcoords = explode(',', $xvals);
             $ycoords = explode(',', $yvals);
-    
+
             if (!empty($xcoords)) {
                 $coords = $xcoords[0] .',' . $ycoords[0];
                 for ($i = 1 ; $i < sizeof($xcoords); $i++) {
@@ -106,26 +107,26 @@ list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
   <?php
-common_header();
-?>
+	common_header();
+  ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php
 } // End if ! embedded
 
-includeHtmlWrap("photo.header");
+includeTemplate("photo.header");
 
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
       init_mousemove();
- </script>
- 
+  </script>
+
 <?php
 
 $rows = $gallery->album->fields["rows"];
@@ -135,52 +136,39 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $iconElements = array();
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
-    if ($gallery->user->isLoggedIn()) {
-        $iconText = getIconText('exit.gif', _("logout"));
-        $iconElements[] = '<a href="'.
-          doCommand("logout", array(), "view_album.php", array("page" => $page)) .
-          '">'. $iconText .'</a>';
-    } else {
-        $iconText = getIconText('identity.gif', _("login"));
-        $iconElements[] = popup_link($iconText, "login.php", false);
-    }
+        if ($gallery->user->isLoggedIn()) {
+                $iconElements[] = galleryLink(
+			doCommand("logout", array(), "view_album.php", array("page" => $page)),
+                        gTranslate('core', "log_out"),
+                        array(),
+                        'exit.gif'
+                );
+        } else {
+                $iconElements[] = popup_link(
+                        gTranslate('core', "_login"),
+                        'login.php', false, true, 500, 500, '','','identity.gif'
+                );
+        }
 }
 
 $navigator["id"] = $id;
 $navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
-$navigator["fullWidth"] = "100";
-$navigator["widthUnits"] = "%";
-$navigator["url"] = ".";
 
 #-- breadcrumb text ---
-$upArrowURL = gImage('nav_home.gif', _("navigate UP"));
-
-foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-    $breadcrumb["text"][] = $navAlbum['prefixText'] .': '.
-      galleryLink($navAlbum['url'], $navAlbum['title'] .'&nbsp;'. $upArrowURL, array('class' => 'bread'));
-}
+$breadcrumb["text"] = returnToPathArray($gallery->album, true);
 
 $breadcrumb["text"][] = galleryLink(
 	makeAlbumUrl($gallery->session->albumName, $id),
-	  _("Original photo") .'&nbsp;'. $upArrowURL,
-	  array('class' => 'bread')
+	  gTranslate('core', "Original photo"). "&nbsp;". gImage('icons/navigation/nav_home.gif'),
+	  array(), '', false, false
 	);
 
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
 
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
 
 $breadcrumb["bordercolor"] = $gallery->album->fields["bordercolor"];
 includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
-
-echo "</td></tr>\n";
-echo "\n<!-- End Header Part -->";
-
-echo "\n<!-- Real Content -->";
-echo "\n<tr><td>\n\t";
 
 list($width, $height) = $photo->getDimensions($full);
 
@@ -203,29 +191,30 @@ if (!empty($allImageAreas)) {
 
     echo "\n</script>";
 
-    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"myPic\" usemap=\"myMap\"");
+    $photoTag = $gallery->album->getPhotoTag($index, $full,array('id' => 'myPic', 'usemap' => 'myMap'));
 }
 else {
-    $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"myPic\"");
+    $photoTag = $gallery->album->getPhotoTag($index, $full,array('id' => 'myPic'));
 }
 ?>
 
-<div class="popup" style="text-align: <?php echo langLeft(); ?>">
+<div class="g-sitedesc">
 <?php
-echo _("Here you can create, edit or delete imagemaps for the selected photo.");
+echo gTranslate('core', "Here you can create, edit or delete imagemaps for the selected photo.");
 echo "\n<br>";
-echo _("Click the questionmark icon for helpful instructions.");
-echo popup_link('<img src="'. getImagePath('icons/help.gif') .'">', 'help/imagemap.php');
+echo gTranslate('core', "Click the question mark icon for helpful instructions.");
+echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/imagemap.php',
+         false, false, 500, 500, '', '', '', false, false);
 ?>
 </div>
 
-<?php 
+<?php
 echo makeFormIntro('imagemap.php',
     array('name' => 'areas'),
     array('index' => $index, 'formaction' => '')
     );
 ?>
-<table width="100%" border="0">
+<table width="100%">
 <tr>
   <td width="300" style="vertical-align: top;">
     <?php $type = (isDebugging()) ? 'text':'hidden'; ?>
@@ -233,20 +222,20 @@ echo makeFormIntro('imagemap.php',
 	<input type="<?php echo $type; ?>" name="xvals">
 	<input type="<?php echo $type; ?>" name="yvals">
 	<br>
-	<input type="button" onClick="resetAndClear();" value="<?php echo _("Clear and reset canvas"); ?>">
+	<input type="button" class="g-button" onClick="resetAndClear();" value="<?php echo gTranslate('core', "Clear and reset canvas"); ?>">
 	<hr>
 	<?php echo gTranslate('core', "Optional link-url"); ?><br>
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
 	<?php echo gTranslate('core', "Description"); ?><br>
 	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
-	<input type="submit" value="<?php echo _("Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
+	<input type="submit" class="g-button" value="<?php echo gTranslate('core', "Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
     <hr>
 <?php
 //print_r($photo);
 if (!empty($allImageAreas)) {
     $selectSize = (sizeof($allImageAreas) > 10) ? 10:sizeof($allImageAreas);
 
-    echo _("Select entries to show image area in your photo.");
+    echo gTranslate('core', "Select entries to show ImageMap areas in your photo.");
     echo "<br><select id=\"imageareas\" name=\"imageareas[]\" size=\"$selectSize\" multiple onChange=\"updatePictureAndArea()\">";
     foreach($gallery->album->getAllImageAreas($index) as $nr => $coords) {
         echo "\n<option value=\"$nr\">Map $nr</option>";
@@ -254,15 +243,15 @@ if (!empty($allImageAreas)) {
     echo "\n</select>";
 
     echo "\n<hr>";
-    echo "<input type=\"submit\" value=\"". _("Delete selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='delete'\">";
+    echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Delete selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='delete'\">";
 
     echo "\n<hr>";
-    echo "<input type=\"submit\" value=\"". _("Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
+    echo "<input type=\"submit\" class=\"g-button\" value=\"". gTranslate('core', "Update selected ImageMap(s)") ."\" onclick=\"document.areas.formaction.value='update'\">";
 
-    echo '<div class="attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
+    echo '<div class="g-attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
 }
 else {
-    echo _("No ImageMaps");
+    echo gTranslate('core', "No ImageMaps");
 }
 ?>
   </td>
@@ -275,31 +264,25 @@ else {
 </table>
 </form>
 
-  </td>
-</tr>
-<!-- End Real Content -->
-<!-- Start Footer Part -->
-<tr>
-  <td>
-<?php 
+<?php
 
-includeLayout('navtablebegin.inc');
 includeLayout('breadcrumb.inc');
-includeLayout('navtableend.inc');
-echo languageSelector();
 
-includeHtmlWrap("photo.footer");
+echo languageSelector();
 
 if (!empty($allImageAreas)) {
     echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
-?>    
+?>
     <script type="text/javascript">
     <!--
       initPaintArea ();
     //-->
     </script>
 <?php
+
+includeTemplate('general.footer');
+
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

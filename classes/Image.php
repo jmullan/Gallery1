@@ -151,50 +151,56 @@ class Image {
 		}
 	}
 
-	function getTag($dir, $full = 0, $size = 0, $attrs = '',$alttext = '') {
-	    global $gallery;
+	function getTag($dir, $full = false, $size = 0, $attrs = array()) {
+		global $gallery;
 
-	    /* Prevent non-integer data */
-	    $size = (int)$size;
+		/* Prevent non-integer data */
+		$size = (int)$size;
 
-	    $name = $this->getName($dir);
-	    $alttext = htmlspecialchars(strip_tags($alttext));
+		$name = $this->getName($dir);
+		$attrs['alt'] = $attrs['title'] = htmlspecialchars(strip_tags(trim($attrs['alt'])));
 
-	    $attrs .= ' border="0"';
-	    if ($size) {
-		if ($this->width > $this->height) {
-		    $width = $size;
-		    $height = round($size * ($this->height / $this->width));
+		if ($size) {
+			if ($this->width > $this->height) {
+				$width = $size;
+				$height = round($size * ($this->height / $this->width));
+			} else {
+				$width = round($size * ($this->width / $this->height));
+				$height = $size;
+			}
+			$attrs['width']		= $width;
+			$attrs['height']	= $height;
+		} else if ($full || !$this->resizedName) {
+			$attrs['width']		= $this->raw_width;
+			$attrs['height']	= $this->raw_height;
 		} else {
-		    $width = round($size * ($this->width / $this->height));
-		    $height = $size;
+			$attrs['width']		= $this->width;
+			$attrs['height']	= $this->height;
 		}
-		$size_val = "width=\"$width\" height=\"$height\"";
-	    } else if ($full || !$this->resizedName) {
-		$size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
-	    } else {
-		$size_val = "width=\"$this->width\" height=\"$this->height\"";
-	    }
 
-	    $fullImage = urlencode($this->name) .".$this->type";
-	    $resizedImage = urlencode($this->resizedName) .".$this->type";
+		$fullImage = urlencode($this->name) .".$this->type";
+		$resizedImage = urlencode($this->resizedName) .".$this->type";
 
-	    if ($this->resizedName && $size == 0) {
-		if ($full) {
-		    return "<img src=\"$dir/$fullImage\" ".
-			"width=\"$this->raw_width\" height=\"$this->raw_height\" .
-			$attrs alt=\"$alttext\" title=\"$alttext\">";
-		} else {
-		    return "<img src=\"$dir/$resizedImage\" ".
-			"width=\"$this->width\" height=\"$this->height\" " .
-			"$attrs alt=\"$alttext\" title=\"$alttext\">";
+		if ($this->resizedName && $size == 0) {
+			if ($full) {
+				$attrs['width']		= $this->raw_width;
+				$attrs['height']	= $this->raw_height;
+				$attrs['src']	= "$dir/$fullImage";
+			} else {
+				$attrs['width']		= $this->width;
+				$attrs['height']	= $this->height;
+				$attrs['src']	= "$dir/$resizedImage";
+			}
 		}
-	    } else {
-		return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
-	    }
+		else {
+			$attrs['src']		= "$dir/$fullImage";
+		}
+
+		$tag = '<img'. generateAttrs($attrs). '>';
+		return $tag;
 	}
 
-	function getName($dir, $full=0) {
+	function getName($dir, $full = false) {
 		if ((!$full) && (fs_file_exists("$dir/$this->resizedName.$this->type"))) {
 			return $this->resizedName;
 		} else {

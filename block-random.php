@@ -69,10 +69,11 @@ $i = 0;
 do { 
 	$success = doPhoto();
 	$i++;
-} while (empty($success) && $i < $gallery->app->blockRandomAttempts);
+}
+while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
-	echo _("No photo chosen.");
+	echo gTranslate('core', "No photo chosen.");
 }
 
 function doPhoto() {
@@ -115,18 +116,19 @@ function doPhoto() {
 	    $gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
 	    $gallery->html_wrap['attr'] = '';
 
-	    echo "\n<div class=\"random-block\">";
-	    echo "\n  <div class=\"random-block-photo\">";
+	    echo "\n<div class=\"g-random-block\">";
+	    echo "\n  <div class=\"g-random-block-photo\">";
 
-	    includeHtmlWrap("inline_photo.frame");
+	    includeLayout('inline_imagewrap.inc');
+	    
 	    if (!in_array($frame, array('dots', 'solid')) &&
-	      !fs_file_exists(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def")) {
+	      !fs_file_exists(dirname(__FILE__) . "/layout/frames/$frame/frame.def")) {
 	        echo "\n<br>";
 	    }
 	    echo $caption;
 
 	    echo "\n  </div>";
-	    printf ("\n  ". _("From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
+	    printf ("\n  ". gTranslate('core', "From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
 	    echo "\n</div>";
 
 	    return true;

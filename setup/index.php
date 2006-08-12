@@ -21,24 +21,21 @@
  */
 ?>
 <?php
-    /**
-     * @package setup
-     */
+/**
+ * @package setup
+ */
 
-	/** 
-	 * Its important to have this as first position.
-	 * Otherwise constants are not defined.
-	 */
-	require (dirname(__FILE__) . '/init.php');
-	
-	require (dirname(__FILE__) . '/config_data.inc');
-	require (GALLERY_BASE . '/js/sectionTabs.js.php');
+/**
+ * Its important to have this as first position.
+ * Otherwise constants are not defined.
+ */
 
-	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
-	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
+require (dirname(__FILE__) . '/init.php');
 
+list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
+    getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
-doctype(); 
+doctype();
 ?>
 <html>
 <head>
@@ -46,7 +43,7 @@ doctype();
 	<?php common_header(); ?>
 
 	<script language="JavaScript" type="text/javascript">
-        <!--
+    <!--
 
 	function localGetElementsByTagName(tagName) {
 		var eleArray;
@@ -87,12 +84,12 @@ doctype();
 
 </head>
 
-<body dir="<?php echo $gallery->direction ?>" onload="enableButtons()">
+<body onload="enableButtons()">
 <?php
+
 // Require a user to be logged in before allowing them to configure the server.
 // If Gallery has not been configured before, allow to continue without logging in
 configLogin(basename(__FILE__));
-
 
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
@@ -100,22 +97,23 @@ if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $next_page;
 } else if (isset($go_back)) {
 	$setup_page = $back_page;
-}	
+}
 
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
-	$tmp = explode(" ", urldecode($preserve));
-	$preserve = array();
-	foreach ($tmp as $key) {
-		$preserve[$key] = 1;
-		if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
-			$gallery->session->configForm->$key = "";
-			continue;
-		}
-	}
-        $preserve = array();
-} else {
-	$preserve = array();
+    $tmp = explode(" ", urldecode($preserve));
+    $preserve = array();
+    foreach ($tmp as $key) {
+        $preserve[$key] = true;
+        if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
+            $gallery->session->configForm->$key = "";
+            continue;
+        }
+    }
+    $preserve = array();
+}
+else {
+    $preserve = array();
 }
 
 /* Cache passwords in order to prevent them from being erased.
@@ -132,53 +130,28 @@ if (isset($gallery->session->configForm->smtpPassword) && (!empty($gallery->sess
 	$_REQUEST['smtpPassword'] = $gallery->session->configForm->smtpPassword;
 }
 
-?>
-
-<form method="post" action="index.php" name="config" enctype="application/x-www-form-urlencoded">
-<?php
 if (!isset($setup_page)) {
-	$setup_page = "check";
+	$setup_page = 'welcome';
 }
 
-$legit = array("check", "constants", "defaults", "confirm", "write");
-if (in_array($setup_page, $legit)) {
+$steps = array(
+    'welcome' => gTranslate('config', "Welcome"),
+    'check' => gTranslate('config', "1- Installation Check"),
+    'constants' => gTranslate('config', "2 - Settings"),
+    'defaults' => gTranslate('config', "3 - Defaults"),
+    'confirm' => gTranslate('config', "4 - Confirm"),
+    'write' => gTranslate('config', "5 - Save")
+);
+
+?>
+<form method="post" action="index.php" name="config" enctype="application/x-www-form-urlencoded">
+<?php
+
+if (array_key_exists($setup_page, $steps)) {
 	include(dirname(__FILE__) ."/$setup_page.inc");
 } else {
 	print _("Security violation") .".\n";
 	exit;
-}
-?>
-
-<?php
-
-function embed_hidden($key) {
-	global $$key;
-
-	$buf = "";
-	$real = $$key;
-
-	if (is_array($real)) {
-		foreach ($real as $real_key => $value) {
-			if (is_array($value)) {
-				foreach($value as $sub_key => $sub_value) {
-					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
-					$buf .= '<input type="hidden" name="'. $name .'" value="';
-					$buf .= urlencode($sub_value);
-					$buf .= "\">\n";
-				}
-			} else {
-				$name = stripWQuotesON("$key" . "[$real_key]");
-				$buf .= '<input type="hidden" name="'. $name .'" value="';
-				$buf .= urlencode($value);
-				$buf .= "\">\n";
-			}
-		}
-	} else {
-		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
-		$buf .= urlencode($real);
-		$buf .= "\">\n";
-	}
-	return $buf;
 }
 
 foreach ($preserve as $key => $val) {

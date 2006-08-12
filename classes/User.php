@@ -90,9 +90,6 @@ class Abstract_User {
         if (empty($this)) {
             $name = '>Unknown User<';
         }
-       /* else if($this->isPseudo()) {
-            $name = $format;
-        }*/
         else {
             $name = $format;
 

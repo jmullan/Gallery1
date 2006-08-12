@@ -202,25 +202,22 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header();
 ?>
 </head>
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 <?php 
 } 
-    includeHtmlWrap("gallery.header");
-    $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    includeTemplate("gallery.header");
 
-    $adminbox["commands"] = $adminCommands;
+    $adminbox['text'] = _("Find Orphans");
+    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), _("return to _admin page"), array(), '', true);
+    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), _("return to _gallery"), array(), '', true);
+
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
 
-    includeLayout('navtablebegin.inc');
     includeLayout('adminbox.inc');
-    includeLayout('navtablemiddle.inc');
     includeLayout('breadcrumb.inc');
-    includeLayout('navtableend.inc');
 
-echo '<div class="popup">';
+echo '<div class="g-content-popup" align="center">';
 if (empty($action)) { 
 	if (!empty($orphanAlbums)) { ?>
 		<p><?php echo _("Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
@@ -294,12 +291,15 @@ if (empty($action)) {
 <?php 
 	} else {
 		// No Orphans
-		echo "\n<p align=\"center\" class=\"warning\">" .  _("No Orphans Found") . "</p>";
-		echo "\n<p align=\"center\">". _("There are no orphaned elements in this Gallery.") . "</p>\n";
+		echo "\n<p align=\"center\" class=\"g-success\">" .
+			_("There are no orphaned elements in this Gallery.") . "</p>\n";
 	}
 } // !isset(update) 
 else { 
-	echo "\n<p align=\"center\" class=\"warning\">" .  sprintf(_("Orphan %s Repaired"), ($action == "albums") ? _("Albums") : _("Files")) . "</p>";
+	echo "\n<div class=\"g-success\">";
+	echo ($action == "albums") ? _("Orphaned albums repaired.") : _("Orphaned files repaired.");
+	echo "</div>\n";
+
 	if ($action == "albums") {
 		attachOrphanedAlbums($orphanAlbums);
 	}
@@ -320,7 +320,7 @@ else {
 ?>
 </div>
 <?php
-    includeHtmlWrap("gallery.footer"); 
+    includeTemplate('general.footer'); 
     if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>

@@ -20,22 +20,30 @@
  * $Id$
  */
 ?>
-<p>
-<?php echo _("You can use one of these desktop agents to drag and drop photos from your desktop") ?>:
+<br><br>
+<?php echo gTranslate('core', "You can use one of these desktop agents to drag and drop photos from your desktop") ?>:
 <br>
 
 <ul>
-	<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b></li>
-	<dt><?php echo _("A Java application that runs on Mac, Windows and Unix") ?></dt>
+  <li>
+	<b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/gallery_remote.php'; parent.close();">Gallery Remote</a></b>
+	<br>
+	<?php echo gTranslate('core', "A Java application that runs on Mac, Windows and Unix") ?>
+	<br><br>
+  </li>
 
-<br>
-	<li><b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo _("Other methods") ?></a></b></li>
-	<dt><?php echo _("See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?></dt>
+  <li>
+	<b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo gTranslate('core', "Other methods") ?></a></b>
+	<br>
+	<?php echo gTranslate('core', "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?>
+	<br><br>
+  </li>
 
 <?php if (empty($GALLERY_EMBEDDED_INSIDE) || $GALLERY_EMBEDDED_INSIDE_TYPE='GeekLog') { ?>
-<br>
-	<li><b><a href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>"><?php echo _("Windows XP Publishing Agent") ?></a></b></li>
-	<dt><?php echo _("<i>Note:</i> this feature is still experimental!") ?></dt>
+  <li>
+	<b><a target="_parent" href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>"><?php echo gTranslate('core', "Windows XP Publishing Agent") ?></a></b>
+	<br>
+	<?php echo gTranslate('core', "<i>Note:</i> this feature is still experimental!") ?>
+  </li>
 <?php } ?>					 
 </ul>
-</p>

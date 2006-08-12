@@ -1,15 +1,15 @@
 <?php /* $Id$ */ ?>
 <?php
 
-if ($gallery->direction == "ltr") {
-    $fpImgUrl= getImagePath('icons/nav_first.gif');
-    $ppImgUrl= getImagePath('icons/nav_prev.gif');
-    $npImgUrl= getImagePath('icons/nav_next.gif');
-    $lpImgUrl= getImagePath('icons/nav_last.gif');
+if ($gallery->direction  == 'ltr') {
+    $fpImg = 'navigation/nav_first.gif';
+    $ppImg = 'navigation/nav_prev.gif';
+    $npImg = 'navigation/nav_next.gif';
+    $lpImg = 'navigation/nav_last.gif';
 } else {
-    $fpImgUrl= getImagePath('icons/nav_last.gif');
-    $ppImgUrl= getImagePath('icons/nav_next.gif');
-    $npImgUrl= getImagePath('icons/nav_prev.gif');
-    $lpImgUrl= getImagePath('icons/nav_first.gif');
+    $fpImg = 'navigation/nav_last.gif';
+    $ppImg = 'navigation/nav_next.gif';
+    $npImg = 'navigation/nav_prev.gif';
+    $lpImg = 'navigation/nav_first.gif';
 }
 ?>

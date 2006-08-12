@@ -72,39 +72,35 @@ if (empty($albumName)) {
 	$number		= (int)$gallery->app->gallery_slideshow_length;
 	$random		= ($gallery->app->gallery_slideshow_type == "random");
 	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
-	$borderColor	= $gallery->app->default["bordercolor"];
-	$borderwidth	= $gallery->app->default["border"];
 } else {
 	$recursive	= ($album->fields["slideshow_recursive"] == "yes");
 	$loop		= ($album->fields["slideshow_loop"] == "yes");
 	$random		= ($album->fields["slideshow_type"] == "random");
 	$number		= (int)$album->fields["slideshow_length"];
-	$borderColor	= $gallery->album->fields["bordercolor"];
-	$borderwidth	= $gallery->album->fields["border"];
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText = getIconText('1rightarrow.gif', _("play"));
-$stopIconText = getIconText('2downarrow.gif', _("stop"));
-$normalSizeIconText = getIconText('window_nofullscreen.gif', _("normal size"));
-$fullSizeIconText = getIconText('window_fullscreen.gif', _("full size"));
-$forwardIconText = getIconText('1rightarrow.gif', _("forward direction"));
-$backwardIconText = getIconText('1leftarrow.gif', _("reverse direction"));
-$delayIconText = getIcontext('history.gif', _("Delay"));
-$loopIconText =  getIcontext('reload.gif', _("Loop:"));
+$playIconText = getIconText('1rightarrow.gif', gTranslate('core', "play"));
+$stopIconText = getIconText('2downarrow.gif', gTranslate('core', "stop"));
+$normalSizeIconText = getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
+$fullSizeIconText = getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
+$forwardIconText = getIconText('1rightarrow.gif', gTranslate('core', "forward direction"));
+$backwardIconText = getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
+$delayIconText = getIcontext('history.gif', gTranslate('core', "Delay"));
+$loopIconText =  getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar") &&
 	! $gallery->session->offline) {
-	$modes["applet"] = _("Fullscreen applet");
+	$modes["applet"] = gTranslate('core', "Fullscreen applet");
 }
 
-$modes["high"] = _("Modern browsers");
+$modes["high"] = gTranslate('core', "Modern browsers");
 
 if (!empty($albumName) && !$gallery->session->offline) {
-    $modes["low"] = _("Compatible but limited");
+    $modes["low"] = gTranslate('core', "Compatible but limited");
 }
 
 if (!isset($mode) || !isset($modes[$mode])) {
@@ -112,7 +108,6 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
-
 
 slideshow_initialize();
 
@@ -122,41 +117,46 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $title; ?></title>
-<?php 
+<?php
 	common_header();
 
 // the link colors have to be done here to override the style sheet
 if ($albumName) {
-	echo "\n". '<style type="text/css">';
-	if ($gallery->album->fields["linkcolor"]) {
-?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php
-       	}
-       	if ($gallery->album->fields["bgcolor"]) {
-	       	echo "BODY { background-color:".$gallery->album->fields['bgcolor']."; }";
-       	}
-       	if (isset($gallery->album->fields["background"]) && $gallery->album->fields["background"]) {
-	       	echo "BODY { background-image:url(" . $gallery->album->fields['background'] . "); } ";
-       	}
-       	if ($gallery->album->fields["textcolor"]) {
-	       	echo "BODY, TD {color:" . $gallery->album->fields['textcolor']."; }";
-	       	echo ".head {color:" . $gallery->album->fields['textcolor'] . "; }";
-	       	echo ".headbox {background-color:" . $gallery->album->fields['bgcolor'] . "; }";
-       	}
-	echo "\n</style>\n";
+    if( !empty($gallery->album->fields["linkcolor"]) ||
+    !empty($gallery->album->fields["bgcolor"]) ||
+    !empty($gallery->album->fields["textcolor"])) {
+
+        echo "\n<style type=\"text/css\">";
+        // the link colors have to be done here to override the style sheet
+        if ($gallery->album->fields["linkcolor"]) {
+            echo "\n  a:link, a:visited, a:active {";
+            echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+            echo "\n  a:hover { color: #ff6600; }";
+
+        }
+        if ($gallery->album->fields["bgcolor"]) {
+            echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+            echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+        }
+        if ($gallery->album->fields["textcolor"]) {
+            echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+            echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+            echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+        }
+
+        echo "\n  </style>";
+    }
 }
 ?>
 </head>
 
-<body dir="<?php echo $gallery->direction ?>">
+<body>
 
 <?php }
 
-includeHtmlWrap("slideshow.header"); ?>
+includeTemplate("slideshow.header"); ?>
 
 <script src="<?php echo $gallery->app->photoAlbumURL ?>/js/client_sniff.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -174,64 +174,39 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 </script>
 
 <?php
-	slideshow_body();
+
+slideshow_body();
 
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-
-if (isset($gallery->album)) {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-	$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-	  $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
-}
-else {
-    /* We're on mainpage */
-    $breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
-      $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-}
-
-$breadcrumb["bordercolor"] = $borderColor;
-
-$adminbox["commands"] = "";
+$breadcrumb["text"] = @returnToPathArray($gallery->album, true);
 
 // todo: on the client, prevent old browsers from using High, and remove High from the bar
 if ( !$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
-		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
+		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
-			$adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"$url\">[" .$modes[$m] ."]</a>";
+			$adminbox["commands"] = "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
 		} else {
-			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
+			$adminbox["commands"] = "&nbsp;" .$modes[$m];
 		}
 	}
 }
 
-$adminbox["text"] = _("Slide Show");
-$adminbox["bordercolor"] = $borderColor;
-
-$navigator["fullWidth"] = '100';
-$navigator["widthUnits"] = '%';
-
-includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
-includeLayout('navtablemiddle.inc');
+
 includeLayout('breadcrumb.inc');
-includeLayout('navtablemiddle.inc');
 
 slideshow_controlPanel();
 
-includeLayout('navtableend.inc');
-
-echo "\n<br>";
+echo "\n<br clear=\"all\">";
 
 slideshow_image();
 
 echo languageSelector();
-includeHtmlWrap("slideshow.footer");
+
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

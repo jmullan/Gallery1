@@ -102,21 +102,23 @@ class AlbumItem {
         }
     }
 
-    function getExif($dir, $forceRefresh = 0) {
+    function getExif($dir, $forceRefresh = false) {
         global $gallery;
         $file = $dir . "/" . $this->image->name . "." . $this->image->type;
+        
+        echo debugMessage(sprintf(gTranslate('core', "Getting Exif of file '%s'"), $file), __FILE__, __LINE__);
 
         /*
         * If we don't already have the exif data, get it now.
         * Otherwise return what we have.
         */
-        $needToSave = 0;
+        $needToSave = false;
         if ($gallery->app->cacheExif != 'yes') {
             if (empty($this->exifData) || $forceRefresh) {
                 /* Cache the current EXIF data and update the item capture date */
                 list($status, $this->exifData) = getExif($file);
                 $this->setItemCaptureDate();
-                $needToSave = 1;
+                $needToSave = true;
             } else {
                 /* We have a cached value and are not forcing a refresh */
                 $status = 0;
@@ -126,7 +128,7 @@ class AlbumItem {
             /* If the data is cached but the feature is disabled, remove the cache */
             if (!empty($this->exifData)) {
                 unset($this->exifData);
-                $needToSave = 1;
+                $needToSave = true;
             }
             list($status, $returnExifData) = getExif($file);
         }
@@ -458,7 +460,7 @@ class AlbumItem {
     function getFileSize($full = 0) {
         global $gallery;
         $stat = fs_stat($this->image->getPath($gallery->album->getAlbumDir(), $full));
-        
+
         if (is_array($stat)) {
             return $stat[7];
         } else {
@@ -716,7 +718,7 @@ class AlbumItem {
         return 0;
     }
 
-    function getPreviewTag($dir, $size = 0, $attrs = '') {
+    function getPreviewTag($dir, $size = 0, $attrs = array()) {
         if ($this->preview) {
             return $this->preview->getTag($dir, 0, $size, $attrs);
         } else {
@@ -730,6 +732,7 @@ class AlbumItem {
 	 */
     function getAlttext() {
         $alttext = '';
+        
         if (!empty($this->extraFields['AltText'])) {
             $alttext = $this->extraFields['AltText'];
         } elseif (!empty($this->caption)) {
@@ -739,41 +742,48 @@ class AlbumItem {
         return $alttext;
     }
 
-    function getThumbnailTag($dir, $size = 0, $attrs = '') {
+    function getThumbnailTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-
+		
+        if(empty($attrs['alt'])) {
+        	$attrs['alt'] = $this->getAlttext();
+        }
+		
         if ($this->thumbnail) {
-            return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
+            return $this->thumbnail->getTag($dir, false, $size, $attrs);
         } else {
             return "<i>". _("No thumbnail") ."</i>";
         }
     }
 
-    function getHighlightTag($dir, $size = 0, $attrs = '', $alttext = '') {
+    function getHighlightTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-
+         
         if (is_object($this->highlightImage)) {
-            if (!isset($alttext)) {
-                $alltext=$this->getAlttext();
+            if (empty($attrs['alt'])) {
+                $attrs['alt'] = $this->getAlttext();
             }
-
-            return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
+            return $this->highlightImage->getTag($dir, 0, $size, $attrs);
         } else {
-            return "<i>". _("No highlight") ."</i>";
+            return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
     }
 
-    function getPhotoTag($dir, $full = 0, $attrs) {
+    function getPhotoTag($dir, $full = false, $attrs) {
+    	if (empty($attrs['alt'])) {
+    		$attrs['alt'] = $this->getAlttext();
+    	}
+            
         if ($this->image) {
-            return $this->image->getTag($dir, $full, '', $attrs, $this->getAlttext());
+            return $this->image->getTag($dir, $full, 0, $attrs);
         } else {
             return "about:blank";
         }
     }
 
-    function getPhotoPath($dir, $full = 0) {
+    function getPhotoPath($dir, $full = false) {
         if ($this->image) {
             return $this->image->getPath($dir, $full);
         } else {
@@ -783,9 +793,9 @@ class AlbumItem {
 
     /**
 	 * @param	$full		boolean
-	 * @return	$imageName	string 
+	 * @return	$imageName	string
 	 * @author	Jens Tkotz<jens@peino.de
-	 */ 
+	 */
     function getImageName($full = false) {
         if($this->image) {
             $imageName = $this->image->getImageName($full);
@@ -821,8 +831,38 @@ class AlbumItem {
         }
     }
 
-    function setCaption($cap) {
-        $this->caption = $cap;
+    function setCaption($caption) {
+        $this->caption = $caption;
+    }
+
+    function createCaption($dir, $captionType) {
+	global $gallery;
+	$dateTimeFormat = $gallery->app->dateTimeString;
+	$path = $this->image->getPath($dir, true);
+
+	switch ($captionType) {
+	    case 0:
+		$caption = '';
+	    break;
+
+	    case 1:
+	    default:
+		/* Use filename */
+		$caption = strtr($this->image->name, '_', ' ');
+	    break;
+
+	    case 2:
+		/* Use file cration date */
+		$caption = strftime($dateTimeFormat, filectime($path));
+	    break;
+
+	    case 3:
+		/* Use capture date */
+		$caption = strftime($dateTimeFormat, getItemCaptureDate($path));
+	    break;
+	}
+	
+	$this->setCaption($caption);
     }
 
     function getCaption() {

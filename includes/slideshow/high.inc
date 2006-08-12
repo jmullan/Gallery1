@@ -21,6 +21,13 @@
  */
 ?>
 <?php
+
+include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+
+if (class_exists('Browser')) {
+    $browser = &Browser::singleton();
+}
+
 function slideshow_initialize() {
     global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
@@ -29,10 +36,10 @@ function slideshow_initialize() {
     // default settings ---
     $defaultLoop = 0;
     $defaultTransition = 0;
-    $defaultPause = 3; 
+    $defaultPause = 3;
 
     $full_option = false;
-    
+
     define('PHOTO_URL', 1 << 0);
     define('PHOTO_CAPTION', 1 << 1);
     define('PHOTO_URL_AS_HREF', 1 << 2);
@@ -45,43 +52,43 @@ function slideshow_initialize() {
     if ($photo_count > 0) {
         if ($number == 0 || $number > $photo_count) {
             $number = $photo_count;
-        } 
+        }
         if ($random) {
             $random_full_urls = array();
             $random_photos = array();
             $rand_keys = array_rand ($urls, $number);
             if ($number == 1) {
                 $rand_keys = array($rand_keys);
-            } 
+            }
             foreach ($rand_keys as $key) {
                 $random_urls[] = $urls[$key];
                 $random_full_urls[] = $full_urls[$key];
                 $random_captions[] = $captions[$key];
-            } 
+            }
             $urls = $random_urls;
             $full_urls = $random_full_urls;
             $captions = $random_captions;
-        } 
+        }
         if (empty($albumName)) {
             if ($random) {
-                $title = sprintf(_("%s Random Images from %s"),
+                $title = sprintf(gTranslate('core', "%s Random Images from %s"),
                     $number,
                     $gallery->app->galleryTitle);
             } else {
-                $title = sprintf(_("Slide Show for Gallery :: %s"),
+                $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
                     $gallery->app->galleryTitle);
-            } 
+            }
         } else {
             if ($random) {
-                $title = sprintf(_("%d Random Images from album :: %s"),
+                $title = sprintf(gTranslate('core', "%d Random Images from album :: %s"),
                     $number,
                     $gallery->album->fields["title"]);
             } else {
-                $title = sprintf(_("Slide Show for album :: %s"), $gallery->album->fields["title"]);
-            } 
-        } 
-    } 
-} 
+                $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
+            }
+        }
+    }
+}
 
 function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $recursive = true) {
     global $gallery, $full_option;
@@ -96,16 +103,16 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
             $subAlbum = $albumDB->getAlbum($gallery->user, $i);
             if (!$gallery->user->canReadAlbum($subAlbum)) {
                 continue;
-            } 
+            }
             $photo_count += buildSlideshowPhotos($full_urls, $urls, $captions, $subAlbum, $recursive);
-        } 
+        }
         return $photo_count;
-    } 
+    }
     if (!$gallery->user->canReadAlbum($album)) {
         return $photo_count;
-    } 
+    }
     $numPhotos = $album->numPhotos(1);
-    $numDisplayed = 0; 
+    $numDisplayed = 0;
     // Find the correct starting point, accounting for hidden photos
     $index = getNextPhoto(0, $album);
     $photo_count = 0;
@@ -116,15 +123,15 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
   * an album that we can't read.
   */
             break;
-        } 
+        }
 
         $photo = $album->getPhoto($index);
-        $numDisplayed++; 
+        $numDisplayed++;
         // Skip movies
         if ($photo->isMovie()) {
             $index = getNextPhoto($index, $album);
             continue;
-        } 
+        }
         if ($photo->isAlbum()) {
             if ($recursive) {
                 $subAlbumName = $album->getAlbumName($index);
@@ -133,11 +140,11 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
                 $subAlbum->load($subAlbumName);
                 if ($gallery->user->canReadAlbum($subAlbum)) {
                     $photo_count += buildSlideshowPhotos($full_urls, $urls, $captions, $subAlbum, $recursive);
-                } 
-            } 
+                }
+            }
             $index = getNextPhoto($index, $album);
             continue;
-        } 
+        }
         $photo_count++;
 
         $urls[] = $album->getPhotoPath($index, 0);
@@ -146,24 +153,24 @@ function buildSlideshowPhotos(&$full_urls, &$urls, &$captions, $album = null, $r
             $full_urls[] = $album->getPhotoPath($index, 1);
         } else {
             $full_urls[] = $album->getPhotoPath($index, 0);
-        } 
+        }
 
         $caption = $album->getCaption($index);
         if ($recursive) {
-            $caption .= ' (<a href="' . makeAlbumURL($album->fields["name"]) . '">' . $album->fields['title'] . '</a>)';
-        } 
+            $caption .= ' (<a href="' . makeAlbumURL($album->fields["name"]) . '">' . $album->fields['title'] . '<\/a>)';
+        }
         $caption .= $album->getCaptionName($index);
         $caption = str_replace("\"", " ", $caption);
         $caption = str_replace("\n", " ", $caption);
-        $caption = str_replace("\r", " ", $caption); 
+        $caption = str_replace("\r", " ", $caption);
         // Print out the entry for this image as Javascript
-        $captions[] = $caption; 
+        $captions[] = $caption;
         // Go to the next photo
         $index = getNextPhoto($index, $album);
-    } 
+    }
 
     return $photo_count;
-} 
+}
 
 function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count) {
     $count = 0;
@@ -171,18 +178,18 @@ function printSlideshowPhotos($full_urls, $urls, $captions, $what, $photo_count)
         $count++;
         if (($what &PHOTO_URL) != 0) {
             print "photo_urls[$count] = \"" . $urls[$index] . "\";\n";
-        } 
+        }
 
         if (($what &PHOTO_URL_AS_HREF) != 0) {
             print "<a id=\"photo_urls_$count\" href=\"" . $urls[$index] . "\"></a>\n";
             print "<a id=\"full_photo_urls_$count\" href=\"" . $full_urls[$index] . "\"></a>\n";
-        } 
+        }
         if (($what &PHOTO_CAPTION) != 0) {
             // Print out the entry for this image as Javascript
             print "photo_captions[$count] = \"" . $captions[$index] . "\";\n";
-        } 
-    } 
-} 
+        }
+    }
+}
 
 function slideshow_body() {
     global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
@@ -227,38 +234,38 @@ var loop = <?php echo $defaultLoop ?>;
 <?php
     printSlideshowPhotos($full_urls, $urls, $captions, PHOTO_CAPTION, $photo_count);
 
-    $transitionNames[] = _("Blend");
+    $transitionNames[] = gTranslate('core', "Blend");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Fade(duration=1)';
-    $transitionNames[] = _("Blinds");
+    $transitionNames[] = gTranslate('core', "Blinds");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Blinds(Duration=1,bands=20)';
-    $transitionNames[] = _("Checkerboard");
+    $transitionNames[] = gTranslate('core', "Checkerboard");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Checkerboard(Duration=1,squaresX=20,squaresY=20)';
-    $transitionNames[] = _("Diagonal");
+    $transitionNames[] = gTranslate('core', "Diagonal");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Strips(Duration=1,motion=rightdown)';
-    $transitionNames[] = _("Doors");
+    $transitionNames[] = gTranslate('core', "Doors");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Barn(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Gradient");
+    $transitionNames[] = gTranslate('core', "Gradient");
     $transitions[] = 'progid:DXImageTransform.Microsoft.GradientWipe(duration=1)';
-    $transitionNames[] = _("Iris");
+    $transitionNames[] = gTranslate('core', "Iris");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Iris(Duration=1,motion=out)';
-    $transitionNames[] = _("Pinwheel");
+    $transitionNames[] = gTranslate('core', "Pinwheel");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Wheel(Duration=1,spokes=12)';
-    $transitionNames[] = _("Pixelate");
+    $transitionNames[] = gTranslate('core', "Pixelate");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Pixelate(maxSquare=10,duration=1)';
-    $transitionNames[] = _("Radial");
+    $transitionNames[] = gTranslate('core', "Radial");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RadialWipe(Duration=1,wipeStyle=clock)';
-    $transitionNames[] = _("Rain");
+    $transitionNames[] = gTranslate('core', "Rain");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RandomBars(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Slide");
+    $transitionNames[] = gTranslate('core', "Slide");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Slide(Duration=1,slideStyle=push)';
-    $transitionNames[] = _("Snow");
+    $transitionNames[] = gTranslate('core', "Snow");
     $transitions[] = 'progid:DXImageTransform.Microsoft.RandomDissolve(Duration=1,orientation=vertical)';
-    $transitionNames[] = _("Spiral");
+    $transitionNames[] = gTranslate('core', "Spiral");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Spiral(Duration=1,gridSizeX=40,gridSizeY=40)';
-    $transitionNames[] = _("Stretch");
+    $transitionNames[] = gTranslate('core', "Stretch");
     $transitions[] = 'progid:DXImageTransform.Microsoft.Stretch(Duration=1,stretchStyle=push)';
 
-    $transitionNames[] = _("RANDOM!");
+    $transitionNames[] = gTranslate('core', "RANDOM!");
     $transitions[] = 'special case';
 
     $transitionCount = sizeof($transitions) - 1;
@@ -267,7 +274,7 @@ var loop = <?php echo $defaultLoop ?>;
     foreach ($transitions as $definition) {
         print "transitions[$trans_i] = \"$definition\";\n";
         $trans_i++;
-    } 
+    }
     print "var transition_count = $transitionCount;\n";
 
     ?>
@@ -314,7 +321,7 @@ function stop() {
 	changeElementText("stopOrStartText", '<?php echo $playIconText; ?>');
 
 	onoff = 0;
-	status = "<?php echo unhtmlentities(_("The slide show is stopped, Click [play] to resume.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide show is stopped, Click [play] to resume.")) ?>";
 	clearTimeout(timer);
 
 }
@@ -322,21 +329,21 @@ function stop() {
 function play() {
 	changeElementText("stopOrStartText", '<?php echo $stopIconText; ?>');
 	onoff = 1;
-	status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>";
 	go_to_next_photo();
 }
 
 function full() {
 	changeElementText("fullOrNormalText", '<?php echo $normalSizeIconText; ?>');
 	fullsized = 1;
-	status = "<?php echo unhtmlentities(_("The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
 }
 
 function normal() {
 	changeElementText("fullOrNormalText", '<?php echo $fullSizeIconText; ?>');
 
 	fullsized = 0;
-	status = "<?php echo unhtmlentities(_("The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
 }
 
 function changeDirection() {
@@ -374,12 +381,12 @@ function wait_for_current_photo() {
 		** The current photo isn't loaded yet.  Set a short timer just to wait
 		** until the current photo is loaded.
 		*/
-		status = "<?php echo unhtmlentities(_("Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(_("of")) ?>" + photo_count + ").  " + "<?php echo unhtmlentities(_("Please Wait...")) ?>" ;
+		status = "<?php echo unhtmlentities(gTranslate('core', "Picture is loading...")) ?>(" + current_location + " <?php echo unhtmlentities(gTranslate('core', "of")) ?>" + photo_count + ").  " + "<?php echo unhtmlentities(gTranslate('core', "Please Wait...")) ?>" ;
 		clearTimeout(timer);
 		timer = setTimeout('wait_for_current_photo()', 500);
 		return 0;
 	} else {
-		status = "<?php echo unhtmlentities(_("Slide show is running...")) ?>" ;
+		status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>" ;
 		preload_next_photo();
 		reset_timer();
 	}
@@ -394,7 +401,7 @@ function go_to_next_photo() {
 		wait_for_current_photo();
 		return 0;
 	}
-	
+
 	preload_next_photo();
 	reset_timer();
 }
@@ -469,7 +476,7 @@ function preload_photo(index) {
 }
 
 function setCaption(text) {
-	changeElementText("caption", "[" + current_location + " <?php echo _("of") ?> " + photo_count + "] " + text);
+	changeElementText("caption", "[" + current_location + " <?php echo gTranslate('core', "of") ?> " + photo_count + "] " + text);
 }
 // -->
 </script>
@@ -480,7 +487,7 @@ function slideshow_controlPanel() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
-			$transitionCount, $pixelImage, $stopIconText;
+			$transitionCount, $pixelImage, $stopIconText, $browser;
 
 	global $delayIconText, $loopIconText;
         ?>
@@ -490,83 +497,80 @@ function slideshow_controlPanel() {
 	$startStopIconText = $stopIconText;
         $iconElements[] = '<a href="#" onClick="stopOrStart(); return false;" style="display: block"><span id="stopOrStartText">'. $startStopIconText . '</span></a>';
 
-	$directionIconText =  getIconText('1leftarrow.gif', _("reverse direction"));
+	$directionIconText =  getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
         $iconElements[] = '<a href="#" onClick="changeDirection(); return false;" style="display: block"><span id="changeDirText">'. $directionIconText .'</span></a>';
 
         if ($full_option) {
-		$fullIconText = getIcontext('window_fullscreen.gif',_("full size"));
+		$fullIconText = getIcontext('window_fullscreen.gif',gTranslate('core', "full size"));
 		$iconElements[] = '<a href="#" onClick="fullOrNormal(); return false;" style="display: block"><span id="fullOrNormalText">'. $fullIconText .'</span></a>';
         }
 
         $iconElements[] = $delayIconText .':';
-	$iconElements[] = drawSelect("time", array(1 => _("1 second"),
-				2 => _("2 seconds"),
-				3 => _("3 seconds"),
-				5 => _("5 seconds"),
-				10 => _("10 seconds"),
-				15 => _("15 seconds"),
-				30 => _("30 seconds"),
-				45 => _("45 seconds"),
-				60 => _("1 Minute")),
+	$iconElements[] = drawSelect("time", array(1 => gTranslate('core', "1 second"),
+				2 => gTranslate('core', "2 seconds"),
+				3 => gTranslate('core', "3 seconds"),
+				5 => gTranslate('core', "5 seconds"),
+				10 => gTranslate('core', "10 seconds"),
+				15 => gTranslate('core', "15 seconds"),
+				30 => gTranslate('core', "30 seconds"),
+				45 => gTranslate('core', "45 seconds"),
+				60 => gTranslate('core', "1 Minute")),
 				$defaultPause, // default value
 				1, // select size
-				array('onchange' => 'reset_timer()', 'class' => 'adminform')
+				array('onchange' => 'reset_timer()', 'class' => 'g-admin')
 			);
 
 	if ($loop) {
 		$checked = ($defaultLoop) ? 'checked' : '';
 		$iconElements[] = $loopIconText;
 		$iconElements[] = '<input type="checkbox" name="loopCheck"'. $checked .'onclick="toggleLoop();">';
-	} 
+	}
 
 	echo makeIconMenu($iconElements, 'right', false);
 ?>
-    <td class="noLink"><script type="text/javascript">
-    <!--
-    /* show the blend select if appropriate */
-    if (browserCanBlend) {
-	document.write('<?php echo _("Transition:"); ?><\/td>');
-	document.write('<td><?php echo str_replace("/", "\/", drawSelect("transitionType",
+    <td class="g-icon-nolink">
+    <?php
+    if ($browser->isBrowser('msie') && $browser->getMajor() >= 4) {
+        echo gTranslate('core', "Transition:");
+        echo "</td><td>";
+        echo drawSelect("transitionType",
                   $transitionNames,
                   $defaultTransition,
                   1,
-                 array('onchange' => 'change_transition()', 'class' => 'adminform'))); ?>');
+                 array('onchange' => 'change_transition()', 'class' => 'g-admin'));
     }
-    // -->
-    </script></td></tr></table>
+    ?>
+    </td>
+    </tr>
+    </table>
 </form>
 <?php
-    } 
+    }
 
 
-    function slideshow_image() {
+function slideshow_image() {
 	global $gallery, $albumName, $defaultLoop, $defaultPause, $defaultTransition, $full_option,
 			$album, $recursive, $number, $random, $loop, $borderColor, $borderwidth, $bgcolor,
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
 			$transitionCount, $pixelImage;
-		
-        if ($photo_count > 0) {
 
-            ?>
+	if ($photo_count > 0) {
+?>
 
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td><script type="text/javascript">
+<div class="center">
+  <script type="text/javascript">
 	<!--
 		firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
 		document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src=\"");
 		document.write(firstPhotoURL);
 		document.write("\" name=slide>");
 	// -->
-	</script></td>
-</tr>
-</table>
-<br>
+  </script>
 
 <script type="text/javascript">
 <!--
 /* show the caption */
-document.write("<div class='pcaption' id='caption'><\/div>");
+document.write('<div class="g-photo-caption" id="caption"><\/div>');
 
 /* Load the first picture */
 setCaption(photo_captions[1]);
@@ -576,20 +580,12 @@ preload_photo(1);
 play();
 // -->
 </script>
+</div>
 
 <?php
-        } else {
-
-            ?>
-
-<br><b><?php echo _("This album has no photos to show in a slide show.") ?></b>
-<br><br>
-<span class="admin">
-<a href="<?php echo makeGalleryUrl("view_album.php",
-                array("set_albumName" => $gallery->session->albumName)) ?>">[<?php echo _("back to album") ?>]</a>
-</span>
-
-<?php
-        } 
-    } 
-    ?>
+	}
+	else {
+		echo "<p><b>". gTranslate('core', "This album has no photos to show in a slide show.") ."</b></p>";
+	}
+}
+?>

@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,19 +23,49 @@
 <?php
 
 function gallery_error($message) {
-    return '<span class="error">'. _("Error:") . " $message</span>\n";
+    return '<span class="g-error">'. sprintf(gTranslate('common', "Error: %s") , $message) ."</span>\n";
 }
 
 function infoLine($messages, $type = '') {
-    $class = (!empty($type)) ? "infoline_$type" : '';
-
     $message = (is_array($messages)) ? implode("<br>\n", $messages) : $messages;
 
     if(!empty($message)) {
-        return "<div class=\"$class\">$message</div>\n";
+        return "<div class=\"$type\">Infoline: $message</div>\n";
     } else {
 	return '';
     }
+}
+
+function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
+    $html = '';
+
+    $types = array('success', 'warning', 'error', 'informaion');
+    if(!empty($messages)) {
+        if($withOuterBorder) {
+            $html = "\n<div class=\"g-notice\">";
+        }
+
+        if(!empty($caption)) {
+            $html .= "<span class=\"g-notice-caption\">$caption</span>";
+        }
+
+	ksort($messages);
+        foreach ($messages as $message) {
+	    if(!isset($message['type']) || ! in_array($message['type'], $types)) {
+		$message['type'] = 'information';
+	    }
+
+            $html .= "\n  ". '<div class="g-'. $message['type'] .' left g-message">';
+            $html .= gImage('icons/notice/'. $message['type'] .'.gif');
+            $html .= ' '. $message['text'];
+            $html .= "\n  </div>";
+        }
+        if($withOuterBorder) {
+            $html .= "\n</div>";
+        }
+    }
+
+    return $html;
 }
 
 function errorRow($key) {
@@ -51,7 +81,7 @@ function errorRow($key) {
 }
 
 function processingMsg($buf) {
-    echo "\n<br>$buf";
+    echo "\n- $buf<br>";
     my_flush();
 }
 
@@ -80,7 +110,7 @@ function debugMessage($msg, $file, $line, $level = NULL) {
     global $gallery;
 
     if (isDebugging($level)) {
-        echo "\n<div class=\"debugmessage\">". basename($file) ."::$line -> $msg</div>\n";
+        echo "\n<div class=\"g-debugmessage\">". basename($file) ."::$line -> $msg</div>\n";
     }
 }
 

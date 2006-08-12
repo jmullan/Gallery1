@@ -21,14 +21,12 @@
  */
 ?>
 <?php
-include(dirname(__FILE__) . '/init.php');
-doctype();
-?>
-<html>
-<head>
-  <title> <?php echo _("Gallery Configuration") .':: '. _("Frames") ?> </title>
-  <?php common_header(); ?>
+require_once(dirname(__FILE__) . '/init.php');
 
+global $gallery;
+
+printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate('config', "Frames"));
+?>
 	<!--
 		This Javascript and the Tabs are inspired by the Horde Forms code
 	-->
@@ -39,29 +37,29 @@ doctype();
 
 	    this.toggle = function(id) {
 	        document.getElementById(this.oldtab).style.display = 'none';
-	        document.getElementById('tab_' + this.oldtab).className = 'tab';
+	        document.getElementById('tab_' + this.oldtab).className = '';
 
 	        document.getElementById(id).style.display = 'inline';
-	        document.getElementById('tab_' + id).className = 'tab-hi';
+	        document.getElementById('tab_' + id).className = 'g-activeTab';
 
 	        this.oldtab = id;
 	    }
 	}
 	</script>
-</head>
-<body>
 <?php
 $descriptions = array();
 $names = array();
 
-$names["none"] = _("None");
-$descriptions["none"] = _("No frames");
-$names["dots"] = _("Dots");
-$descriptions["dots"] = _("Just a simple dashed border around the thumb.");
-$names["solid"] = _("Solid");
-$descriptions["solid"] = _("Just a simple solid border around the thumb.");
+$names["none"] = gTranslate('config', "No Frame");
+$descriptions["none"] = gTranslate('config', "No frames");
+$names["dots"] = gTranslate('config', "Dots");
+$descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
+$names["solid"] = gTranslate('config', "Solid");
+$descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
+$names["siriux"] = 'Siriux';
+$descriptions["siriux"] = gTranslate('config', "The frame from Nico Kaisers Siriux theme.") ;
 
-$dir = GALLERY_BASE . '/html_wrap/frames';
+$dir = GALLERY_BASE . '/layout/frames';
 if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
     while ($file = readdir($fd)) {
         $subdir = "$dir/$file";
@@ -80,92 +78,64 @@ if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
             $descriptions[$file] = $description;
         } else {
             if (false && isDebugging()) {
-                echo gallery_error(sprintf(_("Skipping %s."), $subdir));
+                echo gallery_error(sprintf(gTranslate('config', "Skipping %s."), $subdir));
             }
         }
     }
 } else {
-    echo '<--' . sprintf(_("Can't open %s"), $dir) . '-->';
+    echo '<--' . sprintf(gTranslate('config', "Can't open %s"), $dir) . '-->';
 }
 
 ?>
-    <table width="100%" cellspacing="0">
-    <tr>
+<div class="g-tabset">
 <?php
 $count = 0;
-$col = 0;
+$initialtab = isset($_GET['frame']) ? $_GET['frame'] : 'none';
+
 foreach (array_keys($names) as $key) {
-    if (isset($_GET['frame'])) {
-        if ($key != $_GET['frame']) {
-            $tab = "tab";
-        } else {
-            $firstkey = $key;
-            $tab = "tab-hi";
-        }
-    } else {
-        if ($count) {
-            $tab = "tab";
-        } else {
-            $firstkey = $key;
-            $tab = "tab-hi";
-        }
+    $class = '';
+    if ($key == $initialtab) {
+        $class = ' class="g-activeTab"';
     }
-    if ($col) {
-        print "<td class=\"tabspacer\">&nbsp;</td>\n";
-    }
-    print "<td class=\"$tab\" id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</td>\n";
-    $count++;
-    $col++;
-    if ($col > 3) {
+    echo "\t<a$class id=\"tab_group_$key\" onClick=\"section_tabs.toggle('group_$key')\">".$names[$key]."</a>\n";
+}
+
 ?>
-    </tr>
-    </table>
-    <table width="100%" cellspacing="0" style="margin-top:5px;">
-    <tr>
-<?php
-$col = 0;
-    } // end if ($col > 3)
-} // end foreach
-?>
-    </tr>
-    </table>
-<?php if (isset($firstkey)) { ?>
+<div class="clear"></div>
+</div>
+
+
+<?php if (isset($initialtab)) { ?>
     <script language="JavaScript" type="text/javascript">
-    section_tabs = new configSection('group_<?php echo $firstkey ?>')
+    section_tabs = new configSection('group_<?php echo $initialtab ?>')
     </script>
- 
 <?php }
-echo "\n<center>";
-global $gallery;
+
 list($iWidth, $iHeight) = getDimensions("../images/movie.thumb.jpg");
 
 $gallery->html_wrap['imageWidth']  = $iWidth;
 $gallery->html_wrap['imageHeight'] = $iHeight;
-
-if(!isset($borderColor)) {
-    $borderColor = '#FF00FF';
-}
-$gallery->html_wrap['borderColor'] = $borderColor;
+$gallery->html_wrap['borderColor'] = '#f0f';
 $gallery->html_wrap['borderWidth'] = 1;
-$gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 $gallery->html_wrap['imageTag'] = '<img src="../images/movie.thumb.jpg" alt="movie_thumb">';
 $gallery->html_wrap['imageHref'] = '';
 $gallery->html_wrap['base'] = "..";
 foreach (array_keys($names) as $key) {
     $display = "none";
-    if ($key == $firstkey) {
+    if ($key == $initialtab) {
         $display = "inline";
     }
     print "<div id=\"group_$key\" style=\"display: $display\">";
     print "<p>".$descriptions[$key]."</p>";
     $gallery->html_wrap['frame'] = $key;
-    includeHtmlWrap('inline_gallerythumb.frame');
+    includeLayout('inline_imagewrap.inc');
     print "</div>";
 }
 ?>
-<p>
-    <input type="button" name="close" value="<?php echo _("Close Window") ?>" onClick="window.close()">
+</div>
+<p align="center">
+<?php echo gButton('close', gTranslate('config', "_Close Window"), 'window.close()'); ?>
 </p>
-</center>
+
 </body>
 </html>

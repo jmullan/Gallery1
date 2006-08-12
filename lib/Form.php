@@ -20,7 +20,7 @@
  * $Id$
  */
 ?>
-<?php 
+<?php
 
 function insertFormJS($formName) {
 
@@ -91,24 +91,27 @@ function selectOptions($album, $field, $opts) {
 }
 
 function generateAttrs($attrList) {
-	$attrs = '';
+    $attrs = '';
 
-	if(!empty($attrList) && is_array($attrList)) {
-		foreach ($attrList as $key => $value) {
-			if ($value == NULL) {
-				$attrs .= " $key";
-			}
-			else {
-				$attrs .= " $key=\"$value\"";
-			}
-		}
-	}
-	
-	return $attrs;
+    if(!empty($attrList) && is_array($attrList)) {
+        foreach ($attrList as $key => $value) {
+            if ($value === false) {
+                continue;
+            }
+            elseif ($value === NULL) {
+                $attrs .= " $key";
+            }
+            else {
+                $attrs .= " $key=\"$value\"";
+            }
+        }
+    }
+
+    return $attrs;
 }
 
-function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
-    $crlf = ($prettyPrinting) ? "\n\t" : '';
+function drawSelect($name, $options, $selected, $size, $attrList = array()) {
+    $crlf = "\n\t";
     $attrs = generateAttrs($attrList);
     $buf = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
@@ -120,7 +123,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
                     $sel = ' selected';
                 }
             }
-            else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected == '__ALL__') {
+            else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
                 $sel = ' selected';
             }
             $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
@@ -132,20 +135,21 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 }
 
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-    $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+    $crlf = "\n\t";
 
     if (!isset($attrList['size'])) {
         $attrList['size'] = 1;
     }
 
     $attrs = generateAttrs($attrList);
-    
-    $buf = "<select name=\"$name\" $attrs>$crlf";
+
+    $buf = "$crlf<select name=\"$name\"$attrs>$crlf";
 
     if(!empty($options)) {
         foreach ($options as $nr => $option) {
+            $option['text'] = removeAccessKey($option['text']);
             $sel = isset($option['selected']) ? ' selected' : '';
-            $buf .= "\n\t". '<option value="'. $option['value'] .'"'. $sel.'>'. $option['text'] .'</option>' . $crlf;
+            $buf .= '<option value="'. $option['value'] ."\"$sel>". $option['text'] .'</option>' . $crlf;
         }
     }
 
@@ -177,18 +181,18 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-		'method' => 'POST',
-		'name'	 => 'g1_form'
+    	'method' => 'POST',
+    	'name'	 => 'g1_form'
     );
 
     foreach($defaults as $attr => $value) {
     	if(!isset($attrList[$attr])) {
-    		$attrList[$attr] = $value;
+    	    $attrList[$attr] = $value;
     	}
     }
 
     $attrs = generateAttrs($attrList);
-    
+
     $form = "\n<form action=\"$target\"$attrs>\n";
 
     $args = split("&", $tmp);
@@ -197,8 +201,9 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
             continue;
         }
         list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
+        $form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
     }
+
     return $form;
 }
 
@@ -227,21 +232,21 @@ function showColorpicker($attrs = array()) {
         'gallery_popup' => true
     );
 
-    $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', $args);
-    $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16"></a></td>';
+    $colorPickerUrl = makeGalleryUrl('colorpicker.php', $args);
+    $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16" alt="colorpicker">';
 
-    $html = '<table border="0" cellspacing="0">';
-    $html .= '<tr>';
-    $html .= '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
-    $html .= '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
-    $html .= "<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
-    $html .= '<td><div id="colorpicker_' . $attrs['name'] . '" class="control"></div></td>';
-    $html .= '</tr></table>';
+    $html = "\n<table cellspacing=\"0\">";
+    $html .= "\n<tr>";
+    $html .= "\n". '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
+    $html .= "\n". '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
+    $html .= "\n<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
+    $html .= "\n". '<td><div id="colorpicker_' . $attrs['name'] . '"></div></td>';
+    $html .= "\n</tr></table>\n";
 
     return $html;
 }
 
-function showChoice($label, $target, $args, $class="") {
+function showChoice($label, $target, $args, $class = '') {
     global $gallery;
 
     if (empty($args['set_albumName'])) {
@@ -263,4 +268,132 @@ function showChoice2($target, $args, $popup = true) {
     return makeGalleryUrl($target, $args);
 }
 
+function gSubmit($name, $value, $additionalAttrs = array()) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'submit';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+    if($attrList['accesskey'] != '') {
+	   $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
+
+    $attrList = array_merge($attrList, $additionalAttrs);
+    $attrs = generateAttrs($attrList);
+
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
+
+function gInput($type, $name, $label = null, $tableElement = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
+    global $browser;
+
+    $attrList['name'] = $name;
+    $attrList['type'] = $type;
+    $attrList['accesskey'] = getAndSetAccessKey($label);
+
+    if (!empty($value) || $value == 0) {
+        $attrList['value'] = $value;
+    }
+
+    if(!isset($attrList['class'])) {
+        switch ($type) {
+        	case 'text':
+        	case 'password':
+        	    $attrList['class'] = 'g-form-text';
+        	break;
+        }
+    }
+
+    $attrs = generateAttrs($attrList);
+
+    if($autocomplete && isset($browser)) {
+        $input = initAutocompleteJS(
+            $label,
+            $name,
+            $attrList['id'],
+            $browser->hasFeature('xmlhttpreq')
+        );
+        $label = null;
+    }
+    else {
+        $input = "<input$attrs>";
+    }
+
+    if($tableElement){
+        if($label) {
+            $html = "<tr>\n";
+            $html .= "\t<td>$label</td>\n";
+            $html .= "\t<td><input$attrs></td>\n";
+            $html .= "</tr>\n";
+        }
+        else {
+            $html = "<tr>\n";
+            $html = "<td>$input</td>\n";
+            $html .= "</tr>\n";
+        }
+    }
+    else {
+        if($label) {
+            $html = "$label <input$attrs>\n";
+        }
+        else {
+            $html = "$input\n";
+        }
+    }
+
+    if($multiInput) {
+        $id = $attrList['id'];
+        $html .= gButton('addField', gTranslate('common', "Add field"), "${id}obj.newField()");
+        $html .= "\n<div id=\"${id}_Container\"></div>\n\n";
+
+        $html .= '<script language="JavaScript" type="text/javascript">';
+        $html .= "\n\tvar ${id}obj = new MultiInput('$id', '${id}_Container')";
+        $html .= "\n</script>\n";
+    }
+
+    return $html;
+}
+
+function gButton($name, $value, $onClick, $additionalAttrs = array()) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'button';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+    $attrList['onClick'] = $onClick;
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+    if($attrList['accesskey'] != '') {
+        $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
+
+    $attrs = generateAttrs($attrList);
+
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
+
+function gReset($name, $value, $additionalAttrs = array()) {
+    $attrList['name'] = $name;
+    $attrList['type'] = 'reset';
+    $attrList['accesskey'] = getAndRemoveAccessKey($value);
+    $attrList['value'] = $value;
+    $attrList['class'] = 'g-button';
+    $attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+    if($attrList['accesskey'] != '') {
+        $attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+    }
+
+    $attrs = generateAttrs($attrList);
+
+    $html = "<input$attrs>\n";
+
+    return $html;
+}
 ?>

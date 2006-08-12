@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$ 
  */
 
 /**
@@ -276,12 +278,12 @@ function sortByPercentDone($a, $b) {
 function percentColor($percent) {
     $border=50;
     if ($percent < $border) {
-        $color = dechex(255 - $percent * 2) . "0000";
+        $color = "#". dechex(255 - $percent * 2) . "0000";
     } else {
-        $color= "00" . dechex( 55 + $percent * 2 ). "00";
+        $color= "#00" . dechex( 55 + $percent * 2 ). "00";
     }
     if (strlen($color) <6) {
-        $color= "0" . $color;
+        $color= "#0" . $color;
     }
 
     return $color;

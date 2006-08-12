@@ -1,5 +1,10 @@
-<?php /* $Id$ */ ?>
 <?php
+
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
 global $navigator;
 // Calculate the beginning and ending of the navigator range
 $begin = max($navigator["page"] - $navigator["spread"], 1);
@@ -68,9 +73,9 @@ if ($navigator["page"] != 1) {
 	$ppContent='&nbsp;';
 
 	$pClass='';
-} 
+}
 
-#-- 'page numbers' cell ---                  
+#-- 'page numbers' cell ---
 if ($begin != $end) {
 $ndlUrl=getImagePath('nav_dot_left.gif');
 $ndrUrl=getImagePath('nav_dot_right.gif');
@@ -127,7 +132,7 @@ if ($current < $maxPages) {
   <tr>
 	 <td class="jd_title_right"  width="100%" height="36" align="right">
 		&nbsp;
-	</td> 
+	</td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
@@ -136,4 +141,3 @@ if ($current < $maxPages) {
 			<?php include ('menu.tpl'); ?>
     </td>
 	<td valign="top" align="center" style="margin-left: 10px;">
-      
