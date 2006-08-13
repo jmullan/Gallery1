@@ -488,7 +488,7 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
         ksort($my_choices);
         $nv_pairs = $gallery->album->getVoteNVPairs();
 
-        $va_poll_box1 = gTranslate('core', "Your votes in the current session are:");
+        $va_poll_box1 = gTranslate('core', "Your votes are :");
 
         $pollInfoTable = new galleryTable();
         foreach ($my_choices as $key => $id) {
@@ -527,19 +527,19 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
     }
 }
 
-$va_poll_result = '';
+list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
+
 if ($gallery->album->getPollShowResults()) {
-    list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
+    echo $va_poll_result;
 }
 
-if(testRequirement('isAdminOrAlbumOwner')) {
-    $va_poll_result .= galleryLink(
+if(!empty($results) && testRequirement('isAdminOrAlbumOwner')) {
+    echo galleryLink(
         makeGalleryUrl("poll_results.php", array("set_albumName" => $gallery->session->albumName)),
-        gTranslate('core', "[See full poll results]"),
+        gTranslate('core', "[ See full poll results ]"),
         array('class' => 'admin'));
 }
 
-echo $va_poll_result;
 ?>
 
    <script language="javascript1.2" type="text/JavaScript">

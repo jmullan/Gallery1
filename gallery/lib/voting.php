@@ -227,37 +227,38 @@ function addPolling ($id, $form_pos=-1, $immediate=true) {
 }
 
 function showResultsGraph($num_rows) {
-	global $gallery;
+    global $gallery;
 
-	$results = array();
-	$results_count = array();
-	$nv_pairs = $gallery->album->getVoteNVPairs();
-	$buf = '';
+    $results = array();
+    $results_count = array();
+    $nv_pairs = $gallery->album->getVoteNVPairs();
+    $buf = '';
 
-	$voters = array();
-	foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
-		$accum_votes = 0;
-		$count = 0;
-		foreach ($image_votes as $voter => $vote_value ) {
-			$voters[$voter] = true;
-			if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
-				$vote_value = $gallery->album->getPollScale();
-			}
-			$accum_votes += $nv_pairs[$vote_value]["value"];
-			$count++;
-		    }
-		    if ($accum_votes > 0)  {
-	        	$results_count[$element]=$count;
-			if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
-		    		$results[$element]=$accum_votes;
-				$summary = gTranslate('common', "(Total points in brackets)");
-			}
-		    	else {
-				$results[$element] = number_format(((double)$accum_votes)/$count, 2);
-				$summary = gTranslate('common',"(Average points in brackets)");
-			}
-		}
-	}
+    $voters = array();
+    foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
+        $accum_votes = 0;
+        $count = 0;
+        foreach ($image_votes as $voter => $vote_value ) {
+            $voters[$voter] = true;
+            if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
+                $vote_value = $gallery->album->getPollScale();
+            }
+            $accum_votes += $nv_pairs[$vote_value]["value"];
+            $count++;
+        }
+        if ($accum_votes > 0)  {
+            $results_count[$element]=$count;
+            if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
+                $results[$element]=$accum_votes;
+                $summary = gTranslate('common', "(Total points in brackets)");
+            }
+            else {
+                $results[$element] = number_format(((double)$accum_votes)/$count, 2);
+                $summary = gTranslate('common', "(Average points in brackets)");
+            }
+        }
+    }
+
 	array_multisort($results, SORT_NUMERIC, SORT_DESC, $results_count, SORT_NUMERIC, SORT_DESC);
 	$rank = 0;
 	$graph = array();
@@ -279,7 +280,7 @@ function showResultsGraph($num_rows) {
 			$id = $gallery->album->getPhotoId($index);
 			$url = makeAlbumUrl($gallery->session->albumName, $id);
 			$desc = $gallery->album->getCaption($index);
-			if (trim($desc) == "") {
+			if (trim($desc) == '') {
 				$desc = $id;
 			}
 		}
@@ -301,8 +302,9 @@ function showResultsGraph($num_rows) {
 		$name_string.= $desc;
 		$name_string.= "</a>";
 		$name_string.= " - ".
-		      	gTranslate('common', "1 voter", "%d voters", $results_count[$element]);
-	       	$graph[$name_string]=$count;
+		  gTranslate('common', "1 voter", "%d voters", $results_count[$element]);
+
+        $graph[$name_string] = $count;
 	}
 
 	if ($needs_saving) {
@@ -311,28 +313,29 @@ function showResultsGraph($num_rows) {
 
 	$graph = arrayToBarGraph($graph, 300);
 	if ($graph) {
-            $buf .="<div class=\"g-va-poll-resultbox\"><span class=\"admin\">".
-		gTranslate('common', "Result from one voter", "Result of %d voters", sizeof($voters), '', true) . '</span>';
+	    $buf .="<div class=\"g-va-poll-resultbox\"><span class=\"admin\">".
+        	    gTranslate('common',
+        	    "Result from one voter",
+        	    "Result of %d voters",
+        	    sizeof($voters), '', true) .
+    	    '</span>';
 
-                if ($gallery->album->getPollType() == "critique") {
-                        $key_string="";
-                        foreach ($nv_pairs as $nv_pair) {
-				if (empty($nv_pair["name"])) {
-					continue;
-				}
-				$key_string .= sprintf(gTranslate('common',"%s: %s points; "),
-						$nv_pair["name"],
-						$nv_pair["value"]);
-			}
-                        if (strlen($key_string) > 0) {
-                                $buf .= "<br>". sprintf(gTranslate('common',"Key - %s"),
-						$key_string)." $summary<br>";
-			}
-		}
-                $buf .= $graph . '</div>';
-        }
-	else if ($num_rows > 0 && $gallery->user->canWriteToAlbum($gallery->album)) {
-	    $buf .= infoLine(gTranslate('core', "No votes so far."), 'information');
+	    if ($gallery->album->getPollType() == "critique") {
+	        $key_string="";
+	        foreach ($nv_pairs as $nv_pair) {
+	            if (empty($nv_pair["name"])) {
+	                continue;
+	            }
+	            $key_string .= sprintf(gTranslate('common',"%s: %s points; "),
+	            $nv_pair["name"],
+	            $nv_pair["value"]);
+	        }
+	        if (strlen($key_string) > 0) {
+	            $buf .= "<br>". sprintf(gTranslate('common',"Key - %s"),
+	            $key_string)." $summary<br>";
+	        }
+	    }
+	    $buf .= $graph . '</div>';
 	}
 
 	return array($buf, $results);
