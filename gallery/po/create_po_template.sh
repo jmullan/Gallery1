@@ -1,11 +1,9 @@
 #!/bin/sh
 # $Id$
 #
-#note: requires xgettext version 0.12.1 or greater
+# Notes: 
+# - Requires xgettext version >= 0.12.1 and < 0.15
 #
-#Note: for version 1.4.2, to support email internationalisation, need to 
-#add keyword i18n to xgettext call
-
 
 ##### CORE .pot ############
 cat copyright-header.txt > gallery-core.pot
