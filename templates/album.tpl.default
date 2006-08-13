@@ -157,11 +157,9 @@ if ($navigator["maxPages"] > 1) {
     </div>
 <?php endif; ?>
 
-<?php if(!empty($va_poll_result)) :?>
-    <div class="g-va-poll-box2">
-    <?php echo $va_poll_result; ?>
-    </div>
-<?php endif; ?>
+<?php if(!empty($va_poll_box2)) {
+    echo $va_poll_box2;
+} ?>
 
 <?php if (canVote()) : ?>
     <?php echo makeFormIntro('view_album.php', array('name' => 'vote_form')); ?>
@@ -184,7 +182,7 @@ if ($navigator["maxPages"] > 1) {
       <?php
         $gallery->html_wrap = $item['thumb'];
         includeLayout('inline_imagewrap.inc');
-        //includeHtmlWrapLEGACY($item['thumb']['type']);
+
       ?>
       </div>
       <div align="center" class="g-va-thumb-texts">

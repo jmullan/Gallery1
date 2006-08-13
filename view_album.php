@@ -397,56 +397,58 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 			}
 		}
 	}
-	if (sizeof($my_choices) == 0 && $gallery->album->getVoterClass() ==  "Logged in") {
-		$va_poll_box1 = gTranslate('core', "You have currently no votes recorded for this poll.");
-	}
-	else if (sizeof($my_choices) > 0) {
-		ksort($my_choices);
-		$nv_pairs = $gallery->album->getVoteNVPairs();
 
-		$va_poll_box1 = gTranslate('core', "Your votes in the current session are:");
+	if (sizeof($my_choices) > 0) {
+	    ksort($my_choices);
+	    $nv_pairs = $gallery->album->getVoteNVPairs();
 
-		$pollInfoTable = new galleryTable();
-		foreach ($my_choices as $key => $id) {
-			$index = $gallery->album->getIndexByVotingId($id);
+	    $va_poll_box1 = gTranslate('core', "Your votes are:");
 
-			$pollInfoTable->addElement(array('content' => $nv_pairs[$key]["name"]));
-			$pollInfoTable->addElement(array('content' => ':'));
-			if ($gallery->album->isAlbum($index)) {
-				$albumName = $gallery->album->getAlbumName($index);
-				$myAlbum = new Album();
-				$myAlbum->load($albumName);
+	    $pollInfoTable = new galleryTable();
+	    foreach ($my_choices as $key => $id) {
+	        $index = $gallery->album->getIndexByVotingId($id);
 
-				$pollInfoTable->addElement(array('content' =>
-                    		  galleryLink(
-					makeAlbumUrl($albumName),
-					sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
-                ));
-			} else {
-				$desc = $gallery->album->getCaption($index);
-				if (trim($desc) == '') {
-					$desc = $gallery->album->getPhotoId($index);
-				}
+	        $pollInfoTable->addElement(array('content' => $nv_pairs[$key]["name"]));
+	        $pollInfoTable->addElement(array('content' => ':'));
+	        if ($gallery->album->isAlbum($index)) {
+	            $albumName = $gallery->album->getAlbumName($index);
+	            $myAlbum = new Album();
+	            $myAlbum->load($albumName);
 
-				$photoId = str_replace('item.', '', $id);
-				$pollInfoTable->addElement(array('content' =>
-                    galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
-                ));
-			}
-		}
-		$va_poll_box1 .= $pollInfoTable->render();
+	            $pollInfoTable->addElement(array('content' =>
+	            galleryLink(
+	            makeAlbumUrl($albumName),
+	            sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
+	            ));
+	        } else {
+	            $desc = $gallery->album->getCaption($index);
+	            if (trim($desc) == '') {
+	                $desc = $gallery->album->getPhotoId($index);
+	            }
+
+	            $photoId = str_replace('item.', '', $id);
+	            $pollInfoTable->addElement(array('content' =>
+	            galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
+	            ));
+	        }
+	    }
+	    $va_poll_box1 .= $pollInfoTable->render();
 	}
 }
 
-$results = 1;
+list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
+
 if ($gallery->album->getPollShowResults()) {
-    list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
-    if(!empty($va_poll_result) && $results && testRequirement('isAdminOrAlbumOwner')) {
-        $va_poll_result .= galleryLink(
-          makeGalleryUrl("poll_results.php", array("set_albumName" => $gallery->session->albumName)),
-          gTranslate('core', "See full poll results")
-        );
-    }
+    $va_poll_box2 = $va_poll_result;
+}
+
+if(!empty($results) && testRequirement('isAdminOrAlbumOwner')) {
+    $va_poll_box2 .= galleryLink(
+        makeGalleryUrl("poll_results.php", array("set_albumName" => $gallery->session->albumName)),
+        gTranslate('core', "See full poll results"),
+        array('class' => 'g-admin '),
+        '', true
+    );
 }
 
 if (canVote()) {

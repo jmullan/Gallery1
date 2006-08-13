@@ -336,12 +336,7 @@ function showResultsGraph($num_rows) {
         }
         $buf .= $graph . '</div>';
     }
-    else if ($num_rows > 0 && $gallery->user->canWriteToAlbum($gallery->album)) {
-            $buf .= infoBox(array(array(
-            'type' => 'information',
-            'text' =>gTranslate('core', "No votes so far.")
-        )));
-    }
+
     return array($buf, $results);
 }
 
