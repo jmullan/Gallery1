@@ -18,17 +18,17 @@
 # $Id$
 #
 #
-# @version      1.5.2
+# @version      1.5.4
 # @package	Languagepack
 # @subpackage	Brazil Portuguese
 # @author	Daniel Neto <danielneto AT terra DOT com DOT br>, 2003-2005
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Gallery 1.5.2-RC2\n"
+"Project-Id-Version: Gallery 1.5.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-13 11:04+0200\n"
-"PO-Revision-Date: 2005-09-23 15:35-0300\n"
+"POT-Creation-Date: 2006-08-13 11:57+0200\n"
+"PO-Revision-Date: 2006-05-17 11:06-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Selo de Carta"
 
 #: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "A simple postage stamp effect."
-msgstr ""
+msgstr "Um efeito simples de selo de postagem."
 
 #: ../html_wrap/frames/simple_book/frame.def:3
 msgid "Original Style"
@@ -121,14 +121,13 @@ msgid "No content"
 msgstr "Sem conteúdo"
 
 #: ../lib/setup.php:361
-#, fuzzy, php-format
+#, php-format
 msgid "Missing value: %s"
-msgstr "Valor faltando"
+msgstr "Valor não encontrado: %s"
 
 #: ../lib/setup.php:379
-#, fuzzy
 msgid "<b>exec()</b> is enabled on this server."
-msgstr "<b>exec()</b> não está desabilitadno neste servidor."
+msgstr "<b>exec()</b> está habilitado neste servidor."
 
 #: ../lib/setup.php:397
 msgid "I can read your <b>.htaccess</b> file."
@@ -390,9 +389,9 @@ msgid "Look at %sCheck Versions%s for more details."
 msgstr "Veja em %sVerificar Versões%s para maiores detalhes."
 
 #: ../lib/setup.php:1380
-#, fuzzy, php-format
+#, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."
-msgstr "%d arquivos são mais recentes do que o esperado. Isso está OK se você estiver usando um pre-lançamento, beta-teste, CVS ou código modificado."
+msgstr "%d arquivos são mais recentes do que o esperado. Isso está OK se você estiver usando um pre-lançamento, beta-teste, SVN ou código modificado."
 
 #: ../lib/setup.php:1385
 #, php-format
@@ -603,19 +602,16 @@ msgid "Success"
 msgstr "Sucesso"
 
 #: ../setup/check.inc:61 ../setup/check.inc:62
-#, fuzzy
 msgid "Warning, but optional"
-msgstr "é opcional"
+msgstr "Com aviso, mas opcional"
 
 #: ../setup/check.inc:66 ../setup/check.inc:67
-#, fuzzy
 msgid "Serious warning, but optional"
-msgstr "Aviso Crítico"
+msgstr "Com aviso crítico, mas opcional"
 
 #: ../setup/check.inc:71 ../setup/check.inc:72
-#, fuzzy
 msgid "Serious warning, no go !"
-msgstr "Aviso Crítico"
+msgstr "Com aviso problemático, não prossiga!"
 
 #: ../setup/check.inc:76 ../setup/check.inc:77 ../setup/write.inc:244
 msgid "Failure"
@@ -623,11 +619,11 @@ msgstr "Falha"
 
 #: ../setup/check.inc:104 ../setup/check_versions.php:74
 msgid "Show/hide more information"
-msgstr ""
+msgstr "Exibir/ocultar mais informações"
 
 #: ../setup/check.inc:182
 msgid "Legend:"
-msgstr ""
+msgstr "Legenda:"
 
 #: ../setup/check.inc:193
 msgid "There are errors in your configuration that will prevent Gallery from functioning properly."
@@ -935,9 +931,8 @@ msgid "Your PHP installation is configured with the %s restriction.   This may m
 msgstr "Seu PHP está configurado com a restrição %s. Isto pode dificultar o Gallery a detectar e verificar seus arquivos executáveis, mesmo que você já tenha executado com êxito o Assistente de Configuração anteriormente. Não se preocupe caso esta página informe erros; suas configurações serão salvas apropriadamente."
 
 #: ../setup/config_data.inc:100
-#, fuzzy
 msgid "Gallery version"
-msgstr "Teste de Sessão do Gallery"
+msgstr "Versão do Gallery"
 
 #: ../setup/config_data.inc:102
 #, php-format
@@ -945,18 +940,16 @@ msgid "Check to see how old %s version %s is."
 msgstr "Verifique quão antiga é a versão do %s para %s."
 
 #: ../setup/config_data.inc:108
-#, fuzzy
 msgid "PHP version"
-msgstr "Verificar versões"
+msgstr "Versão do PHP"
 
 #: ../setup/config_data.inc:109
-#, fuzzy
 msgid "Check to see if you are running a supported Version of PHP."
-msgstr "Verifique se você está executando o PHP v4.1.0 ou superior."
+msgstr "Verifique se você está executando uma versão suportada do PHP."
 
 #: ../setup/config_data.inc:109
 msgid "Due to bugs and missing functionality in some PHP versions, the minimum PHP version for Gallery 1.5 and newer is at least PHP 4.1.0"
-msgstr ""
+msgstr "Devido à problemas e funcionalidades não contidas em algumas versões do PHP, a versão mínima do PHP para o Gallery 1.5 e mais novos é pelo menos PHP v4.1.0"
 
 #: ../setup/config_data.inc:111
 #, php-format
@@ -973,9 +966,8 @@ msgid "It seems your PHP has a problem with __FILE__, please upgrade to a recent
 msgstr "Parece que seu PHP tem um problema com __FILE__. Por favor, atualize-o para uma versão mais recente"
 
 #: ../setup/config_data.inc:117
-#, fuzzy
 msgid "Register globals"
-msgstr "Desabilitando verificação de register_globals"
+msgstr "Register globals"
 
 #: ../setup/config_data.inc:118
 msgid "Gallery highly recommends that the PHP option 'register_globals' be turned off, for security purposes.  Some software, notably the 'Geeklog' CMS, requires that 'register_globals' be enabled."
@@ -987,7 +979,7 @@ msgstr "A opção do PHP 'register_globals' está habilitada em seu servidor. O Gal
 
 #: ../setup/config_data.inc:125
 msgid "PHPs safe mode disabled"
-msgstr ""
+msgstr "Modo de segurança (safe mode) do PHP desabilitado"
 
 #: ../setup/config_data.inc:126
 msgid "Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."
@@ -1005,7 +997,7 @@ msgstr "Em algumas raras circunstâncias, o Gallery acha que o Modo de Segurança 
 
 #: ../setup/config_data.inc:142
 msgid "PHPs exec() function enabled"
-msgstr ""
+msgstr "Função exec() do PHP habilitado"
 
 #: ../setup/config_data.inc:143
 msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
@@ -1017,7 +1009,7 @@ msgstr "A função <b>exec()</b> foi desabilitada em seu servidor. O Gallery não f
 
 #: ../setup/config_data.inc:149
 msgid ".htaccess processed by apache"
-msgstr ""
+msgstr "Arquivo .htaccess processado pelo Apache"
 
 #: ../setup/config_data.inc:150
 msgid "Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."
@@ -1032,9 +1024,8 @@ msgid "If you are running PHP in CGI mode, this message is unavoidable."
 msgstr "Se você está executando o PHP em modo CGI, essa mensagem é inevitável."
 
 #: ../setup/config_data.inc:160
-#, fuzzy
 msgid "PHPs magic quotes off"
-msgstr "<b>magic_quotes</b> está desligado."
+msgstr "Função 'magic quotes' do PHP desligada"
 
 #: ../setup/config_data.inc:162
 #, php-format
@@ -1048,7 +1039,7 @@ msgstr "'Magic quotes' está ligado. Seu administrador do servidor web pode desli
 
 #: ../setup/config_data.inc:170
 msgid "Apache mod_rewrite"
-msgstr ""
+msgstr "mod_rewrite do Apache"
 
 #: ../setup/config_data.inc:171
 msgid "Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."
@@ -1060,7 +1051,7 @@ msgstr "Ou o <b>mod_rewrite</b> não está instalado ou o arquivo <b>.htaccess</b>
 
 #: ../setup/config_data.inc:178
 msgid "NetPBM installed"
-msgstr ""
+msgstr "NetPBM instalado"
 
 #: ../setup/config_data.inc:180
 msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
@@ -1075,9 +1066,8 @@ msgid "If NetPBM is installed and Gallery isn't finding it automatically that's 
 msgstr "Se o NetPBM estiver instalado e o Gallery não puder encontrá-lo automaticamente, não se preocupe -- Você poderá especificar manualmente o caminho do NetPBM na próxima página."
 
 #: ../setup/config_data.inc:190
-#, fuzzy
 msgid "ImageMagick installed"
-msgstr "%d de %d executáveis do ImageMagick encontrados."
+msgstr "ImageMagick instaslado"
 
 #: ../setup/config_data.inc:192
 msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
@@ -1093,7 +1083,7 @@ msgstr "Se o ImageMagick está instalado e o Gallery não pode encontrá-lo automat
 
 #: ../setup/config_data.inc:202
 msgid "Jhead installed"
-msgstr ""
+msgstr "Jhead instalado"
 
 #: ../setup/config_data.inc:204
 msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."
@@ -1105,9 +1095,8 @@ msgid "I can't find <b>jhead</b>.  If it's installed and not in the path of the 
 msgstr "Não consigo localizar <b>jhead</b>. Se ele estiver instalado e não estiver no caminho do servidor web do usuario, não se preocupe -- Você pode especificar manualmente um caminho na próxima página. Se ele não estiver instalado, você deve instalá-lo por sua conta. O Jhead é um analisador EXIF de domínio público. Arquivos fontes, executáveis Linux e Windows poderão ser encontrados no %ssite do jhead%s."
 
 #: ../setup/config_data.inc:212
-#, fuzzy
 msgid "jpegtran installed"
-msgstr "%d de %d executáveis do ImageMagick encontrados."
+msgstr "jpegtran instalado"
 
 #: ../setup/config_data.inc:214
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
@@ -1120,7 +1109,7 @@ msgstr "Não consigo localizar <b>jpegtran</b>. Se ele estiver instalado e não es
 
 #: ../setup/config_data.inc:222
 msgid "Gettext support in PHP"
-msgstr ""
+msgstr "Gettext suportado no PHP"
 
 #: ../setup/config_data.inc:224
 msgid "Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."
@@ -1133,29 +1122,27 @@ msgstr "Seu PHP não possui suporte para <b>GNU gettext</b>. Para incluir suporte
 
 #: ../setup/config_data.inc:230
 msgid "Locales needed for Gallery"
-msgstr ""
+msgstr "Regionalizações necessárias para o Gallery"
 
 #: ../setup/config_data.inc:232
 msgid "Check to see what languages are available."
 msgstr "Verificando quais idiomas estão disponíveis."
 
 #: ../setup/config_data.inc:236
-#, fuzzy
 msgid "missing locales"
-msgstr "Valor faltando"
+msgstr "Regionalizações não encontradas"
 
 #: ../setup/config_data.inc:239
 msgid "Testing to see which <b>system</b> locales (if any) are absent."
 msgstr "Testando para saber quais <b>sistemas</b> de localizações (se existir alguma) estão ausentes."
 
 #: ../setup/config_data.inc:240
-#, fuzzy
 msgid "These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."
-msgstr "Essas localizações são requeridas para usar capacidades multi-idiomas do Gallery quando seu PHP suportar gettext. Elas também são necessárias para exibir datas e horas no formato respectivo de cada idioma."
+msgstr "Essas regionalizações são requeridas para usar capacidades multi-idiomas do Gallery quando seu PHP suportar gettext. Elas também são necessárias para exibir datas e horas no formato do idioma selecionado."
 
 #: ../setup/config_data.inc:245
 msgid "File integrity"
-msgstr ""
+msgstr "Integridade de arquivo"
 
 #: ../setup/config_data.inc:246
 msgid "Checking to see if you have the latest versions of all Gallery files."
@@ -1305,9 +1292,8 @@ msgid "This setting tells Gallery which set of graphics tools you prefer it to u
 msgstr "Esta configuração informa ao Gallery quais conjuntos de ferramentas gráficas você prefere utilizar. Se o Gallery informar que ambos estão disponíveis (na primeira página), então será questão de preferência do usuário. Por outro lado, escolha a ferramenta que o Gallery foi capaz de encontrar sem erros."
 
 #: ../setup/config_data.inc:403
-#, fuzzy
 msgid "ImageMagick Settings"
-msgstr "%d de %d executáveis do ImageMagick encontrados."
+msgstr "Configurações do ImageMagick"
 
 #: ../setup/config_data.inc:408
 msgid "Path to ImageMagick"
@@ -1327,9 +1313,8 @@ msgid "I can't find ImageMagick at the location you provided."
 msgstr "Não consigo localizar ImageMagick no local que você informou."
 
 #: ../setup/config_data.inc:428
-#, fuzzy
 msgid "NetPBM Settings"
-msgstr "Revisar Configurações"
+msgstr "Configurações do NetPBM"
 
 #: ../setup/config_data.inc:433
 msgid "Path to NetPBM"
@@ -1428,7 +1413,7 @@ msgstr "Não"
 
 #: ../setup/config_data.inc:476
 msgid "JPEG Quality <b>(Advanced)</b>"
-msgstr ""
+msgstr "Qualidade JPEG <b>(Avançado)</b>"
 
 #: ../setup/config_data.inc:477
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
@@ -1436,15 +1421,15 @@ msgstr "O formato de arquivo JPEG inverte tamanho por qualidade. O Gallery pode 
 
 #: ../setup/config_data.inc:481
 msgid "JPEG Quality for resized images"
-msgstr ""
+msgstr "Qualidade JPEG para redimensionamento de imagens"
 
 #: ../setup/config_data.inc:491
 msgid "JPEG Quality for highlight images on the startpage"
-msgstr ""
+msgstr "Qualidade JPEG para imagens de destaque na página inicial"
 
 #: ../setup/config_data.inc:501
 msgid "JPEG Quality for thumbs inside the albums"
-msgstr ""
+msgstr "Qualidade JPEG para miniaturas dentro dos álbuns"
 
 #: ../setup/config_data.inc:520
 msgid "Embedded Gallery"
@@ -1515,22 +1500,20 @@ msgid "The target size (in pixels) of thumbnails shown in the Gallery page (high
 msgstr "O tamanho final (em pixels) das miniaturas mostradas na página do Gallery (imagens em destaque)."
 
 #: ../setup/config_data.inc:570
-#, fuzzy
 msgid "Highlight Ratio"
-msgstr "Tamanho do destaque"
+msgstr "Taxa do Destaque"
 
 #: ../setup/config_data.inc:571
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
-msgstr ""
+msgstr "A taxa na qual os destaques serão construídos. Isto afetará somente os destaques. Para destaques existentes, use a opção 'reconstruir destaques'"
 
 #: ../setup/config_data.inc:572 ../setup/config_data.inc:1529
 msgid "As the original image"
-msgstr ""
+msgstr "Como a imagem original"
 
 #: ../setup/config_data.inc:572
-#, fuzzy
 msgid "Square highlight"
-msgstr "Destaque do álbum"
+msgstr "Destaques quadrados"
 
 #: ../setup/config_data.inc:576
 msgid "Show Owner"
@@ -1578,7 +1561,7 @@ msgstr "Ferramentas Opcionais"
 
 #: ../setup/config_data.inc:618
 msgid "Archives"
-msgstr ""
+msgstr "Pacotes"
 
 #: ../setup/config_data.inc:623 ../setup/config_data.inc:636
 #: ../setup/config_data.inc:649 ../setup/config_data.inc:662
@@ -1619,7 +1602,7 @@ msgstr "Este será o idioma que você verá como %s, e o que os usuários verão se n
 
 #: ../setup/config_data.inc:745
 msgid "Language given by Browser"
-msgstr ""
+msgstr "Idioma informado pelo navegador"
 
 #: ../setup/config_data.inc:750
 msgid "Multi language mode"
@@ -2223,9 +2206,8 @@ msgid "High (former Debug 'on')"
 msgstr "Alto (antigo Debug 'ligado')"
 
 #: ../setup/config_data.inc:1269
-#, fuzzy
 msgid "Paranoid"
-msgstr "Polaróide"
+msgstr "Paranóico"
 
 #: ../setup/config_data.inc:1273
 msgid "Disable register_globals check"
@@ -2245,13 +2227,12 @@ msgid "The maximum amount of time in seconds any single operation should take.  
 msgstr "A quantidade de tempo máximo em segundos que qualquer operação deve levar. Se você achar que está recebendo a mensagem de erro de <b>Tempo máximo de execução excedido (Maximum execution tme exceeded)</b>, você pode tentar alterar este valor para um número maior. Esteja avisado que se o valor for alto demais, você <i>poderá</i> ter um processo que ficará preso por um longo tempo sem realizar qualquer tarefa. O valor padrão é de 30 segundos, o que é altamente razoável."
 
 #: ../setup/config_data.inc:1291
-#, fuzzy
 msgid "ImageMagick high quality"
-msgstr "%d de %d executáveis do ImageMagick encontrados."
+msgstr "Alta qualidade do ImageMagick"
 
 #: ../setup/config_data.inc:1292
 msgid "If this setting is 'yes' and you use ImageMagick then resized Images will have a slightly(!) higher quality, but with the drawback of a higher load and a higher creation time."
-msgstr ""
+msgstr "Se esta configuração estiver 'sim' e você usar o ImageMagick, então as imagens redimensionadas terão uma provável(!) maior qualidade, mas com o prejuízo de um tamanho maior e data de criação mais recente."
 
 #: ../setup/config_data.inc:1300
 msgid "Random Block Cache Time"
@@ -2496,17 +2477,16 @@ msgid "The default target size (in pixels) of album thumbnails."
 msgstr "O tamanho padrão de destino (em pixels) das miniaturas do álbum."
 
 #: ../setup/config_data.inc:1526
-#, fuzzy
 msgid "Thumbnail Ratio"
-msgstr "Tamanho da miniatura"
+msgstr "Taxa da Miniatura"
 
 #: ../setup/config_data.inc:1527
 msgid "The ratio in which the thumbnails are made"
-msgstr ""
+msgstr "A taxa na qual as miniaturas são construidas"
 
 #: ../setup/config_data.inc:1530
 msgid "Square thumbs"
-msgstr ""
+msgstr "Miniaturas quadradas"
 
 #: ../setup/config_data.inc:1535
 msgid "Resized image size"
@@ -2714,9 +2694,9 @@ msgid "Polling configuration"
 msgstr "Configuração de Votação"
 
 #: ../setup/config_data.inc:1769
-#, fuzzy, php-format
+#, php-format
 msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version then %s."
-msgstr "Isso permitirá aos seus visitantes votar ou dar notas nos conteúdos de um álbum. Defina os padrões de votação aqui, os quais serão aplicados a novos álbuns e para adicionar aos álbuns existentes quando você realizar o upgrade para a versão %s."
+msgstr "Isso permitirá aos seus visitantes votar ou dar notas ao conteúdo de um álbum. Defina os padrões de votação aqui, os quais serão aplicados a novos álbuns e para todos os álbuns existentes quando você atualizar de uma versão anterior então %s."
 
 #: ../setup/config_data.inc:1772
 msgid "In each album, voting can be switched off, restricted to logged in users or open to all visitors."
@@ -2880,15 +2860,15 @@ msgstr "Esta opção permitirá aos seus visitantes ter a repetição do slideshow at
 #: ../setup/config_data.inc:1928 ../setup/config_data.inc:1932
 #: ../setup/config_data.inc:1942
 msgid "Microthumb Photo Navigation"
-msgstr ""
+msgstr "Navegação de Foto por Microminiaturas"
 
 #: ../setup/config_data.inc:1929
 msgid "These settings apply to the microthumb photo navigation system.  The microthumbs are only visible when viewing individual images."
-msgstr ""
+msgstr "Essas configurações se aplicam ao sistema de navegação de fotos por microminiaturas. As microminiaturas são somente visíveis ao visualizar imagens individuais."
 
 #: ../setup/config_data.inc:1933
 msgid "Uses microthumbs for photo navigation. This creates a navigation panel with tiny thumbnails of the images around the photo you are viewing.  You can also choose both to display the microthumb navigation system AND the old style navigation system."
-msgstr ""
+msgstr "Usa microminiaturas para navegação das fotos. Isto criará um painel de navegação com pequenas miniaturas das imagens acima da foto que você está visualizando. Você também pode escolher ambas visualização do sistema de navegação por microminiaturas E o sistema de navegação tradicional."
 
 #: ../setup/config_data.inc:1938
 msgid "both"
