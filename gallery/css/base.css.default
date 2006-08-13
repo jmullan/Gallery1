@@ -1,21 +1,21 @@
 /* This is the base style sheet that is used anytime in Gallery.
 
-   If you would like to customize the styles please create 
-   copy of this file called 
+   If you would like to customize the styles please create
+   copy of this file called
 
      "base.css" (same name without ".default")
 
-   If that file is found in this directory it will be 
+   If that file is found in this directory it will be
    used instead of this one.
 
-   Some of the styles below are overridden by specific 
+   Some of the styles below are overridden by specific
    album properties.
 
    $Id$
-*/ 
+*/
 
 
-/* 
+/*
    default text styles - background and colors overridden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
@@ -27,7 +27,7 @@ img {
     border: none;
 }
 
-td,p { 
+td,p {
 }
 
 a {
@@ -48,14 +48,14 @@ form {
 	margin:0px;
 }
 
-/* 
-   text styles 
+/*
+   text styles
 */
 
 /* album titles on main page */
-.title { 
-    font-size: 14px; 
-    font-weight: bold; 
+.title {
+    font-size: 14px;
+    font-weight: bold;
     white-space: nowrap;
 }
 
@@ -79,16 +79,16 @@ form {
 	{
 	}
 .desc                           /* album descriptions on main page */
-	{ 
-	  font-size: 12px; 
+	{
+	  font-size: 12px;
 	}
 .caption                        /* photo captions on all pages */
-	{ 
-	  font-size: 10px; 
+	{
+	  font-size: 10px;
 	}
 .modcaption  /* modifies background for caption text to reside - view_album */
 	{
-	  font-size: 10px; 
+	  font-size: 10px;
 	}
 .pcaption  /* modifies background for caption text to reside - view_photo*/
 {
@@ -110,13 +110,13 @@ form {
  	{
  	   float: none;
  	}
- 
+
 .vafloat2 /* float for view album - images */
  	{
  	 float: none;
 	}
 
- /* controls the view of Album summary */ 
+ /* controls the view of Album summary */
 .vasummary {
     font-weight:bold;
     padding:2px;
@@ -130,9 +130,9 @@ form {
 }
 
 .error                          /* all error text */
-{ 
-      color: red; 
-      font-size: 12px; 
+{
+      color: red;
+      font-size: 12px;
 }
 
 a.error, a.error:link, a.error:visited, a.error:active {
@@ -156,9 +156,9 @@ a.error:hover {
 	}
 
 /* Page headers */
-.head { 
-    font-size: 16px; 
-    font-weight: bold; 
+.head {
+    font-size: 16px;
+    font-weight: bold;
     white-space: nowrap;
 }
 
@@ -176,7 +176,7 @@ a.error:hover {
 	}
 
 /* used in breadcrumb bars */
-.bread { 
+.bread {
     font-size: 10px;
 }
 
@@ -185,8 +185,8 @@ a.error:hover {
 }
 
 .nav                            /* used in navigation bars */
-	{ 
-	  font-size: 12px; 
+	{
+	  font-size: 12px;
 	}
 .navtableborderbegin
 	{
@@ -252,7 +252,7 @@ a.error:hover {
 	  font-size: 10px;
 	}
 
-.viewcounter 
+.viewcounter
 	{
 	  font-size: 10px;
 	}
@@ -265,26 +265,26 @@ a.error:hover {
 	{
 	}
 .admin                          /* used in admin bars */
-	{ 
-	  font-size: 10px; 
-	  font-weight: bold; 
+	{
+	  font-size: 10px;
+	  font-weight: bold;
 	}
 
 .adminform /* defines form for drop down menu */
-	{ 
-	  font-size: 10px; 
-	  font-weight: bold; 
+	{
+	  font-size: 10px;
+	  font-weight: bold;
 	}
 
 .search                          /* used in search text */
-	{ 
-	  font-size: 10px; 
-	  font-weight: bold; 
+	{
+	  font-size: 10px;
+	  font-weight: bold;
 	}
 
 .searchform /* defines form for search */
 	{
-	  font-size: 10px; 
+	  font-size: 10px;
 	  font-weight: bold;
 	}
 
@@ -295,7 +295,7 @@ a.error:hover {
 .modnavboxtop  /*navagation bar top of screen where admin buttons show*/
 	{
 	background-color: #5E72CC;
- 
+
      }
 .modnavboxmid  /*navagation bar middle where the link for the albums show*/
 	{
@@ -306,11 +306,11 @@ a.error:hover {
 	}
 
 
-.popupbody  /* controls the background of popup. */ 
+.popupbody  /* controls the background of popup. */
 {
 }
-	
-.popuphead  /* controls the title and background */ 
+
+.popuphead  /* controls the title and background */
 {
     text-align:center;
     font-size: 14px; font-weight: bold;
@@ -321,7 +321,7 @@ a.error:hover {
 {
     font-size: 12px; font-weight: normal;
     padding: 5px;
-    padding-top:0px; 
+    padding-top:0px;
     margin-bottom: 10px;
 }
 
@@ -356,12 +356,12 @@ a.error:hover {
 }
 
 #tabnav li {
-	margin: 0px; 
+	margin: 0px;
 	padding: 0px;
   	display: inline;
   	list-style-type: none;
 }
-	
+
 #tabnav a:link, #tabnav a:visited {
     float: left;
     font-size: 11px;
@@ -440,20 +440,20 @@ a.error:hover {
 }
 
 /* Used on Adminpage */
-td.adm_options { 
-    vertical-align: top; 
-    height: 30px; 
+td.adm_options {
+    vertical-align: top;
+    height: 30px;
     padding: 5px;
 }
 
 /* Following two classes are used in stats-wizard */
- .blockcell { 
-    vertical-align: top; 
+ .blockcell {
+    vertical-align: top;
     border-bottom: 1px solid #000000;
 }
-        
+
 caption {
-    font-weight:bold; 
+    font-weight:bold;
     margin-bottom: 5px;
 }
 
@@ -487,12 +487,12 @@ caption {
 }
 
 /* Outdated, will be removed soon */
-.tab-text { 
-    text-decoration:underline; 
+.tab-text {
+    text-decoration:underline;
     font-weight:bold;
 }
 
-.littlered { 
+.littlered {
     font-size: 10px;
     color:red;
     vertical-align:top;
@@ -505,7 +505,7 @@ td.tabspacer {
 }
 
 .MLForm {
-    margin: 0px; 
+    margin: 0px;
     margin-bottom: 2px;
     padding: 0px;
     text-align: right;
@@ -557,4 +557,48 @@ td.tabspacer {
 
 .g-iconmenu td {
     text-align: center;
+}
+
+.g-va-poll-box1 {
+    font-size: 8pt;
+    margin: 2px;
+}
+
+.g-va-poll-resultbox {
+    font-size: 8pt;
+    margin: 2px;
+}
+
+
+.g-va-poll-box3 {
+    font-size: 9pt;
+    margin: 2px;
+}
+
+/* ---- */
+
+.infoline_success {
+    color: #00BF00;
+    text-align:center;
+    font-size: 12px;
+    border: 1px solid ;
+    padding: 2px;
+    margin: 2px;
+}
+
+.infoline_error {
+    text-align:center;
+    font-size: 12px;
+    border: 1px solid red;
+    padding: 2px;
+    margin: 2px;
+}
+
+.infoline_notice {
+    color: #BF0000;
+    text-align: left;
+    font-size: 12px;
+    border: 1px solid #BF0000;
+    padding: 2px;
+    margin: 2px;
 }

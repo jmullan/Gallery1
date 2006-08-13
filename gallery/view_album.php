@@ -121,7 +121,7 @@ global $GALLERY_EMBEDDED_INSIDE;
 if (!$GALLERY_EMBEDDED_INSIDE) {
     doctype();
 ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php common_header();
@@ -141,7 +141,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   if (!isset($last)) { ?>
   <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
   <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
-<?php } if ($gallery->album->isRoot() && 
+<?php } if ($gallery->album->isRoot() &&
 (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
@@ -149,7 +149,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	 } else if (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
-<?php } 
+<?php }
 if (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
@@ -181,7 +181,7 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<?php 
+<?php
 }
 
 includeHtmlWrap("album.header");
@@ -258,9 +258,9 @@ $adminOptions = array(
         'name' => gTranslate('core', "Delete this (sub)album"),
         'requirements' => array('canDeleteAlbum', '!albumIsRoot'),
         'action' => 'popup',
-        'value' => makeGalleryUrl('delete_photo.php', 
+        'value' => makeGalleryUrl('delete_photo.php',
 			array('set_albumName' => $gallery->album->fields["parentAlbumName"],
-				'type' => 'popup', 
+				'type' => 'popup',
 				'id' => $gallery->album->fields["name"],
 				'albumDelete' => true))),
     'rename_album'    => array(
@@ -310,7 +310,7 @@ $adminOptions = array(
         'name' => gTranslate('core', "Rearrange items"),
         'requirements' => array('canWriteToAlbum', 'photosExist'),
         'action' => 'popup',
-        'value' => makeGalleryUrl('rearrange.php', 
+        'value' => makeGalleryUrl('rearrange.php',
             array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))),
     'permissions'     => array(
         'name' => gTranslate('core', "Permissions"),
@@ -468,8 +468,8 @@ if ($page == 1 && !empty($gallery->album->fields["summary"])) {
 }
 
 if (($gallery->album->getPollType() == "rank") && canVote()) {
-    echo '<div align="left" class="vapoll">';
-    $my_choices=array();
+    $my_choices = array();
+
     if ( $gallery->album->fields["votes"]) {
         foreach ($gallery->album->fields["votes"] as $id => $image_votes) {
             $index=$gallery->album->getIndexByVotingId($id);
@@ -483,54 +483,63 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
             }
         }
     }
-    if (sizeof($my_choices) == 0
-    && $gallery->album->getVoterClass() ==  "Logged in") {
-        print gTranslate('core', "You have no votes recorded for this poll."). '<br>';
-    }
-    else if (sizeof($my_choices) > 0) {
+
+    if (sizeof($my_choices) > 0) {
         ksort($my_choices);
-        print gTranslate('core', "Your current choices are");
-        print "<table>\n";
-        $nv_pairs=$gallery->album->getVoteNVPairs();
+        $nv_pairs = $gallery->album->getVoteNVPairs();
+
+        $va_poll_box1 = gTranslate('core', "Your votes in the current session are:");
+
+        $pollInfoTable = new galleryTable();
         foreach ($my_choices as $key => $id) {
-            print "<tr><td>". $nv_pairs[$key]["name"] .":</td>\n";
             $index = $gallery->album->getIndexByVotingId($id);
+
+            $pollInfoTable->addElement(array('content' => "- ". $nv_pairs[$key]["name"]));
+            $pollInfoTable->addElement(array('content' => ':'));
             if ($gallery->album->isAlbum($index)) {
                 $albumName = $gallery->album->getAlbumName($index);
-                print "<td><a href=\n".
-                  makeAlbumUrl($albumName). ">\n";
                 $myAlbum = new Album();
                 $myAlbum->load($albumName);
-                print sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']);
-                print "</a></td></tr>\n";
-            } else {
-                print "<td><a href=\n".
-                  makeAlbumUrl($gallery->session->albumName, $id) . ">\n";
+
+                $pollInfoTable->addElement(array('content' =>
+                galleryLink(
+                    makeAlbumUrl($albumName),
+                    sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
+                ));
+            }
+            else {
                 $desc = $gallery->album->getCaption($index);
                 if (trim($desc) == '') {
                     $desc = $gallery->album->getPhotoId($index);
                 }
-                print $desc;
-                print "</a></td></tr>\n";
+
+                $photoId = str_replace('item.', '', $id);
+                $pollInfoTable->addElement(array('content' =>
+                    galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
+                ));
             }
         }
-        print "</table>\n";
+        $va_poll_box1 .= $pollInfoTable->render();
+
+        echo "\n<div class=\"g-va-poll-box1\">\n";
+        echo $va_poll_box1;
+        echo "\n</div>\n";
     }
-    echo '</div>';
-}
-$results = 1;
-if ($gallery->album->getPollShowResults()) {
-    echo '<div align="left" class="vapoll">';
-    list($buf, $results)=showResultsGraph( $gallery->album->getPollNumResults());
-    print $buf;
-    if ($results && testRequirement('isAdminOrAlbumOwner')) {
-        print "\n". '<a href="' . makeGalleryUrl("poll_results.php",
-          array("set_albumName" => $gallery->session->albumName)).
-          '">' .gTranslate('core', "See full poll results") . '</a><br>';
-    }
-    echo '</div>';
 }
 
+$va_poll_result = '';
+if ($gallery->album->getPollShowResults()) {
+    list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
+}
+
+if(testRequirement('isAdminOrAlbumOwner')) {
+    $va_poll_result .= galleryLink(
+        makeGalleryUrl("poll_results.php", array("set_albumName" => $gallery->session->albumName)),
+        gTranslate('core', "[See full poll results]"),
+        array('class' => 'admin'));
+}
+
+echo $va_poll_result;
 ?>
 
    <script language="javascript1.2" type="text/JavaScript">
@@ -546,49 +555,51 @@ if ($gallery->album->getPollShowResults()) {
 
 echo makeFormIntro('view_album.php',
     array('name' => 'vote_form', 'style' => 'margin-bottom: 0px;'));
-    
+
 if (canVote()) {
-    echo '<div align="left" class="vapoll">';
-    $nv_pairs=$gallery->album->getVoteNVPairs();
-    if ($gallery->album->getPollScale() == 1) {
-        $options = $nv_pairs[0]["name"];
-    }
-    else {
-        /** note to translators:
+	$nv_pairs = $gallery->album->getVoteNVPairs();
+	if ($gallery->album->getPollScale() == 1) {
+		$options = $nv_pairs[0]["name"];
+	}
+	else {
+		/** note to translators:
          * This produces (in English) a list of the form: "a, b, c or d".  Correct translation
          * of ", " and " or  " should produce a version that makes sense in your language.
          */
-        $options = '';
-        for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
-            $options .= $nv_pairs[$count]["name"] .gTranslate('core', ", ");
-        }
-        $options .= $nv_pairs[$count++]["name"] .gTranslate('core', " or ");
-        $options .= $nv_pairs[$count]["name"];
-    }
-    print '<span class="attention">';
-    print sprintf(gTranslate('core', "To vote for an image, click on %s."), $options);
-    print "  ".sprintf(gTranslate('core', "You MUST click on %s for your vote to be recorded."),
-    "<b>".gTranslate('core', "Vote")."</b>");
-    if ($gallery->album->getPollType() == "rank") {
-        $voteCount=$gallery->album->getPollScale();
-        print "  ".
-          sprintf(gTranslate('core', "You have a total of %s and can change them if you wish."),
-            gTranslate('core', "1 vote", "%d votes", $voteCount));
-    }
-    else {
-        print "  ". gTranslate('core', "You can change your choices if you wish.");
-    }
-    echo "</span>";
-?>
-   </div>
+		$options = '';
+		for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
+			$options .= $nv_pairs[$count]["name"] .gTranslate('core', ", ");
+		}
+		$options .= $nv_pairs[$count++]["name"] .gTranslate('core', " or ");
+		$options .= $nv_pairs[$count]["name"];
+	}
 
-<?php if (canVote()) { ?>
+	$va_poll_box3 = sprintf(gTranslate('core', "To vote for an image, click on %s."), $options);
+	$va_poll_box3 .= ' ';
+	$va_poll_box3 .= sprintf(gTranslate('core', "You MUST click on %s for your vote to be recorded."), "<b>".gTranslate('core', "Vote")."</b>");
+	$va_poll_box3 .= ' ';
+	if ($gallery->album->getPollType() == 'rank') {
+		$voteCount = $gallery->album->getPollScale();
+		$va_poll_box3 .= gTranslate('core',
+			"You have a total of %d vote and can change it later if you wish.",
+			"You have a total of %d votes and can change them later if you wish.", $voteCount, '', true);
+	}
+	else {
+		$va_poll_box3 .= gTranslate('core', "You can change your votes later, if you wish.");
+	}
+
+	echo "\n<div class=\"g-va-poll-box3\">\n";
+    echo $va_poll_box3;
+    echo "\n</div>\n";
+?>
 	<div align="center">
  		<input type=submit name="Vote" value="<?php print gTranslate('core', "Vote") ?>">
 	</div>
-<?php }
+
+<?php
 }
 ?>
+
 <!-- image grid table -->
 <table border="0" cellspacing="5" cellpadding="0" width="100%" class="vatable" align="center">
 <?php
@@ -856,13 +867,13 @@ if ($numPhotos) {
             }
 
             $albumItemOptions = getItemActions($i, false);
-            if (sizeof($albumItemOptions) > 2 || 
+            if (sizeof($albumItemOptions) > 2 ||
               (sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif']))) {
                 echo drawSelect2("s$i", $albumItemOptions, array(
                     'onChange' => "imageEditChoice(document.vote_form.s$i)",
                     'class' => 'adminform'));
             }
-            
+
             if (canVote()) {
                 print '</div>';
             }
@@ -929,7 +940,7 @@ if (canVote()) { ?>
 
 ?>
 	</form>
-<?php if ($gallery->user->isLoggedIn() &&  
+<?php if ($gallery->user->isLoggedIn() &&
 $gallery->user->getEmail() &&
 !$gallery->session->offline &&
 $gallery->app->emailOn == "yes") {
@@ -945,7 +956,7 @@ $gallery->app->emailOn == "yes") {
             $gallery->album->unsetEmailMe('other', $gallery->user);
         }
     }
-    echo makeFormIntro("view_album.php", 
+    echo makeFormIntro("view_album.php",
         array("name" => "email_me", "style" => "margin-bottom: 0px;"));
     echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
     $checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
@@ -963,7 +974,7 @@ $gallery->app->emailOn == "yes") {
 	</form>
 <?php } ?>
 <!-- bottom nav -->
-<?php 
+<?php
 
 if($numVisibleItems != 0) {
     includeLayout('navtablebegin.inc');
