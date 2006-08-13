@@ -21,7 +21,7 @@
   */
  
 /**
- * @version     1.5.2
+ * @version     1.5.4
  * @package	Languagepack
  * @subpackage	Brazil Portuguese
  */
