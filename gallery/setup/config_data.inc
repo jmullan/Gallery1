@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -301,7 +301,7 @@ $constants =  array_merge(array(
 			),
 		'value' => 'form',
 		),
-	
+
 	'group_mandatory_end' => array (
 		'type' => 'group_end',
 	),
@@ -315,7 +315,7 @@ $constants =  array_merge(array(
 	'albumDir' => array(
 		'prompt' => gTranslate('config',"Album directory"),
 		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
+		  sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty.  Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 		  '<b>'. $webserver_user . '</b>'),
 		'value' => getenv('DOCUMENT_ROOT') . '/albums',
 		'require-write-dir' => 1,
@@ -382,7 +382,7 @@ $constants =  array_merge(array(
 	'groupLocations_end' => array (
 		'type' => 'group_end',
 	),
-	
+
 	'groupToolkits' => array (
 		'type' => 'group_start',
 		'name' => 'group_toolkits',
@@ -681,7 +681,7 @@ $constants =  array_merge(array(
 	'use_exif' => array(
 		'prompt' => "Jhead EXIF Parser",
 		'desc' => sprintf(gTranslate('config',"The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."),
-		  '<a href="http://www.sentex.net/~mwandel/jhead/" target=_"blank">jhead</a>', '<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
+		  '<a href="http://www.sentex.net/~mwandel/jhead/" target="_blank">jhead</a>', '<i>/usr/local/bin/jhead</i>', '<i>c:\\bin\\jhead.exe</i>'),
 		'value' => locateFile('jhead'),
 		'must-be-file' => 1,
 		'must-be-executable' => 1,
@@ -1154,7 +1154,7 @@ $constants = array_merge($constants, array(
 		  gTranslate('config',"The expire time in seconds is specified for each cache below."). "\n<br>".
 		  gTranslate('config',"If the expire time is set to -1 then the cache will not auto refresh.")
 	),
-	
+
 	'stats_foruser'	=> array(
 		'prompt'		=> gTranslate('config',"Available Stats for 'normal' users"),
 		'desc'			=> gTranslate('config',"Gallery can give a lot of statistics for admins, however you can enable some of them to normal users.") ."\n<br>".
@@ -1325,7 +1325,7 @@ $constants = array_merge($constants, array(
 		),
 		'value' => 'no'
 	),
-	
+
 	'devMode' => array(
 		'prompt' => gTranslate('config',"Developer Mode"),
 		'desc' => gTranslate('config',"Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."),
@@ -1556,7 +1556,7 @@ $defaults = array(
 	'max_size' => array(
 		'prompt' => gTranslate('config','Maximum image size'),
 		'desc' => gTranslate('config',"You can optionally limit the dimensions your images on upload to Gallery.") .
-		  '<br><span class="attention>'. gTranslate('config',"Warning:") .'</span> '.
+		  '<br><span class="attention">'. gTranslate('config',"Warning:") .'</span> '.
 		  gTranslate('config',"Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."),
 		'value' => 'off',
 		'choices' => array(
@@ -1654,7 +1654,7 @@ $defaults = array(
 	'mPUSHAccount' => array(
 		'prompt' => gTranslate('config',"Account for the mPUSH service"),
 		'desc' => sprintf(gTranslate('config',"If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."),
-		  '<a href="http://mpush.msolutions.cc/safe.php?p=Register&ref=gallery" target="_blank">', '</a>'),
+		  '<a href="http://mpush.msolutions.cc/safe.php?p=Register&amp;ref=gallery" target="_blank">', '</a>'),
 		'value' => 'gallery',
 		'type' => 'text',
 	),
@@ -1944,7 +1944,7 @@ $defaults = array(
 		  .'<dt>'. gTranslate('config',"Fixed") .'</dt>'
 		  .'<dd>'. gTranslate('config',"Displays prev+next groups of thumbs, changing only to display next group of thumbs.") . '</dd>'
 		  .'<dt>'. gTranslate('config',"Dynamic") . '</dt>'
-		  .'<dd>'. gTranslate('config',"Displays previos & next images, with current image between.") . '</dd>'
+		  .'<dd>'. gTranslate('config',"Displays previous & next images, with current image between.") . '</dd>'
 		  .'</dl>',
 		'value' => 'fixed',
 		'choices' => array(
@@ -2018,8 +2018,7 @@ $defaults = array(
 		'prompt' => gTranslate('config',"Subalbum frames"),
 		'desc' => gTranslate('config',"This frame will appear around the thumbnail image representing a subalbum."),
 		'choices' => available_frames(),
-		'value' => 
-		'simple_book'
+		'value' => 'simple_book'
 	),
 	'thumb_frame' => array(
 		'prompt' => gTranslate('config',"Frame around thumbs"),

@@ -98,7 +98,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	/* Needed for phpBB2 */
 	global $userdata;
 	global $board_config;
-        
+
 	/* Needed for Mambo / Joomla! */
 	global $MOS_GALLERY_PARAMS;
 
@@ -116,10 +116,10 @@ function makeGalleryUrl($target = '', $args = array()) {
 	else {
 	    $urlprefix = '';
 	}
-	
+
 	/* make sure the urlprefix doesnt end with a / */
 	$urlprefix = ereg_replace("\/$", "", $urlprefix);
-	
+
 	/* Add the folder to the url when *Nuke is not direct in the main folder */
 	$addpath = substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/'));
 
@@ -172,7 +172,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				else {
 					$url = $urlprefix . pnGetBaseURI()."/index.php";
 				}
-				
+
 				$args["name"] = $GALLERY_MODULENAME;
 				/*
 				 * include *must* be last so that the JavaScript code in
@@ -180,7 +180,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 				 */
 				$args["include"] = $target;
 			break;
-							
+
 			case 'mambo':
 			case 'joomla':
 				$args['option'] = $GALLERY_MODULENAME;
@@ -211,7 +211,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 		}
 	}
 
-	if (empty($url)) {       
+	if (empty($url)) {
 	    $url = getGalleryBaseUrl() ."/$target";
 	}
 
@@ -379,8 +379,16 @@ function broken_link($file) {
 
 function galleryLink($url, $content, $attrList = array()) {
 	$attrs = generateAttrs($attrList);
-	$html = "<a href=\"$url\"$attrs>$content</a>";
-	
+
+	if (!empty($url)) {
+        $html = "<a href=\"$url\"$attrs>$content</a>\n";
+    }
+    else {
+        $html = "<a$attrs>$content</a>\n";
+    }
+
 	return $html;
 }
+
+
 ?>

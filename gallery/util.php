@@ -367,6 +367,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 function gallerySanityCheck() {
 	global $gallery;
 	global $GALLERY_OK;
+
        	if (!empty($gallery->backup_mode)) {
 	       	return NULL;
        	}

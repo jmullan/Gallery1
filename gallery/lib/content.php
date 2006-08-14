@@ -56,7 +56,7 @@ function editCaption($album, $index) {
 
     if (($gallery->user->canChangeTextOfAlbum($album) ||
       ($gallery->album->getItemOwnerModify() &&
-      $gallery->album->isItemOwner($gallery->user->getUid(), $index))) && 
+      $gallery->album->isItemOwner($gallery->user->getUid(), $index))) &&
       !$gallery->session->offline) {
 
         if (empty($buf)) {
@@ -139,7 +139,7 @@ if (!$gallery->user->isLoggedIn() ) {
 	<td colspan="2" class="commentboxfooter" align="right"><input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>"></td>
 </tr>
 </table>
-<?php 
+<?php
 }
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
@@ -308,7 +308,7 @@ function createTreeArray($albumName,$depth = 0) {
                 $microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 		$tree[] = array(
 		    'albumUrl' => $albumUrl,
-		    'albumName' => $myName, 
+		    'albumName' => $myName,
 		    'titel' => $title,
 		    'clicksText' => $clicksText,
 		    'microthumb' => $microthumb,
@@ -595,10 +595,10 @@ function addSearchForm($formerSearchString = '', $align = '') {
 }
 
 /**
- * This is either a wrapper around fs_file_size(), 
+ * This is either a wrapper around fs_file_size(),
  * or just a formatter for a filesize given in bytes.
  * Return a human readable filesize.
- * 
+ *
  * @param   string  $filesize   if omitted, function gets filesize of given filename
  * @param	string	$filename
  * @return	string  the formated filesize
@@ -610,7 +610,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
     if($filesize == 0 || $filename != '') {
         $filesize = fs_filesize($filename);
     }
-    
+
     $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $unit_count = (count($units) - 1);
 
@@ -909,7 +909,7 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
         return  '';
     }
     if ($gallery->app->comments_indication_verbose == 'yes') {
-        $ret = "<br>". 
+        $ret = "<br>".
           sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
     } else {
         $ret= '<span class="commentIndication">*</span>';
@@ -935,7 +935,7 @@ function available_skins($description_only = false) {
     $dir = "$base/skins";
     $opts['none'] = gTranslate('common', "No Skin");
     $descriptions = '<dl>';
-    $name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">". 
+    $name = "<a href=\"#\" onClick=\"document.config.skinname.options[0].selected=true; return false;\">".
 	gTranslate('common', "No Skin") . "</a>";
     $descriptions .= sprintf("<dt>%s</dt>", $name);
     $descriptions .= '<dd>'. gTranslate('common', "The original look and feel.") .'</dd>';
@@ -970,9 +970,11 @@ function available_skins($description_only = false) {
             $opts[$file]=$name;
             if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
                 $screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
-            } elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
+            }
+            elseif (fs_file_exists("$dir/$file/images/screenshot.gif")) {
                 $screenshot = $base_url . "/skins/$file/images/screenshot.gif";
-            } else {
+            }
+            else {
                 $screenshot = '';
             }
 
@@ -1015,14 +1017,14 @@ function available_frames($description_only = false) {
         'dots' => gTranslate('common', "Dots"),
         'solid' => gTranslate('common', "Solid"),
         );
-        
+
     $descriptions="<dl>" .
         "<dt>" . popup_link(gTranslate('common', "None"), "frame_test.php?frame=none", 1)  . "</dt><dd>". gTranslate('common', "No frames")."</dd>" .
         "<dt>" . popup_link(gTranslate('common', "Dots"), "frame_test.php?frame=dots", 1)  . "</dt><dd>". gTranslate('common', "Just a simple dashed border around the thumb.")."</dd>" .
         "<dt>" . popup_link(gTranslate('common', "Solid"), "frame_test.php?frame=solid", 1) . "</dt><dd>". gTranslate('common', "Just a simple solid border around the thumb.")."</dd>" ;
-        
+
     $dir = $GALLERY_BASE . '/html_wrap/frames';
-    
+
     if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
         while ($file = readdir($fd)) {
             $subdir = "$dir/$file";
@@ -1038,7 +1040,7 @@ function available_frames($description_only = false) {
                     $description = $file;
                 }
                 $opts[$file] = $name;
-                $descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</a></dt><dd>$description</dd>";
+                $descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</dt><dd>$description</dd>";
             } else {
                 if (false && isDebugging()) {
                     echo gallery_error(sprintf(gTranslate('common', "Skipping %s."),
@@ -1095,7 +1097,7 @@ function metatags($adds = array()) {
 
 /**
  * Generates a link to w3c validator
- * 
+ *
  * @param	string	$file	file to validate, relative to gallery dir
  * @param	boolean	$valid	true/false wether we know the result ;)
  * @param	array	$arg	optional array with urlargs
@@ -1140,7 +1142,7 @@ function album_validation_link($album, $photo='', $valid=true) {
       urlencode(eregi_replace("&amp;", "&",
       makeAlbumURL($album, $photo, $args))).
       '"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-    
+
     if (!$valid) {
         $link .= gTranslate('common', "Not valid yet");
     }
@@ -1172,10 +1174,10 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 
 function showImageMap($index) {
     global $gallery;
-    
+
     $allImageAreas = $gallery->album->getAllImageAreas($index);
     $html = '';
-   
+
     if (!empty($allImageAreas)) {
         $html .= "\n". '<map name="myMap">';
         foreach($allImageAreas as $nr => $area) {
@@ -1216,7 +1218,7 @@ function gImage($relativePath, $altText, $attrs = array(), $skin = '') {
         }
     }
     $html .= '>';
-    
+
     return $html;
 }
 

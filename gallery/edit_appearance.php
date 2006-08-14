@@ -237,15 +237,15 @@ doctype();
 <div class="popuphead"><?php echo gTranslate('core', "Album Properties") ?></div>
 <?php echo infoLine($infoMessages, 'error'); ?>
 <div class="popup" align="center">
-<?php 
-
-echo makeFormIntro("edit_appearance.php",
-    array("name" => "theform"),
-    array("type" => "popup"));
+<?php
 
 $i = 0;
+$initialtab = makeSectionTabs($properties, $initialtab, true);
 
-makeSectionTabs($properties,5, $initialtab, true);
+echo "<div style=\"clear: both\"></div>";
+echo makeFormIntro('edit_appearance.php',
+    array("name" => "theform"),
+    array('type' => 'popup', 'initialtab' => $initialtab));
 
 foreach ($properties as $key => $val) {
     if(!empty($val['skip'])) {
@@ -258,7 +258,7 @@ foreach ($properties as $key => $val) {
         } else {
             $display = 'none';
         }
-        echo "\n<div id=\"". $val["name"] ."\" style=\"display: $display\">";
+        echo "\n<div id=\"{$val["name"]}\" style=\"display: $display\">";
         echo make_separator($key, $val);
         echo "\n<table width=\"100%\" class=\"inner\">";
         continue;

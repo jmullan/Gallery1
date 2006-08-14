@@ -54,7 +54,7 @@ if (isset($id)) {
     }
 } else {
     if ($index > $gallery->album->numPhotos(1)) {
-        $index = $numPhotos;
+        $index = $gallery->album->numPhotos(1);
     }
     $id = $gallery->album->getPhotoId($index);
 }
@@ -109,7 +109,7 @@ list($imageWidth, $imageHeight) = $image->getRawDimensions();
 $do_fullOnly = isset($gallery->session->fullOnly) &&
     !strcmp($gallery->session->fullOnly,"on") &&
     strcmp($gallery->album->fields["use_fullOnly"],"yes");
-    
+
 if ($do_fullOnly) {
     $full = $gallery->user->canViewFullImages($gallery->album);
 }
@@ -213,10 +213,10 @@ if (!empty($keyWords)) {
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
-  <?php 	
+  <?php
   common_header(array('metaTags' => $metaTags));
 
   /* prefetch/navigation */
@@ -262,7 +262,7 @@ if (!empty($gallery->album->fields["linkcolor"])) {
       { color: <?php echo $gallery->album->fields['linkcolor'] ?>; }
     A:hover
       { color: #ff6600; }
-<?php 
+<?php
 }
 if (!empty($gallery->album->fields["bgcolor"])) {
     echo "BODY { background-color:" . $gallery->album->fields['bgcolor'] . "; }";
@@ -278,7 +278,7 @@ if (!empty($gallery->album->fields["textcolor"])) {
     }
 }
 ?>
-  </style> 
+  </style>
 
   </head>
   <body dir="<?php echo $gallery->direction ?>">
@@ -582,7 +582,7 @@ if ($bordercolor) {
 </div>
 
 
-<div style="width:<?php echo $mainWidth ?>"> 
+<div style="width:<?php echo $mainWidth ?>">
 <?php includeHtmlWrap("inline_photo.header"); ?>
 </div>
 
@@ -702,7 +702,7 @@ echo "<br>";
 
 includeHtmlWrap("inline_photo.footer");
 
-if ($gallery->user->isLoggedIn() &&  
+if ($gallery->user->isLoggedIn() &&
   $gallery->user->getEmail() &&
   !$gallery->session->offline &&
   $gallery->app->emailOn == "yes") {
@@ -772,7 +772,7 @@ if (isset($printShutterflyForm)) { ?>
 </form>
 <?php }
 if (isset($printFotoserveForm)) { ?>
-<form name="fotoserve" 
+<form name="fotoserve"
 action="http://www.fotoserve.com/menalto/build.html" method="post">
   <input type="hidden" name="image" value="<?php echo $rawImage ?>">
   <input type="hidden" name="thumb" value="<?php echo $thumbImage ?>">

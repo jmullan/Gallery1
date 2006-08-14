@@ -30,7 +30,7 @@
 <div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
 
 <div class="sitedesc">
-<?php 
+<?php
 	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
 	echo '<br>';
 	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
@@ -47,6 +47,7 @@
 <?php
 
 makeSectionTabs($constants);
+echo "<div style=\"clear: both\"></div>";
 
 ?>
 <script type="text/javascript" language="Javascript">
@@ -66,7 +67,7 @@ function toggleGraphics(show) {
 $i = 0;
 foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
-	
+
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 		echo "\n<table width=\"100%\" class=\"inner\">";
 		echo evenOdd_row(make_fields($key, $val), $i % 2);
@@ -81,7 +82,7 @@ foreach ($constants as $key => $val) {
         }
         continue;
     }
-    
+
     if (isset($val["type"]) && ($val["type"] === 'subgroup_end' )) {
         echo '</div>';
         continue;
@@ -97,9 +98,9 @@ foreach ($constants as $key => $val) {
 		echo "\n<div id=\"". $val["name"] ."\" style=\"display: ". $val["default"] ."\">";
 		echo make_separator($key, $val);
 		continue;
-	
+
 	}
-	
+
 	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
 		echo "\n</div>";
 		continue;
@@ -110,7 +111,7 @@ foreach ($constants as $key => $val) {
 
 	/* if the variable is hidden, lock it in as we don't want to use previous values*/
 	if (isset($val["type"]) && ($val["type"] === "hidden")) {
-	       	if (!empty($val["persistent"]) && 
+	       	if (!empty($val["persistent"]) &&
 				isset($gallery->app->$key)) {
 			$val["value"] = $gallery->app->$key;
 		}
@@ -132,7 +133,7 @@ foreach ($constants as $key => $val) {
 		if (isset($app->$key)) {
 			$val["value"] = $app->$key;
 		}
-	
+
 		/* $gallery->app-> is the desired container, however */
 		if (isset($gallery->app->$key)) {
 			$val["value"] = $gallery->app->$key;
@@ -151,7 +152,7 @@ foreach ($constants as $key => $val) {
 			}
 			else if(isset($gallery->session->configForm->$key)) {
 				$val["value"] = $gallery->session->configForm->$key;
-	
+
 			}
 			if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 				if (is_array($val["value"])) {
@@ -169,7 +170,7 @@ foreach ($constants as $key => $val) {
 		else {
 			$val['value'] = '';
                 }
-	
+
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
 

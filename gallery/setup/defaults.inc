@@ -49,6 +49,7 @@
 
 <?php
 	makeSectionTabs($defaults);
+	echo "<div style=\"clear: both\"></div>";
 
 $i = 0;
 foreach ($defaults as $key => $val) {
@@ -102,7 +103,7 @@ foreach ($defaults as $key => $val) {
 
 	if (!isset($go_defaults) && isset($gallery->session->configForm->$key)) {
 		$val["value"] = $gallery->session->configForm->$key;
-		
+
 		if (get_magic_quotes_gpc()) {
 			$val["value"] = array_stripslashes($val["value"]);
 		}
@@ -120,7 +121,7 @@ foreach ($defaults as $key => $val) {
 
 	$onThisPage[$key] = 1;
 	$preserve[$key] = 1;
-	
+
 	echo "\n</table>";
 }
 ?>
