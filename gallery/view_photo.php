@@ -477,7 +477,7 @@ function doPrintService(input) {
       $gallery->user->canViewFullImages($gallery->album)) {
         $lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
         $link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
-        $adminTextIconElemens[] = _('View Images:');
+        $adminTextIconElemens[] = gTranslate('core', 'View Images:');
         $iconTextNormal = gTranslate('core', "normal");
         $iconTextFull = gTranslate('core', "full");
 

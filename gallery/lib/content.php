@@ -42,7 +42,7 @@ function editField($album, $field, $link = null) {
         }
         $url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
         $buf .= ' <span class="editlink">';
-        $buf .= popup_link( "[". sprintf(gTranslate('common', "edit %s"), _($field)) . "]", $url) ;
+        $buf .= popup_link( "[". sprintf(gTranslate('common', "edit %s"), gTranslate('common', $field)) . "]", $url) ;
         $buf .= '</span>';
     }
     return $buf;

@@ -395,7 +395,7 @@ if (!empty($adminOptionHTML)) {
     . "</script>\n\n";
 
     $iconElements[] = "\n\t<select class=\"adminform\" name=\"admin_select\" onChange=\"execAdminOption()\">\n"
-    . "\t\t<option value=\"\">&laquo; " . _('Album Actions') . " &raquo;</option>\n"
+    . "\t\t<option value=\"\">&laquo; " . gTranslate('core', 'Album Actions') . " &raquo;</option>\n"
     . $adminOptionHTML
     . "\t</select>\n";
 }
@@ -738,8 +738,8 @@ if ($numPhotos) {
                     list($wf, $hf) = $image->getRawDimensions();
                     /* display file sizes if dimensions are identical */
                     if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
-                        $fsr = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(0) >> 10);
-                        $fsf = ' ' . sprintf(_('%dkB'), (int) $photo->getFileSize(1) >> 10);
+                        $fsr = ' ' . sprintf(gTranslate('core', '%dkB'), (int) $photo->getFileSize(0) >> 10);
+                        $fsf = ' ' . sprintf(gTranslate('core', '%dkB'), (int) $photo->getFileSize(1) >> 10);
                     } else {
                         $fsr = '';
                         $fsf = '';
