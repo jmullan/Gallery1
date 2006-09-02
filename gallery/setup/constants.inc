@@ -46,7 +46,7 @@
 </p>
 <?php
 
-makeSectionTabs($constants);
+$initialtab = makeSectionTabs($constants);
 echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 echo "<div style=\"clear: both\"></div>";
 
