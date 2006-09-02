@@ -228,7 +228,7 @@ function showColorpicker($attrs = array()) {
         'gallery_popup' => true
     );
 
-    $colorPickerUrl = makeGalleryUrl('colorpicker.php', $args);
+    $colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', $args);
     $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16" alt="colorpicker">';
 
     $html = "\n<table cellspacing=\"0\">";
