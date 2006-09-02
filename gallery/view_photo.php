@@ -89,7 +89,9 @@ if (!empty($votes)) {
 }
 
 $albumName = $gallery->session->albumName;
-if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
+$noCount = getRequestVar('noCount');
+
+if ($noCount != 1 && !isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
   !$gallery->session->offline) {
     $gallery->session->viewedItem[$albumName][$id] = 1;
     $gallery->album->incrementItemClicks($index);
@@ -220,6 +222,16 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   common_header(array('metaTags' => $metaTags));
 
   /* prefetch/navigation */
+  $firstUrl  = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0],
+                            array('noCount' => 1));
+  $prevUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1],
+                            array('noCount' => 1));
+  $nextUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1],
+                            array('noCount' => 1));
+  $lastUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1],
+                            array('noCount' => 1));
+  $upUrl     = makeAlbumUrl($gallery->session->albumName, '', array('noCount' => 1));
+
   $navcount = sizeof($navigator['allIds']);
   $navpage = $navcount - 1;
   while ($navpage > 0) {
@@ -230,23 +242,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   }
   if ($navigator['allIds'][0] != $id) {
       if ($navigator['allIds'][0] != 'unknown') {
-          echo "\n  ". '<link rel="first" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) .'">';
+          echo "\n  ". '<link rel="first" href="'. $firstUrl .'">';
       }
 
       if ($navigator['allIds'][$navpage-1] != 'unknown') {
-          echo "\n  ". '<link rel="prev" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) .'">';
+          echo "\n  ". '<link rel="prev" href="'. $prevUrl .'">';
       }
   }
   if ($navigator['allIds'][$navcount - 1] != $id) {
       if ($navigator['allIds'][$navpage+1] != 'unknown') {
-          echo "\n  ". '<link rel="next" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) .'">';
+          echo "\n  ". '<link rel="next" href="'. $nextUrl .'">';
       }
       if ($navigator['allIds'][$navcount-1] != 'unknown') {
-          echo "\n  ". '<link rel="last" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) .'">';
+          echo "\n  ". '<link rel="last" href="'. $lastUrl .'">';
       }
   }
 
-  echo "\n  ". '<link rel="up" href="' . makeAlbumUrl($gallery->session->albumName) .'">';
+  echo "\n  ". '<link rel="up" href="' . $upUrl .'">';
+
   if ($gallery->album->isRoot() &&
   (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
       echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';

@@ -95,15 +95,22 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	common_header() ;
 
 	/* prefetching/navigation */
-    if ($navigator['page'] > 1) { ?>
-  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
+	$topUrl  = makeGalleryUrl('albums.php', array('set_albumListPage' => 1));
+    $firstUrl = makeGalleryUrl('albums.php',array('set_albumListPage' => 1));
+	$prevUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1));
+	$nextUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1));
+	$lastUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages));
+
+	if ($navigator['page'] > 1) {
+?>
+  <link rel="top" href="<?php echo $topUrl ?>">
+  <link rel="first" href="<?php echo $firstUrl ?>">
+  <link rel="prev" href="<?php echo  $prevUrl?>">
 <?php
     }
     if ($navigator['page'] < $maxPages) { ?>
-  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
-  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
+  <link rel="next" href="<?php echo $nextUrl ?>">
+  <link rel="last" href="<?php echo $lastUrl?>">
 <?php
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
@@ -121,7 +128,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 includeHtmlWrap("gallery.header");
 
 if (!$gallery->session->offline &&
-  ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0) || 
+  ( ($gallery->app->showSearchEngine == 'yes' && $numPhotos != 0) ||
   $GALLERY_EMBEDDED_INSIDE == 'phpBB2')) {
 ?>
 <table width="100%" border="0" cellspacing="0" style="margin-bottom:2px">
@@ -192,26 +199,26 @@ if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     if ($gallery->user->isAdmin()) {
-        
+
         $iconText = getIconText('unsortedList.gif', gTranslate('core', "Administer startpage"));
         $linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
         $iconElements[] = popup_link($iconText, $linkurl, true);
-        
+
         $iconText = getIconText('kdf.gif', gTranslate('core', "admin page"));
         $iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
-         
+
         $docsUrl = galleryDocs('admin');
         if ($docsUrl) {
             $iconText = getIconText('info.gif', gTranslate('core', "documentation"));
             $iconElements[] = "<a href=\"$docsUrl\">". $iconText .'</a>';
         }
     }
-    
+
     if ($gallery->userDB->canModifyUser()) {
         $iconText = getIconText('yast_sysadmin.gif', gTranslate('core', "preferences"));
         $iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
     }
-    
+
     if (!$GALLERY_EMBEDDED_INSIDE) {
         $iconText = getIconText('exit.gif', gTranslate('core', "logout"));
         $iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';
@@ -351,7 +358,7 @@ for ($i = $start; $i <= $end; $i++) {
 			echo editField($gallery->album, "title", $albumURL);
 			if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
 			    $iconText = getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes');
-			    echo popup_link($iconText, "download.php?set_albumName=$tmpAlbumName",false,false,500,500); 
+			    echo popup_link($iconText, "download.php?set_albumName=$tmpAlbumName",false,false,500,500);
 			}
 		?>
               </td>
@@ -414,7 +421,7 @@ for ($i = $start; $i <= $end; $i++) {
 	}
 
 	echo "\n<br><span class=\"fineprint\">";
-	
+
 	/*
 	* Created / Last Changed
 	*/
@@ -426,7 +433,7 @@ for ($i = $start; $i <= $end; $i++) {
 	else {
 		printf(gTranslate('core', "Last changed on %s."), $lastModifiedDate);
 	}
-	
+
 	/*
 	* Amount of items
 	*/
@@ -434,13 +441,13 @@ for ($i = $start; $i <= $end; $i++) {
 	list($visibleItems) = $gallery->album->numItems($gallery->user, true);
 
 	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
-	
+
 	/*
 	* Click counter + reset for it
 	*/
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 		$clickCount = $gallery->album->getClicks();
-		
+
 		echo "\n<br>";
 		printf(gTranslate('core', "This album has been viewed %s since %s."),
 		  gTranslate('core', "1 time", "%d times", $clickCount, gTranslate('core', "0 times")),
@@ -451,7 +458,7 @@ for ($i = $start; $i <= $end; $i++) {
 	(!($gallery->album->fields["display_clicks"] == "no"))) {
 		echo " ".popup_link("[" . gTranslate('core', "reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 	}
-	
+
 	/*
 	* Comment Indicator
 	*/
@@ -468,7 +475,7 @@ for ($i = $start; $i <= $end; $i++) {
 	echo "\n</span>";
 
 	// End Album Infos
- 
+
  // Start tree
     if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0)
 	if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') { ?>

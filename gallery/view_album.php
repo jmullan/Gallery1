@@ -48,7 +48,9 @@ if (empty($page) || $page < 0) {
 
 $albumName = $gallery->session->albumName;
 
-if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
+$noCount = getRequestVar('noCount');
+if ($noCount != 1 && !isset($gallery->session->viewedAlbum[$albumName])
+    && !$gallery->session->offline) {
     $gallery->session->viewedAlbum[$albumName] = 1;
     $gallery->album->incrementClicks();
 }
@@ -134,13 +136,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <?php
   }
   /* prefetching/navigation */
+    $firstUrl  = makeAlbumUrl($gallery->session->albumName, '',
+                    array('page' => 1, 'noCount' => 1));
+	$prevUrl   = makeAlbumUrl($gallery->session->albumName, '',
+	               array('page' => $previousPage, 'noCount' => 1));
+	$nextUrl   = makeAlbumUrl($gallery->session->albumName, '',
+	               array('page' => $nextPage, 'noCount' => 1));
+	$lastUrl   = makeAlbumUrl($gallery->session->albumName, '',
+	               array('page' => $maxPages, 'noCount' => 1));
+	$upUrl     = makeAlbumUrl($gallery->album->fields['parentAlbumName'], '',
+	               array('page' => $maxPages, 'noCount' => 1));
+
   if (!isset($first)) { ?>
-  <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
-  <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
+  <link rel="first" href="<?php echo $firstUrl; ?>" >
+  <link rel="prev" href="<?php echo $prevUrl; ?>" >
 <?php }
   if (!isset($last)) { ?>
-  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
-  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
+  <link rel="next" href="<?php echo $nextUrl; ?>" >
+  <link rel="last" href="<?php echo $lastUrl; ?>" >
 <?php } if ($gallery->album->isRoot() &&
 (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
@@ -148,7 +161,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 	 } else if (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
-  <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
+  <link rel="up" href="<?php echo $upUrl; ?>" >
 <?php }
 if (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums["albums.php"])) { ?>

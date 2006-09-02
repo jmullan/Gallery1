@@ -100,6 +100,7 @@ function MultiSelector(list_target, max, fieldname, withCaption){
         line.style.textAlign='right';
         if(! (this.count % 2)) {
         	line.style.backgroundColor='white';
+		line.style.color='black';
         }
         var filenameCaptionDiv = document.createElement('div');
         filenameCaptionDiv.style.textAlign='left';
