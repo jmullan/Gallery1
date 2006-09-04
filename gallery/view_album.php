@@ -386,6 +386,9 @@ if (!$gallery->session->offline) {
 
 $adminCommands = '';
 $adminJSFrame = '';
+
+$iconElements = array();
+
 /* build up drop-down menu and related javascript */
 if (!empty($adminOptionHTML)) {
     $adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"

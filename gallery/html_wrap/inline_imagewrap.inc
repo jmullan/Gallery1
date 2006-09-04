@@ -34,16 +34,17 @@ if (!in_array($frame, array('none', 'dots', 'solid')) &&
 switch ($frame) {
     // special cases
     case "none":
-	echo $href_tag;
+	   echo "<center>$href_tag</center>";
     break;
+
     case "dots":
 ?>
-   <div style="<?php echo "width:${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
+   <div style="margin: 0 auto; <?php echo "width:${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
     case "solid":
 ?>
-  <div style="<?php echo "width:${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
+  <div style="margin: 0 auto; <?php echo "width:${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
     default: // use frames directory or fallback to none
@@ -56,7 +57,7 @@ switch ($frame) {
 	    $hRR = $imageHeight - $heightRRT - $heightRRB;
 ?>
 
-  <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr">
+  <table width="1" border="0" cellspacing="0" cellpadding="0" dir="ltr" style="margin: 0 auto;">
   <tr>
 	<!-- TL -->
 	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" border="0" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt=""></td>
@@ -141,7 +142,7 @@ switch ($frame) {
 	<td><img src="<?php echo "$base/$imageBR" ?>" border="0" width="<?php echo $widthBR ?>" height="<?php echo $heightBR ?>" alt=""></td>
   </tr>
   </table>
-<?php 
+<?php
     }
     else {
 	echo $href_tag;

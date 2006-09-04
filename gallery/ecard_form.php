@@ -35,6 +35,8 @@
 
   list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
 
+  doctype();
+
   printPopupStart(gTranslate('core', "Send this photo as eCard"));
   $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
 
@@ -101,7 +103,7 @@
  }
 
  function send_ecard() {
-   document.ecard_form.action = "<?php echo $HTTP_SERVER_VARS["PHP_SELF"] ?>";
+   document.ecard_form.action = "<?php echo $_SERVER["PHP_SELF"] ?>";
    document.ecard_form.target = "_self";
    document.ecard_form["submit_action"].value = "send";
    if (check()) { document.ecard_form.submit(); }

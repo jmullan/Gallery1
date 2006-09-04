@@ -164,7 +164,7 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * makeFormIntro("add_photos.php",
  *                      array("name" => "count_form",
  *                              "enctype" => "multipart/form-data",
- *                              "method" => "POST"));
+ *                              "method" => "post"));
  *
  * If no method is given in attrList, then "POST" is used.
  */
@@ -178,7 +178,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-		'method' => 'POST',
+		'method' => 'post',
 		'name'	 => 'g1_form'
     );
 

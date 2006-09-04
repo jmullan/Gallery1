@@ -222,35 +222,41 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   common_header(array('metaTags' => $metaTags));
 
   /* prefetch/navigation */
+  $navcount = sizeof($navigator['allIds']);
+  $navpage = $navcount - 1;
+
   $firstUrl  = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0],
                             array('noCount' => 1));
-  $prevUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1],
-                            array('noCount' => 1));
-  $nextUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1],
-                            array('noCount' => 1));
+
   $lastUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1],
                             array('noCount' => 1));
   $upUrl     = makeAlbumUrl($gallery->session->albumName, '', array('noCount' => 1));
 
-  $navcount = sizeof($navigator['allIds']);
-  $navpage = $navcount - 1;
   while ($navpage > 0) {
       if (!strcmp($navigator['allIds'][$navpage], $id)) {
           break;
       }
       $navpage--;
   }
+
   if ($navigator['allIds'][0] != $id) {
       if ($navigator['allIds'][0] != 'unknown') {
           echo "\n  ". '<link rel="first" href="'. $firstUrl .'">';
       }
 
       if ($navigator['allIds'][$navpage-1] != 'unknown') {
+          $prevUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1],
+                            array('noCount' => 1));
+
           echo "\n  ". '<link rel="prev" href="'. $prevUrl .'">';
       }
   }
+
   if ($navigator['allIds'][$navcount - 1] != $id) {
       if ($navigator['allIds'][$navpage+1] != 'unknown') {
+          $nextUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1],
+                            array('noCount' => 1));
+
           echo "\n  ". '<link rel="next" href="'. $nextUrl .'">';
       }
       if ($navigator['allIds'][$navcount-1] != 'unknown') {
