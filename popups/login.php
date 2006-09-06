@@ -74,11 +74,17 @@ elseif (!empty($login) && empty($forgot)) {
         'text' => gTranslate('core', "Please enter username and password!")
     );
 }
-elseif (!empty($forgot)) {
+elseif (!empty($forgot) && empty($reset_username)) {
+    $resetInfo[] = array(
+        'type' => 'information',
+        'text' => gTranslate('core', "Please enter <i>your</i> username.")
+    );
+}
+elseif (!empty($forgot) && !empty($reset_username)) {
     $tmpUser = $gallery->userDB->getUserByUsername($reset_username);
 
     if ($tmpUser) {
-        $wait_time = 0;
+        $wait_time = 15;
         if ($tmpUser->lastAction ==  "new_password_request" &&
             (time() - $tmpUser->lastActionDate) < ($wait_time * 60)) {
             $resetInfo[] = array(
@@ -86,7 +92,7 @@ elseif (!empty($forgot)) {
                 'text' => sprintf(gTranslate('core', "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time)
             );
         }
-        else if (!check_email($tmpUser->getEmail())) {
+        else if (check_email($tmpUser->getEmail())) {
             if (gallery_mail($tmpUser->email,
               gTranslate('core', "New password request"),
               sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
@@ -106,7 +112,7 @@ elseif (!empty($forgot)) {
                     'type' => 'error',
                     'text' => gTranslate('core', "Email could not be sent.") .
                               "<br>"  .
-                              sprintf(gTranstlate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
+                              sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
                 );
             }
         }
@@ -127,52 +133,44 @@ elseif (!empty($forgot)) {
     }
 }
 
-$header = $title = sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle);
-
+$title = sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle);
 
 /* HTML Output Start */
-    doctype();
+printPopupStart($title);
+
+echo gTranslate('core', "Logging in gives you greater permission to view, create, modify and delete albums.");
+
+echo infoBox($loginFailure);
+
+ echo makeFormIntro('login.php', array('name' => 'loginForm'), array('type' => 'popup'));
 ?>
-<html>
-<head>
-  <title><?php echo $title; ?></title>
-  <?php common_header(); ?>
-</head>
-<body class="g-popup">
-    <div class="g-header-popup">
-      <div class="g-pagetitle-popup"><?php echo $header ?></div>
-    </div>
 
-<?php echo makeFormIntro('login.php', array(), array('type' => 'popup')); ?>
-
-<div class="g-content-popup">
-
-<?php echo gTranslate('core', "Logging in gives you greater permission to view, create, modify and delete albums."); ?>
-
-<?php echo infoBox($loginFailure); ?>
-
-<table align="center">
+  <table align="center">
 <?php
-echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
+    echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
 
-echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
+    echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
 ?>
-</table>
+  </table>
 
 
-<p align="center">
-	<?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
-	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
-</p>
+  <p align="center">
+    <?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
+    <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
+  </p>
+ </form>
+
 </div>
 
-
 <?php
+
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
+
 ?>
 <div class="g-sectioncaption-popup"><?php echo gTranslate('core', "Forgotten your password?") ?></div>
 <div class="g-content-popup" align="center">
 <?php
+  echo makeFormIntro('login.php', array('name' => 'resetForm'), array('type' => 'popup'));
     echo infoBox($resetInfo);
 
     echo gInput('text', 'reset_username', gTranslate('core', "Username"), false, $username);
@@ -180,9 +178,12 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
     echo gSubmit('forgot', gTranslate('core', "_Send me my password"));
     echo "\n</p>";
 ?>
+
+  </form>
 </div>
 
 <?php } /* End if-email-on */
+
 if ($gallery->app->selfReg == 'yes') {
 ?>
 <div class="g-sectioncaption-popup"><?php echo gTranslate('core', "No account at all?") ?></div>
@@ -193,12 +194,10 @@ if ($gallery->app->selfReg == 'yes') {
 }
 ?>
 
-</form>
-
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.g1_form.username.focus();
+document.loginForm.username.focus();
 //-->
 </script>
 
