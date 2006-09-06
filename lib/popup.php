@@ -127,4 +127,30 @@ function popup_link2($title, $url, $args = array()) {
 	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
 	return $html;
 }
+
+/**
+ * This function outputs the HTML Start elements of an Popup.
+ * It was made to beautify php code ;)
+ */
+function printPopupStart($title = '', $header = '', $align = 'center') {
+    global $gallery;
+    if (!empty($title) && empty($header)) {
+        $header = $title;
+    }
+
+    doctype();
+?>
+<html>
+<head>
+  <title><?php echo $title; ?></title>
+  <?php common_header(); ?>
+</head>
+<body class="g-popup">
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo $header ?></div>
+</div>
+<div class="g-content-popup" align="<?php echo $align; ?>">
+
+<?php
+}
 ?>

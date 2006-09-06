@@ -1307,10 +1307,10 @@ function inOpenBasedir($dir) {
 function make_separator($key, $arr)  {
 	getAndRemoveAccessKey($arr["title"]);
 
-	$html = "\n\t<h1>". $arr["title"] .'</h1>';
+	$html = "\n\t<h1>{$arr["title"]}</h1>";
 
-	if( isset($arr["desc"])) {
-		$html .= "\n<div class=\"g-desc-cell\">". $arr["desc"] ."</div>";
+	if(!empty($arr["desc"])) {
+		$html .= "\n<div class=\"g-desc-cell\">{$arr["desc"]}</div>";
 	}
 
 	return $html;
@@ -1739,7 +1739,7 @@ function checkVersions($verbose = false) {
  *
  * @author Jens Tkotz
  */
-function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = false, $visibilityKeyword = '', $visibilityValue = '') {
+function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibilityKeyword = '', $visibilityValue = '') {
 	$tabs = array();
 
 	foreach ($array as $key => $var) {
@@ -1758,12 +1758,10 @@ function makeSectionTabs($array, $break = 7, $initialtab = '', $sortByTitle = fa
 	}
 
 	echo "\n<div class=\"g-tabset floatleft\">\n";
-	$tabcount = 0;
 
 	foreach ($tabs as $cell) {
 		$attrList = array();
-		$tabcount++;
-		$class = '';
+
 		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
 			$attrList['class'] = 'g-activeTab';
 			if (empty($initialtab)) {

@@ -181,7 +181,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
     $tmp = (sizeof($result) > 1) ? $result[1] :'';
 
     $defaults = array(
-    	'method' => 'POST',
+    	'method' => 'post',
     	'name'	 => 'g1_form'
     );
 
@@ -201,7 +201,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
             continue;
         }
         list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" name=\"$key\" id=\"$key\" value=\"$val\">\n";
+        $form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
     }
 
     return $form;
@@ -269,7 +269,7 @@ function showChoice2($target, $args, $popup = true) {
 }
 
 function gSubmit($name, $value, $additionalAttrs = array()) {
-    $attrList['name'] = $name;
+    $attrList['name'] = $attrList['id'] = $name;
     $attrList['type'] = 'submit';
     $attrList['accesskey'] = getAndRemoveAccessKey($value);
     $attrList['value'] = $value;
@@ -320,28 +320,28 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
         $label = null;
     }
     else {
-        $input = "<input$attrs>";
+        $input = "  <input$attrs>";
     }
 
     if($tableElement){
         if($label) {
-            $html = "<tr>\n";
+            $html = "  <tr>\n";
             $html .= "\t<td>$label</td>\n";
             $html .= "\t<td><input$attrs></td>\n";
-            $html .= "</tr>\n";
+            $html .= "  </tr>\n";
         }
         else {
-            $html = "<tr>\n";
-            $html = "<td>$input</td>\n";
-            $html .= "</tr>\n";
+            $html = "  <tr>\n";
+            $html = "\t<td>$input</td>\n";
+            $html .= "  </tr>\n";
         }
     }
     else {
         if($label) {
-            $html = "$label <input$attrs>\n";
+            $html = "  $label <input$attrs>\n";
         }
         else {
-            $html = "$input\n";
+            $html = "  $input\n";
         }
     }
 
@@ -359,7 +359,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 }
 
 function gButton($name, $value, $onClick, $additionalAttrs = array()) {
-    $attrList['name'] = $name;
+    $attrList['name'] = $attrList['id'] = $name;
     $attrList['type'] = 'button';
     $attrList['accesskey'] = getAndRemoveAccessKey($value);
     $attrList['value'] = $value;

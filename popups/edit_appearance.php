@@ -247,7 +247,8 @@ doctype();
 <?php
 
 $i = 0;
-$initialtab = makeSectionTabs($properties,5, $initialtab, true);
+$initialtab = makeSectionTabs($properties, $initialtab, true);
+
 echo makeFormIntro('edit_appearance.php',
     array(),
     array('type' => 'popup', 'initialtab' => $initialtab));
