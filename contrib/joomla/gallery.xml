@@ -18,44 +18,45 @@
  | Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  |
  | Gallery Component for Joomla! Open Source CMS v1.02 or newer
- | Original author: Beckett Madden-Woods <beckett@beckettmw.com>
- | Last author: Kai Tomalik <kai@gallery-addons.com>
+ | @author Beckett Madden-Woods <beckett@beckettmw.com>
+ | @author Kai Tomalik <kai@gallery-addons.com>
+ | @author Jens Tkotz <jens@peino.de>
  |
  | $Id$
 -->
-<mosinstall type="component" version="1.05">
+<mosinstall type="component" version="1.06">
 	<name>Gallery</name>
-	<creationDate>December, 31st 2005</creationDate>
+	<creationDate>September, 6th 2006</creationDate>
 	<author>Gallery Development Team</author>
 	<copyright>This component is released under the Gallery license (GNU General Public License)</copyright>
 	<authorEmail>gallery-devel@lists.sourceforge.net</authorEmail>
 	<authorUrl>gallery.sourceforge.net</authorUrl>
-	<version>1.5.2</version>
+	<version>1.6</version>
 	<description>Gallery Component For Joomla! 1.02 or newer</description>
 	<files>
 		<filename>gallery.php</filename>
 	</files>
 	<install>
 		<queries>
-			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery`
+			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery16`
 			           ( `field` varchar(128) PRIMARY KEY,
 				     `value` text default '')
 			</query>
-			<query id="2">INSERT INTO `#__gallery` (`field`, `value`)
+			<query id="2">INSERT INTO `#__gallery16` (`field`, `value`)
 			           VALUES ('path',          '')
 			</query>
-			<query id="3">INSERT INTO `#__gallery` (`field`, `value`)
+			<query id="3">INSERT INTO `#__gallery16` (`field`, `value`)
 			           VALUES ('minAuthType',   '20')
 			</query>
-			<query id="4">INSERT INTO `#__gallery` (`field`, `value`)
+			<query id="4">INSERT INTO `#__gallery16` (`field`, `value`)
 			           VALUES ('hideRightSide', '1')
 			</query>
 		</queries>
 	</install>
 	<uninstall>
 		<queries>
-			<query id="1">DELETE FROM `#__gallery`;</query>
-			<query id="2">DROP TABLE `#__gallery`;</query>
+			<query id="1">DELETE FROM `#__gallery16`;</query>
+			<query id="2">DROP TABLE `#__gallery16`;</query>
 		</queries>
 	</uninstall>
 	<administration>
