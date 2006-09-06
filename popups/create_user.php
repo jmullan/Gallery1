@@ -36,6 +36,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $errorCount = 0;
+
 if (!empty($formaction) && $formaction == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
@@ -54,7 +55,6 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (!$errorCount) {
-
 	    printPopupStart(gTranslate('core', "Create User"), '', langLeft());
 
 	    $tmpUser = new Gallery_User();
@@ -101,12 +101,12 @@ if (!empty($formaction) && $formaction == 'create') {
 			       	print "<br><br>";
 		       	}
 	       	}
-	
+
 	echo "\n<br><br>";
 	echo makeFormIntro('create_user.php', array(), array('type' => 'popup'));
 	echo gSubmit('moreuser', gTranslate('core', "Create a_nother user"));
 	echo gSubmit('dismiss', gTranslate('core', "_Back to usermanagement"));
-	?>		
+	?>
 	</form>
 	</div>
 </body>
@@ -141,7 +141,7 @@ echo makeFormIntro('create_user.php',
 ?>
 <br>
 
-<?php include(dirname(dirname(__FILE__)) . '/html/userData.inc'); ?>
+<?php include(dirname(dirname(__FILE__)) . '/layout/userData.inc'); ?>
 
 <br>
 

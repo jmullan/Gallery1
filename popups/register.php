@@ -4,17 +4,17 @@
  * Copyright (C) 2000-2006 Bharat Mediratta
  *
  * This file originally by Vallimar.
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,7 +24,7 @@
 ?>
 <?php
 
-require_once(dirname(dirname(__FILE__)) . '/init.php'); 
+require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create', 'cancel'));
 list($uname, $old_password, $new_password1, $new_password2) =
@@ -127,10 +127,10 @@ if (!empty($formaction) && $formaction == 'create') {
 
 echo makeFormIntro('register.php',
     array('name' => 'usercreate_form', 'onsubmit' => "usercreate_form.create.disabled = true;"),
-    array('type' => 'popup')    
+    array('type' => 'popup')
 );
 
-include(dirname(dirname(__FILE__)) . '/html/userData.inc');
+include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
 ?>
 <p>
 <?php echo gTranslate('core', "Your account information will be sent to the email address you provide.") ?>
@@ -143,7 +143,7 @@ include(dirname(dirname(__FILE__)) . '/html/userData.inc');
 <!--
 // position cursor in top form field
 document.usercreate_form.uname.focus();
-//--> 
+//-->
 </script>
 </div>
 

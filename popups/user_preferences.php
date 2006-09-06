@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,24 +24,25 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($save, $old_password, $new_password1, $new_password2) = 
+list($save, $old_password, $new_password1, $new_password2) =
     getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
-list($uname, $email, $fullname, $defaultLanguage) = 
+list($uname, $email, $fullname, $defaultLanguage) =
     getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 if (!$gallery->user->isLoggedIn()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;	
+	exit;
 }
 
 $errorCount = 0;
 if (isset($save)) {
 	// security check;
 	if($fullname != strip_tags($fullname)) {
-	    $gErrors["fullname"] = 
-		sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
+	    $gErrors["fullname"] =
+            sprintf(gTranslate('core', "%s contained invalid data, resetting input."),
+		            htmlentities($fullname));
 	    $errorCount++;
-        }
+    }
 
 	if ($gallery->user->getUsername() != $uname) {
 		if ($gallery->user->isAdmin()) {
@@ -122,7 +123,7 @@ $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
 printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 
-if(isset($saveOK)) {  
+if(isset($saveOK)) {
     echo infoBox(array(array(
     	'type' => 'success',
     	'text' => gTranslate('core', "User successfully updated.")))
@@ -142,7 +143,7 @@ echo makeFormIntro('user_preferences.php',
     array('type' => 'popup'));
 
 echo "\n<br>";
-include(dirname(dirname(__FILE__)) . '/html/userData.inc');
+include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
 
 ?>
 <br>
@@ -153,11 +154,11 @@ include(dirname(dirname(__FILE__)) . '/html/userData.inc');
 </form>
 
 </div>
-<script language="javascript1.2" type="text/JavaScript">
+<script type="text/javascript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();
-//--> 
+//-->
 </script>
 
 </body>

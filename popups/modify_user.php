@@ -24,8 +24,11 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($save, $old_uname, $uname, $new_password1, $new_password2, $fullname, $dismiss) =
-    getRequestVar(array('save', 'old_uname', 'uname', 'new_password1', 'new_password2', 'fullname', 'dismiss'));
+list($save, $dismiss) =
+    getRequestVar(array('save', 'dismiss'));
+
+list($old_uname, $uname, $new_password1, $new_password2, $fullname) =
+    getRequestVar(array('old_uname', 'uname', 'new_password1', 'new_password2', 'fullname'));
 
 list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
     getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
@@ -153,7 +156,7 @@ echo makeFormIntro('modify_user.php',
 
 <br>
 
-<?php include(dirname(dirname(__FILE__)) . '/html/userData.inc'); ?>
+<?php include(dirname(dirname(__FILE__)) . '/layout/userData.inc'); ?>
 
 <div align="center">
 <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
@@ -162,7 +165,7 @@ echo makeFormIntro('modify_user.php',
 </form>
 </div>
 
-<script language="javascript1.2" type="text/JavaScript">
+<script type="text/javascript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();

@@ -63,26 +63,41 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 }
 asort($displayUsers);
 
-printPopupStart(gTranslate('core', "Manage Users"));
+doctype();
+?>
+<html>
+<head>
+  <title><?php echo gTranslate('core', "Manage Users"); ?></title>
+  <?php common_header(); ?>
+</head>
+<body class="g-popup" onload="enableButtons()">
+<div class="g-header-popup">
+  <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Manage Users"); ?></div>
+</div>
+<div class="g-content-popup center">
 
+<?php
 echo infoBox($notice_messages);
 
 echo gTranslate('core', "You can create, modify and delete users here.");
 
 echo makeFormIntro('manage_users.php', array(), array('type' => 'popup'));
-echo "\n<p>";
 
 if (!$displayUsers) {
 	echo "<i>". gTranslate('core', "There are no users!  Create one.") ."</i>";
 }
 else {
-	echo drawSelect('unames[]', $displayUsers, '', 15, array('multiple' => ''));
+	echo drawSelect('unames[]', $displayUsers, '', 15,
+	   array('id' => 'userNameBox',
+	         'multiple' => '',
+	         'onChange' => 'enableButtons()')
+    );
 }
 
-echo "\n</p>";
+echo "\n<br>";
 echo gTranslate('core', "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking.");
 
-echo "\n<p>";
+echo "\n<br><br>";
 
 echo gSubmit('create', gTranslate('core', "Create _new user"));
 if ($gallery->app->multiple_create == "yes") {
@@ -98,5 +113,42 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 
 </div>
 
+<script type="text/javascript">
+    var userNameBox = document.getElementById('userNameBox');
+    var userCount = userNameBox.length;
+
+    var createButton = document.getElementById('create');
+    var modifyButton = document.getElementById('modify');
+    var deleteButton = document.getElementById('delete');
+    var doneButton   = document.getElementById('done');
+
+    function enableButtons() {
+        var selected = 0;
+        for (i = 0; i < userCount; i++) {
+            if(userNameBox.options[i].selected) {
+                selected++;
+            }
+        }
+
+        if(selected == 0) {
+            modifyButton.disabled = true;
+            modifyButton.className = 'g-buttonDisable';
+            deleteButton.disabled = true;
+            deleteButton.className = 'g-buttonDisable';
+
+        }
+        else if (selected > 1) {
+            modifyButton.disabled = true;
+            modifyButton.className = 'g-buttonDisable';
+        }
+        else {
+            modifyButton.disabled = false;
+            modifyButton.className = 'g-button';
+            deleteButton.disabled = false;
+            deleteButton.className = 'g-button';
+        }
+
+    }
+</script>
 </body>
 </html>

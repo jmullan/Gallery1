@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,9 +24,9 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($hash, $uname, $save, $new_password1, $new_password2) = 
+list($hash, $uname, $save, $new_password1, $new_password2) =
     getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
-list($fullname, $email, $defaultLanguage) = 
+list($fullname, $email, $defaultLanguage) =
     getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
 $error_string = '';
@@ -104,7 +104,7 @@ printPopupStart(gTranslate('core', "Make New Password"));
 
 if (!empty($messages)) {
        	echo infobox($messages);
-       	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>"; 
+       	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
 	exit;
 }
 
@@ -119,7 +119,7 @@ $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-include(dirname(__FILE__) . '/html/userData.inc');
+include(dirname(__FILE__) . '/layout/userData.inc');
 
 ?>
 <p>
@@ -132,7 +132,7 @@ include(dirname(__FILE__) . '/html/userData.inc');
 <!--
 // position cursor in top form field
 document.usermodify_form.new_password1.focus();
-//--> 
+//-->
 </script>
 </div>
 

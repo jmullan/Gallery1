@@ -41,7 +41,7 @@ if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
 $errorCount = 0;
 if ($formaction == 'create') {
     printPopupStart(gTranslate('core', "Create Multiple Users"));
-    
+
     if (empty($_FILES['membersfile']['name'])) {
         $gErrors["membersfile"] = gTranslate('core', "No file selected.");
         $errorCount++;
@@ -179,34 +179,35 @@ $canCreate = 0;
 ?>
 	<input type="hidden" name="MAX_FILE_SIZE" value="10000000">
 
-<?php include(dirname(dirname(__FILE__)) . '/html/userData.inc'); ?>
+<?php include(dirname(dirname(__FILE__)) . '/layout/userData.inc'); ?>
 
 <br>
     <input type="hidden" name="formaction" value="">
-    <input class="g-button" type="submit" name="create" value="<?php echo gTranslate('core', "Create") ?>" onclick="usercreate_form.formaction.value='create'">
-    <input class="g-button" type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
+    <?php echo gButton('create', gTranslate('core', "_Create"), "usercreate_form.formaction.value='create'"); ?>
+    <?php echo gButton('cancel', gTranslate('core', "_Back to usermanagement"), "usercreate_form.formaction.value='cancel'"); ?>
 </form>
 
 </div>
 
 <div class="g-sitedesc">
-<b><?php echo gTranslate('core', "Notes:") ?> </b>
-<ul>
-<li>
-<?php echo gTranslate('core', "The members file should be one user per line, and the fields should be space separated."); ?>
-<br><?php echo gTranslate('core', "Each line must be in one of these formats:"); ?>
-    <ul>
-    <li><?php echo gTranslate('core', "<i>username emailaddress fullname</i>"); ?></li>
-    <li><?php echo gTranslate('core', "<i>username fullname</i>"); ?></li>
-    <li><?php echo gTranslate('core', "<i>username emailaddress</i>"); ?></li>
-    </ul>
-<?php echo gTranslate('core', "Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
-<br><br>
-</li>
-<li>
-<?php echo gTranslate('core', "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
-</li>
-</ul>
+  <b><?php echo gTranslate('core', "Notes:") ?> </b>
+  <ul>
+      <li>
+        <?php echo gTranslate('core', "The members file should be one user per line, and the fields should be space separated."); ?>
+        <br><?php echo gTranslate('core', "Each line must be in one of these formats:"); ?>
+        <ul>
+        <li><?php echo gTranslate('core', "<i>username emailaddress fullname</i>"); ?></li>
+        <li><?php echo gTranslate('core', "<i>username fullname</i>"); ?></li>
+        <li><?php echo gTranslate('core', "<i>username emailaddress</i>"); ?></li>
+        </ul>
+        <?php echo gTranslate('core', "Only username is required. Everything after the email address is the full name, so there can be spaces in it.") ?>
+        <br><br>
+      </li>
+      <li>
+        <?php echo gTranslate('core', "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked).") ?>
+      </li>
+  </ul>
 </div>
+
 </body>
 </html>
