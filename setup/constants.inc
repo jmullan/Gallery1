@@ -108,7 +108,7 @@ function toggleGraphics(show) {
         </div>
 <?php
 
-$initialtab = makeSectionTabs($constants, 7, '', false, $visibilityKeyword, $visibilityValue);
+$initialtab = makeSectionTabs($constants, '', false, $visibilityKeyword, $visibilityValue);
 echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
 $i = 0;

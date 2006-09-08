@@ -91,7 +91,7 @@
         </div>
 <?php
 
-$initialtab = makeSectionTabs($defaults, 7, '', false, $visibilityKeyword, $visibilityValue);
+$initialtab = makeSectionTabs($defaults, '', false, $visibilityKeyword, $visibilityValue);
 echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialtab .'">';
 
 $i = 0;
