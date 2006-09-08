@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-09 00:04+0200\n"
+"POT-Creation-Date: 2006-09-08 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,10 @@ msgstr ""
 msgid "return to _gallery"
 msgstr ""
 
+#: ../albums.php:95 ../rss.php:260
+msgid "no albums"
+msgstr ""
+
 #: ../albums.php:93 ../rss.php:260
 #, php-format
 msgid "1 album"
@@ -102,8 +106,8 @@ msgid_plural "%d albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:95 ../rss.php:260
-msgid "no albums"
+#: ../albums.php:103
+msgid "No top-level albums"
 msgstr ""
 
 #: ../albums.php:100
@@ -113,13 +117,13 @@ msgid_plural "%d top-level albums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:103
-msgid "No top-level albums"
-msgstr ""
-
 #: ../albums.php:107
 #, php-format
 msgid "%d total"
+msgstr ""
+
+#: ../albums.php:108
+msgid "no images"
 msgstr ""
 
 #: ../albums.php:108 ../view_album.php:129
@@ -129,8 +133,8 @@ msgid_plural "%d images"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:108
-msgid "no images"
+#: ../albums.php:109
+msgid "no pages"
 msgstr ""
 
 #: ../albums.php:109 ../view_album.php:130
@@ -139,10 +143,6 @@ msgid "1 page"
 msgid_plural "%d pages"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../albums.php:109
-msgid "no pages"
-msgstr ""
 
 #: ../albums.php:112
 #, php-format
@@ -249,7 +249,7 @@ msgstr ""
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:317 ../view_album.php:561
+#: ../albums.php:317 ../view_album.php:563
 #, php-format
 msgid "Highlight for album: %s"
 msgstr ""
@@ -259,7 +259,7 @@ msgstr ""
 msgid "No highlight!"
 msgstr ""
 
-#: ../albums.php:347 ../view_album.php:660
+#: ../albums.php:347 ../view_album.php:662
 msgid "Download entire album as archive"
 msgstr ""
 
@@ -295,6 +295,10 @@ msgstr ""
 msgid "Last changed on %s."
 msgstr ""
 
+#: ../albums.php:417 ../view_album.php:778
+msgid "This album is empty."
+msgstr ""
+
 #: ../albums.php:414
 #, php-format
 msgid "This album contains 1 item."
@@ -302,8 +306,9 @@ msgid_plural "This album contains %d items."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:417 ../view_album.php:776
-msgid "This album is empty."
+#: ../albums.php:432
+#, php-format
+msgid "This album has never been viewed since %s."
 msgstr ""
 
 #: ../albums.php:429
@@ -312,11 +317,6 @@ msgid "This album has been viewed %d time since %s."
 msgid_plural "This album has been viewed %d times since %s."
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../albums.php:432
-#, php-format
-msgid "This album has never been viewed since %s."
-msgstr ""
 
 #: ../albums.php:440
 msgid "reset counter"
@@ -382,7 +382,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:262 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:643
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:645
 msgid "hidden"
 msgstr ""
 
@@ -790,7 +790,7 @@ msgstr ""
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:99
 #: ../popups/administer_startpage.php:110 ../popups/download.php:93
 #: ../popups/register.php:43 ../popups/register.php:119
-#: ../popups/user_preferences.php:151 ../popups/view_photo_properties.php:123
+#: ../popups/user_preferences.php:152 ../popups/view_photo_properties.php:123
 msgid "_Close Window"
 msgstr ""
 
@@ -863,72 +863,6 @@ msgstr ""
 
 #: ../help/metadataOnUpload.php:76
 msgid "_Back to upload"
-msgstr ""
-
-#: ../html/userData.inc:13 ../popups/multi_create_user.php:177
-#: ../popups/rebuild_thumbs.php:63 ../popups/recreate_captions.php:64
-msgid "Yes"
-msgstr ""
-
-#: ../html/userData.inc:13 ../popups/multi_create_user.php:177
-#: ../popups/rebuild_thumbs.php:64 ../popups/recreate_captions.php:65
-msgid "No"
-msgstr ""
-
-#: ../html/userData.inc:19
-msgid "Member file"
-msgstr ""
-
-#: ../html/userData.inc:27 ../popups/login.php:178
-msgid "Username"
-msgstr ""
-
-#: ../html/userData.inc:46
-msgid "Old Password"
-msgstr ""
-
-#: ../html/userData.inc:53
-msgid "New Password"
-msgstr ""
-
-#: ../html/userData.inc:58
-msgid "New Password (again)"
-msgstr ""
-
-#: ../html/userData.inc:65
-msgid "Full Name"
-msgstr ""
-
-#: ../html/userData.inc:72
-msgid "Email Address"
-msgstr ""
-
-#: ../html/userData.inc:82
-msgid "Gallery language"
-msgstr ""
-
-#: ../html/userData.inc:110
-msgid "User can change its own password"
-msgstr ""
-
-#: ../html/userData.inc:118
-msgid "User can create albums"
-msgstr ""
-
-#: ../html/userData.inc:126
-msgid "User is an admin"
-msgstr ""
-
-#: ../html/userData.inc:131
-msgid "you can't un-admin yourself"
-msgstr ""
-
-#: ../html/userData.inc:135
-msgid "Note: Admins can always create albums and are allowed to change their password."
-msgstr ""
-
-#: ../html/userData.inc:144
-msgid "Send email to user when account is created"
 msgstr ""
 
 #: ../imagemap.php:142
@@ -1026,7 +960,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:466
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:468
 msgid " or "
 msgstr ""
 
@@ -1064,7 +998,7 @@ msgstr ""
 #: ../popups/copy_photo.php:200 ../popups/delete_photo.php:132
 #: ../popups/download.php:86 ../popups/edit_caption.php:177
 #: ../popups/edit_field.php:60 ../popups/edit_watermark.php:123
-#: ../popups/login.php:165 ../popups/move_album.php:111
+#: ../popups/login.php:159 ../popups/move_album.php:111
 #: ../popups/move_album.php:139 ../popups/move_photo.php:258
 #: ../popups/move_photo.php:352 ../popups/rearrange.php:185
 #: ../popups/register.php:140 ../popups/rename_album.php:121
@@ -1598,6 +1532,72 @@ msgstr ""
 msgid "%d of %d"
 msgstr ""
 
+#: ../layout/userData.inc:13 ../popups/multi_create_user.php:177
+#: ../popups/rebuild_thumbs.php:63 ../popups/recreate_captions.php:64
+msgid "Yes"
+msgstr ""
+
+#: ../layout/userData.inc:13 ../popups/multi_create_user.php:177
+#: ../popups/rebuild_thumbs.php:64 ../popups/recreate_captions.php:65
+msgid "No"
+msgstr ""
+
+#: ../layout/userData.inc:19
+msgid "Member file"
+msgstr ""
+
+#: ../layout/userData.inc:27 ../popups/login.php:176
+msgid "Username"
+msgstr ""
+
+#: ../layout/userData.inc:46
+msgid "Old Password"
+msgstr ""
+
+#: ../layout/userData.inc:53
+msgid "New Password"
+msgstr ""
+
+#: ../layout/userData.inc:58
+msgid "New Password (again)"
+msgstr ""
+
+#: ../layout/userData.inc:65
+msgid "Full Name"
+msgstr ""
+
+#: ../layout/userData.inc:72
+msgid "Email Address"
+msgstr ""
+
+#: ../layout/userData.inc:82
+msgid "Gallery language"
+msgstr ""
+
+#: ../layout/userData.inc:110
+msgid "User can change its own password"
+msgstr ""
+
+#: ../layout/userData.inc:118
+msgid "User can create albums"
+msgstr ""
+
+#: ../layout/userData.inc:126
+msgid "User is an admin"
+msgstr ""
+
+#: ../layout/userData.inc:131
+msgid "you can't un-admin yourself"
+msgstr ""
+
+#: ../layout/userData.inc:135
+msgid "Note: Admins can always create albums and are allowed to change their password."
+msgstr ""
+
+#: ../layout/userData.inc:144
+msgid "Send email to user when account is created"
+msgstr ""
+
 #: ../layout/watermarkform.inc:92
 msgid "Watermark:"
 msgstr ""
@@ -1781,7 +1781,7 @@ msgid "_Hide"
 msgstr ""
 
 #: ../lib/albumItem.php:251 ../lib/albumItem.php:257
-#: ../popups/delete_photo.php:131 ../popups/manage_users.php:93
+#: ../popups/delete_photo.php:131 ../popups/manage_users.php:108
 msgid "_Delete"
 msgstr ""
 
@@ -1818,8 +1818,8 @@ msgstr ""
 msgid "You must provide your new password."
 msgstr ""
 
-#: ../new_password.php:54 ../popups/create_user.php:46
-#: ../popups/modify_user.php:60 ../popups/user_preferences.php:70
+#: ../new_password.php:54 ../popups/create_user.php:47
+#: ../popups/modify_user.php:63 ../popups/user_preferences.php:71
 msgid "Passwords do not match!"
 msgstr ""
 
@@ -1829,7 +1829,7 @@ msgid "%s contained invalid data, resetting input."
 msgstr ""
 
 #: ../new_password.php:71 ../popups/register.php:81
-#: ../popups/user_preferences.php:81
+#: ../popups/user_preferences.php:82
 msgid "You must specify a valid email address."
 msgstr ""
 
@@ -1841,7 +1841,7 @@ msgstr ""
 msgid "Enter the Gallery"
 msgstr ""
 
-#: ../new_password.php:112 ../popups/user_preferences.php:134
+#: ../new_password.php:112 ../popups/user_preferences.php:135
 msgid "You can change your user information here."
 msgstr ""
 
@@ -1851,9 +1851,9 @@ msgstr ""
 
 #: ../new_password.php:127 ../popups/album_permissions.php:151
 #: ../popups/edit_caption.php:176 ../popups/edit_field.php:59
-#: ../popups/edit_watermark.php:119 ../popups/modify_user.php:159
+#: ../popups/edit_watermark.php:119 ../popups/modify_user.php:162
 #: ../popups/photo_owner.php:91 ../popups/rearrange.php:184
-#: ../popups/user_preferences.php:150 ../popups/watermark_album.php:140
+#: ../popups/user_preferences.php:151 ../popups/watermark_album.php:140
 msgid "_Save"
 msgstr ""
 
@@ -1865,7 +1865,7 @@ msgstr ""
 #: ../popups/edit_appearance.php:29 ../popups/edit_caption.php:36
 #: ../popups/edit_field.php:31 ../popups/edit_thumb.php:33
 #: ../popups/edit_watermark.php:45 ../popups/manage_users.php:31
-#: ../popups/modify_user.php:34 ../popups/move_album.php:32
+#: ../popups/modify_user.php:37 ../popups/move_album.php:32
 #: ../popups/move_photo.php:32 ../popups/multi_create_user.php:37
 #: ../popups/photo_owner.php:34 ../popups/rearrange.php:28
 #: ../popups/rebuild_thumbs.php:30 ../popups/recreate_captions.php:31
@@ -1889,7 +1889,7 @@ msgstr ""
 msgid "_Return to  %s"
 msgstr ""
 
-#: ../poll_results.php:144 ../view_album.php:423 ../view_album.php:669
+#: ../poll_results.php:144 ../view_album.php:421 ../view_album.php:671
 #, php-format
 msgid "Album: %s"
 msgstr ""
@@ -2052,7 +2052,7 @@ msgstr ""
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../popups/album_permissions.php:152 ../popups/manage_users.php:95
+#: ../popups/album_permissions.php:152 ../popups/manage_users.php:110
 #: ../popups/photo_owner.php:92 ../popups/upgrade_album.php:66
 #: ../popups/upgrade_album.php:170 ../upgrade_users.php:58
 msgid "_Done"
@@ -2165,8 +2165,8 @@ msgstr ""
 msgid "Create a_nother user"
 msgstr ""
 
-#: ../popups/create_user.php:108 ../popups/modify_user.php:160
-#: ../popups/multi_create_user.php:142
+#: ../popups/create_user.php:108 ../popups/modify_user.php:163
+#: ../popups/multi_create_user.php:142 ../popups/multi_create_user.php:187
 msgid "_Back to usermanagement"
 msgstr ""
 
@@ -2179,7 +2179,6 @@ msgid "Create user"
 msgstr ""
 
 #: ../popups/create_user.php:151 ../popups/delete_user.php:83
-#: ../popups/multi_create_user.php:187
 msgid "Back to usermanagement"
 msgstr ""
 
@@ -2284,14 +2283,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: ../popups/download.php:67
+msgid "No subalbums"
+msgstr ""
+
+#: ../popups/download.php:67
 #, php-format
 msgid "One subalbum"
 msgid_plural "%d subalbums"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../popups/download.php:67
-msgid "No subalbums"
+#: ../popups/download.php:68
+msgid "no photo/movie"
 msgstr ""
 
 #: ../popups/download.php:68
@@ -2300,10 +2303,6 @@ msgid "one photo/movie"
 msgid_plural "%d photos/movies"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../popups/download.php:68
-msgid "no photo/movie"
-msgstr ""
 
 #: ../popups/download.php:70
 #, php-format
@@ -2482,19 +2481,19 @@ msgstr ""
 msgid "Album Properties"
 msgstr ""
 
-#: ../popups/edit_appearance.php:301
+#: ../popups/edit_appearance.php:302
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr ""
 
-#: ../popups/edit_appearance.php:304
+#: ../popups/edit_appearance.php:305
 msgid "_Apply"
 msgstr ""
 
-#: ../popups/edit_appearance.php:305
+#: ../popups/edit_appearance.php:306
 msgid "_Undo"
 msgstr ""
 
-#: ../popups/edit_appearance.php:306 ../popups/rebuild_thumbs.php:69
+#: ../popups/edit_appearance.php:307 ../popups/rebuild_thumbs.php:69
 #: ../popups/recreate_captions.php:71 ../popups/rotate_photo.php:124
 #: ../popups/watermark_album.php:73
 msgid "_Close"
@@ -2606,86 +2605,90 @@ msgstr ""
 msgid "Please enter username and password!"
 msgstr ""
 
-#: ../popups/login.php:86
-#, php-format
-msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr ""
-
-#: ../popups/login.php:91
-msgid "New password request"
+#: ../popups/login.php:80
+msgid "Please enter <i>your</i> username."
 msgstr ""
 
 #: ../popups/login.php:92
 #, php-format
+msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
+msgstr ""
+
+#: ../popups/login.php:97
+msgid "New password request"
+msgstr ""
+
+#: ../popups/login.php:98
+#, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr ""
 
-#: ../popups/login.php:93
+#: ../popups/login.php:99
 #, php-format
 msgid "Click to reset your password: %s"
 msgstr ""
 
-#: ../popups/login.php:95
+#: ../popups/login.php:101
 #, php-format
 msgid "New password request %s"
 msgstr ""
 
-#: ../popups/login.php:101
+#: ../popups/login.php:107
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr ""
 
-#: ../popups/login.php:107
+#: ../popups/login.php:113
 msgid "Email could not be sent."
 msgstr ""
 
-#: ../popups/login.php:116
-msgid "There is no valid email for this account."
-msgstr ""
-
-#: ../popups/login.php:118
+#: ../popups/login.php:115 ../popups/login.php:124
 #, php-format
 msgid "Please contact %s administrators for a new password."
 msgstr ""
 
-#: ../popups/login.php:125
+#: ../popups/login.php:122
+msgid "There is no valid email for this account."
+msgstr ""
+
+#: ../popups/login.php:131
 msgid "Invalid username."
 msgstr ""
 
-#: ../popups/login.php:130 ../publish_xp.php:100
+#: ../popups/login.php:136 ../publish_xp.php:100
 #, php-format
 msgid "Login to %s"
 msgstr ""
 
-#: ../popups/login.php:150
+#: ../popups/login.php:141
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr ""
 
-#: ../popups/login.php:156 ../publish_xp.php:107
+#: ../popups/login.php:150 ../publish_xp.php:107
 msgid "_Username"
 msgstr ""
 
-#: ../popups/login.php:158 ../publish_xp.php:109
+#: ../popups/login.php:152 ../publish_xp.php:109
 msgid "_Password"
 msgstr ""
 
-#: ../popups/login.php:164
+#: ../popups/login.php:158
 msgid "_Login"
 msgstr ""
 
-#: ../popups/login.php:173
+#: ../popups/login.php:170
 msgid "Forgotten your password?"
 msgstr ""
 
-#: ../popups/login.php:180
+#: ../popups/login.php:178
 msgid "_Send me my password"
 msgstr ""
 
-#: ../popups/login.php:188
+#: ../popups/login.php:189
 msgid "No account at all?"
 msgstr ""
 
-#: ../popups/login.php:190
+#: ../popups/login.php:191
 msgid "_Register a new account."
 msgstr ""
 
@@ -2693,51 +2696,51 @@ msgstr ""
 msgid "Please select a user"
 msgstr ""
 
-#: ../popups/manage_users.php:66
+#: ../popups/manage_users.php:70 ../popups/manage_users.php:75
 msgid "Manage Users"
 msgstr ""
 
-#: ../popups/manage_users.php:70
+#: ../popups/manage_users.php:82
 msgid "You can create, modify and delete users here."
 msgstr ""
 
-#: ../popups/manage_users.php:76
+#: ../popups/manage_users.php:87
 msgid "There are no users!  Create one."
 msgstr ""
 
-#: ../popups/manage_users.php:83
+#: ../popups/manage_users.php:98
 msgid "To select multiple users (only recognized for deletion), hold down the Control (PC) or Command (Mac) key while clicking."
 msgstr ""
 
-#: ../popups/manage_users.php:87
+#: ../popups/manage_users.php:102
 msgid "Create _new user"
 msgstr ""
 
-#: ../popups/manage_users.php:89
+#: ../popups/manage_users.php:104
 msgid "_Bulk Create"
 msgstr ""
 
-#: ../popups/manage_users.php:92
+#: ../popups/manage_users.php:107
 msgid "_Modify"
 msgstr ""
 
-#: ../popups/modify_user.php:92
+#: ../popups/modify_user.php:95
 msgid "User information succesfully updated."
 msgstr ""
 
-#: ../popups/modify_user.php:96
+#: ../popups/modify_user.php:99
 msgid "User information was not succesfully updated !!"
 msgstr ""
 
-#: ../popups/modify_user.php:106
+#: ../popups/modify_user.php:109
 msgid "Invalid user"
 msgstr ""
 
-#: ../popups/modify_user.php:140
+#: ../popups/modify_user.php:143
 msgid "Modify User"
 msgstr ""
 
-#: ../popups/modify_user.php:144
+#: ../popups/modify_user.php:147
 msgid "You can change any information about the user using this form."
 msgstr ""
 
@@ -2896,7 +2899,7 @@ msgid "Create multiple new users from a file."
 msgstr ""
 
 #: ../popups/multi_create_user.php:186
-msgid "Create"
+msgid "_Create"
 msgstr ""
 
 #: ../popups/multi_create_user.php:193
@@ -3392,31 +3395,31 @@ msgstr ""
 msgid "upgrade"
 msgstr ""
 
-#: ../popups/user_preferences.php:53
+#: ../popups/user_preferences.php:54
 msgid "You are not allowed to change your username."
 msgstr ""
 
-#: ../popups/user_preferences.php:59
+#: ../popups/user_preferences.php:60
 msgid "Incorrect password"
 msgstr ""
 
-#: ../popups/user_preferences.php:65
+#: ../popups/user_preferences.php:66
 msgid "You must provide your old password to change it."
 msgstr ""
 
-#: ../popups/user_preferences.php:123
+#: ../popups/user_preferences.php:124
 msgid "Change User Preferences"
 msgstr ""
 
-#: ../popups/user_preferences.php:128
+#: ../popups/user_preferences.php:129
 msgid "User successfully updated."
 msgstr ""
 
-#: ../popups/user_preferences.php:135
+#: ../popups/user_preferences.php:136
 msgid "If you want to change your password, you must provide your old password and then enter the new one twice."
 msgstr ""
 
-#: ../popups/user_preferences.php:136
+#: ../popups/user_preferences.php:137
 msgid "You can change your username to any combination of letters and digits."
 msgstr ""
 
@@ -3603,15 +3606,15 @@ msgid "Return to Add Photos"
 msgstr ""
 
 #: ../rss.php:261
+msgid "no photos"
+msgstr ""
+
+#: ../rss.php:261
 #, php-format
 msgid "1 photo"
 msgid_plural "%s photos"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../rss.php:261
-msgid "no photos"
-msgstr ""
 
 #: ../rss.php:263
 #, php-format
@@ -3975,15 +3978,15 @@ msgid "Viewed:"
 msgstr ""
 
 #: ../stats.php:1138
+msgid "Never viewed"
+msgstr ""
+
+#: ../stats.php:1138
 #, php-format
 msgid "Once"
 msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../stats.php:1138
-msgid "Never viewed"
-msgstr ""
 
 #: ../stats.php:1144
 msgid "Votes:"
@@ -4004,26 +4007,26 @@ msgstr ""
 msgid "%s RSS"
 msgstr ""
 
-#: ../templates/album.tpl.default:173 ../templates/album.tpl.default:229
-#: ../view_album.php:472
+#: ../templates/album.tpl.default:171 ../templates/album.tpl.default:227
+#: ../view_album.php:474
 msgid "Vote"
 msgstr ""
 
-#: ../templates/album.tpl.default:239
+#: ../templates/album.tpl.default:237
 #: ../templates/classic/gallery.tpl.default:156
 #: ../templates/matrix/gallery.tpl.default:150
 msgid "Comments available for this item."
 msgstr ""
 
-#: ../templates/album.tpl.default:249
+#: ../templates/album.tpl.default:247
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../templates/album.tpl.default:257
+#: ../templates/album.tpl.default:255
 msgid "Comments are added"
 msgstr ""
 
-#: ../templates/album.tpl.default:261
+#: ../templates/album.tpl.default:259
 msgid "Other changes are made"
 msgstr ""
 
@@ -4084,16 +4087,16 @@ msgstr ""
 msgid "Deleted %d spam comments"
 msgstr ""
 
+#: ../tools/despam-comments.php:150
+msgid "No comment deleted."
+msgstr ""
+
 #: ../tools/despam-comments.php:149
 #, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
 msgstr[0] ""
 msgstr[1] ""
-
-#: ../tools/despam-comments.php:150
-msgid "No comment deleted."
-msgstr ""
 
 #: ../tools/despam-comments.php:193
 #, php-format
@@ -4652,83 +4655,79 @@ msgstr ""
 msgid "view&nbsp;_comments"
 msgstr ""
 
-#: ../view_album.php:401
-msgid "You have currently no votes recorded for this poll."
+#: ../view_album.php:405
+msgid "Your votes are:"
 msgstr ""
 
-#: ../view_album.php:407
-msgid "Your votes in the current session are:"
-msgstr ""
-
-#: ../view_album.php:447
+#: ../view_album.php:448
 msgid "See full poll results"
 msgstr ""
 
-#: ../view_album.php:464
+#: ../view_album.php:466
 msgid ", "
-msgstr ""
-
-#: ../view_album.php:470
-#, php-format
-msgid "To vote for an image, click on %s."
 msgstr ""
 
 #: ../view_album.php:472
 #, php-format
+msgid "To vote for an image, click on %s."
+msgstr ""
+
+#: ../view_album.php:474
+#, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:477
+#: ../view_album.php:479
 #, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:481
+#: ../view_album.php:483
 msgid "You can change your votes later, if you wish."
 msgstr ""
 
-#: ../view_album.php:602 ../view_album.php:603
+#: ../view_album.php:604 ../view_album.php:605
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:648
+#: ../view_album.php:650
 msgid "highlight"
 msgstr ""
 
-#: ../view_album.php:673
+#: ../view_album.php:675
 msgid "No description"
 msgstr ""
 
-#: ../view_album.php:681
+#: ../view_album.php:683
 #, php-format
 msgid "Last change: %s"
 msgstr ""
 
-#: ../view_album.php:684
+#: ../view_album.php:686
 #, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:701
+#: ../view_album.php:703
 #, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:726
+#: ../view_album.php:728
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:774
+#: ../view_album.php:776
 msgid "Hey! Add some photos."
 msgstr ""
 
