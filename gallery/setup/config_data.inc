@@ -315,9 +315,11 @@ $constants =  array_merge(array(
 	'albumDir' => array(
 		'prompt' => gTranslate('config',"Album directory"),
 		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
-		  sprintf(gTranslate('config',"The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty.  Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
-		  '<b>'. $webserver_user . '</b>'),
-		'value' => getenv('DOCUMENT_ROOT') . '/albums',
+		  sprintf(gTranslate('config',"The full filesystem path on physical disk to the directory where your photos will be stored.  This directory should start off empty.  Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
+		  '<b>'. $webserver_user . '</b>') .
+		  "\<br>" . _("Examples: "). '<i>/home/jens/public_html/albums</i> , <i>c:\\apache\\albums</i>'
+		  ,
+		'value' => '',
 		'require-write-dir' => 1,
 		'filename' => 1,
 		'type' => 'text',
