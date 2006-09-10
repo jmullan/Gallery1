@@ -86,11 +86,13 @@ $navigator["bordercolor"] = $borderColor;
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
+    $title = htmlspecialchars($gallery->app->galleryTitle);
+
+    doctype();
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?></title>
+  <title><?php echo $title ?></title>
   <?php
 	common_header() ;
 
@@ -114,15 +116,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-    	$title = sprintf(
-    	   gTranslate('core', "%s RSS"),
-    	   htmlspecialchars($gallery->app->galleryTitle)
-    	);
-    	$rssHref = $gallery->app->photoAlbumURL . "/rss.php"
+    	$rssTitle = sprintf(gTranslate('core', "%s RSS"), $title);
+    	$rssHref = $gallery->app->photoAlbumURL . "/rss.php";
+
+        echo "<link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">";
+    }
 ?>
-  <link rel="alternate" title="<?php echo $title?>" href="<?php echo $rssHref ?>" type="application/rss+xml">
-<?php
-    } ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php

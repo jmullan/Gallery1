@@ -27,7 +27,9 @@ require_once(dirname(__FILE__) . '/init.php');
 list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
-if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
+if (empty($gallery->session->albumName) ||
+    !$gallery->user->canReadAlbum($gallery->album)
+    || !$gallery->album->isLoaded()) {
     $gallery->session->gRedirDone = false;
     header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
     return;
@@ -57,7 +59,9 @@ if ($noCount != 1 && !isset($gallery->session->viewedAlbum[$albumName])
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
+
 list ($numPhotos, $numAlbums, $visibleItems) = $gallery->album->numVisibleItems($gallery->user, 1);
+
 $numVisibleItems = $numPhotos + $numAlbums;
 $perPage = $rows * $cols;
 $maxPages = max(ceil(($numPhotos + $numAlbums) / $perPage), 1);
@@ -107,9 +111,8 @@ $navigator["spread"] = 5;
 $navigator["bordercolor"] = $bordercolor;
 
 $fullWidth = $navigator["fullWidth"] . $navigator["widthUnits"];
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' .
-  'alt="' . gTranslate('core', "navigate UP") .'" title="' . gTranslate('core', "navigate UP") .'" border="0">';
 
+$upArrowURL = gImage('nav_home.gif', gTranslate('core', "navigate UP"));
 if ($gallery->album->fields['returnto'] != 'no') {
     foreach ($gallery->album->getParentAlbums() as $navAlbum) {
         $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
@@ -121,23 +124,24 @@ $breadcrumb["bordercolor"] = $bordercolor;
 
 global $GALLERY_EMBEDDED_INSIDE;
 if (!$GALLERY_EMBEDDED_INSIDE) {
+    $title = sprintf(
+        htmlspecialchars($gallery->app->galleryTitle) .
+        " :: " .
+        htmlspecialchars($gallery->album->fields["title"])
+    );
+
     doctype();
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
+  <title><?php echo $title ?></title>
   <?php common_header();
   /* RSS */
   if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-  	$title = sprintf(
-        gTranslate('core', "%s RSS"),
-        $gallery->app->galleryTitle . " :: " . htmlspecialchars($gallery->album->fields["title"])
-    );
-
+  	$rssTitle = sprintf(gTranslate('core', "%s RSS"), $title);
 	$rssHref = $gallery->app->photoAlbumURL . "/rss.php?set_albumName=" . $gallery->album->fields["name"];
-  	?>
-  <link rel="alternate" title="<?php echo $title; ?>" href="<?php echo $rssHref; ?>" type="application/rss+xml">
-  <?php
+
+	echo "<link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">";
   }
   /* prefetching/navigation */
     $firstUrl  = makeAlbumUrl($gallery->session->albumName, '',
@@ -649,8 +653,6 @@ if ($numPhotos) {
             $visibleItemIndex++;
             $i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
         }
-        if ($printTableRow) {
-        }
 
         /* Do the picture row */
         $visibleItemIndex = $rowStart;
@@ -831,8 +833,10 @@ if ($numPhotos) {
             	echo '<div class="fineprint" style="margin-top:3px">';
             	printf (gTranslate('core', "Last change: %s"), $myAlbum->getLastModificationDate());
             	echo "\n<br>";
+
             	$visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
-            	printf (gTranslate('core', "Contains: %s"), gTranslate('core', "1 item", "%d items", $visItems)) . '. ';
+            	printf(gTranslate('core', "Contains: %s."), gTranslate('core', "1 item", "%d items", $visItems));
+
             	// If comments indication for either albums or both
             	switch ($gallery->app->comments_indication) {
             		case "albums":
@@ -913,15 +917,13 @@ if ($numPhotos) {
         $visibleItemIndex = $rowStart;
         $i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
         $j = 1;
-        if ($printTableRow) {
-        }
+
         while ($j <= $cols && $i <= $numPhotos) {
             $j++;
             $visibleItemIndex++;
             $i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
         }
-        if ($printTableRow) {
-        }
+
         $rowCount++;
         $rowStart = $visibleItemIndex;
     }
