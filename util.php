@@ -41,10 +41,13 @@ function getRequestVar($str) {
         if (!isset($_REQUEST[$str])) {
             return null;
         }
-        $ret = &$_REQUEST[$str];
-        if (get_magic_quotes_gpc() && !is_array($ret)) {
-            $ret = stripslashes($ret);
+        $ret = & $_REQUEST[$str];
+
+        if (get_magic_quotes_gpc()) {
+            $ret = stripslashes_deep($ret);
         }
+        //echo "\n<br>- Checking:". htmlspecialchars($str);
+        $ret = sanitizeInput($ret);
     }
     else {
         foreach ($str as $reqvar) {

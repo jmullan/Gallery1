@@ -1,3 +1,12 @@
+2006-09-11 Jens Tkotz <jens@peino.de> 1.6-svn-b11
+
+ * Fix: If magic_quotes are On, stripslashes were called after
+        sanitizing the input.
+        This results in the fact that links in input with quotes were
+        not regocnized.
+
+ * Fix: Use stripslashes_deep() on Input.
+
 2006-09-08 Jens Tkotz <jens@peino.de> 1.6-svn-b10
 
  * Fix: Added additional --keyword in xgettext calls to support gettext 0.15
