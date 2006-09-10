@@ -114,7 +114,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
     }
     if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-    	$title = sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle);
+    	$title = sprintf(
+    	   gTranslate('core', "%s RSS"),
+    	   htmlspecialchars($gallery->app->galleryTitle)
+    	);
     	$rssHref = $gallery->app->photoAlbumURL . "/rss.php"
 ?>
   <link rel="alternate" title="<?php echo $title?>" href="<?php echo $rssHref ?>" type="application/rss+xml">
