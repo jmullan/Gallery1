@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -80,21 +80,23 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
     $minimum = ($includingZero == true) ? 0 : 1;
 
     if ( $mixed == '' && $emptyAllowed) {
-	return array(0, $mixed, '');
+        return array(0, $mixed, '');
     }
-	
+
     if (! is_numeric($mixed)) {
-	if (isset($default)) {
-	    return array(1,$default, _("Value was set to given default. Because the original value is not numeric."));
-	} else {
-	    return array(2, false, _("The given Value is not numeric."));
-	}
+        if (isset($default)) {
+            return array(1, $default, _("Value was set to given default. Because the original value is not numeric."));
+        }
+        else {
+            return array(2, false, _("The given Value is not numeric."));
+        }
     }
 
     if($mixed < $minimum) {
-	if (isset($default)) {
+        if (isset($default)) {
             return array(1, $default, _("Value was set to given default. Because the original value is not a valid Integer"));
-        } else {
+        }
+        else {
             return array(2, false, _("The given Value not a valid Integer."));
         }
     }
@@ -104,6 +106,7 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
 
 function isValidText($text, $default = NULL) {
     $sanitized = sanitizeInput($text);
+
     if($sanitized != $text) {
         if(isset($default)) {
             return array(1, $default, _("Value was set to given default. Because the original value is not a valid text"));
