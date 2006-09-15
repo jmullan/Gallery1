@@ -1,18 +1,23 @@
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
 /* This notice must be untouched at all times.
 
-wz_tooltip.js    v. 3.34
+wz_tooltip.js    v. 3.38
 
 The latest version is available at
 http://www.walterzorn.com
 or http://www.devira.com
 or http://www.walterzorn.de
 
-Copyright (c) 2002-2004 Walter Zorn. All rights reserved.
+Copyright (c) 2002-2005 Walter Zorn. All rights reserved.
 Created 1. 12. 2002 by Walter Zorn (Web: http://www.walterzorn.com )
-Last modified: 9. 9. 2005
+Last modified: 9. 12. 2005
 
 Cross-browser tooltips working even in Opera 5 and 6,
-as well as in NN 4, Gecko-Browsers, IE4+, Opera 7 and Konqueror.
+as well as in NN 4, Gecko-Browsers, IE4+, Opera 7+ and Konqueror.
 No onmouseouts required.
 Appearance of tooltips can be individually configured
 via commands within the onmouseovers.
@@ -31,6 +36,8 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 For more details on the GNU Lesser General Public License,
 see http://www.gnu.org/copyleft/lesser.html
 */
+
+
 
 ////////////////  GLOBAL TOOPTIP CONFIGURATION  /////////////////////
 var ttAbove       = false;        // tooltip above mousepointer? Alternative: true
@@ -62,14 +69,14 @@ var ttWidth       = 175;
 
 //////////////  TAGS WITH TOOLTIP FUNCTIONALITY  ////////////////////
 // List may be extended or shortened:
-var tt_tags = new Array("a","area","b","big","caption","center","code","dd","div","dl","dt","em","h1","h2","h3","h4","h5","h6","i","img","input","li","map","ol","p","pre","s","small","span","strike","strong","sub","sup","table","td","th","tr","tt","u","var","ul","layer");
+var tt_tags = new Array("a","area","b","big","caption","center","code","dd","div","dl","dt","em","h1","h2","h3","h4","h5","h6","i","img","input","li","map","ol","p","pre","s", "select", "small","span","strike","strong","sub","sup","table","td","th","tr","tt","u","var","ul","layer");
 /////////////////////////////////////////////////////////////////////
 
 
 
 ///////// DON'T CHANGE ANYTHING BELOW THIS LINE /////////////////////
-var tt_obj,                // current tooltip
-tt_ifrm,                   // iframe to cover windowed controls in IE
+var tt_obj = null,         // current tooltip
+tt_ifrm = null,            // iframe to cover windowed controls in IE
 tt_objW = 0, tt_objH = 0,  // width and height of tt_obj
 tt_objX = 0, tt_objY = 0,
 tt_offX = 0, tt_offY = 0,
@@ -80,7 +87,7 @@ tt_wait = false,
 tt_act = false,            // tooltip visibility flag
 tt_sub = false,            // true while tooltip below mousepointer
 tt_u = "undefined",
-tt_mf,                     // stores previous mousemove evthandler
+tt_mf = null,              // stores previous mousemove evthandler
 // Opera: disable href when hovering <a>
 tt_tag = null;             // stores hovered dom node, href and previous statusbar txt
 
@@ -93,7 +100,7 @@ var tt_op = !!(window.opera && document.getElementById),
 tt_op6 = tt_op && !document.defaultView,
 tt_op7 = tt_op && !tt_op6,
 tt_ie = tt_n.indexOf("msie") != -1 && document.all && tt_db && !tt_op,
-tt_ie6 = tt_ie && parseFloat(tt_nv.substring(tt_nv.indexOf("MSIE")+5)) >= 5.5;
+tt_ie6 = tt_ie && parseFloat(tt_nv.substring(tt_nv.indexOf("MSIE")+5)) >= 5.5,
 tt_n4 = (document.layers && typeof document.classes != tt_u),
 tt_n6 = (!tt_op && document.defaultView && typeof document.defaultView.getComputedStyle != tt_u),
 tt_w3c = !tt_ie && !tt_n6 && !tt_op && document.getElementById;
@@ -158,7 +165,7 @@ function tt_Htm(tt, t_id, txt)
 	{
 		t_y += '<tr><td style="padding-left:3px;padding-right:3px;" align="'+t_algn+'"><font color="'+t_titc+'" face="'+t_ff+'" ' +
 			'style="color:'+t_titc+';font-family:'+t_ff+';font-size:'+t_fsz+';"><b>' +
-			(tt_n4? '&nbsp;' : '')+t_tit+'<\/b><\/font><\/td><\/tr>';
+			(tt_n4? '&nbsp;' : '')+t_tit+'</b></font></td></tr>';
 	}
 	t_y += '<tr><td><table border="0" cellpadding="'+t_padd+'" cellspacing="'+t_bw+'" width="100%">' +
 		'<tr><td'+(t_bgc? (' bgcolor="'+t_bgc+'"') : '')+(t_bgimg? ' background="'+t_bgimg+'"' : '')+' style="text-align:'+t_algn+';';
@@ -167,25 +174,25 @@ function tt_Htm(tt, t_id, txt)
 		' style="color:'+t_fc+';font-family:'+t_ff+';font-size:'+t_fsz+';font-weight:'+t_fwght+';">';
 	if(t_fwght == 'bold') t_y += '<b>';
 	t_y += txt;
-	if(t_fwght == 'bold') t_y += '<\/b>';
-	t_y += '<\/font><\/td><\/tr><\/table><\/td><\/tr><\/table>';
+	if(t_fwght == 'bold') t_y += '</b>';
+	t_y += '</font></td></tr></table></td></tr></table>';
 	if(t_shw)
 	{
 		var t_spct = Math.round(t_shw*1.3);
 		if(tt_n4)
 		{
-			t_y += '<layer bgcolor="'+t_shc+'" left="'+t_w+'" top="'+t_spct+'" width="'+t_shw+'" height="0"><\/layer>' +
-				'<layer bgcolor="'+t_shc+'" left="'+t_spct+'" align="bottom" width="'+(t_w-t_spct)+'" height="'+t_shw+'"><\/layer>';
+			t_y += '<layer bgcolor="'+t_shc+'" left="'+t_w+'" top="'+t_spct+'" width="'+t_shw+'" height="0"></layer>' +
+				'<layer bgcolor="'+t_shc+'" left="'+t_spct+'" align="bottom" width="'+(t_w-t_spct)+'" height="'+t_shw+'"></layer>';
 		}
 		else
 		{
 			t_optx = tt_n6? '-moz-opacity:0.85;' : tt_ie? 'filter:Alpha(opacity=85);' : 'opacity:0.85;';
-			t_y += '<div id="'+t_id+'R" style="position:absolute;background:'+t_shc+';left:'+t_w+'px;top:'+t_spct+'px;width:'+t_shw+'px;height:1px;overflow:hidden;'+t_optx+'"><\/div>' +
-				'<div style="position:relative;background:'+t_shc+';left:'+t_spct+'px;top:0px;width:'+(t_w-t_spct)+'px;height:'+t_shw+'px;overflow:hidden;'+t_optx+'"><\/div>';
+			t_y += '<div id="'+t_id+'R" style="position:absolute;background:'+t_shc+';left:'+t_w+'px;top:'+t_spct+'px;width:'+t_shw+'px;height:1px;overflow:hidden;'+t_optx+'"></div>' +
+				'<div style="position:relative;background:'+t_shc+';left:'+t_spct+'px;top:0px;width:'+(t_w-t_spct)+'px;height:'+t_shw+'px;overflow:hidden;'+t_optx+'"></div>';
 		}
 	}
-	return(t_y+'<\/div>' +
-		(tt_ie6 ? '<iframe id="TTiEiFrM" src="javascript:false" scrolling="no" frameborder="0" style="filter:Alpha(opacity=0);position:absolute;top:0px;left:0px;display:none;"><\/iframe>' : ''));
+	return(t_y+'</div>' +
+		(tt_ie6 ? '<iframe id="TTiEiFrM" src="javascript:false" scrolling="no" frameborder="0" style="filter:Alpha(opacity=0);position:absolute;top:0px;left:0px;display:none;"></iframe>' : ''));
 }
 function tt_EvX(t_e)
 {
@@ -224,14 +231,11 @@ function tt_ReleasMov()
 }
 function tt_ShowIfrm(t_x)
 {
-	if(!tt_ie6 || !tt_obj) return;
-	tt_ifrm = document.getElementById("TTiEiFrM");
-	//tt_obj.style.display = t_x? "block" : "none";
+	if(!tt_obj || !tt_ifrm) return;
 	if(t_x)
 	{
 		tt_ifrm.style.width = tt_objW+'px';
 		tt_ifrm.style.height = tt_objH+'px';
-		tt_ifrm.style.zIndex = tt_obj.style.zIndex - 1;
 		tt_ifrm.style.display = "block";
 	}
 	else tt_ifrm.style.display = "none";
@@ -263,8 +267,12 @@ function tt_GetDivH()
 function tt_SetDivZ()
 {
 	var t_i = tt_obj.style || tt_obj;
-	if(window.dd && dd.z)
-		t_i.zIndex = Math.max(dd.z+1, t_i.zIndex);
+	if(t_i)
+	{
+		if(window.dd && dd.z)
+			t_i.zIndex = Math.max(dd.z+1, t_i.zIndex);
+		if(tt_ifrm) tt_ifrm.style.zIndex = t_i.zIndex-1;
+	}
 }
 function tt_SetDivPos(t_x, t_y)
 {
@@ -280,33 +288,33 @@ function tt_SetDivPos(t_x, t_y)
 }
 function tt_ShowDiv(t_x)
 {
+	tt_ShowIfrm(t_x);
 	if(tt_n4) tt_obj.visibility = t_x? 'show' : 'hide';
 	else tt_obj.style.visibility = t_x? 'visible' : 'hidden';
 	tt_act = t_x;
-	tt_ShowIfrm(t_x);
 }
 function tt_OpDeHref(t_e)
 {
-		var t_tag;
+	var t_tag;
 	if(t_e)
+	{
+		t_tag = t_e.target;
+		while(t_tag)
 		{
-				t_tag = t_e.target;
-				while(t_tag)
-				{
-						if(t_tag.hasAttribute("href"))
-					{
-						tt_tag = t_tag
-						tt_tag.t_href = tt_tag.getAttribute("href");
-						tt_tag.removeAttribute("href");
-						tt_tag.style.cursor = "hand";
-						tt_tag.onmousedown = tt_OpReHref;
-						tt_tag.stats = window.status;
-						window.status = tt_tag.t_href;
-						break;
-					}
-					t_tag = t_tag.parentElement;
-				}
+			if(t_tag.hasAttribute("href"))
+			{
+				tt_tag = t_tag
+				tt_tag.t_href = tt_tag.getAttribute("href");
+				tt_tag.removeAttribute("href");
+				tt_tag.style.cursor = "hand";
+				tt_tag.onmousedown = tt_OpReHref;
+				tt_tag.stats = window.status;
+				window.status = tt_tag.t_href;
+				break;
+			}
+			t_tag = t_tag.parentElement;
 		}
+	}
 }
 function tt_OpReHref()
 {
@@ -322,8 +330,7 @@ function tt_Show(t_e, t_id, t_sup, t_delay, t_fix, t_left, t_offx, t_offy, t_sta
 	if(tt_obj) tt_Hide();
 	tt_mf = document.onmousemove || null;
 	if(window.dd && (window.DRAG && tt_mf == DRAG || window.RESIZE && tt_mf == RESIZE)) return;
-	var t_uf = document.onmouseup || null, t_sh, t_h;
-	if(tt_mf && t_uf) t_uf(t_e);
+	var t_sh, t_h;
 
 	tt_obj = tt_GetDiv(t_id);
 	if(tt_obj)
@@ -426,7 +433,7 @@ function tt_Init()
 {
 	if(!(tt_op || tt_n4 || tt_n6 || tt_ie || tt_w3c)) return;
 
-	var htm = tt_n4? '<div style="position:absolute;"><\/div>' : '',
+	var htm = tt_n4? '<div style="position:absolute;"></div>' : '',
 	tags,
 	t_tj,
 	over,
@@ -471,5 +478,6 @@ function tt_Init()
 		}
 	}
 	document.write(htm);
+	if(document.getElementById) tt_ifrm = document.getElementById("TTiEiFrM");
 }
 tt_Init();
