@@ -31,10 +31,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
+  <title><?php echo clearGalleryTitle() . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
   <?php
   common_header(array('metaTags' => $metaTags));
-  
+
   /* Prefetch Navigation */
     if ($navigator['allIds'][0] != $id) {
       if ($navigator['allIds'][0] != 'unknown') {
@@ -55,14 +55,14 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   }
 
   echo "\n  ". '<link rel="up" href="' . makeAlbumUrl($gallery->session->albumName) .'">';
-  
+
    if ($gallery->album->isRoot() &&
      (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
       echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
   }
-  
-  if( ! empty($gallery->album->fields["linkcolor"]) || 
-	!empty($gallery->album->fields["bgcolor"]) || 
+
+  if( ! empty($gallery->album->fields["linkcolor"]) ||
+	!empty($gallery->album->fields["bgcolor"]) ||
 	!empty($gallery->album->fields["textcolor"])) {
 
 	echo "\n<style type=\"text/css\">";
@@ -109,7 +109,7 @@ includeLayout('breadcrumb.inc');
 ?>
 <a id="photo_url" href="<?php echo $photoURL ?>"></a>
 <a id="page_url" href="<?php echo $page_url ?>"></a>
-	
+
 <?php if (!$gallery->album->isMovie($id) && !empty($gallery->album->fields["print_photos"]) && !$gallery->session->offline) :?>
 <script language="javascript1.2" type="text/JavaScript">
 	function doPrintService(input) {
@@ -138,7 +138,7 @@ includeLayout('breadcrumb.inc');
 		}
 	}
 </script>
-<?php endif ?>	
+<?php endif ?>
 
 <?php
 
@@ -152,7 +152,7 @@ if(sizeof($navigator['allIds']) > 0) {
 
 
 	if($gallery->album->fields['nav_thumbs'] != 'yes') {
-		echo "\n<div class=\"g-navbar-top\">";	
+		echo "\n<div class=\"g-navbar-top\">";
 		echo includeLayout('navphoto.inc');
 		echo "\n</div>";
 	}
@@ -175,7 +175,7 @@ if(isset($imageMapHTML)) {
 <div class="g-photo-texts">
 	<!-- caption -->
 	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
-	
+
 	<!-- Custom Fields -->
 	<?php
 	displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
@@ -232,7 +232,7 @@ if(sizeof($navigator['allIds']) > 0) {
 		includeLayout('navmicro.inc');
 		echo "\n</div>";
 	}
-	
+
 	if ($gallery->album->fields['nav_thumbs'] != 'yes') {
 		echo "<div class=\"g-navbar-bottom\">";
 		includeLayout('navphoto.inc');

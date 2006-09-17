@@ -1981,6 +1981,26 @@ function array_flaten($array) {
     return $flatArray;
 }
 
+/**
+ * This function returns the Gallery Title as a string thats save to show in <title>...</title>
+ *
+ * @param string $topic     optional
+ * @return string $ret
+ * @author Jens Tkotz <jens@peino.de>
+ */
+
+function clearGalleryTitle($topic = '') {
+    global $gallery;
+
+    $ret = strip_tags($gallery->app->galleryTitle);
+
+    if($topic != '') {
+        $ret .= ' :: ' . $topic;
+    }
+
+    return $ret;
+}
+
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');

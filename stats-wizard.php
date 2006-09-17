@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -40,8 +40,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle ?>::<?php echo gTranslate('core',"Gallery statistics - Wizard") ?></title>
-<?php 
+<title><?php echo clearGalleryTitle(gTranslate('core',"Gallery statistics - Wizard")) ?></title>
+<?php
 	common_header() ;
 ?>
 </head>
@@ -51,7 +51,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	<div class="g-header-popup">
 		<div class="g-pagetitle-popup"><?php echo gTranslate('core', "Gallery statistics - Wizard"); ?></div>
 	</div>
-<?php  
+<?php
 }
     $adminbox["commands"] = galleryLink(
     	makeGalleryUrl("admin-page.php"),
@@ -93,7 +93,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 			case 'submit':
 			    continue;
 			break;
-			
+
 			case 'checkbox':
 			    if(document.stats_form.elements[i].checked) {
 				value = 1;
@@ -105,7 +105,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 				value = document.stats_form.elements[i].value;
 			    }
 			break;
-			
+
 			default:
 				value = document.stats_form.elements[i].value;
 			break;
@@ -119,7 +119,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </script>
 
 <?php
-	echo makeFormIntro("stats.php", array("name" => "stats_form", "onChange" => 'updateUrl()'));
+	echo makeFormIntro('stats.php', array('name' => '"stats_form', 'onChange' => 'updateUrl()'));
 ?>
 	<table width="100%" class="g-stats-wizard">
 	<tr>
@@ -135,24 +135,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	  <td width="50%">
 		<?php stats_showBlock($stats['layout'], gTranslate('core',"Layout")); ?>
 	  </td>
-	
+
 	  <td width="50%">
 		<?php stats_showBlock($stats['filter'], gTranslate('core',"Filter by Capture Date")); ?>
 	  </td>
-	
+
 	</tr>
 	</table>
 	<br>
-	<?php echo gSubmit('submitbutton', gTranslate('core',"_Show statistics")); ?>
+	<?php echo gSubmit('submitbutton', gTranslate('core', "_Show statistics")); ?>
 	</form>
-	
+
 	<br>
 <?php
 	echo gTranslate('core',"Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
 	?>
-	
+
 	<input type="text" id="stats_url" size="150" value="" readonly>
-	
+
 	<script type="text/javascript">
 	  // Run the script at the when page is showed.
 	  // We could do this onLoad, but this doesnt work embedded.
@@ -162,7 +162,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </div>
 
 <?php
-includeTemplate('general.footer');
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

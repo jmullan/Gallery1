@@ -1,3 +1,26 @@
+2006-09-17 Jens Tkotz <jens@peino.de> 1.6-svn-b12
+
+ * Change: Links in Gallery and Album titles are now handled fine.
+    - New function clearGalleryTitle($addon)
+
+ * Change: Nicify of tools/* files. Outsorced functions into tool/lib/
+
+ * Fix: Header and footer calls in tools/* files.
+
+ * Fix: Little html and missing text in "despam comments".
+
+ * Change: Outsourced functionality from albums.php and templates.
+	   New funciotns for reuse created in lib/album.php
+    - prefetchRootAlbumNav()
+    - rootRSSLink()
+    - prefetchAlbumNav()
+    - albumRSSLink()
+    - customCSS()
+
+ * Change: Moved returnToPathArray() from lib/content.php into lib/album.php
+
+ * Change: Outsorced functions from stats.php into lib/stats.php 	 
+
 2006-09-11 Jens Tkotz <jens@peino.de> 1.6-svn-b11
 
  * Fix: If magic_quotes are On, stripslashes were called after

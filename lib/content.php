@@ -1269,49 +1269,6 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
     return $html;
 }
 
-function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
-    global $gallery;
-
-    $pathArray = array();
-
-    $upArrowAltText = gTranslate('common', "navigate _UP");
-    $upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
-
-    $accesskey = getAccessKey($upArrowAltText);
-    $lastUpArrowAltText = $upArrowAltText . ' '.
-	   sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
-
-    $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
-
-    if (!empty($album)) {
-        if ($album->fields['returnto'] != 'no') {
-            $parents = $album->getParentAlbums($withCurrentAlbum);
-            $numParents = sizeof($parents);
-            $i = 0;
-            foreach ($parents as $navAlbum) {
-                $i++;
-                $link = $navAlbum['prefixText'] .': ';
-                if($i == $numParents) {
-                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
-                    array('accesskey' => $accesskey), '', false, false);
-                }
-                else {
-                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
-                    array(), '', false, false);
-                }
-                $pathArray[] = $link;
-            }
-        }
-    }
-    else {
-        $pathArray[] = sprintf(gTranslate('common', "Gallery: %s"),
-        galleryLink(makeGalleryUrl("albums.php"), $gallery->app->galleryTitle ."&nbsp;$lastUpArrow",
-        array('accesskey' => $accesskey), '', false, false));
-    }
-
-    return $pathArray;
-}
-
 /**
  * Returns a html string that represents the login/logout button, or just the text.
  * @return string	$html

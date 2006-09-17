@@ -33,27 +33,14 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?></title>
+  <title><?php echo $galleryTitle; ?></title>
   <?php
 	common_header() ;
 
-	/* prefetching/navigation */
-    if ($navigator['page'] > 1) { ?>
-  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
-  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
-<?php
-    }
-    if ($navigator['page'] < $maxPages) { ?>
-  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
-  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
-<?php
-    }
-    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+	prefetchRootAlbumNav();
+
+	rootRSSLink();
 ?>
-  <link rel="alternate" title="<?php echo sprintf(gTranslate('core', "%s RSS"), $gallery->app->galleryTitle) ?>" href="<?php echo $gallery->app->photoAlbumURL . "/rss.php" ?>" type="application/rss+xml">
-<?php
-    } ?>
 </head>
 <body>
 <?php

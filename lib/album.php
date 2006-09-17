@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -35,15 +35,15 @@
  */
 function getPropertyDefault($property, $album = false, $global = false) {
     global $gallery;
-    
+
     $retProperty = false;
-    
+
     if ($album) {
         if ($global) {
             if(isset($gallery->app->default[$property])) {
                 $retProperty = $gallery->app->default[$property];
             }
-        }    
+        }
         else {
             if(isset($album->fields[$property])) {
                 $retProperty = $album->fields[$property];
@@ -53,9 +53,9 @@ function getPropertyDefault($property, $album = false, $global = false) {
     elseif ($global) {
         $retProperty = $gallery->app->$property;
     }
-    
+
     return $retProperty;
-} 
+}
 
 function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
 	global $gallery;
@@ -172,4 +172,174 @@ function getParentAlbums($childAlbum, $addChild = false) {
 	return $parentNameArray;
 }
 
+/**
+ * This function just displays the prefetching navigation for an the mainpages
+ *
+ */
+function prefetchRootAlbumNav() {
+    global $gallery, $navigator, $maxPages;
+
+    if ($navigator['page'] > 1) {
+?>
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
+  <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
+<?php
+    }
+
+    if ($navigator['page'] < $maxPages) {
+?>
+  <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
+  <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
+<?php
+    }
+}
+
+/**
+ * This function just displays the RSS Link on the mainpages
+ */
+function rootRSSLink() {
+    global $gallery, $galleryTitle;
+
+    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+        $rssTitle = sprintf(gTranslate('core', "%s RSS"), $galleryTitle);
+        $rssHref = $gallery->app->photoAlbumURL . "/rss.php";
+
+        echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">\n";
+    }
+}
+
+/**
+ * This function just displays the prefetching navigation for the albumpages
+ */
+function prefetchAlbumNav() {
+    global $gallery;
+    global $first, $previousPage, $last, $nextPage, $maxPages;
+
+    /* prefetching/navigation */
+    if (!isset($first)) { ?>
+  <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
+  <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
+<?php
+    }
+    if (!isset($last)) { ?>
+  <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
+  <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
+<?php }
+
+    if ($gallery->album->isRoot() &&
+        (!$gallery->session->offline ||
+	    isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
+  <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
+<?php
+    }
+    else if (!$gallery->session->offline ||
+             isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
+  <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
+<?php
+    }
+    if (!$gallery->session->offline ||
+        isset($gallery->session->offlineAlbums["albums.php"])) { ?>
+  <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
+<?php
+    }
+}
+
+/**
+ * This function just displays the RSS Link on the albumpages
+ *
+ */
+function albumRSSLink() {
+    global $gallery, $albumTitle, $albumRSSURL;
+
+    if ($gallery->app->rssEnabled == 'yes' && !$gallery->session->offline) {
+        $rssTitle = sprintf(gTranslate('core', "%s RSS"), $albumTitle);
+
+        echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$albumRSSURL\" type=\"application/rss+xml\">\n";
+    }
+}
+
+/**
+ * This function returns the CSS for the settings a user did in the album appearance
+ *
+ */
+function customCSS() {
+    global $gallery;
+
+    $customCSS = '';
+
+    // the link colors have to be done here to override the style sheet
+    if ($gallery->album->fields["linkcolor"]) {
+        $customCSS .= "  a:link, a:visited, a:active { color: ".$gallery->album->fields['linkcolor'] ."; }\n";
+        $customCSS .= "  a:hover { color: #ff6600; }\n";
+    }
+
+    if ($gallery->album->fields["bgcolor"]) {
+        $customCSS .= "  body { background-color:".$gallery->album->fields['bgcolor']."; }\n";
+    }
+
+    if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+        $customCSS .= "  body { background-image:url(".$gallery->album->fields['background']."); }\n";
+    }
+
+    if ($gallery->album->fields["textcolor"]) {
+        $customCSS .= "  body, tf { color:".$gallery->album->fields['textcolor']."; } \n";
+    }
+
+    return $customCSS;
+}
+
+/**
+ * returns the a HTML string containg links to the upper albums
+ *
+ * @param object    $album
+ * @param boolean   $withCurrentAlbum
+ * @return string   $pathArray
+ */
+function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
+    global $gallery;
+
+    $pathArray = array();
+
+    $upArrowAltText = gTranslate('common', "navigate _UP");
+    $upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
+
+    $accesskey = getAccessKey($upArrowAltText);
+    $lastUpArrowAltText = $upArrowAltText . ' '.
+	   sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
+
+    $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
+
+    if (!empty($album)) {
+        if ($album->fields['returnto'] != 'no') {
+            $parents = $album->getParentAlbums($withCurrentAlbum);
+            $numParents = sizeof($parents);
+            $i = 0;
+            foreach ($parents as $navAlbum) {
+                $i++;
+                $link = $navAlbum['prefixText'] .': ';
+                if($i == $numParents) {
+                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
+                    array('accesskey' => $accesskey), '', false, false);
+                }
+                else {
+                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+                    array(), '', false, false);
+                }
+                $pathArray[] = $link;
+            }
+        }
+    }
+    else {
+        $pathArray[] = sprintf(
+            gTranslate('common', "Gallery: %s"),
+            galleryLink(
+                makeGalleryUrl("albums.php"),
+                clearGalleryTitle() ."&nbsp;$lastUpArrow",
+                array('accesskey' => $accesskey), '', false, false)
+        );
+    }
+
+    return $pathArray;
+}
 ?>

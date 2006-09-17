@@ -27,15 +27,21 @@ require_once(dirname(__FILE__) . '/init.php');
 list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
-if (empty($gallery->session->albumName) || !$gallery->user->canReadAlbum($gallery->album) || !$gallery->album->isLoaded()) {
+if (empty($gallery->session->albumName) ||
+    !$gallery->user->canReadAlbum($gallery->album) ||
+    !$gallery->album->isLoaded()) {
 	$gallery->session->gRedirDone = false;
 	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
 	return;
 }
 
-$gallery->session->offlineAlbums[$gallery->album->fields["name"]]=true;
+$gallery->session->offlineAlbums[$gallery->album->fields["name"]] = true;
+
+$albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields["title"]));
 
 $albumName = $gallery->session->albumName;
+
+$albumRSSURL = $gallery->app->photoAlbumURL . "/rss.php?set_albumName=$albumName";
 
 /* save the info that this album was viewed in this session and increment clickcounter */
 if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
@@ -86,7 +92,9 @@ if (empty($page) || $page < 0) {
 
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
+
 list ($numPhotos, $numAlbums, $visibleItems) = $gallery->album->numVisibleItems($gallery->user, 1);
+
 $numVisibleItems = $numPhotos + $numAlbums;
 $perPage = $rows * $cols;
 $maxPages = max(ceil(($numPhotos + $numAlbums) / $perPage), 1);
@@ -416,11 +424,13 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 	            $myAlbum->load($albumName);
 
 	            $pollInfoTable->addElement(array('content' =>
-	            galleryLink(
-	            makeAlbumUrl($albumName),
-	            sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
-	            ));
-	        } else {
+    	            galleryLink(
+    	               makeAlbumUrl($albumName),
+    	               sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
+    	            )
+                );
+	        }
+	        else {
 	            $desc = $gallery->album->getCaption($index);
 	            if (trim($desc) == '') {
 	                $desc = $gallery->album->getPhotoId($index);
@@ -428,7 +438,7 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 
 	            $photoId = str_replace('item.', '', $id);
 	            $pollInfoTable->addElement(array('content' =>
-	            galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
+	               galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
 	            ));
 	        }
 	    }
@@ -471,13 +481,17 @@ if (canVote()) {
 
 	$va_poll_box3 = sprintf(gTranslate('core', "To vote for an image, click on %s."), $options);
 	$va_poll_box3 .= ' ';
-	$va_poll_box3 .= sprintf(gTranslate('core', "You MUST click on %s for your vote to be recorded."), "<b>".gTranslate('core', "Vote")."</b>");
-	$va_poll_box3 .= ' ';
+	$va_poll_box3 .= sprintf(
+	           gTranslate('core', "You MUST click on %s for your vote to be recorded."),
+	           "<b>" .gTranslate('core', "Vote") ."</b> "
+    );
+
 	if ($gallery->album->getPollType() == 'rank') {
 		$voteCount = $gallery->album->getPollScale();
 		$va_poll_box3 .= gTranslate('core',
 			"You have a total of %d vote and can change it later if you wish.",
-			"You have a total of %d votes and can change them later if you wish.", $voteCount, '', true);
+			"You have a total of %d votes and can change them later if you wish.",
+			$voteCount, '', true);
 	}
 	else {
 		$va_poll_box3 .= gTranslate('core', "You can change your votes later, if you wish.");
@@ -496,7 +510,7 @@ if ($numPhotos) {
 	/* Find the correct starting point, accounting for hidden photos */
 	$rowStart = 0;
 	$cnt = 0;
-	$form_pos=0; // counts number of images that have votes below, ie withou albums;
+	$form_pos = 0; // counts number of images that have votes below, ie without albums;
 	$rowStart = $start;
 
 	$albumItems = array();
@@ -526,7 +540,8 @@ if ($numPhotos) {
 				$scaleTo = 0; //$gallery->album->fields["thumb_size"];
 				$myAlbum = $gallery->album->getNestedAlbum($i);
 				list($iWidth, $iHeight) = $myAlbum->getHighlightDimensions($scaleTo);
-			} else {
+			}
+			else {
 				unset($myAlbum);
 				$scaleTo = 0;  // thumbs already the right
 				//	size for this album
@@ -559,15 +574,19 @@ if ($numPhotos) {
 				// We already loaded this album - don't do it again, for performance reasons.
 
 				$gallery->html_wrap['imageTag'] = $myAlbum->getHighlightTag(
-					$scaleTo,
-					array('alt' => sprintf(gTranslate('core', "Highlight for album: %s"),
-						gallery_htmlentities(strip_tags($myAlbum->fields['title']))))
-					);
+                    $scaleTo,
+                    array('alt' => sprintf(
+                        gTranslate('core', "Highlight for album: %s"),
+						gallery_htmlentities(strip_tags($myAlbum->fields['title'])))
+                    )
+                );
+
 				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
 				$frame = $gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
 				$gallery->html_wrap['type'] = 'inline_albumthumb.frame';
 
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				list($divCellWidth,$divCellHeight, $padding) =
+				    calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
 			}
 			else {
 				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
@@ -575,7 +594,8 @@ if ($numPhotos) {
 				$frame = $gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
 				$gallery->html_wrap['type'] = 'inline_photothumb.frame';
 
-				list($divCellWidth,$divCellHeight, $padding) = calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
+				list($divCellWidth,$divCellHeight, $padding) =
+				    calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth);
 			}
 			++$nr;
             $gallery->html_wrap['style'] = "style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\"";

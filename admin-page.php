@@ -70,7 +70,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle; ?>::<?php echo gTranslate('core', "Admin options") ?></title>
+<title><?php echo clearGalleryTitle(gTranslate('core', "Admin options")) ?></title>
 <?php
 	common_header() ;
 ?>

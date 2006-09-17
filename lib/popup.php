@@ -142,7 +142,7 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 ?>
 <html>
 <head>
-  <title><?php echo $title; ?></title>
+  <title><?php echo strip_tags($title); ?></title>
   <?php common_header(); ?>
 </head>
 <body class="g-popup">

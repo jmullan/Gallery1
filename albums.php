@@ -56,6 +56,8 @@ $gallery->session->offlineAlbums["albums.php"] = true;
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
+$galleryTitle = clearGalleryTitle();
+
 $gallery->session->albumName = '';
 $page = 1;
 

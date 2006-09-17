@@ -1,4 +1,4 @@
-<?php		
+<?php
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
@@ -264,7 +264,7 @@ class Album {
         if (!isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
             $parentAlbumsArray[] = array(
                 'prefixText' => gTranslate('core', "Gallery"),
-                'title' => $gallery->app->galleryTitle,
+                'title' => clearGalleryTitle(),
                 'url' => makeGalleryUrl("albums.php"));
         }
 
