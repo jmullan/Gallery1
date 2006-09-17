@@ -28,6 +28,7 @@
 /**
  * This function shows all possible actions for an album item.
  * @param	integer $i	index number of the item
+ * @param	boolean	$withIcons	Wether icons should be used, or not.
  * @return 	array		Array of all possible album item for the current user.
  */
 function getItemActions($i, $withIcons = false, $popupsOnly = false) {

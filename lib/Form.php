@@ -66,11 +66,11 @@ function invertCheck(elementName) {
 
 function insertFormJSLinks($elementName) {
     $buf='
-	<a href="javascript:setCheck(1,\'' . $elementName . '\')">'. _("Check All") . '</a>
+	<a href="javascript:setCheck(1,\'' . $elementName . '\')">'. gTranslate('common', "Check All") . '</a>
 	-
-	<a href="javascript:setCheck(0,\'' . $elementName . '\')">'. _("Clear All") . '</a>
+	<a href="javascript:setCheck(0,\'' . $elementName . '\')">'. gTranslate('common', "Clear All") . '</a>
 	-
-	<a href="javascript:invertCheck(\'' . $elementName . '\')">'. _("Invert Selection") .'</a>';
+	<a href="javascript:invertCheck(\'' . $elementName . '\')">'. gTranslate('common', "Invert Selection") .'</a>';
 
     return $buf;
 }

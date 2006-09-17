@@ -713,6 +713,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 		);
 	    }
 	    else {
+                 /* If no targetSize is given, then this is just for setting (decreasing) quality */
                 $result = exec_wrapper(toPnmCmd($src) .' | '. fromPnmCmd($dest, $quality));
 	    }
 
@@ -752,6 +753,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 
             $destOperator = '';
             $srcOperator = '';
+
             /* If no targetSize is given, then this is just for setting (decreasing) quality */
             $destOperator = "-quality $quality";
 
