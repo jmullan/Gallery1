@@ -97,12 +97,13 @@ function MultiSelector(list_target, max, fieldname, withCaption){
     this.addListRow = function( element ){
 
         var line = document.createElement('div');
-        line.style.textAlign='right';
+        line.style.textAlign = 'right';
         if(! (this.count % 2)) {
-        	line.style.backgroundColor='white';
+        	line.style.backgroundColor = 'white';
+        	line.style.color = 'black';
         }
         var filenameCaptionDiv = document.createElement('div');
-        filenameCaptionDiv.style.textAlign='left';
+        filenameCaptionDiv.style.textAlign = 'left';
 
         line.appendChild(filenameCaptionDiv);
 

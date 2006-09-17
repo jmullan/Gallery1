@@ -5,7 +5,7 @@
 
 /* This notice must be untouched at all times.
 
-wz_jsgraphics.js    v. 2.33
+wz_jsgraphics.js    v. 2.36
 The latest version is available at
 http://www.walterzorn.com
 or http://www.devira.com
@@ -13,7 +13,7 @@ or http://www.walterzorn.de
 
 Copyright (c) 2002-2004 Walter Zorn. All rights reserved.
 Created 3. 11. 2002 by Walter Zorn (Web: http://www.walterzorn.com )
-Last modified: 24. 10. 2005
+Last modified: 21. 6. 2006
 
 Performance optimizations for Internet Explorer
 by Thomas Frank and John Holdsworth.
@@ -75,24 +75,24 @@ function pntDoc()
 
 function pntCnvDom()
 {
-	var x = document.createRange();
+	var x = this.wnd.document.createRange();
 	x.setStartBefore(this.cnv);
 	x = x.createContextualFragment(jg_fast? this.htmRpc() : this.htm);
-	this.cnv.appendChild(x);
+	if(this.cnv) this.cnv.appendChild(x);
 	this.htm = '';
 }
 
 
 function pntCnvIe()
 {
-	this.cnv.insertAdjacentHTML("BeforeEnd", jg_fast? this.htmRpc() : this.htm);
+	if(this.cnv) this.cnv.insertAdjacentHTML("BeforeEnd", jg_fast? this.htmRpc() : this.htm);
 	this.htm = '';
 }
 
 
 function pntCnvIhtm()
 {
-	this.cnv.innerHTML += this.htm;
+	if(this.cnv) this.cnv.innerHTML += this.htm;
 	this.htm = '';
 }
 
@@ -897,8 +897,8 @@ text both horizontally (e.g. right) and vertically within that rectangle */
 		this.htm += '<div style="position:absolute;'+
 			'left:' + x + 'px;'+
 			'top:' + y + 'px;'+
-			'width:' +  w + ';'+
-			'height:' + h + ';">'+
+			'width:' +  w + 'px;'+
+			'height:' + h + 'px;">'+
 			'<img src="' + imgSrc + '" width="' + w + '" height="' + h + '"' + (a? (' '+a) : '') + '>'+
 			'<\/div>';
 	};
