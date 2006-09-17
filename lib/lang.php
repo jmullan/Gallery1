@@ -30,13 +30,13 @@
  * 1.) We can use %s and %d in translation
  * 2.) We can use a special "none" without modifying the plural definition.
  *
- * @paramstring    $domain
- * @param	string    $singular
- * @param	string    $plural
- * @param	int       $count
- * @param	string    $nonetext
- * @return  string    $translation	string with translation on success, otherwise '--- TranslationError --'
- * @author	Jens Tkotz
+ * @param   string  $domain
+ * @param   string  $singular
+ * @param   string  $plural
+ * @param   int     $count
+ * @param   string  $nonetext
+ * @return  string  $translation	string with translation on success, otherwise '--- TranslationError --'
+ * @author  Jens Tkotz
  */
 function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '', $short = false) {
     global $gallery;
@@ -47,7 +47,7 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
     }
 
     if ($count == 0 && $nonetext != '') {
-	   return _($nonetext);
+        return $nonetext;
     }
 
     if (gettext_installed()) {
@@ -242,10 +242,19 @@ function forceStaticLang() {
  * This function does the initialization of language related things.
  * @author Jens Tkotz <jens@peino.de>
  */
-function initLanguage($sendHeader = true) {
+function initLanguage($sendHeader = true, $userlanguage = '') {
     static $languages_initialized = false;
 
     global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+    /**
+     * Init was already done. Just return, or do a reinit
+     * if the giving userlanguage is different than the current language
+    */
+    if($languages_initialized &&
+      (empty($userlanguage) || (isset($gallery->app->ML_mode) && $gallery->app->ML_mode != 2))) {
+            return;
+    }
 
     /* $locale is *NUKEs locale var*/
     global $locale ;
@@ -259,7 +268,7 @@ function initLanguage($sendHeader = true) {
     If so, we skip language settings at all */
 
     /* Mode 0 means no Multilanguage at all. */
-    if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0 && !$languages_initialized) {
+    if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0) {
         /* Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext*/
         if (!gettext_installed()) {
             function _($string) {
@@ -270,7 +279,8 @@ function initLanguage($sendHeader = true) {
             function ngettext($singular, $quasi_plural,$num=0) {
                 if ($num == 1) {
                     return $singular;
-                } else {
+                }
+                else {
                     return $quasi_plural;
                 }
             }
@@ -334,10 +344,12 @@ function initLanguage($sendHeader = true) {
                 if (!empty($newlang)) {
                     /* Set Language to the User selected language.*/
                     $gallery->language = $newlang;
-                } elseif (isset($gallery->session->language)) {
+                }
+                elseif (isset($gallery->session->language)) {
                     /* Maybe we already have a language*/
                     $gallery->language = $gallery->session->language;
-                } else {
+                }
+                else {
                     $gallery->language = getDefaultLanguage();
                 }
             break;
@@ -362,6 +374,7 @@ function initLanguage($sendHeader = true) {
 	 *	- Nuke/phpBB2 sent an unsupported
 	 *	- User sent an undefined
 	 */
+
     if (! isset($nls['language'][$gallery->language])) {
         $gallery->language = getLanguageAlias(getDefaultLanguage());
         /* when we REALLY REALLY cant detect a language */
@@ -376,7 +389,8 @@ function initLanguage($sendHeader = true) {
     /* locale*/
     if (isset($gallery->app->locale_alias[$gallery->language])) {
         $gallery->locale = $gallery->app->locale_alias["$gallery->language"];
-    } else {
+    }
+    else {
         $gallery->locale = $gallery->language;
     }
 
@@ -395,7 +409,8 @@ function initLanguage($sendHeader = true) {
         /* if no ... is given, use default*/
         if ( !isset($nls[$check][$gallery->language])) {
             $gallery->$check = $nls['default'][$check] ;
-        } else {
+        }
+        else {
             $gallery->$check = $nls[$check][$gallery->language] ;
         }
     }
@@ -406,6 +421,7 @@ function initLanguage($sendHeader = true) {
      probably a bogus bug report, since all documentation says this is fine.*/
     putenv("LANG=". $gallery->language);
     putenv("LANGUAGE=". $gallery->language);
+
     /* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
     putenv("LC_ALL=". $gallery->language);
 
@@ -430,19 +446,18 @@ function initLanguage($sendHeader = true) {
     if (gettext_installed()) {
         bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
         textdomain($gallery->language. "-gallery_". where_i_am());
-
-    } elseif (!$languages_initialized) {
-        emulate_gettext();
+    }
+    else {
+        emulate_gettext($languages_initialized);
     }
 
     // We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
-    if (!ngettext_installed() && !$languages_initialized) {
-        emulate_ngettext();
+    if (!ngettext_installed()) {
+        emulate_ngettext($languages_initialized);
     }
 
     $languages_initialized = true;
 }
-
 
 function getTranslationFile() {
 
@@ -450,7 +465,9 @@ function getTranslationFile() {
 	static $translationfile;
 
 	if (empty($translationfile)) {
-		$filename=dirname(dirname(__FILE__)) . '/locale/' . $gallery->language . '/'. $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+        $filename = dirname(dirname(__FILE__)) . '/locale/' .
+        $gallery->language . '/'.
+        $gallery->language . '-gallery_' .  where_i_am()  . '.po';
 		$translationfile=file($filename);
 	}
 
@@ -461,19 +478,19 @@ return $translationfile;
  * NOTE: this is the first primitive Step !!
  * It fully ignores the plural definition !!
 */
-function emulate_ngettext() {
-
-
+function emulate_ngettext($languages_initialized = false) {
 	global $translation;
 	global $gallery;
 
 	if (in_array($gallery->language,array_keys(gallery_languages())) &&
 		$gallery->language != 'en_US') {
+
 		$lines=getTranslationFile();
 		foreach ($lines as $key => $value) {
 		//We trim the String to get rid of cr/lf
 			$value=trim($value);
-			if (stristr($value, "msgid") && ! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
+            if (stristr($value, "msgid") &&
+                ! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
 //				echo "\n<br>---SID". $value;
 //					echo "\n<br>---PID". $lines[$key+1];
 				if (stristr($lines[$key+1],"msgid_plural")) {
@@ -488,14 +505,29 @@ function emulate_ngettext() {
 				}
 			}
 		}
+    }
+
 		// Substitute ngettext() function
+    if(! $languages_initialized) {
 		function ngettext($singular, $quasi_plural,$num=0) {
 //			echo "\n<br>----";
 //			echo "\nSL: $singular, PL: $quasi_plural, N: $num";
+            global $gallery;
+
+            if($gallery->language == 'en_US') {
+                if ($num == 1) {
+                    return $singular;
+                }
+                else {
+                    return $quasi_plural;
+                }
+            }
+            else {
 			if ($num == 1) {
 				if (! empty($GLOBALS['translation'][$singular])) {
 					return $GLOBALS['translation'][$singular] ;
-				} else {
+                    }
+                    else {
 					return $singular;
 				}
 			}
@@ -509,45 +541,51 @@ function emulate_ngettext() {
 			}
 		}
 	}
-	else {
-		// There is no translation file or we are using original (en_US), so just return what we got
-		function ngettext($singular, $quasi_plural,$num=0) {
-			if ($num == 1) {
-				return $singular;
-			} else {
-				return $quasi_plural;
-			}
-		}
 	}
 }
 
 /**
  *
 */
-function emulate_gettext() {
+function emulate_gettext($languages_initialized) {
 	global $translation;
 	global $gallery;
 
 	if (in_array($gallery->language,array_keys(gallery_languages())) &&
 		$gallery->language != 'en_US') {
-		$filename=dirname(dirname(__FILE__)) . '/locale/' . $gallery->language . '/'. $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+
+        $filename = dirname(dirname(__FILE__)) . '/locale/' .
+        $gallery->language . '/'.
+        $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
 			/* We trim the String to get rid of cr/lf */
 			$value=trim($value);
-			if (stristr($value, "msgid")
-				&& ! stristr($lines[$key-1],"fuzzy")
-				&& ! stristr($lines[$key],"msgid_plural")
-				&& ! stristr($value,"msgid_plural")) {
+            if (stristr($value, "msgid") &&
+                ! stristr($lines[$key-1],"fuzzy") &&
+                ! stristr($lines[$key],"msgid_plural") &&
+                ! stristr($value,"msgid_plural")) {
+
 				$new_key=substr($value, 7,-1);
 				$translation[$new_key] = substr(trim($lines[$key+1]),8,-1);
 //		echo "\n<br>NK". $new_key;
 //		echo "\n<br>NT". $translation[$new_key];
 			}
 		}
+    }
+
 		// Substitute _() gettext function
+    if(! $languages_initialized) {
 		function _($search) {
+            global $gallery;
+
+            if($gallery->language == 'en_US') {
+                return $search;
+            }
+            else {
+
 			if (! empty($GLOBALS['translation'][$search])) {
 				return $GLOBALS['translation'][$search] ;
 			}
@@ -556,11 +594,6 @@ function emulate_gettext() {
 			}
 		}
 	}
-	// There is no translation file or we are using original (en_US), so just return what we got
-	else {
-		function _($search) {
-			return $search;
-		}
 	}
 }
 
@@ -604,8 +637,7 @@ function getLanguageAlias($language) {
 
     if (isset($nls['alias'][$language])) {
 	   return $nls['alias'][$language];
-    }
-    else {
+    } else {
         return $language;
     }
 }
@@ -680,11 +712,13 @@ function isSupportedCharset($charset) {
 		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
 		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
 			return true;
-		} else {
+        }
+        else {
 			/* Unsupported Charset*/
 			return false;
 		}
-	} else {
+    }
+    else {
 		/* PHP too old*/
 		return false;
 	}
@@ -700,7 +734,8 @@ function gallery_htmlentities($string) {
 
 	if (isSupportedCharset($gallery->charset)) {
 		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
-	} else {
+    }
+    else {
 		return htmlentities($string);
     }
 }
@@ -717,9 +752,11 @@ function unhtmlentities($string) {
 
 	if (function_exists('html_entity_decode')) {
 		$nls = getNLS();
+
 		if (isset ($nls['charset'][$gallery->language])) {
 			$charset = $nls['charset'][$gallery->language];
-		} else {
+        }
+        else {
 			$charset = $nls['default']['charset'];
 		}
 
@@ -732,7 +769,8 @@ function unhtmlentities($string) {
 			$trans_tbl = array_flip ($trans_tbl);
 			$return = strtr ($string, $trans_tbl);
 		}
-	} else {
+    }
+    else {
 		// For users with PHP prior to 4.3.0 you may do this:
 		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
 		$trans_tbl = array_flip ($trans_tbl);

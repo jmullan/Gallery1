@@ -1,3 +1,18 @@
+2006-09-16 Jens Tkotz <jens@peino.de> 1.6-svn-b16
+
+ * Fix/Change: lib/lang.php
+    - initlanguage() was called to late in init.php.
+      This results in a Call to undefined function: _()
+
+    - Added second param $userlanguage to initlanguage()
+      If this is set a reinit is forced.
+
+    - Check in init.php for user language if this is different then
+      already initialized $gallery->language, do a reinit.
+
+    - Enhanced the emulation of gettext and ngettext to adjust with possible
+      reinit.
+
 2006-09-17 Jens Tkotz <jens@peino.de> 1.6-svn-b15
 2006-03-28 Jens Tkotz <jens@peino.de> 1.5.3-cvs-b18
 
