@@ -1,24 +1,24 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2006 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id$
-*/
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2006 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
+ */
 ?>
 <?php
 
@@ -26,13 +26,9 @@
  * This is a wrapper around different valchecks
  * The input is the value, the type its tested against and optional a default
  * The return is given by the valcheck function
- * @param $var      mixed   Var to be checked
- * @param $type     string  Var should be a type given in this
- * @param $default  mixed   Default fallback to
- * @return          array
 */
-function sanityCheck($var, $type, $default = NULL) {
-    switch ($type) {
+function sanityCheck($var, $type, $default = NULL, $choices = array()) {
+      switch ($type) {
         case 'int':
             return isValidInteger($var, true, NULL, true);
             break;
@@ -50,10 +46,22 @@ function sanityCheck($var, $type, $default = NULL) {
                 return array(2, $var, gTranslate('common', "The given frame is not valid."));
             }
             break;
-        default:
-            return array(0, $var, '');
+        case 'inChoice':
+            if(in_array($var, $choices)) {
+                return array(0, $var, '');
+            }
+            elseif (isset($default)) {
+                return array(1, $default, gTranslate('common', "Value was set to given default. Because the original value is not a in the allowed amount of choices."));
+            }
+            else {
+                return array(2, $var, gTranslate('common', "The given value is not in the allowed amount of choices."));
+            }
             break;
-    }
+        default:
+        case 'text':
+            return isValidText($var, $default);
+            break;
+	}
 }
 
 /**
@@ -77,7 +85,7 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
 
     if (! is_numeric($mixed)) {
         if (isset($default)) {
-            return array(1,$default, gTranslate('common', "Value was set to given default. Because the original value is not numeric."));
+            return array(1, $default, gTranslate('common', "Value was set to given default. Because the original value is not numeric."));
         }
         else {
             return array(2, false, gTranslate('common', "The given Value is not numeric."));
@@ -94,5 +102,52 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
     }
 
     return array(0, $mixed, '');
+}
+
+function isValidText($text, $default = NULL) {
+    $sanitized = sanitizeInput($text);
+
+    if($sanitized != $text) {
+        if(isset($default)) {
+            return array(1, $default, gTranslate('common', "Value was set to given default. Because the original value is not a valid text"));
+        }
+        else {
+            return array(1, $sanitized, gTranslate('common', "Value was corrected, because the original value is not a valid text"));
+        }
+    }
+    else {
+        return array(0, $text, '');
+    }
+}
+
+function sanitizeInput($value) {
+    if(!is_array($value) && strip_tags($value) == $value) {
+        return $value;
+    }
+
+    require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+    static $safehtml;
+
+    if (empty($safehtml)) {
+        $safehtml =& new HTML_Safe();
+    }
+
+    if(is_array($value)) {
+        //echo "\n -> Array";
+        //echo "\n<ul>";
+        foreach($value as $subkey => $subvalue) {
+            //printf("\n<li>Checking SubValue: %s", htmlspecialchars($subkey));
+            $sanitized[$subkey] = sanitizeInput($subvalue);
+        }
+        //echo "\n</ul>";
+    }
+    else {
+        //echo " === ". htmlspecialchars($value);
+        $sanitized = $safehtml->parse($value);
+        if($sanitized != $value) {
+            //echo "--->". $sanitized;
+        }
+    }
+    return $sanitized;
 }
 ?>

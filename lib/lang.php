@@ -30,12 +30,12 @@
  * 1.) We can use %s and %d in translation
  * 2.) We can use a special "none" without modifying the plural definition.
  *
- * @param	string    $domain
+ * @paramstring    $domain
  * @param	string    $singular
  * @param	string    $plural
  * @param	int       $count
  * @param	string    $nonetext
- * @return      string    $translation	string with translation on success, otherwise '--- TranslationError --'
+ * @return  string    $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author	Jens Tkotz
  */
 function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '', $short = false) {

@@ -325,10 +325,12 @@ while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp
 
     if ($name) {
         if (!empty($usercaption) && is_array($usercaption)) {
-            $caption = strip_tags(array_shift($usercaption));
-        } else {
+            $caption = array_shift($usercaption);
+        }
+        else {
             $caption = '';
         }
+
         if (!isset($caption)) {
             $caption = '';
         }

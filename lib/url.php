@@ -481,4 +481,24 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
 
     return $html;
 }
+/**
+ * This function extract the complete inner Text of the first link inside $link
+ * E.g. '<a href="foo.bar"><div class="text">Jens</div></a>'
+ * would return '<div class="text">Jens</div>'
+ *
+ * @param string $link
+ * @return string
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function extractLinkText($link) {
+    $hits = preg_match('{<a(?:\s*[^>]*>)(.*?)</a>}si', $link, $matches);
+
+    if($hits == 0) {
+        return $link;
+    }
+    else {
+        return $matches[1];
+    }
+}
+
 ?>
