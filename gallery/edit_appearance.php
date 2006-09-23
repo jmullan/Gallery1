@@ -26,7 +26,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;
 }
 
@@ -53,7 +53,7 @@ if (getRequestVar('save')) {
             list($status, ${$fieldName}, $infoMessage) =
             sanityCheck(${$fieldName}, $properties[$fieldName]['vartype'], $gallery->app->default[$fieldName]);
             if (!empty($infoMessage)) {
-                $infoMessages[] .= sprintf (_("Problem with input of field '%s'. %s"), $fieldName, $infoMessage);
+                $infoMessages[] .= sprintf (gTranslate('core', "Problem with input of field '%s'. %s"), $fieldName, $infoMessage);
             }
         }
     }
@@ -116,9 +116,9 @@ if (getRequestVar('save')) {
     $gallery->album->fields["voter_class"] == "Everybody" &&
     sizeof($gallery->album->fields["votes"]) > 0) {
         $error = "<br>" .
-          sprintf(_("Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."),
-          "<i>". _("Everybody") ."</i>",
-          "<i>". _("Logged in") ."</i>");
+          sprintf(gTranslate('core', "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."),
+          "<i>". gTranslate('core', "Everybody") ."</i>",
+          "<i>". gTranslate('core', "Logged in") ."</i>");
     }
     $gallery->album->fields["voter_class"] = $voter_class;
     $gallery->album->fields["poll_scale"] = $poll_scale;
@@ -146,7 +146,7 @@ if (getRequestVar('save')) {
     }
 
     if (sizeof ($gallery->album->getExtraFields()) < $num_fields) {
-        $gallery->album->setExtraFields(array_pad($gallery->album->getExtraFields(), $num_fields, _("untitled field")));
+        $gallery->album->setExtraFields(array_pad($gallery->album->getExtraFields(), $num_fields, gTranslate('core', "untitled field")));
     }
 
     if (sizeof ($gallery->album->getExtraFields()) > $num_fields) {
@@ -182,8 +182,8 @@ function num_special_fields($extra_fields) {
 }
 
 $multiple_choices_EF = array(
-    'Title' => _("Title"),
-    'AltText' => _("Alt Text / onMouseOver")
+    'Title' => gTranslate('core', "Title"),
+    'AltText' => gTranslate('core', "Alt Text / onMouseOver")
 );
 
 $extra_fields = $gallery->album->getExtraFields();
@@ -213,7 +213,7 @@ foreach ($extra_fields as $value) {
 
     $customFields["cf_$i"] = array(
         'name' => 'extra_fields[]',
-        'prompt' => sprintf(_("Field %s:"),$i),
+        'prompt' => sprintf(gTranslate('core', "Field %s:"),$i),
         'desc' => '',
         'type' => 'text',
         'value' => $value
@@ -228,7 +228,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Album Properties") ?></title>
+  <title><?php echo gTranslate('core', "Album Properties") ?></title>
   <?php common_header(); ?>
 </head>
 
@@ -293,12 +293,12 @@ foreach ($properties as $key => $val) {
 <input type="hidden" name="save" value="1">
 <input type="hidden" name="set_albumName" value="<?php echo $gallery->session->albumName ?>">
 <hr>
-<input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo _("Apply values to nested albums (except album title and summary).") ?></label>
+<input type="checkbox" name="setNested" id="setNested" value="1"><label for="setNested"><?php echo gTranslate('core', "Apply values to nested albums (except album title and summary).") ?></label>
 <br>
 <br>
-<input type="submit" name="apply" value="<?php echo _("Apply") ?>">
-<input type="reset" value="<?php echo _("Undo") ?>">
-<input type="button" name="close" value="<?php echo _("Close") ?>" onclick='parent.close()'>
+<input type="submit" name="apply" value="<?php echo gTranslate('core', "Apply") ?>">
+<input type="reset" value="<?php echo gTranslate('core', "Undo") ?>">
+<input type="button" name="close" value="<?php echo gTranslate('core', "Close") ?>" onclick='parent.close()'>
 
 </form>
 
