@@ -110,7 +110,7 @@ list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
     !strcmp($gallery->session->fullOnly,"on") &&
-    strcmp($gallery->album->fields["use_fullOnly"],"yes");
+    !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 
 if ($do_fullOnly) {
     $full = $gallery->user->canViewFullImages($gallery->album);
