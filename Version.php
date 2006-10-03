@@ -22,7 +22,7 @@
 ?>
 <?php
 
-$gallery->version = '1.6-svn-b16';
+$gallery->version = '1.6-svn-b17';
 $gallery->config_version = 98;
 $gallery->album_version = 38;
 $gallery->user_version = 6;
