@@ -1373,6 +1373,7 @@ function removeAccessKey($text) {
 
 /**
  * Returns the HTML code for loading YUI autocomplete Javascript
+ *
  * @return  $html   string
  * @author  Jens Tkotz <jens@peino.de
 */
@@ -1391,7 +1392,7 @@ function autoCompleteJS() {
     <script type="text/javascript" src="' . $baseUrl . '/js/yui/connection-min.js"></script>
 
     <!-- OPTIONAL: Animation (required only if enabling animation) -->
-    <script type="text/javascript" src="' . $baseUrlL . '/js/yui/animation-min.js"></script>
+    <script type="text/javascript" src="' . $baseUrl . '/js/yui/animation-min.js"></script>
 
     <!-- Source file -->
     <script type="text/javascript" src="' . $baseUrl . '/js/yui/autocomplete-min.js"></script>
@@ -1400,26 +1401,27 @@ function autoCompleteJS() {
     return $html;
 }
 
+
 /**
  * Returns the HTML/Javascript code that initializes an autocomplete field
- * if 3rd param is false, then just an input field is returned.
+ * if 4th param is false, then just an input field is returned.
  *
- * @param   $label          string  descriptive Text
- * @param   $inputName      string  name of the input field
- * @param   $id             string  id of the input field
- * @return  $html           string
+ * @param   string  $label      descriptive Text
+ * @param   string  $inputName  name of the input field
+ * @param   string  $id         id of the input field
+ * @return  string  $html       Output
  * @author  Jens Tkotz <jens@peino.de>
  */
-function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete, $disabled = false) {
+function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = false, $disabled = false) {
     global $gallery;
 
     $disable = ($disabled) ? ' disabled' : '';
 
     $html = "
     <div class=\"YUIsearchdiv right5 floatleft\">$label
-        <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"75\"$disable>
-        <div class=\"YUIsearchshadow\"><div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div></div>
-    </div>
+            <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"75\"$disable>
+            <div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div>
+        </div>
     ";
 
     if($enableAutocomplete) {
@@ -1434,6 +1436,7 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete, $disa
     oAutoComp = new YAHOO.widget.AutoComplete(\''. $id .'\',\''. $id .'_container\', oACDS);
     oAutoComp.queryDelay = 0;
     oAutoComp.typeAhead = true;
+    oAutoComp0.useShadow = true;
 </script>';
     }
 

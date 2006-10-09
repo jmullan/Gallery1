@@ -343,49 +343,62 @@ table.g-albums-table .g-albumdesc-cell {
 }
 
 /******************** Begin autocomplete ********************/
+
 /* set width of widget here*/
 .YUIsearchdiv {
     position: relative;
+
+    z-index: 9001; /* for IE z-index of absolute divs inside relative divs issue */
 }
 
 .YUIsearchinput {
     position: relative; display: block;
 }
 
+/* For border edit .yui-ac-content class */
 .YUIsearchcontainer {
-    position: relative;
-    bottom: 4px; right: 4px;
+    position: absolute;
+    top: 1.7em;
+    width: 100%;
+}
+
+.YUIsearchcontainer .yui-ac-content  {
+    position: absolute;
+    width: 100%;
     border: 1px solid #404040;
     background: #fff;
-    font-size: 90%;
     overflow: hidden;
-    display: none;
+    z-index: 9050;
 }
 
-.YUIsearchcontainer ul {
-    position: relative;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.YUIsearchcontainer li {
-    padding: 0 5px;
-    white-space: nowrap;
-    display: list-item;
-}
-
-.YUIsearchcontainer li.highlight {
-    background: #a0a0a0;
-}
-
-.YUIsearchshadow {
+.YUIsearchcontainer .yui-ac-shadow {
     position: absolute;
-    margin: .3em;
-    z-index: 5;
+    margin: 5px;
+    width: 100%;
+    background: #dcdcdc;
+    z-index:9049;
+}
+
+/* The inner list */
+.YUIsearchcontainer ul {
+    margin: 2px 0;
+    padding: 0;
+    list-style: none ;
+    width: 100%;
+}
+
+/* The matching lines */
+.YUIsearchcontainer li {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.YUIsearchcontainer li.yui-ac-highlight {
     background: #a0a0a0;
 }
+
+
+/******************** End autocomplete *********************/
 
 .g-setup-block, .g-setup-fields {
     width: 100%;
