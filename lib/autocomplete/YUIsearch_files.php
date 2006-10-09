@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id: album.php 12505 2006-01-08 20:15:14Z jenst $
- */
+*/
 
 /**
  * @package	yui
@@ -28,15 +28,15 @@
 ?>
 <?php
 
-header('Content-type: text/plain');
+//header('Content-type: text/plain');
 
 include(dirname(dirname(dirname(__FILE__))) .'/util.php');
 setGalleryPaths();
 
 if (getOS() == OS_WINDOWS) {
-	require(GALLERY_BASE . '/platform/fs_win32.php');
+    require(GALLERY_BASE . '/platform/fs_win32.php');
 } else {
-	require(GALLERY_BASE . '/platform/fs_unix.php');
+    require(GALLERY_BASE . '/platform/fs_unix.php');
 }
 
 
@@ -48,7 +48,7 @@ function search($query) {
     $results = array();
 
     if (strlen($query) == 0) {
-        return;
+        return array();
     }
 
     if(is_dir($query)) {
@@ -60,26 +60,30 @@ function search($query) {
     }
 
     if(!realpath($dirname)) {
-        return;
+        return array();
     }
 
     $forbidden = array('.', '..');
 
     if ($handle = opendir($dirname)) {
+        $i= 0;
         while (false !== ($file = readdir($handle))) {
+            $i++;
             $ext = getExtension($file);
 
             if(empty($basename)) {
                 $path = $dirname . $file;
             }
-            elseif (stristr($file, $basename) !== false) {
+            elseif (strpos($file, $basename) === 0) {
                 $path = "$dirname/$file";
+            }
+            else {
+                continue;
             }
 
             if (in_array($file, $forbidden) ||
                 fs_fileIsHidden($file) ||
-                (!acceptableFormat($ext) && !acceptableArchive($ext) && !fs_is_dir($path))
-            ) {
+                (!acceptableFormat($ext) && !acceptableArchive($ext) && !fs_is_dir($path))) {
                 continue;
             }
             else {

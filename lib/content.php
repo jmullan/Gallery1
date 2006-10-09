@@ -1374,7 +1374,7 @@ function removeAccessKey($text) {
 /**
  * Returns the HTML code for loading YUI autocomplete Javascript
  *
- * @return  $html   string
+ * @return  string  $html
  * @author  Jens Tkotz <jens@peino.de
 */
 function autoCompleteJS() {
@@ -1419,9 +1419,9 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
 
     $html = "
     <div class=\"YUIsearchdiv right5 floatleft\">$label
-            <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"75\"$disable>
-            <div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div>
-        </div>
+        <input name=\"$inputName\" id=\"$id\" class=\"YUIsearchinput\" type=\"text\" size=\"75\"$disable>
+        <div id=\"${id}_container\" class=\"YUIsearchcontainer\"></div>
+    </div>
     ";
 
     if($enableAutocomplete) {
@@ -1429,14 +1429,17 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
 <script type="text/javascript">
     oACDS = new YAHOO.widget.DS_XHR("' . $gallery->app->photoAlbumURL .'/lib/autocomplete/YUIsearch_files.php", ["\n", "\t"]);
     oACDS.responseType = YAHOO.widget.DS_XHR.prototype.TYPE_FLAT;
-    oACDS.maxCacheEntries = 60;
+    oACDS.maxCacheEntries = 50;
     oACDS.queryMatchSubset = true;
 
     // Instantiate auto complete
     oAutoComp = new YAHOO.widget.AutoComplete(\''. $id .'\',\''. $id .'_container\', oACDS);
     oAutoComp.queryDelay = 0;
     oAutoComp.typeAhead = true;
-    oAutoComp0.useShadow = true;
+    oAutoComp.useShadow = true;
+    oAutoComp.allowBrowserAutocomplete = false;
+    oAutoComp.autoHighlight = false;
+    oAutoComp.useIFrame = true;
 </script>';
     }
 
