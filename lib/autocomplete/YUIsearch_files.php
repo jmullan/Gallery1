@@ -28,7 +28,7 @@
 ?>
 <?php
 
-//header('Content-type: text/plain');
+header('Content-type: text/plain');
 
 include(dirname(dirname(dirname(__FILE__))) .'/util.php');
 setGalleryPaths();
