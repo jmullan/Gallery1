@@ -35,7 +35,13 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 $ecard = getRequestVar('ecard');
 
-list($error,$ecard_data_to_parse) = get_ecard_template($ecard['template_name']);
+if(!isset($gallery->album)) {
+    $pieces = explode('/', $ecard['image_name']);
+    $gallery->album = new Album;
+    $gallery->album->load($pieces[0]);
+}
+
+list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 
 if (!empty($error)) {
     header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));
