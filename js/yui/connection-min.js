@@ -1,3 +1,7 @@
+/**
+ * Gallery SVN ID:
+ * $Id: wz_tooltip.js 14533 2006-09-15 23:21:15Z jenst $
+*/
 /* Copyright (c) 2006, Yahoo! Inc. All rights reserved.  Code licensed under the BSD License: http://developer.yahoo.net/yui/license.txt Version: 0.11.3 */
 YAHOO.util.Connect={_msxml_progid:['MSXML2.XMLHTTP.3.0','MSXML2.XMLHTTP','Microsoft.XMLHTTP'],_http_header:{},_has_http_headers:false,_use_default_post_header:true,_default_post_header:'application/x-www-form-urlencoded',_isFormSubmit:false,_isFileUpload:false,_formNode:null,_sFormData:null,_poll:{},_timeOut:{},_polling_interval:50,_transaction_id:0,setProgId:function(id)
 {this._msxml_progid.unshift(id);},setDefaultPostHeader:function(b)
