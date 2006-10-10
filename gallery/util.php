@@ -1682,12 +1682,12 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
     $imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
     $photo = $gallery->album->getPhoto($ecard['photoIndex']);
     if($preview) {
-	$imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
-	$stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
+        $imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
+        $stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
     }
     else {
-	$imageName = $photo->getImageName(false);
-	$stampName = $ecard['stamp'] .'.gif';
+        $imageName = $photo->getImageName(false);
+        $stampName = $ecard['stamp'] .'.gif';
     }
 
     list ($width, $height) = getDimensions($imagePath);
@@ -1703,7 +1703,7 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
     $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
     return $ecard_data;
-  }
+}
 
   function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
       global $gallery;

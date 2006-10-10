@@ -35,6 +35,12 @@ require_once(dirname(__FILE__) . '/init.php');
 
 $ecard = getRequestVar('ecard');
 
+if(!isset($gallery->album)) {
+    $pieces = explode('/', $ecard['image_name']);
+    $gallery->album = new Album;
+    $gallery->album->load($pieces[0]);
+}
+
 list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 
 if (!empty($error)) {

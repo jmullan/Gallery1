@@ -33,7 +33,8 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($photoIndex, $ecard, $submit_action) = getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
+list($photoIndex, $ecard, $submit_action) =
+    getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
 
 doctype();
 
@@ -42,8 +43,9 @@ $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photo
 
 if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
     echo gallery_error($errortext);
-    echo "\n<p></p>";
-    echo galleryLink(makeGalleryUrl(), "Back to Gallery");
+    echo "\n<br><br>";
+    echo '<input type="button" value="'. gTranslate('core', "Close Window.") .'" onClick="parent.close()">';
+    echo "</div></body></html>";
     exit;
 }
 
@@ -51,39 +53,45 @@ if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
 list($width, $height) = $photo->getDimensions(0, false);
 
 $max_length = 300;   // Maximum length of the e-Card text
-$msgTextError1 = gTranslate('core', "Error processing e-card. Please try later.");
-$msgTextError2 = gTranslate('core', "Some input fields are not correctly filled out. Please fill out.");
 $ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click to see.");
-
 $error_msg = '';
-
+$mandatory = array('name_sender', 'email_sender', 'name_recepient', 'email_recepient', 'message');
 $ecard_send = false;
-if (! empty($submit_action)) {
-    if (check_email($ecard["email_recepient"]) &&
-    check_email($ecard["email_sender"]) &&
-    ! empty($ecard["email_recepient"]) &&
-    ! empty($ecard["name_sender"])) {
-        if (strlen($ecard["message"]) > $max_length) {
-            $ecard["message"] = substr($ecard["message"],0,$max_length-1);
-        }
 
-        list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
-        if ($error) {
-            $error_msg = $msgTextError1;
-        }
-        else {
-            $ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse, false);
-            $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
-            if ($result) {
-                $ecard_send = true;
-            }
-            else {
-                $error_msg = $msgTextError1;
-            }
+if (! empty($submit_action)) {
+    foreach ($mandatory as $mandatoryField) {
+        if(empty($ecard[$mandatoryField])) {
+            $error_msg .= gTranslate('core', "Some input fields are not correctly filled out. Please fill out.") . '<br>';
+            $error_msg .= '<br>';
+            break;
         }
     }
-    else {
-        $error_msg = $msgTextError2;
+
+    if (!check_email($ecard["email_recepient"]) || !check_email($ecard["email_sender"])) {
+        $error_msg .= gTranslate('core', "The sender or recepient email adress is not valid.");
+        $error_msg .= '<br>';
+    }
+
+    if (strlen($ecard["message"]) > $max_length) {
+        $ecard["message"] = substr($ecard["message"],0,$max_length-1);
+    }
+
+    list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+    if ($error) {
+        $error_msg .= gTranslate('core', "Couldn't load the ecard template. Please contact the Gallery admin!");
+        $error_msg .= '<br>';
+    }
+
+    if (empty($error_msg)) {
+        $ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse, false);
+        $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
+        if ($result) {
+            $ecard_send = true;
+        }
+        else {
+            $error_msg .= gTranslate('core', "Problem with sending the eCard. Please contact the Gallery admin!");
+            $error_msg .= '<br>';
+        }
     }
 }
 else {
@@ -174,7 +182,7 @@ function CountMax() {
 
 <?php
 if (! $ecard_send) {
-    echo $gallery->album->getThumbnailTag($photoIndex);
+    echo $gallery->album->getThumbnailTag($ecard['photoIndex']);
     if (!empty($error_msg)) {
         echo '<p>'. gallery_error($error_msg) .'</p>';
     }
@@ -183,9 +191,9 @@ if (! $ecard_send) {
     array("name" => "ecard_form"),
     array("type" => "popup"));
 ?>
-  <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"] ?>">
+  <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"]; ?>">
   <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
-  <input name="ecard[photoIndex]" type="hidden" value="<?php echo $photoIndex; ?>">
+  <input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
   <input name="submit_action" type="hidden" value="">
 
   <br>
@@ -204,18 +212,21 @@ if (! $ecard_send) {
         $defaultSenderName = $gallery->user->displayName();
         $defaultSenderEmail = $gallery->user->getEmail();
     }
+
+    $name_sender = empty($ecard[name_sender]) ? $defaultSenderName : $ecard['name_sender'];
+    $email_sender = empty($ecard[name_sender]) ? $defaultSenderEmail : $ecard['email_sender'];
     ?>
-    <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $defaultSenderName; ?>"></td>
+    <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $name_sender; ?>"></td>
     <td></td>
     <td><?php echo gTranslate('core', "Name") ?></td>
-    <td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value=""></td>
+    <td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value="<?php echo $ecard['name_recepient']; ?>"></td>
   </tr>
   <tr>
     <td><?php echo gTranslate('core', "E-Mail"); ?></td>
-    <td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $defaultSenderEmail; ?>"></td>
+    <td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $email_sender; ?>"></td>
     <td></td>
     <td><?php echo gTranslate('core', "E-Mail"); ?></td>
-    <td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value=""></td>
+    <td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value="<?php echo $ecard['email_recepient']; ?>"></td>
   </tr>
   <tr>
     <td colspan="5" align="center">
