@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -89,18 +89,18 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     if ($gallery->user->isAdmin()) {
     	$isAdmin = true;
     }
-    
+
     if (isset($isAdmin) ||
       (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
       $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
       	$isOwner = true;
 	}
-      
+
     if ($gallery->user->canWriteToAlbum($gallery->album) ||
        ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
 		$canModify = true;
 	}
-          
+
     /* ----- User can write to album, or is owner of the item and item-owner can modify items ----- */
     if (isset($canModify)) {
     	if ($isPhoto) {
@@ -139,17 +139,17 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     			);
     		}
     	}
-    	
+
     	$options[] = array(
 	    	'text' => gTranslate('core', "Mo_ve"),
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
 	    	'icon' => ($withIcons) ? 'tab_duplicate.gif' : ''
     	);
-    	
+
     	/* ----- Item is subalbum ----- */
     	if ($isAlbum) {
     		$options[] = array(
-	    		'text' => gTranslate('core', 'Edit Title'),    
+	    		'text' => gTranslate('core', 'Edit Title'),
 	    		'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "title")),
     		);
     		$options[] = array(
@@ -174,12 +174,12 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 		    		)
 	    		),
     		);
-    		
+
     		$options[] = array(
 	    		'text' => gTranslate('core', "Permissions"),
 	    		'value' => showChoice2("album_permissions.php", array("set_albumName" => $myAlbum->fields["name"])),
     		);
-    		
+
     		// Watermarking support is enabled and user is allowed to watermark images/albums /
     		if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
     			$options[] = array(
@@ -209,7 +209,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1)),
 	    	'icon' => ($withIcons) ? 'tab_duplicate.gif' : ''
     	);
-    	
+
     	/* ----- Item is photo, or subalbum with highlight ----- */
     	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
     		$options[] = array(
@@ -227,7 +227,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
             'icon' => ($withIcons) ? 'yast_kuser.gif' : ''
         );
     }
-    
+
     if (isset($isOwner)) {
     	if ($gallery->album->isHidden($i)) {
     		$options[] = array(
@@ -250,7 +250,10 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     		if($gallery->user->canDeleteAlbum($myAlbum)) {
     			$options[] = array(
 	    			'text' => gTranslate('core', "_Delete"),
-	    			'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1)),
+	    			'value' => showChoice2("delete_photo.php",
+	    			                       array(
+	    			                        "id" => $myAlbum->fields["name"],
+	    			                        "albumDelete" => 1)),
     			);
     		}
     	} else {
@@ -263,25 +266,37 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     }
 
     if($isPhoto) {
-    	$photo = $gallery->album->getPhoto($i);
-    	if ($gallery->album->fields["use_exif"] == 'yes' &&
-    	  (eregi("jpe?g\$", $photo->image->type)) &&
-    	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
-    		$options['showExif'] = array(
-	    		'text' => gTranslate('core', "Photo _properties"),
-	    		'value' => showChoice2("view_photo_properties.php", array("index" => $i)),
-	    		'icon' => ($withIcons) ? 'frame_query.gif' : ''
-    		);
-    	}
-    }
-	
+        $photo = $gallery->album->getPhoto($i);
+        if ($gallery->album->fields["use_exif"] == 'yes' &&
+        (eregi("jpe?g\$", $photo->image->type)) &&
+        (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
+            $options['showExif'] = array(
+                'text' => gTranslate('core', "Photo _properties"),
+                'value' => showChoice2("view_photo_properties.php", array("index" => $i)),
+                'icon' => ($withIcons) ? 'frame_query.gif' : '',
+                'separate' => true
+            );
+        }
+
+
+        if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
+        $gallery->app->emailOn == 'yes') {
+            $options['eCard'] = array(
+                'text' => gTranslate('core', "Send photo as e_Card"),
+                'value' => showChoice2('ecard_form.php', array('photoIndex' => $i)),
+                'icon' => ($withIcons) ? 'ecard.gif' : '',
+                'separate' => true
+            );
+        }
+
+	}
+
     if(!empty($options)) {
     	if(sizeof($options) > 1) {
     		array_sort_by_fields($options, 'text', 'asc', false, true);
     	}
     	$options = array_merge(array(
     	  array(
-	    	'text' => sprintf(gTranslate('core', "%s actions"), $label),
 	    	'text' => '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
 	    	'value' => '',
 	    	'selected' => true)
@@ -360,10 +375,10 @@ function showComments ($index, $albumName, $reverse = false) {
  */
 function getNextId($currentId) {
     global $gallery;
-    
+
     $allIds = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
     $current = array_search($currentId, $allIds);
-    
+
     if ($current < sizeof($allIds)-1) {
         $nextId = $allIds[$current+1];
     } elseif ($current > 0) {
@@ -371,7 +386,7 @@ function getNextId($currentId) {
     } else {
         $nextId = $currentId;
     }
-    
+
     return $nextId;
 }
 ?>

@@ -375,21 +375,32 @@ if (!$gallery->album->isMovie($id)) {
 		}
 	}
 
-	/* If eCards are enabled, show the link.
-	* The eCard opens in a popup and sends the actual displayed photo.
-	*/
-	if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
-	  $gallery->app->emailOn == 'yes') {
-		$adminTextIconElemens[] = popup_link(
-			gTranslate('core', "Send photo as e_Card"),
-			makeGalleryUrl('ecard_form.php', array('photoIndex' => $index,'gallery_popup' => 'true' )),
-			true, true,550, 600,'', '','ecard.gif'
-		);
+	/* Show all separate item options. Such as eCard or photo properties link. */
+	foreach ($albumItemOptions as $key => $option) {
+	    if (!isset($option['separate'])) continue;
+
+		if(!empty($option['value'])) {
+			if (stristr($option['value'], 'popup')) {
+				$content = popup_link(
+				    $option['text'], $option['value'],
+				    true, false, 500, 500, '', '', $option['icon']);
+			}
+			else {
+				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
+			}
+
+			$adminTextIconElemens[] = $content;
+		}
+        /* remove it from the list, as later on we do only need the rest of the options. */
+        unset($albumItemOptions[$key]);
 	}
 }
 // Endif !movie
 
-if(sizeof($albumItemOptions) > 2 && !$useIcons) {
+/* Show a dropdown if no icons are wanted and there a items
+ * Note: First options is just a descriptive text
+*/
+if(sizeof($albumItemOptions) > 1 && !$useIcons) {
 	$iconElements[] =  drawSelect2(
 		'itemOptions',
 		$albumItemOptions,
@@ -409,17 +420,19 @@ $adminbox["bordercolor"] = $bordercolor;
 
 $breadcrumb["bordercolor"] = $bordercolor;
 
-/* Show itemOptions only if we have more then one (photo properties) */
-if(sizeof($albumItemOptions) > 2 && $useIcons) {
+/* Icon menu above the photo */
+if($useIcons && sizeof($albumItemOptions) > 1) {
 	foreach ($albumItemOptions as $trash => $option) {
 		if(!empty($option['value'])) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
 				    $option['text'], $option['value'],
 				    true, false, 500, 500, '', '', $option['icon']);
-			} else {
+			}
+			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
 			}
+
 			$itemActions[] = $content;
 		}
 	}
