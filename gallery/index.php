@@ -49,8 +49,7 @@ if ($postnuke ||
     $phpnuke ||
     !strcmp($op, "modload") || 
     !strcmp($mop, "modload") || 
-    isset($option) || 
-    isset($name)) {
+    isset($option)) {
 	/* 
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
