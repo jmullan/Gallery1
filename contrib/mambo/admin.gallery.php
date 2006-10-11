@@ -58,7 +58,7 @@ function viewSettings( $option, $act ) {
 	$uid = intval($cid[0]);
 	$row->load($uid);
 	
-	$database->setQuery("SELECT * FROM #__gallery");
+	$database->setQuery("SELECT * FROM #__gallery16");
 	$param = $database->loadRowList();
 
 	/* extract params from the DB query */
@@ -116,7 +116,7 @@ function saveSettings( $option, $act ) {
 	$params['hideRightSide'] = mosGetParam($_POST, 'hideRightSide', true);
 
 	foreach ($params as $field => $value) {
-		$database->setQuery("UPDATE #__gallery SET value='$value' WHERE field='$field'");
+		$database->setQuery("UPDATE #__gallery16 SET value='$value' WHERE field='$field'");
 		if (!$database->query()) {
 			echo "<script> alert('".$database->getErrorMsg()."'); window.history.go(-1); </script>\n";
 			die;
