@@ -310,10 +310,18 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
     $wmAlignX = floor($wmAlignX);
     $wmAlignY = floor($wmAlignY);
 
+    if ($wmAlignX > 0) {
+        $wmAlignX = '+'. $wmAlignX;
+    }
+
+    if ($wmAlignY > 0) {
+        $wmAlignY = '+'. $wmAlignY;
+    }
+
     // Execute
     switch($gallery->app->graphics) {
         case 'ImageMagick':
-            $srcOperator = "-geometry +$wmAlignX+$wmAlignY $overlayFile";
+            $srcOperator = "-geometry $wmAlignX$wmAlignY $overlayFile";
             exec_wrapper(ImCmd('composite', $srcOperator, $src, '', $out));
         break;
 
