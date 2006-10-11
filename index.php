@@ -43,18 +43,18 @@ $phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
  * Gallery can run embedded in GeekLog too, but to catch this we need
  * config.php * Therefore we have to detect GeeLog in init.php.
+ *
  */
-
 if ($postnuke ||
     $phpnuke ||
     !strcmp($op, "modload") ||
     !strcmp($mop, "modload") ||
-    isset($option) ||
-    isset($name)) {
+    isset($option)) {
+
 	/*
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
-	 */
+    */
 
 	if (isset($name)) {
 		$GALLERY_MODULENAME = $name;
