@@ -471,12 +471,12 @@ for ($i = $start; $i <= $end; $i++) {
     }
 }
 
-$theme = $gallery->app->theme;
-if(!fs_file_exists(GALLERY_BASE . "/templates/$theme/gallery.tpl.default")) {
-    $theme = 'classic';
+$g_theme = $gallery->app->theme;
+if(!fs_file_exists(GALLERY_BASE . "/templates/$g_theme/gallery.tpl.default")) {
+    $g_theme = 'classic';
 }
 
 define('READY_TO_INCLUDE', 'DISCO');
-require(GALLERY_BASE ."/templates/$theme/gallery.tpl.default");
+require(GALLERY_BASE ."/templates/$g_theme/gallery.tpl.default");
 
 ?>

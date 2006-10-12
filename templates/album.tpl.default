@@ -53,6 +53,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
+includeTemplate("album.header");
+
 if (!$gallery->session->offline) { ?>
 
   <script language="javascript1.2" type="text/JavaScript">
@@ -90,7 +92,7 @@ if (!$gallery->session->offline) { ?>
     echo $va_javascript;
 }
 
-includeTemplate("album.header");
+
 
 includeLayout('adminbox.inc');
 
