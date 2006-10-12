@@ -30,7 +30,7 @@
  * 1.) We can use %s and %d in translation
  * 2.) We can use a special "none" without modifying the plural definition.
  *
- * @param   sring   $domain
+ * @param   string  $domain
  * @param   string  $singular
  * @param   string  $plural
  * @param   int     $count
@@ -116,7 +116,6 @@ function getBrowserLanguage() {
  * - language
  * - charset
  * - direction
- * - alignment
 */
 function setLangDefaults($nls) {
     global $gallery;
@@ -124,7 +123,6 @@ function setLangDefaults($nls) {
     $gallery->language 	= 'en_US';
     $gallery->charset  	= $nls['default']['charset'];
     $gallery->direction	= $nls['default']['direction'];
-    $gallery->align		= $nls['default']['alignment'];
 }
 
 /**
@@ -207,6 +205,7 @@ function getEnvLang() {
  */
 function getDefaultLanguage() {
     global $gallery;
+
     if(isset($gallery->app->default_language)
     && $gallery->app->default_language != 'browser') {
         $defaultLanguage = $gallery->app->default_language;
@@ -353,8 +352,7 @@ function initLanguage($sendHeader = true, $userlanguage = '') {
 
             default:
                 /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
-                $gallery->browser_language = getBrowserLanguage();
-                $gallery->language = $gallery->browser_language;
+                $gallery->language = getBrowserLanguage();
 
                 if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
                     $gallery->language = $gallery->user->getDefaultLanguage();
@@ -396,7 +394,7 @@ function initLanguage($sendHeader = true, $userlanguage = '') {
     $locale = $gallery->locale;
 
     /* Check defaults */
-    $checklist = array('direction', 'charset', 'alignment') ;
+    $checklist = array('direction', 'charset') ;
 
     /**
      * This checks wether the previously defined values are available.
@@ -440,10 +438,10 @@ function initLanguage($sendHeader = true, $userlanguage = '') {
      * if yes, do some gettext settings.
      * if not emulate _() function or ngettext()
      */
+
     if (gettext_installed()) {
         bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
         textdomain($gallery->language. "-gallery_". where_i_am());
-
     }
     else {
         emulate_gettext($languages_initialized);
