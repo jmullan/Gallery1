@@ -66,11 +66,11 @@ if(empty($submit)) {
 foreach ($submit as $perm => $action) {
     if(isset($action) && isset($actionUid)) {
         $action = unhtmlentities($action);
-        if($action == '-->' || $action == '--&gt;') {
+        if($action == '-->') {
             $gallery->album->setPerm($perm, $actionUid, true);
             $changed++;
         }
-        if($action == '<--' || $action == '&lt;--') {
+        if($action == '<--') {
             $gallery->album->setPerm($perm, $actionUid, false);
             $changed++;
         }
