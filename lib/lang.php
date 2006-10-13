@@ -753,7 +753,7 @@ function unhtmlentities($string) {
 	if (function_exists('html_entity_decode')) {
 		$nls = getNLS();
 
-		if (isset ($nls['charset'][$gallery->language])) {
+		if (isset($gallery->language) && isset($nls['charset'][$gallery->language])) {
 			$charset = $nls['charset'][$gallery->language];
         }
         else {

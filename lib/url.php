@@ -109,7 +109,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target, 'setup')) ? true : false;
 
-	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
+	if(isset($gallery->app->photoAlbumURL) && !urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
 		$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
 	}
