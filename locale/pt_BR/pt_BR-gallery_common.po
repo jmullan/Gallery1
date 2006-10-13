@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-13 12:03+0200\n"
+"POT-Creation-Date: 2006-10-13 18:42+0200\n"
 "PO-Revision-Date: 2006-05-17 11:31-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOTbr>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
@@ -541,6 +541,25 @@ msgstr "Escolha de cor"
 msgid "Add field"
 msgstr ""
 
+#: ../lib/album.php:205 ../lib/album.php:256
+#, php-format
+msgid "%s RSS"
+msgstr ""
+
+#: ../lib/album.php:304
+msgid "navigate _UP"
+msgstr ""
+
+#: ../lib/album.php:309
+#, php-format
+msgid "(accesskey '%s')"
+msgstr ""
+
+#: ../lib/album.php:335
+#, fuzzy, php-format
+msgid "Gallery: %s"
+msgstr "URL do Gallery"
+
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
 msgstr "Escolha de Cor"
@@ -750,25 +769,11 @@ msgstr "Não consigo abrir %s!"
 msgid "Not valid yet"
 msgstr "Ainda não é válido"
 
-#: ../lib/content.php:1303
-msgid "navigate _UP"
-msgstr ""
-
-#: ../lib/content.php:1308
-#, php-format
-msgid "(accesskey '%s')"
-msgstr ""
-
-#: ../lib/content.php:1333
-#, fuzzy, php-format
-msgid "Gallery: %s"
-msgstr "URL do Gallery"
-
-#: ../lib/content.php:1352
+#: ../lib/content.php:1283
 msgid "log_out"
 msgstr ""
 
-#: ../lib/content.php:1356
+#: ../lib/content.php:1287
 msgid "log_in"
 msgstr ""
 
@@ -800,8 +805,8 @@ msgstr "tentando qualidade %d%%"
 msgid "Done."
 msgstr "Feito."
 
-#: ../lib/imageManipulation.php:223 ../lib/imageManipulation.php:457
-#: ../lib/imageManipulation.php:509 ../lib/imageManipulation.php:789
+#: ../lib/imageManipulation.php:223 ../lib/imageManipulation.php:465
+#: ../lib/imageManipulation.php:517 ../lib/imageManipulation.php:799
 msgid "You have no graphics package configured for use!"
 msgstr "Você não possui pacotes gráficos configurados para usar!"
 
@@ -809,93 +814,93 @@ msgstr "Você não possui pacotes gráficos configurados para usar!"
 msgid "No watermark name specified!"
 msgstr "Sem nome marca d'água especificado!"
 
-#: ../lib/imageManipulation.php:475
+#: ../lib/imageManipulation.php:483
 msgid "Cropping Image"
 msgstr "Recortando Imagem"
 
-#: ../lib/imageManipulation.php:539
+#: ../lib/imageManipulation.php:547
 #, php-format
 msgid "Generating squared Version to %dpx"
 msgstr "Gerando versões quadradas para %dpx"
 
-#: ../lib/imageManipulation.php:560
+#: ../lib/imageManipulation.php:568
 msgid "No Cropping Done"
 msgstr "Nenhum Recorte Executado"
 
-#: ../lib/imageManipulation.php:570
+#: ../lib/imageManipulation.php:578
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Chamada para %s falhou em %s para arquivo %s!"
 
-#: ../lib/imageManipulation.php:574
+#: ../lib/imageManipulation.php:582
 #, php-format
 msgid "File %s type %d."
 msgstr "Arquivo %s tipo %d."
 
-#: ../lib/imageManipulation.php:611 ../lib/imageManipulation.php:635
+#: ../lib/imageManipulation.php:619 ../lib/imageManipulation.php:643
 #, php-format
 msgid "Files with type %s are not supported by Gallery with netPBM"
 msgstr "Arquivos com extensões %s não são suportadas pelo Gallery com NetPBM"
 
-#: ../lib/imageManipulation.php:684
+#: ../lib/imageManipulation.php:692
 #, php-format
 msgid "Compressing image: %s"
 msgstr "Compactando Imagem: %s"
 
-#: ../lib/imageManipulation.php:689
+#: ../lib/imageManipulation.php:697
 msgid "Not all necessary params for resizing given."
 msgstr "Não foram informados todos os parâmetros necessários para redimensionamento."
 
-#: ../lib/imageManipulation.php:690
+#: ../lib/imageManipulation.php:698
 #, php-format
 msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr "Parâmetros de redimensionamento: origem: %s, destino: %s, tamanho de destino: %s"
 
-#: ../lib/imageManipulation.php:732
+#: ../lib/imageManipulation.php:741
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Não foi possível preservar informação EXIF (jhead não instalado)"
 
-#: ../lib/imageManipulation.php:774
+#: ../lib/imageManipulation.php:784
 msgid "Using IM high quality"
 msgstr "Utilizando alta qualidade do ImageMagick"
 
-#: ../lib/imageManipulation.php:778
+#: ../lib/imageManipulation.php:788
 msgid "Not using IM high quality"
 msgstr "Não utilizando alta qualidade do ImageMagick"
 
-#: ../lib/lang.php:753
+#: ../lib/lang.php:791
 msgid "Upload Date"
 msgstr "Data de Envio"
 
-#: ../lib/lang.php:754
+#: ../lib/lang.php:792
 msgid "Capture Date"
 msgstr "Data da Captura"
 
-#: ../lib/lang.php:755
+#: ../lib/lang.php:793
 msgid "Image Size"
 msgstr "Tamanho da Imagem"
 
-#: ../lib/lang.php:756
+#: ../lib/lang.php:794
 msgid "Additional EXIF Data"
 msgstr "Informação EXIF Adicional"
 
-#: ../lib/lang.php:764
+#: ../lib/lang.php:802
 msgid "title"
 msgstr "título"
 
-#: ../lib/lang.php:765
+#: ../lib/lang.php:803
 msgid "Title"
 msgstr "Título"
 
-#: ../lib/lang.php:766
+#: ../lib/lang.php:804
 msgid "Description"
 msgstr "Descrição"
 
-#: ../lib/lang.php:767
+#: ../lib/lang.php:805
 msgid "description"
 msgstr "descrição"
 
-#: ../lib/lang.php:768
+#: ../lib/lang.php:806
 msgid "Alt Text / onMouseOver"
 msgstr "Texto Alternativo / onMouseOver"
 
@@ -1472,60 +1477,80 @@ msgstr "%s OK"
 msgid "Found expected version %s."
 msgstr "Encontrada versão esperada %s."
 
-#: ../lib/setup.php:1846
+#: ../lib/setup.php:1844
 msgid "This email will be sent when new accounts are created."
 msgstr "Este email será enviado quando novas contas forem criadas."
 
-#: ../lib/setup.php:1847
+#: ../lib/setup.php:1845
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Deixar este campo em branco configura o Gallery para a mensagem padrão (veja abaixo) a qual pode ser traduzida. Ou então, use sua própria mensagem de boas-vindas."
 
-#: ../lib/setup.php:1848
+#: ../lib/setup.php:1846
 msgid "The following placeholder can be used:"
 msgstr "Os seguintes lugares podem ser utilizados:"
 
-#: ../lib/setup.php:1910 ../lib/setup.php:1953
+#: ../lib/setup.php:1908 ../lib/setup.php:1951
 #, php-format
 msgid "File %s does not exist."
 msgstr "Arquivo %s não existe."
 
-#: ../lib/setup.php:1919 ../lib/setup.php:1963
+#: ../lib/setup.php:1917 ../lib/setup.php:1961
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Status esperado: %s, mas realmente recebemos o status %s."
 
-#: ../lib/setup.php:1930 ../lib/setup.php:1976
+#: ../lib/setup.php:1928 ../lib/setup.php:1974
 msgid "can't detect version on Windows"
 msgstr "não posso detectar versão no Windows"
 
-#: ../lib/setup.php:1934 ../lib/setup.php:1991
+#: ../lib/setup.php:1932 ../lib/setup.php:1989
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Versão: %s"
 
-#: ../lib/setup.php:2000
+#: ../lib/setup.php:1998
 msgid "Unknown error occured."
 msgstr ""
 
-#: ../lib/valchecks.php:50
+#: ../lib/valchecks.php:46
 msgid "The given frame is not valid."
 msgstr ""
 
-#: ../lib/valchecks.php:80
-msgid "Value was set to given default. Because the original value is not numeric."
-msgstr "Valor foi configurado para o padrão informado. Isto porque o valor original não é numérico."
+#: ../lib/valchecks.php:54
+#, fuzzy
+msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
-#: ../lib/valchecks.php:82
-msgid "The given Value is not numeric."
+#: ../lib/valchecks.php:57
+#, fuzzy
+msgid "The given value is not in the allowed amount of choices."
 msgstr "O valor informado não é numérico."
 
 #: ../lib/valchecks.php:88
+msgid "Value was set to given default. Because the original value is not numeric."
+msgstr "Valor foi configurado para o padrão informado. Isto porque o valor original não é numérico."
+
+#: ../lib/valchecks.php:91
+msgid "The given Value is not numeric."
+msgstr "O valor informado não é numérico."
+
+#: ../lib/valchecks.php:97
 msgid "Value was set to given default. Because the original value is not a valid Integer"
 msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
-#: ../lib/valchecks.php:90
+#: ../lib/valchecks.php:100
 msgid "The given Value not a valid Integer."
 msgstr "O valor informado não é um inteiro válido."
+
+#: ../lib/valchecks.php:112
+#, fuzzy
+msgid "Value was set to given default. Because the original value is not a valid text"
+msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
+
+#: ../lib/valchecks.php:115
+#, fuzzy
+msgid "Value was corrected, because the original value is not a valid text"
+msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
 #: ../lib/voting.php:210
 msgid "<<< Vote >>>"

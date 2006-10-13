@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-13 10:46+0200\n"
+"POT-Creation-Date: 2006-10-13 18:42+0200\n"
 "PO-Revision-Date: 2004-08-04 23:09+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -486,41 +486,41 @@ msgstr "%s OK"
 msgid "Found expected version %s."
 msgstr "Обнаружена ожидаемая версия %s."
 
-#: ../lib/setup.php:1846
+#: ../lib/setup.php:1844
 msgid "This email will be sent when new accounts are created."
 msgstr "Это сообщение будет отправлено при создании новой учетной записи."
 
-#: ../lib/setup.php:1847
+#: ../lib/setup.php:1845
 #, fuzzy
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Оставьте не заполненным эту часть, чтобы получать встроенное сообщение, которое можно будет перевести на другие языки. Встроенное сообщение:"
 
-#: ../lib/setup.php:1848
+#: ../lib/setup.php:1846
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "Следующие файлы обновлены."
 
-#: ../lib/setup.php:1910 ../lib/setup.php:1953
+#: ../lib/setup.php:1908 ../lib/setup.php:1951
 #, php-format
 msgid "File %s does not exist."
 msgstr "Файл %s не существует."
 
-#: ../lib/setup.php:1919 ../lib/setup.php:1963
+#: ../lib/setup.php:1917 ../lib/setup.php:1961
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Ожидаемое состояние: %s, но действительно полученное состояние %s."
 
-#: ../lib/setup.php:1930 ../lib/setup.php:1976
+#: ../lib/setup.php:1928 ../lib/setup.php:1974
 msgid "can't detect version on Windows"
 msgstr "не могу определить версию под Windows"
 
 #
-#: ../lib/setup.php:1934 ../lib/setup.php:1991
+#: ../lib/setup.php:1932 ../lib/setup.php:1989
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK!  Версия: %s"
 
-#: ../lib/setup.php:2000
+#: ../lib/setup.php:1998
 msgid "Unknown error occured."
 msgstr ""
 
@@ -3348,6 +3348,11 @@ msgstr[2] "%d файлов новее чем ожидалось."
 msgid "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."
 msgstr "Следующие файлы новее чем ожидалось для этой версии %s. Если вы используете код pre-release, то все нормально."
 
+#: ../setup/check_versions.php:85
+#, fuzzy
+msgid "All files are up-to-date."
+msgstr "Нет обновленых файлов."
+
 #: ../setup/check_versions.php:82
 #, php-format
 msgid "One file is up-to-date."
@@ -3355,11 +3360,6 @@ msgid_plural "%d files are up-to-date."
 msgstr[0] "%d файл соответсвует версии."
 msgstr[1] "%d файла соответсвуют версии."
 msgstr[2] "%d файлов соответсвуют версии."
-
-#: ../setup/check_versions.php:85
-#, fuzzy
-msgid "All files are up-to-date."
-msgstr "Нет обновленых файлов."
 
 #: ../setup/check_versions.php:88
 msgid "The following files are up-to-date."
@@ -3516,6 +3516,10 @@ msgstr "Подтвердите, что настройки, которые вы ввели верны. Если все что вы види
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Подтвердите, что настройки которые вы ввели корректны. Если ниже выделеная красным выведена ошибка, вы должны ее устранить прежде чем сохранять ваши настройки."
 
+#: ../setup/confirm.inc:542
+msgid "No errors."
+msgstr "Нет ошибок."
+
 #
 #: ../setup/confirm.inc:542
 #, php-format
@@ -3524,10 +3528,6 @@ msgid_plural "%d errors."
 msgstr[0] "%d ошибка"
 msgstr[1] "%d ошибки"
 msgstr[2] "%d ошибок"
-
-#: ../setup/confirm.inc:542
-msgid "No errors."
-msgstr "Нет ошибок."
 
 #: ../setup/confirm.inc:543
 msgid "See Details below."

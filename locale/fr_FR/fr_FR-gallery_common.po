@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-13 10:46+0200\n"
+"POT-Creation-Date: 2006-10-13 18:42+0200\n"
 "PO-Revision-Date: 2005-04-14 23:37-0800\n"
 "Last-Translator: Benoît Catelin <gallery AT catelin DOT net>\n"
 "Language-Team: Mikael Berthe <mikael DOT berthe AT lilotux DOT net>\n"
@@ -545,6 +545,26 @@ msgstr ""
 msgid "Add field"
 msgstr "Ajouter des fichiers"
 
+#: ../lib/album.php:205 ../lib/album.php:256
+#, php-format
+msgid "%s RSS"
+msgstr "%s RSS"
+
+#: ../lib/album.php:304
+#, fuzzy
+msgid "navigate _UP"
+msgstr "remonter"
+
+#: ../lib/album.php:309
+#, php-format
+msgid "(accesskey '%s')"
+msgstr ""
+
+#: ../lib/album.php:335
+#, fuzzy, php-format
+msgid "Gallery: %s"
+msgstr "Galerie"
+
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
 msgstr ""
@@ -760,27 +780,12 @@ msgstr "Impossible de trouver %s!"
 msgid "Not valid yet"
 msgstr "Pas encore valide"
 
-#: ../lib/content.php:1303
-#, fuzzy
-msgid "navigate _UP"
-msgstr "remonter"
-
-#: ../lib/content.php:1308
-#, php-format
-msgid "(accesskey '%s')"
-msgstr ""
-
-#: ../lib/content.php:1333
-#, fuzzy, php-format
-msgid "Gallery: %s"
-msgstr "Galerie"
-
-#: ../lib/content.php:1352
+#: ../lib/content.php:1283
 #, fuzzy
 msgid "log_out"
 msgstr "déconnexion"
 
-#: ../lib/content.php:1356
+#: ../lib/content.php:1287
 #, fuzzy
 msgid "log_in"
 msgstr "connexion"
@@ -813,8 +818,8 @@ msgstr "essai de la qualité %d%%"
 msgid "Done."
 msgstr "Terminé."
 
-#: ../lib/imageManipulation.php:223 ../lib/imageManipulation.php:457
-#: ../lib/imageManipulation.php:509 ../lib/imageManipulation.php:789
+#: ../lib/imageManipulation.php:223 ../lib/imageManipulation.php:465
+#: ../lib/imageManipulation.php:517 ../lib/imageManipulation.php:799
 msgid "You have no graphics package configured for use!"
 msgstr "Aucun package graphique n'est configuré pour être utilisé!"
 
@@ -822,97 +827,97 @@ msgstr "Aucun package graphique n'est configuré pour être utilisé!"
 msgid "No watermark name specified!"
 msgstr "Pas de nom de filigrane spécifié !"
 
-#: ../lib/imageManipulation.php:475
+#: ../lib/imageManipulation.php:483
 #, fuzzy
 msgid "Cropping Image"
 msgstr "Création d'un filigrane numérique dans l'image"
 
-#: ../lib/imageManipulation.php:539
+#: ../lib/imageManipulation.php:547
 #, php-format
 msgid "Generating squared Version to %dpx"
 msgstr ""
 
-#: ../lib/imageManipulation.php:560
+#: ../lib/imageManipulation.php:568
 #, fuzzy
 msgid "No Cropping Done"
 msgstr "Aucune description"
 
-#: ../lib/imageManipulation.php:570
+#: ../lib/imageManipulation.php:578
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "L'appel à %s a échoué dans %s pour le fichier %s!"
 
-#: ../lib/imageManipulation.php:574
+#: ../lib/imageManipulation.php:582
 #, php-format
 msgid "File %s type %d."
 msgstr "Fichier %s de type %d."
 
-#: ../lib/imageManipulation.php:611 ../lib/imageManipulation.php:635
+#: ../lib/imageManipulation.php:619 ../lib/imageManipulation.php:643
 #, php-format
 msgid "Files with type %s are not supported by Gallery with netPBM"
 msgstr ""
 
-#: ../lib/imageManipulation.php:684
+#: ../lib/imageManipulation.php:692
 #, fuzzy, php-format
 msgid "Compressing image: %s"
 msgstr "Redimensionne %s"
 
-#: ../lib/imageManipulation.php:689
+#: ../lib/imageManipulation.php:697
 msgid "Not all necessary params for resizing given."
 msgstr ""
 
-#: ../lib/imageManipulation.php:690
+#: ../lib/imageManipulation.php:698
 #, php-format
 msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr ""
 
-#: ../lib/imageManipulation.php:732
+#: ../lib/imageManipulation.php:741
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "Impossible de préserver les informations EXIF (jhead n'est pas installé)"
 
-#: ../lib/imageManipulation.php:774
+#: ../lib/imageManipulation.php:784
 #, fuzzy
 msgid "Using IM high quality"
 msgstr "%d de %d binaires ImageMagick ont été trouvés."
 
-#: ../lib/imageManipulation.php:778
+#: ../lib/imageManipulation.php:788
 #, fuzzy
 msgid "Not using IM high quality"
 msgstr "%d de %d binaires ImageMagick ont été trouvés."
 
-#: ../lib/lang.php:753
+#: ../lib/lang.php:791
 msgid "Upload Date"
 msgstr "Date d'envoi"
 
-#: ../lib/lang.php:754
+#: ../lib/lang.php:792
 msgid "Capture Date"
 msgstr "Date de prise de vue"
 
-#: ../lib/lang.php:755
+#: ../lib/lang.php:793
 msgid "Image Size"
 msgstr "Taille de l'image"
 
-#: ../lib/lang.php:756
+#: ../lib/lang.php:794
 msgid "Additional EXIF Data"
 msgstr "Informations EXIF supplémentaires"
 
-#: ../lib/lang.php:764
+#: ../lib/lang.php:802
 msgid "title"
 msgstr "le titre"
 
-#: ../lib/lang.php:765
+#: ../lib/lang.php:803
 msgid "Title"
 msgstr "Titre"
 
-#: ../lib/lang.php:766
+#: ../lib/lang.php:804
 msgid "Description"
 msgstr "Description"
 
-#: ../lib/lang.php:767
+#: ../lib/lang.php:805
 msgid "description"
 msgstr "Description"
 
-#: ../lib/lang.php:768
+#: ../lib/lang.php:806
 msgid "Alt Text / onMouseOver"
 msgstr ""
 
@@ -1503,61 +1508,77 @@ msgstr "%s OK"
 msgid "Found expected version %s."
 msgstr "La version attendue %s a été trouvée."
 
-#: ../lib/setup.php:1846
+#: ../lib/setup.php:1844
 msgid "This email will be sent when new accounts are created."
 msgstr "Cet email sera envoyé aux nouveaux comptes à leur création."
 
-#: ../lib/setup.php:1847
+#: ../lib/setup.php:1845
 #, fuzzy
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Laissez ce champ vide pour obtenir le message par défaut, qui sera traduit en d'autres langues. Le message par défaut est:"
 
-#: ../lib/setup.php:1848
+#: ../lib/setup.php:1846
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "Les fichiers suivants sont à jour."
 
-#: ../lib/setup.php:1910 ../lib/setup.php:1953
+#: ../lib/setup.php:1908 ../lib/setup.php:1951
 #, php-format
 msgid "File %s does not exist."
 msgstr "Le fichier %s n'existe pas."
 
-#: ../lib/setup.php:1919 ../lib/setup.php:1963
+#: ../lib/setup.php:1917 ../lib/setup.php:1961
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Nous attendions l'état: %s, mais nous avons reçu l'état %s."
 
-#: ../lib/setup.php:1930 ../lib/setup.php:1976
+#: ../lib/setup.php:1928 ../lib/setup.php:1974
 msgid "can't detect version on Windows"
 msgstr "impossible de détecter la version sous Windows"
 
-#: ../lib/setup.php:1934 ../lib/setup.php:1991
+#: ../lib/setup.php:1932 ../lib/setup.php:1989
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "Ok! Version: %s"
 
-#: ../lib/setup.php:2000
+#: ../lib/setup.php:1998
 msgid "Unknown error occured."
 msgstr ""
 
-#: ../lib/valchecks.php:50
+#: ../lib/valchecks.php:46
 msgid "The given frame is not valid."
 msgstr ""
 
-#: ../lib/valchecks.php:80
-msgid "Value was set to given default. Because the original value is not numeric."
+#: ../lib/valchecks.php:54
+msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
 msgstr ""
 
-#: ../lib/valchecks.php:82
-msgid "The given Value is not numeric."
+#: ../lib/valchecks.php:57
+msgid "The given value is not in the allowed amount of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
+msgid "Value was set to given default. Because the original value is not numeric."
+msgstr ""
+
+#: ../lib/valchecks.php:91
+msgid "The given Value is not numeric."
+msgstr ""
+
+#: ../lib/valchecks.php:97
 msgid "Value was set to given default. Because the original value is not a valid Integer"
 msgstr ""
 
-#: ../lib/valchecks.php:90
+#: ../lib/valchecks.php:100
 msgid "The given Value not a valid Integer."
+msgstr ""
+
+#: ../lib/valchecks.php:112
+msgid "Value was set to given default. Because the original value is not a valid text"
+msgstr ""
+
+#: ../lib/valchecks.php:115
+msgid "Value was corrected, because the original value is not a valid text"
 msgstr ""
 
 #: ../lib/voting.php:210
@@ -3616,9 +3637,6 @@ msgstr[1] "%d votes"
 
 #~ msgid "Done"
 #~ msgstr "Terminer"
-
-#~ msgid "%s RSS"
-#~ msgstr "%s RSS"
 
 #~ msgid "1 album"
 #~ msgid_plural "%d albums"
