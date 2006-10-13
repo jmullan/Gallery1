@@ -1155,7 +1155,7 @@ $constants = array_merge($constants, array(
 		'type' => 'colorpicker'
 	),
 	'blockRandomCache' => array(
-		'prompt' => gTranslate('config',"Random Block Cache Time"),
+		'prompt' => gTranslate('config',"Random Block cache time"),
 		'desc' => gTranslate('config',"This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."),
 		'value' => 86400,
 		'choices' => array(
@@ -1167,7 +1167,7 @@ $constants = array_merge($constants, array(
 		)
 	),
 	'blockRandomAttempts' => array(
-		'prompt' => gTranslate('config',"Random Block Retrieval Attempts"),
+		'prompt' => gTranslate('config',"Random Block retrieval attempts"),
 		'desc' => gTranslate('config',"This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."),
 		'value' => 2,
 		'must-be-integer' => 1,
@@ -1175,6 +1175,35 @@ $constants = array_merge($constants, array(
 		'type' => 'text',
 	),
 	'subgroup_randomBlock_end' => array (
+		'type' => 'subgroup_end',
+	),
+	'subgroup_featureBlock' => array (
+		'type' => 'subgroup',
+		'title' => gTranslate('config',"Featured-photo-block settings"),
+		'display' => 'inline'
+	),
+	'featureBlockFrame' => array(
+		'prompt' => gTranslate('config',"Frame around featured photo."),
+		'desc' => availableRandomBlockFrames(),
+		'choices' => available_frames(false, true),
+		'value' => 'none'
+	),
+	'featureBlockFrameBorderWidth' => array(
+		'prompt' => gTranslate('config',"Width of solid/dotted frameborder around featured photo."),
+		'desc' => '',
+		'type' => 'text',
+		'must-be-integer' => 1,
+		'must-not-be-zero' => 1,
+		'optional' => 1,
+		'value' => 1
+	),
+	'featureBlockFrameBorderColor' => array(
+		'prompt' => gTranslate('config',"Color of solid/dotted frameborder around featured photo."),
+		'desc' => '',
+		'value' => 'black',
+		'type' => 'colorpicker'
+	),
+    'subgroup_featureBlock_end' => array (
 		'type' => 'subgroup_end',
 	),
 	'group_blocks_end' => array(

@@ -112,15 +112,15 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	    		'icon' => ($withIcons) ? 'kcmfontinst.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => gTranslate('core', "Edit Th_umbnail"),
-	    		'value' => showChoice2('edit_thumb.php', array('index' => $i)),
-	    		'icon' => ($withIcons) ? 'thumbnail.gif' : ''
+        		'text' => gTranslate('core', "Edit Th_umbnail"),
+        		'value' => showChoice2('edit_thumb.php', array('index' => $i)),
+        		'icon' => ($withIcons) ? 'thumbnail.gif' : ''
     		);
     		$options[] = array(
-	    		'text' => sprintf(gTranslate('core', "Rotate/_Flip"), $label),
-	    		'value' => showChoice2('rotate_photo.php', array('index' => $i)),
-	    		'icon' => ($withIcons) ? 'reload.gif' : ''
-    		);
+        		'text' => sprintf(gTranslate('core', "Rotate/_Flip"), $label),
+        		'value' => showChoice2('rotate_photo.php', array('index' => $i)),
+        		'icon' => ($withIcons) ? 'reload.gif' : ''
+        		);
     		$options[] = array(
 	    		'text' => gTranslate('core', "Re_size"),
 	    		'value' => showChoice2('resize_photo.php', array('index' => $i)),
@@ -228,6 +228,14 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
             'value' => showChoice2("photo_owner.php", array("id" => $id)),
             'icon' => ($withIcons) ? 'yast_kuser.gif' : ''
         );
+        $options[] = array(
+            'text' => _('Feature Photo'),
+            'value' => showChoice2('featured-photo.php',
+                            array(
+                                'set' => 1,
+                                'set_albumName' => $gallery->album->fields['name'],
+                                'index' => $i))
+            );
     }
 
     if (isset($isOwner)) {
