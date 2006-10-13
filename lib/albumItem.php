@@ -27,9 +27,11 @@
 
 /**
  * This function shows all possible actions for an album item.
- * @param	integer $i	index number of the item
- * @param	boolean	$withIcons	Wether icons should be used, or not.
- * @return 	array		Array of all possible album item for the current user.
+ *
+ * @param	integer   $i           index number of the item
+ * @param   boolean   $withIcons   Wether icons should be used, or not.
+ * @return  array                  Array of all possible album item for the current user.
+ * @author  Jens Tkotz <jens@peino.de>
  */
 function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	global $gallery;
@@ -306,6 +308,15 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     return array($options, $javascript);
 }
 
+/**
+ * Enter description here...
+ *
+ * @param integer   $index      itemindex
+ * @param string    $albumName  Name of the album containing the item
+ * @param boolean   $reverse    Wether to show in reverse order or not
+ * @return string               A rendered HTML Table that contains the comments.
+ * @author Jens Tkotz <jens@peino.de>
+ */
 function showComments ($index, $albumName, $reverse = false) {
     global $gallery;
 
@@ -372,6 +383,9 @@ function showComments ($index, $albumName, $reverse = false) {
  * Determine id of next photo or movie.
  * Ater deletion we move to previous image if we're at the end.
  * and move forward if we're not.
+ *
+ * @param integer $currentId
+ * @return integer              NextId ;)
  */
 function getNextId($currentId) {
     global $gallery;
