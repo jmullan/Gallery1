@@ -97,7 +97,8 @@ echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialt
 $i = 0;
 foreach ($defaults as $key => $val) {
     if (isset($val["type"]) && $val["type"] === 'group_start') {
-	    if($gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
+	    if(isset($gallery->session->configForm->inst_type) &&
+		$gallery->session->configForm->inst_type == 'easy' && !isset($val["inst_type"])) {
 	        $visibility = 'none';
 	    }
 	    else {
