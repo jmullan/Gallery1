@@ -33,7 +33,6 @@ if ($gallery->user->canDeleteAlbum($gallery->album)) {
 if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"move album"), "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0");
 	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"reorder album"), "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1");
-	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"rename album"), "rename_album.php?set_albumName={$tmpAlbumName}&index=$i");
 }
 
 /* User ist allowed to change album captions */

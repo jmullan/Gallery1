@@ -386,7 +386,7 @@ for ($i = $start; $i <= $end; $i++) {
                         'text' => gTranslate('core', "Hey!") .
                             sprintf(gTranslate('core', "%s so that the URL is not so generic and easy guessable!"),
                                 popup_link(
-                                    gTranslate('core', "Rename this album"),
+                                    gTranslate('core', "Change the foldername of this album"),
                                     "rename_album.php?set_albumName={$tmpAlbumName}&index=$i",
                                     0,0,500,500,'', '','' ,false)
                             ),

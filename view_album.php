@@ -185,7 +185,7 @@ $adminOptions = array(
 				'albumDelete' => true))
 	),
 	'rename_album'    => array(
-		'name' => gTranslate('core', "Rename album"),
+		'name' => gTranslate('core', "Change foldername"),
 		'requirements' => array('isAdminOrAlbumOwner'),
 		'action' => 'popup',
 		'value' => makeGalleryUrl('rename_album.php',
