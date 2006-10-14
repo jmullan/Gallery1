@@ -25,8 +25,8 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
     echo 'Security violation while including template for startpage.';
     exit;
 }
-?>
-<?php
+
+$baseUrl = getGalleryBaseUrl();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -41,11 +41,22 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 	rootRSSLink();
 ?>
+<link rel="stylesheet" type="text/css" href="<?php echo $baseUrl; ?>/css/yui/folders/tree.css">
 </head>
 <body>
 <?php
 }
+else {
+    echo '<link rel="stylesheet" type="text/css" href="'. $baseUrl .'/css/yui/folders/tree.css">';
+}
+?>
+    <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/yahoo-min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/treeview-min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/dom-min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/event-min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/animation-min.js"></script>
 
+<?php
 includeTemplate("gallery.header", '', 'classic');
 
 echo $searchBar;

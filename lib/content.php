@@ -328,33 +328,48 @@ function createTreeArray($albumName,$depth = 0, $fromSetup = false) {
             }
         }
     }
+
     return $tree;
 }
 
-function printChildren($tree, $depth = 0) {
+function printChildren($tree, $depth = 0, $parentNode = 'main') {
     $html = '';
+
 	if ($depth == 0 && !empty($tree)) {
-		$html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+        $treeName = $tree[0]['albumName'];
+
+        $html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
+
+        $html = "<div id=\"tree_$treeName\"></div>
+        <script type=\"text/javascript\">
+            var tree;
+
+            tree_$treeName = new YAHOO.widget.TreeView(\"tree_$treeName\");
+            tree_${treeName}.setExpandAnim(YAHOO.widget.TVAnim.FADE_IN);
+            tree_${treeName}.setCollapseAnim(YAHOO.widget.TVAnim.FADE_OUT);
+            var root = tree_${treeName}.getRoot();
+
+            var main = new YAHOO.widget.TextNode(\"". gTranslate('common', "Sub-albums:") ."\", root, false);
+        ";
 	}
 
 	foreach($tree as $nr => $content) {
-		$html .= "\n<table cellpadding=\"0\" cellspacing=\"0\" class=\"g-subalbumTreeLine\" style=\"margin-". langLeft() .":". 20 * $depth ."px\">";
-		$html .= "<tr><td>";
-		if(empty($content['subTree']) && $nr < sizeof($tree)-1) {
-			$html .= gImage('icons/tree/join-'. langRight(). '.gif', '');
+        $nodename = $content['albumName'];
+
+        $label = $content['title'] . ' '. $content['clicksText'];
+        $html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";
+        $html .= "\n\t var $nodename = new YAHOO.widget.TextNode(${nodename}_obj, $parentNode, false);";
+
+        if(!empty($content['subTree'])) {
+			$html .= printChildren($content['subTree'], $depth+1, $nodename);
 		}
-		else {
-			$html .= gImage('icons/tree/joinbottom-'. langRight() .'.gif', '');
-		}
-		$html .= "</td><td class=\"g-subalbumTreeElement\">";
-		$html .= '<a href="'. $content['albumUrl'] .'">';
-		$html .= $content['title'] .' ';
-		$html .= $content['clicksText'] .'</a>';
-		$html .= "</td></tr></table>";
-		if(!empty($content['subTree'])) {
-			$html .= printChildren($content['subTree'], $depth+1);
-		}
-	}
+    }
+
+    if ($depth == 0 && !empty($tree)) {
+        $html .= "\n\n\t tree_{$treeName}.draw();";
+        $html .= "\n\n\t </script>\n";
+    }
+
 	return $html;
 }
 
