@@ -90,7 +90,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 
             <?php
                 }
-                else if(!install) {
+                else if(!$install) {
                     echo infobox(array(array(
                         'type' => 'warning',
                         'text' => gTranslate('config', "Your Gallery needs a reconfiguration,") .

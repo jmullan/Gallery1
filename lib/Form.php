@@ -268,8 +268,26 @@ function showChoice2($target, $args, $popup = true) {
     return makeGalleryUrl($target, $args);
 }
 
+/**
+ * Returns the HTML Code for a submit button (<input type="submit">).
+ *
+ * @param string    $name            Name of the button.
+ * @param string    $value           Value shown on the button.
+ * @param array     $additionalAttrs  Additional HTML attributes
+ * @return string   $html         The HTML code.
+ * @author Jens Tkotz <jens@peino.de
+ */
 function gSubmit($name, $value, $additionalAttrs = array()) {
-    $attrList['name'] = $attrList['id'] = $name;
+    static $ids = array();
+
+    if(!in_array($name, $ids)) {
+        $attrList['name'] = $attrList['id'] = $name;
+        $ids[] = $name;
+    }
+    else {
+        $attrList['name'] = $name;
+    }
+
     $attrList['type'] = 'submit';
     $attrList['accesskey'] = getAndRemoveAccessKey($value);
     $attrList['value'] = $value;
