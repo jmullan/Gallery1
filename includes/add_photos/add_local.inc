@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: add_url.inc 13490 2006-04-18 12:36:36Z jenst $
+ * $Id: add_local.inc 13490 2006-04-18 12:36:36Z jenst $
  */
 ?>
 <?php

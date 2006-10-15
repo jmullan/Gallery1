@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: do_command.php 13778 2006-06-08 17:51:08Z jenst $
+ * $Id: recreate_captions.php 13778 2006-06-08 17:51:08Z jenst $
  */
 ?>
 <?php

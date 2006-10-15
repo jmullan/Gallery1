@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: validate_albums.php 14282 2006-08-12 00:46:01Z jenst $
+ * $Id: lib-find_orphans.php 14282 2006-08-12 00:46:01Z jenst $
  */
 ?>
 <?php

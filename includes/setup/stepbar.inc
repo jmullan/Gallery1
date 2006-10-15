@@ -1,6 +1,7 @@
 <?php
 /**
- * $Id: config_data.inc 13795 2006-06-11 14:21:15Z jenst $
+ * Gallery SVN Id
+ * $Id: stepbar.inc 13795 2006-06-11 14:21:15Z jenst $
  */
 ?>
     <div class="g-stepbar left floatleft">

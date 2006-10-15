@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: album.php 12505 2006-01-08 20:15:14Z jenst $
+ * $Id: YUIsearch_files.php 12505 2006-01-08 20:15:14Z jenst $
 */
 
 /**

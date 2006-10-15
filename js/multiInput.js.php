@@ -1,7 +1,7 @@
 <?php
 /**
  * Gallery SVN ID:
- * $Id: multifile.js.php 13850 2006-06-19 12:37:37Z jenst $
+ * $Id: multiInput.js.php 13850 2006-06-19 12:37:37Z jenst $
  * @author Jens Tkotz <jens@peino.de>
 */
 ?>

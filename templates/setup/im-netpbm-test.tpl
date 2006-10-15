@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: view_album.tpl.default 13820 2006-06-14 12:03:36Z jenst $
+ * $Id: im-netpbm-test.tpl 13820 2006-06-14 12:03:36Z jenst $
  */
 ?>
 <div class="g-sitedesc left">

@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id: config_data.inc 13795 2006-06-11 14:21:15Z jenst $
+ * $Id: checks.inc 13795 2006-06-11 14:21:15Z jenst $
  */
 ?>
 <?php
