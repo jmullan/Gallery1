@@ -28,7 +28,7 @@ require_once(GALLERY_BASE . '/includes/definitions/services.php');
 $stats_choices = array();
 foreach ($stats['types'] as $key => $trash) {
 	if(!empty($stats['types'][$key]['linktext'])) {
-		$stats_choices[$key] = $key;
+		$stats_choices[$key] = $stats['types'][$key]['linktext'];
 	}
 }
 

@@ -436,7 +436,7 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
                 "Once",
                 "%d times",
                 $statsAlbum->getItemClicks($photoIndex),
-                gTranslate('core', "Never viewed")
+                gTranslate('core', "Never viewed"),
 		true),
             'cellArgs' => array('class' => 'g-small'))
         );
