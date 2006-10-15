@@ -234,8 +234,9 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
                             array(
                                 'set' => 1,
                                 'set_albumName' => $gallery->album->fields['name'],
-                                'index' => $i))
-            );
+                                'index' => $i)),
+            'icon' => ($withIcons) ? 'signal-1.gif' : ''
+        );
     }
 
     if (isset($isOwner)) {

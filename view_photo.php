@@ -224,18 +224,6 @@ $iconElements = array();
 $adminTextIconElemens = array();
 
 if (!$gallery->album->isMovie($id)) {
-	if ($gallery->album->fields["use_exif"] == "yes" &&
-	(eregi("jpe?g\$", $photo->image->type)) &&
-	(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
-	sizeof($albumItemOptions) == 2) {
-		$albumName = $gallery->session->albumName;
-		$iconElements[] = popup_link(
-			gTranslate('core', "photo _properties"),
-			"view_photo_properties.php?set_albumName=$albumName&index=$index",
-			false, true, 500, 500, '','','frame_query.gif'
-		);
-	}
-
 	if (!empty($gallery->album->fields["print_photos"]) && !$gallery->session->offline){
 		$photo = $gallery->album->getPhoto($GLOBALS["index"]);
 		$photoPath = $gallery->album->getAlbumDirURL("full");
