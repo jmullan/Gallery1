@@ -831,6 +831,10 @@ class AlbumItem {
         }
     }
 
+    function getCaption() {
+        return $this->caption;
+    }
+
     function setCaption($caption) {
         $this->caption = $caption;
     }
@@ -863,10 +867,6 @@ class AlbumItem {
         }
 
         $this->setCaption($caption);
-    }
-
-    function getCaption() {
-        return $this->caption;
     }
 
     function isAlbum() {
