@@ -105,7 +105,7 @@ class AlbumItem {
     function getExif($dir, $forceRefresh = false) {
         global $gallery;
         $file = $dir . "/" . $this->image->name . "." . $this->image->type;
-        
+
         echo debugMessage(sprintf(gTranslate('core', "Getting Exif of file '%s'"), $file), __FILE__, __LINE__);
 
         /*
@@ -732,7 +732,7 @@ class AlbumItem {
 	 */
     function getAlttext() {
         $alttext = '';
-        
+
         if (!empty($this->extraFields['AltText'])) {
             $alttext = $this->extraFields['AltText'];
         } elseif (!empty($this->caption)) {
@@ -745,11 +745,11 @@ class AlbumItem {
     function getThumbnailTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-		
+
         if(empty($attrs['alt'])) {
         	$attrs['alt'] = $this->getAlttext();
         }
-		
+
         if ($this->thumbnail) {
             return $this->thumbnail->getTag($dir, false, $size, $attrs);
         } else {
@@ -760,7 +760,7 @@ class AlbumItem {
     function getHighlightTag($dir, $size = 0, $attrs = array()) {
         // Prevent non-integer data from being passed
         $size = (int)$size;
-         
+
         if (is_object($this->highlightImage)) {
             if (empty($attrs['alt'])) {
                 $attrs['alt'] = $this->getAlttext();
@@ -775,7 +775,7 @@ class AlbumItem {
     	if (empty($attrs['alt'])) {
     		$attrs['alt'] = $this->getAlttext();
     	}
-            
+
         if ($this->image) {
             return $this->image->getTag($dir, $full, 0, $attrs);
         } else {
@@ -836,33 +836,33 @@ class AlbumItem {
     }
 
     function createCaption($dir, $captionType) {
-	global $gallery;
-	$dateTimeFormat = $gallery->app->dateTimeString;
-	$path = $this->image->getPath($dir, true);
+        global $gallery;
+        $dateTimeFormat = $gallery->app->dateTimeString;
+        $path = $this->image->getPath($dir, true);
 
-	switch ($captionType) {
-	    case 0:
-		$caption = '';
-	    break;
+        switch ($captionType) {
+            case 0:
+                $caption = '';
+                break;
 
-	    case 1:
-	    default:
-		/* Use filename */
-		$caption = strtr($this->image->name, '_', ' ');
-	    break;
+            case 1:
+            default:
+                /* Use filename */
+                $caption = strtr($this->image->name, '_', ' ');
+                break;
 
-	    case 2:
-		/* Use file cration date */
-		$caption = strftime($dateTimeFormat, filectime($path));
-	    break;
+            case 2:
+                /* Use file cration date */
+                $caption = strftime($dateTimeFormat, filectime($path));
+                break;
 
-	    case 3:
-		/* Use capture date */
-		$caption = strftime($dateTimeFormat, getItemCaptureDate($path));
-	    break;
-	}
-	
-	$this->setCaption($caption);
+            case 3:
+                /* Use capture date */
+                $caption = strftime($dateTimeFormat, getItemCaptureDate($path));
+                break;
+        }
+
+        $this->setCaption($caption);
     }
 
     function getCaption() {
