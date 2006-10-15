@@ -21,7 +21,7 @@
  */
 ?>
 <?php
-
+ 
 require_once(GALLERY_BASE . '/includes/stats/stats.inc.php');
 require_once(GALLERY_BASE . '/includes/definitions/services.php');
 
