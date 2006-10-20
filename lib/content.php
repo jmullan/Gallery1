@@ -336,7 +336,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
     $html = '';
 
 	if ($depth == 0 && !empty($tree)) {
-        $treeName = $tree[0]['albumName'];
+        $treeName = strtr($tree[0]['albumName'], '-', '_');
 
         $html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
 
@@ -354,7 +354,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	}
 
 	foreach($tree as $nr => $content) {
-        $nodename = $content['albumName'];
+        $nodename = strtr($content['albumName'], '-', '_');
 
         $label = $content['title'] . ' '. $content['clicksText'];
         $html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";
