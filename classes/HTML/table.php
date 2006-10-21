@@ -32,40 +32,41 @@ class galleryTable {
     var $elements;
 
     function galleryTable() {
-	$this->attrs = array();
-	$this->headers = array();
-	$this->headerClass = '';
-	$this->caption = '';
-	$this->captionClass = '';
-	$this->columnCount = 3;
-	$this->elements = array();
+        $this->attrs = array();
+        $this->headers = array();
+        $this->headerClass = '';
+        $this->caption = '';
+        $this->captionClass = '';
+        $this->columnCount = 3;
+        $this->elements = array();
     }
 
     function setAttrs($attrs = array()) {
-	$this->attrs = $attrs;
+        $this->attrs = $attrs;
     }
 
     function setColumnCount($nr) {
-	$this->columnCount = $nr;
+        $this->columnCount = $nr;
     }
 
     function addElement($element = array('content' => null, 'cellArgs' => array())) {
-	if (!empty($element)) {
-	    $this->elements[] = $element;
-	    return true;
-	} else {
-	    return false;
+        if (!empty($element)) {
+            $this->elements[] = $element;
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
     function setHeaders($headers = array(), $class = '') {
-	$this->headers = $headers;
-	$this->headerClass = $class;
+        $this->headers = $headers;
+        $this->headerClass = $class;
     }
 
     function setCaption($caption = '', $class = '') {
-	$this->caption = $caption;
-	$this->captionClass = $class;
+        $this->caption = $caption;
+        $this->captionClass = $class;
     }
 
     function render($indent = 0) {
@@ -77,29 +78,30 @@ class galleryTable {
         $numElements = sizeof($this->elements);
 
         for($i = 0; $i < $indent; $i++) {
-            $ind .= "    ";
+            $ind .= '    ';
         }
 
-        $buf = "\n$ind<table";
+        $html = "\n$ind<table";
+
         foreach ($this->attrs as $attr => $value) {
-            $buf .= " $attr=\"$value\"";
+            $html .= " $attr=\"$value\"";
         }
-        $buf .= '>';
+        $html .= '>';
 
         if (!empty($this->caption)) {
-            $buf .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
+            $html .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
         }
 
         if (!empty($this->headers)) {
-            $buf .= "\n$ind<tr>";
+            $html .= "\n$ind<tr>";
             $i = 0;
             foreach ($this->headers as $header) {
                 $i++;
-                $buf .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
+                $html .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
             }
 
             for (; $i < $this->columnCount; $i++) {
-                $buf .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
+                $html .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
             }
 
             /* Override value of columnCount */
@@ -108,15 +110,15 @@ class galleryTable {
 
         if (!empty($this->elements)) {
             $i = 0;
-            $buf .= "\n$ind<tr>";
+            $html .= "\n$ind<tr>";
             foreach ($this->elements as $nr => $element) {
-                $buf .= "\n$ind    <td";
+                $html .= "\n$ind    <td";
                 if(!empty($element['cellArgs'])) {
                     foreach ($element['cellArgs'] as $attr => $value) {
-                        $buf .= " $attr=\"$value\"";
+                        $html .= " $attr=\"$value\"";
                     }
                 }
-                $buf .= '>'. $element['content'] .'</td>';
+                $html .= '>'. $element['content'] .'</td>';
 
                 if(isset($element['cellArgs']['colspan'])) {
                     $i += $element['cellArgs']['colspan'];
@@ -126,15 +128,15 @@ class galleryTable {
                 }
 
                 if (!($i % $this->columnCount) && $nr < $numElements-1 && $this->columnCount > 0) {
-                    $buf .= "\n$ind </tr>\n$ind<tr>";
+                    $html .= "\n$ind </tr>\n$ind<tr>";
                 }
             }
-            $buf .= "\n$ind</tr>";
+            $html .= "\n$ind</tr>";
         }
 
-        $buf .= "\n$ind</table>\n$ind";
+        $html .= "\n$ind</table>\n$ind";
 
-        return $buf;
+        return $html;
     }
 }
 
