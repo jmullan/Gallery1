@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -115,7 +115,7 @@ if ($cmd == "publish" || (isset($returnval) && $returnval == "Login Incorrect") 
 	<input type="hidden" name="cmd" value="login">
 </form>
 
-<?php 
+<?php
 	$ONNEXT_SCRIPT="login.submit();";
 	$SCRIPT_CMD="this.login.uname.focus();";
 }
@@ -150,24 +150,24 @@ if (!strcmp($cmd, "fetch-albums")) {
 	</select><br>
 
 	<input id="setCaption" type="checkbox" name="setCaption" checked value="1"><?php echo gTranslate('core', "Use filenames as captions") ?>
-	
+
 	<br><br>
 	<?php echo gButton('create', gTranslate('core', "Create New Album"), "folder.cmd.value='new-album';folder.submit()"); ?>
 
 	<input type="hidden" name="cmd" value="select-album">
 </form>
 <?php
-    $ONNEXT_SCRIPT="folder.submit();"; 
+    $ONNEXT_SCRIPT="folder.submit();";
     $ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=publish\";";
     $WIZARD_BUTTONS="true,true,true";
 }
 
 function appendNestedAlbums($level, $permission, $albumName, $albumCompare = "") {
     global $gallery;
- 
+
     $myAlbum = new Album();
     $myAlbum->load($albumName);
-   
+
     $numPhotos = $myAlbum->numPhotos(1);
 
     for ($i=1; $i <= $numPhotos; $i++) {
@@ -293,7 +293,7 @@ if (!strcmp($cmd, "new-album")) {
 		if (empty($newAlbumTitle)) $newAlbumTitle = "Untitled";
 		?>
 <form id="folder">
-	<?php echo gTranslate('core', "Enter New Album Title") ?>: 
+	<?php echo gTranslate('core', "Enter New Album Title") ?>:
 	<input id="newAlbumTitle" type="text" name="newAlbumTitle" value="<?php echo $newAlbumTitle ?>" size="25">
 
 	<br><br><?php echo gTranslate('core', "Select Parent Album") ?>:
@@ -329,7 +329,7 @@ if (!strcmp($cmd, "new-album")) {
                 $WIZARD_BUTTONS="true,true,true";
 	}
 
-        if (!empty($messages
+        if (!empty($messages)) {
 	$messages[] = array(
                         'type' => 'warning',
                         'text' => gTranslate('core', "Press the 'Back' button and try again!")
@@ -348,7 +348,7 @@ if (!strcmp($cmd, "new-album")) {
 		echo "<input type=\"hidden\" name=\"cmd\" value=\"fetch-albums\">\n";
                 echo "</form>\n";
 
-		if (isset($success)) {	
+		if (isset($success)) {
 			$SCRIPT_CMD = "folder.submit();";
 		}
         }
