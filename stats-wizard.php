@@ -58,6 +58,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
     	gTranslate('core',"return to _admin page"),
     	array(), '', true
     );
+    
     $adminbox["commands"] .= galleryLink(
     	makeAlbumUrl(),
     	gTranslate('core',"return to _gallery"),
@@ -82,7 +83,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	/* This javascript goes through all elements of the form 'stats_form'
 	** depending if set or not it generates an string that represents the parameters for stats.php
 	*/
-	for(var i=0;i<document.stats_form.length; i++) {
+	for(var i = 0; i < document.stats_form.length; i++) {
 		value = false;
 		/* special case */
 		if ((document.stats_form.elements[i].name == 'cols' || document.stats_form.elements[i].name == 'rows') &&
@@ -119,7 +120,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 </script>
 
 <?php
-	echo makeFormIntro('stats.php', array('name' => '"stats_form', 'onChange' => 'updateUrl()'));
+	echo makeFormIntro('stats.php', array('name' => 'stats_form', 'onChange' => 'updateUrl()'));
 ?>
 	<table width="100%" class="g-stats-wizard">
 	<tr>

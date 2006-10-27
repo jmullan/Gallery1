@@ -45,58 +45,61 @@ $numPhotos = $gallery->album->numPhotos(1);
 doctype();
 
 ?>
+
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo sprintf (gTranslate('core', "Rearrange Album: %s"),$gallery->album->fields["title"]) ?></title>
+  <title><?php printf(gTranslate('core', "Rearrange items in album: %s"),$gallery->album->fields["title"]); ?></title>
   <?php common_header(); ?>
+  <script type="text/javascript">
 
-<script language="javascript" type="text/javascript">
-var sel = -1, list = new Array();
+  var sel = -1, list = new Array();
 
-function save() {
-  var s = '';
-  for (i=1; i<list.length; i++) {
-    if (i>1) s+=',';
-    s+=list[i];
+  function copy(from, to) {
+      to.src = from.src;
+      to.width = from.width;
+      to.height = from.height;
+      to.style.border = from.style.border;
   }
-  document.forms['rearr_form'].rearrList.value = s;
-  document.forms['rearr_form'].submit();
-}
-function copy(from, to) {
-  to.src = from.src;
-  to.width = from.width;
-  to.height = from.height;
-  to.style.border = from.style.border;
-}
 
-function doclick(idx) {
-  if (sel < 0) {
-    sel=idx;
-    savedFromBorder = document.getElementById('im_'+sel).style.border;
-    document.getElementById('im_'+sel).style.borderStyle='dashed';
-  } else {
-    if (idx != sel) {
-      var sv = new Object()
-      var si; 
-      var dir = (sel<idx)?1:-1;
-
-      sv.style = new Object();
-
-      copy(document.getElementById('im_'+sel), sv);
-      si = list[sel];
-      for (i=sel; i!=idx; i+=dir) {
-        copy(document.getElementById('im_'+(i+dir)),
-             document.getElementById('im_'+i));
-        list[i] = list[i+dir];
+  function doclick(idx) {
+      if (sel < 0) {
+          sel = idx;
+          savedFromBorder = document.getElementById('im_'+sel).style.border;
+          document.getElementById('im_'+sel).style.borderStyle='dashed';
       }
-      copy(sv, document.getElementById('im_'+idx));
-      list[idx] = si;
-    }
-    document.getElementById('im_'+idx).style.border = savedFromBorder;	
-    sel = -1;
+      else {
+          if (idx != sel) {
+              var sv = new Object()
+              var si;
+              var dir = (sel<idx)?1:-1;
+
+              sv.style = new Object();
+
+              copy(document.getElementById('im_'+sel), sv);
+              si = list[sel];
+              for (i=sel; i!=idx; i+=dir) {
+                  copy(document.getElementById('im_'+(i+dir)),
+                  document.getElementById('im_'+i));
+                  list[i] = list[i+dir];
+              }
+              copy(sv, document.getElementById('im_'+idx));
+              list[idx] = si;
+          }
+          document.getElementById('im_'+idx).style.border = savedFromBorder;
+          sel = -1;
+      }
   }
-}
-</script>
+  
+  function saveOrder() {
+      var s = '';
+      for (i = 1; i <list.length; i++) {
+          if (i > 1) s+=',';
+          s+=list[i];
+      }
+      document.forms['rearr_form'].rearrList.value = s;
+      document.forms['rearr_form'].submit();
+  }
+  </script>
 </head>
 <body>
 <div class="g-header-popup">
@@ -137,8 +140,8 @@ $pictureTable->setAttrs(array('width' => '100%', 'cellspacing' => 0, 'cellpaddin
 $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
-    'content' => '<input type="button" onclick="save();return false" value="' . gTranslate('core', "save") .'" class="g-button">'. 
-    '<input type="button" onclick="window.close();return false" value="'. gTranslate('core', "cancel") .'" class="g-button">',
+    'content' => gButton('saveButtonTop', gTranslate('core', "_Save"), 'saveOrder();') .
+                 gButton('cancelButtonTop', gTranslate('core', "_Cancel"), 'window.close();'),
     'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 $list = array();
@@ -157,8 +160,8 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 
     $attrs = array(
     	'id' => "im_$i",
-    	'onclick' => "doclick($i)",
-    	'style' => 'padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
+    	'onClick' => "doclick($i)",
+    	'style' => 'margin: 1px; padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
 	);
 
     if ($gallery->album->isAlbum($i)) {
@@ -167,10 +170,12 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
         $myAlbum->load($myAlbumName);
         $attrs['style'] .= ' 3px double';
         $tag = $myAlbum->getHighlightTag(0, $attrs);
-    } elseif ($gallery->album->isMovieByIndex($i)) {
+    }
+    elseif ($gallery->album->isMovieByIndex($i)) {
     	$attrs['style'] .= ' 2px dotted';
     	$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
-    } else {
+    }
+    else {
     	$attrs['style'] .= ' 2px solid';
 		$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
     }
@@ -181,8 +186,8 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 }
 
 $pictureTable->addElement(array(
-    'content' => gButton('save', gTranslate('core', "_Save"), 'save();return false') .
-		 gButton('cancel', gTranslate('core', "_Cancel"), 'window.close();return false'),
+    'content' => gButton('saveButtonBottom', gTranslate('core', "_Save"), 'saveOrder();') .
+		         gButton('cancelButtonBottom', gTranslate('core', "_Cancel"), 'window.close();'),
     'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 echo $pictureTable->render();
@@ -192,7 +197,7 @@ echo $pictureTable->render();
 
 <script language="javascript" type="text/javascript">
 <?php 
-foreach ($list as $key=>$value) { 
+foreach ($list as $key => $value) { 
 	echo "list[".($key+1)."]=$value;\n"; 
 }
 ?>
