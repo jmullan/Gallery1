@@ -103,7 +103,7 @@ if (!empty($albumName) && !empty($index)) {
 else {
     echo infoBox(array(array(
         'type' => 'information',
-        'text' => gTranslate('core', "Currently is no photo featured by this Gallery.")
+        'text' => gTranslate('core', "Currently no item is featured by this Gallery.")
     )));
 }
 

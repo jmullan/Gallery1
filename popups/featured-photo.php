@@ -35,14 +35,16 @@ $notice_messages = array();
 
 if (!empty($set)) {
     if (!$gallery->user->isAdmin()) {
-    	echo gTranslate('core', "You are not allowed to perform this action!");
-    	exit;
+        echo gTranslate('core', "You are not allowed to perform this action!");
+        exit;
     }
-
-    printPopupStart(gTranslate('core', "Featured Photo"));
-
+    
     if ($gallery->session->albumName && $index) {
-	   echo "<p>". $gallery->album->getThumbnailTag($index) ."</p>";
+        $label = getLabelByIndex($index);
+
+        printPopupStart(sprintf(gTranslate('core', "Featured %s"), $label));
+
+        echo "<p>". $gallery->album->getThumbnailTag($index) ."</p>";
 
         if ($fd = @fs_fopen(FEATURE_CACHE, 'w')) {
             fwrite($fd, $gallery->session->albumName . "/$index");
@@ -50,7 +52,7 @@ if (!empty($set)) {
 
             $notice_messages[] = array(
                 'type' => 'success',
-                'text' => gTranslate('core', "New featured photo saved.")
+                'text' => sprintf(gTranslate('core', "New featured %s saved."), $label)
             );
         }
         else {
@@ -64,6 +66,8 @@ if (!empty($set)) {
         }
     }
     else {
+        printPopupStart(gTranslate('core', "Featured item"), $label);
+        
         $notice_messages[] = array(
                 'type' => 'error',
                 'text' => gTranslate('core', "Invalid Parameters.")

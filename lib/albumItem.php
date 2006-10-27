@@ -83,7 +83,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     elseif ($gallery->album->isMovieByIndex($i)) {
     	$label = gTranslate('core', "Movie");
     	$isMovie = true;
-    } else {
+    }
+    else {
     	$label = gTranslate('core', "Photo");
 		$isPhoto = true;
     }
@@ -229,7 +230,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
             'icon' => ($withIcons) ? 'yast_kuser.gif' : ''
         );
         $options[] = array(
-            'text' => _('Feature Photo'),
+            'text' => sprintf(gTranslate('core', "Feature %s"), $label),
             'value' => showChoice2('featured-photo.php',
                             array(
                                 'set' => 1,
@@ -246,7 +247,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	    		'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i)),
 	    		'icon' => ($withIcons) ? 'idea.gif' : ''
     		);
-    	} else {
+    	}
+    	else {
     		$options[] = array(
 	    		'text' => gTranslate('core', "_Hide"),
 	    		'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i)),
@@ -318,7 +320,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 }
 
 /**
- * Enter description here...
+ * Returns a HTML with all comments of an album item.
  *
  * @param integer   $index      itemindex
  * @param string    $albumName  Name of the album containing the item
@@ -404,12 +406,88 @@ function getNextId($currentId) {
 
     if ($current < sizeof($allIds)-1) {
         $nextId = $allIds[$current+1];
-    } elseif ($current > 0) {
+    }
+    elseif ($current > 0) {
         $nextId = $allIds[$current-1];
-    } else {
+    }
+    else {
         $nextId = $currentId;
     }
 
     return $nextId;
+}
+
+/**
+ * What should the caption be, if no caption was given by user ?
+ * See captionOptions.inc.php for options
+ *
+ * @param intger    $captionType
+ * @param string    $originalFilename
+ * @param string    $filename
+ * @return string   $caption
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function generateCaption($captionType = 1, $originalFilename, $filename) {
+    global $gallery;
+
+    if (isset($gallery->app->dateTimeString)) {
+        $dateTimeFormat = $gallery->app->dateTimeString;
+    }
+    else {
+        $dateTimeFormat = "%D %T";
+    }
+
+    switch ($captionType) {
+        case 0:
+            $caption = '';
+            $captionTypeString = 'no caption';
+            break;
+
+        case 1:
+        default:
+            /* Use filename */
+            $caption = strtr($originalFilename, '_', ' ');
+            $captionTypeString = 'filename';
+            break;
+
+        case 2:
+            /* Use file creation date */
+            $caption = strftime($dateTimeFormat, filectime($filename));
+            $captionTypeString = 'file creation date';
+            break;
+
+        case 3:
+            /* Use capture date */
+            $caption = strftime($dateTimeFormat, getItemCaptureDate($filename));
+            $captionTypeString = 'file capture date';
+            break;
+    }
+
+    echo debugMessage(sprintf(gTranslate('core', "Generating caption. Type: %s"), $captionTypeString), __FILE__, __LINE__, 3);
+
+    return $caption;
+}
+
+/**
+ * Returns the label (photo, movie, or album) of an album item.
+ *
+ * @param integer   $index
+ * @return string   $label
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function getLabelByIndex($index) {
+    global $gallery;
+
+    if ($gallery->album->isAlbum($index)) {
+        $label = gTranslate('core', "Album");
+    }
+    elseif ($gallery->album->isMovieByIndex($index)) {
+        $label = gTranslate('core', "Movie");
+    }
+    else {
+        $label = gTranslate('core', "Photo");
+    }
+
+    return $label;
 }
 ?>
