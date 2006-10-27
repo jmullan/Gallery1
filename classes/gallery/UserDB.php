@@ -27,9 +27,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 	var $everybody;
 	var $loggedIn;
 	var $version;
+	var $initialized;
 
 	function Gallery_UserDB() {
 		global $gallery;
+		
+		$this->initialized = false;
 		
 		if(empty($gallery->app->userDir)) {
             echo infoBox(array(array(
@@ -50,11 +53,25 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$this->userMap = array();
 
 		if (!fs_file_exists($userDir)) {
-			if (!mkdir($userDir, 0777)) {
-				echo gallery_error(gTranslate('core', "Unable to create dir") .": $userDir");
-				return;
+		    if(isDebugging()) {
+    		    echo infoBox(array(array(
+                    'type' => 'warning',
+                    'text' => sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
+                        $userDir)
+                )));
+		    }
+
+            if (!@mkdir($userDir, 0777)) {
+			    echo infoBox(array(array(
+                    'type' => 'error',
+                    'text' => sprintf("Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount.",
+                        '<a href="'. makeGalleryUrl('setup/') .'">', '</a>')
+                )));
+                
+				return false;
 			}
-		} else {
+		}
+		else {
 			if (!fs_is_dir($userDir)) {
 				echo gallery_error(sprintf(gTranslate('core', "%s exists, but is not a directory!"),
 							$userDir));
@@ -67,7 +84,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 				$fd = fs_fopen("$userDir/.htaccess", "w");
 				fwrite($fd, "Order deny,allow\nDeny from all\n");
 				fclose($fd);
-			} else {
+			}
+			else {
 				echo gallery_error(sprintf(gTranslate('core', "The folder folder which contains your user information (%s) is not writable for the webserver."),
 								$userDir));
 				exit;
@@ -104,8 +122,21 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (!$this->loggedIn) {
 			$this->loggedIn = new LoggedInUser();
 		}
+		
+		$this->initialized = true;
 	}
 
+	
+	/**
+	 * Returns wether the UserDB was succesfully initialized or not
+	 *
+	 * @return boolean     true if succesfully initialized.
+	 * @author Jens Tkotz <jens@peino.de>
+	 */
+	function isInitialized() {
+        return $this->initialized === true;
+	}
+	
 	function canCreateUser() {
 		return true;
 	}
@@ -132,9 +163,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!strcmp($username, $this->nobody->getUsername())) {
 			return $this->nobody;
-		} else if (!strcmp($username, $this->everybody->getUsername())) {
+		}
+		else if (!strcmp($username, $this->everybody->getUsername())) {
 			return $this->everybody;
-		} else if (!strcmp($username, $this->loggedIn->getUsername())) {
+		}
+		else if (!strcmp($username, $this->loggedIn->getUsername())) {
 			return $this->loggedIn;
 		}
 
@@ -142,13 +175,16 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$this->rebuildUserMap();
 			if (!isset($this->userMap[$username])) {
 				return;
-			} else {
+			}
+			else {
 				$uid = $this->userMap[$username];
 			}
-		} else {
+		}
+		else {
 			$uid = $this->userMap[$username];
 
 		}
+		
 		$uid = $this->convertUidToNewFormat($uid);
 		$user = $this->getUserByUid($uid);
 		if (!$user || strcmp($user->getUsername(), $username)) {
@@ -157,7 +193,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			// this means our map is out of date.
 			$this->rebuildUserMap();
 			return $this->getUserByUsername($username, ++$level);
-		} else {
+		}
+		else {
 			return $user;
 		}
 
@@ -169,9 +206,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
 			return $this->nobody;
-		} else if (!strcmp($uid, $this->everybody->getUid())) {
+		}
+		else if (!strcmp($uid, $this->everybody->getUid())) {
 			return $this->everybody;
-		} else if (!strcmp($uid, $this->loggedIn->getUid())) {
+		}
+		else if (!strcmp($uid, $this->loggedIn->getUid())) {
 			return $this->loggedIn;
 		}
 
@@ -180,9 +219,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (fs_file_exists("$userDir/$uidNew")) {
 			$user->load($uidNew);
-		} else if ($tryOldFormat && fs_file_exists("$userDir/$uid")) {
+		}
+		else if ($tryOldFormat && fs_file_exists("$userDir/$uid")) {
 			$user->load($uid);
-		} else {
+		}
+		else {
 			$user = $this->nobody;
 		}
 
@@ -245,6 +286,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		return safe_serialize($this, "$userDir/userdb.dat");
 	}
+	
 	function save() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
@@ -285,6 +327,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		array_push($uidList, $this->loggedIn->getUid());
 
 		sort($uidList);
+		
 		return $uidList;
 	}
 
@@ -339,13 +382,20 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return null;
 	}
 
+	/**
+	 * Checks wether the UserDB is out of Date.
+	 *
+	 * @return boolean     true if out of Date.
+	 */
 	function versionOutOfDate() {
 		global $gallery;
+		
 		if (strcmp($this->version, $gallery->user_version)) {
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
+	
 	function integrityCheck() {
 		global $gallery;
 

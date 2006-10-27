@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,17 +23,17 @@
 <?php
 class Abstract_UserDB {
 
-	/* By default, UserDB can't create a user */	
+	/* By default, UserDB can't create a user */
 	function canCreateUser() {
 		return false;
 	}
 
-	/* By default, UserDB can't modify a user */	
+	/* By default, UserDB can't modify a user */
 	function canModifyUser() {
 		return false;
 	}
 
-	/* By default, UserDB can't delete a user */	
+	/* By default, UserDB can't delete a user */
 	function canDeleteUser() {
 		return false;
 	}
@@ -77,6 +77,17 @@ class Abstract_UserDB {
 	 */
 	function convertUidToNewFormat($uid) {
 	        return $uid;
+	}
+
+	/**
+	 * Returns wether the UserDB was succesfully initialized or not.
+	 * Is currently only used for standalone Gallery UserDB.
+	 *
+	 * @return boolean     true if succesfully initialized.
+	 * @author Jens Tkotz <jens@peino.de>
+	 */
+	function isInitialized() {
+        return true;
 	}
 }
 ?>

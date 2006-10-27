@@ -439,7 +439,9 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             $results = $db->query('SELECT id FROM ' . $gallery->database{'user_prefix'} . "menu WHERE componentid='$componentId' AND type = 'components' AND published = 1");
             $row = $db->fetch_row($results);
             $MOS_GALLERY_PARAMS['itemid'] = $row[0]; // pick the first one
+
             break;
+
         case 'GeekLog':
             // Cheat, and grab USER information from the global session variables.
             // Hey, it's faster and easier than reading them out of the database.
@@ -466,7 +468,9 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             if (isset($gallery->session->username)) {
                 $gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
             }
+
             break;
+
         case 'cpgnuke':
             /* we're in CPG-Nuke */
             include_once(dirname(__FILE__) . "/classes/Database.php");
@@ -475,10 +479,10 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             include_once(dirname(__FILE__) . "/classes/nsnnuke/User.php");
 
             $gallery->database{"cpgnuke"} = new MySQL_Database(
-            $GLOBALS['dbhost'],
-            $GLOBALS['dbuname'],
-            $GLOBALS['dbpass'],
-            $GLOBALS['dbname']);
+                $GLOBALS['dbhost'],
+                $GLOBALS['dbuname'],
+                $GLOBALS['dbpass'],
+                $GLOBALS['dbname']);
 
             if (isset($GLOBALS['user_prefix'])) {
                 $gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
@@ -490,8 +494,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             $gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
 
             /* Select the appropriate field names */
-            $gallery->database{'fields'} =
-            array (
+            $gallery->database{'fields'} = array (
                 'name'  => 'name',
                 'uname' => 'username',
                 'email' => 'user_email',
@@ -529,8 +532,11 @@ else {
 
 /* If there's no specific user, they are the special Everybody user */
 if (!isset($gallery->user) || empty($gallery->user)) {
-    if (empty($gallery->userDB)) {
-        exit("Fatal error: UserDB failed to initialize!");
+    if (!$gallery->userDB->isInitialized()) {
+        echo infoBox(array(array(
+                'type' => 'error',
+                'text' => "Fatal error: UserDB failed to initialize!"
+            )));
     }
     $gallery->user = $gallery->userDB->getEverybody();
     $gallery->session->username = "";
@@ -545,7 +551,7 @@ if (!isset($gallery->session->offline)) {
     $gallery->session->offline = FALSE;
 }
 
-if ($gallery->userDB->versionOutOfDate()) {
+if ($gallery->userDB->isInitialized() && $gallery->userDB->versionOutOfDate()) {
     include_once(dirname(__FILE__) . "/upgrade_users.php");
     exit;
 }
