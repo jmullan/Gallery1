@@ -25,7 +25,8 @@
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 	/* Gallery runs on a Debian System */
 	require ('/usr/share/gallery/util.php');
-} else {
+}
+else {
 	require (dirname(dirname(__FILE__)) . '/util.php');
 }
 
@@ -84,10 +85,10 @@ if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
     $GALLERY_REWRITE_OK = true;
 
     if (strstr($init_mod_rewrite, "ampersandbroken")) {
-	$GALLERY_REWRITE_SEPARATOR = "\&";
+	   $GALLERY_REWRITE_SEPARATOR = "\&";
     }
     else {
-	$GALLERY_REWRITE_SEPARATOR = "&";
+	   $GALLERY_REWRITE_SEPARATOR = "&";
     }
 }
 else {

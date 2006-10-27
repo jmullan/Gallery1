@@ -41,6 +41,7 @@ function fs_copy($source, $dest) {
 function fs_file_exists($filename) {
 	$filename = fs_import_filename($filename, 0);
 	debug("Checking for [$filename] == " . @file_exists($filename));
+
 	return @file_exists($filename);
 }
 
@@ -103,7 +104,7 @@ function fs_opendir($path) {
         return $dir_handle;
     }
     else {
-        echo gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+        echo gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
 	return false;
     }
 }

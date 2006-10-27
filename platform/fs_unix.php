@@ -66,18 +66,29 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
 	return fopen($filename, $mode, $use_include_path);
 }
 
+/**
+ * Wrapper for file_get_contents() as it was implemented in PHP 4.3.0 and minimum for G1 is 4.1.0
+ * http://de.php.net/manual/en/function.file-get-contents.php
+ *
+ * @param string $filename
+ * @return string $content
+ */
 function fs_file_get_contents($filename) {
-        if (function_exists("file_get_contents")) {
-                $tmp = @file_get_contents($filename);
-        } else {
-                if ($fd = fs_fopen($fname, "rb")) {
-                        while (!feof($fd)) {
-                                $tmp .= fread($fd, 65536);
-                        }
-                        fclose($fd);
-                }
+    $content = '';
+
+    if (function_exists("file_get_contents")) {
+        $content = @file_get_contents($filename);
+    }
+    else {
+        if ($fd = fs_fopen($fname, "rb")) {
+            while (!feof($fd)) {
+                $content .= fread($fd, 65536);
+            }
+            fclose($fd);
         }
-        return $tmp;
+    }
+
+    return $content;
 }
 
 function fs_is_dir($filename) {
@@ -99,11 +110,11 @@ function fs_is_writable($filename) {
 function fs_opendir($path) {
     $dir_handle = @opendir($path);
     if ($dir_handle) {
-	return $dir_handle;
+	   return $dir_handle;
     }
     else {
-	echo "\<br>". gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
-	return false;
+	   echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+	   return false;
     }
 }
 

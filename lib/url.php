@@ -60,9 +60,11 @@ function getGalleryBaseUrl() {
     }
     elseif(where_i_am() == 'config') {
         $base = '..';
-    } elseif (defined('GALLERY_URL')) {
+    }
+    elseif (defined('GALLERY_URL')) {
         $base = GALLERY_URL;
-    } else {
+    }
+    else {
         $base = '.';
     }
 
@@ -90,7 +92,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $modpath;
 
 	if (empty($GALLERY_MODULENAME) &&
-	    $GALLERY_EMBEDDED_INSIDE =='nuke' &&
+	    $GALLERY_EMBEDDED_INSIDE == 'nuke' &&
 	    !empty($modpath)) {
 	    $GALLERY_MODULENAME = basename(dirname($modpath));
 	}

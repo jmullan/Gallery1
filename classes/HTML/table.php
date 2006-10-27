@@ -21,6 +21,10 @@
  */
 ?>
 <?php
+/**
+ * Class for handling a HTML table
+ *
+ */
 class galleryTable {
 
     var $attrs;
@@ -48,7 +52,14 @@ class galleryTable {
     function setColumnCount($nr) {
         $this->columnCount = $nr;
     }
-
+    /**
+     * Adds an element to the table.
+     *
+     * @param array $element    an element is an array consiting of 'content' and 'cellArgs'.
+     *                          'cellArgs' also an array.
+     * @return boolean          true if the element was successfully added.
+     * @author Jens Tkotz <jens@peino.de>
+     */
     function addElement($element = array('content' => null, 'cellArgs' => array())) {
         if (!empty($element)) {
             $this->elements[] = $element;
