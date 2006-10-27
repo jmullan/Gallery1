@@ -456,16 +456,17 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
     }
 
     if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
-      (eregi("jpe?g\$", $photo->image->type))) {
+       (eregi("jpe?g\$", $photo->image->type))) {
         $myExif = $gallery->album->getExif($index, $forceRefresh);
 
-        if (!empty($myExif) && !isset($myExif['Error'])) {
+         if (!empty($myExif) && !isset($myExif['Error'])) {
             $tables[gTranslate('common', "EXIF Data")]  = $myExif;
         }
         elseif (isset($myExif['status']) && $myExif['status'] == 1) {
             echo infoBox(array(array(
-		'text' => gTranslate('common', "Display of EXIF data enabled, but no data found.")
-	    )), '', false);
+                'text' => gTranslate('common', "Display of EXIF data enabled, but no data found.")
+                )), '', false
+            );
         }
     }
 
@@ -638,7 +639,14 @@ function formatted_filesize($filesize = 0, $filename = '') {
     return round($filesize, 2) .'&nbsp;'. $units[$pass];
 }
 
+/**
+ * Generates a HTML page "header" that closes itself and reloads the opener window.
+ */
 function dismissAndReload() {
+    doctype();
+    echo "\n<html>";
+    echo "\n<title>". gTranslate('core', "Operation done, closing window.") . '</title>';
+
     if (isDebugging()) {
         echo "\n<body onLoad='opener.location.reload();'>\n";
         common_header();
@@ -650,6 +658,7 @@ function dismissAndReload() {
     } else {
         echo "<body onLoad='opener.location.reload(); parent.close()'></body>";
     }
+
     echo "\n</html>";
 }
 
@@ -659,7 +668,16 @@ function reload() {
     echo '</script>';
 }
 
+/**
+ * Generates a HTML page "header" that closes itself and loads a specific url in the opener window.
+ *
+ * @param string $url
+ */
 function dismissAndLoad($url) {
+    doctype();
+    echo "\n<html>";
+    echo "\n<title>". gTranslate('core', "Operation done, closing window.") . '</title>';
+
     if (isDebugging()) {
         echo "<body onLoad='opener.location = \"$url\"; '>";
         common_header();
@@ -673,7 +691,8 @@ function dismissAndLoad($url) {
                 'text' => gTranslate('common', "Not closing this window because debug mode is on.")
             )
         ));
-    } else {
+    }
+    else {
         echo("<body onLoad='opener.location = \"$url\"; parent.close()'>");
     }
 }
@@ -1459,5 +1478,47 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
     }
 
     return $html;
+}
+
+/**
+ * Creates a toggle Button. Button calls Javascript function gallery_toggle()
+ * This needs to be loaded separately.
+ *
+ * @param string $id
+ * @return string   The HTML code.
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function toogleButton($id) {
+    $html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
+            gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$id")) .
+            '</a> ';
+
+    return $html;
+
+}
+/**
+ * Creates a toggle Box. Optionally a toggle Button is added before, or after.
+ *
+ * @param string $id
+ * @param string $text
+ * @param string $toogleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
+ * @return string   The HTML code.
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function toogleBox($id, $text, $toogleButton = 'prepend') {
+    $html = "\n<div id=\"toogleFrame_$id\" style=\"display:none;\">$text\n</div>";
+
+    if ($toogleButton == 'prepend') {
+        $html = toogleButton($id) . $html;
+    }
+
+    if ($toogleButton == 'append') {
+        $html .= toogleButton($id);
+    }
+
+    $html = '<br>' . $html;
+
+    return $html;
+
 }
 ?>
