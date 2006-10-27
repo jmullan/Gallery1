@@ -104,16 +104,18 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
         echo '<div style="padding: 2px;">';
         echo galleryLink(
             makeGalleryUrl("view_photo_properties.php",
-                    array("reloadExifFromFile" => 1,
-                        "set_albumName" => $gallery->session->albumName,
-                        "index" => $index,
-                        'type' => 'popup')),
-	    gTranslate('core', "Reload EXIF Data From File")
-	);
+                array(
+                    'reloadExifFromFile' => 1,
+                    'set_albumName' => $gallery->session->albumName,
+                    'index' => $index,
+                    'type' => 'popup')),
+            gTranslate('core', "Reload EXIF Data From File")
+        );
         echo "<br>";
         echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
     }
-} else {
+}
+else {
     echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>

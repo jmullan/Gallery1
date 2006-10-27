@@ -201,7 +201,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
             continue;
         }
         list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
+        $form .= "<input type=\"hidden\" id=\"$key\" name=\"$key\" value=\"$val\">\n";
     }
 
     return $form;
