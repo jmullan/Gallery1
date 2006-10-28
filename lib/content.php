@@ -1522,4 +1522,31 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
     return $html;
 
 }
+
+/**
+ * Returns the HTML code for a progressbar.
+ *
+ * @param string  $id        HTML ID of the progressbar
+ * @param string  $label     A descriptive Label
+ * @return string $html
+ * @author Jens Tkotz <jens@peino.de>
+ */
+function addProgressbar($id, $label = '') {
+    global $gallery;
+    static $jsSet = false;
+
+    $html = '';
+
+    if(!$jsSet) {
+        $jsUrl = $gallery->app->photoAlbumURL . '/js/progressbar.js';
+        $html .= "<script type=\"text/javascript\" src=\"$jsUrl\"></script>\n";
+        $jsSet = true;
+    }
+
+    $html .= "\n<div class=\"g-emphasis\">$label</div>\n";
+    $html .= "<div id=\"$id\" class=\"progressBar\"><div id=\"progressBarDone_$id\" class=\"progressBarDone\"></div></div>\n";
+    $html .= "<div id=\"progressDescription_$id\"></div>\n";
+
+    return $html;
+}
 ?>
