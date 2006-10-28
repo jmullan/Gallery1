@@ -1488,32 +1488,33 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
  * @return string   The HTML code.
  * @author Jens Tkotz <jens@peino.de>
  */
-function toogleButton($id) {
+function toggleButton($id) {
     $html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
-            gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$id")) .
+            gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toggleBut_$id")) .
             '</a> ';
 
     return $html;
 
 }
+
 /**
  * Creates a toggle Box. Optionally a toggle Button is added before, or after.
  *
  * @param string $id
  * @param string $text
- * @param string $toogleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
+ * @param string $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
  * @return string   The HTML code.
  * @author Jens Tkotz <jens@peino.de>
  */
-function toogleBox($id, $text, $toogleButton = 'prepend') {
-    $html = "\n<div id=\"toogleFrame_$id\" style=\"display:none;\">$text\n</div>";
+function toggleBox($id, $text, $toggleButton = 'prepend') {
+    $html = "\n<div id=\"toggleFrame_$id\" style=\"display:none;\">$text\n</div>";
 
-    if ($toogleButton == 'prepend') {
-        $html = toogleButton($id) . $html;
+    if ($toggleButton == 'prepend') {
+        $html = toggleButton($id) . $html;
     }
 
-    if ($toogleButton == 'append') {
-        $html .= toogleButton($id);
+    if ($toggleButton == 'append') {
+        $html .= toggleButton($id);
     }
 
     $html = '<br>' . $html;

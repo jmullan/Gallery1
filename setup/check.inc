@@ -47,13 +47,13 @@ $configTestStatus = array(
         'image' => gImage('red_trafficlight.gif', gTranslate('config', "Serious warning, no go !")),
         'text' => gTranslate('config', "Serious warning, no go !"),
         'border' => 'border: 4px solid #ec000a',
-        'type' => 'nogo'
+        'type' => 'error'
     ),
     100 => array(
         'image' => gImage('red_trafficlight.gif', gTranslate('config', "Failure")),
         'text' => gTranslate('config', "Failure"),
         'border' => 'border: 4px solid #ec000a',
-        'type' => 'nogo'
+        'type' => 'error'
     )
 );
 
@@ -113,58 +113,59 @@ $warning = 0;
         }
         ?>
         </div>
-        <?php foreach ($checkPriority as $key => $content) {
-        echo "\n\t<h1>". $content['shortdesc'] . '</h1>';
+        <?php
 
-        echo "\n\t" . $content['longdesc'];
-?>
+        foreach ($checkPriority as $key => $checklistGroup) {
+            echo "\n\t<h1>". $checklistGroup['shortdesc'] . '</h1>';
 
-        <div class="g-config-main">
-            <table cellspacing="0" align="center">
-<?php
-            foreach ($content['checks'] as $short) {
+            echo "\n\t" . $checklistGroup['longdesc'];
+
+            $table = new galleryTable();
+            $table->setColumnCount(4);
+            $table->setAttrs(array(
+                'cellspacing' => 0,
+                'id' => "setupchecks_$key",
+                'class' => 'g-setupchecks'));
+
+            /* $checklist contains actually the complete list of checks */
+            foreach ($checklistGroup['checkslist'] as $short) {
                 $check = $checklist[$short];
                 if( isset($check["enabled"]) && $check["enabled"] == "no") continue;
 
-                $func = $check["func"];
+                $func = $check['func'];
                 $result = $func();
 
                 list($success, $fail, $warn) = $result;
                 $status = getCheckStatus($result, $check);
                 $usedStatus[$status] = $status;
 
-                // new Line //
-                echo "\n<tr style=\"margin-top: 2px\">";
-                // shortdesc
-                echo "\n\t<td class=\"g-desc-cell\" width=\"35%\" style=\"font-weight: bold; vertical-align: top; border-bottom: 2px solid #ececec;\">". $check['prompt'];
-                echo "\n\t\t". '<br><div style="font-weight: normal; display:none;" id="toogleFrame_'. $short .'">'. $check["desc"] .'</div>';
-                echo "\n</td>";
+                 // shortdesc
+                $table->addElement(array(
+                    'content' => $check['prompt'] . '<br>' . toggleBox($short, $check["desc"], 'none'),
+                    'cellArgs' => array('class' => 'g-desc-cell g-setup-check-desc')));
 
-                // toogle button
-                echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top; border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">" .
-                    "\n\t\t<a href=\"#\" onClick=\"gallery_toggle('$short'); return false;\">" .
-                    gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$short")) .
-                    '</a>';
-                echo "\n\t</td>";
+                // toggle button for the long description
+                $table->addElement(array(
+                    'content' => toggleButton($short),
+                    'cellArgs' => array('class' => 'g-desc-cell g-setup-check-toggle')));
 
                 // traffic light
-                echo "\n\t<td class=\"g-desc-cell\" style=\"border-right: 2px solid #ececec; border-bottom: 2px solid #ececec;\">";
-                echo $configTestStatus[$status]['image'];
-                echo "\n\t</td>";
+                $table->addElement(array(
+                    'content' => $configTestStatus[$status]['image'],
+                    'cellArgs' => array('class' => 'g-desc-cell g-setup-check-trafficlight')));
 
                 // result
-                echo "\n\t<td class=\"g-desc-cell\" style=\"vertical-align: top;border-bottom: 2px solid #ececec;\">";
-
                 $message = '';
-                foreach ($success as $key) {
-                    if ($key != '') {
-                        $message .= $key;
+
+               foreach ($success as $successMsg) {
+                    if ($successMsg != '') {
+                        $message .= $successMsg;
                     }
                 }
 
                 foreach ($fail as $key => $val) {
-                    if (isset($check['optional']) && $check['optional'] == 1) {
-                        if (isset($check["serious"]) && $check["serious"] == 1) {
+                    if (isset($check['optional']) && $check['optional']) {
+                        if (isset($check['serious']) && $check['serious']) {
                             $serious_warning = true;
                         }
                         if (isset($check) && isset($check[$key])) {
@@ -173,7 +174,7 @@ $warning = 0;
                         $warning++;
                     }
                     else {
-                        if (isset($check["serious"]) && $check["serious"] == 1) {
+                        if (isset($check['serious']) && $check['serious']) {
                             $serious_warning = true;
                         }
 
@@ -183,8 +184,8 @@ $warning = 0;
                         $error++;
                     }
 
-                    if (isset($check["open-basedir-note"]) && !empty($openBasedir)) {
-                        $message .= '<p>'. $check["open-basedir-note"] . '</p>';
+                    if (isset($check['open-basedir-note']) && !empty($openBasedir)) {
+                        $message .= '<p>'. $check['open-basedir-note'] . '</p>';
                     }
 
                     if (is_array($val)) {
@@ -212,24 +213,26 @@ $warning = 0;
                     }
                 }
 
-                echo infoBox(array(array(
-                    'type' => $configTestStatus[$status]['type'],
-                    'text' => $message)
-                    ), '', false
-                );
-                echo "</td>";
-
-                echo "\n</tr>";
+                $table->addElement(array(
+                    'content' => infoBox(array(array(
+                        'type' => $configTestStatus[$status]['type'],
+                        'text' => $message)
+                        ), '', false
+                    ),
+                    'cellArgs' => array('class' => 'g-desc-cell')));
             }
-?>
-            </table>
 
-        </div>
+            // Now show the checklist.
+            ?>
+            <div class="g-config-main">
+            <?php echo $table->render(); ?>
+            </div>
 
-        <div class="clear"></div>
-<?php
+            <div class="clear"></div>
+            <?php
+
         }
-?>
+    ?>
     </div>
 
     <div class="floatleft left" style="width: 30%">
@@ -237,12 +240,13 @@ $warning = 0;
         <tr>
           <td colspan="2" class="left"><?php echo gTranslate ('config', "Legend:"); ?></td>
         </tr><?php
-    foreach ($usedStatus as $status) {
-        echo "\n    <tr>";
-        echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
-        echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
-        echo "\n    </tr>";
-    }
+        sort($usedStatus);
+        foreach ($usedStatus as $status) {
+            echo "\n    <tr>";
+            echo "\n      <td>". $configTestStatus[$status]['image'] .'</td>';
+            echo "\n     <td style=\"padding: 2px; ". $configTestStatus[$status]['border'] .'">'. $configTestStatus[$status]['text'] .'</td>';
+            echo "\n    </tr>";
+        }
 ?>
       </table>
     </div>
@@ -282,11 +286,11 @@ else {
 ?>
         </div>
 <?php
-    echo gSubmit(
-        'go_next',
-        gTranslate('config', "_Next Step &gt;&gt;"),
-        array('disabled' => 'disabled')
-    );
+echo gSubmit(
+    'go_next',
+    gTranslate('config', "_Next Step &gt;&gt;"),
+    array('disabled' => 'disabled')
+);
 }
 ?>
     </div>

@@ -92,9 +92,9 @@ $tests = array(
 foreach($tests as $testname => $args) {
     if  (!empty($versionStatus[$testname])) { ?>
 <div class="g-notice left">
-    <a href="#" style="float: left;" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', _("Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
+    <a href="#" style="float: left;" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', _("Show/hide more information"), array('id' => "toggleBut_$testname")); ?></a>
     <?php echo infobox(array(array('type' => $args['type'], 'text' => $args['text'])), '', false); ?>
-  <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">
+  <div style="width:100%; display:none;" id="toggleFrame_<?php echo $testname; ?>">
     <table>
       <tr>
         <td class="g-sitedesc" colspan="2"><?php echo $args['hinttext']; ?></td>

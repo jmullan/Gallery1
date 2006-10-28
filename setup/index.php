@@ -44,35 +44,12 @@ doctype();
 
 	<script language="JavaScript" type="text/javascript">
     <!--
-
-	function localGetElementsByTagName(tagName) {
-		var eleArray;
-		if (window.opera) eleArray = document.body.getElementsByTagName(tagName);
-		else if (document.getElementsByTagName) eleArray = document.getElementsByTagName(tagName);
-		else if (document.all) eleArray = document.all.tags(tagName);
-		else if (document.layers) {
-			eleArray = new Array();
-			nnGetAllLayers(window, eleArray, 0);
-		}
-		return eleArray;
-	}
-
-	function nnGetAllLayers(parent, layerArray, nextIndex) {
-		var i, layer;
-		for (i = 0; i < parent.document.layers.length; i++) {
-			layer = parent.document.layers[i];
-			layerArray[nextIndex++] = layer;
-			if (layer.document.layers.length) nextIndex = nnGetAllLayers(layer, layerArray, nextIndex);
-		}
-		return nextIndex;
-	}
-
 	function enableButtons() {
-		var buttons = localGetElementsByTagName("input");
+		var buttons = document.getElementsByTagName('input');
 
 		var i = 0;
 		while (buttons[i]) {
-			if (buttons[i].type == "submit" || buttons[i].type == "button") {
+			if (buttons[i].type == 'submit' || buttons[i].type == 'button') {
 				buttons[i].disabled = false;
 			}
 			i++;
@@ -93,9 +70,11 @@ configLogin(basename(__FILE__));
 
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
-} else if (isset($go_next)) {
+}
+else if (isset($go_next)) {
 	$setup_page = $next_page;
-} else if (isset($go_back)) {
+}
+else if (isset($go_back)) {
 	$setup_page = $back_page;
 }
 
@@ -148,10 +127,11 @@ $steps = array(
 <?php
 
 if (array_key_exists($setup_page, $steps)) {
-	include(dirname(__FILE__) ."/$setup_page.inc");
-} else {
-	print _("Security violation") .".\n";
-	exit;
+    include(dirname(__FILE__) ."/$setup_page.inc");
+}
+else {
+    print _("Security violation") .".\n";
+    exit;
 }
 
 foreach ($preserve as $key => $val) {
