@@ -652,7 +652,6 @@ function check_graphics_im($location = '', $graphtool = '') {
 	$imagick = array(
 		fs_executable('identify'),
 		fs_executable('convert'),
-        fs_executable('disco1'),
 		fs_executable('composite'),
 	);
 
