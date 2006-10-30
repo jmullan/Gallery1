@@ -22,9 +22,9 @@
 ?>
 <?php
 
-$gallery->version = '1.6-alpha2-svn-b21';
+$gallery->version = '1.6-alpha2-svn-b22';
 $gallery->config_version = 99;
-$gallery->album_version = 38;
+$gallery->album_version = 39;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";
 
