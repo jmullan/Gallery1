@@ -163,7 +163,8 @@ function exec_internal($cmd) {
 		print "\n<br>". gTranslate('core', "Results:") ."<pre>";
 		if ($results) {
 			print join("\n", $results);
-		} else {
+		}
+		else {
 			print "<b>" .gTranslate('core', "none") ."</b>";
 		}
 		print "</pre>";
@@ -194,7 +195,8 @@ function exec_wrapper($cmd) {
 
     if ($status == $gallery->app->expectedExecStatus) {
         return true;
-    } else {
+    }
+    else {
         if ($results) {
             echo '<hr><p>'. gallery_error("") . join("<br>", $results) .'</p>';
         }
@@ -543,9 +545,11 @@ function getExifDisplayTool() {
 
     if(isset($gallery->app->exiftags)) {
         return 'exiftags';
-    } elseif (isset($gallery->app->use_exif)) {
+    }
+    elseif (isset($gallery->app->use_exif)) {
         return 'jhead';
-    } else {
+    }
+    else {
         return false;
     }
 }
@@ -591,7 +595,7 @@ function getExif($file) {
                 break;
             }
             $path = $gallery->app->use_exif;
-            list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -v ' .
+            list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' . // -v removed as the structure is different.
             fs_import_filename($file, 1));
 
             $unwantedFields = array('File name');
@@ -630,47 +634,50 @@ function getExif($file) {
  * If exif is not supported, or no date was gotten, then the file creation date is returned.
  * Note: i used switch/case because this is easier to extend later.
  */
-function getItemCaptureDate($file) {
-	$success = false;
-	$exifSupported = getExifDisplayTool();
+function getItemCaptureDate($file, $exifData = array()) {
+    $success = false;
+    $exifSupported = getExifDisplayTool();
 
-	if ($exifSupported) {
-		$return = getExif($file);
-		$exifData = $return[1];
-		switch($exifSupported) {
-                	case 'exiftags':
-				if (isset($exifData['Image Created'])) {
-					$tempDate = split(" ", $exifData['Image Created'], 2);
-				}
-                        	break;
-	                case 'jhead':
-				if (isset($exifData['Date/Time'])) {
-					$tempDate = split(" ", $exifData['Date/Time'], 2);
-				}
-        	                break;
-        	}
-		if (isset($tempDate)) {
-			$tempDay = strtr($tempDate[0], ':', '-');
-			$tempTime = $tempDate[1];
+    if ($exifSupported) {
+        if(empty($exifData)) {
+            list($status, $exifData) = getExif($file);
+        }
 
-			$itemCaptureTimeStamp = strtotime("$tempDay $tempTime");
+        switch($exifSupported) {
+            case 'exiftags':
+                if (isset($exifData['Image Created'])) {
+                    $tempDate = split(" ", $exifData['Image Created'], 2);
+                }
+                break;
+            case 'jhead':
+                if (isset($exifData['Date/Time'])) {
+                    $tempDate = split(" ", $exifData['Date/Time'], 2);
+                }
+                break;
+        }
 
-			if ($itemCaptureTimeStamp != 0) {
-				$success = true;
-			}
-		}
-	}
+        if (isset($tempDate)) {
+            $tempDay = strtr($tempDate[0], ':', '-');
+            $tempTime = $tempDate[1];
 
-	// we were not able to get the capture date from exif... use file creation time
-	if (!$success) {
-		$itemCaptureTimeStamp = filemtime($file);
-	}
+            $itemCaptureTimeStamp = strtotime("$tempDay $tempTime");
 
-	if (!isDebugging()) {
-		sprintf (gTranslate('core', "Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
-	}
+            if ($itemCaptureTimeStamp != 0) {
+                $success = true;
+            }
+        }
+    }
 
-	return $itemCaptureTimeStamp;
+    // we were not able to get the capture date from exif... use file creation time
+    if (!$success) {
+        $itemCaptureTimeStamp = filemtime($file);
+    }
+
+    if (!isDebugging()) {
+        sprintf (gTranslate('core', "Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
+    }
+
+    return $itemCaptureTimeStamp;
 }
 
 function doCommand($command, $args = array(), $returnTarget = '', $returnArgs = array()) {
@@ -1079,7 +1086,10 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
                 fs_unlink($gallery->app->tmpDir . "/$pic");
             }
         }
-    } else {
+    }
+    else {
+        echo debugMessage(gTranslate('core', "Start Processing single file"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Filename processing."), __FILE__, __LINE__,3);
         /* Its a single file
          * remove %20 and the like from name
          */
@@ -1111,6 +1121,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 
         set_time_limit($gallery->app->timeLimit);
         if (acceptableFormat($ext)) {
+            echo debugMessage(gTranslate('core', "extension is accepted."), __FILE__, __LINE__, 3);
             /*
              * Move the uploaded image to our temporary directory
              * using move_uploaded_file so that we work around
@@ -1129,44 +1140,20 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
             /* What should the caption be, if no caption was given by user ?
              * See captionOptions.inc.php for options
             */
-
-            if (isset($gallery->app->dateTimeString)) {
-                $dateTimeFormat = $gallery->app->dateTimeString;
-            } else {
-                $dateTimeFormat = "%D %T";
-            }
-
             if (empty($caption)) {
-                switch ($setCaption) {
-                    case 0:
-            			$caption = '';
-            		break;
-
-                    case 1:
-                    default:
-                        /* Use filename */
-                        $caption = strtr($originalFilename, '_', ' ');
-                    break;
-
-                    case 2:
-                        /* Use file cration date */
-                        $caption = strftime($dateTimeFormat, filectime($file));
-                    break;
-
-                    case 3:
-                        /* Use capture date */
-                        $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
-                    break;
-                }
+                generateCaption($setCaption, $originalFilename, $file);
             }
 
-            echo "\n<p><b>******". sprintf(gTranslate('core', "Adding %s"), $name) ."*****</b></p>";
+            echo infobox(array(array(
+                    'type' => 'informationm',
+                    'text' => '<b>'. sprintf(gTranslate('core', "Adding %s"), $name) .'</b>'
+                )));
 
             /* After all the preprocessing, NOW ADD THE element
              * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
              *                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
             */
-            $err = $gallery->album->addPhoto(
+            list($status, $statusMsg) = $gallery->album->addPhoto(
                 $file,
                 $ext,
                 $mangledFilename,
@@ -1178,13 +1165,15 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
                 $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
             );
 
-            if ($err) {
-                processingMsg(gallery_error($err));
+            echo $statusMsg;
+
+            if (!$status) {
                 processingMsg("<b>". sprintf(gTranslate('core', "Need help?  Look in the  %s%s FAQ%s"),
                 '<a href="http://gallery.sourceforge.net/faq.php" target=_new>', Gallery(), '</a>') .
                 "</b>");
             }
-        } else {
+        }
+        else {
             processingMsg(sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext));
         }
     }
@@ -1988,7 +1977,6 @@ function array_flaten($array) {
  * @return string $ret
  * @author Jens Tkotz <jens@peino.de>
  */
-
 function clearGalleryTitle($topic = '') {
     global $gallery;
 

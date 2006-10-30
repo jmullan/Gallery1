@@ -42,7 +42,7 @@ if (empty($gallery->session->username)) {
                         }
                         fclose($fp);
                         printf("<!-- From %s, created at %s -->",
-				$cache_file_basename, strftime("%D %T", $cache_stat[9]));
+				            $cache_file_basename, strftime("%D %T", $cache_stat[9]));
                         return;
                     }
                 }
@@ -55,6 +55,10 @@ $gallery->session->offlineAlbums["albums.php"] = true;
 
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
+
+if(! $albumDB->isInitialized()) {
+    exit;
+}
 
 $galleryTitle = clearGalleryTitle();
 
@@ -119,9 +123,11 @@ if ( $numAccess != $numAlbums && $maxPages > 1) {
 }
 else if ($numAccess != $numAlbums) {
 	$adminText .= sprintf(gTranslate('core', "%s (%s), %s"), $toplevel_str, $total_str, $image_str);
-} else if ($maxPages > 1) {
+}
+else if ($maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%s, %s on %s"), $toplevel_str, $image_str, $page_str);
-} else {
+}
+else {
 	$adminText .= sprintf(gTranslate('core', "%s, %s"), $toplevel_str, $image_str);
 }
 
@@ -257,14 +263,16 @@ if (!$gallery->session->offline &&
 
         if(sizeof($albumDB->outOfDateAlbums)) {
             $message = gTranslate('core',
-		"Gallery has detected that one of your albums is out of date.",
-		"Gallery has detected that %d of your albums are out of date.",
+                "Gallery has detected that one of your albums is out of date.",
+                "Gallery has detected that %d of your albums are out of date.",
                 sizeof($albumDB->outOfDateAlbums), '', true
             );
 
             $message .= "\n<br>";
             $message .= sprintf(gTranslate('core', "Please %s."),
-                popup_link(gTranslate('core', "perform an upgrade"), "upgrade_album.php",0,0,500,500,"g-error", '', '', false));
+                popup_link(
+                    gTranslate('core', "perform an upgrade"),
+                    "upgrade_album.php", 0, 0, 500, 500, 'g-error', '', '', false));
 
             $notice_messages[] = array(
                 'type' => 'warning',
@@ -276,7 +284,9 @@ if (!$gallery->session->offline &&
     if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
         $message = sprintf(gTranslate('core', "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"),
             ($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(gTranslate('core', "Login at the %s and try again."),
-            popup_link(gTranslate('core', "Login page"), "login.php", false, true, 500, 500, 'g-emphasis','','', false))));
+            popup_link(
+                gTranslate('core', "Login page"),
+                'login.php', false, true, 500, 500, 'g-emphasis','','', false))));
 
         $notice_messages[] = array(
             'type' => 'error',
