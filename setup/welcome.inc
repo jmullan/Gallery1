@@ -90,14 +90,16 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 
             <?php
                 }
-                else if(!$install) {
+                else if(isset($gallery->app->config_version) &&
+                  $gallery->app->config_version != $gallery->config_version) {
+
                     echo infobox(array(array(
                         'type' => 'warning',
-                        'text' => gTranslate('config', "Your Gallery needs a reconfiguration,") .
-                                  '<p>' .
-                                   gTranslate('config', "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") .
-                                  '</p>'
-                        )));
+                        'text' => gTranslate('config', "Your Gallery needs a reconfiguration.") .
+                        '<p>' .
+                        gTranslate('config', "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!") .
+                        '</p>'
+                    )));
                 }
             ?>
             <p>

@@ -277,8 +277,6 @@ foreach ($urls as $url) {
 }
 } /* if ($urls) */
 
-$image_count = 0;
-
 // Begin Metadata fetching and preprocessing
 $image_info = array();
 // Get meta data
@@ -317,58 +315,66 @@ $upload_started = false;
 
 echo "\n</div>";
 /* Now we start processing the given Files */
+$photoCount = sizeof($_FILES['userfile']['name']) -1;
 echo '<div class="g-content-popup left">';
-while (isset($_FILES['userfile']['tmp_name']) && sizeof($_FILES['userfile']['tmp_name'])) {
+echo infobox(array(array(
+            'type' => 'information',
+            'text' => gTranslate('core',
+                "Processing %d uploaded element.",
+                "Processing %d uploaded elements.",
+                $photoCount, 'Error, no photo uploaded.', true)
+        )));
+
+
+for($i = 0; $i < $photoCount; $i++) {
     $upload_started = true;
-    $name = array_shift($_FILES['userfile']['name']);
-    $file = array_shift($_FILES['userfile']['tmp_name']);
 
-    if ($name) {
-        if (!empty($usercaption) && is_array($usercaption)) {
-            $caption = array_shift($usercaption);
-        }
-        else {
-            $caption = '';
-        }
+    $name = $_FILES['userfile']['name'][$i];
+    $file = $_FILES['userfile']['tmp_name'][$i];
 
-        if (!isset($caption)) {
-            $caption = '';
-        }
+    if (!empty($usercaption) && is_array($usercaption)) {
+        $caption = array_shift($usercaption);
+    }
+    else {
+        $caption = '';
+    }
 
-        $extra_fields = array();
-        if (!isset($setCaption)) {
-            $setCaption = '';
-        }
+    if (!isset($caption)) {
+        $caption = '';
+    }
 
-        // Find in meta data array
-        foreach ($image_info as $info) {
-            if ($info[$fileNameKey] == $name) {
-                // Loop through fields
-                foreach ($captionMetaFields as $field) {
-                    // If caption isn't populated and current field is
-                    if (!strlen($caption) && strlen($info[$field])) {
-                        $caption = $info[$field];
-                    }
-                }
-                $extra_fields = $info;
-                if(isDebugging()) {
-                    echo gTranslate('common', "Extra fields:");
-                    print_r($extra_fields);
+    $extra_fields = array();
+    if (!isset($setCaption)) {
+        $setCaption = '';
+    }
+
+    // Find in meta data array
+    foreach ($image_info as $info) {
+        if ($info[$fileNameKey] == $name) {
+            // Loop through fields
+            foreach ($captionMetaFields as $field) {
+                // If caption isn't populated and current field is
+                if (!strlen($caption) && strlen($info[$field])) {
+                    $caption = $info[$field];
                 }
             }
+            $extra_fields = $info;
+            if(isDebugging()) {
+                echo gTranslate('common', "Extra fields:");
+                print_r($extra_fields);
+            }
         }
-
-        $path_parts = pathinfo($name);
-        $ext = strtolower($path_parts["extension"]);
-
-        // Add new image
-        processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
-        $image_count++;
     }
+
+    $path_parts = pathinfo($name);
+    $ext = strtolower($path_parts["extension"]);
+
+    // Add new image
+    processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
 }
 
-if ($image_count) {
-    $gallery->album->save(array(i18n("%d files uploaded"), $image_count));
+if ($photoCount) {
+    $gallery->album->save(array(i18n("%d files uploaded"), $photoCount));
 }
 
 if (!empty($temp_files)) {
@@ -381,7 +387,7 @@ if (!empty($temp_files)) {
 echo "\n</div>";
 echo '<div class="g-content-popup center">';
 
-if (empty($image_count) && $upload_started) {
+if (empty($photoCount) && $upload_started) {
     print gTranslate('core', "No images uploaded!");
 }
 echo "\n<br>";
