@@ -284,10 +284,10 @@ $defaults = array(
 	'extra_fields' => array(
 		'prompt' => gTranslate('config',"Custom Fields"),
 		'optional' => 1,
-		'desc' => gTranslate('config',"Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Description, Location, Film Type</i>"),
+		'desc' => gTranslate('config',"Custom fields that are available to describe each image.  They should be separated by commas.  E.g. <i>Location, Film Type</i>"),
 		'attrs' => array('size' => 80),
 		'type' => 'text',
-		'value' => 'Description',
+		'value' => '',
 		'inst_type' => 'advanced'
 	),
 	'showDimensions' => array(

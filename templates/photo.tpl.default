@@ -176,6 +176,9 @@ if(isset($imageMapHTML)) {
 	<!-- caption -->
 	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
 
+	<!-- description -->
+	<p class="g-photo-caption"><?php echo $gallery->album->getDescription($index) ?></p>
+
 	<!-- Custom Fields -->
 	<?php
 	displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);

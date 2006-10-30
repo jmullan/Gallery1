@@ -97,7 +97,8 @@ class Album {
             $value = trim($value);
             if (empty($value)) {
                 unset($this->fields["extra_fields"][$key]);
-            } else {
+            }
+            else {
                 $this->fields["extra_fields"][$key] = $value;
             }
         }
@@ -285,10 +286,13 @@ class Album {
 
     function versionOutOfDate() {
         global $gallery;
+
         if (strcmp($this->version, $gallery->album_version)) {
-            return 1;
+            return true;
         }
-        return 0;
+	else {
+           return false;
+       }
     }
 
     /**
@@ -297,6 +301,7 @@ class Album {
      */
     function integrityCheck() {
         global $gallery;
+
         $gallery->album = $this;
 
         if (!$this->transient->photosloaded) {
@@ -312,6 +317,7 @@ class Album {
         my_flush();
 
         $changed = 0;
+
         $this->fields["last_quality"] = $gallery->app->jpegImageQuality;
         $check = array(
             'thumb_size',
@@ -358,7 +364,7 @@ class Album {
         foreach ($check as $field) {
             if (!isset($this->fields[$field]) && isset($gallery->app->default[$field])) {
                 $this->fields[$field] = $gallery->app->default[$field];
-                $changed = 1;
+                $changed = true;
             }
         }
 
@@ -371,30 +377,30 @@ class Album {
                 foreach ($this->fields['perms']['canRead'] as $uid => $p) {
                     $this->fields['perms']['canViewFullImages'][$uid] = $p;
                 }
-                $changed = 1;
+                $changed = true;
             }
         }
         if ($this->version < 10) {
             if (empty($this->fields['summary'])) {
                 $this->fields['summary']='';
-                $changed = 1;
+                $changed = true;
             }
             if (empty($this->fields['extra_fields']) || !is_array($this->fields['extra_fields'])) {
                 $this->fields['extra_fields']=array();
-                $changed = 1;
+                $changed = true;
             }
         }
         if ($this->version < 16) {
             if (empty($this->fields['votes'])) {
                 $this->fields['votes']=array();
-                $changed = 1;
+                $changed = true;
             }
         }
         if ($this->version < 17) {
             foreach ($this->fields['votes'] as $key => $value) {
                 unset($this->fields['votes'][$key]);
                 $this->fields['votes']["item.$key"]=$value;
-                $changed = 1;
+                $changed = true;
             }
         }
 
@@ -459,7 +465,7 @@ class Album {
             // instance of this album, so we have to do it here also so that
             // when *this* instance gets saved the value is right
             $this->fields["name"] = $newName;
-            $changed = 1;
+            $changed = true;
         }
 
         /* Rebuild highlight */
@@ -472,7 +478,7 @@ class Album {
 
         if ($this->version < 29) {
             $this->fields['guid'] = genGUID();
-            $changed = 1;
+            $changed = true;
         }
 
         if ($this->version < 30) {
@@ -498,7 +504,7 @@ class Album {
                     $this->fields['print_photos']['shutterfly']['checked'] = 'checked';
                 }
                 unset($this->fields['print_photos']['ezprints']);
-                $changed = 1;
+                $changed = true;
             }
         }
         // In gallery 1.5.1 the Structure for print services was 'de-suck-ified' (quoted B.M.W.)
@@ -528,48 +534,81 @@ class Album {
 			$changed = true;
         }
 
+        static $configWritten = false;
+        if ($this->version < 39) {
+            $translation1 = gTranslate('core', "description");
+            $translation2 = gTranslate('core', "Description");
+            $removeFields = array('description', 'Description', $translation1, $translation2);
+
+            if(!empty($this->fields['extra_fields'])) {
+                foreach($this->fields['extra_fields'] as $key => $fieldname) {
+                    if(in_array($fieldname, $removeFields)) {
+                        unset($this->fields['extra_fields'][$key]);
+                    }
+                }
+            }
+
+            if(!$configWritten) {
+                $configFile = dirname(dirname(__FILE__)) .'/config.php';
+
+                $config = fs_file_get_contents($configFile);
+                $pattern = '/(description|Description|$translation1|$translation2)\ *,?/';
+                $replacement = '';
+                $newconfig = preg_replace($pattern, '', $config);
+
+                if ($fd = fs_fopen($configFile, "w")) {
+                    fwrite($fd, $newconfig);
+                    fclose($fd);
+                }
+                $configWritten = true;
+            }
+            $changed = true;
+        }
+
         /* Special case for EXIF :-( */
         if (!$this->fields["use_exif"]) {
             if (!empty($gallery->app->use_exif)) {
                 $this->fields["use_exif"] = "yes";
-            } else {
+            }
+            else {
                 $this->fields["use_exif"] = "no";
             }
-            $changed = 1;
+            $changed = true;
         }
 
         /* Special case for serial number */
         if (!$this->fields["serial_number"]) {
             $this->fields["serial_number"] = 0;
-            $changed = 1;
+            $changed = true;
         }
-
-        print gTranslate('core', "done").".<br>";
 
         /* Check all items */
         $count = $this->numPhotos(1);
-        for ($i = 1; $i <= $count; $i++) {
-            set_time_limit(30);
-            print sprintf(gTranslate('core', "Upgrading item %d of %d . . . "), $i, $count);
-            my_flush();
+        if($count > 0) {
+            $onePercent = 100/$count;
+            for ($i = 1; $i <= $count; $i++) {
+                set_time_limit(30);
+                $status = sprintf(gTranslate('core', "Upgrading item %d of %d . . . "), $i, $count);
+                echo "\n<script type=\"text/javascript\">updateProgressBar('albumProgessbar', '$status',". ceil($i * $onePercent) .")</script>";
+                my_flush();
 
-            $photo = &$this->getPhoto($i);
-            if ($photo->integrityCheck($this->getAlbumDir())) {
-                $changed = 1;
-                $this->updateSerial = 1;
+                $photo = &$this->getPhoto($i);
+                if ($photo->integrityCheck($this->getAlbumDir())) {
+                    $changed = true;
+                    $this->updateSerial = 1;
+                }
             }
-
-            print gTranslate('core', "done").".<br>";
         }
 
         if (strcmp($this->version, $gallery->album_version)) {
             $this->version = $gallery->album_version;
-            $changed = 1;
+            $changed = true;
         }
 
         if ($changed) {
             $this->updateSerial = 1;
         }
+
         return $changed;
     }
 
@@ -871,7 +910,7 @@ class Album {
         $this->fields['highlightIndex'] = $index;
     }
 
-    function load($name, $loadphotos=TRUE) {
+    function load($name, $loadphotos = true) {
         global $gallery;
 
         $this->transient->photosloaded = FALSE;
@@ -890,7 +929,7 @@ class Album {
             if (!$this->loadFromFile("$dir/album.dat.bak") &&
             !$this->loadFromFile("$dir/album.bak")) {
                 /* Uh oh */
-                return 0;
+                return false;
             }
         }
 
@@ -900,12 +939,15 @@ class Album {
             if ($loadphotos) {
                 $this->loadPhotos($dir);
             }
-        } else {
+        }
+        else {
             $this->transient->photosloaded = TRUE;
         }
+
         $this->fields["name"] = $name;
         $this->updateSerial = 0;
-        return 1;
+
+        return true;
     }
 
 
@@ -1014,10 +1056,12 @@ class Album {
             if ($success) {
                 $this->fields["photos_separate"] = TRUE;
                 unset ($this->photos);
-            } else {
+            }
+            else {
                 $success = FALSE;
             }
-        } else {
+        }
+        else {
             $success = TRUE;
         }
 
@@ -1174,7 +1218,7 @@ class Album {
         $this->updateSerial = 1;
         $dir = $this->getAlbumDir();
 
-        echo debugMessage(gTranslate('core', "Doing the naming"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Doing the naming of the physical file."), __FILE__, __LINE__);
 
         if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
             $name = $originalFilename;
@@ -1194,7 +1238,8 @@ class Album {
                     }
                 }
             }
-        } else {
+        }
+        else {
             $name = $this->newPhotoName();
             // do filename checking here, too... users could introduce a duplicate 3 letter
             // name if they switch original file names on and off.
@@ -1212,29 +1257,42 @@ class Album {
         preprocessImage($dir, "$name.$tag");
 
         /* Resize original image if necessary */
-        echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', 'Resizing/compressing original image'), __FILE__, __LINE__,1);
+        echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', "Resizing/compressing original file"), __FILE__, __LINE__,1);
+
         if (isImage($tag)) {
             resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
-        } else {
-            processingMsg(gTranslate('core', 'Cannot resize/compress this filetype'));
+        }
+        elseif (isMovie($tag)) {
+            processingMsg(gTranslate('core', "File is a movie, no resizing done."));
+        }
+        else {
+            processingMsg(sprintf(gTranslate('core', "Invalid filetype: %s. Skipping."), $tag));
         }
 
         /* Add the photo to the photo list */
         $item = new AlbumItem();
-        $err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
-        if ($err) {
+        $status = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
+
+        if (!$status) {
             if (fs_file_exists($newFile)) {
                 fs_unlink($newFile);
             }
-            return $err;
-        } else {
+            $errorMsg = infobox(array(array(
+                    'type' => 'error',
+                    'text' => gTranslate('core', "Item not added.")
+            )));
+
+            return array($status, $errorMsg);
+        }
+        else {
             $item->setCaption("$caption");
             /* Only try to get Capture Date if file could have it.
-            ** Otherwise use file creation time
+             * Otherwise use file creation time
             */
             if(hasExif($tag)) {
                 $originalItemCaptureDate = getItemCaptureDate($file);
-            } else {
+            }
+            else {
                 $originalItemCaptureDate = filemtime($file);
             }
 
@@ -1253,7 +1311,7 @@ class Album {
         $this->photos[] = $item;
 
         /* If this is the only photo, make it the highlight */
-        if ($this->numPhotos(1) == 1 && !$item->isMovie()) {
+        if ($this->numPhotos(1) == 1 && !isMovie($tag)) {
             $this->setHighlight(1);
         }
 
@@ -1278,9 +1336,9 @@ class Album {
             }
         }
 
-        /* auto-rotate the photo if needed */
         $index = $this->numPhotos(1);
 
+        /* auto-rotate the photo if needed */
         echo debugMessage(gTranslate('core', "Check if image needs to be rotated"), __FILE__, __LINE__);
         if ($exifRotate && hasExif($tag) &&
           !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
@@ -1292,9 +1350,11 @@ class Album {
 
             if (isset($exifData['Orientation'])) {
                 $orientation = trim($exifData['Orientation']);
-            } else if (isset($exifData['Image Orientation'])) {
+            }
+            else if (isset($exifData['Image Orientation'])) {
                 $orientation = trim($exifData['Image Orientation']);
-            } else {
+            }
+            else {
                 $orientation = '';
             }
 
@@ -1359,7 +1419,12 @@ class Album {
 
         $this->fields['guid'] = genGUID();
 
-        return 0;
+        $statusMsg = infobox(array(array(
+                    'type' => 'success',
+                    'text' => gTranslate('core', "Item successfully added.")
+            )));
+
+        return array(true, $statusMsg);
     }
 
     function addNestedAlbum($albumName) {
@@ -1803,6 +1868,29 @@ class Album {
         }
     }
 
+    /**
+     * Returns the description of an album item
+     *
+     * @param integer $index
+     * @return string
+     * @author Jens Tkotz <jens@peino.de>
+     */
+    function getDescription($index) {
+        $photo = $this->getPhoto($index);
+        return $photo->getDescription();
+    }
+
+    /**
+     * Sets the description of an album item
+     *
+     * @param integer   $index
+     * @param string    $description
+     */
+    function setDescription($index, $description) {
+        $photo = &$this->getPhoto($index);
+        $photo->setDescription($description);
+    }
+
     function getItemOwner($index) {
         $photo = $this->getPhoto($index);
         return $photo->getOwner();
@@ -2142,6 +2230,7 @@ class Album {
 
         $dir = $this->getAlbumDir();
         $photo =& $this->getPhoto($index);
+
         list ($status, $exif, $needToSave) = $photo->getExif($dir, $forceRefresh);
 
         if ($status != 0) {
@@ -2509,29 +2598,37 @@ class Album {
         return $gallery->userDB->getUserByUid($this->fields["owner"]);
     }
 
+    /**
+     * Returns an array with the names of all extrafields for itemes defined in an album
+     *
+     * @param boolean $all  if false, all fields except the AltText field.
+     * @return array
+     */
     function getExtraFields($all = true) {
+        $extra_fields = array();
+
         if ($all) {
-            return $this->fields["extra_fields"];
-        } else {
-            $return = array();
-            foreach($this->fields["extra_fields"] as $value) {
+            $extra_fields = $this->fields['extra_fields'];
+        }
+        else {
+            foreach($this->fields['extra_fields'] as $value) {
                 if ($value != 'AltText') {
-                    $return[]=$value;
+                    $extra_fields[] = $value;
                 }
             }
-            return $return;
         }
+        return $extra_fields;
     }
 
     function setExtraFields($extra_fields) {
-        $this->fields["extra_fields"] = $extra_fields;
+        $this->fields['extra_fields'] = $extra_fields;
     }
 
     /**
      * Returns the values of an extrafield from a photo.
-     * @param   $index		integer	albumitemIndex
-     * @param   $field		string	fieldname
-     * @return	$fieldvalue	string
+     * @param   integer     $index  albumitemIndex
+     * @param   string      $field  fieldname
+     * @return	string      $fieldvalue
      */
     function getExtraField($index, $field) {
        $photo = $this->getPhoto($index);
