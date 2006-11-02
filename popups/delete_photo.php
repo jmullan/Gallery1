@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -29,14 +29,15 @@ list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) =
 
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
-} 
+	$highlightIndex = $gallery->album->getHighlight();
+}
 if (isset($albumDelete)) {
 	$index = $gallery->album->getAlbumIndex($id);
 	$myAlbum = $gallery->album->getNestedAlbum($index, false);
 }
 
 // Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album) && 
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
 	(!$gallery->album->getItemOwnerDelete() || !$gallery->album->isItemOwner($gallery->user->getUid(), $index)) &&
 	(isset($myAlbum) && !$myAlbum->isOwner($gallery->user->getUid()))) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -70,12 +71,14 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 	if (!isset($albumDelete) || isset($albumMatch)) {
 		$gallery->album->deletePhoto($index);
 		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    // Update guid to reflect change in album contents
-		$gallery->album->save(array(i18n("%s removed"), $id));
+
+        $gallery->album->save(array(i18n("%s removed"), $id));
 	}
 
 	if (isset($nextId) && !empty($nextId)) {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
-	} else {
+	}
+	else {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
 	}
 	return;
@@ -106,7 +109,7 @@ if ($gallery->album && isset($id)) {
 <input type="hidden" name="id" value="<?php echo $id ?>" class="g-button">
 <input type="hidden" name="albumDelete" value="<?php echo $myAlbum->fields['guid']; ?>" class="g-button">
 <?php
-	} 
+	}
 	else {
 	    echo gTranslate('core', "Do you really want to delete this photo?") ;
 	    echo makeFormIntro('delete_photo.php',
@@ -120,14 +123,14 @@ if ($gallery->album && isset($id)) {
 <p><?php echo $gallery->album->getCaption($index) ?></p>
 
 <input type="hidden" name="id" value="<?php echo $id?>">
-<?php 
+<?php
 	    if (isset($nextId)) {
 		echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
 	    }
 	}
 ?>
 <input type="hidden" name="formaction" value="">
-<?php 
+<?php
 echo gButton('confirm', gTranslate('core', "_Delete"), "deletephoto_form.formaction.value='delete'; deletephoto_form.submit()");
 echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
 ?>

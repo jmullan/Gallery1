@@ -825,8 +825,9 @@ class AlbumItem {
                 $attrs['alt'] = $this->getAlttext();
             }
             return $this->highlightImage->getTag($dir, 0, $size, $attrs);
-        } else {
-            return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
+        }
+        else {
+            return '<span class="g-title">'. gTranslate('core', "Requested item has no highlight!") .'</span>';
         }
     }
 
