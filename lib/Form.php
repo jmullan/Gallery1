@@ -250,7 +250,7 @@ function showColorpicker($attrs = array()) {
     $colorPickerUrl = makeGalleryUrl('colorpicker.php', $args);
     $imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16" alt="colorpicker">';
 
-    $html = "\n<table cellspacing=\"0\">";
+    $html = "\n<table cellspacing=\"0\" style=\"margin-top: 1px\">";
     $html .= "\n<tr>";
     $html .= "\n". '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
     $html .= "\n". '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';

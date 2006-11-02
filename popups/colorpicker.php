@@ -63,6 +63,10 @@ function changeColor(color)
     parent.opener.document.getElementById('<?php echo $target ?>').style.backgroundColor = color;
     parent.opener.document.getElementById('<?php echo $target ?>').style.color = brightness(color) < 128 ? 'white' : 'black';
 
+    if ('function' == typeof parent.opener.callBack) {
+        parent.opener.callBack(color);
+    }
+
     this.close();
 }
 

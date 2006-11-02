@@ -144,7 +144,7 @@
       document.areas.yvals.value    =  yVals;
   }
 
-  function updatePictureAndArea () {
+  function updatePictureAndArea() {
       el = document.getElementById('imageareas');
       areaurl = document.getElementById('areaurl');
       areatext = document.getElementById('areatext');
@@ -169,4 +169,9 @@
           areaurl.value = '';
           areatext.value = '';
       }
+  }
+
+  function callBack(color) {
+    jg.setColor(color);
+    updatePictureAndArea();
   }

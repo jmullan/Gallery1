@@ -232,7 +232,9 @@ echo makeFormIntro('imagemap.php',
 	<input type="<?php echo $type; ?>" name="xvals">
 	<input type="<?php echo $type; ?>" name="yvals">
 	<br>
-	<input type="button" class="g-button" onClick="resetAndClear();" value="<?php echo gTranslate('core', "Clear and reset canvas"); ?>">
+    <?php echo gButton('clearButton', gTranslate('core', "Clear and reset canvas"),'resetAndClear()'); ?>
+	<div class="floatleft"><?php echo gTranslate('core', "Brush color:"); ?></div>&nbsp;
+	<?php echo showColorpicker(array('name' => 'brushColor', 'value' => '#FFFFFF')); ?>
 	<hr>
 	<?php echo gTranslate('core', "Optional link-url"); ?><br>
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
