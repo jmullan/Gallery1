@@ -77,7 +77,7 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 ?>
 
-	<div class="g-tabset">
+	<div class="g-tabset floatleft">
 <?php
 foreach ($modes as $m => $mt) {
 	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
