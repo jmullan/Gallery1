@@ -1370,19 +1370,19 @@ class Album {
                 case "Right-Hand, Top":    // exiftags
                 case "Top, Right-Hand":
                 case "rotate 90":          // jhead
-                    $rotate = -90;
+                    $rotate = '90';
                 break;
 
                 case "Right-Hand, Bottom": // exiftags
                 case "Bottom, Right-Hand":
                 case "rotate 180":	   // jhead
-                    $rotate = 180;
+                    $rotate = '180';
                 break;
 
                 case "Left-Hand, Bottom":  // exiftags
                 case "Bottom, Left-Hand":
                 case "rotate 270":	   // jhead
-                    $rotate = 90;
+                    $rotate = '90';
                 break;
 
                 case "flip horizontal":
@@ -2006,6 +2006,7 @@ class Album {
         $this->updateSerial = 1;
         $photo = &$this->getPhoto($index);
         $retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this, $clearexifrotate);
+
         if (!$retval) {
             return $retval;
         }

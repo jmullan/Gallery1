@@ -21,7 +21,7 @@
  */
 ?>
 <?php
- 
+
 require_once(GALLERY_BASE . '/includes/stats/stats.inc.php');
 require_once(GALLERY_BASE . '/includes/definitions/services.php');
 
@@ -70,7 +70,7 @@ if (function_exists('posix_getpwuid')) {
 
 
 $common_messages['getting-netpbm'] = '<br>'.
-  sprintf(gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
+  sprintf(gTranslate('config',"Gallery prefers NetPBM version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
   "<a href=\"http://sourceforge.net/projects/gallery\">",
   '</a>',
   "<a href=\"http://sourceforge.net/projects/netpbm\">",

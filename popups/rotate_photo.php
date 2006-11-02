@@ -97,7 +97,7 @@ if ($gallery->session->albumName && isset($index)) {
         'imageedit/mirror.gif', gTranslate('core', "Horizontal"), '', array('accesskey' => 4)
     );
 
-    $args["rotate"] = "fl";
+    $args["rotate"] = "fv";
     $rotateElements[] = galleryIconLink(
         makeGalleryUrl("rotate_photo.php", $args),
         'imageedit/flip.gif', gTranslate('core', "Vertical"), '', array('accesskey' => 5)

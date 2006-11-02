@@ -401,13 +401,13 @@ function rotate_image($src, $dest, $target, $type) {
     $type = strtolower($type);
     if (!empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
         debugMessage(gTranslate('core', "Using jpegtran for rotation"), __FILE__, __LINE__, 3);
-        if (!strcmp($target, '-90')) {
+        if (!strcmp($target, '90')) {
             $args = '-rotate 90';
         }
         elseif (!strcmp($target, '180')){
             $args = '-rotate 180';
         }
-        elseif (!strcmp($target, '90')) {
+        elseif (!strcmp($target, '-90')) {
             $args = '-rotate 270';
         }
         elseif (!strcmp($target, 'fv')) {
@@ -434,17 +434,15 @@ function rotate_image($src, $dest, $target, $type) {
         switch($gallery->app->graphics) {
             case "NetPBM":
                 debugMessage(gTranslate('core', "Using netPBM for rotation"), __FILE__, __LINE__, 3);
-                $args2 = '';
-                if (!strcmp($target, '-90')) {
-                    /* NetPBM's docs mix up CW and CCW...
-                    * We'll do it right. */
-                    $args = '-r270';
+
+                if (!strcmp($target, '90')) {
+                    $args = '-cw';
                 }
                 elseif (!strcmp($target, '180')) {
                     $args = '-r180';
                 }
-                elseif (!strcmp($target, '90')) {
-                    $args = '-r90';
+                elseif (!strcmp($target, '-90')) {
+                    $args = '-ccw';
                 }
                 elseif (!strcmp($target, 'fv')) {
                     $args = '-tb';
@@ -453,29 +451,19 @@ function rotate_image($src, $dest, $target, $type) {
                     $args = '-lr';
                 }
                 elseif (!strcmp($target, 'tr')) {
-                    $args = '-xy';
+                    $args = '-transpose';
                 }
                 elseif (!strcmp($target, 'tv')) {
-                    /* Because of NetPBM inconsistencies, the only
-                    * way to do this transformation on *all*
-                    * versions of NetPBM is to pipe two separate
-                    * operations in sequence. Versions >= 10.13
-                    * have the new -xform flag, and versions <=
-                    * 10.6 could take the '-xy -r180' commands in
-                    * sequence, but versions 10.7--> 10.12 can't
-                    * do *either*, so we're left with this little
-                    * workaround. -Beckett 9/9/2003 */
-                    $args = '-xy';
-                    $args2 = ' | ' . NetPBM('pnmflip', '-r180');
+                    // Requires Netpbm 10.13 and higher
+                    $args = '-xform=transpose';
                 }
                 else {
                     $args = '';
                 }
 
                 exec_wrapper(toPnmCmd($src) . ' | ' .
-                NetPBM('pnmflip', $args) .
-                $args2 .
-                ' | ' . fromPnmCmd($out));
+                    NetPBM('pnmflip', $args) .
+                    ' | ' . fromPnmCmd($out));
 
                 // copy exif headers from original image to rotated image
                 if (isset($gallery->app->use_exif)) {
@@ -487,13 +475,13 @@ function rotate_image($src, $dest, $target, $type) {
 
             case "ImageMagick":
                 debugMessage(gTranslate('core', "Using ImageMagick for rotation"), __FILE__, __LINE__, 3);
-                if (!strcmp($target, '-90')) {
+                if (!strcmp($target, '90')) {
                     $destOperator = '-rotate 90';
                 }
                 elseif (!strcmp($target, '180')) {
                     $destOperator = '-rotate 180';
                 }
-                elseif (!strcmp($target, '90')) {
+                elseif (!strcmp($target, '-90')) {
                     $destOperator = '-rotate -90';
                 }
                 elseif (!strcmp($target, 'fv')) {
