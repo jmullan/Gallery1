@@ -196,7 +196,7 @@ if (!empty($allImageAreas)) {
         echo "\n\t map[$nr]['x_coords'] = new Array(". $area['x_coords'] .');';
         echo "\n\t map[$nr]['y_coords'] = new Array(". $area['y_coords'] .');';
         echo "\n\t map[$nr]['url'] = '". $area['url'] ."';";
-        echo "\n\t map[$nr]['hover_text'] = '". $area['hover_text'] ."';";
+        echo "\n\t map[$nr]['hover_text'] = '". rawurlencode($area['hover_text']) ."';";
     }
 
     echo "\n</script>";
