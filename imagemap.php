@@ -7,7 +7,7 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
@@ -28,7 +28,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($full, $index, $imageareas, $formaction) =
-    getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
+getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
 
 // Hack check and prevent errors
 if (! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
@@ -45,7 +45,8 @@ $id = $gallery->album->getPhotoId($index);
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
     return;
-} elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
+}
+elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
     return;
 }
@@ -62,7 +63,8 @@ switch($formaction) {
             }
             $gallery->album->save();
         }
-    break;
+        break;
+
     case 'create':
         list($xvals, $yvals, $url, $text) = getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
         if (isset($xvals) && isset($yvals)) {
@@ -71,9 +73,11 @@ switch($formaction) {
 
             if (!empty($xcoords)) {
                 $coords = $xcoords[0] .',' . $ycoords[0];
+
                 for ($i = 1 ; $i < sizeof($xcoords); $i++) {
                     $coords .= ','. $xcoords[$i] .',' . $ycoords[$i];
                 }
+
                 $gallery->album->addImageArea($index, array(
                     'coords'   => $coords,
                     'x_coords' => $xvals,
@@ -81,22 +85,27 @@ switch($formaction) {
                     'url'      => $url,
                     'hover_text' => $text)
                 );
+
                 $gallery->album->save();
             }
         }
-    break;
+        break;
+
     case 'update':
         list($url, $text) = getRequestVar(array('areaurl', 'areatext'));
+
         foreach($imageareas as $area_index) {
             $gallery->album->updateImageArea($index, $area_index, array(
                 'url'      => $url,
                 'hover_text' => $text)
             );
         }
+
         $gallery->album->save();
-    break;
+        break;
+
     default:
-    break;
+        break;
 }
 
 $photo = $gallery->album->getPhoto($index);
@@ -111,7 +120,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
   <?php
-	common_header();
+  common_header();
   ?>
 </head>
 <body>
@@ -124,7 +133,7 @@ includeTemplate("photo.header");
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
-      init_mousemove();
+  init_mousemove();
   </script>
 
 <?php
@@ -136,19 +145,20 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $iconElements = array();
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
-        if ($gallery->user->isLoggedIn()) {
-                $iconElements[] = galleryLink(
-			doCommand("logout", array(), "view_album.php", array("page" => $page)),
-                        gTranslate('core', "log_out"),
-                        array(),
-                        'exit.gif'
-                );
-        } else {
-                $iconElements[] = popup_link(
-                        gTranslate('core', "_login"),
-                        'login.php', false, true, 500, 500, '','','identity.gif'
-                );
-        }
+    if ($gallery->user->isLoggedIn()) {
+        $iconElements[] = galleryLink(
+        doCommand("logout", array(), "view_album.php", array("page" => $page)),
+            gTranslate('core', "log_out"),
+            array(),
+            'exit.gif'
+        );
+    }
+    else {
+        $iconElements[] = popup_link(
+            gTranslate('core', "_login"),
+            'login.php', false, true, 500, 500, '','','identity.gif'
+        );
+    }
 }
 
 $navigator["id"] = $id;
@@ -158,10 +168,10 @@ $navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($
 $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 
 $breadcrumb["text"][] = galleryLink(
-	makeAlbumUrl($gallery->session->albumName, $id),
-	  gTranslate('core', "Original photo"). "&nbsp;". gImage('icons/navigation/nav_home.gif'),
-	  array(), '', false, false
-	);
+    makeAlbumUrl($gallery->session->albumName, $id),
+    gTranslate('core', "Original photo"). "&nbsp;". gImage('icons/navigation/nav_home.gif'),
+    array(), '', false, false
+);
 
 $adminbox["commands"] = makeIconMenu($iconElements, 'right');
 
@@ -204,7 +214,7 @@ echo gTranslate('core', "Here you can create, edit or delete imagemaps for the s
 echo "\n<br>";
 echo gTranslate('core', "Click the question mark icon for helpful instructions.");
 echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/imagemap.php',
-         false, false, 500, 500, '', '', '', false, false);
+    false, false, 500, 500, '', '', '', false, false);
 ?>
 </div>
 
@@ -212,7 +222,7 @@ echo popup_link(gImage('icons/help.gif', gTranslate('common', "Help")), 'help/im
 echo makeFormIntro('imagemap.php',
     array('name' => 'areas'),
     array('index' => $index, 'formaction' => '')
-    );
+);
 ?>
 <table width="100%">
 <tr>
@@ -276,7 +286,7 @@ if (!empty($allImageAreas)) {
 ?>
     <script type="text/javascript">
     <!--
-      initPaintArea ();
+    initPaintArea ();
     //-->
     </script>
 <?php
