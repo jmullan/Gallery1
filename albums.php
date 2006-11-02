@@ -313,11 +313,11 @@ for ($i = $start; $i <= $end; $i++) {
     	$tmpAlbumName = $gallery->album->fields["name"];
     	$albumURL = makeAlbumUrl($tmpAlbumName);
     	$scaleTo = $gallery->app->highlight_size;
-        $highlightIndex = $gallery->album->getHighlight(true);
+        $highlightIndex = $gallery->album->getHighlight();
 
     	$rootAlbum[$tmpAlbumName]['url'] = $albumURL;
 
-    	if($highlightIndex) {
+    	if($highlightIndex !== null) {
     		$highlight = $gallery->album->getPhoto($highlightIndex);
     		$getAlbumDirURL = $gallery->album->getAlbumDirURL('highlight');
 

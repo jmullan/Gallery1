@@ -1,3 +1,25 @@
+2006-11-02 Jens Tkotz <jens@peino.de> 1.6-alpha3-svn-b1
+
+ * Fix: Check wether an Id was already used in makeFormIntro() 
+	to avoid inavlid HTML.
+
+ * Fix: When moving, or reordering, deleting etc. in an album,
+	the (new) higlightIndex was not updated.
+
+ * Change: Use the faster method of getting the highlightIndex in albums.php
+
+ * New: Method resetHighlightIndex() in classes/Album.php
+	Called in:
+	- movePhoto
+	- rearrangePhotos
+	- shufflePhotos
+	- sortPhotos
+	- deletePhoto
+
+ * Change: increased size of adminbar background image.
+
+ * Change: Little code nicify in popups/sort_album.php
+
 2006-10-31 Chris Kelly <ckdake@ckdake.com> 1.6-alpha2
 
  * Release: 1.6-alpha2

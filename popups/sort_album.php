@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -55,17 +55,21 @@ if ($gallery->session->albumName) {
 <b><?php echo gTranslate('core', "Warning:  This operation can't be undone.") ?></b>
 </p>
 
-<p>
 <?php
-if ($gallery->album->getHighlight()) {
-	print $gallery->album->getThumbnailTag($gallery->album->getHighlight());
+$highlightIndex = $gallery->album->getHighlight();
+
+if ($highlightIndex != null) {
+	print $gallery->album->getThumbnailTag($highlightIndex);
 }
-?>
-<br>
-<?php
+
+echo "\n<br>";
+
 if (isset($gallery->album->fields['caption'])) {
 	echo $gallery->album->fields['caption'];
 }
+
+echo "\n<br>";
+
 echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
 ?>
 
@@ -104,7 +108,7 @@ echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
         <option value="-1"><?php echo gTranslate('core', "Descending") ?></option>
     </select>
     </td>
-    
+
   </tr>
 </table>
 <br>

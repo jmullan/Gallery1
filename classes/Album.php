@@ -616,6 +616,7 @@ class Album {
         $this->updateSerial = 1;
 
         shuffle($this->photos);
+        $this->resetHighlightIndex();
     }
 
     /**
@@ -661,6 +662,7 @@ class Album {
             usort($this->photos, array('Album', $func));
         }
 
+        $this->resetHighlightIndex();
     }
 
     /**
@@ -863,8 +865,10 @@ class Album {
 	                return $i;
 	            }
 	        }
+	        // If no highligh was found (?!) return 1
+	        debugMessage(gTranslate('core', "No Highlight was found !"), __FILE__, __LINE__, 3);
+	        return 1;
         }
-        return 1;
     }
 
     function getHighlightSize() {
@@ -877,6 +881,22 @@ class Album {
             $size = $gallery->app->highlight_size;
         }
         return $size;
+    }
+
+    function setHighlight($index, $verbose = true) {
+        debugMessage(gTranslate('core', "Setting highlight"), __FILE__, __LINE__, 3);
+
+        if($verbose) {
+            $this->updateSerial = 1;
+            $numPhotos = $this->numPhotos(1);
+
+            for ($i = 1; $i <= $numPhotos; $i++) {
+                $photo = &$this->getPhoto($i);
+                $photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
+            }
+        }
+
+        $this->fields['highlightIndex'] = $index;
     }
 
     /**
@@ -895,19 +915,6 @@ class Album {
             $ratio = getPropertyDefault('highlight_ratio', false, true);
         }
         return $ratio;
-    }
-
-    function setHighlight($index) {
-        debugMessage(gTranslate('core', "Setting highlight"), __FILE__, __LINE__, 3);
-
-        $this->updateSerial = 1;
-        $numPhotos = $this->numPhotos(1);
-
-        for ($i = 1; $i <= $numPhotos; $i++) {
-            $photo = &$this->getPhoto($i);
-            $photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
-        }
-        $this->fields['highlightIndex'] = $index;
     }
 
     function load($name, $loadphotos = true) {
@@ -1515,6 +1522,9 @@ class Album {
                 }
             }
         }
+        else {
+            $this->resetHighlightIndex();
+        }
     }
 
     function newPhotoName() {
@@ -1585,9 +1595,25 @@ class Album {
         if (isset($index)) {
             $photo = $this->getPhoto($index);
             return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs);
-        } else {
+        }
+        else {
             return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
         }
+    }
+
+    /**
+     * Resets the highlight index field.
+     *
+     */
+    function resetHighlightIndex() {
+        if ($this->numPhotos(1) == 0) {
+            return;
+        }
+
+        $highlightIndex = $this->getHighlight(true);
+        $this->setHighlight($highlightIndex, false);
+
+        return;
     }
 
     function getPhotoTag($index, $full, $attrs) {
@@ -2078,6 +2104,8 @@ class Album {
         /* Pull photo out */
         $photo = array_splice($this->photos, $index-1, 1);
         array_splice($this->photos, $newIndex, 0, $photo);
+
+        $this->resetHighlightIndex();
     }
 
     function rearrangePhotos($newOrder) {
@@ -2099,6 +2127,8 @@ class Album {
             }
         }
         $this->photos = $newList;
+
+        $this->resetHighlightIndex();
     }
 
     function isMovie($id) {

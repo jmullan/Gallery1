@@ -167,11 +167,17 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * makeFormIntro("add_photos.php",
  *                      array("name" => "count_form",
  *                              "enctype" => "multipart/form-data",
- *                              "method" => "POST"));
+ *                              "method" => "post"));
  *
- * If no method is given in attrList, then "POST" is used.
+ * If no method is given in attrList, then "post" is used.
+ * @param string    $target
+ * @param array()   $attrList
+ * @param array()   $urlargs
+ * @return string   $form
  */
 function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
+    static $usedIDs = array();
+    static $idCounter = 0;
     // We don't want the result HTML escaped since we split on "&", below
     // use the header version of makeGalleryUrl()
     $url = makeGalleryHeaderUrl($target, $urlargs);
@@ -201,7 +207,16 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
             continue;
         }
         list($key, $val) = split("=", $arg);
-        $form .= "<input type=\"hidden\" id=\"$key\" name=\"$key\" value=\"$val\">\n";
+        if(in_array($key, $usedIDs)) {
+            $id = "${key}_${idCounter}";
+            $idCounter++;
+        }
+        else {
+            $id = $key;
+            $usedIDs[] = $id;
+        }
+
+        $form .= "<input type=\"hidden\" id=\"$id\" name=\"$key\" value=\"$val\">\n";
     }
 
     return $form;
