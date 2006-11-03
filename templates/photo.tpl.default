@@ -165,6 +165,8 @@ if(isset($itemActionsMenu)) {
 if(isset($imageMapHTML)) {
   echo $imageMapHTML;
 }
+
+$description = nl2br($gallery->album->getDescription($index));
 ?>
 
 <!-- image -->
@@ -177,8 +179,10 @@ if(isset($imageMapHTML)) {
 	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
 
 	<!-- description -->
+    <?php if (!empty($description)) : ?>
 	<div class="g-photo-description left"><div><?php echo gTranslate('core', "Description"); ?></div>
-	<?php echo nl2br($gallery->album->getDescription($index)) ?></div>
+	<?php echo $description ?></div>
+    <?php endif; ?>
 
 	<!-- Custom Fields -->
 	<?php
