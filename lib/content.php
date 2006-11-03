@@ -1549,4 +1549,40 @@ function addProgressbar($id, $label = '') {
 
     return $html;
 }
+
+function readMoreBox($id, $label, $header = '', $text, $maxlength = 0, $contextId = '', $width = 200) {
+    if(empty($text)) return array(false, '');
+
+    $textLength = strlen($text);
+
+    if($textLength < $maxlength) {
+        $ret = array(false, $text);
+    }
+    else {
+        $html = '
+        <a href="#" class="g-dim g-small" onclick="myPanel_'. $id .'.show(); return false;">'. $label .'</a>
+        <div id="myPanel_'. $id .'">
+            <div class="hd" style="text-align: left">'. $header .'</div>
+            <div class="bd">'. $text .'</div>
+            <div class="ft"></div>
+        </div>
+        <script type="text/javascript">
+            var myPanel_'.$id.' = new YAHOO.widget.Panel("myPanel_'. $id .'", {
+                    effect:{ effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25},
+                    constraintoviewport: true,
+                    width: "'. $width .'px",
+                    visible:false,
+                    close:true,
+                    draggable:true,
+                    context: ["'. $contextId .'", "tl", "br"]
+                     }
+            );
+        </script>
+        ';
+
+        $ret = array(true, $html);
+    }
+
+    return $ret;
+}
 ?>

@@ -177,7 +177,8 @@ if(isset($imageMapHTML)) {
 	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
 
 	<!-- description -->
-	<p class="g-photo-caption"><?php echo $gallery->album->getDescription($index) ?></p>
+	<div class="g-photo-description left"><div><?php echo gTranslate('core', "Description"); ?></div>
+	<?php echo nl2br($gallery->album->getDescription($index)) ?></div>
 
 	<!-- Custom Fields -->
 	<?php

@@ -514,6 +514,8 @@ if ($numPhotos) {
 	$rowStart = $start;
 
 	$albumItems = array();
+    $vaRenderDescriptionPanelJS = array();
+
 	while ($rowCount < $rows) {
 	    /* Do the inline_albumthumb header row */
 	    $visibleItemIndex = $rowStart;
@@ -671,6 +673,8 @@ if ($numPhotos) {
 			}
 
             $albumItems[$nr]['infos'] = array();
+            $description = '';
+
 			/* Album */
 			if (isset($myAlbum)) {
 				// Caption itself
@@ -747,8 +751,20 @@ if ($numPhotos) {
 				  $gallery->album->getItemClicks($i) > 0) {
 					$albumItems[$nr]['clickcounter'] = gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
 				}
+
+				$description = nl2br($gallery->album->getDescription($i));
+				if(!empty($description)) {
+				    $header = sprintf(gTranslate('core' ,"Description for '%s'"), $albumItems[$nr]['caption']);
+				    $label = gTranslate('core' ,"... show description");
+				    list($status, $albumItems[$nr]['description']) =
+				        readMoreBox("description$nr", $label, $header, $description, 1, "thumb$nr");
+
+                    if($status) {
+                        $vaRenderDescriptionPanelJS[] = "description$nr";
+                    }
+				}
 			}
-			// End Caption
+			// End Caption & Description
 
 			if (canVote()) {
 				$albumItems[$nr]['voting'] =
@@ -785,6 +801,21 @@ if ($numPhotos) {
 
 		$rowCount++;
 		$rowStart = $visibleItemIndex;
+	}
+
+	$vaRenderDescriptionCSS = '';
+	if(!empty($vaRenderDescriptionPanelJS)) {
+	    $va_javascript .= "\n" .'  <script type="text/javascript">';
+        $va_javascript .= "\n" .'    function init() { ';
+        foreach ($vaRenderDescriptionPanelJS as $renderEntry) {
+        	$va_javascript .= "\n      myPanel_$renderEntry.render();";
+        }
+        $va_javascript .= "\n" .'    }';
+        $va_javascript .= "\n" .'    YAHOO.util.Event.addListener(window, "load", init);';
+        $va_javascript .= "\n" .'  </script>';
+
+        $vaRenderDescriptionCSS =
+            '<link rel="stylesheet" type="text/css" href="'. $gallery->app->photoAlbumURL .'/css/yui/container.css">';
 	}
 }
 else {
