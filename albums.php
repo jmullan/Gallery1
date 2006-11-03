@@ -191,7 +191,7 @@ if ($loggedIn) {
     }
  }
 
-$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "albums.php"));
+$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "albums.php"), $numPhotos);
 
 if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
     $iconElements[] = popup_link(

@@ -1308,7 +1308,7 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
  * @return string	$html
  * @author Jens Tkotz<jens@peino.de>
 */
-function LoginLogoutButton($returnUrl) {
+function LoginLogoutButton($returnUrl, $photoCount = 1) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	$html = '';
 
@@ -1317,9 +1317,14 @@ function LoginLogoutButton($returnUrl) {
 			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "log_out"));
 		}
 		else {
-			$html = popup_link(
-				gTranslate('common', "log_in"),
-				'login.php', false, true, 500, 500, '','','login.gif');
+		    if($photoCount == 0) {
+		        $loginText = gTranslate('core', "_Login to see or add more items.");
+		    }
+		    else {
+		        $loginText = gTranslate('common', "log_in");
+		    }
+
+			$html = popup_link($loginText, 'login.php', false, true, 500, 500, '','','login.gif');
 		}
 	}
 	return $html;

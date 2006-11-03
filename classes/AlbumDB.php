@@ -33,7 +33,7 @@ class AlbumDB {
         $this->initialized = false;
 
         $dir = $gallery->app->albumDir;
-        
+
         $allowedInvalidAlbums = array('CVS', 'SVN', '_vti_cnf', 'lost+found');
 
         if(!fs_is_dir($dir)) {
@@ -42,10 +42,10 @@ class AlbumDB {
                 'text' => sprintf("Albumdir (%s) not found! Please check the path to the albums folder in your config.php.",
                     $dir)
             )));
-            
+
             return false;
         }
-        
+
         $tmp = getFile("$dir/albumdb.dat");
         if (strcmp($tmp, '')) {
             $this->albumOrder = unserialize($tmp);
@@ -63,7 +63,7 @@ class AlbumDB {
         $this->albumList = array();
         $this->brokenAlbums = array();
         $this->outOfDateAlbums = array();
-        
+
         /* Loop through all albums already found in the albumdb.dat */
         $i = 0;
         while ($i < sizeof($this->albumOrder)) {
@@ -119,7 +119,7 @@ class AlbumDB {
         if ($changed) {
             $this->save();
         }
-        
+
         $this->initialized = true;
     }
 
@@ -132,7 +132,7 @@ class AlbumDB {
 	function isInitialized() {
         return $this->initialized === true;
 	}
-	
+
     function sortByField($fieldname = '', $order = 'desc') {
         $tmpOrder = array();
 
@@ -366,21 +366,26 @@ class AlbumDB {
 
     function numAccessibleItems($user) {
         global $gallery;
+
         $numPhotos = $numAlbums = $numTopAlbums = 0;
         foreach ($this->albumList as $album) {
             if ($user->canReadAlbum($album)) {
                 $numAlbums++;
+
                 if ($album->isRoot()) {
                     $numTopAlbums++;
                 }
+
                 if (empty($gallery->app->slowPhotoCount) || $gallery->app->slowPhotoCount == "no") {
                     $numPhotos += $album->fields["cached_photo_count"];
-                } else {
+                }
+                else {
                     $album->load($album->fields['name']);
                     $numPhotos += $album->numPhotos(1,1);
                 }
             }
         }
+
         return array($numPhotos, $numAlbums, $numTopAlbums);
     }
 
