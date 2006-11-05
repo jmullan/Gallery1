@@ -44,18 +44,18 @@ if (!isset($gallery->version)) {
 
 list($upgrade_albumname, $upgradeall) = getRequestVar(array('upgrade_albumname', 'upgradeall'));
 
-// Hack check
-if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;
-}
-
 /*
  * If we're not the admin, we can only upgrade the album that we're
  * looking at.
  */
 if ($gallery->session->albumName) {
 	$upgrade_albumname = $gallery->session->albumName;
+}
+
+// Hack check
+if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
+        echo _("You are not allowed to perform this action!");
+        exit;
 }
 
 $albumDB = new AlbumDB(FALSE);
@@ -173,7 +173,7 @@ elseif (!isset($actionDone)) {
 ?>
     <form action="#" class="center">
     <?php echo gButton("reloadButton", gTranslate('core', "_Reload"), 'location.reload()'); ?>
-    <?php echo gButton("closeButton", gTranslate('core', "_Close Window"), 'parent.close()'); ?>
+    <?php echo gButton("closeButton", gTranslate('core', "_Close Window"), 'parent.close() ; location.reload();'); ?>
     </form>
 
 </div>
