@@ -777,27 +777,28 @@ if ($numPhotos) {
 				$va_javascript .= $javascript;
 			}
 			if (sizeof($albumItemOptions) > 3) {
-				$albumItems[$nr]['options'] = drawSelect2("s$i", $albumItemOptions, array(
-    				'onChange' => "imageEditChoice(this)",
-    				'class' => 'g-admin'));
+			    $albumItems[$nr]['options'] = drawSelect2("s$i", $albumItemOptions, array(
+			    'onChange' => "imageEditChoice(this)",
+			    'class' => 'g-admin'));
 			}
 			else {
 			    $specialIconMode = 'yes';
+			    $albumItems[$nr]['options'] = '';
 			    /* Show item options. Such as eCard or photo properties link. */
 			    foreach ($albumItemOptions as $key => $option) {
-				if (!isset($option['separate'])) continue;
+			        if (!isset($option['separate'])) continue;
 
-				    if(!empty($option['value'])) {
-					if (stristr($option['value'], 'popup')) {
-					    $content = popup_link(
-						$option['text'], $option['value'],
-						true, false, 500, 500, '', '', $option['icon']);
-					}
-					else {
-					$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
-				    }
-				    $albumItems[$nr]['options'] .= $content .'&nbsp';
-				}
+			        if(!empty($option['value'])) {
+			            if (stristr($option['value'], 'popup')) {
+			                $content = popup_link(
+			                $option['text'], $option['value'],
+			                true, false, 500, 500, '', '', $option['icon']);
+			            }
+			            else {
+			                $content = galleryIconLink($option['value'], $option['icon'], $option['text']);
+			            }
+			            $albumItems[$nr]['options'] .= $content .'&nbsp';
+			        }
 			    }
 			}
 
