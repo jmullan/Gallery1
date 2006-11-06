@@ -72,7 +72,8 @@ if (empty($albumName)) {
 	$number		= (int)$gallery->app->gallery_slideshow_length;
 	$random		= ($gallery->app->gallery_slideshow_type == "random");
 	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
-} else {
+}
+else {
 	$recursive	= ($album->fields["slideshow_recursive"] == "yes");
 	$loop		= ($album->fields["slideshow_loop"] == "yes");
 	$random		= ($album->fields["slideshow_type"] == "random");
@@ -80,14 +81,14 @@ if (empty($albumName)) {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText = getIconText('1rightarrow.gif', gTranslate('core', "play"));
-$stopIconText = getIconText('2downarrow.gif', gTranslate('core', "stop"));
+$playIconText       = getIconText('slideshow/1rightarrow.gif', gTranslate('core', "play"));
+$stopIconText       = getIconText('slideshow/play_stop.gif', gTranslate('core', "stop"));
 $normalSizeIconText = getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
-$fullSizeIconText = getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
-$forwardIconText = getIconText('1rightarrow.gif', gTranslate('core', "forward direction"));
-$backwardIconText = getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
-$delayIconText = getIcontext('history.gif', gTranslate('core', "Delay"));
-$loopIconText =  getIcontext('reload.gif', gTranslate('core', "Loop:"));
+$fullSizeIconText   = getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
+$forwardIconText    = getIconText('slideshow/1rightarrow.gif', gTranslate('core', "forward direction"));
+$backwardIconText   = getIconText('slideshow/1leftarrow.gif', gTranslate('core', "reverse direction"));
+$delayIconText      = getIcontext('history.gif', gTranslate('core', "Delay"));
+$loopIconText       = getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
@@ -182,14 +183,15 @@ $imageDir = $gallery->app->photoAlbumURL."/images";
 #-- breadcrumb text ---
 $breadcrumb["text"] = @returnToPathArray($gallery->album, true);
 
-// todo: on the client, prevent old browsers from using High, and remove High from the bar
-if ( !$gallery->session->offline) {
+$adminbox['commands'] = '';
+if (!$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
 		$url = makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
-			$adminbox["commands"] = "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
-		} else {
-			$adminbox["commands"] = "&nbsp;" .$modes[$m];
+			$adminbox['commands'] .= "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
+		}
+		else {
+			$adminbox['commands'] .= "&nbsp;" .$modes[$m];
 		}
 	}
 }

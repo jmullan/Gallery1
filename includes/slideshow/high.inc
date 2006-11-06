@@ -489,23 +489,22 @@ function slideshow_controlPanel() {
 			$url, $full_urls, $urls, $caption, $captions, $photo_count, $title, $transitionNames,
 			$transitionCount, $pixelImage, $stopIconText, $browser;
 
-	global $delayIconText, $loopIconText;
-        ?>
+	global $delayIconText, $loopIconText, $stopIconText, $backwardIconText, $fullSizeIconText;
+?>
 <form name="TopForm" action="#">
 <?php
-	/* First this is set to "stop" */
-	$startStopIconText = $stopIconText;
-        $iconElements[] = '<a href="#" onClick="stopOrStart(); return false;" style="display: block"><span id="stopOrStartText">'. $startStopIconText . '</span></a>';
+    /* First this is set to "stop" */
+    $startStopIconText = $stopIconText;
+    $iconElements[] = '<a href="#" onClick="stopOrStart(); return false;" style="display: block"><span id="stopOrStartText">'. $startStopIconText . '</span></a>';
 
-	$directionIconText =  getIconText('1leftarrow.gif', gTranslate('core', "reverse direction"));
-        $iconElements[] = '<a href="#" onClick="changeDirection(); return false;" style="display: block"><span id="changeDirText">'. $directionIconText .'</span></a>';
+    $directionIconText = $backwardIconText;
+    $iconElements[] = '<a href="#" onClick="changeDirection(); return false;" style="display: block"><span id="changeDirText">'. $directionIconText .'</span></a>';
 
-        if ($full_option) {
-		$fullIconText = getIcontext('window_fullscreen.gif',gTranslate('core', "full size"));
-		$iconElements[] = '<a href="#" onClick="fullOrNormal(); return false;" style="display: block"><span id="fullOrNormalText">'. $fullIconText .'</span></a>';
-        }
+    if ($full_option) {
+        $iconElements[] = '<a href="#" onClick="fullOrNormal(); return false;" style="display: block"><span id="fullOrNormalText">'. $fullSizeIconText .'</span></a>';
+    }
 
-        $iconElements[] = $delayIconText .':';
+    $iconElements[] = $delayIconText .':';
 	$iconElements[] = drawSelect("time", array(1 => gTranslate('core', "1 second"),
 				2 => gTranslate('core', "2 seconds"),
 				3 => gTranslate('core', "3 seconds"),
