@@ -729,7 +729,9 @@ if ($numPhotos) {
 			}
 			/* Photo or Movie */
 			else {
-                $albumItems[$nr]['caption'] = nl2br($gallery->album->getCaption($i));
+			    $caption = nl2br($gallery->album->getCaption($i));
+
+                $albumItems[$nr]['caption'] = $caption;
                 $albumItems[$nr]['caption'] .= $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) &&
@@ -746,22 +748,23 @@ if ($numPhotos) {
 
 				}
 
+				$description = nl2br($gallery->album->getDescription($i));
+				if(!empty($description)) {
+				    $header = sprintf(gTranslate('core' ,"Description for '%s'"), $caption);
+				    $label = gTranslate('core' ,"... show full description");
+				    list($needJavascript, $albumItems[$nr]['description']) =
+				        readMoreBox("description$nr", $header, $description, 0, $label, "thumb$nr");
+
+                    if($needJavascript) {
+                        $vaRenderDescriptionPanelJS[] = "description$nr";
+                    }
+				}
+
 				if ($gallery->album->fields["display_clicks"] == 'yes' &&
 				  !$gallery->session->offline &&
 				  $gallery->album->getItemClicks($i) > 0) {
-					$albumItems[$nr]['clickcounter'] = gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
-				}
-
-				$description = nl2br($gallery->album->getDescription($i));
-				if(!empty($description)) {
-				    $header = sprintf(gTranslate('core' ,"Description for '%s'"), $albumItems[$nr]['caption']);
-				    $label = gTranslate('core' ,"... show description");
-				    list($status, $albumItems[$nr]['description']) =
-				        readMoreBox("description$nr", $label, $header, $description, 1, "thumb$nr");
-
-                    if($status) {
-                        $vaRenderDescriptionPanelJS[] = "description$nr";
-                    }
+				    $albumItems[$nr]['clickcounter'] =
+				        gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
 				}
 			}
 			// End Caption & Description
@@ -775,11 +778,12 @@ if ($numPhotos) {
 			list($albumItemOptions, $javascript) = getItemActions($i, true, true);
  			if(!empty($javascript)) {
 				$va_javascript .= $javascript;
+
 			}
 			if (sizeof($albumItemOptions) > 3) {
 			    $albumItems[$nr]['options'] = drawSelect2("s$i", $albumItemOptions, array(
-			    'onChange' => "imageEditChoice(this)",
-			    'class' => 'g-admin'));
+    			    'onChange' => "imageEditChoice(this)",
+    			    'class' => 'g-admin'));
 			}
 			else {
 			    $specialIconMode = 'yes';

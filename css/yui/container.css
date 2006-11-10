@@ -23,7 +23,7 @@ Version 0.11.4
 	overflow: visible;
 }
 
-.panel-container {
+.g-panel-container {
 	position: absolute;
 	background-color: transparent;
 	z-index: 6;
@@ -32,21 +32,21 @@ Version 0.11.4
 	width: auto;
 }
 
-.panel-container.matte {
+.g-panel-container.matte {
 	padding: 3px;
 	background-color: #FFF;
 }
 
-.panel-container.matte .underlay {
+.g-panel-container.matte .underlay {
 	display: none;
 }
 
-.panel-container.shadow {
-	padding:0px;
-	background-color:transparent;
+.g-g-panel-container.shadow {
+	padding: 0px;
+	background-color: transparent;
 }
 
-.panel-container.shadow .underlay {
+.g-panel-container.shadow .underlay {
 	visibility: inherit;
 	position: absolute;
 	background-color: #CCC;
@@ -59,7 +59,7 @@ Version 0.11.4
 	filter: alpha(opacity=70);
 }
 
-.panel {
+.g-panel {
 	visibility: hidden;
 	border-collapse: separate;
 	position: relative;
@@ -69,45 +69,48 @@ Version 0.11.4
 	border: 1px solid #000;
 	z-index: 1;
 	overflow: hidden;
+	width: auto;
 }
 
-.panel .hd {
+.g-panel .hd {
 	background-color: #66a;
 	color: #FFF;
 	font-weight: bold;
 	padding: 3px;
     border: 1px solid #FFF;
-    height: 16px;
+    height: auto;
+    min-height: 16px;
+    padding-right: 20px;
 }
 
-.panel .bd {
+.g-panel .bd {
 	overflow: hidden;
 	padding: 4px;
 }
 
-.panel .close {
-	position:absolute;
-	top:5px;
-	right:4px;
-	z-index:6;
-	height:16px;
-	width:16px;
-	margin:0px;
-	padding:0px;
-	background-repeat:no-repeat;
-	cursor:pointer;
-	visibility:inherit;
+.g-panel .close {
+	position: absolute;
+	top: 5px;
+	right: 4px;
+	z-index: 6;
+	height: 16px;
+	width: 16px;
+	margin: 0;
+	padding: 0;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	visibility: inherit;
 }
 
-.panel .close.nonsecure {
+.g-panel .close.nonsecure {
 	background-image:url(../../images/yui/windowclose.gif);
 }
 
-.panel .close.secure {
+.g-panel .close.secure {
 	background-image:url(../../images/yui/windowclose.gif);
 }
 
-.panel .ft {
+.g-panel .ft {
 	padding: 4px;
 	overflow: hidden;
 }

@@ -492,7 +492,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
  * Displays the ownename, if an email is available, then as mailto: link
  * @param  object  $owner
  * @return string
- * @author Jens Tkotz <jens@peino.de
+ * @author Jens Tkotz
  */
 function showOwner($owner) {
     global $gallery;
@@ -593,7 +593,7 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
  * @param	string	$formerSearchString    Optional former search string
  * @param	string	$align                 Optional alignment
  * @return	string	$html                  HTML code that contains a form for entering the searchstring
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function addSearchForm($formerSearchString = '') {
     $html = '';
@@ -618,7 +618,7 @@ function addSearchForm($formerSearchString = '') {
  * @param   string  $filesize   if omitted, function gets filesize of given filename
  * @param	string	$filename
  * @return	string  the formated filesize
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function formatted_filesize($filesize = 0, $filename = '') {
 
@@ -1283,7 +1283,7 @@ function showImageMap($index) {
  * @param $altText      string  alt Text
  * @param $attrs        array   optional additional attributs (id, name..)
  * @param $skin		string	optional input of skin, because the image could be in skindir.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
     global $gallery;
@@ -1306,7 +1306,7 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 /**
  * Returns a html string that represents the login/logout button, or just the text.
  * @return string	$html
- * @author Jens Tkotz<jens@peino.de>
+ * @author Jens Tkotz
 */
 function LoginLogoutButton($returnUrl, $photoCount = 1) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
@@ -1414,7 +1414,7 @@ function removeAccessKey($text) {
  * Returns the HTML code for loading YUI autocomplete Javascript
  *
  * @return  string  $html
- * @author  Jens Tkotz <jens@peino.de
+ * @author  Jens Tkotz
 */
 function autoCompleteJS() {
     global $gallery;
@@ -1449,7 +1449,7 @@ function autoCompleteJS() {
  * @param   string  $inputName  name of the input field
  * @param   string  $id         id of the input field
  * @return  string  $html       Output
- * @author  Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz
  */
 function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = false, $disabled = false) {
     global $gallery;
@@ -1491,7 +1491,7 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
  *
  * @param string $id
  * @return string   The HTML code.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function toggleButton($id) {
     $html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
@@ -1509,7 +1509,7 @@ function toggleButton($id) {
  * @param string $text
  * @param string $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
  * @return string   The HTML code.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function toggleBox($id, $text, $toggleButton = 'prepend') {
     $html = "\n<div id=\"toggleFrame_$id\" style=\"display:none;\">$text\n</div>";
@@ -1534,7 +1534,7 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
  * @param string  $id        HTML ID of the progressbar
  * @param string  $label     A descriptive Label
  * @return string $html
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function addProgressbar($id, $label = '') {
     global $gallery;
@@ -1555,27 +1555,50 @@ function addProgressbar($id, $label = '') {
     return $html;
 }
 
-function readMoreBox($id, $label, $header = '', $text, $maxlength = 0, $contextId = '', $width = 200) {
+/**
+ * If a Text is longer then a given length its cutted and a link which opens a panel i showed.
+ * Special case: if the allowed length = 0 then only the link is showed.
+ *
+ * @param  string  $panelID           Each Panel has its own id, which needs to be given by the user.
+ *                                    This ID is used for the rendering.
+ * @param  string  $panelHeaderText   Header of the panel.
+ * @param  string  $text
+ * @param  integer $cutAfter          After which chars the text is cutted. Or 0 if cutted at all.
+ * @param  string  $readMoreText      Text to be shown after the cut. Default is "... read more"
+ * @param  string  $contextId         If set, then the panel is connected to the element with this id.
+ * @return array                      First element is a boolean, if yes, then a javascript is need to handle the panel.
+ *                                    The second is the complete readMoreBox
+ * @author Jens Tkotz
+ */
+function readMoreBox($panelHeaderText = '', $text, $cutAfter = 0, $readMoreText = '' , $contextId = '') {
     if(empty($text)) return array(false, '');
 
     $textLength = strlen($text);
+    $html = '';
 
-    if($textLength < $maxlength) {
+    if(empty($readMoreText)) {
+        $readMoreText = gTranslate('core', "... read more");
+    }
+
+    if($textLength < $cutAfter) {
         $ret = array(false, $text);
     }
     else {
-        $html = '
-        <a href="#" class="g-dim g-small" onclick="myPanel_'. $id .'.show(); return false;">'. $label .'</a>
-        <div id="myPanel_'. $id .'">
-            <div class="hd" style="text-align: left">'. $header .'</div>
+        if($cutAfter > 0) {
+            $html = substr($text, 0, $cutAfter) . '<br>';
+        }
+
+        $html .= '<div class="right"><a href="#" class="g-dim g-small" onclick="myPanel_'. $panelID .'.show(); return false;">'. $readMoreText .'</a></div>';
+        $html .= '
+        <div id="myPanel_'. $panelID .'">
+            <div class="hd" style="text-align:'. langleft() .'">'. $panelHeaderText .'</div>
             <div class="bd">'. $text .'</div>
             <div class="ft"></div>
         </div>
         <script type="text/javascript">
-            var myPanel_'.$id.' = new YAHOO.widget.Panel("myPanel_'. $id .'", {
+            var myPanel_'.$panelID.' = new YAHOO.widget.Panel("myPanel_'. $panelID .'", {
                     effect:{ effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25},
                     constraintoviewport: true,
-                    width: "'. $width .'px",
                     visible:false,
                     close:true,
                     draggable:true,

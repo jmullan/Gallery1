@@ -163,7 +163,9 @@ if ($navigator["maxPages"] > 1) {
         <div class="g-thumb-caption"><?php echo $item['caption']; ?></div>
 
         <?php if(!empty($item['description'])) :?>
+            <div class="g-thumb-description">
             <?php echo $item['description']; ?>
+            </div>
         <?php endif ?>
 
         <?php if(!empty($item['infos'])) :?>
