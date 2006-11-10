@@ -23,8 +23,8 @@
  */
 ?>
 <?php
-require(dirname(__FILE__) . "/init.php");
-require(GALLERY_SETUPDIR . "/functions.inc");
+require_once(dirname(__FILE__) . "/init.php");
+
 configLogin(basename(__FILE__));
 
 /*
@@ -34,31 +34,38 @@ failmsg - Message to display on fail
 sev - Severity of a fail, 0 = warning, 1 = fatal
 */
 
-$tests = array (0 => array ("desc" => "safe mode",
-			    "test" => (ini_get ('safe_mode') == ''),
-			    "failmsg" => "<b>safe_mode</b> must be disabled in php.ini",
-			    "sev" => 1),
-		1 => array ("desc" => "exec() enabled",
-			    "test" => (! (in_array ('exec', split (',\s*', ini_get ('disable_functions'))))),
-			    "failmsg" => "The <b>exec()</b> function must not be disabled by the <b>disabled_functions</b> parameter in php.ini",
-			    "sev" => 1),
-		2 => array ("desc" => "file_uploads enabled",
-			    "test" => (ini_get ('file_uploads') != ''),
-			    "failmsg" => "<b>file_uploads</b> must be enabled in php.ini",
-			    "sev" => 1),
-		3 => array ("desc" => "session.save_path writable",
-			    "test" => ( is_dir (session_save_path()) && is_writable (session_save_path()) ),
-			    "failmsg" => "<b>session.save_path</b> must be set to a valid directory and be writable by the web server user",
-			    "sev" => 1),
-		4 => array ("desc" => "session.use_cookies enabled",
-			    "test" => (ini_get ('session.use_cookies') != ''),
-			    "failmsg" => "<b>session.use_cookies must be enabled in php.ini",
-			    "sev" => 1),
-		5 => array ("desc" => "allow_url_fopen on",
-			    "test" => (ini_get ('allow_url_fopen') != ''),
-			    "failmsg" => "Gallery will not be able to fetch pictures from remote hosts",
-			    "sev" => 0),
-		);
+$tests = array (
+    0 => array (
+        "desc" => "safe mode",
+        "test" => (ini_get ('safe_mode') == ''),
+        "failmsg" => "<b>safe_mode</b> must be disabled in php.ini",
+        "sev" => 1),
+    1 => array (
+        "desc" => "exec() enabled",
+        "test" => (! (in_array ('exec', split (',\s*', ini_get ('disable_functions'))))),
+        "failmsg" => "The <b>exec()</b> function must not be disabled by the <b>disabled_functions</b> parameter in php.ini",
+        "sev" => 1),
+    2 => array (
+        "desc" => "file_uploads enabled",
+        "test" => (ini_get ('file_uploads') != ''),
+        "failmsg" => "<b>file_uploads</b> must be enabled in php.ini",
+        "sev" => 1),
+    3 => array (
+        "desc" => "session.save_path writable",
+        "test" => ( is_dir (session_save_path()) && is_writable (session_save_path()) ),
+        "failmsg" => "<b>session.save_path</b> must be set to a valid directory and be writable by the web server user",
+        "sev" => 1),
+    4 => array (
+        "desc" => "session.use_cookies enabled",
+        "test" => (ini_get ('session.use_cookies') != ''),
+        "failmsg" => "<b>session.use_cookies must be enabled in php.ini",
+        "sev" => 1),
+    5 => array (
+        "desc" => "allow_url_fopen on",
+        "test" => (ini_get ('allow_url_fopen') != ''),
+        "failmsg" => "Gallery will not be able to fetch pictures from remote hosts",
+        "sev" => 0),
+);
 
 if (ini_get ('upload_tmp_dir')) { // it defaults to a default system location, only test if this is set
 	$tests[] = array ("desc" => "upload_tmp_dir writable",

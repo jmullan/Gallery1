@@ -116,6 +116,7 @@ function doPhoto() {
 	    $gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
 	    $gallery->html_wrap['attr'] = '';
 
+	    echo getStyleSheetLink();
 	    echo "\n<div class=\"g-random-block\">";
 	    echo "\n  <div class=\"g-random-block-photo\">";
 
@@ -132,7 +133,8 @@ function doPhoto() {
 	    echo "\n</div>";
 
 	    return true;
-	} else {
+	}
+	else {
 	    return false;
 	}
 }

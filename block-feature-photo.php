@@ -85,6 +85,7 @@ if (!empty($albumName) && !empty($index)) {
     $gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
     $gallery->html_wrap['attr'] = '';
 
+    echo getStyleSheetLink();
     echo "\n<div class=\"g-feature-block\">";
     echo "\n  <div class=\"g-feature-block-photo\">";
 
