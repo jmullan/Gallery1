@@ -41,7 +41,7 @@ if (!empty($formaction)) {
 	header('Location: '. makeGalleryHeaderUrl("manage_users.php", array('type' => 'popup')));
 }
 
-printPopupStart(gTranslate('core', "Delete User"), '', langLeft());
+printPopupStart(gTranslate('core', "Delete User"), '', 'left');
 
 foreach ($unames as $key => $user) {
 	if ($gallery->user->getUsername() == $user) {

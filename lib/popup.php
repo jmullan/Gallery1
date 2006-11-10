@@ -154,7 +154,7 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 <div class="g-header-popup">
   <div class="g-pagetitle-popup"><?php echo $header ?></div>
 </div>
-<div class="g-content-popup" align="<?php echo $align; ?>">
+<div class="g-content-popup" class="<?php echo $align; ?>">
 
 <?php
 }

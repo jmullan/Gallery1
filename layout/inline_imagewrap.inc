@@ -57,7 +57,6 @@ switch ($frame) {
             $hLL = $imageHeight - $heightLLT - $heightLLB;
             $hRR = $imageHeight - $heightRRT - $heightRRB;
 ?>
-
   <table cellspacing="0" cellpadding="0" dir="ltr" style="margin: 0 auto">
   <tr>
 	<!-- TL -->

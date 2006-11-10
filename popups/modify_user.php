@@ -140,7 +140,7 @@ $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
 $canChangeOwnPw = $tmpUser->canChangeOwnPw() ? 1: 0;
 
-printPopupStart(gTranslate('core', "Modify User"), '', langLeft());
+printPopupStart(gTranslate('core', "Modify User"), '', 'left');
 
 echo infoBox($notice_messages);
 

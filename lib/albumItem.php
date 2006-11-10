@@ -44,26 +44,22 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	$options = array();
 	$javascript = '';
 
-    if (!$gallery->session->offline && empty($javascriptSet) && !$withIcons) {
-
+    if (!$gallery->session->offline && empty($javascriptSet)) {
         $javascript ="
   <script language=\"javascript1.2\" type=\"text/JavaScript\">
-  <!-- //
-
-  function imageEditChoice(selected_select) {
-  	var sel_index = selected_select.selectedIndex;
-  	var sel_value = selected_select.options[sel_index].value;
-  	var sel_class = selected_select.options[sel_index].className;
-  	selected_select.options[0].selected = true;
-  	selected_select.blur();
-  	if (sel_class == 'url') {
-  		document.location = sel_value;
-  	} else {
-  		// the only other option should be popup
-		". popup('sel_value', 1) ."
-  	}
-  }
-  //-->
+      function imageEditChoice(selected_select) {
+      	var sel_index = selected_select.selectedIndex;
+      	var sel_value = selected_select.options[sel_index].value;
+      	var sel_class = selected_select.options[sel_index].className;
+      	selected_select.options[0].selected = true;
+      	selected_select.blur();
+      	if (sel_class == 'url') {
+      		document.location = sel_value;
+      	} else {
+      		// the only other option should be popup
+    		". popup('sel_value', 1) ."
+      	}
+      }
   </script>";
 
         $javascriptSet = true;

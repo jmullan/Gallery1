@@ -55,7 +55,7 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (!$errorCount) {
-	    printPopupStart(gTranslate('core', "Create User"), '', langLeft());
+	    printPopupStart(gTranslate('core', "Create User"), '', 'left');
 
 	    $tmpUser = new Gallery_User();
 		$tmpUser->setUsername($uname);
@@ -117,7 +117,7 @@ if (!empty($formaction) && $formaction == 'create') {
 } else if (!empty($formaction) || isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
-printPopupStart(gTranslate('core', "Create User"), '', langLeft());
+printPopupStart(gTranslate('core', "Create User"), '', left');
 
 $canCreate = 0;
 

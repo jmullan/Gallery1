@@ -54,20 +54,21 @@ $sortOptions = array(
     'creation_date' => gTranslate('core', "By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
 );
 
-printPopupStart(gTranslate('core', "Administer Startpage"), '', langLeft());
+printPopupStart(gTranslate('core', "Administer Startpage"), '', 'left');
 
 if(empty($sort)) {
     echo "\n<table width=\"100%\">";
     foreach ($adminOptions as $option) {
-	echo "\n<tr>";
-	if (isset($option['url'])) {
-		$link = '<a href="'. $option['url'] .'"><b>'. $option['text'] .'</b></a>';
-	} else {
-		$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
-	}
-	echo "\n<td>$link</td>";
-	echo "\n<td>". $option['longtext'] ."</td>";
-	echo "\n</tr>";
+        echo "\n<tr>";
+        if (isset($option['url'])) {
+            $link = '<a href="'. $option['url'] .'"><b>'. $option['text'] .'</b></a>';
+        }
+        else {
+            $link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
+        }
+        echo "\n<td>$link</td>";
+        echo "\n<td>". $option['longtext'] ."</td>";
+        echo "\n</tr>";
     }
     echo "\n</table>";
 }

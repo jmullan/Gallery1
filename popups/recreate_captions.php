@@ -34,7 +34,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 printPopupStart(sprintf(gTranslate('core', "Recreate captions for album: %s"), $gallery->album->fields["title"]), '', 'left');
 
-if(!empty($setCaption) && !empty($recursive)) {
+if(isset($setCaption) && $setCaption != '' && !empty($recursive)) {
    if($gallery->album->createCaption(0, $setCaption, $recursive)) {
 	echo '<script type="text/javascript">opener.location.reload();</script>';
 	echo infoBox(array(array(

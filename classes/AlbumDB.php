@@ -74,7 +74,7 @@ class AlbumDB {
             }
             else if (fs_is_dir("$dir/$name")) {
                 $album = new Album;
-                if ($album->load($name, $loadphotos)) {
+                if ($album->load($name,$loadphotos)) {
                     array_push($this->albumList, $album);
                     if ($album->versionOutOfDate()) {
                         array_push($this->outOfDateAlbums, $name);
@@ -92,25 +92,17 @@ class AlbumDB {
             }
         }
 
-        /* Now scan the albums folder */
         if ($fd = fs_opendir($dir)) {
             while ($file = readdir($fd)) {
                 if (!ereg("^\.", $file) &&
-                  fs_is_dir("$dir/$file") &&
-                  !in_array($file, $allowedInvalidAlbums) &&
-                  !in_array($file, $this->albumOrder)) {
+                fs_is_dir("$dir/$file") &&
+                !in_array($file, $allowedInvalidAlbums) &&
+                !in_array($file, $this->albumOrder)) {
                     $album = new Album;
-                    if ($album->load($file, $loadphotos)) {
-                        array_push($this->albumList, $album);
-                        if ($album->versionOutOfDate()) {
-                            array_push($this->outOfDateAlbums, $file);
-                        }
-                    }
-                    else {
-                        array_push($this->brokenAlbums, $file);
-                    }
+                    $album->load($file,$loadphotos);
+                    array_push($this->albumList, $album);
+                    array_push($this->albumOrder, $file);
                     $changed = 1;
-
                 }
             }
             closedir($fd);
