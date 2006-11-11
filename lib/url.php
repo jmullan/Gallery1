@@ -203,10 +203,12 @@ function makeGalleryUrl($target = '', $args = array()) {
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
 					$target = 'index.php';
-				} else {
+				}
+				else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$url = $urlprefix . $gallery->session->mambo->mosRoot . 'index.php';
-					} else {
+					}
+					else {
 						$url = 'index.php';
 					}
 				}
@@ -227,13 +229,15 @@ function makeGalleryUrl($target = '', $args = array()) {
 		foreach ($args as $key => $value) {
 			if ($i++) {
 				$url .= "&";  // should replace with &amp; for validatation
-			} else {
+			}
+			else {
 				$url .= "?";
 			}
 
 			if (! is_array($value)) {
 				$url .= "$key=$value";
-			} else {
+			}
+			else {
 				$j = 0;
 				foreach ($value as $subkey => $subvalue) {
 					if ($j++) {
