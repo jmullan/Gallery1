@@ -219,7 +219,7 @@ function wait_for_current_photo() {
 
 function go_to_next_page() {
 
-    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow.php',
+    var slideShowUrl = "<?php echo makeGalleryHeaderUrl('slideshow.php',
     array('set_albumName' => $gallery->session->albumName, 'mode' => 'low')); ?>";
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full
@@ -358,17 +358,17 @@ if ($photo_count > 0) {
 	<script type="text/javascript">
 	document.write('<img border="<?php echo $borderwidth ?>" bgcolor="<?php echo $borderColor ?>" src="' + photo_urls[<?php echo $slide_index ?>] + '" name="slide">');
 	</script>
-<br>
 
-<script type="text/javascript">
-/* show the caption either in a nice div or an ugly form textarea */
-document.write('<div class="g-photo-caption">[' + current_location + ' <?php echo gTranslate('core', "of") ?> ' + photo_count + '] ' + photo_captions[<?php echo $slide_index ?>] + '<\/div>');
+	<br>
 
-/* Start the show. */
-play();
+    <script type="text/javascript">
+    /* show the caption either in a nice div or an ugly form textarea */
+    document.write('<div class="g-photo-caption">[' + current_location + ' <?php echo gTranslate('core', "of") ?> ' + photo_count + '] ' + photo_captions[<?php echo $slide_index ?>] + '<\/div>');
 
-</script>
+    /* Start the show. */
+    play();
 
+    </script>
 <?php
 }
 else {
