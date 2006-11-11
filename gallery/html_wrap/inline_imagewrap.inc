@@ -31,20 +31,27 @@ if (!in_array($frame, array('none', 'dots', 'solid')) &&
         $frame = 'none';
 }
 
+if($borderWidth > 0 && $borderColor != '') {
+    $dashedBorder = "border:${borderWidth}px dashed $borderColor";
+    $solidBorder =  "border:${borderWidth}px solid $borderColor";
+}
+
+$style = "margin: 0 auto; width:${imageWidth}px; height:${imageHeight}px";
+
 switch ($frame) {
     // special cases
     case "none":
-	   echo "<center>$href_tag</center>";
+	   echo "<div class=\"g-photo\" style=\"$style\">$href_tag</div>";
     break;
 
     case "dots":
 ?>
-   <div style="margin: 0 auto; <?php echo "width:${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
+   <div class="g-photo" style="<?php echo "$style; $dashedBorder" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
     case "solid":
 ?>
-  <div style="margin: 0 auto; <?php echo "width:${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
+  <div class="g-photo" style="<?php echo "$style; $solidBorder" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
     default: // use frames directory or fallback to none
@@ -99,7 +106,7 @@ switch ($frame) {
 	    </table></td>
 	<td><table cellspacing="0" cellpadding="0">
 	     <tr>
-		<td align="center"><?php echo $href_tag ?></td>
+		<td align="center"><div class="g-photo" style="<?php echo $style; ?>"><?php echo $href_tag ?></div></td>
 	     </tr>
 	    </table></td>
 	<td height="100%"><table border="0" cellspacing="0" cellpadding="0">
@@ -145,7 +152,7 @@ switch ($frame) {
 <?php
     }
     else {
-	echo $href_tag;
+        echo "<div class=\"g-photo\" style=\"$style\">$href_tag</div>";
     }
     break;
 }

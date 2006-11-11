@@ -217,8 +217,7 @@ function wait_for_current_photo() {
 }
 
 function go_to_next_page() {
-
-    var slideShowUrl = "<?php echo makeGalleryUrl('slideshow.php',
+    var slideShowUrl = "<?php echo makeGalleryHeaderUrl('slideshow.php',
 				array('set_albumName' => $gallery->session->albumName, 'mode' => 'low')); ?>";
 
     document.location = slideShowUrl + "&slide_index=" + next_location + "&slide_full=" + full

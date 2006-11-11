@@ -549,33 +549,29 @@ function slideshow_controlPanel() {
 
             ?>
 
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-	<td><script type="text/javascript">
-	<!--
+<div align="center">
+    <script type="text/javascript">
 		firstPhotoURL = document.getElementById("photo_urls_" + 1).href;
 		document.write("<img border=<?php echo $borderwidth ?> bgcolor=<?php echo $borderColor ?> src=\"");
 		document.write(firstPhotoURL);
 		document.write("\" name=slide>");
-	// -->
-	</script></td>
-</tr>
-</table>
+    </script>
+
+    <br>
+
+    <script type="text/javascript">
+    /* show the caption */ -->
+    document.write("<div class='pcaption' id='caption'><\/div>");
+
+    /* Load the first picture */
+    setCaption(photo_captions[1]);
+    preload_photo(1);
+
+    /* Start the show. */
+    play();
+    </script>
+</div>
 <br>
-
-<script type="text/javascript">
-<!--
-/* show the caption */
-document.write("<div class='pcaption' id='caption'><\/div>");
-
-/* Load the first picture */
-setCaption(photo_captions[1]);
-preload_photo(1);
-
-/* Start the show. */
-play();
-// -->
-</script>
 
 <?php
         } else {
