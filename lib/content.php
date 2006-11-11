@@ -1570,7 +1570,7 @@ function addProgressbar($id, $label = '') {
  *                                    The second is the complete readMoreBox
  * @author Jens Tkotz
  */
-function readMoreBox($panelHeaderText = '', $text, $cutAfter = 0, $readMoreText = '' , $contextId = '') {
+function readMoreBox($panelID, $panelHeaderText = '', $text, $cutAfter = 0, $readMoreText = '' , $contextId = '') {
     if(empty($text)) return array(false, '');
 
     $textLength = strlen($text);
