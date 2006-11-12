@@ -73,7 +73,7 @@ else {
     echo sprintf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
     if($numPhotos > 0) {
-        echo '<p>'. sprintf(gTranslate('core', "Approximitaly size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
+        echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
 
         echo makeFormIntro('download.php', array('onChange' => 'document.g1_form.submit()'), array('gallery_popup' => 'true'));
 

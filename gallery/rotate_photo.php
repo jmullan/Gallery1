@@ -45,7 +45,6 @@ doctype();
   <META HTTP-EQUIV="expires" CONTENT="0"> 
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="g-popup">
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
   <div class="popuphead"><?php echo _("Rotate/Flip Photo") ?></div>
 <div class="popup" align="center">
 <?php
@@ -96,7 +95,7 @@ if ($gallery->session->albumName && isset($index)) {
       getIconText('imageedit/mirror.gif', _("Horizontal"))
     );
 
-    $args["rotate"] = "fl";
+    $args["rotate"] = "fv";
     $rotateElements[] = galleryLink(
       makeGalleryUrl("rotate_photo.php", $args),
       getIconText('imageedit/flip.gif', _("Vertical"))

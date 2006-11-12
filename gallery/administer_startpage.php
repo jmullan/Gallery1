@@ -41,7 +41,7 @@ $adminOptions[] = array(
 );
 
 $adminOptions[] = array(
-    'text' => _("Albumorder"),
+    'text' => _("Album Order"),
     'url' => makeGalleryUrl('administer_startpage.php', array('sort' => 1, 'type' => 'popup')),
     'longtext' => _("Sort the albums on the startpage(s).<br>(Opens an option dialog)")
 );
@@ -51,7 +51,7 @@ array_sort_by_fields($adminOptions, 'text', 'asc');
 $sortOptions = array(
     'name'          => _("By (physical) name"),
     'clicks_date'   => _("By last reset date"),
-    'creation_date' => _("By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)")
+    'creation_date' => _("By creation date (works only with albums created with 1.5.2 or newer)")
 );
 
 doctype();
