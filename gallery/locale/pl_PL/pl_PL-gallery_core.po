@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-08-13 11:04+0200\n"
+"POT-Creation-Date: 2006-11-12 12:09+0100\n"
 "PO-Revision-Date: 2005-05-17 18:18+0100\n"
 "Last-Translator: Damian Szewczyk <dszewczyk AT wirion DOT pl>\n"
 "Language-Team: nocnyMark <kaytek AT daw DOT pl>\n"
@@ -52,16 +52,16 @@ msgstr ""
 msgid "You are not allowed to perform this action!"
 msgstr "Nie masz mo¿liwo¶ci wykonaæ tej akcji."
 
-#: ../add_comment.php:56 ../view_photo.php:193
+#: ../add_comment.php:56 ../view_photo.php:195
 msgid "Name and comment are both required to save a new comment!"
 msgstr "Pole nazwy i komentarz musz± byæ wype³nione by dodaæ nowy komentarz!!"
 
-#: ../add_comment.php:58 ../view_photo.php:195
+#: ../add_comment.php:58 ../view_photo.php:197
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars"
 msgstr "Twój komentarz jest za d³ugi, administrator ustawi³ maksymaln± d³ugo¶æ na %d znaków"
 
-#: ../add_comment.php:60 ../view_photo.php:197
+#: ../add_comment.php:60 ../view_photo.php:199
 msgid "Your Comment contains forbidden words. It will not be added."
 msgstr "Twój komentarz zawiera zakazane s³owa. Nie zostanie dodany."
 
@@ -75,11 +75,11 @@ msgstr "Wpisz swój komentarz dla tego obrazka w polu poni¿ej."
 
 #: ../add_comment.php:99 ../copy_photo.php:214 ../delete_album.php:72
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
-#: ../ecard_form.php:259 ../edit_caption.php:184 ../edit_watermark.php:121
+#: ../ecard_form.php:276 ../edit_caption.php:184 ../edit_watermark.php:121
 #: ../includes/add_photos/add_form.inc:90
 #: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
-#: ../new_password.php:138 ../register.php:142 ../rename_album.php:131
+#: ../new_password.php:138 ../register.php:144 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
 #: ../watermark_album.php:153
 msgid "Cancel"
@@ -174,12 +174,12 @@ msgid "Rebuild highlights"
 msgstr "Brak ok³adki"
 
 #: ../administer_startpage.php:40
-msgid "Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)"
+msgid "Recreate all highlights according to the setting in Config Wizard.<br>(Starts immediately)"
 msgstr ""
 
 #: ../administer_startpage.php:44
 #, fuzzy
-msgid "Albumorder"
+msgid "Album Order"
 msgstr "Album"
 
 #: ../administer_startpage.php:46
@@ -196,7 +196,7 @@ msgid "By last reset date"
 msgstr ""
 
 #: ../administer_startpage.php:54
-msgid "By creation date (works only with albums created with 1.5.2-cvs-b28 or newer)"
+msgid "By creation date (works only with albums created with 1.5.2 or newer)"
 msgstr ""
 
 #: ../administer_startpage.php:58
@@ -301,12 +301,16 @@ msgstr "Zapisz"
 msgid "Done"
 msgstr "Zrobione"
 
-#: ../albums.php:110 ../view_album.php:130
+#: ../albums.php:119 ../view_album.php:141
 #, php-format
 msgid "%s RSS"
 msgstr "%s RSS"
 
-#: ../albums.php:148
+#: ../albums.php:157
+msgid "no albums"
+msgstr "Brak albumów"
+
+#: ../albums.php:157
 #, php-format
 msgid "1 album"
 msgid_plural "%d albums"
@@ -314,11 +318,11 @@ msgstr[0] "1 album"
 msgstr[1] "%d albumy"
 msgstr[2] "%d albumów"
 
-#: ../albums.php:148
-msgid "no albums"
-msgstr "Brak albumów"
+#: ../albums.php:159
+msgid "No top-level albums"
+msgstr "brak g³ównych albumów"
 
-#: ../albums.php:150
+#: ../albums.php:159
 #, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
@@ -326,16 +330,16 @@ msgstr[0] "1 g³ówny album"
 msgstr[1] "%d g³ówne albumy"
 msgstr[2] "%d g³ównych albumów"
 
-#: ../albums.php:150
-msgid "No top-level albums"
-msgstr "brak g³ównych albumów"
-
-#: ../albums.php:153
+#: ../albums.php:162
 #, php-format
 msgid "%d total"
 msgstr "%d wszystkich"
 
-#: ../albums.php:154 ../view_album.php:215
+#: ../albums.php:163 ../view_album.php:236
+msgid "no images"
+msgstr "¿adnych obrazków"
+
+#: ../albums.php:163 ../view_album.php:236
 #, php-format
 msgid "1 image"
 msgid_plural "%d images"
@@ -343,11 +347,11 @@ msgstr[0] "1 obrazek"
 msgstr[1] "%d obrazki"
 msgstr[2] "%d obrazków"
 
-#: ../albums.php:154 ../view_album.php:215
-msgid "no images"
-msgstr "¿adnych obrazków"
+#: ../albums.php:164
+msgid "no pages"
+msgstr "brak stron"
 
-#: ../albums.php:155 ../view_album.php:216
+#: ../albums.php:164 ../view_album.php:237
 #, php-format
 msgid "1 page"
 msgid_plural "%d pages"
@@ -355,166 +359,162 @@ msgstr[0] "1 strona"
 msgstr[1] "%d strony"
 msgstr[2] "%d stron"
 
-#: ../albums.php:155
-msgid "no pages"
-msgstr "brak stron"
-
-#: ../albums.php:158
+#: ../albums.php:167
 #, php-format
 msgid "%s (%s), %s on %s"
 msgstr "%s (%s), %s na %s"
 
-#: ../albums.php:161
+#: ../albums.php:170
 #, php-format
 msgid "%s (%s), %s"
 msgstr "%s (%s), %s"
 
-#: ../albums.php:163
+#: ../albums.php:172
 #, php-format
 msgid "%s, %s on %s"
 msgstr "%s, %s na %s"
 
-#: ../albums.php:165
+#: ../albums.php:174
 #, php-format
 msgid "%s, %s"
 msgstr "%s, %s"
 
-#: ../albums.php:180
+#: ../albums.php:189
 #, php-format
 msgid "Welcome, %s"
 msgstr "Witaj %s"
 
-#: ../albums.php:184 ../view_album.php:405
+#: ../albums.php:193 ../view_album.php:429
 msgid "slideshow"
 msgstr "slideshow"
 
-#: ../albums.php:189
+#: ../albums.php:198
 msgid "new album"
 msgstr "nowy album"
 
-#: ../albums.php:196
+#: ../albums.php:205
 #, fuzzy
 msgid "Administer startpage"
 msgstr "Administrator"
 
-#: ../albums.php:200
+#: ../albums.php:209
 msgid "admin page"
 msgstr "strona administratora"
 
-#: ../albums.php:205
+#: ../albums.php:214
 msgid "documentation"
 msgstr "dokumentacja"
 
-#: ../albums.php:211
+#: ../albums.php:220
 msgid "preferences"
 msgstr "ustawienia"
 
-#: ../albums.php:216 ../imagemap.php:139 ../view_album.php:423
-#: ../view_photo.php:519
+#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:447
+#: ../view_photo.php:538
 msgid "logout"
 msgstr "wyloguj"
 
-#: ../albums.php:221 ../imagemap.php:144 ../view_album.php:428
-#: ../view_photo.php:524
+#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:452
+#: ../view_photo.php:543
 msgid "login"
 msgstr "zaloguj"
 
-#: ../albums.php:225
+#: ../albums.php:234
 msgid "register"
 msgstr "rejestracja"
 
-#: ../albums.php:251
+#: ../albums.php:260
 msgid "Attention Gallery Administrator!"
 msgstr "UWAGA Administratorze!"
 
-#: ../albums.php:254
+#: ../albums.php:263
 #, php-format
 msgid "%s has detected the following %d invalid album(s) in your albums directory<br>(%s):"
 msgstr "%s wykry³ nastêpuj±ce %d nieprawid³owe albumy w Twoim katalogu albumów<br>(%s)."
 
-#: ../albums.php:260
+#: ../albums.php:269
 msgid "Please move it/them out of the albums directory."
 msgstr "Zaleca siê usuniêcie ich z katalogu albumów."
 
-#: ../albums.php:264
+#: ../albums.php:273
 #, php-format
 msgid "%s has detected that %d of your albums are out of date."
 msgstr "%s wykry³ ¿e %d Twoich albumów jest nieaktualnych."
 
-#: ../albums.php:268
+#: ../albums.php:277
 #, php-format
 msgid "Please %s."
 msgstr "Proszê %s."
 
-#: ../albums.php:268
+#: ../albums.php:277
 msgid "upgrade those albums"
 msgstr "aktualizuj te albumy"
 
-#: ../albums.php:275
+#: ../albums.php:284
 msgid "Attention!"
 msgstr "Uwaga!"
 
-#: ../albums.php:277
+#: ../albums.php:286
 #, fuzzy, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"
 msgstr "Album lub zdjêcie, które próbowa³e¶ wy¶wietliæ nie istnieje lub wymaga uprawnieñ, których ty nie posiadasz. %s"
 
-#: ../albums.php:277
+#: ../albums.php:286
 #, php-format
 msgid "%s and try again."
 msgstr "%s i spróbuj ponownie."
 
-#: ../albums.php:278
+#: ../albums.php:287
 msgid "Log in"
 msgstr "Zaloguj"
 
-#: ../albums.php:292
+#: ../albums.php:301
 #, php-format
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:333 ../view_album.php:690
+#: ../albums.php:342 ../view_album.php:712
 msgid "Highlight for Album:"
 msgstr "Ok³adka Albumu: "
 
-#: ../albums.php:353 ../view_album.php:796
+#: ../albums.php:362 ../view_album.php:818
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "nie wybrano albumu"
 
-#: ../albums.php:388
+#: ../albums.php:397
 #, fuzzy, php-format
 msgid "Owner: %s"
 msgstr "W³a¶ciciel:"
 
-#: ../albums.php:396
+#: ../albums.php:405
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:407
+#: ../albums.php:416
 msgid "Hey!"
 msgstr "Hej!"
 
-#: ../albums.php:408
+#: ../albums.php:417
 #, php-format
 msgid "%s so that the URL is not so generic!"
 msgstr "%s temu albumowi aby URL nie by³ taki typowy!"
 
-#: ../albums.php:409
+#: ../albums.php:418
 msgid "Rename this album"
 msgstr "Zmieñ nazwê albumu"
 
-#: ../albums.php:424
+#: ../albums.php:433
 #, fuzzy, php-format
 msgid "Created on %s, last changed on %s."
 msgstr "Ostatnia zmiana %s."
 
-#: ../albums.php:427
+#: ../albums.php:436
 #, php-format
 msgid "Last changed on %s."
 msgstr "Ostatnia zmiana %s."
 
-#: ../albums.php:436
+#: ../albums.php:445
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
@@ -522,12 +522,16 @@ msgstr[0] "Ten album zawiera 1 element."
 msgstr[1] "Ten album zawiera %d elementy."
 msgstr[2] "Ten album zawiera %d elementów."
 
-#: ../albums.php:445
+#: ../albums.php:454
 #, php-format
 msgid "This album has been viewed %s since %s."
 msgstr "Ten album przegl±dano %s od %s."
 
-#: ../albums.php:446 ../view_album.php:831
+#: ../albums.php:455
+msgid "0 times"
+msgstr "0 razy"
+
+#: ../albums.php:455 ../view_album.php:855
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -535,15 +539,11 @@ msgstr[0] "1 raz"
 msgstr[1] "%d razy"
 msgstr[2] "%d razy"
 
-#: ../albums.php:446
-msgid "0 times"
-msgstr "0 razy"
-
-#: ../albums.php:452
+#: ../albums.php:461
 msgid "reset counter"
 msgstr "resetuj licznik"
 
-#: ../albums.php:497 ../view_album.php:930
+#: ../albums.php:506 ../view_album.php:952
 msgid "Comments available for this item."
 msgstr "Komentarze dostêpne dla tej pozycji"
 
@@ -586,7 +586,7 @@ msgid "%s items in this album"
 msgstr "pozycji w tym albumie"
 
 #: ../captionator.php:191 ../imagemap.php:156 ../slideshow.php:183
-#: ../view_album.php:109 ../view_comments.php:54 ../view_photo.php:169
+#: ../view_album.php:115 ../view_comments.php:54 ../view_photo.php:171
 msgid "navigate UP"
 msgstr "nawigacja UP"
 
@@ -613,7 +613,7 @@ msgid "(click to enlarge)"
 msgstr "(kliknij aby powiêkszyæ)"
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:784
+#: ../layout/commentboxtop.inc:45 ../view_album.php:806
 msgid "hidden"
 msgstr "ukryty"
 
@@ -967,7 +967,7 @@ msgstr "Kopiuj do albumu!"
 
 #: ../copy_photo.php:218 ../delete_photo.php:150 ../edit_thumb.php:131
 #: ../move_album.php:140 ../move_photo.php:358 ../resize_photo.php:147
-#: ../rotate_photo.php:130 ../view_photo_properties.php:130
+#: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "nie wybrano albumu / indexu"
 
@@ -1030,7 +1030,7 @@ msgid "Do you really want to delete this album?"
 msgstr "Czy na pewno chcesz usun±æ ten album?"
 
 #: ../delete_album.php:71 ../delete_photo.php:144 ../delete_user.php:80
-#: ../js/multifile.js.php:112 ../layout/commentbox.inc:15
+#: ../js/multifile.js.php:113 ../layout/commentbox.inc:15
 #: ../lib/albumItem.php:252 ../lib/albumItem.php:253 ../lib/albumItem.php:259
 #: ../lib/albumItem.php:260 ../manage_users.php:98
 #: ../tools/despam-comments.php:206 ../tools/despam-comments.php:345
@@ -1150,6 +1150,11 @@ msgstr[1] "Ten album zawiera %d elementy."
 msgstr[2] "Ten album zawiera %d elementów."
 
 #: ../download.php:70
+#, fuzzy
+msgid "No subalbums"
+msgstr "Brak albumów"
+
+#: ../download.php:70
 #, fuzzy, php-format
 msgid "One subalbum"
 msgid_plural "%d subalbums"
@@ -1157,10 +1162,9 @@ msgstr[0] "1 pod-album"
 msgstr[1] "%d pod-albumy"
 msgstr[2] "%d pod-albumów"
 
-#: ../download.php:70
-#, fuzzy
-msgid "No subalbums"
-msgstr "Brak albumów"
+#: ../download.php:71
+msgid "no photo/movie"
+msgstr ""
 
 #: ../download.php:71
 #, fuzzy, php-format
@@ -1170,10 +1174,6 @@ msgstr[0] "jeden g³os"
 msgstr[1] "%d g³osy"
 msgstr[2] "%d g³osów"
 
-#: ../download.php:71
-msgid "no photo/movie"
-msgstr ""
-
 #: ../download.php:73
 #, fuzzy, php-format
 msgid "%s and %s."
@@ -1181,7 +1181,7 @@ msgstr "%s nieustawiony."
 
 #: ../download.php:76
 #, php-format
-msgid "Approximitaly size of zipfile: %s"
+msgid "Approximate size of zipfile: %s"
 msgstr ""
 
 #: ../download.php:80
@@ -1202,121 +1202,134 @@ msgstr ""
 msgid "This album album is not empty, but contains no photo or movie! Download would'nt make sense."
 msgstr ""
 
-#: ../ecard_form.php:38
+#: ../ecard_form.php:41
 msgid "Send this photo as eCard"
 msgstr ""
 
-#: ../ecard_form.php:52
-msgid "Error processing e-card. Please try later."
-msgstr ""
+#: ../ecard_form.php:47
+#, fuzzy
+msgid "Close Window."
+msgstr "Zamknij okno"
 
-#: ../ecard_form.php:53
-msgid "Some input fields are not correctly filled out. Please fill out."
-msgstr ""
-
-#: ../ecard_form.php:54
+#: ../ecard_form.php:56
 msgid "You have an e-card as attachment. Click to see."
 msgstr ""
 
-#: ../ecard_form.php:112
+#: ../ecard_form.php:64
+msgid "Some input fields are not correctly filled out. Please fill out."
+msgstr ""
+
+#: ../ecard_form.php:71
+msgid "The sender or recepient email adress is not valid."
+msgstr ""
+
+#: ../ecard_form.php:81
+msgid "Couldn't load the ecard template. Please contact the Gallery admin!"
+msgstr ""
+
+#: ../ecard_form.php:92
+msgid "Problem with sending the eCard. Please contact the Gallery admin!"
+msgstr ""
+
+#: ../ecard_form.php:126
 msgid "Error: to send an eCard you need to fill out all fields."
 msgstr ""
 
-#: ../ecard_form.php:113
+#: ../ecard_form.php:127
 msgid "Please fill this fields:"
 msgstr ""
 
-#: ../ecard_form.php:117
+#: ../ecard_form.php:131
 #, fuzzy
 msgid "- Your Name"
 msgstr "Wiadomo¶æ"
 
-#: ../ecard_form.php:123
+#: ../ecard_form.php:137
 #, fuzzy
 msgid "- Your Email"
 msgstr "Nazwa albo email:"
 
-#: ../ecard_form.php:128
+#: ../ecard_form.php:142
 msgid "- Recipient's Name"
 msgstr ""
 
-#: ../ecard_form.php:134
+#: ../ecard_form.php:148
 msgid "- Recipient's Email"
 msgstr ""
 
-#: ../ecard_form.php:139
+#: ../ecard_form.php:153
 #, fuzzy
 msgid "- Your Message"
 msgstr "Wiadomo¶æ"
 
-#: ../ecard_form.php:143
+#: ../ecard_form.php:157
 msgid "Please fill all fields next click >Send<."
 msgstr ""
 
-#: ../ecard_form.php:156
+#: ../ecard_form.php:170
 #, php-format
 msgid "You have entered more than %d characters"
 msgstr ""
 
-#: ../ecard_form.php:188
+#: ../ecard_form.php:202
 msgid "Your info"
 msgstr ""
 
-#: ../ecard_form.php:190
+#: ../ecard_form.php:204
 msgid "Recipient's info"
 msgstr ""
 
-#: ../ecard_form.php:193 ../ecard_form.php:204
+#: ../ecard_form.php:207 ../ecard_form.php:221
 msgid "Name"
 msgstr "Nazwa"
 
-#: ../ecard_form.php:208 ../ecard_form.php:211
+#: ../ecard_form.php:225 ../ecard_form.php:228
 #, fuzzy
 msgid "E-Mail"
 msgstr "Email"
 
-#: ../ecard_form.php:217
+#: ../ecard_form.php:234
 msgid "Choose a Stamp"
 msgstr ""
 
-#: ../ecard_form.php:222
+#: ../ecard_form.php:239
 #, php-format
 msgid "Stamp #%d"
 msgstr ""
 
-#: ../ecard_form.php:232
+#: ../ecard_form.php:249
 msgid "Subject:"
 msgstr ""
 
-#: ../ecard_form.php:233
+#: ../ecard_form.php:250
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr ""
 
-#: ../ecard_form.php:237
+#: ../ecard_form.php:254
 #, fuzzy
 msgid "Your Message:"
 msgstr "Komunikat:"
 
-#: ../ecard_form.php:256 ../edit_watermark.php:120 ../watermark_album.php:151
+#: ../ecard_form.php:273 ../edit_watermark.php:120 ../watermark_album.php:151
 msgid "Preview"
 msgstr "Podgl±d"
 
-#: ../ecard_form.php:257
+#: ../ecard_form.php:274
 msgid "Reset"
 msgstr "Resetuj"
 
-#: ../ecard_form.php:260
+#: ../ecard_form.php:277
 #, fuzzy
 msgid "Send eCard"
 msgstr "Wy¶lij mi moje has³o"
 
-#: ../ecard_form.php:268
+#: ../ecard_form.php:286
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr ""
 
-#: ../ecard_form.php:272
+#: ../ecard_form.php:290
 #, fuzzy
 msgid "Close this window"
 msgstr "Zamknij okno"
@@ -1373,7 +1386,7 @@ msgid "Undo"
 msgstr "Cofnij"
 
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:124
+#: ../poll_properties.php:142 ../rotate_photo.php:123
 msgid "Close"
 msgstr "Zamknij"
 
@@ -1866,7 +1879,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Obs³ugiwane typy plików"
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:573
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:597
 msgid " or "
 msgstr "lub"
 
@@ -2011,7 +2024,8 @@ msgid "1."
 msgstr "1."
 
 #: ../includes/errors/unconfigured.php:25
-msgid "Create an empty file .htaccess and an empty file config.php"
+#, fuzzy
+msgid "Create an empty file .htaccess and an empty file config.php in your Gallery folder."
 msgstr "Utwórz pusty plik .htaccess i pusty plik config.php"
 
 #: ../includes/errors/unconfigured.php:28
@@ -2019,7 +2033,8 @@ msgid "2."
 msgstr "2."
 
 #: ../includes/errors/unconfigured.php:29
-msgid "Create an albums folder for your pictures and movies."
+#, fuzzy
+msgid "Create an albums folder for your pictures and movies. This folder can be anywhere in your webspace."
 msgstr "Utwórz katalog albumów dla twoich obrazków i zdjêæ"
 
 #: ../includes/errors/unconfigured.php:32
@@ -2030,6 +2045,11 @@ msgstr "Upewnij siê, ¿e pliki i katalogi mog± byc czytane i zapisywane przez twó
 #, php-format
 msgid "Then start the %sConfiguration Wizard%s."
 msgstr "Potem uruchom %sKreatora Konfiguracji%s."
+
+#: ../includes/errors/unconfigured.php:46
+#, php-format
+msgid "%sNote:%s When you get an 'error 500' when accessing the config wizard, try removing the .htaccess file the setup folder."
+msgstr ""
 
 #: ../includes/slideshow/applet.inc:28 ../includes/slideshow/high.inc:71
 #, php-format
@@ -2145,7 +2165,7 @@ msgid "Picture is loading..."
 msgstr "Obrazek jest ³adowany..."
 
 #: ../includes/slideshow/high.inc:377 ../includes/slideshow/high.inc:472
-#: ../includes/slideshow/low.inc:207 ../includes/slideshow/low.inc:367
+#: ../includes/slideshow/low.inc:207 ../includes/slideshow/low.inc:366
 msgid "of"
 msgstr "z"
 
@@ -2162,39 +2182,39 @@ msgstr "odwróæ kierunek"
 msgid "full size"
 msgstr "pe³ny rozmiar"
 
-#: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:314
+#: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:313
 msgid "1 second"
 msgstr "1 sekunda"
 
-#: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:315
+#: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:314
 msgid "2 seconds"
 msgstr "2 sekundy"
 
-#: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:316
+#: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:315
 msgid "3 seconds"
 msgstr "3 sekundy"
 
-#: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:317
+#: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:316
 msgid "5 seconds"
 msgstr "5 sekund"
 
-#: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:318
+#: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:317
 msgid "10 seconds"
 msgstr "10 sekund"
 
-#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:319
+#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:318
 msgid "15 seconds"
 msgstr "15 sekund"
 
-#: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:320
+#: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:319
 msgid "30 seconds"
 msgstr "30 sekund"
 
-#: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:321
+#: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:320
 msgid "45 seconds"
 msgstr "45 sekund"
 
-#: ../includes/slideshow/high.inc:510 ../includes/slideshow/low.inc:322
+#: ../includes/slideshow/high.inc:510 ../includes/slideshow/low.inc:321
 msgid "1 Minute"
 msgstr "1 Minuta"
 
@@ -2202,11 +2222,11 @@ msgstr "1 Minuta"
 msgid "Transition:"
 msgstr "Przej¶cie: "
 
-#: ../includes/slideshow/high.inc:585 ../includes/slideshow/low.inc:378
+#: ../includes/slideshow/high.inc:581 ../includes/slideshow/low.inc:377
 msgid "This album has no photos to show in a slide show."
 msgstr "Ten album nie zawiera obrazków."
 
-#: ../includes/slideshow/high.inc:589 ../includes/slideshow/low.inc:382
+#: ../includes/slideshow/high.inc:585 ../includes/slideshow/low.inc:381
 msgid "back to album"
 msgstr "powrót do albumu"
 
@@ -2356,7 +2376,7 @@ msgstr "Filtruj wed³ug miesi±ca."
 msgid "Filter by day"
 msgstr "Filtruj wed³ug dnia"
 
-#: ../js/multifile.js.php:149
+#: ../js/multifile.js.php:150
 #, fuzzy
 msgid "Caption:"
 msgstr "Podpis:"
@@ -2389,7 +2409,7 @@ msgstr "prawa"
 msgid "properties"
 msgstr "ustawienia"
 
-#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:415
+#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:439
 msgid "view&nbsp;comments"
 msgstr "przegl±daj&nbsp;komentarze"
 
@@ -2619,7 +2639,7 @@ msgstr "Zmieñ nazwê albumu"
 msgid "Reset Counter"
 msgstr "Resetuj licznik"
 
-#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:316
+#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:337
 msgid "Permissions"
 msgstr "Prawa"
 
@@ -3094,11 +3114,11 @@ msgstr "Kto mo¿e g³osowaæ"
 msgid "Orientation of vote choices"
 msgstr "Orientacja wyborów do g³osowania"
 
-#: ../poll_properties.php:108 ../rotate_photo.php:96
+#: ../poll_properties.php:108 ../rotate_photo.php:95
 msgid "Horizontal"
 msgstr "Poziomo"
 
-#: ../poll_properties.php:108 ../rotate_photo.php:102
+#: ../poll_properties.php:108 ../rotate_photo.php:101
 msgid "Vertical"
 msgstr "Pionowo"
 
@@ -3131,7 +3151,7 @@ msgstr "Powrót do  %s"
 msgid "Results Breakdown"
 msgstr "Wyniki uszkodzone"
 
-#: ../poll_results.php:148 ../view_album.php:507 ../view_album.php:800
+#: ../poll_results.php:148 ../view_album.php:531 ../view_album.php:822
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -3412,11 +3432,11 @@ msgstr "Informacje o Twoim koncie zawarte s± w wiadomo¶ci email."
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "Email nie móg³ byæ wys³any. Skontaktuj siê z administratorem Galerii by siê zarejestrowaæ na tej stronie"
 
-#: ../register.php:138
+#: ../register.php:139
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Informacje o Twoim koncie zostan± wys³ane na email, który poda³e¶."
 
-#: ../register.php:141
+#: ../register.php:143
 #, fuzzy
 msgid "Send request"
 msgstr "¯yczenie nowego has³a"
@@ -3514,45 +3534,45 @@ msgstr "(U¿ywaj tylko oryginalnych zdjêæ)"
 msgid "Change Size"
 msgstr "Zmieñ wielko¶æ"
 
-#: ../rotate_photo.php:42 ../rotate_photo.php:49
+#: ../rotate_photo.php:42 ../rotate_photo.php:48
 msgid "Rotate/Flip Photo"
 msgstr "Obróæ/Odwróæ zdjêcie"
 
-#: ../rotate_photo.php:54
+#: ../rotate_photo.php:53
 msgid "Rotating/Flipping photo."
 msgstr "Obracanie/Odwracanie zdjêcia."
 
-#: ../rotate_photo.php:56 ../watermark_album.php:65
+#: ../rotate_photo.php:55 ../watermark_album.php:65
 msgid "(this may take a while)"
 msgstr "(to mo¿e zaj±æ chwilê)"
 
-#: ../rotate_photo.php:65
+#: ../rotate_photo.php:64
 msgid "Manipulate again?"
 msgstr "Manipulowaæ jeszcze raz?"
 
-#: ../rotate_photo.php:67
+#: ../rotate_photo.php:66
 msgid "How do you want to manipulate this photo?"
 msgstr "Jak chcesz obróciæ to zdjêcie?"
 
-#: ../rotate_photo.php:77
+#: ../rotate_photo.php:76
 #, fuzzy
 msgid "Clockwise 90&deg;"
 msgstr "Zgodnie ze wskazówkami zegara "
 
-#: ../rotate_photo.php:83
+#: ../rotate_photo.php:82
 msgid "180&deg;"
 msgstr ""
 
-#: ../rotate_photo.php:89
+#: ../rotate_photo.php:88
 #, fuzzy
 msgid "Counter-Clockwise 90&deg;"
 msgstr "Obracanie zgodnie ze wskazówkami zegara"
 
-#: ../rotate_photo.php:110
+#: ../rotate_photo.php:109
 msgid "Rotate"
 msgstr "Obróæ "
 
-#: ../rotate_photo.php:114
+#: ../rotate_photo.php:113
 msgid "Flip"
 msgstr "Do góry nogami"
 
@@ -4037,17 +4057,17 @@ msgid "Viewed:"
 msgstr "Przegl±dano: "
 
 #: ../stats.php:1145
+#, fuzzy
+msgid "Never viewed"
+msgstr "najczê¶ciej przegl±dane"
+
+#: ../stats.php:1145
 #, fuzzy, php-format
 msgid "Once"
 msgid_plural "%d times"
 msgstr[0] "Za³±czone"
 msgstr[1] "Za³±czone"
 msgstr[2] "Za³±czone"
-
-#: ../stats.php:1145
-#, fuzzy
-msgid "Never viewed"
-msgstr "najczê¶ciej przegl±dane"
 
 #: ../stats.php:1151
 msgid "Votes:"
@@ -4079,6 +4099,10 @@ msgstr "Nie podjêto ¿adnej akcji!"
 msgid "Deleted %d spam comments"
 msgstr "Skasowano %d spamu w komentarzach"
 
+#: ../tools/despam-comments.php:152
+msgid "No comment deleted."
+msgstr "Nie skasowano komentarza."
+
 #: ../tools/despam-comments.php:151
 #, php-format
 msgid "Deleted %d spam comment."
@@ -4086,10 +4110,6 @@ msgid_plural "Deleted %d spam comments."
 msgstr[0] "Skasowano %d spamu w komentarzach"
 msgstr[1] "Skasowano %d spamu w komentarzach"
 msgstr[2] "Skasowano %d spamu w komentarzach"
-
-#: ../tools/despam-comments.php:152
-msgid "No comment deleted."
-msgstr "Nie skasowano komentarza."
 
 #: ../tools/despam-comments.php:196
 #, php-format
@@ -4631,7 +4651,11 @@ msgstr ""
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr ""
 
-#: ../view_album.php:214
+#: ../view_album.php:235
+msgid "No albums"
+msgstr "Brak albumów"
+
+#: ../view_album.php:235
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
@@ -4639,153 +4663,149 @@ msgstr[0] "1 pod-album"
 msgstr[1] "%d pod-albumy"
 msgstr[2] "%d pod-albumów"
 
-#: ../view_album.php:214
-msgid "No albums"
-msgstr "Brak albumów"
-
-#: ../view_album.php:216
+#: ../view_album.php:237
 msgid "0 pages"
 msgstr "0 stron"
 
-#: ../view_album.php:219
+#: ../view_album.php:240
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s i %s w tym albumie na %s"
 
-#: ../view_album.php:222
+#: ../view_album.php:243
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s i %s w tym albumie"
 
-#: ../view_album.php:225
+#: ../view_album.php:246
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s w tym albumie na %s"
 
-#: ../view_album.php:228
+#: ../view_album.php:249
 #, php-format
 msgid "%s in this album"
 msgstr "%s w tym albumie"
 
-#: ../view_album.php:235
+#: ../view_album.php:256
 #, php-format
 msgid "%s are hidden"
 msgstr "%s jest ukrytych"
 
-#: ../view_album.php:237
+#: ../view_album.php:258
 #, php-format
 msgid "%s is hidden"
 msgstr "%s jest ukryty"
 
-#: ../view_album.php:247
+#: ../view_album.php:268
 #, fuzzy
 msgid "Add photos"
 msgstr "Dodaj zdjêcia"
 
-#: ../view_album.php:253
+#: ../view_album.php:274
 #, fuzzy
 msgid "Delete this album"
 msgstr "Zmieñ nazwê albumu"
 
-#: ../view_album.php:258
+#: ../view_album.php:279
 #, fuzzy
 msgid "Delete this (sub)album"
 msgstr "Zmieñ nazwê albumu"
 
-#: ../view_album.php:267
+#: ../view_album.php:288
 #, fuzzy
 msgid "Rename album"
 msgstr "zmieñ nazwê"
 
-#: ../view_album.php:274
+#: ../view_album.php:295
 #, fuzzy
 msgid "New nested album"
 msgstr "nowy pod-album"
 
-#: ../view_album.php:280
+#: ../view_album.php:301
 #, fuzzy
 msgid "Edit captions"
 msgstr "edytuj podpisy"
 
-#: ../view_album.php:286
+#: ../view_album.php:307
 #, fuzzy
 msgid "Sort items"
 msgstr "sortuj pozycje"
 
-#: ../view_album.php:292
+#: ../view_album.php:313
 #, fuzzy
 msgid "Resize all"
 msgstr "przeskaluj wszystkie"
 
-#: ../view_album.php:298
+#: ../view_album.php:319
 #, fuzzy
 msgid "Rebuild thumbs"
 msgstr "odbuduj miniatury"
 
-#: ../view_album.php:304
+#: ../view_album.php:325
 #, fuzzy
 msgid "Properties"
 msgstr "ustawienia"
 
-#: ../view_album.php:310
+#: ../view_album.php:331
 #, fuzzy
 msgid "Rearrange items"
 msgstr "brak pozycji"
 
-#: ../view_album.php:322
+#: ../view_album.php:343
 #, fuzzy
 msgid "Poll results"
 msgstr "Wyniki ankiety:"
 
-#: ../view_album.php:328
+#: ../view_album.php:349
 #, fuzzy
 msgid "Poll reset"
 msgstr "reset ankiety"
 
-#: ../view_album.php:334
+#: ../view_album.php:355
 #, fuzzy
 msgid "View comments"
 msgstr "przegl±daj komentarze"
 
-#: ../view_album.php:340
+#: ../view_album.php:361
 #, fuzzy
 msgid "Watermark album"
 msgstr "Znakowanie Albumu"
 
-#: ../view_album.php:398
+#: ../view_album.php:422
 #, fuzzy
 msgid "Album Actions"
 msgstr "akcje albumu"
 
-#: ../view_album.php:491
+#: ../view_album.php:515
 #, fuzzy
 msgid "Your votes are :"
 msgstr "Komunikat:"
 
-#: ../view_album.php:539
+#: ../view_album.php:563
 #, fuzzy
 msgid "[ See full poll results ]"
 msgstr "Zobacz pe³ne wyniki ankiety"
 
-#: ../view_album.php:571
+#: ../view_album.php:595
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:577
+#: ../view_album.php:601
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "By zag³osowaæ na zdjêcie, naci¶nij na %s."
 
-#: ../view_album.php:579
+#: ../view_album.php:603
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Musisz nacisn±æ na %s po to by Twój g³os zosta³ zarejestrowany."
 
-#: ../view_album.php:579 ../view_album.php:596 ../view_album.php:936
+#: ../view_album.php:603 ../view_album.php:620 ../view_album.php:958
 msgid "Vote"
 msgstr "G³osuj"
 
-#: ../view_album.php:584
+#: ../view_album.php:608
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
@@ -4793,35 +4813,35 @@ msgstr[0] "Masz w sumie %s i mo¿esz je zmieniæ je¶li chcesz."
 msgstr[1] "Masz w sumie %s i mo¿esz je zmieniæ je¶li chcesz."
 msgstr[2] "Masz w sumie %s i mo¿esz je zmieniæ je¶li chcesz."
 
-#: ../view_album.php:588
+#: ../view_album.php:612
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Mo¿esz tutaj zmieniæ swoje wybory je¶li chcesz."
 
-#: ../view_album.php:741 ../view_album.php:742
+#: ../view_album.php:763 ../view_album.php:764
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:789
+#: ../view_album.php:811
 msgid "highlight"
 msgstr "wyró¿nienie"
 
-#: ../view_album.php:804
+#: ../view_album.php:826
 msgid "No description"
 msgstr "Brak opisu"
 
-#: ../view_album.php:812
+#: ../view_album.php:834
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Ostatnia zmiana %s."
 
-#: ../view_album.php:815
+#: ../view_album.php:838
 #, fuzzy, php-format
-msgid "Contains: %s"
+msgid "Contains: %s."
 msgstr "Zawiera: "
 
-#: ../view_album.php:815
+#: ../view_album.php:838
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
@@ -4829,12 +4849,12 @@ msgstr[0] "1 element"
 msgstr[1] "%d elementy"
 msgstr[2] "%d elementów"
 
-#: ../view_album.php:831
+#: ../view_album.php:855
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "Przegl±dano: "
 
-#: ../view_album.php:856
+#: ../view_album.php:880
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
@@ -4842,23 +4862,23 @@ msgstr[0] "Przegl±dano: "
 msgstr[1] "Przegl±dano: "
 msgstr[2] "Przegl±dano: "
 
-#: ../view_album.php:914
+#: ../view_album.php:936
 msgid "Hey! Add some photos."
 msgstr "Hej! Dodaj jakie¶ zdjêcia :]"
 
-#: ../view_album.php:916
+#: ../view_album.php:938
 msgid "This album is empty."
 msgstr "Ten album jest pusty"
 
-#: ../view_album.php:961
+#: ../view_album.php:983
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "Wyslij do mnie emaila, kiedy jedna z nastêpuj±cych czynno¶ci zostanie wykonana z tym albumem: "
 
-#: ../view_album.php:966
+#: ../view_album.php:988
 msgid "Comments are added"
 msgstr "Komentarze zostan± dodane"
 
-#: ../view_album.php:969
+#: ../view_album.php:991
 msgid "Other changes are made"
 msgstr "Inne zmiany zostan± dokonane"
 
@@ -4879,42 +4899,42 @@ msgstr "wróæ do albumu"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Przepraszamy, ale ten album nie pozwala na komentarze."
 
-#: ../view_photo.php:315
+#: ../view_photo.php:334
 msgid "photo properties"
 msgstr "w³a¶ciwo¶ci zdjêcia"
 
-#: ../view_photo.php:399
+#: ../view_photo.php:418
 msgid "Send photo to..."
 msgstr "Wy¶lij zdjêcie do..."
 
-#: ../view_photo.php:401
+#: ../view_photo.php:420
 msgid "Print photo with..."
 msgstr "Drukuj zdjêcie z..."
 
-#: ../view_photo.php:437
+#: ../view_photo.php:456
 #, php-format
 msgid "process this photo with %s"
 msgstr "przetwarzaj to zdjêcie z %s"
 
-#: ../view_photo.php:480
+#: ../view_photo.php:499
 #, fuzzy
 msgid "View Images:"
 msgstr "Przegl±daj obrazki"
 
-#: ../view_photo.php:481
+#: ../view_photo.php:500
 msgid "normal"
 msgstr "normalny"
 
-#: ../view_photo.php:482
+#: ../view_photo.php:501
 msgid "full"
 msgstr "pe³ny"
 
-#: ../view_photo.php:500
+#: ../view_photo.php:519
 #, fuzzy
 msgid "Send Photo as eCard"
 msgstr "Wy¶lij mi moje has³o"
 
-#: ../view_photo.php:725
+#: ../view_photo.php:744
 msgid "Email me when comments are added"
 msgstr "Wy¶lij do mnie maila kiedy komentarze zostan± dodane"
 
