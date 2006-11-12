@@ -42,7 +42,7 @@
 <div class="sitedesc"><?php
 	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),Gallery());
 	echo "\n<br>";
-	echo _("If you see any error(s), we highly suggest to get the actual version of that file(s).");
+	echo _("If you see any error(s), we highly suggest to get the actual version of those files.");
 ?></div>
 <br>
 <?php

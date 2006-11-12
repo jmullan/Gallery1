@@ -37,7 +37,7 @@ list($sort, $order, $fieldname) = getRequestVar(array('sort', 'order', 'fieldnam
 $adminOptions[] = array(
     'text' => _("Rebuild highlights"),
     'url' =>  doCommand('rebuild_highlights'),
-    'longtext' => _("Recreate all highlights according to the setting in configwizard.<br>(Starts immediately)")
+    'longtext' => _("Recreate all highlights according to the setting in Config Wizard.<br>(Starts immediately)")
 );
 
 $adminOptions[] = array(
