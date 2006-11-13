@@ -560,7 +560,7 @@ function slideshow_controlPanel() {
     <br>
 
     <script type="text/javascript">
-    /* show the caption */ -->
+    /* show the caption */
     document.write("<div class='pcaption' id='caption'><\/div>");
 
     /* Load the first picture */
