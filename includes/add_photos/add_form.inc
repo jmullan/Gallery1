@@ -25,8 +25,8 @@
 include_once(dirname(dirname(dirname(__FILE__))) . '/js/multifile.js.php');
 
 echo "\n<p>". gTranslate('core', "Click the <b>Browse</b> button to locate a photo to upload.");
-echo '<br>'. gTranslate('core', "After you added a file, you can add more files the same way, just use the browse button as often as you want.");
-echo '<br>'. gTranslate('core', "Its possible to enter a manual caption for each item you upload, or you can gallery set the captions.");
+echo '<br>'. gTranslate('core', "After you have added a file, you can add more files the same way, just use the browse button as often as you want.");
+echo '<br>'. gTranslate('core', "It's possible to enter a manual caption for each item you upload, or you can gallery set the captions.");
 echo '<br>'. sprintf(gTranslate('core', "Supported file types: %s"),join(", ", acceptableFormatList()));
 
 if (isset($gallery->app->feature["zip"]) || isset($gallery->app->rar)) {

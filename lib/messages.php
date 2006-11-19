@@ -36,6 +36,15 @@ function infoLine($messages, $type = '') {
     }
 }
 
+/**
+ * Returns the HTML code for a nice notice box
+ *
+ * @param  array  $messages          Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption           An optional caption
+ * @param  bool   $withOuterBorder   Wether to show an outlined border, or not
+ * @return string $html
+ * @author Jens Tkotz
+ */
 function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
     $html = '';
 
@@ -49,17 +58,18 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
             $html .= "<span class=\"g-notice-caption\">$caption</span>";
         }
 
-	ksort($messages);
+        ksort($messages);
         foreach ($messages as $message) {
-	    if(!isset($message['type']) || ! in_array($message['type'], $types)) {
-		$message['type'] = 'information';
-	    }
+            if(!isset($message['type']) || ! in_array($message['type'], $types)) {
+                $message['type'] = 'information';
+            }
 
             $html .= "\n  ". '<div class="g-'. $message['type'] .' left g-message">';
             $html .= gImage('icons/notice/'. $message['type'] .'.gif');
             $html .= ' '. $message['text'];
             $html .= "\n  </div>";
         }
+
         if($withOuterBorder) {
             $html .= "\n</div>";
         }

@@ -95,6 +95,12 @@ function fs_is_dir($filename) {
 	return @is_dir($filename);
 }
 
+/**
+ * Checks wether a file exists on the local filesystem and is a regular file
+ *
+ * @param  string   $filename
+ * @return boolean
+ */
 function fs_is_file($filename) {
 	return @is_file($filename);
 }

@@ -801,7 +801,7 @@ if ($numPhotos) {
 			            else {
 			                $content = galleryIconLink($option['value'], $option['icon'], $option['text']);
 			            }
-			            $albumItems[$nr]['options'] .= $content .'&nbsp';
+			            $albumItems[$nr]['options'] .= $content . "&nbsp;\n";
 			        }
 			    }
 			}

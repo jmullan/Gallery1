@@ -70,7 +70,7 @@ $textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies
 printf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
 if($numPhotos > 0) {
-    echo '<p>'. sprintf(gTranslate('core', "Approximated size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
+    echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
 
     echo makeFormIntro('download.php', array(), array('type' => 'popup'));
     ?>

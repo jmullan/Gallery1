@@ -30,9 +30,9 @@
 <script type="text/javascript" src="../js/toggle.js"></script>
 
 <div class="g-sitedesc left"><?php
-	echo sprintf(_("This page gives you information about the version of each necessary %s file. "),Gallery());
+	echo sprintf(gTranslate('config', "This page gives you information about the version of each necessary %s file. "),Gallery());
 	echo "\n<br>";
-	echo _("If you see any error(s), we highly suggest to get the actual version of that file(s).");
+	echo gTranslate('config', "If you see any errors, we highly suggest to get the actual version of those files.");
 ?></div>
 <br>
 <?php
@@ -47,7 +47,7 @@ $tests = array(
         		count($versionStatus['missing']),
         		'', true),
         'type' => 'error',
-        'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
+        'hinttext' => sprintf(gTranslate('config', "There are problems with the following files.  Please correct them before configuring %s."), Gallery())
     ),
     'older' => array(
         'text' => gTranslate('config',
@@ -56,7 +56,7 @@ $tests = array(
         		count($versionStatus['older']),
         		'', true),
         'type' => 'error',
-        'hinttext' => sprintf(_("The following files are older than expected for this version of %s. Please update them as soon as possible."), Gallery())
+        'hinttext' => sprintf(gTranslate('config', "The following files are older than expected for this version of %s. Please update them as soon as possible."), Gallery())
     ),
     'unkown' => array(
         'text' => gTranslate('config',
@@ -66,7 +66,7 @@ $tests = array(
         		'',
         		true),
         'type' => 'warning',
-        'hinttext' => sprintf(_("There are problems with the following files.  Please correct them before configuring %s."), Gallery())
+        'hinttext' => sprintf(gTranslate('config', "There are problems with the following files.  Please correct them before configuring %s."), Gallery())
     ),
     'newer' => array(
         'text' => gTranslate('config',
@@ -75,7 +75,7 @@ $tests = array(
         	count($versionStatus['newer']),
         	'', true),
         'type' => 'warning',
-        'hinttext' => sprintf(_("The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery())
+        'hinttext' => sprintf(gTranslate('config', "The following files are more up-to-date than expected for this version of %s.  If you are using pre-release code, this is OK."), Gallery())
     ),
     'ok' => array(
         'text' => gTranslate('config',
@@ -85,14 +85,14 @@ $tests = array(
         		gTranslate('config', "All files are up-to-date."),
         		true),
         'type' => 'success',
-        'hinttext' => _("The following files are up-to-date.")
+        'hinttext' => gTranslate('config', "The following files are up-to-date.")
     ),
 );
 
 foreach($tests as $testname => $args) {
     if  (!empty($versionStatus[$testname])) { ?>
 <div class="g-notice left">
-    <a href="#" style="float: left;" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', _("Show/hide more information"), array('id' => "toggleBut_$testname")); ?></a>
+    <a href="#" style="float: left;" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toggleBut_$testname")); ?></a>
     <?php echo infobox(array(array('type' => $args['type'], 'text' => $args['text'])), '', false); ?>
   <div style="width:100%; display:none;" id="toggleFrame_<?php echo $testname; ?>">
     <table>
