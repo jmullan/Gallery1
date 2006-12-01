@@ -22,6 +22,7 @@
 ?>
 <?php
     require(GALLERY_BASE . '/includes/setup/defaults.inc');
+    require(GALLERY_BASE . '/lib/tabs.php');
     require(GALLERY_BASE . '/js/sectionTabs.js.php');
 
     $inst_type = '';
@@ -105,7 +106,7 @@ foreach ($defaults as $key => $val) {
 	        $visibility = $val["default"];
 	    }
 
-		echo "\n<div id=\"{$val["name"]}\" style=\"display: {$visibility}\">";
+		echo "\n<div id=\"$key\" style=\"display: {$visibility}\">";
 		echo make_separator($key, $val);
 		continue;
 	}

@@ -92,7 +92,6 @@ $common_messages['getting-imagemagick'] = '<br>'.
 $constants =  array_merge(array(
 	'group_mandatory' => array (
 		'type' => 'group_start',
-		'name' => 'group_mandatory',
 		'default' => 'inline',
 		'title' => gTranslate('config',"General settings"),
 		'contains_required' => true,
@@ -146,9 +145,8 @@ $constants =  array_merge(array(
 	'group_mandatory_end' => array (
 		'type' => 'group_end',
 	),
-	'groupLocations' => array (
+	'group_URLS' => array (
 		'type' => 'group_start',
-		'name' => 'group_URLS',
 		'default' => 'none',
 		'title' => gTranslate('config',"Locations and URLs"),
 		'contains_required' => true,
@@ -225,7 +223,6 @@ $constants =  array_merge(array(
 
 	'groupToolkits' => array (
 		'type' => 'group_start',
-		'name' => 'group_toolkits',
 		'default' => 'none',
 		'title' => gTranslate('config',"Toolkits / image processing"),
 		'contains_required' => true,
@@ -251,7 +248,7 @@ $constants =  array_merge(array(
 		'desc' => gTranslate('config',"The path to the directory containing ImageMagick on your system."). '<br>'.
 		  sprintf(gTranslate('config',"This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."), "ImageMagick"),
 		'verify-func' => 'check_graphics_im',
-		'value' => locateDir('convert', isset($gallery->app->ImPath) ? $gallery->app->ImPath : ''),
+		'value' => locateDir(fs_executable('identify'), (isset($gallery->app->ImPath)) ? $gallery->app->ImPath : ''),
 		'fail-imagemagick' => gTranslate('config',"I can't find ImageMagick at the location you provided.") . '  ' .
 		  $common_messages["getting-imagemagick"],
 		'filename' => 1,
@@ -279,7 +276,7 @@ $constants =  array_merge(array(
 		  '<i>/usr/local/bin</i>',
 		  '<i>c:\\apps\\netpbm</i>'). '<br>'.
 		  sprintf(gTranslate('config',"This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."), "NetPBM"),
-		'value' => locateDir("jpegtopnm", isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : ''),
+		'value' => locateDir(fs_executable('jpegtopnm'), isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : ''),
 		'verify-func' => 'check_graphics',
 		'fail-netpbm' => gTranslate('config',"I can't find NetPBM at the location you provided.") . '  ' .
 		  $common_messages['getting-netpbm'],
@@ -359,7 +356,6 @@ $constants =  array_merge(array(
 	),
 	'group_embedded' => array (
 		'type' => 'group_start',
-		'name' => 'group_embedded',
 		'default' => 'none',
 		'title' => gTranslate('config',"Embedded Gallery"),
 		'desc' => gTranslate('config',"Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen.") . ' <b>' . gTranslate('config',"If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab.") . '</b>',
@@ -376,9 +372,8 @@ $constants =  array_merge(array(
 	'group_embedded_end' => array (
 		'type' => 'group_end'
 	),
-	'group3' => array (
+	'group_mainpage' => array (
 		'type' => 'group_start',
-		'name' => 'group_mainpage',
 		'default' => 'none',
 		'title' => gTranslate('config',"Main Gallery page"),
 		'contains_required' => true,
@@ -475,9 +470,8 @@ $constants =  array_merge(array(
 	'group3_end' => array (
 		'type' => 'group_end',
 	),
-	'group5' => array (
+	'group_optionals' => array (
 		'type' => 'group_start',
-		'name' => 'group_optionals',
 		'default' => 'none',
 		'title' => gTranslate('config',"Optional tools")
 	),
@@ -599,9 +593,8 @@ $constants =  array_merge(array(
 	'group5_end' => array (
 		'type' => 'group_end',
 	),
-	'group6' => array (
+	'group_languages' => array (
 		'type' => 'group_start',
-		'name' => 'group_languages',
 		'default' => 'none',
 		'title' => gTranslate('config',"Languages and locales"),
 		'inst_type' => 'easy',
@@ -674,7 +667,6 @@ $constants = array_merge($constants, array(
 	),
 	'group_email' => array (
 		'type' => 'group_start',
-		'name' => 'group_email',
 		'default' => 'none',
 		'title' => gTranslate('config',"Email and Registration"),
 		'desc' => sprintf(gTranslate('config',"If you are having problems with email, please run the %s diagnostic."),
@@ -835,9 +827,8 @@ $constants = array_merge($constants, array(
 	'group_email_end' => array (
 		'type' => 'group_end',
 	),
-	'group7' => array (
+	'group_slideshow' => array (
 		'type' => 'group_start',
-		'name' => 'group_slideshow',
 		'default' => 'none',
 		'title' => gTranslate('config',"Gallery wide slideshow"),
 		'desc' => gTranslate('config',"Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources.") . '  ' .
@@ -891,7 +882,6 @@ $constants = array_merge($constants, array(
 	),
 	'group_comments' => array (
 		'type' => 'group_start',
-		'name' => 'group_comments',
 		'default' => 'none',
 		'title' => gTranslate('config',"Comments"),
 	),
@@ -971,9 +961,8 @@ $constants = array_merge($constants, array(
 	'group_comments_end' => array (
 		'type' => 'group_end',
 	),
-	'group_watermark_start' => array(
+	'group_watermark' => array(
 		'type'		=> 'group_start',
-		'name'		=> 'group_watermark',
 		'default'	=> 'none',
 		'title'		=> gTranslate('config',"Watermarking"),
 		'desc'		=> ($enablewatermark == 'yes') ?
@@ -1007,9 +996,8 @@ $constants = array_merge($constants, array(
 	'group_watermark_end' => array (
 		'type' => 'group_end',
 	),
-	'group_stats_start' => array(
+	'group_stats' => array(
 		'type'		=> 'group_start',
-		'name'		=> 'group_stats',
 		'default' 	=> 'none',
 		'title'		=> gTranslate('config',"Statistics"),
 		'desc'		=> gTranslate('config',"Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information.") . "\n<br>".
@@ -1116,7 +1104,6 @@ $constants = array_merge($constants, array(
 	),
 	'group_blocks' => array (
 		'type' => 'group_start',
-		'name' => 'group_blocks',
 		'default' => 'none',
 		'title' => gTranslate('config', "Blocks"),
 		'desc' => gTranslate('config', "These settings are for the blocks provided by Gallery."),
@@ -1211,7 +1198,6 @@ $constants = array_merge($constants, array(
 	),
 	'group_technical' => array (
 		'type' => 'group_start',
-		'name' => 'group_technical',
 		'default' => 'none',
 		'title' => gTranslate('config',"Technical"),
 		'desc' => gTranslate('config',"The settings in this section are intended for advanced users only.") .
@@ -1314,7 +1300,6 @@ $constants = array_merge($constants, array(
 	),
 	'group_rss' => array(
 		'type' => 'group_start',
-		'name' => 'group_rss',
 		'default' => 'none',
 		'title' => gTranslate('config',"RSS Publisher"),
 		'desc' => gTranslate('config',"Options for the Gallery RSS Publisher"),
@@ -1389,7 +1374,6 @@ $constants = array_merge($constants, array(
 	),
     'group_uploadPaths' => array (
 		'type' => 'group_start',
-		'name' => 'group_uploadPaths',
 		'default' => 'none',
 		'title' => gTranslate('config',"Paths for upload from server"),
 	),

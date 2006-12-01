@@ -27,7 +27,6 @@ require_once(GALLERY_BASE . '/includes/definitions/services.php');
 $defaults = array(
 	'group_layout' => array (
 		'type' => 'group_start',
-		'name' => 'group_layout',
 		'default' => 'inline',
 		'title' => gTranslate('config',"Layout"),
 		'inst_type' => 'easy'
@@ -49,7 +48,6 @@ $defaults = array(
 	),
 	'group_appearance' => array (
 		'type' => 'group_start',
-		'name' => 'group_appearance',
 		'default' => 'none',
 		'title' => gTranslate('config',"Appearance")
 	),
@@ -76,9 +74,8 @@ $defaults = array(
 	'group_appearance_end' => array (
 		'type' => 'group_end',
 	),
-	'group3' => array (
+	'group_display' => array (
 		'type' => 'group_start',
-		'name' => 'group_display',
 		'default' => 'none',
 		'title' => gTranslate('config',"Image Processing and Display"),
 		'inst_type' => 'easy'
@@ -195,9 +192,8 @@ $defaults = array(
 	'group3_end' => array (
 		'type' => 'group_end',
 	),
-	'group4' => array (
+	'group_options2' => array (
 		'type' => 'group_start',
-		'name' => 'group_options2',
 		'title' => gTranslate('config',"Options"),
 		'default' => 'none',
 	),
@@ -265,9 +261,8 @@ $defaults = array(
 	'group4_end' => array (
 		'type' => 'group_end',
 	),
-	'group5' => array (
+	'group_displayed_data' => array (
 		'type' => 'group_start',
-		'name' => 'group_displayed_data',
 		'default' => 'none',
 		'title' => gTranslate('config',"Data displayed"),
 		'inst_type' => 'easy'
@@ -302,9 +297,8 @@ $defaults = array(
 	'group5_end' => array (
 		'type' => 'group_end',
 	),
-	'group6' => array (
+	'group_itemOwner' => array (
 		'type' => 'group_start',
-		'name' => 'group_itemOwner',
 		'default' => 'none',
 		'title' => gTranslate('config',"Item Owner")
 	),
@@ -337,9 +331,8 @@ $defaults = array(
 	'group6_end' => array (
 		'type' => 'group_end'
 	),
-	'group7' => array (
+	'group_polling' => array (
 		'type' => 'group_start',
-		'name' => 'group_polling',
 		'default' => 'none',
 		'title' => gTranslate('config',"Polling configuration"),
 		'desc' =>
@@ -445,9 +438,8 @@ $defaults = array(
 	'group7_end' => array (
 		'type' => 'group_end',
 	),
-	'group8' => array (
+	'group_albumSlidshow' => array (
 		'type' => 'group_start',
-		'name' => 'group_albumSlidshow',
 		'default' => 'none',
 		'title' => gTranslate('config',"Album Slideshow"),
 		'desc' => gTranslate('config',"These settings do not apply to the low tech slideshow."),
@@ -499,9 +491,8 @@ $defaults = array(
 	'group8_end' => array (
 		'type' => 'group_end',
 	),
-	'group_MicroNav_Start' => array (
+	'group_photoMicroNav' => array (
 		'type' => 'group_start',
-		'name' => 'group_photoMicroNav',
 		'default' => 'none',
 		'title' => gTranslate('config',"Microthumb Photo Navigation"),
 		'desc' => gTranslate('config',"These settings apply to the microthumb photo navigation system.  The microthumbs are only visible when viewing individual images.")
@@ -586,7 +577,6 @@ $defaults = array(
 	),
 	'group_frames' => array (
 		'type' => 'group_start',
-		'name' => 'group_frames',
 		'default' => 'none',
 		'title' => gTranslate('config',"Frames"),
 		'desc' => sprintf(gTranslate('config',"Each image (thumbnails, resized and full sized) in %s can have a frame.  The following styles available:"),Gallery()) .

@@ -33,9 +33,8 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 list($nv_pairs, $extra_fields, $num_user_fields) =
     getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
 
-include_once(GALLERY_BASE . '/includes/definitions/services.php');
-include_once(GALLERY_BASE . '/lib/setup.php');
-include_once(GALLERY_BASE . '/js/sectionTabs.js.php');
+include_once(dirname(dirname(__FILE__)) . '/includes/definitions/services.php');
+require_once(dirname(dirname(__FILE__)) . '/lib/tabs.php');
 
 $notice_messages = array();
 $reloadOpener = false;

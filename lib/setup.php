@@ -52,9 +52,11 @@ function evenOdd_row($fields) {
 function make_fields($key, $arr) {
 	if (isset($arr['prompt'])) {
 		$col1 = $arr['prompt'];
-	} else {
+	}
+	else {
 		$col1 = '';
 	}
+
 	if (isset($arr['type']) &&
 	  ($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
         $col2 = form_input($key, $arr);
@@ -710,7 +712,8 @@ function check_graphics_im($location = '', $graphtool = '') {
 		if(count($missing_critical) > 0) {
 			$fail['fail-imagemagick-partial'] = array_values($missing_critical);
 		}
-	} else {
+	}
+	else {
 		$success[] = sprintf(gTranslate('config', "%d of %d ImageMagick binaries located."),
 		count($imagick), count($imagick));
 	}
@@ -1336,18 +1339,6 @@ function inOpenBasedir($dir) {
 	return false;
 }
 
-function make_separator($key, $arr)  {
-	getAndRemoveAccessKey($arr["title"]);
-
-	$html = "\n\t<h1>{$arr["title"]}</h1>";
-
-	if(!empty($arr["desc"])) {
-		$html .= "\n<div class=\"g-desc-cell\">{$arr["desc"]}</div>";
-	}
-
-	return $html;
-}
-
 function array_stripslashes($subject) {
 	if (is_string($subject)) {
 		return stripslashes($subject);
@@ -1744,91 +1735,6 @@ function checkVersions($verbose = false) {
 	}
 
 	return $versionStatus;
-}
-
-/**
- * This function creates a tabsset  for navigating through Sections (Groups).
- *
- * It analyses a given Array which is in config_data Style:
- *
- * "<group_key>" => array (
- *			"type"          =>
- *			"name"          =>
- *			"default"       =>
- *			"title"		=>
- *			"desc"		=>
- *        )
- *
- * "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
- * "name"		: To identify the group you have to set a name.
- * "default"		: Indicates wether the group is visible or not. Possible values: 'inlineÄ', 'none'.
- * "title"		: When the group is visible, this title is displayed in the header line.
- * "desc"		: This optional Description is displayed under the title.
- * "contains_required"	: Indicates that this Group contains field that are required
- *
- * Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
- *	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
- *
- * @author Jens Tkotz
- */
-function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibilityKeyword = '', $visibilityValue = '') {
-	$tabs = array();
-
-	foreach ($array as $key => $var) {
-		if(isset($var['type']) && $var['type'] == 'group_start') {
-		    if(!empty($visibilityKeyword)) {
-		        if($var[$visibilityKeyword] != $visibilityValue) {
-		            continue;
-		        }
-		    }
-			$tabs[$key] = $var;
-		}
-	}
-
-	if ($sortByTitle) {
-		array_sort_by_fields($tabs, 'title');
-	}
-
-	echo "\n<div class=\"g-tabset floatleft\">\n";
-
-	foreach ($tabs as $cell) {
-		$attrList = array();
-
-		if (($cell['default'] == 'inline' && !$initialtab) || $initialtab == $cell['name']) {
-			$attrList['class'] = 'g-activeTab';
-			if (empty($initialtab)) {
-				$initialtab = $cell['name'];
-			}
-		}
-
-		$attrList['id'] = 'tab_'. $cell['name'];
-		$attrList['onClick'] = "section_tabs.toggle('" . $cell['name'] ."')";
-		$text = $cell['title'];
-		if (!empty($cell['contains_required'])) {
-			$text .= '<span class="g-littlered">*</span>';
-		}
-
-		echo galleryLink('', $text, $attrList);
-	}
-
-	echo "</div>\n";
-
-    $i = 0;
-	echo '<script language="JavaScript" type="text/javascript">';
-	echo "\n\t". 'var Sections=new Array()';
-	foreach ($tabs as $key => $var) {
-		if(isset($var['type']) && $var['type'] == 'group_start') {
-			echo "\n\tSections[$i] ='". $var['name'] ."' ;";
-			$i++;
-		}
-	}
-
-	echo "\n\tsection_tabs = new configSection('$initialtab')";
-	insertSectionToggle();
-
-	echo "\n</script>\n";
-
-	return $initialtab;
 }
 
 function configLogin($target) {
