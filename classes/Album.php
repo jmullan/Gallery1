@@ -1306,9 +1306,19 @@ class Album {
             $now = time();
             $item->setItemCaptureDate($originalItemCaptureDate);
             $item->setUploadDate($now);
-            foreach ($extraFields as $field => $value) {
-                $item->setExtraField($field, $value);
+
+            /* Prior to 1.6 'desciption' was an extrafield */
+            if(!empty($extraFields)) {
+                foreach($extraFields as $fieldname => $value) {
+                    if($fieldname == 'description' || $fieldname == 'Description') {
+                        $item->setDescription($value);
+                    }
+                    else {
+                        $item->setExtraField($fieldname, $value);
+                    }
+                }
             }
+
             if (empty($owner)) {
                 $nobody = $gallery->userDB->getNobody();
                 $owner = $nobody->getUid();
@@ -2421,17 +2431,33 @@ class Album {
     }
 
     function getPerm($permName, $uid) {
+        require_once(dirname(__FILE__) .'/Group.php');
+        require_once(dirname(__FILE__) .'/gallery/Group.php');
+
+        global $gallery, $GALLERY_EMBEDDED_INSIDE_TYPE;
+
         if (isset($this->fields["perms"][$permName])) {
             $perm = $this->fields["perms"][$permName];
-        } else {
+        }
+        else {
             return false;
         }
 
         if (isset($perm[$uid])) {
             return true;
         }
-
-        global $gallery;
+        elseif (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+            $groupPerms = $this->_getGropupPerms($permName);
+            if(!empty($groupPerms)) {
+                foreach ($groupPerms as $gid) {
+                    $tmpGrp = new Gallery_Group();
+                    $tmpGrp->load($gid);
+                    if($tmpGrp->userIsMember($uid)) {
+                        return true;
+                    }
+                }
+            }
+        }
 
         /* If everybody has the perm, then we do too */
         $everybody = $gallery->userDB->getEverybody();
@@ -2440,19 +2466,17 @@ class Album {
         }
 
         /**
-         * If loggedIn has the perm and we're logged in, then
-         * we're ok also.
+         * If loggedIn has the perm and we're logged in, then we're ok also.
          *
          * phpBB2's anonymous user are also "logged in", but we have to ignore this.
          */
-        global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
         $loggedIn = $gallery->userDB->getLoggedIn();
-        if (isset($perm[$loggedIn->getUid()]) && strcmp($gallery->user->getUid(), $everybody->getUid()) &&
-          ! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
+        if (isset($perm[$loggedIn->getUid()]) &&
+            strcmp($gallery->user->getUid(), $everybody->getUid()) &&
+            ! ($GALLERY_EMBEDDED_INSIDE_TYPE == 'phpBB2' && $gallery->user->uid == -1)) {
             return true;
         }
-
 
         /**
          * GEEKLOG MOD
@@ -2473,25 +2497,57 @@ class Album {
         return false;
     }
 
-    function getPermUids($permName) {
+    /**
+     * Returns an array of groupids that have a given permission.
+     *
+     * @param string $permName
+     * @return array $groupPerms
+     * @author Jens Tkotz
+     */
+    function _getGropupPerms($permName) {
+        $groupPerms = array();
+
+        if (empty($this->fields["perms"][$permName])) {
+            return $groupPerms;
+        }
+        foreach ($this->fields["perms"][$permName] as $id => $junk) {
+            if(substr($id, 0,2) == 'g_') {
+                $groupPerms[] = $id;
+            }
+        }
+
+        return $groupPerms;
+    }
+
+    function getPermIds($permName) {
         global $gallery;
+        require_once(dirname(__FILE__) .'/Group.php');
+        require_once(dirname(__FILE__) .'/gallery/Group.php');
 
         $perms = array();
         if (!empty($this->fields["perms"][$permName])) {
-            foreach ($this->fields["perms"][$permName] as $uid => $junk) {
-                $tmpUser = $gallery->userDB->getUserByUid($uid);
-                $perms[$uid] = $tmpUser->getUsername();
+            foreach ($this->fields["perms"][$permName] as $id => $junk) {
+                if(substr($id, 0,2) == 'g_') {
+                    $tmpGrp = new Gallery_Group();
+                    $tmpGrp->load($id);
+                    $perms[$id] = $tmpGrp->getName() . ' ' . gTranslate('core', "(Group)");
+                }
+                else {
+                    $tmpUser = $gallery->userDB->getUserByUid($id);
+                    $perms[$id] = $tmpUser->getUsername();
+                }
             }
         }
 
         return $perms;
     }
 
-    function setPerm($permName, $uid, $bool) {
+    function setPerm($permName, $id, $bool) {
         if ($bool) {
-            $this->fields["perms"][$permName][$uid] = 1;
-        } elseif (isset($this->fields["perms"][$permName][$uid])) {
-            unset($this->fields["perms"][$permName][$uid]);
+            $this->fields["perms"][$permName][$id] = 1;
+        }
+        elseif (isset($this->fields["perms"][$permName][$id])) {
+            unset($this->fields["perms"][$permName][$id]);
         }
     }
 
