@@ -47,35 +47,42 @@ if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) &&
 if (function_exists('posix_getpwuid')) {
 	$rec = @posix_getpwuid(posix_getuid());
 	$webserver_user = $rec['name'];
-} else {
+}
+else {
 	$whoami = locateFile('whoami');
 	if ($whoami) {
 		fs_exec($whoami, $results, $status);
 		$webserver_user = $results[0];
-	} else {
+	}
+	else {
 		$webserver_user = gTranslate('config',"unknown");
 	}
 }
 
 $common_messages['getting-netpbm'] = '<br>'.
-  sprintf(gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
-  '"<a href="http://sourceforge.net/projects/gallery" target="_blank">',
-  '</a>',
-  '<a href="http://sourceforge.net/projects/netpbm" target="_blank">',
-  '</a>')  .
-  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
+  sprintf(
+      gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
+      '"<a href="http://sourceforge.net/projects/gallery" target="_blank">',
+      '</a>',
+      '<a href="http://sourceforge.net/projects/netpbm" target="_blank">',
+      '</a>'
+  )  .
+  '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
   gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
 
 $common_messages['getting-imagemagick'] = '<br>'.
-  sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s." ),
-  '<a href="http://www.imagemagick.org" target="_blank">', '</a>') .
-  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
+  sprintf(
+    gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s." ),
+    '<a href="http://www.imagemagick.org" target="_blank">', '</a>'
+  ) .
+  '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
   gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
 
 $common_messages['open-basedir-active'] =
-  '<p style="font-weight: bold;">' . gTranslate('config',"Note:"). '</p>'.
+  '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
   sprintf(gTranslate('config',"Your PHP installation is configured with the %s restriction.   This may make it difficult for Gallery to detect and verify your binaries, even if you've already successfully used the Config. Wizard in the past.  Don't worry too much if this page gives warnings; your settings will still be saved properly."),
-  '<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
+    '<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>'
+  );
 
 /* The list of checks done in step 1 */
 $checklist = array(

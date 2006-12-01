@@ -74,10 +74,13 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
                     echo gTranslate('config', "Gallery must be configured before you can use it.");
             ?>
 
-            <table class="g-sitedesc">
+            <table class="g-sitedesc" cellspacing="10">
                 <tr>
                     <td><?php echo gTranslate('config', "1."); ?></td>
-                    <td><?php echo gTranslate('config', "Create an empty file .htaccess and an empty file config.php in the mainfolder of your Gallery."); ?></td>
+                    <td>
+                        <?php echo gTranslate('config', "Create an empty file config.php in the mainfolder of your Gallery."); ?><br>
+                        <?php echo gTranslate('config', "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosters.)"); ?>
+                    </td>
                 </tr>
                 <tr>
                     <td><?php echo gTranslate('config', "2."); ?></td>
@@ -109,7 +112,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
             ?>
             </p>
 
-            <table>
+            <table cellspacing="5">
             <?php if ($install): ?>
             <tr>
                 <td class="g-emphasis nowrap"><?php echo gTranslate('config', "Start:"); ?></td>
