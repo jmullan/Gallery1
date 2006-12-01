@@ -34,7 +34,7 @@ class AlbumDB {
 
         $dir = $gallery->app->albumDir;
 
-        $allowedInvalidAlbums = array('CVS', 'SVN', '_vti_cnf', 'lost+found');
+        $allowedInvalidAlbums = array('CVS', 'SVN', '_vti_cnf', 'lost+found', 'captcha_tmp');
 
         if(!fs_is_dir($dir)) {
             echo infoBox(array(array(

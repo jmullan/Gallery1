@@ -109,28 +109,31 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 }
 
 function drawCommentAddForm($commenter_name = '', $cols = 50) {
-    global $gallery;
+    global $gallery, $captcha;
+
     if ($gallery->user->isLoggedIn() &&
       (empty($commenter_name) || $gallery->app->comments_anonymous == 'no')) {
         $commenter_name = $gallery->user->printableName($gallery->app->name_display);
     }
 ?>
 
-<table class="g-commentadd-box" cellpadding="0" cellspacing="0">
+<table class="g-commentadd-box" cellpadding="0" cellspacing="0" align="center">
 <tr>
 	<th colspan="2"><?php echo gTranslate('common', "Add your comment") ?></th>
 </tr>
 <tr>
-	<td class="g-commentadd-box-head left"><?php echo gTranslate('common', "Commenter:"); ?></td>
-	<td class="g-commentadd-box-head">
+	<td class="g-commentadd-box-head right"><?php echo gTranslate('common', "Commenter:"); ?></td>
+	<td class="g-commentadd-box-head left">
 <?php
 
 if (!$gallery->user->isLoggedIn() ) {
     echo '<input name="commenter_name" value="'. $commenter_name .'" size="30">';
-} else {
+}
+else {
     if ($gallery->app->comments_anonymous == 'yes') {
         echo '<input name="commenter_name" value="'. $commenter_name. '" size="30">';
-    } else {
+    }
+    else {
         echo $commenter_name;
         echo '<input type="hidden" name="commenter_name" value="'. $commenter_name .'" size="30">';
     }
@@ -140,12 +143,16 @@ if (!$gallery->user->isLoggedIn() ) {
 </tr>
 <tr>
 	<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
-	<td><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
+	<td class="left"><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
+</tr>
+<tr>
+    <td class="right"><?php echo gTranslate('core', "Captcha Protection:"); ?></td>
+    <td><?php echo $captcha->display_form(); ?></td>
 </tr>
 <tr>
 	<td colspan="2" class="g-commentadd-box-footer right">
 	  <input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>" class="g-button">
-        </td>
+    </td>
 </tr>
 </table>
 <?php
