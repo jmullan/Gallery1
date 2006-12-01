@@ -183,7 +183,7 @@ $messages = array();
 if (getOS() != OS_WINDOWS) {
     $messages[] = array(
         'type' => 'information',
-        'text' => gTranslate('config', "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.")
+        'text' => gTranslate('config', "We suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.")
     );
 }
 

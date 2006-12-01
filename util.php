@@ -360,7 +360,8 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	if (count($array) == 0) {
 		if (!strcmp($ownerUid, $everybody->getUid())) {
 		        $array = array($everybody->getUid() => $everybody->getUsername());
-		} else {
+		}
+		else {
 			$array[$nobody->getUid()] = $nobody->getUsername();
 		}
 	}
@@ -1795,12 +1796,12 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 
 	if (empty($sort_funcs[$sortby])) {
 	    if ($special) {
-		$a = "\$a->fields[\"$sortby\"]";
-		$b = "\$b->fields[\"$sortby\"]";
+    		$a = "\$a->fields[\"$sortby\"]";
+    		$b = "\$b->fields[\"$sortby\"]";
 	    }
 	    else {
-		$a = "\$a['$sortby']";
-		$b = "\$b['$sortby']";
+    		$a = "\$a['$sortby']";
+    		$b = "\$b['$sortby']";
 	    }
 
 	    if ($caseSensitive) {
@@ -1839,7 +1840,8 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 
 	if($keepIndexes) {
 		uasort($data, $sort_func);
-	} else {
+	}
+	else {
 		usort($data, $sort_func);
 	}
 }

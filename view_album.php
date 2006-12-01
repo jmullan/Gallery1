@@ -500,10 +500,12 @@ if (canVote()) {
 
 // <!-- image grid table -->
 
+$vaRenderDescriptionCSS = '';
 $numPhotos = $gallery->album->numPhotos(1);
 /* this determines if we display "* Item contains a comment" at end of page */
 $displayCommentLegend = false;
 $nr = 0;
+
 if ($numPhotos) {
 	$rowCount = 0;
 
@@ -826,7 +828,6 @@ if ($numPhotos) {
 		$rowStart = $visibleItemIndex;
 	}
 
-	$vaRenderDescriptionCSS = '';
 	if(!empty($vaRenderDescriptionPanelJS)) {
 	    $va_javascript .= "\n" .'  <script type="text/javascript">';
         $va_javascript .= "\n" .'    function init() { ';

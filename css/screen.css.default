@@ -482,20 +482,21 @@ a {
 
 /* Box in add_comment */
 .g-commentadd-box {
-    border: 1px solid #fff;
-    background-color: #e9e9ff;
+    border: 1px solid #000;
+    background-color: #66a;
     margin-top: 5px;
 }
 
 .g-commentadd-box th {
+    color: silver;
+}
+
+.g-commentadd-box td {
+    color: #FFF;
 }
 
 /* Header fields in add_comment */
 .g-commentadd-box-head {
-}
-
-.g-commentadd-box td {
-    padding: 0 2px 0 2px;
 }
 
 .g-commentadd-box-middle {
@@ -511,14 +512,13 @@ a {
 
 .g-comment-box {
     margin: 2px 5px;
-    padding-left: 30px;
     width: 75%;
     border: 1px solid silver;
 }
 
 .g-comment-text-cell {
-    padding-left:10px;
-    border-top:1px solid black;
+    padding-left: 10px;
+    border-top: 1px solid black;
 }
 
 /***** End Styles for comments *****/
@@ -652,6 +652,11 @@ input:focus, textarea:focus, select:focus {
 .g-button:focus {
     background: #99c;
     color: #fff;
+}
+
+.g-selected {
+    color: red;
+    font-weight: bold;
 }
 
 /****** End general Form Styles *****/

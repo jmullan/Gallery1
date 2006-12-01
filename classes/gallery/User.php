@@ -85,27 +85,27 @@ class Gallery_User extends Abstract_User {
 		if (!isset($this->version)) {
 			$this->version = "0";
 		}
+		
 		if (!strcmp($this->version, $gallery->user_version)) {
-			print _("up to date");
+			print gTranslate('core', "up to date");
 			return true;
 		}
 
-		if ($this->version < 1) 
-		{
-			$this->setDefaultLanguage("");
+		if ($this->version < 1) {
+			$this->setDefaultLanguage('');
 		}
-		if ($this->version < 2) 
-		{
+		
+		if ($this->version < 2) {
 			$this->genRecoverPasswordHash(true);
 		}
-		if ($this->version < 3) 
-		{
-			$this->lastAction=NULL;
-			$this->lastActionDate=time(0);
-			$this->origEmail=$this->email;
+		
+		if ($this->version < 3)  {
+			$this->lastAction = NULL;
+			$this->lastActionDate = time(0);
+			$this->origEmail = $this->email;
 		}
-		if ($this->version < 5) 
-		{
+		
+		if ($this->version < 5) {
 			$dir = $gallery->app->userDir;
 			$olduid = $this->uid;
 			$uid = strtr($olduid, ':;', '__');
@@ -116,9 +116,11 @@ class Gallery_User extends Abstract_User {
 			if (fs_is_file($file1)) {
 				fs_rename($file1, $file2);
 			}
+			
 			if (fs_is_file("$file1.bak")) {
 				fs_rename("$file1.bak", "$file2.bak");
 			}
+			
 			if (fs_is_file("$file1.lock")) {
 				fs_rename("$file1.lock", "$file2.lock");
 			}
@@ -132,16 +134,19 @@ class Gallery_User extends Abstract_User {
 		}
 
 		$this->version = $gallery->user_version;
+		
 		if ($this->save()) {
-			$success=true;
-			print _("upgraded");
-		} else {
+			$success = true;
+			print gTranslate('core', "upgraded");
+		}
+		else {
 			$success = false;
-			print _("failed");
+			print gTranslate('core', "saving failed");
 		}
 
 		return $success;
 	}
+	
 	function setDefaultLanguage($defaultLanguage) {
 		$this->defaultLanguage = $defaultLanguage;
 	}
@@ -151,14 +156,15 @@ class Gallery_User extends Abstract_User {
 	}
 
 	function genRecoverPasswordHash($reset=false) {
-		if ($reset) {
-		       	$this->recoverPassHash = NULL;
-			return "";
-		}
-	       	$rec_pass_hash=substr(md5($this->password.
-					$this->uid.microtime()), 0, 5);
-		$this->recoverPassHash = md5($rec_pass_hash);
-	       	return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
+	    if ($reset) {
+	        $this->recoverPassHash = NULL;
+	        return '';
+	    }
+	    
+	    $rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
+	    $this->recoverPassHash = md5($rec_pass_hash);
+	    
+	    return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
 	}
 
 	function checkRecoverPasswordHash($hash) {
@@ -173,7 +179,7 @@ class Gallery_User extends Abstract_User {
 				"bulk_register", "login", 
 				"new_password_request", "new_password_set");
 		if (!in_array($action, $valid_actions)) {
-			echo gallery_error(sprintf(_("Not a valid action: %s"), 
+			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"), 
 						$action));
 			return;
 	       	}

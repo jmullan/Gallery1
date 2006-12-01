@@ -421,13 +421,12 @@ for ($i = $start; $i <= $end; $i++) {
         /* Amount of items */
         list($visibleItems) = $gallery->album->numItems($gallery->user, true);
 
-        $rootAlbum[$tmpAlbumName]['albumdesc']['numItems'] =
-            gTranslate('core',
-		"This album contains 1 item.",
-		"This album contains %d items.",
-		$visibleItems,
-		gTranslate('core', "This album is empty."),
-		true
+        $rootAlbum[$tmpAlbumName]['albumdesc']['numItems'] = gTranslate('core',
+    		"This album contains 1 item.",
+    		"This album contains %d items.",
+    		$visibleItems,
+    		gTranslate('core', "This album is empty."),
+    		true
 	    );
 
         /* Click counter + reset for it */
@@ -436,21 +435,21 @@ for ($i = $start; $i <= $end; $i++) {
 	    $resetDate = $gallery->album->getClicksDate();
 
             $rootAlbum[$tmpAlbumName]['albumdesc']['clickCounter'] =
-                sprintf(
-		  gTranslate('core',
-			"This album has been viewed %d time since %s.",
-			"This album has been viewed %d times since %s.",
-			$clickCount,
-			sprintf(gTranslate('core', "This album has never been viewed since %s."), $resetDate)),
+                sprintf(gTranslate('core',
+        			"This album has been viewed %d time since %s.",
+        			"This album has been viewed %d times since %s.",
+        			$clickCount,
+        			sprintf(gTranslate('core', "This album has never been viewed since %s."), $resetDate)
+        			),
                 $clickCount, $resetDate);
         }
 
         if ($gallery->user->canWriteToAlbum($gallery->album) &&
-        (!($gallery->album->fields["display_clicks"] == "no"))) {
+          (!($gallery->album->fields["display_clicks"] == "no"))) {
             $rootAlbum[$tmpAlbumName]['albumdesc']['clickCounter'] .= ' '.
                 popup_link(
-                gTranslate('core', "reset counter"),
-                doCommand("reset-album-clicks", array("set_albumName" => $tmpAlbumName), "albums.php"), 1);
+                    gTranslate('core', "reset counter"),
+                    doCommand("reset-album-clicks", array("set_albumName" => $tmpAlbumName), "albums.php"), 1);
         }
 
         /* Comment Indicator */
@@ -472,9 +471,10 @@ for ($i = $start; $i <= $end; $i++) {
         if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0) {
             if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') {
                 $rootAlbum[$tmpAlbumName]['albumdesc']['microthumbs'] = printMicroChildren2(createTreeArray($tmpAlbumName,$depth = 0));
-		$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = '&nbsp;';
-            } else {
-		$rootAlbum[$tmpAlbumName]['subalbumTree'] = true;
+                $rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = '&nbsp;';
+            }
+            else {
+                $rootAlbum[$tmpAlbumName]['subalbumTree'] = true;
                 $rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = printChildren(createTreeArray($tmpAlbumName,$depth = 0));
             }
         }

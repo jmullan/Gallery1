@@ -117,7 +117,7 @@ if (!empty($formaction) && $formaction == 'create') {
 } else if (!empty($formaction) || isset($dismiss)) {
     header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
-printPopupStart(gTranslate('core', "Create User"), '', left');
+printPopupStart(gTranslate('core', "Create User"), '', 'left');
 
 $canCreate = 0;
 

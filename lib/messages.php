@@ -23,7 +23,14 @@
 <?php
 
 function gallery_error($message) {
-    return '<span class="g-error">'. sprintf(gTranslate('common', "Error: %s") , $message) ."</span>\n";
+    $html = infoBox(array(array(
+        'type' => 'error',
+        'text' => $message
+    )));
+
+    $html .= "\n";
+
+    return $html;
 }
 
 function infoLine($messages, $type = '') {

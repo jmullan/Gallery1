@@ -212,8 +212,8 @@ if (! $ecard_send) {
         $defaultSenderEmail = $gallery->user->getEmail();
     }
 
-    $name_sender = empty($ecard[name_sender]) ? $defaultSenderName : $ecard['name_sender'];
-    $email_sender = empty($ecard[name_sender]) ? $defaultSenderEmail : $ecard['email_sender'];
+    $name_sender = empty($ecard['name_sender']) ? $defaultSenderName : $ecard['name_sender'];
+    $email_sender = empty($ecard['name_sender']) ? $defaultSenderEmail : $ecard['email_sender'];
     ?>
     <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $name_sender; ?>"></td>
     <td></td>

@@ -148,42 +148,41 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
     	/* ----- Item is subalbum ----- */
     	if ($isAlbum) {
     		$options[] = array(
-	    		'text' => gTranslate('core', 'Edit Title'),
-	    		'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "title")),
+	    		'text' => gTranslate('core', "Edit Title"),
+	    		'value' =>  showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
     		);
     		$options[] = array(
-	    		'text' => gTranslate('core', 'Edit Description'),
-	    		'text' => getIconText('', gTranslate('core', 'Edit Description'), $override, $withIcons),
-	    		'value' => showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "description")),
-	    		'icon' => ''
+	    		'text' => gTranslate('core', "Edit Description"),
+	    		'value' => showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
+	    		'icon1' => ''
     		);
 
     		$options[] = array(
 	    		'text' => gTranslate('core', "Rename Album"),
-	    		'value' => showChoice2("rename_album.php", array("set_albumName" => $myAlbum->fields["name"], "index" => $i)),
+	    		'value' => showChoice2('rename_album.php', array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
     		);
 
     		$options[] = array(
 	    		'text' => gTranslate('core', "Reset Counter"),
-	    		'value' => showChoice2("do_command.php",
+	    		'value' => showChoice2('do_command.php',
 		    		array(
 			    		'cmd' => 'reset-album-clicks',
 			    		'set_albumName' => $gallery->album->getAlbumName($i),
-			    		'return' => urlencode(makeGalleryUrl("view_album.php"))
+			    		'return' => urlencode(makeGalleryUrl('view_album.php'))
 		    		)
 	    		),
     		);
 
     		$options[] = array(
 	    		'text' => gTranslate('core', "Permissions"),
-	    		'value' => showChoice2("album_permissions.php", array("set_albumName" => $myAlbum->fields["name"])),
+	    		'value' => showChoice2('album_permissions.php', array('set_albumName' => $myAlbum->fields['name'])),
     		);
 
     		// Watermarking support is enabled and user is allowed to watermark images/albums /
     		if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
     			$options[] = array(
 	    			'text' => gTranslate('core', "Watermark Album"),
-	    			'value' => showChoice2("watermark_album.php", array("set_albumName" => $myAlbum->fields["name"])),
+	    			'value' => showChoice2('watermark_album.php', array('set_albumName' => $myAlbum->fields['name'])),
     			);
     		}
     		if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {

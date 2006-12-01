@@ -38,9 +38,6 @@ if (!$gallery->user->isAdmin()) {
     exit;
 }
 
-$errorCount = 0;
-$msg = '';
-$infoLineType = '';
 $notice_messages = array();
 
 /**
@@ -53,7 +50,7 @@ if (!empty($save)) {
     if ($old_uname != $uname) {
         $gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
         if ($gErrors["uname"]) {
-            $errorCount++;
+            $failure = true;
             $uname = $old_uname;
         }
     }
@@ -61,16 +58,17 @@ if (!empty($save)) {
     if ($new_password1 || $new_password2) {
         if (strcmp($new_password1, $new_password2)) {
             $gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
-            $errorCount++;
-        } else {
+            $failure = true;
+        }
+        else {
             $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
             if ($gErrors["new_password1"]) {
-                $errorCount++;
+                $failure = true;
             }
         }
     }
 
-    if (!$errorCount) {
+    if (isset($failure)) {
         $tmpUser = $gallery->userDB->getUserByUsername($old_uname);
         $tmpUser->setUsername($uname);
         $tmpUser->setFullname($fullname);
@@ -96,10 +94,13 @@ if (!empty($save)) {
         );
     }
     else {
-        $msg = gallery_error(gTranslate('core', "User information was not succesfully updated !!"));
-        $infoLineType = 'error';
+        $notice_messages[] = array(
+            'type' => 'error',
+            'text' => gTranslate('core',"User information was not succesfully updated!")
+        );
     }
-} else if (isset($dismiss)) {
+}
+else if (isset($dismiss)) {
     header('Location: ' . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
 
@@ -111,10 +112,11 @@ if (!$tmpUser) {
 }
 
 if ($tmpUser->isAdmin()) {
-    $allowChange["create_albums"] = false;
+    $allowChange["create_albums"] =  false;
     $allowChange["canChangeOwnPw"] = false;
-} else {
-    $allowChange["create_albums"] = true;
+}
+else {
+    $allowChange["create_albums"] =  true;
     $allowChange["canChangeOwnPw"] = true;
 }
 
@@ -126,15 +128,15 @@ $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-$allowChange["uname"] = true;
-$allowChange["email"] = true;
-$allowChange["fullname"] = true;
-$allowChange["admin"] = true;
-$allowChange["default_language"] = true;
-$allowChange["send_email"] = false;
-$allowChange["member_file"] = false;
-$allowChange["password"] = true;
-$allowChange["old_password"] = false;
+$allowChange["uname"] =             true;
+$allowChange["email"] =             true;
+$allowChange["fullname"] =          true;
+$allowChange["admin"] =             true;
+$allowChange["default_language"] =  true;
+$allowChange["send_email"] =        false;
+$allowChange["member_file"] =       false;
+$allowChange["password"] =          true;
+$allowChange["old_password"] =      false;
 
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
