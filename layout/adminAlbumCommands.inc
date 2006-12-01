@@ -45,7 +45,7 @@ if ($gallery->user->canChangeTextOfAlbum($gallery->album) && !$gallery->session-
 /* User is Admin or Owner */
 if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
 	/* User is allowed to change Album Permissions */
-	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"permissions"), "album_permissions.php?set_albumName={$tmpAlbumName}");
+	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"permissions"), "album_permissions.php?set_albumName={$tmpAlbumName}", 0, true, 550, 700);
 	$adminAlbumCommands .= "\n\t". popup_link(gTranslate('core',"properties"), "edit_appearance.php?set_albumName={$tmpAlbumName}", 0, true, 500, 600);
 
 	/* User is allowed to view ALL comments */

@@ -61,7 +61,12 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
     $adminOptions[]  = array('text' => gTranslate('core', "manage _users"),
 			 'popupFile' => 'manage_users.php',
 			 'longtext' => gTranslate('core', "Manage your users."));
+
+    $adminOptions[]  = array('text' => gTranslate('core', "manage user_groups"),
+			 'popupFile' => 'manage_groups.php',
+			 'longtext' => gTranslate('core', "Manage your usergroups."));
 }
+
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 

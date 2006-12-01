@@ -110,10 +110,20 @@ function generateAttrs($attrList) {
     return $attrs;
 }
 
-function drawSelect($name, $options, $selected, $size, $attrList = array()) {
+/**
+ * Returns the HTML code for a selectbox
+ *
+ * @param string  $name         Name attribute of the selectbox
+ * @param array   $options      Array of options. Format 'value' => 'text'
+ * @param mixed   $selected     String or integer, if a value or key is equal this, the entry is selected.
+ * @param integer $size         Size of the box, default 1
+ * @param array   $attrList     Optional Attributs for the selectbox
+ * @return string $html
+ */
+function drawSelect($name, $options, $selected, $size = 1, $attrList = array()) {
     $crlf = "\n\t";
     $attrs = generateAttrs($attrList);
-    $buf = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
+    $html = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
     if(!empty($options)) {
         foreach ($options as $value => $text) {
@@ -126,15 +136,24 @@ function drawSelect($name, $options, $selected, $size, $attrList = array()) {
             else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
                 $sel = ' selected';
             }
-            $buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
+            $html .= "<option value=\"$value\"$sel>$text</option>" . $crlf;
         }
     }
-    $buf .= '</select>'. $crlf;
+    $html .= '</select>'. $crlf;
 
-    return $buf;
+    return $html;
 }
 
-function drawSelect2($name, $options, $attrList = array(), $args = array()) {
+/**
+ * Returns the HTML code for a selectbox
+ *
+ * @param string  $name         Name attribute of the selectbox
+ * @param array   $options      Array of options. Format 'trash' => array('text' => .., 'value' => '', 'selected' => set/not set
+ * @param array   $attrList     Optional Attributs for the selectbox
+ * @return string $html
+ * @author Jens Tkotz
+ */
+function drawSelect2($name, $options, $attrList = array()) {
     $crlf = "\n\t";
 
     if (!isset($attrList['size'])) {
@@ -143,19 +162,20 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
 
     $attrs = generateAttrs($attrList);
 
-    $buf = "$crlf<select name=\"$name\"$attrs>$crlf";
+    $html = "$crlf<select name=\"$name\"$attrs>$crlf";
 
     if(!empty($options)) {
-        foreach ($options as $nr => $option) {
+        foreach ($options as $option) {
             $option['text'] = removeAccessKey($option['text']);
             $sel = isset($option['selected']) ? ' selected' : '';
-            $buf .= '<option value="'. $option['value'] ."\"$sel>". $option['text'] .'</option>' . $crlf;
+            $disabled = ($option['value'] == null) ? 'disabled class="center" style="color: grey"' : '';
+            $buf .= '<option value="'. $option['value'] ."\"$sel $disabled>". $option['text'] .'</option>' . $crlf;
         }
     }
 
-    $buf .= "</select>". $crlf;
+    $html .= "</select>". $crlf;
 
-    return $buf;
+    return $html;
 }
 
 /**
@@ -286,11 +306,11 @@ function showChoice2($target, $args, $popup = true) {
 /**
  * Returns the HTML Code for a submit button (<input type="submit">).
  *
- * @param string    $name            Name of the button.
- * @param string    $value           Value shown on the button.
+ * @param string    $name             Name of the button.
+ * @param string    $value            Value shown on the button.
  * @param array     $additionalAttrs  Additional HTML attributes
- * @return string   $html         The HTML code.
- * @author Jens Tkotz <jens@peino.de
+ * @return string   $html             The HTML code.
+ * @author Jens Tkotz
  */
 function gSubmit($name, $value, $additionalAttrs = array()) {
     static $ids = array();
@@ -321,14 +341,28 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
     return $html;
 }
 
+/**
+ * Returns the HTML Code for an input element
+ *
+ * @param string $type              E.g. 'text', 'textarea', 'checkbox' et.c
+ * @param string $name
+ * @param string $label
+ * @param boolean $tableElement     Wether the form field should be a table line
+ * @param mixed $value
+ * @param array $attrList           List of attributes for the form field
+ * @param boolean $multiInput       If true, then multiple fields are dynamically added/removed
+ * @param booelan $autocomplete
+ * @return string $html
+ * @author Jens Tkotz
+ */
 function gInput($type, $name, $label = null, $tableElement = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
     global $browser;
 
     $attrList['name'] = $name;
-    $attrList['type'] = $type;
     $attrList['accesskey'] = getAndSetAccessKey($label);
 
-    if (!empty($value) || $value == 0) {
+    if ($type != 'textarea' &&(!empty($value) || $value == 0)) {
+        $attrList['type'] = $type;
         $attrList['value'] = $value;
     }
 
@@ -352,15 +386,18 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
         );
         $label = null;
     }
+    elseif ($type == 'textarea') {
+            $input = "<textarea$attrs>$value</textarea>";
+    }
     else {
-        $input = "  <input$attrs>";
+        $input = "<input$attrs>";
     }
 
     if($tableElement){
         if($label) {
             $html = "  <tr>\n";
             $html .= "\t<td>$label</td>\n";
-            $html .= "\t<td><input$attrs></td>\n";
+            $html .= "\t<td>$input</td>\n";
             $html .= "  </tr>\n";
         }
         else {
@@ -371,7 +408,12 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
     }
     else {
         if($label) {
-            $html = "  $label <input$attrs>\n";
+            if($type == 'checkbox') {
+                $html = "  $input $label\n";
+            }
+            else {
+                $html = "  $label $input\n";
+            }
         }
         else {
             $html = "  $input\n";
