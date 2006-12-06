@@ -1,4 +1,4 @@
-
+/* $Id$ */
 function updateProgressBar(htmlId, status, percentDone) {
     var progressBar = document.getElementById(htmlId);
     var progressBarDone = document.getElementById('progressBarDone_' + htmlId);

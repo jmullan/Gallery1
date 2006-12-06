@@ -1,4 +1,5 @@
 <?PHP
+/* $Id$ */
 
 // Please type in all needed values before run the script!
 

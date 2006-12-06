@@ -1,5 +1,7 @@
 <?php
 /**
+  * $Id$
+  *
   * PHP-Class hn_captcha_X1 Version 1.0, released 19-Apr-2004
   * is an extension for PHP-Class hn_captcha.
   * It adds a garbage-collector. (Useful, if you cannot use cronjobs.)

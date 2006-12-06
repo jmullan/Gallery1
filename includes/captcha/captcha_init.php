@@ -1,4 +1,5 @@
 <?php
+/* $Id$ */
 
 // ConfigArray
 $CAPTCHA_INIT = array(
