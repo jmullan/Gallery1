@@ -1,5 +1,7 @@
 <?php
 /**
+  * $Id$
+  *
   * PHP-Class hn_captcha Version 1.3, released 11-Apr-2006
   * Author: Horst Nogajski, horst@nogajski.de
   *
