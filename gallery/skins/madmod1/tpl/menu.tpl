@@ -1,4 +1,5 @@
 <?php 
+   /* $Id$ */
    global $gallery, $albumDB, $index; 
    $uptodate=true; 
    $albumDB = new AlbumDB(FALSE); 

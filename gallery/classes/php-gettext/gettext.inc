@@ -1,5 +1,7 @@
 <?php
 /*
+   $Id$
+
    Copyright (c) 2005 Steven Armstrong <sa at c-area dot ch>
    
    Drop in replacement for native gettext.

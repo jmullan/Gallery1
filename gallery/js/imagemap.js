@@ -1,3 +1,4 @@
+  /* $Id$ */
   var minX;
   var minY;
   var width;

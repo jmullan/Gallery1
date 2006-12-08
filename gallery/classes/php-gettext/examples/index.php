@@ -1,3 +1,4 @@
+<!-- $Id$ -->
 <html>
 <head>
 <title>PHP-gettext examples</title>

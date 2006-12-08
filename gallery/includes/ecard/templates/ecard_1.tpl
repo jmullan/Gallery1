@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-
+<!-- $Id$ -->
 <html>
   <head>
     <title>Gallery E-C@rd</title>

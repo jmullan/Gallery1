@@ -1,4 +1,5 @@
 #!/bin/sh
+# $Id$
 TEMPLATE=pigs.pot
 xgettext -kT_ngettext:1,2 -kT_ -L PHP -o $TEMPLATE pigs_dropin.php
 if [ x$1 == 'x-p' ]; then

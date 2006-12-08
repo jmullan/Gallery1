@@ -1,3 +1,5 @@
+$Id$
+
 put this directory in your html_wrap/frames directory.
 to enable this frame, you can do it either from the 'properties' admin    
 option for a specific album, or globally using the config wizard.
