@@ -145,10 +145,12 @@ else {
 	<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
 	<td class="left"><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
 </tr>
+<?php if(enableCaptcha()) : ?>
 <tr>
 	<td class="right"><?php echo gTranslate('core', "Captcha Protection:"); ?></td>
 	<td><?php echo $captcha->display_form(); ?></td>
 </tr>
+<?php endif ?>
 <tr>
 	<td colspan="2" class="g-commentadd-box-footer right">
 	  <input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>" class="g-button">
@@ -1236,61 +1238,6 @@ function metatags($adds = array()) {
 		}
 	}
 	echo "\n";
-}
-
-/**
- * Generates a link to w3c validator
- *
- * @param	string	$file	file to validate, relative to gallery dir
- * @param	boolean	$valid	true/false wether we know the result ;)
- * @param	array	$arg	optional array with urlargs
- * @return	string	$link	HTML hyperlink
- */
-function gallery_validation_link($file, $valid=true, $args = array()) {
-	global $gallery;
-
-	if (isset($gallery->app->devMode) && $gallery->app->devMode == "no") {
-		return '';
-	}
-
-	$args['PHPSESSID'] = session_id();
-	$url = makeGalleryURL($file, $args);
-
-	if (!empty($file) && isset($gallery->app->photoAlbumURL)) {
-		$uri = urlencode(eregi_replace("&amp;", "&", $url));
-	}
-	else {
-		$uri = 'referer&amp;PHPSESSID='. $args['PHPSESSID'];
-	}
-
-	$link = '<a href="http://validator.w3.org/check?uri='. $uri .'">'.
-	  '<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-
-	if (!$valid) {
-		$link .= gTranslate('common', "Not valid yet");
-	}
-
-	return $link;
-}
-
-// uses makeAlbumURL
-function album_validation_link($album, $photo='', $valid=true) {
-	global $gallery;
-	if ($gallery->app->devMode == "no") {
-		return '';
-	}
-	$args=array();
-	$args['PHPSESSID']=session_id();
-	$link='<a href="http://validator.w3.org/check?uri='.
-	  urlencode(eregi_replace("&amp;", "&",
-	  makeAlbumURL($album, $photo, $args))).
-	  '"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
-
-	if (!$valid) {
-		$link .= gTranslate('common', "Not valid yet");
-	}
-
-	return $link;
 }
 
 function showImageMap($index) {

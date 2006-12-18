@@ -54,12 +54,6 @@
   *
   **/
 
-
-/**
-  * Tabsize: 4
-  *
-  **/
-
 /**
   * This class generates a picture to use in forms that perform CAPTCHA test
   * (Completely Automated Public Turing to tell Computers from Humans Apart).
@@ -98,8 +92,7 @@
   * @date 2006-April-11
   *
   **/
-class hn_captcha
-{
+class hn_captcha{
 
 	////////////////////////////////
 	//
@@ -299,8 +292,7 @@ class hn_captcha
 		  * @return nothing
 		  *
 		  **/
-		function hn_captcha($config,$secure=TRUE)
-		{
+		function hn_captcha($config, $secure = TRUE) {
 
 		    global $save;
 
@@ -308,7 +300,6 @@ class hn_captcha
 			$this->gd_version = $this->get_gd_version();
 			if($this->gd_version == 0) die("There is no GD-Library-Support enabled. The Captcha-Class cannot be used!");
 			if($this->debug) echo "\n<br>-Captcha-Debug: The available GD-Library has major version ".$this->gd_version;
-
 
 			// Hackprevention
 			if(
@@ -347,6 +338,30 @@ class hn_captcha
 				}
 			}
 
+			if (empty($this->tempfolder)) {
+				printInfoBox(array(array(
+					'type' => 'error',
+					'text' => sprintf(gTranslate('core', "The specified folder '%s' for captcha images does not exist.", $this->tempfolder))
+				)));
+				exit;
+			}
+			elseif (!realpath($this->tempfolder)) {
+				printInfoBox(array(array(
+					'type' => 'error',
+					'text' => sprintf(gTranslate('core', "The specified folder '%s' for captcha images is not valid.", $this->tempfolder))
+				)));
+
+				exit;
+			}
+			elseif (!fs_is_dir($this->tempfolder)) {
+				if(! fs_mkdir($this->tempfolder)) {
+					printInfoBox(array(array(
+						'type' => 'error',
+						'text' => sprintf(gTranslate('core', "The specified folder '%s' does not exist and Gallery is not able to create it.", $this->tempfolder))
+					)));
+					exit;
+				}
+			}
 
 			// check vars for maxtry, secretposition and min-max-size
 			$this->maxtry = ($this->maxtry > 9 || $this->maxtry < 1) ? 3 : $this->maxtry;

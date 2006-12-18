@@ -1,3 +1,15 @@
+2006-12-18 Jens Tkotz <jens@peino.de> 1.6-alpha3-svn-b27
+
+ * Change: Use of enableCaptcha() in:
+	- lib/content.php
+	- popups/add_comment.php
+   
+  Load captcha classes also only if captcha is enabled.
+
+ * Change: Added check for captcha tempfolder.
+
+ * REMOVED: gallery_validation_link(), album_validation_link()
+ 
 2006-12-18 Jens Tkotz <jens@peino.de> 1.6-alpha3-svn-b26
 
  * Change: Check for existing album dir in gallerySanityCheck()
