@@ -169,7 +169,7 @@ function drawSelect2($name, $options, $attrList = array()) {
             $option['text'] = removeAccessKey($option['text']);
             $sel = isset($option['selected']) ? ' selected' : '';
             $disabled = ($option['value'] == null) ? 'disabled class="center" style="color: grey"' : '';
-            $buf .= '<option value="'. $option['value'] ."\"$sel $disabled>". $option['text'] .'</option>' . $crlf;
+            $html .= '<option value="'. $option['value'] ."\"$sel $disabled>". $option['text'] .'</option>' . $crlf;
         }
     }
 
