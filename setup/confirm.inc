@@ -18,14 +18,14 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 
 $features = array(
-        'zip' => array('zipinfo', 'unzip'),
-        'rewrite' => array('GALLERY_REWRITE_OK', 'htaccess_file'),
-        'mirror' => array('mirrorSites'),
+	'zip'		=> array('zipinfo', 'unzip'),
+	'rewrite'	=> array('GALLERY_REWRITE_OK', 'htaccess_file'),
+	'mirror'	=> array('mirrorSites'),
 );
 
 require (dirname(dirname(__FILE__)) . '/includes/setup/constants.inc');
@@ -43,48 +43,48 @@ $notice_messages = array();
 
 $outfile_list = array('config.php' => false, '.htaccess' => true);
 foreach ($outfile_list as $outfile => $optional) {
-    if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
-    	$error++;
-    	$notice_messages[sizeof($notice_messages)+1] = array(
-    	    'type' => 'error',
-    	    'text' => sprintf(gTranslate('config', "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs)
-    	);
-    	${str_replace('.', '', $outfile) . '_file'} = 0;
-    }
-    elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", 'a')) {
-    	fclose($fd);
-    	${str_replace('.', '', $outfile) . '_file'} = 1;
-    }
-    elseif (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && $optional) {
-    	$notice_messages[sizeof($notice_messages)+1] = array(
-    	    'type' => 'warning',
-    	    'text' => sprintf(gTranslate('config', "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs)
-    	);
-    	${str_replace('.', '', $outfile) . '_file'} = 0;
-    }
-    else {
-    	$error++;
-    	$notice_messages[sizeof($notice_messages)+1] = array(
-    	    'type' => 'error',
-    	    'text' => sprintf(gTranslate('config', "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)
-    	);
-    	${str_replace('.', '', $outfile) . '_file'} = 1;
-    }
+	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
+		$error++;
+		$notice_messages[sizeof($notice_messages)+1] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('config', "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs)
+		);
+		${str_replace('.', '', $outfile) . '_file'} = 0;
+	}
+	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", 'a')) {
+		fclose($fd);
+		${str_replace('.', '', $outfile) . '_file'} = 1;
+	}
+	elseif (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && $optional) {
+		$notice_messages[sizeof($notice_messages)+1] = array(
+			'type' => 'warning',
+			'text' => sprintf(gTranslate('config', "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs)
+		);
+		${str_replace('.', '', $outfile) . '_file'} = 0;
+	}
+	else {
+		$error++;
+		$notice_messages[sizeof($notice_messages)+1] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('config', "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)
+		);
+		${str_replace('.', '', $outfile) . '_file'} = 1;
+	}
 }
 
 $header = "<?php\n";
 
 $header .= "/* \n"
-        ." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
-        ." * don't implicitly create a new stdClass() when you use a variable \n"
-        ." * like a class. \n"
-        ." */ \n"
-        ."if (!isset(\$gallery)) { \n"
-        ."        \$gallery = new stdClass(); \n"
-        ."}\n"
-        ."if (!isset(\$gallery->app)) { \n"
-        ."        \$gallery->app = new stdClass(); \n"
-        ."}\n\n";
+	." * Protect against very old versions of 4.0 (like 4.0RC1) which  \n"
+	." * don't implicitly create a new stdClass() when you use a variable \n"
+	." * like a class. \n"
+	." */ \n"
+	."if (!isset(\$gallery)) { \n"
+	."        \$gallery = new stdClass(); \n"
+	."}\n"
+	."if (!isset(\$gallery->app)) { \n"
+	."        \$gallery->app = new stdClass(); \n"
+	."}\n\n";
 
 $gallery->session->configData = "/* Version  */\n";
 $gallery->session->configData .= "\$gallery->app->config_version = '$gallery->config_version';\n";
@@ -106,7 +106,8 @@ foreach ($features as $feature => $dependents) {
 
 	if ($use) {
 		$gallery->session->configData .= use_feature($feature);
-	} else {
+	}
+	else {
 		$gallery->session->configData .= no_feature($feature, $cause);
 	}
 }
@@ -131,16 +132,16 @@ foreach ($constants as $key => $val) {
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
 
-/**
- * This is a somewhat strange workaround i made for a strange SunOS with
- * register global On an Magic Quotes On.
- * The problem is that we have send/get hidden fields which are named like
- * foo[bar]. So the result is, the $key=foo[bar] and $gallery->session->configForm->$key seems to fail.
- * The former solution were to do create a string which is like the value
- * of $key and put it in $real via eval().
- * This also seemed not to work.
- * 06/2004, Jens Tkotz
-*/
+	/**
+	 * This is a somewhat strange workaround i made for a strange SunOS with
+	 * register global On an Magic Quotes On.
+	 * The problem is that we have send/get hidden fields which are named like
+	 * foo[bar]. So the result is, the $key=foo[bar] and $gallery->session->configForm->$key seems to fail.
+	 * The former solution were to do create a string which is like the value
+	 * of $key and put it in $real via eval().
+	 * This also seemed not to work.
+	 * 06/2004, Jens Tkotz
+	*/
 	if ($bracketStart > 0 && $bracketEnd > 0) {
 		$subKey = substr($key,0, $bracketStart);
 		$subValue = substr($key, $bracketStart+1, $bracketEnd-($bracketStart+1));
@@ -153,7 +154,7 @@ foreach ($constants as $key => $val) {
 	}
 	else {
 		$real = '';
-    }
+	}
 
 	if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 		$real = array_stripslashes($real);
@@ -176,30 +177,30 @@ foreach ($constants as $key => $val) {
 	}
 
 	if ((is_array($real) && join('', $real) === '') || $real == '') {
-	    if (isset($constants[$key]['remove_empty']) && !isset($constants[$key]['optional'])) {
-	        continue;
-	    }
+		if (isset($constants[$key]['remove_empty']) && !isset($constants[$key]['optional'])) {
+			continue;
+		}
 
-	    if (isset($constants[$key]['allow_empty'])) {
-	        $line = one_constant($key, $real);
-	        $gallery->session->configData .= $line;
-	        continue;
-	    }
+		if (isset($constants[$key]['allow_empty'])) {
+			$line = one_constant($key, $real);
+			$gallery->session->configData .= $line;
+			continue;
+		}
 
-	    if ($key == 'pnmDir') {
-	        $graphtest['pnmDir'] = 1;
-	    }
-	    else if ($key == 'ImPath') {
-	        $graphtest['ImPath'] = 1;
-	    }
+		if ($key == 'pnmDir') {
+			$graphtest['pnmDir'] = 1;
+		}
+		else if ($key == 'ImPath') {
+			$graphtest['ImPath'] = 1;
+		}
 
-	    if (isset($constants[$key]['optional'])) {
-	        $gallery->session->configData .= '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
-	    }
-	    else {
-	        $gallery->session->configData .= error_missing($constants[$key]['prompt'], $key).'<br>';
-	        $error++;
-	    }
+		if (isset($constants[$key]['optional'])) {
+			$gallery->session->configData .= '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
+		}
+		else {
+			$gallery->session->configData .= error_missing($constants[$key]['prompt'], $key).'<br>';
+			$error++;
+		}
 	}
 	else {
 		if (isset($constants[$key]['filename'])) {
@@ -287,47 +288,52 @@ foreach ($constants as $key => $val) {
 			}
 
 			if (!is_writeable($dir) ||
-			    !test_write_to_dir($dir)) {
+				!test_write_to_dir($dir))
+			{
 				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
-						$key, $dir,
-						'<br><b><code>' .
-						"chown -R $webserver_user  $dir" .
-						'</code></b><br><br>',
-						'<br><b><code>' .
-						"chmod -R 777 $dir</code>" .
-						'</code></b><br><br>',
-						'<a href="phpinfo.php">open_basedir</a>',
-						'open_basedir'));
-				$error++;
-				continue;
+				$key, $dir,
+					'<br><b><code>' .
+					"chown -R $webserver_user  $dir" .
+					'</code></b><br><br>',
+					'<br><b><code>' .
+					"chmod -R 777 $dir</code>" .
+					'</code></b><br><br>',
+					'<a href="phpinfo.php">open_basedir</a>',
+					'open_basedir'));
+					$error++;
+					continue;
 			}
 		}
 
 		if (!isset($constants[$key]['dont-write'])) {
-		    if (is_array($real) && (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password')) {
-		        $line = array_constant($key, $real, isset($constants[$key]['remove_empty']));
+			if (is_array($real) &&
+			   (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password'))
+			{
+				$line = array_constant($key, $real, isset($constants[$key]['remove_empty']));
 
-		    }
-		    elseif (is_array($real) && $constants[$key]['type'] == 'password') {
-		        $line = one_constant($key, $real[2]);
-		    }
-		    else {
-		        $line = one_constant($key, $real);
-		    }
+			}
+			elseif (is_array($real) && $constants[$key]['type'] == 'password') {
+				$line = one_constant($key, $real[2]);
+			}
+			else {
+				$line = one_constant($key, $real);
+			}
 
-		   	if (isset($constants[$key]['optional']) && empty($line)) {
-		        $line = '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
-		    }
+			if (isset($constants[$key]['optional']) && empty($line)) {
+				$line = '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
+			}
 
-		    $gallery->session->configData .= $line;
+			$gallery->session->configData .= $line;
 		}
 
 		if (isset($constants[$key]['verify-func'])) {
 			$func = $constants[$key]['verify-func'];
+
 			if (isset($constants[$key]['verify-func-takes-graphics-type'])) {
-			    list($success, $fail, $warn) = $func($real, $graphtool);
-			} else {
-			    list($success, $fail) = $func($real);
+				list($success, $fail, $warn) = $func($real, $graphtool);
+			}
+			else {
+				list($success, $fail) = $func($real);
 			}
 
 			foreach ($fail as $fkey => $fval) {
@@ -379,54 +385,54 @@ foreach ($constants as $key => $val) {
  */
 if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
 	/*
-	 * If the graph path is not in the open_basedir list, then we can't tell.
-     * Assume whatever they entered is correct and hope for the best
-	 */
+	* If the graph path is not in the open_basedir list, then we can't tell.
+	* Assume whatever they entered is correct and hope for the best
+	*/
 	if (inOpenBasedir($graphpath)) {
 		$pnmtojpeg = $gallery->session->configForm->pnmtojpeg;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmtojpeg))) {
 			$error++;
 			$gallery->session->configData .= gallery_error(
-				sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
-					"<i>$graphpath/$pnmtojpeg</i>",
-					($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
+			sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+			"<i>$graphpath/$pnmtojpeg</i>",
+			($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
 		}
 		$pnmcomp = $gallery->session->configForm->pnmcomp;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmcomp))) {
 			$error++;
 			$gallery->session->configData .= gallery_error(
-				sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
-					"<i>$graphpath/$pnmcomp</i>",
-					($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
+			sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+			"<i>$graphpath/$pnmcomp</i>",
+			($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
 		}
 	}
 }
 
 /*
- * Make sure they picked a graphics package to use, and that the package they
- * chose is configured properly.
- */
+* Make sure they picked a graphics package to use, and that the package they
+* chose is configured properly.
+*/
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
-    $error++;
+	$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
+	$error++;
 }
 else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
-    $error++;
+	$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
+	$error++;
 }
 else if ($graphtool == 'NetPBM' && !empty($graphtest['pnmDir'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
-    $error++;
+	$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
+	$error++;
 }
 
 if (isset($warn_about_open_basedir)) {
-    $notice_messages[sizeof($notice_messages)+1] = array(
-            'type' => 'warning',
-            'text' => gTranslate('config', "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
-    			' (' . ini_get('open_basedir') . ')  ' .
-    			sprintf(gTranslate('config', "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
-    			'<a href="diagnostics.php">', '</a>')
-    );
+	$notice_messages[sizeof($notice_messages)+1] = array(
+	'type' => 'warning',
+	'text' => gTranslate('config', "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
+	' (' . ini_get('open_basedir') . ')  ' .
+	sprintf(gTranslate('config', "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
+	'<a href="diagnostics.php">', '</a>')
+	);
 }
 
 $gallery->session->configData .= "\n";
@@ -434,12 +440,12 @@ $gallery->session->configData .= "/* Defaults */\n";
 
 foreach ($defaults as $key => $val) {
 	if (isset($val['type']) &&
-			($val['type'] == 'block_start' ||
-			 $val['type'] == 'block_end' ||
-			 $val['type'] == 'separator' ||
-			 $val['type'] == 'group_start' ||
-			 $val['type'] == 'group_end' ||
-			 $val['type'] == 'separator')) {
+	($val['type'] == 'block_start' ||
+	$val['type'] == 'block_end' ||
+	$val['type'] == 'separator' ||
+	$val['type'] == 'group_start' ||
+	$val['type'] == 'group_end' ||
+	$val['type'] == 'separator')) {
 		continue;
 	}
 
@@ -516,61 +522,61 @@ $footer = "?>\n";
             <?php
             echo gSubmit('go_back', gTranslate('config', "&lt;&lt; Edit Config"), array('disabled' => 'disabled'));
             if (!$error) {
-                echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
+            	echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
             }
             else {
-                echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
+            	echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
             }
             ?>
         </div>
 
         <div class="g-album-desc clear">
         <?php
-           if (!$error) {
-               echo gTranslate('config', "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it.");
-           }
-           else {
-               echo gTranslate('config', "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings.");
-            }
+        if (!$error) {
+        	echo gTranslate('config', "Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it.");
+        }
+        else {
+        	echo gTranslate('config', "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings.");
+        }
         ?>
         </div>
 
 <?php
-    if ($error) {
-        $notice_messages[0] = array(
-            'type' => 'information',
-            'text' => gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."), true).
-                ' ' . gTranslate('config', "See Details below.")
-        );
-    }
+if ($error) {
+	$notice_messages[0] = array(
+	'type' => 'information',
+	'text' => gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."), true).
+	' ' . gTranslate('config', "See Details below.")
+	);
+}
 
-    echo infoBox($notice_messages);
+echo infoBox($notice_messages);
 ?>
     </div>
     <div class="clear"></div>
 
     <div class="g-config-main">
 <?php
-    echo "<pre style=\"font-size: 8.5pt\"><code>{$gallery->session->configData}</code></pre>";
-    $gallery->session->configData = $header . $gallery->session->configData . $footer;
+echo "<pre style=\"font-size: 8.5pt\"><code>{$gallery->session->configData}</code></pre>";
+$gallery->session->configData = $header . $gallery->session->configData . $footer;
 ?>
 
     <div class="center">
 <?php
-    echo gSubmit('go_back', gTranslate('config', "&lt;&lt; Edit Config"), array('disabled' => 'disabled'));
-    if (!$error) {
-        echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
-    }
-    else {
-        echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
-        echo "\n<br>";
-        echo infoBox(array(array(
-            'type' => 'error',
-            'text' => gTranslate('config', "There are errors in your configuration.") .
-                      '<br>' .
-                      gTranslate('config', "Please go back and fix them!")
-        )));
-    }
+echo gSubmit('go_back', gTranslate('config', "&lt;&lt; Edit Config"), array('disabled' => 'disabled'));
+if (!$error) {
+	echo gSubmit('go_next', gTranslate('config', "Save Config &gt;&gt;"), array('disabled' => 'disabled'));
+}
+else {
+	echo gSubmit('refresh', gTranslate('config', "Refresh"), array('disabled' => 'disabled'));
+	echo "\n<br>";
+	echo infoBox(array(array(
+	'type' => 'error',
+	'text' => gTranslate('config', "There are errors in your configuration.") .
+	'<br>' .
+	gTranslate('config', "Please go back and fix them!")
+	)));
+}
 ?>
     </div>
 
