@@ -29,7 +29,7 @@
  */
 
 /**
- * Define Constants for Gallery pathes.
+ * Define Constants for absolute Gallery pathes.
  */
 function setGalleryPaths() {
 	if (defined('GALLERY_BASE')) {
@@ -38,10 +38,11 @@ function setGalleryPaths() {
 
 	$currentFile = __FILE__;
 	if ( $currentFile == '/usr/share/gallery/lib/url.php') {
-		/* We assum Gallery runs on as Debian Package */
+		/* We assume Gallery runs on as Debian Package */
 		define ("GALLERY_CONFDIR", "/etc/gallery");
 		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-	} else {
+	}
+	else {
 		define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
 		define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
 	}
@@ -55,7 +56,10 @@ function setGalleryPaths() {
 function getGalleryBaseUrl() {
     global $gallery;
 
-    if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
+    if (isset($gallery->app) &&
+    	isset($gallery->app->photoAlbumURL) &&
+    	realpath($gallery->app->photoAlbumURL)) {
+
         $base = $gallery->app->photoAlbumURL;
     }
     elseif(where_i_am() == 'config') {
