@@ -38,7 +38,8 @@ if (!isset($gallery) || !isset($gallery->app->photoAlbumURL)) {
 
 if (getOS() == OS_WINDOWS) {
 	require(GALLERY_BASE . '/platform/fs_win32.php');
-} else {
+}
+else {
 	require(GALLERY_BASE . '/platform/fs_unix.php');
 }
 
@@ -50,7 +51,8 @@ require (GALLERY_BASE . '/lib/setup.php');
 // We can't set devMode until after config.php is loaded
 if (isset($gallery->app->devMode) && $gallery->app->devMode == "yes") {
 	error_reporting(E_ALL);
-} else {
+}
+else {
 	error_reporting(E_ALL & ~E_NOTICE);
 }
 
@@ -71,6 +73,7 @@ $tmp = $_SERVER["PHP_SELF"];
 if (!$tmp) {
 	$tmp = $_ENV["PHP_SELF"];
 }
+
 if (!$tmp) {
 	$tmp = getenv("SCRIPT_NAME");
 }
@@ -94,5 +97,4 @@ if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
 else {
     $GALLERY_REWRITE_OK = false;
 }
-
 ?>
