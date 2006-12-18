@@ -41,7 +41,8 @@ $locale_check = check_locale();
 
 if ($locale_check == NULL) {
 	$elawisyl = 'no';
-} else {
+}
+else {
 	$elawisyl = 'yes';
 }
 
@@ -58,12 +59,14 @@ if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) &&
 if (function_exists('posix_getpwuid')) {
 	$rec = @posix_getpwuid(posix_getuid());
 	$webserver_user = $rec['name'];
-} else {
+}
+else {
 	$whoami = locateFile('whoami');
 	if ($whoami) {
 		fs_exec($whoami, $results, $status);
 		$webserver_user = $results[0];
-	} else {
+	}
+	else {
 		$webserver_user = gTranslate('config',"unknown");
 	}
 }
@@ -133,7 +136,7 @@ $constants =  array_merge(array(
 			'url' => gTranslate('config',"URL")
 			),
 		'value' => 'form',
-        'inst_type' => 'advanced'
+		'inst_type' => 'advanced'
 		),
 	'name_display' => array(
 		'prompt' => gTranslate('config',"Format for commenter and owner names"),
@@ -267,7 +270,7 @@ $constants =  array_merge(array(
 		'title' => gTranslate('config',"NetPBM Settings"),
 		'display' => (getCurrentGraphicTool() == 'NetPBM') ? 'inline' : 'none',
 		'inst_type' => 'easy'
-    ),
+	),
 	'pnmDir' => array(
 		'optional' => 1,
 		'prompt' => gTranslate('config',"Path to NetPBM"),
@@ -288,7 +291,7 @@ $constants =  array_merge(array(
 		'verify-func-takes-graphics-type' => true,
 		'required' => true,
 		'noStripSlash' => true,
-    ),
+	),
 	'pnmtojpeg' => array(
 		'prompt' => gTranslate('config',"PNM to JPEG converter"),
 		'desc' => gTranslate('config',"This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
@@ -383,18 +386,18 @@ $constants =  array_merge(array(
 	   'prompt' => gTranslate('config', "Theme"),
 	   'desc'  => gTranslate('config', "Choose the theme for the mainpage"),
 	   'choices' => array(
-	       'classic' => gTranslate('config', "The classic layout since Gallery 1.0"),
-	       'matrix' => gTranslate('config', "A more smart layout inspired by G2 Matrix")
-        ),
-        'required' => true,
-        'value' => 'classic'
+		   'classic' => gTranslate('config', "The classic layout since Gallery 1.0"),
+		   'matrix' => gTranslate('config', "A more smart layout inspired by G2 Matrix")
+		),
+		'required' => true,
+		'value' => 'classic'
 	),
 	'albumTreeDepth' => array(
 		'prompt' => gTranslate('config',"Show the album tree ?"),
 		'desc' => gTranslate('config',"If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page.") .
-		          '<br><b>'.
-		          gTranslate('config', "This setting has no effect in matrix theme.") .
-		          '</b>',
+				  '<br><b>'.
+				  gTranslate('config', "This setting has no effect in matrix theme.") .
+				  '</b>',
 		'choices' => array(
 			0 => gTranslate('config',"No tree"),
 			1 => sprintf (gTranslate('config',"%d sublevel"),1),
@@ -411,9 +414,9 @@ $constants =  array_merge(array(
 	'microTree' => array(
 		'prompt' => gTranslate('config',"Replace album tree with microthumbs"),
 		'desc' => gTranslate('config',"If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree.") .
-		          '<br><b>'.
-		          gTranslate('config', "This setting has no effect in matrix theme.") .
-		          '</b>',
+				  '<br><b>'.
+				  gTranslate('config', "This setting has no effect in matrix theme.") .
+				  '</b>',
 		'choices' => array('yes' => gTranslate('config',"Yes"), 'no' => gTranslate('config',"No")),
 		'value' => 'no',
 		'inst_type' => 'advanced'
@@ -1118,7 +1121,7 @@ $constants = array_merge($constants, array(
 		'desc' => gTranslate('config',"You can either use a random pictures from the whole Gallery or from certain albums."),
 		'value' => 'none',
 		'optional' => true,
-		'type' => 'hidden' //     'choices' => array(),
+		'type' => 'hidden' //	 'choices' => array(),
 	),
 	'blockRandomFrame' => array(
 		'prompt' => gTranslate('config',"Frame around random photo."),
@@ -1190,7 +1193,7 @@ $constants = array_merge($constants, array(
 		'value' => 'black',
 		'type' => 'colorpicker'
 	),
-    'subgroup_featureBlock_end' => array (
+	'subgroup_featureBlock_end' => array (
 		'type' => 'subgroup_end',
 	),
 	'group_blocks_end' => array(
@@ -1372,7 +1375,7 @@ $constants = array_merge($constants, array(
 	'group_rss_end' => array(
 		'type' => 'group_end'
 	),
-    'group_uploadPaths' => array (
+	'group_uploadPaths' => array (
 		'type' => 'group_start',
 		'default' => 'none',
 		'title' => gTranslate('config',"Paths for upload from server"),
@@ -1382,13 +1385,37 @@ $constants = array_merge($constants, array(
 		'desc' => gTranslate('config', "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the 'From local Server' method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"),
 		'value' => '',
 		'type' => 'text',
-        'multiInput' => true,
-        'remove_empty' => true,
-        'optional' => 1,
-        'autocomplete' => 'path'
+		'multiInput' => true,
+		'remove_empty' => true,
+		'optional' => 1,
+		'autocomplete' => 'path'
 
 	),
 	'group_uploadPaths_end' => array(
+		'type' => 'group_end'
+	),
+	'group_captcha' => array (
+		'type' => 'group_start',
+		'default' => 'none',
+		'title' => gTranslate('config',"Captcha"),
+		'desc' => gTranslate('config', "Protect your Gallery against comment spam with captcha.") .
+				  '<br>' .
+				  gTranslate('config', "Gallery creates captha images that contains letter and number that have to be entered. These images are not readable by robots.") .
+				  '<br>' .
+				  gTranslate('config', "There are more settings, but those are in a separate file. For details look into includes/captcha/captcha_init.php")
+	),
+	'enableCaptcha' => array(
+		'prompt' => gTranslate('config', "Enable Captcha ?"),
+		'desc' => '',
+		'value' => 'no',
+		'choices' => array(
+						'no'		=> gTranslate('config', "No"),
+						'yes'		=> gTranslate('config', "Yes, for everybody"),
+						'anonymous'	=> gTranslate('config', "Yes, but only for anonymous users.")
+		),
+		'optional' => 1,
+	),
+	'group_captcha_end' => array(
 		'type' => 'group_end'
 	),
 	// Keep these two at the end of the list because they're hidden
