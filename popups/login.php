@@ -25,7 +25,7 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($username, $gallerypassword, $login, $reset_username, $forgot) =
-    getRequestVar(array('username', 'gallerypassword', 'login', 'reset_username', 'forgot'));
+	getRequestVar(array('username', 'gallerypassword', 'login', 'reset_username', 'forgot'));
 
 /* decode user data, remove tags, and then re-encode using html entities for safe page display */
 $username = htmlspecialchars(strip_tags(urldecode($username)));
@@ -55,82 +55,82 @@ if (!empty($username) && !empty($gallerypassword) && !empty($login)) {
 			dismissAndReload();
 		}
 		else {
-            echo '<span class="g-attention">'. gTranslate('core', "SUCCEEDED") . '</span><p>';
+			echo '<span class="g-attention">'. gTranslate('core', "SUCCEEDED") . '</span><p>';
 			return;
 		}
 	}
 	else {
-	    $loginFailure[] = array(
-            'type' => 'error',
-            'text' => gTranslate('core', "Invalid username or password.")
-        );
+		$loginFailure[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Invalid username or password.")
+		);
 		$gallerypassword = null;
 		gallery_syslog("Failed login for $username from " . $_SERVER['REMOTE_ADDR']);
 	}
 }
 elseif (!empty($login) && empty($forgot)) {
-    $loginFailure[] = array(
-        'type' => 'information',
-        'text' => gTranslate('core', "Please enter username and password!")
-    );
+	$loginFailure[] = array(
+		'type' => 'information',
+		'text' => gTranslate('core', "Please enter username and password!")
+	);
 }
 elseif (!empty($forgot) && empty($reset_username)) {
-    $resetInfo[] = array(
-        'type' => 'information',
-        'text' => gTranslate('core', "Please enter <i>your</i> username.")
-    );
+	$resetInfo[] = array(
+		'type' => 'information',
+		'text' => gTranslate('core', "Please enter <i>your</i> username.")
+	);
 }
 elseif (!empty($forgot) && !empty($reset_username)) {
-    $tmpUser = $gallery->userDB->getUserByUsername($reset_username);
+	$tmpUser = $gallery->userDB->getUserByUsername($reset_username);
 
-    if ($tmpUser) {
-        $wait_time = 15;
-        if ($tmpUser->lastAction ==  "new_password_request" &&
-            (time() - $tmpUser->lastActionDate) < ($wait_time * 60)) {
-            $resetInfo[] = array(
-                'type' => 'error',
-                'text' => sprintf(gTranslate('core', "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time)
-            );
-        }
-        else if (check_email($tmpUser->getEmail())) {
-            if (gallery_mail($tmpUser->email,
-              gTranslate('core', "New password request"),
-              sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
-              sprintf(gTranslate('core', "Click to reset your password: %s"),
-              $tmpUser->genRecoverPasswordHash()) . "\n",
-              sprintf(gTranslate('core', "New password request %s"), $reset_username)))
-            {
-                $tmpUser->log("new_password_request");
-                $tmpUser->save();
-			    $resetInfo[] = array(
-                    'type' => 'success',
-                    'text' => sprintf(gTranslate('core', "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."), $reset_username)
-                );
-            }
-            else {
-                $resetInfo[] = array(
-                    'type' => 'error',
-                    'text' => gTranslate('core', "Email could not be sent.") .
-                              "<br>"  .
-                              sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
-                );
-            }
-        }
-        else {
-            $resetInfo[] = array(
-                    'type' => 'warning',
-                    'text' => gTranslate('core', "There is no valid email for this account.") .
-                              "<br>" .
-                              sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
-            );
-        }
-    }
-    else {
-        $resetInfo[] = array(
-            'type' => 'error',
-            'text' => gTranslate('core', "Invalid username.")
-        );
-    }
+	if ($tmpUser) {
+		$wait_time = 15;
+		if ($tmpUser->lastAction ==  "new_password_request" &&
+			(time() - $tmpUser->lastActionDate) < ($wait_time * 60)) {
+			$resetInfo[] = array(
+				'type' => 'error',
+				'text' => sprintf(gTranslate('core', "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."), $wait_time)
+			);
+		}
+		else if (check_email($tmpUser->getEmail())) {
+			if (gallery_mail($tmpUser->email,
+			  gTranslate('core', "New password request"),
+			  sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+			  sprintf(gTranslate('core', "Click to reset your password: %s"),
+			  $tmpUser->genRecoverPasswordHash()) . "\n",
+			  sprintf(gTranslate('core', "New password request %s"), $reset_username)))
+			{
+				$tmpUser->log("new_password_request");
+				$tmpUser->save();
+				$resetInfo[] = array(
+					'type' => 'success',
+					'text' => sprintf(gTranslate('core', "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."), $reset_username)
+				);
+			}
+			else {
+				$resetInfo[] = array(
+					'type' => 'error',
+					'text' => gTranslate('core', "Email could not be sent.") .
+							  "<br>"  .
+							  sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
+				);
+			}
+		}
+		else {
+			$resetInfo[] = array(
+					'type' => 'warning',
+					'text' => gTranslate('core', "There is no valid email for this account.") .
+							  "<br>" .
+							  sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
+			);
+		}
+	}
+	else {
+		$resetInfo[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Invalid username.")
+		);
+	}
 }
 
 $title = sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle);
@@ -142,21 +142,21 @@ echo gTranslate('core', "Logging in gives you greater permission to view, create
 
 echo infoBox($loginFailure);
 
- echo makeFormIntro('login.php', array('name' => 'loginForm'), array('type' => 'popup'));
+echo makeFormIntro('login.php', array('name' => 'loginForm'), array('type' => 'popup'));
 ?>
 
   <table align="center">
 <?php
-    echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
+	echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
 
-    echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
+	echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
 ?>
   </table>
 
 
   <p align="center">
-    <?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
-    <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
+	<?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
+	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
   </p>
  </form>
 
@@ -171,12 +171,12 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 <div class="g-content-popup" align="center">
 <?php
   echo makeFormIntro('login.php', array('name' => 'resetForm'), array('type' => 'popup'));
-    echo infoBox($resetInfo);
+	echo infoBox($resetInfo);
 
-    echo gInput('text', 'reset_username', gTranslate('core', "Username"), false, $username);
-    echo "\n<p>";
-    echo gSubmit('forgot', gTranslate('core', "_Send me my password"));
-    echo "\n</p>";
+	echo gInput('text', 'reset_username', gTranslate('core', "Username"), false, $username);
+	echo "\n<p>";
+	echo gSubmit('forgot', gTranslate('core', "_Send me my password"));
+	echo "\n</p>";
 ?>
 
   </form>
