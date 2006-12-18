@@ -6,7 +6,7 @@
   * is an extension for PHP-Class hn_captcha.
   * It adds a garbage-collector. (Useful, if you cannot use cronjobs.)
   * Author: Horst Nogajski, horst@nogajski.de
-  * 
+  *
   * License: GNU GPL (http://www.opensource.org/licenses/gpl-license.html)
   * Download: http://hn273.users.phpclasses.org/browse/package/1569.html
   *
@@ -17,9 +17,9 @@
 
 /**
   * License: GNU GPL (http://www.opensource.org/licenses/gpl-license.html)
-  * 
+  *
   * This program is free software;
-  * 
+  *
   * you can redistribute it and/or modify it under the terms of the GNU General Public License
   * as published by the Free Software Foundation; either version 2 of the License,
   * or (at your option) any later version.
@@ -33,16 +33,7 @@
   *
   **/
 
-/**
-  * Tabsize: 4
-  * 
-  **/
-
-
-
 require_once(dirname(__file__).'/hn_captcha.class.php');
-
-
 
 /**
   * This class is an extension for hn_captcha-class. It adds a garbage-collector!
@@ -57,7 +48,7 @@ require_once(dirname(__file__).'/hn_captcha.class.php');
   * - a filename-prefix for the captcha-images (default = 'hn_captcha_')
   * - absolute filename for a textfile which stores the current counter-value
   *   (default is $tempfolder.'hn_captcha_counter.txt')
-  * 
+  *
   * The classextension needs the filename-prefix to identify lost images
   * also if the tempfolder is shared with other scripts.
   *
@@ -66,13 +57,13 @@ require_once(dirname(__file__).'/hn_captcha.class.php');
   * You can check this in your scripts and if is TRUE, you might execute
   * an email-notification or something else.
   *
-  * 
+  *
   * @shortdesc Class that adds a garbage-collector to the class hn_captcha
   * @public
   * @author Horst Nogajski, (mail: horst@nogajski.de)
   * @version 1.0
   * @date 2004-April-19
-  * 
+  *
   **/
 class hn_captcha_X1 extends hn_captcha
 {
@@ -89,7 +80,7 @@ class hn_captcha_X1 extends hn_captcha
           *
           **/
 		var $counter_filename		= '';
-		
+
 		/**
 		  * @shortdesc This is used as prefix for the picture filenames, so we can identify them also if we share the tempfolder with other programs.
           * @public
@@ -97,7 +88,7 @@ class hn_captcha_X1 extends hn_captcha
           *
           **/
 		var $prefix					= 'hn_captcha_';
-		
+
 		/**
 		  * @shortdesc The garbage-collector will started once when the class was called that number times.
           * @public
@@ -122,8 +113,6 @@ class hn_captcha_X1 extends hn_captcha
           **/
 		var $garbage_collector_error	= FALSE;
 
-
-
 	////////////////////////////////
 	//
 	//	PRIVATE PARAMS
@@ -131,8 +120,6 @@ class hn_captcha_X1 extends hn_captcha
 
 		/** @private **/
 		var $counter_fn_default_basename = 'hn_captcha_counter.txt';
-
-
 
 
 	////////////////////////////////
@@ -147,16 +134,18 @@ class hn_captcha_X1 extends hn_captcha
 		  * @return nothing
 		  *
 		  **/
-		function hn_captcha_X1($config,$secure=TRUE)
-		{
+		function hn_captcha_X1($config, $secure = TRUE) {
 			// Call Constructor of main-class
 			$this->hn_captcha($config,$secure);
 
-
 			// specify counter-filename
-			if($this->counter_filename == '') $this->counter_filename = $this->tempfolder.$this->counter_fn_default_basename;
-			if($this->debug) echo "\n<br>-Captcha-Debug: The counterfilename is (".$this->counter_filename.")";
+			if($this->counter_filename == '') {
+				$this->counter_filename = $this->tempfolder.$this->counter_fn_default_basename;
+			}
 
+			if($this->debug) {
+				echo "\n<br>-Captcha-Debug: The counterfilename is (".$this->counter_filename.")";
+			}
 
 			// retrieve last counter-value
 			$test = $this->txt_counter($this->counter_filename);
@@ -166,28 +155,33 @@ class hn_captcha_X1 extends hn_captcha
 
 
 			// check if counter works correct
-			if(($counter !== FALSE) && ($counter - $test == 1))
-			{
+			if(($counter !== FALSE) && ($counter - $test == 1)) {
 				// Counter works perfect, =:)
-				if($this->debug) echo "\n<br>-Captcha-Debug: Current counter-value is ($counter). Garbage-collector should start at (".$this->collect_garbage_after.")";
+				if($this->debug) {
+					echo "\n<br>-Captcha-Debug: Current counter-value is ($counter). Garbage-collector should start at (".$this->collect_garbage_after.")";
+				}
 
 				// check if garbage-collector should run
-				if($counter >= $this->collect_garbage_after)
-				{
+				if($counter >= $this->collect_garbage_after) {
 					// Reset counter
-					if($this->debug) echo "\n<br>-Captcha-Debug: Reset the counter-value. (0)";
+					if($this->debug) {
+						echo "\n<br>-Captcha-Debug: Reset the counter-value. (0)";
+					}
 					$this->txt_counter($this->counter_filename,TRUE,0);
 
 					// start garbage-collector
 					$this->garbage_collector_error = $this->collect_garbage() ? FALSE : TRUE;
-					if($this->debug && $this->garbage_collector_error) echo "\n<br>-Captcha-Debug: ERROR! SOME TRASHFILES COULD NOT BE DELETED! (Set the garbage_collector_error to TRUE)";
+					if($this->debug && $this->garbage_collector_error) {
+						echo "\n<br>-Captcha-Debug: ERROR! SOME TRASHFILES COULD NOT BE DELETED! (Set the garbage_collector_error to TRUE)";
+					}
 				}
 
 			}
-			else
-			{
+			else {
 				// Counter-ERROR!
-				if($this->debug) echo "\n<br>-Captcha-Debug: ERROR! NO COUNTER-VALUE AVAILABLE! (Set the garbage_collector_error to TRUE)";
+				if($this->debug) {
+					echo "\n<br>-Captcha-Debug: ERROR! NO COUNTER-VALUE AVAILABLE! (Set the garbage_collector_error to TRUE)";
+				}
 				$this->garbage_collector_error = TRUE;
 			}
 		}
@@ -197,8 +191,6 @@ class hn_captcha_X1 extends hn_captcha
 	//
 	//	PRIVATE METHODS
 	//
-
-
 		/**
 		  * @shortdesc Store/Retrieve a counter-value in/from a textfile. Optionally count it up or store a (as third param) specified value.
 		  * @private
