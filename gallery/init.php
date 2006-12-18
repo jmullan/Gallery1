@@ -163,10 +163,14 @@ if(isset($gallery->app)) {
 */
 set_magic_quotes_runtime(0);
 
+if (!isset($GALLERY_NO_SESSIONS)) {
+    require(dirname(__FILE__) . "/session.php");
+}
+
 // We need to init the language before we include the files below, as they contain gettext calls.
 initLanguage();
 
-/* Load classes and session information
+/* Load classes
  * Note: Some classes and libs are loaded in util.php
 */
 require(dirname(__FILE__) . "/classes/Album.php");
@@ -179,10 +183,6 @@ require(dirname(__FILE__) . "/classes/NobodyUser.php");
 require(dirname(__FILE__) . "/classes/LoggedInUser.php");
 require(dirname(__FILE__) . "/classes/UserDB.php");
 require(dirname(__FILE__) . "/classes/Comment.php");
-
-if (!isset($GALLERY_NO_SESSIONS)) {
-    require(dirname(__FILE__) . "/session.php");
-}
 
 $gallerySanity = gallerySanityCheck();
 
@@ -553,17 +553,18 @@ if (!isset($gallery->user) || empty($gallery->user)) {
     $gallery->session->username = "";
 }
 
-/**
- * It maybe, that the user has a different language then the default.
- * So we reinit the language after initializing the user.
+/*
+ * 18.12.2006
+ * In previous Versions we did a second language init after the user init.
+ * But i do'nt see a reason a reason. So i commented it out.
+ if (!empty($gallery->user)) {
+     $userlanguage = $gallery->user->getDefaultLanguage();
+ 
+     if($userlanguage != $gallery->language) {
+         initLanguage(true, $userlanguage);
+     }
+ }
 */
-if (!empty($gallery->user)) {
-    $userlanguage = $gallery->user->getDefaultLanguage();
-
-    if($userlanguage != $gallery->language) {
-        initLanguage(true, $userlanguage);
-    }
-}
 
 if (!isset($gallery->session->offline)) {
     $gallery->session->offline = FALSE;

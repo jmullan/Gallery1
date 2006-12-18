@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -33,7 +33,7 @@ if (!empty($username) && !empty($gallerypassword)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($username);
 	if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword)) {
 
-		// User is successfully logged in, regenerate a new 
+		// User is successfully logged in, regenerate a new
 		// session ID to prevent session fixation attacks
 		createGallerySession(true);
 
@@ -42,9 +42,11 @@ if (!empty($username) && !empty($gallerypassword)) {
 		$tmpUser->save();
 		$gallery->session->username = $username;
 		gallery_syslog("Successful login for $username from " . $_SERVER['REMOTE_ADDR']);
-		if ($tmpUser->getDefaultLanguage() != "") {
+
+		if (!empty($tmpUser->getDefaultLanguage())) {
 			$gallery->session->language = $tmpUser->getDefaultLanguage();
 		}
+
 		if (!$gallery->session->offline) {
 			dismissAndReload();
 		} else {
@@ -97,7 +99,7 @@ doctype();
 </p>
 </form>
 </div>
-<?php 
+<?php
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 ?>
 <div class="popuphead"><?php echo _("Forgotten your password?") ?></div>
@@ -122,7 +124,7 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
     			  sprintf(_("New password request %s"), $username))) {
     				$tmpUser->log("new_password_request");
     				$tmpUser->save();
-			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$username)  ?> 
+			       	echo sprintf(_("An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."),$username)  ?>
 					<br><br>
 			       	<form> <input type="button" value="<?php echo _("Dismiss") ?>" onclick='parent.close()'> </form>
 				<?php
@@ -168,7 +170,7 @@ if ($gallery->app->selfReg == 'yes') {
 <!--
 // position cursor in top form field
 document.login_form.username.focus();
-//--> 
+//-->
 </script>
 
 

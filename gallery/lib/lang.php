@@ -82,7 +82,7 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
  * Detect the first Language of users Browser
  * Some Browser only send 2 digits like he or de.
  * This is caught later with the aliases
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  * @return string   $browserLang
 */
 function getBrowserLanguage() {
@@ -200,7 +200,7 @@ function getEnvLang() {
 /**
  * Gets the default language for Gallery.
  * If not set, fallback to browserlanguage.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  * @return string $defaultLanguage;
  */
 function getDefaultLanguage() {
@@ -236,9 +236,9 @@ function forceStaticLang() {
 
 /**
  * This function does the initialization of language related things.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
-function initLanguage($sendHeader = true, $userlanguage = '') {
+function initLanguage($sendHeader = true) {
     static $languages_initialized = false;
 
     global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -247,9 +247,9 @@ function initLanguage($sendHeader = true, $userlanguage = '') {
      * Init was already done. Just return, or do a reinit
      * if the giving userlanguage is different than the current language
     */
-    if($languages_initialized &&
-      (empty($userlanguage) || (isset($gallery->app->ML_mode) && $gallery->app->ML_mode != 2))) {
-            return;
+
+    if($languages_initialized) {
+		return;
     }
 
     /* $locale is *NUKEs locale var*/
