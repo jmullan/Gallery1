@@ -21,7 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
 
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -42,7 +41,7 @@ $phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
 /*
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
  * Gallery can run embedded in GeekLog too, but to catch this we need
- * config.php * Therefore we have to detect GeeLog in init.php.
+ * config.php * Therefore we have to detect GeekLog in init.php.
  *
  */
 if ($postnuke ||
@@ -185,7 +184,8 @@ if ($postnuke ||
 	    exit;
 	}
 	include(dirname(__FILE__) . "/$include");
-} else {
+}
+else {
 	include("albums.php");
 }
 ?>
