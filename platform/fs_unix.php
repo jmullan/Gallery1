@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 /**
@@ -32,10 +32,10 @@
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_copy($source, $dest) {
-    $result = copy($source, $dest);
-    chmod ($dest, 0644);
+	$result = copy($source, $dest);
+	chmod ($dest, 0644);
 
-    return $result;
+	return $result;
 }
 
 function fs_exec($cmd, &$results, &$status, $debugfile="") {
@@ -62,7 +62,7 @@ function fs_filesize($filename) {
 	return filesize($filename);
 }
 
-function fs_fopen($filename, $mode, $use_include_path=0) {
+function fs_fopen($filename, $mode, $use_include_path = 0) {
 	return fopen($filename, $mode, $use_include_path);
 }
 
@@ -74,21 +74,21 @@ function fs_fopen($filename, $mode, $use_include_path=0) {
  * @return string $content
  */
 function fs_file_get_contents($filename) {
-    $content = '';
+	$content = '';
 
-    if (function_exists("file_get_contents")) {
-        $content = @file_get_contents($filename);
-    }
-    else {
-        if ($fd = fs_fopen($fname, "rb")) {
-            while (!feof($fd)) {
-                $content .= fread($fd, 65536);
-            }
-            fclose($fd);
-        }
-    }
+	if (function_exists("file_get_contents")) {
+		$content = @file_get_contents($filename);
+	}
+	else {
+		if ($fd = fs_fopen($fname, "rb")) {
+			while (!feof($fd)) {
+				$content .= fread($fd, 65536);
+			}
+			fclose($fd);
+		}
+	}
 
-    return $content;
+	return $content;
 }
 
 function fs_is_dir($filename) {
@@ -114,14 +114,14 @@ function fs_is_writable($filename) {
 }
 
 function fs_opendir($path) {
-    $dir_handle = @opendir($path);
-    if ($dir_handle) {
-	   return $dir_handle;
-    }
-    else {
-	   echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
-	   return false;
-    }
+	$dir_handle = @opendir($path);
+	if ($dir_handle) {
+		return $dir_handle;
+	}
+	else {
+		echo "\<br>". gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		return false;
+	}
 }
 
 function fs_rename($oldname, $newname) {
@@ -144,11 +144,11 @@ function fs_is_executable($filename) {
 }
 
 function fs_import_filename($filename, $for_exec = true) {
-    if ($for_exec) {
-	$filename = escapeshellarg($filename); // Might as well use the function PHP provides!
-    }
+	if ($for_exec) {
+		$filename = escapeshellarg($filename); // Might as well use the function PHP provides!
+	}
 
-    return $filename;
+	return $filename;
 }
 
 function fs_export_filename($filename) {
@@ -166,37 +166,38 @@ function fs_executable($filename) {
  * @return boolean   $result    true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
-    /*
-     * PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
-     * causes a seg fault if you specify modes.
-     *
-     * See: http://bugs.php.net/bug.php?id=16905
-     *
-     * We can't reliably determine the OS, so let's just turn off the
-     * permissions for any Unix implementation.
-     */
-    if ( phpversion() == '4.2.0') {
-	   $result = mkdir(fs_import_filename($dirname, 0));
-       chmod($dirname, $perms);
-    } else {
-	   $result = mkdir(fs_import_filename($dirname, 0), $perms);
-    }
+	/*
+	* PHP 4.2.0 on Unix (specifically FreeBSD) has a bug where mkdir
+	* causes a seg fault if you specify modes.
+	*
+	* See: http://bugs.php.net/bug.php?id=16905
+	*
+	* We can't reliably determine the OS, so let's just turn off the
+	* permissions for any Unix implementation.
+	*/
+	if ( phpversion() == '4.2.0') {
+		$result = mkdir(fs_import_filename($dirname, 0));
+		chmod($dirname, $perms);
+	}
+	else {
+		$result = mkdir(fs_import_filename($dirname, 0), $perms);
+	}
 
-    return $result;
+	return $result;
 }
 
 /**
  * Is file hidden ? Means it starts with a .
  * @param   $filename   string
  * @return              boolean
- * @author  Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz
 */
 function fs_fileIsHidden($filename) {
-    if($filename{0} == '.') {
-        return true;
-    }
-    else {
-        return false;
-    }
+	if($filename{0} == '.') {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 ?>
