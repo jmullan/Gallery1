@@ -30,7 +30,9 @@
  * Otherwise constants are not defined.
  */
 
-require (dirname(__FILE__) . '/init.php');
+require(dirname(__FILE__) . '/init.php');
+
+gallerySanityCheck();
 
 list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
     getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));

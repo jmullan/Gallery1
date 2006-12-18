@@ -23,7 +23,6 @@
 <?php
     require(GALLERY_BASE . '/includes/setup/constants.inc');
     require(GALLERY_BASE . '/lib/tabs.php');
-    require(GALLERY_BASE . '/js/sectionTabs.js.php');
     require(GALLERY_BASE . '/js/multiInput.js.php');
 
     $inst_type = '';

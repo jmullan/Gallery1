@@ -23,7 +23,6 @@
 <?php
     require(GALLERY_BASE . '/includes/setup/defaults.inc');
     require(GALLERY_BASE . '/lib/tabs.php');
-    require(GALLERY_BASE . '/js/sectionTabs.js.php');
 
     $inst_type = '';
 
