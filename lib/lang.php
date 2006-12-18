@@ -39,80 +39,80 @@
  * @author  Jens Tkotz
  */
 function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '', $short = false) {
-    global $gallery;
+	global $gallery;
 
-    $allowedDomain = array('config', 'common', 'core');
-    if(!in_array($domain, $allowedDomain)) {
-        return '<span class="g-error">'. ("-- Translation Domain wrong --") .'</span>';
-    }
+	$allowedDomain = array('config', 'common', 'core');
+	if(!in_array($domain, $allowedDomain)) {
+		return '<span class="g-error">'. ("-- Translation Domain wrong --") .'</span>';
+	}
 
-    if ($count == 0 && $nonetext != '') {
-        return $nonetext;
-    }
+	if ($count == 0 && $nonetext != '') {
+		return $nonetext;
+	}
 
-    if (gettext_installed()) {
-    	$gDomain = $gallery->language. "-gallery_$domain";
-    	bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
-    	textdomain($gDomain);
-    }
+	if (gettext_installed()) {
+		$gDomain = $gallery->language. "-gallery_$domain";
+		bindtextdomain($gDomain, dirname(dirname(__FILE__)) . '/locale');
+		textdomain($gDomain);
+	}
 
-    if(!$plural) {
-    	if (gettext_installed()) {
-        	$translation = dgettext($gDomain, $singular);
-    	}
-    	else {
-    		$translation = _($singular);
-    	}
-    }
-    else {
-        if (!empty($count) && intval($count) == 0) {
-            $count = 1;
-        }
-        if (ngettext_installed()) {
-        	$translation = dngettext($gDomain, $singular, $plural, $count);
-        }
-        else {
-        	$translation = ngettext($singular, $plural, $count);
-        }
-        if($short) {
-            $translation = sprintf($translation, $count);
-        }
-    }
+	if(!$plural) {
+		if (gettext_installed()) {
+			$translation = dgettext($gDomain, $singular);
+		}
+		else {
+			$translation = _($singular);
+		}
+	}
+	else {
+		if (!empty($count) && intval($count) == 0) {
+			$count = 1;
+		}
+		if (ngettext_installed()) {
+			$translation = dngettext($gDomain, $singular, $plural, $count);
+		}
+		else {
+			$translation = ngettext($singular, $plural, $count);
+		}
+		if($short) {
+			$translation = sprintf($translation, $count);
+		}
+	}
 
-    return $translation;
+	return $translation;
 }
 
 /**
  * Detect the first Language of users Browser
  * Some Browser only send 2 digits like he or de.
  * This is caught later with the aliases
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  * @return string   $browserLang
 */
 function getBrowserLanguage() {
-    if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
-        $lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+	if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
+		$lang = explode (",", $_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 
-        /* Maybe there are some extra infos we dont need, so we strip them. */
-        $spos = strpos($lang[0],";");
-        if ($spos >0) {
-            $lang[0] = substr($lang[0],0,$spos);
-        }
+		/* Maybe there are some extra infos we dont need, so we strip them. */
+		$spos = strpos($lang[0],";");
+		if ($spos >0) {
+			$lang[0] = substr($lang[0],0,$spos);
+		}
 
-        /* browser may send aa-bb, then we convert to aa_BB */
-        $lang_pieces = explode ("-",$lang[0]);
-        if (strlen($lang[0]) >2) {
-            $browserLang = strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
-        }
-        else {
-            $browserLang = $lang[0];
-        }
-    }
-    else {
-        $browserLang = false;
-    }
+		/* browser may send aa-bb, then we convert to aa_BB */
+		$lang_pieces = explode ("-",$lang[0]);
+		if (strlen($lang[0]) >2) {
+			$browserLang = strtolower($lang_pieces[0]). "_".strtoupper($lang_pieces[1]) ;
+		}
+		else {
+			$browserLang = $lang[0];
+		}
+	}
+	else {
+		$browserLang = false;
+	}
 
-    return $browserLang;
+	return $browserLang;
 }
 
 /**
@@ -204,21 +204,21 @@ function getEnvLang() {
 /**
  * Gets the default language for Gallery.
  * If not set, fallback to browserlanguage.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  * @return string $defaultLanguage;
  */
 function getDefaultLanguage() {
-    global $gallery;
+	global $gallery;
 
-    if(isset($gallery->app->default_language)
-      && $gallery->app->default_language != 'browser') {
-        $defaultLanguage = $gallery->app->default_language;
-    }
-    else {
-        $defaultLanguage = getBrowserLanguage();
-    }
+	if(isset($gallery->app->default_language)
+	  && $gallery->app->default_language != 'browser') {
+		$defaultLanguage = $gallery->app->default_language;
+	}
+	else {
+		$defaultLanguage = getBrowserLanguage();
+	}
 
-    return $defaultLanguage;
+	return $defaultLanguage;
 }
 
 /**
@@ -240,223 +240,222 @@ function forceStaticLang() {
 
 /**
  * This function does the initialization of language related things.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
-function initLanguage($sendHeader = true, $userlanguage = '') {
-    static $languages_initialized = false;
+function initLanguage($sendHeader = true) {
+	static $languages_initialized = false;
 
-    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-    /**
-     * Init was already done. Just return, or do a reinit
-     * if the giving userlanguage is different than the current language
-    */
-    if($languages_initialized &&
-      (empty($userlanguage) || (isset($gallery->app->ML_mode) && $gallery->app->ML_mode != 2))) {
-            return;
-    }
+	/**
+	 * Init was already done. Just return, or do a reinit
+	 * if the giving userlanguage is different than the current language
+	*/
+	if($languages_initialized) {
+		return;
+	}
 
-    /* $locale is *NUKEs locale var*/
-    global $locale ;
+	/* $locale is *NUKEs locale var*/
+	global $locale ;
 
-    $nls = getNLS();
+	$nls = getNLS();
 
-    /* Set Defaults, they may be overwritten. */
-    setLangDefaults($nls);
+	/* Set Defaults, they may be overwritten. */
+	setLangDefaults($nls);
 
-    /* Before we do any tests or settings test if we are in mode 0
-    If so, we skip language settings at all */
+	/* Before we do any tests or settings test if we are in mode 0
+	If so, we skip language settings at all */
 
-    /* Mode 0 means no Multilanguage at all. */
-    if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0) {
-        /* Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext*/
-        if (!gettext_installed()) {
-            function _($string) {
-                return $string ;
-            }
-        }
-        if (!ngettext_installed()) {
-            function ngettext($singular, $quasi_plural,$num=0) {
-                if ($num == 1) {
-                    return $singular;
-                }
-                else {
-                    return $quasi_plural;
-                }
-            }
-        }
+	/* Mode 0 means no Multilanguage at all. */
+	if (isset($gallery->app->ML_mode) && $gallery->app->ML_mode == 0) {
+		/* Maybe PHP has no (n)gettext, then we have to substitute _() and ngettext*/
+		if (!gettext_installed()) {
+			function _($string) {
+				return $string ;
+			}
+		}
+		if (!ngettext_installed()) {
+			function ngettext($singular, $quasi_plural,$num=0) {
+				if ($num == 1) {
+					return $singular;
+				}
+				else {
+					return $quasi_plural;
+				}
+			}
+		}
 
-        /* Skip rest*/
-        $languages_initialized = true;
-        return;
-    }
+		/* Skip rest*/
+		$languages_initialized = true;
+		return;
+	}
 
-    /**
+	/**
 	 * Does the user wants a new lanuage ?
 	 * This is used in Standalone and *Nuke
 	 */
-    $newlang = getRequestVar('newlang');
+	$newlang = getRequestVar('newlang');
 
-    /**
+	/**
 	 * Note: ML_mode is only used when not embedded
 	 */
 
-    if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
-        /* Gallery is embedded */
+	if (isset($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+		/* Gallery is embedded */
 
-        /* Gallery can set nukes language.
-        * For phpBB2, GeekLog, Mambo and Joomla! this is not possible, Gallery will always use their language.
-        */
-        forceStaticLang();
+		/* Gallery can set nukes language.
+		* For phpBB2, GeekLog, Mambo and Joomla! this is not possible, Gallery will always use their language.
+		*/
+		forceStaticLang();
 
-        if (!empty($newlang)) {
-            /* Set Language to the User selected language. */
-            $gallery->language = $newlang;
-        }
-        else {
-            /** No new language.
+		if (!empty($newlang)) {
+			/* Set Language to the User selected language. */
+			$gallery->language = $newlang;
+		}
+		else {
+			/** No new language.
 			 * Lets see in which Environment were are and look for a language.
 			 * Lets try to determ the used language
 			 */
-            $gallery->language = getEnvLang();
-        }
-    }
-    else {
-        /** We're not embedded.
+			$gallery->language = getEnvLang();
+		}
+	}
+	else {
+		/** We're not embedded.
 		 * If we got a ML_mode from config.php we use it
 		 * If not we use Mode 2 (Browserlanguage)
 		 */
-        if (isset($gallery->app->ML_mode)) {
-            $ML_mode = $gallery->app->ML_mode;
-        }
-        else {
-            $ML_mode = 2;
-        }
+		if (isset($gallery->app->ML_mode)) {
+			$ML_mode = $gallery->app->ML_mode;
+		}
+		else {
+			$ML_mode = 2;
+		}
 
-        switch ($ML_mode) {
-            case 1:
-                /* Static Language */
-                $gallery->language = getDefaultLanguage();
-            break;
+		switch ($ML_mode) {
+			case 1:
+				/* Static Language */
+				$gallery->language = getDefaultLanguage();
+			break;
 
-            case 3:
-                /* Does the user want a new language ?*/
-                if (!empty($newlang)) {
-                    /* Set Language to the User selected language.*/
-                    $gallery->language = $newlang;
-                }
-                elseif (isset($gallery->session->language)) {
-                    /* Maybe we already have a language*/
-                    $gallery->language = $gallery->session->language;
-                }
-                else {
-                    $gallery->language = getDefaultLanguage();
-                }
-            break;
+			case 3:
+				/* Does the user want a new language ?*/
+				if (!empty($newlang)) {
+					/* Set Language to the User selected language.*/
+					$gallery->language = $newlang;
+				}
+				elseif (isset($gallery->session->language)) {
+					/* Maybe we already have a language*/
+					$gallery->language = $gallery->session->language;
+				}
+				else {
+					$gallery->language = getDefaultLanguage();
+				}
+			break;
 
-            default:
-                /* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
-                $gallery->language = getBrowserLanguage();
+			default:
+				/* Use Browser Language or Userlanguage when mode 2 or any other (wrong) mode*/
+				$gallery->language = getBrowserLanguage();
 
-                if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
-                    $gallery->language = $gallery->user->getDefaultLanguage();
-                }
-            break;
-        }
-    }
+				if (!empty($gallery->user) && $gallery->user->getDefaultLanguage() != '') {
+					$gallery->language = $gallery->user->getDefaultLanguage();
+				}
+			break;
+		}
+	}
 
-    /* if an alias for the (new or Env) language is given, use it*/
-    $gallery->language = getLanguageAlias($gallery->language) ;
+	/* if an alias for the (new or Env) language is given, use it*/
+	$gallery->language = getLanguageAlias($gallery->language) ;
 
-    /**
+	/**
 	 *  Fall back to Default Language if :
 	 *	- we cant detect Language
 	 *	- Nuke/phpBB2 sent an unsupported
 	 *	- User sent an undefined
 	 */
 
-    if (! isset($nls['language'][$gallery->language])) {
-        $gallery->language = getLanguageAlias(getDefaultLanguage());
-        /* when we REALLY REALLY cant detect a language */
-        if (! isset($nls['language'][$gallery->language])) {
-            $gallery->language = 'en_US';
-        }
-    }
+	if (! isset($nls['language'][$gallery->language])) {
+		$gallery->language = getLanguageAlias(getDefaultLanguage());
+		/* when we REALLY REALLY cant detect a language */
+		if (! isset($nls['language'][$gallery->language])) {
+			$gallery->language = 'en_US';
+		}
+	}
 
-    /* And now set this language into session*/
-    $gallery->session->language = $gallery->language;
+	/* And now set this language into session*/
+	$gallery->session->language = $gallery->language;
 
-    /* locale*/
-    if (isset($gallery->app->locale_alias[$gallery->language])) {
-        $gallery->locale = $gallery->app->locale_alias["$gallery->language"];
-    }
-    else {
-        $gallery->locale = $gallery->language;
-    }
+	/* locale*/
+	if (isset($gallery->app->locale_alias[$gallery->language])) {
+		$gallery->locale = $gallery->app->locale_alias["$gallery->language"];
+	}
+	else {
+		$gallery->locale = $gallery->language;
+	}
 
-    /* Override NUKEs locale :)))*/
-    $locale = $gallery->locale;
+	/* Override NUKEs locale :)))*/
+	$locale = $gallery->locale;
 
-    /* Check defaults */
-    $checklist = array('direction', 'charset') ;
+	/* Check defaults */
+	$checklist = array('direction', 'charset') ;
 
-    /**
-     * This checks wether the previously defined values are available.
-     * All available values are in $nls
-     * If they are not defined we used the defaults from nls.php
-     */
-    foreach($checklist as $check) {
-        /* if no ... is given, use default*/
-        if ( !isset($nls[$check][$gallery->language])) {
-            $gallery->$check = $nls['default'][$check] ;
-        }
-        else {
-            $gallery->$check = $nls[$check][$gallery->language] ;
-        }
-    }
+	/**
+	 * This checks wether the previously defined values are available.
+	 * All available values are in $nls
+	 * If they are not defined we used the defaults from nls.php
+	 */
+	foreach($checklist as $check) {
+		/* if no ... is given, use default*/
+		if ( !isset($nls[$check][$gallery->language])) {
+			$gallery->$check = $nls['default'][$check] ;
+		}
+		else {
+			$gallery->$check = $nls[$check][$gallery->language] ;
+		}
+	}
 
-    /* When all is done do the settings*/
+	/* When all is done do the settings*/
 
-    /* There was previously a != SUNOS check around the LANG= line.  We've determined that it was
-     probably a bogus bug report, since all documentation says this is fine.*/
-    putenv("LANG=". $gallery->language);
-    putenv("LANGUAGE=". $gallery->language);
+	/* There was previously a != SUNOS check around the LANG= line.  We've determined that it was
+	 probably a bogus bug report, since all documentation says this is fine.*/
+	putenv("LANG=". $gallery->language);
+	putenv("LANGUAGE=". $gallery->language);
 
-    /* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
-    putenv("LC_ALL=". $gallery->language);
+	/* This line was added in 1.5-cvs-b190 to fix problems on FreeBSD 4.10*/
+	putenv("LC_ALL=". $gallery->language);
 
-    /* Set Locale*/
-    setlocale(LC_ALL,$gallery->locale);
+	/* Set Locale*/
+	setlocale(LC_ALL,$gallery->locale);
 
-    /**
-     * Set Charset header
-     * We do this only if we are not embedded and the "user" wants it.
-     * Because headers might be sent already.
-     */
-    if (!headers_sent() && ($sendHeader == true  || ! isset($GALLERY_EMBEDDED_INSIDE))) {
-        header('Content-Type: text/html; charset=' . $gallery->charset);
-    }
+	/**
+	 * Set Charset header
+	 * We do this only if we are not embedded and the "user" wants it.
+	 * Because headers might be sent already.
+	 */
+	if (!headers_sent() && ($sendHeader == true  || ! isset($GALLERY_EMBEDDED_INSIDE))) {
+		header('Content-Type: text/html; charset=' . $gallery->charset);
+	}
 
-    /**
-     * Test if we're using gettext.
-     * if yes, do some gettext settings.
-     * if not emulate _() function or ngettext()
-     */
+	/**
+	 * Test if we're using gettext.
+	 * if yes, do some gettext settings.
+	 * if not emulate _() function or ngettext()
+	 */
 
-    if (gettext_installed()) {
-        bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
-        textdomain($gallery->language. "-gallery_". where_i_am());
-    }
-    else {
-        emulate_gettext($languages_initialized);
-    }
+	if (gettext_installed()) {
+		bindtextdomain($gallery->language. "-gallery_". where_i_am(), dirname(dirname(__FILE__)) . '/locale');
+		textdomain($gallery->language. "-gallery_". where_i_am());
+	}
+	else {
+		emulate_gettext($languages_initialized);
+	}
 
-    // We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
-    if (!ngettext_installed()) {
-        emulate_ngettext($languages_initialized);
-    }
+	// We test this separate because ngettext() is only available in PHP >=4.2.0 but _() in all PHP4
+	if (!ngettext_installed()) {
+		emulate_ngettext($languages_initialized);
+	}
 
-    $languages_initialized = true;
+	$languages_initialized = true;
 }
 
 function getTranslationFile() {
@@ -465,9 +464,9 @@ function getTranslationFile() {
 	static $translationfile;
 
 	if (empty($translationfile)) {
-        $filename = dirname(dirname(__FILE__)) . '/locale/' .
-        $gallery->language . '/'.
-        $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+		$filename = dirname(dirname(__FILE__)) . '/locale/' .
+		$gallery->language . '/'.
+		$gallery->language . '-gallery_' .  where_i_am()  . '.po';
 		$translationfile=file($filename);
 	}
 
@@ -489,8 +488,8 @@ function emulate_ngettext($languages_initialized = false) {
 		foreach ($lines as $key => $value) {
 		//We trim the String to get rid of cr/lf
 			$value=trim($value);
-            if (stristr($value, "msgid") &&
-                ! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
+			if (stristr($value, "msgid") &&
+				! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
 //				echo "\n<br>---SID". $value;
 //					echo "\n<br>---PID". $lines[$key+1];
 				if (stristr($lines[$key+1],"msgid_plural")) {
@@ -505,29 +504,29 @@ function emulate_ngettext($languages_initialized = false) {
 				}
 			}
 		}
-    }
+	}
 
 		// Substitute ngettext() function
-    if(! $languages_initialized) {
+	if(! $languages_initialized) {
 		function ngettext($singular, $quasi_plural,$num=0) {
 //			echo "\n<br>----";
 //			echo "\nSL: $singular, PL: $quasi_plural, N: $num";
-            global $gallery;
+			global $gallery;
 
-            if($gallery->language == 'en_US') {
-                if ($num == 1) {
-                    return $singular;
-                }
-                else {
-                    return $quasi_plural;
-                }
-            }
-            else {
+			if($gallery->language == 'en_US') {
+				if ($num == 1) {
+					return $singular;
+				}
+				else {
+					return $quasi_plural;
+				}
+			}
+			else {
 			if ($num == 1) {
 				if (! empty($GLOBALS['translation'][$singular])) {
 					return $GLOBALS['translation'][$singular] ;
-                    }
-                    else {
+					}
+					else {
 					return $singular;
 				}
 			}
@@ -554,19 +553,19 @@ function emulate_gettext($languages_initialized) {
 	if (in_array($gallery->language,array_keys(gallery_languages())) &&
 		$gallery->language != 'en_US') {
 
-        $filename = dirname(dirname(__FILE__)) . '/locale/' .
-        $gallery->language . '/'.
-        $gallery->language . '-gallery_' .  where_i_am()  . '.po';
+		$filename = dirname(dirname(__FILE__)) . '/locale/' .
+		$gallery->language . '/'.
+		$gallery->language . '-gallery_' .  where_i_am()  . '.po';
 
 		$lines=file($filename);
 
 		foreach ($lines as $key => $value) {
 			/* We trim the String to get rid of cr/lf */
 			$value=trim($value);
-            if (stristr($value, "msgid") &&
-                ! stristr($lines[$key-1],"fuzzy") &&
-                ! stristr($lines[$key],"msgid_plural") &&
-                ! stristr($value,"msgid_plural")) {
+			if (stristr($value, "msgid") &&
+				! stristr($lines[$key-1],"fuzzy") &&
+				! stristr($lines[$key],"msgid_plural") &&
+				! stristr($value,"msgid_plural")) {
 
 				$new_key=substr($value, 7,-1);
 				$translation[$new_key] = substr(trim($lines[$key+1]),8,-1);
@@ -574,17 +573,17 @@ function emulate_gettext($languages_initialized) {
 //		echo "\n<br>NT". $translation[$new_key];
 			}
 		}
-    }
+	}
 
 		// Substitute _() gettext function
-    if(! $languages_initialized) {
+	if(! $languages_initialized) {
 		function _($search) {
-            global $gallery;
+			global $gallery;
 
-            if($gallery->language == 'en_US') {
-                return $search;
-            }
-            else {
+			if($gallery->language == 'en_US') {
+				return $search;
+			}
+			else {
 
 			if (! empty($GLOBALS['translation'][$search])) {
 				return $GLOBALS['translation'][$search] ;
@@ -633,13 +632,13 @@ function gallery_languages() {
  * @author	Jens Tkotz
  */
 function getLanguageAlias($language) {
-    $nls = getNLS();
+	$nls = getNLS();
 
-    if (isset($nls['alias'][$language])) {
+	if (isset($nls['alias'][$language])) {
 	   return $nls['alias'][$language];
-    } else {
-        return $language;
-    }
+	} else {
+		return $language;
+	}
 }
 
 /**
@@ -680,7 +679,7 @@ function getNLS() {
 }
 
 function i18n($buf) {
-    return $buf;
+	return $buf;
 }
 
 function isSupportedCharset($charset) {
@@ -703,22 +702,22 @@ function isSupportedCharset($charset) {
 	);
 
 	/**
-     * Check if we are using PHP >= 4.1.0
-     * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
-     * Otherwise they are messed.
-     * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
-     */
+	 * Check if we are using PHP >= 4.1.0
+	 * If yes, we can use 3rd Parameter so e.g. titles in chinese BIG5 or UTF8 are displayed correct.
+	 * Otherwise they are messed.
+	 * Not all Gallery Charsets are supported by PHP, so only thoselisted are recognized.
+	 */
 	if (function_exists('version_compare')) {
 		if ( (version_compare(phpversion(), "4.1.0", ">=") && in_array($charset, $supportedCharsets)) ||
-		     (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
+			 (version_compare(phpversion(), "4.3.2", ">=") && in_array($charset, $supportedCharsetsNewerPHP)) ) {
 			return true;
-        }
-        else {
+		}
+		else {
 			/* Unsupported Charset*/
 			return false;
 		}
-    }
-    else {
+	}
+	else {
 		/* PHP too old*/
 		return false;
 	}
@@ -734,10 +733,10 @@ function gallery_htmlentities($string) {
 
 	if (isSupportedCharset($gallery->charset)) {
 		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
-    }
-    else {
+	}
+	else {
 		return htmlentities($string);
-    }
+	}
 }
 
 /**
@@ -755,8 +754,8 @@ function unhtmlentities($string) {
 
 		if (isset($gallery->language) && isset($nls['charset'][$gallery->language])) {
 			$charset = $nls['charset'][$gallery->language];
-        }
-        else {
+		}
+		else {
 			$charset = $nls['default']['charset'];
 		}
 
@@ -769,8 +768,8 @@ function unhtmlentities($string) {
 			$trans_tbl = array_flip ($trans_tbl);
 			$return = strtr ($string, $trans_tbl);
 		}
-    }
-    else {
+	}
+	else {
 		// For users with PHP prior to 4.3.0 you may do this:
 		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
 		$trans_tbl = array_flip ($trans_tbl);
@@ -787,11 +786,11 @@ return $return;
  * as appropriate in the ML version.
  */
 function automaticFieldsList() {
-    return array(
-        'Upload Date'   => gTranslate('common', "Upload Date"),
-        'Capture Date' 	=> gTranslate('common', "Capture Date"),
-        'Dimensions' 	=> gTranslate('common', "Image Size"),
-        'EXIF'          => gTranslate('common', "Additional EXIF Data"));
+	return array(
+		'Upload Date'   => gTranslate('common', "Upload Date"),
+		'Capture Date' 	=> gTranslate('common', "Capture Date"),
+		'Dimensions' 	=> gTranslate('common', "Image Size"),
+		'EXIF'          => gTranslate('common', "Additional EXIF Data"));
 }
 
 /** These are custom fields which can be entered manual by the User
@@ -813,93 +812,93 @@ function translateableFields() {
  * @author	Jens Tkotz
  */
 function languageSelector() {
-    global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-    $html = '';
+	$html = '';
 
-    if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
-        if($gallery->app->show_flags !='yes') {
-            $html .= '<script language="JavaScript" type="text/javascript">';
-            $html .= "\n". 'function ML_reload() {';
-            $html .= "\n". 'var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;';
-            $html .= "\n". 'window.location.href=newlang;';
-            $html .= "\n". '}';
-            $html .= "\n" . '</script>';
-        }
+	if ($gallery->app->ML_mode == 3 && !$gallery->session->offline && sizeof($gallery->app->available_lang) > 1) {
+		if($gallery->app->show_flags !='yes') {
+			$html .= '<script language="JavaScript" type="text/javascript">';
+			$html .= "\n". 'function ML_reload() {';
+			$html .= "\n". 'var newlang=document.MLForm.newlang[document.MLForm.newlang.selectedIndex].value ;';
+			$html .= "\n". 'window.location.href=newlang;';
+			$html .= "\n". '}';
+			$html .= "\n" . '</script>';
+		}
 
-        $html .= makeFormIntro('#', array('name' => 'MLForm'));
-        $langSelectTable = new galleryTable();
-        $langSelectTable->setColumnCount(20);
-        $langSelectTable->setAttrs(array('align' => langRight()));
+		$html .= makeFormIntro('#', array('name' => 'MLForm'));
+		$langSelectTable = new galleryTable();
+		$langSelectTable->setColumnCount(20);
+		$langSelectTable->setAttrs(array('align' => langRight()));
 
-        $nls = getNLS();
+		$nls = getNLS();
 
-        foreach ($gallery->app->available_lang as $value) {
-            /**
-             * We only allow show languages which are available in gallery.
-             * These could differ to the languages defined in config.php.
-            */
-            if (! isset($nls['language'][$value])) continue;
+		foreach ($gallery->app->available_lang as $value) {
+			/**
+			 * We only allow show languages which are available in gallery.
+			 * These could differ to the languages defined in config.php.
+			*/
+			if (! isset($nls['language'][$value])) continue;
 
-            if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
-                if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
-                    /* postnuke */
-                    if (! isset($nls['postnuke'][$value])) continue;
-                    $new_lang = $nls['postnuke'][$value];
-                }
-                else {
-                    /* phpNuke, nsnNuke or cpgNuke */
-                    if (! isset($nls['phpnuke'][$value])) continue;
-                    $new_lang = $nls['phpnuke'][$value];
-                }
-            } else {
-                $new_lang = $value;
-            }
+			if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {
+				if ($GALLERY_EMBEDDED_INSIDE_TYPE == 'postnuke') {
+					/* postnuke */
+					if (! isset($nls['postnuke'][$value])) continue;
+					$new_lang = $nls['postnuke'][$value];
+				}
+				else {
+					/* phpNuke, nsnNuke or cpgNuke */
+					if (! isset($nls['phpnuke'][$value])) continue;
+					$new_lang = $nls['phpnuke'][$value];
+				}
+			} else {
+				$new_lang = $value;
+			}
 
-            /* now we build the URL according to the new language */
-            $request_url = $_SERVER['REQUEST_URI'];
-            $pos = strpos($request_url, "newlang");
-            if ($pos >0) {
-                $request_url = substr($request_url,0,$pos-1);
-            }
+			/* now we build the URL according to the new language */
+			$request_url = $_SERVER['REQUEST_URI'];
+			$pos = strpos($request_url, "newlang");
+			if ($pos >0) {
+				$request_url = substr($request_url,0,$pos-1);
+			}
 
-            $url = htmlspecialchars(addUrlArg($request_url, "newlang=$new_lang"));
+			$url = htmlspecialchars(addUrlArg($request_url, "newlang=$new_lang"));
 
-            /* Show pulldown or flags */
-            if($gallery->app->show_flags !='yes') {
-                $options[$url] = $nls['language'][$value];
-            }
-            else {
-                $flagname = $value;
-                $flagImage = "<img src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
+			/* Show pulldown or flags */
+			if($gallery->app->show_flags !='yes') {
+				$options[$url] = $nls['language'][$value];
+			}
+			else {
+				$flagname = $value;
+				$flagImage = "<img src=\"". $gallery->app->photoAlbumURL . "/locale/$flagname/flagimage/$flagname.gif\" alt=\"" .$nls['language'][$value] . "\" title=\"" .$nls['language'][$value] . "\">";
 
-                if ($gallery->language != $value) {
-                    $langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
-                }
-                else {
-                    $langSelectTable->addElement(array(
+				if ($gallery->language != $value) {
+					$langSelectTable->addElement(array('content' => "<a href=\"$url\">$flagImage</a>"));
+				}
+				else {
+					$langSelectTable->addElement(array(
 			'content' => $flagImage,
 			'cellArgs' => array('style' => 'padding-bottom:10px')
-		    ));
-                }
-            }
-        }
+			));
+				}
+			}
+		}
 
-        if($gallery->app->show_flags !='yes') {
-            $content = drawSelect('newlang',
-            $options,
-            $nls['language'][$gallery->language],
-            1,
-            array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
-            );
+		if($gallery->app->show_flags !='yes') {
+			$content = drawSelect('newlang',
+			$options,
+			$nls['language'][$gallery->language],
+			1,
+			array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
+			);
 
-            $langSelectTable->addElement(array('content' => $content));
-        }
+			$langSelectTable->addElement(array('content' => $content));
+		}
 
-        $html .= $langSelectTable->render();
-        $html .= '</form><br clear="all">';
-    }
-    return $html;
+		$html .= $langSelectTable->render();
+		$html .= '</form><br clear="all">';
+	}
+	return $html;
 }
 
 /**
@@ -907,14 +906,14 @@ function languageSelector() {
  * @author Jens Tkotz
  */
 function langLeft() {
-    global $gallery;
+	global $gallery;
 
-    if ($gallery->direction == 'ltr') {
+	if ($gallery->direction == 'ltr') {
 	return 'left';
-    }
-    else {
+	}
+	else {
 	return 'right';
-    }
+	}
 }
 
 /**
