@@ -97,7 +97,8 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 	if (empty($GALLERY_MODULENAME) &&
 		$GALLERY_EMBEDDED_INSIDE == 'nuke' &&
-		!empty($modpath)) {
+		!empty($modpath))
+	{
 		$GALLERY_MODULENAME = basename(dirname($modpath));
 	}
 
