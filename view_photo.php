@@ -34,19 +34,21 @@ $iconsForItemOptions = true;
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($full, $id, $index, $votes) =
-    getRequestVar(array('full', 'id', 'index', 'votes'));
-list($save, $commenter_name, $comment_text) =
-    getRequestVar(array('save', 'commenter_name', 'comment_text'));
-
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) ||
-!$gallery->user->canReadAlbum($gallery->album) ||
-!$gallery->album->isLoaded()) {
+	!$gallery->user->canReadAlbum($gallery->album) ||
+	!$gallery->album->isLoaded())
+{
 	$gallery->session->gRedirDone = false;
 	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
 	return;
 }
+
+list($full, $id, $index, $votes) =
+	getRequestVar(array('full', 'id', 'index', 'votes'));
+
+list($save, $commenter_name, $comment_text) =
+	getRequestVar(array('save', 'commenter_name', 'comment_text'));
 
 /* Set $index from $id */
 if (isset($id)) {
@@ -56,7 +58,8 @@ if (isset($id)) {
 		header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 		return;
 	}
-} else {
+}
+else {
 	if ($index > $gallery->album->numPhotos(1)) {
 		$index = $numPhotos;
 	}
@@ -69,8 +72,10 @@ $nextId = getNextId($id);
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
 	return;
-} elseif (!$gallery->album->isResized($index) &&
-!$gallery->user->canViewFullImages($gallery->album)) {
+}
+elseif (!$gallery->album->isResized($index) &&
+		!$gallery->user->canViewFullImages($gallery->album))
+{
 	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 	return;
 }
@@ -81,8 +86,9 @@ if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
 
 if (!empty($votes)) {
 	if (!isset($votes[$id]) &&
-	$gallery->album->getPollScale() == 1 &&
-	$gallery->album->getPollType() == "critique") {
+		$gallery->album->getPollScale() == 1 &&
+		$gallery->album->getPollType() == "critique")
+	{
 		$votes[$id] = null;
 	}
 
@@ -104,7 +110,8 @@ $photo = $gallery->album->getPhoto($index);
 
 if ($photo->isMovie()) {
 	$image = $photo->thumbnail;
-} else {
+}
+else {
 	$image = $photo->image;
 }
 
@@ -112,18 +119,18 @@ $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." .
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
-!strcmp($gallery->session->fullOnly,"on") &&
-strcmp($gallery->album->fields["use_fullOnly"],"yes");
+					 !strcmp($gallery->session->fullOnly,"on") &&
+					 strcmp($gallery->album->fields["use_fullOnly"],"yes");
 
 if ($do_fullOnly) {
 	$full = $gallery->user->canViewFullImages($gallery->album);
 }
 
 $fitToWindow = $gallery->album->fields["fit_to_window"] == "yes" &&
-  !$gallery->album->isMovieByIndex($index) &&
-  !$gallery->album->isResized($index) &&
-  !$full &&
-  (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
+			   !$gallery->album->isMovieByIndex($index) &&
+			   !$gallery->album->isResized($index) &&
+			   !$full &&
+			   (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE =='phpBB2');
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
@@ -177,28 +184,9 @@ if (!$title) {
 	$title = $photo->image->name;
 }
 
-if (isset($gallery->app->comments_length)) {
-	$maxlength = $gallery->app->comments_length;
-} else {
-	$maxlength = 0;
-}
+$maxlength = isset($gallery->app->comments_length) ? $gallery->app->comments_length : 0;
 
-if (!empty($save)) {
-	if ( empty($commenter_name) || empty($comment_text)) {
-		$error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
-	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
-		$error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
-	} elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
-		$error_text = gTranslate('core', "Your Comment contains forbidden words. It will not be added.");
-	} else {
-		$comment_text = $comment_text;
-		$commenter_name = $commenter_name;
-		$IPNumber = $_SERVER['REMOTE_ADDR'];
-		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
-		$gallery->album->save();
-		emailComments($id, $comment_text, $commenter_name);
-	}
-}
+require(dirname(__FILE__) . '/includes/comments/commentHandling.inc.php');
 
 $metaTags = array();
 $keyWords = $gallery->album->getKeywords($index);
@@ -365,13 +353,13 @@ if (!$gallery->album->isMovie($id)) {
 
 	/* Show all separate item options. Such as eCard or photo properties link. */
 	foreach ($albumItemOptions as $key => $option) {
-	    if (!isset($option['separate'])) continue;
+		if (!isset($option['separate'])) continue;
 
 		if(!empty($option['value'])) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
-				    $option['text'], $option['value'],
-				    true, false, 500, 500, '', '', $option['icon']);
+					$option['text'], $option['value'],
+					true, false, 500, 500, '', '', $option['icon']);
 			}
 			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
@@ -379,8 +367,8 @@ if (!$gallery->album->isMovie($id)) {
 
 			$adminTextIconElemens[] = $content;
 		}
-        /* remove it from the list, as later on we do only need the rest of the options. */
-        unset($albumItemOptions[$key]);
+		/* remove it from the list, as later on we do only need the rest of the options. */
+		unset($albumItemOptions[$key]);
 	}
 }
 // Endif !movie
@@ -414,8 +402,8 @@ if($useIcons && sizeof($albumItemOptions) > 1) {
 		if(!empty($option['value'])) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
-				    $option['text'], $option['value'],
-				    true, false, 500, 500, '', '', $option['icon']);
+					$option['text'], $option['value'],
+					true, false, 500, 500, '', '', $option['icon']);
 			}
 			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
@@ -450,7 +438,8 @@ if (!$gallery->album->isMovie($id)) {
 				break;
 		}
 	}
-} else {
+}
+else {
 	$href = $gallery->album->getPhotoPath($index) ;
 }
 
@@ -490,7 +479,8 @@ if ($gallery->user->isLoggedIn() &&
 	if (!empty($emailMeComments)) {
 		if ($emailMeComments == 'true') {
 			$gallery->album->setEmailMe('comments', $gallery->user, $id);
-		} else {
+		}
+		else {
 			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
 		}
 	}
@@ -510,6 +500,6 @@ if ($gallery->user->isLoggedIn() &&
 		$emailMeForm .= "\n</form>";
 	}
 }
-    define('READY_TO_INCLUDE', 'DISCO');
-    require(dirname(__FILE__) .'/templates/photo.tpl.default');
+	define('READY_TO_INCLUDE', 'DISCO');
+	require(dirname(__FILE__) .'/templates/photo.tpl.default');
 ?>

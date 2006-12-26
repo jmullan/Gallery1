@@ -83,7 +83,7 @@ function editCaption($album, $index) {
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album = false) {
 	global $gallery;
-	global $commenter_name;
+	global $commenter_name, $comment_messages;
 
 	echo showComments($index, $album, $newestFirst);
 
@@ -94,7 +94,10 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 		if (empty($addType)) {
 			$addType = (isset($gallery->app->comments_addType) ? $gallery->app->comments_addType : "popup");
 		}
+
 		if ($addType == 'inside') {
+			echo infoBox($comment_messages);
+
 			echo '<br>'. makeFormIntro($page_url);
 			drawCommentAddForm($commenter_name);
 			echo '</form>';

@@ -169,6 +169,10 @@ if(isset($imageMapHTML)) {
 $description = nl2br($gallery->album->getDescription($index));
 ?>
 
+<?php
+	echo infoBox($comment_messages);
+?>
+
 <!-- image -->
 <div class="g-photo">
 	<?php includeLayout('inline_imagewrap.inc'); ?>
@@ -215,9 +219,6 @@ $description = nl2br($gallery->album->getDescription($index));
 
 	<!-- Comments -->
 <?php
-if (isset($error_text)) {
-	echo gallery_error($error_text) ."<br><br>";
-}
 
 if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {
 	echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
