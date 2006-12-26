@@ -1414,6 +1414,12 @@ $constants = array_merge($constants, array(
 						'anonymous'	=> gTranslate('config', "Yes, but only for anonymous users.")
 		),
 		'optional' => 1,
+		'enabled' => gdAvailable() ? 'yes' : 'no'
+	),
+	'captchaDisableMessage' => array(
+		'type' => 'message',
+		'message' => gallery_error(gTranslate('config', "Your PHP does not support the GD library, thus the captcha images can not be created. Captcha support will be disabled.")),
+		'enabled' => gdAvailable() ? 'no' : 'yes'
 	),
 	'group_captcha_end' => array(
 		'type' => 'group_end'

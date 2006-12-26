@@ -2060,7 +2060,7 @@ function gdAvailable() {
 function enableCaptcha() {
 	global $gallery;
 
-	if(!gdAvailable()) {
+	if(!gdAvailable() || !isset($gallery->app->enableCaptcha)) {
 		return false;
 	}
 

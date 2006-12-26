@@ -201,7 +201,12 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 
 	// We don't want the result HTML escaped since we split on "&", below
 	// use the header version of makeGalleryUrl()
-	$url = makeGalleryHeaderUrl($target, $urlargs);
+	if(urlIsRelative($target)) {
+		$url = makeGalleryHeaderUrl($target, $urlargs);
+	}
+	else {
+		$url = $target;
+	}
 
 	$result = split("\?", $url);
 	$target = $result[0];

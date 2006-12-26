@@ -120,7 +120,15 @@ $graphtool = '';
 $graphpath = '';
 $graphtest = array();
 
-$continueTypes = array('block_start', 'block_end', 'group_start', 'group_end', 'subgroup', 'subgroup_end');
+$continueTypes = array(
+	'block_start',
+	'block_end',
+	'group_start',
+	'group_end',
+	'subgroup',
+	'subgroup_end',
+	'message'
+);
 foreach ($constants as $key => $val) {
 
 	if (isset($val['enabled']) && $val['enabled'] == 'no') continue;
