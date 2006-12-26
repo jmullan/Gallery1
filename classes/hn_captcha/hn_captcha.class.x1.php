@@ -135,12 +135,16 @@ class hn_captcha_X1 extends hn_captcha
 		  *
 		  **/
 		function hn_captcha_X1($config, $secure = TRUE) {
+			global $gallery;
+
 			// Call Constructor of main-class
 			$this->hn_captcha($config,$secure);
 
 			// specify counter-filename
 			if($this->counter_filename == '') {
-				$this->counter_filename = $this->tempfolder.$this->counter_fn_default_basename;
+				$this->counter_filename = $gallery->app->albumDir .
+											$this->tempfolder .
+											$this->counter_fn_default_basename;
 			}
 
 			if($this->debug) {
@@ -247,27 +251,25 @@ class hn_captcha_X1 extends hn_captcha
 		  * @private
 		  *
 		  **/
-		function collect_garbage()
-		{
+		function collect_garbage() {
 			$OK = FALSE;
 			$captchas = 0;
 			$trashed = 0;
-			if($handle = @opendir($this->tempfolder))
-			{
+			if($handle = @opendir($gallery->app->albumDir . $this->tempfolder)) {
 				$OK = TRUE;
 				while(false !== ($file = readdir($handle)))
 				{
-					if(!is_file($this->tempfolder.$file)) continue;
+					if(!is_file($gallery->app->albumDir . $this->tempfolder.$file)) continue;
 					// check for name-prefix, extension and filetime
 					if(substr($file,0,strlen($this->prefix)) == $this->prefix)
 					{
 						if(strrchr($file, ".") == ".jpg")
 						{
 							$captchas++;
-							if((time() - filemtime($this->tempfolder.$file)) >= $this->maxlifetime)
+							if((time() - filemtime($gallery->app->albumDir .  $this->tempfolder.$file)) >= $this->maxlifetime)
 							{
 								$trashed++;
-								$res = @unlink($this->tempfolder.$file);
+								$res = @unlink($gallery->app->albumDir . $this->tempfolder.$file);
 								if(!$res) $OK = FALSE;
 							}
 						}
@@ -275,24 +277,36 @@ class hn_captcha_X1 extends hn_captcha
 				}
 				closedir($handle);
 			}
-			if($this->debug) echo "\n<br>-Captcha-Debug: There are ($captchas) captcha-images in tempfolder, where ($trashed) are seems to be lost.";
+			if($this->debug) {
+				echo "\n<br>-Captcha-Debug: There are ($captchas) captcha-images in tempfolder, where ($trashed) are seems to be lost.";
+			}
+
 			return $OK;
 		}
 
 
 		/** @private **/
-		function get_filename($public="")
-		{
-			if($public=="") $public = $this->public_key;
-			return $this->tempfolder.$this->prefix.$public.".jpg";
+		function get_filename($public = '') {
+			global $gallery;
+
+			if($public == '') {
+				$public = $this->public_key;
+			}
+
+			return $gallery->app->albumDir . $this->tempfolder.$this->prefix.$public.".jpg";
 		}
 
 
 		/** @private **/
-		function get_filename_url($public="")
-		{
-			if($public=="") $public = $this->public_key;
-			return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$this->prefix.$public.".jpg";
+		function get_filename_url($public="") {
+			global $gallery;
+
+			if($public == '') {
+				$public = $this->public_key;
+			}
+
+			//return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$this->prefix.$public.".jpg";
+			return $gallery->app->albumDirURL . $this->tempfolder . $this->prefix . $public . '.jpg';
 		}
 
 

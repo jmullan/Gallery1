@@ -3,7 +3,9 @@
 
 // ConfigArray
 $CAPTCHA_INIT = array(
-    'tempfolder'     => $gallery->app->albumDir . '/captcha_tmp/',   // string: absolute path (with trailing slash!) to a writeable tempfolder which is also accessible via HTTP!
+    'tempfolder'     => '/captcha_tmp/',   // string: relative path (with trailing slash!) inside the albums folder of Gallery
+    									   // to a writeable tempfolder which is also accessible via HTTP!
+    									   // NOTE: This is different to the original hn_captcha !!
     'TTF_folder'     => dirname(__FILE__) .'/',                     // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
     // mixed (array or string): basename(s) of TrueType-Fontfiles
     'TTF_RANGE'      => array('COM430.TTF'),

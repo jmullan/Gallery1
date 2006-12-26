@@ -100,7 +100,9 @@ class hn_captcha{
 	//
 
 		/**
-		  * @shortdesc Absolute path to a Tempfolder (with trailing slash!). This must be writeable for PHP and also accessible via HTTP, because the image will be stored there.
+		  * @shortdesc Relative path to a Tempfolder (with trailing slash!) inside the Galley albums folder.
+		  * 		   This must be writeable for PHP and also accessible via HTTP, because the image will be stored there.
+		  * @Note: This is different to the original hn_captcha
           * @type string
 		  * @public
           *
@@ -295,6 +297,7 @@ class hn_captcha{
 		function hn_captcha($config, $secure = TRUE) {
 
 		    global $save;
+		    global $gallery;
 
 			// Test for GD-Library(-Version)
 			$this->gd_version = $this->get_gd_version();
@@ -338,14 +341,15 @@ class hn_captcha{
 				}
 			}
 
+			$absoluteTempFolder = $gallery->app->albumDir . $this->tempfolder;
 			if (empty($this->tempfolder)) {
 				printInfoBox(array(array(
 					'type' => 'error',
-					'text' => sprintf(gTranslate('core', "The specified folder '%s' for captcha images does not exist.", $this->tempfolder))
+					'text' => Translate('core', "Please enter a temporary folder for the catcha images in the captcha init file.")
 				)));
 				exit;
 			}
-			elseif (!realpath($this->tempfolder)) {
+			elseif (!realpath($absoluteTempFolder)) {
 				printInfoBox(array(array(
 					'type' => 'error',
 					'text' => sprintf(gTranslate('core', "The specified folder '%s' for captcha images is not valid.", $this->tempfolder))
@@ -353,11 +357,11 @@ class hn_captcha{
 
 				exit;
 			}
-			elseif (!fs_is_dir($this->tempfolder)) {
-				if(! fs_mkdir($this->tempfolder)) {
+			elseif (!fs_is_dir($absoluteTempFolder)) {
+				if(! fs_mkdir($absoluteTempFolder)) {
 					printInfoBox(array(array(
 						'type' => 'error',
-						'text' => sprintf(gTranslate('core', "The specified folder '%s' does not exist and Gallery is not able to create it.", $this->tempfolder))
+						'text' => sprintf(gTranslate('core', "The specified folder '%s' does not exist inside the albums folde and Gallery is not able to create it.", $this->tempfolder))
 					)));
 					exit;
 				}
@@ -505,12 +509,14 @@ class hn_captcha{
 			}
 			else
 			{
+				/*
 				if($this->current_try > $this->maxtry)
 				{
 					if($this->debug) echo "\n<br>-Captcha-Debug: Validating submitted form returns: (3)";
 					return 3;
 				}
-				elseif($this->current_try > 0)
+				*/
+				if($this->current_try > 0)
 				{
 					if($this->debug) echo "\n<br>-Captcha-Debug: Validating submitted form returns: (2)";
 					return 2;
@@ -523,8 +529,6 @@ class hn_captcha{
 			}
 		}
 
-
-
 	////////////////////////////////
 	//
 	//	PRIVATE METHODS
@@ -535,8 +539,13 @@ class hn_captcha{
 		{
 			$this->make_captcha();
 			$is = getimagesize($this->get_filename());
-			if($onlyTheImage) return "\n".'<img class="captchapict" src="'.$this->get_filename_url().'" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
-			else return $this->public_key_input()."\n".'<img class="captchapict" src="'.$this->get_filename_url().'" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
+
+			if($onlyTheImage) {
+				return "\n".'<img class="captchapict" src="'.$this->get_filename_url().'" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
+			}
+			else {
+				return $this->public_key_input()."\n".'<img class="captchapict" src="'.$this->get_filename_url().'" '.$is[3].' alt="This is a captcha-picture. It is used to prevent mass-access by robots. (see: www.captcha.net)" title="">'."\n";
+			}
 		}
 
 		/** @private **/
@@ -722,17 +731,25 @@ class hn_captcha{
 			*/
 
 		/** @private **/
-		function get_filename($public="")
-		{
-			if($public=="") $public=$this->public_key;
-			return $this->tempfolder.$public.".jpg";
+		function get_filename($public = '') {
+			global $gallery;
+
+			if($public == '') {
+				$public = $this->public_key;
+			}
+
+			return $gallery->app->albumDir . $this->tempfolder . $public . '.jpg';
 		}
 
 		/** @private **/
-		function get_filename_url($public="")
+		function get_filename_url($public = '')
 		{
-			if($public=="") $public = $this->public_key;
-			return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$public.".jpg";
+			if($public == '') {
+				$public = $this->public_key;
+			}
+
+			// return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$public.".jpg";
+			return $gallery->app->albumDirURL . $this->tempfolder . $public . '.jpg';
 		}
 
 		/** @private **/
