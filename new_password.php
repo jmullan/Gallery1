@@ -25,71 +25,71 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($hash, $uname, $save, $new_password1, $new_password2) =
-    getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
+	getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
 list($fullname, $email, $defaultLanguage) =
-    getRequestVar(array('fullname', 'email', 'defaultLanguage'));
+	getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
 $error_string = '';
 
 if (!isset($hash)) {
-       	$error_string .= gTranslate('core', "missing hash parameter") . "<br>";
+	   	$error_string .= gTranslate('core', "missing hash parameter") . "<br>";
 }
 if (empty($uname) ) {
-       	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
+	   	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
 } else {
-       	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-       	if (empty($tmpUser)) {
-	       	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
-       	} else if (!$tmpUser->checkRecoverPasswordHash($hash)) {
-	       	$error_string .= gTranslate('core', "The recovery password is not the expected value, please try again") . "<br>";
+	   	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+	   	if (empty($tmpUser)) {
+		   	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
+	   	} else if (!$tmpUser->checkRecoverPasswordHash($hash)) {
+		   	$error_string .= gTranslate('core', "The recovery password is not the expected value, please try again") . "<br>";
 	}
 }
 
 $errorCount = 0;
 if (!empty($save)) {
 	if (empty($new_password1) ) {
-	       	$gErrors["new_password1"] = gTranslate('core', "You must provide your new password.");
-	       	$errorCount++;
+		   	$gErrors["new_password1"] = gTranslate('core', "You must provide your new password.");
+		   	$errorCount++;
 	} else if (strcmp($new_password1, $new_password2)) {
-	       	$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
-	       	$errorCount++;
-       	} else {
-	       	$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-	       	if ($gErrors["new_password1"]) {
-		       	$errorCount++;
-	       	}
-       	}
+		   	$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
+		   	$errorCount++;
+	   	} else {
+		   	$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
+		   	if ($gErrors["new_password1"]) {
+			   	$errorCount++;
+		   	}
+	   	}
 
 	// security check;
 	if($fullname != strip_tags($fullname)) {
-            $gErrors["fullname"] =
-                sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
-            $errorCount++;
-        }
+			$gErrors["fullname"] =
+				sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
+			$errorCount++;
+		}
 
 	if (!empty($email) && !check_email($email)) {
-                $gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-                $errorCount++;
-        }
+				$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
+				$errorCount++;
+		}
 
-       	if (!$error_string && !$errorCount) {
-       	    $tmpUser->setFullname($fullname);
-       	    $tmpUser->setEmail($email);
-       	    if (isset($defaultLanguage)) {
-       	        $tmpUser->setDefaultLanguage($defaultLanguage);
-       	        $gallery->session->language=$defaultLanguage;
-       	    }
-       	    if ($new_password1) {
-       	        $tmpUser->setPassword($new_password1);
-       	    }
-       	    $tmpUser->genRecoverPasswordHash(true);
-       	    $tmpUser->log("new_password_set");
-       	    $tmpUser->save();
+	   	if (!$error_string && !$errorCount) {
+	   		$tmpUser->setFullname($fullname);
+	   		$tmpUser->setEmail($email);
+	   		if (isset($defaultLanguage)) {
+	   			$tmpUser->setDefaultLanguage($defaultLanguage);
+	   			$gallery->session->language=$defaultLanguage;
+	   		}
+	   		if ($new_password1) {
+	   			$tmpUser->setPassword($new_password1);
+	   		}
+	   		$tmpUser->genRecoverPasswordHash(true);
+	   		$tmpUser->log("new_password_set");
+	   		$tmpUser->save();
 
-       	    // Switch over to the new username in the session
-       	    $gallery->session->username = $uname;
-       	    header("Location: " . makeAlbumHeaderUrl());
-       	}
+	   		// Switch over to the new username in the session
+	   		$gallery->session->username = $uname;
+	   		header("Location: " . makeAlbumHeaderUrl());
+	   	}
 }
 
 $allowChange["uname"] = false;
@@ -103,8 +103,8 @@ $allowChange["member_file"] = false;
 printPopupStart(gTranslate('core', "Make New Password"));
 
 if (!empty($messages)) {
-       	echo infobox($messages);
-       	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
+	   	echo infobox($messages);
+	   	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
 	exit;
 }
 

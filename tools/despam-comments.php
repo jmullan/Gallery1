@@ -27,19 +27,19 @@
 <?php
 
 if (!isset($gallery->version)) {
-    require_once(dirname(dirname(__FILE__)) . '/init.php');
+	require_once(dirname(dirname(__FILE__)) . '/init.php');
 }
 
 // Security check
 if (!$gallery->user->isAdmin()) {
-    header("Location: " . makeAlbumHeaderUrl());
-    exit;
+	header("Location: " . makeAlbumHeaderUrl());
+	exit;
 }
 
 require_once(dirname(__FILE__) .'/lib/lib-despam_comments.php');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
+	doctype();
 ?>
 <html>
 <head>
@@ -56,14 +56,14 @@ includeTemplate("gallery.header", '', 'classic');
 
 $adminbox['text'] = gTranslate('core', "Find and remove comment spam");
 $adminbox["commands"] = galleryLink(
-                            makeGalleryUrl("admin-page.php"),
-                            gTranslate('core', "return to _admin page"),
-                            array(), '', true);
+							makeGalleryUrl("admin-page.php"),
+							gTranslate('core', "return to _admin page"),
+							array(), '', true);
 
 $adminbox["commands"] .= galleryLink(
-                            makeAlbumUrl(),
-                            gTranslate('core', "return to _gallery"),
-                            array(), '', true);
+							makeAlbumUrl(),
+							gTranslate('core', "return to _gallery"),
+							array(), '', true);
 
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
 $breadcrumb['text'][] = languageSelector();
@@ -84,32 +84,32 @@ $g1_mode = getRequestVar('g1_mode');
 echo '<td class="g-border-left" style="padding-left: 10px;">';
 
 switch($g1_mode) {
-    case 'deleteComments':
-        deleteComments();
-    break;
+	case 'deleteComments':
+		deleteComments();
+	break;
 
-    case 'findBlacklistedComments':
-        findBlacklistedComments();
-    break;
+	case 'findBlacklistedComments':
+		findBlacklistedComments();
+	break;
 
-    case 'updateBlacklist':
-        updateBlacklist();
-    break;
+	case 'updateBlacklist':
+		updateBlacklist();
+	break;
 
-    case 'viewBlacklist':
-        viewBlacklist();
-    break;
+	case 'viewBlacklist':
+		viewBlacklist();
+	break;
 
-    case 'editBlacklist':
-        editBlacklist();
-    break;
+	case 'editBlacklist':
+		editBlacklist();
+	break;
 
-    case 'addBlacklistEntries':
-        showAddBox();
-    break;
+	case 'addBlacklistEntries':
+		showAddBox();
+	break;
 
-    default:
-    break;
+	default:
+	break;
 }
 echo "</td></tr>";
 ?>

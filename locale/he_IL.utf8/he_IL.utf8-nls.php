@@ -21,7 +21,7 @@
  */
 
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package		Languagepack
  * @subpackage	Hebrew
  */
@@ -39,14 +39,14 @@
 /**
  * Native languagename
  */
-	$nls['language']['he_IL.utf8'] =       '&#1506;&#1489;&#1512;&#1497;&#1514; (UTF-8)';
+	$nls['language']['he_IL.utf8'] =	   '&#1506;&#1489;&#1512;&#1497;&#1514; (UTF-8)';
 
 /**
  * Alias for languages which we substitte or send by NUKE or GeekLog
  */
-	$nls['alias']['he_HE'] = 		       'he_IL.utf8' ;
+	$nls['alias']['he_HE'] = 			   'he_IL.utf8' ;
 	$nls['alias']['he_IL.utf-8'] =		   'he_IL.utf8' ;
-	$nls['alias']['hebrew'] = 		       'he_IL.utf8' ;
+	$nls['alias']['hebrew'] = 			   'he_IL.utf8' ;
 
 /**
  * Charset

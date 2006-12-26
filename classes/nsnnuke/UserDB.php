@@ -40,8 +40,8 @@ class CPGNuke_UserDB extends Abstract_UserDB {
 		$db = $this->db;
 
 		$sql= 'select ' . $this->fields{'uid'} . 
-		      ' from ' . $this->prefix. 'users' .
-		      ' where '. $this->fields{'uid'} .'>1';
+			  ' from ' . $this->prefix. 'users' .
+			  ' where '. $this->fields{'uid'} .'>1';
 
 		$results = $db->query($sql);
 

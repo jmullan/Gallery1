@@ -59,32 +59,32 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <?php
-    if( !empty($gallery->album->fields["linkcolor"]) ||
-        !empty($gallery->album->fields["bgcolor"]) ||
-        !empty($gallery->album->fields["textcolor"])) {
+	if( !empty($gallery->album->fields["linkcolor"]) ||
+		!empty($gallery->album->fields["bgcolor"]) ||
+		!empty($gallery->album->fields["textcolor"])) {
 
-        echo "\n<style type=\"text/css\">";
-        // the link colors have to be done here to override the style sheet
-        if ($gallery->album->fields["linkcolor"]) {
-                echo "\n  a:link, a:visited, a:active {";
-                echo "\n        color: ".$gallery->album->fields['linkcolor'] ."; }";
-                echo "\n  a:hover { color: #ff6600; }";
+		echo "\n<style type=\"text/css\">";
+		// the link colors have to be done here to override the style sheet
+		if ($gallery->album->fields["linkcolor"]) {
+				echo "\n  a:link, a:visited, a:active {";
+				echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
+				echo "\n  a:hover { color: #ff6600; }";
 
-        }
-        if ($gallery->album->fields["bgcolor"]) {
-                echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
-        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-                echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-        }
-        if ($gallery->album->fields["textcolor"]) {
-                echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-                echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-                echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
+		}
+		if ($gallery->album->fields["bgcolor"]) {
+				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
+		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+		}
+		if ($gallery->album->fields["textcolor"]) {
+				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
 
-        echo "\n  </style>";
-    }
+		echo "\n  </style>";
+	}
   ?>
 </head>
 
@@ -109,7 +109,7 @@ if (!empty($comment_index)) {
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
-        );
+		);
 		$gallery->album->deleteComment($index, $com_index);
 		$gallery->album->save($saveMsg);
 	}
@@ -127,41 +127,41 @@ $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 includeLayout('breadcrumb.inc');
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
-    echo "<p>". gallery_error(gTranslate('core', "Sorry.  This album does not allow comments.")) ."</p>";
+	echo "<p>". gallery_error(gTranslate('core', "Sorry.  This album does not allow comments.")) ."</p>";
 } else {
-    $numPhotos = $gallery->album->numPhotos(1);
-    $commentbox["bordercolor"] = $bordercolor;
-    $i = 1;
-    while($i <= $numPhotos) {
-        set_time_limit($gallery->app->timeLimit);
-        $id = $gallery->album->getPhotoId($i);
-        $index = $gallery->album->getPhotoIndex($id);
-        if ($gallery->album->isAlbum($i)) {
-            $myAlbumName = $gallery->album->getAlbumName($i);
-            $myAlbum = new Album();
-            $myAlbum->load($myAlbumName);
-            if ( $myAlbum->lastCommentDate("no") != -1 &&
-            ((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
-            $gallery->user->isAdmin() ||
-            $gallery->user->isOwnerOfAlbum($gallery->album) ||
-            $gallery->user->isOwnerOfAlbum($myAlbum))) {
-                $subAlbum = true;
-                $myHighlightTag = $myAlbum->getHighlightTag();
-                require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
-            }
-        }
-        elseif (!$gallery->album->isHidden($i) ||
-          $gallery->user->isAdmin() ||
-          $gallery->user->isOwnerOfAlbum($gallery->album) ||
-          $gallery->album->isItemOwner($gallery->user, $i)) {
-            $comments = $gallery->album->numComments($i);
-            if($comments > 0) {
-                require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
-	    }
-        }
-        $subAlbum = false;
-        $i = getNextPhoto($i);
-    }
+	$numPhotos = $gallery->album->numPhotos(1);
+	$commentbox["bordercolor"] = $bordercolor;
+	$i = 1;
+	while($i <= $numPhotos) {
+		set_time_limit($gallery->app->timeLimit);
+		$id = $gallery->album->getPhotoId($i);
+		$index = $gallery->album->getPhotoIndex($id);
+		if ($gallery->album->isAlbum($i)) {
+			$myAlbumName = $gallery->album->getAlbumName($i);
+			$myAlbum = new Album();
+			$myAlbum->load($myAlbumName);
+			if ( $myAlbum->lastCommentDate("no") != -1 &&
+			((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
+			$gallery->user->isAdmin() ||
+			$gallery->user->isOwnerOfAlbum($gallery->album) ||
+			$gallery->user->isOwnerOfAlbum($myAlbum))) {
+				$subAlbum = true;
+				$myHighlightTag = $myAlbum->getHighlightTag();
+				require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
+			}
+		}
+		elseif (!$gallery->album->isHidden($i) ||
+		  $gallery->user->isAdmin() ||
+		  $gallery->user->isOwnerOfAlbum($gallery->album) ||
+		  $gallery->album->isItemOwner($gallery->user, $i)) {
+			$comments = $gallery->album->numComments($i);
+			if($comments > 0) {
+				require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
+		}
+		}
+		$subAlbum = false;
+		$i = getNextPhoto($i);
+	}
 }
 
 includeLayout('breadcrumb.inc');

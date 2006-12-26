@@ -22,83 +22,83 @@
 ?>
 <?php
 function getGroupIdList() {
-    global $gallery;
+	global $gallery;
 
-    $groupIdList = array();
-    $userDir = $gallery->app->userDir;
+	$groupIdList = array();
+	$userDir = $gallery->app->userDir;
 
 
-    // Öffnen eines bekannten Verzeichnisses und danach seinen Inhalt einlesen
-    if (is_dir($userDir)) {
-        if ($dirHandle = opendir($userDir)) {
-            while (($file = readdir($dirHandle)) !== false) {
-                if (!ereg("^g_[0-9].*[0-9]$", $file)) {
+	// Öffnen eines bekannten Verzeichnisses und danach seinen Inhalt einlesen
+	if (is_dir($userDir)) {
+		if ($dirHandle = opendir($userDir)) {
+			while (($file = readdir($dirHandle)) !== false) {
+				if (!ereg("^g_[0-9].*[0-9]$", $file)) {
 					continue;
 				}
-                $groupIdList [] = $file;
-            }
-            closedir($dirHandle);
-        }
-    }
+				$groupIdList [] = $file;
+			}
+			closedir($dirHandle);
+		}
+	}
 
-    return $groupIdList;
+	return $groupIdList;
 }
 
 function deleteGroup($gid) {
-    global $gallery;
+	global $gallery;
 
-    $userDir = $gallery->app->userDir;
-    $status = true;
+	$userDir = $gallery->app->userDir;
+	$status = true;
 
-    if(fs_file_exists("$userDir/$gid")) {
-        $status = fs_unlink("$userDir/$gid");
-    }
+	if(fs_file_exists("$userDir/$gid")) {
+		$status = fs_unlink("$userDir/$gid");
+	}
 
-    if (fs_file_exists("$userDir/$gid.bak")) {
-        $status = $status && fs_unlink("$userDir/$gid.bak");
-    }
+	if (fs_file_exists("$userDir/$gid.bak")) {
+		$status = $status && fs_unlink("$userDir/$gid.bak");
+	}
 
-    if (fs_file_exists("$userDir/$gid.lock")) {
-        $status = $status && fs_unlink("$userDir/$gid.lock");
-    }
+	if (fs_file_exists("$userDir/$gid.lock")) {
+		$status = $status && fs_unlink("$userDir/$gid.lock");
+	}
 
-    return $status;
+	return $status;
 }
 
 function validNewGroupName($groupname) {
-    $saveToDisplayGroupName = '<i>'. htmlentities($groupname) .'</i>';
+	$saveToDisplayGroupName = '<i>'. htmlentities($groupname) .'</i>';
 
-    echo debugMessage(sprintf(gTranslate('core',
-        "Checking groupname '%s' for validity"), $saveToDisplayGroupName),
-        __FILE__, __LINE__, 4);
+	echo debugMessage(sprintf(gTranslate('core',
+		"Checking groupname '%s' for validity"), $saveToDisplayGroupName),
+		__FILE__, __LINE__, 4);
 
-    if (strlen($groupname) == 0) {
-        return gTranslate('core', "Please enter a groupname.");
-    }
+	if (strlen($groupname) == 0) {
+		return gTranslate('core', "Please enter a groupname.");
+	}
 
-    if (strlen($groupname) < 2) {
-        return sprintf(gTranslate('core', "Groupname '%s' is to short. Must be at least 2 characters."),
-        $saveToDisplayGroupName);
-    }
+	if (strlen($groupname) < 2) {
+		return sprintf(gTranslate('core', "Groupname '%s' is to short. Must be at least 2 characters."),
+		$saveToDisplayGroupName);
+	}
 
-    if (strlen($groupname) > 25) {
-        return sprintf(gTranslate('core', "Groupname '%s' too long. Must be at most 25 characters."),
-        $saveToDisplayGroupName);
-    }
+	if (strlen($groupname) > 25) {
+		return sprintf(gTranslate('core', "Groupname '%s' too long. Must be at most 25 characters."),
+		$saveToDisplayGroupName);
+	}
 
-    if (ereg("[^[:alnum:]]", $groupname)) {
+	if (ereg("[^[:alnum:]]", $groupname)) {
 
-        return sprintf(gTranslate('core', "Illegal groupname '%s'. Only letters and digits allowed."),
-        $saveToDisplayGroupName);
-    }
+		return sprintf(gTranslate('core', "Illegal groupname '%s'. Only letters and digits allowed."),
+		$saveToDisplayGroupName);
+	}
 
 
-    $group = Gallery_Group::loadByName($groupname);
+	$group = Gallery_Group::loadByName($groupname);
 
-    if ($group) {
-        return sprintf(gTranslate('core', "A group with the groupname of '%s' already exists"),
-        $saveToDisplayGroupName);
-    }
+	if ($group) {
+		return sprintf(gTranslate('core', "A group with the groupname of '%s' already exists"),
+		$saveToDisplayGroupName);
+	}
 
-    return null;
+	return null;
 }

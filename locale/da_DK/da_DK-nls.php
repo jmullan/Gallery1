@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Danish
  */
@@ -48,7 +48,7 @@
 /**
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
-	$nls['alias']['danish'] =               'da_DK' ;
+	$nls['alias']['danish'] =			   'da_DK' ;
 	$nls['alias']['da_DK.ISO8859-1'] =	'da_DK' ;
 
 /**

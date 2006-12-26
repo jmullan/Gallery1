@@ -32,18 +32,18 @@
  */
 
 /* Defaults */
-	$nls['language']['en_US'] =     'English (US)';
+	$nls['language']['en_US']	=	'English (US)';
 
-	$nls['postnuke']['en_US'] =     'eng';
-	$nls['alias']['eng'] =          'en_US';
+	$nls['postnuke']['en_US']	=	'eng';
+	$nls['alias']['eng']		=	'en_US';
 
-	$nls['phpnuke']['en_US']  =     'english';
-	$nls['alias']['english']  =     'en_US';
+	$nls['phpnuke']['en_US']	=	'english';
+	$nls['alias']['english']	=	'en_US';
 
-	$nls['alias']['en']  =          'en_US';
+	$nls['alias']['en']			=	'en_US';
 
 /* Charset*/
-	$nls['default']['charset'] = 	'ISO-8859-1';
+	$nls['default']['charset']	= 	'ISO-8859-1';
 
 /* Direction */
 	$nls['default']['direction'] =	'ltr';

@@ -25,17 +25,17 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($save, $dismiss) =
-    getRequestVar(array('save', 'dismiss'));
+	getRequestVar(array('save', 'dismiss'));
 
 list($old_uname, $uname, $new_password1, $new_password2, $fullname) =
-    getRequestVar(array('old_uname', 'uname', 'new_password1', 'new_password2', 'fullname'));
+	getRequestVar(array('old_uname', 'uname', 'new_password1', 'new_password2', 'fullname'));
 
 list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
-    getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
+	getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
 
 if (!$gallery->user->isAdmin()) {
-    echo gTranslate('core', "You are not allowed to perform this action!");
-    exit;
+	echo gTranslate('core', "You are not allowed to perform this action!");
+	exit;
 }
 
 $notice_messages = array();
@@ -47,96 +47,96 @@ $notice_messages = array();
  * If one modified itself, changes current user.
  */
 if (!empty($save)) {
-    if ($old_uname != $uname) {
-        $gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-        if ($gErrors["uname"]) {
-            $failure = true;
-            $uname = $old_uname;
-        }
-    }
+	if ($old_uname != $uname) {
+		$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
+		if ($gErrors["uname"]) {
+			$failure = true;
+			$uname = $old_uname;
+		}
+	}
 
-    if ($new_password1 || $new_password2) {
-        if (strcmp($new_password1, $new_password2)) {
-            $gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
-            $failure = true;
-        }
-        else {
-            $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-            if ($gErrors["new_password1"]) {
-                $failure = true;
-            }
-        }
-    }
+	if ($new_password1 || $new_password2) {
+		if (strcmp($new_password1, $new_password2)) {
+			$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
+			$failure = true;
+		}
+		else {
+			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
+			if ($gErrors["new_password1"]) {
+				$failure = true;
+			}
+		}
+	}
 
-    if (isset($failure)) {
-        $tmpUser = $gallery->userDB->getUserByUsername($old_uname);
-        $tmpUser->setUsername($uname);
-        $tmpUser->setFullname($fullname);
-        $tmpUser->setEmail($email);
-        $tmpUser->setDefaultLanguage($defaultLanguage);
-        $tmpUser->setCanCreateAlbums($canCreate);
-        $tmpUser->setCanChangeOwnPw($canChangeOwnPw);
-        $tmpUser->setIsAdmin($isAdmin);
+	if (isset($failure)) {
+		$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
+		$tmpUser->setUsername($uname);
+		$tmpUser->setFullname($fullname);
+		$tmpUser->setEmail($email);
+		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$tmpUser->setCanCreateAlbums($canCreate);
+		$tmpUser->setCanChangeOwnPw($canChangeOwnPw);
+		$tmpUser->setIsAdmin($isAdmin);
 
-        // If a new password was entered, use it.  Otherwise leave
-        // it the same.
-        if ($new_password1) {
-            $tmpUser->setPassword($new_password1);
-        }
+		// If a new password was entered, use it.  Otherwise leave
+		// it the same.
+		if ($new_password1) {
+			$tmpUser->setPassword($new_password1);
+		}
 
-        $tmpUser->save();
-        if (!strcmp($old_uname, $gallery->session->username)) {
-            $gallery->session->username = $uname;
-        }
-        $notice_messages[] = array(
-            'type' => 'success',
-            'text' => gTranslate('core',"User information succesfully updated.")
-        );
-    }
-    else {
-        $notice_messages[] = array(
-            'type' => 'error',
-            'text' => gTranslate('core',"User information was not succesfully updated!")
-        );
-    }
+		$tmpUser->save();
+		if (!strcmp($old_uname, $gallery->session->username)) {
+			$gallery->session->username = $uname;
+		}
+		$notice_messages[] = array(
+			'type' => 'success',
+			'text' => gTranslate('core',"User information succesfully updated.")
+		);
+	}
+	else {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core',"User information was not succesfully updated!")
+		);
+	}
 }
 else if (isset($dismiss)) {
-    header('Location: ' . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
+	header('Location: ' . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
 
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 
 if (!$tmpUser) {
-    echo gallery_error(gTranslate('core', "Invalid user") ." <i>$uname</i>");
-    exit;
+	echo gallery_error(gTranslate('core', "Invalid user") ." <i>$uname</i>");
+	exit;
 }
 
 if ($tmpUser->isAdmin()) {
-    $allowChange["create_albums"] =  false;
-    $allowChange["canChangeOwnPw"] = false;
+	$allowChange["create_albums"] =  false;
+	$allowChange["canChangeOwnPw"] = false;
 }
 else {
-    $allowChange["create_albums"] =  true;
-    $allowChange["canChangeOwnPw"] = true;
+	$allowChange["create_albums"] =  true;
+	$allowChange["canChangeOwnPw"] = true;
 }
 
 if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
-    $allowChange["admin"] = true;
+	$allowChange["admin"] = true;
 }
 
 $fullname = $tmpUser->getFullname();
 $email = $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-$allowChange["uname"] =             true;
-$allowChange["email"] =             true;
-$allowChange["fullname"] =          true;
-$allowChange["admin"] =             true;
+$allowChange["uname"] =			 true;
+$allowChange["email"] =			 true;
+$allowChange["fullname"] =		  true;
+$allowChange["admin"] =			 true;
 $allowChange["default_language"] =  true;
-$allowChange["send_email"] =        false;
-$allowChange["member_file"] =       false;
-$allowChange["password"] =          true;
-$allowChange["old_password"] =      false;
+$allowChange["send_email"] =		false;
+$allowChange["member_file"] =	   false;
+$allowChange["password"] =		  true;
+$allowChange["old_password"] =	  false;
 
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
 $isAdmin = $tmpUser->isAdmin() ? 1 : 0;
@@ -151,8 +151,8 @@ echo gTranslate('core', "You can change any information about the user using thi
 echo "\n<br>";
 
 echo makeFormIntro('modify_user.php',
-    array('name' => 'usermodify_form'),
-    array('old_uname' => $uname, 'type' => 'popup')
+	array('name' => 'usermodify_form'),
+	array('old_uname' => $uname, 'type' => 'popup')
 );
 ?>
 

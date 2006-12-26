@@ -27,34 +27,34 @@
 
 /**
  * Returns the default value for an album property. Either for a specific album, or global
- * @param   string    $property
- * @param   object    $album
+ * @param   string	$property
+ * @param   object	$album
  * @param   boolean   $global
- * @return  mixed     $retPoperty
+ * @return  mixed	 $retPoperty
  * @author Jens Tkotz <jens@peino.de>
  */
 function getPropertyDefault($property, $album = false, $global = false) {
-    global $gallery;
+	global $gallery;
 
-    $retProperty = false;
+	$retProperty = false;
 
-    if ($album) {
-        if ($global) {
-            if(isset($gallery->app->default[$property])) {
-                $retProperty = $gallery->app->default[$property];
-            }
-        }
-        else {
-            if(isset($album->fields[$property])) {
-                $retProperty = $album->fields[$property];
-            }
-        }
-    }
-    elseif ($global) {
-        $retProperty = $gallery->app->$property;
-    }
+	if ($album) {
+		if ($global) {
+			if(isset($gallery->app->default[$property])) {
+				$retProperty = $gallery->app->default[$property];
+			}
+		}
+		else {
+			if(isset($album->fields[$property])) {
+				$retProperty = $album->fields[$property];
+			}
+		}
+	}
+	elseif ($global) {
+		$retProperty = $gallery->app->$property;
+	}
 
-    return $retProperty;
+	return $retProperty;
 }
 
 function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
@@ -91,34 +91,34 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 		$parentAlbum->addNestedAlbum($gallery->session->albumName);
 		$parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
 		// Set default values in nested album to match settings of parent.
-		$gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
-		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];
-		$gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
-		$gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
-		$gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
-		$gallery->album->fields['background']      = $parentAlbum->fields['background'];
-		$gallery->album->fields["font"]            = $parentAlbum->fields["font"];
-		$gallery->album->fields["border"]          = $parentAlbum->fields["border"];
-		$gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
-		$gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
-		$gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
-		$gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
-		$gallery->album->fields['max_size']        = $parentAlbum->fields['max_size'];
+		$gallery->album->fields["perms"]		   = $parentAlbum->fields["perms"];
+		$gallery->album->fields['extra_fields']	= $parentAlbum->fields['extra_fields'];
+		$gallery->album->fields["bgcolor"]		 = $parentAlbum->fields["bgcolor"];
+		$gallery->album->fields["textcolor"]	   = $parentAlbum->fields["textcolor"];
+		$gallery->album->fields["linkcolor"]	   = $parentAlbum->fields["linkcolor"];
+		$gallery->album->fields['background']	  = $parentAlbum->fields['background'];
+		$gallery->album->fields["font"]			= $parentAlbum->fields["font"];
+		$gallery->album->fields["border"]		  = $parentAlbum->fields["border"];
+		$gallery->album->fields["bordercolor"]	 = $parentAlbum->fields["bordercolor"];
+		$gallery->album->fields["thumb_size"]	  = $parentAlbum->fields["thumb_size"];
+		$gallery->album->fields["resize_size"]	 = $parentAlbum->fields["resize_size"];
+		$gallery->album->fields["resize_file_size"]	 = $parentAlbum->fields["resize_file_size"];
+		$gallery->album->fields['max_size']		= $parentAlbum->fields['max_size'];
 		$gallery->album->fields['max_file_size']   = $parentAlbum->fields['max_file_size'];
-		$gallery->album->fields['returnto']        = $parentAlbum->fields['returnto'];
-		$gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
-		$gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
+		$gallery->album->fields['returnto']		= $parentAlbum->fields['returnto'];
+		$gallery->album->fields["rows"]			= $parentAlbum->fields["rows"];
+		$gallery->album->fields["cols"]			= $parentAlbum->fields["cols"];
 		$gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
-		$gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
-		$gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
+		$gallery->album->fields["use_fullOnly"]	= $parentAlbum->fields["use_fullOnly"];
+		$gallery->album->fields["print_photos"]	= $parentAlbum->fields["print_photos"];
 		$gallery->album->fields['slideshow_type']  = $parentAlbum->fields['slideshow_type'];
 		$gallery->album->fields['slideshow_recursive'] = $parentAlbum->fields['slideshow_recursive'];
 		$gallery->album->fields['slideshow_length'] = $parentAlbum->fields['slideshow_length'];
 		$gallery->album->fields['slideshow_loop'] = $parentAlbum->fields['slideshow_loop'];
-		$gallery->album->fields['album_frame']    = $parentAlbum->fields['album_frame'];
-		$gallery->album->fields['thumb_frame']    = $parentAlbum->fields['thumb_frame'];
-		$gallery->album->fields['image_frame']    = $parentAlbum->fields['image_frame'];
-		$gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
+		$gallery->album->fields['album_frame']	= $parentAlbum->fields['album_frame'];
+		$gallery->album->fields['thumb_frame']	= $parentAlbum->fields['thumb_frame'];
+		$gallery->album->fields['image_frame']	= $parentAlbum->fields['image_frame'];
+		$gallery->album->fields["use_exif"]		= $parentAlbum->fields["use_exif"];
 		$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
 		$gallery->album->fields["item_owner_display"] = $parentAlbum->fields["item_owner_display"];
 		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
@@ -177,72 +177,72 @@ function getParentAlbums($childAlbum, $addChild = false) {
  *
  */
 function prefetchRootAlbumNav() {
-    global $gallery, $navigator, $maxPages;
+	global $gallery, $navigator, $maxPages;
 
-    if ($navigator['page'] > 1) {
+	if ($navigator['page'] > 1) {
 ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="first" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>">
   <link rel="prev" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1)) ?>">
 <?php
-    }
+	}
 
-    if ($navigator['page'] < $maxPages) {
+	if ($navigator['page'] < $maxPages) {
 ?>
   <link rel="next" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1)) ?>">
   <link rel="last" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages)) ?>">
 <?php
-    }
+	}
 }
 
 /**
  * This function just displays the RSS Link on the mainpages
  */
 function rootRSSLink() {
-    global $gallery, $galleryTitle;
+	global $gallery, $galleryTitle;
 
-    if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-        $rssTitle = sprintf(gTranslate('core', "%s RSS"), $galleryTitle);
-        $rssHref = $gallery->app->photoAlbumURL . "/rss.php";
+	if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
+		$rssTitle = sprintf(gTranslate('core', "%s RSS"), $galleryTitle);
+		$rssHref = $gallery->app->photoAlbumURL . "/rss.php";
 
-        echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">\n";
-    }
+		echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">\n";
+	}
 }
 
 /**
  * This function just displays the prefetching navigation for the albumpages
  */
 function prefetchAlbumNav() {
-    global $gallery;
-    global $first, $previousPage, $last, $nextPage, $maxPages;
+	global $gallery;
+	global $first, $previousPage, $last, $nextPage, $maxPages;
 
-    /* prefetching/navigation */
-    if (!isset($first)) { ?>
+	/* prefetching/navigation */
+	if (!isset($first)) { ?>
   <link rel="first" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => 1)) ?>" >
   <link rel="prev" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $previousPage)) ?>" >
 <?php
-    }
-    if (!isset($last)) { ?>
+	}
+	if (!isset($last)) { ?>
   <link rel="next" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $nextPage)) ?>" >
   <link rel="last" href="<?php echo makeAlbumUrl($gallery->session->albumName, '', array('page' => $maxPages)) ?>" >
 <?php }
 
-    if ($gallery->album->isRoot() &&
-        (!$gallery->session->offline ||
-	    isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
+	if ($gallery->album->isRoot() &&
+		(!$gallery->session->offline ||
+		isset($gallery->session->offlineAlbums["albums.php"]))) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl(); ?>" >
 <?php
-    }
-    else if (!$gallery->session->offline ||
-             isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
+	}
+	else if (!$gallery->session->offline ||
+			 isset($gallery->session->offlineAlbums[$pAlbum->fields['parentAlbumName']])) { ?>
   <link rel="up" href="<?php echo makeAlbumUrl($gallery->album->fields['parentAlbumName']); ?>" >
 <?php
-    }
-    if (!$gallery->session->offline ||
-        isset($gallery->session->offlineAlbums["albums.php"])) { ?>
+	}
+	if (!$gallery->session->offline ||
+		isset($gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
 <?php
-    }
+	}
 }
 
 /**
@@ -250,13 +250,13 @@ function prefetchAlbumNav() {
  *
  */
 function albumRSSLink() {
-    global $gallery, $albumTitle, $albumRSSURL;
+	global $gallery, $albumTitle, $albumRSSURL;
 
-    if ($gallery->app->rssEnabled == 'yes' && !$gallery->session->offline) {
-        $rssTitle = sprintf(gTranslate('core', "%s RSS"), $albumTitle);
+	if ($gallery->app->rssEnabled == 'yes' && !$gallery->session->offline) {
+		$rssTitle = sprintf(gTranslate('core', "%s RSS"), $albumTitle);
 
-        echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$albumRSSURL\" type=\"application/rss+xml\">\n";
-    }
+		echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$albumRSSURL\" type=\"application/rss+xml\">\n";
+	}
 }
 
 /**
@@ -264,82 +264,82 @@ function albumRSSLink() {
  *
  */
 function customCSS() {
-    global $gallery;
+	global $gallery;
 
-    $customCSS = '';
+	$customCSS = '';
 
-    // the link colors have to be done here to override the style sheet
-    if ($gallery->album->fields["linkcolor"]) {
-        $customCSS .= "  a:link, a:visited, a:active { color: ".$gallery->album->fields['linkcolor'] ."; }\n";
-        $customCSS .= "  a:hover { color: #ff6600; }\n";
-    }
+	// the link colors have to be done here to override the style sheet
+	if ($gallery->album->fields["linkcolor"]) {
+		$customCSS .= "  a:link, a:visited, a:active { color: ".$gallery->album->fields['linkcolor'] ."; }\n";
+		$customCSS .= "  a:hover { color: #ff6600; }\n";
+	}
 
-    if ($gallery->album->fields["bgcolor"]) {
-        $customCSS .= "  body { background-color:".$gallery->album->fields['bgcolor']."; }\n";
-    }
+	if ($gallery->album->fields["bgcolor"]) {
+		$customCSS .= "  body { background-color:".$gallery->album->fields['bgcolor']."; }\n";
+	}
 
-    if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-        $customCSS .= "  body { background-image:url(".$gallery->album->fields['background']."); }\n";
-    }
+	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+		$customCSS .= "  body { background-image:url(".$gallery->album->fields['background']."); }\n";
+	}
 
-    if ($gallery->album->fields["textcolor"]) {
-        $customCSS .= "  body, tf { color:".$gallery->album->fields['textcolor']."; } \n";
-    }
+	if ($gallery->album->fields["textcolor"]) {
+		$customCSS .= "  body, tf { color:".$gallery->album->fields['textcolor']."; } \n";
+	}
 
-    return $customCSS;
+	return $customCSS;
 }
 
 /**
  * returns the a HTML string containg links to the upper albums
  *
- * @param object    $album
+ * @param object	$album
  * @param boolean   $withCurrentAlbum
  * @return string   $pathArray
  */
 function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
-    global $gallery;
+	global $gallery;
 
-    $pathArray = array();
+	$pathArray = array();
 
-    $upArrowAltText = gTranslate('common', "navigate _UP");
-    $upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
+	$upArrowAltText = gTranslate('common', "navigate _UP");
+	$upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
 
-    $accesskey = getAccessKey($upArrowAltText);
-    $lastUpArrowAltText = $upArrowAltText . ' '.
+	$accesskey = getAccessKey($upArrowAltText);
+	$lastUpArrowAltText = $upArrowAltText . ' '.
 	   sprintf(gTranslate('common', "(accesskey '%s')"), $accesskey);
 
-    $lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
+	$lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
 
-    if (!empty($album)) {
-        if ($album->fields['returnto'] != 'no') {
-            $parents = $album->getParentAlbums($withCurrentAlbum);
-            $numParents = sizeof($parents);
-            $i = 0;
-            foreach ($parents as $navAlbum) {
-                $i++;
-                $link = $navAlbum['prefixText'] .': ';
-                if($i == $numParents) {
-                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
-                    array('accesskey' => $accesskey), '', false, false);
-                }
-                else {
-                    $link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
-                    array(), '', false, false);
-                }
-                $pathArray[] = $link;
-            }
-        }
-    }
-    else {
-        $pathArray[] = sprintf(
-            gTranslate('common', "Gallery: %s"),
-            galleryLink(
-                makeGalleryUrl("albums.php"),
-                clearGalleryTitle() ."&nbsp;$lastUpArrow",
-                array('accesskey' => $accesskey), '', false, false)
-        );
-    }
+	if (!empty($album)) {
+		if ($album->fields['returnto'] != 'no') {
+			$parents = $album->getParentAlbums($withCurrentAlbum);
+			$numParents = sizeof($parents);
+			$i = 0;
+			foreach ($parents as $navAlbum) {
+				$i++;
+				$link = $navAlbum['prefixText'] .': ';
+				if($i == $numParents) {
+					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
+					array('accesskey' => $accesskey), '', false, false);
+				}
+				else {
+					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+					array(), '', false, false);
+				}
+				$pathArray[] = $link;
+			}
+		}
+	}
+	else {
+		$pathArray[] = sprintf(
+			gTranslate('common', "Gallery: %s"),
+			galleryLink(
+				makeGalleryUrl("albums.php"),
+				clearGalleryTitle() ."&nbsp;$lastUpArrow",
+				array('accesskey' => $accesskey), '', false, false)
+		);
+	}
 
-    return $pathArray;
+	return $pathArray;
 }
 ?>

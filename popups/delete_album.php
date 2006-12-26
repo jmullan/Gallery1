@@ -33,26 +33,26 @@ if (!$gallery->user->canDeleteAlbum($gallery->album)) {
 }
 
 if (!empty($formaction) && $formaction == 'delete') {
-    if ($guid == $gallery->album->fields['guid']) {
-        $gallery->album->delete();
-    }
+	if ($guid == $gallery->album->fields['guid']) {
+		$gallery->album->delete();
+	}
 
-    doctype();
-    echo "\n<html>";
-    dismissAndReload();
-    return;
+	doctype();
+	echo "\n<html>";
+	dismissAndReload();
+	return;
 }
 
 printPopupStart(gTranslate('core', "Delete Album"));
 if ($gallery->album) {
-    echo gTranslate('core', "Do you really want to delete this album?"); ?>
+	echo gTranslate('core', "Do you really want to delete this album?"); ?>
 <p>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <?php
-    echo "\n<br>";
-    if ($gallery->album->numPhotos(1)) {
-        echo $gallery->album->getHighlightTag();
-    }
+	echo "\n<br>";
+	if ($gallery->album->numPhotos(1)) {
+		echo $gallery->album->getHighlightTag();
+	}
 ?>
 </p>
 <?php echo makeFormIntro("delete_album.php", 

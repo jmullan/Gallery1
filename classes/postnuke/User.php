@@ -32,12 +32,12 @@ class PostNuke_User extends Abstract_User {
 	}
 
 	function loadByUid($uid) {
-	        $result = $this->db->Execute("select uname, name, email from " .
-					     $this->prefix . "users" . " " .
-					     "where uid='$uid'");
+			$result = $this->db->Execute("select uname, name, email from " .
+						 $this->prefix . "users" . " " .
+						 "where uid='$uid'");
 		list($this->username,
-		     $this->fullname,
-		     $this->email) = $result->fields;
+			 $this->fullname,
+			 $this->email) = $result->fields;
 
 		$result->Close();
 		
@@ -47,12 +47,12 @@ class PostNuke_User extends Abstract_User {
 	}
 
 	function loadByUserName($uname) {
-	        $result = $this->db->Execute("select uid, name, email from " .
-					     $this->prefix . "users" . " " .
-					     "where uname='$uname'");
+			$result = $this->db->Execute("select uid, name, email from " .
+						 $this->prefix . "users" . " " .
+						 "where uname='$uname'");
 		list($this->uid,
-		     $this->fullname,
-		     $this->email) = $result->fields;
+			 $this->fullname,
+			 $this->email) = $result->fields;
 
 		$result->Close();
 		

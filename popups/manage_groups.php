@@ -25,7 +25,7 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($create, $bulk_create, $modify, $delete, $gnames) =
-    getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'gnames'));
+	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'gnames'));
 
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -56,11 +56,11 @@ $groupIdList = getGroupIdList();
 $grouplist = array();
 
 if(! empty($groupIdList)) {
-    foreach ($groupIdList as $groupID) {
-        $tmpGroup = new Gallery_Group();
-        $tmpGroup->load($groupID);
-        $grouplist[$groupID] = $tmpGroup->getName();
-     }
+	foreach ($groupIdList as $groupID) {
+		$tmpGroup = new Gallery_Group();
+		$tmpGroup->load($groupID);
+		$grouplist[$groupID] = $tmpGroup->getName();
+	 }
 }
 
 asort($grouplist);
@@ -86,17 +86,17 @@ echo gTranslate('core', "You can create, modify and delete Gallery usergroups he
 echo makeFormIntro('manage_groups.php', array(), array('type' => 'popup'));
 
 if (empty($grouplist)) {
-    echo '<div class="g-sitedesc">' . gTranslate('core', 'No groups found.') . '</div>';
+	echo '<div class="g-sitedesc">' . gTranslate('core', 'No groups found.') . '</div>';
 }
 else {
 	echo drawSelect('gnames[]', $grouplist, '', 15,
 	   array('id' => 'groupNameBox',
-             'multiple' => '',
-	         'onChange' => 'enableButtons()')
-    );
+			 'multiple' => '',
+			 'onChange' => 'enableButtons()')
+	);
 
-    echo "\n<br>";
-    echo gTranslate('core', "To select multiple groups for deletion, hold down the Control (PC) or Command (Mac) key while clicking.");
+	echo "\n<br>";
+	echo gTranslate('core', "To select multiple groups for deletion, hold down the Control (PC) or Command (Mac) key while clicking.");
 
 }
 echo "\n<br><br>";
@@ -104,8 +104,8 @@ echo "\n<br><br>";
 echo gSubmit('create', gTranslate('core', "Create _new group"));
 
 if (!empty($grouplist)) {
-    echo gSubmit('modify', gTranslate('core', "_Modify"));
-    echo gSubmit('delete', gTranslate('core', "_Delete"));
+	echo gSubmit('modify', gTranslate('core', "_Modify"));
+	echo gSubmit('delete', gTranslate('core', "_Delete"));
 }
 echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 ?>
@@ -114,41 +114,41 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 </div>
 
 <script type="text/javascript">
-    var groupNameBox = document.getElementById('groupNameBox');
-    var groupCount = groupNameBox.length;
+	var groupNameBox = document.getElementById('groupNameBox');
+	var groupCount = groupNameBox.length;
 
-    var createButton = document.getElementById('create');
-    var modifyButton = document.getElementById('modify');
-    var deleteButton = document.getElementById('delete');
-    var doneButton   = document.getElementById('done');
+	var createButton = document.getElementById('create');
+	var modifyButton = document.getElementById('modify');
+	var deleteButton = document.getElementById('delete');
+	var doneButton   = document.getElementById('done');
 
-    function enableButtons() {
-        var selected = 0;
-        for (i = 0; i < groupCount; i++) {
-            if(groupNameBox.options[i].selected) {
-                selected++;
-            }
-        }
+	function enableButtons() {
+		var selected = 0;
+		for (i = 0; i < groupCount; i++) {
+			if(groupNameBox.options[i].selected) {
+				selected++;
+			}
+		}
 
-        if(selected == 0) {
-            modifyButton.disabled = true;
-            modifyButton.className = 'g-buttonDisable';
-            deleteButton.disabled = true;
-            deleteButton.className = 'g-buttonDisable';
+		if(selected == 0) {
+			modifyButton.disabled = true;
+			modifyButton.className = 'g-buttonDisable';
+			deleteButton.disabled = true;
+			deleteButton.className = 'g-buttonDisable';
 
-        }
-        else if (selected > 1) {
-            modifyButton.disabled = true;
-            modifyButton.className = 'g-buttonDisable';
-        }
-        else {
-            modifyButton.disabled = false;
-            modifyButton.className = 'g-button';
-            deleteButton.disabled = false;
-            deleteButton.className = 'g-button';
-        }
+		}
+		else if (selected > 1) {
+			modifyButton.disabled = true;
+			modifyButton.className = 'g-buttonDisable';
+		}
+		else {
+			modifyButton.disabled = false;
+			modifyButton.className = 'g-button';
+			deleteButton.disabled = false;
+			deleteButton.className = 'g-button';
+		}
 
-    }
+	}
 </script>
 </body>
 </html>

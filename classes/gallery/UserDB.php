@@ -35,12 +35,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$this->initialized = false;
 		
 		if(empty($gallery->app->userDir)) {
-            echo infoBox(array(array(
-                'type' => 'error',
-                'text' => sprintf("No Userdir defined ! Please rerun the %sconfiguration wizard%s.",
-                    '<a href="setup">', '</a>')
-            )));
-            exit;
+			echo infoBox(array(array(
+				'type' => 'error',
+				'text' => sprintf("No Userdir defined ! Please rerun the %sconfiguration wizard%s.",
+					'<a href="setup">', '</a>')
+			)));
+			exit;
 		}
 		
 		$userDir = $gallery->app->userDir;
@@ -53,21 +53,21 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$this->userMap = array();
 
 		if (!fs_file_exists($userDir)) {
-		    if(isDebugging()) {
-    		    echo infoBox(array(array(
-                    'type' => 'warning',
-                    'text' => sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
-                        $userDir)
-                )));
-		    }
+			if(isDebugging()) {
+				echo infoBox(array(array(
+					'type' => 'warning',
+					'text' => sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
+						$userDir)
+				)));
+			}
 
-            if (!@mkdir($userDir, 0777)) {
-			    echo infoBox(array(array(
-                    'type' => 'error',
-                    'text' => sprintf("Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount.",
-                        '<a href="'. makeGalleryUrl('setup/') .'">', '</a>')
-                )));
-                
+			if (!@mkdir($userDir, 0777)) {
+				echo infoBox(array(array(
+					'type' => 'error',
+					'text' => sprintf("Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount.",
+						'<a href="'. makeGalleryUrl('setup/') .'">', '</a>')
+				)));
+				
 				return false;
 			}
 		}
@@ -130,11 +130,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 	/**
 	 * Returns wether the UserDB was succesfully initialized or not
 	 *
-	 * @return boolean     true if succesfully initialized.
+	 * @return boolean	 true if succesfully initialized.
 	 * @author Jens Tkotz <jens@peino.de>
 	 */
 	function isInitialized() {
-        return $this->initialized === true;
+		return $this->initialized === true;
 	}
 	
 	function canCreateUser() {
@@ -312,7 +312,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 				/* In v1.2 we renamed User to Gallery_User */
 				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
-				    $tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
+					$tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
 				}
 
 				$user = unserialize($tmp);
@@ -359,8 +359,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
-		    !strcmp($username, $this->everybody->getUsername()) ||
-		    !strcmp($username, $this->loggedIn->getUsername())) {
+			!strcmp($username, $this->everybody->getUsername()) ||
+			!strcmp($username, $this->loggedIn->getUsername())) {
 			return sprintf(gTranslate('core', "'%s' is reserved and cannot be used."),
 					$saveToDisplayUserName);
 		}
@@ -385,7 +385,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	/**
 	 * Checks wether the UserDB is out of Date.
 	 *
-	 * @return boolean     true if out of Date.
+	 * @return boolean	 true if out of Date.
 	 */
 	function versionOutOfDate() {
 		global $gallery;
@@ -417,8 +417,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			printf("\n<br>". gTranslate('core', "Checking user %d of %d . . . .") .' ', $count++, $total);
 			$user = $this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
-			    $user->username == $everybody ||
-			    $user->username == $loggedin) {
+				$user->username == $everybody ||
+				$user->username == $loggedin) {
 				printf(gTranslate('core', "Skipped %s (Reserved username from Gallery)"), $user->username);
 				continue;
 			}
@@ -439,38 +439,38 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function CreateUser($uname, $email, $new_password, $fullname, $canCreate, $language, $log) {
 		global $gErrors;
-	       	$errorCount = 0;
-	       	$gErrors = array();
-	       	$gErrors["uname"] = $this->validNewUserName($uname);
-	       	if ($gErrors["uname"]) {
-		       	$errorCount++;
-	       	} else {
-		       	$gErrors["new_password"] = $this->validPassword($new_password);
-		       	if ($gErrors["new_password"]) {
-			       	$errorCount++;
-		       	}
-	       	}
+		   	$errorCount = 0;
+		   	$gErrors = array();
+		   	$gErrors["uname"] = $this->validNewUserName($uname);
+		   	if ($gErrors["uname"]) {
+			   	$errorCount++;
+		   	} else {
+			   	$gErrors["new_password"] = $this->validPassword($new_password);
+			   	if ($gErrors["new_password"]) {
+				   	$errorCount++;
+			   	}
+		   	}
 
 		if (!$errorCount) {
-		       	$tmpUser = new Gallery_User();
-		       	$tmpUser->setUsername($uname);
-		       	$tmpUser->setPassword($new_password);
-		       	$tmpUser->setFullname($fullname);
-		       	$tmpUser->setCanCreateAlbums($canCreate);
-		       	$tmpUser->setEmail($email);
-		       	$tmpUser->setDefaultLanguage($language);
+			   	$tmpUser = new Gallery_User();
+			   	$tmpUser->setUsername($uname);
+			   	$tmpUser->setPassword($new_password);
+			   	$tmpUser->setFullname($fullname);
+			   	$tmpUser->setCanCreateAlbums($canCreate);
+			   	$tmpUser->setEmail($email);
+			   	$tmpUser->setDefaultLanguage($language);
 			$tmpUser->origEmail=$email;
-		       	$tmpUser->log($log);
-		       	$tmpUser->save();
-		       	return $tmpUser;
-	       	} else {
+			   	$tmpUser->log($log);
+			   	$tmpUser->save();
+			   	return $tmpUser;
+		   	} else {
 			processingMsg( "<b>" . sprintf(gTranslate('core', "Problem adding %s:"), $uname)."</b>");
-		       	foreach ($gErrors as $key_var => $value_var) {
-			       	echo "\n<br>". gallery_error($gErrors[$key_var]);
-		       	}
-		       	return false;
-	       	}
-       	}
+			   	foreach ($gErrors as $key_var => $value_var) {
+				   	echo "\n<br>". gallery_error($gErrors[$key_var]);
+			   	}
+			   	return false;
+		   	}
+	   	}
 
 	/*
 	 * Since user_version == 4, we've replaced ':' and ';' with '_'

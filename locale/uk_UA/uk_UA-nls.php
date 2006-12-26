@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Ukranian
  */
@@ -49,13 +49,13 @@
 /**
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
-	$nls['alias']['ukrainian'] =            'uk_UA' ;
-	$nls['alias']['uk_UA.KOI8-U'] =         'uk_UA' ;
+	$nls['alias']['ukrainian'] =			'uk_UA' ;
+	$nls['alias']['uk_UA.KOI8-U'] =		 'uk_UA' ;
 
 /**
  * Charset
  */
-	$nls['charset']['uk_UA'] =              'KOI8-U';
+	$nls['charset']['uk_UA'] =			  'KOI8-U';
 
 /**
  * phpNuke

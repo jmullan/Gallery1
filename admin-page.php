@@ -24,7 +24,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-        require_once(dirname(__FILE__) . '/init.php');
+		require_once(dirname(__FILE__) . '/init.php');
 }
 
 // Security check
@@ -58,11 +58,11 @@ $adminOptions[] = array( 'text' => gTranslate('core', "_validate albums"),
 #			 'longtext' => gTranslate('core', "Make a backup of your Gallery."));
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    $adminOptions[]  = array('text' => gTranslate('core', "manage _users"),
+	$adminOptions[]  = array('text' => gTranslate('core', "manage _users"),
 			 'popupFile' => 'manage_users.php',
 			 'longtext' => gTranslate('core', "Manage your users."));
 
-    $adminOptions[]  = array('text' => gTranslate('core', "manage user_groups"),
+	$adminOptions[]  = array('text' => gTranslate('core', "manage user_groups"),
 			 'popupFile' => 'manage_groups.php',
 			 'longtext' => gTranslate('core', "Manage your usergroups."));
 }
@@ -71,7 +71,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
+	doctype();
 ?>
 <html>
 <head>
@@ -99,7 +99,7 @@ if(!empty($adminOptions)) {
 
 		echo "\n<tr>";
 		if (isset($option['url'])) {
-		    $link = galleryLink($option['url'],$option['text']);
+			$link = galleryLink($option['url'],$option['text']);
 		} else {
 			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, '', '', '', false);
 		}

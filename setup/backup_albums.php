@@ -32,8 +32,8 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($backup, $force, $backup_method, $zip_path, $gzip_path, $tar_path, $xargs_path, 
 	$find_path, $target_files) =
-	    getRequestVar(array('backup', 'force', 'backup_method', 'zip_path', 'gzip_path', 'tar_path', 
-	    'xargs_path', 'find_path', 'target_files'));
+		getRequestVar(array('backup', 'force', 'backup_method', 'zip_path', 'gzip_path', 'tar_path', 
+		'xargs_path', 'find_path', 'target_files'));
 
 set_time_limit(600);
 $showForce = false;
@@ -66,11 +66,11 @@ if (!empty($backup) || !empty($force)) {
 		backup();
 		exit;
 	} else {
-	    if (ini_get('open_basedir')) {
+		if (ini_get('open_basedir')) {
 		$error_text = sprintf(_("<b>Note:</b> Your webserver is configured with  the %sopen_basedir%s restriction.  This may make it difficult for Gallery to detect and verify your binaries, even if they exist and function properly.  If you know that the paths you entered are correct, you must click the \"force\" button.  We detected the following error(s):"),
  '<a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir">', '</a>'). "<ul>$error_text</ul>";
 		$showForce = true;
-	    }
+		}
 	}
 } 
 
@@ -175,7 +175,7 @@ function backup() {
 		//echo ("$cmd<p>");
 	}
 	else if  (!strcmp($backup_method, "tgz") && 
-	                !strcmp($target_files, "dat")) {
+					!strcmp($target_files, "dat")) {
 		$cmd=fs_import_filename($find_path) . " " . $gallery->app->albumDir .
 			' -name .users -prune -o -name "*.dat" | ' . fs_import_filename($xargs_path) . 
 			' ' .  fs_import_filename($tar_path) .  " cf - " .

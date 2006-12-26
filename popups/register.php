@@ -28,12 +28,12 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create', 'cancel'));
 list($uname, $old_password, $new_password1, $new_password2) =
-    getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
+	getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
 list($fullname, $email, $send_email, $defaultLanguage) =
-    getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
+	getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
 echo printPopupStart(
-    sprintf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle)
+	sprintf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle)
 );
 
 if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
@@ -45,7 +45,7 @@ if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 </body>
 </html>
 <?php
-    exit();
+	exit();
 }
 
 $allowChange['uname'] = true;
@@ -61,10 +61,10 @@ $allowChange["member_file"] = false;
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
-        if($fullname != strip_tags($fullname)) {
-            $gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
-            $errorCount++;
-        }
+		if($fullname != strip_tags($fullname)) {
+			$gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
+			$errorCount++;
+		}
 
 	$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
 
@@ -84,36 +84,36 @@ if (!empty($formaction) && $formaction == 'create') {
 
 	if (!$errorCount) {
 
-	    $password = generate_password(10);
-	    $tmpUser = new Gallery_User();
-	    $tmpUser->setUsername($uname);
-	    $tmpUser->setPassword($password);
-	    $tmpUser->setFullname($fullname);
-	    $tmpUser->setCanCreateAlbums(($gallery->app->selfRegCreate == 'yes'));
-	    $tmpUser->setEmail($email);
-	    $tmpUser->origEmail=$email;
-	    $tmpUser->log("self_register");
-	    $tmpUser->setDefaultLanguage($defaultLanguage);
-	    $msg = ereg_replace("!!PASSWORD!!", $password,
-	       ereg_replace("!!USERNAME!!", $uname,
-	       ereg_replace("!!FULLNAME!!", $fullname,
-	       ereg_replace("!!NEWPASSWORDLINK!!",
-	       $tmpUser->genRecoverPasswordHash(),
-	        welcome_email()))));
-	    $logmsg = sprintf(gTranslate('core', "%s has registered.  Email has been sent to %s."), $uname, $email);
-	    $logmsg2  = sprintf("%s has registered.  Email has been sent to %s.", $uname, $email);
-	    if ($logmsg != $logmsg2) {
-	        $logmsg .= " <<<<>>>>> $logmsg2";
-	    }
+		$password = generate_password(10);
+		$tmpUser = new Gallery_User();
+		$tmpUser->setUsername($uname);
+		$tmpUser->setPassword($password);
+		$tmpUser->setFullname($fullname);
+		$tmpUser->setCanCreateAlbums(($gallery->app->selfRegCreate == 'yes'));
+		$tmpUser->setEmail($email);
+		$tmpUser->origEmail=$email;
+		$tmpUser->log("self_register");
+		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$msg = ereg_replace("!!PASSWORD!!", $password,
+		   ereg_replace("!!USERNAME!!", $uname,
+		   ereg_replace("!!FULLNAME!!", $fullname,
+		   ereg_replace("!!NEWPASSWORDLINK!!",
+		   $tmpUser->genRecoverPasswordHash(),
+			welcome_email()))));
+		$logmsg = sprintf(gTranslate('core', "%s has registered.  Email has been sent to %s."), $uname, $email);
+		$logmsg2  = sprintf("%s has registered.  Email has been sent to %s.", $uname, $email);
+		if ($logmsg != $logmsg2) {
+			$logmsg .= " <<<<>>>>> $logmsg2";
+		}
 
-	    if (gallery_mail($email, gTranslate('core', "Gallery Self Registration"),$msg, $logmsg)) {
-	        $tmpUser->save();
-	        echo "<p>".sprintf(gTranslate('core', "An email has been sent to %s."), $email);
-	        echo '<br>';
-	        echo gTranslate('core', "Your account information is contained within the email.");
-	    } else {
-	        echo gallery_error(gTranslate('core', "Email could not be sent.  Please contact gallery administrator to register on this site"));
-	    }
+		if (gallery_mail($email, gTranslate('core', "Gallery Self Registration"),$msg, $logmsg)) {
+			$tmpUser->save();
+			echo "<p>".sprintf(gTranslate('core', "An email has been sent to %s."), $email);
+			echo '<br>';
+			echo gTranslate('core', "Your account information is contained within the email.");
+		} else {
+			echo gallery_error(gTranslate('core', "Email could not be sent.  Please contact gallery administrator to register on this site"));
+		}
 ?>
 		<br><br>
 		<?php echo gButton('close', gTranslate('core', "_Close Window"), 'parent.close()'); ?>
@@ -126,8 +126,8 @@ if (!empty($formaction) && $formaction == 'create') {
 }
 
 echo makeFormIntro('register.php',
-    array('name' => 'usercreate_form', 'onsubmit' => "usercreate_form.create.disabled = true;"),
-    array('type' => 'popup')
+	array('name' => 'usercreate_form', 'onsubmit' => "usercreate_form.create.disabled = true;"),
+	array('type' => 'popup')
 );
 
 include(dirname(dirname(__FILE__)) . '/layout/userData.inc');

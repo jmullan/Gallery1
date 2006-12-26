@@ -27,7 +27,7 @@ function mosCountModules(  $position='left' ) {
 	global $database, $my, $Itemid, $MOS_GALLERY_PARAMS;
 
 	if (isset($MOS_GALLERY_PARAMS['hideRightSide'])
-	    && $MOS_GALLERY_PARAMS['hideRightSide'])
+		&& $MOS_GALLERY_PARAMS['hideRightSide'])
 	{
 		if ($position == 'right' || $position == 'user2') {
 			return 0;

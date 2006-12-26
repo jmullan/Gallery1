@@ -28,22 +28,22 @@ require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
 list($createGroup, $gname, $description) =
-    getRequestVar(array('createGroup', 'gname', 'description'));
+	getRequestVar(array('createGroup', 'gname', 'description'));
 
 list($backToGroup, $backToUser) =
-    getRequestVar(array('backToGroup', 'backToUser'));
-    
+	getRequestVar(array('backToGroup', 'backToUser'));
+	
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 if(!empty($backToGroup)) {
-     header("Location: " . makeGalleryHeaderUrl('manage_groups.php', array('type' => 'popup')));
+	 header("Location: " . makeGalleryHeaderUrl('manage_groups.php', array('type' => 'popup')));
 }
 
 if (!empty($backToUser)) {
-    header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
+	header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
 
 $messages = array();
@@ -51,22 +51,22 @@ $messages = array();
 printPopupStart(gTranslate('core', "Create Gallery Group"), '', 'left');
 
 if (!empty($createGroup)) {
-    $gNameError = validNewGroupName($gname);
-    
-    if($gNameError) {
-        $messages[] = array('type' => 'error', 'text' => $gNameError);
-    }
-    else {
-        $tmpGroup = new Gallery_Group();
-        $tmpGroup->setName($gname);
-        $tmpGroup->setDescription($description);
-        $tmpGroup->save();
+	$gNameError = validNewGroupName($gname);
+	
+	if($gNameError) {
+		$messages[] = array('type' => 'error', 'text' => $gNameError);
+	}
+	else {
+		$tmpGroup = new Gallery_Group();
+		$tmpGroup->setName($gname);
+		$tmpGroup->setDescription($description);
+		$tmpGroup->save();
 
-        $messages[] = array(
-            'type' => 'success',
-            'text' => sprintf(gTranslate('core', "Group '%s' created.<br>You can now create another group if you want."), $gname)
-        );
-    }
+		$messages[] = array(
+			'type' => 'success',
+			'text' => sprintf(gTranslate('core', "Group '%s' created.<br>You can now create another group if you want."), $gname)
+		);
+	}
 }
 
 echo "\n<div class=\"center\">". gTranslate('core', "Create a new Gallery usergroup here.") .'</div>';
@@ -74,18 +74,18 @@ echo "\n<div class=\"center\">". gTranslate('core', "Create a new Gallery usergr
 echo infoBox($messages);
 
 echo makeFormIntro('create_group.php',
-    array('name' => 'groupcreate_form', 'onSubmit' => 'groupcreate_form.create.disabled = true;'),
-    array('type' => 'popup'));
+	array('name' => 'groupcreate_form', 'onSubmit' => 'groupcreate_form.create.disabled = true;'),
+	array('type' => 'popup'));
 ?>
 
 <table>
 <tr>
-    <td><?php echo gTranslate('core',"Name of the group"); ?></td>
-    <td><input type="text" name="gname" size="30" maxlength="25"></td>
+	<td><?php echo gTranslate('core',"Name of the group"); ?></td>
+	<td><input type="text" name="gname" size="30" maxlength="25"></td>
 </tr>
 <tr>
-    <td><?php echo gTranslate('core',"Some descriptive text (optional)"); ?></td>
-    <td><textarea name="description" cols="30" rows="2"></textarea></td>
+	<td><?php echo gTranslate('core',"Some descriptive text (optional)"); ?></td>
+	<td><textarea name="description" cols="30" rows="2"></textarea></td>
 </tr>
 </table>
 

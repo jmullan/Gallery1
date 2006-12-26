@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Slovenian
  */
@@ -48,7 +48,7 @@
 /**
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
-	$nls['alias']['slovenian'] =    	'sl_SI' ;
+	$nls['alias']['slovenian'] =		'sl_SI' ;
 	$nls['alias']['sl_SI.ISO8859-2'] =	'sl_SI' ;
 	
 /**

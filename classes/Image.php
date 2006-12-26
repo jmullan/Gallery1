@@ -214,18 +214,18 @@ class Image {
 	
 	function getPath($dir, $full=0) {
 		if ($full || !$this->resizedName) {
-		    $name = $this->name;
+			$name = $this->name;
 		} else {
-		    $name = $this->resizedName;
+			$name = $this->resizedName;
 		}
 		return "$dir/$name.$this->type";
 	}
 
 	function getImageName($full = false) {
 		if ($full || !$this->resizedName) {
-		    $name = $this->name;
+			$name = $this->name;
 		} else {
-		    $name = $this->resizedName;
+			$name = $this->resizedName;
 		}
 		return "$name.$this->type";
 	}
@@ -249,23 +249,23 @@ class Image {
 	}
 
 	function getDimensions($size=0, $full=false) {
-	    if ($size) {
-                if ($this->width > $this->height) {
-                    $width = $size;
-                    $height = round($size * ($this->height / $this->width));
-                } else {
-                    $width = round($size * ($this->width / $this->height));
-                    $height = $size;
-                }
-            } else if ($full) {
+		if ($size) {
+				if ($this->width > $this->height) {
+					$width = $size;
+					$height = round($size * ($this->height / $this->width));
+				} else {
+					$width = round($size * ($this->width / $this->height));
+					$height = $size;
+				}
+			} else if ($full) {
 		$width = $this->raw_width;
 		$height = $this->raw_height;
-	    }
-	    else {
+		}
+		else {
 		$width = $this->width;
 		$height = $this->height;
-            }
-	        
+			}
+			
 		return array($width, $height);
 	}
 
@@ -278,7 +278,7 @@ class Image {
 
 	function getThumbRectangle() {
 		return array($this->thumb_x, $this->thumb_y,
-		             $this->thumb_width, $this->thumb_height);
+					 $this->thumb_width, $this->thumb_height);
 	}
 
 	function getRawDimensions() {
@@ -286,8 +286,8 @@ class Image {
 	}
 
 	function rawFileSize($dir) {
-	    $filename = "$dir/$this->name.$this->type";
-	    return fs_filesize($filename);
+		$filename = "$dir/$this->name.$this->type";
+		return fs_filesize($filename);
 	}
 }	
 

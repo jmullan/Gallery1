@@ -44,18 +44,18 @@ echo "\n<br><br>";
 echo gTranslate('core', "Please Wait...") . "\n<br>";
 
 if (!$gallery->userDB->integrityCheck() ) {
-    $noticeMessages[] = array(
+	$noticeMessages[] = array(
 	'type' => 'error',
 	'text' => gTranslate('core', "There was a problem upgrading users.  Please check messages above, and try again.")
-    );
-    $button = gButton('retry', gTranslate('core', "_Retry"), 'location.reload()');
+	);
+	$button = gButton('retry', gTranslate('core', "_Retry"), 'location.reload()');
 }
 else {
-    $noticeMessages[] = array(
+	$noticeMessages[] = array(
 	'type' => 'success',
 	'text' => gTranslate('core', "Users upgraded successfully.")
-    );
-    $button = gButton('done', gTranslate('core', "_Done"), 'location.reload()');
+	);
+	$button = gButton('done', gTranslate('core', "_Done"), 'location.reload()');
 }
 echo infobox($noticeMessages);
 ?>

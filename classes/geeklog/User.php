@@ -34,29 +34,29 @@ function loadByUid($uid) {
    global $_TABLES;
 
    if ($uid > 0) {
-      $result = DB_query("SELECT username,fullname,email " .
-          "FROM {$_TABLES['users']} WHERE uid = '$uid'");
-      $userInfo = DB_fetchArray($result);
+	  $result = DB_query("SELECT username,fullname,email " .
+		  "FROM {$_TABLES['users']} WHERE uid = '$uid'");
+	  $userInfo = DB_fetchArray($result);
 
-      $this->uid = $uid;
-      $this->username = $userInfo['username'];
-      $this->fullname = $userInfo['fullname'];
-      $this->email = $userInfo['email'];
-      $this->isAdmin = SEC_inGroup('Root', $uid);
-      $this->canCreateAlbums = $this->canCreateAlbums();
-      $this->isGroup = 0;
+	  $this->uid = $uid;
+	  $this->username = $userInfo['username'];
+	  $this->fullname = $userInfo['fullname'];
+	  $this->email = $userInfo['email'];
+	  $this->isAdmin = SEC_inGroup('Root', $uid);
+	  $this->canCreateAlbums = $this->canCreateAlbums();
+	  $this->isGroup = 0;
    } else {
-      $result = DB_query("SELECT grp_name " .
-          "FROM {$_TABLES['groups']} WHERE grp_id = '" . abs($uid) . "'");
-      $userInfo = DB_fetchArray($result);
+	  $result = DB_query("SELECT grp_name " .
+		  "FROM {$_TABLES['groups']} WHERE grp_id = '" . abs($uid) . "'");
+	  $userInfo = DB_fetchArray($result);
 
-      $this->uid = $uid;
-      $this->username = $userInfo['grp_name'];
-      $this->fullname = $userInfo['grp_name'] . " Group";
-      $this->email = '';
-      $this->isAdmin = false;
-      $this->canCreateAlbums = 0;
-      $this->isGroup = 1;
+	  $this->uid = $uid;
+	  $this->username = $userInfo['grp_name'];
+	  $this->fullname = $userInfo['grp_name'] . " Group";
+	  $this->email = '';
+	  $this->isAdmin = false;
+	  $this->canCreateAlbums = 0;
+	  $this->isGroup = 1;
    }
 }
 
@@ -78,7 +78,7 @@ function loadByUserName($uname) {
 
 function isLoggedIn() {
    if ($this->uid > 1) {
-      return true;
+	  return true;
    }
    return false;
 }

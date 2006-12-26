@@ -33,117 +33,117 @@
  *  2:  Existing resized file should be removed
  */
 function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 0, $createThumbnail = false, $quality = 0) {
-    debugMessage(sprintf(gTranslate('core', "Resizing Image: %s"), $src), __FILE__, __LINE__);
+	debugMessage(sprintf(gTranslate('core', "Resizing Image: %s"), $src), __FILE__, __LINE__);
 
-    global $gallery;
+	global $gallery;
 
-    if (!strcmp($src,$dest)) {
-        $useTemp = true;
-        $out = "$dest.tmp";
-    }
-    else {
-        $out = $dest;
-        $useTemp = false;
-    }
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+		$useTemp = false;
+	}
 
-    $type = getExtension($src);
-    list($width, $height) = getDimensions($src);
+	$type = getExtension($src);
+	list($width, $height) = getDimensions($src);
 
-    if ($type != 'jpg' && $type != 'png') {
-        $target_fs = 0; // can't compress other images
-    }
+	if ($type != 'jpg' && $type != 'png') {
+		$target_fs = 0; // can't compress other images
+	}
 
-    if ($target === 'off') {
-        $target = 0;
-    }
+	if ($target === 'off') {
+		$target = 0;
+	}
 
-    if ($quality == 0) {
-        $quality = $gallery->app->jpegImageQuality;
-    }
+	if ($quality == 0) {
+		$quality = $gallery->app->jpegImageQuality;
+	}
 
-    /* Check for images smaller then target size, don't blow them up. */
-    if ((empty($target) || ($width <= $target && $height <= $target)) &&
-      (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
-        echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', "No resizing required"), __FILE__, __LINE__,1);
+	/* Check for images smaller then target size, don't blow them up. */
+	if ((empty($target) || ($width <= $target && $height <= $target)) &&
+	  (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
+		echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('core', "No resizing required"), __FILE__, __LINE__,1);
 
-        /* If the file is already smaller than the target filesize, don't
-        * create a new sized image.  return 2 indicates that the current .sized.
-        * needs to be removed */
-        if ($useTemp == false && !strstr($dest, ".sized.")) {
-            fs_copy($src, $dest);
-            return 1;
-        }
-        elseif (fs_file_exists($dest) && strstr($dest, ".sized.")) {
-            return 2;
-        }
-        return 0;
-    }
-    $target = min($target, max($width, $height));
+		/* If the file is already smaller than the target filesize, don't
+		* create a new sized image.  return 2 indicates that the current .sized.
+		* needs to be removed */
+		if ($useTemp == false && !strstr($dest, ".sized.")) {
+			fs_copy($src, $dest);
+			return 1;
+		}
+		elseif (fs_file_exists($dest) && strstr($dest, ".sized.")) {
+			return 2;
+		}
+		return 0;
+	}
+	$target = min($target, max($width, $height));
 
-    if ($target_fs == 0) {
-        compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
-    }
-    else {
-        $filesize = (int) fs_filesize($src) >> 10;
-        $max_quality = $gallery->app->jpegImageQuality;
-        $min_quality = 5;
-        $max_filesize = $filesize;
+	if ($target_fs == 0) {
+		compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
+	}
+	else {
+		$filesize = (int) fs_filesize($src) >> 10;
+		$max_quality = $gallery->app->jpegImageQuality;
+		$min_quality = 5;
+		$max_filesize = $filesize;
 
-        if (!isset($quality)) {
-            $quality = $gallery->album->fields['last_quality'];
-        }
-        processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(gTranslate('core', "target file size %d kbytes"), $target_fs)."\n");
+		if (!isset($quality)) {
+			$quality = $gallery->album->fields['last_quality'];
+		}
+		processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(gTranslate('core', "target file size %d kbytes"), $target_fs)."\n");
 
 	$loop = 0;
-        do {
-	    $loop ++;
-	    processingMsg("Loop: $loop");
-            compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
+		do {
+		$loop ++;
+		processingMsg("Loop: $loop");
+			compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
 
-            $prev_quality = $quality;
-            printf(gTranslate('core', "-> file size %d kbytes"), round($filesize));
-            processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(gTranslate('core', "trying quality %d%%"), $quality));
-            clearstatcache();
-            $filesize = (int)fs_filesize($out) >> 10;
-            if ($filesize < $target_fs) {
-                $min_quality = $quality;
-            }
-            elseif ($filesize > $target_fs){
-                $max_quality = $quality;
-                $max_filesize = $filesize;
-            }
-            elseif ($filesize == $target_fs){
-                $min_quality = $quality;
-                $max_quality = $quality;
-                $max_filesize = $filesize;
-            }
-            $quality = ($max_quality + $min_quality)/2;
-            $quality = round($quality);
-            if ($quality == $prev_quality) {
-                if ($filesize == $max_filesize) {
-                    $quality--;
-                } else {
-                    $quality++;
-                }
-            }
-        } while ($max_quality-$min_quality > 2 &&
-        abs(($filesize-$target_fs)/$target_fs) > .02 );
+			$prev_quality = $quality;
+			printf(gTranslate('core', "-> file size %d kbytes"), round($filesize));
+			processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(gTranslate('core', "trying quality %d%%"), $quality));
+			clearstatcache();
+			$filesize = (int)fs_filesize($out) >> 10;
+			if ($filesize < $target_fs) {
+				$min_quality = $quality;
+			}
+			elseif ($filesize > $target_fs){
+				$max_quality = $quality;
+				$max_filesize = $filesize;
+			}
+			elseif ($filesize == $target_fs){
+				$min_quality = $quality;
+				$max_quality = $quality;
+				$max_filesize = $filesize;
+			}
+			$quality = ($max_quality + $min_quality)/2;
+			$quality = round($quality);
+			if ($quality == $prev_quality) {
+				if ($filesize == $max_filesize) {
+					$quality--;
+				} else {
+					$quality++;
+				}
+			}
+		} while ($max_quality-$min_quality > 2 &&
+		abs(($filesize-$target_fs)/$target_fs) > .02 );
 
-        $gallery->album->fields['last_quality'] = $prev_quality;
-        printf(gTranslate('core', "-> file size %d kbytes"), round($filesize));
-        processingMsg(gTranslate('core', "Done."));
-    }
+		$gallery->album->fields['last_quality'] = $prev_quality;
+		printf(gTranslate('core', "-> file size %d kbytes"), round($filesize));
+		processingMsg(gTranslate('core', "Done."));
+	}
 
-    if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
-        if ($useTemp) {
-            fs_copy($out, $dest);
-            fs_unlink($out);
-        }
-        return 1;
-    }
-    else {
-        return 0;
-    }
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
+		if ($useTemp) {
+			fs_copy($out, $dest);
+			fs_unlink($out);
+		}
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }
 
 /**
@@ -155,542 +155,542 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
  * by the calling function
  */
 function netpbm_decompose_image($input, $format) {
-    global $gallery;
-    $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
-    $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
+	global $gallery;
+	$overlay = tempnam($gallery->app->tmpDir, "netpbm_");
+	$alpha = tempnam($gallery->app->tmpDir, "netpbm_");
 
-    switch ($format) {
-        case "png":
-            $getOverlay = netPBM("pngtopnm", "$input > $overlay");
-            $getAlpha   = netPBM("pngtopnm", "-alpha $input > $alpha");
-            break;
+	switch ($format) {
+		case "png":
+			$getOverlay = netPBM("pngtopnm", "$input > $overlay");
+			$getAlpha   = netPBM("pngtopnm", "-alpha $input > $alpha");
+			break;
 
-        case "gif":
-            $getOverlay = netPBM("giftopnm", "--alphaout=$alpha $input > $overlay");
-            break;
+		case "gif":
+			$getOverlay = netPBM("giftopnm", "--alphaout=$alpha $input > $overlay");
+			break;
 
-        case "tif":
-            $getOverlay = netPBM("tifftopnm", "-alphaout=$alpha $input > $overlay");
-            break;
-    }
+		case "tif":
+			$getOverlay = netPBM("tifftopnm", "-alphaout=$alpha $input > $overlay");
+			break;
+	}
 
-    exec_wrapper($getOverlay);
+	exec_wrapper($getOverlay);
 
-    if (isset($getAlpha)) {
-        exec_wrapper($getAlpha);
-    }
+	if (isset($getAlpha)) {
+		exec_wrapper($getAlpha);
+	}
 
-    return array($overlay, $alpha);
+	return array($overlay, $alpha);
 }
 
 function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
-    global $gallery;
+	global $gallery;
 
-    if (!strcmp($src,$dest)) {
-        $useTemp = true;
-        $out = "$dest.tmp";
-    }
-    else {
-        $useTemp = false;
-        $out = $dest;
-    }
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$useTemp = false;
+		$out = $dest;
+	}
 
-    if (isDebugging()) {
-        print "<table border=\"1\">";
-        print "<tr><td>src</td><td>$src</td></tr>";
-        print "<tr><td>dest</td><td>$dest</td></tr>";
-        print "<tr><td>wmName</td><td>$wmName</td></tr>";
-        print "<tr><td>wmAlign</td><td>$wmAlign</td></tr>";
-        print "<tr><td>wmAlignX</td><td>$wmAlignX</td></tr>";
-        print "<tr><td>wmAlignY</td><td>$wmAlignY</td></tr>";
-        print "</table>";
-    }
+	if (isDebugging()) {
+		print "<table border=\"1\">";
+		print "<tr><td>src</td><td>$src</td></tr>";
+		print "<tr><td>dest</td><td>$dest</td></tr>";
+		print "<tr><td>wmName</td><td>$wmName</td></tr>";
+		print "<tr><td>wmAlign</td><td>$wmAlign</td></tr>";
+		print "<tr><td>wmAlignX</td><td>$wmAlignX</td></tr>";
+		print "<tr><td>wmAlignY</td><td>$wmAlignY</td></tr>";
+		print "</table>";
+	}
 
-    $srcSize = getDimensions($src);
-    $overlaySize = getDimensions($wmName);
-    if (strlen($wmName)) {
-        switch($gallery->app->graphics) {
-            case 'ImageMagick':
-                $overlayFile = $wmName;
-            break;
+	$srcSize = getDimensions($src);
+	$overlaySize = getDimensions($wmName);
+	if (strlen($wmName)) {
+		switch($gallery->app->graphics) {
+			case 'ImageMagick':
+				$overlayFile = $wmName;
+			break;
 
-            case 'NetPBM':
-                if (eregi('\.png$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
-                    $tmpOverlay = 1;
-                }
-                elseif (eregi('\.tiff?$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
-                    $tmpOverlay = 1;
-                }
-                elseif (eregi('\.gif$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
-                    $tmpOverlay = 1;
-                }
-                else {
-                    $alphaFile = $wmName;
-                    if (strlen($wmAlphaName)) {
-                        $overlayFile = $wmAlphaName;
-                    }
-                }
-            break;
+			case 'NetPBM':
+				if (eregi('\.png$',$wmName, $regs)) {
+					list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
+					$tmpOverlay = 1;
+				}
+				elseif (eregi('\.tiff?$',$wmName, $regs)) {
+					list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
+					$tmpOverlay = 1;
+				}
+				elseif (eregi('\.gif$',$wmName, $regs)) {
+					list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
+					$tmpOverlay = 1;
+				}
+				else {
+					$alphaFile = $wmName;
+					if (strlen($wmAlphaName)) {
+						$overlayFile = $wmAlphaName;
+					}
+				}
+			break;
 
-            default:
-                echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);
-            return false;
-        }
-    } else {
-        echo gallery_error(gTranslate('core', "No watermark name specified!"));
-        return false;
-    }
+			default:
+				echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);
+			return false;
+		}
+	} else {
+		echo gallery_error(gTranslate('core', "No watermark name specified!"));
+		return false;
+	}
 
-    // Set or Clip $wmAlignX and $wmAlignY
-    switch ($wmAlign) {
-        case 1: // Top - Left
-            $wmAlignX = 0;
-            $wmAlignY = 0;
-        break;
-        case 2: // Top
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
-            $wmAlignY = 0;
-        break;
-        case 3: // Top - Right
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]);
-            $wmAlignY = 0;
-        break;
-        case 4: // Left
-            $wmAlignX = 0;
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
-        break;
-        case 5: // Center
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
-        break;
-        case 6: // Right
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]);
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
-        break;
-        case 7: // Bottom - Left
-            $wmAlignX = 0;
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]);
-        break;
-        case 8: // Bottom
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]);
-        break;
-        case 9: // Bottom Right
-            $wmAlignX = ($srcSize[0] - $overlaySize[0]);
-            $wmAlignY = ($srcSize[1] - $overlaySize[1]);
-        break;
-        case 10: // Other
-            // Check for percents
-            if (ereg('([0-9]+)(\%?)', $wmAlignX, $regs)) {
-                if ($regs[2] == '%') {
-                    $wmAlignX = round($regs[1] / 100 * ($srcSize[0] - $overlaySize[0]));
-                } else {
-                    $wmAlignX = $regs[1];
-                }
-            } else {
-                $wmAlignX = 0;
-            }
+	// Set or Clip $wmAlignX and $wmAlignY
+	switch ($wmAlign) {
+		case 1: // Top - Left
+			$wmAlignX = 0;
+			$wmAlignY = 0;
+		break;
+		case 2: // Top
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+			$wmAlignY = 0;
+		break;
+		case 3: // Top - Right
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]);
+			$wmAlignY = 0;
+		break;
+		case 4: // Left
+			$wmAlignX = 0;
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+		break;
+		case 5: // Center
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+		break;
+		case 6: // Right
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]);
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]) / 2;
+		break;
+		case 7: // Bottom - Left
+			$wmAlignX = 0;
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]);
+		break;
+		case 8: // Bottom
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]) / 2;
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]);
+		break;
+		case 9: // Bottom Right
+			$wmAlignX = ($srcSize[0] - $overlaySize[0]);
+			$wmAlignY = ($srcSize[1] - $overlaySize[1]);
+		break;
+		case 10: // Other
+			// Check for percents
+			if (ereg('([0-9]+)(\%?)', $wmAlignX, $regs)) {
+				if ($regs[2] == '%') {
+					$wmAlignX = round($regs[1] / 100 * ($srcSize[0] - $overlaySize[0]));
+				} else {
+					$wmAlignX = $regs[1];
+				}
+			} else {
+				$wmAlignX = 0;
+			}
 
-            if (ereg('([0-9]+)(\%?)', $wmAlignY, $regs)) {
-                if ($regs[2] == '%') {
-                    $wmAlignY = round($regs[1] / 100 * ($srcSize[1] - $overlaySize[1]));
-                } else {
-                    $wmAlignY = $regs[1];
-                }
-            } else {
-                $wmAlignY = 0;
-            }
+			if (ereg('([0-9]+)(\%?)', $wmAlignY, $regs)) {
+				if ($regs[2] == '%') {
+					$wmAlignY = round($regs[1] / 100 * ($srcSize[1] - $overlaySize[1]));
+				} else {
+					$wmAlignY = $regs[1];
+				}
+			} else {
+				$wmAlignY = 0;
+			}
 
-            // clip left side
-            if ($wmAlignX < 1) {
-                $wmAlignX = 0;
-            }
-            // clip right side
-            elseif ($wmAlignX > ($srcSize[0] - $overlaySize[0])) {
-                $wmAlignX = ($srcSize[0] - $overlaySize[0]);
-            }
-            // clip top
-            if ($wmAlignY < 1) {
-                $wmAlignY = 0;
-            }
-            // clip bottom
-            elseif ($wmAlignY > ($srcSize[1] - $overlaySize[1])) {
-                $wmAlignY = ($srcSize[1] - $overlaySize[1]);
-            }
-        break;
-    } // end switch ($wmAlign)
+			// clip left side
+			if ($wmAlignX < 1) {
+				$wmAlignX = 0;
+			}
+			// clip right side
+			elseif ($wmAlignX > ($srcSize[0] - $overlaySize[0])) {
+				$wmAlignX = ($srcSize[0] - $overlaySize[0]);
+			}
+			// clip top
+			if ($wmAlignY < 1) {
+				$wmAlignY = 0;
+			}
+			// clip bottom
+			elseif ($wmAlignY > ($srcSize[1] - $overlaySize[1])) {
+				$wmAlignY = ($srcSize[1] - $overlaySize[1]);
+			}
+		break;
+	} // end switch ($wmAlign)
 
-    $wmAlignX = floor($wmAlignX);
-    $wmAlignY = floor($wmAlignY);
+	$wmAlignX = floor($wmAlignX);
+	$wmAlignY = floor($wmAlignY);
 
-    if ($wmAlignX > 0) {
-        $wmAlignX = '+'. $wmAlignX;
-    }
+	if ($wmAlignX > 0) {
+		$wmAlignX = '+'. $wmAlignX;
+	}
 
-    if ($wmAlignY > 0) {
-        $wmAlignY = '+'. $wmAlignY;
-    }
+	if ($wmAlignY > 0) {
+		$wmAlignY = '+'. $wmAlignY;
+	}
 
-    // Execute
-    switch($gallery->app->graphics) {
-        case 'ImageMagick':
-            $srcOperator = "-geometry $wmAlignX$wmAlignY $overlayFile";
-            exec_wrapper(ImCmd('composite', $srcOperator, $src, '', $out));
-        break;
+	// Execute
+	switch($gallery->app->graphics) {
+		case 'ImageMagick':
+			$srcOperator = "-geometry $wmAlignX$wmAlignY $overlayFile";
+			exec_wrapper(ImCmd('composite', $srcOperator, $src, '', $out));
+		break;
 
-        case 'NetPBM':
-            $args  = "-yoff=$wmAlignY -xoff=$wmAlignX ";
-            if ($alphaFile) {
-                $args .= "-alpha=$alphaFile ";
-            }
-            $args .= $overlayFile;
-            exec_wrapper(toPnmCmd($src) ." | ". NetPBM($gallery->app->pnmcomp, $args) ." | " . fromPnmCmd($out));
-        break;
-    }
+		case 'NetPBM':
+			$args  = "-yoff=$wmAlignY -xoff=$wmAlignX ";
+			if ($alphaFile) {
+				$args .= "-alpha=$alphaFile ";
+			}
+			$args .= $overlayFile;
+			exec_wrapper(toPnmCmd($src) ." | ". NetPBM($gallery->app->pnmcomp, $args) ." | " . fromPnmCmd($out));
+		break;
+	}
 
-    // copy exif headers from original image to rotated image
-    if (isset($gallery->app->use_exif)) {
-        $path = $gallery->app->use_exif;
-        exec_internal(fs_import_filename($path, 1) . " -te $src $out");
-    }
+	// copy exif headers from original image to rotated image
+	if (isset($gallery->app->use_exif)) {
+		$path = $gallery->app->use_exif;
+		exec_internal(fs_import_filename($path, 1) . " -te $src $out");
+	}
 
-    // Test to see if it worked, and copy Temp file if needed
-    if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
-        if ($useTemp) {
-            fs_copy($out, $dest);
-            fs_unlink($out);
-        }
-        if (!empty($tmpOverlay)) {
-            fs_unlink($overlayFile);
-            if ($alphaFile) {
-                fs_unlink($alphaFile);
-            }
-        }
-        return 1;
-    } else {
-        return 0;
-    }
+	// Test to see if it worked, and copy Temp file if needed
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
+		if ($useTemp) {
+			fs_copy($out, $dest);
+			fs_unlink($out);
+		}
+		if (!empty($tmpOverlay)) {
+			fs_unlink($overlayFile);
+			if ($alphaFile) {
+				fs_unlink($alphaFile);
+			}
+		}
+		return 1;
+	} else {
+		return 0;
+	}
 } // end watermark_image()
 
 /**
  * Rotates an images.
  *
- * @param string $src       filename of the source image.
- * @param string $dest      filename of the destination image (can be the same).
- * @param string $target    degree of rotation.
- * @param string $type      filetype.
- * @return boolean          true if successfully rotated.
+ * @param string $src	   filename of the source image.
+ * @param string $dest	  filename of the destination image (can be the same).
+ * @param string $target	degree of rotation.
+ * @param string $type	  filetype.
+ * @return boolean		  true if successfully rotated.
  */
 function rotate_image($src, $dest, $target, $type) {
-    global $gallery;
+	global $gallery;
 
-    if (!strcmp($src, $dest)) {
-        $useTemp = true;
-        $out = "$dest.tmp";
-    }
-    else {
-        $out = $dest;
-    }
+	if (!strcmp($src, $dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+	}
 
-    $outFile = fs_import_filename($out, 1);
-    $srcFile = fs_import_filename($src, 1);
+	$outFile = fs_import_filename($out, 1);
+	$srcFile = fs_import_filename($src, 1);
 
-    $type = strtolower($type);
-    if (!empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
-        debugMessage(gTranslate('core', "Using jpegtran for rotation"), __FILE__, __LINE__, 3);
-        if (!strcmp($target, '90')) {
-            $args = '-rotate 90';
-        }
-        elseif (!strcmp($target, '180')){
-            $args = '-rotate 180';
-        }
-        elseif (!strcmp($target, '-90')) {
-            $args = '-rotate 270';
-        }
-        elseif (!strcmp($target, 'fv')) {
-            $args = '-flip vertical';
-        }
-        elseif (!strcmp($target, 'fh')) {
-            $args = '-flip horizontal';
-        }
-        elseif (!strcmp($target, 'tr')) {
-            $args = '-transpose';
-        }
-        elseif (!strcmp($target, 'tv')) {
-            $args = '-transverse';
-        }
-        else {
-            $args = '';
-        }
+	$type = strtolower($type);
+	if (!empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
+		debugMessage(gTranslate('core', "Using jpegtran for rotation"), __FILE__, __LINE__, 3);
+		if (!strcmp($target, '90')) {
+			$args = '-rotate 90';
+		}
+		elseif (!strcmp($target, '180')){
+			$args = '-rotate 180';
+		}
+		elseif (!strcmp($target, '-90')) {
+			$args = '-rotate 270';
+		}
+		elseif (!strcmp($target, 'fv')) {
+			$args = '-flip vertical';
+		}
+		elseif (!strcmp($target, 'fh')) {
+			$args = '-flip horizontal';
+		}
+		elseif (!strcmp($target, 'tr')) {
+			$args = '-transpose';
+		}
+		elseif (!strcmp($target, 'tv')) {
+			$args = '-transverse';
+		}
+		else {
+			$args = '';
+		}
 
-        $path = $gallery->app->use_jpegtran;
-        // -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
-        exec_internal(fs_import_filename($path, 1) . " $args -trim -copy all -outfile $outFile $srcFile");
-    }
-    else {
-        switch($gallery->app->graphics) {
-            case "NetPBM":
-                debugMessage(gTranslate('core', "Using netPBM for rotation"), __FILE__, __LINE__, 3);
+		$path = $gallery->app->use_jpegtran;
+		// -copy all ensures all headers (i.e. EXIF) are copied to the rotated image
+		exec_internal(fs_import_filename($path, 1) . " $args -trim -copy all -outfile $outFile $srcFile");
+	}
+	else {
+		switch($gallery->app->graphics) {
+			case "NetPBM":
+				debugMessage(gTranslate('core', "Using netPBM for rotation"), __FILE__, __LINE__, 3);
 
-                if (!strcmp($target, '90')) {
-                    $args = '-cw';
-                }
-                elseif (!strcmp($target, '180')) {
-                    $args = '-r180';
-                }
-                elseif (!strcmp($target, '-90')) {
-                    $args = '-ccw';
-                }
-                elseif (!strcmp($target, 'fv')) {
-                    $args = '-tb';
-                }
-                elseif (!strcmp($target, 'fh')) {
-                    $args = '-lr';
-                }
-                elseif (!strcmp($target, 'tr')) {
-                    $args = '-transpose';
-                }
-                elseif (!strcmp($target, 'tv')) {
-                    // Requires Netpbm 10.13 and higher
-                    $args = '-xform=transpose';
-                }
-                else {
-                    $args = '';
-                }
+				if (!strcmp($target, '90')) {
+					$args = '-cw';
+				}
+				elseif (!strcmp($target, '180')) {
+					$args = '-r180';
+				}
+				elseif (!strcmp($target, '-90')) {
+					$args = '-ccw';
+				}
+				elseif (!strcmp($target, 'fv')) {
+					$args = '-tb';
+				}
+				elseif (!strcmp($target, 'fh')) {
+					$args = '-lr';
+				}
+				elseif (!strcmp($target, 'tr')) {
+					$args = '-transpose';
+				}
+				elseif (!strcmp($target, 'tv')) {
+					// Requires Netpbm 10.13 and higher
+					$args = '-xform=transpose';
+				}
+				else {
+					$args = '';
+				}
 
-                exec_wrapper(toPnmCmd($src) . ' | ' .
-                    NetPBM('pnmflip', $args) .
-                    ' | ' . fromPnmCmd($out));
+				exec_wrapper(toPnmCmd($src) . ' | ' .
+					NetPBM('pnmflip', $args) .
+					' | ' . fromPnmCmd($out));
 
-                // copy exif headers from original image to rotated image
-                if (isset($gallery->app->use_exif)) {
-                    $path = $gallery->app->use_exif;
-                    exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
-                }
+				// copy exif headers from original image to rotated image
+				if (isset($gallery->app->use_exif)) {
+					$path = $gallery->app->use_exif;
+					exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
+				}
 
-                break;
+				break;
 
-            case "ImageMagick":
-                debugMessage(gTranslate('core', "Using ImageMagick for rotation"), __FILE__, __LINE__, 3);
-                if (!strcmp($target, '90')) {
-                    $destOperator = '-rotate 90';
-                }
-                elseif (!strcmp($target, '180')) {
-                    $destOperator = '-rotate 180';
-                }
-                elseif (!strcmp($target, '-90')) {
-                    $destOperator = '-rotate -90';
-                }
-                elseif (!strcmp($target, 'fv')) {
-                    $destOperator = '-flip';
-                }
-                elseif (!strcmp($target, 'fh')) {
-                    $destOperator = '-flop';
-                }
-                elseif (!strcmp($target, 'tr')) {
-                    $destOperator = '-affine 0,1,1,0,0,0 -transform';
-                }
-                elseif (!strcmp($target, 'tv')) {
-                    $destOperator = '-affine 0,-1,-1,0,0,0 -transform';
-                }
-                else {
-                    $destOperator = '';
-                }
+			case "ImageMagick":
+				debugMessage(gTranslate('core', "Using ImageMagick for rotation"), __FILE__, __LINE__, 3);
+				if (!strcmp($target, '90')) {
+					$destOperator = '-rotate 90';
+				}
+				elseif (!strcmp($target, '180')) {
+					$destOperator = '-rotate 180';
+				}
+				elseif (!strcmp($target, '-90')) {
+					$destOperator = '-rotate -90';
+				}
+				elseif (!strcmp($target, 'fv')) {
+					$destOperator = '-flip';
+				}
+				elseif (!strcmp($target, 'fh')) {
+					$destOperator = '-flop';
+				}
+				elseif (!strcmp($target, 'tr')) {
+					$destOperator = '-affine 0,1,1,0,0,0 -transform';
+				}
+				elseif (!strcmp($target, 'tv')) {
+					$destOperator = '-affine 0,-1,-1,0,0,0 -transform';
+				}
+				else {
+					$destOperator = '';
+				}
 
-                $status = exec_wrapper(ImCmd('convert', '', $srcFile, $destOperator, $outFile));
+				$status = exec_wrapper(ImCmd('convert', '', $srcFile, $destOperator, $outFile));
 
-                break;
+				break;
 
-            default:
-                if (isDebugging()) {
-                    echo "<br>". gTranslate('core', "You have no graphics package configured for use!") ."<br>";
-                }
-                return false;
-                break;
-        }
-    }
+			default:
+				if (isDebugging()) {
+					echo "<br>". gTranslate('core', "You have no graphics package configured for use!") ."<br>";
+				}
+				return false;
+				break;
+		}
+	}
 
-    if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
-        if ($useTemp) {
-            fs_copy($out, $dest);
-            fs_unlink($out);
-        }
-        return true;
-    }
-    else {
-        return false;
-    }
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
+		if ($useTemp) {
+			fs_copy($out, $dest);
+			fs_unlink($out);
+		}
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
-    echo debugMessage(gTranslate('core', "Cropping Image"),__FILE__, __LINE__);
-    global $gallery;
+	echo debugMessage(gTranslate('core', "Cropping Image"),__FILE__, __LINE__);
+	global $gallery;
 
-    if (!strcmp($src,$dest)) {
-        $useTemp = true;
-        $out = "$dest.tmp";
-    }
-    else {
-        $out = $dest;
-    }
+	if (!strcmp($src,$dest)) {
+		$useTemp = true;
+		$out = "$dest.tmp";
+	}
+	else {
+		$out = $dest;
+	}
 
-    $srcFile = fs_import_filename($src);
-    $outFile = fs_import_filename($out);
+	$srcFile = fs_import_filename($src);
+	$outFile = fs_import_filename($out);
 
-    switch($gallery->app->graphics) {
-        case "NetPBM":
-            exec_wrapper(toPnmCmd($src) .
-            " | " .
-            NetPBM("pnmcut") .
-            " $offsetX $offsetY $width $height" .
-            " | " .
-            fromPnmCmd($out));
-        break;
-        case "ImageMagick":
-            if (floor(getImVersion()) < 6) {
-                $repage = "-page +0+0";
-            }
-            else {
-                $repage = "+repage";
-            }
-            exec_wrapper(ImCmd('convert', '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
-        break;
-        default:
-            if (isDebugging()) {
-                echo "<br>" . gTranslate('core', "You have no graphics package configured for use!") ."<br>";
-                return false;
-            }
-        break;
-    }
+	switch($gallery->app->graphics) {
+		case "NetPBM":
+			exec_wrapper(toPnmCmd($src) .
+			" | " .
+			NetPBM("pnmcut") .
+			" $offsetX $offsetY $width $height" .
+			" | " .
+			fromPnmCmd($out));
+		break;
+		case "ImageMagick":
+			if (floor(getImVersion()) < 6) {
+				$repage = "-page +0+0";
+			}
+			else {
+				$repage = "+repage";
+			}
+			exec_wrapper(ImCmd('convert', '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
+		break;
+		default:
+			if (isDebugging()) {
+				echo "<br>" . gTranslate('core', "You have no graphics package configured for use!") ."<br>";
+				return false;
+			}
+		break;
+	}
 
-    if (isDebugging(2)) {
-        echo "Source";
-        getDimensions($src);
-        echo "Dest";
-        getDimensions($dest);
-    }
+	if (isDebugging(2)) {
+		echo "Source";
+		getDimensions($src);
+		echo "Dest";
+		getDimensions($dest);
+	}
 
-    if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
-        if (isset($useTemp)) {
-            fs_copy($out, $dest);
-            fs_unlink($out);
-        }
-        return true;
-    } else {
-        return false;
-    }
+	if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
+		if (isset($useTemp)) {
+			fs_copy($out, $dest);
+			fs_unlink($out);
+		}
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function cropImageToRatio($src, $dest, $destSize, $ratio) {
-    list($width, $height) = getDimensions($src);
-    $size = 0;
+	list($width, $height) = getDimensions($src);
+	$size = 0;
 
-    switch($ratio) {
-        case '1/1':
-        debugMessage(sprintf(gTranslate('core', "Generating squared Version to %dpx"), $destSize), __FILE__, __LINE__);
+	switch($ratio) {
+		case '1/1':
+		debugMessage(sprintf(gTranslate('core', "Generating squared Version to %dpx"), $destSize), __FILE__, __LINE__);
 
-        if($width > $height && $height > $destSize) {
-            $offsetX = round(($width - $height)/2);
-            $offsetY = 0;
-            $size = $height;
-        }
-        elseif ($height > $width && $width > $destSize) {
-            $offsetX = 0;
-            $offsetY = round(($height - $width)/2);
-            $size = $width;
-        }
+		if($width > $height && $height > $destSize) {
+			$offsetX = round(($width - $height)/2);
+			$offsetY = 0;
+			$size = $height;
+		}
+		elseif ($height > $width && $width > $destSize) {
+			$offsetX = 0;
+			$offsetY = round(($height - $width)/2);
+			$size = $width;
+		}
 
-        if($size >0) {
-            $ret = cut_image($src, $dest,
-            $offsetX,
-            $offsetY,
-            $size,
-            $size);
-        }
-        else {
-            debugMessage(gTranslate('core', "No Cropping Done"), __FILE__, __LINE__);
-            $ret = false;
-        }
-        break;
-    }
-    return $ret;
+		if($size >0) {
+			$ret = cut_image($src, $dest,
+			$offsetX,
+			$offsetY,
+			$size,
+			$size);
+		}
+		else {
+			debugMessage(gTranslate('core', "No Cropping Done"), __FILE__, __LINE__);
+			$ret = false;
+		}
+		break;
+	}
+	return $ret;
 }
 
 function valid_image($file) {
-    if (($type = getimagesize($file)) == FALSE) {
-        debugMessage(sprintf(gTranslate('core', "Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
-        return 0;
-    }
+	if (($type = getimagesize($file)) == FALSE) {
+		debugMessage(sprintf(gTranslate('core', "Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
+		return 0;
+	}
 
-    debugMessage(sprintf(gTranslate('core', "File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
+	debugMessage(sprintf(gTranslate('core', "File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
 
-    switch($type[2]) {
-        case 1: // GIF
-        case 2: // JPEG
-        case 3: // PNG
-            return 1;
-        break;
+	switch($type[2]) {
+		case 1: // GIF
+		case 2: // JPEG
+		case 3: // PNG
+			return 1;
+		break;
 
-        default:
-            return 0;
-        break;
-    }
+		default:
+			return 0;
+		break;
+	}
 }
 
 function toPnmCmd($file) {
-    global $gallery;
+	global $gallery;
 
-    $type = getExtension($file);
-    switch($type) {
+	$type = getExtension($file);
+	switch($type) {
 	case 'png':
-	    $cmd = "pngtopnm";
+		$cmd = "pngtopnm";
 	break;
 	case 'jpg':
 	case 'jpeg':
-	    $cmd = "jpegtopnm";
+		$cmd = "jpegtopnm";
 	break;
 	case 'gif':
-	    $cmd = "giftopnm";
+		$cmd = "giftopnm";
 	break;
-    }
+	}
 
-    if (!empty($cmd)) {
+	if (!empty($cmd)) {
 	return netPBM($cmd) .' '. fs_import_filename($file);
-    }
-    else {
+	}
+	else {
 	echo gallery_error(
 	  sprintf(gTranslate('core', "Files with type %s are not supported by Gallery with netPBM"), $type)
 	);
 	return '';
-    }
+	}
 }
 
 function fromPnmCmd($file, $quality = NULL) {
-    global $gallery;
-    if ($quality == NULL) {
+	global $gallery;
+	if ($quality == NULL) {
 	$quality = $gallery->app->jpegImageQuality;
-    }
+	}
 
-    if (eregi("\.png(\.tmp)?\$", $file)) {
+	if (eregi("\.png(\.tmp)?\$", $file)) {
 	$cmd = netPBM("pnmtopng");
-    } elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
+	} elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
 	$cmd = netPBM($gallery->app->pnmtojpeg, "--quality=$quality");
-    } elseif (eregi("\.gif(\.tmp)?\$", $file)) {
+	} elseif (eregi("\.gif(\.tmp)?\$", $file)) {
 	$cmd = netPBM("ppmquant", "256") . " | " . NetPBM("ppmtogif");
-    }
+	}
 
-    if (!empty($cmd)) {
+	if (!empty($cmd)) {
 	return "$cmd > " . fs_import_filename($file);
-    } else {
+	} else {
 	echo gallery_error(
 	  sprintf(gTranslate('core', "Files with type %s are not supported by Gallery with netPBM"),
 	  getExtension($file))
 	);
 	return '';
-    }
+	}
 }
 
 function netPBM($cmd, $args = '') {
@@ -716,136 +716,136 @@ function netPBM($cmd, $args = '') {
  * @return  $string $cmdLine	  The complete commandline
  */
 function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest) {
-    global $gallery;
-    static $ImVersion;
+	global $gallery;
+	static $ImVersion;
 
-    if(empty($ImVersion)) {
-        $ImVersion = floor(getImVersion());
-    }
-    $cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
+	if(empty($ImVersion)) {
+		$ImVersion = floor(getImVersion());
+	}
+	$cmd = fs_import_filename($gallery->app->ImPath . "/$cmd");
 
-    if($ImVersion < 6) {
-        $cmdLine = "$cmd $srcOperator $destOperator $src $dest";
-    }
-    else {
-        $cmdLine = "$cmd $srcOperator $src $destOperator $dest";
-    }
+	if($ImVersion < 6) {
+		$cmdLine = "$cmd $srcOperator $destOperator $src $dest";
+	}
+	else {
+		$cmdLine = "$cmd $srcOperator $src $destOperator $dest";
+	}
 
-    return $cmdLine;
+	return $cmdLine;
 }
 
 function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepProfiles = false, $createThumbnail = false) {
-    debugMessage(sprintf(gTranslate('core', "Compressing image: %s"), $src), __FILE__, __LINE__);
-    global $gallery;
-    static $ImVersion;
+	debugMessage(sprintf(gTranslate('core', "Compressing image: %s"), $src), __FILE__, __LINE__);
+	global $gallery;
+	static $ImVersion;
 
-    if (empty($src) || empty($dest)) {
-        echo gallery_error(gTranslate('core', "Not all necessary params for resizing given."));
-        echo debugMessage(sprintf(gTranslate('core', "Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
-        return false;
-    }
+	if (empty($src) || empty($dest)) {
+		echo gallery_error(gTranslate('core', "Not all necessary params for resizing given."));
+		echo debugMessage(sprintf(gTranslate('core', "Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
+		return false;
+	}
 
-    $stripProfiles = '';
+	$stripProfiles = '';
 
-    if(empty($ImVersion)) {
-        $ImVersion = floor(getImVersion());
-    }
+	if(empty($ImVersion)) {
+		$ImVersion = floor(getImVersion());
+	}
 
-    if ($targetSize === 'off') {
-        $targetSize = 0;
-    }
+	if ($targetSize === 'off') {
+		$targetSize = 0;
+	}
 
-    $srcFile = fs_import_filename($src);
-    $destFile = fs_import_filename($dest);
+	$srcFile = fs_import_filename($src);
+	$destFile = fs_import_filename($dest);
 
-    switch($gallery->app->graphics)	{
-        case "NetPBM":
-	    if ($targetSize) {
-                $result = exec_wrapper(toPnmCmd($src) .' | '.
-              		NetPBM('pnmscale', " -xysize $targetSize $targetSize")  .' | '.
-              		fromPnmCmd($dest, $quality)
+	switch($gallery->app->graphics)	{
+		case "NetPBM":
+		if ($targetSize) {
+				$result = exec_wrapper(toPnmCmd($src) .' | '.
+			  		NetPBM('pnmscale', " -xysize $targetSize $targetSize")  .' | '.
+			  		fromPnmCmd($dest, $quality)
 		);
-	    }
-	    else {
-                 /* If no targetSize is given, then this is just for setting (decreasing) quality */
-                $result = exec_wrapper(toPnmCmd($src) .' | '. fromPnmCmd($dest, $quality));
-	    }
+		}
+		else {
+				 /* If no targetSize is given, then this is just for setting (decreasing) quality */
+				$result = exec_wrapper(toPnmCmd($src) .' | '. fromPnmCmd($dest, $quality));
+		}
 
-            if (!$result) {
-                return false;
-            }
+			if (!$result) {
+				return false;
+			}
 
-            /* copy over EXIF data if a JPEG if $keepProfiles is set.
-            *  Unfortunately, we can't also keep comments.
-            */
-            if ($keepProfiles && eregi('\.jpe?g$', $src)) {
-                if (isset($gallery->app->use_exif)) {
-                    exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
-                    . $srcFile . ' ' . $destFile);
-                    return true;
-                } else {
-                    processingMsg(gTranslate('core', 'Unable to preserve EXIF data (jhead not installed)') . "\n");
-                    return true;
-                }
-            }
-        break;
-        case "ImageMagick":
-            /* Set the stripProfiles parameter based on the version of ImageMagick being used.
-            * 6.0.0 changed the parameters.
-            * Preserve comment, EXIF data if a JPEG if $keepProfiles is set.
-            */
-            if(!$keepProfiles || $createThumbnail) {
-                switch ($ImVersion) {
-                    case '5':
-                        $stripProfiles = ' +profile \'*\' ';
-                        break;
-                    case '6':
-                        $stripProfiles = ' -strip ';
-                        break;
-                }
-            }
+			/* copy over EXIF data if a JPEG if $keepProfiles is set.
+			*  Unfortunately, we can't also keep comments.
+			*/
+			if ($keepProfiles && eregi('\.jpe?g$', $src)) {
+				if (isset($gallery->app->use_exif)) {
+					exec_wrapper(fs_import_filename($gallery->app->use_exif, 1) . ' -te '
+					. $srcFile . ' ' . $destFile);
+					return true;
+				} else {
+					processingMsg(gTranslate('core', 'Unable to preserve EXIF data (jhead not installed)') . "\n");
+					return true;
+				}
+			}
+		break;
+		case "ImageMagick":
+			/* Set the stripProfiles parameter based on the version of ImageMagick being used.
+			* 6.0.0 changed the parameters.
+			* Preserve comment, EXIF data if a JPEG if $keepProfiles is set.
+			*/
+			if(!$keepProfiles || $createThumbnail) {
+				switch ($ImVersion) {
+					case '5':
+						$stripProfiles = ' +profile \'*\' ';
+						break;
+					case '6':
+						$stripProfiles = ' -strip ';
+						break;
+				}
+			}
 
-            $destOperator = '';
-            $srcOperator = '';
+			$destOperator = '';
+			$srcOperator = '';
 
-            /* If no targetSize is given, then this is just for setting (decreasing) quality */
-            $destOperator = "-quality $quality";
+			/* If no targetSize is given, then this is just for setting (decreasing) quality */
+			$destOperator = "-quality $quality";
 
-            if ($targetSize) {
-                if ($createThumbnail) {
-                    if ($ImVersion < 6) {
-                        $destOperator .= " -resize ${targetSize}x${targetSize}";
-                    }
-                    else {
-                        $srcOperator = "-size ${targetSize}x${targetSize}";
-                        $destOperator .= " -thumbnail ${targetSize}x${targetSize}";
-                    }
-                }
-                else {
-                    if ($ImVersion < 6) {
-                        $destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
-                    }
-                    else {
-                        if($gallery->app->IM_HQ == 'yes') {
-                            echo debugMessage(gTranslate('core', "Using IM high quality"), __FILE__, __LINE__, 3);
-                        }
-                        else {
-                            $srcOperator = "-size ${targetSize}x${targetSize}";
-                            echo debugMessage(gTranslate('core', "Not using IM high quality"), __FILE__, __LINE__, 3);
-                        }
-                        $destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
-                    }
-                }
-                //$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
-            }
+			if ($targetSize) {
+				if ($createThumbnail) {
+					if ($ImVersion < 6) {
+						$destOperator .= " -resize ${targetSize}x${targetSize}";
+					}
+					else {
+						$srcOperator = "-size ${targetSize}x${targetSize}";
+						$destOperator .= " -thumbnail ${targetSize}x${targetSize}";
+					}
+				}
+				else {
+					if ($ImVersion < 6) {
+						$destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
+					}
+					else {
+						if($gallery->app->IM_HQ == 'yes') {
+							echo debugMessage(gTranslate('core', "Using IM high quality"), __FILE__, __LINE__, 3);
+						}
+						else {
+							$srcOperator = "-size ${targetSize}x${targetSize}";
+							echo debugMessage(gTranslate('core', "Not using IM high quality"), __FILE__, __LINE__, 3);
+						}
+						$destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
+					}
+				}
+				//$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
+			}
 
-            return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
-        break;
-        default:
-            echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);
-            return false;
-        break;
-    }
-    return false;
+			return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
+		break;
+		default:
+			echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);
+			return false;
+		break;
+	}
+	return false;
 }
 ?>

@@ -21,7 +21,7 @@
   */
  
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Dutch
  */
@@ -49,7 +49,7 @@
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
 	$nls['alias']['dutch'] = 		'nl_NL' ;
-	$nls['alias']['nld'] =                  'nl_NL' ;
+	$nls['alias']['nld'] =				  'nl_NL' ;
 	$nls['alias']['nl_BE'] = 		'nl_NL' ;
 	$nls['alias']['nl_NL.ISO8859-1'] =	'nl_NL' ;
 
@@ -61,6 +61,6 @@
 /**
  * postNuke
  */
-	$nls['postnuke']['nl_NL'] =             'nld';
+	$nls['postnuke']['nl_NL'] =			 'nld';
 
 ?>

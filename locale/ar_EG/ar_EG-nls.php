@@ -21,7 +21,7 @@
  */
 
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Arabian / Egypt
  */
@@ -38,7 +38,7 @@
 /**
  * Native languagename
  */
-	$nls['language']['ar_EG'] =     'Arabic / Egypt (iso-8859-6)';
+	$nls['language']['ar_EG'] =	 'Arabic / Egypt (iso-8859-6)';
 
 /**
  * Alias for languages with different browser and gettext codes
@@ -51,17 +51,17 @@
  */
 	$nls['alias']['arabic'] =		'ar_EG' ;
  	$nls['alias']['ara'] =			'ar_EG';
-        $nls['alias']['ar_EG.ISO8859-6'] =	'ar_EG';
+		$nls['alias']['ar_EG.ISO8859-6'] =	'ar_EG';
 
 /**
  * phpNuke
  **/
-        $nls['phpnuke']['ar_EG'] =  'arabic';
+		$nls['phpnuke']['ar_EG'] =  'arabic';
 
 /**
  * postNuke
  */
-        $nls['postnuke']['ar_EG'] = 'ara';
+		$nls['postnuke']['ar_EG'] = 'ara';
 
 /**
  * Charset

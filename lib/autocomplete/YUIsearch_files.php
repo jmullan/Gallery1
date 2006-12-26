@@ -34,9 +34,9 @@ include(dirname(dirname(dirname(__FILE__))) .'/util.php');
 setGalleryPaths();
 
 if (getOS() == OS_WINDOWS) {
-    require(GALLERY_BASE . '/platform/fs_win32.php');
+	require(GALLERY_BASE . '/platform/fs_win32.php');
 } else {
-    require(GALLERY_BASE . '/platform/fs_unix.php');
+	require(GALLERY_BASE . '/platform/fs_unix.php');
 }
 
 
@@ -45,59 +45,59 @@ $results = search($query);
 sendResults($results);
 
 function search($query) {
-    $results = array();
+	$results = array();
 
-    if (strlen($query) == 0) {
-        return array();
-    }
+	if (strlen($query) == 0) {
+		return array();
+	}
 
-    if(is_dir($query)) {
-        $dirname = $query;
-    }
-    else {
-        $dirname = dirname($query);
-        $basename = basename($query);
-    }
+	if(is_dir($query)) {
+		$dirname = $query;
+	}
+	else {
+		$dirname = dirname($query);
+		$basename = basename($query);
+	}
 
-    if(!realpath($dirname)) {
-        return array();
-    }
+	if(!realpath($dirname)) {
+		return array();
+	}
 
-    $forbidden = array('.', '..');
+	$forbidden = array('.', '..');
 
-    if ($handle = opendir($dirname)) {
-        while (false !== ($file = readdir($handle))) {
-            $ext = getExtension($file);
+	if ($handle = opendir($dirname)) {
+		while (false !== ($file = readdir($handle))) {
+			$ext = getExtension($file);
 
-            if(empty($basename)) {
-                $path = $dirname . $file;
-            }
-            elseif (strpos($file, $basename) === 0) {
-                $path = "$dirname/$file";
-            }
-            else {
-                continue;
-            }
+			if(empty($basename)) {
+				$path = $dirname . $file;
+			}
+			elseif (strpos($file, $basename) === 0) {
+				$path = "$dirname/$file";
+			}
+			else {
+				continue;
+			}
 
-            if (in_array($file, $forbidden) ||
-                fs_fileIsHidden($file) ||
-                (!acceptableFormat($ext) && !acceptableArchive($ext) && !fs_is_dir($path))) {
-                continue;
-            }
-            else {
-                $results[] = $path;
-            }
-        }
-        closedir($handle);
-    }
+			if (in_array($file, $forbidden) ||
+				fs_fileIsHidden($file) ||
+				(!acceptableFormat($ext) && !acceptableArchive($ext) && !fs_is_dir($path))) {
+				continue;
+			}
+			else {
+				$results[] = $path;
+			}
+		}
+		closedir($handle);
+	}
 
-    return $results;
+	return $results;
 }
 
 function sendResults($results) {
-    for ($i = 0; $i < count($results); $i++) {
-        print "$results[$i]\n";
-    }
+	for ($i = 0; $i < count($results); $i++) {
+		print "$results[$i]\n";
+	}
 }
 
 ?>

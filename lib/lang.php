@@ -33,7 +33,7 @@
  * @param   string  $domain
  * @param   string  $singular
  * @param   string  $plural
- * @param   int     $count
+ * @param   int	 $count
  * @param   string  $nonetext
  * @return  string  $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author  Jens Tkotz
@@ -137,10 +137,10 @@ function setLangDefaults($nls) {
 function getEnvLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	global $board_config;                       /* Needed for phpBB2    		*/
-	global $_CONF;                              /* Needed for GeekLog   		*/
+	global $board_config;					   /* Needed for phpBB2			*/
+	global $_CONF;							  /* Needed for GeekLog   		*/
 	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo / Joomla!	*/
-	global $currentlang;                        /* Needed for CPGNuke		*/
+	global $currentlang;						/* Needed for CPGNuke		*/
 
 	$envLang = NULL;
 
@@ -790,7 +790,7 @@ function automaticFieldsList() {
 		'Upload Date'   => gTranslate('common', "Upload Date"),
 		'Capture Date' 	=> gTranslate('common', "Capture Date"),
 		'Dimensions' 	=> gTranslate('common', "Image Size"),
-		'EXIF'          => gTranslate('common', "Additional EXIF Data"));
+		'EXIF'		  => gTranslate('common', "Additional EXIF Data"));
 }
 
 /** These are custom fields which can be entered manual by the User
@@ -798,11 +798,11 @@ function automaticFieldsList() {
  */
 function translateableFields() {
 	return array(
-		'title'		    => gTranslate('common', "title"),
-		'Title'		    => gTranslate('common', "Title"),
+		'title'			=> gTranslate('common', "title"),
+		'Title'			=> gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
-		'AltText'	    => gTranslate('common', "Alt Text / onMouseOver"),
+		'AltText'		=> gTranslate('common', "Alt Text / onMouseOver"),
 	);
 }
 

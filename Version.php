@@ -22,7 +22,7 @@
 ?>
 <?php
 
-$gallery->version = '1.6-alpha3-svn-b32';
+$gallery->version = '1.6-alpha3-svn-b33';
 $gallery->config_version = 100;
 $gallery->album_version = 39;
 $gallery->user_version = 6;
@@ -45,9 +45,9 @@ $modversion['author'] = 'Bharat Mediratta'; // Author
 $modversion['contact'] = $gallery->url; // The Authors Website or Contact Email Address
 $modversion['admin'] = 0; // Leave at 0
 if (!isset($modname) && isset($name)) {
-    $modname = $name;
+	$modname = $name;
 } else {
-    $modname = '';
+	$modname = '';
 }
 $modversion['securityschema'] = array("$modname::" => '::'); // Permission Component
 ?>

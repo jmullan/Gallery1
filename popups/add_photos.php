@@ -37,11 +37,11 @@ $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-	    setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
+		setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
 	}
 } else {
 	if (isset($modeCookie)) {
-	    $mode = $modeCookie;
+		$mode = $modeCookie;
 	}
 }
 printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
@@ -60,10 +60,10 @@ printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
 
 if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteAppletMini.jar') &&
 	file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteHTTPClient.jar')) {
-    $modes['applet_mini'] = gTranslate('core', "Applet");
+	$modes['applet_mini'] = gTranslate('core', "Applet");
 
 	if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteApplet.jar')) {
-	    $modes['applet'] = gTranslate('core', "Applet (big)");
+		$modes['applet'] = gTranslate('core', "Applet (big)");
 	}
 }
 

@@ -25,7 +25,7 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) =
-    getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
+	getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
 
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
@@ -45,8 +45,8 @@ if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
 }
 
 if (isset($formaction) && $formaction == 'delete' && isset($id)) {
-    doctype();
-    echo "\n<html>";
+	doctype();
+	echo "\n<html>";
 
 	if (!empty($albumDelete)) {
 		/* Track down the corresponding photo index and remove it */
@@ -70,16 +70,16 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 	// deleting two albums by mistake
 	if (!isset($albumDelete) || isset($albumMatch)) {
 		$gallery->album->deletePhoto($index);
-		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    // Update guid to reflect change in album contents
+		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));	// Update guid to reflect change in album contents
 
-        $gallery->album->save(array(i18n("%s removed"), $id));
+		$gallery->album->save(array(i18n("%s removed"), $id));
 	}
 
 	if (isset($nextId) && !empty($nextId)) {
-	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
+		dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
 	}
 	else {
-	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
+		dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
 	}
 	return;
 }
@@ -87,7 +87,7 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 printPopupStart(isset($albumDelete) ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo"));
 
 if ($gallery->album && isset($id)) {
-    if (isset($albumDelete)) {
+	if (isset($albumDelete)) {
 	echo makeFormIntro('delete_photo.php',
 	  array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
 	  array('type' => 'popup')
@@ -111,11 +111,11 @@ if ($gallery->album && isset($id)) {
 <?php
 	}
 	else {
-	    echo gTranslate('core', "Do you really want to delete this photo?") ;
-	    echo makeFormIntro('delete_photo.php',
-	      array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
-	      array('type' => 'popup')
-	    );
+		echo gTranslate('core', "Do you really want to delete this photo?") ;
+		echo makeFormIntro('delete_photo.php',
+		  array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
+		  array('type' => 'popup')
+		);
 ?>
 
 <p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
@@ -124,9 +124,9 @@ if ($gallery->album && isset($id)) {
 
 <input type="hidden" name="id" value="<?php echo $id?>">
 <?php
-	    if (isset($nextId)) {
+		if (isset($nextId)) {
 		echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
-	    }
+		}
 	}
 ?>
 <input type="hidden" name="formaction" value="">

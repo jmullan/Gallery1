@@ -381,7 +381,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
  * This check also loads the config.php (if present)
  *
  *
- * @return mixed    NULL, 'unconfigured', 'reconfigure'
+ * @return mixed	NULL, 'unconfigured', 'reconfigure'
  */
 function gallerySanityCheck() {
 	global $gallery, $GALLERY_OK;
@@ -865,7 +865,7 @@ function acceptableArchive($ext) {
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
  * @param  string   $ext
- * @return mixed    $tool   String containting the tool that handles $ext, FALSE when unsupported.
+ * @return mixed	$tool   String containting the tool that handles $ext, FALSE when unsupported.
  * @author Jens Tkotz
  */
 function canDecompressArchive($ext) {
@@ -1188,7 +1188,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 
 			/* After all the preprocessing, NOW ADD THE element
 			 * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
-			 *                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
+			 *				   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
 			*/
 			list($status, $statusMsg) = $gallery->album->addPhoto(
 				$file,
@@ -1279,7 +1279,7 @@ function generate_password($len = 10) {
 
 	while ($len--) {
 		$random  = mt_rand(0, $size);
-		$char    = $alpha[$random];
+		$char	= $alpha[$random];
 
 		// No duplicate characters.
 		if (in_array($char, $used, true)) {
@@ -1292,7 +1292,7 @@ function generate_password($len = 10) {
 	return $result;
 }
 
-function pretty_password($pass, $print, $pre = '    ') {
+function pretty_password($pass, $print, $pre = '	') {
 	$idx = -1;
 	$len = strlen($pass);
 
@@ -1747,9 +1747,9 @@ function get_ecard_template($template_name) {
 
 /**
  * This function parses template and substitutes placeholders
- * @param    array    $ecard		array which contains infos about the ecard
- * @param    string   $ecard_data	string containing the slurped template
- * @param    boolean  $preview		image source is different for preview or final card.
+ * @param	array	$ecard		array which contains infos about the ecard
+ * @param	string   $ecard_data	string containing the slurped template
+ * @param	boolean  $preview		image source is different for preview or final card.
  * @return   string   $ecard_data	modified template data
  */
 function parse_ecard_template($ecard,$ecard_data, $preview = true) {
@@ -1894,8 +1894,8 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 
 /**
  * creates a copy of a album structure
- * @param    array	$albumItemNames	Array containing an albumstructure with absolute filenames.
- * @param    string	$dir		Optional dir, which can be used for recursice purpose.
+ * @param	array	$albumItemNames	Array containing an albumstructure with absolute filenames.
+ * @param	string	$dir		Optional dir, which can be used for recursice purpose.
  * @return   string	$mixed		In success the dirname as string, where the files copied to. Otherwise false.
  * @author   Jens Tkotz
  */
@@ -2021,7 +2021,7 @@ function array_flaten($array) {
 /**
  * This function returns the Gallery Title as a string thats save to show in <title>...</title>
  *
- * @param string $topic     optional
+ * @param string $topic	 optional
  * @return string $ret
  * @author Jens Tkotz
  */

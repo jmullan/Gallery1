@@ -35,7 +35,7 @@ require(dirname(__FILE__) . '/init.php');
 gallerySanityCheck();
 
 list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
-    getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
+	getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
 
 doctype();
 ?>
@@ -45,7 +45,7 @@ doctype();
 	<?php common_header(); ?>
 
 	<script language="JavaScript" type="text/javascript">
-    <!--
+	<!--
 	function enableButtons() {
 		var buttons = document.getElementsByTagName('input');
 
@@ -82,19 +82,19 @@ else if (isset($go_back)) {
 
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
-    $tmp = explode(" ", urldecode($preserve));
-    $preserve = array();
-    foreach ($tmp as $key) {
-        $preserve[$key] = true;
-        if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
-            $gallery->session->configForm->$key = "";
-            continue;
-        }
-    }
-    $preserve = array();
+	$tmp = explode(" ", urldecode($preserve));
+	$preserve = array();
+	foreach ($tmp as $key) {
+		$preserve[$key] = true;
+		if (($gallery->session->configForm->$key = getRequestVar($key)) === NULL) {
+			$gallery->session->configForm->$key = "";
+			continue;
+		}
+	}
+	$preserve = array();
 }
 else {
-    $preserve = array();
+	$preserve = array();
 }
 
 /* Cache passwords in order to prevent them from being erased.
@@ -116,12 +116,12 @@ if (!isset($setup_page)) {
 }
 
 $steps = array(
-    'welcome' => gTranslate('config', "Welcome"),
-    'check' => gTranslate('config', "1- Installation Check"),
-    'constants' => gTranslate('config', "2 - Settings"),
-    'defaults' => gTranslate('config', "3 - Defaults"),
-    'confirm' => gTranslate('config', "4 - Confirm"),
-    'write' => gTranslate('config', "5 - Save")
+	'welcome' => gTranslate('config', "Welcome"),
+	'check' => gTranslate('config', "1- Installation Check"),
+	'constants' => gTranslate('config', "2 - Settings"),
+	'defaults' => gTranslate('config', "3 - Defaults"),
+	'confirm' => gTranslate('config', "4 - Confirm"),
+	'write' => gTranslate('config', "5 - Save")
 );
 
 ?>
@@ -129,11 +129,11 @@ $steps = array(
 <?php
 
 if (array_key_exists($setup_page, $steps)) {
-    include(dirname(__FILE__) ."/$setup_page.inc");
+	include(dirname(__FILE__) ."/$setup_page.inc");
 }
 else {
-    print _("Security violation") .".\n";
-    exit;
+	print _("Security violation") .".\n";
+	exit;
 }
 
 foreach ($preserve as $key => $val) {

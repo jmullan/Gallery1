@@ -54,8 +54,8 @@ if ($gallery->session->albumName) {
 
 // Hack check
 if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
-        echo _("You are not allowed to perform this action!");
-        exit;
+		echo _("You are not allowed to perform this action!");
+		exit;
 }
 
 $albumDB = new AlbumDB(FALSE);
@@ -81,21 +81,21 @@ function process($album = null) {
 		echo "\n<script type=\"text/javascript\">updateProgressBar('albumProgessbar', '',100)</script>";
 	}
 	else {
-	    $count = sizeof($albumDB->outOfDateAlbums);
-	    $onePercent = 100/$count;
-	    $i = 0;
+		$count = sizeof($albumDB->outOfDateAlbums);
+		$onePercent = 100/$count;
+		$i = 0;
 
-	    echo '<br><div class="g-emphasis"><i>' . gTranslate('core', "Statusbox") . '</i></div>';
-	    echo gTranslate('core', "Please ensure there are no errors.");
-	    echo '<div class="albumUpgradeStatus">';
+		echo '<br><div class="g-emphasis"><i>' . gTranslate('core', "Statusbox") . '</i></div>';
+		echo gTranslate('core', "Please ensure there are no errors.");
+		echo '<div class="albumUpgradeStatus">';
 		foreach ($albumDB->outOfDateAlbums as $albumName) {
-            $i++;
+			$i++;
 			// Retrieve the album
 			$album = $albumDB->getAlbumByName($albumName);
 
 			echo "\n<div class=\"g-emphasis\">".
-			     sprintf(gTranslate('core', "Album: %s"), $album->fields["title"]) .
-			     "</div>";
+				 sprintf(gTranslate('core', "Album: %s"), $album->fields["title"]) .
+				 "</div>";
 
 			// Upgrade the album
 			if ($album->integrityCheck()) {
@@ -113,32 +113,32 @@ function process($album = null) {
 printPopupStart(gTranslate('core', "Upgrade Albums"), '', 'left');
 
 if (isset($upgrade_albumname)) {
-    $album = new Album();
-    $album->load($upgrade_albumname);
+	$album = new Album();
+	$album->load($upgrade_albumname);
 
-    if ($album->versionOutOfDate()) {
-        process($album);
-        $actionDone = true;
-    }
+	if ($album->versionOutOfDate()) {
+		process($album);
+		$actionDone = true;
+	}
 }
 elseif (isset($upgradeall) && sizeof($albumDB->outOfDateAlbums)) {
-    process();
-    $actionDone = true;
+	process();
+	$actionDone = true;
 }
 
 if (sizeof($albumDB->outOfDateAlbums) == 0) {
 	print "<b>". gTranslate('core', "All albums are up to date.") ."</b>";
 }
 elseif (!isset($actionDone)) {
-    echo gTranslate('core', "Some albums in your gallery were created with an older version of the software and are out of date.");
-    echo '<br>';
-    echo gTranslate('core', "This is not a problem!");
-    echo '<p>';
-    echo gTranslate('core', "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.");
-    echo '<br>';
-    echo gTranslate('core', "None of your photos will be harmed in any way by this process.");
-    echo '<br>';
-    echo gTranslate('core', "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
+	echo gTranslate('core', "Some albums in your gallery were created with an older version of the software and are out of date.");
+	echo '<br>';
+	echo gTranslate('core', "This is not a problem!");
+	echo '<p>';
+	echo gTranslate('core', "We can upgrade them.  This may take some time for large albums but we'll try to keep you informed as we proceed.");
+	echo '<br>';
+	echo gTranslate('core', "None of your photos will be harmed in any way by this process.");
+	echo '<br>';
+	echo gTranslate('core', "Rest assured, that if this process takes a long time now, it's going to make your gallery run more efficiently in the future.");
 
 	echo "\n<p>";
 	echo sprintf(gTranslate('core', "The following albums need to be upgraded.  You can process them individually by clicking the upgrade link next to the album that you desire, or you can just %s."),
@@ -158,23 +158,23 @@ elseif (!isset($actionDone)) {
 		  'cellArgs' => array('class' => 'g-emphasis')));
 
 		$updateList->addElement(array(
-            'content' => gTranslate('core', "One item", "%s items", $album->numPhotos(1), gTranslate('core', "Empty"),true),
-            'cellArgs' => array('class' => 'right')));
+			'content' => gTranslate('core', "One item", "%s items", $album->numPhotos(1), gTranslate('core', "Empty"),true),
+			'cellArgs' => array('class' => 'right')));
 
 		$updateList->addElement(array('content' => galleryLink(
-            makeGalleryUrl('upgrade_album.php', array(
-                'upgrade_albumname' => $album->fields['name'],
-                'type' => 'popup')),
-            gTranslate('core', "upgrade"), '', '', true)));
+			makeGalleryUrl('upgrade_album.php', array(
+				'upgrade_albumname' => $album->fields['name'],
+				'type' => 'popup')),
+			gTranslate('core', "upgrade"), '', '', true)));
 	}
 
 	echo $updateList->render();
 }
 ?>
-    <form action="#" class="center">
-    <?php echo gButton("reloadButton", gTranslate('core', "_Reload"), 'location.reload()'); ?>
-    <?php echo gButton("closeButton", gTranslate('core', "_Close Window"), 'parent.close() ; location.reload();'); ?>
-    </form>
+	<form action="#" class="center">
+	<?php echo gButton("reloadButton", gTranslate('core', "_Reload"), 'location.reload()'); ?>
+	<?php echo gButton("closeButton", gTranslate('core', "_Close Window"), 'parent.close() ; location.reload();'); ?>
+	</form>
 
 </div>
 

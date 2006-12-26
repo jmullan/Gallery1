@@ -361,7 +361,7 @@ class mosMainFrame {
 		// TemplateChooser End
 
 		if (isset($GLOBALS['gallery_popup'])) {
-		    $cur_template = 'gallery_popup';
+			$cur_template = 'gallery_popup';
 		}
 
 		$this->_template = $cur_template;
@@ -1583,7 +1583,7 @@ function mosGetOrderingList( $sql ) {
 * @param object An object to be parsed
 * @param int The optional quote style for the htmlspecialchars function
 * @param string|array An optional single field name or array of field names not
-*                     to be parsed (eg, for a textarea)
+*					 to be parsed (eg, for a textarea)
 */
 function mosMakeHtmlSafe( &$mixed, $quote_style=null, $exclude_keys='' ) {
 	if (is_object( $mixed )) {

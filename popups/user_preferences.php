@@ -25,9 +25,9 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($save, $old_password, $new_password1, $new_password2) =
-    getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+	getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
 list($uname, $email, $fullname, $defaultLanguage) =
-    getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
+	getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 if (!$gallery->user->isLoggedIn()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -38,11 +38,11 @@ $errorCount = 0;
 if (isset($save)) {
 	// security check;
 	if($fullname != strip_tags($fullname)) {
-	    $gErrors["fullname"] =
-            sprintf(gTranslate('core', "%s contained invalid data, resetting input."),
-		            htmlentities($fullname));
-	    $errorCount++;
-    }
+		$gErrors["fullname"] =
+			sprintf(gTranslate('core', "%s contained invalid data, resetting input."),
+					htmlentities($fullname));
+		$errorCount++;
+	}
 
 	if ($gallery->user->getUsername() != $uname) {
 		if ($gallery->user->isAdmin()) {
@@ -79,9 +79,9 @@ if (isset($save)) {
 	}
 
 	if (!empty($email) && !check_email($email)) {
-                $gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-                $errorCount++;
-        }
+				$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
+				$errorCount++;
+		}
 
 	if (!$errorCount) {
 		$gallery->user->setUsername($uname);
@@ -124,12 +124,12 @@ $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 
 if(isset($saveOK)) {
-    echo infoBox(array(array(
-    	'type' => 'success',
-    	'text' => gTranslate('core', "User successfully updated.")))
-    );
-    echo "\n<br>\n";
-    echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
+	echo infoBox(array(array(
+		'type' => 'success',
+		'text' => gTranslate('core', "User successfully updated.")))
+	);
+	echo "\n<br>\n";
+	echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
 }
 
 echo gTranslate('core', "You can change your user information here.");
@@ -139,8 +139,8 @@ echo gTranslate('core', "You can change your username to any combination of lett
 echo "\n<br>\n";
 
 echo makeFormIntro('user_preferences.php',
-    array('name' => 'usermodify_form'),
-    array('type' => 'popup'));
+	array('name' => 'usermodify_form'),
+	array('type' => 'popup'));
 
 echo "\n<br>";
 include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
@@ -148,8 +148,8 @@ include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
 ?>
 <br>
 <div align="center">
-    <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-    <?php echo gButton('close', gTranslate('core', "_Close Window"), 'parent.close()'); ?>
+	<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+	<?php echo gButton('close', gTranslate('core', "_Close Window"), 'parent.close()'); ?>
 </div>
 </form>
 

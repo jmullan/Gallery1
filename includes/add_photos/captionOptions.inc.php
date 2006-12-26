@@ -23,25 +23,25 @@
 <?php 
 
 if(!isset($setCaption) || (int)$setCaption > 3) {
-    $setCaption = 1;
+	$setCaption = 1;
 }
 
 ?>
 <input type="radio" name="setCaption" value="0" id="setCaption0" <?php echo ($setCaption == 0) ? 'checked' : '' ?>>
-    <label for="setCaption0"><?php echo gTranslate('core', "Leave blank.") ?></label>
+	<label for="setCaption0"><?php echo gTranslate('core', "Leave blank.") ?></label>
 <br>
 <input type="radio" name="setCaption" value="1" id="setCaption1" <?php echo ($setCaption == 1) ? 'checked' : '' ?>>
-    <label for="setCaption1"><?php echo gTranslate('core', "Use filename as caption.") ?></label>
+	<label for="setCaption1"><?php echo gTranslate('core', "Use filename as caption.") ?></label>
 <br>
 <input type="radio" name="setCaption" value="2" id="setCaption2" <?php echo ($setCaption == 2) ? 'checked' : ''?>>
-    <label for="setCaption2"><?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
+	<label for="setCaption2"><?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
 <br>
 <?php
 if (isset($gallery->app->use_exif)) {
-    $checked = ($setCaption == 3) ? 'checked' : '';
-    echo '<input type="radio" name="setCaption" value="3" id="setCaption3" '. $checked .'>';
+	$checked = ($setCaption == 3) ? 'checked' : '';
+	echo '<input type="radio" name="setCaption" value="3" id="setCaption3" '. $checked .'>';
 	echo "\n<label for=\"setCaption3\">";
-    echo gTranslate('core', "Set photo captions with file capture times.");
+	echo gTranslate('core', "Set photo captions with file capture times.");
 	echo '</label>';
 }
 

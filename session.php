@@ -37,8 +37,8 @@ class GallerySession {}
 /* If using PHP < 4.3.2, create our own session_regenerate_id() function */
 if (!function_exists('session_regenerate_id')) {
 	function make_seed() {
-	    list($usec, $sec) = explode(' ', microtime());
-	    return (float)$sec + ((float)$usec * 100000);
+		list($usec, $sec) = explode(' ', microtime());
+		return (float)$sec + ((float)$usec * 100000);
 	}
 
 	function php_combined_lcg() {
@@ -114,7 +114,7 @@ function createGallerySession($newSession = false) {
 
 	// If we're requesting a new session, generate a new session id
 	if ($newSession) {
-	    session_regenerate_id();
+		session_regenerate_id();
 	}
 
 	/*
@@ -169,7 +169,7 @@ update_session_var("offline");
 update_session_var("offlineAlbums");
 if (!isset($gallery->session->offlineAlbums) || $gallery->session->offlineAlbums == null)
 {
-      $gallery->session->offlineAlbums=array();
+	  $gallery->session->offlineAlbums=array();
 }
 
 /*

@@ -36,7 +36,7 @@ if (!$gallery->user->isAdmin()) {
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
+	doctype();
 ?>
 <html>
 <head>
@@ -53,21 +53,21 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	</div>
 <?php
 }
-    $adminbox["commands"] = galleryLink(
-    	makeGalleryUrl("admin-page.php"),
-    	gTranslate('core',"return to _admin page"),
-    	array(), '', true
-    );
-    
-    $adminbox["commands"] .= galleryLink(
-    	makeAlbumUrl(),
-    	gTranslate('core',"return to _gallery"),
-    	array(),'', true);
 
-    $breadcrumb['text'][] = languageSelector();
+$adminbox["commands"] = galleryLink(
+	makeGalleryUrl("admin-page.php"),
+	gTranslate('core',"return to _admin page"),
+	array(), '', true);
 
-    includeLayout('adminbox.inc');
-    includeLayout('breadcrumb.inc');
+$adminbox["commands"] .= galleryLink(
+	makeAlbumUrl(),
+	gTranslate('core',"return to _gallery"),
+	array(),'', true);
+
+$breadcrumb['text'][] = languageSelector();
+
+includeLayout('adminbox.inc');
+includeLayout('breadcrumb.inc');
 
 ?>
 <div class="g-content-popup">
@@ -92,19 +92,19 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		}
 		switch(document.stats_form.elements[i].type) {
 			case 'submit':
-			    continue;
+				continue;
 			break;
 
 			case 'checkbox':
-			    if(document.stats_form.elements[i].checked) {
+				if(document.stats_form.elements[i].checked) {
 				value = 1;
-			    }
+				}
 			break;
 
 			case 'radio':
-			    if (document.stats_form.elements[i].checked) {
+				if (document.stats_form.elements[i].checked) {
 				value = document.stats_form.elements[i].value;
-			    }
+				}
 			break;
 
 			default:

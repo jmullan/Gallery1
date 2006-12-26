@@ -28,7 +28,7 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 list($id, $index, $confirm) = getRequestVar(array('id', 'index', 'confirm'));
 
 if (isset($id)) {
-        $index = $gallery->album->getPhotoIndex($id);
+		$index = $gallery->album->getPhotoIndex($id);
 }
 
 // Hack check

@@ -225,8 +225,8 @@ if ($gallery->session->albumName && isset($index)) {
 		return;
 	}
 	else {
-	    echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
-	    if ($reorder ) { // Reorder, intra-album move
+		echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
+		if ($reorder ) { // Reorder, intra-album move
 		if ($gallery->album->isAlbum($index)) {
 			echo gTranslate('core',"Reorder this album within the album:") ."<br>";
 		} else {
@@ -244,12 +244,12 @@ echo gTranslate('core',"Select the new location:"); ?>
 <select name="newIndex">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
-        $sel = '';
-        if ($i == $index) {
-                $sel = "selected";
-        }
+		$sel = '';
+		if ($i == $index) {
+				$sel = "selected";
+		}
 		$j = $i - 1;
-        echo "<option value=\"$j\" $sel>$i</option>";
+		echo "<option value=\"$j\" $sel>$i</option>";
 }
 ?>
 </select>
@@ -260,23 +260,23 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 <?php
 // Don't reorder, trans-album move
-	    }
-	    else if (!$reorder) {
+		}
+		else if (!$reorder) {
 		if ($gallery->album->isAlbum($index)) {
-		    echo gTranslate('core',"Move the album to different position in your gallery:");
-		    echo makeFormIntro('move_photo.php',
-		      array('name' => 'move_to_album_form'),
-		      array('type' => 'popup', 'index' => $index));
+			echo gTranslate('core',"Move the album to different position in your gallery:");
+			echo makeFormIntro('move_photo.php',
+			  array('name' => 'move_to_album_form'),
+			  array('type' => 'popup', 'index' => $index));
 ?>
 <select name="newAlbum">
 <?php
-		    $uptodate = printAlbumOptionList(1,0,0);
+			$uptodate = printAlbumOptionList(1,0,0);
 ?>
 </select>
 <?php
 		}
 		else {
-		    echo gTranslate('core',"Move a range of photos to a new album:");
+			echo gTranslate('core',"Move a range of photos to a new album:");
 ?><br>
 <i>(<?php echo gTranslate('core',"To move just one photo, make First and Last the same.") ?>)</i><br>
 <i>(<?php echo gTranslate('core',"Nested albums in this range will be ignored.") ?>)</i>
@@ -298,11 +298,11 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <select name="startPhoto">
 <?php
 		for ($i = 1; $i <= $numPhotos; $i++) {
-		        $sel = '';
-		        if ($i == $index) {
-		                $sel = "selected";
-		        }
-		        echo "<option value=\"$i\" $sel> $i</option>";
+				$sel = '';
+				if ($i == $index) {
+						$sel = "selected";
+				}
+				echo "<option value=\"$i\" $sel> $i</option>";
 		}
 ?>
 </select>
@@ -311,11 +311,11 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <select name="endPhoto">
 <?php
 		for ($i = 1; $i <= $numPhotos; $i++) {
-		        $sel = "";
-		        if ($i == $index) {
-		                $sel = "selected";
-		        }
-		        echo "<option value=\"$i\" $sel> $i</option>";
+				$sel = "";
+				if ($i == $index) {
+						$sel = "selected";
+				}
+				echo "<option value=\"$i\" $sel> $i</option>";
 		}
 ?>
 </select>
@@ -333,11 +333,11 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 		} // end else
 		if (sizeof($gallery->album->fields["votes"])> 0) {
 			print "<br>";
-		       	if ($gallery->album->fields["poll_type"] == "rank") {
-			       	echo '<span class="g-attention">' . gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</span>"; // can't move rank votes, doesn't  make sense.
-		      	} else {
-			       	echo '<span class="g-attention">' . sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</span>";
-		       	}
+			   	if ($gallery->album->fields["poll_type"] == "rank") {
+				   	echo '<span class="g-attention">' . gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</span>"; // can't move rank votes, doesn't  make sense.
+			  	} else {
+				   	echo '<span class="g-attention">' . sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</span>";
+			   	}
 			echo "\n<br>";
 		}
 
@@ -355,7 +355,7 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 		} // end reorder
 	}
 } else {
-    echo gallery_error(gTranslate('core',"no album / index specified"));
+	echo gallery_error(gTranslate('core',"no album / index specified"));
 }
 ?>
 

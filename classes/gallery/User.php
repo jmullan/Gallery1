@@ -130,7 +130,7 @@ class Gallery_User extends Abstract_User {
 		** Set to 1 (yes) as this was the behaviour before.
 		*/
 		if ($this->version < 6)  {
-		    $this->canChangeOwnPw = 1;
+			$this->canChangeOwnPw = 1;
 		}
 
 		$this->version = $gallery->user_version;
@@ -156,15 +156,15 @@ class Gallery_User extends Abstract_User {
 	}
 
 	function genRecoverPasswordHash($reset=false) {
-	    if ($reset) {
-	        $this->recoverPassHash = NULL;
-	        return '';
-	    }
-	    
-	    $rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
-	    $this->recoverPassHash = md5($rec_pass_hash);
-	    
-	    return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
+		if ($reset) {
+			$this->recoverPassHash = NULL;
+			return '';
+		}
+		
+		$rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
+		$this->recoverPassHash = md5($rec_pass_hash);
+		
+		return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
 	}
 
 	function checkRecoverPasswordHash($hash) {
@@ -182,7 +182,7 @@ class Gallery_User extends Abstract_User {
 			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"), 
 						$action));
 			return;
-	       	}
+		   	}
 		$this->lastAction=$action;
 		$this->lastActionDate=time();
 	}

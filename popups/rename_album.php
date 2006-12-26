@@ -56,7 +56,7 @@ if (!empty($newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
 		// the parent album when renaming an album
-	        if ($gallery->album->fields['parentAlbumName']) {
+			if ($gallery->album->fields['parentAlbumName']) {
 			$parentName = $gallery->album->fields['parentAlbumName'];
 			if (isDebugging()) {
 				print "parentName=".$parentName."<br>";
@@ -82,10 +82,10 @@ if (!empty($newName)) {
 		}
 		$dismiss = 1;
 	} else {
-	    echo infoBox(array(array(
-    	    'type' => 'error',
-    	    'text' => gTranslate('core', "There is already an album with that name!")))
-	    );
+		echo infoBox(array(array(
+			'type' => 'error',
+			'text' => gTranslate('core', "There is already an album with that name!")))
+		);
 	}
 
 	// Dismiss and reload if requested
@@ -124,8 +124,8 @@ echo gTranslate('core', "The name cannot contain any of the following characters
 <br><br>
 <?php
 echo infoBox(array(array(
-    'type' => 'information',
-    'text' => gTranslate('core', "This it not the title of the album, its the filename of the directory on your webserver. The name is also used in the url.")
+	'type' => 'information',
+	'text' => gTranslate('core', "This it not the title of the album, its the filename of the directory on your webserver. The name is also used in the url.")
 )));
 
 ?>

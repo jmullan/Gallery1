@@ -23,9 +23,9 @@
 <?php
 /*
 ###################################################################
-# IBPS E-C@ard for Gallery           Version 1                    #
-# Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de      #
-# Ported for Gallery By freenik      webmaster@cittadipolicoro.com#
+# IBPS E-C@ard for Gallery		   Version 1					#
+# Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de	  #
+# Ported for Gallery By freenik	  webmaster@cittadipolicoro.com#
 ###################################################################
 */
 ?>
@@ -36,17 +36,17 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 $ecard = getRequestVar('ecard');
 
 if(!isset($gallery->album)) {
-    $pieces = explode('/', $ecard['image_name']);
-    $gallery->album = new Album;
-    $gallery->album->load($pieces[0]);
+	$pieces = explode('/', $ecard['image_name']);
+	$gallery->album = new Album;
+	$gallery->album->load($pieces[0]);
 }
 
 list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 
 if (!empty($error)) {
-    header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));
+	header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));
 } else {
-    echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
+	echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
 }
 
 ?>

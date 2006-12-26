@@ -33,7 +33,7 @@ else {
 /* define the constants */
 setGalleryPaths();
 if (!isset($gallery) || !isset($gallery->app->photoAlbumURL)) {
-    define ('GALLERY_URL','..');
+	define ('GALLERY_URL','..');
 }
 
 if (getOS() == OS_WINDOWS) {
@@ -57,7 +57,7 @@ else {
 }
 
 /* Set Language etc. */
-    initLanguage();
+	initLanguage();
 
 /*
  * Turn off magic quotes runtime as they interfere with saving and
@@ -85,16 +85,16 @@ $GALLERY_URL = ereg_replace("\/$", "", $GALLERY_URL);
 $MIN_PHP_MAJOR_VERSION = '4.1.0';
 
 if ($init_mod_rewrite = getRequestVar('init_mod_rewrite')) {
-    $GALLERY_REWRITE_OK = true;
+	$GALLERY_REWRITE_OK = true;
 
-    if (strstr($init_mod_rewrite, "ampersandbroken")) {
+	if (strstr($init_mod_rewrite, "ampersandbroken")) {
 	   $GALLERY_REWRITE_SEPARATOR = "\&";
-    }
-    else {
+	}
+	else {
 	   $GALLERY_REWRITE_SEPARATOR = "&";
-    }
+	}
 }
 else {
-    $GALLERY_REWRITE_OK = false;
+	$GALLERY_REWRITE_OK = false;
 }
 ?>

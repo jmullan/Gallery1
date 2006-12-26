@@ -35,13 +35,13 @@ list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
 $gUrl = makeGalleryUrl();
 $gUrlStripped = substr($gUrl, 0, strrpos($gUrl, '/'));
 if (!empty($return) && $return[0] != '/' && strstr($return, '://') !== false) {
-    if (
-      strncmp($return, $gUrlStripped, strlen($gUrlStripped)) != 0 &&
-      strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
-      strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0
-      ) {
+	if (
+	  strncmp($return, $gUrlStripped, strlen($gUrlStripped)) != 0 &&
+	  strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
+	  strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0
+	  ) {
 	die(gTranslate('core', 'Attempted security breach.'));
-    }
+	}
 }	
 
 /* This is used for deleting comments from stats.php */
@@ -74,15 +74,15 @@ switch ($cmd) {
 	break;
 
 	case 'remake-thumbnail':
-	    echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
-	    my_flush();
-	    set_time_limit($gallery->app->timeLimit);
-	    $gallery->album->makeThumbnail($index);
+		echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
+		my_flush();
+		set_time_limit($gallery->app->timeLimit);
+		$gallery->album->makeThumbnail($index);
 	
-	    $gallery->album->save();
-	    //-- this is expected to be loaded in a popup, so dismiss ---
-	    dismissAndReload();
-    	break;
+		$gallery->album->save();
+		//-- this is expected to be loaded in a popup, so dismiss ---
+		dismissAndReload();
+		break;
 	
 	case 'logout':
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
@@ -131,10 +131,10 @@ switch ($cmd) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
 				$myAlbum->load($myAlbumName);
-			}       
+			}	   
 			
 			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-		    		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+					$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
 					$gallery->album->unhidePhoto($index);
 					$gallery->album->save();
 			}
@@ -154,18 +154,18 @@ switch ($cmd) {
 		
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
-	    	$gallery->user->canCreateSubAlbum($gallery->album)) {
+			$gallery->user->canCreateSubAlbum($gallery->album)) {
 			if (!isset($parentName)) {
 				$parentName = null;
 			}
 			createNewAlbum($parentName);
 			if(!headers_sent()) { 
-			    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+				header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 			} else {
-			    $backUrl = makeAlbumUrl($gallery->session->albumName);
+				$backUrl = makeAlbumUrl($gallery->session->albumName);
 			}
 		} else {
-		        header("Location: " . makeAlbumHeaderUrl());
+				header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
 		
@@ -175,7 +175,7 @@ switch ($cmd) {
 			// this is a popup do dismiss and reload!
 			dismissAndReload();
 		} else {
-       			header("Location: " . makeAlbumHeaderUrl());
+	   			header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
 		
@@ -186,8 +186,8 @@ switch ($cmd) {
 			$gallery->album->deleteComment($index, $comment_index);
 			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),
-				       	$comment->getName(),
-				       	makeAlbumURL($gallery->album->fields["name"], 
+					   	$comment->getName(),
+					   	makeAlbumURL($gallery->album->fields["name"], 
 						$gallery->album->getPhotoId($index))));
 			if (!empty($return)) {
 				dismissAndLoad($return);
@@ -196,7 +196,7 @@ switch ($cmd) {
 				dismissAndReload();
 			}
 		} else {
-	    	    header("Location: " . makeAlbumHeaderUrl());
+				header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
 	

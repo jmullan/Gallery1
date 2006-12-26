@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package		Languagepack
  * @subpackage	Japanese
  */
@@ -44,14 +44,14 @@
 /**
  * Alias for languages with different browser and gettext codes
  */
-	$nls['alias']['ja'] = 			    'ja_JP.utf8';
+	$nls['alias']['ja'] = 				'ja_JP.utf8';
 
 /**
  * Alias for languages which we substitte or send by NUKE or GeekLog
  */
 	$nls['alias']['ja_JP.EUC-JP'] =		'ja_JP.utf8' ;	
  	$nls['alias']['ja_JP.EUC'] =		'ja_JP.utf8' ;
- 	$nls['alias']['japanese'] =		    'ja_JP.utf8' ;
+ 	$nls['alias']['japanese'] =			'ja_JP.utf8' ;
 	
 /**
  * Charset

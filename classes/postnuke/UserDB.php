@@ -35,12 +35,12 @@ class PostNuke_UserDB extends Abstract_UserDB {
 	}
 
 	function getUidList() {
-	        global $gallery;
+			global $gallery;
 		$uidList = array();
 		$db = $this->db;
 
 		$result = $db->Execute("SELECT uid from " .
-				       $gallery->database{"prefix"} . "users");
+					   $gallery->database{"prefix"} . "users");
 		while (list($uid) = $result->fields) {
 			array_push($uidList, $uid);
 			$result->MoveNext();

@@ -47,16 +47,16 @@ class Geeklog_UserDB extends Abstract_UserDB {
    $nrows = DB_numRows($result);
 
    for ($i = 0; $i < $nrows; $i++) {
-     $A = DB_fetchArray($result);
-     array_push($uidList, $A['uid']);
+	 $A = DB_fetchArray($result);
+	 array_push($uidList, $A['uid']);
    }
 
    $result = DB_query("SELECT grp_id FROM {$_TABLES['groups']} WHERE grp_id > 2 AND grp_id <> 13 ORDER BY grp_name");
    $nrows = DB_numRows($result);
 
    for ($i = 0; $i < $nrows; $i++) {
-     $A = DB_fetchArray($result);
-     array_push($uidList, 0 - $A['grp_id']);
+	 $A = DB_fetchArray($result);
+	 array_push($uidList, 0 - $A['grp_id']);
    }
    
    array_push($uidList, $this->nobody->getUid());
@@ -87,11 +87,11 @@ return $user;
    $userDir = $gallery->app->userDir;
 
    if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
-     return $this->nobody;
+	 return $this->nobody;
    } else if (!strcmp($uid, $this->everybody->getUid())) {
-     return $this->everybody;
+	 return $this->everybody;
    } else if (!strcmp($uid, $this->loggedIn->getUid())) {
-     return $this->loggedIn;
+	 return $this->loggedIn;
    }
 
    $user = new Geeklog_User();

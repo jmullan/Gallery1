@@ -108,7 +108,7 @@ if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
  * If the old example path is still set, remove it.
 */
 if (!empty($gallery->app->geeklog_dir) &&
-    $gallery->app->geeklog_dir == "/path/to/geeklog/public_html")
+	$gallery->app->geeklog_dir == "/path/to/geeklog/public_html")
 {
 	$gallery->app->geeklog_dir = '';
 }
@@ -367,7 +367,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 
 			$gallery->database{"phpbb"} = new MySQL_Database($dbhost, $dbuser, $dbpasswd, $dbname);
 
-			//	    $gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
+			//		$gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
 			$gallery->database{"prefix"} = $GLOBALS['table_prefix'];
 			/* Load our user database (and user object) */
 			$gallery->userDB = new phpbb_UserDB;
@@ -414,12 +414,12 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
 					$gallery->session->mambo->mosRoot .= '/';
 				}
-				$gallery->session->mambo->mosConfig_host     = $mosConfig_host;
-				$gallery->session->mambo->mosConfig_user     = $mosConfig_user;
+				$gallery->session->mambo->mosConfig_host	 = $mosConfig_host;
+				$gallery->session->mambo->mosConfig_user	 = $mosConfig_user;
 				$gallery->session->mambo->mosConfig_password = $mosConfig_password;
-				$gallery->session->mambo->mosConfig_db       = $mosConfig_db;
+				$gallery->session->mambo->mosConfig_db	   = $mosConfig_db;
 				$gallery->session->mambo->mosConfig_dbprefix = $mosConfig_dbprefix;
-				$gallery->session->mambo->mosConfig_lang     = $mosConfig_lang;
+				$gallery->session->mambo->mosConfig_lang	 = $mosConfig_lang;
 				$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
 			}
 			else {

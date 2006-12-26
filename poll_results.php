@@ -64,31 +64,31 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <?php common_header();
 
 if( ! empty($gallery->album->fields["linkcolor"]) ||
-        !empty($gallery->album->fields["bgcolor"]) ||
-        !empty($gallery->album->fields["textcolor"])) {
+		!empty($gallery->album->fields["bgcolor"]) ||
+		!empty($gallery->album->fields["textcolor"])) {
 
-        echo "\n<style type=\"text/css\">";
-        // the link colors have to be done here to override the style sheet
-        if ($gallery->album->fields["linkcolor"]) {
-                echo "\n  a:link, a:visited, a:active {";
-                echo "\n        color: ".$gallery->album->fields['linkcolor'] ."; }";
-                echo "\n  a:hover { color: #ff6600; }";
+		echo "\n<style type=\"text/css\">";
+		// the link colors have to be done here to override the style sheet
+		if ($gallery->album->fields["linkcolor"]) {
+				echo "\n  a:link, a:visited, a:active {";
+				echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
+				echo "\n  a:hover { color: #ff6600; }";
 
-        }
-        if ($gallery->album->fields["bgcolor"]) {
-                echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
-        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-                echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-        }
-        if ($gallery->album->fields["textcolor"]) {
-                echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-                echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-                echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
+		}
+		if ($gallery->album->fields["bgcolor"]) {
+				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
+		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+		}
+		if ($gallery->album->fields["textcolor"]) {
+				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
 
-        echo "\n  </style>";
-        }
+		echo "\n  </style>";
+		}
 ?>
 
 </head>
@@ -130,31 +130,31 @@ $resultTable->setAttrs(array(
 $resultTable->setColumnCount($cols);
 
 while ($i < $numPhotos) {
-    $content = '';
+	$content = '';
 
-    $index = $gallery->album->getIndexByVotingId($ranks[$i]);
-    if ($index < 0) {
+	$index = $gallery->album->getIndexByVotingId($ranks[$i]);
+	if ($index < 0) {
 	$i++;
 	continue;
-    }
+	}
 	
-    if ($gallery->album->isAlbum($index)) {
+	if ($gallery->album->isAlbum($index)) {
 	$albumName = $gallery->album->getAlbumName($index);
 	$album = $gallery->album->getSubAlbum($index);
 	$content = sprintf(gTranslate('core', "Album: %s"),$album->fields['title']) . "<br>";
-    }
-    else {
+	}
+	else {
 	$content = $gallery->album->getCaption($index) . "<br>";
    }
 
-    $content .= showResults($ranks[$i]);
+	$content .= showResults($ranks[$i]);
 
-    $resultTable ->addElement(array(
+	$resultTable ->addElement(array(
 	'content' => $content,
 	'cellArgs' => array('class' => 'g-vathumb-cell')
-    ));
+	));
 
-    $i++;
+	$i++;
 }
 
 if (!empty($resultTable->elements)) {
@@ -164,7 +164,7 @@ if (!empty($resultTable->elements)) {
 <?php echo gTranslate('core', "Results Breakdown") ?>
 </p>
 <?php
-    echo $resultTable->render();
+	echo $resultTable->render();
 }
 
 $validation_file = basename(__FILE__);

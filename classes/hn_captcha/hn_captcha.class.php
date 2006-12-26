@@ -22,17 +22,17 @@
   * changes in version 1.2:
   *  - added a new configuration-variable: secretposition
   *  - once more modified the function get_try(): generate a string of 32 chars length,
-  *    where at secretposition is the number of current-try.
-  *    Hopefully this is enough for hackprevention.
+  *	where at secretposition is the number of current-try.
+  *	Hopefully this is enough for hackprevention.
   *
   * changes in version 1.3:
   *  - fixed a security-hole, what was discovered by Daniel Jagszent. Many thank's for
-  *    testing, fixing and sharing it, Daniel!
-  *    He has tested the class in a modified way, like it is described here:
-  *    http://www.puremango.co.uk/cm_breaking_captcha_115.php
-  *    It was possible to manually do the captcha-test, notice the public and private keys.
-  *    In automated way this keys could send as long as the image-file exists!
-  *    (with different other datas and independent from the new captcha-string!)
+  *	testing, fixing and sharing it, Daniel!
+  *	He has tested the class in a modified way, like it is described here:
+  *	http://www.puremango.co.uk/cm_breaking_captcha_115.php
+  *	It was possible to manually do the captcha-test, notice the public and private keys.
+  *	In automated way this keys could send as long as the image-file exists!
+  *	(with different other datas and independent from the new captcha-string!)
   *
   **/
 
@@ -103,132 +103,132 @@ class hn_captcha{
 		  * @shortdesc Relative path to a Tempfolder (with trailing slash!) inside the Galley albums folder.
 		  * 		   This must be writeable for PHP and also accessible via HTTP, because the image will be stored there.
 		  * @Note: This is different to the original hn_captcha
-          * @type string
+		  * @type string
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $tempfolder;
 
 		/**
-          * @shortdesc Absolute path to folder with TrueTypeFonts (with trailing slash!). This must be readable by PHP.
+		  * @shortdesc Absolute path to folder with TrueTypeFonts (with trailing slash!). This must be readable by PHP.
 		  * @type string
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $TTF_folder;
 
 		/**
-          * @shortdesc A List with available TrueTypeFonts for random char-creation.
+		  * @shortdesc A List with available TrueTypeFonts for random char-creation.
 		  * @type mixed[array|string]
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $TTF_RANGE  = array('COMIC.TTF','JACOBITE.TTF','LYDIAN.TTF','MREARL.TTF','RUBBERSTAMP.TTF','ZINJARON.TTF');
 
 		/**
-          * @shortdesc How many chars the generated text should have
+		  * @shortdesc How many chars the generated text should have
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $chars		= 6;
 
 		/**
-          * @shortdesc The minimum size a Char should have
+		  * @shortdesc The minimum size a Char should have
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $minsize	= 20;
 
 		/**
-          * @shortdesc The maximum size a Char can have
+		  * @shortdesc The maximum size a Char can have
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $maxsize	= 40;
 
 		/**
-          * @shortdesc The maximum degrees a Char should be rotated. Set it to 30 means a random rotation between -30 and 30.
+		  * @shortdesc The maximum degrees a Char should be rotated. Set it to 30 means a random rotation between -30 and 30.
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $maxrotation = 30;
 
 		/**
-          * @shortdesc Background noise On/Off (if is Off, a grid will be created)
+		  * @shortdesc Background noise On/Off (if is Off, a grid will be created)
 		  * @type boolean
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $noise		= TRUE;
 
 		/**
-          * @shortdesc This will only use the 216 websafe color pallette for the image.
+		  * @shortdesc This will only use the 216 websafe color pallette for the image.
 		  * @type boolean
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $websafecolors = FALSE;
 
 		/**
-          * @shortdesc Switches language, available are 'en' and 'de'. You can easily add more. Look in CONSTRUCTOR.
+		  * @shortdesc Switches language, available are 'en' and 'de'. You can easily add more. Look in CONSTRUCTOR.
 		  * @type string
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $lang		= "de";
 
 		/**
-          * @shortdesc If a user has reached this number of try's without success, he will moved to the $badguys_url
+		  * @shortdesc If a user has reached this number of try's without success, he will moved to the $badguys_url
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $maxtry		= 3;
 
 		/**
-          * @shortdesc Gives the user the possibility to generate a new captcha-image.
+		  * @shortdesc Gives the user the possibility to generate a new captcha-image.
 		  * @type boolean
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $refreshlink = TRUE;
 
 		/**
-          * @shortdesc If a user has reached his maximum try's, he will located to this url.
+		  * @shortdesc If a user has reached his maximum try's, he will located to this url.
 		  * @type boolean
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $badguys_url = "/";
 
 		/**
 		  * Number between 1 and 32
-          *
-          * @shortdesc Defines the position of 'current try number' in (32-char-length)-string generated by function get_try()
+		  *
+		  * @shortdesc Defines the position of 'current try number' in (32-char-length)-string generated by function get_try()
 		  * @type integer
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $secretposition = 21;
 
 		/**
-          * @shortdesc The string is used to generate the md5-key.
+		  * @shortdesc The string is used to generate the md5-key.
 		  * @type string
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $secretstring = "This is a very secret string. Nobody should know it, =:)";
 
 		/**
-          * @shortdesc Outputs configuration values for testing
+		  * @shortdesc Outputs configuration values for testing
 		  * @type boolean
 		  * @public
-          *
-          **/
+		  *
+		  **/
 		var $debug = FALSE;
 
 
@@ -265,7 +265,7 @@ class hn_captcha{
 		/** @private **/
 		var $key;				// md5-key
 		/** @private **/
-		var $public_key;    	// public key
+		var $public_key;		// public key
 		/** @private **/
 		var $filename;			// filename of captcha picture
 		/** @private **/
@@ -296,8 +296,8 @@ class hn_captcha{
 		  **/
 		function hn_captcha($config, $secure = TRUE) {
 
-		    global $save;
-		    global $gallery;
+			global $save;
+			global $gallery;
 
 			// Test for GD-Library(-Version)
 			$this->gd_version = $this->get_gd_version();
@@ -479,14 +479,14 @@ class hn_captcha{
 			$try = $this->get_try(FALSE);
 			if($this->debug) echo "\n<br>-Captcha-Debug: Generate a string which contains current try: ($try)";
 			$s  = '<div id="captcha">';
-            $s .= '<input type="hidden" name="hncaptcha" value="'.$try.'">'."\n";
+			$s .= '<input type="hidden" name="hncaptcha" value="'.$try.'">'."\n";
 			$s .= $this->display_captcha() ."\n";
 			$s .= "<br>" . sprintf(gTranslate('core', "You must read and type the <b>%d chars</b> within <b>0..9</b> and <b>A..F</b>."), $this->chars) . "\n";
 			$s .= '<br><br><input class="captcha" type="text" name="private_key" value="" maxlength="'.$this->chars.'" size="'.$this->chars.'">&nbsp;&nbsp;';
 
-            $s .= gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
+			$s .= gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
 
-            $s .= '</div>';
+			$s .= '</div>';
 			if($this->debug) echo "\n<br>-Captcha-Debug: Output Form with captcha-image.<br><br>";
 			return $s;
 		}

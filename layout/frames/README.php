@@ -3,17 +3,17 @@
 <body bgcolor="#DDAAAA">
 <!--
 
-               TL  TTL     TT     TTR TR
-                   +----------------+
-               LLT |                | RRT
-                   |                |
-                   |                |
-                LL |  IMAGE         | RR
-                   |                |
-                   |                |
-               LLB |                | RRB
-                   +----------------+
-               BL  BBL     BB     BBR BR 
+			   TL  TTL	 TT	 TTR TR
+				   +----------------+
+			   LLT |				| RRT
+				   |				|
+				   |				|
+				LL |  IMAGE		 | RR
+				   |				|
+				   |				|
+			   LLB |				| RRB
+				   +----------------+
+			   BL  BBL	 BB	 BBR BR 
 -->
 Eventually this will contain full instructions for building your own files.  In the meantime, here's a quick diagram of where the diffent images go, and something to test<p>
 <center>

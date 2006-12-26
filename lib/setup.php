@@ -23,30 +23,30 @@
 <?php
 
 function evenOdd_row($fields) {
-    $html = '';
+	$html = '';
 
-    $f0 = $fields[0];
-    if ($fields[4]) {
-        $f0 .= '&nbsp;<span class="g-littlered">*</span>';
-    }
+	$f0 = $fields[0];
+	if ($fields[4]) {
+		$f0 .= '&nbsp;<span class="g-littlered">*</span>';
+	}
 
-    if ($fields[3] == "block_start") {
-        $html .= "\n<tr>" .
-        "\n\t<td class=\"g-shortdesc\" colspan=\"2\">$f0<p>" . $fields[2] ."</p></td>" .
-        "\n</tr>";
-    }
-    else {
-        $html .= "\n<tr>" .
-        "\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
-        "\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
-        "\n</tr>";
+	if ($fields[3] == "block_start") {
+		$html .= "\n<tr>" .
+		"\n\t<td class=\"g-shortdesc\" colspan=\"2\">$f0<p>" . $fields[2] ."</p></td>" .
+		"\n</tr>";
+	}
+	else {
+		$html .= "\n<tr>" .
+		"\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
+		"\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
+		"\n</tr>";
 
-        if (!empty($fields[2])) {
-            $html .= "\n\t<tr><td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td></tr>";
-        }
-    }
+		if (!empty($fields[2])) {
+			$html .= "\n\t<tr><td class=\"g-longdesc\" colspan=\"2\">$fields[2]</td></tr>";
+		}
+	}
 
-    return $html;
+	return $html;
 }
 
 function make_fields($key, $arr) {
@@ -59,7 +59,7 @@ function make_fields($key, $arr) {
 
 	if (isset($arr['type']) &&
 	  ($arr['type'] == 'text' || $arr['type'] == 'hidden' || $arr['type'] == 'checkbox')) {
-        $col2 = form_input($key, $arr);
+		$col2 = form_input($key, $arr);
 	}
 	else if (isset($arr['choices'])) {
 		$col2 = form_choice($key, $arr);
@@ -83,7 +83,7 @@ function make_fields($key, $arr) {
 	else if (isset($arr['type']) && $arr['type'] == 'nv_pairs') {
 		$col2 = form_nv_pairs($key, $arr);
 	}
-    else if (isset($arr['type']) && $arr['type'] == 'print_services') {
+	else if (isset($arr['type']) && $arr['type'] == 'print_services') {
 		$col2 = form_print_services($key, $arr);
 	}
 	else {
@@ -103,52 +103,52 @@ function make_fields($key, $arr) {
 }
 
 function form_textarea($key, $arr) {
-    $attrs = generateAttrs($arr['attrs']);
-    $html = "<textarea name=\"$key\" $attrs>{$arr['value']}</textarea>";
+	$attrs = generateAttrs($arr['attrs']);
+	$html = "<textarea name=\"$key\" $attrs>{$arr['value']}</textarea>";
 
-    return $html;
+	return $html;
 }
 
 function form_input($key, $arr) {
-    $html = '';
+	$html = '';
 
-    $name  = (isset($arr['name'])) ? $arr['name'] : $key;
+	$name  = (isset($arr['name'])) ? $arr['name'] : $key;
 
-    if($arr['type'] == 'hidden') {
-        return "\n<input name=\"$name\" type=\"hidden\" value=\"{$arr['value']}\">";
-    }
+	if($arr['type'] == 'hidden') {
+		return "\n<input name=\"$name\" type=\"hidden\" value=\"{$arr['value']}\">";
+	}
 
-    $multiInput = false;
-    if(!empty($arr['multiInput'])) {
-        $arr['attrs']['id'] = $name;
-        $name .= '[]';
-        $multiInput = true;
-    }
-    $autocomplete = (isset($arr['autocomplete'])) ? true : false;
+	$multiInput = false;
+	if(!empty($arr['multiInput'])) {
+		$arr['attrs']['id'] = $name;
+		$name .= '[]';
+		$multiInput = true;
+	}
+	$autocomplete = (isset($arr['autocomplete'])) ? true : false;
 
-    $attrs = (isset($arr['attrs'])) ? $arr['attrs'] : array();
+	$attrs = (isset($arr['attrs'])) ? $arr['attrs'] : array();
 
-    if(is_array($arr['value'])) {
-        foreach ($arr['value'] as $subkey => $value) {
-            $html .= gInput($arr['type'], $name, null, false, $value, $attrs, $multiInput,
-                            $autocomplete);
+	if(is_array($arr['value'])) {
+		foreach ($arr['value'] as $subkey => $value) {
+			$html .= gInput($arr['type'], $name, null, false, $value, $attrs, $multiInput,
+							$autocomplete);
 
-            if ($multiInput) {
-                $html .= gInput($arr['type'], $name, null, false, $value, $attrs, false, false);
-            }
+			if ($multiInput) {
+				$html .= gInput($arr['type'], $name, null, false, $value, $attrs, false, false);
+			}
 
-            $html .= "\n<br>";
-            $multiInput = false;
-            $autocomplete = false;
-        }
-    }
-    else {
-        $attrs['class'] = 'floatleft';
-        $html = gInput($arr['type'], $name, null, false, $arr['value'], $attrs,
-                       $multiInput, $autocomplete);
-    }
+			$html .= "\n<br>";
+			$multiInput = false;
+			$autocomplete = false;
+		}
+	}
+	else {
+		$attrs['class'] = 'floatleft';
+		$html = gInput($arr['type'], $name, null, false, $arr['value'], $attrs,
+					   $multiInput, $autocomplete);
+	}
 
-    return $html;
+	return $html;
 
 }
 
@@ -214,7 +214,7 @@ function form_multiple_choice($key, $arr) {
 	$column = 0;
 	foreach ($arr["multiple_choices"] as $item => $value) {
 		if ($item == 'addon') {
-		    continue;
+			continue;
 		}
 
 		if ($count%15 == 0) {
@@ -307,14 +307,14 @@ function form_print_services($key, $arr) {
  * Returns an array containing all pathes set in the environment var 'PATH'
  * plus some additional guesses.
  *
- * @return array    $path
+ * @return array	$path
  */
 function getPath() {
-    static $path;
+	static $path;
 
-    if(!empty($path)) {
-        return $path;
-    }
+	if(!empty($path)) {
+		return $path;
+	}
 
 	/* Start with the server user's path */
 	if (getOS() != OS_WINDOWS) {
@@ -348,35 +348,35 @@ function getPath() {
 }
 
 function locateDir($filename, $extraDir = '', $ignorePath = false) {
-    if (fs_file_exists("$extraDir/$filename")) {
-        $dir = $extraDir;
-    }
-    elseif ($ignorePath) {
-        $dir =  '';
-    }
-    else {
-        foreach (getPath() as $path) {
-            if (fs_file_exists("$path/$filename") && !empty($path)) {
-                $dir = $path;
-                break;
-            }
-        }
-    }
+	if (fs_file_exists("$extraDir/$filename")) {
+		$dir = $extraDir;
+	}
+	elseif ($ignorePath) {
+		$dir =  '';
+	}
+	else {
+		foreach (getPath() as $path) {
+			if (fs_file_exists("$path/$filename") && !empty($path)) {
+				$dir = $path;
+				break;
+			}
+		}
+	}
 
-    return $dir;
+	return $dir;
 }
 
 function locateFile($filename) {
-    $file = null;
+	$file = null;
 
-    foreach (getPath() as $path) {
+	foreach (getPath() as $path) {
 	if (fs_file_exists("$path/$filename") && !empty($path)) {
-	    $file = "$path/$filename";
-	    break;
+		$file = "$path/$filename";
+		break;
 	}
-    }
+	}
 
-    return $file;
+	return $file;
 }
 
 function one_constant($key, $value) {
@@ -387,12 +387,12 @@ function array_constant($key, $value, $removeEmpty = false) {
 	$buf = '';
 
 	foreach ($value as $item) {
-	    if($removeEmpty && empty($item)) {
-	        continue;
-	    }
-        else {
+		if($removeEmpty && empty($item)) {
+			continue;
+		}
+		else {
 		  $buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
-	    }
+		}
 	}
 
 	return $buf;
@@ -462,47 +462,47 @@ function check_htaccess() {
 }
 
 function check_php() {
-    global $MIN_PHP_MAJOR_VERSION;
+	global $MIN_PHP_MAJOR_VERSION;
 
-    $version = phpversion();
-    $success = array();
-    $fail = array();
-    $warn = array();
+	$version = phpversion();
+	$success = array();
+	$fail = array();
+	$warn = array();
 
-    if (!function_exists('version_compare') ||
-        !version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
-        $fail['fail-too-old'] = 1;
-    }
-    elseif (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
-        $success[] = sprintf(gTranslate('config', "PHP v%s is OK."), $version);
-    }
-    else {
-        $fail['fail-buggy__FILE__'] = 1;
-    }
+	if (!function_exists('version_compare') ||
+		!version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
+		$fail['fail-too-old'] = 1;
+	}
+	elseif (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
+		$success[] = sprintf(gTranslate('config', "PHP v%s is OK."), $version);
+	}
+	else {
+		$fail['fail-buggy__FILE__'] = 1;
+	}
 
-    return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 function check_mod_rewrite()  {
-    global $GALLERY_REWRITE_OK;
+	global $GALLERY_REWRITE_OK;
 
-    $success = array();
-    $fail = array();
-    $warn = array();
+	$success = array();
+	$fail = array();
+	$warn = array();
 
-    if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
-        if ($GALLERY_REWRITE_OK) {
-            $success[] = gTranslate('config', "<b>mod_rewrite</b> is enabled.");
-        }
-        else {
-            $fail["fail-mod-rewrite"] = 1;
-        }
-    }
-    else {
-        $fail["fail-mod-rewrite-nohtaccess"] = 1;
-    }
+	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
+		if ($GALLERY_REWRITE_OK) {
+			$success[] = gTranslate('config', "<b>mod_rewrite</b> is enabled.");
+		}
+		else {
+			$fail["fail-mod-rewrite"] = 1;
+		}
+	}
+	else {
+		$fail["fail-mod-rewrite-nohtaccess"] = 1;
+	}
 
-    return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 function check_exif($location = '') {
@@ -805,22 +805,22 @@ function check_gallery_version() {
 		Gallery(), strftime("%x", $gallery->last_change));
 
 	if ($age > $maxAge) {
-	    if($beta) {
-	        $fail['too_old'] = $this_beta_version . ' ' .
-	                           sprintf(gTranslate('config', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
-	                           toggleBox('g_version', $visit);
-	    }
-	    else {
+		if($beta) {
+			$fail['too_old'] = $this_beta_version . ' ' .
+							   sprintf(gTranslate('config', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
+							   toggleBox('g_version', $visit);
+		}
+		else {
 		  $fail['too_old'] = $this_version . ' ' .
-		                   sprintf(gTranslate('config', "Thats more than %d days ago."), $maxAge) .
-		                   toggleBox('g_version', $visit);
-	    }
+						   sprintf(gTranslate('config', "Thats more than %d days ago."), $maxAge) .
+						   toggleBox('g_version', $visit);
+		}
 	}
 	else if ($beta && $age > $maxBetaAge) {
 		$fail['too_old'] = $this_beta_version . toggleBox('g_version', $visit);
 	}
 	else if ($beta) {
-	    $visit .= ' '. gTranslate('config', "Please check regularly for updates.");
+		$visit .= ' '. gTranslate('config', "Please check regularly for updates.");
 		$success['ok'] = $this_beta_version . toggleBox('g_version', $visit);
 	}
 	else {
@@ -831,52 +831,52 @@ function check_gallery_version() {
 }
 
 function check_absent_locales() {
-    global $locale_check;
+	global $locale_check;
 
-    $fail = array();
-    $success = array();
-    $warn = array();
-    $msg = '';
+	$fail = array();
+	$success = array();
+	$warn = array();
+	$msg = '';
 
-    $available = $locale_check['available_locales'];
-    $maybe = $locale_check['maybe_locales'];
-    $unavailable = $locale_check['unavailable_locales'];
+	$available = $locale_check['available_locales'];
+	$maybe = $locale_check['maybe_locales'];
+	$unavailable = $locale_check['unavailable_locales'];
 
-    if($locale_check != NULL && sizeof($unavailable) == 0) {
+	if($locale_check != NULL && sizeof($unavailable) == 0) {
 	   $success[] = gTranslate('config', "All gallery locales are available on this host.");
-    }
-    else if( (sizeof($maybe) + sizeof($unavailable)) > 0) {
-        if (sizeof($maybe) > 0) {
-            $msg = sprintf(gTranslate('config', "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
-        }
+	}
+	else if( (sizeof($maybe) + sizeof($unavailable)) > 0) {
+		if (sizeof($maybe) > 0) {
+			$msg = sprintf(gTranslate('config', "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
+		}
 
-        if (sizeof($unavailable) > 0) {
-            if(sizeof($maybe) > 0) {
-                $msg .= '<br><br>';
-            }
+		if (sizeof($unavailable) > 0) {
+			if(sizeof($maybe) > 0) {
+				$msg .= '<br><br>';
+			}
 
-            $msg .= sprintf(gTranslate('config', "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
-        }
-        $warn[] = $msg;
-    }
-    else {
-        if (ini_get('open_basedir') && getOS() != OS_LINUX) {
-            $warn[] = sprintf(gTranslate('config', "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
-            '<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
-        }
-        else {
-            if (getOS() == OS_LINUX) {
-                $fail[] = sprintf(gTranslate('config', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),
-                'Debian',
-                '<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', '</a>');
-            }
-            else {
-                $warn[] = gTranslate('config', "Only the default locale for this machine is available, so date format will not change for different languages.");
-            }
-        }
-    }
+			$msg .= sprintf(gTranslate('config', "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
+		}
+		$warn[] = $msg;
+	}
+	else {
+		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
+			$warn[] = sprintf(gTranslate('config', "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
+			'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
+		}
+		else {
+			if (getOS() == OS_LINUX) {
+				$fail[] = sprintf(gTranslate('config', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),
+				'Debian',
+				'<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', '</a>');
+			}
+			else {
+				$warn[] = gTranslate('config', "Only the default locale for this machine is available, so date format will not change for different languages.");
+			}
+		}
+	}
 
-    return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 function check_locale() {
@@ -991,168 +991,168 @@ function check_locale() {
 }
 
 function config_maybe_locales() {
-    global $locale_check, $locales;
+	global $locale_check, $locales;
 
-    $results = array();
-    $locales = $locale_check;
-    $available = $locales["available_locales"];
-    $maybe = $locales["maybe_locales"];
-    $unavailable = $locales["unavailable_locales"];
+	$results = array();
+	$locales = $locale_check;
+	$available = $locales["available_locales"];
+	$maybe = $locales["maybe_locales"];
+	$unavailable = $locales["unavailable_locales"];
 
-    // If we are in Linux, our PHP has gettext,
-    // but we could not find any locale we skip the whole aliasing part.
-    if($locales == NULL) {
+	// If we are in Linux, our PHP has gettext,
+	// but we could not find any locale we skip the whole aliasing part.
+	if($locales == NULL) {
 	return array();
-    }
+	}
 
-    $nls = getNLS();
+	$nls = getNLS();
 
-    $block_start_done = false;
+	$block_start_done = false;
 
-    $nr = 0;
-    foreach ($maybe as $key => $aliases) {
-        if (sizeof($aliases) == 0) {
-            $unavailable[] = $key;
-            continue;
-        }
+	$nr = 0;
+	foreach ($maybe as $key => $aliases) {
+		if (sizeof($aliases) == 0) {
+			$unavailable[] = $key;
+			continue;
+		}
 
-        /*
-        if (sizeof($aliases) == 1) {
-            $results["locale_alias['$key']"] = array (
-            "type" => "hidden",
-            "value" => array_pop($aliases),
-            "desc" => "locale_alias[$key]",
-            "prompt" => "locale_alias[$key]"
-            );
-            continue;
-        }
-        */
+		/*
+		if (sizeof($aliases) == 1) {
+			$results["locale_alias['$key']"] = array (
+			"type" => "hidden",
+			"value" => array_pop($aliases),
+			"desc" => "locale_alias[$key]",
+			"prompt" => "locale_alias[$key]"
+			);
+			continue;
+		}
+		*/
 
-        $nr++;
-        if (!$block_start_done) {
-            $block_start_done = true;
-            $results[] = array (
-                'type' => 'block_start',
-                'prompt' => '<b>(' . gTranslate('config', "Advanced") . ') </b><br>' .
-                    sprintf(gTranslate('config', "<b>System</b> locale selection required")),
-                        'desc' => gTranslate('config', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
-                        '<br><br>' .
-                    gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
-            );
-        }
+		$nr++;
+		if (!$block_start_done) {
+			$block_start_done = true;
+			$results[] = array (
+				'type' => 'block_start',
+				'prompt' => '<b>(' . gTranslate('config', "Advanced") . ') </b><br>' .
+					sprintf(gTranslate('config', "<b>System</b> locale selection required")),
+						'desc' => gTranslate('config', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+						'<br><br>' .
+					gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
+			);
+		}
 
-        $index = $nls['language'][$key];
+		$index = $nls['language'][$key];
 
-        $choices = array();
+		$choices = array();
 
-        foreach ($aliases as $value) {
-            $choices[$value] = $value;
-        }
+		foreach ($aliases as $value) {
+			$choices[$value] = $value;
+		}
 
-        if (getOS() != OS_WINDOWS) {
-            $choices[''] = gTranslate('config', "System locale");
-            next($choices);
-        }
+		if (getOS() != OS_WINDOWS) {
+			$choices[''] = gTranslate('config', "System locale");
+			next($choices);
+		}
 
-        $results["locale_alias['$key']"] = array (
-            'prompt' => $nr . '.) ' . $nls['language'][$key],
-            'optional' => true,
-            'name' => 'locale_alias',
-            'key' => $key,
-            'type' => 'block_element',
-            'choices' => $choices,
-            'value' => (getOS() != OS_WINDOWS) ? key($choices) : '',
-            'allow_empty' => true,
-            'remove_empty' => true
-        );
+		$results["locale_alias['$key']"] = array (
+			'prompt' => $nr . '.) ' . $nls['language'][$key],
+			'optional' => true,
+			'name' => 'locale_alias',
+			'key' => $key,
+			'type' => 'block_element',
+			'choices' => $choices,
+			'value' => (getOS() != OS_WINDOWS) ? key($choices) : '',
+			'allow_empty' => true,
+			'remove_empty' => true
+		);
 
 
-    } // End foreach maybe
+	} // End foreach maybe
 
-    if ($block_start_done) {
-        $results[] = array ('type' => 'block_end');
-    }
+	if ($block_start_done) {
+		$results[] = array ('type' => 'block_end');
+	}
 
-    $block_start_done = false;
+	$block_start_done = false;
 
-    $choices = array();
+	$choices = array();
 
-    if (getOS() != OS_WINDOWS) {
-        $choices = array('' => gTranslate('config', "System locale"));
-    }
+	if (getOS() != OS_WINDOWS) {
+		$choices = array('' => gTranslate('config', "System locale"));
+	}
 
-    if (sizeof($available) > 0) {
-        foreach ($available as $choice => $value) {
-            $choices[$choice] = $nls['language'][$value];
-        }
+	if (sizeof($available) > 0) {
+		foreach ($available as $choice => $value) {
+			$choices[$choice] = $nls['language'][$value];
+		}
 
-        $avail_keys = array_keys($available);
-    }
-    elseif (sizeof($maybe) > 0) {
-        foreach ($maybe as $key => $aliases) {
-            foreach ($aliases as $choice) {
-                $choices[$choice] = $choice;
-            }
-        }
+		$avail_keys = array_keys($available);
+	}
+	elseif (sizeof($maybe) > 0) {
+		foreach ($maybe as $key => $aliases) {
+			foreach ($aliases as $choice) {
+				$choices[$choice] = $choice;
+			}
+		}
 
-        $avail_keys = array_keys($choices);
-    }
-    else {
-        if (getOS() == OS_OTHER) {
-            $array_keys = $choices;
-        }
-        else {
-            $skip = true;
-        }
-    }
+		$avail_keys = array_keys($choices);
+	}
+	else {
+		if (getOS() == OS_OTHER) {
+			$array_keys = $choices;
+		}
+		else {
+			$skip = true;
+		}
+	}
 
-    if (! isset ($skip)) {
-        $avail_keys = array_keys($choices);
-        foreach ($unavailable as $key) {
-            if (sizeof($choices) == 1) {
-                $results["locale_alias['$key']"] = array (
-                    'type' => 'hidden',
-                    'value' => $avail_keys[0],
-                    'desc' => "locale_alias[$key]",
-                    'prompt' => "locale_alias[$key]",
-                    'allow_empty' => true,
-                    'remove_empty' => true
-                );
-                continue;
-            }
+	if (! isset ($skip)) {
+		$avail_keys = array_keys($choices);
+		foreach ($unavailable as $key) {
+			if (sizeof($choices) == 1) {
+				$results["locale_alias['$key']"] = array (
+					'type' => 'hidden',
+					'value' => $avail_keys[0],
+					'desc' => "locale_alias[$key]",
+					'prompt' => "locale_alias[$key]",
+					'allow_empty' => true,
+					'remove_empty' => true
+				);
+				continue;
+			}
 
-            if (!$block_start_done) {
-                $block_start_done = true;
-                $results[] = array (
-                    'type' => 'block_start',
-                    'prompt' => '<b>(' . gTranslate('config', "Advanced") . ')</b><br>' .
-                        sprintf(gTranslate('config', "<b>System</b> locale problems")),
-                            'desc' => gTranslate('config', "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
-                            '<br><br>' .
-                        gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
-                );
-            }
+			if (!$block_start_done) {
+				$block_start_done = true;
+				$results[] = array (
+					'type' => 'block_start',
+					'prompt' => '<b>(' . gTranslate('config', "Advanced") . ')</b><br>' .
+						sprintf(gTranslate('config', "<b>System</b> locale problems")),
+							'desc' => gTranslate('config', "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+							'<br><br>' .
+						gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
+				);
+			}
 
-            $index = $nls['language'][$key] ;
+			$index = $nls['language'][$key] ;
 
-            $results["locale_alias['$key']"] = array (
-                'prompt' => $nls['language'][$key],
-                'name' => 'locale_alias',
-                'key' => $key,
-                'type' => 'block_element',
-                'choices' => $choices,
-                'value' => '',
-                'allow_empty' => true,
-                'remove_empty' => true
-            );
-        }
+			$results["locale_alias['$key']"] = array (
+				'prompt' => $nls['language'][$key],
+				'name' => 'locale_alias',
+				'key' => $key,
+				'type' => 'block_element',
+				'choices' => $choices,
+				'value' => '',
+				'allow_empty' => true,
+				'remove_empty' => true
+			);
+		}
 
-        if ($block_start_done) {
-            $results[] = array ('type' => 'block_end');
-        }
-    }
+		if ($block_start_done) {
+			$results[] = array ('type' => 'block_end');
+		}
+	}
 
-    return $results;
+	return $results;
 }
 
 function default_graphics() {
@@ -1166,23 +1166,23 @@ function default_graphics() {
 }
 
 function check_safe_mode() {
-    $fail = array();
-    $success = array();
-    $warn = array();
+	$fail = array();
+	$success = array();
+	$warn = array();
 
-    $safe_mode = ini_get("safe_mode");
+	$safe_mode = ini_get("safe_mode");
 
-    if (empty($safe_mode) ||
-    !strcasecmp($safe_mode, "off") ||
-    !strcasecmp($safe_mode, "0") ||
-    !strcasecmp($safe_mode, "false")) {
-        $success[] = gTranslate('config', "<b>safe_mode</b> is off.");
-    }
-    else {
-        $fail["fail-safe-mode"] = 1;
-    }
+	if (empty($safe_mode) ||
+	!strcasecmp($safe_mode, "off") ||
+	!strcasecmp($safe_mode, "0") ||
+	!strcasecmp($safe_mode, "false")) {
+		$success[] = gTranslate('config', "<b>safe_mode</b> is off.");
+	}
+	else {
+		$fail["fail-safe-mode"] = 1;
+	}
 
-    return array($success, $fail,$warn);
+	return array($success, $fail,$warn);
 }
 
 function check_magic_quotes() {
@@ -1488,17 +1488,17 @@ function newIn($version) {
 }
 
 function returnToConfig() {
-    $link = galleryLink(
-        makeGalleryUrl('setup/index.php', array('refresh' => 1, 'this_page' => 'check')),
-        gTranslate('config', "_Configuration Wizard"), array(), '', true);
+	$link = galleryLink(
+		makeGalleryUrl('setup/index.php', array('refresh' => 1, 'this_page' => 'check')),
+		gTranslate('config', "_Configuration Wizard"), array(), '', true);
 
 	return $link;
 }
 
 function returnToDiag() {
-    $link = galleryLink(
-        makeGalleryUrl('setup/diagnostics.php'),
-        gTranslate('config', "Gallery Dia_gnostics Page"), array(), '', true);
+	$link = galleryLink(
+		makeGalleryUrl('setup/diagnostics.php'),
+		gTranslate('config', "Gallery Dia_gnostics Page"), array(), '', true);
 
 	return $link;
 }
@@ -1547,9 +1547,9 @@ function check_admins() {
 	}
 
 	if (empty($admins)) {
-	    $result = array(
+		$result = array(
 		'desc' => sprintf(gTranslate('config', 'You must enter a password for the %s account.'), '<b>admin</b>')
-	    );
+		);
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
@@ -1601,45 +1601,45 @@ function displayNameOptions() {
 }
 
 function check_gallery_versions()  {
-    $fail = array();
-    $success = array();
-    $warn = array();
+	$fail = array();
+	$success = array();
+	$warn = array();
 
-    $versionStatus = checkVersions(false);
+	$versionStatus = checkVersions(false);
 
-    $fail = $versionStatus['fail'];
+	$fail = $versionStatus['fail'];
 
-    $problems = array_merge(
-        $versionStatus['missing'],
-        $versionStatus['older'],
-        $versionStatus['unkown']
-    );
+	$problems = array_merge(
+		$versionStatus['missing'],
+		$versionStatus['older'],
+		$versionStatus['unkown']
+	);
 
-    $hint = "<p>" . gTranslate('config', "This should be fixed before proceeding.") .
-        "<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
-        '<a href="check_versions.php">', '</a>') . '</p>';
+	$hint = "<p>" . gTranslate('config', "This should be fixed before proceeding.") .
+		"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+		'<a href="check_versions.php">', '</a>') . '</p>';
 
-    if(!empty($versionStatus['newer'])) {
-        $warn[] = gTranslate('config',
-            "One file is newer then expected.",
-            "%d files are newer then expected.",
-            count($versionStatus['newer']), '', true) .
-            $hint;
-    }
+	if(!empty($versionStatus['newer'])) {
+		$warn[] = gTranslate('config',
+			"One file is newer then expected.",
+			"%d files are newer then expected.",
+			count($versionStatus['newer']), '', true) .
+			$hint;
+	}
 
-    if(!empty($problems)) {
-        $fail[] = gTranslate('config',
-            "One file is out of date, corrupted or missing.",
-            "%d files are out of date, corrupted or missing.",
-            count($problems), '', true) .
-            (empty($versionStatus['newer']) ? $hint : '<br>');
-    }
+	if(!empty($problems)) {
+		$fail[] = gTranslate('config',
+			"One file is out of date, corrupted or missing.",
+			"%d files are out of date, corrupted or missing.",
+			count($problems), '', true) .
+			(empty($versionStatus['newer']) ? $hint : '<br>');
+	}
 
-    if (empty($warn) && empty($fail)) {
-        $success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
-    }
+	if (empty($warn) && empty($fail)) {
+		$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
+	}
 
-    return array($success, $fail, $warn);
+	return array($success, $fail, $warn);
 }
 
 function checkVersions($verbose = false) {
@@ -1769,13 +1769,13 @@ function configLogin($target) {
 		$gallery->userDB = new Gallery_UserDB();
 
 		if (! $gallery->userDB->isInitialized()) {
-		    exit;
+			exit;
 		}
 
-        // Check the UserDB for upgrades before trying to make someone login
-        if ($gallery->userDB->versionOutOfDate()) {
-            include(GALLERY_BASE . "/upgrade_users.php");
-            exit;
+		// Check the UserDB for upgrades before trying to make someone login
+		if ($gallery->userDB->versionOutOfDate()) {
+			include(GALLERY_BASE . "/upgrade_users.php");
+			exit;
 		}
 
 		include(GALLERY_BASE . '/setup/login.inc');
@@ -1812,7 +1812,7 @@ function placeholderDescription() {
  * 51 - serious warning
  * 100 - failure
  *
- * @param array $result     The resultcheck
+ * @param array $result	 The resultcheck
  * @param array $check
  * @return integer
  * @author Jens Tkotz <jens@peino.de>

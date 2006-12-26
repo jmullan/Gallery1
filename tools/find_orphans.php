@@ -23,7 +23,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-    require_once(dirname(dirname(__FILE__)) . '/init.php');
+	require_once(dirname(dirname(__FILE__)) . '/init.php');
 }
 
 require(dirname(__FILE__) . '/lib/lib-find_orphans.php');
@@ -56,24 +56,24 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php
 }
-    includeTemplate("gallery.header", '', 'classic');
+	includeTemplate("gallery.header", '', 'classic');
 
-    $adminbox['text'] = gTranslate('core', "Find Orphans");
-    $adminbox["commands"] = galleryLink(
-                                makeGalleryUrl("admin-page.php"),
-                                gTranslate('core', "return to _admin page"),
-                                array(), '', true);
+	$adminbox['text'] = gTranslate('core', "Find Orphans");
+	$adminbox["commands"] = galleryLink(
+								makeGalleryUrl("admin-page.php"),
+								gTranslate('core', "return to _admin page"),
+								array(), '', true);
 
-    $adminbox["commands"] .= galleryLink(
-                                makeAlbumUrl(),
-                                gTranslate('core', "return to _gallery"),
-                                array(), '', true);
+	$adminbox["commands"] .= galleryLink(
+								makeAlbumUrl(),
+								gTranslate('core', "return to _gallery"),
+								array(), '', true);
 
-    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-    $breadcrumb['text'][] = languageSelector();
+	$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+	$breadcrumb['text'][] = languageSelector();
 
-    includeLayout('adminbox.inc');
-    includeLayout('breadcrumb.inc');
+	includeLayout('adminbox.inc');
+	includeLayout('breadcrumb.inc');
 
 echo '<div class="g-content-popup" align="center">';
 if (empty($action)) {
@@ -156,7 +156,7 @@ if (empty($action)) {
 	}
 } // !isset(update)
 else {
-    $addon = '';
+	$addon = '';
 	$text = ($action == "albums") ? gTranslate('core', "Orphaned albums repaired.") : gTranslate('core', "Orphaned files repaired.");
 	$messages[] = array('type' =>'information', 'text' => $text);
 
@@ -166,7 +166,7 @@ else {
 
 	if ($action == 'images') {
 		$unwriteableFiles = array("jens"); //deleteOrphanedImages($orphanImages);
-        if (!empty($unwriteableFiles)) {
+		if (!empty($unwriteableFiles)) {
 
 			$text = gTranslate('core', "The Webserver has not enough permission to delete the following files:");
 			$text .= "\n<ul>";
@@ -178,16 +178,16 @@ else {
 			$text .= "\n</p>";
 
 			$messages[] = array('type' =>'error', 'text' => $text);
-            $addon = gButton('clickme', gTranslate('core', "Reload"), 'location.reload()');
+			$addon = gButton('clickme', gTranslate('core', "Reload"), 'location.reload()');
 		}
 	}
-    echo infoBox($messages) . $addon;
+	echo infoBox($messages) . $addon;
 }
 ?>
 </div>
 <?php
-    includeTemplate("overall.footer");
-    if (!$GALLERY_EMBEDDED_INSIDE) {
+	includeTemplate("overall.footer");
+	if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
 </html>

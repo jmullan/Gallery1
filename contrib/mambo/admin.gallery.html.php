@@ -40,23 +40,23 @@ class HTML_content {
 		}
 </script>
 <form action="index2.php" method="post" name="adminForm">
-    <table cellpadding="2" cellspacing="4" border="0" width="100%" class="adminform">
-      <tr>
-        <td width="80" valign="top">Path to Gallery:</td>
-        <td valign="top"><input class="inputbox" type="text" name="path" size="50" value="<?php echo $params['path']; ?>"></td>
-      	<td class="error" valign="top">Full server path to your Gallery</td>
-      </tr>
-      <tr>
-        <td width="80" valign="top">Admin Level:</td>
-        <td valign="top"><?php echo $params['minAuthType']; ?></td>
-      	<td class="error" valign="top">Minimum authority level needed for <i>admin</i> privileges in Gallery</td>
-      </tr>	  
-      <tr>
-        <td width="80" valign="top">Hide Right-hand modules:</td>
-        <td valign="top"><?php echo $params['hideRightSide']; ?></td>
-      	<td class="error" valign="top">Hiding right-hand modules gives Gallery more room</td>
-      </tr>
-    </table>
+	<table cellpadding="2" cellspacing="4" border="0" width="100%" class="adminform">
+	  <tr>
+		<td width="80" valign="top">Path to Gallery:</td>
+		<td valign="top"><input class="inputbox" type="text" name="path" size="50" value="<?php echo $params['path']; ?>"></td>
+	  	<td class="error" valign="top">Full server path to your Gallery</td>
+	  </tr>
+	  <tr>
+		<td width="80" valign="top">Admin Level:</td>
+		<td valign="top"><?php echo $params['minAuthType']; ?></td>
+	  	<td class="error" valign="top">Minimum authority level needed for <i>admin</i> privileges in Gallery</td>
+	  </tr>	  
+	  <tr>
+		<td width="80" valign="top">Hide Right-hand modules:</td>
+		<td valign="top"><?php echo $params['hideRightSide']; ?></td>
+	  	<td class="error" valign="top">Hiding right-hand modules gives Gallery more room</td>
+	  </tr>
+	</table>
   <input type="hidden" name="option" value="<?php echo $option; ?>">
   <input type="hidden" name="act" value="<?php echo $act; ?>">
   <input type="hidden" name="task" value="">

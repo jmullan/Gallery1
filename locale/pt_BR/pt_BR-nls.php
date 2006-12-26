@@ -21,7 +21,7 @@
   */
  
 /**
- * @version     1.5.4
+ * @version	 1.5.4
  * @package	Languagepack
  * @subpackage	Brazil Portuguese
  */
@@ -48,8 +48,8 @@
 /**
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
  */
-	$nls['alias']['brazilian'] =            'pt_BR' ;
-	$nls['alias']['pt_BR.ISO8859-1'] =      'pt_BR' ;
+	$nls['alias']['brazilian'] =			'pt_BR' ;
+	$nls['alias']['pt_BR.ISO8859-1'] =	  'pt_BR' ;
 	$nls['alias']['portuguese_brazil'] =	'pt_BR' ;
 	$nls['alias']['brazilian_portuguese'] =	'pt_BR' ;
 

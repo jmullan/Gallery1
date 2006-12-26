@@ -29,15 +29,15 @@ list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) =
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) && 
-    !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
+	!($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 if (isset($action)) {
 	if ($action == "doit") {
-	    doctype();
-            echo "<html>";
+		doctype();
+			echo "<html>";
 		
 		#-- rebuild the thumbnail, cropped) ---
 		echo(gTranslate('core', "Remaking the Thumbnail..."));
@@ -63,7 +63,7 @@ if (isset($action)) {
 } else {
 	#-- show the applet ---
 
-    printPopupStart(gTranslate('core', "Custom Thumbnail"));
+	printPopupStart(gTranslate('core', "Custom Thumbnail"));
 
 	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) { 
@@ -85,19 +85,19 @@ if (isset($action)) {
 
 		/* Build up the submit URL */
 		if (isset($_SERVER['HTTPS']) && stristr($_SERVER['HTTPS'], "on")) {
-		    $submit = "https://";
+			$submit = "https://";
 		} else {
-		    $submit = "http://";
+			$submit = "http://";
 		}
 
 		if (empty($_SERVER['REQUEST_URI'])) {
-		    $submit .= $_SERVER['HTTP_HOST'];
-		    $submit .= $_SERVER['PATH_INFO'];
-		    $submit .= '?';
-		    $submit .= $_SERVER['QUERY_STRING'];
+			$submit .= $_SERVER['HTTP_HOST'];
+			$submit .= $_SERVER['PATH_INFO'];
+			$submit .= '?';
+			$submit .= $_SERVER['QUERY_STRING'];
 		} else {
-		    $submit .= $_SERVER['HTTP_HOST'];
-		    $submit .= $_SERVER['REQUEST_URI'];
+			$submit .= $_SERVER['HTTP_HOST'];
+			$submit .= $_SERVER['REQUEST_URI'];
 		}
 ?>
 
@@ -108,7 +108,7 @@ if (isset($action)) {
 <APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $gallery->app->photoAlbumURL .'/java' ?>" ARCHIVE="ImageTools.jar">
   <PARAM NAME="type"   VALUE="application/x-java-applet;version=1.1.2">
   <PARAM NAME=bgcolor  VALUE="<?php echo $bgcolor ?>">
-  <PARAM NAME=image    VALUE="<?php echo $photoURL ?>">
+  <PARAM NAME=image	VALUE="<?php echo $photoURL ?>">
   <PARAM NAME=image_w  VALUE="<?php echo $image_w ?>">
   <PARAM NAME=image_h  VALUE="<?php echo $image_h ?>">
   <PARAM NAME=crop_x   VALUE="<?php echo $t_x ?>">
@@ -120,7 +120,7 @@ if (isset($action)) {
 </APPLET>
 
 <?php 
-//    	-- we're not a go. abort! abort! ---
+//		-- we're not a go. abort! abort! ---
 	} else { 
 		echo gallery_error(gTranslate('core', "no album / index specified"));
 	} 

@@ -61,9 +61,9 @@ if (! empty($unames)) {
 
 echo "\n<center>";
 echo makeFormIntro('delete_user.php',
-    array('name' => 'deleteuser_form',
-          'onsubmit' => "deleteuser_form.deleteButton.disabled='true'"),
-    array('type' => 'popup')
+	array('name' => 'deleteuser_form',
+		  'onsubmit' => "deleteuser_form.deleteButton.disabled='true'"),
+	array('type' => 'popup')
 );
 
 if (! empty($unames)) {
@@ -76,7 +76,7 @@ if (! empty($unames)) {
 <input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deleteuser_form.formaction.value='delete'" class="g-button">
 <?php
 } else {
-    echo gTranslate('core', "No user available for deletion.");
+	echo gTranslate('core', "No user available for deletion.");
 }
 ?>
 <input type="hidden" name="formaction" value="">

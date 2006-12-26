@@ -29,20 +29,20 @@
 		var $pass;
 
 		/**
-        * Constructor function. Arguments:
+		* Constructor function. Arguments:
 		* $params - An assoc array of parameters:
 		*
-		*   host    - The hostname of the smtp server		Default: localhost
-		*   port    - The port the smtp server runs on		Default: 25
-		*   helo    - What to send as the HELO command		Default: localhost
-		*             (typically the hostname of the
-		*             machine this script runs on)
-		*   auth    - Whether to use basic authentication	Default: FALSE
-		*   user    - Username for authentication			Default: <blank>
-		*   pass    - Password for authentication			Default: <blank>
+		*   host	- The hostname of the smtp server		Default: localhost
+		*   port	- The port the smtp server runs on		Default: 25
+		*   helo	- What to send as the HELO command		Default: localhost
+		*			 (typically the hostname of the
+		*			 machine this script runs on)
+		*   auth	- Whether to use basic authentication	Default: FALSE
+		*   user	- Username for authentication			Default: <blank>
+		*   pass	- Password for authentication			Default: <blank>
 		*   timeout - The timeout in seconds for the call	Default: 5
-		*             to fsockopen()
-        */
+		*			 to fsockopen()
+		*/
 
 		function smtp($params = array()){
 
@@ -66,13 +66,13 @@
 		}
 
 		/**
-        * Connect function. This will, when called
+		* Connect function. This will, when called
 		* statically, create a new smtp object, 
 		* call the connect function (ie this function)
 		* and return it. When not called statically,
 		* it will connect to the server and send
 		* the HELO command.
-        */
+		*/
 
 		function &connect($params = array()){
 
@@ -103,18 +103,18 @@
 		}
 
 		/**
-        * Function which handles sending the mail.
+		* Function which handles sending the mail.
 		* Arguments:
 		* $params	- Optional assoc array of parameters.
-		*            Can contain:
-		*              recipients - Indexed array of recipients
-		*              from       - The from address. (used in MAIL FROM:),
-		*                           this will be the return path
-		*              headers    - Indexed array of headers, one header per array entry
-		*              body       - The body of the email
-		*            It can also contain any of the parameters from the connect()
-		*            function
-        */
+		*			Can contain:
+		*			  recipients - Indexed array of recipients
+		*			  from	   - The from address. (used in MAIL FROM:),
+		*						   this will be the return path
+		*			  headers	- Indexed array of headers, one header per array entry
+		*			  body	   - The body of the email
+		*			It can also contain any of the parameters from the connect()
+		*			function
+		*/
 
 		function send($params = array()){
 
@@ -142,8 +142,8 @@
 
 				// Transparency
 				$headers = str_replace(CRLF.'.', CRLF.'..', trim(implode(CRLF, $this->headers)));
-				$body    = str_replace(CRLF.'.', CRLF.'..', $this->body);
-				$body    = $body[0] == '.' ? '.'.$body : $body;
+				$body	= str_replace(CRLF.'.', CRLF.'..', $this->body);
+				$body	= $body[0] == '.' ? '.'.$body : $body;
 
 				$this->send_data($headers);
 				$this->send_data('');
@@ -160,8 +160,8 @@
 		}
 		
 		/**
-        * Function to implement HELO cmd
-        */
+		* Function to implement HELO cmd
+		*/
 
 		function helo(){
 			if(is_resource($this->connection)
@@ -177,8 +177,8 @@
 		}
 		
 		/**
-        * Function to implement EHLO cmd
-        */
+		* Function to implement EHLO cmd
+		*/
 
 		function ehlo(){
 			if(is_resource($this->connection)
@@ -194,8 +194,8 @@
 		}
 		
 		/**
-        * Function to implement RSET cmd
-        */
+		* Function to implement RSET cmd
+		*/
 
 		function rset(){
 			if(is_resource($this->connection)
@@ -211,8 +211,8 @@
 		}
 		
 		/**
-        * Function to implement QUIT cmd
-        */
+		* Function to implement QUIT cmd
+		*/
 
 		function quit(){
 			if(is_resource($this->connection)
@@ -230,8 +230,8 @@
 		}
 		
 		/**
-        * Function to implement AUTH cmd
-        */
+		* Function to implement AUTH cmd
+		*/
 
 		function auth(){
 			if(is_resource($this->connection)
@@ -252,8 +252,8 @@
 		}
 
 		/**
-        * Function that handles the MAIL FROM: cmd
-        */
+		* Function that handles the MAIL FROM: cmd
+		*/
 		
 		function mail($from){
 
@@ -268,8 +268,8 @@
 		}
 
 		/**
-        * Function that handles the RCPT TO: cmd
-        */
+		* Function that handles the RCPT TO: cmd
+		*/
 		
 		function rcpt($to){
 
@@ -286,8 +286,8 @@
 		}
 
 		/**
-        * Function that sends the DATA cmd
-        */
+		* Function that sends the DATA cmd
+		*/
 
 		function data(){
 
@@ -304,9 +304,9 @@
 		}
 
 		/**
-        * Function to determine if this object
+		* Function to determine if this object
 		* is connected to the server or not.
-        */
+		*/
 
 		function is_connected(){
 
@@ -314,8 +314,8 @@
 		}
 
 		/**
-        * Function to send a bit of data
-        */
+		* Function to send a bit of data
+		*/
 
 		function send_data($data){
 
@@ -327,8 +327,8 @@
 		}
 
 		/**
-        * Function to get data.
-        */
+		* Function to get data.
+		*/
 
 		function &get_data(){
 
@@ -338,7 +338,7 @@
 
 			if(is_resource($this->connection)){
 				while((strpos($return, CRLF) === FALSE OR substr($line,3,1) !== ' ') AND $loops < 100){
-					$line    = fgets($this->connection, 512);
+					$line	= fgets($this->connection, 512);
 					$return .= $line;
 					$loops++;
 				}
@@ -350,8 +350,8 @@
 		}
 
 		/**
-        * Sets a variable
-        */
+		* Sets a variable
+		*/
 		
 		function set($var, $value){
 

@@ -25,7 +25,7 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($create, $bulk_create, $modify, $delete, $unames) =
-    getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
+	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -89,9 +89,9 @@ if (!$displayUsers) {
 else {
 	echo drawSelect('unames[]', $displayUsers, '', 15,
 	   array('id' => 'userNameBox',
-	         'multiple' => '',
-	         'onChange' => 'enableButtons()')
-    );
+			 'multiple' => '',
+			 'onChange' => 'enableButtons()')
+	);
 }
 
 echo "\n<br>";
@@ -101,11 +101,11 @@ echo "\n<br><br>";
 
 echo gSubmit('create', gTranslate('core', "Create _new user"));
 if ($gallery->app->multiple_create == "yes") {
-    echo gSubmit('bulk_create', gTranslate('core', "_Bulk Create"));
+	echo gSubmit('bulk_create', gTranslate('core', "_Bulk Create"));
 }
 if (count($displayUsers)) {
-    echo gSubmit('modify', gTranslate('core', "_Modify"));
-    echo gSubmit('delete', gTranslate('core', "_Delete"));
+	echo gSubmit('modify', gTranslate('core', "_Modify"));
+	echo gSubmit('delete', gTranslate('core', "_Delete"));
 }
 echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 ?>
@@ -114,41 +114,41 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 </div>
 
 <script type="text/javascript">
-    var userNameBox = document.getElementById('userNameBox');
-    var userCount = userNameBox.length;
+	var userNameBox = document.getElementById('userNameBox');
+	var userCount = userNameBox.length;
 
-    var createButton = document.getElementById('create');
-    var modifyButton = document.getElementById('modify');
-    var deleteButton = document.getElementById('delete');
-    var doneButton   = document.getElementById('done');
+	var createButton = document.getElementById('create');
+	var modifyButton = document.getElementById('modify');
+	var deleteButton = document.getElementById('delete');
+	var doneButton   = document.getElementById('done');
 
-    function enableButtons() {
-        var selected = 0;
-        for (i = 0; i < userCount; i++) {
-            if(userNameBox.options[i].selected) {
-                selected++;
-            }
-        }
+	function enableButtons() {
+		var selected = 0;
+		for (i = 0; i < userCount; i++) {
+			if(userNameBox.options[i].selected) {
+				selected++;
+			}
+		}
 
-        if(selected == 0) {
-            modifyButton.disabled = true;
-            modifyButton.className = 'g-buttonDisable';
-            deleteButton.disabled = true;
-            deleteButton.className = 'g-buttonDisable';
+		if(selected == 0) {
+			modifyButton.disabled = true;
+			modifyButton.className = 'g-buttonDisable';
+			deleteButton.disabled = true;
+			deleteButton.className = 'g-buttonDisable';
 
-        }
-        else if (selected > 1) {
-            modifyButton.disabled = true;
-            modifyButton.className = 'g-buttonDisable';
-        }
-        else {
-            modifyButton.disabled = false;
-            modifyButton.className = 'g-button';
-            deleteButton.disabled = false;
-            deleteButton.className = 'g-button';
-        }
+		}
+		else if (selected > 1) {
+			modifyButton.disabled = true;
+			modifyButton.className = 'g-buttonDisable';
+		}
+		else {
+			modifyButton.disabled = false;
+			modifyButton.className = 'g-button';
+			deleteButton.disabled = false;
+			deleteButton.className = 'g-button';
+		}
 
-    }
+	}
 </script>
 </body>
 </html>

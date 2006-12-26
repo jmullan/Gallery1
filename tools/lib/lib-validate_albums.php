@@ -23,80 +23,80 @@
 <?php
 
 function findInvalidAlbums() {
-    global $gallery;
-    global $results;
+	global $gallery;
+	global $results;
 
-    $albumsDir = opendir($gallery->app->albumDir);
+	$albumsDir = opendir($gallery->app->albumDir);
 
-    while (($file = readdir($albumsDir)) !== false) {
-        $albumPath = $gallery->app->albumDir . '/' . $file;
-        if (fs_is_dir($albumPath)) {
-            if ($file[0] == '.' ||
-            $file == 'CVS' ||
-            $file == '_vti_cnf') {
-                continue;
-            } else {
+	while (($file = readdir($albumsDir)) !== false) {
+		$albumPath = $gallery->app->albumDir . '/' . $file;
+		if (fs_is_dir($albumPath)) {
+			if ($file[0] == '.' ||
+			$file == 'CVS' ||
+			$file == '_vti_cnf') {
+				continue;
+			} else {
 
-                // Load the album - if it fails, it's invalid
-                $album = new Album();
-                if (!$album->load($file)) {
-                    $results['invalid_album'][] = $file;
-                    continue;
-                }
+				// Load the album - if it fails, it's invalid
+				$album = new Album();
+				if (!$album->load($file)) {
+					$results['invalid_album'][] = $file;
+					continue;
+				}
 
-                // Determine if the album is missing any essential files
-                findMissingFiles($album, $albumPath);
-            }
-        }
-    }
-    closedir($albumsDir);
+				// Determine if the album is missing any essential files
+				findMissingFiles($album, $albumPath);
+			}
+		}
+	}
+	closedir($albumsDir);
 
-    sort($results['file_missing']);
-    sort($results['invalid_album']);
+	sort($results['file_missing']);
+	sort($results['invalid_album']);
 }
 
 function findMissingFiles($album, $albumPath) {
-    global $gallery;
-    global $results;
+	global $gallery;
+	global $results;
 
-    // Try to ensure we'll have enough time to process this album
-    @set_time_limit($gallery->app->time_limit);
+	// Try to ensure we'll have enough time to process this album
+	@set_time_limit($gallery->app->time_limit);
 
-    /*
-    * Try and load each photo and examine its physical file
-    * if the file doesn't exist, we flag it.
-    */
-    for ($i = 1; $i <= sizeof($album->photos); $i++) {
-        $photo = $album->getPhoto($i);
+	/*
+	* Try and load each photo and examine its physical file
+	* if the file doesn't exist, we flag it.
+	*/
+	for ($i = 1; $i <= sizeof($album->photos); $i++) {
+		$photo = $album->getPhoto($i);
 
-        // Albums will be tested on their own
-        if ($photo->isAlbum()) {
-            continue;
-        }
+		// Albums will be tested on their own
+		if ($photo->isAlbum()) {
+			continue;
+		}
 
-        // Get the file path and verify
-        $photoPath = $photo->getPhotoPath($albumPath, true);
-        if (!fs_file_exists($photoPath)) {
-            // album/filename.ext
-            $results['file_missing'][] = substr($photoPath, strlen($gallery->app->albumDir) + 1);
-        }
-    }
+		// Get the file path and verify
+		$photoPath = $photo->getPhotoPath($albumPath, true);
+		if (!fs_file_exists($photoPath)) {
+			// album/filename.ext
+			$results['file_missing'][] = substr($photoPath, strlen($gallery->app->albumDir) + 1);
+		}
+	}
 }
 
 function removeInvalidAlbum($path) {
-    $removePath = opendir($path);
-    while (($file = readdir($removePath)) !== false) {
-        if ($file == '.' || $file == '..') {
-            continue;
-        }
+	$removePath = opendir($path);
+	while (($file = readdir($removePath)) !== false) {
+		if ($file == '.' || $file == '..') {
+			continue;
+		}
 
-        if (fs_is_dir($path . '/' . $file)) {
-            removeInvalidAlbum($path . '/' . $file);
-        } else {
-            unlink($path . '/' . $file);
-        }
-    }
-    closedir($removePath);
-    rmdir($path);
+		if (fs_is_dir($path . '/' . $file)) {
+			removeInvalidAlbum($path . '/' . $file);
+		} else {
+			unlink($path . '/' . $file);
+		}
+	}
+	closedir($removePath);
+	rmdir($path);
 }
 ?>

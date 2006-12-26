@@ -119,13 +119,13 @@ if ($gallery->session->albumName && isset($index)) {
 				}
 				//end else
 			}
-		       	?>
+			   	?>
 			<form>
 			<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick="parent.close()" class="g-button">
 			</form>
-		       	<?php
-		       	return;
-		       	//end if ($gallery->album != $postAlbum)
+			   	<?php
+			   	return;
+			   	//end if ($gallery->album != $postAlbum)
 		}
 		//end if (isset($newAlbum))
 	}
@@ -161,11 +161,11 @@ if ($gallery->session->albumName && isset($index)) {
 	<select name="startPhoto">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
-        $sel = "";
-        if ($i == $index) {
-                $sel = "selected";
-        }
-        echo "\n\t<option value=\"$i\" $sel> $i</option>";
+		$sel = "";
+		if ($i == $index) {
+				$sel = "selected";
+		}
+		echo "\n\t<option value=\"$i\" $sel> $i</option>";
 }
 ?>
 	</select>
@@ -174,11 +174,11 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 	<select name="endPhoto">
 <?php
 for ($i = 1; $i <= $numPhotos; $i++) {
-        $sel = "";
-        if ($i == $index) {
-                $sel = "selected";
-        }
-        echo "\n\t<option value=\"$i\" $sel> $i</option>";
+		$sel = "";
+		if ($i == $index) {
+				$sel = "selected";
+		}
+		echo "\n\t<option value=\"$i\" $sel> $i</option>";
 }
 ?>
 	</select>
@@ -201,13 +201,13 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </form>
 <?php
 
-    if (!$uptodate) {
+	if (!$uptodate) {
 	echo "<br>". infoBox(array(array(
-	    'type' => 'warning',
-	    'text' => sprintf(gTranslate('core', "WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
-		      galleryLink(makeGalleryUrl("upgrade_album.php"), gTranslate('core', "Upgrade now"))
+		'type' => 'warning',
+		'text' => sprintf(gTranslate('core', "WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
+			  galleryLink(makeGalleryUrl("upgrade_album.php"), gTranslate('core', "Upgrade now"))
 	)));
-    }
+	}
 }
 else {
 	echo gallery_error(gTranslate('core', "no album / index specified"));

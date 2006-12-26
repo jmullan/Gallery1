@@ -27,9 +27,9 @@
 
 /**
  * Copies a file from $source to $dest.
- * @param  string    $source    Full path to source file.
- * @param  string    $dest      Full path to destination file.
- * @return boolean   $result    true on success, otherwise false
+ * @param  string	$source		Full path to source file.
+ * @param  string	$dest		Full path to destination file.
+ * @return boolean	$result		true on success, otherwise false
  */
 function fs_copy($source, $dest) {
 	$result = copy($source, $dest);
@@ -70,8 +70,8 @@ function fs_fopen($filename, $mode, $use_include_path = 0) {
  * Wrapper for file_get_contents() as it was implemented in PHP 4.3.0 and minimum for G1 is 4.1.0
  * http://de.php.net/manual/en/function.file-get-contents.php
  *
- * @param string $filename
- * @return string $content
+ * @param	string $filename
+ * @return	string $content
  */
 function fs_file_get_contents($filename) {
 	$content = '';
@@ -161,9 +161,9 @@ function fs_executable($filename) {
 
 /**
  * Creates a directory
- * @param  string    $dirname
- * @param  string    $perms     Optional perms, given in octal format
- * @return boolean   $result    true on success, otherwise false
+ * @param  string	$dirname
+ * @param  string	$perms	Optional perms, given in octal format
+ * @return boolean	$result	true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
 	/*
@@ -188,8 +188,8 @@ function fs_mkdir($dirname, $perms = 0700) {
 
 /**
  * Is file hidden ? Means it starts with a .
- * @param   $filename   string
- * @return              boolean
+ * @param	string	$filename
+ * @return	boolean
  * @author  Jens Tkotz
 */
 function fs_fileIsHidden($filename) {

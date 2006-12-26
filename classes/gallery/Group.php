@@ -22,16 +22,16 @@
 ?>
 <?php
 class Gallery_Group extends Abstract_Group {
-    var $version;
+	var $version;
 
 	function Gallery_Group() {
 		global $gallery;
 
-		$this->name         = '';
-        $this->description  = '';
-        $this->memberList   = array();
-		$this->gid          = 'g_' . time() . '_' . mt_rand();
-    }
+		$this->name		 = '';
+		$this->description  = '';
+		$this->memberList   = array();
+		$this->gid		  = 'g_' . time() . '_' . mt_rand();
+	}
 
 	function load($gid) {
 		global $gallery;
@@ -39,11 +39,11 @@ class Gallery_Group extends Abstract_Group {
 		$dir = $gallery->app->userDir;
 
 		$tmp = getFile("$dir/$gid");
-        if($tmp) {
-    		foreach (unserialize($tmp) as $k => $v) {
-    		    $this->$k = $v;
-    		}
-        }
+		if($tmp) {
+			foreach (unserialize($tmp) as $k => $v) {
+				$this->$k = $v;
+			}
+		}
 	}
 
 
@@ -53,55 +53,55 @@ class Gallery_Group extends Abstract_Group {
 		$getGroupIdList = getGroupIdList();
 
 		foreach($getGroupIdList as $id) {
-            $tmpGrp = new Gallery_Group();
-            $tmpGrp->load($id);
-            $tmpName = $tmpGrp->getName();
-            if($tmpName == $groupname) {
-                return $tmpGrp;
-            }
+			$tmpGrp = new Gallery_Group();
+			$tmpGrp->load($id);
+			$tmpName = $tmpGrp->getName();
+			if($tmpName == $groupname) {
+				return $tmpGrp;
+			}
 		}
 	}
 
 	function save() {
-	    global $gallery;
-	    $success = 0;
+		global $gallery;
+		$success = 0;
 
-	    $dir = $gallery->app->userDir;
-	    return safe_serialize($this, "$dir/$this->gid");
+		$dir = $gallery->app->userDir;
+		return safe_serialize($this, "$dir/$this->gid");
 	}
 
 	function getMemberlist() {
-	    return $this->memberList;
+		return $this->memberList;
 	}
 
 	function setMemberlist($gidList) {
-	    $this->memberList = $gidList;
-	    $this->memberList = $gidList;
+		$this->memberList = $gidList;
+		$this->memberList = $gidList;
 	}
 
 	function getName() {
-	    return $this->name;
+		return $this->name;
 	}
 
 	function setName($groupName) {
-	    $this->name = $groupName;
+		$this->name = $groupName;
 	}
 
 	function getDescription() {
-	    return $this->description;
+		return $this->description;
 	}
 
 	function setDescription($description) {
-	    $this->description = $description;
+		$this->description = $description;
 	}
 
 	function userIsMember($userID) {
-	    foreach($this->getMemberlist() as $memberUserId) {
-	        if ($memberUserId == $userID) {
-	            return true;
-	        }
-	    }
-	    return false;
+		foreach($this->getMemberlist() as $memberUserId) {
+			if ($memberUserId == $userID) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

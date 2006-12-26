@@ -29,11 +29,12 @@ $cookieName = $gallery->app->sessionVar . "_slideshow_mode";
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+		setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
 	}
-} else {
+}
+else {
 	if (isset($modeCookie)) {
-	    $mode = $modeCookie;
+		$mode = $modeCookie;
 	}
 }
 
@@ -67,8 +68,8 @@ if (!empty($albumName)) {
 
 // common initialization
 if (empty($albumName)) {
-	$album = null;
-	$recursive = true;
+	$album		= null;
+	$recursive	= true;
 	$number		= (int)$gallery->app->gallery_slideshow_length;
 	$random		= ($gallery->app->gallery_slideshow_type == "random");
 	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
@@ -81,27 +82,28 @@ else {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText       = getIconText('slideshow/1rightarrow.gif', gTranslate('core', "play"));
-$stopIconText       = getIconText('slideshow/play_stop.gif', gTranslate('core', "stop"));
-$normalSizeIconText = getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
-$fullSizeIconText   = getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
-$forwardIconText    = getIconText('slideshow/1rightarrow.gif', gTranslate('core', "forward direction"));
-$backwardIconText   = getIconText('slideshow/1leftarrow.gif', gTranslate('core', "reverse direction"));
-$delayIconText      = getIcontext('history.gif', gTranslate('core', "Delay"));
-$loopIconText       = getIcontext('reload.gif', gTranslate('core', "Loop:"));
+$playIconText		= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "play"));
+$stopIconText		= getIconText('slideshow/play_stop.gif', gTranslate('core', "stop"));
+$normalSizeIconText	= getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
+$fullSizeIconText	= getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
+$forwardIconText	= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "forward direction"));
+$backwardIconText	= getIconText('slideshow/1leftarrow.gif', gTranslate('core', "reverse direction"));
+$delayIconText		= getIcontext('history.gif', gTranslate('core', "Delay"));
+$loopIconText		= getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar") &&
-	! $gallery->session->offline) {
+	! $gallery->session->offline)
+{
 	$modes["applet"] = gTranslate('core', "Fullscreen applet");
 }
 
 $modes["high"] = gTranslate('core', "Modern browsers");
 
 if (!empty($albumName) && !$gallery->session->offline) {
-    $modes["low"] = gTranslate('core', "Compatible but limited");
+	$modes["low"] = gTranslate('core', "Compatible but limited");
 }
 
 if (!isset($mode) || !isset($modes[$mode])) {
@@ -123,32 +125,32 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 // the link colors have to be done here to override the style sheet
 if ($albumName) {
-    if( !empty($gallery->album->fields["linkcolor"]) ||
-    !empty($gallery->album->fields["bgcolor"]) ||
-    !empty($gallery->album->fields["textcolor"])) {
+	if( !empty($gallery->album->fields["linkcolor"]) ||
+	!empty($gallery->album->fields["bgcolor"]) ||
+	!empty($gallery->album->fields["textcolor"]))
+{
+		echo "\n<style type=\"text/css\">";
+		// the link colors have to be done here to override the style sheet
+		if ($gallery->album->fields["linkcolor"]) {
+			echo "\n  a:link, a:visited, a:active {";
+			echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+			echo "\n  a:hover { color: #ff6600; }";
 
-        echo "\n<style type=\"text/css\">";
-        // the link colors have to be done here to override the style sheet
-        if ($gallery->album->fields["linkcolor"]) {
-            echo "\n  a:link, a:visited, a:active {";
-            echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
-            echo "\n  a:hover { color: #ff6600; }";
+		}
+		if ($gallery->album->fields["bgcolor"]) {
+			echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
+		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+			echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+		}
+		if ($gallery->album->fields["textcolor"]) {
+			echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+			echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+			echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+		}
 
-        }
-        if ($gallery->album->fields["bgcolor"]) {
-            echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
-        if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-            echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-        }
-        if ($gallery->album->fields["textcolor"]) {
-            echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-            echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-            echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-        }
-
-        echo "\n  </style>";
-    }
+		echo "\n  </style>";
+	}
 }
 ?>
 </head>

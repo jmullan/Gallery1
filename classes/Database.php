@@ -22,7 +22,7 @@
 ?>
 <?php
 class Abstract_Database {
-    
+	
 	function query($sql) {
 		print "Error: query() should be overridden by a subclass!";
 	}

@@ -24,9 +24,9 @@
 ?>
 <?php
 // ###################################################################
-// # IBPS E-C@ard for Gallery           Version 1                    #
-// # Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de      #
-// # Ported for Gallery By freenik      webmaster@cittadipolicoro.com#
+// # IBPS E-C@ard for Gallery		   Version 1					#
+// # Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de	  #
+// # Ported for Gallery By freenik	  webmaster@cittadipolicoro.com#
 // ###################################################################
 
 /* Modified by Jens Tkotz <jens@peino.de> */
@@ -38,8 +38,8 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 doctype();
 ?>
 <html>
-    <?php common_header(); ?>
-    <title><?php echo gTranslate('core', "Poststamp preview"); ?></title>
+	<?php common_header(); ?>
+	<title><?php echo gTranslate('core', "Poststamp preview"); ?></title>
 </head>
 
 <body class="g-popup">
@@ -48,13 +48,13 @@ doctype();
 <table width="100" border="0" cellspacing="2" cellpadding="2">
 <?php
 for($i = 1; $i <= 27; $i++) {
-    $nr = sprintf("%02d", $i-1);
-    echo "\n<tr>";
-    echo "\n". '<td style="background-color: #ccc; vertical-align: middle; text-align: center" scope="col">'. $i .'</td>';
-    echo "\n". '<td style="background-color: #ccc" scope="col">';
-    echo "\n\t" . gImage("/ecard_images/$nr.gif");
-    echo "\n</td>";
-    echo "\n</tr>";
+	$nr = sprintf("%02d", $i-1);
+	echo "\n<tr>";
+	echo "\n". '<td style="background-color: #ccc; vertical-align: middle; text-align: center" scope="col">'. $i .'</td>';
+	echo "\n". '<td style="background-color: #ccc" scope="col">';
+	echo "\n\t" . gImage("/ecard_images/$nr.gif");
+	echo "\n</td>";
+	echo "\n</tr>";
 }
 ?>
 

@@ -23,26 +23,26 @@
 <?php
 
 $services = array(
-    'photoaccess' => array(
-	'name'    => 'PhotoWorks',
-	'url'     => 'http://www.photoworks.com/'
-    ),
-    'shutterfly'  => array(
-	'name'    => 'Shutterfly',
-	'url'     => 'http://www.shutterfly.com/'
-    ),
-    'fotoserve'  => array(
-	'name'    => 'Fotoserve.com',
-	'url'     => 'http://www.fotoserve.com/'
-    ),
-    'fotokasten'  => array(
-	'name'    => 'Fotokasten',
-	'url'     => 'http://www.fotokasten.de/'
-    ),
-    'mpush'       => array(
-	'name'    => 'mPUSH',
-	'url'     => 'http://www.mpush.cc/',
+	'photoaccess' => array(
+	'name'	=> 'PhotoWorks',
+	'url'	 => 'http://www.photoworks.com/'
+	),
+	'shutterfly'  => array(
+	'name'	=> 'Shutterfly',
+	'url'	 => 'http://www.shutterfly.com/'
+	),
+	'fotoserve'  => array(
+	'name'	=> 'Fotoserve.com',
+	'url'	 => 'http://www.fotoserve.com/'
+	),
+	'fotokasten'  => array(
+	'name'	=> 'Fotokasten',
+	'url'	 => 'http://www.fotokasten.de/'
+	),
+	'mpush'	   => array(
+	'name'	=> 'mPUSH',
+	'url'	 => 'http://www.mpush.cc/',
 	'description' => gTranslate('common', "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee.")
-    )
+	)
 );
 ?>

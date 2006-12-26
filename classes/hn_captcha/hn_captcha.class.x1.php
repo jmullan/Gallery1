@@ -75,42 +75,42 @@ class hn_captcha_X1 extends hn_captcha
 
 		/**
 		  * @shortdesc You optionally can specify an absolute filename for the counter. If is not specified, the class use the tempfolder and the default_basename.
-          * @public
-          * @type string
-          *
-          **/
+		  * @public
+		  * @type string
+		  *
+		  **/
 		var $counter_filename		= '';
 
 		/**
 		  * @shortdesc This is used as prefix for the picture filenames, so we can identify them also if we share the tempfolder with other programs.
-          * @public
-          * @type string
-          *
-          **/
+		  * @public
+		  * @type string
+		  *
+		  **/
 		var $prefix					= 'hn_captcha_';
 
 		/**
 		  * @shortdesc The garbage-collector will started once when the class was called that number times.
-          * @public
-          * @type integer
-          *
-          **/
+		  * @public
+		  * @type integer
+		  *
+		  **/
 		var $collect_garbage_after	= 100;
 
 		/**
 		  * @shortdesc Only trash files which are older than this number of seconds.
-          * @public
-          * @type integer
-          *
-          **/
+		  * @public
+		  * @type integer
+		  *
+		  **/
 		var $maxlifetime			= 600;
 
 		/**
 		  * @shortdesc This becomes TRUE if the counter doesn't work or if trashfiles couldn't be deleted.
-          * @public
-          * @type boolean
-          *
-          **/
+		  * @public
+		  * @type boolean
+		  *
+		  **/
 		var $garbage_collector_error	= FALSE;
 
 	////////////////////////////////

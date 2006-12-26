@@ -34,55 +34,55 @@ list($set, $index) = getRequestVar(array('set', 'index'));
 $notice_messages = array();
 
 if (!empty($set)) {
-    if (!$gallery->user->isAdmin()) {
-        echo gTranslate('core', "You are not allowed to perform this action!");
-        exit;
-    }
-    
-    if ($gallery->session->albumName && $index) {
-        $label = getLabelByIndex($index);
+	if (!$gallery->user->isAdmin()) {
+		echo gTranslate('core', "You are not allowed to perform this action!");
+		exit;
+	}
+	
+	if ($gallery->session->albumName && $index) {
+		$label = getLabelByIndex($index);
 
-        printPopupStart(sprintf(gTranslate('core', "Featured %s"), $label));
+		printPopupStart(sprintf(gTranslate('core', "Featured %s"), $label));
 
-        echo "<p>". $gallery->album->getThumbnailTag($index) ."</p>";
+		echo "<p>". $gallery->album->getThumbnailTag($index) ."</p>";
 
-        if ($fd = @fs_fopen(FEATURE_CACHE, 'w')) {
-            fwrite($fd, $gallery->session->albumName . "/$index");
-            fclose($fd);
+		if ($fd = @fs_fopen(FEATURE_CACHE, 'w')) {
+			fwrite($fd, $gallery->session->albumName . "/$index");
+			fclose($fd);
 
-            $notice_messages[] = array(
-                'type' => 'success',
-                'text' => sprintf(gTranslate('core', "New featured %s saved."), $label)
-            );
-        }
-        else {
-            $notice_messages[] = array(
-                'type' => 'error',
-                'text' => gTranslate('core', "Could not write the cache file!") . '<br>' .
-                    sprintf(
-                        gTranslate('core', "Make sure that the file %s in your albums folder is writeable for the webserver."),
-                        '<i>featured-photo.cache</i>')
-            );
-        }
-    }
-    else {
-        printPopupStart(gTranslate('core', "Featured item"), $label);
-        
-        $notice_messages[] = array(
-                'type' => 'error',
-                'text' => gTranslate('core', "Invalid Parameters.")
-        );
-    }
+			$notice_messages[] = array(
+				'type' => 'success',
+				'text' => sprintf(gTranslate('core', "New featured %s saved."), $label)
+			);
+		}
+		else {
+			$notice_messages[] = array(
+				'type' => 'error',
+				'text' => gTranslate('core', "Could not write the cache file!") . '<br>' .
+					sprintf(
+						gTranslate('core', "Make sure that the file %s in your albums folder is writeable for the webserver."),
+						'<i>featured-photo.cache</i>')
+			);
+		}
+	}
+	else {
+		printPopupStart(gTranslate('core', "Featured item"), $label);
+		
+		$notice_messages[] = array(
+				'type' => 'error',
+				'text' => gTranslate('core', "Invalid Parameters.")
+		);
+	}
 
-    echo infoBox($notice_messages);
+	echo infoBox($notice_messages);
 
-    echo "<br>\n";
+	echo "<br>\n";
 
-    echo gButton('closeButton', gTranslate('core', "_Close Window"), 'parent.close()');
+	echo gButton('closeButton', gTranslate('core', "_Close Window"), 'parent.close()');
 
-    echo "</div>\n";
-    echo "</body>\n";
-    echo "</html>";
+	echo "</div>\n";
+	echo "</body>\n";
+	echo "</html>";
 }
 
 ?>

@@ -30,7 +30,7 @@ if (isset($_REQUEST['destroy'])) {
 }
 
 if(!isset($_SESSION['count'])) {
-    $_SESSION['count'] = 0;
+	$_SESSION['count'] = 0;
 }
 
 $_SESSION['count']++;
@@ -45,14 +45,14 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
 		<?php echo gTranslate('config', "Clicking &quot;Start over&quot; should reset the page view number back to 1."); ?>
 	<br><br>
 		<?php echo infoBox(array(array(
-		      'type' => 'warning',
-		      'text' =>
-		          gTranslate('config', "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") .
-		          '<p>' .
-		          gTranslate('config', "Gallery will not work properly until PHP's session management is configured properly.") .
-		          '</p>'
-		      )), '', true);
-        ?>
+			  'type' => 'warning',
+			  'text' =>
+				  gTranslate('config', "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") .
+				  '<p>' .
+				  gTranslate('config', "Gallery will not work properly until PHP's session management is configured properly.") .
+				  '</p>'
+			  )), '', true);
+		?>
 	</div>
 
 	<br>
@@ -74,11 +74,11 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
   </div>
 
   <div class="center">
-    <?php echo gButton('reload', gTranslate('config', "_Reload"), 'location.href=\'session_test.php\''); ?>
-    <?php echo gButton('reload', gTranslate('config', "Start _over"), 'location.href=\'session_test.php?destroy=1\''); ?>
+	<?php echo gButton('reload', gTranslate('config', "_Reload"), 'location.href=\'session_test.php\''); ?>
+	<?php echo gButton('reload', gTranslate('config', "Start _over"), 'location.href=\'session_test.php?destroy=1\''); ?>
 
-    <br><br>
-    <?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
+	<br><br>
+	<?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
   </div>
 
 </div>

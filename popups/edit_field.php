@@ -33,19 +33,19 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 }
 
 if (isset($save)) {
-    $gallery->album->fields[$field] = $data;
-    $gallery->album->save(array(i18n("%s modified"), $field));
-    doctype();
-    echo "\n<html>";
-    dismissAndReload();
-    return;
+	$gallery->album->fields[$field] = $data;
+	$gallery->album->save(array(i18n("%s modified"), $field));
+	doctype();
+	echo "\n<html>";
+	dismissAndReload();
+	return;
 }
 
 printPopupStart(sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)));
 
 echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"),
-    gTranslate('common', $field),
-    '<b>' . gTranslate('core', "Save") . '</b>'
+	gTranslate('common', $field),
+	'<b>' . gTranslate('core', "Save") . '</b>'
 );
 
 echo makeFormIntro('edit_field.php', array(), array('type' => 'popup'));
@@ -53,17 +53,17 @@ echo makeFormIntro('edit_field.php', array(), array('type' => 'popup'));
   <input type="hidden" name="field" value="<?php echo $field ?>">
   <textarea name="data" rows="8" cols="50"><?php echo $gallery->album->fields[$field] ?></textarea>
   <p>
-    <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-    <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
+	<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
   </p>
   </form>
 
-    <script language="javascript1.2" type="text/JavaScript">
-    <!--
-    // position cursor in top form field
-    document.g1_form.data.focus();
-    //-->
-    </script>
+	<script language="javascript1.2" type="text/JavaScript">
+	<!--
+	// position cursor in top form field
+	document.g1_form.data.focus();
+	//-->
+	</script>
 </div>
 
 </body>

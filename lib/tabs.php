@@ -29,8 +29,8 @@ include_once(dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
  * It analyses a given Array which is in config_data Style:
  *
  * "<group_key>" => array (
- *			"type"     =>
- *			"name"     =>
+ *			"type"	 =>
+ *			"name"	 =>
  *			"default"  =>
  *			"title"	   =>
  *			"desc"	   =>
@@ -53,11 +53,11 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 	foreach ($array as $key => $var) {
 		if((isset($var['type']) && $var['type'] == 'group_start') ||
 		   (isset($var['type']) && $var['type'] == 'group')) {
-		    if(!empty($visibilityKeyword)) {
-		        if($var[$visibilityKeyword] != $visibilityValue) {
-		            continue;
-		        }
-		    }
+			if(!empty($visibilityKeyword)) {
+				if($var[$visibilityKeyword] != $visibilityValue) {
+					continue;
+				}
+			}
 			$tabs[$key] = $var;
 		}
 	}
@@ -73,8 +73,8 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 		$attrList = array();
 
 		if ((isset($cell['initial']) && !$initialtab) ||
-		    (isset($cell['default']) && $cell['default'] == 'inline' && !$initialtab) ||
-		    $initialtab == $name) {
+			(isset($cell['default']) && $cell['default'] == 'inline' && !$initialtab) ||
+			$initialtab == $name) {
 			$attrList['class'] = 'g-activeTab';
 			if (empty($initialtab)) {
 				$initialtab = $name;
@@ -93,7 +93,7 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 
 	echo "</div>\n";
 
-    $i = 0;
+	$i = 0;
 	echo '<script language="JavaScript" type="text/javascript">';
 	echo "\n\t". 'var Sections=new Array()';
 	foreach ($tabs as $name => $var) {
@@ -112,59 +112,59 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 }
 
 function makeSimpleSectionContent($array, $initialtab = '') {
-    $i = 0;
-    foreach ($array as $key => $val) {
-        if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
+	$i = 0;
+	foreach ($array as $key => $val) {
+		if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
 
-         if ($val["type"] === 'group_start') {
-            echo "\n<div id=\"$key\">";
-            echo make_separator($key, $val);
-            continue;
-        }
+		 if ($val["type"] === 'group_start') {
+			echo "\n<div id=\"$key\">";
+			echo make_separator($key, $val);
+			continue;
+		}
 
-        if ($val["type"] === 'subgroup') {
-            echo "\n<div id=\"$key\">";
-            echo "\n\t<div class=\"g-subgroup center\">{$val['title']}</div>";
-            if (isset($val['desc'])) {
-                echo "\n\t<div>{$val['desc']}</div>";
-            }
-            continue;
-        }
+		if ($val["type"] === 'subgroup') {
+			echo "\n<div id=\"$key\">";
+			echo "\n\t<div class=\"g-subgroup center\">{$val['title']}</div>";
+			if (isset($val['desc'])) {
+				echo "\n\t<div>{$val['desc']}</div>";
+			}
+			continue;
+		}
 
-        if ($val["type"] === 'subgroup_end') {
-            echo "\n</div>";
-            continue;
-        }
+		if ($val["type"] === 'subgroup_end') {
+			echo "\n</div>";
+			continue;
+		}
 
-        if ($val["type"] === 'group_end') {
-            echo "\n</div>";
-            continue;
-        }
+		if ($val["type"] === 'group_end') {
+			echo "\n</div>";
+			continue;
+		}
 
-        //echo "\n<div id=\"{$val["name"]}\" style=\"width: 100px; border: 1px solid green; 1display: ${val['default']}\">";
-        if ($val["type"] === 'group') {
-            if(!empty($initialtab) && $initialtab == $key) {
-                $display = 'inline';
-            }
-            else {
-                $display = 'none';
-            }
+		//echo "\n<div id=\"{$val["name"]}\" style=\"width: 100px; border: 1px solid green; 1display: ${val['default']}\">";
+		if ($val["type"] === 'group') {
+			if(!empty($initialtab) && $initialtab == $key) {
+				$display = 'inline';
+			}
+			else {
+				$display = 'none';
+			}
 
-            echo "\n<div id=\"$key\" style=\"display: $display\">";
-            echo make_separator($key, $val);
-            echo "\n<div>${val['content']}</div>";
-            echo "\n</div>";
-            continue;
-        }
+			echo "\n<div id=\"$key\" style=\"display: $display\">";
+			echo make_separator($key, $val);
+			echo "\n<div>${val['content']}</div>";
+			echo "\n</div>";
+			continue;
+		}
 
-        /* if the variable is hidden, lock it in as we don't want to use previous values*/
-        if ($val["type"] === 'hidden') {
-            echo $val['content'];
-        }
-        else {
-            echo $val['content'];
-        }
-    }
+		/* if the variable is hidden, lock it in as we don't want to use previous values*/
+		if ($val["type"] === 'hidden') {
+			echo $val['content'];
+		}
+		else {
+			echo $val['content'];
+		}
+	}
 }
 
 function make_separator($key, $arr)  {

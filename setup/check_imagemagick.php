@@ -40,7 +40,7 @@ $binaries = array(
 $debugfile = tempnam($gallery->app->tmpDir, "dbg");
 
 foreach ($binaries as $bin => $priority) {
-    $results[] = checkImageMagick($bin);
+	$results[] = checkImageMagick($bin);
 }
 
 require_once(GALLERY_BASE .'/templates/setup/im-netpbm-test.tpl');

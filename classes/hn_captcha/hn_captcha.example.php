@@ -7,28 +7,28 @@
 
 	// ConfigArray
 	$CAPTCHA_INIT = array(
-            'tempfolder'     => $_SERVER['DOCUMENT_ROOT'].'/_tmp/',      // string: absolute path (with trailing slash!) to a writeable tempfolder which is also accessible via HTTP!
-			'TTF_folder'     => $_SERVER['DOCUMENT_ROOT'].'/_rsrc/TTF/', // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
-                                // mixed (array or string): basename(s) of TrueType-Fontfiles
-			'TTF_RANGE'      => array('COMIC.TTF','JACOBITE.TTF','LYDIAN.TTF','MREARL.TTF','RUBBERSTAMP.TTF','ZINJARON.TTF'),
-		//	'TTF_RANGE'      => 'COMIC.TTF',
+			'tempfolder'	 => $_SERVER['DOCUMENT_ROOT'].'/_tmp/',	  // string: absolute path (with trailing slash!) to a writeable tempfolder which is also accessible via HTTP!
+			'TTF_folder'	 => $_SERVER['DOCUMENT_ROOT'].'/_rsrc/TTF/', // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
+								// mixed (array or string): basename(s) of TrueType-Fontfiles
+			'TTF_RANGE'	  => array('COMIC.TTF','JACOBITE.TTF','LYDIAN.TTF','MREARL.TTF','RUBBERSTAMP.TTF','ZINJARON.TTF'),
+		//	'TTF_RANGE'	  => 'COMIC.TTF',
 
-            'chars'          => 5,       // integer: number of chars to use for ID
-            'minsize'        => 20,      // integer: minimal size of chars
-            'maxsize'        => 30,      // integer: maximal size of chars
-            'maxrotation'    => 25,      // integer: define the maximal angle for char-rotation, good results are between 0 and 30
+			'chars'		  => 5,	   // integer: number of chars to use for ID
+			'minsize'		=> 20,	  // integer: minimal size of chars
+			'maxsize'		=> 30,	  // integer: maximal size of chars
+			'maxrotation'	=> 25,	  // integer: define the maximal angle for char-rotation, good results are between 0 and 30
 
-            'noise'          => FALSE,    // boolean: TRUE = noisy chars | FALSE = grid
-            'websafecolors'  => FALSE,   // boolean
-            'refreshlink'    => TRUE,    // boolean
-            'lang'           => 'en',    // string:  ['en'|'de']
-            'maxtry'         => 3,       // integer: [1-9]
+			'noise'		  => FALSE,	// boolean: TRUE = noisy chars | FALSE = grid
+			'websafecolors'  => FALSE,   // boolean
+			'refreshlink'	=> TRUE,	// boolean
+			'lang'		   => 'en',	// string:  ['en'|'de']
+			'maxtry'		 => 3,	   // integer: [1-9]
 
-            'badguys_url'    => '/',     // string: URL
-            'secretstring'   => 'A very, very secret string which is used to generate a md5-key!',
-            'secretposition' => 15,      // integer: [1-32]
+			'badguys_url'	=> '/',	 // string: URL
+			'secretstring'   => 'A very, very secret string which is used to generate a md5-key!',
+			'secretposition' => 15,	  // integer: [1-32]
 
-            'debug'          => FALSE
+			'debug'		  => FALSE
 	);
 
 ?>

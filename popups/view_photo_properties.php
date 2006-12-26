@@ -28,7 +28,7 @@ list($index, $reloadExifFromFile) = getRequestVar(array('index', 'reloadExifFrom
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-        print gTranslate('core', "Security violation") ."\n";
+		print gTranslate('core', "Security violation") ."\n";
 	return;
 }
 
@@ -45,7 +45,7 @@ if ($gallery->session->albumName && $index) {
 /* 
 Here is the EXIF parsing code...
 I have chosen to use a program called "jhead" to do EXIF parsing.
-            
+			
 jhead is a public domain EXIF parser.  Source, linux binaries, and
 windows binaries can be found at:
 http://www.sentex.net/~mwandel/jhead/index.html
@@ -79,44 +79,44 @@ program, I build the functionality using 'jhead'.
 -John Kirkland
 
 PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
-    but we have not yet worked out the code that will detect if
-    we're using the fixed version and use it instead of the
-    jhead binary -- BM 2/23/2002
+	but we have not yet worked out the code that will detect if
+	we're using the fixed version and use it instead of the
+	jhead binary -- BM 2/23/2002
 
 */
-    $forceRefresh = false;
-    if ($gallery->user->canWriteToAlbum($gallery->album)) {
-        if (!empty($reloadExifFromFile)) {
-            $forceRefresh = true;
-        }
-    }
+	$forceRefresh = false;
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		if (!empty($reloadExifFromFile)) {
+			$forceRefresh = true;
+		}
+	}
 
-    $extra_fields = $gallery->album->getExtraFields(false);
+	$extra_fields = $gallery->album->getExtraFields(false);
 
-    displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
+	displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
 
-    if ($gallery->album->getKeyWords($index)) {
-        echo '<div class="left g-emphasis">'. gTranslate('core', "Keywords: ") . $gallery->album->getKeyWords($index) .'</div>';
-    }
+	if ($gallery->album->getKeyWords($index)) {
+		echo '<div class="left g-emphasis">'. gTranslate('core', "Keywords: ") . $gallery->album->getKeyWords($index) .'</div>';
+	}
 
-    if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes') {
-        echo "\n</div>\n";
-        echo '<div style="padding: 2px;">';
-        echo galleryLink(
-            makeGalleryUrl("view_photo_properties.php",
-                array(
-                    'reloadExifFromFile' => 1,
-                    'set_albumName' => $gallery->session->albumName,
-                    'index' => $index,
-                    'type' => 'popup')),
-            gTranslate('core', "Reload EXIF Data From File")
-        );
-        echo "<br>";
-        echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
-    }
+	if ($gallery->user->canWriteToAlbum($gallery->album) && $gallery->app->cacheExif == 'yes') {
+		echo "\n</div>\n";
+		echo '<div style="padding: 2px;">';
+		echo galleryLink(
+			makeGalleryUrl("view_photo_properties.php",
+				array(
+					'reloadExifFromFile' => 1,
+					'set_albumName' => $gallery->session->albumName,
+					'index' => $index,
+					'type' => 'popup')),
+			gTranslate('core', "Reload EXIF Data From File")
+		);
+		echo "<br>";
+		echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
+	}
 }
 else {
-    echo gallery_error(gTranslate('core', "no album / index specified"));
+	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 </div>

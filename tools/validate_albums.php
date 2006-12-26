@@ -28,24 +28,24 @@ require(dirname(__FILE__) . '/lib/lib-validate_albums.php');
 // Security check
 if (!$gallery->user->isAdmin()) {
 	header("Location: " . makeAlbumHeaderUrl());
-        exit;
+		exit;
 }
 
 // Ensure that the results we get aren't due to caching
 clearstatcache();
 
 $results = array(
-    'file_missing' => array(),
-    'invalid_album' => array(),
+	'file_missing' => array(),
+	'invalid_album' => array(),
 );
 
 $action = getRequestVar('action');
 if (empty($action)) {
-    findInvalidAlbums();
+	findInvalidAlbums();
 }
 else {
    if (!$GALLERY_EMBEDDED_INSIDE) {
-        doctype();
+		doctype();
 ?>
 <html>
 <head>
@@ -54,81 +54,81 @@ else {
 </head>
 <body>
 <?php
-    }
+	}
 
-    includeTemplate("gallery.header", '', 'classic');
+	includeTemplate("gallery.header", '', 'classic');
 
-    $adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo");
-    $adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
-    $adminbox["commands"] .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
+	$adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo");
+	$adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
+	$adminbox["commands"] .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
 
-    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-    $breadcrumb['text'][] = languageSelector();
+	$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
+	$breadcrumb['text'][] = languageSelector();
 
-    includeLayout('adminbox.inc');
-    includeLayout('breadcrumb.inc');
+	includeLayout('adminbox.inc');
+	includeLayout('breadcrumb.inc');
 ?>
 <div class="g-content-popup" align="center">
 <?php
-    switch ($action) {
-        case 'unlinkInvalidAlbum':
-            list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
-            if ($verified) {
-                removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
-                dismiss();
-            }
-            else {
-                echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'invalidAlbum' => $invalidAlbum));
-                echo "\n<p>" . gSubmit('verified', sprintf(gTranslate('core', "Delete %s"), $invalidAlbum)) .'</p>';
-                echo "</form>";
-            }
-            break;
+	switch ($action) {
+		case 'unlinkInvalidAlbum':
+			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
+			if ($verified) {
+				removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
+				dismiss();
+			}
+			else {
+				echo makeFormIntro('tools/validate_albums.php', array(), array('action' => $action, 'invalidAlbum' => $invalidAlbum));
+				echo "\n<p>" . gSubmit('verified', sprintf(gTranslate('core', "Delete %s"), $invalidAlbum)) .'</p>';
+				echo "</form>";
+			}
+			break;
 
-        case 'deleteMissingPhoto':
-            list ($verified, $album, $id) = getRequestVar(array('verified', 'album', 'id'));
-            if ($verified) {
-                $targetAlbum = new Album();
-                $targetAlbum->load($album);
-                $photoIndex = $targetAlbum->getPhotoIndex($id);
-                $targetAlbum->deletePhoto($photoIndex);
-                $targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
-                dismiss();
-            }
-            else {
-                echo makeFormIntro(
-                    'tools/validate_albums.php',
-                    array(),
-                    array('action' => $action, 'album' => $album, 'id' => $id)
-                );
+		case 'deleteMissingPhoto':
+			list ($verified, $album, $id) = getRequestVar(array('verified', 'album', 'id'));
+			if ($verified) {
+				$targetAlbum = new Album();
+				$targetAlbum->load($album);
+				$photoIndex = $targetAlbum->getPhotoIndex($id);
+				$targetAlbum->deletePhoto($photoIndex);
+				$targetAlbum->save(array(i18n("Photo $id deleted from $album because the target image file is missing")));
+				dismiss();
+			}
+			else {
+				echo makeFormIntro(
+					'tools/validate_albums.php',
+					array(),
+					array('action' => $action, 'album' => $album, 'id' => $id)
+				);
 
-                $targetAlbum = new Album();
-                $targetAlbum->load($album);
+				$targetAlbum = new Album();
+				$targetAlbum->load($album);
 
-                echo $targetAlbum->getThumbnailTagById($id);
-                echo "\n<p>" . gSubmit('verified', sprintf(gTranslate('core', "Delete %s"), "$album/$id")) .'</p>';
-                echo "<p>" . gTranslate('core', "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
-                echo "</form>";
-            }
-            break;
+				echo $targetAlbum->getThumbnailTagById($id);
+				echo "\n<p>" . gSubmit('verified', sprintf(gTranslate('core', "Delete %s"), "$album/$id")) .'</p>';
+				echo "<p>" . gTranslate('core', "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing.") . "</p>";
+				echo "</form>";
+			}
+			break;
 
-        default:
-            echo infoBox(array(array(
-                'type' => 'error',
-                'text' => gTranslate('core', "Invalid Action !"))));
-            break;
-    }
+		default:
+			echo infoBox(array(array(
+				'type' => 'error',
+				'text' => gTranslate('core', "Invalid Action !"))));
+			break;
+	}
 ?>
 </div>
 <?php
-    includeTemplate("overall.footer");
+	includeTemplate("overall.footer");
 
-    if (!$GALLERY_EMBEDDED_INSIDE) {
+	if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
 </html>
 <?php
-    }
-    exit;
+	}
+	exit;
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE) {

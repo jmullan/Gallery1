@@ -75,39 +75,39 @@ echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
 
 <table>
   <tr>
-    <td><input checked type="radio" name="sort" value="upload"><?php echo gTranslate('core', "By Upload Date") ?></td>
+	<td><input checked type="radio" name="sort" value="upload"><?php echo gTranslate('core', "By Upload Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="itemCapture"><?php echo gTranslate('core', "By Picture-Taken Date") ?></td>
+	<td><input type="radio" name="sort" value="itemCapture"><?php echo gTranslate('core', "By Picture-Taken Date") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="filename"><?php echo gTranslate('core', "By Filename") ?></td>
+	<td><input type="radio" name="sort" value="filename"><?php echo gTranslate('core', "By Filename") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="click"><?php echo gTranslate('core', "By Number of Clicks") ?></td>
+	<td><input type="radio" name="sort" value="click"><?php echo gTranslate('core', "By Number of Clicks") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="caption"><?php echo gTranslate('core', "By Caption") ?></td>
+	<td><input type="radio" name="sort" value="caption"><?php echo gTranslate('core', "By Caption") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="comment"><?php echo gTranslate('core', "By Number of Comments") ?></td>
+	<td><input type="radio" name="sort" value="comment"><?php echo gTranslate('core', "By Number of Comments") ?></td>
   </tr>
   <tr>
-    <td><input type="radio" name="sort" value="random"> <?php echo gTranslate('core', "Randomly") ?></td>
+	<td><input type="radio" name="sort" value="random"> <?php echo gTranslate('core', "Randomly") ?></td>
   </tr>
   <tr>
-    <td align="center">
+	<td align="center">
 <?php echo gTranslate('core', "Sort Order:"); ?>
-    <select name="albumsFirst">
-        <option value=""><?php echo gTranslate('core', "Just sort") ?></option>
-        <option value="1"><?php echo gTranslate('core', "Albums first") ?></option>
-        <option value="-1"><?php echo gTranslate('core', "Photos/Movies first") ?></option>
-    </select>
-    <select name="order">
-        <option value="1"><?php echo gTranslate('core', "Ascending") ?></option>
-        <option value="-1"><?php echo gTranslate('core', "Descending") ?></option>
-    </select>
-    </td>
+	<select name="albumsFirst">
+		<option value=""><?php echo gTranslate('core', "Just sort") ?></option>
+		<option value="1"><?php echo gTranslate('core', "Albums first") ?></option>
+		<option value="-1"><?php echo gTranslate('core', "Photos/Movies first") ?></option>
+	</select>
+	<select name="order">
+		<option value="1"><?php echo gTranslate('core', "Ascending") ?></option>
+		<option value="-1"><?php echo gTranslate('core', "Descending") ?></option>
+	</select>
+	</td>
 
   </tr>
 </table>

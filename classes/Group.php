@@ -23,27 +23,27 @@
 <?php
 
 class Abstract_Group {
-    var $name;
-    var $description;
-    var $memberList;
+	var $name;
+	var $description;
+	var $memberList;
 
-    function userIsMember($userID) {
-        return false;
-    }
+	function userIsMember($userID) {
+		return false;
+	}
 
 	function load() {
-	    return null;
+		return null;
 	}
 
 	function getMemberlist() {
-	    return array();
+		return array();
 	}
 
 	function getName() {
-	    return '';
+		return '';
 	}
 
 	function getDescription() {
-	    return '';
+		return '';
 	}
 }

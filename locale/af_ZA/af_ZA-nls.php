@@ -21,7 +21,7 @@
  */
 
 /**
- * @version     1.5.2
+ * @version	 1.5.2
  * @package	Languagepack
  * @subpackage	Afrikaans
  */
@@ -38,18 +38,18 @@
 /** 
  * Native languagename
  */
-	$nls['language']['af_ZA']         =	'Afrikaans';
+	$nls['language']['af_ZA']		 =	'Afrikaans';
 
 /**
  * Alias for languages with different browser and gettext codes
  */
-	$nls['alias']['af']               =	'af_ZA';
-	$nls['alias']['af_AF']            =	'af_ZA';
+	$nls['alias']['af']			   =	'af_ZA';
+	$nls['alias']['af_AF']			=	'af_ZA';
 
 /**
  * Alias for languages which we substitte or send by NUKE
  */
-	$nls['alias']['afrikaans']        =	'af_ZA' ;
+	$nls['alias']['afrikaans']		=	'af_ZA' ;
 	$nls['alias']['af_ZA.ISO8859-1']  =	'af_ZA' ;
 
 

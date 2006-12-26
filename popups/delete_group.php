@@ -28,7 +28,7 @@ require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
 list($gnames, $deleteGroup, $backToUsers, $backToGroups) =
-    getRequestVar(array('gnames', 'deleteGroup', 'backToUsers', 'backToGroups'));
+	getRequestVar(array('gnames', 'deleteGroup', 'backToUsers', 'backToGroups'));
 
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -48,37 +48,37 @@ $deleted = 0;
 $failed = 0;
 
 if (!empty($deleteGroup) && !empty($gnames)) {
-    foreach($gnames as $nr => $groupId) {
-        $status = deleteGroup($groupId);
-        if($status) {
-            $deleted++;
-        }
-        else {
-            $failed++;
-        }
-        unset($gnames[$nr]);
-    }
+	foreach($gnames as $nr => $groupId) {
+		$status = deleteGroup($groupId);
+		if($status) {
+			$deleted++;
+		}
+		else {
+			$failed++;
+		}
+		unset($gnames[$nr]);
+	}
 
-    if($deleted > 0) {
-        $messages[] = array(
-            'type' => 'success',
-            'text' => gTranslate('core', 
-                "Successfully deleted %d group.",
-                "Successfully deleted %d groups.", $deleted, '', true)
-        );
-    }
-    else {
-        $messages[] = array(
-            'type' => 'error',
-            'text' => sprintf(gTranslate('core', "%d not successfully deleted."), $failed)
-        );
-    }
+	if($deleted > 0) {
+		$messages[] = array(
+			'type' => 'success',
+			'text' => gTranslate('core', 
+				"Successfully deleted %d group.",
+				"Successfully deleted %d groups.", $deleted, '', true)
+		);
+	}
+	else {
+		$messages[] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "%d not successfully deleted."), $failed)
+		);
+	}
 }
 elseif (!empty($deleteGroup) && empty($gnames)) {
-    $messages[] = array(
-        'type' => 'warning',
-        'text' => sprintf(gTranslate('core', "No groups deleted."), $failed)
-    );
+	$messages[] = array(
+		'type' => 'warning',
+		'text' => sprintf(gTranslate('core', "No groups deleted."), $failed)
+	);
 }
 
 printPopupStart(gTranslate('core', "Delete Gallery usergroup"), '', 'left');
@@ -94,29 +94,29 @@ echo infoBox($messages);
 
 echo "\n<center>";
 echo makeFormIntro('delete_group.php',
-    array('name' => 'deletegroup_form',
-          'onsubmit' => "deletegroup_form.deleteButton.disabled='true'"),
-    array('type' => 'popup')
+	array('name' => 'deletegroup_form',
+		  'onsubmit' => "deletegroup_form.deleteButton.disabled='true'"),
+	array('type' => 'popup')
 );
 
 if (! empty($gnames)) {
 	echo gTranslate('core', "Do you really want to delete group:", "Do you really want to delete these groups:", sizeof($gnames));
 	echo "\n<table>\n";
 	foreach ($gnames as $gid) {
-	    $tmpGroup = new Gallery_Group();
-	    $tmpGroup->load($gid);
-	    echo gInput('checkbox', 'gnames[]', $tmpGroup->getName(), true, $gid, array('checked' => null)); 
+		$tmpGroup = new Gallery_Group();
+		$tmpGroup->load($gid);
+		echo gInput('checkbox', 'gnames[]', $tmpGroup->getName(), true, $gid, array('checked' => null)); 
 	}
 	echo "</table>";
 ?>
 
 <br><br>
 <?php
-    echo gSubmit('deleteGroup', gTranslate('core', "_Delete"));
+	echo gSubmit('deleteGroup', gTranslate('core', "_Delete"));
 }
 elseif(empty($messages)) {
-    echo gTranslate('core', "No groups selected for deletion.");
-    echo "<br>";
+	echo gTranslate('core', "No groups selected for deletion.");
+	echo "<br>";
 }
 ?>
 <input type="hidden" name="formaction" value="">

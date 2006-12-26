@@ -29,21 +29,21 @@ list($doit, $full) = getRequestVar(array('doit', 'full'));
 $message = array();
 
 if (!empty($doit)) {
-    $albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
-    $albumcopyName = createTempAlbum($albumItemNames);
-    if($albumcopyName) {
-        $zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
-        if($zipfileName) {
-            if(!isDebugging()) {
-                downloadFile($zipfileName);
-            }
-            else {
-                $message = array(array(
-                    'type' => 'information',
-                    'text' => gTranslate('core', "Zipdownload would work, but is disabled when debugging.")));
-            }
-        }
-    }
+	$albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
+	$albumcopyName = createTempAlbum($albumItemNames);
+	if($albumcopyName) {
+		$zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
+		if($zipfileName) {
+			if(!isDebugging()) {
+				downloadFile($zipfileName);
+			}
+			else {
+				$message = array(array(
+					'type' => 'information',
+					'text' => gTranslate('core', "Zipdownload would work, but is disabled when debugging.")));
+			}
+		}
+	}
 }
 
 printPopupStart(gTranslate('core', "Download album as archive"));
@@ -57,8 +57,8 @@ $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
 echo "\n<p class=\"g-title g-emphasis\">";
 
 if ($gallery->album->numPhotos(1)) {
-    echo $gallery->album->getHighlightTag();
-    echo "<br>";
+	echo $gallery->album->getHighlightTag();
+	echo "<br>";
 }
 echo $gallery->album->fields["title"];
 echo "</p>";
@@ -70,27 +70,27 @@ $textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies
 printf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
 if($numPhotos > 0) {
-    echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
+	echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
 
-    echo makeFormIntro('download.php', array(), array('type' => 'popup'));
-    ?>
-        <input type="radio" id="full" name="full" value="1" <?php echo ($full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
-        <label for="full"><?php echo gTranslate('core', "Full Version"); ?></label>
-        <br>
-        <input type="radio" id="resized" name="full" value="0" <?php echo (!$full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
-        <label for="resized"><?php echo gTranslate('core', "Resized Version"); ?></label>
+	echo makeFormIntro('download.php', array(), array('type' => 'popup'));
+	?>
+		<input type="radio" id="full" name="full" value="1" <?php echo ($full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
+		<label for="full"><?php echo gTranslate('core', "Full Version"); ?></label>
+		<br>
+		<input type="radio" id="resized" name="full" value="0" <?php echo (!$full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
+		<label for="resized"><?php echo gTranslate('core', "Resized Version"); ?></label>
 
-        <br><br>
-    <?php
-    echo gSubmit('doit', gTranslate('core', "_Download"));
-    echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
-    echo "\n</form>";
+		<br><br>
+	<?php
+	echo gSubmit('doit', gTranslate('core', "_Download"));
+	echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
+	echo "\n</form>";
 }
 else {
-    echo "<br><br>";
-    echo gTranslate('core', "This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
-    echo "<br><br>";
-    echo gButton('close', gTranslate('core', "_Close Window"),'parent.close()');
+	echo "<br><br>";
+	echo gTranslate('core', "This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
+	echo "<br><br>";
+	echo gButton('close', gTranslate('core', "_Close Window"),'parent.close()');
 }
 ?>
 </div>

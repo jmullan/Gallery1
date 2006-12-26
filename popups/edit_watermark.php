@@ -51,38 +51,38 @@ $photo = $gallery->album->getPhoto($index);
 $err = '';
 
 if (isset($save) || isset($preview)) {
-    if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
-        if (isset($wmName) && !empty($wmName)) {
-            if (isset($save)) {
-                my_flush();
-                set_time_limit($gallery->app->timeLimit);
-                $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
-                  isset($wmAlignX) ? $wmAlignX : 0,
-                  isset($wmAlignY) ? $wmAlignY : 0,
-                  0, 0, // Not a preview
-                  isset($wmSelect) ? $wmSelect : 0
-                );
-                dismissAndReload();
-                return;
-            }
-            else {
-                $gallery->album->watermarkPhoto(
-                  $index,
-                  $wmName,
-                  '',
-                  $wmAlign,
-                  isset($wmAlignX) ? $wmAlignX : 0,
-                  isset($wmAlignY) ? $wmAlignY : 0,
-                  1, // set as preview
-                  isset($previewFull) ? $previewFull : 0
-                );
-            }
-        } else {
-            $err = gTranslate('core', "Please select a watermark.");
-        }
-    } else {
-        $err = gTranslate('core', "Please select an alignment.");
-    }
+	if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
+		if (isset($wmName) && !empty($wmName)) {
+			if (isset($save)) {
+				my_flush();
+				set_time_limit($gallery->app->timeLimit);
+				$gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
+				  isset($wmAlignX) ? $wmAlignX : 0,
+				  isset($wmAlignY) ? $wmAlignY : 0,
+				  0, 0, // Not a preview
+				  isset($wmSelect) ? $wmSelect : 0
+				);
+				dismissAndReload();
+				return;
+			}
+			else {
+				$gallery->album->watermarkPhoto(
+				  $index,
+				  $wmName,
+				  '',
+				  $wmAlign,
+				  isset($wmAlignX) ? $wmAlignX : 0,
+				  isset($wmAlignY) ? $wmAlignY : 0,
+				  1, // set as preview
+				  isset($previewFull) ? $previewFull : 0
+				);
+			}
+		} else {
+			$err = gTranslate('core', "Please select a watermark.");
+		}
+	} else {
+		$err = gTranslate('core', "Please select an alignment.");
+	}
 }
 
 printPopupStart(gTranslate('core', "Edit Watermark"));
@@ -90,20 +90,20 @@ printPopupStart(gTranslate('core', "Edit Watermark"));
 <p>
 <?php
 if (isset($preview)) {
-    echo $gallery->album->getPreviewTag($index);
+	echo $gallery->album->getPreviewTag($index);
 } else {
-    echo $gallery->album->getThumbnailTag($index);
+	echo $gallery->album->getThumbnailTag($index);
 }
 ?>
 </p>
 <?php
 
 if (!empty($err)) {
-    echo '<p class="g-error">'. $err .'</p>';
+	echo '<p class="g-error">'. $err .'</p>';
 }
 
 if ($photo->image->type == 'gif') {
-    echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
+	echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
 }
 
 echo makeFormIntro('edit_watermark.php', array(), array('type' => 'popup', 'index' => $index));
@@ -116,8 +116,8 @@ includeLayout('watermarkform.inc');
 <br><br>
 <?php
 if(empty($errors)) {
-    echo gSubmit('save', gTranslate('core', "_Save"));
-    echo gSubmit('preview', gTranslate('core', "_Preview"));
+	echo gSubmit('save', gTranslate('core', "_Save"));
+	echo gSubmit('preview', gTranslate('core', "_Preview"));
 }
 
 echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');

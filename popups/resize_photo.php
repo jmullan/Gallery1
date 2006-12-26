@@ -110,7 +110,7 @@ if ($gallery->session->albumName && isset($index)) {
 </table>
 
 <?php
-     if ($index === 'all') { ?>
+	 if ($index === 'all') { ?>
 <p>
 	<?php echo gTranslate('core', "Apply to nested albums ?"); ?>
 	<input type="checkbox" name="resizeRecursive" value="false">

@@ -25,8 +25,8 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-        echo gTranslate('core', "You are not allowed to perform this action!");
-        exit;
+		echo gTranslate('core', "You are not allowed to perform this action!");
+		exit;
 }
 
 $rearrList = getRequestVar('rearrList');
@@ -55,49 +55,49 @@ doctype();
   var sel = -1, list = new Array();
 
   function copy(from, to) {
-      to.src = from.src;
-      to.width = from.width;
-      to.height = from.height;
-      to.style.border = from.style.border;
+	  to.src = from.src;
+	  to.width = from.width;
+	  to.height = from.height;
+	  to.style.border = from.style.border;
   }
 
   function doclick(idx) {
-      if (sel < 0) {
-          sel = idx;
-          savedFromBorder = document.getElementById('im_'+sel).style.border;
-          document.getElementById('im_'+sel).style.borderStyle='dashed';
-      }
-      else {
-          if (idx != sel) {
-              var sv = new Object()
-              var si;
-              var dir = (sel<idx)?1:-1;
+	  if (sel < 0) {
+		  sel = idx;
+		  savedFromBorder = document.getElementById('im_'+sel).style.border;
+		  document.getElementById('im_'+sel).style.borderStyle='dashed';
+	  }
+	  else {
+		  if (idx != sel) {
+			  var sv = new Object()
+			  var si;
+			  var dir = (sel<idx)?1:-1;
 
-              sv.style = new Object();
+			  sv.style = new Object();
 
-              copy(document.getElementById('im_'+sel), sv);
-              si = list[sel];
-              for (i=sel; i!=idx; i+=dir) {
-                  copy(document.getElementById('im_'+(i+dir)),
-                  document.getElementById('im_'+i));
-                  list[i] = list[i+dir];
-              }
-              copy(sv, document.getElementById('im_'+idx));
-              list[idx] = si;
-          }
-          document.getElementById('im_'+idx).style.border = savedFromBorder;
-          sel = -1;
-      }
+			  copy(document.getElementById('im_'+sel), sv);
+			  si = list[sel];
+			  for (i=sel; i!=idx; i+=dir) {
+				  copy(document.getElementById('im_'+(i+dir)),
+				  document.getElementById('im_'+i));
+				  list[i] = list[i+dir];
+			  }
+			  copy(sv, document.getElementById('im_'+idx));
+			  list[idx] = si;
+		  }
+		  document.getElementById('im_'+idx).style.border = savedFromBorder;
+		  sel = -1;
+	  }
   }
   
   function saveOrder() {
-      var s = '';
-      for (i = 1; i <list.length; i++) {
-          if (i > 1) s+=',';
-          s+=list[i];
-      }
-      document.forms['rearr_form'].rearrList.value = s;
-      document.forms['rearr_form'].submit();
+	  var s = '';
+	  for (i = 1; i <list.length; i++) {
+		  if (i > 1) s+=',';
+		  s+=list[i];
+	  }
+	  document.forms['rearr_form'].rearrList.value = s;
+	  document.forms['rearr_form'].submit();
   }
   </script>
 </head>
@@ -140,55 +140,55 @@ $pictureTable->setAttrs(array('width' => '100%', 'cellspacing' => 0, 'cellpaddin
 $pictureTable->setColumnCount($cols);
 
 $pictureTable->addElement(array(
-    'content' => gButton('saveButtonTop', gTranslate('core', "_Save"), 'saveOrder();') .
-                 gButton('cancelButtonTop', gTranslate('core', "_Cancel"), 'window.close();'),
-    'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
+	'content' => gButton('saveButtonTop', gTranslate('core', "_Save"), 'saveOrder();') .
+				 gButton('cancelButtonTop', gTranslate('core', "_Cancel"), 'window.close();'),
+	'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 $list = array();
 $j = 1;
 $page = 1;
 
 for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
-    if ($j++==($cols*$rows) || $page == 1) {
-        $pictureTable->addElement(array(
-            'content' => sprintf(gTranslate('core', "******* Page %s *******"), $page),
-            'cellArgs' => array('colspan' => $cols, 'align' => 'center')));
+	if ($j++==($cols*$rows) || $page == 1) {
+		$pictureTable->addElement(array(
+			'content' => sprintf(gTranslate('core', "******* Page %s *******"), $page),
+			'cellArgs' => array('colspan' => $cols, 'align' => 'center')));
 
-        $j = 1;
-        $page++;
-    }
+		$j = 1;
+		$page++;
+	}
 
-    $attrs = array(
-    	'id' => "im_$i",
-    	'onClick' => "doclick($i)",
-    	'style' => 'margin: 1px; padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
+	$attrs = array(
+		'id' => "im_$i",
+		'onClick' => "doclick($i)",
+		'style' => 'margin: 1px; padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
 	);
 
-    if ($gallery->album->isAlbum($i)) {
-        $myAlbumName = $gallery->album->getAlbumName($i);
-        $myAlbum = new Album();
-        $myAlbum->load($myAlbumName);
-        $attrs['style'] .= ' 3px double';
-        $tag = $myAlbum->getHighlightTag(0, $attrs);
-    }
-    elseif ($gallery->album->isMovieByIndex($i)) {
-    	$attrs['style'] .= ' 2px dotted';
-    	$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
-    }
-    else {
-    	$attrs['style'] .= ' 2px solid';
+	if ($gallery->album->isAlbum($i)) {
+		$myAlbumName = $gallery->album->getAlbumName($i);
+		$myAlbum = new Album();
+		$myAlbum->load($myAlbumName);
+		$attrs['style'] .= ' 3px double';
+		$tag = $myAlbum->getHighlightTag(0, $attrs);
+	}
+	elseif ($gallery->album->isMovieByIndex($i)) {
+		$attrs['style'] .= ' 2px dotted';
 		$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
-    }
-    
-    $pictureTable->addElement(array('content' => $tag, 'cellArgs' => array('align' => 'center')));
+	}
+	else {
+		$attrs['style'] .= ' 2px solid';
+		$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
+	}
+	
+	$pictureTable->addElement(array('content' => $tag, 'cellArgs' => array('align' => 'center')));
 
-    $list[] = $i;
+	$list[] = $i;
 }
 
 $pictureTable->addElement(array(
-    'content' => gButton('saveButtonBottom', gTranslate('core', "_Save"), 'saveOrder();') .
-		         gButton('cancelButtonBottom', gTranslate('core', "_Cancel"), 'window.close();'),
-    'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
+	'content' => gButton('saveButtonBottom', gTranslate('core', "_Save"), 'saveOrder();') .
+				 gButton('cancelButtonBottom', gTranslate('core', "_Cancel"), 'window.close();'),
+	'cellArgs' => array('colspan' => $cols, 'class' => 'right')));
 
 echo $pictureTable->render();
 ?>

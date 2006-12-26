@@ -30,25 +30,25 @@ list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
 
 // Hack check
 if (!$gallery->user->isAdmin() &&
-    !$gallery->user->isOwnerOfAlbum($gallery->album)) {
+	!$gallery->user->isOwnerOfAlbum($gallery->album)) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 if ( isset($save) && $owner) {
-    $gallery->album->setItemOwnerById($id, $owner);
-    $user = $gallery->userDB->getUserByUid($owner);
-    $gallery->album->save(array(
+	$gallery->album->setItemOwnerById($id, $owner);
+	$user = $gallery->userDB->getUserByUid($owner);
+	$gallery->album->save(array(
 		i18n("New owner %s for %s"),
 		$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
 		makeAlbumURL($gallery->album->fields["name"], $id)
-      )
-    );
+	  )
+	);
 
-    doctype();
-    echo "\n<html>";
-    dismissAndReload();
-    return;
+	doctype();
+	echo "\n<html>";
+	dismissAndReload();
+	return;
 }
 
 // Start with a default owner of nobody -- if there is an

@@ -49,9 +49,9 @@ class PostNuke_UserDB extends Abstract_UserDB {
 		$result = $dbconn->Execute($sql);
 
 		while(!$result->EOF) {
-		    list($uid) = $result->fields;
-		    $uidList[] = $uid;
-		    $result->MoveNext();
+			list($uid) = $result->fields;
+			$uidList[] = $uid;
+			$result->MoveNext();
 		}
 
 		$result->Close();

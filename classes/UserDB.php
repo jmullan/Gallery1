@@ -76,18 +76,18 @@ class Abstract_UserDB {
 	 * No conversion is necessary for most user database formats.
 	 */
 	function convertUidToNewFormat($uid) {
-	        return $uid;
+			return $uid;
 	}
 
 	/**
 	 * Returns wether the UserDB was succesfully initialized or not.
 	 * Is currently only used for standalone Gallery UserDB.
 	 *
-	 * @return boolean     true if succesfully initialized.
+	 * @return boolean	 true if succesfully initialized.
 	 * @author Jens Tkotz <jens@peino.de>
 	 */
 	function isInitialized() {
-        return true;
+		return true;
 	}
 }
 ?>

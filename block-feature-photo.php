@@ -40,7 +40,7 @@
 ?>
 
 <style type="text/css">
-    img { border: none; }
+	img { border: none; }
 </style>
 
 <?php
@@ -51,61 +51,61 @@ define('FEATURE_CACHE', $gallery->app->albumDir . '/featured-photo.cache');
 list($albumName, $index) = explode('/', getFile(FEATURE_CACHE));
 
 if (!empty($albumName) && !empty($index)) {
-    $album = new Album();
-    $album->load($albumName);
+	$album = new Album();
+	$album->load($albumName);
 
-    $photo = $album->getPhoto($index);
-    $id = $photo->getPhotoId();
-    $caption = $photo->getCaption() ? $photo->getCaption() : '';
-    $photoUrl = makeAlbumUrl($album->fields['name'], $id);
-    $imageUrl = $album->getThumbnailTag($index);
-    $albumUrl = makeAlbumUrl($album->fields['name']);
-    $albumTitle = $album->fields['title'];
-    $gallery->html_wrap['imageHref'] = $photoUrl;
-    $gallery->html_wrap['imageTag'] = $imageUrl;
-    $gallery->html_wrap['borderColor'] = $gallery->app->featureBlockFrameBorderColor;
-    $gallery->html_wrap['borderWidth'] = $gallery->app->featureBlockFrameBorderWidth;
+	$photo = $album->getPhoto($index);
+	$id = $photo->getPhotoId();
+	$caption = $photo->getCaption() ? $photo->getCaption() : '';
+	$photoUrl = makeAlbumUrl($album->fields['name'], $id);
+	$imageUrl = $album->getThumbnailTag($index);
+	$albumUrl = makeAlbumUrl($album->fields['name']);
+	$albumTitle = $album->fields['title'];
+	$gallery->html_wrap['imageHref'] = $photoUrl;
+	$gallery->html_wrap['imageTag'] = $imageUrl;
+	$gallery->html_wrap['borderColor'] = $gallery->app->featureBlockFrameBorderColor;
+	$gallery->html_wrap['borderWidth'] = $gallery->app->featureBlockFrameBorderWidth;
 
-    switch($gallery->app->featureBlockFrame) {
-        case 'albumImageFrame' :
-            $frame = $album->fields['image_frame'];
-            break;
-        case 'albumThumbFrame' :
-            $frame = $album->fields['thumb_frame'];
-            break;
-        case 'mainThumbFrame':
-            $frame = $gallery->app->gallery_thumb_frame_style;
-            break;
-        default:
-            $frame = $gallery->app->featureBlockFrame;
-            break;
-    }
-    $gallery->html_wrap['frame'] = $frame;
-    $gallery->html_wrap['imageWidth'] = $photo->thumbnail->raw_width;
-    $gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
-    $gallery->html_wrap['attr'] = '';
+	switch($gallery->app->featureBlockFrame) {
+		case 'albumImageFrame' :
+			$frame = $album->fields['image_frame'];
+			break;
+		case 'albumThumbFrame' :
+			$frame = $album->fields['thumb_frame'];
+			break;
+		case 'mainThumbFrame':
+			$frame = $gallery->app->gallery_thumb_frame_style;
+			break;
+		default:
+			$frame = $gallery->app->featureBlockFrame;
+			break;
+	}
+	$gallery->html_wrap['frame'] = $frame;
+	$gallery->html_wrap['imageWidth'] = $photo->thumbnail->raw_width;
+	$gallery->html_wrap['imageHeight'] = $photo->thumbnail->raw_height;
+	$gallery->html_wrap['attr'] = '';
 
-    echo getStyleSheetLink();
-    echo "\n<div class=\"g-feature-block\">";
-    echo "\n  <div class=\"g-feature-block-photo\">";
+	echo getStyleSheetLink();
+	echo "\n<div class=\"g-feature-block\">";
+	echo "\n  <div class=\"g-feature-block-photo\">";
 
-    includeLayout('inline_imagewrap.inc');
+	includeLayout('inline_imagewrap.inc');
 
-    if (!in_array($frame, array('dots', 'solid')) &&
-        !fs_file_exists(dirname(__FILE__) . "/layout/frames/$frame/frame.def")) {
-        echo "\n<br>";
-    }
-    echo $caption;
+	if (!in_array($frame, array('dots', 'solid')) &&
+		!fs_file_exists(dirname(__FILE__) . "/layout/frames/$frame/frame.def")) {
+		echo "\n<br>";
+	}
+	echo $caption;
 
-    echo "\n  </div>";
-    printf ("\n  ". gTranslate('core', "From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
-    echo "\n</div>";
+	echo "\n  </div>";
+	printf ("\n  ". gTranslate('core', "From album: %s"), "<a href=\"$albumUrl\">$albumTitle</a>");
+	echo "\n</div>";
 }
 else {
-    echo infoBox(array(array(
-        'type' => 'information',
-        'text' => gTranslate('core', "Currently no item is featured by this Gallery.")
-    )));
+	echo infoBox(array(array(
+		'type' => 'information',
+		'text' => gTranslate('core', "Currently no item is featured by this Gallery.")
+	)));
 }
 
 ?>

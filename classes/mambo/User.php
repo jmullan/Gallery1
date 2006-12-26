@@ -66,27 +66,27 @@ class Mambo_User extends Abstract_User {
 	/* Determine whether the Mambo user has Gallery admin privileges
 	 * based on the user's Mambo authorization level */
 	function isGalleryAdmin() {
-	    global $MOS_GALLERY_PARAMS;
-	    
-	    /* Select minimum authorization level (set in component admin
-	     * interface). Current choices are:
-	     * 
-	     *      'Super Administrator'  'Publisher'
-             *      'Administrator'        'Editor'
-	     *      'Manager'              'Author'
-             *                             'Registered' */
-	    
-	    $minAuthType = $MOS_GALLERY_PARAMS['minAuthType'];
+		global $MOS_GALLERY_PARAMS;
+		
+		/* Select minimum authorization level (set in component admin
+		 * interface). Current choices are:
+		 * 
+		 *	  'Super Administrator'  'Publisher'
+			 *	  'Administrator'		'Editor'
+		 *	  'Manager'			  'Author'
+			 *							 'Registered' */
+		
+		$minAuthType = $MOS_GALLERY_PARAMS['minAuthType'];
 
-	    $results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='$minAuthType'");
-	    $row = $this->db->fetch_row($results);
-	    $minAuthLevel = $row[0];
+		$results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='$minAuthType'");
+		$row = $this->db->fetch_row($results);
+		$minAuthLevel = $row[0];
 
-	    $results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='{$this->gid}'");
-	    $row = $this->db->fetch_row($results);
-	    $myAuthLevel = $row[0];
+		$results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='{$this->gid}'");
+		$row = $this->db->fetch_row($results);
+		$myAuthLevel = $row[0];
 
-	    return $myAuthLevel >= $minAuthLevel;
+		return $myAuthLevel >= $minAuthLevel;
 	}
 }
 

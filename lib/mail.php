@@ -73,7 +73,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 		echo infoBox(array(array(
 		  'type' => 'error',
 		  'text' => gTranslate('common', "Email not sent as it is disabled for this gallery"))
-          ));
+		  ));
 		return false;
 	}
 

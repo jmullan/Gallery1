@@ -58,15 +58,15 @@ $GR_VER['MIN'] = 15;
  * Protocol result codes
  */
 
-$GR_STAT['SUCCESS']             = 0;
+$GR_STAT['SUCCESS']			 = 0;
 
 $GR_STAT['PROTOCOL_MAJOR_VERSION_INVALID'] 	= 101;
 $GR_STAT['PROTOCOL_MINOR_VERSION_INVALID'] 	= 102;
 $GR_STAT['PROTOCOL_VERSION_FORMAT_INVALID'] = 103;
 $GR_STAT['PROTOCOL_VERSION_MISSING']   		= 104;
 
-$GR_STAT['PASSWORD_WRONG']      = 201;
-$GR_STAT['LOGIN_MISSING']       = 202;
+$GR_STAT['PASSWORD_WRONG']	  = 201;
+$GR_STAT['LOGIN_MISSING']	   = 202;
 
 $GR_STAT['UNKNOWN_COMMAND']		= 301;
 
@@ -215,7 +215,7 @@ function gr_fetch_albums_prune( &$gallery, &$response, $check_writeable ) {
 	$album_count = 0;
 
 	if ($check_writeable != 'no') {
-	    mark_and_sweep($albumDB, TRUE);
+		mark_and_sweep($albumDB, TRUE);
 	} else {
 		mark_and_sweep($albumDB, FALSE);
 	}
@@ -392,7 +392,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	global $GR_STAT;
 	
 	if ($albums_too == 'yes') {
-	    $albums_too = TRUE;
+		$albums_too = TRUE;
 	} else {
 		$albums_too = FALSE;
 	}
@@ -465,7 +465,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 			$albumDB = new AlbumDB(FALSE);
 			foreach ($albumDB->albumList as $myAlbum) {
 				if ($myAlbum->isRoot() && $gallery->user->canReadAlbum($myAlbum)) {
-				    $tmpImageNum++;
+					$tmpImageNum++;
 		 
 					$response->setProperty( 'album.name.'.$tmpImageNum, $myAlbum->fields['name'] );
 					// root albums can't be hidden
@@ -477,7 +477,7 @@ function gr_fetch_album_images( &$gallery, &$response, $albums_too ) {
 	
 	$response->setProperty( 'image_count', $tmpImageNum );
 	if (isset($gallery->album)) {
-	    $response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
+		$response->setProperty( 'baseurl', $gallery->album->getAlbumDirURL('full').'/' );
 	}
 
 	$response->setProperty( 'status', $GR_STAT['SUCCESS'] );
@@ -718,24 +718,24 @@ function checkIfNestedAlbum(&$startAlbum,&$possibleSub) {
 //-- FUNCTIONS
 //--
 function appendNestedAlbums( &$myAlbum, &$album_index, &$response ) {
-    global $gallery;
+	global $gallery;
 	
 	$parent_index = $album_index;
 
 	$numPhotos = $myAlbum->numPhotos(1);
-    
-    for ($i=1; $i <= $numPhotos; $i++) {
-        if ($myAlbum->isAlbum($i)) {
-            $myName = $myAlbum->getAlbumName($i);
-            $nestedAlbum = new Album();
-            $nestedAlbum->load($myName);
-            if ($gallery->user->canReadAlbum($nestedAlbum)) {
-            	// if readable, add this album plus readable nested albums
+	
+	for ($i=1; $i <= $numPhotos; $i++) {
+		if ($myAlbum->isAlbum($i)) {
+			$myName = $myAlbum->getAlbumName($i);
+			$nestedAlbum = new Album();
+			$nestedAlbum->load($myName);
+			if ($gallery->user->canReadAlbum($nestedAlbum)) {
+				// if readable, add this album plus readable nested albums
 				add_album( $nestedAlbum, $album_index, $parent_index, $response );
-                appendNestedAlbums($nestedAlbum, $album_index, $response );
-            }
-        }
-    }
+				appendNestedAlbums($nestedAlbum, $album_index, $response );
+			}
+		}
+	}
 }
 
 function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
@@ -787,87 +787,87 @@ function add_album( &$myAlbum, &$album_index, $parent_index, &$response ){
 //-- in the docs.
 
 function processFile($file, $tag, $name, $setCaption="") {
-    global $gallery;
-    global $temp_files;
+	global $gallery;
+	global $temp_files;
 
-    if (!strcmp($tag, "zip")) {
-        if (!$gallery->app->feature["zip"]) {
-            $error = "Zip not supported";
-            continue;
-        }
-        /* Figure out what files we can handle */
-        list($files, $status) = exec_internal(
-            fs_import_filename($gallery->app->zipinfo, 1) .
-            " -1 " .
-            fs_import_filename($file, 1));
-        sort($files);
-        foreach ($files as $pic_path) {
-            $pic = basename($pic_path);
-            $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-            $tag = strtolower($tag);
+	if (!strcmp($tag, "zip")) {
+		if (!$gallery->app->feature["zip"]) {
+			$error = "Zip not supported";
+			continue;
+		}
+		/* Figure out what files we can handle */
+		list($files, $status) = exec_internal(
+			fs_import_filename($gallery->app->zipinfo, 1) .
+			" -1 " .
+			fs_import_filename($file, 1));
+		sort($files);
+		foreach ($files as $pic_path) {
+			$pic = basename($pic_path);
+			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
+			$tag = strtolower($tag);
 
-            if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
-                $cmd_pic_path = str_replace("[", "\[", $pic_path);
-                $cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
-                exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
-                         " -j -o " .
-                         fs_import_filename($file, 1) .
-                         " \"" .
-                         fs_import_filename($cmd_pic_path, 1) .
-                         "\" -d " .
-                         fs_import_filename($gallery->app->tmpDir, 1));
-                processFile($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
-                fs_unlink($gallery->app->tmpDir . "/$pic");
-            }
-        }
-    } else {
-        // remove %20 and the like from name
-        $name = urldecode($name);
+			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
+				$cmd_pic_path = str_replace("[", "\[", $pic_path);
+				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
+				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
+						 " -j -o " .
+						 fs_import_filename($file, 1) .
+						 " \"" .
+						 fs_import_filename($cmd_pic_path, 1) .
+						 "\" -d " .
+						 fs_import_filename($gallery->app->tmpDir, 1));
+				processFile($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
+				fs_unlink($gallery->app->tmpDir . "/$pic");
+			}
+		}
+	} else {
+		// remove %20 and the like from name
+		$name = urldecode($name);
 
-        // parse out original filename without extension
-        $originalFilename = eregi_replace(".$tag$", "", $name);
-        // replace multiple non-word characters with a single "_"
-        $mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+		// parse out original filename without extension
+		$originalFilename = eregi_replace(".$tag$", "", $name);
+		// replace multiple non-word characters with a single "_"
+		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
 
-        /* Get rid of extra underscores */
-        $mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-        $mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+		/* Get rid of extra underscores */
+		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
+		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
    
-        /*
-        need to prevent users from using original filenames that are purely numeric.
-        Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-        specifically:
-        RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
-        */
+		/*
+		need to prevent users from using original filenames that are purely numeric.
+		Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+		specifically:
+		RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
+		*/
    
-        if (ereg("^([0-9]+)$", $mangledFilename)) {
-            $mangledFilename .= "_G";
-        }
+		if (ereg("^([0-9]+)$", $mangledFilename)) {
+			$mangledFilename .= "_G";
+		}
    
-        set_time_limit($gallery->app->timeLimit);
-        
-        if (acceptableFormat($tag)) {
+		set_time_limit($gallery->app->timeLimit);
+		
+		if (acceptableFormat($tag)) {
    
-		    /*
-		     * Move the uploaded image to our temporary directory
-		     * using move_uploaded_file so that we work around
-		     * issues with the open_basedir restriction.
-		     */
-		    if (function_exists('move_uploaded_file')) {
+			/*
+			 * Move the uploaded image to our temporary directory
+			 * using move_uploaded_file so that we work around
+			 * issues with the open_basedir restriction.
+			 */
+			if (function_exists('move_uploaded_file')) {
 				$newFile = tempnam($gallery->app->tmpDir, "gallery");
 				if (move_uploaded_file($file, $newFile)) {
-				    $file = $newFile;
+					$file = $newFile;
 		
-				    /* Make sure we remove this file when we're done */
-				    $temp_files[$file] = 1;
+					/* Make sure we remove this file when we're done */
+					$temp_files[$file] = 1;
 				}
-		    }
+			}
 
-            if ($setCaption) {
-                $caption = $setCaption;
-            } else {
-                $caption = "";
-            }
+			if ($setCaption) {
+				$caption = $setCaption;
+			} else {
+				$caption = "";
+			}
 
 			// add the extra fields
 			$myExtraFields = array();
@@ -893,16 +893,16 @@ function processFile($file, $tag, $name, $setCaption="") {
 			}
 			//echo "Extra fields ". implode("/", array_keys($myExtraFields)) ." -- ". implode("/", array_values($myExtraFields)) ."\n";
 
-	        $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $myExtraFields, $gallery->user->getUid());
-	        if ($err)  {
-	        	$error = "$err";
-	        }
-	    } else {
-	    	$error = "Skipping $name (can't handle '$tag' format)";
-	    }
-    }
-    
-    return empty($error) ? '' : $error;
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $myExtraFields, $gallery->user->getUid());
+			if ($err)  {
+				$error = "$err";
+			}
+		} else {
+			$error = "Skipping $name (can't handle '$tag' format)";
+		}
+	}
+	
+	return empty($error) ? '' : $error;
 }
 
 function mark_and_sweep(&$albumDB, $checkWriteable = TRUE) {

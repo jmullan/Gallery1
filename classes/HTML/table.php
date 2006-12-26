@@ -27,128 +27,128 @@
  */
 class galleryTable {
 
-    var $attrs;
-    var $headers;
-    var $headerClass;
-    var $caption;
-    var $captionClass;
-    var $columnCount;
-    var $elements;
+	var $attrs;
+	var $headers;
+	var $headerClass;
+	var $caption;
+	var $captionClass;
+	var $columnCount;
+	var $elements;
 
-    function galleryTable() {
-        $this->attrs = array();
-        $this->headers = array();
-        $this->headerClass = '';
-        $this->caption = '';
-        $this->captionClass = '';
-        $this->columnCount = 3;
-        $this->elements = array();
-    }
+	function galleryTable() {
+		$this->attrs = array();
+		$this->headers = array();
+		$this->headerClass = '';
+		$this->caption = '';
+		$this->captionClass = '';
+		$this->columnCount = 3;
+		$this->elements = array();
+	}
 
-    function setAttrs($attrs = array()) {
-        $this->attrs = $attrs;
-    }
+	function setAttrs($attrs = array()) {
+		$this->attrs = $attrs;
+	}
 
-    function setColumnCount($nr) {
-        $this->columnCount = $nr;
-    }
-    /**
-     * Adds an element to the table.
-     *
-     * @param array $element    an element is an array consiting of 'content' and 'cellArgs'.
-     *                          'cellArgs' also an array.
-     * @return boolean          true if the element was successfully added.
-     * @author Jens Tkotz <jens@peino.de>
-     */
-    function addElement($element = array('content' => null, 'cellArgs' => array())) {
-        if (!empty($element)) {
-            $this->elements[] = $element;
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+	function setColumnCount($nr) {
+		$this->columnCount = $nr;
+	}
+	/**
+	 * Adds an element to the table.
+	 *
+	 * @param array $element	an element is an array consiting of 'content' and 'cellArgs'.
+	 *						  'cellArgs' also an array.
+	 * @return boolean		  true if the element was successfully added.
+	 * @author Jens Tkotz <jens@peino.de>
+	 */
+	function addElement($element = array('content' => null, 'cellArgs' => array())) {
+		if (!empty($element)) {
+			$this->elements[] = $element;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
-    function setHeaders($headers = array(), $class = '') {
-        $this->headers = $headers;
-        $this->headerClass = $class;
-    }
+	function setHeaders($headers = array(), $class = '') {
+		$this->headers = $headers;
+		$this->headerClass = $class;
+	}
 
-    function setCaption($caption = '', $class = '') {
-        $this->caption = $caption;
-        $this->captionClass = $class;
-    }
+	function setCaption($caption = '', $class = '') {
+		$this->caption = $caption;
+		$this->captionClass = $class;
+	}
 
-    function render($indent = 0) {
-        if (empty($this->elements)) {
-            return '';
-        }
+	function render($indent = 0) {
+		if (empty($this->elements)) {
+			return '';
+		}
 
-        $ind = '';
-        $numElements = sizeof($this->elements);
+		$ind = '';
+		$numElements = sizeof($this->elements);
 
-        for($i = 0; $i < $indent; $i++) {
-            $ind .= '    ';
-        }
+		for($i = 0; $i < $indent; $i++) {
+			$ind .= '	';
+		}
 
-        $html = "\n$ind<table";
+		$html = "\n$ind<table";
 
-        foreach ($this->attrs as $attr => $value) {
-            $html .= " $attr=\"$value\"";
-        }
-        $html .= '>';
+		foreach ($this->attrs as $attr => $value) {
+			$html .= " $attr=\"$value\"";
+		}
+		$html .= '>';
 
-        if (!empty($this->caption)) {
-            $html .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
-        }
+		if (!empty($this->caption)) {
+			$html .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
+		}
 
-        if (!empty($this->headers)) {
-            $html .= "\n$ind<tr>";
-            $i = 0;
-            foreach ($this->headers as $header) {
-                $i++;
-                $html .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
-            }
+		if (!empty($this->headers)) {
+			$html .= "\n$ind<tr>";
+			$i = 0;
+			foreach ($this->headers as $header) {
+				$i++;
+				$html .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
+			}
 
-            for (; $i < $this->columnCount; $i++) {
-                $html .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
-            }
+			for (; $i < $this->columnCount; $i++) {
+				$html .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
+			}
 
-            /* Override value of columnCount */
-            $this->columnCount = $i;
-        }
+			/* Override value of columnCount */
+			$this->columnCount = $i;
+		}
 
-        if (!empty($this->elements)) {
-            $i = 0;
-            $html .= "\n$ind<tr>";
-            foreach ($this->elements as $nr => $element) {
-                $html .= "\n$ind    <td";
-                if(!empty($element['cellArgs'])) {
-                    foreach ($element['cellArgs'] as $attr => $value) {
-                        $html .= " $attr=\"$value\"";
-                    }
-                }
-                $html .= '>'. $element['content'] .'</td>';
+		if (!empty($this->elements)) {
+			$i = 0;
+			$html .= "\n$ind<tr>";
+			foreach ($this->elements as $nr => $element) {
+				$html .= "\n$ind	<td";
+				if(!empty($element['cellArgs'])) {
+					foreach ($element['cellArgs'] as $attr => $value) {
+						$html .= " $attr=\"$value\"";
+					}
+				}
+				$html .= '>'. $element['content'] .'</td>';
 
-                if(isset($element['cellArgs']['colspan'])) {
-                    $i += $element['cellArgs']['colspan'];
-                }
-                else {
-                    $i++;
-                }
+				if(isset($element['cellArgs']['colspan'])) {
+					$i += $element['cellArgs']['colspan'];
+				}
+				else {
+					$i++;
+				}
 
-                if (!($i % $this->columnCount) && $nr < $numElements-1 && $this->columnCount > 0) {
-                    $html .= "\n$ind </tr>\n$ind<tr>";
-                }
-            }
-            $html .= "\n$ind</tr>";
-        }
+				if (!($i % $this->columnCount) && $nr < $numElements-1 && $this->columnCount > 0) {
+					$html .= "\n$ind </tr>\n$ind<tr>";
+				}
+			}
+			$html .= "\n$ind</tr>";
+		}
 
-        $html .= "\n$ind</table>\n$ind";
+		$html .= "\n$ind</table>\n$ind";
 
-        return $html;
-    }
+		return $html;
+	}
 }
 
 ?>

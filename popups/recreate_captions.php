@@ -28,8 +28,8 @@ list($recursive, $setCaption) =
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-        echo gTranslate('core', "You are not allowed to perform this action!");
-        exit;
+		echo gTranslate('core', "You are not allowed to perform this action!");
+		exit;
 }
 
 printPopupStart(sprintf(gTranslate('core', "Recreate captions for album: %s"), $gallery->album->fields["title"]), '', 'left');
@@ -38,40 +38,40 @@ if(isset($setCaption) && $setCaption != '' && !empty($recursive)) {
    if($gallery->album->createCaption(0, $setCaption, $recursive)) {
 	echo '<script type="text/javascript">opener.location.reload();</script>';
 	echo infoBox(array(array(
-	    'type' => 'success',
-	    'text' => gTranslate('core', "Captions successfully recreated.")
+		'type' => 'success',
+		'text' => gTranslate('core', "Captions successfully recreated.")
 	)));
    }
    else {
 	echo infoBox(array(array(
-	    'type' => 'error',
-	    'text' => gTranslate('core', "Captions not successfully recreated.")
+		'type' => 'error',
+		'text' => gTranslate('core', "Captions not successfully recreated.")
 	)));
    }
    echo "\n<br>";
 }
 
-    echo gTranslate('core', "Choose the type you want to recreate the captions.");
+	echo gTranslate('core', "Choose the type you want to recreate the captions.");
 
-    echo makeFormIntro('recreate_captions.php', array(), array('type' => 'popup'));
-		    
-    include(dirname(dirname(__FILE__)) .'/includes/add_photos/captionOptions.inc.php');
+	echo makeFormIntro('recreate_captions.php', array(), array('type' => 'popup'));
+			
+	include(dirname(dirname(__FILE__)) .'/includes/add_photos/captionOptions.inc.php');
 
-    echo "\n<br><br>\n";
-    echo gTranslate('core', "Do you also want to recreate the captions in subalbums?");
-    echo "\n<br>";
+	echo "\n<br><br>\n";
+	echo gTranslate('core', "Do you also want to recreate the captions in subalbums?");
+	echo "\n<br>";
 ?>
 	<input type="radio" name="recursive" value="yes"> <?php echo gTranslate('core', "Yes"); ?>
 	<input type="radio" name="recursive" value="no" checked> <?php echo gTranslate('core', "No"); ?>
-    <br>
-    <p align="center">
+	<br>
+	<p align="center">
 <?php 
 
 echo gSubmit('recreate', empty($recreate_type) ? gTranslate('core', "_Start") : gTranslate('core', "_Start over"));
 echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
 ?>
-    </p>
-    </form>
+	</p>
+	</form>
 </div>
 </body>
 </html>
