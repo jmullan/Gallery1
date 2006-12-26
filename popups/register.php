@@ -27,14 +27,14 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($formaction, $create, $cancel) = getRequestVar(array('formaction', 'create', 'cancel'));
+
 list($uname, $old_password, $new_password1, $new_password2) =
 	getRequestVar(array('uname', 'old_password', 'new_password1', 'new_password2'));
+
 list($fullname, $email, $send_email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
-echo printPopupStart(
-	sprintf(gTranslate('core', "Register new user for '%s'"), $gallery->app->galleryTitle)
-);
+echo printPopupStart(gTranslate('core', "Register new user"));
 
 if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
@@ -48,15 +48,15 @@ if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	exit();
 }
 
-$allowChange['uname'] = true;
-$allowChange['password'] = false;
-$allowChange['old_password'] = false;
-$allowChange['fullname'] = true;
-$allowChange['email'] = true;
-$allowChange['default_language'] = true;
-$allowChange['create_albums'] = false;
-$allowChange["send_email"] = false;
-$allowChange["member_file"] = false;
+$allowChange['uname']			= true;
+$allowChange['password']		= false;
+$allowChange['old_password']	= false;
+$allowChange['fullname']		= true;
+$allowChange['email']			= true;
+$allowChange['default_language']= true;
+$allowChange['create_albums']	= false;
+$allowChange["send_email"]		= false;
+$allowChange["member_file"]		= false;
 
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
@@ -83,7 +83,6 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (!$errorCount) {
-
 		$password = generate_password(10);
 		$tmpUser = new Gallery_User();
 		$tmpUser->setUsername($uname);
@@ -111,7 +110,8 @@ if (!empty($formaction) && $formaction == 'create') {
 			echo "<p>".sprintf(gTranslate('core', "An email has been sent to %s."), $email);
 			echo '<br>';
 			echo gTranslate('core', "Your account information is contained within the email.");
-		} else {
+		}
+		else {
 			echo gallery_error(gTranslate('core', "Email could not be sent.  Please contact gallery administrator to register on this site"));
 		}
 ?>
