@@ -142,7 +142,8 @@ function check() {
 	}
 
 	if ((document.ecard_form["ecard[email_recepient]"].value == "") &&
-	(document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1)) {
+		(document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1))
+	{
 		error = true;
 		error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
 	}
@@ -156,7 +157,8 @@ function check() {
 		error_message += "\n\n<?php echo gTranslate('core', 'Please fill all fields next click >Send<.'); ?>";
 		alert(error_message);
 		return false;  // Form not sent
-	} else {
+	}
+	else {
 		return true;  // Form sent
 	}
 
@@ -170,7 +172,8 @@ function CountMax() {
 		document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
 		wert = 0;
 		document.ecard_form.counter.value = wert;
-	} else {
+	}
+	else {
 		document.ecard_form.counter.value = max - document.ecard_form["ecard[message]"].value.length;
 	}
 } // Ende function CountMax()
@@ -190,21 +193,13 @@ if (! $ecard_send) {
 	array("name" => "ecard_form"),
 	array("type" => "popup"));
 ?>
-  <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"]; ?>">
-  <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
-  <input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
-  <input name="submit_action" type="hidden" value="">
+	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"]; ?>">
+	<input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
+	<input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
+	<input name="submit_action" type="hidden" value="">
 
-  <br>
-  <table border="0" cellpadding="0" cellspacing="4" align="center">
-  <tr>
-	<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
-	<td width="10">&nbsp;</td>
-	<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
-  </tr>
-  <tr>
-	<td><?php echo gTranslate('core', "Name") ?></td>
-	<?php
+	<br>
+<?php
 	$defaultSenderName = '';
 	$defaultSenderEmail = '';
 	if (! empty($gallery->user) && $gallery->user->isLoggedIn()) {
@@ -212,29 +207,40 @@ if (! $ecard_send) {
 		$defaultSenderEmail = $gallery->user->getEmail();
 	}
 
-	$name_sender = empty($ecard['name_sender']) ? $defaultSenderName : $ecard['name_sender'];
-	$email_sender = empty($ecard['name_sender']) ? $defaultSenderEmail : $ecard['email_sender'];
-	?>
-	<td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $name_sender; ?>"></td>
-	<td></td>
-	<td><?php echo gTranslate('core', "Name") ?></td>
-	<td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="Text" value="<?php echo $ecard['name_recepient']; ?>"></td>
-  </tr>
-  <tr>
-	<td><?php echo gTranslate('core', "E-Mail"); ?></td>
-	<td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $email_sender; ?>"></td>
-	<td></td>
-	<td><?php echo gTranslate('core', "E-Mail"); ?></td>
-	<td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="Text" value="<?php echo $ecard['email_recepient']; ?>"></td>
-  </tr>
-  <tr>
-	<td colspan="5" align="center">
-  	  <select id="ecardstamp" name="ecard[stamp]">
+	$name_sender	= empty($ecard['name_sender'])		? $defaultSenderName : $ecard['name_sender'];
+	$email_sender	= empty($ecard['name_sender'])		? $defaultSenderEmail : $ecard['email_sender'];
+	$name_recepient	= !empty($ecard['name_recepient'])	? $ecard['name_recepient'] : '';
+	$email_recepient= !empty($ecard['email_recepient'])	? $ecard['email_recepient'] : '';
+	$defaultSubject	= !empty($defaultSenderName)		? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : '';
+?>
+	<table cellpadding="0" cellspacing="4" align="center">
+	<tr>
+		<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
+		<td width="10">&nbsp;</td>
+		<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
+	</tr>
+	<tr>
+		<td><?php echo gTranslate('core', "Name") ?></td>
+		<td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="text" value="<?php echo $name_sender; ?>"></td>
+		<td>&nbsp;</td>
+		<td><?php echo gTranslate('core', "Name") ?></td>
+		<td><input tabindex="3" maxlength="40" name="ecard[name_recepient]" size="18" type="text" value="<?php echo $name_recepient; ?>"></td>
+		</tr>
+	<tr>
+		<td><?php echo gTranslate('core', "E-Mail"); ?></td>
+		<td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="text" value="<?php echo $email_sender; ?>"></td>
+		<td>&nbsp;</td>
+		<td><?php echo gTranslate('core', "E-Mail"); ?></td>
+		<td><input tabindex="4" maxlength="40" name="ecard[email_recepient]" size="18" type="text" value="<?php echo $email_recepient; ?>"></td>
+	</tr>
+	<tr>
+		<td colspan="5" align="center">
+		<select id="ecardstamp" name="ecard[stamp]">
 			<option selected value="08"><?php echo gTranslate('core', "Choose a Stamp"); ?></option>
 <?php
 for($i = 1; $i <= 27; $i++) {
 	$nr = sprintf("%02d", $i-1);
-	echo "\n\t" . '<option value="'. $nr .'">';
+	echo "\n\t\t" . '<option value="'. $nr .'">';
 	echo sprintf(gTranslate('core', "Stamp #%d"), $i);
 	echo "</option>";
 }
@@ -242,44 +248,43 @@ for($i = 1; $i <= 27; $i++) {
 		</select>
 		<?php $stamp_previewURL = build_popup_url("stamp_preview.php"); ?>
 		<img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp_Preview','scrollbars=yes, width=150, height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
-	</td>
-  </tr>
-  <tr>
-	<td><?php echo gTranslate('core', "Subject:"); ?></td>
-	<?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
-	<td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
-  </tr>
-  <tr>
-	<td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
-  </tr>
-  <tr>
-	<td align="center" colspan="5">
-	  <textarea cols="55" rows="7" name="ecard[message]" onKeyPress="CountMax();" onfocus="CountMax();"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
-	</td>
-  </tr>
-  <tr>
-	<td colspan="5">&nbsp;</td>
-  </tr>
-  <tr>
-	<td align="center" colspan="5">
-	<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text">
-	</td>
-  </tr>
-  <tr>
-	 <td colspan="5" align="center">
-	 <table>
-	  <tr>
-		<td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>" class="g-button"></td>
-		<td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>" class="g-button"></td>
-	<td width="100%">&nbsp;</td>
-		<td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>" class="g-button"></td>
-	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>" class="g-button"></td>
-	  </tr>
-	 </table>
-	 </td>
-  </tr>
-  </table>
-  </form>
+		</td>
+	</tr>
+	<tr>
+		<td><?php echo gTranslate('core', "Subject:"); ?></td>
+		<td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
+	</tr>
+	<tr>
+		<td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="5">
+			<textarea cols="55" rows="7" name="ecard[message]" onKeyPress="CountMax();" onfocus="CountMax();"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="5">
+			<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" align="center">
+		<table>
+		<tr>
+			<td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>" class="g-button"></td>
+			<td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>" class="g-button"></td>
+			<td width="100%">&nbsp;</td>
+			<td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>" class="g-button"></td>
+			<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>" class="g-button"></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+</form>
 <?php }
 else {
 	printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
