@@ -60,7 +60,8 @@ function toggleGraphics(show) {
 	if(show == 'ImageMagick') {
 		document.getElementById('subgroup_ImageMagick').style.display = 'inline';
 		document.getElementById('subgroup_NetPBM').style.display      = 'none';
-	} else {
+	}
+	else {
 		document.getElementById('subgroup_ImageMagick').style.display = 'none';
 		document.getElementById('subgroup_NetPBM').style.display      = 'inline';
 	}
@@ -114,6 +115,11 @@ echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialt
 $i = 0;
 foreach ($constants as $key => $val) {
     if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
+
+    if (isset($val["type"]) && $val["type"] === 'message') {
+    	echo $val["message"];
+    	continue;
+    }
 
     if (isset($val["type"]) && $val["type"] === 'block_start') {
     	echo "\n<table class=\"g-setup-block\">";
