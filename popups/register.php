@@ -34,7 +34,7 @@ list($uname, $old_password, $new_password1, $new_password2) =
 list($fullname, $email, $send_email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'send_email', 'defaultLanguage'));
 
-echo printPopupStart(gTranslate('core', "Register new user"));
+echo printPopupStart(gTranslate('core', "Register new user"), '', 'left');
 
 if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	<p>
@@ -132,12 +132,15 @@ echo makeFormIntro('register.php',
 
 include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
 ?>
-<p>
+<p class="left">
 <?php echo gTranslate('core', "Your account information will be sent to the email address you provide.") ?>
-<br><br>
+</p>
+
+<div class="center">
 <input type="hidden" name="formaction" value="">
 <?php echo gButton('create', gTranslate('core', "_Send request"), "usercreate_form.formaction.value ='create'; usercreate_form.submit()"); ?>
 <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
+</div>
 </form>
 <script language="javascript1.2" type="text/JavaScript">
 <!--
