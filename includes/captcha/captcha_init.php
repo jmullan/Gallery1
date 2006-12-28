@@ -8,7 +8,7 @@ $CAPTCHA_INIT = array(
 										   // NOTE: This is different to the original hn_captcha !!
 	'TTF_folder'	 => dirname(__FILE__) .'/',					 // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
 	// mixed (array or string): basename(s) of TrueType-Fontfiles
-	'TTF_RANGE'	  => array('COM430.TTF'),
+	'TTF_RANGE'	  => array('COM430.ttf'),
 	'chars'		  => 5,	   // integer: number of chars to use for ID
 	'minsize'		=> 15,	  // integer: minimal size of chars
 	'maxsize'		=> 15,	  // integer: maximal size of chars

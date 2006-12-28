@@ -1683,7 +1683,7 @@ function checkVersions($verbose = false) {
 			continue;
 		}
 		elseif ($found_version === '' ) {
-			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|\.mo|\.ico|Changelog)$|^includes\/ecard\/templates/i', $file, $matches)) {
+			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|\.mo|\.ico|Changelog|.ttf)$|^includes\/ecard\/templates/i', $file, $matches)) {
 				if($verbose) {
 					echo "<br>\n";
 					printf("File with type: %s can not have a compareable Revision Nr.", $matches[0]);
