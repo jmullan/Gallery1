@@ -268,7 +268,7 @@ if (!$gallery->album->isMovie($id)) {
 				'shutterfly'  => 'Shutterfly',
 				'photoaccess' => 'PhotoWorks',
 			),
-			'   Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
+			'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
 		);
 
 		/* display a <select> menu if more than one option */
@@ -288,7 +288,8 @@ if (!$gallery->album->isMovie($id)) {
 
 			if (isset($serviceGroups['Mobile Service'])) {
 				$options[] = gTranslate('core', "Send photo to...") ;
-			} else {
+			}
+			else {
 				$options[] = gTranslate('core', "Print photo with...");
 			}
 
@@ -299,6 +300,7 @@ if (!$gallery->album->isMovie($id)) {
 					$options[]= '----------';
 				}
 				$firstGroup = false;
+
 				foreach ($serviceGroup as $name => $fullName) {
 					enablePrintForm($name);
 					$options[$name] = '&nbsp;&nbsp;&nbsp;'. $fullName;
@@ -316,12 +318,14 @@ if (!$gallery->album->isMovie($id)) {
 			$adminTextIconElemens[] = $printServicesText;
 
 			/* just print out text if only one option */
-		} elseif ($numServices == 1) {
+		}
+		elseif ($numServices == 1) {
 			foreach ($fullNames as $serviceGroupName => $serviceGroup) {
 				foreach ($serviceGroup as $name => $fullName) {
 					if (!in_array($name, $printServices)) {
 						continue;
-					} else {
+					}
+					else {
 						enablePrintForm($name);
 						$iconText = getIconText('', sprintf(gTranslate('core', "process this photo with %s"), $fullName));
 						$adminTextIconElemens[] = "<a class=\"g-admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
@@ -331,9 +335,11 @@ if (!$gallery->album->isMovie($id)) {
 		}
 
 	}
+
 	if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
-	  !$gallery->session->offline  &&
-	  $gallery->user->canViewFullImages($gallery->album)) {
+	  	!$gallery->session->offline  &&
+	  	$gallery->user->canViewFullImages($gallery->album))
+	{
 		$lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
 		$link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
 		$adminTextIconElemens[] = gTranslate('core', 'View Images:');
@@ -344,7 +350,8 @@ if (!$gallery->album->isMovie($id)) {
 			$adminTextIconElemens[] = $iconTextNormal;
 			$adminTextIconElemens[] = '|';
 			$adminTextIconElemens[] = "<a class=\"g-admin\" href=\"$link\">[". $iconTextFull .']</a>';
-		} else {
+		}
+		else {
 			$adminTextIconElemens[] = "<a class=\"g-admin\" href=\"$link\">[" .$iconTextNormal .']</a>';
 			$adminTextIconElemens[] = '|';
 			$adminTextIconElemens[] = $iconTextFull;
