@@ -57,9 +57,8 @@ function getGalleryBaseUrl() {
 	global $gallery;
 
 	if (isset($gallery->app) &&
-		isset($gallery->app->photoAlbumURL) &&
-		realpath($gallery->app->photoAlbumURL)) {
-
+		isset($gallery->app->photoAlbumURL))
+	{
 		$base = $gallery->app->photoAlbumURL;
 	}
 	elseif(where_i_am() == 'config') {

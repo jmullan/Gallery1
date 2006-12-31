@@ -123,7 +123,7 @@ class hn_captcha{
 		  * @public
 		  *
 		  **/
-		var $TTF_RANGE  = array('COMIC.TTF','JACOBITE.TTF','LYDIAN.TTF','MREARL.TTF','RUBBERSTAMP.TTF','ZINJARON.TTF');
+		var $TTF_RANGE  = array('COM430.ttf');
 
 		/**
 		  * @shortdesc How many chars the generated text should have
@@ -221,7 +221,7 @@ class hn_captcha{
 		  * @public
 		  *
 		  **/
-		var $secretstring = "This is a very secret string. Nobody should know it, =:)";
+		var $secretstring = "This is a very secret Gallery string. Nobody should know it, :-)";
 
 		/**
 		  * @shortdesc Outputs configuration values for testing
@@ -341,7 +341,7 @@ class hn_captcha{
 				}
 			}
 
-			$absoluteTempFolder = $gallery->app->albumDir . $this->tempfolder;
+			$absoluteTempFolder = $gallery->app->albumDir . '/' . $this->tempfolder;
 			if (empty($this->tempfolder)) {
 				printInfoBox(array(array(
 					'type' => 'error',
@@ -349,22 +349,22 @@ class hn_captcha{
 				)));
 				exit;
 			}
-			elseif (!realpath($absoluteTempFolder)) {
-				printInfoBox(array(array(
-					'type' => 'error',
-					'text' => sprintf(gTranslate('core', "The specified folder '%s' for captcha images is not valid.", $this->tempfolder))
-				)));
-
-				exit;
-			}
 			elseif (!fs_is_dir($absoluteTempFolder)) {
 				if(! fs_mkdir($absoluteTempFolder)) {
 					printInfoBox(array(array(
 						'type' => 'error',
-						'text' => sprintf(gTranslate('core', "The specified folder '%s' does not exist inside the albums folde and Gallery is not able to create it.", $this->tempfolder))
+						'text' => sprintf(gTranslate('core', "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."), $this->tempfolder, $absoluteTempFolder)
 					)));
 					exit;
 				}
+			}
+			elseif (!fs_is_writable($absoluteTempFolder)) {
+				printInfoBox(array(array(
+					'type' => 'error',
+					'text' => sprintf(gTranslate('core', "The specified folder '%s' (Fullpath: '%s') for captcha images is not writable for the webserver."), $this->tempfolder, $absoluteTempFolder)
+				)));
+
+				exit;
 			}
 
 			// check vars for maxtry, secretposition and min-max-size
@@ -738,7 +738,7 @@ class hn_captcha{
 				$public = $this->public_key;
 			}
 
-			return $gallery->app->albumDir . $this->tempfolder . $public . '.jpg';
+			return $gallery->app->albumDir . '/'. $this->tempfolder . $public . '.jpg';
 		}
 
 		/** @private **/
@@ -749,7 +749,7 @@ class hn_captcha{
 			}
 
 			// return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$public.".jpg";
-			return $gallery->app->albumDirURL . $this->tempfolder . $public . '.jpg';
+			return $gallery->app->albumDirURL . '/'. $this->tempfolder . $public . '.jpg';
 		}
 
 		/** @private **/

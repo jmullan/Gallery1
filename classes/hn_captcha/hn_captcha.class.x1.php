@@ -142,7 +142,7 @@ class hn_captcha_X1 extends hn_captcha
 
 			// specify counter-filename
 			if($this->counter_filename == '') {
-				$this->counter_filename = $gallery->app->albumDir .
+				$this->counter_filename = $gallery->app->albumDir . '/' .
 											$this->tempfolder .
 											$this->counter_fn_default_basename;
 			}
@@ -255,21 +255,21 @@ class hn_captcha_X1 extends hn_captcha
 			$OK = FALSE;
 			$captchas = 0;
 			$trashed = 0;
-			if($handle = @opendir($gallery->app->albumDir . $this->tempfolder)) {
+			if($handle = @opendir($gallery->app->albumDir . '/'. $this->tempfolder)) {
 				$OK = TRUE;
 				while(false !== ($file = readdir($handle)))
 				{
-					if(!is_file($gallery->app->albumDir . $this->tempfolder.$file)) continue;
+					if(!is_file($gallery->app->albumDir . '/'. $this->tempfolder.$file)) continue;
 					// check for name-prefix, extension and filetime
 					if(substr($file,0,strlen($this->prefix)) == $this->prefix)
 					{
 						if(strrchr($file, ".") == ".jpg")
 						{
 							$captchas++;
-							if((time() - filemtime($gallery->app->albumDir .  $this->tempfolder.$file)) >= $this->maxlifetime)
+							if((time() - filemtime($gallery->app->albumDir . '/'. $this->tempfolder.$file)) >= $this->maxlifetime)
 							{
 								$trashed++;
-								$res = @unlink($gallery->app->albumDir . $this->tempfolder.$file);
+								$res = @unlink($gallery->app->albumDir . '/'. $this->tempfolder.$file);
 								if(!$res) $OK = FALSE;
 							}
 						}
@@ -293,7 +293,7 @@ class hn_captcha_X1 extends hn_captcha
 				$public = $this->public_key;
 			}
 
-			return $gallery->app->albumDir . $this->tempfolder.$this->prefix.$public.".jpg";
+			return $gallery->app->albumDir . '/'. $this->tempfolder.$this->prefix.$public.".jpg";
 		}
 
 
@@ -306,7 +306,7 @@ class hn_captcha_X1 extends hn_captcha
 			}
 
 			//return str_replace($_SERVER['DOCUMENT_ROOT'],'',$this->tempfolder).$this->prefix.$public.".jpg";
-			return $gallery->app->albumDirURL . $this->tempfolder . $this->prefix . $public . '.jpg';
+			return $gallery->app->albumDirURL . '/'. $this->tempfolder . $this->prefix . $public . '.jpg';
 		}
 
 

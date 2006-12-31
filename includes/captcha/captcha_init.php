@@ -3,7 +3,7 @@
 
 // ConfigArray
 $CAPTCHA_INIT = array(
-	'tempfolder'	 => '/captcha_tmp/',   // string: relative path (with trailing slash!) inside the albums folder of Gallery
+	'tempfolder'	 => 'captcha_tmp/',   // string: relative path (with trailing slash!) inside the albums folder of Gallery
 										   // to a writeable tempfolder which is also accessible via HTTP!
 										   // NOTE: This is different to the original hn_captcha !!
 	'TTF_folder'	 => dirname(__FILE__) .'/',					 // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
@@ -21,7 +21,7 @@ $CAPTCHA_INIT = array(
 	'maxtry'		 => 3,	   // integer: [1-9]		  ; Unused in Gallery (unlimited)
 
 	'badguys_url'	=> '/',	 // string: URL			 ; Unused in Gallery
-	'secretstring'   => 'A very, very secret string which is used to generate a md5-key!',
+	'secretstring'   => 'Disco in Frisco, says Jenz from Erkelenz',
 	'secretposition' => 24,	  // integer: [1-32]
 
 	'debug'		  => FALSE,
