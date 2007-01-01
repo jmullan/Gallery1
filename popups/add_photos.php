@@ -39,7 +39,8 @@ if (isset($mode)) {
 	if ($modeCookie != $mode) {
 		setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
 	}
-} else {
+}
+else {
 	if (isset($modeCookie)) {
 		$mode = $modeCookie;
 	}
@@ -59,7 +60,8 @@ printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
 <?php
 
 if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteAppletMini.jar') &&
-	file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteHTTPClient.jar')) {
+	file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteHTTPClient.jar'))
+{
 	$modes['applet_mini'] = gTranslate('core', "Applet");
 
 	if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteApplet.jar')) {
@@ -83,7 +85,8 @@ foreach ($modes as $m => $mt) {
 	$url = makeGalleryUrl('add_photos.php', array('mode' => $m, 'type' => 'popup'));
 	if ($m == $mode) {
 		echo "\t\t<a href=\"$url\" class=\"g-activeTab\">$mt</a>\n";
-	} else {
+	}
+	else {
 		echo "\t\t<a href=\"$url\">$mt</a>\n";
 	}
 }

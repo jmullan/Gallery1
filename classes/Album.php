@@ -1219,12 +1219,42 @@ class Album {
 		}
 	}
 
+	/**
+	 * This adds a photo to an album.
+	 * A few steps are done, here are the important
+	 *  - Filename processing
+	 *  - Resizing the original photo
+	 *  - Setting metainfos
+	 *  - Autorotate based on EXIF
+	 *
+	 * @param string	$file				Absolute filename to the physical file to add.
+	 * @param string	$tag				Extension of the file (e.g. 'jpg')
+	 * @param string	$originalFilename
+	 * @param string	$caption
+	 * @param string	$pathToThumb		You can set a non generic path to a thumbnail.
+	 * 										(e.g. for movies this is done)
+	 * @param array		$extraFields
+	 * @param string	$owner
+	 * @param mixed		$votes				Either an array containing the votes, or NULL
+	 * @param string	$wmName				Name for an optional watermark image
+	 * @param int		$wmAlign			Number from 1-10 for the position of the watermark.
+	 * 										See watermark_image() in lib/imageManipulation for details
+	 * @param mixed		$wmAlignX			If $wmAlign = 10 then this is used as horizontal alignment
+	 * 										Can be a number or a percentage string.
+	 * @param mixed		$wmAlignY			Same like $wmAlignX for the vertical alignment
+	 * @param int		$wmSelect			0 - Both, sized and Full
+	 *										1 - Only sized photos
+	 *										2 - Only full photos
+	 * @param boolean	$exifRotate			Autorotate
+	 * @return array						(true, $statusMsg)
+	 */
 	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb = '', $extraFields = array(), $owner = '', $votes = NULL, $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0, $exifRotate = true) {
 		global $gallery;
 
 		$this->updateSerial = 1;
 		$dir = $this->getAlbumDir();
 
+		/* Begin Filename processing */
 		echo debugMessage(gTranslate('core', "Doing the naming of the physical file."), __FILE__, __LINE__);
 
 		if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
@@ -1233,11 +1263,13 @@ class Album {
 			// or thumbnail conflict between movie and jpeg
 			foreach (acceptableFormatList() as $ext) {
 				if (file_exists("$dir/$name.$ext") ||
-				((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
+					((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg")))
+				{
 					// append a 3 digit number to the end of the filename if it exists already
 					if (!ereg("_[[:digit:]]{3}$", $name)) {
 						$name = $name . "_001";
 					}
+
 					// increment the 3 digits until we get a unique filename
 					while ((file_exists("$dir/$name.$ext") || file_exists("$dir/$name.$tag")) ||
 					  ((isMovie($tag) || $tag=="jpg") && file_exists("$dir/$name.thumb.jpg"))) {
@@ -1358,10 +1390,10 @@ class Album {
 		/* auto-rotate the photo if needed */
 		echo debugMessage(gTranslate('core', "Check if image needs to be rotated"), __FILE__, __LINE__);
 		if ($exifRotate && hasExif($tag) &&
-		  !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
+			!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
 			(!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
-			(!empty($gallery->app->exiftags) && $gallery->app->exiftags))
-		){
+				(!empty($gallery->app->exiftags) && $gallery->app->exiftags)))
+		{
 			$index = $this->numPhotos(1);
 			$exifData = $this->getExif($index);
 

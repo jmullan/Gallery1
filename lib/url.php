@@ -51,7 +51,9 @@ function setGalleryPaths() {
 }
 
 /**
+ * Return the URL to your Gallery
  *
+ * @return string	$base
  */
 function getGalleryBaseUrl() {
 	global $gallery;

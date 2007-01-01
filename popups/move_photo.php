@@ -37,7 +37,8 @@ $albumDB = new AlbumDB(FALSE); // read album database
 
 if ($gallery->album->isAlbum($index)) {
 	$title = !empty($reorder) ? gTranslate('core',"Reorder Album") : gTranslate('core',"Move Album");
-} else {
+}
+else {
 	$title = !empty($reorder) ? gTranslate('core',"Reorder Photo") : gTranslate('core',"Move Photo");
 }
 
@@ -63,13 +64,15 @@ if ($gallery->session->albumName && isset($index)) {
 			exit;
 		}
 		if ((isset($postAlbum->fields['name']) || $newAlbum == ".root") &&
-		($gallery->album->fields['name'] != $postAlbum->fields['name'])) {
+			($gallery->album->fields['name'] != $postAlbum->fields['name']))
+		{
 			$votes_transferable = $gallery->album->pollsCompatible($postAlbum);
 			$vote_id = $gallery->album->getVotingIdByIndex($index);
 
 			if (isset($gallery->album->fields["votes"][$vote_id]) && $votes_transferable) {
 				$votes = $gallery->album->fields["votes"][$vote_id];
-			} else {
+			}
+			else {
 				$votes = NULL;
 			}
 			// moving "album" to another location
@@ -120,7 +123,8 @@ if ($gallery->session->albumName && isset($index)) {
 					}
 				}
 				// moving "picture" to another album
-			} else {
+			}
+			else {
 				$index = $startPhoto; // set the index to the first photo that we are moving.
 
 				while ($startPhoto <= $endPhoto) {
@@ -135,11 +139,13 @@ if ($gallery->session->albumName && isset($index)) {
 						$mytype = $myphoto->image->type;
 						$myfile = "$mydir/$myname.$mytype";
 						$myhidden = $myphoto->isHidden();
+
 						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
 						  (!$myphoto->isMovie())) {
 							$pathToThumb="$mydir/$myname.thumb.$mytype";
-						} else {
-							$pathToThumb="";
+						}
+						else {
+							$pathToThumb = '';
 							echo "- ". gTranslate('core',"Creating Thumbnail") ."<br>";
 							my_flush();
 						}
@@ -227,11 +233,12 @@ if ($gallery->session->albumName && isset($index)) {
 	else {
 		echo '<br>'. $gallery->album->getThumbnailTag($index) .'<br><br>';
 		if ($reorder ) { // Reorder, intra-album move
-		if ($gallery->album->isAlbum($index)) {
-			echo gTranslate('core',"Reorder this album within the album:") ."<br>";
-		} else {
-			echo gTranslate('core',"Reorder this photo within the album:") ."<br>";
-		}
+			if ($gallery->album->isAlbum($index)) {
+				echo gTranslate('core',"Reorder this album within the album:") ."<br>";
+			}
+			else {
+				echo gTranslate('core',"Reorder this photo within the album:") ."<br>";
+			}
 ?>
 <i>(<?php echo sprintf(gTranslate('core',"Current Location is %s"), $index) ?>)</i>
 

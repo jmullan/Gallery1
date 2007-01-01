@@ -561,8 +561,9 @@ class AlbumItem {
 		return 1;
 	}
 
-	function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
+	function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview = 0, $previewSize = 0, $wmSelect = 0) {
 		global $gallery;
+
 		$type = $this->image->type;
 		if (isMovie($type) || $this->isAlbum()) {
 			// currently there is no watermarking support for movies
@@ -574,6 +575,7 @@ class AlbumItem {
 		else if ($wmSelect > 2) {
 			$wmSelect = 2;
 		}
+
 		$name = $this->image->name;
 		$oldpreviews = glob($dir . "/$name.preview*.$type");
 		if (!empty($oldpreviews) && is_array($oldpreviews)) {
@@ -581,20 +583,24 @@ class AlbumItem {
 				unlink($oldpreview);
 			}
 		}
+
 		if ($preview) {
 			$previewtag = "preview" . time();
 			if (($previewSize == 0) && $this->isResized()) {
 				$src_image = "$dir/" . $this->image->resizedName . ".$type";
-			} else {
+			}
+			else {
 				$src_image = "$dir/$name.$type";
 			}
+
 			$retval = watermark_image(
-			  $src_image,
-			  "$dir/$name.$previewtag.$type",
-			  $gallery->app->watermarkDir."/$wmName",
-			  $gallery->app->watermarkDir."/$wmAlphaName",
-			  $wmAlign, $wmAlignX, $wmAlignY
+				$src_image,
+				"$dir/$name.$previewtag.$type",
+				$gallery->app->watermarkDir."/$wmName",
+				$gallery->app->watermarkDir."/$wmAlphaName",
+				$wmAlign, $wmAlignX, $wmAlignY
 			);
+
 			if ($retval) {
 				list($w, $h) = getDimensions("$dir/$name.$previewtag.$type");
 
@@ -603,18 +609,26 @@ class AlbumItem {
 				$high->setDimensions($w, $h);
 				$this->preview = $high;
 			}
-		} else {
-			// $wmSelect of 0=both Sized and Full
-			if ($wmSelect != 1) { // 1=Only Sized Photos
-			$retval = watermark_image(
-			  "$dir/$name.$type",
-			  "$dir/$name.$type",
-			  $gallery->app->watermarkDir."/$wmName",
-			  $gallery->app->watermarkDir."/$wmAlphaName",
-			  $wmAlign, $wmAlignX, $wmAlignY
-			);
+		}
+		else {
+			/* $wmSelect =
+			 * 0 - Both, sized and Full
+			 * 1 - Only sized photos
+			 * 2 - Only full photos
+			*/
+
+			// Watermark the fullsize
+			if ($wmSelect != 1) {
+				$retval = watermark_image(
+					"$dir/$name.$type",
+					"$dir/$name.$type",
+					$gallery->app->watermarkDir . '/' . $wmName,
+					$gallery->app->watermarkDir . '/' . $wmAlphaName,
+					$wmAlign, $wmAlignX, $wmAlignY
+				);
 			}
-			// 2=Only Full Photos
+
+			// Watermark the resized
 			if ($wmSelect != 2) {
 				if (($wmSelect == 1) && !$this->isResized()) {
 					// If watermarking only resized images, and image is not resized
@@ -624,17 +638,16 @@ class AlbumItem {
 				}
 				if ($this->isResized()) {
 					$retval = watermark_image(
-					  "$dir/$name.sized.$type",
-					  "$dir/$name.sized.$type",
-					  $gallery->app->watermarkDir."/$wmName",
-					  $gallery->app->watermarkDir."/$wmAlphaName",
-					  $wmAlign,
-					  $wmAlignX,
-					  $wmAlignY
+						"$dir/$name.sized.$type",
+						"$dir/$name.sized.$type",
+						$gallery->app->watermarkDir . '/' . $wmName,
+						$gallery->app->watermarkDir . '/' . $wmAlphaName,
+						$wmAlign, $wmAlignX, $wmAlignY
 					);
 				}
 			}
 		}
+
 		return ($retval);
 	}
 
