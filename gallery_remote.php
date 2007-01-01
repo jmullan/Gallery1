@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2006 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -51,10 +51,12 @@ if (!strcmp($cmd, "login")) {
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 			$gallery->session->username = $uname;
 			$returnval = "SUCCESS";
-		} else {
+		}
+		else {
 			$returnval = "Login Incorrect";
 		}
-	} else {
+	}
+	else {
 		$returnval = "Missing Parameters";
 	}
 
@@ -65,7 +67,6 @@ if (!strcmp($cmd, "login")) {
 //-- fetch-albums --
 
 if (!strcmp($cmd, "fetch-albums")) {
-
 	$albumDB = new AlbumDB(FALSE);
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
@@ -85,10 +86,10 @@ if (!strcmp($cmd, "fetch-albums")) {
 
 function appendNestedAlbums($level, $albumName, $albumString) {
 	global $gallery;
- 
+
 	$myAlbum = new Album();
 	$myAlbum->load($albumName);
-   
+
 	$numPhotos = $myAlbum->numPhotos(1);
 
 	for ($i=1; $i <= $numPhotos; $i++) {
@@ -112,16 +113,13 @@ function appendNestedAlbums($level, $albumName, $albumString) {
 //-- add-photo --
 
 if (!strcmp($cmd, "add-item")) {
-
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
 		$error = gTranslate('core', "User cannot add to album");
 	}
-
 	else if (!$userfile_name) {
 		$error = gTranslate('core', "No file specified");
 	}
-
 	else {
 
 		$name = $userfile_name;
@@ -146,7 +144,8 @@ if (!strcmp($cmd, "add-item")) {
 
 	if ($error) {
 		echo ("ERROR: $error");
-	} else {
+	}
+	else {
 		echo ("SUCCESS");
 	}
 
@@ -190,7 +189,8 @@ function process($file, $tag, $name, $setCaption="") {
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
-	} else {
+	}
+	else {
 		// remove %20 and the like from name
 		$name = urldecode($name);
 		// parse out original filename without extension
@@ -201,46 +201,48 @@ function process($file, $tag, $name, $setCaption="") {
 		/* Get rid of extra underscores */
 		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
 		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-   
+
 		/*
 		need to prevent users from using original filenames that are purely numeric.
 		Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
 		specifically:
 		RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
 		*/
-   
+
 		if (ereg("^([0-9]+)$", $mangledFilename)) {
 			$mangledFilename .= "_G";
 		}
-   
+
 		set_time_limit($gallery->app->timeLimit);
 		if (acceptableFormat($tag)) {
 			if ($setCaption) {
 				$caption = $originalFilename;
-			} else {
-				$caption = "";
 			}
-   
-		/*
-		 * Move the uploaded image to our temporary directory
-		 * using move_uploaded_file so that we work around
-		 * issues with the open_basedir restriction.
-		 */
-		if (function_exists('move_uploaded_file')) {
-		$newFile = tempnam($gallery->app->tmpDir, "gallery");
-		if (move_uploaded_file($file, $newFile)) {
-			$file = $newFile;
+			else {
+				$caption = '';
+			}
 
-			/* Make sure we remove this file when we're done */
-			$temp_files[$file]++;
-		}
-		}
+			/*
+			* Move the uploaded image to our temporary directory
+			* using move_uploaded_file so that we work around
+			* issues with the open_basedir restriction.
+			*/
+			if (function_exists('move_uploaded_file')) {
+				$newFile = tempnam($gallery->app->tmpDir, "gallery");
+				if (move_uploaded_file($file, $newFile)) {
+					$file = $newFile;
+
+					/* Make sure we remove this file when we're done */
+					$temp_files[$file]++;
+				}
+			}
 
 			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, array(), $gallery->user->getUid());
 			if ($err) {
 				$error = "$err";
 			}
-		} else {
+		}
+		else {
 			$error = "Skipping $name (can't handle '$tag' format)";
 		}
 	}

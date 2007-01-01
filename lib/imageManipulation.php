@@ -239,7 +239,8 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
 				echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);
 			return false;
 		}
-	} else {
+	}
+	else {
 		echo gallery_error(gTranslate('core', "No watermark name specified!"));
 		return false;
 	}
@@ -287,20 +288,24 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
 			if (ereg('([0-9]+)(\%?)', $wmAlignX, $regs)) {
 				if ($regs[2] == '%') {
 					$wmAlignX = round($regs[1] / 100 * ($srcSize[0] - $overlaySize[0]));
-				} else {
+				}
+				else {
 					$wmAlignX = $regs[1];
 				}
-			} else {
+			}
+			else {
 				$wmAlignX = 0;
 			}
 
 			if (ereg('([0-9]+)(\%?)', $wmAlignY, $regs)) {
 				if ($regs[2] == '%') {
 					$wmAlignY = round($regs[1] / 100 * ($srcSize[1] - $overlaySize[1]));
-				} else {
+				}
+				else {
 					$wmAlignY = $regs[1];
 				}
-			} else {
+			}
+			else {
 				$wmAlignY = 0;
 			}
 
