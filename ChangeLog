@@ -1,3 +1,18 @@
+2007-01-02 Jens Tkotz <jens@peino.de> 1.6-alpha3-svn-b38
+
+ Thanks to Rasmus Lerdorf for reporting these bugs:
+
+ * Fix: album::addPhoto() returns an array.
+	    This was handled wrong in:
+		- gallery_remote2.php
+	    - popups/move_photo.php
+	    - popups/copy_photo.php
+
+ * Fix: Gallery remote can't handle HTML status messages.
+	    Added global $plainErrorMessage in addPhotos()
+
+ * Fix: Capture Date was saved wrong.
+
 2006-12-31 Jens Tkotz <jens@peino.de> 1.6-alpha3-svn-b37
 
  * Fix: realpath() on an URL in getGalleryBaseUrl()

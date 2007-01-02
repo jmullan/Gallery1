@@ -836,6 +836,8 @@ function processFile($file, $tag, $name, $setCaption="") {
 	global $gallery;
 	global $temp_files;
 
+	$error = null;
+
 	if (!strcmp($tag, "zip")) {
 		if (!$gallery->app->feature["zip"]) {
 			$error = "Zip not supported";
@@ -894,7 +896,6 @@ function processFile($file, $tag, $name, $setCaption="") {
 		set_time_limit($gallery->app->timeLimit);
 
 		if (acceptableFormat($tag)) {
-
 			/*
 			* Move the uploaded image to our temporary directory
 			* using move_uploaded_file so that we work around
@@ -914,7 +915,7 @@ function processFile($file, $tag, $name, $setCaption="") {
 				$caption = $setCaption;
 			}
 			else {
-				$caption = "";
+				$caption = '';
 			}
 
 			// add the extra fields
@@ -941,9 +942,10 @@ function processFile($file, $tag, $name, $setCaption="") {
 			}
 			//echo "Extra fields ". implode("/", array_keys($myExtraFields)) ." -- ". implode("/", array_values($myExtraFields)) ."\n";
 
-			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, "", $myExtraFields, $gallery->user->getUid());
-			if ($err)  {
-				$error = "$err";
+			$plainErrorMessage = true;
+			list($status, $statusMsg) = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, '', $myExtraFields, $gallery->user->getUid());
+			if(!$status) {
+				$error = $statusMsg;
 			}
 		}
 		else {

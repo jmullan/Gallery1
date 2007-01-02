@@ -55,7 +55,7 @@ class AlbumItem {
 	function setUploadDate($uploadDate = '') {
 		global $gallery;
 
-		if ($uploadDate) {
+		if (!empty($uploadDate)) {
 			// set the upload time from the time provided
 			$this->uploadDate = $uploadDate;
 		} else {
@@ -80,7 +80,7 @@ class AlbumItem {
 		global $gallery;
 		/* Before 1.4.5-cvs-b106 this was an associative array */
 
-		if (!$itemCaptureDate) {
+		if (empty($itemCaptureDate)) {
 			// we want to attempt to set the $itemCaptureDate from the information that
 			// is available to us.  First, look in the exif data if it is a jpeg file.  If that
 			// doesn't help us, then use the file creation date.
@@ -651,6 +651,17 @@ class AlbumItem {
 		return ($retval);
 	}
 
+	/**
+	 * Creates the Image Object for an albumitem
+	 *
+	 * @param string	$dir	Albumdir
+	 * @param string	$name	Filname without extension
+	 * @param string	$tag	Extension
+	 * @param int		$thumb_size
+	 * @param object	$album
+	 * @param string	$pathToThumb
+	 * @return mixed	$ret
+	 */
 	function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb = '') {
 		global $gallery;
 

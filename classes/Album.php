@@ -1234,7 +1234,7 @@ class Album {
 	 * @param string	$pathToThumb		You can set a non generic path to a thumbnail.
 	 * 										(e.g. for movies this is done)
 	 * @param array		$extraFields
-	 * @param string	$owner
+	 * @param string	$owner				UID of the item owner
 	 * @param mixed		$votes				Either an array containing the votes, or NULL
 	 * @param string	$wmName				Name for an optional watermark image
 	 * @param int		$wmAlign			Number from 1-10 for the position of the watermark.
@@ -1250,6 +1250,7 @@ class Album {
 	 */
 	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb = '', $extraFields = array(), $owner = '', $votes = NULL, $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0, $exifRotate = true) {
 		global $gallery;
+		global $plainErrorMessage; 		// Set only when using Gallery Remote
 
 		$this->updateSerial = 1;
 		$dir = $this->getAlbumDir();
@@ -1316,10 +1317,16 @@ class Album {
 			if (fs_file_exists($newFile)) {
 				fs_unlink($newFile);
 			}
-			$errorMsg = infobox(array(array(
-					'type' => 'error',
-					'text' => gTranslate('core', "Item not added.")
-			)));
+
+			if($plainErrorMessage) {
+				$errorMsg = gTranslate('core', "Item not added.");
+			}
+			else {
+				$errorMsg = infobox(array(array(
+						'type' => 'error',
+						'text' => gTranslate('core', "Item not added.")
+				)));
+			}
 
 			return array($status, $errorMsg);
 		}
@@ -1358,9 +1365,11 @@ class Album {
 			$item->setOwner($owner);
 		}
 		$this->photos[] = $item;
+		$index = $this->numPhotos(1);
+		$photo = $this->getPhoto($index);
 
 		/* If this is the only photo, make it the highlight */
-		if ($this->numPhotos(1) == 1 && !isMovie($tag)) {
+		if ($index == 1 && !isMovie($tag)) {
 			$this->setHighlight(1);
 		}
 
@@ -1369,11 +1378,9 @@ class Album {
 		}
 
 		/* resize the photo if needed */
-		if (($this->fields["resize_size"] > 0 ||
-		  $this->fields["resize_file_size"] > 0 )
-		  && isImage($tag)) {
-			$index = $this->numPhotos(1);
-			$photo = $this->getPhoto($index);
+		if (isImage($tag) &&
+			($this->fields["resize_size"] > 0 || $this->fields["resize_file_size"] > 0))
+		{
 			list($w, $h) = $photo->image->getRawDimensions();
 			if ($w > $this->fields["resize_size"] ||
 			  $h > $this->fields["resize_size"] ||
@@ -1385,8 +1392,6 @@ class Album {
 			}
 		}
 
-		$index = $this->numPhotos(1);
-
 		/* auto-rotate the photo if needed */
 		echo debugMessage(gTranslate('core', "Check if image needs to be rotated"), __FILE__, __LINE__);
 		if ($exifRotate && hasExif($tag) &&
@@ -1394,8 +1399,7 @@ class Album {
 			(!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
 				(!empty($gallery->app->exiftags) && $gallery->app->exiftags)))
 		{
-			$index = $this->numPhotos(1);
-			$exifData = $this->getExif($index);
+			$exifData = getExif($file);
 
 			if (isset($exifData['Orientation'])) {
 				$orientation = trim($exifData['Orientation']);
@@ -1407,7 +1411,6 @@ class Album {
 				$orientation = '';
 			}
 
-			$photo = $this->getPhoto($index);
 			switch ($orientation) {
 				case "Right-Hand, Top":	// exiftags
 				case "Top, Right-Hand":
@@ -1456,22 +1459,28 @@ class Album {
 				processingMsg(gTranslate('core', "Photo NOT auto-rotated/transformed"));
 			}
 		}
+
 		/* move to the beginning if needed */
 		if ($this->getAddToBeginning() ) {
 			$this->movePhoto($this->numPhotos(1), 0);
 		}
-		if (isImage($tag) && strlen($wmName)) {
+
+		if (strlen($wmName) && isImage($tag)) {
 			processingMsg("- ". gTranslate('core', "Watermarking Image"));
 			$photo->watermark($this->getAlbumDir(),
 			$wmName, '', $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect);
 		}
 
 		$this->fields['guid'] = genGUID();
-
-		$statusMsg = infobox(array(array(
-					'type' => 'success',
-					'text' => gTranslate('core', "Item successfully added.")
-			)));
+		if($plainErrorMessage) {
+			$statusMsg = gTranslate('core', "Item successfully added.");
+		}
+		else {
+			$statusMsg = infobox(array(array(
+						'type' => 'success',
+						'text' => gTranslate('core', "Item successfully added.")
+				)));
+		}
 
 		return array(true, $statusMsg);
 	}

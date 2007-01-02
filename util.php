@@ -614,14 +614,19 @@ function getExif($file) {
 	$myExif = array();
 	$unwantedFields = array();
 
+	echo debugMessage(sprintf(gTranslate('core', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
+
 	switch(getExifDisplayTool()) {
 		case 'exiftags':
 			if (empty($gallery->app->exiftags)) {
 				break;
 			}
+
 			$path = $gallery->app->exiftags;
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' -au '.
-				fs_import_filename($file, 1));
+			$cmd = fs_import_filename($path, 1) . ' -au';
+			$target = fs_import_filename($file, 1);
+
+			list($return, $status) = @exec_internal($cmd . ' ' . $target);
 		break;
 
 		case 'jhead':
@@ -672,7 +677,7 @@ function getItemCaptureDate($file, $exifData = array()) {
 	$success = false;
 	$exifSupported = getExifDisplayTool();
 
-	if ($exifSupported) {
+	if (!empty($exifSupported)) {
 		if(empty($exifData)) {
 			list($status, $exifData) = getExif($file);
 		}
@@ -690,7 +695,7 @@ function getItemCaptureDate($file, $exifData = array()) {
 				break;
 		}
 
-		if (isset($tempDate)) {
+		if (!empty($tempDate)) {
 			$tempDay = strtr($tempDate[0], ':', '-');
 			$tempTime = $tempDate[1];
 
@@ -707,10 +712,6 @@ function getItemCaptureDate($file, $exifData = array()) {
 		$itemCaptureTimeStamp = filemtime($file);
 	}
 
-	if (!isDebugging()) {
-		sprintf (gTranslate('core', "Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
-	}
-
 	return $itemCaptureTimeStamp;
 }
 
@@ -720,6 +721,7 @@ function doCommand($command, $args = array(), $returnTarget = '', $returnArgs = 
 		$args["return"] = urlencode(makeGalleryHeaderUrl($returnTarget, $returnArgs));
 	}
 	$args["cmd"] = $command;
+
 	return makeGalleryUrl('popups/do_command.php', $args);
 }
 

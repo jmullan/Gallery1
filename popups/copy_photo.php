@@ -32,7 +32,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 
 $albumDB = new AlbumDB(FALSE); // read album database
 
-list($index, $startPhoto, $endPhoto, $newAlbum) = 
+list($index, $startPhoto, $endPhoto, $newAlbum) =
 	getRequestVar(array('index', 'startPhoto', 'endPhoto', 'newAlbum'));
 
 printPopupStart(gTranslate('core', "Copy Photo"));
@@ -75,7 +75,7 @@ if ($gallery->session->albumName && isset($index)) {
 
 						$id = $gallery->album->getPhotoId($index);
 
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname,
+						list($status, $statusMsg) = $postAlbum->addPhoto($myfile, $mytype, $myname,
 						  $gallery->album->getCaption($index),
 						  $pathToThumb, $photo->extraFields,
 						  $gallery->album->getItemOwner($index),
@@ -84,7 +84,7 @@ if ($gallery->session->albumName && isset($index)) {
 						  false
 						);
 
-						if (!$err) {
+						if ($status) {
 							if ($postAlbum->getAddToBeginning()) {
 								$newPhotoIndex = 1;
 							} else {
@@ -107,7 +107,7 @@ if ($gallery->session->albumName && isset($index)) {
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 							$postAlbum->save(array(i18n("An image %s has been copied into this album"), $id));
 						} else {
-							echo gallery_error($err);
+							echo $statusMsg;
 							return;
 						}
 					} else {
@@ -132,7 +132,7 @@ if ($gallery->session->albumName && isset($index)) {
 	elseif (isset($newAlbum) && $newAlbum == 0) {
 		echo gallery_error(gTranslate('core', "Please select the album where you want to copy the photo(s) to."));
 	}
-	
+
 	if ($gallery->album->isAlbum($index)) {
 		echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"), $index));
 		return;

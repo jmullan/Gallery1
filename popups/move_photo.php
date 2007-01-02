@@ -152,7 +152,7 @@ if ($gallery->session->albumName && isset($index)) {
 						$photo = $gallery->album->getPhoto($index);
 
 						$id = $gallery->album->getPhotoId($index);
-						$err = $postAlbum->addPhoto($myfile, $mytype, $myname,
+						list($status, $statusMsg) = $postAlbum->addPhoto($myfile, $mytype, $myname,
 						  $gallery->album->getCaption($index),
 						  $pathToThumb,
 						  $photo->extraFields,
@@ -162,7 +162,7 @@ if ($gallery->session->albumName && isset($index)) {
 						  false
 						);
 
-						if (!$err) {
+						if ($status) {
 							$newPhotoIndex = $postAlbum->getAddToBeginning() ? 1 : $postAlbum->numPhotos(1);
 
 							// Save additional item settings... currently:
@@ -202,7 +202,7 @@ if ($gallery->session->albumName && isset($index)) {
 							  )
 							);
 						} else {
-							echo gallery_error($err);
+							echo $statusMsg;
 							return;
 						}
 					} else {
