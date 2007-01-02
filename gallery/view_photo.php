@@ -190,7 +190,7 @@ if (isset($gallery->app->comments_length)) {
     $maxlength = 0;
 }
 
-if (!empty($save)) {
+if (!empty($save) && $gallery->user->canAddComments($gallery->album)) {
     if ( empty($commenter_name) || empty($comment_text)) {
         $error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
     } elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {

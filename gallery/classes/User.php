@@ -257,7 +257,7 @@ class Abstract_User {
         if ($album->isOwner($this->uid)) {
             return true;
         }
-        
+
         return false;
     }
 
@@ -274,6 +274,12 @@ class Abstract_User {
     }
 
     function canAddComments($album) {
+    	global $gallery;
+
+    	if($gallery->app->comments_enabled == 'no') {
+    		return false;
+    	}
+
         if ($this->isAdmin()) {
             return true;
         }
