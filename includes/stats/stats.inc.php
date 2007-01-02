@@ -194,8 +194,10 @@ function generateStatsLinks() {
 	global $stats;
 	$links = '';
 
+
 	if (!empty($gallery->app->stats_foruser)) {
 		foreach ($gallery->app->stats_foruser as $key) {
+			if($key == 'comments' && $gallery->app->comments_enabled != 'yes') continue;
 			if (isset($stats['types'][$key])) {
 				$links .= "\n\t". '[<a href="'. defaultStatsUrl($key) .'">' . $stats['types'][$key]['linktext'] .'</a>]';
 			}

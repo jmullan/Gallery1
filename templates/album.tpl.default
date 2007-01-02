@@ -215,14 +215,17 @@ if ($navigator["maxPages"] > 1) {
 <?php endif ?>
 
 <?php
-if ($gallery->user->isLoggedIn() && $gallery->user->getEmail() &&
-  !$gallery->session->offline & $gallery->app->emailOn == 'yes') {
-
+if ($gallery->app->comments_enabled == 'yes' &&
+	$gallery->user->isLoggedIn()
+	&& $gallery->user->getEmail() &&
+	!$gallery->session->offline &&
+	$gallery->app->emailOn == 'yes')
+{
 	echo '<div class="g-emailMe-box">';
-        echo makeFormIntro("view_album.php", array("name" => "email_me"));
-        echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
-        $checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
-        $checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
+	echo makeFormIntro("view_album.php", array("name" => "email_me"));
+	echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
+	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
+	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
 ?>
 
   <ul>

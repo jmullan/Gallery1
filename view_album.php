@@ -64,8 +64,11 @@ if (!empty($Vote)) {
 }
 
 /* Notifications */
-if ($gallery->user->isLoggedIn() && $gallery->user->getEmail() &&
-  !$gallery->session->offline & $gallery->app->emailOn == 'yes')
+if ($gallery->app->comments_enabled == 'yes' &&
+	$gallery->user->isLoggedIn()
+	&& $gallery->user->getEmail() &&
+	!$gallery->session->offline &&
+	$gallery->app->emailOn == 'yes')
 {
 	if (getRequestVar('submitEmailMe')) {
 		if (getRequestVar('comments')) {
@@ -362,8 +365,9 @@ if (!empty($adminOptionHTML)) {
 }
 
 if ($gallery->album->fields["slideshow_type"] != "off" &&
-($numPhotos != 0 ||
-($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
+	($numPhotos != 0 ||
+		($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes")))
+{
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
 		gTranslate('core', "sl_ideshow"),
@@ -373,10 +377,11 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if ( $numVisibleItems != 0 &&
+if ($numVisibleItems != 0 &&
    ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
    ((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
-	$gallery->user->canViewComments($gallery->album))) {
+	$gallery->user->canViewComments($gallery->album)))
+{
 	$iconElements[] = galleryLink(
 		makeGalleryUrl( "view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "view&nbsp;_comments"),
@@ -747,7 +752,8 @@ if ($numPhotos) {
 				$albumItems[$nr]['caption'] .= $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) &&
-				  $gallery->app->comments_enabled == 'yes') {
+					$gallery->app->comments_enabled == 'yes')
+				{
 					// If comments indication for either photos or both
 					switch ($gallery->app->comments_indication) {
 						case "photos":

@@ -478,10 +478,12 @@ if ($fitToWindow && $gallery->user->canViewFullImages($gallery->album)) {
 $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 
-if ($gallery->user->isLoggedIn() &&
-  $gallery->user->getEmail() &&
-  !$gallery->session->offline &&
-  $gallery->app->emailOn == "yes") {
+if ($gallery->app->comments_enabled == 'yes' &&
+	$gallery->user->isLoggedIn() &&
+	$gallery->user->getEmail() &&
+	!$gallery->session->offline &&
+	$gallery->app->emailOn == "yes")
+{
 	$emailMeComments = getRequestVar('emailMeComments');
 	if (!empty($emailMeComments)) {
 		if ($emailMeComments == 'true') {

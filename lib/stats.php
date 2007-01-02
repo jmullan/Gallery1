@@ -146,7 +146,7 @@ function writeGalleryStatsCache( $cacheFilename ) {
 	}
 }
 
-function makeStatsUrl( $urlpage ) {
+function makeStatsUrl($urlpage) {
 	global $type, $period, $album, $thumbSize;
 	global $showCaption, $showAlbumLink, $showDescription;
 	global $showUploadDate, $showViews, $showVotes;
@@ -155,6 +155,7 @@ function makeStatsUrl( $urlpage ) {
 	global $showAddComment, $showAddVote, $showAlbumOwner, $showGrid, $numRows, $cols;
 	global $photosPerPage, $totalPhotosReq, $reverse;
 	global $timeMonth, $timeYear, $timeDay;
+
 	$urlParams = array(
 		"type" => $type,
 		"page" => $urlpage,
