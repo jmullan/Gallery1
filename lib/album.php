@@ -342,4 +342,75 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
 
 	return $pathArray;
 }
+
+/**
+ * Generates an array that represents an album tree.
+ * Each element has this structure:
+ * $tree[] = array(
+					'albumUrl' => $albumUrl,
+					'albumName' => $myName,
+					'title' => $title,
+					'clicksText' => $clicksText,
+					'microthumb' => $microthumb,
+					'subTree' => $subtree
+				);
+ *
+ * This function is recursive, so the subtree is again a tree.
+ * @param string    $albumName
+ * @param int       $depth          Maximum depth of the tree
+ * @return array    $tree           Structure like described above
+ * @author Jens Tkotz
+ */
+function createTreeArray($albumName,$depth = 0) {
+	global $gallery;
+	$printedHeader = 0;
+	$myAlbum = new Album();
+	$myAlbum->load($albumName);
+	$numPhotos = $myAlbum->numPhotos(1);
+
+	$tree = array();
+
+	if ($depth >= $gallery->app->albumTreeDepth) {
+		return $tree;
+	}
+
+	for ($i = 1; $i <= $numPhotos; $i++) {
+		set_time_limit($gallery->app->timeLimit);
+		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
+			$myName = $myAlbum->getAlbumName($i, false);
+			$nestedAlbum = new Album();
+			$nestedAlbum->load($myName);
+			if ($gallery->user->canReadAlbum($nestedAlbum)) {
+				$title = $nestedAlbum->fields['title'];
+				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
+					&& !$gallery->session->offline)
+				{
+					$clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks(), '', true) . ")";
+				}
+				else {
+					$clicksText = '';
+				}
+
+				$albumUrl = makeAlbumUrl($myName);
+				$subtree = createTreeArray($myName, $depth+1);
+				$highlightTag = $nestedAlbum->getHighlightTag(
+									$gallery->app->default["nav_thumbs_size"],
+									array('alt' => "$title $clicksText")
+				);
+				$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
+				$tree[] = array(
+					'albumUrl' => $albumUrl,
+					'albumName' => $myName,
+					'title' => $title,
+					'clicksText' => $clicksText,
+					'microthumb' => $microthumb,
+					'subTree' => $subtree
+				);
+			}
+		}
+	}
+
+	return $tree;
+}
+
 ?>

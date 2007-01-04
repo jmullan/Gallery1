@@ -53,6 +53,8 @@ if (empty($gallery->session->username)) {
 
 $gallery->session->offlineAlbums["albums.php"] = true;
 
+$g_theme = $gallery->app->theme;
+
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
@@ -481,20 +483,26 @@ for ($i = $start; $i <= $end; $i++) {
 		// End Album Infos
 
 		// Start tree
-		if ( isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0) {
-			if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') {
-				$rootAlbum[$tmpAlbumName]['albumdesc']['microthumbs'] = printMicroChildren2(createTreeArray($tmpAlbumName,$depth = 0));
-				$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = '&nbsp;';
-			}
-			else {
-				$rootAlbum[$tmpAlbumName]['subalbumTree'] = true;
-				$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = printChildren(createTreeArray($tmpAlbumName,$depth = 0));
+		if (isset($gallery->app->albumTreeDepth) &&
+			$gallery->app->albumTreeDepth > 0 &&
+			$g_theme != 'matrix')
+		{
+			$subalbumTree = createTreeArray($tmpAlbumName,$depth = 0);
+			if(!empty($subalbumTree)) {
+				if (isset($gallery->app->microTree) && $gallery->app->microTree == 'yes') {
+					$rootAlbum[$tmpAlbumName]['albumdesc']['microthumbs'] = printMicroChildren2($subalbumTree);
+					$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = '&nbsp;';
+				}
+				else {
+					$dynsubalbumTree = true;
+					$rootAlbum[$tmpAlbumName]['subalbumTree'] = true;
+					$rootAlbum[$tmpAlbumName]['albumdesc']['subalbumTree'] = printChildren($subalbumTree);
+				}
 			}
 		}
 	}
 }
 
-$g_theme = $gallery->app->theme;
 if(!fs_file_exists(GALLERY_BASE . "/templates/$g_theme/gallery.tpl.default")) {
 	$g_theme = 'classic';
 }

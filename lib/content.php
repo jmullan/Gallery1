@@ -296,57 +296,15 @@ foreach ($overrides as $key => $value) {
 <?php
 }
 
-function createTreeArray($albumName,$depth = 0, $fromSetup = false) {
-	global $gallery;
-	$printedHeader = 0;
-	$myAlbum = new Album();
-	$myAlbum->load($albumName);
-	$numPhotos = $myAlbum->numPhotos(1);
-
-	$tree = array();
-	if ($depth >= $gallery->app->albumTreeDepth) {
-		return $tree;
-	}
-
-	for ($i = 1; $i <= $numPhotos; $i++) {
-		set_time_limit($gallery->app->timeLimit);
-		if ($myAlbum->isAlbum($i) && !$myAlbum->isHidden($i)) {
-			$myName = $myAlbum->getAlbumName($i, false);
-			$nestedAlbum = new Album();
-			$nestedAlbum->load($myName);
-			if ($gallery->user->canReadAlbum($nestedAlbum) || $fromSetup) {
-				$title = $nestedAlbum->fields['title'];
-				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes')
-					&& !$gallery->session->offline)
-				{
-					$clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks(), '', true) . ")";
-				}
-				else {
-					$clicksText = '';
-				}
-
-				$albumUrl = makeAlbumUrl($myName);
-				$subtree = createTreeArray($myName, $depth+1);
-				$highlightTag = $nestedAlbum->getHighlightTag(
-									$gallery->app->default["nav_thumbs_size"],
-									array('alt' => "$title $clicksText")
-				);
-				$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
-				$tree[] = array(
-					'albumUrl' => $albumUrl,
-					'albumName' => $myName,
-					'title' => $title,
-					'clicksText' => $clicksText,
-					'microthumb' => $microthumb,
-					'subTree' => $subtree
-				);
-			}
-		}
-	}
-
-	return $tree;
-}
-
+/**
+ * Returns the HTML code for a dynamic subalbum tree of an album.
+ * This function is recursive.
+ *
+ * @param array     $tree
+ * @param int       $depth
+ * @param string    $parentNode
+ * @return string   $html
+ */
 function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	$html = '';
 
@@ -357,18 +315,25 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 
 		$html = "<div id=\"tree_$treeName\"></div>
 		<script type=\"text/javascript\">
-			var tree;
+			var tree_$treeName;
+			var root_$treeName;
+			var main_$treeName;
 
 			tree_$treeName = new YAHOO.widget.TreeView(\"tree_$treeName\");
 			tree_${treeName}.setExpandAnim(YAHOO.widget.TVAnim.FADE_IN);
 			tree_${treeName}.setCollapseAnim(YAHOO.widget.TVAnim.FADE_OUT);
-			var root = tree_${treeName}.getRoot();
 
-			var main = new YAHOO.widget.TextNode(\"". gTranslate('common', "Sub-albums:") ."\", root, false);
+			root_$treeName = tree_${treeName}.getRoot();
+
+			main_$treeName = new YAHOO.widget.TextNode(\"". gTranslate('common', "Sub-albums:") ."\", root_$treeName, false);
 		";
+
+		if($parentNode == 'main') {
+			$parentNode = "main_${treeName}";
+		}
 	}
 
-	foreach($tree as $nr => $content) {
+	foreach($tree as $content) {
 		$nodename = strtr($content['albumName'], '-', '_');
 
 		$label = $content['title'] . ' '. $content['clicksText'];
@@ -388,14 +353,26 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	return $html;
 }
 
+/**
+ * Returns the HTML code for a the microthumb view off all subalbums of an album.
+ * This function is recursive.
+  *
+ * @param array     $tree
+ * @param int       $depth
+ * @return string   $html
+ */
 function printMicroChildren2($tree, $depth = 0) {
 	$html = '';
 
-	if ($depth == 0 && !empty($tree)) {
+	if(empty($tree)) {
+		return $html;
+	}
+
+	if ($depth == 0) {
 		$html = '<div style="font-weight: bold; margin-bottom: 3px">'. gTranslate('common', "Sub-albums:") ."</div>\n";
 	}
 
-	foreach($tree as $nr => $content) {
+	foreach($tree as $content) {
 		$html .= $content['microthumb'];
 		if(!empty($content['subTree'])) {
 			$html .= printMicroChildren2($content['subTree'], $depth+1);
@@ -800,7 +777,7 @@ function includeTemplate($name, $skinname = '', $theme = '') {
  * 										Empty when already loaded.
  */
 function getStyleSheetLink() {
-	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_OK;
+	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	static $styleSheetSet;
 
 	$styleSheetLinks = '';
