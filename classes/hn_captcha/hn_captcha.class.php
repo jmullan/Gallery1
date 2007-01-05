@@ -478,15 +478,15 @@ class hn_captcha{
 		{
 			$try = $this->get_try(FALSE);
 			if($this->debug) echo "\n<br>-Captcha-Debug: Generate a string which contains current try: ($try)";
-			$s  = '<div id="captcha">';
+			$s  = '<div id="captcha" class="left">';
 			$s .= '<input type="hidden" name="hncaptcha" value="'.$try.'">'."\n";
 			$s .= $this->display_captcha() ."\n";
 			$s .= "<br>" . sprintf(gTranslate('core', "You must read and type the <b>%d chars</b> within <b>0..9</b> and <b>A..F</b>."), $this->chars) . "\n";
-			$s .= '<br><br><input class="captcha" type="text" name="private_key" value="" maxlength="'.$this->chars.'" size="'.$this->chars.'">&nbsp;&nbsp;';
+			$s .= '&nbsp;&nbsp;<input class="captcha" type="text" name="private_key" value="" maxlength="'.$this->chars.'" size="'.$this->chars.'">&nbsp;&nbsp;';
 
-			$s .= gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
+			//$s .= gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
 
-			$s .= '</div>';
+			$s .= '</div><br>';
 			if($this->debug) echo "\n<br>-Captcha-Debug: Output Form with captcha-image.<br><br>";
 			return $s;
 		}

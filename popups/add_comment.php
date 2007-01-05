@@ -52,7 +52,7 @@ echo infoBox($comment_messages);
 
 echo makeFormIntro("add_comment.php", array(), array('type' => 'popup'));
 
-drawCommentAddForm($commenter_name, 35);
+drawCommentAddForm($commenter_name, 35, $comment_text);
 ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
 

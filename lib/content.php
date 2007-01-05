@@ -83,7 +83,7 @@ function editCaption($album, $index) {
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album = false) {
 	global $gallery;
-	global $commenter_name, $comment_messages;
+	global $commenter_name, $comment_messages, $comment_text;
 
 	echo showComments($index, $album, $newestFirst);
 
@@ -99,19 +99,25 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 			echo infoBox($comment_messages);
 
 			echo '<br>'. makeFormIntro($page_url);
-			drawCommentAddForm($commenter_name);
+			drawCommentAddForm($commenter_name, 50, $comment_text);
 			echo '</form>';
 		}
 		else {
 			$id = $gallery->album->getPhotoId($index);
 			$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
-			echo popup_link(gTranslate('common', "_Add comment"), $url);
+			echo popup_link(gTranslate('common', "_Add comment"), $url, 0, true, 500, 600);
 			echo "<br><br>";
 		}
 	}
 }
 
-function drawCommentAddForm($commenter_name = '', $cols = 50) {
+/**
+ * Prints a table that contains a form to enter a comment.
+ *
+ * @param string	$commenter_name
+ * @param int		$cols
+ */
+function drawCommentAddForm($commenter_name = '', $cols = 50, $comment_text = '') {
 	global $gallery, $captcha;
 
 	if ($gallery->user->isLoggedIn() &&
@@ -119,14 +125,12 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 		$commenter_name = $gallery->user->printableName($gallery->app->name_display);
 	}
 ?>
-
-<table class="g-commentadd-box" cellpadding="0" cellspacing="0" align="center">
-<tr>
-	<th colspan="2"><?php echo gTranslate('common', "Add your comment") ?></th>
-</tr>
-<tr>
-	<td class="g-commentadd-box-head right"><?php echo gTranslate('common', "Commenter:"); ?></td>
-	<td class="g-commentadd-box-head left">
+<fieldset>
+    <legend><?php echo gTranslate('common', "Add your comment") ?></legend>
+    <table class="g-commentadd-box"cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="g-commentadd-box-head right"><?php echo gTranslate('common', "Commenter:"); ?></td>
+		<td class="g-commentadd-box-head left">
 <?php
 
 if (!$gallery->user->isLoggedIn() ) {
@@ -142,24 +146,34 @@ else {
 	}
 }
 ?>
-</td>
-</tr>
-<tr>
-	<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
-	<td class="left"><textarea name="comment_text" cols="<?php echo $cols ?>" rows="5"></textarea></td>
-</tr>
+		</td>
+	</tr>
+	<tr>
+		<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
+		<td class="left">
+			<textarea name="comment_text" cols="<?php echo $cols ?>" rows="5">
+			<?php echo $comment_text; ?>
+			</textarea>
+		</td>
+	</tr>
 <?php if(enableCaptcha()) : ?>
-<tr>
-	<td class="right"><?php echo gTranslate('core', "Captcha Protection:"); ?></td>
-	<td><?php echo $captcha->display_form(); ?></td>
-</tr>
+	<tr>
+		<td class="right"><?php echo gTranslate('core', "Captcha Protection:"); ?></td>
+		<td><?php echo $captcha->display_form(); ?></td>
+	</tr>
 <?php endif ?>
-<tr>
-	<td colspan="2" class="g-commentadd-box-footer right">
-	  <input name="save" type="submit" value="<?php echo gTranslate('common', "Post comment") ?>" class="g-button">
-	</td>
-</tr>
-</table>
+	<tr>
+		<td colspan="2" class="g-commentadd-box-footer right">
+		<?php
+			if(enableCaptcha()) {
+				echo gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
+			}
+			echo gSubmit('save', gTranslate('common', "Post comment"));
+		?>
+		</td>
+	</tr>
+	</table>
+</fieldset>
 <?php
 }
 

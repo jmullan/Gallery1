@@ -9,20 +9,20 @@ $CAPTCHA_INIT = array(
 	'TTF_folder'	 => dirname(__FILE__) .'/',					 // string: absolute path (with trailing slash!) to folder which contains your TrueType-Fontfiles.
 	// mixed (array or string): basename(s) of TrueType-Fontfiles
 	'TTF_RANGE'	  => array('COM430.ttf'),
-	'chars'		  => 5,	   // integer: number of chars to use for ID
-	'minsize'		=> 15,	  // integer: minimal size of chars
-	'maxsize'		=> 15,	  // integer: maximal size of chars
-	'maxrotation'	=> 25,	  // integer: define the maximal angle for char-rotation, good results are between 0 and 30
+	'chars'		  => 5,			// integer: number of chars to use for ID
+	'minsize'		=> 15,		// integer: minimal size of chars
+	'maxsize'		=> 15,		// integer: maximal size of chars
+	'maxrotation'	=> 25,		// integer: define the maximal angle for char-rotation, good results are between 0 and 30
 
-	'noise'		  => TRUE,	// boolean: TRUE = noisy chars | FALSE = grid
-	'websafecolors'  => FALSE,   // boolean
-	'refreshlink'	=> TRUE,	// boolean				 ; Unused in Gallery (always true)
-	'lang'		   => 'en',	// string:  ['en'|'de']	; Unused in Gallery
-	'maxtry'		 => 3,	   // integer: [1-9]		  ; Unused in Gallery (unlimited)
+	'noise'		  => TRUE,		// boolean: TRUE = noisy chars | FALSE = grid
+	'websafecolors'  => FALSE,	// boolean
+	'refreshlink'	=> TRUE,	// boolean				 ; Unused in Gallery (always showed)
+	'lang'		   => 'en',		// string:  ['en'|'de']	; Unused in Gallery
+	'maxtry'		 => 3,		// integer: [1-9]		  ; Unused in Gallery (unlimited)
 
-	'badguys_url'	=> '/',	 // string: URL			 ; Unused in Gallery
+	'badguys_url'	=> '/',		// string: URL			 ; Unused in Gallery
 	'secretstring'   => 'Disco in Frisco, says Jenz from Erkelenz',
-	'secretposition' => 24,	  // integer: [1-32]
+	'secretposition' => 24,		// integer: [1-32]
 
 	'debug'		  => FALSE,
 
