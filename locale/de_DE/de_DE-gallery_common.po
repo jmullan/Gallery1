@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-12-31 16:43+0100\n"
-"PO-Revision-Date: 2006-12-31 16:58+0100\n"
+"POT-Creation-Date: 2007-01-05 07:08+0100\n"
+"PO-Revision-Date: 2007-01-05 07:20+0100\n"
 "Last-Translator: Jens A. Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -542,6 +542,13 @@ msgstr "(Accesskey: '%s')"
 msgid "Gallery: %s"
 msgstr "Gallery: %s"
 
+#: ../lib/album.php:388
+#, php-format
+msgid "1 view"
+msgid_plural "%d views"
+msgstr[0] "Ein Besuch"
+msgstr[1] "%d Besuche"
+
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
 msgstr "Farbauswahl"
@@ -575,209 +582,206 @@ msgstr "Bearbeiten"
 msgid "_Add comment"
 msgstr "_Kommentar hinzuf&uuml;gen"
 
-#: ../lib/content.php:125
+#: ../lib/content.php:129
 msgid "Add your comment"
 msgstr "Kommentar hinzuf&uuml;gen"
 
-#: ../lib/content.php:128
+#: ../lib/content.php:132
 msgid "Commenter:"
 msgstr "Name:"
 
-#: ../lib/content.php:148
+#: ../lib/content.php:152
 msgid "Message:"
 msgstr "Kommentar:"
 
-#: ../lib/content.php:153
+#: ../lib/content.php:161
 msgid "Captcha Protection:"
 msgstr "Captch Schutz:"
 
-#: ../lib/content.php:159
+#: ../lib/content.php:169
+msgid "Refresh Captcha"
+msgstr "Captcha erneuern"
+
+#: ../lib/content.php:171
 msgid "Post comment"
 msgstr "Kommentar abschicken"
 
-#: ../lib/content.php:322
-#, php-format
-msgid "1 view"
-msgid_plural "%d views"
-msgstr[0] "Ein Besuch"
-msgstr[1] "%d Besuche"
-
-#: ../lib/content.php:356
-#: ../lib/content.php:367
-#: ../lib/content.php:395
+#: ../lib/content.php:328
+#: ../lib/content.php:342
+#: ../lib/content.php:386
 msgid "Sub-albums:"
 msgstr "Unteralben:"
 
-#: ../lib/content.php:480
+#: ../lib/content.php:471
 msgid "EXIF Data"
 msgstr "Zus&auml;tzliche EXIF-Daten"
 
-#: ../lib/content.php:484
+#: ../lib/content.php:475
 msgid "Display of EXIF data enabled, but no data found."
 msgstr "Die Anzeige von EXIF-Daten wurde aktiviert, jedoch wurden keine Daten gefunden."
 
-#: ../lib/content.php:628
+#: ../lib/content.php:619
 msgid "_Search:"
 msgstr "_Suche:"
 
-#: ../lib/content.php:670
-#: ../lib/content.php:702
+#: ../lib/content.php:661
+#: ../lib/content.php:693
 msgid "Operation done, closing window."
 msgstr "Operation erledigt, Fenster wird geschlossen."
 
-#: ../lib/content.php:677
-#: ../lib/content.php:714
+#: ../lib/content.php:668
+#: ../lib/content.php:705
 msgid "Not closing this window because debug mode is on."
 msgstr "Dieses Fenster wird nicht geschlossen, da der DEBUG MODE eingeschaltet ist."
 
-#: ../lib/content.php:710
+#: ../lib/content.php:701
 #, php-format
 msgid "Loading URL: %s"
 msgstr "Lade URL: %s"
 
-#: ../lib/content.php:746
+#: ../lib/content.php:737
 #, php-format
 msgid "Problem including file %s"
 msgstr "Es gab ein Problem beim Einbinden von %s"
 
-#: ../lib/content.php:905
+#: ../lib/content.php:896
 msgid "Select Album"
 msgstr "Album auswählen"
 
-#: ../lib/content.php:911
+#: ../lib/content.php:902
 msgid "Move to top level"
 msgstr "Auf oberste Ebene verschieben"
 
-#: ../lib/content.php:929
+#: ../lib/content.php:920
 msgid "current location"
 msgstr "Aktuelle Position"
 
-#: ../lib/content.php:981
+#: ../lib/content.php:972
 msgid "Current location"
 msgstr "Aktuelle Position"
 
-#: ../lib/content.php:985
+#: ../lib/content.php:976
 msgid "This album itself"
 msgstr "Das aktuelle Album"
 
-#: ../lib/content.php:1018
+#: ../lib/content.php:1009
 #, php-format
 msgid "Last comment %s."
 msgstr "Letzter Kommentar %s."
 
-#: ../lib/content.php:1044
-#: ../lib/content.php:1047
+#: ../lib/content.php:1035
+#: ../lib/content.php:1038
 msgid "No Skin"
 msgstr "Kein Skin"
 
-#: ../lib/content.php:1049
+#: ../lib/content.php:1040
 msgid "The original look and feel."
 msgstr "Das original &quot;Look and Feel&quot;"
 
-#: ../lib/content.php:1099
-#: ../lib/content.php:1103
+#: ../lib/content.php:1090
+#: ../lib/content.php:1094
 msgid "unknown"
 msgstr "unbekannt"
 
-#: ../lib/content.php:1107
+#: ../lib/content.php:1098
 #, php-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
-#: ../lib/content.php:1109
+#: ../lib/content.php:1100
 #, php-format
 msgid "Last Update: %s"
 msgstr "Letzte Aktualisierung: %s"
 
-#: ../lib/content.php:1126
+#: ../lib/content.php:1117
 msgid "usual thumbs"
 msgstr "Normales Vorschaubild"
 
-#: ../lib/content.php:1130
-#: ../lib/content.php:1147
+#: ../lib/content.php:1121
+#: ../lib/content.php:1138
 msgid "Album image frames"
 msgstr "Rahmen der Alben"
 
-#: ../lib/content.php:1131
+#: ../lib/content.php:1122
 msgid "Frame defined for images in the corresponding album"
 msgstr "Rahmen der im entsprechenden Album für Bilder definiert wurde"
 
-#: ../lib/content.php:1132
-#: ../lib/content.php:1148
+#: ../lib/content.php:1123
+#: ../lib/content.php:1139
 msgid "Album thumb frames"
 msgstr "Rahmen der Alben"
 
-#: ../lib/content.php:1133
+#: ../lib/content.php:1124
 msgid "Frame defined for thumbs in the corresponding album"
 msgstr "Rahmen der im entsprechenden Album für Vorschaubilder definiert wurde"
 
-#: ../lib/content.php:1134
-#: ../lib/content.php:1149
+#: ../lib/content.php:1125
+#: ../lib/content.php:1140
 msgid "Mainpage thumb frames"
 msgstr "Rahmen der für die Vorschaubilder der Hauptseite definiert wurde"
 
-#: ../lib/content.php:1135
+#: ../lib/content.php:1126
 msgid "Frame defined for thumbs on mainpage"
 msgstr "Rahmen der Vorschaubilder der Hauptseite"
 
-#: ../lib/content.php:1154
-#: ../lib/content.php:1162
+#: ../lib/content.php:1145
+#: ../lib/content.php:1153
 msgid "None"
 msgstr "Kein"
 
+#: ../lib/content.php:1146
 #: ../lib/content.php:1155
-#: ../lib/content.php:1164
 msgid "Dots"
 msgstr "Punkte"
 
-#: ../lib/content.php:1156
-#: ../lib/content.php:1166
+#: ../lib/content.php:1147
+#: ../lib/content.php:1157
 msgid "Solid"
 msgstr "Linie"
 
-#: ../lib/content.php:1163
+#: ../lib/content.php:1154
 msgid "No frames"
 msgstr "Keine Rahmen"
 
-#: ../lib/content.php:1165
+#: ../lib/content.php:1156
 msgid "Just a simple dashed border around the thumb."
 msgstr "Ein einfacher gestrichelter Rand."
 
-#: ../lib/content.php:1167
+#: ../lib/content.php:1158
 msgid "Just a simple solid border around the thumb."
 msgstr "Eine einfache durchgezogenen Linie als Rand"
 
-#: ../lib/content.php:1169
+#: ../lib/content.php:1160
 msgid "The frame from Nico Kaisers Siriux theme."
 msgstr "Rahmen aus dem Siriux Theme von Nico Kaiser"
 
-#: ../lib/content.php:1192
+#: ../lib/content.php:1183
 #, php-format
 msgid "Skipping %s."
 msgstr "Überspringe %s"
 
-#: ../lib/content.php:1199
+#: ../lib/content.php:1190
 #, php-format
 msgid "Can't open %s"
 msgstr "Fehler beim Lesen von %s"
 
-#: ../lib/content.php:1307
+#: ../lib/content.php:1298
 msgid "log_out"
 msgstr "A_bmelden"
 
-#: ../lib/content.php:1311
+#: ../lib/content.php:1302
 msgid "_Login to see or add more items."
 msgstr "_Melden Sie sich an um mehr Element zu sehen, oder neue hinzuzufügen"
 
-#: ../lib/content.php:1314
+#: ../lib/content.php:1305
 msgid "log_in"
 msgstr "An_melden"
 
-#: ../lib/content.php:1488
+#: ../lib/content.php:1479
 msgid "Show/hide more information"
 msgstr "Zeige/Verstecke weitere Informationen"
 
-#: ../lib/content.php:1570
+#: ../lib/content.php:1561
 msgid "... read more"
 msgstr "... mehr"
 
@@ -811,80 +815,80 @@ msgid "Done."
 msgstr "Fertig."
 
 #: ../lib/imageManipulation.php:239
-#: ../lib/imageManipulation.php:509
-#: ../lib/imageManipulation.php:563
-#: ../lib/imageManipulation.php:845
+#: ../lib/imageManipulation.php:514
+#: ../lib/imageManipulation.php:568
+#: ../lib/imageManipulation.php:850
 msgid "You have no graphics package configured for use!"
 msgstr "Sie haben kein Bearbeitungsprogramm f&uuml;r Graphiken angegeben"
 
-#: ../lib/imageManipulation.php:243
+#: ../lib/imageManipulation.php:244
 msgid "No watermark name specified!"
 msgstr "Kein Wasserzeichen gewählt!"
 
-#: ../lib/imageManipulation.php:403
+#: ../lib/imageManipulation.php:408
 msgid "Using jpegtran for rotation"
 msgstr "Benutze jpegtran für die Rotation"
 
-#: ../lib/imageManipulation.php:436
+#: ../lib/imageManipulation.php:441
 msgid "Using netPBM for rotation"
 msgstr "Benutze NetPBM für die Rotation"
 
-#: ../lib/imageManipulation.php:477
+#: ../lib/imageManipulation.php:482
 msgid "Using ImageMagick for rotation"
 msgstr "Benutze ImageMagick für die Rotation."
 
-#: ../lib/imageManipulation.php:529
+#: ../lib/imageManipulation.php:534
 msgid "Cropping Image"
 msgstr "Schneide Bild zu"
 
-#: ../lib/imageManipulation.php:593
+#: ../lib/imageManipulation.php:598
 #, php-format
 msgid "Generating squared Version to %dpx"
 msgstr "Erzeuge quadratische Version mit %dpx"
 
-#: ../lib/imageManipulation.php:614
+#: ../lib/imageManipulation.php:619
 msgid "No Cropping Done"
 msgstr "Kein Zuschneiden nötig"
 
-#: ../lib/imageManipulation.php:624
+#: ../lib/imageManipulation.php:629
 #, php-format
 msgid "Call to %s failed in %s for file %s!"
 msgstr "Aufruf von %s in %s fehlgeschlagen für Datei %s!"
 
-#: ../lib/imageManipulation.php:628
+#: ../lib/imageManipulation.php:633
 #, php-format
 msgid "File %s type %d."
 msgstr "Datei %s typ %d."
 
-#: ../lib/imageManipulation.php:665
-#: ../lib/imageManipulation.php:689
+#: ../lib/imageManipulation.php:670
+#: ../lib/imageManipulation.php:694
 #, php-format
 msgid "Files with type %s are not supported by Gallery with netPBM"
 msgstr "Dateien des Types '%s' werden von Gallery bei Verwendung von netPBM nicht unterstützt."
 
-#: ../lib/imageManipulation.php:738
+#: ../lib/imageManipulation.php:743
 #, php-format
 msgid "Compressing image: %s"
 msgstr "Grössenänderung von: %s"
 
-#: ../lib/imageManipulation.php:743
+#: ../lib/imageManipulation.php:748
 msgid "Not all necessary params for resizing given."
 msgstr "Nicht alle Pflichtparameter zur Größenänderung angegeben."
 
-#: ../lib/imageManipulation.php:744
+#: ../lib/imageManipulation.php:749
 #, php-format
 msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr "Parameter: src: %s, dest: %s, zielgröße: %s"
 
-#: ../lib/imageManipulation.php:787
+#: ../lib/imageManipulation.php:792
 msgid "Unable to preserve EXIF data (jhead not installed)"
 msgstr "EXIF Daten konnten nicht konserviert werden. (Kein jhead installiert)"
 
-#: ../lib/imageManipulation.php:830
+#: ../lib/imageManipulation.php:835
 msgid "Using IM high quality"
 msgstr "Benutze IM hohe Qualität"
 
-#: ../lib/imageManipulation.php:834
+#: ../lib/imageManipulation.php:839
 msgid "Not using IM high quality"
 msgstr "Benutze nicht IM hohe Qualität"
 
