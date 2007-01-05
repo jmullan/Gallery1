@@ -167,7 +167,7 @@ else {
 if ($gallery->user->canWriteToAlbum($gallery->album) && !$gallery->session->offline) {
 	$hidden = $gallery->album->numHidden();
 	if($hidden > 0) {
-	$adminText .= ' '. gTranslate('core', "%s element is hidden.", "%s elements are hidden.", $hidden, '', true);
+		$adminText .= ' '. gTranslate('core', "%s element is hidden.", "%s elements are hidden.", $hidden, '', true);
 	}
 }
 
@@ -319,10 +319,9 @@ if (!$gallery->session->offline) {
 		$enabled = true;
 		while ($enabled && $test = array_shift($data['requirements'])) {
 			$success = testRequirement($test);
-			if (!$success) {
-				$enabled = false;
-			}
+			$enabled = ($success) ? true : false;
 		}
+
 		if ($enabled) {
 			$adminOptionHTML .= "\t\t<option value=\"$key\">${data['name']}</option>\n";
 			$adminJavaScript .= "adminOptions.$key = new Object;\n";
