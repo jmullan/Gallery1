@@ -125,7 +125,7 @@ include(dirname(__FILE__) . '/layout/userData.inc');
 <p>
 <input type="hidden" name="hash" value="<?php echo $hash ?>">
 <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-<?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='$gallery->app->photoAlbumURL'"); ?>
+<?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='". $gallery->app->photoAlbumURL ."'"); ?>
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
