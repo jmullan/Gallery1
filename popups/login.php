@@ -142,33 +142,34 @@ echo gTranslate('core', "Logging in gives you greater permission to view, create
 
 echo infoBox($loginFailure);
 
+?>
+<fieldset>
+<legend class="g-sectioncaption-popup"><?php echo gTranslate('common', "Login") ?></legend>
+<?php
 echo makeFormIntro('login.php', array('name' => 'loginForm'), array('type' => 'popup'));
 ?>
-
-  <table align="center">
+ 	<table align="center">
 <?php
 	echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
 
 	echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
 ?>
-  </table>
+	</table>
 
-
-  <p align="center">
+ 	<p align="center">
 	<?php echo gSubmit('login', gTranslate('core', "_Login")); ?>
 	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
-  </p>
- </form>
+	</p>
 
-</div>
+	</form>
+</fieldset>
 
 <?php
-
 if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
-
 ?>
-<div class="g-sectioncaption-popup"><?php echo gTranslate('core', "Forgotten your password?") ?></div>
-<div class="g-content-popup" align="center">
+
+<fieldset>
+    <legend class="g-sectioncaption-popup"><?php echo gTranslate('core', "Forgotten your password?") ?></legend>
 <?php
   echo makeFormIntro('login.php', array('name' => 'resetForm'), array('type' => 'popup'));
 	echo infoBox($resetInfo);
@@ -180,16 +181,16 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 ?>
 
   </form>
-</div>
+</fieldset>
 
 <?php } /* End if-email-on */
 
 if ($gallery->app->selfReg == 'yes') {
 ?>
-<div class="g-sectioncaption-popup"><?php echo gTranslate('core', "No account at all?") ?></div>
-<div class="g-content-popup" align="center">
+<fieldset>
+    <legend class="g-sectioncaption-popup"><?php echo gTranslate('core', "No account at all?"); ?></legend>
 <?php echo galleryLink(makeGalleryUrl('register.php', array('type' => 'popup')), gTranslate('core', "_Register a new account.")); ?>
-</div>
+</fieldset>
 <?php
 }
 ?>
@@ -201,6 +202,7 @@ document.loginForm.username.focus();
 //-->
 </script>
 
+</div>
 </body>
 </html>
 
