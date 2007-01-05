@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -64,7 +64,7 @@ function bestDate($album) {
 function getThumbs($album) {
 	$photos = '';
 	$photoCount = $album->numPhotos(1);
-	
+
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
@@ -72,14 +72,14 @@ function getThumbs($album) {
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
 		}
 	}
-	
+
 	return $photos;
 }
 
 function getThumbsAndCaptions($album) {
 	$photos = '';
 	$photoCount = $album->numPhotos(1);
-	
+
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
@@ -89,17 +89,17 @@ function getThumbsAndCaptions($album) {
 			$photos .= $caption . "<br>\n";
 		}
 	}
-	
+
 	return $photos;
 }
 
 function makeDCDate($unixDate) {
 	$dcDate = date("Y-m-d\TH:i:sO", $unixDate);
-	
-	/* CAUTION: This will not work in zones with 
+
+	/* CAUTION: This will not work in zones with
 	 * half-our time offsets
 	 */
-	
+
 	return eregi_replace("..$", ":00", $dcDate);
 }
 
@@ -150,9 +150,9 @@ foreach ($rssAlbumList as $album) {
 
 	// COMMENTS TAG
 
-	if (method_exists($album, "canViewComments") 
+	if (method_exists($album, "canViewComments")
 	   && $album->canViewComments($gallery->user->uid)) {
-		$albumInfo["comments"] = makeGalleryUrl("view_comments.php", 
+		$albumInfo["comments"] = makeGalleryUrl("view_comments.php",
 		  array("set_albumName" => $album->fields["name"]));
 	}
 
@@ -173,7 +173,7 @@ foreach ($rssAlbumList as $album) {
 			$base = $subalbum->getAlbumDirURL("highlight");
 			$albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
 			$albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
-			
+
 			$width = $highlight->thumbnail->width;
 			$height = $highlight->thumbnail->height;
 
@@ -183,7 +183,7 @@ foreach ($rssAlbumList as $album) {
 					$ratio = 144 / $width;
 					$width = 144;
 				}
-			
+
 				if ($height > 400 || $ratio != 1) {
 					if (($height * $ratio) > 400) {
 						$ratio = 400 / ($height * $ratio);
@@ -213,7 +213,7 @@ foreach ($rssAlbumList as $album) {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
-		
+
 		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbs($album);
 	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
@@ -257,8 +257,8 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = gTranslate('core', "1 album", "%s albums", $numAlbums, gTranslate('core', "no albums"));
-$image_str = gTranslate('core', "1 photo", "%s photos", $numPhotos, gTranslate('core', "no photos"));
+$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, gTranslate('core', "no albums"), true);
+$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, gTranslate('core', "no photos"), true);
 
 $description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 
@@ -302,7 +302,7 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 
 $maxAlbums = 0;
 foreach($albumList as $album) {
-	
+
 	// If we've hit the max album limit, bust out.
 	if($maxAlbums > $gallery->app->rssMaxAlbums) {
 		break;
@@ -314,7 +314,7 @@ foreach($albumList as $album) {
 		if ($myAlbum->isHiddenRecurse() || !$myAlbum->canReadRecurse($gallery->user->uid)) {
 			continue;
 		}
-	} 
+	}
 
 	// Only increment after we've determined that the album
 	// is valid to add to the feed
@@ -327,7 +327,7 @@ foreach($albumList as $album) {
 		if (ereg("^!", $tag)) {
 			continue;
 		}
-		
+
 		if (is_array($info)) {
 			echo "\t\t\t<$tag";
 			foreach($info[1] as $attr => $value) {
@@ -338,7 +338,7 @@ foreach($albumList as $album) {
 			echo "\t\t\t<$tag>$info</$tag>\n";
 		}
 	}
-	
+
 	echo "\t\t</item>\n";
 }
 
