@@ -40,7 +40,7 @@ class AlbumDB {
 			echo infoBox(array(array(
 				'type' => 'error',
 				'text' => sprintf("Albumdir (%s) not found! Please check the path to the albums folder in your config.php.",
-					$dir)
+								  $dir)
 			)));
 
 			return false;
@@ -97,7 +97,8 @@ class AlbumDB {
 				if (!ereg("^\.", $file) &&
 				fs_is_dir("$dir/$file") &&
 				!in_array($file, $allowedInvalidAlbums) &&
-				!in_array($file, $this->albumOrder)) {
+				!in_array($file, $this->albumOrder))
+			{
 					$album = new Album;
 					$album->load($file,$loadphotos);
 					array_push($this->albumList, $album);
@@ -189,26 +190,28 @@ class AlbumDB {
 		if (!$name) {
 			$name="album01";
 		}
+
 		$albumDir = $gallery->app->albumDir;
+
 		while (fs_file_exists("$albumDir/$name")) {
 			switch($name) {
 				case 'album99':
-				$name = 'album100';
-				break;
+					$name = 'album100';
+					break;
 
 				case 'album999':
-				$name = 'album1000';
-				break;
+					$name = 'album1000';
+					break;
 
 				case 'album9999':
-				$name = 'album10000';
-				break;
+					$name = 'album10000';
+					break;
 
 				default:
-				if (!ereg('[0-9][0-9]$', $name)) {
-					$name.="00";
-				}
-				$name++;
+					if (!ereg('[0-9][0-9]$', $name)) {
+						$name .= "00";
+					}
+					$name++;
 			}
 		}
 		return $name;
@@ -220,10 +223,12 @@ class AlbumDB {
 
 	function numPhotos($user) {
 		$numPhotos = 0;
+
 		foreach ($this->albumList as $album) {
 			if ($user->canWriteToAlbum($album)) {
 				$numPhotos += $album->numPhotos(1);
-			} else if ($user->canReadAlbum($album)) {
+			}
+			else if ($user->canReadAlbum($album)) {
 				$numPhotos += $album->numPhotos(0);
 			}
 		}
@@ -233,6 +238,7 @@ class AlbumDB {
 
 	function getCachedNumPhotos($user) {
 		$numPhotos = 0;
+
 		foreach ($this->albumList as $album) {
 			if ($user->canReadAlbum($album)) {
 				$numPhotos += $album->fields["cached_photo_count"];
@@ -243,9 +249,13 @@ class AlbumDB {
 
 	function getAlbum($user, $index) {
 		global $gallery;
+
 		$list = $this->getVisibleAlbums($user);
 		$wantedAlbum = isset($list[$index-1]) ? $list[$index-1] : false;
-		if ($wantedAlbum && (!isset($wantedAlbum->transient) || !$wantedAlbum->transient->photosloaded)) {
+
+		if ($wantedAlbum &&
+			(!isset($wantedAlbum->transient) || !$wantedAlbum->transient->photosloaded))
+		{
 			$wantedAlbum->loadPhotos($gallery->app->albumDir . "/" . $wantedAlbum->fields["name"]);
 		}
 		return $wantedAlbum;
@@ -253,6 +263,7 @@ class AlbumDB {
 
 	function getAlbumByName($name, $load=TRUE) {
 		global $gallery;
+
 		/* Look for an exact match */
 		foreach ($this->albumList as $album) {
 			set_time_limit($gallery->app->timeLimit);
@@ -267,6 +278,7 @@ class AlbumDB {
 		/* Look for a match that is case insensitive */
 		foreach ($this->albumList as $album) {
 			set_time_limit($gallery->app->timeLimit);
+
 			if (!strcasecmp($album->fields["name"], $name)) {
 				if (!$album->transient->photosloaded && $load) {
 					$album->loadPhotos($gallery->app->albumDir . "/$name");
@@ -308,10 +320,12 @@ class AlbumDB {
 		if ($newIndex == 1) {
 			// Move to beginning
 			$this->moveAlbumAbsolute($absIndex, 0);
-		} else if ($newIndex == sizeof($visible)) {
+		}
+		else if ($newIndex == sizeof($visible)) {
 			// Move to end
 			$this->moveAlbumAbsolute($absIndex, sizeof($this->albumList)-1);
-		} else {
+		}
+		else {
 			// Move to relative spot
 			$this->moveAlbumAbsolute($absIndex, $absNewIndex);
 		}
@@ -329,7 +343,9 @@ class AlbumDB {
 
 	function getVisibleAlbums($user) {
 		global $gallery;
+
 		$list = array();
+
 		foreach ($this->albumList as $album) {
 			if ($user->canReadAlbum($album) && $album->isRoot()) {
 				array_push($list, $album);
@@ -341,6 +357,7 @@ class AlbumDB {
 
 	function save() {
 		global $gallery;
+
 		$success = 0;
 
 		$dir = $gallery->app->albumDir;
@@ -349,10 +366,13 @@ class AlbumDB {
 
 	function numAccessibleAlbums($user) {
 		$numAlbums = 0;
+
 		foreach ($this->albumList as $album) {
-			if ($user->canReadAlbum($album))
-			$numAlbums++;
+			if ($user->canReadAlbum($album)) {
+				$numAlbums++;
+			}
 		}
+
 		return $numAlbums;
 	}
 
@@ -360,6 +380,7 @@ class AlbumDB {
 		global $gallery;
 
 		$numPhotos = $numAlbums = $numTopAlbums = 0;
+
 		foreach ($this->albumList as $album) {
 			if ($user->canReadAlbum($album)) {
 				$numAlbums++;
@@ -383,6 +404,7 @@ class AlbumDB {
 
 	function getAlbumsByRoot($rootAlbumName, $user=null) {
 		$namedAlbum = $this->getAlbumByName($rootAlbumName);
+
 		if ($namedAlbum) {
 			$arr = $namedAlbum->getSubAlbums();
 			array_push($arr, $namedAlbum);
