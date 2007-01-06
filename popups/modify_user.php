@@ -39,6 +39,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $notice_messages = array();
+$gErrors = array();
 
 /**
  * User pressed "save" Button
@@ -68,7 +69,7 @@ if (!empty($save)) {
 		}
 	}
 
-	if (isset($failure)) {
+	if (!isset($failure)) {
 		$tmpUser = $gallery->userDB->getUserByUsername($old_uname);
 		$tmpUser->setUsername($uname);
 		$tmpUser->setFullname($fullname);
@@ -94,9 +95,14 @@ if (!empty($save)) {
 		);
 	}
 	else {
+		$errorText = gTranslate('core',"User information was not succesfully updated!");
+		foreach ($gErrors as $text) {
+			$errorText .= "\n<br>" . $text;
+
+		}
 		$notice_messages[] = array(
 			'type' => 'error',
-			'text' => gTranslate('core',"User information was not succesfully updated!")
+			'text' => $errorText
 		);
 	}
 }

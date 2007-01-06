@@ -447,6 +447,3 @@ class AlbumDB {
 }
 
 ?>
-
-
-
