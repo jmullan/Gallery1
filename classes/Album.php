@@ -1132,7 +1132,8 @@ class Album {
 
 				gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 
-			} else if (isDebugging()) {
+			}
+			else if (isDebugging()) {
 				print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
 			}
 		}
@@ -1188,15 +1189,18 @@ class Album {
 
 		/* Delete album dir */
 		rmdir($dir);
+
 	}
 
 	function resizePhoto($index, $target, $filesize = 0, $pathToResized = '') {
 		$this->updateSerial = 1;
 
 		$photo = &$this->getPhoto($index);
+
 		if (!$photo->isMovie()) {
 			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized);
-		} else {
+		}
+		else {
 			echo gTranslate('core', "Skipping Movie");
 		}
 	}

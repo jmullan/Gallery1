@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,10 +23,10 @@
 <?php
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) = 
+list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
   getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
 
-/* 
+/*
  * Test for relative URL, which we know to be local.  If URL contains ://
  * assume that it's remote and test it against our local full URLs
  * to ensure security.  Don't check for http:// or https:// because
@@ -42,7 +42,7 @@ if (!empty($return) && $return[0] != '/' && strstr($return, '://') !== false) {
 	  ) {
 	die(gTranslate('core', 'Attempted security breach.'));
 	}
-}	
+}
 
 /* This is used for deleting comments from stats.php */
 if (!empty($albumName)) {
@@ -71,19 +71,21 @@ switch ($cmd) {
 			}
 		}
 		dismissAndReload();
-	break;
+
+		break;
 
 	case 'remake-thumbnail':
 		echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
 		my_flush();
 		set_time_limit($gallery->app->timeLimit);
 		$gallery->album->makeThumbnail($index);
-	
+
 		$gallery->album->save();
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
+
 		break;
-	
+
 	case 'logout':
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
 		$gallery->session->username = '';
@@ -98,22 +100,26 @@ switch ($cmd) {
 		if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
 			$return = makeGalleryHeaderUrl($return);
 		}
+
 		header("Location: $return");
-	break;
-	
+
+		break;
+
 	case 'hide':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->hidePhoto($index);
 			$gallery->album->save();
-		} else {
+		}
+		else {
 			if ($gallery->album->isAlbum($index)) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
 				$myAlbum->load($myAlbumName);
 			}
 
-			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
-	   		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+	   			$gallery->album->isItemOwner($gallery->user->getUid(), $index))
+	   		{
 				$gallery->album->hidePhoto($index);
 				$gallery->album->save();
 			}
@@ -121,18 +127,19 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
-		
+
 	case 'show':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->unhidePhoto($index);
 			$gallery->album->save();
-		} else {
+		}
+		else {
 			if ($gallery->album->isAlbum($index)) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
 				$myAlbum->load($myAlbumName);
-			}	   
-			
+			}
+
 			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
 					$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
 					$gallery->album->unhidePhoto($index);
@@ -142,7 +149,7 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
-		
+
 	case 'highlight':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->setHighlight($index);
@@ -150,44 +157,52 @@ switch ($cmd) {
 		}
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
-	break;
-		
+
+		break;
+
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
 			$gallery->user->canCreateSubAlbum($gallery->album)) {
 			if (!isset($parentName)) {
 				$parentName = null;
 			}
+
 			createNewAlbum($parentName);
-			if(!headers_sent()) { 
+
+			if(!headers_sent()) {
 				header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
-			} else {
+			}
+			else {
 				$backUrl = makeAlbumUrl($gallery->session->albumName);
 			}
-		} else {
+		}
+		else {
 				header("Location: " . makeAlbumHeaderUrl());
 		}
-	break;
-		
+
+		break;
+
 	case 'reset-album-clicks':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->resetAllClicks();
 			// this is a popup do dismiss and reload!
 			dismissAndReload();
-		} else {
+		}
+		else {
 	   			header("Location: " . makeAlbumHeaderUrl());
 		}
-	break;
-		
+
+		break;
+
 	case 'delete-comment':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$comment_index = getRequestVar('comment_index');
-			$comment=$gallery->album->getComment($index, $comment_index); 
+			$comment=$gallery->album->getComment($index, $comment_index);
 			$gallery->album->deleteComment($index, $comment_index);
 			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),
 					   	$comment->getName(),
-					   	makeAlbumURL($gallery->album->fields["name"], 
+					   	makeAlbumURL($gallery->album->fields["name"],
 						$gallery->album->getPhotoId($index))));
 			if (!empty($return)) {
 				dismissAndLoad($return);
@@ -195,17 +210,20 @@ switch ($cmd) {
 			else {
 				dismissAndReload();
 			}
-		} else {
+		}
+		else {
 				header("Location: " . makeAlbumHeaderUrl());
 		}
-	break;
-	
+
+		break;
+
 	default:
 		if (!empty($return)) {
 			// No command; Can be used to set a session variable
 			header("Location: $return");
 		}
-	break;
+		break;
+
 }
 
 ?>

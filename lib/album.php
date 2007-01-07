@@ -57,11 +57,20 @@ function getPropertyDefault($property, $album = false, $global = false) {
 	return $retProperty;
 }
 
-function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
+/**
+ * Creates a new album
+ *
+ * @param string	$parentName
+ * @param string	$newAlbumName
+ * @param string	$newAlbumTitle
+ * @param string	$newAlbumDesc
+ * @return mixed
+ */
+function createNewAlbum($parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
 	global $gallery;
 
 	// get parent album name
-	$albumDB = new AlbumDB(FALSE);
+	$albumDB = new AlbumDB(false);
 
 	// set new album name from param or default
 	$gallery->session->albumName = $albumDB->newAlbumName($newAlbumName);
@@ -127,13 +136,14 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
 
 		$returnVal = $gallery->album->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
-	} else {
+	}
+	else {
 		$gallery->album->save(array(i18n("Root album \"{$gallery->album->fields['name']}\" created.")));
 		/*
 		* Get a new albumDB because our old copy is not up to
 		* date after we created a new album
 		*/
-		$albumDB = new AlbumDB(FALSE);
+		$albumDB = new AlbumDB(false);
 
 		/* move the album to the top if not a nested album*/
 		$numAlbums = $albumDB->numAlbums($gallery->user);
@@ -143,7 +153,8 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 
 	if (!empty($returnVal)) {
 		return $gallery->session->albumName;
-	} else {
+	}
+	else {
 		return 0;
 	}
 }
