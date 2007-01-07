@@ -64,29 +64,35 @@ class AlbumDB {
 		$this->brokenAlbums = array();
 		$this->outOfDateAlbums = array();
 
-		// get the cached albumlist
-		$tmp = getFile("$dir/albumlist.cache");
-		if (! empty($tmp)) {
-			$changed = 0;
+		/*
+		Disable caching for now. It doesnt work well.
 
-			// we got one
-			$albumList = unserialize($tmp);
-			if($loadphotos){
-				// load all the photos
-				foreach($albumList as $album){
-					$album->loadPhotos($album->getAlbumDir());
-					$this->albumList[] = $album;
+		$tmp = '';
+		if($useCache) {
+			// get the cached albumlist
+			$tmp = getFile("$dir/albumlist.cache");
+
+			if (! empty($tmp)) {
+				$changed = 0;
+
+				// we got one
+				$albumList = unserialize($tmp);
+				//print_r($albumList);
+				if($loadphotos){
+					// load all the photos
+					foreach($albumList as $album){
+						$album->loadPhotos($album->getAlbumDir());
+						$this->albumList[] = $album;
+					}
+				}
+				else{
+					$this->albumList = $albumList;
 				}
 			}
-			else{
-				$this->albumList = $albumList;
-			}
-		}
+		}*/
 
+		$tmp = '';
 		if (empty($tmp)) {
-			// We set the changed flag, so that later the albumlist is saved for caching.
-			$changed = 1;
-
 			/* Loop through all albums already found in the albumdb.dat */
 			$i = 0;
 			while ($i < sizeof($this->albumOrder)) {
@@ -132,6 +138,7 @@ class AlbumDB {
 				closedir($fd);
 			}
 		}
+
 		if ($changed) {
 			$this->save();
 		}
@@ -391,10 +398,13 @@ class AlbumDB {
 			$albumList[] = $album;
 		}
 
-		$success1 = safe_serialize($albumList, "$dir/albumlist.cache");
+		// $success1 = safe_serialize($albumList, "$dir/albumlist.cache");
+		$success1 = true;
 		$success2 = safe_serialize($this->albumOrder, "$dir/albumdb.dat");
 
-		return $success1 and $success2;
+		$return = $success1 and $success2;
+
+		return $return;
 	}
 
 	function numAccessibleAlbums($user) {
