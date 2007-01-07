@@ -23,9 +23,8 @@
 <?php
 
 $properties = array(
-	'group_text_start' => array (
+	'group_text' => array (
 		'type' => 'group_start',
-		'name' => 'group_text',
 		'default' => 'inline',
 		'title' => gTranslate('common', "_Texts"),
 		'contains_required' => false,
@@ -47,9 +46,8 @@ $properties = array(
 	'group_text_end' => array (
 		'type' => 'group_end',
 	),
-	'group_layout_start' => array (
+	'group_layout' => array (
 		'type' => 'group_start',
-		'name' => 'group_layout',
 		'default' => 'none',
 		'title' => gTranslate('common', "_Layout"),
 		'desc' => ''
@@ -141,9 +139,8 @@ $properties = array(
 	'group_layout_end' => array (
 		'type' => 'group_end'
 	),
-	'group_slideshow_start' => array (
+	'group_slideshow' => array (
 		'type' => 'group_start',
-		'name' => 'group_slideshow',
 		'default' => 'none',
 		'title' => gTranslate('common', "_Slideshow"),
 		'desc' => ''
@@ -176,9 +173,8 @@ $properties = array(
 	'group_slideshow_end' => array (
 		'type' => 'group_end'
 	),
-	'group_sizes_start' => array (
+	'group_sizes' => array (
 		'type' => 'group_start',
-		'name' => 'group_sizes',
 		'default' => 'none',
 		'title' => gTranslate('common', "Si_zes"),
 		'desc' => ''
@@ -227,9 +223,8 @@ $properties = array(
 	'group_sizes_end' => array (
 		'type' => 'group_end'
 	),
-	'group_display_start' => array (
+	'group_display' => array (
 		'type' => 'group_start',
-		'name' => 'group_display',
 		'default' => 'none',
 		'title' => gTranslate('common', "_Display"),
 		'desc' => ''
@@ -262,9 +257,8 @@ $properties = array(
 	'group_display_end' => array (
 		'type' => 'group_end'
 	),
-	'group_services_start' => array (
+	'group_services' => array (
 		'type' => 'group_start',
-		'name' => 'group_services',
 		'default' => 'none',
 		'title' => gTranslate('common', "Ser_vices"),
 		'desc' => ''
@@ -291,9 +285,8 @@ $properties = array(
 	'group_services_end' => array (
 		'type' => 'group_end'
 	),
-	'group_pollProperties_start' => array (
+	'group_pollProperties' => array (
 		'type' => 'group_start',
-		'name' => 'group_pollProperties',
 		'default' => 'none',
 		'title' => gTranslate('common', "_Poll Properties"),
 		'desc' => ''
@@ -355,9 +348,8 @@ $properties = array(
 	'group_pollProperties_end' => array (
 		'type' => 'group_end'
 	),
-	'group_misc_start' => array (
+	'group_misc' => array (
 		'type' => 'group_start',
-		'name' => 'group_misc',
 		'default' => 'none',
 		'title' => gTranslate('common', "_Misc"),
 		'desc' => ''
@@ -405,9 +397,8 @@ $properties = array(
 	'group_misc_end' => array (
 		'type' => 'group_end'
 	),
-	'group_CustomFields_start' => array (
+	'group_CustomFields' => array (
 		'type' => 'group_start',
-		'name' => 'group_CustomFields',
 		'default' => 'none',
 		'title' => gTranslate('common', "Custom _Fields")
 	),
@@ -432,9 +423,8 @@ $properties = array_merge($properties, array(
 	'group_CustomFields_end' => array (
 		'type' => 'group_end'
 	),
-	'group_MicroThumbs_start' => array (
+	'group_MicroThumbs' => array (
 		'type' => 'group_start',
-		'name' => 'group_MicroThumbs',
 		'default' => 'none',
 		'title' => gTranslate('common', "M_icrothumbs")
 	),

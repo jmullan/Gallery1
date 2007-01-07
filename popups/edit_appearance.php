@@ -34,6 +34,7 @@ list($nv_pairs, $extra_fields, $num_user_fields) =
 	getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
 
 include_once(dirname(dirname(__FILE__)) . '/includes/definitions/services.php');
+include_once(dirname(dirname(__FILE__)) . '/lib/setup.php');
 require_once(dirname(dirname(__FILE__)) . '/lib/tabs.php');
 
 $notice_messages = array();
@@ -258,12 +259,13 @@ foreach ($properties as $key => $val) {
 	}
 
 	if (isset($val["type"]) && ($val["type"] === 'group_start' )) {
-		if ($val['name'] == $initialtab || (empty($initialtab) && $val['default'] == 'inline')) {
+		if ($key == $initialtab || (empty($initialtab) && $val['default'] == 'inline')) {
 			$display = 'inline';
-		} else {
+		}
+		else {
 			$display = 'none';
 		}
-		echo "\n<div id=\"". $val["name"] ."\" style=\"display: $display\">";
+		echo "\n<div id=\"$key\" style=\"display: $display\">";
 		echo make_separator($key, $val);
 		echo "\n<table width=\"100%\">";
 		continue;
