@@ -391,14 +391,18 @@ class AlbumDB {
 
 		$dir = $gallery->app->albumDir;
 
-		/* Create just an albumlist (without photos) for caching. */
+		/*
+		// Create just an albumlist (without photos) for caching.
 		$albumList = array();
 		foreach ($this->albumList as $album){
 			$album->photos = array();
 			$albumList[] = $album;
 		}
 
-		// $success1 = safe_serialize($albumList, "$dir/albumlist.cache");
+		$success1 = safe_serialize($albumList, "$dir/albumlist.cache");
+
+		*/
+
 		$success1 = true;
 		$success2 = safe_serialize($this->albumOrder, "$dir/albumdb.dat");
 
