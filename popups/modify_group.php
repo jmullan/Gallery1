@@ -32,7 +32,7 @@ list($groupId, $save, $gname, $description, $currentUser) =
 
 list($backToGroup, $backToUser) =
 	getRequestVar(array('backToGroup', 'backToUser'));
-	
+
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
@@ -56,7 +56,7 @@ else {
 	$notice_messages[] = array(
 		'type' => 'error',
 		'text' => gTranslate('core', "No group selected !"));
-		
+
 	$failure = true;
 }
 
@@ -113,7 +113,7 @@ echo makeFormIntro('modify_group.php',
 	array('type' => 'popup', 'groupId' => $groupId));
 
 if(! isset($failure)) {
-	
+
 echo gTranslate('core', "You can change any information about the group using this form.");
 
 echo "\n<br>";
@@ -146,21 +146,22 @@ echo "\n<br>";
 
 <br>
 
-<?php 
+<?php
 }
 ?>
 	<div class="center">
-	<?php
-	
+<?php
+
 	if(! isset($failure)) {
 		echo gSubmit('save', gTranslate('core', "_Save"));
 		echo "\n<br>";
 	}
-	
+
 	echo gSubmit('backToGroup', gTranslate('core', "Back to groupmanagement"));
-	echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
-	
-	?>
+	if (!$GALLERY_EMBEDDED_INSIDE) {
+		echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
+	}
+?>
 	</div>
 </form>
 </div>

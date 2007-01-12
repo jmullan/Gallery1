@@ -32,7 +32,7 @@ list($createGroup, $gname, $description) =
 
 list($backToGroup, $backToUser) =
 	getRequestVar(array('backToGroup', 'backToUser'));
-	
+
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
@@ -52,7 +52,7 @@ printPopupStart(gTranslate('core', "Create Gallery Group"), '', 'left');
 
 if (!empty($createGroup)) {
 	$gNameError = validNewGroupName($gname);
-	
+
 	if($gNameError) {
 		$messages[] = array('type' => 'error', 'text' => $gNameError);
 	}
@@ -92,9 +92,13 @@ echo makeFormIntro('create_group.php',
 <br>
 
 <div class="center">
-<?php echo gSubmit('createGroup', gTranslate('core', "_Create group")); ?>
-<?php echo gSubmit('backToGroup', gTranslate('core', "Back to groupmanagement")); ?>
-<?php echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement")); ?>
+<?php
+	echo gSubmit('createGroup', gTranslate('core', "_Create group"));
+	echo gSubmit('backToGroup', gTranslate('core', "Back to groupmanagement"));
+	if (!$GALLERY_EMBEDDED_INSIDE) {
+		echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
+	}
+?>
 
 </div>
 </form>

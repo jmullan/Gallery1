@@ -62,7 +62,7 @@ if (!empty($deleteGroup) && !empty($gnames)) {
 	if($deleted > 0) {
 		$messages[] = array(
 			'type' => 'success',
-			'text' => gTranslate('core', 
+			'text' => gTranslate('core',
 				"Successfully deleted %d group.",
 				"Successfully deleted %d groups.", $deleted, '', true)
 		);
@@ -105,7 +105,7 @@ if (! empty($gnames)) {
 	foreach ($gnames as $gid) {
 		$tmpGroup = new Gallery_Group();
 		$tmpGroup->load($gid);
-		echo gInput('checkbox', 'gnames[]', $tmpGroup->getName(), true, $gid, array('checked' => null)); 
+		echo gInput('checkbox', 'gnames[]', $tmpGroup->getName(), true, $gid, array('checked' => null));
 	}
 	echo "</table>";
 ?>
@@ -118,10 +118,13 @@ elseif(empty($messages)) {
 	echo gTranslate('core', "No groups selected for deletion.");
 	echo "<br>";
 }
+
+echo gInput('hidden', 'formaction', null ,false, '');
+echo gSubmit('backToGroups', gTranslate('core', "Back to _group management"));
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
+}
 ?>
-<input type="hidden" name="formaction" value="">
-<?php echo gSubmit('backToGroups', gTranslate('core', "Back to _group management")); ?>
-<?php echo gSubmit('backToUsers', gTranslate('core', "Go to _user management")); ?>
 </form>
 </center>
 </div>
