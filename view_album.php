@@ -357,10 +357,11 @@ if (!empty($adminOptionHTML)) {
 	. "}\n"
 	. "</script>\n\n";
 
-	$iconElements[] = "\n\t<select class=\"g-admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n"
-	. "\t\t<option value=\"\">&laquo; " . gTranslate('core', 'Album Actions') . " &raquo;</option>\n"
-	. $adminOptionHTML
-	. "\t</select>\n";
+	$iconElements[] = '<form name="admin_options_form" action="view_album.php" class="right">' .
+		"\n\t<select class=\"g-admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n" .
+		"\t\t<option value=\"\">&laquo; " . gTranslate('core', 'Album Actions') . " &raquo;</option>\n" .
+		$adminOptionHTML .
+		"\t</select>\n</form>\n";
 }
 
 if ($gallery->album->fields["slideshow_type"] != "off" &&

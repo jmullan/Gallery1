@@ -30,7 +30,7 @@
  * You prefer a combobox ?
  * Set setting below to false
  */
-$iconsForItemOptions = true;
+$iconsForItemOptions = false;
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -384,14 +384,17 @@ if (!$gallery->album->isMovie($id)) {
  * Note: First options is just a descriptive text
 */
 if(sizeof($albumItemOptions) > 1 && !$useIcons) {
-	$iconElements[] =  drawSelect2(
+	$iconElements[] =
+	'<form name="admin_options_form" action="view_album.php" class="right">' .
+	drawSelect2(
 		'itemOptions',
 		$albumItemOptions,
 		array(
 			'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
 			'class' => 'g-admin'
-		)
-	);
+		)) .
+	"</form>\n"
+	;
 }
 
 $logoutReturn = doCommand("logout", array(), "albums.php");
