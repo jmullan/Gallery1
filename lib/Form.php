@@ -90,6 +90,13 @@ function selectOptions($album, $field, $opts) {
 	echo "\n";
 }
 
+/**
+ * Returns the partitial HTML code for HTML tags attributes
+ *
+ * @param	array	$attrList	Format: 'key' => 'value'
+ * @return	string	$attrList
+ * @author	Jens Tkotz
+ */
 function generateAttrs($attrList) {
 	$attrs = '';
 
@@ -205,7 +212,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 		$url = makeGalleryHeaderUrl($target, $urlargs);
 	}
 	else {
-		$url = $target;
+		$url = unhtmlentities($target);
 	}
 
 	$result = split("\?", $url);

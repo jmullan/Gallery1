@@ -151,9 +151,7 @@ else {
 	<tr>
 		<td class="g-commentadd-box-middle right"><?php echo gTranslate('common', "Message:") ?></td>
 		<td class="left">
-			<textarea name="comment_text" cols="<?php echo $cols ?>" rows="5">
-			<?php echo $comment_text; ?>
-			</textarea>
+			<?php echo gInput('textarea', 'comment_text', null, false, $comment_text,array('cols' => $cols, 'rows' => 5)); ?>
 		</td>
 	</tr>
 <?php if(enableCaptcha()) : ?>
@@ -640,7 +638,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
 		$filesize = fs_filesize($filename);
 	}
 
-	$units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+	$units = array('&nbsp;&nbsp;B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 	$unit_count = (count($units) - 1);
 
 	$pass = 0; // set zero, for Bytes
@@ -649,7 +647,10 @@ function formatted_filesize($filesize = 0, $filename = '') {
 		$pass++;
 	}
 
-	return round($filesize, 2) .'&nbsp;'. $units[$pass];
+	$result = round($filesize, 2);
+	$result = number_format($result, 2, '.', '');
+
+	return $result ."&nbsp;". $units[$pass];
 }
 
 /**
@@ -1286,16 +1287,19 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 
 /**
  * Returns a html string that represents the login/logout button, or just the text.
+ *
+ * @param string	$logoutUrl	Url to go to for loggin out.
+ * @param int		$photoCount
  * @return string	$html
  * @author Jens Tkotz
-*/
-function LoginLogoutButton($returnUrl, $photoCount = 1) {
+ */
+function LoginLogoutButton($logoutUrl, $photoCount = 1) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	$html = '';
 
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
-			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "log_out"));
+			$html = galleryIconLink($logoutUrl, 'logout.gif', gTranslate('common', "log_out"));
 		}
 		else {
 			if($photoCount == 0) {

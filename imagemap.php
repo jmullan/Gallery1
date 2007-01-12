@@ -291,6 +291,7 @@ if (!empty($allImageAreas)) {
 	initPaintArea ();
 	//-->
 	</script>
+</div>
 <?php
 
 includeTemplate('general.footer');
