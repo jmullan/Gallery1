@@ -400,7 +400,7 @@ for ($i = $start; $i <= $end; $i++) {
 			}
 			$rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= '</a>';
 
-			if (ereg("album[[:digit:]]+$", $albumURL)) {
+			if (ereg("album[[:digit:]]+$", $tmpAlbumName)) {
 				if (!$gallery->session->offline) {
 					$rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= infoBox(array(array(
 						'text' => gTranslate('core', "Hey!") .
