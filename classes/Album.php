@@ -2498,7 +2498,7 @@ class Album {
 		if (isset($perm[$uid])) {
 			return true;
 		}
-		elseif (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+		elseif (empty($GALLERY_EMBEDDED_INSIDE_TYPE) || $GALLERY_EMBEDDED_INSIDE_TYPE == 'joomla') {
 			$groupPerms = $this->_getGropupPerms($permName);
 			if(!empty($groupPerms)) {
 				foreach ($groupPerms as $gid) {
