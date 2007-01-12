@@ -453,8 +453,9 @@ function check_htaccess() {
 		$fail['fail-nohtaccess'] = true;
 	}
 	else if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = gTranslate('config', "I can read your <b>.htaccess</b> file.");
-	} else {
+		$success[] = gTranslate('config', "Gallery is able to read your <b>.htaccess</b> file.");
+	}
+	else {
 		$fail['fail-htaccess'] = true;
 	}
 
@@ -1884,7 +1885,8 @@ function checkImageMagick($cmd) {
 	else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
 		$version = $regs[1];
 		$result['ok'] = sprintf(gTranslate('config', "OK!  Version: %s"), $version);
-	} else {
+	}
+	else {
 		$result['error'] = $output[0];
 	}
 
