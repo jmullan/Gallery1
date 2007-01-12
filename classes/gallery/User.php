@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -28,7 +28,7 @@ class Gallery_User extends Abstract_User {
 	var $recoverPassHash;
 	var $lastAction;
 	var $lastActionDate;
-	var $origEmail; 
+	var $origEmail;
 		// the email from original account creation.  Just incase user goes feral
 
 	function Gallery_User() {
@@ -37,7 +37,7 @@ class Gallery_User extends Abstract_User {
 		$this->setDefaultLanguage("");
 
 
-		// assuming revision 4 ensures that if the user_version is 
+		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes
 		// that we perform the necessary upgrade.
 		$this->version = 4;
@@ -47,7 +47,7 @@ class Gallery_User extends Abstract_User {
 		global $gallery;
 
 		$dir = $gallery->app->userDir;
-		
+
 		$tmp = getFile("$dir/$uid");
 
 		/*
@@ -60,7 +60,8 @@ class Gallery_User extends Abstract_User {
 				$this->$k = $v;
 			}
 			$this->save();
-		} else {
+		}
+		else {
 			foreach (unserialize($tmp) as $k => $v) {
 				$this->$k = $v;
 			}
@@ -69,23 +70,25 @@ class Gallery_User extends Abstract_User {
 
 	function save() {
 		global $gallery;
+
 		$success = 0;
 
 		$dir = $gallery->app->userDir;
+
 		return safe_serialize($this, "$dir/$this->uid");
 	}
 
 	/*
 	 * Whenever you change this code, you should bump the $gallery->user_version
 	 * appropriately.
-	 */	
+	 */
 	function integrityCheck() {
 		global $gallery;
 
 		if (!isset($this->version)) {
 			$this->version = "0";
 		}
-		
+
 		if (!strcmp($this->version, $gallery->user_version)) {
 			print gTranslate('core', "up to date");
 			return true;
@@ -94,17 +97,17 @@ class Gallery_User extends Abstract_User {
 		if ($this->version < 1) {
 			$this->setDefaultLanguage('');
 		}
-		
+
 		if ($this->version < 2) {
 			$this->genRecoverPasswordHash(true);
 		}
-		
+
 		if ($this->version < 3)  {
 			$this->lastAction = NULL;
 			$this->lastActionDate = time(0);
 			$this->origEmail = $this->email;
 		}
-		
+
 		if ($this->version < 5) {
 			$dir = $gallery->app->userDir;
 			$olduid = $this->uid;
@@ -116,11 +119,11 @@ class Gallery_User extends Abstract_User {
 			if (fs_is_file($file1)) {
 				fs_rename($file1, $file2);
 			}
-			
+
 			if (fs_is_file("$file1.bak")) {
 				fs_rename("$file1.bak", "$file2.bak");
 			}
-			
+
 			if (fs_is_file("$file1.lock")) {
 				fs_rename("$file1.lock", "$file2.lock");
 			}
@@ -134,7 +137,7 @@ class Gallery_User extends Abstract_User {
 		}
 
 		$this->version = $gallery->user_version;
-		
+
 		if ($this->save()) {
 			$success = true;
 			print gTranslate('core', "upgraded");
@@ -146,7 +149,7 @@ class Gallery_User extends Abstract_User {
 
 		return $success;
 	}
-	
+
 	function setDefaultLanguage($defaultLanguage) {
 		$this->defaultLanguage = $defaultLanguage;
 	}
@@ -160,10 +163,10 @@ class Gallery_User extends Abstract_User {
 			$this->recoverPassHash = NULL;
 			return '';
 		}
-		
+
 		$rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
 		$this->recoverPassHash = md5($rec_pass_hash);
-		
+
 		return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
 	}
 
@@ -171,20 +174,28 @@ class Gallery_User extends Abstract_User {
 		if (md5($hash) == $this->recoverPassHash) {
 			return true;
 		}
+
 		return false;
 	}
 
 	function log($action) {
-		$valid_actions = array("register", "self_register", 
-				"bulk_register", "login", 
-				"new_password_request", "new_password_set");
+		$valid_actions = array(
+			"register",
+			"self_register",
+			"bulk_register",
+			"login",
+			"new_password_request",
+			"new_password_set"
+		);
+
 		if (!in_array($action, $valid_actions)) {
-			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"), 
-						$action));
+			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"),
+								$action));
 			return;
-		   	}
-		$this->lastAction=$action;
-		$this->lastActionDate=time();
+		}
+
+		$this->lastAction = $action;
+		$this->lastActionDate = time();
 	}
 }
 

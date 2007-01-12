@@ -1685,6 +1685,13 @@ class Album {
 		return $photo->getPhotoPath($this->getAlbumDirURL("full"), $full);
 	}
 
+	/**
+	 * Enter description here...
+	 *
+	 * @param unknown_type $index
+	 * @param unknown_type $full
+	 * @return unknown
+	 */
 	function getAbsolutePhotoPath($index, $full = false) {
 		$photo = $this->getPhoto($index);
 		return $photo->getPhotoPath($this->getAlbumDir(), $full);
@@ -3129,6 +3136,12 @@ class Album {
 	/**
 	 * This functions returns an array that contains the absolute pathes to albumItems.
 	 * subalbums are in subarrays
+	 *
+	 * @param unknown_type $user
+	 * @param unknown_type $full
+	 * @param unknown_type $visibleOnly
+	 * @param unknown_type $recursive
+	 * @return unknown
 	 */
 	function getAlbumItemNames($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
 		$albumItemNames = array();
@@ -3164,7 +3177,8 @@ class Album {
 					}
 				}
 */
-			} elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
+			}
+			elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
 				$albumItemNames[] = $this->getAbsolutePhotoPath($itemNr, $full);
 			}
 		}
@@ -3172,13 +3186,18 @@ class Album {
 	}
 
 	/**
+	 * Enter description here...
 	 *
-	*/
+	 * @param unknown_type $user
+	 * @param unknown_type $full
+	 * @param unknown_type $visibleOnly
+	 * @param unknown_type $recursive
+	 * @return unknown
+	 */
 	function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
-
 		$albumSize = 0;
 		$albumItemNames = $this->getAlbumItemNames($user, $full, $visibleOnly, $recursive);
-		$justPureFileNames  = array_flaten($albumItemNames);
+		$justPureFileNames = array_flaten($albumItemNames);
 
 		foreach ($justPureFileNames as $absoluteFileName) {
 			$albumSize += fs_filesize($absoluteFileName);
