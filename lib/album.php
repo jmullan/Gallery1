@@ -31,7 +31,7 @@
  * @param   object	$album
  * @param   boolean   $global
  * @return  mixed	 $retPoperty
- * @author Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz
  */
 function getPropertyDefault($property, $album = false, $global = false) {
 	global $gallery;

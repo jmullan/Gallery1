@@ -4,8 +4,9 @@
 <?php
 global $breadcrumb, $gallery;
 
-if(!includeTemplate('breadcrumb')
-  && (!empty($breadcrumb['text']) || $gallery->user->isLoggedIn())) {
+if(!includeTemplate('breadcrumb') &&
+  (!empty($breadcrumb['text']) || $gallery->user->isLoggedIn()))
+{
 ?>
 
 <table class="g-breadcrumb" cellspacing="0" cellpadding="0">

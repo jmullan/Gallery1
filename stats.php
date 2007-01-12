@@ -613,7 +613,6 @@ if ($gallery->user->isAdmin()) {
 $adminbox["commands"] .=
 	galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
 
-
 if (!empty($gallery->app->stats_foruser)) {
 	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
 }
