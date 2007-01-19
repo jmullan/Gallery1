@@ -21,7 +21,15 @@
  */
 ?>
 <?php
+
+/**
+ * Abstract class for the user object.
+ * Methodes might be overwritten by special classes.
+ *
+ * @package User
+ */
 class Abstract_User {
+
 	var $username;
 	var $fullname;
 	var $password;
@@ -40,20 +48,26 @@ class Abstract_User {
 	function integrityCheck() {
 		return 0;
 	}
+
 	function versionOutOfDate() {
 		return false;
 	}
 
-	function salt($len = 4)
-	{
+	function salt($len = 4) {
 		$salt = '';
-		for($i = 0; $i < $len; $i++)
-		{
+		for($i = 0; $i < $len; $i++) {
 			$char = mt_rand(48, 109);
-			if($char > 57) $char += 7;
-			if($char > 90) $char += 6;
+			if($char > 57) {
+				$char += 7;
+			}
+
+			if($char > 90) {
+				$char += 6;
+			}
+
 			$salt .= chr($char);
 		}
+
 		return $salt;
 	}
 
@@ -64,13 +78,15 @@ class Abstract_User {
 
 	function isCorrectPassword($password) {
 		$hash = '';
+
 		if(strlen($this->password) == 32) { // old password schema
-		$hash =  md5($password);
+			$hash =  md5($password);
 		}
 		else {
 			$salt = substr($this->password,0, 4);
 			$hash = $salt.md5($salt.$password);
 		}
+
 		return (!strcmp($this->password, $hash));
 	}
 
@@ -104,7 +120,8 @@ class Abstract_User {
 				$name = str_replace('!!EMAIL!!', $email, $name);
 				$name = str_replace('!!MAILTO_FULLNAME!!', "<a href=\"mailto:$email\">$fullname</a>", $name);
 				$name = str_replace('!!MAILTO_USERNAME!!', "<a href=\"mailto:$email\">$username</a>", $name);
-			} else {
+			}
+			else {
 				$name = str_replace('!!EMAIL!!', '', $name);
 				$name = str_replace('!!MAILTO_FULLNAME!!', $fullname , $name);
 				$name = str_replace('!!MAILTO_USERNAME!!', $fullname , $name);
@@ -133,7 +150,8 @@ class Abstract_User {
 	function getFullName() {
 		if (get_magic_quotes_gpc()) {
 			return stripslashes($this->fullname);
-		} else {
+		}
+		else {
 			return $this->fullname;
 		}
 	}
@@ -187,8 +205,7 @@ class Abstract_User {
 			return true;
 		}
 
-		if (!$album)
-		{
+		if (!$album) {
 			return false;
 		}
 
@@ -349,28 +366,29 @@ class Abstract_User {
 		}
 	}
 
-   function canDownloadAlbum($album) {
-	if ($this->hasAlbumPermission('zipDownload', $album) &&
-	  canCreateArchive('zip')) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	function canDownloadAlbum($album) {
+		if ($this->hasAlbumPermission('zipDownload', $album) &&
+			canCreateArchive('zip'))
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
-   function hasAlbumPermission($perm, $album) {
-	/* Note: owners do not have explict every Permission via this method. Just admin. */
-	if ($this->isAdmin()) {
+	function hasAlbumPermission($perm, $album) {
+		/* Note: owners do not have explict every Permission via this method. Just admin. */
+		if ($this->isAdmin()) {
 			return true;
 		}
 
-	if ($album->getPerm($perm, $this->uid)) {
-		return true;
-	}
-	else {
-		return false;
-	}
+		if ($album->getPerm($perm, $this->uid)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
 
