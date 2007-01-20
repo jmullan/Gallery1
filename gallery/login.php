@@ -43,8 +43,9 @@ if (!empty($username) && !empty($gallerypassword)) {
 		$gallery->session->username = $username;
 		gallery_syslog("Successful login for $username from " . $_SERVER['REMOTE_ADDR']);
 
-		if (!empty($tmpUser->getDefaultLanguage())) {
-			$gallery->session->language = $tmpUser->getDefaultLanguage();
+		$defaultLanguage = $tmpUser->getDefaultLanguage();
+		if (!empty($defaultLanguage)) {
+			$gallery->session->language = $defaultLanguage;
 		}
 
 		if (!$gallery->session->offline) {
