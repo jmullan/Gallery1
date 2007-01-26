@@ -22,10 +22,10 @@
 ?>
 <?php
 
-$gallery->version = '1.6-RC1-svn-b5';
-$gallery->config_version = 100;
+$gallery->version = '1.6-RC1-svn-b6';
+$gallery->config_version = 101;
 $gallery->album_version = 39;
-$gallery->user_version = 6;
+$gallery->user_version = 7;
 $gallery->url = "http://gallery.sourceforge.net";
 
 /* do not edit the date!! modified by SVN */
