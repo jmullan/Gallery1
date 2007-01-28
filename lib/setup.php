@@ -86,6 +86,10 @@ function make_fields($key, $arr) {
 	else if (isset($arr['type']) && $arr['type'] == 'print_services') {
 		$col2 = form_print_services($key, $arr);
 	}
+	else if (isset($arr['type']) && $arr['type'] == 'byteCalculator') {
+		$arr['name'] = $key;
+		$col2 = showByteCalculator($key, $arr['value']);
+	}
 	else {
 		$col2 ='';
 	}
