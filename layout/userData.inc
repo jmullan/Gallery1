@@ -11,6 +11,22 @@
 
  $hidden = array();
  $yesNoChoices = array(1 => gTranslate('core', "Yes"), 0 => gTranslate('core', "No"));
+
+ $nls = getNLS();
+ $languages = array();
+ $selected = 'en_US';
+ foreach ($gallery->app->available_lang as $value) {
+ 	// Only use language from config.php if its
+ 	// defined in nls.php
+ 	if (!isset($nls['language'][$value])) continue;
+
+ 	if ( isset($defaultLanguage) && $defaultLanguage == $value) {
+ 		$selected = $defaultLanguage;
+ 	}
+
+ 	$languages[$value] = $nls['language'][$value];
+ 	ksort($languages);
+ }
 ?>
 <table class="left">
 <?php if ($allowChange["member_file"] === true) { ?>
@@ -21,85 +37,49 @@
 </tr>
 <?php echo errorRow("membersfile");
 }
-?>
-<tr>
-<td width="300"><?php if ($allowChange["uname"] || $uname) {
-	  echo gTranslate('core', "Username") ;
-}
-?></td>
-<td width="300"><?php
-if ($allowChange["uname"] === true) {
-	echo "\n". '<input type="text" name="uname" value="'. $uname .'">';
-}
-else {
-	echo $uname;
-	$hidden[] = array('uname', $uname);
-}
-?></td>
-</tr>
-<?php if ($allowChange["uname"] || $uname) {
-	 echo errorRow("uname");
+
+if ($allowChange["uname"] || $uname) {
+	if ($allowChange["uname"] === true) {
+		echo gInput('text', 'uname', gTranslate('core', "_Username"), true, $uname);
+	}
+	else {
+		echo gInput('fixedhidden', 'uname', gTranslate('core', "_Username"), true, $uname);
+		$hidden[] = array('uname', $uname);
+	}
+	echo errorRow("uname");
 }
 
 if (isset($allowChange["password"]) && $allowChange["password"] === true) {
-    if (isset($allowChange["old_password"]) && $allowChange["old_password"] === true) { ?>
-<tr>
-	<td><?php echo gTranslate('core', "Old Password") ?></td>
-	<td><input name="old_password" type="password" value="<?php echo $old_password ?>"></td>
-</tr>
-<?php echo errorRow("old_password");
+    if (isset($allowChange["old_password"]) && $allowChange["old_password"] === true) {
+		echo gInput('password', 'old_password', gTranslate('core', "Old Password"), true, $old_password);
+		echo errorRow("old_password");
+	}
+
+	echo gInput('password', 'new_password1', gTranslate('core', "New _Password"), true, $new_password1);
+	echo errorRow("new_password1");
+
+	echo gInput('password', 'new_password2', gTranslate('core', "New Password (again)"), true, $new_password2);
+	echo errorRow("new_password2");
 }
-?>
-<tr>
-	<td><?php echo gTranslate('core', "New Password") ?></td>
-	<td><input name="new_password1" type="password" value="<?php echo $new_password1 ?>"></td>
-</tr>
-<?php echo errorRow("new_password1") ?>
-<tr>
-	<td><?php echo gTranslate('core', "New Password (again)") ?></td>
-	<td><input name="new_password2" type="password" value="<?php echo $new_password2 ?>"></td>
-</tr>
-<?php echo errorRow("new_password2");
+
+
+if ($allowChange["fullname"] === true) {
+	echo gInput('text', 'fullname', gTranslate('core', "_Full Name"), true, $fullname, array('size' => 25));
+	echo errorRow("fullname");
 }
-if ($allowChange["fullname"] === true) { ?>
-<tr>
-	<td><?php echo gTranslate('core', "Full Name") ?></td>
-	<td><input name="fullname" type="text" size="25" value="<?php echo $fullname ?>"></td>
-</tr>
-<?php echo errorRow("fullname");
+
+if ($allowChange["email"] === true) {
+	echo gInput('text', 'email', gTranslate('core', "_Email Address"), true, $email, array('size' => 35));
+	echo errorRow("email");
 }
-if ($allowChange["email"] === true) { ?>
-<tr>
-	<td><?php echo gTranslate('core', "Email Address") ?></td>
-	<td><input name="email" type="text" size="35" value="<?php echo $email ?>"></td>
-</tr>
-<?php echo errorRow("email");
-}
+
 if (isset($allowChange["default_language"]) && $allowChange["default_language"]) {
 	if (!$GALLERY_EMBEDDED_INSIDE &&
 		$gallery->app->ML_mode > 1 &&
 		sizeof($gallery->app->available_lang) > 1){ ?>
 <tr>
 	<td><?php echo gTranslate('core', "Gallery language") ?></td>
-	<td><select name="defaultLanguage" size="1">
-<?php
-		$nls = getNLS();
-		foreach ($gallery->app->available_lang as $value) {
-			// Only use language from config.php if its
-			// defined in nls.php
-			if (!isset($nls['language'][$value])) continue;
-
-			if ( isset($defaultLanguage) && $defaultLanguage == $value) {
-				$selected="selected";
-			}
-			else {
-				$selected="";
-			}
-			echo "\n\t\t<option value=\"$value\" $selected>"
-				. $nls['language'][$value] ."</option>";
-		}
-?>
-</select></td>
+	<td><?php echo drawSelect('defaultLanguage', $languages, $selected); ?>
 </tr>
 <?php 	}
 	else {
@@ -148,7 +128,8 @@ if ($allowChange["send_email"] === true && $gallery->app->emailOn == "yes") { ?>
 	<td><input name="send_email" type="checkbox"></td>
 </tr>
 <?php
-} else {
+}
+else {
 	$hidden[] = array('send_email', "");
 }
 ?>
