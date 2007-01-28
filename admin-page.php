@@ -79,6 +79,11 @@ if (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE == 'joomla') {
 			'longtext' => gTranslate('core', "Manage your usergroups."));
 }
 
+$adminOptions[] = array(
+		'text' => gTranslate('core', "_Filesystem usage"),
+		'url' => makeGalleryUrl('usage.php'),
+		'longtext' => gTranslate('core', "See how much space your Gallery consums. Viewable by usage per user and per album."));
+
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
