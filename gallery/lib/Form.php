@@ -22,6 +22,14 @@
 ?>
 <?php
 
+/**
+ * @package Forms
+ *
+ * Function for HTML forms
+ */
+?>
+<?php
+
 function insertFormJS($formName) {
 
 ?>
@@ -127,7 +135,7 @@ function generateAttrs($attrList) {
  * @param array   $attrList	 Optional Attributs for the selectbox
  * @return string $html
  */
-function drawSelect($name, $options, $selected, $size = 1, $attrList = array()) {
+function drawSelect($name, $options, $selected = '', $size = 1, $attrList = array()) {
 	$crlf = "\n\t";
 	$attrs = generateAttrs($attrList);
 	$html = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
@@ -294,6 +302,50 @@ function showColorpicker($attrs = array()) {
 	return $html;
 }
 
+function showByteCalculator($id, $initValue = 0, $positionBelow = false, $changeable = true) {
+	if($changeable) {
+		$type = 'text';
+		$value = '';
+	}
+	else {
+		$type = 'fixedhidden';
+		$value = formatted_filesize($initValue);
+
+	}
+
+	$html = gInput($type, "${id}_niceBytes", null, false, $value, array('readonly' => 'readonly', 'id' => "${id}_niceBytes"));
+
+	if($changeable) {
+		$html .= "\n<a onClick=\"showByteCalculator('$id');\">";
+		$html .= gImage('icons/calc.png', '',  array('id' => "${id}_byteCalcIcon"));
+		$html .= "</a>\n";
+
+		$units = array(
+			1			=> gTranslate('common', "Byte"),
+			1024		=> gTranslate('common', "KB"),
+			1048576		=> gTranslate('common', "MB"),
+			1073741824	=> gTranslate('common', "GB"),
+		);
+
+		$html .= ($positionBelow) ? '<br>&nbsp;' : '';
+		$html .= "<fieldset id=\"${id}_byteCalcBox\" style=\"position: absolute; display: none; border: 1px solid black; width:215px; background: #fff;\">";
+		$html .= "\n<legend>". gTranslate('common', "Byte calculator") . '</legend>';
+		$html .= "\n<div>";
+		$html .= "\n<input id=\"${id}_mixedSize\" onkeyup=\"update('$id')\" value=\"$initValue\"> ";
+		$html .= drawSelect("${id}_unit", $units, '', 1, array('onchange' => "update('$id')", 'id' => "${id}_unit"));
+		$html .= "\n</div>";
+		$html .= "<div style=\"width:100%; text-align: right; margin-top: 2px;\">";
+		$html .= galleryLink('#', gTranslate('core', "_Close"), array('onclick' => "closeByteCalculator('$id')"));
+		$html .= "</div>";
+		$html .= "\n</fieldset>\n";
+
+		$html .= "\n<input type=\"hidden\" id=\"$id\" name=\"$id\" value=\"$initValue\">";
+		$html .= "<script type=\"text/javascript\">update('$id')</script>";
+	}
+
+	return $html;
+}
+
 function showChoice($label, $target, $args, $class = '') {
 	global $gallery;
 
@@ -379,6 +431,10 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 		$attrList['value'] = $value;
 	}
 
+	if ($type == 'fixedhidden') {
+		$attrList['type'] = 'hidden';
+	}
+
 	if(!isset($attrList['class'])) {
 		switch ($type) {
 			case 'text':
@@ -404,6 +460,10 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	else {
 		$input = "<input$attrs>";
+	}
+
+	if ($type == 'fixedhidden') {
+		$input .= $value;
 	}
 
 	if($tableElement){
@@ -454,6 +514,8 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 	$attrList['class'] = 'g-button';
 	$attrList['onClick'] = $onClick;
 	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	$attrList = array_merge($attrList, $additionalAttrs);
 
 	if($attrList['accesskey'] != '') {
 		$attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);

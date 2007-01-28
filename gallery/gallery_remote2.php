@@ -73,6 +73,7 @@ $GR_STAT['NO_ADD_PERMISSION']				= 401;
 $GR_STAT['NO_FILENAME']						= 402;
 $GR_STAT['UPLOAD_PHOTO_FAIL']				= 403;
 $GR_STAT['NO_WRITE_PERMISSION']				= 404;
+$GR_STAT['QUOTA_EXCEEDED']					= 405;
 
 $GR_STAT['NO_CREATE_ALBUM_PERMISSION']		= 501;
 $GR_STAT['CREATE_ALBUM_FAILED']				= 502;
@@ -263,6 +264,12 @@ function gr_add_item( &$gallery, &$response, &$userfile, &$userfile_name, $capti
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
 		$response->setProperty( 'status', $GR_STAT['NO_ADD_PERMISSION'] );
 		$response->setProperty( 'status_text', 'User cannot add to album.' );
+		return 0;
+	}
+
+	if ($gallery->user->isOverQuota()) {
+		$response->setProperty( 'status', $GR_STAT['QUOTA_EXCEEDED'] );
+		$response->setProperty( 'status_text', 'User is over quota limit.' );
 		return 0;
 	}
 

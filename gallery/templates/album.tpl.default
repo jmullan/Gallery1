@@ -25,8 +25,7 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
     echo 'Security violation while includiding template for album thumbnail view.';
     exit;
 }
-?>
-<?php
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -52,7 +51,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php
 }
-else {
+
+includeTemplate("album.header");
+if ($GALLERY_EMBEDDED_INSIDE) {
     echo $vaRenderDescriptionCSS;
 }
 
@@ -65,8 +66,6 @@ if(!empty($vaRenderDescriptionCSS)) { ?>
     <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/container-min.js"></script>
 <?php
 }
-
-includeTemplate("album.header");
 
 if (!$gallery->session->offline) { ?>
 

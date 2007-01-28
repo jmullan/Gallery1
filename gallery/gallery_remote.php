@@ -117,11 +117,13 @@ if (!strcmp($cmd, "add-item")) {
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
 		$error = gTranslate('core', "User cannot add to album");
 	}
+	elseif ($gallery->user->isOverQuota()) {
+		$error = gTranslate('core', "User is over quota limit.");
+	}
 	else if (!$userfile_name) {
 		$error = gTranslate('core', "No file specified");
 	}
 	else {
-
 		$name = $userfile_name;
 		$file = $userfile;
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);

@@ -103,21 +103,23 @@ if (isset($save)) {
 	}
 }
 
-$uname = $gallery->user->getUsername();
-$fullname = $gallery->user->getFullname();
-$email = $gallery->user->getEmail();
-$defaultLanguage = $gallery->user->getDefaultLanguage();
+$uname			= $gallery->user->getUsername();
+$fullname		= $gallery->user->getFullname();
+$email			= $gallery->user->getEmail();
+$defaultLanguage= $gallery->user->getDefaultLanguage();
+$quota			= $gallery->user->getQuota();
 
-$allowChange["uname"] = $gallery->user->isAdmin() ? true : false;
-$allowChange["email"] = true;
-$allowChange["fullname"] = true;
-$allowChange["old_password"] = true;
-$allowChange["default_language"] = true;
-$allowChange["send_email"] = false;
-$allowChange["member_file"] = false;
-$allowChange["create_albums"] = false;
-$allowChange["password"] = $gallery->user->canChangeOwnPw() ? true : false;
-$allowChange["admin"] = true;
+$allowChange["uname"]			= $gallery->user->isAdmin() ? true : false;
+$allowChange["email"]			= true;
+$allowChange["fullname"]		= true;
+$allowChange["old_password"]	= true;
+$allowChange["default_language"]= true;
+$allowChange["send_email"]		= false;
+$allowChange["member_file"]		= false;
+$allowChange["create_albums"]	= false;
+$allowChange["password"]		= $gallery->user->canChangeOwnPw() ? true : false;
+$allowChange["admin"]			= true;
+$allowChange["quota"]			= $gallery->user->isAdmin() ? true : false;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 

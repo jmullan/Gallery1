@@ -69,6 +69,8 @@ function toggleGraphics(show) {
 
 </script>
 
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/byteCalculator.js"></script>
+
 <div class="g-header">
     <div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
 </div>
@@ -258,10 +260,10 @@ foreach ($constants as $key => $val) {
 ?>
         <div align="center">
         	<input type="submit" name="go_back" disabled="disabled" value="<?php echo gTranslate('config', "&lt;&lt; Previous Step") ?>" class="g-button">
-                <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
-                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step &gt;&gt;") ?>" class="g-button">
-                <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+			<input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
+			<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
+			<input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step &gt;&gt;") ?>" class="g-button">
+			<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
         </div>
 
         <div class="clear"></div>

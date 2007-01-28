@@ -24,8 +24,8 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($uname, $new_password1, $new_password2, $fullname, $email, $defaultLanguage) =
-	getRequestVar(array('uname', 'new_password1', 'new_password2', 'fullname', 'email', 'defaultLanguage'));
+list($uname, $new_password1, $new_password2, $fullname, $email, $defaultLanguage, $quota) =
+	getRequestVar(array('uname', 'new_password1', 'new_password2', 'fullname', 'email', 'defaultLanguage', 'quota'));
 
 list($formaction, $canCreate, $canChangeOwnPw, $isAdmin, $send_email, $dismiss) =
 	getRequestVar(array('formaction', 'canCreate', 'canChangeOwnPw', 'isAdmin', 'send_email', 'dismiss'));
@@ -46,7 +46,8 @@ if (!empty($formaction) && $formaction == 'create') {
 	if (strcmp($new_password1, $new_password2)) {
 		$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
 		$errorCount++;
-	} else {
+	}
+	else {
 		$gErrors["new_password1"] =
 			$gallery->userDB->validPassword($new_password1);
 		if ($gErrors["new_password1"]) {
@@ -67,6 +68,7 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->setEmail($email);
 		$tmpUser->origEmail=$email;
 		$tmpUser->setDefaultLanguage($defaultLanguage);
+		$tmpUser->setQuota($quota);
 		$tmpUser->version = $gallery->user_version;
 		$tmpUser->log("register");
 		$tmpUser->save();
@@ -118,6 +120,8 @@ if (!empty($formaction) && $formaction == 'create') {
 	header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
 printPopupStart(gTranslate('core', "Create User"), '', 'left');
+
+echo '<script type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/byteCalculator.js"></script>';
 
 $canCreate = 0;
 

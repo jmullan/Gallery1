@@ -136,13 +136,33 @@ include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
 <?php echo gTranslate('core', "Your account information will be sent to the email address you provide.") ?>
 </p>
 
+<input type="checkbox" onClick="enableDisable()">Box f&uuml;r Dennis
 <div class="center">
 <input type="hidden" name="formaction" value="">
-<?php echo gButton('create', gTranslate('core', "_Send request"), "usercreate_form.formaction.value ='create'; usercreate_form.submit()"); ?>
+<?php echo gButton(
+	'create',
+	gTranslate('core', "_Send request"),
+	"usercreate_form.formaction.value ='create'; usercreate_form.submit()",
+	array('disabled' => null, 'class' => 'g-buttonDisable'));
+?>
 <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </div>
 </form>
-<script language="javascript1.2" type="text/JavaScript">
+
+<script type="text/javascript">
+ var create = document.getElementById('create');
+
+function enableDisable() {
+	if(create.disabled){
+		create.disabled = false;
+		create.className = 'g-button';
+	}
+	else {
+		create.disabled = true;
+		create.className = 'g-buttonDisable';
+	}
+}
+
 <!--
 // position cursor in top form field
 document.usercreate_form.uname.focus();

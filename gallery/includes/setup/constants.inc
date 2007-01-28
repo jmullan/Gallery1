@@ -1424,6 +1424,32 @@ $constants = array_merge($constants, array(
 	'group_captcha_end' => array(
 		'type' => 'group_end'
 	),
+	'group_quota' => array (
+		'type' => 'group_start',
+		'default' => 'none',
+		'title' => gTranslate('config',"Quota"),
+		'desc' => gTranslate('config', "If you enable this, administrators can set a maximum amount of diskspace a user is allowed to consum. If this limit is reached, no more uploads are allowed."),
+	),
+	'enableQuota' => array(
+		'prompt' => gTranslate('config', "Enable Quota ?"),
+		'desc' => '',
+		'value' => 'no',
+		'choices' => array(
+						'no'	=> gTranslate('config', "No"),
+						'yes'	=> gTranslate('config', "Yes"),
+		),
+		'optional' => 1,
+	),
+	'globalQuota' => array(
+		'prompt' => gTranslate('config', "Global quota"),
+		'desc' => gTranslate('config', "Quota is normally set per each user. But you can define here a quota that applies to ALL users (expect admins). Regardless if they have already a quota, or not."),
+		'value' => 0,
+		'type' => 'byteCalculator',
+		'optional' => 1,
+	),
+	'group_quota_end' => array(
+		'type' => 'group_end'
+	),
 	// Keep these two at the end of the list because they're hidden
 	'userDir' => array(
 		'desc' => "Filesystem location of user information",

@@ -30,8 +30,8 @@ list($save, $dismiss) =
 list($old_uname, $uname, $new_password1, $new_password2, $fullname) =
 	getRequestVar(array('old_uname', 'uname', 'new_password1', 'new_password2', 'fullname'));
 
-list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
-	getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
+list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin, $quota) =
+	getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin', 'quota'));
 
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -77,6 +77,7 @@ if (!empty($save)) {
 		$tmpUser->setDefaultLanguage($defaultLanguage);
 		$tmpUser->setCanCreateAlbums($canCreate);
 		$tmpUser->setCanChangeOwnPw($canChangeOwnPw);
+		$tmpUser->setQuota($quota);
 		$tmpUser->setIsAdmin($isAdmin);
 
 		// If a new password was entered, use it.  Otherwise leave
@@ -96,10 +97,7 @@ if (!empty($save)) {
 	}
 	else {
 		$errorText = gTranslate('core',"User information was not succesfully updated!");
-		foreach ($gErrors as $text) {
-			$errorText .= "\n<br>" . $text;
 
-		}
 		$notice_messages[] = array(
 			'type' => 'error',
 			'text' => $errorText
@@ -118,37 +116,41 @@ if (!$tmpUser) {
 }
 
 if ($tmpUser->isAdmin()) {
-	$allowChange["create_albums"] =  false;
-	$allowChange["canChangeOwnPw"] = false;
+	$allowChange["create_albums"]	= false;
+	$allowChange["canChangeOwnPw"]	= false;
 }
 else {
-	$allowChange["create_albums"] =  true;
-	$allowChange["canChangeOwnPw"] = true;
+	$allowChange["create_albums"]	= true;
+	$allowChange["canChangeOwnPw"]	= true;
 }
 
 if (!strcmp($tmpUser->getUsername(), $gallery->user->getUsername())) {
 	$allowChange["admin"] = true;
 }
 
-$fullname = $tmpUser->getFullname();
-$email = $tmpUser->getEmail();
-$defaultLanguage = $tmpUser->getDefaultLanguage();
+$fullname		= $tmpUser->getFullname();
+$email			= $tmpUser->getEmail();
+$defaultLanguage= $tmpUser->getDefaultLanguage();
 
-$allowChange["uname"] =			 true;
-$allowChange["email"] =			 true;
-$allowChange["fullname"] =		  true;
-$allowChange["admin"] =			 true;
-$allowChange["default_language"] =  true;
-$allowChange["send_email"] =		false;
-$allowChange["member_file"] =	   false;
-$allowChange["password"] =		  true;
-$allowChange["old_password"] =	  false;
+$allowChange["uname"] 			= true;
+$allowChange["email"]			= true;
+$allowChange["fullname"]		= true;
+$allowChange["admin"]			= true;
+$allowChange["default_language"]= true;
+$allowChange["send_email"]		= false;
+$allowChange["member_file"]		= false;
+$allowChange["password"]		= true;
+$allowChange["old_password"]	= false;
+$allowChange["quota"]			= $gallery->user->isAdmin();
 
-$canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;
-$isAdmin = $tmpUser->isAdmin() ? 1 : 0;
-$canChangeOwnPw = $tmpUser->canChangeOwnPw() ? 1: 0;
+$canCreate		= $tmpUser->canCreateAlbums() ? 1 : 0;
+$isAdmin		= $tmpUser->isAdmin() ? 1 : 0;
+$canChangeOwnPw	= $tmpUser->canChangeOwnPw() ? 1: 0;
+$quota			= $tmpUser->getQuota();
 
 printPopupStart(gTranslate('core', "Modify User"), '', 'left');
+
+echo '<script type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/byteCalculator.js"></script>';
 
 echo infoBox($notice_messages);
 
@@ -160,15 +162,16 @@ echo makeFormIntro('modify_user.php',
 	array('name' => 'usermodify_form'),
 	array('old_uname' => $uname, 'type' => 'popup')
 );
+
+echo "\n<br>";
+
+include(dirname(dirname(__FILE__)) . '/layout/userData.inc');
+
 ?>
 
-<br>
-
-<?php include(dirname(dirname(__FILE__)) . '/layout/userData.inc'); ?>
-
 <div align="center">
-<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-<?php echo gSubmit('dismiss', gTranslate('core', "_Back to usermanagement")); ?>
+	<?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
+	<?php echo gSubmit('dismiss', gTranslate('core', "_Back to usermanagement")); ?>
 </div>
 </form>
 </div>

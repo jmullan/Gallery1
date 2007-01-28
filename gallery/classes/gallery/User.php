@@ -30,17 +30,19 @@ class Gallery_User extends Abstract_User {
 	var $lastActionDate;
 	var $origEmail;
 		// the email from original account creation.  Just incase user goes feral
+	var $quota;
 
 	function Gallery_User() {
 		global $gallery;
 		Abstract_User::Abstract_User();
 		$this->setDefaultLanguage("");
 
-
 		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes
 		// that we perform the necessary upgrade.
 		$this->version = 4;
+
+		$this->quota = 0;
 	}
 
 	function load($uid) {
@@ -136,6 +138,13 @@ class Gallery_User extends Abstract_User {
 			$this->canChangeOwnPw = 1;
 		}
 
+		/* New attribut introduced in Gallery 1.6-RC1-b7
+		 *
+		*/
+		if ($this->version < 7)  {
+			$this->quota = 0;
+		}
+
 		$this->version = $gallery->user_version;
 
 		if ($this->save()) {
@@ -189,13 +198,36 @@ class Gallery_User extends Abstract_User {
 		);
 
 		if (!in_array($action, $valid_actions)) {
-			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"),
-								$action));
+			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"), $action));
 			return;
 		}
 
 		$this->lastAction = $action;
 		$this->lastActionDate = time();
+	}
+
+	/**
+	 * Set the quota for an user. Value is given in bytes.
+	 *
+	 * @param int $bytes
+	 * @author Jens Tkotz
+	 */
+	function setQuota($bytes) {
+		$this->quota = $bytes;
+	}
+
+	/**
+	 * Get the quota from an user. For admins its always 0.
+	 *
+	 * @return int		Quota value given in bytes.
+	 * @author Jens Tkotz
+	 */
+	function getQuota() {
+		if($this->isAdmin()) {
+			return 0;
+		}
+
+		return $this->quota;
 	}
 }
 

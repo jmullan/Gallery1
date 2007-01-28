@@ -390,6 +390,54 @@ class Abstract_User {
 			return false;
 		}
 	}
+
+	/**
+	 * Get the quota from an user.
+	 *
+	 * @return int		Quota in bytes.
+	 * @author Jens Tkotz
+	 */
+	function getQuota() {
+		return 0;
+	}
+
+	/**
+	 * Get the real effictive value.
+	 *
+	 * @return int	Quota in bytes.
+	 * @author Jens Tkotz
+	 */
+	function getEffectiveQuota() {
+		global $gallery;
+
+		if (isset($gallery->app->enableQuota) && $gallery->app->enableQuota == 'yes' &&
+			$gallery->app->globalQuota > $this->getQuota() &&
+			! $this->isAdmin())
+		{
+			return $gallery->app->globalQuota;
+		}
+		else {
+			return $this->getQuota();
+		}
+	}
+	/**
+	 * Is a user already over his quota limit ?
+	 *
+	 * @return boolean
+	 * @author Jens Tkotz
+	 */
+	function isOverQuota() {
+		global $gallery;
+
+		list($usageText, $usedBytes) = usrDiskUsage($this->uid);
+
+		if($usedBytes > $this->getEffectiveQuota()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 ?>
