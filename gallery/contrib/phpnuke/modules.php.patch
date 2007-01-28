@@ -1,0 +1,35 @@
+// Gallery SVN ID $Id$
+--- modules.php.orig	2004-06-28 14:43:15.000000000 +0200
++++ modules.php	2004-06-28 14:44:25.000000000 +0200
+@@ -95,29 +95,31 @@
+ 		    if ($view == 3 AND paid()) {
+ 				$modpath .= "modules/$name/$file.php";
+ 	    		if (file_exists($modpath)) {
+ 			    	include($modpath);
+ 	    		} else {
+ 			    	die ("Sorry, such file doesn't exist...");
+ 				}
+ 		    } else {
++				if ($view != 0) {
+	 				$pagetitle = "- "._ACCESSDENIED."";
+	 				include("header.php");
+	 				title("$sitename: "._ACCESSDENIED."");
+	 				OpenTable();
+	 				echo "<center><b>"._RESTRICTEDAREA."</b><br><br>"
+	 				    .""._MODULESSUBSCRIBER."";
+	 				if ($subscription_url != "") {
+	 					echo "<br>"._SUBHERE."";
+	 				}
+	 				echo "<br><br>"._GOBACK."";
+	 				CloseTable();
+	 				include("footer.php");
+	 				die();
++				}
+ 		    }
+ 		}
+     } else {
+ 		include("header.php");
+ 		OpenTable();
+ 		echo "<center>"._MODULENOTACTIVE."<br><br>"
+ 		    .""._GOBACK."</center>";
+ 		CloseTable();
