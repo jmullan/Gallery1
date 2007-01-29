@@ -96,6 +96,7 @@ if (getRequestVar('save')) {
 	$gallery->album->fields["thumb_frame"] = $thumb_frame;
 	$gallery->album->fields["image_frame"] = $image_frame;
 	$gallery->album->fields["showDimensions"] = $showDimensions;
+	$gallery->album->fields["dimensionsAsPopup"] = $dimensionsAsPopup;
 	$gallery->album->fields["ecards"] = $ecards;
 
 	$gallery->album->fields["nav_thumbs"] = $nav_thumbs;

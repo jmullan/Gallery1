@@ -351,6 +351,7 @@ class Album {
 			'thumb_frame',
 			'image_frame',
 			'showDimensions',
+			'dimensionsAsPopup',
 			'background',
 			'nav_thumbs',
 			'nav_thumbs_style',

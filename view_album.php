@@ -564,6 +564,8 @@ if ($numPhotos) {
 		$j = 1;
 
 		while ($j <= $cols && $i <= $numPhotos) {
+			unset($gallery->html_wrap);
+
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
 			$borderwidth = $gallery->html_wrap['borderWidth'] = $borderwidth;
@@ -606,10 +608,10 @@ if ($numPhotos) {
 			 * Element is a movie
 			 */
 			if ($gallery->album->isMovieByIndex($i)) {
-				$gallery->html_wrap['imageTag'] = $gallery->album->getThumbnailTag($i);
-				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->session->albumName, $id);
-				$gallery->html_wrap['type'] = 'inline_moviethumb.frame';
-				$gallery->html_wrap['frame'] = $gallery->album->fields['thumb_frame'];
+				$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
+				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
+				$gallery->html_wrap['type']			= 'inline_moviethumb.frame';
+				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 			}
 			/**
 			 * Element is a subalbum
@@ -617,7 +619,7 @@ if ($numPhotos) {
 			elseif (isset($myAlbum)) {
 				// We already loaded this album - don't do it again, for performance reasons.
 
-				$gallery->html_wrap['imageTag']	= $myAlbum->getHighlightTag(
+				$gallery->html_wrap['imageTag']		= $myAlbum->getHighlightTag(
 					$scaleTo,
 					array('alt' => sprintf(
 						gTranslate('core', "Highlight for album: %s"),
@@ -625,9 +627,9 @@ if ($numPhotos) {
 					)
 				);
 
-				$gallery->html_wrap['imageHref'] = makeAlbumUrl($gallery->album->getAlbumName($i));
-				$gallery->html_wrap['frame'] = $gallery->album->fields['album_frame'];
-				$gallery->html_wrap['type'] = 'inline_albumthumb.frame';
+				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
+				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];
+				$gallery->html_wrap['type']			= 'inline_albumthumb.frame';
 			}
 			/**
 			 * Element is a picture
@@ -635,6 +637,7 @@ if ($numPhotos) {
 			else {
 				$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
+
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 				$gallery->html_wrap['type']			= 'inline_photothumb.frame';
 
@@ -642,14 +645,16 @@ if ($numPhotos) {
 				if ($gallery->album->fields['showDimensions'] == 'yes') {
 					$photo	= $gallery->album->getPhoto($i);
 					$image	= $photo->image;
+
 					if (!empty($image)) {
+						list($wr, $hr) = $image->getDimensions();
+						list($wf, $hf) = $image->getRawDimensions();
+
 						$viewFull = $gallery->user->canViewFullImages($gallery->album);
 						$fullOnly = (isset($gallery->session->fullOnly) &&
 							!strcmp($gallery->session->fullOnly, 'on') &&
 							!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
 
-						list($wr, $hr) = $image->getDimensions();
-						list($wf, $hf) = $image->getRawDimensions();
 
 						/* display file sizes if dimensions are identical */
 						if ($wr == $wf && $hr == $hf && $viewFull && $photo->isResized()) {
@@ -661,17 +666,38 @@ if ($numPhotos) {
 							$fsf = '';
 						}
 
+						$attrlist = array();
 						if (($photo->isResized() && !$fullOnly) || !$viewFull) {
+							if($gallery->album->fields['dimensionsAsPopup'] == 'yes') {
+								$sizedImageUrl	= $gallery->album->getPhotoPath($i);
+								$attrlist		= array('onClick' => popup($sizedImageUrl, true, $hr, $wr));
+
+							}
+							else {
+								$sizedImageUrl = makeAlbumUrl($gallery->session->albumName, $image->name);
+							}
+
 							$albumItems[$nr]['dimensions'] = galleryLink(
-							makeAlbumUrl($gallery->session->albumName, $image->name),
-							"[${wr}x{$hr}${fsr}] "
+								$sizedImageUrl,
+								"[${wr}x{$hr}${fsr}] ",
+								$attrlist
 							);
 						}
 
+						$attrlist = array();
 						if ($viewFull) {
+								if($gallery->album->fields['dimensionsAsPopup'] == 'yes') {
+								$fullImageUrl	= $gallery->album->getPhotoPath($i, true);
+								$attrlist		= array('onClick' => popup($fullImageUrl, true, $hf, $wf));
+							}
+							else {
+								$fullImageUrl = makeAlbumUrl($gallery->session->albumName, $image->name, array('full' => true));
+							}
+
 							$albumItems[$nr]['dimensions'] .= galleryLink(
-								makeAlbumUrl($gallery->session->albumName, $image->name, array('full' => 1)),
-								"[${wf}x${hf}${fsf}]"
+								$fullImageUrl,
+								"[${wf}x${hf}${fsf}]",
+								$attrlist
 							);
 						}
 					}

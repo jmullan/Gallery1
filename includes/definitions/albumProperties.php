@@ -236,16 +236,22 @@ $properties = array(
 		'value' => $gallery->album->fields["display_clicks"]
 	),
 	'item_owner_display' => array(
-		'prompt' => gTranslate('common', "Display owners name with caption"),
+		'prompt' => gTranslate('common', "Display owners name with caption?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
 		'value' => $gallery->album->fields["item_owner_display"]
 	),
 	'showDimensions' => array(
-		'prompt' => gTranslate('common', "Display clickable image dimensions"),
+		'prompt' => gTranslate('common', "Display clickable image dimensions?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
 		'value' => $gallery->album->fields["showDimensions"]
+	),
+	'dimensionsAsPopup' => array(
+		'prompt'	=> gTranslate('common', "Open dimensions-link as popup?"),
+		'desc'		=> gTranslate('common', "If you show the dimensions-links, you can choose wether you just want the images shown in a popup, or open the complete photoview."),
+		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
+		'value' => $gallery->album->fields["dimensionsAsPopup"]
 	),
 	'use_exif' => array(
 		'prompt' => gTranslate('common', "Display EXIF data?"),

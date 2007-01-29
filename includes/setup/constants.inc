@@ -671,7 +671,7 @@ $constants = array_merge($constants, array(
 	'group_email' => array (
 		'type' => 'group_start',
 		'default' => 'none',
-		'title' => gTranslate('config',"Email and Registration"),
+		'title' => gTranslate('config',"Email"),
 		'desc' => sprintf(gTranslate('config',"If you are having problems with email, please run the %s diagnostic."),
 		'<a href="check_mail.php">' . gTranslate('config',"Check Email") . '</a>'),
 	),
@@ -718,34 +718,6 @@ $constants = array_merge($constants, array(
 		'type' => 'textarea',
 		'value' => '',
 		'attrs' => array('cols' => 50, 'rows' => 11)
-	),
-	'selfReg' => array(
-		'prompt' => gTranslate('config',"Allow visitors to self register."),
-		'desc' => gTranslate('config',"Enabling this will allow visitors to your site to create their own login accounts.") . '<br>' .
-		  '<span class="g-attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
-		'choices' => array(
-			'yes' => gTranslate('config',"Yes"),
-			'no' => gTranslate('config',"No")
-		),
-		'value' => 'no',
-		'requires-features' => array('emailOn' => gTranslate('config',"Email"))
-	),
-	'selfRegCreate' => array(
-		'prompt' => gTranslate('config',"Self registered users can create albums."),
-		'desc' => gTranslate('config',"Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .'<br>',
-		'choices' => array(
-			'yes' => gTranslate('config',"Yes"),
-			'no' => gTranslate('config',"No")
-		),
-		'value' => 'no'),
-	'multiple_create' => array(
-		'prompt' => gTranslate('config',"Enable bulk account creation"),
-		'desc' => gTranslate('config',"This option allows you to create many new user accounts at one time by creating a file of new users.") .'<br>',
-		'choices' => array(
-			'yes' => gTranslate('config',"Yes"),
-			'no' => gTranslate('config',"No")
-		),
-		'value' => 'no'
 	),
 	'adminCommentsEmail' => array(
 		'desc' => gTranslate('config',"This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"),
@@ -828,6 +800,43 @@ $constants = array_merge($constants, array(
 		'optional' => 1
 	),
 	'group_email_end' => array (
+		'type' => 'group_end',
+	),
+	'group_register' => array(
+		'type' => 'group_start',
+		'default' => 'none',
+		'title' => gTranslate('config',"Registration"),
+		'desc' => gTranslate('config',"Adds the possibility that user can registrate themself.") .
+			'<div class="g-attention">' . gTranslate('config',"You need to enable emailing if you want to use this feature.") . '</div>',
+	),
+	'selfReg' => array(
+		'prompt' => gTranslate('config',"Allow visitors to self register."),
+		'desc' => gTranslate('config',"Enabling this will allow visitors to your site to create their own login accounts."),
+		'choices' => array(
+			'yes' => gTranslate('config',"Yes"),
+			'no' => gTranslate('config',"No")
+		),
+		'value' => 'no',
+		'requires-features' => array('emailOn' => gTranslate('config',"Email"))
+	),
+	'selfRegCreate' => array(
+		'prompt' => gTranslate('config',"Self registered users can create albums."),
+		'desc' => gTranslate('config',"Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled.") .'<br>',
+		'choices' => array(
+			'yes' => gTranslate('config',"Yes"),
+			'no' => gTranslate('config',"No")
+		),
+		'value' => 'no'),
+	'multiple_create' => array(
+		'prompt' => gTranslate('config',"Enable bulk account creation"),
+		'desc' => gTranslate('config',"This option allows you to create many new user accounts at one time by creating a file of new users.") .'<br>',
+		'choices' => array(
+			'yes' => gTranslate('config',"Yes"),
+			'no' => gTranslate('config',"No")
+		),
+		'value' => 'no'
+	),
+	'group_register_end' => array(
 		'type' => 'group_end',
 	),
 	'group_slideshow' => array (

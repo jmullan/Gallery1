@@ -286,8 +286,17 @@ $defaults = array(
 		'inst_type' => 'advanced'
 	),
 	'showDimensions' => array(
-		'prompt' => gTranslate('config',"Display clickable image dimensions"),
+		'prompt' => gTranslate('config',"Clickable image dimensions"),
 		'desc' => gTranslate('config',"Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."),
+		'choices' => array(
+			'yes' => gTranslate('config',"Yes"),
+			'no' => gTranslate('config',"No")
+		),
+		'value' => 'no'
+	),
+	'dimensionsAsPopup' => array(
+		'prompt' => gTranslate('config',"Dimensions-link opens popup"),
+		'desc' => gTranslate('config',"If you show the dimensions-links, you can choose wether you just want the images shown in a popup, or open the complete photoview."),
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")

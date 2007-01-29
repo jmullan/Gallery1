@@ -347,7 +347,7 @@ function getImagePath($name, $skinname = '') {
  * @param	string	$name		Name of Image
  * @param	string	$skinname	Optional Name skin, if file is not found, fallback to default location
  * @return	string	$retPath	Complete Path to the Image
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function getAbsoluteImagePath($name, $skinname = '') {
 	global $gallery;
@@ -376,7 +376,7 @@ function getAbsoluteImagePath($name, $skinname = '') {
  * Checkes wether an URL is relative or not
  * @param	string	$url
  * @return	boolean
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function urlIsrelative($url) {
 	if (substr($url, 0,4) == 'http') {
@@ -500,7 +500,7 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
  *
  * @param string $link
  * @return string
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function extractLinkText($link) {
 	$hits = preg_match('{<a(?:\s*[^>]*>)(.*?)</a>}si', $link, $matches);

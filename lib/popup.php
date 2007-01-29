@@ -105,15 +105,15 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 function popup_link2($title, $url, $args = array()) {
 	global $gallery;
 
-	$url_is_complete = isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
-	$online_only	 = isset($args['online_only'])		? $args['online_only']		: true;
-	$height			 = isset($args['height'])			? $args['height']			: 500;
-	$width			 = isset($args['width'])			? $args['width']			: 500;
-	$cssclass		 = isset($args['cssclass'])			? $args['cssclass']			: '';
-	$extraJS		 = isset($args['extraJS'])			? $args['extraJS']			: '';
-	$addBrackets	 = isset($args['addBrackets'])		? $args['addBrackets']		: false;
-	$accesskey	   = isset($args['accesskey'])		? $args['accesskey']		: true;
-	$icon			= isset($args['icon'])				? $args['icon']				: '';
+	$url_is_complete	= isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
+	$online_only		= isset($args['online_only'])		? $args['online_only']		: true;
+	$height				= isset($args['height'])			? $args['height']			: 500;
+	$width				= isset($args['width'])				? $args['width']			: 500;
+	$cssclass			= isset($args['cssclass'])			? $args['cssclass']			: '';
+	$extraJS			= isset($args['extraJS'])			? $args['extraJS']			: '';
+	$addBrackets		= isset($args['addBrackets'])		? $args['addBrackets']		: false;
+	$accesskey			= isset($args['accesskey'])			? $args['accesskey']		: true;
+	$icon				= isset($args['icon'])				? $args['icon']				: '';
 
 	if ( !empty($gallery->session->offline) && $online_only ) {
 		return null;
