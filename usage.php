@@ -59,13 +59,13 @@ $actionChoice = array(
 );
 
 $sortbyChoices = array(
-	'bytes'	=> gTranslate('core',"Used space"),
-	'uname'	=> gTranslate('core',"Username")
+	'bytes'	=> gTranslate('core',"used space"),
+	'uname'	=> gTranslate('core',"username")
 );
 
 $orderChoices = array(
-	'desc'	=> gTranslate('core',"Descending"),
-	'asc'	=> gTranslate('core',"Ascending")
+	'desc'	=> gTranslate('core',"descending"),
+	'asc'	=> gTranslate('core',"ascending")
 );
 
 /* --- Lets Start the real output --- */
@@ -88,7 +88,7 @@ if ($gallery->user->isAdmin()) {
 	echo drawSelect('action', $actionChoice, $action);
 	echo gTranslate('core', "sorted by:");
 	echo drawSelect('sortby', $sortbyChoices, $sortby);
-	echo gTranslate('core', "ordered by:");
+	echo gTranslate('core', "ordered:");
 	echo drawSelect('order', $orderChoices, $order);
 	echo gSubmit('submit', gTranslate('core', "Do it !"));
 	echo "</form>\n<br>";
