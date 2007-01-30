@@ -16,15 +16,15 @@ if(!includeTemplate('navigator.tpl')) {
 			$end = min(2 * $navigator["spread"], $navigator["maxPages"]);
 		}
 		if ($end == $navigator["maxPages"]) {
-			$begin = max(1, $end - 2 * $navigator["spread"]);
+			$begin = max(1, $end - 2 * $navigator["spread"] + 1);
 		}
 
 		if($begin > $navigator["spread"]) {
-			$beginNextBlock = max(1, $navigator["page"] - 2 * $navigator["spread"]);
+			$beginNextBlock = max(1, $begin - $navigator["spread"]);
 		}
 
-		if($end < $navigator["maxPages"]) {
-			$endNextBlock = min($navigator["page"] + 2 * $navigator["spread"], $navigator["maxPages"]);
+		if($end < ($navigator["maxPages"] - $navigator["spread"])) {
+			$endNextBlock = min($end + $navigator["spread"], $navigator["maxPages"]);
 		}
 
 		// If the border color is not passed in, we do a white one

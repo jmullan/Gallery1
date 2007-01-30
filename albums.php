@@ -73,6 +73,7 @@ list ($numPhotos, $numAccess, $numAlbums) = $albumDB->numAccessibleItems($galler
 if (empty($gallery->session->albumListPage) || $gallery->session->albumListPage < 1) {
 	$gallery->session->albumListPage = 1;
 }
+
 $perPage = $gallery->app->albumsPerPage;
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
