@@ -12,15 +12,15 @@ if(!includeTemplate('navigator.tpl')) {
 		$end = min(2 * $navigator["spread"], $navigator["maxPages"]);
 	}
 	if ($end == $navigator["maxPages"]) {
-		$begin = max(1, $end - 2 * $navigator["spread"]);
+		$begin = max(1, $end - 2 * $navigator["spread"] + 1);
 	}
 
 	if($begin > $navigator["spread"]) {
-	   $beginNextBlock = max(1, $navigator["page"] - 2 * $navigator["spread"]);
+		$beginNextBlock = max(1, $begin - $navigator["spread"]);
 	}
 
-	if($end < $navigator["maxPages"]) {
-	   $endNextBlock = min($navigator["page"] + 2 * $navigator["spread"], $navigator["maxPages"]);
+	if($end < ($navigator["maxPages"] - $navigator["spread"])) {
+		$endNextBlock = min($end + $navigator["spread"], $navigator["maxPages"]);
 	}
 
 	// If the border color is not passed in, we do a white one
@@ -55,7 +55,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$fpContent ='<a href="'. $url . $navigator['pageVar'] .'=1">';
 		$fpContent .='<img src="'. $fpImgUrl . '"  alt="'. $fpAltText .'" title="'. $fpAltText .'">';
 		$fpContent .='</a>';
-	
+
 		$ppContent ='<a href="'. $url . $navigator['pageVar'] .'='. $prevPage .'">';
 		$ppContent .='<img src="'. $ppImgUrl . '"  alt="'. $ppAltText .'" title="'. $ppAltText .'">';
 	        $ppContent .='</a>';
@@ -66,19 +66,21 @@ if(!includeTemplate('navigator.tpl')) {
 		$ppContent='&nbsp;';
 
 		$pClass='';
-	} 
+	}
 
-	#-- 'page numbers' cell ---                  
+	#-- 'page numbers' cell ---
 	if ($begin != $end) {
 		$ndlUrl = getImagePath('nav_dot_left.gif');
 		$ndrUrl = getImagePath('nav_dot_right.gif');
 		$ndUrl = getImagePath('nav_dot.gif');
-	
+
 		$mpContent = "\n\t\t". '<table align="center" border="0" cellpadding="0" cellspacing="0"><tr>';
+
 		if (isset($beginNextBlock)) {
 		     $title = sprintf(_("Jump to page %d"), $beginNextBlock);
 		     $mpContent .= "\n\t". '<td><a title="'. $title .'" href="'. $url . $navigator['pageVar'] .'='. $beginNextBlock .'">...</a></td>';
 		}
+
 		for ($i = $begin; $i <= $end; $i++) {
 			if ($i == $current) {
 				$number = '<span class="nav"><b>'. $i .'</b></span>';
@@ -101,10 +103,11 @@ if(!includeTemplate('navigator.tpl')) {
 		}
 
 		$mpContent .="\n\t<td>&nbsp;$rightdot";
+
 		if (isset($endNextBlock)) {
 		    $title = sprintf(_("Jump to page %d"), $endNextBlock);
                     $mpContent .= '<a title="'. $title .'" href="'. $url . $navigator['pageVar'] .'='. $endNextBlock .'">...</a>';
-                }		
+                }
 		$mpContent .= '</td></tr></table>';
 	} else {
 		$mpContent ='';
