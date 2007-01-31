@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -35,7 +35,7 @@ function fs_copy($source, $dest) {
     $result = copy(fs_import_filename($source, 0), fs_import_filename($dest, 0));
     chmod (fs_import_filename($dest, 0), 0644);
 
-    return $result;	
+    return $result;
 }
 
 function fs_file_exists($filename) {
@@ -112,9 +112,9 @@ function fs_rename($oldname, $newname) {
 	$oldname = fs_import_filename($oldname, 0);
 	$newname = fs_import_filename($newname, 0);
 
-	/* 
-	 * It appears that win32 doesn't like it when you rename 
-	 * a file to end with ".dat.bak".  Why?  This is very 
+	/*
+	 * It appears that win32 doesn't like it when you rename
+	 * a file to end with ".dat.bak".  Why?  This is very
 	 * annoying.
 	 */
 	$newname = str_replace(".dat.bak", ".bak", $newname);
@@ -191,14 +191,14 @@ function fs_import_filename($filename, $for_exec=1) {
 		if (strstr($filename, " ")) {
 			$filename = "\"$filename\"";
 		}
-	}	
+	}
 
 	debug("Import after: $filename");
 	return $filename;
 }
 
 function fs_export_filename($filename) {
-	
+
 	# Convert "d:\winnt\temp" to "d:/winnt/temp"
 	#
 	while (strstr($filename, "\\\\")) {
@@ -216,11 +216,11 @@ function fs_exec($cmd, &$results, &$status, $debugfile) {
 }
 
 function fs_tempdir() {
-	return export_filename($gallery->app->tmpDir); 
+	return export_filename($gallery->app->tmpDir);
 }
 
 function fs_is_executable($filename) {
-	return eregi(".(exe|com|vbs)$", $filename);
+	return eregi("\.(exe|com|vbs|vb|bat|cmd)$", $filename);
 }
 
 function debug($msg) {
