@@ -223,7 +223,7 @@ function fs_tempdir() {
 }
 
 function fs_is_executable($filename) {
-	return eregi(".(exe|com|vbs)$", $filename);
+	return eregi("\.(exe|com|vbs|vb|bat|cmd)$", $filename);
 }
 
 function debug($msg) {
