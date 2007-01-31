@@ -47,7 +47,7 @@ foreach ($outfile_list as $outfile => $optional) {
 		$error++;
 		$notice_messages[sizeof($notice_messages)+1] = array(
 			'type' => 'error',
-			'text' => sprintf(gTranslate('config', "You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs)
+			'text' => sprintf(gTranslate('config', "You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs)
 		);
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	}
@@ -58,7 +58,7 @@ foreach ($outfile_list as $outfile => $optional) {
 	elseif (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && $optional) {
 		$notice_messages[sizeof($notice_messages)+1] = array(
 			'type' => 'warning',
-			'text' => sprintf(gTranslate('config', "File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs)
+			'text' => sprintf(gTranslate('config', "The %s file in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs)
 		);
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	}
@@ -66,7 +66,7 @@ foreach ($outfile_list as $outfile => $optional) {
 		$error++;
 		$notice_messages[sizeof($notice_messages)+1] = array(
 			'type' => 'error',
-			'text' => sprintf(gTranslate('config', "File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)
+			'text' => sprintf(gTranslate('config', "The %s file in your Gallery mainfolder is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)
 		);
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
