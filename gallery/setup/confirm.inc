@@ -41,7 +41,7 @@ $outfile_list = array('config.php' => false, '.htaccess' => true);
 foreach ($outfile_list as $outfile => $optional) {
 	if (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && !$optional) {
 		$error++;
-		$viewheader .= '<p>'. gallery_error(sprintf(_("You must create an empty file named %s and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs) ."</p>\n");
+		$viewheader .= '<p>'. gallery_error(sprintf(_("You must create an empty file named %s in your Gallery mainfolder and chmod it 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", $docs) ."</p>\n");
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	}
 	elseif ($fd = @fs_fopen(GALLERY_CONFDIR ."/$outfile", 'a')) {
@@ -49,11 +49,11 @@ foreach ($outfile_list as $outfile => $optional) {
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
 	elseif (!fs_file_exists(GALLERY_CONFDIR . "/$outfile") && $optional) {
-		$viewheader .= gallery_error(sprintf(_("File %s is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs));
+		$viewheader .= gallery_error(sprintf(_("File %s in your Gallery mainfolder is optional, however some %s features will be disabled unless you create an empty file named %s and chmod it to 777 before proceeding.  See the %s for more details."), "<i><b>$outfile</b></i>", Gallery(), "<i><b>$outfile</b></i>", $docs));
 		${str_replace('.', '', $outfile) . '_file'} = 0;
 	} else {
 		$error++;
-		$viewheader .= '<br>'. gallery_error(sprintf(_("File %s is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
+		$viewheader .= '<br>'. gallery_error(sprintf(_("File %s in your Gallery mainfolder is not writable by the webserver. - chmod it 777 before proceeding.  See %s for more details."), "<i><b>$outfile</b></i>", $docs)) . "</p>\n";
 		${str_replace('.', '', $outfile) . '_file'} = 1;
 	}
 }
@@ -107,7 +107,7 @@ $graphtest = array();
 
 $continueTypes = array('block_start', 'block_end', 'group_start', 'group_end', 'subgroup', 'subgroup_end');
 foreach ($constants as $key => $val) {
-	
+
 	if (isset($val['enabled']) && $val['enabled'] == 'no') continue;
 
 	if (isset($val['type']) && in_array($val['type'], $continueTypes)) {
@@ -117,15 +117,15 @@ foreach ($constants as $key => $val) {
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
 
-/* 
+/*
 ** This is a somewhat strange workaround i made for a strange SunOS with
 ** register global On an Magic Quotes On.
 ** The problem is that we have send/get hidden fields which are named like
 ** foo[bar]. So the result is, the $key=foo[bar] and $gallery->session->configForm->$key seems to fail.
-** The former solution were to do create a string which is like the value 
+** The former solution were to do create a string which is like the value
 ** of $key and put it in $real via eval().
 ** This also seemed not to work.
-** 06/2004, Jens Tkotz 
+** 06/2004, Jens Tkotz
 */
 	if ($bracketStart > 0 && $bracketEnd > 0) {
 		$subKey = substr($key,0, $bracketStart);
@@ -158,7 +158,7 @@ foreach ($constants as $key => $val) {
 	if ($key == 'geeklog_dir' && $real == '/path/to/geeklog/public_html') {
 		$real = '';
 	}
-	
+
 	if ((is_array($real) && join('', $real) === '') || $real == '') {
 		if (isset($constants[$key]['remove_empty'])) {
 			continue;
@@ -274,8 +274,8 @@ foreach ($constants as $key => $val) {
 						'</code></b><br><br>',
 						'<br><b><code>' .
 						"chmod -R 777 $dir</code>" .
-						'</code></b><br><br>', 
-						'<a href="phpinfo.php">open_basedir</a>', 
+						'</code></b><br><br>',
+						'<a href="phpinfo.php">open_basedir</a>',
 						'open_basedir'));
 				$error++;
 				continue;
@@ -300,7 +300,7 @@ foreach ($constants as $key => $val) {
 			} else {
 			    list($success, $fail) = $func($real);
 			}
-			
+
 			foreach ($fail as $fkey => $fval) {
 				if (isset($fkey) && isset($constants[$key][$fkey])) {
 					$gallery->session->configData .= gallery_error($constants[$key][$fkey]);
@@ -348,7 +348,7 @@ foreach ($constants as $key => $val) {
  * Don't bother if we are configuring for ImageMagick.
  */
 if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
-	/* 
+	/*
 	 * If the graph path is not in the open_basedir list, then we can't tell.
      * Assume whatever they entered is correct and hope for the best
 	 */
@@ -372,7 +372,7 @@ if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
 	}
 }
 
-/* 
+/*
  * Make sure they picked a graphics package to use, and that the package they
  * chose is configured properly.
  */
@@ -388,7 +388,7 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
 }
 
 if (isset($warn_about_open_basedir)) {
-	$viewheader .= '<code><hr><b>'. _("Note:") .'</b> '. 
+	$viewheader .= '<code><hr><b>'. _("Note:") .'</b> '.
 			_("Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
 			' (' . ini_get('open_basedir') . ')  ' .
 			sprintf(_("This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
@@ -400,13 +400,13 @@ $gallery->session->configData .= "\n";
 $gallery->session->configData .= "/* Defaults */\n";
 //print_r($gallery->session->configForm);
 foreach ($defaults as $key => $val) {
-	if (isset($val['type']) && 
-			($val['type'] == 'block_start' || 
+	if (isset($val['type']) &&
+			($val['type'] == 'block_start' ||
 			 $val['type'] == 'block_end' ||
 			 $val['type'] == 'separator' ||
 			 $val['type'] == 'group_start' ||
 			 $val['type'] == 'group_end' ||
-			 $val['type'] == 'separator')) { 
+			 $val['type'] == 'separator')) {
 		continue;
 	}
 
@@ -419,7 +419,7 @@ foreach ($defaults as $key => $val) {
 		}
 		// Protect quote characters to avoid screwing up HTML forms
 		$gallery->session->configForm->$key = array_str_replace('"', '&quot;', $gallery->session->configForm->$key);
-		
+
 		if (is_array($gallery->session->configForm->$key)) {
 			foreach ($gallery->session->configForm->$key as $sub_key => $sub_value) {
 				if (is_array ($sub_value)) {
@@ -431,7 +431,7 @@ foreach ($defaults as $key => $val) {
 				} else {
 					$string = "\$gallery->app->default[\"$key\"][] = \"$sub_value\";\n";
 					$gallery->session->configData .= $string;
-				} 
+				}
 			}
 		} else {
 			$gallery->session->configData .= defaults($key, $gallery->session->configForm->$key);
@@ -458,7 +458,7 @@ foreach ($defaults as $key => $val) {
 $footer = "?>\n";
 ?>
 <div class="sitedesc">
-<?php 
+<?php
 if (!$error) {
 	echo _("Confirm that the settings you entered came through correctly.  If you find this page confusing, you can safely ignore it.");
 } else {
