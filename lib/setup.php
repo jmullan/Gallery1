@@ -351,7 +351,17 @@ function getPath() {
 	return $path;
 }
 
+/**
+ * Tries to locate a file at various places
+ *
+ * @param string	$filename		The file to find
+ * @param string	$extraDir		Tries especially to find the file in that folder
+ * @param boolean	$ignorePath		? FIXME ?
+ * @return strng 	$dir			'' if not found, otherwise the path where the file is.
+ */
 function locateDir($filename, $extraDir = '', $ignorePath = false) {
+	$dir = '';
+
 	if (fs_file_exists("$extraDir/$filename")) {
 		$dir = $extraDir;
 	}
