@@ -375,7 +375,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
-		gTranslate('core', "sl_ideshow"),
+		gTranslate('core', "slidesho_w"),
 		array(),
 		'presentation.gif'
 	);
