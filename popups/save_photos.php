@@ -347,9 +347,9 @@ $upload_started = false;
 
 echo "\n</div>";
 
-echo debugMessage("Now we start processing the given Files", __FILE__, __LINE__,1);
+echo debugMessage("Now we start processing the given Files. (If they were given)", __FILE__, __LINE__,1);
 
-$photoCount = sizeof($_FILES['userfile']['name']);
+$photoCount = isset($_FILES['userfile']) ? sizeof($_FILES['userfile']['name']) : 0;
 
 if(isset($uploadTry) || $photoCount > 0) {
 	echo '<div class="g-content-popup left">';
