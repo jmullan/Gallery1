@@ -152,14 +152,14 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-		gTranslate('core', "sl_ideshow"), array(), 'presentation.gif'
+		gTranslate('core', "slidesho_w"), array(), 'presentation.gif'
 	);
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 	$iconElements[] = galleryLink(
 		doCommand("new-album", array(), "view_album.php"),
-		gTranslate('core', "_new album"), array(), 'new_album.gif', true
+		gTranslate('core', "new _album"), array(), 'new_album.gif', true
 	);
 }
 
@@ -175,7 +175,7 @@ if ($loggedIn) {
 
 		$iconElements[] = galleryLink(
 			makeGalleryUrl('admin-page.php'),
-			gTranslate('core', "_admin page"), array(), 'admin.gif', true
+			gTranslate('core', "ad_min page"), array(), 'admin.gif', true
 		);
 
 		$docsUrl = galleryDocs('admin');
@@ -189,7 +189,7 @@ if ($loggedIn) {
 
 	if ($gallery->userDB->canModifyUser()) {
 		$iconElements[] = popup_link(
-			gTranslate('core', "_preferences"),
+			gTranslate('core', "pr_eferences"),
 			'user_preferences.php', false, true, 500, 500, '','','preferences.gif'
 		);
 	}
