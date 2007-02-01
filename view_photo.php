@@ -176,12 +176,12 @@ $navigator["bordercolor"] = $bordercolor;
 $breadcrumb["text"] = returnToPathArray($gallery->album, true);
 
 $extra_fields = $gallery->album->getExtraFields(false);
-$title = NULL;
+$g_pageTitle = NULL;
 if (in_array("Title", $extra_fields)) {
-	$title = $gallery->album->getExtraField($index, "Title");
+	$g_pageTitle = $gallery->album->getExtraField($index, "Title");
 }
-if (!$title) {
-	$title = $photo->image->name;
+if (!$g_pageTitle) {
+	$g_pageTitle = $photo->image->name;
 }
 
 $maxlength = isset($gallery->app->comments_length) ? $gallery->app->comments_length : 0;

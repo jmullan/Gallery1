@@ -31,7 +31,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html>
 <head>
-  <title><?php echo clearGalleryTitle() . ' :: '. $gallery->album->fields["title"] . ' :: '. $title ; ?></title>
+  <title><?php echo clearGalleryTitle() . ' :: '. $gallery->album->fields["title"] . ' :: '. $g_pageTitle ; ?></title>
   <?php
   common_header(array('metaTags' => $metaTags));
 
@@ -62,9 +62,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   }
 
   if( ! empty($gallery->album->fields["linkcolor"]) ||
-	!empty($gallery->album->fields["bgcolor"]) ||
-	!empty($gallery->album->fields["textcolor"])) {
-
+	  !empty($gallery->album->fields["bgcolor"]) ||
+	  !empty($gallery->album->fields["textcolor"]))
+  {
 	echo "\n<style type=\"text/css\">";
 	// the link colors have to be done here to override the style sheet
 	if ($gallery->album->fields["linkcolor"]) {

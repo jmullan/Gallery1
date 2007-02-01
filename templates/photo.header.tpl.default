@@ -26,7 +26,7 @@
  * Especially when you run Gallery embedded.
 */
 includeTemplate("overall.header");
-
+global $g_pageTitle;
 /*
  * This is the normal header used at:
  *	- Photo View
@@ -35,5 +35,5 @@ includeTemplate("overall.header");
 ?>
 
     <div class="g-header">
-        <div class="g-pagetitle"><?php echo $gallery->app->galleryTitle ?></div>
+        <div class="g-pagetitle"><?php echo $gallery->album->fields["title"] . ' :: '. $g_pageTitle ?></div>
     </div>
