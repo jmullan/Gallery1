@@ -530,6 +530,19 @@ function rotate_image($src, $dest, $target, $type) {
 	}
 }
 
+/**
+ * The width and height give the size of the image that remains after cropping
+ * The offsets specify the location of the upper left corner of the cropping region
+ * measured downward and rightward with respect to the upper left corner of the image.
+ *
+ * @param string	$src	absolute path to the source image.
+ * @param string	$dest	absolute path to the destination image. Can be the same as $src
+ * @param int		$offsetX
+ * @param int		$offsetY
+ * @param int		$width
+ * @param int		$height
+ * @return boolean			true if successfull, otherwise false
+ */
 function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 	echo debugMessage(gTranslate('core', "Cropping Image"),__FILE__, __LINE__);
 	global $gallery;

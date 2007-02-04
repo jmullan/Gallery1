@@ -129,7 +129,7 @@ function generateAttrs($attrList) {
  * Returns the HTML code for a selectbox
  *
  * @param string  $name		 Name attribute of the selectbox
- * @param array   $options	  Array of options. Format 'value' => 'text'
+ * @param array   $options	 Array of options. Format 'value' => 'text'
  * @param mixed   $selected	 String or integer, if a value or key is equal this, the entry is selected.
  * @param integer $size		 Size of the box, default 1
  * @param array   $attrList	 Optional Attributs for the selectbox
@@ -163,7 +163,7 @@ function drawSelect($name, $options, $selected = '', $size = 1, $attrList = arra
  * Returns the HTML code for a selectbox
  *
  * @param string  $name		 Name attribute of the selectbox
- * @param array   $options	  Array of options. Format 'trash' => array('text' => .., 'value' => '', 'selected' => set/not set
+ * @param array   $options	 Array of options. Format 'trash' => array('text' => .., 'value' => '', 'selected' => set/not set
  * @param array   $attrList	 Optional Attributs for the selectbox
  * @return string $html
  * @author Jens Tkotz
@@ -409,13 +409,13 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
 /**
  * Returns the HTML Code for an input element
  *
- * @param string $type			  E.g. 'text', 'textarea', 'checkbox' et.c
+ * @param string $type				E.g. 'text', 'textarea', 'checkbox' et.c
  * @param string $name
  * @param string $label
- * @param boolean $tableElement	 Wether the form field should be a table line
+ * @param boolean $tableElement		Wether the form field should be a table line
  * @param mixed $value
- * @param array $attrList		   List of attributes for the form field
- * @param boolean $multiInput	   If true, then multiple fields are dynamically added/removed
+ * @param array $attrList			List of attributes for the form field
+ * @param boolean $multiInput		If true, then multiple fields are dynamically added/removed
  * @param booelan $autocomplete
  * @return string $html
  * @author Jens Tkotz

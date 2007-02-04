@@ -28,8 +28,10 @@ list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) =
 	getRequestVar(array('action', 'index', 'crop_x', 'crop_y', 'crop_w', 'crop_h'));
 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album) && 
-	!($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
+if (!$gallery->user->canWriteToAlbum($gallery->album) &&
+	!$gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
+	!$gallery->album->getItemOwnerModify())
+{
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
@@ -38,25 +40,27 @@ if (isset($action)) {
 	if ($action == "doit") {
 		doctype();
 			echo "<html>";
-		
+
 		#-- rebuild the thumbnail, cropped) ---
 		echo(gTranslate('core', "Remaking the Thumbnail..."));
 		my_flush();
-		if ($gallery->session->albumName && isset($index)) { 
+		if ($gallery->session->albumName && isset($index)) {
 			$photo = $gallery->album->getPhoto($index);
 			$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
 			$gallery->album->setPhoto($photo, $index);
 			$gallery->album->makeThumbnail($index);
-			$gallery->album->save(array(i18n("Thumbnail modified for %s"), 
-				makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))));
-		}	
-		
+			$gallery->album->save(
+				array(i18n("Thumbnail modified for %s"),
+				makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
+			);
+		}
+
 		#-- close and reload parent ---
 		dismissAndReload();
-	} 
+	}
 	else if ($action == "cancel") {
 		#-- just close ---
-		doctype();	
+		doctype();
 		echo "<html>";
 		dismiss();
 	}
@@ -66,9 +70,9 @@ if (isset($action)) {
 	printPopupStart(gTranslate('core', "Custom Thumbnail"));
 
 	#-- are we a go? ---
-	if ($gallery->session->albumName && isset($index)) { 
+	if ($gallery->session->albumName && isset($index)) {
 		$photo = $gallery->album->getPhoto($index);
-	
+
 		#-- the url to the image ---
 		$photoURL = $gallery->album->getAlbumDirURL("highlight") . "/";
 		if ($photo->image->resizedName) {
@@ -80,7 +84,7 @@ if (isset($action)) {
 		#-- the dimensions of the raw image ---
 		list($image_w, $image_h) = $photo->image->getRawDimensions();
 		list($t_x, $t_y, $t_w, $t_h) = $photo->image->getThumbRectangle();
-	
+
 		$bgcolor = "#FFFFFF";
 
 		/* Build up the submit URL */
@@ -119,12 +123,12 @@ if (isset($action)) {
   <PARAM NAME=crop_to_size  VALUE="<?php echo $gallery->album->fields["thumb_size"] ?>">
 </APPLET>
 
-<?php 
+<?php
 //		-- we're not a go. abort! abort! ---
-	} else { 
+	} else {
 		echo gallery_error(gTranslate('core', "no album / index specified"));
-	} 
-} 
+	}
+}
 ?>
 </div>
 

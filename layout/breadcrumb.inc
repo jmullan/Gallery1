@@ -17,7 +17,7 @@ if(!includeTemplate('breadcrumb') &&
 	    if (!$name) {
 	        $name = $gallery->user->getUsername();
 	    }
-	    echo "\t". '<td class="left">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</td>';
+	    echo '<td class="left">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</td>';
 	}
 	?>
 

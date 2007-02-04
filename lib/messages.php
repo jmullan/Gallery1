@@ -89,9 +89,9 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 /**
  * Just a wrapper around infoBox. (Prints an InfoBox). Has the same params
  *
- * @param  array  $messages		  Format is array('type' => ..., 'text' => ...)
- * @param  string $caption		   An optional caption
- * @param  bool   $withOuterBorder   Wether to show an outlined border, or not
+ * @param  array  $messages			Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption			An optional caption
+ * @param  bool   $withOuterBorder	Wether to show an outlined border, or not
  * @author Jens Tkotz
  */
 function printInfoBox($messages = array(), $caption = '', $withOuterBorder = true) {

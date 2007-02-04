@@ -1314,7 +1314,7 @@ class Album {
 			processingMsg(sprintf(gTranslate('core', "Invalid filetype: %s. Skipping."), $tag));
 		}
 
-		/* Add the photo to the photo list */
+		/* Create an albumitem */
 		$item = new AlbumItem();
 		$status = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
 
@@ -1369,6 +1369,8 @@ class Album {
 			}
 			$item->setOwner($owner);
 		}
+
+		/* Add the item to the photo list */
 		$this->photos[] = $item;
 		$index = $this->numPhotos(1);
 		$photo = $this->getPhoto($index);
@@ -1382,18 +1384,23 @@ class Album {
 			$this->fields["votes"]["item.$name"] = $votes;
 		}
 
-		/* resize the photo if needed */
+		/* Create the resized photo if wanted/needed */
 		if (isImage($tag) &&
 			($this->fields["resize_size"] > 0 || $this->fields["resize_file_size"] > 0))
 		{
 			list($w, $h) = $photo->image->getRawDimensions();
 			if ($w > $this->fields["resize_size"] ||
-			  $h > $this->fields["resize_size"] ||
-			  $this->fields["resize_file_size"] > 0) {
-				processingMsg("- " . sprintf(gTranslate('core', "Resizing %s"), $name));
-				$this->resizePhoto($index,
-				$this->fields["resize_size"],
-				$this->fields["resize_file_size"]);
+				$h > $this->fields["resize_size"] ||
+				$this->fields["resize_file_size"] > 0)
+			{
+				processingMsg(
+					sprintf(gTranslate('core', "Creating resized intermediate Version of %s"), $name));
+
+				$this->resizePhoto(
+					$index,
+					$this->fields["resize_size"],
+					$this->fields["resize_file_size"]
+				);
 			}
 		}
 

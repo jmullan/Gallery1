@@ -469,8 +469,8 @@ function preprocessImage($dir, $file) {
 				}
 			}
 			else {
-				echo gallery_error(sprintf(gTranslate('core', "Can't write to %s."),
-							$tempfile));
+				echo gallery_error(
+						sprintf(gTranslate('core', "Can't write to %s."), $tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
