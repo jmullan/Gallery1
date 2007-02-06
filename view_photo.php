@@ -30,7 +30,7 @@
  * You prefer a combobox ?
  * Set setting below to false
  */
-$iconsForItemOptions = false;
+$iconsForItemOptions = true;
 
 require_once(dirname(__FILE__) . '/init.php');
 

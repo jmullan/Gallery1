@@ -23,7 +23,6 @@
 <?php
 set_time_limit(120);
 require(dirname(__FILE__) . '/init.php');
-require(dirname(__FILE__) . '/lib/filesystem.php');
 require(dirname(__FILE__) . '/lib/usage.php');
 
 list($action, $sortby, $order) = getRequestVar(array('action', 'sortby', 'order'));

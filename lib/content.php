@@ -1281,6 +1281,9 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 		$attrs = generateAttrs($attrList);
 		$html .= "<img$attrs>";
 	}
+	else {
+		$html = "no src";
+	}
 
 	return $html;
 }
@@ -1598,4 +1601,68 @@ function readMoreBox($panelID, $panelHeaderText = '', $text, $cutAfter = 0, $rea
 
 	return $ret;
 }
+
+/**
+ * Produces a (resized) version of an albumitem via GD
+ *
+ * @param int		$index
+ * @param boolean	$full
+ * @param int		$newwidth
+ * @param int		$newheight
+ */
+function picture($index, $full = false, $newwidth = 0, $newheight = 0) {
+	global $gallery;
+
+	$imgfile = $gallery->album->getAbsolutePhotoPath($index, $full);
+
+	$mimetype	= getMimeType($imgfile);
+	$ext		= getExtension($imgfile);
+
+	header("Content-type: $mimetype");
+
+	switch($ext){
+		default:
+		case 'jpg':
+		case 'jpeg':
+			$function_image_create	= 'imagecreatefromjpeg';
+			$function_image_new		= 'imagejpeg';
+
+			break;
+
+		case 'png':
+			$function_image_create	= 'imagecreatefrompng';
+			$function_image_new		= 'ImagePNG';
+			break;
+
+		case 'gif':
+			$function_image_create	= 'imagecreatefromgif';
+			$function_image_new		= 'imagepNG';
+			break;
+	}
+
+	list($width, $height) = getimagesize($imgfile);
+
+	if($newwidth > 0) {
+		$newheight = (int) (($newwidth / $width) * $height);
+	}
+	elseif ($newheight > 0) {
+		$newwidth = (int) (($newheight / $height) * $width);
+	}
+	else {
+		$noresize = true;
+	}
+
+	$source = $function_image_create($imgfile);
+
+	if(!isset($noresize)) {
+		$resized = imagecreatetruecolor($newwidth, $newheight);
+		imagecopyresized($resized, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+	}
+	else {
+		$resized = $source;
+	}
+
+	$function_image_new($resized);
+}
+
 ?>

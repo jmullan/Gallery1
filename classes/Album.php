@@ -1031,7 +1031,7 @@ class Album {
 	 * This is so we can translate into appropriate languages for each
 	 * recipient.  You will note that we don't currently translate these messages.
 	 */
-	function save($msg = array(), $resetModDate = 1) {
+	function save($msg = array(), $resetModDate = 1, $updateSerial = false) {
 		global $gallery;
 		$dir = $this->getAlbumDir();
 
@@ -1043,7 +1043,7 @@ class Album {
 			fs_mkdir($dir, 0775);
 		}
 
-		if (!empty($this->updateSerial)) {
+		if (!empty($this->updateSerial) || $updateSerial == true) {
 			/* Remove the old serial file, if it exists */
 			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
 			if (fs_file_exists($serial)) {
@@ -1221,6 +1221,36 @@ class Album {
 				my_flush();
 				$this->resizePhoto($i, $target, $filesize=0, $pathToResized="");
 			}
+		}
+	}
+
+	/**
+	 * Crops an image.
+	 * The width and height give the size of the image that remains after cropping
+ 	 * The offsets specify the location of the upper left corner of the cropping region
+ 	 * measured downward and rightward with respect to the upper left corner of the image.
+	 *
+	 * @param int $index	Albumitem index
+	 * @param int $offsetX
+	 * @param int $offsetY
+	 * @param int $width
+	 * @param int $height
+	 * @param boolean $cropResized	If true, then the resized version is cropped. Otherwise the full.
+	 * @author Jens Tkotz
+	 */
+	function cropPhoto($index, $offsetX, $offsetY, $width, $height, $cropResized = false) {
+		$this->updateSerial = 1;
+
+		$photo = &$this->getPhoto($index);
+
+		if ($photo->isMovie()) {
+			echo gTranslate('core', "Skipping Movie");
+		}
+		elseif ($photo->isAlbum()) {
+			echo gTranslate('core', "Skipping Subalbum");
+		}
+		else {
+			$photo->crop($this->getAlbumDir(), $offsetX, $offsetY, $width, $height, $cropResized);
 		}
 	}
 
@@ -2131,9 +2161,11 @@ class Album {
 	function makeThumbnail($index) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
+
 		if (!$photo->isAlbum()) {
 			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this);
-		} else {
+		}
+		else {
 			// Reselect highlight of subalbum..
 			$album = $this->getNestedAlbum($index);
 			$i = $album->getHighlight();

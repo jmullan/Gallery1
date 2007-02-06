@@ -21,6 +21,9 @@
 */
 ?>
 <?php
+/**
+ * @package Libs
+ */
 
 /**
  * Returns the diskspace in bytes a user consumes.
@@ -88,4 +91,17 @@ function get_size($path, $recursive = false) {
 	}
 }
 
+/**
+ * Extracts the extension of a given filename and returns it in lower chars.
+ * @param  string   $filename
+ * @return string   $ext
+ * @author Jens Tkotz
+ */
+function getExtension($filename) {
+	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
+	$ext = strtolower($ext);
+
+	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
+	return $ext;
+}
 ?>

@@ -836,20 +836,6 @@ function ordinal($num = 1) {
 	return "$val" . $ords[$num];
 }
 
-/**
- * Extracts the extension of a given filename and returns it in lower chars.
- * @param  string   $filename
- * @return string   $ext
- * @author Jens Tkotz
- */
-function getExtension($filename) {
-	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
-	$ext = strtolower($ext);
-
-	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
-	return $ext;
-}
-
 function acceptableArchiveList() {
 	return array('zip', 'rar');
 }
@@ -2040,23 +2026,30 @@ function clearGalleryTitle($topic = '') {
 }
 
 /**
- * Checkes wether PHP has GD support and on PHP 4.3.0 if JPG Support is available.
+ * Checks wether PHP has a specific GD support
  *
- * @return boolean
+ * @param string	$tag
+ * @return boolean			True if support is present, otherwise false
  * @author Jens Tkotz
  */
-function gdAvailable() {
-	if (function_exists('gd_info')) {
-		$gd_info = gd_info();
-		if($gd_info['JPG Support'] == 1) {
-			return true;
-		}
-	}
-	elseif(function_exists('ImageJPEG')) {
+function gdAvailable($tag = 'jpg') {
+	$gdTests = array(
+		'gif'	=> IMG_GIF,
+		'jpg'	=> IMG_JPG,
+		'jpeg'	=> IMG_JPG,
+		'png'	=> IMG_PNG,
+		'wbmp'	=> IMG_WBMP,
+		'xpm'	=> IMG_XPM
+	);
+
+	$tag = strtolower($tag);
+
+	if (imagetypes() & $gdTests[$tag]) {
 		return true;
 	}
-
-	return false;
+	else {
+		return false;
+	}
 }
 
 function enableCaptcha() {
@@ -2094,5 +2087,6 @@ require_once(dirname(__FILE__) . '/lib/album.php');
 require_once(dirname(__FILE__) . '/lib/albumItem.php');
 require_once(dirname(__FILE__) . '/lib/imageManipulation.php');
 require_once(dirname(__FILE__) . '/lib/mail.php');
+require_once(dirname(__FILE__) . '/lib/filesystem.php');
 
 ?>

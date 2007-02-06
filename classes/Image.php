@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -66,7 +66,7 @@ class Image {
 
 		/*
 		 * Fix a specific bug where the width/height are reversed
-		 * for sized images 
+		 * for sized images
 		 */
 		if ($this->version < 3) {
 			if ($this->resizedName) {
@@ -114,13 +114,13 @@ class Image {
 		} else {
 			$name = $this->name;
 			$type = $this->type;
-			
+
 			if ($pathToResized) {
-				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");	
+				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");
 			} else {
 				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
 			}
-			
+
 			#-- resized image is not always a jpeg ---
 			if ($ret == 1) {
 				$this->resizedName = "$name.sized";
@@ -131,7 +131,41 @@ class Image {
 			elseif ($ret == 2) {
 				$this->resize($dir, "orig", 0, $pathToResized);
 			}
-		}	
+		}
+	}
+
+	/**
+	 * Crops an image.
+	 * The width and height give the size of the image that remains after cropping
+ 	 * The offsets specify the location of the upper left corner of the cropping region
+ 	 * measured downward and rightward with respect to the upper left corner of the image.
+	 *
+	 * @param string $dir	Path to the album
+	 * @param int $offsetX
+	 * @param int $offsetY
+	 * @param int $width
+	 * @param int $height
+	 * @param boolean $cropResized	If true, then the resized version is cropped. Otherwise the full.
+	 * @author Jens Tkotz
+	 */
+	function crop($dir, $offsetX, $offsetY, $width, $height, $cropResized = false) {
+		global $gallery;
+
+		$name = $this->name;
+		$type = $this->type;
+
+		if($cropResized) {
+			$path = "$dir/${name}.sized.$type";
+			$this->width = $width;
+			$this->height = $height;
+		}
+		else {
+			$path = "$dir/$name.$type";
+			$this->raw_width = $width;
+			$this->raw_height = $height;
+		}
+
+		cut_image($path, $path, $offsetX, $offsetY, $width, $height);
 	}
 
 	function delete($dir) {
@@ -211,7 +245,7 @@ class Image {
 	function getId() {
 		return $this->name;
 	}
-	
+
 	function getPath($dir, $full=0) {
 		if ($full || !$this->resizedName) {
 			$name = $this->name;
@@ -265,7 +299,7 @@ class Image {
 		$width = $this->width;
 		$height = $this->height;
 			}
-			
+
 		return array($width, $height);
 	}
 
@@ -289,6 +323,6 @@ class Image {
 		$filename = "$dir/$this->name.$this->type";
 		return fs_filesize($filename);
 	}
-}	
+}
 
 ?>

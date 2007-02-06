@@ -306,9 +306,10 @@ function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
 }
 
 function addUrlArg($url, $arg) {
-	if (strchr($url, "?")) {
-		return "$url&$arg"; // should replace with &amp; for validatation
-	} else {
+	if (strstr ($url, "?")) {
+		return "$url&amp;$arg";
+	}
+	else {
 		return "$url?$arg";
 	}
 }
@@ -327,11 +328,12 @@ function getImagePath($name, $skinname = '') {
 	}
 
 	/* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
-	$base = getGalleryBaseUrl();
-	$defaultname = dirname(dirname(__FILE__)). "/images/$name";
-	$defaultURL = "$base/images/$name";
-	$fullname = dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
-	$fullURL = "$base/skins/$skinname/images/$name";
+	$base			= getGalleryBaseUrl();
+	$defaultname	= dirname(dirname(__FILE__)) . "/images/$name";
+	$fullname		= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
+
+	$defaultURL		= "$base/images/$name";
+	$fullURL		= "$base/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		$retUrl = $fullURL;
@@ -513,4 +515,25 @@ function extractLinkText($link) {
 	}
 }
 
+/**
+ * Generates a Gallery url that has as basis the Gallery URL.
+ * It doesnt hence if Gallery is embedded or not.
+ *
+ * @param string	$relativePath
+ * @param array		$args
+ * @return string	$url
+ */
+function plainUrl($relativePath, $args = array()) {
+	$baseUrl = getGalleryBaseUrl();
+
+	$url = "$baseUrl/$relativePath";
+
+	if(!empty($args)) {
+		foreach ($args as $arg => $value) {
+			$url = addUrlArg($url, "$arg=$value");
+		}
+	}
+
+	return $url;
+}
 ?>

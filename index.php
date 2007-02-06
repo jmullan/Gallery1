@@ -110,6 +110,7 @@ if ($postnuke ||
 	'block-feature-photo.php',
 			   "captionator.php",
 			   "create_user.php",
+	'crop_photo.php',
 			   "delete_user.php",
 			   "edit_watermark.php",
 			   "gallery_remote.php",

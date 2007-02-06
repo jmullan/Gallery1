@@ -681,7 +681,16 @@ class AlbumItem {
 		return $ret;
 	}
 
-	 function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb = '') {
+	/**
+	 * Creates the thumbnail for an image, or use a predefined for movies.
+	 *
+	 * @param string	$dir		Path to album
+	 * @param int		$thumb_size
+	 * @param object	$album
+	 * @param string	$pathToThumb
+	 * @return mixed
+	 */
+	function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb = '') {
 		global $gallery;
 		$name = $this->image->name;
 		$tag = $this->image->type;
@@ -690,6 +699,7 @@ class AlbumItem {
 
 		echo debugMessage(gTranslate('core', "Generating thumbnail."),__FILE__, __LINE__);
 
+		/* Use prese thumbnail for moviews */
 		if ($this->isMovie()) {
 			/* Use a preset thumbnail */
 			if(realpath($gallery->app->movieThumbnail)) {
@@ -709,13 +719,16 @@ class AlbumItem {
 			list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
 			$this->thumbnail->setDimensions($w, $h);
 		}
+		/* Item is a photo, various possibilities */
 		else {
 			debugMessage(sprintf(gTranslate('core', "Saved Dimensions: x:%d y: %d"),
 				$this->image->raw_width, $this->image->raw_height), __FILE__, __LINE__, 3);
-			/* Make thumbnail (first crop it spec) */
+
+			#1 Use given $pathToThumb as thumbnail
 			if ($pathToThumb) {
 				$ret = copy($pathToThumb,"$dir/$name.thumb.$tag");
 			}
+			#2 A special thumbail-area is set, extract it from the fullsize image
 			else if ($this->image->thumb_width > 0) {
 				$ret = cut_image(
 				  "$dir/$name.$tag",
@@ -724,6 +737,7 @@ class AlbumItem {
 				  $this->image->thumb_y,
 				  $this->image->thumb_width,
 				  $this->image->thumb_height);
+
 				if ($ret) {
 					$ret = resize_image(
 						"$dir/$name.thumb.$tag",
@@ -736,6 +750,7 @@ class AlbumItem {
 					);
 				}
 			}
+			#3 Generic thumbnail
 			else {
 				if(!empty($ratio)) {
 					$ret = cropImageToRatio(
@@ -793,7 +808,8 @@ class AlbumItem {
 				if ($this->highlight) {
 					$this->setHighlight($dir, 1, $album);
 				}
-			} else {
+			}
+			else {
 				return gTranslate('core', "Unable to make thumbnail") ." ($ret)";
 			}
 		}
@@ -991,6 +1007,27 @@ class AlbumItem {
 			$this->image->resize($dir, $target, $filesize, $pathToResized);
 		}
 	}
+
+	/**
+	 * Crops an image.
+	 * The width and height give the size of the image that remains after cropping
+ 	 * The offsets specify the location of the upper left corner of the cropping region
+ 	 * measured downward and rightward with respect to the upper left corner of the image.
+	 *
+	 * @param string $dir	Path to the album
+	 * @param int $offsetX
+	 * @param int $offsetY
+	 * @param int $width
+	 * @param int $height
+	 * @param boolean $cropResized	If true, then the resized version is cropped. Otherwise the full.
+	 * @author Jens Tkotz
+	 */
+	function crop($dir, $offsetX, $offsetY, $width, $height, $cropResized = false) {
+		if (isset($this->image)) {
+			$this->image->crop($dir, $offsetX, $offsetY, $width, $height, $cropResized);
+		}
+	}
+
 	function setExtraField($name, $value) {
 		$this->extraFields[$name] = $value;
 	}

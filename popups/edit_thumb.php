@@ -24,8 +24,11 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($action, $index, $crop_x, $crop_y, $crop_w, $crop_h) =
-	getRequestVar(array('action', 'index', 'crop_x', 'crop_y', 'crop_w', 'crop_h'));
+list($index, $offsetX, $offsetY, $width, $height, $muliplier) =
+	getRequestVar(array('index', 'x1', 'y1', 'width', 'height', 'muliplier'));
+
+list($cropit, $dismiss) =
+	getRequestVar(array('cropit', 'dismiss'));
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) &&
@@ -36,100 +39,168 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) &&
 	exit;
 }
 
-if (isset($action)) {
-	if ($action == "doit") {
-		doctype();
-			echo "<html>";
+if (! $gallery->session->albumName || ! isset($index)) {
+	echo gallery_error(gTranslate('core', "no album / index specified"));
+	exit;
+}
 
-		#-- rebuild the thumbnail, cropped) ---
-		echo(gTranslate('core', "Remaking the Thumbnail..."));
-		my_flush();
-		if ($gallery->session->albumName && isset($index)) {
-			$photo = $gallery->album->getPhoto($index);
-			$photo->image->setThumbRectangle($crop_x, $crop_y, $crop_w, $crop_h);
-			$gallery->album->setPhoto($photo, $index);
-			$gallery->album->makeThumbnail($index);
-			$gallery->album->save(
-				array(i18n("Thumbnail modified for %s"),
-				makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
-			);
-		}
+if (!empty($cropit)) {
+	doctype();
+	echo "<html>";
 
-		#-- close and reload parent ---
-		dismissAndReload();
-	}
-	else if ($action == "cancel") {
-		#-- just close ---
-		doctype();
-		echo "<html>";
-		dismiss();
-	}
-} else {
-	#-- show the applet ---
+	#-- rebuild the thumbnail, cropped) ---
+	echo(gTranslate('core', "Remaking the Thumbnail..."));
+	my_flush();
 
-	printPopupStart(gTranslate('core', "Custom Thumbnail"));
+	$offsetX	= intval($muliplier * $offsetX);
+	$offsetY	= intval($muliplier * $offsetY);
+	$width		= intval($muliplier * $width);
+	$height		= intval($muliplier * $height);
 
-	#-- are we a go? ---
 	if ($gallery->session->albumName && isset($index)) {
 		$photo = $gallery->album->getPhoto($index);
+		$photo->image->setThumbRectangle($offsetX, $offsetY, $width, $height);
+		$gallery->album->setPhoto($photo, $index);
+		$gallery->album->makeThumbnail($index);
+		$gallery->album->save(
+			array(i18n("Thumbnail modified for %s"),
+			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
+		);
+	}
 
-		#-- the url to the image ---
-		$photoURL = $gallery->album->getAlbumDirURL("highlight") . "/";
-		if ($photo->image->resizedName) {
-			$photoURL .= $photo->image->resizedName . "." . $photo->image->type;
-		} else {
-			$photoURL .= $photo->image->name . "." . $photo->image->type;
-		}
+	#-- close and reload parent ---
+	dismissAndReload();
+}
 
-		#-- the dimensions of the raw image ---
-		list($image_w, $image_h) = $photo->image->getRawDimensions();
-		list($t_x, $t_y, $t_w, $t_h) = $photo->image->getThumbRectangle();
+if (!empty($dismiss)) {
+	#-- just close ---
+	doctype();
+	echo "<html>";
+	dismiss();
+}
 
-		$bgcolor = "#FFFFFF";
+/* No Action done */
+$photo = $gallery->album->getPhoto($index);
+list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
+$fullImageWidth		= $imageWidth;
+$fullImageHeight	= $imageHeight;
 
-		/* Build up the submit URL */
-		if (isset($_SERVER['HTTPS']) && stristr($_SERVER['HTTPS'], "on")) {
-			$submit = "https://";
-		} else {
-			$submit = "http://";
-		}
+$ratio = $imageHeight/$imageWidth;
+$muliplier = 1;
 
-		if (empty($_SERVER['REQUEST_URI'])) {
-			$submit .= $_SERVER['HTTP_HOST'];
-			$submit .= $_SERVER['PATH_INFO'];
-			$submit .= '?';
-			$submit .= $_SERVER['QUERY_STRING'];
-		} else {
-			$submit .= $_SERVER['HTTP_HOST'];
-			$submit .= $_SERVER['REQUEST_URI'];
-		}
-?>
+$maxSize = 500;
 
-<span>
-<?php echo gTranslate('core', "Choose which part of the image will compose your thumbnail:") ?>
-</span>
+if($imageWidth > $maxSize) {
+	$muliplier = $imageWidth/$maxSize;
+	$imageWidth = $maxSize;
+	$imageHeight = intval($imageWidth * $ratio);
+	$messages[] = array(
+			'type' => 'information',
+			'text' => sprintf(gTranslate('core', "You see a downscaled preview. Its scalled from '%dx%d' to '%dx%d'"),
+				$fullImageWidth, $fullImageHeight, $imageWidth, $imageHeight)
+	);
+}
 
-<APPLET CODE="ImageCrop" WIDTH=460 HEIGHT=430 CODEBASE="<?php echo $gallery->app->photoAlbumURL .'/java' ?>" ARCHIVE="ImageTools.jar">
-  <PARAM NAME="type"   VALUE="application/x-java-applet;version=1.1.2">
-  <PARAM NAME=bgcolor  VALUE="<?php echo $bgcolor ?>">
-  <PARAM NAME=image	VALUE="<?php echo $photoURL ?>">
-  <PARAM NAME=image_w  VALUE="<?php echo $image_w ?>">
-  <PARAM NAME=image_h  VALUE="<?php echo $image_h ?>">
-  <PARAM NAME=crop_x   VALUE="<?php echo $t_x ?>">
-  <PARAM NAME=crop_y   VALUE="<?php echo $t_y ?>">
-  <PARAM NAME=crop_w   VALUE="<?php echo $t_w ?>">
-  <PARAM NAME=crop_h   VALUE="<?php echo $t_h ?>">
-  <PARAM NAME=submit   VALUE="<?php echo $submit ?>">
-  <PARAM NAME=crop_to_size  VALUE="<?php echo $gallery->album->fields["thumb_size"] ?>">
-</APPLET>
+$photoTag = $gallery->album->getPhotoTag(
+	$index, true, array(
+		'id' => 'cropImage',
+		'width' => $imageWidth,
+		'height' => $imageHeight));
 
-<?php
-//		-- we're not a go. abort! abort! ---
-	} else {
-		echo gallery_error(gTranslate('core', "no album / index specified"));
+$fullpath = $gallery->album->getAbsolutePhotoPath($index, true);
+
+/*
+ *	Big files are slowing the cropper.
+ * If the file is bigger then 500K,
+ * we check wether GD is support and create dynamically a resized version
+*/
+$filesize = fs_filesize($fullpath);
+if($filesize > 512000) {
+	$ext = getExtension($fullpath);
+	if(gdAvailable($ext)) {
+		$src = plainUrl('picture.php', array(
+			'index'		=> $index,
+			'newwidth'	=> $maxSize)
+		);
+		$photoTag = "<img src=\"$src\" alt=\"\" id=\"cropImage\" width=\"$imageWidth\" height=\"$imageHeight\">";
+	}
+	else {
+		$messages[] = array(
+			'type' => 'warning',
+			'text' => sprintf(gTranslate('core', "Your fullsize image is over 500k (%s) and will slow down the cropper. To fix this you need a PHP with GD support."),
+				formatted_filesize($filesize))
+		);
 	}
 }
+
+$ratioOptions = array(
+	'0|0'	=> gTranslate('core', "No Ratio"),
+	'1|1'	=> gTranslate('core', "1:1 (Square)"),
+	'1|3'	=> gTranslate('core', "1:3 (Letterbox)"),
+	'9|16'	=> gTranslate('core', "9:16 (HDTV)"),
+	'3|5'	=> gTranslate('core', "3:5 (Photo)"),
+	'4|6'	=> gTranslate('core', "4:6 = 10:15 (Photo)"),
+	'9|13'	=> gTranslate('core', "9:13 (Photo)"),
+	'5|7'	=> gTranslate('core', "5:7 (Photo)"),
+	'8|10'	=> gTranslate('core', "8:10 (Photo)"),
+	"$imageWidth|$imageHeight" => gTranslate('core', "Like the Image")
+);
+
+$ratioDirections = array(
+	'1'		=> gTranslate('core', "Portrait"),
+	'-1'	=> gTranslate('core', "Landscape"),
+);
+
+printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
 ?>
+	<script language="JavaScript" type="text/javascript">
+		window.outerWidth = 800;
+	</script>
+	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/prototype.js'; ?>"></script>
+	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/scriptaculous.js?load=builder,dragdrop'; ?>"></script>
+	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/cropper.js'; ?>"></script>
+	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/cropperInit.js'; ?>"></script>
+
+<?php
+printInfoBox($messages);
+echo gTranslate('core', "Choose which part of the image will compose your thumbnail:");
+
+?>
+	<div class="g-cropImageBox floatleft" style="width: <?php echo $imageWidth ?>px; height: <?php echo $imageHeight ?>px">
+		<div id="cropArea" style="position: absolute;">
+		<?php echo $photoTag; ?>
+		</div>
+	</div>
+<?php
+
+echo makeFormIntro('edit_thumb.php',
+		array('name' => 'crop'),
+		array('type' => 'popup',
+			'index' => $index,
+			'x1' => '',
+			'y1' => '',
+			'x2' => '',
+			'y2' => '',
+			'width' => '',
+			'height' => '',
+			'muliplier' => $muliplier
+		)
+);
+
+echo "\n<br><br>";
+echo gTranslate('core', "Select a ratio for the crop frame:");
+echo "\n<br>";
+echo drawSelect('cropRatio', $ratioOptions, '0|0', 1, array('id' => 'cropRatio', 'onChange' => 'setRatio()'));
+echo drawSelect('cropRatioDir', $ratioDirections, '', 1, array('id' => 'cropRatioDir',  'onChange' => 'setRatio()'));
+
+echo "\n<br><br>";
+echo gSubmit('dismiss', gTranslate('core', "_Dismiss"));
+echo gSubmit('cropit', gTranslate('core', "_Crop"));
+
+?>
+<div class="clear"></div>
+</form>
+
 </div>
 
 </body>
