@@ -31,7 +31,7 @@
  * @param	integer   $i		   index number of the item
  * @param   boolean   $withIcons   Wether icons should be used, or not.
  * @return  array				  Array of all possible album item for the current user.
- * @author  Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz
  */
 function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	global $gallery;
@@ -135,6 +135,12 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 					'text' => gTranslate('core', "Image_Map"),
 					'value' => showChoice2('imagemap.php', array('index' => $i), false),
 					'icon' => ($withIcons) ? 'behavior-capplet.gif' : ''
+				);
+
+				$options[] = array(
+					'text' => gTranslate('core', "Crop Image"),
+					'value' => showChoice2('crop_photo.php', array('index' => $i), false),
+					'icon' => ($withIcons) ? 'imageedit/frame_edit.gif' : ''
 				);
 			}
 		}
@@ -276,8 +282,9 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	if($isPhoto) {
 		$photo = $gallery->album->getPhoto($i);
 		if ($gallery->album->fields["use_exif"] == 'yes' &&
-		(eregi("jpe?g\$", $photo->image->type)) &&
-		(isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
+			(eregi("jpe?g\$", $photo->image->type)) &&
+			(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)))
+		{
 			$options['showExif'] = array(
 				'text' => gTranslate('core', "Photo _properties"),
 				'value' => showChoice2("view_photo_properties.php", array("index" => $i)),
@@ -288,7 +295,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 
 
 		if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
-		$gallery->app->emailOn == 'yes') {
+				 $gallery->app->emailOn == 'yes')
+		{
 			$options['eCard'] = array(
 				'text' => gTranslate('core', "Send photo as e_Card"),
 				'value' => showChoice2('ecard_form.php', array('photoIndex' => $i)),
@@ -317,11 +325,11 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 /**
  * Returns a HTML with all comments of an album item.
  *
- * @param integer   $index	  itemindex
- * @param string	$albumName  Name of the album containing the item
+ * @param integer   $index		itemindex
+ * @param string	$albumName	Name of the album containing the item
  * @param boolean   $reverse	Wether to show in reverse order or not
- * @return string			   A rendered HTML Table that contains the comments.
- * @author Jens Tkotz <jens@peino.de>
+ * @return string				A rendered HTML Table that contains the comments.
+ * @author Jens Tkotz
  */
 function showComments ($index, $albumName, $reverse = false) {
 	global $gallery;
@@ -420,7 +428,7 @@ function getNextId($currentId) {
  * @param string	$originalFilename
  * @param string	$filename
  * @return string   $caption
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function generateCaption($captionType = 1, $originalFilename, $filename) {
 	global $gallery;
@@ -468,7 +476,7 @@ function generateCaption($captionType = 1, $originalFilename, $filename) {
  *
  * @param integer   $index
  * @return string   $label
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function getLabelByIndex($index) {
 	global $gallery;
