@@ -254,4 +254,53 @@ function showChoice2($target, $args, $popup = true) {
     return makeGalleryUrl($target, $args);
 }
 
+/**
+ * Returns the HTML Code for a submit button (<input type="submit">).
+ *
+ * @param string	$name			 Name of the button.
+ * @param string	$value			Value shown on the button.
+ * @param array	 $additionalAttrs  Additional HTML attributes
+ * @return string   $html			 The HTML code.
+ * @author Jens Tkotz
+ */
+function gSubmit($name, $value, $additionalAttrs = array()) {
+	static $ids = array();
+
+	if(!in_array($name, $ids)) {
+		$attrList['name'] = $attrList['id'] = $name;
+		$ids[] = $name;
+	}
+	else {
+		$attrList['name'] = $name;
+	}
+
+	$attrList['type'] = 'submit';
+	$attrList['value'] = $value;
+	$attrList['class'] = 'g-button';
+	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	$attrList = array_merge($attrList, $additionalAttrs);
+	$attrs = generateAttrs($attrList);
+
+	$html = "<input$attrs>\n";
+
+	return $html;
+}
+
+function gButton($name, $value, $onClick, $additionalAttrs = array()) {
+	$attrList['name'] = $attrList['id'] = $name;
+	$attrList['type'] = 'button';
+	$attrList['value'] = $value;
+	$attrList['class'] = 'g-button';
+	$attrList['onClick'] = $onClick;
+	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	$attrList = array_merge($attrList, $additionalAttrs);
+
+	$attrs = generateAttrs($attrList);
+
+	$html = "<input$attrs>\n";
+
+	return $html;
+}
 ?>

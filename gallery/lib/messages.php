@@ -27,15 +27,16 @@ function gallery_error($message) {
 }
 
 function infoLine($messages, $type = '') {
-    $class = (!empty($type)) ? "infoline_$type" : '';
+	$class = (!empty($type)) ? "infoline_$type" : '';
 
-    $message = (is_array($messages)) ? implode("<br>\n", $messages) : $messages;
+	$message = (is_array($messages)) ? implode("<br>\n", $messages) : $messages;
 
-    if(!empty($message)) {
-        return "<div class=\"$class\">$message</div>\n";
-    } else {
-	return '';
-    }
+	if(!empty($message)) {
+		return "<div class=\"$class\">$message</div>\n";
+	}
+	else {
+		return '';
+	}
 }
 
 function errorRow($key) {
