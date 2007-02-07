@@ -80,6 +80,8 @@ if (!empty($dismiss)) {
 }
 
 /* No Action done */
+$messages = array();
+
 $photo = $gallery->album->getPhoto($index);
 list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 $fullImageWidth		= $imageWidth;
@@ -89,6 +91,7 @@ $ratio = $imageHeight/$imageWidth;
 $muliplier = 1;
 
 $maxSize = 500;
+$minSize = 25;
 
 if($imageWidth > $maxSize) {
 	$muliplier = $imageWidth/$maxSize;
@@ -107,10 +110,19 @@ $photoTag = $gallery->album->getPhotoTag(
 		'width' => $imageWidth,
 		'height' => $imageHeight));
 
+if($imageWidth < $minSize || $imageHeight < $minSize) {
+	$messages[] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "Cropping this image does not seem to make sense. Both sides should be at least %spx"),
+				      $minSize)
+    );
+    $noCrop = true;
+}
+
 $fullpath = $gallery->album->getAbsolutePhotoPath($index, true);
 
 /*
- *	Big files are slowing the cropper.
+ *Big files are slowing the cropper.
  * If the file is bigger then 500K,
  * we check wether GD is support and create dynamically a resized version
 */
@@ -152,19 +164,25 @@ $ratioDirections = array(
 );
 
 printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
+if ($imageWidth > 600) {
 ?>
 	<script language="JavaScript" type="text/javascript">
 		window.outerWidth = 800;
 	</script>
+<?php }
+if (!isset($noCrop)) {
+?>
 	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/prototype.js'; ?>"></script>
 	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/scriptaculous.js?load=builder,dragdrop'; ?>"></script>
 	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/cropper.js'; ?>"></script>
 	<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/cropper/cropperInit.js'; ?>"></script>
-
 <?php
-printInfoBox($messages);
-echo gTranslate('core', "Choose which part of the image will compose your thumbnail:");
+}
 
+printInfoBox($messages);
+if (!isset($noCrop)) {
+	echo gTranslate('core', "Choose which part of the image will compose your thumbnail:");
+}
 ?>
 	<div class="g-cropImageBox floatleft" style="width: <?php echo $imageWidth ?>px; height: <?php echo $imageHeight ?>px">
 		<div id="cropArea" style="position: absolute;">
@@ -173,34 +191,42 @@ echo gTranslate('core', "Choose which part of the image will compose your thumbn
 	</div>
 <?php
 
-echo makeFormIntro('edit_thumb.php',
-		array('name' => 'crop'),
-		array('type' => 'popup',
-			'index' => $index,
-			'x1' => '',
-			'y1' => '',
-			'x2' => '',
-			'y2' => '',
-			'width' => '',
-			'height' => '',
-			'muliplier' => $muliplier
-		)
-);
+if (!isset($noCrop)) {
+	echo makeFormIntro('edit_thumb.php',
+	array('name' => 'crop'),
+	array('type' => 'popup',
+	'index' => $index,
+	'x1' => '',
+	'y1' => '',
+	'x2' => '',
+	'y2' => '',
+	'width' => '',
+	'height' => '',
+	'muliplier' => $muliplier
+	)
+	);
 
-echo "\n<br><br>";
-echo gTranslate('core', "Select a ratio for the crop frame:");
-echo "\n<br>";
-echo drawSelect('cropRatio', $ratioOptions, '0|0', 1, array('id' => 'cropRatio', 'onChange' => 'setRatio()'));
-echo drawSelect('cropRatioDir', $ratioDirections, '', 1, array('id' => 'cropRatioDir',  'onChange' => 'setRatio()'));
+	echo "\n<br><br>";
+	echo gTranslate('core', "Select a ratio for the crop frame:");
+	echo "\n<br>";
+	echo drawSelect('cropRatio', $ratioOptions, '0|0', 1, array('id' => 'cropRatio', 'onChange' => 'setRatio()'));
+	echo drawSelect('cropRatioDir', $ratioDirections, '', 1, array('id' => 'cropRatioDir',  'onChange' => 'setRatio()'));
 
-echo "\n<br><br>";
-echo gSubmit('dismiss', gTranslate('core', "_Dismiss"));
-echo gSubmit('cropit', gTranslate('core', "_Crop"));
+	echo "\n<br><br>";
+	echo gSubmit('dismiss', gTranslate('core', "_Dismiss"));
+	echo gSubmit('cropit', gTranslate('core', "_Crop"));
 
 ?>
 <div class="clear"></div>
 </form>
-
+<?php
+}
+else {
+	echo "\n<p class=\"clear center\">";
+	echo gButton('close', gTranslate('core', "_Close Window"), 'parent.close()');
+	echo "\n</p>";
+}
+?>
 </div>
 
 </body>
