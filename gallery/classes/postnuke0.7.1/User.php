@@ -59,7 +59,9 @@ class PostNuke_User extends Abstract_User {
 	}
 
 	function loadByUserName($uname) {
-		if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.5.0") {
+		global $GALLERY_POSTNUKE_VERSION;
+
+		if (substr($GALLERY_POSTNUKE_VERSION, 0, 7) < "0.7.5.0") {
 			list($dbconn) = pnDBGetConn();
 			$pntable = pnDBGetTables();
 		} else {

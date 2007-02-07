@@ -89,11 +89,15 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $GALLERY_MODULENAME;
 	global $modpath;
 
-        if (empty($GALLERY_MODULENAME)
-          && $GALLERY_EMBEDDED_INSIDE =='nuke'
-          && !empty($modpath)) {
-            $GALLERY_MODULENAME = basename(dirname($modpath));
-        }
+	if (empty($GALLERY_MODULENAME) &&
+		$GALLERY_EMBEDDED_INSIDE =='nuke' &&
+		!empty($modpath))
+	{
+		$GALLERY_MODULENAME = basename(dirname($modpath));
+	}
+
+	/* Needed for postNuke (0.8 and above) */
+	global $GALLERY_POSTNUKE_VERSION
 
 	/* Needed for phpBB2 */
 	global $userdata;
@@ -163,7 +167,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 			break;
 
 			case 'postnuke':
-				if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.6.0") {
+				if (substr($GALLERY_POSTNUKE_VERSION, 0, 7) < "0.7.6.0") {
 					$args["op"] = "modload";
 					$args["file"] = "index";
 
