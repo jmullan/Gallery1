@@ -70,13 +70,13 @@ if (!empty($cropit)) {
 
 	#-- close and reload parent ---
 	dismissAndReload();
+	exit;
 }
 
 if (!empty($dismiss)) {
 	#-- just close ---
-	doctype();
-	echo "<html>";
-	dismiss();
+	dismissAndLoad();
+	exit;
 }
 
 /* No Action done */
@@ -164,7 +164,7 @@ $ratioDirections = array(
 );
 
 printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
-if ($imageWidth > 600) {
+if ($imageWidth > 400) {
 ?>
 	<script language="JavaScript" type="text/javascript">
 		window.outerWidth = 800;

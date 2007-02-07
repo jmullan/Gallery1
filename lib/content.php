@@ -684,17 +684,18 @@ function reload() {
 }
 
 /**
- * Generates a HTML page "header" that closes itself and loads a specific url in the opener window.
+ * Prints a HTML page "header" that closes itself and (if an url is given)
+ * loads a specific url in the opener window.
  *
  * @param string $url
  */
-function dismissAndLoad($url) {
+function dismissAndLoad($url = '') {
 	doctype();
 	echo "\n<html>";
 	echo "\n<title>". gTranslate('core', "Operation done, closing window.") . '</title>';
 
 	if (isDebugging()) {
-		echo "<body onLoad='opener.location = \"$url\"; '>";
+		echo "<body onLoad=\"opener.location='$url';\">";
 		common_header();
 		echo infoBox(array(
 			array(
@@ -707,13 +708,14 @@ function dismissAndLoad($url) {
 			)
 		));
 	}
-	else {
-		echo("<body onLoad='opener.location = \"$url\"; parent.close()'>");
+	elseif(!empty($url)) {
+		echo "<body onLoad=\"opener.location='$url' ; parent.close()\">";
+		echo "\n</html>";
 	}
-}
-
-function dismiss() {
-	echo("<body onLoad='parent.close()'>");
+	else {
+		echo "<body onLoad=\"parent.close()\">";
+		echo "\n</html>";
+	}
 }
 
 function includeLayout($name, $skinname='') {
