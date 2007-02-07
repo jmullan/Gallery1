@@ -28,15 +28,15 @@ function findInvalidAlbums() {
 
 	$albumsDir = opendir($gallery->app->albumDir);
 
+	$allowedInvalidAlbums = array('.', '..', '.users', 'CVS', 'SVN', '_vti_cnf', 'lost+found', 'captcha_tmp');
+
 	while (($file = readdir($albumsDir)) !== false) {
 		$albumPath = $gallery->app->albumDir . '/' . $file;
 		if (fs_is_dir($albumPath)) {
-			if ($file[0] == '.' ||
-			$file == 'CVS' ||
-			$file == '_vti_cnf') {
+			if(in_array($file, $allowedInvalidAlbums)) {
 				continue;
-			} else {
-
+			}
+			else {
 				// Load the album - if it fails, it's invalid
 				$album = new Album();
 				if (!$album->load($file)) {
@@ -83,8 +83,19 @@ function findMissingFiles($album, $albumPath) {
 	}
 }
 
+/**
+ * Removes recursively (!) a directory and its content.
+ *
+ * @param string $path
+ * @return boolean
+ */
 function removeInvalidAlbum($path) {
+	if(!fs_is_dir($path)) {
+		return true;
+	}
+
 	$removePath = opendir($path);
+
 	while (($file = readdir($removePath)) !== false) {
 		if ($file == '.' || $file == '..') {
 			continue;
@@ -98,5 +109,7 @@ function removeInvalidAlbum($path) {
 	}
 	closedir($removePath);
 	rmdir($path);
+
+	return true;
 }
 ?>
