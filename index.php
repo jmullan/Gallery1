@@ -35,7 +35,7 @@ $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
-$postnuke = defined('_PN_VERSION_ID') ? true : false;
+$postnuke = ( defined('_PN_VERSION_ID' || defined('PN_VERSION_ID') )) ? true : false;
 $phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
@@ -79,6 +79,13 @@ if ($postnuke ||
 	elseif ($postnuke) {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke';
+		if(defined('PN_VERSION_NUM')) {
+			// postNuke 0.8
+			$GALLERY_POSTNUKE_VERSION = PN_VERSION_NUM;
+		}
+		else {
+			$GALLERY_POSTNUKE_VERSION = _PN_VERSION_NUM;
+		}
 	}
 	elseif ($GLOBALS['user_prefix'] == "nukea") {
 		$GALLERY_EMBEDDED_INSIDE='nuke';

@@ -93,6 +93,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $GALLERY_POSTNUKE_VERSION;
 	global $GALLERY_MODULENAME;
 	global $modpath;
 
@@ -178,7 +179,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 			break;
 
 			case 'postnuke':
-				if (substr(_PN_VERSION_NUM, 0, 7) < "0.7.6.0") {
+				if (substr($GALLERY_POSTNUKE_VERSION, 0, 7) < "0.7.6.0") {
 					$args["op"] = "modload";
 					$args["file"] = "index";
 

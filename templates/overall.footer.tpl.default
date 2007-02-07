@@ -19,6 +19,7 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		 * also change it in wrapper.header
 		 */
 		global $index;
+		global $GALLERY_POSTNUKE_VERSION;
 		$index = 0;
 
 		CloseTable();
@@ -79,7 +80,7 @@ if (isDebugging()) {
 		    case 'phpnuke':
 		        break;
 		    case 'postnuke':
-		        $infoText .= ' '. _PN_VERSION_NUM;
+		        $infoText .= ' '. $GALLERY_POSTNUKE_VERSION;
 		        break;
 		    case 'cpgnuke':
 		        break;
