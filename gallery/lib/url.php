@@ -97,7 +97,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	}
 
 	/* Needed for postNuke (0.8 and above) */
-	global $GALLERY_POSTNUKE_VERSION
+	global $GALLERY_POSTNUKE_VERSION;
 
 	/* Needed for phpBB2 */
 	global $userdata;

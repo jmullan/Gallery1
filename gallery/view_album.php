@@ -28,8 +28,9 @@ list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) ||
-    !$gallery->user->canReadAlbum($gallery->album)
-    || !$gallery->album->isLoaded()) {
+    !$gallery->user->canReadAlbum($gallery->album) ||
+    !$gallery->album->isLoaded())
+{
     $gallery->session->gRedirDone = false;
     header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
     return;
@@ -978,21 +979,26 @@ $gallery->app->emailOn == "yes") {
             $gallery->album->unsetEmailMe('other', $gallery->user);
         }
     }
+?>
+	<fieldset class="admin" style="width: 200px; margin-bottom: 2px">
+	<legend>
+    <?php echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  "; ?>
+    </legend>
+<?php
     echo makeFormIntro("view_album.php",
         array("name" => "email_me", "style" => "margin-bottom: 0px;"));
-    echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
+
     $checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
     $checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
-	?>
-	<ul>
-	<li><?php echo gTranslate('core', "Comments are added"); ?>
-		<input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
-	</li>
-	<li><?php print gTranslate('core', "Other changes are made") ?>
-		<input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
-	</li>
-	</ul>
+?>
+	<input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
+	<?php echo gTranslate('core', "Comments are added"); ?>
+	<br>
+	<input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
+	<?php print gTranslate('core', "Other changes are made") ?>
+
 	<input type="hidden" name="submitEmailMe" value="true">
+	</fieldset>
 	</form>
 <?php } ?>
 <!-- bottom nav -->

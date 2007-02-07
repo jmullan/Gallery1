@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -36,21 +36,21 @@ $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
-$postnuke = defined('_PN_VERSION_ID') ? true : false;
+$postnuke = ( defined('_PN_VERSION_ID' || defined('PN_VERSION_ID') )) ? true : false;
 $phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
- * Gallery can run embedded in GeekLog too, but to catch this we need
- * config.php * Therefore we have to detect GeeLog in init.php.
+ * Gallery can run embedded in GeekLog too, but to catch this we need config.php
+ * Therefore we have to detect GeekLog in init.php.
  */
 
 if ($postnuke ||
     $phpnuke ||
-    !strcmp($op, "modload") || 
-    !strcmp($mop, "modload") || 
+    !strcmp($op, "modload") ||
+    !strcmp($mop, "modload") ||
     isset($option)) {
-	/* 
+	/*
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
 	 */
@@ -59,14 +59,14 @@ if ($postnuke ||
 		$GALLERY_MODULENAME = $name;
 		define ('GALLERY_URL',"modules/$GALLERY_MODULENAME");
 	}
-	
+
 	if (isset($option)) {
 		$GALLERY_MODULENAME = $option;
 		$mamboDir = getcwd();
 		$GALLERY_EMBEDDED_INSIDE = 'mambo';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'mambo';
 
-		if (isset($GLOBALS['_VERSION']->PRODUCT) && 
+		if (isset($GLOBALS['_VERSION']->PRODUCT) &&
 		  $GLOBALS['_VERSION']->PRODUCT == 'Joomla!') {
 		    $GALLERY_EMBEDDED_INSIDE = 'joomla';
 		    $GALLERY_EMBEDDED_INSIDE_TYPE = 'joomla';
@@ -79,6 +79,13 @@ if ($postnuke ||
 	elseif ($postnuke) {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
 		$GALLERY_EMBEDDED_INSIDE_TYPE = 'postnuke';
+		if(defined('PN_VERSION_NUM')) {
+			// postNuke 0.8
+			$GALLERY_POSTNUKE_VERSION = PN_VERSION_NUM;
+		}
+		else {
+			$GALLERY_POSTNUKE_VERSION = _PN_VERSION_NUM;
+		}
 	}
 	elseif ($GLOBALS['user_prefix'] == "nukea") {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
@@ -175,10 +182,10 @@ if ($postnuke ||
 		       "view_photo_properties.php",
 		       "watermark_album.php",
 		       );
-	
+
 	if (!in_array($include, $safe_to_include)) {
 	    $include = htmlentities($include);
-	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"), 
+	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"),
 			    'Gallery', $include);
 	    exit;
 	}
