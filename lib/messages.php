@@ -47,9 +47,9 @@ function infoLine($messages, $type = '') {
 /**
  * Returns the HTML code for a nice notice box
  *
- * @param  array  $messages		  Format is array('type' => ..., 'text' => ...)
- * @param  string $caption		   An optional caption
- * @param  bool   $withOuterBorder   Wether to show an outlined border, or not
+ * @param  array  $messages			Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption			An optional caption
+ * @param  bool   $withOuterBorder	Wether to show an outlined border, or not
  * @return string $html
  * @author Jens Tkotz
  */
