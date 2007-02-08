@@ -35,7 +35,7 @@ $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
-$postnuke = ( defined('_PN_VERSION_ID' || defined('PN_VERSION_ID') )) ? true : false;
+$postnuke = ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') ) ? true : false;
 $phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
