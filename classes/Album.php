@@ -3143,35 +3143,62 @@ class Album {
 		return array_unique($emails);
 	}
 
-	function setEmailMe($type, $user, $id=null) {
-		$uid=$user->getUid();
-		if ($this->getEmailMe($type, $user, $id)) {
-			// already set
-			return;
-		} else if ($id) {
-			$index = $this->getPhotoIndex($id);
-			$photo = &$this->getPhoto($index);
-			$photo->setEmailMe($type, $user);
-		} else {
-			$this->fields['email_me'][$type][$uid]=true;
-		}
-		$this->save(array(), false);
-	}
+	function setEmailMe($type, $user, $id = null, $recursive = false) {
+    	$uid = $user->getUid();
 
-	function unsetEmailMe($type, $user, $id=null) {
-		$uid=$user->getUid();
-		if (!$this->getEmailMe($type, $user, $id)) {
-			// not set
-			return;
-		} else if ($id) {
-			$index = $this->getPhotoIndex($id);
-			$photo = &$this->getPhoto($index);
-			$photo->unsetEmailMe($type, $user);
-		} else {
-			unset($this->fields['email_me'][$type][$uid]);
-		}
-		$this->save(array(), false);
-	}
+    	if ($this->getEmailMe($type, $user, $id) && !$recursive) {
+    		// already set
+    		return;
+    	}
+    	else if ($id) {
+    		$index = $this->getPhotoIndex($id);
+    		$photo = &$this->getPhoto($index);
+    		$photo->setEmailMe($type, $user);
+    	}
+    	else {
+    		$this->fields['email_me'][$type][$uid] = true;
+    		if($recursive) {
+    			for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+    				if ($this->isAlbum($i)) {
+    					$nestedAlbum = new Album();
+    					$nestedAlbum->load($this->getAlbumName($i));
+    					$nestedAlbum->setEmailMe($type, $user, $id=null, $recursive);
+
+    				}
+    			}
+    		}
+    	}
+
+    	$this->save(array(), false);
+    }
+
+	function unsetEmailMe($type, $user, $id = null, $recursive) {
+    	$uid = $user->getUid();
+
+    	if (!$this->getEmailMe($type, $user, $id)  && !$recursive) {
+    		// not set
+    		return;
+    	}
+    	else if ($id) {
+    		$index = $this->getPhotoIndex($id);
+    		$photo = &$this->getPhoto($index);
+    		$photo->unsetEmailMe($type, $user);
+    	}
+    	else {
+    		unset($this->fields['email_me'][$type][$uid]);
+    		if($recursive) {
+    			for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+    				if ($this->isAlbum($i)) {
+    					$nestedAlbum = new Album();
+    					$nestedAlbum->load($this->getAlbumName($i));
+    					$nestedAlbum->unsetEmailMe($type, $user, $id=null, $recursive);
+
+    				}
+    			}
+    		}
+    	}
+    	$this->save(array(), false);
+    }
 
 	/**
 	 * This functions returns an array that contains the absolute pathes to albumItems.

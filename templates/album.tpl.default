@@ -220,26 +220,29 @@ if ($gallery->app->comments_enabled == 'yes' &&
 	!$gallery->session->offline &&
 	$gallery->app->emailOn == 'yes')
 {
-	echo '<div class="g-emailMe-box">';
 	echo makeFormIntro("view_album.php", array("name" => "email_me"));
-	echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
+	//echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
 	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
 	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
 ?>
+  <fieldset class="g-emailMe-box">
+	<legend>
+    <?php echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  "; ?>
+  	</legend>
 
-  <ul>
-    <li>
       <input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
       <?php echo gTranslate('core', "Comments are added"); ?>
-    </li>
-    <li>
+<br>
       <input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
       <?php print gTranslate('core', "Other changes are made") ?>
-    </li>
-  </ul>
+
+  <hr>
+  	<input type="checkbox" name="recursive" onclick="document.email_me.submit()">
+  	<?php echo gTranslate('core', "Apply settings (both) recursive for subalbums."); ?>
+
   <input type="hidden" name="submitEmailMe" value="true">
+  </fieldset>
 </form>
-</div>
 <?php
 }
 ?>

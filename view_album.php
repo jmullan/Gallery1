@@ -64,27 +64,26 @@ if (!empty($Vote)) {
 }
 
 /* Notifications */
-if ($gallery->app->comments_enabled == 'yes' &&
-	$gallery->user->isLoggedIn()
-	&& $gallery->user->getEmail() &&
+if ($gallery->user->isLoggedIn() &&
+	$gallery->user->getEmail() &&
 	!$gallery->session->offline &&
-	$gallery->app->emailOn == 'yes')
+	$gallery->app->emailOn == "yes")
 {
-	if (getRequestVar('submitEmailMe')) {
-		if (getRequestVar('comments')) {
-			$gallery->album->setEmailMe('comments', $gallery->user);
-		}
-		else {
-			$gallery->album->unsetEmailMe('comments', $gallery->user);
-		}
+    if (getRequestVar('submitEmailMe')) {
+        if (getRequestVar('comments')) {
+            $gallery->album->setEmailMe('comments', $gallery->user, null, getRequestVar('recursive'));
+        }
+        else {
+            $gallery->album->unsetEmailMe('comments', $gallery->user, null, getRequestVar('recursive'));
+        }
 
-		if (getRequestVar('other')) {
-			$gallery->album->setEmailMe('other', $gallery->user);
-		}
-		else {
-			$gallery->album->unsetEmailMe('other', $gallery->user);
-		}
-	}
+        if (getRequestVar('other')) {
+            $gallery->album->setEmailMe('other', $gallery->user, null, getRequestVar('recursive'));
+        }
+        else {
+            $gallery->album->unsetEmailMe('other', $gallery->user, null, getRequestVar('recursive'));
+        }
+    }
 }
 
 $page = intval($page);
