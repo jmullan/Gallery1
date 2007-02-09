@@ -749,14 +749,20 @@ $constants = array_merge($constants, array(
 		'value' => array()
 	),
 	'useOtherSMTP' => array(
-		'prompt' => gTranslate('config',"Use non-local SMTP server."),
-		'desc' => gTranslate('config',"Use a smtp server running on a different machine (ie: Your ISPs mail server) to process outgoing gallery email."). '<br>',
+		'prompt' => gTranslate('config',"Use SMTP server."),
+		'desc' => gTranslate('config',"Use a smtp server to process outgoing gallery email, instead of the internal PHP mail() function. This server can (not must) run on a different machine (ie: Your ISPs mail server)."),
 		'choices' => array(
 			'no' => gTranslate('config',"No"),
 			'yes' => gTranslate('config',"Yes")
 		),
 		'optional' => 1,
 		'value' => 'no',
+		'attrs' => array('id' => 'smtp', 'onChange' => 'toggleSMTP(this.value)')
+	),
+	'subgroup_SMTP' => array (
+		'type' => 'subgroup',
+		'title' => gTranslate('config',"SMTP Settings"),
+		'display' => (useSMTP() == 'yes') ? 'inline' : 'none'
 	),
 	'smtpHost' => array(
 		'prompt' => gTranslate('config',"SMTP Server"),
@@ -798,6 +804,9 @@ $constants = array_merge($constants, array(
 		'verify-func' => 'verify_password',
 		'attrs' => array('size' => 20),
 		'optional' => 1
+	),
+	'subgroup_SMTP_end' => array (
+		'type' => 'subgroup_end',
 	),
 	'group_email_end' => array (
 		'type' => 'group_end',

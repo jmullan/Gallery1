@@ -67,6 +67,14 @@ function toggleGraphics(show) {
 	}
 }
 
+function toggleSMTP(show) {
+	if(show == 'yes') {
+		document.getElementById('subgroup_SMTP').style.display = 'inline';
+	}
+	else {
+		document.getElementById('subgroup_SMTP').style.display = 'none';
+	}
+}
 </script>
 
 <div class="g-header">

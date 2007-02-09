@@ -2013,4 +2013,16 @@ function embed_hidden($key) {
 	}
 	return $buf;
 }
+
+
+function useSMTP() {
+	global $gallery;
+
+	if(isset($gallery->app->useOtherSMTP)) {
+		return $gallery->app->useOtherSMTP;
+	}
+	else {
+		return 'no';
+	}
+}
 ?>
