@@ -1829,11 +1829,25 @@ function checkImageMagick($cmd) {
  * if not found, then the default is returned
  */
 function getCurrentGraphicTool() {
-    global $gallery;
-    if(isset($gallery->app->graphics)) {
-        return $gallery->app->graphics;
-    } else {
-        return default_graphics();
-    }
+	global $gallery;
+
+	if(isset($gallery->app->graphics)) {
+		return $gallery->app->graphics;
+	}
+	else {
+		return default_graphics();
+	}
 }
+
+function useSMTP() {
+	global $gallery;
+
+	if(isset($gallery->app->useOtherSMTP)) {
+		return $gallery->app->useOtherSMTP;
+	}
+	else {
+		return 'no';
+	}
+}
+
 ?>

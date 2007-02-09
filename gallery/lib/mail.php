@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -92,16 +92,18 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	if (! check_email($from)) {
 		if (isDebugging() && $from) {
-			echo "\n<br>". gallery_error(sprintf(_("Sender address %s is invalid, using %s."),
-			$from, $gallery->app->senderEmail));
+			echo "\n<br>".
+				gallery_error(sprintf(_("Sender address %s is invalid, using %s."),
+							  $from, $gallery->app->senderEmail));
 		}
 		$from = $gallery->app->senderEmail;
 		$reply_to = $gallery->app->adminEmail;
-	} else {
+	}
+	else {
 		$reply_to = $from;
 	}
 
-	/* End catch errors */
+	/* End catch errors from call */
 
 	if(!empty($gallery->app->emailSubjPrefix)) {
 		$subject = $gallery->app->emailSubjPrefix .' '. $subject;
@@ -259,9 +261,12 @@ function emailComments($id, $comment_text, $commenter_name) {
 
 function emailLogMessage($logmsg, $result, $isNotifyMail) {
 	global $gallery;
+
 	if (!$result) {
-		$logmsg = sprintf(_("FAILED") ." / FAILED: %s", $logmsg);
+		$logmsg = _("Sending email failed. Additional info:") . "\n<br>" .
+				  $logmsg;
 	}
+
 	if (isset($gallery->app->email_notification) &&
 	  in_array("logfile", $gallery->app->email_notification)) {
 		$logfile = $gallery->app->userDir."/email.log";

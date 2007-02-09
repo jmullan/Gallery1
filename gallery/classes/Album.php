@@ -176,7 +176,7 @@ class Album {
             return $photo->lastCommentDate();
         }
     }
-    
+
     function lastCommentDate($verbose = "yes") {
         global $gallery;
         if (!$gallery->user->canViewComments($this)) {
@@ -604,7 +604,7 @@ class Album {
         } elseif (!strcmp($sort, "comment")) {
             $func = "sortByComment";
         }
-        
+
         if ($albumsFirst != "") {
             //echo "presort by $func with order $order";
             usort($this->photos, array('Album', 'sortByType'));
@@ -624,10 +624,10 @@ class Album {
 
         $objA = (object)$a;
         $objB = (object)$b;
-        
+
         $aIsAlbum = $objA->isAlbum();
         $bIsAlbum = $objB->isAlbum();
-        
+
         if ($aIsAlbum == $bIsAlbum) {
             return Album::$func($a, $b);
         } elseif ($aIsAlbum < $bIsAlbum) {
@@ -636,7 +636,7 @@ class Album {
             return -1 * $albumsFirst;
         }
     }
-    
+
     function sortByUpload($a, $b) {
         global $order;
 
@@ -799,7 +799,7 @@ class Album {
 
     function getHighlight() {
         debugMessage(_("Getting highlight"), __FILE__, __LINE__, 3);
-        
+
         if ($this->numPhotos(1) == 0) {
             return null;
         }
@@ -815,7 +815,7 @@ class Album {
 
     function getHighlightSize() {
         global $gallery;
-        
+
         $parentAlbum = $this->getParentAlbum(FALSE);
         if (isset($parentAlbum)) {
             $size = $parentAlbum->fields["thumb_size"];
@@ -826,14 +826,14 @@ class Album {
     }
 
     /**
-     * Returns ratio of highlight, 
+     * Returns ratio of highlight,
      * which is either thumb ratio of parent album, or value from config if root.
      * @return string   $size
      * @author Jens Tkotz <jens@peino.de>
      */
     function getHighlightRatio() {
         global $gallery;
-        
+
         $parentAlbum = $this->getParentAlbum(FALSE);
         if (isset($parentAlbum)) {
             $ratio = getPropertyDefault('thumb_ratio', $parentAlbum, false);
@@ -842,10 +842,10 @@ class Album {
         }
         return $ratio;
     }
-    
+
     function setHighlight($index) {
         debugMessage(_("Setting highlight"), __FILE__, __LINE__, 3);
-        
+
         $this->updateSerial = 1;
         $numPhotos = $this->numPhotos(1);
 
@@ -1159,7 +1159,7 @@ class Album {
         $dir = $this->getAlbumDir();
 
         echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
-        
+
         if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
             $name = $originalFilename;
             // check to see if a file by that name already exists
@@ -1264,10 +1264,10 @@ class Album {
 
         /* auto-rotate the photo if needed */
         $index = $this->numPhotos(1);
-        
+
         echo debugMessage(_("Doing the naming"), __FILE__, __LINE__);
-        if ($exifRotate && hasExif($tag) && 
-          !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  && 
+        if ($exifRotate && hasExif($tag) &&
+          !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
             (!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
             (!empty($gallery->app->exiftags) && $gallery->app->exiftags))
         ){
@@ -1460,7 +1460,7 @@ class Album {
             return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"), $size, $attrs);
         }
     }
-    
+
     function getThumbnailTagById($id, $size=0, $attrs="") {
         return $this->getThumbnailTag($this->getPhotoIndex($id), $size, $attrs);
     }
@@ -1643,7 +1643,7 @@ class Album {
         $numItemsTotal = $numAlbums + $numPhotos;
         return (array($numItemsTotal, $numAlbums, $numPhotos));
     }
-    
+
     function numVisibleItems($user, $returnVisibleItems=false) {
         $uuid = $user->getUid();
 
@@ -1756,7 +1756,7 @@ class Album {
         $photo = $this->getPhoto($index);
         return $photo->getRank();
     }
-    
+
     function setRank($index, $rank) {
         $photo = &$this->getPhoto($index);
         $photo->setRank($rank);
@@ -1969,13 +1969,13 @@ class Album {
     	if($uid == $this->getItemOwner($index)) {
     		return true;
     	}
-    	
+
     	$everybody = $gallery->userDB->getEverybody();
     	$everybodyUid = $everybody->getUid();
     	if($this->getItemOwner($index) == $everybodyUid) {
     		return true;
     	}
-    	
+
     	$nobody = $gallery->userDB->getNobody();
     	$nobodyUid = $nobody->getUid();
     	if ($uid == $nobodyUid) {
@@ -2102,11 +2102,11 @@ class Album {
 
     function getCreationDate() {
     	global $gallery;
-    	
+
     	if(!empty($this->fields['creation_date'])) {
         	$creationDate = $this->fields['creation_date'];
     	}
-    	
+
         if (isset($creationDate)) {
         	return strftime($gallery->app->dateString,$creationDate);
         }
@@ -2114,7 +2114,7 @@ class Album {
         	return false;
         }
     }
-    
+
     function getLastModificationDate() {
         global $gallery;
         $dir = $this->getAlbumDir();
@@ -2203,7 +2203,7 @@ class Album {
             }
         }
     }
-    
+
     function setNestedPollProperties() {
         for ($i=1; $i <= $this->numPhotos(1); $i++) {
             if ($this->isAlbum($i)) {
@@ -2425,17 +2425,17 @@ class Album {
     // -------------
     function isOwner($uid) {
     	global $gallery;
-       
+
     	if($uid == $this->fields["owner"]) {
     		return true;
     	}
-    	
+
     	$everybody = $gallery->userDB->getEverybody();
     	$everybodyUid = $everybody->getUid();
     	if($this->fields["owner"] == $everybodyUid) {
     		return true;
     	}
-    	
+
     	return false;
     }
 
@@ -2447,7 +2447,7 @@ class Album {
         global $gallery;
         return $gallery->userDB->getUserByUid($this->fields["owner"]);
     }
-    
+
     function getExtraFields($all = true) {
         if ($all) {
             return $this->fields["extra_fields"];
@@ -2650,7 +2650,7 @@ class Album {
             return "Do you like this? (1=love it)";
         }
     }
-    
+
     /* Returns true if votes can be moved with images between $this and $album */
     function pollsCompatible($album) {
         if ($this->fields["poll_type"] != "critique") {
@@ -2794,34 +2794,64 @@ class Album {
         return array_unique($emails);
     }
 
-    function setEmailMe($type, $user, $id=null) {
-        $uid=$user->getUid();
-        if ($this->getEmailMe($type, $user, $id)) {
-            // already set
-            return;
-        } else if ($id) {
-            $index = $this->getPhotoIndex($id);
-            $photo = &$this->getPhoto($index);
-            $photo->setEmailMe($type, $user);
-        } else {
-            $this->fields['email_me'][$type][$uid]=true;
-        }
-        $this->save(array(), false);
+    function setEmailMe($type, $user, $id = null, $recursive = false) {
+    	$uid = $user->getUid();
+
+    	if ($this->getEmailMe($type, $user, $id) && !$recursive) {
+    		// already set
+    		return;
+    	}
+    	else if ($id) {
+    		$index = $this->getPhotoIndex($id);
+    		$photo = &$this->getPhoto($index);
+    		$photo->setEmailMe($type, $user);
+    	}
+    	else {
+    		$this->fields['email_me'][$type][$uid] = true;
+    		if($recursive) {
+    			for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+    				if ($this->isAlbum($i)) {
+    					$nestedAlbum = new Album();
+    					$nestedAlbum->load($this->getAlbumName($i));
+    					$nestedAlbum->setEmailMe($type, $user, $id=null, $recursive);
+
+    				}
+    			}
+    		}
+    		else {
+    			echo "normal";
+    		}
+    	}
+
+    	$this->save(array(), false);
     }
 
-    function unsetEmailMe($type, $user, $id=null) {
-        $uid=$user->getUid();
-        if (!$this->getEmailMe($type, $user, $id)) {
-            // not set
-            return;
-        } else if ($id) {
-            $index = $this->getPhotoIndex($id);
-            $photo = &$this->getPhoto($index);
-            $photo->unsetEmailMe($type, $user);
-        } else {
-            unset($this->fields['email_me'][$type][$uid]);
-        }
-        $this->save(array(), false);
+    function unsetEmailMe($type, $user, $id = null, $recursive) {
+    	$uid = $user->getUid();
+
+    	if (!$this->getEmailMe($type, $user, $id)) {
+    		// not set
+    		return;
+    	}
+    	else if ($id) {
+    		$index = $this->getPhotoIndex($id);
+    		$photo = &$this->getPhoto($index);
+    		$photo->unsetEmailMe($type, $user);
+    	}
+    	else {
+    		unset($this->fields['email_me'][$type][$uid]);
+    		if($recursive) {
+    			for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+    				if ($this->isAlbum($i)) {
+    					$nestedAlbum = new Album();
+    					$nestedAlbum->load($this->getAlbumName($i));
+    					$nestedAlbum->unsetEmailMe($type, $user, $id=null, $recursive);
+
+    				}
+    			}
+    		}
+    	}
+    	$this->save(array(), false);
     }
 
     /**
@@ -2868,22 +2898,22 @@ class Album {
         }
         return $albumItemNames;
     }
-    
+
     /**
      *
     */
     function getAlbumSize($user = NULL, $full = false, $visibleOnly = false, $recursive = false) {
-        
+
         $albumSize = 0;
         $albumItemNames = $this->getAlbumItemNames($user, $full, $visibleOnly, $recursive);
         $justPureFileNames  = array_flaten($albumItemNames);
-        
+
         foreach ($justPureFileNames as $absoluteFileName) {
             $albumSize += fs_filesize($absoluteFileName);
         }
-                    
+
         return $albumSize;
-    }        
+    }
 
     /**
      * Adds an imagearea to an album item

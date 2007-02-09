@@ -961,26 +961,30 @@ if (canVote()) { ?>
 <?php
 }
 
-?>
-	</form>
-<?php if ($gallery->user->isLoggedIn() &&
-$gallery->user->getEmail() &&
-!$gallery->session->offline &&
-$gallery->app->emailOn == "yes") {
+echo "\n</form>";
+
+if ($gallery->user->isLoggedIn() &&
+	$gallery->user->getEmail() &&
+	!$gallery->session->offline &&
+	$gallery->app->emailOn == "yes")
+{
     if (getRequestVar('submitEmailMe')) {
         if (getRequestVar('comments')) {
-            $gallery->album->setEmailMe('comments', $gallery->user);
-        } else {
-            $gallery->album->unsetEmailMe('comments', $gallery->user);
+            $gallery->album->setEmailMe('comments', $gallery->user, null, getRequestVar('recursive'));
         }
+        else {
+            $gallery->album->unsetEmailMe('comments', $gallery->user, null, getRequestVar('recursive'));
+        }
+
         if (getRequestVar('other')) {
-            $gallery->album->setEmailMe('other', $gallery->user);
-        } else {
-            $gallery->album->unsetEmailMe('other', $gallery->user);
+            $gallery->album->setEmailMe('other', $gallery->user, null, getRequestVar('recursive'));
+        }
+        else {
+            $gallery->album->unsetEmailMe('other', $gallery->user, null, getRequestVar('recursive'));
         }
     }
 ?>
-	<fieldset class="admin" style="width: 200px; margin-bottom: 2px">
+	<fieldset class="admin" style="width: 400px; margin-bottom: 2px">
 	<legend>
     <?php echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  "; ?>
     </legend>
@@ -996,10 +1000,14 @@ $gallery->app->emailOn == "yes") {
 	<br>
 	<input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
 	<?php print gTranslate('core', "Other changes are made") ?>
+	<hr>
+	<input type="checkbox" name="recursive" onclick="document.email_me.submit()">
+	<?php echo gTranslate('core', "Apply settings (both) recursive for subalbums."); ?>
 
 	<input type="hidden" name="submitEmailMe" value="true">
-	</fieldset>
 	</form>
+	</fieldset>
+
 <?php } ?>
 <!-- bottom nav -->
 <?php

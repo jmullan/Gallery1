@@ -55,11 +55,21 @@ echo "<div style=\"clear: both\"></div>";
 
 function toggleGraphics(show) {
 	if(show == 'ImageMagick') {
-		document.getElementById('subgroup_ImageMagick').style.display      = 'inline';
+		document.getElementById('subgroup_ImageMagick').style.display = 'inline';
 		document.getElementById('subgroup_NetPBM').style.display      = 'none';
-	} else {
-		document.getElementById('subgroup_ImageMagick').style.display      = 'none';
+	}
+	else {
+		document.getElementById('subgroup_ImageMagick').style.display = 'none';
 		document.getElementById('subgroup_NetPBM').style.display      = 'inline';
+	}
+}
+
+function toggleSMTP(show) {
+	if(show == 'yes') {
+		document.getElementById('subgroup_SMTP').style.display = 'inline';
+	}
+	else {
+		document.getElementById('subgroup_SMTP').style.display = 'none';
 	}
 }
 
