@@ -2818,9 +2818,6 @@ class Album {
     				}
     			}
     		}
-    		else {
-    			echo "normal";
-    		}
     	}
 
     	$this->save(array(), false);
@@ -2829,7 +2826,7 @@ class Album {
     function unsetEmailMe($type, $user, $id = null, $recursive) {
     	$uid = $user->getUid();
 
-    	if (!$this->getEmailMe($type, $user, $id)) {
+    	if (!$this->getEmailMe($type, $user, $id)  && !$recursive) {
     		// not set
     		return;
     	}
