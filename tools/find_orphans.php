@@ -165,7 +165,7 @@ else {
 	}
 
 	if ($action == 'images') {
-		$unwriteableFiles = array("jens"); //deleteOrphanedImages($orphanImages);
+		$unwriteableFiles = deleteOrphanedImages($orphanImages);
 		if (!empty($unwriteableFiles)) {
 
 			$text = gTranslate('core', "The Webserver has not enough permission to delete the following files:");
