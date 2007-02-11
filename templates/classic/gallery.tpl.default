@@ -26,6 +26,15 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
 	exit;
 }
 
+/** Display settings **/
+
+/* Show created / last change date	*/
+$showCreationDate	= true;
+
+/** Show number of items			*/
+$numItems			= true;
+
+/** Enf of Settings **/
 $baseUrl = getGalleryBaseUrl();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -124,13 +133,15 @@ $cells = 2;
 				<?php echo $content['albumdesc']['url']; ?>
 				<br>
 <?php endif ?>
+<?php if ($showCreationDate) : ?>
 				<?php echo $content['albumdesc']['changeDate'] ?>
-
 				<br>
+<?php endif ?>
+<?php if ($numItems) : ?>
 				<?php echo $content['albumdesc']['numItems'] ?>
-
-<?php if (!empty($content['albumdesc']['clickCounter'])) :?>
 				<br>
+<?php endif ?>
+<?php if (!empty($content['albumdesc']['clickCounter'])) :?>
 				<?php echo $content['albumdesc']['clickCounter'] ?>
 <?php endif ?>
 

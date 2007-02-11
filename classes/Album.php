@@ -2176,16 +2176,29 @@ class Album {
 		}
 	}
 
-	function makeThumbnailRecursive($index) {
-		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+	function makeThumbnails($recursive = false, $depth = 0) {
+		$numItems		= $this->numPhotos(1);
+		$onePercent		= 100/$numItems;
+		$progressbarID	= $this->fields['name'] . '_' . $depth;
+
+		echo addProgressbar(
+				$progressbarID,
+				sprintf(
+					gTranslate('core', "Updating album: '<i>%s</i>' with %d photos"),
+					$this->fields['name'],
+					$numItems)
+		);
+
+		for ($i = 1; $i <= $numItems; $i++) {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
-				$index = 'all';
+
 				$nestedAlbum->load($this->getAlbumName($i));
 
 				$np = $nestedAlbum->numPhotos(1);
-				echo "<br>". sprintf(gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
-				$nestedAlbum->makeThumbnailRecursive($index);
+				echo "<br>";
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d photos"), $this->getAlbumName($i), $np);
+				$nestedAlbum->makeThumbnails($recursive);
 				$nestedAlbum->save();
 
 				$album = $this->getNestedAlbum($i);
@@ -2196,7 +2209,11 @@ class Album {
 				}
 			}
 			else {
-				echo("<br> ". sprintf(gTranslate('core', "Processing image %d..."), $i));
+				updateProgressBar(
+					$progressbarID,
+					sprintf(gTranslate('core', "Processing image %d..."), $i),
+					ceil($i * $onePercent)
+				);
 				my_flush();
 				$this->makeThumbnail($i);
 			}

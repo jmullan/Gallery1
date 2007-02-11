@@ -1521,8 +1521,8 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 /**
  * Returns the HTML code for a progressbar.
  *
- * @param string  $id		HTML ID of the progressbar
- * @param string  $label	 A descriptive Label
+ * @param string  $id		HTML ID you want to assing to the progressbar
+ * @param string  $label	A descriptive Label
  * @return string $html
  * @author Jens Tkotz
  */
@@ -1543,6 +1543,18 @@ function addProgressbar($id, $label = '') {
 	$html .= "<div id=\"progressDescription_$id\"></div>\n";
 
 	return $html;
+}
+
+/**
+ * Wrapper around js function updateProgressBar. Updates a progressbar.
+ *
+ * @param string	$htmlId		HTML ID of the progressbar you want to update.
+ * @param string	$status		Optional text you want to write in the description field.
+ * @param float		$percentDone
+ */
+function updateProgressBar($htmlId, $status, $percentDone) {
+	echo "\n<script type=\"text/javascript\">updateProgressBar('$htmlId', '$status', $percentDone)</script>";
+	my_flush();
 }
 
 /**

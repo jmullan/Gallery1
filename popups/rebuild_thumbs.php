@@ -24,6 +24,7 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 $recursive = getRequestVar('recursive');
+$recreate = getRequestVar('recreate');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
@@ -31,44 +32,36 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	exit;
 }
 
-printPopupStart(sprintf(gTranslate('core', "Rebuilding Thumbnails: %s"), $gallery->album->fields["title"]), '', 'center');
+printPopupStart(sprintf(gTranslate('core', "Rebuilding Thumbnails: %s"), $gallery->album->fields["title"]), '', 'left');
 
-if ($recursive == 'no') {
-	$np = $gallery->album->numPhotos(1);
-	echo "\n<h3>" . sprintf(gTranslate('core', "Rebuilding %d thumbnails..."), $np) .'</h3>';
-	my_flush();
-	for ($i = 1; $i <= $np; $i++) {
-		echo "\n<h4>". sprintf(gTranslate('core', "Processing image %d..."), $i) .'</h4>';
-		my_flush();
-		set_time_limit($gallery->app->timeLimit);
-		$gallery->album->makeThumbnail($i);
-	}
-	echo "\n<hr width=\"100%\">";
-
-	$gallery->album->save();
+if(!empty($recreate)) {
+	$gallery->album->makeThumbnails($recursive);
 	echo '<script type="text/javascript">opener.location.reload();</script>';
+	echo "\n<br>";
+	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
 }
-else if ($recursive == 'yes') {
-	$index = 'all';
-	$gallery->album->makeThumbnailRecursive($index);
-	$gallery->album->save();
-	echo '<script type="text/javascript">opener.location.reload();</script>';
-}
+else {
+	echo gTranslate('core', "Here you can rebuild all thumbnails of your album. This is useful when thumbnails got broken, or you changed the thumnbail size / quality.");
+	echo "\n<br>";
+	echo gTranslate('core', "Custom thumbnails will not be reset to default. (Just resized, or rebuild)");
+	echo "\n<br><br>";
+	echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
+	echo "\n<br>";
 
-echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
-echo "\n<br>";
-
-echo makeFormIntro('rebuild_thumbs.php', array(), array('type' => 'popup'));
+	echo makeFormIntro('rebuild_thumbs.php', array(), array('type' => 'popup'));
 ?>
-	<input type="radio" name="recursive" value="yes"> <?php echo gTranslate('core', "Yes"); ?>
-	<input type="radio" name="recursive" value="no" checked> <?php echo gTranslate('core', "No"); ?>
+	<input type="radio" name="recursive" value="true"> <?php echo gTranslate('core', "Yes"); ?>
+	<input type="radio" name="recursive" value="false" checked> <?php echo gTranslate('core', "No"); ?>
 	<br><br>
 	<?php
 
-	echo gSubmit('recreate', empty($recreate_type) ? gTranslate('core', "_Start") : gTranslate('core', "_Start over"));
+	echo gSubmit('recreate', gTranslate('core', "_Start"));
 	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
 ?>
 	  </form>
+<?php
+}
+?>
 </div>
 </body>
 </html>
