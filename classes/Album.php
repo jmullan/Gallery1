@@ -2176,47 +2176,50 @@ class Album {
 		}
 	}
 
-	function makeThumbnails($recursive = false, $depth = 0) {
-		$numItems		= $this->numPhotos(1);
+	function makeThumbnails($recursive = false) {
+		global $gallery;
+
+		$numItems = $this->numPhotos(1);
+
+		if($numItems == 0) {
+			echo gTranslate('core', " -- Skipping") . '<br>';
+			return true;
+		}
+
 		$onePercent		= 100/$numItems;
-		$progressbarID	= $this->fields['name'] . '_' . $depth;
+		$progressbarID	= $this->fields['name'];
 
 		echo addProgressbar(
 				$progressbarID,
 				sprintf(
-					gTranslate('core', "Updating album: '<i>%s</i>' with %d photos"),
+					gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
+					$this->fields['title'],
 					$this->fields['name'],
 					$numItems)
 		);
 
 		for ($i = 1; $i <= $numItems; $i++) {
-			if ($this->isAlbum($i)) {
+			if ($this->isAlbum($i) && $recursive) {
 				$nestedAlbum = new Album();
-
 				$nestedAlbum->load($this->getAlbumName($i));
-
 				$np = $nestedAlbum->numPhotos(1);
+
 				echo "<br>";
-				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d photos"), $this->getAlbumName($i), $np);
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
 				$nestedAlbum->makeThumbnails($recursive);
 				$nestedAlbum->save();
-
-				$album = $this->getNestedAlbum($i);
-				$l = $album->getHighlight();
-				if (isset($l)) {
-					$album->setHighlight($l);
-					$album->save();
-				}
 			}
 			else {
-				updateProgressBar(
-					$progressbarID,
-					sprintf(gTranslate('core', "Processing image %d..."), $i),
-					ceil($i * $onePercent)
-				);
 				my_flush();
+				set_time_limit($gallery->app->timeLimit);
 				$this->makeThumbnail($i);
 			}
+
+			updateProgressBar(
+				$progressbarID,
+				sprintf(gTranslate('core', "Processing item %d..."), $i),
+				ceil($i * $onePercent)
+			);
 		}
 	}
 

@@ -685,7 +685,9 @@ if ($numPhotos) {
 
 						$attrlist = array();
 						if ($viewFull) {
-								if($gallery->album->fields['dimensionsAsPopup'] == 'yes') {
+							if(isset($gallery->album->fields['dimensionsAsPopup']) &&
+								   $gallery->album->fields['dimensionsAsPopup'] == 'yes')
+							{
 								$fullImageUrl	= $gallery->album->getPhotoPath($i, true);
 								$attrlist		= array('onClick' => popup($fullImageUrl, true, $hf, $wf));
 							}

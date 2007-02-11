@@ -50,8 +50,8 @@ else {
 
 	echo makeFormIntro('rebuild_thumbs.php', array(), array('type' => 'popup'));
 ?>
-	<input type="radio" name="recursive" value="true"> <?php echo gTranslate('core', "Yes"); ?>
-	<input type="radio" name="recursive" value="false" checked> <?php echo gTranslate('core', "No"); ?>
+	<input type="radio" name="recursive" value="1"> <?php echo gTranslate('core', "Yes"); ?>
+	<input type="radio" name="recursive" value="0" checked> <?php echo gTranslate('core', "No"); ?>
 	<br><br>
 	<?php
 
