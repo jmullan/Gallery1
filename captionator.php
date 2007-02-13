@@ -243,39 +243,44 @@ if ($numPhotos) {
 	// Go trough the album
 	while ($count < $perPage && $i <= $numPhotos) {
 		$photo = $gallery->album->getPhoto($i);
-		if($photo->getAlbumName() === NULL) {
-			list($width, $height)	= $photo->getDimensions();
-			list($twidth, $theight)	= $photo->thumbnail->getDimensions();
-		}
+
 ?>
 	<!-- Picture #<?php echo $i-1 ?> -->
 <tr>
-	<td class="g-album-image-cell" style="border-top: 1px solid #000; vertical-align: middle;">
+	<td class="g-album-image-cell" style="padding: 10px; border-top: 1px solid #000; vertical-align: middle;">
 <?php
-		if (!($photo->isMovie())) {
+		if($photo->isAlbum()) {
+			$imageTag = $gallery->album->getThumbnailTag($i);
+			$albumURL = makeAlbumUrl($gallery->album->getAlbumName($i));
+
+			echo galleryLink($albumURL, $imageTag, array(), '', false, false);
+			echo "<div class=\"g-small\">". gTranslate('core', "(click to enter album)") . '</div>';
+		}
+		elseif (! $photo->isMovie()) {
+			list($height, $width) = $photo->getDimensions(false);
 			echo popup_link2(
 				$gallery->album->getThumbnailTag($i, $thumbSize),
 				$gallery->album->getPhotoPath($i),
 				array(
-					'height' => $height+20,
-					'width' => $width+20,
+					'height' => $height,
+					'width' => $width,
 					'accesskey' => false
 				)
 			);
-			echo "<br>". gTranslate('core', "(click to enlarge)");
+			echo "<div class=\"g-small\">". gTranslate('core', "(click to enlarge)") . '</div>';
 		}
 		else {
 			echo $gallery->album->getThumbnailTag($i,$thumbSize);
 		}
 
-		if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
-			echo "<br>(" . gTranslate('core', "hidden") .")<br>";
+		if ($photo->isHidden() && !$gallery->session->offline) {
+			echo "<div class=\"g-small\">(" . gTranslate('core', "hidden") .")</div>";
 		}
 ?>
 	</td>
-	<td class="g-albumdesc-cell1">
+	<td class="g-albumdesc-cell">
 <?php
-		if ($gallery->album->isAlbum($i)) {
+		if ($photo->isAlbum()) {
 			// Found Element is an album
 			$myAlbumName = $gallery->album->getAlbumName($i);
 			$myAlbum = new Album();
@@ -286,11 +291,11 @@ if ($numPhotos) {
 			echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 		}
 		else {
-			$oldCaption = $gallery->album->getCaption($i);
+			$oldCaption = $photo->getCaption();
 			$oldKeywords = $gallery->album->getKeywords($i);
 			$translateableFields = translateableFields();
 
-			if ($gallery->album->photos[$i-1]->isMovie()) {
+			if ($photo->isMovie()) {
 				echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Movie Caption: ");
 			}
 			else {
@@ -303,7 +308,7 @@ if ($numPhotos) {
 					continue;
 				}
 
-				$value = $gallery->album->getExtraField($i, $field);
+				$value = $photo->getExtraField($field);
 
 				if ($field == "Title") {
 					echo "\n\t\t". '<div class="g-admin">' . gTranslate('core', "Title: ") .'</div>';
@@ -319,7 +324,7 @@ if ($numPhotos) {
 			echo "\n\t\t". '<p class="g-admin">'. gTranslate('core', "Keywords: ") . '<br>';
 			echo "\n\t\t". '<input type="text" name="new_keywords_'. $i .'" size="65" value="'. $oldKeywords .'"></p>';
 
-			$itemCaptureDate = $gallery->album->getItemCaptureDate($i);
+			$itemCaptureDate = $photo->getItemCaptureDate();
 			$capturedate = strftime($gallery->app->dateTimeString , $itemCaptureDate);
 
 			echo "\n\t\t". '<p class="g-admin">'. sprintf(gTranslate('core', "Capture Date: %s"),$capturedate) . '</p><br>';
@@ -357,7 +362,7 @@ else {
 }
 ?>
 </form>
-<br>
+</div>
 
 <?php
 echo languageSelector();
