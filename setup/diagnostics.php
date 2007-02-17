@@ -44,8 +44,8 @@ configLogin(basename(__FILE__));
 		<th class="g-columnheader"> <?php echo gTranslate('config', "Description") ?> </th>
 	  </tr>
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="phpinfo.php"><?php echo gTranslate('config', "PHP Info") ?></a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('phpinfo.php', gTranslate('config', "PHP _Info")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo gTranslate('config', "This page provides information about your PHP installation.") ?>
@@ -54,8 +54,8 @@ configLogin(basename(__FILE__));
 	  </tr>
 
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="check_netpbm.php"><?php echo gTranslate('config', "Check") ?> NetPBM</a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('check_netpbm.php', gTranslate('config', "Check _NetPBM")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo gTranslate('config', "This page provides information about your NetPBM binaries.") ?>
@@ -64,8 +64,8 @@ configLogin(basename(__FILE__));
 	  </tr>
 
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="check_imagemagick.php"><?php echo gTranslate('config', "Check") ?> ImageMagick</a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('check_imagemagick.php', gTranslate('config', "Check Image_Magick")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo gTranslate('config', "This page provides information about your ImageMagick binaries.") ?>
@@ -74,8 +74,8 @@ configLogin(basename(__FILE__));
 	  </tr>
 
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="session_test.php"><?php echo gTranslate('config', "Check Sessions") ?></a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('session_test.php', gTranslate('config', "Check _Sessions")); ?>
 		</td>
 		<td class="g-longdesc">
 		<?php echo gTranslate('config', "This page runs a very simple test on your PHP session configuration.") ?>
@@ -84,8 +84,8 @@ configLogin(basename(__FILE__));
 	  </tr>
 
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="check_mail.php"><?php echo gTranslate('config', "Check Email") ?></a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('check_mail.php', gTranslate('config', "Check _Email")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo gTranslate('config', "This page will simply send a test email.") ?>
@@ -93,8 +93,8 @@ configLogin(basename(__FILE__));
 		</td>
 	  </tr>
 	  <tr>
-		<td class="g-desc-cell" style="padding: 10px;" width="140" align="center">
-		  <a href="check_versions.php"><?php echo gTranslate('config', "Check versions") ?></a>
+		<td class="g-desc-cell" style="padding: 10px;" width="140">
+		  <?php echo galleryLink('check_versions.php', gTranslate('config', "Check _Versions")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo sprintf(gTranslate('config', "This page is for %s upgrades that have problems."), Gallery()); ?>

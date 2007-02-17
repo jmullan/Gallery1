@@ -361,7 +361,7 @@ if (!empty($adminOptionHTML)) {
 	. "}\n"
 	. "</script>\n\n";
 
-	$iconElements[] = '<form name="admin_options_form" action="view_album.php" class="right">' .
+	$iconElements[] = '<form name="admin_options_form" action="view_album.php" class="right" style="margin: 0 10px;">' .
 		"\n\t<select class=\"g-admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n" .
 		"\t\t<option value=\"\">&laquo; " . gTranslate('core', 'Album Actions') . " &raquo;</option>\n" .
 		$adminOptionHTML .
@@ -376,7 +376,8 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
 		gTranslate('core', "slidesho_w"),
 		array(),
-		'presentation.gif'
+		'presentation.gif',
+		true
 	);
 }
 
@@ -390,7 +391,8 @@ if ($numVisibleItems != 0 &&
 		makeGalleryUrl( "view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "view&nbsp;_comments"),
 		array(),
-		'view_comment.gif'
+		'view_comment.gif',
+		true
 	);
 }
 
