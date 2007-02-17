@@ -399,6 +399,7 @@ function broken_link($file) {
 }
 
 function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
+	global $gallery;
 	static $accessKeyUsed = array();
 
 	$html = '';
@@ -410,12 +411,20 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 			$altText = $text;
 		}
 		else {
-			$pos = strpos($text, '_');
+			$altText = removeAccessKey($text);
+			// Note: Dont switch these statements. The next function modifies $text
+			$attrList['accesskey'] = getAndSetAccessKey($text);
+		}
+		if(!empty($accesskey) && $gallery->app->useIcons != 'both') {
+			$altText .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
+		}
 
-			if ($pos !== false) {
-				$attrList['accesskey'] = substr($text,$pos+1,1);
-				$altText = substr_replace($text, '', $pos,1);
-				$text = substr_replace($text, '<span class="g-accesskey">'. $attrList['accesskey'] .'</span>', $pos,2);
+		if(isset($attrList['accesskey'])) {
+			if(!isset($accessKeyUsed[$attrList['accesskey']])) {
+				$accessKeyUsed[$attrList['accesskey']] = true;
+			}
+			else {
+				unset($attrList['accesskey']);
 			}
 		}
 	}

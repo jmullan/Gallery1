@@ -225,7 +225,7 @@ echo "</td>";
 
 <br>
   <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
-  <?php echo gSubmit('saveclose', gTranslate('core', "Save and _Close")); ?>
+  <?php echo gSubmit('saveclose', gTranslate('core', "Sav_e and Close")); ?>
   <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 
 </form>

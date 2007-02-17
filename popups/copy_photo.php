@@ -111,9 +111,15 @@ if ($gallery->session->albumName && isset($index)) {
 							}
 							$postAlbum->setPhoto($newphoto,$newPhotoIndex);
 							$postAlbum->save(array(i18n("An image %s has been copied into this album"), $id));
-						} else {
+
+							printInfoBox(array(array(
+								'type' => 'success',
+								'text' => gTranslate('core', "The copy process was done with success.")))
+							);
+							reload();
+						}
+						else {
 							echo $statusMsg;
-							return;
 						}
 					}
 					else {
@@ -125,13 +131,12 @@ if ($gallery->session->albumName && isset($index)) {
 				}
 				//end else
 			}
-			   	?>
-			<form>
-			<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick="parent.close()" class="g-button">
-			</form>
-			   	<?php
-			   	return;
-			   	//end if ($gallery->album != $postAlbum)
+			echo "\n<br>";
+			echo gButton('dismiss', gTranslate('core', "_Close Window"), 'parent.close()');
+			echo "</div></body></html>";
+
+			return;
+			//end if ($gallery->album != $postAlbum)
 		}
 		//end if (isset($newAlbum))
 	}
@@ -203,7 +208,7 @@ if ($gallery->session->albumName && isset($index)) {
 	} // end else
 ?>
 <br>
-<?php echo gSubmit('copy', gTranslate('core', "Cop_y to Album!")); ?>
+<?php echo gSubmit('copy', gTranslate('core', "Cop_y to Album")); ?>
 <?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
