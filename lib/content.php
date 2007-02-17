@@ -1275,9 +1275,9 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 	$html = '';
 
 	getAndRemoveAccessKey($altText);
-	$attrList['src'] = getImagePath($relativePath, $skin);
-	$attrList['alt'] = $altText;
-	$attrList['title'] = $altText;
+	$attrList['src']	= getImagePath($relativePath, $skin);
+	$attrList['alt']	= $altText;
+	$attrList['title']	= $altText;
 
 	if(!empty($attrList['src'])) {
 		$attrs = generateAttrs($attrList);
@@ -1333,6 +1333,7 @@ function getAccessKey($text) {
 	if ($pos !== false) {
 		$accesskey = substr($text,$pos+1,1);
 	}
+
 	return $accesskey;
 }
 
@@ -1344,6 +1345,7 @@ function makeAccessKeyString($text) {
 		$accesskey = substr($text,$pos+1,1);
 		$text = substr_replace($text, '<span class="g-accesskey">'. $accesskey .'</span>', $pos,2);
 	}
+
 	return $text;
 }
 
@@ -1351,7 +1353,7 @@ function makeAccessKeyString($text) {
  * Modifies a string so that the accesskey is surrounded by span tag.
  * returns the access key.
  * @param   string  $text
- * @return  mixed   $accesskey  the accesskey, or null if no accesskey found
+ * @return  mixed   $accesskey  The accesskey, or null if no accesskey found
  * @author  Jens Tkotz
  */
 function getAndSetAccessKey(& $text) {
@@ -1363,6 +1365,7 @@ function getAndSetAccessKey(& $text) {
 		$altText = substr_replace($text, '', $pos,1);
 		$text = substr_replace($text, '<span class="g-accesskey">'. $accesskey .'</span>', $pos,2);
 	}
+
 	return $accesskey;
 }
 
@@ -1380,6 +1383,7 @@ function getAndRemoveAccessKey(& $text) {
 		$accesskey = substr($text,$pos+1,1);
 		$text = substr_replace($text, '', $pos,1);
 	}
+
 	return $accesskey;
 }
 

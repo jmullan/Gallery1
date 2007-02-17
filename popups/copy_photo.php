@@ -42,13 +42,14 @@ if ($gallery->session->albumName && isset($index)) {
 	// we are copying from one album to another
 	if (!empty($newAlbum)) {
 		$postAlbum = $albumDB->getAlbumByName($newAlbum);
+
 		if (!$postAlbum) {
 			echo gallery_error(sprintf(gTranslate('core', "Invalid album selected: %s"),
 			$newAlbum));
-		} else {
+		}
+		else {
 			if ($gallery->album->isAlbum($index)) {
-				echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"),
-				$index));
+				echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"), $index));
 			}
 			// copying "picture" to another album
 			else {
@@ -63,14 +64,17 @@ if ($gallery->session->albumName && isset($index)) {
 						$mytype = $myphoto->image->type;
 						$myfile = "$mydir/$myname.$mytype";
 						$myhidden = $myphoto->isHidden();
-						if (($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"]) &&
-						(!$myphoto->isMovie())) {
+						if ($postAlbum->fields["thumb_size"] == $gallery->album->fields["thumb_size"] &&
+							!$myphoto->isMovie())
+						{
 							$pathToThumb = "$mydir/$myname.thumb.$mytype";
-						} else {
+						}
+						else {
 							$pathToThumb = '';
 							echo "- ". gTranslate('core', "Creating Thumbnail") ."<br>";
 							my_flush();
 						}
+
 						$photo = $gallery->album->getPhoto($index);
 
 						$id = $gallery->album->getPhotoId($index);
@@ -87,7 +91,8 @@ if ($gallery->session->albumName && isset($index)) {
 						if ($status) {
 							if ($postAlbum->getAddToBeginning()) {
 								$newPhotoIndex = 1;
-							} else {
+							}
+							else {
 								$newPhotoIndex = $postAlbum->numPhotos(1);
 							}
 
@@ -110,7 +115,8 @@ if ($gallery->session->albumName && isset($index)) {
 							echo $statusMsg;
 							return;
 						}
-					} else {
+					}
+					else {
 						echo sprintf(gTranslate('core', "Skipping Album #%d"), $index)."<br>";
 						// we hit an album... don't copy it... just increment the index
 						$index++;
@@ -136,7 +142,8 @@ if ($gallery->session->albumName && isset($index)) {
 	if ($gallery->album->isAlbum($index)) {
 		echo gallery_error(sprintf(gTranslate('core', "Can't copy album #%d"), $index));
 		return;
-	} else {
+	}
+	else {
 		echo $gallery->album->getThumbnailTag($index)
 ?>
 <p>
@@ -160,26 +167,26 @@ if ($gallery->session->albumName && isset($index)) {
 	<td align="center">
 	<select name="startPhoto">
 <?php
-for ($i = 1; $i <= $numPhotos; $i++) {
-		$sel = "";
-		if ($i == $index) {
-				$sel = "selected";
-		}
-		echo "\n\t<option value=\"$i\" $sel> $i</option>";
-}
+	for ($i = 1; $i <= $numPhotos; $i++) {
+			$sel = '';
+			if ($i == $index) {
+					$sel = "selected";
+			}
+			echo "\n\t<option value=\"$i\" $sel> $i</option>";
+	}
 ?>
 	</select>
 	</td>
 	<td align="center">
 	<select name="endPhoto">
 <?php
-for ($i = 1; $i <= $numPhotos; $i++) {
-		$sel = "";
-		if ($i == $index) {
-				$sel = "selected";
-		}
-		echo "\n\t<option value=\"$i\" $sel> $i</option>";
-}
+	for ($i = 1; $i <= $numPhotos; $i++) {
+			$sel = '';
+			if ($i == $index) {
+					$sel = "selected";
+			}
+			echo "\n\t<option value=\"$i\" $sel> $i</option>";
+	}
 ?>
 	</select>
 	</td>
@@ -193,20 +200,19 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 </tr>
 </table>
 <?php
-} // end else
+	} // end else
 ?>
 <br>
 <?php echo gSubmit('copy', gTranslate('core', "Cop_y to Album!")); ?>
 <?php echo gButton('close', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
-
 	if (!$uptodate) {
-	echo "<br>". infoBox(array(array(
-		'type' => 'warning',
-		'text' => sprintf(gTranslate('core', "WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
-			  galleryLink(makeGalleryUrl("upgrade_album.php"), gTranslate('core', "Upgrade now"))
-	)));
+		echo "<br>". infoBox(array(array(
+			'type' => 'warning',
+			'text' => sprintf(gTranslate('core', "WARNING: Some of the albums need to be upgraded to the current version of %s."), Gallery()) ." ".
+						galleryLink(makeGalleryUrl("upgrade_album.php"), gTranslate('core', "Upgrade now"))
+		)));
 	}
 }
 else {

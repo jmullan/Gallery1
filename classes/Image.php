@@ -196,34 +196,38 @@ class Image {
 
 		if ($size) {
 			if ($this->width > $this->height) {
-				$width = $size;
-				$height = round($size * ($this->height / $this->width));
-			} else {
-				$width = round($size * ($this->width / $this->height));
-				$height = $size;
+				$width	= $size;
+				$height	= round($size * ($this->height / $this->width));
+			}
+			else {
+				$width	= round($size * ($this->width / $this->height));
+				$height	= $size;
 			}
 			$attrs['width']		= $width;
 			$attrs['height']	= $height;
-		} else if ($full || !$this->resizedName) {
+		}
+		else if ($full || !$this->resizedName) {
 			$attrs['width']		= $this->raw_width;
 			$attrs['height']	= $this->raw_height;
-		} else {
+		}
+		else {
 			$attrs['width']		= $this->width;
 			$attrs['height']	= $this->height;
 		}
 
-		$fullImage = urlencode($this->name) .".$this->type";
+		$fullImage = urlencode($this->name) . ".$this->type";
 		$resizedImage = urlencode($this->resizedName) .".$this->type";
 
 		if ($this->resizedName && $size == 0) {
 			if ($full) {
 				$attrs['width']		= $this->raw_width;
 				$attrs['height']	= $this->raw_height;
-				$attrs['src']	= "$dir/$fullImage";
-			} else {
+				$attrs['src']		= "$dir/$fullImage";
+			}
+			else {
 				$attrs['width']		= $this->width;
 				$attrs['height']	= $this->height;
-				$attrs['src']	= "$dir/$resizedImage";
+				$attrs['src']		= "$dir/$resizedImage";
 			}
 		}
 		else {
@@ -231,6 +235,7 @@ class Image {
 		}
 
 		$tag = '<img'. generateAttrs($attrs). '>';
+
 		return $tag;
 	}
 
@@ -311,8 +316,10 @@ class Image {
 	}
 
 	function getThumbRectangle() {
-		return array($this->thumb_x, $this->thumb_y,
-					 $this->thumb_width, $this->thumb_height);
+		return array($this->thumb_x,
+					 $this->thumb_y,
+					 $this->thumb_width,
+					 $this->thumb_height);
 	}
 
 	function getRawDimensions() {

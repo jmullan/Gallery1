@@ -878,7 +878,8 @@ class AlbumItem {
 
 		if ($this->image) {
 			return $this->image->getTag($dir, $full, 0, $attrs);
-		} else {
+		}
+		else {
 			return "about:blank";
 		}
 	}

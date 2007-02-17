@@ -108,7 +108,8 @@ $photoTag = $gallery->album->getPhotoTag(
 	$index, true, array(
 		'id' => 'cropImage',
 		'width' => $imageWidth,
-		'height' => $imageHeight));
+		'height' => $imageHeight)
+);
 
 if($imageWidth < $minSize || $imageHeight < $minSize) {
 	$messages[] = array(
@@ -193,17 +194,17 @@ if (!isset($noCrop)) {
 
 if (!isset($noCrop)) {
 	echo makeFormIntro('edit_thumb.php',
-	array('name' => 'crop'),
-	array('type' => 'popup',
-	'index' => $index,
-	'x1' => '',
-	'y1' => '',
-	'x2' => '',
-	'y2' => '',
-	'width' => '',
-	'height' => '',
-	'muliplier' => $muliplier
-	)
+		array('name' => 'crop'),
+		array('type' => 'popup',
+			'index' => $index,
+			'x1' => '',
+			'y1' => '',
+			'x2' => '',
+			'y2' => '',
+			'width' => '',
+			'height' => '',
+			'muliplier' => $muliplier
+		)
 	);
 
 	echo "\n<br><br>";

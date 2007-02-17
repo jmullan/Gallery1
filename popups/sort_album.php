@@ -40,13 +40,15 @@ if ($gallery->session->albumName) {
 			$gallery->album->save(array(i18n("Album resorted")));
 			dismissAndReload();
 			return;
-		} else {
+		}
+		else {
 			$gallery->album->sortPhotos($sort,$order, $albumsFirst);
 			$gallery->album->save(array(i18n("Album resorted")));
 			dismissAndReload();
 			return;
 		}
-	} else {
+	}
+	else {
 ?>
 
 <p>

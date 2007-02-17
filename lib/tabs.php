@@ -74,7 +74,8 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 
 		if ((isset($cell['initial']) && !$initialtab) ||
 			(isset($cell['default']) && $cell['default'] == 'inline' && !$initialtab) ||
-			$initialtab == $name) {
+			$initialtab == $name)
+		{
 			$attrList['class'] = 'g-activeTab';
 			if (empty($initialtab)) {
 				$initialtab = $name;
@@ -84,6 +85,7 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 		$attrList['id'] = "tab_$name";
 		$attrList['onClick'] = "section_tabs.toggle('$name')";
 		$text = $cell['title'];
+
 		if (!empty($cell['contains_required'])) {
 			$text .= '<span class="g-littlered">*</span>';
 		}

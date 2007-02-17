@@ -171,11 +171,13 @@ class Album {
 
 	function itemLastCommentDate($i) {
 		global $gallery;
+
 		$photo = $this->getPhoto($i);
 		if ($photo->isAlbum()) {
 			$album = $this->getNestedAlbum($i);
 			return $album->lastCommentDate($gallery->app->comments_indication_verbose);
-		} else {
+		}
+		else {
 			return $photo->lastCommentDate();
 		}
 	}
@@ -1713,7 +1715,8 @@ class Album {
 		$photo = $this->getPhoto($index);
 		if ($photo->isMovie()) {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"));
-		} else {
+		}
+		else {
 			return $photo->getPhotoTag($this->getAlbumDirURL("full"), $full, $attrs);
 		}
 	}
