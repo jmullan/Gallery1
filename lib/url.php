@@ -434,15 +434,6 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 		unset($attrList['altText']);
 	}
 
-	if(isset($attrList['accesskey'])) {
-		if(!isset($accessKeyUsed[$attrList['accesskey']])) {
-			$accessKeyUsed[$attrList['accesskey']] = true;
-		}
-		else {
-			unset($attrList['accesskey']);
-		}
-	}
-
 	$attrs = generateAttrs($attrList);
 
 	if(!empty($icon)) {
@@ -451,7 +442,8 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 	else {
 		if($addBrackets) {
 			$content = '['. $text .']';
-		} else {
+		}
+		else {
 			$content = $text;
 		}
 	}
