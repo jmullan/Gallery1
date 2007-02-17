@@ -1395,12 +1395,11 @@ function getAndRemoveAccessKey(& $text) {
  */
 function removeAccessKey($text) {
 	$pos = strpos($text, '_');
-	$accesskey = false;
 
 	if ($pos !== false) {
-		$accesskey = substr($text,$pos+1,1);
 		$text = substr_replace($text, '', $pos,1);
 	}
+
 	return $text;
 }
 

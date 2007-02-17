@@ -191,6 +191,8 @@ class Image {
 		/* Prevent non-integer data */
 		$size = (int)$size;
 
+		$attrsCopy = $attrs;
+
 		$name = $this->getName($dir);
 		$attrs['alt'] = $attrs['title'] = htmlspecialchars(strip_tags(trim($attrs['alt'])));
 
@@ -232,6 +234,13 @@ class Image {
 		}
 		else {
 			$attrs['src']		= "$dir/$fullImage";
+		}
+
+		$overwrite = array('height', 'width');
+		foreach ($overwrite as $attr) {
+			if(isset($attrsCopy[$attr])) {
+				$attrs[$attr] = $attrsCopy[$attr];
+			}
 		}
 
 		$tag = '<img'. generateAttrs($attrs). '>';

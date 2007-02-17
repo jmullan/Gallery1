@@ -82,13 +82,15 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 			}
 		}
 
-		$attrList['id'] = "tab_$name";
-		$attrList['onClick'] = "section_tabs.toggle('$name')";
 		$text = $cell['title'];
 
 		if (!empty($cell['contains_required'])) {
 			$text .= '<span class="g-littlered">*</span>';
 		}
+
+		$attrList['id']			= "tab_$name";
+		$attrList['onClick']	= "section_tabs.toggle('$name')";
+		$attrList['title']		= $cell['title'];
 
 		echo galleryLink('', $text, $attrList);
 	}

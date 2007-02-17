@@ -152,6 +152,7 @@ class Album {
 		$this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
 		$this->fields["image_frame"]=$gallery->app->default["image_frame"];
 		$this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
+		$this->fields["dimensionsAsPopup"] = $gallery->app->default["dimensionsAsPopup"];
 		$this->fields["email_me"] = array();
 		$this->fields["ecards"] = $gallery->app->default["ecards"];
 
