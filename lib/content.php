@@ -38,7 +38,7 @@ function editField($album, $field, $url = null) {
 		$html = galleryLink($url, $album->fields[$field]);
 	}
 	else {
-		$html = $album->fields[$field];
+		$html = nl2br($album->fields[$field]);
 	}
 
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
