@@ -30,10 +30,12 @@
 
 header('Content-type: text/plain');
 
-include(dirname(dirname(dirname(__FILE__))) .'/util.php');
-setGalleryPaths();
+define ("GALLERY_BASE", dirname(dirname(dirname(__FILE__))));
 
-if (getOS() == OS_WINDOWS) {
+require(GALLERY_BASE .'/lib/filesystem.php');
+require(GALLERY_BASE .'/lib/filetypes.php');
+
+if (substr(PHP_OS, 0, 3) == 'WIN') {
 	require(GALLERY_BASE . '/platform/fs_win32.php');
 }
 else {
@@ -51,23 +53,23 @@ function search($query) {
 		return array();
 	}
 
-	if(is_dir($query)) {
+	if(fs_is_dir($query)) {
 		$dirname = $query;
 	}
 	else {
-		$dirname = dirname($query);
-		$basename = basename($query);
-	}
+		$dirname	= dirname($query);
+		$basename	= basename($query);
 
-	if(!realpath($dirname)) {
-		return array();
+		if(!fs_is_dir($dirname)) {
+			return array();
+		}
 	}
 
 	$forbidden = array('.', '..');
 
-	if ($handle = opendir($dirname)) {
+	if ($handle = fs_opendir($dirname)) {
 		while (false !== ($file = readdir($handle))) {
-			$ext = getExtension($file);
+			$ext = strtolower(ereg_replace(".*\.([^\.]*)$", "\\1", $file));
 
 			if(empty($basename)) {
 				$path = $dirname . $file;
@@ -91,6 +93,8 @@ function search($query) {
 		}
 		closedir($handle);
 	}
+
+	sort($results);
 
 	return $results;
 }

@@ -22,7 +22,9 @@
 ?>
 <?php
 /**
- * @package Libs
+ * @package 	Libs
+ * @subpackage	Filesystem
+ * @uses		Messages, Content, Lang
  */
 
 /**
@@ -31,8 +33,8 @@
  * So even if elements do not belong to the album owner, they are counted.
  *
  * @param int		$uid
- * @param int		$warning_size		If diskusage is higher then this, the output gets a differnt css
- * @return array($formattedResult, $bytes);
+ * @param int		$warning_size	If diskusage is higher then this, the output gets a differnt css
+ * @return array					($formattedResult, $bytes);
  */
 function usrDiskUsage($uid, $warning_size = 0) {
 	global $gallery;
@@ -63,9 +65,9 @@ function usrDiskUsage($uid, $warning_size = 0) {
 /**
  * Returns the size ins bytes of a directory
  *
- * @param string	$path		Absolute path
+ * @param string	$path		Absolute path to a local directory
  * @param boolean	$recursive
- * @return int		$size
+ * @return int		$size		Size in bytes
  */
 function get_size($path, $recursive = false) {
 	if(!fs_is_dir($path)) {
@@ -93,8 +95,10 @@ function get_size($path, $recursive = false) {
 
 /**
  * Extracts the extension of a given filename and returns it in lower chars.
+ *
  * @param  string   $filename
  * @return string   $ext
+ * @uses   lib/messages
  * @author Jens Tkotz
  */
 function getExtension($filename) {
@@ -104,4 +108,25 @@ function getExtension($filename) {
 	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
 	return $ext;
 }
+
+/**
+ * Remove a directory and its complete content.
+ *
+ * @param string $dir
+ */
+function rmdirRecursive($dir) {
+	if($objs = glob($dir."/*")){
+		foreach($objs as $obj) {
+			if(is_dir($obj)) {
+				rmdirRecursive($obj);
+			}
+			else {
+				unlink($obj);
+			}
+		}
+	}
+
+	rmdir($dir);
+}
+
 ?>
