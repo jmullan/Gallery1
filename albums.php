@@ -379,8 +379,7 @@ for ($i = $start; $i <= $end; $i++) {
 		$rootAlbum[$tmpAlbumName]['albumdesc']['adminAlbumCommands'] = $adminAlbumCommands;
 
 		/* Description */
-		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] =
-		editField($gallery->album, "description") ;
+		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;
 
 		/* Owner */
 		if ($gallery->app->showOwners == 'yes') {

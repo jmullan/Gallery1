@@ -851,7 +851,8 @@ class AlbumItem {
 
 		if ($this->thumbnail) {
 			return $this->thumbnail->getTag($dir, false, $size, $attrs);
-		} else {
+		}
+		else {
 			return "<i>". gTranslate('core', "No thumbnail") ."</i>";
 		}
 	}

@@ -423,8 +423,9 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 	}
 
 	if ($showViews &&
-	($statsAlbum->fields["display_clicks"] == 'yes' || $gallery->user->isAdmin()) &&
-	!$gallery->session->offline) {
+		($statsAlbum->fields["display_clicks"] == 'yes' || $gallery->user->isAdmin()) &&
+		!$gallery->session->offline)
+	{
 
 		$innerStatsTable->addElement(array(
 			'content' => gTranslate('core', "Viewed:"),
@@ -491,8 +492,9 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 	}
 
 	if ($showComments &&
-	$statsAlbum->numComments($photoIndex) > 0 &&
-	$statsAlbum->canViewComments($gallery->user->getUid()) ) {
+		$statsAlbum->numComments($photoIndex) > 0 &&
+		$statsAlbum->canViewComments($gallery->user->getUid()) )
+	{
 
 		$gallery->album = $statsAlbum;
 		$html .= '<br clear="all">'. showComments($photoIndex, $statsAlbum->fields['name']);
