@@ -90,10 +90,8 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	   'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
-
-
 	if(!empty($icon)) {
-		$html = galleryIconLink($url, $icon, $title, $iconMode, $attrList);
+		$html = galleryIconLink($url, $icon, $title, $iconMode, $attrList, $accesskey);
 	}
 	else {
 		$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);

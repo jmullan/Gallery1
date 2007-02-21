@@ -25,7 +25,8 @@
 /**
  * Functions that provide possibility to create and modify URLS
  *
- * @package	urls
+ * @package     Libs
+ * @subpackage  URLs
  */
 
 /**
@@ -381,7 +382,7 @@ function getAbsoluteImagePath($name, $skinname = '') {
  * @return	boolean
  * @author	Jens Tkotz
  */
-function urlIsrelative($url) {
+function urlIsRelative($url) {
 	if (substr($url, 0,4) == 'http') {
 		return false;
 	}
@@ -459,14 +460,18 @@ function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBracke
 }
 
 
-function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()) {
+function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array(), $useAccesskey = true) {
 	global $gallery;
 	static $accessKeyUsed = array();
 
-	$html = '';
-	$altText = '';
+	$html		= '';
+	$altText	= '';
+	$accesskey	= '';
 
-	$accesskey = isset($attrList['accesskey']) ? $attrList['accesskey'] : getAccessKey($text);
+	if($useAccesskey) {
+		$accesskey = isset($attrList['accesskey']) ? $attrList['accesskey'] : getAccessKey($text);
+	}
+
 	$iconMode = !empty($iconMode) ? $iconMode : $gallery->app->useIcons;
 
 	if(!isset($accessKeyUsed[$accesskey])) {

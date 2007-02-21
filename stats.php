@@ -606,7 +606,7 @@ $adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
 	$adminbox["commands"] =
 		galleryLink(
-			makeGalleryUrl("admin-page.php"),
+			makeGalleryUrl("stats-wizard.php"),
 			gTranslate('core', "Back to stats-_wizard"),
 			array(), '', true);
 }

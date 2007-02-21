@@ -35,7 +35,8 @@ list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minute
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album) &&
 	!($gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
-	$gallery->album->getItemOwnerModify())) {
+	$gallery->album->getItemOwnerModify()))
+{
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
@@ -51,31 +52,34 @@ if (isset($save) || isset($saveclose)) {
 		$gallery->album->setDescription($index, $description);
 		$gallery->album->setKeywords($index, $keywords);
 
-		$dateArray["year"] = $capture_year;
-		$dateArray["mon"] = $capture_mon;
-		$dateArray["mday"] = $capture_mday;
-		$dateArray["hours"] = $capture_hours;
-		$dateArray["minutes"] = $capture_minutes;
-		$dateArray["seconds"] = $capture_seconds;
+		$dateArray['year']		= $capture_year;
+		$dateArray['mon']		= $capture_mon;
+		$dateArray['mday']		= $capture_mday;
+		$dateArray['hours']		= $capture_hours;
+		$dateArray['minutes']	= $capture_minutes;
+		$dateArray['seconds']	= $capture_seconds;
 
 		$timestamp = mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
 		$gallery->album->setItemCaptureDate($index, $timestamp);
+
 		if (isset($extra_fields)) {
 			foreach ($extra_fields as $field => $value){
 				$gallery->album->setExtraField($index, $field, trim($value));
 			}
 		}
+
 		$status = $gallery->album->save(
 			array(
 				i18n("Captions and/or custom fields modified for %s"),
 				makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index)))
 		);
+
 		if($status) {
 			if(isset($saveclose)) {
 				dismissAndReload();
 				exit;
 			}
-			 $infoMessages[] = array(
+			$infoMessages[] = array(
 				'type' => 'success',
 				'text' => gTranslate('core', "Successfully saved.")
 			);
@@ -227,13 +231,12 @@ echo "</td>";
   <?php echo gSubmit('save', gTranslate('core', "_Save")); ?>
   <?php echo gSubmit('saveclose', gTranslate('core', "Sav_e and Close")); ?>
   <?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
-
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
-document.g1_form.data.focus();
+document.g1_form.caption.focus();
 //-->
 </script>
 </div>
