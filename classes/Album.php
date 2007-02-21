@@ -1500,7 +1500,7 @@ class Album {
 				$this->rotatePhoto($index, $rotate, true);
 				processingMsg(gTranslate('core', "Photo auto-rotated/transformed"));
 			}
-			else {
+			elseif(isDebugging()) {
 				processingMsg(gTranslate('core', "Photo NOT auto-rotated/transformed"));
 			}
 		}
@@ -1645,11 +1645,17 @@ class Album {
 		if ($index === null) {
 			return '';
 		}
+
+		if(empty($attrs['id'])) {
+			$attrs['id'] = "thumbnail_$index";
+		}
+
 		$photo = $this->getPhoto($index);
 		if ($photo->isAlbum()) {
 			$myAlbum = $this->getNestedAlbum($index);
 			return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
-		} else {
+		}
+		else {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"), $size, $attrs);
 		}
 	}

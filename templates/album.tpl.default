@@ -98,9 +98,12 @@ if (!$gallery->session->offline) { ?>
   </script>
 
 <?php
-    echo $va_javascript;
 }
 
+echo $va_javascript;
+?>
+
+<?php
 includeLayout('adminbox.inc');
 
 if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
@@ -266,6 +269,9 @@ includeTemplate('info_donation-block');
 
 includeTemplate("overall.footer");
 
+?>
+   <script type="text/javascript"><?php echo $va_tooltips; ?></script>
+<?php
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 
 </body>

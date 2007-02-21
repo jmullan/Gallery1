@@ -543,6 +543,7 @@ if ($numPhotos) {
 
 	$albumItems = array();
 	$vaRenderDescriptionPanelJS = array();
+	$va_tooltips = '';
 
 	/**
 	 * Loop through the images row by row
@@ -604,6 +605,8 @@ if ($numPhotos) {
 			$albumItems[$nr]['clickcounter']	= '';
 			$albumItems[$nr]['options']			= '';
 			$description = '';
+
+			$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\" } );";
 
 			/**
 			 * Element is a movie
@@ -671,7 +674,10 @@ if ($numPhotos) {
 						if (($photo->isResized() && !$fullOnly) || !$viewFull) {
 							if($gallery->album->fields['dimensionsAsPopup'] == 'yes') {
 								$sizedImageUrl	= $gallery->album->getPhotoPath($i);
-								$attrlist		= array('onClick' => popup($sizedImageUrl, true, $hr, $wr));
+								$attrlist		= array(
+													'onClick' => popup($sizedImageUrl, true, $hr, $wr),
+													'title' => sprintf(gTranslate('core', "Opens picture in %s x %s in a popup."), $wr, $hr)
+								);
 
 							}
 							else {
@@ -691,7 +697,10 @@ if ($numPhotos) {
 								   $gallery->album->fields['dimensionsAsPopup'] == 'yes')
 							{
 								$fullImageUrl	= $gallery->album->getPhotoPath($i, true);
-								$attrlist		= array('onClick' => popup($fullImageUrl, true, $hf, $wf));
+								$attrlist		= array(
+									'onClick' => popup($fullImageUrl, true, $hf, $wf),
+									'title' => sprintf(gTranslate('core', "Opens picture in %s x %s in a popup."), $wf, $hf)
+								);
 							}
 							else {
 								$fullImageUrl = makeAlbumUrl($gallery->session->albumName, $image->name, array('full' => true));
@@ -874,11 +883,17 @@ if ($numPhotos) {
 					if(!empty($option['value'])) {
 						if (stristr($option['value'], 'popup')) {
 							$content = popup_link(
-							$option['text'], $option['value'],
-							true, false, 500, 500, '', '', $option['icon']);
+								$option['text'],
+								$option['value'],
+								true, false, 500, 500, '', '', $option['icon'], true, false
+							);
 						}
 						else {
-							$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
+							$content = galleryIconLink(
+									$option['value'],
+									$option['icon'],
+									$option['text']
+							);
 						}
 						$albumItems[$nr]['options'] .= $content . "&nbsp;\n";
 					}
