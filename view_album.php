@@ -756,11 +756,9 @@ if ($numPhotos) {
 
 			/* Album */
 			if (isset($myAlbum)) {
-				// Caption itself
-				$myDescription = $myAlbum->fields['description'];
-				$buf = '';
 				$link = '';
 
+				// Caption
 				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
 					$iconText = gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive"));
 					$link = popup_link(
@@ -770,19 +768,23 @@ if ($numPhotos) {
 					);
 				}
 
-				$buf .="<b>";
+				$buf ="<b>";
 				$buf .= sprintf(gTranslate('core', "Album: %s"),
 					'<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
 				$buf .= "</b> $link";
+
+				$albumItems[$nr]['caption'] = $buf;
+
+				// Description
+				$myDescription = $myAlbum->fields['description'];
 				if (!empty($myDescription) &&
 					$myDescription != gTranslate('core', "No description") &&
 					$myDescription != "No description")
 				{
-					$buf .= '<br>'. $myDescription;
+					$albumItems[$nr]['description'] = nl2br($myDescription);
 				}
 
-				$albumItems[$nr]['caption'] = $buf;
-
+				// Further album infos
 				$albumItems[$nr]['infos'][] =
 					sprintf (gTranslate('core', "Last change: %s"), $myAlbum->getLastModificationDate());
 

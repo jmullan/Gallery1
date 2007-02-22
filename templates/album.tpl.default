@@ -152,7 +152,6 @@ if ($navigator["maxPages"] > 1) {
       <?php
         $gallery->html_wrap = $item['thumb'];
         includeLayout('inline_imagewrap.inc');
-
       ?>
       </div>
       <div align="center" class="g-va-thumb-texts">
@@ -162,12 +161,14 @@ if ($navigator["maxPages"] > 1) {
 
         <?php echo $item['note']; ?>
 
-        <div class="g-thumb-caption"><?php echo $item['caption']; ?></div>
+        <div class="g-thumb-caption">
+           <?php echo $item['caption']; ?>
+        </div>
 
         <?php if(!empty($item['description'])) :?>
-            <div class="g-thumb-description">
+        <div class="g-thumb-description left">
             <?php echo $item['description']; ?>
-            </div>
+        </div>
         <?php endif ?>
 
         <?php if(!empty($item['infos'])) :?>
