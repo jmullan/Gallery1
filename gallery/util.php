@@ -603,7 +603,10 @@ function getExif($file) {
                 $explodeReturn = explode(':', $value, 2);
                 $exifDesc = trim(htmlentities($explodeReturn[0]));
                 $exifData = trim(htmlentities($explodeReturn[1]));
-                if(!empty($exifData) && !in_array($exifDesc, $unwantedFields)) {
+                if(!empty($exifData) &&
+                   !in_array($exifDesc, $unwantedFields) &&
+                   !isset($myExif[$exifDesc]))
+                {
                     if (isset($myExif[$exifDesc])) {
                         $myExif[$exifDesc] .= "<br>";
                     } else {
