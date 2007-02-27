@@ -110,7 +110,10 @@ function generateAttrs($attrList) {
 
 	if(!empty($attrList) && is_array($attrList)) {
 		foreach ($attrList as $key => $value) {
-			if ($value == NULL) {
+			if ($value === false) {
+				continue;
+			}
+			elseif ($value === NULL) {
 				$attrs .= " $key";
 			}
 			else {
@@ -145,7 +148,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 					$sel = ' selected';
 				}
 			}
-			else if ($value == $selected || $text === $selected || $selected === '__ALL__') {
+			else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
 				$sel = ' selected';
 			}
 			$buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
@@ -207,9 +210,17 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * @return string   $form
  */
 function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
-    // We don't want the result HTML escaped since we split on "&", below
-    // use the header version of makeGalleryUrl()
-    $url = makeGalleryHeaderUrl($target, $urlargs);
+	static $usedIDs = array();
+	static $idCounter = 0;
+
+	// We don't want the result HTML escaped since we split on "&", below
+	// use the header version of makeGalleryUrl()
+	if(urlIsRelative($target)) {
+		$url = makeGalleryHeaderUrl($target, $urlargs);
+	}
+	else {
+		$url = unhtmlentities($target);
+	}
 
 	$result = split("\?", $url);
 	$target = $result[0];
@@ -236,7 +247,16 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 			continue;
 		}
 		list($key, $val) = split("=", $arg);
-		$form .= "<input type=\"hidden\" name=\"$key\" value=\"$val\">\n";
+		if(in_array($key, $usedIDs)) {
+			$id = "${key}_${idCounter}";
+			$idCounter++;
+		}
+		else {
+			$id = $key;
+			$usedIDs[] = $id;
+		}
+
+		$form .= "<input type=\"hidden\" id=\"$id\" name=\"$key\" value=\"$val\">\n";
 	}
 
 	return $form;

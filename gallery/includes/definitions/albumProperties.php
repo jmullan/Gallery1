@@ -450,7 +450,7 @@ $properties = array_merge($properties, array(
         'value' => $gallery->album->fields["nav_thumbs_style"]
     ),
     'nav_thumbs_first_last' => array(
-        'prompt' => gTranslate('common', "Show first & last microthumb"),
+        'prompt' => gTranslate('common', "Show first &amp; last microthumb"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["nav_thumbs_first_last"]
