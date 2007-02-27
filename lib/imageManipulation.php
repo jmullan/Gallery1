@@ -343,7 +343,7 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
 	switch($gallery->app->graphics) {
 		case 'ImageMagick':
 			$srcOperator = "-geometry $wmAlignX$wmAlignY $overlayFile";
-			exec_wrapper(ImCmd('composite', $srcOperator, $src, '', $out));
+			exec_wrapper(ImCmd(fs_executable('composite'), $srcOperator, $src, '', $out));
 		break;
 
 		case 'NetPBM':
@@ -505,7 +505,7 @@ function rotate_image($src, $dest, $target, $type) {
 					$destOperator = '';
 				}
 
-				$status = exec_wrapper(ImCmd('convert', '', $srcFile, $destOperator, $outFile));
+				$status = exec_wrapper(ImCmd(fs_executable('convert'), '', $srcFile, $destOperator, $outFile));
 
 				break;
 
@@ -574,7 +574,7 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 			else {
 				$repage = "+repage";
 			}
-			exec_wrapper(ImCmd('convert', '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
+			exec_wrapper(ImCmd(fs_executable('convert'), '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
 		break;
 		default:
 			if (isDebugging()) {
@@ -857,7 +857,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 				//$geometryCmd = "-coalesce -geometry ${targetSize}x${targetSize} ";
 			}
 
-			return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
+			return exec_wrapper(ImCmd(fs_executable('convert'), $srcOperator, $srcFile, $destOperator, $destFile));
 		break;
 		default:
 			echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"), __FILE__, __LINE__);

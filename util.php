@@ -619,14 +619,19 @@ function getExif($file) {
 	if ($status == 0) {
 		foreach ($return as $value) {
 			$value = trim($value);
+
 			if (!empty($value)) {
 				$explodeReturn = explode(':', $value, 2);
 				$exifDesc = trim(htmlentities($explodeReturn[0]));
 				$exifData = trim(htmlentities($explodeReturn[1]));
-				if(!empty($exifData) && !in_array($exifDesc, $unwantedFields)) {
+
+				if(!empty($exifData) &&
+				   !in_array($exifDesc, $unwantedFields) &&
+				   !isset($myExif[$exifDesc])) {
 					if (isset($myExif[$exifDesc])) {
 						$myExif[$exifDesc] .= "<br>";
-					} else {
+					}
+					else {
 						$myExif[$exifDesc] = '';
 					}
 
@@ -1000,12 +1005,17 @@ function findInPath($program) {
 */
 function getImVersion() {
 	global $gallery;
-	$version = array();
+    static $version;
 
-	exec($gallery->app->ImPath .'/convert -version', $results);
+	if (!isset($version)) {
+		$version = array();
 
-	$pieces = explode(' ', $results[0]);
-	$version = $pieces[2];
+		exec($gallery->app->ImPath . '/' . fs_executable('convert') .' -version', $results);
+
+		$pieces = explode(' ', $results[0]);
+		$version = $pieces[2];
+
+	}
 
 	return $version;
 }
