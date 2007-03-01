@@ -1850,6 +1850,41 @@ function enableCaptcha() {
 	}
 }
 
+function showDebugInfo() {
+	global $gallery;
+	global $GALLERY_EMBEDDED_INSIDE_TYPE;
+	global $GALLERY_POSTNUKE_VERSION;
+
+	if (isDebugging()) {
+		$infoText = sprintf(_("Debug ON ! Level %s"), $gallery->app->debuglevel) . '<br>';
+		if (empty($GALLERY_EMBEDDED_INSIDE_TYPE)) {
+			$infoText .= 'Standalone';
+			$infoText .= "; Skin: {$gallery->app->skinname}";
+		}
+		else {
+			$infoText .= 'Embedded in: '. $GALLERY_EMBEDDED_INSIDE_TYPE;
+
+			switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
+				case 'phpnuke':
+					break;
+				case 'postnuke':
+					$infoText .= ' '. $GALLERY_POSTNUKE_VERSION;
+					break;
+				case 'cpgnuke':
+					break;
+				case 'phpBB2':
+					break;
+				case 'GeekLog':
+					break;
+			}
+		}
+
+		$infoText .= "; Theme: {$gallery->app->theme}";
+
+		echo infoBox(array(array('text' => $infoText, 'type' => 'information')));
+	}
+}
+
 require_once(dirname(__FILE__) . '/lib/lang.php');
 require_once(dirname(__FILE__) . '/lib/Form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');

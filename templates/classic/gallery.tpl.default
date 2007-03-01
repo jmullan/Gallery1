@@ -49,23 +49,20 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	prefetchRootAlbumNav();
 
 	rootRSSLink();
-
-if (isset($dynsubalbumTree)) {
-?>
-<link rel="stylesheet" type="text/css" href="<?php echo $baseUrl; ?>/css/yui/folders/tree.css">
-<?php
-}
+	if (isset($dynsubalbumTree)) {
+		echo "\n<link rel=\"stylesheet\" type=\"text/css\" href=\"$baseUrl/css/yui/folders/tree.css\">";
+	}
 ?>
 </head>
 <body>
 <?php
 }
-else {
-	if (isset($dynsubalbumTree)) {
-		echo '<link rel="stylesheet" type="text/css" href="'. $baseUrl .'/css/yui/folders/tree.css">';
-	}
-}
+includeTemplate("gallery.header", '', 'classic');
+
 if (isset($dynsubalbumTree)) {
+	if ($GALLERY_EMBEDDED_INSIDE) {
+		echo "\n<link rel=\"stylesheet\" type=\"text/css\" href=\"$baseUrl/css/yui/folders/tree.css\">";
+	}
 ?>
 	<script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/yahoo-min.js"></script>
 	<script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/treeview-min.js"></script>
@@ -75,7 +72,6 @@ if (isset($dynsubalbumTree)) {
 
 <?php
 }
-includeTemplate("gallery.header", '', 'classic');
 
 echo $searchBar;
 

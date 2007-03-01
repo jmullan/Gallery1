@@ -3,7 +3,7 @@
 ?>
 <?php
 /**
- * This header file detects whether Gallery is embedded in any 
+ * This header file detects whether Gallery is embedded in any
  * known PHP applications and then decorates Gallery appropriately.
  * Also the css stylesheets are loaded if not already done.
  */
@@ -55,12 +55,12 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 
 	case 'phpBB2':
 		/*
-		 * PhpBB2 uses a templating system and also owns the HEAD tags. The 
-		 * easiest way at the moment to tackle this issue is therefore to 
+		 * PhpBB2 uses a templating system and also owns the HEAD tags. The
+		 * easiest way at the moment to tackle this issue is therefore to
 		 * simply make sure we don't call this function if phpBB2 is being used
 		 * and put the style sheet link into the template manually
 		 */
-		
+
 		global $phpbb_root_path;
 		global $template;
 		global $db;
@@ -71,7 +71,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 		global $s_privmsg_new, $s_last_visit;
 		global $l_privmsgs_text_unread, $l_privmsgs_text, $l_online_users;
 		global $page_title, $nav_links_html;
-			
+
 		// Sort out the page title
 		$page_title .= $gallery->app->galleryTitle;
 
@@ -88,8 +88,8 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
 	break;
 
 	case 'GeekLog':
-		/* 
-		** Display header and left blocks 
+		/*
+		** Display header and left blocks
 		*/
 		echo COM_siteHeader();
 	break;
@@ -99,5 +99,7 @@ if(isset($GALLERY_EMBEDDED_INSIDE)) {
     echo getStyleSheetLink();
 }
 
-echo "\n". '<div class="g-main">';
 ?>
+
+<div class="g-main">
+
