@@ -60,9 +60,11 @@ function getGalleryBaseUrl() {
     }
     elseif(where_i_am() == 'config') {
         $base = '..';
-    } elseif (defined('GALLERY_URL')) {
+    }
+    elseif (defined('GALLERY_URL')) {
         $base = GALLERY_URL;
-    } else {
+    }
+    else {
         $base = '.';
     }
 
@@ -115,7 +117,13 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
-		$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+
+		if(isset($gUrl['port'])) {
+			$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'] . ':' . $gUrl['port'];
+		}
+		else {
+			$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+		}
 	}
 	else {
 	    $urlprefix = '';
