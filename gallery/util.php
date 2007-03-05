@@ -628,6 +628,8 @@ function getExif($file) {
  * Note: i used switch/case because this is easier to extend later.
  */
 function getItemCaptureDate($file) {
+	global $gallery;
+
 	$success = false;
 	$exifSupported = getExifDisplayTool();
 
@@ -635,17 +637,17 @@ function getItemCaptureDate($file) {
 		$return = getExif($file);
 		$exifData = $return[1];
 		switch($exifSupported) {
-                	case 'exiftags':
+			case 'exiftags':
 				if (isset($exifData['Image Created'])) {
 					$tempDate = split(" ", $exifData['Image Created'], 2);
 				}
-                        	break;
-	                case 'jhead':
+				break;
+			case 'jhead':
 				if (isset($exifData['Date/Time'])) {
 					$tempDate = split(" ", $exifData['Date/Time'], 2);
 				}
-        	                break;
-        	}
+				break;
+		}
 		if (isset($tempDate)) {
 			$tempDay = strtr($tempDate[0], ':', '-');
 			$tempTime = $tempDate[1];
@@ -661,11 +663,13 @@ function getItemCaptureDate($file) {
 	// we were not able to get the capture date from exif... use file creation time
 	if (!$success) {
 		$itemCaptureTimeStamp = filemtime($file);
+		echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
+						  __FILE__, __LINE__);
 	}
 
-	if (!isDebugging()) {
-		sprintf (gTranslate('core', "Item Capture Date : %s"), strftime('%Y', $itemCaptureTimeStamp));
-	}
+	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date : %s"),
+							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
+					  __FILE__, __LINE__);
 
 	return $itemCaptureTimeStamp;
 }
@@ -1366,6 +1370,10 @@ function testRequirement($test) {
 
         case 'watermarkingEnabled':
             $result = isset($gallery->app->watermarkDir);
+        break;
+
+        case 'exif':
+        	$result = (getExifDisplayTool() !== false);
         break;
 
         default:

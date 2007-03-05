@@ -1796,6 +1796,47 @@ class Album {
         $photo->setItemCaptureDate($itemCaptureDate);
     }
 
+    function rebuildCaptureDates($recursive = false) {
+		global $gallery;
+
+		$numItems = $this->numPhotos(1);
+
+		if($numItems == 0) {
+			echo gTranslate('core', " -- Skipping") . '<br>';
+			return true;
+		}
+
+		print "\n<br>";
+		printf(gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
+				$this->fields['title'],
+				$this->fields['name'],
+				$numItems
+		);
+
+		for ($i = 1; $i <= $numItems; $i++) {
+			print "\n<br>&nbsp;&nbsp;&nbsp;";
+			printf(gTranslate('core', "Processing item %d..."), $i);
+
+			if ($this->isAlbum($i) && $recursive) {
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($this->getAlbumName($i));
+				$np = $nestedAlbum->numPhotos(1);
+
+				echo "<br>";
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
+				$nestedAlbum->rebuildCaptureDates($recursive);
+				$nestedAlbum->save();
+			}
+			else {
+				my_flush();
+				set_time_limit($gallery->app->timeLimit);
+				$this->setItemCaptureDate($i);
+			}
+		}
+
+		$this->save();
+	}
+
     function numComments($index) {
         $photo = $this->getPhoto($index);
         return $photo->numComments();

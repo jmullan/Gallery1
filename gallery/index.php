@@ -155,6 +155,7 @@ if ($postnuke ||
 		       "publish_xp.php",
 		       "publish_xp_docs.php",
 		       "rearrange.php",
+		       "rebuild_capture_dates.php",
 		       "register.php",
 		       "rename_album.php",
 		       "reset_votes.php",
