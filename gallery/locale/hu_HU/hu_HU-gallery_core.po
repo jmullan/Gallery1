@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-11-12 12:09+0100\n"
+"POT-Creation-Date: 2007-03-06 19:12+0100\n"
 "PO-Revision-Date: 2004-08-03 14:51+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -45,9 +45,10 @@ msgstr ""
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
-#: ../rotate_photo.php:33 ../save_photos.php:38 ../upgrade_album.php:57
-#: ../user_preferences.php:31 ../watermark_album.php:43
+#: ../rebuild_capture_dates.php:31 ../rename_album.php:31
+#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
+#: ../watermark_album.php:43
 #, fuzzy
 msgid "You are not allowed to perform this action!"
 msgstr "Ehhez a mûvelethez nincs jogosultságod!"
@@ -77,7 +78,7 @@ msgstr "Írd be a képhez tartozó megjegyzésed az alábbi szövegdobozba!"
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
 #: ../ecard_form.php:276 ../edit_caption.php:184 ../edit_watermark.php:121
 #: ../includes/add_photos/add_form.inc:90
-#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
+#: ../includes/add_photos/add_url.inc:55 ../login.php:99 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:138 ../register.php:144 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
@@ -168,8 +169,8 @@ msgstr "rendszergazdai opciók"
 
 #: ../admin-page.php:85 ../search.php:56 ../stats-wizard.php:55
 #: ../stats.php:603 ../tools/despam-comments.php:56
-#: ../tools/find_orphans.php:211 ../tools/validate_albums.php:138
-#: ../tools/validate_albums.php:214
+#: ../tools/find_orphans.php:211 ../tools/validate_albums.php:62
+#: ../tools/validate_albums.php:171
 #, fuzzy
 msgid "return to gallery"
 msgstr "Vissza a Galériához"
@@ -306,7 +307,7 @@ msgstr "Mentés"
 msgid "Done"
 msgstr "Kész"
 
-#: ../albums.php:119 ../view_album.php:141
+#: ../albums.php:119 ../view_album.php:142
 #, php-format
 msgid "%s RSS"
 msgstr ""
@@ -336,11 +337,11 @@ msgstr[0] "%d fõalbum"
 msgid "%d total"
 msgstr "%d összesen"
 
-#: ../albums.php:163 ../view_album.php:236
+#: ../albums.php:163 ../view_album.php:237
 msgid "no images"
 msgstr "0 kép"
 
-#: ../albums.php:163 ../view_album.php:236
+#: ../albums.php:163 ../view_album.php:237
 #, php-format
 msgid "1 image"
 msgid_plural "%d images"
@@ -350,7 +351,7 @@ msgstr[0] "%d kép"
 msgid "no pages"
 msgstr "0 oldal"
 
-#: ../albums.php:164 ../view_album.php:237
+#: ../albums.php:164 ../view_album.php:238
 #, php-format
 msgid "1 page"
 msgid_plural "%d pages"
@@ -381,7 +382,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Üdvözöllek %s!"
 
-#: ../albums.php:193 ../view_album.php:429
+#: ../albums.php:193 ../view_album.php:436
 msgid "slideshow"
 msgstr "diavetítés"
 
@@ -406,12 +407,12 @@ msgstr "dokumentáció"
 msgid "preferences"
 msgstr "beállítások"
 
-#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:447
+#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:454
 #: ../view_photo.php:538
 msgid "logout"
 msgstr "kilépés"
 
-#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:452
+#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:459
 #: ../view_photo.php:543
 msgid "login"
 msgstr "belépés"
@@ -472,11 +473,11 @@ msgstr "Belépés"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:342 ../view_album.php:712
+#: ../albums.php:342 ../view_album.php:719
 msgid "Highlight for Album:"
 msgstr "Kiemelés az Albumhoz:"
 
-#: ../albums.php:362 ../view_album.php:818
+#: ../albums.php:362 ../view_album.php:825
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "nincs album kiválasztva"
@@ -528,7 +529,7 @@ msgstr "Ezt az albumot %s tekintették meg %s óta."
 msgid "0 times"
 msgstr "egyszer sem"
 
-#: ../albums.php:455 ../view_album.php:855
+#: ../albums.php:455 ../view_album.php:862
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -538,7 +539,7 @@ msgstr[0] "%d alkalommal"
 msgid "reset counter"
 msgstr "számláló nullázása"
 
-#: ../albums.php:506 ../view_album.php:952
+#: ../albums.php:506 ../view_album.php:959
 msgid "Comments available for this item."
 msgstr "Megjegyzések tartoznak ehhez az elemhez."
 
@@ -579,7 +580,7 @@ msgid "%s items in this album"
 msgstr "elem van ebben az albumban"
 
 #: ../captionator.php:191 ../imagemap.php:156 ../slideshow.php:183
-#: ../view_album.php:115 ../view_comments.php:54 ../view_photo.php:171
+#: ../view_album.php:116 ../view_comments.php:54 ../view_photo.php:171
 msgid "navigate UP"
 msgstr ""
 
@@ -606,7 +607,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:806
+#: ../layout/commentboxtop.inc:45 ../view_album.php:813
 msgid "hidden"
 msgstr "rejtett"
 
@@ -706,7 +707,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1143 ../classes/Album.php:1909
+#: ../classes/Album.php:1143 ../classes/Album.php:1950
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -756,22 +757,41 @@ msgstr "Nincs kiemelt kép"
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1921 ../do_command.php:105
+#: ../classes/Album.php:1805
+msgid " -- Skipping"
+msgstr ""
+
+#: ../classes/Album.php:1810
+#, php-format
+msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
+msgstr ""
+
+#: ../classes/Album.php:1818
+#, fuzzy, php-format
+msgid "Processing item %d..."
+msgstr "%d. kép feldolgozása..."
+
+#: ../classes/Album.php:1826
+#, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items"
+msgstr ""
+
+#: ../classes/Album.php:1962 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "%d. kép feldolgozása..."
 
-#: ../classes/Album.php:2090
+#: ../classes/Album.php:2131
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2626
+#: ../classes/Album.php:2667
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2790
+#: ../classes/Album.php:2831
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Email probléma: %s-t (UID %s) kihagytam, mert a(z) %s emailcím érvénytelen."
@@ -915,7 +935,7 @@ msgid "Skipping Album #%d"
 msgstr "A #%d album kihagyása"
 
 #: ../copy_photo.php:132 ../do_command.php:261 ../do_command.php:263
-#: ../login.php:127 ../register.php:47 ../register.php:123
+#: ../login.php:130 ../register.php:47 ../register.php:123
 #: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "Bezárás"
@@ -1018,8 +1038,8 @@ msgid "Create user"
 msgstr "Felhasználó létrehozása"
 
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:86
-#: ../delete_photo.php:94 ../tools/validate_albums.php:128
-#: ../tools/validate_albums.php:136
+#: ../delete_photo.php:94 ../tools/validate_albums.php:52
+#: ../tools/validate_albums.php:60
 msgid "Delete Album"
 msgstr "Album törlése"
 
@@ -1040,7 +1060,7 @@ msgid "no album specified"
 msgstr "nincs album kiválasztva"
 
 #: ../delete_photo.php:86 ../delete_photo.php:121
-#: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
+#: ../tools/validate_albums.php:52 ../tools/validate_albums.php:60
 msgid "Delete Photo"
 msgstr "Fotó törlése"
 
@@ -1106,16 +1126,16 @@ msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Biztosan törölni akarod ezt az albumot?"
 
 #: ../do_command.php:89 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:54
 msgid "Yes"
 msgstr "Igen"
 
 #: ../do_command.php:90 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:55
 msgid "No"
 msgstr ""
 
-#: ../do_command.php:92
+#: ../do_command.php:92 ../rebuild_capture_dates.php:59
 #, fuzzy
 msgid "Start"
 msgstr "Rendezés"
@@ -1376,7 +1396,8 @@ msgid "Undo"
 msgstr "Visszacsinál"
 
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:123
+#: ../poll_properties.php:142 ../rebuild_capture_dates.php:41
+#: ../rebuild_capture_dates.php:60 ../rotate_photo.php:123
 msgid "Close"
 msgstr "Bezár"
 
@@ -1650,7 +1671,7 @@ msgstr "Vissza a Galériához"
 msgid "Member file"
 msgstr "Tag fájl"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../login.php:88 ../login.php:150
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -1742,11 +1763,11 @@ msgstr ""
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr ""
 
-#: ../html_wrap/frames/postage_stamp/frame.def:2
+#: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "Postage Stamp"
 msgstr ""
 
-#: ../html_wrap/frames/postage_stamp/frame.def:3
+#: ../html_wrap/frames/postage_stamp/frame.def:4
 msgid "A simple postage stamp effect."
 msgstr ""
 
@@ -1775,7 +1796,7 @@ msgstr "Fakeret"
 msgid "A textured wooden frame"
 msgstr ""
 
-#: ../html_wrap/wrapper.footer.default:62
+#: ../html_wrap/wrapper.footer.default:63
 #, php-format
 msgid "Debug ON ! Level %s"
 msgstr ""
@@ -1870,7 +1891,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Támogatott fájltípusok"
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:597
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:604
 msgid " or "
 msgstr "vagy"
 
@@ -2433,7 +2454,7 @@ msgstr "jogosultságok"
 msgid "properties"
 msgstr "tulajdonságok"
 
-#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:439
+#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:446
 msgid "view&nbsp;comments"
 msgstr "megjegyzések&nbsp;megtekintése"
 
@@ -2491,7 +2512,7 @@ msgstr "Következõ oldal"
 msgid "Last Page"
 msgstr "Utolsó oldal"
 
-#: ../layout/navigator.inc:79 ../layout/navigator.inc:105
+#: ../layout/navigator.inc:80 ../layout/navigator.inc:108
 #, php-format
 msgid "Jump to page %d"
 msgstr ""
@@ -2669,7 +2690,7 @@ msgstr "Album átnevezése"
 msgid "Reset Counter"
 msgstr "Számláló nullázása"
 
-#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:337
+#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:344
 msgid "Permissions"
 msgstr "Jogosultságok"
 
@@ -2722,91 +2743,91 @@ msgstr "fotó tulajdonságai"
 msgid "%s actions"
 msgstr "súgó"
 
-#: ../login.php:51
+#: ../login.php:54
 msgid "SUCCEEDED"
 msgstr ""
 
-#: ../login.php:55
+#: ../login.php:58
 msgid "Invalid username or password"
 msgstr "Helytelen felhasználó vagy jelszó"
 
-#: ../login.php:60
+#: ../login.php:63
 msgid "Please enter username and password."
 msgstr ""
 
-#: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
+#: ../login.php:70 ../login.php:74 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
 msgid "Login to %s"
 msgstr "%s, belépés"
 
-#: ../login.php:75
+#: ../login.php:78
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr "A belépés után jogosultságok szélesebb köre áll rendelkezésre (további albumok megtekintése, módosítása)."
 
-#: ../login.php:89
+#: ../login.php:92
 msgid "Password"
 msgstr "Jelszó"
 
-#: ../login.php:95
+#: ../login.php:98
 msgid "Login"
 msgstr "Belépés"
 
-#: ../login.php:103
+#: ../login.php:106
 msgid "Forgotten your password?"
 msgstr "Elfelejtetted a jelszavad?"
 
-#: ../login.php:114
+#: ../login.php:117
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
 msgstr "Az utolsó jelszólekérdezés kevesebb mint %d perce történt. Ellenõrizd, hogy megkaptad-e azt az emailt, vagy késõbb próbálkozz újra!"
 
-#: ../login.php:118
+#: ../login.php:121
 msgid "New password request"
 msgstr "Új jelszó kérése"
 
-#: ../login.php:119
+#: ../login.php:122
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr "Valaki a(z) %s felhasználó számára új jelszót kért a '%s' galériához %s-n. A jelszót létrehozhatod, ha a lenti linkre kattintasz. Ha nem Te kérted a jelszót, nincs semmi teendõd."
 
-#: ../login.php:120
+#: ../login.php:123
 #, fuzzy, php-format
 msgid "Click to reset your password: %s"
 msgstr "Elfelejtetted a jelszavad?"
 
-#: ../login.php:122
+#: ../login.php:125
 #, php-format
 msgid "New password request %s"
 msgstr "%s új jelszót kért"
 
-#: ../login.php:125
+#: ../login.php:128
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr "Elküldtem a levelet a(z) %s címre. Kövesd a levélben leírt utasításokat és válts jelszót. Ha nem kapod meg a levelet, lépj kapcsolatba a Galéria egyik adminisztrátorával!"
 
-#: ../login.php:131
+#: ../login.php:134
 #, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
 msgstr "A levelet nem sikerült elküldeni. Lépj kapcsolatba a(z) %s adminisztrátorokkal az új jelszódért."
 
-#: ../login.php:136
+#: ../login.php:139
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
 msgstr "Ehhez a felhasználóhoz nincs megadva érvényes levélcím. Lépj kapcsolatba a(z) %s adminisztrátorokkal az új jelszódért."
 
-#: ../login.php:140 ../new_password.php:38 ../new_password.php:42
+#: ../login.php:143 ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr "Érvénytelen felhasználónév"
 
-#: ../login.php:152
+#: ../login.php:155
 msgid "Send me my password"
 msgstr "Küldd el a jelszavamat"
 
-#: ../login.php:159
+#: ../login.php:162
 msgid "No account at all?"
 msgstr ""
 
-#: ../login.php:161
+#: ../login.php:164
 msgid "Register a new account."
 msgstr ""
 
@@ -3183,7 +3204,7 @@ msgstr "Vissza a Fotók hozzáadásához"
 msgid "Results Breakdown"
 msgstr "Az eredmények kiértékelése"
 
-#: ../poll_results.php:148 ../view_album.php:531 ../view_album.php:822
+#: ../poll_results.php:148 ../view_album.php:538 ../view_album.php:829
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -3424,6 +3445,24 @@ msgstr "Mégsem"
 #, php-format
 msgid "******* Page %s *******"
 msgstr ""
+
+#: ../rebuild_capture_dates.php:36
+#, fuzzy, php-format
+msgid "Rebuilding capture dates: %s"
+msgstr "Felvételi idõ"
+
+#: ../rebuild_capture_dates.php:44
+msgid "Here you can rebuild all capture dates of your photos."
+msgstr ""
+
+#: ../rebuild_capture_dates.php:46
+msgid "This is usefull when something went wrong, of you enabled jhead/exiftags after you upload items."
+msgstr ""
+
+#: ../rebuild_capture_dates.php:48
+#, fuzzy
+msgid "Do you also want to rebuild the capture dates of items in subalbums?"
+msgstr "Biztosan törölni akarod ezt az albumot?"
 
 #: ../register.php:37 ../register.php:41
 #, fuzzy, php-format
@@ -3831,8 +3870,8 @@ msgid "Gallery statistics - Wizard"
 msgstr "Galéria Diagnosztikai Oldal"
 
 #: ../stats-wizard.php:54 ../tools/despam-comments.php:55
-#: ../tools/find_orphans.php:210 ../tools/validate_albums.php:137
-#: ../tools/validate_albums.php:213
+#: ../tools/find_orphans.php:210 ../tools/validate_albums.php:61
+#: ../tools/validate_albums.php:170
 #, fuzzy
 msgid "return to admin page"
 msgstr "vissza az albumhoz"
@@ -4366,75 +4405,131 @@ msgstr ""
 msgid "Reload"
 msgstr "%s újrarendezése"
 
-#: ../tools/validate_albums.php:181
+#: ../tools/validate_albums.php:84
+#, fuzzy
+msgid "Album deleted."
+msgstr "Az album naprakész."
+
+#: ../tools/validate_albums.php:86 ../tools/validate_albums.php:111
+#, fuzzy
+msgid "Validate again"
+msgstr "Változtatás újra?"
+
+#: ../tools/validate_albums.php:87 ../tools/validate_albums.php:112
+#, fuzzy
+msgid "Return to admin page"
+msgstr "vissza az albumhoz"
+
+#: ../tools/validate_albums.php:88 ../tools/validate_albums.php:113
+#, fuzzy
+msgid "Return to Gallery"
+msgstr "Vissza a Galériához"
+
+#: ../tools/validate_albums.php:92
+msgid "Are you sure you want to delete the folder below and all of its content ?"
+msgstr ""
+
+#: ../tools/validate_albums.php:94 ../tools/validate_albums.php:128
+#, fuzzy
+msgid "Yes, Delete"
+msgstr "Töröl"
+
+#: ../tools/validate_albums.php:95 ../tools/validate_albums.php:129
+#, fuzzy
+msgid "No, Cancel"
+msgstr "Mégsem"
+
+#: ../tools/validate_albums.php:109
+#, fuzzy
+msgid "Photo deleted."
+msgstr "Nincs fájl kiválasztva."
+
+#: ../tools/validate_albums.php:131
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
-#: ../tools/validate_albums.php:203 ../tools/validate_albums.php:212
+#: ../tools/validate_albums.php:137
+#, fuzzy
+msgid "Invalid Action !"
+msgstr "Hibás kép"
+
+#: ../tools/validate_albums.php:160 ../tools/validate_albums.php:169
 #, fuzzy
 msgid "Validate Albums"
 msgstr "album törlése"
 
-#: ../tools/validate_albums.php:230
+#: ../tools/validate_albums.php:184
 #, fuzzy
-msgid "Missing Files:"
+msgid "Missing files"
 msgstr "hiányzik"
 
-#: ../tools/validate_albums.php:231
-msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+#: ../tools/validate_albums.php:188
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."
 msgstr ""
 
-#: ../tools/validate_albums.php:235
+#: ../tools/validate_albums.php:190
+msgid "This can be fixed in one of two ways:"
+msgstr ""
+
+#: ../tools/validate_albums.php:192
+msgid "The first is to simply delete the photo entry from the album."
+msgstr ""
+
+#: ../tools/validate_albums.php:193
+msgid "The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+msgstr ""
+
+#: ../tools/validate_albums.php:197
+#, fuzzy, php-format
+msgid "Missing Files: %s"
+msgstr "hiányzik"
+
+#: ../tools/validate_albums.php:201
 #, fuzzy
 msgid "Missing File"
 msgstr "hiányzik"
 
-#: ../tools/validate_albums.php:237 ../tools/validate_albums.php:279
+#: ../tools/validate_albums.php:203 ../tools/validate_albums.php:246
 #, fuzzy
 msgid "Action"
 msgstr "súgó"
 
-#: ../tools/validate_albums.php:246
+#: ../tools/validate_albums.php:217
 msgid "delete photo"
 msgstr "fotó törlése"
 
-#: ../tools/validate_albums.php:262
-#, fuzzy
-msgid "No Missing Files"
-msgstr "hiányzik"
-
-#: ../tools/validate_albums.php:263
+#: ../tools/validate_albums.php:230
 #, fuzzy
 msgid "There are no missing files in this Gallery."
 msgstr "Nincs elárvult album a galériában."
 
-#: ../tools/validate_albums.php:272
+#: ../tools/validate_albums.php:234
 #, fuzzy
-msgid "Invalid Albums:"
+msgid "Invalid albums"
 msgstr "Érvénytelen felhasználónév"
 
-#: ../tools/validate_albums.php:273
-msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+#: ../tools/validate_albums.php:237
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x"
 msgstr ""
 
-#: ../tools/validate_albums.php:277
+#: ../tools/validate_albums.php:240
+#, fuzzy, php-format
+msgid "Invalid Albums: %d"
+msgstr "Érvénytelen felhasználónév"
+
+#: ../tools/validate_albums.php:244
 #, fuzzy
 msgid "Invalid Album"
 msgstr "Érvénytelen felhasználónév"
 
-#: ../tools/validate_albums.php:286
+#: ../tools/validate_albums.php:256
 #, fuzzy
 msgid "delete directory"
 msgstr "URL vagy könyvtár megadása"
 
-#: ../tools/validate_albums.php:302
+#: ../tools/validate_albums.php:268
 #, fuzzy
-msgid "No Invalid Albums Found"
-msgstr "Érvénytelen felhasználónév"
-
-#: ../tools/validate_albums.php:303
-#, fuzzy
-msgid "There are no invalid albums present in this Gallery."
+msgid "There are no invalid albums in this Gallery."
 msgstr "Nincs elárvult album a galériában."
 
 #: ../upgrade_album.php:81
@@ -4608,370 +4703,383 @@ msgstr "Nem tudok írni ide: %s."
 msgid "Can't read %s."
 msgstr "Nem tudok olvasni innen: %s."
 
-#: ../util.php:664
+#: ../util.php:666
+msgid "Got no capture date. Using file modification time."
+msgstr ""
+
+#: ../util.php:670
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "Felvételi idõ"
 
-#: ../util.php:709
+#: ../util.php:716
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "A(z) %s URL nem nyitható meg."
 
-#: ../util.php:714
+#: ../util.php:721
 #, fuzzy, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "A(z) %s URL nem nyitható meg."
 
-#: ../util.php:797
+#: ../util.php:804
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:906
+#: ../util.php:913
 #, fuzzy, php-format
 msgid "Extracting: %s with %s"
 msgstr "Végrehajtás: "
 
-#: ../util.php:924
+#: ../util.php:931
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr ""
 
-#: ../util.php:939
+#: ../util.php:946
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:942
+#: ../util.php:949
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:956
+#: ../util.php:963
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:988
+#: ../util.php:995
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Kép feldolgozó"
 
-#: ../util.php:991
+#: ../util.php:998
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "%s helyi könyvtár feldolgozása."
 
-#: ../util.php:994
+#: ../util.php:1001
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "%s kihagyása (a ZIP fájlok támogatása ki van kapcsolva)"
 
-#: ../util.php:1003
+#: ../util.php:1010
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../util.php:1021
+#: ../util.php:1028
 msgid "No Metadata"
 msgstr ""
 
-#: ../util.php:1025
+#: ../util.php:1032
 #, fuzzy
 msgid "Processing files in archive"
 msgstr "Kép feldolgozó"
 
-#: ../util.php:1031
+#: ../util.php:1038
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../util.php:1034
+#: ../util.php:1041
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "A(z) %s könyvtár nem nyitható meg."
 
-#: ../util.php:1154
+#: ../util.php:1161
 #, php-format
 msgid "Adding %s"
 msgstr "Hozzáad %s"
 
-#: ../util.php:1174
+#: ../util.php:1181
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Segítségre van szükséged? Olvasd el a %s%s GyIK%s-t"
 
-#: ../util.php:1179
+#: ../util.php:1186
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "%s-et kihagyom (nem ismerem a(z) %s formátumot)"
 
-#: ../util.php:1292
+#: ../util.php:1299
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "A(z) %s log nem nyitható meg."
 
-#: ../util.php:1460
+#: ../util.php:1471
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1476
+#: ../util.php:1487
 #, fuzzy
 msgid "csv result:"
 msgstr "A szavazás eredménye:"
 
-#: ../util.php:1650
+#: ../util.php:1661
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1740
+#: ../util.php:1751
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:1838
+#: ../util.php:1849
 #, php-format
 msgid "Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1877
+#: ../util.php:1888
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1885
+#: ../util.php:1896
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1890
+#: ../util.php:1901
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr ""
 
-#: ../view_album.php:235
+#: ../view_album.php:236
 msgid "No albums"
 msgstr "Nincs album"
 
-#: ../view_album.php:235
+#: ../view_album.php:236
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "%d belsõ album"
 
-#: ../view_album.php:237
+#: ../view_album.php:238
 msgid "0 pages"
 msgstr "0 oldal"
 
-#: ../view_album.php:240
+#: ../view_album.php:241
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s és %s van ebben az albumban %son"
 
-#: ../view_album.php:243
+#: ../view_album.php:244
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s és %s van ebben az albumban"
 
-#: ../view_album.php:246
+#: ../view_album.php:247
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s van ebben az albumban %son"
 
-#: ../view_album.php:249
+#: ../view_album.php:250
 #, php-format
 msgid "%s in this album"
 msgstr "%s van ebben az albumban"
 
-#: ../view_album.php:256
+#: ../view_album.php:257
 #, php-format
 msgid "%s are hidden"
 msgstr "%s rejtett"
 
-#: ../view_album.php:258
+#: ../view_album.php:259
 #, php-format
 msgid "%s is hidden"
 msgstr "%s rejtett"
 
-#: ../view_album.php:268
+#: ../view_album.php:269
 #, fuzzy
 msgid "Add photos"
 msgstr "Új képek"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 #, fuzzy
 msgid "Delete this album"
 msgstr "Nevezd át ezt az albumot"
 
-#: ../view_album.php:279
+#: ../view_album.php:280
 #, fuzzy
 msgid "Delete this (sub)album"
 msgstr "Nevezd át ezt az albumot"
 
-#: ../view_album.php:288
+#: ../view_album.php:289
 #, fuzzy
 msgid "Rename album"
 msgstr "album átnevezése"
 
-#: ../view_album.php:295
+#: ../view_album.php:296
 #, fuzzy
 msgid "New nested album"
 msgstr "új belsõ album"
 
-#: ../view_album.php:301
+#: ../view_album.php:302
 #, fuzzy
 msgid "Edit captions"
 msgstr "képaláírások szerkesztése"
 
-#: ../view_album.php:307
+#: ../view_album.php:308
 #, fuzzy
 msgid "Sort items"
 msgstr "elemek rendezése"
 
-#: ../view_album.php:313
+#: ../view_album.php:314
 #, fuzzy
 msgid "Resize all"
 msgstr "mindet újraméretezi"
 
-#: ../view_album.php:319
+#: ../view_album.php:320
 #, fuzzy
 msgid "Rebuild thumbs"
 msgstr "kisképek újrakészítése"
 
-#: ../view_album.php:325
+#: ../view_album.php:326
+#, fuzzy
+msgid "Rebuild capture dates"
+msgstr "Fotó készítési ideje"
+
+#: ../view_album.php:332
 #, fuzzy
 msgid "Properties"
 msgstr "tulajdonságok"
 
-#: ../view_album.php:331
+#: ../view_album.php:338
 #, fuzzy
 msgid "Rearrange items"
 msgstr "%s átméretezése"
 
-#: ../view_album.php:343
+#: ../view_album.php:350
 #, fuzzy
 msgid "Poll results"
 msgstr "A szavazás eredménye:"
 
-#: ../view_album.php:349
+#: ../view_album.php:356
 #, fuzzy
 msgid "Poll reset"
 msgstr "felmérés nullázása"
 
-#: ../view_album.php:355
+#: ../view_album.php:362
 #, fuzzy
 msgid "View comments"
 msgstr "Megjegyzések megtekintése"
 
-#: ../view_album.php:361
+#: ../view_album.php:368
 #, fuzzy
 msgid "Watermark album"
 msgstr "Album vízjelezése"
 
-#: ../view_album.php:422
+#: ../view_album.php:429
 #, fuzzy
 msgid "Album Actions"
 msgstr "Album aláírás"
 
-#: ../view_album.php:515
+#: ../view_album.php:522
 #, fuzzy
 msgid "Your votes are :"
 msgstr "Üzenet:"
 
-#: ../view_album.php:563
+#: ../view_album.php:570
 #, fuzzy
 msgid "[ See full poll results ]"
 msgstr "Az összes szavazat megtekintése"
 
-#: ../view_album.php:595
+#: ../view_album.php:602
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:601
+#: ../view_album.php:608
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "A képre történõ szavazáshoz kattints a %s gombra."
 
-#: ../view_album.php:603
+#: ../view_album.php:610
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "A %s-ra KELL kattintani, hogy a szavazat rögzítésre kerüljön."
 
-#: ../view_album.php:603 ../view_album.php:620 ../view_album.php:958
+#: ../view_album.php:610 ../view_album.php:627 ../view_album.php:965
 msgid "Vote"
 msgstr "Szavazás"
 
-#: ../view_album.php:608
+#: ../view_album.php:615
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] "A választásodon módosíthatsz."
 
-#: ../view_album.php:612
+#: ../view_album.php:619
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "A választásodon módosíthatsz."
 
-#: ../view_album.php:763 ../view_album.php:764
+#: ../view_album.php:770 ../view_album.php:771
 #, php-format
 msgid "%dkB"
 msgstr "%d kB"
 
-#: ../view_album.php:811
+#: ../view_album.php:818
 #, fuzzy
 msgid "highlight"
 msgstr "Nincs kiemelt kép"
 
-#: ../view_album.php:826
+#: ../view_album.php:833
 msgid "No description"
 msgstr "Nincs leírás"
 
-#: ../view_album.php:834
+#: ../view_album.php:841
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Utoljára módosítva: %s."
 
-#: ../view_album.php:838
+#: ../view_album.php:845
 #, fuzzy, php-format
 msgid "Contains: %s."
 msgstr "Tartalom: "
 
-#: ../view_album.php:838
+#: ../view_album.php:845
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] "%d elem"
 
-#: ../view_album.php:855
+#: ../view_album.php:862
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "Megtekintve:"
 
-#: ../view_album.php:880
+#: ../view_album.php:887
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Megtekintve:"
 
-#: ../view_album.php:936
+#: ../view_album.php:943
 msgid "Hey! Add some photos."
 msgstr "Figyu! Tölts fel képeket!"
 
-#: ../view_album.php:938
+#: ../view_album.php:945
 msgid "This album is empty."
 msgstr "Ez az album üres."
 
-#: ../view_album.php:983
+#: ../view_album.php:995
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:988
+#: ../view_album.php:1005
 msgid "Comments are added"
 msgstr "Megjegyzéseket adtak hozzá"
 
-#: ../view_album.php:991
+#: ../view_album.php:1008
 msgid "Other changes are made"
 msgstr "Egyéb változások történtek"
+
+#: ../view_album.php:1011
+msgid "Apply settings (both) recursive for subalbums."
+msgstr ""
 
 #: ../view_comments.php:115
 #, php-format
@@ -5055,6 +5163,14 @@ msgstr "Nincs vízjelezhetõ elem."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#, fuzzy
+#~ msgid "No Missing Files"
+#~ msgstr "hiányzik"
+
+#, fuzzy
+#~ msgid "No Invalid Albums Found"
+#~ msgstr "Érvénytelen felhasználónév"
 
 #~ msgid "You have no votes recorded for this poll."
 #~ msgstr "Erre a felmérésre senki nem szavazott."

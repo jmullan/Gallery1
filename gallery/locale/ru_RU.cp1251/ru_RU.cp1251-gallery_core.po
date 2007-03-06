@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-11-12 12:09+0100\n"
+"POT-Creation-Date: 2007-03-06 19:12+0100\n"
 "PO-Revision-Date: 2004-08-04 23:09+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -44,9 +44,10 @@ msgstr ""
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
-#: ../rotate_photo.php:33 ../save_photos.php:38 ../upgrade_album.php:57
-#: ../user_preferences.php:31 ../watermark_album.php:43
+#: ../rebuild_capture_dates.php:31 ../rename_album.php:31
+#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
+#: ../watermark_album.php:43
 #, fuzzy
 msgid "You are not allowed to perform this action!"
 msgstr "Вам не разрешается выполнять это действие !"
@@ -76,7 +77,7 @@ msgstr "Введите ваш комментарий для этой фотографии в текстовом поле ниже."
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
 #: ../ecard_form.php:276 ../edit_caption.php:184 ../edit_watermark.php:121
 #: ../includes/add_photos/add_form.inc:90
-#: ../includes/add_photos/add_url.inc:55 ../login.php:96 ../move_album.php:117
+#: ../includes/add_photos/add_url.inc:55 ../login.php:99 ../move_album.php:117
 #: ../move_album.php:134 ../move_photo.php:264 ../move_photo.php:352
 #: ../new_password.php:138 ../register.php:144 ../rename_album.php:131
 #: ../reset_votes.php:64 ../resize_photo.php:140 ../sort_album.php:121
@@ -178,8 +179,8 @@ msgstr "администрирование"
 
 #: ../admin-page.php:85 ../search.php:56 ../stats-wizard.php:55
 #: ../stats.php:603 ../tools/despam-comments.php:56
-#: ../tools/find_orphans.php:211 ../tools/validate_albums.php:138
-#: ../tools/validate_albums.php:214
+#: ../tools/find_orphans.php:211 ../tools/validate_albums.php:62
+#: ../tools/validate_albums.php:171
 #, fuzzy
 msgid "return to gallery"
 msgstr "Вернуться в галерею"
@@ -336,7 +337,7 @@ msgstr "Сохранить"
 msgid "Done"
 msgstr "Закрыть"
 
-#: ../albums.php:119 ../view_album.php:141
+#: ../albums.php:119 ../view_album.php:142
 #, php-format
 msgid "%s RSS"
 msgstr ""
@@ -375,11 +376,11 @@ msgid "%d total"
 msgstr "%d всего"
 
 #
-#: ../albums.php:163 ../view_album.php:236
+#: ../albums.php:163 ../view_album.php:237
 msgid "no images"
 msgstr "нет фотографий"
 
-#: ../albums.php:163 ../view_album.php:236
+#: ../albums.php:163 ../view_album.php:237
 #, php-format
 msgid "1 image"
 msgid_plural "%d images"
@@ -392,7 +393,7 @@ msgid "no pages"
 msgstr "нет страниц"
 
 #
-#: ../albums.php:164 ../view_album.php:237
+#: ../albums.php:164 ../view_album.php:238
 #, php-format
 msgid "1 page"
 msgid_plural "%d pages"
@@ -427,7 +428,7 @@ msgid "Welcome, %s"
 msgstr "Добро пожаловать, %s"
 
 #
-#: ../albums.php:193 ../view_album.php:429
+#: ../albums.php:193 ../view_album.php:436
 msgid "slideshow"
 msgstr "показ слайдов"
 
@@ -457,13 +458,13 @@ msgid "preferences"
 msgstr "настройки"
 
 #
-#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:447
+#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:454
 #: ../view_photo.php:538
 msgid "logout"
 msgstr "выход"
 
 #
-#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:452
+#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:459
 #: ../view_photo.php:543
 msgid "login"
 msgstr "вход"
@@ -529,12 +530,12 @@ msgstr "Вход"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:342 ../view_album.php:712
+#: ../albums.php:342 ../view_album.php:719
 msgid "Highlight for Album:"
 msgstr "Обложка для альбома:"
 
 #
-#: ../albums.php:362 ../view_album.php:818
+#: ../albums.php:362 ../view_album.php:825
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "не указан альбом"
@@ -595,7 +596,7 @@ msgid "0 times"
 msgstr "0 раз"
 
 #
-#: ../albums.php:455 ../view_album.php:855
+#: ../albums.php:455 ../view_album.php:862
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -609,7 +610,7 @@ msgid "reset counter"
 msgstr "сбросить счетчик"
 
 #
-#: ../albums.php:506 ../view_album.php:952
+#: ../albums.php:506 ../view_album.php:959
 msgid "Comments available for this item."
 msgstr "Доступны комментарии для этой фотографии."
 
@@ -658,7 +659,7 @@ msgid "%s items in this album"
 msgstr "позиций в альбоме"
 
 #: ../captionator.php:191 ../imagemap.php:156 ../slideshow.php:183
-#: ../view_album.php:115 ../view_comments.php:54 ../view_photo.php:171
+#: ../view_album.php:116 ../view_comments.php:54 ../view_photo.php:171
 msgid "navigate UP"
 msgstr "перейти ВВЕРХ"
 
@@ -690,7 +691,7 @@ msgstr ""
 
 #
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:806
+#: ../layout/commentboxtop.inc:45 ../view_album.php:813
 msgid "hidden"
 msgstr "скрытый"
 
@@ -809,7 +810,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1143 ../classes/Album.php:1909
+#: ../classes/Album.php:1143 ../classes/Album.php:1950
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -864,23 +865,43 @@ msgstr "Нет обложки"
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Запрошенный индекс [%d] выходит за пределы [%d]"
 
+#: ../classes/Album.php:1805
+msgid " -- Skipping"
+msgstr ""
+
+#: ../classes/Album.php:1810
+#, php-format
+msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
+msgstr ""
+
 #
-#: ../classes/Album.php:1921 ../do_command.php:105
+#: ../classes/Album.php:1818
+#, fuzzy, php-format
+msgid "Processing item %d..."
+msgstr "Обработка изображения %d..."
+
+#: ../classes/Album.php:1826
+#, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items"
+msgstr ""
+
+#
+#: ../classes/Album.php:1962 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr "Обработка изображения %d..."
 
-#: ../classes/Album.php:2090
+#: ../classes/Album.php:2131
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2626
+#: ../classes/Album.php:2667
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:2790
+#: ../classes/Album.php:2831
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Проблема с e-mail: пропущен %s (UID %s) потому что e-mail адрес %s неправильный."
@@ -1046,7 +1067,7 @@ msgstr "Пропущен альбом #%d"
 
 #
 #: ../copy_photo.php:132 ../do_command.php:261 ../do_command.php:263
-#: ../login.php:127 ../register.php:47 ../register.php:123
+#: ../login.php:130 ../register.php:47 ../register.php:123
 #: ../save_photos.php:367
 msgid "Dismiss"
 msgstr "Закрыть"
@@ -1167,8 +1188,8 @@ msgstr "Создание пользователя"
 
 #
 #: ../delete_album.php:49 ../delete_album.php:53 ../delete_photo.php:86
-#: ../delete_photo.php:94 ../tools/validate_albums.php:128
-#: ../tools/validate_albums.php:136
+#: ../delete_photo.php:94 ../tools/validate_albums.php:52
+#: ../tools/validate_albums.php:60
 msgid "Delete Album"
 msgstr "Удаление альбома"
 
@@ -1193,7 +1214,7 @@ msgstr "не указан альбом"
 
 #
 #: ../delete_photo.php:86 ../delete_photo.php:121
-#: ../tools/validate_albums.php:128 ../tools/validate_albums.php:136
+#: ../tools/validate_albums.php:52 ../tools/validate_albums.php:60
 msgid "Delete Photo"
 msgstr "Удаление фотографии"
 
@@ -1277,17 +1298,17 @@ msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr "Вы действительно хотите удалять этот альбом?"
 
 #: ../do_command.php:89 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:54
 msgid "Yes"
 msgstr "Да"
 
 #: ../do_command.php:90 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:55
 msgid "No"
 msgstr "Нет"
 
 #
-#: ../do_command.php:92
+#: ../do_command.php:92 ../rebuild_capture_dates.php:59
 #, fuzzy
 msgid "Start"
 msgstr "Сортировать"
@@ -1575,7 +1596,8 @@ msgstr "Отменить"
 
 #
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:123
+#: ../poll_properties.php:142 ../rebuild_capture_dates.php:41
+#: ../rebuild_capture_dates.php:60 ../rotate_photo.php:123
 msgid "Close"
 msgstr "Закрыть"
 
@@ -1869,7 +1891,7 @@ msgstr "Вернуться в галерею"
 msgid "Member file"
 msgstr "Файл участников"
 
-#: ../html/userData.inc:26 ../login.php:85 ../login.php:147
+#: ../html/userData.inc:26 ../login.php:88 ../login.php:150
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -1970,11 +1992,11 @@ msgstr "Полароиды"
 msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
 msgstr "Стопка фотографий с большой белой рамкой и дополнительным широким краем внизу"
 
-#: ../html_wrap/frames/postage_stamp/frame.def:2
+#: ../html_wrap/frames/postage_stamp/frame.def:3
 msgid "Postage Stamp"
 msgstr ""
 
-#: ../html_wrap/frames/postage_stamp/frame.def:3
+#: ../html_wrap/frames/postage_stamp/frame.def:4
 msgid "A simple postage stamp effect."
 msgstr ""
 
@@ -2003,7 +2025,7 @@ msgstr "Деревянная рамка"
 msgid "A textured wooden frame"
 msgstr "Текстурная дереянная рамка"
 
-#: ../html_wrap/wrapper.footer.default:62
+#: ../html_wrap/wrapper.footer.default:63
 #, fuzzy, php-format
 msgid "Debug ON ! Level %s"
 msgstr "Режим отладки"
@@ -2103,7 +2125,7 @@ msgid "Supported file types: %s"
 msgstr "Поддерживаемые типы файлов"
 
 #
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:597
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:604
 msgid " or "
 msgstr " или "
 
@@ -2747,7 +2769,7 @@ msgid "properties"
 msgstr "свойства"
 
 #
-#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:439
+#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:446
 msgid "view&nbsp;comments"
 msgstr "просмотреть&nbsp;комментарии"
 
@@ -2817,7 +2839,7 @@ msgstr "Следующая страница"
 msgid "Last Page"
 msgstr "Последняя страница"
 
-#: ../layout/navigator.inc:79 ../layout/navigator.inc:105
+#: ../layout/navigator.inc:80 ../layout/navigator.inc:108
 #, php-format
 msgid "Jump to page %d"
 msgstr ""
@@ -3013,7 +3035,7 @@ msgstr "Переименование альбома"
 msgid "Reset Counter"
 msgstr "Сброс счетчика"
 
-#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:337
+#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:344
 msgid "Permissions"
 msgstr "Полномочия"
 
@@ -3072,98 +3094,98 @@ msgstr "свойства фото"
 msgid "%s actions"
 msgstr "документация"
 
-#: ../login.php:51
+#: ../login.php:54
 msgid "SUCCEEDED"
 msgstr ""
 
-#: ../login.php:55
+#: ../login.php:58
 msgid "Invalid username or password"
 msgstr "Неверные имя или пароль"
 
-#: ../login.php:60
+#: ../login.php:63
 msgid "Please enter username and password."
 msgstr "Пожалуйста введите имя пользователя и пароль."
 
 #
-#: ../login.php:67 ../login.php:71 ../publish_xp.php:56 ../publish_xp.php:99
+#: ../login.php:70 ../login.php:74 ../publish_xp.php:56 ../publish_xp.php:99
 #, php-format
 msgid "Login to %s"
 msgstr "Вход в %s"
 
 #
-#: ../login.php:75
+#: ../login.php:78
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr "Зарегистрированный вход дает Вам больше полномочий для просмотра, создания, корректировки и удаления альбомов."
 
-#: ../login.php:89
+#: ../login.php:92
 msgid "Password"
 msgstr "Пароль"
 
-#: ../login.php:95
+#: ../login.php:98
 msgid "Login"
 msgstr "Вход"
 
 #
-#: ../login.php:103
+#: ../login.php:106
 msgid "Forgotten your password?"
 msgstr "Забыли свой пароль?"
 
-#: ../login.php:114
+#: ../login.php:117
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
 msgstr "Последний запрос о пароле был менее чем %d минут тому назад. Пожалуйста проверьте наличие предыдущего e-mail сообщения или подождите еще не много, если это не поможет, сделайте еще одну попытку."
 
 #
-#: ../login.php:118
+#: ../login.php:121
 msgid "New password request"
 msgstr "Запрос нового пароля"
 
-#: ../login.php:119
+#: ../login.php:122
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr "Кто-то запросил новый пароль для пользователя %s из галереи '%s' на %s. Вы можете создать пароль посетив ссылку указанную ниже. Если вы не запрашивали пароль, то пожалуйста проигнорируйте это сообщение."
 
-#: ../login.php:120
+#: ../login.php:123
 #, php-format
 msgid "Click to reset your password: %s"
 msgstr "Кликните для восстановления вашего пароля: %s"
 
 #
-#: ../login.php:122
+#: ../login.php:125
 #, php-format
 msgid "New password request %s"
 msgstr "Запрос нового пароля %s"
 
-#: ../login.php:125
+#: ../login.php:128
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr "E-mail отправлен по адресу сохраненному для %s. Последуйте инструкциям для изменения вашего пароля. Если вы не получите этот e-mail, пожалуйста обратитесь к администраторам галереи."
 
-#: ../login.php:131
+#: ../login.php:134
 #, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
 msgstr "E-mail не отправлен. Пожалуйста обратитесь к администратору %s за новым паролем"
 
-#: ../login.php:136
+#: ../login.php:139
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
 msgstr "Неправильный e-mail для этой учетной записи. Пожалуйста обратитесь к администраторам %s за новым паролем"
 
 #
-#: ../login.php:140 ../new_password.php:38 ../new_password.php:42
+#: ../login.php:143 ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr "Неправильное имя пользователя"
 
 #
-#: ../login.php:152
+#: ../login.php:155
 msgid "Send me my password"
 msgstr "Отправить мне мой пароль"
 
-#: ../login.php:159
+#: ../login.php:162
 msgid "No account at all?"
 msgstr ""
 
-#: ../login.php:161
+#: ../login.php:164
 msgid "Register a new account."
 msgstr ""
 
@@ -3595,7 +3617,7 @@ msgid "Results Breakdown"
 msgstr "Результаты раздроблены"
 
 #
-#: ../poll_results.php:148 ../view_album.php:531 ../view_album.php:822
+#: ../poll_results.php:148 ../view_album.php:538 ../view_album.php:829
 #, php-format
 msgid "Album: %s"
 msgstr "Альбом: %s"
@@ -3879,6 +3901,26 @@ msgstr "Отмена"
 #, php-format
 msgid "******* Page %s *******"
 msgstr ""
+
+#
+#: ../rebuild_capture_dates.php:36
+#, fuzzy, php-format
+msgid "Rebuilding capture dates: %s"
+msgstr "Дата фотографии"
+
+#: ../rebuild_capture_dates.php:44
+msgid "Here you can rebuild all capture dates of your photos."
+msgstr ""
+
+#: ../rebuild_capture_dates.php:46
+msgid "This is usefull when something went wrong, of you enabled jhead/exiftags after you upload items."
+msgstr ""
+
+#
+#: ../rebuild_capture_dates.php:48
+#, fuzzy
+msgid "Do you also want to rebuild the capture dates of items in subalbums?"
+msgstr "Вы действительно хотите удалять этот альбом?"
 
 #
 #: ../register.php:37 ../register.php:41
@@ -4339,8 +4381,8 @@ msgstr "страница диагностики галереи"
 
 #
 #: ../stats-wizard.php:54 ../tools/despam-comments.php:55
-#: ../tools/find_orphans.php:210 ../tools/validate_albums.php:137
-#: ../tools/validate_albums.php:213
+#: ../tools/find_orphans.php:210 ../tools/validate_albums.php:61
+#: ../tools/validate_albums.php:170
 #, fuzzy
 msgid "return to admin page"
 msgstr "вернуться в альбом"
@@ -4937,85 +4979,146 @@ msgstr ""
 msgid "Reload"
 msgstr "Переупорядочить %s"
 
-#: ../tools/validate_albums.php:181
+#
+#: ../tools/validate_albums.php:84
+#, fuzzy
+msgid "Album deleted."
+msgstr "Альбом уже обновлен."
+
+#: ../tools/validate_albums.php:86 ../tools/validate_albums.php:111
+#, fuzzy
+msgid "Validate again"
+msgstr "Обработать снова?"
+
+#
+#: ../tools/validate_albums.php:87 ../tools/validate_albums.php:112
+#, fuzzy
+msgid "Return to admin page"
+msgstr "вернуться в альбом"
+
+#: ../tools/validate_albums.php:88 ../tools/validate_albums.php:113
+#, fuzzy
+msgid "Return to Gallery"
+msgstr "Вернуться в галерею"
+
+#: ../tools/validate_albums.php:92
+msgid "Are you sure you want to delete the folder below and all of its content ?"
+msgstr ""
+
+#
+#: ../tools/validate_albums.php:94 ../tools/validate_albums.php:128
+#, fuzzy
+msgid "Yes, Delete"
+msgstr "Удалить"
+
+#: ../tools/validate_albums.php:95 ../tools/validate_albums.php:129
+#, fuzzy
+msgid "No, Cancel"
+msgstr "Отмена"
+
+#
+#: ../tools/validate_albums.php:109
+#, fuzzy
+msgid "Photo deleted."
+msgstr "Файл не выбран."
+
+#: ../tools/validate_albums.php:131
 msgid "Please Note: Even if the thumbnail image is properly displayed above, the actual full-sized image has been verified to be missing."
 msgstr ""
 
 #
-#: ../tools/validate_albums.php:203 ../tools/validate_albums.php:212
+#: ../tools/validate_albums.php:137
+#, fuzzy
+msgid "Invalid Action !"
+msgstr "Недопустимый формат изображения"
+
+#
+#: ../tools/validate_albums.php:160 ../tools/validate_albums.php:169
 #, fuzzy
 msgid "Validate Albums"
 msgstr "удалить альбом"
 
 #
-#: ../tools/validate_albums.php:230
+#: ../tools/validate_albums.php:184
 #, fuzzy
-msgid "Missing Files:"
+msgid "Missing files"
 msgstr "Отсутствует значение"
 
-#: ../tools/validate_albums.php:231
-msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.0. This can be fixed in one of two ways; the first is to simply delete the photo entry from the album.  The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
+#: ../tools/validate_albums.php:188
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."
+msgstr ""
+
+#: ../tools/validate_albums.php:190
+msgid "This can be fixed in one of two ways:"
+msgstr ""
+
+#: ../tools/validate_albums.php:192
+msgid "The first is to simply delete the photo entry from the album."
+msgstr ""
+
+#: ../tools/validate_albums.php:193
+msgid "The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
 msgstr ""
 
 #
-#: ../tools/validate_albums.php:235
+#: ../tools/validate_albums.php:197
+#, fuzzy, php-format
+msgid "Missing Files: %s"
+msgstr "Отсутствует значение"
+
+#
+#: ../tools/validate_albums.php:201
 #, fuzzy
 msgid "Missing File"
 msgstr "Отсутствует значение"
 
 #
-#: ../tools/validate_albums.php:237 ../tools/validate_albums.php:279
+#: ../tools/validate_albums.php:203 ../tools/validate_albums.php:246
 #, fuzzy
 msgid "Action"
 msgstr "документация"
 
 #
-#: ../tools/validate_albums.php:246
+#: ../tools/validate_albums.php:217
 msgid "delete photo"
 msgstr "удалить фото"
 
-#
-#: ../tools/validate_albums.php:262
-#, fuzzy
-msgid "No Missing Files"
-msgstr "Отсутствует значение"
-
-#: ../tools/validate_albums.php:263
+#: ../tools/validate_albums.php:230
 #, fuzzy
 msgid "There are no missing files in this Gallery."
 msgstr "Нет осиротевших альбомов в галереи."
 
 #
-#: ../tools/validate_albums.php:272
+#: ../tools/validate_albums.php:234
 #, fuzzy
-msgid "Invalid Albums:"
+msgid "Invalid albums"
 msgstr "Недействительный пользователь"
 
-#: ../tools/validate_albums.php:273
-msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.0"
+#: ../tools/validate_albums.php:237
+msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x"
 msgstr ""
 
 #
-#: ../tools/validate_albums.php:277
+#: ../tools/validate_albums.php:240
+#, fuzzy, php-format
+msgid "Invalid Albums: %d"
+msgstr "Недействительный пользователь"
+
+#
+#: ../tools/validate_albums.php:244
 #, fuzzy
 msgid "Invalid Album"
 msgstr "Недействительный пользователь"
 
 #
-#: ../tools/validate_albums.php:286
+#: ../tools/validate_albums.php:256
 #, fuzzy
 msgid "delete directory"
 msgstr "Подтвердить URL или каталог"
 
-#
-#: ../tools/validate_albums.php:302
+#: ../tools/validate_albums.php:268
 #, fuzzy
-msgid "No Invalid Albums Found"
-msgstr "Недействительный пользователь"
-
-#: ../tools/validate_albums.php:303
-#, fuzzy
-msgid "There are no invalid albums present in this Gallery."
+msgid "There are no invalid albums in this Gallery."
 msgstr "Нет осиротевших альбомов в галереи."
 
 #
@@ -5211,162 +5314,166 @@ msgstr "Не могу записать в %s."
 msgid "Can't read %s."
 msgstr "Не могу прочесть %s."
 
+#: ../util.php:666
+msgid "Got no capture date. Using file modification time."
+msgstr ""
+
 #
-#: ../util.php:664
+#: ../util.php:670
 #, fuzzy, php-format
 msgid "Item Capture Date : %s"
 msgstr "Дата фотографии"
 
 #
-#: ../util.php:709
+#: ../util.php:716
 #, fuzzy, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "Не могу открыть заблокированный файл (%s)!"
 
 #
-#: ../util.php:714
+#: ../util.php:721
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Не могу запросить блокировку (%s)!"
 
-#: ../util.php:797
+#: ../util.php:804
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:906
+#: ../util.php:913
 #, fuzzy, php-format
 msgid "Extracting: %s with %s"
 msgstr "Выполнение:"
 
-#: ../util.php:924
+#: ../util.php:931
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr ""
 
-#: ../util.php:939
+#: ../util.php:946
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:942
+#: ../util.php:949
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:956
+#: ../util.php:963
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:988
+#: ../util.php:995
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Обработка изображения"
 
-#: ../util.php:991
+#: ../util.php:998
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "Обработка %s как локального каталога."
 
 #
-#: ../util.php:994
+#: ../util.php:1001
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Пропущен %s (ZIP поддрежка отключена)"
 
-#: ../util.php:1003
+#: ../util.php:1010
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../util.php:1021
+#: ../util.php:1028
 msgid "No Metadata"
 msgstr ""
 
-#: ../util.php:1025
+#: ../util.php:1032
 #, fuzzy
 msgid "Processing files in archive"
 msgstr "Обработка изображения"
 
-#: ../util.php:1031
+#: ../util.php:1038
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
 #
-#: ../util.php:1034
+#: ../util.php:1041
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "Не могу открыть каталог %s"
 
 #
-#: ../util.php:1154
+#: ../util.php:1161
 #, php-format
 msgid "Adding %s"
 msgstr "Добавление %s"
 
 #
-#: ../util.php:1174
+#: ../util.php:1181
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Нужна помощь?  Смотри %s%s FAQ%s"
 
-#: ../util.php:1179
+#: ../util.php:1186
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Пропущен %s (не могу обработать %s формат)"
 
 #
-#: ../util.php:1292
+#: ../util.php:1299
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Не могу открыть лог файл: %s"
 
-#: ../util.php:1460
+#: ../util.php:1471
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
 #
-#: ../util.php:1476
+#: ../util.php:1487
 #, fuzzy
 msgid "csv result:"
 msgstr "Результаты опроса:"
 
-#: ../util.php:1650
+#: ../util.php:1661
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1740
+#: ../util.php:1751
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:1838
+#: ../util.php:1849
 #, php-format
 msgid "Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1877
+#: ../util.php:1888
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1885
+#: ../util.php:1896
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1890
+#: ../util.php:1901
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr ""
 
-#: ../view_album.php:235
+#: ../view_album.php:236
 msgid "No albums"
 msgstr "Нет албомов"
 
 #
-#: ../view_album.php:235
+#: ../view_album.php:236
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
@@ -5375,170 +5482,176 @@ msgstr[1] "%d вложенных альбома"
 msgstr[2] "%d вложенных альбомов"
 
 #
-#: ../view_album.php:237
+#: ../view_album.php:238
 msgid "0 pages"
 msgstr "страниц"
 
 #
-#: ../view_album.php:240
+#: ../view_album.php:241
 #, php-format
 msgid "%s and %s in this album on %s"
 msgstr "%s и %s в альбоме на %s"
 
 #
-#: ../view_album.php:243
+#: ../view_album.php:244
 #, php-format
 msgid "%s and %s in this album"
 msgstr "%s и %s в альбоме"
 
 #
-#: ../view_album.php:246
+#: ../view_album.php:247
 #, php-format
 msgid "%s in this album on %s"
 msgstr "%s в альбоме на %s"
 
 #
-#: ../view_album.php:249
+#: ../view_album.php:250
 #, php-format
 msgid "%s in this album"
 msgstr "%s в альбоме"
 
 #
-#: ../view_album.php:256
+#: ../view_album.php:257
 #, php-format
 msgid "%s are hidden"
 msgstr "%s скрыты"
 
 #
-#: ../view_album.php:258
+#: ../view_album.php:259
 #, php-format
 msgid "%s is hidden"
 msgstr "%s скрыт"
 
 #
-#: ../view_album.php:268
+#: ../view_album.php:269
 #, fuzzy
 msgid "Add photos"
 msgstr "Добавить фотографии"
 
-#: ../view_album.php:274
+#: ../view_album.php:275
 #, fuzzy
 msgid "Delete this album"
 msgstr "Переименуйте этот альбом"
 
-#: ../view_album.php:279
+#: ../view_album.php:280
 #, fuzzy
 msgid "Delete this (sub)album"
 msgstr "Переименуйте этот альбом"
 
 #
-#: ../view_album.php:288
+#: ../view_album.php:289
 #, fuzzy
 msgid "Rename album"
 msgstr "переименовать альбом"
 
 #
-#: ../view_album.php:295
+#: ../view_album.php:296
 #, fuzzy
 msgid "New nested album"
 msgstr "новый вложенный альбом"
 
 #
-#: ../view_album.php:301
+#: ../view_album.php:302
 #, fuzzy
 msgid "Edit captions"
 msgstr "редактировать заголовки"
 
 #
-#: ../view_album.php:307
+#: ../view_album.php:308
 #, fuzzy
 msgid "Sort items"
 msgstr "сортировка позиций"
 
 #
-#: ../view_album.php:313
+#: ../view_album.php:314
 #, fuzzy
 msgid "Resize all"
 msgstr "изменить размер всех"
 
 #
-#: ../view_album.php:319
+#: ../view_album.php:320
 #, fuzzy
 msgid "Rebuild thumbs"
 msgstr "обновить макеты"
 
 #
-#: ../view_album.php:325
+#: ../view_album.php:326
+#, fuzzy
+msgid "Rebuild capture dates"
+msgstr "Дата фотографии"
+
+#
+#: ../view_album.php:332
 #, fuzzy
 msgid "Properties"
 msgstr "свойства"
 
 #
-#: ../view_album.php:331
+#: ../view_album.php:338
 #, fuzzy
 msgid "Rearrange items"
 msgstr "Изменение размера %s"
 
 #
-#: ../view_album.php:343
+#: ../view_album.php:350
 #, fuzzy
 msgid "Poll results"
 msgstr "Результаты опроса:"
 
 #
-#: ../view_album.php:349
+#: ../view_album.php:356
 #, fuzzy
 msgid "Poll reset"
 msgstr "сброс опроса"
 
-#: ../view_album.php:355
+#: ../view_album.php:362
 #, fuzzy
 msgid "View comments"
 msgstr "Просмотреть комментарии"
 
-#: ../view_album.php:361
+#: ../view_album.php:368
 #, fuzzy
 msgid "Watermark album"
 msgstr "Альбом водяных знаков"
 
 #
-#: ../view_album.php:422
+#: ../view_album.php:429
 #, fuzzy
 msgid "Album Actions"
 msgstr "Заголовок альбома"
 
-#: ../view_album.php:515
+#: ../view_album.php:522
 #, fuzzy
 msgid "Your votes are :"
 msgstr "Сообщение:"
 
 #
-#: ../view_album.php:563
+#: ../view_album.php:570
 #, fuzzy
 msgid "[ See full poll results ]"
 msgstr "Смотри полные результаты опроса"
 
-#: ../view_album.php:595
+#: ../view_album.php:602
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:601
+#: ../view_album.php:608
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Для голосования за фотографии, кликните на %s."
 
-#: ../view_album.php:603
+#: ../view_album.php:610
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Вы ДОЛЖНЫ кликнуть на %s для записи ваших оценок."
 
 #
-#: ../view_album.php:603 ../view_album.php:620 ../view_album.php:958
+#: ../view_album.php:610 ../view_album.php:627 ../view_album.php:965
 msgid "Vote"
 msgstr "Голосовать"
 
 #
-#: ../view_album.php:608
+#: ../view_album.php:615
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
@@ -5546,41 +5659,41 @@ msgstr[0] "У вас есть всего %s и вы можете изменить их если захотите."
 msgstr[1] "У вас есть всего %s и вы можете изменить их если захотите."
 msgstr[2] "У вас есть всего %s и вы можете изменить их если захотите."
 
-#: ../view_album.php:612
+#: ../view_album.php:619
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Вы можете изменить вашу оценку если захотите."
 
-#: ../view_album.php:763 ../view_album.php:764
+#: ../view_album.php:770 ../view_album.php:771
 #, php-format
 msgid "%dkB"
 msgstr "%dКб"
 
 #
-#: ../view_album.php:811
+#: ../view_album.php:818
 #, fuzzy
 msgid "highlight"
 msgstr "Нет обложки"
 
 #
-#: ../view_album.php:826
+#: ../view_album.php:833
 msgid "No description"
 msgstr "Нет описания"
 
 #
-#: ../view_album.php:834
+#: ../view_album.php:841
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Последнее изменение %s."
 
 #
-#: ../view_album.php:838
+#: ../view_album.php:845
 #, fuzzy, php-format
 msgid "Contains: %s."
 msgstr "Содержит: "
 
 #
-#: ../view_album.php:838
+#: ../view_album.php:845
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
@@ -5588,12 +5701,12 @@ msgstr[0] "%d позицию"
 msgstr[1] "%d позиции"
 msgstr[2] "%d позиций"
 
-#: ../view_album.php:855
+#: ../view_album.php:862
 #, fuzzy, php-format
 msgid "Viewed: %s"
 msgstr "Просмотров:"
 
-#: ../view_album.php:880
+#: ../view_album.php:887
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
@@ -5602,26 +5715,30 @@ msgstr[1] "Просмотров:"
 msgstr[2] "Просмотров:"
 
 #
-#: ../view_album.php:936
+#: ../view_album.php:943
 msgid "Hey! Add some photos."
 msgstr "Эй! Добавь несколько фотографий."
 
 #
-#: ../view_album.php:938
+#: ../view_album.php:945
 msgid "This album is empty."
 msgstr "Этот альбом пуст."
 
-#: ../view_album.php:983
+#: ../view_album.php:995
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:988
+#: ../view_album.php:1005
 msgid "Comments are added"
 msgstr "Добавлен комментарий"
 
-#: ../view_album.php:991
+#: ../view_album.php:1008
 msgid "Other changes are made"
 msgstr "Сделаны другие изменения"
+
+#: ../view_album.php:1011
+msgid "Apply settings (both) recursive for subalbums."
+msgstr ""
 
 #: ../view_comments.php:115
 #, php-format
@@ -5718,6 +5835,16 @@ msgstr "Голосов пока нет."
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "No Missing Files"
+#~ msgstr "Отсутствует значение"
+
+#
+#, fuzzy
+#~ msgid "No Invalid Albums Found"
+#~ msgstr "Недействительный пользователь"
 
 #~ msgid "You have no votes recorded for this poll."
 #~ msgstr "Вы не записали голоса для этого опроса."

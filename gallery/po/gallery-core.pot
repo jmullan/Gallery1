@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-03 18:08+0100\n"
+"POT-Creation-Date: 2007-03-06 19:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,9 +44,10 @@ msgstr ""
 #: ../manage_users.php:31 ../modify_user.php:34 ../move_album.php:31
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
-#: ../rename_album.php:31 ../reset_votes.php:37 ../resize_photo.php:34
-#: ../rotate_photo.php:33 ../save_photos.php:38 ../upgrade_album.php:57
-#: ../user_preferences.php:31 ../watermark_album.php:43
+#: ../rebuild_capture_dates.php:31 ../rename_album.php:31
+#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
+#: ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr ""
 
@@ -373,7 +374,7 @@ msgstr ""
 msgid "Welcome, %s"
 msgstr ""
 
-#: ../albums.php:193 ../view_album.php:430
+#: ../albums.php:193 ../view_album.php:436
 msgid "slideshow"
 msgstr ""
 
@@ -397,12 +398,12 @@ msgstr ""
 msgid "preferences"
 msgstr ""
 
-#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:448
+#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:454
 #: ../view_photo.php:538
 msgid "logout"
 msgstr ""
 
-#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:453
+#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:459
 #: ../view_photo.php:543
 msgid "login"
 msgstr ""
@@ -461,11 +462,11 @@ msgstr ""
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:342 ../view_album.php:713
+#: ../albums.php:342 ../view_album.php:719
 msgid "Highlight for Album:"
 msgstr ""
 
-#: ../albums.php:362 ../view_album.php:819
+#: ../albums.php:362 ../view_album.php:825
 msgid "Download entire album as archive"
 msgstr ""
 
@@ -517,7 +518,7 @@ msgstr ""
 msgid "0 times"
 msgstr ""
 
-#: ../albums.php:455 ../view_album.php:856
+#: ../albums.php:455 ../view_album.php:862
 #, php-format
 msgid "1 time"
 msgid_plural "%d times"
@@ -528,7 +529,7 @@ msgstr[1] ""
 msgid "reset counter"
 msgstr ""
 
-#: ../albums.php:506 ../view_album.php:953
+#: ../albums.php:506 ../view_album.php:959
 msgid "Comments available for this item."
 msgstr ""
 
@@ -597,7 +598,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:262 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:807
+#: ../layout/commentboxtop.inc:45 ../view_album.php:813
 msgid "hidden"
 msgstr ""
 
@@ -695,7 +696,7 @@ msgstr ""
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
 msgstr ""
 
-#: ../classes/Album.php:1143 ../classes/Album.php:1909
+#: ../classes/Album.php:1143 ../classes/Album.php:1950
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
@@ -743,22 +744,41 @@ msgstr ""
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1921 ../do_command.php:105
+#: ../classes/Album.php:1805
+msgid " -- Skipping"
+msgstr ""
+
+#: ../classes/Album.php:1810
+#, php-format
+msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
+msgstr ""
+
+#: ../classes/Album.php:1818
+#, php-format
+msgid "Processing item %d..."
+msgstr ""
+
+#: ../classes/Album.php:1826
+#, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items"
+msgstr ""
+
+#: ../classes/Album.php:1962 ../do_command.php:105
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2090
+#: ../classes/Album.php:2131
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2626
+#: ../classes/Album.php:2667
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2790
+#: ../classes/Album.php:2831
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -1083,16 +1103,16 @@ msgid "Do you also want to rebuild the thumbnails in subalbums?"
 msgstr ""
 
 #: ../do_command.php:89 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:54
 msgid "Yes"
 msgstr ""
 
 #: ../do_command.php:90 ../html/userData.inc:13 ../multi_create_user.php:189
-#: ../poll_properties.php:96
+#: ../poll_properties.php:96 ../rebuild_capture_dates.php:55
 msgid "No"
 msgstr ""
 
-#: ../do_command.php:92
+#: ../do_command.php:92 ../rebuild_capture_dates.php:59
 msgid "Start"
 msgstr ""
 
@@ -1344,7 +1364,8 @@ msgid "Undo"
 msgstr ""
 
 #: ../edit_appearance.php:301 ../extra_fields.php:174
-#: ../poll_properties.php:142 ../rotate_photo.php:123
+#: ../poll_properties.php:142 ../rebuild_capture_dates.php:41
+#: ../rebuild_capture_dates.php:60 ../rotate_photo.php:123
 msgid "Close"
 msgstr ""
 
@@ -1828,7 +1849,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:598
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:604
 msgid " or "
 msgstr ""
 
@@ -2348,7 +2369,7 @@ msgstr ""
 msgid "properties"
 msgstr ""
 
-#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:440
+#: ../layout/adminAlbumCommands.inc:41 ../view_album.php:446
 msgid "view&nbsp;comments"
 msgstr ""
 
@@ -2571,7 +2592,7 @@ msgstr ""
 msgid "Reset Counter"
 msgstr ""
 
-#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:338
+#: ../lib/albumItem.php:178 ../lib/albumItem.php:179 ../view_album.php:344
 msgid "Permissions"
 msgstr ""
 
@@ -3072,7 +3093,7 @@ msgstr ""
 msgid "Results Breakdown"
 msgstr ""
 
-#: ../poll_results.php:148 ../view_album.php:532 ../view_album.php:823
+#: ../poll_results.php:148 ../view_album.php:538 ../view_album.php:829
 #, php-format
 msgid "Album: %s"
 msgstr ""
@@ -3307,6 +3328,23 @@ msgstr ""
 #: ../rearrange.php:146
 #, php-format
 msgid "******* Page %s *******"
+msgstr ""
+
+#: ../rebuild_capture_dates.php:36
+#, php-format
+msgid "Rebuilding capture dates: %s"
+msgstr ""
+
+#: ../rebuild_capture_dates.php:44
+msgid "Here you can rebuild all capture dates of your photos."
+msgstr ""
+
+#: ../rebuild_capture_dates.php:46
+msgid "This is usefull when something went wrong, of you enabled jhead/exiftags after you upload items."
+msgstr ""
+
+#: ../rebuild_capture_dates.php:48
+msgid "Do you also want to rebuild the capture dates of items in subalbums?"
 msgstr ""
 
 #: ../register.php:37 ../register.php:41
@@ -4462,142 +4500,146 @@ msgstr ""
 msgid "Can't read %s."
 msgstr ""
 
-#: ../util.php:667
+#: ../util.php:666
+msgid "Got no capture date. Using file modification time."
+msgstr ""
+
+#: ../util.php:670
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr ""
 
-#: ../util.php:712
+#: ../util.php:716
 #, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr ""
 
-#: ../util.php:717
+#: ../util.php:721
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr ""
 
-#: ../util.php:800
+#: ../util.php:804
 #, php-format
 msgid "extension of file %s is %s"
 msgstr ""
 
-#: ../util.php:909
+#: ../util.php:913
 #, php-format
 msgid "Extracting: %s with %s"
 msgstr ""
 
-#: ../util.php:927
+#: ../util.php:931
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr ""
 
-#: ../util.php:942
+#: ../util.php:946
 msgid "No Support for creating Zips"
 msgstr ""
 
-#: ../util.php:945
+#: ../util.php:949
 #, php-format
 msgid "Creating Zipfile with %s"
 msgstr ""
 
-#: ../util.php:959
+#: ../util.php:963
 #, php-format
 msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:991
+#: ../util.php:995
 #, php-format
 msgid "Processing file: %s"
 msgstr ""
 
-#: ../util.php:994
+#: ../util.php:998
 #, php-format
 msgid "Processing file '%s' as archive"
 msgstr ""
 
-#: ../util.php:997
+#: ../util.php:1001
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr ""
 
-#: ../util.php:1006
+#: ../util.php:1010
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../util.php:1024
+#: ../util.php:1028
 msgid "No Metadata"
 msgstr ""
 
-#: ../util.php:1028
+#: ../util.php:1032
 msgid "Processing files in archive"
 msgstr ""
 
-#: ../util.php:1034
+#: ../util.php:1038
 #, php-format
 msgid "%d. %s"
 msgstr ""
 
-#: ../util.php:1037
+#: ../util.php:1041
 #, php-format
 msgid "Could not extract %s"
 msgstr ""
 
-#: ../util.php:1157
+#: ../util.php:1161
 #, php-format
 msgid "Adding %s"
 msgstr ""
 
-#: ../util.php:1177
+#: ../util.php:1181
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr ""
 
-#: ../util.php:1182
+#: ../util.php:1186
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr ""
 
-#: ../util.php:1295
+#: ../util.php:1299
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr ""
 
-#: ../util.php:1463
+#: ../util.php:1471
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1479
+#: ../util.php:1487
 msgid "csv result:"
 msgstr ""
 
-#: ../util.php:1653
+#: ../util.php:1661
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1743
+#: ../util.php:1751
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:1841
+#: ../util.php:1849
 #, php-format
 msgid "Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1880
+#: ../util.php:1888
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1888
+#: ../util.php:1896
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1893
+#: ../util.php:1901
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr ""
 
@@ -4683,133 +4725,137 @@ msgid "Rebuild thumbs"
 msgstr ""
 
 #: ../view_album.php:326
-msgid "Properties"
+msgid "Rebuild capture dates"
 msgstr ""
 
 #: ../view_album.php:332
+msgid "Properties"
+msgstr ""
+
+#: ../view_album.php:338
 msgid "Rearrange items"
 msgstr ""
 
-#: ../view_album.php:344
+#: ../view_album.php:350
 msgid "Poll results"
 msgstr ""
 
-#: ../view_album.php:350
+#: ../view_album.php:356
 msgid "Poll reset"
 msgstr ""
 
-#: ../view_album.php:356
+#: ../view_album.php:362
 msgid "View comments"
 msgstr ""
 
-#: ../view_album.php:362
+#: ../view_album.php:368
 msgid "Watermark album"
 msgstr ""
 
-#: ../view_album.php:423
+#: ../view_album.php:429
 msgid "Album Actions"
 msgstr ""
 
-#: ../view_album.php:516
+#: ../view_album.php:522
 msgid "Your votes are :"
 msgstr ""
 
-#: ../view_album.php:564
+#: ../view_album.php:570
 msgid "[ See full poll results ]"
 msgstr ""
 
-#: ../view_album.php:596
+#: ../view_album.php:602
 msgid ", "
 msgstr ""
 
-#: ../view_album.php:602
+#: ../view_album.php:608
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr ""
 
-#: ../view_album.php:604
+#: ../view_album.php:610
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr ""
 
-#: ../view_album.php:604 ../view_album.php:621 ../view_album.php:959
+#: ../view_album.php:610 ../view_album.php:627 ../view_album.php:965
 msgid "Vote"
 msgstr ""
 
-#: ../view_album.php:609
+#: ../view_album.php:615
 #, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:613
+#: ../view_album.php:619
 msgid "You can change your votes later, if you wish."
 msgstr ""
 
-#: ../view_album.php:764 ../view_album.php:765
+#: ../view_album.php:770 ../view_album.php:771
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:812
+#: ../view_album.php:818
 msgid "highlight"
 msgstr ""
 
-#: ../view_album.php:827
+#: ../view_album.php:833
 msgid "No description"
 msgstr ""
 
-#: ../view_album.php:835
+#: ../view_album.php:841
 #, php-format
 msgid "Last change: %s"
 msgstr ""
 
-#: ../view_album.php:839
+#: ../view_album.php:845
 #, php-format
 msgid "Contains: %s."
 msgstr ""
 
-#: ../view_album.php:839
+#: ../view_album.php:845
 #, php-format
 msgid "1 item"
 msgid_plural "%d items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:856
+#: ../view_album.php:862
 #, php-format
 msgid "Viewed: %s"
 msgstr ""
 
-#: ../view_album.php:881
+#: ../view_album.php:887
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:937
+#: ../view_album.php:943
 msgid "Hey! Add some photos."
 msgstr ""
 
-#: ../view_album.php:939
+#: ../view_album.php:945
 msgid "This album is empty."
 msgstr ""
 
-#: ../view_album.php:989
+#: ../view_album.php:995
 msgid "Email me when one of the following actions are done to this album:"
 msgstr ""
 
-#: ../view_album.php:999
+#: ../view_album.php:1005
 msgid "Comments are added"
 msgstr ""
 
-#: ../view_album.php:1002
+#: ../view_album.php:1008
 msgid "Other changes are made"
 msgstr ""
 
-#: ../view_album.php:1005
+#: ../view_album.php:1011
 msgid "Apply settings (both) recursive for subalbums."
 msgstr ""
 

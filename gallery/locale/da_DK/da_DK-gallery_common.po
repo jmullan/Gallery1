@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-RC2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2006-11-12 12:09+0100\n"
+"POT-Creation-Date: 2007-03-06 19:12+0100\n"
 "PO-Revision-Date: 2005-12-30 15:59+0100\n"
 "Last-Translator: Allan Beaufour <allan AT beaufour DOT dk>\n"
 "Language-Team:  <da@li.org>\n"
@@ -397,7 +397,8 @@ msgid "Dynamic"
 msgstr "Dynamisk"
 
 #: ../includes/definitions/albumProperties.php:453
-msgid "Show first & last microthumb"
+#, fuzzy
+msgid "Show first &amp; last microthumb"
 msgstr "Vis første & sidste mikrominiature"
 
 #: ../includes/definitions/albumProperties.php:459
@@ -436,19 +437,19 @@ msgstr "Bonus til højden af nuværende mikrominiature (pixels)"
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr "mPUSH er en billedtjeneste der gør det muligt at sende et miniaturebillede til din, eller en vens, mobiltelefon for et lille beløb."
 
-#: ../lib/Form.php:69
+#: ../lib/Form.php:77
 msgid "Check All"
 msgstr "Afkryds alle"
 
-#: ../lib/Form.php:71
+#: ../lib/Form.php:79
 msgid "Clear All"
 msgstr "Fjern alle"
 
-#: ../lib/Form.php:73
+#: ../lib/Form.php:81
 msgid "Invert Selection"
 msgstr "Inverter valg"
 
-#: ../lib/Form.php:238
+#: ../lib/Form.php:297
 msgid "Colorpicker"
 msgstr "Farvevælger"
 
@@ -769,16 +770,16 @@ msgstr "Email ikke sendt til %s, da det ikke er en gyldig adresse"
 msgid "Email not sent as no reciepient address provided"
 msgstr "Email ikke sendt, da ingen modtager emailadresse blev angivet"
 
-#: ../lib/mail.php:95
+#: ../lib/mail.php:96
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "Afsenderadressen %s er ugyldig, benytter %s."
 
-#: ../lib/mail.php:126
+#: ../lib/mail.php:128
 msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr "Dette er en HTML besked, se venligst i det vedhæftede dokument."
 
-#: ../lib/mail.php:164
+#: ../lib/mail.php:166
 #, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -797,89 +798,88 @@ msgstr ""
 "\n"
 "Gallery @ %s Administratoren."
 
-#: ../lib/mail.php:173 ../lib/mail.php:175
+#: ../lib/mail.php:175 ../lib/mail.php:177
 msgid "gallery title"
 msgstr "galleriets titel"
 
-#: ../lib/mail.php:174
+#: ../lib/mail.php:176
 msgid "gallery URL"
 msgstr "galleriets URL"
 
-#: ../lib/mail.php:190
+#: ../lib/mail.php:192
 msgid "The Url to your Gallery."
 msgstr "URL'en til dit galleri."
 
-#: ../lib/mail.php:191
+#: ../lib/mail.php:193
 msgid "Title of your Gallery."
 msgstr "Titlen på dit galleri"
 
-#: ../lib/mail.php:192
+#: ../lib/mail.php:194
 msgid "Admin email(s)"
 msgstr "Administrator email"
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:195
 msgid "Password for the newly created user."
 msgstr "Den nye brugers kodeord."
 
-#: ../lib/mail.php:194 ../lib/setup.php:1484 ../lib/setup.php:1486
-#: ../lib/setup.php:1490 ../lib/setup.php:1498
+#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Brugernavn"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:197
 msgid "Fullname"
 msgstr "Fulde navn"
 
-#: ../lib/mail.php:196
+#: ../lib/mail.php:198
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Vil blive udskiftet med et link som den nye bruger kan klikke på for oprette et nyt kodeord"
 
-#: ../lib/mail.php:233
+#: ../lib/mail.php:235
 #, php-format
 msgid "New comment for %s"
 msgstr "Ny kommentar for %s"
 
-#: ../lib/mail.php:242
+#: ../lib/mail.php:244
 #, php-format
 msgid "A new comment has been added to Gallery: %s"
 msgstr "En ny kommentar er blevet tilføjet galleriet: %s"
 
-#: ../lib/mail.php:244
+#: ../lib/mail.php:246
 #, php-format
 msgid "The comment was added by %s to this %s in this %s."
 msgstr "Kommentarer blev tilføjet af %s til dette %s i dette %s."
 
-#: ../lib/mail.php:246
+#: ../lib/mail.php:248
 msgid "Item"
 msgstr "Objekt"
 
-#: ../lib/mail.php:247
+#: ../lib/mail.php:249
 msgid "Album"
 msgstr "Album"
 
-#: ../lib/mail.php:248
+#: ../lib/mail.php:250
 msgid "*** Begin comment ***"
 msgstr "*** Kommentar begynd ***"
 
-#: ../lib/mail.php:250
+#: ../lib/mail.php:252
 msgid "***End comment ***"
 msgstr "*** Kommentar slut ***"
 
-#: ../lib/mail.php:251
+#: ../lib/mail.php:253
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
 msgstr "Hvis du ikke længere vil modtage mails om dette billede, så bruge henvisningerne ovenfor og kontroller at \"Email mig når der bliver tilføjet kommentarer\" er slået fra i både foto og album-siden (du skal logge ind først)."
 
-#: ../lib/mail.php:254
+#: ../lib/mail.php:256
 #, php-format
 msgid "New comment for %s."
 msgstr "Ny kommentar for %s."
 
-#: ../lib/mail.php:263
-#, php-format
-msgid "FAILED"
-msgstr "MISLYKKEDES"
+#: ../lib/mail.php:266
+msgid "Sending email failed. Additional info:"
+msgstr ""
 
-#: ../lib/mail.php:273
+#: ../lib/mail.php:278
 msgid "Email activity"
 msgstr "Email aktivitet"
 
@@ -887,13 +887,13 @@ msgstr "Email aktivitet"
 msgid "Error:"
 msgstr "Fejl:"
 
-#: ../lib/messages.php:73
+#: ../lib/messages.php:74
 #, php-format
 msgid "Generated by %s v%s"
 msgstr "Fremstillet af %s v%s"
 
 # beaufour: Powered by, har vi ikke en dansk udgave af det?
-#: ../lib/messages.php:75
+#: ../lib/messages.php:76
 #, php-format
 msgid "Powered by %s v%s"
 msgstr "Powered by %s v%s"
@@ -902,11 +902,11 @@ msgstr "Powered by %s v%s"
 msgid "Please retype your password here"
 msgstr "Genindtast venligst dit kodeord her"
 
-#: ../lib/setup.php:154 ../lib/setup.php:1088
+#: ../lib/setup.php:154 ../lib/setup.php:1102
 msgid "Name"
 msgstr "Navn"
 
-#: ../lib/setup.php:155 ../lib/setup.php:1088
+#: ../lib/setup.php:155 ../lib/setup.php:1102
 msgid "Value"
 msgstr "Værdi"
 
@@ -914,435 +914,435 @@ msgstr "Værdi"
 msgid "No content"
 msgstr "Intet indhold"
 
-#: ../lib/setup.php:354
+#: ../lib/setup.php:368
 #, fuzzy, php-format
 msgid "Missing value: %s"
 msgstr "værdi mangler"
 
-#: ../lib/setup.php:372
+#: ../lib/setup.php:386
 msgid "<b>exec()</b> is enabled on this server."
 msgstr "<b>exec()</b> er slået til på denne server."
 
-#: ../lib/setup.php:390
+#: ../lib/setup.php:404
 msgid "I can read your <b>.htaccess</b> file."
 msgstr "Jeg kan læse din <b>.htaccess</b> fil."
 
-#: ../lib/setup.php:412
+#: ../lib/setup.php:426
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s er OK."
 
-#: ../lib/setup.php:428
+#: ../lib/setup.php:442
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> er slået til."
 
-#: ../lib/setup.php:451
+#: ../lib/setup.php:465
 msgid "Can't find <i>jhead</i>"
 msgstr "Kan ikke finde <i>jhead</i>"
 
-#: ../lib/setup.php:453
+#: ../lib/setup.php:467
 msgid "<b>jhead</b> binary located."
 msgstr "<i>jhead</i> programfil fundet."
 
-#: ../lib/setup.php:491
+#: ../lib/setup.php:505
 msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Uden pnmcomp og pamcomp kan galleriet ikke sætte vandmærker på billeder, pånær hvis du har ImageMagick og 'composite' installeret."
 
-#: ../lib/setup.php:499
+#: ../lib/setup.php:513
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM bruges ikke i denne installation."
 
-#: ../lib/setup.php:504 ../lib/setup.php:599
+#: ../lib/setup.php:518 ../lib/setup.php:613
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Kan ikke kontrollere denne sti (den er ikke i din open_basedir liste)."
 
-#: ../lib/setup.php:538 ../lib/setup.php:616
+#: ../lib/setup.php:552 ../lib/setup.php:630
 #, php-format
 msgid "Missing optional binary %s. %s"
 msgstr "Mangler valgfri binærfil %s. %s"
 
-#: ../lib/setup.php:541 ../lib/setup.php:619
+#: ../lib/setup.php:555 ../lib/setup.php:633
 #, php-format
 msgid "Can't find %s!"
 msgstr "Kan ikke finde %s!"
 
-#: ../lib/setup.php:547 ../lib/setup.php:625
+#: ../lib/setup.php:561 ../lib/setup.php:639
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s er ikke udførbar!"
 
-#: ../lib/setup.php:557 ../lib/setup.php:564
+#: ../lib/setup.php:571 ../lib/setup.php:578
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d ud af %d NetPBM programmer fundet."
 
-#: ../lib/setup.php:588
+#: ../lib/setup.php:602
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
 msgstr "Uden 'composite' kan galleriet ikke sætte vandmærker på billeder, pånær hvis du bruger NetPBM' og har 'pnmcomp' binærfilen installeret."
 
-#: ../lib/setup.php:594
+#: ../lib/setup.php:608
 msgid "ImageMagick not being used in this installation."
 msgstr "ImageMagick bruges ikke i denne installation."
 
-#: ../lib/setup.php:635 ../lib/setup.php:642
+#: ../lib/setup.php:649 ../lib/setup.php:656
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d ud af %d ImageMagick programmer fundet."
 
-#: ../lib/setup.php:664
+#: ../lib/setup.php:678
 msgid "Can't find <i>jpegtran</i>!"
 msgstr "Kan ikke finde <i>jpegtran</i>!"
 
-#: ../lib/setup.php:666
+#: ../lib/setup.php:680
 msgid "<b>jpegtran</b> binary located."
 msgstr "<b>jpegtran</b> programfil fundet."
 
-#: ../lib/setup.php:677
+#: ../lib/setup.php:691
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr "PHP har <b>GNU gettext</b> understøttelse."
 
-#: ../lib/setup.php:679
+#: ../lib/setup.php:693
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr "PHP har ikke <b>GNU gettext</b> understøttelse."
 
-#: ../lib/setup.php:693
+#: ../lib/setup.php:707
 msgid "No languages found."
 msgstr "Ingen sprog fundet."
 
-#: ../lib/setup.php:695
+#: ../lib/setup.php:709
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr "Det ser ikke ud som om at du har hentet yderligere sprog. Dette er ikke et problem! Galleriet vil bare bruge engelsk. Bemærk dog: Hvis dette ikke er korrekt, så kontroller at alle filerne i locale biblioteket kan læses af webserverren, eller kontakt Gallery Team."
 
-#: ../lib/setup.php:698
+#: ../lib/setup.php:712
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr "%d sprog er tilgængelige. Hvis du mangler et sprog så besøg %sGallery download siden%s."
 
-#: ../lib/setup.php:721
+#: ../lib/setup.php:735
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr "Du kan se efter nyere version ved at besøge %s."
 
-#: ../lib/setup.php:722
+#: ../lib/setup.php:736
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr "Denne version af %s blev frigivet den %s."
 
-#: ../lib/setup.php:725
+#: ../lib/setup.php:739
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr "Dette er en udviklingsversion af %s som blev frigivet den %s."
 
-#: ../lib/setup.php:734
+#: ../lib/setup.php:748
 msgid "Please check regularly for updates."
 msgstr "Se venligst regelmæssigt efter opdateringer."
 
-#: ../lib/setup.php:753
+#: ../lib/setup.php:767
 msgid "All gallery locales are available on this host."
 msgstr "Alle sprogfiler for galleriet er tilgængelige på denne maskine."
 
-#: ../lib/setup.php:756
+#: ../lib/setup.php:770
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr "Der er %d regionaldata som galleriet ikke kan finde. Du skal muligvis selv vælge datoformater."
 
-#: ../lib/setup.php:762
+#: ../lib/setup.php:776
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr "Datoer i %d sprog kan ikke blive formatteret korrekt, fordi de tilhørende regionaldata mangler. Du skal muligvis selv vælge datoformater for disse."
 
-#: ../lib/setup.php:767
+#: ../lib/setup.php:781
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr "Vi kunne ikke detektere nogen regionaldata. Dog er din PHP installation konfigureret med %s begrænsninge, så det kan have inflydelse på den måde vi detekterer regionaldata på. Beklageligvis betyder det at datoformatet ikke vil skifte for forskellige sprog. Det er dog OK at fortsætte."
 
-#: ../lib/setup.php:771
+#: ../lib/setup.php:785
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr "Vi kunne ikke detektere nogen system regionaldata. Flersprogsfunktionerne bliver slået fra. Installer venligst de tilhørende regionaldata eller få din administrator til det. Dette er et kendt problem på %s systemer. I det tilfælde så kig i %sDebian locale HowTo%s."
 
-#: ../lib/setup.php:773
+#: ../lib/setup.php:787
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Kun standard regionaldata er tilgængelig på denne maskine, så datoformatet vil ikke skifte med forskellige sprog."
 
-#: ../lib/setup.php:932 ../lib/setup.php:1012
+#: ../lib/setup.php:946 ../lib/setup.php:1026
 msgid "Advanced"
 msgstr "Avanceret"
 
-#: ../lib/setup.php:932
+#: ../lib/setup.php:946
 #, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "<b>System</b> regionaldata skal vælges"
 
-#: ../lib/setup.php:933
+#: ../lib/setup.php:947
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Der er mere end et brugbart <b>system</b> regionaldata installeret på din maskine for følgende sprog. Vælg venligst det som du mener er mest passende."
 
-#: ../lib/setup.php:935 ../lib/setup.php:1015
+#: ../lib/setup.php:949 ../lib/setup.php:1029
 msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
 msgstr "Dette er <b>kun</b> for dato og tids-format. Du behøver kun at rette de sprog som du slog til ovenfor"
 
-#: ../lib/setup.php:946 ../lib/setup.php:970
+#: ../lib/setup.php:960 ../lib/setup.php:984
 msgid "System locale"
 msgstr "System sprogdata"
 
-#: ../lib/setup.php:1012
+#: ../lib/setup.php:1026
 #, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>System</b> regionaldata problemer"
 
-#: ../lib/setup.php:1013
+#: ../lib/setup.php:1027
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr "Der er tilsyneladende ikke noget <b>system</b> regionaldata installeret på din maskine for følgende sprog. Vælg venligst det som du mener er bedst."
 
-#: ../lib/setup.php:1056
+#: ../lib/setup.php:1070
 msgid "<b>safe_mode</b> is off."
 msgstr "<b>safe_mode</b> er slået fra."
 
-#: ../lib/setup.php:1068
+#: ../lib/setup.php:1082
 msgid "<b>magic_quotes</b> are off."
 msgstr "<b>magic_quotes</b> er slået fra."
 
-#: ../lib/setup.php:1086
+#: ../lib/setup.php:1100
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "I %s, mangler %s i række %d med %s %s."
 
-#: ../lib/setup.php:1087 ../lib/setup.php:1096 ../lib/setup.php:1101
+#: ../lib/setup.php:1101 ../lib/setup.php:1110 ../lib/setup.php:1115
 msgid "Vote words and values"
 msgstr "Afstemingsord og værdier."
 
-#: ../lib/setup.php:1095
+#: ../lib/setup.php:1109
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr "I %s, tomt i række %d."
 
-#: ../lib/setup.php:1100
+#: ../lib/setup.php:1114
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr "I %s, for navnet %s (række %d) burde værdien %s være et positivt tal"
 
-#: ../lib/setup.php:1122
+#: ../lib/setup.php:1136
 msgid "<b>register_globals</b> is off."
 msgstr "<b>register_globals</b> er slået fra."
 
-#: ../lib/setup.php:1292
+#: ../lib/setup.php:1306
 msgid "Your passwords do not match!"
 msgstr "Dine kodeord er forskellige!"
 
-#: ../lib/setup.php:1303
+#: ../lib/setup.php:1317
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/setup.php:1308
+#: ../lib/setup.php:1322
 msgid "Valid admin email address given."
 msgstr "Gyldig administrator e-post-adresse angivet."
 
-#: ../lib/setup.php:1315
+#: ../lib/setup.php:1329
 msgid "You must specify valid admin email addresses"
 msgstr "Du skal angive gyldige aministrator e-post-adresser"
 
-#: ../lib/setup.php:1323
+#: ../lib/setup.php:1337
 #, php-format
 msgid "%s is not a valid email address."
 msgstr "%s er ikke en gyldig e-post-adresse."
 
-#: ../lib/setup.php:1332
+#: ../lib/setup.php:1346
 msgid "Valid sender email address given."
 msgstr "Gyldig afsenderaddresse givet."
 
-#: ../lib/setup.php:1334
+#: ../lib/setup.php:1348
 msgid "You must specify a valid sender email address"
 msgstr "Du skal angive en gyldig afsenderadresse"
 
-#: ../lib/setup.php:1337
+#: ../lib/setup.php:1351
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr "Du skal inkludere %s i dit velkomstbrev"
 
-#: ../lib/setup.php:1342
+#: ../lib/setup.php:1356
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr "Du skal inkludere %s eller %s i dit velkomstbrev"
 
-#: ../lib/setup.php:1366
+#: ../lib/setup.php:1380
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr "Følgende filer er for gamle, ødelagte eller manglende:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 
-#: ../lib/setup.php:1368
+#: ../lib/setup.php:1382
 msgid "This should be fixed before proceeding"
 msgstr "Dette bør rettes før der gås videre"
 
-#: ../lib/setup.php:1369 ../lib/setup.php:1373
+#: ../lib/setup.php:1383 ../lib/setup.php:1387
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "Se %sKontroller versioner%s for flere detaljer."
 
-#: ../lib/setup.php:1372
+#: ../lib/setup.php:1386
 #, fuzzy, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."
 msgstr "%d filer er nyere end forventet. Dette er OK hvis du bruger en beta, CVS eller modificeret kode."
 
-#: ../lib/setup.php:1377
+#: ../lib/setup.php:1391
 #, php-format
 msgid "All tested files up-to-date."
 msgstr "Alle kontrollerede filer er up to date."
 
-#: ../lib/setup.php:1379
+#: ../lib/setup.php:1393
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr "Alle %d kontrollerede filer er up to date."
 
-#: ../lib/setup.php:1388
+#: ../lib/setup.php:1402
 #, php-format
 msgid "this is new in version %s"
 msgstr "dette er nyt i version %s"
 
-#: ../lib/setup.php:1393
+#: ../lib/setup.php:1407
 #, php-format
 msgid "Return to %s."
 msgstr "Ved tilbage til %s."
 
-#: ../lib/setup.php:1394
+#: ../lib/setup.php:1408
 msgid "Configuration Wizard"
 msgstr "Konfigurationstilstand"
 
-#: ../lib/setup.php:1443
+#: ../lib/setup.php:1457
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr "Du skal angive en adgangskode for %s kontoen."
 
-#: ../lib/setup.php:1448
+#: ../lib/setup.php:1462
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr "Det lader til at du allerede har konfigureret galleriet, fordi der er en administratorkonto, men den hedder ikke %s."
 
-#: ../lib/setup.php:1451
+#: ../lib/setup.php:1465
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr "Det lader til at du allerede har konfigureret galleriet, fordi der findes %d administratorkonti, men ingen bruger der hedder %s."
 
-#: ../lib/setup.php:1453
+#: ../lib/setup.php:1467
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr "Du behøver ikke indtaste et kodeord. Men hvis du gør vil galleriet oprette en administratorkonto der hedder %s med det kodeord."
 
-#: ../lib/setup.php:1462
+#: ../lib/setup.php:1476
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr "Det lader til at du allerede har konfigureret galleriet, da brugeren %s eksisterer. Du behøver ikke indtaste et kodeord, men hvis du gør vil galleriet ændre kodeordet for %s brugeren."
 
-#: ../lib/setup.php:1469
+#: ../lib/setup.php:1483
 msgid "Admin password"
 msgstr "Administrator-adgangskode"
 
-#: ../lib/setup.php:1484 ../lib/setup.php:1486 ../lib/setup.php:1488
-#: ../lib/setup.php:1496
+#: ../lib/setup.php:1498 ../lib/setup.php:1500 ../lib/setup.php:1502
+#: ../lib/setup.php:1510
 msgid "Full Name"
 msgstr "Fuldt navn"
 
-#: ../lib/setup.php:1492
+#: ../lib/setup.php:1506
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr "Det fulde navn som man kan klikke på for at sende en email (mailto:)"
 
-#: ../lib/setup.php:1494
+#: ../lib/setup.php:1508
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Det brugernavn som du kan klikke på for at sende en email (mailto:)"
 
-#: ../lib/setup.php:1496 ../lib/setup.php:1498
+#: ../lib/setup.php:1510 ../lib/setup.php:1512
 msgid "email address"
 msgstr "e-post-adresse"
 
-#: ../lib/setup.php:1518
+#: ../lib/setup.php:1532
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr "Filen mangler eller kan ikke læses.  Installer venligst og kør så denne test igen."
 
-#: ../lib/setup.php:1522
+#: ../lib/setup.php:1536
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr "Kontroller venligst at %s er den seneste version."
 
-#: ../lib/setup.php:1527
+#: ../lib/setup.php:1541
 #, php-format
 msgid "Testing status of %d files."
 msgstr "Kontrollere status for %d filer."
 
-#: ../lib/setup.php:1534
+#: ../lib/setup.php:1548
 #, php-format
 msgid "Cannot read file %s."
 msgstr "Kan ikke læse filen %s."
 
-#: ../lib/setup.php:1536
+#: ../lib/setup.php:1550
 msgid "File missing or unreadable."
 msgstr "Filen mangler eller kan ikke læses."
 
-#: ../lib/setup.php:1556
+#: ../lib/setup.php:1570
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr "Versionsinformation ikke fundet i %s. Filen må være en gammel version eller ugyldig."
 
-#: ../lib/setup.php:1558
+#: ../lib/setup.php:1572
 msgid "Missing version"
 msgstr "Mangler version"
 
-#: ../lib/setup.php:1567
+#: ../lib/setup.php:1581
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr "Problem med %s.  Forventede version %s (eller større) men fandt %s."
 
-#: ../lib/setup.php:1569
+#: ../lib/setup.php:1583
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr "Forventede version %s (eller større) men fandt %s."
 
-#: ../lib/setup.php:1573
+#: ../lib/setup.php:1587
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr "%s OK. Den aktuelle version (%s) er nyere end den forventede version (%s)"
 
-#: ../lib/setup.php:1575
+#: ../lib/setup.php:1589
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr "Forventede version %s men fandt %s."
 
-#: ../lib/setup.php:1579
+#: ../lib/setup.php:1593
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../lib/setup.php:1581
+#: ../lib/setup.php:1595
 #, php-format
 msgid "Found expected version %s."
 msgstr "Fandt den forventede version %s."
 
-#: ../lib/setup.php:1711
+#: ../lib/setup.php:1725
 msgid "This email will be sent when new accounts are created."
 msgstr "Denne email vil blive sendt når nye konti bliver oprettet."
 
-#: ../lib/setup.php:1712
+#: ../lib/setup.php:1726
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr "Lad dette felt være tomt for at bruge standardbeskeden (se nedenfor) som kan blive oversat til andre sprog, eller brug din egen velkomstbesked"
 
-#: ../lib/setup.php:1713
+#: ../lib/setup.php:1727
 msgid "The following placeholder can be used:"
 msgstr "Den følgende substitut kan bruges:"
 
-#: ../lib/setup.php:1776
+#: ../lib/setup.php:1790
 #, php-format
 msgid "File %s does not exist."
 msgstr "Filen %s eksisterer ikke."
 
-#: ../lib/setup.php:1785
+#: ../lib/setup.php:1799
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Ventet status: %s, men modtagen status var %s."
 
-#: ../lib/setup.php:1798
+#: ../lib/setup.php:1812
 msgid "can't detect version on Windows"
 msgstr "Kan ikke detektere version af Windows"
 
-#: ../lib/setup.php:1809
+#: ../lib/setup.php:1823
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "Ok!  Version: %s"
@@ -1455,6 +1455,9 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "en stemme"
 msgstr[1] "%d stemmer"
+
+#~ msgid "FAILED"
+#~ msgstr "MISLYKKEDES"
 
 #~ msgid "No votes so far."
 #~ msgstr "Ingen stemmer endnu."
