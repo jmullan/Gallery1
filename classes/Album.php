@@ -2073,12 +2073,61 @@ class Album {
 			$this->save();
 			$itemCaptureDate = $this->getItemCaptureDate($index);
 		}
+
 		return $itemCaptureDate;
 	}
 
 	function setItemCaptureDate($index, $itemCaptureDate="") {
 		$photo = &$this->getPhoto($index);
 		$photo->setItemCaptureDate($itemCaptureDate);
+	}
+
+	function rebuildCaptureDates($recursive = false) {
+		global $gallery;
+
+		$numItems = $this->numPhotos(1);
+
+		if($numItems == 0) {
+			echo gTranslate('core', " -- Skipping") . '<br>';
+			return true;
+		}
+
+		$onePercent		= 100/$numItems;
+		$progressbarID	= $this->fields['name'];
+
+		echo addProgressbar(
+			$progressbarID,
+			sprintf(
+				gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
+				$this->fields['title'],
+				$this->fields['name'],
+				$numItems)
+		);
+
+		for ($i = 1; $i <= $numItems; $i++) {
+			updateProgressBar(
+				$progressbarID,
+				sprintf(gTranslate('core', "Processing item %d..."), $i),
+				ceil($i * $onePercent)
+			);
+
+			if ($this->isAlbum($i) && $recursive) {
+				$nestedAlbum = new Album();
+				$nestedAlbum->load($this->getAlbumName($i));
+				$np = $nestedAlbum->numPhotos(1);
+
+				echo "<br>";
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
+				$nestedAlbum->rebuildCaptureDates($recursive);
+				$nestedAlbum->save();
+			}
+			else {
+				$this->setItemCaptureDate($i);
+			}
+
+		}
+
+		$this->save();
 	}
 
 	function numComments($index) {

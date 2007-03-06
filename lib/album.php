@@ -424,4 +424,101 @@ function createTreeArray($albumName,$depth = 0) {
 	return $tree;
 }
 
+
+/**
+ * Test Suite for albums
+ *
+ * @param string $test
+ * @return boolean
+ * @author Beckett Madden-Woods
+ */
+
+function testRequirement($test) {
+	global $gallery;
+
+	if(substr($test, 0,1 ) == "!") {
+		$test = substr($test, 1);
+		$negativeTest = true;
+	}
+	else {
+		$negativeTest = false;
+	}
+
+	switch ($test) {
+		case 'albumIsRoot':
+			$result = $gallery->album->isRoot();
+		break;
+
+		case 'isAdminOrAlbumOwner':
+			$result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+
+		case 'comments_enabled':
+			$result = $gallery->app->comments_enabled == 'yes';
+		break;
+
+		case 'allowComments':
+			$result = $gallery->album->fields["perms"]['canAddComments'];
+		break;
+
+		case 'hasComments':
+			$result = ($gallery->album->lastCommentDate("no") != -1);
+		break;
+
+		case 'canAddToAlbum':
+			$result = $gallery->user->canAddToAlbum($gallery->album);
+		break;
+
+		case 'canDeleteAlbum':
+			$result = $gallery->user->canDeleteAlbum($gallery->album);
+		break;
+
+		case 'extraFieldsExist':
+			$extraFields = $gallery->album->getExtraFields();
+			$result = !empty($extraFields);
+		break;
+
+		case 'isAlbumOwner':
+			$result = $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+
+		case 'canCreateSubAlbum':
+			$result = $gallery->user->canCreateSubAlbum($gallery->album);
+		break;
+
+		case 'notOffline':
+			$result = !$gallery->session->offline;
+		break;
+
+		case 'canChangeText':
+			$result = $gallery->user->canChangeTextOfAlbum($gallery->album);
+		break;
+
+		case 'canWriteToAlbum':
+			$result = $gallery->user->canWriteToAlbum($gallery->album);
+		break;
+
+		case 'photosExist':
+			$result = $gallery->album->numPhotos(true);
+		break;
+
+		case 'watermarkingEnabled':
+			$result = isset($gallery->app->watermarkDir);
+		break;
+
+		case 'exif':
+			$result = (getExifDisplayTool() !== false);
+		break;
+
+		default:
+			$result = false;
+		break;
+	}
+
+	if ($negativeTest) {
+		$result = ! $result;
+	}
+
+	return $result;
+}
 ?>

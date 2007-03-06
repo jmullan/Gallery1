@@ -247,6 +247,14 @@ $adminOptions = array(
 			'set_albumName' => $gallery->session->albumName,
 			'type' => 'popup'))
 	),
+	'rebuild_capture_dates' => array(
+		'name'			=> gTranslate('core', "Rebuild capture dates"),
+		'requirements'	=> array('canWriteToAlbum', 'photosExist', 'exif'),
+		'action'		=> 'popup',
+		'value'			=> makeGalleryUrl('rebuild_capture_dates.php', array(
+			'set_albumName' => $gallery->session->albumName,
+			'type' => 'popup'))
+	),
 	'rebuild_thumbs' => array(
 		'name'			=> gTranslate('core', "Rebuild thumbs"),
 		'requirements'	=> array('canWriteToAlbum', 'photosExist'),

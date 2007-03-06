@@ -92,10 +92,13 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 	}
 
 	$extra_fields = $gallery->album->getExtraFields(false);
+	$photoInfos = displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
 
-	echo "\n<div style=\"height: 250px; overflow: auto;\">";
-	displayPhotoFields($index, $extra_fields, false, true, NULL, $forceRefresh);
-	echo "\n</div>";
+	if(!empty($photoInfos)) {
+		echo "\n<div style=\"height: 250px; overflow: auto;\">";
+		echo $photoInfos;
+		echo "\n</div>";
+	}
 
 	if ($gallery->album->getKeyWords($index)) {
 		echo '<div class="left g-emphasis">'. gTranslate('core', "Keywords: ") . $gallery->album->getKeyWords($index) .'</div>';

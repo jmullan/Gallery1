@@ -121,7 +121,13 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 	if(isset($gallery->app->photoAlbumURL) && !urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
-		$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+
+		if(isset($gUrl['port'])) {
+			$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'] . ':' . $gUrl['port'];
+		}
+		else {
+			$urlprefix = $gUrl['scheme'] .'://'. $gUrl['host'];
+		}
 	}
 	else {
 		$urlprefix = '';

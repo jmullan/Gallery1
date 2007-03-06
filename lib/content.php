@@ -451,6 +451,8 @@ function galleryDocs() {
 function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = false) {
 	global $gallery;
 
+	$html = '';
+
 	$photo = $gallery->album->getPhoto($index);
 
 	// if we have extra fiels and we want to show them, then get the values
@@ -490,8 +492,10 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 			$customFieldsTable->addElement(array('content' => ':'));
 			$customFieldsTable->addElement(array('content' => $value));
 		}
-		echo $customFieldsTable->render();
+		$html = $customFieldsTable->render();
 	}
+
+	return $html;
 }
 
 /**

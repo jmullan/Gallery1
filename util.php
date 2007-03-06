@@ -650,6 +650,8 @@ function getExif($file) {
  * Note: i used switch/case because this is easier to extend later.
  */
 function getItemCaptureDate($file, $exifData = array()) {
+	global $gallery;
+
 	$success = false;
 	$exifSupported = getExifDisplayTool();
 
@@ -686,7 +688,13 @@ function getItemCaptureDate($file, $exifData = array()) {
 	// we were not able to get the capture date from exif... use file creation time
 	if (!$success) {
 		$itemCaptureTimeStamp = filemtime($file);
+		echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
+						  __FILE__, __LINE__);
 	}
+
+	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date : %s"),
+							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
+					  __FILE__, __LINE__);
 
 	return $itemCaptureTimeStamp;
 }
@@ -1101,90 +1109,6 @@ function logMessage ($msg, $logfile) {
 	elseif (isDebugging()) {
 		print sprintf(gTranslate('core', "Cannot open logfile: %s"), $logfile);
 	}
-}
-
-/* simplify condition tests */
-function testRequirement($test) {
-	global $gallery;
-
-	if(substr($test, 0,1 ) == "!") {
-		$test = substr($test, 1);
-		$negativeTest = true;
-	}
-	else {
-		$negativeTest = false;
-	}
-
-	switch ($test) {
-		case 'albumIsRoot':
-			$result = $gallery->album->isRoot();
-		break;
-		case 'isAdminOrAlbumOwner':
-			$result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
-		break;
-
-		case 'comments_enabled':
-			$result = $gallery->app->comments_enabled == 'yes';
-		break;
-
-		case 'allowComments':
-			$result = $gallery->album->fields["perms"]['canAddComments'];
-		break;
-
-		case 'hasComments':
-			$result = ($gallery->album->lastCommentDate("no") != -1);
-		break;
-
-		case 'canAddToAlbum':
-			$result = $gallery->user->canAddToAlbum($gallery->album);
-		break;
-
-		case 'canDeleteAlbum':
-			$result = $gallery->user->canDeleteAlbum($gallery->album);
-		break;
-
-		case 'extraFieldsExist':
-			$extraFields = $gallery->album->getExtraFields();
-			$result = !empty($extraFields);
-		break;
-
-		case 'isAlbumOwner':
-			$result = $gallery->user->isOwnerOfAlbum($gallery->album);
-		break;
-
-		case 'canCreateSubAlbum':
-			$result = $gallery->user->canCreateSubAlbum($gallery->album);
-		break;
-
-		case 'notOffline':
-			$result = !$gallery->session->offline;
-		break;
-
-		case 'canChangeText':
-			$result = $gallery->user->canChangeTextOfAlbum($gallery->album);
-		break;
-
-		case 'canWriteToAlbum':
-			$result = $gallery->user->canWriteToAlbum($gallery->album);
-		break;
-
-		case 'photosExist':
-			$result = $gallery->album->numPhotos(true);
-		break;
-
-		case 'watermarkingEnabled':
-			$result = isset($gallery->app->watermarkDir);
-		break;
-
-		default:
-			$result = false;
-		break;
-	}
-	if ($negativeTest) {
-		$result = ! $result;
-	}
-
-	return $result;
 }
 
 /**
