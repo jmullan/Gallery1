@@ -1375,6 +1375,7 @@ function getAndSetAccessKey(& $text) {
 
 /**
  * Modifies the input string, remove the accesskey and returns it.
+ *
  * @param   string  & $text
  * @return  string  $accesskey
  * @author  Jens Tkotz
@@ -1393,8 +1394,9 @@ function getAndRemoveAccessKey(& $text) {
 
 /**
  * Removes an accesskey from a string
+ *
  * @param   string  $text
- * @return  string  $text
+ * @return  string  $text	Text without accesskey char
  * @author  Jens Tkotz
  */
 function removeAccessKey($text) {

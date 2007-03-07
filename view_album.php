@@ -895,7 +895,7 @@ if ($numPhotos) {
 							$content = popup_link(
 								$option['text'],
 								$option['value'],
-								true, false, 500, 500, '', '', $option['icon'], true, false
+								true, false, 500, 550, '', '', $option['icon'], true, false
 							);
 						}
 						else {

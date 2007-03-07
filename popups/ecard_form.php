@@ -56,6 +56,7 @@ $ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click 
 $error_msg = '';
 $mandatory = array('name_sender', 'email_sender', 'name_recepient', 'email_recepient', 'message');
 $ecard_send = false;
+$sendButtonTest = gTranslate('core',"_Send eCard");
 
 if (! empty($submit_action)) {
 	foreach ($mandatory as $mandatoryField) {
@@ -154,7 +155,7 @@ function check() {
 	}
 
 	if (error) {
-		error_message += "\n\n<?php echo gTranslate('core', 'Please fill all fields next click >Send<.'); ?>";
+		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), removeAccessKey($sendButtonTest)); ?>";
 		alert(error_message);
 		return false;  // Form not sent
 	}
@@ -274,11 +275,11 @@ for($i = 1; $i <= 27; $i++) {
 		<td colspan="5" align="center">
 		<table>
 		<tr>
-			<td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>" class="g-button"></td>
-			<td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>" class="g-button"></td>
+			<td><?php echo gButton('preview', gTranslate('core', "_Preview"), 'make_preview();'); ?></td>
+			<td><?php echo gReset('reset', gTranslate('core', "_Reset")); ?></td>
 			<td width="100%">&nbsp;</td>
-			<td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>" class="g-button"></td>
-			<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>" class="g-button"></td>
+			<td><?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'window.close()'); ?></td>
+			<td><?php echo gButton('send', $sendButtonTest, 'send_ecard();'); ?></td>
 		</tr>
 		</table>
 		</td>
