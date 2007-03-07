@@ -350,7 +350,7 @@ class hn_captcha{
 				exit;
 			}
 			elseif (!fs_is_dir($absoluteTempFolder)) {
-				if(! fs_mkdir($absoluteTempFolder)) {
+				if(! fs_mkdir($absoluteTempFolder, 0775)) {
 					printInfoBox(array(array(
 						'type' => 'error',
 						'text' => sprintf(gTranslate('core', "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."), $this->tempfolder, $absoluteTempFolder)
