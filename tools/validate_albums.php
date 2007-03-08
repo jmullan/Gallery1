@@ -39,37 +39,48 @@ $results = array(
 	'invalid_album' => array(),
 );
 
+
+$iconElements = array();
+
 $action = getRequestVar('action');
-if (empty($action)) {
-	findInvalidAlbums();
+
+if(!empty($action)) {
+	if($action == 'unlinkInvalidAlbum') {
+		$title = gTranslate('core', "Delete Album");
+	}
+	else {
+		$title = gTranslate('core', "Delete Photo");
+	}
 }
 else {
-   if (!$GALLERY_EMBEDDED_INSIDE) {
-		doctype();
-?>
-<html>
-<head>
-  <title><?php echo ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo") ?></title>
-  <?php common_header(); ?>
-</head>
-<body>
-<?php
-	}
+	$title = gTranslate('core', "Validate Albums");
+}
 
-	includeTemplate("gallery.header", '', 'classic');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+$adminbox['text'] = $title;
 
-	$adminbox['text'] = ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo");
-	$adminbox["commands"] = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
-	$adminbox["commands"] .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
+$iconElements[] = galleryLink(
+					makeGalleryUrl('admin-page.php'),
+					gTranslate('core', "return to _admin page"),
+					array(), '', true);
 
-	$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-	$breadcrumb['text'][] = languageSelector();
+$iconElements[] = galleryLink(
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
+					array(), '', true);
 
-	includeLayout('adminbox.inc');
-	includeLayout('breadcrumb.inc');
-?>
-<div class="g-content-popup left">
-<?php
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
+/* Begin HTML output */
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	printPopupStart(clearGalleryTitle($title), '', 'left');
+}
+
+includeLayout('adminbox.inc');
+includeLayout('breadcrumb.inc');
+
+if (!empty($action)) {
 	switch ($action) {
 		case 'unlinkInvalidAlbum':
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
@@ -150,40 +161,13 @@ else {
 </html>
 <?php
 	}
-	exit;
 }
+else {
+	findInvalidAlbums();
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-<title><?php echo clearGalleryTitle(gTranslate('core', "Validate Albums")) ?></title>
-<?php
-	common_header();
-?>
-</head>
-<body>
-<?php
-}
-includeTemplate("gallery.header", '', 'classic');
-
-$adminbox['text'] =gTranslate('core', "Validate Albums");
-$adminCommands = galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "return to _admin page"), array(), '', true);
-$adminCommands .= galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
-
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-$breadcrumb['text'][] = languageSelector();
-
-includeLayout('adminbox.inc');
-
-includeLayout('breadcrumb.inc');
-
-echo '<div class="g-content-popup left">';
-echo "<fieldset><legend>". gTranslate('core', "Missing files") ."</legend>";
-if (empty($action)) {
-	if (!empty($results['file_missing'])) { ?>
+	echo "<fieldset><legend>". gTranslate('core', "Missing files") ."</legend>";
+	if (empty($action)) {
+		if (!empty($results['file_missing'])) { ?>
 		<p>
 		<?php echo gTranslate('core', "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."); ?>
 		<br>
@@ -204,38 +188,38 @@ if (empty($action)) {
 			<th><?php echo gTranslate('core', "Action") ?></th>
 		</tr>
 <?php
-		foreach ($results['file_missing'] as $fileName) {
-			$contents = split('/', $fileName);
-			$contents[1] = substr($contents[1], 0, strrpos($contents[1], '.'));
-			echo "\t<tr>";
-			echo "\n\t<td><a href='" . makeAlbumUrl($contents[0], $contents[1]) . "'>" . $fileName . "</a></td>";
-			echo "\n\t<td>=&gt;</td>";
-			echo "\n\t<td>" . galleryLink(makeGalleryUrl(
-					'tools/validate_albums.php',
-					array('action' => 'deleteMissingPhoto',
-						  'album' => $contents[0],
-					 	  'id' => $contents[1])),
-					gTranslate('core', "delete photo")) .
-			'</td>';
-			echo "\n\t</tr>";
-		}
+			foreach ($results['file_missing'] as $fileName) {
+				$contents = split('/', $fileName);
+				$contents[1] = substr($contents[1], 0, strrpos($contents[1], '.'));
+				echo "\t<tr>";
+				echo "\n\t<td><a href='" . makeAlbumUrl($contents[0], $contents[1]) . "'>" . $fileName . "</a></td>";
+				echo "\n\t<td>=&gt;</td>";
+				echo "\n\t<td>" . galleryLink(makeGalleryUrl(
+						'tools/validate_albums.php',
+						array('action' => 'deleteMissingPhoto',
+							  'album' => $contents[0],
+						 	  'id' => $contents[1])),
+						gTranslate('core', "delete photo")) .
+				'</td>';
+				echo "\n\t</tr>";
+			}
 ?>
 		</table>
 		<br>
 		</center>
 <?php
-	}
-	else {
-		// No Orphans
-		printInfoBox(array(array(
-			'type' => 'success',
-			'text' => gTranslate('core', "There are no missing files in this Gallery.")
-		)), '', false);
-	}
-	echo "\n</fieldset><br>";
+		}
+		else {
+			// No Orphans
+			printInfoBox(array(array(
+				'type' => 'success',
+				'text' => gTranslate('core', "There are no missing files in this Gallery.")
+			)), '', false);
+		}
+		echo "\n</fieldset><br>";
 
-	echo "<fieldset><legend>". gTranslate('core', "Invalid albums") ."</legend>";
-	if (!empty($results['invalid_album'])) {
+		echo "<fieldset><legend>". gTranslate('core', "Invalid albums") ."</legend>";
+		if (!empty($results['invalid_album'])) {
 ?>
 		<p><?php echo gTranslate('core', "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x") ?></p>
 
@@ -250,39 +234,38 @@ if (empty($action)) {
 				<th><?php echo gTranslate('core', "Action") ?></th>
 			</tr>
 <?php
-		foreach ($results['invalid_album'] as $invalidAlbum) {
-			echo "\n\t<tr>";
-			echo "\n\t<td>$invalidAlbum</td>";
-			echo "\n\t<td>=&gt;</td>";
-			echo "\n\t<td>" . galleryLink(makeGalleryUrl(
-					'tools/validate_albums.php',
-					array('action' => 'unlinkInvalidAlbum', 'invalidAlbum' => $invalidAlbum)),
-					gTranslate('core', "delete directory")) .
-			'</td>';
-			echo "\n\t\t</tr>";
-		}
+			foreach ($results['invalid_album'] as $invalidAlbum) {
+				echo "\n\t<tr>";
+				echo "\n\t<td>$invalidAlbum</td>";
+				echo "\n\t<td>=&gt;</td>";
+				echo "\n\t<td>" . galleryLink(makeGalleryUrl(
+						'tools/validate_albums.php',
+						array('action' => 'unlinkInvalidAlbum', 'invalidAlbum' => $invalidAlbum)),
+						gTranslate('core', "delete directory")) .
+				'</td>';
+				echo "\n\t\t</tr>";
+			}
 ?>
 			</table>
 		</div>
 <?php
+		}
+		else {
+			// No Orphans
+			printInfoBox(array(array(
+				'type' => 'success',
+				'text' => gTranslate('core', "There are no invalid albums in this Gallery.")
+			)), '', false);
+		}
+		echo "\n</fieldset><br>";
 	}
-	else {
-		// No Orphans
-		printInfoBox(array(array(
-			'type' => 'success',
-			'text' => gTranslate('core', "There are no invalid albums in this Gallery.")
-		)), '', false);
-	}
-	echo "\n</fieldset><br>";
-}
-?>
-</div>
-<?php
-includeTemplate("overall.footer");
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
+	includeTemplate("overall.footer");
+
+	if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
 </html>
 <?php }
+}
 ?>

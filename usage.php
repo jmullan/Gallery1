@@ -30,6 +30,18 @@ list($action, $sortby, $order) = getRequestVar(array('action', 'sortby', 'order'
 $iconElements = array();
 $messages = array();
 
+$adminbox['text'] = gTranslate('core', "Filesystem usage");
+
+$iconElements[] = galleryLink(
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
+					array(), '', true);
+
+$iconElements[] = galleryLink(
+					makeGalleryUrl("admin-page.php"),
+					gTranslate('core', "return to _admin page"),
+					array(), '', true);
+
 if (!($gallery->user->isAdmin())) {
 	if ($gallery->user->isLoggedIn()) {
 		$messages[] = array(
@@ -47,10 +59,7 @@ if (!($gallery->user->isAdmin())) {
 	$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "usage.php"));
 }
 
-$iconElements[] =
-	galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
-
-$adminbox["commands"] = makeIconMenu($iconElements, 'right');
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
 $actionChoice = array(
 	'byUser'	=> gTranslate('core',"Show usage per each user"),
@@ -71,7 +80,6 @@ $orderChoices = array(
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	printPopupStart(clearGalleryTitle(gTranslate('core', "User / album Usage")), '', 'left');
-
 }
 
 includeLayout('adminbox.inc');
@@ -82,7 +90,7 @@ printInfoBox($messages);
 if ($gallery->user->isAdmin()) {
 
 	echo "<br>";
-	echo gTranslate('core', "Getting the usage my take a long time! Choose which usage you want to see.");
+	echo gTranslate('core', "Getting the filesystem usage may take a long time! Choose which usage you want to see.");
 	echo makeFormIntro('usage.php');
 	echo drawSelect('action', $actionChoice, $action);
 	echo gTranslate('core', "sorted by:");

@@ -42,43 +42,56 @@ clearstatcache() ;
 $orphanAlbums = findOrphanedAlbums();
 $orphanImages = findOrphanedImages();
 
-global $GALLERY_EMBEDDED_INSIDE;
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-<title><?php echo clearGalleryTitle(gTranslate('core', "Find Orphans")); ?></title>
-<?php
-	common_header();
-?>
-</head>
-<body>
-<?php
+$addon = '';
+$iconElements = array();
+
+$adminbox['text'] = gTranslate('core', "Find Orphans");
+
+$iconElements[] = galleryLink(
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
+					array(), '', true);
+
+$iconElements[] = galleryLink(
+					makeGalleryUrl("admin-page.php"),
+					gTranslate('core', "return to _admin page"),
+					array(), '', true);
+
+if (!($gallery->user->isAdmin())) {
+	if ($gallery->user->isLoggedIn()) {
+		$messages[] = array(
+			'type' => 'information',
+			'text' => sprintf(gTranslate('core', "You are currently logged in as %s."),
+					  '<i>'. $gallery->user->username .'</i>')
+		);
+	}
+
+	$messages[] = array(
+		'type' => 'information',
+		'text' => gTranslate('core', "You must be logged in as an administrator to see the usage.")
+	);
+
+	$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "usage.php"));
 }
-	includeTemplate("gallery.header", '', 'classic');
 
-	$adminbox['text'] = gTranslate('core', "Find Orphans");
-	$adminbox["commands"] = galleryLink(
-								makeGalleryUrl("admin-page.php"),
-								gTranslate('core', "return to _admin page"),
-								array(), '', true);
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
-	$adminbox["commands"] .= galleryLink(
-								makeAlbumUrl(),
-								gTranslate('core', "return to _gallery"),
-								array(), '', true);
+/* --- Lets Start the real output --- */
 
-	$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-	$breadcrumb['text'][] = languageSelector();
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	printPopupStart(clearGalleryTitle(gTranslate('core', "Find Orphans")), '', 'left');
+}
 
 	includeLayout('adminbox.inc');
 	includeLayout('breadcrumb.inc');
 
-echo '<div class="g-content-popup" align="center">';
 if (empty($action)) {
-	if (!empty($orphanAlbums)) { ?>
-		<p><?php echo gTranslate('core', "Orphaned Albums:") . " " . sizeof($orphanAlbums) ?></p>
+	if (!empty($orphanAlbums)) {
+		printInfoBox(array(array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "Orphaned Albums: %d"), sizeof($orphanAlbums))
+		)));
+?>
 		<p><?php echo gTranslate('core', "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there.") ?></p>
 		<center>
 		<table>
@@ -112,9 +125,11 @@ if (empty($action)) {
 <?php
 	}
 	elseif (!empty($orphanImages)) {
+		printInfoBox(array(array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "Orphaned Files: %d"), recursiveCount($orphanImages))
+		)));
 ?>
-
-		<p><?php echo gTranslate('core', "Orphaned Files:") . " " . recursiveCount($orphanImages) ?></p>
 		<p><?php echo gTranslate('core', "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information.") ?></p>
 		<center>
 		<table>
@@ -151,12 +166,12 @@ if (empty($action)) {
 	}
 	else {
 		// No Orphans
-		echo "\n<p align=\"center\" class=\"g-success\">" .
-			gTranslate('core', "There are no orphaned elements in this Gallery.") . "</p>\n";
+		$messages[] = array(
+			'type' => 'success',
+			'text' => gTranslate('core', "There are no orphaned elements in this Gallery."));
 	}
 } // !isset(update)
 else {
-	$addon = '';
 	$text = ($action == "albums") ? gTranslate('core', "Orphaned albums repaired.") : gTranslate('core', "Orphaned files repaired.");
 	$messages[] = array('type' =>'information', 'text' => $text);
 
@@ -181,11 +196,10 @@ else {
 			$addon = gButton('clickme', gTranslate('core', "Reload"), 'location.reload()');
 		}
 	}
-	echo infoBox($messages) . $addon;
 }
-?>
-</div>
-<?php
+
+	echo infoBox($messages) . $addon;
+
 	includeTemplate("overall.footer");
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
