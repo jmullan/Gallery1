@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-08 15:31+0100\n"
+"POT-Creation-Date: 2007-03-08 16:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,8 +105,8 @@ msgid "Admin options"
 msgstr ""
 
 #: ../admin-page.php:106 ../search.php:57 ../stats-wizard.php:64
-#: ../stats.php:614 ../tools/despam-comments.php:51
-#: ../tools/find_orphans.php:51 ../tools/validate_albums.php:69
+#: ../stats.php:614 ../tools/despam-comments.php:46
+#: ../tools/find_orphans.php:52 ../tools/validate_albums.php:69
 #: ../usage.php:37
 msgid "return to _gallery"
 msgstr ""
@@ -861,7 +861,7 @@ msgstr ""
 
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:100
 #: ../popups/administer_startpage.php:111 ../popups/copy_photo.php:135
-#: ../popups/download.php:93 ../popups/edit_thumb.php:227
+#: ../popups/download.php:93 ../popups/edit_thumb.php:210
 #: ../popups/register.php:43 ../popups/register.php:119
 #: ../popups/upgrade_album.php:176 ../popups/user_preferences.php:152
 #: ../popups/view_photo_properties.php:130
@@ -2108,10 +2108,10 @@ msgstr ""
 
 #: ../new_password.php:127 ../popups/album_permissions.php:258
 #: ../popups/edit_caption.php:231 ../popups/edit_field.php:56
-#: ../popups/edit_watermark.php:119 ../popups/modify_user.php:170
-#: ../popups/photo_owner.php:91 ../popups/rearrange.php:143
-#: ../popups/rearrange.php:189 ../popups/user_preferences.php:151
-#: ../popups/watermark_album.php:140
+#: ../popups/edit_watermark.php:119 ../popups/modify_group.php:156
+#: ../popups/modify_user.php:170 ../popups/photo_owner.php:91
+#: ../popups/rearrange.php:143 ../popups/rearrange.php:189
+#: ../popups/user_preferences.php:151 ../popups/watermark_album.php:140
 msgid "_Save"
 msgstr ""
 
@@ -2121,17 +2121,17 @@ msgstr ""
 #: ../popups/create_user.php:34 ../popups/delete_album.php:31
 #: ../popups/delete_photo.php:43 ../popups/delete_user.php:30
 #: ../popups/edit_appearance.php:29 ../popups/edit_caption.php:40
-#: ../popups/edit_field.php:31 ../popups/edit_thumb.php:38
+#: ../popups/edit_field.php:31 ../popups/edit_thumb.php:39
 #: ../popups/edit_watermark.php:45 ../popups/manage_users.php:31
-#: ../popups/modify_user.php:37 ../popups/move_album.php:32
-#: ../popups/move_photo.php:32 ../popups/multi_create_user.php:37
-#: ../popups/photo_owner.php:34 ../popups/rearrange.php:28
-#: ../popups/rebuild_thumbs.php:31 ../popups/rebuild_capture_dates.php:31
-#: ../popups/recreate_captions.php:31 ../popups/rename_album.php:31
-#: ../popups/reset_votes.php:36 ../popups/resize_photo.php:34
-#: ../popups/rotate_photo.php:33 ../popups/save_photos.php:40
-#: ../popups/upgrade_album.php:57 ../popups/user_preferences.php:33
-#: ../popups/watermark_album.php:43
+#: ../popups/modify_group.php:37 ../popups/modify_user.php:37
+#: ../popups/move_album.php:32 ../popups/move_photo.php:32
+#: ../popups/multi_create_user.php:37 ../popups/photo_owner.php:34
+#: ../popups/rearrange.php:28 ../popups/rebuild_thumbs.php:31
+#: ../popups/rebuild_capture_dates.php:31 ../popups/recreate_captions.php:31
+#: ../popups/rename_album.php:31 ../popups/reset_votes.php:36
+#: ../popups/resize_photo.php:34 ../popups/rotate_photo.php:33
+#: ../popups/save_photos.php:40 ../popups/upgrade_album.php:57
+#: ../popups/user_preferences.php:33 ../popups/watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr ""
 
@@ -2426,7 +2426,7 @@ msgid "Upgrade now"
 msgstr ""
 
 #: ../popups/copy_photo.php:224 ../popups/delete_photo.php:140
-#: ../popups/edit_thumb.php:43 ../popups/move_album.php:145
+#: ../popups/edit_thumb.php:44 ../popups/move_album.php:145
 #: ../popups/move_photo.php:365 ../popups/resize_photo.php:135
 #: ../popups/rotate_photo.php:134 ../popups/view_photo_properties.php:124
 msgid "no album / index specified"
@@ -2889,90 +2889,42 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../popups/edit_thumb.php:52
+#: ../popups/edit_thumb.php:53
 msgid "Remaking the Thumbnail..."
 msgstr ""
 
-#: ../popups/edit_thumb.php:102
+#: ../popups/edit_thumb.php:103
 #, php-format
 msgid "You see a downscaled preview. Its scalled from '%dx%d' to '%dx%d'"
 msgstr ""
 
-#: ../popups/edit_thumb.php:117
+#: ../popups/edit_thumb.php:118
 #, php-format
 msgid "Cropping this image does not seem to make sense. Both sides should be at least %spx"
 msgstr ""
 
-#: ../popups/edit_thumb.php:143
+#: ../popups/edit_thumb.php:144
 #, php-format
 msgid "Your fullsize image is over 500k (%s) and will slow down the cropper. To fix this you need a PHP with GD support."
 msgstr ""
 
 #: ../popups/edit_thumb.php:150
-msgid "No Ratio"
-msgstr ""
-
-#: ../popups/edit_thumb.php:151
-msgid "1:1 (Square)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:152
-msgid "1:3 (Letterbox)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:153
-msgid "9:16 (HDTV)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:154
-msgid "3:5 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:155
-msgid "4:6 = 10:15 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:156
-msgid "9:13 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:157
-msgid "5:7 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:158
-msgid "8:10 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:159
-msgid "Like the Image"
-msgstr ""
-
-#: ../popups/edit_thumb.php:163
-msgid "Portrait"
-msgstr ""
-
-#: ../popups/edit_thumb.php:164
-msgid "Landscape"
-msgstr ""
-
-#: ../popups/edit_thumb.php:167
 msgid "Custom Thumbnail"
 msgstr ""
 
-#: ../popups/edit_thumb.php:185
+#: ../popups/edit_thumb.php:168
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr ""
 
-#: ../popups/edit_thumb.php:211
+#: ../popups/edit_thumb.php:194
 msgid "Select a ratio for the crop frame:"
 msgstr ""
 
-#: ../popups/edit_thumb.php:217 ../popups/save_photos.php:434
+#: ../popups/edit_thumb.php:200 ../popups/save_photos.php:434
 msgid "_Dismiss"
 msgstr ""
 
-#: ../popups/edit_thumb.php:218
+#: ../popups/edit_thumb.php:201
 msgid "_Crop"
 msgstr ""
 
@@ -3125,6 +3077,58 @@ msgstr ""
 
 #: ../popups/manage_users.php:107
 msgid "_Modify"
+msgstr ""
+
+#: ../popups/modify_group.php:58
+msgid "No group selected !"
+msgstr ""
+
+#: ../popups/modify_group.php:74
+msgid "Group information succesfully updated."
+msgstr ""
+
+#: ../popups/modify_group.php:80
+msgid "Group information was not succesfully updated!"
+msgstr ""
+
+#: ../popups/modify_group.php:107
+msgid "Modify Group"
+msgstr ""
+
+#: ../popups/modify_group.php:117
+msgid "You can change any information about the group using this form."
+msgstr ""
+
+#: ../popups/modify_group.php:124
+msgid "_Name of the group"
+msgstr ""
+
+#: ../popups/modify_group.php:125
+msgid "Some _descriptive text (optional)"
+msgstr ""
+
+#: ../popups/modify_group.php:132
+msgid "Current user"
+msgstr ""
+
+#: ../popups/modify_group.php:134
+msgid "Available user"
+msgstr ""
+
+#: ../popups/modify_group.php:139
+msgid "<-- Add"
+msgstr ""
+
+#: ../popups/modify_group.php:141
+msgid "Remove -->"
+msgstr ""
+
+#: ../popups/modify_group.php:160
+msgid "Back to groupmanagement"
+msgstr ""
+
+#: ../popups/modify_group.php:162
+msgid "Go to _usermanagement"
 msgstr ""
 
 #: ../popups/modify_user.php:94
@@ -4187,8 +4191,8 @@ msgstr ""
 msgid "Gallery statistics - Wizard"
 msgstr ""
 
-#: ../stats-wizard.php:59 ../tools/despam-comments.php:46
-#: ../tools/find_orphans.php:56 ../tools/validate_albums.php:64
+#: ../stats-wizard.php:59 ../tools/despam-comments.php:51
+#: ../tools/find_orphans.php:57 ../tools/validate_albums.php:64
 #: ../usage.php:42
 msgid "return to _admin page"
 msgstr ""
@@ -4469,84 +4473,86 @@ msgstr ""
 msgid "Find and remove comment spam"
 msgstr ""
 
-#: ../tools/find_orphans.php:47 ../tools/find_orphans.php:81
+#: ../tools/find_orphans.php:48 ../tools/find_orphans.php:82
 msgid "Find Orphans"
 msgstr ""
 
-#: ../tools/find_orphans.php:63 ../usage.php:49
+#: ../tools/find_orphans.php:64 ../usage.php:49
 #, php-format
 msgid "You are currently logged in as %s."
 msgstr ""
 
-#: ../tools/find_orphans.php:70 ../usage.php:56
+#: ../tools/find_orphans.php:71 ../usage.php:56
 msgid "You must be logged in as an administrator to see the usage."
 msgstr ""
 
-#: ../tools/find_orphans.php:89
-msgid "Orphaned Albums:"
+#: ../tools/find_orphans.php:92
+#, php-format
+msgid "Orphaned Albums: %d"
 msgstr ""
 
-#: ../tools/find_orphans.php:90
+#: ../tools/find_orphans.php:95
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr ""
 
-#: ../tools/find_orphans.php:94
+#: ../tools/find_orphans.php:99
 msgid "Parent Album"
 msgstr ""
 
-#: ../tools/find_orphans.php:96
+#: ../tools/find_orphans.php:101
 msgid "Orphaned Album"
 msgstr ""
 
-#: ../tools/find_orphans.php:103
+#: ../tools/find_orphans.php:108
 msgid "Gallery Root"
 msgstr ""
 
-#: ../tools/find_orphans.php:117
+#: ../tools/find_orphans.php:122
 msgid "_Re-Attach Orphaned Albums!"
 msgstr ""
 
-#: ../tools/find_orphans.php:125
-msgid "Orphaned Files:"
+#: ../tools/find_orphans.php:130
+#, php-format
+msgid "Orphaned Files: %d"
 msgstr ""
 
-#: ../tools/find_orphans.php:126
+#: ../tools/find_orphans.php:133
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr ""
 
-#: ../tools/find_orphans.php:130
+#: ../tools/find_orphans.php:137
 msgid "Album directory"
 msgstr ""
 
-#: ../tools/find_orphans.php:132
+#: ../tools/find_orphans.php:139
 msgid "Orphaned file"
 msgstr ""
 
-#: ../tools/find_orphans.php:155
+#: ../tools/find_orphans.php:162
 msgid "_Delete Orphaned Files!"
 msgstr ""
 
-#: ../tools/find_orphans.php:164
+#: ../tools/find_orphans.php:171
 msgid "There are no orphaned elements in this Gallery."
 msgstr ""
 
-#: ../tools/find_orphans.php:169
+#: ../tools/find_orphans.php:175
 msgid "Orphaned albums repaired."
 msgstr ""
 
-#: ../tools/find_orphans.php:169
+#: ../tools/find_orphans.php:175
 msgid "Orphaned files repaired."
 msgstr ""
 
-#: ../tools/find_orphans.php:180
+#: ../tools/find_orphans.php:186
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr ""
 
-#: ../tools/find_orphans.php:186
+#: ../tools/find_orphans.php:192
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr ""
 
-#: ../tools/find_orphans.php:190
+#: ../tools/find_orphans.php:196
 msgid "Reload"
 msgstr ""
 

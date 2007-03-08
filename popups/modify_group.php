@@ -157,7 +157,7 @@ echo "\n<br>";
 		echo "\n<br>";
 	}
 
-	echo gSubmit('backToGroup', gTranslate('core', "Back to groupmanagement"));
+	echo gSubmit('backToGroup', gTranslate('core', "Back to _groupmanagement"));
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 		echo gSubmit('backToUser', gTranslate('core', "Go to _usermanagement"));
 	}

@@ -150,12 +150,6 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 			}
 		}
 
-		$options[] = array(
-			'text'	=> gTranslate('core', "Mo_ve"),
-			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
-			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
-		);
-
 		/* ----- Item is subalbum ----- */
 		if ($isAlbum) {
 			$options[] = array(
@@ -222,6 +216,12 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
 		);
 
+		$options[] = array(
+			'text'	=> gTranslate('core', "Mo_ve"),
+			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
+			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
+		);
+
 		/* ----- Item is photo, or subalbum with highlight ----- */
 		if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
 			$options[] = array(
@@ -278,7 +278,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 											"albumDelete" => 1)),
 				);
 			}
-		} else {
+		}
+		else {
 			$options[] = array(
 				'text'	=> gTranslate('core', "_Delete"),
 				'value'	=> showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId)),

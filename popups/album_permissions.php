@@ -53,11 +53,9 @@ if (!empty($submit)) {
 			$action = unhtmlentities($action);
 			if($action == '-->') {
 				$gallery->album->setPerm($perm, $actionUid, true);
-				echo "ADDED ::";
 			}
 			if($action == '<--') {
 				$gallery->album->setPerm($perm, $actionUid, false);
-				echo "REMOVED ::";
 			}
 		}
 	}

@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-08 15:31+0100\n"
+"POT-Creation-Date: 2007-03-08 16:31+0100\n"
 "PO-Revision-Date: 2007-02-21 04:17+0100\n"
 "Last-Translator: Jens A. Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -106,8 +106,8 @@ msgid "Admin options"
 msgstr "Admin Optionen"
 
 #: ../admin-page.php:106 ../search.php:57 ../stats-wizard.php:64
-#: ../stats.php:614 ../tools/despam-comments.php:51
-#: ../tools/find_orphans.php:51 ../tools/validate_albums.php:69
+#: ../stats.php:614 ../tools/despam-comments.php:46
+#: ../tools/find_orphans.php:52 ../tools/validate_albums.php:69
 #: ../usage.php:37
 msgid "return to _gallery"
 msgstr "Zur&uuml;ck zur _Gallery"
@@ -862,7 +862,7 @@ msgstr "Markieren Sie die ImageMap(s), die Sie löschen möchten, in der Auswahl. 
 
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:100
 #: ../popups/administer_startpage.php:111 ../popups/copy_photo.php:135
-#: ../popups/download.php:93 ../popups/edit_thumb.php:227
+#: ../popups/download.php:93 ../popups/edit_thumb.php:210
 #: ../popups/register.php:43 ../popups/register.php:119
 #: ../popups/upgrade_album.php:176 ../popups/user_preferences.php:152
 #: ../popups/view_photo_properties.php:130
@@ -2111,10 +2111,10 @@ msgstr "Sie m&uuml;ssen Ihr neues Passwort zweimal eingeben."
 
 #: ../new_password.php:127 ../popups/album_permissions.php:258
 #: ../popups/edit_caption.php:231 ../popups/edit_field.php:56
-#: ../popups/edit_watermark.php:119 ../popups/modify_user.php:170
-#: ../popups/photo_owner.php:91 ../popups/rearrange.php:143
-#: ../popups/rearrange.php:189 ../popups/user_preferences.php:151
-#: ../popups/watermark_album.php:140
+#: ../popups/edit_watermark.php:119 ../popups/modify_group.php:156
+#: ../popups/modify_user.php:170 ../popups/photo_owner.php:91
+#: ../popups/rearrange.php:143 ../popups/rearrange.php:189
+#: ../popups/user_preferences.php:151 ../popups/watermark_album.php:140
 msgid "_Save"
 msgstr "_Speichern"
 
@@ -2124,17 +2124,17 @@ msgstr "_Speichern"
 #: ../popups/create_user.php:34 ../popups/delete_album.php:31
 #: ../popups/delete_photo.php:43 ../popups/delete_user.php:30
 #: ../popups/edit_appearance.php:29 ../popups/edit_caption.php:40
-#: ../popups/edit_field.php:31 ../popups/edit_thumb.php:38
+#: ../popups/edit_field.php:31 ../popups/edit_thumb.php:39
 #: ../popups/edit_watermark.php:45 ../popups/manage_users.php:31
-#: ../popups/modify_user.php:37 ../popups/move_album.php:32
-#: ../popups/move_photo.php:32 ../popups/multi_create_user.php:37
-#: ../popups/photo_owner.php:34 ../popups/rearrange.php:28
-#: ../popups/rebuild_thumbs.php:31 ../popups/rebuild_capture_dates.php:31
-#: ../popups/recreate_captions.php:31 ../popups/rename_album.php:31
-#: ../popups/reset_votes.php:36 ../popups/resize_photo.php:34
-#: ../popups/rotate_photo.php:33 ../popups/save_photos.php:40
-#: ../popups/upgrade_album.php:57 ../popups/user_preferences.php:33
-#: ../popups/watermark_album.php:43
+#: ../popups/modify_group.php:37 ../popups/modify_user.php:37
+#: ../popups/move_album.php:32 ../popups/move_photo.php:32
+#: ../popups/multi_create_user.php:37 ../popups/photo_owner.php:34
+#: ../popups/rearrange.php:28 ../popups/rebuild_thumbs.php:31
+#: ../popups/rebuild_capture_dates.php:31 ../popups/recreate_captions.php:31
+#: ../popups/rename_album.php:31 ../popups/reset_votes.php:36
+#: ../popups/resize_photo.php:34 ../popups/rotate_photo.php:33
+#: ../popups/save_photos.php:40 ../popups/upgrade_album.php:57
+#: ../popups/user_preferences.php:33 ../popups/watermark_album.php:43
 msgid "You are not allowed to perform this action!"
 msgstr "Es ist Ihnen nicht gestattet, diese Aktion durchzuführen!"
 
@@ -2429,7 +2429,7 @@ msgid "Upgrade now"
 msgstr "Aktualisieren Sie jetzt"
 
 #: ../popups/copy_photo.php:224 ../popups/delete_photo.php:140
-#: ../popups/edit_thumb.php:43 ../popups/move_album.php:145
+#: ../popups/edit_thumb.php:44 ../popups/move_album.php:145
 #: ../popups/move_photo.php:365 ../popups/resize_photo.php:135
 #: ../popups/rotate_photo.php:134 ../popups/view_photo_properties.php:124
 msgid "no album / index specified"
@@ -2894,95 +2894,42 @@ msgstr "Bearbeiten Sie %s und klicken Sie %s, wenn Sie fertig sind."
 msgid "Save"
 msgstr "Speichern"
 
-#: ../popups/edit_thumb.php:52
+#: ../popups/edit_thumb.php:53
 msgid "Remaking the Thumbnail..."
 msgstr "Erstelle neuen Thumbnail ..."
 
-#: ../popups/edit_thumb.php:102
+#: ../popups/edit_thumb.php:103
 #, php-format
 msgid "You see a downscaled preview. Its scalled from '%dx%d' to '%dx%d'"
 msgstr ""
 
-#: ../popups/edit_thumb.php:117
+#: ../popups/edit_thumb.php:118
 #, php-format
 msgid "Cropping this image does not seem to make sense. Both sides should be at least %spx"
 msgstr ""
 
-#: ../popups/edit_thumb.php:143
+#: ../popups/edit_thumb.php:144
 #, php-format
 msgid "Your fullsize image is over 500k (%s) and will slow down the cropper. To fix this you need a PHP with GD support."
 msgstr ""
 
 #: ../popups/edit_thumb.php:150
-#, fuzzy
-msgid "No Ratio"
-msgstr "&Uuml;berschrift anzeigen"
-
-#: ../popups/edit_thumb.php:151
-msgid "1:1 (Square)"
-msgstr "1:1 (Quadrat)"
-
-#: ../popups/edit_thumb.php:152
-msgid "1:3 (Letterbox)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:153
-msgid "9:16 (HDTV)"
-msgstr "9:16 (HDTV)"
-
-#: ../popups/edit_thumb.php:154
-msgid "3:5 (Photo)"
-msgstr "3:5 (Photo)"
-
-#: ../popups/edit_thumb.php:155
-msgid "4:6 = 10:15 (Photo)"
-msgstr ""
-
-#: ../popups/edit_thumb.php:156
-#, fuzzy
-msgid "9:13 (Photo)"
-msgstr "Ein Photo"
-
-#: ../popups/edit_thumb.php:157
-#, fuzzy
-msgid "5:7 (Photo)"
-msgstr "Photo"
-
-#: ../popups/edit_thumb.php:158
-#, fuzzy
-msgid "8:10 (Photo)"
-msgstr "Ein Photo"
-
-#: ../popups/edit_thumb.php:159
-#, fuzzy
-msgid "Like the Image"
-msgstr "Bildanzeige:"
-
-#: ../popups/edit_thumb.php:163
-msgid "Portrait"
-msgstr ""
-
-#: ../popups/edit_thumb.php:164
-msgid "Landscape"
-msgstr ""
-
-#: ../popups/edit_thumb.php:167
 msgid "Custom Thumbnail"
 msgstr "Thumbnail bearbeiten"
 
-#: ../popups/edit_thumb.php:185
+#: ../popups/edit_thumb.php:168
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr "Markieren Sie den Teil des Bildes, der als Thumbnail angezeigt werden soll: "
 
-#: ../popups/edit_thumb.php:211
+#: ../popups/edit_thumb.php:194
 msgid "Select a ratio for the crop frame:"
 msgstr ""
 
-#: ../popups/edit_thumb.php:217 ../popups/save_photos.php:434
+#: ../popups/edit_thumb.php:200 ../popups/save_photos.php:434
 msgid "_Dismiss"
 msgstr "_Beenden"
 
-#: ../popups/edit_thumb.php:218
+#: ../popups/edit_thumb.php:201
 msgid "_Crop"
 msgstr "_Zuschneiden"
 
@@ -3136,6 +3083,68 @@ msgstr "_Massenverarbeitung"
 #: ../popups/manage_users.php:107
 msgid "_Modify"
 msgstr "_Ver&auml;ndere"
+
+#: ../popups/modify_group.php:58
+#, fuzzy
+msgid "No group selected !"
+msgstr "Keine Datei ausgew&auml;hlt."
+
+#: ../popups/modify_group.php:74
+#, fuzzy
+msgid "Group information succesfully updated."
+msgstr "Die Benutzerinformationen wurden erfolgreich aktualisiert."
+
+#: ../popups/modify_group.php:80
+#, fuzzy
+msgid "Group information was not succesfully updated!"
+msgstr "Die Benutzerinformationen wurden nicht erfolgreich aktualisiert!"
+
+#: ../popups/modify_group.php:107
+#, fuzzy
+msgid "Modify Group"
+msgstr "Benutzer bearbeiten"
+
+#: ../popups/modify_group.php:117
+#, fuzzy
+msgid "You can change any information about the group using this form."
+msgstr "Hier k&ouml;nnen Sie alle Angaben zum Benutzer &auml;ndern."
+
+#: ../popups/modify_group.php:124
+msgid "_Name of the group"
+msgstr ""
+
+#: ../popups/modify_group.php:125
+msgid "Some _descriptive text (optional)"
+msgstr ""
+
+#: ../popups/modify_group.php:132
+#, fuzzy
+msgid "Current user"
+msgstr "Benutzer anlegen"
+
+#: ../popups/modify_group.php:134
+#, fuzzy
+msgid "Available user"
+msgstr "Ung&uuml;ltiger Benutzer"
+
+#: ../popups/modify_group.php:139
+msgid "<-- Add"
+msgstr ""
+
+#: ../popups/modify_group.php:141
+#, fuzzy
+msgid "Remove -->"
+msgstr "Stimmen _entfernen"
+
+#: ../popups/modify_group.php:160
+#, fuzzy
+msgid "Back to groupmanagement"
+msgstr "Zurück zur Benutzerverwaltung"
+
+#: ../popups/modify_group.php:162
+#, fuzzy
+msgid "Go to _usermanagement"
+msgstr "Zurück zur Benutzerverwaltung"
 
 #: ../popups/modify_user.php:94
 msgid "User information succesfully updated."
@@ -4198,8 +4207,8 @@ msgstr "Eingeschr&auml;nkt"
 msgid "Gallery statistics - Wizard"
 msgstr "Gallery statistcs - Wizard"
 
-#: ../stats-wizard.php:59 ../tools/despam-comments.php:46
-#: ../tools/find_orphans.php:56 ../tools/validate_albums.php:64
+#: ../stats-wizard.php:59 ../tools/despam-comments.php:51
+#: ../tools/find_orphans.php:57 ../tools/validate_albums.php:64
 #: ../usage.php:42
 msgid "return to _admin page"
 msgstr "Zur&uuml;ck zur _Adminseite"
@@ -4480,84 +4489,86 @@ msgstr "Gallery Statistiken"
 msgid "Find and remove comment spam"
 msgstr "Kommentarspam finden und l&ouml;schen"
 
-#: ../tools/find_orphans.php:47 ../tools/find_orphans.php:81
+#: ../tools/find_orphans.php:48 ../tools/find_orphans.php:82
 msgid "Find Orphans"
 msgstr "Verwaiste Elemente"
 
-#: ../tools/find_orphans.php:63 ../usage.php:49
+#: ../tools/find_orphans.php:64 ../usage.php:49
 #, php-format
 msgid "You are currently logged in as %s."
 msgstr "Sie sind momentan angemeldet als: %s."
 
-#: ../tools/find_orphans.php:70 ../usage.php:56
+#: ../tools/find_orphans.php:71 ../usage.php:56
 msgid "You must be logged in as an administrator to see the usage."
 msgstr "Sie müssen als Administrator angemeldet sein um diese Seite zu betrachten."
 
-#: ../tools/find_orphans.php:89
-msgid "Orphaned Albums:"
+#: ../tools/find_orphans.php:92
+#, fuzzy, php-format
+msgid "Orphaned Albums: %d"
 msgstr "Verwaiste Alben:"
 
-#: ../tools/find_orphans.php:90
+#: ../tools/find_orphans.php:95
 msgid "Orphaned Albums will be re-attached to their parent albums, if at all possible.  If the parent album is missing, the orphan will be attached to the Gallery Root, and it can be moved to a new location from there."
 msgstr "Verwaiste Alben werden Ihren urspr&uuml;nglichen Stammalben zugeordnet, falls m&ouml;glich. Falls nicht, werden sie zu Hauptalben."
 
-#: ../tools/find_orphans.php:94
+#: ../tools/find_orphans.php:99
 msgid "Parent Album"
 msgstr "&Uuml;bergeordnetes Album"
 
-#: ../tools/find_orphans.php:96
+#: ../tools/find_orphans.php:101
 msgid "Orphaned Album"
 msgstr "Verwaistes Album"
 
-#: ../tools/find_orphans.php:103
+#: ../tools/find_orphans.php:108
 msgid "Gallery Root"
 msgstr "Galerie Stammverzeichnis"
 
-#: ../tools/find_orphans.php:117
+#: ../tools/find_orphans.php:122
 msgid "_Re-Attach Orphaned Albums!"
 msgstr "_Verwaiste Alben wieder korrekt eingehängen"
 
-#: ../tools/find_orphans.php:125
-msgid "Orphaned Files:"
+#: ../tools/find_orphans.php:130
+#, fuzzy, php-format
+msgid "Orphaned Files: %d"
 msgstr "Verwaiste Dateien:"
 
-#: ../tools/find_orphans.php:126
+#: ../tools/find_orphans.php:133
 msgid "Orphaned files will be deleted from the disk.  Orphaned files should never exist - if they do, they are the result of a failed upload attempt, or other more serious issue such as the photos database being overwritten with bad information."
 msgstr "Verwaiste können nur entfernt werden. Theoretisch sollten sie nicht existieren. Falls doch, dann durch einen fehlgeschlagenen Upload, einem direkten Upload in das albums Verzeichnis, oder durch einen Vorgang, der die 'Photodatenbank' (es ist keine echte) verändert hat."
 
-#: ../tools/find_orphans.php:130
+#: ../tools/find_orphans.php:137
 msgid "Album directory"
 msgstr "Album Ordner"
 
-#: ../tools/find_orphans.php:132
+#: ../tools/find_orphans.php:139
 msgid "Orphaned file"
 msgstr "Verwaiste Datei"
 
-#: ../tools/find_orphans.php:155
+#: ../tools/find_orphans.php:162
 msgid "_Delete Orphaned Files!"
 msgstr "Verwaiste Dateien _löschen!"
 
-#: ../tools/find_orphans.php:164
+#: ../tools/find_orphans.php:171
 msgid "There are no orphaned elements in this Gallery."
 msgstr "Es gibt keine verwaisten Elemente in dieser Galerie."
 
-#: ../tools/find_orphans.php:169
+#: ../tools/find_orphans.php:175
 msgid "Orphaned albums repaired."
 msgstr "Verwaiste Alben repariert."
 
-#: ../tools/find_orphans.php:169
+#: ../tools/find_orphans.php:175
 msgid "Orphaned files repaired."
 msgstr "Verwaiste Dateien repariert."
 
-#: ../tools/find_orphans.php:180
+#: ../tools/find_orphans.php:186
 msgid "The Webserver has not enough permission to delete the following files:"
 msgstr "Dem Webserver fehlen die nötigen Rechte um folgende Dateien zu löschen:"
 
-#: ../tools/find_orphans.php:186
+#: ../tools/find_orphans.php:192
 msgid "Please check the permission of these files and the folder above. chmod them, or ask your admin to do this."
 msgstr "Bitte überprüfen Sie die Rechte der Datei und der übergeordneten Ordner. Setzen Sie oder ihr Administrator die Rechte entsprechend per chmod."
 
-#: ../tools/find_orphans.php:190
+#: ../tools/find_orphans.php:196
 msgid "Reload"
 msgstr "Erneut laden"
 
@@ -5298,6 +5309,35 @@ msgstr "Voll"
 #: ../view_photo.php:510
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
+
+#, fuzzy
+#~ msgid "No Ratio"
+#~ msgstr "&Uuml;berschrift anzeigen"
+
+#~ msgid "1:1 (Square)"
+#~ msgstr "1:1 (Quadrat)"
+
+#~ msgid "9:16 (HDTV)"
+#~ msgstr "9:16 (HDTV)"
+
+#~ msgid "3:5 (Photo)"
+#~ msgstr "3:5 (Photo)"
+
+#, fuzzy
+#~ msgid "9:13 (Photo)"
+#~ msgstr "Ein Photo"
+
+#, fuzzy
+#~ msgid "5:7 (Photo)"
+#~ msgstr "Photo"
+
+#, fuzzy
+#~ msgid "8:10 (Photo)"
+#~ msgstr "Ein Photo"
+
+#, fuzzy
+#~ msgid "Like the Image"
+#~ msgstr "Bildanzeige:"
 
 #~ msgid "Preview"
 #~ msgstr "Vorschau"
