@@ -26,6 +26,7 @@
  */
 
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/includes/definitions/cropOptions.php');
 
 list($index, $offsetX, $offsetY, $width, $height) =
 	getRequestVar(array('index', 'x1', 'y1', 'width', 'height'));
@@ -72,25 +73,6 @@ $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $perPage = $rows * $cols;
 $page = (int)(ceil($index / ($rows * $cols)));
-
-$ratioOptions = array(
-	'0|0'	=> gTranslate('core', "No Ratio"),
-	'1|1'	=> gTranslate('core', "1:1 (Square)"),
-	'1|3'	=> gTranslate('core', "1:3 (Letterbox)"),
-	'9|16'	=> gTranslate('core', "9:16 (HDTV)"),
-	'3|5'	=> gTranslate('core', "3:5 (Photo)"),
-	'4|6'	=> gTranslate('core', "4:6 = 10:15 (Photo)"),
-	'9|13'	=> gTranslate('core', "9:13 (Photo)"),
-	'5|7'	=> gTranslate('core', "5:7 (Photo)"),
-	'8|10'	=> gTranslate('core', "8:10 (Photo)"),
-	"$imageWidth|$imageHeight" => gTranslate('core', "Like the Image")
-);
-
-$ratioDirections = array(
-	'1'		=> gTranslate('core', "Portrait"),
-	'-1'	=> gTranslate('core', "Landscape"),
-);
-
 
 /* Start the HTML Output */
 if (!$GALLERY_EMBEDDED_INSIDE) {
