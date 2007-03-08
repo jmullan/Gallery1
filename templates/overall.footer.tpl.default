@@ -61,12 +61,13 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 		echo COM_siteFooter( false );
 	break;
 
+	default:
+		includeTemplate('footer.tpl');
+
+		showDebugInfo();
+
+		// End of g-main
+		echo "\n</div>";
 }
-includeTemplate('footer.tpl');
-
-showDebugInfo();
-
-// End of g-main
-echo "\n</div>";
 
 ?>

@@ -99,7 +99,9 @@ if (isset($save) || isset($saveclose)) {
 	}
 }
 
-printPopupStart(gTranslate('core', "Edit Text"), gTranslate('core', "Edit Caption"));
+printPopupStart(
+	gTranslate('core', "Edit texts"),
+	sprintf(gTranslate('core', "Edit texts for '<i>%s</i>'"), $gallery->album->getCaption($index)));
 
 if(isset($save)) {
 	reload();
@@ -185,10 +187,8 @@ $year 	 = strftime('%Y', $itemCaptureDate);
 ?>
 
 <br>
-<table>
-  <tr>
-	<td colspan="6" align="center"><?php echo gTranslate('core', "Photo Capture Date") ?></td>
-  </tr>
+<table align="center">
+  <caption><?php echo gTranslate('core', "Photo Capture Date") ?></caption>
   <tr>
 	<td><?php echo gTranslate('core', "Month") ?></td>
 	<td><?php echo gTranslate('core', "Day") ?></td>

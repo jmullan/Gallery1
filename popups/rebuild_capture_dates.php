@@ -35,7 +35,7 @@ if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 printPopupStart(sprintf(gTranslate('core', "Rebuilding capture dates: %s"), $gallery->album->fields["title"]), '', 'left');
 
 if(!empty($rebuild)) {
-	$gallery->album->recreateCaptureDates($recursive);
+	$gallery->album->rebuildCaptureDates($recursive);
 	echo '<script type="text/javascript">opener.location.reload();</script>';
 	echo "\n<br>";
 	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');

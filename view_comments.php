@@ -171,7 +171,10 @@ echo languageSelector();
 $validation_file = 'view_comments.php';
 $validation_args = array('set_albumName' => $gallery->session->albumName);
 
-includeTemplate('general.footer');
+// Its better not to touch anything below this.
+includeTemplate('info_donation-block');
+
+includeTemplate("overall.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 
