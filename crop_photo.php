@@ -123,7 +123,7 @@ else {
 <?php
 	echo makeFormIntro('crop_photo.php',
 		array('name' => 'crop'),
-		array('index' => $index, 'type' => 'popup')
+		array('index' => $index)
 	);
 
 	echo gInput('hidden', 'x1', null, false, '', array('id' => 'x1'));
