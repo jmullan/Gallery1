@@ -190,7 +190,8 @@ $extra_fields = $gallery->album->getExtraFields();
 $checked_EF = array();
 
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
-    if ($automatic === "EXIF" && (($gallery->album->fields["use_exif"] != "yes") || !$gallery->app->use_exif)) {
+    if ($automatic === "EXIF" && 
+       (($gallery->album->fields["use_exif"] != "yes") || !isset($gallery->app->use_exif))) {
         continue;
     }
     $multiple_choices_EF[$automatic] = $printable_automatic;
