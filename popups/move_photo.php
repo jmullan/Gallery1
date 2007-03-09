@@ -58,11 +58,14 @@ if ($gallery->session->albumName && isset($index)) {
 			echo gallery_error(gTranslate('core',"You can't move photos into the album they already exist in."));
 			exit;
 		}
+
 		$postAlbum = $albumDB->getAlbumByName($newAlbum);
+
 		if (!$gallery->user->canWriteToAlbum($postAlbum)) {
 			printf(gTranslate('core',"You do not have the required permissions to write to %s!"), $newAlbum);
 			exit;
 		}
+
 		if ((isset($postAlbum->fields['name']) || $newAlbum == ".root") &&
 			($gallery->album->fields['name'] != $postAlbum->fields['name']))
 		{
@@ -75,11 +78,13 @@ if ($gallery->session->albumName && isset($index)) {
 			else {
 				$votes = NULL;
 			}
+
 			// moving "album" to another location
 			if ($gallery->album->isAlbum($index)) {
 				$myAlbum = $gallery->album->getNestedAlbum($index);
 				$hIndex = $myAlbum->getHighlight();
 				$oldHSize = $gallery->album->fields["thumb_size"];
+
 				// moving "album" to .root location
 				if ($newAlbum == ".root") {
 					$myAlbum->fields['parentAlbumName'] = 0;
@@ -97,26 +102,32 @@ if ($gallery->session->albumName && isset($index)) {
 					if ($postAlbum != $myAlbum) {
 						// copy "album" to new album
 						$postAlbum->addNestedAlbum($gallery->album->getAlbumName($index));
+
 						if ($votes) {
 							$postAlbum->fields["votes"]["album.".$myAlbum->fields["name"]]=$votes;
 						}
+
 						$myAlbum->fields['parentAlbumName'] = $postAlbum->fields['name'];
 
 						// delete "album" from original album
 						$gallery->album->deletePhoto($index, 0, 0);
+
 						if ($oldHSize != $postAlbum->fields["thumb_size"] && isset($hIndex)) {
 							$hPhoto =& $myAlbum->getPhoto($hIndex);
 							$hPhoto->setHighlight($myAlbum->getAlbumDir(), true, $myAlbum);
 						}
+
 						$gallery->album->save(array(i18n("Moved subalbum %s to %s"),
 						$myAlbum->fields['name'],
 						$postAlbum->fields['name']));
 						$myAlbum->save(array(i18n("Moved from %s to %s"),
 						$gallery->album->fields['name'],
 						$postAlbum->fields['name']));
+
 						if ($postAlbum->numPhotos(1) == 1) {
 							$postAlbum->setHighlight(1);
 						}
+
 						$postAlbum->save(array(i18n("New subalbum %s from %s"),
 						$myAlbum->fields['name'],
 						$gallery->album->fields['name']));
@@ -149,6 +160,7 @@ if ($gallery->session->albumName && isset($index)) {
 							echo "- ". gTranslate('core',"Creating Thumbnail") ."<br>";
 							my_flush();
 						}
+
 						$photo = $gallery->album->getPhoto($index);
 
 						$id = $gallery->album->getPhotoId($index);
@@ -188,28 +200,34 @@ if ($gallery->session->albumName && isset($index)) {
 									$resetHighlight = 1;
 									$gallery->album->deletePhoto($index,$resetHighlight);
 									echo gTranslate('core',"- Creating New Album Highlight") ."<br>";
-								} else {
+								}
+								else {
 									$gallery->album->deletePhoto($index);
 								}
-							} else {
+							}
+							else {
 								$resetHighlight = -1;
 								$gallery->album->deletePhoto($index,$resetHighlight);
 							}
+
 							$gallery->album->save(array(
 							  i18n("%s moved to %s"),
 							  $id,
 							  $postAlbum->fields['name']
 							  )
 							);
-						} else {
+						}
+						else {
 							echo $statusMsg;
 							return;
 						}
-					} else {
+					}
+					else {
 						echo sprintf(gTranslate('core',"Skipping Album #%d"), $startPhoto)."<br>";
 						 // we hit an album... don't move it... just increment the index
 						$index++;
 					}
+
 					$startPhoto++;
 					//end while
 				}
@@ -220,6 +238,7 @@ if ($gallery->session->albumName && isset($index)) {
 				$gallery->album->save();
 			}
 		} //end if ($gallery->album != $postAlbum)
+
 		dismissAndReload();
 		return;
 	} //end if (isset($newAlbum))
@@ -342,7 +361,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 			print "<br>";
 			   	if ($gallery->album->fields["poll_type"] == "rank") {
 				   	echo '<span class="g-attention">' . gTranslate('core',"Note: items that have votes will lose these votes when moved to another album") . "</span>"; // can't move rank votes, doesn't  make sense.
-			  	} else {
+			  	}
+			  	else {
 				   	echo '<span class="g-attention">' . sprintf(gTranslate('core',"Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</span>";
 			   	}
 			echo "\n<br>";
@@ -361,7 +381,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 		} // end reorder
 	}
-} else {
+}
+else {
 	echo gallery_error(gTranslate('core',"no album / index specified"));
 }
 ?>
@@ -372,7 +393,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 <?php
 if ($reorder) {
 	echo 'document.g1_form.newIndex.focus()';
-} else {
+}
+else {
 	echo 'document.move_to_album_form.newAlbum.focus()';
 } ?>
 //-->
