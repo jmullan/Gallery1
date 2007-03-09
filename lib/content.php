@@ -921,6 +921,9 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 				$uptodate = false;
 				continue;
 			}
+
+			$myAlbumTitle = truncateText($myAlbumTitle, 15);
+
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
@@ -952,6 +955,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 		}
 	}
 
+	echo $jtext;
 	return $uptodate;
 }
 
@@ -972,6 +976,8 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 			  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 .= $nestedAlbum->fields['title'];
+
+				$val2 = truncateText($val2, 15);
 
 				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
 					// don't allow user to move to here (value=0), but
