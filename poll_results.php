@@ -1,26 +1,26 @@
 <?php
 /*
- * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
- *
- * Additional voting code Copyright (C) 2003-2004 Joan McGalliard
- * 
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or (at
- * your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
- *
- * $Id$
- */
+* Gallery - a web based photo album viewer and editor
+* Copyright (C) 2000-2007 Bharat Mediratta
+*
+* Additional voting code Copyright (C) 2003-2004 Joan McGalliard
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or (at
+* your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+*
+* $Id$
+*/
 ?>
 <?php
 
@@ -44,7 +44,7 @@ $albumName = $gallery->session->albumName;
 if (!$gallery->session->viewedAlbum[$albumName]) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
-} 
+}
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
@@ -58,49 +58,50 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
 
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . gTranslate('core', "Poll Results") ?></title>
   <?php common_header();
 
-if( ! empty($gallery->album->fields["linkcolor"]) ||
-		!empty($gallery->album->fields["bgcolor"]) ||
-		!empty($gallery->album->fields["textcolor"])) {
+  if(! empty($gallery->album->fields["linkcolor"]) ||
+  	 !empty($gallery->album->fields["bgcolor"]) ||
+  	 !empty($gallery->album->fields["textcolor"]))
+   {
 
-		echo "\n<style type=\"text/css\">";
-		// the link colors have to be done here to override the style sheet
-		if ($gallery->album->fields["linkcolor"]) {
-				echo "\n  a:link, a:visited, a:active {";
-				echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
-				echo "\n  a:hover { color: #ff6600; }";
+  	echo "\n<style type=\"text/css\">";
+  	// the link colors have to be done here to override the style sheet
+  	if ($gallery->album->fields["linkcolor"]) {
+  		echo "\n  a:link, a:visited, a:active {";
+  		echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
+  		echo "\n  a:hover { color: #ff6600; }";
 
-		}
-		if ($gallery->album->fields["bgcolor"]) {
-				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
-		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-		}
-		if ($gallery->album->fields["textcolor"]) {
-				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
+  	}
+  	if ($gallery->album->fields["bgcolor"]) {
+  		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+  	}
+  	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+  		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+  	}
+  	if ($gallery->album->fields["textcolor"]) {
+  		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+  	}
 
-		echo "\n  </style>";
-		}
+  	echo "\n  </style>";
+  }
 ?>
 
 </head>
 <body>
-<?php } 
+<?php }
 
 includeTemplate('album.header');
 
 $breadcrumb["bordercolor"] = $bordercolor;
 $breadcrumb["text"][] = sprintf(
 	makeAccessKeyString(gTranslate('core', "_Return to  %s")),
-		galleryLink(makeAlbumUrl($gallery->session->albumName), $pAlbum->fields['title'])
+	galleryLink(makeAlbumUrl($gallery->session->albumName), $pAlbum->fields['title'])
 );
 
 includeLayout('breadcrumb.inc');
@@ -119,14 +120,12 @@ $ranks = array_keys($results);
 
 echo "<br>";
 echo $buf;
-		
+
 $i = 0;
 $numPhotos = sizeof($ranks);
 
 $resultTable = new galleryTable();
-$resultTable->setAttrs(array(
-	'class' => 'g-vatable'
-));
+$resultTable->setAttrs(array('class' => 'g-vatable'));
 $resultTable->setColumnCount($cols);
 
 while ($i < $numPhotos) {
@@ -134,24 +133,24 @@ while ($i < $numPhotos) {
 
 	$index = $gallery->album->getIndexByVotingId($ranks[$i]);
 	if ($index < 0) {
-	$i++;
-	continue;
+		$i++;
+		continue;
 	}
-	
+
 	if ($gallery->album->isAlbum($index)) {
-	$albumName = $gallery->album->getAlbumName($index);
-	$album = $gallery->album->getSubAlbum($index);
-	$content = sprintf(gTranslate('core', "Album: %s"),$album->fields['title']) . "<br>";
+		$albumName = $gallery->album->getAlbumName($index);
+		$album = $gallery->album->getSubAlbum($index);
+		$content = sprintf(gTranslate('core', "Album: %s"),$album->fields['title']) . "<br>";
 	}
 	else {
-	$content = $gallery->album->getCaption($index) . "<br>";
-   }
+		$content = $gallery->album->getCaption($index) . "<br>";
+	}
 
 	$content .= showResults($ranks[$i]);
 
 	$resultTable ->addElement(array(
-	'content' => $content,
-	'cellArgs' => array('class' => 'g-vathumb-cell')
+		'content' => $content,
+		'cellArgs' => array('class' => 'g-vathumb-cell')
 	));
 
 	$i++;
@@ -167,8 +166,9 @@ if (!empty($resultTable->elements)) {
 	echo $resultTable->render();
 }
 
-$validation_file = basename(__FILE__);
-includeTemplate("general.footer");
+includeTemplate('info_donation-block');
+
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

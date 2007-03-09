@@ -294,7 +294,9 @@ if (!empty($allImageAreas)) {
 </div>
 <?php
 
-includeTemplate('general.footer');
+includeTemplate('info_donation-block');
+
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

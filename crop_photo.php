@@ -160,19 +160,19 @@ else {
 	echo gButton('preview', gTranslate('core', "_Preview"), 'previewCrop()');
 	echo gButton('reset', gTranslate('core', "_Reset"), 'resetCrop()');
 	echo gSubmit('cropit', gTranslate('core', "_Crop"));
-	echo "\n</form>\n";
 
 	echo "\n</div>";
+	echo "\n</form>\n";
+
 	echo '<div class="clear"></div>';
 	includeLayout('breadcrumb.inc');
 
 	echo languageSelector();
 }
 
-// close g-main
-echo "\n</div>";
+includeTemplate('info_donation-block');
 
-includeTemplate('general.footer');
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
