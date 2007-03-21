@@ -199,7 +199,7 @@ if (!empty($allImageAreas)) {
         echo "\n\t map[$nr]['x_coords'] = new Array(". $area['x_coords'] .');';
         echo "\n\t map[$nr]['y_coords'] = new Array(". $area['y_coords'] .');';
         echo "\n\t map[$nr]['url'] = '". $area['url'] ."';";
-        echo "\n\t map[$nr]['hover_text'] = '". $area['hover_text'] ."';";
+        echo "\n\t map[$nr]['hover_text'] = '". addslashes($area['hover_text']) ."';";
     }
 
     echo "\n</script>";
@@ -216,7 +216,7 @@ else {
 echo _("Here you can create, edit or delete imagemaps for the selected photo.");
 echo "\n<br>";
 echo _("Click the questionmark icon for helpful instructions.");
-echo popup_link('<img src="'. getImagePath('icons/help.gif') .'">', 'help/imagemap.php');
+echo popup_link(gImage('icons/help.gif', gTranslate('core', "Help")), 'help/imagemap.php');
 ?>
 </div>
 

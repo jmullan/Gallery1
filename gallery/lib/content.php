@@ -1181,9 +1181,9 @@ function showImageMap($index) {
     if (!empty($allImageAreas)) {
         $html .= "\n". '<map name="myMap">';
         foreach($allImageAreas as $nr => $area) {
-            $html .= "\n\t<area alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
+            $html .= "\n\t<area href=\"#\" alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
                 "coords=\"". $area['coords'] ."\" ".
-                "onmouseover=\"return escape('". $area['hover_text'] ."')\"";
+                "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
 
             if(!empty($area['url'])) {
                 $html .=' href="'. $area['url'] .'"';
