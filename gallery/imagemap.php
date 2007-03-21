@@ -67,7 +67,7 @@ switch($formaction) {
         if (isset($xvals) && isset($yvals)) {
             $xcoords = explode(',', $xvals);
             $ycoords = explode(',', $yvals);
-    
+
             if (!empty($xcoords)) {
                 $coords = $xcoords[0] .',' . $ycoords[0];
                 for ($i = 1 ; $i < sizeof($xcoords); $i++) {
@@ -94,6 +94,7 @@ switch($formaction) {
         }
         $gallery->album->save();
     break;
+
     default:
     break;
 }
@@ -106,7 +107,7 @@ list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
   <?php
@@ -125,7 +126,7 @@ includeHtmlWrap("photo.header");
   <script type="text/javascript">
       init_mousemove();
  </script>
- 
+
 <?php
 
 $rows = $gallery->album->fields["rows"];
@@ -219,7 +220,7 @@ echo popup_link('<img src="'. getImagePath('icons/help.gif') .'">', 'help/imagem
 ?>
 </div>
 
-<?php 
+<?php
 echo makeFormIntro('imagemap.php',
     array('name' => 'areas'),
     array('index' => $index, 'formaction' => '')
@@ -281,7 +282,7 @@ else {
 <!-- Start Footer Part -->
 <tr>
   <td>
-<?php 
+<?php
 
 includeLayout('navtablebegin.inc');
 includeLayout('breadcrumb.inc');
@@ -293,7 +294,7 @@ includeHtmlWrap("photo.footer");
 if (!empty($allImageAreas)) {
     echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
-?>    
+?>
     <script type="text/javascript">
     <!--
       initPaintArea ();
