@@ -636,7 +636,7 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 }
 
 if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
-    echo showImageMap($index);
+    echo showImageMap($index, $href);
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
 }
 else {

@@ -1172,7 +1172,7 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 }
 
 
-function showImageMap($index) {
+function showImageMap($index, $noUrlUrl = '#') {
 	global $gallery;
 
 	$allImageAreas = $gallery->album->getAllImageAreas($index);
@@ -1181,12 +1181,17 @@ function showImageMap($index) {
 	if (!empty($allImageAreas)) {
 		$html .= "\n". '<map name="myMap">';
 		foreach($allImageAreas as $nr => $area) {
-			$html .= "\n\t<area href=\"#\" alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
-					 "coords=\"". $area['coords'] ."\" ".
-					 "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
+			$html .= "\n\t<area shape=\"poly\" coords=\"". $area['coords'] ."\" ";
+
+			if(!empty($area['hover_text'])) {
+				$html .= "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
+			}
 
 			if(!empty($area['url'])) {
 				$html .= ' href="'. $area['url'] .'"';
+			}
+			else {
+				$html .= ' href="'. $noUrlUrl .'"';
 			}
 
 			$html .='>';
