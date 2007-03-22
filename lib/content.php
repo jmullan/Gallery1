@@ -1247,7 +1247,7 @@ function metatags($adds = array()) {
 	echo "\n";
 }
 
-function showImageMap($index) {
+function showImageMap($index, $noUrlUrl = '#') {
 	global $gallery;
 
 	$allImageAreas = $gallery->album->getAllImageAreas($index);
@@ -1255,17 +1255,23 @@ function showImageMap($index) {
 
 	if (!empty($allImageAreas)) {
 		$html .= "\n". '<map name="myMap">';
+
 		foreach($allImageAreas as $nr => $area) {
-			$html .= "\n\t<area href=\"#\" alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
-				"coords=\"". $area['coords'] ."\" ".
-				"onmouseover=\"return escape('". str_replace("\r\n", "<br>",$area['hover_text']) ."')\" href=\"#\"";
-				"onmouseover=\"return escape('". nl2br(htmlentities(addslashes($area['hover_text']), ENT_QUOTES)) ."');\"";
+			$html .= "\n\t<area shape=\"poly\" coords=\"". $area['coords'] ."\" ";
+
+			if(!empty($area['hover_text'])) {
+				$html .= "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
+			}
 
 			if(!empty($area['url'])) {
 				$html .=' href="'. $area['url'] .'"';
 			}
+			else {
+				$html .= ' href="'. $noUrlUrl .'"';
+			}
 			$html .='>';
 		}
+
 		$html .= "\n</map>\n";
 	}
 

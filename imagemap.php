@@ -184,7 +184,7 @@ list($width, $height) = $photo->getDimensions($full);
 
 //print_r($photo);
 
-echo showImageMap($index);
+echo showImageMap($index, $gallery->album->getPhotoPath($index, $full));
 
 $allImageAreas = $gallery->album->getAllImageAreas($index);
 

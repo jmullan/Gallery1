@@ -460,7 +460,7 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 }
 
 if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
-	$imageMapHTML = showImageMap($index);
+	$imageMapHTML = showImageMap($index, $href);
 	$photoTag = $gallery->album->getPhotoTag($index, $full, array('id' => 'galleryImage', 'usemap' => '#myMap'));
 }
 else {
