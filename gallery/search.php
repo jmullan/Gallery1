@@ -151,14 +151,11 @@ if (!empty($searchstring)) {
 			}
 
 			$photo = $searchAlbum->getPhoto($j);
-			$searchCaption = _("Caption: ") . $photo->getCaption();
-			$searchCaption .= $searchAlbum->getCaptionName($j);
-			$searchKeywords = $photo->getKeywords();
-			$searchName = $photo->image->name;
 
+			/* Search through comments */
 			$commentMatch = 0;
 			$commentText = '';
-			if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {
+			if ($searchAlbum->canViewComments($uid) || $gallery->user->isAdmin()) {
 				for ($k = 1; $k <= $searchAlbum->numComments($j); $k++) {
 					// check to see if there are any comment matches
 					$comment = $searchAlbum->getComment($j, $k);
@@ -181,9 +178,9 @@ if (!empty($searchstring)) {
 				}
 			}
 
-			$extraFieldsText = '';
+			/* Search through extrafields */
 			$extraFieldsMatch = 0;
-
+			$extraFieldsText = '';
 			foreach ($searchAlbum->getExtraFields() as $field) {
 				$fieldValue=$searchAlbum->getExtraField($j, $field);
 				if (eregi($searchstring, $fieldValue)) {
@@ -193,9 +190,28 @@ if (!empty($searchstring)) {
 				}
 			}
 
+			/* Search through caption */
+			$searchCaption = _("Caption: ") . $photo->getCaption();
+			$searchCaption .= $searchAlbum->getCaptionName($j);
 			$captionMatch = eregi($searchstring, $searchCaption);
-			$keywordMatch = eregi($searchstring, $searchKeywords);
-			$nameMatch = eregi($searchstring, $searchName);
+
+			/* Search through keywords */
+			$searchKeywords = $photo->getKeywords();
+			if(!empty($searchKeywords)) {
+				$keywordMatch = eregi($searchstring, $searchKeywords);
+			}
+			else {
+				$keywordMatch = false;
+			}
+
+			/* Search through imagename */
+			if(!empty($photo->image->name)) {
+				$searchName = $photo->image->name;
+				$nameMatch = eregi($searchstring, $searchName);
+			}
+			else {
+				$nameMatch = false;
+			}
 
 			unset($text);
 
