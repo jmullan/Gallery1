@@ -1173,27 +1173,28 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
 
 
 function showImageMap($index) {
-    global $gallery;
+	global $gallery;
 
-    $allImageAreas = $gallery->album->getAllImageAreas($index);
-    $html = '';
+	$allImageAreas = $gallery->album->getAllImageAreas($index);
+	$html = '';
 
-    if (!empty($allImageAreas)) {
-        $html .= "\n". '<map name="myMap">';
-        foreach($allImageAreas as $nr => $area) {
-            $html .= "\n\t<area href=\"#\" alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
-                "coords=\"". $area['coords'] ."\" ".
-                "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
+	if (!empty($allImageAreas)) {
+		$html .= "\n". '<map name="myMap">';
+		foreach($allImageAreas as $nr => $area) {
+			$html .= "\n\t<area href=\"#\" alt=\"my nice Map $nr\" title=\"my nice Map $nr\" shape=\"poly\" ".
+					 "coords=\"". $area['coords'] ."\" ".
+					 "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
 
-            if(!empty($area['url'])) {
-                $html .=' href="'. $area['url'] .'"';
-            }
-            $html .='>';
-        }
-        $html .= "\n</map>\n";
-    }
+			if(!empty($area['url'])) {
+				$html .= ' href="'. $area['url'] .'"';
+			}
 
-    return $html;
+			$html .='>';
+		}
+		$html .= "\n</map>\n";
+	}
+
+	return $html;
 }
 
 /**
