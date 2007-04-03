@@ -70,7 +70,7 @@ function getManifestFiles($folder) {
 	$results = array();
 	$svnfile = "$folder/.svn/entries";
 	$skipfolder = array('docs', 'po', 'tools', 'locale');
-	$skipfiles = array('ChangeLog.archive.gz', '.htaccess');
+	$skipfiles = array('ChangeLog.archive.gz', '.htaccess','modules.php.patch');
 
 	printf("\nFolder: %s", $folder);
 
