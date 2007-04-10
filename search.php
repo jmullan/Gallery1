@@ -153,7 +153,7 @@ if (!empty($searchstring)) {
 			else {
 				$searchName = $photo->isAlbumName;
 			}
-			
+
 			$commentMatch = 0;
 			$commentText = '';
 			if ($searchAlbum->canViewComments($uid) ||  $gallery->user->isAdmin()) {

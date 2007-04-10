@@ -34,27 +34,27 @@ if (!$gallery->user->isAdmin()) {
 }
 
 $adminOptions[] = array(
-			'text' => gTranslate('core', "_statistics"),
+			'text' => gTranslate('core', "_Statistics"),
 			'url' => makeGalleryUrl('stats-wizard.php'),
 			'longtext' => gTranslate('core', "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
 
 $adminOptions[] = array(
-			'text' => gTranslate('core', "configuration _wizard"),
+			'text' => gTranslate('core', "Configuration _wizard"),
 			'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
 			'longtext' => gTranslate('core', "Use the config wizard to reconfigure or tweak your Gallery"));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "find _orphans"),
+		'text' => gTranslate('core', "Find _orphans"),
 		'url' => makeGalleryUrl('tools/find_orphans.php'),
 		'longtext' => gTranslate('core', "Find, remove or re-attach orphaned elements."));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "find _comment spam"),
+		'text' => gTranslate('core', "Find _comment spam"),
 		'url' => makeGalleryUrl('tools/despam-comments.php'),
 		'longtext' => gTranslate('core', "Find and remove comments that contains spam."));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "_validate albums"),
+		'text' => gTranslate('core', "_Validate albums"),
 		'url' => makeGalleryUrl('tools/validate_albums.php'),
 		'longtext' => gTranslate('core', "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
 
@@ -67,14 +67,14 @@ $adminOptions[] = array(
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	$adminOptions[]  = array(
-			'text' => gTranslate('core', "manage _users"),
+			'text' => gTranslate('core', "Manage _users"),
 			'popupFile' => 'manage_users.php',
 			'longtext' => gTranslate('core', "Manage your users."));
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE == 'joomla') {
 	$adminOptions[]  = array(
-			'text' => gTranslate('core', "manage user_groups"),
+			'text' => gTranslate('core', "Manage user_groups"),
 			'popupFile' => 'manage_groups.php',
 			'longtext' => gTranslate('core', "Manage your usergroups."));
 }

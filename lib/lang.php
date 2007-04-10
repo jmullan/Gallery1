@@ -698,7 +698,7 @@ function isSupportedCharset($charset) {
 	$supportedCharsetsNewerPHP=array(
 		'cp866',
 		'cp1251',
-		'KOI8-R'
+		//'KOI8-R'
 	);
 
 	/**

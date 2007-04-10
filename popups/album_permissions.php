@@ -201,8 +201,9 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 
 asort($allUsers);
 
-$groupIdList = getGroupIdList();
-$grouplist = array();
+$groupIdList	= getGroupIdList();
+$grouplist		= array();
+$groups			= array();
 
 if(! empty($groupIdList)) {
 	foreach ($groupIdList as $groupID) {

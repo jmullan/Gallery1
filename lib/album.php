@@ -264,7 +264,7 @@ function albumRSSLink() {
 	global $gallery, $albumTitle, $albumRSSURL;
 
 	if ($gallery->app->rssEnabled == 'yes' && !$gallery->session->offline) {
-		$rssTitle = sprintf(gTranslate('core', "%s RSS"), $albumTitle);
+		$rssTitle = htmlentities(sprintf(gTranslate('core', "%s RSS"), $albumTitle));
 
 		echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$albumRSSURL\" type=\"application/rss+xml\">\n";
 	}

@@ -348,7 +348,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	foreach($tree as $content) {
 		$nodename = strtr($content['albumName'], '-', '_');
 
-		$label = $content['title'] . ' '. $content['clicksText'];
+		$label = addslashes($content['title'] . ' '. $content['clicksText']);
 		$html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";
 		$html .= "\n\t var $nodename = new YAHOO.widget.TextNode(${nodename}_obj, $parentNode, false);";
 

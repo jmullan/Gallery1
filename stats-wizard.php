@@ -35,36 +35,26 @@ if (!$gallery->user->isAdmin()) {
 
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-	doctype();
-?>
-<html>
-<head>
-<title><?php echo clearGalleryTitle(gTranslate('core',"Gallery statistics - Wizard")) ?></title>
-<?php
-	common_header() ;
-?>
-</head>
-<body>
+$iconElements = array();
 
-<div class="g-main">
-	<div class="g-header-popup">
-		<div class="g-pagetitle-popup"><?php echo gTranslate('core', "Gallery statistics - Wizard"); ?></div>
-	</div>
-<?php
-}
+$iconElements[] = galleryLink(
+					makeGalleryUrl("admin-page.php"),
+					gTranslate('core', "return to _admin page"),
+					array(), '', true);
 
-$adminbox["commands"] = galleryLink(
-	makeGalleryUrl("admin-page.php"),
-	gTranslate('core',"return to _admin page"),
-	array(), '', true);
+$iconElements[] = galleryLink(
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
+					array(), '', true);
 
-$adminbox["commands"] .= galleryLink(
-	makeAlbumUrl(),
-	gTranslate('core',"return to _gallery"),
-	array(),'', true);
+$adminbox['text'] = gTranslate('core', "Gallery statistics - Wizard");
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
 $breadcrumb['text'][] = languageSelector();
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	printPopupStart(clearGalleryTitle($adminbox['text']), '', 'left');
+}
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');

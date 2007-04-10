@@ -42,13 +42,13 @@ $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 $adminbox['text'] = gTranslate('core', "Find and remove comment spam");
 
 $iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
+					makeGalleryUrl("admin-page.php"),
+					gTranslate('core', "return to _admin page"),
 					array(), '', true);
 
 $iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
 					array(), '', true);
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');

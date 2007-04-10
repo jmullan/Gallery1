@@ -48,13 +48,13 @@ $iconElements = array();
 $adminbox['text'] = gTranslate('core', "Find Orphans");
 
 $iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
+					makeGalleryUrl("admin-page.php"),
+					gTranslate('core', "return to _admin page"),
 					array(), '', true);
 
 $iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
+					makeAlbumUrl(),
+					gTranslate('core', "return to _gallery"),
 					array(), '', true);
 
 if (!($gallery->user->isAdmin())) {
