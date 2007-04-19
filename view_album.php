@@ -617,7 +617,8 @@ if ($numPhotos) {
 			$albumItems[$nr]['options']			= '';
 			$description = '';
 
-			$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\" } );";
+			$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
+			$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\", width:\"${tooltipWidth}px\" } );";
 
 			/**
 			 * Element is a movie
@@ -637,8 +638,12 @@ if ($numPhotos) {
 				$gallery->html_wrap['imageTag']		= $myAlbum->getHighlightTag(
 					$scaleTo,
 					array('alt' => sprintf(
-						gTranslate('core', "Highlight for album: %s"),
-						gallery_htmlentities(strip_tags($myAlbum->fields['title'])))
+							gTranslate('core', "Highlight for album: %s"),
+								strip_tags($myAlbum->fields['title'])),
+						'title' => sprintf(
+							gTranslate('core', "Highlight for album: %s"),
+								gallery_htmlentities(strip_tags($myAlbum->fields['title']))),
+						'id' => "thumbnail_$nr"
 					)
 				);
 
@@ -874,7 +879,6 @@ if ($numPhotos) {
 			list($albumItemOptions, $javascript) = getItemActions($i, true, true);
  			if(!empty($javascript)) {
 				$va_javascript .= $javascript;
-
 			}
 
 			if (sizeof($albumItemOptions) > 3) {

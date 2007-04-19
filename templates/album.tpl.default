@@ -57,16 +57,6 @@ if ($GALLERY_EMBEDDED_INSIDE) {
     echo $vaRenderDescriptionCSS;
 }
 
-if(!empty($vaRenderDescriptionCSS)) { ?>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/yahoo-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/event-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dom-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dragdrop-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/animation-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/container-min.js"></script>
-<?php
-}
-
 if (!$gallery->session->offline) { ?>
 
   <script type="text/javascript">
@@ -99,11 +89,21 @@ if (!$gallery->session->offline) { ?>
 
 <?php
 }
-
-echo $va_javascript;
 ?>
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/yahoo-min.js"></script>
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/event-min.js"></script>
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dom-min.js"></script>
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/container-min.js"></script>
+<?php
+if(!empty($vaRenderDescriptionCSS)) { ?>
+    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dragdrop-min.js"></script>
+    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/animation-min.js"></script>
 
 <?php
+}
+
+echo $va_javascript;
+
 includeLayout('adminbox.inc');
 
 if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
