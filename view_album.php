@@ -32,13 +32,13 @@ if (empty($gallery->session->albumName) ||
 	!$gallery->album->isLoaded())
 {
 	$gallery->session->gRedirDone = false;
-	header("Location: " . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
+	header('Location: ' . makeAlbumHeaderUrl('', '', array('gRedir' => 1)));
 	return;
 }
 
-$gallery->session->offlineAlbums[$gallery->album->fields["name"]] = true;
+$gallery->session->offlineAlbums[$gallery->album->fields['name']] = true;
 
-$albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields["title"]));
+$albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields['title']));
 
 $albumName = $gallery->session->albumName;
 
@@ -52,7 +52,7 @@ if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->of
 
 /* Vote was given */
 if (!empty($Vote)) {
-	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank") {
+	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != 'rank') {
 		for ($index=$start; $index < $start+$perPage; $index ++) {
 			$id = $gallery->album->getPhotoId($index);
 			if (!$votes[$id]) {
@@ -89,18 +89,18 @@ if ($gallery->user->isLoggedIn() &&
 $page = intval($page);
 if (empty($page) || $page < 0) {
 	if (isset($gallery->session->albumPage[$gallery->album->fields['name']])) {
-		$page = $gallery->session->albumPage[$gallery->album->fields["name"]];
+		$page = $gallery->session->albumPage[$gallery->album->fields['name']];
 	}
 	else {
 		$page = 1;
 	}
 }
 else {
-	$gallery->session->albumPage[$gallery->album->fields["name"]] = $page;
+	$gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 }
 
-$rows = $gallery->album->fields["rows"];
-$cols = $gallery->album->fields["cols"];
+$rows = $gallery->album->fields['rows'];
+$cols = $gallery->album->fields['cols'];
 
 list ($numPhotos, $numAlbums, $visibleItems) = $gallery->album->numVisibleItems($gallery->user, 1);
 
@@ -127,24 +127,24 @@ if ($previousPage == 0) {
 	$first = 1;
 }
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album->fields['bordercolor'];
 
-$imageCellWidth = floor(100 / $cols) . "%";
+$imageCellWidth = floor(100 / $cols) . '%';
 
-$navigator["page"]			= $page;
-$navigator["pageVar"]		= "page";
-$navigator["maxPages"]		= $maxPages;
-$navigator["url"]			= makeAlbumUrl($gallery->session->albumName);
-$navigator["spread"]		= 5;
-$navigator["bordercolor"]	= $bordercolor;
+$navigator['page']			= $page;
+$navigator['pageVar']		= 'page';
+$navigator['maxPages']		= $maxPages;
+$navigator['url']			= makeAlbumUrl($gallery->session->albumName);
+$navigator['spread']		= 5;
+$navigator['bordercolor']	= $bordercolor;
 
-$breadcrumb["text"]			= returnToPathArray($gallery->album, false);
-$breadcrumb["bordercolor"]	= $bordercolor;
+$breadcrumb['text']			= returnToPathArray($gallery->album, false);
+$breadcrumb['bordercolor']	= $bordercolor;
 
-$adminText = '';
-$albums_str = gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, "No albums", true);
-$imags_str = gTranslate('core', "1 image", "%d images", $numPhotos, "no images", true);
-$pages_str = gTranslate('core', "1 page", "%d pages", $maxPages, "0 pages", true);
+$adminText	= '';
+$albums_str	= gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, "No albums", true);
+$imags_str	= gTranslate('core', "1 image", "%d images", $numPhotos, "no images", true);
+$pages_str	= gTranslate('core', "1 page", "%d pages", $maxPages, "0 pages", true);
 
 if ($numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%s and %s in this album on %s."),
@@ -190,9 +190,9 @@ $adminOptions = array(
 		'requirements'	=> array('canDeleteAlbum', '!albumIsRoot'),
 		'action'		=> 'popup',
 		'value'			=> makeGalleryUrl('delete_photo.php', array(
-			'set_albumName' => $gallery->album->fields["parentAlbumName"],
+			'set_albumName' => $gallery->album->fields['parentAlbumName'],
 			'type' => 'popup',
-			'id' => $gallery->album->fields["name"],
+			'id' => $gallery->album->fields['name'],
 			'albumDelete' => true))
 	),
 	'rename_album' => array(
@@ -325,6 +325,7 @@ array_sort_by_fields($adminOptions, 'name', 'asc', true, true);
 $va_javascript = '';
 $adminOptionHTML = '';
 $adminJavaScript = '';
+
 /* determine which options to include in admin drop-down menu */
 if (!$gallery->session->offline) {
 	foreach ($adminOptions as $key => $data) {
@@ -376,7 +377,7 @@ if (!empty($adminOptionHTML)) {
 		"\t</select>\n</form>\n";
 }
 
-if ($gallery->album->fields["slideshow_type"] != "off" &&
+if ($gallery->album->fields['slideshow_type'] != "off" &&
 	($numPhotos != 0 ||
 	($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes")))
 {
@@ -391,7 +392,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 
 /* User is allowed to view ALL comments */
 if ($numVisibleItems != 0 &&
-   ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
+   ($gallery->app->comments_enabled == "yes" && $gallery->album->lastCommentDate("no") != -1) &&
    ((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
 	$gallery->user->canViewComments($gallery->album)))
 {
@@ -409,27 +410,28 @@ $logoutReturn = doCommand(
 	array(),
 	'view_album.php',
 	array('"page' => $page, 'set_albumName' => $albumName));
+
 $iconElements[] = LoginLogoutButton($logoutReturn);
 
-$adminbox["text"] = $adminText;
-$adminbox["commands"] =	$adminCommands . makeIconMenu($iconElements, 'right');
-$adminbox["bordercolor"] = $bordercolor;
+$adminbox['text']			= $adminText;
+$adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor']	= $bordercolor;
 
 if (!empty($adminOptionHTML)) {
 	$va_javascript .= $adminJSFrame;
 }
 
 // -- if borders are off, just make them the bgcolor ----
-$borderwidth = $gallery->album->fields["border"];
+$borderwidth = $gallery->album->fields['border'];
 
-if (($gallery->album->getPollType() == "rank") && canVote()) {
+if (($gallery->album->getPollType() == 'rank') && canVote()) {
 	$my_choices = array();
-	if ( $gallery->album->fields["votes"]) {
-		foreach ($gallery->album->fields["votes"] as $id => $image_votes) {
+	if ( $gallery->album->fields['votes']) {
+		foreach ($gallery->album->fields['votes'] as $id => $image_votes) {
 			$index = $gallery->album->getIndexByVotingId($id);
 			if ($index < 0) {
 				// image has been deleted!
-				unset($gallery->album->fields["votes"][$id]);
+				unset($gallery->album->fields['votes'][$id]);
 				continue;
 			}
 			if (isset($image_votes[getVotingID()])) {
@@ -448,7 +450,7 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 		foreach ($my_choices as $key => $id) {
 			$index = $gallery->album->getIndexByVotingId($id);
 
-			$pollInfoTable->addElement(array('content' => $nv_pairs[$key]["name"]));
+			$pollInfoTable->addElement(array('content' => $nv_pairs[$key]['name']));
 			$pollInfoTable->addElement(array('content' => ':'));
 			if ($gallery->album->isAlbum($index)) {
 				$albumName = $gallery->album->getAlbumName($index);
@@ -478,16 +480,17 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
 	}
 }
 
-$va_poll_box2 = '';
 list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
 
+
+$va_poll_box2 = '';
 if ($gallery->album->getPollShowResults()) {
 	$va_poll_box2 = $va_poll_result;
 }
 
 if(!empty($results) && testRequirement('isAdminOrAlbumOwner')) {
 	$va_poll_box2 .= galleryLink(
-		makeGalleryUrl("poll_results.php", array("set_albumName" => $gallery->session->albumName)),
+		makeGalleryUrl('poll_results.php', array('set_albumName' => $gallery->session->albumName)),
 		gTranslate('core', "See full poll results"),
 		array('class' => 'g-admin '),
 		'', true
@@ -498,7 +501,7 @@ if (canVote()) {
 	$nv_pairs = $gallery->album->getVoteNVPairs();
 
 	if ($gallery->album->getPollScale() == 1) {
-		$options = $nv_pairs[0]["name"];
+		$options = $nv_pairs[0]['name'];
 	}
 	else {
 		/** note to translators:
@@ -507,17 +510,17 @@ if (canVote()) {
 		 */
 		$options = '';
 		for ($count=0; $count < $gallery->album->getPollScale()-2 ; $count++) {
-			$options .= $nv_pairs[$count]["name"] .gTranslate('core', ", ");
+			$options .= $nv_pairs[$count]['name'] .gTranslate('core', ", ");
 		}
-		$options .= $nv_pairs[$count++]["name"] .gTranslate('core', " or ");
-		$options .= $nv_pairs[$count]["name"];
+		$options .= $nv_pairs[$count++]['name'] .gTranslate('core', " or ");
+		$options .= $nv_pairs[$count]['name'];
 	}
 
 	$va_poll_box3 = sprintf(gTranslate('core', "To vote for an image, click on %s."), $options);
 	$va_poll_box3 .= ' ';
 	$va_poll_box3 .= sprintf(
 		gTranslate('core', "You MUST click on %s for your vote to be recorded."),
-		"<b>" .gTranslate('core', "Vote") ."</b> "
+		'<b>' .gTranslate('core', "Vote") .'</b> '
 	);
 
 	if ($gallery->album->getPollType() == 'rank') {
@@ -593,7 +596,7 @@ if ($numPhotos) {
 			}
 
 			if ($iWidth == 0) {
-				$iWidth = $gallery->album->fields["thumb_size"];
+				$iWidth = $gallery->album->fields['thumb_size'];
 			}
 			if ($iHeight == 0) {
 				$iHeight = 100;
@@ -654,7 +657,7 @@ if ($numPhotos) {
 				$gallery->html_wrap['type']			= 'inline_photothumb.frame';
 
 				/* Do the clickable-dimensions line */
-				if ($gallery->album->fields['showDimensions'] == 'yes') {
+				if ($gallery->album->fields['showDimensions'] == "yes") {
 					$photo	= $gallery->album->getPhoto($i);
 					$image	= $photo->image;
 
@@ -665,7 +668,7 @@ if ($numPhotos) {
 						$viewFull = $gallery->user->canViewFullImages($gallery->album);
 						$fullOnly = (isset($gallery->session->fullOnly) &&
 							!strcmp($gallery->session->fullOnly, 'on') &&
-							!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
+							!strcmp($gallery->album->fields['use_fullOnly'], "yes"));
 
 
 						/* display file sizes if dimensions are identical */
@@ -680,7 +683,7 @@ if ($numPhotos) {
 
 						$attrlist = array();
 						if (($photo->isResized() && !$fullOnly) || !$viewFull) {
-							if($gallery->album->fields['dimensionsAsPopup'] == 'yes') {
+							if($gallery->album->fields['dimensionsAsPopup'] == "yes") {
 								$sizedImageUrl	= $gallery->album->getPhotoPath($i);
 								$attrlist		= array(
 													'onClick' => popup($sizedImageUrl, true, $hr, $wr),
@@ -702,7 +705,7 @@ if ($numPhotos) {
 						$attrlist = array();
 						if ($viewFull) {
 							if(isset($gallery->album->fields['dimensionsAsPopup']) &&
-								   $gallery->album->fields['dimensionsAsPopup'] == 'yes')
+								   $gallery->album->fields['dimensionsAsPopup'] == "yes")
 							{
 								$fullImageUrl	= $gallery->album->getPhotoPath($i, true);
 								$attrlist		= array(
@@ -737,7 +740,7 @@ if ($numPhotos) {
 			$albumItems[$nr]['thumb'] = $gallery->html_wrap;
 
 			if (canVote()){
-				if ($gallery->album->fields["poll_type"] == 'rank' && $divCellWidth < 200) {
+				if ($gallery->album->fields['poll_type'] == 'rank' && $divCellWidth < 200) {
 					$divCellWidth = 200;
 				}
 			}
@@ -752,14 +755,14 @@ if ($numPhotos) {
 			}
 
 			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
-				$albumItems[$nr]['note'] .= "(" . gTranslate('core', "hidden") .")<br>";
+				$albumItems[$nr]['note'] .= '(' . gTranslate('core', "hidden") .')<br>';
 			}
 
 			$photo = $gallery->album->getPhoto($i);
 			if ($gallery->user->canWriteToAlbum($gallery->album) &&
 				$photo->isHighlight() && !$gallery->session->offline)
 			{
-				$albumItems[$nr]['note'] .= "(" . gTranslate('core', "highlight") .")<br>";
+				$albumItems[$nr]['note'] .= '(' . gTranslate('core', "highlight") .')<br>';
 			}
 
 			/* Album */
@@ -776,10 +779,10 @@ if ($numPhotos) {
 					);
 				}
 
-				$buf ="<b>";
+				$buf ='<b>';
 				$buf .= sprintf(gTranslate('core', "Album: %s"),
 					'<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
-				$buf .= "</b> $link";
+				$buf .= '</b> $link';
 
 				$albumItems[$nr]['caption'] = $buf;
 
@@ -800,8 +803,8 @@ if ($numPhotos) {
 				$contains = gTranslate('core',"Contains: One Item","Contains %d items", $visItems, '', true) .'. ';
 				// If comments indication for either albums or both
 				switch ($gallery->app->comments_indication) {
-					case "albums":
-					case "both":
+					case 'albums':
+					case 'both':
 						$lastCommentDate = $myAlbum->lastCommentDate($gallery->app->comments_indication_verbose);
 						if ($lastCommentDate > 0) {
 							$contains .= lastCommentString($lastCommentDate, $displayCommentLegend);
@@ -811,7 +814,7 @@ if ($numPhotos) {
 
 				$albumItems[$nr]['infos'][] = $contains;
 
-				if ($gallery->album->fields["display_clicks"] == 'yes' &&
+				if ($gallery->album->fields['display_clicks'] == "yes" &&
 				  !$gallery->session->offline &&
 				  $myAlbum->getClicks() > 0) {
 					$albumItems[$nr]['clickcounter'] = gTranslate('core', "Viewed: Once.", "Viewed: %d times.", $myAlbum->getClicks(), '', true);
@@ -825,12 +828,12 @@ if ($numPhotos) {
 				$albumItems[$nr]['caption'] .= $gallery->album->getCaptionName($i) . ' ';
 				// indicate with * if we have a comment for a given photo
 				if ($gallery->user->canViewComments($gallery->album) &&
-					$gallery->app->comments_enabled == 'yes')
+					$gallery->app->comments_enabled == "yes")
 				{
 					// If comments indication for either photos or both
 					switch ($gallery->app->comments_indication) {
-						case "photos":
-						case "both":
+						case 'photos':
+						case 'both':
 							$lastCommentDate = $gallery->album->itemLastCommentDate($i);
 							$albumItems[$nr]['caption'] .=
 								lastCommentString($lastCommentDate, $displayCommentLegend);
@@ -852,7 +855,7 @@ if ($numPhotos) {
 					}
 				}
 
-				if ($gallery->album->fields["display_clicks"] == 'yes' &&
+				if ($gallery->album->fields['display_clicks'] == "yes" &&
 					!$gallery->session->offline &&
 					$gallery->album->getItemClicks($i) > 0)
 				{
@@ -884,7 +887,7 @@ if ($numPhotos) {
 				);
 			}
 			else {
-				$specialIconMode = 'yes';
+				$specialIconMode = "yes";
 
 				/* Show item options. Such as eCard or photo properties link. */
 				foreach ($albumItemOptions as $key => $option) {
