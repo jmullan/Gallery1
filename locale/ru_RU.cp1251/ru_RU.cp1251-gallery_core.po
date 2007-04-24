@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-04-11 16:39+0200\n"
+"POT-Creation-Date: 2007-04-24 12:42+0200\n"
 "PO-Revision-Date: 2004-08-04 23:09+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -220,7 +220,7 @@ msgid "Welcome, %s"
 msgstr "Добро пожаловать, %s"
 
 #
-#: ../albums.php:155 ../view_album.php:385
+#: ../albums.php:155 ../view_album.php:386
 #, fuzzy
 msgid "slidesho_w"
 msgstr "показ слайдов"
@@ -321,7 +321,7 @@ msgstr "%d странице"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:339 ../view_album.php:637
+#: ../albums.php:339 ../view_album.php:641 ../view_album.php:644
 #, fuzzy, php-format
 msgid "Highlight for album: %s"
 msgstr "Обложка для альбома:"
@@ -333,7 +333,7 @@ msgid "No highlight!"
 msgstr "Нет обложки"
 
 #
-#: ../albums.php:370 ../view_album.php:771
+#: ../albums.php:370 ../view_album.php:779
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "не указан альбом"
@@ -376,7 +376,7 @@ msgid "Last changed on %s."
 msgstr "Последнее изменение %s."
 
 #
-#: ../albums.php:443 ../view_album.php:959
+#: ../albums.php:443 ../view_album.php:966
 msgid "This album is empty."
 msgstr "Этот альбом пуст."
 
@@ -487,7 +487,7 @@ msgstr ""
 
 #
 #: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:755
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:763
 msgid "hidden"
 msgstr "скрытый"
 
@@ -540,7 +540,7 @@ msgstr "Неназванный"
 
 #
 #: ../classes/Album.php:246 ../classes/Album.php:258 ../lib/albumItem.php:73
-#: ../lib/albumItem.php:495 ../lib/usage.php:79
+#: ../lib/albumItem.php:495 ../lib/usage.php:84
 #: ../templates/commentbox.tpl.default:16
 msgid "Album"
 msgstr "Альбом"
@@ -1208,7 +1208,7 @@ msgid "Supported file types: %s"
 msgstr "Поддерживаемые типы файлов"
 
 #
-#: ../includes/add_photos/add_form.inc:38 ../view_album.php:512
+#: ../includes/add_photos/add_form.inc:38 ../view_album.php:515
 msgid " or "
 msgstr " или "
 
@@ -2446,23 +2446,34 @@ msgstr "Поворот"
 msgid "Rating:"
 msgstr "Дождь"
 
-#: ../lib/usage.php:76
+#: ../lib/usage.php:81
 #, php-format
 msgid "Space used per album :: Sorted by %s"
 msgstr ""
 
-#: ../lib/usage.php:80 ../lib/usage.php:127
+#: ../lib/usage.php:85 ../lib/usage.php:134
 #, fuzzy
 msgid "User"
 msgstr "Имя пользователя"
 
-#: ../lib/usage.php:81 ../lib/usage.php:128
-msgid "Disk usage"
-msgstr ""
+#
+#: ../lib/usage.php:86
+#, fuzzy
+msgid "Disk usage main album"
+msgstr "Показ слайдов для альбома"
 
-#: ../lib/usage.php:124
+#: ../lib/usage.php:87
+#, fuzzy
+msgid "Subalbums"
+msgstr "Вложенные&nbsp;альбомы"
+
+#: ../lib/usage.php:131
 #, php-format
 msgid "Space used by users :: Sorted by %s"
+msgstr ""
+
+#: ../lib/usage.php:135
+msgid "Disk usage"
 msgstr ""
 
 #: ../new_password.php:35
@@ -2569,7 +2580,7 @@ msgstr "Вернуться на %s"
 
 #
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:461 ../view_album.php:780
+#: ../popups/upgrade_album.php:97 ../view_album.php:463 ../view_album.php:788
 #, php-format
 msgid "Album: %s"
 msgstr "Альбом: %s"
@@ -5300,7 +5311,7 @@ msgstr "обновить все альбомы"
 
 #
 #: ../templates/album.tpl.default:141 ../templates/album.tpl.default:206
-#: ../view_album.php:520
+#: ../view_album.php:523
 msgid "Vote"
 msgstr "Голосовать"
 
@@ -6195,43 +6206,43 @@ msgid "Watermark album"
 msgstr "Альбом водяных знаков"
 
 #
-#: ../view_album.php:374
+#: ../view_album.php:375
 #, fuzzy
 msgid "Album Actions"
 msgstr "Заголовок альбома"
 
 #
-#: ../view_album.php:400
+#: ../view_album.php:401
 #, fuzzy
 msgid "view&nbsp;_comments"
 msgstr "просмотреть&nbsp;комментарии"
 
-#: ../view_album.php:445
+#: ../view_album.php:447
 #, fuzzy
 msgid "Your votes are:"
 msgstr "Сообщение:"
 
 #
-#: ../view_album.php:491
+#: ../view_album.php:494
 msgid "See full poll results"
 msgstr "Смотри полные результаты опроса"
 
-#: ../view_album.php:510
+#: ../view_album.php:513
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:516
+#: ../view_album.php:519
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Для голосования за фотографии, кликните на %s."
 
-#: ../view_album.php:519
+#: ../view_album.php:522
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Вы ДОЛЖНЫ кликнуть на %s для записи ваших оценок."
 
 #
-#: ../view_album.php:526
+#: ../view_album.php:529
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
@@ -6239,40 +6250,40 @@ msgstr[0] "У вас есть всего %s и вы можете изменить их если захотите."
 msgstr[1] "У вас есть всего %s и вы можете изменить их если захотите."
 msgstr[2] "У вас есть всего %s и вы можете изменить их если захотите."
 
-#: ../view_album.php:531
+#: ../view_album.php:534
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Вы можете изменить вашу оценку если захотите."
 
-#: ../view_album.php:673 ../view_album.php:674
+#: ../view_album.php:681 ../view_album.php:682
 #, php-format
 msgid "%dkB"
 msgstr "%dКб"
 
-#: ../view_album.php:687 ../view_album.php:710
+#: ../view_album.php:695 ../view_album.php:718
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
 #
-#: ../view_album.php:762
+#: ../view_album.php:770
 #, fuzzy
 msgid "highlight"
 msgstr "Нет обложки"
 
 #
-#: ../view_album.php:789
+#: ../view_album.php:797
 msgid "No description"
 msgstr "Нет описания"
 
 #
-#: ../view_album.php:797
+#: ../view_album.php:805
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Последнее изменение %s."
 
 #
-#: ../view_album.php:800
+#: ../view_album.php:808
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
@@ -6280,7 +6291,7 @@ msgstr[0] "Содержит: "
 msgstr[1] "Содержит: "
 msgstr[2] "Содержит: "
 
-#: ../view_album.php:817
+#: ../view_album.php:825
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
@@ -6288,18 +6299,18 @@ msgstr[0] "Просмотров:"
 msgstr[1] "Просмотров:"
 msgstr[2] "Просмотров:"
 
-#: ../view_album.php:844
+#: ../view_album.php:852
 #, fuzzy, php-format
 msgid "Description for '%s'"
 msgstr "Описание"
 
 #
-#: ../view_album.php:845
+#: ../view_album.php:853
 #, fuzzy
 msgid "... show full description"
 msgstr "Нет описания"
 
-#: ../view_album.php:860
+#: ../view_album.php:868
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
@@ -6308,7 +6319,7 @@ msgstr[1] "Просмотров:"
 msgstr[2] "Просмотров:"
 
 #
-#: ../view_album.php:956
+#: ../view_album.php:963
 msgid "Hey! Add some photos."
 msgstr "Эй! Добавь несколько фотографий."
 
@@ -9244,9 +9255,6 @@ msgstr "Добавлен комментарий"
 #~ msgstr[0] "%d посещение"
 #~ msgstr[1] "%d посещения"
 #~ msgstr[2] "%d посещений"
-
-#~ msgid "Sub-albums"
-#~ msgstr "Вложенные&nbsp;альбомы"
 
 #
 #~ msgid "Last comment %s."

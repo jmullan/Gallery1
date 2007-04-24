@@ -72,22 +72,29 @@ function showUsagePerAlbum($sortby = 'bytes', $order = 'desc') {
 
 	array_sort_by_fields($usageTable, $sortby, $order);
 ?>
+<style> .bottom {
+	border-top: 1px solid silver;
+}
+</style>
+
 <fieldset>
 <legend><?php printf(gTranslate('core', "Space used per album :: Sorted by %s"), $sortby); ?></legend>
-<table class="g-usageTable">
+<table class="g-usageTable" cellspacing="0">
 	<tr>
 		<th align="center"><?php echo gTranslate('core', "Album"); ?></th>
 		<th align="center"><?php echo gTranslate('core', "User"); ?></th>
-		<th align="center"><?php echo gTranslate('core', "Disk usage"); ?></th>
+		<th align="center"><?php echo gTranslate('core', "Disk usage main album"); ?></th>
+		<th align="center"><?php echo gTranslate('core', "Subalbums"); ?></th>		
 	</tr>
 <?php
 
 foreach ($usageTable as $usageTableEntry) {
 ?>
 	<tr>
-		<td><?php echo $usageTableEntry['link'] ?></td>
-		<td><?php echo $usageTableEntry['owner'] ?></td>
-		<td class="right"><?php echo $usageTableEntry['usage']; ?></td>
+		<td class="bottom"><?php echo $usageTableEntry['link'] ?></td>
+		<td class="bottom"><?php echo $usageTableEntry['owner'] ?></td>
+		<td class="right bottom"><?php echo $usageTableEntry['usage']; ?></td>
+		<td class="bottom">&nbsp;</td>
 	</tr>
 	<?php print printAlbumListSub($usageTableEntry['name']);
 }
@@ -165,6 +172,7 @@ function printAlbumListSub($albumName, $depth = 0) {
 				print "<tr>";
 				print "<td>$val2</td>\n";
 				print "<td> $val3 </td>";
+				print "<td>&nbsp;</td>";
 				$dir = $gallery->app->albumDir. "/" .$nestedAlbum->fields['name'];
 				print "<td class=\"right\">" . formatted_filesize(get_size($dir)) . "</td>\n";
 				print "</tr>\n";

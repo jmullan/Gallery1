@@ -332,8 +332,8 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 			var main_$treeName;
 
 			tree_$treeName = new YAHOO.widget.TreeView(\"tree_$treeName\");
-			tree_${treeName}.setExpandAnim(YAHOO.widget.TVAnim.FADE_IN);
-			tree_${treeName}.setCollapseAnim(YAHOO.widget.TVAnim.FADE_OUT);
+		//	tree_${treeName}.setExpandAnim(YAHOO.widget.TVAnim.FADE_IN);
+		//	tree_${treeName}.setCollapseAnim(YAHOO.widget.TVAnim.FADE_OUT);
 
 			root_$treeName = tree_${treeName}.getRoot();
 
