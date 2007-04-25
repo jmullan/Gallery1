@@ -15,6 +15,7 @@ if(!includeTemplate('navigator.tpl')) {
 		if ($begin == 1 && $end <= $navigator["maxPages"]) {
 			$end = min(2 * $navigator["spread"], $navigator["maxPages"]);
 		}
+
 		if ($end == $navigator["maxPages"]) {
 			$begin = max(1, $end - 2 * $navigator["spread"] + 1);
 		}
@@ -30,7 +31,8 @@ if(!includeTemplate('navigator.tpl')) {
 		// If the border color is not passed in, we do a white one
 		if ($navigator["bordercolor"]) {
 			$borderIn = $navigator["bordercolor"];
-		} else {
+		}
+		else {
 			$borderIn = '';
 		}
 
@@ -56,12 +58,24 @@ if(!includeTemplate('navigator.tpl')) {
 
 		#-- 'first' and 'previous button cell ---
 		if ($navigator["page"] != 1) {
-			$fpContent = galleryIconLink($url . $navigator['pageVar'] .'=1', $fpImg, $fpAltText,'yes');
+			$fpContent = galleryIconLink(
+					$url . $navigator['pageVar'] .'=1',
+					$fpImg,
+					$fpAltText,
+					'yes'
+			);
 
-			$ppContent = galleryIconLink($url . $navigator['pageVar'] ."=$prevPage", $ppImg, $ppAltText, 'yes');
+			$ppContent = galleryIconLink(
+				$url . $navigator['pageVar'] ."=$prevPage",
+				$ppImg,
+				$ppAltText,
+				'yes',
+				array('id' => "g-nav-backward_$navc")
+			);
 
 			$pClass = 'g-borderright';
-		} else {
+		}
+		else {
 			$fpContent = '&nbsp;';
 			$ppContent = '&nbsp;';
 
@@ -86,11 +100,13 @@ if(!includeTemplate('navigator.tpl')) {
 				if ($i == $current) {
 					$number = "<b>$i</b>";
 					$leftdot = gImage($ndl, "leftdot");
-				} else {
+				}
+				else {
 					$number = galleryLink("${url}${navigator['pageVar']}=$i", $i);
 					if ($i-1 == $current) {
 						$leftdot = gImage($ndr, "leftdot");
-					} else {
+					}
+					else {
 						$leftdot = gImage($nd, "leftdot");
 					}
 				}
@@ -99,11 +115,13 @@ if(!includeTemplate('navigator.tpl')) {
 
 			if ($end == $current) {
 				$rightdot = gImage($ndr, "rightdot");
-			} else {
+			}
+			else {
 				$rightdot = gImage($nd, "rightdot");
 			}
 
 			$mpContent .="\n\t<td>&nbsp;$rightdot";
+
 			if (isset($endNextBlock)) {
 				$title = sprintf(gTranslate('core', "Jump to page %d (Accesskey '_j')"), $endNextBlock);
 				$accesskey = getAndRemoveAccessKey($title);
@@ -112,18 +130,31 @@ if(!includeTemplate('navigator.tpl')) {
 				$mpContent .= "\n\t</td><td>$link";
 			}
 			$mpContent .= '</td></tr></table>';
-		} else {
+		}
+		else {
 			$mpContent = '';
 		}
 
 		#-- 'next' and 'last' button cell ---
 		if ($current < $maxPages) {
-			$npContent = galleryIconLink($url . $navigator['pageVar'] ."=$nextPage", $npImg, $npAltText, 'yes');
+			$npContent = galleryIconLink(
+				$url . $navigator['pageVar'] ."=$nextPage",
+				$npImg,
+				$npAltText,
+				'yes',
+				array('id' => "g-nav-forward_$navc")
+			);
 
-			$lpContent = galleryIconLink($url . $navigator['pageVar'] .'='. $navigator['maxPages'], $lpImg, $lpAltText, 'yes');
+			$lpContent = galleryIconLink(
+				$url . $navigator['pageVar'] .'='. $navigator['maxPages'],
+				$lpImg,
+				$lpAltText,
+				'yes'
+			);
 
 			$nClass='g-borderleft';
-		} else {
+		}
+		else {
 			$npContent = '&nbsp;';
 			$lpContent = '&nbsp;';
 
@@ -141,7 +172,36 @@ if(!includeTemplate('navigator.tpl')) {
 	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $lpContent ?></td>
 </tr>
 </table>
-	<?php
-    }
+<?php
+		if($navc < 2) { ?>
+<script type="text/javascript">
+	function cursor_nav(e) {
+		if(document.all) {
+			taste = window.event.keyCode;
+		}
+		else {
+			taste = e.which;
+		}
+		switch (taste) {
+			case 37:
+				backward = document.getElementById("g-nav-backward_1");
+				window.location.href = backward.href;
+			break;
+
+			case 39:
+				forward = document.getElementById("g-nav-forward_1");
+				window.location.href = forward.href;
+			break;
+
+			default:
+			break;
+		}
+	}
+
+	document.onkeydown = cursor_nav;
+</script>
+<?php
+	    }
+	}
 }
 ?>

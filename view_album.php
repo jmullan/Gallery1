@@ -787,7 +787,7 @@ if ($numPhotos) {
 				$buf ='<b>';
 				$buf .= sprintf(gTranslate('core', "Album: %s"),
 					'<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
-				$buf .= '</b> $link';
+				$buf .= '</b>';
 
 				$albumItems[$nr]['caption'] = $buf;
 
