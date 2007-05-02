@@ -426,6 +426,11 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	$attrList['name'] = $name;
 	$attrList['accesskey'] = getAndSetAccessKey($label);
 
+	if(!isset($attrList['id'])) {
+		$attrList['id'] = $attrList['name'];
+	}
+	$id = $attrList['id'];
+
 	if ($type != 'textarea' &&(!empty($value) || $value == 0)) {
 		$attrList['type'] = $type;
 		$attrList['value'] = $value;
@@ -450,7 +455,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 		$input = initAutocompleteJS(
 			$label,
 			$name,
-			$attrList['id'],
+			$id,
 			$browser->hasFeature('xmlhttpreq')
 		);
 		$label = null;
@@ -469,7 +474,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	if($tableElement){
 		if($label) {
 			$html = "  <tr>\n";
-			$html .= "\t<td>$label</td>\n";
+			$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
 			$html .= "\t<td>$input</td>\n";
 			$html .= "  </tr>\n";
 		}
@@ -481,11 +486,11 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	else {
 		if($label) {
-			if($type == 'checkbox') {
-				$html = "  $input $label\n";
+			if($type == 'checkbox' || $type == 'radio') {
+				$html = "  $input <label for=\"$id\">$label</label>\n";
 			}
 			else {
-				$html = "  $label $input\n";
+				$html = "  <label for=\"$id\">$label</label> $input\n";
 			}
 		}
 		else {
@@ -494,7 +499,6 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 
 	if($multiInput) {
-		$id = $attrList['id'];
 		$html .= gButton('addField', gTranslate('common', "Add field"), "${id}obj.newField()");
 		$html .= "\n<div id=\"${id}_Container\"></div>\n\n";
 
@@ -507,13 +511,13 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 }
 
 function gButton($name, $value, $onClick, $additionalAttrs = array()) {
-	$attrList['name'] = $attrList['id'] = $name;
-	$attrList['type'] = 'button';
-	$attrList['accesskey'] = getAndRemoveAccessKey($value);
-	$attrList['value'] = $value;
-	$attrList['class'] = 'g-button';
-	$attrList['onClick'] = $onClick;
-	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+	$attrList['name']		= $attrList['id'] = $name;
+	$attrList['type']		= 'button';
+	$attrList['accesskey']	= getAndRemoveAccessKey($value);
+	$attrList['value']		= $value;
+	$attrList['class']		= 'g-button';
+	$attrList['onClick']	= $onClick;
+	$attrList['title']		= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
 
 	$attrList = array_merge($attrList, $additionalAttrs);
 
@@ -529,12 +533,12 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 }
 
 function gReset($name, $value, $additionalAttrs = array()) {
-	$attrList['name'] = $name;
-	$attrList['type'] = 'reset';
-	$attrList['accesskey'] = getAndRemoveAccessKey($value);
-	$attrList['value'] = $value;
-	$attrList['class'] = 'g-button';
-	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+	$attrList['name']		= $name;
+	$attrList['type']		= 'reset';
+	$attrList['accesskey']	= getAndRemoveAccessKey($value);
+	$attrList['value']		= $value;
+	$attrList['class']		= 'g-button';
+	$attrList['title']		= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
 
 	if($attrList['accesskey'] != '') {
 		$attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);
