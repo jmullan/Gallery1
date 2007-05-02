@@ -22,6 +22,10 @@
 ?>
 <?php
 
+/**
+ * @package Add Photos
+ */
+
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 $mode = getRequestVar('mode');

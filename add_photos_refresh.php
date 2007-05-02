@@ -20,6 +20,11 @@
  * $Id$
  */
 ?>
+<?php
+/**
+ * @package Add Photos
+ */
+?>
 <html>
 <head>
 <title>Refresh</title>

@@ -21,33 +21,47 @@
  */
 ?>
 <?php
-	echo "\n<br><br>";
-	echo gTranslate('core', "Upload any images found at this location.");
 
-	echo makeFormIntro('save_photos.php',
-			array('name' => 'uploadurl_form'),
-			array('type' => 'popup'));
+/**
+ * Writes a HTML formular to upload items from an URL.
+ *
+ * @package Add_Items
+ */
 
-    echo gInput('text', 'urls[]', '', false, false, array('size' => 50));
+echo "\n<br><br>";
+echo gTranslate('core', "Upload any images found at this location.");
 
-    echo "\n<div style=\"padding-top: 5px\">";
-	echo gTranslate('core', "What would you like the captions to default to?");
-	echo "\n</div>";
+echo makeFormIntro('save_photos.php',
+	array('name' => 'uploadurl_form'),
+	array('type' => 'popup')
+);
 
-    echo "\n<div style=\"padding-top: 5px\">";
-	include(dirname(__FILE__) .'/captionOptions.inc.php');
-    echo "\n</div>";
+echo gInput('text', 'urls[]', '', false, false, array('size' => 50));
 
-    if (isset($gallery->app->watermarkDir)) {
-       global $watermarkForm;
-       $watermarkForm['askRecursive'] = 0;
-       $watermarkForm['askPreview'] = 0;
-       $watermarkForm['allowNone'] = 1;
-       includeLayout('watermarkform.inc');
-    }
+echo "\n<div style=\"padding-top: 5px\">";
+echo gTranslate('core', "What would you like the captions to default to?");
+echo "\n</div>";
+
+echo "\n<div style=\"padding-top: 5px\">";
+/**
+ * Central caption options
+ */
+include(dirname(__FILE__) .'/captionOptions.inc.php');
+echo "\n</div>";
+
+if (isset($gallery->app->watermarkDir)) {
+	global $watermarkForm;
+
+	$watermarkForm['askRecursive']	= 0;
+	$watermarkForm['askPreview']	= 0;
+	$watermarkForm['allowNone']	= 1;
+
+	includeLayout('watermarkform.inc');
+}
 ?>
 <div align="center">
-<input type=submit value="<?php echo gTranslate('core', "Submit URL") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">
-<input type=submit value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()' class="g-button">
+	<?php echo gButton('upload', gTranslate('core', "_Submit URL"), 'parent.opener.showProgress(); document.uploadurl_form.submit()'); ?>
+	<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </div>
+
 </form>

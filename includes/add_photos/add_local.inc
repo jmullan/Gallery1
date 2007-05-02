@@ -22,6 +22,15 @@
 ?>
 <?php
 
+/**
+ * @package Add Photos
+ * @uses classes/horde/Browser.php
+*/
+
+/**
+ * Writes a HTML form to add items from local server.
+ */
+
     include_once(GALLERY_BASE .'/classes/horde/Browser.php');
 
     if (class_exists('Browser')) {

@@ -36,9 +36,19 @@
 ?>
 <?php
 
+/**
+ * Functions for the 'low' slideshow for older browsers.
+ *
+ * @package Slideshow
+ * @todo Can this be removed at all?
+ */
+
 list($slide_index, $slide_pause, $slide_full, $slide_dir, $slide_loop) =
     getRequestVar(array('slide_index', 'slide_pause', 'slide_full', 'slide_dir', 'slide_loop'));
 
+/**
+ * "Initialize" the slideshow.
+ */
 function slideshow_initialize() {
     global $defaultLoop, $defaultPause, $defaultFull, $defaultDir,
         $slide_index, $slide_pause, $slide_loop, $slide_full,

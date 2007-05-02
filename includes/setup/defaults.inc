@@ -22,6 +22,16 @@
 ?>
 <?php
 
+/**
+ * Defines all the albumsettings from step 3.
+ *
+ * @package Setup
+ */
+
+
+/**
+ * Printservices
+ */
 require_once(GALLERY_BASE . '/includes/definitions/services.php');
 
 $defaults = array(

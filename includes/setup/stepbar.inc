@@ -1,6 +1,9 @@
 <?php
 /**
- * Gallery SVN Id
+ * Shows the stepbar in Setup
+ *
+ * @package Setup
+ *
  * $Id: stepbar.inc 13795 2006-06-11 14:21:15Z jenst $
  */
 ?>

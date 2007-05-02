@@ -22,15 +22,23 @@
 ?>
 <?php
 
+/**
+ * Defines the checklist and checkpriority for checks in step 1 of the setup.
+ *
+ * @package Setup
+ */
+
 $locale_check = check_locale();
-/* $elawisyl <=> Enable LAnguages WIthout SYstem Locales
-** is set to "no" when we have no system locales and are in linux
-** "no" disables all language settings
+/*
+ * $elawisyl <=> Enable LAnguages WIthout SYstem Locales
+ * is set to "no" when we have no system locales and are in linux
+ * "no" disables all language settings
 */
 
 if ($locale_check == NULL) {
 	$elawisyl = 'no';
-} else {
+}
+else {
 	$elawisyl = 'yes';
 }
 
@@ -40,7 +48,8 @@ $IM_check = check_graphics_im();
 /* If all watermarking/overlay applications are missing */
 if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) && isset($IM_check[2]['composite']) ) {
 	$enablewatermark = 'no';
-} else {
+}
+else {
 	$enablewatermark = 'yes';
 }
 

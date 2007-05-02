@@ -22,6 +22,16 @@
 ?>
 <?php
 
+/**
+ * Functions for the 'normal' slideshow for modern browser.
+ *
+ * @package Slideshow
+ *
+ */
+
+/**
+ * Horde Browser class to detect the browser and its abilities.
+ */
 include_once(GALLERY_BASE .'/classes/horde/Browser.php');
 
 if (class_exists('Browser')) {

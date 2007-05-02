@@ -22,7 +22,20 @@
 ?>
 <?php
 
+/**
+ * Defines all the settings from step 2.
+ *
+ * @package Setup
+ */
+
+/**
+ * Function and defintions for the statistics.
+ */
 require_once(GALLERY_BASE . '/includes/stats/stats.inc.php');
+
+/**
+ * Printservices
+ */
 require_once(GALLERY_BASE . '/includes/definitions/services.php');
 
 $stats_choices = array();

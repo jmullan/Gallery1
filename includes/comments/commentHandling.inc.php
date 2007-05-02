@@ -22,10 +22,17 @@
 ?>
 <?php
 
+/**
+ * Processes given comment information.
+ * @package Comments
+ */
 $comment_messages = array();
 
 if($gallery->user->canAddComments($gallery->album)) {
 	if(enableCaptcha()) {
+		/**
+		 * Captcha classes.
+		 */
 		require(dirname(dirname(dirname(__FILE__))) . '/classes/hn_captcha/hn_captcha.class.x1.php');
 		require(dirname(dirname(__FILE__)) . '/captcha/captcha_init.php');
 		$captcha =& new hn_captcha_X1($CAPTCHA_INIT);

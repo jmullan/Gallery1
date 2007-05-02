@@ -1,5 +1,11 @@
 <?php
-/* $Id$ */
+/**
+ * Central capta settings
+ *
+ * @package Captcha
+ *
+ * $Id$
+ */
 
 // ConfigArray
 $CAPTCHA_INIT = array(

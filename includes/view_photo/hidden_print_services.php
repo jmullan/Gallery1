@@ -22,6 +22,12 @@
 ?>
 <?php
 
+/**
+ * Writes hidden input fields for the printservices.
+ *
+ * @package Gallery
+ */
+
 if (isset($printShutterflyForm)) { ?>
 <form name="sflyc4p" action="http://www.shutterfly.com/c4p/UpdateCart.jsp" method="post">
   <input type=hidden name=addim value="1">

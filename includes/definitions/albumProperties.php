@@ -21,6 +21,12 @@
  */
 ?>
 <?php
+/**
+ * Defintion for album properties.
+ *
+ * @package Definitions
+ * @author Jens Tkotz
+ */
 
 $properties = array(
 	'group_text' => array (
