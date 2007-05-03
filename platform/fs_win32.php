@@ -161,11 +161,11 @@ function fs_executable($filename) {
 /**
  * Creates a directory
  * @param  string	$dirname
- * @param  string	$perms	 Optional perms, given in octal format
- * @return boolean   $result	true on success, otherwise false
+ * @param  string	$perms		Optional perms, given in octal format
+ * @return boolean	$result		true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
-	$result = mkdir(fs_import_filename($dirname, 0), $perms);
+	$result = @mkdir(fs_import_filename($dirname, 0), $perms);
 
 	return $result;
 }

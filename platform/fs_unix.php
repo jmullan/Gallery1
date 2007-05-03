@@ -176,11 +176,11 @@ function fs_mkdir($dirname, $perms = 0700) {
 	* permissions for any Unix implementation.
 	*/
 	if ( phpversion() == '4.2.0') {
-		$result = mkdir(fs_import_filename($dirname, 0));
+		$result = @mkdir(fs_import_filename($dirname, 0));
 		chmod($dirname, $perms);
 	}
 	else {
-		$result = mkdir(fs_import_filename($dirname, 0), $perms);
+		$result = @mkdir(fs_import_filename($dirname, 0), $perms);
 	}
 
 	return $result;

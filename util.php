@@ -1611,7 +1611,7 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
 	if(! fs_mkdir($dir)) {
 		echo gallery_error(
-		  sprintf(gTranslate('core', "Gallery was unable to create a tempory subfolder in your temp folder. Please check permissions of this dir: %s"),
+		  sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your temp folder. Please check permissions of this dir: %s"),
 		  $gallery->app->tmpDir));
 		return false;
 	}
