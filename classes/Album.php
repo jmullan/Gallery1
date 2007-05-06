@@ -144,28 +144,33 @@ class Album {
 		// Nobody, Everybody, Logged in
 		// end of VOTING variables
 
-		$this->fields["slideshow_type"]=$gallery->app->default["slideshow_type"];
-		$this->fields["slideshow_length"]=$gallery->app->default["slideshow_length"];
-		$this->fields["slideshow_recursive"]=$gallery->app->default["slideshow_recursive"];
-		$this->fields["slideshow_loop"]=$gallery->app->default["slideshow_loop"];
-		$this->fields["album_frame"]=$gallery->app->default["album_frame"];
-		$this->fields["thumb_frame"]=$gallery->app->default["thumb_frame"];
-		$this->fields["image_frame"]=$gallery->app->default["image_frame"];
-		$this->fields["showDimensions"] = $gallery->app->default["showDimensions"];
-		$this->fields["dimensionsAsPopup"] = $gallery->app->default["dimensionsAsPopup"];
-		$this->fields["email_me"] = array();
-		$this->fields["ecards"] = $gallery->app->default["ecards"];
-
-		$this->fields['highlightIndex'] = 1;
+		$this->fields['slideshow_type']		= $gallery->app->default['slideshow_type'];
+		$this->fields['slideshow_length']	= $gallery->app->default['slideshow_length'];
+		$this->fields['slideshow_recursive']= $gallery->app->default['slideshow_recursive'];
+		$this->fields['slideshow_loop']		= $gallery->app->default['slideshow_loop'];
+		$this->fields['album_frame']		= $gallery->app->default['album_frame'];
+		$this->fields['thumb_frame']		= $gallery->app->default['thumb_frame'];
+		$this->fields['image_frame']		= $gallery->app->default['image_frame'];
+		$this->fields['showDimensions']		= $gallery->app->default['showDimensions'];
+		$this->fields['dimensionsAsPopup']	= $gallery->app->default['dimensionsAsPopup'];
+		$this->fields['email_me']			= array();
+		$this->fields['ecards']				= $gallery->app->default['ecards'];
+		$this->fields['highlightIndex']		= 1;
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
 	}
 
+	/**
+	 * Is the album a root album?
+	 *
+	 * @return boolean
+	 */
 	function isRoot() {
-		if ($this->fields["parentAlbumName"]) {
+		if ($this->fields['parentAlbumName']) {
 			return false;
-		} else {
+		}
+		else {
 			return true;
 		}
 	}
@@ -185,13 +190,16 @@ class Album {
 
 	function lastCommentDate($verbose = "yes") {
 		global $gallery;
+
 		if (!$gallery->user->canViewComments($this)) {
 			return -1;
 		}
+
 		$count = $this->numPhotos(1);
 		$mostRecent = -1;
+
 		for ($i = 1; $i <= $count; $i++) {
-			$subMostRecent=$this->itemLastCommentDate($i);
+			$subMostRecent = $this->itemLastCommentDate($i);
 			if ($subMostRecent > $mostRecent) {
 				$mostRecent = $subMostRecent;
 				if ($verbose == "no") {
@@ -200,24 +208,28 @@ class Album {
 
 			}
 		}
+
 		return $mostRecent;
 	}
 
-	function &getNestedAlbum($index, $loadphotos=true) {
+	function &getNestedAlbum($index, $loadphotos = true) {
 
 		$albumName = $this->getAlbumName($index);
 		$album = new Album();
 		$album->load($albumName, $loadphotos);
+
 		return $album;
 	}
 
 	function &getParentAlbum($loadphotos = TRUE) {
 		$ret = NULL;
+
 		if ($this->fields['parentAlbumName']) {
 			$parentAlbum = new Album();
 			$parentAlbum->load($this->fields['parentAlbumName'], $loadphotos);
 			$ret = $parentAlbum;
 		}
+
 		return $ret;
 	}
 

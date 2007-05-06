@@ -19,14 +19,14 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * Writes the Gallery Remote Mini-Applet for adding items.
  *
  * @package Gallery_Remote
  * @subpackage Add_Items
  */
+
 ?>
 <p><?php echo gTranslate('core', "Use the Gallery Remote Mini Applet to upload pictures. It will take a short while to download.") ?></p>
 <p><?php echo gTranslate('core', "If you don't have the Java Plugin 1.4 or later, you can use one of the other methods.") ?></p>

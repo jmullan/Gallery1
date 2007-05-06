@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * Writes a HTML formular to upload items via file-input fields.
@@ -31,7 +29,6 @@
 /**
  * Javascript that adds the ability to have dynamically multiple input fields.
  */
-
 include_once(dirname(dirname(dirname(__FILE__))) . '/js/multifile.js.php');
 
 echo "\n<p>". gTranslate('core', "Click the <b>Browse</b> button to locate a photo to upload.");

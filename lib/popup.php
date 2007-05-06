@@ -118,6 +118,7 @@ function popup_link2($title, $url, $args = array()) {
 	}
 
 	$url = build_popup_url($url, $url_is_complete);
+
 	// Force int data type
 	$height = (int)$height;
 	$width = (int)$width;
@@ -128,6 +129,7 @@ function popup_link2($title, $url, $args = array()) {
 	);
 
 	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
+
 	return $html;
 }
 

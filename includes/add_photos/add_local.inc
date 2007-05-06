@@ -19,76 +19,78 @@
  *
  * $Id: add_local.inc 13490 2006-04-18 12:36:36Z jenst $
  */
-?>
-<?php
 
 /**
- * @package Add Photos
- * @uses classes/horde/Browser.php
-*/
-
-/**
- * Writes a HTML form to add items from local server.
+ * Writes a HTML form to add items from local server
+ *
+ * @package Add_Items
  */
 
-    include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+/**
+ * Horde Browser class to detect the browser and its abilities.
+ */
+include_once(GALLERY_BASE .'/classes/horde/Browser.php');
 
-    if (class_exists('Browser')) {
-        $browser = &Browser::singleton();
-    }
+if (class_exists('Browser')) {
+	$browser = &Browser::singleton();
+}
 
-    if($browser->hasFeature('xmlhttpreq') && isset($gallery->app->uploadPaths)) {
-        echo autoCompleteJS();
-    }
+if($browser->hasFeature('xmlhttpreq') && isset($gallery->app->uploadPaths)) {
+	echo autoCompleteJS();
+}
 
-	echo "\n<br><br>";
-	echo _("Upload any images found at this location on your server.");
+echo "\n<br><br>";
+echo gTranslate('core', "Upload any images found at this location on your server.");
 
-	echo '<br><b>'. _("Hint:") . '</b> ';
-	echo _("FTP images to a directory on your server then provide that path here!");
+echo '<br><b>'. gTranslate('core', "Hint:") . '</b> ';
+echo gTranslate('core', "FTP images to a directory on your server then provide that path here!");
 
-	echo makeFormIntro("save_photos.php",
-			array('name' => 'uploadurl_form'),
-			array('type' => 'popup'));
+echo makeFormIntro("save_photos.php",
+array('name' => 'uploadurl_form'),
+array('type' => 'popup'));
 
-    if(isset($gallery->app->uploadPaths)) {
-        echo gTranslate('core', "Choose one of these legal paths:");
+if(isset($gallery->app->uploadPaths)) {
+	echo gTranslate('core', "Choose one of these legal paths:");
 
-        $options = array(
-                array('text' => gTranslate('core', "<< Choose path >>"),
-                      'value' => 0,
-                      'selected' => true));
-        foreach ($gallery->app->uploadPaths as $value) {
-            $options[] = array('text' => $value, 'value' => $value);
-        }
+	$options = array(
+	array('text' => gTranslate('core', "<< Choose path >>"),
+	'value' => 0,
+	'selected' => true));
+	foreach ($gallery->app->uploadPaths as $value) {
+		$options[] = array('text' => $value, 'value' => $value);
+	}
 
-        echo drawSelect2('prefix', $options, array('onChange' => 'setUploadPath()'));
-        echo "<br>";
-    }
+	echo drawSelect2('prefix', $options, array('onChange' => 'setUploadPath()'));
+	echo "<br>";
+}
 
-    echo initAutocompleteJS(
-        gTranslate('core', "Path to your image(s):"),
-        'urls[]',
-        'YUIsearchinput',
-        $browser->hasFeature('xmlhttpreq') && isset($gallery->app->uploadPaths),
-        isset($gallery->app->uploadPaths)
-    );
+echo initAutocompleteJS(
+	gTranslate('core', "Path to your image(s):"),
+	'urls[]',
+	'YUIsearchinput',
+	$browser->hasFeature('xmlhttpreq') && isset($gallery->app->uploadPaths),
+	isset($gallery->app->uploadPaths)
+);
 
-    echo "\n<div class=\"clear\" style=\"padding-top: 5px\">";
-	echo gTranslate('core', "What would you like the captions to default to?");
-	echo "\n</div>";
+echo "\n<div class=\"clear\" style=\"padding-top: 5px\">";
+echo gTranslate('core', "What would you like the captions to default to?");
+echo "\n</div>";
 
-    echo "\n<div style=\"padding-top: 5px\">";
-	include(dirname(__FILE__) .'/captionOptions.inc.php');
-    echo "\n</div>";
+echo "\n<div style=\"padding-top: 5px\">";
+/**
+ * Central caption options
+ */
+include(dirname(__FILE__) .'/captionOptions.inc.php');
+echo "\n</div>";
 
-    if (isset($gallery->app->watermarkDir)) {
-        global $watermarkForm;
-        $watermarkForm["askRecursive"] = 0;
-        $watermarkForm["askPreview"] = 0;
-        $watermarkForm["allowNone"] = 1;
-        includeLayout('watermarkform.inc');
-    }
+if (isset($gallery->app->watermarkDir)) {
+	global $watermarkForm;
+
+	$watermarkForm["askRecursive"] = 0;
+	$watermarkForm["askPreview"] = 0;
+	$watermarkForm["allowNone"] = 1;
+	includeLayout('watermarkform.inc');
+}
 ?>
 <div align="center">
 <input type="submit" value="<?php echo gTranslate('core', "Submit directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()' class="g-button">

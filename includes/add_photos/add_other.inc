@@ -19,13 +19,13 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * Writes infos about other methods to add items to Gallery 1.
  *
  * @package Add_Items
-*/
+ */
+
 ?>
 <br><br>
 <?php echo gTranslate('core', "You can use one of these desktop agents to drag and drop photos from your desktop") ?>:

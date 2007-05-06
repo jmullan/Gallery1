@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * Writes a HTML formular to upload items from an URL.
