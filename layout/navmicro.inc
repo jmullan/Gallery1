@@ -3,6 +3,8 @@
 global $navigator;
 global $full;
 
+echo "Full: $full";
+
 if(!includeTemplate('navmicro.tpl')) {
 	// Calculate the beginning and ending of the navigator range
 	$begin = 0;
@@ -49,6 +51,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 
 	/* Create a list of the previous thumbs, starting at the farthest back. */
 	$navThumbsPrev = '';
+
 	for ($i = $gallery->album->fields["nav_thumbs_prev_shown"]; $i >= 1; $i--) {
 		if ( $navpage-$i < 0 ) { continue; }
 		$prevPage = $navigator["allIds"][$navpage-$i];
@@ -108,8 +111,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"fixed") ) {
 	for ($i = $startThumb; $i < $navBlockSize+$startThumb; $i++) {
 		/* In case we are close to the end, stop generating thumbs */
 		if ( $i >= $navcount ) { break; }
-		$navBlogThumb .= '<a href="'. makeAlbumUrl($gallery->session->albumName,
-		   ($navigator["allIds"][$i])).'">';
+		$navBlogThumb .= '<a href="'. makeAlbumUrl($gallery->session->albumName, $navigator["allIds"][$i], ($full) ? array('full' => 1) : NULL) .'">';
 
 		/* Current image gets special CSS */
 		if ( $i == $navpage ) {
