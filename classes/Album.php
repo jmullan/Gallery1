@@ -188,7 +188,15 @@ class Album {
 		}
 	}
 
-	function lastCommentDate($verbose = "yes") {
+	/**
+	 * Get the date of the most recent comment.
+	 * If verbose not set the date of the first comment is returned.
+	 *
+	 * @param string $verbose	'yes', or 'no'
+	 * @return mixed			Either a date, or -1 of no comment was found.
+	 * @todo make $verbose a boolean
+	 */
+	function lastCommentDate($verbose = 'yes') {
 		global $gallery;
 
 		if (!$gallery->user->canViewComments($this)) {
@@ -202,10 +210,9 @@ class Album {
 			$subMostRecent = $this->itemLastCommentDate($i);
 			if ($subMostRecent > $mostRecent) {
 				$mostRecent = $subMostRecent;
-				if ($verbose == "no") {
+				if ($verbose == 'no') {
 					break;
 				}
-
 			}
 		}
 
@@ -1663,6 +1670,7 @@ class Album {
 		}
 
 		$photo = $this->getPhoto($index);
+
 		if ($photo->isAlbum()) {
 			$myAlbum = $this->getNestedAlbum($index);
 			return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
@@ -1783,8 +1791,10 @@ class Album {
 		* image.  Highlights are also typically pretty small.  So,
 		* if this is for a highlight, don't mirror it.
 		*/
-		if (isset($gallery->app->feature["mirror"]) && isset($gallery->app->mirrorSites) &&
-		strcmp($type, "highlight")) {
+		if (isset($gallery->app->feature["mirror"]) &&
+			isset($gallery->app->mirrorSites) &&
+			strcmp($type, "highlight"))
+		{
 			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
 				$base_url .= $albumPath;
 				$serial = $base_url . "/serial.{$this->fields['serial_number']}.dat";
@@ -1802,6 +1812,7 @@ class Album {
 			/* All mirrors are out of date */
 			$this->transient->mirrorUrl =
 			$gallery->app->albumDirURL . $albumPath;
+
 			return $this->transient->mirrorUrl;
 		}
 
