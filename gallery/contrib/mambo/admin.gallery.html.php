@@ -29,9 +29,11 @@ class HTML_content {
 ?>
 <table cellpadding="4" cellspacing="0" border="0" width="100%">
 		<tr>
-			<td width="228"><a target="_blank" href="http://gallery.sourceforge.net/"><img src="components/com_gallery/images/logo-228x67.png" border="0" width="228" height="67" align="middle" /></a></td><td align="left" class="sectionname" style="margin-left: 10px;">Gallery Component Settings</td>
+			<td width="228"><a target="_blank" href="http://gallery.sourceforge.net/"><img src="components/com_gallery/images/logo-228x67.png" border="0" width="228" height="67" align="middle" /></a></td>
+			<td align="left" class="sectionname" style="margin-left: 10px;">Gallery Component Settings</td>
 		</tr>
-		</table>
+</table>
+
 <script language="javascript" src="js/dhtml.js"></script>
 <script language="javascript" type="text/javascript">
 		function submitbutton(pressbutton) {
@@ -40,21 +42,31 @@ class HTML_content {
 		}
 </script>
 <form action="index2.php" method="post" name="adminForm">
-    <table cellpadding="2" cellspacing="4" border="0" width="100%" class="adminform">
+    <table cellpadding="2" cellspacing="4" width="100%" class="adminlist">
+	  <tr>
+	  	<th width="150">Setting</th>
+	  	<th>Value</th>
+	  	<th width="50%">Additional info</th>
+	  </tr>
       <tr>
-        <td width="80" valign="top">Path to Gallery:</td>
-        <td valign="top"><input class="inputbox" type="text" name="path" size="50" value="<?php echo $params['path']; ?>"></td>
-      	<td class="error" valign="top">Full server path to your Gallery</td>
+        <td>Security Check</td>
+		<td><input class="inputbox" type="text" name="path" size="70" value="<?php echo $params['path']; ?>"></td>
+      	<td class="error">e.g. /home/user1/public_html/gallery</td>
       </tr>
       <tr>
-        <td width="80" valign="top">Admin Level:</td>
-        <td valign="top"><?php echo $params['minAuthType']; ?></td>
-      	<td class="error" valign="top">Minimum authority level needed for <i>admin</i> privileges in Gallery</td>
-      </tr>	  
+        <td>Admin Level:</td>
+        <td><?php echo $params['minAuthType']; ?></td>
+      	<td class="error">Minimum authority level needed for <i>admin</i> privileges in Gallery.</td>
+      </tr>
       <tr>
-        <td width="80" valign="top">Hide Right-hand modules:</td>
-        <td valign="top"><?php echo $params['hideRightSide']; ?></td>
-      	<td class="error" valign="top">Hiding right-hand modules gives Gallery more room</td>
+        <td>Level for creating root albums:</td>
+        <td><?php echo $params['minAuthAlbums']; ?></td>
+      	<td class="error">Minimum authority level needed for creating root albums in your Gallery.</td>
+      </tr>
+      <tr>
+      	<td>Hide Right-hand modules:</td>
+        <td><?php echo $params['hideRightSide']; ?></td>
+      	<td class="error">Hiding right-hand modules gives Gallery more room.</td>
       </tr>
     </table>
   <input type="hidden" name="option" value="<?php echo $option; ?>">

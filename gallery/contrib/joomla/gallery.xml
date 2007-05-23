@@ -18,20 +18,21 @@
  | Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  |
  | Gallery Component for Joomla! Open Source CMS v1.02 or newer
- | Original author: Beckett Madden-Woods <beckett@beckettmw.com>
- | Last author: Kai Tomalik <kai@gallery-addons.com>
+ | @author Beckett Madden-Woods <beckett@beckettmw.com>
+ | @author Kai Tomalik <kai@gallery-addons.com>
+ | @author Jens Tkotz
  |
  | $Id$
 -->
-<mosinstall type="component" version="1.05">
+<mosinstall type="component" version="1.07">
 	<name>Gallery</name>
-	<creationDate>December, 31st 2005</creationDate>
+	<creationDate>May,23th 2007</creationDate>
 	<author>Gallery Development Team</author>
 	<copyright>This component is released under the Gallery license (GNU General Public License)</copyright>
 	<authorEmail>gallery-devel@lists.sourceforge.net</authorEmail>
 	<authorUrl>gallery.sourceforge.net</authorUrl>
-	<version>1.5.2</version>
-	<description>Gallery Component For Joomla! 1.02 or newer</description>
+	<version>1.6</version>
+	<description>Gallery Component For Joomla! 1.02 or newer. (Not 1.5)</description>
 	<files>
 		<filename>gallery.php</filename>
 	</files>
@@ -48,6 +49,9 @@
 			           VALUES ('minAuthType',   '20')
 			</query>
 			<query id="4">INSERT INTO `#__gallery` (`field`, `value`)
+			           VALUES ('minAuthAlbums',   '20')
+			</query>
+			<query id="5">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('hideRightSide', '1')
 			</query>
 		</queries>

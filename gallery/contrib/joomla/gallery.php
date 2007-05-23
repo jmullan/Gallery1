@@ -50,3 +50,4 @@ include(MOS_GALLERY_PARAMS_PATH . 'index.php');
 print "</td></tr>\n</table>\n";
 
 ?>
+
