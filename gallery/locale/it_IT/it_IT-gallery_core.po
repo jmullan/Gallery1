@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-06 19:12+0100\n"
+"POT-Creation-Date: 2007-05-03 09:38+0200\n"
 "PO-Revision-Date: 2006-01-13 12:34+0100\n"
 "Last-Translator: Ermanno Baschiera <ebaschiera AT gmail DOT com>\n"
 "Language-Team: Italian <gallery-devel@lists.sourceforge.net>>\n"
@@ -404,12 +404,12 @@ msgstr "documentazione"
 msgid "preferences"
 msgstr "preferenze"
 
-#: ../albums.php:225 ../imagemap.php:139 ../view_album.php:454
+#: ../albums.php:225 ../imagemap.php:140 ../view_album.php:454
 #: ../view_photo.php:538
 msgid "logout"
 msgstr "esci"
 
-#: ../albums.php:230 ../imagemap.php:144 ../view_album.php:459
+#: ../albums.php:230 ../imagemap.php:145 ../view_album.php:459
 #: ../view_photo.php:543
 msgid "login"
 msgstr "login"
@@ -576,7 +576,7 @@ msgstr[1] "%d pagine"
 msgid "%s items in this album"
 msgstr "%s oggetti in questo album"
 
-#: ../captionator.php:191 ../imagemap.php:156 ../slideshow.php:183
+#: ../captionator.php:191 ../imagemap.php:157 ../slideshow.php:183
 #: ../view_album.php:116 ../view_comments.php:54 ../view_photo.php:171
 msgid "navigate UP"
 msgstr "vai SU"
@@ -1349,30 +1349,30 @@ msgstr "campo senza titolo"
 msgid "Alt Text / onMouseOver"
 msgstr "Testo Alternativo / onMouseOver"
 
-#: ../edit_appearance.php:216
+#: ../edit_appearance.php:217
 #, php-format
 msgid "Field %s:"
 msgstr "Campo %s:"
 
-#: ../edit_appearance.php:231 ../edit_appearance.php:237
+#: ../edit_appearance.php:232 ../edit_appearance.php:238
 msgid "Album Properties"
 msgstr "Propriet&agrave; dell'Album"
 
-#: ../edit_appearance.php:296
+#: ../edit_appearance.php:297
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Applica i valori agli album interni (eccetto titolo dell'album e sommario)."
 
-#: ../edit_appearance.php:299 ../extra_fields.php:172
+#: ../edit_appearance.php:300 ../extra_fields.php:172
 #: ../poll_properties.php:140
 msgid "Apply"
 msgstr "Applica"
 
-#: ../edit_appearance.php:300 ../extra_fields.php:173
+#: ../edit_appearance.php:301 ../extra_fields.php:173
 #: ../poll_properties.php:141
 msgid "Undo"
 msgstr "Annulla modifiche"
 
-#: ../edit_appearance.php:301 ../extra_fields.php:174
+#: ../edit_appearance.php:302 ../extra_fields.php:174
 #: ../poll_properties.php:142 ../rebuild_capture_dates.php:41
 #: ../rebuild_capture_dates.php:60 ../rotate_photo.php:123
 msgid "Close"
@@ -1775,51 +1775,55 @@ msgstr "Debug ATTIVATO! Livello %s"
 msgid "Security violation"
 msgstr "Violazione della protezione "
 
-#: ../imagemap.php:165
+#: ../imagemap.php:166
 msgid "Original photo"
 msgstr "Foto originale"
 
-#: ../imagemap.php:215
+#: ../imagemap.php:216
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr "Qui puoi creare, modificare o eliminare le imagemaps per le foto selezionate."
 
-#: ../imagemap.php:217
+#: ../imagemap.php:218
 msgid "Click the questionmark icon for helpful instructions."
 msgstr "Clicca sul punto di domanda per avere utili istruzioni."
 
-#: ../imagemap.php:236
+#: ../imagemap.php:219 ../includes/add_photos/add_form.inc:63
+msgid "Help"
+msgstr "Aiuto"
+
+#: ../imagemap.php:237
 msgid "Clear and reset canvas"
 msgstr "Ripulisci e annulla il quadro"
 
-#: ../imagemap.php:238
+#: ../imagemap.php:239
 msgid "Optional link-url"
 msgstr "Link-url opzionale"
 
-#: ../imagemap.php:240
+#: ../imagemap.php:241
 msgid "Description"
 msgstr "Descrizione"
 
-#: ../imagemap.php:242
+#: ../imagemap.php:243
 msgid "Save Imagemap"
 msgstr "Salva Imagemap"
 
-#: ../imagemap.php:249
+#: ../imagemap.php:250
 msgid "Select entries to show image area in your photo."
 msgstr "Seleziona le entry delle aree immagine da visualizzare nella tua foto."
 
-#: ../imagemap.php:257
+#: ../imagemap.php:258
 msgid "Delete selected ImageMap(s)"
 msgstr "Elimina le ImageMap selezionate"
 
-#: ../imagemap.php:260
+#: ../imagemap.php:261
 msgid "Update selected ImageMap(s)"
 msgstr "Aggiorna le ImageMap selezionate"
 
-#: ../imagemap.php:262
+#: ../imagemap.php:263
 msgid "Be aware, that the text of ALL selected entries will be updated!"
 msgstr "Fai attenzione che verr&agrave; aggiornato il testo di TUTTE le entry selezionate!"
 
-#: ../imagemap.php:265
+#: ../imagemap.php:266
 msgid "No ImageMaps"
 msgstr "Nessuna ImageMap"
 
@@ -1878,10 +1882,6 @@ msgstr "Files:"
 #: ../includes/add_photos/add_form.inc:62
 msgid "Do the same for optional metafiles."
 msgstr "Fai lo stesso per i metafile opzionali."
-
-#: ../includes/add_photos/add_form.inc:63
-msgid "Help"
-msgstr "Aiuto"
 
 #: ../includes/add_photos/add_form.inc:68
 msgid "MetaFiles:"
@@ -3603,50 +3603,50 @@ msgstr "Aggiungi File"
 msgid "Search"
 msgstr "Cerca"
 
-#: ../search.php:152
-msgid "Caption: "
-msgstr "Didascalia: "
-
-#: ../search.php:170
+#: ../search.php:171
 msgid "Matching Comments"
 msgstr "Commenti Corrispondenti"
 
-#: ../search.php:202
+#: ../search.php:194
+msgid "Caption: "
+msgstr "Didascalia: "
+
+#: ../search.php:224
 msgid "From Album"
 msgstr "Dall'Album"
 
-#: ../search.php:209 ../view_photo_properties.php:112
+#: ../search.php:233 ../view_photo_properties.php:112
 msgid "KEYWORDS"
 msgstr "PAROLE CHIAVE"
 
-#: ../search.php:227
+#: ../search.php:251
 #, php-format
 msgid "Albums containing %s"
 msgstr "Album contenenti %s"
 
-#: ../search.php:228
+#: ../search.php:252
 msgid "No Album Matches"
 msgstr "Nessun Album Corrispondente"
 
-#: ../search.php:231
+#: ../search.php:255
 #, php-format
 msgid "Photos containing %s in caption, comment or name."
 msgstr "Foto che contengono %s nella didascalia, nei commenti o nel nome."
 
-#: ../search.php:232
+#: ../search.php:256
 msgid "No Photo Matches"
 msgstr "Nessuna Foto Corrispondente"
 
-#: ../search.php:252
+#: ../search.php:277
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
 msgstr "Alcuni Album non sono stati consultati perch&eacute; richiedono prima un aggiornamento alla ultima versione di %s."
 
-#: ../search.php:255
+#: ../search.php:280
 msgid "Upgrade all albums."
 msgstr "Aggiorna tutti gli album"
 
-#: ../search.php:272
+#: ../search.php:297
 msgid "Search the Gallery's Album and Photo titles, descriptions and comments."
 msgstr "Cerca nele descrizioni, commenti e titoli degli album e delle foto di Gallery."
 
@@ -4654,7 +4654,7 @@ msgstr "%s ti ha inviato una E-C@rd."
 
 #: ../util.php:1849
 #, fuzzy, php-format
-msgid "Gallery was unable to create a tempory subfolder in your tempdir. Please check permissions of this dir: %s"
+msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr "La tua cartella temporanea non &egrave; scrivibile! Controlla i permessi di questa cartella: %s"
 
 #: ../util.php:1888
