@@ -1,9 +1,10 @@
-<?php /* $Id$ */ ?>
 <?php
+	/*
+		$Id$
+	*/
+
 global $navigator;
 global $full;
-
-echo "Full: $full";
 
 if(!includeTemplate('navmicro.tpl')) {
 	// Calculate the beginning and ending of the navigator range

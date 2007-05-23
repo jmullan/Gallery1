@@ -240,7 +240,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 		);
 		$options[] = array(
 			'text'	=> sprintf(gTranslate('core', "Feature %s"), $label),
-			'value'	=> showChoice2('featured-photo.php',
+			'value'	=> showChoice2('featured-item.php',
 							array(
 								'set' => 1,
 								'set_albumName' => $gallery->album->fields['name'],
