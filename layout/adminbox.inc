@@ -1,5 +1,14 @@
-<?php /* $Id$ */ ?>
 <?php
+
+/**
+ *
+ * Prints a box with a nested table. Left side is some text, right side the (admin) commands.
+ *
+ * @package Gallery
+ * @todo 	Move to templates/
+ *
+ * @version $Id$
+ */
 
 global $gallery, $adminbox;
 
@@ -10,6 +19,7 @@ foreach ($checklist as $check) {
 	}
 }
 
+/* Note: We use a table here, as its automatically scales the height. */
 ?>
 
 <div class="g-adminbar">

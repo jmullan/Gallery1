@@ -233,7 +233,7 @@ class Image {
 			}
 		}
 		else {
-			$attrs['src']		= "$dir/$fullImage";
+			$attrs['src']			= "$dir/$fullImage";
 		}
 
 		$overwrite = array('height', 'width');
@@ -251,7 +251,8 @@ class Image {
 	function getName($dir, $full = false) {
 		if ((!$full) && (fs_file_exists("$dir/$this->resizedName.$this->type"))) {
 			return $this->resizedName;
-		} else {
+		}
+		else {
 			return $this->name;
 		}
 	}
@@ -263,7 +264,8 @@ class Image {
 	function getPath($dir, $full=0) {
 		if ($full || !$this->resizedName) {
 			$name = $this->name;
-		} else {
+		}
+		else {
 			$name = $this->resizedName;
 		}
 		return "$dir/$name.$this->type";

@@ -81,16 +81,17 @@ if ($gallery->session->albumListPage > $maxPages) {
 	$gallery->session->albumListPage = $maxPages;
 }
 
-$borderColor = $gallery->app->default["bordercolor"];
+$borderColor = $gallery->app->default['bordercolor'];
 
-$navigator["page"] = $gallery->session->albumListPage;
-$navigator["pageVar"] = "set_albumListPage";
-$navigator["url"] = makeGalleryUrl("albums.php");
-$navigator["maxPages"] = $maxPages;
-$navigator["spread"] = 6;
-$navigator["fullWidth"] = 100;
-$navigator["widthUnits"] = "%";
-$navigator["bordercolor"] = $borderColor;
+$navigator['page']			= $gallery->session->albumListPage;
+$navigator['pageVar']		= 'set_albumListPage';
+$navigator['url']			= makeGalleryUrl('albums.php');
+$navigator['maxPages']		= $maxPages;
+$navigator['spread']		= 6;
+$navigator['fullWidth']		= 100;
+$navigator['widthUnits']	= '%';
+$navigator['bordercolor']	= $borderColor;
+
 // this determines if we display "* Item contains a comment" at end of page
 $displayCommentLegend = 0;
 
@@ -114,9 +115,9 @@ else {
 	);
 }
 
-$total_str = sprintf(gTranslate('core', "%d total"), $numAccess);
-$image_str = gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"), true);
-$page_str = gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"), true);
+$total_str	= sprintf(gTranslate('core', "%d total"), $numAccess);
+$image_str	= gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"), true);
+$page_str	= gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"), true);
 
 if ($numAccess != $numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core',"%s (%s), %s on %s"),
@@ -204,9 +205,9 @@ if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') 
 	);
 }
 
-$adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands . makeIconMenu($iconElements, 'right');
-$adminbox["bordercolor"] = $borderColor;
+$adminbox['text']			= $adminText;
+$adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor']	= $borderColor;
 
 /**
  * Searchfield and when inside phpBB2 a link back to home
@@ -233,8 +234,8 @@ if (!$gallery->session->offline &&
 	$searchBar .= "\n</table>";
 }
 
-$notice_caption = '';
-$notice_messages = array();
+$notice_caption		= '';
+$notice_messages	= array();
 
 /* Generate warnings about broken albums */
 if ($gallery->user->isAdmin() &&
@@ -350,14 +351,14 @@ for ($i = $start; $i <= $end; $i++) {
 
 		// <!-- Begin Album Column Block -->
 		// <!-- Begin Image Cell -->
-		$gallery->html_wrap['borderColor'] = $borderColor;
-		$gallery->html_wrap['borderWidth'] = 1;
+		$gallery->html_wrap['borderColor']	= $borderColor;
+		$gallery->html_wrap['borderWidth']	= 1;
 
-		$gallery->html_wrap['imageWidth'] = $iWidth;
-		$gallery->html_wrap['imageHeight'] = $iHeight;
-		$gallery->html_wrap['imageTag'] = $imageTag;
-		$gallery->html_wrap['imageHref'] = $albumURL;
-		$gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
+		$gallery->html_wrap['imageWidth']	= $iWidth;
+		$gallery->html_wrap['imageHeight']	= $iHeight;
+		$gallery->html_wrap['imageTag']		= $imageTag;
+		$gallery->html_wrap['imageHref']	= $albumURL;
+		$gallery->html_wrap['frame']		= $gallery->app->gallery_thumb_frame_style;
 
 		$rootAlbum[$tmpAlbumName]['imageCell'] = $gallery->html_wrap;
 		// <!-- End Image Cell -->

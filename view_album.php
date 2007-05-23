@@ -598,6 +598,7 @@ if ($numPhotos) {
 			if ($iWidth == 0) {
 				$iWidth = $gallery->album->fields['thumb_size'];
 			}
+
 			if ($iHeight == 0) {
 				$iHeight = 100;
 			}
@@ -615,7 +616,7 @@ if ($numPhotos) {
 			$albumItems[$nr]['caption']			= '';
 			$albumItems[$nr]['clickcounter']	= '';
 			$albumItems[$nr]['options']			= '';
-			$description = '';
+			$description						= '';
 
 			$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
 			$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\", width:\"${tooltipWidth}px\" } );";
@@ -657,7 +658,6 @@ if ($numPhotos) {
 			else {
 				$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
-
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 				$gallery->html_wrap['type']			= 'inline_photothumb.frame';
 

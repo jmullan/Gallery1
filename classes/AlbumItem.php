@@ -827,14 +827,15 @@ class AlbumItem {
 
 	/**
 	 * @return	string	$alttext
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	 */
 	function getAlttext() {
 		$alttext = '';
 
 		if (!empty($this->extraFields['AltText'])) {
 			$alttext = $this->extraFields['AltText'];
-		} elseif (!empty($this->caption)) {
+		}
+		elseif (!empty($this->caption)) {
 			$alttext = $this->caption;
 		}
 
@@ -888,7 +889,8 @@ class AlbumItem {
 	function getPhotoPath($dir, $full = false) {
 		if ($this->image) {
 			return $this->image->getPath($dir, $full);
-		} else {
+		}
+		else {
 			return "about:blank";
 		}
 	}
@@ -896,7 +898,7 @@ class AlbumItem {
 	/**
 	 * @param	$full		boolean
 	 * @return	$imageName	string
-	 * @author	Jens Tkotz<jens@peino.de
+	 * @author	Jens Tkotz
 	 */
 	function getImageName($full = false) {
 		if($this->image) {
@@ -905,6 +907,7 @@ class AlbumItem {
 		else {
 			$imageName = "about:blank";
 		}
+
 		return $imageName;
 	}
 

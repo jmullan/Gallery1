@@ -1,31 +1,40 @@
 <?php
-// $Id: inline_imagewrap.inc 13817 2006-06-13 11:11:49Z jenst $
 
+/**
+ * Prints a wrapped image. Wrapped inside a given frame and/or link.
+ *
+ * @package Gallery
+ * @todo 	Cleanup
+ *
+ * @version $Id: inline_imagewrap.inc 13817 2006-06-13 11:11:49Z jenst $
+ */
 
 //-- shorten the variables for convinience ---
-$borderWidth = $gallery->html_wrap['borderWidth'];
-$borderColor = $gallery->html_wrap['borderColor'];
-$pixelImage = getImagePath('pixel_trans.gif');
-$imageWidth = $gallery->html_wrap['imageWidth'];
-$imageHeight = $gallery->html_wrap['imageHeight'];
-$href = $gallery->html_wrap['imageHref'];
-$tag = $gallery->html_wrap['imageTag'];
-$frame = $gallery->html_wrap['frame'];
-$attrlist = isset($gallery->html_wrap['attrlist']) ? $gallery->html_wrap['attrlist'] : array();
+$borderWidth	= $gallery->html_wrap['borderWidth'];
+$borderColor	= $gallery->html_wrap['borderColor'];
+$pixelImage		= getImagePath('pixel_trans.gif');
+$imageWidth		= $gallery->html_wrap['imageWidth'];
+$imageHeight	= $gallery->html_wrap['imageHeight'];
+$href			= $gallery->html_wrap['imageHref'];
+$tag			= $gallery->html_wrap['imageTag'];
+$frame			= $gallery->html_wrap['frame'];
+$attrlist		= isset($gallery->html_wrap['attrlist']) ? $gallery->html_wrap['attrlist'] : array();
 
 $base = '';
 
 if (isset($gallery->html_wrap['base'])) {
     $base = $gallery->html_wrap['base'];
-} else {
+}
+else {
     $base = getGalleryBaseUrl();
 }
 
 $href_tag = galleryLink($href, $tag, $attrlist, '', false, false);
 
 if (!in_array($frame, array('none', 'dots', 'solid', 'siriux')) &&
-    !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def")) {
-        $frame = 'none';
+    !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def"))
+{
+	$frame = 'none';
 }
 
 switch ($frame) {
@@ -33,22 +42,28 @@ switch ($frame) {
     case "none":
 	   echo $href_tag;
     break;
+
     case "solid":
         $width = $imageWidth + $borderWidth;
 ?>
       <div style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
+
     case "dots":
 ?>
       <div style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
+
     case "siriux":
         echo "\n\t<div style=\"margin: 0 auto;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
     break;
 
-    default: // use frames directory or fallback to none
+    default:
+    	/**
+    	 * If given frame name is valid, include the infos, else use no frame.
+    	 */
         if(array_key_exists($frame, available_frames())) {
             $base .= "/layout/frames/$frame";
             require(dirname(__FILE__) . "/frames/$frame/frame.def");

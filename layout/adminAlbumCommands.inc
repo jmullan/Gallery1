@@ -22,6 +22,16 @@
 ?>
 <?php
 
+/**
+ * Creates an array of all options a user has for an album.
+ * Currently used only on the mainpage.
+ * Options are also shown
+ *
+ * @package Gallery
+ * @todo 	Separate generating and output. lib/ and templates/
+ *
+ */
+
 $adminAlbumCommands = '';
 
 /* User is allowed to delete the album */
