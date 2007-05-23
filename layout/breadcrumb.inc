@@ -1,7 +1,14 @@
 <?php
-// $Id$
-?>
-<?php
+
+/**
+ * Prints a table where at the leftside is shown who si logged in an on the right the returnto path.
+ *
+ * @package Gallery
+ * @todo 	Move to templates/
+ *
+ * @version	$Id$
+ */
+
 global $breadcrumb, $gallery;
 
 if(!includeTemplate('breadcrumb') &&
@@ -9,19 +16,18 @@ if(!includeTemplate('breadcrumb') &&
 {
 ?>
 
-<table class="g-breadcrumb" cellspacing="0" cellpadding="0">
-<tr>
+<div class="g-breadcrumb">
 	<?php
 	if ($gallery->user->isLoggedIn()) {
 	    $name = $gallery->user->getFullName();
 	    if (!$name) {
 	        $name = $gallery->user->getUsername();
 	    }
-	    echo '<td class="left">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</td>';
+	    echo '<div class="left floatleft">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</div>';
 	}
 	?>
 
-	<td class="right">
+	<div class="right">
 	<?php
 	if (isset($breadcrumb['text'])) {
 	    foreach($breadcrumb["text"] as $nr => $text) {
@@ -29,9 +35,8 @@ if(!includeTemplate('breadcrumb') &&
 	    }
 	}
 	?>
-	</td>
-</tr>
-</table>
+	</div>
+</div>
 
 <?php
 }
