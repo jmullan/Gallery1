@@ -1,11 +1,23 @@
-<?php /* $Id$ */ ?>
 <?php
+
+/**
+ * Generats and prints a table with page navigation, forward backward links/icons
+ *
+ * @package Gallery
+ * @todo 	Split into code and layout.
+ *
+ * @version $Id$
+ */
+
 global $navigator;
 global $navc;
 $navc++;
 
 if(!includeTemplate('navigator.tpl')) {
 	if ($navigator["maxPages"] > 1) {
+		/** Direction depending navigation icons */
+		include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
+
 		// Calculate the beginning and ending of the navigator range
 		$begin = max($navigator["page"] - $navigator["spread"], 1);
 		$end = min($navigator["page"] + $navigator["spread"], $navigator["maxPages"]);
@@ -48,8 +60,6 @@ if(!includeTemplate('navigator.tpl')) {
 		$ppAltText= gTranslate('core', "_Previous Page");
 		$npAltText= gTranslate('core', "_Next Page");
 		$lpAltText= gTranslate('core', "_Last Page");
-
-		include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
 
 		$current = $navigator["page"];
 		$prevPage = $current -1;
