@@ -43,6 +43,7 @@ switch ($task) {
 	case "save":
 		saveSettings($option, $act);
 	break;
+
 	default:
 		viewSettings($option, $act);
 	break;
@@ -57,8 +58,8 @@ function viewSettings( $option, $act ) {
 	$cid = mosGetParam($_REQUEST, 'cid', array(0));
 	$uid = intval($cid[0]);
 	$row->load($uid);
-	
-	$database->setQuery("SELECT * FROM #__gallery16");
+
+	$database->setQuery("SELECT * FROM #__gallery");
 	$param = $database->loadRowList();
 
 	/* extract params from the DB query */
@@ -93,8 +94,9 @@ function viewSettings( $option, $act ) {
 	}
 
 	$params['minAuthType'] = mosHTML::selectList($gtree, 'minAuthType', 'size="6"', 'value', 'text', isset($params['minAuthType']) ? $params['minAuthType'] : 20);
+	$params['minAuthAlbums'] = mosHTML::selectList($gtree, 'minAuthAlbums', 'size="6"', 'value', 'text', isset($params['minAuthAlbums']) ? $params['minAuthAlbums'] : 21);
 	$params['hideRightSide'] = mosHTML::yesnoSelectList('hideRightSide', 'class="inputbox" size="1"', isset($params['hideRightSide']) ? $params['hideRightSide'] : 1);
-	
+
 	HTML_content::showSettings($option, $params, $act);
 }
 
@@ -111,12 +113,13 @@ function saveSettings( $option, $act ) {
 		$path .= addslashes(DIRECTORY_SEPARATOR);
 	}
 	$params['path'] = $path;
-	
+
 	$params['minAuthType'] = mosGetParam($_POST, 'minAuthType', 20);
+	$params['minAuthAlbums'] = mosGetParam($_POST, 'minAuthAlbums', 21);
 	$params['hideRightSide'] = mosGetParam($_POST, 'hideRightSide', true);
 
 	foreach ($params as $field => $value) {
-		$database->setQuery("UPDATE #__gallery16 SET value='$value' WHERE field='$field'");
+		$database->setQuery("UPDATE #__gallery SET value='$value' WHERE field='$field'");
 		if (!$database->query()) {
 			echo "<script> alert('".$database->getErrorMsg()."'); window.history.go(-1); </script>\n";
 			die;

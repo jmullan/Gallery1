@@ -53,9 +53,9 @@ class Mambo_User extends Abstract_User {
 		$this->fullname = $row[1];
 		$this->email = $row[2];
 		$this->gid = $row[3];
-		$this->canCreateAlbums = $this->isAdmin;
-		$this->uid = $uid;
 		$this->isAdmin = $this->isGalleryAdmin();
+		$this->canCreateAlbums = ($this->isAdmin || $this->canCreateRootAlbum());
+		$this->uid = $uid;
 	}
 
 	function loadByUserName($uname) {
@@ -72,13 +72,13 @@ class Mambo_User extends Abstract_User {
 		$this->email = $row[2];
 		$this->gid = $row[3];
 		$this->isAdmin = $this->isGalleryAdmin();
-		$this->canCreateAlbums = $this->isAdmin;
+		$this->canCreateAlbums = ($this->isAdmin || $this->canCreateRootAlbum());
 		$this->username = $uname;
 	}
 
 	/*
-	 * Determine whether the Mambo user has Gallery admin privileges
-	 * based on the user's Mambo authorization level
+	 * Determine whether the Joomla/Mambo user has Gallery admin privileges
+	 * based on the user's Joomla/Mambo authorization level
 	 */
 	function isGalleryAdmin() {
 		global $MOS_GALLERY_PARAMS;
@@ -98,6 +98,38 @@ class Mambo_User extends Abstract_User {
 		$minAuthType = $MOS_GALLERY_PARAMS['minAuthType'];
 
 		$results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='$minAuthType'");
+		$row = $this->db->fetch_row($results);
+		$minAuthLevel = $row[0];
+
+		$results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='{$this->gid}'");
+		$row = $this->db->fetch_row($results);
+		$myAuthLevel = $row[0];
+
+		return $myAuthLevel >= $minAuthLevel;
+	}
+
+		/*
+	 * Determine whether the Mambo user has Gallery admin privileges
+	 * based on the user's Mambo authorization level
+	 */
+	function canCreateRootAlbum() {
+		global $MOS_GALLERY_PARAMS;
+
+		/* Select minimum authorization level (set in component admin interface).
+		 * Current choices are:
+		 *
+		 *	'Super Administrator'
+		 *	'Publisher'
+		 *	'Administrator'
+		 *	'Editor'
+		 *	'Manager'
+		 *	'Author'
+		 *	'Registered'
+		*/
+
+		$minAuthAlbums = $MOS_GALLERY_PARAMS['minAuthAlbums'];
+
+		$results = $this->db->query('SELECT lft FROM ' . $this->prefix . "core_acl_aro_groups WHERE group_id='$minAuthAlbums'");
 		$row = $this->db->fetch_row($results);
 		$minAuthLevel = $row[0];
 

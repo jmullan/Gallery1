@@ -23,9 +23,9 @@
  |
  | $Id$
 -->
-<mosinstall type="component" version="4.6">
+<mosinstall type="component" version="4.7">
 	<name>Gallery</name>
-	<creationDate>September, 6th 2006</creationDate>
+	<creationDate>May, 23th 2007</creationDate>
 	<author>Gallery Development Team</author>
 	<copyright>This component is released under the Gallery license (GNU General Public License)</copyright>
 	<authorEmail>gallery-devel@lists.sourceforge.net</authorEmail>
@@ -35,31 +35,35 @@
 	<files>
 		<filename>gallery.php</filename>
 	</files>
+
 	<install>
 		<queries>
-			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery16`
+			<query id="1">CREATE TABLE IF NOT EXISTS `#__gallery`
 			           ( `field` varchar(128) PRIMARY KEY,
 				     `value` text default '')
 			</query>
-			<query id="2">INSERT INTO `#__gallery16` (`field`, `value`)
+			<query id="2">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('path',          '')
 			</query>
-			<query id="3">INSERT INTO `#__gallery16` (`field`, `value`)
+			<query id="3">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('minAuthType',   '20')
 			</query>
-			<query id="4">INSERT INTO `#__gallery16` (`field`, `value`)
+			<query id="4">INSERT INTO `#__gallery` (`field`, `value`)
+			           VALUES ('minAuthAlbums',   '20')
+			</query>
+			<query id="5">INSERT INTO `#__gallery` (`field`, `value`)
 			           VALUES ('hideRightSide', '1')
 			</query>
 		</queries>
 	</install>
 	<uninstall>
 		<queries>
-			<query id="1">DELETE FROM `#__gallery16`;</query>
-			<query id="2">DROP TABLE `#__gallery16`;</query>
+			<query id="1">DELETE FROM `#__gallery`;</query>
+			<query id="2">DROP TABLE `#__gallery`;</query>
 		</queries>
 	</uninstall>
 	<administration>
-		<menu link="option=com_gallery16">Gallery</menu>
+		<menu link="option=com_gallery">Gallery</menu>
 		<files>
 			<filename>admin.gallery.php</filename>
 			<filename>admin.gallery.html.php</filename>

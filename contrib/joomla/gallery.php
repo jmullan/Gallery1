@@ -27,7 +27,7 @@ defined( '_VALID_MOS' ) or die( 'Direct Access to this location is not allowed.'
 
 /* load the html drawing class */
 
-$database->setQuery("SELECT * FROM #__gallery16");
+$database->setQuery("SELECT * FROM #__gallery");
 $param = $database->loadRowList();
 
 /* extract params from the DB query */
