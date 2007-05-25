@@ -194,7 +194,7 @@ if (! $ecard_send) {
 	array("name" => "ecard_form"),
 	array("type" => "popup"));
 ?>
-	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"]; ?>">
+	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard['image_name']; ?>">
 	<input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
 	<input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
 	<input name="submit_action" type="hidden" value="">
@@ -209,7 +209,7 @@ if (! $ecard_send) {
 	}
 
 	$name_sender	= empty($ecard['name_sender'])		? $defaultSenderName : $ecard['name_sender'];
-	$email_sender	= empty($ecard['name_sender'])		? $defaultSenderEmail : $ecard['email_sender'];
+	$email_sender	= empty($ecard['email_sender'])		? $defaultSenderEmail : $ecard['email_sender'];
 	$name_recepient	= !empty($ecard['name_recepient'])	? $ecard['name_recepient'] : '';
 	$email_recepient= !empty($ecard['email_recepient'])	? $ecard['email_recepient'] : '';
 	$defaultSubject	= !empty($defaultSenderName)		? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : '';
