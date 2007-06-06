@@ -1007,6 +1007,14 @@ class AlbumItem {
 		}
 	}
 
+	/**
+	 * Resizes one image.
+	 *
+	 * @param string	$dir			Path to the album where the image is in.
+	 * @param integer	$target			New size of the longest site in pixel.
+	 * @param integer	$filesize		New minimum filesite
+	 * @param string	$pathToResized
+	 */
 	function resize($dir, $target, $filesize, $pathToResized) {
 		if (isset($this->image)) {
 			$this->image->resize($dir, $target, $filesize, $pathToResized);

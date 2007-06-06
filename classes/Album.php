@@ -1215,6 +1215,15 @@ class Album {
 
 	}
 
+	/**
+	 * Resize one photo of an album. Movies are skipped.
+	 * If the (optional) filesize is given, then file is
+	 *
+	 * @param integer	$index			Index of the item.
+	 * @param integer	$target			New size of the longest site in pixel.
+	 * @param integer	$filesize		New minimum filesize
+	 * @param string	$pathToResized
+	 */
 	function resizePhoto($index, $target, $filesize = 0, $pathToResized = '') {
 		$this->updateSerial = 1;
 
@@ -1228,20 +1237,33 @@ class Album {
 		}
 	}
 
-	function resizeAllPhotos($target,$filesize = 0,$pathToResized = '', $recursive = false) {
-		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+	/**
+	 * Resize all photos of an album. Movies are skipped. If wanted this can be done recursive.
+	 *
+	 * @param integer	$target			New size of the longest site in pixel.
+	 * @param integer	$filesize		New minimum filesize
+	 * @param string	$pathToResized
+	 * @param boolean	$recursive
+	 */
+	function resizeAllPhotos($target, $filesize = 0, $pathToResized = '', $recursive = false) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbum($i) && $recursive == true) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
 				$np = $nestedAlbum->numPhotos(1);
-				echo "\n<br>". sprintf (gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
-				$nestedAlbum->resizeAllPhotos($target,$filesize=0,$pathToResized="", $recursive);
+
+				echo "\n<br>";
+				printf (gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
+
+				$nestedAlbum->resizeAllPhotos($target, $filesize = 0, $pathToResized = '', $recursive);
 				$nestedAlbum->save();
 			}
 			else {
-				echo "<br>". sprintf(gTranslate('core', "Processing element %d..."), $i);
+				echo "\n<br>";
+				printf(gTranslate('core', "Processing element %d..."), $i);
+
 				my_flush();
-				$this->resizePhoto($i, $target, $filesize=0, $pathToResized="");
+				$this->resizePhoto($i, $target, $filesize = 0, $pathToResized = '');
 			}
 		}
 	}
@@ -1938,6 +1960,7 @@ class Album {
 
 	function &getPhoto($index) {
 		global $global_notice_messages;
+
 		if (!isset($global_notice_messages)) {
 			$global_notice_messages = array();
 		}

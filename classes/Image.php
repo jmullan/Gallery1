@@ -78,9 +78,11 @@ class Image {
 		}
 
 		$filename = "$dir/$this->name.$this->type";
+
 		if (!isMovie($this->type)) {
 			if (!$this->raw_width) {
 				list($w, $h) = getDimensions($filename);
+
 				$this->raw_width = $w;
 				$this->raw_height = $h;
 				$changed = 1;
@@ -98,26 +100,38 @@ class Image {
 		return $changed;
 	}
 
+	/**
+	 * Resizes the resized version of an image, deletes it, or copy one over.
+	 *
+	 * @param string	$dir
+	 * @param integer	$target
+	 * @param integer	$filesize
+	 * @param string	$pathToResized
+	 */
 	function resize($dir, $target, $filesize, $pathToResized) {
 		global $gallery;
 
-		/* getting rid of the resized image */
+		// getting rid of the resized image
 		if (stristr($target, "orig")) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
+
 			$this->width = $w;
 			$this->height = $h;
+
 			if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 				fs_unlink("$dir/$this->resizedName.$this->type");
 			}
 			$this->resizedName = '';
-		/* doing a resize */
-		} else {
+		}
+		// doing a resize
+		else {
 			$name = $this->name;
 			$type = $this->type;
 
 			if ($pathToResized) {
-				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");
-			} else {
+				$ret = copy($pathToResized, "$dir/$name.sized.$this->type");
+			}
+			else {
 				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
 			}
 
@@ -170,12 +184,15 @@ class Image {
 
 	function delete($dir) {
 		clearstatcache();
+
 		if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 			fs_unlink("$dir/$this->resizedName.$this->type");
 		}
+
 		if (fs_file_exists("$dir/$this->name.highlight.$this->type")) {
 			fs_unlink("$dir/$this->name.highlight.$this->type");
 		}
+
 		fs_unlink("$dir/$this->name.$this->type");
 	}
 
@@ -193,7 +210,6 @@ class Image {
 
 		$attrsCopy = $attrs;
 
-		$name = $this->getName($dir);
 		$attrs['alt'] = $attrs['title'] = htmlspecialchars(strip_tags(trim($attrs['alt'])));
 
 		if ($size) {
