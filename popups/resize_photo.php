@@ -47,7 +47,7 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 	if (!empty($resize)) {
 		if ($index === 'all') {
-			$gallery->album->resizeAllPhotos($resize,$resize_file_size,"", $resizeRecursive);
+			$gallery->album->resizeAllPhotos($resize,$resize_file_size, $resizeRecursive);
 		} else {
 			echo("<br> ". gTranslate('core', "Resizing 1 photo..."));
 			my_flush();
