@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecursive) = 
+list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecursive) =
   getRequestVar(array('index', 'manual', 'resize', 'resize_file_size', 'remove_resized', 'resizeRecursive'));
 
 // Hack check
@@ -59,7 +59,7 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 	if (!empty($resize)) {
 		if (!strcmp($index, "all")) {
-			$gallery->album->resizeAllPhotos($resize,$resize_file_size,"", $resizeRecursive);
+			$gallery->album->resizeAllPhotos($resize,$resize_file_size, $resizeRecursive);
 		} else {
 			echo("<br> ". _("Resizing 1 photo..."));
 			my_flush();
@@ -76,7 +76,7 @@ if ($gallery->session->albumName && isset($index)) {
 <p><?php echo _("This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."); ?>
 </p>
 
-<?php echo makeFormIntro("resize_photo.php", 
+<?php echo makeFormIntro("resize_photo.php",
 			array("name" => "resize_photo"),
 			array("type" => "popup"));
 ?>
@@ -99,7 +99,7 @@ if ($gallery->session->albumName && isset($index)) {
 	<td valign="middle"><?php print _("Maximum side length in pixels") ?></td>
 	<td><br>
 	<table border="0" class="popuptd">
-	<?php 
+	<?php
 		$choices=array(1280,1024,700,800,640,600,500,400);
 		for ($i=0; $i<count($choices); $i=$i+2) {
 			echo "\n\t<tr>";
