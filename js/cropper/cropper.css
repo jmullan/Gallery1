@@ -1,3 +1,5 @@
+/* $Id$ */
+
 .imgCrop_wrap {
 	/* width: 500px;   @done_in_js */
 	/* height: 375px;  @done_in_js */
@@ -7,7 +9,7 @@
 
 /* an extra classname is applied for Opera < 9.0 to fix it's lack of opacity support */
 .imgCrop_wrap.opera8 .imgCrop_overlay,
-.imgCrop_wrap.opera8 .imgCrop_clickArea { 
+.imgCrop_wrap.opera8 .imgCrop_clickArea {
 	background-color: transparent;
 }
 
@@ -28,7 +30,7 @@
 
 .imgCrop_selArea {
 	position: absolute;
-	/* @done_in_js 
+	/* @done_in_js
 	top: 20px;
 	left: 20px;
 	width: 200px;
@@ -64,16 +66,16 @@
 	z-index: 3;
 }
 
-/* 
+/*
  *  FIX MARCHING ANTS IN IE
- *	As IE <6 tries to load background images we can uncomment the follwoing hack 
+ *	As IE <6 tries to load background images we can uncomment the follwoing hack
  *  to remove that issue, not as pretty - but is anything in IE?
  *  And yes I do know that 'filter' is evil, but it will make it look semi decent in IE
  *
 * html .imgCrop_marqueeHoriz,
 * html .imgCrop_marqueeVert {
 	background: transparent;
-	filter: Invert; 
+	filter: Invert;
 }
 * html .imgCrop_marqueeNorth { border-top: 1px dashed #000; }
 * html .imgCrop_marqueeEast  { border-right: 1px dashed #000; }
@@ -113,7 +115,7 @@
 	cursor: n-resize;
 }
 
-.imgCrop_handleNE { 
+.imgCrop_handleNE {
 	top: -3px;
 	right: -3px;
 	cursor: ne-resize;
@@ -159,7 +161,7 @@
 }
 
 /**
- * Create an area to click & drag around on as the default browser behaviour is to let you drag the image 
+ * Create an area to click & drag around on as the default browser behaviour is to let you drag the image
  */
 .imgCrop_dragArea {
 	width: 100%;

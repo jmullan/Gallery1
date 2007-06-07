@@ -2,7 +2,7 @@
 /**
  * Gallery SVN ID:
  * $Id: multiInput.js.php 13850 2006-06-19 12:37:37Z jenst $
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
 */
 ?>
 <script language="JavaScript" type="text/javascript">

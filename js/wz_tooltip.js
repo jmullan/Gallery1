@@ -1,6 +1,7 @@
 /**
  * Gallery SVN ID:
  * $Id$
+ * @Todo: Update to 4.x
 */
 
 /* This notice must be untouched at all times.

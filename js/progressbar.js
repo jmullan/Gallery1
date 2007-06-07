@@ -1,4 +1,7 @@
-/* $Id$ */
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
 
 function updateProgressBar(htmlId, status, percentDone) {
     var progressBar = document.getElementById(htmlId);

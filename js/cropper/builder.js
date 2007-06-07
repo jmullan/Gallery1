@@ -1,3 +1,5 @@
+/* $Id$ */
+
 // Copyright (c) 2005 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 //
 // See scriptaculous.js for full license.
@@ -23,7 +25,7 @@ var Builder = {
   //       due to a Firefox bug
   node: function(elementName) {
     elementName = elementName.toUpperCase();
-    
+
     // try innerHTML approach
     var parentTag = this.NODEMAP[elementName] || 'div';
     var parentElement = document.createElement(parentTag);
@@ -31,14 +33,14 @@ var Builder = {
       parentElement.innerHTML = "<" + elementName + "></" + elementName + ">";
     } catch(e) {}
     var element = parentElement.firstChild || null;
-      
+
     // see if browser added wrapping tags
     if(element && (element.tagName != elementName))
       element = element.getElementsByTagName(elementName)[0];
-    
+
     // fallback to createElement approach
     if(!element) element = document.createElement(elementName);
-    
+
     // abort if nothing could be created
     if(!element) return;
 
@@ -58,13 +60,13 @@ var Builder = {
             // workaround firefox 1.0.X bug
             if(!element) {
               element = document.createElement(elementName);
-              for(attr in arguments[1]) 
+              for(attr in arguments[1])
                 element[attr == 'class' ? 'className' : attr] = arguments[1][attr];
             }
             if(element.tagName != elementName)
               element = parentElement.getElementsByTagName(elementName)[0];
             }
-        } 
+        }
 
     // text, or array of children
     if(arguments[2])
@@ -92,7 +94,7 @@ var Builder = {
             element.appendChild(Builder._text(e));
       });
     } else
-      if(Builder._isStringOrNumber(children)) 
+      if(Builder._isStringOrNumber(children))
          element.appendChild(Builder._text(children));
   },
   _isStringOrNumber: function(param) {

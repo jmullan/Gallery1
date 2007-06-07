@@ -1,3 +1,7 @@
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
 
 function showByteCalculator(calcID) {
 	calcIcon	= document.getElementById(calcID + '_byteCalcIcon');

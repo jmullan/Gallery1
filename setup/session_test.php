@@ -71,16 +71,15 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
 		</tr>
 	</table>
 
-  </div>
+</div>
 
-  <div class="center">
+<div class="center">
 	<?php echo gButton('reload', gTranslate('config', "_Reload"), 'location.href=\'session_test.php\''); ?>
-	<?php echo gButton('reload', gTranslate('config', "_Start over"), 'location.href=\'session_test.php?destroy=1\''); ?>
+	<?php echo gButton('restart', gTranslate('config', "_Start over"), 'location.href=\'session_test.php?destroy=1\''); ?>
 
 	<br><br>
 	<?php echo returnToDiag(); ?><?php echo returnToConfig(); ?>
-  </div>
-
 </div>
+
 </body>
 </html>

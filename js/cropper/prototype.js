@@ -1,3 +1,5 @@
+/* $Id$ */
+
 /*  Prototype JavaScript framework, version 1.5.0
  *  (c) 2005-2007 Sam Stephenson
  *

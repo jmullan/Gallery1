@@ -40,7 +40,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 		<div class="g-config-step floatleft"><?php echo gTranslate('config', "Welcome"); ?></div>
 
 		<div class="floatright right">
-			<?php echo gSubmit('go_next', '_Next Step >>'); ?>
+			<?php echo gSubmit('go_next', gTranslate('config', "_Next Step >>")); ?>
 			<?php if ($install): ?>
 			<div class="g-emphasis" style="margin-top: 2px;">
 				<?php echo gTranslate('config', "Installation Type:"); ?>
@@ -149,7 +149,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 						'<a href="http://gallery.sourceforge.net/help.php" target="_blank">', '</a>');
 		?>
 		<div class="floatright right">
-			<?php echo gSubmit('go_next', '_Next Step >>'); ?>
+			<?php echo gSubmit('go_next', gTranslate('config', "_Next Step >>")); ?>
 		</div>
 		<div class="clear"></div>
 	</div>
