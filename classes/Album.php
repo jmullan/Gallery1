@@ -39,31 +39,89 @@ class Album {
 	function Album() {
 		global $gallery;
 
-		$this->fields["title"] = gTranslate('core', "Untitled");
-		$this->fields["description"] = "";
-		$this->fields["summary"]="";
-		$this->fields["nextname"] = "aaa";
-		$this->fields["bgcolor"] = "";
-		$this->fields["textcolor"] = "";
-		$this->fields["linkcolor"] = "";
-		$this->fields["background"] = "";
-		$this->fields["font"] = $gallery->app->default["font"];
-		$this->fields["border"] = $gallery->app->default["border"];
-		$this->fields["bordercolor"] = $gallery->app->default["bordercolor"];
-		$this->fields["returnto"] = $gallery->app->default["returnto"];
-		$this->fields["thumb_size"] = $gallery->app->default["thumb_size"];
-		$this->fields["thumb_ratio"] = $gallery->app->default["thumb_ratio"];
-		$this->fields["resize_size"] = $gallery->app->default["resize_size"];
-		$this->fields["resize_file_size"] = $gallery->app->default["resize_file_size"];
-		$this->fields["max_size"] = $gallery->app->default["max_size"];
-		$this->fields["max_file_size"] = $gallery->app->default["max_file_size"];
-		$this->fields["rows"] = $gallery->app->default["rows"];
-		$this->fields["cols"] = $gallery->app->default["cols"];
-		$this->fields["fit_to_window"] = $gallery->app->default["fit_to_window"];
-		$this->fields["use_fullOnly"] = $gallery->app->default["use_fullOnly"];
-		$this->fields["print_photos"] = isset($gallery->app->default["print_photos"]) ? $gallery->app->default["print_photos"] : '';
-		$this->fields["use_exif"] = isset($gallery->app->use_exif) ? 'yes' : 'no';
-		$this->fields["guid"] = 0;
+		$this->fields['title']				= gTranslate('core', "Untitled");
+		$this->fields['description']		= '';
+		$this->fields['summary']			= '';
+		$this->fields['nextname']			= "aaa";
+		$this->fields['bgcolor']			= '';
+		$this->fields['textcolor']			= '';
+		$this->fields['linkcolor']			= '';
+		$this->fields['background']			= '';
+		$this->fields['font']				= $gallery->app->default['font'];
+		$this->fields['border']				= $gallery->app->default['border'];
+		$this->fields['bordercolor']		= $gallery->app->default['bordercolor'];
+		$this->fields['returnto']			= $gallery->app->default['returnto'];
+		$this->fields['thumb_size']			= $gallery->app->default['thumb_size'];
+		$this->fields['thumb_ratio']		= $gallery->app->default['thumb_ratio'];
+		$this->fields['resize_size']		= $gallery->app->default['resize_size'];
+		$this->fields['resize_file_size']	= $gallery->app->default['resize_file_size'];
+		$this->fields['max_size']			= $gallery->app->default['max_size'];
+		$this->fields['max_file_size']		= $gallery->app->default['max_file_size'];
+		$this->fields['rows']				= $gallery->app->default['rows'];
+		$this->fields['cols']				= $gallery->app->default['cols'];
+		$this->fields['fit_to_window']		= $gallery->app->default['fit_to_window'];
+		$this->fields['use_fullOnly']		= $gallery->app->default['use_fullOnly'];
+		$this->fields['print_photos']		= isset($gallery->app->default['print_photos']) ? $gallery->app->default['print_photos'] : '';
+		$this->fields['use_exif']			= isset($gallery->app->use_exif) ? 'yes' : 'no';
+		$this->fields['guid']				= 0;
+		$this->fields['parentAlbumName']	= 0;
+		$this->fields['clicks']				= 0;
+		$this->fields['clicks_date']		= time();
+		$this->fields['display_clicks']		= $gallery->app->default['display_clicks'];
+		$this->fields['serial_number']		= 0;
+		$this->fields['slideshow_type']		= $gallery->app->default['slideshow_type'];
+		$this->fields['slideshow_length']	= $gallery->app->default['slideshow_length'];
+		$this->fields['slideshow_recursive']= $gallery->app->default['slideshow_recursive'];
+		$this->fields['slideshow_loop']		= $gallery->app->default['slideshow_loop'];
+		$this->fields['album_frame']		= $gallery->app->default['album_frame'];
+		$this->fields['thumb_frame']		= $gallery->app->default['thumb_frame'];
+		$this->fields['image_frame']		= $gallery->app->default['image_frame'];
+		$this->fields['showDimensions']		= $gallery->app->default['showDimensions'];
+		$this->fields['dimensionsAsPopup']	= $gallery->app->default['dimensionsAsPopup'];
+		$this->fields['email_me']			= array();
+		$this->fields['ecards']				= $gallery->app->default['ecards'];
+		$this->fields['highlightIndex']		= 1;
+
+		$this->fields['cached_photo_count']	= 0;
+		$this->fields['photos_separate']	= FALSE;
+		$this->transient->photosloaded		= TRUE;
+
+		$this->fields['item_owner_display']	= $gallery->app->default['item_owner_display'];
+		$this->fields['item_owner_modify']	= $gallery->app->default['item_owner_modify'];
+		$this->fields['item_owner_delete']	= $gallery->app->default['item_owner_delete'];
+		$this->fields['add_to_beginning']	= $gallery->app->default['add_to_beginning'];
+		$this->fields['last_quality']		= $gallery->app->jpegImageQuality;
+
+		// MICRO-THUMB NAV Variables
+		$this->fields['nav_thumbs']				= $gallery->app->default['nav_thumbs'];
+		$this->fields['nav_thumbs_style']		= $gallery->app->default['nav_thumbs_style'];
+		$this->fields['nav_thumbs_first_last']	= $gallery->app->default['nav_thumbs_first_last'];
+		$this->fields['nav_thumbs_prev_shown']	= $gallery->app->default['nav_thumbs_prev_shown'];
+		$this->fields['nav_thumbs_next_shown']	= $gallery->app->default['nav_thumbs_next_shown'];
+		$this->fields['nav_thumbs_location']	= $gallery->app->default['nav_thumbs_location'];
+		$this->fields['nav_thumbs_size']		= $gallery->app->default['nav_thumbs_size'];
+		$this->fields['nav_thumbs_current_bonus'] = $gallery->app->default['nav_thumbs_current_bonus'];
+
+		/* VOTING Variables */
+		$this->fields['poll_type']			= $gallery->app->default['poll_type'];	// none, rank or critique
+		$this->fields['poll_scale']			= $gallery->app->default['poll_scale']; // num of choices to offer voter
+		$this->fields['votes']				= array(); // holds all the votes by UID or session ID
+		$this->fields['poll_nv_pairs']		= $gallery->app->default['poll_nv_pairs'];
+		// allows admin to explicitly set display value and
+		// points for all voting options.  EG "Excellent" -> 4
+		// points; "Good" -> 3 points etc etc
+		$this->fields['poll_hint']			= $gallery->app->default['poll_hint'];
+		// This is displayed above the voting options
+		// for each image.
+		$this->fields['poll_show_results']	= $gallery->app->default['poll_show_results'];
+		// The results graph and breakdown will be displayed
+		// if this is yes.  Note that this should eventually
+		// be part of permissions
+		$this->fields['poll_num_results']	= $gallery->app->default['poll_num_results'];
+		// number of lines of graph to show on the album page
+		$this->fields['voter_class']		= $gallery->app->default['voter_class'];
+		// Nobody, Everybody, Logged in
+		// end of VOTING variables
 
 		$standardPerm = ($gallery->app->default['defaultPerms']) ? $gallery->app->default['defaultPerms'] : "everybody";
 
@@ -87,75 +145,16 @@ class Album {
 		$this->setPerm("canViewComments", $UserToPerm->getUid(), 1);
 		$this->setPerm("canAddComments", $UserToPerm->getUid(), 1);
 
-		$this->fields["parentAlbumName"] = 0;
-		$this->fields["clicks"] = 0;
-		$this->fields["clicks_date"] = time();
-		$this->fields["display_clicks"] = $gallery->app->default["display_clicks"];
-		$this->fields["serial_number"] = 0;
-		$this->fields["extra_fields"] = split(",", trim($gallery->app->default["extra_fields"]));
-		foreach ($this->fields["extra_fields"] as $key => $value) {
+		$this->fields['extra_fields'] = split(",", trim($gallery->app->default['extra_fields']));
+		foreach ($this->fields['extra_fields'] as $key => $value) {
 			$value = trim($value);
 			if (empty($value)) {
-				unset($this->fields["extra_fields"][$key]);
+				unset($this->fields['extra_fields'][$key]);
 			}
 			else {
-				$this->fields["extra_fields"][$key] = $value;
+				$this->fields['extra_fields'][$key] = $value;
 			}
 		}
-
-		$this->fields["cached_photo_count"] = 0;
-		$this->fields["photos_separate"] = FALSE;
-		$this->transient->photosloaded = TRUE;
-
-		$this->fields["item_owner_display"] = $gallery->app->default["item_owner_display"];
-		$this->fields["item_owner_modify"] = $gallery->app->default["item_owner_modify"];
-		$this->fields["item_owner_delete"] = $gallery->app->default["item_owner_delete"];
-		$this->fields["add_to_beginning"] = $gallery->app->default["add_to_beginning"];
-		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
-
-		// MICRO-THUMB NAV Variables
-		$this->fields["nav_thumbs"] = $gallery->app->default["nav_thumbs"];
-		$this->fields["nav_thumbs_style"] = $gallery->app->default["nav_thumbs_style"];
-		$this->fields["nav_thumbs_first_last"] = $gallery->app->default["nav_thumbs_first_last"];
-		$this->fields["nav_thumbs_prev_shown"] = $gallery->app->default["nav_thumbs_prev_shown"];
-		$this->fields["nav_thumbs_next_shown"] = $gallery->app->default["nav_thumbs_next_shown"];
-		$this->fields["nav_thumbs_location"] = $gallery->app->default["nav_thumbs_location"];
-		$this->fields["nav_thumbs_size"] = $gallery->app->default["nav_thumbs_size"];
-		$this->fields["nav_thumbs_current_bonus"] = $gallery->app->default["nav_thumbs_current_bonus"];
-
-		/* VOTING Variables */
-		$this->fields["poll_type"]=$gallery->app->default["poll_type"]; // none, rank or critique
-		$this->fields["poll_scale"]=$gallery->app->default["poll_scale"]; // num of choices to offer voter
-		$this->fields["votes"]=array(); // holds all the votes by UID or session ID
-		$this->fields["poll_nv_pairs"]= $gallery->app->default["poll_nv_pairs"];
-		// allows admin to explicitly set display value and
-		// points for all voting options.  EG "Excellent" -> 4
-		// points; "Good" -> 3 points etc etc
-		$this->fields["poll_hint"]=$gallery->app->default["poll_hint"];
-		// This is displayed above the voting options
-		// for each image.
-		$this->fields["poll_show_results"]=$gallery->app->default["poll_show_results"];
-		// The results graph and breakdown will be displayed
-		// if this is yes.  Note that this should eventually
-		// be part of permissions
-		$this->fields["poll_num_results"]=$gallery->app->default["poll_num_results"];
-		// number of lines of graph to show on the album page
-		$this->fields["voter_class"]=$gallery->app->default["voter_class"];
-		// Nobody, Everybody, Logged in
-		// end of VOTING variables
-
-		$this->fields['slideshow_type']		= $gallery->app->default['slideshow_type'];
-		$this->fields['slideshow_length']	= $gallery->app->default['slideshow_length'];
-		$this->fields['slideshow_recursive']= $gallery->app->default['slideshow_recursive'];
-		$this->fields['slideshow_loop']		= $gallery->app->default['slideshow_loop'];
-		$this->fields['album_frame']		= $gallery->app->default['album_frame'];
-		$this->fields['thumb_frame']		= $gallery->app->default['thumb_frame'];
-		$this->fields['image_frame']		= $gallery->app->default['image_frame'];
-		$this->fields['showDimensions']		= $gallery->app->default['showDimensions'];
-		$this->fields['dimensionsAsPopup']	= $gallery->app->default['dimensionsAsPopup'];
-		$this->fields['email_me']			= array();
-		$this->fields['ecards']				= $gallery->app->default['ecards'];
-		$this->fields['highlightIndex']		= 1;
 
 		// Seed new albums with the appropriate version.
 		$this->version = $gallery->album_version;
@@ -340,7 +339,7 @@ class Album {
 
 		$changed = 0;
 
-		$this->fields["last_quality"] = $gallery->app->jpegImageQuality;
+		$this->fields['last_quality'] = $gallery->app->jpegImageQuality;
 		$check = array(
 			'thumb_size',
 			'thumb_ratio',
@@ -431,7 +430,8 @@ class Album {
 		if ($this->version < 20) {
 			if ($this->fields['print_photos'] == 'none') {
 				$this->fields['print_photos'] = array();
-			} else {
+			}
+			else {
 				$this->fields['print_photos'] = array($this->fields['print_photos']);
 			}
 			$changed = true;
@@ -456,17 +456,17 @@ class Album {
 		/* Convert all uids to the new style */
 		if ($this->version < 25) {
 			// Owner
-			$this->fields["owner"] = $gallery->userDB->convertUidToNewFormat($this->fields["owner"]);
+			$this->fields['owner'] = $gallery->userDB->convertUidToNewFormat($this->fields['owner']);
 
 			// Permissions
 			$newPerms = array();
-			foreach ($this->fields["perms"] as $perm => $uids) {
+			foreach ($this->fields['perms'] as $perm => $uids) {
 				foreach ($uids as $uid => $value) {
 					$newUid = $gallery->userDB->convertUidToNewFormat($uid);
 					$newPerms[$perm][$newUid] = 1;
 				}
 			}
-			$this->fields["perms"] = $newPerms;
+			$this->fields['perms'] = $newPerms;
 		}
 
 		/**
@@ -475,9 +475,9 @@ class Album {
 		 *  Since we're not sure how the .'s are appearing in gallery names
 		 *  this is worth running on any DB upgrade, for now
 		 */
-		if (strpos($this->fields["name"], ".") !== false) {
-			$oldName = $this->fields["name"];
-			$newName = strtr($this->fields["name"], ".", "-");
+		if (strpos($this->fields['name'], ".") !== false) {
+			$oldName = $this->fields['name'];
+			$newName = strtr($this->fields['name'], ".", "-");
 
 			global $albumDB;
 			$albumDB->renameAlbum($oldName, $newName);
@@ -487,7 +487,7 @@ class Album {
 			// AlbumDB will set this value .. but it will be set in a different
 			// instance of this album, so we have to do it here also so that
 			// when *this* instance gets saved the value is right
-			$this->fields["name"] = $newName;
+			$this->fields['name'] = $newName;
 			$changed = true;
 		}
 
@@ -505,8 +505,8 @@ class Album {
 		}
 
 		if ($this->version < 30) {
-			if ($this->fields["border"] == 'off') {
-				$this->fields["border"] = 0;
+			if ($this->fields['border'] == 'off') {
+				$this->fields['border'] = 0;
 			}
 		}
 
@@ -589,19 +589,19 @@ class Album {
 		}
 
 		/* Special case for EXIF :-( */
-		if (!$this->fields["use_exif"]) {
+		if (!$this->fields['use_exif']) {
 			if (!empty($gallery->app->use_exif)) {
-				$this->fields["use_exif"] = "yes";
+				$this->fields['use_exif'] = "yes";
 			}
 			else {
-				$this->fields["use_exif"] = "no";
+				$this->fields['use_exif'] = "no";
 			}
 			$changed = true;
 		}
 
 		/* Special case for serial number */
-		if (!$this->fields["serial_number"]) {
-			$this->fields["serial_number"] = 0;
+		if (!$this->fields['serial_number']) {
+			$this->fields['serial_number'] = 0;
 			$changed = true;
 		}
 
@@ -677,7 +677,7 @@ class Album {
 			$func = "sortByComment";
 		}
 
-		if ($albumsFirst != "") {
+		if ($albumsFirst != '') {
 			//echo "presort by $func with order $order";
 			usort($this->photos, array('Album', 'sortByType'));
 		}
@@ -899,7 +899,7 @@ class Album {
 
 		$parentAlbum = $this->getParentAlbum(FALSE);
 		if (isset($parentAlbum)) {
-			$size = $parentAlbum->fields["thumb_size"];
+			$size = $parentAlbum->fields['thumb_size'];
 		} else {
 			$size = $gallery->app->highlight_size;
 		}
@@ -965,7 +965,7 @@ class Album {
 
 		// if $this->photos is not empty, assume that the photos were already incorrectly stored in album.dat
 		// so pretend that we loaded them already to make sure that they get saved to the correct location
-		if ($this->fields["photos_separate"] && ($this->fields["cached_photo_count"] > 0) && empty($this->photos)) {
+		if ($this->fields['photos_separate'] && ($this->fields['cached_photo_count'] > 0) && empty($this->photos)) {
 			if ($loadphotos) {
 				$this->loadPhotos($dir);
 			}
@@ -974,7 +974,7 @@ class Album {
 			$this->transient->photosloaded = TRUE;
 		}
 
-		$this->fields["name"] = $name;
+		$this->fields['name'] = $name;
 		$this->updateSerial = 0;
 
 		return true;
@@ -1036,7 +1036,7 @@ class Album {
 	}
 
 	function isLoaded() {
-		if ($this->fields["name"]) {
+		if ($this->fields['name']) {
 			return 1;
 		} else {
 			return 0;
@@ -1058,7 +1058,7 @@ class Album {
 		$dir = $this->getAlbumDir();
 
 		if ($resetModDate) {
-			$this->fields["last_mod_time"] = time();
+			$this->fields['last_mod_time'] = time();
 		}
 
 		if (!fs_file_exists($dir)) {
@@ -1067,15 +1067,15 @@ class Album {
 
 		if (!empty($this->updateSerial) || $updateSerial == true) {
 			/* Remove the old serial file, if it exists */
-			$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
+			$serial = "$dir/serial." . $this->fields['serial_number']. ".dat";
 			if (fs_file_exists($serial)) {
 				fs_unlink($serial);
 			}
-			$this->fields["serial_number"]++;
+			$this->fields['serial_number']++;
 		}
 
 		if ($this->transient->photosloaded) {
-			$this->fields["cached_photo_count"] = $this->numPhotos(1);
+			$this->fields['cached_photo_count'] = $this->numPhotos(1);
 		}
 
 		$transient_photos = $this->photos;
@@ -1084,7 +1084,7 @@ class Album {
 		if ($this->transient->photosloaded) {
 			$success = (safe_serialize($this->photos, "$dir/photos.dat"));
 			if ($success) {
-				$this->fields["photos_separate"] = TRUE;
+				$this->fields['photos_separate'] = TRUE;
 				unset ($this->photos);
 			}
 			else {
@@ -1108,7 +1108,7 @@ class Album {
 
 			/* Create the new album serial file */
 			if (!empty($this->updateSerial)) {
-				$serial = "$dir/serial." . $this->fields["serial_number"]. ".dat";
+				$serial = "$dir/serial." . $this->fields['serial_number']. ".dat";
 				if ($fd = fs_fopen($serial, "w")) {
 					/* This space intentionally left blank */
 					fwrite($fd, trim($this->tsilb));
@@ -1337,7 +1337,7 @@ class Album {
 		/* Begin Filename processing */
 		echo debugMessage(gTranslate('core', "Doing the naming of the physical file."), __FILE__, __LINE__);
 
-		if ($gallery->app->default["useOriginalFileNames"] == 'yes') {
+		if ($gallery->app->default['useOriginalFileNames'] == 'yes') {
 			$name = $originalFilename;
 			// check to see if a file by that name already exists
 			// or thumbnail conflict between movie and jpeg
@@ -1390,7 +1390,7 @@ class Album {
 
 		/* Create an albumitem */
 		$item = new AlbumItem();
-		$status = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
+		$status = $item->setPhoto($dir, $name, $tag, $this->fields['thumb_size'], $this, $pathToThumb);
 
 		if (!$status) {
 			if (fs_file_exists($newFile)) {
@@ -1455,25 +1455,25 @@ class Album {
 		}
 
 		if ($votes) {
-			$this->fields["votes"]["item.$name"] = $votes;
+			$this->fields['votes']["item.$name"] = $votes;
 		}
 
 		/* Create the resized photo if wanted/needed */
 		if (isImage($tag) &&
-			($this->fields["resize_size"] > 0 || $this->fields["resize_file_size"] > 0))
+			($this->fields['resize_size'] > 0 || $this->fields['resize_file_size'] > 0))
 		{
 			list($w, $h) = $photo->image->getRawDimensions();
-			if ($w > $this->fields["resize_size"] ||
-				$h > $this->fields["resize_size"] ||
-				$this->fields["resize_file_size"] > 0)
+			if ($w > $this->fields['resize_size'] ||
+				$h > $this->fields['resize_size'] ||
+				$this->fields['resize_file_size'] > 0)
 			{
 				processingMsg(
 					sprintf(gTranslate('core', "Creating resized intermediate Version of %s"), $name));
 
 				$this->resizePhoto(
 					$index,
-					$this->fields["resize_size"],
-					$this->fields["resize_file_size"]
+					$this->fields['resize_size'],
+					$this->fields['resize_file_size']
 				);
 			}
 		}
@@ -1665,7 +1665,7 @@ class Album {
 	}
 
 	function newPhotoName() {
-		return $this->fields["nextname"]++;
+		return $this->fields['nextname']++;
 	}
 
 	function getPreviewTag($index, $size = 0, $attrs = array()) {
@@ -1813,7 +1813,7 @@ class Album {
 		* image.  Highlights are also typically pretty small.  So,
 		* if this is for a highlight, don't mirror it.
 		*/
-		if (isset($gallery->app->feature["mirror"]) &&
+		if (isset($gallery->app->feature['mirror']) &&
 			isset($gallery->app->mirrorSites) &&
 			strcmp($type, "highlight"))
 		{
@@ -2105,7 +2105,7 @@ class Album {
 		 return $uploadDate;
 	}
 
-	function setUploadDate($index, $uploadDate="") {
+	function setUploadDate($index, $uploadDate='') {
 		$photo = &$this->getPhoto($index);
 		$photo->setUploadDate($uploadDate);
 	}
@@ -2123,7 +2123,7 @@ class Album {
 		return $itemCaptureDate;
 	}
 
-	function setItemCaptureDate($index, $itemCaptureDate="") {
+	function setItemCaptureDate($index, $itemCaptureDate='') {
 		$photo = &$this->getPhoto($index);
 		$photo->setItemCaptureDate($itemCaptureDate);
 	}
@@ -2210,7 +2210,7 @@ class Album {
 	function rotatePhoto($index, $direction, $clearexifrotate = false) {
 		$this->updateSerial = 1;
 		$photo = &$this->getPhoto($index);
-		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields["thumb_size"], $this, $clearexifrotate);
+		$retval = $photo->rotate($this->getAlbumDir(), $direction, $this->fields['thumb_size'], $this, $clearexifrotate);
 
 		if (!$retval) {
 			return $retval;
@@ -2268,7 +2268,7 @@ class Album {
 		$photo = &$this->getPhoto($index);
 
 		if (!$photo->isAlbum()) {
-			$photo->makeThumbnail($this->getAlbumDir(), $this->fields["thumb_size"], $this);
+			$photo->makeThumbnail($this->getAlbumDir(), $this->fields['thumb_size'], $this);
 		}
 		else {
 			// Reselect highlight of subalbum..
@@ -2408,8 +2408,8 @@ class Album {
 	}
 
 	function resetClicks() {
-		$this->fields["clicks"] = 0;
-		$this->fields["clicks_date"] = time();
+		$this->fields['clicks'] = 0;
+		$this->fields['clicks_date'] = time();
 		$resetModDate = 0;
 		$this->save(array(), $resetModDate);
 
@@ -2426,32 +2426,32 @@ class Album {
 
 	function getClicks() {
 		// just in case we have no clicks yet...
-		if (!isset($this->fields["clicks"])) {
+		if (!isset($this->fields['clicks'])) {
 			$this->resetClicks();
 		}
-		return $this->fields["clicks"];
+		return $this->fields['clicks'];
 	}
 
 	function getClicksDate() {
 		global $gallery;
 
-		$time = $this->fields["clicks_date"];
+		$time = $this->fields['clicks_date'];
 
 		// albums may not have this field.
 		if (!$time) {
 			$this->resetClicks();
-			$time = $this->fields["clicks_date"];
+			$time = $this->fields['clicks_date'];
 		}
 		return strftime($gallery->app->dateString,$time);
 
 	}
 
 	function incrementClicks() {
-		if (strcmp($this->fields["display_clicks"], "yes")) {
+		if (strcmp($this->fields['display_clicks'], "yes")) {
 			return;
 		}
 
-		$this->fields["clicks"]++;
+		$this->fields['clicks']++;
 		$resetModDate=0; // don't reset last_mod_date
 		$this->save(array(), $resetModDate);
 	}
@@ -2462,7 +2462,7 @@ class Album {
 	}
 
 	function incrementItemClicks($index) {
-		if (strcmp($this->fields["display_clicks"], "yes")) {
+		if (strcmp($this->fields['display_clicks'], "yes")) {
 			return;
 		}
 
@@ -2527,7 +2527,7 @@ class Album {
 		global $gallery;
 		$dir = $this->getAlbumDir();
 
-		$time = $this->fields["last_mod_time"];
+		$time = $this->fields['last_mod_time'];
 
 		// Older albums may not have this field.
 		if (!$time) {
@@ -2543,25 +2543,25 @@ class Album {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
-				$nestedAlbum->fields["bgcolor"] = $this->fields["bgcolor"];
-				$nestedAlbum->fields["textcolor"] = $this->fields["textcolor"];
-				$nestedAlbum->fields["linkcolor"] = $this->fields["linkcolor"];
+				$nestedAlbum->fields['bgcolor']			= $this->fields['bgcolor'];
+				$nestedAlbum->fields['textcolor']		= $this->fields['textcolor'];
+				$nestedAlbum->fields['linkcolor']		= $this->fields['linkcolor'];
 				$nestedAlbum->fields['background'] = $this->fields['background'];
-				$nestedAlbum->fields["font"] = $this->fields["font"];
-				$nestedAlbum->fields["bordercolor"] = $this->fields["bordercolor"];
-				$nestedAlbum->fields["border"] = $this->fields["border"];
-				$nestedAlbum->fields["thumb_size"] = $this->fields["thumb_size"];
-				$nestedAlbum->fields["thumb_ratio"] = $this->fields["thumb_ratio"];
-				$nestedAlbum->fields["resize_size"] = $this->fields["resize_size"];
-				$nestedAlbum->fields["resize_file_size"] = $this->fields["resize_file_size"];
-				$nestedAlbum->fields["max_size"] = $this->fields["max_size"];
-				$nestedAlbum->fields["max_file_size"] = $this->fields["max_file_size"];
-				$nestedAlbum->fields["returnto"] = $this->fields["returnto"];
-				$nestedAlbum->fields["rows"] = $this->fields["rows"];
-				$nestedAlbum->fields["cols"] = $this->fields["cols"];
-				$nestedAlbum->fields["fit_to_window"] = $this->fields["fit_to_window"];
-				$nestedAlbum->fields["use_fullOnly"] = $this->fields["use_fullOnly"];
-				$nestedAlbum->fields["print_photos"] = $this->fields["print_photos"];
+				$nestedAlbum->fields['font']			= $this->fields['font'];
+				$nestedAlbum->fields['bordercolor']		= $this->fields['bordercolor'];
+				$nestedAlbum->fields['border']			= $this->fields['border'];
+				$nestedAlbum->fields['thumb_size']		= $this->fields['thumb_size'];
+				$nestedAlbum->fields['thumb_ratio'] 	= $this->fields['thumb_ratio'];
+				$nestedAlbum->fields['resize_size'] 	= $this->fields['resize_size'];
+				$nestedAlbum->fields['resize_file_size']= $this->fields['resize_file_size'];
+				$nestedAlbum->fields['max_size']		= $this->fields['max_size'];
+				$nestedAlbum->fields['max_file_size']	= $this->fields['max_file_size'];
+				$nestedAlbum->fields['returnto']		= $this->fields['returnto'];
+				$nestedAlbum->fields['rows']			= $this->fields['rows'];
+				$nestedAlbum->fields['cols']			= $this->fields['cols'];
+				$nestedAlbum->fields['fit_to_window']	= $this->fields['fit_to_window'];
+				$nestedAlbum->fields['use_fullOnly']	= $this->fields['use_fullOnly'];
+				$nestedAlbum->fields['print_photos']	= $this->fields['print_photos'];
 				$nestedAlbum->fields['slideshow_type']  = $this->fields['slideshow_type'];
 				$nestedAlbum->fields['slideshow_recursive'] = $this->fields['slideshow_recursive'];
 				$nestedAlbum->fields['slideshow_length'] = $this->fields['slideshow_length'];
@@ -2569,31 +2569,31 @@ class Album {
 				$nestedAlbum->fields['album_frame']	= $this->fields['album_frame'];
 				$nestedAlbum->fields['thumb_frame']	= $this->fields['thumb_frame'];
 				$nestedAlbum->fields['image_frame']	= $this->fields['image_frame'];
-				$nestedAlbum->fields["nav_thumbs"] = $this->fields["nav_thumbs"];
-				$nestedAlbum->fields["nav_thumbs_style"] = $this->fields["nav_thumbs_style"];
-				$nestedAlbum->fields["nav_thumbs_first_last"] = $this->fields["nav_thumbs_first_last"];
-				$nestedAlbum->fields["nav_thumbs_prev_shown"] = $this->fields["nav_thumbs_prev_shown"];
-				$nestedAlbum->fields["nav_thumbs_next_shown"] = $this->fields["nav_thumbs_next_shown"];
-				$nestedAlbum->fields["nav_thumbs_location"] = $this->fields["nav_thumbs_location"];
-				$nestedAlbum->fields["nav_thumbs_size"] = $this->fields["nav_thumbs_size"];
-				$nestedAlbum->fields["nav_thumbs_current_bonus"] = $this->fields["nav_thumbs_current_bonus"];
-				$nestedAlbum->fields["use_exif"] = $this->fields["use_exif"];
-				$nestedAlbum->fields["display_clicks"] = $this->fields["display_clicks"];
-				$nestedAlbum->fields["item_owner_display"] = $this->fields["item_owner_display"];
-				$nestedAlbum->fields["item_owner_modify"] = $this->fields["item_owner_modify"];
-				$nestedAlbum->fields["item_owner_delete"] = $this->fields["item_owner_delete"];
-				$nestedAlbum->fields["add_to_beginning"] = $this->fields["add_to_beginning"];
-				$nestedAlbum->fields["showDimensions"] = $this->fields["showDimensions"];
-				$nestedAlbum->fields["ecards"] = $this->fields["ecards"];
-				$nestedAlbum->fields["email_me"] = array();
-				$nestedAlbum->fields["poll_type"] = $this->fields["poll_type"];
-				$nestedAlbum->fields["poll_scale"] = $this->fields["poll_scale"];
-				$nestedAlbum->fields["poll_nv_pairs"] = $this->fields["poll_nv_pairs"];
-				$nestedAlbum->fields["poll_hint"] = $this->fields["poll_hint"];
-				$nestedAlbum->fields["poll_show_results"] = $this->fields["poll_show_results"];
-				$nestedAlbum->fields["poll_num_results"] = $this->fields["poll_num_results"];
-				$nestedAlbum->fields["voter_class"] = $this->fields["voter_class"];
-				$nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
+				$nestedAlbum->fields['nav_thumbs']		= $this->fields['nav_thumbs'];
+				$nestedAlbum->fields['nav_thumbs_style']		= $this->fields['nav_thumbs_style'];
+				$nestedAlbum->fields['nav_thumbs_first_last']	= $this->fields['nav_thumbs_first_last'];
+				$nestedAlbum->fields['nav_thumbs_prev_shown']	= $this->fields['nav_thumbs_prev_shown'];
+				$nestedAlbum->fields['nav_thumbs_next_shown']	= $this->fields['nav_thumbs_next_shown'];
+				$nestedAlbum->fields['nav_thumbs_location']		= $this->fields['nav_thumbs_location'];
+				$nestedAlbum->fields['nav_thumbs_size']			= $this->fields['nav_thumbs_size'];
+				$nestedAlbum->fields['nav_thumbs_current_bonus']= $this->fields['nav_thumbs_current_bonus'];
+				$nestedAlbum->fields['use_exif']		= $this->fields['use_exif'];
+				$nestedAlbum->fields['display_clicks']	= $this->fields['display_clicks'];
+				$nestedAlbum->fields['item_owner_display']	= $this->fields['item_owner_display'];
+				$nestedAlbum->fields['item_owner_modify'] 	= $this->fields['item_owner_modify'];
+				$nestedAlbum->fields['item_owner_delete']	= $this->fields['item_owner_delete'];
+				$nestedAlbum->fields['add_to_beginning']	= $this->fields['add_to_beginning'];
+				$nestedAlbum->fields['showDimensions']	= $this->fields['showDimensions'];
+				$nestedAlbum->fields['ecards']			= $this->fields['ecards'];
+				$nestedAlbum->fields['email_me']		= array();
+				$nestedAlbum->fields['poll_type']		= $this->fields['poll_type'];
+				$nestedAlbum->fields['poll_scale']		= $this->fields['poll_scale'];
+				$nestedAlbum->fields['poll_nv_pairs']	= $this->fields['poll_nv_pairs'];
+				$nestedAlbum->fields['poll_hint']		= $this->fields['poll_hint'];
+				$nestedAlbum->fields['poll_show_results'] = $this->fields['poll_show_results'];
+				$nestedAlbum->fields['poll_num_results'] = $this->fields['poll_num_results'];
+				$nestedAlbum->fields['voter_class']		= $this->fields['voter_class'];
+				$nestedAlbum->fields['extra_fields']	= $this->fields['extra_fields'];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedProperties();
 			}
@@ -2605,7 +2605,7 @@ class Album {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
-				$nestedAlbum->fields["extra_fields"] = $this->fields["extra_fields"];
+				$nestedAlbum->fields['extra_fields'] = $this->fields['extra_fields'];
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedExtraFields();
 			}
@@ -2617,13 +2617,13 @@ class Album {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
-				$nestedAlbum->fields["poll_type"]=$this->fields["poll_type"];
-				$nestedAlbum->fields["poll_scale"]=$this->fields["poll_scale"];
-				$nestedAlbum->fields["poll_nv_pairs"]=$this->fields["poll_nv_pairs"];
-				$nestedAlbum->fields["poll_hint"]=$this->fields["poll_hint"];
-				$nestedAlbum->fields["poll_show_results"]=$this->fields["poll_show_results"];
-				$nestedAlbum->fields["poll_num_results"]=$this->fields["poll_num_results"];
-				$nestedAlbum->fields["voter_class"]=$this->fields["voter_class"];
+				$nestedAlbum->fields['poll_type']			= $this->fields['poll_type'];
+				$nestedAlbum->fields['poll_scale']			= $this->fields['poll_scale'];
+				$nestedAlbum->fields['poll_nv_pairs']		= $this->fields['poll_nv_pairs'];
+				$nestedAlbum->fields['poll_hint']			= $this->fields['poll_hint'];
+				$nestedAlbum->fields['poll_show_results']	= $this->fields['poll_show_results'];
+				$nestedAlbum->fields['poll_num_results']	= $this->fields['poll_num_results'];
+				$nestedAlbum->fields['voter_class']			= $this->fields['voter_class'];
 
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedPollProperties();
@@ -2642,7 +2642,6 @@ class Album {
 
 				$nestedAlbum->save();
 				$nestedAlbum->setNestedPermissions();
-
 			}
 		}
 	}
@@ -2653,8 +2652,8 @@ class Album {
 
 		global $gallery, $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-		if (isset($this->fields["perms"][$permName])) {
-			$perm = $this->fields["perms"][$permName];
+		if (isset($this->fields['perms'][$permName])) {
+			$perm = $this->fields['perms'][$permName];
 		}
 		else {
 			return false;
@@ -2724,10 +2723,10 @@ class Album {
 	function _getGropupPerms($permName) {
 		$groupPerms = array();
 
-		if (empty($this->fields["perms"][$permName])) {
+		if (empty($this->fields['perms'][$permName])) {
 			return $groupPerms;
 		}
-		foreach ($this->fields["perms"][$permName] as $id => $junk) {
+		foreach ($this->fields['perms'][$permName] as $id => $junk) {
 			if(substr($id, 0,2) == 'g_') {
 				$groupPerms[] = $id;
 			}
@@ -2742,8 +2741,8 @@ class Album {
 		require_once(dirname(__FILE__) .'/gallery/Group.php');
 
 		$perms = array();
-		if (!empty($this->fields["perms"][$permName])) {
-			foreach ($this->fields["perms"][$permName] as $id => $junk) {
+		if (!empty($this->fields['perms'][$permName])) {
+			foreach ($this->fields['perms'][$permName] as $id => $junk) {
 				if(substr($id, 0,2) == 'g_') {
 					$tmpGrp = new Gallery_Group();
 					$tmpGrp->load($id);
@@ -2761,10 +2760,10 @@ class Album {
 
 	function setPerm($permName, $id, $bool) {
 		if ($bool) {
-			$this->fields["perms"][$permName][$id] = 1;
+			$this->fields['perms'][$permName][$id] = 1;
 		}
-		elseif (isset($this->fields["perms"][$permName][$id])) {
-			unset($this->fields["perms"][$permName][$id]);
+		elseif (isset($this->fields['perms'][$permName][$id])) {
+			unset($this->fields['perms'][$permName][$id]);
 		}
 	}
 
@@ -2776,7 +2775,7 @@ class Album {
 
 		// In the default case where there are no permissions for the album,
 		// let everybody see it.
-		if (!isset($this->fields["perms"])) {
+		if (!isset($this->fields['perms'])) {
 			return 1;
 		}
 
@@ -2880,13 +2879,13 @@ class Album {
 	function isOwner($uid) {
 		global $gallery;
 
-		if($uid == $this->fields["owner"]) {
+		if($uid == $this->fields['owner']) {
 			return true;
 		}
 
 		$everybody = $gallery->userDB->getEverybody();
 		$everybodyUid = $everybody->getUid();
-		if($this->fields["owner"] == $everybodyUid) {
+		if($this->fields['owner'] == $everybodyUid) {
 			return true;
 		}
 
@@ -2894,12 +2893,12 @@ class Album {
 	}
 
 	function setOwner($uid) {
-		$this->fields["owner"] = $uid;
+		$this->fields['owner'] = $uid;
 	}
 
 	function getOwner() {
 		global $gallery;
-		return $gallery->userDB->getUserByUid($this->fields["owner"]);
+		return $gallery->userDB->getUserByUid($this->fields['owner']);
 	}
 
 	/**
@@ -2955,8 +2954,8 @@ class Album {
 	}
 
 	function getItemOwnerDisplay() {
-		if (isset($this->fields["item_owner_display"])) {
-			if (strcmp($this->fields["item_owner_display"], "yes")) {
+		if (isset($this->fields['item_owner_display'])) {
+			if (strcmp($this->fields['item_owner_display'], "yes")) {
 				return false;
 			}
 		}
@@ -2964,8 +2963,8 @@ class Album {
 	}
 
 	function getItemOwnerModify() {
-		if (isset($this->fields["item_owner_modify"]) &&
-		  $this->fields["item_owner_modify"] == 'yes') {
+		if (isset($this->fields['item_owner_modify']) &&
+		  $this->fields['item_owner_modify'] == 'yes') {
 			return true;
 		}
 		else {
@@ -2974,8 +2973,8 @@ class Album {
 	}
 
 	function getItemOwnerDelete() {
-		if (isset($this->fields["item_owner_delete"]) &&
-		  $this->fields["item_owner_delete"] == 'yes') {
+		if (isset($this->fields['item_owner_delete']) &&
+		  $this->fields['item_owner_delete'] == 'yes') {
 			return true;
 		}
 		else {
@@ -2984,8 +2983,8 @@ class Album {
 	}
 
 	function getAddToBeginning() {
-		if (isset($this->fields["add_to_beginning"])) {
-			if ($this->fields["add_to_beginning"] === "yes") {
+		if (isset($this->fields['add_to_beginning'])) {
+			if ($this->fields['add_to_beginning'] === "yes") {
 				return true;
 			}
 		}
@@ -3019,37 +3018,37 @@ class Album {
 	 * can be only one of each point value.
 	 */
 	function getPollType() {
-		if (!isset($this->fields["poll_type"]) || $this->fields["poll_type"] == "")
+		if (!isset($this->fields['poll_type']) || $this->fields['poll_type'] == '')
 		{
 			return "critique";
 		}
-		return $this->fields["poll_type"];
+		return $this->fields['poll_type'];
 	}
 
 	function getVoterClass() {
-		if (isset($this->fields["voter_class"])) {
-			return $this->fields["voter_class"];
+		if (isset($this->fields['voter_class'])) {
+			return $this->fields['voter_class'];
 		}
 		return "Nobody";
 	}
 
 	function getPollScale() {
-		if (isset($this->fields["poll_scale"])) {
-			return $this->fields["poll_scale"];
+		if (isset($this->fields['poll_scale'])) {
+			return $this->fields['poll_scale'];
 		}
 		return 0;
 	}
 
 	function getPollNumResults(){
-		if (isset($this->fields["poll_num_results"])) {
-			return $this->fields["poll_num_results"];
+		if (isset($this->fields['poll_num_results'])) {
+			return $this->fields['poll_num_results'];
 		}
 		return 3;
 	}
 
 	function getPollShowResults() {
-		if (isset($this->fields["poll_show_results"])) {
-			if (strcmp($this->fields["poll_show_results"], "no"))
+		if (isset($this->fields['poll_show_results'])) {
+			if (strcmp($this->fields['poll_show_results'], "no"))
 			{
 				return true;
 			}
@@ -3058,8 +3057,8 @@ class Album {
 	}
 
 	function getPollHorizontal() {
-		if (isset($this->fields["poll_orientation"])) {
-			if (!strcmp($this->fields["poll_orientation"], "horizontal"))
+		if (isset($this->fields['poll_orientation'])) {
+			if (!strcmp($this->fields['poll_orientation'], "horizontal"))
 			{
 				return true;
 			}
@@ -3069,22 +3068,22 @@ class Album {
 
 	function getVoteNVPairs() {
 		global $gallery;
-		$nv_pairs=$this->fields["poll_nv_pairs"];
+		$nv_pairs=$this->fields['poll_nv_pairs'];
 		if ($nv_pairs == null) {
 			$nv_pairs == array();
 			if ($this->getPollScale() == 1) {
-				$nv_pairs[0]["name"] = '';
-				$nv_pairs[0]["value"] = '1';
+				$nv_pairs[0]['name'] = '';
+				$nv_pairs[0]['value'] = '1';
 			}
 		}
 		for ($i = sizeof($nv_pairs); $i<$this->getPollScale() ; $i++) {
 			if ($this->getPollType() == "rank") {
-				$nv_pairs[$i]["name"] = sprintf(gTranslate('core', "#%d"),($i));
-				$nv_pairs[$i]["value"] = $this->getPollScale()-$i+1;
+				$nv_pairs[$i]['name'] = sprintf(gTranslate('core', "#%d"),($i));
+				$nv_pairs[$i]['value'] = $this->getPollScale()-$i+1;
 			}
 			else {
-				$nv_pairs[$i]["name"]=$i;
-				$nv_pairs[$i]["value"]=$i;
+				$nv_pairs[$i]['name'] = $i;
+				$nv_pairs[$i]['value'] = $i;
 			}
 		}
 		return $nv_pairs;
@@ -3092,7 +3091,7 @@ class Album {
 
 	function getPollHint() {
 		global $gallery;
-		$hint = $this->fields["poll_hint"];
+		$hint = $this->fields['poll_hint'];
 		if (is_string($hint)) {
 			return $hint;
 		}
@@ -3109,18 +3108,18 @@ class Album {
 
 	/* Returns true if votes can be moved with images between $this and $album */
 	function pollsCompatible($album) {
-		if ($this->fields["poll_type"] != "critique") {
+		if ($this->fields['poll_type'] != "critique") {
 			return false;
 		}
-		if (isset($album->fields["poll_type"]) && ($album->fields["poll_type"] != "critique")) {
+		if (isset($album->fields['poll_type']) && ($album->fields['poll_type'] != "critique")) {
 			return false;
 		}
-		if ($this->fields["poll_scale"] != $album->fields["poll_scale"]) {
+		if ($this->fields['poll_scale'] != $album->fields['poll_scale']) {
 			return false;
 		}
-		for ($i = 0; $i<$this->fields["poll_scale"]; $i++ ) {
-			if ($this->fields["poll_nv_pairs"][$i]["value"] !=
-			  $album->fields["poll_nv_pairs"][$i]["value"] ) {
+		for ($i = 0; $i<$this->fields['poll_scale']; $i++ ) {
+			if ($this->fields['poll_nv_pairs'][$i]['value'] !=
+			  $album->fields['poll_nv_pairs'][$i]['value'] ) {
 				return false;
 			}
 		}
