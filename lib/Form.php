@@ -431,7 +431,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	$id = $attrList['id'];
 
-	if ($type != 'textarea' &&(!empty($value) || $value == 0)) {
+	if ($type != 'textarea' && (!empty($value) || $value == 0)) {
 		$attrList['type'] = $type;
 		$attrList['value'] = $value;
 	}
