@@ -108,11 +108,17 @@ class Image {
 	 * @param integer	$filesize
 	 * @param string	$pathToResized
 	 */
-	function resize($dir, $target, $filesize, $pathToResized) {
+	function resize($dir, $target, $filesize, $pathToResized, $full = false) {
 		global $gallery;
 
 		// getting rid of the resized image
 		if (stristr($target, "orig")) {
+
+			// Something went wrong. We dont want to remove the resized in this case.
+			if($full) {
+				return;
+			}
+
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 
 			$this->width = $w;
@@ -128,19 +134,34 @@ class Image {
 			$name = $this->name;
 			$type = $this->type;
 
-			if ($pathToResized) {
-				$ret = copy($pathToResized, "$dir/$name.sized.$this->type");
+			if($full) {
+				$filename = $name;
 			}
 			else {
-				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
+				$filename = "$name.sized";
+			}
+
+			if ($pathToResized) {
+				$ret = copy($pathToResized, "$dir/$filename.$this->type");
+			}
+			else {
+				$ret = resize_image("$dir/$name.$type", "$dir/$filename.$this->type", $target, $filesize, $full);
 			}
 
 			#-- resized image is not always a jpeg ---
 			if ($ret == 1) {
-				$this->resizedName = "$name.sized";
-				list($w, $h) = getDimensions("$dir/$name.sized.$this->type");
-				$this->width = $w;
-				$this->height = $h;
+				list($w, $h) = getDimensions("$dir/$filename.$this->type");
+
+				if($full) {
+					$this->name			= $filename;
+					$this->raw_width	= $w;
+					$this->raw_height	= $h;
+				}
+				else {
+					$this->resizedName	= $filename;
+					$this->width		= $w;
+					$this->height		= $h;
+				}
 			}
 			elseif ($ret == 2) {
 				$this->resize($dir, "orig", 0, $pathToResized);

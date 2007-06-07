@@ -914,7 +914,8 @@ class AlbumItem {
 	function getPhotoId() {
 		if ($this->image) {
 			return $this->image->getId();
-		} else {
+		}
+		else {
 			return "unknown";
 		}
 	}
@@ -931,6 +932,7 @@ class AlbumItem {
 		if ($this->thumbnail) {
 			$this->thumbnail->delete($dir);
 		}
+
 		if ($this->preview) {
 			$this->preview->delete($dir);
 		}
@@ -1015,9 +1017,9 @@ class AlbumItem {
 	 * @param integer	$filesize		New minimum filesite
 	 * @param string	$pathToResized
 	 */
-	function resize($dir, $target, $filesize, $pathToResized) {
+	function resize($dir, $target, $filesize, $pathToResized, $full = false) {
 		if (isset($this->image)) {
-			$this->image->resize($dir, $target, $filesize, $pathToResized);
+			$this->image->resize($dir, $target, $filesize, $pathToResized, $full);
 		}
 	}
 

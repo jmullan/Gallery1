@@ -128,16 +128,16 @@ class Album {
 		switch($standardPerm) {
 			case 'nobody':
 				$UserToPerm = $gallery->userDB->getNobody();
-			break;
+				break;
 
 			case 'loggedin':
 				$UserToPerm = $gallery->userDB->getLoggedIn();
-			break;
+				break;
 
 			case 'everybody':
 			default:
 				$UserToPerm = $gallery->userDB->getEverybody();
-			break;
+				break;
 		}
 
 		$this->setPerm("canRead", $UserToPerm->getUid(), 1);
@@ -408,20 +408,20 @@ class Album {
 				$changed = true;
 			}
 			if (empty($this->fields['extra_fields']) || !is_array($this->fields['extra_fields'])) {
-				$this->fields['extra_fields']=array();
+				$this->fields['extra_fields'] = array();
 				$changed = true;
 			}
 		}
 		if ($this->version < 16) {
 			if (empty($this->fields['votes'])) {
-				$this->fields['votes']=array();
+				$this->fields['votes'] = array();
 				$changed = true;
 			}
 		}
 		if ($this->version < 17) {
 			foreach ($this->fields['votes'] as $key => $value) {
 				unset($this->fields['votes'][$key]);
-				$this->fields['votes']["item.$key"]=$value;
+				$this->fields['votes']["item.$key"] = $value;
 				$changed = true;
 			}
 		}
@@ -1224,13 +1224,13 @@ class Album {
 	 * @param integer	$filesize		New minimum filesize
 	 * @param string	$pathToResized
 	 */
-	function resizePhoto($index, $target, $filesize = 0, $pathToResized = '') {
+	function resizePhoto($index, $target, $filesize = 0, $pathToResized = '', $full = false) {
 		$this->updateSerial = 1;
 
 		$photo = &$this->getPhoto($index);
 
 		if (!$photo->isMovie()) {
-			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized);
+			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized, $full);
 		}
 		else {
 			echo gTranslate('core', "Skipping Movie");
@@ -1245,27 +1245,53 @@ class Album {
 	 * @param integer	$filesize		New minimum filesize.
 	 * @param boolean	$recursive		True if you want to resize elements in subalbums, too.
 	 */
-	function resizeAllPhotos($target, $filesize = 0, $recursive = false) {
-		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
+	function resizeAllPhotos($target, $filesize = 0, $recursive = false, $full = false) {
+		$numItems = $this->numPhotos(1);
+
+		if($numItems == 0) {
+			echo gTranslate('core', " -- Skipping") . '<br>';
+			return true;
+		}
+
+		$onePercent		= 100/$numItems;
+		$progressbarID	= $this->fields['name'];
+
+		echo addProgressbar(
+			$progressbarID,
+			sprintf(
+				gTranslate('core', "Resizig items in album: '<i>%s</i>' (%s)' with %d items"),
+				$this->fields['title'],
+				$this->fields['name'],
+				$numItems)
+		);
+
+		for ($i = 1; $i <= $numItems; $i++) {
+			updateProgressBar(
+				$progressbarID,
+				sprintf(gTranslate('core', "Processing item %d..."), $i),
+				ceil($i * $onePercent)
+			);
+
 			if ($this->isAlbum($i) && $recursive == true) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
 				$np = $nestedAlbum->numPhotos(1);
 
-				echo "\n<br>";
-				printf (gTranslate('core', "Entering album %s, processing %d photos"), $this->getAlbumName($i), $np);
-
-				$nestedAlbum->resizeAllPhotos($target, $filesize,  $recursive);
+				$nestedAlbum->resizeAllPhotos($target, $filesize,  $recursive, $full);
 				$nestedAlbum->save();
 			}
 			else {
-				echo "\n<br>";
-				printf(gTranslate('core', "Processing element %d..."), $i);
+				if(isDebugging()) {
+					echo "\n<br>";
+					printf(gTranslate('core', "Resizing item %d..."), $i);
+				}
 
+				// Here is actually the action
 				my_flush();
-				$this->resizePhoto($i, $target, $filesize);
+				$this->resizePhoto($i, $target, $filesize, '', $full);
 			}
 		}
+		$this->save();
 	}
 
 	/**
@@ -2546,7 +2572,7 @@ class Album {
 				$nestedAlbum->fields['bgcolor']			= $this->fields['bgcolor'];
 				$nestedAlbum->fields['textcolor']		= $this->fields['textcolor'];
 				$nestedAlbum->fields['linkcolor']		= $this->fields['linkcolor'];
-				$nestedAlbum->fields['background'] = $this->fields['background'];
+				$nestedAlbum->fields['background']		= $this->fields['background'];
 				$nestedAlbum->fields['font']			= $this->fields['font'];
 				$nestedAlbum->fields['bordercolor']		= $this->fields['bordercolor'];
 				$nestedAlbum->fields['border']			= $this->fields['border'];
@@ -2562,13 +2588,13 @@ class Album {
 				$nestedAlbum->fields['fit_to_window']	= $this->fields['fit_to_window'];
 				$nestedAlbum->fields['use_fullOnly']	= $this->fields['use_fullOnly'];
 				$nestedAlbum->fields['print_photos']	= $this->fields['print_photos'];
-				$nestedAlbum->fields['slideshow_type']  = $this->fields['slideshow_type'];
+				$nestedAlbum->fields['slideshow_type']	= $this->fields['slideshow_type'];
 				$nestedAlbum->fields['slideshow_recursive'] = $this->fields['slideshow_recursive'];
-				$nestedAlbum->fields['slideshow_length'] = $this->fields['slideshow_length'];
-				$nestedAlbum->fields['slideshow_loop'] = $this->fields['slideshow_loop'];
-				$nestedAlbum->fields['album_frame']	= $this->fields['album_frame'];
-				$nestedAlbum->fields['thumb_frame']	= $this->fields['thumb_frame'];
-				$nestedAlbum->fields['image_frame']	= $this->fields['image_frame'];
+				$nestedAlbum->fields['slideshow_length']= $this->fields['slideshow_length'];
+				$nestedAlbum->fields['slideshow_loop']	= $this->fields['slideshow_loop'];
+				$nestedAlbum->fields['album_frame']		= $this->fields['album_frame'];
+				$nestedAlbum->fields['thumb_frame']		= $this->fields['thumb_frame'];
+				$nestedAlbum->fields['image_frame']		= $this->fields['image_frame'];
 				$nestedAlbum->fields['nav_thumbs']		= $this->fields['nav_thumbs'];
 				$nestedAlbum->fields['nav_thumbs_style']		= $this->fields['nav_thumbs_style'];
 				$nestedAlbum->fields['nav_thumbs_first_last']	= $this->fields['nav_thumbs_first_last'];
@@ -2613,7 +2639,7 @@ class Album {
 	}
 
 	function setNestedPollProperties() {
-		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
@@ -2632,7 +2658,7 @@ class Album {
 	}
 
 	function setNestedPermissions() {
-		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $this->numPhotos(1); $i++) {
 			if ($this->isAlbum($i)) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
