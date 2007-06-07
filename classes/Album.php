@@ -3479,5 +3479,15 @@ class Album {
 			$photo->imageAreas[$area_index][$key] = $value;
 		}
 	}
+
+	function getAltText($index) {
+		if ($index === null) {
+			return '';
+		}
+
+		$photo = $this->getPhoto($index);
+
+		return $photo->getAlttext();
+	}
 }
 ?>

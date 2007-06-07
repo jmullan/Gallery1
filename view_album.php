@@ -618,8 +618,11 @@ if ($numPhotos) {
 			$albumItems[$nr]['options']			= '';
 			$description						= '';
 
-			$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
-			$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\", width:\"${tooltipWidth}px\" } );";
+			$altText = $gallery->album->getAltText($i);
+			if(!empty($altText)) {
+				$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
+				$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\", width:\"${tooltipWidth}px\" } );";
+			}
 
 			/**
 			 * Element is a movie
