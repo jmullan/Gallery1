@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-07 22:50+0200\n"
+"POT-Creation-Date: 2007-06-08 11:03+0200\n"
 "PO-Revision-Date: 2007-06-07 16:51+0100\n"
 "Last-Translator: Jens A. Tkotz\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -271,7 +271,7 @@ msgstr "Das angeforderte Album mit dem Index %s ist nicht gültig."
 msgid "Highlight for album: %s"
 msgstr "Titelbild des Albums: %s"
 
-#: ../albums.php:344 ../classes/Album.php:1758 ../classes/Album.php:1770
+#: ../albums.php:344 ../classes/Album.php:1761 ../classes/Album.php:1773
 msgid "No highlight!"
 msgstr "Kein Titelbild!"
 
@@ -338,17 +338,17 @@ msgstr[1] "Dieses Album wurde %d mal angeschaut seit dem %s."
 msgid "reset counter"
 msgstr "Klick-Z&auml;hler zur&uuml;cksetzen"
 
-#: ../block-feature-item.php:115
+#: ../block-feature-item.php:114
 #, php-format
 msgid "This is a featured subalbum from album: %s"
 msgstr "Dies ist ein featured Unteralbum aus dem Album: %s"
 
-#: ../block-feature-item.php:118
+#: ../block-feature-item.php:117
 #, php-format
 msgid "This featured photo is from album: %s"
 msgstr "Dies ist ein featured Photo aus dem Album: %s"
 
-#: ../block-feature-item.php:126
+#: ../block-feature-item.php:125
 msgid "Currently no item is featured by this Gallery."
 msgstr "Derzeit keine featured Photos in dieser Gallery"
 
@@ -538,8 +538,8 @@ msgstr "Die Aktion wurde erfolgreich ausgeführt.  Emailing wurde aktiviert, es w
 msgid "Skipping Movie"
 msgstr "Überspringe Film"
 
-#: ../classes/Album.php:1252 ../classes/Album.php:2163
-#: ../classes/Album.php:2316
+#: ../classes/Album.php:1252 ../classes/Album.php:2166
+#: ../classes/Album.php:2319
 msgid " -- Skipping"
 msgstr " -- Wird ausgelassen"
 
@@ -548,8 +548,8 @@ msgstr " -- Wird ausgelassen"
 msgid "Resizig items in album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Verändere Größen der Elemente vom Album: '<i>%s</i>' (%s)' mit %d Elementen"
 
-#: ../classes/Album.php:1271 ../classes/Album.php:2182
-#: ../classes/Album.php:2351
+#: ../classes/Album.php:1271 ../classes/Album.php:2185
+#: ../classes/Album.php:2354
 #, php-format
 msgid "Processing item %d..."
 msgstr "Verarbeite Bild %d ..."
@@ -597,77 +597,81 @@ msgstr "Erzeuge verkleinerte Zwischenversion von %s"
 msgid "Check if image needs to be rotated"
 msgstr "Prüfe ob Bild gedreht werden muss."
 
-#: ../classes/Album.php:1568
+#: ../classes/Album.php:1527
+msgid "Orientation: %s "
+msgstr "Orientierung: %s"
+
+#: ../classes/Album.php:1571
 msgid "Photo auto-rotated/transformed"
 msgstr "Bild automatisch gedreht/ ver&auml;ndert"
 
-#: ../classes/Album.php:1571
+#: ../classes/Album.php:1574
 msgid "Photo NOT auto-rotated/transformed"
 msgstr "Bild wurde NICHT automatisch gedreht/ verändert"
 
-#: ../classes/Album.php:1581
+#: ../classes/Album.php:1584
 msgid "Watermarking Image"
 msgstr "Wasserzeichen setzen"
 
-#: ../classes/Album.php:1588 ../classes/Album.php:1593
+#: ../classes/Album.php:1591 ../classes/Album.php:1596
 msgid "Item successfully added."
 msgstr "Element wurde erfolgreich hinzugefügt."
 
-#: ../classes/Album.php:1999
+#: ../classes/Album.php:2002
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Angeforderter index [%d] ist ausserhalb der erlaubten Menge [%d]. Gallery konnte das angeforderte Albumelement nicht laden."
 
-#: ../classes/Album.php:2052
+#: ../classes/Album.php:2055
 #, php-format
 msgid "Recreating %d captions..."
 msgstr "Erzeuge %d Beschriftungen"
 
-#: ../classes/Album.php:2054
+#: ../classes/Album.php:2057
 #, php-format
 msgid "Processing image %d..."
 msgstr "Verarbeite Bild %d ..."
 
-#: ../classes/Album.php:2061
+#: ../classes/Album.php:2064
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Verarbeite Album %s mit %d Photos"
 
-#: ../classes/Album.php:2173 ../classes/Album.php:2326
+#: ../classes/Album.php:2176 ../classes/Album.php:2329
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Aktualisiere Album: '<i>%s</i>' (%s)' mit %d Elementen"
 
-#: ../classes/Album.php:2192 ../classes/Album.php:2339
+#: ../classes/Album.php:2195 ../classes/Album.php:2342
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items"
 msgstr "Verarbeite Unteralbum '<i>%s</i>' mit %d Elementen"
 
-#: ../classes/Album.php:2524
+#: ../classes/Album.php:2527
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Fehler beim Holen der EXIF Daten. Erwarteter Status 0, erhalten: %s."
 
-#: ../classes/Album.php:2775
+#: ../classes/Album.php:2778
 msgid "(Group)"
 msgstr "(Gruppe)"
 
-#: ../classes/Album.php:3107
+#: ../classes/Album.php:3110
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3274
+#: ../classes/Album.php:3277
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problem: Es wurde %s (UID %s) übersprungen, da keine Emailadresse angegeben wurde."
 
-#: ../classes/Album.php:3278
+#: ../classes/Album.php:3281
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problem: Es wurde %s (UID %s) übersprungen, da die Emailadresse '%s' nicht gültig zu sein scheint."
 
-#: ../classes/Album.php:3288
+#: ../classes/Album.php:3291
 msgid "Email problems"
 msgstr "Email Problem"
 
@@ -5000,93 +5004,93 @@ msgstr "Fehler beim Lesen von %s"
 msgid "Getting Exif from: %s"
 msgstr "Hole EXIF-Daten von Datei: %s"
 
-#: ../util.php:691
+#: ../util.php:692
 msgid "Got no capture date. Using file modification time."
 msgstr "Kein Aufnahmedatum gefunden. Das Datum der letzen Änderung wird benutzt."
 
-#: ../util.php:695
+#: ../util.php:696
 #, php-format
 msgid "Item Capture Date : %s"
 msgstr "Aufnahmedatum: %s"
 
-#: ../util.php:742
+#: ../util.php:743
 #, php-format
 msgid "Could not open lock file (%s) for writing!"
 msgstr "Konnte die lock Datei (%s) nicht &ouml;ffnen!"
 
-#: ../util.php:747
+#: ../util.php:748
 #, php-format
 msgid "Could not acquire lock (%s)!"
 msgstr "Konnte die Datei nicht entsperren (%s)!"
 
-#: ../util.php:916
+#: ../util.php:917
 #, php-format
 msgid "Extracting: %s with %s"
 msgstr "Extrahiere: %s mit %s"
 
-#: ../util.php:934
+#: ../util.php:935
 #, php-format
 msgid "%s with extension %s is not an supported archive."
 msgstr "%s mit der Dateiendung %s ist kein unterstützes Archivformat."
 
-#: ../util.php:949
+#: ../util.php:950
 msgid "No Support for creating Zips"
 msgstr "Keine Unterstützung zur Erstellung von Zip Archiven."
 
-#: ../util.php:952
+#: ../util.php:953
 #, php-format
 msgid "Creating Zip file with %s"
 msgstr "Erzeuge Zipdatei mit %s"
 
-#: ../util.php:966
+#: ../util.php:967
 #, php-format
 msgid "Your temp folder is not writeable! Please check permissions of this dir: %s"
 msgstr "Ihr 'temp' Ordner ist nicht beschreibbar! Bitte prüfen Sie die Berechtigungen für dieses Verzeichnus: %s"
 
-#: ../util.php:1110
+#: ../util.php:1111
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Konnte die Logdatei: %s nicht &ouml;ffnen"
 
-#: ../util.php:1227
+#: ../util.php:1228
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr "Parse nach CSV Daten in: %s"
 
-#: ../util.php:1243
+#: ../util.php:1244
 msgid "csv result:"
 msgstr "CSV Ergebnis:"
 
-#: ../util.php:1422
+#: ../util.php:1423
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "MIMEtype der Datei %s ist %s"
 
-#: ../util.php:1512
+#: ../util.php:1513
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s hat dir eine eC@rd geschickt."
 
-#: ../util.php:1614
+#: ../util.php:1615
 #, fuzzy, php-format
 msgid "Gallery was unable to create a temporary subfolder in your temp folder. Please check permissions of this dir: %s"
 msgstr "Gallery ist nicht in der Lage einen Unterodner in ihrem 'temp' Verzeichnis anzulegen! Bitte prüfen Sie die Berechtigungen für dieses Verzeichnis: %s"
 
-#: ../util.php:1639
+#: ../util.php:1640
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr "'%s' ist keine gültige Datei. Herunterladen abgebrochen."
 
-#: ../util.php:1647
+#: ../util.php:1648
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr "Die Datei '%s' scheint sich nicht innerhalb Gallery tempdir %s zu befinden, Herunterladen abgebrochen."
 
-#: ../util.php:1652
+#: ../util.php:1653
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr "Es wird versucht das Tempverzeichnis selber herunterzuladen ?! Herunterladen abgebrochen"
 
-#: ../util.php:1783
+#: ../util.php:1784
 #, php-format
 msgid "Debug ON ! Level %s"
 msgstr "Debug AN ! Level %s"
