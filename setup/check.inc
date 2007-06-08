@@ -280,7 +280,7 @@ else {
     else {
         echo infoBox(array(array(
             'type' => 'success',
-            'text' =>  ("Your installation passed with flying colors!  Go go go!")
+            'text' => gTranslate('config', "Your installation passed with flying colors!  Go go go!")
         )));
     }
 ?>

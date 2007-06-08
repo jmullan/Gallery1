@@ -156,7 +156,7 @@ else {
 	</tr>
 <?php if(enableCaptcha()) : ?>
 	<tr>
-		<td class="right"><?php echo gTranslate('core', "Captcha Protection:"); ?></td>
+		<td class="right"><?php echo gTranslate('common', "Captcha Protection:"); ?></td>
 		<td><?php echo $captcha->display_form(); ?></td>
 	</tr>
 <?php endif ?>
@@ -164,7 +164,7 @@ else {
 		<td colspan="2" class="g-commentadd-box-footer right">
 		<?php
 			if(enableCaptcha()) {
-				echo gSubmit('captcharefresh', gTranslate('core', "Refresh Captcha"));
+				echo gSubmit('captcharefresh', gTranslate('common', "Refresh Captcha"));
 			}
 			echo gSubmit('save', gTranslate('common', "Post comment"));
 		?>
@@ -663,7 +663,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
 function dismissAndReload() {
 	doctype();
 	echo "\n<html>";
-	echo "\n<title>". gTranslate('core', "Operation done, closing window.") . '</title>';
+	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
 
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
@@ -696,7 +696,7 @@ function reload() {
 function dismissAndLoad($url = '') {
 	doctype();
 	echo "\n<html>";
-	echo "\n<title>". gTranslate('core', "Operation done, closing window.") . '</title>';
+	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
 
 	if (isDebugging()) {
 		echo "<body onLoad=\"opener.location='$url';\">";
@@ -1325,7 +1325,7 @@ function LoginLogoutButton($logoutUrl, $photoCount = 1) {
 		}
 		else {
 			if($photoCount == 0) {
-				$loginText = gTranslate('core', "_Login to see or add more items.");
+				$loginText = gTranslate('common', "_Login to see or add more items.");
 			}
 			else {
 				$loginText = gTranslate('common', "log_in");
@@ -1601,7 +1601,7 @@ function readMoreBox($panelID, $panelHeaderText = '', $text, $cutAfter = 0, $rea
 	$html = '';
 
 	if(empty($readMoreText)) {
-		$readMoreText = gTranslate('core', "... read more");
+		$readMoreText = gTranslate('common', "... read more");
 	}
 
 	if($textLength < $cutAfter) {

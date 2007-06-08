@@ -1511,7 +1511,7 @@ class Album {
 			(!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
 				(!empty($gallery->app->exiftags) && $gallery->app->exiftags)))
 		{
-			$exifData = getExif($file);
+			list($status, $exifData) = getExif($file);
 
 			if (isset($exifData['Orientation'])) {
 				$orientation = trim($exifData['Orientation']);
@@ -1522,6 +1522,8 @@ class Album {
 			else {
 				$orientation = '';
 			}
+
+			echo debugMessage(sprintf(gTranslate('core', "Orientation: %s "), $orientation), __FILE__, __LINE__);
 
 			switch ($orientation) {
 				case "Right-Hand, Top":	// exiftags
