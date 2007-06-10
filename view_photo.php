@@ -165,15 +165,15 @@ $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 */
 $top = $gallery->app->photoAlbumURL;
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album->fields['bordercolor'];
 
-$navigator["id"] = $id;
-$navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
-$navigator["url"] = ".";
-$navigator["bordercolor"] = $bordercolor;
+$navigator['id']			= $id;
+$navigator['allIds']		= $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
+$navigator['url']			= '.';
+$navigator['bordercolor'] = $bordercolor;
 
 /* -- breadcrumb text --- */
-$breadcrumb["text"] = returnToPathArray($gallery->album, true);
+$breadcrumb['text'] = returnToPathArray($gallery->album, true);
 
 $extra_fields = $gallery->album->getExtraFields(false);
 $g_pageTitle = NULL;
@@ -230,9 +230,11 @@ if (!$gallery->album->isMovie($id)) {
 		$thumbImage= $prependURL . $photoPath . "/";
 		if ($photo->thumbnail) {
 			$thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
-		} else if ($photo->image->resizedName) {
+		}
+		else if ($photo->image->resizedName) {
 			$thumbImage .= $photo->image->name . "." . "sized" . "." . $photo->image->type;
-		} else {
+		}
+		else {
 			$thumbImage .= $photo->image->name . "." . $photo->image->type;
 		}
 
@@ -400,11 +402,11 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons) {
 $logoutReturn = doCommand("logout", array(), "albums.php");
 $iconElements[] = LoginLogoutButton($logoutReturn);
 
-$adminbox["text"] = makeIconMenu($adminTextIconElemens, 'left');
-$adminbox["commands"] = makeIconMenu($iconElements, 'right');
-$adminbox["bordercolor"] = $bordercolor;
+$adminbox['text']			= makeIconMenu($adminTextIconElemens, 'left');
+$adminbox['commands']		= makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor']	= $bordercolor;
 
-$breadcrumb["bordercolor"] = $bordercolor;
+$breadcrumb['bordercolor']	= $bordercolor;
 
 /* Icon menu above the photo */
 if($useIcons && sizeof($albumItemOptions) > 1) {
@@ -426,8 +428,8 @@ if($useIcons && sizeof($albumItemOptions) > 1) {
 }
 
 #-- if borders are off, just make them the bgcolor ----
-if ($gallery->album->fields["border"] == 0) {
-	$bordercolor = $gallery->album->fields["bgcolor"];
+if ($gallery->album->fields['border'] == 0) {
+	$bordercolor = $gallery->album->fields['bgcolor'];
 }
 if ($bordercolor) {
 	$bordercolor = "bgcolor=$bordercolor";
@@ -468,6 +470,7 @@ else {
 }
 
 list($width, $height) = $photo->getDimensions($full);
+
 $gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
 $gallery->html_wrap['borderWidth'] = $gallery->album->fields["border"];
 $gallery->html_wrap['frame'] = $frame;
@@ -475,6 +478,7 @@ $gallery->html_wrap['imageWidth'] = $width;
 $gallery->html_wrap['imageHeight'] = $height;
 $gallery->html_wrap['imageHref'] = $href;
 $gallery->html_wrap['imageTag'] = $photoTag;
+
 if ($fitToWindow && $gallery->user->canViewFullImages($gallery->album)) {
 	$gallery->html_wrap['attr'] = 'onclick="sizeChange.toggle()"';
 }
