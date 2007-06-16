@@ -105,6 +105,8 @@ $image = $photo->image;
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
+$allImageAreas = $gallery->album->getAllImageAreas($index);
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html>
@@ -118,6 +120,9 @@ common_header();
 <?php
 } // End if ! embedded
 
+if (!empty($allImageAreas)) {
+    echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
+}
 includeHtmlWrap("photo.header");
 
 ?>
@@ -188,8 +193,6 @@ list($width, $height) = $photo->getDimensions($full);
 //print_r($photo);
 
 echo showImageMap($index, $gallery->album->getPhotoPath($index, $full));
-
-$allImageAreas = $gallery->album->getAllImageAreas($index);
 
 if (!empty($allImageAreas)) {
     echo "\n". '<script type="text/javascript">';
@@ -291,9 +294,6 @@ echo languageSelector();
 
 includeHtmlWrap("photo.footer");
 
-if (!empty($allImageAreas)) {
-    echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
-}
 ?>
     <script type="text/javascript">
     <!--

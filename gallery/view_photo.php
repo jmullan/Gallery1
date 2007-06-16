@@ -207,6 +207,8 @@ if (!empty($save) && $gallery->user->canAddComments($gallery->album)) {
     }
 }
 
+$allImageAreas = $gallery->album->getAllImageAreas($index);
+
 $metaTags = array();
 $keyWords = $gallery->album->getKeywords($index);
 if (!empty($keyWords)) {
@@ -303,6 +305,10 @@ if (!empty($gallery->album->fields["textcolor"])) {
   <body dir="<?php echo $gallery->direction ?>">
 <?php
 } // End if ! embedded
+
+if (!empty($allImageAreas)) {
+	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
+}
 
 includeHtmlWrap("photo.header");
 
@@ -600,7 +606,6 @@ if ($bordercolor) {
 <!-- End Top Nav Bar -->
 </div>
 
-
 <div style="width:<?php echo $mainWidth ?>">
 <?php includeHtmlWrap("inline_photo.header"); ?>
 </div>
@@ -635,7 +640,7 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
     $frame = 'none';
 }
 
-if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
+if(empty($full) && !empty($allImageAreas)) {
     echo showImageMap($index, $href);
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"galleryImage\" usemap=\"#myMap\"");
 }
@@ -813,9 +818,7 @@ if (isset($printPhotoAccessForm)) { ?>
 <?php }
 
     includeHtmlWrap("photo.footer");
-    if (!empty($allImageAreas)) {
-        echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
-    }
+
     if ($fitToWindow) {
 ?>
 <script type="text/javascript">

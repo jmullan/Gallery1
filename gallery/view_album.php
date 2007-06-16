@@ -322,7 +322,7 @@ $adminOptions = array(
         'action' => 'popup',
         'value' => doCommand('remake-thumbnail',
             array('set_albumName' => $gallery->session->albumName, 'index' => 'all', 'type' => 'popup'))),
-	'rebuild_capture_dates' => array(
+    'rebuild_capture_dates' => array(
 		'name'          => gTranslate('core', "Rebuild capture dates"),
 		'requirements'  => array('canWriteToAlbum', 'photosExist', 'exif'),
 		'action'        => 'popup',
