@@ -120,11 +120,11 @@ common_header();
 <?php
 } // End if ! embedded
 
+includeHtmlWrap("photo.header");
+
 if (!empty($allImageAreas)) {
     echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
-includeHtmlWrap("photo.header");
-
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
@@ -242,7 +242,12 @@ echo makeFormIntro('imagemap.php',
 	<?php echo gTranslate('core', "Optional link-url"); ?><br>
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
 	<?php echo gTranslate('core', "Description"); ?><br>
+	<?php if($GALLERY_EMBEDDED_INSIDE_TYPE != 'phpnuke') { ?>
 	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
+	<?php } else { ?>
+	<input type="text" id="areatext" size="40">
+	<?php } ?>
+
 	<input type="submit" value="<?php echo _("Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
     <hr>
 <?php
@@ -292,15 +297,16 @@ includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 echo languageSelector();
 
+?>
+ 	<script type="text/javascript">
+	<!--
+		initPaintArea ();
+	//-->
+	</script>
+<?php
+
 includeHtmlWrap("photo.footer");
 
-?>
-    <script type="text/javascript">
-    <!--
-      initPaintArea ();
-    //-->
-    </script>
-<?php
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>

@@ -306,11 +306,11 @@ if (!empty($gallery->album->fields["textcolor"])) {
 <?php
 } // End if ! embedded
 
+includeHtmlWrap("photo.header");
+
 if (!empty($allImageAreas)) {
 	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 }
-
-includeHtmlWrap("photo.header");
 
 $useIcons = (!$iconsForItemOptions || $gallery->app->useIcons == 'no') ? false : true;
 $albumItemOptions = getItemActions($index, $useIcons);
