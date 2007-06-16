@@ -165,6 +165,8 @@ if (!empty($action)) {
 else {
 	findInvalidAlbums();
 
+	echo "<div class=\"clear\"></div>\n";
+	
 	echo "<fieldset><legend>". gTranslate('core', "Missing files") ."</legend>";
 	if (empty($action)) {
 		if (!empty($results['file_missing'])) { ?>
