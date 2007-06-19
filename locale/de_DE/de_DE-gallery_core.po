@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-08 11:03+0200\n"
+"POT-Creation-Date: 2007-06-19 18:36+0200\n"
 "PO-Revision-Date: 2007-06-07 16:51+0100\n"
 "Last-Translator: Jens A. Tkotz\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -50,7 +50,7 @@ msgid "Configuration _wizard"
 msgstr "Konfigurations-_Assistent"
 
 #: ../admin-page.php:44
-msgid "Use the config wizard to reconfigure or tweak your Gallery"
+msgid "Use the Configuration wizard to reconfigure or tweak your Gallery"
 msgstr "Benutzen Sie den Konfigurationsassistenten um die Grundeinstellungen Ihrer Gallery zu verbessern, oder anzupassen."
 
 #: ../admin-page.php:47
@@ -66,7 +66,7 @@ msgid "Find _comment spam"
 msgstr "_Kommentarspam finden"
 
 #: ../admin-page.php:54
-msgid "Find and remove comments that contains spam."
+msgid "Find and remove comments that contain spam."
 msgstr "Kommentare finden und löschen, die Spam enthalten"
 
 #: ../admin-page.php:57
@@ -90,7 +90,7 @@ msgid "Manage user_groups"
 msgstr "_Gruppen verwalten"
 
 #: ../admin-page.php:79
-msgid "Manage your usergroups."
+msgid "Manage your user groups."
 msgstr "Verwalten Sie hier Ihre Benutzergruppen."
 
 #: ../admin-page.php:83
@@ -98,7 +98,7 @@ msgid "_Filesystem usage"
 msgstr "_Festplattenplatz"
 
 #: ../admin-page.php:85
-msgid "See how much space your Gallery consums. Viewable by usage per user and per album."
+msgid "See how much space your Gallery consumes. Viewable by usage per user and per album."
 msgstr "Lassen Sie sich anzeigen wieviel Festplattenplatz Ihre Gallery verbraucht. Sie können dies per Benutzer, oder per Album anzeigen lassen."
 
 #: ../admin-page.php:94 ../admin-page.php:105
@@ -271,7 +271,7 @@ msgstr "Das angeforderte Album mit dem Index %s ist nicht gültig."
 msgid "Highlight for album: %s"
 msgstr "Titelbild des Albums: %s"
 
-#: ../albums.php:344 ../classes/Album.php:1761 ../classes/Album.php:1773
+#: ../albums.php:344 ../classes/Album.php:1760 ../classes/Album.php:1772
 msgid "No highlight!"
 msgstr "Kein Titelbild!"
 
@@ -489,8 +489,8 @@ msgstr "Benenne Album um von %s in %s ..."
 msgid "description"
 msgstr "Beschreibung"
 
-#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:241
-#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:187
+#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:245
+#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:196
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -538,8 +538,8 @@ msgstr "Die Aktion wurde erfolgreich ausgeführt.  Emailing wurde aktiviert, es w
 msgid "Skipping Movie"
 msgstr "Überspringe Film"
 
-#: ../classes/Album.php:1252 ../classes/Album.php:2166
-#: ../classes/Album.php:2319
+#: ../classes/Album.php:1252 ../classes/Album.php:2165
+#: ../classes/Album.php:2318
 msgid " -- Skipping"
 msgstr " -- Wird ausgelassen"
 
@@ -548,8 +548,8 @@ msgstr " -- Wird ausgelassen"
 msgid "Resizig items in album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Verändere Größen der Elemente vom Album: '<i>%s</i>' (%s)' mit %d Elementen"
 
-#: ../classes/Album.php:1271 ../classes/Album.php:2185
-#: ../classes/Album.php:2354
+#: ../classes/Album.php:1271 ../classes/Album.php:2184
+#: ../classes/Album.php:2353
 #, php-format
 msgid "Processing item %d..."
 msgstr "Verarbeite Bild %d ..."
@@ -597,81 +597,82 @@ msgstr "Erzeuge verkleinerte Zwischenversion von %s"
 msgid "Check if image needs to be rotated"
 msgstr "Prüfe ob Bild gedreht werden muss."
 
-#: ../classes/Album.php:1527
+#: ../classes/Album.php:1526
+#, php-format
 msgid "Orientation: %s "
 msgstr "Orientierung: %s"
 
-#: ../classes/Album.php:1571
+#: ../classes/Album.php:1570
 msgid "Photo auto-rotated/transformed"
 msgstr "Bild automatisch gedreht/ ver&auml;ndert"
 
-#: ../classes/Album.php:1574
+#: ../classes/Album.php:1573
 msgid "Photo NOT auto-rotated/transformed"
 msgstr "Bild wurde NICHT automatisch gedreht/ verändert"
 
-#: ../classes/Album.php:1584
+#: ../classes/Album.php:1583
 msgid "Watermarking Image"
 msgstr "Wasserzeichen setzen"
 
-#: ../classes/Album.php:1591 ../classes/Album.php:1596
+#: ../classes/Album.php:1590 ../classes/Album.php:1595
 msgid "Item successfully added."
 msgstr "Element wurde erfolgreich hinzugefügt."
 
-#: ../classes/Album.php:2002
+#: ../classes/Album.php:2001
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Angeforderter index [%d] ist ausserhalb der erlaubten Menge [%d]. Gallery konnte das angeforderte Albumelement nicht laden."
 
-#: ../classes/Album.php:2055
+#: ../classes/Album.php:2054
 #, php-format
 msgid "Recreating %d captions..."
 msgstr "Erzeuge %d Beschriftungen"
 
-#: ../classes/Album.php:2057
+#: ../classes/Album.php:2056
 #, php-format
 msgid "Processing image %d..."
 msgstr "Verarbeite Bild %d ..."
 
-#: ../classes/Album.php:2064
+#: ../classes/Album.php:2063
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Verarbeite Album %s mit %d Photos"
 
-#: ../classes/Album.php:2176 ../classes/Album.php:2329
+#: ../classes/Album.php:2175 ../classes/Album.php:2328
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Aktualisiere Album: '<i>%s</i>' (%s)' mit %d Elementen"
 
-#: ../classes/Album.php:2195 ../classes/Album.php:2342
+#: ../classes/Album.php:2194 ../classes/Album.php:2341
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items"
 msgstr "Verarbeite Unteralbum '<i>%s</i>' mit %d Elementen"
 
-#: ../classes/Album.php:2527
+#: ../classes/Album.php:2526
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr "Fehler beim Holen der EXIF Daten. Erwarteter Status 0, erhalten: %s."
 
-#: ../classes/Album.php:2778
+#: ../classes/Album.php:2777
 msgid "(Group)"
 msgstr "(Gruppe)"
 
-#: ../classes/Album.php:3110
+#: ../classes/Album.php:3109
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3277
+#: ../classes/Album.php:3276
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problem: Es wurde %s (UID %s) übersprungen, da keine Emailadresse angegeben wurde."
 
-#: ../classes/Album.php:3281
+#: ../classes/Album.php:3280
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problem: Es wurde %s (UID %s) übersprungen, da die Emailadresse '%s' nicht gültig zu sein scheint."
 
-#: ../classes/Album.php:3291
+#: ../classes/Album.php:3290
 msgid "Email problems"
 msgstr "Email Problem"
 
@@ -974,63 +975,63 @@ msgstr "Beispiel:"
 msgid "_Back to upload"
 msgstr "_Zur&uuml;ck zum Upload"
 
-#: ../imagemap.php:151
+#: ../imagemap.php:157
 msgid "log_out"
 msgstr "A_bmelden"
 
-#: ../imagemap.php:158
+#: ../imagemap.php:164
 msgid "_login"
 msgstr "An_melden"
 
-#: ../imagemap.php:172
+#: ../imagemap.php:178
 msgid "Original photo"
 msgstr "Original Photo"
 
-#: ../imagemap.php:213
+#: ../imagemap.php:217
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr "Hier können Sie sogenannte ImageMaps für das ausgewählte Photo anlegen, bearbeiten oder auch wieder löschen."
 
-#: ../imagemap.php:215
+#: ../imagemap.php:219
 msgid "Click the question mark icon for helpful instructions."
 msgstr "Klicken Sie auf das Fragezeichen um einige hilfreiche Tips zu bekommen."
 
-#: ../imagemap.php:216 ../includes/add_photos/add_form.inc:74
+#: ../imagemap.php:220 ../includes/add_photos/add_form.inc:74
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../imagemap.php:235
+#: ../imagemap.php:239
 msgid "Clear and reset canvas"
 msgstr "Zeichenfläche löschen."
 
-#: ../imagemap.php:236
+#: ../imagemap.php:240
 msgid "Brush color:"
 msgstr "Malfarbe:"
 
-#: ../imagemap.php:239
+#: ../imagemap.php:243
 msgid "Optional link-url"
 msgstr "Optionale Link-URL"
 
-#: ../imagemap.php:243
+#: ../imagemap.php:247
 msgid "Save Imagemap"
 msgstr "ImageMap speichern"
 
-#: ../imagemap.php:250
+#: ../imagemap.php:254
 msgid "Select entries to show ImageMap areas in your photo."
 msgstr "Markieren Sie hier die Einträge um die ImageMaps im Bild anzuzeigen."
 
-#: ../imagemap.php:258
+#: ../imagemap.php:262
 msgid "Delete selected ImageMap(s)"
 msgstr "Markierte ImageMaps löschen."
 
-#: ../imagemap.php:261
+#: ../imagemap.php:265
 msgid "Update selected ImageMap(s)"
 msgstr "Markierte ImageMaps aktualisieren."
 
-#: ../imagemap.php:263
+#: ../imagemap.php:267
 msgid "Be aware, that the text of ALL selected entries will be updated!"
 msgstr "Vorsicht, bei einer Aktualisierung werden alle markierten Einträge verwendet."
 
-#: ../imagemap.php:266
+#: ../imagemap.php:270
 msgid "No ImageMaps"
 msgstr "Keine ImageMap bisher angelegt."
 
@@ -1175,10 +1176,6 @@ msgstr "Eine Auswahl von weiteren Methoden, um Bilder zu Ihrer Gallery hinzuzuf&
 #: ../includes/add_photos/add_other.inc:51
 msgid "Windows XP Publishing Agent"
 msgstr "Windows XP Ver&ouml;ffentlichungs Agent"
-
-#: ../includes/add_photos/add_other.inc:53
-msgid "<i>Note:</i> this feature is still experimental!"
-msgstr "<i>Hinweis:</i> Dieses Feature ist noch experimentell!"
 
 #: ../includes/add_photos/add_url.inc:30
 msgid "Upload any images found at this location."
@@ -1579,7 +1576,7 @@ msgstr "Wasserzeichen setzen"
 msgid "No Admin commands available."
 msgstr "Keine Adminaktionen verf&uuml;gbar."
 
-#: ../layout/breadcrumb.inc:26
+#: ../layout/breadcrumb.inc:27
 #, php-format
 msgid "Logged in as: %s"
 msgstr "Angemeldet als: %s"
@@ -1924,9 +1921,9 @@ msgid "Generated caption. Type: %s"
 msgstr "Erzeuge Beschriftung. Typ: %s"
 
 #: ../lib/albumItem.php:511
-#, fuzzy, php-format
+#, php-format
 msgid "Entering function: '%s'"
-msgstr "Erzeuge Beschriftung. Typ: %s"
+msgstr "Steige in Funktio: '%s'"
 
 #: ../lib/albumItem.php:513
 #, php-format
@@ -2222,7 +2219,7 @@ msgid "URL"
 msgstr "URL"
 
 #: ../popups/add_photos.php:78
-msgid "From local Server"
+msgid "From Local Server"
 msgstr "Vom Server"
 
 #: ../popups/administer_startpage.php:38
@@ -2815,8 +2812,8 @@ msgid "Title"
 msgstr "Titel"
 
 #: ../popups/edit_appearance.php:190
-msgid "Alt Text / onMouseOver"
-msgstr "Alternativer Text/ onMouseOver"
+msgid "Alt Text / tooltip"
+msgstr "Alternativer Text/ Tooltip"
 
 #: ../popups/edit_appearance.php:220
 #, php-format
@@ -3619,7 +3616,7 @@ msgstr "Welche Version Ihres Bildes wollen Sie verändern?"
 msgid "intermediate"
 msgstr "Zwischenversion"
 
-#: ../popups/resize_photo.php:95 ../view_photo.php:347
+#: ../popups/resize_photo.php:95 ../view_photo.php:350
 msgid "full"
 msgstr "Voll"
 
@@ -4066,9 +4063,8 @@ msgid "Publishing with Windows XP"
 msgstr "Ver&ouml;ffentlichen mit Windows XP"
 
 #: ../publish_xp_docs.php:30
-#, php-format
-msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service.  %s <b>has experimental</b> support for this feature."
-msgstr "Windows XP ist mit dem netten Feature ausgestattet, dass es erlaubt, Inhalte direkt vom Desktop einem Internetdienst hinzuzuf&uuml;gen. %s hat eine <b>experimentelle Unterst&uuml;tzung</b> f&uuml;r dieses Feature. "
+msgid "Windows XP comes with a nice feature that allows you to publish content from your desktop directly to a web service."
+msgstr "Windows XP ist mit dem netten Feature ausgestattet, dass es erlaubt, Inhalte direkt vom Desktop einem Internetdienst hinzuzuf&uuml;gen. "
 
 #: ../publish_xp_docs.php:31
 msgid "It's relatively easy to configure."
@@ -4088,51 +4084,47 @@ msgstr "Laden Sie die %sXP Konfigurationsdatei%s herunter. "
 msgid "Save this file on your PC and rename it %s."
 msgstr "Speichern Sie diese Datei auf Ihrem Computer und benennen Sie sie ggf. in %s um. "
 
-#: ../publish_xp_docs.php:44
+#: ../publish_xp_docs.php:45
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
 msgstr "Wenn Sie gefragt werden, ob Sie den Dateityp &auml;ndern m&ouml;chten, antworten Sie mit &quot;ja&quot;. "
 
-#: ../publish_xp_docs.php:45
+#: ../publish_xp_docs.php:47
 msgid "Right click on this file and you should see a menu appear."
 msgstr "Ein Rechts-Klick auf diese Datei sollte ein Kontextmen&uuml; &ouml;ffnen. "
 
-#: ../publish_xp_docs.php:46
+#: ../publish_xp_docs.php:49
 msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
 msgstr "W&auml;hlen Sie die Option <b>Zusammenf&uuml;gen</b> (sollte an erster Stelle stehen). "
 
-#: ../publish_xp_docs.php:47
-msgid "It will ask you if you want to import these values into your registry."
-msgstr "Sie werden gefragt werden, ob Sie diese Datei der Registry hinzuf&uuml;gen m&ouml;chten. "
+#: ../publish_xp_docs.php:51
+msgid "It will ask you if you want to import these values into your registry. Click &quot;ok&quot;."
+msgstr "Sie werden gefragt werden, ob Sie diese Datei der Registry hinzuf&uuml;gen m&ouml;chten. Klicken Sie &quot;ok&quot;."
 
-#: ../publish_xp_docs.php:48
-msgid "Click &quot;ok&quot;."
-msgstr "Klicken Sie auf &quot;ja&quot;. "
-
-#: ../publish_xp_docs.php:49
+#: ../publish_xp_docs.php:53
 msgid "It will tell you that the files were imported successfully."
 msgstr "Die Datei sollte danach erfolgreich importiert sein. "
 
-#: ../publish_xp_docs.php:50
+#: ../publish_xp_docs.php:54
 msgid "Click &quot;ok&quot; again."
 msgstr "Klicken Sie abschlie&szlig;end &quot;ok&quot;. "
 
-#: ../publish_xp_docs.php:55
+#: ../publish_xp_docs.php:59
 msgid "Step 2"
 msgstr "Schritt 2"
 
-#: ../publish_xp_docs.php:58
+#: ../publish_xp_docs.php:62
 msgid "Open your Windows explorer and browse to a folder containing supported images."
 msgstr "&Ouml;ffnen Sie Ihren Windows-Explorer und gehen Sie zu einem Ordner, der von Gallery unterst&uuml;tze Dateien (Bilder, Filme, ...) enth&auml;lt."
 
-#: ../publish_xp_docs.php:59
+#: ../publish_xp_docs.php:64
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
 msgstr "W&auml;hlen Sie eine oder mehrere Dateien oder einen ganzen Ordner aus, um diese Datei der Gallery hinzuzuf&uuml;gen. Es sollte nun an der linken Seite (oder im Kontextmen&uuml;) ein Link &quot;Diese Datei/Ordner im Web ver&ouml;ffentlichen&quot; sichtbar sein. "
 
-#: ../publish_xp_docs.php:60
+#: ../publish_xp_docs.php:66
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
 msgstr "Klicken Sie diesen Link und folgen Sie den Beschreibungen, um sich in ihrer Gallery einzuloggen, ein Album auszuw&auml;hlen und das Bild oder den Film zu ver&ouml;ffentlichen. "
 
-#: ../publish_xp_docs.php:66
+#: ../publish_xp_docs.php:72
 msgid "Return to Add Photos"
 msgstr "R&uuml;ckkehr zum Hinzuf&uuml;gen von Bildern"
 
@@ -4660,71 +4652,70 @@ msgstr "Hinweis: Auch wenn das Vorschaubild korrekt angezeigt wird, das passende
 msgid "Invalid Action !"
 msgstr "Ung&uuml;ltige Aktion!"
 
-#: ../tools/validate_albums.php:168
+#: ../tools/validate_albums.php:170
 msgid "Missing files"
 msgstr "Fehlende Dateien"
 
-#: ../tools/validate_albums.php:172
-#, fuzzy
-msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."
-msgstr "Die folgenden Dateien fehlen in Ihrem 'albums' Ordner.  Es wurden allerdings Informationen zu dieser Datei in den MetaDaten gefunden. Warum diese Datei fehlt kann Gallery nicht feststellen. Das Fehlen der Datei erzeugt jedoch Probleme bei der Migration nach Gallery2.  Dies kann durch zwei Möglichkeiten gelöst werden.  1.) Sie entfernen das Photo komplett aus Ihrer Gallery oder 2.) Sie laden die Datei manuell an die entsprechende Stelle."
-
 #: ../tools/validate_albums.php:174
+msgid "The following files are missing from the albums directory.  Information is still stored about the photo in the album data, but the file itself is no longer present for some reason.  These files will cause failures when attempting to migrate to Gallery 2.x."
+msgstr "Die folgenden Dateien fehlen in Ihrem 'albums' Ordner.  Es wurden allerdings Informationen zu dieser Datei in den MetaDaten gefunden. Warum diese Datei fehlt kann Gallery nicht feststellen. Das Fehlen der Datei erzeugt jedoch Probleme bei der Migration nach Gallery2."
+
+#: ../tools/validate_albums.php:176
 msgid "This can be fixed in one of two ways:"
 msgstr "Dies kann auf zwei Wegen behoben werden:"
 
-#: ../tools/validate_albums.php:176
+#: ../tools/validate_albums.php:178
 msgid "The first is to simply delete the photo entry from the album."
 msgstr "Der Erste ist den Photoeintrag aus dem Album zu löschen."
 
-#: ../tools/validate_albums.php:177
+#: ../tools/validate_albums.php:179
 msgid "The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."
 msgstr "Der Zweite ist, daß Sie die Datei händisch selber in den Albumordner kopieren. Sie müssen hierbei den links aufgeführten Dateinamen verwenden."
 
-#: ../tools/validate_albums.php:182
+#: ../tools/validate_albums.php:184
 #, php-format
 msgid "Missing Files: %s"
 msgstr "Fehlende Dateien: %s"
 
-#: ../tools/validate_albums.php:186
+#: ../tools/validate_albums.php:188
 msgid "Missing File"
 msgstr "Fehlende Datei"
 
-#: ../tools/validate_albums.php:188 ../tools/validate_albums.php:234
+#: ../tools/validate_albums.php:190 ../tools/validate_albums.php:236
 msgid "Action"
 msgstr "Aktion"
 
-#: ../tools/validate_albums.php:202
+#: ../tools/validate_albums.php:204
 msgid "delete photo"
 msgstr "Bild l&ouml;schen"
 
-#: ../tools/validate_albums.php:216
+#: ../tools/validate_albums.php:218
 msgid "There are no missing files in this Gallery."
 msgstr "Es gibt keine fehlenden Elemente in dieser Galerie."
 
-#: ../tools/validate_albums.php:221
+#: ../tools/validate_albums.php:223
 msgid "Invalid albums"
 msgstr "Ungültige Alben"
 
-#: ../tools/validate_albums.php:224
+#: ../tools/validate_albums.php:226
 #, fuzzy
 msgid "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x"
 msgstr "Ungültige Alben sind Ordner, welche in Gallerys 'albums' Ordner angelegt wurden, aber keine Albumdaten enthalten. Diese Ordern können aber Problem sowohl in Gallery 1, also auch bei der Migration nach Gallery 2 erzeugen."
 
-#: ../tools/validate_albums.php:228
+#: ../tools/validate_albums.php:230
 #, php-format
 msgid "Invalid Albums: %d"
 msgstr "Anzahl ungültige Alben: %d"
 
-#: ../tools/validate_albums.php:232
+#: ../tools/validate_albums.php:234
 msgid "Invalid Album"
 msgstr "Ung&uuml;ltiges Album"
 
-#: ../tools/validate_albums.php:244
+#: ../tools/validate_albums.php:246
 msgid "delete directory"
 msgstr "Ordner löschen"
 
-#: ../tools/validate_albums.php:257
+#: ../tools/validate_albums.php:259
 msgid "There are no invalid albums in this Gallery."
 msgstr "Es gibt keine ungültigen Alben in dieser Galerie."
 
@@ -4749,11 +4740,11 @@ msgid "No comment deleted."
 msgstr "Kein Kommentar gelöscht."
 
 #: ../tools/lib/lib-despam_comments.php:59
-#, fuzzy, php-format
+#, php-format
 msgid "Deleted %d spam comment."
 msgid_plural "Deleted %d spam comments."
-msgstr[0] "Kommentar l&ouml;schen"
-msgstr[1] "Kommentar l&ouml;schen"
+msgstr[0] "Ein Kommentar mit Spam gel&ouml;scht"
+msgstr[1] "%d Kommentare mit Spam  gel&ouml;scht"
 
 #: ../tools/lib/lib-despam_comments.php:108
 #, php-format
@@ -5312,30 +5303,36 @@ msgstr "Zur&uuml;ck zum _Album"
 msgid "Sorry.  This album does not allow comments."
 msgstr "Sorry, dieses Album erlaubt keine Kommentare."
 
-#: ../view_photo.php:290
+#: ../view_photo.php:293
 msgid "Send photo to..."
 msgstr "Sende Photo an..."
 
-#: ../view_photo.php:293
+#: ../view_photo.php:296
 msgid "Print photo with..."
 msgstr "Lasse Photo drucken von..."
 
-#: ../view_photo.php:330
+#: ../view_photo.php:333
 #, php-format
 msgid "process this photo with %s"
 msgstr "Ein Abzug des Bildes via %s bestellen."
 
-#: ../view_photo.php:345
+#: ../view_photo.php:348
 msgid "View Images:"
 msgstr "Bildanzeige:"
 
-#: ../view_photo.php:346
+#: ../view_photo.php:349
 msgid "normal"
 msgstr "Normal"
 
-#: ../view_photo.php:510
+#: ../view_photo.php:517
 msgid "Email me when comments are added"
 msgstr "Eine Email an mich schicken, wenn Kommentare abgegeben wurden."
+
+#~ msgid "<i>Note:</i> this feature is still experimental!"
+#~ msgstr "<i>Hinweis:</i> Dieses Feature ist noch experimentell!"
+
+#~ msgid "Click &quot;ok&quot;."
+#~ msgstr "Klicken Sie auf &quot;ja&quot;. "
 
 #~ msgid "Processing element %d..."
 #~ msgstr "Verarbeite Element %d ..."
