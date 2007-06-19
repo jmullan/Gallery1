@@ -126,7 +126,7 @@ $fullpath = $gallery->album->getAbsolutePhotoPath($index, true);
 /*
  *Big files are slowing the cropper.
  * If the file is bigger then 500K,
- * we check wether GD is support and create dynamically a resized version
+ * we check whether GD is support and create dynamically a resized version
 */
 $filesize = fs_filesize($fullpath);
 if($filesize > 512000) {

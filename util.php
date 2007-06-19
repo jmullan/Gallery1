@@ -348,7 +348,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 }
 
 /**
- * Checks wether our Gallery configuration is configured.
+ * Checks whether our Gallery configuration is configured.
  * This check also loads the config.php (if present)
  *
  *
@@ -455,8 +455,8 @@ function preprocessImage($dir, $file) {
 }
 
 /**
- * This function checks wether we are debugging with a given level.
- * If no level is given, it just returns wether we are debugging or not.
+ * This function checks whether we are debugging with a given level.
+ * If no level is given, it just returns whether we are debugging or not.
  * Debug is indicated by a debuglevel greater then 0
  * @param  integer   $level
  * @return boolean
@@ -822,7 +822,7 @@ function ordinal($num = 1) {
 }
 
 /**
- * This function checks wether an archive can be decompressed via Gallery
+ * This function checks whether an archive can be decompressed via Gallery
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
  * @param  string   $ext
@@ -855,7 +855,7 @@ function canDecompressArchive($ext) {
 }
 
 /**
- * This function checks wether an archive can be created via Gallery
+ * This function checks whether an archive can be created via Gallery
  * It just uses the filename extension.
  * If the extension is handable the de/compressing tool is returned
  * @param   string $ext
@@ -1721,7 +1721,7 @@ function clearGalleryTitle($topic = '') {
 }
 
 /**
- * Checks wether PHP has a specific GD support
+ * Checks whether PHP has a specific GD support
  *
  * @param string	$tag
  * @return boolean			True if support is present, otherwise false

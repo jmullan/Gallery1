@@ -16,18 +16,19 @@ if(!includeTemplate('breadcrumb') &&
 {
 ?>
 
-<div class="g-breadcrumb">
+<table class="g-breadcrumb">
+   <tr>
 	<?php
 	if ($gallery->user->isLoggedIn()) {
 	    $name = $gallery->user->getFullName();
 	    if (!$name) {
 	        $name = $gallery->user->getUsername();
 	    }
-	    echo '<div class="left floatleft">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</div>';
+	    echo '<td class="left floatleft">'. sprintf(gTranslate('core', "Logged in as: %s"), $name) .'</td>';
 	}
 	?>
 
-	<div class="right">
+	<td class="right">
 	<?php
 	if (isset($breadcrumb['text'])) {
 	    foreach($breadcrumb["text"] as $nr => $text) {
@@ -35,9 +36,9 @@ if(!includeTemplate('breadcrumb') &&
 	    }
 	}
 	?>
-	</div>
-</div>
-
+	</td>
+	</tr>
+</table>
 <?php
 }
 ?>

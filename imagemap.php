@@ -114,6 +114,8 @@ $image = $photo->image;
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
+$allImageAreas = $gallery->album->getAllImageAreas($index);
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html>
@@ -128,6 +130,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } // End if ! embedded
 
 includeTemplate("photo.header");
+
+if (!empty($allImageAreas)) {
+	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
+}
 
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
@@ -185,8 +191,6 @@ list($width, $height) = $photo->getDimensions($full);
 //print_r($photo);
 
 echo showImageMap($index, $gallery->album->getPhotoPath($index, $full));
-
-$allImageAreas = $gallery->album->getAllImageAreas($index);
 
 if (!empty($allImageAreas)) {
 	echo "\n". '<script type="text/javascript">';
@@ -282,9 +286,6 @@ includeLayout('breadcrumb.inc');
 
 echo languageSelector();
 
-if (!empty($allImageAreas)) {
-	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
-}
 ?>
 	<script type="text/javascript">
 	<!--

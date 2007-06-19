@@ -255,7 +255,7 @@ $properties = array(
 	),
 	'dimensionsAsPopup' => array(
 		'prompt'	=> gTranslate('common', "Open dimensions-link as popup?"),
-		'desc'		=> gTranslate('common', "If you show the dimensions-links, you can choose wether you just want the images shown in a popup, or open the complete photoview."),
+		'desc'		=> gTranslate('common', "If you show the dimensions-links, you can choose whether you just want the images shown in a popup, or open the complete photoview."),
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
 		'value' => $gallery->album->fields["dimensionsAsPopup"]
 	),

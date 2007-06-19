@@ -476,7 +476,7 @@ for ($i = $start; $i <= $end; $i++) {
 				case "both":
 					$lastCommentDate = $gallery->album->lastCommentDate($gallery->app->comments_indication_verbose);
 					$rootAlbum[$tmpAlbumName]['albumdesc']['commentIndication'] =
-					lastCommentString($lastCommentDate, $displayCommentLegend);
+						lastCommentString($lastCommentDate, $displayCommentLegend);
 					break;
 			}
 		}

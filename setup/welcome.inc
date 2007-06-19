@@ -68,7 +68,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 
 		<div class="g-config-main">
 			<?php
-				echo gTranslate('config', "Welcome to the configuration wizard of Gallery.");
+				echo gTranslate('config', "Welcome to the Setup of Gallery.");
 				if ($install) {
 					echo "\n<br>";
 					echo gTranslate('config', "Gallery must be configured before you can use it.");
@@ -78,13 +78,13 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 				<tr>
 					<td><?php echo gTranslate('config', "1."); ?></td>
 					<td>
-						<?php echo gTranslate('config', "Create an empty file config.php in the mainfolder of your Gallery."); ?><br>
-						<?php echo gTranslate('config', "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosters.)"); ?>
+						<?php echo gTranslate('config', "Create an empty file config.php in the main folder of your Gallery."); ?><br>
+						<?php echo gTranslate('config', "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosts.)"); ?>
 					</td>
 				</tr>
 				<tr>
 					<td><?php echo gTranslate('config', "2."); ?></td>
-					<td><?php echo gTranslate('config', "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to put it in your Gallery folder. But thats up to you."); ?></td>
+					<td><?php echo gTranslate('config', "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend that you don't put it in your Gallery folder, but that's up to you."); ?></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="g-emphasis"><?php echo gTranslate('config', "Make sure that both files and the folder are read and writeable for your webserver !"); ?></td>

@@ -44,7 +44,7 @@ if (getRequestVar('save')) {
 	/**
 	 * This part does 2 things:
 	 * 1.) get the values given by user, so we can put them into the album later.
-	 * 2.) Load the properties and check wether a user input is invalid.
+	 * 2.) Load the properties and check whether a user input is invalid.
 	 */
 	include(GALLERY_BASE . '/includes/definitions/albumProperties.php');
 	foreach($properties as $fieldName => $values) {
@@ -187,7 +187,7 @@ function num_special_fields($extra_fields) {
 
 $multiple_choices_EF = array(
 	'Title' => gTranslate('core', "Title"),
-	'AltText' => gTranslate('core', "Alt Text / onMouseOver")
+	'AltText' => gTranslate('core', "Alt Text / tooltip")
 );
 
 $extra_fields = $gallery->album->getExtraFields();

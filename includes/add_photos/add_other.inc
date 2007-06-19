@@ -49,8 +49,6 @@
 <?php if (empty($GALLERY_EMBEDDED_INSIDE) || $GALLERY_EMBEDDED_INSIDE_TYPE='GeekLog') { ?>
   <li>
 	<b><a target="_parent" href="<?php echo makeGalleryUrl("publish_xp_docs.php") ?>"><?php echo gTranslate('core', "Windows XP Publishing Agent") ?></a></b>
-	<br>
-	<?php echo gTranslate('core', "<i>Note:</i> this feature is still experimental!") ?>
   </li>
 <?php } ?>
 </ul>

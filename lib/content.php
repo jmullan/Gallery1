@@ -1007,7 +1007,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 /**
  * Formats a nice string to print below an item with comments
  * @param  int		$lastCommentDate		Timestamp of last comment
- * @param  boolean	$displayCommentLegend	indicator wether a Legend showed be showed later.
+ * @param  boolean	$displayCommentLegend	indicator whether a Legend showed be showed later.
  * @return string	$html
  */
 function lastCommentString($lastCommentDate, &$displayCommentLegend) {
@@ -1260,7 +1260,7 @@ function showImageMap($index, $noUrlUrl = '#') {
 			$html .= "\n\t<area shape=\"poly\" coords=\"". $area['coords'] ."\" ";
 
 			if(!empty($area['hover_text'])) {
-				$html .= "onmouseover=\"return escape('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."');\"";
+				$html .= "onmouseover=\"Tip('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."',FADEIN, 300, FADEOUT, 300);\"";
 			}
 
 			if(!empty($area['url'])) {

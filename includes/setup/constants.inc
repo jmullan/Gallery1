@@ -124,14 +124,13 @@ $constants =  array_merge(array(
 	'skinname' => array(
 		'prompt' => gTranslate('config',"Skin Name"),
 		'desc' => gTranslate('config',"Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin.") .
-		  '<br><a href="http://www.pownuke.com/galleryskins/">'. gTranslate('config',"Here you can get a more Gallery Skins by Drazan") .'</a>'.
-		  available_skins(true),
+		  			available_skins(true),
 		'choices' => available_skins(),
 		'value' => 'none'
 	),
 	'useIcons' => array(
 		'prompt' => gTranslate('config',"Use Icons ?"),
-		'desc' => gTranslate('config',"You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
+		'desc' => gTranslate('config',"You can choose whether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be a tooltip."),
 		'choices' => array(
 			'both' => gTranslate('config',"Icons and text"),
 			'no' => gTranslate('config',"Text only"),
@@ -400,7 +399,7 @@ $constants =  array_merge(array(
 	   'desc'  => gTranslate('config', "Choose the theme for the mainpage"),
 	   'choices' => array(
 		   'classic' => gTranslate('config', "The classic layout since Gallery 1.0"),
-		   'matrix' => gTranslate('config', "A lightweight layout, with less textual information inspired by G2 Matrix")
+		   'matrix' => gTranslate('config', "A lightweight layout, with less textual information. Inspired by the Gallery 2 Matrix")
 		),
 		'required' => true,
 		'value' => 'classic'
@@ -1000,7 +999,7 @@ $constants = array_merge($constants, array(
 		'default'	=> 'none',
 		'title'		=> gTranslate('config',"Watermarking"),
 		'desc'		=> ($enablewatermark == 'yes') ?
-		  gTranslate('config',"Choose wether you want to enable or disable watermarking. And set the defaults") :
+		  gTranslate('config',"Choose whether you want to enable or disable watermarking. And set the defaults") :
 		  '<span class="g-attention">' . gTranslate('config',"Watermarking is not possible in this installation !") . '</span>'
 	),
 	'watermarkDir' => array(

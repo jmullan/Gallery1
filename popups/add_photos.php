@@ -75,7 +75,7 @@ if (file_exists(dirname(dirname(__FILE__)) . '/java/GalleryRemoteAppletMini.jar'
 
 $modes['form'] = gTranslate('core', "Form");
 $modes['url'] = gTranslate('core', "URL");
-$modes['local'] = gTranslate('core', "From local Server");
+$modes['local'] = gTranslate('core', "From Local Server");
 $modes['other'] = gTranslate('core', "Other");
 
 if (!isset($mode) || !isset($modes[$mode])) {

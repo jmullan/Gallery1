@@ -128,7 +128,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	
 	/**
-	 * Returns wether the UserDB was succesfully initialized or not
+	 * Returns whether the UserDB was succesfully initialized or not
 	 *
 	 * @return boolean	 true if succesfully initialized.
 	 * @author Jens Tkotz <jens@peino.de>
@@ -383,7 +383,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 	}
 
 	/**
-	 * Checks wether the UserDB is out of Date.
+	 * Checks whether the UserDB is out of Date.
 	 *
 	 * @return boolean	 true if out of Date.
 	 */

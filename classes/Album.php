@@ -3241,7 +3241,7 @@ class Album {
 			$uids = array_keys($this->fields['email_me'][$type]);
 		}
 
-		/** Then check wether THE admin wants to be informed (set in config)
+		/** Then check whether THE admin wants to be informed (set in config)
 		 * Someone may have remove this user, then this setting in config is senseless.
 		 */
 		$admin = $gallery->userDB->getUserByUsername('admin');

@@ -37,7 +37,7 @@ include_once(dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
  * )
  *
  * "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
- * "default"	: Indicates wether the group is visible or not. Possible values: 'inline', 'none'.
+ * "default"	: Indicates whether the group is visible or not. Possible values: 'inline', 'none'.
  * "title"		: When the group is visible, this is displayed as tab title aswell as the title over the content.
  * "desc"		: This optional Description is displayed under the title.
  * "contains_required"	: Indicates that this Group contains field that are required

@@ -997,7 +997,7 @@ class AlbumItem {
 	}
 
 	/**
-	 * Returns true or false wether the item is in acceptableMovieList or not
+	 * Returns true or false whether the item is in acceptableMovieList or not
 	 * @return bool
 	 */
 	function isMovie() {

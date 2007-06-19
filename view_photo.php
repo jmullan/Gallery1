@@ -280,7 +280,8 @@ if (!$gallery->album->isMovie($id)) {
 				foreach ($serviceGroup as $name => $fullName) {
 					if (!in_array($name, $printServices)) {
 						continue;
-					} else {
+					}
+					else {
 						$serviceGroups[$serviceGroupName][$name] = $fullName;
 					}
 				}
@@ -461,7 +462,9 @@ if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gall
 	$frame = 'none';
 }
 
-if(empty($full) && $allImageAreas = $gallery->album->getAllImageAreas($index)) {
+$allImageAreas = $gallery->album->getAllImageAreas($index);
+
+if(empty($full) && !empty($allImageAreas)) {
 	$imageMapHTML = showImageMap($index, $href);
 	$photoTag = $gallery->album->getPhotoTag($index, $full, array('id' => 'galleryImage', 'usemap' => '#myMap'));
 }

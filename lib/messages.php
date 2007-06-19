@@ -56,7 +56,7 @@ function infoLine($messages, $type = '') {
 function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 	$html = '';
 
-	$types = array('success', 'warning', 'error', 'informaion');
+	$types = array('success', 'warning', 'error', 'information');
 	if(!empty($messages)) {
 		if($withOuterBorder) {
 			$html .= "\n<div class=\"g-notice\">";

@@ -57,7 +57,7 @@ else {
 }
 
 /**
- * Checks wether our Gallery configuration is configured.
+ * Checks whether our Gallery configuration is configured.
  * This check also loads the config.php (if present)
 */
 $gallerySanity = gallerySanityCheck();

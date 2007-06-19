@@ -147,7 +147,7 @@ class AlbumDB {
 	}
 
 	/**
-	 * Returns wether the AlbumDB was succesfully initialized or not
+	 * Returns whether the AlbumDB was succesfully initialized or not
 	 *
 	 * @return boolean	 true if succesfully initialized.
 	 * @author Jens Tkotz <jens@peino.de>

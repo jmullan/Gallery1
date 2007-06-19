@@ -41,7 +41,7 @@ $adminOptions[] = array(
 $adminOptions[] = array(
 			'text' => gTranslate('core', "Configuration _wizard"),
 			'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
-			'longtext' => gTranslate('core', "Use the config wizard to reconfigure or tweak your Gallery"));
+			'longtext' => gTranslate('core', "Use the Configuration wizard to reconfigure or tweak your Gallery"));
 
 $adminOptions[] = array(
 		'text' => gTranslate('core', "Find _orphans"),
@@ -51,7 +51,7 @@ $adminOptions[] = array(
 $adminOptions[] = array(
 		'text' => gTranslate('core', "Find _comment spam"),
 		'url' => makeGalleryUrl('tools/despam-comments.php'),
-		'longtext' => gTranslate('core', "Find and remove comments that contains spam."));
+		'longtext' => gTranslate('core', "Find and remove comments that contain spam."));
 
 $adminOptions[] = array(
 		'text' => gTranslate('core', "_Validate albums"),
@@ -76,13 +76,13 @@ if (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE == 'joomla') {
 	$adminOptions[]  = array(
 			'text' => gTranslate('core', "Manage user_groups"),
 			'popupFile' => 'manage_groups.php',
-			'longtext' => gTranslate('core', "Manage your usergroups."));
+			'longtext' => gTranslate('core', "Manage your user groups."));
 }
 
 $adminOptions[] = array(
 		'text' => gTranslate('core', "_Filesystem usage"),
 		'url' => makeGalleryUrl('usage.php'),
-		'longtext' => gTranslate('core', "See how much space your Gallery consums. Viewable by usage per user and per album."));
+		'longtext' => gTranslate('core', "See how much space your Gallery consumes. Viewable by usage per user and per album."));
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 

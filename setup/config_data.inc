@@ -276,7 +276,7 @@ $constants =  array_merge(array(
 	'editPassword' => check_admins(),
 	'useIcons' => array(
 		'prompt' => gTranslate('config',"Use Icons ?"),
-		'desc' => gTranslate('config',"You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
+		'desc' => gTranslate('config',"You can choose whether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
 		'choices' => array(
 			'both' => gTranslate('config',"Icons and text"),
 			'no' => gTranslate('config',"Text only"),
@@ -1110,7 +1110,7 @@ $constants = array_merge($constants, array(
 		'default'	=> 'none',
 		'title'		=> gTranslate('config',"Watermarking"),
 		'desc'		=> ($enablewatermark == 'yes') ?
-		  gTranslate('config',"Choose wether you want to enable or disable watermarking. And set the defaults") :
+		  gTranslate('config',"Choose whether you want to enable or disable watermarking. And set the defaults") :
 		  '<span class="g-attention">' . gTranslate('config',"Watermarking is not possible in this installation !") . '</span>'
 	),
 	'watermarkDir' => array(

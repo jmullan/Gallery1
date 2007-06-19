@@ -306,7 +306,7 @@ $defaults = array(
 	),
 	'dimensionsAsPopup' => array(
 		'prompt' => gTranslate('config',"Dimensions-link opens popup"),
-		'desc' => gTranslate('config',"If you show the dimensions-links, you can choose wether you just want the images shown in a popup, or open the complete photoview."),
+		'desc' => gTranslate('config',"If you show the dimensions-links, you can choose whether you just want the images shown in a popup, or open the complete photoview."),
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
 			'no' => gTranslate('config',"No")

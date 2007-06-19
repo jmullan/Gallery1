@@ -37,7 +37,7 @@ function evenOdd_row($fields) {
 	}
 	else {
 		$html .= "\n<tr>" .
-		"\n\t<td class=\"g-shortdesc\" width=\"40%\">$f0</td>" .
+		"\n\t<td class=\"g-shortdesc\" width=\"30%\">$f0</td>" .
 		"\n\t<td class=\"g-shortdesc\">$fields[1]</td>" .
 		"\n</tr>";
 
@@ -161,12 +161,13 @@ function form_password($key, $arr) {
 
 	if (empty($arr['value'])) {
 		$arr['value'] = array('', '', '', '');
-	} elseif (!is_array($arr['value'])) {
+	}
+	elseif (!is_array($arr['value'])) {
 		$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
 	}
 
 	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
-		. '<br>'
+		. '<div style="margin-top: 3px;"></div>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. gTranslate('config', 'Please retype your password here')
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
@@ -428,7 +429,7 @@ function error_missing($desc, $key) {
 	if (empty($desc)) {
 		$desc = $key;
 	}
-	return gallery_error(sprintf(gTranslate('config', "Missing value: %s"),"<b>$desc</b>!"));
+	return configError(sprintf(gTranslate('config', "Missing value: %s"),"<b>$desc</b>!"));
 }
 
 function check_exec() {
@@ -1424,11 +1425,14 @@ function array_str_replace($search, $replace, $subject) {
 function verify_password($passwords) {
 	$success = array();
 	$fail = array();
+
 	if ($passwords[2] === $passwords[3]) {
 		$success[] = true;
-	} else {
+	}
+	else {
 		$fail[] = gTranslate('config', 'Your passwords do not match!');
 	}
+
 	return array($success, $fail);
 }
 
@@ -2024,5 +2028,11 @@ function useSMTP() {
 	else {
 		return 'no';
 	}
+}
+
+function configError($msg) {
+	$html = '<span class="g-error" style="color: red;">' . $msg . '</span>';
+
+	return $html;
 }
 ?>

@@ -400,7 +400,7 @@ function initLanguage($sendHeader = true) {
 	$checklist = array('direction', 'charset') ;
 
 	/**
-	 * This checks wether the previously defined values are available.
+	 * This checks whether the previously defined values are available.
 	 * All available values are in $nls
 	 * If they are not defined we used the defaults from nls.php
 	 */
@@ -802,7 +802,7 @@ function translateableFields() {
 		'Title'			=> gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
-		'AltText'		=> gTranslate('common', "Alt Text / onMouseOver"),
+		'AltText'		=> gTranslate('common', "Alt Text / tooltip"),
 	);
 }
 
@@ -826,7 +826,7 @@ function languageSelector() {
 			$html .= "\n" . '</script>';
 		}
 
-		$html .= makeFormIntro('#', array('name' => 'MLForm'));
+		$html .= makeFormIntro('#', array('name' => 'MLForm', 'class' => 'langselector'));
 		$langSelectTable = new galleryTable();
 		$langSelectTable->setColumnCount(20);
 		$langSelectTable->setAttrs(array('align' => langRight()));
@@ -877,19 +877,19 @@ function languageSelector() {
 				}
 				else {
 					$langSelectTable->addElement(array(
-			'content' => $flagImage,
-			'cellArgs' => array('style' => 'padding-bottom:10px')
-			));
+						'content' => $flagImage,
+						'cellArgs' => array('style' => 'padding-bottom:10px')
+					));
 				}
 			}
 		}
 
 		if($gallery->app->show_flags !='yes') {
 			$content = drawSelect('newlang',
-			$options,
-			$nls['language'][$gallery->language],
-			1,
-			array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
+									$options,
+									$nls['language'][$gallery->language],
+									1,
+									array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()')
 			);
 
 			$langSelectTable->addElement(array('content' => $content));

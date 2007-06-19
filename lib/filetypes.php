@@ -27,7 +27,7 @@
  */
 
 /**
- * Checks wether a filenaname extension represents an acceptable archive for Gallery.
+ * Checks whether a filenaname extension represents an acceptable archive for Gallery.
  *
  * @param string	$ext
  * @return boolean			True if the extension belongs to an archive.
@@ -51,7 +51,7 @@ function acceptableArchiveList() {
 }
 
 /**
- * Returns wether a file has a acceptable Format.
+ * Returns whether a file has a acceptable Format.
  * Test is done via the filename extension.
  *
  * @param string	$ext
@@ -98,7 +98,7 @@ function acceptableMovieList() {
 }
 
 /**
- * Checks wether a filenaname extension represents an acceptable image for Gallery.
+ * Checks whether a filenaname extension represents an acceptable image for Gallery.
  *
  * @param string	$ext
  * @return boolean
@@ -110,7 +110,7 @@ function isImage($ext) {
 }
 
 /**
- * Checks wether a filenaname extension represents an acceptable movie for Gallery.
+ * Checks whether a filenaname extension represents an acceptable movie for Gallery.
  *
  * @param string	$ext
  * @return boolean

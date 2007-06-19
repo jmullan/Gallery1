@@ -80,7 +80,7 @@ class Abstract_UserDB {
 	}
 
 	/**
-	 * Returns wether the UserDB was succesfully initialized or not.
+	 * Returns whether the UserDB was succesfully initialized or not.
 	 * Is currently only used for standalone Gallery UserDB.
 	 *
 	 * @return boolean	 true if succesfully initialized.
