@@ -182,7 +182,7 @@ function drawSelect2($name, $options, $attrList = array()) {
 	if(!empty($options)) {
 		foreach ($options as $option) {
 			$option['text'] = removeAccessKey($option['text']);
-			$sel = isset($option['selected']) ? ' selected' : '';
+			$sel = (isset($option['selected']) && $option['selected'] != false) ? ' selected' : '';
 			$disabled = ($option['value'] == null) ? 'disabled class="center" style="color: grey"' : '';
 			$html .= '<option value="'. $option['value'] ."\"$sel $disabled>". $option['text'] .'</option>' . $crlf;
 		}
