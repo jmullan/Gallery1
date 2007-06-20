@@ -57,7 +57,14 @@ switch ($frame) {
     break;
 
     case "siriux":
-        echo "\n\t<div style=\"margin: 0 auto;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
+    	if($imageHeight < $imageWidth) {
+    		$margin = ($imageWidth - $imageHeight)/2;
+    	}
+    	else {
+    		$margin = 0;
+    	}
+
+        echo "\n\t<div style=\"margin: ${margin}px auto;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
     break;
 
     default:
