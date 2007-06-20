@@ -183,34 +183,8 @@ if(!includeTemplate('navigator.tpl')) {
 </tr>
 </table>
 <?php
-		if($navc < 2) { ?>
-<script type="text/javascript">
-	function cursor_nav(e) {
-		if(document.all) {
-			taste = window.event.keyCode;
-		}
-		else {
-			taste = e.which;
-		}
-		switch (taste) {
-			case 37:
-				backward = document.getElementById("g-nav-backward_1");
-				window.location.href = backward.href;
-			break;
-
-			case 39:
-				forward = document.getElementById("g-nav-forward_1");
-				window.location.href = forward.href;
-			break;
-
-			default:
-			break;
-		}
-	}
-
-	document.onkeydown = cursor_nav;
-</script>
-<?php
+		if($navc < 2) {
+			include (dirname(dirname(__FILE__)) . '/js/arrowkey_nav.js');
 	    }
 	}
 }

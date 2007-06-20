@@ -1,7 +1,8 @@
-<?php /* $Id$ */ ?>
 <?php
-global $navigator;
-global $full;
+	/* $Id$ */
+
+global $navigator, $full, $gallery, $navc;
+$navc++;
 
 if(!includeTemplate('navphoto.tpl')) {
     // Calculate the beginning and ending of the navigator range
@@ -13,8 +14,9 @@ if(!includeTemplate('navphoto.tpl')) {
     // If the border color is not passed in, we do a white one
     if ($navigator["bordercolor"]) {
         $borderIn = $navigator["bordercolor"];
-    } else {
-        $borderIn = "#FFFFFF";
+    }
+    else {
+        $borderIn = "#FFF";
     }
 
     if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
@@ -38,10 +40,18 @@ if(!includeTemplate('navphoto.tpl')) {
 
         $prevPage = $navigator["allIds"][$navpage-1];
         $ppUrl = makeAlbumUrl($gallery->session->albumName, $prevPage, ($full) ? array('full' => 1) : NULL);
-        $ppContent = galleryIconLink($ppUrl, $ppImg, $ppAltText, 'yes');
+
+        $ppContent = galleryIconLink(
+				$ppUrl,
+				$ppImg,
+				$ppAltText,
+				'yes',
+				array('id' => "g-nav-backward_$navc")
+		);
 
         $pClass= 'g-borderright';
-    } else {
+    }
+    else {
         $fpContent = '&nbsp;';
         $ppContent = '&nbsp;';
 
@@ -55,13 +65,21 @@ if(!includeTemplate('navphoto.tpl')) {
     if ($navpage < $navcount-1) {
         $nextPage = $navigator["allIds"][$navpage+1];
         $npUrl = makeAlbumUrl($gallery->session->albumName, $nextPage, ($full) ? array('full' => 1) : NULL);
-        $npContent = galleryIconLink($npUrl, $npImg, $npAltText, 'yes');
+
+        $npContent = galleryIconLink(
+				$npUrl,
+				$npImg,
+				$npAltText,
+				'yes',
+				array('id' => "g-nav-forward_$navc")
+		);
 
         $lpUrl = makeAlbumUrl($gallery->session->albumName, $lastPage, ($full) ? array('full' => 1) : NULL);
         $lpContent = galleryIconLink($lpUrl, $lpImg, $lpAltText, 'yes');
 
         $nClass = 'g-borderleft';
-    } else {
+    }
+    else {
         $npContent = '&nbsp;';
         $lpContent = '&nbsp;';
 
@@ -78,6 +96,9 @@ if(!includeTemplate('navphoto.tpl')) {
 	<td class="<?php echo $nClass ?>" width="25" height="18"><?php echo $lpContent ?></td>
 </tr>
 </table>
-	<?php
+<?php
+	if($navc < 2 && $gallery->app->comments_addType != "inside") {
+		include (dirname(dirname(__FILE__)) . '/js/arrowkey_nav.js');
+	}
 }
 ?>

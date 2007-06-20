@@ -68,7 +68,6 @@ if (!empty($submit)) {
 
 if (!empty($save) && !empty($ownerUid) && $ownerUid != $prev_ownerUid) {
 	$gallery->album->setOwner($ownerUid);
-	echo "OWNER ::";
 
 	$gallery->album->save(array(i18n("Owner has been changed")));
 	if (getRequestVar('setNested')) {
