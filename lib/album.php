@@ -307,7 +307,7 @@ function customCSS() {
  * @param boolean   $withCurrentAlbum
  * @return string   $pathArray
  */
-function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
+function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview = false) {
 	global $gallery;
 
 	$pathArray = array();
@@ -331,14 +331,21 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true) {
 				$link = $navAlbum['prefixText'] .': ';
 				if($i == $numParents) {
 					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow",
-					array('accesskey' => $accesskey), '', false, false);
+						array('accesskey' => $accesskey), '', false, false);
 				}
 				else {
 					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
-					array(), '', false, false);
+						array(), '', false, false);
 				}
 				$pathArray[] = $link;
 			}
+		}
+		elseif ($photoview) {
+			$pathArray[] = galleryLink(
+							makeAlbumUrl($gallery->album->fields['name']),
+							$gallery->album->fields['title'] ."&nbsp;$lastUpArrow",
+							array('accesskey' => $accesskey), '', false, false
+			);
 		}
 	}
 	else {

@@ -173,7 +173,7 @@ $navigator['url']			= '.';
 $navigator['bordercolor'] = $bordercolor;
 
 /* -- breadcrumb text --- */
-$breadcrumb['text'] = returnToPathArray($gallery->album, true);
+$breadcrumb['text'] = returnToPathArray($gallery->album, true, true);
 
 $extra_fields = $gallery->album->getExtraFields(false);
 $g_pageTitle = NULL;
@@ -369,7 +369,7 @@ if (!$gallery->album->isMovie($id)) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
 					$option['text'], $option['value'],
-					true, false, 500, 500, '', '', $option['icon']);
+					true, false, 500, 550, '', '', $option['icon']);
 			}
 			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);

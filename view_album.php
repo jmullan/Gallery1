@@ -884,7 +884,7 @@ if ($numPhotos) {
 				$va_javascript .= $javascript;
 			}
 
-			if (sizeof($albumItemOptions) > 3) {
+			if (sizeof($albumItemOptions) > 2) {
 				$albumItems[$nr]['options'] = drawSelect2(
 					"s$i",
 					$albumItemOptions,
@@ -893,10 +893,13 @@ if ($numPhotos) {
 						'class' => 'g-admin')
 				);
 			}
+			/*
+			 * uncomment this part if you want tiny icons
+			 * for photo properties and ecards in the thumbs view.
 			else {
 				$specialIconMode = "yes";
 
-				/* Show item options. Such as eCard or photo properties link. */
+				// Show item options. Such as eCard or photo properties link.
 				foreach ($albumItemOptions as $key => $option) {
 					if (!isset($option['separate'])) continue;
 
@@ -919,6 +922,7 @@ if ($numPhotos) {
 					}
 				}
 			}
+			*/
 
 			$j++;
 			$visibleItemIndex++;
