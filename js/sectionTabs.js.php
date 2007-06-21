@@ -12,14 +12,28 @@ function insertSectionToggle() {
 	function configSection(inittab) {
 
 		this.toggle = function(id) {
-			document.getElementById(this.oldtab).style.display 	= 'none';
-			document.getElementById('tab_' + this.oldtab).className = '';
-			document.getElementById(id).style.display 		= 'inline';
-			document.getElementById('tab_' + id).className 		= 'g-activeTab';
+			document.getElementById(this.oldtab).style.display 		= 'none';
+			document.getElementById('tab_' + this.oldtab).className	= '';
+			document.getElementById(id).style.display				= 'inline';
+			document.getElementById('tab_' + id).className			= 'g-activeTab';
 
 			this.oldtab = id;
 			document.getElementById('initialtab').value = id;
 			this.currentSectionNr= this.getTabByName(id);
+
+			if (this.currentSectionNr == Sections.length-1) {
+				buttonDisableByName('go_nextTab');
+			}
+			else {
+				buttonEnableByName('go_nextTab');
+			}
+
+			if (this.currentSectionNr == 0) {
+				buttonDisableByName('go_backTab');
+			}
+			else {
+				buttonEnableByName('go_backTab');
+			}
 		}
 
 		this.getTabByNr = function(nr) {
@@ -49,6 +63,8 @@ function insertSectionToggle() {
 			if (this.currentSectionNr >0) {
 				prevTab = this.getTabByNr(this.currentSectionNr-1);
 				this.toggle(prevTab);
+
+
 			}
 		}
 
@@ -58,5 +74,21 @@ function insertSectionToggle() {
 		this.currentSectionNr = this.getTabByName(inittab);
 
 	}
+
+	function buttonDisableByName(name) {
+		for(nr in document.getElementsByName(name)) {
+			document.getElementsByName(name)[nr].className = 'g-buttonDisable';
+			document.getElementsByName(name)[nr].disabled = true;
+		}
+	}
+
+	function buttonEnableByName(name) {
+		for(nr in document.getElementsByName(name)) {
+			document.getElementsByName(name)[nr].className = 'g-button';
+			document.getElementsByName(name)[nr].disabled = false;
+		}
+	}
+
 	<?php
 }
+

@@ -133,7 +133,7 @@ $checklist = array(
                     '</a>'
                 ) .
                 '<br><br>' .
-                '<p style="font-weight: bold;">' . gTranslate('config',"Note:") . '</p>'.
+                '<p class="g-emphasis">' . gTranslate('config',"Note:") . '</p>'.
                 sprintf(gTranslate('config',"In some rare circumstances, Gallery thinks that Safe Mode is on, when it's really off.  You can see for yourself by looking in the <i>Local</i> column of the <i>safe_mode</i> row in the %sPHP Info%s page.  If it says 'Off' or '0' or 'undefined' then it's possible that Gallery made a mistake and you can continue.  If not, then you must resolve this problem before you can use Gallery."),
         		  '<a href="phpinfo.php" target="_blank">',
         		  '</a>')
@@ -185,7 +185,7 @@ $checklist = array(
 		'prompt' => gTranslate('config',"NetPBM installed"),
     	'desc' => gTranslate('config',"Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."),
 		'func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"I can't find NetPBM!") .
+		'fail-netpbm' => gTranslate('config',"NetPBM was not found") .
             toggleBox('checkNetPBM', gTranslate('config',
                 "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: " ) .
                 $common_messages['getting-netpbm']),
@@ -202,11 +202,11 @@ $checklist = array(
 		'optional' => 1,
 		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."),
 		'func' => 'check_graphics_im',
-		'fail-imagemagick' => gTranslate('config',"I can't find ImageMagick") .
+		'fail-imagemagick' => gTranslate('config',"ImageMagick was not found.") .
             toggleBox('fail_imagemagick', gTranslate('config',
                 "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
             $common_messages['getting-imagemagick']),
-		'fail-imagemagick-partial' => gTranslate('config',"I've found part of ImageMagick , but some components are missing (see below).") .
+		'fail-imagemagick-partial' => gTranslate('config',"I've found part of ImageMagick, but some components are missing (see below).") .
             toggleBox('fail_imagemagick_partial',
                 $common_messages['getting-imagemagick'] .
                 '<p><b> ' . gTranslate('config',"If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.") .' </b>'
@@ -218,7 +218,7 @@ $checklist = array(
 		'optional' => 1,
 		'desc' => gTranslate('config',"Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		'func' => 'check_exif',
-		'fail-exif' => gTranslate('config',"I can't find <b>jhead</b>") .
+		'fail-exif' => gTranslate('config',"jhead was not found.") .
             toggleBox('check_exif', sprintf(gTranslate('core',
                  "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
                 '<a href="http://www.sentex.net/~mwandel/jhead/index.html" target="_blank">', '</a>')),
@@ -229,7 +229,7 @@ $checklist = array(
 		'optional' => 1,
 		'desc' => gTranslate('config',"Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		'func' => 'check_jpegtran',
-		'fail-jpegtran' => gTranslate('config',"I can't find <b>jpegtran</b>!") .
+		'fail-jpegtran' => gTranslate('config',"jpegtran was not found.") .
             toggleBox('check_jpegtran', sprintf(gTranslate('config', "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."),
 		  '<a href="http://www.ijg.org" target="_blank">', '</a>',
 		  '<a href="http://jpegclub.org/" target="_blank">', '</a>')),

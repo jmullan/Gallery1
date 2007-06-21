@@ -624,6 +624,7 @@ input, textarea, select {
     border: 1px solid #669;
 }
 
+
 input:focus, textarea:focus, select:focus {
     background: #fff;
     border: 1px solid #99f;
@@ -642,26 +643,23 @@ input:focus, textarea:focus, select:focus {
     -moz-border-radius: 5px;
 }
 
-.g-buttonDisable {
+.g-buttonDisable, input:focus.g-buttonDisable {
     color: #000;
     background: grey;
     -moz-border-radius: 5px;
-}
-
-.g-button:hover {
-    background: #370093;
-    color: #fff;
-}
-
-.g-button:focus {
-    background: #99c;
-    color: #fff;
 }
 
 .g-selected {
     color: red;
     font-weight: bold;
 }
+
+input:hover.g-button, input:focus.g-button {
+    background: #370093;
+    color: #fff;
+}
+
+
 
 /****** End general Form Styles *****/
 

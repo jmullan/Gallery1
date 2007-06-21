@@ -85,9 +85,9 @@
 
     <div class="g-config-main">
         <div align="center" style="margin: 5px 0">
-            <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-            <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
-            <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+			<?php echo gButton('go_backTab', gTranslate('config', "&lt; Previous Tab"), 'section_tabs.prevTab()', array('disabled' => 'disabled', 'class' => 'g-buttonDisable')); ?>
+			<?php echo gButton('go_nextTab', gTranslate('config', "Next Tab &gt;"), 'section_tabs.nextTab()', array('disabled' => 'disabled')); ?>
+			<?php echo gSubmit('go_defaults', gTranslate('config', "Use Defaults"), array('disabled' => 'disabled')); ?>
         </div>
 <?php
 
@@ -166,11 +166,11 @@ foreach ($defaults as $key => $val) {
 }
 ?>
         <div align="center">
-        	<input type="submit" name="go_back" disabled="disabled" value="<?php echo gTranslate('config', "&lt;&lt; Previous Step") ?>" class="g-button">
-                <input type="button" name="go_backTab" disabled="disabled" value="<?php echo gTranslate('config', "&lt; Previous Tab") ?>" onClick="section_tabs.prevTab()" class="g-button">
-                <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab &gt;") ?>" onClick="section_tabs.nextTab()" class="g-button">
-                <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step &gt;&gt;") ?>" class="g-button">
-                <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>" class="g-button">
+        	<?php echo gSubmit('go_back', gTranslate('config', "&lt;&lt; _Previous Step"), array('disabled' => 'disabled')); ?>
+			<?php echo gButton('go_backTab', gTranslate('config', "&lt; Previous Tab"), 'section_tabs.prevTab()', array('disabled' => 'disabled', 'class' => 'g-buttonDisable')); ?>
+            <?php echo gButton('go_nextTab', gTranslate('config', "Next Tab &gt;"), 'section_tabs.nextTab()', array('disabled' => 'disabled')); ?>
+			<?php echo gSubmit('go_next', gTranslate('config', "_Next Step &gt;&gt;"), array('disabled' => 'disabled')); ?>
+            <?php echo gSubmit('go_defaults', gTranslate('config', "Use Defaults"), array('disabled' => 'disabled')); ?>
         </div>
 
         <div class="clear"></div>

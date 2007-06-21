@@ -447,7 +447,7 @@ function check_exec() {
 	}
 
 	if (empty($fail['fail-exec'])) {
-		$success[] = gTranslate('config', "<b>exec()</b> is enabled on this server.");
+		$success[] = gTranslate('config', "exec() is enabled on this server.");
 	}
 
 	return array($success, $fail, $warn);
@@ -468,7 +468,7 @@ function check_htaccess() {
 		$fail['fail-nohtaccess'] = true;
 	}
 	else if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = gTranslate('config', "Gallery is able to read your <b>.htaccess</b> file.");
+		$success[] = gTranslate('config', "Gallery is able to read your .htaccess file.");
 	}
 	else {
 		$fail['fail-htaccess'] = true;
@@ -508,7 +508,7 @@ function check_mod_rewrite()  {
 
 	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
 		if ($GALLERY_REWRITE_OK) {
-			$success[] = gTranslate('config', "<b>mod_rewrite</b> is enabled.");
+			$success[] = gTranslate('config', "mod_rewrite is enabled.");
 		}
 		else {
 			$fail["fail-mod-rewrite"] = 1;
@@ -541,7 +541,7 @@ function check_exif($location = '') {
 		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>");
 	}
 	else {
-		$success[] = gTranslate('config', "<b>jhead</b> binary located.");
+		$success[] = gTranslate('config', "jhead binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -752,9 +752,9 @@ function check_jpegtran($location = '') {
 		$dir = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : '');
 	}
 	if (!$dir) {
-		$warn["fail-jpegtran"] = gTranslate('config', "Can't find <i>jpegtran</i>!");
+		$warn["fail-jpegtran"] = gTranslate('config', "jpegtran was not found.");
 	} else {
-		$success[] = gTranslate('config', "<b>jpegtran</b> binary located.");
+		$success[] = gTranslate('config', "jpegtran binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -766,9 +766,9 @@ function check_gettext() {
 	$warn = array();
 
 	if (gettext_installed()) {
-		$success[] = gTranslate('config', "PHP has <b>GNU gettext</b> support.");
+		$success[] = gTranslate('config', "PHP has GNU gettext support.");
 	} else {
-		$warn["fail-gettext"] = gTranslate('config', "PHP does not have <b>GNU gettext</b> support.");
+		$warn["fail-gettext"] = gTranslate('config', "PHP does not have GNU gettext support.");
 	}
 	return array($success, $fail, $warn);
 }
@@ -1192,7 +1192,7 @@ function check_safe_mode() {
 	!strcasecmp($safe_mode, "off") ||
 	!strcasecmp($safe_mode, "0") ||
 	!strcasecmp($safe_mode, "false")) {
-		$success[] = gTranslate('config', "<b>safe_mode</b> is off.");
+		$success[] = gTranslate('config', "safe_mode is off.");
 	}
 	else {
 		$fail["fail-safe-mode"] = 1;
@@ -1206,7 +1206,7 @@ function check_magic_quotes() {
 	$success = array();
 	$warn = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = gTranslate('config', "<b>magic_quotes</b> are off.");
+		$success[] = gTranslate('config', "magic_quotes are off.");
 	} else {
 		$fail["fail-magic-quotes"] = 1;
 	}
@@ -1260,7 +1260,7 @@ function check_register_globals() {
 		$fail['warn-register_globals'] = 1;
 	}
 	else {
-		$success[] = gTranslate('config', "<b>register_globals</b> is off.");
+		$success[] = gTranslate('config', "register_globals is off.");
 	}
 
 	return array($success, $fail, $warn);
@@ -1499,13 +1499,6 @@ function check_ecards($num) {
 	return array($success, $fail);
 }
 
-function newIn($version) {
-	$buf = "\n\t<br><font color=blue><b>(";
-	$buf .= sprintf(gTranslate('config', "this is new in version %s"), $version);
-	$buf .= ")</b></font>";
-	return $buf;
-}
-
 function returnToConfig() {
 	$link = galleryLink(
 		makeGalleryUrl('setup/index.php', array('refresh' => 1, 'this_page' => 'check')),
@@ -1528,10 +1521,12 @@ if (!function_exists('array_filter1')) {
 		foreach ($input as $name => $value) {
 			if ($function && $function($value)) {
 				$output[$name] = $value;
-			} else if ($value) {
+			}
+			else if ($value) {
 				$output[$name] = $value;
 			}
 		}
+
 		return $output;
 	}
 }
