@@ -160,7 +160,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 			$options[] = array(
 				'text' => gTranslate('core', "Edit Description"),
 				'value'	=> showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
-				'icon1'	=> ''
+				'icon'	=> ''
 			);
 
 			$options[] = array(

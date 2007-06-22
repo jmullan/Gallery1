@@ -163,13 +163,16 @@ function drawSelect($name, $options, $selected = '', $size = 1, $attrList = arra
  * Returns the HTML code for a selectbox
  *
  * @param string  $name		 Name attribute of the selectbox
- * @param array   $options	 Array of options. Format 'trash' => array('text' => .., 'value' => '', 'selected' => set/not set
+ * @param array   $options	 Array of options. Format 'trash' => array('text' => .., 'value' => ''
  * @param array   $attrList	 Optional Attributs for the selectbox
  * @return string $html
  * @author Jens Tkotz
  */
 function drawSelect2($name, $options, $attrList = array()) {
 	$crlf = "\n\t";
+
+	// This attributes are no real HTML attribs and thus should be deleted.
+	$optionIgnoreAttrs = array('text', 'icon', 'separate');
 
 	if (!isset($attrList['size'])) {
 		$attrList['size'] = 1;
@@ -193,7 +196,10 @@ function drawSelect2($name, $options, $attrList = array()) {
 			}
 
 			$text = $option['text'];
-			unset($option['text']);
+
+			foreach ($optionIgnoreAttrs as $delete) {
+				unset($option[$delete]);
+			}
 
 			$optAttrs = generateAttrs($option);
 			$html .= '<option'. $optAttrs .'>'. $text .'</option>' . $crlf;

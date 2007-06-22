@@ -1,7 +1,7 @@
 <?php
 // $Id$
 ?>
-      <table width="100%" cellspacing="0" cellpadding="0">
+      <table width="100%" cellspacing="0" cellpadding="0" style="padding: 2px">
         <tr>
           <td class="left" style="vertical-align: top">
             <!-- The Gallery code version number, linked to the Gallery home page -->
@@ -24,16 +24,13 @@ if ($gallery->user->isAdmin() ) { ?>
 
           <!-- donation block -->
 
-          <td width="300" class="right">
-            <span class="g-small">
-              Are you happy with Gallery?<br>
-	      Make us happy too!  Donate!<br>
-	      (only admins see this message and button)<br>
-            </span>
+          <td width="300" class="right g-small">
+			Are you happy with Gallery?<br>
+			Make us happy too!  Donate!<br>
           </td>
           <td width="90" class="right">
-            <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>">
-		<?php echo gImage('donate.jpg', _("Donate to Gallery now!!")); ?>
+            <a href="<?php echo $gallery->url ?>/donate.png?donate_tag=v<?php echo $gallery->version ?>">
+		<?php echo gImage('donate.png', _("Donate to Gallery now!!")); ?>
 	    </a>
 	    </td>
 <?php } ?>

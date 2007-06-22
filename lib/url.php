@@ -400,7 +400,8 @@ function urlIsRelative($url) {
 function broken_link($file) {
 	if (fs_is_link($file)) {
 		return !fs_is_file($file);
-	} else {
+	}
+	else {
 		return false;
 	}
 }
