@@ -324,25 +324,12 @@ for ($i = $start; $i <= $end; $i++) {
 		$tmpAlbumName = $gallery->album->fields["name"];
 		$albumURL = makeAlbumUrl($tmpAlbumName);
 		$scaleTo = $gallery->app->highlight_size;
-		$highlightIndex = $gallery->album->getHighlight();
 
 		$rootAlbum[$tmpAlbumName]['url'] = $albumURL;
 
-		if($highlightIndex !== null) {
-			$highlight = $gallery->album->getPhoto($highlightIndex);
-			$getAlbumDirURL = $gallery->album->getAlbumDirURL('highlight');
+		$imageTag = $gallery->album->getHighlightTag($scaleTo);
 
-			list($iWidth, $iHeight) = $highlight->getHighlightDimensions($scaleTo);
-
-			$imageTag = $highlight->getHighlightTag(
-				$getAlbumDirURL,
-				$scaleTo,
-				array('alt' => sprintf(gTranslate('core', "Highlight for album: %s"),$gallery->album->fields["title"]))
-			);
-		}
-		else {
-			$imageTag = '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
-		}
+		list($iWidth, $iHeight) = $gallery->album->getHighlightDimensions($scaleTo);
 
 		if (empty($iWidth)) {
 			$iWidth = $gallery->app->highlight_size;

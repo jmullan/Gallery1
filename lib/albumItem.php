@@ -252,7 +252,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 	if (isset($isOwner)) {
 		if ($gallery->album->isHidden($i)) {
 			$options[] = array(
-				'text'	=> gTranslate('core', "_Show"),
+				'text'	=> gTranslate('core', "_Unhide"),
 				'value'	=> showChoice2("do_command.php", array("cmd" => "show", "index" => $i)),
 				'icon'	=> ($withIcons) ? 'idea.gif' : ''
 			);

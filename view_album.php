@@ -640,16 +640,8 @@ if ($numPhotos) {
 				// We already loaded this album - don't do it again, for performance reasons.
 
 				$gallery->html_wrap['imageTag']		= $myAlbum->getHighlightTag(
-					$scaleTo,
-					array('alt' => sprintf(
-							gTranslate('core', "Highlight for album: %s"),
-								strip_tags($myAlbum->fields['title'])),
-						'title' => sprintf(
-							gTranslate('core', "Highlight for album: %s"),
-								gallery_htmlentities(strip_tags($myAlbum->fields['title']))),
-						'id' => "thumbnail_$nr"
-					)
-				);
+														$scaleTo,
+														array('id' => "thumbnail_$nr"));
 
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
 				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];

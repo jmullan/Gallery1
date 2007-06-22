@@ -431,13 +431,18 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	$id = $attrList['id'];
 
-	if ($type != 'textarea' && (!empty($value) || $value == 0)) {
-		$attrList['type'] = $type;
+	if (!empty($value) || $value === 0) {
 		$attrList['value'] = $value;
 	}
 
-	if ($type == 'fixedhidden') {
-		$attrList['type'] = 'hidden';
+	switch($type) {
+		case 'fixedhidden':
+			$attrList['type'] = 'hidden';
+		break;
+
+		default:
+			$attrList['type'] = $type;
+		break;
 	}
 
 	if(!isset($attrList['class'])) {

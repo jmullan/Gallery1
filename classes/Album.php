@@ -932,11 +932,14 @@ class Album {
 		global $gallery;
 
 		$parentAlbum = $this->getParentAlbum(FALSE);
+
 		if (isset($parentAlbum)) {
 			$ratio = getPropertyDefault('thumb_ratio', $parentAlbum, false);
-		} else {
+		}
+		else {
 			$ratio = getPropertyDefault('highlight_ratio', false, true);
 		}
+
 		return $ratio;
 	}
 
@@ -984,11 +987,13 @@ class Album {
 	function loadPhotos($dir){
 		if (!$this->loadPhotosFromFile("$dir/photos.dat") &&
 		   !$this->loadPhotosFromFile("$dir/photos.dat.bak") &&
-		  !$this->loadPhotosFromFile("$dir/photos.bak")) {
+		   !$this->loadPhotosFromFile("$dir/photos.bak")) {
 			/* Uh oh */
 			return 0;
 		}
+
 		$this->transient->photosloaded = TRUE;
+
 		return 1;
 	}
 
@@ -1700,12 +1705,15 @@ class Album {
 		if ($index === null) {
 			return '';
 		}
+
 		$photo = $this->getPhoto($index);
+
 		if ($photo->isAlbum()) {
 			return '';
 			//$myAlbum = $this->getNestedAlbum($index);
 			//return $myAlbum->getHighlightAsThumbnailTag($size, $attrs);
-		} else {
+		}
+		else {
 			return $photo->getPreviewTag($this->getAlbumDirURL("preview"), $size, $attrs);
 		}
 	}
@@ -1736,11 +1744,14 @@ class Album {
 
 	function getHighlightedItem() {
 		$index = $this->getHighlight();
+
 		if (!isset($index)) {
 			return array(null, null);
 		}
+
 		$photo = $this->getPhoto($index);
 		$album = $this;
+
 		while ($photo->isAlbum() && $album->numPhotos(1)) {
 			$album = $album->getNestedAlbum($index);
 			$index = $album->getHighlight();
@@ -1749,27 +1760,52 @@ class Album {
 			}
 			$photo = $album->getPhoto($index);
 		}
+
 		return array($album, $photo);
 	}
 
-	function getHighlightAsThumbnailTag($size = 0, $attrs = array()) {
+	function getHighlightAsThumbnailTag($size = 0, $attrList = array()) {
 		list ($album, $photo) = $this->getHighlightedItem();
+
 		if ($photo) {
-			return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
-		} else {
-			return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
+			return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrList);
+		}
+		else {
+			$attrList['class'] .= ' g-title';
+			$attrs = generateAttrs($attrList);
+
+			return "<div$attrs>". gTranslate('core', "No highlight!") .'</div>';
 		}
 	}
 
-	function getHighlightTag($size = 0, $attrs = array()) {
+	function getHighlightTag($size = 0, $attrList = array()) {
 		$index = $this->getHighlight();
+
+		$defaults = array(
+			'alt' => sprintf(
+				gTranslate('core', "Highlight for album: %s"),
+							strip_tags($this->fields['title'])),
+			'title' => sprintf(
+				gTranslate('core', "Highlight for album: %s"),
+							gallery_htmlentities(strip_tags($this->fields['title'])))
+		);
 
 		if (isset($index)) {
 			$photo = $this->getPhoto($index);
-			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs);
+
+			foreach($defaults as $attr => $default) {
+				if(empty($attrList[$attr])) {
+					$attrList[$attr] = $defaults[$attr];
+				}
+			}
+
+			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrList);
 		}
 		else {
-			return '<span class="g-title">'. gTranslate('core', "No highlight!") .'</span>';
+			$attrList['class'] .= ' g-title';
+			$attrs = generateAttrs($attrList);
+
+			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
 		}
 	}
 
@@ -1804,19 +1840,21 @@ class Album {
 	}
 
 	/**
-	 * Enter description here...
+	 * returns the absolute system path to a photo.
 	 *
-	 * @param unknown_type $index
-	 * @param unknown_type $full
-	 * @return unknown
+	 * @param integer $index
+	 * @param boolean $full
+	 * @return string
 	 */
 	function getAbsolutePhotoPath($index, $full = false) {
 		$photo = $this->getPhoto($index);
+
 		return $photo->getPhotoPath($this->getAlbumDir(), $full);
 	}
 
 	function getPhotoId($index) {
 		$photo = $this->getPhoto($index);
+
 		return $photo->getPhotoId();
 	}
 

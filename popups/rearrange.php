@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -52,50 +52,58 @@ doctype();
   <?php common_header(); ?>
   <script type="text/javascript">
 
-  var sel = -1, list = new Array();
+  var start = -1, list = new Array();
 
-  function copy(from, to) {
-	  to.src = from.src;
-	  to.width = from.width;
-	  to.height = from.height;
-	  to.style.border = from.style.border;
+  function copyContent(from, to) {
+  	to.innerHTML	= from.innerHTML;
   }
 
-  function doclick(idx) {
-	  if (sel < 0) {
-		  sel = idx;
-		  savedFromBorder = document.getElementById('im_'+sel).style.border;
-		  document.getElementById('im_'+sel).style.borderStyle='dashed';
-	  }
-	  else {
-		  if (idx != sel) {
-			  var sv = new Object()
-			  var si;
-			  var dir = (sel<idx)?1:-1;
+  function doclick(id) {
+	// id is in forma cell_<number>
+	destination = parseInt(id.substr(5));
 
-			  sv.style = new Object();
+	if (start < 0) {
+		start = destination;
+		savedBorder = document.getElementById('cell_' +start).childNodes[0].style.border;
+		document.getElementById('cell_' +start).childNodes[0].style.border = '2px dashed black';
+	}
+	else {
+		document.getElementById('cell_' +start).childNodes[0].style.border = savedBorder;
+		if (start != destination) {
+			var temp = new Object();
+			var si;
+			var direction = (start < destination)? 1 : -1;
 
-			  copy(document.getElementById('im_'+sel), sv);
-			  si = list[sel];
-			  for (i=sel; i!=idx; i+=dir) {
-				  copy(document.getElementById('im_'+(i+dir)),
-				  document.getElementById('im_'+i));
-				  list[i] = list[i+dir];
-			  }
-			  copy(sv, document.getElementById('im_'+idx));
-			  list[idx] = si;
-		  }
-		  document.getElementById('im_'+idx).style.border = savedFromBorder;
-		  sel = -1;
-	  }
+			// Copy first image to a temp place.
+			copyContent(document.getElementById('cell_' + start), temp);
+
+			si = list[start];
+			for (i = start; i != destination; i += direction) {
+				from = i + direction;
+				copyContent(
+					document.getElementById('cell_'+ from),
+					document.getElementById('cell_'+ i)
+				);
+
+				list[i] = list[i + direction];
+			}
+
+			copyContent(temp, document.getElementById('cell_' + destination));
+
+			list[destination] = si;
+		}
+
+		start = -1;
+	}
   }
-  
+
   function saveOrder() {
 	  var s = '';
-	  for (i = 1; i <list.length; i++) {
-		  if (i > 1) s+=',';
-		  s+=list[i];
+	  for (i = 1; i < list.length; i++) {
+		  if (i > 1) s+= ',';
+		  s += list[i];
 	  }
+
 	  document.forms['rearr_form'].rearrList.value = s;
 	  document.forms['rearr_form'].submit();
   }
@@ -106,7 +114,7 @@ doctype();
   <div class="g-pagetitle-popup"><?php echo sprintf (gTranslate('core', "Rearrange Album: %s"),$gallery->album->fields["title"]) ?></div>
 </div>
 <div class="g-sitedesc">
-<?php 
+<?php
 echo gTranslate('core', "Here you can rearrange your pictures easily. Just click on the item you want to reorder. Then click on the item at which position you want it to be.");
 ?>
 
@@ -159,8 +167,6 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 	}
 
 	$attrs = array(
-		'id' => "im_$i",
-		'onClick' => "doclick($i)",
 		'style' => 'margin: 1px; padding: 2px; border: '. ($gallery->album->isHidden($i) ? ' red' : ' green')
 	);
 
@@ -179,8 +185,19 @@ for ($i = getNextPhoto(0), $i = 1; $i <= $numPhotos; $i = getNextPhoto($i)) {
 		$attrs['style'] .= ' 2px solid';
 		$tag = $gallery->album->getThumbnailTag($i, 0, $attrs);
 	}
-	
-	$pictureTable->addElement(array('content' => $tag, 'cellArgs' => array('align' => 'center')));
+
+
+	$containerAttrs = generateAttrs(array(
+		'id'		=> "cell_$i",
+		'onClick'	=> 'doclick(this.id)'
+	));
+
+	$container = "<div$containerAttrs>$tag</div>";
+
+	$pictureTable->addElement(array(
+		'content' => $container,
+		'cellArgs' => array('align' => 'center'))
+	);
 
 	$list[] = $i;
 }
@@ -196,9 +213,9 @@ echo $pictureTable->render();
 </div>
 
 <script language="javascript" type="text/javascript">
-<?php 
-foreach ($list as $key => $value) { 
-	echo "list[".($key+1)."]=$value;\n"; 
+<?php
+foreach ($list as $key => $value) {
+	echo "list[".($key+1)."]=$value;\n";
 }
 ?>
 </script>

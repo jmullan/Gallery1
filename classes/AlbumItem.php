@@ -484,7 +484,8 @@ class AlbumItem {
 	function getThumbDimensions($size = 0) {
 		if ($this->thumbnail) {
 			return $this->thumbnail->getDimensions($size);
-		} else {
+		}
+		else {
 			return array(0, 0);
 		}
 	}
@@ -492,7 +493,8 @@ class AlbumItem {
 	function getHighlightDimensions($size = 0) {
 		if (is_object($this->highlightImage)) {
 			return $this->highlightImage->getDimensions($size);
-		} else {
+		}
+		else {
 			return array(0, 0);
 		}
 	}
@@ -858,7 +860,7 @@ class AlbumItem {
 		}
 	}
 
-	function getHighlightTag($dir, $size = 0, $attrs = array()) {
+	function getHighlightTag($dir, $size = 0, $attrList = array()) {
 		// Prevent non-integer data from being passed
 		$size = (int)$size;
 
@@ -866,10 +868,13 @@ class AlbumItem {
 			if (empty($attrs['alt'])) {
 				$attrs['alt'] = $this->getAlttext();
 			}
-			return $this->highlightImage->getTag($dir, 0, $size, $attrs);
+			return $this->highlightImage->getTag($dir, 0, $size, $attrList);
 		}
 		else {
-			return '<span class="g-title">'. gTranslate('core', "Requested item has no highlight!") .'</span>';
+			$attrList['class'] .= ' g-title';
+			$attrs = generateAttrs($attrList);
+
+			return "<span$attrs>". gTranslate('core', "Requested item has no highlight!") .'</span>';
 		}
 	}
 
