@@ -32,6 +32,10 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
+require_once(dirname(dirname(__FILE__)) .'/lib/groups.php');
+require_once(dirname(dirname(__FILE__)) .'/classes/Group.php');
+require_once(dirname(dirname(__FILE__)) .'/classes/gallery/Group.php');
+
 $notice_messages = array();
 
 if (!empty($create)) {
@@ -51,6 +55,20 @@ elseif (isset($delete)) {
 	header('Location: ' . makeGalleryHeaderUrl('delete_user.php', array('unames' => $unames, 'type' => 'popup')));
 }
 
+$groupIdList = getGroupIdList();
+$grouplist = array();
+
+if(! empty($groupIdList)) {
+	foreach ($groupIdList as $groupID) {
+		$tmpGroup = new Gallery_Group();
+		$tmpGroup->load($groupID);
+		$groupname = $tmpGroup->getName();
+		$groupMembers[$groupname] = $tmpGroup->getMemberlist();
+	 }
+}
+
+//print_r($groupMembers);
+
 $displayUsers = array();
 foreach ($gallery->userDB->getUidList() as $uid) {
 	$tmpUser = $gallery->userDB->getUserByUid($uid);
@@ -58,10 +76,44 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 		continue;
 	}
 
+	$memberOf = '';
+	foreach($groupMembers as $name => $members) {
+		if(in_array($uid, $members)) {
+			$memberOf .= "$name<br>";
+		}
+	}
+	if(empty($memberOf)) {
+		$memberOf = gTranslate('core', "<no group>");
+	}
+
 	$tmpUserName = $tmpUser->getUsername();
-	$displayUsers[$tmpUserName] = $tmpUserName;
+	$tmpUserEmail = $tmpUser->getEmail();
+	if(empty($tmpUserEmail)) {
+		$tmpUserEmail = gTranslate('core', "<No email set>");
+	}
+
+	$isAdmin = $tmpUser->isAdmin() ? gTranslate('core', "yes") : gTranslate('core', "no");
+
+	$tooltip =	'<table><tr>' .
+				'<td>' . gTranslate('core', "username") ."</td><td>:</td><td>$tmpUserName</td>" .
+				'</tr><tr>' .
+				'<td>' . gTranslate('core', "fullname") ."</td><td>:</td><td>" . $tmpUser->getFullname() ."</td>" .
+				'</tr><tr>' .
+				'<td>' . gTranslate('core', "Email") ."</td><td>:</td><td>$tmpUserEmail</td>" .
+				'</tr><tr>' .
+				'<td>' . gTranslate('core', "Admin") ."</td><td>:</td><td>$isAdmin</td>" .
+				'</tr><tr>' .
+				'<td>' . gTranslate('core', "Member of") ."</td><td>:</td><td>$memberOf</td>" .
+				'</tr></table>';
+
+	$displayUsers[] = array(
+		'value'	=> $tmpUserName,
+		'text'	=> $tmpUserName,
+		'onmouseover' => "Tip('$tooltip', FADEIN, 450, FADEOUT, 300, OPACITY, 90)"
+	);
+
 }
-asort($displayUsers);
+//asort($displayUsers);
 
 doctype();
 ?>
@@ -69,8 +121,13 @@ doctype();
 <head>
   <title><?php echo gTranslate('core', "Manage Users"); ?></title>
   <?php common_header(); ?>
+  <style type="text/css">
+    table { padding: 2px; }
+	td { vertical-align: top; padding: 1px;}
+  </style>
 </head>
 <body class="g-popup" onload="enableButtons()">
+<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL;?>/js/wz_tooltip.js"></script>
 <div class="g-header-popup">
   <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Manage Users"); ?></div>
 </div>
@@ -87,10 +144,11 @@ if (!$displayUsers) {
 	echo "<i>". gTranslate('core', "There are no users!  Create one.") ."</i>";
 }
 else {
-	echo drawSelect('unames[]', $displayUsers, '', 15,
-	   array('id' => 'userNameBox',
-			 'multiple' => '',
-			 'onChange' => 'enableButtons()')
+	echo drawSelect2('unames[]', $displayUsers,
+	   array('size' => 15,
+	   		 'id'	=> 'userNameBox',
+			 'onChange' => 'enableButtons()',
+			 'multiple' => null)
 	);
 }
 
@@ -131,21 +189,21 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 		}
 
 		if(selected == 0) {
-			modifyButton.disabled = true;
-			modifyButton.className = 'g-buttonDisable';
-			deleteButton.disabled = true;
-			deleteButton.className = 'g-buttonDisable';
+			modifyButton.disabled	= true;
+			modifyButton.className	= 'g-buttonDisable';
+			//deleteButton.disabled	= true;
+			deleteButton.className	= 'g-buttonDisable';
 
 		}
 		else if (selected > 1) {
-			modifyButton.disabled = true;
-			modifyButton.className = 'g-buttonDisable';
+			modifyButton.disabled	= true;
+			modifyButton.className	= 'g-buttonDisable';
 		}
 		else {
-			modifyButton.disabled = false;
-			modifyButton.className = 'g-button';
-			deleteButton.disabled = false;
-			deleteButton.className = 'g-button';
+			modifyButton.disabled	= false;
+			modifyButton.className	= 'g-button';
+			deleteButton.disabled	= false;
+			deleteButton.className	= 'g-button';
 		}
 
 	}

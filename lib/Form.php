@@ -182,9 +182,21 @@ function drawSelect2($name, $options, $attrList = array()) {
 	if(!empty($options)) {
 		foreach ($options as $option) {
 			$option['text'] = removeAccessKey($option['text']);
-			$sel = (isset($option['selected']) && $option['selected'] != false) ? ' selected' : '';
-			$disabled = ($option['value'] == null) ? 'disabled class="center" style="color: grey"' : '';
-			$html .= '<option value="'. $option['value'] ."\"$sel $disabled>". $option['text'] .'</option>' . $crlf;
+			if(isset($option['selected']) && $option['selected'] != false) {
+				$option['selected'] = null;
+			}
+
+			if($option['value'] == null) {
+				$option['disabled']	= null;
+				$option['class']	= 'center';
+				$option['style']	= 'color: grey';
+			}
+
+			$text = $option['text'];
+			unset($option['text']);
+
+			$optAttrs = generateAttrs($option);
+			$html .= '<option'. $optAttrs .'>'. $text .'</option>' . $crlf;
 		}
 	}
 
@@ -431,13 +443,16 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	$id = $attrList['id'];
 
-	if (!empty($value) || $value === 0) {
+	if ((!empty($value) || $value === 0) && $type != 'textarea') {
 		$attrList['value'] = $value;
 	}
 
 	switch($type) {
 		case 'fixedhidden':
 			$attrList['type'] = 'hidden';
+		break;
+
+		case 'textarea':
 		break;
 
 		default:
