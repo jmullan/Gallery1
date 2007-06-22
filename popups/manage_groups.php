@@ -91,8 +91,8 @@ if (empty($grouplist)) {
 else {
 	echo drawSelect('gnames[]', $grouplist, '', 15,
 	   array('id' => 'groupNameBox',
-			 'multiple' => '',
-			 'onChange' => 'enableButtons()')
+			 'onChange' => 'enableButtons()',
+			 'multiple' => null)
 	);
 
 	echo "\n<br>";
