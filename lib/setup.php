@@ -1266,6 +1266,11 @@ function check_register_globals() {
 	return array($success, $fail, $warn);
 }
 
+/**
+ * Try to detect the return value for a succesfull system function call
+ *
+ * @return integer
+ */
 function detect_exec_status() {
 	global $gallery;
 
@@ -1296,8 +1301,9 @@ function detect_exec_status() {
 				fs_exec($file, $results, $status);
 				if (isset($count[$status])) {
 					$count[$status]++;
-				} else {
-					$count[$status]=1;
+				}
+				else {
+					$count[$status] = 1;
 				}
 			}
 		}
@@ -1306,7 +1312,8 @@ function detect_exec_status() {
 	if (count($count) == 0) {
 		// Nothing!  :-(  Hope for the best.
 		return 0;
-	} else {
+	}
+	else {
 		// Return the one that we see the most of.
 		$max = -1;
 		foreach ($count as $key => $val) {

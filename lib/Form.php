@@ -449,7 +449,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	}
 	$id = $attrList['id'];
 
-	if ((!empty($value) || $value === 0) && $type != 'textarea') {
+	if ($value !== null && $type != 'textarea') {
 		$attrList['value'] = $value;
 	}
 
@@ -499,15 +499,15 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 
 	if($tableElement){
 		if($label) {
-			$html = "  <tr>\n";
+			$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
 			$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
 			$html .= "\t<td>$input</td>\n";
-			$html .= "  </tr>\n";
+			$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
 		}
 		else {
-			$html = "  <tr>\n";
-			$html = "\t<td>$input</td>\n";
-			$html .= "  </tr>\n";
+			$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
+			$html .= "\t<td>$input</td>\n";
+			$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
 		}
 	}
 	else {

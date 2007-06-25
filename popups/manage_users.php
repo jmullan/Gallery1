@@ -95,9 +95,9 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 	$isAdmin = $tmpUser->isAdmin() ? gTranslate('core', "yes") : gTranslate('core', "no");
 
 	$tooltip =	'<table><tr>' .
-				'<td>' . gTranslate('core', "username") ."</td><td>:</td><td>$tmpUserName</td>" .
+				'<td>' . gTranslate('core', "Username") ."</td><td>:</td><td>$tmpUserName</td>" .
 				'</tr><tr>' .
-				'<td>' . gTranslate('core', "fullname") ."</td><td>:</td><td>" . $tmpUser->getFullname() ."</td>" .
+				'<td>' . gTranslate('core', "Full name") ."</td><td>:</td><td>" . $tmpUser->getFullname() ."</td>" .
 				'</tr><tr>' .
 				'<td>' . gTranslate('core', "Email") ."</td><td>:</td><td>$tmpUserEmail</td>" .
 				'</tr><tr>' .
@@ -113,7 +113,8 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 	);
 
 }
-//asort($displayUsers);
+
+asort($displayUsers);
 
 doctype();
 ?>

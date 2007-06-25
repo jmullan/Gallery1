@@ -44,13 +44,13 @@ function build_popup_url($url, $url_is_complete = false) {
 	return $url;
 }
 
-function popup($url, $url_is_complete=0, $height=500,$width=500) {
+function popup($url, $url_is_complete=0, $height=550, $width=600) {
 	// Force int data type
 	$height = (int)$height;
 	$width = (int)$width;
 
 	$url = build_popup_url($url, $url_is_complete);
-	return popup_js($url, "Edit","height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+	return popup_js($url, "GalleryPopup","height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
 function popup_js($url, $window, $attrs) {
