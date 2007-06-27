@@ -51,10 +51,10 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
                 return array(0, $var, '');
             }
             elseif (isset($default)) {
-                return array(1, $default, _("Value was set to given default. Because the original value is not a in the allowed amount of choices."));
+                return array(1, $default, _("Value was set to given default, because the original value is not in the allowed list of choices."));
             }
             else {
-                return array(2, $var, _("The given value is not in the allowed amount of choices."));
+                return array(2, $var, _("The given value is not in the allowed list of choices."));
             }
             break;
         default:
@@ -88,16 +88,16 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
             return array(1, $default, _("Value was set to given default. Because the original value is not numeric."));
         }
         else {
-            return array(2, false, _("The given Value is not numeric."));
+            return array(2, false, _("The given value is not numeric."));
         }
     }
 
     if($mixed < $minimum) {
         if (isset($default)) {
-            return array(1, $default, _("Value was set to given default. Because the original value is not a valid Integer"));
+            return array(1, $default, _("Value was set to given default. Because the original value is not a valid integer"));
         }
         else {
-            return array(2, false, _("The given Value not a valid Integer."));
+            return array(2, false, _("The given value not a valid integer."));
         }
     }
 

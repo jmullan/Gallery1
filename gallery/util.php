@@ -224,9 +224,9 @@ function getDimensions($file) {
 
     /* Just in case php can't determine dimensions. */
     switch($gallery->app->graphics) {
-        case 'NetPBM':
+        case 'Netpbm':
             list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-                NetPBM('pnmfile', '--allimages'));
+                Netpbm('pnmfile', '--allimages'));
             break;
         case "ImageMagick":
             /* This fails under windows, IM isn't returning parsable status output. */
@@ -242,7 +242,7 @@ function getDimensions($file) {
     if ($status == $gallery->app->expectedExecStatus) {
         foreach ($lines as $line) {
             switch($gallery->app->graphics) {
-                case 'NetPBM':
+                case 'Netpbm':
                     if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
                         return array($regs[1], $regs[2]);
                     }

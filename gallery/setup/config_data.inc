@@ -68,23 +68,23 @@ if (function_exists('posix_getpwuid')) {
 }
 
 $common_messages['getting-netpbm'] = '<br>'.
-  sprintf(gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
+  sprintf(gTranslate('config',"Gallery prefers Netpbm version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."),
   "<a href=\"http://sourceforge.net/projects/gallery\">",
   '</a>',
   "<a href=\"http://sourceforge.net/projects/netpbm\">",
   '</a>')  .
   '<br><span class="emphasis">' . gTranslate('config',"Note:"). '</span> ' .
-  gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
+  gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead.");
 
 $common_messages['fail-netpbm-partial'] =
-  gTranslate('config',"I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date.") . '  ' .
+  gTranslate('config',"I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date.") . '  ' .
   $common_messages['getting-netpbm'];
 
 $common_messages['getting-imagemagick'] = '<br>'.
   sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ),
   '<a href="http://www.imagemagick.org">', '</a>') .
   '<br><span class="emphasis">' . gTranslate('config',"Note:"). '</span> ' .
-  gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
+  gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead.");
 
 $common_messages['fail-imagemagick-partial'] =
   gTranslate('config',"I've found part of ImageMagick , but some critical components are missing (see below).") . '  ' .
@@ -140,7 +140,7 @@ $checklist = array(
 	),
 	'exec' => array(
 		'prompt' => gTranslate('config',"PHPs exec() function enabled"),
-		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
+		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		'func' => 'check_exec',
 		'fail-exec' => gTranslate('config',"The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		'serious' => 1,
@@ -174,22 +174,22 @@ $checklist = array(
 		  "<pre>\t--enable-module=rewrite</pre>",
 		'optional' => 1
 	),
-	'NetPBM' => array(
-		'prompt' => gTranslate('config',"NetPBM installed"),
+	'Netpbm' => array(
+		'prompt' => gTranslate('config',"Netpbm installed"),
 		'optional' => 1,
-		'desc' => gTranslate('config',"Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."),
+		'desc' => gTranslate('config',"Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."),
 		'func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: " ) .
+		'fail-netpbm' => gTranslate('config',"I can't find Netpbm.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
 		  $common_messages['getting-netpbm'],
 		'fail-netpbm-partial' =>
 		  $common_messages['fail-netpbm-partial'] .
-		  '<p><b> ' . gTranslate('config',"If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page.") .' </b>',
+		  '<p><b> ' . gTranslate('config',"If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page.") .' </b>',
 		  'open-basedir-note' => $common_messages['open-basedir-active']
 	),
 	'ImageMagick' => array(
 		'prompt' => gTranslate('config',"ImageMagick installed"),
 		'optional' => 1,
-		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."),
+		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."),
 		'func' => 'check_graphics_im',
 		'fail-imagemagick' => gTranslate('config',"I can't find ImageMagick.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
 		  $common_messages['getting-imagemagick'],
@@ -395,7 +395,7 @@ $constants =  array_merge(array(
 	'graphics' => array(
 		'prompt' => gTranslate('config',"Graphics suite to use"),
 		'desc' => gTranslate('config',"This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."),
-		'choices' => array('NetPBM' => "NetPBM", 'ImageMagick' => "ImageMagick"),
+		'choices' => array('Netpbm' => "Netpbm", 'ImageMagick' => "ImageMagick"),
 		'value' => default_graphics(),
 		'required' => true,
 		'attrs' => array('id' => 'graphics', 'onChange' => 'toggleGraphics(this.value)')
@@ -425,22 +425,22 @@ $constants =  array_merge(array(
 	'subgroup_imagemagick_end' => array (
 		'type' => 'subgroup_end',
 	),
-	'subgroup_NetPBM' => array (
+	'subgroup_Netpbm' => array (
 		'type' => 'subgroup',
-		'title' => gTranslate('config',"NetPBM Settings"),
-		'display' => (getCurrentGraphicTool() == 'NetPBM') ? 'inline' : 'none'
+		'title' => gTranslate('config',"Netpbm Settings"),
+		'display' => (getCurrentGraphicTool() == 'Netpbm') ? 'inline' : 'none'
 		),
 	'pnmDir' => array(
 		'optional' => 1,
-		'prompt' => gTranslate('config',"Path to NetPBM"),
-		'desc' => sprintf(gTranslate('config',"The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"),
+		'prompt' => gTranslate('config',"Path to Netpbm"),
+		'desc' => sprintf(gTranslate('config',"The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"),
 		  '<i>/usr/local/netpbm</i>',
 		  '<i>/usr/local/bin</i>',
 		  '<i>c:\\apps\\netpbm</i>'). '<br>'.
-		  sprintf(gTranslate('config',"This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."), "NetPBM"),
+		  sprintf(gTranslate('config',"This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."), "Netpbm"),
 		'value' => locateDir("jpegtopnm", isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : ''),
 		'verify-func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"I can't find NetPBM at the location you provided.") . '  ' .
+		'fail-netpbm' => gTranslate('config',"I can't find Netpbm at the location you provided.") . '  ' .
 		  $common_messages['getting-netpbm'],
 		'fail-netpbm-partial' => $common_messages['fail-netpbm-partial'],
 		'filename' => 1,
@@ -453,13 +453,13 @@ $constants =  array_merge(array(
 		),
 	'pnmtojpeg' => array(
 		'prompt' => gTranslate('config',"PNM to JPEG converter"),
-		'desc' => gTranslate('config',"This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
+		'desc' => gTranslate('config',"This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
 		'choices' => array('pnmtojpeg' => 'pnmtojpeg', 'ppmtojpeg' => 'ppmtojpeg'),
 		'value' => 'pnmtojpeg'
 	),
 	'pnmcomp' => array(
 		'prompt' => gTranslate('config',"PNM Composite (Overlay)"),
-		'desc' => gTranslate('config',"This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
+		'desc' => gTranslate('config',"This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."),
 		'choices' => array('pnmcomp' => 'pnmcomp', 'pamcomp' => 'pamcomp'),
 		'value' => 'pnmcomp',
 	),

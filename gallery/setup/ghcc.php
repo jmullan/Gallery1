@@ -72,7 +72,7 @@ if (ini_get ('upload_tmp_dir')) { // it defaults to a default system location, o
 This scripts tests many of the basic requirements for Gallery to
 run on your system.  It is not a catch all, but does check most
 settings that Gallery requires.  <i>It does not check for
-ImageMagick and NetPBM (or other programs Gallery can use)</i>
+ImageMagick and Netpbm (or other programs Gallery can use)</i>
 <br><br>
 If any of these tests fail with a <b>fatal warning</b>, Gallery
 will not run on your host

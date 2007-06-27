@@ -131,7 +131,7 @@ $properties = array(
         'vartype' => 'pictureFrame'
     ),
     'image_frame' => array(
-        'prompt' => gTranslate('common', "Image Frame"),
+        'prompt' => gTranslate('common', "Item Frame"),
         'desc' => '',
         'choices' => available_frames(),
         'value' => $gallery->album->fields["image_frame"],
@@ -183,7 +183,7 @@ $properties = array(
         'desc' => ""
     ),
     'thumb_size' => array(
-        'prompt' => gTranslate('common', "Thumbnail size"),
+        'prompt' => gTranslate('common', "Thumbnail size (in px)"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["thumb_size"],
@@ -196,7 +196,7 @@ $properties = array(
         'value' => getPropertyDefault('thumb_ratio', $gallery->album, false),
     ),
     'resize_size' => array(
-        'prompt' => gTranslate('common', "Maximum dimensions of intermediate sized images"),
+        'prompt' => gTranslate('common', "Maximum size of intermediate sized images (in px)"),
         'desc' => '',
         'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
         'value' => $gallery->album->fields["resize_size"],
@@ -240,13 +240,13 @@ $properties = array(
         'value' => $gallery->album->fields["display_clicks"]
     ),
     'item_owner_display' => array(
-        'prompt' => gTranslate('common', "Display owners name with caption"),
+        'prompt' => gTranslate('common', "Display owner's name with caption?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["item_owner_display"]
     ),
     'showDimensions' => array(
-        'prompt' => gTranslate('common', "Display clickable image dimensions"),
+        'prompt' => gTranslate('common', "Display clickable image dimensions?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["showDimensions"]
@@ -281,7 +281,7 @@ $properties = array(
         'value' => $gallery->album->fields['print_photos']
     ),
     'ecards' => array(
-        'prompt' => gTranslate('common', "Enable Ecards ?"),
+        'prompt' => gTranslate('common', "Enable Ecards?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => isset($gallery->album->fields["ecards"]) ? $gallery->album->fields["ecards"] : 'no',
@@ -299,7 +299,7 @@ $properties = array(
     ),
     'voter_class' => array(
         'prompt' => gTranslate('common', "Who can vote?"),
-        'desc' => gTranslate('common', "This enables/disable voting and if enabled it controlles who can vote."),
+        'desc' => gTranslate('common', "This enables/disable voting and if enabled it controls who can vote."),
         'choices' => array("Logged in" => gTranslate('common', "Logged in"), "Everybody" => gTranslate('common', "Everybody"), "Nobody" => gTranslate('common', "Nobody")),
         'value' => $gallery->album->fields["voter_class"]
     ),
@@ -333,7 +333,7 @@ $properties = array(
         'prompt' => gTranslate('common', "Orientation of vote choices"),
         'desc' => '',
         'choices' => array('horizontal' => gTranslate('common', "Horizontal"), 'vertical' => gTranslate('common', "Vertical")),
-        'value' => isset($gallery->album->fields['poll_orientation']) ? 
+        'value' => isset($gallery->album->fields['poll_orientation']) ?
           $gallery->album->fields['poll_orientation'] : ''
         ),
     'poll_hint' => array(
@@ -440,7 +440,7 @@ $properties = array_merge($properties, array(
     'nav_thumbs' => array(
         'prompt' => gTranslate('common', "Use microthumb photo navigation"),
         'desc' => '',
-        'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No"), "both" => gTranslate('common', "both")),
+        'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No"), "both" => gTranslate('common', "Both")),
         'value' => $gallery->album->fields["nav_thumbs"]
     ),
     'nav_thumbs_style' => array(
@@ -470,8 +470,8 @@ $properties = array_merge($properties, array(
     'nav_thumbs_location' => array(
         'prompt' => gTranslate('common', "Position of microthumb navigation bar"),
         'desc' => '',
-        'choices' => array("top" => gTranslate('common', "Top"), 
-			   "both" => gTranslate('common', "Both"), 
+        'choices' => array("top" => gTranslate('common', "Top"),
+			   "both" => gTranslate('common', "Both"),
 			   "bottom" => gTranslate('common', "Bottom")),
         'value' => $gallery->album->fields["nav_thumbs_location"]
     ),

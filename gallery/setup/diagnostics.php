@@ -57,11 +57,11 @@
 
 	  <tr>
 	    <td class="shortdesc" style="padding: 10px;" width="140" align=center valign="top">
-	      <a href="check_netpbm.php"><?php echo _("Check") ?> NetPBM</a>
+	      <a href="check_netpbm.php"><?php echo _("Check") ?> Netpbm</a>
 	    </td>
 	    <td class="desc" valign="top">
-	      <?php echo _("This page provides information about your NetPBM binaries.") ?> 
-		<?php echo _("You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM).") ?>
+	      <?php echo _("This page provides information about your Netpbm binaries.") ?> 
+		<?php echo _("You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm).") ?>
 	    </td>
 	  </tr>
 

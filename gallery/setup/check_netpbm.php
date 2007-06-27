@@ -25,12 +25,12 @@
 ?>
 <html>
 <head>
-	<title><?php echo _("Gallery NetPBM Check") ?></title>
+	<title><?php echo _("Gallery Netpbm Check") ?></title>
 	<?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php configLogin(basename(__FILE__)); ?>
-<?php $app_name='NetPBM' ?>
+<?php $app_name='Netpbm' ?>
 
 <h1 class="header"><?php echo sprintf(_("Check %s"), $app_name) ?></h1>
 

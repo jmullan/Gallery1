@@ -510,7 +510,7 @@ function check_graphics($location = '', $graphtool = '') {
 	/* Start checks */
 
 	if ($graphtool == 'ImageMagick') {
-		$success[] = _("NetPBM not being used in this installation.");
+		$success[] = _("Netpbm not being used in this installation.");
 		return array($success, $fail, $warn);
 	}
 
@@ -568,14 +568,14 @@ function check_graphics($location = '', $graphtool = '') {
 		$warn = array();
 	}
 	elseif ($missing > 0) {
-		$warn[] = sprintf(_("%d of %d NetPBM binaries located."),
+		$warn[] = sprintf(_("%d of %d Netpbm binaries located."),
 			count($netpbm) - $missing, count($netpbm));
 
 		if(count($missing_critical) > 0) {
 			$fail["fail-netpbm-partial"] = array_values($missing_critical);
 		}
 	} else {
-		$success[] = sprintf(_("%d of %d NetPBM binaries located."),
+		$success[] = sprintf(_("%d of %d Netpbm binaries located."),
 			count($netpbm), count($netpbm));
 	}
 
@@ -599,12 +599,12 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable("composite") =>
-			_("Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
+			_("Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."),
 	);
 
 
 	/* Begin Checks */
-	if ($graphtool == 'NetPBM') {
+	if ($graphtool == 'Netpbm') {
 		$success[] = _("ImageMagick not being used in this installation.");
 	    	return array($success, $fail, $warn);
 	}
@@ -946,7 +946,7 @@ function config_maybe_locales() {
 					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale selection required")),
 					"desc" => _("There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 					"<p></p>" .
-					_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+					_("This is <b>only</b> for date and time format. You only need to edit the languages you enabled above")
 					);
 		}
 		$index = $nls['language'][$key] ;
@@ -1026,7 +1026,7 @@ function config_maybe_locales() {
 					"prompt" => "<b>(" . _("Advanced") . ")</b><br> ".sprintf(_("<b>System</b> locale problems")),
 						"desc" => _("There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							"<p></p>" .
-							_("This is <b>only</b> for date & time format. You only need to edit the languages you enabled above")
+							_("This is <b>only</b> for date and time format. You only need to edit the languages you enabled above")
 							);
 		}
 		$index = $nls['language'][$key] ;
@@ -1054,7 +1054,7 @@ function default_graphics() {
 	if (count ($imageMagick)) {
 		return "ImageMagick";
 	} else {
-		return "NetPBM";
+		return "Netpbm";
 	}
 }
 
@@ -1459,7 +1459,7 @@ function check_admins() {
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
-			$desc_text=sprintf(_("It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
+			$desc_text=sprintf(_("It seems you've already configured Gallery, because there is one admin account, but it is not called %s."), '<b>admin</b>');
 		}
 		else {
 			$desc_text=sprintf(_("It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');

@@ -81,7 +81,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 
 	if (empty($to)) {
-		echo "\n<br>". gallery_error(_("Email not sent as no reciepient address provided"));
+		echo "\n<br>". gallery_error(_("Email not sent as no recipient address provided"));
 		return false;
 	}
 
@@ -249,8 +249,8 @@ function emailComments($id, $comment_text, $commenter_name) {
 			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. _("Album") .'</a>');
 	    $text .= "\n<br>". _("*** Begin comment ***") ."<br>\n";
 	    $text .= nl2br($comment_text);
-	    $text .= "<br>\n". _("***End comment ***") . "\n<p>\n";
-	    $text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first).");
+	    $text .= "<br>\n". _("*** End comment ***") . "\n<p>\n";
+	    $text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first).");
 	    $text .= "\n</p>\n</body>\n</html>";
 
         $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));

@@ -341,13 +341,13 @@ foreach ($constants as $key => $val) {
 }
 
 /*
- * In NetPBM 9.19, they renamed 'ppmtojpeg' to 'pnmtojpeg'.  !@#$%
+ * In Netpbm 9.19, they renamed 'ppmtojpeg' to 'pnmtojpeg'.  !@#$%
  *
- * In NetPBM 10.21 (March 2004), they renamed 'pnmcomp' to 'pamcomp'.
+ * In Netpbm 10.21 (March 2004), they renamed 'pnmcomp' to 'pamcomp'.
  *
  * Don't bother if we are configuring for ImageMagick.
  */
-if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
+if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
 	/*
 	 * If the graph path is not in the open_basedir list, then we can't tell.
      * Assume whatever they entered is correct and hope for the best
@@ -357,7 +357,7 @@ if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmtojpeg))) {
 			$error++;
 			$gallery->session->configData .= gallery_error(
-				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+				sprintf(_("Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
 					($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
 		}
@@ -365,7 +365,7 @@ if (!strcmp($graphtool, 'NetPBM') && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmcomp))) {
 			$error++;
 			$gallery->session->configData .= gallery_error(
-				sprintf(_("Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+				sprintf(_("Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmcomp</i>",
 					($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
 		}
@@ -382,8 +382,8 @@ if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
 } else if (!strcmp($graphtool, 'ImageMagick') && !empty($graphtest['ImPath'])) {
     $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
     $error++;
-} else if (!strcmp($graphtool, 'NetPBM') && !empty($graphtest['pnmDir'])) {
-    $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
+} else if (!strcmp($graphtool, 'Netpbm') && !empty($graphtest['pnmDir'])) {
+    $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'Netpbm','Netpbm'));
     $error++;
 }
 
