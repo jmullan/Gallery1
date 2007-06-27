@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2004-08-04 23:09+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -124,7 +124,8 @@ msgstr "Рамка макета"
 
 #
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Рамка изображения"
 
 #
@@ -212,7 +213,8 @@ msgstr "Выберите сервис"
 
 #
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "Размер макета"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -228,7 +230,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "Максимальный размер промежуточных изображений"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -260,11 +263,13 @@ msgid "Display click counter for this album?"
 msgstr "Отображать счетчик кликов для этого альбома?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "Показывать имя владельца с заголовком"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Показывать ссылки с размерами изображения"
 
 #
@@ -283,7 +288,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Какой сервис печати фотографий<br>вы хотите разрешить использование посетителям?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #
@@ -298,7 +303,7 @@ msgid "Who can vote?"
 msgstr "Кто может голосовать"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #
@@ -429,8 +434,8 @@ msgstr ""
 
 #
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "Оба"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -470,11 +475,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Вверх"
-
-#
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Оба"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -714,18 +714,18 @@ msgid "No resizing required"
 msgstr "Не требуется изменять размер"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "результирующий объем файла %d кбайт"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> объем файла %d кбайт"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "пробуем качество %d%%"
 
 #
@@ -751,7 +751,7 @@ msgstr "Обработка изображения"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #
@@ -872,7 +872,7 @@ msgstr "E-mail не отправлен на %s, т.к. это неправильный адрес"
 #
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "E-mail не отправлен т.к. не указан не один адрес"
 
 #: ../lib/mail.php:96
@@ -981,11 +981,11 @@ msgstr "просмотреть комментарии"
 #
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "просмотреть комментарии"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #
@@ -1072,7 +1072,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и не установили исполняемый файл composite."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM не используется в этой установке."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -1095,12 +1096,13 @@ msgid "%s is not executable!"
 msgstr "%s не исполняемый!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d из %d исполняемых файлов NetPBM установлено."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Без composite галерея не сможет создавать изображения водяных знаков, если только вы не используете NetPBM и не установили исполняемый файл pnmcomp."
 
 #: ../lib/setup.php:608
@@ -1203,7 +1205,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Это <b>только</b> для формата даты и времени. Вам нужно только отредактировать языки, которые вы выбрали раньше."
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1346,8 +1349,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Вы должны указать пароль для учетной записи %s."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Видимо вы уже настраивали галерею, потому что уже есть одна учетная запись администратора, но не с именем %s."
 
 #: ../lib/setup.php:1465
@@ -1488,11 +1491,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1500,15 +1503,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1596,6 +1599,11 @@ msgid_plural "%d votes"
 msgstr[0] "%d голос"
 msgstr[1] "%d голоса"
 msgstr[2] "%d голосов"
+
+#
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "Оба"
 
 #~ msgid "FAILED"
 #~ msgstr "НЕУДАЧНО"

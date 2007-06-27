@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-03-22 14:15+0100\n"
 "Last-Translator: Håvard Mork <havarmor AT stud DOT ntnu DOT no>\n"
 "Language-Team: Sverre M. Vikan <sverre AT urven DOT net>\n"
@@ -110,7 +110,8 @@ msgid "Thumb Frame"
 msgstr "Ramme p&aring; miniatyrbilder"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Bilderamme"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -191,7 +192,8 @@ msgid "Sizes"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "St&oslash;rrelse p&aring; miniatyrbilder"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -207,7 +209,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "St&oslash;rste dimensjoner for bilder i mellomst&oslash;rrelse"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -237,11 +240,13 @@ msgid "Display click counter for this album?"
 msgstr "Vis trykk-teller for dette albumet?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "Vis eiers navn med bildetekst"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Vis trykkbare bildedimensjoner"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -258,7 +263,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Hvilke utskriftstjenester &oslash;nsker<br>du &aring; la bes&oslash;kende bruke?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -271,7 +276,7 @@ msgid "Who can vote?"
 msgstr "Hvem kan stemme"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -388,8 +393,8 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "Begge"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -426,10 +431,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Topp"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Begge"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -645,18 +646,18 @@ msgid "No resizing required"
 msgstr "Ingen endring av st&oslash;rrelse n&oslash;dvendig"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "m&aring;lst&oslash;rrelse for fil %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> filst&oslash;rrelse %d kbytes"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "fors&oslash;ker kvalitet %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -679,7 +680,7 @@ msgstr "Vannmerker bilde"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -787,7 +788,7 @@ msgstr "E-post ikke sendt til %s da det ikke er en gyldig adresse"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "E-post ikke sendt da ingen adresser ble gitt"
 
 #: ../lib/mail.php:96
@@ -889,11 +890,11 @@ msgstr "plagekommentarer"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "plagekommentarer"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -976,7 +977,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Uten pnmcomp og pamcomp vil Gallery ikke klare &aring; vannmerke bilder, med mindre du har ImageMagick og bruker composite-programmet isteden."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM blir ikke brukt i denne installasjonen."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -999,12 +1001,13 @@ msgid "%s is not executable!"
 msgstr "%s er ikke kj&oslash;rbar!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d av %d NetPBM-komponenter ble funnet."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Uten composite, s&aring; vil ikke bilder kunne bli vannmerket, untatt om du bruker NetPBM og har pnmcomp installert."
 
 #: ../lib/setup.php:608
@@ -1106,7 +1109,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Det er mer enn ett passende <b>system</b>-localer installert p&aring; maskina for f&oslash;lgende spr&aring;k. Velg den du tror er mest passende."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Dette er <b>bare</b> for dato og tidsformater. Du trenger bare &aring; redigere spr&aring;kene du har sl&aring;tt p&aring; ovenfor"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1241,8 +1245,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Du m&aring; skrive inn et passord for %s-kontoen."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Det ser ut til at du allerede har konfigurert Gallery, siden det er allerede en admin-konto, men den er ikke kalt %s."
 
 #: ../lib/setup.php:1465
@@ -1381,11 +1385,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1393,15 +1397,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1479,6 +1483,10 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "en stemme"
 msgstr[1] "%d stemmer"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "Begge"
 
 #~ msgid "FAILED"
 #~ msgstr "FEILET"

@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-RC2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-06 19:12+0100\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-12-29 14:25+0800\n"
 "Last-Translator: Finjon Kiang <kiange AT gmail DOT com>\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -155,7 +155,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "沒有 pnmcomp 和 pamcomp, Gallery無法製作浮水印影像, 除非您使用 Image Magick 和安裝可執行檔"
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "安裝過程中沒有使用 NetPBM"
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -178,12 +179,13 @@ msgid "%s is not executable!"
 msgstr "%s 不能執行! "
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "需要 %2$d 個 NetPBM 可執行檔 找到 %1$d 個"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "沒有合成, Gallery 無法製作浮水印影像,除非您使用 NetPBM 和安裝 pnmcomp "
 
 #: ../lib/setup.php:608
@@ -286,7 +288,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的. "
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "本項僅供<b>日期與時間</b>格式設定. 您只需要修改上面的語言選項即可"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -423,8 +426,8 @@ msgid "You must enter a password for the %s account."
 msgstr "給%s帳號一個密碼"
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "您已編輯Gallery因為已經有一個管理者的帳號但並不是%s."
 
 #: ../lib/setup.php:1465
@@ -823,7 +826,8 @@ msgid "Send Email"
 msgstr "傳送電子信件"
 
 #: ../setup/check_netpbm.php:28
-msgid "Gallery NetPBM Check"
+#, fuzzy
+msgid "Gallery Netpbm Check"
 msgstr "檢查 NetPBM"
 
 #: ../setup/check_netpbm.php:145
@@ -898,8 +902,8 @@ msgid "unknown"
 msgstr "未知"
 
 #: ../setup/config_data.inc:71
-#, php-format
-msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#, fuzzy, php-format
+msgid "Gallery prefers Netpbm version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
 msgstr "Gallery 建議使用 NetPBM 9.9 或者更新的版本. 您可以從 %sGallery Download Page%s 上下載 Gallery 必須的可執行檔, 或者從 %sNetPBM website %s 下載原始檔自行編譯安裝. "
 
 #: ../setup/config_data.inc:76 ../setup/config_data.inc:86
@@ -909,11 +913,13 @@ msgid "Note:"
 msgstr "注意："
 
 #: ../setup/config_data.inc:77
-msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
+#, fuzzy
+msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead."
 msgstr "即使您沒有系統的 root 權限, 您也可以從 Gallery 的網站下載可執行檔並安裝它. 如果這樣還不行, 請把 NetPBM 的路徑空白並改用 ImageMagick 試試看. "
 
 #: ../setup/config_data.inc:80
-msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
+#, fuzzy
+msgid "I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date."
 msgstr "我們找到部分的 NetPBM 程式, 但有些重要的元件消失了(詳見下方說明)。您是否使用一個老舊的 NetPBM 版本呢? "
 
 #: ../setup/config_data.inc:84
@@ -922,7 +928,8 @@ msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and in
 msgstr "Gallery 建議使用 ImageMagick 5.4.8 或者更新的版本. 您可以從 %sImageMagicwe bsite%s 取得 ImageMagick 的原始檔來編譯安裝. "
 
 #: ../setup/config_data.inc:87
-msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+#, fuzzy
+msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead."
 msgstr "它也有各種平台的可執行檔, 如果這樣還不行, 請把 ImageMagick 的路徑空白並改用 NetPBM 試試看. "
 
 #: ../setup/config_data.inc:90
@@ -1008,7 +1015,8 @@ msgid "PHPs exec() function enabled"
 msgstr ""
 
 #: ../setup/config_data.inc:143
-msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
+#, fuzzy
+msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
 msgstr " <b>exec()</b> 的功能是 Gallery 用來啟動像NetPBM,ImageMAgick和jhead的程式, 如果 <b>exec()</b> 在您的伺服器被關掉,Gallery將無法運作. "
 
 #: ../setup/config_data.inc:145
@@ -1059,19 +1067,23 @@ msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file 
 msgstr "不是您的 <b>mod_rewrite</b> 沒安裝就是您的 <b>.htaccess</b> 沒有開啟. 不管是哪一種情形, 目前 Gallery 只能使用較長的 URL. 如果您想要改善這個狀況, 請確定您的 <b>.htaccess</b> 能正常運作, 如果您還無法正常使用該功能, 請用以下的參數重新設定編譯 Apache："
 
 #: ../setup/config_data.inc:178
-msgid "NetPBM installed"
-msgstr ""
+#, fuzzy
+msgid "Netpbm installed"
+msgstr "需要 %2$d 個 ImageMagick 可執行檔 找到 %1$d 個"
 
 #: ../setup/config_data.inc:180
-msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
+#, fuzzy
+msgid "Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."
 msgstr "檢查 NetPBM 是否安裝, 這可以讓您的 Gallery 修改圖片 (旋轉、重新調整大小、建立縮圖等等). 您需要安裝 ImageMagick <b>或者是</b> NetPBM. "
 
 #: ../setup/config_data.inc:182
-msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
+#, fuzzy
+msgid "I can't find Netpbm.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: "
 msgstr "找不到 NetPBM. 如果您已經安裝而網頁伺服器找不到, &#8212;您可以在下一頁指定 NetPBM 所在路徑. 如果您尚未安裝, 您有兩種選擇："
 
 #: ../setup/config_data.inc:186
-msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
+#, fuzzy
+msgid "If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page."
 msgstr "如果已安裝 NetPBM 而 Gallery 無法找到它在那邊, 請在下一頁設定 NetPBM 所在路徑即可. "
 
 #: ../setup/config_data.inc:190
@@ -1080,7 +1092,8 @@ msgid "ImageMagick installed"
 msgstr "需要 %2$d 個 ImageMagick 可執行檔 找到 %1$d 個"
 
 #: ../setup/config_data.inc:192
-msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
+#, fuzzy
+msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."
 msgstr "檢查 ImageMagick 是否安裝, 這可以讓您的 Gallery 修改圖片 (旋轉、重新調整大小、建立縮圖等等). 您需要安裝 ImageMagick <b>或者是</b> NetPBM"
 
 #: ../setup/config_data.inc:194
@@ -1332,20 +1345,22 @@ msgstr "在您指定的路徑位置找不到 ImageMagick 程式. "
 
 #: ../setup/config_data.inc:430
 #, fuzzy
-msgid "NetPBM Settings"
+msgid "Netpbm Settings"
 msgstr "重新瀏覽設定"
 
 #: ../setup/config_data.inc:435
-msgid "Path to NetPBM"
+#, fuzzy
+msgid "Path to Netpbm"
 msgstr "NetPBM 的路徑"
 
 #: ../setup/config_data.inc:436
-#, php-format
-msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
+#, fuzzy, php-format
+msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "系統中儲存 NetPBM 程式的目錄, 如果您從 Gallery 網站上下載 NetPBM, 別忘了設定執行權限喔. 比如 %s、%s 或者是 %s"
 
 #: ../setup/config_data.inc:443
-msgid "I can't find NetPBM at the location you provided."
+#, fuzzy
+msgid "I can't find Netpbm at the location you provided."
 msgstr "在您提供的目錄中找不到 NetPBM. "
 
 #: ../setup/config_data.inc:455
@@ -1353,7 +1368,8 @@ msgid "PNM to JPEG converter"
 msgstr "PNM to JPEG 轉換程式"
 
 #: ../setup/config_data.inc:456
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "只有當您使用 NetPBM 時才需要設定此項, NetPBM 利用兩種工具程式將內部影像格式轉成 JPEG, 依據您安裝的 NetPBM 版本不同可能為 <i>ppmtojpeg</i> 或 <i>pnmtojpeg</i>. 請檢查您的 NetPBM 目錄並指定其中一種工具程式, 如果您不確定也沒關係, 我們會幫您進行檢查. "
 
 #: ../setup/config_data.inc:461
@@ -1361,7 +1377,8 @@ msgid "PNM Composite (Overlay)"
 msgstr "PNM 合成 (Overlay)"
 
 #: ../setup/config_data.inc:462
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "只有當您使用 NetPBM 時才需要設定此項, NetPBM 利用工具程式將影像覆蓋到另一個影像, 依據您安裝的 NetPBM 版本不同可能為 <i>pnmcomp</i> 或 <i>pamcomp</i>. 請檢查您的 NetPBM 目錄並指定其中一種工具程式, 如果您不確定也沒關係, 我們會幫您進行檢查. "
 
 #: ../setup/config_data.inc:470
@@ -3096,13 +3113,13 @@ msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
 msgstr "%s: <b>%s</b> 必須開啟才能執行! "
 
 #: ../setup/confirm.inc:360
-#, php-format
-msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#, fuzzy, php-format
+msgid "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "找不到 %s. 請檢查您的 NetPBM 目錄看看您所使用的 PNG->JPEG 轉換程式是哪一個 (或者用 %s 取代). 請檢查您的設定 (或者使用 ImageMagick)"
 
 #: ../setup/confirm.inc:368
-#, php-format
-msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#, fuzzy, php-format
+msgid "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "找不到 %s. 請檢查您的 NetPBM 目錄看看您所使用的 PNM Composite/Overlay 執行程式是哪一個 (或者用 %s 取代). 請檢查您的設定 (或者使用 ImageMagick)"
 
 #: ../setup/confirm.inc:380
@@ -3252,11 +3269,13 @@ msgid "Check"
 msgstr "檢查"
 
 #: ../setup/diagnostics.php:63
-msgid "This page provides information about your NetPBM binaries."
+#, fuzzy
+msgid "This page provides information about your Netpbm binaries."
 msgstr "這一份網頁提供了您的 NetPBM 執行檔資訊. "
 
 #: ../setup/diagnostics.php:64
-msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM)."
+#, fuzzy
+msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm)."
 msgstr "您可以在完成設定精靈之後再來使用這一份網頁. (因為需要 NetPBM 的相關設定才可以進行檢查)"
 
 #: ../setup/diagnostics.php:73

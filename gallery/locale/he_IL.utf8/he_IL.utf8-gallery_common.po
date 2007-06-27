@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2004-03-06 19:18+0200\n"
 "Last-Translator: Shai <gallery AT shaibn DOT com>\n"
 "Language-Team: HEBREW <imac2 AT walla DOT co DOT il>\n"
@@ -115,7 +115,7 @@ msgstr "גודל השקופית"
 
 #: ../includes/definitions/albumProperties.php:134
 #, fuzzy
-msgid "Image Frame"
+msgid "Item Frame"
 msgstr "גודל תמונה"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -199,7 +199,8 @@ msgid "Sizes"
 msgstr "מחק משתמש"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "גודל השקופית"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -215,7 +216,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "ממדים מירביים של תמונות מעבר"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -247,11 +249,13 @@ msgid "Display click counter for this album?"
 msgstr "הצג מונה לחיצות לאלבום זה?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "הצג את שם הבעלים עם התמונה"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "הצג נתוני תמונה ע\"ג לינקים"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -269,7 +273,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "באיזו אפשרות הדפסת תמונות<br> ברצונך לאפשר לגולשים להשתמש?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -283,7 +287,7 @@ msgid "Who can vote?"
 msgstr "לא"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -405,8 +409,9 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
+#: ../includes/definitions/albumProperties.php:474
 #, fuzzy
-msgid "both"
+msgid "Both"
 msgstr "חודש"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -443,11 +448,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr ""
-
-#: ../includes/definitions/albumProperties.php:474
-#, fuzzy
-msgid "Both"
-msgstr "חודש"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -671,18 +671,18 @@ msgid "No resizing required"
 msgstr ""
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "גודל קובץ צפוי %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
 #, fuzzy, php-format
-msgid "-> file size %d kbytes"
+msgid "-> File size: %d kbytes"
 msgstr "מטרת גודל הקובץ %d kbytes"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "מנסה איכות %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -706,7 +706,7 @@ msgstr "מעבד תמונה"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -814,7 +814,7 @@ msgstr "אימייל לא נשלח בפני שהאופציה חסומה לגלר
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "עליך להכניס שם משתמש"
 
 #: ../lib/mail.php:96
@@ -908,11 +908,11 @@ msgstr "ראה הערות"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "ראה הערות"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -999,7 +999,7 @@ msgstr ""
 
 #: ../lib/setup.php:513
 #, fuzzy
-msgid "NetPBM not being used in this installation."
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM לא בשימוש בהתקנה זו"
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -1024,11 +1024,11 @@ msgstr "%s לא ניתן להרצה"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
 #, fuzzy, php-format
-msgid "%d of %d NetPBM binaries located."
+msgid "%d of %d Netpbm binaries located."
 msgstr "כל %d קבצי ההרצה של NetPBM נמצאו"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -1136,7 +1136,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "מותקנות במערכת שלך יותר מערכת שפה (locale) אחת עבור כל אחת מהשפות הרשומות מטה. אנא בחר את זו שמתאימה יותר לדעתך."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1280,7 +1280,7 @@ msgstr "עליך להכניס סיסמה"
 
 #: ../lib/setup.php:1462
 #, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr ""
 
 #: ../lib/setup.php:1465
@@ -1419,11 +1419,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1431,15 +1431,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1515,6 +1515,10 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "אין הצבעות"
 msgstr[1] "אין הצבעות"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "חודש"
 
 #, fuzzy
 #~ msgid "No votes so far."

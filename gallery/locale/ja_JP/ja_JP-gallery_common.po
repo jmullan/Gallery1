@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-08-05 23:39+0900\n"
 "Last-Translator: Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>\n"
 "Language-Team: Japanese <ken_w3m+nospam AT gmail DOT com>\n"
@@ -106,7 +106,8 @@ msgid "Thumb Frame"
 msgstr "サムネイルのフレーム"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "画像のフレーム"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -186,7 +187,8 @@ msgid "Sizes"
 msgstr "サイズ"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "サムネイルのサイズ"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -202,7 +204,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "中間縮小画像の最大の容量"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -231,11 +234,13 @@ msgid "Display click counter for this album?"
 msgstr "このアルバムのクリックカウンタを表示しますか?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "説明に所有者名も表示する"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "クリック可能な画像の外寸の表示"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -251,7 +256,8 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "どのプリントサービスを<br>訪問者に利用してもらいますか?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+#, fuzzy
+msgid "Enable Ecards?"
 msgstr "e-カードを有効にしますか?"
 
 #: ../includes/definitions/albumProperties.php:297
@@ -263,7 +269,7 @@ msgid "Who can vote?"
 msgstr "投票できる人"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -380,7 +386,8 @@ msgid "Use microthumb photo navigation"
 msgstr "画像ナビゲーションに極小サムネイルを用います"
 
 #: ../includes/definitions/albumProperties.php:443
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "両方"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -419,10 +426,6 @@ msgstr "極小サムネイルナビゲーションーバーの位置"
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "上"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "両方"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -638,18 +641,18 @@ msgid "No resizing required"
 msgstr "リサイズ不要"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "ターゲットファイルサイズ %d kB"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> ファイルサイズ %d kB"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "画質 %d%%で試行"
 
 #: ../lib/imageManipulation.php:131
@@ -672,7 +675,7 @@ msgstr "透かし画像にしています"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -780,7 +783,7 @@ msgstr "メールアドレスが正しくなかったので、%s にメールは送信されませんでした。"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "アドレスが指定されなかったのでメールは送信されませんでした。"
 
 #: ../lib/mail.php:96
@@ -882,12 +885,12 @@ msgstr "スパムコメントを探す"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "スパムコメントを探す"
 
 #: ../lib/mail.php:253
 #, fuzzy
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr "この画像についてこれ以上メールを受け取りたくないなら、以下のリンクをたどり、「他の変化があったときにメールで知らせる」のチェックが外されていることを確認してください。(まずログインする必要があります)"
 
 #: ../lib/mail.php:256
@@ -971,7 +974,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "ImageMagickを使用し、compositeバイナリがインストールされている場合をのぞき、pnmcompのないgalleryは透かし画像を利用できません。"
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBMはこのインストレーションでは使用されていません"
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -994,12 +998,13 @@ msgid "%s is not executable!"
 msgstr "%s は実行可能ではありません。"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%2$d個中%1$d個のNetPBMバイナリ全てが検出されました"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "NetPBMを使用し、pnmcompバイナリがインストールされている場合をのぞき、compositeのないgalleryは透かし画像を利用できません。"
 
 #: ../lib/setup.php:608
@@ -1101,7 +1106,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "以下の言語に対応する2つ以上の<b>システム</b>ロケールがインストールされています。最も適切なものを一つ選んでください。"
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "これは日付と時間のフォーマット <b>のみ</b> のためのものです。上で有効にした言語を編集することだけ必要です。"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1236,8 +1242,8 @@ msgid "You must enter a password for the %s account."
 msgstr "アカウント %s に対するパスワードを入力しなくてはいけません。"
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、管理者アカウントは存在します。しかし、%s という名前ではありません。"
 
 #: ../lib/setup.php:1465
@@ -1376,11 +1382,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1388,15 +1394,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1471,6 +1477,9 @@ msgstr "%s: %s"
 msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "%d 票"
+
+#~ msgid "both"
+#~ msgstr "両方"
 
 #~ msgid "FAILED"
 #~ msgstr "失敗"

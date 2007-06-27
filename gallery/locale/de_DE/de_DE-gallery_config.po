@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5_LEGACY\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-03-03 16:58+0100\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2007-03-03 17:34+0100\n"
 "Last-Translator: Jens A. Tkotz\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -106,18 +106,15 @@ msgstr "Ein Holztextur Rahmen"
 msgid "Please retype your password here"
 msgstr "Bitte geben Sie hier Ihr Passwort erneut ein."
 
-#: ../lib/setup.php:154
-#: ../lib/setup.php:1102
+#: ../lib/setup.php:154 ../lib/setup.php:1102
 msgid "Name"
 msgstr "Name"
 
-#: ../lib/setup.php:155
-#: ../lib/setup.php:1102
+#: ../lib/setup.php:155 ../lib/setup.php:1102
 msgid "Value"
 msgstr "Wert"
 
-#: ../lib/setup.php:184
-#: ../lib/setup.php:227
+#: ../lib/setup.php:184 ../lib/setup.php:227
 msgid "No content"
 msgstr "Kein Inhalt"
 
@@ -156,48 +153,44 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Ohne die pnmcomp, bzw pamcomp Datei kann Ihre Gallery keine Wasserzeichen auf Ihre Bilder legen. Es sei denn Sie benutzen ImageMagick und haben composite installiert."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM wird in dieser Installation nicht verwendet."
 
-#: ../lib/setup.php:518
-#: ../lib/setup.php:613
+#: ../lib/setup.php:518 ../lib/setup.php:613
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Der Pfad kann nicht geprüft werden (er ist nicht in Ihrer open_basedir Liste)."
 
-#: ../lib/setup.php:552
-#: ../lib/setup.php:630
+#: ../lib/setup.php:552 ../lib/setup.php:630
 #, php-format
 msgid "Missing optional binary %s. %s"
 msgstr "Die optionale Datei %s fehlt. %s"
 
-#: ../lib/setup.php:555
-#: ../lib/setup.php:633
+#: ../lib/setup.php:555 ../lib/setup.php:633
 #, php-format
 msgid "Can't find %s!"
 msgstr "Konnte %s nicht finden"
 
-#: ../lib/setup.php:561
-#: ../lib/setup.php:639
+#: ../lib/setup.php:561 ../lib/setup.php:639
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s ist nicht ausf&uuml;hrbar"
 
-#: ../lib/setup.php:571
-#: ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#: ../lib/setup.php:571 ../lib/setup.php:578
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d von %d NetPBM Binaries gefunden."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Ohne die composite Datei kann Ihre Gallery keine Wasserzeichen auf Ihre Bilder legen. Es sei denn, Sie benutzen NetPBM und haben pnmcomp installiert."
 
 #: ../lib/setup.php:608
 msgid "ImageMagick not being used in this installation."
 msgstr "ImageMagick wird in dieser Installation nicht verwendet."
 
-#: ../lib/setup.php:649
-#: ../lib/setup.php:656
+#: ../lib/setup.php:649 ../lib/setup.php:656
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d von %d ImageMagick Binaries gefunden."
@@ -278,11 +271,8 @@ msgstr "Gallery war nicht in der Lage mindesten ein System locale zu finden. All
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Nur das Standard locale dieses Systems ist verf&uuml;gbar, dadurch wird sich die Datumsanzeige nicht &auml;ndern f&uuml;r andere Sprachen."
 
-#: ../lib/setup.php:946
-#: ../lib/setup.php:1026
-#: ../setup/config_data.inc:779
-#: ../setup/config_data.inc:789
-#: ../setup/config_data.inc:1331
+#: ../lib/setup.php:946 ../lib/setup.php:1026 ../setup/config_data.inc:779
+#: ../setup/config_data.inc:789 ../setup/config_data.inc:1331
 msgid "Advanced"
 msgstr "Fortgeschritten"
 
@@ -295,13 +285,12 @@ msgstr "<b>System</b> Locale Auswahl ben&ouml;tigt"
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Es ist mehr als eine passende <b>System</b> locale Information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden. Bitte w&auml;hlen Sie das naheliegenste aus."
 
-#: ../lib/setup.php:949
-#: ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#: ../lib/setup.php:949 ../lib/setup.php:1029
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Dies ist <b>nur</b> f&uuml;r das Zeit- und Datumsformat. Sie brauchen auch nur Werte f&uuml;r Sprachen angeben, die Sie weiter oben angeklickt haben."
 
-#: ../lib/setup.php:960
-#: ../lib/setup.php:984
+#: ../lib/setup.php:960 ../lib/setup.php:984
 msgid "System locale"
 msgstr "System locale"
 
@@ -327,9 +316,7 @@ msgstr "Die <b>Magic Quotes</b> sind aus."
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "Im Punkt %1$s, fehlt in Reihe %3$d der %2$s zum %4$s %5$s."
 
-#: ../lib/setup.php:1101
-#: ../lib/setup.php:1110
-#: ../lib/setup.php:1115
+#: ../lib/setup.php:1101 ../lib/setup.php:1110 ../lib/setup.php:1115
 #: ../setup/config_data.inc:1866
 msgid "Vote words and values"
 msgstr "Abstimmungswerte"
@@ -352,8 +339,7 @@ msgstr "<b>register globals</b> ist aus."
 msgid "Your passwords do not match!"
 msgstr "Ihre Passw&ouml;rter stimmen nicht &uuml;ber ein!"
 
-#: ../lib/setup.php:1317
-#: ../setup/check_imagemagick.php:68
+#: ../lib/setup.php:1317 ../setup/check_imagemagick.php:68
 #: ../setup/check_netpbm.php:73
 msgid "OK"
 msgstr "OK"
@@ -398,8 +384,7 @@ msgstr "Die folgenden Dateien sind veraltet, defekt, oder fehlen:<br>&nbsp;&nbsp
 msgid "This should be fixed before proceeding"
 msgstr "Es wird dirngend empfohlen, dass Sie dieses Problem beheben bevor Sie fortfahren."
 
-#: ../lib/setup.php:1383
-#: ../lib/setup.php:1387
+#: ../lib/setup.php:1383 ../lib/setup.php:1387
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr "Werfen Sie einen Blick auf den %sVersionscheck%s um weitere Details zu sehen."
@@ -439,8 +424,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Sie m&uuml;ssen das Passwort f&uuml;r den %s Benutzer zweimal eingeben."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da ein Admin Benutzer existiert.  Es ist jedoch nicht der Benutzer %s."
 
 #: ../lib/setup.php:1465
@@ -462,18 +447,13 @@ msgstr "Es scheint als w&auml;re die Gallery schon mal konfiguriert worden, da d
 msgid "Admin password"
 msgstr "Admin-Passwort"
 
-#: ../lib/setup.php:1498
-#: ../lib/setup.php:1500
-#: ../lib/setup.php:1502
+#: ../lib/setup.php:1498 ../lib/setup.php:1500 ../lib/setup.php:1502
 #: ../lib/setup.php:1510
 msgid "Full Name"
 msgstr "Vollst&auml;ndiger Name"
 
-#: ../lib/setup.php:1498
-#: ../lib/setup.php:1500
-#: ../lib/setup.php:1504
-#: ../lib/setup.php:1512
-#: ../setup/login.inc:93
+#: ../lib/setup.php:1498 ../lib/setup.php:1500 ../lib/setup.php:1504
+#: ../lib/setup.php:1512 ../setup/login.inc:93
 msgid "Username"
 msgstr "Benutzername"
 
@@ -485,8 +465,7 @@ msgstr "Vollst&auml;ndiger Name als klickbarer Emaillink (mailto:)"
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Benutzername als klickbarer Emaillink (mailto:)"
 
-#: ../lib/setup.php:1510
-#: ../lib/setup.php:1512
+#: ../lib/setup.php:1510 ../lib/setup.php:1512
 msgid "email address"
 msgstr "Email Adresse"
 
@@ -564,32 +543,26 @@ msgstr "Lassen Sie leer um dem Standardtext zu benutzen, welche mehrsprachig vor
 msgid "The following placeholder can be used:"
 msgstr "Die folgenden Platzhalter können benutzt werden:"
 
-#: ../lib/setup.php:1790
-#: ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "Die Datei %s existiert nicht."
 
-#: ../lib/setup.php:1799
-#: ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Erwarteter Status: %s, tats&auml;chlich erhaltener Status: %s."
 
-#: ../lib/setup.php:1812
-#: ../setup/check_netpbm.php:275
+#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
 msgid "can't detect version on Windows"
 msgstr "Es ist nicht m&ouml;glich, die Version unter Windows herauszufinden"
 
-#: ../lib/setup.php:1823
-#: ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK ! Version: %s"
 
-#: ../setup/check.inc:29
-#: ../setup/confirm.inc:28
-#: ../setup/constants.inc:30
+#: ../setup/check.inc:29 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
 #, php-format
 msgid "Gallery Configuration Wizard: Step %d"
@@ -603,8 +576,7 @@ msgstr "Dies ist die Gallery System-Pr&uuml;fungsseite."
 msgid "This page will validate your installation to make sure that you have all the necessary components and permissions on this system and that everything is configured reasonably."
 msgstr "Diese Seite wird Ihre Installation &uuml;berpr&uuml;fen, um sicherzugehen, dass Sie alle ben&ouml;tigten Komponenten und Berechtigungen installiert haben und dass alles korrekt eingestellt wurde."
 
-#: ../setup/check.inc:39
-#: ../setup/diagnostics.php:28
+#: ../setup/check.inc:39 ../setup/diagnostics.php:28
 msgid "Gallery Diagnostics Page"
 msgstr "Gallery Diagnose-Seite"
 
@@ -617,8 +589,7 @@ msgstr "Gallery Hilfeseite"
 msgid "Having problems?  Try the %s, %s and %s."
 msgstr "Haben Sie Probleme? Besuchen Sie die %s, %s oder %s."
 
-#: ../setup/check.inc:45
-#: ../setup/confirm.inc:36
+#: ../setup/check.inc:45 ../setup/confirm.inc:36
 msgid "documentation"
 msgstr "Dokumentation"
 
@@ -627,34 +598,27 @@ msgstr "Dokumentation"
 msgid "Having problems?  Try the %s and %s."
 msgstr "Haben Sie Probleme? Besuchen Sie die %s und %s."
 
-#: ../setup/check.inc:56
-#: ../setup/check.inc:57
+#: ../setup/check.inc:56 ../setup/check.inc:57
 msgid "Success"
 msgstr "In Ordnung"
 
-#: ../setup/check.inc:61
-#: ../setup/check.inc:62
+#: ../setup/check.inc:61 ../setup/check.inc:62
 msgid "Warning, but optional"
 msgstr "Warnung, jedoch optional"
 
-#: ../setup/check.inc:66
-#: ../setup/check.inc:67
+#: ../setup/check.inc:66 ../setup/check.inc:67
 msgid "Serious warning, but optional"
 msgstr "Ernsthafte Warnung, jedoch optional"
 
-#: ../setup/check.inc:71
-#: ../setup/check.inc:72
+#: ../setup/check.inc:71 ../setup/check.inc:72
 msgid "Serious warning, no go !"
 msgstr "Ernsthafte Warnung, NO GO !"
 
-#: ../setup/check.inc:76
-#: ../setup/check.inc:77
-#: ../setup/write.inc:244
+#: ../setup/check.inc:76 ../setup/check.inc:77 ../setup/write.inc:244
 msgid "Failure"
 msgstr "FEHLER"
 
-#: ../setup/check.inc:104
-#: ../setup/check_versions.php:74
+#: ../setup/check.inc:104 ../setup/check_versions.php:74
 msgid "Show/hide more information"
 msgstr "Zeige/Verstecke weitere Informationen"
 
@@ -682,11 +646,8 @@ msgstr "Ihre Installation erzeugt Warnungen, was im allgemeinen jedoch kein Prob
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Ihre Installation hat mit Bravour bestanden! Weiter geht's!"
 
-#: ../setup/check.inc:210
-#: ../setup/constants.inc:44
-#: ../setup/constants.inc:199
-#: ../setup/defaults.inc:46
-#: ../setup/defaults.inc:134
+#: ../setup/check.inc:210 ../setup/constants.inc:44 ../setup/constants.inc:199
+#: ../setup/defaults.inc:46 ../setup/defaults.inc:134
 msgid "Next Step"
 msgstr "N&auml;chster Schritt"
 
@@ -694,130 +655,107 @@ msgstr "N&auml;chster Schritt"
 msgid "Gallery ImageMagick Check"
 msgstr "Gallery ImageMagick Test"
 
-#: ../setup/check_imagemagick.php:35
-#: ../setup/check_netpbm.php:35
+#: ../setup/check_imagemagick.php:35 ../setup/check_netpbm.php:35
 #, php-format
 msgid "Check %s"
 msgstr "Pr&uuml;fe %s"
 
-#: ../setup/check_imagemagick.php:39
-#: ../setup/check_netpbm.php:39
+#: ../setup/check_imagemagick.php:39 ../setup/check_netpbm.php:39
 #, php-format
 msgid "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."
 msgstr "Dieses Script dient dazu, Ihre %s Installation zu pr&uuml;fen und ob Sie von Gallery benutzt werden kann."
 
-#: ../setup/check_imagemagick.php:40
-#: ../setup/check_netpbm.php:40
+#: ../setup/check_imagemagick.php:40 ../setup/check_netpbm.php:40
 #, php-format
 msgid "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."
 msgstr "Sie sollten diese Seite aufrufen, <b>nachdem</b> Sie den Konfigurationsassistenten ausgef&uuml;hrt haben und es Probleme mit Ihrer %s Installation gibt, die der Assistent nicht gefunden hat."
 
-#: ../setup/check_imagemagick.php:48
-#: ../setup/check_netpbm.php:51
+#: ../setup/check_imagemagick.php:48 ../setup/check_netpbm.php:51
 msgid "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard."
 msgstr "Es werden nun die Konfigurationsdateien gelesen.  Falls Sie nun Fehler sehen, dann wurde die Konfiguration nicht erfolgreich abgeschlossen."
 
-#: ../setup/check_imagemagick.php:55
-#: ../setup/check_netpbm.php:59
+#: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:59
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Es scheint als w&auml;re die GALLERY nicht konfiguriert. Bitte starten und beenden Sie den Konfigurationsassistenten."
 
-#: ../setup/check_imagemagick.php:75
-#: ../setup/check_netpbm.php:83
+#: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:83
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "Nun werfen wir einen Blick auf Ihr Betriebsystem."
 
-#: ../setup/check_imagemagick.php:79
-#: ../setup/check_netpbm.php:87
+#: ../setup/check_imagemagick.php:79 ../setup/check_netpbm.php:87
 msgid "This is what your system reports"
 msgstr "Dies sind die Angaben Ihres Systems"
 
-#: ../setup/check_imagemagick.php:82
-#: ../setup/check_netpbm.php:90
+#: ../setup/check_imagemagick.php:82 ../setup/check_netpbm.php:90
 msgid "This is the type of system on which PHP was compiled"
 msgstr "Dies ist das System auf dem PHP kompiliert wurde"
 
-#: ../setup/check_imagemagick.php:84
-#: ../setup/check_netpbm.php:92
+#: ../setup/check_imagemagick.php:84 ../setup/check_netpbm.php:92
 msgid "Make sure that the values above make sense to you."
 msgstr "Stellen Sie sicher, dass die Werte einen Sinn f&uuml;r Sie ergeben."
 
-#: ../setup/check_imagemagick.php:88
-#: ../setup/check_netpbm.php:95
+#: ../setup/check_imagemagick.php:88 ../setup/check_netpbm.php:95
 #, php-format
 msgid "Look for keywords like %s, %s, %s etc. in the output above."
 msgstr "Schauen Sie, ob Sie Schl&uuml;sselw&ouml;rter wie %s, %s, %s etc. finden."
 
-#: ../setup/check_imagemagick.php:91
-#: ../setup/check_netpbm.php:97
+#: ../setup/check_imagemagick.php:91 ../setup/check_netpbm.php:97
 msgid "If both the attempts above failed, you should ask your ISP what operating system you are using."
 msgstr "Falls beide Angaben nichts ergeben, fragen Sie Ihren Provider, welches Betriebsystem Sie verwenden."
 
-#: ../setup/check_imagemagick.php:92
-#: ../setup/check_netpbm.php:98
+#: ../setup/check_imagemagick.php:92 ../setup/check_netpbm.php:98
 #, php-format
 msgid "You can check via %s, they can often tell you."
 msgstr "Sie k&ouml;nnen auch bei %s Ihr Gl&uuml;ck versuchen. Oftmals kann Ihnen hier geholfen werden."
 
-#: ../setup/check_imagemagick.php:104
-#: ../setup/check_netpbm.php:114
+#: ../setup/check_imagemagick.php:104 ../setup/check_netpbm.php:114
 #, php-format
 msgid "You told the config wizard that your %s binaries live here:"
 msgstr "Sie haben bei der Konfiguration angegeben, dass Ihre %s Binaries hier liegen:"
 
-#: ../setup/check_imagemagick.php:106
-#: ../setup/check_netpbm.php:116
+#: ../setup/check_imagemagick.php:106 ../setup/check_netpbm.php:116
 #, php-format
 msgid "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."
 msgstr "Falls dies nicht stimmt (oder falls nichts zu sehen ist), starten Sie den Konfigurationsassistenten erneut und geben den korrekten Pfad zu %s an."
 
-#: ../setup/check_imagemagick.php:115
-#: ../setup/check_netpbm.php:125
+#: ../setup/check_imagemagick.php:115 ../setup/check_netpbm.php:125
 #, php-format
 msgid "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"
 msgstr "<b>Hinweis:</b> Ihr %s Ordner (%s) ist nicht in Ihrer open_basedir Liste %s"
 
-#: ../setup/check_imagemagick.php:119
-#: ../setup/check_netpbm.php:129
+#: ../setup/check_imagemagick.php:119 ../setup/check_netpbm.php:129
 msgid "The open_basedir list is specified in php.ini."
 msgstr "Die open_basedir Liste ist in der php.ini angegeben."
 
-#: ../setup/check_imagemagick.php:120
-#: ../setup/check_netpbm.php:130
+#: ../setup/check_imagemagick.php:120 ../setup/check_netpbm.php:130
 msgid "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable."
 msgstr "Daher ist es nicht m&ouml;glich, alle Grundpr&uuml;fungen durchzuf&uuml;hren, um sicherzugehen, dass die Binaries ausf&uuml;hrbar sind."
 
-#: ../setup/check_imagemagick.php:128
-#: ../setup/check_netpbm.php:142
+#: ../setup/check_imagemagick.php:128 ../setup/check_netpbm.php:142
 #, php-format
 msgid "We are going to test each %s binary individually."
 msgstr "Es wird nun jedes %s Binary einzeln getestet."
 
-#: ../setup/check_imagemagick.php:137
-#: ../setup/check_netpbm.php:183
+#: ../setup/check_imagemagick.php:137 ../setup/check_netpbm.php:183
 msgid "Checking:"
 msgstr "Pr&uuml;fe:"
 
-#: ../setup/check_imagemagick.php:156
-#: ../setup/check_netpbm.php:213
+#: ../setup/check_imagemagick.php:156 ../setup/check_netpbm.php:213
 #, php-format
 msgid "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."
 msgstr "Wenn Fehler aufgetreten sind, bez&uuml;glich Lesen und Schreiben von/nach %s, dann ist dies ein Zeichen f&uuml;r falsch eingestellte Berechtigungen oder ein Konfigurationsproblem Ihres Systems. Falls auf %s hingewiesen wurde, dann deshalb, weil Ihr System mit %s konfiguriert wurde."
 
-#: ../setup/check_imagemagick.php:160
-#: ../setup/check_netpbm.php:217
+#: ../setup/check_imagemagick.php:160 ../setup/check_netpbm.php:217
 #, php-format
 msgid "You should talk to your system administrator about this, or see the %sGallery Help Page%s."
 msgstr "Sprechen Sie mit Ihrem System-Administrator, oder werfen Sie einen Blick auf die %sGallery-Hilfeseite%s."
 
-#: ../setup/check_imagemagick.php:165
-#: ../setup/check_netpbm.php:222
+#: ../setup/check_imagemagick.php:165 ../setup/check_netpbm.php:222
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "F&uuml;r weitere Fehler schauen Sie sich bitte die Liste der m&ouml;glichen Ausgaben in %s an, um weitere Information zu erhalten."
 
-#: ../setup/check_mail.php:29
-#: ../setup/check_mail.php:35
+#: ../setup/check_mail.php:29 ../setup/check_mail.php:35
 msgid "Check Mail"
 msgstr "Mail pr&uuml;fen"
 
@@ -865,8 +803,7 @@ msgstr "Versuchen Sie es erneut."
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Dies gibt Ihnen die M&ouml;glichkeit zu testen, ob Emailing auf Ihrem Server korrekt funktioniert.  Es wird versucht eine Testemail an die von Ihnen anzugebende Adresse zu schicken.  Falls Sie ankommt, wissen Sie das das Emailing funktioniert."
 
-#: ../setup/check_mail.php:73
-#: ../setup/check_mail.php:78
+#: ../setup/check_mail.php:73 ../setup/check_mail.php:78
 #, php-format
 msgid "%s not set."
 msgstr "%s nicht angegeben."
@@ -884,7 +821,8 @@ msgid "Send Email"
 msgstr "Email senden"
 
 #: ../setup/check_netpbm.php:28
-msgid "Gallery NetPBM Check"
+#, fuzzy
+msgid "Gallery Netpbm Check"
 msgstr "Gallery NetPBM Test"
 
 #: ../setup/check_netpbm.php:145
@@ -897,8 +835,7 @@ msgstr "%sKlicken Sie hier%s, um die Details auszublenden"
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Wenn Fehler auftreten, sollten Sie %shier klicken%s, um mehr Details zu sehen"
 
-#: ../setup/check_versions.php:30
-#: ../setup/check_versions.php:39
+#: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"
 msgstr "Versions Test"
 
@@ -911,8 +848,7 @@ msgstr "Diese Seite gibt Ihnen Informationen &uuml;ber die Version der von %s be
 msgid "If you see any error(s), we highly suggest to get the actual version of those files."
 msgstr "Falls hier Fehler auftreten empfehlen wir dringend, dass Sie die aktuellen Dateien aufspielen."
 
-#: ../setup/check_versions.php:54
-#: ../setup/check_versions.php:59
+#: ../setup/check_versions.php:54 ../setup/check_versions.php:59
 msgid "All files okay."
 msgstr "Alle getesteten Dateien sind aktuell!"
 
@@ -960,25 +896,24 @@ msgid "unknown"
 msgstr "Unbekannt"
 
 #: ../setup/config_data.inc:71
-#, php-format
-msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#, fuzzy, php-format
+msgid "Gallery prefers Netpbm version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
 msgstr "Gallery ben&ouml;tigt NetPBM Version 9.9 oder h&ouml;her. Sie haben die M&ouml;glichkeit, nur die Binaries von %sGallery auf SourceForge%s herunterzuladen und zu installieren oder die Quellen von %sNetPBM auf SourceForge%s herunterladen und selber zu kompilieren."
 
-#: ../setup/config_data.inc:76
-#: ../setup/config_data.inc:86
-#: ../setup/config_data.inc:94
-#: ../setup/config_data.inc:134
-#: ../setup/config_data.inc:818
-#: ../setup/confirm.inc:391
+#: ../setup/config_data.inc:76 ../setup/config_data.inc:86
+#: ../setup/config_data.inc:94 ../setup/config_data.inc:134
+#: ../setup/config_data.inc:818 ../setup/confirm.inc:391
 msgid "Note:"
 msgstr "Hinweis:"
 
 #: ../setup/config_data.inc:77
-msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
+#, fuzzy
+msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead."
 msgstr "Sie k&ouml;nnen die Binaries der Gallery-Website auch installieren, wenn Sie keinen Root-Zugang zu Ihrem Server haben! Falls Sie es nicht zum Laufen bekommen, lassen Sie den NetPBM Pfad leer und benutzen stattdessen ImageMagick."
 
 #: ../setup/config_data.inc:80
-msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
+#, fuzzy
+msgid "I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date."
 msgstr "Es wurden Teile von NetPBM gefunden, jedoch fehlen wichtige Komponenten (siehe unten).  Vielleicht ist Ihre NetPBM Version veraltet ?"
 
 #: ../setup/config_data.inc:84
@@ -987,7 +922,8 @@ msgid "Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and in
 msgstr "Gallery bevorzugt ImageMagick 5.4.8 und h&ouml;her. Sie k&ouml;nnen aber auch das gesamte ImageMagick Packet von der %sImageMagick website%s herunterladen und selber installieren."
 
 #: ../setup/config_data.inc:87
-msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+#, fuzzy
+msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead."
 msgstr "Dort finden Sie auch Binaries f&uuml;r die verschiedensten Systeme.  Falls Sie es nicht zum Laufen bekommen, lassen Sie den Pfad zu ImageMagick leer und benutzen NetPBM stattdessen."
 
 #: ../setup/config_data.inc:90
@@ -1069,7 +1005,8 @@ msgid "PHPs exec() function enabled"
 msgstr "PHPs exec() Funktion ist aktiviert."
 
 #: ../setup/config_data.inc:143
-msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
+#, fuzzy
+msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
 msgstr "Gallery benutzt die <b>exec()</b> Funktion um externe Programme wie NetPBM, ImageMagick oder jhead auszuf&uuml;hren.  Falls <b>exec()</b> nicht aktiviert ist, dann wird Ihr Gallery nicht funktionieren."
 
 #: ../setup/config_data.inc:145
@@ -1119,19 +1056,23 @@ msgid "Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file 
 msgstr "Entweder ist <b>mod_rewrite</b> nicht installiert, oder Ihre <b>.htaccess</b> Datei wird nicht verarbeitet (siehe oben).   Wenn Sie dieses Feature nutzen wollen, schlagen wir vor, dass Sie sicherstellen, dass Ihre <b>.htaccess</b> erkannt wird. Falls dies nicht aussreicht, m&uuml;ssen Sie Ihren Webserver neu kompilieren mit:"
 
 #: ../setup/config_data.inc:178
-msgid "NetPBM installed"
+#, fuzzy
+msgid "Netpbm installed"
 msgstr "NetPBM installiert"
 
 #: ../setup/config_data.inc:180
-msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
+#, fuzzy
+msgid "Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."
 msgstr "Pr&uuml;fung, ob NetPBM installiert ist, damit Gallery Bilder bearbeiten kann (Rotieren, Gr&ouml;ssen ver&auml;ndern, Thumbnails erzeugen, etc).  Sie ben&ouml;tigen entweder NetPBM <b>oder</b> ImageMagick."
 
 #: ../setup/config_data.inc:182
-msgid "I can't find NetPBM.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
+#, fuzzy
+msgid "I can't find Netpbm.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: "
 msgstr "NetPBM wurde nicht gefunden.  Falls es installiert wurde, jedoch nicht im Pfad des Benutzers des Webserver, ist dies kein Problem. Sie k&ouml;nnen den Pfad zu NetPBM selber auf der folgenden Seite angeben. Falls es nicht installiert ist, haben Sie zwei M&ouml;glichkeiten:"
 
 #: ../setup/config_data.inc:186
-msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
+#, fuzzy
+msgid "If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page."
 msgstr "Wenn NetPBM installiert ist, aber Gallery es nicht automatisch finden kann, ist dies kein Problem  -- Sie k&ouml;nnen den Pfad zu NetPBM selber auf der folgenden Seite angeben."
 
 #: ../setup/config_data.inc:190
@@ -1139,7 +1080,8 @@ msgid "ImageMagick installed"
 msgstr "ImageMagick installiert"
 
 #: ../setup/config_data.inc:192
-msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
+#, fuzzy
+msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."
 msgstr "Pr&uuml;fung, ob ImageMagick installiert ist, damit Gallery Bilder bearbeiten kann (Rotieren, Gr&ouml;ssen ver&auml;ndern, Thumbnails erzeugen, etc).  Sie ben&ouml;tigen entweder NetPBM <b>oder</b> ImageMagick."
 
 #: ../setup/config_data.inc:194
@@ -1297,10 +1239,8 @@ msgstr "Pfade und URLs"
 msgid "Album directory"
 msgstr "Albumordner"
 
-#: ../setup/config_data.inc:317
-#: ../setup/config_data.inc:332
-#: ../setup/config_data.inc:345
-#: ../setup/config_data.inc:356
+#: ../setup/config_data.inc:317 ../setup/config_data.inc:332
+#: ../setup/config_data.inc:345 ../setup/config_data.inc:356
 msgid "REQUIRED"
 msgstr "NOTWENDIG"
 
@@ -1378,8 +1318,7 @@ msgstr "Pfad zu ImageMagick"
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Pfad zum Ordner, der ImageMagick enth&auml;lt."
 
-#: ../setup/config_data.inc:412
-#: ../setup/config_data.inc:440
+#: ../setup/config_data.inc:412 ../setup/config_data.inc:440
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr "Diese Pfadangabe ist nur nötig, wenn Sie %s ausgewählt haben."
@@ -1389,20 +1328,23 @@ msgid "I can't find ImageMagick at the location you provided."
 msgstr "ImageMagick kann nicht an der von Ihnen angegebenen Stelle gefunden werden."
 
 #: ../setup/config_data.inc:430
-msgid "NetPBM Settings"
+#, fuzzy
+msgid "Netpbm Settings"
 msgstr "NetPBM Einstellungen"
 
 #: ../setup/config_data.inc:435
-msgid "Path to NetPBM"
+#, fuzzy
+msgid "Path to Netpbm"
 msgstr "Pfad zu NetPBM"
 
 #: ../setup/config_data.inc:436
-#, php-format
-msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
+#, fuzzy, php-format
+msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Der absolute Pfad zu dem Ort wo NetPBM installiert ist.  Wenn Sie NetPBM von der Gallery-Downloadseite geladen haben, vergessen Sie nicht, die Dateien ausf&uuml;hrbar zu machen. Z.B.: %s, %s oder %s."
 
 #: ../setup/config_data.inc:443
-msgid "I can't find NetPBM at the location you provided."
+#, fuzzy
+msgid "I can't find Netpbm at the location you provided."
 msgstr "NetPBM kann nicht an der von Ihnen angegebenen Position gefunden werden."
 
 #: ../setup/config_data.inc:455
@@ -1410,7 +1352,8 @@ msgid "PNM to JPEG converter"
 msgstr "PNM zu JPEG Konverter"
 
 #: ../setup/config_data.inc:456
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Diese Angabe ist nur relevant, wenn Sie NetPBM einsetzen.  NetPBM benutzt ein Tool, um sein internes Bildformat umzuwandeln in JPEG.  Dieses Tool heißt entweder <i>ppmtojpeg</i> oder <i>pnmtojpeg</i>, je nachdem welche Version von NetPBM Sie installiert haben.  Schauen Sie in Ihrem NetPBM-Ordner nach und tragen Sie den Namen entsprechend ein.  Falls Sie sich nicht sicher sind, &uuml;bernehmen Sie die Vorgabe."
 
 #: ../setup/config_data.inc:461
@@ -1418,7 +1361,8 @@ msgid "PNM Composite (Overlay)"
 msgstr "PNM Composite (Overlay)"
 
 #: ../setup/config_data.inc:462
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Diese Angabe ist nur relevant, wenn Sie NetPBM einsetzen.  NetPBM benutzt ein Tool, um Bilder übereinander zu legen.  Dieses Tool heißt entweder <i>pnmcomp</i> oder <i>pancomp</i>, je nachdem welche Version von NetPBM Sie installiert haben.  Schauen Sie in Ihrem NetPBM-Ordner nach und tragen Sie den Namen entsprechend ein.  Falls Sie sich nicht sicher sind, &uuml;bernehmen Sie die Vorgabe."
 
 #: ../setup/config_data.inc:470
@@ -1433,104 +1377,57 @@ msgstr "Wenn Sie diese Option einschalten, wird Gallery versuchen die Bilder aut
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "Ben&ouml;tigt Jhead EXIF Parser V 1.9 oder neuer (Siehe optionale Tools)."
 
-#: ../setup/config_data.inc:473
-#: ../setup/config_data.inc:561
-#: ../setup/config_data.inc:580
-#: ../setup/config_data.inc:593
-#: ../setup/config_data.inc:599
-#: ../setup/config_data.inc:774
-#: ../setup/config_data.inc:822
-#: ../setup/config_data.inc:863
-#: ../setup/config_data.inc:873
-#: ../setup/config_data.inc:881
-#: ../setup/config_data.inc:890
-#: ../setup/config_data.inc:899
-#: ../setup/config_data.inc:920
-#: ../setup/config_data.inc:1015
-#: ../setup/config_data.inc:1042
-#: ../setup/config_data.inc:1071
-#: ../setup/config_data.inc:1079
-#: ../setup/config_data.inc:1081
-#: ../setup/config_data.inc:1112
-#: ../setup/config_data.inc:1287
-#: ../setup/config_data.inc:1305
-#: ../setup/config_data.inc:1334
-#: ../setup/config_data.inc:1344
-#: ../setup/config_data.inc:1353
-#: ../setup/config_data.inc:1362
-#: ../setup/config_data.inc:1395
-#: ../setup/config_data.inc:1436
-#: ../setup/config_data.inc:1444
-#: ../setup/config_data.inc:1452
-#: ../setup/config_data.inc:1599
-#: ../setup/config_data.inc:1608
-#: ../setup/config_data.inc:1618
-#: ../setup/config_data.inc:1627
-#: ../setup/config_data.inc:1677
-#: ../setup/config_data.inc:1686
-#: ../setup/config_data.inc:1714
-#: ../setup/config_data.inc:1731
-#: ../setup/config_data.inc:1749
-#: ../setup/config_data.inc:1758
-#: ../setup/config_data.inc:1766
-#: ../setup/config_data.inc:1844
-#: ../setup/config_data.inc:1853
-#: ../setup/config_data.inc:1908
-#: ../setup/config_data.inc:1910
-#: ../setup/config_data.inc:1919
-#: ../setup/config_data.inc:1947
+#: ../setup/config_data.inc:473 ../setup/config_data.inc:561
+#: ../setup/config_data.inc:580 ../setup/config_data.inc:593
+#: ../setup/config_data.inc:599 ../setup/config_data.inc:774
+#: ../setup/config_data.inc:822 ../setup/config_data.inc:863
+#: ../setup/config_data.inc:873 ../setup/config_data.inc:881
+#: ../setup/config_data.inc:890 ../setup/config_data.inc:899
+#: ../setup/config_data.inc:920 ../setup/config_data.inc:1015
+#: ../setup/config_data.inc:1042 ../setup/config_data.inc:1071
+#: ../setup/config_data.inc:1079 ../setup/config_data.inc:1081
+#: ../setup/config_data.inc:1112 ../setup/config_data.inc:1287
+#: ../setup/config_data.inc:1305 ../setup/config_data.inc:1334
+#: ../setup/config_data.inc:1344 ../setup/config_data.inc:1353
+#: ../setup/config_data.inc:1362 ../setup/config_data.inc:1395
+#: ../setup/config_data.inc:1436 ../setup/config_data.inc:1444
+#: ../setup/config_data.inc:1452 ../setup/config_data.inc:1599
+#: ../setup/config_data.inc:1608 ../setup/config_data.inc:1618
+#: ../setup/config_data.inc:1627 ../setup/config_data.inc:1677
+#: ../setup/config_data.inc:1686 ../setup/config_data.inc:1714
+#: ../setup/config_data.inc:1731 ../setup/config_data.inc:1749
+#: ../setup/config_data.inc:1758 ../setup/config_data.inc:1766
+#: ../setup/config_data.inc:1844 ../setup/config_data.inc:1853
+#: ../setup/config_data.inc:1908 ../setup/config_data.inc:1910
+#: ../setup/config_data.inc:1919 ../setup/config_data.inc:1947
 #: ../setup/config_data.inc:1971
 msgid "Yes"
 msgstr "Ja"
 
-#: ../setup/config_data.inc:473
-#: ../setup/config_data.inc:561
-#: ../setup/config_data.inc:580
-#: ../setup/config_data.inc:593
-#: ../setup/config_data.inc:599
-#: ../setup/config_data.inc:774
-#: ../setup/config_data.inc:817
-#: ../setup/config_data.inc:823
-#: ../setup/config_data.inc:864
-#: ../setup/config_data.inc:874
-#: ../setup/config_data.inc:882
-#: ../setup/config_data.inc:891
-#: ../setup/config_data.inc:900
-#: ../setup/config_data.inc:919
-#: ../setup/config_data.inc:1013
-#: ../setup/config_data.inc:1016
-#: ../setup/config_data.inc:1043
-#: ../setup/config_data.inc:1072
-#: ../setup/config_data.inc:1082
-#: ../setup/config_data.inc:1113
-#: ../setup/config_data.inc:1288
-#: ../setup/config_data.inc:1306
-#: ../setup/config_data.inc:1335
-#: ../setup/config_data.inc:1345
-#: ../setup/config_data.inc:1354
-#: ../setup/config_data.inc:1363
-#: ../setup/config_data.inc:1396
-#: ../setup/config_data.inc:1437
-#: ../setup/config_data.inc:1445
-#: ../setup/config_data.inc:1453
-#: ../setup/config_data.inc:1600
-#: ../setup/config_data.inc:1609
-#: ../setup/config_data.inc:1619
-#: ../setup/config_data.inc:1628
-#: ../setup/config_data.inc:1678
-#: ../setup/config_data.inc:1687
-#: ../setup/config_data.inc:1715
-#: ../setup/config_data.inc:1732
-#: ../setup/config_data.inc:1750
-#: ../setup/config_data.inc:1759
-#: ../setup/config_data.inc:1767
-#: ../setup/config_data.inc:1842
-#: ../setup/config_data.inc:1845
-#: ../setup/config_data.inc:1911
-#: ../setup/config_data.inc:1917
-#: ../setup/config_data.inc:1920
-#: ../setup/config_data.inc:1948
-#: ../setup/config_data.inc:1972
+#: ../setup/config_data.inc:473 ../setup/config_data.inc:561
+#: ../setup/config_data.inc:580 ../setup/config_data.inc:593
+#: ../setup/config_data.inc:599 ../setup/config_data.inc:774
+#: ../setup/config_data.inc:817 ../setup/config_data.inc:823
+#: ../setup/config_data.inc:864 ../setup/config_data.inc:874
+#: ../setup/config_data.inc:882 ../setup/config_data.inc:891
+#: ../setup/config_data.inc:900 ../setup/config_data.inc:919
+#: ../setup/config_data.inc:1013 ../setup/config_data.inc:1016
+#: ../setup/config_data.inc:1043 ../setup/config_data.inc:1072
+#: ../setup/config_data.inc:1082 ../setup/config_data.inc:1113
+#: ../setup/config_data.inc:1288 ../setup/config_data.inc:1306
+#: ../setup/config_data.inc:1335 ../setup/config_data.inc:1345
+#: ../setup/config_data.inc:1354 ../setup/config_data.inc:1363
+#: ../setup/config_data.inc:1396 ../setup/config_data.inc:1437
+#: ../setup/config_data.inc:1445 ../setup/config_data.inc:1453
+#: ../setup/config_data.inc:1600 ../setup/config_data.inc:1609
+#: ../setup/config_data.inc:1619 ../setup/config_data.inc:1628
+#: ../setup/config_data.inc:1678 ../setup/config_data.inc:1687
+#: ../setup/config_data.inc:1715 ../setup/config_data.inc:1732
+#: ../setup/config_data.inc:1750 ../setup/config_data.inc:1759
+#: ../setup/config_data.inc:1767 ../setup/config_data.inc:1842
+#: ../setup/config_data.inc:1845 ../setup/config_data.inc:1911
+#: ../setup/config_data.inc:1917 ../setup/config_data.inc:1920
+#: ../setup/config_data.inc:1948 ../setup/config_data.inc:1972
 msgid "No"
 msgstr "Nein"
 
@@ -1595,10 +1492,8 @@ msgstr "Keinen Baum"
 msgid "%d sublevel"
 msgstr "%d Untereben"
 
-#: ../setup/config_data.inc:549
-#: ../setup/config_data.inc:550
-#: ../setup/config_data.inc:551
-#: ../setup/config_data.inc:552
+#: ../setup/config_data.inc:549 ../setup/config_data.inc:550
+#: ../setup/config_data.inc:551 ../setup/config_data.inc:552
 #: ../setup/config_data.inc:553
 #, php-format
 msgid "%d sublevels"
@@ -1632,8 +1527,7 @@ msgstr "Seitenverhältnis Vorschaubild"
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
 msgstr "Das Seitenverhältnis in dem die Vorschaubilder auf der Startseite erstellt werden. Diese Einstellung gilt nur für neue Vorschaubilder. Um existierende zu erneuern benutzen Sie 'Vorschau erneuern'"
 
-#: ../setup/config_data.inc:574
-#: ../setup/config_data.inc:1540
+#: ../setup/config_data.inc:574 ../setup/config_data.inc:1540
 msgid "As the original image"
 msgstr "Wie Original"
 
@@ -1689,10 +1583,8 @@ msgstr "Optionale Tools"
 msgid "Archives"
 msgstr "Archive"
 
-#: ../setup/config_data.inc:625
-#: ../setup/config_data.inc:638
-#: ../setup/config_data.inc:651
-#: ../setup/config_data.inc:664
+#: ../setup/config_data.inc:625 ../setup/config_data.inc:638
+#: ../setup/config_data.inc:651 ../setup/config_data.inc:664
 #, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Der absolute Pfad zum <b>%s</b> binary.  Z.B. %s oder %s.  Dieses Feature ist optional, Sie k&ouml;nnen dieses Feld leer lassen."
@@ -1701,8 +1593,7 @@ msgstr "Der absolute Pfad zum <b>%s</b> binary.  Z.B. %s oder %s.  Dieses Featur
 msgid "EXIF Data"
 msgstr "Cache EXIF-Daten"
 
-#: ../setup/config_data.inc:685
-#: ../setup/config_data.inc:698
+#: ../setup/config_data.inc:685 ../setup/config_data.inc:698
 #, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Der absolute Pfad zum <b>%s</b> EXIF-Parser.  Zum Beispiel %s oder %s. Dieses Feature ist optional, Sie k&ouml;nnen dieses Feld leer lassen."
@@ -1773,8 +1664,7 @@ msgstr "Falls Sie Modus 3 verwenden, haben Sie die M&ouml;glichkeit zwischen ein
 msgid "Format for date strings."
 msgstr "Format f&uuml;r die Anzeigde des Datums."
 
-#: ../setup/config_data.inc:780
-#: ../setup/config_data.inc:790
+#: ../setup/config_data.inc:780 ../setup/config_data.inc:790
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "Dieser String wird benutzt um %s in %s anzuzeigen. Wir empfehlen dringend die Verwendung von %s, da das Datum dann entsprechend der angezeigten Sprache angezeigt wird.  Falls Sie diesen String &auml;ndern, bitte werfen Sie einen Blick auf die %sPHP Dokumentation%s."
@@ -1783,8 +1673,7 @@ msgstr "Dieser String wird benutzt um %s in %s anzuzeigen. Wir empfehlen dringen
 msgid "date without time"
 msgstr "Datum ohne Zeit"
 
-#: ../setup/config_data.inc:782
-#: ../setup/config_data.inc:792
+#: ../setup/config_data.inc:782 ../setup/config_data.inc:792
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/de/function.strftime.php"
 
@@ -1815,8 +1704,7 @@ msgstr "Email und Registrierung"
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr "Falls Sie Probleme mit Email haben, bitte die %s Diagnose durchf&uuml;hren."
 
-#: ../setup/config_data.inc:812
-#: ../setup/diagnostics.php:90
+#: ../setup/config_data.inc:812 ../setup/diagnostics.php:90
 msgid "Check Email"
 msgstr "Email &uuml;berpr&uuml;fen"
 
@@ -1873,8 +1761,7 @@ msgstr "Erlaube Besuchern sich selbst zu registrieren."
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr "Wenn Sie dies einschalten k&ouml;nnen sich Benutzer selbstst&auml;ndig einen Account erstellen. (Ohne Admin Best&auml;tigung)"
 
-#: ../setup/config_data.inc:861
-#: ../setup/config_data.inc:1675
+#: ../setup/config_data.inc:861 ../setup/config_data.inc:1675
 msgid "This option requires the Email feature to be enabled."
 msgstr "Diese Option ben&ouml;tigt das Emailing aktiviert wurde."
 
@@ -1994,8 +1881,7 @@ msgstr "Diashow &uuml;ber die gesamte Galerie"
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "F&uuml;gt einen Diashow-Link auf der Gallery Startseite.  Bei grossen Gallerien kann diese Diashow sehr langsam sein und zudem viele Systemresourcen verbrauchen!"
 
-#: ../setup/config_data.inc:984
-#: ../setup/config_data.inc:1887
+#: ../setup/config_data.inc:984 ../setup/config_data.inc:1887
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Diese Einstellungen gelten nicht f&uuml;r die einfache Variante der Diashow."
 
@@ -2003,63 +1889,47 @@ msgstr "Diese Einstellungen gelten nicht f&uuml;r die einfache Variante der Dias
 msgid "Slideshow preferences"
 msgstr "Diashow Einstellungen"
 
-#: ../setup/config_data.inc:989
-#: ../setup/config_data.inc:997
-#: ../setup/config_data.inc:1050
-#: ../setup/config_data.inc:1060
-#: ../setup/config_data.inc:1180
-#: ../setup/config_data.inc:1194
-#: ../setup/config_data.inc:1208
-#: ../setup/config_data.inc:1222
-#: ../setup/config_data.inc:1236
-#: ../setup/config_data.inc:1250
-#: ../setup/config_data.inc:1574
-#: ../setup/config_data.inc:1892
+#: ../setup/config_data.inc:989 ../setup/config_data.inc:997
+#: ../setup/config_data.inc:1050 ../setup/config_data.inc:1060
+#: ../setup/config_data.inc:1180 ../setup/config_data.inc:1194
+#: ../setup/config_data.inc:1208 ../setup/config_data.inc:1222
+#: ../setup/config_data.inc:1236 ../setup/config_data.inc:1250
+#: ../setup/config_data.inc:1574 ../setup/config_data.inc:1892
 #: ../setup/config_data.inc:1900
 msgid "Off"
 msgstr "Aus"
 
-#: ../setup/config_data.inc:990
-#: ../setup/config_data.inc:1893
+#: ../setup/config_data.inc:990 ../setup/config_data.inc:1893
 msgid "No slideshow link will appear."
 msgstr "Keine Diashowlink."
 
-#: ../setup/config_data.inc:991
-#: ../setup/config_data.inc:998
-#: ../setup/config_data.inc:1894
-#: ../setup/config_data.inc:1901
+#: ../setup/config_data.inc:991 ../setup/config_data.inc:998
+#: ../setup/config_data.inc:1894 ../setup/config_data.inc:1901
 msgid "Ordered"
 msgstr "Geordnet"
 
-#: ../setup/config_data.inc:992
-#: ../setup/config_data.inc:1895
+#: ../setup/config_data.inc:992 ../setup/config_data.inc:1895
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Die Bilder werden in der selben Reihenfolge angezeigt, wie Sie in der Gallerie liegen."
 
-#: ../setup/config_data.inc:993
-#: ../setup/config_data.inc:999
-#: ../setup/config_data.inc:1896
-#: ../setup/config_data.inc:1902
+#: ../setup/config_data.inc:993 ../setup/config_data.inc:999
+#: ../setup/config_data.inc:1896 ../setup/config_data.inc:1902
 msgid "Random"
 msgstr "Zuf&auml;llig"
 
-#: ../setup/config_data.inc:994
-#: ../setup/config_data.inc:1897
+#: ../setup/config_data.inc:994 ../setup/config_data.inc:1897
 msgid "Images will appear in a random order."
 msgstr "Die Bilder werden in zuf&auml;lliger Reihenfolge angezeigt."
 
-#: ../setup/config_data.inc:1004
-#: ../setup/config_data.inc:1925
+#: ../setup/config_data.inc:1004 ../setup/config_data.inc:1925
 msgid "Slideshow length"
 msgstr "L&auml;nge der Diashow"
 
-#: ../setup/config_data.inc:1005
-#: ../setup/config_data.inc:1926
+#: ../setup/config_data.inc:1005 ../setup/config_data.inc:1926
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Anzahl der Bilder die in der Diashow gezeigt werden sollen. 0 oder keine Angabe f&uuml;r alle Bilder.  Falls Sie eine Zahl eintragen, werden bei der zuf&auml;lligen Diashow diese Anzahl von Bildern gezeigt."
 
-#: ../setup/config_data.inc:1012
-#: ../setup/config_data.inc:1916
+#: ../setup/config_data.inc:1012 ../setup/config_data.inc:1916
 msgid "Allow slideshow to loop"
 msgstr "Erlaube die Diashow in einer Schleife zu betrachten"
 
@@ -2104,8 +1974,7 @@ msgstr "Anzeige ob Kommentare vorhanden sind."
 msgid "No indication that an item has comments."
 msgstr "Keine Anzeige ob Kommentare vorhanden sind."
 
-#: ../setup/config_data.inc:1052
-#: ../setup/config_data.inc:1061
+#: ../setup/config_data.inc:1052 ../setup/config_data.inc:1061
 msgid "Photos"
 msgstr "Photos"
 
@@ -2113,8 +1982,7 @@ msgstr "Photos"
 msgid "Images that have comments will be marked."
 msgstr "Bilder mit Kommentar werden gekennzeichnet."
 
-#: ../setup/config_data.inc:1054
-#: ../setup/config_data.inc:1062
+#: ../setup/config_data.inc:1054 ../setup/config_data.inc:1062
 msgid "Albums"
 msgstr "Alben"
 
@@ -2122,8 +1990,7 @@ msgstr "Alben"
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Alben und Unteralben werden markiert, falls Kommentare vorhanden sind."
 
-#: ../setup/config_data.inc:1056
-#: ../setup/config_data.inc:1063
+#: ../setup/config_data.inc:1056 ../setup/config_data.inc:1063
 #: ../setup/config_data.inc:2001
 msgid "Both"
 msgstr "Beides"
@@ -2276,12 +2143,9 @@ msgstr "Für jeden selektierten Eintrag wird ein Link auf der Hauptseite erzeugt.
 msgid "View cache"
 msgstr "Cache für die Betrachtungen"
 
-#: ../setup/config_data.inc:1179
-#: ../setup/config_data.inc:1193
-#: ../setup/config_data.inc:1207
-#: ../setup/config_data.inc:1221
-#: ../setup/config_data.inc:1235
-#: ../setup/config_data.inc:1249
+#: ../setup/config_data.inc:1179 ../setup/config_data.inc:1193
+#: ../setup/config_data.inc:1207 ../setup/config_data.inc:1221
+#: ../setup/config_data.inc:1235 ../setup/config_data.inc:1249
 msgid "On"
 msgstr "An"
 
@@ -2676,8 +2540,7 @@ msgstr "Maximale Gr&ouml;&szlig;e der Bilder"
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Sie k&ouml;nnen optional die Dimension der Bilder einschr&auml;nken die Sie hochladen."
 
-#: ../setup/config_data.inc:1570
-#: ../setup/config_data.inc:1589
+#: ../setup/config_data.inc:1570 ../setup/config_data.inc:1589
 msgid "Warning:"
 msgstr "Warnung:"
 
@@ -2685,8 +2548,7 @@ msgstr "Warnung:"
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Wenn Sie dieses Feature einschalten, werden Sie Bilder <b>nicht in der Originalgr&ouml;&szlig;e</b> in Ihrer Gallery haben. Gallery wird versuchen die JPEG Kommentare und EXIF Informationen zu bewahren. Hierzu brauchen Sie dann entweder <b>ImageMagick</b> oder das optionale<b> jhead</b>. NetPBM alleine reicht nicht !"
 
-#: ../setup/config_data.inc:1582
-#: ../setup/config_data.inc:1583
+#: ../setup/config_data.inc:1582 ../setup/config_data.inc:1583
 #: ../setup/config_data.inc:1584
 #, php-format
 msgid "%d (%d MPix)"
@@ -2781,8 +2643,7 @@ msgstr "Default Album Rechte"
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr "Dies gibt die Standardeinstellungen der Rechte f&uuml;r neue Alben an."
 
-#: ../setup/config_data.inc:1695
-#: ../setup/config_data.inc:1798
+#: ../setup/config_data.inc:1695 ../setup/config_data.inc:1798
 #: ../setup/config_data.inc:1805
 msgid "Everybody"
 msgstr "Jeder"
@@ -2791,8 +2652,7 @@ msgstr "Jeder"
 msgid "Logged-In Users"
 msgstr "Eingeloggte Benutzer"
 
-#: ../setup/config_data.inc:1697
-#: ../setup/config_data.inc:1796
+#: ../setup/config_data.inc:1697 ../setup/config_data.inc:1796
 #: ../setup/config_data.inc:1804
 msgid "Nobody"
 msgstr "Niemand"
@@ -2871,17 +2731,13 @@ msgstr "Diese Einstellung kann f&uuml;r jedes Album separat abgeschaltet, nur f&
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Es gibt zwei Arten von Abstimmungen: %s, welches den Benutzern erlaubt Ihren pers&ouml;nlichen Favoriten zu w&auml;hlen und %s welches den Benutzern erlaubt alle Bilder ohne Einschr&auml;nkung zu bewerten.  %s  ist vergleichbar mit einer Film-Kritik, Sie k&ouml;nnen jedem Bild 5 Punkte geben. Wobei %s eher n&uuml;tzlich f&uuml;r &quot;Wettk&auml;mpfe&quot; ist."
 
-#: ../setup/config_data.inc:1786
-#: ../setup/config_data.inc:1789
-#: ../setup/config_data.inc:1814
-#: ../setup/config_data.inc:1820
+#: ../setup/config_data.inc:1786 ../setup/config_data.inc:1789
+#: ../setup/config_data.inc:1814 ../setup/config_data.inc:1820
 msgid "Rank"
 msgstr "Rang"
 
-#: ../setup/config_data.inc:1787
-#: ../setup/config_data.inc:1788
-#: ../setup/config_data.inc:1816
-#: ../setup/config_data.inc:1821
+#: ../setup/config_data.inc:1787 ../setup/config_data.inc:1788
+#: ../setup/config_data.inc:1816 ../setup/config_data.inc:1821
 msgid "Critique"
 msgstr "Kritik"
 
@@ -2901,8 +2757,7 @@ msgstr "Keine Abstimmungen"
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Jeder kann abstimmen.  Stimmen werden per SessionID gespeichert."
 
-#: ../setup/config_data.inc:1800
-#: ../setup/config_data.inc:1806
+#: ../setup/config_data.inc:1800 ../setup/config_data.inc:1806
 msgid "Logged in"
 msgstr "Eingeloggter Benutzer"
 
@@ -2946,8 +2801,7 @@ msgstr "Dies wird oberhalb der Abstimmung unter jedem Bild angezeigt."
 msgid "Vote for this image"
 msgstr "Geben Sie eine Bewertung f&uuml;r dieses Bild ab"
 
-#: ../setup/config_data.inc:1840
-#: ../setup/config_data.inc:1852
+#: ../setup/config_data.inc:1840 ../setup/config_data.inc:1852
 msgid "Show vote results"
 msgstr "Zeige Wertungsergebnisse"
 
@@ -3027,8 +2881,7 @@ msgstr "Setzen Sie dies auf %s, wenn Sie Bilder aus Unteralben in die Diashow ei
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Diese Option erlaubt es, dass Benutzer die Diashow in einer Schleife anschauen k&ouml;nnen. Das heißt solange bis der Benutzer das Fenster schließt, oder eine andere Seite benutzt. Setzen Sie dies auf %s um so Bandbreite zu sparen."
 
-#: ../setup/config_data.inc:1939
-#: ../setup/config_data.inc:1943
+#: ../setup/config_data.inc:1939 ../setup/config_data.inc:1943
 #: ../setup/config_data.inc:1953
 msgid "Microthumb Photo Navigation"
 msgstr "Microvorschau Photonavigation"
@@ -3045,8 +2898,7 @@ msgstr "Mircovorschau einschalten. Die Microvorschau ist ein Balken, der eine ve
 msgid "both"
 msgstr "Beides"
 
-#: ../setup/config_data.inc:1955
-#: ../setup/config_data.inc:1962
+#: ../setup/config_data.inc:1955 ../setup/config_data.inc:1962
 msgid "Fixed"
 msgstr "Fest"
 
@@ -3054,8 +2906,7 @@ msgstr "Fest"
 msgid "Displays prev+next groups of thumbs, changing only to display next group of thumbs."
 msgstr "Es wird eine Gruppe der nächsten und vorherigen Bilder angezeigt, wobei sich nur die Anzeige der nächsten Bilder ändert."
 
-#: ../setup/config_data.inc:1957
-#: ../setup/config_data.inc:1963
+#: ../setup/config_data.inc:1957 ../setup/config_data.inc:1963
 msgid "Dynamic"
 msgstr "Dynamisch"
 
@@ -3119,8 +2970,7 @@ msgstr "Zusätzliche Höhe für das aktuelle Mircovorschaubild"
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
 msgstr "Diese Angabe ist dazu gedacht eine zusätzliche Höhe für das aktuelle Vorschaubild anzugeben. Dadurch kann das aktuelle Vorschaubild hervorgehoben werden. Eine negative Angabe ist ebenfalls möglich und würde eine Verkleinerung bedeuten. Bei keiner Angabe, oder 0 wird das Bild in gleicher Größe die übrigen Vorschaubilder angezeigt. Empfohlener Wert ist 10-15 Pixel."
 
-#: ../setup/config_data.inc:2024
-#: ../setup/frame_test.php:29
+#: ../setup/config_data.inc:2024 ../setup/frame_test.php:29
 msgid "Frames"
 msgstr "Rahmen"
 
@@ -3168,8 +3018,7 @@ msgstr "Die %s Datei in Ihrem Gallery Hauptordner ist optional. Jedoch benötigen
 msgid "File %s in your Gallery mainfolder is not writable by the webserver. - chmod it 777 before proceeding.  See %s for more details."
 msgstr "Die Datei %s in Ihrem Gallery Hauptordner ist nicht schreibbar für den Webserver. Führen Sie chmod 777 aus bevor sie fortfahren. Schauen Sie in die %s für Details."
 
-#: ../setup/confirm.inc:89
-#: ../setup/confirm.inc:178
+#: ../setup/confirm.inc:89 ../setup/confirm.inc:178
 msgid "missing"
 msgstr "Fehlende Angabe"
 
@@ -3232,13 +3081,13 @@ msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
 msgstr "%s <b>%s</b> muss aktiviert sein, damit dieses Feature funktioniert!"
 
 #: ../setup/confirm.inc:360
-#, php-format
-msgid "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#, fuzzy, php-format
+msgid "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%s konnte nicht gefunden werden. Pr&uml;fen Sie Ihren NetPBM-Ordner, welchen PNG->JPEG-Konverter Sie haben (oder probieren Sie %s stattdessen).  Bitte &uuml;berpr&uuml;fen Sie Ihre Konfiguration (oder benutzen Sie ImageMagick)."
 
 #: ../setup/confirm.inc:368
-#, php-format
-msgid "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
+#, fuzzy, php-format
+msgid "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."
 msgstr "%s konnte nicht gefunden werden. Schauen Sie in Ihren NetPBM-Ordner, welches PNM Composite/Overlay Tool Sie haben (oder probieren Sie %s stattdessen).  Bitte &uuml;berpr&uuml;fen Sie Ihre Konfiguration (oder benutzen Sie ImageMagick)."
 
 #: ../setup/confirm.inc:380
@@ -3246,8 +3095,7 @@ msgstr "%s konnte nicht gefunden werden. Schauen Sie in Ihren NetPBM-Ordner, wel
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Sie m&uuml;ssen entweder den Pfad f&uuml;r %s oder %s angeben, damit die Gallery funktioniert !"
 
-#: ../setup/confirm.inc:383
-#: ../setup/confirm.inc:386
+#: ../setup/confirm.inc:383 ../setup/confirm.inc:386
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s ist nicht richtig konfiguriert, um es als Bildverarbeitungsprogramm zu nutzen. Stellen Sie sicher, dass Sie den Pfad zu den %s Binaries angegeben haben in Schritt 2."
@@ -3269,18 +3117,15 @@ msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt s
 msgid "Confirm that the settings you entered came through correctly.  There are errors highlighted below in red which need to be fixed before you can save your settings."
 msgstr "Diese Seite dient zur Best&auml;tigung, dass alle Ihre Angaben korrekt sind.  Es sind Fehler vorhanden welche Sie zuerst beheben m&uuml;ssen bevor Sie Ihre Konfiguration speichern k&ouml;nnen."
 
-#: ../setup/confirm.inc:470
-#: ../setup/confirm.inc:489
+#: ../setup/confirm.inc:470 ../setup/confirm.inc:489
 msgid "Edit Config"
 msgstr "Konfiguration bearbeiten"
 
-#: ../setup/confirm.inc:472
-#: ../setup/confirm.inc:491
+#: ../setup/confirm.inc:472 ../setup/confirm.inc:491
 msgid "Save Config"
 msgstr "Konfiguration speichern"
 
-#: ../setup/confirm.inc:474
-#: ../setup/login.inc:71
+#: ../setup/confirm.inc:474 ../setup/login.inc:71
 msgid "Refresh"
 msgstr "Neu laden"
 
@@ -3311,36 +3156,27 @@ msgstr "Bitte kehren Sie zum entsprechenden Schritt zur&uuml;ck und beheben den 
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "In diesem Schritt k&ouml;nnen Sie verschiedene Einstellungen Ihrer Gallery anpassen.  Wenn dies das erste Mal ist, dass Sie die Gallery einrichten, werden Sie feststellen, dass Ihnen die Gallery sinnvolle Voreinstellungen anbietet. Es kann jedoch vorkommen, dass Sie selbstst&auml;ndig Ver&auml;nderungen vornehmen m&uuml;ssen."
 
-#: ../setup/constants.inc:36
-#: ../setup/defaults.inc:36
+#: ../setup/constants.inc:36 ../setup/defaults.inc:36
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr "Gehen Sie durch die entsprechenden Laschen und tragen die Werte ein die Sie ben&ouml;tigen. Manche, jedoch nicht alle werden ben&ouml;tigt. Wenn Sie fertig sind, benuzten Sie den Button um in den n&auml;chsten Schritt zu gelangen."
 
-#: ../setup/constants.inc:41
-#: ../setup/constants.inc:196
-#: ../setup/defaults.inc:43
-#: ../setup/defaults.inc:131
+#: ../setup/constants.inc:41 ../setup/constants.inc:196
+#: ../setup/defaults.inc:43 ../setup/defaults.inc:131
 msgid "Previous Step"
 msgstr "Vorheriger Schritt "
 
-#: ../setup/constants.inc:42
-#: ../setup/constants.inc:197
-#: ../setup/defaults.inc:44
-#: ../setup/defaults.inc:132
+#: ../setup/constants.inc:42 ../setup/constants.inc:197
+#: ../setup/defaults.inc:44 ../setup/defaults.inc:132
 msgid "Previous Tab"
 msgstr "Vorherige Reiter"
 
-#: ../setup/constants.inc:43
-#: ../setup/constants.inc:198
-#: ../setup/defaults.inc:45
-#: ../setup/defaults.inc:133
+#: ../setup/constants.inc:43 ../setup/constants.inc:198
+#: ../setup/defaults.inc:45 ../setup/defaults.inc:133
 msgid "Next Tab"
 msgstr "N&auml;chster Reiter"
 
-#: ../setup/constants.inc:45
-#: ../setup/constants.inc:200
-#: ../setup/defaults.inc:47
-#: ../setup/defaults.inc:135
+#: ../setup/constants.inc:45 ../setup/constants.inc:200
+#: ../setup/defaults.inc:47 ../setup/defaults.inc:135
 msgid "Use Defaults"
 msgstr "Benutze Voreinstellungen"
 
@@ -3396,17 +3232,18 @@ msgstr "Diese Seite gibt Ihnen detailierte Information &uuml;ber Ihre PHP-Instal
 msgid "It's a good place to look to examine all the various PHP configuration settings, and to find out on what kind of system you're running (sometimes it's difficult to tell when you're on an ISP's machine)"
 msgstr "Es is immer sinnvoll, einen Blick auf die verschiedenen PHP-Konfigurationseinstellungen zu werfen und herauszufinden, auf welchem System Sie sich befinden (manchmal kann dies schwierig sein, je nachdem bei welchem Provider Sie sind)."
 
-#: ../setup/diagnostics.php:60
-#: ../setup/diagnostics.php:70
+#: ../setup/diagnostics.php:60 ../setup/diagnostics.php:70
 msgid "Check"
 msgstr "Pr&uuml;fe"
 
 #: ../setup/diagnostics.php:63
-msgid "This page provides information about your NetPBM binaries."
+#, fuzzy
+msgid "This page provides information about your Netpbm binaries."
 msgstr "Diese Seite gibt Ihnen Informationen &uuml;ber Ihre NetPBM-Binaries."
 
 #: ../setup/diagnostics.php:64
-msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM)."
+#, fuzzy
+msgid "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm)."
 msgstr "Diesen Test k&ouml;nnen Sie nur durchf&uuml;hren, wenn Sie den Konfigurationsassistenten erfolgreich abgeschlossen haben, da bei diesem Test die korrekten Pfade zu NetPBM erwartet werden."
 
 #: ../setup/diagnostics.php:73
@@ -3452,8 +3289,7 @@ msgstr "Diese Seite ist f&uuml;r %s Aktualisierungen in den Probleme aufgetreten
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Pr&uuml;fung ob Sie die jeweils aktuelle Version der %s Dateien installiert haben."
 
-#: ../setup/frame_test.php:29
-#: ../setup/index.php:45
+#: ../setup/frame_test.php:29 ../setup/index.php:45
 msgid "Gallery Configuration"
 msgstr "Gallery-Konfiguration"
 
@@ -3657,4 +3493,3 @@ msgstr "Es fehlt entweder %s oder %s."
 #: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Betrachte Einstellungen"
-

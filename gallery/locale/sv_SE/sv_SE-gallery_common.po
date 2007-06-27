@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5_LEGACY\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-09-14 10:00+0100\n"
 "Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -110,7 +110,8 @@ msgid "Thumb Frame"
 msgstr "Ram runt miniatyrbild?"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Ram runt bild?"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -190,7 +191,8 @@ msgid "Sizes"
 msgstr "Storlekar"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "Miniatyrbildstorlek?"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -206,7 +208,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "Maximala dimensioner på mellanliggande storleksändrade bilder"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -235,11 +238,13 @@ msgid "Display click counter for this album?"
 msgstr "Visa klickräknare för detta album?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "Visa ägarnamn tillsammans med objektrubrik?"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Visa klickbara bilddimensioner?"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -255,7 +260,8 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Vilken fotoutskrift-tjänst<br>vill du låta besökare använda?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+#, fuzzy
+msgid "Enable Ecards?"
 msgstr "Aktivera Ecards ?"
 
 #: ../includes/definitions/albumProperties.php:297
@@ -267,7 +273,7 @@ msgid "Who can vote?"
 msgstr "Vem kan rösta?"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -384,8 +390,9 @@ msgid "Use microthumb photo navigation"
 msgstr "Använd microbilder som navigering"
 
 #: ../includes/definitions/albumProperties.php:443
-msgid "both"
-msgstr "båda"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
+msgstr "Båda"
 
 #: ../includes/definitions/albumProperties.php:447
 #, fuzzy
@@ -421,10 +428,6 @@ msgstr "Placering av navigeringsrad med microbilder"
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Toppen"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Båda"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -641,18 +644,18 @@ msgid "No resizing required"
 msgstr "Ingen storleksändring krävs"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "Målfilens storlek %d kbyte"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> filstorlek %d kbyte"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "Försöker med kvalité %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -675,7 +678,7 @@ msgstr "Vattenstämpla Bild"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -784,7 +787,8 @@ msgid "Email not sent to %s as it is not a valid address"
 msgstr "E-post skickades inte till %s eftersom det inte är en giltig e-postadress"
 
 #: ../lib/mail.php:84
-msgid "Email not sent as no reciepient address provided"
+#, fuzzy
+msgid "Email not sent as no recipient address provided"
 msgstr "E-post skickades inte eftersom ingen e-postadress för mottagare tillhandahölls"
 
 #: ../lib/mail.php:96
@@ -880,11 +884,13 @@ msgid "*** Begin comment ***"
 msgstr "*** Start kommentar ***"
 
 #: ../lib/mail.php:252
-msgid "***End comment ***"
+#, fuzzy
+msgid "*** End comment ***"
 msgstr "*** Slut kommentar ***"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+#, fuzzy
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr "Om du inte längre önskar att mottaga e-post om denna bild, följ länkarna ovan och försäkra att 'Skicka e-post till mig när andra ändringar har gjorts' är avmarkerad (Du  behöver logga in först)."
 
 #: ../lib/mail.php:256
@@ -966,7 +972,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Utan pnmcomp och pamcomp så kommer Gallery inte att kunna vattenstämpla bilder, förutom när du använder ImageMagick och har composite binärkoden installerad."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM kommer inte att användas i denna installation."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -989,12 +996,13 @@ msgid "%s is not executable!"
 msgstr "%s är inte exekverbar!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d av %d NetPBM binärkod(program) lokaliserad."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Utan composite så kommer Gallery inte kunna vattenstämpla bilder, förutom när du använder NetPBM och har pnmcomp binärkoden installerad."
 
 #: ../lib/setup.php:608
@@ -1096,7 +1104,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Det finns fler än en passande nationell <b>system</b>-inställning installerad på din maskin för följande språk.  Vänligen välj den du tror passar bäst."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Detta är <b>endast</b> för datum- och tidsformat.  Du behöver bara redigera språken du aktiverade ovan"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1231,8 +1240,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Du måste skriva in ett lösenord för %s kontot."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Det ser ut som om du redan har konfigurerat Gallery eftersom det finns ett administratörskonto men det heter inte %s."
 
 #: ../lib/setup.php:1465
@@ -1371,12 +1380,12 @@ msgstr "Givet värde är inte siffertecken"
 
 #: ../lib/valchecks.php:54
 #, fuzzy
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr "Värdet ställdes in på det förvalda eftersom originalvärdet inte är ett giltigt heltal."
 
 #: ../lib/valchecks.php:57
 #, fuzzy
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr "Givet värde är inte siffertecken"
 
 #: ../lib/valchecks.php:88
@@ -1384,15 +1393,18 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr "Värdet ställdes in på det förvalda eftersom originalvärdet inte är ett siffervärde."
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+#, fuzzy
+msgid "The given value is not numeric."
 msgstr "Givet värde är inte siffertecken"
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+#, fuzzy
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr "Värdet ställdes in på det förvalda eftersom originalvärdet inte är ett giltigt heltal."
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+#, fuzzy
+msgid "The given value not a valid integer."
 msgstr "Givet värde är inte ett gilltigt heltal."
 
 #: ../lib/valchecks.php:112
@@ -1472,3 +1484,6 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "En röst"
 msgstr[1] "%d röster"
+
+#~ msgid "both"
+#~ msgstr "båda"

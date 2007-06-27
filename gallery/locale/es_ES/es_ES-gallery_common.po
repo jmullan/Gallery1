@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-07-15 18:49+0100\n"
 "Last-Translator: jact <jachavar AT terra DOT es>\n"
 "Language-Team: spanish <jachavar AT terra DOT es>\n"
@@ -108,7 +108,8 @@ msgid "Thumb Frame"
 msgstr "Marco de la miniatura"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Marco de la imagen"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -189,7 +190,8 @@ msgid "Sizes"
 msgstr "Tamaños"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "Tamaño de las miniaturas"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -205,7 +207,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "Máximas dimensiones de las imágenes de tamaño intermedio"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -235,11 +238,13 @@ msgid "Display click counter for this album?"
 msgstr "¿Mostrar contador de clicks para éste álbum?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "Mostrar el nombre de los propietarios en la leyenda"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Mostrar dimensiones de la imagen donde se puede pulsar"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -255,7 +260,8 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "¿Qué servicio de impresión de imágenes online<br>desea que usen sus visitantes?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+#, fuzzy
+msgid "Enable Ecards?"
 msgstr "¿Habilitar eCards?"
 
 #: ../includes/definitions/albumProperties.php:297
@@ -267,7 +273,7 @@ msgid "Who can vote?"
 msgstr "¿Quién puede votar?"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -384,7 +390,8 @@ msgid "Use microthumb photo navigation"
 msgstr "Usar navegación en forma de micro miniaturas"
 
 #: ../includes/definitions/albumProperties.php:443
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "Ambos"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -421,10 +428,6 @@ msgstr "Posición de la barra de navegación de micro miniaturas"
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Arriba"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Ambos"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -643,18 +646,18 @@ msgid "No resizing required"
 msgstr "No se requiere redimensionamiento"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "tamaño de archivo elegido %d KB."
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> tamaño del fichero %d KB"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "intentando calidad %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -677,7 +680,7 @@ msgstr "Imagen con marcas de agua"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -785,7 +788,7 @@ msgstr "Correo no enviado a %s mientras no sea una dirección válida"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "Correo no enviado mientras no se proporcione una dirección"
 
 #: ../lib/mail.php:96
@@ -884,11 +887,11 @@ msgstr "encontrar comentario basura"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "encontrar comentario basura"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -970,7 +973,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Sin pnmcomp, la galería no será capaz de poner marcas de agua en las imágenes, a no ser que use ImageMagick y tenga el binario de composite instalado."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "No se está usando NetPBM en esta instalación."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -993,12 +997,13 @@ msgid "%s is not executable!"
 msgstr "¡%s no es un archivo ejecutable!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d de %d binarios de NetPBM localizados."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Sin composite, la galería no será capaz de poner marcas de agua en las imágenes, a no ser que use NetPBM y tenga el binario de pnmcomp instalado."
 
 #: ../lib/setup.php:608
@@ -1100,7 +1105,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Hay más de una <b>configuración regional</b> idónea instaladas en su máquina para los siguientes lenguajes. Por favor, escoja la que crea más adecuada."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Esto es <b>sólamente</b> para los formatos de fechas y horas. Sólo necesita editar los idiomas para activarlo"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1235,8 +1241,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Debe introducir una contraseña para la cuenta %s."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Parece que había configurado Gallery porque hay una cuenta de administración, pero no se llama %s."
 
 #: ../lib/setup.php:1465
@@ -1375,12 +1381,12 @@ msgstr "El valor introducido no es numérico."
 
 #: ../lib/valchecks.php:54
 #, fuzzy
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr "Valor establecido por su valor por defecto porque el valor original no es un entero válido"
 
 #: ../lib/valchecks.php:57
 #, fuzzy
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr "El valor introducido no es numérico."
 
 #: ../lib/valchecks.php:88
@@ -1388,15 +1394,18 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr "Valor establecido por su valor por defecto porque el valor original no es numérico."
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+#, fuzzy
+msgid "The given value is not numeric."
 msgstr "El valor introducido no es numérico."
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+#, fuzzy
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr "Valor establecido por su valor por defecto porque el valor original no es un entero válido"
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+#, fuzzy
+msgid "The given value not a valid integer."
 msgstr "El valor introducido no es un entero válido."
 
 #: ../lib/valchecks.php:112
@@ -1476,6 +1485,9 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "un voto"
 msgstr[1] "%d votos"
+
+#~ msgid "both"
+#~ msgstr "Ambos"
 
 #~ msgid "FAILED"
 #~ msgstr "FALLO"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-05-17 12:30+0300\n"
 "Last-Translator: A.L.T <leanh AT airland DOT kiev DOT ua>\n"
 "Language-Team: AIRLAND <admin AT airland DOT kiev DOT ua>\n"
@@ -108,7 +108,8 @@ msgid "Thumb Frame"
 msgstr "Khung ảnh thumb"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Khung ảnh"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -189,7 +190,8 @@ msgid "Sizes"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "Cỡ thumbnail"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -205,7 +207,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "Kích thước lớn nhất của ảnh trung gian"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -235,11 +238,13 @@ msgid "Display click counter for this album?"
 msgstr "Hiển thị nhấn bộ đếm cho album này?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "Hiển thị tên người sở hữu với chú thích"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Cho phép nhấn chuột trên ảnh để thay đổi kích cỡ"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -256,7 +261,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Dịch vụ in ấn nào<br> bạn muốn người xem sử dụng?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -269,7 +274,7 @@ msgid "Who can vote?"
 msgstr "Ai có thể bình chọn"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -386,8 +391,8 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "Cả hai"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -424,10 +429,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Đỉnh"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Cả hai"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -643,18 +644,18 @@ msgid "No resizing required"
 msgstr "Không yêu cầu chỉnh cỡ"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "dung lượng file chọn %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> cỡ file %d kbytes"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "thử chất lượng %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -677,7 +678,7 @@ msgstr "Ảnh chèn"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -785,7 +786,7 @@ msgstr "Email không được gửi tới %s vì đó là địa chỉ không h�
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "Email không được gửi vì không cung cấp địa chỉ"
 
 #: ../lib/mail.php:96
@@ -887,11 +888,11 @@ msgstr "tìm lời bình nhảm nhí"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "tìm lời bình nhảm nhí"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -974,7 +975,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "Nếu không có pnmcomp và pamcomp thư viện ảnh sẽ không thể tạo ảnh chèn cho ảnh, ngoại trừ bạn dùng ImageMagick và có binary kết hợp đã được cài đặt."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM sẽ không sử dụng được trong quá trình cài đặt này."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -997,12 +999,13 @@ msgid "%s is not executable!"
 msgstr "%s không có khả năng thực thi!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d của %d NetPBM binaries đã thấy."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Nếu không có composite thư viện ảnh sẽ không thể tạo ảnh chèn ảnh, ngoại trừ bạn dùng NetPBM và có binary pnmcomp đã được cài đặt."
 
 #: ../lib/setup.php:608
@@ -1104,7 +1107,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Có hơn một loại <b>hệ thống</b> locale phù hợp được cài đặt trên hệ thống máy chủ của bạn cho những ngôn ngữ sau.  Xin hãy chọn một cái mà bạn cho là phù hợp nhất."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "Chỉ dành cho định dạng ngày tháng và thời gian. Bạn chỉ cần biên soạn những ngôn ngữ mà bạn đã chọn ở trên"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1239,8 +1243,8 @@ msgid "You must enter a password for the %s account."
 msgstr "Bạn phải ghi một mật khẩu cho tài khoản %s."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "Có vẻ như bạn đã cấu hình cho Thư viện ảnh, bởi vì đã có một tài khoản QT, nhưng không được gọi là %s."
 
 #: ../lib/setup.php:1465
@@ -1379,11 +1383,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1391,15 +1395,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1477,6 +1481,10 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "một bình chọn"
 msgstr[1] "%d bình chọn"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "Cả hai"
 
 #~ msgid "FAILED"
 #~ msgstr "LỖI"

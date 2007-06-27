@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2004-08-03 14:51+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -109,7 +109,8 @@ msgid "Thumb Frame"
 msgstr "Kiskép keret"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "Képkeret"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -191,7 +192,8 @@ msgid "Sizes"
 msgstr "Válassz szolgáltatást"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "Kiskép mérete"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -207,7 +209,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "A közepes méretû képek maximális szélessége vagy magassága"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -237,11 +240,13 @@ msgid "Display click counter for this album?"
 msgstr "Klikk-számláló megjelenítése?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "A képaláírásban a tulajdonos nevének megjelenítése"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "Képméret linkek mutatása a képek alatt"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -258,7 +263,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "Melyik fotóelõhívási szolgáltatást<br>szeretnéd felkínálni a látogatóknak?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -271,7 +276,7 @@ msgid "Who can vote?"
 msgstr "Ki szavazhat"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -390,8 +395,8 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "Mindkettõ"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -428,10 +433,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "Fel"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "Mindkettõ"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -647,18 +648,18 @@ msgid "No resizing required"
 msgstr "Nincs szükség újraméretezésre"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "a célzott fájlméret %d kbyte"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> fájlméret %d kbyte"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "a(z) %d%%-os képminõséggel próbálkozom"
 
 #: ../lib/imageManipulation.php:131
@@ -681,7 +682,7 @@ msgstr "Kép feldolgozó"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -788,7 +789,7 @@ msgstr "%s címre nem küldtem email-t, mert ez a cím nem érvényes"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "Email-t nem küldtem, mivel nem lett cím megadva"
 
 #: ../lib/mail.php:96
@@ -889,11 +890,11 @@ msgstr "megjegyzések megtekintése"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "megjegyzések megtekintése"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -974,7 +975,7 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr ""
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+msgid "Netpbm not being used in this installation."
 msgstr ""
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -998,11 +999,11 @@ msgstr ""
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
 #, php-format
-msgid "%d of %d NetPBM binaries located."
+msgid "%d of %d Netpbm binaries located."
 msgstr ""
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -1104,7 +1105,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr ""
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1240,7 +1241,7 @@ msgstr ""
 
 #: ../lib/setup.php:1462
 #, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr ""
 
 #: ../lib/setup.php:1465
@@ -1378,11 +1379,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1390,15 +1391,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1473,6 +1474,10 @@ msgstr "%s: %s"
 msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "%d szavazat"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "Mindkettõ"
 
 #~ msgid "FAILED"
 #~ msgstr "SIKERTELEN"

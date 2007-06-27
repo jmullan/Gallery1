@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-05-17 20:20+0800\n"
 "Last-Translator: \n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -108,7 +108,8 @@ msgid "Thumb Frame"
 msgstr "縮圖外框"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "相片外框"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -190,7 +191,8 @@ msgid "Sizes"
 msgstr "選擇服務"
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "縮圖大小"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -206,7 +208,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "中間檔案的最大尺寸"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -236,11 +239,13 @@ msgid "Display click counter for this album?"
 msgstr "在這個相簿顯示點閱數？"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "在說明中顯示擁有者名稱"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "呈現可點入影像的大小"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -257,7 +262,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "您想要讓訪客使用何種網路列印服務呢?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -270,7 +275,7 @@ msgid "Who can vote?"
 msgstr "誰可進行評比"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -387,8 +392,8 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "兩者"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -425,10 +430,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "頂"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "兩者"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -644,18 +645,18 @@ msgid "No resizing required"
 msgstr "不需要重設大小"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "目標檔案大小 %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> 檔案大小 %d kbytes"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "嘗試品質 %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -678,7 +679,7 @@ msgstr "處理影像中"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -786,7 +787,7 @@ msgstr "電子信件無法傳送到 %s，因為地址不正確"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "電子信件無法傳送，因為沒有提供地址"
 
 #: ../lib/mail.php:96
@@ -888,11 +889,11 @@ msgstr "尋找評論廣告"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "尋找評論廣告"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -975,7 +976,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "沒有 pnmcomp 和 pamcomp, Gallery無法製作浮水印影像, 除非您使用 Image Magick 和安裝可執行檔"
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "安裝過程中沒有使用 NetPBM"
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -998,12 +1000,13 @@ msgid "%s is not executable!"
 msgstr "%s 不能執行! "
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "需要 %2$d 個 NetPBM 可執行檔 找到 %1$d 個"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "沒有合成, Gallery 無法製作浮水印影像,除非您使用 NetPBM 和安裝 pnmcomp "
 
 #: ../lib/setup.php:608
@@ -1105,7 +1108,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "您的機器上有一個以上的語系可以選擇, 請設定一個您認為最適合的. "
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "本項僅供<b>日期與時間</b>格式設定. 您只需要修改上面的語言選項即可"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1240,8 +1244,8 @@ msgid "You must enter a password for the %s account."
 msgstr "給%s帳號一個密碼"
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "您已編輯Gallery因為已經有一個管理者的帳號但並不是%s."
 
 #: ../lib/setup.php:1465
@@ -1380,11 +1384,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1392,15 +1396,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1478,6 +1482,10 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "1 個評比"
 msgstr[1] "%d 個評比"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "兩者"
 
 #~ msgid "FAILED"
 #~ msgstr "失敗"

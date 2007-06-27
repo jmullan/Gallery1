@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-03 09:38+0200\n"
+"POT-Creation-Date: 2007-06-27 16:16+0200\n"
 "PO-Revision-Date: 2005-03-18 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -111,7 +111,8 @@ msgid "Thumb Frame"
 msgstr "미리보기 틀"
 
 #: ../includes/definitions/albumProperties.php:134
-msgid "Image Frame"
+#, fuzzy
+msgid "Item Frame"
 msgstr "이미지 틀"
 
 #: ../includes/definitions/albumProperties.php:147
@@ -192,7 +193,8 @@ msgid "Sizes"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:186
-msgid "Thumbnail size"
+#, fuzzy
+msgid "Thumbnail size (in px)"
 msgstr "썸네일 크기"
 
 #: ../includes/definitions/albumProperties.php:193
@@ -208,7 +210,8 @@ msgid "Square thumbs"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:199
-msgid "Maximum dimensions of intermediate sized images"
+#, fuzzy
+msgid "Maximum size of intermediate sized images (in px)"
 msgstr "중간 크기 이미지의 최대 크기"
 
 #: ../includes/definitions/albumProperties.php:206
@@ -238,11 +241,13 @@ msgid "Display click counter for this album?"
 msgstr "이 앨범에 클릭 카운터 표시?"
 
 #: ../includes/definitions/albumProperties.php:243
-msgid "Display owners name with caption"
+#, fuzzy
+msgid "Display owner's name with caption?"
 msgstr "제목과 소유자 표시"
 
 #: ../includes/definitions/albumProperties.php:249
-msgid "Display clickable image dimensions"
+#, fuzzy
+msgid "Display clickable image dimensions?"
 msgstr "클릭가능한 이미지 크기 표시"
 
 #: ../includes/definitions/albumProperties.php:255
@@ -259,7 +264,7 @@ msgid "Which photo printing services<br>do you want to let visitors use?"
 msgstr "방문자에게 사용하게 할<br>사진 출력서비스는 무엇입니까?"
 
 #: ../includes/definitions/albumProperties.php:284
-msgid "Enable Ecards ?"
+msgid "Enable Ecards?"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:297
@@ -272,7 +277,7 @@ msgid "Who can vote?"
 msgstr "유권자"
 
 #: ../includes/definitions/albumProperties.php:302
-msgid "This enables/disable voting and if enabled it controlles who can vote."
+msgid "This enables/disable voting and if enabled it controls who can vote."
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:303
@@ -389,8 +394,8 @@ msgid "Use microthumb photo navigation"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:443
-#, fuzzy
-msgid "both"
+#: ../includes/definitions/albumProperties.php:474
+msgid "Both"
 msgstr "둘다"
 
 #: ../includes/definitions/albumProperties.php:447
@@ -427,10 +432,6 @@ msgstr ""
 #: ../includes/definitions/albumProperties.php:473
 msgid "Top"
 msgstr "상단"
-
-#: ../includes/definitions/albumProperties.php:474
-msgid "Both"
-msgstr "둘다"
 
 #: ../includes/definitions/albumProperties.php:475
 msgid "Bottom"
@@ -645,18 +646,18 @@ msgid "No resizing required"
 msgstr "리사이징 필수 아님"
 
 #: ../lib/imageManipulation.php:94
-#, php-format
-msgid "target file size %d kbytes"
+#, fuzzy, php-format
+msgid "Target file size: %d kbytes"
 msgstr "목표 파일크기는 %d kbytes 입니다."
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
-#, php-format
-msgid "-> file size %d kbytes"
+#, fuzzy, php-format
+msgid "-> File size: %d kbytes"
 msgstr "-> 파일크기 %d kbytes"
 
 #: ../lib/imageManipulation.php:104
-#, php-format
-msgid "trying quality %d%%"
+#, fuzzy, php-format
+msgid "Trying quality: %d%%"
 msgstr "품질 %d%%로 시도중"
 
 #: ../lib/imageManipulation.php:131
@@ -679,7 +680,7 @@ msgstr "워터마킹 이미지"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %dpx"
+msgid "Generating squared Version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
@@ -787,7 +788,7 @@ msgstr "올바른 주소가 아니므로 %s에게 이메일을 전송할 수 없습니다."
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no reciepient address provided"
+msgid "Email not sent as no recipient address provided"
 msgstr "주소가 없어 이메일을 전송할 수 없습니다."
 
 #: ../lib/mail.php:96
@@ -889,11 +890,11 @@ msgstr "스팸 코멘트 검색"
 
 #: ../lib/mail.php:252
 #, fuzzy
-msgid "***End comment ***"
+msgid "*** End comment ***"
 msgstr "스팸 코멘트 검색"
 
 #: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr ""
 
 #: ../lib/mail.php:256
@@ -976,7 +977,8 @@ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images,
 msgstr "ImageMagick과 composite 바이너리를 설치하는 것을 제외하고는, pnmcomp와 pamcomp없는 갤러리는 이미지를 워터마크 할 수 없습니다."
 
 #: ../lib/setup.php:513
-msgid "NetPBM not being used in this installation."
+#, fuzzy
+msgid "Netpbm not being used in this installation."
 msgstr "NetPBM은 이 설치과정에서 사용되지 않았습니다."
 
 #: ../lib/setup.php:518 ../lib/setup.php:613
@@ -999,12 +1001,13 @@ msgid "%s is not executable!"
 msgstr "%s는 실행가능하지 않습니다!"
 
 #: ../lib/setup.php:571 ../lib/setup.php:578
-#, php-format
-msgid "%d of %d NetPBM binaries located."
+#, fuzzy, php-format
+msgid "%d of %d Netpbm binaries located."
 msgstr "%d of %d 개의 NetPBM 바이너리가 있습니다."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#, fuzzy
+msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "NetPBM과 pnmcomp 바이너리를 설치하는 것을 제외하고는, composite없는 갤러리는 이미지를 워터마크 할 수 없습니다."
 
 #: ../lib/setup.php:608
@@ -1106,7 +1109,8 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "다음 언어에 대한 <b>시스템</b> 로케일이 하나 이상 존재합니다. 가장 적당하다고 생각되는 것을 골라주세요."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date & time format. You only need to edit the languages you enabled above"
+#, fuzzy
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
 msgstr "이것은 <b>오직</b> 날짜와 시간 형식을 위한 것입니다. 위에서 사용가능한 언어를 수정하시기만 하면 됩니다"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1241,8 +1245,8 @@ msgid "You must enter a password for the %s account."
 msgstr "%s 계정을 위한 비밀번호를 입력하셔야 합니다."
 
 #: ../lib/setup.php:1462
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#, fuzzy, php-format
+msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr "한 개의 관리자 계정이 있는 것으로 보아, 이미 갤러리를 설정한 것으로 보여지지만, %s 라 할 수는 없습니다."
 
 #: ../lib/setup.php:1465
@@ -1381,11 +1385,11 @@ msgid "The given frame is not valid."
 msgstr ""
 
 #: ../lib/valchecks.php:54
-msgid "Value was set to given default. Because the original value is not a in the allowed amount of choices."
+msgid "Value was set to given default, because the original value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:57
-msgid "The given value is not in the allowed amount of choices."
+msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
@@ -1393,15 +1397,15 @@ msgid "Value was set to given default. Because the original value is not numeric
 msgstr ""
 
 #: ../lib/valchecks.php:91
-msgid "The given Value is not numeric."
+msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid Integer"
+msgid "Value was set to given default. Because the original value is not a valid integer"
 msgstr ""
 
 #: ../lib/valchecks.php:100
-msgid "The given Value not a valid Integer."
+msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
@@ -1476,6 +1480,10 @@ msgstr "%s: %s"
 msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "%d 투표"
+
+#, fuzzy
+#~ msgid "both"
+#~ msgstr "둘다"
 
 #~ msgid "FAILED"
 #~ msgstr "실패함"
