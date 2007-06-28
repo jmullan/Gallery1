@@ -21,13 +21,13 @@ if(!includeTemplate('navphoto.tpl')) {
         $width=' width="'. $navigator["fullWidth"] . $navigator["widthUnits"] .'"';
     }
 
-    $fpAltText = _("First Photo");
-    $ppAltText = _("Previous Photo");
-    $npAltText = _("Next Photo");
-    $lpAltText = _("Last Photo");
+    $fpAltText = gTranslate('core', "First Photo");
+    $ppAltText = gTranslate('core', "Previous Photo");
+    $npAltText = gTranslate('core', "Next Photo");
+    $lpAltText = gTranslate('core', "Last Photo");
 
    	include(dirname(dirname(__FILE__)) .'/includes/definitions/navIcons.php');
-   	
+
     $firstPage = $navigator["allIds"][0];
     $lastPage = $navigator["allIds"][$navcount-1];
 
@@ -53,7 +53,7 @@ if(!includeTemplate('navphoto.tpl')) {
     }
 
     #-- 'page numbers' cell ---
-    $mpContent = sprintf(_("%d of %d"), $navpage+1, $navcount);
+    $mpContent = sprintf(gTranslate('core', "%d of %d"), $navpage+1, $navcount);
 
     #-- 'next' and 'last' button cell ---
     if ($navpage < $navcount-1) {
@@ -87,6 +87,6 @@ if(!includeTemplate('navphoto.tpl')) {
 	<td class="<?php echo $nClass ?>" align="center" width="30" height="18"><span class="nav"><?php echo $lpContent ?></span></td>
 </tr>
 </table>
-	<?php 
+	<?php
 }
 ?>
