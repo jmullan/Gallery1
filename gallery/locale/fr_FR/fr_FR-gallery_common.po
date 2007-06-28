@@ -26,15 +26,17 @@
 # @author	Alex Lemaresquier <alex AT brainstorm DOT fr>, 2003
 # @author	Renaud Guérin <renaud AT renaudguerin DOT net>, 2004
 # @author	Mikael Berthe <mikael DOT berthe AT lilotux DOT net>, 2004
-# @author	Julien ÉLIE <iulius@via.ecp.fr>, 2007
+# @author	Julien ÉLIE <iulius  AT via DOT ecp DOT fr>, 2007
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.7-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:26+0200\n"
+"POT-Creation-Date: 2007-06-28 11:34+0200\n"
 "PO-Revision-Date: 2005-04-14 23:37-0800\n"
-"Last-Translator: Julien ÉLIE <iulius AT via DOT ecp DOT fr>nLanguage-Team: Jens Tkotz <jens AT peino DOT deMIME-Version: 1.0\n"
+"Last-Translator: Julien ÉLIE <iulius AT via DOT ecp DOT fr>\n"
+"Language-Team: Jens Tkotz <jens AT peino DOT de>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
@@ -784,15 +786,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr "Ceci est un courriel en HTML. Merci de regarder la pièce jointe."
 
 #: ../lib/mail.php:166
-#, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "Salut !!FULLNAME!!,\n"
 "\n"
@@ -802,90 +804,82 @@ msgstr ""
 "\n"
 "L'administrateur de la galerie %s."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "Titre de la galerie"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "URL de la galerie"
-
-#: ../lib/mail.php:192
+#: ../lib/mail.php:188
 msgid "The Url to your Gallery."
 msgstr "L'URL de votre galerie."
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr "Le titre de votre galerie."
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 msgid "Admin email(s)"
 msgstr "Adresse(s) électronique(s) de l'administrateur"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr "Mot de passe pour l'utilisateur nouvellement créé."
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 msgid "Fullname"
 msgstr "Nom complet"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Sera remplacé par un lien sur lequel le nouvel utilisateur pourra cliquer afin de créer un nouveau mot de passe."
 
-#: ../lib/mail.php:235
+#: ../lib/mail.php:232
 #, php-format
 msgid "New comment for %s"
 msgstr "Nouveau commentaire pour %s"
 
-#: ../lib/mail.php:244
+#: ../lib/mail.php:241
 #, php-format
 msgid "A new comment has been added to Gallery: %s"
 msgstr "Un nouveau commentaire a été ajouté : %s"
 
-#: ../lib/mail.php:246
+#: ../lib/mail.php:243
 #, php-format
 msgid "The comment was added by %s to this %s in this %s."
 msgstr "Le commentaire a été ajouté par %s à cet %s en cet%s."
 
-#: ../lib/mail.php:248
+#: ../lib/mail.php:245
 msgid "Item"
 msgstr "Élément"
 
-#: ../lib/mail.php:249
+#: ../lib/mail.php:246
 msgid "Album"
 msgstr "Album"
 
-#: ../lib/mail.php:250
+#: ../lib/mail.php:247
 msgid "*** Begin comment ***"
 msgstr "*** Début du commentaire ***"
 
-#: ../lib/mail.php:252
+#: ../lib/mail.php:249
 #, fuzzy
 msgid "*** End comment ***"
 msgstr "*** Fin du commentaire ***"
 
-#: ../lib/mail.php:253
+#: ../lib/mail.php:250
 #, fuzzy
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
 msgstr "Si vous ne souhaitez plus recevoir de courriels sur cette image, cliquez sur le lien ci-dessus et assurez-vous que la case « M'envoyer un courriel lorsque des commentaires sont ajoutés » est décochée à la fois sur la page de la photo et de l'album (vous devrez d'abord vous authentifier)."
 
-#: ../lib/mail.php:256
+#: ../lib/mail.php:253
 #, php-format
 msgid "New comment for %s."
 msgstr "Nouveau commentaire pour %s."
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr "L'envoi du courriel a échoué. Informations additionnelles :"
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Activité des courriels"
 
@@ -1077,7 +1071,6 @@ msgid "Advanced"
 msgstr "Avancé"
 
 #: ../lib/setup.php:946
-#, php-format
 msgid "<b>System</b> locale selection required"
 msgstr "La sélection d'une locale <b>système</b> est requise."
 
@@ -1095,7 +1088,6 @@ msgid "System locale"
 msgstr "Locale système"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Problème de locale <b>système</b>"
 
@@ -1193,7 +1185,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d fichiers sont plus récents qu'attendu. Ceci est OK si vous utilisez une pre-release, une bêta, SVN ou du code modifié."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Tous les fichiers testés sont à jour."
 
@@ -1336,21 +1327,25 @@ msgstr "Laissez ce champ vide pour que Gallery utilise le message par défaut (vo
 msgid "The following placeholder can be used:"
 msgstr "Les commandes suivantes peuvent être utilisées :"
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "Le fichier %s n'existe pas."
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "État attendu : %s, mais l'état reçu est %s."
 
-#: ../lib/setup.php:1812
+#: ../lib/setup.php:1813
 msgid "can't detect version on Windows"
 msgstr "impossible de détecter la version sous Windows"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK ! Version : %s"
@@ -1461,6 +1456,12 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "un vote"
 msgstr[1] "%d votes"
+
+#~ msgid "gallery title"
+#~ msgstr "Titre de la galerie"
+
+#~ msgid "gallery URL"
+#~ msgstr "URL de la galerie"
 
 #~ msgid "both"
 #~ msgstr "Les deux"
