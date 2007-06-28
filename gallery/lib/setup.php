@@ -137,7 +137,7 @@ function form_password($key, $arr) {
 	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
-		. gTranslate('config', 'Please retype your password here')
+		. gTranslate('config', "Please retype your password here")
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
 		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
 }
@@ -462,7 +462,7 @@ function check_exif($location = '') {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
 	if (empty($dir)) {
-		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>");
+		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>.");
 	} else {
 		$success[] = gTranslate('config', "<b>jhead</b> binary located.");
 	}
@@ -502,7 +502,7 @@ function check_graphics($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable("pnmcomp") =>
-			gTranslate('config', "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
+			gTranslate('config', "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 
 	$missing_optional = 0;
@@ -599,7 +599,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable("composite") =>
-			gTranslate('config', "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."),
+			gTranslate('config', "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."),
 	);
 
 
@@ -943,10 +943,10 @@ function config_maybe_locales() {
 			$block_start_done=true;
 			$results[] = array (
 					"type" => "block_start",
-					"prompt" => "<b>(" . gTranslate('config', "Advanced") . ")</b><br> ".sprintf(gTranslate('config', "<b>System</b> locale selection required")),
+					"prompt" => "<b>(" . gTranslate('config', "Advanced") . ")</b><br> ".sprintf(gTranslate('config', "<b>System</b> locale selection required.")),
 					"desc" => gTranslate('config', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 					"<p></p>" .
-					gTranslate('config', "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above")
+					gTranslate('config', "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above.")
 					);
 		}
 		$index = $nls['language'][$key] ;
@@ -1026,7 +1026,7 @@ function config_maybe_locales() {
 					"prompt" => "<b>(" . gTranslate('config', "Advanced") . ")</b><br> ".sprintf(gTranslate('config', "<b>System</b> locale problems")),
 						"desc" => gTranslate('config', "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							"<p></p>" .
-							gTranslate('config', "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above")
+							gTranslate('config', "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above.")
 							);
 		}
 		$index = $nls['language'][$key] ;
@@ -1326,7 +1326,7 @@ function verify_email($emailMaster) {
 		$size  = sizeof($emails);
 
 		if ($size < 1) {
-			$fail[]= gTranslate('config', "You must specify valid admin email addresses");
+			$fail[]= gTranslate('config', "You must specify valid admin email addresses.");
 		} else {
 			$adminEmail="";
 			$join="";
@@ -1345,7 +1345,7 @@ function verify_email($emailMaster) {
 	if (check_email($gallery->session->configForm->senderEmail)) {
 	       	$success[] = gTranslate('config', "Valid sender email address given.");
        	} else {
-	       	$fail[]= gTranslate('config', "You must specify a valid sender email address");
+	       	$fail[]= gTranslate('config', "You must specify a valid sender email address.");
        	}
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
 	       	$fail[]= sprintf(gTranslate('config', "You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
@@ -1353,7 +1353,7 @@ function verify_email($emailMaster) {
        	if (!empty($emailGreeting) &&
 			!strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
 			!strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
-	       	$fail[]= sprintf(gTranslate('config', "You must include %s or %s in your welcome email"),
+	       	$fail[]= sprintf(gTranslate('config', "You must include %s or %s in your welcome email."),
 				"<b>!!PASSWORD!!</b>",
 				"<b>!!NEWPASSWORDLINK!!</b>");
        	}
@@ -1399,7 +1399,7 @@ function check_gallery_versions()  {
 
 function newIn($version) {
 	$buf = "\n\t<br><font color=blue><b>(";
-	$buf .= sprintf(gTranslate('config', "this is new in version %s"), $version);
+	$buf .= sprintf(gTranslate('config', "this is new in version %s."), $version);
 	$buf .= ")</b></font>";
 	return $buf;
 }
@@ -1584,7 +1584,7 @@ $compare=compareVersions($version, $found_version);
      } else if ($compare > 0) {
              if ($verbose) {
                      print "<br>\n";
-                     print sprintf(gTranslate('config', "%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+                     print sprintf(gTranslate('config', "%s OK.  Actual version (%s) more recent than expected version (%s)."), $file, $found_version, $version);
              }
              $warn[$file]=sprintf(gTranslate('config', "Expected version %s but found %s."), $version, $found_version);
      } else {
@@ -1810,7 +1810,7 @@ function checkImageMagick($cmd) {
     */
     if ($ok) {
         if (getOS() == OS_WINDOWS) {
-            $version = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
+            $version = "<i>" . gTranslate('config', "can't detect version on Windows.") ."</i>";
         }
         else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
             $version = $regs[1];

@@ -33,7 +33,7 @@
  *  2:  Existing resized file should be removed
  */
 function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 0, $createThumbnail = false, $quality = 0) {
-    debugMessage(sprintf(_("Resizing Image: %s"), $src), __FILE__, __LINE__);
+    debugMessage(sprintf(gTranslate('common', "Resizing Image: %s."), $src), __FILE__, __LINE__);
 
     global $gallery;
 
@@ -64,7 +64,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
     /* Check for images smaller then target size, don't blow them up. */
     if ((empty($target) || ($width <= $target && $height <= $target)) &&
       (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs)) {
-        echo debugMessage("&nbsp;&nbsp;&nbsp;". _("No resizing required"), __FILE__, __LINE__,1);
+        echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('common', "No resizing required."), __FILE__, __LINE__,1);
 
         /* If the file is already smaller than the target filesize, don't
         * create a new sized image.  return 2 indicates that the current .sized.
@@ -91,7 +91,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
         if (!isset($quality)) {
             $quality = $gallery->album->fields['last_quality'];
         }
-        processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(_("Target file size: %d kbytes"), $target_fs)."\n");
+        processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(gTranslate('common', "Target file size: %d kbytes."), $target_fs)."\n");
 
         $loop = 0;
         do {
@@ -100,8 +100,8 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
             compressImage($src, $out, $target, $quality, $keepProfiles, $createThumbnail);
 
             $prev_quality = $quality;
-            printf(_("-> File size: %d kbytes"), round($filesize));
-            processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(_("Trying quality: %d%%"), $quality));
+            printf(gTranslate('common', "-> File size: %d kbytes"), round($filesize));
+            processingMsg("&nbsp;&nbsp;&nbsp;" . sprintf(gTranslate('common', "Trying quality: %d%%."), $quality));
             clearstatcache();
             $filesize = (int)fs_filesize($out) >> 10;
             if ($filesize < $target_fs) {
@@ -127,8 +127,8 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
         abs(($filesize-$target_fs)/$target_fs) > .02 );
 
         $gallery->album->fields['last_quality'] = $prev_quality;
-        printf(_("-> File size: %d kbytes"), round($filesize));
-        processingMsg(_("Done."));
+        printf(gTranslate('common', "-> File size: %d kbytes"), round($filesize));
+        processingMsg(gTranslate('common', "Done."));
     }
     if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
         if ($useTemp) {
@@ -149,21 +149,21 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
  * Returns a list of 2 temporary files (overlay, and alphamask), these files should be deleted (unlinked)
  * by the calling function
  */
-function netpbm_decompose_image($input, $format) {
+function Netpbm_decompose_image($input, $format) {
     global $gallery;
-    $overlay = tempnam($gallery->app->tmpDir, "netpbm_");
-    $alpha = tempnam($gallery->app->tmpDir, "netpbm_");
+    $overlay = tempnam($gallery->app->tmpDir, "Netpbm_");
+    $alpha = tempnam($gallery->app->tmpDir, "Netpbm_");
 
     switch ($format) {
         case "png":
-            $getOverlay = netPBM("pngtopnm", "$input > $overlay");
-            $getAlpha   = netPBM("pngtopnm", "-alpha $input > $alpha");
+            $getOverlay = Netpbm("pngtopnm", "$input > $overlay");
+            $getAlpha   = Netpbm("pngtopnm", "-alpha $input > $alpha");
         break;
         case "gif":
-            $getOverlay = netPBM("giftopnm", "--alphaout=$alpha $input > $overlay");
+            $getOverlay = Netpbm("giftopnm", "--alphaout=$alpha $input > $overlay");
         break;
             case "tif":
-        $getOverlay = netPBM("tifftopnm", "-alphaout=$alpha $input > $overlay");
+        $getOverlay = Netpbm("tifftopnm", "-alphaout=$alpha $input > $overlay");
         break;
     }
 
@@ -204,13 +204,13 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
 
             case 'Netpbm':
                 if (eregi('\.png$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "png");
+                    list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "png");
                     $tmpOverlay = 1;
                 } elseif (eregi('\.tiff?$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "tif");
+                    list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "tif");
                     $tmpOverlay = 1;
                 } elseif (eregi('\.gif$',$wmName, $regs)) {
-                    list ($overlayFile, $alphaFile) = netpbm_decompose_image($wmName, "gif");
+                    list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "gif");
                     $tmpOverlay = 1;
                 } else {
                     $alphaFile = $wmName;
@@ -220,11 +220,11 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
                 }
             break;
             default:
-                echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
+                echo debugMessage(gTranslate('common', "You have no graphics package configured for use!"), __FILE__, __LINE__);
             return 0;
         }
     } else {
-        echo gallery_error(_("No watermark name specified!"));
+        echo gallery_error(gTranslate('common', "No watermark name specified!"));
         return 0;
     }
 
@@ -464,7 +464,7 @@ function rotate_image($src, $dest, $target, $type) {
             break;
             default:
                 if (isDebugging())
-                echo "<br>". _("You have no graphics package configured for use!") ."<br>";
+                echo "<br>". gTranslate('common', "You have no graphics package configured for use!") ."<br>";
                 return 0;
             break;
         }
@@ -482,7 +482,7 @@ function rotate_image($src, $dest, $target, $type) {
 }
 
 function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
-    echo debugMessage(_("Cropping Image"),__FILE__, __LINE__);
+    echo debugMessage(gTranslate('common', "Cropping Image"),__FILE__, __LINE__);
     global $gallery;
 
     if (!strcmp($src,$dest)) {
@@ -516,7 +516,7 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
         break;
         default:
             if (isDebugging()) {
-                echo "<br>" . _("You have no graphics package configured for use!") ."<br>";
+                echo "<br>" . gTranslate('common', "You have no graphics package configured for use!") ."<br>";
                 return 0;
             }
         break;
@@ -546,7 +546,7 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
 
     switch($ratio) {
         case '1/1':
-        debugMessage(sprintf(_("Generating squared Version to %d pixel."), $destSize), __FILE__, __LINE__);
+        debugMessage(sprintf(gTranslate('common', "Generating squared version to %d pixel."), $destSize), __FILE__, __LINE__);
 
         if($width > $height && $height > $destSize) {
             $offsetX = round(($width - $height)/2);
@@ -567,7 +567,7 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
             $size);
         }
         else {
-            debugMessage(_("No Cropping Done"), __FILE__, __LINE__);
+            debugMessage(gTranslate('common', "No Cropping Done."), __FILE__, __LINE__);
             $ret = false;
         }
         break;
@@ -577,11 +577,11 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
 
 function valid_image($file) {
     if (($type = getimagesize($file)) == FALSE) {
-        debugMessage(sprintf(_("Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
+        debugMessage(sprintf(gTranslate('common', "Call to %s failed in %s for file %s!"), 'getimagesize()', 'valid_image()', $file), __FILE__, __LINE__);
         return 0;
     }
 
-    debugMessage(sprintf(_("File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
+    debugMessage(sprintf(gTranslate('common', "File %s type %d."), $file, $type[2]), __FILE__, __LINE__);
 
     switch($type[2]) {
         case 1: // GIF
@@ -614,11 +614,11 @@ function toPnmCmd($file) {
     }
 
     if (!empty($cmd)) {
-	return netPBM($cmd) .' '. fs_import_filename($file);
+	return Netpbm($cmd) .' '. fs_import_filename($file);
     }
     else {
 	echo gallery_error(
-	  sprintf(_("Files with type %s are not supported by Gallery with netPBM"), $type)
+	  sprintf(gTranslate('common', "Files with type %s are not supported by Gallery with Netpbm."), $type)
 	);
 	return '';
     }
@@ -631,25 +631,25 @@ function fromPnmCmd($file, $quality = NULL) {
     }
 
     if (eregi("\.png(\.tmp)?\$", $file)) {
-	$cmd = netPBM("pnmtopng");
+	$cmd = Netpbm("pnmtopng");
     } elseif (eregi("\.jpe?g(\.tmp)?\$", $file)) {
-	$cmd = netPBM($gallery->app->pnmtojpeg, "--quality=$quality");
+	$cmd = Netpbm($gallery->app->pnmtojpeg, "--quality=$quality");
     } elseif (eregi("\.gif(\.tmp)?\$", $file)) {
-	$cmd = netPBM("ppmquant", "256") . " | " . Netpbm("ppmtogif");
+	$cmd = Netpbm("ppmquant", "256") . " | " . Netpbm("ppmtogif");
     }
 
     if (!empty($cmd)) {
 	return "$cmd > " . fs_import_filename($file);
     } else {
 	echo gallery_error(
-	  sprintf(_("Files with type %s are not supported by Gallery with netPBM"),
+	  sprintf(gTranslate('common', "Files with type %s are not supported by Gallery with Netpbm."),
 	  getExtension($file))
 	);
 	return '';
     }
 }
 
-function netPBM($cmd, $args = '') {
+function Netpbm($cmd, $args = '') {
 	global $gallery;
 
 	$cmd = fs_import_filename($gallery->app->pnmDir . "/$cmd");
@@ -691,13 +691,13 @@ function ImCmd($cmd, $srcOperator, $src, $destOperator, $dest) {
 }
 
 function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepProfiles = false, $createThumbnail = false) {
-    debugMessage(sprintf(_("Compressing image: %s"), $src), __FILE__, __LINE__);
+    debugMessage(sprintf(gTranslate('common', "Compressing image: %s"), $src), __FILE__, __LINE__);
     global $gallery;
     static $ImVersion;
 
     if (empty($src) || empty($dest)) {
-        echo gallery_error(_("Not all necessary params for resizing given."));
-        echo debugMessage(sprintf(_("Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
+        echo gallery_error(gTranslate('common', "Not all necessary params for resizing given."));
+        echo debugMessage(sprintf(gTranslate('common', "Resizing params: src: %s, dest : %s, targetSize: %s"), $src, $dest, $targetSize), __FILE__, __LINE__);
         return false;
     }
 
@@ -740,7 +740,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
                     . $srcFile . ' ' . $destFile);
                     return true;
                 } else {
-                    processingMsg(_('Unable to preserve EXIF data (jhead not installed)') . "\n");
+                    processingMsg(gTranslate('common', "Unable to preserve EXIF data (jhead not installed).") . "\n");
                     return true;
                 }
             }
@@ -783,11 +783,11 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
                     }
                     else {
                         if($gallery->app->IM_HQ == 'yes') {
-                            echo debugMessage(_("Using IM high quality"), __FILE__, __LINE__, 3);
+                            echo debugMessage(gTranslate('common', "Using IM high quality."), __FILE__, __LINE__, 3);
                         }
                         else {
                             $srcOperator = "-size ${targetSize}x${targetSize}";
-                            echo debugMessage(_("Not using IM high quality"), __FILE__, __LINE__, 3);
+                            echo debugMessage(gTranslate('common', "Not using IM high quality."), __FILE__, __LINE__, 3);
                         }
                         $destOperator .= " -resize ${targetSize}x${targetSize} $stripProfiles";
                     }
@@ -798,7 +798,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
             return exec_wrapper(ImCmd('convert', $srcOperator, $srcFile, $destOperator, $destFile));
         break;
         default:
-            echo debugMessage(_("You have no graphics package configured for use!"), __FILE__, __LINE__);
+            echo debugMessage(gTranslate('common', "You have no graphics package configured for use!"), __FILE__, __LINE__);
             return false;
         break;
     }

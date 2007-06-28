@@ -377,7 +377,7 @@ if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
+    $gallery->session->configData .= gallery_error(sprintf(_("You must specify a path for %s or %s for Gallery to function!!"), "<i>Netpbm</i>",  "<i>ImageMagick</i>"));
     $error++;
 } else if (!strcmp($graphtool, 'ImageMagick') && !empty($graphtest['ImPath'])) {
     $gallery->session->configData .= gallery_error(sprintf(_("%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));

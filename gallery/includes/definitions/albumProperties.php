@@ -210,14 +210,14 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'max_size' => array(
-        'prompt' => gTranslate('common', "Maximum dimensions of full sized images"),
+        'prompt' => gTranslate('common', "Maximum size of full sized images (in px)"),
         'desc' => '',
         'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(gTranslate('common', '%d (%d MPix)'), 1280, 1), 1600 => sprintf(gTranslate('common', '%d (%d MPix)'), 1600, 2), 2048 => sprintf(gTranslate('common', '%d (%d MPix)'), 2048, 3)),
         'value' => $gallery->album->fields["max_size"],
         'vartype' => 'int_empty'
     ),
     'max_file_size' => array(
-        'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+        'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["max_file_size"],
@@ -476,14 +476,14 @@ $properties = array_merge($properties, array(
         'value' => $gallery->album->fields["nav_thumbs_location"]
     ),
     'nav_thumbs_size' => array(
-        'prompt' => gTranslate('common', "Height of microthumbs in navigation bar"),
+        'prompt' => gTranslate('common', "Height of microthumbs in navigation bar (in px)"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_size"],
         'attrs' => array('size' => 3)
     ),
     'nav_thumbs_current_bonus' => array(
-        'prompt' => gTranslate('common', "Bonus to height of current microthumb (pixels)"),
+        'prompt' => gTranslate('common', "Bonus to height of current microthumb (in px)"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_current_bonus"],

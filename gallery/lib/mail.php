@@ -68,20 +68,20 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 	/* Begin Catch errors */
 	if ($gallery->app->emailOn == "no") {
-		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as it is disabled for this gallery"));
+		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as it is disabled for this gallery."));
 		return false;
 	}
 
 	foreach($to as $rcpnr => $mail) {
 		if (! check_email($mail)) {
-			echo "\n<br>". gallery_error(sprintf(gTranslate('common', "Email not sent to %s as it is not a valid address"),
+			echo "\n<br>". gallery_error(sprintf(gTranslate('common', "Email not sent to %s as it is not a valid address."),
 			'<i>' . $mail . "</i>"));
 			unset ($to[$rcpnr]);
 		}
 	}
 
 	if (empty($to)) {
-		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as no recipient address provided"));
+		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as no recipient address provided."));
 		return false;
 	}
 
@@ -185,7 +185,7 @@ Your !!GALLERYTITLE!! Administrator");
 function welcomeMsgPlaceholderList() {
 
 	$placeholders = array(
-		'galleryurl'	=> gTranslate('common', "The Url to your Gallery."),
+		'galleryurl'	=> gTranslate('common', "The URL to your Gallery."),
 		'gallerytitle'	=> gTranslate('common', "Title of your Gallery."),
 		'adminemail'	=> gTranslate('common', "Admin email(s)"),
 		'password'		=> gTranslate('common', "Password for the newly created user."),
@@ -229,7 +229,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
 	$to = $gallery->album->getEmailMeList('comments', $id);
-	$subject = sprintf(gTranslate('common', "New comment for %s"), $id);
+	$subject = sprintf(gTranslate('common', "New comment for %s."), $id);
 	$text = '';
 
 	if (!empty($to)) {

@@ -57,7 +57,7 @@
 
 	  <tr>
 	    <td class="shortdesc" style="padding: 10px;" width="140" align=center valign="top">
-	      <a href="check_netpbm.php"><?php echo _("Check") ?> Netpbm</a>
+	      <a href="check_Netpbm.php"><?php echo _("Check") ?> Netpbm</a>
 	    </td>
 	    <td class="desc" valign="top">
 	      <?php echo _("This page provides information about your Netpbm binaries.") ?> 

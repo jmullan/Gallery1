@@ -44,11 +44,11 @@ if ($locale_check == NULL) {
 	$elawisyl = 'yes';
 }
 
-$netpbm_check = check_graphics();
+$Netpbm_check = check_graphics();
 $IM_check = check_graphics_im();
 
 /* If all watermarking/overlay applications are missing */
-if ( isset($netpbm_check[2]['pnmcomp']) && isset($netpbm_check[2]['pamcomp']) && isset($IM_check[2]['composite']) ) {
+if ( isset($Netpbm_check[2]['pnmcomp']) && isset($Netpbm_check[2]['pamcomp']) && isset($IM_check[2]['composite']) ) {
 	$enablewatermark = 'no';
 } else {
 	$enablewatermark = 'yes';
@@ -67,18 +67,18 @@ if (function_exists('posix_getpwuid')) {
 	}
 }
 
-$common_messages['getting-netpbm'] = '<br>'.
+$common_messages['getting-Netpbm'] = '<br>'.
   sprintf(gTranslate('config',"Gallery prefers Netpbm version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."),
   "<a href=\"http://sourceforge.net/projects/gallery\">",
   '</a>',
-  "<a href=\"http://sourceforge.net/projects/netpbm\">",
+  "<a href=\"http://sourceforge.net/projects/Netpbm\">",
   '</a>')  .
   '<br><span class="emphasis">' . gTranslate('config',"Note:"). '</span> ' .
   gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead.");
 
-$common_messages['fail-netpbm-partial'] =
+$common_messages['fail-Netpbm-partial'] =
   gTranslate('config',"I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date.") . '  ' .
-  $common_messages['getting-netpbm'];
+  $common_messages['getting-Netpbm'];
 
 $common_messages['getting-imagemagick'] = '<br>'.
   sprintf(gTranslate('config',"Gallery prefers ImageMagick version 5.4.8 and up.  You can compile and install the entire ImageMagick package from the %sImageMagick website%s." ),
@@ -179,10 +179,10 @@ $checklist = array(
 		'optional' => 1,
 		'desc' => gTranslate('config',"Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."),
 		'func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"I can't find Netpbm.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
-		  $common_messages['getting-netpbm'],
-		'fail-netpbm-partial' =>
-		  $common_messages['fail-netpbm-partial'] .
+		'fail-Netpbm' => gTranslate('config',"I can't find Netpbm.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
+		  $common_messages['getting-Netpbm'],
+		'fail-Netpbm-partial' =>
+		  $common_messages['fail-Netpbm-partial'] .
 		  '<p><b> ' . gTranslate('config',"If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page.") .' </b>',
 		  'open-basedir-note' => $common_messages['open-basedir-active']
 	),
@@ -434,15 +434,15 @@ $constants =  array_merge(array(
 		'optional' => 1,
 		'prompt' => gTranslate('config',"Path to Netpbm"),
 		'desc' => sprintf(gTranslate('config',"The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"),
-		  '<i>/usr/local/netpbm</i>',
+		  '<i>/usr/local/Netpbm</i>',
 		  '<i>/usr/local/bin</i>',
-		  '<i>c:\\apps\\netpbm</i>'). '<br>'.
+		  '<i>c:\\apps\\Netpbm</i>'). '<br>'.
 		  sprintf(gTranslate('config',"This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."), "Netpbm"),
 		'value' => locateDir("jpegtopnm", isset($gallery->app->pnmDir) ? $gallery->app->pnmDir : ''),
 		'verify-func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"I can't find Netpbm at the location you provided.") . '  ' .
-		  $common_messages['getting-netpbm'],
-		'fail-netpbm-partial' => $common_messages['fail-netpbm-partial'],
+		'fail-Netpbm' => gTranslate('config',"I can't find Netpbm at the location you provided.") . '  ' .
+		  $common_messages['getting-Netpbm'],
+		'fail-Netpbm-partial' => $common_messages['fail-Netpbm-partial'],
 		'filename' => 1,
 		'attrs' => array('size' => 50),
 		'no-trailing-slash' => 1,
@@ -463,7 +463,7 @@ $constants =  array_merge(array(
 		'choices' => array('pnmcomp' => 'pnmcomp', 'pamcomp' => 'pamcomp'),
 		'value' => 'pnmcomp',
 	),
-	'subgroup_netPBM_end' => array (
+	'subgroup_Netpbm_end' => array (
 		'type' => 'subgroup_end',
 	),
 	'autorotate' => array(

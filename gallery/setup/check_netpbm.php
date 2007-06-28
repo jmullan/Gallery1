@@ -143,10 +143,10 @@ if (gallerySanityCheck() != NULL) {
 				<p><?php
 				if (!empty($show_details)) {
 					print sprintf(_("%sClick here%s to hide the details"), 
-						'<a href="check_netpbm.php?show_details=0">','</a>');
+						'<a href="check_Netpbm.php?show_details=0">','</a>');
 				} else {
 					print sprintf(_("If you see errors, you should %sclick here%s to see more details"),
-						'<a href="check_netpbm.php?show_details=1">','</a>');
+						'<a href="check_Netpbm.php?show_details=1">','</a>');
 				}
 ?>				
 				</p>
@@ -173,7 +173,7 @@ $binaries = array("giftopnm",
 	    );
 
 foreach ($binaries as $bin) {
-	$result=checkNetPbm($bin);
+	$result=checkNetpbm($bin);
 	if (isset($result['details'])) {
 		$width_1col="30%";
 	} else {
@@ -236,7 +236,7 @@ if (fs_file_exists($debugfile)) {
 </html>
 <?php
 
-function checkNetPbm($cmd) {
+function checkNetpbm($cmd) {
 	global $gallery;
 	global $show_details;
 	global $debugfile;
@@ -281,7 +281,7 @@ function checkNetPbm($cmd) {
 					$linecount++;
 					$buf = fgets($fd, 4096);
 					if ($linecount == 1) {
-			    			if (eregi("using lib(pbm|netpbm) from netpbm version: netpbm (.*)[\n\r]$",  $buf, $regs)) {
+			    			if (eregi("using lib(pbm|Netpbm) from Netpbm version: Netpbm (.*)[\n\r]$",  $buf, $regs)) {
 							$version = $regs[1];
 						} else {
 							$result['error'] = $buf;

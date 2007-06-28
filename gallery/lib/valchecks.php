@@ -43,7 +43,7 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
                 return array(0, $var, '');
             }
             else {
-                return array(2, $var, _("The given frame is not valid."));
+                return array(2, $var, gTranslate('common', "The given frame is not valid."));
             }
             break;
         case 'inChoice':
@@ -51,10 +51,10 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
                 return array(0, $var, '');
             }
             elseif (isset($default)) {
-                return array(1, $default, _("Value was set to given default, because the original value is not in the allowed list of choices."));
+                return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
             }
             else {
-                return array(2, $var, _("The given value is not in the allowed list of choices."));
+                return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
             }
             break;
         default:
@@ -85,19 +85,19 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
 
     if (! is_numeric($mixed)) {
         if (isset($default)) {
-            return array(1, $default, _("Value was set to given default. Because the original value is not numeric."));
+            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not numeric."));
         }
         else {
-            return array(2, false, _("The given value is not numeric."));
+            return array(2, false, gTranslate('common', "The given value is not numeric."));
         }
     }
 
     if($mixed < $minimum) {
         if (isset($default)) {
-            return array(1, $default, _("Value was set to given default. Because the original value is not a valid integer"));
+            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid integer."));
         }
         else {
-            return array(2, false, _("The given value not a valid integer."));
+            return array(2, false, gTranslate('common', "The given value not a valid integer."));
         }
     }
 
@@ -109,10 +109,10 @@ function isValidText($text, $default = NULL) {
 
     if($sanitized != $text) {
         if(isset($default)) {
-            return array(1, $default, _("Value was set to given default. Because the original value is not a valid text"));
+            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid text."));
         }
         else {
-            return array(1, $sanitized, _("Value was corrected, because the original value is not a valid text"));
+            return array(1, $sanitized, gTranslate('common', "Value was corrected, because the original value is not a valid text."));
         }
     }
     else {

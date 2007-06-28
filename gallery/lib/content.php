@@ -669,7 +669,7 @@ function dismissAndReload() {
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
 		echo '<p align="center" class="error">';
-		echo gTranslate('common', "Not closing this window because debug mode is on") ;
+		echo gTranslate('common', "Not closing this window because debug mode is on.") ;
 		echo "\n<hr>\n</p>";
 		echo "\n</body>";
 	}
@@ -690,7 +690,7 @@ function dismissAndLoad($url) {
 	if (isDebugging()) {
 		echo("<BODY onLoad='opener.location = \"$url\"; '>");
 		echo("Loading URL: $url");
-		echo("<center><b>" . gTranslate('common', "Not closing this window because debug mode is on") ."</b></center>");
+		echo("<center><b>" . gTranslate('common', "Not closing this window because debug mode is on.") ."</b></center>");
 		echo("<hr>");
 	}
 	else {
@@ -721,7 +721,7 @@ function includeLayout($name, $skinname='') {
 		include ($defaultname);
 	}
 	else {
-		echo gallery_error(sprintf(gTranslate('common', "Problem including file %s"), $name));
+		echo gallery_error(sprintf(gTranslate('common', "Problem including file %s."), $name));
 	}
 }
 
@@ -890,7 +890,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "current location"). ")</option>\n\t";
+				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "Current location"). ")</option>\n\t";
 			}
 			else {
 				if (sizeof($gallery->album->fields["votes"]) && $gallery->album->pollsCompatible($myAlbum)) {
@@ -1123,7 +1123,7 @@ function available_frames($description_only = false) {
 		}
 	}
 	else {
-		echo gallery_error(sprintf(gTranslate('common', "Can't open %s"), $dir));
+		echo gallery_error(sprintf(gTranslate('common', "Can't open %s."), $dir));
 	}
 
 	$descriptions .= "\n</dl>";
@@ -1201,7 +1201,7 @@ function gallery_validation_link($file, $valid=true, $args = array()) {
 		'<img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 
 	if (!$valid) {
-		$link .= gTranslate('common', "Not valid yet");
+		$link .= gTranslate('common', "Not valid yet.");
 	}
 
 	return $link;
@@ -1224,7 +1224,7 @@ function album_validation_link($album, $photo='', $valid=true) {
 		'"> <img border="0" src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01!" height="31" width="88"></a>';
 
 	if (!$valid) {
-		$link .= gTranslate('common', "Not valid yet");
+		$link .= gTranslate('common', "Not valid yet.");
 	}
 
 	return $link;
