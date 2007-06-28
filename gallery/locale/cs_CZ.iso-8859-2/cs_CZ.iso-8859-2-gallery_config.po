@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.7-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2005-02-12 17:01+0100\n"
 "Last-Translator: Misa <misa AT bayercz DOT com>\n"
 "Language-Team: CZ_Czech <misa AT bayercz DOT com>\n"
@@ -142,7 +142,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> je aktivovaný"
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Nemohu najít <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -150,7 +151,7 @@ msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> binárka nalezena."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
 #: ../lib/setup.php:513
@@ -183,7 +184,7 @@ msgid "%d of %d Netpbm binaries located."
 msgstr "%d z %d binárek NetPBM nalezeno."
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -278,8 +279,8 @@ msgid "Advanced"
 msgstr "Pokroèilé"
 
 #: ../lib/setup.php:946
-#, fuzzy, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "Nutno vybrat locale"
 
 #: ../lib/setup.php:947
@@ -288,7 +289,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "Na tomto stroji je pro následující jazyky k dispozici více rùzných locale. Vyberte ty, které pova¾ujete za nejvíce vhodné."
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -297,7 +298,7 @@ msgid "System locale"
 msgstr "Stránka systémové kontroly"
 
 #: ../lib/setup.php:1026
-#, fuzzy, php-format
+#, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "Problémy s locale"
 
@@ -353,7 +354,8 @@ msgid "Valid admin email address given."
 msgstr "E-mailová adresa"
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Musíte zadat platnou e-mailovou adresu administrátora"
 
 #: ../lib/setup.php:1337
@@ -367,7 +369,8 @@ msgid "Valid sender email address given."
 msgstr "IP adresa serveru"
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Musíte zadat platnou e-mailovou adresu odesílatele"
 
 #: ../lib/setup.php:1351
@@ -377,7 +380,7 @@ msgstr ""
 
 #: ../lib/setup.php:1356
 #, php-format
-msgid "You must include %s or %s in your welcome email"
+msgid "You must include %s or %s in your welcome email."
 msgstr ""
 
 #: ../lib/setup.php:1380
@@ -400,7 +403,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d souborù je novìj¹ích ne¾ se oèekávalo. Je to OK, pokud pou¾íváte pre-release, beta, CVS, nebo modifikované soubory."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "V¹echny testované soubory jsou aktualní."
 
@@ -410,8 +412,8 @@ msgid "All %d tested files up-to-date."
 msgstr "V¹ech %d testovaných souborù je aktualní."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "tohle je nové od verze %s"
 
 #: ../lib/setup.php:1407
@@ -518,7 +520,7 @@ msgstr ""
 
 #: ../lib/setup.php:1587
 #, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr ""
 
 #: ../lib/setup.php:1589
@@ -549,21 +551,26 @@ msgstr ""
 msgid "The following placeholder can be used:"
 msgstr "V¹echny následující soubory jsou aktuální."
 
-#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "Soubor %s neexistuje."
 
-#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Oèekávaný status: %s, skuteèný status %s."
 
-#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "nemohu zjistit verzi ve Windows"
 
-#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK!  Verze: %s"
@@ -844,6 +851,10 @@ msgstr "%sKlepnìte sem%s, pokud chcete skrýt detaily"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Pokud dojde k chybám,  %sklepnìte sem%s pro zobrazení detailù"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "nemohu zjistit verzi ve Windows"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"

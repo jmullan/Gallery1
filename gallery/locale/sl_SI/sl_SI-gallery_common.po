@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2004-08-06 08:02+0100\n"
 "Last-Translator: Marjan Laznik <marjan AT slo-foto DOT com>\n"
 "Language-Team: Slovenian <mesni AT burek DOT uni DOT cc>\n"
@@ -219,8 +219,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "Velikost najveèje mo¾ne srednje slike v KB (0 ali prazno za brez omejitve velikosti)"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "Velikost najveèje mo¾ne slike"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "Velikost najveèje mo¾ne srednje slike"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -228,7 +229,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d megapikslov)"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "Velikost najveèje mo¾ne slike v KB (0 ali prazno za brez omejitve velikosti)"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -438,11 +440,11 @@ msgid "Bottom"
 msgstr "Spodaj"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+msgid "Bonus to height of current microthumb (in px)"
 msgstr ""
 
 #: ../includes/definitions/services.php:45
@@ -474,7 +476,7 @@ msgid "The Options window has closed. Exiting."
 msgstr ""
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+msgid "This window must be called from an Options window."
 msgstr ""
 
 #: ../lib/content.php:45
@@ -543,12 +545,13 @@ msgid "Search:"
 msgstr "I¹èi po galeriji"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "Ne zapiram okna ker je vklopljen debug mode"
 
 #: ../lib/content.php:724
 #, fuzzy, php-format
-msgid "Problem including file %s"
+msgid "Problem including file %s."
 msgstr "Ne morem dodati %s:"
 
 #: ../lib/content.php:869
@@ -559,11 +562,7 @@ msgstr "Izberi album"
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "trenutna lokacija"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 #, fuzzy
 msgid "Current location"
 msgstr "trenutna lokacija"
@@ -631,26 +630,28 @@ msgid "Skipping %s."
 msgstr "Izkljuèujem %s."
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "Ne morem brati %s"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "©e ni v veljavi"
 
 #: ../lib/imageManipulation.php:36
 #, fuzzy, php-format
-msgid "Resizing Image: %s"
+msgid "Resizing Image: %s."
 msgstr "Zmanj¹ujem %s"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "Pomanj¹ava ni potrebna"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "velikost izbrane datoteke je %d kbajtov"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -660,7 +661,7 @@ msgstr "-> velikost datoteke je %d kbajtov"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "pregledujem kakovost %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -683,12 +684,12 @@ msgstr "®ig slike"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
 #, fuzzy
-msgid "No Cropping Done"
+msgid "No Cropping Done."
 msgstr "Ni naslova"
 
 #: ../lib/imageManipulation.php:580
@@ -703,7 +704,7 @@ msgstr "Datoteka %s, tip %d."
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
 #, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr ""
 
 #: ../lib/imageManipulation.php:694
@@ -721,15 +722,16 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr ""
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "Ni bilo mo¾no ohraniti EXIF podatkov (jhead ni name¹èen)"
 
 #: ../lib/imageManipulation.php:786
-msgid "Using IM high quality"
+msgid "Using IM high quality."
 msgstr ""
 
 #: ../lib/imageManipulation.php:790
-msgid "Not using IM high quality"
+msgid "Not using IM high quality."
 msgstr ""
 
 #: ../lib/lang.php:787
@@ -779,17 +781,18 @@ msgid "Report abuse to %s"
 msgstr "Zlorabe prijavite na %s."
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "E-po¹ta ni poslana, ker je za to galerijo onemogoèena."
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "E-po¹ta ni poslana, ker %s ni pravilen e-naslov."
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "E-po¹ta ni poslana, ni e-po¹tnega naslova."
 
 #: ../lib/mail.php:96
@@ -802,15 +805,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
 #: ../lib/mail.php:166
-#, fuzzy, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "®ivjo !!FULLNAME!!,  \n"
 "\n"
@@ -820,93 +823,80 @@ msgstr ""
 "\n"
 "Urednik galerije na %s."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "naslov galerije"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "URL naslov galerije"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+msgid "The URL to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Administratorska pomoè"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Uporabni¹ko ime"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 #, fuzzy
 msgid "Fullname"
 msgstr "Ime in priimek"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr ""
 
-#: ../lib/mail.php:235
-#, fuzzy, php-format
-msgid "New comment for %s"
-msgstr "poglej komentarje"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr ""
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:248
-#, fuzzy
-msgid "Item"
-msgstr "predmetov"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "Album"
-
-#: ../lib/mail.php:250
-#, fuzzy
-msgid "*** Begin comment ***"
-msgstr "i¹èi spam komentarje"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "i¹èi spam komentarje"
-
-#: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "poglej komentarje"
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:245
+#, fuzzy
+msgid "Item"
+msgstr "predmetov"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "Album"
+
+#: ../lib/mail.php:247
+#, fuzzy
+msgid "*** Begin comment ***"
+msgstr "i¹èi spam komentarje"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "i¹èi spam komentarje"
+
+#: ../lib/mail.php:250
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Uporaba e-po¹te"
 
@@ -963,7 +953,7 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> je vkljuèen."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+msgid "Can't find <i>jhead</i>."
 msgstr ""
 
 #: ../lib/setup.php:467
@@ -971,7 +961,7 @@ msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> lociran."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
 #: ../lib/setup.php:513
@@ -1003,7 +993,7 @@ msgid "%d of %d Netpbm binaries located."
 msgstr ""
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -1097,8 +1087,7 @@ msgid "Advanced"
 msgstr "Napredno"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+msgid "<b>System</b> locale selection required."
 msgstr ""
 
 #: ../lib/setup.php:947
@@ -1106,7 +1095,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr ""
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1114,7 +1103,6 @@ msgid "System locale"
 msgstr ""
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr ""
 
@@ -1167,7 +1155,8 @@ msgid "Valid admin email address given."
 msgstr "Email administratorja"
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Vpisati mora¹ veljaven administratorski email naslov"
 
 #: ../lib/setup.php:1337
@@ -1181,7 +1170,8 @@ msgid "Valid sender email address given."
 msgstr "Po¹iljatelj"
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Vpisati mora¹ veljaven email naslov"
 
 #: ../lib/setup.php:1351
@@ -1191,7 +1181,7 @@ msgstr ""
 
 #: ../lib/setup.php:1356
 #, php-format
-msgid "You must include %s or %s in your welcome email"
+msgid "You must include %s or %s in your welcome email."
 msgstr ""
 
 #: ../lib/setup.php:1380
@@ -1214,7 +1204,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr ""
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr ""
 
@@ -1224,8 +1213,8 @@ msgid "All %d tested files up-to-date."
 msgstr ""
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "tole je novo v verziji %s"
 
 #: ../lib/setup.php:1407
@@ -1326,8 +1315,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Prièakoval razlièico %s (ali novej¹o) ampak na¹el %s."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s je v redu. Dejanska razlièica (%s) je novej¹a kakor prièakovana (%s)."
 
 #: ../lib/setup.php:1589
@@ -1357,21 +1346,25 @@ msgstr ""
 msgid "The following placeholder can be used:"
 msgstr ""
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr ""
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+msgid "can't detect version on Windows."
 msgstr ""
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK!  Verzija: %s"
@@ -1389,7 +1382,7 @@ msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:91
@@ -1397,7 +1390,7 @@ msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:100
@@ -1405,11 +1398,11 @@ msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
-msgid "Value was set to given default. Because the original value is not a valid text"
+msgid "Value was set to given default, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/valchecks.php:115
-msgid "Value was corrected, because the original value is not a valid text"
+msgid "Value was corrected, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/voting.php:215
@@ -1485,6 +1478,22 @@ msgstr[0] "%d ocena"
 msgstr[1] "%d  oceni"
 msgstr[2] "%d ocene"
 msgstr[3] "%d  ocen"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "Velikost najveèje mo¾ne slike"
+
+#~ msgid "current location"
+#~ msgstr "trenutna lokacija"
+
+#~ msgid "gallery title"
+#~ msgstr "naslov galerije"
+
+#~ msgid "gallery URL"
+#~ msgstr "URL naslov galerije"
+
+#, fuzzy
+#~ msgid "New comment for %s"
+#~ msgstr "poglej komentarje"
 
 #, fuzzy
 #~ msgid "both"

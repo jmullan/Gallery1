@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2006-05-17 11:31-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOTbr>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
@@ -215,8 +215,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "Tamanho máximo de arquivo da imagem intermediária JPG/PNG em kilobytes (0 ou branco para não haver restrição de tamanho)"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "Dimensões máximas da imagem originais"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "Dimensões máximas de imagens de tamanho intermediário"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -224,7 +225,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d MPixel)"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "Tamanho máximo de arquivo da imagem original JPEG/PNG em kilobytes (0 ou branco para não ter restrição de tamanho)"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -430,11 +432,13 @@ msgid "Bottom"
 msgstr "Fundo"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+#, fuzzy
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr "Tamanho da microminiatura na barra de navegação"
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+#, fuzzy
+msgid "Bonus to height of current microthumb (in px)"
 msgstr "Tamanho extra da microminiatura atual (pixels)"
 
 #: ../includes/definitions/services.php:45
@@ -466,7 +470,8 @@ msgid "The Options window has closed. Exiting."
 msgstr "A janela de opções foi fechada. Saindo."
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+#, fuzzy
+msgid "This window must be called from an Options window."
 msgstr "Esta janela deve ser chamada de uma Janela de opções"
 
 #: ../lib/content.php:45
@@ -530,12 +535,13 @@ msgid "Search:"
 msgstr "Buscar foto ou álbum:"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "Janela não será fechada porque modo debug está ligado"
 
 #: ../lib/content.php:724
-#, php-format
-msgid "Problem including file %s"
+#, fuzzy, php-format
+msgid "Problem including file %s."
 msgstr "Problema ao adicionar arquivo %s"
 
 #: ../lib/content.php:869
@@ -546,11 +552,7 @@ msgstr "Selecionar Álbum"
 msgid "Move to top level"
 msgstr "Mover para nível superior"
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "diretório atual"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 msgid "Current location"
 msgstr "Diretório atual"
 
@@ -615,26 +617,28 @@ msgid "Skipping %s."
 msgstr "Saltando %s."
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "Não consigo abrir %s!"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "Ainda não é válido"
 
 #: ../lib/imageManipulation.php:36
-#, php-format
-msgid "Resizing Image: %s"
+#, fuzzy, php-format
+msgid "Resizing Image: %s."
 msgstr "Redimensionando Imagem: %s"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "Redimensionamento não necessário"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "tamanho do arquivo de destino %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -644,7 +648,7 @@ msgstr "-> tamanho do arquivo %d kbytes"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "tentando qualidade %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -666,11 +670,12 @@ msgstr "Recortando Imagem"
 
 #: ../lib/imageManipulation.php:549
 #, fuzzy, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr "Gerando versões quadradas para %dpx"
 
 #: ../lib/imageManipulation.php:570
-msgid "No Cropping Done"
+#, fuzzy
+msgid "No Cropping Done."
 msgstr "Nenhum Recorte Executado"
 
 #: ../lib/imageManipulation.php:580
@@ -684,8 +689,8 @@ msgid "File %s type %d."
 msgstr "Arquivo %s tipo %d."
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
-#, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+#, fuzzy, php-format
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr "Arquivos com extensões %s não são suportadas pelo Gallery com NetPBM"
 
 #: ../lib/imageManipulation.php:694
@@ -703,15 +708,18 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr "Parâmetros de redimensionamento: origem: %s, destino: %s, tamanho de destino: %s"
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "Não foi possível preservar informação EXIF (jhead não instalado)"
 
 #: ../lib/imageManipulation.php:786
-msgid "Using IM high quality"
+#, fuzzy
+msgid "Using IM high quality."
 msgstr "Utilizando alta qualidade do ImageMagick"
 
 #: ../lib/imageManipulation.php:790
-msgid "Not using IM high quality"
+#, fuzzy
+msgid "Not using IM high quality."
 msgstr "Não utilizando alta qualidade do ImageMagick"
 
 #: ../lib/lang.php:787
@@ -761,17 +769,18 @@ msgid "Report abuse to %s"
 msgstr "Reportar abusos para %s"
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "Email não enviado pois está desabilitado para este Gallery"
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "Email não enviado para %s pois isto não é um endereço válido"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "Email não enviado pois nenhum destinatário foi informado"
 
 #: ../lib/mail.php:96
@@ -784,15 +793,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr "Este é um email HTML. Por gentileza, verifique o arquivo em anexo."
 
 #: ../lib/mail.php:166
-#, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "Olá !!FULLNAME!!, \n"
 "\n"
@@ -802,90 +811,78 @@ msgstr ""
 "\n"
 "Administrador do Gallery @ %s."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "título do Gallery"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "URL do Gallery"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "The URL to your Gallery."
 msgstr "A URL para seu Gallery."
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr "Título do seu Gallery."
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 msgid "Admin email(s)"
 msgstr "Email(s) do administrador"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr "Senha para o usuário recentemente criado."
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 msgid "Fullname"
 msgstr "Nome completo"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Será substituído por um link que o novo usuário poderá clicar para criar uma nova senha."
 
-#: ../lib/mail.php:235
-#, php-format
-msgid "New comment for %s"
-msgstr "Novo comentário para %s"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr "Um novo comentário foi adicionado ao seu Gallery: %s"
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr "O comentário foi adicionado por %s em %s neste %s."
-
-#: ../lib/mail.php:248
-msgid "Item"
-msgstr "Item"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "Álbum"
-
-#: ../lib/mail.php:250
-msgid "*** Begin comment ***"
-msgstr "*** Início do comentário ***"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "***  Fim do comentário ***"
-
-#: ../lib/mail.php:253
-#, fuzzy
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr "Se você não deseja receber emails sobre esta imagem, clique nos links acima e certifique-se de que 'Envie-me emails quando novos comentários forem adicionados' está desmarcado em ambas as páginas de foto e álbum (Você precisará se autenticar primeiro)."
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, php-format
 msgid "New comment for %s."
 msgstr "Novo comentário para %s."
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr "Um novo comentário foi adicionado ao seu Gallery: %s"
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr "O comentário foi adicionado por %s em %s neste %s."
+
+#: ../lib/mail.php:245
+msgid "Item"
+msgstr "Item"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "Álbum"
+
+#: ../lib/mail.php:247
+msgid "*** Begin comment ***"
+msgstr "*** Início do comentário ***"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "***  Fim do comentário ***"
+
+#: ../lib/mail.php:250
+#, fuzzy
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr "Se você não deseja receber emails sobre esta imagem, clique nos links acima e certifique-se de que 'Envie-me emails quando novos comentários forem adicionados' está desmarcado em ambas as páginas de foto e álbum (Você precisará se autenticar primeiro)."
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Atividade de mail"
 
@@ -942,7 +939,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> está habilitado."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Não consigo encontrar <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -950,7 +948,8 @@ msgid "<b>jhead</b> binary located."
 msgstr "executável <b>jhead</b> encontrado."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#, fuzzy
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Sem pnmcomp e pamcomp Gallery não será capaz de adicionar marcas d'água nas imagens, exceto se você utilizar o ImageMagick e possuir o executável composite instalado."
 
 #: ../lib/setup.php:513
@@ -984,7 +983,7 @@ msgstr "%d de %d executáveis do NetPBM encontrados."
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Sem o composite Gallery não será capaz de adicionar marcas d'água nas imagens, exceto se você utilizar o NetPBM e possuir o executável pnmcomp instalado."
 
 #: ../lib/setup.php:608
@@ -1077,8 +1076,8 @@ msgid "Advanced"
 msgstr "Avançado"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "Seleção de <b>sistema de localização</b> requerida"
 
 #: ../lib/setup.php:947
@@ -1087,7 +1086,7 @@ msgstr "Há mais do que uma localização instalada em sua máquina para os seguinte
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Isto é <b>somente</b> para formato de data e hora. Você precisa somente editar os idiomas habilitados acima"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1095,7 +1094,6 @@ msgid "System locale"
 msgstr "Sistema de localizações"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Problemas no <b>sistema de localizações</b>"
 
@@ -1147,7 +1145,8 @@ msgid "Valid admin email address given."
 msgstr "Informado endereço de email do administrador válido."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Você deve especificar um email de administrador válido"
 
 #: ../lib/setup.php:1337
@@ -1160,7 +1159,8 @@ msgid "Valid sender email address given."
 msgstr "Informado endereço de email do remetente válido."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Você deve especificar um email de remetente válido"
 
 #: ../lib/setup.php:1351
@@ -1169,8 +1169,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Você deve incluir %s em seu email de boas vindas"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Você deve incluir %s ou %s em seu email de boas vindas"
 
 #: ../lib/setup.php:1380
@@ -1193,7 +1193,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d arquivos são mais recentes do que o esperado. Isso está OK se você estiver usando um pre-lançamento, beta-teste, SVN ou código modificado."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Todos os arquivos testados estão atualizados."
 
@@ -1203,8 +1202,8 @@ msgid "All %d tested files up-to-date."
 msgstr "Todos os %d arquivos testados estão atualizados."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "Isto é uma novidade na versão %s"
 
 #: ../lib/setup.php:1407
@@ -1305,8 +1304,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Esperado versão %s (ou superior) mas foi encontrada %s."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s OK. Versão atual (%s) mais recente do que a versão esperada (%s)"
 
 #: ../lib/setup.php:1589
@@ -1336,21 +1335,26 @@ msgstr "Deixar este campo em branco configura o Gallery para a mensagem padrão (
 msgid "The following placeholder can be used:"
 msgstr "Os seguintes lugares podem ser utilizados:"
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "Arquivo %s não existe."
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Status esperado: %s, mas realmente recebemos o status %s."
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "não posso detectar versão no Windows"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Versão: %s"
@@ -1370,7 +1374,8 @@ msgid "The given value is not in the allowed list of choices."
 msgstr "O valor informado não é numérico."
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+#, fuzzy
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr "Valor foi configurado para o padrão informado. Isto porque o valor original não é numérico."
 
 #: ../lib/valchecks.php:91
@@ -1380,7 +1385,7 @@ msgstr "O valor informado não é numérico."
 
 #: ../lib/valchecks.php:97
 #, fuzzy
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
 #: ../lib/valchecks.php:100
@@ -1389,12 +1394,14 @@ msgid "The given value not a valid integer."
 msgstr "O valor informado não é um inteiro válido."
 
 #: ../lib/valchecks.php:112
-msgid "Value was set to given default. Because the original value is not a valid text"
-msgstr ""
+#, fuzzy
+msgid "Value was set to given default, because the original value is not a valid text."
+msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
 #: ../lib/valchecks.php:115
-msgid "Value was corrected, because the original value is not a valid text"
-msgstr ""
+#, fuzzy
+msgid "Value was corrected, because the original value is not a valid text."
+msgstr "Valor foi configurado para o padrão informado. Isti porque o valor original não é um inteiro válido."
 
 #: ../lib/voting.php:215
 msgid "Vote"
@@ -1461,6 +1468,21 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "Um voto"
 msgstr[1] "%d votos"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "Dimensões máximas da imagem originais"
+
+#~ msgid "current location"
+#~ msgstr "diretório atual"
+
+#~ msgid "gallery title"
+#~ msgstr "título do Gallery"
+
+#~ msgid "gallery URL"
+#~ msgstr "URL do Gallery"
+
+#~ msgid "New comment for %s"
+#~ msgstr "Novo comentário para %s"
 
 #~ msgid "both"
 #~ msgstr "ambos"

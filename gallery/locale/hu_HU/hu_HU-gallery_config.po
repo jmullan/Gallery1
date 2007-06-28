@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2004-08-03 14:51+0100\n"
 "Last-Translator: Katona Tamás <tomkat AT freemail DOT hu>\n"
 "Language-Team: TomKat <tomkat AT freemail DOT hu>\n"
@@ -141,7 +141,7 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr ""
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+msgid "Can't find <i>jhead</i>."
 msgstr ""
 
 #: ../lib/setup.php:467
@@ -149,7 +149,7 @@ msgid "<b>jhead</b> binary located."
 msgstr ""
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
 #: ../lib/setup.php:513
@@ -181,7 +181,7 @@ msgid "%d of %d Netpbm binaries located."
 msgstr ""
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -275,8 +275,7 @@ msgid "Advanced"
 msgstr ""
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+msgid "<b>System</b> locale selection required."
 msgstr ""
 
 #: ../lib/setup.php:947
@@ -284,7 +283,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr ""
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -292,7 +291,6 @@ msgid "System locale"
 msgstr ""
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr ""
 
@@ -346,7 +344,8 @@ msgid "Valid admin email address given."
 msgstr ""
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Érvényes rendszergazdai email címet kell megadnod"
 
 #: ../lib/setup.php:1337
@@ -359,7 +358,8 @@ msgid "Valid sender email address given."
 msgstr ""
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Érvényes küldõ email címet kell megadnod"
 
 #: ../lib/setup.php:1351
@@ -369,7 +369,7 @@ msgstr ""
 
 #: ../lib/setup.php:1356
 #, php-format
-msgid "You must include %s or %s in your welcome email"
+msgid "You must include %s or %s in your welcome email."
 msgstr ""
 
 #: ../lib/setup.php:1380
@@ -392,7 +392,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "A következõ fájlok újabbak, mint ami a %s ezen verziójához szükséges. Ha kibocsátás elõtti (pre-release) kódot használsz, ez rendben van."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr ""
 
@@ -403,7 +402,7 @@ msgstr ""
 
 #: ../lib/setup.php:1402
 #, php-format
-msgid "this is new in version %s"
+msgid "this is new in version %s."
 msgstr ""
 
 #: ../lib/setup.php:1407
@@ -509,9 +508,9 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr ""
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
+msgstr "%d fájl újabb a vártnál."
 
 #: ../lib/setup.php:1589
 #, php-format
@@ -541,21 +540,26 @@ msgstr ""
 msgid "The following placeholder can be used:"
 msgstr "A következõ fájlok naprakészek."
 
-#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "%s fájl nem létezik."
 
-#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Várt állapot: %s, elõállt állapot: %s."
 
-#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "nem tudom megállapítani a Widows verziószámát"
 
-#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Verzió: %s"
@@ -835,6 +839,10 @@ msgstr "%sKattints ide%s a részletek elrejtéséhez"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Ha hibaüzenetet kaptál, %skattints ide%s további részletek megtekintéséhez"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "nem tudom megállapítani a Widows verziószámát"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2005-05-17 12:30+0300\n"
 "Last-Translator: A.L.T <leanh AT airland DOT kiev DOT ua>\n"
 "Language-Team: AIRLAND <admin AT airland DOT kiev DOT ua>\n"
@@ -216,8 +216,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG trung gian (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "Kích thước lớn nhất của ảnh cỡ đầy đủ"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "Kích thước lớn nhất của ảnh trung gian"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -225,7 +226,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d MêgaPixel)"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "Dung lượng kilobytes lớn nhất của ảnh JPEG/PNG cỡ đầy đủ (ghi 0 hoặc để trống để không chỉnh)"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -435,11 +437,11 @@ msgid "Bottom"
 msgstr "Đáy"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+msgid "Bonus to height of current microthumb (in px)"
 msgstr ""
 
 #: ../includes/definitions/services.php:45
@@ -471,7 +473,7 @@ msgid "The Options window has closed. Exiting."
 msgstr ""
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+msgid "This window must be called from an Options window."
 msgstr ""
 
 #: ../lib/content.php:45
@@ -538,12 +540,13 @@ msgid "Search:"
 msgstr "Tìm&nbsp;kiếm"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "Không đóng cửa sổ này vì trình gỡ rối đang bật"
 
 #: ../lib/content.php:724
 #, fuzzy, php-format
-msgid "Problem including file %s"
+msgid "Problem including file %s."
 msgstr "Có vấn đề khi thêm %s:"
 
 #: ../lib/content.php:869
@@ -554,11 +557,7 @@ msgstr "Chọn Album"
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "vị trí hiện tại"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 #, fuzzy
 msgid "Current location"
 msgstr "vị trí hiện tại"
@@ -626,26 +625,28 @@ msgid "Skipping %s."
 msgstr "Bỏ qua %s."
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "Không thể mở %s"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "Chưa chính xác"
 
 #: ../lib/imageManipulation.php:36
-#, php-format
-msgid "Resizing Image: %s"
+#, fuzzy, php-format
+msgid "Resizing Image: %s."
 msgstr "Chỉnh cỡ ảnh: %s"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "Không yêu cầu chỉnh cỡ"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "dung lượng file chọn %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -655,7 +656,7 @@ msgstr "-> cỡ file %d kbytes"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "thử chất lượng %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -678,12 +679,12 @@ msgstr "Ảnh chèn"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
 #, fuzzy
-msgid "No Cropping Done"
+msgid "No Cropping Done."
 msgstr "Không có chú thích"
 
 #: ../lib/imageManipulation.php:580
@@ -698,7 +699,7 @@ msgstr "File %s loại %d."
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
 #, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr ""
 
 #: ../lib/imageManipulation.php:694
@@ -716,17 +717,18 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr ""
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "Không thể nhận dữ liệu EXIF (jhead không được cài đặt)"
 
 #: ../lib/imageManipulation.php:786
 #, fuzzy
-msgid "Using IM high quality"
+msgid "Using IM high quality."
 msgstr "%d của %d ImageMagick binaries đã thấy."
 
 #: ../lib/imageManipulation.php:790
 #, fuzzy
-msgid "Not using IM high quality"
+msgid "Not using IM high quality."
 msgstr "%d của %d ImageMagick binaries đã thấy."
 
 #: ../lib/lang.php:787
@@ -776,17 +778,18 @@ msgid "Report abuse to %s"
 msgstr "Báo cáo tới %s"
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "Email không được gửi vì chức năng gửi email không hiệu lực cho thư viện ảnh"
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "Email không được gửi tới %s vì đó là địa chỉ không hợp lệ"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "Email không được gửi vì không cung cấp địa chỉ"
 
 #: ../lib/mail.php:96
@@ -799,15 +802,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
 #: ../lib/mail.php:166
-#, fuzzy, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "Chào !!FULLNAME!!,  \n"
 "\n"
@@ -817,94 +820,81 @@ msgstr ""
 "\n"
 "Thư viện ảnh @ %s Ban quản trị."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "tiêu đề thư viện ảnh"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "URL thư viện ảnh"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+msgid "The URL to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Trợ giúp QT"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Tên truy cập"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 #, fuzzy
 msgid "Fullname"
 msgstr "Tên đầy đủ"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 #, fuzzy
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "%s sẽ được thay thế bằng một liên kết để thành viên mới có thể nhấn để tạo một mật khẩu mới"
 
-#: ../lib/mail.php:235
-#, fuzzy, php-format
-msgid "New comment for %s"
-msgstr "xem lời bình"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr ""
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:248
-#, fuzzy
-msgid "Item"
-msgstr "mục/ảnh"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "Album"
-
-#: ../lib/mail.php:250
-#, fuzzy
-msgid "*** Begin comment ***"
-msgstr "tìm lời bình nhảm nhí"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "tìm lời bình nhảm nhí"
-
-#: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "xem lời bình"
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:245
+#, fuzzy
+msgid "Item"
+msgstr "mục/ảnh"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "Album"
+
+#: ../lib/mail.php:247
+#, fuzzy
+msgid "*** Begin comment ***"
+msgstr "tìm lời bình nhảm nhí"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "tìm lời bình nhảm nhí"
+
+#: ../lib/mail.php:250
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Kích hoạt Email"
 
@@ -963,7 +953,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> có hiệu lực."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Không thấy <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -971,7 +962,8 @@ msgid "<b>jhead</b> binary located."
 msgstr "Đã thấy <b>jhead</b> binary."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#, fuzzy
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Nếu không có pnmcomp và pamcomp thư viện ảnh sẽ không thể tạo ảnh chèn cho ảnh, ngoại trừ bạn dùng ImageMagick và có binary kết hợp đã được cài đặt."
 
 #: ../lib/setup.php:513
@@ -1005,7 +997,7 @@ msgstr "%d của %d NetPBM binaries đã thấy."
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Nếu không có composite thư viện ảnh sẽ không thể tạo ảnh chèn ảnh, ngoại trừ bạn dùng NetPBM và có binary pnmcomp đã được cài đặt."
 
 #: ../lib/setup.php:608
@@ -1098,8 +1090,8 @@ msgid "Advanced"
 msgstr "Nâng cao"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "<b>Hệ thống</b> locale được yêu cầu lựa chọn"
 
 #: ../lib/setup.php:947
@@ -1108,7 +1100,7 @@ msgstr "Có hơn một loại <b>hệ thống</b> locale phù hợp được cà
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Chỉ dành cho định dạng ngày tháng và thời gian. Bạn chỉ cần biên soạn những ngôn ngữ mà bạn đã chọn ở trên"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1116,7 +1108,6 @@ msgid "System locale"
 msgstr "Hệ thống locale"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>Hệ thống</b> locale có vấn đề"
 
@@ -1168,7 +1159,8 @@ msgid "Valid admin email address given."
 msgstr "Đưa ra địa chỉ email QT hợp lệ."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Bạn phải ghi địa chỉ email QT hợp lệ"
 
 #: ../lib/setup.php:1337
@@ -1181,7 +1173,8 @@ msgid "Valid sender email address given."
 msgstr "Đưa ra địa chỉ email người gửi hợp lệ."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Bạn phải ghi địa chỉ email người gửi hợp lệ"
 
 #: ../lib/setup.php:1351
@@ -1190,8 +1183,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Bạn phải bao gồm cả %s trong email chào mừng"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Bạn phải bao gồm cả %s hoặc %s trong email chào mừng"
 
 #: ../lib/setup.php:1380
@@ -1214,7 +1207,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d files là mới gần đây hơn so với yêu cầu.  Không vấn đề gì khi bạn sử dụng phiên bản giới thiệu trước, beta, CVS hoặc thay đổi mã."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Tất cả file được kiểm tra đúng hạn."
 
@@ -1224,8 +1216,8 @@ msgid "All %d tested files up-to-date."
 msgstr "Tất cả %d file được kiểm tra đúng hạn."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "tính năng mới trong phiên bản %s"
 
 #: ../lib/setup.php:1407
@@ -1326,8 +1318,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Phiên bản yêu cầu %s (hoặc mới hơn) nhưng thấy %s."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s tốt.  Phiên bản thực tế (%s) mới hơn so với phiên bản yêu cầu (%s)"
 
 #: ../lib/setup.php:1589
@@ -1359,21 +1351,26 @@ msgstr "Hãy để mẫu này trống để sử dụng tin mặc định mà c�
 msgid "The following placeholder can be used:"
 msgstr "Những file sau là đúng hạn."
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "File %s không tồn tại."
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Trạng thái yêu cầu: %s, nhưng trạng thái nhận thực tế %s."
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "không thể nhận ra phiên bản trên Windows"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "Ok! Phiên bản: %s"
@@ -1391,7 +1388,7 @@ msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:91
@@ -1399,7 +1396,7 @@ msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:100
@@ -1407,11 +1404,11 @@ msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
-msgid "Value was set to given default. Because the original value is not a valid text"
+msgid "Value was set to given default, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/valchecks.php:115
-msgid "Value was corrected, because the original value is not a valid text"
+msgid "Value was corrected, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/voting.php:215
@@ -1481,6 +1478,22 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "một bình chọn"
 msgstr[1] "%d bình chọn"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "Kích thước lớn nhất của ảnh cỡ đầy đủ"
+
+#~ msgid "current location"
+#~ msgstr "vị trí hiện tại"
+
+#~ msgid "gallery title"
+#~ msgstr "tiêu đề thư viện ảnh"
+
+#~ msgid "gallery URL"
+#~ msgstr "URL thư viện ảnh"
+
+#, fuzzy
+#~ msgid "New comment for %s"
+#~ msgstr "xem lời bình"
 
 #, fuzzy
 #~ msgid "both"

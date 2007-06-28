@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2006-01-22 00:11+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: Afrikaans <gerrit AT hoekstra DOT co DOT uk>\n"
@@ -217,8 +217,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "Maximum l&ecirc;er grootte van middelmatig-grootte JPEG/PNG beelde in kilogrepe (0 of blanko vir geen groottebeperkings)"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "Maximum dimensies van volgrootte beelde"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "Maximum vergrooting van middelmatig-grootte foto's"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -226,7 +227,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "Maximum l&ecirc;ergrootte van volgroot JPEG/PNG beelde in kilogrepe (0 or blanko vir geen groottebeperkings)"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -432,11 +434,13 @@ msgid "Bottom"
 msgstr "Onder"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+#, fuzzy
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr "Hoogte van mikrobeelde in die navigasiebalk"
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+#, fuzzy
+msgid "Bonus to height of current microthumb (in px)"
 msgstr "Bonus tot die hoogte van die huidige mikrobeeld (beeldelement) "
 
 #: ../includes/definitions/services.php:45
@@ -468,7 +472,8 @@ msgid "The Options window has closed. Exiting."
 msgstr "Die opsies venster is gesluit. Sluit."
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+#, fuzzy
+msgid "This window must be called from an Options window."
 msgstr "Hierdie venster moet vanaf 'n opsies vernster ge-open word."
 
 #: ../lib/content.php:45
@@ -532,12 +537,13 @@ msgid "Search:"
 msgstr "Soek:"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "Hierdie venster bly oop omdat die ontfout-modus aktief is."
 
 #: ../lib/content.php:724
-#, php-format
-msgid "Problem including file %s"
+#, fuzzy, php-format
+msgid "Problem including file %s."
 msgstr "Probleem om %s by te voeg:"
 
 #: ../lib/content.php:869
@@ -548,11 +554,7 @@ msgstr "Kies Album"
 msgid "Move to top level"
 msgstr "Skuif na topvlak"
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "Huidige vindplek"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 msgid "Current location"
 msgstr "Huidige vindplek"
 
@@ -617,26 +619,28 @@ msgid "Skipping %s."
 msgstr "Slaan %s oor."
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "Kan nie %s oopmaak nie"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "Nog nie geldig nie"
 
 #: ../lib/imageManipulation.php:36
-#, php-format
-msgid "Resizing Image: %s"
+#, fuzzy, php-format
+msgid "Resizing Image: %s."
 msgstr "Vergrooting/verkleining van %s"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "Geen vergrooting of verkleining nodig nie"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "doel l&ecirc;er grootte %d kilogrepe"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -646,7 +650,7 @@ msgstr "-> l&ecirc;er grootte %d kilogrepe"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "probeer kwaliteit %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -668,11 +672,12 @@ msgstr "Sny beeld."
 
 #: ../lib/imageManipulation.php:549
 #, fuzzy, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr "Skep vierkantige weergawe teen %dpx"
 
 #: ../lib/imageManipulation.php:570
-msgid "No Cropping Done"
+#, fuzzy
+msgid "No Cropping Done."
 msgstr "Geen afsny gedoenf"
 
 #: ../lib/imageManipulation.php:580
@@ -687,7 +692,7 @@ msgstr "l&ecirc;er %s tyd %d."
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
 #, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr ""
 
 #: ../lib/imageManipulation.php:694
@@ -705,15 +710,18 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr "Grootteaanpassing parameters: src: %s, %s tekengrootte: %s"
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "Dit is nie moontlik om EXIF data te stoor nie (jhead is nie geinstalleer nie)."
 
 #: ../lib/imageManipulation.php:786
-msgid "Using IM high quality"
+#, fuzzy
+msgid "Using IM high quality."
 msgstr "Gebruik ho&euml; gehalte <i>IM</i>"
 
 #: ../lib/imageManipulation.php:790
-msgid "Not using IM high quality"
+#, fuzzy
+msgid "Not using IM high quality."
 msgstr "Gebruik nie ho&euml; gehalte <i>IM</i> nie"
 
 #: ../lib/lang.php:787
@@ -763,17 +771,18 @@ msgid "Report abuse to %s"
 msgstr "Raporteer misbuik aan %s"
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "E-pos is nie gestuur nie, omdat dit in hierdie galery versper is"
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "E-pos is nie aan %s gestuur nie, omdat dit 'n ongeldig adres is"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "E-pos is nie gestuur nie, omdat 'n adres nie verskaf is nie"
 
 #: ../lib/mail.php:96
@@ -786,15 +795,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr "Hierdie is 'n HTML e-pos, verwys asseblief na die aanhangsel."
 
 #: ../lib/mail.php:166
-#, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "Hallo !!FULLNAME!!, \n"
 "\n"
@@ -804,90 +813,78 @@ msgstr ""
 "\n"
 "Galery @ %s Administrateur."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "galery titel"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "galery URL"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+#, fuzzy
+msgid "The URL to your Gallery."
 msgstr "Die URL na jou galery"
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr "Titel vir jou galery"
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 msgid "Admin email(s)"
 msgstr "Administrasie e-pos(e)"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr "Wagwoord vir die nuutgeskepte gebruiker. "
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Gebruikernaam"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 msgid "Fullname"
 msgstr "Volle Naam"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "Sal met 'n skakel vervang word, waarmee die nuwe gebruiker 'n nuwe wagwoord kan skep."
 
-#: ../lib/mail.php:235
-#, php-format
-msgid "New comment for %s"
-msgstr "Nuwe kommentaar vir %s"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr "Nuwe kommentaar is op die galery gelewer: %s"
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr "Die kommentaar is deur %s op %s in hierdie %s gelewer."
-
-#: ../lib/mail.php:248
-msgid "Item"
-msgstr "item"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "Album"
-
-#: ../lib/mail.php:250
-msgid "*** Begin comment ***"
-msgstr "*** Kommentaar begin ***"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "*** Kommentaar eindig ***"
-
-#: ../lib/mail.php:253
-#, fuzzy
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr "Indien jy nie langer e-posse oor hierdie beeld wil ontvang nie, volg die skakel hierbo en verseker dat die \"stuur my e-pos wanneer kommentaar gelewer is\" opsie in beide die foto- en albumblad nie gemerk is nie. (Jy sal eers moet aanteken).   "
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, php-format
 msgid "New comment for %s."
 msgstr "Nuwe kommentaar vir %s."
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr "Nuwe kommentaar is op die galery gelewer: %s"
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr "Die kommentaar is deur %s op %s in hierdie %s gelewer."
+
+#: ../lib/mail.php:245
+msgid "Item"
+msgstr "item"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "Album"
+
+#: ../lib/mail.php:247
+msgid "*** Begin comment ***"
+msgstr "*** Kommentaar begin ***"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "*** Kommentaar eindig ***"
+
+#: ../lib/mail.php:250
+#, fuzzy
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr "Indien jy nie langer e-posse oor hierdie beeld wil ontvang nie, volg die skakel hierbo en verseker dat die \"stuur my e-pos wanneer kommentaar gelewer is\" opsie in beide die foto- en albumblad nie gemerk is nie. (Jy sal eers moet aanteken).   "
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "E-pos aktiviteit"
 
@@ -944,7 +941,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> is onsper."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Kan nie <b>jhead</b> vind nie"
 
 #: ../lib/setup.php:467
@@ -952,7 +950,8 @@ msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> gevind."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#, fuzzy
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Sonder <i>pnmcomp</i> en <i>pamcomp</i> sal <i>Gallery</i> nie foto's kan watermerk nie, behalwe as jy ImageMagick gebruik en die <i>composite</i> bin&ecirc;re l&ecirc;er ge&iuml;nstalleer het."
 
 #: ../lib/setup.php:513
@@ -986,7 +985,7 @@ msgstr "%d van %d NetPBM bin&ecirc;re l&ecirc;&euml;rs gevind."
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Sonder <i>composite</i> sal <i>Gallery</i> nie foto's kan watermerk nie, behalwe as jy NetPBM gebruik en die <i>pnmcomp</i> bin&ecirc;re l&ecirc;er ge&iuml;nstalleer het."
 
 #: ../lib/setup.php:608
@@ -1079,8 +1078,8 @@ msgid "Advanced"
 msgstr "Gevorderd"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "Kies 'n lokaliteitsinstelling"
 
 #: ../lib/setup.php:947
@@ -1089,7 +1088,7 @@ msgstr "Daar is meer as een geskikte lokaliteitsinstelling vir die volgende tale
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Dit is n&eacute;t vir datum en tyd formaat, en jy hoef dit net vir die taal te wysig wat jy hierbo gekies het"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1097,7 +1096,6 @@ msgid "System locale"
 msgstr "Sisteem lokaliteitsininstelling"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>Systeem</b> lokaliteitsininstellings probleem"
 
@@ -1149,7 +1147,8 @@ msgid "Valid admin email address given."
 msgstr "Geldige Administrateur e-pos adres ingevoer."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Jy moet 'n geldige Administrateur e-pos adres invoer"
 
 #: ../lib/setup.php:1337
@@ -1162,7 +1161,8 @@ msgid "Valid sender email address given."
 msgstr "Geldige stuurder e-pos adres ingevoer."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Jy moet 'n geldige stuurder e-pos adres invoer"
 
 #: ../lib/setup.php:1351
@@ -1171,8 +1171,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Jy moet %s in jou verwelkomings e-pos insluit"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Jy moet %s of %s in jou verwelkomings e-pos insluit"
 
 #: ../lib/setup.php:1380
@@ -1195,7 +1195,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d l&ecirc;&euml;rs is meer onlangs as wat verwag is. As jy <i>pre-release</i> kode gebruik, is dit te verwagte."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Alle getoetsde lecirc;&euml;rs is op datum."
 
@@ -1205,8 +1204,8 @@ msgid "All %d tested files up-to-date."
 msgstr "%d l&ecirc;&euml;rs is op datum."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "hierdie is nuut in versie %s"
 
 #: ../lib/setup.php:1407
@@ -1307,8 +1306,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Verwagte version %s (of grooter) maar %s gevind."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s OK. Huidige version (%s) meer onlangs as verwagte versie (%s)"
 
 #: ../lib/setup.php:1589
@@ -1338,21 +1337,26 @@ msgstr "Laat hierdie veld blanko om die verstek boodskap, wat in enige taal vert
 msgid "The following placeholder can be used:"
 msgstr "Die volgende plekhouer kan gebruik word:"
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "L&ecirc;er %s bestaan nie."
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Verwagte status: %s, maar die onvange status is %s."
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "kan versie nie in Windows vasstel nie"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Versie: %s"
@@ -1373,7 +1377,8 @@ msgid "The given value is not in the allowed list of choices."
 msgstr "Die gegewe waarde is nie numeries nie."
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+#, fuzzy
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr "Die verstekwaarde is gebruik aangesien die oorspronklike waarde nie numeries is nie."
 
 #: ../lib/valchecks.php:91
@@ -1383,7 +1388,7 @@ msgstr "Die gegewe waarde is nie numeries nie."
 
 #: ../lib/valchecks.php:97
 #, fuzzy
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr "Die verstekwaarde is gebruik aangesien die oorspronklike waarde nie 'n geldige <i>Integer</i> is nie."
 
 #: ../lib/valchecks.php:100
@@ -1393,12 +1398,12 @@ msgstr "Die gegewe waarde is nie 'n geldige <i>Integer</i>."
 
 #: ../lib/valchecks.php:112
 #, fuzzy
-msgid "Value was set to given default. Because the original value is not a valid text"
+msgid "Value was set to given default, because the original value is not a valid text."
 msgstr "Die verstekwaarde is gebruik aangesien die oorspronklike waarde nie 'n geldige <i>Integer</i> is nie."
 
 #: ../lib/valchecks.php:115
 #, fuzzy
-msgid "Value was corrected, because the original value is not a valid text"
+msgid "Value was corrected, because the original value is not a valid text."
 msgstr "Die verstekwaarde is gebruik aangesien die oorspronklike waarde nie 'n geldige <i>Integer</i> is nie."
 
 #: ../lib/voting.php:215
@@ -1468,6 +1473,21 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "een stem"
 msgstr[1] "%d stemme"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "Maximum dimensies van volgrootte beelde"
+
+#~ msgid "current location"
+#~ msgstr "Huidige vindplek"
+
+#~ msgid "gallery title"
+#~ msgstr "galery titel"
+
+#~ msgid "gallery URL"
+#~ msgstr "galery URL"
+
+#~ msgid "New comment for %s"
+#~ msgstr "Nuwe kommentaar vir %s"
 
 #~ msgid "both"
 #~ msgstr "albei"

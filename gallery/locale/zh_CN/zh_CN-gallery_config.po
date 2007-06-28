@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2003-08-27 18:13+0800\n"
 "Last-Translator: Merlin Ma <merlin AT turbolinux DOT com DOT cn>\n"
 "Language-Team: Simplified Chinese <naoki AT cmfans DOT cn>\n"
@@ -146,7 +146,7 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "mod_rewrite 开启"
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+msgid "Can't find <i>jhead</i>."
 msgstr ""
 
 #: ../lib/setup.php:467
@@ -155,7 +155,7 @@ msgid "<b>jhead</b> binary located."
 msgstr "找到 jhead 可执行档"
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
 #: ../lib/setup.php:513
@@ -189,7 +189,7 @@ msgid "%d of %d Netpbm binaries located."
 msgstr "找到 %d 个 NetPBM 可执行档"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -288,8 +288,8 @@ msgid "Advanced"
 msgstr "进阶"
 
 #: ../lib/setup.php:946
-#, fuzzy, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "Locale 选择"
 
 #: ../lib/setup.php:947
@@ -298,7 +298,7 @@ msgid "There is more than one suitable <b>system</b> locale installed on your ma
 msgstr "下列语言在您的机器上有一个以上的 locales 可以选择, 请选一个择你认为最适合的. "
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr ""
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -307,7 +307,7 @@ msgid "System locale"
 msgstr "系统检查网页"
 
 #: ../lib/setup.php:1026
-#, fuzzy, php-format
+#, fuzzy
 msgid "<b>System</b> locale problems"
 msgstr "Locale 问题"
 
@@ -367,7 +367,7 @@ msgstr "电子信箱"
 
 #: ../lib/setup.php:1329
 #, fuzzy
-msgid "You must specify valid admin email addresses"
+msgid "You must specify valid admin email addresses."
 msgstr "您一定要输入口令"
 
 #: ../lib/setup.php:1337
@@ -382,7 +382,7 @@ msgstr "服务器 IP 地址"
 
 #: ../lib/setup.php:1348
 #, fuzzy
-msgid "You must specify a valid sender email address"
+msgid "You must specify a valid sender email address."
 msgstr "您一定要输入用户名"
 
 #: ../lib/setup.php:1351
@@ -392,7 +392,7 @@ msgstr ""
 
 #: ../lib/setup.php:1356
 #, php-format
-msgid "You must include %s or %s in your welcome email"
+msgid "You must include %s or %s in your welcome email."
 msgstr ""
 
 #: ../lib/setup.php:1380
@@ -415,7 +415,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr ""
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr ""
 
@@ -425,8 +424,8 @@ msgid "All %d tested files up-to-date."
 msgstr ""
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "这是版本 %s 的新功能"
 
 #: ../lib/setup.php:1407
@@ -536,7 +535,7 @@ msgstr ""
 
 #: ../lib/setup.php:1587
 #, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr ""
 
 #: ../lib/setup.php:1589
@@ -566,21 +565,26 @@ msgstr ""
 msgid "The following placeholder can be used:"
 msgstr ""
 
-#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "文件 %s 并不存在. "
 
-#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "我们希望收到信息：%s, 但传回来的状况是 %s. "
 
-#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "无法侦测 Windows 的版本"
 
-#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
 #, fuzzy, php-format
 msgid "OK!  Version: %s"
 msgstr "Ok!  版本：%s"
@@ -869,6 +873,10 @@ msgstr "%s点选这里%s 隐藏进阶信息"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "如果您看到错误产生, 请 %s点这里%s 得到更多信息"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "无法侦测 Windows 的版本"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 #, fuzzy

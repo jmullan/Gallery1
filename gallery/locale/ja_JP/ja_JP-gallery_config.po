@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2005-08-05 23:39+0900\n"
 "Last-Translator: Kennichi Uehara <ken.w3m+nospam AT gmail DOT com>\n"
 "Language-Team: Japanese <ken_w3m+nospam AT gmail DOT com>\n"
@@ -142,7 +142,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> は有効です。"
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "<i>jhead</i> が見付かりません"
 
 #: ../lib/setup.php:467
@@ -151,7 +152,7 @@ msgstr "<b>jhead</b> バイナリが検出されました。"
 
 #: ../lib/setup.php:505
 #, fuzzy
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "ImageMagickを使用し、compositeバイナリがインストールされている場合をのぞき、pnmcompのないgalleryは透かし画像を利用できません。"
 
 #: ../lib/setup.php:513
@@ -185,7 +186,7 @@ msgstr "%2$d個中%1$d個のNetPBMバイナリ全てが検出されました"
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "NetPBMを使用し、pnmcompバイナリがインストールされている場合をのぞき、compositeのないgalleryは透かし画像を利用できません。"
 
 #: ../lib/setup.php:608
@@ -279,8 +280,8 @@ msgid "Advanced"
 msgstr "高度"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "<b>システム</b>ロケール選択が必要です"
 
 #: ../lib/setup.php:947
@@ -289,7 +290,7 @@ msgstr "以下の言語に対応する2つ以上の<b>システム</b>ロケールがインストールされて
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "これは日付と時間のフォーマット <b>のみ</b> のためのものです。上で有効にした言語を編集することだけ必要です。"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -297,7 +298,6 @@ msgid "System locale"
 msgstr "システムロケール"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>システム</b>ロケールの不具合"
 
@@ -351,7 +351,8 @@ msgid "Valid admin email address given."
 msgstr "有効な管理者のアドレスがあたえられました。"
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "有効な管理者メールアドレスを指定しなくてはいけません。"
 
 #: ../lib/setup.php:1337
@@ -364,7 +365,8 @@ msgid "Valid sender email address given."
 msgstr "有効な送信者メールアドレスがあたえられました。"
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "有効な送信者メールアドレスを指定しなくてはいけません。"
 
 #: ../lib/setup.php:1351
@@ -373,8 +375,8 @@ msgid "You must include %s in your welcome email"
 msgstr "%s をウェルカムメールに含めなくてはいけません。"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "%s か %s をウェルカムメールに含めなくてはいけません。"
 
 #: ../lib/setup.php:1380
@@ -397,7 +399,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%dファイルは予期されたものより新しいです。プレリリース、β版、CVS版、手を加えたコードを使っているなら、問題ありません。"
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "テストされたファイルは全て最新です。"
 
@@ -407,8 +408,8 @@ msgid "All %d tested files up-to-date."
 msgstr "テストされた %d ファイルは全て最新です。"
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "これはバージョン%sの新しいものです。"
 
 #: ../lib/setup.php:1407
@@ -514,8 +515,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "予期されたバージョンは %s(あるいはそれ以上)ですが、検出されたのは%sです。"
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s はOKです。実際のバージョン(%s)は予期されたバージョン(%s)よりも新しいです。"
 
 #: ../lib/setup.php:1589
@@ -547,21 +548,26 @@ msgstr "他の言語に翻訳可能なデフォルトのメッセージを得るには、このフィールドを空
 msgid "The following placeholder can be used:"
 msgstr "以下のファイルは最新です。"
 
-#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "ファイル%sは存在しません。"
 
-#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "期待されたステータスは%sでしたが、実際のステータスは%sでした。"
 
-#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "Windows上ではバージョン検出できません"
 
-#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! バージョン: %s"
@@ -841,6 +847,10 @@ msgstr "%sここをクリック%sして、詳細を隠す"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "エラーが発生していたら、%sここをクリックして%s詳細を見てください。"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "Windows上ではバージョン検出できません"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"

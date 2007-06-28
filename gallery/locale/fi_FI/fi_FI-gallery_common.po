@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2004-04-07 09:49+0200\n"
 "Last-Translator: Olli Salo <osalo AT orssi DOT jyu DOT fi>\n"
 "Language-Team: Finnish <osalo AT orssi DOT jyu DOT fi>\n"
@@ -217,8 +217,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "Maksimi keskikokoiselle JPEG/PNG kuvalle kilotavuina (0 tai tyhjä = ei kokorajoitusta)"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "Kokonaisten kuvien maksimimitat"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "Keskikokoisten kuvien maksimimitat"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -226,7 +227,8 @@ msgid "%d (%d MPix)"
 msgstr "%d (%d MPix)"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "Maksimi tiedostonkoko kokonaiselle JPEG/PNG kuvalle kilotavuina (0 tai tyhjä = ei kokorajoitusta)"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -436,11 +438,11 @@ msgid "Bottom"
 msgstr "Ala"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+msgid "Bonus to height of current microthumb (in px)"
 msgstr ""
 
 #: ../includes/definitions/services.php:45
@@ -472,7 +474,7 @@ msgid "The Options window has closed. Exiting."
 msgstr ""
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+msgid "This window must be called from an Options window."
 msgstr ""
 
 #: ../lib/content.php:45
@@ -539,12 +541,13 @@ msgid "Search:"
 msgstr "Etsi"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "Ikkunaa ei suljeta koska debug-tila on p&auml;&auml;ll&auml;"
 
 #: ../lib/content.php:724
 #, fuzzy, php-format
-msgid "Problem including file %s"
+msgid "Problem including file %s."
 msgstr "Virhe lisättäessä %s:"
 
 #: ../lib/content.php:869
@@ -555,11 +558,7 @@ msgstr "Valitse albumi"
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "nykyinen sijainti"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 #, fuzzy
 msgid "Current location"
 msgstr "nykyinen sijainti"
@@ -627,26 +626,28 @@ msgid "Skipping %s."
 msgstr "Ohitetaan %s."
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "En voi avata %s"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "Ei vielä käytössä"
 
 #: ../lib/imageManipulation.php:36
-#, php-format
-msgid "Resizing Image: %s"
+#, fuzzy, php-format
+msgid "Resizing Image: %s."
 msgstr "Kuvakoon muutos: %s"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "Koonmuutosta ei tarvita"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "tavoiteltu tiedostokoko %d kilotavuina"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -656,7 +657,7 @@ msgstr "-> tiedostokoko %d kilotavua"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "yritet&auml;&auml;n laatua %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -679,12 +680,12 @@ msgstr "Luodaan vesileima kuvalle"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
 #, fuzzy
-msgid "No Cropping Done"
+msgid "No Cropping Done."
 msgstr "Ei kuvateksti&auml;"
 
 #: ../lib/imageManipulation.php:580
@@ -699,7 +700,7 @@ msgstr "Tiedoston %s tyyppi on %d."
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
 #, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr ""
 
 #: ../lib/imageManipulation.php:694
@@ -717,17 +718,18 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr ""
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "EXIF -dataa ei voitu säilöä (jhead:ia ei ole asennettu)"
 
 #: ../lib/imageManipulation.php:786
 #, fuzzy
-msgid "Using IM high quality"
+msgid "Using IM high quality."
 msgstr "%d / %d ImageMagick bin&auml;&auml;riä paikallistettu"
 
 #: ../lib/imageManipulation.php:790
 #, fuzzy
-msgid "Not using IM high quality"
+msgid "Not using IM high quality."
 msgstr "%d / %d ImageMagick bin&auml;&auml;riä paikallistettu"
 
 #: ../lib/lang.php:787
@@ -777,17 +779,18 @@ msgid "Report abuse to %s"
 msgstr "Raportoi väärinkäytökset %s."
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "Sähköpostia ei lähetetty, koska sähköpostiominaisuus ei ole käytössä tässä galleriassa. "
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "Sähköpostia ei lähetetty, koska %s ei ole kelvollinen osoite"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "Sähköpostia ei lähetetty, koska osoite puuttui"
 
 #: ../lib/mail.php:96
@@ -800,15 +803,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
 #: ../lib/mail.php:166
-#, fuzzy, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "Hei !!FULLNAME!!,  \n"
 "\n"
@@ -818,94 +821,81 @@ msgstr ""
 "\n"
 "Terveisin, %s ylläpitäjä."
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "gallerian otsikko"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "gallerian osoite"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+msgid "The URL to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Admin ohje"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "Käyttäjänimi"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 #, fuzzy
 msgid "Fullname"
 msgstr "Koko nimi"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 #, fuzzy
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "%s korvataan linkillä, jossa käyttäjä voi luoda uuden salasanan"
 
-#: ../lib/mail.php:235
-#, fuzzy, php-format
-msgid "New comment for %s"
-msgstr "n&auml;yt&auml; kommentit"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr ""
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:248
-#, fuzzy
-msgid "Item"
-msgstr "kohdetta"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "albumi"
-
-#: ../lib/mail.php:250
-#, fuzzy
-msgid "*** Begin comment ***"
-msgstr "etsi spam-kommentit"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "etsi spam-kommentit"
-
-#: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "n&auml;yt&auml; kommentit"
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:245
+#, fuzzy
+msgid "Item"
+msgstr "kohdetta"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "albumi"
+
+#: ../lib/mail.php:247
+#, fuzzy
+msgid "*** Begin comment ***"
+msgstr "etsi spam-kommentit"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "etsi spam-kommentit"
+
+#: ../lib/mail.php:250
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "Sähköpostin aktiivisuus"
 
@@ -963,7 +953,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> -omanaisuus on päällä."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "<i>jhead</i> ei löytynyt"
 
 #: ../lib/setup.php:467
@@ -971,7 +962,7 @@ msgid "<b>jhead</b> binary located."
 msgstr "jhead:in binaari paikallistettu"
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
 #: ../lib/setup.php:513
@@ -1004,7 +995,7 @@ msgid "%d of %d Netpbm binaries located."
 msgstr "%d / %d NetPBM-bin&auml;&auml;riä paikallistettu"
 
 #: ../lib/setup.php:602
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
 #: ../lib/setup.php:608
@@ -1098,8 +1089,8 @@ msgid "Advanced"
 msgstr "Kehittynyt"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "<b>Järjestelmän</b> locale-valinta vaaditaan"
 
 #: ../lib/setup.php:947
@@ -1108,7 +1099,7 @@ msgstr "Seuraaville kielille on asennettuna yksi tai useampi sopiva <b>järjestel
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Tämä on <b>vain</b> päivämäärä / ajan formaattia varten. Sinun täytyy vain muokata kieliä jotka valitsit yläpuolella"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1116,7 +1107,6 @@ msgid "System locale"
 msgstr "Järjestelmän lokaalit"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>Järjestelmän</b> locale-ongelmia"
 
@@ -1170,7 +1160,8 @@ msgid "Valid admin email address given."
 msgstr "Kelvollinen ylläpidon sähköpostiosoite annettu."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Sinun t&auml;ytyy määrittää toimiva ylläpidon sähköpostiosoite"
 
 #: ../lib/setup.php:1337
@@ -1183,7 +1174,8 @@ msgid "Valid sender email address given."
 msgstr "Kelvollinen lähettäjän sähköpostiosoite annettu."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Sinun t&auml;ytyy määrittää kelvollinen lähettäjän sähköpostiosoite"
 
 #: ../lib/setup.php:1351
@@ -1192,8 +1184,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Sinun täytyy liittää %s tervetuloviestiin"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Sinun täytyy sisältää %s tai %s tervetuloviestissäsi"
 
 #: ../lib/setup.php:1380
@@ -1216,7 +1208,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d tiedostoa ovat tuoreempia kuin mitä odotettiin.  Tämä on ok jos käytät esijulkaisua, beta-versiota, CVS-versiota tai muokattua koodia."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Kaikki testatut tiedostot ovat ajan tasalla."
 
@@ -1226,8 +1217,8 @@ msgid "All %d tested files up-to-date."
 msgstr "Kaikki %d testatut tiedostot ovat ajan tasalla."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "t&auml;m&auml; on uutta versiossa %s"
 
 #: ../lib/setup.php:1407
@@ -1328,8 +1319,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Odotettu versio oli %s (tai suurempi), mutta löytyi vain versio %s."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s OK.  Versio (%s) on suurempi kuin odotettu versio (%s)"
 
 #: ../lib/setup.php:1589
@@ -1361,21 +1352,26 @@ msgstr "Jätä tämä kenttä tyhjäksi käyttääksesi oletusviestiä joka voidaan kääntä
 msgid "The following placeholder can be used:"
 msgstr "Seuraavat tiedostot ovat ajan tasalla."
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "Tiedostos %s ei ole olemassa."
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Odotettu tila: %s, mutta saatiin oikeasti tila %s."
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "Window-versiota ei saada selvitetty&auml;"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "Ok!  Versio: %s"
@@ -1393,7 +1389,7 @@ msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:91
@@ -1401,7 +1397,7 @@ msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:100
@@ -1409,11 +1405,11 @@ msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
-msgid "Value was set to given default. Because the original value is not a valid text"
+msgid "Value was set to given default, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/valchecks.php:115
-msgid "Value was corrected, because the original value is not a valid text"
+msgid "Value was corrected, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/voting.php:215
@@ -1483,6 +1479,22 @@ msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "yksi ääni"
 msgstr[1] "%d ääntä"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "Kokonaisten kuvien maksimimitat"
+
+#~ msgid "current location"
+#~ msgstr "nykyinen sijainti"
+
+#~ msgid "gallery title"
+#~ msgstr "gallerian otsikko"
+
+#~ msgid "gallery URL"
+#~ msgstr "gallerian osoite"
+
+#, fuzzy
+#~ msgid "New comment for %s"
+#~ msgstr "n&auml;yt&auml; kommentit"
 
 #, fuzzy
 #~ msgid "both"

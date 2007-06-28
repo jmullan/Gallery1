@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.7-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-28 11:34+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2005-10-06 06:55+0900\n"
 "Last-Translator: Jérôme Limozin <jerome AT limozin DOT net>\n"
 "Language-Team: Jérôme Limozin <jerome AT limozin DOT net>\n"
@@ -146,7 +146,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> est activé."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Impossible de trouver <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -154,7 +155,8 @@ msgid "<b>jhead</b> binary located."
 msgstr "binaire <b>jhead</b> trouvé."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#, fuzzy
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Sans pnmcomp et pamcomp Gallery ne pourra pas ajouter des filigranes aux images, sauf si vous utilisez ImageMagick et avez le binaire 'composite' installé."
 
 #: ../lib/setup.php:513
@@ -188,7 +190,7 @@ msgstr "%d de %d binaires NetPBM ont été trouvés."
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Sans composite Gallery ne sera pas capable d'ajouter des filigranes aux images sauf si vous utilisez NetPBM et avez le binaire pnmcomp installé."
 
 #: ../lib/setup.php:608
@@ -282,7 +284,8 @@ msgid "Advanced"
 msgstr "Avancé"
 
 #: ../lib/setup.php:946
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "La sélection d'une localisation est requise."
 
 #: ../lib/setup.php:947
@@ -291,7 +294,7 @@ msgstr "Il y a plus d'une localisation adaptée installé sur votre système, pour 
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Ceci est <b>seulement</b> pour les formats de date & temps. Vous devez seulement éditer les langues que vous avez activés ci dessus"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -352,7 +355,8 @@ msgid "Valid admin email address given."
 msgstr "Adresse électronique de l'administrateur valide."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Vous devez spécifier une adresse électronique valide pour l'administrateur"
 
 #: ../lib/setup.php:1337
@@ -365,7 +369,8 @@ msgid "Valid sender email address given."
 msgstr "Adresse électronique de l'expéditeur valide."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Vous devez spécifier une adresse électronique d'envoi valide"
 
 #: ../lib/setup.php:1351
@@ -374,8 +379,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Vous devez inclure %s dans votre message de bienvenue"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Vous devez inclure %s ou bien %s dans votre courriel de bienvenue"
 
 #: ../lib/setup.php:1380
@@ -407,8 +412,8 @@ msgid "All %d tested files up-to-date."
 msgstr "Tous les %d fichiers testés sont à jour."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "ceci est une nouveauté de la version %s"
 
 #: ../lib/setup.php:1407
@@ -514,8 +519,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "La version attendue est %s (ou supérieure) mais la version trouvée est %s."
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s OK. La version actuelle (%s) est plus récente que la version attendue (%s)"
 
 #: ../lib/setup.php:1589
@@ -560,8 +565,9 @@ msgstr "Le fichier %s n'existe pas."
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Nous attendions l'état: %s, mais nous avons reçu l'état %s."
 
-#: ../lib/setup.php:1813 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "impossible de détecter la version sous Windows"
 
 #: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
@@ -844,6 +850,10 @@ msgstr "%sCliquez ici%s pour cacher les détails"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Si vous voyez des erreurs, vous pouvez %scliquer ici%s afin d'afficher plus de détails"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "impossible de détecter la version sous Windows"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"

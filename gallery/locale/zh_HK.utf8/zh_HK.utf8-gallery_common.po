@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2004-08-30 13:57+0800\n"
 "Last-Translator: Kenneth Cheung\n"
 "Language-Team: Traditional Chinese <gallery-translations AT lists DOT sourceforge DOT net>\n"
@@ -217,8 +217,9 @@ msgid "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 o
 msgstr "過渡 JPEG/PNG 影像的最大檔案 kilobytes 大小（0 或者空白代表沒有限制）"
 
 #: ../includes/definitions/albumProperties.php:213
-msgid "Maximum dimensions of full sized images"
-msgstr "原始相片的最大尺寸"
+#, fuzzy
+msgid "Maximum size of full sized images (in px)"
+msgstr "過渡影像的最大尺寸"
 
 #: ../includes/definitions/albumProperties.php:215
 #, php-format
@@ -226,7 +227,8 @@ msgid "%d (%d MPix)"
 msgstr "%d（%d 百萬像素）"
 
 #: ../includes/definitions/albumProperties.php:220
-msgid "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"
+#, fuzzy
+msgid "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"
 msgstr "原始 JPEG/PNG 影像的最大檔案 kilobytes 大小（0 或者空白代表沒有限制）"
 
 #: ../includes/definitions/albumProperties.php:233
@@ -437,11 +439,11 @@ msgid "Bottom"
 msgstr "底"
 
 #: ../includes/definitions/albumProperties.php:479
-msgid "Height of microthumbs in navigation bar"
+msgid "Height of microthumbs in navigation bar (in px)"
 msgstr ""
 
 #: ../includes/definitions/albumProperties.php:486
-msgid "Bonus to height of current microthumb (pixels)"
+msgid "Bonus to height of current microthumb (in px)"
 msgstr ""
 
 #: ../includes/definitions/services.php:45
@@ -473,7 +475,7 @@ msgid "The Options window has closed. Exiting."
 msgstr ""
 
 #: ../lib/colorpicker.php:60
-msgid "This window must be called from an Options window"
+msgid "This window must be called from an Options window."
 msgstr ""
 
 #: ../lib/content.php:45
@@ -539,12 +541,13 @@ msgid "Search:"
 msgstr "搜尋"
 
 #: ../lib/content.php:672 ../lib/content.php:693
-msgid "Not closing this window because debug mode is on"
+#, fuzzy
+msgid "Not closing this window because debug mode is on."
 msgstr "由於除錯模式已被開啟，所以沒有關閉此視窗"
 
 #: ../lib/content.php:724
 #, fuzzy, php-format
-msgid "Problem including file %s"
+msgid "Problem including file %s."
 msgstr "增加 %s 時有問題："
 
 #: ../lib/content.php:869
@@ -555,11 +558,7 @@ msgstr "選擇相簿"
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:893
-msgid "current location"
-msgstr "目前位置"
-
-#: ../lib/content.php:943
+#: ../lib/content.php:893 ../lib/content.php:943
 #, fuzzy
 msgid "Current location"
 msgstr "目前位置"
@@ -628,26 +627,28 @@ msgid "Skipping %s."
 msgstr "正略過%s。"
 
 #: ../lib/content.php:1126
-#, php-format
-msgid "Can't open %s"
+#, fuzzy, php-format
+msgid "Can't open %s."
 msgstr "不能開啟 %s"
 
 #: ../lib/content.php:1204 ../lib/content.php:1227
-msgid "Not valid yet"
+#, fuzzy
+msgid "Not valid yet."
 msgstr "尚未有效"
 
 #: ../lib/imageManipulation.php:36
 #, fuzzy, php-format
-msgid "Resizing Image: %s"
+msgid "Resizing Image: %s."
 msgstr "重設 %s 的大小"
 
 #: ../lib/imageManipulation.php:67
-msgid "No resizing required"
+#, fuzzy
+msgid "No resizing required."
 msgstr "不需要調整大小"
 
 #: ../lib/imageManipulation.php:94
 #, fuzzy, php-format
-msgid "Target file size: %d kbytes"
+msgid "Target file size: %d kbytes."
 msgstr "目標檔案大小 %d kbytes"
 
 #: ../lib/imageManipulation.php:103 ../lib/imageManipulation.php:130
@@ -657,7 +658,7 @@ msgstr "-> 檔案大小 %d kbytes"
 
 #: ../lib/imageManipulation.php:104
 #, fuzzy, php-format
-msgid "Trying quality: %d%%"
+msgid "Trying quality: %d%%."
 msgstr "嘗試品質 %d%%"
 
 #: ../lib/imageManipulation.php:131
@@ -680,12 +681,12 @@ msgstr "處理影像中"
 
 #: ../lib/imageManipulation.php:549
 #, php-format
-msgid "Generating squared Version to %d pixel."
+msgid "Generating squared version to %d pixel."
 msgstr ""
 
 #: ../lib/imageManipulation.php:570
 #, fuzzy
-msgid "No Cropping Done"
+msgid "No Cropping Done."
 msgstr "沒有說明"
 
 #: ../lib/imageManipulation.php:580
@@ -700,7 +701,7 @@ msgstr "檔案 %s 類型 %d。"
 
 #: ../lib/imageManipulation.php:621 ../lib/imageManipulation.php:645
 #, php-format
-msgid "Files with type %s are not supported by Gallery with netPBM"
+msgid "Files with type %s are not supported by Gallery with Netpbm."
 msgstr ""
 
 #: ../lib/imageManipulation.php:694
@@ -718,17 +719,18 @@ msgid "Resizing params: src: %s, dest : %s, targetSize: %s"
 msgstr ""
 
 #: ../lib/imageManipulation.php:743
-msgid "Unable to preserve EXIF data (jhead not installed)"
+#, fuzzy
+msgid "Unable to preserve EXIF data (jhead not installed)."
 msgstr "無法保留 EXIF 資料（沒有安裝jhead）"
 
 #: ../lib/imageManipulation.php:786
 #, fuzzy
-msgid "Using IM high quality"
+msgid "Using IM high quality."
 msgstr "找到 %d 之 %d 個 ImageMagick 執行檔。"
 
 #: ../lib/imageManipulation.php:790
 #, fuzzy
-msgid "Not using IM high quality"
+msgid "Not using IM high quality."
 msgstr "找到 %d 之 %d 個 ImageMagick 執行檔。"
 
 #: ../lib/lang.php:787
@@ -781,17 +783,18 @@ msgid "Report abuse to %s"
 msgstr "回報濫用狀況給 %s"
 
 #: ../lib/mail.php:71
-msgid "Email not sent as it is disabled for this gallery"
+#, fuzzy
+msgid "Email not sent as it is disabled for this gallery."
 msgstr "電郵無法傳送，因為此相簿集取消了這功能"
 
 #: ../lib/mail.php:77
-#, php-format
-msgid "Email not sent to %s as it is not a valid address"
+#, fuzzy, php-format
+msgid "Email not sent to %s as it is not a valid address."
 msgstr "電郵無法傳送到 %s，因為地址不正確"
 
 #: ../lib/mail.php:84
 #, fuzzy
-msgid "Email not sent as no recipient address provided"
+msgid "Email not sent as no recipient address provided."
 msgstr "電郵無法傳送，因為沒有提供地址"
 
 #: ../lib/mail.php:96
@@ -804,15 +807,15 @@ msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
 #: ../lib/mail.php:166
-#, fuzzy, php-format
+#, fuzzy
 msgid ""
 "Hi !!FULLNAME!!,\n"
 "\n"
-"Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
+"Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:\n"
 "\n"
 "!!NEWPASSWORDLINK!!\n"
 "\n"
-"Gallery @ %s Administrator."
+"Your !!GALLERYTITLE!! Administrator"
 msgstr ""
 "!!FULLNAME!! 您好， \n"
 "\n"
@@ -822,94 +825,81 @@ msgstr ""
 "\n"
 "Gallery @ %s 管理員。"
 
-#: ../lib/mail.php:175 ../lib/mail.php:177
-msgid "gallery title"
-msgstr "Gallery 標題"
-
-#: ../lib/mail.php:176
-msgid "gallery URL"
-msgstr "Gallery URL"
-
-#: ../lib/mail.php:192
-msgid "The Url to your Gallery."
+#: ../lib/mail.php:188
+msgid "The URL to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:193
+#: ../lib/mail.php:189
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:194
+#: ../lib/mail.php:190
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "管理幫助"
 
-#: ../lib/mail.php:195
+#: ../lib/mail.php:191
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:196 ../lib/setup.php:1498 ../lib/setup.php:1500
+#: ../lib/mail.php:192 ../lib/setup.php:1498 ../lib/setup.php:1500
 #: ../lib/setup.php:1504 ../lib/setup.php:1512
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../lib/mail.php:197
+#: ../lib/mail.php:193
 #, fuzzy
 msgid "Fullname"
 msgstr "全名"
 
-#: ../lib/mail.php:198
+#: ../lib/mail.php:194
 #, fuzzy
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "%s 將透過連結被取代，使用者可以點擊此連結以建立新的密碼。"
 
-#: ../lib/mail.php:235
-#, fuzzy, php-format
-msgid "New comment for %s"
-msgstr "檢視評論"
-
-#: ../lib/mail.php:244
-#, php-format
-msgid "A new comment has been added to Gallery: %s"
-msgstr ""
-
-#: ../lib/mail.php:246
-#, php-format
-msgid "The comment was added by %s to this %s in this %s."
-msgstr ""
-
-#: ../lib/mail.php:248
-#, fuzzy
-msgid "Item"
-msgstr "份檔案"
-
-#: ../lib/mail.php:249
-msgid "Album"
-msgstr "相簿"
-
-#: ../lib/mail.php:250
-#, fuzzy
-msgid "*** Begin comment ***"
-msgstr "檢視評論"
-
-#: ../lib/mail.php:252
-#, fuzzy
-msgid "*** End comment ***"
-msgstr "檢視評論"
-
-#: ../lib/mail.php:253
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
-msgstr ""
-
-#: ../lib/mail.php:256
+#: ../lib/mail.php:232 ../lib/mail.php:253
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "檢視評論"
 
-#: ../lib/mail.php:266
+#: ../lib/mail.php:241
+#, php-format
+msgid "A new comment has been added to Gallery: %s"
+msgstr ""
+
+#: ../lib/mail.php:243
+#, php-format
+msgid "The comment was added by %s to this %s in this %s."
+msgstr ""
+
+#: ../lib/mail.php:245
+#, fuzzy
+msgid "Item"
+msgstr "份檔案"
+
+#: ../lib/mail.php:246
+msgid "Album"
+msgstr "相簿"
+
+#: ../lib/mail.php:247
+#, fuzzy
+msgid "*** Begin comment ***"
+msgstr "檢視評論"
+
+#: ../lib/mail.php:249
+#, fuzzy
+msgid "*** End comment ***"
+msgstr "檢視評論"
+
+#: ../lib/mail.php:250
+msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first)."
+msgstr ""
+
+#: ../lib/mail.php:263
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:278
+#: ../lib/mail.php:275
 msgid "Email activity"
 msgstr "電郵活動記錄"
 
@@ -968,7 +958,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> 已被啟動。"
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "無法找到 <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -977,7 +968,7 @@ msgstr "找到 <b>jhead</b> 執行檔。"
 
 #: ../lib/setup.php:505
 #, fuzzy
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "沒有 pnmcomp Gallery 將無法為影像加上水印，除非您使用 Image Magick 並安裝 composite 執行檔。"
 
 #: ../lib/setup.php:513
@@ -1011,7 +1002,7 @@ msgstr "找到 %d 之 %d 個 NetPBM 執行檔。"
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "沒有 composit，gallery 將無法為影像加上水印，除非您使用 NetPBM 並安裝 pnmcomp 執行檔。"
 
 #: ../lib/setup.php:608
@@ -1105,8 +1096,8 @@ msgid "Advanced"
 msgstr "進階"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "需要選擇<b>系統</b>語系"
 
 #: ../lib/setup.php:947
@@ -1115,7 +1106,7 @@ msgstr "您的機器上有一個以上適合下列語言的<b>系統</b>語系�
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "本項<b>僅供</b>日期與時間格式之用。您只需修改上面您選擇的語言即可。"
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -1123,7 +1114,6 @@ msgid "System locale"
 msgstr "系統語系"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "<b>系統</b>語系問題"
 
@@ -1177,7 +1167,8 @@ msgid "Valid admin email address given."
 msgstr "已指定合法的管理者電郵地址。"
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "您必須指定合法的管理者電郵位址"
 
 #: ../lib/setup.php:1337
@@ -1190,7 +1181,8 @@ msgid "Valid sender email address given."
 msgstr "已指定合法的送信者電郵地址。"
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "您必須指定一個正確的送信者電郵地址"
 
 #: ../lib/setup.php:1351
@@ -1199,8 +1191,8 @@ msgid "You must include %s in your welcome email"
 msgstr "您必須將 %s 放入歡迎信件中"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "您必須將 %s 或 %s 放入歡迎電郵中"
 
 #: ../lib/setup.php:1380
@@ -1223,7 +1215,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d 份檔案比預期新。如果您是使用 pre-release、beta、CVS 或修改過的編碼，這是可以的。"
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "所有測試的檔案都是最新的。"
 
@@ -1233,8 +1224,8 @@ msgid "All %d tested files up-to-date."
 msgstr "所有 %d 份測試的檔案都是最新的。"
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "這是版本 %s 的新功能"
 
 #: ../lib/setup.php:1407
@@ -1335,8 +1326,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "預期 %s 版本（或以上），但卻找到 %s。"
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s Ok。實際版本（%s）比預期的版本（%s）還新"
 
 #: ../lib/setup.php:1589
@@ -1368,21 +1359,26 @@ msgstr "將此處留空以複製預設訊息到其他語言中。預設訊息是
 msgid "The following placeholder can be used:"
 msgstr "下面檔案是最新的。"
 
-#: ../lib/setup.php:1790
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791
 #, php-format
 msgid "File %s does not exist."
 msgstr "檔案 %s 並不存在。"
 
-#: ../lib/setup.php:1799
+#: ../lib/setup.php:1800
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "我們希望收到的狀態是：%s，但傳回來的狀態是 %s。"
 
-#: ../lib/setup.php:1812
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "無法偵測 Windows 的版本"
 
-#: ../lib/setup.php:1823
+#: ../lib/setup.php:1824
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK！版本：%s"
@@ -1400,7 +1396,7 @@ msgid "The given value is not in the allowed list of choices."
 msgstr ""
 
 #: ../lib/valchecks.php:88
-msgid "Value was set to given default. Because the original value is not numeric."
+msgid "Value was set to given default, because the original value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:91
@@ -1408,7 +1404,7 @@ msgid "The given value is not numeric."
 msgstr ""
 
 #: ../lib/valchecks.php:97
-msgid "Value was set to given default. Because the original value is not a valid integer"
+msgid "Value was set to given default, because the original value is not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:100
@@ -1416,11 +1412,11 @@ msgid "The given value not a valid integer."
 msgstr ""
 
 #: ../lib/valchecks.php:112
-msgid "Value was set to given default. Because the original value is not a valid text"
+msgid "Value was set to given default, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/valchecks.php:115
-msgid "Value was corrected, because the original value is not a valid text"
+msgid "Value was corrected, because the original value is not a valid text."
 msgstr ""
 
 #: ../lib/voting.php:215
@@ -1487,6 +1483,22 @@ msgstr "%s：%s"
 msgid "one vote"
 msgid_plural "%d votes"
 msgstr[0] "%d 票"
+
+#~ msgid "Maximum dimensions of full sized images"
+#~ msgstr "原始相片的最大尺寸"
+
+#~ msgid "current location"
+#~ msgstr "目前位置"
+
+#~ msgid "gallery title"
+#~ msgstr "Gallery 標題"
+
+#~ msgid "gallery URL"
+#~ msgstr "Gallery URL"
+
+#, fuzzy
+#~ msgid "New comment for %s"
+#~ msgstr "檢視評論"
 
 #, fuzzy
 #~ msgid "both"

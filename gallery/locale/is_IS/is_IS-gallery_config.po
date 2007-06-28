@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-27 16:16+0200\n"
+"POT-Creation-Date: 2007-06-28 12:32+0200\n"
 "PO-Revision-Date: 2005-05-09 22:07+0100\n"
 "Last-Translator: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
 "Language-Team: Jon Arnar Gudmundsson <jonarnar AT jonarnar DOT com>\n"
@@ -145,7 +145,8 @@ msgid "<b>mod_rewrite</b> is enabled."
 msgstr "<b>mod_rewrite</b> er virkt."
 
 #: ../lib/setup.php:465
-msgid "Can't find <i>jhead</i>"
+#, fuzzy
+msgid "Can't find <i>jhead</i>."
 msgstr "Finn ekki <i>jhead</i>"
 
 #: ../lib/setup.php:467
@@ -153,7 +154,8 @@ msgid "<b>jhead</b> binary located."
 msgstr "<b>jhead</b> forritð fannst."
 
 #: ../lib/setup.php:505
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#, fuzzy
+msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr "Án pnmcomp og pamcomp mun Gallery ekki geta vatnsmerkt myndirnar þínar, nema að þú notir ImageMagick og hafir composite forrit uppsett."
 
 #: ../lib/setup.php:513
@@ -187,7 +189,7 @@ msgstr "%d af %d NetPBM forritum fundin."
 
 #: ../lib/setup.php:602
 #, fuzzy
-msgid "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr "Gallery getur ekki vatnsmerkt myndirnar þínar á composite; nema að þú notir NetPBM og hafir pnmcomp forritið uppsett."
 
 #: ../lib/setup.php:608
@@ -281,8 +283,8 @@ msgid "Advanced"
 msgstr "Fyrir lengra komna"
 
 #: ../lib/setup.php:946
-#, php-format
-msgid "<b>System</b> locale selection required"
+#, fuzzy
+msgid "<b>System</b> locale selection required."
 msgstr "Þú þarft að velja <b>staðbundar stillingar</b>"
 
 #: ../lib/setup.php:947
@@ -291,7 +293,7 @@ msgstr "Það eru fleiri en ein hentug <b>staðbundin stilling</b> uppsett á vélinn
 
 #: ../lib/setup.php:949 ../lib/setup.php:1029
 #, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above"
+msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr "Þetta er <b>aðeins</b> fyrir dagsetningar- og tímasnið. Það þarf einungis að breyta tungumálum sem þú virkjaðir hér á undan."
 
 #: ../lib/setup.php:960 ../lib/setup.php:984
@@ -299,7 +301,6 @@ msgid "System locale"
 msgstr "Staðbundnar stillingar kerfisins"
 
 #: ../lib/setup.php:1026
-#, php-format
 msgid "<b>System</b> locale problems"
 msgstr "Villa við að finna <b>staðbundar stillingar fyrir kerfið</b>"
 
@@ -353,7 +354,8 @@ msgid "Valid admin email address given."
 msgstr "Gilt umsjónarmanns tölvupóstfang gefið upp."
 
 #: ../lib/setup.php:1329
-msgid "You must specify valid admin email addresses"
+#, fuzzy
+msgid "You must specify valid admin email addresses."
 msgstr "Þú verður að gefa upp gilt tölvupóstfang fyrir umsjónarmann"
 
 #: ../lib/setup.php:1337
@@ -366,7 +368,8 @@ msgid "Valid sender email address given."
 msgstr "Gilt tölvupóstang sendanda gefið."
 
 #: ../lib/setup.php:1348
-msgid "You must specify a valid sender email address"
+#, fuzzy
+msgid "You must specify a valid sender email address."
 msgstr "Þú verður að gefa upp gilt tölvupóstfang sendanda."
 
 #: ../lib/setup.php:1351
@@ -375,8 +378,8 @@ msgid "You must include %s in your welcome email"
 msgstr "Þú verður að hafa %s með í ávarpspóstinum"
 
 #: ../lib/setup.php:1356
-#, php-format
-msgid "You must include %s or %s in your welcome email"
+#, fuzzy, php-format
+msgid "You must include %s or %s in your welcome email."
 msgstr "Þú verður að hafa %s eða %s í ávarpspóstinum"
 
 #: ../lib/setup.php:1380
@@ -399,7 +402,6 @@ msgid "%d files are more recent than expected.  This is OK if you are using pre-
 msgstr "%d skrár eru nýrri en búist var við.  Það er í lagi ef þú ert að nota for útgáfu, beta útgáfu, CVS útgáfu eða breyttan kóða."
 
 #: ../lib/setup.php:1391
-#, php-format
 msgid "All tested files up-to-date."
 msgstr "Allar skrár reyndust uppfærðar"
 
@@ -409,8 +411,8 @@ msgid "All %d tested files up-to-date."
 msgstr "Allar %d skrárnar sem ég prófaði reyndust nógu nýlegar."
 
 #: ../lib/setup.php:1402
-#, php-format
-msgid "this is new in version %s"
+#, fuzzy, php-format
+msgid "this is new in version %s."
 msgstr "þetta er nýtt í útgáfu %s"
 
 #: ../lib/setup.php:1407
@@ -516,8 +518,8 @@ msgid "Expected version %s (or greater) but found %s."
 msgstr "Vænti að finna útgáfu %s (eða nýrri) en fann einungis %s"
 
 #: ../lib/setup.php:1587
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#, fuzzy, php-format
+msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr "%s er í lagi.  Útgáfa forrits (%s) er nýrri útgáfa en vonast var til (%s)"
 
 #: ../lib/setup.php:1589
@@ -549,21 +551,26 @@ msgstr "Skildu þetta svið eftir tómt til þess að fá sjálfgefin texta sem hægt er
 msgid "The following placeholder can be used:"
 msgstr "Eftirfarandi skrár eru ný uppfærðar."
 
-#: ../lib/setup.php:1790 ../setup/check_netpbm.php:250
+#: ../lib/setup.php:1739
+msgid "Current used welcome mail text"
+msgstr ""
+
+#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
 #, php-format
 msgid "File %s does not exist."
 msgstr "Skráin %s er ekki til."
 
-#: ../lib/setup.php:1799 ../setup/check_netpbm.php:261
+#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Bjóst við ástandi: %s, en fékk raunar ástandið %s."
 
-#: ../lib/setup.php:1812 ../setup/check_netpbm.php:275
-msgid "can't detect version on Windows"
+#: ../lib/setup.php:1813
+#, fuzzy
+msgid "can't detect version on Windows."
 msgstr "get ekki skynjað útgáfu á Windows"
 
-#: ../lib/setup.php:1823 ../setup/check_netpbm.php:301
+#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "Í lagi!  Útgáfa: %s"
@@ -843,6 +850,10 @@ msgstr "%sSmelltu hér%s til að fela smáatriði"
 #, php-format
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Ef þú sérð villur, þá ættir þú að %ssmella hér%s til þess að sjá frekari upplýsingar"
+
+#: ../setup/check_netpbm.php:275
+msgid "can't detect version on Windows"
+msgstr "get ekki skynjað útgáfu á Windows"
 
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
 msgid "Check Versions"
