@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -60,7 +60,7 @@ function getItemActions($i, $withIcons = false) {
   }
   //-->
   </script>
-<?php 
+<?php
 $javascriptSet = true;
     }
 
@@ -86,18 +86,18 @@ $javascriptSet = true;
     if ($gallery->user->isAdmin()) {
     	$isAdmin = true;
     }
-    
+
     if (isset($isAdmin) ||
       (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
       $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
       	$isOwner = true;
 	}
-      
+
     if ($gallery->user->canWriteToAlbum($gallery->album) ||
        ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
 		$canModify = true;
 	}
-          
+
     /* ----- User can write to album, or is owner of the item and item-owner can modify items ----- */
     if (isset($canModify)) {
     	if ($isPhoto) {
@@ -133,7 +133,7 @@ $javascriptSet = true;
 	    			'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
 	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
 				'attrs' => array('class' => 'url')
-				
+
     			);
     	}
 
@@ -142,7 +142,7 @@ $javascriptSet = true;
 		'text' => getIconText('tab_duplicate.gif', _("Move"), $override, $withIcons),
 		'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0))
     	);
-    	
+
     	/* ----- Item is subalbum ----- */
     	if ($isAlbum) {
     		$options[] = array(
@@ -179,7 +179,7 @@ $javascriptSet = true;
 	    		'text' => getIconText('decrypted.gif', _("Permissions"), $override, $withIcons),
 	    		'value' => showChoice2("album_permissions.php", array("set_albumName" => $myAlbum->fields["name"]))
     		);
-    		
+
     		// Watermarking support is enabled and user is allowed to watermark images/albums /
     		if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
     			$options[] = array(
@@ -225,7 +225,7 @@ $javascriptSet = true;
 	    	'text' => getIconText('tab_duplicate.gif',_("Reorder"), $override, $withIcons),
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1))
     	);
-    	
+
     	/* ----- Item is photo, or subalbum with highlight ----- */
     	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
     		$options[] = array(
@@ -236,16 +236,17 @@ $javascriptSet = true;
     	}
     }
 
-    if (isset($isAdmin)) {
-    		$options[] = array(
-	    		'pure_text' => _("Change Owner"),
-	    		'text' => getIconText('yast_kuser.gif', _("Change Owner"), $override, $withIcons),
-	    		'value' => showChoice2("photo_owner.php", array("id" => $id))
-    		);
-    	}
+    if (isset($isAdmin) && ! $isAlbum) {
+    	$options[] = array(
+	    	'pure_text' => _("Change Owner"),
+	    	'text' => getIconText('yast_kuser.gif', _("Change Owner"), $override, $withIcons),
+	    	'value' => showChoice2("photo_owner.php", array("id" => $id))
+    	);
+    }
 
     if ($gallery->user->canDeleteFromAlbum($gallery->album) ||
-      ($gallery->album->getItemOwnerDelete() && isset($isOwner))) {
+	   ($gallery->album->getItemOwnerDelete() && isset($isOwner)))
+	{
     	if($isAlbum) {
     		if($gallery->user->canDeleteAlbum($myAlbum)) {
     			$options[] = array(
@@ -254,7 +255,8 @@ $javascriptSet = true;
 	    			'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1))
     			);
     		}
-    	} else {
+    	}
+    	else {
     		$options[] = array(
 	    		'pure_text' => _("Delete"),
 	    		'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
@@ -265,9 +267,11 @@ $javascriptSet = true;
 
     if($isPhoto) {
     	$photo = $gallery->album->getPhoto($i);
+
     	if ($gallery->album->fields["use_exif"] == 'yes' &&
     	  (eregi("jpe?g\$", $photo->image->type)) &&
-    	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags))) {
+    	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)))
+		{
     		$options['showExif'] = array(
 	    		'pure_text' => _("Photo properties"),
 	    		'text' => getIconText('frame_query.gif', _("Photo properties"), $override, $withIcons),
@@ -364,10 +368,10 @@ function showComments ($index, $albumName, $reverse = false) {
  */
 function getNextId($currentId) {
     global $gallery;
-    
+
     $allIds = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
     $current = array_search($currentId, $allIds);
-    
+
     if ($current < sizeof($allIds)-1) {
         $nextId = $allIds[$current+1];
     } elseif ($current > 0) {
@@ -375,7 +379,7 @@ function getNextId($currentId) {
     } else {
         $nextId = $currentId;
     }
-    
+
     return $nextId;
 }
 ?>

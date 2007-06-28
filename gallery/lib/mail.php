@@ -40,9 +40,9 @@ function check_email($email) {
 
 function emailDisclaimer() {
 	global $gallery;
-	$msg = unhtmlentities(sprintf(_("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
+	$msg = unhtmlentities(sprintf(gTranslate('common', "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
 		"  \r\n".
-		sprintf(_("Report abuse to %s"),$gallery->app->adminEmail));
+		sprintf(gTranslate('common', "Report abuse to %s"),$gallery->app->adminEmail));
 	$msg2 = sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s",
 	$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
 
@@ -68,20 +68,20 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 	/* Begin Catch errors */
 	if ($gallery->app->emailOn == "no") {
-		echo "\n<br>". gallery_error(_("Email not sent as it is disabled for this gallery"));
+		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as it is disabled for this gallery"));
 		return false;
 	}
 
 	foreach($to as $rcpnr => $mail) {
 		if (! check_email($mail)) {
-			echo "\n<br>". gallery_error(sprintf(_("Email not sent to %s as it is not a valid address"),
+			echo "\n<br>". gallery_error(sprintf(gTranslate('common', "Email not sent to %s as it is not a valid address"),
 			'<i>' . $mail . "</i>"));
 			unset ($to[$rcpnr]);
 		}
 	}
 
 	if (empty($to)) {
-		echo "\n<br>". gallery_error(_("Email not sent as no recipient address provided"));
+		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as no recipient address provided"));
 		return false;
 	}
 
@@ -93,7 +93,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	if (! check_email($from)) {
 		if (isDebugging() && $from) {
 			echo "\n<br>".
-				gallery_error(sprintf(_("Sender address %s is invalid, using %s."),
+				gallery_error(sprintf(gTranslate('common', "Sender address %s is invalid, using %s."),
 							  $from, $gallery->app->senderEmail));
 		}
 		$from = $gallery->app->senderEmail;
@@ -125,7 +125,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	if($isHTML) {
 	    $gallery_mail->setHtmlCharset($gallery->charset);
-        $gallery_mail->setHtml($msg, _("This is a HTML mail, please have a look at the Attachment."));
+        $gallery_mail->setHtml($msg, gTranslate('common', "This is a HTML mail, please have a look at the Attachment."));
 	}
 	else {
 	    $gallery_mail->setText($msg);
@@ -163,24 +163,20 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 function welcome_email($show_default=false) {
 	global $gallery;
 
-	$default=_("Hi !!FULLNAME!!,
+	$default= gTranslate('common', "Hi !!FULLNAME!!,
 
-Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
+Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
 
 !!NEWPASSWORDLINK!!
 
-Gallery @ %s Administrator.");
+Your !!GALLERYTITLE!! Administrator");
 	if ($show_default) {
-		return sprintf($default,
-			"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>",
-			"<b><nobr>&lt;" . _("gallery URL") . "&gt;</nobr></b>",
-			"<b><nobr>&lt;" . _("gallery title") . "&gt;</nobr></b>");
-	} elseif (empty($gallery->app->emailGreeting)) {
-		return sprintf($default,
-			$gallery->app->galleryTitle,
-			$gallery->app->photoAlbumURL,
-			$gallery->app->galleryTitle);
-	} else {
+		return $default;
+	}
+	elseif (empty($gallery->app->emailGreeting)) {
+		return $default;
+	}
+	else {
 		return $gallery->app->emailGreeting;
 	}
 
@@ -189,13 +185,13 @@ Gallery @ %s Administrator.");
 function welcomeMsgPlaceholderList() {
 
 	$placeholders = array(
-		'galleryurl' => _("The Url to your Gallery."),
-		'gallerytitle' => _("Title of your Gallery."),
-		'adminemail' => _("Admin email(s)"),
-		'password' => _("Password for the newly created user."),
-		'username' => _("Username"),
-		'fullname' => _("Fullname"),
-		'newpasswordlink' =>  _("Will be replaced by a link the new user can click on to create a new password.")
+		'galleryurl'	=> gTranslate('common', "The Url to your Gallery."),
+		'gallerytitle'	=> gTranslate('common', "Title of your Gallery."),
+		'adminemail'	=> gTranslate('common', "Admin email(s)"),
+		'password'		=> gTranslate('common', "Password for the newly created user."),
+		'username'		=> gTranslate('common', "Username"),
+		'fullname'		=> gTranslate('common', "Fullname"),
+		'newpasswordlink' =>  gTranslate('common', "Will be replaced by a link the new user can click on to create a new password.")
 	);
 
 	return $placeholders;
@@ -207,11 +203,12 @@ function welcomeMsgPlaceholderList() {
  */
 function resolveWelcomeMsg($placeholders = array()) {
 	global $gallery;
+
 	$welcomeMsg =  welcome_email();
 
-	$placeholders['galleryurl'] = $gallery->app->photoAlbumURL;
-	$placeholders['gallerytitle'] = $gallery->app->galleryTitle;
-	$placeholders['adminemail'] = $gallery->app->adminEmail;
+	$placeholders['galleryurl']		= $gallery->app->photoAlbumURL;
+	$placeholders['gallerytitle']	= $gallery->app->galleryTitle;
+	$placeholders['adminemail']		= $gallery->app->adminEmail;
 
 	foreach (welcomeMsgPlaceholderList() as $key => $trash) {
 		$welcomeMsg = str_replace('!!'. strtoupper($key) .'!!',
@@ -232,7 +229,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 	global $gallery;
 
 	$to = $gallery->album->getEmailMeList('comments', $id);
-	$subject = sprintf(_("New comment for %s"), $id);
+	$subject = sprintf(gTranslate('common', "New comment for %s"), $id);
 	$text = '';
 
 	if (!empty($to)) {
@@ -241,19 +238,19 @@ function emailComments($id, $comment_text, $commenter_name) {
 	    $text .= "\n  <head>";
 	    $text .= "\n  <title>$subject</title>";
 	    $text .= "\n  </head>\n<body>\n<p>";
-	    $text .= sprintf(_("A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
+	    $text .= sprintf(gTranslate('common', "A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
 	    $text .= "\n</p>";
-	    $text .= sprintf(_("The comment was added by %s to this %s in this %s."),
+	    $text .= sprintf(gTranslate('common', "The comment was added by %s to this %s in this %s."),
 			$commenter_name,
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. _("Item") .'</a>',
-			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. _("Album") .'</a>');
-	    $text .= "\n<br>". _("*** Begin comment ***") ."<br>\n";
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. gTranslate('common', "Item") .'</a>',
+			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. gTranslate('common', "Album") .'</a>');
+	    $text .= "\n<br>". gTranslate('common', "*** Begin comment ***") ."<br>\n";
 	    $text .= nl2br($comment_text);
-	    $text .= "<br>\n". _("*** End comment ***") . "\n<p>\n";
-	    $text .= _("If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first).");
+	    $text .= "<br>\n". gTranslate('common', "*** End comment ***") . "\n<p>\n";
+	    $text .= gTranslate('common', "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first).");
 	    $text .= "\n</p>\n</body>\n</html>";
 
-        $logmsg = sprintf(_("New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
+        $logmsg = sprintf(gTranslate('common', "New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
 	    gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 	}
@@ -263,7 +260,7 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 	global $gallery;
 
 	if (!$result) {
-		$logmsg = _("Sending email failed. Additional info:") . "\n<br>" .
+		$logmsg = gTranslate('common', "Sending email failed. Additional info:") . "\n<br>" .
 				  $logmsg;
 	}
 
@@ -275,7 +272,7 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 
 	if (isset($gallery->app->email_notification) &&
 	  in_array("email", $gallery->app->email_notification)) {
-		$subject = _("Email activity");
+		$subject = gTranslate('common', "Email activity");
 		if ($subject != "Email activity") {
 			$subject .= "/Email activity";
 		}
