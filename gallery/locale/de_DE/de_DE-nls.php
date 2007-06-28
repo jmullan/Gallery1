@@ -21,7 +21,7 @@
  */
  
 /**
- * @version     1.5.2
+ * @version     1.5.7
  * @package		Languagepack
  * @subpackage	German
  */
@@ -43,7 +43,7 @@
 /**
  * Aliases for languages with different browser and gettext codes
  */
-	$nls['alias']['de'] = 			'de_DE';
+	$nls['alias']['de'] =				'de_DE';
 
 /**
  * Aliases for languages which we substitte or send by NUKE, GeekLog or Mambo
