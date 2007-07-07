@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-19 18:36+0200\n"
+"POT-Creation-Date: 2007-07-07 19:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,11 +58,11 @@ msgid "Missing value: %s"
 msgstr ""
 
 #: ../lib/setup.php:450
-msgid "<b>exec()</b> is enabled on this server."
+msgid "exec() is enabled on this server."
 msgstr ""
 
 #: ../lib/setup.php:471
-msgid "Gallery is able to read your <b>.htaccess</b> file."
+msgid "Gallery is able to read your .htaccess file."
 msgstr ""
 
 #: ../lib/setup.php:493
@@ -71,7 +71,7 @@ msgid "PHP v%s is OK."
 msgstr ""
 
 #: ../lib/setup.php:511
-msgid "<b>mod_rewrite</b> is enabled."
+msgid "mod_rewrite is enabled."
 msgstr ""
 
 #: ../lib/setup.php:541
@@ -79,7 +79,7 @@ msgid "Can't find <i>jhead</i>"
 msgstr ""
 
 #: ../lib/setup.php:544
-msgid "<b>jhead</b> binary located."
+msgid "jhead binary located."
 msgstr ""
 
 #: ../lib/setup.php:582
@@ -127,20 +127,20 @@ msgstr ""
 msgid "%d of %d ImageMagick binaries located."
 msgstr ""
 
-#: ../lib/setup.php:755
-msgid "Can't find <i>jpegtran</i>!"
+#: ../lib/setup.php:755 ../includes/setup/checks.inc:232
+msgid "jpegtran was not found."
 msgstr ""
 
 #: ../lib/setup.php:757
-msgid "<b>jpegtran</b> binary located."
+msgid "jpegtran binary located."
 msgstr ""
 
 #: ../lib/setup.php:769
-msgid "PHP has <b>GNU gettext</b> support."
+msgid "PHP has GNU gettext support."
 msgstr ""
 
 #: ../lib/setup.php:771
-msgid "PHP does not have <b>GNU gettext</b> support."
+msgid "PHP does not have GNU gettext support."
 msgstr ""
 
 #: ../lib/setup.php:784
@@ -245,11 +245,11 @@ msgid "There are no apparently suitable <b>system</b> locales installed on your 
 msgstr ""
 
 #: ../lib/setup.php:1195
-msgid "<b>safe_mode</b> is off."
+msgid "safe_mode is off."
 msgstr ""
 
 #: ../lib/setup.php:1209
-msgid "<b>magic_quotes</b> are off."
+msgid "magic_quotes are off."
 msgstr ""
 
 #: ../lib/setup.php:1227
@@ -273,51 +273,46 @@ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr ""
 
 #: ../lib/setup.php:1263
-msgid "<b>register_globals</b> is off."
+msgid "register_globals is off."
 msgstr ""
 
-#: ../lib/setup.php:1433
+#: ../lib/setup.php:1440
 msgid "Your passwords do not match!"
 msgstr ""
 
-#: ../lib/setup.php:1445 ../templates/setup/im-netpbm-test.tpl:62
+#: ../lib/setup.php:1452 ../templates/setup/im-netpbm-test.tpl:62
 msgid "OK"
 msgstr ""
 
-#: ../lib/setup.php:1450
+#: ../lib/setup.php:1457
 msgid "Valid admin email address given."
 msgstr ""
 
-#: ../lib/setup.php:1457
+#: ../lib/setup.php:1464
 msgid "You must specify valid admin email addresses"
 msgstr ""
 
-#: ../lib/setup.php:1465
+#: ../lib/setup.php:1472
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../lib/setup.php:1474
+#: ../lib/setup.php:1481
 msgid "Valid sender email address given."
 msgstr ""
 
-#: ../lib/setup.php:1476
+#: ../lib/setup.php:1483
 msgid "You must specify a valid sender email address"
 msgstr ""
 
-#: ../lib/setup.php:1479
+#: ../lib/setup.php:1486
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr ""
 
-#: ../lib/setup.php:1484
+#: ../lib/setup.php:1491
 #, php-format
 msgid "You must include %s or %s in your welcome email"
-msgstr ""
-
-#: ../lib/setup.php:1504
-#, php-format
-msgid "this is new in version %s"
 msgstr ""
 
 #: ../lib/setup.php:1512
@@ -328,184 +323,184 @@ msgstr ""
 msgid "Gallery Dia_gnostics Page"
 msgstr ""
 
-#: ../lib/setup.php:1570
+#: ../lib/setup.php:1572
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr ""
 
-#: ../lib/setup.php:1575
+#: ../lib/setup.php:1577
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr ""
 
-#: ../lib/setup.php:1578
+#: ../lib/setup.php:1580
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
-#: ../lib/setup.php:1581
+#: ../lib/setup.php:1583
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../lib/setup.php:1590
+#: ../lib/setup.php:1592
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../lib/setup.php:1596
+#: ../lib/setup.php:1598
 msgid "Admin password"
 msgstr ""
 
-#: ../lib/setup.php:1611 ../lib/setup.php:1612 ../lib/setup.php:1613
-#: ../lib/setup.php:1617
+#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1615
+#: ../lib/setup.php:1619
 msgid "Full Name"
 msgstr ""
 
-#: ../lib/setup.php:1611 ../lib/setup.php:1612 ../lib/setup.php:1614
-#: ../lib/setup.php:1618
+#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1616
+#: ../lib/setup.php:1620
 msgid "Username"
 msgstr ""
 
-#: ../lib/setup.php:1615
+#: ../lib/setup.php:1617
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1616
+#: ../lib/setup.php:1618
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1617 ../lib/setup.php:1618
+#: ../lib/setup.php:1619 ../lib/setup.php:1620
 msgid "email address"
 msgstr ""
 
-#: ../lib/setup.php:1637
+#: ../lib/setup.php:1639
 msgid "This should be fixed before proceeding."
 msgstr ""
 
-#: ../lib/setup.php:1638
+#: ../lib/setup.php:1640
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr ""
 
-#: ../lib/setup.php:1643
+#: ../lib/setup.php:1645
 #, php-format
 msgid "One file is newer then expected."
 msgid_plural "%d files are newer then expected."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../lib/setup.php:1651
+#: ../lib/setup.php:1653
 #, php-format
 msgid "One file is out of date, corrupted or missing."
 msgid_plural "%d files are out of date, corrupted or missing."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../lib/setup.php:1658
+#: ../lib/setup.php:1660
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr ""
 
-#: ../lib/setup.php:1679
+#: ../lib/setup.php:1681
 msgid "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page."
 msgstr ""
 
-#: ../lib/setup.php:1684
+#: ../lib/setup.php:1686
 #, php-format
 msgid "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."
 msgstr ""
 
-#: ../lib/setup.php:1691
+#: ../lib/setup.php:1693
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../lib/setup.php:1699
+#: ../lib/setup.php:1701
 #, php-format
 msgid "Cannot read file %s."
 msgstr ""
 
-#: ../lib/setup.php:1701
+#: ../lib/setup.php:1703
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../lib/setup.php:1717
+#: ../lib/setup.php:1719
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../lib/setup.php:1719
+#: ../lib/setup.php:1721
 msgid "Missing version"
 msgstr ""
 
-#: ../lib/setup.php:1725
+#: ../lib/setup.php:1727
 #, php-format
 msgid "Found Version: %s"
 msgstr ""
 
-#: ../lib/setup.php:1734
+#: ../lib/setup.php:1736
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1737
+#: ../lib/setup.php:1739
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1742
+#: ../lib/setup.php:1744
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr ""
 
-#: ../lib/setup.php:1745
+#: ../lib/setup.php:1747
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1749
+#: ../lib/setup.php:1751
 #, php-format
 msgid "%s OK"
 msgstr ""
 
-#: ../lib/setup.php:1751
+#: ../lib/setup.php:1753
 #, php-format
 msgid "Found expected version %s."
 msgstr ""
 
-#: ../lib/setup.php:1806
+#: ../lib/setup.php:1808
 msgid "This email will be sent when new accounts are created."
 msgstr ""
 
-#: ../lib/setup.php:1807
+#: ../lib/setup.php:1809
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr ""
 
-#: ../lib/setup.php:1808
+#: ../lib/setup.php:1810
 msgid "The following placeholder can be used:"
 msgstr ""
 
-#: ../lib/setup.php:1881 ../lib/setup.php:1925
+#: ../lib/setup.php:1883 ../lib/setup.php:1927
 #, php-format
 msgid "File %s does not exist."
 msgstr ""
 
-#: ../lib/setup.php:1890 ../lib/setup.php:1935
+#: ../lib/setup.php:1892 ../lib/setup.php:1937
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
-#: ../lib/setup.php:1901 ../lib/setup.php:1948
+#: ../lib/setup.php:1903 ../lib/setup.php:1950
 msgid "can't detect version on Windows"
 msgstr ""
 
-#: ../lib/setup.php:1905 ../lib/setup.php:1963
+#: ../lib/setup.php:1907 ../lib/setup.php:1965
 #, php-format
 msgid "OK!  Version: %s"
 msgstr ""
 
-#: ../lib/setup.php:1972
+#: ../lib/setup.php:1974
 msgid "Unknown error occured."
 msgstr ""
 
@@ -693,7 +688,7 @@ msgid "Check to see if NetPBM is installed so that Gallery can manipulate images
 msgstr ""
 
 #: ../includes/setup/checks.inc:188
-msgid "I can't find NetPBM!"
+msgid "NetPBM was not found"
 msgstr ""
 
 #: ../includes/setup/checks.inc:190
@@ -721,7 +716,7 @@ msgid "Check to see if ImageMagick is installed so that Gallery can manipulate i
 msgstr ""
 
 #: ../includes/setup/checks.inc:205
-msgid "I can't find ImageMagick"
+msgid "ImageMagick was not found."
 msgstr ""
 
 #: ../includes/setup/checks.inc:207
@@ -729,7 +724,7 @@ msgid "If it's installed and not in the path of the webserver user that's OK&#82
 msgstr ""
 
 #: ../includes/setup/checks.inc:209
-msgid "I've found part of ImageMagick , but some components are missing (see below)."
+msgid "I've found part of ImageMagick, but some components are missing (see below)."
 msgstr ""
 
 #: ../includes/setup/checks.inc:212 ../setup/config_data.inc:200
@@ -745,7 +740,7 @@ msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXI
 msgstr ""
 
 #: ../includes/setup/checks.inc:221
-msgid "I can't find <b>jhead</b>"
+msgid "jhead was not found."
 msgstr ""
 
 #: ../includes/setup/checks.inc:223
@@ -759,10 +754,6 @@ msgstr ""
 
 #: ../includes/setup/checks.inc:230 ../setup/config_data.inc:216
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
-msgstr ""
-
-#: ../includes/setup/checks.inc:232
-msgid "I can't find <b>jpegtran</b>!"
 msgstr ""
 
 #: ../includes/setup/checks.inc:233
@@ -2547,8 +2538,8 @@ msgstr ""
 msgid "Clickable image dimensions"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:300 ../setup/config_data.inc:1764
-msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
+#: ../includes/setup/defaults.inc:300
+msgid "If set to 'yes', then clickable dimensions for each available size of the picture are shown beneath the thumbnails . You may click on these instead of the thumbnail to either image."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:308
@@ -2556,7 +2547,7 @@ msgid "Dimensions-link opens popup"
 msgstr ""
 
 #: ../includes/setup/defaults.inc:309
-msgid "If you show the dimensions-links, you can choose whether you just want the images shown in a popup, or open the complete photoview."
+msgid "If you show the dimensions-links, you can choose whether you just want the images to appear in a popup, or open the complete photoview."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:322 ../setup/config_data.inc:1778
@@ -3093,7 +3084,8 @@ msgstr ""
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr ""
 
-#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/defaults.inc:59
+#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/constants.inc:271
+#: ../setup/defaults.inc:59 ../setup/defaults.inc:172
 msgid "_Next Step &gt;&gt;"
 msgstr ""
 
@@ -3320,6 +3312,10 @@ msgstr ""
 msgid "Display clickable image dimensions"
 msgstr ""
 
+#: ../setup/config_data.inc:1764
+msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
+msgstr ""
+
 #: ../setup/confirm.inc:39
 msgid "documentation"
 msgstr ""
@@ -3481,7 +3477,8 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../setup/constants.inc:91 ../setup/defaults.inc:58
+#: ../setup/constants.inc:91 ../setup/constants.inc:268
+#: ../setup/defaults.inc:58 ../setup/defaults.inc:169
 msgid "&lt;&lt; _Previous Step"
 msgstr ""
 
@@ -3511,14 +3508,6 @@ msgstr ""
 #: ../setup/constants.inc:116 ../setup/constants.inc:272
 #: ../setup/defaults.inc:90 ../setup/defaults.inc:173
 msgid "Use Defaults"
-msgstr ""
-
-#: ../setup/constants.inc:268 ../setup/defaults.inc:169
-msgid "&lt;&lt; Previous Step"
-msgstr ""
-
-#: ../setup/constants.inc:271 ../setup/defaults.inc:172
-msgid "Next Step &gt;&gt;"
 msgstr ""
 
 #: ../setup/defaults.inc:55
