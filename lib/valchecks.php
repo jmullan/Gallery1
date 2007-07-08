@@ -150,4 +150,65 @@ function sanitizeInput($value) {
 	}
 	return $sanitized;
 }
+
+/**
+ * Checks whether an URL is a Gallery URL
+ *
+ * @param string $url	Full URL to a Gallery file.
+ * @return boolean
+ */
+function isValidGalleryUrl($url) {
+	if (!empty($url)) {
+		//Detect header injection attempts
+		if (!isSafeHttpHeader($url)) {
+			// Invalid return URL! The requested URL contains malicious characters and is denied.
+			return false;
+		}
+
+		// Check for phishing attacks, don't allow return URLs to other sites
+		$galleryBaseUrl = getGalleryBaseUrl();
+
+		/*
+		* We check for ../ and /../ patterns and on windows \../ would also break out,
+		* normalize to URL / *nix style paths to check fewer cases
+		*/
+
+		$normalizedUrl = str_replace("\\", '/', $url);
+
+		if (
+			strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
+			strpos($normalizedUrl, '/../') !== false)
+		{
+			//Invalid return URL! The requested URL %s tried to insert a redirection which is not a part of this Gallery.
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Checks whether a URL does contains malicious characters.
+ *
+ * @param string	$header
+ * @return boolean
+ */
+function isSafeHttpHeader($header) {
+	if (!is_string($header)) {
+		return false;
+	}
+
+	/* Don't allow plain occurrences of CR or LF */
+	if (strpos($header, chr(13)) !== false || strpos($header, chr(10)) !== false) {
+		return false;
+	}
+
+	/* Don't allow (x times) url encoded versions of CR or LF */
+	if (preg_match('/%(25)*(0a|0d)/i', $header)) {
+		return false;
+	}
+
+	return true;
+
+}
 ?>

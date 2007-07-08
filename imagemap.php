@@ -133,6 +133,7 @@ includeTemplate("photo.header");
 
 if (!empty($allImageAreas)) {
 	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
+	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/tip_balloon.js"></script>';
 }
 
 ?>
@@ -292,7 +293,6 @@ echo languageSelector();
 	initPaintArea ();
 	//-->
 	</script>
-</div>
 <?php
 
 includeTemplate('info_donation-block');

@@ -1771,10 +1771,16 @@ class Album {
 			return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrList);
 		}
 		else {
-			$attrList['class'] .= ' g-title';
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= ' g-title';
+			}
+			else {
+				$attrList['class'] = 'g-title';
+			}
+			
 			$attrs = generateAttrs($attrList);
 
-			return "<div$attrs>". gTranslate('core', "No highlight!") .'</div>';
+			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
 		}
 	}
 
@@ -1802,7 +1808,13 @@ class Album {
 			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrList);
 		}
 		else {
-			$attrList['class'] .= ' g-title';
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= ' g-title';
+			}
+			else {
+				$attrList['class'] = 'g-title';
+			}
+			
 			$attrs = generateAttrs($attrList);
 
 			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';

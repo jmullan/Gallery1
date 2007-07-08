@@ -112,6 +112,8 @@ if ($page > $maxPages) {
 	$page = $maxPages;
 }
 
+$currentUrl = makeAlbumUrl($gallery->session->albumName,'', array('page' => $page));
+
 $start = ($page - 1) * $perPage + 1;
 $end = $start + $perPage;
 
@@ -397,7 +399,7 @@ if ($numVisibleItems != 0 &&
 	$gallery->user->canViewComments($gallery->album)))
 {
 	$iconElements[] = galleryLink(
-		makeGalleryUrl( "view_comments.php", array("set_albumName" => $gallery->session->albumName)),
+		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "view&nbsp;_comments"),
 		array(),
 		'view_comment.gif',
@@ -405,13 +407,7 @@ if ($numVisibleItems != 0 &&
 	);
 }
 
-$logoutReturn = doCommand(
-	"logout",
-	array(),
-	'view_album.php',
-	array('"page' => $page, 'set_albumName' => $albumName));
-
-$iconElements[] = LoginLogoutButton($logoutReturn);
+$iconElements[] = LoginLogoutButton($currentUrl);
 
 $adminbox['text']			= $adminText;
 $adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
@@ -537,11 +533,11 @@ if (canVote()) {
 
 // <!-- image grid table -->
 
-$vaRenderDescriptionCSS = '';
 $numPhotos = $gallery->album->numPhotos(1);
 /* this determines if we display "* Item contains a comment" at end of page */
 $displayCommentLegend = false;
 $nr = 0;
+$wz_tooltips = '';
 
 if ($numPhotos) {
 	$rowCount = 0;
@@ -553,8 +549,6 @@ if ($numPhotos) {
 	$rowStart = $start;
 
 	$albumItems = array();
-	$vaRenderDescriptionPanelJS = array();
-	$va_tooltips = '';
 
 	/**
 	 * Loop through the images row by row
@@ -621,7 +615,7 @@ if ($numPhotos) {
 			$altText = $gallery->album->getAltText($i);
 			if(!empty($altText)) {
 				$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
-				$va_tooltips .= "\n var myTooltip_$i = new YAHOO.widget.Tooltip(\"myTooltip_$i\", { context:\"thumbnail_$i\", width:\"${tooltipWidth}px\" } );";
+				$wz_tooltips .= "\n <div id=\"wzTooltip_$i\" class=\"g-tooltip\" style=\"display: none; \">" . nl2br($altText) . '</div>';
 			}
 
 			/**
@@ -641,7 +635,7 @@ if ($numPhotos) {
 
 				$gallery->html_wrap['imageTag']		= $myAlbum->getHighlightTag(
 														$scaleTo,
-														array('id' => "thumbnail_$nr"));
+														array('id' => "thumbnail_$i"));
 
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
 				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];
@@ -651,7 +645,13 @@ if ($numPhotos) {
 			 * Element is a picture
 			 */
 			else {
-				$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
+				if(!empty($altText)) {
+					$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i, 0, array('onmouseover' => "TagToTip('wzTooltip_$i', COPYCONTENT, false)"));
+				}
+				else {
+					$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
+				}
+
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 				$gallery->html_wrap['type']			= 'inline_photothumb.frame';
@@ -844,15 +844,11 @@ if ($numPhotos) {
 
 				$description = nl2br($gallery->album->getDescription($i));
 				if(!empty($description)) {
-					$header = sprintf(gTranslate('core' ,"Description for '%s'"), $caption);
+					$header = gTranslate('core' ,"Description for"). sprintf("<br>'%s'", $caption);
 					$label = gTranslate('core' ,"... show full description");
 
 					list($needJavascript, $albumItems[$nr]['description']) =
 						readMoreBox("description$nr", $header, $description, 0, $label, "thumb$nr");
-
-					if($needJavascript) {
-						$vaRenderDescriptionPanelJS[] = "description$nr";
-					}
 				}
 
 				if ($gallery->album->fields['display_clicks'] == "yes" &&
@@ -936,21 +932,7 @@ if ($numPhotos) {
 		$rowCount++;
 		$rowStart = $visibleItemIndex;
 	}
-	/* End of picutre table */
-
-	if(!empty($vaRenderDescriptionPanelJS)) {
-		$va_javascript .= "\n" .'  <script type="text/javascript">';
-		$va_javascript .= "\n" .'	function init() { ';
-		foreach ($vaRenderDescriptionPanelJS as $renderEntry) {
-			$va_javascript .= "\n	  myPanel_$renderEntry.render();";
-		}
-		$va_javascript .= "\n" .'	}';
-		$va_javascript .= "\n" .'	YAHOO.util.Event.addListener(window, "load", init);';
-		$va_javascript .= "\n" .'  </script>';
-
-		$vaRenderDescriptionCSS =
-			'<link rel="stylesheet" type="text/css" href="'. $gallery->app->photoAlbumURL .'/css/yui/container.css">';
-	}
+	/* End of picture table */
 }
 else {
 	if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) {

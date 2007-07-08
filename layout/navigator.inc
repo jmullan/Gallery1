@@ -184,7 +184,7 @@ if(!includeTemplate('navigator.tpl')) {
 </table>
 <?php
 		if($navc < 2) {
-			include (dirname(dirname(__FILE__)) . '/js/arrowkey_nav.js');
+			echo '<script type="text/javascript" src="'. $gallery->app->photoAlbumURL ."/js/arrowkey_nav.js\"></script>\n";
 	    }
 	}
 }

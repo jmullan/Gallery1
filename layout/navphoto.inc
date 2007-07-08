@@ -118,7 +118,7 @@ if(!includeTemplate('navphoto.tpl')) {
 </table>
 <?php
 	if($navc < 2 && $gallery->app->comments_addType != "inside") {
-		include (dirname(dirname(__FILE__)) . '/js/arrowkey_nav.js');
+		echo '<script type="text/javascript" src="'. $gallery->app->photoAlbumURL ."/js/arrowkey_nav.js\"></script>\n";
 	}
 }
 ?>

@@ -1728,6 +1728,10 @@ function clearGalleryTitle($topic = '') {
  * @author Jens Tkotz
  */
 function gdAvailable($tag = 'jpg') {
+	if(!function_exists('imagetypes')) {
+		return false;
+	}
+	
 	$gdTests = array(
 		'gif'	=> IMG_GIF,
 		'jpg'	=> IMG_JPG,

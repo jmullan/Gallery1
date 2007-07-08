@@ -86,25 +86,6 @@ switch ($cmd) {
 
 		break;
 
-	case 'logout':
-		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
-		$gallery->session->username = '';
-		$gallery->session->language = '';
-		destroyGallerySession();
-
-		// Prevent the 'you have to be logged in' error message
-		// when the user logs out of a protected album
-		createGallerySession();
-		$gallery->session->gRedirDone = true;
-
-		if (!ereg("^http|^{$gallery->app->photoAlbumURL}", $return)) {
-			$return = makeGalleryHeaderUrl($return);
-		}
-
-		header("Location: $return");
-
-		break;
-
 	case 'hide':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->hidePhoto($index);

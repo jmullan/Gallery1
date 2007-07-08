@@ -871,7 +871,13 @@ class AlbumItem {
 			return $this->highlightImage->getTag($dir, 0, $size, $attrList);
 		}
 		else {
-			$attrList['class'] .= ' g-title';
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= ' g-title';
+			}
+			else {
+				$attrList['class'] = 'g-title';
+			}
+			
 			$attrs = generateAttrs($attrList);
 
 			return "<span$attrs>". gTranslate('core', "Requested item has no highlight!") .'</span>';

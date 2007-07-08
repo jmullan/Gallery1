@@ -532,7 +532,7 @@ $defaults = array(
 		  .'<dt>'. gTranslate('config',"Fixed") .'</dt>'
 		  .'<dd>'. gTranslate('config',"Displays prev and next groups of thumbs, changing only to display next group of thumbs.") . '</dd>'
 		  .'<dt>'. gTranslate('config',"Dynamic") . '</dt>'
-		  .'<dd>'. gTranslate('config',"Displays previos and next images, with current image between.") . '</dd>'
+		  .'<dd>'. gTranslate('config',"Displays previous and next images, with current image between.") . '</dd>'
 		  .'</dl>',
 		'value' => 'fixed',
 		'choices' => array(

@@ -46,7 +46,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   </style>
 <?php endif; ?>
 
-<?php echo $vaRenderDescriptionCSS; ?>
 </head>
 <body>
 <?php
@@ -90,18 +89,8 @@ if (!$gallery->session->offline) { ?>
 <?php
 }
 ?>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/yahoo-min.js"></script>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/event-min.js"></script>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dom-min.js"></script>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/container-min.js"></script>
+<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/wz_tooltip.js"></script>
 <?php
-if(!empty($vaRenderDescriptionCSS)) { ?>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/dragdrop-min.js"></script>
-    <script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/yui/animation-min.js"></script>
-
-<?php
-}
-
 echo $va_javascript;
 
 includeLayout('adminbox.inc');
@@ -147,7 +136,7 @@ if ($navigator["maxPages"] > 1) {
 <table cellspacing="5" cellpadding="0" class="g-vatable">
   <tr>
 <?php foreach($albumItems as $nr => $item) : ?>
-    <td class="g-vathumb-cell" align="center">
+    <td class="g-vathumb-cell" align="center" width="<?php echo floor(100/$cols); ?>">
       <div <?php echo $item['thumb']['style'] ?> class="g-vathumb" id="thumb<?php echo $nr; ?>">
       <?php
         $gallery->html_wrap = $item['thumb'];
@@ -270,9 +259,8 @@ includeTemplate('info_donation-block');
 
 includeTemplate("overall.footer");
 
-?>
-   <script type="text/javascript"><?php echo $va_tooltips; ?></script>
-<?php
+echo $wz_tooltips;
+
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 
 </body>

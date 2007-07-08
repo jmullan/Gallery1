@@ -68,9 +68,11 @@ else {
 
 $nextId = getNextId($id);
 
+$currentUrlResized = makeAlbumHeaderUrl($gallery->session->albumName, $id);
+
 /* Determine if user has the rights to view full-sized images */
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
+	header("Location: $currentUrlResized");
 	return;
 }
 elseif (!$gallery->album->isResized($index) &&
@@ -400,8 +402,7 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons) {
 	;
 }
 
-$logoutReturn = doCommand("logout", array(), "albums.php");
-$iconElements[] = LoginLogoutButton($logoutReturn);
+$iconElements[] = LoginLogoutButton($currentUrlResized);
 
 $adminbox['text']			= makeIconMenu($adminTextIconElemens, 'left');
 $adminbox['commands']		= makeIconMenu($iconElements, 'right');

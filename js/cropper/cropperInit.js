@@ -41,7 +41,7 @@ Event.observe(
 		g_cropper = new Cropper.Img(
 			'cropImage',
 			{
-				onloadCoords: { x1: 10, y1: 10, x2: 50, y2: 50 },
+				onloadCoords: { x1: 10, y1: 10, x2: 150, y2: 150 },
 				displayOnInit: true,
 				onEndCrop: onEndCrop
 			}

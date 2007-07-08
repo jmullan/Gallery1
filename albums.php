@@ -92,6 +92,8 @@ $navigator['fullWidth']		= 100;
 $navigator['widthUnits']	= '%';
 $navigator['bordercolor']	= $borderColor;
 
+$currentUrl = makeGalleryUrl("albums.php", array("page" => $gallery->session->albumListPage));
+
 // this determines if we display "* Item contains a comment" at end of page
 $displayCommentLegend = 0;
 
@@ -196,7 +198,7 @@ if ($loggedIn) {
 	}
 }
 
-$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "albums.php"), $numPhotos);
+$iconElements[] = LoginLogoutButton($currentUrl, $numPhotos, $currentUrl);
 
 if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
 	$iconElements[] = popup_link(
@@ -293,9 +295,8 @@ if ($gallery->user->isAdmin() &&
 if (getRequestVar('gRedir') == 1 && ! $gallery->session->gRedirDone) {
 	$message = sprintf(gTranslate('core', "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"),
 		($gallery->user->isLoggedIn() && !$GALLERY_EMBEDDED_INSIDE ? '' : sprintf(gTranslate('core', "Login at the %s and try again."),
-		popup_link(
-		gTranslate('core', "Login page"),
-		'login.php', false, true, 500, 500, 'g-emphasis','','', false))));
+		galleryLink('login.php', gTranslate('core', "Login page"))))
+	);
 
 	$notice_messages[] = array(
 		'type' => 'error',

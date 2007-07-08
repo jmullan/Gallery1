@@ -264,9 +264,16 @@ function makeGalleryUrl($target = '', $args = array()) {
 	}
 	return htmlspecialchars($url);
 }
-
-function makeGalleryHeaderUrl($target, $args = array()) {
+/**
+ * A wrapper around makeGalleryUrl that returns the url with decoded htmlentities
+ *
+ * @param string	$target
+ * @param array		$args
+ * @return string
+ */
+function makeGalleryHeaderUrl($target = '', $args = array()) {
 	$url = makeGalleryUrl($target, $args);
+
 	return unhtmlentities($url);
 }
 

@@ -26,7 +26,6 @@
  */
 
 require_once(dirname(__FILE__) . '/init.php');
-require_once(dirname(__FILE__) . '/includes/definitions/cropOptions.php');
 
 list($index, $offsetX, $offsetY, $width, $height) =
 	getRequestVar(array('index', 'x1', 'y1', 'width', 'height'));
@@ -58,6 +57,7 @@ $photo = $gallery->album->getPhoto($index);
 $photoTag = $gallery->album->getPhotoTag($index, true, array('id' => 'cropImage', 'style' => 'position:absolute'));
 
 list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
+require_once(dirname(__FILE__) . '/includes/definitions/cropOptions.php');
 
 #-- breadcrumb ---
 $breadcrumb["text"] = returnToPathArray($gallery->album, true);

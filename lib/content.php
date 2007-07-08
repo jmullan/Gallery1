@@ -1252,15 +1252,17 @@ function showImageMap($index, $noUrlUrl = '#') {
 
 	$allImageAreas = $gallery->album->getAllImageAreas($index);
 	$html = '';
+	$wz_tooltips = '';
 
 	if (!empty($allImageAreas)) {
 		$html .= "\n". '<map name="myMap">';
 
 		foreach($allImageAreas as $nr => $area) {
-			$html .= "\n\t<area shape=\"poly\" coords=\"". $area['coords'] ."\" ";
+			$html .= "\n\t<area shape=\"poly\" alt=\"\" coords=\"". $area['coords'] ."\" ";
 
 			if(!empty($area['hover_text'])) {
-				$html .= "onmouseover=\"Tip('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."',FADEIN, 300, FADEOUT, 300);\"";
+				$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true, BALLOON, true, OFFSETX, 0, OFFSETY, 0, BALLOONIMGPATH, '". $gallery->app->photoAlbumURL ."/js/tip_balloon/');\"";
+				$wz_tooltips .= "\n <div id=\"wzTooltip_$nr\" style=\"display: none; \">" . htmlentities(addslashes($area['hover_text']), ENT_QUOTES) . '</div>';
 			}
 
 			if(!empty($area['url'])) {
@@ -1272,7 +1274,7 @@ function showImageMap($index, $noUrlUrl = '#') {
 			$html .='>';
 		}
 
-		$html .= "\n</map>\n";
+		$html .= "\n</map>\n" . $wz_tooltips;
 	}
 
 	return $html;
@@ -1310,20 +1312,21 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 /**
  * Returns a html string that represents the login/logout button, or just the text.
  *
- * @param string	$logoutUrl	Url to go to for loggin out.
+ * @param string	$return		Url to go to for loggin out.
  * @param int		$photoCount
  * @return string	$html
- * @author Jens Tkotz
  */
-function LoginLogoutButton($logoutUrl, $photoCount = 1) {
+function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	$html = '';
 
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
-			$html = galleryIconLink($logoutUrl, 'logout.gif', gTranslate('common', "log_out"));
+			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return, 'cmd' => 'logout'));
+			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "log_out"));
 		}
 		else {
+			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return));
 			if($photoCount == 0) {
 				$loginText = gTranslate('common', "_Login to see or add more items.");
 			}
@@ -1331,9 +1334,10 @@ function LoginLogoutButton($logoutUrl, $photoCount = 1) {
 				$loginText = gTranslate('common', "log_in");
 			}
 
-			$html = popup_link($loginText, 'login.php', false, true, 500, 500, '','','login.gif');
+			$html = galleryIconLink($returnUrl, 'login.gif', $loginText);
 		}
 	}
+
 	return $html;
 }
 
@@ -1583,14 +1587,14 @@ function updateProgressBar($htmlId, $status, $percentDone) {
  * If a Text is longer then a given length its cutted and a link which opens a panel i showed.
  * Special case: if the allowed length = 0 then only the link is showed.
  *
- * @param  string  $panelID		   Each Panel has its own id, which needs to be given by the user.
+ * @param  string  $panelID			Each Panel has its own id, which needs to be given by the user.
  *									This ID is used for the rendering.
- * @param  string  $panelHeaderText   Header of the panel.
+ * @param  string  $panelHeaderText	Header of the panel.
  * @param  string  $text
- * @param  integer $cutAfter		  After which chars the text is cutted. Or 0 if cutted at all.
- * @param  string  $readMoreText	  Text to be shown after the cut. Default is "... read more"
- * @param  string  $contextId		 If set, then the panel is connected to the element with this id.
- * @return array					  First element is a boolean, if yes, then a javascript is need to handle the panel.
+ * @param  integer $cutAfter		After which chars the text is cutted. Or 0 if cutted at all.
+ * @param  string  $readMoreText	Text to be shown after the cut. Default is "... read more"
+ * @param  string  $contextId		If set, then the panel is connected to the element with this id.
+ * @return array					First element is a boolean, if yes, then a javascript is need to handle the panel.
  *									The second is the complete readMoreBox
  * @author Jens Tkotz
  */
@@ -1612,25 +1616,13 @@ function readMoreBox($panelID, $panelHeaderText = '', $text, $cutAfter = 0, $rea
 			$html = substr($text, 0, $cutAfter) . '<br>';
 		}
 
-		$html .= '<div class="right"><a href="#" class="g-dim g-small" onclick="myPanel_'. $panelID .'.show(); return false;">'. $readMoreText .'</a></div>';
-		$html .= '
-		<div id="myPanel_'. $panelID .'">
-			<div class="hd" style="text-align:'. langleft() .'">'. $panelHeaderText .'</div>
-			<div class="bd">'. $text .'</div>
-			<div class="ft"></div>
-		</div>
-		<script type="text/javascript">
-			var myPanel_'.$panelID.' = new YAHOO.widget.Panel("myPanel_'. $panelID .'", {
-					effect:{ effect:YAHOO.widget.ContainerEffect.FADE,duration:0.25},
-					constraintoviewport: true,
-					visible:false,
-					close:true,
-					draggable:true,
-					context: ["'. $contextId .'", "tl", "br"]
-					 }
-			);
-		</script>
-		';
+		$panelHeaderText = addslashes($panelHeaderText);
+
+		$html .= '<div class="right">'.
+				 "<a class=\"g-dim g-small\" onclick=\"TagToTip('wzPanel_$panelID', STICKY, true, CLOSEBTN, true, TITLE, 'blub', TOOLTIPCSS, 'g-tooltipClickable')\">$readMoreText</a>" .
+				 '</div>';
+
+		$html .= "<div id=\"wzPanel_$panelID\" class=\"hidden\">$text</div>\n";
 
 		$ret = array(true, $html);
 	}
