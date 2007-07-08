@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-07 19:58+0200\n"
+"POT-Creation-Date: 2007-07-07 23:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -265,7 +265,7 @@ msgstr ""
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:359 ../view_album.php:773
+#: ../albums.php:359 ../view_album.php:774
 msgid "Download entire album as archive"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgstr ""
 msgid "Last changed on %s."
 msgstr ""
 
-#: ../albums.php:432 ../view_album.php:946
+#: ../albums.php:432 ../view_album.php:947
 msgid "This album is empty."
 msgstr ""
 
@@ -415,7 +415,7 @@ msgid "(click to enlarge)"
 msgstr ""
 
 #: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:757
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:758
 msgid "hidden"
 msgstr ""
 
@@ -528,8 +528,8 @@ msgstr ""
 msgid "Skipping Movie"
 msgstr ""
 
-#: ../classes/Album.php:1257 ../classes/Album.php:2203
-#: ../classes/Album.php:2356
+#: ../classes/Album.php:1257 ../classes/Album.php:2215
+#: ../classes/Album.php:2368
 msgid " -- Skipping"
 msgstr ""
 
@@ -538,8 +538,8 @@ msgstr ""
 msgid "Resizig items in album: '<i>%s</i>' (%s)' with %d items"
 msgstr ""
 
-#: ../classes/Album.php:1276 ../classes/Album.php:2222
-#: ../classes/Album.php:2391
+#: ../classes/Album.php:1276 ../classes/Album.php:2234
+#: ../classes/Album.php:2403
 #, php-format
 msgid "Processing item %d..."
 msgstr ""
@@ -608,70 +608,70 @@ msgstr ""
 msgid "Item successfully added."
 msgstr ""
 
-#: ../classes/Album.php:1777 ../classes/Album.php:1808
+#: ../classes/Album.php:1783 ../classes/Album.php:1820
 msgid "No highlight!"
 msgstr ""
 
-#: ../classes/Album.php:1786 ../classes/Album.php:1789
+#: ../classes/Album.php:1792 ../classes/Album.php:1795
 #, php-format
 msgid "Highlight for album: %s"
 msgstr ""
 
-#: ../classes/Album.php:2039
+#: ../classes/Album.php:2051
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:2092
+#: ../classes/Album.php:2104
 #, php-format
 msgid "Recreating %d captions..."
 msgstr ""
 
-#: ../classes/Album.php:2094
+#: ../classes/Album.php:2106
 #, php-format
 msgid "Processing image %d..."
 msgstr ""
 
-#: ../classes/Album.php:2101
+#: ../classes/Album.php:2113
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr ""
 
-#: ../classes/Album.php:2213 ../classes/Album.php:2366
+#: ../classes/Album.php:2225 ../classes/Album.php:2378
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
 msgstr ""
 
-#: ../classes/Album.php:2232 ../classes/Album.php:2379
+#: ../classes/Album.php:2244 ../classes/Album.php:2391
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items"
 msgstr ""
 
-#: ../classes/Album.php:2564
+#: ../classes/Album.php:2576
 #, php-format
 msgid "Error getting EXIF data. Expected Status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2815
+#: ../classes/Album.php:2827
 msgid "(Group)"
 msgstr ""
 
-#: ../classes/Album.php:3147
+#: ../classes/Album.php:3159
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:3314
+#: ../classes/Album.php:3326
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr ""
 
-#: ../classes/Album.php:3318
+#: ../classes/Album.php:3330
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr ""
 
-#: ../classes/Album.php:3328
+#: ../classes/Album.php:3340
 msgid "Email problems"
 msgstr ""
 
@@ -715,7 +715,7 @@ msgstr ""
 msgid "No thumbnail"
 msgstr ""
 
-#: ../classes/AlbumItem.php:877
+#: ../classes/AlbumItem.php:883
 msgid "Requested item has no highlight!"
 msgstr ""
 
@@ -792,6 +792,55 @@ msgstr ""
 #: ../classes/gallery/UserDB.php:467
 #, php-format
 msgid "Problem adding %s:"
+msgstr ""
+
+#: ../crop_photo.php:67 ../imagemap.php:179
+msgid "Original photo"
+msgstr ""
+
+#: ../crop_photo.php:100
+msgid "You do not have the permission to edit the fullsize Version of this image."
+msgstr ""
+
+#: ../crop_photo.php:112
+msgid "Here you can crop the fullsize Version of your Image. Optionally you can let the intermediate version be created automatically."
+msgstr ""
+
+#: ../crop_photo.php:136
+msgid "Current Dimension:"
+msgstr ""
+
+#: ../crop_photo.php:137 ../crop_photo.php:145
+msgid "Width"
+msgstr ""
+
+#: ../crop_photo.php:138 ../crop_photo.php:146
+msgid "Height"
+msgstr ""
+
+#: ../crop_photo.php:144
+msgid "New Dimension:"
+msgstr ""
+
+#: ../crop_photo.php:150 ../popups/edit_thumb.php:194
+msgid "Select a ratio for the crop frame:"
+msgstr ""
+
+#: ../crop_photo.php:156
+msgid "Recreate re_sized"
+msgstr ""
+
+#: ../crop_photo.php:160 ../popups/ecard_form.php:274
+#: ../popups/edit_watermark.php:120 ../popups/watermark_album.php:143
+msgid "_Preview"
+msgstr ""
+
+#: ../crop_photo.php:161 ../popups/ecard_form.php:275
+msgid "_Reset"
+msgstr ""
+
+#: ../crop_photo.php:162 ../popups/edit_thumb.php:201
+msgid "_Crop"
 msgstr ""
 
 #: ../gallery_remote.php:118 ../publish_xp.php:364
@@ -980,10 +1029,6 @@ msgstr ""
 
 #: ../imagemap.php:165
 msgid "_login"
-msgstr ""
-
-#: ../imagemap.php:179
-msgid "Original photo"
 msgstr ""
 
 #: ../imagemap.php:218
@@ -1202,6 +1247,58 @@ msgstr ""
 
 #: ../includes/add_photos/captionOptions.inc.php:52
 msgid "For the date/time related options Gallery will use the format you specified in the config for date/time strings."
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:30
+msgid "No Ratio"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:31
+msgid "1:1 (Square)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:32
+msgid "1:3 (Letterbox)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:33
+msgid "9:16 (HDTV)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:34
+msgid "3:5 (Photo)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:35
+msgid "4:6 = 10:15 (Photo)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:36
+msgid "9:13 (Photo)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:37
+msgid "5:7 (Photo)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:38
+msgid "3:4 (Screen)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:39
+msgid "8:10 (Photo)"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:40
+msgid "Like the Image"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:44
+msgid "Portrait"
+msgstr ""
+
+#: ../includes/definitions/cropOptions.php:45
+msgid "Landscape"
 msgstr ""
 
 #: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:88
@@ -2286,7 +2383,7 @@ msgid "_Return to  %s"
 msgstr ""
 
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:459 ../view_album.php:782
+#: ../popups/upgrade_album.php:97 ../view_album.php:459 ../view_album.php:783
 #, php-format
 msgid "Album: %s"
 msgstr ""
@@ -2872,15 +2969,6 @@ msgstr ""
 msgid "Your Message:"
 msgstr ""
 
-#: ../popups/ecard_form.php:274 ../popups/edit_watermark.php:120
-#: ../popups/watermark_album.php:143
-msgid "_Preview"
-msgstr ""
-
-#: ../popups/ecard_form.php:275
-msgid "_Reset"
-msgstr ""
-
 #: ../popups/ecard_form.php:287
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
@@ -3058,16 +3146,8 @@ msgstr ""
 msgid "Choose which part of the image will compose your thumbnail:"
 msgstr ""
 
-#: ../popups/edit_thumb.php:194
-msgid "Select a ratio for the crop frame:"
-msgstr ""
-
 #: ../popups/edit_thumb.php:200 ../popups/save_photos.php:434
 msgid "_Dismiss"
-msgstr ""
-
-#: ../popups/edit_thumb.php:201
-msgid "_Crop"
 msgstr ""
 
 #: ../popups/edit_watermark.php:81 ../popups/watermark_album.php:92
@@ -5114,7 +5194,7 @@ msgstr ""
 msgid "We are trying to download the tempdir itself ?! Download aborted."
 msgstr ""
 
-#: ../util.php:1784
+#: ../util.php:1788
 #, php-format
 msgid "Debug ON ! Level %s"
 msgstr ""
@@ -5262,59 +5342,59 @@ msgstr[1] ""
 msgid "You can change your votes later, if you wish."
 msgstr ""
 
-#: ../view_album.php:675 ../view_album.php:676
+#: ../view_album.php:676 ../view_album.php:677
 #, php-format
 msgid "%dkB"
 msgstr ""
 
-#: ../view_album.php:689 ../view_album.php:712
+#: ../view_album.php:690 ../view_album.php:713
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
-#: ../view_album.php:764
+#: ../view_album.php:765
 msgid "highlight"
 msgstr ""
 
-#: ../view_album.php:791
+#: ../view_album.php:792
 msgid "No description"
 msgstr ""
 
-#: ../view_album.php:799
+#: ../view_album.php:800
 #, php-format
 msgid "Last change: %s"
 msgstr ""
 
-#: ../view_album.php:802
+#: ../view_album.php:803
 #, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:819
+#: ../view_album.php:820
 #, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:846
+#: ../view_album.php:847
 msgid "Description for"
 msgstr ""
 
-#: ../view_album.php:847
+#: ../view_album.php:848
 msgid "... show full description"
 msgstr ""
 
-#: ../view_album.php:858
+#: ../view_album.php:859
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:943
+#: ../view_album.php:944
 msgid "Hey! Add some photos."
 msgstr ""
 
