@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-05-23 17:10+0200\n"
+"POT-Creation-Date: 2007-07-09 15:40+0200\n"
 "PO-Revision-Date: 2004-08-19 23:50+1000\n"
 "Last-Translator: Peter Vlaciky <doktor AT internode DOT net DOT au>\n"
 "Language-Team: SK <doktor AT internode DOT net DOT au>\n"
@@ -37,361 +37,356 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: ../lib/setup.php:171
+#: ../lib/setup.php:172
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../lib/setup.php:182 ../lib/setup.php:1228
+#: ../lib/setup.php:183 ../lib/setup.php:1229
 msgid "Name"
 msgstr "Meno"
 
-#: ../lib/setup.php:183 ../lib/setup.php:1228
+#: ../lib/setup.php:184 ../lib/setup.php:1229
 msgid "Value"
 msgstr "Hodnota"
 
-#: ../lib/setup.php:213 ../lib/setup.php:265
+#: ../lib/setup.php:214 ../lib/setup.php:266
 msgid "No content"
 msgstr ""
 
-#: ../lib/setup.php:431
+#: ../lib/setup.php:432
 #, fuzzy, php-format
 msgid "Missing value: %s"
 msgstr "Chýbajúca hodnota"
 
-#: ../lib/setup.php:449
-msgid "<b>exec()</b> is enabled on this server."
+#: ../lib/setup.php:450
+msgid "exec() is enabled on this server."
 msgstr ""
 
-#: ../lib/setup.php:470
-msgid "Gallery is able to read your <b>.htaccess</b> file."
+#: ../lib/setup.php:471
+msgid "Gallery is able to read your .htaccess file."
 msgstr ""
 
-#: ../lib/setup.php:492
+#: ../lib/setup.php:493
 #, php-format
 msgid "PHP v%s is OK."
 msgstr "PHP v%s je OK."
 
-#: ../lib/setup.php:510
-msgid "<b>mod_rewrite</b> is enabled."
+#: ../lib/setup.php:511
+msgid "mod_rewrite is enabled."
 msgstr ""
 
-#: ../lib/setup.php:540
+#: ../lib/setup.php:541
 msgid "Can't find <i>jhead</i>"
 msgstr ""
 
-#: ../lib/setup.php:543
-msgid "<b>jhead</b> binary located."
+#: ../lib/setup.php:544
+msgid "jhead binary located."
 msgstr ""
 
-#: ../lib/setup.php:581
+#: ../lib/setup.php:582
 msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
-#: ../lib/setup.php:587
+#: ../lib/setup.php:588
 msgid "NetPBM not being used in this installation."
 msgstr ""
 
-#: ../lib/setup.php:592 ../lib/setup.php:688
+#: ../lib/setup.php:593 ../lib/setup.php:689
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr ""
 
-#: ../lib/setup.php:626 ../lib/setup.php:705
+#: ../lib/setup.php:627 ../lib/setup.php:706
 #, php-format
 msgid "Missing optional binary %s. %s"
 msgstr ""
 
-#: ../lib/setup.php:629 ../lib/setup.php:708
+#: ../lib/setup.php:630 ../lib/setup.php:709
 #, php-format
 msgid "Can't find %s!"
 msgstr ""
 
-#: ../lib/setup.php:635 ../lib/setup.php:714
+#: ../lib/setup.php:636 ../lib/setup.php:715
 #, php-format
 msgid "%s is not executable!"
 msgstr ""
 
-#: ../lib/setup.php:645 ../lib/setup.php:653
+#: ../lib/setup.php:646 ../lib/setup.php:654
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr ""
 
-#: ../lib/setup.php:677
+#: ../lib/setup.php:678
 msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
 msgstr ""
 
-#: ../lib/setup.php:683
+#: ../lib/setup.php:684
 msgid "ImageMagick not being used in this installation."
 msgstr ""
 
-#: ../lib/setup.php:724 ../lib/setup.php:732
+#: ../lib/setup.php:725 ../lib/setup.php:733
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr ""
 
-#: ../lib/setup.php:754
-msgid "Can't find <i>jpegtran</i>!"
+#: ../lib/setup.php:755 ../includes/setup/checks.inc:232
+msgid "jpegtran was not found."
 msgstr ""
 
-#: ../lib/setup.php:756
-msgid "<b>jpegtran</b> binary located."
+#: ../lib/setup.php:757
+msgid "jpegtran binary located."
 msgstr ""
 
-#: ../lib/setup.php:768
-msgid "PHP has <b>GNU gettext</b> support."
+#: ../lib/setup.php:769
+msgid "PHP has GNU gettext support."
 msgstr ""
 
-#: ../lib/setup.php:770
-msgid "PHP does not have <b>GNU gettext</b> support."
+#: ../lib/setup.php:771
+msgid "PHP does not have GNU gettext support."
 msgstr ""
 
-#: ../lib/setup.php:783
+#: ../lib/setup.php:784
 msgid "No languages found."
 msgstr ""
 
-#: ../lib/setup.php:785
+#: ../lib/setup.php:786
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../lib/setup.php:788
+#: ../lib/setup.php:789
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr ""
 
-#: ../lib/setup.php:814
+#: ../lib/setup.php:815
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr ""
 
-#: ../lib/setup.php:816
+#: ../lib/setup.php:817
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr ""
 
-#: ../lib/setup.php:819
+#: ../lib/setup.php:820
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr ""
 
-#: ../lib/setup.php:825
+#: ../lib/setup.php:826
 #, php-format
 msgid "Thats more than %d days ago. Which is way too old for a pre Release version."
 msgstr ""
 
-#: ../lib/setup.php:830
+#: ../lib/setup.php:831
 #, php-format
 msgid "Thats more than %d days ago."
 msgstr ""
 
-#: ../lib/setup.php:838
+#: ../lib/setup.php:839
 msgid "Please check regularly for updates."
 msgstr ""
 
-#: ../lib/setup.php:861
+#: ../lib/setup.php:862
 msgid "All gallery locales are available on this host."
 msgstr ""
 
-#: ../lib/setup.php:865
+#: ../lib/setup.php:866
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr ""
 
-#: ../lib/setup.php:873
+#: ../lib/setup.php:874
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr ""
 
-#: ../lib/setup.php:879
+#: ../lib/setup.php:880
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr ""
 
-#: ../lib/setup.php:884
+#: ../lib/setup.php:885
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr ""
 
-#: ../lib/setup.php:889
+#: ../lib/setup.php:890
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr ""
 
-#: ../lib/setup.php:1051 ../lib/setup.php:1143
-#: ../includes/setup/constants.inc:655 ../includes/setup/constants.inc:666
-#: ../includes/setup/constants.inc:1282 ../setup/config_data.inc:781
+#: ../lib/setup.php:1052 ../lib/setup.php:1144
+#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
+#: ../includes/setup/constants.inc:1281 ../setup/config_data.inc:781
 #: ../setup/config_data.inc:791 ../setup/config_data.inc:1366
 msgid "Advanced"
 msgstr ""
 
-#: ../lib/setup.php:1052
+#: ../lib/setup.php:1053
 msgid "<b>System</b> locale selection required"
 msgstr ""
 
-#: ../lib/setup.php:1053
+#: ../lib/setup.php:1054
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr ""
 
-#: ../lib/setup.php:1055 ../lib/setup.php:1147
+#: ../lib/setup.php:1056 ../lib/setup.php:1148
 msgid "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above."
 msgstr ""
 
-#: ../lib/setup.php:1068 ../lib/setup.php:1096
+#: ../lib/setup.php:1069 ../lib/setup.php:1097
 msgid "System locale"
 msgstr ""
 
-#: ../lib/setup.php:1144
+#: ../lib/setup.php:1145
 msgid "<b>System</b> locale problems"
 msgstr ""
 
-#: ../lib/setup.php:1145
+#: ../lib/setup.php:1146
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr ""
 
-#: ../lib/setup.php:1194
-msgid "<b>safe_mode</b> is off."
+#: ../lib/setup.php:1195
+msgid "safe_mode is off."
 msgstr ""
 
-#: ../lib/setup.php:1208
-msgid "<b>magic_quotes</b> are off."
+#: ../lib/setup.php:1209
+msgid "magic_quotes are off."
 msgstr ""
 
-#: ../lib/setup.php:1226
+#: ../lib/setup.php:1227
 #, php-format
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr ""
 
-#: ../lib/setup.php:1227 ../lib/setup.php:1236 ../lib/setup.php:1241
+#: ../lib/setup.php:1228 ../lib/setup.php:1237 ../lib/setup.php:1242
 #: ../includes/setup/defaults.inc:444 ../setup/config_data.inc:1901
 msgid "Vote words and values"
 msgstr ""
 
-#: ../lib/setup.php:1235
+#: ../lib/setup.php:1236
 #, php-format
 msgid "In %s, blank in row %d."
 msgstr ""
 
-#: ../lib/setup.php:1240
+#: ../lib/setup.php:1241
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
 msgstr ""
 
-#: ../lib/setup.php:1262
-msgid "<b>register_globals</b> is off."
+#: ../lib/setup.php:1263
+msgid "register_globals is off."
 msgstr ""
 
-#: ../lib/setup.php:1430
+#: ../lib/setup.php:1440
 msgid "Your passwords do not match!"
 msgstr ""
 
-#: ../lib/setup.php:1441 ../templates/setup/im-netpbm-test.tpl:62
+#: ../lib/setup.php:1452 ../templates/setup/im-netpbm-test.tpl:62
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/setup.php:1446
+#: ../lib/setup.php:1457
 msgid "Valid admin email address given."
 msgstr "Platná admin emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1453
+#: ../lib/setup.php:1464
 msgid "You must specify valid admin email addresses"
 msgstr ""
 
-#: ../lib/setup.php:1461
+#: ../lib/setup.php:1472
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../lib/setup.php:1470
+#: ../lib/setup.php:1481
 msgid "Valid sender email address given."
 msgstr "Platná odosielateµova emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1472
+#: ../lib/setup.php:1483
 msgid "You must specify a valid sender email address"
 msgstr ""
 
-#: ../lib/setup.php:1475
+#: ../lib/setup.php:1486
 #, php-format
 msgid "You must include %s in your welcome email"
 msgstr ""
 
-#: ../lib/setup.php:1480
+#: ../lib/setup.php:1491
 #, php-format
 msgid "You must include %s or %s in your welcome email"
 msgstr ""
 
-#: ../lib/setup.php:1500
-#, php-format
-msgid "this is new in version %s"
-msgstr ""
-
-#: ../lib/setup.php:1508
+#: ../lib/setup.php:1512
 #, fuzzy
 msgid "_Configuration Wizard"
 msgstr "Nastavovací Nápomocník"
 
-#: ../lib/setup.php:1516 ../setup/check.inc:62
+#: ../lib/setup.php:1520 ../setup/check.inc:62
 #, fuzzy
 msgid "Gallery Dia_gnostics Page"
 msgstr "Gallery Diagnostická Stránka"
 
-#: ../lib/setup.php:1566
+#: ../lib/setup.php:1572
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr ""
 
-#: ../lib/setup.php:1571
+#: ../lib/setup.php:1577
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
 msgstr ""
 
-#: ../lib/setup.php:1574
+#: ../lib/setup.php:1580
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
-#: ../lib/setup.php:1577
+#: ../lib/setup.php:1583
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../lib/setup.php:1586
+#: ../lib/setup.php:1592
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../lib/setup.php:1592
+#: ../lib/setup.php:1598
 msgid "Admin password"
 msgstr "Admin heslo"
 
-#: ../lib/setup.php:1607 ../lib/setup.php:1608 ../lib/setup.php:1609
-#: ../lib/setup.php:1613
+#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1615
+#: ../lib/setup.php:1619
 msgid "Full Name"
 msgstr "Plné Meno"
 
-#: ../lib/setup.php:1607 ../lib/setup.php:1608 ../lib/setup.php:1610
-#: ../lib/setup.php:1614
+#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1616
+#: ../lib/setup.php:1620
 msgid "Username"
 msgstr "U¾ívateµ"
 
-#: ../lib/setup.php:1611
+#: ../lib/setup.php:1617
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1612
+#: ../lib/setup.php:1618
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1613 ../lib/setup.php:1614
+#: ../lib/setup.php:1619 ../lib/setup.php:1620
 msgid "email address"
 msgstr "emailová adresa"
 
-#: ../lib/setup.php:1633
+#: ../lib/setup.php:1639
 msgid "This should be fixed before proceeding."
 msgstr ""
 
-#: ../lib/setup.php:1634
+#: ../lib/setup.php:1640
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr ""
 
-#: ../lib/setup.php:1639
+#: ../lib/setup.php:1645
 #, php-format
 msgid "One file is newer then expected."
 msgid_plural "%d files are newer then expected."
@@ -399,7 +394,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../lib/setup.php:1647
+#: ../lib/setup.php:1653
 #, php-format
 msgid "One file is out of date, corrupted or missing."
 msgid_plural "%d files are out of date, corrupted or missing."
@@ -407,111 +402,111 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: ../lib/setup.php:1654
+#: ../lib/setup.php:1660
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr ""
 
-#: ../lib/setup.php:1675
+#: ../lib/setup.php:1681
 msgid "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page."
 msgstr ""
 
-#: ../lib/setup.php:1680
+#: ../lib/setup.php:1686
 #, php-format
 msgid "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."
 msgstr ""
 
-#: ../lib/setup.php:1687
+#: ../lib/setup.php:1693
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../lib/setup.php:1695
+#: ../lib/setup.php:1701
 #, php-format
 msgid "Cannot read file %s."
 msgstr "Nebolo mo¾né èíta» archív %s."
 
-#: ../lib/setup.php:1697
+#: ../lib/setup.php:1703
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../lib/setup.php:1713
+#: ../lib/setup.php:1719
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../lib/setup.php:1715
+#: ../lib/setup.php:1721
 msgid "Missing version"
 msgstr "Chýba verzia"
 
-#: ../lib/setup.php:1721
+#: ../lib/setup.php:1727
 #, fuzzy, php-format
 msgid "Found Version: %s"
 msgstr "OK! Verzia: %s"
 
-#: ../lib/setup.php:1730
+#: ../lib/setup.php:1736
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1733
+#: ../lib/setup.php:1739
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1738
+#: ../lib/setup.php:1744
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
 msgstr ""
 
-#: ../lib/setup.php:1741
+#: ../lib/setup.php:1747
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1745
+#: ../lib/setup.php:1751
 #, php-format
 msgid "%s OK"
 msgstr "%s OK"
 
-#: ../lib/setup.php:1747
+#: ../lib/setup.php:1753
 #, php-format
 msgid "Found expected version %s."
 msgstr ""
 
-#: ../lib/setup.php:1802
+#: ../lib/setup.php:1808
 msgid "This email will be sent when new accounts are created."
 msgstr ""
 
-#: ../lib/setup.php:1803
+#: ../lib/setup.php:1809
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr ""
 
-#: ../lib/setup.php:1804
+#: ../lib/setup.php:1810
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "Nasledujúce archívy sú aktualizované."
 
-#: ../lib/setup.php:1877 ../lib/setup.php:1921
+#: ../lib/setup.php:1883 ../lib/setup.php:1927
 #, php-format
 msgid "File %s does not exist."
 msgstr "Archív %s neexistuje."
 
-#: ../lib/setup.php:1886 ../lib/setup.php:1931
+#: ../lib/setup.php:1892 ../lib/setup.php:1937
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
-#: ../lib/setup.php:1897 ../lib/setup.php:1944
+#: ../lib/setup.php:1903 ../lib/setup.php:1950
 msgid "can't detect version on Windows"
 msgstr ""
 
-#: ../lib/setup.php:1901 ../lib/setup.php:1959
+#: ../lib/setup.php:1907 ../lib/setup.php:1965
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Verzia: %s"
 
-#: ../lib/setup.php:1968
+#: ../lib/setup.php:1974
 msgid "Unknown error occured."
 msgstr ""
 
@@ -528,7 +523,7 @@ msgstr ""
 #: ../includes/setup/checks.inc:79 ../includes/setup/checks.inc:87
 #: ../includes/setup/checks.inc:91 ../includes/setup/checks.inc:136
 #: ../includes/setup/constants.inc:94 ../includes/setup/constants.inc:104
-#: ../includes/setup/constants.inc:695 ../setup/config_data.inc:76
+#: ../includes/setup/constants.inc:694 ../setup/config_data.inc:76
 #: ../setup/config_data.inc:86 ../setup/config_data.inc:94
 #: ../setup/config_data.inc:134 ../setup/config_data.inc:820
 msgid "Note:"
@@ -701,7 +696,7 @@ msgid "Check to see if NetPBM is installed so that Gallery can manipulate images
 msgstr ""
 
 #: ../includes/setup/checks.inc:188
-msgid "I can't find NetPBM!"
+msgid "NetPBM was not found"
 msgstr ""
 
 #: ../includes/setup/checks.inc:190
@@ -729,7 +724,7 @@ msgid "Check to see if ImageMagick is installed so that Gallery can manipulate i
 msgstr ""
 
 #: ../includes/setup/checks.inc:205
-msgid "I can't find ImageMagick"
+msgid "ImageMagick was not found."
 msgstr ""
 
 #: ../includes/setup/checks.inc:207
@@ -737,7 +732,7 @@ msgid "If it's installed and not in the path of the webserver user that's OK&#82
 msgstr ""
 
 #: ../includes/setup/checks.inc:209
-msgid "I've found part of ImageMagick , but some components are missing (see below)."
+msgid "I've found part of ImageMagick, but some components are missing (see below)."
 msgstr ""
 
 #: ../includes/setup/checks.inc:212 ../setup/config_data.inc:200
@@ -753,7 +748,7 @@ msgid "Check to see if <b>jhead</b> is installed so that Gallery can examine EXI
 msgstr ""
 
 #: ../includes/setup/checks.inc:221
-msgid "I can't find <b>jhead</b>"
+msgid "jhead was not found."
 msgstr ""
 
 #: ../includes/setup/checks.inc:223
@@ -767,10 +762,6 @@ msgstr ""
 
 #: ../includes/setup/checks.inc:230 ../setup/config_data.inc:216
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
-msgstr ""
-
-#: ../includes/setup/checks.inc:232
-msgid "I can't find <b>jpegtran</b>!"
 msgstr ""
 
 #: ../includes/setup/checks.inc:233
@@ -869,210 +860,206 @@ msgstr "Názov Plá¹»a"
 msgid "Select a skin to use for Gallery. You now have a wide choice of &quot;skins&quot; that affect the look of every page of your Gallery.  You can have fun experimenting with the available skins. Choose &quot;None&quot; to use the default skin."
 msgstr ""
 
-#: ../includes/setup/constants.inc:127 ../setup/config_data.inc:296
-msgid "Here you can get a more Gallery Skins by Drazan"
-msgstr ""
-
-#: ../includes/setup/constants.inc:133 ../setup/config_data.inc:278
+#: ../includes/setup/constants.inc:132 ../setup/config_data.inc:278
 msgid "Use Icons ?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:134 ../setup/config_data.inc:279
-msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
+#: ../includes/setup/constants.inc:133
+msgid "You can choose whether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be a tooltip."
 msgstr ""
 
-#: ../includes/setup/constants.inc:136 ../setup/config_data.inc:281
+#: ../includes/setup/constants.inc:135 ../setup/config_data.inc:281
 msgid "Icons and text"
 msgstr ""
 
-#: ../includes/setup/constants.inc:137 ../setup/config_data.inc:282
+#: ../includes/setup/constants.inc:136 ../setup/config_data.inc:282
 msgid "Text only"
 msgstr ""
 
-#: ../includes/setup/constants.inc:138 ../setup/config_data.inc:283
+#: ../includes/setup/constants.inc:137 ../setup/config_data.inc:283
 msgid "Icons only"
 msgstr ""
 
-#: ../includes/setup/constants.inc:143 ../setup/config_data.inc:302
+#: ../includes/setup/constants.inc:142 ../setup/config_data.inc:302
 msgid "Default upload method"
 msgstr "Predvolená metóda odsunu"
 
-#: ../includes/setup/constants.inc:144 ../setup/config_data.inc:303
+#: ../includes/setup/constants.inc:143 ../setup/config_data.inc:303
 msgid "Which method of uploading photos should be defaulted to for users who don't specify?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:146 ../setup/config_data.inc:305
+#: ../includes/setup/constants.inc:145 ../setup/config_data.inc:305
 msgid "Form-based Upload"
 msgstr "Formou prevedený Odsun"
 
-#: ../includes/setup/constants.inc:147 ../setup/config_data.inc:306
+#: ../includes/setup/constants.inc:146 ../setup/config_data.inc:306
 msgid "Mini-Applet"
 msgstr "Mini-Applet"
 
-#: ../includes/setup/constants.inc:148 ../setup/config_data.inc:307
+#: ../includes/setup/constants.inc:147 ../setup/config_data.inc:307
 msgid "Full-Applet"
 msgstr "Celý-Applet"
 
-#: ../includes/setup/constants.inc:149 ../setup/config_data.inc:308
+#: ../includes/setup/constants.inc:148 ../setup/config_data.inc:308
 msgid "URL"
 msgstr "URL"
 
-#: ../includes/setup/constants.inc:155 ../setup/config_data.inc:288
+#: ../includes/setup/constants.inc:154 ../setup/config_data.inc:288
 msgid "Format for commenter and owner names"
 msgstr ""
 
-#: ../includes/setup/constants.inc:156 ../setup/config_data.inc:289
+#: ../includes/setup/constants.inc:155 ../setup/config_data.inc:289
 msgid "Names of logged in users and owners of albums and photos can be displayed in a variety of different ways"
 msgstr ""
 
-#: ../includes/setup/constants.inc:167 ../setup/config_data.inc:320
+#: ../includes/setup/constants.inc:166 ../setup/config_data.inc:320
 msgid "Locations and URLs"
 msgstr "Miesta a URL"
 
-#: ../includes/setup/constants.inc:172 ../setup/config_data.inc:324
+#: ../includes/setup/constants.inc:171 ../setup/config_data.inc:324
 msgid "Album directory"
 msgstr "Súbor albumu"
 
-#: ../includes/setup/constants.inc:173 ../setup/config_data.inc:325
+#: ../includes/setup/constants.inc:172 ../setup/config_data.inc:325
 #, php-format
 msgid "The full path on physical disk to the directory where your photos will be stored.  This directory should start off empty&#8212;Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."
 msgstr ""
 
-#: ../includes/setup/constants.inc:184 ../setup/config_data.inc:336
+#: ../includes/setup/constants.inc:183 ../setup/config_data.inc:336
 msgid "Temporary directory"
 msgstr "Doèasný súbor"
 
-#: ../includes/setup/constants.inc:185 ../setup/config_data.inc:337
+#: ../includes/setup/constants.inc:184 ../setup/config_data.inc:337
 #, php-format
 msgid "The filesystem path to a temporary directory.  E.g. %s or %s.  Note that if you have <b>open_basedir</b> configured on your system, then this temporary directory must be inside the <b>open_basedir</b> path!  In that case you may need to create the directory yourself and make sure that it's writable by the webserver process."
 msgstr ""
 
-#: ../includes/setup/constants.inc:197 ../setup/config_data.inc:349
+#: ../includes/setup/constants.inc:196 ../setup/config_data.inc:349
 #, php-format
 msgid "The full URL to the Gallery web application. (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
-#: ../includes/setup/constants.inc:206 ../setup/config_data.inc:358
+#: ../includes/setup/constants.inc:205 ../setup/config_data.inc:358
 msgid "Albums URL"
 msgstr "URL Albumov"
 
-#: ../includes/setup/constants.inc:207 ../setup/config_data.inc:359
+#: ../includes/setup/constants.inc:206 ../setup/config_data.inc:359
 #, php-format
 msgid "The full URL to your album directory on your web server.  (e.g. %s) Gallery can operate with relative URLs, however some features, such as printing, may not function correctly."
 msgstr ""
 
-#: ../includes/setup/constants.inc:216 ../setup/config_data.inc:368
+#: ../includes/setup/constants.inc:215 ../setup/config_data.inc:368
 msgid "Thumbnail image"
 msgstr "Vytori» zmen¹eninu z obrázka"
 
-#: ../includes/setup/constants.inc:217 ../setup/config_data.inc:369
+#: ../includes/setup/constants.inc:216 ../setup/config_data.inc:369
 #, php-format
 msgid "The filesystem path to the thumbnail image to show for movies. E.g. %s"
 msgstr ""
 
-#: ../includes/setup/constants.inc:225 ../setup/config_data.inc:376
+#: ../includes/setup/constants.inc:224 ../setup/config_data.inc:376
 msgid "Mirror sites"
 msgstr ""
 
-#: ../includes/setup/constants.inc:226 ../setup/config_data.inc:377
+#: ../includes/setup/constants.inc:225 ../setup/config_data.inc:377
 #, php-format
 msgid "A list of URLs that contain mirrors of your albums directory.  Specify one URL per line with the ones that are more reliable towards the top.  E.g. %s"
 msgstr ""
 
-#: ../includes/setup/constants.inc:243 ../setup/config_data.inc:394
+#: ../includes/setup/constants.inc:242 ../setup/config_data.inc:394
 msgid "Toolkits / image processing"
 msgstr ""
 
-#: ../includes/setup/constants.inc:248 ../setup/config_data.inc:398
+#: ../includes/setup/constants.inc:247 ../setup/config_data.inc:398
 msgid "Graphics suite to use"
 msgstr ""
 
-#: ../includes/setup/constants.inc:249 ../setup/config_data.inc:399
+#: ../includes/setup/constants.inc:248 ../setup/config_data.inc:399
 msgid "This setting tells Gallery which set of graphics tools you prefer it to use.  If Gallery says both are okay (on the first page) then this is simply user preference.  Otherwise go with the one that Gallery was able to find without error."
 msgstr ""
 
-#: ../includes/setup/constants.inc:257 ../setup/config_data.inc:407
+#: ../includes/setup/constants.inc:256 ../setup/config_data.inc:407
 msgid "ImageMagick Settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:263 ../setup/config_data.inc:412
+#: ../includes/setup/constants.inc:262 ../setup/config_data.inc:412
 msgid "Path to ImageMagick"
 msgstr ""
 
-#: ../includes/setup/constants.inc:264 ../setup/config_data.inc:413
+#: ../includes/setup/constants.inc:263 ../setup/config_data.inc:413
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr ""
 
-#: ../includes/setup/constants.inc:265 ../includes/setup/constants.inc:294
+#: ../includes/setup/constants.inc:264 ../includes/setup/constants.inc:293
 #: ../setup/config_data.inc:414 ../setup/config_data.inc:442
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr ""
 
-#: ../includes/setup/constants.inc:268 ../setup/config_data.inc:417
+#: ../includes/setup/constants.inc:267 ../setup/config_data.inc:417
 msgid "I can't find ImageMagick at the location you provided."
 msgstr ""
 
-#: ../includes/setup/constants.inc:283 ../setup/config_data.inc:432
+#: ../includes/setup/constants.inc:282 ../setup/config_data.inc:432
 msgid "NetPBM Settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:289 ../setup/config_data.inc:437
+#: ../includes/setup/constants.inc:288 ../setup/config_data.inc:437
 msgid "Path to NetPBM"
 msgstr ""
 
-#: ../includes/setup/constants.inc:290 ../setup/config_data.inc:438
+#: ../includes/setup/constants.inc:289 ../setup/config_data.inc:438
 #, php-format
 msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr ""
 
-#: ../includes/setup/constants.inc:297 ../setup/config_data.inc:445
+#: ../includes/setup/constants.inc:296 ../setup/config_data.inc:445
 msgid "I can't find NetPBM at the location you provided."
 msgstr ""
 
-#: ../includes/setup/constants.inc:309 ../setup/config_data.inc:457
+#: ../includes/setup/constants.inc:308 ../setup/config_data.inc:457
 msgid "PNM to JPEG converter"
 msgstr ""
 
-#: ../includes/setup/constants.inc:310 ../setup/config_data.inc:458
+#: ../includes/setup/constants.inc:309 ../setup/config_data.inc:458
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr ""
 
-#: ../includes/setup/constants.inc:315 ../setup/config_data.inc:463
+#: ../includes/setup/constants.inc:314 ../setup/config_data.inc:463
 msgid "PNM Composite (Overlay)"
 msgstr ""
 
-#: ../includes/setup/constants.inc:316 ../setup/config_data.inc:464
+#: ../includes/setup/constants.inc:315 ../setup/config_data.inc:464
 msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr ""
 
-#: ../includes/setup/constants.inc:324 ../setup/config_data.inc:472
+#: ../includes/setup/constants.inc:323 ../setup/config_data.inc:472
 msgid "Auto-rotate images"
 msgstr ""
 
-#: ../includes/setup/constants.inc:325 ../setup/config_data.inc:473
+#: ../includes/setup/constants.inc:324 ../setup/config_data.inc:473
 msgid "Selecting this option has Gallery automatically attempt to rotate images on upload, based on the orientation information that is stored in JPEG EXIF data by some newer digital cameras."
 msgstr ""
 
-#: ../includes/setup/constants.inc:326 ../setup/config_data.inc:474
+#: ../includes/setup/constants.inc:325 ../setup/config_data.inc:474
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr ""
 
-#: ../includes/setup/constants.inc:327 ../includes/setup/constants.inc:433
-#: ../includes/setup/constants.inc:455 ../includes/setup/constants.inc:469
-#: ../includes/setup/constants.inc:475 ../includes/setup/constants.inc:650
-#: ../includes/setup/constants.inc:699 ../includes/setup/constants.inc:739
-#: ../includes/setup/constants.inc:748 ../includes/setup/constants.inc:769
-#: ../includes/setup/constants.inc:838 ../includes/setup/constants.inc:848
-#: ../includes/setup/constants.inc:856 ../includes/setup/constants.inc:900
-#: ../includes/setup/constants.inc:926 ../includes/setup/constants.inc:955
-#: ../includes/setup/constants.inc:963 ../includes/setup/constants.inc:965
-#: ../includes/setup/constants.inc:990 ../includes/setup/constants.inc:1257
-#: ../includes/setup/constants.inc:1275 ../includes/setup/constants.inc:1285
-#: ../includes/setup/constants.inc:1295 ../includes/setup/constants.inc:1304
-#: ../includes/setup/constants.inc:1313 ../includes/setup/constants.inc:1345
-#: ../includes/setup/constants.inc:1386 ../includes/setup/constants.inc:1394
-#: ../includes/setup/constants.inc:1402 ../includes/setup/defaults.inc:167
+#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
+#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
+#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
+#: ../includes/setup/constants.inc:698 ../includes/setup/constants.inc:738
+#: ../includes/setup/constants.inc:747 ../includes/setup/constants.inc:768
+#: ../includes/setup/constants.inc:837 ../includes/setup/constants.inc:847
+#: ../includes/setup/constants.inc:855 ../includes/setup/constants.inc:899
+#: ../includes/setup/constants.inc:925 ../includes/setup/constants.inc:954
+#: ../includes/setup/constants.inc:962 ../includes/setup/constants.inc:964
+#: ../includes/setup/constants.inc:989 ../includes/setup/constants.inc:1256
+#: ../includes/setup/constants.inc:1274 ../includes/setup/constants.inc:1284
+#: ../includes/setup/constants.inc:1294 ../includes/setup/constants.inc:1303
+#: ../includes/setup/constants.inc:1312 ../includes/setup/constants.inc:1344
+#: ../includes/setup/constants.inc:1385 ../includes/setup/constants.inc:1393
+#: ../includes/setup/constants.inc:1401 ../includes/setup/defaults.inc:167
 #: ../includes/setup/defaults.inc:177 ../includes/setup/defaults.inc:187
 #: ../includes/setup/defaults.inc:197 ../includes/setup/defaults.inc:247
 #: ../includes/setup/defaults.inc:256 ../includes/setup/defaults.inc:284
@@ -1109,22 +1096,22 @@ msgstr ""
 msgid "Yes"
 msgstr "Áno"
 
-#: ../includes/setup/constants.inc:327 ../includes/setup/constants.inc:433
-#: ../includes/setup/constants.inc:455 ../includes/setup/constants.inc:469
-#: ../includes/setup/constants.inc:475 ../includes/setup/constants.inc:650
-#: ../includes/setup/constants.inc:694 ../includes/setup/constants.inc:700
-#: ../includes/setup/constants.inc:740 ../includes/setup/constants.inc:749
-#: ../includes/setup/constants.inc:768 ../includes/setup/constants.inc:839
-#: ../includes/setup/constants.inc:849 ../includes/setup/constants.inc:857
-#: ../includes/setup/constants.inc:898 ../includes/setup/constants.inc:901
-#: ../includes/setup/constants.inc:927 ../includes/setup/constants.inc:956
-#: ../includes/setup/constants.inc:966 ../includes/setup/constants.inc:991
-#: ../includes/setup/constants.inc:1258 ../includes/setup/constants.inc:1276
-#: ../includes/setup/constants.inc:1286 ../includes/setup/constants.inc:1296
-#: ../includes/setup/constants.inc:1305 ../includes/setup/constants.inc:1314
-#: ../includes/setup/constants.inc:1346 ../includes/setup/constants.inc:1387
-#: ../includes/setup/constants.inc:1395 ../includes/setup/constants.inc:1403
-#: ../includes/setup/constants.inc:1443 ../includes/setup/defaults.inc:168
+#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
+#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
+#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
+#: ../includes/setup/constants.inc:693 ../includes/setup/constants.inc:699
+#: ../includes/setup/constants.inc:739 ../includes/setup/constants.inc:748
+#: ../includes/setup/constants.inc:767 ../includes/setup/constants.inc:838
+#: ../includes/setup/constants.inc:848 ../includes/setup/constants.inc:856
+#: ../includes/setup/constants.inc:897 ../includes/setup/constants.inc:900
+#: ../includes/setup/constants.inc:926 ../includes/setup/constants.inc:955
+#: ../includes/setup/constants.inc:965 ../includes/setup/constants.inc:990
+#: ../includes/setup/constants.inc:1257 ../includes/setup/constants.inc:1275
+#: ../includes/setup/constants.inc:1285 ../includes/setup/constants.inc:1295
+#: ../includes/setup/constants.inc:1304 ../includes/setup/constants.inc:1313
+#: ../includes/setup/constants.inc:1345 ../includes/setup/constants.inc:1386
+#: ../includes/setup/constants.inc:1394 ../includes/setup/constants.inc:1402
+#: ../includes/setup/constants.inc:1442 ../includes/setup/defaults.inc:168
 #: ../includes/setup/defaults.inc:178 ../includes/setup/defaults.inc:188
 #: ../includes/setup/defaults.inc:198 ../includes/setup/defaults.inc:248
 #: ../includes/setup/defaults.inc:257 ../includes/setup/defaults.inc:285
@@ -1161,186 +1148,186 @@ msgstr "Áno"
 msgid "No"
 msgstr "Nie"
 
-#: ../includes/setup/constants.inc:333 ../setup/config_data.inc:480
+#: ../includes/setup/constants.inc:332 ../setup/config_data.inc:480
 msgid "JPEG Quality <b>(Advanced)</b>"
 msgstr ""
 
-#: ../includes/setup/constants.inc:334 ../setup/config_data.inc:481
+#: ../includes/setup/constants.inc:333 ../setup/config_data.inc:481
 msgid "The JPEG file format trades off size versus quality.  Gallery can control the quality of the JPEGs that it produces when you resize, rotate or make thumbnails from JPEG images.  Higher quality images are larger in size than lower quality images.  However, in many cases there's a point at which raising the quality increases the size of the files without noticeably affecting the appearance of the image.  Setting this value to &quot;100&quot; is not recommended. If you notice that your thumbnails and resized images are larger than the originals and you don't like this, you can try lowering this value.  <b>Note</b> that changing this value will only affect images changed in the <i>future</i>."
 msgstr ""
 
-#: ../includes/setup/constants.inc:338 ../setup/config_data.inc:485
+#: ../includes/setup/constants.inc:337 ../setup/config_data.inc:485
 msgid "JPEG Quality for resized images"
 msgstr ""
 
-#: ../includes/setup/constants.inc:348 ../setup/config_data.inc:495
+#: ../includes/setup/constants.inc:347 ../setup/config_data.inc:495
 msgid "JPEG Quality for highlight images on the startpage"
 msgstr ""
 
-#: ../includes/setup/constants.inc:358 ../setup/config_data.inc:505
+#: ../includes/setup/constants.inc:357 ../setup/config_data.inc:505
 msgid "JPEG Quality for thumbs inside the albums"
 msgstr ""
 
-#: ../includes/setup/constants.inc:376 ../setup/config_data.inc:524
+#: ../includes/setup/constants.inc:375 ../setup/config_data.inc:524
 msgid "Embedded Gallery"
 msgstr "Vsadená Gallery"
 
-#: ../includes/setup/constants.inc:377 ../setup/config_data.inc:525
+#: ../includes/setup/constants.inc:376 ../setup/config_data.inc:525
 msgid "Gallery automatically detects when it is embedded within one of the supported CMS environments, however there may be some environments which have special options which need to be set.  Any options which are not automatically detected will need to be specified on this screen."
 msgstr ""
 
-#: ../includes/setup/constants.inc:377 ../setup/config_data.inc:525
+#: ../includes/setup/constants.inc:376 ../setup/config_data.inc:525
 msgid "If your ISP or CMS requires register_globals to be enabled, you may be required to enable the 'Disable register_globals check' option under the Technical tab."
 msgstr ""
 
-#: ../includes/setup/constants.inc:380 ../setup/config_data.inc:528
+#: ../includes/setup/constants.inc:379 ../setup/config_data.inc:528
 msgid "GeekLog Dir"
 msgstr "GeekLog Dir"
 
-#: ../includes/setup/constants.inc:382 ../setup/config_data.inc:530
+#: ../includes/setup/constants.inc:381 ../setup/config_data.inc:530
 msgid "If you use Geeklog, please enter the location of the GeekLog public_html directory. i.e. '/path/to/geeklog/public_html'"
 msgstr ""
 
-#: ../includes/setup/constants.inc:394 ../setup/config_data.inc:543
+#: ../includes/setup/constants.inc:393 ../setup/config_data.inc:543
 msgid "Main Gallery page"
 msgstr "Hlavná stránka Gallery"
 
-#: ../includes/setup/constants.inc:399
+#: ../includes/setup/constants.inc:398
 msgid "Theme"
 msgstr ""
 
-#: ../includes/setup/constants.inc:400
+#: ../includes/setup/constants.inc:399
 msgid "Choose the theme for the mainpage"
 msgstr ""
 
-#: ../includes/setup/constants.inc:402
+#: ../includes/setup/constants.inc:401
 msgid "The classic layout since Gallery 1.0"
 msgstr ""
 
-#: ../includes/setup/constants.inc:403
-msgid "A lightweight layout, with less textual information inspired by G2 Matrix"
+#: ../includes/setup/constants.inc:402
+msgid "A lightweight layout, with less textual information. Inspired by the Gallery 2 Matrix"
 msgstr ""
 
-#: ../includes/setup/constants.inc:409 ../setup/config_data.inc:546
+#: ../includes/setup/constants.inc:408 ../setup/config_data.inc:546
 msgid "Show the album tree ?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:410 ../setup/config_data.inc:547
+#: ../includes/setup/constants.inc:409 ../setup/config_data.inc:547
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr ""
 
-#: ../includes/setup/constants.inc:412 ../includes/setup/constants.inc:431
+#: ../includes/setup/constants.inc:411 ../includes/setup/constants.inc:430
 msgid "This setting has no effect in matrix theme."
 msgstr ""
 
-#: ../includes/setup/constants.inc:415 ../setup/config_data.inc:549
+#: ../includes/setup/constants.inc:414 ../setup/config_data.inc:549
 #, fuzzy
 msgid "No tree"
 msgstr "®iadne okraje"
 
-#: ../includes/setup/constants.inc:416 ../setup/config_data.inc:550
+#: ../includes/setup/constants.inc:415 ../setup/config_data.inc:550
 #, php-format
 msgid "%d sublevel"
 msgstr ""
 
-#: ../includes/setup/constants.inc:417 ../includes/setup/constants.inc:418
-#: ../includes/setup/constants.inc:419 ../includes/setup/constants.inc:420
-#: ../includes/setup/constants.inc:421 ../setup/config_data.inc:551
+#: ../includes/setup/constants.inc:416 ../includes/setup/constants.inc:417
+#: ../includes/setup/constants.inc:418 ../includes/setup/constants.inc:419
+#: ../includes/setup/constants.inc:420 ../setup/config_data.inc:551
 #: ../setup/config_data.inc:552 ../setup/config_data.inc:553
 #: ../setup/config_data.inc:554 ../setup/config_data.inc:555
 #, php-format
 msgid "%d sublevels"
 msgstr ""
 
-#: ../includes/setup/constants.inc:422 ../setup/config_data.inc:556
+#: ../includes/setup/constants.inc:421 ../setup/config_data.inc:556
 msgid "Complete Tree"
 msgstr ""
 
-#: ../includes/setup/constants.inc:428 ../setup/config_data.inc:561
+#: ../includes/setup/constants.inc:427 ../setup/config_data.inc:561
 msgid "Replace album tree with microthumbs"
 msgstr ""
 
-#: ../includes/setup/constants.inc:429 ../setup/config_data.inc:562
+#: ../includes/setup/constants.inc:428 ../setup/config_data.inc:562
 msgid "If you have set album tree to anything but off, this will display microthumbs of the sub albums instead of the album tree."
 msgstr ""
 
-#: ../includes/setup/constants.inc:438 ../setup/config_data.inc:567
+#: ../includes/setup/constants.inc:437 ../setup/config_data.inc:567
 msgid "Highlight size"
 msgstr "Zvýrazni» veµkos»"
 
-#: ../includes/setup/constants.inc:439 ../setup/config_data.inc:568
+#: ../includes/setup/constants.inc:438 ../setup/config_data.inc:568
 msgid "The target size (in pixels) of thumbnails shown in the Gallery page (highlight images)."
 msgstr ""
 
-#: ../includes/setup/constants.inc:446 ../setup/config_data.inc:574
+#: ../includes/setup/constants.inc:445 ../setup/config_data.inc:574
 #, fuzzy
 msgid "Highlight Ratio"
 msgstr "Zvýrazni» veµkos»"
 
-#: ../includes/setup/constants.inc:447 ../setup/config_data.inc:575
+#: ../includes/setup/constants.inc:446 ../setup/config_data.inc:575
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
 msgstr ""
 
-#: ../includes/setup/constants.inc:448 ../includes/setup/defaults.inc:104
+#: ../includes/setup/constants.inc:447 ../includes/setup/defaults.inc:104
 #: ../setup/config_data.inc:576 ../setup/config_data.inc:1575
 msgid "As the original image"
 msgstr ""
 
-#: ../includes/setup/constants.inc:448 ../setup/config_data.inc:576
+#: ../includes/setup/constants.inc:447 ../setup/config_data.inc:576
 #, fuzzy
 msgid "Square highlight"
 msgstr "Albumové zvýraznenie"
 
-#: ../includes/setup/constants.inc:453 ../setup/config_data.inc:580
+#: ../includes/setup/constants.inc:452 ../setup/config_data.inc:580
 msgid "Show Owner"
 msgstr "Zobrazi» Majiteµa"
 
-#: ../includes/setup/constants.inc:454 ../setup/config_data.inc:581
+#: ../includes/setup/constants.inc:453 ../setup/config_data.inc:581
 msgid "Show album owner's name next to each album?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:460 ../setup/config_data.inc:586
+#: ../includes/setup/constants.inc:459 ../setup/config_data.inc:586
 msgid "Albums per page"
 msgstr "Albumov na stránke"
 
-#: ../includes/setup/constants.inc:461 ../setup/config_data.inc:587
+#: ../includes/setup/constants.inc:460 ../setup/config_data.inc:587
 msgid "How many albums should be displayed per Gallery page?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:467 ../setup/config_data.inc:593
+#: ../includes/setup/constants.inc:466 ../setup/config_data.inc:593
 msgid "Search Engine"
 msgstr "Vyhµadávaè"
 
-#: ../includes/setup/constants.inc:468 ../setup/config_data.inc:594
+#: ../includes/setup/constants.inc:467 ../setup/config_data.inc:594
 msgid "Display search engine on main Gallery page?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:473 ../setup/config_data.inc:599
+#: ../includes/setup/constants.inc:472 ../setup/config_data.inc:599
 msgid "Accurate Photo Count"
 msgstr ""
 
-#: ../includes/setup/constants.inc:474 ../setup/config_data.inc:600
+#: ../includes/setup/constants.inc:473 ../setup/config_data.inc:600
 msgid "Display the album and photo count on the Gallery root page using an accurate, but incredibly slow, counting method.  This was added at the request of many users, however it is not recommended for Galleries where you will have large numbers of albums and photos.  Some examples have been shown to cause the index page to load in as long as 30 seconds with this option enabled."
 msgstr ""
 
-#: ../includes/setup/constants.inc:480 ../setup/config_data.inc:605
+#: ../includes/setup/constants.inc:479 ../setup/config_data.inc:605
 msgid "Frame around albums"
 msgstr "Okraje okolo albumov"
 
-#: ../includes/setup/constants.inc:481 ../setup/config_data.inc:606
+#: ../includes/setup/constants.inc:480 ../setup/config_data.inc:606
 msgid "On the main page, the image representing each album has a frame around it.  The following styles are available:"
 msgstr ""
 
-#: ../includes/setup/constants.inc:492 ../setup/config_data.inc:618
+#: ../includes/setup/constants.inc:491 ../setup/config_data.inc:618
 msgid "Optional tools"
 msgstr ""
 
-#: ../includes/setup/constants.inc:496 ../setup/config_data.inc:622
+#: ../includes/setup/constants.inc:495 ../setup/config_data.inc:622
 msgid "Archives"
 msgstr ""
 
-#: ../includes/setup/constants.inc:501 ../includes/setup/constants.inc:514
-#: ../includes/setup/constants.inc:527 ../includes/setup/constants.inc:540
+#: ../includes/setup/constants.inc:500 ../includes/setup/constants.inc:513
+#: ../includes/setup/constants.inc:526 ../includes/setup/constants.inc:539
 #: ../setup/config_data.inc:627 ../setup/config_data.inc:640
 #: ../setup/config_data.inc:653 ../setup/config_data.inc:666
 #, php-format
@@ -1348,324 +1335,324 @@ msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is opti
 msgstr ""
 
 # additional
-#: ../includes/setup/constants.inc:556 ../setup/config_data.inc:682
+#: ../includes/setup/constants.inc:555 ../setup/config_data.inc:682
 msgid "EXIF Data"
 msgstr "EXIF Dáta"
 
-#: ../includes/setup/constants.inc:561 ../includes/setup/constants.inc:574
+#: ../includes/setup/constants.inc:560 ../includes/setup/constants.inc:573
 #: ../setup/config_data.inc:687 ../setup/config_data.inc:700
 #, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../includes/setup/constants.inc:590 ../setup/config_data.inc:716
+#: ../includes/setup/constants.inc:589 ../setup/config_data.inc:716
 msgid "Other"
 msgstr "Iné"
 
-#: ../includes/setup/constants.inc:595 ../setup/config_data.inc:721
+#: ../includes/setup/constants.inc:594 ../setup/config_data.inc:721
 #, php-format
 msgid "The filesystem path to the <b>jpegtran</b> utility.  E.g. %s or %s.  This is optional so if you don't have it, don't worry about it too much."
 msgstr ""
 
-#: ../includes/setup/constants.inc:615 ../setup/config_data.inc:742
+#: ../includes/setup/constants.inc:614 ../setup/config_data.inc:742
 msgid "Languages and locales"
 msgstr ""
 
-#: ../includes/setup/constants.inc:619 ../setup/config_data.inc:745
+#: ../includes/setup/constants.inc:618 ../setup/config_data.inc:745
 msgid "Default language"
 msgstr ""
 
-#: ../includes/setup/constants.inc:621 ../setup/config_data.inc:747
+#: ../includes/setup/constants.inc:620 ../setup/config_data.inc:747
 #, php-format
 msgid "This is the language you will see as %s, and what users will see if no other preference is set."
 msgstr ""
 
-#: ../includes/setup/constants.inc:623 ../setup/config_data.inc:749
+#: ../includes/setup/constants.inc:622 ../setup/config_data.inc:749
 msgid "Language given by Browser"
 msgstr ""
 
-#: ../includes/setup/constants.inc:628 ../setup/config_data.inc:754
+#: ../includes/setup/constants.inc:627 ../setup/config_data.inc:754
 msgid "Multi language mode"
 msgstr "Viacjazyèný re¾im"
 
-#: ../includes/setup/constants.inc:629 ../setup/config_data.inc:755
+#: ../includes/setup/constants.inc:628 ../setup/config_data.inc:755
 msgid "Gallery has three multi language modes.  These affect the language that a user will see when visiting the site."
 msgstr ""
 
-#: ../includes/setup/constants.inc:632 ../setup/config_data.inc:758
+#: ../includes/setup/constants.inc:631 ../setup/config_data.inc:758
 msgid "Gallery is only displayed in one language"
 msgstr ""
 
-#: ../includes/setup/constants.inc:633 ../setup/config_data.inc:759
+#: ../includes/setup/constants.inc:632 ../setup/config_data.inc:759
 msgid "Gallery is displayed in the language the browser sends"
 msgstr ""
 
-#: ../includes/setup/constants.inc:634 ../setup/config_data.inc:760
+#: ../includes/setup/constants.inc:633 ../setup/config_data.inc:760
 msgid "The User can choose the language via pulldown menu or national flags."
 msgstr ""
 
-#: ../includes/setup/constants.inc:638 ../setup/config_data.inc:764
+#: ../includes/setup/constants.inc:637 ../setup/config_data.inc:764
 msgid "Available languages"
 msgstr ""
 
-#: ../includes/setup/constants.inc:641 ../setup/config_data.inc:767
+#: ../includes/setup/constants.inc:640 ../setup/config_data.inc:767
 msgid "These languages will be available as user choices in a pulldown menu or national flags, if you have choosen language Mode 3, and will be available to registered users as their default language in Mode 2 or 3."
 msgstr ""
 
-#: ../includes/setup/constants.inc:647 ../setup/config_data.inc:773
+#: ../includes/setup/constants.inc:646 ../setup/config_data.inc:773
 msgid "Show flags?"
 msgstr "Zobrazi» vlajky?"
 
-#: ../includes/setup/constants.inc:649 ../setup/config_data.inc:775
+#: ../includes/setup/constants.inc:648 ../setup/config_data.inc:775
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr ""
 
-#: ../includes/setup/constants.inc:655 ../setup/config_data.inc:781
+#: ../includes/setup/constants.inc:654 ../setup/config_data.inc:781
 msgid "Format for date strings."
 msgstr ""
 
-#: ../includes/setup/constants.inc:656 ../includes/setup/constants.inc:667
+#: ../includes/setup/constants.inc:655 ../includes/setup/constants.inc:666
 #: ../setup/config_data.inc:782 ../setup/config_data.inc:792
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:657 ../setup/config_data.inc:783
+#: ../includes/setup/constants.inc:656 ../setup/config_data.inc:783
 msgid "date without time"
 msgstr "dátum bez èasu"
 
-#: ../includes/setup/constants.inc:658 ../includes/setup/constants.inc:669
+#: ../includes/setup/constants.inc:657 ../includes/setup/constants.inc:668
 #: ../setup/config_data.inc:784 ../setup/config_data.inc:794
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr ""
 
-#: ../includes/setup/constants.inc:659 ../setup/config_data.inc:785
+#: ../includes/setup/constants.inc:658 ../setup/config_data.inc:785
 #, php-format
 msgid "For example, %s will display date like this: %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:666 ../setup/config_data.inc:791
+#: ../includes/setup/constants.inc:665 ../setup/config_data.inc:791
 msgid "Format for date/time strings."
 msgstr ""
 
-#: ../includes/setup/constants.inc:668 ../setup/config_data.inc:793
+#: ../includes/setup/constants.inc:667 ../setup/config_data.inc:793
 msgid "date with time"
 msgstr "dátum s èasom"
 
-#: ../includes/setup/constants.inc:670 ../setup/config_data.inc:795
+#: ../includes/setup/constants.inc:669 ../setup/config_data.inc:795
 #, php-format
 msgid "For example, %s will display date and time like this: %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:687 ../includes/setup/constants.inc:842
+#: ../includes/setup/constants.inc:686 ../includes/setup/constants.inc:841
 #: ../setup/config_data.inc:869
 msgid "Email"
 msgstr "Email"
 
-#: ../includes/setup/constants.inc:688 ../setup/config_data.inc:813
+#: ../includes/setup/constants.inc:687 ../setup/config_data.inc:813
 #, php-format
 msgid "If you are having problems with email, please run the %s diagnostic."
 msgstr ""
 
-#: ../includes/setup/constants.inc:689 ../setup/config_data.inc:814
+#: ../includes/setup/constants.inc:688 ../setup/config_data.inc:814
 msgid "Check Email"
 msgstr "Skontrolova» Email"
 
-#: ../includes/setup/constants.inc:692 ../setup/config_data.inc:817
+#: ../includes/setup/constants.inc:691 ../setup/config_data.inc:817
 msgid "Enable email"
 msgstr "Umo¾ni» email"
 
-#: ../includes/setup/constants.inc:694 ../setup/config_data.inc:819
+#: ../includes/setup/constants.inc:693 ../setup/config_data.inc:819
 #, php-format
 msgid "Turns email on for the whole gallery.  If you set this to %s then none of the rest of this section will apply."
 msgstr ""
 
-#: ../includes/setup/constants.inc:696 ../setup/config_data.inc:821
+#: ../includes/setup/constants.inc:695 ../setup/config_data.inc:821
 msgid "If you enable these settings you give your users the opportunity to let Gallery send them their lost password via email."
 msgstr ""
 
-#: ../includes/setup/constants.inc:697 ../setup/config_data.inc:822
+#: ../includes/setup/constants.inc:696 ../setup/config_data.inc:822
 msgid "You need to enable this setting if you want to enable Self Registration."
 msgstr ""
 
-#: ../includes/setup/constants.inc:705 ../setup/config_data.inc:830
+#: ../includes/setup/constants.inc:704 ../setup/config_data.inc:830
 msgid "Admin email address"
 msgstr ""
 
-#: ../includes/setup/constants.inc:706 ../setup/config_data.inc:831
+#: ../includes/setup/constants.inc:705 ../setup/config_data.inc:831
 msgid "Set this value to a valid working email address to receive email notices upon certain user actions and also so that users know whom to reach in case of problems. You may specify more than one address by separating them with commas."
 msgstr ""
 
-#: ../includes/setup/constants.inc:713 ../setup/config_data.inc:838
+#: ../includes/setup/constants.inc:712 ../setup/config_data.inc:838
 msgid "Sender email address"
 msgstr ""
 
-#: ../includes/setup/constants.inc:714 ../setup/config_data.inc:839
+#: ../includes/setup/constants.inc:713 ../setup/config_data.inc:839
 msgid "Set this value to a valid working email address.  Emails that are automatically sent by Gallery will use this as a return address.  You should monitor this email address for bounce messages and replies from recipients."
 msgstr ""
 
-#: ../includes/setup/constants.inc:721 ../setup/config_data.inc:846
+#: ../includes/setup/constants.inc:720 ../setup/config_data.inc:846
 msgid "Email subject prefix"
 msgstr ""
 
-#: ../includes/setup/constants.inc:722 ../setup/config_data.inc:847
+#: ../includes/setup/constants.inc:721 ../setup/config_data.inc:847
 msgid "All Gallery emails will have this as the first part of their subject."
 msgstr ""
 
-#: ../includes/setup/constants.inc:728 ../setup/config_data.inc:853
+#: ../includes/setup/constants.inc:727 ../setup/config_data.inc:853
 msgid "Welcome email message text"
 msgstr ""
 
-#: ../includes/setup/constants.inc:736 ../setup/config_data.inc:889
+#: ../includes/setup/constants.inc:735 ../setup/config_data.inc:889
 msgid "This allows the &quot;admin&quot; account to get email whenever a comment is added to any album"
 msgstr ""
 
-#: ../includes/setup/constants.inc:737 ../setup/config_data.inc:890
+#: ../includes/setup/constants.inc:736 ../setup/config_data.inc:890
 msgid "Admin comment email"
 msgstr ""
 
-#: ../includes/setup/constants.inc:745 ../setup/config_data.inc:898
+#: ../includes/setup/constants.inc:744 ../setup/config_data.inc:898
 msgid "This allows the &quot;admin&quot; account to get email whenever a change is made to any album"
 msgstr ""
 
-#: ../includes/setup/constants.inc:746 ../setup/config_data.inc:899
+#: ../includes/setup/constants.inc:745 ../setup/config_data.inc:899
 msgid "Admin Other Changes email"
 msgstr ""
 
-#: ../includes/setup/constants.inc:754 ../setup/config_data.inc:907
+#: ../includes/setup/constants.inc:753 ../setup/config_data.inc:907
 msgid "Admin notification of email activity"
 msgstr ""
 
-#: ../includes/setup/constants.inc:755 ../setup/config_data.inc:908
+#: ../includes/setup/constants.inc:754 ../setup/config_data.inc:908
 msgid "You can keep a record of every email that is sent by Gallery."
 msgstr ""
 
-#: ../includes/setup/constants.inc:757 ../setup/config_data.inc:910
+#: ../includes/setup/constants.inc:756 ../setup/config_data.inc:910
 msgid "Send summary email"
 msgstr ""
 
-#: ../includes/setup/constants.inc:758 ../setup/config_data.inc:911
+#: ../includes/setup/constants.inc:757 ../setup/config_data.inc:911
 msgid "Log to a file"
 msgstr "Zaznamena» do archívu"
 
-#: ../includes/setup/constants.inc:759 ../setup/config_data.inc:912
+#: ../includes/setup/constants.inc:758 ../setup/config_data.inc:912
 msgid "Send duplicate email"
 msgstr ""
 
-#: ../includes/setup/constants.inc:765
+#: ../includes/setup/constants.inc:764
 msgid "Use SMTP server."
 msgstr ""
 
-#: ../includes/setup/constants.inc:766
+#: ../includes/setup/constants.inc:765
 msgid "Use a smtp server to process outgoing gallery email, instead of the internal PHP mail() function. This server can (not must) run on a different machine (ie: Your ISPs mail server)."
 msgstr ""
 
 # matching
-#: ../includes/setup/constants.inc:777
+#: ../includes/setup/constants.inc:776
 #, fuzzy
 msgid "SMTP Settings"
 msgstr "Zodpovedajúce Poznámky"
 
-#: ../includes/setup/constants.inc:781 ../setup/config_data.inc:928
+#: ../includes/setup/constants.inc:780 ../setup/config_data.inc:928
 msgid "SMTP Server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:782 ../setup/config_data.inc:929
+#: ../includes/setup/constants.inc:781 ../setup/config_data.inc:929
 msgid "The name or IP address of the SMTP Server you want to use."
 msgstr ""
 
-#: ../includes/setup/constants.inc:789 ../setup/config_data.inc:936
+#: ../includes/setup/constants.inc:788 ../setup/config_data.inc:936
 msgid "Sender hostname"
 msgstr ""
 
-#: ../includes/setup/constants.inc:790 ../setup/config_data.inc:937
+#: ../includes/setup/constants.inc:789 ../setup/config_data.inc:937
 msgid "The full hostname of the server you are sending the mail from (The Server where your Gallery is installed on). If your Server is behind a NAT, this would be the DNS name of your router."
 msgstr ""
 
-#: ../includes/setup/constants.inc:797 ../setup/config_data.inc:944
+#: ../includes/setup/constants.inc:796 ../setup/config_data.inc:944
 msgid "SMTP Port"
 msgstr ""
 
-#: ../includes/setup/constants.inc:798 ../setup/config_data.inc:945
+#: ../includes/setup/constants.inc:797 ../setup/config_data.inc:945
 msgid "The port on the SMTP server you are connecting to."
 msgstr ""
 
-#: ../includes/setup/constants.inc:805 ../setup/config_data.inc:952
+#: ../includes/setup/constants.inc:804 ../setup/config_data.inc:952
 msgid "SMTP account name"
 msgstr ""
 
-#: ../includes/setup/constants.inc:806 ../setup/config_data.inc:953
+#: ../includes/setup/constants.inc:805 ../setup/config_data.inc:953
 msgid "If your provide requires a username for outgoing email, use it here, otherwise leave blank."
 msgstr ""
 
-#: ../includes/setup/constants.inc:813 ../setup/config_data.inc:960
+#: ../includes/setup/constants.inc:812 ../setup/config_data.inc:960
 #, fuzzy
 msgid "SMTP password"
 msgstr "Heslo"
 
-#: ../includes/setup/constants.inc:814 ../setup/config_data.inc:961
+#: ../includes/setup/constants.inc:813 ../setup/config_data.inc:961
 msgid "Password for sending email through smtp server. NOTE: This password is stored in cleartext in config.php. Make sure that permissions are set to keep others from getting at it!"
 msgstr ""
 
-#: ../includes/setup/constants.inc:830
+#: ../includes/setup/constants.inc:829
 #, fuzzy
 msgid "Registration"
 msgstr "Registrácia Gallery"
 
-#: ../includes/setup/constants.inc:831
+#: ../includes/setup/constants.inc:830
 msgid "Adds the possibility that user can registrate themself."
 msgstr ""
 
-#: ../includes/setup/constants.inc:832
+#: ../includes/setup/constants.inc:831
 msgid "You need to enable emailing if you want to use this feature."
 msgstr ""
 
-#: ../includes/setup/constants.inc:835 ../setup/config_data.inc:861
+#: ../includes/setup/constants.inc:834 ../setup/config_data.inc:861
 msgid "Allow visitors to self register."
 msgstr ""
 
-#: ../includes/setup/constants.inc:836 ../setup/config_data.inc:862
+#: ../includes/setup/constants.inc:835 ../setup/config_data.inc:862
 msgid "Enabling this will allow visitors to your site to create their own login accounts."
 msgstr ""
 
-#: ../includes/setup/constants.inc:845 ../setup/config_data.inc:872
+#: ../includes/setup/constants.inc:844 ../setup/config_data.inc:872
 msgid "Self registered users can create albums."
 msgstr "U¾ívatelia ktorí sa sami zaregistrovali mô¾u vytvára» albumy."
 
-#: ../includes/setup/constants.inc:846 ../setup/config_data.inc:873
+#: ../includes/setup/constants.inc:845 ../setup/config_data.inc:873
 msgid "Enabling this will allow self registered users to create their own albums as soon as they register.  Not having this enabled means you will have to give them permission manually before they can create or alter any contents of the Gallery.  This setting is ignored if self-registration is disabled."
 msgstr ""
 
-#: ../includes/setup/constants.inc:853 ../setup/config_data.inc:880
+#: ../includes/setup/constants.inc:852 ../setup/config_data.inc:880
 msgid "Enable bulk account creation"
 msgstr ""
 
-#: ../includes/setup/constants.inc:854 ../setup/config_data.inc:881
+#: ../includes/setup/constants.inc:853 ../setup/config_data.inc:881
 msgid "This option allows you to create many new user accounts at one time by creating a file of new users."
 msgstr ""
 
-#: ../includes/setup/constants.inc:867 ../setup/config_data.inc:975
+#: ../includes/setup/constants.inc:866 ../setup/config_data.inc:975
 msgid "Gallery wide slideshow"
 msgstr "Predvádzanie celej Gallery"
 
-#: ../includes/setup/constants.inc:868 ../setup/config_data.inc:976
+#: ../includes/setup/constants.inc:867 ../setup/config_data.inc:976
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr ""
 
-#: ../includes/setup/constants.inc:869 ../includes/setup/defaults.inc:464
+#: ../includes/setup/constants.inc:868 ../includes/setup/defaults.inc:464
 #: ../setup/config_data.inc:977 ../setup/config_data.inc:1922
 msgid "These settings do not apply to the low tech slideshow."
 msgstr ""
 
-#: ../includes/setup/constants.inc:872 ../setup/config_data.inc:980
+#: ../includes/setup/constants.inc:871 ../setup/config_data.inc:980
 msgid "Slideshow preferences"
 msgstr "Voµby Predvádzania"
 
-#: ../includes/setup/constants.inc:874 ../includes/setup/constants.inc:882
-#: ../includes/setup/constants.inc:934 ../includes/setup/constants.inc:944
-#: ../includes/setup/constants.inc:1056 ../includes/setup/constants.inc:1070
-#: ../includes/setup/constants.inc:1084 ../includes/setup/constants.inc:1098
-#: ../includes/setup/constants.inc:1112 ../includes/setup/constants.inc:1126
+#: ../includes/setup/constants.inc:873 ../includes/setup/constants.inc:881
+#: ../includes/setup/constants.inc:933 ../includes/setup/constants.inc:943
+#: ../includes/setup/constants.inc:1055 ../includes/setup/constants.inc:1069
+#: ../includes/setup/constants.inc:1083 ../includes/setup/constants.inc:1097
+#: ../includes/setup/constants.inc:1111 ../includes/setup/constants.inc:1125
 #: ../includes/setup/defaults.inc:140 ../includes/setup/defaults.inc:470
 #: ../includes/setup/defaults.inc:478 ../setup/config_data.inc:982
 #: ../setup/config_data.inc:990 ../setup/config_data.inc:1043
@@ -1677,655 +1664,655 @@ msgstr "Voµby Predvádzania"
 msgid "Off"
 msgstr "Vypnuté"
 
-#: ../includes/setup/constants.inc:875 ../includes/setup/defaults.inc:471
+#: ../includes/setup/constants.inc:874 ../includes/setup/defaults.inc:471
 #: ../setup/config_data.inc:983 ../setup/config_data.inc:1928
 msgid "No slideshow link will appear."
 msgstr ""
 
-#: ../includes/setup/constants.inc:876 ../includes/setup/constants.inc:883
+#: ../includes/setup/constants.inc:875 ../includes/setup/constants.inc:882
 #: ../includes/setup/defaults.inc:472 ../includes/setup/defaults.inc:479
 #: ../setup/config_data.inc:984 ../setup/config_data.inc:991
 #: ../setup/config_data.inc:1929 ../setup/config_data.inc:1936
 msgid "Ordered"
 msgstr "Zoradené"
 
-#: ../includes/setup/constants.inc:877 ../includes/setup/defaults.inc:473
+#: ../includes/setup/constants.inc:876 ../includes/setup/defaults.inc:473
 #: ../setup/config_data.inc:985 ../setup/config_data.inc:1930
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr ""
 
-#: ../includes/setup/constants.inc:878 ../includes/setup/constants.inc:884
+#: ../includes/setup/constants.inc:877 ../includes/setup/constants.inc:883
 #: ../includes/setup/defaults.inc:474 ../includes/setup/defaults.inc:480
 #: ../setup/config_data.inc:986 ../setup/config_data.inc:992
 #: ../setup/config_data.inc:1931 ../setup/config_data.inc:1937
 msgid "Random"
 msgstr "Náhodne"
 
-#: ../includes/setup/constants.inc:879 ../includes/setup/defaults.inc:475
+#: ../includes/setup/constants.inc:878 ../includes/setup/defaults.inc:475
 #: ../setup/config_data.inc:987 ../setup/config_data.inc:1932
 msgid "Images will appear in a random order."
 msgstr ""
 
-#: ../includes/setup/constants.inc:889 ../includes/setup/defaults.inc:503
+#: ../includes/setup/constants.inc:888 ../includes/setup/defaults.inc:503
 #: ../setup/config_data.inc:997 ../setup/config_data.inc:1960
 msgid "Slideshow length"
 msgstr "Då¾ka Predvádzania"
 
-#: ../includes/setup/constants.inc:890 ../includes/setup/defaults.inc:504
+#: ../includes/setup/constants.inc:889 ../includes/setup/defaults.inc:504
 #: ../setup/config_data.inc:998 ../setup/config_data.inc:1961
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr ""
 
-#: ../includes/setup/constants.inc:897 ../includes/setup/defaults.inc:494
+#: ../includes/setup/constants.inc:896 ../includes/setup/defaults.inc:494
 #: ../setup/config_data.inc:1005 ../setup/config_data.inc:1951
 msgid "Allow slideshow to loop"
 msgstr "Povoli» cyklovanie prehliadania"
 
-#: ../includes/setup/constants.inc:898 ../setup/config_data.inc:1006
+#: ../includes/setup/constants.inc:897 ../setup/config_data.inc:1006
 #, php-format
 msgid "This option will allow visitors to have your slideshows repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr ""
 
-#: ../includes/setup/constants.inc:906 ../setup/config_data.inc:1014
+#: ../includes/setup/constants.inc:905 ../setup/config_data.inc:1014
 msgid "Slideshow Mode"
 msgstr "Predvádzateµský Re¾im"
 
-#: ../includes/setup/constants.inc:907 ../setup/config_data.inc:1015
+#: ../includes/setup/constants.inc:906 ../setup/config_data.inc:1015
 msgid "This allows you to set the default mode for the slideshow.  &quot;Java Applet&quot; requires that the user has the Java Runtime Environment installed in their browser, but allows for fullscreen viewing. &quot;JavaScript&quot; is supported by all modern browsers without extra plugins, but is more limited than the Java Applet."
 msgstr ""
 
-#: ../includes/setup/constants.inc:909 ../setup/config_data.inc:1017
+#: ../includes/setup/constants.inc:908 ../setup/config_data.inc:1017
 msgid "Java Applet"
 msgstr "Java Applet"
 
-#: ../includes/setup/constants.inc:910 ../setup/config_data.inc:1018
+#: ../includes/setup/constants.inc:909 ../setup/config_data.inc:1018
 msgid "JavaScript"
 msgstr ""
 
-#: ../includes/setup/constants.inc:920 ../setup/config_data.inc:1029
+#: ../includes/setup/constants.inc:919 ../setup/config_data.inc:1029
 msgid "Comments"
 msgstr "Poznámky"
 
-#: ../includes/setup/constants.inc:923 ../setup/config_data.inc:1032
+#: ../includes/setup/constants.inc:922 ../setup/config_data.inc:1032
 msgid "Enable commenting"
 msgstr ""
 
-#: ../includes/setup/constants.inc:924 ../setup/config_data.inc:1033
+#: ../includes/setup/constants.inc:923 ../setup/config_data.inc:1033
 msgid "This option will enable or disable the possibility for your users to make comment.  If you set this to &quot;no&quot; all comment functionality is disabled."
 msgstr ""
 
-#: ../includes/setup/constants.inc:932 ../setup/config_data.inc:1041
+#: ../includes/setup/constants.inc:931 ../setup/config_data.inc:1041
 msgid "Indicate if there are comments available"
 msgstr ""
 
-#: ../includes/setup/constants.inc:935 ../setup/config_data.inc:1044
+#: ../includes/setup/constants.inc:934 ../setup/config_data.inc:1044
 msgid "No indication that an item has comments."
 msgstr ""
 
-#: ../includes/setup/constants.inc:936 ../includes/setup/constants.inc:945
+#: ../includes/setup/constants.inc:935 ../includes/setup/constants.inc:944
 #: ../setup/config_data.inc:1045 ../setup/config_data.inc:1054
 msgid "Photos"
 msgstr "Fotky"
 
-#: ../includes/setup/constants.inc:937 ../setup/config_data.inc:1046
+#: ../includes/setup/constants.inc:936 ../setup/config_data.inc:1046
 msgid "Images that have comments will be marked."
 msgstr ""
 
-#: ../includes/setup/constants.inc:938 ../includes/setup/constants.inc:946
+#: ../includes/setup/constants.inc:937 ../includes/setup/constants.inc:945
 #: ../setup/config_data.inc:1047 ../setup/config_data.inc:1055
 msgid "Albums"
 msgstr "Albumy"
 
-#: ../includes/setup/constants.inc:939 ../setup/config_data.inc:1048
+#: ../includes/setup/constants.inc:938 ../setup/config_data.inc:1048
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr ""
 
-#: ../includes/setup/constants.inc:940 ../includes/setup/constants.inc:947
+#: ../includes/setup/constants.inc:939 ../includes/setup/constants.inc:946
 #: ../includes/setup/defaults.inc:578 ../setup/config_data.inc:1049
 #: ../setup/config_data.inc:1056 ../setup/config_data.inc:2036
 msgid "Both"
 msgstr ""
 
-#: ../includes/setup/constants.inc:941 ../setup/config_data.inc:1050
+#: ../includes/setup/constants.inc:940 ../setup/config_data.inc:1050
 msgid "Images and albums that have comments will be marked."
 msgstr ""
 
-#: ../includes/setup/constants.inc:952 ../setup/config_data.inc:1061
+#: ../includes/setup/constants.inc:951 ../setup/config_data.inc:1061
 msgid "Display date of last comment?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:953 ../setup/config_data.inc:1062
+#: ../includes/setup/constants.inc:952 ../setup/config_data.inc:1062
 #, php-format
 msgid "If an item has comments, display date of last comment, rather than a %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:961 ../setup/config_data.inc:1070
+#: ../includes/setup/constants.inc:960 ../setup/config_data.inc:1070
 msgid "Anonymous comments from known users?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:962 ../setup/config_data.inc:1071
+#: ../includes/setup/constants.inc:961 ../setup/config_data.inc:1071
 #, php-format
 msgid "When logged in, comments will automatically use format described below, unless this is set to %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:971 ../setup/config_data.inc:1080
+#: ../includes/setup/constants.inc:970 ../setup/config_data.inc:1080
 msgid "Add comments inside the photo page"
 msgstr ""
 
-#: ../includes/setup/constants.inc:972 ../setup/config_data.inc:1081
+#: ../includes/setup/constants.inc:971 ../setup/config_data.inc:1081
 msgid "Do you want to have the possibility to add comments inside the view photo page, or do you prefer a link to a popup"
 msgstr ""
 
-#: ../includes/setup/constants.inc:974 ../setup/config_data.inc:1083
+#: ../includes/setup/constants.inc:973 ../setup/config_data.inc:1083
 msgid "Popup"
 msgstr ""
 
-#: ../includes/setup/constants.inc:975 ../setup/config_data.inc:1084
+#: ../includes/setup/constants.inc:974 ../setup/config_data.inc:1084
 msgid "Inside"
 msgstr ""
 
-#: ../includes/setup/constants.inc:980 ../setup/config_data.inc:1089
+#: ../includes/setup/constants.inc:979 ../setup/config_data.inc:1089
 #, fuzzy
 msgid "Maximum length of comments"
 msgstr "Maximálna då¾ka Poznámok"
 
-#: ../includes/setup/constants.inc:981 ../setup/config_data.inc:1090
+#: ../includes/setup/constants.inc:980 ../setup/config_data.inc:1090
 msgid "Enter a suitable value for the maximum length of comments to prevent abuse. Gallery limits comments to no more than 1000 characters.  This value will be used if less than 1000."
 msgstr ""
 
-#: ../includes/setup/constants.inc:987 ../setup/config_data.inc:1096
+#: ../includes/setup/constants.inc:986 ../setup/config_data.inc:1096
 msgid "Can every permitted user see a comments overview"
 msgstr ""
 
-#: ../includes/setup/constants.inc:988 ../setup/config_data.inc:1097
+#: ../includes/setup/constants.inc:987 ../setup/config_data.inc:1097
 msgid "Do you want to allow every user who is allowed to view comments (set in permission) to see a complete overview of all comments of an Album? Set this to &quot;no&quot; if only admin and owners can use this feature."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1001 ../setup/config_data.inc:1111
+#: ../includes/setup/constants.inc:1000 ../setup/config_data.inc:1111
 #, fuzzy
 msgid "Watermarking"
 msgstr "Prida» vodotlaè celému súboru"
 
-#: ../includes/setup/constants.inc:1003 ../setup/config_data.inc:1113
-msgid "Choose wether you want to enable or disable watermarking. And set the defaults"
+#: ../includes/setup/constants.inc:1002 ../setup/config_data.inc:1113
+msgid "Choose whether you want to enable or disable watermarking. And set the defaults"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1004 ../setup/config_data.inc:1114
+#: ../includes/setup/constants.inc:1003 ../setup/config_data.inc:1114
 msgid "Watermarking is not possible in this installation !"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1007 ../setup/config_data.inc:1117
+#: ../includes/setup/constants.inc:1006 ../setup/config_data.inc:1117
 msgid "Watermark directory"
 msgstr "Prida» vodotlaè celému súboru"
 
-#: ../includes/setup/constants.inc:1008 ../setup/config_data.inc:1118
+#: ../includes/setup/constants.inc:1007 ../setup/config_data.inc:1118
 #, php-format
 msgid "The full path on physical disk to the directory where your watermark images will be stored.  This directory may contain .png, .tif, and .gif images used to overlay visible watermarks on photos. These formats are supported because they may contain transparency or alpha channels.  <b>Leaving this blank will disable watermarking support.</b> Note that this directory needs to have read access by the user who is running the web server (in your case this user is %s)."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1018 ../setup/config_data.inc:1128
+#: ../includes/setup/constants.inc:1017 ../setup/config_data.inc:1128
 msgid "Which Imagetype is watermarked"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1019 ../setup/config_data.inc:1129
+#: ../includes/setup/constants.inc:1018 ../setup/config_data.inc:1129
 msgid "Here you can choose which of the images should be watermarked per default."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1024 ../setup/config_data.inc:1134
+#: ../includes/setup/constants.inc:1023 ../setup/config_data.inc:1134
 #, fuzzy
 msgid "Watermark both resized and full images"
 msgstr "Prida» vodotlaè celému súboru"
 
-#: ../includes/setup/constants.inc:1025 ../setup/config_data.inc:1135
+#: ../includes/setup/constants.inc:1024 ../setup/config_data.inc:1135
 #, fuzzy
 msgid "Watermark resized image only"
 msgstr "Prida» vodotlaè celému súboru"
 
-#: ../includes/setup/constants.inc:1026 ../setup/config_data.inc:1136
+#: ../includes/setup/constants.inc:1025 ../setup/config_data.inc:1136
 #, fuzzy
 msgid "Watermark full sized image only"
 msgstr "Prida» vodotlaè celému súboru"
 
-#: ../includes/setup/constants.inc:1036 ../setup/config_data.inc:1147
+#: ../includes/setup/constants.inc:1035 ../setup/config_data.inc:1147
 msgid "Statistics"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1037 ../setup/config_data.inc:1148
+#: ../includes/setup/constants.inc:1036 ../setup/config_data.inc:1148
 msgid "Caching improves performance for a large gallery at the cost of potentially displaying photos that are out of order or with out of date rating information."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1038 ../setup/config_data.inc:1149
+#: ../includes/setup/constants.inc:1037 ../setup/config_data.inc:1149
 msgid "There's a different cache for each stats type supported with the exception of random."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1039 ../setup/config_data.inc:1150
+#: ../includes/setup/constants.inc:1038 ../setup/config_data.inc:1150
 msgid "The caches can be refreshed by reloading the stats page and specifying the url variable 'refreshcache'."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1040 ../setup/config_data.inc:1151
+#: ../includes/setup/constants.inc:1039 ../setup/config_data.inc:1151
 msgid "Caches will also refresh themselves after they have expired."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1041 ../setup/config_data.inc:1152
+#: ../includes/setup/constants.inc:1040 ../setup/config_data.inc:1152
 msgid "The expire time in seconds is specified for each cache below."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1042 ../setup/config_data.inc:1153
+#: ../includes/setup/constants.inc:1041 ../setup/config_data.inc:1153
 msgid "If the expire time is set to -1 then the cache will not auto refresh."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1046 ../setup/config_data.inc:1157
+#: ../includes/setup/constants.inc:1045 ../setup/config_data.inc:1157
 msgid "Available Stats for 'normal' users"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1047 ../setup/config_data.inc:1158
+#: ../includes/setup/constants.inc:1046 ../setup/config_data.inc:1158
 msgid "Gallery can give a lot of statistics for admins, however you can enable some of them to normal users."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1048 ../setup/config_data.inc:1159
+#: ../includes/setup/constants.inc:1047 ../setup/config_data.inc:1159
 #, php-format
 msgid "For every selected item Gallery will create a link on the mainpage. The stats are based on the defaults defined in %s."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1053 ../setup/config_data.inc:1164
+#: ../includes/setup/constants.inc:1052 ../setup/config_data.inc:1164
 msgid "View cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1055 ../includes/setup/constants.inc:1069
-#: ../includes/setup/constants.inc:1083 ../includes/setup/constants.inc:1097
-#: ../includes/setup/constants.inc:1111 ../includes/setup/constants.inc:1125
+#: ../includes/setup/constants.inc:1054 ../includes/setup/constants.inc:1068
+#: ../includes/setup/constants.inc:1082 ../includes/setup/constants.inc:1096
+#: ../includes/setup/constants.inc:1110 ../includes/setup/constants.inc:1124
 #: ../setup/config_data.inc:1166 ../setup/config_data.inc:1180
 #: ../setup/config_data.inc:1194 ../setup/config_data.inc:1208
 #: ../setup/config_data.inc:1222 ../setup/config_data.inc:1236
 msgid "On"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1061 ../setup/config_data.inc:1172
+#: ../includes/setup/constants.inc:1060 ../setup/config_data.inc:1172
 msgid "View cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1067 ../setup/config_data.inc:1178
+#: ../includes/setup/constants.inc:1066 ../setup/config_data.inc:1178
 #, fuzzy
 msgid "Comment cache"
 msgstr "Poznámky"
 
-#: ../includes/setup/constants.inc:1075 ../setup/config_data.inc:1186
+#: ../includes/setup/constants.inc:1074 ../setup/config_data.inc:1186
 msgid "Comment cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1081 ../setup/config_data.inc:1192
+#: ../includes/setup/constants.inc:1080 ../setup/config_data.inc:1192
 msgid "Date cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1089 ../setup/config_data.inc:1200
+#: ../includes/setup/constants.inc:1088 ../setup/config_data.inc:1200
 msgid "Date cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1095 ../setup/config_data.inc:1206
+#: ../includes/setup/constants.inc:1094 ../setup/config_data.inc:1206
 #, fuzzy
 msgid "Vote cache"
 msgstr "Volebný návod"
 
-#: ../includes/setup/constants.inc:1103 ../setup/config_data.inc:1214
+#: ../includes/setup/constants.inc:1102 ../setup/config_data.inc:1214
 msgid "Vote cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1109 ../setup/config_data.inc:1220
+#: ../includes/setup/constants.inc:1108 ../setup/config_data.inc:1220
 msgid "Rating cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1117 ../setup/config_data.inc:1228
+#: ../includes/setup/constants.inc:1116 ../setup/config_data.inc:1228
 msgid "Rating cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1123 ../setup/config_data.inc:1234
+#: ../includes/setup/constants.inc:1122 ../setup/config_data.inc:1234
 msgid "Capturedate cache"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1131 ../setup/config_data.inc:1242
+#: ../includes/setup/constants.inc:1130 ../setup/config_data.inc:1242
 msgid "Capturedate cache expiration"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1142 ../setup/config_data.inc:1254
+#: ../includes/setup/constants.inc:1141 ../setup/config_data.inc:1254
 #, fuzzy
 msgid "Blocks"
 msgstr "V smere hodinových ruèièiek"
 
-#: ../includes/setup/constants.inc:1143 ../setup/config_data.inc:1255
+#: ../includes/setup/constants.inc:1142 ../setup/config_data.inc:1255
 msgid "These settings are for the blocks provided by Gallery."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1147 ../setup/config_data.inc:1259
+#: ../includes/setup/constants.inc:1146 ../setup/config_data.inc:1259
 msgid "RandomBlock Settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1151 ../setup/config_data.inc:1263
+#: ../includes/setup/constants.inc:1150 ../setup/config_data.inc:1263
 msgid "RandomBlock Source"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1152 ../setup/config_data.inc:1264
+#: ../includes/setup/constants.inc:1151 ../setup/config_data.inc:1264
 msgid "You can either use a random pictures from the whole Gallery or from certain albums."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1158 ../setup/config_data.inc:1270
+#: ../includes/setup/constants.inc:1157 ../setup/config_data.inc:1270
 #, fuzzy
 msgid "Frame around random photo."
 msgstr "Okraje okolo albumov"
 
-#: ../includes/setup/constants.inc:1164 ../setup/config_data.inc:1276
+#: ../includes/setup/constants.inc:1163 ../setup/config_data.inc:1276
 msgid "Width of solid/dotted frameborder around random photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1173 ../setup/config_data.inc:1285
+#: ../includes/setup/constants.inc:1172 ../setup/config_data.inc:1285
 msgid "Color of solid/dotted frameborder around random photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1179
+#: ../includes/setup/constants.inc:1178
 msgid "Random Block cache time"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1180 ../setup/config_data.inc:1292
+#: ../includes/setup/constants.inc:1179 ../setup/config_data.inc:1292
 msgid "This is the amount of time that the Random Block will cache data about your photos and albums, speeding up requests for random photos.  The more often that your albums are modified, the lower you should set this value to ensure that new photos are chosen quickly, and to prevent attempts to retrieve photos which may have been deleted. The cache is automatically regenerated when a user views the random block after the time limit has expired."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1183 ../setup/config_data.inc:1295
+#: ../includes/setup/constants.inc:1182 ../setup/config_data.inc:1295
 msgid "24 Hours"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1184 ../setup/config_data.inc:1296
+#: ../includes/setup/constants.inc:1183 ../setup/config_data.inc:1296
 msgid "12 Hours"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1185 ../setup/config_data.inc:1297
+#: ../includes/setup/constants.inc:1184 ../setup/config_data.inc:1297
 msgid "6 Hours"
 msgstr "6 Hodín"
 
-#: ../includes/setup/constants.inc:1186 ../setup/config_data.inc:1298
+#: ../includes/setup/constants.inc:1185 ../setup/config_data.inc:1298
 msgid "1 Hour"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1187 ../setup/config_data.inc:1299
+#: ../includes/setup/constants.inc:1186 ../setup/config_data.inc:1299
 msgid "30 Minutes"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1191
+#: ../includes/setup/constants.inc:1190
 msgid "Random Block retrieval attempts"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1192 ../setup/config_data.inc:1304
+#: ../includes/setup/constants.inc:1191 ../setup/config_data.inc:1304
 msgid "This variable controls the number of times that the random block will attempt to retrieve an image from Gallery.  The larger the value, the less likely a 'No Photo Chosen' will be returned, but it increases the time it takes for the Random Block to load."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1203
+#: ../includes/setup/constants.inc:1202
 msgid "Featured-photo-block settings"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1207
+#: ../includes/setup/constants.inc:1206
 #, fuzzy
 msgid "Frame around featured photo."
 msgstr "Okraje okolo albumov"
 
-#: ../includes/setup/constants.inc:1213
+#: ../includes/setup/constants.inc:1212
 msgid "Width of solid/dotted frameborder around featured photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1222
+#: ../includes/setup/constants.inc:1221
 msgid "Color of solid/dotted frameborder around featured photo."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1236 ../setup/config_data.inc:1320
+#: ../includes/setup/constants.inc:1235 ../setup/config_data.inc:1320
 msgid "Technical"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1237 ../setup/config_data.inc:1321
+#: ../includes/setup/constants.inc:1236 ../setup/config_data.inc:1321
 msgid "The settings in this section are intended for advanced users only."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1239 ../setup/config_data.inc:1323
+#: ../includes/setup/constants.inc:1238 ../setup/config_data.inc:1323
 msgid "Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1243 ../setup/config_data.inc:1327
+#: ../includes/setup/constants.inc:1242 ../setup/config_data.inc:1327
 #, fuzzy
 msgid "Debug Level"
 msgstr "Odlaïovací re¾im"
 
-#: ../includes/setup/constants.inc:1244 ../setup/config_data.inc:1328
+#: ../includes/setup/constants.inc:1243 ../setup/config_data.inc:1328
 msgid "Turn debug on so that you can diagnose problems?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1245 ../setup/config_data.inc:1329
+#: ../includes/setup/constants.inc:1244 ../setup/config_data.inc:1329
 msgid "Note: Dont leave this option on in production systems! Else you might show users more information about your Gallery and system than you want!"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1247 ../setup/config_data.inc:1331
+#: ../includes/setup/constants.inc:1246 ../setup/config_data.inc:1331
 msgid "No Debug"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1248 ../setup/config_data.inc:1332
+#: ../includes/setup/constants.inc:1247 ../setup/config_data.inc:1332
 msgid "Normal"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1249 ../setup/config_data.inc:1333
+#: ../includes/setup/constants.inc:1248 ../setup/config_data.inc:1333
 msgid "High (former Debug 'on')"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1250 ../setup/config_data.inc:1334
+#: ../includes/setup/constants.inc:1249 ../setup/config_data.inc:1334
 #, fuzzy
 msgid "Paranoid"
 msgstr "Polaroid"
 
-#: ../includes/setup/constants.inc:1254 ../setup/config_data.inc:1338
+#: ../includes/setup/constants.inc:1253 ../setup/config_data.inc:1338
 msgid "Disable register_globals check"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1255 ../setup/config_data.inc:1339
+#: ../includes/setup/constants.inc:1254 ../setup/config_data.inc:1339
 #, php-format
 msgid "<b>Be aware that changing this setting potentially decreases the security of your Gallery, and we may or may not support you if you encounter issues that don't occur when this is turned off.</b><br><br>Enabling this causes %s to ignore register_globals being turned on.  %s normally tries to unset all variables created by register_globals to help enforce security.  If a script that you run requires register_globals to be on, and will not cooperate with %s, set this to &quot;yes&quot;."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1263 ../setup/config_data.inc:1347
+#: ../includes/setup/constants.inc:1262 ../setup/config_data.inc:1347
 msgid "Time Limit"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1264 ../setup/config_data.inc:1348
+#: ../includes/setup/constants.inc:1263 ../setup/config_data.inc:1348
 msgid "The maximum amount of time in seconds any single operation should take.  If you find that you are getting the <b>Maximum execution time exceeded</b> error message, you can try making this a larger number.  Be warned that if you make this too large you <i>might</i> have a process that is stuck for a very long time without doing anything.  The default value is 30 which is pretty reasonable."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1272 ../setup/config_data.inc:1356
+#: ../includes/setup/constants.inc:1271 ../setup/config_data.inc:1356
 msgid "ImageMagick high quality"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1273 ../setup/config_data.inc:1357
+#: ../includes/setup/constants.inc:1272 ../setup/config_data.inc:1357
 msgid "If this setting is 'yes' and you use ImageMagick then resized Images will have a slightly(!) higher quality, but with the drawback of a higher load and a higher creation time."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1282 ../setup/config_data.inc:1366
+#: ../includes/setup/constants.inc:1281 ../setup/config_data.inc:1366
 msgid "Cache EXIF data"
 msgstr "Cache EXIF dáta"
 
-#: ../includes/setup/constants.inc:1283 ../setup/config_data.inc:1367
+#: ../includes/setup/constants.inc:1282 ../setup/config_data.inc:1367
 msgid "The EXIF data extracted from JPEG files can be cached after it is read the first time.  The tradeoff is that if you cache this data it's possible for your album data files to get quite large which may slow down viewing your albums.  But, if you don't cache this data then it needs to be retrieved every time any user looks at the properties of a photo which can also be slow."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1292 ../setup/config_data.inc:1376
+#: ../includes/setup/constants.inc:1291 ../setup/config_data.inc:1376
 msgid "Developer Mode"
 msgstr "Vyvýjateµský Re¾im"
 
-#: ../includes/setup/constants.inc:1293 ../setup/config_data.inc:1377
+#: ../includes/setup/constants.inc:1292 ../setup/config_data.inc:1377
 msgid "Turn on developer mode to see all PHP warnings and notices.  Enabling this is not recommended for users that aren't familiar with PHP."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1301 ../setup/config_data.inc:1385
+#: ../includes/setup/constants.inc:1300 ../setup/config_data.inc:1385
 msgid "Use Syslog"
 msgstr "Pou¾i» syslog"
 
-#: ../includes/setup/constants.inc:1302 ../setup/config_data.inc:1386
+#: ../includes/setup/constants.inc:1301 ../setup/config_data.inc:1386
 msgid "Report user login, logout, and serious errors via syslog (UNIX) or System Event Manager (Windows)"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1310 ../setup/config_data.inc:1394
+#: ../includes/setup/constants.inc:1309 ../setup/config_data.inc:1394
 #, php-format
 msgid "Use %s"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1311 ../setup/config_data.inc:1395
+#: ../includes/setup/constants.inc:1310 ../setup/config_data.inc:1395
 msgid "Gallery uses a locking system called flock() for added protection against data corruption.  This is not supported on all platforms.  If you're seeing errors like <i>Could not acquire lock</i> then set this value to <i>no</i>."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1319 ../setup/config_data.inc:1403
+#: ../includes/setup/constants.inc:1318 ../setup/config_data.inc:1403
 msgid "Status code"
 msgstr "Kód stavu"
 
-#: ../includes/setup/constants.inc:1320 ../setup/config_data.inc:1404
+#: ../includes/setup/constants.inc:1319 ../setup/config_data.inc:1404
 msgid "The status code Gallery expects to see after a successful <i>exec()</i> call.  Gallery will try to figure this out on its own so you probably won't need to change this value unless you have problems."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1326 ../setup/config_data.inc:1410
+#: ../includes/setup/constants.inc:1325 ../setup/config_data.inc:1410
 msgid "Session variable"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1327 ../setup/config_data.inc:1411
+#: ../includes/setup/constants.inc:1326 ../setup/config_data.inc:1411
 msgid "This is the session variable used to contain all Gallery session information.  Change this if there is a conflict between Gallery and another PHP app on your website."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1338 ../setup/config_data.inc:1423
+#: ../includes/setup/constants.inc:1337 ../setup/config_data.inc:1423
 msgid "RSS Publisher"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1339 ../setup/config_data.inc:1424
+#: ../includes/setup/constants.inc:1338 ../setup/config_data.inc:1424
 msgid "Options for the Gallery RSS Publisher"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1342 ../setup/config_data.inc:1427
+#: ../includes/setup/constants.inc:1341 ../setup/config_data.inc:1427
 msgid "Enable RSS Generator"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1343 ../setup/config_data.inc:1428
+#: ../includes/setup/constants.inc:1342 ../setup/config_data.inc:1428
 msgid "Enable or Disable the Gallery RSS Generator"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1350 ../setup/config_data.inc:1435
+#: ../includes/setup/constants.inc:1349 ../setup/config_data.inc:1435
 msgid "RSS Content"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1351 ../setup/config_data.inc:1436
+#: ../includes/setup/constants.inc:1350 ../setup/config_data.inc:1436
 msgid "Specifies which information is to be included in your RSS feed."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1353 ../setup/config_data.inc:1438
+#: ../includes/setup/constants.inc:1352 ../setup/config_data.inc:1438
 msgid "Basic information only"
 msgstr "Len základné informácie"
 
-#: ../includes/setup/constants.inc:1354 ../setup/config_data.inc:1439
+#: ../includes/setup/constants.inc:1353 ../setup/config_data.inc:1439
 msgid "Album highlight"
 msgstr "Albumové zvýraznenie"
 
-#: ../includes/setup/constants.inc:1355 ../setup/config_data.inc:1440
+#: ../includes/setup/constants.inc:1354 ../setup/config_data.inc:1440
 msgid "All image thumbnails"
 msgstr "Zmen¹eniny v¹etkých obrázkov"
 
-#: ../includes/setup/constants.inc:1356 ../setup/config_data.inc:1441
+#: ../includes/setup/constants.inc:1355 ../setup/config_data.inc:1441
 msgid "All image thumbnails and captions"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1360 ../setup/config_data.inc:1445
+#: ../includes/setup/constants.inc:1359 ../setup/config_data.inc:1445
 msgid "RSS Highlight"
 msgstr "RSS Zvýraznenie"
 
-#: ../includes/setup/constants.inc:1361 ../setup/config_data.inc:1446
+#: ../includes/setup/constants.inc:1360 ../setup/config_data.inc:1446
 msgid "Specify which album will be displayed as the icon for all feed entries: An empty field means that there will be no default highlight.  '*' uses the most recently update album's highlight.  Specifying an album name will use that album's highlight image."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1367 ../setup/config_data.inc:1452
+#: ../includes/setup/constants.inc:1366 ../setup/config_data.inc:1452
 msgid "Maximum Albums Returned"
 msgstr "Maximum Navrátených Albumov"
 
-#: ../includes/setup/constants.inc:1368 ../setup/config_data.inc:1453
+#: ../includes/setup/constants.inc:1367 ../setup/config_data.inc:1453
 msgid "This value is the maximum number of albums that the RSS feed will display to the user. Only the most recently modified albums are chosen for this value."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1375 ../setup/config_data.inc:1460
+#: ../includes/setup/constants.inc:1374 ../setup/config_data.inc:1460
 msgid "Visible Albums Only"
 msgstr "Len Neukryté Albumy"
 
-#: ../includes/setup/constants.inc:1376 ../setup/config_data.inc:1461
+#: ../includes/setup/constants.inc:1375 ../setup/config_data.inc:1461
 msgid "Specifies whether hidden albums should be included in the RSS feed.  This is not advised unless you are the only Gallery user.  Other users could become very upset if their hidden images become displayed to the public."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1378 ../setup/config_data.inc:1463
+#: ../includes/setup/constants.inc:1377 ../setup/config_data.inc:1463
 msgid "Display Visible Albums Only"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1379 ../setup/config_data.inc:1464
+#: ../includes/setup/constants.inc:1378 ../setup/config_data.inc:1464
 msgid "Display Hidden Albums"
 msgstr "Zobrazi» ukryté Albumy"
 
-#: ../includes/setup/constants.inc:1383 ../setup/config_data.inc:1468
+#: ../includes/setup/constants.inc:1382 ../setup/config_data.inc:1468
 msgid "Use dc:date"
 msgstr "Pou¾i» dc:date"
 
-#: ../includes/setup/constants.inc:1384 ../setup/config_data.inc:1469
+#: ../includes/setup/constants.inc:1383 ../setup/config_data.inc:1469
 msgid "(Advanced) If users complain about their RSS readers being unable to process the RSS Feed, try enabling this option.  Including dc:date is not RSS 2.0 compliant, but some feed readers require it anyway. Turning this on will cause your feed to not validate as RSS 2.0."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1391 ../setup/config_data.inc:1476
+#: ../includes/setup/constants.inc:1390 ../setup/config_data.inc:1476
 msgid "Use Big Photo"
 msgstr "Pou¾i» Veµkú Fotku"
 
-#: ../includes/setup/constants.inc:1392 ../setup/config_data.inc:1477
+#: ../includes/setup/constants.inc:1391 ../setup/config_data.inc:1477
 msgid "(Advanced) If users complain about their RSS readers corrupting the channel thumbnail, you can turn this feature on.  Turning this on will cause your feed to not validate as valid RSS 2.0."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1399 ../setup/config_data.inc:1484
+#: ../includes/setup/constants.inc:1398 ../setup/config_data.inc:1484
 msgid "Use Photo Tag"
 msgstr "Pou¾i» ©títok Fotky"
 
-#: ../includes/setup/constants.inc:1400 ../setup/config_data.inc:1485
+#: ../includes/setup/constants.inc:1399 ../setup/config_data.inc:1485
 msgid "(Advanced) Turning this off will cause two RSS extensions which allow for images representing items to be removed from the feed.  Leaving this enabled should cause no problems - disabling it is a personal preference."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1412
+#: ../includes/setup/constants.inc:1411
 msgid "Paths for upload from server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1415
+#: ../includes/setup/constants.inc:1414
 msgid "Allowed paths for upload from Server"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1416
+#: ../includes/setup/constants.inc:1415
 msgid "Specify the legal directories on the local server where a user can store files and then upload them into Gallery using the 'From local Server' method. The paths you enter here and all the files and directories under those paths will be available to any Gallery user who has upload privileges, so you should limit this to directories that won't contain sensitive data (eg. /tmp or /usr/ftp/incoming)"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1431
+#: ../includes/setup/constants.inc:1430
 msgid "Captcha"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1432
+#: ../includes/setup/constants.inc:1431
 msgid "Protect your Gallery against comment spam with captcha."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1434
+#: ../includes/setup/constants.inc:1433
 msgid "Gallery creates captha images that contains letter and number that have to be entered. These images are not readable by robots."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1436
+#: ../includes/setup/constants.inc:1435
 msgid "There are more settings, but those are in a separate file. For details look into includes/captcha/captcha_init.php"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1439
+#: ../includes/setup/constants.inc:1438
 msgid "Enable Captcha ?"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1444
+#: ../includes/setup/constants.inc:1443
 msgid "Yes, for everybody"
 msgstr ""
 
-#: ../includes/setup/constants.inc:1445
+#: ../includes/setup/constants.inc:1444
 msgid "Yes, but only for anonymous users."
 msgstr ""
 
-#: ../includes/setup/constants.inc:1452
+#: ../includes/setup/constants.inc:1451
 msgid "Your PHP does not support the GD library, thus the captcha images can not be created. Captcha support will be disabled."
 msgstr ""
 
@@ -2583,8 +2570,8 @@ msgstr ""
 msgid "Clickable image dimensions"
 msgstr "Zobrazi» rozmery kliknuteµného obrázku"
 
-#: ../includes/setup/defaults.inc:300 ../setup/config_data.inc:1764
-msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
+#: ../includes/setup/defaults.inc:300
+msgid "If set to 'yes', then clickable dimensions for each available size of the picture are shown beneath the thumbnails . You may click on these instead of the thumbnail to either image."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:308
@@ -2592,7 +2579,7 @@ msgid "Dimensions-link opens popup"
 msgstr ""
 
 #: ../includes/setup/defaults.inc:309
-msgid "If you show the dimensions-links, you can choose wether you just want the images shown in a popup, or open the complete photoview."
+msgid "If you show the dimensions-links, you can choose whether you just want the images to appear in a popup, or open the complete photoview."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:322 ../setup/config_data.inc:1778
@@ -2830,8 +2817,8 @@ msgstr ""
 msgid "Dynamic"
 msgstr ""
 
-#: ../includes/setup/defaults.inc:535 ../setup/config_data.inc:1993
-msgid "Displays previos and next images, with current image between."
+#: ../includes/setup/defaults.inc:535
+msgid "Displays previous and next images, with current image between."
 msgstr ""
 
 #: ../includes/setup/defaults.inc:544 ../setup/config_data.inc:2002
@@ -2940,6 +2927,11 @@ msgstr "nastavovací nápomocník"
 msgid "Welcome"
 msgstr "Vitajte, %s"
 
+#: ../setup/welcome.inc:43 ../setup/welcome.inc:152
+#, fuzzy
+msgid "_Next Step >>"
+msgstr "Nasledujúci Krok"
+
 #: ../setup/welcome.inc:46
 msgid "Installation Type:"
 msgstr ""
@@ -2966,7 +2958,7 @@ msgstr ""
 
 #: ../setup/welcome.inc:71
 #, fuzzy
-msgid "Welcome to the configuration wizard of Gallery."
+msgid "Welcome to the Setup of Gallery."
 msgstr "Stiahnu» %sXP Configuration File%s"
 
 #: ../setup/welcome.inc:74
@@ -2978,11 +2970,11 @@ msgid "1."
 msgstr "1."
 
 #: ../setup/welcome.inc:81
-msgid "Create an empty file config.php in the mainfolder of your Gallery."
+msgid "Create an empty file config.php in the main folder of your Gallery."
 msgstr ""
 
 #: ../setup/welcome.inc:82
-msgid "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosters.)"
+msgid "You can optionally create an empty file .htaccess which is used for short urls and other settings. (This is not supported by all hosts.)"
 msgstr ""
 
 #: ../setup/welcome.inc:86
@@ -2990,7 +2982,7 @@ msgid "2."
 msgstr "2."
 
 #: ../setup/welcome.inc:87
-msgid "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend not to put it in your Gallery folder. But thats up to you."
+msgid "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend that you don't put it in your Gallery folder, but that's up to you."
 msgstr ""
 
 #: ../setup/welcome.inc:90
@@ -3142,7 +3134,12 @@ msgstr ""
 msgid "Your installation has warnings, but this is usually OK.  Keep going!"
 msgstr ""
 
-#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/defaults.inc:59
+#: ../setup/check.inc:283
+msgid "Your installation passed with flying colors!  Go go go!"
+msgstr ""
+
+#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/constants.inc:271
+#: ../setup/defaults.inc:59 ../setup/defaults.inc:172
 #, fuzzy
 msgid "_Next Step &gt;&gt;"
 msgstr "Nasledujúci Krok"
@@ -3341,6 +3338,14 @@ msgstr ""
 msgid "I can't find <b>jpegtran</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."
 msgstr ""
 
+#: ../setup/config_data.inc:279
+msgid "You can choose whether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
+msgstr ""
+
+#: ../setup/config_data.inc:296
+msgid "Here you can get a more Gallery Skins by Drazan"
+msgstr ""
+
 #: ../setup/config_data.inc:812
 msgid "Email and Registration"
 msgstr "Email a Registrácia"
@@ -3368,6 +3373,14 @@ msgstr ""
 #: ../setup/config_data.inc:1763
 msgid "Display clickable image dimensions"
 msgstr "Zobrazi» rozmery kliknuteµného obrázku"
+
+#: ../setup/config_data.inc:1764
+msgid "Display clickable image dimensions beneath the thumbnails.  Will show dimensions for resized images (if any) first, then for the full image, depending on album settings user permissions.  You may click on these instead of the thumbnail to either image."
+msgstr ""
+
+#: ../setup/config_data.inc:1993
+msgid "Displays previos and next images, with current image between."
+msgstr ""
 
 #: ../setup/confirm.inc:39
 msgid "documentation"
@@ -3489,12 +3502,12 @@ msgstr "%s nastavenie"
 msgid "&lt;&lt; Edit Config"
 msgstr "Zmeni» Nastavenie"
 
-#: ../setup/confirm.inc:533 ../setup/confirm.inc:576
+#: ../setup/confirm.inc:533 ../setup/confirm.inc:577
 #, fuzzy
 msgid "Save Config &gt;&gt;"
 msgstr "Uchova» Nastavenie"
 
-#: ../setup/confirm.inc:536 ../setup/confirm.inc:579 ../setup/login.inc:89
+#: ../setup/confirm.inc:536 ../setup/confirm.inc:580 ../setup/login.inc:89
 msgid "Refresh"
 msgstr ""
 
@@ -3522,11 +3535,11 @@ msgstr[2] "®iadne chyby."
 msgid "See Details below."
 msgstr "Prezrite si Detaily naspodku."
 
-#: ../setup/confirm.inc:583
+#: ../setup/confirm.inc:584
 msgid "There are errors in your configuration."
 msgstr ""
 
-#: ../setup/confirm.inc:585
+#: ../setup/confirm.inc:586
 msgid "Please go back and fix them!"
 msgstr ""
 
@@ -3536,7 +3549,8 @@ msgstr ""
 msgid "Settings"
 msgstr "Zodpovedajúce Poznámky"
 
-#: ../setup/constants.inc:91 ../setup/defaults.inc:58
+#: ../setup/constants.inc:91 ../setup/constants.inc:268
+#: ../setup/defaults.inc:58 ../setup/defaults.inc:169
 #, fuzzy
 msgid "&lt;&lt; _Previous Step"
 msgstr "Predchádzajúci Krok"
@@ -3570,16 +3584,6 @@ msgstr "Nasledujúci Tab"
 #: ../setup/defaults.inc:90 ../setup/defaults.inc:173
 msgid "Use Defaults"
 msgstr "Pou¾i» Predvoµby"
-
-#: ../setup/constants.inc:268 ../setup/defaults.inc:169
-#, fuzzy
-msgid "&lt;&lt; Previous Step"
-msgstr "Predchádzajúci Krok"
-
-#: ../setup/constants.inc:271 ../setup/defaults.inc:172
-#, fuzzy
-msgid "Next Step &gt;&gt;"
-msgstr "Nasledujúci Krok"
 
 #: ../setup/defaults.inc:55
 #, fuzzy
@@ -4046,3 +4050,11 @@ msgstr ""
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr ""
+
+#, fuzzy
+#~ msgid "&lt;&lt; Previous Step"
+#~ msgstr "Predchádzajúci Krok"
+
+#, fuzzy
+#~ msgid "Next Step &gt;&gt;"
+#~ msgstr "Nasledujúci Krok"
