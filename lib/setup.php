@@ -169,7 +169,7 @@ function form_password($key, $arr) {
 	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<div style="margin-top: 3px;"></div>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
-		. gTranslate('config', 'Please retype your password here')
+		. gTranslate('common', 'Please retype your password here')
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
 		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
 }
@@ -180,8 +180,8 @@ function form_nv_pairs($key, $arr) {
 	$x=0;
 	$buf="\n<table>"
 		. "<tr>"
-		. "<td><b>". gTranslate('config', "Name") . "</b></td>"
-		. "<td><b>". gTranslate('config', "Value") ."</b></td>"
+		. "<td><b>". gTranslate('common', "Name") . "</b></td>"
+		. "<td><b>". gTranslate('common', "Value") ."</b></td>"
 		. "</tr>";
 	foreach ($arr["value"] as $result) {
 		$name=$result["name"];
@@ -211,7 +211,7 @@ function form_choice($key, $arr) {
 
 function form_multiple_choice($key, $arr) {
 	if (empty($arr["multiple_choices"])) {
-		return gTranslate('config', "No content");
+		return gTranslate('common', "No content");
 	}
 
 	$buf = '<table><tr><td valign="top">';
@@ -263,7 +263,7 @@ function makeMultipleChoiceContent($array) {
 /* in progress */
 function form_table_values($key, $arr) {
 	if (empty($arr['elements'])) {
-		return gTranslate('config', "No content");
+		return gTranslate('common', "No content");
 	}
 
 	$jTable = new galleryTable();
@@ -429,7 +429,7 @@ function error_missing($desc, $key) {
 	if (empty($desc)) {
 		$desc = $key;
 	}
-	return configError(sprintf(gTranslate('config', "Missing value: %s"),"<b>$desc</b>!"));
+	return configError(sprintf(gTranslate('common', "Missing value: %s"),"<b>$desc</b>!"));
 }
 
 function check_exec() {
@@ -447,7 +447,7 @@ function check_exec() {
 	}
 
 	if (empty($fail['fail-exec'])) {
-		$success[] = gTranslate('config', "exec() is enabled on this server.");
+		$success[] = gTranslate('common', "exec() is enabled on this server.");
 	}
 
 	return array($success, $fail, $warn);
@@ -468,7 +468,7 @@ function check_htaccess() {
 		$fail['fail-nohtaccess'] = true;
 	}
 	else if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = gTranslate('config', "Gallery is able to read your .htaccess file.");
+		$success[] = gTranslate('common', "Gallery is able to read your .htaccess file.");
 	}
 	else {
 		$fail['fail-htaccess'] = true;
@@ -490,7 +490,7 @@ function check_php() {
 		$fail['fail-too-old'] = 1;
 	}
 	elseif (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
-		$success[] = sprintf(gTranslate('config', "PHP v%s is OK."), $version);
+		$success[] = sprintf(gTranslate('common', "PHP v%s is OK."), $version);
 	}
 	else {
 		$fail['fail-buggy__FILE__'] = 1;
@@ -508,7 +508,7 @@ function check_mod_rewrite()  {
 
 	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
 		if ($GALLERY_REWRITE_OK) {
-			$success[] = gTranslate('config', "mod_rewrite is enabled.");
+			$success[] = gTranslate('common', "mod_rewrite is enabled.");
 		}
 		else {
 			$fail["fail-mod-rewrite"] = 1;
@@ -538,10 +538,10 @@ function check_exif($location = '') {
 	}
 
 	if (empty($dir)) {
-		$warn["fail-exif"] = gTranslate('config', "Can't find <i>jhead</i>");
+		$warn["fail-exif"] = gTranslate('common', "Can't find <i>jhead</i>");
 	}
 	else {
-		$success[] = gTranslate('config', "jhead binary located.");
+		$success[] = gTranslate('common', "jhead binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -579,18 +579,18 @@ function check_graphics($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('pnmcomp') =>
-		gTranslate('config', "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
+		gTranslate('common', "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 
 	/* Start checks */
 
 	if ($graphtool == 'ImageMagick') {
-		$success[] = gTranslate('config', "NetPBM not being used in this installation.");
+		$success[] = gTranslate('common', "NetPBM not being used in this installation.");
 		return array($success, $fail, $warn);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-		$warn[] = gTranslate('config', "Cannot verify this path (it's not in your open_basedir list).");
+		$warn[] = gTranslate('common', "Cannot verify this path (it's not in your open_basedir list).");
 		return array($success, $fail, $warn);
 	}
 
@@ -624,16 +624,16 @@ function check_graphics($location = '', $graphtool = '') {
 
 		if (empty($dir)) {
 			if (isset($optional[$bin])) {
-				$warn[$bin] = '<br>'. sprintf(gTranslate('config', "Missing optional binary %s. %s"), $bin, $optional[$bin]);
+				$warn[$bin] = '<br>'. sprintf(gTranslate('common', "Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			}
 			else {
-				$missing_critical[$bin] = '<br>'. sprintf(gTranslate('config', "Can't find %s!"), "<i>$bin</i>");
+				$missing_critical[$bin] = '<br>'. sprintf(gTranslate('common', "Can't find %s!"), "<i>$bin</i>");
 			}
 			$missing++;
 		}
 
 		if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
-			$warn[$bin] = '<br>'. sprintf(gTranslate('config', "%s is not executable!"), "<i>$bin</i> ");
+			$warn[$bin] = '<br>'. sprintf(gTranslate('common', "%s is not executable!"), "<i>$bin</i> ");
 		}
 	}
 
@@ -643,7 +643,7 @@ function check_graphics($location = '', $graphtool = '') {
 		$warn = array();
 	}
 	elseif ($missing > 0) {
-		$warn[] = "\n<br>" . sprintf(gTranslate('config', "%d of %d NetPBM binaries located."),
+		$warn[] = "\n<br>" . sprintf(gTranslate('common', "%d of %d NetPBM binaries located."),
 		count($netpbm) - $missing, count($netpbm));
 
 		if(count($missing_critical) > 0 || 1 != 2) {
@@ -651,7 +651,7 @@ function check_graphics($location = '', $graphtool = '') {
 		}
 	}
 	else {
-		$success[] = sprintf(gTranslate('config', "%d of %d NetPBM binaries located."),
+		$success[] = sprintf(gTranslate('common', "%d of %d NetPBM binaries located."),
 		count($netpbm), count($netpbm));
 	}
 
@@ -675,18 +675,18 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('composite') =>
-		gTranslate('config', "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
+		gTranslate('common', "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
 	);
 
 
 	/* Begin Checks */
 	if ($graphtool == 'NetPBM') {
-		$success[] = gTranslate('config', "ImageMagick not being used in this installation.");
+		$success[] = gTranslate('common', "ImageMagick not being used in this installation.");
 		return array($success, $fail, $warn);
 	}
 
 	if (!empty($location) && !inOpenBasedir($location)) {
-		$success[] = gTranslate('config', "Cannot verify this path (it's not in your open_basedir list).");
+		$success[] = gTranslate('common', "Cannot verify this path (it's not in your open_basedir list).");
 		return array($success, $fail);
 	}
 
@@ -703,16 +703,16 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 		if (empty($dir)) {
 			if (isset($optional[$bin])) {
-				$warn[$bin] = '<br>'. sprintf(gTranslate('config', "Missing optional binary %s. %s"), $bin, $optional[$bin]);
+				$warn[$bin] = '<br>'. sprintf(gTranslate('common', "Missing optional binary %s. %s"), $bin, $optional[$bin]);
 			}
 			else {
-				$missing_critical[$bin] = '<br>'. sprintf(gTranslate('config', "Can't find %s!"), "<i>$bin</i>");
+				$missing_critical[$bin] = '<br>'. sprintf(gTranslate('common', "Can't find %s!"), "<i>$bin</i>");
 			}
 			$missing++;
 		}
 
 		if (!empty($dir) && inOpenBasedir($dir) && !fs_is_executable("$dir/$bin")) {
-			$warn[$bin] = '<br>'. sprintf(gTranslate('config', "%s is not executable!"), "<i>$bin</i> ");
+			$warn[$bin] = '<br>'. sprintf(gTranslate('common', "%s is not executable!"), "<i>$bin</i> ");
 		}
 	}
 
@@ -722,7 +722,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 		$warn = array();
 	}
 	elseif ($missing > 0) {
-		$warn[] = '<br>'. sprintf(gTranslate('config', "%d of %d ImageMagick binaries located."),
+		$warn[] = '<br>'. sprintf(gTranslate('common', "%d of %d ImageMagick binaries located."),
 		count($imagick) - $missing, count($imagick));
 
 		if(count($missing_critical) > 0) {
@@ -730,7 +730,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 		}
 	}
 	else {
-		$success[] = sprintf(gTranslate('config', "%d of %d ImageMagick binaries located."),
+		$success[] = sprintf(gTranslate('common', "%d of %d ImageMagick binaries located."),
 		count($imagick), count($imagick));
 	}
 
@@ -752,9 +752,9 @@ function check_jpegtran($location = '') {
 		$dir = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : '');
 	}
 	if (!$dir) {
-		$warn["fail-jpegtran"] = gTranslate('config', "jpegtran was not found.");
+		$warn["fail-jpegtran"] = gTranslate('common', "jpegtran was not found.");
 	} else {
-		$success[] = gTranslate('config', "jpegtran binary located.");
+		$success[] = gTranslate('common', "jpegtran binary located.");
 	}
 
 	return array($success, $fail, $warn);
@@ -766,9 +766,9 @@ function check_gettext() {
 	$warn = array();
 
 	if (gettext_installed()) {
-		$success[] = gTranslate('config', "PHP has GNU gettext support.");
+		$success[] = gTranslate('common', "PHP has GNU gettext support.");
 	} else {
-		$warn["fail-gettext"] = gTranslate('config', "PHP does not have GNU gettext support.");
+		$warn["fail-gettext"] = gTranslate('common', "PHP does not have GNU gettext support.");
 	}
 	return array($success, $fail, $warn);
 }
@@ -781,12 +781,12 @@ function check_gallery_languages() {
 
 	$languages = gallery_languages();
 	if (sizeof($languages) == 0) {
-		$fail["fail-gallery-languages"] = gTranslate('config', "No languages found."); // should never occur!
+		$fail["fail-gallery-languages"] = gTranslate('common', "No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
-		$warn['only_english'] = gTranslate('config', "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
+		$warn['only_english'] = gTranslate('common', "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
-		$success[] = sprintf(gTranslate('config', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
+		$success[] = sprintf(gTranslate('common', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
 		sizeof($languages),
 		"<a href=\"$gallery->url\" target=\"_blank\">",
 		'</a>');
@@ -812,23 +812,23 @@ function check_gallery_version() {
 
 	$link = galleryLink($gallery->url, $gallery->url, array('target' => '_blank'));
 
-	$visit = sprintf(gTranslate('config', "You can check for more recent versions by visiting %s."), $link);
+	$visit = sprintf(gTranslate('common', "You can check for more recent versions by visiting %s."), $link);
 
-	$this_version = sprintf(gTranslate('config', "This version of %s was released on %s."),
+	$this_version = sprintf(gTranslate('common', "This version of %s was released on %s."),
 		Gallery(), strftime("%x", $gallery->last_change));
 
-	$this_beta_version = sprintf(gTranslate('config', "This is a development build of %s that was released on %s."),
+	$this_beta_version = sprintf(gTranslate('common', "This is a development build of %s that was released on %s."),
 		Gallery(), strftime("%x", $gallery->last_change));
 
 	if ($age > $maxAge) {
 		if($beta) {
 			$fail['too_old'] = $this_beta_version . ' ' .
-							   sprintf(gTranslate('config', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
+							   sprintf(gTranslate('common', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
 							   toggleBox('g_version', $visit);
 		}
 		else {
 		  $fail['too_old'] = $this_version . ' ' .
-						   sprintf(gTranslate('config', "Thats more than %d days ago."), $maxAge) .
+						   sprintf(gTranslate('common', "Thats more than %d days ago."), $maxAge) .
 						   toggleBox('g_version', $visit);
 		}
 	}
@@ -836,7 +836,7 @@ function check_gallery_version() {
 		$fail['too_old'] = $this_beta_version . toggleBox('g_version', $visit);
 	}
 	else if ($beta) {
-		$visit .= ' '. gTranslate('config', "Please check regularly for updates.");
+		$visit .= ' '. gTranslate('common', "Please check regularly for updates.");
 		$success['ok'] = $this_beta_version . toggleBox('g_version', $visit);
 	}
 	else {
@@ -859,11 +859,11 @@ function check_absent_locales() {
 	$unavailable = $locale_check['unavailable_locales'];
 
 	if($locale_check != NULL && sizeof($unavailable) == 0) {
-	   $success[] = gTranslate('config', "All gallery locales are available on this host.");
+	   $success[] = gTranslate('common', "All gallery locales are available on this host.");
 	}
 	else if( (sizeof($maybe) + sizeof($unavailable)) > 0) {
 		if (sizeof($maybe) > 0) {
-			$msg = sprintf(gTranslate('config', "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
+			$msg = sprintf(gTranslate('common', "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "),sizeof($maybe));
 		}
 
 		if (sizeof($unavailable) > 0) {
@@ -871,23 +871,23 @@ function check_absent_locales() {
 				$msg .= '<br><br>';
 			}
 
-			$msg .= sprintf(gTranslate('config', "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
+			$msg .= sprintf(gTranslate('common', "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."),sizeof($unavailable));
 		}
 		$warn[] = $msg;
 	}
 	else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
-			$warn[] = sprintf(gTranslate('config', "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
+			$warn[] = sprintf(gTranslate('common', "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
 			'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 		}
 		else {
 			if (getOS() == OS_LINUX) {
-				$fail[] = sprintf(gTranslate('config', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),
+				$fail[] = sprintf(gTranslate('common', "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."),
 				'Debian',
 				'<a href="http://people.debian.org/~schultmc/locales.html" target="_blank">', '</a>');
 			}
 			else {
-				$warn[] = gTranslate('config', "Only the default locale for this machine is available, so date format will not change for different languages.");
+				$warn[] = gTranslate('common', "Only the default locale for this machine is available, so date format will not change for different languages.");
 			}
 		}
 	}
@@ -1049,11 +1049,11 @@ function config_maybe_locales() {
 			$block_start_done = true;
 			$results[] = array (
 				'type' => 'block_start',
-				'prompt' => '<b>(' . gTranslate('config', "Advanced") . ') </b><br>' .
-					sprintf(gTranslate('config', "<b>System</b> locale selection required")),
-						'desc' => gTranslate('config', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
+				'prompt' => '<b>(' . gTranslate('common', "Advanced") . ') </b><br>' .
+					sprintf(gTranslate('common', "<b>System</b> locale selection required")),
+						'desc' => gTranslate('common', "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable.") .
 						'<br><br>' .
-					gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
+					gTranslate('common', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
 			);
 		}
 
@@ -1066,7 +1066,7 @@ function config_maybe_locales() {
 		}
 
 		if (getOS() != OS_WINDOWS) {
-			$choices[''] = gTranslate('config', "System locale");
+			$choices[''] = gTranslate('common', "System locale");
 			next($choices);
 		}
 
@@ -1094,7 +1094,7 @@ function config_maybe_locales() {
 	$choices = array();
 
 	if (getOS() != OS_WINDOWS) {
-		$choices = array('' => gTranslate('config', "System locale"));
+		$choices = array('' => gTranslate('common', "System locale"));
 	}
 
 	if (sizeof($available) > 0) {
@@ -1141,11 +1141,11 @@ function config_maybe_locales() {
 				$block_start_done = true;
 				$results[] = array (
 					'type' => 'block_start',
-					'prompt' => '<b>(' . gTranslate('config', "Advanced") . ')</b><br>' .
-						sprintf(gTranslate('config', "<b>System</b> locale problems")),
-							'desc' => gTranslate('config', "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
+					'prompt' => '<b>(' . gTranslate('common', "Advanced") . ')</b><br>' .
+						sprintf(gTranslate('common', "<b>System</b> locale problems")),
+							'desc' => gTranslate('common', "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable.") .
 							'<br><br>' .
-						gTranslate('config', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
+						gTranslate('common', "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above.")
 				);
 			}
 
@@ -1192,7 +1192,7 @@ function check_safe_mode() {
 	!strcasecmp($safe_mode, "off") ||
 	!strcasecmp($safe_mode, "0") ||
 	!strcasecmp($safe_mode, "false")) {
-		$success[] = gTranslate('config', "safe_mode is off.");
+		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {
 		$fail["fail-safe-mode"] = 1;
@@ -1206,7 +1206,7 @@ function check_magic_quotes() {
 	$success = array();
 	$warn = array();
 	if (!get_magic_quotes_gpc()) {
-		$success[] = gTranslate('config', "magic_quotes are off.");
+		$success[] = gTranslate('common', "magic_quotes are off.");
 	} else {
 		$fail["fail-magic-quotes"] = 1;
 	}
@@ -1224,22 +1224,22 @@ function check_poll_nv_pairs($var) {
 		if (!$element["name"]) {
 			$finished=true;
 			if ($element["value"]) {
-				$fail[]=sprintf(gTranslate('config', "In %s, missing %s in row %d with %s %s."),
-				gTranslate('config', "Vote words and values"),
-				gTranslate('config', "Name"), $rownum, gTranslate('config', "Value"),
+				$fail[]=sprintf(gTranslate('common', "In %s, missing %s in row %d with %s %s."),
+				gTranslate('common', "Vote words and values"),
+				gTranslate('common', "Name"), $rownum, gTranslate('common', "Value"),
 				$element["value"]);
 				break;
 			}
 			continue;
 		} else {
 			if ($finished) {
-				$fail[] = sprintf(gTranslate('config', "In %s, blank in row %d."),
-					gTranslate('config', "Vote words and values"),
+				$fail[] = sprintf(gTranslate('common', "In %s, blank in row %d."),
+					gTranslate('common', "Vote words and values"),
 					$rownum-1);
 				break;
 			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
-				$fail[] = sprintf(gTranslate('config', "In %s, for name %s (row %d) value %s should be a positive whole number"),
-					gTranslate('config', "Vote words and values"),
+				$fail[] = sprintf(gTranslate('common', "In %s, for name %s (row %d) value %s should be a positive whole number"),
+					gTranslate('common', "Vote words and values"),
 					$element["name"],
 					$rownum, $element["value"]);
 				break;
@@ -1260,7 +1260,7 @@ function check_register_globals() {
 		$fail['warn-register_globals'] = 1;
 	}
 	else {
-		$success[] = gTranslate('config', "register_globals is off.");
+		$success[] = gTranslate('common', "register_globals is off.");
 	}
 
 	return array($success, $fail, $warn);
@@ -1437,7 +1437,7 @@ function verify_password($passwords) {
 		$success[] = true;
 	}
 	else {
-		$fail[] = gTranslate('config', 'Your passwords do not match!');
+		$fail[] = gTranslate('common', 'Your passwords do not match!');
 	}
 
 	return array($success, $fail);
@@ -1449,19 +1449,19 @@ function verify_email($emailMaster) {
 	$fail = array();
 	$success = array();
 	if ($emailMaster == "no") {
-		$success[] = gTranslate('config', "OK");
+		$success[] = gTranslate('common', "OK");
 		return array($success, $fail);
 	}
 
 	if (check_email($gallery->session->configForm->adminEmail)) {
-		$success[] = gTranslate('config', "Valid admin email address given.");
+		$success[] = gTranslate('common', "Valid admin email address given.");
 	} else {
 		$adminEmail = ereg_replace('([[:space:]]+)', '', $gallery->session->configForm->adminEmail);
 		$emails = array_filter1(explode(',', $gallery->session->configForm->adminEmail));
 		$size  = sizeof($emails);
 
 		if ($size < 1) {
-			$fail[]= gTranslate('config', "You must specify valid admin email addresses");
+			$fail[]= gTranslate('common', "You must specify valid admin email addresses");
 		} else {
 			$adminEmail = '';
 			$join = '';
@@ -1469,7 +1469,7 @@ function verify_email($emailMaster) {
 				$adminEmail .= "$join$email";
 				$join=",";
 				if (! check_email($email)) {
-					$fail[] = sprintf(gTranslate('config', "%s is not a valid email address."),
+					$fail[] = sprintf(gTranslate('common', "%s is not a valid email address."),
 					$email);
 				} else {
 					$success[] = "Valid admin email given.";
@@ -1478,17 +1478,17 @@ function verify_email($emailMaster) {
 		}
 	}
 	if (check_email($gallery->session->configForm->senderEmail)) {
-		$success[] = gTranslate('config', "Valid sender email address given.");
+		$success[] = gTranslate('common', "Valid sender email address given.");
 	} else {
-		$fail[] = gTranslate('config', "You must specify a valid sender email address");
+		$fail[] = gTranslate('common', "You must specify a valid sender email address");
 	}
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
-		$fail[] = sprintf(gTranslate('config', "You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
+		$fail[] = sprintf(gTranslate('common', "You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
 	}
 	if (!empty($emailGreeting) &&
 	  !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
 	  !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
-		$fail[]= sprintf(gTranslate('config', "You must include %s or %s in your welcome email"),
+		$fail[]= sprintf(gTranslate('common', "You must include %s or %s in your welcome email"),
 			"<b>!!PASSWORD!!</b>",
 			"<b>!!NEWPASSWORDLINK!!</b>");
 	}
@@ -1509,7 +1509,7 @@ function check_ecards($num) {
 function returnToConfig() {
 	$link = galleryLink(
 		makeGalleryUrl('setup/index.php', array('refresh' => 1, 'this_page' => 'check')),
-		gTranslate('config', "_Configuration Wizard"), array(), '', true);
+		gTranslate('common', "_Configuration Wizard"), array(), '', true);
 
 	return $link;
 }
@@ -1517,7 +1517,7 @@ function returnToConfig() {
 function returnToDiag() {
 	$link = galleryLink(
 		makeGalleryUrl('setup/diagnostics.php'),
-		gTranslate('config', "Gallery Dia_gnostics Page"), array(), '', true);
+		gTranslate('common', "Gallery Dia_gnostics Page"), array(), '', true);
 
 	return $link;
 }
@@ -1569,18 +1569,18 @@ function check_admins() {
 
 	if (empty($admins)) {
 		$result = array(
-		'desc' => sprintf(gTranslate('config', 'You must enter a password for the %s account.'), '<b>admin</b>')
+		'desc' => sprintf(gTranslate('common', 'You must enter a password for the %s account.'), '<b>admin</b>')
 		);
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
-			$desc_text = sprintf(gTranslate('config', "It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
+			$desc_text = sprintf(gTranslate('common', "It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
 		}
 		else {
-			$desc_text = sprintf(gTranslate('config', "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
+			$desc_text = sprintf(gTranslate('common', "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
 		}
 
-		$desc_text .= "  " . sprintf (gTranslate('config', "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
+		$desc_text .= "  " . sprintf (gTranslate('common', "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."), '<b>admin</b>');
 		$result=array(
 			"desc" => $desc_text,
 			"optional" => 1,
@@ -1589,13 +1589,13 @@ function check_admins() {
 	}
 	else {
 		$result = array(
-			"desc" => sprintf(gTranslate('config', "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>'),
+			"desc" => sprintf(gTranslate('common', "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>'),
 			"remove_empty" => true
 		);
 	}
 
 	$result = array_merge($result,array(
-		"prompt" => gTranslate('config', "Admin password"),
+		"prompt" => gTranslate('common', "Admin password"),
 		"type" => "password",
 		"dont-write" => 1,
 		'verify-func' => 'verify_password',
@@ -1610,14 +1610,14 @@ function check_admins() {
 
 function displayNameOptions() {
 	return array (
-		"!!FULLNAME!! (!!USERNAME!!)" => sprintf("%s (%s)", gTranslate('config', "Full Name"), gTranslate('config', "Username")),
-		"!!USERNAME!! (!!FULLNAME!!)" => sprintf("%s (%s)", gTranslate('config', "Username"), gTranslate('config', "Full Name")),
-		"!!FULLNAME!!" => gTranslate('config', "Full Name"),
-		"!!USERNAME!!" => gTranslate('config', "Username"),
-		"!!MAILTO_FULLNAME!!" => gTranslate('config', "Full name that you can click on to send email (mailto:)"),
-		"!!MAILTO_USERNAME!!" => gTranslate('config', "Username that you can click on to send email (mailto:)"),
-		"!!FULLNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", gTranslate('config', "Full Name"), gTranslate('config', "email address")),
-		"!!USERNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", gTranslate('config', "Username"), gTranslate('config', "email address")),
+		"!!FULLNAME!! (!!USERNAME!!)" => sprintf("%s (%s)", gTranslate('common', "Full Name"), gTranslate('common', "Username")),
+		"!!USERNAME!! (!!FULLNAME!!)" => sprintf("%s (%s)", gTranslate('common', "Username"), gTranslate('common', "Full Name")),
+		"!!FULLNAME!!" => gTranslate('common', "Full Name"),
+		"!!USERNAME!!" => gTranslate('common', "Username"),
+		"!!MAILTO_FULLNAME!!" => gTranslate('common', "Full name that you can click on to send email (mailto:)"),
+		"!!MAILTO_USERNAME!!" => gTranslate('common', "Username that you can click on to send email (mailto:)"),
+		"!!FULLNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", gTranslate('common', "Full Name"), gTranslate('common', "email address")),
+		"!!USERNAME!! (!!EMAIL!!)" => sprintf("%s (%s)", gTranslate('common', "Username"), gTranslate('common', "email address")),
 	);
 }
 
@@ -1636,12 +1636,12 @@ function check_gallery_versions()  {
 		$versionStatus['unkown']
 	);
 
-	$hint = "<p>" . gTranslate('config', "This should be fixed before proceeding.") .
-		"<br>" . sprintf(gTranslate('config', "Look at %sCheck Versions%s for more details."),
+	$hint = "<p>" . gTranslate('common', "This should be fixed before proceeding.") .
+		"<br>" . sprintf(gTranslate('common', "Look at %sCheck Versions%s for more details."),
 		'<a href="check_versions.php">', '</a>') . '</p>';
 
 	if(!empty($versionStatus['newer'])) {
-		$warn[] = gTranslate('config',
+		$warn[] = gTranslate('common',
 			"One file is newer then expected.",
 			"%d files are newer then expected.",
 			count($versionStatus['newer']), '', true) .
@@ -1649,7 +1649,7 @@ function check_gallery_versions()  {
 	}
 
 	if(!empty($problems)) {
-		$fail[] = gTranslate('config',
+		$fail[] = gTranslate('common',
 			"One file is out of date, corrupted or missing.",
 			"%d files are out of date, corrupted or missing.",
 			count($problems), '', true) .
@@ -1657,7 +1657,7 @@ function check_gallery_versions()  {
 	}
 
 	if (empty($warn) && empty($fail)) {
-		$success[] = sprintf(gTranslate('config', "All %d tested files up-to-date."), count($versionStatus['ok']));
+		$success[] = sprintf(gTranslate('common', "All %d tested files up-to-date."), count($versionStatus['ok']));
 	}
 
 	return array($success, $fail, $warn);
@@ -1678,19 +1678,19 @@ function checkVersions($verbose = false) {
 	);
 
 	if (!fs_file_exists($manifest)) {
-		$versionStatus['fail']['manifest'] = gTranslate('config', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
+		$versionStatus['fail']['manifest'] = gTranslate('common', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
 		return $versionStatus;
 	}
 
 	if (!function_exists('getSVNRevision')) {
-		$versionStatus['fail']['util.php'] = sprintf(gTranslate('config', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
+		$versionStatus['fail']['util.php'] = sprintf(gTranslate('common', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
 		return $versionStatus;
 	}
 
 	include (GALLERY_BASE . '/manifest.inc');
 
 	if ($verbose) {
-		print sprintf(gTranslate('config', "Testing status of %d files."), count($versions));
+		print sprintf(gTranslate('common', "Testing status of %d files."), count($versions));
 	}
 
 	foreach ($versions as $file => $version) {
@@ -1698,9 +1698,9 @@ function checkVersions($verbose = false) {
 		if ($found_version === NULL) {
 			if ($verbose) {
 				print "<br>\n";
-				print sprintf(gTranslate('config', "Cannot read file %s."), $file);
+				print sprintf(gTranslate('common', "Cannot read file %s."), $file);
 			}
-			$versionStatus['missing'][$file] = gTranslate('config', "File missing or unreadable.");
+			$versionStatus['missing'][$file] = gTranslate('common', "File missing or unreadable.");
 			continue;
 		}
 		elseif ($found_version === '' ) {
@@ -1716,14 +1716,14 @@ function checkVersions($verbose = false) {
 			else {
 				if ($verbose) {
 					print "<br>\n";
-					printf(gTranslate('config', "Version information not found in %s.  File must be old version or corrupted."), $file);
+					printf(gTranslate('common', "Version information not found in %s.  File must be old version or corrupted."), $file);
 				}
-				$versionStatus['missing'][$file] = gTranslate('config', "Missing version");
+				$versionStatus['missing'][$file] = gTranslate('common', "Missing version");
 				continue;
 			}
 		}
 		elseif (empty($version)) {
-			$versionStatus['unkown'][$file] = sprintf(gTranslate('config',
+			$versionStatus['unkown'][$file] = sprintf(gTranslate('common',
 				"Found Version: %s"), $found_version);
 			continue;
 		}
@@ -1733,24 +1733,24 @@ function checkVersions($verbose = false) {
 		if ($compare < 0) {
 			if ($verbose) {
 				print "<br>\n";
-				printf(gTranslate('config', "Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
+				printf(gTranslate('common', "Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
 			}
 			$versionStatus['older'][$file] =
-				sprintf(gTranslate('config', "Expected version %s (or greater) but found %s."), $version, $found_version);
+				sprintf(gTranslate('common', "Expected version %s (or greater) but found %s."), $version, $found_version);
 		}
 		else if ($compare > 0) {
 			if ($verbose) {
 				print "<br>\n";
-				printf(gTranslate('config', "%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+				printf(gTranslate('common', "%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
 			}
 			$versionStatus['newer'][$file] =
-				sprintf(gTranslate('config', "Expected version %s but found %s."), $version, $found_version);
+				sprintf(gTranslate('common', "Expected version %s but found %s."), $version, $found_version);
 		} else {
 			if ($verbose) {
 				print "<br>\n";
-				printf(gTranslate('config', "%s OK"), $file);
+				printf(gTranslate('common', "%s OK"), $file);
 			}
-			$versionStatus['ok'][$file] = sprintf(gTranslate('config', "Found expected version %s."), $version);
+			$versionStatus['ok'][$file] = sprintf(gTranslate('common', "Found expected version %s."), $version);
 		}
 
 	}
@@ -1805,9 +1805,9 @@ function configLogin($target) {
 
 function placeholderDescription() {
 	$placeholderDescription =
-		gTranslate('config', "This email will be sent when new accounts are created.") .
-		gTranslate('config', "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
-		gTranslate('config', "The following placeholder can be used:") .
+		gTranslate('common', "This email will be sent when new accounts are created.") .
+		gTranslate('common', "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
+		gTranslate('common', "The following placeholder can be used:") .
 		'<table width="80%">';
 
 	foreach(welcomeMsgPlaceholderList() as $placeholder => $description) {
@@ -1880,7 +1880,7 @@ function checkImageMagick($cmd) {
 
 	if (inOpenBasedir($gallery->app->ImPath)) {
 		if (! fs_file_exists($cmd)) {
-			$result['error'] = sprintf(gTranslate('config', "File %s does not exist."), $cmd);
+			$result['error'] = sprintf(gTranslate('common', "File %s does not exist."), $cmd);
 			return $result;
 		}
 	}
@@ -1889,7 +1889,7 @@ function checkImageMagick($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if ($status != $gallery->app->expectedExecStatus) {
-		$result['error'] = sprintf(gTranslate('config', "Expected status: %s, but actually received status %s."),
+		$result['error'] = sprintf(gTranslate('common', "Expected status: %s, but actually received status %s."),
 			$gallery->app->expectedExecStatus,
 			$status);
 		return $result;
@@ -1900,11 +1900,11 @@ function checkImageMagick($cmd) {
 	* means that we can't detect the version number.
 	*/
 	if (getOS() == OS_WINDOWS) {
-		$result['warning'] = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
+		$result['warning'] = "<i>" . gTranslate('common', "can't detect version on Windows") ."</i>";
 	}
 	else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
 		$version = $regs[1];
-		$result['ok'] = sprintf(gTranslate('config', "OK!  Version: %s"), $version);
+		$result['ok'] = sprintf(gTranslate('common', "OK!  Version: %s"), $version);
 	}
 	else {
 		$result['error'] = $output[0];
@@ -1924,7 +1924,7 @@ function checkNetPbm($cmd) {
 
 	if (inOpenBasedir($gallery->app->pnmDir)) {
 		if (! fs_file_exists($cmd)) {
-			$result['error'] = sprintf(gTranslate('config', "File %s does not exist."), $cmd);
+			$result['error'] = sprintf(gTranslate('common', "File %s does not exist."), $cmd);
 			$ok = false;
 		}
 	}
@@ -1934,7 +1934,7 @@ function checkNetPbm($cmd) {
 	fs_exec($cmd, $results, $status, $debugfile);
 
 	if ($status != $gallery->app->expectedExecStatus) {
-		$result['error'] = sprintf(gTranslate('config', "Expected status: %s, but actually received status %s."),
+		$result['error'] = sprintf(gTranslate('common', "Expected status: %s, but actually received status %s."),
 			$gallery->app->expectedExecStatus,
 			$status);
 
@@ -1947,7 +1947,7 @@ function checkNetPbm($cmd) {
 	*/
 	if ($ok) {
 		if (getOS() == OS_WINDOWS) {
-			$result['warning'] = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
+			$result['warning'] = "<i>" . gTranslate('common', "can't detect version on Windows") ."</i>";
 		} else {
 			$output = array();
 			if (file_exists($debugfile)) {
@@ -1962,7 +1962,7 @@ function checkNetPbm($cmd) {
 
 			if (eregi("using lib(pbm|netpbm) from netpbm version: netpbm (.*)[\n\r]$",  $output[0], $regs)) {
 				$version = $regs[2];
-				$result['ok'] = sprintf(gTranslate('config', "OK!  Version: %s"), $version);
+				$result['ok'] = sprintf(gTranslate('common', "OK!  Version: %s"), $version);
 			} else {
 				$result['error'] = $output[0];
 				$ok = false;
@@ -1971,7 +1971,7 @@ function checkNetPbm($cmd) {
 
 	}
 	else {
-		$result['error'] = gTranslate('config', "Unknown error occured.");
+		$result['error'] = gTranslate('common', "Unknown error occured.");
 	}
 
 	return $result;

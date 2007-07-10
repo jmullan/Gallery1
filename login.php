@@ -164,7 +164,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-  <title><?php echo $galleryTitle; ?></title>
+  <title><?php echo clearGalleryTitle(gTranslate('core', "Login")); ?></title>
   <?php
 	common_header();
 ?>
@@ -195,9 +195,9 @@ echo makeFormIntro('login.php', array('name' => 'loginForm'));
 ?>
  	<table>
 <?php
-	echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username);
+	echo gInput('text', 'username', gTranslate('core', "_Username"), true, $username,array('class' => 'g-form-text g-usernameInput'));
 
-	echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true);
+	echo gInput('password', 'gallerypassword', gTranslate('core', "_Password"), true, null, array('class' => 'g-form-text g-passwordInput'));
 ?>
 	</table>
 
@@ -220,7 +220,7 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
   echo makeFormIntro('login.php', array('name' => 'resetForm'));
 	echo infoBox($resetInfo);
 
-	echo gInput('text', 'reset_username', gTranslate('core', "Username"), false, $username);
+	echo gInput('text', 'reset_username', gTranslate('core', "Username"), false, $username, array('class' => 'g-form-text g-usernameInput'));
 	echo "\n<p align=\"center\">";
 	echo gSubmit('forgot', gTranslate('core', "_Send me my password"));
 	echo "\n</p>";
