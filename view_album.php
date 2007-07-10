@@ -872,7 +872,7 @@ if ($numPhotos) {
 				$va_javascript .= $javascript;
 			}
 
-			if (sizeof($albumItemOptions) > 2) {
+			if (sizeof($albumItemOptions) > 3) {
 				$albumItems[$nr]['options'] = drawSelect2(
 					"s$i",
 					$albumItemOptions,
