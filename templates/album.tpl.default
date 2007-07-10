@@ -136,7 +136,7 @@ if ($navigator["maxPages"] > 1) {
 <table cellspacing="5" cellpadding="0" class="g-vatable">
   <tr>
 <?php foreach($albumItems as $nr => $item) : ?>
-    <td class="g-vathumb-cell" align="center" width="<?php echo floor(100/$cols); ?>">
+    <td class="g-vathumb-cell" align="center" width="<?php echo floor(100/$cols); ?>%">
       <div <?php echo $item['thumb']['style'] ?> class="g-vathumb" id="thumb<?php echo $nr; ?>">
       <?php
         $gallery->html_wrap = $item['thumb'];
