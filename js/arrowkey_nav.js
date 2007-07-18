@@ -12,13 +12,17 @@ function cursor_nav(e) {
 	}
 	switch (taste) {
 		case 37:
-		backward = document.getElementById("g-nav-backward_1");
-		window.location.href = backward.href;
+			backward = document.getElementById("g-nav-backward_1");
+			if(backward) {
+				window.location.href = backward.href;
+			}
 		break;
 
 		case 39:
-		forward = document.getElementById("g-nav-forward_1");
-		window.location.href = forward.href;
+			forward = document.getElementById("g-nav-forward_1");
+			if(forward) {
+				window.location.href = forward.href;
+			}
 		break;
 
 		default:
