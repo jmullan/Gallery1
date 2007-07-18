@@ -60,7 +60,7 @@ echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
 
-$columns = min($gallery->app->albumsPerPage, 2);
+$columns = min($gallery->app->albumsPerPage, 3);
 
 $boxWidth = floor(100/$columns - 2);
 $boxheight = $gallery->app->highlight_size+185;
