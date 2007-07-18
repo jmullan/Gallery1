@@ -172,7 +172,7 @@ function drawSelect2($name, $options, $attrList = array()) {
 	$crlf = "\n\t";
 
 	// This attributes are no real HTML attribs and thus should be deleted.
-	$optionIgnoreAttrs = array('text', 'icon', 'separate');
+	$optionIgnoreAttrs = array('text', 'icon', 'separate', 'html', 'type');
 
 	if (!isset($attrList['size'])) {
 		$attrList['size'] = 1;
@@ -185,14 +185,19 @@ function drawSelect2($name, $options, $attrList = array()) {
 	if(!empty($options)) {
 		foreach ($options as $option) {
 			$option['text'] = removeAccessKey($option['text']);
+			
+			if(!isset($option['class'])) {
+				$option['class'] = '';
+			}
+			
 			if(isset($option['selected']) && $option['selected'] != false) {
 				$option['selected'] = null;
+				$option['class'] .= ' g-selected';
+				
 			}
 
-			if($option['value'] == null) {
-				$option['disabled']	= null;
-				$option['class']	= 'center';
-				$option['style']	= 'color: grey';
+			if(!isset($option['value']) || $option['value'] == null) {
+				$option['class'] .= ' center g-disabled';
 			}
 
 			$text = $option['text'];

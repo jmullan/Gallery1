@@ -62,9 +62,9 @@ function truncateText($text = '', $maxLength = 10, $position = 'middle') {
 		case 'left':
 			$truncated = $dots . substr($text, $dotcount - $maxLength);
 		break;
-			$truncated = substr($text, 0, $maxLength - $dotcount) . $dots;
-		case 'right':
 
+		case 'right':
+			$truncated = substr($text, 0, $maxLength - $dotcount) . $dots;
 		break;
 
 		case 'middle':
