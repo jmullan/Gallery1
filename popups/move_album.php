@@ -24,7 +24,7 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($reorder, $index, $newAlbum, $newIndex) = 
+list($reorder, $index, $newAlbum, $newIndex) =
 	getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex'));
 
 // Hack check
@@ -82,14 +82,15 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 
 	/* End action was requested */
-	
+
 	if (isset($newIndex)) {
 		$albumDB->moveAlbum($gallery->user, $index, $newIndex);
 		$albumDB->save();
 		dismissAndReload();
 		return;
-	} else {
-		$visibleAlbums = $albumDB-> getVisibleAlbums($gallery->user);
+	}
+	else {
+		$visibleAlbums = $albumDB->getVisibleAlbums($gallery->user);
 
 		echo sprintf(gTranslate('core', "Select the new location of album: %s"), $gallery->album->fields["title"]);
 		echo "\n<br>" . gTranslate('core', "Your Album will be moved to the position you choose below.");
@@ -103,7 +104,7 @@ if ($gallery->session->albumName && isset($index)) {
 			  array('type' => 'popup', 'index' => $index)
 			);
 ?>
-		<select name="newAlbum">
+	<select name="newAlbum">
 		<?php printAlbumOptionList(false, true); ?>
 	</select>
 		<br><br>
@@ -111,7 +112,7 @@ if ($gallery->session->albumName && isset($index)) {
 		<?php echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()'); ?>
 </form>
 <?php
-		
+
 
 
 		}

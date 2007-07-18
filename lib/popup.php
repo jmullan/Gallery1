@@ -26,9 +26,11 @@ function build_popup_url($url, $url_is_complete = false) {
 	/* Separate the target from the arguments */
 	$result = explode('?', $url);
 	$target = $result[0];
+
 	if (isset($result[1])) {
 		$arglist = $result[1];
-	} else {
+	}
+	else {
 		$arglist = '';
 	}
 

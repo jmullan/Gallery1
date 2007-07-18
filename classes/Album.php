@@ -3107,6 +3107,7 @@ class Album {
 		if (isset($this->fields['voter_class'])) {
 			return $this->fields['voter_class'];
 		}
+
 		return "Nobody";
 	}
 
