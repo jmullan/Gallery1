@@ -364,8 +364,7 @@ for ($i = $start; $i <= $end; $i++) {
 		}
 
 		/* Admin album Commands */
-		include(dirname(__FILE__) . '/layout/adminAlbumCommands.inc');
-		$rootAlbum[$tmpAlbumName]['albumdesc']['adminAlbumCommands'] = $adminAlbumCommands;
+		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getRootAlbumCommands();
 
 		/* Description */
 		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;
@@ -379,14 +378,18 @@ for ($i = $start; $i <= $end; $i++) {
 
 		/* Url (only for admins and owner) */
 		if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
+
 			$rootAlbum[$tmpAlbumName]['albumdesc']['url'] =
-			gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
-			if (!$gallery->session->offline) {
+				gTranslate('core', "url:") . '<a href="'. $albumURL . '">';
+
+				if (!$gallery->session->offline) {
 				$rootAlbum[$tmpAlbumName]['albumdesc']['url'] .=
 				breakString(urldecode($albumURL), 60, '&', 5);
-			} else {
+			}
+			else {
 				$rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= $tmpAlbumName;
 			}
+
 			$rootAlbum[$tmpAlbumName]['albumdesc']['url'] .= '</a>';
 
 			if (ereg("album[[:digit:]]+$", $tmpAlbumName)) {

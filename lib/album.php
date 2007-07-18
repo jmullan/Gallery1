@@ -517,6 +517,10 @@ function testRequirement($test) {
 			$result = (getExifDisplayTool() !== false);
 		break;
 
+		case 'votingOn':
+			$result = ($gallery->album->getVoterClass()) != 'Nobody';
+		break;
+
 		default:
 			$result = false;
 		break;
@@ -527,5 +531,116 @@ function testRequirement($test) {
 	}
 
 	return $result;
+}
+
+function getRootAlbumCommands() {
+	global $gallery;
+	global $tmpAlbumName;
+
+	$albumCommands = array();
+
+	/* User is allowed to delete the album */
+	if ($gallery->user->canDeleteAlbum($gallery->album)) {
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"delete album"),
+			'class' => 'popup',
+			'html' => popup_link(gTranslate('core',"delete album"),
+										 "delete_album.php?set_albumName={$tmpAlbumName}"),
+			'value' => build_popup_url("delete_album.php?set_albumName={$tmpAlbumName}")
+		);
+	}
+
+	/* User is allowed to change the album */
+	if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"move album"),
+			'class' => 'popup',
+			'html' => popup_link(gTranslate('core',"move album"),
+										 "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0"),
+			'value' => build_popup_url("move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=0")
+		);
+
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"reorder album"),
+			'class' => 'popup',
+			'html' => popup_link(gTranslate('core',"reorder album"),
+										 "move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1"),
+			'value' => build_popup_url("move_album.php?set_albumName={$tmpAlbumName}&index=$i&reorder=1")
+		);
+	}
+
+	/* User ist allowed to change album captions */
+	/* Should this be into the above group ? */
+	if ($gallery->user->canChangeTextOfAlbum($gallery->album) && !$gallery->session->offline) {
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"edit captions"),
+			'html' => galleryLink(
+						makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName)),
+					    gTranslate('core',"edit captions"),
+						array(),'', true),
+			'value' => makeGalleryUrl("captionator.php", array("set_albumName" => $tmpAlbumName))
+		);
+	}
+
+	/* User is Admin or Owner */
+	if ($gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album)) {
+		/* User is allowed to change album permissions */
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"permissions"),
+			'class' => 'popup',
+			'html' => popup_link(gTranslate('core',"permissions"),
+								 "album_permissions.php?set_albumName={$tmpAlbumName}",
+								 0, true,
+								550, 700),
+			'value' => build_popup_url("album_permissions.php?set_albumName={$tmpAlbumName}")
+		);
+
+		/* And to change album properties */
+		$albumCommands[] = array(
+			'text' => gTranslate('core',"properties"),
+			'class' => 'popup',
+			'html' => popup_link(gTranslate('core',"properties"),
+								 "edit_appearance.php?set_albumName={$tmpAlbumName}",
+								 0, true,
+								550, 600),
+			'value' => build_popup_url("edit_appearance.php?set_albumName={$tmpAlbumName}")
+		);
+
+		/* User is allowed to view ALL comments */
+		if ($gallery->user->canViewComments($gallery->album) &&
+			$gallery->app->comments_enabled == 'yes' &&
+			$gallery->album->lastCommentDate("no") != -1)
+		{
+			$albumCommands[] = array(
+				'text' => gTranslate('core',"view&nbsp;comments"),
+				'html' => galleryLink(
+					makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName)),
+					gTranslate('core',"view&nbsp;comments"),
+					array(),'', true),
+				'value' => makeGalleryUrl("view_comments.php", array("set_albumName" => $tmpAlbumName))
+			);
+		}
+
+		/* Watermarking support is enabled and user is allowed to watermark images/albums */
+		if (!empty($gallery->app->watermarkDir) && $gallery->album->numPhotos(1)) {
+			$albumCommands[] = array(
+				'text' => gTranslate('core',"watermark&nbsp;album"),
+				'class' => 'popup',
+				'html' => popup_link(gTranslate('core',"watermaedit_rk&nbsp;album"),
+								 "watermark_album.php?set_albumName={$tmpAlbumName}"),
+				'value' => build_popup_url("watermark_album.php?set_albumName={$tmpAlbumName}")
+			);
+		}
+	}
+
+	if(!empty($albumCommands)) {
+		array_sort_by_fields($albumCommands, 'text');
+		array_unshift($albumCommands, array(
+			'text'		=> gTranslate('core',"--- Album actions ---"),
+			'selected'	=> true
+		));
+	}
+
+	return $albumCommands;
 }
 ?>

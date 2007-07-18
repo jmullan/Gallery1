@@ -144,9 +144,9 @@ $breadcrumb['text']			= returnToPathArray($gallery->album, false);
 $breadcrumb['bordercolor']	= $bordercolor;
 
 $adminText	= '';
-$albums_str	= gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, "No albums", true);
-$imags_str	= gTranslate('core', "1 image", "%d images", $numPhotos, "no images", true);
-$pages_str	= gTranslate('core', "1 page", "%d pages", $maxPages, "0 pages", true);
+$albums_str	= gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, gTranslate('core', "No albums"), true);
+$imags_str	= gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "No images"), true);
+$pages_str	= gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "0 pages"), true);
 
 if ($numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%s and %s in this album on %s."),
@@ -291,14 +291,14 @@ $adminOptions = array(
 	),
 	'poll_results' => array(
 		'name'			=> gTranslate('core', "Poll results"),
-		'requirements'	=> array('isAdminOrAlbumOwner'),
+		'requirements'	=> array('isAdminOrAlbumOwner', 'votingOn'),
 		'action'		=> 'url',
 		'value'			=> makeGalleryUrl('poll_results.php', array(
 			'set_albumName' => $gallery->session->albumName))
 	),
 	'poll_reset' => array(
 		'name'			=> gTranslate('core', "Poll reset"),
-		'requirements'	=> array('isAdminOrAlbumOwner'),
+		'requirements'	=> array('isAdminOrAlbumOwner', 'votingOn'),
 		'action'		=> 'popup',
 		'value'			=> makeGalleryUrl('reset_votes.php', array(
 			'set_albumName' => $gallery->session->albumName,
@@ -325,11 +325,17 @@ $adminOptions = array(
 array_sort_by_fields($adminOptions, 'name', 'asc', true, true);
 
 $va_javascript = '';
-$adminOptionHTML = '';
+$adminSelectOptions = array();
 $adminJavaScript = '';
 
 /* determine which options to include in admin drop-down menu */
 if (!$gallery->session->offline) {
+	$adminSelectOptions[0] = array(
+		'value' => null,
+		'text' => gTranslate('core', 'Album Actions'),
+		'selected' => null
+	);
+
 	foreach ($adminOptions as $key => $data) {
 		$enabled = true;
 		while ($enabled && $test = array_shift($data['requirements'])) {
@@ -338,9 +344,14 @@ if (!$gallery->session->offline) {
 		}
 
 		if ($enabled) {
-			$adminOptionHTML .= "\t\t<option value=\"$key\">${data['name']}</option>\n";
+			$adminSelectOptions[] = array(
+				'value' => $key,
+				'text' => $data['name']
+			);
+
 			$adminJavaScript .= "adminOptions.$key = new Object;\n";
 			$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
+
 			/* We need to pass un-html-entityified URLs to the JavaScript
 			* This line effectively reverses htmlentities() */
 			$decodeHtml = unhtmlentities($data['value']);
@@ -352,7 +363,7 @@ if (!$gallery->session->offline) {
 $adminCommands = '';
 $adminJSFrame = '';
 /* build up drop-down menu and related javascript */
-if (!empty($adminOptionHTML)) {
+if (sizeof($adminSelectOptions) > 1) {
 	$adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"
 	. "adminOptions = new Object;\n"
 	. $adminJavaScript
@@ -372,11 +383,13 @@ if (!empty($adminOptionHTML)) {
 	. "}\n"
 	. "</script>\n\n";
 
-	$iconElements[] = '<form name="admin_options_form" action="view_album.php" class="right" style="margin: 0 10px;">' .
-		"\n\t<select class=\"g-admin\" name=\"admin_select\" onChange=\"execAdminOption()\">\n" .
-		"\t\t<option value=\"\">&laquo; " . gTranslate('core', 'Album Actions') . " &raquo;</option>\n" .
-		$adminOptionHTML .
-		"\t</select>\n</form>\n";
+	$iconElements[] = makeFormIntro('view_album.php',
+						array('name' => 'admin_options_form',
+							  'class' => 'right',
+							  'style' => 'margin: 0 10px;')) .
+					  drawSelect2('admin_select', $adminSelectOptions,
+					  	array('class' => 'g-admin',
+					  		  'onChange' => 'execAdminOption()'));
 }
 
 if ($gallery->album->fields['slideshow_type'] != "off" &&

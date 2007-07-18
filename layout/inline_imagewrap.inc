@@ -57,14 +57,24 @@ switch ($frame) {
     break;
 
     case "siriux":
-    	if($imageHeight < $imageWidth) {
-    		$margin = ($imageWidth - $imageHeight)/2;
-    	}
-    	else {
-    		$margin = 0;
-    	}
+		/**
+ 		 * Horde Browser class to detect the browser and its abilities.
+ 		*/
+		include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+   		$browser = &Browser::singleton();
 
-        echo "\n\t<div style=\"margin: ${margin}px auto;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
+		$margin = 0;
+    	if($imageHeight < $imageWidth) {
+    		if ($browser->getBrowser()== 'msie' && $browser->getMajor() < 7) {
+	    		$margin = ($imageWidth - $imageHeight)/2;
+    		}
+    		else {
+	   			$marginTop = ($imageWidth - $imageHeight)/2;
+    			echo "\n\t<div style=\"height: ${marginTop}px;\"></div>\n";    			
+    		}
+    	}
+    	
+        echo "\n\t<div style=\"margin: ${margin}px;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
     break;
 
     default:

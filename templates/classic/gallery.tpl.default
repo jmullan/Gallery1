@@ -93,6 +93,14 @@ $cells = 2;
 <table cellpadding="0" cellspacing="0" class="g-albums-table">
 <?php
 	foreach ($rootAlbum as $name => $content) {
+		$adminAlbumCommandsArray =  $content['albumdesc']['adminRootAlbumCommands'];
+		$adminAlbumCommands = '';
+
+		if(!empty($adminAlbumCommandsArray)) {
+			foreach ($adminAlbumCommandsArray as $trash => $command ) {
+				$adminAlbumCommands .= $command['html'];
+			}
+		}
 	?>
 	<!-- Begin Album Column Block -->
 	<tr>
@@ -114,8 +122,17 @@ $cells = 2;
 			  </tr>
 			</table>
 
-			<?php echo $content['albumdesc']['adminAlbumCommands']; ?>
+<?php if(!empty($adminAlbumCommands)) : ?>
+    		<!-- Begin adminAlbumCommands -->
+    		<div class="g-admin">
+    		<?php echo $adminAlbumCommands; ?>
+    		</div>
+    		<!-- End adminAlbumCommands -->
+			<?php else : ?>
+			<!-- <?php echo gTranslate('core', "No admin commands available."); ?> -->
+<?php endif ?>
 
+<br>
 <?php if (!empty($content['albumdesc']['description'])) :?>
 			<div class="g-album-desc"><?php echo $content['albumdesc']['description'] ?></div>
 <?php endif ?>

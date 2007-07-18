@@ -25,8 +25,6 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
     echo 'Security violation while including template for startpage.';
     exit;
 }
-?>
-<?php
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -62,18 +60,40 @@ echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
 
-$columns = min($gallery->app->albumsPerPage, 3);
+$columns = min($gallery->app->albumsPerPage, 2);
 
-$boxWidth = floor(100/$columns -2);
-$boxheight = $gallery->app->highlight_size+195;
+$boxWidth = floor(100/$columns - 2);
+$boxheight = $gallery->app->highlight_size+185;
 
 ?>
-<div style="width: 80%; margin: 0 auto;">
+<script type="text/javascript">
+function jopen(element) {
+	selected = element.selectedIndex;
+	if(selected == -1) {
+		return;
+	}
+	
+	selectedOption = element.options[selected];
+
+	if(selectedOption.className.indexOf('g-disabled') > -1) {
+		return;
+	}
+	
+	if(selectedOption.className == 'popup') {
+		window.open(selectedOption.value,'GalleryPopup','height=550,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');
+	}
+	else {
+		location.href = selectedOption.value;
+	}
+}
+</script>
+<div style="width: 660px; margin: 0 auto;">
 <?php
 foreach ($rootAlbum as $name => $content) {
+	$adminAlbumCommandsArray =  $content['albumdesc']['adminRootAlbumCommands'];
     ?>
     <!-- Begin Album Column Block -->
-    <div style="width: <?php echo $boxWidth ?>%; height: <?php echo $boxheight ?>px; margin: 0 5px;" class="floatleft">
+    <div style="width: <?php echo $boxWidth ?>%; margin: 2px;" class="floatleft">
         <!-- Begin Image Cell -->
         <div class="g-album-image-cell" style="height: <?php echo $gallery->app->highlight_size+15; ?>px">
             <?php
@@ -95,10 +115,16 @@ foreach ($rootAlbum as $name => $content) {
               </tr>
             </table>
 
-            <?php //echo $content['albumdesc']['adminAlbumCommands']; ?>
-
 <?php if (!empty($content['albumdesc']['description'])) :?>
             <div class="g-album-desc"><?php echo $content['albumdesc']['description'] ?></div>
+<?php endif ?>
+
+<?php if(!empty($adminAlbumCommandsArray)) : ?>
+			<!-- Begin adminAlbumCommands -->
+			<?php echo drawSelect2('albumcommands', $adminAlbumCommandsArray, array('class' => 'center g-admin', 'onChange' => "jopen(this)")) ?>
+    		<!-- End adminAlbumCommands -->
+<?php else : ?>
+			<!-- <?php echo gTranslate('core', "No admin commands available."); ?> -->
 <?php endif ?>
 
 <?php if (!empty($content['albumdesc']['owner'])) :?>
@@ -106,10 +132,7 @@ foreach ($rootAlbum as $name => $content) {
 <?php endif ?>
 
             <div class="g-album-infos">
-<?php if (!empty($content['albumdesc']['url'])) : ?>
-                <?php echo $content['albumdesc']['url']; ?>
-                <br>
-<?php endif ?>
+				<br>
                 <?php echo $content['albumdesc']['changeDate'] ?>
 
                 <br>

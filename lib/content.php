@@ -900,7 +900,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
 	if (!$readOnly) {
-		echo "\n\t<option value=\"0\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n\t";
+		echo "\n\t<option value=\"0\" class=\"center g-disabled\" selected> << ". gTranslate('common', "Select Album") ." >> </option>\n\t";
 	}
 
 	// create a ROOT option for the user to move the
@@ -922,7 +922,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 				continue;
 			}
 
-			$myAlbumTitle = truncateText($myAlbumTitle, 15);
+			$myAlbumTitle = truncateText($myAlbumTitle, 20, 'right');
 
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
@@ -972,12 +972,12 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 			$myName = $myAlbum->getAlbumName($i);
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
+
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
 			  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 .= $nestedAlbum->fields['title'];
-
-				$val2 = truncateText($val2, 15);
+				$val2 = truncateText($val2, 20, 'right');
 
 				if (!$readOnly && ($nestedAlbum == $gallery->album)) {
 					// don't allow user to move to here (value=0), but
