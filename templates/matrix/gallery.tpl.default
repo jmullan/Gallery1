@@ -41,11 +41,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </head>
 <body>
+
 <?php
 }
 
 includeTemplate("gallery.header", '', 'classic');
 
+echo '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
 echo $searchBar;
 
 includeLayout('adminbox.inc');
@@ -66,27 +68,7 @@ $boxWidth = floor(100/$columns - 2);
 $boxheight = $gallery->app->highlight_size+185;
 
 ?>
-<script type="text/javascript">
-function jopen(element) {
-	selected = element.selectedIndex;
-	if(selected == -1) {
-		return;
-	}
-	
-	selectedOption = element.options[selected];
 
-	if(selectedOption.className.indexOf('g-disabled') > -1) {
-		return;
-	}
-	
-	if(selectedOption.className == 'popup') {
-		window.open(selectedOption.value,'GalleryPopup','height=550,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');
-	}
-	else {
-		location.href = selectedOption.value;
-	}
-}
-</script>
 <div style="width: 80%; margin: 0 auto;">
 <?php
 foreach ($rootAlbum as $name => $content) {

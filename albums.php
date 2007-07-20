@@ -364,7 +364,7 @@ for ($i = $start; $i <= $end; $i++) {
 		}
 
 		/* Admin album Commands */
-		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getRootAlbumCommands();
+		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getAlbumCommands($gallery->album);
 
 		/* Description */
 		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;

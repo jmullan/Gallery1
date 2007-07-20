@@ -207,7 +207,7 @@ while ($navpage > 0) {
 }
 
 $useIcons = (!$iconsForItemOptions || $gallery->app->useIcons == 'no') ? false : true;
-list($albumItemOptions, $javascript) = getItemActions($index, $useIcons);
+$albumItemOptions = getItemActions($index, $useIcons);
 
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
 $iconElements = array();
@@ -371,7 +371,7 @@ if (!$gallery->album->isMovie($id)) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
 					$option['text'], $option['value'],
-					true, false, 500, 550, '', '', $option['icon']);
+					true, false, 550, 600, '', '', $option['icon']);
 			}
 			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);

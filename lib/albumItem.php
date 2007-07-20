@@ -28,42 +28,18 @@
 /**
  * This function shows all possible actions for an album item.
  *
- * @param	integer   $i		   index number of the item
- * @param   boolean   $withIcons   Wether icons should be used, or not.
- * @return  array				  Array of all possible album item for the current user.
+ * @param	integer	$i			index number of the item
+ * @param   boolean	$withIcons	Wether icons should be used, or not.
+ * @return  array	$options	Array of all possible album item for the current user.
  * @author  Jens Tkotz
  */
-function getItemActions($i, $withIcons = false, $popupsOnly = false) {
+function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = false) {
 	global $gallery;
 	global $nextId;
-
-	static $javascriptSet;
 
 	$id = $gallery->album->getPhotoId($i);
 	$override = ($withIcons) ? '' : 'no';
 	$options = array();
-	$javascript = '';
-
-	if (!$gallery->session->offline && empty($javascriptSet)) {
-		$javascript ="
-  <script language=\"javascript1.2\" type=\"text/JavaScript\">
-	  function imageEditChoice(selected_select) {
-	  	var sel_index = selected_select.selectedIndex;
-	  	var sel_value = selected_select.options[sel_index].value;
-	  	var sel_class = selected_select.options[sel_index].className;
-	  	selected_select.options[0].selected = true;
-	  	selected_select.blur();
-	  	if (sel_class == 'url') {
-	  		document.location = sel_value;
-	  	} else {
-	  		// the only other option should be popup
-			". popup('sel_value', 1) ."
-	  	}
-	  }
-  </script>";
-
-		$javascriptSet = true;
-	}
 
 	$isAlbum = false;
 	$isMovie = false;
@@ -74,6 +50,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 		if(!isset($myAlbum)) {
 			$myAlbum = $gallery->album->getNestedAlbum($i, true);
 		}
+		
 		$isAlbum = true;
 	}
 	elseif ($gallery->album->isMovieByIndex($i)) {
@@ -315,21 +292,16 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false) {
 		}
 	}
 
-	if(!empty($options)) {
-		if(sizeof($options) > 1) {
-			array_sort_by_fields($options, 'text', 'asc', false, true);
-		}
-
-		$options = array_merge(array(
-		  array(
+	array_sort_by_fields($options, 'text');
+	
+	if(!empty($options) && $caption) {
+		array_unshift($options, array(
 			'text'	=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
-			'value'	=> '',
-			'selected'	=> true)
-			), $options
-		);
+			'selected'	=> true
+		));
 	}
 
-	return array($options, $javascript);
+	return $options;
 }
 
 /**

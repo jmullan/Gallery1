@@ -72,7 +72,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='', $icon ='', $addBrackets = true, $accesskey = true) {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=550,$width=600, $cssclass='', $extraJS='', $icon ='', $addBrackets = true, $accesskey = true) {
 	global $gallery;
 	global $specialIconMode;
 
@@ -107,8 +107,8 @@ function popup_link2($title, $url, $args = array()) {
 
 	$url_is_complete	= isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
 	$online_only		= isset($args['online_only'])		? $args['online_only']		: true;
-	$height				= isset($args['height'])			? $args['height']			: 500;
-	$width				= isset($args['width'])				? $args['width']			: 500;
+	$height				= isset($args['height'])			? $args['height']			: 550;
+	$width				= isset($args['width'])				? $args['width']			: 600;
 	$cssclass			= isset($args['cssclass'])			? $args['cssclass']			: '';
 	$extraJS			= isset($args['extraJS'])			? $args['extraJS']			: '';
 	$addBrackets		= isset($args['addBrackets'])		? $args['addBrackets']		: false;
@@ -119,6 +119,8 @@ function popup_link2($title, $url, $args = array()) {
 		return null;
 	}
 
+	$args['gallery_popup'] = true;
+	
 	$url = build_popup_url($url, $url_is_complete);
 
 	// Force int data type

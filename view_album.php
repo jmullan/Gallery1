@@ -24,7 +24,7 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($page,$votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
+list($page, $votes, $Vote) = getRequestVar(array('page', 'votes', 'Vote'));
 
 // Hack check and prevent errors
 if (empty($gallery->session->albumName) ||
@@ -172,224 +172,20 @@ if ($gallery->user->canWriteToAlbum($gallery->album) && !$gallery->session->offl
 	}
 }
 
-/* admin items for drop-down menu */
-$adminOptions = array(
-	'add_photos' => array(
-		'name'			=> gTranslate('core', "Add photos"),
-		'requirements'	=> array('canAddToAlbum'),
-		'action' 		=> 'popup',
-		'value' 		=> makeGalleryUrl('add_photos_frame.php',
-			array('set_albumName' => $gallery->session->albumName, 'type' => 'popup'))
-	),
-	'delete_root_album' => array(
-		'name'			=> gTranslate('core', "Delete this album"),
-		'requirements'	=> array('canDeleteAlbum', 'albumIsRoot'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('delete_album.php', array('type' => 'popup'))
-	),
-	'delete_sub_album' => array(
-		'name'			=> gTranslate('core', "Delete this (sub)album"),
-		'requirements'	=> array('canDeleteAlbum', '!albumIsRoot'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('delete_photo.php', array(
-			'set_albumName' => $gallery->album->fields['parentAlbumName'],
-			'type' => 'popup',
-			'id' => $gallery->album->fields['name'],
-			'albumDelete' => true))
-	),
-	'rename_album' => array(
-		'name'			=> gTranslate('core', "Change foldername"),
-		'requirements'	=> array('isAdminOrAlbumOwner'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('rename_album.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup',
-			'useLoad' => 1))
-	),
-	'nested_album' => array(
-		'name'			=> gTranslate('core', "New nested album"),
-		'requirements'	=> array('canCreateSubAlbum', 'notOffline'),
-		'action'		=> 'url',
-		'value'			=> doCommand(
-			'new-album',
-			array('parentName' => $gallery->session->albumName),
-			'view_album.php')
-	),
-	'edit_captions' => array(
-		'name'			=> gTranslate('core', "Edit captions"),
-		'requirements'	=> array('canChangeText','notOffline'),
-		'action'		=> 'url',
-		'value'			=> makeGalleryUrl('captionator.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'page' => $page,
-			'perPage' => $perPage))
-	),
-	'sort_items' => array(
-		'name'			=> gTranslate('core', "Sort items"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('sort_album.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'resize_all' => array(
-		'name'			=> gTranslate('core', "Resize all"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('resize_photo.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'index' => 'all',
-			'type' => 'popup'))
-	),
-	'recreate_captions' => array(
-		'name'			=> gTranslate('core', "Recreate captions"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('recreate_captions.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'rebuild_capture_dates' => array(
-		'name'			=> gTranslate('core', "Rebuild capture dates"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist', 'exif'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('rebuild_capture_dates.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'rebuild_thumbs' => array(
-		'name'			=> gTranslate('core', "Rebuild thumbs"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('rebuild_thumbs.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'properties' => array(
-		'name'			=> gTranslate('core', "Properties"),
-		'requirements'	=> array('canWriteToAlbum'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('edit_appearance.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'rearrange' => array(
-		'name'			=> gTranslate('core', "Rearrange items"),
-		'requirements'	=> array('canWriteToAlbum', 'photosExist'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('rearrange.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'permissions' => array(
-		'name'			=> gTranslate('core', "Permissions"),
-		'requirements'	=> array('isAdminOrAlbumOwner'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('album_permissions.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'poll_results' => array(
-		'name'			=> gTranslate('core', "Poll results"),
-		'requirements'	=> array('isAdminOrAlbumOwner', 'votingOn'),
-		'action'		=> 'url',
-		'value'			=> makeGalleryUrl('poll_results.php', array(
-			'set_albumName' => $gallery->session->albumName))
-	),
-	'poll_reset' => array(
-		'name'			=> gTranslate('core', "Poll reset"),
-		'requirements'	=> array('isAdminOrAlbumOwner', 'votingOn'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('reset_votes.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	),
-	'view_comments'   => array(
-		'name'			=> gTranslate('core', "View comments"),
-		'requirements'	=> array('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments'),
-		'action'		=> 'url',
-		'value'			=> makeGalleryUrl('view_comments.php', array(
-			'set_albumName' => $gallery->session->albumName))
-	),
-	'watermark_album'   => array(
-		'name'			=> gTranslate('core', "Watermark album"),
-		'requirements'	=> array('isAdminOrAlbumOwner','photosExist','watermarkingEnabled'),
-		'action'		=> 'popup',
-		'value'			=> makeGalleryUrl('watermark_album.php', array(
-			'set_albumName' => $gallery->session->albumName,
-			'type' => 'popup'))
-	)
-);
+$va_javascript = '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
 
-/* sort the drop-down array by translated name */
-array_sort_by_fields($adminOptions, 'name', 'asc', true, true);
+$adminCommands = getAlbumCommands($gallery->album, true, false);
 
-$va_javascript = '';
-$adminSelectOptions = array();
-$adminJavaScript = '';
-
-/* determine which options to include in admin drop-down menu */
-if (!$gallery->session->offline) {
-	$adminSelectOptions[0] = array(
-		'value' => null,
-		'text' => gTranslate('core', 'Album Actions'),
-		'selected' => null
-	);
-
-	foreach ($adminOptions as $key => $data) {
-		$enabled = true;
-		while ($enabled && $test = array_shift($data['requirements'])) {
-			$success = testRequirement($test);
-			$enabled = ($success) ? true : false;
-		}
-
-		if ($enabled) {
-			$adminSelectOptions[] = array(
-				'value' => $key,
-				'text' => $data['name']
-			);
-
-			$adminJavaScript .= "adminOptions.$key = new Object;\n";
-			$adminJavaScript .= "adminOptions.$key.action = \"${data['action']}\";\n";
-
-			/* We need to pass un-html-entityified URLs to the JavaScript
-			* This line effectively reverses htmlentities() */
-			$decodeHtml = unhtmlentities($data['value']);
-			$adminJavaScript .= "adminOptions.$key.value = \"${decodeHtml}\";\n";
-		}
-	}
-}
-
-$adminCommands = '';
-$adminJSFrame = '';
 /* build up drop-down menu and related javascript */
-if (sizeof($adminSelectOptions) > 1) {
-	$adminJSFrame .= "<script language=\"javascript1.2\" type=\"text/JavaScript\">\n"
-	. "adminOptions = new Object;\n"
-	. $adminJavaScript
-	. "\nfunction execAdminOption() {\n"
-	. "\tkey = document.forms.admin_options_form.admin_select.value;\n"
-	. "\tdocument.forms.admin_options_form.admin_select.selectedIndex = 0;\n"
-	. "\tdocument.forms.admin_options_form.admin_select.blur();\n"
-	. "\tswitch (adminOptions[key].action) {\n"
-	. "\tcase 'popup':\n"
-	. "\t\tnw = window.open(adminOptions[key].value, 'Edit', 'height=500,width=600,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes');\n"
-	. "\t\tnw.opener=self;\n"
-	. "\t\tbreak;\n"
-	. "\tcase 'url':\n"
-	. "\t\tdocument.location = adminOptions[key].value;\n"
-	. "\t\tbreak;\n"
-	. "\t}\n"
-	. "}\n"
-	. "</script>\n\n";
-
+if (!empty($adminCommands)) {
 	$iconElements[] = makeFormIntro('view_album.php',
 						array('name' => 'admin_options_form',
 							  'class' => 'right',
 							  'style' => 'margin: 0 10px;')) .
-					  drawSelect2('admin_select', $adminSelectOptions,
+					  drawSelect2('admin_select', $adminCommands,
 					  	array('class' => 'g-admin',
-					  		  'onChange' => 'execAdminOption()'));
+					  		  'onChange' => 'jopen(this)')) .
+					  '</form>';
 }
 
 if ($gallery->album->fields['slideshow_type'] != "off" &&
@@ -406,11 +202,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 }
 
 /* User is allowed to view ALL comments */
-if ($numVisibleItems != 0 &&
-   ($gallery->app->comments_enabled == "yes" && $gallery->album->lastCommentDate("no") != -1) &&
-   ((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
-	$gallery->user->canViewComments($gallery->album)))
-{
+if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
 		gTranslate('core', "view&nbsp;_comments"),
@@ -426,9 +218,6 @@ $adminbox['text']			= $adminText;
 $adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor']	= $bordercolor;
 
-if (!empty($adminOptionHTML)) {
-	$va_javascript .= $adminJSFrame;
-}
 
 // -- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields['border'];
@@ -569,7 +358,7 @@ if ($numPhotos) {
 	while ($rowCount < $rows) {
 		/* Do the inline_albumthumb header row */
 		$visibleItemIndex = $rowStart;
-		$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+		$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		$j = 1;
 
 		while ($j <= $cols && $i <= $numPhotos) {
@@ -869,7 +658,7 @@ if ($numPhotos) {
 					$gallery->album->getItemClicks($i) > 0)
 				{
 					$albumItems[$nr]['clickcounter'] =
-						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
+						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getClicks($i), '', true);
 				}
 			}
 			// End Caption & Description
@@ -880,17 +669,14 @@ if ($numPhotos) {
 				$form_pos++;
 			}
 
-			list($albumItemOptions, $javascript) = getItemActions($i, true, true);
- 			if(!empty($javascript)) {
-				$va_javascript .= $javascript;
-			}
+			$albumItemOptions = getItemActions($i, true, true, true);
 
 			if (sizeof($albumItemOptions) > 3) {
 				$albumItems[$nr]['options'] = drawSelect2(
 					"s$i",
 					$albumItemOptions,
 					array(
-						'onChange' => "imageEditChoice(this)",
+						'onChange' => "jopen(this)",
 						'class' => 'g-admin')
 				);
 			}
@@ -909,7 +695,7 @@ if ($numPhotos) {
 							$content = popup_link(
 								$option['text'],
 								$option['value'],
-								true, false, 500, 550, '', '', $option['icon'], true, false
+								true, false, 550, 600, '', '', $option['icon'], true, false
 							);
 						}
 						else {
