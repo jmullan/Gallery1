@@ -78,8 +78,8 @@ if (isset($allowChange["default_language"]) && $allowChange["default_language"])
 		$gallery->app->ML_mode > 1 &&
 		sizeof($gallery->app->available_lang) > 1){ ?>
 <tr>
-	<td><?php echo gTranslate('core', "Gallery language") ?></td>
-	<td><?php echo drawSelect('defaultLanguage', $languages, $selected); ?>
+	<td><label for="defaultLanguage"><?php echo gTranslate('core', "Gallery language") ?></label></td>
+	<td><?php echo drawSelect('defaultLanguage', $languages, $selected,1,array('id' => 'defaultLanguage')); ?>
 </tr>
 <?php 	}
 	else {

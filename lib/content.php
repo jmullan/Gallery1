@@ -1320,6 +1320,8 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
 	$html = '';
 
+	$return = urlencode($return);
+	
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
 			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return, 'cmd' => 'logout'));

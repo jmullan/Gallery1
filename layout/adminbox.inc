@@ -26,7 +26,7 @@ foreach ($checklist as $check) {
   <table width="100%">
     <tr>
       <td class="g-adminbartext left"><?php echo $adminbox['text'] ?></td>
-      <td class="g-adminbarcommands right"  >
+      <td class="g-adminbarcommands right">
       		<?php echo $adminbox['commands'] ?>
       </td>
     </tr>

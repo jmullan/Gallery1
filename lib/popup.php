@@ -37,7 +37,7 @@ function build_popup_url($url, $url_is_complete = false) {
 	/* Parse the query string arguments */
 	$args = array();
 	parse_str($arglist, $args);
-	$args['gallery_popup'] = 'true';
+	$args['gallery_popup'] = true;
 
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);

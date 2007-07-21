@@ -215,7 +215,7 @@ if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
 $iconElements[] = LoginLogoutButton($currentUrl);
 
 $adminbox['text']			= $adminText;
-$adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
+$adminbox['commands']		= makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor']	= $bordercolor;
 
 

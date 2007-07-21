@@ -33,7 +33,7 @@ list($g1_return, $cmd) =
 /* decode user data, remove tags, and then re-encode using html entities for safe page display */
 $username = htmlspecialchars(strip_tags(urldecode($username)));
 
-$g1_return = urlencode(urldecode($g1_return));
+$g1_return = urldecode($g1_return);
 
 if(!isValidGalleryUrl($g1_return) || empty($g1_return)) {
 	$g1_return = makeGalleryHeaderUrl();
@@ -174,8 +174,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 includeTemplate("gallery.header", '', 'classic');
 
-$adminbox['text']			= gTranslate('common', "Login");
-$adminbox['commands']		= languageSelector();
+$adminbox['text']		= gTranslate('common', "Login");
+$adminbox['commands']	= languageSelector();
 
 includeLayout('adminbox.inc');
 
@@ -231,11 +231,13 @@ if (isset($gallery->app->emailOn) && $gallery->app->emailOn == 'yes') {
 
 <?php } /* End if-email-on */
 
-if ($gallery->app->selfReg == 'yes' || 1 == 1) {
+if ($gallery->app->selfReg == 'yes') {
 ?>
 <fieldset>
     <legend class="g-sectioncaption g-emphasis"><?php echo gTranslate('core', "No account at all?"); ?></legend>
-<?php echo galleryLink(makeGalleryUrl('register.php', array('type' => 'popup')), gTranslate('core', "_Register a new account.")); ?>
+    <div class="center">
+	<?php echo gButton('register', gTranslate('core', "_Register a new account."), popup('register.php')); ?>
+	</div>
 </fieldset>
 <?php
 }

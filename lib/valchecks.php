@@ -161,7 +161,7 @@ function isValidGalleryUrl($url) {
 	if (!empty($url)) {
 		//Detect header injection attempts
 		if (!isSafeHttpHeader($url)) {
-			// Invalid return URL! The requested URL contains malicious characters and is denied.
+			debugMessage(gTranslate('core', "Invalid return URL! The requested URL contains malicious characters and is denied."), __FILE__, __LINE__);
 			return false;
 		}
 
@@ -179,7 +179,10 @@ function isValidGalleryUrl($url) {
 			strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
 			strpos($normalizedUrl, '/../') !== false)
 		{
-			//Invalid return URL! The requested URL %s tried to insert a redirection which is not a part of this Gallery.
+			debugMessage(gTranslate('core', "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."), __FILE__, __LINE__);
+			echo $normalizedUrl;
+			echo "\n<br>";
+			echo $galleryBaseUrl;
 			return false;
 		}
 	}
