@@ -282,7 +282,7 @@ if ($gallery->user->isAdmin() &&
 		$message .= sprintf(gTranslate('core', "Please %s."),
 			popup_link(
 				gTranslate('core', "perform an upgrade"),
-				"upgrade_album.php", 0, 0, 500, 500, 'g-error', '', '', false)
+				"upgrade_album.php", 0, 0, 550, 600, 'g-error', '', '', false)
 		);
 
 		$notice_messages[] = array(
@@ -358,13 +358,14 @@ for ($i = $start; $i <= $end; $i++) {
 			$rootAlbum[$tmpAlbumName]['albumdesc']['title'] .= ' '. popup_link(
 				gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive")),
 				"download.php?set_albumName=$tmpAlbumName",
-				false, false, 500, 500, 'g-small', '', '',
+				false, false, 550, 600, 'g-small', '', '',
 				false, false
 			);
 		}
 
 		/* Admin album Commands */
-		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getAlbumCommands($gallery->album);
+		$selectBoxCaption = ($g_theme == 'matrix') ? true : false;
+		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getAlbumCommands($gallery->album, $selectBoxCaption);
 
 		/* Description */
 		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;

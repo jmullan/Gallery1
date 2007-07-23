@@ -213,7 +213,7 @@ function rootRSSLink() {
 	global $gallery, $galleryTitle;
 
 	if ($gallery->app->rssEnabled == "yes" && !$gallery->session->offline) {
-		$rssTitle = sprintf(gTranslate('core', "%s RSS"), $galleryTitle);
+		$rssTitle = sprintf(gTranslate('common', "%s RSS"), $galleryTitle);
 		$rssHref = $gallery->app->photoAlbumURL . "/rss.php";
 
 		echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$rssHref\" type=\"application/rss+xml\">\n";
@@ -264,7 +264,7 @@ function albumRSSLink() {
 	global $gallery, $albumTitle, $albumRSSURL;
 
 	if ($gallery->app->rssEnabled == 'yes' && !$gallery->session->offline) {
-		$rssTitle = htmlentities(sprintf(gTranslate('core', "%s RSS"), $albumTitle));
+		$rssTitle = htmlentities(sprintf(gTranslate('common', "%s RSS"), $albumTitle));
 
 		echo "  <link rel=\"alternate\" title=\"$rssTitle\" href=\"$albumRSSURL\" type=\"application/rss+xml\">\n";
 	}
@@ -574,8 +574,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	/* Commands shown for all albums */
 	if(checkRequirements('canAddToAlbum')) {
 		$albumCommands[] = array(
-			'text'			=> gTranslate('core', "Add photos"),
-			'html'			=> popup_link(gTranslate('core', "Add photos"),
+			'text'			=> gTranslate('common', "Add photos"),
+			'html'			=> popup_link(gTranslate('common', "Add photos"),
 									 "add_photos_frame.php?set_albumName=$albumName"),
 			'value'			=> build_popup_url("add_photos_frame.php?set_albumName=$albumName")
 		);
@@ -584,12 +584,12 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	if (checkRequirements('canCreateSubAlbum')) {
 		$albumCommands[] = array(
 			'class'	=> 'url',
-			'text'	=> gTranslate('core', "New nested album"),
+			'text'	=> gTranslate('common', "New nested album"),
 			'html'	=> galleryLink(
 						doCommand('new-album',
 							array('parentName' => $albumName),
 							'view_album.php'),
-						gTranslate('core', "New nested album"),
+						gTranslate('common', "New nested album"),
 						array(), '', true),
 			'value'	=> doCommand('new-album',
 						array('parentName' => $albumName),
@@ -602,7 +602,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	if (checkRequirements('canChangeText')) {
 		$albumCommands[] = array(
 			'class'	=> 'url',
-			'text' => gTranslate('core',"Edit captions"),
+			'text' => gTranslate('common',"Edit captions"),
 			'html' => galleryLink(
 						makeGalleryUrl(
 							"captionator.php",
@@ -610,7 +610,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 								'set_albumName'=> $albumName,	
 															'page' => $page,
 			'perPage' => $perPage)),
-					    gTranslate('core',"Edit captions"),
+					    gTranslate('common',"Edit captions"),
 						array(),'', true),
 			'value' => makeGalleryUrl("captionator.php", array("set_albumName" => $albumName))
 		);
@@ -620,16 +620,16 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	/* User is Admin or Owner */
 	if (checkRequirements('isAdminOrAlbumOwner')) {
 		$albumCommands[] = array(
-			'text'	=> gTranslate('core', "Change foldername"),
-			'html'	=> popup_link(gTranslate('core',"Change foldername"),
+			'text'	=> gTranslate('common', "Change foldername"),
+			'html'	=> popup_link(gTranslate('common',"Change foldername"),
 								  "rename_album.php?set_albumName={$albumName}&useLoad=true"),
 			'value'	=> build_popup_url("rename_album.php?set_albumName={$albumName}&useLoad=true")
 		);
 
 		/* User is allowed to change album permissions */
 		$albumCommands[] = array(
-			'text' => gTranslate('core',"Permissions"),
-			'html' => popup_link(gTranslate('core',"Permissions"),
+			'text' => gTranslate('common',"Permissions"),
+			'html' => popup_link(gTranslate('common',"Permissions"),
 								 "album_permissions.php?set_albumName={$albumName}",
 								 0, true,
 								550, 700),
@@ -638,8 +638,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 
 		/* And to change album properties */
 		$albumCommands[] = array(
-			'text' => gTranslate('core',"Properties"),
-			'html' => popup_link(gTranslate('core',"Properties"),
+			'text' => gTranslate('common',"Properties"),
+			'html' => popup_link(gTranslate('common',"Properties"),
 								 "edit_appearance.php?set_albumName={$albumName}",
 								 0, true,
 								550, 600),
@@ -650,8 +650,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* Watermarking support is enabled and user is allowed to watermark images/albums */
 		if (checkRequirements('photosExist','watermarkingEnabled')) {
 			$albumCommands[] = array(
-				'text' => gTranslate('core',"watermark&nbsp;album"),
-				'html' => popup_link(gTranslate('core',"watermaedit_rk&nbsp;album"),
+				'text' => gTranslate('common',"watermark&nbsp;album"),
+				'html' => popup_link(gTranslate('common',"watermaedit_rk&nbsp;album"),
 								 "watermark_album.php?set_albumName=$albumName"),
 				'value' => build_popup_url("watermark_album.php?set_albumName=$albumName")
 			);
@@ -664,8 +664,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to delete the album */
 		if (checkRequirements('canDeleteAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core',"Delete album"),
-				'html'	=> popup_link(gTranslate('core',"Delete album"),
+				'text'	=> gTranslate('common',"Delete album"),
+				'html'	=> popup_link(gTranslate('common',"Delete album"),
 									  "delete_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("delete_album.php?set_albumName=$albumName")
 			);
@@ -674,15 +674,15 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to change the album */
 		if (checkRequirements('canWriteToAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core',"Move album"),
-				'html'	=> popup_link(gTranslate('core',"Move album"),
+				'text'	=> gTranslate('common',"Move album"),
+				'html'	=> popup_link(gTranslate('common',"Move album"),
 									 "move_album.php?set_albumName={$albumName}&index=$i&reorder=0"),
 				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=0")
 			);
 	
 			$albumCommands[] = array(
-				'text' => gTranslate('core',"Reorder album"),
-				'html' => popup_link(gTranslate('core',"Reorder album"),
+				'text' => gTranslate('common',"Reorder album"),
+				'html' => popup_link(gTranslate('common',"Reorder album"),
 									 "move_album.php?set_albumName={$albumName}&index=$i&reorder=1"),
 				'value' => build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=1")
 			);
@@ -693,8 +693,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		/* User is allowed to delete the subalbum */
 		if (checkRequirements('canDeleteAlbum')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core',"Delete this (sub)album"),
-				'html'	=> popup_link2(gTranslate('core', "Delete this (sub)album"),
+				'text'	=> gTranslate('common',"Delete this (sub)album"),
+				'html'	=> popup_link2(gTranslate('common', "Delete this (sub)album"),
 									   makeGalleryUrl('delete_photo.php',
 										  array(
 											'set_albumName'	=> $album->fields['parentAlbumName'],
@@ -716,45 +716,45 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	if(!$mainpage) {
 		if (checkRequirements('canWriteToAlbum', 'photosExist')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Sort items"),
-				'html'	=> popup_link(gTranslate('core',"Sort items"),
+				'text'	=> gTranslate('common', "Sort items"),
+				'html'	=> popup_link(gTranslate('common',"Sort items"),
 									  "sort_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("sort_album.php?set_albumName=$albumName")
 			);
 	
 	
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Resize all"),
-				'html'	=> popup_link(gTranslate('core',"Resize all"),
+				'text'	=> gTranslate('common', "Resize all"),
+				'html'	=> popup_link(gTranslate('common',"Resize all"),
 									  "resize_photo.php?set_albumName={$albumName}&index=all"),
 				'value'	=> build_popup_url("resize_photo.php?set_albumName={$albumName}&index=all")
 			);
 			
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Recreate captions"),
-				'html'	=> popup_link(gTranslate('core',"Recreate captions"),
+				'text'	=> gTranslate('common', "Recreate captions"),
+				'html'	=> popup_link(gTranslate('common',"Recreate captions"),
 									  "recreate_captions.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("recreate_captions.php?set_albumName={$albumName}")
 			);
 			
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Rebuild thumbs"),
-				'html'	=> popup_link(gTranslate('core',"Rebuild thumbs"),
+				'text'	=> gTranslate('common', "Rebuild thumbs"),
+				'html'	=> popup_link(gTranslate('common',"Rebuild thumbs"),
 									  "rebuild_thumbs.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("rebuild_thumbs.php?set_albumName={$albumName}")
 			);
 			
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Rearrange items"),
-				'html'	=> popup_link(gTranslate('core',"Rearrange items"),
+				'text'	=> gTranslate('common', "Rearrange items"),
+				'html'	=> popup_link(gTranslate('common',"Rearrange items"),
 									  "rearrange.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("rearrange.php?set_albumName={$albumName}")
 			);
 	
 			if(checkRequirements('exif')) {
 				$albumCommands[] = array(
-					'text'	=> gTranslate('core', "Rebuild capture dates"),
-					'html'	=> popup_link(gTranslate('core',"Rebuild capture dates"),
+					'text'	=> gTranslate('common', "Rebuild capture dates"),
+					'html'	=> popup_link(gTranslate('common',"Rebuild capture dates"),
 									  "rebuild_capture_dates.php?set_albumName={$albumName}"),
 					'value'	=> build_popup_url("rebuild_capture_dates.php?set_albumName={$albumName}")
 				);
@@ -764,20 +764,20 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		
 		if(checkRequirements('isAdminOrAlbumOwner', 'votingOn')) {
 			$albumCommands[] = array(
-				'text'	=> gTranslate('core', "Poll results"),
+				'text'	=> gTranslate('common', "Poll results"),
 				'html' => galleryLink(
 						makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName)),
-						gTranslate('core',"Poll results"),
+						gTranslate('common',"Poll results"),
 						array(),'', true),
 				'value' => makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName))
 			);
 			
 			$albumCommands[] = array(
 				'class'	=> 'url',
-				'text'	=> gTranslate('core', "Poll reset"),
+				'text'	=> gTranslate('common', "Poll reset"),
 				'html' => galleryLink(
 						makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName)),
-						gTranslate('core',"Poll reset"),
+						gTranslate('common',"Poll reset"),
 						array(),'', true),
 				'value' => makeGalleryUrl("reset_votes.php", array("set_albumName" => $albumName))
 			);
@@ -789,10 +789,10 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		if (checkRequirements('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments')) {
 			$albumCommands[] = array(
 				'class'	=> 'url',
-				'text' => gTranslate('core',"View&nbsp;comments"),
+				'text' => gTranslate('common',"View&nbsp;comments"),
 				'html' => galleryLink(
 					makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName)),
-					gTranslate('core',"View&nbsp;comments"),
+					gTranslate('common',"View&nbsp;comments"),
 					array(),'', true),
 				'value' => makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))
 			);
@@ -803,7 +803,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	
 	if(!empty($albumCommands) && $caption) {
 		array_unshift($albumCommands, array(
-			'text'		=> gTranslate('core',"--- Album actions ---"),
+			'text'		=> gTranslate('common',"--- Album actions ---"),
 			'selected'	=> true
 		));
 	}
