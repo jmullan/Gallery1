@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-07 19:58+0200\n"
-"PO-Revision-Date: 2007-03-09 13:18+0100\n"
+"POT-Creation-Date: 2007-07-23 14:31+0200\n"
+"PO-Revision-Date: 2007-07-23 17:01+0100\n"
 "Last-Translator: Jens A. Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
 "MIME-Version: 1.0\n"
@@ -425,6 +425,8 @@ msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "Bilder ohne Kopie automatisch<br>an die Fenstergr&ouml;sse anpassen?"
 
 #: ../includes/definitions/albumProperties.php:395
+#: ../lib/album.php:631
+#: ../lib/album.php:632
 msgid "Permissions"
 msgstr "Berechtigungen"
 
@@ -524,39 +526,40 @@ msgstr "L&ouml;sche alle"
 msgid "Invert Selection"
 msgstr "Invertiere Auswahl"
 
-#: ../lib/Form.php:316
+#: ../lib/Form.php:321
 msgid "Colorpicker"
 msgstr "Farbauswahl"
 
-#: ../lib/Form.php:342
+#: ../lib/Form.php:347
 msgid "Byte"
 msgstr "Byte"
 
-#: ../lib/Form.php:343
+#: ../lib/Form.php:348
 msgid "KB"
 msgstr "KB"
 
-#: ../lib/Form.php:344
+#: ../lib/Form.php:349
 msgid "MB"
 msgstr "MB"
 
-#: ../lib/Form.php:345
+#: ../lib/Form.php:350
 msgid "GB"
 msgstr "GB"
 
-#: ../lib/Form.php:350
+#: ../lib/Form.php:355
 msgid "Byte calculator"
 msgstr "Byte Rechner"
 
-#: ../lib/Form.php:356
+#: ../lib/Form.php:361
 msgid "_Close"
 msgstr "_Schließen"
 
-#: ../lib/Form.php:528
+#: ../lib/Form.php:533
 msgid "Add field"
 msgstr "Feld hinzufügen"
 
-#: ../lib/album.php:216 ../lib/album.php:267
+#: ../lib/album.php:216
+#: ../lib/album.php:267
 #, php-format
 msgid "%s RSS"
 msgstr "%s RSS"
@@ -581,6 +584,112 @@ msgid "1 view"
 msgid_plural "%d views"
 msgstr[0] "Ein Besuch"
 msgstr[1] "%d Besuche"
+
+#: ../lib/album.php:577
+#: ../lib/album.php:578
+msgid "Add photos"
+msgstr "Photos hinzufügen"
+
+#: ../lib/album.php:587
+#: ../lib/album.php:592
+msgid "New nested album"
+msgstr "Neues Unteralbum"
+
+#: ../lib/album.php:605
+#: ../lib/album.php:613
+msgid "Edit captions"
+msgstr "Beschriftungen bearbeiten"
+
+#: ../lib/album.php:623
+#: ../lib/album.php:624
+msgid "Change foldername"
+msgstr "Ordnername ändern"
+
+#: ../lib/album.php:641
+#: ../lib/album.php:642
+msgid "Properties"
+msgstr "Eigenschaften"
+
+#: ../lib/album.php:653
+msgid "watermark&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:654
+msgid "watermaedit_rk&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:667
+#: ../lib/album.php:668
+msgid "Delete album"
+msgstr "Album löschen"
+
+#: ../lib/album.php:677
+#: ../lib/album.php:678
+msgid "Move album"
+msgstr "Album verschieben"
+
+#: ../lib/album.php:684
+#: ../lib/album.php:685
+msgid "Reorder album"
+msgstr "Album an andere Stelle setzen"
+
+#: ../lib/album.php:696
+#: ../lib/album.php:697
+msgid "Delete this (sub)album"
+msgstr "(Unter)album löschen"
+
+#: ../lib/album.php:719
+#: ../lib/album.php:720
+msgid "Sort items"
+msgstr "Sortieren"
+
+#: ../lib/album.php:727
+#: ../lib/album.php:728
+msgid "Resize all"
+msgstr "Größen ändern"
+
+#: ../lib/album.php:734
+#: ../lib/album.php:735
+msgid "Recreate captions"
+msgstr "Aktuelle Position"
+
+#: ../lib/album.php:741
+#: ../lib/album.php:742
+#, fuzzy
+msgid "Rebuild thumbs"
+msgstr "Normales Vorschaubild"
+
+#: ../lib/album.php:748
+#: ../lib/album.php:749
+msgid "Rearrange items"
+msgstr ""
+
+#: ../lib/album.php:756
+#: ../lib/album.php:757
+#, fuzzy
+msgid "Rebuild capture dates"
+msgstr "Aufnahmedatum"
+
+#: ../lib/album.php:767
+#: ../lib/album.php:770
+#: ../lib/voting.php:366
+msgid "Poll results"
+msgstr "Abstimmungsergebnis"
+
+#: ../lib/album.php:777
+#: ../lib/album.php:780
+#, fuzzy
+msgid "Poll reset"
+msgstr "Abstimmungsergebnis"
+
+#: ../lib/album.php:792
+#: ../lib/album.php:795
+msgid "View&nbsp;comments"
+msgstr "Kommentare anschauen"
+
+#: ../lib/album.php:806
+msgid "--- Album actions ---"
+msgstr "--- Album Aktionen ---"
 
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
@@ -639,7 +748,9 @@ msgstr "Captcha erneuern"
 msgid "Post comment"
 msgstr "Kommentar abschicken"
 
-#: ../lib/content.php:326 ../lib/content.php:340 ../lib/content.php:384
+#: ../lib/content.php:326
+#: ../lib/content.php:340
+#: ../lib/content.php:384
 msgid "Sub-albums:"
 msgstr "Unteralben:"
 
@@ -655,11 +766,13 @@ msgstr "Die Anzeige von EXIF-Daten wurde aktiviert, jedoch wurden keine Daten ge
 msgid "_Search:"
 msgstr "_Suche:"
 
-#: ../lib/content.php:666 ../lib/content.php:699
+#: ../lib/content.php:666
+#: ../lib/content.php:699
 msgid "Operation done, closing window."
 msgstr "Operation erledigt, Fenster wird geschlossen."
 
-#: ../lib/content.php:673 ../lib/content.php:711
+#: ../lib/content.php:673
+#: ../lib/content.php:711
 msgid "Not closing this window because debug mode is on."
 msgstr "Dieses Fenster wird nicht geschlossen, da der DEBUG MODE eingeschaltet ist."
 
@@ -698,7 +811,8 @@ msgstr "Das aktuelle Album"
 msgid "Last comment %s."
 msgstr "Letzter Kommentar %s."
 
-#: ../lib/content.php:1048 ../lib/content.php:1051
+#: ../lib/content.php:1048
+#: ../lib/content.php:1051
 msgid "No Skin"
 msgstr "Kein Skin"
 
@@ -706,7 +820,8 @@ msgstr "Kein Skin"
 msgid "The original look and feel."
 msgstr "Das original &quot;Look and Feel&quot;"
 
-#: ../lib/content.php:1103 ../lib/content.php:1107
+#: ../lib/content.php:1103
+#: ../lib/content.php:1107
 msgid "unknown"
 msgstr "unbekannt"
 
@@ -724,7 +839,8 @@ msgstr "Letzte Aktualisierung: %s"
 msgid "usual thumbs"
 msgstr "Normales Vorschaubild"
 
-#: ../lib/content.php:1134 ../lib/content.php:1151
+#: ../lib/content.php:1134
+#: ../lib/content.php:1151
 msgid "Album image frames"
 msgstr "Rahmen der Alben"
 
@@ -732,7 +848,8 @@ msgstr "Rahmen der Alben"
 msgid "Frame defined for images in the corresponding album"
 msgstr "Rahmen der im entsprechenden Album für Bilder definiert wurde"
 
-#: ../lib/content.php:1136 ../lib/content.php:1152
+#: ../lib/content.php:1136
+#: ../lib/content.php:1152
 msgid "Album thumb frames"
 msgstr "Rahmen der Alben"
 
@@ -740,7 +857,8 @@ msgstr "Rahmen der Alben"
 msgid "Frame defined for thumbs in the corresponding album"
 msgstr "Rahmen der im entsprechenden Album für Vorschaubilder definiert wurde"
 
-#: ../lib/content.php:1138 ../lib/content.php:1153
+#: ../lib/content.php:1138
+#: ../lib/content.php:1153
 msgid "Mainpage thumb frames"
 msgstr "Rahmen der für die Vorschaubilder der Hauptseite definiert wurde"
 
@@ -748,15 +866,18 @@ msgstr "Rahmen der für die Vorschaubilder der Hauptseite definiert wurde"
 msgid "Frame defined for thumbs on mainpage"
 msgstr "Rahmen der Vorschaubilder der Hauptseite"
 
-#: ../lib/content.php:1158 ../lib/content.php:1166
+#: ../lib/content.php:1158
+#: ../lib/content.php:1166
 msgid "None"
 msgstr "Kein"
 
-#: ../lib/content.php:1159 ../lib/content.php:1168
+#: ../lib/content.php:1159
+#: ../lib/content.php:1168
 msgid "Dots"
 msgstr "Punkte"
 
-#: ../lib/content.php:1160 ../lib/content.php:1170
+#: ../lib/content.php:1160
+#: ../lib/content.php:1170
 msgid "Solid"
 msgstr "Linie"
 
@@ -786,23 +907,23 @@ msgstr "Überspringe %s"
 msgid "Can't open %s"
 msgstr "Fehler beim Lesen von %s"
 
-#: ../lib/content.php:1326
+#: ../lib/content.php:1328
 msgid "log_out"
 msgstr "A_bmelden"
 
-#: ../lib/content.php:1331
+#: ../lib/content.php:1333
 msgid "_Login to see or add more items."
 msgstr "_Melden Sie sich an um mehr zu sehen, oder hinzuzufügen"
 
-#: ../lib/content.php:1334
+#: ../lib/content.php:1336
 msgid "log_in"
 msgstr "An_melden"
 
-#: ../lib/content.php:1514
+#: ../lib/content.php:1516
 msgid "Show/hide more information"
 msgstr "Zeige/Verstecke weitere Informationen"
 
-#: ../lib/content.php:1608
+#: ../lib/content.php:1610
 msgid "... read more"
 msgstr "... mehr"
 
@@ -820,7 +941,8 @@ msgstr "Keine Größenänderung nötig"
 msgid "target file size %d kbytes"
 msgstr "Gr&ouml;&szlig;e der Zieldatei %d kbytes"
 
-#: ../lib/imageManipulation.php:104 ../lib/imageManipulation.php:133
+#: ../lib/imageManipulation.php:104
+#: ../lib/imageManipulation.php:133
 #, php-format
 msgid "-> file size %d kbytes"
 msgstr "-> Dateigröße %d kbytes"
@@ -834,8 +956,10 @@ msgstr "Versuche Qualitätstufe %d%%"
 msgid "Done."
 msgstr "Fertig."
 
-#: ../lib/imageManipulation.php:239 ../lib/imageManipulation.php:514
-#: ../lib/imageManipulation.php:581 ../lib/imageManipulation.php:863
+#: ../lib/imageManipulation.php:239
+#: ../lib/imageManipulation.php:514
+#: ../lib/imageManipulation.php:581
+#: ../lib/imageManipulation.php:863
 msgid "You have no graphics package configured for use!"
 msgstr "Sie haben kein Bearbeitungsprogramm f&uuml;r Graphiken angegeben"
 
@@ -878,7 +1002,8 @@ msgstr "Aufruf von %s in %s fehlgeschlagen für Datei %s!"
 msgid "File %s type %d."
 msgstr "Datei %s typ %d."
 
-#: ../lib/imageManipulation.php:683 ../lib/imageManipulation.php:707
+#: ../lib/imageManipulation.php:683
+#: ../lib/imageManipulation.php:707
 #, php-format
 msgid "Files with type %s are not supported by Gallery with netPBM"
 msgstr "Dateien des Types '%s' werden von Gallery bei Verwendung von netPBM nicht unterstützt."
@@ -1001,7 +1126,8 @@ msgstr ""
 "mit freundlich Grüßen,\n"
 "Ihr Administrator der %s"
 
-#: ../lib/mail.php:183 ../lib/mail.php:185
+#: ../lib/mail.php:183
+#: ../lib/mail.php:185
 msgid "gallery title"
 msgstr "Galerietitel"
 
@@ -1025,8 +1151,11 @@ msgstr "Admin emails"
 msgid "Password for the newly created user."
 msgstr "Das Passwort für den neu angelegten Benutzer."
 
-#: ../lib/mail.php:203 ../lib/setup.php:1613 ../lib/setup.php:1614
-#: ../lib/setup.php:1616 ../lib/setup.php:1620
+#: ../lib/mail.php:203
+#: ../lib/setup.php:1613
+#: ../lib/setup.php:1614
+#: ../lib/setup.php:1616
+#: ../lib/setup.php:1620
 msgid "Username"
 msgstr "Benutzername"
 
@@ -1100,15 +1229,18 @@ msgstr "Powered by %s Version %s"
 msgid "Please retype your password here"
 msgstr "Bitte geben Sie Ihr Passwort hier erneut ein"
 
-#: ../lib/setup.php:183 ../lib/setup.php:1229
+#: ../lib/setup.php:183
+#: ../lib/setup.php:1229
 msgid "Name"
 msgstr "Name"
 
-#: ../lib/setup.php:184 ../lib/setup.php:1229
+#: ../lib/setup.php:184
+#: ../lib/setup.php:1229
 msgid "Value"
 msgstr "Wert"
 
-#: ../lib/setup.php:214 ../lib/setup.php:266
+#: ../lib/setup.php:214
+#: ../lib/setup.php:266
 msgid "No content"
 msgstr "Kein Inhalt"
 
@@ -1118,14 +1250,12 @@ msgid "Missing value: %s"
 msgstr "Fehlende Angabe: %s"
 
 #: ../lib/setup.php:450
-#, fuzzy
 msgid "exec() is enabled on this server."
-msgstr "<b>exec()</b> ist aktiviert auf Ihrem Server."
+msgstr "exec() ist aktiviert auf Ihrem Server."
 
 #: ../lib/setup.php:471
-#, fuzzy
 msgid "Gallery is able to read your .htaccess file."
-msgstr "<b>.htaccess</b> werden verarbeitet."
+msgstr ".htaccess werden verarbeitet."
 
 #: ../lib/setup.php:493
 #, php-format
@@ -1142,9 +1272,8 @@ msgid "Can't find <i>jhead</i>"
 msgstr "<i>jhead</i> wurde nicht gefunden."
 
 #: ../lib/setup.php:544
-#, fuzzy
 msgid "jhead binary located."
-msgstr "<b>jhead</b> gefunden."
+msgstr "jhead gefunden."
 
 #: ../lib/setup.php:582
 msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
@@ -1154,26 +1283,31 @@ msgstr "Ohne die NetPBM Dateien pnmcomp, bzw. pamcomp Datei kann Gallery keine W
 msgid "NetPBM not being used in this installation."
 msgstr "NetPBM wird in dieser Installation nicht verwendet."
 
-#: ../lib/setup.php:593 ../lib/setup.php:689
+#: ../lib/setup.php:593
+#: ../lib/setup.php:689
 msgid "Cannot verify this path (it's not in your open_basedir list)."
 msgstr "Der Pfad kann nicht gepr&uuml;ft werden (er ist nicht in Ihrer open_basedir Liste)."
 
-#: ../lib/setup.php:627 ../lib/setup.php:706
+#: ../lib/setup.php:627
+#: ../lib/setup.php:706
 #, php-format
 msgid "Missing optional binary %s. %s"
 msgstr "Die optionale Datei %s fehlt. %s"
 
-#: ../lib/setup.php:630 ../lib/setup.php:709
+#: ../lib/setup.php:630
+#: ../lib/setup.php:709
 #, php-format
 msgid "Can't find %s!"
 msgstr "%s wurde nicht gefunden!"
 
-#: ../lib/setup.php:636 ../lib/setup.php:715
+#: ../lib/setup.php:636
+#: ../lib/setup.php:715
 #, php-format
 msgid "%s is not executable!"
 msgstr "%s ist nicht ausführbar!"
 
-#: ../lib/setup.php:646 ../lib/setup.php:654
+#: ../lib/setup.php:646
+#: ../lib/setup.php:654
 #, php-format
 msgid "%d of %d NetPBM binaries located."
 msgstr "%d von %d NetPBM Dateien gefunden."
@@ -1186,7 +1320,8 @@ msgstr "Ohne die composite Datei kann Gallery keine Wasserzeichen auf Ihre Bilde
 msgid "ImageMagick not being used in this installation."
 msgstr "ImageMagick wird in dieser Installation nicht verwendet."
 
-#: ../lib/setup.php:725 ../lib/setup.php:733
+#: ../lib/setup.php:725
+#: ../lib/setup.php:733
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr "%d von %d ImageMagick Dateien gefunden."
@@ -1280,7 +1415,8 @@ msgstr "Gallery war nicht in der Lage mindesten ein System locale zu finden. All
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr "Nur die default locale dieses Systems ist verfügbar, dadurch wird sich die Datumsanzeige nicht and die jeweilige Sprache anpassen."
 
-#: ../lib/setup.php:1052 ../lib/setup.php:1144
+#: ../lib/setup.php:1052
+#: ../lib/setup.php:1144
 msgid "Advanced"
 msgstr "Forgeschritten"
 
@@ -1292,11 +1428,13 @@ msgstr "<b>System</b> Locale Auswahl ben&ouml;tigt"
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr "Es ist mehr als eine passende <b>System</b> locale Information auf Ihrem System vorhanden f&uuml;r die folgenden Sprachen vorhanden.  Bitte w&auml;hlen Sie das naheliegenste aus."
 
-#: ../lib/setup.php:1056 ../lib/setup.php:1148
+#: ../lib/setup.php:1056
+#: ../lib/setup.php:1148
 msgid "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above."
 msgstr "Dies ist <b>nur<b> für das Zeit- und Datumsformat. Sie brauchen auch nur Werte für Sprachen angeben, die Sie weiter oben angeklickt haben."
 
-#: ../lib/setup.php:1069 ../lib/setup.php:1097
+#: ../lib/setup.php:1069
+#: ../lib/setup.php:1097
 msgid "System locale"
 msgstr "System locale"
 
@@ -1323,7 +1461,9 @@ msgstr "<b>magic_quotes</b> sind aus."
 msgid "In %s, missing %s in row %d with %s %s."
 msgstr "Im Punkt %1$s, fehlt in Reihe %3$d der %2$s zum %4$s %5$s."
 
-#: ../lib/setup.php:1228 ../lib/setup.php:1237 ../lib/setup.php:1242
+#: ../lib/setup.php:1228
+#: ../lib/setup.php:1237
+#: ../lib/setup.php:1242
 msgid "Vote words and values"
 msgstr "Abstimmungswerte"
 
@@ -1418,7 +1558,9 @@ msgstr "Es scheint als wäre Ihre Gallery schon konfiguriert worden, da der %s Ac
 msgid "Admin password"
 msgstr "Admin Passwort"
 
-#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1615
+#: ../lib/setup.php:1613
+#: ../lib/setup.php:1614
+#: ../lib/setup.php:1615
 #: ../lib/setup.php:1619
 msgid "Full Name"
 msgstr "Vollst&auml;ndiger Name"
@@ -1431,7 +1573,8 @@ msgstr "Vollst&auml;ndiger Name als klickbarer Emaillink (mailto:)"
 msgid "Username that you can click on to send email (mailto:)"
 msgstr "Benutzername als klickbarer Emaillink (mailto:)"
 
-#: ../lib/setup.php:1619 ../lib/setup.php:1620
+#: ../lib/setup.php:1619
+#: ../lib/setup.php:1620
 msgid "email address"
 msgstr "Email-Adresse"
 
@@ -1542,21 +1685,25 @@ msgstr "\"Lassen Sie leer um dem Standardtext zu benutzen, welche mehrsprachig v
 msgid "The following placeholder can be used:"
 msgstr "Die folgenden Platzhalter können benutzt werden:"
 
-#: ../lib/setup.php:1883 ../lib/setup.php:1927
+#: ../lib/setup.php:1883
+#: ../lib/setup.php:1927
 #, php-format
 msgid "File %s does not exist."
 msgstr "Datei %s existiert nicht."
 
-#: ../lib/setup.php:1892 ../lib/setup.php:1937
+#: ../lib/setup.php:1892
+#: ../lib/setup.php:1937
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr "Erwarteter Status: %s, erhaltener Status: %s."
 
-#: ../lib/setup.php:1903 ../lib/setup.php:1950
+#: ../lib/setup.php:1903
+#: ../lib/setup.php:1950
 msgid "can't detect version on Windows"
 msgstr "Version kann nicht unter Windows ermittelt werden"
 
-#: ../lib/setup.php:1907 ../lib/setup.php:1965
+#: ../lib/setup.php:1907
+#: ../lib/setup.php:1965
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Version: %s"
@@ -1600,6 +1747,14 @@ msgstr "Die Eingabe wurde auf den Standardwert gesetzt, da Ihre Eingabe kein gül
 #: ../lib/valchecks.php:115
 msgid "Value was corrected, because the original value is not a valid text"
 msgstr "Die Eingabe wurde auf den Standardwert gesetzt, da Ihre Eingabe kein gültiger Text ist."
+
+#: ../lib/valchecks.php:164
+msgid "Invalid return URL! The requested URL contains malicious characters and is denied."
+msgstr ""
+
+#: ../lib/valchecks.php:182
+msgid "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."
+msgstr ""
 
 #: ../lib/voting.php:210
 msgid "<<< Vote >>>"
@@ -1646,10 +1801,6 @@ msgstr "Abstufungen - %s"
 msgid "No votes"
 msgstr "Keine Stimmen"
 
-#: ../lib/voting.php:366
-msgid "Poll results"
-msgstr "Abstimmungsergebnis"
-
 #: ../lib/voting.php:372
 #, php-format
 msgid "Position %d overall, due to this votes:"
@@ -1662,8 +1813,3 @@ msgid_plural "%d votes"
 msgstr[0] "Eine Stimme"
 msgstr[1] "%d Stimmen"
 
-#~ msgid "Can't find <i>jpegtran</i>!"
-#~ msgstr "<i>jpegtran</i> nicht gefunden!"
-
-#~ msgid "this is new in version %s"
-#~ msgstr "Dies ist neu seit Version %s"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 16:03+0200\n"
+"POT-Creation-Date: 2007-07-23 17:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -423,7 +423,8 @@ msgstr ""
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr ""
 
-#: ../includes/definitions/albumProperties.php:395
+#: ../includes/definitions/albumProperties.php:395 ../lib/album.php:631
+#: ../lib/album.php:632
 msgid "Permissions"
 msgstr ""
 
@@ -523,35 +524,35 @@ msgstr ""
 msgid "Invert Selection"
 msgstr ""
 
-#: ../lib/Form.php:316
+#: ../lib/Form.php:321
 msgid "Colorpicker"
 msgstr ""
 
-#: ../lib/Form.php:342
+#: ../lib/Form.php:347
 msgid "Byte"
 msgstr ""
 
-#: ../lib/Form.php:343
+#: ../lib/Form.php:348
 msgid "KB"
 msgstr ""
 
-#: ../lib/Form.php:344
+#: ../lib/Form.php:349
 msgid "MB"
 msgstr ""
 
-#: ../lib/Form.php:345
+#: ../lib/Form.php:350
 msgid "GB"
 msgstr ""
 
-#: ../lib/Form.php:350
+#: ../lib/Form.php:355
 msgid "Byte calculator"
 msgstr ""
 
-#: ../lib/Form.php:356
+#: ../lib/Form.php:361
 msgid "_Close"
 msgstr ""
 
-#: ../lib/Form.php:528
+#: ../lib/Form.php:533
 msgid "Add field"
 msgstr ""
 
@@ -580,6 +581,90 @@ msgid "1 view"
 msgid_plural "%d views"
 msgstr[0] ""
 msgstr[1] ""
+
+#: ../lib/album.php:577 ../lib/album.php:578
+msgid "Add photos"
+msgstr ""
+
+#: ../lib/album.php:587 ../lib/album.php:592
+msgid "New nested album"
+msgstr ""
+
+#: ../lib/album.php:605 ../lib/album.php:613
+msgid "Edit captions"
+msgstr ""
+
+#: ../lib/album.php:623 ../lib/album.php:624
+msgid "Change foldername"
+msgstr ""
+
+#: ../lib/album.php:641 ../lib/album.php:642
+msgid "Properties"
+msgstr ""
+
+#: ../lib/album.php:653
+msgid "watermark&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:654
+msgid "watermaedit_rk&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:667 ../lib/album.php:668
+msgid "Delete album"
+msgstr ""
+
+#: ../lib/album.php:677 ../lib/album.php:678
+msgid "Move album"
+msgstr ""
+
+#: ../lib/album.php:684 ../lib/album.php:685
+msgid "Reorder album"
+msgstr ""
+
+#: ../lib/album.php:696 ../lib/album.php:697
+msgid "Delete this (sub)album"
+msgstr ""
+
+#: ../lib/album.php:719 ../lib/album.php:720
+msgid "Sort items"
+msgstr ""
+
+#: ../lib/album.php:727 ../lib/album.php:728
+msgid "Resize all"
+msgstr ""
+
+#: ../lib/album.php:734 ../lib/album.php:735
+msgid "Recreate captions"
+msgstr ""
+
+#: ../lib/album.php:741 ../lib/album.php:742
+msgid "Rebuild thumbs"
+msgstr ""
+
+#: ../lib/album.php:748 ../lib/album.php:749
+msgid "Rearrange items"
+msgstr ""
+
+#: ../lib/album.php:756 ../lib/album.php:757
+msgid "Rebuild capture dates"
+msgstr ""
+
+#: ../lib/album.php:767 ../lib/album.php:770 ../lib/voting.php:366
+msgid "Poll results"
+msgstr ""
+
+#: ../lib/album.php:777 ../lib/album.php:780
+msgid "Poll reset"
+msgstr ""
+
+#: ../lib/album.php:792 ../lib/album.php:795
+msgid "View&nbsp;comments"
+msgstr ""
+
+#: ../lib/album.php:806
+msgid "--- Album actions ---"
+msgstr ""
 
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
@@ -785,23 +870,23 @@ msgstr ""
 msgid "Can't open %s"
 msgstr ""
 
-#: ../lib/content.php:1326
+#: ../lib/content.php:1328
 msgid "log_out"
 msgstr ""
 
-#: ../lib/content.php:1331
+#: ../lib/content.php:1333
 msgid "_Login to see or add more items."
 msgstr ""
 
-#: ../lib/content.php:1334
+#: ../lib/content.php:1336
 msgid "log_in"
 msgstr ""
 
-#: ../lib/content.php:1514
+#: ../lib/content.php:1516
 msgid "Show/hide more information"
 msgstr ""
 
-#: ../lib/content.php:1608
+#: ../lib/content.php:1610
 msgid "... read more"
 msgstr ""
 
@@ -1578,6 +1663,14 @@ msgstr ""
 msgid "Value was corrected, because the original value is not a valid text"
 msgstr ""
 
+#: ../lib/valchecks.php:164
+msgid "Invalid return URL! The requested URL contains malicious characters and is denied."
+msgstr ""
+
+#: ../lib/valchecks.php:182
+msgid "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."
+msgstr ""
+
 #: ../lib/voting.php:210
 msgid "<<< Vote >>>"
 msgstr ""
@@ -1621,10 +1714,6 @@ msgstr ""
 
 #: ../lib/voting.php:360
 msgid "No votes"
-msgstr ""
-
-#: ../lib/voting.php:366
-msgid "Poll results"
 msgstr ""
 
 #: ../lib/voting.php:372
