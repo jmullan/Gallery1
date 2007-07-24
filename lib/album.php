@@ -561,7 +561,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	global $page, $perPage;
 
 	$albumCommands = array();
-	
+
 /*
 	global $gallery;
 	if (!$gallery->session->offline) {
@@ -607,16 +607,16 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 						makeGalleryUrl(
 							"captionator.php",
 							array(
-								'set_albumName'=> $albumName,	
-															'page' => $page,
-			'perPage' => $perPage)),
+								'set_albumName'=> $albumName,
+								'page' => $page,
+								'perPage' => $perPage)),
 					    gTranslate('common',"Edit captions"),
 						array(),'', true),
 			'value' => makeGalleryUrl("captionator.php", array("set_albumName" => $albumName))
 		);
 	}
-	
-	
+
+
 	/* User is Admin or Owner */
 	if (checkRequirements('isAdminOrAlbumOwner')) {
 		$albumCommands[] = array(
@@ -646,19 +646,19 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 			'value' => build_popup_url("edit_appearance.php?set_albumName=$albumName")
 		);
 
-	
+
 		/* Watermarking support is enabled and user is allowed to watermark images/albums */
 		if (checkRequirements('photosExist','watermarkingEnabled')) {
 			$albumCommands[] = array(
-				'text' => gTranslate('common',"watermark&nbsp;album"),
-				'html' => popup_link(gTranslate('common',"watermaedit_rk&nbsp;album"),
+				'text' => gTranslate('common',"Watermark&nbsp;album"),
+				'html' => popup_link(gTranslate('common',"Watermark&nbsp;album"),
 								 "watermark_album.php?set_albumName=$albumName"),
 				'value' => build_popup_url("watermark_album.php?set_albumName=$albumName")
 			);
 		}
 	}
 
-	
+
 	/* Options only shown for root albums */
 	if (checkRequirements('albumIsRoot')) {
 		/* User is allowed to delete the album */
@@ -670,7 +670,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 				'value'	=> build_popup_url("delete_album.php?set_albumName=$albumName")
 			);
 		}
-		
+
 		/* User is allowed to change the album */
 		if (checkRequirements('canWriteToAlbum')) {
 			$albumCommands[] = array(
@@ -679,7 +679,7 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 									 "move_album.php?set_albumName={$albumName}&index=$i&reorder=0"),
 				'value'	=> build_popup_url("move_album.php?set_albumName={$albumName}&index=$i&reorder=0")
 			);
-	
+
 			$albumCommands[] = array(
 				'text' => gTranslate('common',"Reorder album"),
 				'html' => popup_link(gTranslate('common',"Reorder album"),
@@ -699,19 +699,21 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 										  array(
 											'set_albumName'	=> $album->fields['parentAlbumName'],
 											'id' => $albumName,
-											'albumDelete' => true)),
+											'albumDelete' => true,
+											'gallery_popup' => true)),
 									   array('accesskey' => true)),
 				'value'	=> build_popup_url(makeGalleryUrl('delete_photo.php',
 											  array(
 												'set_albumName' => $album->fields['parentAlbumName'],
 												'id' => $albumName,
-												'albumDelete' => true)),
+												'albumDelete' => true,
+												'gallery_popup' => true)),
 										    true)
 			);
 		}
 	}
-	
-	
+
+
 	/* Options shown only in thumbsview */
 	if(!$mainpage) {
 		if (checkRequirements('canWriteToAlbum', 'photosExist')) {
@@ -721,36 +723,36 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 									  "sort_album.php?set_albumName=$albumName"),
 				'value'	=> build_popup_url("sort_album.php?set_albumName=$albumName")
 			);
-	
-	
+
+
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Resize all"),
 				'html'	=> popup_link(gTranslate('common',"Resize all"),
 									  "resize_photo.php?set_albumName={$albumName}&index=all"),
 				'value'	=> build_popup_url("resize_photo.php?set_albumName={$albumName}&index=all")
 			);
-			
+
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Recreate captions"),
 				'html'	=> popup_link(gTranslate('common',"Recreate captions"),
 									  "recreate_captions.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("recreate_captions.php?set_albumName={$albumName}")
 			);
-			
+
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Rebuild thumbs"),
 				'html'	=> popup_link(gTranslate('common',"Rebuild thumbs"),
 									  "rebuild_thumbs.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("rebuild_thumbs.php?set_albumName={$albumName}")
 			);
-			
+
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Rearrange items"),
 				'html'	=> popup_link(gTranslate('common',"Rearrange items"),
 									  "rearrange.php?set_albumName={$albumName}"),
 				'value'	=> build_popup_url("rearrange.php?set_albumName={$albumName}")
 			);
-	
+
 			if(checkRequirements('exif')) {
 				$albumCommands[] = array(
 					'text'	=> gTranslate('common', "Rebuild capture dates"),
@@ -758,28 +760,35 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 									  "rebuild_capture_dates.php?set_albumName={$albumName}"),
 					'value'	=> build_popup_url("rebuild_capture_dates.php?set_albumName={$albumName}")
 				);
-	
+
 			}
 		}
-		
+
 		if(checkRequirements('isAdminOrAlbumOwner', 'votingOn')) {
 			$albumCommands[] = array(
 				'text'	=> gTranslate('common', "Poll results"),
-				'html' => galleryLink(
-						makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName)),
-						gTranslate('common',"Poll results"),
-						array(),'', true),
-				'value' => makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName))
+				'html' => galleryLink(makeGalleryUrl(
+										'poll_results.php',
+										array(
+											'set_albumName' => $albumName,
+											'gallery_popup' => true)),
+									  gTranslate('common',"Poll results"),
+									  array(),'', true),
+				'value' => makeGalleryUrl("poll_results.php",
+										  array(
+										  	'set_albumName' => $albumName,
+										  	'gallery_popup' => true))
 			);
-			
+
 			$albumCommands[] = array(
 				'class'	=> 'url',
 				'text'	=> gTranslate('common', "Poll reset"),
 				'html' => galleryLink(
-						makeGalleryUrl("poll_results.php", array("set_albumName" => $albumName)),
+						makeGalleryUrl('poll_results.php',
+									   array('set_albumName' => $albumName)),
 						gTranslate('common',"Poll reset"),
 						array(),'', true),
-				'value' => makeGalleryUrl("reset_votes.php", array("set_albumName" => $albumName))
+				'value' => makeGalleryUrl('reset_votes.php', array('set_albumName' => $albumName))
 			);
 		}
 	}
@@ -791,23 +800,22 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 				'class'	=> 'url',
 				'text' => gTranslate('common',"View&nbsp;comments"),
 				'html' => galleryLink(
-					makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName)),
-					gTranslate('common',"View&nbsp;comments"),
-					array(),'', true),
+							makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName)),
+							gTranslate('common',"View&nbsp;comments"),
+							array(),'', true),
 				'value' => makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))
 			);
 		}
 	}
 
 	array_sort_by_fields($albumCommands, 'text');
-	
+
 	if(!empty($albumCommands) && $caption) {
 		array_unshift($albumCommands, array(
-			'text'		=> gTranslate('common',"--- Album actions ---"),
+			'text'		=> gTranslate('common',"<< Album actions >>"),
 			'selected'	=> true
 		));
 	}
-
 
 	return $albumCommands;
 }

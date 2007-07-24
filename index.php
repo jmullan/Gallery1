@@ -150,6 +150,7 @@ if ($postnuke ||
 		'popups/edit_field.php',
 		'popups/edit_thumb.php',
 		'popups/do_command.php',
+		'popups/featured-item.php',
 		'popups/manage_groups.php',
 		'popups/modify_group.php',
 		'popups/move_album.php',

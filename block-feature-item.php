@@ -51,9 +51,26 @@ list($albumName, $index) = explode('/', getFile(FEATURE_CACHE));
 
 if (!empty($albumName) && !empty($index)) {
 	$album = new Album();
-	$album->load($albumName);
+	$ret = $album->load($albumName);
+
+	if(!$ret) {
+		echo infoBox(array(array(
+			'type' => 'information',
+			'text' => gTranslate('core', "It seems the album where the featured used to be, was deleted.")
+		)));
+		exit;
+	}
 
 	$item	= $album->getPhoto($index);
+
+	if(empty($item)) {
+		echo infoBox(array(array(
+			'type' => 'information',
+			'text' => gTranslate('core', "It seems the featured item was deleted.")
+		)));
+		exit;
+	}
+
 	$id		= $item->getPhotoId();
 
 	$caption	= $item->getCaption() ? $item->getCaption() : '';
