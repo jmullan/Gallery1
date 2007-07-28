@@ -238,6 +238,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	}
 
 	$defaults['uiLocale'] = $gallery->language;
+	$agent = $_SERVER['HTTP_USER_AGENT'];
 ?>
 	<object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
@@ -262,6 +263,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="gr_cookie1_value" value="<?php echo $cookie1_value ?>">
 <?php } ?>
 	<param name="gr_album" value="<?php echo $album ?>">
+	<param name="gr_user_agent" value="<?php echo $agent ?>">
 <?php
 foreach ($defaults as $key => $value) {
 	echo "\t<param name=\"GRDefault_". $key ."\" value=\"". $value ."\">\n";
@@ -296,6 +298,7 @@ foreach ($overrides as $key => $value) {
 				gr_cookie1_value="<?php echo $cookie1_value ?>"
 <?php } ?>
 				gr_album="<?php echo $album ?>"
+				gr_user_agent="<?php echo $agent ?>"
 <?php
 foreach ($defaults as $key => $value) {
 	echo "\t\t\t\tGRDefault_". $key ."=\"". $value ."\"\n";
