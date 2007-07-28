@@ -205,31 +205,35 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				$cookie_name = 'user';
 				$cookie_value = $_COOKIE[$cookie_name];
 			break;
+
 			case 'GeekLog':
 				$cookie_name = $_CONF['cookie_session'];
 				$cookie_value = $_COOKIE[$cookie_name];
 			break;
+
 			case 'phpBB2':
 				$cookie_name = $board_config['cookie_name'] . '_sid';
 				$cookie_value = $_COOKIE[$cookie_name];
 			break;
+
 			case 'mambo':
-		case 'joomla':
-			if (!empty($_COOKIE['sessioncookie'])) {
-			// really mambo
-			$cookie1_name = 'sessioncookie';
-			$cookie1_value = $_COOKIE[$cookie1_name];
-				} else {
-			// try to find Joomla cookie (this is shaky)
-			foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
-			if (strlen($cookie1_name) == 32 &&
-				strlen($cookie1_value) == 32) {
-				// this is probably the right cookie...
-				break;
-			}
-			}
-		}
-		break;
+			case 'joomla':
+				if (!empty($_COOKIE['sessioncookie'])) {
+					// really mambo
+					$cookie1_name = 'sessioncookie';
+					$cookie1_value = $_COOKIE[$cookie1_name];
+				}
+				else {
+					// try to find Joomla cookie (this is shaky)
+					foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
+						if (strlen($cookie1_name) == 32 &&
+						strlen($cookie1_value) == 32) {
+							// this is probably the right cookie...
+							break;
+						}
+					}
+				}
+			break;
 		}
 	}
 
@@ -1321,7 +1325,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 	$html = '';
 
 	$return = urlencode($return);
-	
+
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
 			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return, 'cmd' => 'logout'));
