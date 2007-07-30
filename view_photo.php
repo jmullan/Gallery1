@@ -86,7 +86,7 @@ if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
 	$full = NULL;
 }
 
-if (!empty($votes)) {
+if (!empty($votes) && canVote()) {
 	if (!isset($votes[$id]) &&
 		$gallery->album->getPollScale() == 1 &&
 		$gallery->album->getPollType() == "critique")

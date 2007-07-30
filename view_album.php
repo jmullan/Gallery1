@@ -51,7 +51,7 @@ if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->of
 }
 
 /* Vote was given */
-if (!empty($Vote)) {
+if (!empty($Vote) && canVote()) {
 	if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != 'rank') {
 		for ($index=$start; $index < $start+$perPage; $index ++) {
 			$id = $gallery->album->getPhotoId($index);
