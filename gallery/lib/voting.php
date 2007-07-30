@@ -128,23 +128,28 @@ function getVotingID() {
 
 }
 
-function canVote()
-{
+function canVote() {
 	global $gallery;
+	static $canVote;
+
+	if(isset($canVote)) {
+		return $canVote;
+	}
 
 	if ($gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album)) == 0) {
-	       return false;
+	       $canVote = false;
+	}
+	else if ($gallery->album->getVoterClass() == "Everybody") {
+		$canVote = true;
+	}
+	elseif ($gallery->album->getVoterClass() == "Logged in" && $gallery->user->isLoggedIn()) {
+		$canVote = true;
+	}
+	else {
+		$canVote = false;
 	}
 
-	if ($gallery->album->getVoterClass() == "Everybody") {
-		return true;
-	}
-
-	if ($gallery->album->getVoterClass() == "Logged in" && $gallery->user->isLoggedIn()) {
-		return true;
-	}
-
-	return false;
+	return $canVote;
 }
 
 function addPolling ($id, $form_pos=-1, $immediate=true) {

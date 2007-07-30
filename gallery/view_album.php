@@ -86,7 +86,7 @@ if ($previousPage == 0) {
     $first = 1;
 }
 
-if (!empty($Vote)) {
+if (!empty($Vote) && canVote()) {
     if ($gallery->album->getPollScale() == 1 && $gallery->album->getPollType() != "rank") {
         for ($index=$start; $index < $start+$perPage; $index ++) {
             $id=$gallery->album->getPhotoId($index);
@@ -433,7 +433,7 @@ if (!empty($adminOptionHTML)) {
 
 if ($gallery->album->fields["slideshow_type"] != "off" &&
 ($numPhotos != 0 || ($numVisibleItems != 0 && $gallery->album->fields['slideshow_recursive'] == "yes"))) {
-    $iconText = getIconText('display.gif', gTranslate('core', "slideshow"));
+    $iconText = getIconText('display.gif', gTranslate('core', "Slideshow"));
     $iconElements[] = '<a href="'
     . makeGalleryUrl("slideshow.php",
     array("set_albumName" => $albumName)) .'">'. $iconText .'</a>';
@@ -443,7 +443,7 @@ if ($gallery->album->fields["slideshow_type"] != "off" &&
 if ( $numVisibleItems != 0 && ($gallery->app->comments_enabled == 'yes' && $gallery->album->lastCommentDate("no") != -1) &&
 ((isset($gallery->app->comments_overview_for_all) && $gallery->app->comments_overview_for_all == "yes") ||
 $gallery->user->canViewComments($gallery->album))) {
-    $iconText = getIconText('showcomment.gif', gTranslate('core', "view&nbsp;comments"));
+    $iconText = getIconText('showcomment.gif', gTranslate('core', "View&nbsp;comments"));
     $iconElements[] = '<a href="'.
     makeGalleryUrl("view_comments.php",
     array("set_albumName" => $gallery->session->albumName)) . '">'. $iconText .'</a>';
@@ -451,12 +451,12 @@ $gallery->user->canViewComments($gallery->album))) {
 
 if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
     if ($gallery->user->isLoggedIn()) {
-        $iconText = getIconText('exit.gif', gTranslate('core', "logout"));
+        $iconText = getIconText('exit.gif', gTranslate('core', "Logout"));
         $iconElements[] = '<a href="'.
         doCommand("logout", array(), "view_album.php",
         array("page" => $page, 'set_albumName' => $albumName)) .'">'. $iconText .'</a>';
     } else {
-        $iconText = getIconText('identity.gif', gTranslate('core', "login"));
+        $iconText = getIconText('identity.gif', gTranslate('core', "Login"));
         $iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
     }
 }
@@ -519,7 +519,7 @@ if (($gallery->album->getPollType() == "rank") && canVote()) {
         ksort($my_choices);
         $nv_pairs = $gallery->album->getVoteNVPairs();
 
-        $va_poll_box1 = gTranslate('core', "Your votes are :");
+        $va_poll_box1 = gTranslate('core', "Your votes are:");
 
         $pollInfoTable = new galleryTable();
         foreach ($my_choices as $key => $id) {
