@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-06-28 12:32+0200\n"
+"POT-Creation-Date: 2007-08-01 22:23+0200\n"
 "PO-Revision-Date: 2004-08-04 23:10+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -101,489 +101,6 @@ msgstr "Деревянная рамка"
 msgid "A textured wooden frame"
 msgstr "Текстурная дереянная рамка"
 
-#: ../lib/setup.php:140
-msgid "Please retype your password here"
-msgstr "Пожалуйста введите ваш пароль еще раз"
-
-#
-#: ../lib/setup.php:154 ../lib/setup.php:1102
-msgid "Name"
-msgstr "Название"
-
-#: ../lib/setup.php:155 ../lib/setup.php:1102
-msgid "Value"
-msgstr "Значение"
-
-#: ../lib/setup.php:184 ../lib/setup.php:227
-#, fuzzy
-msgid "No content"
-msgstr "Содержимое RSS"
-
-#
-#: ../lib/setup.php:368
-#, fuzzy, php-format
-msgid "Missing value: %s"
-msgstr "Отсутствует значение"
-
-#: ../lib/setup.php:386
-msgid "<b>exec()</b> is enabled on this server."
-msgstr ""
-
-#: ../lib/setup.php:404
-msgid "I can read your <b>.htaccess</b> file."
-msgstr "Я могу прочесть ваш <b>.htaccess</b> файл."
-
-#: ../lib/setup.php:426
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s - в порядке."
-
-#: ../lib/setup.php:442
-msgid "<b>mod_rewrite</b> is enabled."
-msgstr "<b>mod_rewrite</b> включен."
-
-#: ../lib/setup.php:465
-#, fuzzy
-msgid "Can't find <i>jhead</i>."
-msgstr "Не найден <i>jhead</i>"
-
-#: ../lib/setup.php:467
-msgid "<b>jhead</b> binary located."
-msgstr "исполняемый файл <b>jhead</b> установлен."
-
-#: ../lib/setup.php:505
-#, fuzzy
-msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и не установили исполняемый файл composite."
-
-#: ../lib/setup.php:513
-#, fuzzy
-msgid "Netpbm not being used in this installation."
-msgstr "NetPBM не используется в этой установке."
-
-#: ../lib/setup.php:518 ../lib/setup.php:613
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "Не могу проверить этот путь (нет в вашем списке open_basedir)."
-
-#: ../lib/setup.php:552 ../lib/setup.php:630
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "Отсутствует необязательный исполняемый файл %s. %s"
-
-#: ../lib/setup.php:555 ../lib/setup.php:633
-#, php-format
-msgid "Can't find %s!"
-msgstr "Не могу найти %s!"
-
-#: ../lib/setup.php:561 ../lib/setup.php:639
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s не исполняемый!"
-
-#: ../lib/setup.php:571 ../lib/setup.php:578
-#, fuzzy, php-format
-msgid "%d of %d Netpbm binaries located."
-msgstr "%d из %d исполняемых файлов NetPBM установлено."
-
-#: ../lib/setup.php:602
-#, fuzzy
-msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
-msgstr "Без composite галерея не сможет создавать изображения водяных знаков, если только вы не используете NetPBM и не установили исполняемый файл pnmcomp."
-
-#: ../lib/setup.php:608
-#, fuzzy
-msgid "ImageMagick not being used in this installation."
-msgstr "NetPBM не используется в этой установке."
-
-#: ../lib/setup.php:649 ../lib/setup.php:656
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "%d из %d исполняемых файлов ImageMagick установлено."
-
-#: ../lib/setup.php:678
-msgid "Can't find <i>jpegtran</i>!"
-msgstr "Не найден <i>jpegtran</i>!"
-
-#: ../lib/setup.php:680
-msgid "<b>jpegtran</b> binary located."
-msgstr "исполняемый файл <b>jpegtran</b> установлен."
-
-#: ../lib/setup.php:691
-msgid "PHP has <b>GNU gettext</b> support."
-msgstr "PHP поддерживает <b>GNU gettext</b>."
-
-#: ../lib/setup.php:693
-msgid "PHP does not have <b>GNU gettext</b> support."
-msgstr "PHP не поддерживает <b>GNU gettext</b>."
-
-#: ../lib/setup.php:707
-msgid "No languages found."
-msgstr "Не найдено языков."
-
-#: ../lib/setup.php:709
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "Видимо вы не загрузили дополнительные языки. Это не проблема! Галерея будет отображаться на английском языке. Примечание: Если это не так, проверьте, все ли файлы в каталоге locale доступны для веб сервера или обратитесь к группе разработчиков Gallery."
-
-#: ../lib/setup.php:712
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "Количество доступных языков: %d. Если ваш язык отсутсвует, пожалуйста посетите %sстраницу загрузки галереи%s."
-
-#: ../lib/setup.php:735
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "Вы можете проверить наличие последних версий посетив %s."
-
-#: ../lib/setup.php:736
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "Эта версия %s, выпущена %s."
-
-#: ../lib/setup.php:739
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "Данная разработка под названием %s, выпущена %s."
-
-#: ../lib/setup.php:748
-msgid "Please check regularly for updates."
-msgstr "Пожалуйста, регулярно проверяйте наличие новых версий."
-
-#: ../lib/setup.php:767
-msgid "All gallery locales are available on this host."
-msgstr "Все локализации галереи доступны на этом хосте."
-
-#: ../lib/setup.php:770
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "В галереи локализаций: %d. Нет возможности определить ваше местонахождение. Вам вероятно придется вручную выбрать формат даты. "
-
-#: ../lib/setup.php:776
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "Нет возможности правильно выбрать формат даты в %d языках, потому что соответствующие локализации отсутствуют. Для них формат даты вам нужно будет выбрать вручную."
-
-#: ../lib/setup.php:781
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr ""
-
-#: ../lib/setup.php:785
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr ""
-
-#: ../lib/setup.php:787
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr ""
-
-#: ../lib/setup.php:946 ../lib/setup.php:1026 ../setup/config_data.inc:779
-#: ../setup/config_data.inc:789 ../setup/config_data.inc:1331
-msgid "Advanced"
-msgstr "Расширенный"
-
-#: ../lib/setup.php:946
-#, fuzzy
-msgid "<b>System</b> locale selection required."
-msgstr "Требуется выбор <b>системной</b> локализации"
-
-#: ../lib/setup.php:947
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
-
-#: ../lib/setup.php:949 ../lib/setup.php:1029
-#, fuzzy
-msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
-msgstr "Это <b>только</b> для формата даты и времени. Вам нужно только отредактировать языки, которые вы выбрали раньше."
-
-#: ../lib/setup.php:960 ../lib/setup.php:984
-msgid "System locale"
-msgstr "Системная локализация"
-
-#: ../lib/setup.php:1026
-msgid "<b>System</b> locale problems"
-msgstr "Проблемы <b>системной</b> локализации"
-
-#: ../lib/setup.php:1027
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
-
-#: ../lib/setup.php:1070
-msgid "<b>safe_mode</b> is off."
-msgstr "<b>safe_mode</b> отключен."
-
-#: ../lib/setup.php:1082
-msgid "<b>magic_quotes</b> are off."
-msgstr "<b>magic_quotes</b> отключен."
-
-#: ../lib/setup.php:1100
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "В %s, пропущено %s в строке %d с %s %s."
-
-#: ../lib/setup.php:1101 ../lib/setup.php:1110 ../lib/setup.php:1115
-#: ../setup/config_data.inc:1866
-msgid "Vote words and values"
-msgstr "Оценка голоса и его величина"
-
-#: ../lib/setup.php:1109
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "В %s, пусто в строке %d"
-
-#: ../lib/setup.php:1114
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "В %s, для имени %s (строка %d) значение %s должно быть положительным целым числом"
-
-#: ../lib/setup.php:1136
-#, fuzzy
-msgid "<b>register_globals</b> is off."
-msgstr "<b>safe_mode</b> отключен."
-
-#: ../lib/setup.php:1306
-#, fuzzy
-msgid "Your passwords do not match!"
-msgstr "Введенные пароли администратора не совпадают!"
-
-#: ../lib/setup.php:1317 ../setup/check_imagemagick.php:68
-#: ../setup/check_netpbm.php:73
-msgid "OK"
-msgstr "OK"
-
-#
-#: ../lib/setup.php:1322
-msgid "Valid admin email address given."
-msgstr "Указан правильный e-mail адрес администратора."
-
-#
-#: ../lib/setup.php:1329
-#, fuzzy
-msgid "You must specify valid admin email addresses."
-msgstr "Вы должны указать правильный e-mail адрес администратора"
-
-#
-#: ../lib/setup.php:1337
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s - не правильный e-mail адрес."
-
-#
-#: ../lib/setup.php:1346
-msgid "Valid sender email address given."
-msgstr "Указан правильный e-mail адрес отправителя."
-
-#
-#: ../lib/setup.php:1348
-#, fuzzy
-msgid "You must specify a valid sender email address."
-msgstr "Вы должны указать правильный e-mail адрес отправителя"
-
-#: ../lib/setup.php:1351
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "Вы должны включить %s в вашем приветственном e-mail"
-
-#: ../lib/setup.php:1356
-#, fuzzy, php-format
-msgid "You must include %s or %s in your welcome email."
-msgstr "Вы должны включить %s или %s в вашем приветственном e-mail"
-
-#: ../lib/setup.php:1380
-#, php-format
-msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-msgstr "Следующие файлы устарели, испорчены или отсутствуют:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
-
-#: ../lib/setup.php:1382
-msgid "This should be fixed before proceeding"
-msgstr "Это должно быть устранено перед тем как продолджить"
-
-#: ../lib/setup.php:1383 ../lib/setup.php:1387
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "Воспользуйтесь %sпроверкой версий%s для подробной информации."
-
-#: ../lib/setup.php:1386
-#, fuzzy, php-format
-msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."
-msgstr "%d файлов новее чем ожидалось. Это нормально, если вы используете pre-release, beta, CVS или измененный код."
-
-#: ../lib/setup.php:1391
-msgid "All tested files up-to-date."
-msgstr "Все протестированные файлы последней версии."
-
-#: ../lib/setup.php:1393
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "Все %d протестированных файлов обновлены."
-
-#: ../lib/setup.php:1402
-#, fuzzy, php-format
-msgid "this is new in version %s."
-msgstr "это новинка в версии %s"
-
-#: ../lib/setup.php:1407
-#, php-format
-msgid "Return to %s."
-msgstr "Вернуться в %s."
-
-#
-#: ../lib/setup.php:1408
-msgid "Configuration Wizard"
-msgstr "мастер конфигурации"
-
-#: ../lib/setup.php:1457
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "Вы должны указать пароль для учетной записи %s."
-
-#: ../lib/setup.php:1462
-#, fuzzy, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
-msgstr "Видимо вы уже настраивали галерею, потому что уже есть одна учетная запись администратора, но не с именем %s."
-
-#: ../lib/setup.php:1465
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "Видимо вы уже настраивали галерею, потому что уже есть %d учетные записи администратора, но нет ниодного с именем %s."
-
-#: ../lib/setup.php:1467
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "Вы не должны вводить пароль. Но если вы это сделали, галерея создаст учетную запись администратора названную %s с этим паролем."
-
-#: ../lib/setup.php:1476
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "По всей видимости вы уже сконфигурировали галерею, поскольку пользователь %s уже существует. Вы не должны вводить пароль. Но если вы это сделаете, галерея изменит пароль для пользователя %s."
-
-#: ../lib/setup.php:1483
-msgid "Admin password"
-msgstr "Пароль администратора"
-
-#: ../lib/setup.php:1498 ../lib/setup.php:1500 ../lib/setup.php:1502
-#: ../lib/setup.php:1510
-msgid "Full Name"
-msgstr "Полное имя"
-
-#: ../lib/setup.php:1498 ../lib/setup.php:1500 ../lib/setup.php:1504
-#: ../lib/setup.php:1512 ../setup/login.inc:93
-msgid "Username"
-msgstr "Имя пользователя"
-
-#: ../lib/setup.php:1506
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "Полное имя с ссылкой для отправки e-mail (mailto:)"
-
-#: ../lib/setup.php:1508
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "Имя пользователя с ссылкой для отправки e-mail (mailto:)"
-
-#
-#: ../lib/setup.php:1510 ../lib/setup.php:1512
-msgid "email address"
-msgstr "e-mail адрес"
-
-#: ../lib/setup.php:1532
-msgid "File missing or unreadable.  Please install then re-run this test."
-msgstr "Файлы отсутствуют или нечитаются. Пожалуйста установите затем перезапустите этот тест."
-
-#: ../lib/setup.php:1536
-#, php-format
-msgid "Please ensure that %s is the latest version."
-msgstr "Пожалуйста удостоверьтесь, что %s  - самая последняя версия."
-
-#: ../lib/setup.php:1541
-#, php-format
-msgid "Testing status of %d files."
-msgstr "Состояние тестирования из %d файлов."
-
-#: ../lib/setup.php:1548
-#, php-format
-msgid "Cannot read file %s."
-msgstr "Не могу прочесть файл %s."
-
-#: ../lib/setup.php:1550
-msgid "File missing or unreadable."
-msgstr "Файл отсутствует или нечитается."
-
-#: ../lib/setup.php:1570
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "Информация о версии не обнаружена в %s. По всей видимости файл имеет старую версию или испорчен."
-
-#: ../lib/setup.php:1572
-msgid "Missing version"
-msgstr "Отсутствует версия"
-
-#: ../lib/setup.php:1581
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "Проблема с %s. Ожидаемая версия %s (или выше), но обнаружена %s."
-
-#: ../lib/setup.php:1583
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "Ожидаемая версия %s (или выше), но обнаружена %s."
-
-#: ../lib/setup.php:1587
-#, fuzzy, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
-msgstr "%s OK. Фактическая версия (%s) новее чем ожидавшаяся версия (%s)"
-
-#: ../lib/setup.php:1589
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "Ожидаемая версия %s, но обнаружена %s."
-
-#: ../lib/setup.php:1593
-#, php-format
-msgid "%s OK"
-msgstr "%s OK"
-
-#: ../lib/setup.php:1595
-#, php-format
-msgid "Found expected version %s."
-msgstr "Обнаружена ожидаемая версия %s."
-
-#: ../lib/setup.php:1725
-msgid "This email will be sent when new accounts are created."
-msgstr "Это сообщение будет отправлено при создании новой учетной записи."
-
-#: ../lib/setup.php:1726
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "Оставьте не заполненным эту часть, чтобы получать встроенное сообщение, которое можно будет перевести на другие языки. Встроенное сообщение:"
-
-#: ../lib/setup.php:1727
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "Следующие файлы обновлены."
-
-#: ../lib/setup.php:1739
-msgid "Current used welcome mail text"
-msgstr ""
-
-#: ../lib/setup.php:1791 ../setup/check_netpbm.php:250
-#, php-format
-msgid "File %s does not exist."
-msgstr "Файл %s не существует."
-
-#: ../lib/setup.php:1800 ../setup/check_netpbm.php:261
-#, php-format
-msgid "Expected status: %s, but actually received status %s."
-msgstr "Ожидаемое состояние: %s, но действительно полученное состояние %s."
-
-#: ../lib/setup.php:1813
-#, fuzzy
-msgid "can't detect version on Windows."
-msgstr "не могу определить версию под Windows"
-
-#
-#: ../lib/setup.php:1824 ../setup/check_netpbm.php:301
-#, php-format
-msgid "OK!  Version: %s"
-msgstr "OK!  Версия: %s"
-
 #
 #: ../setup/check.inc:29 ../setup/confirm.inc:28 ../setup/constants.inc:30
 #: ../setup/defaults.inc:27
@@ -626,30 +143,36 @@ msgid "Having problems?  Try the %s and %s."
 msgstr "Проблемы? Вам помогут %s и %s."
 
 #
-#: ../setup/check.inc:56 ../setup/check.inc:57
-msgid "Success"
-msgstr "Успешно"
+#: ../setup/check.inc:56 ../setup/check.inc:57 ../setup/write.inc:185
+msgid "Success!"
+msgstr "Успех!"
 
 #
 #: ../setup/check.inc:61 ../setup/check.inc:62
 #, fuzzy
-msgid "Warning, but optional"
+msgid "Warning, but optional."
 msgstr "это необязательно"
 
 #
 #: ../setup/check.inc:66 ../setup/check.inc:67
 #, fuzzy
-msgid "Serious warning, but optional"
+msgid "Serious warning, but optional."
 msgstr "Серьезное предупреждние"
 
 #
 #: ../setup/check.inc:71 ../setup/check.inc:72
 #, fuzzy
-msgid "Serious warning, no go !"
+msgid "Serious warning, no go!"
 msgstr "Серьезное предупреждние"
 
 #
-#: ../setup/check.inc:76 ../setup/check.inc:77 ../setup/write.inc:244
+#: ../setup/check.inc:76
+#, fuzzy
+msgid "Failure!"
+msgstr "Отказ"
+
+#
+#: ../setup/check.inc:77 ../setup/write.inc:244
 msgid "Failure"
 msgstr "Отказ"
 
@@ -715,6 +238,10 @@ msgstr "Загрузка файлов конфигурации. Если вы видите ошибку, то вероятно вы не з
 #: ../setup/check_imagemagick.php:55 ../setup/check_netpbm.php:59
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Кажется, что вы не настроили вашу ГАЛЕРЕЮ. Пожалуйста запустите и завершите мастер конфигурации."
+
+#: ../setup/check_imagemagick.php:68 ../setup/check_netpbm.php:73
+msgid "OK"
+msgstr "OK"
 
 #
 #: ../setup/check_imagemagick.php:75 ../setup/check_netpbm.php:83
@@ -885,9 +412,25 @@ msgstr "%sЩелкните здесь%s чтобы скрыть подробности"
 msgid "If you see errors, you should %sclick here%s to see more details"
 msgstr "Если вы видите ошибки, вы должны %sщелкнуть здесь%s, чтобы увидить более подробную информацию"
 
+#: ../setup/check_netpbm.php:250
+#, php-format
+msgid "File %s does not exist."
+msgstr "Файл %s не существует."
+
+#: ../setup/check_netpbm.php:261
+#, php-format
+msgid "Expected status: %s, but actually received status %s."
+msgstr "Ожидаемое состояние: %s, но действительно полученное состояние %s."
+
 #: ../setup/check_netpbm.php:275
 msgid "can't detect version on Windows"
 msgstr "не могу определить версию под Windows"
+
+#
+#: ../setup/check_netpbm.php:301
+#, php-format
+msgid "OK!  Version: %s"
+msgstr "OK!  Версия: %s"
 
 #
 #: ../setup/check_versions.php:30 ../setup/check_versions.php:39
@@ -1049,7 +592,7 @@ msgid "The PHP option 'register_globals' is enabled on your server. Gallery high
 msgstr ""
 
 #: ../setup/config_data.inc:125
-msgid "PHPs safe mode disabled"
+msgid "PHP's safe mode disabled"
 msgstr ""
 
 #: ../setup/config_data.inc:126
@@ -1067,7 +610,7 @@ msgid "In some rare circumstances, Gallery thinks that Safe Mode is on, when it'
 msgstr "<b>Примечание</b>: В самых редких случаях, галерея думает, что безопасный режим включен, хотя на самом деле он выключен. Вы можете увидеть это сами посмотрев в колонку <i>Local</i> в строке <i>safe_mode</i> на странице %sPHP Info%s. Если там указано 'Off' или '0', или 'undefined' тогда возможно галерея сделала ошибку и вы можете продолжить. Если нет, тогда вы должны решить эту проблему прежде чем использовать галерею."
 
 #: ../setup/config_data.inc:142
-msgid "PHPs exec() function enabled"
+msgid "PHP's exec() function enabled"
 msgstr ""
 
 #: ../setup/config_data.inc:143
@@ -1079,7 +622,7 @@ msgid "The <b>exec()</b> function is disabled on your server.  Gallery will not 
 msgstr ""
 
 #: ../setup/config_data.inc:149
-msgid ".htaccess processed by apache"
+msgid ".htaccess processed by Apache"
 msgstr ""
 
 #: ../setup/config_data.inc:150
@@ -1096,7 +639,7 @@ msgstr "Если ваш PHP работает в режиме CGI, это сообщение неизбежно."
 
 #: ../setup/config_data.inc:160
 #, fuzzy
-msgid "PHPs magic quotes off"
+msgid "PHP's magic quotes off"
 msgstr "<b>magic_quotes</b> отключен."
 
 #: ../setup/config_data.inc:162
@@ -1250,8 +793,9 @@ msgid "Gallery"
 msgstr "Галерея"
 
 #: ../setup/config_data.inc:276
-msgid "Use Icons ?"
-msgstr ""
+#, fuzzy
+msgid "Use Icons?"
+msgstr "Использовать %s"
 
 #: ../setup/config_data.inc:277
 msgid "You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."
@@ -1568,7 +1112,7 @@ msgstr "Основная страница галереи"
 #
 #: ../setup/config_data.inc:544
 #, fuzzy
-msgid "Show the album tree ?"
+msgid "Show the album tree?"
 msgstr "Показывать дерево альбомов"
 
 #: ../setup/config_data.inc:545
@@ -1767,6 +1311,11 @@ msgstr "Показывать флаги?"
 #: ../setup/config_data.inc:773
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "В 3 режиме вы можете выбрать отображать национальные флаги для доступных языков, вместо небольшого выпадающего меню."
+
+#: ../setup/config_data.inc:779 ../setup/config_data.inc:789
+#: ../setup/config_data.inc:1331
+msgid "Advanced"
+msgstr "Расширенный"
 
 #: ../setup/config_data.inc:779
 msgid "Format for date strings."
@@ -2203,7 +1752,7 @@ msgstr ""
 
 #: ../setup/config_data.inc:1127
 #, fuzzy
-msgid "Watermarking is not possible in this installation !"
+msgid "Watermarking is not possible in this installation!"
 msgstr "NetPBM не используется в этой установке."
 
 #
@@ -2792,12 +2341,14 @@ msgstr ""
 msgid "If you want to use mPUSH cellular photo service you can either use your own account, or leave this to 'gallery'. Visit this link to %screate your own account%s."
 msgstr ""
 
+#
 #: ../setup/config_data.inc:1673
-msgid "Enable Ecards ?"
-msgstr ""
+#, fuzzy
+msgid "Enable Ecards?"
+msgstr "Разрешить email"
 
 #: ../setup/config_data.inc:1674
-msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail"
+msgid "Set this to 'yes' to allow users to send a picure as eCard via eMail."
 msgstr ""
 
 #
@@ -2905,7 +2456,7 @@ msgstr "Конфигурация опроса"
 
 #: ../setup/config_data.inc:1780
 #, fuzzy, php-format
-msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version then %s."
+msgid "It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version than %s."
 msgstr "Эти настройки позволят посетителям давать оценки содержанию альбома. Вы установите значения по умолчанию для опросов, которые будут относиться для новых альбомов, а также для всех существующих альбомов, если вы обновляете галерею и ее версия ранее %s."
 
 #: ../setup/config_data.inc:1783
@@ -3025,6 +2576,10 @@ msgstr "Горизонтально"
 #: ../setup/config_data.inc:1863
 msgid "Vertical"
 msgstr "Вертикально"
+
+#: ../setup/config_data.inc:1866
+msgid "Vote words and values"
+msgstr "Оценка голоса и его величина"
 
 #: ../setup/config_data.inc:1867
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
@@ -3294,8 +2849,8 @@ msgstr ""
 
 #
 #: ../setup/confirm.inc:335
-#, php-format
-msgid "%s: <b>%s</b> must be an enabled for this feature to function!"
+#, fuzzy, php-format
+msgid "%s: <b>%s</b> must be enabled for this feature to function!"
 msgstr "%s: <b>%s</b> должно быть включено для этой возможности, для работоспособности!"
 
 #: ../setup/confirm.inc:360
@@ -3601,6 +3156,10 @@ msgstr "Вы должны войти под администратором, чтобы редактировать конфигурацию эт
 msgid "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."
 msgstr ""
 
+#: ../setup/login.inc:93
+msgid "Username"
+msgstr "Имя пользователя"
+
 #: ../setup/login.inc:97
 msgid "Password"
 msgstr "Пароль"
@@ -3676,11 +3235,6 @@ msgstr "Пароль пользователя %s был изменен."
 msgid "An account called %s has been created for you with the password you specified."
 msgstr "Учетная запись названная %s создана для вас с паролем, который вы определили."
 
-#
-#: ../setup/write.inc:185
-msgid "Success!"
-msgstr "Успех!"
-
 #: ../setup/write.inc:188
 msgid "Your configuration has been successfully saved!"
 msgstr "Ваша конфигурация успешно сохранена!"
@@ -3732,3 +3286,312 @@ msgstr "У вас отсутствует %s или %s."
 #: ../setup/write.inc:252
 msgid "Review Settings"
 msgstr "Просмотреть настройки"
+
+#~ msgid "Please retype your password here"
+#~ msgstr "Пожалуйста введите ваш пароль еще раз"
+
+#
+#~ msgid "Name"
+#~ msgstr "Название"
+
+#~ msgid "Value"
+#~ msgstr "Значение"
+
+#, fuzzy
+#~ msgid "No content"
+#~ msgstr "Содержимое RSS"
+
+#
+#, fuzzy
+#~ msgid "Missing value: %s"
+#~ msgstr "Отсутствует значение"
+
+#~ msgid "I can read your <b>.htaccess</b> file."
+#~ msgstr "Я могу прочесть ваш <b>.htaccess</b> файл."
+
+#~ msgid "PHP v%s is OK."
+#~ msgstr "PHP v%s - в порядке."
+
+#~ msgid "<b>mod_rewrite</b> is enabled."
+#~ msgstr "<b>mod_rewrite</b> включен."
+
+#, fuzzy
+#~ msgid "Can't find <i>jhead</i>."
+#~ msgstr "Не найден <i>jhead</i>"
+
+#~ msgid "<b>jhead</b> binary located."
+#~ msgstr "исполняемый файл <b>jhead</b> установлен."
+
+#, fuzzy
+#~ msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#~ msgstr "Без pnmcomp галерея не сможет создавать изображения водяных знаков, если только вы не используете ImageMagick и не установили исполняемый файл composite."
+
+#, fuzzy
+#~ msgid "Netpbm not being used in this installation."
+#~ msgstr "NetPBM не используется в этой установке."
+
+#~ msgid "Cannot verify this path (it's not in your open_basedir list)."
+#~ msgstr "Не могу проверить этот путь (нет в вашем списке open_basedir)."
+
+#~ msgid "Missing optional binary %s. %s"
+#~ msgstr "Отсутствует необязательный исполняемый файл %s. %s"
+
+#~ msgid "Can't find %s!"
+#~ msgstr "Не могу найти %s!"
+
+#~ msgid "%s is not executable!"
+#~ msgstr "%s не исполняемый!"
+
+#, fuzzy
+#~ msgid "%d of %d Netpbm binaries located."
+#~ msgstr "%d из %d исполняемых файлов NetPBM установлено."
+
+#, fuzzy
+#~ msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
+#~ msgstr "Без composite галерея не сможет создавать изображения водяных знаков, если только вы не используете NetPBM и не установили исполняемый файл pnmcomp."
+
+#, fuzzy
+#~ msgid "ImageMagick not being used in this installation."
+#~ msgstr "NetPBM не используется в этой установке."
+
+#~ msgid "%d of %d ImageMagick binaries located."
+#~ msgstr "%d из %d исполняемых файлов ImageMagick установлено."
+
+#~ msgid "Can't find <i>jpegtran</i>!"
+#~ msgstr "Не найден <i>jpegtran</i>!"
+
+#~ msgid "<b>jpegtran</b> binary located."
+#~ msgstr "исполняемый файл <b>jpegtran</b> установлен."
+
+#~ msgid "PHP has <b>GNU gettext</b> support."
+#~ msgstr "PHP поддерживает <b>GNU gettext</b>."
+
+#~ msgid "PHP does not have <b>GNU gettext</b> support."
+#~ msgstr "PHP не поддерживает <b>GNU gettext</b>."
+
+#~ msgid "No languages found."
+#~ msgstr "Не найдено языков."
+
+#~ msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+#~ msgstr "Видимо вы не загрузили дополнительные языки. Это не проблема! Галерея будет отображаться на английском языке. Примечание: Если это не так, проверьте, все ли файлы в каталоге locale доступны для веб сервера или обратитесь к группе разработчиков Gallery."
+
+#~ msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+#~ msgstr "Количество доступных языков: %d. Если ваш язык отсутсвует, пожалуйста посетите %sстраницу загрузки галереи%s."
+
+#~ msgid "You can check for more recent versions by visiting %s."
+#~ msgstr "Вы можете проверить наличие последних версий посетив %s."
+
+#~ msgid "This version of %s was released on %s."
+#~ msgstr "Эта версия %s, выпущена %s."
+
+#~ msgid "This is a development build of %s that was released on %s."
+#~ msgstr "Данная разработка под названием %s, выпущена %s."
+
+#~ msgid "Please check regularly for updates."
+#~ msgstr "Пожалуйста, регулярно проверяйте наличие новых версий."
+
+#~ msgid "All gallery locales are available on this host."
+#~ msgstr "Все локализации галереи доступны на этом хосте."
+
+#~ msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+#~ msgstr "В галереи локализаций: %d. Нет возможности определить ваше местонахождение. Вам вероятно придется вручную выбрать формат даты. "
+
+#~ msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+#~ msgstr "Нет возможности правильно выбрать формат даты в %d языках, потому что соответствующие локализации отсутствуют. Для них формат даты вам нужно будет выбрать вручную."
+
+#, fuzzy
+#~ msgid "<b>System</b> locale selection required."
+#~ msgstr "Требуется выбор <b>системной</b> локализации"
+
+#~ msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+#~ msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
+
+#, fuzzy
+#~ msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
+#~ msgstr "Это <b>только</b> для формата даты и времени. Вам нужно только отредактировать языки, которые вы выбрали раньше."
+
+#~ msgid "System locale"
+#~ msgstr "Системная локализация"
+
+#~ msgid "<b>System</b> locale problems"
+#~ msgstr "Проблемы <b>системной</b> локализации"
+
+#~ msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+#~ msgstr "Имеется больше одной подходящей <b>системной</b> локализации, установленной на вашем компьютере для следующих языков. Пожалуйста, выберите один, наиболее подходящий на ваш взгляд."
+
+#~ msgid "<b>safe_mode</b> is off."
+#~ msgstr "<b>safe_mode</b> отключен."
+
+#~ msgid "<b>magic_quotes</b> are off."
+#~ msgstr "<b>magic_quotes</b> отключен."
+
+#~ msgid "In %s, missing %s in row %d with %s %s."
+#~ msgstr "В %s, пропущено %s в строке %d с %s %s."
+
+#~ msgid "In %s, blank in row %d."
+#~ msgstr "В %s, пусто в строке %d"
+
+#, fuzzy
+#~ msgid "In %s, for name %s (row %d) value %s should be a positive whole number."
+#~ msgstr "В %s, для имени %s (строка %d) значение %s должно быть положительным целым числом"
+
+#, fuzzy
+#~ msgid "<b>register_globals</b> is off."
+#~ msgstr "<b>safe_mode</b> отключен."
+
+#, fuzzy
+#~ msgid "Your passwords do not match!"
+#~ msgstr "Введенные пароли администратора не совпадают!"
+
+#
+#~ msgid "Valid admin email address given."
+#~ msgstr "Указан правильный e-mail адрес администратора."
+
+#
+#, fuzzy
+#~ msgid "You must specify valid admin email addresses."
+#~ msgstr "Вы должны указать правильный e-mail адрес администратора"
+
+#
+#~ msgid "%s is not a valid email address."
+#~ msgstr "%s - не правильный e-mail адрес."
+
+#
+#~ msgid "Valid sender email address given."
+#~ msgstr "Указан правильный e-mail адрес отправителя."
+
+#
+#, fuzzy
+#~ msgid "You must specify a valid sender email address."
+#~ msgstr "Вы должны указать правильный e-mail адрес отправителя"
+
+#, fuzzy
+#~ msgid "You must include %s in your welcome email."
+#~ msgstr "Вы должны включить %s в вашем приветственном e-mail"
+
+#, fuzzy
+#~ msgid "You must include %s or %s in your welcome email."
+#~ msgstr "Вы должны включить %s или %s в вашем приветственном e-mail"
+
+#~ msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+#~ msgstr "Следующие файлы устарели, испорчены или отсутствуют:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
+
+#, fuzzy
+#~ msgid "This should be fixed before proceeding."
+#~ msgstr "Это должно быть устранено перед тем как продолджить"
+
+#~ msgid "Look at %sCheck Versions%s for more details."
+#~ msgstr "Воспользуйтесь %sпроверкой версий%s для подробной информации."
+
+#, fuzzy
+#~ msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."
+#~ msgstr "%d файлов новее чем ожидалось. Это нормально, если вы используете pre-release, beta, CVS или измененный код."
+
+#~ msgid "All tested files up-to-date."
+#~ msgstr "Все протестированные файлы последней версии."
+
+#~ msgid "All %d tested files up-to-date."
+#~ msgstr "Все %d протестированных файлов обновлены."
+
+#, fuzzy
+#~ msgid "this is new in version %s."
+#~ msgstr "это новинка в версии %s"
+
+#~ msgid "Return to %s."
+#~ msgstr "Вернуться в %s."
+
+#
+#~ msgid "Configuration Wizard"
+#~ msgstr "мастер конфигурации"
+
+#~ msgid "You must enter a password for the %s account."
+#~ msgstr "Вы должны указать пароль для учетной записи %s."
+
+#, fuzzy
+#~ msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
+#~ msgstr "Видимо вы уже настраивали галерею, потому что уже есть одна учетная запись администратора, но не с именем %s."
+
+#~ msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+#~ msgstr "Видимо вы уже настраивали галерею, потому что уже есть %d учетные записи администратора, но нет ниодного с именем %s."
+
+#~ msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+#~ msgstr "Вы не должны вводить пароль. Но если вы это сделали, галерея создаст учетную запись администратора названную %s с этим паролем."
+
+#~ msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+#~ msgstr "По всей видимости вы уже сконфигурировали галерею, поскольку пользователь %s уже существует. Вы не должны вводить пароль. Но если вы это сделаете, галерея изменит пароль для пользователя %s."
+
+#~ msgid "Admin password"
+#~ msgstr "Пароль администратора"
+
+#~ msgid "Full Name"
+#~ msgstr "Полное имя"
+
+#~ msgid "Full name that you can click on to send email (mailto:)"
+#~ msgstr "Полное имя с ссылкой для отправки e-mail (mailto:)"
+
+#~ msgid "Username that you can click on to send email (mailto:)"
+#~ msgstr "Имя пользователя с ссылкой для отправки e-mail (mailto:)"
+
+#
+#~ msgid "email address"
+#~ msgstr "e-mail адрес"
+
+#~ msgid "File missing or unreadable.  Please install then re-run this test."
+#~ msgstr "Файлы отсутствуют или нечитаются. Пожалуйста установите затем перезапустите этот тест."
+
+#~ msgid "Please ensure that %s is the latest version."
+#~ msgstr "Пожалуйста удостоверьтесь, что %s  - самая последняя версия."
+
+#~ msgid "Testing status of %d files."
+#~ msgstr "Состояние тестирования из %d файлов."
+
+#~ msgid "Cannot read file %s."
+#~ msgstr "Не могу прочесть файл %s."
+
+#~ msgid "File missing or unreadable."
+#~ msgstr "Файл отсутствует или нечитается."
+
+#~ msgid "Version information not found in %s.  File must be old version or corrupted."
+#~ msgstr "Информация о версии не обнаружена в %s. По всей видимости файл имеет старую версию или испорчен."
+
+#~ msgid "Missing version"
+#~ msgstr "Отсутствует версия"
+
+#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+#~ msgstr "Проблема с %s. Ожидаемая версия %s (или выше), но обнаружена %s."
+
+#~ msgid "Expected version %s (or greater) but found %s."
+#~ msgstr "Ожидаемая версия %s (или выше), но обнаружена %s."
+
+#, fuzzy
+#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
+#~ msgstr "%s OK. Фактическая версия (%s) новее чем ожидавшаяся версия (%s)"
+
+#~ msgid "Expected version %s but found %s."
+#~ msgstr "Ожидаемая версия %s, но обнаружена %s."
+
+#, fuzzy
+#~ msgid "%s OK."
+#~ msgstr "%s OK"
+
+#~ msgid "Found expected version %s."
+#~ msgstr "Обнаружена ожидаемая версия %s."
+
+#~ msgid "This email will be sent when new accounts are created."
+#~ msgstr "Это сообщение будет отправлено при создании новой учетной записи."
+
+#, fuzzy
+#~ msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+#~ msgstr "Оставьте не заполненным эту часть, чтобы получать встроенное сообщение, которое можно будет перевести на другие языки. Встроенное сообщение:"
+
+#, fuzzy
+#~ msgid "The following placeholder can be used:"
+#~ msgstr "Следующие файлы обновлены."
+
+#, fuzzy
+#~ msgid "can't detect version on Windows."
+#~ msgstr "не могу определить версию под Windows"
+
+#
+#~ msgid "Success"
+#~ msgstr "Успешно"
