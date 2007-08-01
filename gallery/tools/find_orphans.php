@@ -207,8 +207,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 } 
     includeHtmlWrap("gallery.header");
     $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("Return to admin page") .'</a>] ';
+    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
 
     $adminbox["commands"] = $adminCommands;
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];

@@ -69,17 +69,17 @@ $javascriptSet = true;
     $isPhoto = false;
 
     if ($gallery->album->isAlbum($i)) {
-    	$label = _("Album");
+    	$label = gTranslate('core', "Album");
     	if(!isset($myAlbum)) {
     		$myAlbum = $gallery->album->getNestedAlbum($i, true);
     	}
     	$isAlbum = true;
     }
     elseif ($gallery->album->isMovieByIndex($i)) {
-    	$label = _("Movie");
+    	$label = gTranslate('core', "Movie");
     	$isMovie = true;
     } else {
-    	$label = _("Photo");
+    	$label = gTranslate('core', "Photo");
 		$isPhoto = true;
     }
 
@@ -102,35 +102,35 @@ $javascriptSet = true;
     if (isset($canModify)) {
     	if ($isPhoto) {
     		$options[] = array(
-	    		'pure_text' => _("Edit Text"),
-	    		'text' => getIconText('kcmfontinst.gif', _("Edit Text"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Edit Text"),
+	    		'text' => getIconText('kcmfontinst.gif', gTranslate('core', "Edit Text"), $override, $withIcons),
 	    		'value' => showChoice2("edit_caption.php", array("index" => $i))
     		);
     		$options[] = array(
-	    		'pure_text' => _("Edit Thumbnail"),
-	    		'text' => getIconText('thumbnail.gif', _("Edit Thumbnail"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Edit Thumbnail"),
+	    		'text' => getIconText('thumbnail.gif', gTranslate('core', "Edit Thumbnail"), $override, $withIcons),
 	    		'value' => showChoice2('edit_thumb.php', array('index' => $i))
     		);
     		$options[] = array(
-	    		'pure_text' => sprintf(_("Rotate/Flip"), $label),
-	    		'text' => getIconText('reload.gif', sprintf(_("Rotate/Flip"), $label), $override, $withIcons),
+	    		'pure_text' => sprintf(gTranslate('core', "Rotate/Flip"), $label),
+	    		'text' => getIconText('reload.gif', sprintf(gTranslate('core', "Rotate/Flip"), $label), $override, $withIcons),
 	    		'value' => showChoice2('rotate_photo.php', array('index' => $i))
     		);
     		$options[] = array(
-	    		'pure_text' => _("Resize"),
-	    		'text' => getIconText('window_fullscreen.gif', _("Resize"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Resize"),
+	    		'text' => getIconText('window_fullscreen.gif', gTranslate('core', "Resize"), $override, $withIcons),
 	    		'value' => showChoice2('resize_photo.php', array('index' => $i))
     		);
     		if (!empty($gallery->app->watermarkDir)) {
     			$options[] = array(
-	    			'pure_text' => _("Watermark"),
-	    			'text' => getIconText('camera.gif', _("Watermark"), $override, $withIcons),
+	    			'pure_text' => gTranslate('core', "Watermark"),
+	    			'text' => getIconText('camera.gif', gTranslate('core', "Watermark"), $override, $withIcons),
 	    			'value' =>  showChoice2('edit_watermark.php', array('index' => $i))
     			);
     		}
     		$options[] = array(
-	    			'pure_text' => _("ImageMap"),
-	    			'text' => getIconText('behavior-capplet.gif', _("ImageMap"), $override, $withIcons),
+	    			'pure_text' => gTranslate('core', "ImageMap"),
+	    			'text' => getIconText('behavior-capplet.gif', gTranslate('core', "ImageMap"), $override, $withIcons),
 	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
 				'attrs' => array('class' => 'url')
 
@@ -138,33 +138,33 @@ $javascriptSet = true;
     	}
 
     	$options[] = array(
-		'pure_text' => _("Move"),
-		'text' => getIconText('tab_duplicate.gif', _("Move"), $override, $withIcons),
+		'pure_text' => gTranslate('core', "Move"),
+		'text' => getIconText('tab_duplicate.gif', gTranslate('core', "Move"), $override, $withIcons),
 		'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0))
     	);
 
     	/* ----- Item is subalbum ----- */
     	if ($isAlbum) {
     		$options[] = array(
-	    		'pure_text' => _('Edit Title'),
-	    		'text' => getIconText('', _('Edit Title'), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', 'Edit Title'),
+	    		'text' => getIconText('', gTranslate('core', 'Edit Title'), $override, $withIcons),
 	    		'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "title"))
     		);
     		$options[] = array(
-	    		'pure_text' => _('Edit Description'),
-	    		'text' => getIconText('', _('Edit Description'), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', 'Edit Description'),
+	    		'text' => getIconText('', gTranslate('core', 'Edit Description'), $override, $withIcons),
 	    		'value' =>  showChoice2("edit_field.php", array("set_albumName" => $myAlbum->fields["name"], "field" => "description"))
     		);
 
     		$options[] = array(
-	    		'pure_text' => _("Rename Album"),
-	    		'text' => getIconText('', _("Rename Album"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Rename Album"),
+	    		'text' => getIconText('', gTranslate('core', "Rename Album"), $override, $withIcons),
 	    		'value' => showChoice2("rename_album.php", array("set_albumName" => $myAlbum->fields["name"], "index" => $i))
     		);
 
     		$options[] = array(
-	    		'pure_text' => _("Reset Counter"),
-	    		'text' => getIconText('', _("Reset Counter"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Reset Counter"),
+	    		'text' => getIconText('', gTranslate('core', "Reset Counter"), $override, $withIcons),
 	    		'value' => showChoice2("do_command.php",
 		    		array(
 			    		'cmd' => 'reset-album-clicks',
@@ -175,45 +175,45 @@ $javascriptSet = true;
     		);
 
     		$options[] = array(
-	    		'pure_text' => _("Permissions"),
-	    		'text' => getIconText('decrypted.gif', _("Permissions"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Permissions"),
+	    		'text' => getIconText('decrypted.gif', gTranslate('core', "Permissions"), $override, $withIcons),
 	    		'value' => showChoice2("album_permissions.php", array("set_albumName" => $myAlbum->fields["name"]))
     		);
 
     		// Watermarking support is enabled and user is allowed to watermark images/albums /
     		if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
     			$options[] = array(
-	    			'pure_text' => _("Watermark Album"),
-	    			'text' => getIconText('', _("Watermark Album"), $override, $withIcons),
+	    			'pure_text' => gTranslate('core', "Watermark Album"),
+	    			'text' => getIconText('', gTranslate('core', "Watermark Album"), $override, $withIcons),
 	    			'value' => showChoice2("watermark_album.php", array("set_albumName" => $myAlbum->fields["name"]))
     			);
     		}
     		if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
     			$options[] = array(
-	    			'pure_text' => _("View Comments"),
-	    			'text' => getIconText('', _("View Comments"), $override, $withIcons),
+	    			'pure_text' => gTranslate('core', "View Comments"),
+	    			'text' => getIconText('', gTranslate('core', "View Comments"), $override, $withIcons),
 	    			'value' => showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url")
     			);
     		}
     	}
     	if (! $isAlbum) {
     	    $options[] = array(
-	    		'pure_text' => _("Copy"),
-	    		'text' => getIconText('editcopy.gif', _("Copy"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Copy"),
+	    		'text' => getIconText('editcopy.gif', gTranslate('core', "Copy"), $override, $withIcons),
 	    		'value' => showChoice2("copy_photo.php", array("index" => $i))
     	    );
     	}
 
     	if ($gallery->album->isHidden($i)) {
     		$options[] = array(
-	    		'pure_text' => _("Show"),
-	    		'text' => getIconText('idea.gif', _("Show"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Show"),
+	    		'text' => getIconText('idea.gif', gTranslate('core', "Show"), $override, $withIcons),
 	    		'value' => showChoice2("do_command.php", array("cmd" => "show", "index" => $i))
     		);
     	} else {
     		$options[] = array(
-	    		'pure_text' => _("Hide"),
-	    		'text' => getIconText('no_idea.gif', _("Hide"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Hide"),
+	    		'text' => getIconText('no_idea.gif', gTranslate('core', "Hide"), $override, $withIcons),
 	    		'value' => showChoice2("do_command.php", array("cmd" => "hide", "index" => $i))
     		);
     	}
@@ -221,16 +221,16 @@ $javascriptSet = true;
 
     if ($gallery->user->canWriteToAlbum($gallery->album)) {
     	$options[] = array(
-	    	'pure_text' => _("Reorder"),
-	    	'text' => getIconText('tab_duplicate.gif',_("Reorder"), $override, $withIcons),
+	    	'pure_text' => gTranslate('core', "Reorder"),
+	    	'text' => getIconText('tab_duplicate.gif',gTranslate('core', "Reorder"), $override, $withIcons),
 	    	'value' => showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1))
     	);
 
     	/* ----- Item is photo, or subalbum with highlight ----- */
     	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
     		$options[] = array(
-	    		'pure_text' => _("Set as highlight"),
-	    		'text' => getIconText('viewmag1.gif', _("Set as highlight"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Set as highlight"),
+	    		'text' => getIconText('viewmag1.gif', gTranslate('core', "Set as highlight"), $override, $withIcons),
 	    		'value' => showChoice2('do_command.php', array('cmd' => 'highlight', 'index' => $i))
     		);
     	}
@@ -238,8 +238,8 @@ $javascriptSet = true;
 
     if (isset($isAdmin) && ! $isAlbum) {
     	$options[] = array(
-	    	'pure_text' => _("Change Owner"),
-	    	'text' => getIconText('yast_kuser.gif', _("Change Owner"), $override, $withIcons),
+	    	'pure_text' => gTranslate('core', "Change Owner"),
+	    	'text' => getIconText('yast_kuser.gif', gTranslate('core', "Change Owner"), $override, $withIcons),
 	    	'value' => showChoice2("photo_owner.php", array("id" => $id))
     	);
     }
@@ -250,16 +250,16 @@ $javascriptSet = true;
     	if($isAlbum) {
     		if($gallery->user->canDeleteAlbum($myAlbum)) {
     			$options[] = array(
-	    			'pure_text' => _("Delete"),
-	    			'text' =>getIconText('delete.gif', _("Delete"), $override, $withIcons),
+	    			'pure_text' => gTranslate('core', "Delete"),
+	    			'text' =>getIconText('delete.gif', gTranslate('core', "Delete"), $override, $withIcons),
 	    			'value' => showChoice2("delete_photo.php", array("id" => $myAlbum->fields["name"], "albumDelete" => 1))
     			);
     		}
     	}
     	else {
     		$options[] = array(
-	    		'pure_text' => _("Delete"),
-	    		'text' => getIconText('delete.gif',_("Delete"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Delete"),
+	    		'text' => getIconText('delete.gif',gTranslate('core', "Delete"), $override, $withIcons),
 	    		'value' => showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId))
     		);
     	}
@@ -273,8 +273,8 @@ $javascriptSet = true;
     	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)))
 		{
     		$options['showExif'] = array(
-	    		'pure_text' => _("Photo properties"),
-	    		'text' => getIconText('frame_query.gif', _("Photo properties"), $override, $withIcons),
+	    		'pure_text' => gTranslate('core', "Photo properties"),
+	    		'text' => getIconText('frame_query.gif', gTranslate('core', "Photo properties"), $override, $withIcons),
 	    		'value' => showChoice2("view_photo_properties.php", array("index" => $i))
     		);
     	}
@@ -286,8 +286,8 @@ $javascriptSet = true;
     	}
     	$options = array_merge(array(
     	  array(
-	    	'pure_text' => sprintf(_("%s actions"), $label),
-	    	'text' => '&laquo; '. sprintf(_("%s actions"), $label) . ' &raquo;',
+	    	'pure_text' => sprintf(gTranslate('core', "%s actions"), $label),
+	    	'text' => '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
 	    	'value' => '',
 	    	'selected' => true)
 	    	), $options
@@ -300,7 +300,7 @@ function showComments ($index, $albumName, $reverse = false) {
     global $gallery;
 
     $numComments = $gallery->album->numComments($index);
-    $delCommentText = getIconText('delete.gif', _("delete comment"), 'yes');
+    $delCommentText = getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
 
     $commentdraw["index"] = $index;
 
@@ -326,7 +326,7 @@ function showComments ($index, $albumName, $reverse = false) {
         }
 
         $commentTable->addElement(array(
-            'content' => _("From:"),
+            'content' => gTranslate('core', "From:"),
             'cellArgs' => array('class' => 'admin', 'width' => 50, 'height' => '25')));
 
         $commentTable->addElement(array(

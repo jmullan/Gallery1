@@ -148,19 +148,19 @@ $properties = array(
         'desc' => ""
     ),
     'slideshow_type' => array(
-        'prompt' => gTranslate('common', "Slideshow Type"),
+        'prompt' => gTranslate('common', "Slideshow Type?"),
         'desc' => '',
         'choices' => array( "off" => gTranslate('common', "Off"), "ordered" => gTranslate('common', "Ordered"), "random" => gTranslate('common', "Random")),
         'value' => $gallery->album->fields["slideshow_type"]
     ),
     'slideshow_recursive' => array(
-        'prompt' => gTranslate('common', "Include sub-albums in slideshow"),
+        'prompt' => gTranslate('common', "Include sub-albums in slideshow?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["slideshow_recursive"]
     ),
     'slideshow_loop' => array(
-        'prompt' => gTranslate('common', "Allow slideshow to loop"),
+        'prompt' => gTranslate('common', "Allow slideshow to loop?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["slideshow_loop"]
@@ -183,41 +183,41 @@ $properties = array(
         'desc' => ""
     ),
     'thumb_size' => array(
-        'prompt' => gTranslate('common', "Thumbnail size (in px)"),
+        'prompt' => gTranslate('common', "Thumbnail size (in px)?"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["thumb_size"],
         'vartype' => 'int_notnull'
     ),
     'thumb_ratio' => array(
-        'prompt' => gTranslate('common', "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'"),
+        'prompt' => gTranslate('common', "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'."),
         'desc' => '',
         'choices' => array('0' => gTranslate('common', "As the original image"), '1/1' => gTranslate('common', "Square thumbs")),
         'value' => getPropertyDefault('thumb_ratio', $gallery->album, false),
     ),
     'resize_size' => array(
-        'prompt' => gTranslate('common', "Maximum size of intermediate sized images (in px)"),
+        'prompt' => gTranslate('common', "Maximum size of intermediate sized images (in px)?"),
         'desc' => '',
         'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
         'value' => $gallery->album->fields["resize_size"],
         'vartype' => 'int_empty'
     ),
     'resize_file_size' => array(
-        'prompt' => gTranslate('common', "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+        'prompt' => gTranslate('common', "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)?"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["resize_file_size"],
         'vartype' => 'int_empty'
     ),
     'max_size' => array(
-        'prompt' => gTranslate('common', "Maximum size of full sized images (in px)"),
+        'prompt' => gTranslate('common', "Maximum size of full sized images (in px)?"),
         'desc' => '',
         'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(gTranslate('common', '%d (%d MPix)'), 1280, 1), 1600 => sprintf(gTranslate('common', '%d (%d MPix)'), 1600, 2), 2048 => sprintf(gTranslate('common', '%d (%d MPix)'), 2048, 3)),
         'value' => $gallery->album->fields["max_size"],
         'vartype' => 'int_empty'
     ),
     'max_file_size' => array(
-        'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)"),
+        'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)?"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["max_file_size"],
@@ -330,7 +330,7 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'poll_orientation' => array(
-        'prompt' => gTranslate('common', "Orientation of vote choices"),
+        'prompt' => gTranslate('common', "Orientation of vote choices?"),
         'desc' => '',
         'choices' => array('horizontal' => gTranslate('common', "Horizontal"), 'vertical' => gTranslate('common', "Vertical")),
         'value' => isset($gallery->album->fields['poll_orientation']) ?
@@ -362,25 +362,25 @@ $properties = array(
         'desc' => ""
     ),
     'add_to_beginning' => array(
-        'prompt' => gTranslate('common', "Add new items at beginning of album"),
+        'prompt' => gTranslate('common', "Add new items at beginning of album?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["add_to_beginning"]
     ),
     'returnto' => array(
-        'prompt' => gTranslate('common', "Show <i>Return to</i> link"),
+        'prompt' => gTranslate('common', "Show <i>Return to</i> link?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["returnto"]
     ),
     'use_fullOnly' => array(
-        'prompt' => gTranslate('common', "Offer visitors ability to specify<br>preference for full-size or resized images"),
+        'prompt' => gTranslate('common', "Offer visitors ability to specify<br>preference for full-size or resized images?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["use_fullOnly"]
     ),
     'fit_to_window' => array(
-        'prompt' => gTranslate('common', "Auto fit-to-window for<br>images without a resized copy"),
+        'prompt' => gTranslate('common', "Auto fit-to-window for<br>images without a resized copy?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["fit_to_window"]
@@ -390,13 +390,13 @@ $properties = array(
         'title' => gTranslate('common', "Permissions")
     ),
     'item_owner_modify' => array(
-        'prompt' => gTranslate('common', "Allow item owners to modify their images"),
+        'prompt' => gTranslate('common', "Allow users to modify their own items?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["item_owner_modify"]
     ),
     'item_owner_delete' => array(
-        'prompt' => gTranslate('common', "Allow item owners to delete their images"),
+        'prompt' => gTranslate('common', "Allow users to delete their own items?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["item_owner_delete"]
@@ -438,37 +438,37 @@ $properties = array_merge($properties, array(
         'title' => gTranslate('common', "Microthumbs")
     ),
     'nav_thumbs' => array(
-        'prompt' => gTranslate('common', "Use microthumb photo navigation"),
+        'prompt' => gTranslate('common', "Use microthumb photo navigation?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No"), "both" => gTranslate('common', "Both")),
         'value' => $gallery->album->fields["nav_thumbs"]
     ),
     'nav_thumbs_style' => array(
-        'prompt' => gTranslate('common', "Microthumb style"),
+        'prompt' => gTranslate('common', "Microthumb style?"),
         'desc' => '',
         'choices' => array("fixed" => gTranslate('common', "Fixed"), "dynamic" => gTranslate('common', "Dynamic")),
         'value' => $gallery->album->fields["nav_thumbs_style"]
     ),
     'nav_thumbs_first_last' => array(
-        'prompt' => gTranslate('common', "Show first &amp; last microthumb"),
+        'prompt' => gTranslate('common', "Show first &amp; last microthumb?"),
         'desc' => '',
         'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
         'value' => $gallery->album->fields["nav_thumbs_first_last"]
     ),
     'nav_thumbs_prev_shown' => array(
-        'prompt' => gTranslate('common', "Number of previous thumbs"),
+        'prompt' => gTranslate('common', "Number of previous thumbs?"),
         'desc' => '',
         'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
         'value' => $gallery->album->fields["nav_thumbs_prev_shown"]
     ),
     'nav_thumbs_next_shown' => array(
-        'prompt' => gTranslate('common', "Number of next thumbs"),
+        'prompt' => gTranslate('common', "Number of next thumbs?"),
         'desc' => '',
         'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
         'value' => $gallery->album->fields["nav_thumbs_next_shown"]
     ),
     'nav_thumbs_location' => array(
-        'prompt' => gTranslate('common', "Position of microthumb navigation bar"),
+        'prompt' => gTranslate('common', "Position of microthumb navigation bar?"),
         'desc' => '',
         'choices' => array("top" => gTranslate('common', "Top"),
 			   "both" => gTranslate('common', "Both"),
@@ -476,14 +476,14 @@ $properties = array_merge($properties, array(
         'value' => $gallery->album->fields["nav_thumbs_location"]
     ),
     'nav_thumbs_size' => array(
-        'prompt' => gTranslate('common', "Height of microthumbs in navigation bar (in px)"),
+        'prompt' => gTranslate('common', "Height of microthumbs in navigation bar (in px)?"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_size"],
         'attrs' => array('size' => 3)
     ),
     'nav_thumbs_current_bonus' => array(
-        'prompt' => gTranslate('common', "Bonus to height of current microthumb (in px)"),
+        'prompt' => gTranslate('common', "Bonus to height of current microthumb (in px)?"),
         'desc' => '',
         'type' => 'text',
         'value' => $gallery->album->fields["nav_thumbs_current_bonus"],

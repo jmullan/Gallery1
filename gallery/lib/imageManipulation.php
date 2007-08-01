@@ -119,24 +119,27 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
             if ($quality == $prev_quality) {
                 if ($filesize == $max_filesize) {
                     $quality--;
-                } else {
+                }
+                else {
                     $quality++;
                 }
             }
-        } while ($max_quality-$min_quality > 2 &&
-        abs(($filesize-$target_fs)/$target_fs) > .02 );
+        }
+        while ($max_quality-$min_quality > 2 && abs(($filesize-$target_fs)/$target_fs) > .02 );
 
         $gallery->album->fields['last_quality'] = $prev_quality;
         printf(gTranslate('common', "-> File size: %d kbytes"), round($filesize));
         processingMsg(gTranslate('common', "Done."));
     }
+    
     if (fs_file_exists("$out") && fs_filesize("$out") > 0) {
         if ($useTemp) {
             fs_copy($out, $dest);
             fs_unlink($out);
         }
         return 1;
-    } else {
+    }
+    else {
         return 0;
     }
 }
@@ -151,6 +154,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
  */
 function Netpbm_decompose_image($input, $format) {
     global $gallery;
+    
     $overlay = tempnam($gallery->app->tmpDir, "Netpbm_");
     $alpha = tempnam($gallery->app->tmpDir, "Netpbm_");
 
@@ -168,21 +172,26 @@ function Netpbm_decompose_image($input, $format) {
     }
 
     exec_wrapper($getOverlay);
+    
     if (isset($getAlpha)) {
         exec_wrapper($getAlpha);
     }
+    
     return array($overlay, $alpha);
 }
 
 function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY) {
     global $gallery;
+    
     if (!strcmp($src,$dest)) {
         $useTemp = true;
         $out = "$dest.tmp";
-    } else {
+    }
+    else {
         $useTemp = false;
         $out = $dest;
     }
+    
     if (isDebugging()) {
         print "<table border=\"1\">";
         print "<tr><td>src</td><td>$src</td></tr>";
@@ -206,13 +215,16 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
                 if (eregi('\.png$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "png");
                     $tmpOverlay = 1;
-                } elseif (eregi('\.tiff?$',$wmName, $regs)) {
+                }
+                elseif (eregi('\.tiff?$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "tif");
                     $tmpOverlay = 1;
-                } elseif (eregi('\.gif$',$wmName, $regs)) {
+                }
+                elseif (eregi('\.gif$',$wmName, $regs)) {
                     list ($overlayFile, $alphaFile) = Netpbm_decompose_image($wmName, "gif");
                     $tmpOverlay = 1;
-                } else {
+                }
+                else {
                     $alphaFile = $wmName;
                     if (strlen($wmAlphaName)) {
                         $overlayFile = $wmAlphaName;
@@ -223,7 +235,8 @@ function watermark_image($src, $dest, $wmName, $wmAlphaName, $wmAlign, $wmAlignX
                 echo debugMessage(gTranslate('common', "You have no graphics package configured for use!"), __FILE__, __LINE__);
             return 0;
         }
-    } else {
+    }
+    else {
         echo gallery_error(gTranslate('common', "No watermark name specified!"));
         return 0;
     }
@@ -546,7 +559,7 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
 
     switch($ratio) {
         case '1/1':
-        debugMessage(sprintf(gTranslate('common', "Generating squared version to %d pixel."), $destSize), __FILE__, __LINE__);
+        debugMessage(sprintf(gTranslate('common', "Generating squared version to %d pixels."), $destSize), __FILE__, __LINE__);
 
         if($width > $height && $height > $destSize) {
             $offsetX = round(($width - $height)/2);

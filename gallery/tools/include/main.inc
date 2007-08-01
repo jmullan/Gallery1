@@ -2,7 +2,7 @@
 <html>
   <head>
     <title> Gallery 1: Localization Status Report (<?php print strftime("%x") ?>)</title>
-    <link rel="stylesheet" type="text/css" href="g1-report.css"/>
+    <link rel="stylesheet" type="text/css" href="g1-report.css">
   </head>
     <body>
 	<h1> Localization Status Report for Gallery 1 </h1>
@@ -28,10 +28,10 @@
 		}
 ?>
 	<tr>
-		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $wclass ?>"><?php echo ($localeData['percentDone'] != $old_percentDone) ? $nr : "&nbsp" ?></td>
+		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $wclass ?>"><?php echo ($localeData['percentDone'] != $old_percentDone) ? $nr : "&nbsp;" ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $class ?>"><?php print $reportData[$locale]['langname'] ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" class="<?php echo $class ?>"><?php print $locale ?></td>
-		<td bgcolor="<?php print percentColor($localeData['percentDone']) ?>" rowspan="<?php print sizeof($localeData['plugins']) +1 ?>" class="locale_percent"><?php print $localeData['percentDone'] ?>%</td>
+		<td bgcolor="#<?php print percentColor($localeData['percentDone']) ?>" rowspan="<?php print sizeof($localeData['plugins']) +1 ?>" class="locale_percent"><?php print $localeData['percentDone'] ?>%</td>
 		<td colspan="5" height="1"></td>
 	<tr>
 <?php 
@@ -58,12 +58,12 @@
 	} 
 ?>
 	<tr>
-		<th colspan="11">Totals</td>
+		<th colspan="11">Totals</th>
 	</tr>
 	<tr>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>"><?php echo $index ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" colspan="2" align="center">All</td>
-		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" bgcolor="<?php echo percentColor(round($total_percentDone['all']/$index,2)) ?>"><?php echo round($total_percentDone['all']/$index,2) ?>%</td>
+		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" bgcolor="#<?php echo percentColor(round($total_percentDone['all']/$index,2)) ?>"><?php echo round($total_percentDone['all']/$index,2) ?>%</td>
 	</tr>
 <?php
 
@@ -71,7 +71,7 @@
 		if ($key == 'all') continue;
 		echo '<tr>';
 		echo '<td>' . $key . '</td>';
-		echo '<td bgcolor="' . percentColor(round($percentDone/$index,2)) . '">' . round($percentDone/$index,2) . '%</td>';
+		echo '<td bgcolor="#' . percentColor(round($percentDone/$index,2)) . '">' . round($percentDone/$index,2) . '%</td>';
 		echo '<td colspan="5"></td>';
 		echo '</tr>';
 	}

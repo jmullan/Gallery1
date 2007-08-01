@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,10 +23,10 @@
 <?php
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) = 
+list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
   getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
 
-/* 
+/*
  * Test for relative URL, which we know to be local.  If URL contains ://
  * assume that it's remote and test it against our local full URLs
  * to ensure security.  Don't check for http:// or https:// because
@@ -40,9 +40,9 @@ if (!empty($return) && $return[0] != '/' && strstr($return, '://') !== false) {
       strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
       strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0
       ) {
-	die(_('Attempted security breach.'));
+	die(gTranslate('core', 'Attempted security breach.'));
     }
-}	
+}
 
 /* This is used for deleting comments from stats.php */
 if (!empty($albumName)) {
@@ -51,9 +51,9 @@ if (!empty($albumName)) {
 }
 
 if (empty($rebuild_type)) {
-	$title = _("Rebuilding Thumbnails");
+	$title = gTranslate('core', "Rebuilding thumbnails");
 } else {
-	$title = _("Performing Operation..");
+	$title = gTranslate('core', "Performing operation...");
 }
 
 switch ($cmd) {
@@ -61,35 +61,35 @@ switch ($cmd) {
         $albumDB = new AlbumDB(true);
         $albumList = $albumDB->albumList;
         $i = 0;
-    
+
         foreach($albumList as $nr => $album) {
             if($album->isRoot()) {
                 $i++;
-                echo "\n<br><b>". sprintf (_("Rebuilding highlight %s"), $i) . '</b>';
+                echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
                 $album->setHighlight($album->getHighlight());
                 $album->save();
             }
         }
         dismissAndReload();
     break;
-    
+
 	case 'remake-thumbnail':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			if (empty($rebuild_type)) {
                 printPopupStart($title, '', 'center');
-				echo _("Do you also want to rebuild the thumbnails in subalbums?");
+				echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
 				echo makeFormIntro('do_command.php', array(),
 					array('type' => 'popup',
 					    'index' => $index,
-					    'cmd' => $cmd, 
+					    'cmd' => $cmd,
 						'return' => $return,
 						'parentName' => $parentName));
 ?>
 		<br>
-		<input type="radio" name="rebuild_type" value="recursive"><?php echo _("Yes"); ?>
-		<input type="radio" name="rebuild_type" value="single" checked><?php echo _("No"); ?>
+		<input type="radio" name="rebuild_type" value="recursive"><?php echo gTranslate('core', "Yes"); ?>
+		<input type="radio" name="rebuild_type" value="single" checked><?php echo gTranslate('core', "No"); ?>
 		<br><br>
-		<input type="submit" value="<?php echo _("Start") ?>"><br><br>
+		<input type="submit" value="<?php echo gTranslate('core', "Start") ?>"><br><br>
 	</form>
 <?php
 			}
@@ -99,17 +99,18 @@ switch ($cmd) {
 					if ($gallery->session->albumName && isset($index)) {
 						if ($index == "all") {
 							$np = $gallery->album->numPhotos(1);
-							echo ("\n<h3>" . sprintf(_("Rebuilding %d thumbnails..."), $np) .'</h3>');
+							echo "\n<h3>" . sprintf(gTranslate('core', "Rebuilding %d thumbnails..."), $np) .'</h3>';
 							my_flush();
 							for ($i = 1; $i <= $np; $i++) {
-								echo("\n<h4>". sprintf(_("Processing image %d..."), $i) .'</h4>');
+								echo "\n<h4>". sprintf(gTranslate('core', "Processing image %d..."), $i) .'</h4>';
 								my_flush();
 								set_time_limit($gallery->app->timeLimit);
 								$gallery->album->makeThumbnail($i);
 							}
 							echo "\n<hr width=\"100%\">";
-						} else {
-							echo ("\n<h3>" . _("Rebuilding 1 thumbnail...") .'</h3>');
+						}
+						else {
+							echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
 							my_flush();
 							set_time_limit($gallery->app->timeLimit);
 							$gallery->album->makeThumbnail($index);
@@ -128,7 +129,7 @@ switch ($cmd) {
 			}
 		}
 	break;
-	
+
 	case 'logout':
 		gallery_syslog("Logout by ". $gallery->session->username ." from ". $_SERVER['REMOTE_ADDR']);
 		$gallery->session->username = '';
@@ -145,7 +146,7 @@ switch ($cmd) {
 		}
 		header("Location: $return");
 	break;
-	
+
 	case 'hide':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->hidePhoto($index);
@@ -157,7 +158,7 @@ switch ($cmd) {
 				$myAlbum->load($myAlbumName);
 			}
 
-			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) || 
+			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
 	   		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
 				$gallery->album->hidePhoto($index);
 				$gallery->album->save();
@@ -166,7 +167,7 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
-		
+
 	case 'show':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->unhidePhoto($index);
@@ -176,8 +177,8 @@ switch ($cmd) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
 				$myAlbum->load($myAlbumName);
-			}       
-			
+			}
+
 			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
 		    		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
 					$gallery->album->unhidePhoto($index);
@@ -187,7 +188,7 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
-		
+
 	case 'highlight':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->setHighlight($index);
@@ -196,7 +197,7 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
-		
+
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
 	    	$gallery->user->canCreateSubAlbum($gallery->album)) {
@@ -204,7 +205,7 @@ switch ($cmd) {
 				$parentName = null;
 			}
 			createNewAlbum($parentName);
-			if(!headers_sent()) { 
+			if(!headers_sent()) {
 			    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 			} else {
 			    $backUrl = makeAlbumUrl($gallery->session->albumName);
@@ -213,7 +214,7 @@ switch ($cmd) {
 		        header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
-		
+
 	case 'reset-album-clicks':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->resetAllClicks();
@@ -223,16 +224,16 @@ switch ($cmd) {
        			header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
-		
+
 	case 'delete-comment':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$comment_index = getRequestVar('comment_index');
-			$comment=$gallery->album->getComment($index, $comment_index); 
+			$comment=$gallery->album->getComment($index, $comment_index);
 			$gallery->album->deleteComment($index, $comment_index);
 			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),
 				       	$comment->getName(),
-				       	makeAlbumURL($gallery->album->fields["name"], 
+				       	makeAlbumURL($gallery->album->fields["name"],
 						$gallery->album->getPhotoId($index))));
 			if (!empty($return)) {
 				dismissAndLoad($return);
@@ -244,7 +245,7 @@ switch ($cmd) {
 	    	    header("Location: " . makeAlbumHeaderUrl());
 		}
 	break;
-	
+
 	default:
 		if (!empty($return)) {
 			// No command; Can be used to set a session variable
@@ -258,9 +259,9 @@ switch ($cmd) {
 	<div align="center">
 	<form>
 <?php if (isset($backUrl)) :?>
-		<input type="button" value="<?php echo _("Dismiss") ?>" onclick="document.location='<?php echo $backUrl; ?>'">
+		<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick="document.location='<?php echo $backUrl; ?>'">
 <?php else : ?>
-		<input type="button" value="<?php echo _("Dismiss") ?>" onclick="parent.close()">
+		<input type="button" value="<?php echo gTranslate('core', "Dismiss") ?>" onclick="parent.close()">
 <?php endif ?>
 	</form>
 	</div>

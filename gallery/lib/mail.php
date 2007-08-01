@@ -247,7 +247,7 @@ function emailComments($id, $comment_text, $commenter_name) {
 	    $text .= "\n<br>". gTranslate('common', "*** Begin comment ***") ."<br>\n";
 	    $text .= nl2br($comment_text);
 	    $text .= "<br>\n". gTranslate('common', "*** End comment ***") . "\n<p>\n";
-	    $text .= gTranslate('common', "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (you'll need to login first).");
+	    $text .= gTranslate('common', "If you no longer wish to receive emails about this item, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the item and album page (you'll need to login first).");
 	    $text .= "\n</p>\n</body>\n</html>";
 
         $logmsg = sprintf(gTranslate('common', "New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));

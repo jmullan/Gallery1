@@ -30,21 +30,21 @@ list($save, $ownerUid, $submit, $actionUid) =
 // Hack check
 if (!$gallery->user->isAdmin() &&
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
 $perms = array(
-    'canRead'           => _("Users who can see the album."),
-    'canAddTo'          => _("Users who can add photos."),
-    'canDeleteFrom'     => _("Users who can delete photos."),
-    'canWrite'          => _("Users who can modify photos."),
-    'canCreateSubAlbum' => _("Users who can create sub albums."),
-    'zipDownload'       => _("Users who can to download album (with subalbums) as archive."),
-    'canViewComments'   => _("Users who can view comments."),
-    'canAddComments'    => _("Users who can add comments."),
-    'canViewFullImages' => _("Users who can view full (original) images."),
-    'canChangeText'     => _("Users who can change album text."),
+    'canRead'           => gTranslate('core', "Users who can see the album."),
+    'canAddTo'          => gTranslate('core', "Users who can add items."),
+    'canDeleteFrom'     => gTranslate('core', "Users who can delete items."),
+    'canWrite'          => gTranslate('core', "Users who can modify items."),
+    'canCreateSubAlbum' => gTranslate('core', "Users who can create subalbums."),
+    'zipDownload'       => gTranslate('core', "Users who can download the album (with subalbums) as archive."),
+    'canViewComments'   => gTranslate('core', "Users who can view comments."),
+    'canAddComments'    => gTranslate('core', "Users who can add comments."),
+    'canViewFullImages' => gTranslate('core', "Users who can view full (original) images."),
+    'canChangeText'     => gTranslate('core', "Users who can change album text."),
 );
 
 foreach ($gallery->userDB->getUidList() as $uid) {
@@ -83,7 +83,7 @@ if (isset($save) && $ownerUid) {
 }
 
 if ($changed) {
-    $gallery->album->save(array(i18n("Permissions have been changed")));
+    $gallery->album->save(array(i18n("Permissions have been changed.")));
     if (getRequestVar('setNested')) {
         $gallery->album->setNestedPermissions();
     }
@@ -108,21 +108,25 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Album Permissions") ?></title>
+  <title><?php echo gTranslate('core', "Album Permissions") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Album Permissions") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Album Permissions") ?></div>
 <div class="popup" align="center">
-<?php echo sprintf(_("Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
+<?php echo sprintf(gTranslate('core', "Changing permissions for: %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
+
+echo "\n<br><br>";
 
 echo makeFormIntro("album_permissions.php", array("name" =>
 			"albumperms_form"), array("type" => "popup"));
 
 if ($gallery->user->isAdmin) {
-    echo _("Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
+    echo gTranslate('core', "Owner:") . drawSelect("ownerUid", $uAll, $ownerUid, 1, array(), true);
 }
 ?>
+
+<br><br>
 
 <table border="0" cellspacing="0" cellpadding="0">
  <tr>
@@ -154,11 +158,11 @@ echo $permsTable->render();
  </tr>
 </table>
 
-<label for="setNested"><?php echo _("Apply permissions to all sub-albums"); ?></label>
+<label for="setNested"><?php echo gTranslate('core', "Apply permissions to all sub-albums"); ?></label>
 <input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 <br><br>
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+<input type="button" name="done" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
 </form>
 </div>
 <?php print gallery_validation_link("album_permissions.php"); ?>

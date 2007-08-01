@@ -630,7 +630,7 @@ function addSearchForm($formerSearchString = '', $align = '') {
 	);
 
 	$html .= "\t". gTranslate('common', "Search:");
-	$html .= '<input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
+	$html .= ' <input class="searchform" type="text" name="searchstring" value="'. $formerSearchString .'" size="25">';
 	$html .= "\n</form>\n";
 
 	return $html;

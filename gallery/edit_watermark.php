@@ -42,7 +42,7 @@ list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
 if (! $gallery->user->canWriteToAlbum($gallery->album) &&
   ! $gallery->album->getItemOwnerModify() &&
   ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -78,15 +78,15 @@ if (isset($save) || isset($preview)) {
                 );
             }
         } else {
-            $err = _("Please select a watermark.");
+            $err = gTranslate('core', "Please select a watermark.");
         }
     } else {
-        $err = _("Please select an alignment.");
+        $err = gTranslate('core', "Please select an alignment.");
     }
 }
 
 doctype();
-printPopupStart(_("Edit Watermark"));
+printPopupStart(gTranslate('core', "Edit Watermark"));
 ?>
 <p>
 <?php
@@ -104,7 +104,7 @@ if (!empty($err)) {
 }
 
 if ($photo->image->type == 'gif') {
-    echo infoLine(_("Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
+    echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface &amp; unanimate' your picture."), 'notice');
 }
 
 echo makeFormIntro('edit_watermark.php');
@@ -116,9 +116,9 @@ includeLayout ('watermarkform.inc');
 ?>
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
-	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+	<input type="submit" name="preview" value="<?php echo gTranslate('core', "Preview") ?>">
+	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
 

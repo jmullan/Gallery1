@@ -50,7 +50,7 @@ if (!isset($perPage)) {
 if (isset($save) || isset($next) || isset($prev)) {
 
     if ($captionedAlbum != $gallery->album->fields['name']) {
-        echo gallery_error(_("Captioned album does not match current album - aborting changes!"));
+        echo gallery_error(gTranslate('core', "Captioned album does not match current album - aborting changes!"));
         echo '<br><br>';
         echo '<input type="submit" onclick="window.location=\'' . makeAlbumUrl($captionedAlbum) . '\'" value="Exit">';
         exit;
@@ -92,7 +92,7 @@ if (isset($cancel) || isset($save)) {
     if (!isDebugging())
     header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
     else
-    echo "<br><a href='" . makeAlbumUrl($captionedAlbum) . "'>" . _("Debugging: Click here to return to the album") . "</a><br>";
+    echo "<br><a href='" . makeAlbumUrl($captionedAlbum) . "'>" . gTranslate('core', "Debugging: Click here to return to the album") . "</a><br>";
     return;
 }
 
@@ -126,9 +126,9 @@ $bordercolor = $gallery->album->fields["bordercolor"];
 if (!$GALLERY_EMBEDDED_INSIDE) {
     doctype();
 ?>
-<html> 
+<html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo _("Captionator") ?></title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?> :: <?php echo gTranslate('core', "Captionator") ?></title>
   <?php common_header(); ?>
   <style type="text/css">
 <?php
@@ -170,25 +170,22 @@ if ($borderwidth == 0) {
     $bordercolor = "black";
 }
 
-$adminText = _("Multiple Caption Editor.") . " ";
-if ($numPhotos == 1) {
-    $adminText .= _("1 photo in this album") ;
-} else {
-    if ($maxPages > 1) {
-        $adminText .= sprintf (_("%s items in this album on %s"), 
-		$numPhotos, 
-		gTranslate('core',"one page", "%d pages", $maxPages));
-    }
-    else {
-        $adminText .= sprintf (_("%s items in this album"), $numPhotos);
-    }
+$adminText = gTranslate('core', "Multiple caption editor.") . " ";
+
+if ($maxPages > 1) {
+	$adminText .= sprintf(gTranslate('core', "%d items in this album on %s"),
+						   $numPhotos,
+						   gTranslate('core',"one page", "%d pages", $maxPages));
+}
+else {
+	$adminText .= gTranslate('core', "One item in this album.", "%d items in this album.", $numPhoto);
 }
 
 $adminbox['text'] = $adminText;
 $adminbox['bordercolor'] = $bordercolor;
 
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" ' .
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+  'alt="' . gTranslate('core', "navigate UP") .'" title="' . gTranslate('core', "navigate UP") .'" border="0">';
 
 if ($gallery->album->fields['returnto'] != 'no') {
     foreach ($gallery->album->getParentAlbums() as $navAlbum) {
@@ -209,18 +206,18 @@ echo makeFormIntro("captionator.php") ?>
 <input type="hidden" name="captionedAlbum" value="<?php echo $gallery->album->fields['name']; ?>">
 
 <div align="right">
-	<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
-<?php 
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save and Exit") ?>">
+<?php
 if (!isset($last)) {
-    echo '<input type="submit" name="next" value="'. sprintf(_("Save and Edit Next %d"),$perPage) .'">';
+    echo '<input type="submit" name="next" value="'. sprintf(gTranslate('core', "Save and Edit Next %d"),$perPage) .'">';
 }
 
 if ($page != 1) {
-    echo '<input type="submit" name="prev" value="'. sprintf(_("Save and Edit Previous %d"), $perPage) .'">';
+    echo '<input type="submit" name="prev" value="'. sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage) .'">';
 }
 ?>
 
-<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
+<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Exit") ?>">
 </div>
 
 <!-- image grid table -->
@@ -238,8 +235,8 @@ if ($numPhotos) {
 
     // Go trough the album
     while ($count < $perPage && $i <= $numPhotos) {
-?>  
-	<!-- Picture #<?php echo $i-1 ?> -->  
+?>
+	<!-- Picture #<?php echo $i-1 ?> -->
 <tr>
 	<td height="1" colspan="2"><?php echo $pixelImage ?></td>
 	<td bgcolor="<?php echo $bordercolor ?>" height="1"><?php echo $pixelImage ?></td>
@@ -251,7 +248,7 @@ $photo = $gallery->album->getPhoto($i);
 list($width, $height) = $photo->getDimensions();
 if (!($photo->isMovie())) {
     echo popup_link($gallery->album->getThumbnailTag($i, $thumbSize).
-    "<br />"._("(click to enlarge)"),
+    "<br />".gTranslate('core', "(click to enlarge)"),
     $gallery->album->getPhotoPath($i),1,false,
     $height+20,$width+20,
     'modcaption');
@@ -259,9 +256,9 @@ if (!($photo->isMovie())) {
     echo $gallery->album->getThumbnailTag($i,$thumbSize);
 }
 if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
-    echo "<br>(" . _("hidden") .")<br>";
+    echo "<br>(" . gTranslate('core', "hidden") .")<br>";
 }
-?>	
+?>
 	</td>
 	<td height="1"><?php echo $pixelImage ?></td>
 	<td valign="top"><?php
@@ -272,16 +269,16 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	    $myAlbum->load($myAlbumName);
 	    $oldCaption = $myAlbum->fields['description'];
 
-	    echo "\n\t\t". '<p class="admin">'. _("Album Caption") . ': ';
+	    echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Album Caption") . ': ';
 	    echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 	} else {
 	    $oldCaption = $gallery->album->getCaption($i);
 	    $oldKeywords = $gallery->album->getKeywords($i);
 
 	    if ($gallery->album->photos[$i-1]->isMovie()) {
-	        echo "\n\t\t". '<p class="admin">'. _("Movie Caption") . ': ';
+	        echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Movie Caption") . ': ';
 	    } else {
-	        echo "\n\t\t". '<p class="admin">'. _("Photo Caption") . ': ';
+	        echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Photo Caption") . ': ';
 	    }
 	    echo '<br><textarea name="new_captions_'. $i .'" rows="3" cols="60">'. $oldCaption .'</textarea></p>';
 	    foreach ($gallery->album->getExtraFields() as $field) {
@@ -290,11 +287,11 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	        }
 	        $value=$gallery->album->getExtraField($i, $field);
 	        if ($field == "Title") {
-	            echo "\n\t\t". '<div class="admin">' . _("Title") .': </div>';
+	            echo "\n\t\t". '<div class="admin">' . gTranslate('core', "Title") .': </div>';
 	            echo "\n\t\t<input type=\"text\" name=\"extra_fields[$i][$field]\" value=\"$value\" size=\"40\">";
 	        }
 	        else {
-	            echo "\n\t\t". '<br><span class="admin">'. _($field) .': </span><br>';
+	            echo "\n\t\t". '<br><span class="admin">'. gTranslate('core', $field) .': </span><br>';
 	            echo "\n\t\t<textarea name=\"extra_fields[$i][$field]\" rows=\"2\" cols=\"60\">$value</textarea>";
 	        }
 	    }
@@ -305,7 +302,7 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
 	    $itemCaptureDate = $gallery->album->getItemCaptureDate($i);
 	    $capturedate=strftime($gallery->app->dateTimeString , $itemCaptureDate);
 
-	    echo "\n\t\t". '<p class="admin">'. _("Capture Date") . ': '. $capturedate. '</p><br>';
+	    echo "\n\t\t". '<p class="admin">'. gTranslate('core', "Capture Date") . ': '. $capturedate. '</p><br>';
 	}
 	echo "\n\t</td>";
 	echo "\n</tr>";
@@ -315,25 +312,25 @@ if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
     }
 } else {
     echo "\n<tr>";
-    echo "\n\t<td>". _("NO PHOTOS!") ."\n\t</td>";
+    echo "\n\t<td>". gTranslate('core', "NO PHOTOS!") ."\n\t</td>";
     echo "\n</tr>";
 }
 ?>
 </table>
 
 <p align="right">
-	<input type="submit" name="save" value="<?php echo _("Save and Exit") ?>">
-<?php 
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save and Exit") ?>">
+<?php
 if (!isset($last)) {
-    echo '<input type="submit" name="next" value="'. sprintf(_("Save and Edit Next %d"),$perPage) .'">';
+    echo '<input type="submit" name="next" value="'. sprintf(gTranslate('core', "Save and Edit Next %d"),$perPage) .'">';
 }
 
 if ($page != 1) {
-    echo '<input type="submit" name="prev" value="'. sprintf(_("Save and Edit Previous %d"), $perPage) .'">';
+    echo '<input type="submit" name="prev" value="'. sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage) .'">';
 }
 ?>
 
-<input type="submit" name="cancel" value="<?php echo _("Exit") ?>">
+<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Exit") ?>">
 </p>
 
 </form>

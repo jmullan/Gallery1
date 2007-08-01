@@ -458,7 +458,7 @@ class AlbumItem {
     function getFileSize($full = 0) {
         global $gallery;
         $stat = fs_stat($this->image->getPath($gallery->album->getAlbumDir(), $full));
-        
+
         if (is_array($stat)) {
             return $stat[7];
         } else {
@@ -598,7 +598,7 @@ class AlbumItem {
         * Sanity: make sure we can handle the file first.
         */
         if (!isMovie($tag) && !valid_image("$dir/$name.$tag")) {
-            return _("Invalid image") .": $name.$tag";
+            return gTranslate('core', "Invalid image") .": $name.$tag";
         }
 
         /* Set our image. */
@@ -616,9 +616,9 @@ class AlbumItem {
 
         $ratio = isset($album->fields["thumb_ratio"]) ? $album->fields["thumb_ratio"] : 0;
 
-        echo debugMessage(_("Generating thumbnail."),__FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Generating thumbnail."),__FILE__, __LINE__);
 
-        debugMessage(sprintf(_("Saved Dimensions: x:%d y: %d"),
+        debugMessage(sprintf(gTranslate('core', "Saved dimensions: width:%d ; height:%d"),
           $this->image->raw_width, $this->image->raw_height), __FILE__, __LINE__, 3);
 
         if ($this->isMovie()) {
@@ -683,7 +683,7 @@ class AlbumItem {
                     }
                 }
                 else {
-                    debugMessage(_("Generating normal thumbs"), __FILE__, __LINE__);
+                    debugMessage(gTranslate('core', "Generating normal thumbs."), __FILE__, __LINE__);
                     // no resizing, use ratio for thumb as for the image itself;
                     $ret = resize_image(
                     	"$dir/$name.$tag",
@@ -709,7 +709,7 @@ class AlbumItem {
                     $this->setHighlight($dir, 1, $album);
                 }
             } else {
-                return _("Unable to make thumbnail") ." ($ret)";
+                return gTranslate('core', "Unable to make thumbnail.") ." ($ret)";
             }
         }
 
@@ -720,7 +720,7 @@ class AlbumItem {
         if ($this->preview) {
             return $this->preview->getTag($dir, 0, $size, $attrs);
         } else {
-            return "<i>". _("No preview") ."</i>";
+            return "<i>". gTranslate('core', "No preview") ."</i>";
         }
     }
 
@@ -746,7 +746,7 @@ class AlbumItem {
         if ($this->thumbnail) {
             return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
         } else {
-            return "<i>". _("No thumbnail") ."</i>";
+            return "<i>". gTranslate('core', "No thumbnail") ."</i>";
         }
     }
 
@@ -761,7 +761,7 @@ class AlbumItem {
 
             return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
         } else {
-            return "<i>". _("No highlight") ."</i>";
+            return "<i>". gTranslate('core', "No highlight") ."</i>";
         }
     }
 
@@ -783,9 +783,9 @@ class AlbumItem {
 
     /**
 	 * @param	$full		boolean
-	 * @return	$imageName	string 
+	 * @return	$imageName	string
 	 * @author	Jens Tkotz<jens@peino.de
-	 */ 
+	 */
     function getImageName($full = false) {
         if($this->image) {
             $imageName = $this->image->getImageName($full);

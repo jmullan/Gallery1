@@ -208,7 +208,7 @@ function getDimensions($file) {
     debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
 
     if (! fs_file_exists($file)) {
-        debugMessage(gTranslate('core', "The file does not exist ?!"), __FILE__, __LINE__);
+        debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
         return array(0, 0);
     }
 
@@ -667,7 +667,7 @@ function getItemCaptureDate($file) {
 						  __FILE__, __LINE__);
 	}
 
-	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date : %s"),
+	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date: %s"),
 							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
 					  __FILE__, __LINE__);
 
@@ -1708,8 +1708,8 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
     $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recipient"], $ecard_data);
+    $ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recipient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_stamp%>/", $stampName, $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
@@ -1754,7 +1754,7 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
       $ecard_mail->setSubject($ecard['subject']);
       $ecard_mail->setReturnPath($ecard["email_sender"]);
 
-      $result = $ecard_mail->send(array($ecard["name_recepient"] .' <'. $ecard["email_recepient"] .'>'));
+      $result = $ecard_mail->send(array($ecard["name_recipient"] .' <'. $ecard["email_recipient"] .'>'));
 
       return $result;
   }
@@ -1898,7 +1898,7 @@ function downloadFile($filename) {
         return false;
     }
     elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
-        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself ?! Download aborted."));
+        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
         return false;
     }
 

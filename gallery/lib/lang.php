@@ -784,10 +784,10 @@ function unhtmlentities($string) {
  */
 function automaticFieldsList() {
     return array(
-        'Upload Date'   => gTranslate('common', "Upload Date"),
-        'Capture Date' 	=> gTranslate('common', "Capture Date"),
-        'Dimensions' 	=> gTranslate('common', "Image Size"),
-        'EXIF'          => gTranslate('common', "Additional EXIF Data"));
+        'Upload Date'   => gTranslate('common', "Upload date"),
+        'Capture Date' 	=> gTranslate('common', "Capture date"),
+        'Dimensions' 	=> gTranslate('common', "Image size"),
+        'EXIF'          => gTranslate('common', "Additional EXIF data"));
 }
 
 /** These are custom fields which can be entered manual by the User
@@ -795,11 +795,11 @@ function automaticFieldsList() {
  */
 function translateableFields() {
     return array(
-        'title'		=> gTranslate('common', "title"),
-        'Title'		=> gTranslate('common', "Title"),
+        'title'			=> gTranslate('common', "title"),
+        'Title'			=> gTranslate('common', "Title"),
         'Description'	=> gTranslate('common', "Description"),
         'description'	=> gTranslate('common', "description"),
-        'AltText'	=> gTranslate('common', "Alt Text / onMouseOver"),
+        'AltText'		=> gTranslate('common', "Alt text / Tooltip"),
     );
 }
 

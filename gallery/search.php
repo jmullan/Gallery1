@@ -53,7 +53,7 @@ if (!empty($searchstring)) {
 }
 
 $adminbox['text'] = '<span class="head">'. _("Search") .'</span>';
-$adminbox['commands'] = '[<a href="'. makeAlbumUrl() .'">'. _("return to gallery") .'</a>] ';
+$adminbox['commands'] = '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
 
 $breadcrumb["text"][] = _("Gallery") .': <a class="bread" href="'. makeGalleryUrl("albums.php") . '">'.$gallery->app->galleryTitle .'</a>';
 

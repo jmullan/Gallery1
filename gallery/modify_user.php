@@ -31,7 +31,7 @@ list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
     getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
 
 if (!$gallery->user->isAdmin()) {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;	
 }
 
@@ -56,7 +56,7 @@ if (!empty($save)) {
 
     if ($new_password1 || $new_password2) {
         if (strcmp($new_password1, $new_password2)) {
-            $gErrors["new_password2"] = _("Passwords do not match!");
+            $gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
             $errorCount++;
         } else {
             $gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
@@ -86,11 +86,11 @@ if (!empty($save)) {
 	if (!strcmp($old_uname, $gallery->session->username)) {
 	    $gallery->session->username = $uname;
 	}
-	$msg = _("User information succesfully updated.");
+	$msg = gTranslate('core', "User information succesfully updated.");
         $infoLineType = 'success';
     }
     else {
-        $msg = gallery_error(_("User information was not succesfully updated !!"));
+        $msg = gallery_error(gTranslate('core', "User information was not succesfully updated!"));
         $infoLineType = 'error';
     }
 } else if (isset($dismiss)) {
@@ -101,7 +101,7 @@ if (!empty($save)) {
 $tmpUser = $gallery->userDB->getUserByUsername($uname);
 
 if (!$tmpUser) {
-    echo gallery_error(_("Invalid user") ." <i>$uname</i>");
+    echo gallery_error(gTranslate('core', "Invalid user") ." <i>$uname</i>");
     exit;
 }
 
@@ -139,15 +139,15 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Modify User") ?></title>
+  <title><?php echo gTranslate('core', "Modify User") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Modify User") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Modify User") ?></div>
 <div class="popup" align="center">
 <?php 
 	echo infoLine($msg, $infoLineType);
-	echo _("You can change any information about the user using this form.") 
+	echo gTranslate('core', "You can change any information about the user using this form.") 
 ?>
 <br>
 
@@ -160,9 +160,9 @@ doctype();
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 
 <br>
-<input type="submit" name="save" value="<?php echo _("Save") ?>">
-<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>">
-<input type="button" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+<input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>">
+<input type="button" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
 </form>
 </div>
 

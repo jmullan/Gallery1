@@ -23,6 +23,11 @@
 <?php
 
 function evenOdd_row($fields) {
+	global $shortdescWidth;
+	
+	if(empty($shortdescWidth)) {
+		$shortdescWidth = '40%';
+	}
     $html = '';
 
     $f0 = $fields[0];
@@ -37,7 +42,7 @@ function evenOdd_row($fields) {
     }
     else {
         $html .= "\n<tr>" .
-        "\n\t<td class=\"shortdesc\" width=\"40%\">$f0</td>" .
+        "\n\t<td class=\"shortdesc\" width=\"$shortdescWidth\">$f0</td>" .
         "\n\t<td class=\"shortdesc\">$fields[1]</td>" .
         "\n</tr>";
 
@@ -1112,7 +1117,7 @@ function check_poll_nv_pairs($var) {
 					$rownum-1);
 				break;
 			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
-				$fail[]=sprintf(gTranslate('common', "In %s, for name %s (row %d) value %s should be a positive whole number"),
+				$fail[]=sprintf(gTranslate('common', "In %s, for name %s (row %d) value %s should be a positive whole number."),
 					gTranslate('common', "Vote words and values"),
 					$element["name"],
 					$rownum, $element["value"]);
@@ -1349,7 +1354,7 @@ function verify_email($emailMaster) {
 	       	$fail[]= gTranslate('common', "You must specify a valid sender email address.");
        	}
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
-	       	$fail[]= sprintf(gTranslate('common', "You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
+	       	$fail[]= sprintf(gTranslate('common', "You must include %s in your welcome email."), "<b>!!USERNAME!!</b>");
        	}
        	if (!empty($emailGreeting) &&
 			!strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
@@ -1380,7 +1385,7 @@ function check_gallery_versions()  {
 	if ($errors)  {
 		$fail[]=sprintf(gTranslate('common', "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
 				implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
-			"<br>" . gTranslate('common', "This should be fixed before proceeding") .
+			"<br>" . gTranslate('common', "This should be fixed before proceeding.") .
 		      	"<br>" . sprintf(gTranslate('common', "Look at %sCheck Versions%s for more details."),
 					"<a href=check_versions.php>", "</a>");
 	} else if ($warnings) {
@@ -1558,11 +1563,11 @@ function checkVersions($verbose=false) {
                             printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
                             continue;
                         }
-                        $success[$file] = sprintf("No comparabel Rev for type: %s", $matches[1]);
+                        $success[$file] = sprintf("No comparable Rev for type: %s.", $matches[1]);
                         continue;
                     }
 		    elseif (in_array($file, $fileskiplist)) {
-                        $success[$file] = sprintf("File '%s' is in skiplist", $file);
+                        $success[$file] = sprintf("File '%s' is in the skiplist.", $file);
                         continue;
                     }
                     else {
@@ -1591,7 +1596,7 @@ $compare=compareVersions($version, $found_version);
      } else {
              if ($verbose) {
                      print "<br>\n";
-                     print sprintf(gTranslate('common', "%s OK"), $file);
+                     print sprintf(gTranslate('common', "%s OK."), $file);
              }
              $success[$file]=sprintf(gTranslate('common', "Found expected version %s."), $version);
      }

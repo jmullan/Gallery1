@@ -23,69 +23,69 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-printPopupStart(_("ImageMap Help"),'', langLeft());
+printPopupStart(gTranslate('core', "ImageMap help"),'', langLeft());
 ?>
   <style>
         li { font-weight: bold; color: red;}
   </style>
 
     <div align="center" style="font-weight: bold">
-      <?php  echo _("This is a help for working with gallerys so called 'imagemaps'"); ?>
+      <?php  echo gTranslate('core', "This is a help for working with Gallerys so called 'ImageMaps'."); ?>
     </div>   
 
     <p align="left">
-	<?php echo _("An ImageMap is a predefined area of a picture, or a hotspot if you will."); ?>
-    <br><?php echo _("A sample usage scenario is a family photo, where you can apply an ImageMap for each of the family members featured in the photo."); ?>
-    <br><?php echo _("The defined area can contain information you want displayed when a user places his mouse pointer on top of that area."); ?>
-    <br><br><?php echo _("You can add basic text, or even define an URL that gets activated when a user clicks the area you have defined as an ImageMap."); ?>
+	<?php echo gTranslate('core', "An ImageMap is a predefined area of a picture, or a hotspot if you will."); ?>
+    <br><?php echo gTranslate('core', "A sample usage scenario is a family photo, where you can apply an ImageMap for each of the family members featured in the photo."); ?>
+    <br><?php echo gTranslate('core', "The defined area can contain information you want displayed when a user places his mouse pointer on top of that area."); ?>
+    <br><br><?php echo gTranslate('core', "You can add basic text, or even define an URL that gets activated when a user clicks the area you have defined as an ImageMap."); ?>
     </p>
 
     <ul>
-      <li><?php echo _("How to create an ImageMap in Gallery?"); ?></li>
+      <li><?php echo gTranslate('core', "How to create an ImageMap in Gallery?"); ?></li>
 
       <p>
-        <?php echo _("It's as easy as it is fun. First, you need to create your ImageMap, this is done by clicking on the image, in the position where you want the first corner of the ImageMap to be."); ?>
-        <br><?php echo _("Click again on a new spot, and you'll see that Gallery creates a polygon shape based on the two spots you have created."); ?>
-        <br><?php echo _("Click again to create another spot. Add spots until your polygon shape surrounds the entire area you want to use as an ImageMap."); ?>
+        <?php echo gTranslate('core', "It's as easy as it is fun. First, you need to create your ImageMap, this is done by clicking on the image, in the position where you want the first corner of the ImageMap to be."); ?>
+        <br><?php echo gTranslate('core', "Click again on a new spot, and you'll see that Gallery creates a polygon shape based on the two spots you have created."); ?>
+        <br><?php echo gTranslate('core', "Click again to create another spot. Add spots until your polygon shape surrounds the entire area you want to use as an ImageMap."); ?>
       </p>
 
       <p>
-        <?php echo _("When you are satisifed with your selection (e.g. a person or object), enter the describing text for your for your ImageMap in the 'Description' form on the left hand side."); ?>
-        <br><?php echo _("The text entered in the Description field, will be displayed when your users point their mousecursor over the ImageMap"); ?>
+        <?php echo gTranslate('core', "When you are satisifed with your selection (e.g. a person or object), enter the describing text for your ImageMap in the 'description' form on the left hand side."); ?>
+        <br><?php echo gTranslate('core', "The text entered in the description field, will be displayed when your users point their mousecursor over the ImageMap."); ?>
       </p>
 
       <p>
-        <?php echo _("Optionally you can enter a Link-Url for your ImageMap, which is activated when a user clicks your ImageMap selection."); ?>
-        <br><?php echo _("When you satisfied, click the 'Save ImageMap' button at the left side."); ?>
-      </p>
-    </ul>
-
-    <ul>
-      <li><?php echo _("How to update an ImageMap in Gallery?"); ?></li>
-
-      <p>
-        <?php echo _("Currently you can only modify the text and the url for an ImageMap. The polygon for the ImageMap is currently not changeable."); ?>
-        <br><?php echo _("If you do need to change the actual shape of the selection, you need to delete it and create a new selection in the shape you want."); ?>
-      </p>
-      <p>
-        <?php echo _("Select the ImageMap you want to edit in the box on the left hand side."); ?>
-        <br><?php echo _("The Image preview on the right hand side, will show which area is covered by the ImageMap currently selected."); ?>
-        <br><?php echo _("You can then modify your 'Description', or edit the 'Link-URL'."); ?>
-        <br><?php echo _("When finished, click the 'Update ImageMap' button. "); ?>
+        <?php echo gTranslate('core', "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."); ?>
+        <br><?php echo gTranslate('core', "When you are satisfied, click the 'Save ImageMap' button at the left side."); ?>
       </p>
     </ul>
 
     <ul>
-      <li><?php echo _("How to delete an ImageMap in Gallery?"); ?></li>
+      <li><?php echo gTranslate('core', "How to update an ImageMap in Gallery?"); ?></li>
 
       <p>
-	<?php echo _("Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selectes ImageMap(s)' button."); ?>
+        <?php echo gTranslate('core', "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."); ?>
+        <br><?php echo gTranslate('core', "If you do need to change the actual shape of the selection, you need to delete it and create a new selection in the shape you want."); ?>
+      </p>
+      <p>
+        <?php echo gTranslate('core', "Select the ImageMap you want to edit in the box on the left hand side."); ?>
+        <br><?php echo gTranslate('core', "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."); ?>
+        <br><?php echo gTranslate('core', "You can then modify your 'Description', or edit the 'Link-URL'."); ?>
+        <br><?php echo gTranslate('core', "When finished, click the 'Update ImageMap' button."); ?>
+      </p>
+    </ul>
+
+    <ul>
+      <li><?php echo gTranslate('core', "How to delete an ImageMap in Gallery?"); ?></li>
+
+      <p>
+	<?php echo gTranslate('core', "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."); ?>
       </p>
 
     </ul>
 
     <div align="center">
-      <input type="button" value="<?php echo _("Close Window"); ?>" onclick="parent.close()">
+      <input type="button" value="<?php echo gTranslate('core', "Close Window"); ?>" onclick="parent.close()">
     </div>
   </div>
 </body>

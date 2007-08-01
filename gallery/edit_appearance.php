@@ -40,6 +40,8 @@ include_once (dirname(__FILE__) . '/js/sectionTabs.js.php');
 $infoMessages = array();
 $reloadOpener = false;
 
+$shortdescWidth = '50%';
+
 if (getRequestVar('save')) {
     /**
      * This part does 2 things:
@@ -183,14 +185,14 @@ function num_special_fields($extra_fields) {
 
 $multiple_choices_EF = array(
     'Title' => gTranslate('core', "Title"),
-    'AltText' => gTranslate('core', "Alt Text / onMouseOver")
+    'AltText' => gTranslate('core', "Alt text / Tooltip")
 );
 
 $extra_fields = $gallery->album->getExtraFields();
 $checked_EF = array();
 
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
-    if ($automatic === "EXIF" && 
+    if ($automatic === "EXIF" &&
        (($gallery->album->fields["use_exif"] != "yes") || !isset($gallery->app->use_exif))) {
         continue;
     }

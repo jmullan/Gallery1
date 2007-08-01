@@ -30,7 +30,7 @@ list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minute
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 $err = '';
@@ -65,16 +65,16 @@ if (isset($save)) {
             return;
         }
     } else {
-        $err = _("Year must be between 1969 and 2070");
+        $err = gTranslate('core', "Year must be between 1969 and 2070.");
     }
 }
 ?>
 <head>
-  <title><?php echo _("Edit Text") ?></title>
+  <title><?php echo gTranslate('core', "Edit Text") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Edit Caption"); ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Edit Caption"); ?></div>
 <div class="popup" align="center">
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
@@ -86,7 +86,7 @@ if (isset($save)) {
 <input type="hidden" name="index" value="<?php echo $index ?>">
 <table>
 <tr>
-	<td style="vertical-align: top"><b><?php echo _("Caption") ?>:</b></td>
+	<td style="vertical-align: top"><b><?php echo gTranslate('core', "Caption") ?>:</b></td>
 	<td><textarea name="data" rows="4" cols="40"><?php echo $gallery->album->getCaption($index) ?></textarea></td>
 </tr>
 <?php
@@ -142,12 +142,12 @@ $year 	 = strftime('%Y', $itemCaptureDate);
 	<td colspan="6" align="center"><?php echo gTranslate('core', "Photo Capture Date") ?></td>
   </tr>
   <tr>
-    <td><?php echo _("Month") ?></td>
-    <td><?php echo _("Day") ?></td>
-    <td><?php echo _("Year") ?></td>
-    <td><?php echo _("Hours") ?></td>
-    <td><?php echo _("Minutes") ?></td>
-    <td><?php echo _("Seconds") ?></td>
+    <td><?php echo gTranslate('core', "Month") ?></td>
+    <td><?php echo gTranslate('core', "Day") ?></td>
+    <td><?php echo gTranslate('core', "Year") ?></td>
+    <td><?php echo gTranslate('core', "Hours") ?></td>
+    <td><?php echo gTranslate('core', "Minutes") ?></td>
+    <td><?php echo gTranslate('core', "Seconds") ?></td>
   </tr>
   <tr>
 <?php
@@ -180,8 +180,8 @@ echo "</td>";
 </table>
 
 <p>
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </p>
 
 </form>

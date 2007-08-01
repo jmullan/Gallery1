@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -27,12 +27,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 	var $everybody;
 	var $loggedIn;
 	var $version;
-	
+
 	function Gallery_UserDB() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
 
-		// assuming revision 4 ensures that if the user_version is 
+		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes
 		// that we perform the necessary upgrade.
 		$this->version = 4;
@@ -41,12 +41,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!fs_file_exists($userDir)) {
 			if (!mkdir($userDir, 0777)) {
-				echo gallery_error(_("Unable to create dir") .": $userDir");
+				echo gallery_error(sprintf(gTranslate('core', "Unable to create dir: '%s'."),$userDir));
 				return;
 			}
 		} else {
 			if (!fs_is_dir($userDir)) {
-				echo gallery_error(sprintf(_("%s exists, but is not a directory!"),
+				echo gallery_error(sprintf(gTranslate('core', "%s exists, but is not a directory!"),
 							$userDir));
 				return;
 			}
@@ -58,7 +58,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				fwrite($fd, "Order deny,allow\nDeny from all\n");
 				fclose($fd);
 			} else {
-				echo gallery_error(sprintf(_("The folder folder which contain your userinformation (%s) is not writable."), 
+				echo gallery_error(sprintf(gtranslate('core', "The folder which contain your userinformation (%s) is not writable."),
 								$userDir));
 				exit;
 			}
@@ -68,7 +68,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (fs_file_exists("$userDir/userdb.dat") && is_writeable("$userDir/userdb.dat")) {
 			$tmp = getFile("$userDir/userdb.dat");
 
-			/* 
+			/*
 			 * We moved from class UserDB.php to class Gallery_UserDB.php
 			 * in v1.2.  If we're upgrading from an old version, just ignore
 			 * the old cache file (it'll get rebuilt automatically).
@@ -79,7 +79,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				}
 			}
 		} elseif (fs_file_exists("$userDir/userdb.dat") && !is_writeable("$userDir/userdb.dat")) {
-			echo gallery_error(_("Your Userfile is not writeable"));
+			echo gallery_error(gTranslate('core', "Your userfile is not writeable."));
 			exit;
 		}
 
@@ -146,7 +146,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		} else {
 			return $user;
 		}
-		
+
 	}
 
 	function getUserByUid($uid, $tryOldFormat=false) {
@@ -240,7 +240,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function getUidList() {
 		global $gallery;
-		
+
 		$uidList = array();
 		if ($fd = fs_opendir($gallery->app->userDir)) {
 			while ($file = readdir($fd)) {
@@ -258,7 +258,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
 				    $tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
 				}
-				
+
 				$user = unserialize($tmp);
 				if (!strcasecmp(get_class($user), "gallery_user")) {
 					array_push($uidList, $user->uid);
@@ -277,35 +277,35 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function validNewUserName($username) {
 
 		if (strlen($username) == 0) {
-			return _("Please enter a username.");
+			return gTranslate('core', "Please enter a username.");
 		}
 
 		if (strlen($username) < 2) {
-			return sprintf(_("Username '%s' is to short. Must be at least 2 characters."),
+			return sprintf(gTranslate('core', "Username '%s' is too short. Must be at least 2 characters."),
 					"<i>". htmlentities ($username) ."</i>");
 		}
 
 		if (strlen($username) > 15) {
-			return sprintf(_("Username '%s' too long. Must be at most 15 characters."),
+			return sprintf(gTranslate('core', "Username '%s' too long. Must be at most 15 characters."),
 					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
-			return sprintf(_("Illegal username '%s'. Only letters and digits allowed."),
+			return sprintf(gTranslate('core', "Illegal username '%s'. Only letters and digits allowed."),
 					"<i>". htmlentities($username) ."</i>");
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
 		    !strcmp($username, $this->everybody->getUsername()) ||
 		    !strcmp($username, $this->loggedIn->getUsername())) {
-			return sprintf(_("%s is reserved and cannot be used."),
+			return sprintf(gTranslate('core', "%s is reserved and cannot be used."),
 					"<i>$username</i> ");
 		}
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
-			return sprintf(_("A user with the username of %s already exists"),
+			return sprintf(gTranslate('core', "A user with the username of %s already exists."),
 				" <i>$username</i> ");
 		}
 
@@ -314,7 +314,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function validPassword($password) {
 		if (strlen($password) < 3) {
-			return _("Password must be at least 3 characters");
+			return gTranslate('core', "Password must be at least 3 characters.");
 		}
 
 		return null;
@@ -345,12 +345,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$count=1;
 		$total=sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
-			processingMsg (sprintf(_("Checking user %d of %d . . . . "), $count++, $total));
+			processingMsg (sprintf(gTranslate('core', "Checking user %d of %d ... "), $count++, $total));
 			$user=$this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 			    $user->username == $everybody ||
 			    $user->username == $loggedin) {
-				print _("skipped");
+				print gTranslate('core', "skipped");
 				continue;
 			}
 			if (!$user->integrityCheck()) {
@@ -368,7 +368,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return $success;
 	}
 
-	function CreateUser($uname, $email, $new_password, 
+	function CreateUser($uname, $email, $new_password,
 			$fullname, $canCreate, $language, $log) {
 		global $gErrors;
 	       	$errorCount=0;
@@ -395,8 +395,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 		       	$tmpUser->log($log);
 		       	$tmpUser->save();
 		       	return $tmpUser;
-	       	} else { 
-			processingMsg( "<b>" . sprintf(_("Problem adding %s:"), $uname)."</b>");
+	       	} else {
+			processingMsg( "<b>" . sprintf(gTranslate('core', "Problem adding %s:"), $uname)."</b>");
 		       	foreach ($gErrors as $key_var => $value_var) {
 			       	echo "\n<br>". gallery_error($gErrors[$key_var]);
 		       	}

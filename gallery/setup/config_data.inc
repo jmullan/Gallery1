@@ -122,7 +122,7 @@ $checklist = array(
 		'optional' => 1,
 	),
 	'safe_mode' => array(
-		'prompt' => gTranslate('config',"PHPs safe mode disabled"),
+		'prompt' => gTranslate('config',"PHP's safe mode disabled"),
 		'desc' => gTranslate('config',"Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		'func' => 'check_safe_mode',
 		'fail-safe-mode' => sprintf(gTranslate('config',"<b>safe_mode</b> is enabled on this server.  You must disable it before you can use Gallery.  Refer to the FAQ, the forums, and the help page on the %sGallery website%s and the %sPHP website%s for assistance."),
@@ -139,14 +139,14 @@ $checklist = array(
 		'serious' => 1
 	),
 	'exec' => array(
-		'prompt' => gTranslate('config',"PHPs exec() function enabled"),
+		'prompt' => gTranslate('config',"PHP's exec() function enabled"),
 		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		'func' => 'check_exec',
 		'fail-exec' => gTranslate('config',"The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		'serious' => 1,
 	),
 	'htaccess' => array(
-		'prompt' => gTranslate('config',".htaccess processed by apache"),
+		'prompt' => gTranslate('config',".htaccess processed by Apache"),
 		'desc' => gTranslate('config',"Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
 		'func' => 'check_htaccess',
 		'fail-htaccess' => gTranslate('config',"Apache is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") .'<br><pre>' .
@@ -157,7 +157,7 @@ $checklist = array(
 		'optional' => 1
 	),
 	'magic-quotes' => array(
-		'prompt' => gTranslate('config',"PHPs magic quotes off"),
+		'prompt' => gTranslate('config',"PHP's magic quotes off"),
 		'optional' => 1,
 		'desc' => sprintf(gTranslate('config',"Check to see if %smagic quotes%s are enabled on your PHP server.  If they're on, you may notice strange behavior if you put ' (single-quote), &quot; (double quote) or &#92; (backslash) characters in titles or captions in Gallery."),
 		  '<b><a href="http://www.php.net/manual/en/configuration.php#ini.magic-quotes-gpc" target="_blank">',
@@ -273,7 +273,7 @@ $constants =  array_merge(array(
 	),
 	'editPassword' => check_admins(),
 	'useIcons' => array(
-		'prompt' => gTranslate('config',"Use Icons ?"),
+		'prompt' => gTranslate('config',"Use Icons?"),
 		'desc' => gTranslate('config',"You can choose wether you want to use Gallery icons, text only, or both. When you choose icons only, then there will be an onMousoverText."),
 		'choices' => array(
 			'both' => gTranslate('config',"Icons and text"),
@@ -317,7 +317,7 @@ $constants =  array_merge(array(
 		'desc' => '(<span class="attention">' . gTranslate('config',"REQUIRED") . '</span>) ' .
 		  sprintf(gTranslate('config',"The full filesystem path on physical disk to the directory where your photos will be stored.  This directory should start off empty.  Gallery will fill it.  Note that this directory needs to have write access by the user who is running the web server (in your case this user is %s)."),
 		  '<b>'. $webserver_user . '</b>') .
-		  "\<br>" . _("Examples: "). '<i>/home/jens/public_html/albums</i> , <i>c:\\apache\\albums</i>'
+		  "\<br>" . gTranslate('config', "Examples: "). '<i>/home/jens/public_html/albums</i> , <i>c:\\apache\\albums</i>'
 		  ,
 		'value' => '',
 		'require-write-dir' => 1,
@@ -538,10 +538,10 @@ $constants =  array_merge(array(
 		'type' => 'group_start',
 		'name' => 'group_mainpage',
 		'default' => 'none',
-		'title' => gTranslate('config',"Main Gallery page"),
+		'title' => gTranslate('config', "Main Gallery page"),
 	),
 	'albumTreeDepth' => array(
-		'prompt' => gTranslate('config',"Show the album tree ?"),
+		'prompt' => gTranslate('config',"Show the album tree?"),
 		'desc' => gTranslate('config',"If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."),
 		'choices' => array(
 			0 => gTranslate('config',"No tree"),
@@ -1124,7 +1124,7 @@ $constants = array_merge($constants, array(
 		'title'		=> gTranslate('config',"Watermarking"),
 		'desc'		=> ($enablewatermark == 'yes') ?
 		  gTranslate('config',"Choose wether you want to enable or disable watermarking. And set the defaults") :
-		  '<span class="attention">' . gTranslate('config',"Watermarking is not possible in this installation !") . '</span>'
+		  '<span class="attention">' . gTranslate('config', "Watermarking is not possible in this installation!") . '</span>'
 	),
 	'watermarkDir' => array(
 		'prompt' => gTranslate('config',"Watermark directory"),
@@ -1670,8 +1670,8 @@ $defaults = array(
 		'type' => 'text',
 	),
 	'ecards' => array(
-		'prompt' => gTranslate('config',"Enable Ecards ?"),
-		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picure as eCard via eMail") . '<br>'.
+		'prompt' => gTranslate('config',"Enable Ecards?"),
+		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picure as eCard via eMail.") . '<br>'.
 		  '<span class="attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
@@ -1777,7 +1777,7 @@ $defaults = array(
 		'default' => 'none',
 		'title' => gTranslate('config',"Polling configuration"),
 		'desc' =>
-		  sprintf(gTranslate('config',"It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version then %s."),
+		  sprintf(gTranslate('config',"It allows your visitors to vote for or rate the contents of an album.  You set defaults for polling here, which will apply to new albums, and to all existing albums when you upgraded from an earlier version than %s."),
 		  '1.4.1') .
 		  '<p>' .
 		  gTranslate('config',"In each album, voting can be switched off, restricted to logged in users or open to all visitors.")
