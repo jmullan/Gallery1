@@ -1,0 +1,57 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>The Configuration Wizard</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-install.html" title="Chapter 1. Gallery 1.x Installation Guide"><link rel="previous" href="gallery1-install.language-packs.html" title="Installing Language Packs"><link rel="next" href="gallery1-install.faq.html" title="Frequently Asked Questions"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The Configuration Wizard</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-install.language-packs.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Gallery 1.x Installation Guide</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-install.faq.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gallery1-install.config-wizard"></a>The Configuration Wizard</h2></div></div><div></div></div><p>
+  The Gallery configuration wizard is a simple tool to help you configure
+  initial settings for your Gallery.  It notifies you of potential errors and
+  makes setting up Gallery easy!
+ </p><div class="orderedlist"><ol type="1"><li><p>
+    Put your Gallery into configuration mode.  Doing this is described on each
+    of the individual installation pages.  Pick the one that describes your
+    setup.
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+       <a href="gallery1-install.unix-ftp.html" title="Installing on a Unix/Linux Server with FTP">Unix FTP</a>
+      </p></li><li><p>
+       <a href="gallery1-install.unix-shell.html" title="Installing on a Unix/Linux Server with Shell Access">Unix Shell</a>
+      </p></li><li><p>
+       <a href="gallery1-install.windows.html" title="Installing on a Windows Server (Apache)">Windows Apache</a>
+      </p></li><li><p>
+       <a href="gallery1-install.windows-iis.html" title="Installing on a Windows Server (IIS)">Windows IIS</a>
+      </p></li></ul></div><p>
+   </p></li><li><p>
+    Start the configuration wizard by pointing your browser to:
+    <span class="emphasis"><em>http://www.example.com/gallery/setup/index.php</em></span>
+   </p></li><li><p>
+    The first page will check for errors that could block you from installing
+    Gallery.  If you get all green, you're passing with flying colors!  If
+    some tests fail with a warning (i.e. yellow), you're usually OK.  However,
+    if some tests fail with "serious warnings," you need to fix them before
+    proceeding
+   </p></li><li><p> 
+    Step 2 will guide you through some Gallery-wide settings.  Finally, step 3
+    allows you to set <span class="bold"><b>default</b></span> settings for
+    new albums (this does <span class="emphasis"><em>not</em></span> affect already created albums;
+    see <a href="gallery1-install.faq.c.html#gallery1-install.faq.c.34">FAQ C.34</a>).
+   </p></li><li><p>
+    The last page (step 4) shows you what your <tt class="filename">config.php</tt> file will look like
+    after you save it.  It will also prompt you to fix any errors in the previous
+    steps (e.g. bad album path or missing values).  If everything is set correctly,
+    you can click "Save Config."
+   </p></li><li><p>
+    Once your configuration has been saved, you must secure your Gallery.  Here's
+    how you do it for each OS/setup pair
+    </p><div class="itemizedlist"><ul type="disc"><li><p>
+       Unix/Shell - Run the <tt class="filename">secure.sh</tt> script, located in your
+       main Gallery directory
+      </p></li><li><p>
+       Unix/FTP - Chmod the files listed below:
+       </p><pre class="screen">
+        chmod 644 .htaccess
+	chmod 644 config.php
+	chmod 400 setup
+       </pre><p>
+      </p></li><li><p>
+       Windows - Run the <tt class="filename">secure.bat</tt> script, located in your
+       main Gallery directory
+      </p></li></ul></div><p>
+   </p></li><li><p>
+    Enjoy your newly installed Gallery!  The default username is <span class="emphasis"><em>admin</em></span>
+    and the password is what you specified on step 2 of the config wizard.
+   </p></li></ol></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-install.language-packs.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-install.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-install.faq.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Installing Language Packs </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Frequently Asked Questions</td></tr></table></div></body></html>

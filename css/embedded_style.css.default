@@ -1,0 +1,70 @@
+/* This is the style sheet used when Gallery is embedded into
+   another product, like PHP-Nuke, and when it's running
+   standalone.
+
+   If you would like to customize the styles please create
+   copy of this file called
+
+   "embedded_style.css" (same name without ".default")
+
+   If that file is found in this directory it will be
+   used instead of this one.
+
+   Some of the styles below are overriden by specific
+   album properties. These are noted
+
+   $Id$
+*/
+
+
+/*
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+
+.g-header-popup {
+    color: #fff;
+    background: #66a;
+}
+
+.g-header {
+    border-bottom: 2px solid #000;
+    padding: 5px 3px 3px 3px;
+    margin-bottom: 1px;
+}
+
+.g-header-popup {
+    border-bottom: 2px solid #000;
+    height: 25px;
+    padding: 5px;
+    margin-bottom: 1px;
+}
+
+.g-pagetitle, .g-pagetitle-popup {
+    margin-left: 20px;
+    padding: 2px;
+    padding-left: 5px; padding-right: 5px;
+}
+
+.g-pagetitle {
+    font-size: 16pt;
+}
+
+.g-pagetitle-popup {
+    font-size: 12pt;
+    font-weight: bold;
+    border: 1px solid #ccf;
+    -Moz-Border-Radius: 20px;
+}
+
+.g-commentadd-box {
+    border: 1px solid silver;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.g-adminbar {
+    font-weight: bold;
+    border: 1px solid silver;
+    margin: 1px;
+}

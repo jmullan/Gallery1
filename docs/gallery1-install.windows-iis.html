@@ -1,0 +1,89 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Installing on a Windows Server (IIS)</title><meta name="generator" content="DocBook XSL Stylesheets V1.64.1"><link rel="home" href="index.html" title="Gallery Manual"><link rel="up" href="gallery1-install.html" title="Chapter 1. Gallery 1.x Installation Guide"><link rel="previous" href="gallery1-install.windows.html" title="Installing on a Windows Server (Apache)"><link rel="next" href="gallery1-install.upgrade.html" title="Upgrading a Previous Gallery Installation"><link rel="stylesheet" href="html.css"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Installing on a Windows Server (IIS)</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gallery1-install.windows.html">Prev</a> </td><th width="60%" align="center">Chapter 1. Gallery 1.x Installation Guide</th><td width="20%" align="right"> <a accesskey="n" href="gallery1-install.upgrade.html">Next</a></td></tr></table><hr></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gallery1-install.windows-iis"></a>Installing on a Windows Server (IIS)</h2></div></div><div></div></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>If you are upgrading from a previous
+version of Gallery, please see the 
+<a href="gallery1-install.upgrade.html" title="Upgrading a Previous Gallery Installation">Upgrading Guide</a>.
+</p></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+   IIS is not officially supported by the Gallery Team.  These instructions are
+   provided as a guide to help you with setting up Gallery on IIS, but because
+   of major problems with PHP and IIS integration, IIS is not considered a
+   supported platform.
+  </p></div><p>
+  These instructions are a slightly modified and expanded version of the steps
+  previously found in the Wiki web, gathered from various forum users'
+  experiences.
+ </p><div class="orderedlist"><ol type="1"><li><p>
+    Install PHP by running the installer program found at
+    <a href="http://www.php.net/downloads.php" target="_top">the PHP downloads page</a>
+   </p></li><li><p>
+    Find the <tt class="filename">php.ini</tt> file (should be in your system root directory, e.g.
+    <tt class="filename">C:\winnt\</tt> or <tt class="filename">C:\windows</tt>.  Open
+    it in Notepad.  Locate the line that starts with <tt class="literal">error_reporting
+    </tt>.  Change the line to read: <tt class="literal">error_reporting = 2039
+    </tt>.  Then change the line that starts with
+    <tt class="literal">session.bug_compat_warn</tt> to <tt class="literal">session.bug_compat_warn = 
+    0</tt>.  Next, find the line that starts with <tt class="literal">magic_quotes_gpc</tt>
+    and change it to read <tt class="literal">magic_quotes_gpc = 0</tt>.  Finally,
+    find the line that starts with <tt class="literal">session.save_path</tt> and make
+    sure it points to a valid directory, such as <tt class="literal">C:\winnt\temp</tt>
+    or <tt class="literal">C:\windows\temp</tt>.  Also find the line that starts with
+    <tt class="literal">upload_tmp_dir</tt>.  Set this directive to the same thing
+    as <tt class="literal">session.save_path</tt>.  <span class="emphasis"><em>Remember what you
+    specified for these directives for a later step</em></span>.
+   </p></li><li><p>
+    Open the IIS panel (Start -&gt; Control Panel -&gt; Administrative Tools
+    -&gt; Internet Information Services).  Right click on the "Default Website"
+    (or the name of the website you're installing Gallery under) and choose
+    "Properties".  Click the "Documents" tab, and click "Add".  Enter "index.php"
+    and click OK.  Click OK and close the IIS panel.
+   </p></li><li><p>
+    Make sure the <tt class="literal">IUSR_[machinename]</tt> account has full read/write
+    access to your PHP session data and upload temp directories (see step 2).
+    Find the directory you specified in Windows Explorer and right click on it,
+    choosing "Properties" then "Security".  If you see the <tt class="literal">IUSR_[machinename]</tt>
+    account listed, make sure it has full read/write permissions.  If not, you will
+    have to add this account.  Click "Add..." then "Advanced" then "Find Now".  It
+    will show a list of all the user accounts available on the machine.  Find the
+    <tt class="literal">IUSR_[machinename]</tt> account and click "OK" and "OK" again.  Then
+    make sure the account has the proper permissions, as listed above.
+   </p></li><li><p>
+    Download <a href="http://www.imagemagick.org" target="_top">ImageMagick</a> and
+    run the installation program.  <span class="emphasis"><em>Do NOT install it to the default
+    directory</em></span>.  Instead, choose something like <tt class="filename">C:\ImageMagick</tt>
+    or another directory <span class="emphasis"><em>without a space</em></span>.  Remember this
+    directory.
+   </p></li><li><p>
+    If you are using <a href="gallery1-install.required-programs.html#gallery1-install.required-programs.jhead" title="Jhead (Optional)">jhead</a>
+    or other optional programs, install them <span class="emphasis"><em>in a directory without
+    a space</em></span>.  Remember which directory you installed them in.
+   </p></li><li><p>
+    <a href="http://gallery.menalto.com/modules.php?op=modload&amp;name=phpWiki&amp;file=index&amp;pagename=Download" target="_top">
+    Download Gallery</a> and unpack it under your wwwroot directory.
+   </p></li><li><p>
+    Create two directories called <tt class="filename">albums</tt> and <tt class="filename">tmp
+    </tt> in the newly created directory where you unpacked Gallery.  Give
+    the <tt class="literal">IUSR_[machinename]</tt> user full read/write access to
+    these two directories.
+   </p></li><li><p>
+    Put Gallery into config mode by running <tt class="filename">configure.bat</tt>
+    in the root Gallery directory
+   </p></li><li><p>
+    Run the <a href="gallery1-install.config-wizard.html" title="The Configuration Wizard">configuration wizard
+    </a>.  Input all necessary information, including where you put all the
+    programs you installed earlier and where you created your albums and temp
+    directories (see previous step).
+   </p></li><li><p>
+    Complete the config wizard and run <tt class="filename">secure.bat</tt>.
+   </p></li><li><p>
+    Search for <tt class="filename">cmd.exe</tt> on your system.  It should be in
+    the <tt class="filename">C:\windows\system32</tt> or <tt class="filename">C:\winnt\system32</tt>
+    folder.  Make sure the <tt class="literal">IUSR_[machinename]</tt> account has read
+    and execute permissions to it. Another possible solution may be to copy cmd.exe 
+    for your <tt class="filename">c:\windows\system32\</tt> folder to the same folder 
+    <tt class="filename">php.exe</tt> resides in. The problem might not just be permissions, 
+    but the ability to run <tt class="filename">cmd.exe</tt> from it's default location via IIS. 
+
+   </p></li><li><p>
+    Your Gallery should be successfully installed.  Enjoy!
+   </p></li></ol></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3><p>
+   If you are using NetPBM, instead of ImageMagick (not recommended), you may
+   need to refer to <a href="gallery1-install.faq.c.html#gallery1-install.faq.c.26">FAQ C.26</a>.
+  </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gallery1-install.windows.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="gallery1-install.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="gallery1-install.upgrade.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Installing on a Windows Server (Apache) </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Upgrading a Previous Gallery Installation</td></tr></table></div></body></html>

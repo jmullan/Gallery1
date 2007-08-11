@@ -1,0 +1,38 @@
+<?php
+// $Id$
+?>
+      <table width="100%" cellspacing="0" cellpadding="0" style="padding: 2px">
+        <tr>
+          <td class="left" style="vertical-align: top">
+            <!-- The Gallery code version number, linked to the Gallery home page -->
+            <span class="g-small">
+	    <?php print poweredBy() ?>
+            </span>
+          </td>
+<?php
+	if (!$gallery->session->offline &&
+	  isset($gallery->app->rssEnabled) && $gallery->app->rssEnabled == "yes") {
+?>
+		<td class="center">
+			<a href="<?php echo $gallery->app->photoAlbumURL . "/rss.php"; ?>">
+			<?php echo getIconText('rss-feed.gif', gTranslate('common', "RSS")); ?>
+			</a>
+		</td>
+<?php
+}
+if ($gallery->user->isAdmin() ) { ?>
+
+          <!-- donation block -->
+
+          <td width="300" class="right g-small">
+			Are you happy with Gallery?<br>
+			Make us happy too!  Donate!<br>
+          </td>
+          <td width="90" class="right">
+            <a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>">
+		<?php echo gImage('donate.png', _("Donate to Gallery now!!")); ?>
+	    </a>
+	    </td>
+<?php } ?>
+        </tr>
+      </table>

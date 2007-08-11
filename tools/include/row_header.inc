@@ -1,0 +1,13 @@
+	    <tr>
+	      <th>Number</th>
+	      <th>Language</th>
+	      <th>Locale</th>
+	      <th>Complete</th>
+	      <th>Plugin</th>
+	      <th>Complete</th>
+	      <th>Total</th>
+	      <th>Trans.</th>
+	      <th>Fuzzy</th>
+	      <th>Untrans.</th>
+	      <th>Obsolete</th>
+	    </tr>
