@@ -129,4 +129,24 @@ function rmdirRecursive($dir) {
 	rmdir($dir);
 }
 
+/**
+ * Checks whether the given path or the given path with .default extension exists.
+ * Function exits Galelry with an error message when a path does not exist at all.
+ *
+ * @param	string $localPath		Path to a file on the server.
+ * @return	string				The path that exist.
+ * @author	Jens Tkotz
+ */
+function getDefaultFilename($localPath) {
+	if(fs_file_exists($localPath)) {
+		return $localPath;
+	}
+	elseif (fs_file_exists($localPath . 'default')) {
+		return $localPath . 'default';
+	}
+	else {
+		echo gallery_error(gTranslate('common', "The path you try to use does not exist! Exiting Gallery"));
+		exit;
+	}
+}
 ?>

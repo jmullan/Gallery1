@@ -1815,7 +1815,7 @@ function showDebugInfo() {
 }
 
 require_once(dirname(__FILE__) . '/lib/lang.php');
-require_once(dirname(__FILE__) . '/lib/Form.php');
+require_once(dirname(__FILE__) . '/lib/form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
 require_once(dirname(__FILE__) . '/lib/album.php');
 require_once(dirname(__FILE__) . '/lib/albumItem.php');

@@ -183,7 +183,7 @@ slideshow_body();
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
-$breadcrumb["text"] = @returnToPathArray($gallery->album, true);
+$breadcrumb["text"] = @returnToPathArray($gallery->album, true, true);
 
 $adminbox['commands'] = '';
 if (!$gallery->session->offline) {

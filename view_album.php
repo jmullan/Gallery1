@@ -749,6 +749,8 @@ else {
 }
 
 define('READY_TO_INCLUDE', 'DISCO');
-require(dirname(__FILE__) .'/templates/album.tpl.default');
+$templateFile = getDefaultFilename(GALLERY_BASE .'/templates/album.tpl');
+
+require($templateFile);
 
 ?>

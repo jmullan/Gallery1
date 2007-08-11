@@ -520,6 +520,9 @@ if ($gallery->app->comments_enabled == 'yes' &&
 		$emailMeForm .= "\n</form>";
 	}
 }
-	define('READY_TO_INCLUDE', 'DISCO');
-	require(dirname(__FILE__) .'/templates/photo.tpl.default');
+
+define('READY_TO_INCLUDE', 'DISCO');
+$templateFile = getDefaultFilename(GALLERY_BASE .'/templates/photo.tpl');
+
+require($templateFile);
 ?>

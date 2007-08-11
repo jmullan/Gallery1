@@ -501,6 +501,8 @@ if(!fs_file_exists(GALLERY_BASE . "/templates/$g_theme/gallery.tpl.default")) {
 }
 
 define('READY_TO_INCLUDE', 'DISCO');
-require(GALLERY_BASE ."/templates/$g_theme/gallery.tpl.default");
+$templateFile = getDefaultFilename(GALLERY_BASE ."/templates/$g_theme/gallery.tpl");
+
+require($templateFile);
 
 ?>
