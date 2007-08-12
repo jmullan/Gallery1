@@ -104,7 +104,7 @@ if (!empty($err)) {
 }
 
 if ($photo->image->type == 'gif') {
-    echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface &amp; unanimate' your picture."), 'notice');
+    echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface and 'unanimate' your picture."), 'notice');
 }
 
 echo makeFormIntro('edit_watermark.php');

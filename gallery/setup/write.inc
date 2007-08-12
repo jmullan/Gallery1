@@ -164,11 +164,11 @@ $userDB->version = $gallery->user_version;
 $admin = $userDB->getOrCreateUser("admin");
 
 if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
-	$message = sprintf(_("The password for user %s was changed."), '<b>admin</b>');
+	$message = sprintf(gTranslate('config', "The password for user %s was changed."), '<b>admin</b>');
 	$admin->setPassword($gallery->session->configForm->editPassword[2]);
 
 	if (!$admin->isAdmin()) {
-		$message = sprintf(_("An account called %s has been created for you with the password you specified."),"<b>admin</b>");
+		$message = sprintf(gTranslate('config', "An account called %s has been created for you with the password you specified."),"<b>admin</b>");
 		$admin->setIsAdmin(true);
 		if (!$admin->getFullName()) {
 			$admin->setFullName("Administrator");
@@ -182,10 +182,10 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 }
 ?>
 
-<title><?php echo _("Success!") ?></title>
+<title><?php echo gTranslate('config', "Success!") ?></title>
 <center>
 <div style="width:60%; text-align:center">
-	<div class="header"><?php echo _("Your configuration has been successfully saved!") ?></div>
+	<div class="header"><?php echo gTranslate('config', "Your configuration has been successfully saved!") ?></div>
 
 <?php
 if (getOS() != OS_WINDOWS) {
@@ -193,16 +193,16 @@ if (getOS() != OS_WINDOWS) {
 		$message .= "<br><br>";
 	else
 		$message = "";
-	$message .= _("We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.");
+	$message .= gTranslate('config', "We highly suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.");
 }
 
 // Inform the user that their gallery is not secure until they remove the 'resetadmin' file
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 	if (!empty($message)) $message .= "<br><br>";
 	$message .= '<span class="attention">'
-			. _("Note") 
+			. gTranslate('config', "Note") 
 			. ':<br>'
-			. sprintf(_("You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
+			. sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
 			. '</span>' ;
 }
 if (isset($message)) {
@@ -215,19 +215,19 @@ if (isset($message)) {
 
 <p style="width:80%; text-align:center">
 <?php 
-	echo _("You can reconfigure Gallery at any time by re-running this configuration wizard.");
+	echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
-	echo _("It will save your data so you won't have to enter it all again!");
+	echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
 	echo '<br>';
 	echo '<span class="emphasis">';
-	echo sprintf(_("Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
+	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
 		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
 	       Gallery());
 ?>
 	</span>
 	<p>
 
-	<font size=+2><a href="../albums.php"><?php echo _("Enter the Gallery") ?></a></font>
+	<font size=+2><a href="../albums.php"><?php echo gTranslate('config', "Enter the Gallery") ?></a></font>
 
 	<p><img src="../images/gallery-tag.png"></p>
 </div>
@@ -241,15 +241,15 @@ unset($gallery->session->configData);
 
 function fail($file) {
 ?>
-	<title><?php echo _("Failure") ?>!</title>
-	<font size="+2"><?php printf(_("Unable to write to %s."), $file )?></font>
+	<title><?php echo gTranslate('config', "Failure!") ?>!</title>
+	<font size="+2"><?php printf(gTranslate('config', "Unable to write to %s."), $file )?></font>
 	<p>
 	<font color="red">
-	<?php printf (_("You are missing either %s or %s."), "<i>config.php</i>", "<i>.htaccess</i>") ?>
+	<?php printf (gTranslate('config', "You are missing either %s or %s."), "<i>config.php</i>", "<i>.htaccess</i>") ?>
 	</font>
 	<p>
 	<input type="hidden" name="back_page" value="confirm">
-	<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo _("Review Settings") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="<- <?php echo gTranslate('config', "Review Settings") ?>">
 
 <?php
 	return;

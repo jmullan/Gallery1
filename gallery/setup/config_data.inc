@@ -200,10 +200,11 @@ $checklist = array(
 	),
 	'exif' => array(
 		'prompt' => gTranslate('config',"Jhead installed"),
-		'optional' => 1,
+		'optional'	=> true,
+		'serious'	=> true,
 		'desc' => gTranslate('config',"Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		'func' => 'check_exif',
-		'fail-exif' => sprintf(gTranslate('config',"I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
+		'warn-noexif' => sprintf(gTranslate('config',"I can't find <b>jhead</b>.  If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
 		  '<a href="http://www.sentex.net/~mwandel/jhead/index.html">',
 		  '</a>'),
 		'open-basedir-note' => $common_messages['open-basedir-active']

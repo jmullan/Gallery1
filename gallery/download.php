@@ -28,19 +28,19 @@ list($doit, $full) =
 getRequestVar(array('doit', 'full'));
 
 if (!empty($doit)) {
-    $albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
-    $albumcopyName = createTempAlbum($albumItemNames);
-    if($albumcopyName) {
-    $zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
-        if($zipfileName) {
-            if(!isDebugging()) {
-    downloadFile($zipfileName);
-            }
-            else {
-                echo gallery_error('<br>'. gTranslate('core', "Zipdownload would work, but is disabled when debugging."));
-            }
-        }
-    }
+	$albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
+	$albumcopyName = createTempAlbum($albumItemNames);
+	if($albumcopyName) {
+		$zipfileName = createZip($albumcopyName, $gallery->album->fields['name']);
+		if($zipfileName) {
+			if(!isDebugging()) {
+				downloadFile($zipfileName);
+			}
+			else {
+				echo gallery_error('<br>'. gTranslate('core', "Zipdownload would work, but is disabled when debugging."));
+			}
+		}
+	}
 }
 else {
     list($numItems, $numAlbums, $numPhotos) = $gallery->album->numItems($gallery->user, true);
@@ -86,7 +86,7 @@ else {
     }
     else {
 	echo "<br><br>";
-	echo gTranslate('core', "This  album is not empty, but contains no photo or movie! Download wouldn't make sense.");
+	echo gTranslate('core', "This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
 	echo "<br><br>";
         echo "\n". '<input type="button" value="'. gTranslate('core', "Close Window") .'" onclick="parent.close()">';
     }

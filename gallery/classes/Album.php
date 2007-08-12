@@ -1059,13 +1059,14 @@ class Album {
                   $_SERVER['REMOTE_ADDR'],
                 $msg_str);
 
-                $text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this image, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)");
+                $text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)");
                 $text .= "\n</p>\n</body>\n</html>";
 
 
                 gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 
-            } else if (isDebugging()) {
+            }
+            else if (isDebugging()) {
                 print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found.");
             }
         }

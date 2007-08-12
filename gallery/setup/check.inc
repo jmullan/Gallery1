@@ -74,7 +74,7 @@ $configTestStatus = array(
 	),
 	100 => array(
 		'image' => gImage('red_trafficlight.gif', gTranslate('config', "Failure!")),
-		'text' => gTranslate('config', "Failure"),
+		'text' => gTranslate('config', "Failure!"),
 		'border' => 'border: 4px solid #ec000a'
 	)
 );

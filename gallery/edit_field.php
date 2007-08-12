@@ -51,9 +51,20 @@ if (isset($save)) {
 <div class="popuphead"><?php echo sprintf(gTranslate('core', "Edit %s"), gTranslate('common', $field)) ?></div>
 <div class="popup" align="center">
 <?php
-	echo sprintf(gTranslate('core', "Edit the %s and click %s when you're done"), gTranslate('common', $field),
-	  '<b>' . gTranslate('core', "Save") . '</b>');
-
+	if($field == 'title') {
+		printf(gTranslate('core', "Edit the title and click %s when you're done"),
+		   '<b>' . gTranslate('core', "Save") . '</b>');
+	}
+	elseif ($field == 'description') {
+		printf(gTranslate('core', "Edit the description and click %s when you're done"),
+		   '<b>' . gTranslate('core', "Save") . '</b>');
+	}
+	else {
+		printf(gTranslate('core', "Edit the %s and click %s when you're done"),
+			gTranslate('common', $field),
+	  		'<b>' . gTranslate('core', "Save") . '</b>');
+	}
+	
 	echo makeFormIntro("edit_field.php",
 		array("name" => "theform"),
 		array("type" => "popup"));

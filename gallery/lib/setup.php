@@ -467,10 +467,19 @@ function check_exif($location = '') {
 	} else {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
+	
+	$jheadVersion = getJheadVersion($dir);
+	
 	if (empty($dir)) {
-		$warn["fail-exif"] = gTranslate('common', "Can't find <i>jhead</i>.");
-	} else {
-		$success[] = gTranslate('common', "<b>jhead</b> binary located.");
+		$warn["warn-noexif"] = gTranslate('common', "Can't find <i>jhead</i>.");
+	}
+	elseif(compareVersions($jheadVersion, '2.7') > 0) {
+		$fail["fail-exif-old"] =
+			sprintf(gTranslate('common', "<b>jhead</b> binary version %s located."), $jheadVersion) . '<br>' .
+			gTranslate('common', "You are using an older version of jhead. There are at least known problems with version 2.0. We recommend version 2.7 and higher.");
+	}
+	else {
+		$success[] = sprintf(gTranslate('common', "<b>jhead</b> binary version %s located."), $jheadVersion);
 	}
 
 	return array($success, $fail, $warn);
