@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-08-01 22:23+0200\n"
+"POT-Creation-Date: 2007-08-12 16:14+0200\n"
 "PO-Revision-Date: 2004-08-19 23:50+1000\n"
 "Last-Translator: Peter Vlaciky <doktor AT internode DOT net DOT au>\n"
 "Language-Team: SK <doktor AT internode DOT net DOT au>\n"
@@ -872,8 +872,8 @@ msgstr "Admin pomoc"
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:192 ../lib/setup.php:1504 ../lib/setup.php:1506
-#: ../lib/setup.php:1510 ../lib/setup.php:1518
+#: ../lib/mail.php:192 ../lib/setup.php:1513 ../lib/setup.php:1515
+#: ../lib/setup.php:1519 ../lib/setup.php:1527
 msgid "Username"
 msgstr "U¾ívateµ"
 
@@ -950,11 +950,11 @@ msgstr "Poháòané %s verzia %s"
 msgid "Please retype your password here"
 msgstr ""
 
-#: ../lib/setup.php:159 ../lib/setup.php:1108
+#: ../lib/setup.php:159 ../lib/setup.php:1117
 msgid "Name"
 msgstr "Meno"
 
-#: ../lib/setup.php:160 ../lib/setup.php:1108
+#: ../lib/setup.php:160 ../lib/setup.php:1117
 msgid "Value"
 msgstr "Hodnota"
 
@@ -984,417 +984,422 @@ msgstr "PHP v%s je OK."
 msgid "<b>mod_rewrite</b> is enabled."
 msgstr ""
 
-#: ../lib/setup.php:471
+#: ../lib/setup.php:474
 msgid "Can't find <i>jhead</i>."
 msgstr ""
 
-#: ../lib/setup.php:473
-msgid "<b>jhead</b> binary located."
+#: ../lib/setup.php:478 ../lib/setup.php:482
+#, php-format
+msgid "<b>jhead</b> binary version %s located."
 msgstr ""
 
-#: ../lib/setup.php:511
+#: ../lib/setup.php:479
+msgid "You are using an older version of jhead. There are at least known problems with version 2.0. We recommend version 2.7 and higher."
+msgstr ""
+
+#: ../lib/setup.php:520
 msgid "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
 msgstr ""
 
-#: ../lib/setup.php:519
+#: ../lib/setup.php:528
 msgid "Netpbm not being used in this installation."
 msgstr ""
 
-#: ../lib/setup.php:524 ../lib/setup.php:619
+#: ../lib/setup.php:533 ../lib/setup.php:628
 msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr ""
-
-#: ../lib/setup.php:558 ../lib/setup.php:636
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr ""
-
-#: ../lib/setup.php:561 ../lib/setup.php:639
-#, php-format
-msgid "Can't find %s!"
 msgstr ""
 
 #: ../lib/setup.php:567 ../lib/setup.php:645
 #, php-format
+msgid "Missing optional binary %s. %s"
+msgstr ""
+
+#: ../lib/setup.php:570 ../lib/setup.php:648
+#, php-format
+msgid "Can't find %s!"
+msgstr ""
+
+#: ../lib/setup.php:576 ../lib/setup.php:654
+#, php-format
 msgid "%s is not executable!"
 msgstr ""
 
-#: ../lib/setup.php:577 ../lib/setup.php:584
+#: ../lib/setup.php:586 ../lib/setup.php:593
 #, php-format
 msgid "%d of %d Netpbm binaries located."
 msgstr ""
 
-#: ../lib/setup.php:608
+#: ../lib/setup.php:617
 msgid "Without composite. gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."
 msgstr ""
 
-#: ../lib/setup.php:614
+#: ../lib/setup.php:623
 msgid "ImageMagick not being used in this installation."
 msgstr ""
 
-#: ../lib/setup.php:655 ../lib/setup.php:662
+#: ../lib/setup.php:664 ../lib/setup.php:671
 #, php-format
 msgid "%d of %d ImageMagick binaries located."
 msgstr ""
 
-#: ../lib/setup.php:684
+#: ../lib/setup.php:693
 msgid "Can't find <i>jpegtran</i>!"
 msgstr ""
 
-#: ../lib/setup.php:686
+#: ../lib/setup.php:695
 msgid "<b>jpegtran</b> binary located."
 msgstr ""
 
-#: ../lib/setup.php:697
+#: ../lib/setup.php:706
 msgid "PHP has <b>GNU gettext</b> support."
 msgstr ""
 
-#: ../lib/setup.php:699
+#: ../lib/setup.php:708
 msgid "PHP does not have <b>GNU gettext</b> support."
 msgstr ""
 
-#: ../lib/setup.php:713
+#: ../lib/setup.php:722
 msgid "No languages found."
 msgstr ""
 
-#: ../lib/setup.php:715
+#: ../lib/setup.php:724
 msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
 msgstr ""
 
-#: ../lib/setup.php:718
+#: ../lib/setup.php:727
 #, php-format
 msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
 msgstr ""
 
-#: ../lib/setup.php:741
+#: ../lib/setup.php:750
 #, php-format
 msgid "You can check for more recent versions by visiting %s."
 msgstr ""
 
-#: ../lib/setup.php:742
+#: ../lib/setup.php:751
 #, php-format
 msgid "This version of %s was released on %s."
 msgstr ""
 
-#: ../lib/setup.php:745
+#: ../lib/setup.php:754
 #, php-format
 msgid "This is a development build of %s that was released on %s."
 msgstr ""
 
-#: ../lib/setup.php:754
+#: ../lib/setup.php:763
 msgid "Please check regularly for updates."
 msgstr ""
 
-#: ../lib/setup.php:773
+#: ../lib/setup.php:782
 msgid "All gallery locales are available on this host."
 msgstr ""
 
-#: ../lib/setup.php:776
+#: ../lib/setup.php:785
 #, php-format
 msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
 msgstr ""
 
-#: ../lib/setup.php:782
+#: ../lib/setup.php:791
 #, php-format
 msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
 msgstr ""
 
-#: ../lib/setup.php:787
+#: ../lib/setup.php:796
 #, php-format
 msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
 msgstr ""
 
-#: ../lib/setup.php:791
+#: ../lib/setup.php:800
 #, php-format
 msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
 msgstr ""
 
-#: ../lib/setup.php:793
+#: ../lib/setup.php:802
 msgid "Only the default locale for this machine is available, so date format will not change for different languages."
 msgstr ""
 
-#: ../lib/setup.php:952 ../lib/setup.php:1032
+#: ../lib/setup.php:961 ../lib/setup.php:1041
 msgid "Advanced"
 msgstr ""
 
-#: ../lib/setup.php:952
+#: ../lib/setup.php:961
 msgid "<b>System</b> locale selection required."
 msgstr ""
 
-#: ../lib/setup.php:953
+#: ../lib/setup.php:962
 msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
 msgstr ""
 
-#: ../lib/setup.php:955 ../lib/setup.php:1035
+#: ../lib/setup.php:964 ../lib/setup.php:1044
 msgid "This is <b>only</b> for date and time format. You only need to edit the languages you enabled above."
 msgstr ""
 
-#: ../lib/setup.php:966 ../lib/setup.php:990
+#: ../lib/setup.php:975 ../lib/setup.php:999
 msgid "System locale"
 msgstr ""
 
-#: ../lib/setup.php:1032
+#: ../lib/setup.php:1041
 msgid "<b>System</b> locale problems"
 msgstr ""
 
-#: ../lib/setup.php:1033
+#: ../lib/setup.php:1042
 msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
 msgstr ""
 
-#: ../lib/setup.php:1076
+#: ../lib/setup.php:1085
 msgid "<b>safe_mode</b> is off."
 msgstr ""
 
-#: ../lib/setup.php:1088
+#: ../lib/setup.php:1097
 msgid "<b>magic_quotes</b> are off."
-msgstr ""
-
-#: ../lib/setup.php:1106
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr ""
-
-#: ../lib/setup.php:1107 ../lib/setup.php:1116 ../lib/setup.php:1121
-msgid "Vote words and values"
 msgstr ""
 
 #: ../lib/setup.php:1115
 #, php-format
+msgid "In %s, missing %s in row %d with %s %s."
+msgstr ""
+
+#: ../lib/setup.php:1116 ../lib/setup.php:1125 ../lib/setup.php:1130
+msgid "Vote words and values"
+msgstr ""
+
+#: ../lib/setup.php:1124
+#, php-format
 msgid "In %s, blank in row %d."
 msgstr ""
 
-#: ../lib/setup.php:1120
+#: ../lib/setup.php:1129
 #, php-format
 msgid "In %s, for name %s (row %d) value %s should be a positive whole number."
 msgstr ""
 
-#: ../lib/setup.php:1142
+#: ../lib/setup.php:1151
 msgid "<b>register_globals</b> is off."
 msgstr ""
 
-#: ../lib/setup.php:1312
+#: ../lib/setup.php:1321
 msgid "Your passwords do not match!"
 msgstr ""
 
-#: ../lib/setup.php:1323
+#: ../lib/setup.php:1332
 msgid "OK"
 msgstr "OK"
 
-#: ../lib/setup.php:1328
+#: ../lib/setup.php:1337
 msgid "Valid admin email address given."
 msgstr "Platná admin emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1335
+#: ../lib/setup.php:1344
 #, fuzzy
 msgid "You must specify valid admin email addresses."
 msgstr "Platná admin emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1343
+#: ../lib/setup.php:1352
 #, php-format
 msgid "%s is not a valid email address."
 msgstr ""
 
-#: ../lib/setup.php:1352
+#: ../lib/setup.php:1361
 msgid "Valid sender email address given."
 msgstr "Platná odosielateµova emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1354
+#: ../lib/setup.php:1363
 #, fuzzy
 msgid "You must specify a valid sender email address."
 msgstr "Platná odosielateµova emailová adresa bola zadaná."
 
-#: ../lib/setup.php:1357
+#: ../lib/setup.php:1366
 #, php-format
 msgid "You must include %s in your welcome email."
 msgstr ""
 
-#: ../lib/setup.php:1362
+#: ../lib/setup.php:1371
 #, php-format
 msgid "You must include %s or %s in your welcome email."
 msgstr ""
 
-#: ../lib/setup.php:1386
+#: ../lib/setup.php:1395
 #, php-format
 msgid "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."
 msgstr ""
 
-#: ../lib/setup.php:1388
+#: ../lib/setup.php:1397
 msgid "This should be fixed before proceeding."
 msgstr ""
 
-#: ../lib/setup.php:1389 ../lib/setup.php:1393
+#: ../lib/setup.php:1398 ../lib/setup.php:1402
 #, php-format
 msgid "Look at %sCheck Versions%s for more details."
 msgstr ""
 
-#: ../lib/setup.php:1392
+#: ../lib/setup.php:1401
 #, php-format
 msgid "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."
 msgstr ""
 
-#: ../lib/setup.php:1397
+#: ../lib/setup.php:1406
 msgid "All tested files up-to-date."
 msgstr "V¹etky testované archívy sú aktualizované."
 
-#: ../lib/setup.php:1399
+#: ../lib/setup.php:1408
 #, php-format
 msgid "All %d tested files up-to-date."
 msgstr ""
 
-#: ../lib/setup.php:1408
+#: ../lib/setup.php:1417
 #, fuzzy, php-format
 msgid "this is new in version %s."
 msgstr "Chýba verzia"
 
-#: ../lib/setup.php:1413
+#: ../lib/setup.php:1422
 #, php-format
 msgid "Return to %s."
 msgstr "Návrat do %s"
 
-#: ../lib/setup.php:1414
+#: ../lib/setup.php:1423
 msgid "Configuration Wizard"
 msgstr "Nastavovací Nápomocník"
 
-#: ../lib/setup.php:1463
+#: ../lib/setup.php:1472
 #, php-format
 msgid "You must enter a password for the %s account."
 msgstr ""
 
-#: ../lib/setup.php:1468
+#: ../lib/setup.php:1477
 #, php-format
 msgid "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."
 msgstr ""
 
-#: ../lib/setup.php:1471
+#: ../lib/setup.php:1480
 #, php-format
 msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
 msgstr ""
 
-#: ../lib/setup.php:1473
+#: ../lib/setup.php:1482
 #, php-format
 msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
 msgstr ""
 
-#: ../lib/setup.php:1482
+#: ../lib/setup.php:1491
 #, php-format
 msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
 msgstr ""
 
-#: ../lib/setup.php:1489
+#: ../lib/setup.php:1498
 msgid "Admin password"
 msgstr "Admin heslo"
 
-#: ../lib/setup.php:1504 ../lib/setup.php:1506 ../lib/setup.php:1508
-#: ../lib/setup.php:1516
+#: ../lib/setup.php:1513 ../lib/setup.php:1515 ../lib/setup.php:1517
+#: ../lib/setup.php:1525
 msgid "Full Name"
 msgstr "Plné Meno"
 
-#: ../lib/setup.php:1512
+#: ../lib/setup.php:1521
 msgid "Full name that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1514
+#: ../lib/setup.php:1523
 msgid "Username that you can click on to send email (mailto:)"
 msgstr ""
 
-#: ../lib/setup.php:1516 ../lib/setup.php:1518
+#: ../lib/setup.php:1525 ../lib/setup.php:1527
 msgid "email address"
 msgstr "emailová adresa"
 
-#: ../lib/setup.php:1538
+#: ../lib/setup.php:1547
 msgid "File missing or unreadable.  Please install then re-run this test."
 msgstr ""
 
-#: ../lib/setup.php:1542
+#: ../lib/setup.php:1551
 #, php-format
 msgid "Please ensure that %s is the latest version."
 msgstr ""
 
-#: ../lib/setup.php:1547
+#: ../lib/setup.php:1556
 #, php-format
 msgid "Testing status of %d files."
 msgstr ""
 
-#: ../lib/setup.php:1554
+#: ../lib/setup.php:1563
 #, php-format
 msgid "Cannot read file %s."
 msgstr "Nebolo mo¾né èíta» archív %s."
 
-#: ../lib/setup.php:1556
+#: ../lib/setup.php:1565
 msgid "File missing or unreadable."
 msgstr ""
 
-#: ../lib/setup.php:1576
+#: ../lib/setup.php:1585
 #, php-format
 msgid "Version information not found in %s.  File must be old version or corrupted."
 msgstr ""
 
-#: ../lib/setup.php:1578
+#: ../lib/setup.php:1587
 msgid "Missing version"
 msgstr "Chýba verzia"
 
-#: ../lib/setup.php:1587
+#: ../lib/setup.php:1596
 #, php-format
 msgid "Problem with %s.  Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1589
+#: ../lib/setup.php:1598
 #, php-format
 msgid "Expected version %s (or greater) but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1593
+#: ../lib/setup.php:1602
 #, php-format
 msgid "%s OK.  Actual version (%s) more recent than expected version (%s)."
 msgstr ""
 
-#: ../lib/setup.php:1595
+#: ../lib/setup.php:1604
 #, php-format
 msgid "Expected version %s but found %s."
 msgstr ""
 
-#: ../lib/setup.php:1599
+#: ../lib/setup.php:1608
 #, fuzzy, php-format
 msgid "%s OK."
 msgstr "%s OK"
 
-#: ../lib/setup.php:1601
+#: ../lib/setup.php:1610
 #, php-format
 msgid "Found expected version %s."
 msgstr ""
 
-#: ../lib/setup.php:1731
+#: ../lib/setup.php:1740
 msgid "This email will be sent when new accounts are created."
 msgstr ""
 
-#: ../lib/setup.php:1732
+#: ../lib/setup.php:1741
 msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
 msgstr ""
 
-#: ../lib/setup.php:1733
+#: ../lib/setup.php:1742
 #, fuzzy
 msgid "The following placeholder can be used:"
 msgstr "Nasledujúce archívy sú aktualizované."
 
-#: ../lib/setup.php:1745
+#: ../lib/setup.php:1754
 msgid "Current used welcome mail text"
 msgstr ""
 
-#: ../lib/setup.php:1797
+#: ../lib/setup.php:1806
 #, php-format
 msgid "File %s does not exist."
 msgstr "Archív %s neexistuje."
 
-#: ../lib/setup.php:1806
+#: ../lib/setup.php:1815
 #, php-format
 msgid "Expected status: %s, but actually received status %s."
 msgstr ""
 
-#: ../lib/setup.php:1819
+#: ../lib/setup.php:1828
 msgid "can't detect version on Windows."
 msgstr ""
 
-#: ../lib/setup.php:1830
+#: ../lib/setup.php:1839
 #, php-format
 msgid "OK!  Version: %s"
 msgstr "OK! Verzia: %s"

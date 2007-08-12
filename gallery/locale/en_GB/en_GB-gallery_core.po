@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-08-01 22:23+0200\n"
+"POT-Creation-Date: 2007-08-12 16:14+0200\n"
 "PO-Revision-Date: 2003-07-16 14:18+0100\n"
 "Last-Translator: Joan McGalliard <jefmcg AT users DOT sourceforge DOT net>\n"
 "Language-Team: UK_English <jefmcg AT users DOT sourceforge DOT net>\n"
@@ -237,7 +237,7 @@ msgid "Sort"
 msgstr ""
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
-#: ../download.php:91 ../edit_field.php:66 ../help/imagemap.php:88
+#: ../download.php:91 ../edit_field.php:77 ../help/imagemap.php:88
 #: ../user_preferences.php:146 ../view_photo_properties.php:137
 msgid "Close Window"
 msgstr ""
@@ -310,9 +310,10 @@ msgstr ""
 msgid "Apply permissions to all sub-albums"
 msgstr ""
 
-#: ../album_permissions.php:164 ../edit_caption.php:183 ../edit_field.php:55
-#: ../edit_field.php:65 ../edit_watermark.php:119 ../modify_user.php:163
-#: ../new_password.php:137 ../photo_owner.php:103 ../user_preferences.php:145
+#: ../album_permissions.php:164 ../edit_caption.php:183 ../edit_field.php:56
+#: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
+#: ../edit_watermark.php:119 ../modify_user.php:163 ../new_password.php:137
+#: ../photo_owner.php:103 ../user_preferences.php:145
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr ""
@@ -730,92 +731,92 @@ msgid "A change has been made to album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
 #: ../classes/Album.php:1062
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
+msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
 msgstr ""
 
-#: ../classes/Album.php:1069
+#: ../classes/Album.php:1070
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found."
 msgstr ""
 
-#: ../classes/Album.php:1152 ../classes/Album.php:1962
+#: ../classes/Album.php:1153 ../classes/Album.php:1963
 #, php-format
 msgid "Entering album %s, processing %d items."
 msgstr ""
 
-#: ../classes/Album.php:1159
+#: ../classes/Album.php:1160
 #, php-format
 msgid "Processing element %d..."
 msgstr ""
 
-#: ../classes/Album.php:1173 ../classes/Album.php:1280
+#: ../classes/Album.php:1174 ../classes/Album.php:1281
 msgid "Doing the naming"
 msgstr ""
 
-#: ../classes/Album.php:1206
+#: ../classes/Album.php:1207
 msgid "Image preprocessing"
 msgstr ""
 
-#: ../classes/Album.php:1211
+#: ../classes/Album.php:1212
 msgid "Resizing/compressing original image"
 msgstr ""
 
-#: ../classes/Album.php:1215
+#: ../classes/Album.php:1216
 msgid "Cannot resize/compress this filetype."
 msgstr ""
 
-#: ../classes/Album.php:1270
+#: ../classes/Album.php:1271
 #, fuzzy, php-format
 msgid "Resizing %s"
 msgstr "Border colour"
 
-#: ../classes/Album.php:1337
+#: ../classes/Album.php:1338
 msgid "Photo auto-rotated/transformed"
 msgstr ""
 
-#: ../classes/Album.php:1345
+#: ../classes/Album.php:1346
 #, fuzzy
 msgid "Watermarking image"
 msgstr "Border colour"
 
-#: ../classes/Album.php:1503 ../classes/Album.php:1513
+#: ../classes/Album.php:1504 ../classes/Album.php:1514
 msgid "No highlight!"
 msgstr ""
 
-#: ../classes/Album.php:1712
+#: ../classes/Album.php:1713
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr ""
 
-#: ../classes/Album.php:1817
+#: ../classes/Album.php:1818
 msgid " -- Skipping"
 msgstr ""
 
-#: ../classes/Album.php:1822
+#: ../classes/Album.php:1823
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items."
 msgstr ""
 
-#: ../classes/Album.php:1830 ../classes/Album.php:1974
+#: ../classes/Album.php:1831 ../classes/Album.php:1975
 #, php-format
 msgid "Processing item %d..."
 msgstr ""
 
-#: ../classes/Album.php:1838
+#: ../classes/Album.php:1839
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items."
 msgstr ""
 
-#: ../classes/Album.php:2143
+#: ../classes/Album.php:2144
 #, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2679
+#: ../classes/Album.php:2680
 #, php-format
 msgid "#%d"
 msgstr ""
 
-#: ../classes/Album.php:2843
+#: ../classes/Album.php:2844
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr ""
@@ -1253,7 +1254,7 @@ msgid "Download"
 msgstr ""
 
 #: ../download.php:89
-msgid "This  album is not empty, but contains no photo or movie! Download wouldn't make sense."
+msgid "This album is not empty, but contains no photo or movie! Download wouldn't make sense."
 msgstr ""
 
 #: ../ecard_form.php:41
@@ -1494,7 +1495,17 @@ msgstr ""
 msgid "Edit %s"
 msgstr "Border colour"
 
-#: ../edit_field.php:54
+#: ../edit_field.php:55
+#, php-format
+msgid "Edit the title and click %s when you're done"
+msgstr ""
+
+#: ../edit_field.php:59
+#, php-format
+msgid "Edit the description and click %s when you're done"
+msgstr ""
+
+#: ../edit_field.php:63
 #, php-format
 msgid "Edit the %s and click %s when you're done"
 msgstr ""
@@ -1526,7 +1537,7 @@ msgid "Edit Watermark"
 msgstr "Border colour"
 
 #: ../edit_watermark.php:107
-msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface &amp; unanimate' your picture."
+msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface and 'unanimate' your picture."
 msgstr ""
 
 #: ../extra_fields.php:77 ../extra_fields.php:81
@@ -4872,46 +4883,46 @@ msgstr ""
 msgid "Skipping %s (can't handle %s format)"
 msgstr ""
 
-#: ../util.php:1299
+#: ../util.php:1325
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr ""
 
-#: ../util.php:1471
+#: ../util.php:1497
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1487
+#: ../util.php:1513
 msgid "csv result:"
 msgstr ""
 
-#: ../util.php:1661
+#: ../util.php:1687
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1751
+#: ../util.php:1777
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:1849
+#: ../util.php:1875
 #, php-format
 msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1888
+#: ../util.php:1914
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1896
+#: ../util.php:1922
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1901
+#: ../util.php:1927
 msgid "We are trying to download the tempdir itself?! Download aborted."
 msgstr ""
 
