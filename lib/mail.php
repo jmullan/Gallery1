@@ -27,15 +27,14 @@
 <?php
 
 /**
+ * Checks whether an emailstring has a valid format or not
  *
- */
+ * @param string    $email
+ * @return boolean
+*/
+
 function check_email($email) {
-	if (preg_match ("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match ("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) {
-		$mail_ok = false;
-	} else {
-		$mail_ok = true;
-	}
-	return $mail_ok;
+	return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,6}$/', $email) >0;
 }
 
 function emailDisclaimer() {
