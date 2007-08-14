@@ -1672,7 +1672,7 @@ $defaults = array(
 	),
 	'ecards' => array(
 		'prompt' => gTranslate('config',"Enable Ecards?"),
-		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picure as eCard via eMail.") . '<br>'.
+		'desc' => gTranslate('config',"Set this to 'yes' to allow users to send a picture as eCard via eMail.") . '<br>'.
 		  '<span class="attention">' . gTranslate('config',"This option requires the Email feature to be enabled.") . '</span>',
 		'choices' => array(
 			'yes' => gTranslate('config',"Yes"),
