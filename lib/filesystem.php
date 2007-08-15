@@ -141,8 +141,8 @@ function getDefaultFilename($localPath) {
 	if(fs_file_exists($localPath)) {
 		return $localPath;
 	}
-	elseif (fs_file_exists($localPath . 'default')) {
-		return $localPath . 'default';
+	elseif (fs_file_exists($localPath . '.default')) {
+		return $localPath . '.default';
 	}
 	else {
 		echo gallery_error(gTranslate('common', "The path you try to use does not exist! Exiting Gallery"));
