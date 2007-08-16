@@ -25,6 +25,9 @@ body {
     color: #000;
 }
 
+a {
+}
+
 a:link, a:visited {
     color: #000;
 }
@@ -41,7 +44,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
  * Use this classes to define "superglobal" styles
 */
 .g-main {
-     margin-top: 5px;
+     margin-top: 2px;
      padding: 0 3px;
 }
 
@@ -80,6 +83,9 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-header-popup {
 }
 
+.g-columnheader {
+}
+
 .g-pagetitle, .g-pagetitle-popup, .g-sectioncaption-popup {
     font-weight: bold;
     margin-bottom: 2px;
@@ -110,6 +116,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 /******************** End Headers and Pagetitle ********************/
 
 /******************** Begin general Popup Styles ********************/
+
 .g-content-popup {
     font-size: 9pt;
     font-weight: normal;
@@ -244,6 +251,9 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-thumb-caption {
+}
+
+.g-thumb-description {
 }
 
 .g-va-infos {
@@ -401,17 +411,13 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 /******************** End Navigation Styles ********************/
 
-/****** Style for breadcrumb bar if nothing special was specified ******/
 
+/****** Style for breadcrumb bar ******/
 .g-breadcrumb {
-    font-size: 9pt;
-    margin-bottom: 2px;
-    border-bottom: 1px solid #555;
     width: 100%;
-}
-
-.g-breadcrumb td {
-    padding: 1px 5px 1px 5px;
+    font-size: 9pt;
+    margin-bottom: 3px;
+	border-bottom: 1px solid #555;
 }
 
 /***** End breadcrumb *****/
@@ -444,6 +450,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     border-bottom: 1px solid #66a;
 }
 
+/******************** Begin infoBox ********************/
 .g-notice {
     color: #000;
     background: #e0e0e0;
@@ -537,12 +544,12 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-commentadd-box th {
 }
 
-/* Header fields in add_comment */
-.g-commentadd-box-head {
-}
-
 .g-commentadd-box td {
     padding: 0 2px 0 2px;
+}
+
+/* Header fields in add_comment */
+.g-commentadd-box-head {
 }
 
 .g-commentadd-box-middle {
@@ -555,7 +562,6 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-commentIndication {
     color: red;
 }
-
 
 .g-comment-box {
     margin: 2px 5px;
@@ -570,6 +576,15 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 /***** End Styles for comments *****/
+
+.g-va-poll-box1 {
+}
+
+.g-va-poll-box2 {
+}
+
+.g-va-poll-box3 {
+}
 
 .g-dim a {
     color: grey;
@@ -622,6 +637,12 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     color: black;
 }
 
+.g-photo-description {
+}
+
+.g-photo-description div {
+}
+
 .g-customFieldsTable {
      font-size: 9pt;
      text-align: left;
@@ -636,6 +657,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 /***** General Form styles  ******/
+
 input, textarea, select {
     color: #000;
     background-color: #FCFCFF;
@@ -646,9 +668,12 @@ input:focus, textarea:focus, select:focus {
     background-color: #FFFFDA;
 }
 
-.g-button {
+.g-button, .g-tabset a.g-activeTab {
     color: #333;
     background: #f9f9f8;
+}
+
+.g-button {
     border-bottom: 1px solid #000;
     border-right: 1px solid #000;
     border-left: 1px solid #C4C4B8;
@@ -656,12 +681,28 @@ input:focus, textarea:focus, select:focus {
     -moz-border-radius: 10px;
 }
 
-.g-button:hover {
-    background: #fffff0;
+.g-buttonDisable, input:focus.g-buttonDisable {
+    color: #000;
+    background-color: grey;
+    border: 1px solid #efefff;
+    -moz-border-radius: 5px;
+    padding-top: 0; padding-bottom: 0;
+    padding-left: 2px; padding-right: 2px;
 }
 
-.g-button:focus {
+.g-disabled {
+	color: grey;
+    text-align: center;
+}
+
+.g-selected {
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+input:hover.g-button, input:focus.g-button {
     background: #FFFFDA;
+    color: #fff;
 }
 
 /****** End general Form Styles *****/
@@ -675,6 +716,12 @@ input:focus, textarea:focus, select:focus {
     -moz-border-radius: 5px;
 }
 
+.g-emailMe-box input {
+}
+
+.g-emailMe-box legend {
+}
+
 .g-columnheader, caption {
     font-weight: bold;
     padding: 2px;
@@ -682,7 +729,7 @@ input:focus, textarea:focus, select:focus {
     color: #FFF;
 }
 
-/****** Styles used in config *****/
+/***************** Styles used in config *******************/
 
 /* Indicates an important setting. */
 .g-attention {
@@ -719,6 +766,7 @@ input:focus, textarea:focus, select:focus {
 	margin-bottom: 2px;
 }
 
+/* Should be the same as a button */
 .g-current-step {
 	color: #000;
 	background-color: #FCFCF3;
@@ -778,6 +826,72 @@ input:focus, textarea:focus, select:focus {
 
 .g-setup-fields a {
     color: #aaa;
+}
+
+/***************** Styles used in config *******************/
+
+/******************* Begin autocomplete ********************/
+
+.YUIsearchcontainer .yui-ac-content  {
+    border: 1px solid #404040;
+    font-size: 85%;
+}
+
+.YUIsearchcontainer li.yui-ac-highlight {
+    background: #99f;
+    font-weight: bold;
+}
+
+/******************** End autocomplete *********************/
+
+.albumUpgradeStatus {
+    border: 1px dashed #669;
+}
+
+.g-cropImageBox {
+ 	border: 1px dashed silver;
+}
+
+.g-tooltipTitle {
+	background-color: #66a;
+	border: 1px solid red;
+}
+
+#WzTiTl, #WzTiTl table {
+	background-color: #66a;
+	color: #FFF;
+	font-size: 9pt;
+	height: 20px;
+}
+
+#WzClOsE {
+	background-color: #66a;
+}
+
+.g-tooltipClickable #WzBoDy {
+	background-color: #f0f0f0;
+	color: #000;
+	font-size: 8pt;
+}
+
+.g-tooltipClickable {
+	border: 1px solid #000;
+}
+
+.g-loginpage {
+    border-top: 1px solid #000;
+    background-color: #F4F4F4;
+    padding: 5px 10px;
+    -moz-border-radius-bottomleft: 10px ; -moz-border-radius-bottomright:10px;
+	margin: 10px auto;
+	border: 1px solid silver;
+	width: 600px;
+	height: 400px;
+	font-size: 9pt;
+}
+
+.g-loginpage fieldset {
+	margin-bottom: 20px;
 }
 
 /* Overrides base.css */

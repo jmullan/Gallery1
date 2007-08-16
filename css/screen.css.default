@@ -3,9 +3,7 @@
    'no skin' is selected.
 
    If you would like to customize the styles please create
-   copy of this file called
-
-   "screen.css" (same name without ".default")
+   copy of this file called "screen.css" (same name without ".default")
 
    If that file is found in this directory it will be
    used instead of this one.
@@ -31,6 +29,12 @@ a {
     color: #4E2192;
 }
 
+a:link, a:visited {
+}
+
+a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup a:hover,
+         .g-setup-fields a:hover, .g-message a:hover, .g-config-content a:hover {
+}
 /******************** Begin superglobal ********************
  *
  * The complete Gallery is inside a <div>
@@ -50,13 +54,15 @@ a {
 
 /******************** Headers and Pagetitle ********************/
 
-.g-popup a {
-}
-
 .g-popup {
     font-size: 9pt;
 }
 
+.g-popup a {
+}
+
+.g-popup a:hover {
+}
 
 .g-header, .g-header-popup {
     color: #fff;
@@ -98,6 +104,43 @@ a {
 }
 
 /******************** End Headers and Pagetitle ********************/
+
+/******************** Begin general Popup Styles ********************/
+
+.g-content-popup {
+    font-size: 9pt;
+    font-weight: normal;
+    color: #202020;
+    padding: 5px;
+    border: 1px solid #FFF;
+    background-color: #F0F0F0;
+    margin-bottom: 10px;
+	margin: 5px;
+}
+
+.g-content-popup a {
+}
+
+.g-content-popup form {
+    margin-top: 2px;
+    padding: 2px;
+    background-color: #E0E0E0;
+}
+
+.g-content-popup p {
+    margin-bottom: 10px;
+}
+
+.g-sectioncaption-popup {
+    color: #000;
+    height: 15px;
+    padding: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+/******************** End general Popup Styles ********************/
 
 /******************** Begin Mainpage Styles ********************/
 
@@ -172,6 +215,57 @@ a {
 
 /******************** End Common Styles ********************/
 
+/******************** Begin album thumbnail view ********************/
+
+.g-album-summary {
+    text-align: center;
+    width: 75%;
+    margin: 3px auto;
+    color: #fff;
+    background: #66a;
+    font: italic bold 8pt Verdana,Arial,serif;
+    padding: 5px;
+    -moz-border-radius: 3px;
+}
+
+/* The table that contains the thumbnails in album view */
+.g-vatable {
+    margin-top: 5px;
+}
+
+/* The table cell that contains the thumbnail */
+.g-vathumb-cell {
+    font-size: 7pt;
+}
+
+/* The thumbnail itself */
+.g-vathumb {
+}
+
+/* This class controlls the box around all texts below the thumbnail.
+ * It has the same width as the cell, not the thumbnail.
+ */
+.g-va-thumb-texts {
+	margin-top: 2px;
+}
+
+.g-thumb-caption {
+}
+
+.g-thumb-description {
+	margin-top: 2px;
+}
+
+.g-va-infos {
+    margin-top: 2px;
+}
+
+.g-va-viewcounter{
+    margin-top: 2px;
+}
+
+/******************** End album thumbnail view ********************/
+
 /* Album titles */
 .g-title {
     font-size: 12pt;
@@ -203,6 +297,7 @@ a {
 .g-adminbartext a {
     font-size: 7.1pt;
 }
+
 .g-adminbarcommands {
     vertical-align: bottom;
 }
@@ -249,50 +344,16 @@ a {
     vertical-align: bottom;
 }
 
-.g-sectioncaption-popup {
-    color: #000;
-    height: 15px;
-    padding: 5px;
-    font-size: 12pt;
-    font-weight: bold;
-    text-align: center;
-}
-
-.g-content-popup {
-    font-size: 9pt;
-    font-weight: normal;
-    color: #202020;
-    padding: 5px;
-    border: 1px solid #FFF;
-    background-color: #F0F0F0;
-    margin-bottom: 10px;
-}
-
-.g-content-popup form {
-    margin-top: 2px;
-    padding: 2px;
-    background-color: #E0E0E0;
-}
-
-.g-content-popup p {
-    margin-bottom: 10px;
-}
-
-.g-content-popup {
-    margin: 5px;
-}
-
 .g-form-text {
 }
 
 .g-error {
     color: #000;
     background-color: #ffd5d4;
-
-    border: 1px solid #aaa;
     padding: 1px;
     padding-left: 5px;
     margin-bottom: 1px;
+    border: 1px solid #aaa;
     -moz-border-radius: 8px;
 }
 
@@ -307,7 +368,6 @@ a {
     background-color: #ec000a;
     font-size: 10pt;
     font-weight: bold;
-
     border: 4px solid #ff9898;
     padding: 1px;
     padding-left: 5px;
@@ -428,57 +488,6 @@ a {
     white-space:nowrap;
 }
 
-/******************** Begin album thumbnail view ********************/
-.g-album-summary {
-    text-align: center;
-    width: 75%;
-    margin: 3px auto;
-    color: #fff;
-    background: #66a;
-    font: italic bold 8pt Verdana,Arial,serif;
-    padding: 5px;
-    -moz-border-radius: 3px;
-}
-
-/* The table that contains the thumbnails in album view */
-.g-vatable {
-    margin-top: 5px;
-}
-
-/* The table cell that contains the thumbnail */
-.g-vathumb-cell {
-    font-size: 7pt;
-}
-
-/* The thumbnail itself */
-.g-vathumb {
-}
-
-/* This class controlls the box around all texts below the thumbnail.
- * It has the same width as the cell, not the thumbnail.
- */
-.g-va-thumb-texts {
-	margin-top: 2px;
-}
-
-.g-thumb-caption {
-}
-
-.g-thumb-description {
-	margin-top: 2px;
-}
-
-.g-va-infos {
-    margin-top: 2px;
-}
-
-.g-va-viewcounter{
-    margin-top: 2px;
-}
-
-
-/******************** End album thumbnail view ********************/
-
 /***** Begin Styles for comments *****/
 
 /* Box in add_comment */
@@ -534,7 +543,6 @@ a {
     font-size: 8pt;
     margin: 2px;
 }
-
 
 .g-va-poll-box3 {
     font-size: 9pt;
@@ -775,6 +783,14 @@ input:hover.g-button, input:focus.g-button {
 .g-config-main div.g-desc-cell {
     border: 1px solid red;
 }
+
+.g-config-main a {
+}
+
+.g-setup-fields a {
+}
+
+/***************** Styles used in config *******************/
 
 /******************* Begin autocomplete ********************/
 
