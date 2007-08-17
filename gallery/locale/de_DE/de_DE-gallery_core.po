@@ -24,6 +24,7 @@
 # @author	Jens Tkotz <jens AT peino DOT de>, 2003-2007
 # @author	Michael Köhler <mkoehler AT psr DOT de>, 2003
 # @author	Kerstin Strasser <kerstin AT peino DOT de>2005
+# @author	Marcus Krassmann <mcs AT syn-online DOT de>, 2007
 #
 msgid ""
 msgstr ""
@@ -60,11 +61,11 @@ msgstr "Name und Kommentar (!) müssen angegeben werden, um den Eintrag zu speich
 #: ../add_comment.php:58
 #, php-format
 msgid "Your comment is too long, the admin set maximum length to %d chars."
-msgstr "Ihr Kommentar ist zu lang, der Administrator hat die maximale Länge auf %d Zeichen festgesetzt."
+msgstr "Ihr Kommentar ist zu lang. Der Administrator hat die maximale Länge auf %d Zeichen festgesetzt."
 
 #: ../add_comment.php:60
 msgid "Your comment contains forbidden words. It will not be added."
-msgstr "Ihr Kommentar enthält nicht erlaubte Wörter. Er wurde nicht hinzugefügt."
+msgstr "Ihr Kommentar enthält nichterlaubte Wörter. Er wurde nicht hinzugefügt."
 
 #: ../add_comment.php:80
 msgid "Add Comment"
@@ -76,7 +77,7 @@ msgstr "Kommentar hinzufügen"
 
 #: ../add_comment.php:86
 msgid "Enter your comment in the text box below."
-msgstr "Geben Sie Ihr Kommentar in das Eingabefeld ein."
+msgstr "Geben Sie Ihren Kommentar in das Eingabefeld ein."
 
 #: ../add_comment.php:99 ../copy_photo.php:214 ../delete_album.php:72
 #: ../delete_photo.php:145 ../delete_user.php:85 ../download.php:84
@@ -128,7 +129,7 @@ msgstr "Konfigurations-Assistent"
 
 #: ../admin-page.php:42
 msgid "Use the config wizard to reconfigure or tweak your Gallery."
-msgstr "Benutzen Sie den Konfigurationsassistenten um die Grundeinstellungen Ihrer Gallery zu verbessern, oder anzupassen."
+msgstr "Benutzen Sie den Konfigurationsassistenten, um die Grundeinstellungen Ihrer Gallery zu verbessern oder anzupassen."
 
 #: ../admin-page.php:44
 msgid "Find orphans"
@@ -136,7 +137,7 @@ msgstr "Verwaiste Elemente"
 
 #: ../admin-page.php:46
 msgid "Find, remove or re-attach orphaned elements."
-msgstr "Finden Sie verwaiste Elemente. Sie können sie löschen, oder wieder korrekt hinzufügen."
+msgstr "Finden Sie verwaiste Elemente. Sie können sie löschen oder wieder korrekt hinzufügen."
 
 #: ../admin-page.php:48
 msgid "Find comment spam"
@@ -152,7 +153,7 @@ msgstr "Alben überprüfen"
 
 #: ../admin-page.php:54
 msgid "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2."
-msgstr "Suche nach ungültigem Alben fehlenden Dateien, oder anderen Fehlern, die eine Migration zur Gallery2 verhindern könnten."
+msgstr "Suche nach ungültigen Alben, fehlenden Dateien oder anderen Fehlern, die eine Migration zur Gallery2 verhindern könnten."
 
 #: ../admin-page.php:61
 msgid "Manage users"
@@ -164,7 +165,7 @@ msgstr "Verwalten Sie hier Ihre Benutzer"
 
 #: ../admin-page.php:73 ../admin-page.php:84
 msgid "Admin options"
-msgstr "Admin Optionen"
+msgstr "Admin-Optionen"
 
 #: ../admin-page.php:85 ../search.php:56 ../stats-wizard.php:55
 #: ../stats.php:603 ../tools/despam-comments.php:56
@@ -242,7 +243,7 @@ msgstr "Benutzer, die Elemente hinzufügen können."
 
 #: ../album_permissions.php:40
 msgid "Users who can delete items."
-msgstr "Benutzer, die Elementelöschen können."
+msgstr "Benutzer, die Elemente löschen können."
 
 #: ../album_permissions.php:41
 msgid "Users who can modify items."
@@ -254,7 +255,7 @@ msgstr "Benutzer, die Unteralben erstellen können"
 
 #: ../album_permissions.php:43
 msgid "Users who can download the album (with subalbums) as archive."
-msgstr "Benutzer die Alben (samt Unteralben) als Zipdatei herunterladen können."
+msgstr "Benutzer, die Alben (samt Unteralben) als ZIP-Datei herunterladen können."
 
 #: ../album_permissions.php:44
 msgid "Users who can view comments."
@@ -287,7 +288,7 @@ msgstr "Besitzer/in : "
 
 #: ../album_permissions.php:161
 msgid "Apply permissions to all sub-albums"
-msgstr "Berechtigungen auf die Unteralben &uuml;bertragen"
+msgstr "Berechtigungen auf alle Unteralben &uuml;bertragen"
 
 #: ../album_permissions.php:164 ../edit_caption.php:183 ../edit_field.php:56
 #: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
@@ -448,7 +449,7 @@ msgstr "Achtung!"
 #: ../albums.php:286
 #, php-format
 msgid "The album or photo that you were attempting to view either does not exist, or requires user privileges that you do not possess. %s"
-msgstr "Das Album oder Photo, welches Sie zu erreichen versuchten, gibt es entweder nicht, oder benötigt, daß Sie sich anmelden. %s"
+msgstr "Das Album oder Photo, welches Sie zu erreichen versuchten, gibt es entweder nicht, oder erfordert, dass Sie sich anmelden. %s"
 
 #: ../albums.php:286
 #, php-format
@@ -541,7 +542,7 @@ msgstr "Sie haben w&auml;hrend der Bearbeitung das Album gewechselt.  Ihre &Auml
 
 #: ../captionator.php:95
 msgid "Debugging: Click here to return to the album"
-msgstr "Klicken Sier hier um zum Album zurückzukehren."
+msgstr "Klicken Sier hier, um zum Album zurückzukehren."
 
 #: ../captionator.php:131
 msgid "Captionator"
@@ -690,11 +691,11 @@ msgstr "Es wurde eine Änderung am Album: %s von %s (IP %s) vorgenommen. Die Ände
 
 #: ../classes/Album.php:1062
 msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
-msgstr "Falls Sie nicht wünschen weitere Emails über Änderungen an diesem Element zu bekommen, folgen Sie dem Link und setzen Sie die Checkboxen entsprechend."
+msgstr "Falls Sie nicht wünschen, weitere Emails über Änderungen an diesem Element zu bekommen, folgen Sie dem Link und setzen Sie die Checkboxen entsprechend."
 
 #: ../classes/Album.php:1070
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found."
-msgstr "Die Aktion wurde erfolgreich ausgeführt.  Emailing wurde aktiviert, es wurde jedoch keine Mail versandt, da keine gültige Emailadresse gefunden wurde."
+msgstr "Die Aktion wurde erfolgreich ausgeführt. Emailing wurde aktiviert, es wurde jedoch keine Mail versandt, da keine gültige Emailadresse gefunden wurde."
 
 #: ../classes/Album.php:1153 ../classes/Album.php:1963
 #, php-format
@@ -712,15 +713,15 @@ msgstr "Benamung"
 
 #: ../classes/Album.php:1207
 msgid "Image preprocessing"
-msgstr "Bild Vorbearbeitung"
+msgstr "Bild-Vorbearbeitung"
 
 #: ../classes/Album.php:1212
 msgid "Resizing/compressing original image"
-msgstr "Ausma&szlig; ver&auml;ndern/ komprimieren des Originalbildes"
+msgstr "Ausma&szlig; ver&auml;ndern / Komprimieren des Originalbildes"
 
 #: ../classes/Album.php:1216
 msgid "Cannot resize/compress this filetype."
-msgstr "Es ist bei diesem Dateityp nicht möglich die Ausmaße zu verändern oder die Datei zu komprimieren."
+msgstr "Es ist bei diesem Dateityp nicht möglich, die Ausmaße zu verändern oder die Datei zu komprimieren."
 
 #: ../classes/Album.php:1271
 #, php-format
@@ -822,7 +823,7 @@ msgstr "Niemand"
 #: ../classes/gallery/UserDB.php:44
 #, php-format
 msgid "Unable to create dir: '%s'."
-msgstr "Es war nicht möglich den folgenden Ordner zu erstellen: '%s'."
+msgstr "Es war nicht möglich, den folgenden Ordner zu erstellen: '%s'."
 
 #: ../classes/gallery/UserDB.php:49
 #, php-format
@@ -850,7 +851,7 @@ msgstr "Der Benutzername '%s' ist zu lang. Er darf h&ouml;chstens 15 Zeichen lan
 #: ../classes/gallery/UserDB.php:295
 #, php-format
 msgid "Illegal username '%s'. Only letters and digits allowed."
-msgstr "Der Benutzername %s ist nicht g&uuml;ltig. Es sind nur Buchstaben und Zahlen erlaubt."
+msgstr "Der Benutzername %s ist nicht g&uuml;ltig. Es sind nur Buchstaben und Ziffern erlaubt."
 
 #: ../classes/gallery/UserDB.php:302
 #, php-format
@@ -878,7 +879,7 @@ msgstr "&Uuml;bersprungen"
 #: ../classes/gallery/UserDB.php:399
 #, php-format
 msgid "Problem adding %s:"
-msgstr "Es gab ein Problem beim hinzuf&uuml;gen von %s:"
+msgstr "Es gab ein Problem beim Hinzufügen von %s:"
 
 #: ../copy_photo.php:41 ../copy_photo.php:45
 msgid "Copy Photo"
@@ -959,7 +960,7 @@ msgstr "Kopieren"
 #: ../move_album.php:140 ../move_photo.php:362 ../resize_photo.php:147
 #: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
-msgstr "Kein Album/ Index gew&auml;hlt"
+msgstr "Kein Album / Index gew&auml;hlt"
 
 #: ../create_user.php:46 ../modify_user.php:59 ../new_password.php:54
 #: ../user_preferences.php:68
@@ -1063,7 +1064,7 @@ msgstr[1] "Wenn Sie diese Benutzer l&ouml;schen, gehen deren Berechtigungen verl
 
 #: ../delete_user.php:71
 msgid "Users cannot be recreated."
-msgstr "Benutzer k&ouml;nnen nicht wieder hergestellt werden."
+msgstr "Benutzer können nicht wiederhergestellt werden."
 
 #: ../delete_user.php:72
 msgid "Even if this user is recreated, those permissions are gone."
@@ -1203,7 +1204,7 @@ msgstr "Ihre Email enthält eine E-Card als Anlage."
 
 #: ../ecard_form.php:64
 msgid "Some input fields are not correctly filled out. Please fill out."
-msgstr "Einige Felder wurden nicht korrekt gefüllt. Überprüfen Sie Ihre Eingaben."
+msgstr "Einige Felder wurden nicht korrekt ausgefüllt. Überprüfen Sie Ihre Eingaben."
 
 #: ../ecard_form.php:71
 msgid "The sender or recipient email adress is not valid."
@@ -1211,15 +1212,15 @@ msgstr "Die Sender- oder Empfänger-Emailadresse ist nicht gültig."
 
 #: ../ecard_form.php:81
 msgid "Couldn't load the ecard template. Please contact the Gallery admin!"
-msgstr "Die ECard-Vorlage konnte nicht gelesen werden, bitte kontaktieren Sie den Admininstrator dieser Gallery!"
+msgstr "Die E-Card-Vorlage konnte nicht gelesen werden. Bitte kontaktieren Sie den Admininstrator dieser Gallery!"
 
 #: ../ecard_form.php:92
 msgid "Problem with sending the eCard. Please contact the Gallery admin!"
-msgstr "Es gab einen Fehler beim Senden der Ecard, bitte kontaktieren Sie den Admininstrator dieser Gallery!"
+msgstr "Es gab einen Fehler beim Senden der Ecard. Bitte kontaktieren Sie den Admininstrator dieser Gallery!"
 
 #: ../ecard_form.php:126
 msgid "Error: to send an eCard you need to fill out all fields."
-msgstr "Fehler: Um die E-Card abzuschicken müssen alle Felder gefüllt sein."
+msgstr "Fehler: Um die E-Card abzuschicken müssen alle Felder ausgefüllt sein."
 
 #: ../ecard_form.php:127
 msgid "Please fill these fields:"
@@ -1316,7 +1317,7 @@ msgstr "Fenster schließen"
 #: ../edit_appearance.php:58
 #, php-format
 msgid "Problem with input of field '%s'. %s"
-msgstr "Es gibt ein Problem mit deim Inhalt von Feld '%s'. %s"
+msgstr "Es gibt ein Problem mit dem Inhalt von Feld '%s'. %s"
 
 #: ../edit_appearance.php:121
 #, php-format
@@ -1339,7 +1340,7 @@ msgstr "Ohne Titel"
 
 #: ../edit_appearance.php:188 ../extra_fields.php:120
 msgid "Alt text / Tooltip"
-msgstr "Alternativer Text/ Tooltip"
+msgstr "Alternativer Text / Tooltip"
 
 #: ../edit_appearance.php:219
 #, php-format
@@ -1484,7 +1485,7 @@ msgstr "ImageMap Hilfe"
 
 #: ../help/imagemap.php:33
 msgid "This is a help for working with Gallerys so called 'ImageMaps'."
-msgstr "Dies ist die Hilfeseite um mit Gallerys so genannte 'ImageMaps' zu erstellen."
+msgstr "Dies ist die Hilfeseite, um mit Gallerys so genannte 'ImageMaps' zu erstellen."
 
 #: ../help/imagemap.php:37
 msgid "An ImageMap is a predefined area of a picture, or a hotspot if you will."
