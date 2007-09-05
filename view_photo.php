@@ -475,17 +475,18 @@ else {
 
 list($width, $height) = $photo->getDimensions($full);
 
-$gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
-$gallery->html_wrap['borderWidth'] = $gallery->album->fields["border"];
-$gallery->html_wrap['frame'] = $frame;
-$gallery->html_wrap['imageWidth'] = $width;
-$gallery->html_wrap['imageHeight'] = $height;
-$gallery->html_wrap['imageHref'] = $href;
-$gallery->html_wrap['imageTag'] = $photoTag;
+$gallery->html_wrap['borderColor']		= $gallery->album->fields["bordercolor"];
+$gallery->html_wrap['borderWidth']		= $gallery->album->fields["border"];
+$gallery->html_wrap['frame']			= $frame;
+$gallery->html_wrap['imageWidth']		= $width;
+$gallery->html_wrap['imageHeight']		= $height;
+$gallery->html_wrap['imageHref']		= $href;
+$gallery->html_wrap['imageTag']			= $photoTag;
 
 if ($fitToWindow && $gallery->user->canViewFullImages($gallery->album)) {
-	$gallery->html_wrap['attr'] = 'onclick="sizeChange.toggle()"';
+	$gallery->html_wrap['attrlist']['onclick'] = 'sizeChange.toggle()';
 }
+
 $gallery->html_wrap['pixelImage'] = getImagePath('pixel_trans.gif');
 
 

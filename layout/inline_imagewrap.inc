@@ -46,13 +46,13 @@ switch ($frame) {
     case "solid":
         $width = $imageWidth + $borderWidth;
 ?>
-      <div style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
+      <div id="galleryImageFrame" style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
 
     case "dots":
 ?>
-      <div style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
+      <div id="galleryImageFrame" style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
 <?php
     break;
 
@@ -70,11 +70,11 @@ switch ($frame) {
     		}
     		else {
 	   			$marginTop = ($imageWidth - $imageHeight)/2;
-    			echo "\n\t<div style=\"height: ${marginTop}px;\"></div>\n";    			
+    			echo "\n\t<div style=\"height: ${marginTop}px;\"></div>\n";
     		}
     	}
-    	
-        echo "\n\t<div style=\"margin: ${margin}px;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
+
+        echo "\n\t<div id=\"galleryImageFrame\" style=\"margin: ${margin}px;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
     break;
 
     default:
