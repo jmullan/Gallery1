@@ -29,13 +29,17 @@ else {
     $base = getGalleryBaseUrl();
 }
 
-$href_tag = galleryLink($href, $tag, $attrlist, '', false, false);
+$href_tag = trim(galleryLink($href, $tag, $attrlist, '', false, false));
 
 if (!in_array($frame, array('none', 'dots', 'solid', 'siriux')) &&
     !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def"))
 {
 	$frame = 'none';
 }
+
+
+global $fitToWindow;
+$id = isset($fitToWindow) ? 'id="galleryImageFrame"' : '';
 
 switch ($frame) {
     // special cases
@@ -45,15 +49,11 @@ switch ($frame) {
 
     case "solid":
         $width = $imageWidth + $borderWidth;
-?>
-      <div id="galleryImageFrame" style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;" ?>"><?php echo $href_tag ?></div>
-<?php
+        echo "<div $id style=\"margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;\">$href_tag</div>";
     break;
 
     case "dots":
-?>
-      <div id="galleryImageFrame" style="<?php echo "margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;" ?>"><?php echo $href_tag ?></div>
-<?php
+		echo "<div $id style=\"margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;\">$href_tag</div>";
     break;
 
     case "siriux":
@@ -74,7 +74,7 @@ switch ($frame) {
     		}
     	}
 
-        echo "\n\t<div id=\"galleryImageFrame\" style=\"margin: ${margin}px;\" class=\"g-siriux\">\n\t\t$href_tag\t</div>\n";
+        echo "\n\t<div $id style=\"margin: ${margin}px;\" class=\"g-siriux\">$href_tag</div>\n";
     break;
 
     default:

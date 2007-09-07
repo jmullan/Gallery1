@@ -98,7 +98,7 @@ if(!includeTemplate('navphoto.tpl')) {
 
 		$goToSelect = drawSelect2('goto', $goToOptions, array('onChange' => 'document.location.href=this.value'));
 
-		$goto = gTranslate('core', "Jump to:") . $goToSelect ;
+		$goto = '<div class="nowrap">' . gTranslate('core', "Jump to:") . $goToSelect . '</div>';
 	}
 	else {
 		$goto = '';
