@@ -62,7 +62,7 @@ action="http://www.fotoserve.com/menalto/build.html" method="post">
 </form>
 <?php }
 if (isset($printPhotoAccessForm)) { ?>
-  <form method="post" name="photoAccess" action="http://www.tkqlhce.com/click-1660787-10381744">
+  <form method="post" name="photoAccess" action="http://www.photoaccess.com/buy/anonCart.jsp">
   <input type="hidden" name="cb" value="CB_GP">
   <input type="hidden" name="redir" value="true">
   <input type="hidden" name="returnUrl" value="this-gets-set-by-javascript-in-onClick">
