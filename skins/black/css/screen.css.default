@@ -44,7 +44,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
  * Use this classes to define "superglobal" styles
 */
 .g-main {
-     margin-top: 20px;
+     margin-top: 5px;
 }
 
 .g-main a {
@@ -87,13 +87,12 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-pagetitle, .g-pagetitle-popup {
     color: #FFF;
     font-weight: bold;
-    height: 28px;
+    height: 20px;
 }
 
 .g-pagetitle {
     font-size: 16px;
-    line-height: 140%;
-    padding: 0 50px;
+    padding: 3px 50px;
     letter-spacing: .2em;
 }
 
@@ -343,6 +342,11 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-form-text {
+	border: 1px solid #AFAFAF;
+}
+
+.g-form-text:focus {
+	border: 1px solid #5d5d60;
 }
 
 .g-error {
@@ -387,10 +391,9 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     font-size: 12px;
     font-weight: bold;
     background-image: url(../images/mod_navbar.jpg);
-    line-height: 140%;
     letter-spacing: .2em;
     width: 100%;
-    height: 14px;
+    height: 18px;
     border: none;
 }
 
@@ -409,7 +412,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-navbar-top td, .g-navbar-bottom td {
-     font-size: 9pt;
+     font-size: 8pt;
  }
 
 .g-borderright {
@@ -616,7 +619,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-sitedesc {
-    border: 1px solid #006;
+    border: 1px solid #F7F7F7;
     color: #000;
     background: #888;
     margin: 3px 10px 0 10px;
@@ -703,6 +706,14 @@ input:focus, textarea:focus, select:focus {
 
 .g-button:focus {
     background: #555;
+}
+
+.g-button:active {
+    border: 1px solid #fff;
+}
+
+.g-usernameInput:focus, .g-passwordInput:focus {
+	background-color: #fff;
 }
 
 /****** End general Form Styles *****/
