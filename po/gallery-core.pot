@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-23 17:05+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,54 +278,75 @@ msgstr ""
 msgid "url:"
 msgstr ""
 
-#: ../albums.php:421
+#: ../albums.php:399
+msgid "Hey!"
+msgstr ""
+
+#: ../albums.php:400
+#, php-format
+msgid "%s so that the URL is not so generic and easy guessable!"
+msgstr ""
+
+#: ../albums.php:402
+msgid "Change the foldername of this album"
+msgstr ""
+
+#: ../albums.php:418
 #, php-format
 msgid "Created on %s, last changed on %s."
 msgstr ""
 
-#: ../albums.php:428
+#: ../albums.php:425
 #, php-format
 msgid "Last changed on %s."
 msgstr ""
 
-#: ../albums.php:439 ../view_album.php:746
+#: ../albums.php:436 ../view_album.php:747
 msgid "This album is empty."
 msgstr ""
 
-#: ../albums.php:436
+#: ../albums.php:433
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:453
+#: ../albums.php:450
 #, php-format
 msgid "This album has never been viewed since %s."
 msgstr ""
 
-#: ../albums.php:450
+#: ../albums.php:447
 #, php-format
 msgid "This album has been viewed %d time since %s."
 msgid_plural "This album has been viewed %d times since %s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../albums.php:462
+#: ../albums.php:459
 msgid "reset counter"
 msgstr ""
 
-#: ../block-feature-item.php:114
+#: ../block-feature-item.php:59
+msgid "It seems the album where the featured used to be, was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:69
+msgid "It seems the featured item was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:131
 #, php-format
 msgid "This is a featured subalbum from album: %s"
 msgstr ""
 
-#: ../block-feature-item.php:117
+#: ../block-feature-item.php:134
 #, php-format
 msgid "This featured photo is from album: %s"
 msgstr ""
 
-#: ../block-feature-item.php:125
+#: ../block-feature-item.php:142
 msgid "Currently no item is featured by this Gallery."
 msgstr ""
 
@@ -1026,7 +1047,7 @@ msgstr ""
 msgid "Click the question mark icon for helpful instructions."
 msgstr ""
 
-#: ../imagemap.php:221
+#: ../imagemap.php:221 ../includes/add_photos/add_form.inc:74
 msgid "Help"
 msgstr ""
 
@@ -1118,15 +1139,23 @@ msgstr ""
 msgid "Files:"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:94
+#: ../includes/add_photos/add_form.inc:73
+msgid "Do the same for optional metafiles."
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:80
+msgid "MetaFiles:"
+msgstr ""
+
+#: ../includes/add_photos/add_form.inc:89
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:113
+#: ../includes/add_photos/add_form.inc:107
 msgid "_Upload Now"
 msgstr ""
 
-#: ../includes/add_photos/add_form.inc:114
+#: ../includes/add_photos/add_form.inc:108
 #: ../includes/add_photos/add_local.inc:97
 #: ../includes/add_photos/add_url.inc:62 ../login.php:206
 #: ../new_password.php:128 ../popups/add_comment.php:59
@@ -2039,6 +2068,10 @@ msgstr ""
 #: ../lib/filesystem.php:108
 #, php-format
 msgid "extension of file %s is %s"
+msgstr ""
+
+#: ../lib/filesystem.php:148
+msgid "The path you try to use does not exist! Exiting Gallery"
 msgstr ""
 
 #: ../lib/stats.php:33
@@ -4495,20 +4528,25 @@ msgstr ""
 msgid "Data load time %d seconds"
 msgstr ""
 
-#: ../stats.php:725
+#: ../stats.php:717
+#, php-format
+msgid "Finished in %d seconds"
+msgstr ""
+
+#: ../stats.php:723
 msgid "Update"
 msgstr ""
 
-#: ../stats.php:726
+#: ../stats.php:724
 msgid "Cache update required. "
 msgstr ""
 
-#: ../stats.php:730
+#: ../stats.php:728
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first"
 msgstr ""
 
-#: ../stats.php:733
+#: ../stats.php:731
 msgid "upgrade all albums"
 msgstr ""
 
@@ -5277,7 +5315,7 @@ msgid_plural "Viewed: %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../view_album.php:743
+#: ../view_album.php:744
 msgid "Hey! Add some photos."
 msgstr ""
 
@@ -5319,6 +5357,6 @@ msgstr ""
 msgid "normal"
 msgstr ""
 
-#: ../view_photo.php:518
+#: ../view_photo.php:519
 msgid "Email me when comments are added"
 msgstr ""

@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 15:40+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: 2006-01-15 00:12+1200\n"
 "Last-Translator: Wouter Hanekom <wouter AT clear DOT net DOT nz>\n"
 "Language-Team: Afrikaans <gerrit AT hoekstra DOT co DOT uk>\n"
@@ -203,7 +203,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Welkom, %s"
 
-#: ../albums.php:158 ../view_album.php:388
+#: ../albums.php:158 ../view_album.php:197
 #, fuzzy
 msgid "slidesho_w"
 msgstr "skyfie vertoning"
@@ -292,7 +292,7 @@ msgstr "een bladsy"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:359 ../view_album.php:774
+#: ../albums.php:359 ../view_album.php:576
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "geen album aangegee nie"
@@ -302,72 +302,80 @@ msgstr "geen album aangegee nie"
 msgid "Owner: %s"
 msgstr "Eienaar: %s"
 
-#: ../albums.php:383
+#: ../albums.php:384
 msgid "url:"
 msgstr "url:"
 
-#: ../albums.php:395
+#: ../albums.php:399
 msgid "Hey!"
 msgstr "Haai!"
 
-#: ../albums.php:396
+#: ../albums.php:400
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic and easy guessable!"
 msgstr "%s hierdie album sodat die URL nie so algemeen is!"
 
-#: ../albums.php:398
+#: ../albums.php:402
 #, fuzzy
 msgid "Change the foldername of this album"
 msgstr "Hernoem album"
 
-#: ../albums.php:414
+#: ../albums.php:418
 #, fuzzy, php-format
 msgid "Created on %s, last changed on %s."
 msgstr "Laaste wysiging was op %s."
 
-#: ../albums.php:421
+#: ../albums.php:425
 #, php-format
 msgid "Last changed on %s."
 msgstr "Laaste wysiging was op %s."
 
-#: ../albums.php:432 ../view_album.php:947
+#: ../albums.php:436 ../view_album.php:747
 msgid "This album is empty."
 msgstr "Hierdie album is leeg."
 
-#: ../albums.php:429
+#: ../albums.php:433
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "Hierdie album bevat 1 item."
 msgstr[1] "Hierdie album bevat %d items."
 
-#: ../albums.php:446
+#: ../albums.php:450
 #, fuzzy, php-format
 msgid "This album has never been viewed since %s."
 msgstr "Album is %s sedert %s besigtig."
 
-#: ../albums.php:443
+#: ../albums.php:447
 #, fuzzy, php-format
 msgid "This album has been viewed %d time since %s."
 msgid_plural "This album has been viewed %d times since %s."
 msgstr[0] "Album is %s sedert %s besigtig."
 msgstr[1] "Album is %s sedert %s besigtig."
 
-#: ../albums.php:455
+#: ../albums.php:459
 msgid "reset counter"
 msgstr "herstel tref-teller"
 
-#: ../block-feature-item.php:114
+#: ../block-feature-item.php:59
+msgid "It seems the album where the featured used to be, was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:69
+msgid "It seems the featured item was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:131
 #, php-format
 msgid "This is a featured subalbum from album: %s"
 msgstr ""
 
-#: ../block-feature-item.php:117
+#: ../block-feature-item.php:134
 #, fuzzy, php-format
 msgid "This featured photo is from album: %s"
 msgstr "Kies 'n nuwe vindplek vir die album: %s"
 
-#: ../block-feature-item.php:125
+#: ../block-feature-item.php:142
 #, fuzzy
 msgid "Currently no item is featured by this Gallery."
 msgstr "Daar is geen verlore l&ecirc;ers in <i>Gallery</i> nie."
@@ -447,7 +455,7 @@ msgid "(click to enlarge)"
 msgstr "(kliek om te vergroot)"
 
 #: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:758
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:560
 msgid "hidden"
 msgstr "versteek"
 
@@ -490,8 +498,8 @@ msgstr "Daar is geen weeselemente in die galery nie."
 msgid "Untitled"
 msgstr "Geen titel"
 
-#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:73
-#: ../lib/albumItem.php:495 ../lib/usage.php:84
+#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:49
+#: ../lib/albumItem.php:467 ../lib/usage.php:84
 #: ../templates/commentbox.tpl.default:16
 msgid "Album"
 msgstr "Album"
@@ -519,7 +527,7 @@ msgid "description"
 msgstr "Beskrywing"
 
 #: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:246
-#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:197
+#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:195
 msgid "Description"
 msgstr "Beskrywing"
 
@@ -701,22 +709,22 @@ msgstr ""
 msgid "(Group)"
 msgstr ""
 
-#: ../classes/Album.php:3159
+#: ../classes/Album.php:3160
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3326
+#: ../classes/Album.php:3327
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "E-pos probleem: slaan %s oor (UID %s) omdat die e-pos adres %s ongeldig is."
 
-#: ../classes/Album.php:3330
+#: ../classes/Album.php:3331
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "E-pos probleem: slaan %s oor (UID %s) omdat die e-pos adres %s ongeldig is."
 
-#: ../classes/Album.php:3340
+#: ../classes/Album.php:3341
 #, fuzzy
 msgid "Email problems"
 msgstr "E-pos Adres"
@@ -1173,7 +1181,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Ondersteunde l&ecirc;er-formate: %s"
 
-#: ../includes/add_photos/add_form.inc:47 ../view_album.php:511
+#: ../includes/add_photos/add_form.inc:47 ../view_album.php:313
 msgid " or "
 msgstr " of "
 
@@ -1215,8 +1223,8 @@ msgstr "Oplaai"
 #: ../popups/copy_photo.php:212 ../popups/delete_photo.php:135
 #: ../popups/download.php:86 ../popups/ecard_form.php:277
 #: ../popups/edit_caption.php:233 ../popups/edit_field.php:57
-#: ../popups/edit_watermark.php:123 ../popups/move_album.php:111
-#: ../popups/move_album.php:139 ../popups/move_photo.php:284
+#: ../popups/edit_watermark.php:123 ../popups/move_album.php:112
+#: ../popups/move_album.php:140 ../popups/move_photo.php:284
 #: ../popups/move_photo.php:379 ../popups/rearrange.php:152
 #: ../popups/rearrange.php:207 ../popups/register.php:142
 #: ../popups/rename_album.php:121 ../popups/reset_votes.php:58
@@ -1710,42 +1718,6 @@ msgstr "Skrap"
 msgid "Caption:"
 msgstr "Bykrif: "
 
-#: ../layout/adminAlbumCommands.inc:40
-msgid "delete album"
-msgstr "verwyder album"
-
-#: ../layout/adminAlbumCommands.inc:48
-msgid "move album"
-msgstr "skuif album"
-
-#: ../layout/adminAlbumCommands.inc:53
-msgid "reorder album"
-msgstr "herskik album"
-
-#: ../layout/adminAlbumCommands.inc:63
-msgid "edit captions"
-msgstr "wysig onderskrifte"
-
-#: ../layout/adminAlbumCommands.inc:72
-msgid "permissions"
-msgstr "toegangsregte"
-
-#: ../layout/adminAlbumCommands.inc:79
-msgid "properties"
-msgstr "eienskappe"
-
-#: ../layout/adminAlbumCommands.inc:91
-msgid "view&nbsp;comments"
-msgstr "besigtig kommentaar"
-
-#: ../layout/adminAlbumCommands.inc:99
-msgid "watermark&nbsp;album"
-msgstr "watermerk album"
-
-#: ../layout/adminAlbumCommands.inc:114
-msgid "No Admin commands available."
-msgstr ""
-
 #: ../layout/breadcrumb.inc:27
 #, fuzzy, php-format
 msgid "Logged in as: %s"
@@ -1983,223 +1955,223 @@ msgstr "wysig grootte-formaat"
 msgid "Only full photos"
 msgstr "Slegs volgrootte fotos"
 
-#: ../lib/albumItem.php:80 ../lib/albumItem.php:498
+#: ../lib/albumItem.php:57 ../lib/albumItem.php:470
 #: ../popups/rearrange.php:125
 msgid "Movie"
 msgstr "Fliek"
 
-#: ../lib/albumItem.php:84 ../lib/albumItem.php:501
+#: ../lib/albumItem.php:61 ../lib/albumItem.php:473
 msgid "Photo"
 msgstr "Foto"
 
-#: ../lib/albumItem.php:107
+#: ../lib/albumItem.php:84
 #, fuzzy
 msgid "Edit _Text"
 msgstr "Redigeer teks"
 
-#: ../lib/albumItem.php:113
+#: ../lib/albumItem.php:90
 #, fuzzy
 msgid "Edit Th_umbnail"
 msgstr "Wysig Duimnaelskets"
 
-#: ../lib/albumItem.php:119
+#: ../lib/albumItem.php:96
 #, fuzzy
 msgid "Rotate/_Flip"
 msgstr "Roteer/Spie&euml;l"
 
-#: ../lib/albumItem.php:125
+#: ../lib/albumItem.php:102
 #, fuzzy
 msgid "Re_size"
 msgstr "Wysig grootte"
 
-#: ../lib/albumItem.php:132
+#: ../lib/albumItem.php:109
 #, fuzzy
 msgid "_Watermark"
 msgstr "Watrermerk"
 
-#: ../lib/albumItem.php:140
+#: ../lib/albumItem.php:117
 #, fuzzy
 msgid "Image_Map"
 msgstr "Beeldkaart"
 
-#: ../lib/albumItem.php:146
+#: ../lib/albumItem.php:123
 #, fuzzy
 msgid "Crop Image"
 msgstr "Geen beeldkaarte"
 
-#: ../lib/albumItem.php:156
+#: ../lib/albumItem.php:133
 msgid "Edit Title"
 msgstr "Verander Titel"
 
-#: ../lib/albumItem.php:161
+#: ../lib/albumItem.php:138
 msgid "Edit Description"
 msgstr "Wysig Beskrywing"
 
-#: ../lib/albumItem.php:167 ../popups/rename_album.php:35
+#: ../lib/albumItem.php:144 ../popups/rename_album.php:35
 msgid "Rename Album"
 msgstr "Hernoem Album"
 
-#: ../lib/albumItem.php:172
+#: ../lib/albumItem.php:149
 msgid "Reset Counter"
 msgstr "Herstel tref-teller"
 
-#: ../lib/albumItem.php:183 ../view_album.php:285
+#: ../lib/albumItem.php:160
 msgid "Permissions"
 msgstr "Toegangsregte"
 
-#: ../lib/albumItem.php:190 ../popups/watermark_album.php:103
+#: ../lib/albumItem.php:167 ../popups/watermark_album.php:103
 msgid "Watermark Album"
 msgstr "Watermerk Album"
 
-#: ../lib/albumItem.php:197
+#: ../lib/albumItem.php:174
 msgid "View Comments"
 msgstr "besigtig kommentaar"
 
-#: ../lib/albumItem.php:205
+#: ../lib/albumItem.php:182
 #, fuzzy
 msgid "Cop_y"
 msgstr "Kopieer "
 
-#: ../lib/albumItem.php:214
+#: ../lib/albumItem.php:191
 #, fuzzy
 msgid "_Reorder"
 msgstr "Herskik "
 
-#: ../lib/albumItem.php:220
+#: ../lib/albumItem.php:197
 #, fuzzy
 msgid "Mo_ve"
 msgstr "Skuif"
 
-#: ../lib/albumItem.php:228
+#: ../lib/albumItem.php:205
 #, fuzzy
 msgid "Set as high_light"
 msgstr "Kies as glanspunt"
 
-#: ../lib/albumItem.php:237
+#: ../lib/albumItem.php:214
 #, fuzzy
 msgid "Change Ow_ner"
 msgstr "Verander Eienaar"
 
-#: ../lib/albumItem.php:242
+#: ../lib/albumItem.php:219
 #, fuzzy, php-format
 msgid "Feature %s"
 msgstr "Skrap"
 
-#: ../lib/albumItem.php:255
+#: ../lib/albumItem.php:232
 #, fuzzy
 msgid "_Unhide"
 msgstr "Versteek"
 
-#: ../lib/albumItem.php:262
+#: ../lib/albumItem.php:239
 #, fuzzy
 msgid "_Hide"
 msgstr "Versteek"
 
-#: ../lib/albumItem.php:274 ../lib/albumItem.php:284
+#: ../lib/albumItem.php:251 ../lib/albumItem.php:261
 #: ../popups/delete_photo.php:134 ../popups/manage_users.php:167
 #, fuzzy
 msgid "_Delete"
 msgstr "Skrap"
 
-#: ../lib/albumItem.php:298
+#: ../lib/albumItem.php:275
 #, fuzzy
 msgid "Photo _properties"
 msgstr "Eienskappe"
 
-#: ../lib/albumItem.php:310
+#: ../lib/albumItem.php:287
 #, fuzzy
 msgid "Send photo as e_Card"
 msgstr "Stuur foto as e-kaartjie"
 
-#: ../lib/albumItem.php:325
+#: ../lib/albumItem.php:299
 #, php-format
 msgid "%s actions"
 msgstr "%s aksies"
 
-#: ../lib/albumItem.php:348
+#: ../lib/albumItem.php:320
 msgid "delete comment"
 msgstr "kommentaar skrap"
 
-#: ../lib/albumItem.php:371
+#: ../lib/albumItem.php:343
 msgid "From:"
 msgstr "Van:"
 
-#: ../lib/albumItem.php:479
+#: ../lib/albumItem.php:451
 #, fuzzy, php-format
 msgid "Generated caption. Type: %s"
 msgstr "wysig onderskrifte"
 
-#: ../lib/albumItem.php:511
+#: ../lib/albumItem.php:483
 #, php-format
 msgid "Entering function: '%s'"
 msgstr ""
 
-#: ../lib/albumItem.php:513
+#: ../lib/albumItem.php:485
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Verwerk beeld %d..."
 
-#: ../lib/albumItem.php:517
+#: ../lib/albumItem.php:489
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "Besig met verwerking van %s as 'n lokale l&ecirc;ergids."
 
-#: ../lib/albumItem.php:520
+#: ../lib/albumItem.php:492
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Slaan %s oor (%s ondersteuning is gesper)"
 
-#: ../lib/albumItem.php:529
+#: ../lib/albumItem.php:501
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../lib/albumItem.php:547
+#: ../lib/albumItem.php:519
 msgid "No Metadata"
 msgstr ""
 
-#: ../lib/albumItem.php:551
+#: ../lib/albumItem.php:523
 msgid "Processing files in archive"
 msgstr ""
 
-#: ../lib/albumItem.php:557
+#: ../lib/albumItem.php:529
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../lib/albumItem.php:560
+#: ../lib/albumItem.php:532
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "Kon nie toegang tot l&ecirc;ergids %s kry nie."
 
-#: ../lib/albumItem.php:604
+#: ../lib/albumItem.php:576
 #, fuzzy
 msgid "Start Processing single file (Image, not archive)"
 msgstr "Verwerk beeld %d..."
 
-#: ../lib/albumItem.php:607
+#: ../lib/albumItem.php:579
 msgid "extension is accepted."
 msgstr ""
 
-#: ../lib/albumItem.php:609
+#: ../lib/albumItem.php:581
 #, fuzzy
 msgid "Filename processing."
 msgstr "Beeld voorverwerking"
 
-#: ../lib/albumItem.php:658
+#: ../lib/albumItem.php:630
 msgid "No caption given, generating it."
 msgstr ""
 
-#: ../lib/albumItem.php:664
+#: ../lib/albumItem.php:636
 #, php-format
 msgid "Adding %s"
 msgstr "Besig met byvoeg van %s"
 
-#: ../lib/albumItem.php:690
+#: ../lib/albumItem.php:662
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Hulp nodig? Lees die %s%s FAQ%s"
 
-#: ../lib/albumItem.php:696
+#: ../lib/albumItem.php:668
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Slaan %s oor, as gevolg van onbekende %s formaat"
@@ -2207,6 +2179,10 @@ msgstr "Slaan %s oor, as gevolg van onbekende %s formaat"
 #: ../lib/filesystem.php:108
 #, php-format
 msgid "extension of file %s is %s"
+msgstr ""
+
+#: ../lib/filesystem.php:148
+msgid "The path you try to use does not exist! Exiting Gallery"
 msgstr ""
 
 #: ../lib/stats.php:33
@@ -2376,7 +2352,7 @@ msgstr "Ongeldige gebruiker"
 msgid "Login to %s"
 msgstr "Aanteken na &quot;%s&quot;"
 
-#: ../login.php:177 ../login.php:192
+#: ../login.php:167 ../login.php:177 ../login.php:192
 #, fuzzy
 msgid "Login"
 msgstr "Aanteken"
@@ -2412,7 +2388,7 @@ msgstr "Stuur vir my my wagwoord, asseblief!"
 msgid "No account at all?"
 msgstr "Hoegenaamd geen rekening?"
 
-#: ../login.php:238
+#: ../login.php:239
 #, fuzzy
 msgid "_Register a new account."
 msgstr "Registreer 'n nuwe rekening."
@@ -2508,7 +2484,7 @@ msgid "_Return to  %s"
 msgstr "Gaan terug na %s"
 
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:459 ../view_album.php:783
+#: ../popups/upgrade_album.php:97 ../view_album.php:261 ../view_album.php:585
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -2810,7 +2786,7 @@ msgid "Upgrade now"
 msgstr "Opgradeer nou"
 
 #: ../popups/copy_photo.php:224 ../popups/delete_photo.php:140
-#: ../popups/edit_thumb.php:44 ../popups/move_album.php:145
+#: ../popups/edit_thumb.php:44 ../popups/move_album.php:146
 #: ../popups/move_photo.php:386 ../popups/resize_photo.php:178
 #: ../popups/rotate_photo.php:134 ../popups/view_photo_properties.php:124
 msgid "no album / index specified"
@@ -3501,25 +3477,25 @@ msgstr "Skuif Album"
 msgid "Reorder Album"
 msgstr "herskik album"
 
-#: ../popups/move_album.php:94
+#: ../popups/move_album.php:95
 #, php-format
 msgid "Select the new location of album: %s"
 msgstr "Kies 'n nuwe vindplek vir die album: %s"
 
-#: ../popups/move_album.php:95
+#: ../popups/move_album.php:96
 msgid "Your Album will be moved to the position you choose below."
 msgstr ""
 
-#: ../popups/move_album.php:100
+#: ../popups/move_album.php:101
 msgid "Nest within another Album:"
 msgstr "Nes hierdie album onder 'n ander album:"
 
-#: ../popups/move_album.php:110
+#: ../popups/move_album.php:111
 #, fuzzy
 msgid "_Move to Album!"
 msgstr "Skuif na ander Album!"
 
-#: ../popups/move_album.php:138 ../popups/move_photo.php:283
+#: ../popups/move_album.php:139 ../popups/move_photo.php:283
 #, fuzzy
 msgid "_Move it!"
 msgstr "Skuif dit!"
@@ -4827,13 +4803,13 @@ msgid "upgrade all albums"
 msgstr "alle albums opgradeer"
 
 #: ../templates/album.tpl.default:130 ../templates/album.tpl.default:195
-#: ../view_album.php:519
+#: ../view_album.php:321
 msgid "Vote"
 msgstr "Stem"
 
 #: ../templates/album.tpl.default:205
-#: ../templates/classic/gallery.tpl.default:170
-#: ../templates/matrix/gallery.tpl.default:138
+#: ../templates/classic/gallery.tpl.default:187
+#: ../templates/matrix/gallery.tpl.default:143
 msgid "Comments available for this item."
 msgstr "Iemand het kommentaar op hierdie item gelewer."
 
@@ -4875,6 +4851,11 @@ msgstr "Lewer kommentaar"
 #, fuzzy
 msgid "_Delete marked comments"
 msgstr "skrap kommentaar "
+
+#: ../templates/classic/gallery.tpl.default:132
+#: ../templates/matrix/gallery.tpl.default:109
+msgid "No admin commands available."
+msgstr ""
 
 #: ../templates/info_donation-block.tpl.default:18
 #, fuzzy
@@ -5487,11 +5468,26 @@ msgid "Debug ON ! Level %s"
 msgstr "Ontfout modus aan! Vlak %s"
 
 #: ../view_album.php:147
+#, fuzzy
+msgid "No albums"
+msgstr "geen albums"
+
+#: ../view_album.php:147
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "1 sub-album"
 msgstr[1] "%d sub-albums"
+
+#: ../view_album.php:148
+#, fuzzy
+msgid "No images"
+msgstr "geen foto's"
+
+#: ../view_album.php:149
+#, fuzzy
+msgid "0 pages"
+msgstr "geen blaaie"
 
 #: ../view_album.php:152
 #, fuzzy, php-format
@@ -5520,176 +5516,101 @@ msgid_plural "%s elements are hidden."
 msgstr[0] "%s is versteek"
 msgstr[1] "%s is versteek"
 
-#: ../view_album.php:178
-msgid "Add photos"
-msgstr "Voeg foto's by"
-
-#: ../view_album.php:185
-msgid "Delete this album"
-msgstr "Skrap hierdie album"
-
-#: ../view_album.php:191
-msgid "Delete this (sub)album"
-msgstr "Skrap hierdie (sub-)album"
-
-#: ../view_album.php:201
-#, fuzzy
-msgid "Change foldername"
-msgstr "Verander Eienaar"
-
-#: ../view_album.php:210
-msgid "New nested album"
-msgstr "Nuwe sub-album"
-
-#: ../view_album.php:219
-msgid "Edit captions"
-msgstr "Wysig byskrifte"
-
-#: ../view_album.php:228
-msgid "Sort items"
-msgstr "Sorteer foto's"
-
-#: ../view_album.php:236
-msgid "Resize all"
-msgstr "Wysig alle grootte formate"
-
-#: ../view_album.php:245
-#, fuzzy
-msgid "Recreate captions"
-msgstr "wysig onderskrifte"
-
-#: ../view_album.php:253
-#, fuzzy
-msgid "Rebuild capture dates"
-msgstr "Wys foto datum"
-
-#: ../view_album.php:261
-msgid "Rebuild thumbs"
-msgstr "Herskep duimnaelsketse"
-
-#: ../view_album.php:269
-msgid "Properties"
-msgstr "Eienskappe"
-
-#: ../view_album.php:277
-msgid "Rearrange items"
-msgstr "Herskik items"
-
-#: ../view_album.php:293
-msgid "Poll results"
-msgstr "Meningspeiling uitslae"
-
-#: ../view_album.php:300
-msgid "Poll reset"
-msgstr "Herstel meningspeiling"
-
-#: ../view_album.php:308
-msgid "View comments"
-msgstr "besigtig kommentaar"
-
-#: ../view_album.php:315
-msgid "Watermark album"
-msgstr "Watermerk album"
-
-#: ../view_album.php:377
-msgid "Album Actions"
-msgstr "Album aksies"
-
-#: ../view_album.php:403
+#: ../view_album.php:208
 #, fuzzy
 msgid "view&nbsp;_comments"
 msgstr "besigtig kommentaar"
 
-#: ../view_album.php:443
+#: ../view_album.php:245
 #, fuzzy
 msgid "Your votes are:"
 msgstr "Boodskap:"
 
-#: ../view_album.php:490
+#: ../view_album.php:292
 msgid "See full poll results"
 msgstr "Sien meningspeiling uitslae"
 
-#: ../view_album.php:509
+#: ../view_album.php:311
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:515
+#: ../view_album.php:317
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Om vir 'n foto te stem, kliek op %s."
 
-#: ../view_album.php:518
+#: ../view_album.php:320
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Jy MOET op %s kliek om jou stem te laat tel"
 
-#: ../view_album.php:525
+#: ../view_album.php:327
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] "Jy het 'n totaal van %s en kan hulle verander as jy wil."
 msgstr[1] "Jy het 'n totaal van %s en kan hulle verander as jy wil."
 
-#: ../view_album.php:530
+#: ../view_album.php:332
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Hier kan jy jou keuses verander as jy wil"
 
-#: ../view_album.php:676 ../view_album.php:677
+#: ../view_album.php:478 ../view_album.php:479
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:690 ../view_album.php:713
+#: ../view_album.php:492 ../view_album.php:515
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
-#: ../view_album.php:765
+#: ../view_album.php:567
 msgid "highlight"
 msgstr "voorbeeldfoto"
 
-#: ../view_album.php:792
+#: ../view_album.php:594
 msgid "No description"
 msgstr "Geen beskrywing"
 
-#: ../view_album.php:800
+#: ../view_album.php:602
 #, php-format
 msgid "Last change: %s"
 msgstr "Laaste wysiging was op %s."
 
-#: ../view_album.php:803
+#: ../view_album.php:605
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Bevat %s"
 msgstr[1] "Bevat %s"
 
-#: ../view_album.php:820
+#: ../view_album.php:622
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "1 keer bekyk"
 msgstr[1] "%d keer bekyk"
 
-#: ../view_album.php:847
+#: ../view_album.php:649
 #, fuzzy
 msgid "Description for"
 msgstr "Beskrywing"
 
-#: ../view_album.php:848
+#: ../view_album.php:650
 #, fuzzy
 msgid "... show full description"
 msgstr "Wys beskrywing"
 
-#: ../view_album.php:859
+#: ../view_album.php:661
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "1 keer bekyk"
 msgstr[1] "%d keer bekyk"
 
-#: ../view_album.php:944
+#: ../view_album.php:744
 msgid "Hey! Add some photos."
 msgstr "Haai! Plaas 'n paar kiekies in hierdie album!"
 
@@ -5732,9 +5653,90 @@ msgstr "Besigtig foto's"
 msgid "normal"
 msgstr "normaal"
 
-#: ../view_photo.php:518
+#: ../view_photo.php:519
 msgid "Email me when comments are added"
 msgstr "Stuur e-pos wanneer kommentaar gelewer is"
+
+#~ msgid "delete album"
+#~ msgstr "verwyder album"
+
+#~ msgid "move album"
+#~ msgstr "skuif album"
+
+#~ msgid "reorder album"
+#~ msgstr "herskik album"
+
+#~ msgid "edit captions"
+#~ msgstr "wysig onderskrifte"
+
+#~ msgid "permissions"
+#~ msgstr "toegangsregte"
+
+#~ msgid "properties"
+#~ msgstr "eienskappe"
+
+#~ msgid "view&nbsp;comments"
+#~ msgstr "besigtig kommentaar"
+
+#~ msgid "watermark&nbsp;album"
+#~ msgstr "watermerk album"
+
+#~ msgid "Add photos"
+#~ msgstr "Voeg foto's by"
+
+#~ msgid "Delete this album"
+#~ msgstr "Skrap hierdie album"
+
+#~ msgid "Delete this (sub)album"
+#~ msgstr "Skrap hierdie (sub-)album"
+
+#, fuzzy
+#~ msgid "Change foldername"
+#~ msgstr "Verander Eienaar"
+
+#~ msgid "New nested album"
+#~ msgstr "Nuwe sub-album"
+
+#~ msgid "Edit captions"
+#~ msgstr "Wysig byskrifte"
+
+#~ msgid "Sort items"
+#~ msgstr "Sorteer foto's"
+
+#~ msgid "Resize all"
+#~ msgstr "Wysig alle grootte formate"
+
+#, fuzzy
+#~ msgid "Recreate captions"
+#~ msgstr "wysig onderskrifte"
+
+#, fuzzy
+#~ msgid "Rebuild capture dates"
+#~ msgstr "Wys foto datum"
+
+#~ msgid "Rebuild thumbs"
+#~ msgstr "Herskep duimnaelsketse"
+
+#~ msgid "Properties"
+#~ msgstr "Eienskappe"
+
+#~ msgid "Rearrange items"
+#~ msgstr "Herskik items"
+
+#~ msgid "Poll results"
+#~ msgstr "Meningspeiling uitslae"
+
+#~ msgid "Poll reset"
+#~ msgstr "Herstel meningspeiling"
+
+#~ msgid "View comments"
+#~ msgstr "besigtig kommentaar"
+
+#~ msgid "Watermark album"
+#~ msgstr "Watermerk album"
+
+#~ msgid "Album Actions"
+#~ msgstr "Album aksies"
 
 #~ msgid "Processing element %d..."
 #~ msgstr "Verwerk beeld %d..."

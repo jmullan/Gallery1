@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 15:40+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: 2004-10-12 11:55+0100\n"
 "Last-Translator: Jens Tkotz <jens AT peino DOT de>\n"
 "Language-Team: Tamer Yahia <tamer_yahia AT hotmail DOT com >\n"
@@ -448,7 +448,8 @@ msgstr "« «Õ… «‰≈Â„«ÊÍ… ‰‰“Ë«— ‰ ÕœÍœ  ·÷Í‰ <br> ‰‰’Ë— »«‰ÕÃÂ «‰„«Â‰ √ÓË «‰ÂŸ«
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "≈Õ Ë«¡  ‰‚«∆Í ≈‰È «‰Ê«·–… ‰‰’Ë— <br> œËÊ «‰Õ«Ã… ≈‰È Ê”Œ… √ŸÍœ ’Í«⁄… ÕÃÂÁ«"
 
-#: ../includes/definitions/albumProperties.php:395
+#: ../includes/definitions/albumProperties.php:395 ../lib/album.php:631
+#: ../lib/album.php:632
 msgid "Permissions"
 msgstr "√–ËÊ« "
 
@@ -540,48 +541,48 @@ msgstr ""
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr ""
 
-#: ../lib/Form.php:77
+#: ../lib/form.php:77
 msgid "Check All"
 msgstr "«·Õ’ «‰„‰"
 
-#: ../lib/Form.php:79
+#: ../lib/form.php:79
 msgid "Clear All"
 msgstr "Â”Õ «‰„‰"
 
-#: ../lib/Form.php:81
+#: ../lib/form.php:81
 msgid "Invert Selection"
 msgstr "≈Ÿ„” «‰ ÕœÍœ"
 
-#: ../lib/Form.php:316
+#: ../lib/form.php:321
 msgid "Colorpicker"
 msgstr ""
 
-#: ../lib/Form.php:342
+#: ../lib/form.php:347
 msgid "Byte"
 msgstr ""
 
-#: ../lib/Form.php:343
+#: ../lib/form.php:348
 msgid "KB"
 msgstr ""
 
-#: ../lib/Form.php:344
+#: ../lib/form.php:349
 msgid "MB"
 msgstr ""
 
-#: ../lib/Form.php:345
+#: ../lib/form.php:350
 msgid "GB"
 msgstr ""
 
-#: ../lib/Form.php:350
+#: ../lib/form.php:355
 msgid "Byte calculator"
 msgstr ""
 
-#: ../lib/Form.php:356
+#: ../lib/form.php:361
 #, fuzzy
 msgid "_Close"
 msgstr "≈⁄‰«‚"
 
-#: ../lib/Form.php:528
+#: ../lib/form.php:534
 #, fuzzy
 msgid "Add field"
 msgstr "√÷· Â‰·« "
@@ -612,6 +613,94 @@ msgid "1 view"
 msgid_plural "%d views"
 msgstr[0] "Â‰· 1"
 msgstr[1] "Â‰· 1"
+
+#: ../lib/album.php:577 ../lib/album.php:578
+msgid "Add photos"
+msgstr ""
+
+#: ../lib/album.php:587 ../lib/album.php:592
+msgid "New nested album"
+msgstr ""
+
+#: ../lib/album.php:605 ../lib/album.php:613
+#, fuzzy
+msgid "Edit captions"
+msgstr "‰« Ÿ‰Í‚"
+
+#: ../lib/album.php:623 ../lib/album.php:624
+msgid "Change foldername"
+msgstr ""
+
+#: ../lib/album.php:641 ../lib/album.php:642
+#, fuzzy
+msgid "Properties"
+msgstr "Œ’«∆’ «‰ ’ËÍ "
+
+#: ../lib/album.php:653 ../lib/album.php:654
+msgid "Watermark&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:667 ../lib/album.php:668
+#, fuzzy
+msgid "Delete album"
+msgstr "«Œ — √‰»ËÂ"
+
+#: ../lib/album.php:677 ../lib/album.php:678
+msgid "Move album"
+msgstr ""
+
+#: ../lib/album.php:684 ../lib/album.php:685
+msgid "Reorder album"
+msgstr ""
+
+#: ../lib/album.php:696 ../lib/album.php:697
+msgid "Delete this (sub)album"
+msgstr ""
+
+#: ../lib/album.php:721 ../lib/album.php:722
+msgid "Sort items"
+msgstr ""
+
+#: ../lib/album.php:729 ../lib/album.php:730
+msgid "Resize all"
+msgstr ""
+
+#: ../lib/album.php:736 ../lib/album.php:737
+#, fuzzy
+msgid "Recreate captions"
+msgstr "«‰ÂË‚Ÿ «‰Õ«‰È"
+
+#: ../lib/album.php:743 ../lib/album.php:744
+#, fuzzy
+msgid "Rebuild thumbs"
+msgstr "≈Ÿ«œ… »Ê«¡ «‰√‘„«‰ «‰Â’⁄—…"
+
+#: ../lib/album.php:750 ../lib/album.php:751
+msgid "Rearrange items"
+msgstr ""
+
+#: ../lib/album.php:758 ../lib/album.php:759
+#, fuzzy
+msgid "Rebuild capture dates"
+msgstr " «—ÍŒ «‰Ê‚‰ Ë«‰Õ·ÿ "
+
+#: ../lib/album.php:769 ../lib/album.php:775 ../lib/voting.php:377
+#, fuzzy
+msgid "Poll results"
+msgstr "Ê «∆Ã «‰≈‚ —«Ÿ"
+
+#: ../lib/album.php:785 ../lib/album.php:789
+#, fuzzy
+msgid "Poll reset"
+msgstr "Ê «∆Ã «‰≈‚ —«Ÿ"
+
+#: ../lib/album.php:801 ../lib/album.php:804
+msgid "View&nbsp;comments"
+msgstr ""
+
+#: ../lib/album.php:815
+msgid "<< Album actions >>"
+msgstr ""
 
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
@@ -675,184 +764,184 @@ msgstr ""
 msgid "Post comment"
 msgstr "¬Œ—  Ÿ‰Í‚ %s."
 
-#: ../lib/content.php:326 ../lib/content.php:340 ../lib/content.php:384
+#: ../lib/content.php:333 ../lib/content.php:347 ../lib/content.php:391
 #, fuzzy
 msgid "Sub-albums:"
 msgstr "√‰»ËÂ«  ·—ŸÍ…"
 
-#: ../lib/content.php:471
+#: ../lib/content.php:478
 #, fuzzy
 msgid "EXIF Data"
 msgstr "»Í«Ê«   Œ“ÍÊ «‰ EXIF"
 
-#: ../lib/content.php:475
+#: ../lib/content.php:482
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../lib/content.php:621
+#: ../lib/content.php:628
 #, fuzzy
 msgid "_Search:"
 msgstr "»ÕÀ"
 
-#: ../lib/content.php:666 ../lib/content.php:699
+#: ../lib/content.php:673 ../lib/content.php:706
 msgid "Operation done, closing window."
 msgstr ""
 
-#: ../lib/content.php:673 ../lib/content.php:711
+#: ../lib/content.php:680 ../lib/content.php:718
 #, fuzzy
 msgid "Not closing this window because debug mode is on."
 msgstr "‰Â  ⁄‰‚ Á–Á «‰Ê«·–… »”»»  ‘⁄Í‰ ÊÂ◊ «‰ Ê‚ÍÕ"
 
-#: ../lib/content.php:707
+#: ../lib/content.php:714
 #, fuzzy, php-format
 msgid "Loading URL: %s"
 msgstr "≈÷«·…: %s   "
 
-#: ../lib/content.php:744
+#: ../lib/content.php:751
 #, fuzzy, php-format
 msgid "Problem including file %s"
 msgstr "Â‘„‰… ·Í ≈÷«·… %s:"
 
-#: ../lib/content.php:903
+#: ../lib/content.php:910
 msgid "Select Album"
 msgstr "«Œ — √‰»ËÂ"
 
-#: ../lib/content.php:909
+#: ../lib/content.php:916
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:930
+#: ../lib/content.php:937
 msgid "current location"
 msgstr "«‰ÂË‚Ÿ «‰Õ«‰È"
 
-#: ../lib/content.php:985
+#: ../lib/content.php:992
 #, fuzzy
 msgid "Current location"
 msgstr "«‰ÂË‚Ÿ «‰Õ«‰È"
 
-#: ../lib/content.php:989
+#: ../lib/content.php:996
 #, fuzzy
 msgid "This album itself"
 msgstr "Á–« «‰√‰»ËÂ ·«—⁄"
 
-#: ../lib/content.php:1022
+#: ../lib/content.php:1029
 #, php-format
 msgid "Last comment %s."
 msgstr "¬Œ—  Ÿ‰Í‚ %s."
 
-#: ../lib/content.php:1048 ../lib/content.php:1051
+#: ../lib/content.php:1055 ../lib/content.php:1058
 #, fuzzy
 msgid "No Skin"
 msgstr " ”ÃÍ‰ «‰œŒË‰"
 
-#: ../lib/content.php:1053
+#: ../lib/content.php:1060
 #, fuzzy
 msgid "The original look and feel."
 msgstr "<dt> ‰« ‘Í∆ </dt> <dd> «‰Êÿ—… Ë«‰Â‰Â” «‰√’‰Í. </dd>"
 
-#: ../lib/content.php:1103 ../lib/content.php:1107
+#: ../lib/content.php:1110 ../lib/content.php:1114
 msgid "unknown"
 msgstr "⁄Í— ÂŸ—Ë·"
 
-#: ../lib/content.php:1111
+#: ../lib/content.php:1118
 #, fuzzy, php-format
 msgid "Version: %s"
 msgstr "ÂË«·‚! ≈’œ«—: %s"
 
-#: ../lib/content.php:1113
+#: ../lib/content.php:1120
 #, fuzzy, php-format
 msgid "Last Update: %s"
 msgstr "«‰’·Õ… «‰√ŒÍ—…"
 
-#: ../lib/content.php:1130
+#: ../lib/content.php:1137
 #, fuzzy
 msgid "usual thumbs"
 msgstr "≈Ÿ«œ… »Ê«¡ «‰√‘„«‰ «‰Â’⁄—…"
 
-#: ../lib/content.php:1134 ../lib/content.php:1151
+#: ../lib/content.php:1141 ../lib/content.php:1158
 #, fuzzy
 msgid "Album image frames"
 msgstr "«◊«— «‰√‰»ËÂ"
 
-#: ../lib/content.php:1135
+#: ../lib/content.php:1142
 msgid "Frame defined for images in the corresponding album"
 msgstr ""
 
-#: ../lib/content.php:1136 ../lib/content.php:1152
+#: ../lib/content.php:1143 ../lib/content.php:1159
 #, fuzzy
 msgid "Album thumb frames"
 msgstr "«◊«— «‰√‰»ËÂ"
 
-#: ../lib/content.php:1137
+#: ../lib/content.php:1144
 msgid "Frame defined for thumbs in the corresponding album"
 msgstr ""
 
-#: ../lib/content.php:1138 ../lib/content.php:1153
+#: ../lib/content.php:1145 ../lib/content.php:1160
 msgid "Mainpage thumb frames"
 msgstr ""
 
-#: ../lib/content.php:1139
+#: ../lib/content.php:1146
 msgid "Frame defined for thumbs on mainpage"
 msgstr ""
 
-#: ../lib/content.php:1158 ../lib/content.php:1166
+#: ../lib/content.php:1165 ../lib/content.php:1173
 #, fuzzy
 msgid "None"
 msgstr "Â‰«Õÿ…"
 
-#: ../lib/content.php:1159 ../lib/content.php:1168
+#: ../lib/content.php:1166 ../lib/content.php:1175
 msgid "Dots"
 msgstr "Ê‚◊"
 
-#: ../lib/content.php:1160 ../lib/content.php:1170
+#: ../lib/content.php:1167 ../lib/content.php:1177
 msgid "Solid"
 msgstr "Â ’‰"
 
-#: ../lib/content.php:1167
+#: ../lib/content.php:1174
 msgid "No frames"
 msgstr "»‰« «◊«—« "
 
-#: ../lib/content.php:1169
+#: ../lib/content.php:1176
 msgid "Just a simple dashed border around the thumb."
 msgstr "ÂÃ—œ Õœ »”Í◊ ÂÊ·’‰ ÕË‰ «‰’Ë—… «‰Â’⁄—…"
 
-#: ../lib/content.php:1171
+#: ../lib/content.php:1178
 msgid "Just a simple solid border around the thumb."
 msgstr "ÂÃ—œ Õœ »”Í◊ Â ’‰ ÕË‰ «‰’Ë—… «‰Â’⁄—…"
 
-#: ../lib/content.php:1173
+#: ../lib/content.php:1180
 msgid "The frame from Nico Kaisers Siriux theme."
 msgstr ""
 
-#: ../lib/content.php:1196
+#: ../lib/content.php:1203
 #, php-format
 msgid "Skipping %s."
 msgstr " Œ◊È%s. "
 
-#: ../lib/content.php:1203
+#: ../lib/content.php:1210
 #, php-format
 msgid "Can't open %s"
 msgstr "‰Â Í Â„Ê ÂÊ · Õ %s"
 
-#: ../lib/content.php:1326
+#: ../lib/content.php:1335
 #, fuzzy
 msgid "log_out"
 msgstr " ”ÃÍ‰ «‰Œ—ËÃ"
 
-#: ../lib/content.php:1331
+#: ../lib/content.php:1340
 msgid "_Login to see or add more items."
 msgstr ""
 
-#: ../lib/content.php:1334
+#: ../lib/content.php:1343
 #, fuzzy
 msgid "log_in"
 msgstr " ”ÃÍ‰ «‰œŒË‰"
 
-#: ../lib/content.php:1514
+#: ../lib/content.php:1523
 msgid "Show/hide more information"
 msgstr ""
 
-#: ../lib/content.php:1608
+#: ../lib/content.php:1617
 msgid "... read more"
 msgstr ""
 
@@ -1001,40 +1090,40 @@ msgstr "Ë’·"
 msgid "Alt Text / tooltip"
 msgstr ""
 
-#: ../lib/mail.php:46
+#: ../lib/mail.php:45
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "ÂÔ‰«Õÿ…: Á–Á —”«‰…Ô »—Íœ ≈‰„ —ËÊÍ √Ê‘∆  ¬‰Í« Ë√—”‰  ÂÊ ÂË‚Ÿ %s. ≈–«  ‰‚Í  Á–Á «‰—”«‰… Œ◊«Î¨ ·»—Ã«¡  Ã«Á‰Á«."
 
-#: ../lib/mail.php:49
+#: ../lib/mail.php:48
 #, php-format
 msgid "Report abuse to %s"
 msgstr "»‰⁄ ŸÊ «‰«Ê Á«„«  ≈‰È %s"
 
-#: ../lib/mail.php:80
+#: ../lib/mail.php:79
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "‰Â Í Â ≈—”«‰ «‰»—Íœ «‰≈‰Í„ —ËÊÈ ÕÍÀ ≈ÊÁ ÂŸ◊‰ ·È Á–« «‰ÂŸ—÷"
 
-#: ../lib/mail.php:86
+#: ../lib/mail.php:85
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "‰Â Í Â ≈—”«‰ «‰»—Íœ «‰≈‰Í„ —ËÊÈ ≈‰È %s Ë–‰„ ‰√Ê «‰ŸÊË«Ê ⁄Í— ’ÕÍÕ"
 
-#: ../lib/mail.php:93
+#: ../lib/mail.php:92
 #, fuzzy
 msgid "Email not sent as no reciepient address provided"
 msgstr "‰Â Í Â ≈—”«‰ «‰»—Íœ «‰≈‰Í„ —ËÊÈ ‰ŸœÂ ËÃËœ ŸÊË«Ê"
 
-#: ../lib/mail.php:104
+#: ../lib/mail.php:103
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "ŸÊË«Ê «‰Â—”‰ %s ⁄Í— ’ÕÍÕ, «” ŒœÂ %s."
 
-#: ../lib/mail.php:136
+#: ../lib/mail.php:135
 msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
-#: ../lib/mail.php:174
+#: ../lib/mail.php:173
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -1053,94 +1142,94 @@ msgstr ""
 "\n"
 "Gallery @ %s Administrator."
 
-#: ../lib/mail.php:183 ../lib/mail.php:185
+#: ../lib/mail.php:182 ../lib/mail.php:184
 msgid "gallery title"
 msgstr "ŸÊË«Ê «‰ÂŸ—÷"
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:183
 msgid "gallery URL"
 msgstr "—«»◊ «‰ÂŸ—÷ Ÿ‰È «‰≈Ê —Ê "
 
-#: ../lib/mail.php:199
+#: ../lib/mail.php:198
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:200
+#: ../lib/mail.php:199
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:201
+#: ../lib/mail.php:200
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "Â”«Ÿœ… «œ«—… «‰»—Ê«ÂÃ"
 
-#: ../lib/mail.php:202
+#: ../lib/mail.php:201
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:203 ../lib/setup.php:1613 ../lib/setup.php:1614
+#: ../lib/mail.php:202 ../lib/setup.php:1613 ../lib/setup.php:1614
 #: ../lib/setup.php:1616 ../lib/setup.php:1620
 msgid "Username"
 msgstr "«”Â «‰Â” ŒœÂ"
 
-#: ../lib/mail.php:204
+#: ../lib/mail.php:203
 #, fuzzy
 msgid "Fullname"
 msgstr "«‰«”Â »«‰„«Â‰"
 
-#: ../lib/mail.php:205
+#: ../lib/mail.php:204
 #, fuzzy
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "” ” »œ‰ %s »—«»◊ ÍÂ„Ê ‰‰Â” ŒœÂ «‰ÃœÍœ  «‰Ê‚— Ÿ‰ÍÁ ‰≈Ê‘«¡ „‰Â… Â—Ë— ÃœÍœ…"
 
-#: ../lib/mail.php:243
+#: ../lib/mail.php:242
 #, fuzzy, php-format
 msgid "New comment for %s"
 msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
 
-#: ../lib/mail.php:252
+#: ../lib/mail.php:251
 #, php-format
 msgid "A new comment has been added to Gallery: %s"
 msgstr ""
 
-#: ../lib/mail.php:254
+#: ../lib/mail.php:253
 #, php-format
 msgid "The comment was added by %s to this %s in this %s."
 msgstr ""
 
-#: ../lib/mail.php:256
+#: ../lib/mail.php:255
 #, fuzzy
 msgid "Item"
 msgstr "ÂË«œ"
 
-#: ../lib/mail.php:257
+#: ../lib/mail.php:256
 msgid "Album"
 msgstr "√‰»ËÂ"
 
-#: ../lib/mail.php:258
+#: ../lib/mail.php:257
 #, fuzzy
 msgid "*** Begin comment ***"
 msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
 
-#: ../lib/mail.php:260
+#: ../lib/mail.php:259
 #, fuzzy
 msgid "***End comment ***"
 msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:260
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
 msgstr ""
 
-#: ../lib/mail.php:264
+#: ../lib/mail.php:263
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "«Êÿ— «‰ Ÿ‰Í‚« "
 
-#: ../lib/mail.php:274
+#: ../lib/mail.php:273
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:288
+#: ../lib/mail.php:287
 msgid "Email activity"
 msgstr "Ê‘«◊ «‰»—Íœ «‰√‰„ —ËÊÈ"
 
@@ -1666,64 +1755,67 @@ msgstr ""
 msgid "Value was corrected, because the original value is not a valid text"
 msgstr ""
 
-#: ../lib/voting.php:210
+#: ../lib/valchecks.php:164
+msgid "Invalid return URL! The requested URL contains malicious characters and is denied."
+msgstr ""
+
+#: ../lib/valchecks.php:182
+msgid "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."
+msgstr ""
+
+#: ../lib/voting.php:221
 msgid "<<< Vote >>>"
 msgstr ""
 
-#: ../lib/voting.php:249
+#: ../lib/voting.php:260
 #, fuzzy
 msgid "(Total points in brackets)"
 msgstr "ÂÃÂËŸ «‰Ê‚«◊ œ«Œ‰ «‰√‚Ë«” «‰Â Ë”◊… "
 
-#: ../lib/voting.php:253
+#: ../lib/voting.php:264
 #, fuzzy
 msgid "(Average points in brackets)"
 msgstr "Â Ë”◊ «‰Ê‚«◊ œ«Œ‰ «‰√‚Ë«” "
 
-#: ../lib/voting.php:273
+#: ../lib/voting.php:284
 #, php-format
 msgid "Album: %s"
 msgstr "√‰»ËÂ:%s"
 
-#: ../lib/voting.php:304
+#: ../lib/voting.php:315
 #, fuzzy, php-format
 msgid "1 voter"
 msgid_plural "%d voters"
 msgstr[0] "Â’Ë  Ë«Õœ"
 msgstr[1] "Â’Ë  Ë«Õœ"
 
-#: ../lib/voting.php:317
+#: ../lib/voting.php:328
 #, fuzzy, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
 msgstr[0] "Ê «∆Ã ÂÊ  %s"
 msgstr[1] "Ê «∆Ã ÂÊ  %s"
 
-#: ../lib/voting.php:328
+#: ../lib/voting.php:339
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s Ê‚◊…"
 
-#: ../lib/voting.php:333
+#: ../lib/voting.php:344
 #, php-format
 msgid "Key - %s"
 msgstr "Â· «Õ - %s"
 
-#: ../lib/voting.php:360
+#: ../lib/voting.php:371
 msgid "No votes"
 msgstr "‰« ÍËÃœ √’Ë« "
 
-#: ../lib/voting.php:366
-#, fuzzy
-msgid "Poll results"
-msgstr "Ê «∆Ã «‰≈‚ —«Ÿ"
-
-#: ../lib/voting.php:372
+#: ../lib/voting.php:383
 #, php-format
 msgid "Position %d overall, due to this votes:"
 msgstr ""
 
-#: ../lib/voting.php:381
+#: ../lib/voting.php:392
 #, fuzzy, php-format
 msgid "one vote"
 msgid_plural "%d votes"

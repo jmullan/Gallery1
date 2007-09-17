@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 15:40+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: 2005-03-18 17:58+0900\n"
 "Last-Translator: The Darkness <xgate32 AT hotmail DOT com>\n"
 "Language-Team: Gallery Korean Translation <xgate32 AT hotmail DOT com>\n"
@@ -441,7 +441,8 @@ msgstr "방문자에게 이미지의 실제크기나<br>크기조정할 능력을 제공하시겠습니까"
 msgid "Auto fit-to-window for<br>images without a resized copy"
 msgstr "크기조정된 사본없이<br>자동 이미지 창에 채우기"
 
-#: ../includes/definitions/albumProperties.php:395
+#: ../includes/definitions/albumProperties.php:395 ../lib/album.php:631
+#: ../lib/album.php:632
 msgid "Permissions"
 msgstr "권한"
 
@@ -533,48 +534,48 @@ msgstr ""
 msgid "mPUSH is a photo service that adds the ability to send thumbnail images to your, or a friend's, cellphone for a small fee."
 msgstr "mPUSH는 적은 요금으로 당신 또는 친구의 셀룰러폰으로 미리보기 이미지를 전송할 수 있는 능력을 가진 사진 서비스입니다."
 
-#: ../lib/Form.php:77
+#: ../lib/form.php:77
 msgid "Check All"
 msgstr "모두 확인"
 
-#: ../lib/Form.php:79
+#: ../lib/form.php:79
 msgid "Clear All"
 msgstr "모두 지우기"
 
-#: ../lib/Form.php:81
+#: ../lib/form.php:81
 msgid "Invert Selection"
 msgstr "선택 반전"
 
-#: ../lib/Form.php:316
+#: ../lib/form.php:321
 msgid "Colorpicker"
 msgstr ""
 
-#: ../lib/Form.php:342
+#: ../lib/form.php:347
 msgid "Byte"
 msgstr ""
 
-#: ../lib/Form.php:343
+#: ../lib/form.php:348
 msgid "KB"
 msgstr ""
 
-#: ../lib/Form.php:344
+#: ../lib/form.php:349
 msgid "MB"
 msgstr ""
 
-#: ../lib/Form.php:345
+#: ../lib/form.php:350
 msgid "GB"
 msgstr ""
 
-#: ../lib/Form.php:350
+#: ../lib/form.php:355
 msgid "Byte calculator"
 msgstr ""
 
-#: ../lib/Form.php:356
+#: ../lib/form.php:361
 #, fuzzy
 msgid "_Close"
 msgstr "닫기"
 
-#: ../lib/Form.php:528
+#: ../lib/form.php:534
 #, fuzzy
 msgid "Add field"
 msgstr "파일 추가"
@@ -604,6 +605,94 @@ msgstr "갤러리"
 msgid "1 view"
 msgid_plural "%d views"
 msgstr[0] "%d번"
+
+#: ../lib/album.php:577 ../lib/album.php:578
+msgid "Add photos"
+msgstr ""
+
+#: ../lib/album.php:587 ../lib/album.php:592
+msgid "New nested album"
+msgstr ""
+
+#: ../lib/album.php:605 ../lib/album.php:613
+#, fuzzy
+msgid "Edit captions"
+msgstr "캡션 없음"
+
+#: ../lib/album.php:623 ../lib/album.php:624
+msgid "Change foldername"
+msgstr ""
+
+#: ../lib/album.php:641 ../lib/album.php:642
+#, fuzzy
+msgid "Properties"
+msgstr "설문 등록정보"
+
+#: ../lib/album.php:653 ../lib/album.php:654
+msgid "Watermark&nbsp;album"
+msgstr ""
+
+#: ../lib/album.php:667 ../lib/album.php:668
+#, fuzzy
+msgid "Delete album"
+msgstr "앨범 선택"
+
+#: ../lib/album.php:677 ../lib/album.php:678
+msgid "Move album"
+msgstr ""
+
+#: ../lib/album.php:684 ../lib/album.php:685
+msgid "Reorder album"
+msgstr ""
+
+#: ../lib/album.php:696 ../lib/album.php:697
+msgid "Delete this (sub)album"
+msgstr ""
+
+#: ../lib/album.php:721 ../lib/album.php:722
+msgid "Sort items"
+msgstr ""
+
+#: ../lib/album.php:729 ../lib/album.php:730
+msgid "Resize all"
+msgstr ""
+
+#: ../lib/album.php:736 ../lib/album.php:737
+#, fuzzy
+msgid "Recreate captions"
+msgstr "현 위치"
+
+#: ../lib/album.php:743 ../lib/album.php:744
+#, fuzzy
+msgid "Rebuild thumbs"
+msgstr "미리보기 재생성"
+
+#: ../lib/album.php:750 ../lib/album.php:751
+msgid "Rearrange items"
+msgstr ""
+
+#: ../lib/album.php:758 ../lib/album.php:759
+#, fuzzy
+msgid "Rebuild capture dates"
+msgstr "캡쳐일자"
+
+#: ../lib/album.php:769 ../lib/album.php:775 ../lib/voting.php:377
+#, fuzzy
+msgid "Poll results"
+msgstr "설문 결과:"
+
+#: ../lib/album.php:785 ../lib/album.php:789
+#, fuzzy
+msgid "Poll reset"
+msgstr "설문 결과:"
+
+#: ../lib/album.php:801 ../lib/album.php:804
+msgid "View&nbsp;comments"
+msgstr ""
+
+#: ../lib/album.php:815
+msgid "<< Album actions >>"
+msgstr ""
 
 #: ../popups/colorpicker.php:39
 msgid "Color Picker"
@@ -665,182 +754,182 @@ msgstr "새로 고침"
 msgid "Post comment"
 msgstr "최근 코멘트"
 
-#: ../lib/content.php:326 ../lib/content.php:340 ../lib/content.php:384
+#: ../lib/content.php:333 ../lib/content.php:347 ../lib/content.php:391
 #, fuzzy
 msgid "Sub-albums:"
 msgstr "하위-앨범"
 
-#: ../lib/content.php:471
+#: ../lib/content.php:478
 msgid "EXIF Data"
 msgstr "EXIF 자료 "
 
-#: ../lib/content.php:475
+#: ../lib/content.php:482
 msgid "Display of EXIF data enabled, but no data found."
 msgstr ""
 
-#: ../lib/content.php:621
+#: ../lib/content.php:628
 #, fuzzy
 msgid "_Search:"
 msgstr "검색"
 
-#: ../lib/content.php:666 ../lib/content.php:699
+#: ../lib/content.php:673 ../lib/content.php:706
 msgid "Operation done, closing window."
 msgstr ""
 
-#: ../lib/content.php:673 ../lib/content.php:711
+#: ../lib/content.php:680 ../lib/content.php:718
 #, fuzzy
 msgid "Not closing this window because debug mode is on."
 msgstr "디버그모드가 켜져 있어서 이 창을 닫을 수 업습니다."
 
-#: ../lib/content.php:707
+#: ../lib/content.php:714
 #, fuzzy, php-format
 msgid "Loading URL: %s"
 msgstr "추가중 %s"
 
-#: ../lib/content.php:744
+#: ../lib/content.php:751
 #, fuzzy, php-format
 msgid "Problem including file %s"
 msgstr "%s 추가시 문제:"
 
-#: ../lib/content.php:903
+#: ../lib/content.php:910
 msgid "Select Album"
 msgstr "앨범 선택"
 
-#: ../lib/content.php:909
+#: ../lib/content.php:916
 msgid "Move to top level"
 msgstr ""
 
-#: ../lib/content.php:930
+#: ../lib/content.php:937
 msgid "current location"
 msgstr "현 위치"
 
-#: ../lib/content.php:985
+#: ../lib/content.php:992
 #, fuzzy
 msgid "Current location"
 msgstr "현 위치"
 
-#: ../lib/content.php:989
+#: ../lib/content.php:996
 #, fuzzy
 msgid "This album itself"
 msgstr "이 앨범은 비었습니다."
 
-#: ../lib/content.php:1022
+#: ../lib/content.php:1029
 #, php-format
 msgid "Last comment %s."
 msgstr "최근 코멘트 %s."
 
-#: ../lib/content.php:1048 ../lib/content.php:1051
+#: ../lib/content.php:1055 ../lib/content.php:1058
 msgid "No Skin"
 msgstr "스킨 없음"
 
-#: ../lib/content.php:1053
+#: ../lib/content.php:1060
 #, fuzzy
 msgid "The original look and feel."
 msgstr "<dt>%s</dt><dd>The original look and feel.</dd>"
 
-#: ../lib/content.php:1103 ../lib/content.php:1107
+#: ../lib/content.php:1110 ../lib/content.php:1114
 msgid "unknown"
 msgstr "모름"
 
-#: ../lib/content.php:1111
+#: ../lib/content.php:1118
 #, fuzzy, php-format
 msgid "Version: %s"
 msgstr "OK!  버젼: %s"
 
-#: ../lib/content.php:1113
+#: ../lib/content.php:1120
 #, fuzzy, php-format
 msgid "Last Update: %s"
 msgstr "최근 업데이트"
 
-#: ../lib/content.php:1130
+#: ../lib/content.php:1137
 #, fuzzy
 msgid "usual thumbs"
 msgstr "미리보기 재생성"
 
-#: ../lib/content.php:1134 ../lib/content.php:1151
+#: ../lib/content.php:1141 ../lib/content.php:1158
 #, fuzzy
 msgid "Album image frames"
 msgstr "앨범 틀"
 
-#: ../lib/content.php:1135
+#: ../lib/content.php:1142
 msgid "Frame defined for images in the corresponding album"
 msgstr ""
 
-#: ../lib/content.php:1136 ../lib/content.php:1152
+#: ../lib/content.php:1143 ../lib/content.php:1159
 #, fuzzy
 msgid "Album thumb frames"
 msgstr "앨범 틀"
 
-#: ../lib/content.php:1137
+#: ../lib/content.php:1144
 msgid "Frame defined for thumbs in the corresponding album"
 msgstr ""
 
-#: ../lib/content.php:1138 ../lib/content.php:1153
+#: ../lib/content.php:1145 ../lib/content.php:1160
 msgid "Mainpage thumb frames"
 msgstr ""
 
-#: ../lib/content.php:1139
+#: ../lib/content.php:1146
 msgid "Frame defined for thumbs on mainpage"
 msgstr ""
 
-#: ../lib/content.php:1158 ../lib/content.php:1166
+#: ../lib/content.php:1165 ../lib/content.php:1173
 msgid "None"
 msgstr "None"
 
-#: ../lib/content.php:1159 ../lib/content.php:1168
+#: ../lib/content.php:1166 ../lib/content.php:1175
 msgid "Dots"
 msgstr "Dots"
 
-#: ../lib/content.php:1160 ../lib/content.php:1170
+#: ../lib/content.php:1167 ../lib/content.php:1177
 msgid "Solid"
 msgstr "Solid"
 
-#: ../lib/content.php:1167
+#: ../lib/content.php:1174
 msgid "No frames"
 msgstr "프레임 없음"
 
-#: ../lib/content.php:1169
+#: ../lib/content.php:1176
 msgid "Just a simple dashed border around the thumb."
 msgstr "미리보기 테두리에 간단한 점선 경계."
 
-#: ../lib/content.php:1171
+#: ../lib/content.php:1178
 msgid "Just a simple solid border around the thumb."
 msgstr "미리보기 테두리에 간단한 실선 경계"
 
-#: ../lib/content.php:1173
+#: ../lib/content.php:1180
 msgid "The frame from Nico Kaisers Siriux theme."
 msgstr ""
 
-#: ../lib/content.php:1196
+#: ../lib/content.php:1203
 #, php-format
 msgid "Skipping %s."
 msgstr "%s 지나침."
 
-#: ../lib/content.php:1203
+#: ../lib/content.php:1210
 #, php-format
 msgid "Can't open %s"
 msgstr "%s를 열 수 없습니다"
 
-#: ../lib/content.php:1326
+#: ../lib/content.php:1335
 #, fuzzy
 msgid "log_out"
 msgstr "로그아웃"
 
-#: ../lib/content.php:1331
+#: ../lib/content.php:1340
 msgid "_Login to see or add more items."
 msgstr ""
 
-#: ../lib/content.php:1334
+#: ../lib/content.php:1343
 #, fuzzy
 msgid "log_in"
 msgstr "로그인"
 
-#: ../lib/content.php:1514
+#: ../lib/content.php:1523
 #, fuzzy
 msgid "Show/hide more information"
 msgstr "타이밍 기본 정보 보이기"
 
-#: ../lib/content.php:1608
+#: ../lib/content.php:1617
 msgid "... read more"
 msgstr ""
 
@@ -988,40 +1077,40 @@ msgstr "설명"
 msgid "Alt Text / tooltip"
 msgstr "풍선도움말"
 
-#: ../lib/mail.php:46
+#: ../lib/mail.php:45
 #, php-format
 msgid "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."
 msgstr "주의: 웹사이트 %s에서 자동 생성된 이메일 메세지가 전송된 것입니다. 받으시는데 에러가 있다면, 이 메세지를 무시하세요."
 
-#: ../lib/mail.php:49
+#: ../lib/mail.php:48
 #, php-format
 msgid "Report abuse to %s"
 msgstr "%s 에게 남용 보고"
 
-#: ../lib/mail.php:80
+#: ../lib/mail.php:79
 msgid "Email not sent as it is disabled for this gallery"
 msgstr "이메일이 갤러리에서 사용불가능하므로 전송되지 않았습니다"
 
-#: ../lib/mail.php:86
+#: ../lib/mail.php:85
 #, php-format
 msgid "Email not sent to %s as it is not a valid address"
 msgstr "올바른 주소가 아니므로 %s에게 이메일을 전송할 수 없습니다."
 
-#: ../lib/mail.php:93
+#: ../lib/mail.php:92
 #, fuzzy
 msgid "Email not sent as no reciepient address provided"
 msgstr "주소가 없어 이메일을 전송할 수 없습니다."
 
-#: ../lib/mail.php:104
+#: ../lib/mail.php:103
 #, php-format
 msgid "Sender address %s is invalid, using %s."
 msgstr "전송자 주소 %s  가 올바르지 않습니다. %s  사용하세요."
 
-#: ../lib/mail.php:136
+#: ../lib/mail.php:135
 msgid "This is a HTML mail, please have a look at the Attachment."
 msgstr ""
 
-#: ../lib/mail.php:174
+#: ../lib/mail.php:173
 #, fuzzy, php-format
 msgid ""
 "Hi !!FULLNAME!!,\n"
@@ -1040,94 +1129,94 @@ msgstr ""
 "\n"
 "Gallery @ %s 관리자."
 
-#: ../lib/mail.php:183 ../lib/mail.php:185
+#: ../lib/mail.php:182 ../lib/mail.php:184
 msgid "gallery title"
 msgstr "갤러리 제목"
 
-#: ../lib/mail.php:184
+#: ../lib/mail.php:183
 msgid "gallery URL"
 msgstr "갤러리 URL"
 
-#: ../lib/mail.php:199
+#: ../lib/mail.php:198
 msgid "The Url to your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:200
+#: ../lib/mail.php:199
 msgid "Title of your Gallery."
 msgstr ""
 
-#: ../lib/mail.php:201
+#: ../lib/mail.php:200
 #, fuzzy
 msgid "Admin email(s)"
 msgstr "관리자 도움말"
 
-#: ../lib/mail.php:202
+#: ../lib/mail.php:201
 msgid "Password for the newly created user."
 msgstr ""
 
-#: ../lib/mail.php:203 ../lib/setup.php:1613 ../lib/setup.php:1614
+#: ../lib/mail.php:202 ../lib/setup.php:1613 ../lib/setup.php:1614
 #: ../lib/setup.php:1616 ../lib/setup.php:1620
 msgid "Username"
 msgstr "회원명"
 
-#: ../lib/mail.php:204
+#: ../lib/mail.php:203
 #, fuzzy
 msgid "Fullname"
 msgstr "전체 이름"
 
-#: ../lib/mail.php:205
+#: ../lib/mail.php:204
 #, fuzzy
 msgid "Will be replaced by a link the new user can click on to create a new password."
 msgstr "%s 는 신규회원이 새 비밀번호를 생성하기 위해 클릭할 수 있는 링크로 대체되어 집니다"
 
-#: ../lib/mail.php:243
+#: ../lib/mail.php:242
 #, fuzzy, php-format
 msgid "New comment for %s"
 msgstr "코멘트 보기"
 
-#: ../lib/mail.php:252
+#: ../lib/mail.php:251
 #, php-format
 msgid "A new comment has been added to Gallery: %s"
 msgstr ""
 
-#: ../lib/mail.php:254
+#: ../lib/mail.php:253
 #, php-format
 msgid "The comment was added by %s to this %s in this %s."
 msgstr ""
 
-#: ../lib/mail.php:256
+#: ../lib/mail.php:255
 #, fuzzy
 msgid "Item"
 msgstr "아이템"
 
-#: ../lib/mail.php:257
+#: ../lib/mail.php:256
 msgid "Album"
 msgstr "앨범"
 
-#: ../lib/mail.php:258
+#: ../lib/mail.php:257
 #, fuzzy
 msgid "*** Begin comment ***"
 msgstr "스팸 코멘트 검색"
 
-#: ../lib/mail.php:260
+#: ../lib/mail.php:259
 #, fuzzy
 msgid "***End comment ***"
 msgstr "스팸 코멘트 검색"
 
-#: ../lib/mail.php:261
+#: ../lib/mail.php:260
 msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the photo and album page (You'll need to login first)."
 msgstr ""
 
-#: ../lib/mail.php:264
+#: ../lib/mail.php:263
 #, fuzzy, php-format
 msgid "New comment for %s."
 msgstr "코멘트 보기"
 
-#: ../lib/mail.php:274
+#: ../lib/mail.php:273
 msgid "Sending email failed. Additional info:"
 msgstr ""
 
-#: ../lib/mail.php:288
+#: ../lib/mail.php:287
 msgid "Email activity"
 msgstr "이메일 활동성"
 
@@ -1651,62 +1740,65 @@ msgstr ""
 msgid "Value was corrected, because the original value is not a valid text"
 msgstr ""
 
-#: ../lib/voting.php:210
+#: ../lib/valchecks.php:164
+msgid "Invalid return URL! The requested URL contains malicious characters and is denied."
+msgstr ""
+
+#: ../lib/valchecks.php:182
+msgid "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."
+msgstr ""
+
+#: ../lib/voting.php:221
 msgid "<<< Vote >>>"
 msgstr ""
 
-#: ../lib/voting.php:249
+#: ../lib/voting.php:260
 #, fuzzy
 msgid "(Total points in brackets)"
 msgstr "괄호안은 총점수"
 
-#: ../lib/voting.php:253
+#: ../lib/voting.php:264
 #, fuzzy
 msgid "(Average points in brackets)"
 msgstr "괄호안은 평균점수"
 
-#: ../lib/voting.php:273
+#: ../lib/voting.php:284
 #, php-format
 msgid "Album: %s"
 msgstr "앨범: %s"
 
-#: ../lib/voting.php:304
+#: ../lib/voting.php:315
 #, php-format
 msgid "1 voter"
 msgid_plural "%d voters"
 msgstr[0] "%d 투표자"
 
-#: ../lib/voting.php:317
+#: ../lib/voting.php:328
 #, php-format
 msgid "Result from one voter"
 msgid_plural "Result of %d voters"
 msgstr[0] "%d 투표자의 결과"
 
-#: ../lib/voting.php:328
+#: ../lib/voting.php:339
 #, php-format
 msgid "%s: %s points; "
 msgstr "%s: %s 점; "
 
-#: ../lib/voting.php:333
+#: ../lib/voting.php:344
 #, php-format
 msgid "Key - %s"
 msgstr "키 - %s"
 
-#: ../lib/voting.php:360
+#: ../lib/voting.php:371
 msgid "No votes"
 msgstr "투표 없음"
 
-#: ../lib/voting.php:366
-#, fuzzy
-msgid "Poll results"
-msgstr "설문 결과:"
-
-#: ../lib/voting.php:372
+#: ../lib/voting.php:383
 #, php-format
 msgid "Position %d overall, due to this votes:"
 msgstr ""
 
-#: ../lib/voting.php:381
+#: ../lib/voting.php:392
 #, php-format
 msgid "one vote"
 msgid_plural "%d votes"

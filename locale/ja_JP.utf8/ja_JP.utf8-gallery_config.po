@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 15:40+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -35,490 +35,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: ../lib/setup.php:172
-msgid "Please retype your password here"
-msgstr "ここにパスワードをもう一度入力してください"
-
-#: ../lib/setup.php:183 ../lib/setup.php:1229
-msgid "Name"
-msgstr "名前"
-
-#: ../lib/setup.php:184 ../lib/setup.php:1229
-msgid "Value"
-msgstr "値"
-
-#: ../lib/setup.php:214 ../lib/setup.php:266
-#, fuzzy
-msgid "No content"
-msgstr "RSS コンテンツ"
-
-#: ../lib/setup.php:432
-#, fuzzy, php-format
-msgid "Missing value: %s"
-msgstr "欠落した値"
-
-#: ../lib/setup.php:450
-#, fuzzy
-msgid "exec() is enabled on this server."
-msgstr "<b>exec()</b> はこのサーバでは有効です。"
-
-#: ../lib/setup.php:471
-#, fuzzy
-msgid "Gallery is able to read your .htaccess file."
-msgstr "<b>.htaccess</b> ファイルが読み込めます。"
-
-#: ../lib/setup.php:493
-#, php-format
-msgid "PHP v%s is OK."
-msgstr "PHP v%s はOKです。"
-
-#: ../lib/setup.php:511
-#, fuzzy
-msgid "mod_rewrite is enabled."
-msgstr "<b>mod_rewrite</b> は有効です。"
-
-#: ../lib/setup.php:541
-msgid "Can't find <i>jhead</i>"
-msgstr "<i>jhead</i> が見付かりません"
-
-#: ../lib/setup.php:544
-#, fuzzy
-msgid "jhead binary located."
-msgstr "<b>jhead</b> バイナリが検出されました。"
-
-#: ../lib/setup.php:582
-#, fuzzy
-msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
-msgstr "ImageMagickを使用し、compositeバイナリがインストールされている場合をのぞき、pnmcompのないgalleryは透かし画像を利用できません。"
-
-#: ../lib/setup.php:588
-msgid "NetPBM not being used in this installation."
-msgstr "NetPBMはこのインストレーションでは使用されていません"
-
-#: ../lib/setup.php:593 ../lib/setup.php:689
-msgid "Cannot verify this path (it's not in your open_basedir list)."
-msgstr "このパスを確認できません。(open_basedirリストに入っていません)"
-
-#: ../lib/setup.php:627 ../lib/setup.php:706
-#, php-format
-msgid "Missing optional binary %s. %s"
-msgstr "オプションのバイナリ %s が欠落しています。%s"
-
-#: ../lib/setup.php:630 ../lib/setup.php:709
-#, php-format
-msgid "Can't find %s!"
-msgstr "%sが検出できませんでした。"
-
-#: ../lib/setup.php:636 ../lib/setup.php:715
-#, php-format
-msgid "%s is not executable!"
-msgstr "%s は実行可能ではありません。"
-
-#: ../lib/setup.php:646 ../lib/setup.php:654
-#, php-format
-msgid "%d of %d NetPBM binaries located."
-msgstr "%2$d個中%1$d個のNetPBMバイナリ全てが検出されました"
-
-#: ../lib/setup.php:678
-msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
-msgstr "NetPBMを使用し、pnmcompバイナリがインストールされている場合をのぞき、compositeのないgalleryは透かし画像を利用できません。"
-
-#: ../lib/setup.php:684
-msgid "ImageMagick not being used in this installation."
-msgstr "ImageMacickはこのインストレーションでは使用されていません"
-
-#: ../lib/setup.php:725 ../lib/setup.php:733
-#, php-format
-msgid "%d of %d ImageMagick binaries located."
-msgstr "%2$d個中%1$d個のImageMagickバイナリ全てが検出されました。"
-
-#: ../lib/setup.php:755 ../includes/setup/checks.inc:232
-msgid "jpegtran was not found."
-msgstr ""
-
-#: ../lib/setup.php:757
-#, fuzzy
-msgid "jpegtran binary located."
-msgstr "<b>jpegtran</b> バイナリが検出されました"
-
-#: ../lib/setup.php:769
-#, fuzzy
-msgid "PHP has GNU gettext support."
-msgstr "PHPは <b>GNU gettext</b> をサポートしています。"
-
-#: ../lib/setup.php:771
-#, fuzzy
-msgid "PHP does not have GNU gettext support."
-msgstr "PHPは <b>GNU gettext</b> をサポートしていません。"
-
-#: ../lib/setup.php:784
-msgid "No languages found."
-msgstr "一つも言語が検出されませんでした。(訳して意味あんのか?"
-
-#: ../lib/setup.php:786
-msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
-msgstr "追加の言語をひとつもダウンロードしていないようです。これは問題ではありません。Galleryは英語で表示されるだけです。注意: これが事実でないなら、全てのロケールフォルダがウェブサーバから読み込みができるか、Galleryチームに連絡してください。(これも意味ねー"
-
-#: ../lib/setup.php:789
-#, php-format
-msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
-msgstr "%d言語が利用可能です。言語が不足していれば、%sGallery ダウンロードページ%s へ行ってください。"
-
-#: ../lib/setup.php:815
-#, php-format
-msgid "You can check for more recent versions by visiting %s."
-msgstr "%sに行けば、より新しいバージョンがないか確認できます。"
-
-#: ../lib/setup.php:817
-#, php-format
-msgid "This version of %s was released on %s."
-msgstr "%sのこのバージョンは%sにリリースされました。"
-
-#: ../lib/setup.php:820
-#, php-format
-msgid "This is a development build of %s that was released on %s."
-msgstr "これは%sの開発版ビルドです。(リリース日 %s)"
-
-#: ../lib/setup.php:826
-#, php-format
-msgid "Thats more than %d days ago. Which is way too old for a pre Release version."
-msgstr ""
-
-#: ../lib/setup.php:831
-#, php-format
-msgid "Thats more than %d days ago."
-msgstr ""
-
-#: ../lib/setup.php:839
-msgid "Please check regularly for updates."
-msgstr "正式版がリリースされていないか定期的に確認してください。"
-
-#: ../lib/setup.php:862
-msgid "All gallery locales are available on this host."
-msgstr "このホストでは全てのGalleryロケールが利用可能です。"
-
-#: ../lib/setup.php:866
-#, php-format
-msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
-msgstr "Galleryが検出できなかった%dのロケールがあります。手動で日付フォーマットを選択するひつようがあります。"
-
-#: ../lib/setup.php:874
-#, php-format
-msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
-msgstr "対応するロケールがないため、%d言語の日付は正しくフォーマットされません。これらのために手動で日付フォーマットを選択する必要があります。"
-
-#: ../lib/setup.php:880
-#, php-format
-msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
-msgstr "ロケールは全く検出できませんでした。しかしながら、PHPの設定により%s制約がかかっていますのでロケールを検出する方法が妨害されています。不幸にもこれは日付フォーマットが言語によって切り替わらないことを意味します。でも、大丈夫だから続けましょう。"
-
-#: ../lib/setup.php:885
-#, php-format
-msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
-msgstr "いかなるシステムロケールも検出できませんでした。多言語機能は使用できません。該当するロケールをインストールするか、この作業をするように管理者に頼んでください。この問題は %s システム上で知られています。この場合は %sDebian locale HowTo%s をごらんください。"
-
-#: ../lib/setup.php:890
-msgid "Only the default locale for this machine is available, so date format will not change for different languages."
-msgstr "このマシンに対するデフォルト言語だけが利用可能です。よって、異なる言語に対しても日付フォーマットは同じものです。"
-
-#: ../lib/setup.php:1052 ../lib/setup.php:1144
-#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
-#: ../includes/setup/constants.inc:1281 ../setup/config_data.inc:781
-#: ../setup/config_data.inc:791 ../setup/config_data.inc:1366
-msgid "Advanced"
-msgstr "高度"
-
-#: ../lib/setup.php:1053
-msgid "<b>System</b> locale selection required"
-msgstr "<b>システム</b>ロケール選択が必要です"
-
-#: ../lib/setup.php:1054
-msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
-msgstr "以下の言語に対応する2つ以上の<b>システム</b>ロケールがインストールされています。最も適切なものを一つ選んでください。"
-
-#: ../lib/setup.php:1056 ../lib/setup.php:1148
-#, fuzzy
-msgid "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above."
-msgstr "これは日付と時間のフォーマット <b>のみ</b> のためのものです。上で有効にした言語を編集することだけ必要です。"
-
-#: ../lib/setup.php:1069 ../lib/setup.php:1097
-msgid "System locale"
-msgstr "システムロケール"
-
-#: ../lib/setup.php:1145
-msgid "<b>System</b> locale problems"
-msgstr "<b>システム</b>ロケールの不具合"
-
-#: ../lib/setup.php:1146
-msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
-msgstr "以下の言語に対応する適切な<b>システム</b>ロケールがインストールされていないようです。最も適当だと思うものを選んでください。"
-
-#: ../lib/setup.php:1195
-#, fuzzy
-msgid "safe_mode is off."
-msgstr "<b>safe_mode</b> はOFFです"
-
-#: ../lib/setup.php:1209
-#, fuzzy
-msgid "magic_quotes are off."
-msgstr "<b>magic_quotes</b> はOFFです"
-
-#: ../lib/setup.php:1227
-#, php-format
-msgid "In %s, missing %s in row %d with %s %s."
-msgstr "%1$s において、%5$s が %4$s である列 %3$d の %2$sが欠落しています。"
-
-#: ../lib/setup.php:1228 ../lib/setup.php:1237 ../lib/setup.php:1242
-#: ../includes/setup/defaults.inc:444 ../setup/config_data.inc:1901
-msgid "Vote words and values"
-msgstr "投票の単語と値"
-
-#: ../lib/setup.php:1236
-#, php-format
-msgid "In %s, blank in row %d."
-msgstr "%s において、%d 列目が空白です。"
-
-#: ../lib/setup.php:1241
-#, php-format
-msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
-msgstr "%s におけるラベル %s (列 %d) の値 %s は正の数でなくてはいけません。"
-
-#: ../lib/setup.php:1263
-#, fuzzy
-msgid "register_globals is off."
-msgstr "<b>register_glocals</b> はOFFです"
-
-#: ../lib/setup.php:1440
-msgid "Your passwords do not match!"
-msgstr "パスワードが一致しません!"
-
-#: ../lib/setup.php:1452 ../templates/setup/im-netpbm-test.tpl:62
-msgid "OK"
-msgstr "OK"
-
-#: ../lib/setup.php:1457
-msgid "Valid admin email address given."
-msgstr "有効な管理者のアドレスがあたえられました。"
-
-#: ../lib/setup.php:1464
-msgid "You must specify valid admin email addresses"
-msgstr "有効な管理者メールアドレスを指定しなくてはいけません。"
-
-#: ../lib/setup.php:1472
-#, php-format
-msgid "%s is not a valid email address."
-msgstr "%s は有効なメールアドレスではありません。"
-
-#: ../lib/setup.php:1481
-msgid "Valid sender email address given."
-msgstr "有効な送信者メールアドレスがあたえられました。"
-
-#: ../lib/setup.php:1483
-msgid "You must specify a valid sender email address"
-msgstr "有効な送信者メールアドレスを指定しなくてはいけません。"
-
-#: ../lib/setup.php:1486
-#, php-format
-msgid "You must include %s in your welcome email"
-msgstr "%s をウェルカムメールに含めなくてはいけません。"
-
-#: ../lib/setup.php:1491
-#, php-format
-msgid "You must include %s or %s in your welcome email"
-msgstr "%s か %s をウェルカムメールに含めなくてはいけません。"
-
-#: ../lib/setup.php:1512
-#, fuzzy
-msgid "_Configuration Wizard"
-msgstr "コンフィグレーションモード"
-
-#: ../lib/setup.php:1520 ../setup/check.inc:62
-#, fuzzy
-msgid "Gallery Dia_gnostics Page"
-msgstr "Gallery 診断ページ"
-
-#: ../lib/setup.php:1572
-#, php-format
-msgid "You must enter a password for the %s account."
-msgstr "アカウント %s に対するパスワードを入力しなくてはいけません。"
-
-#: ../lib/setup.php:1577
-#, php-format
-msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
-msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、管理者アカウントは存在します。しかし、%s という名前ではありません。"
-
-#: ../lib/setup.php:1580
-#, php-format
-msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
-msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、%d の管理者アカウントが存在します。しかし、%s という名前のユーザはいません。"
-
-#: ../lib/setup.php:1583
-#, php-format
-msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
-msgstr "パスワードを入力する必要はありません。しかし、入力すれば %s という名前で管理者アカウントを作成します。"
-
-#: ../lib/setup.php:1592
-#, php-format
-msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
-msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、%s ユーザは存在します。パスワードは入力する必要はありません。しかし、入力した場合は %s ユーザのパスワードを変更します。"
-
-#: ../lib/setup.php:1598
-msgid "Admin password"
-msgstr "管理者パスワード"
-
-#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1615
-#: ../lib/setup.php:1619
-msgid "Full Name"
-msgstr "名前"
-
-#: ../lib/setup.php:1613 ../lib/setup.php:1614 ../lib/setup.php:1616
-#: ../lib/setup.php:1620
-msgid "Username"
-msgstr "ユーザ名"
-
-#: ../lib/setup.php:1617
-msgid "Full name that you can click on to send email (mailto:)"
-msgstr "名前はクリックしてメールが送れます。(mailto:)"
-
-#: ../lib/setup.php:1618
-msgid "Username that you can click on to send email (mailto:)"
-msgstr "ユーザ名はクリックしてメールが送れます。(mailto:)"
-
-#: ../lib/setup.php:1619 ../lib/setup.php:1620
-msgid "email address"
-msgstr "メールアドレス"
-
-#: ../lib/setup.php:1639
-#, fuzzy
-msgid "This should be fixed before proceeding."
-msgstr "続ける前に修正してください。"
-
-#: ../lib/setup.php:1640
-#, php-format
-msgid "Look at %sCheck Versions%s for more details."
-msgstr "詳細は %sバージョンのチェック%s を見てください。"
-
-#: ../lib/setup.php:1645
-#, fuzzy, php-format
-msgid "One file is newer then expected."
-msgid_plural "%d files are newer then expected."
-msgstr[0] "%d ファイルは予期されたものより新しいです。"
-
-#: ../lib/setup.php:1653
-#, fuzzy, php-format
-msgid "One file is out of date, corrupted or missing."
-msgid_plural "%d files are out of date, corrupted or missing."
-msgstr[0] "以下のファイルは古いものです。不正であるか欠落しています。<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
-
-#: ../lib/setup.php:1660
-#, php-format
-msgid "All %d tested files up-to-date."
-msgstr "テストされた %d ファイルは全て最新です。"
-
-#: ../lib/setup.php:1681
-msgid "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page."
-msgstr ""
-
-#: ../lib/setup.php:1686
-#, php-format
-msgid "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."
-msgstr ""
-
-#: ../lib/setup.php:1693
-#, php-format
-msgid "Testing status of %d files."
-msgstr "%d ファイルの状態のテストです。"
-
-#: ../lib/setup.php:1701
-#, php-format
-msgid "Cannot read file %s."
-msgstr "ファイル %s が読み込みできません。"
-
-#: ../lib/setup.php:1703
-msgid "File missing or unreadable."
-msgstr "ファイルは存在しないか、読み込み不可です。"
-
-#: ../lib/setup.php:1719
-#, php-format
-msgid "Version information not found in %s.  File must be old version or corrupted."
-msgstr "%sにはバージョン情報が見つかりませんでした。ファイルを古いバージョンにするか、正しくしないといけません。"
-
-#: ../lib/setup.php:1721
-msgid "Missing version"
-msgstr "バージョン欠落"
-
-#: ../lib/setup.php:1727
-#, fuzzy, php-format
-msgid "Found Version: %s"
-msgstr "OK! バージョン: %s"
-
-#: ../lib/setup.php:1736
-#, php-format
-msgid "Problem with %s.  Expected version %s (or greater) but found %s."
-msgstr "%sが問題です。予期されたバージョンは %s(あるいはそれ以上)ですが、検出されたのは%sです。"
-
-#: ../lib/setup.php:1739
-#, php-format
-msgid "Expected version %s (or greater) but found %s."
-msgstr "予期されたバージョンは %s(あるいはそれ以上)ですが、検出されたのは%sです。"
-
-#: ../lib/setup.php:1744
-#, php-format
-msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
-msgstr "%s はOKです。実際のバージョン(%s)は予期されたバージョン(%s)よりも新しいです。"
-
-#: ../lib/setup.php:1747
-#, php-format
-msgid "Expected version %s but found %s."
-msgstr "予期されたバージョンは %sですが、検出されたのは%sです。"
-
-#: ../lib/setup.php:1751
-#, php-format
-msgid "%s OK"
-msgstr "%s はOKです"
-
-#: ../lib/setup.php:1753
-#, php-format
-msgid "Found expected version %s."
-msgstr "予期されたバージョン%sが検出されました。"
-
-#: ../lib/setup.php:1808
-msgid "This email will be sent when new accounts are created."
-msgstr "このメールは新しいアカウントを作成したときに送信されます。"
-
-#: ../lib/setup.php:1809
-#, fuzzy
-msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
-msgstr "他の言語に翻訳可能なデフォルトのメッセージを得るには、このフィールドを空のままにしておいてください。デフォルトメッセージは:"
-
-#: ../lib/setup.php:1810
-#, fuzzy
-msgid "The following placeholder can be used:"
-msgstr "以下のファイルは最新です。"
-
-#: ../lib/setup.php:1883 ../lib/setup.php:1927
-#, php-format
-msgid "File %s does not exist."
-msgstr "ファイル%sは存在しません。"
-
-#: ../lib/setup.php:1892 ../lib/setup.php:1937
-#, php-format
-msgid "Expected status: %s, but actually received status %s."
-msgstr "期待されたステータスは%sでしたが、実際のステータスは%sでした。"
-
-#: ../lib/setup.php:1903 ../lib/setup.php:1950
-msgid "can't detect version on Windows"
-msgstr "Windows上ではバージョン検出できません"
-
-#: ../lib/setup.php:1907 ../lib/setup.php:1965
-#, php-format
-msgid "OK!  Version: %s"
-msgstr "OK! バージョン: %s"
-
-#: ../lib/setup.php:1974
-msgid "Unknown error occured."
-msgstr ""
 
 #: ../includes/setup/checks.inc:67 ../includes/setup/constants.inc:83
 #: ../setup/config_data.inc:66
@@ -787,6 +303,10 @@ msgstr "%2$d個中%1$d個のImageMagickバイナリ全てが検出されまし�
 #: ../includes/setup/checks.inc:230 ../setup/config_data.inc:216
 msgid "Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."
 msgstr "<b>jpegtran</b> がインストールされているか確認してください。jpegtran はGalleryが効率的な画像回転ができるようにします。(JPEG画像のみ)"
+
+#: ../includes/setup/checks.inc:232
+msgid "jpegtran was not found."
+msgstr ""
 
 #: ../includes/setup/checks.inc:233
 #, fuzzy, php-format
@@ -1436,6 +956,12 @@ msgstr "国旗を表示する?"
 #: ../includes/setup/constants.inc:648 ../setup/config_data.inc:775
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "モード 3では有効な言語の小さなプルダウンメニューか国旗アイコンを表示するか選択できます。"
+
+#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
+#: ../includes/setup/constants.inc:1281 ../setup/config_data.inc:781
+#: ../setup/config_data.inc:791 ../setup/config_data.inc:1366
+msgid "Advanced"
+msgstr "高度"
 
 #: ../includes/setup/constants.inc:654 ../setup/config_data.inc:781
 msgid "Format for date strings."
@@ -2774,6 +2300,10 @@ msgstr "水平方向"
 msgid "Vertical"
 msgstr "垂直方向"
 
+#: ../includes/setup/defaults.inc:444 ../setup/config_data.inc:1901
+msgid "Vote words and values"
+msgstr "投票の単語と値"
+
 #: ../includes/setup/defaults.inc:445 ../setup/config_data.inc:1902
 msgid "This allows you to configure the actual text that will be displayed for each voting option, plus the number of points that option is worth."
 msgstr "それぞれの投票オプションに対して、実際に表示されるテキスト、およびその選択肢の点数をを設定できます。"
@@ -3116,6 +2646,11 @@ msgstr "深刻な警告"
 #: ../setup/check.inc:53 ../setup/check.inc:54 ../setup/write.inc:253
 msgid "Failure"
 msgstr "失敗"
+
+#: ../setup/check.inc:62
+#, fuzzy
+msgid "Gallery Dia_gnostics Page"
+msgstr "Gallery 診断ページ"
 
 #: ../setup/check.inc:66
 #, fuzzy
@@ -3997,6 +3532,10 @@ msgstr "コンフィグレーションファイルを読み込み中です。 �
 msgid "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard."
 msgstr "Galleryのコンフィグレーションが終わっていないようです。コンフィグレーションウィザードを完了してください。"
 
+#: ../templates/setup/im-netpbm-test.tpl:62
+msgid "OK"
+msgstr "OK"
+
 #: ../templates/setup/im-netpbm-test.tpl:69
 msgid "Let us see if we can figure out what operating system you are using."
 msgstr "あなたが使用しているOSを検出できなかった場合は指定してください。"
@@ -4073,6 +3612,308 @@ msgstr "これに関してシステム管理者に連絡してください。ま
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "他のエラーに関してさらに情報を得るには、%s の可能なレスポンスのリストを参照してください。"
+
+#~ msgid "Please retype your password here"
+#~ msgstr "ここにパスワードをもう一度入力してください"
+
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#~ msgid "Value"
+#~ msgstr "値"
+
+#, fuzzy
+#~ msgid "No content"
+#~ msgstr "RSS コンテンツ"
+
+#, fuzzy
+#~ msgid "Missing value: %s"
+#~ msgstr "欠落した値"
+
+#, fuzzy
+#~ msgid "exec() is enabled on this server."
+#~ msgstr "<b>exec()</b> はこのサーバでは有効です。"
+
+#, fuzzy
+#~ msgid "Gallery is able to read your .htaccess file."
+#~ msgstr "<b>.htaccess</b> ファイルが読み込めます。"
+
+#~ msgid "PHP v%s is OK."
+#~ msgstr "PHP v%s はOKです。"
+
+#, fuzzy
+#~ msgid "mod_rewrite is enabled."
+#~ msgstr "<b>mod_rewrite</b> は有効です。"
+
+#~ msgid "Can't find <i>jhead</i>"
+#~ msgstr "<i>jhead</i> が見付かりません"
+
+#, fuzzy
+#~ msgid "jhead binary located."
+#~ msgstr "<b>jhead</b> バイナリが検出されました。"
+
+#, fuzzy
+#~ msgid "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."
+#~ msgstr "ImageMagickを使用し、compositeバイナリがインストールされている場合をのぞき、pnmcompのないgalleryは透かし画像を利用できません。"
+
+#~ msgid "NetPBM not being used in this installation."
+#~ msgstr "NetPBMはこのインストレーションでは使用されていません"
+
+#~ msgid "Cannot verify this path (it's not in your open_basedir list)."
+#~ msgstr "このパスを確認できません。(open_basedirリストに入っていません)"
+
+#~ msgid "Missing optional binary %s. %s"
+#~ msgstr "オプションのバイナリ %s が欠落しています。%s"
+
+#~ msgid "Can't find %s!"
+#~ msgstr "%sが検出できませんでした。"
+
+#~ msgid "%s is not executable!"
+#~ msgstr "%s は実行可能ではありません。"
+
+#~ msgid "%d of %d NetPBM binaries located."
+#~ msgstr "%2$d個中%1$d個のNetPBMバイナリ全てが検出されました"
+
+#~ msgid "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."
+#~ msgstr "NetPBMを使用し、pnmcompバイナリがインストールされている場合をのぞき、compositeのないgalleryは透かし画像を利用できません。"
+
+#~ msgid "ImageMagick not being used in this installation."
+#~ msgstr "ImageMacickはこのインストレーションでは使用されていません"
+
+#~ msgid "%d of %d ImageMagick binaries located."
+#~ msgstr "%2$d個中%1$d個のImageMagickバイナリ全てが検出されました。"
+
+#, fuzzy
+#~ msgid "jpegtran binary located."
+#~ msgstr "<b>jpegtran</b> バイナリが検出されました"
+
+#, fuzzy
+#~ msgid "PHP has GNU gettext support."
+#~ msgstr "PHPは <b>GNU gettext</b> をサポートしています。"
+
+#, fuzzy
+#~ msgid "PHP does not have GNU gettext support."
+#~ msgstr "PHPは <b>GNU gettext</b> をサポートしていません。"
+
+#~ msgid "No languages found."
+#~ msgstr "一つも言語が検出されませんでした。(訳して意味あんのか?"
+
+#~ msgid "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team."
+#~ msgstr "追加の言語をひとつもダウンロードしていないようです。これは問題ではありません。Galleryは英語で表示されるだけです。注意: これが事実でないなら、全てのロケールフォルダがウェブサーバから読み込みができるか、Galleryチームに連絡してください。(これも意味ねー"
+
+#~ msgid "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."
+#~ msgstr "%d言語が利用可能です。言語が不足していれば、%sGallery ダウンロードページ%s へ行ってください。"
+
+#~ msgid "You can check for more recent versions by visiting %s."
+#~ msgstr "%sに行けば、より新しいバージョンがないか確認できます。"
+
+#~ msgid "This version of %s was released on %s."
+#~ msgstr "%sのこのバージョンは%sにリリースされました。"
+
+#~ msgid "This is a development build of %s that was released on %s."
+#~ msgstr "これは%sの開発版ビルドです。(リリース日 %s)"
+
+#~ msgid "Please check regularly for updates."
+#~ msgstr "正式版がリリースされていないか定期的に確認してください。"
+
+#~ msgid "All gallery locales are available on this host."
+#~ msgstr "このホストでは全てのGalleryロケールが利用可能です。"
+
+#~ msgid "There are %d locales that Gallery was unable to locate. You may need to select manually date formats. "
+#~ msgstr "Galleryが検出できなかった%dのロケールがあります。手動で日付フォーマットを選択するひつようがあります。"
+
+#~ msgid "Dates in %d languages may not be formatted properly, because the corresponding locales are missing. You may need to select manually the date formats for these."
+#~ msgstr "対応するロケールがないため、%d言語の日付は正しくフォーマットされません。これらのために手動で日付フォーマットを選択する必要があります。"
+
+#~ msgid "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."
+#~ msgstr "ロケールは全く検出できませんでした。しかしながら、PHPの設定により%s制約がかかっていますのでロケールを検出する方法が妨害されています。不幸にもこれは日付フォーマットが言語によって切り替わらないことを意味します。でも、大丈夫だから続けましょう。"
+
+#~ msgid "We were unable to detect any system locales. Multi-language functions will be disabled. Please install the corresponding locales or ask your administrator to do this. This problem is known on %s systems. In this case please have a look at this %sDebian locale HowTo%s."
+#~ msgstr "いかなるシステムロケールも検出できませんでした。多言語機能は使用できません。該当するロケールをインストールするか、この作業をするように管理者に頼んでください。この問題は %s システム上で知られています。この場合は %sDebian locale HowTo%s をごらんください。"
+
+#~ msgid "Only the default locale for this machine is available, so date format will not change for different languages."
+#~ msgstr "このマシンに対するデフォルト言語だけが利用可能です。よって、異なる言語に対しても日付フォーマットは同じものです。"
+
+#~ msgid "<b>System</b> locale selection required"
+#~ msgstr "<b>システム</b>ロケール選択が必要です"
+
+#~ msgid "There is more than one suitable <b>system</b> locale installed on your machine for the following languages.  Please chose the one you think is most suitable."
+#~ msgstr "以下の言語に対応する2つ以上の<b>システム</b>ロケールがインストールされています。最も適切なものを一つ選んでください。"
+
+#, fuzzy
+#~ msgid "This is <b>only</b> for date &amp; time format. You only need to edit the languages you enabled above."
+#~ msgstr "これは日付と時間のフォーマット <b>のみ</b> のためのものです。上で有効にした言語を編集することだけ必要です。"
+
+#~ msgid "System locale"
+#~ msgstr "システムロケール"
+
+#~ msgid "<b>System</b> locale problems"
+#~ msgstr "<b>システム</b>ロケールの不具合"
+
+#~ msgid "There are no apparently suitable <b>system</b> locales installed on your machine for the following languages.  Please choose the one you think is most suitable."
+#~ msgstr "以下の言語に対応する適切な<b>システム</b>ロケールがインストールされていないようです。最も適当だと思うものを選んでください。"
+
+#, fuzzy
+#~ msgid "safe_mode is off."
+#~ msgstr "<b>safe_mode</b> はOFFです"
+
+#, fuzzy
+#~ msgid "magic_quotes are off."
+#~ msgstr "<b>magic_quotes</b> はOFFです"
+
+#~ msgid "In %s, missing %s in row %d with %s %s."
+#~ msgstr "%1$s において、%5$s が %4$s である列 %3$d の %2$sが欠落しています。"
+
+#~ msgid "In %s, blank in row %d."
+#~ msgstr "%s において、%d 列目が空白です。"
+
+#~ msgid "In %s, for name %s (row %d) value %s should be a positive whole number"
+#~ msgstr "%s におけるラベル %s (列 %d) の値 %s は正の数でなくてはいけません。"
+
+#, fuzzy
+#~ msgid "register_globals is off."
+#~ msgstr "<b>register_glocals</b> はOFFです"
+
+#~ msgid "Your passwords do not match!"
+#~ msgstr "パスワードが一致しません!"
+
+#~ msgid "Valid admin email address given."
+#~ msgstr "有効な管理者のアドレスがあたえられました。"
+
+#~ msgid "You must specify valid admin email addresses"
+#~ msgstr "有効な管理者メールアドレスを指定しなくてはいけません。"
+
+#~ msgid "%s is not a valid email address."
+#~ msgstr "%s は有効なメールアドレスではありません。"
+
+#~ msgid "Valid sender email address given."
+#~ msgstr "有効な送信者メールアドレスがあたえられました。"
+
+#~ msgid "You must specify a valid sender email address"
+#~ msgstr "有効な送信者メールアドレスを指定しなくてはいけません。"
+
+#~ msgid "You must include %s in your welcome email"
+#~ msgstr "%s をウェルカムメールに含めなくてはいけません。"
+
+#~ msgid "You must include %s or %s in your welcome email"
+#~ msgstr "%s か %s をウェルカムメールに含めなくてはいけません。"
+
+#, fuzzy
+#~ msgid "_Configuration Wizard"
+#~ msgstr "コンフィグレーションモード"
+
+#~ msgid "You must enter a password for the %s account."
+#~ msgstr "アカウント %s に対するパスワードを入力しなくてはいけません。"
+
+#~ msgid "It seems you've already configured Gallery, because there is one admin account, but its not called %s."
+#~ msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、管理者アカウントは存在します。しかし、%s という名前ではありません。"
+
+#~ msgid "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."
+#~ msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、%d の管理者アカウントが存在します。しかし、%s という名前のユーザはいません。"
+
+#~ msgid "You don't have to enter a password.  But if you do, Gallery will create an administrator account called %s with that password."
+#~ msgstr "パスワードを入力する必要はありません。しかし、入力すれば %s という名前で管理者アカウントを作成します。"
+
+#~ msgid "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."
+#~ msgstr "あなたはすでにGalleryのコンフィグレーションを終えているようですので、%s ユーザは存在します。パスワードは入力する必要はありません。しかし、入力した場合は %s ユーザのパスワードを変更します。"
+
+#~ msgid "Admin password"
+#~ msgstr "管理者パスワード"
+
+#~ msgid "Full Name"
+#~ msgstr "名前"
+
+#~ msgid "Username"
+#~ msgstr "ユーザ名"
+
+#~ msgid "Full name that you can click on to send email (mailto:)"
+#~ msgstr "名前はクリックしてメールが送れます。(mailto:)"
+
+#~ msgid "Username that you can click on to send email (mailto:)"
+#~ msgstr "ユーザ名はクリックしてメールが送れます。(mailto:)"
+
+#~ msgid "email address"
+#~ msgstr "メールアドレス"
+
+#, fuzzy
+#~ msgid "This should be fixed before proceeding."
+#~ msgstr "続ける前に修正してください。"
+
+#~ msgid "Look at %sCheck Versions%s for more details."
+#~ msgstr "詳細は %sバージョンのチェック%s を見てください。"
+
+#, fuzzy
+#~ msgid "One file is newer then expected."
+#~ msgid_plural "%d files are newer then expected."
+#~ msgstr[0] "%d ファイルは予期されたものより新しいです。"
+
+#, fuzzy
+#~ msgid "One file is out of date, corrupted or missing."
+#~ msgid_plural "%d files are out of date, corrupted or missing."
+#~ msgstr[0] "以下のファイルは古いものです。不正であるか欠落しています。<br>&nbsp;&nbsp;&nbsp;&nbsp;%s"
+
+#~ msgid "All %d tested files up-to-date."
+#~ msgstr "テストされた %d ファイルは全て最新です。"
+
+#~ msgid "Testing status of %d files."
+#~ msgstr "%d ファイルの状態のテストです。"
+
+#~ msgid "Cannot read file %s."
+#~ msgstr "ファイル %s が読み込みできません。"
+
+#~ msgid "File missing or unreadable."
+#~ msgstr "ファイルは存在しないか、読み込み不可です。"
+
+#~ msgid "Version information not found in %s.  File must be old version or corrupted."
+#~ msgstr "%sにはバージョン情報が見つかりませんでした。ファイルを古いバージョンにするか、正しくしないといけません。"
+
+#~ msgid "Missing version"
+#~ msgstr "バージョン欠落"
+
+#, fuzzy
+#~ msgid "Found Version: %s"
+#~ msgstr "OK! バージョン: %s"
+
+#~ msgid "Problem with %s.  Expected version %s (or greater) but found %s."
+#~ msgstr "%sが問題です。予期されたバージョンは %s(あるいはそれ以上)ですが、検出されたのは%sです。"
+
+#~ msgid "Expected version %s (or greater) but found %s."
+#~ msgstr "予期されたバージョンは %s(あるいはそれ以上)ですが、検出されたのは%sです。"
+
+#~ msgid "%s OK.  Actual version (%s) more recent than expected version (%s)"
+#~ msgstr "%s はOKです。実際のバージョン(%s)は予期されたバージョン(%s)よりも新しいです。"
+
+#~ msgid "Expected version %s but found %s."
+#~ msgstr "予期されたバージョンは %sですが、検出されたのは%sです。"
+
+#~ msgid "%s OK"
+#~ msgstr "%s はOKです"
+
+#~ msgid "Found expected version %s."
+#~ msgstr "予期されたバージョン%sが検出されました。"
+
+#~ msgid "This email will be sent when new accounts are created."
+#~ msgstr "このメールは新しいアカウントを作成したときに送信されます。"
+
+#, fuzzy
+#~ msgid "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message."
+#~ msgstr "他の言語に翻訳可能なデフォルトのメッセージを得るには、このフィールドを空のままにしておいてください。デフォルトメッセージは:"
+
+#, fuzzy
+#~ msgid "The following placeholder can be used:"
+#~ msgstr "以下のファイルは最新です。"
+
+#~ msgid "File %s does not exist."
+#~ msgstr "ファイル%sは存在しません。"
+
+#~ msgid "Expected status: %s, but actually received status %s."
+#~ msgstr "期待されたステータスは%sでしたが、実際のステータスは%sでした。"
+
+#~ msgid "can't detect version on Windows"
+#~ msgstr "Windows上ではバージョン検出できません"
+
+#~ msgid "OK!  Version: %s"
+#~ msgstr "OK! バージョン: %s"
 
 #~ msgid "Can't find <i>jpegtran</i>!"
 #~ msgstr "<i>jpegtran</i> が検出できませんでした。"

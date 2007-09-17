@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-07-09 15:40+0200\n"
+"POT-Creation-Date: 2007-09-17 16:04+0200\n"
 "PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -193,7 +193,7 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "ようこそ、 %s さん"
 
-#: ../albums.php:158 ../view_album.php:388
+#: ../albums.php:158 ../view_album.php:197
 #, fuzzy
 msgid "slidesho_w"
 msgstr "スライドショー"
@@ -279,7 +279,7 @@ msgstr "%d ページ"
 msgid "The requested album with index %s is not valid"
 msgstr ""
 
-#: ../albums.php:359 ../view_album.php:774
+#: ../albums.php:359 ../view_album.php:576
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "アルバムが指定されていません"
@@ -289,71 +289,79 @@ msgstr "アルバムが指定されていません"
 msgid "Owner: %s"
 msgstr "所有者:"
 
-#: ../albums.php:383
+#: ../albums.php:384
 msgid "url:"
 msgstr "URL:"
 
 # This word doesn't need in Japanese.
-#: ../albums.php:395
+#: ../albums.php:399
 msgid "Hey!"
 msgstr " "
 
-#: ../albums.php:396
+#: ../albums.php:400
 #, fuzzy, php-format
 msgid "%s so that the URL is not so generic and easy guessable!"
 msgstr "このURLが一般的でないものになるよう、 %s してください。"
 
-#: ../albums.php:398
+#: ../albums.php:402
 #, fuzzy
 msgid "Change the foldername of this album"
 msgstr "このアルバム名を変更"
 
-#: ../albums.php:414
+#: ../albums.php:418
 #, fuzzy, php-format
 msgid "Created on %s, last changed on %s."
 msgstr "最終更新日 %s"
 
-#: ../albums.php:421
+#: ../albums.php:425
 #, php-format
 msgid "Last changed on %s."
 msgstr "最終更新日 %s"
 
-#: ../albums.php:432 ../view_album.php:947
+#: ../albums.php:436 ../view_album.php:747
 msgid "This album is empty."
 msgstr "このアルバムは空です。"
 
-#: ../albums.php:429
+#: ../albums.php:433
 #, php-format
 msgid "This album contains 1 item."
 msgid_plural "This album contains %d items."
 msgstr[0] "このアルバムの内容は %d アイテム です。"
 
-#: ../albums.php:446
+#: ../albums.php:450
 #, fuzzy, php-format
 msgid "This album has never been viewed since %s."
 msgstr "このアルバムの閲覧回数 %s (%s から)"
 
-#: ../albums.php:443
+#: ../albums.php:447
 #, fuzzy, php-format
 msgid "This album has been viewed %d time since %s."
 msgid_plural "This album has been viewed %d times since %s."
 msgstr[0] "このアルバムの閲覧回数 %s (%s から)"
 
-#: ../albums.php:455
+#: ../albums.php:459
 msgid "reset counter"
 msgstr "カウンタリセット"
 
-#: ../block-feature-item.php:114
+#: ../block-feature-item.php:59
+msgid "It seems the album where the featured used to be, was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:69
+msgid "It seems the featured item was deleted."
+msgstr ""
+
+#: ../block-feature-item.php:131
 #, php-format
 msgid "This is a featured subalbum from album: %s"
 msgstr ""
 
-#: ../block-feature-item.php:117
+#: ../block-feature-item.php:134
 #, fuzzy, php-format
 msgid "This featured photo is from album: %s"
 msgstr "アルバムの新しい場所を選択してください"
 
-#: ../block-feature-item.php:125
+#: ../block-feature-item.php:142
 #, fuzzy
 msgid "Currently no item is featured by this Gallery."
 msgstr "このGalleryには欠落したファイルはありません。"
@@ -432,7 +440,7 @@ msgid "(click to enlarge)"
 msgstr "(クリックで拡大)"
 
 #: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:758
+#: ../templates/commentbox.tpl.default:46 ../view_album.php:560
 msgid "hidden"
 msgstr "隠されています"
 
@@ -475,8 +483,8 @@ msgstr "このGalleryには親のないものはありません。"
 msgid "Untitled"
 msgstr "タイトルなし"
 
-#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:73
-#: ../lib/albumItem.php:495 ../lib/usage.php:84
+#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:49
+#: ../lib/albumItem.php:467 ../lib/usage.php:84
 #: ../templates/commentbox.tpl.default:16
 msgid "Album"
 msgstr "アルバム"
@@ -504,7 +512,7 @@ msgid "description"
 msgstr "説明"
 
 #: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:246
-#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:197
+#: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:195
 msgid "Description"
 msgstr "説明"
 
@@ -688,22 +696,22 @@ msgstr ""
 msgid "(Group)"
 msgstr ""
 
-#: ../classes/Album.php:3159
+#: ../classes/Album.php:3160
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3326
+#: ../classes/Album.php:3327
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "メールの問題: メールアドレス %3$s は無効なため、%1$s (UID %2$s) をスキップ。"
 
-#: ../classes/Album.php:3330
+#: ../classes/Album.php:3331
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "メールの問題: メールアドレス %3$s は無効なため、%1$s (UID %2$s) をスキップ。"
 
-#: ../classes/Album.php:3340
+#: ../classes/Album.php:3341
 #, fuzzy
 msgid "Email problems"
 msgstr "メールアドレス"
@@ -1166,7 +1174,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "対応するファイルタイプ"
 
-#: ../includes/add_photos/add_form.inc:47 ../view_album.php:511
+#: ../includes/add_photos/add_form.inc:47 ../view_album.php:313
 msgid " or "
 msgstr "と"
 
@@ -1210,8 +1218,8 @@ msgstr "アップロードする"
 #: ../popups/copy_photo.php:212 ../popups/delete_photo.php:135
 #: ../popups/download.php:86 ../popups/ecard_form.php:277
 #: ../popups/edit_caption.php:233 ../popups/edit_field.php:57
-#: ../popups/edit_watermark.php:123 ../popups/move_album.php:111
-#: ../popups/move_album.php:139 ../popups/move_photo.php:284
+#: ../popups/edit_watermark.php:123 ../popups/move_album.php:112
+#: ../popups/move_album.php:140 ../popups/move_photo.php:284
 #: ../popups/move_photo.php:379 ../popups/rearrange.php:152
 #: ../popups/rearrange.php:207 ../popups/register.php:142
 #: ../popups/rename_album.php:121 ../popups/reset_votes.php:58
@@ -1707,42 +1715,6 @@ msgstr "削除"
 msgid "Caption:"
 msgstr "説明: "
 
-#: ../layout/adminAlbumCommands.inc:40
-msgid "delete album"
-msgstr "アルバム削除"
-
-#: ../layout/adminAlbumCommands.inc:48
-msgid "move album"
-msgstr "アルバム移動"
-
-#: ../layout/adminAlbumCommands.inc:53
-msgid "reorder album"
-msgstr "アルバム順変更"
-
-#: ../layout/adminAlbumCommands.inc:63
-msgid "edit captions"
-msgstr "説明変更"
-
-#: ../layout/adminAlbumCommands.inc:72
-msgid "permissions"
-msgstr "パーミッション"
-
-#: ../layout/adminAlbumCommands.inc:79
-msgid "properties"
-msgstr "プロパティ"
-
-#: ../layout/adminAlbumCommands.inc:91
-msgid "view&nbsp;comments"
-msgstr "コメントを見る"
-
-#: ../layout/adminAlbumCommands.inc:99
-msgid "watermark&nbsp;album"
-msgstr "透かしアルバム"
-
-#: ../layout/adminAlbumCommands.inc:114
-msgid "No Admin commands available."
-msgstr ""
-
 #: ../layout/breadcrumb.inc:27
 #, fuzzy, php-format
 msgid "Logged in as: %s"
@@ -1979,223 +1951,223 @@ msgstr "リサイズ画像のみ"
 msgid "Only full photos"
 msgstr "完全画像のみ"
 
-#: ../lib/albumItem.php:80 ../lib/albumItem.php:498
+#: ../lib/albumItem.php:57 ../lib/albumItem.php:470
 #: ../popups/rearrange.php:125
 msgid "Movie"
 msgstr "動画"
 
-#: ../lib/albumItem.php:84 ../lib/albumItem.php:501
+#: ../lib/albumItem.php:61 ../lib/albumItem.php:473
 msgid "Photo"
 msgstr "画像"
 
-#: ../lib/albumItem.php:107
+#: ../lib/albumItem.php:84
 #, fuzzy
 msgid "Edit _Text"
 msgstr "テキスト編集"
 
-#: ../lib/albumItem.php:113
+#: ../lib/albumItem.php:90
 #, fuzzy
 msgid "Edit Th_umbnail"
 msgstr "サムネイルを編集"
 
-#: ../lib/albumItem.php:119
+#: ../lib/albumItem.php:96
 #, fuzzy
 msgid "Rotate/_Flip"
 msgstr "%s を回転/反転"
 
-#: ../lib/albumItem.php:125
+#: ../lib/albumItem.php:102
 #, fuzzy
 msgid "Re_size"
 msgstr "リサイズ画像"
 
-#: ../lib/albumItem.php:132
+#: ../lib/albumItem.php:109
 #, fuzzy
 msgid "_Watermark"
 msgstr "透かし"
 
-#: ../lib/albumItem.php:140
+#: ../lib/albumItem.php:117
 #, fuzzy
 msgid "Image_Map"
 msgstr "画像のフレーム"
 
-#: ../lib/albumItem.php:146
+#: ../lib/albumItem.php:123
 #, fuzzy
 msgid "Crop Image"
 msgstr "画像なし"
 
-#: ../lib/albumItem.php:156
+#: ../lib/albumItem.php:133
 msgid "Edit Title"
 msgstr "タイトル編集"
 
-#: ../lib/albumItem.php:161
+#: ../lib/albumItem.php:138
 msgid "Edit Description"
 msgstr "詳細を編集"
 
-#: ../lib/albumItem.php:167 ../popups/rename_album.php:35
+#: ../lib/albumItem.php:144 ../popups/rename_album.php:35
 msgid "Rename Album"
 msgstr "アルバム名変更"
 
-#: ../lib/albumItem.php:172
+#: ../lib/albumItem.php:149
 msgid "Reset Counter"
 msgstr "カウンタリセット"
 
-#: ../lib/albumItem.php:183 ../view_album.php:285
+#: ../lib/albumItem.php:160
 msgid "Permissions"
 msgstr "パーミッション"
 
-#: ../lib/albumItem.php:190 ../popups/watermark_album.php:103
+#: ../lib/albumItem.php:167 ../popups/watermark_album.php:103
 msgid "Watermark Album"
 msgstr "透かしアルバム"
 
-#: ../lib/albumItem.php:197
+#: ../lib/albumItem.php:174
 msgid "View Comments"
 msgstr "コメントを見る"
 
-#: ../lib/albumItem.php:205
+#: ../lib/albumItem.php:182
 #, fuzzy
 msgid "Cop_y"
 msgstr "%s をコピー"
 
-#: ../lib/albumItem.php:214
+#: ../lib/albumItem.php:191
 #, fuzzy
 msgid "_Reorder"
 msgstr "%s を並べ替え "
 
-#: ../lib/albumItem.php:220
+#: ../lib/albumItem.php:197
 #, fuzzy
 msgid "Mo_ve"
 msgstr "動画"
 
-#: ../lib/albumItem.php:228
+#: ../lib/albumItem.php:205
 #, fuzzy
 msgid "Set as high_light"
 msgstr "ハイライト"
 
-#: ../lib/albumItem.php:237
+#: ../lib/albumItem.php:214
 #, fuzzy
 msgid "Change Ow_ner"
 msgstr "所有者変更"
 
-#: ../lib/albumItem.php:242
+#: ../lib/albumItem.php:219
 #, fuzzy, php-format
 msgid "Feature %s"
 msgstr "削除"
 
-#: ../lib/albumItem.php:255
+#: ../lib/albumItem.php:232
 #, fuzzy
 msgid "_Unhide"
 msgstr "%s を隠す"
 
-#: ../lib/albumItem.php:262
+#: ../lib/albumItem.php:239
 #, fuzzy
 msgid "_Hide"
 msgstr "%s を隠す"
 
-#: ../lib/albumItem.php:274 ../lib/albumItem.php:284
+#: ../lib/albumItem.php:251 ../lib/albumItem.php:261
 #: ../popups/delete_photo.php:134 ../popups/manage_users.php:167
 #, fuzzy
 msgid "_Delete"
 msgstr "削除"
 
-#: ../lib/albumItem.php:298
+#: ../lib/albumItem.php:275
 #, fuzzy
 msgid "Photo _properties"
 msgstr "画像のプロパティ"
 
-#: ../lib/albumItem.php:310
+#: ../lib/albumItem.php:287
 #, fuzzy
 msgid "Send photo as e_Card"
 msgstr "パスワード送信"
 
-#: ../lib/albumItem.php:325
+#: ../lib/albumItem.php:299
 #, fuzzy, php-format
 msgid "%s actions"
 msgstr "アクション"
 
-#: ../lib/albumItem.php:348
+#: ../lib/albumItem.php:320
 msgid "delete comment"
 msgstr "コメント削除"
 
-#: ../lib/albumItem.php:371
+#: ../lib/albumItem.php:343
 msgid "From:"
 msgstr "By:"
 
-#: ../lib/albumItem.php:479
+#: ../lib/albumItem.php:451
 #, fuzzy, php-format
 msgid "Generated caption. Type: %s"
 msgstr "説明変更"
 
-#: ../lib/albumItem.php:511
+#: ../lib/albumItem.php:483
 #, php-format
 msgid "Entering function: '%s'"
 msgstr ""
 
-#: ../lib/albumItem.php:513
+#: ../lib/albumItem.php:485
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "%d イメージを処理中..."
 
-#: ../lib/albumItem.php:517
+#: ../lib/albumItem.php:489
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "%s をローカルディレクトリとして処理しています。"
 
-#: ../lib/albumItem.php:520
+#: ../lib/albumItem.php:492
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "スキップ %s (%s はサポートが有効ではありません)"
 
-#: ../lib/albumItem.php:529
+#: ../lib/albumItem.php:501
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../lib/albumItem.php:547
+#: ../lib/albumItem.php:519
 msgid "No Metadata"
 msgstr ""
 
-#: ../lib/albumItem.php:551
+#: ../lib/albumItem.php:523
 msgid "Processing files in archive"
 msgstr ""
 
-#: ../lib/albumItem.php:557
+#: ../lib/albumItem.php:529
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../lib/albumItem.php:560
+#: ../lib/albumItem.php:532
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "ディレクトリが開けませんでした: %s"
 
-#: ../lib/albumItem.php:604
+#: ../lib/albumItem.php:576
 #, fuzzy
 msgid "Start Processing single file (Image, not archive)"
 msgstr "%d イメージを処理中..."
 
-#: ../lib/albumItem.php:607
+#: ../lib/albumItem.php:579
 msgid "extension is accepted."
 msgstr ""
 
-#: ../lib/albumItem.php:609
+#: ../lib/albumItem.php:581
 #, fuzzy
 msgid "Filename processing."
 msgstr "画像のプリプロセス"
 
-#: ../lib/albumItem.php:658
+#: ../lib/albumItem.php:630
 msgid "No caption given, generating it."
 msgstr ""
 
-#: ../lib/albumItem.php:664
+#: ../lib/albumItem.php:636
 #, php-format
 msgid "Adding %s"
 msgstr "追加 %s"
 
-#: ../lib/albumItem.php:690
+#: ../lib/albumItem.php:662
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "困ったら %s%s FAQ%sを見てください"
 
-#: ../lib/albumItem.php:696
+#: ../lib/albumItem.php:668
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "スキップ %s (%s フォーマットは取り扱えません)"
@@ -2203,6 +2175,10 @@ msgstr "スキップ %s (%s フォーマットは取り扱えません)"
 #: ../lib/filesystem.php:108
 #, php-format
 msgid "extension of file %s is %s"
+msgstr ""
+
+#: ../lib/filesystem.php:148
+msgid "The path you try to use does not exist! Exiting Gallery"
 msgstr ""
 
 #: ../lib/stats.php:33
@@ -2372,7 +2348,7 @@ msgstr "無効なユーザ"
 msgid "Login to %s"
 msgstr "%s にログイン"
 
-#: ../login.php:177 ../login.php:192
+#: ../login.php:167 ../login.php:177 ../login.php:192
 #, fuzzy
 msgid "Login"
 msgstr "ログイン"
@@ -2408,7 +2384,7 @@ msgstr "パスワード送信"
 msgid "No account at all?"
 msgstr ""
 
-#: ../login.php:238
+#: ../login.php:239
 msgid "_Register a new account."
 msgstr ""
 
@@ -2503,7 +2479,7 @@ msgid "_Return to  %s"
 msgstr "%s に戻る"
 
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:459 ../view_album.php:783
+#: ../popups/upgrade_album.php:97 ../view_album.php:261 ../view_album.php:585
 #, php-format
 msgid "Album: %s"
 msgstr "アルバム: %s"
@@ -2805,7 +2781,7 @@ msgid "Upgrade now"
 msgstr "いますぐアップグレード"
 
 #: ../popups/copy_photo.php:224 ../popups/delete_photo.php:140
-#: ../popups/edit_thumb.php:44 ../popups/move_album.php:145
+#: ../popups/edit_thumb.php:44 ../popups/move_album.php:146
 #: ../popups/move_photo.php:386 ../popups/resize_photo.php:178
 #: ../popups/rotate_photo.php:134 ../popups/view_photo_properties.php:124
 msgid "no album / index specified"
@@ -3498,25 +3474,25 @@ msgstr "アルバム移動"
 msgid "Reorder Album"
 msgstr "アルバム順変更"
 
-#: ../popups/move_album.php:94
+#: ../popups/move_album.php:95
 #, fuzzy, php-format
 msgid "Select the new location of album: %s"
 msgstr "アルバムの新しい場所を選択してください"
 
-#: ../popups/move_album.php:95
+#: ../popups/move_album.php:96
 msgid "Your Album will be moved to the position you choose below."
 msgstr ""
 
-#: ../popups/move_album.php:100
+#: ../popups/move_album.php:101
 msgid "Nest within another Album:"
 msgstr "他のアルバムにネストアルバムとして移動:"
 
-#: ../popups/move_album.php:110
+#: ../popups/move_album.php:111
 #, fuzzy
 msgid "_Move to Album!"
 msgstr "アルバムに移動させる"
 
-#: ../popups/move_album.php:138 ../popups/move_photo.php:283
+#: ../popups/move_album.php:139 ../popups/move_photo.php:283
 #, fuzzy
 msgid "_Move it!"
 msgstr "移動させる"
@@ -4811,13 +4787,13 @@ msgid "upgrade all albums"
 msgstr "全てのアルバムをアップグレード"
 
 #: ../templates/album.tpl.default:130 ../templates/album.tpl.default:195
-#: ../view_album.php:519
+#: ../view_album.php:321
 msgid "Vote"
 msgstr "投票"
 
 #: ../templates/album.tpl.default:205
-#: ../templates/classic/gallery.tpl.default:170
-#: ../templates/matrix/gallery.tpl.default:138
+#: ../templates/classic/gallery.tpl.default:187
+#: ../templates/matrix/gallery.tpl.default:143
 msgid "Comments available for this item."
 msgstr "このアイテムに対するコメントが有効です。"
 
@@ -4859,6 +4835,11 @@ msgstr "コメントする"
 #, fuzzy
 msgid "_Delete marked comments"
 msgstr "マークしたコメントを削除"
+
+#: ../templates/classic/gallery.tpl.default:132
+#: ../templates/matrix/gallery.tpl.default:109
+msgid "No admin commands available."
+msgstr ""
 
 #: ../templates/info_donation-block.tpl.default:18
 #, fuzzy
@@ -5469,10 +5450,25 @@ msgid "Debug ON ! Level %s"
 msgstr "デバッグモード"
 
 #: ../view_album.php:147
+#, fuzzy
+msgid "No albums"
+msgstr "0 個のアルバム"
+
+#: ../view_album.php:147
 #, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
 msgstr[0] "%d 個のサブアルバム"
+
+#: ../view_album.php:148
+#, fuzzy
+msgid "No images"
+msgstr "画像なし"
+
+#: ../view_album.php:149
+#, fuzzy
+msgid "0 pages"
+msgstr "ページなし"
 
 #: ../view_album.php:152
 #, fuzzy, php-format
@@ -5500,187 +5496,97 @@ msgid "%s element is hidden."
 msgid_plural "%s elements are hidden."
 msgstr[0] "%s は隠されています"
 
-#: ../view_album.php:178
-#, fuzzy
-msgid "Add photos"
-msgstr "画像追加"
-
-#: ../view_album.php:185
-#, fuzzy
-msgid "Delete this album"
-msgstr "このアルバム名を変更"
-
-#: ../view_album.php:191
-#, fuzzy
-msgid "Delete this (sub)album"
-msgstr "このアルバム名を変更"
-
-#: ../view_album.php:201
-#, fuzzy
-msgid "Change foldername"
-msgstr "所有者変更"
-
-#: ../view_album.php:210
-#, fuzzy
-msgid "New nested album"
-msgstr "ネストアルバム作成"
-
-#: ../view_album.php:219
-#, fuzzy
-msgid "Edit captions"
-msgstr "説明変更"
-
-#: ../view_album.php:228
-#, fuzzy
-msgid "Sort items"
-msgstr "アイテムをソート"
-
-#: ../view_album.php:236
-#, fuzzy
-msgid "Resize all"
-msgstr "全てリサイズ"
-
-#: ../view_album.php:245
-#, fuzzy
-msgid "Recreate captions"
-msgstr "説明変更"
-
-#: ../view_album.php:253
-#, fuzzy
-msgid "Rebuild capture dates"
-msgstr "撮影日を表示"
-
-#: ../view_album.php:261
-#, fuzzy
-msgid "Rebuild thumbs"
-msgstr "サムネイル再生成"
-
-#: ../view_album.php:269
-#, fuzzy
-msgid "Properties"
-msgstr "プロパティ"
-
-#: ../view_album.php:277
-#, fuzzy
-msgid "Rearrange items"
-msgstr "アルバムのリサイズ: %s"
-
-#: ../view_album.php:293
-#, fuzzy
-msgid "Poll results"
-msgstr "投票結果:"
-
-#: ../view_album.php:300
-#, fuzzy
-msgid "Poll reset"
-msgstr "投票の初期化"
-
-#: ../view_album.php:308
-#, fuzzy
-msgid "View comments"
-msgstr "コメントを見る"
-
-#: ../view_album.php:315
-#, fuzzy
-msgid "Watermark album"
-msgstr "透かしアルバム"
-
-#: ../view_album.php:377
-#, fuzzy
-msgid "Album Actions"
-msgstr "アルバム説明"
-
-#: ../view_album.php:403
+#: ../view_album.php:208
 #, fuzzy
 msgid "view&nbsp;_comments"
 msgstr "コメントを見る"
 
-#: ../view_album.php:443
+#: ../view_album.php:245
 #, fuzzy
 msgid "Your votes are:"
 msgstr "メッセージ:"
 
-#: ../view_album.php:490
+#: ../view_album.php:292
 msgid "See full poll results"
 msgstr "完全な投票結果を見る"
 
-#: ../view_album.php:509
+#: ../view_album.php:311
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:515
+#: ../view_album.php:317
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "画像に投票するには、%sをクリック"
 
-#: ../view_album.php:518
+#: ../view_album.php:320
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "投票を記録するには%sをクリックしなければいけません。"
 
-#: ../view_album.php:525
+#: ../view_album.php:327
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] "あなたは全部で%sのを持っていて、それらは変更可能です。"
 
-#: ../view_album.php:530
+#: ../view_album.php:332
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "お望みならばあなたの選択を変更できます。"
 
-#: ../view_album.php:676 ../view_album.php:677
+#: ../view_album.php:478 ../view_album.php:479
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:690 ../view_album.php:713
+#: ../view_album.php:492 ../view_album.php:515
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
-#: ../view_album.php:765
+#: ../view_album.php:567
 msgid "highlight"
 msgstr "ハイライト"
 
-#: ../view_album.php:792
+#: ../view_album.php:594
 msgid "No description"
 msgstr "詳細なし"
 
-#: ../view_album.php:800
+#: ../view_album.php:602
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "最終更新日 %s"
 
-#: ../view_album.php:803
+#: ../view_album.php:605
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "内容: "
 
-#: ../view_album.php:820
+#: ../view_album.php:622
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "閲覧回数:"
 
-#: ../view_album.php:847
+#: ../view_album.php:649
 #, fuzzy
 msgid "Description for"
 msgstr "説明"
 
-#: ../view_album.php:848
+#: ../view_album.php:650
 #, fuzzy
 msgid "... show full description"
 msgstr "詳細を表示"
 
-#: ../view_album.php:859
+#: ../view_album.php:661
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "閲覧回数:"
 
-#: ../view_album.php:944
+#: ../view_album.php:744
 msgid "Hey! Add some photos."
 msgstr "何か画像を追加してください。"
 
@@ -5724,9 +5630,105 @@ msgstr "画像閲覧"
 msgid "normal"
 msgstr "通常"
 
-#: ../view_photo.php:518
+#: ../view_photo.php:519
 msgid "Email me when comments are added"
 msgstr "コメントが追加されたときにメール送信"
+
+#~ msgid "delete album"
+#~ msgstr "アルバム削除"
+
+#~ msgid "move album"
+#~ msgstr "アルバム移動"
+
+#~ msgid "reorder album"
+#~ msgstr "アルバム順変更"
+
+#~ msgid "edit captions"
+#~ msgstr "説明変更"
+
+#~ msgid "permissions"
+#~ msgstr "パーミッション"
+
+#~ msgid "properties"
+#~ msgstr "プロパティ"
+
+#~ msgid "view&nbsp;comments"
+#~ msgstr "コメントを見る"
+
+#~ msgid "watermark&nbsp;album"
+#~ msgstr "透かしアルバム"
+
+#, fuzzy
+#~ msgid "Add photos"
+#~ msgstr "画像追加"
+
+#, fuzzy
+#~ msgid "Delete this album"
+#~ msgstr "このアルバム名を変更"
+
+#, fuzzy
+#~ msgid "Delete this (sub)album"
+#~ msgstr "このアルバム名を変更"
+
+#, fuzzy
+#~ msgid "Change foldername"
+#~ msgstr "所有者変更"
+
+#, fuzzy
+#~ msgid "New nested album"
+#~ msgstr "ネストアルバム作成"
+
+#, fuzzy
+#~ msgid "Edit captions"
+#~ msgstr "説明変更"
+
+#, fuzzy
+#~ msgid "Sort items"
+#~ msgstr "アイテムをソート"
+
+#, fuzzy
+#~ msgid "Resize all"
+#~ msgstr "全てリサイズ"
+
+#, fuzzy
+#~ msgid "Recreate captions"
+#~ msgstr "説明変更"
+
+#, fuzzy
+#~ msgid "Rebuild capture dates"
+#~ msgstr "撮影日を表示"
+
+#, fuzzy
+#~ msgid "Rebuild thumbs"
+#~ msgstr "サムネイル再生成"
+
+#, fuzzy
+#~ msgid "Properties"
+#~ msgstr "プロパティ"
+
+#, fuzzy
+#~ msgid "Rearrange items"
+#~ msgstr "アルバムのリサイズ: %s"
+
+#, fuzzy
+#~ msgid "Poll results"
+#~ msgstr "投票結果:"
+
+#, fuzzy
+#~ msgid "Poll reset"
+#~ msgstr "投票の初期化"
+
+#, fuzzy
+#~ msgid "View comments"
+#~ msgstr "コメントを見る"
+
+#, fuzzy
+#~ msgid "Watermark album"
+#~ msgstr "透かしアルバム"
+
+#, fuzzy
+#~ msgid "Album Actions"
+#~ msgstr "アルバム説明"
 
 #~ msgid "Processing element %d..."
 #~ msgstr "%d 要素を処理中..."
