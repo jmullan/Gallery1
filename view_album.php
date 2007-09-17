@@ -569,24 +569,25 @@ if ($numPhotos) {
 
 			/* Album */
 			if (isset($myAlbum)) {
-				$link = '';
+				$downloadLink = '';
 
 				// Caption
 				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
 					$iconText = gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive"));
-					$link = popup_link(
+					$downloadLink = popup_link(
 						$iconText,
 						'download.php?set_albumName='. $gallery->album->getAlbumName($i),
 						false, true, 500, 500, '', '', '', false, false
 					);
 				}
 
-				$buf ='<b>';
-				$buf .= sprintf(gTranslate('core', "Album: %s"),
-					'<a href="'. makeAlbumUrl($gallery->album->getAlbumName($i)) .'">'. $myAlbum->fields['title'] .'</a>');
-				$buf .= '</b>';
+				$caption ='<span class="g-emphasis">';
+				$caption .= sprintf(gTranslate('core', "Album: %s"),
+								galleryLink(makeAlbumUrl($gallery->album->getAlbumName($i)), $myAlbum->fields['title'])
+				);
+				$caption .= '</span> ';
 
-				$albumItems[$nr]['caption'] = $buf;
+				$albumItems[$nr]['caption'] = $caption . $downloadLink;
 
 				// Description
 				$myDescription = $myAlbum->fields['description'];
