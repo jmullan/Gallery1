@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-17 16:04+0200\n"
+"POT-Creation-Date: 2007-09-28 16:06+0200\n"
 "PO-Revision-Date: 2007-07-23 17:04+0100\n"
 "Last-Translator: Jens A. Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -732,6 +732,21 @@ msgstr "Angefordertes Element hat kein Vorschaubild!"
 msgid "Anonymous User"
 msgstr "Anonymer Benutzer"
 
+#: ../classes/hn_captcha/hn_captcha.class.php:356
+#, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."
+msgstr ""
+
+#: ../classes/hn_captcha/hn_captcha.class.php:364
+#, fuzzy, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') for captcha images is not writable for the webserver."
+msgstr "Der Ordner in dem sich die Benutzerdaten befinden (%s) ist nicht beschreibbar durch den Webserver."
+
+#: ../classes/hn_captcha/hn_captcha.class.php:484
+#, php-format
+msgid "You must read and type the <b>%d chars</b> within <b>0..9</b> and <b>A..F</b>."
+msgstr ""
+
 #: ../classes/NobodyUser.php:27
 msgid "Nobody"
 msgstr "Niemand"
@@ -1146,9 +1161,8 @@ msgid "Do the same for optional metafiles."
 msgstr "Benamung der physikalischen Datei."
 
 #: ../includes/add_photos/add_form.inc:80
-#, fuzzy
 msgid "MetaFiles:"
-msgstr "Dateien:"
+msgstr "Metadateien:"
 
 #: ../includes/add_photos/add_form.inc:89
 msgid "If no caption is set, what would you like the captions to default to?"
@@ -1964,9 +1978,8 @@ msgid "Feature %s"
 msgstr "%s 'featuren'"
 
 #: ../lib/albumItem.php:232
-#, fuzzy
 msgid "_Unhide"
-msgstr "Verste_cken"
+msgstr "auf_decken"
 
 #: ../lib/albumItem.php:239
 msgid "_Hide"
@@ -4613,7 +4626,6 @@ msgstr "Markierte Kommentare _löschen"
 
 #: ../templates/classic/gallery.tpl.default:132
 #: ../templates/matrix/gallery.tpl.default:109
-#, fuzzy
 msgid "No admin commands available."
 msgstr "Keine Adminaktionen verf&uuml;gbar."
 
@@ -5294,38 +5306,38 @@ msgstr "Öffnet das Bild in %s x %s in einem Popupfenster"
 msgid "highlight"
 msgstr "Titelbild"
 
-#: ../view_album.php:594
+#: ../view_album.php:595
 msgid "No description"
 msgstr "Keine Beschreibung"
 
-#: ../view_album.php:602
+#: ../view_album.php:603
 #, php-format
 msgid "Last change: %s"
 msgstr "Letzte &Auml;nderung am %s."
 
-#: ../view_album.php:605
+#: ../view_album.php:606
 #, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Enth&auml;lt: Ein Element"
 msgstr[1] "Enth&auml;lt: %d Elemente"
 
-#: ../view_album.php:622
+#: ../view_album.php:623
 #, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Betrachtet: 1 Mal"
 msgstr[1] "Betrachtet: %d Mal"
 
-#: ../view_album.php:649
+#: ../view_album.php:650
 msgid "Description for"
 msgstr "Beschreibung für"
 
-#: ../view_album.php:650
+#: ../view_album.php:651
 msgid "... show full description"
 msgstr "...Beschreibung anzeigen"
 
-#: ../view_album.php:661
+#: ../view_album.php:662
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."

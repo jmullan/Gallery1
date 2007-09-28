@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-17 16:04+0200\n"
+"POT-Creation-Date: 2007-09-28 16:06+0200\n"
 "PO-Revision-Date: 2006-05-17 10:33-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
@@ -774,6 +774,21 @@ msgstr "Destacar"
 #: ../classes/EverybodyUser.php:27 ../classes/LoggedInUser.php:27
 msgid "Anonymous User"
 msgstr "Usuário anônimo"
+
+#: ../classes/hn_captcha/hn_captcha.class.php:356
+#, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."
+msgstr ""
+
+#: ../classes/hn_captcha/hn_captcha.class.php:364
+#, fuzzy, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') for captcha images is not writable for the webserver."
+msgstr "A pasta que contem sua informação de usuário (%s) não é gravável."
+
+#: ../classes/hn_captcha/hn_captcha.class.php:484
+#, php-format
+msgid "You must read and type the <b>%d chars</b> within <b>0..9</b> and <b>A..F</b>."
+msgstr ""
 
 #: ../classes/NobodyUser.php:27
 msgid "Nobody"
@@ -5547,40 +5562,40 @@ msgstr ""
 msgid "highlight"
 msgstr "destaque"
 
-#: ../view_album.php:594
+#: ../view_album.php:595
 msgid "No description"
 msgstr "Sem descrição"
 
-#: ../view_album.php:602
+#: ../view_album.php:603
 #, php-format
 msgid "Last change: %s"
 msgstr "Última alteração: %s"
 
-#: ../view_album.php:605
+#: ../view_album.php:606
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Contém: %s"
 msgstr[1] "Contém: %s"
 
-#: ../view_album.php:622
+#: ../view_album.php:623
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Visualizado: 1 vez."
 msgstr[1] "Visualizado: %d vezes."
 
-#: ../view_album.php:649
+#: ../view_album.php:650
 #, fuzzy
 msgid "Description for"
 msgstr "Descrição"
 
-#: ../view_album.php:650
+#: ../view_album.php:651
 #, fuzzy
 msgid "... show full description"
 msgstr "Mostrar descrição"
 
-#: ../view_album.php:661
+#: ../view_album.php:662
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."

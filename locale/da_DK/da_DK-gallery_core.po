@@ -18,7 +18,7 @@
 # $Id$
 #
 #
-# @version      1.6-RC1-b83
+# @version      1.6-RC1-b108
 # @package	Languagepack
 # @subpackage	Danish
 # @author	Niels Elgaard Larsen <elgaard AT agol DOT dk>, 2003-2004
@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-17 16:04+0200\n"
+"POT-Creation-Date: 2007-09-28 16:06+0200\n"
 "PO-Revision-Date: 2007-06-25 20:24+0200\n"
 "Last-Translator: Niels Baggesen <nba AT users DOT sourceforge DOT net>\n"
 "Language-Team:  <jens AT peino DOT de>\n"
@@ -211,7 +211,7 @@ msgstr "_dokumentation"
 
 #: ../albums.php:195
 msgid "pr_eferences"
-msgstr "_indstillinger"
+msgstr "mine _indstillinger"
 
 #: ../albums.php:205
 msgid "_register"
@@ -334,11 +334,11 @@ msgstr "nulstil tæller"
 
 #: ../block-feature-item.php:59
 msgid "It seems the album where the featured used to be, was deleted."
-msgstr ""
+msgstr "Det ser ud til at det album som indeholdt forsidebilledet er blevet sletet."
 
 #: ../block-feature-item.php:69
 msgid "It seems the featured item was deleted."
-msgstr ""
+msgstr "Det ser ud til at forsidebilledet er blevet slettet."
 
 #: ../block-feature-item.php:131
 #, php-format
@@ -736,6 +736,21 @@ msgstr "Elementet har intet forsidebillede"
 msgid "Anonymous User"
 msgstr "Anonym bruger"
 
+#: ../classes/hn_captcha/hn_captcha.class.php:356
+#, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') does not exist inside the albums folder and Gallery is not able to create it."
+msgstr "Folderen '%s' (fuld sti: '%s') eksisterer ikke i album biblioteket, og Gallery kan ikke oprette den."
+
+#: ../classes/hn_captcha/hn_captcha.class.php:364
+#, php-format
+msgid "The specified folder '%s' (Fullpath: '%s') for captcha images is not writable for the webserver."
+msgstr "Biblioteket '%s' (fuld sti '%s') til captcha billeder kan ikke opdateres af web-serveren."
+
+#: ../classes/hn_captcha/hn_captcha.class.php:484
+#, php-format
+msgid "You must read and type the <b>%d chars</b> within <b>0..9</b> and <b>A..F</b>."
+msgstr "Du skal læse og indtaste de <b>%d tegn</d> mellem <b>0..9</b> og <b>A..F</b>"
+
 #: ../classes/NobodyUser.php:27
 msgid "Nobody"
 msgstr "Ingen"
@@ -812,31 +827,28 @@ msgid "Original photo"
 msgstr "Oprindeligt billede"
 
 #: ../crop_photo.php:100
-#, fuzzy
 msgid "You do not have the permission to edit the fullsize Version of this image."
-msgstr "Du har ikke de nødvendige rettigheder til at skrive til %s!"
+msgstr "Du har ikke de nødvendige rettigheder til at redigere fuldstærrelse billedet"
 
 #: ../crop_photo.php:112
 msgid "Here you can crop the fullsize Version of your Image. Optionally you can let the intermediate version be created automatically."
-msgstr ""
+msgstr "Her kan du beskære fuldstærrelse udgaven af dit billede. Du kan også oprette mellemudgaven automatisk"
 
 #: ../crop_photo.php:136
-#, fuzzy
 msgid "Current Dimension:"
-msgstr "Nuværende bruger"
+msgstr "Nuværende størrelse:"
 
 #: ../crop_photo.php:137 ../crop_photo.php:145
 msgid "Width"
-msgstr ""
+msgstr "Bredde"
 
 #: ../crop_photo.php:138 ../crop_photo.php:146
-#, fuzzy
 msgid "Height"
-msgstr "Højre"
+msgstr "Højde"
 
 #: ../crop_photo.php:144
 msgid "New Dimension:"
-msgstr ""
+msgstr "Ny størrelse:"
 
 #: ../crop_photo.php:150 ../popups/edit_thumb.php:194
 msgid "Select a ratio for the crop frame:"
@@ -844,7 +856,7 @@ msgstr "Vælg formatforhold for beskæringsrammen:"
 
 #: ../crop_photo.php:156
 msgid "Recreate re_sized"
-msgstr ""
+msgstr "Gendan skaleret"
 
 #: ../crop_photo.php:160 ../popups/ecard_form.php:274
 #: ../popups/edit_watermark.php:120 ../popups/watermark_album.php:143
@@ -1266,62 +1278,56 @@ msgid "For the date/time related options Gallery will use the format you specifi
 msgstr "For de dato/tid relaterede muligheder vil Gallery bruge det format du angav under konfigurationen."
 
 #: ../includes/definitions/cropOptions.php:30
-#, fuzzy
 msgid "No Ratio"
-msgstr "Placering"
+msgstr "Intet forhold"
 
 #: ../includes/definitions/cropOptions.php:31
 msgid "1:1 (Square)"
-msgstr ""
+msgstr "1:1 (kvadratisk)"
 
 #: ../includes/definitions/cropOptions.php:32
 msgid "1:3 (Letterbox)"
-msgstr ""
+msgstr "1:3 (Ltetterbox)"
 
 #: ../includes/definitions/cropOptions.php:33
 msgid "9:16 (HDTV)"
-msgstr ""
+msgstr "9:16 (HDTV)"
 
 #: ../includes/definitions/cropOptions.php:34
-#, fuzzy
 msgid "3:5 (Photo)"
-msgstr "billede"
+msgstr "3:5 (Fotografi)"
 
 #: ../includes/definitions/cropOptions.php:35
 msgid "4:6 = 10:15 (Photo)"
-msgstr ""
+msgstr "4:6 = 10:15 (Fotografi)"
 
 #: ../includes/definitions/cropOptions.php:36
-#, fuzzy
 msgid "9:13 (Photo)"
-msgstr "1 billeder"
+msgstr "9:13 (Fotografi)"
 
 #: ../includes/definitions/cropOptions.php:37
-#, fuzzy
 msgid "5:7 (Photo)"
-msgstr "billede"
+msgstr "5:7 (Fotografi)"
 
 #: ../includes/definitions/cropOptions.php:38
 msgid "3:4 (Screen)"
-msgstr ""
+msgstr "3:4 (Skærm)"
 
 #: ../includes/definitions/cropOptions.php:39
-#, fuzzy
 msgid "8:10 (Photo)"
-msgstr "1 billeder"
+msgstr "8:10 (Fotografi)"
 
 #: ../includes/definitions/cropOptions.php:40
-#, fuzzy
 msgid "Like the Image"
-msgstr "Vis billeder:"
+msgstr "Ligesom billedet"
 
 #: ../includes/definitions/cropOptions.php:44
 msgid "Portrait"
-msgstr ""
+msgstr "Portræt"
 
 #: ../includes/definitions/cropOptions.php:45
 msgid "Landscape"
-msgstr ""
+msgstr "Landskab"
 
 #: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:88
 #, php-format
@@ -2088,7 +2094,7 @@ msgstr "Filtypen for %s er %s"
 
 #: ../lib/filesystem.php:148
 msgid "The path you try to use does not exist! Exiting Gallery"
-msgstr ""
+msgstr "Stien du forsøger at bruge findes ikke! Stopper Gallery"
 
 #: ../lib/stats.php:33
 #, php-format
@@ -4618,7 +4624,6 @@ msgstr "_Slet valgte kommentarer"
 
 #: ../templates/classic/gallery.tpl.default:132
 #: ../templates/matrix/gallery.tpl.default:109
-#, fuzzy
 msgid "No admin commands available."
 msgstr "Ingen Administrator kommandoer tilgængelige"
 
@@ -5203,7 +5208,6 @@ msgid "Debug ON ! Level %s"
 msgstr "Debug tilstand - level %s"
 
 #: ../view_album.php:147
-#, fuzzy
 msgid "No albums"
 msgstr "ingen albummer"
 
@@ -5215,12 +5219,10 @@ msgstr[0] "1 underalbum"
 msgstr[1] "%d underalbummer"
 
 #: ../view_album.php:148
-#, fuzzy
 msgid "No images"
 msgstr "ingen billeder"
 
 #: ../view_album.php:149
-#, fuzzy
 msgid "0 pages"
 msgstr "ingen sider"
 
@@ -5302,38 +5304,38 @@ msgstr "Åbner billedet i %s x %s som en pop-up"
 msgid "highlight"
 msgstr "forsidebillede"
 
-#: ../view_album.php:594
+#: ../view_album.php:595
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../view_album.php:602
+#: ../view_album.php:603
 #, php-format
 msgid "Last change: %s"
 msgstr "Sidst ændret %s."
 
-#: ../view_album.php:605
+#: ../view_album.php:606
 #, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Indeholder et element"
 msgstr[1] "Indeholder %d elementer"
 
-#: ../view_album.php:622
+#: ../view_album.php:623
 #, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Vist 1 gang"
 msgstr[1] "Vist %d gange"
 
-#: ../view_album.php:649
+#: ../view_album.php:650
 msgid "Description for"
 msgstr "Beskrivelse for"
 
-#: ../view_album.php:650
+#: ../view_album.php:651
 msgid "... show full description"
 msgstr "... Vis hele beskrivelsen"
 
-#: ../view_album.php:661
+#: ../view_album.php:662
 #, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
@@ -5385,81 +5387,3 @@ msgstr "normal"
 #: ../view_photo.php:519
 msgid "Email me when comments are added"
 msgstr "Email mig når der bliver tilføjet kommentarer"
-
-#~ msgid "delete album"
-#~ msgstr "slet album"
-
-#~ msgid "move album"
-#~ msgstr "flyt album"
-
-#~ msgid "reorder album"
-#~ msgstr "omplacer album"
-
-#~ msgid "edit captions"
-#~ msgstr "ret billedtekster"
-
-#~ msgid "permissions"
-#~ msgstr "rettigheder"
-
-#~ msgid "properties"
-#~ msgstr "egenskaber"
-
-#~ msgid "view&nbsp;comments"
-#~ msgstr "vis&nbsp;kommentarer"
-
-#~ msgid "watermark&nbsp;album"
-#~ msgstr "sæt&nbsp;vandmærke&nbsp;på&nbsp;album"
-
-#~ msgid "Add photos"
-#~ msgstr "Tilføj billeder"
-
-#~ msgid "Delete this album"
-#~ msgstr "Slet dette album"
-
-#~ msgid "Delete this (sub)album"
-#~ msgstr "Slet dette (under)album"
-
-#~ msgid "Change foldername"
-#~ msgstr "Skift navn"
-
-#~ msgid "New nested album"
-#~ msgstr "nyt under-album"
-
-#~ msgid "Edit captions"
-#~ msgstr "ret billedtekster"
-
-#~ msgid "Sort items"
-#~ msgstr "sorter objekter"
-
-#~ msgid "Resize all"
-#~ msgstr "Skaler alle"
-
-#~ msgid "Recreate captions"
-#~ msgstr "gendan billedtekster"
-
-#~ msgid "Rebuild capture dates"
-#~ msgstr "Gendan optagelsesdatoer"
-
-#~ msgid "Rebuild thumbs"
-#~ msgstr "gendan ikoner"
-
-#~ msgid "Properties"
-#~ msgstr "egenskaber"
-
-#~ msgid "Rearrange items"
-#~ msgstr "Flytter elementer"
-
-#~ msgid "Poll results"
-#~ msgstr "Afstemningsresultater"
-
-#~ msgid "Poll reset"
-#~ msgstr "nulstil afsteming"
-
-#~ msgid "View comments"
-#~ msgstr "Vis kommentarer"
-
-#~ msgid "Watermark album"
-#~ msgstr "Sæt vandmærke på album"
-
-#~ msgid "Album Actions"
-#~ msgstr "albumhandlinger"
