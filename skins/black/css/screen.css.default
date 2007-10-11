@@ -546,7 +546,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-admin a {
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
 /***** Begin Styles for comments *****/
@@ -688,6 +688,7 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
     background: #fff;
     border: 1px solid #99f;
+    color: #000;
 }
 
 .g-button {
@@ -712,8 +713,14 @@ input:focus, textarea:focus, select:focus {
     border: 1px solid #fff;
 }
 
+.g-usernameInput, .g-passwordInput {
+	background-color: #000;
+	color: #fff;
+}
+
 .g-usernameInput:focus, .g-passwordInput:focus {
 	background-color: #fff;
+	color: #000;
 }
 
 /****** End general Form Styles *****/
@@ -840,4 +847,17 @@ input:focus, textarea:focus, select:focus {
 
 .g-siriux a:hover img{
     border: 2px solid #fff;
+}
+
+.g-loginpage {
+	margin: 5px 50px 20px;
+}
+
+.g-loginpage fieldset {
+	margin-top: 10px;
+	border: 1px solid #fff;
+}
+
+.g-loginpage fieldset legend {
+	background-image: url(../images/mod_titlebar.jpg);
 }

@@ -99,7 +99,7 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 
 	$i = 0;
 	echo '<script language="JavaScript" type="text/javascript">';
-	echo "\n\t". 'var Sections=new Array()';
+	echo "\n\t". 'var Sections = new Array()';
 	foreach ($tabs as $name => $var) {
 		if(isset($var['type']) && ($var['type'] == 'group_start' || $var['type'] == 'group')) {
 			echo "\n\tSections[$i] ='$name';";

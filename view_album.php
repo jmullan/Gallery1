@@ -741,7 +741,7 @@ else {
 			array('set_albumName' => $gallery->session->albumName, 'type' => 'popup')
 		);
 
-		$va_notice = popup_link(gTranslate('core', "Hey! Add some photos."), $url, 1, true, 500, 600, 'admin');
+		$va_notice = popup_link(gTranslate('core', "Hey! Add some photos."), $url, 1, true, 500, 600);
 	}
 	else {
 		$va_notice = gTranslate('core', "This album is empty.");

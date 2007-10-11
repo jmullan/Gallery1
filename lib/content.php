@@ -353,7 +353,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	}
 
 	foreach($tree as $content) {
-		$nodename = strtr($content['albumName'], '-', '_');
+		$nodename = 'node_' . strtr($content['albumName'], '-', '_');
 
 		$label = addslashes($content['title'] . ' '. $content['clicksText']);
 		$html .= "\n\t var ${nodename}_obj = { label: \"$label\", href:\"${content['albumUrl']}\" }";

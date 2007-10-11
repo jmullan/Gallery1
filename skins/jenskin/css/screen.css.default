@@ -180,7 +180,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 /* Box for the album description text on mainpage */
 .g-album-desc, .g-album-owner {
-    background-color: #FCFCF3 ;
+    background-color: #FCFCF3;
     padding: 3px;
     margin: 8px;
     font-size: 1.0em;
@@ -441,12 +441,13 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-tabset a:hover {
-    background-color: #FCFCE3;
+    color: #000;
+    background-color: #f;
 }
 
 .g-tabset a.g-activeTab {
-    color: #fff;
-    background-color: #009;
+    color: #000;
+    background-color: #f6f6bb;
     border-bottom: 1px solid #66a;
 }
 
@@ -668,9 +669,9 @@ input:focus, textarea:focus, select:focus {
     background-color: #FFFFDA;
 }
 
-.g-button, .g-tabset a.g-activeTab {
+.g-button  {
     color: #333;
-    background: #f9f9f8;
+    background: #f6f6d2;
 }
 
 .g-button {
@@ -678,13 +679,13 @@ input:focus, textarea:focus, select:focus {
     border-right: 1px solid #000;
     border-left: 1px solid #C4C4B8;
     border-top: 1px solid #C4C4B8;
-    -moz-border-radius: 10px;
+    -moz-border-radius:5px;
 }
 
 .g-buttonDisable, input:focus.g-buttonDisable {
     color: #000;
     background-color: grey;
-    border: 1px solid #efefff;
+    border: 1px solid #6f6f6f;
     -moz-border-radius: 5px;
     padding-top: 0; padding-bottom: 0;
     padding-left: 2px; padding-right: 2px;
@@ -701,8 +702,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 input:hover.g-button, input:focus.g-button {
-    background: #FFFFDA;
-    color: #fff;
+	color: #333;
+    background: #f6f6bb;
 }
 
 /****** End general Form Styles *****/
@@ -714,12 +715,17 @@ input:hover.g-button, input:focus.g-button {
     margin: 0 2px 3px;
     border: 1px solid #666;
     -moz-border-radius: 5px;
+    background-color: #FCFCF3;
 }
 
 .g-emailMe-box input {
 }
 
 .g-emailMe-box legend {
+	background-color: #E6E6DC;
+	border-left: 1px solid #7a7a7a;
+	border-right: 1px solid #7a7a7a;
+	margin: 0 5px;
 }
 
 .g-columnheader, caption {
@@ -769,7 +775,7 @@ input:hover.g-button, input:focus.g-button {
 /* Should be the same as a button */
 .g-current-step {
 	color: #000;
-	background-color: #FCFCF3;
+	background-color: #f6f6d2;
 }
 
 .g-config-content {
