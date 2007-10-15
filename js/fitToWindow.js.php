@@ -96,9 +96,9 @@ function setReducedSize() {
 	document.getElementById('galleryImage').height	= newheight;
 	document.getElementById('galleryImage').width	= newwidth;
 
-	if (document.getElementsByName('frameRR')) {
-		document.getElementsByName('frameRR').height	= newheight;
-		document.getElementsByName('frameLL').height	= newheight;
+	if (document.getElementById('frameRR')) {
+			document.getElementById('frameRR').style.height = newheight + 'px';
+			document.getElementById('frameLL').style.height = newheight + 'px';
 	}
 
 	if (document.getElementById('galleryImageFrame')) {
@@ -120,9 +120,9 @@ function sizeChange() {
 			document.getElementById('galleryImage').height	= imageheight;
 			document.getElementById('galleryImage').width	= imagewidth;
 
-			if (document.getElementsByName('frameRR')) {
-				document.getElementsByName('frameRR').height	= imageheight;
-				document.getElementsByName('frameLL').height	= imagewidth;
+			if (document.getElementById('frameRR')) {
+				document.getElementById('frameRR').style.height = imageheight + 'px';
+				document.getElementById('frameLL').style.height = imageheight + 'px';
 			}
 
 			if (document.getElementById('galleryImageFrame')) {

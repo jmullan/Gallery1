@@ -39,7 +39,9 @@ if (!in_array($frame, array('none', 'dots', 'solid', 'siriux')) &&
 
 
 global $fitToWindow;
-$id = isset($fitToWindow) ? 'id="galleryImageFrame"' : '';
+$idImage	= isset($fitToWindow) ? 'id="galleryImageFrame"' : '';
+$idFrameLL	= isset($fitToWindow) ? 'id="frameLL"' : '';
+$idFrameRR	= isset($fitToWindow) ? 'id="frameRR"' : '';
 
 switch ($frame) {
     // special cases
@@ -49,11 +51,11 @@ switch ($frame) {
 
     case "solid":
         $width = $imageWidth + $borderWidth;
-        echo "<div $id style=\"margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;\">$href_tag</div>";
+        echo "<div $idImage style=\"margin: 0 auto; width: ${imageWidth}px; border: ${borderWidth}px solid $borderColor;\">$href_tag</div>";
     break;
 
     case "dots":
-		echo "<div $id style=\"margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;\">$href_tag</div>";
+		echo "<div $idImage style=\"margin: 0 auto; width: ${imageWidth}px; border:${borderWidth}px dashed $borderColor;\">$href_tag</div>";
     break;
 
     case "siriux":
@@ -74,7 +76,7 @@ switch ($frame) {
     		}
     	}
 
-        echo "\n\t<div $id style=\"margin: ${margin}px;\" class=\"g-siriux\">$href_tag</div>\n";
+        echo "\n\t<div $idImage style=\"margin: ${margin}px;\" class=\"g-siriux\">$href_tag</div>\n";
     break;
 
     default:
@@ -92,7 +94,7 @@ switch ($frame) {
   <table cellspacing="0" cellpadding="0" dir="ltr" style="margin: 0 auto">
   <tr>
 	<!-- TL -->
-	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt=""></td>
+	<td width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>"><img src="<?php echo "$base/$imageTL" ?>" width="<?php echo $widthTL ?>" height="<?php echo $heightTL ?>" alt="TL"></td>
 	<td><table width="100%" cellspacing="0" cellpadding="0">
 	    <tr>
 		<?php if ($widthTTL > 0) { ?>
@@ -120,7 +122,7 @@ switch ($frame) {
 	    <?php } ?>
 	    <tr>
 		<!-- LL -->
-		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" width="1" height="<?php echo $hLL ?>" alt="" name="frameLL"></td>
+		<td width="<?php echo $widthLL ?>" style="background-image:url(<?php echo "$base/$imageLL" ?>)"><img src="<?php echo $pixelImage ?>" width="1" style="height:<?php echo $hLL ?>px;" alt="" <?php echo $idFrameLL; ?>></td>
 	    </tr>
 	    <?php if ($heightLLB > 0) { ?>
 	    <!-- LLB -->
@@ -143,7 +145,7 @@ switch ($frame) {
 	    <?php } ?>
 	    <tr>
 		<!-- RR -->
-		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" width="1" height="<?php echo $hRR ?>" alt="" name="frameRR"></td>
+		<td width="<?php echo $widthRR ?>" style="background-image:url(<?php echo "$base/$imageRR" ?>)"><img src="<?php echo $pixelImage ?>" width="1" style="height:<?php echo $hRR ?>px" alt="" <?php echo $idFrameRR; ?>></td>
 	    </tr>
 	    <?php if ($heightRRB > 0) { ?>
 	    <tr>
@@ -163,7 +165,7 @@ switch ($frame) {
 		<td width="<?php echo $widthBBL ?>"><img src="<?php echo "$base/$imageBBL" ?>" width="<?php echo $widthBBL ?>" height="<?php echo $heightBBL ?>" alt=""></td>
 		<?php } ?>
 		<!-- BB -->
-		<td height="<?php echo $heightBB ?>" style="background-image:url(<?php echo "$base/$imageBB" ?>)"><img src="<?php echo $pixelImage ?>" width="1" height="1" alt=""></td>
+		<td height="<?php echo $heightBB ?>" style="background-image:url(<?php echo "$base/$imageBB" ?>)"><img src="<?php echo $pixelImage ?>" width="1" height="1" alt="BB"></td>
 		<?php if ($widthBBR > 0) { ?>
 		<!-- BBR -->
 		<td width="<?php echo $widthBBR ?>"><img src="<?php echo "$base/$imageBBR" ?>" width="<?php echo $widthBBR ?>" height="<?php echo $heightBBR ?>" alt=""></td>
