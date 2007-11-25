@@ -24,7 +24,7 @@
  * Instead of using or duplicating memberships manually in Gallery.
  *
  * Gallery <-> phpBB2 integration ver. (www.snailsource.com)
- * Written by Martin Smallridge       <info@snailsource.com>
+ * Written by Martin Smallridge	   <info@snailsource.com>
  *
  * This file was modified for official integration into Gallery 1.4.3 by
  * Jens Tkotz

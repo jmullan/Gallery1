@@ -20,11 +20,11 @@
  * $Id$
  */
 
-/* This class is written for phpBB2 and provides full integration of the phpbb users database
+/** This class is written for phpBB2 and provides full integration of the phpbb users database
  * Instead of using or duplicating memberships manually in Gallery.
  *
  * Gallery <-> phpBB2 integration ver. (www.snailsource.com)
- * Written by Martin Smallridge       <info@snailsource.com>
+ * Written by Martin Smallridge	   <info@snailsource.com>
  *
  * This file was modified for official integration into Gallery 1.4.3 by
  * Jens Tkotz

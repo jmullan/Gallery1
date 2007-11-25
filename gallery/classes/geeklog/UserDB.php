@@ -18,86 +18,92 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 
 class Geeklog_UserDB extends Abstract_UserDB {
- var $db;
+	var $db;
 
- function Geeklog_UserDB() {
-   global $gallery;
+	function Geeklog_UserDB() {
+		global $gallery;
 
-   $this->nobody = new NobodyUser();
-   $this->everybody = new EverybodyUser();
+		$this->nobody = new NobodyUser();
+		$this->everybody = new EverybodyUser();
 
-/* New Property with Gallery 1.3 - created by object classes/gallery/UserDB  */
-/* May 08/2002: Blaine Lang  */
+		/* New Property with Gallery 1.3 - created by object classes/gallery/UserDB  */
+		/* May 08/2002: Blaine Lang  */
 
-   $this->loggedIn = new LoggedInUser();
+		$this->loggedIn = new LoggedInUser();
 
- }
-
- function getUidList() {
-   global $_TABLES;
-
-   $uidList = array();
-
-   $result = DB_query("SELECT uid FROM {$_TABLES['users']} WHERE uid > 1 AND passwd <> '" . md5('') . "' ORDER BY username");
-   $nrows = DB_numRows($result);
-
-   for ($i = 0; $i < $nrows; $i++) {
-     $A = DB_fetchArray($result);
-     array_push($uidList, $A['uid']);
-   }
-
-   $result = DB_query("SELECT grp_id FROM {$_TABLES['groups']} WHERE grp_id > 2 AND grp_id <> 13 ORDER BY grp_name");
-   $nrows = DB_numRows($result);
-
-   for ($i = 0; $i < $nrows; $i++) {
-     $A = DB_fetchArray($result);
-     array_push($uidList, 0 - $A['grp_id']);
-   }
-   
-   array_push($uidList, $this->nobody->getUid());
-   array_push($uidList, $this->everybody->getUid());
-   array_push($uidList, $this->loggedIn->getUid());
-
-   return $uidList;
- }
-
- function getUserByUsername($username, $level=0) {
-	global $uid;
-	if (!strcmp($username, $this->nobody->getUsername())) {
-		return $this->nobody;
-	} else if (!strcmp($username, $this->everybody->getUsername())) {
-		return $this->everybody;
-	} else if (!strcmp($uid, $this->loggedIn->getUid())) {
-		return $this->loggedIn;
 	}
 
-	$user = new Geeklog_User();
-	$user->loadByUsername($username);
+	function getUidList() {
+		global $_TABLES;
 
-return $user;
-}
+		$uidList = array();
 
- function getUserByUid($uid) {
-   global $gallery;
-   $userDir = $gallery->app->userDir;
+		$result = DB_query("SELECT uid FROM {$_TABLES['users']} WHERE uid > 1 AND passwd <> '" . md5('') . "' ORDER BY username");
+		$nrows = DB_numRows($result);
 
-   if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
-     return $this->nobody;
-   } else if (!strcmp($uid, $this->everybody->getUid())) {
-     return $this->everybody;
-   } else if (!strcmp($uid, $this->loggedIn->getUid())) {
-     return $this->loggedIn;
-   }
+		for ($i = 0; $i < $nrows; $i++) {
+			$A = DB_fetchArray($result);
+			array_push($uidList, $A['uid']);
+		}
 
-   $user = new Geeklog_User();
-   $user->loadByUid($uid);
-   return $user;
- }
+		$result = DB_query("SELECT grp_id FROM {$_TABLES['groups']} WHERE grp_id > 2 AND grp_id <> 13 ORDER BY grp_name");
+		$nrows = DB_numRows($result);
+
+		for ($i = 0; $i < $nrows; $i++) {
+			$A = DB_fetchArray($result);
+			array_push($uidList, 0 - $A['grp_id']);
+		}
+
+		array_push($uidList, $this->nobody->getUid());
+		array_push($uidList, $this->everybody->getUid());
+		array_push($uidList, $this->loggedIn->getUid());
+
+		return $uidList;
+	}
+
+	function getUserByUsername($username, $level=0) {
+		global $uid;
+		
+		if (!strcmp($username, $this->nobody->getUsername())) {
+			return $this->nobody;
+		}
+		else if (!strcmp($username, $this->everybody->getUsername())) {
+			return $this->everybody;
+		}
+		else if (!strcmp($uid, $this->loggedIn->getUid())) {
+			return $this->loggedIn;
+		}
+
+		$user = new Geeklog_User();
+		$user->loadByUsername($username);
+
+		return $user;
+	}
+
+	function getUserByUid($uid) {
+		global $gallery;
+		$userDir = $gallery->app->userDir;
+
+		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
+			return $this->nobody;
+		}
+		else if (!strcmp($uid, $this->everybody->getUid())) {
+			return $this->everybody;
+		}
+		else if (!strcmp($uid, $this->loggedIn->getUid())) {
+			return $this->loggedIn;
+		}
+
+		$user = new Geeklog_User();
+		$user->loadByUid($uid);
+		
+		return $user;
+	}
 }
 
 ?>
