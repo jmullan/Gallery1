@@ -30,11 +30,11 @@
 define('MODULES_PATH', './modules/');
 
 switch ($_REQUEST['op']) {
-    case 'modload':
+	case 'modload':
 	// Added with changes in Security for PhpBB2.
 	define('IN_PHPBB', true);
 
-        define ("LOADED_AS_MODULE","1");
+		define ("LOADED_AS_MODULE","1");
 	$phpbb_root_path = "./";
 	// connect to phpbb
 	include_once($phpbb_root_path . 'extension.inc');
@@ -53,17 +53,17 @@ switch ($_REQUEST['op']) {
 	$name = $_REQUEST['name'];
 	$file = $_REQUEST['file'];
 
-        // Security fix
-        if (ereg("\.\.",$name) || ereg("\.\.",$file)) {
-            echo 'Nice try :-)';
-            break;
-        } else {
+		// Security fix
+		if (ereg("\.\.",$name) || ereg("\.\.",$file)) {
+			echo 'Nice try :-)';
+			break;
+		} else {
 		include(MODULES_PATH."$name/$file.$phpEx");
-        }
-        break;
+		}
+		break;
 
-    default:
-        die ("Sorry, you can't access this file directly...");
-        break;
+	default:
+		die ("Sorry, you can't access this file directly...");
+		break;
 }
 ?>
