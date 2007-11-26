@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Gallery Context Help</title>
 <?php 
-     echo getStyleSheetLink();
-    ?>
+	 echo getStyleSheetLink();
+	?>
 </head>
 <body>
 <a name="top"></a>
