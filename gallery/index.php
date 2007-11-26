@@ -21,7 +21,6 @@
  */
 ?>
 <?php
-// Hack prevention.
 
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -31,29 +30,30 @@ global $MOS_GALLERY_PARAMS;
 // Mambo / Joomla calls index.php directly for popups - we need to make
 // sure that the option var has been extracted into the environment
 // otherwise it just won't work.
-$option = isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
-$mop = isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
-$name = isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
-$include = isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
-$postnuke = ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') ) ? true : false;
-$phpnuke = isset($GLOBALS['nukeurl']) ? true : false;
+$option		= isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
+$op			= isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
+$mop		= isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
+$name		= isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
+$include	= isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
+$postnuke	= ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') ) ? true : false;
+$phpnuke	= isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
  * Detect PHP-Nuke, Postnuke, phpBB2 or Mambo and react accordingly.
- * Gallery can run embedded in GeekLog too, but to catch this we need config.php
- * Therefore we have to detect GeekLog in init.php.
+ * Gallery can run embedded in GeekLog too, but to catch this we need
+ * config.php * Therefore we have to detect GeekLog in init.php.
+ *
  */
-
 if ($postnuke ||
-    $phpnuke ||
-    !strcmp($op, "modload") ||
-    !strcmp($mop, "modload") ||
-    isset($option)) {
+	$phpnuke ||
+	!strcmp($op, "modload") ||
+	!strcmp($mop, "modload") ||
+	isset($option))
+{
 	/*
 	 * Change this variable if your Gallery module has a different
 	 * name in the Nuke or phpBB2 modules directory.
-	 */
+	*/
 
 	if (isset($name)) {
 		$GALLERY_MODULENAME = $name;
@@ -68,8 +68,8 @@ if ($postnuke ||
 
 		if (isset($GLOBALS['_VERSION']->PRODUCT) &&
 		  $GLOBALS['_VERSION']->PRODUCT == 'Joomla!') {
-		    $GALLERY_EMBEDDED_INSIDE = 'joomla';
-		    $GALLERY_EMBEDDED_INSIDE_TYPE = 'joomla';
+			$GALLERY_EMBEDDED_INSIDE = 'joomla';
+			$GALLERY_EMBEDDED_INSIDE_TYPE = 'joomla';
 		}
 	}
 	elseif (isset($GLOBALS['phpbb_root_path'])) {
@@ -185,13 +185,14 @@ if ($postnuke ||
 		       );
 
 	if (!in_array($include, $safe_to_include)) {
-	    $include = htmlentities($include);
-	    print sprintf(_("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit %s's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array"),
-			    'Gallery', $include);
-	    exit;
+		$include = htmlentities($include);
+		printf ("Security error!  The file you tried to include is not on the <b>approved file list</b>.  To include this file you must edit Gallery's index.php and add <b>%s</b> to the <i>\$safe_to_include</i> array",
+				$include);
+		exit;
 	}
 	include(dirname(__FILE__) . "/$include");
-} else {
+}
+else {
 	include("albums.php");
 }
 ?>

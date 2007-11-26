@@ -190,25 +190,30 @@ if ($gallery->session->albumName && isset($index)) {
 								} else {
 									$gallery->album->deletePhoto($index);
 								}
-							} else {
+							}
+							else {
 								$resetHighlight = -1;
 								$gallery->album->deletePhoto($index,$resetHighlight);
 							}
+
 							$gallery->album->save(array(
 							  i18n("%s moved to %s"),
 							  $id,
 							  $postAlbum->fields['name']
 							  )
 							);
-						} else {
+						}
+						else {
 							echo gallery_error($err);
 							return;
 						}
-					} else {
+					}
+else {
 						echo sprintf(gTranslate('core', "Skipping Album #%d"), $startPhoto)."<br>";
 						 // we hit an album... don't move it... just increment the index
 						$index++;
 					}
+
 					$startPhoto++;
 					//end while
 				}
@@ -270,7 +275,8 @@ for ($i = 1; $i <= $numPhotos; $i++) {
 
 <?php
 // Don't reorder, trans-album move
-		} else if (!$reorder) {
+		}
+		else if (!$reorder) {
 			if ($gallery->album->isAlbum($index)) {
 				echo gTranslate('core', "Move the album to different position in your gallery:");
 				echo makeFormIntro("move_photo.php", array("name" => "move_to_album_form"));
@@ -341,7 +347,8 @@ if (sizeof($gallery->album->fields["votes"])> 0) {
 	print "<br>";
        	if ($gallery->album->fields["poll_type"] == "rank") {
 	       	echo "<font color=red>". gTranslate('core', "Note: items that have votes will lose these votes when moved to another album") . "</font>"; // can't move rank votes, doesn't  make sense.
-      	} else {
+      	}
+		else {
 	       	echo "<font color=red>". sprintf(gTranslate('core', "Note: items that have votes will lose these votes if moved to an album without compatible polling.  Compatible albums are marked with an &quot;%s&quot;."), "*") . "</font>";
        	}
 }

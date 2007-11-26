@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -51,10 +51,12 @@ if (!strcmp($cmd, "login")) {
 		if ($tmpUser && $tmpUser->isCorrectPassword($password)) {
 			$gallery->session->username = $uname;
 			$returnval = "SUCCESS";
-		} else {
+		}
+		else {
 			$returnval = "Login Incorrect";
 		}
-	} else {
+	}
+	else {
 		$returnval = "Missing Parameters";
 	}
 
@@ -65,20 +67,19 @@ if (!strcmp($cmd, "login")) {
 //-- fetch-albums --
 
 if (!strcmp($cmd, "fetch-albums")) {
-
 	$albumDB = new AlbumDB(FALSE);
-    $mynumalbums = $albumDB->numAlbums($gallery->user);
+	$mynumalbums = $albumDB->numAlbums($gallery->user);
 
-    // display all albums that the user can move album to
-    for ($i=1; $i<=$mynumalbums; $i++) {
-        $myAlbum=$albumDB->getAlbum($gallery->user, $i);
-        $albumName = urlencode($myAlbum->fields[name]);
-        $albumTitle = urlencode($myAlbum->fields[title]);
-        if ($gallery->user->canWriteToAlbum($myAlbum)) {
+	// display all albums that the user can move album to
+	for ($i=1; $i<=$mynumalbums; $i++) {
+		$myAlbum=$albumDB->getAlbum($gallery->user, $i);
+		$albumName = urlencode($myAlbum->fields[name]);
+		$albumTitle = urlencode($myAlbum->fields[title]);
+		if ($gallery->user->canWriteToAlbum($myAlbum)) {
 			echo "$albumName\t$albumTitle\n";
-        }
-        appendNestedAlbums(0, $albumName, $albumString);
-    }
+		}
+		appendNestedAlbums(0, $albumName, $albumString);
+	}
 	echo "SUCCESS";
 
 }
@@ -112,16 +113,13 @@ function appendNestedAlbums($level, $albumName, $albumString) {
 //-- add-photo --
 
 if (!strcmp($cmd, "add-item")) {
-
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-    	$error = _("User cannot add to album");
+		$error = gTranslate('core', "User cannot add to album");
 	}
-
 	else if (!$userfile_name) {
-    	$error = _("No file specified");
+		$error = gTranslate('core', "No file specified");
 	}
-
 	else {
 
 		$name = $userfile_name;
@@ -130,24 +128,25 @@ if (!strcmp($cmd, "add-item")) {
 		$tag = strtolower($tag);
 
 		if ($name) {
-    		process($userfile, $tag, $userfile_name, $setCaption);
+			process($userfile, $tag, $userfile_name, $setCaption);
 		}
 
 		$gallery->album->save(array(i18n("Image added")));
 
 		if ($temp_files) {
-    		/* Clean up the temporary url file */
-    		foreach ($temp_files as $tf => $junk) {
-        		fs_unlink($tf);
-    		}
+			/* Clean up the temporary url file */
+			foreach ($temp_files as $tf => $junk) {
+				fs_unlink($tf);
+			}
 		}
 
 	}
 
 	if ($error) {
-    	echo ("ERROR: $error");
-	} else {
-    	echo ("SUCCESS");
+		echo ("ERROR: $error");
+	}
+	else {
+		echo ("SUCCESS");
 	}
 
 }
@@ -157,8 +156,8 @@ if (!strcmp($cmd, "add-item")) {
 //-- Ugh.
 
 function process($file, $tag, $name, $setCaption="") {
-    global $gallery;
-    global $temp_files;
+	global $gallery;
+	global $temp_files;
 
     if (!strcmp($tag, "zip")) {
         if (!$gallery->app->feature["zip"]) {

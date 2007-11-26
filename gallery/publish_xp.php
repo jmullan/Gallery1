@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -42,7 +42,7 @@ if(empty($cmd)){
   $lines[] = '';
   $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\' . $gallery->app->galleryTitle . ']';
   $lines[] = '"displayname"="' . $gallery->app->galleryTitle . '"';
-  $lines[] = '"description"="' . sprintf(_("Publish Your Photos and Movies to %s."),  $gallery->app->galleryTitle) . '"';
+  $lines[] = '"description"="' . sprintf(gTranslate('core', "Publish Your Photos and Movies to %s."),  $gallery->app->galleryTitle) . '"';
   $lines[] = '"href"="' . makeGalleryUrl("publish_xp.php", array("cmd" => "publish")) . '"';
   $lines[] = '"icon"="' . $proto . '://' . $_SERVER['SERVER_NAME'] . '/favicon.ico"';
   print join("\r\n", $lines);
@@ -160,7 +160,7 @@ if (!strcmp($cmd, "fetch-albums")) {
 </form>
 </div>
 <?php
-    $ONNEXT_SCRIPT="folder.submit();"; 
+	$ONNEXT_SCRIPT="folder.submit();";
     $ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=publish\";";
     $WIZARD_BUTTONS="true,true,true";
 }
@@ -437,7 +437,7 @@ function OnNext() {
 }
 
 function window.onload() {
-   window.external.SetHeaderText("<?php echo $gallery->app->galleryTitle ?> <?php echo _("Photo Upload") ?>","<?php echo _("Upload Photos to") ?> <?php echo $gallery->app->galleryTitle ?>");
+   window.external.SetHeaderText("<?php echo $gallery->app->galleryTitle ?> <?php echo gTranslate('core', "Photo Upload") ?>","<?php echo gTranslate('core', "Upload Photos to") ?> <?php echo $gallery->app->galleryTitle ?>");
    window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS; ?>);
 }
 

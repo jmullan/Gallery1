@@ -44,15 +44,17 @@ if (isset($save)) {
     if ((($capture_year < 2070) && ($capture_year > 1969)) || ($capture_year < 100)) {
         $gallery->album->setCaption($index, $data);
         $gallery->album->setKeywords($index, $keywords);
-        $dateArray["year"] = $capture_year;
-        $dateArray["mon"] = $capture_mon;
-        $dateArray["mday"] = $capture_mday;
-        $dateArray["hours"] = $capture_hours;
-        $dateArray["minutes"] = $capture_minutes;
-        $dateArray["seconds"] = $capture_seconds;
+
+		$dateArray['year']		= $capture_year;
+		$dateArray['mon']		= $capture_mon;
+		$dateArray['mday']		= $capture_mday;
+		$dateArray['hours']		= $capture_hours;
+		$dateArray['minutes']	= $capture_minutes;
+		$dateArray['seconds']	= $capture_seconds;
 
         $timestamp = mktime($capture_hours, $capture_minutes, $capture_seconds, $capture_mon, $capture_mday, $capture_year);
         $gallery->album->setItemCaptureDate($index, $timestamp);
+
         if (isset($extra_fields)) {
             foreach ($extra_fields as $field => $value){
                 $gallery->album->setExtraField($index, $field, trim($value));
@@ -102,7 +104,8 @@ foreach ($gallery->album->getExtraFields() as $field) {
 	if (in_array($field, array_keys($translateableFields))) {
 		$fieldLabel = $translateableFields[$field];
 		$rows = 1;
-	} else {
+		}
+		else {
 		$fieldLabel = $field;
 		$rows = 3;
 	}

@@ -32,13 +32,6 @@ foreach ($sensitiveList as $sensitive) {
 }
 
 /*
-* Turn down the error reporting to just critical errors for now.
-* In v1.2, we know that we'll have lots and lots of warnings if
-* error reporting is turned all the way up.  We'll fix this in v2.0
-*/
-error_reporting(E_ALL & ~E_NOTICE);
-
-/*
 *  Seed the randomization pool once, instead of doing it every place
 *  that we use rand() or mt_rand()
 */
@@ -50,9 +43,10 @@ require(dirname(__FILE__) . "/util.php");
 
 /* Load bootstrap code */
 if (getOS() == OS_WINDOWS) {
-    include_once(dirname(__FILE__) . "/platform/fs_win32.php");
-} else {
-    include_once(dirname(__FILE__) . "/platform/fs_unix.php");
+	include_once(dirname(__FILE__) . "/platform/fs_win32.php");
+}
+else {
+	include_once(dirname(__FILE__) . "/platform/fs_unix.php");
 }
 
 if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
@@ -78,53 +72,57 @@ if (fs_file_exists(dirname(__FILE__) . "/config.php")) {
  *  OPEN Gallery TO SECURITY RISKS!  This is for advanced users only.
 */
 if (empty($gallery->app->skipRegisterGlobals) || $gallery->app->skipRegisterGlobals != "yes") {
-    $register_globals = @ini_get('register_globals');
-    if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
-        foreach (array_keys($_REQUEST) as $key) {
-            unset($$key);
-        }
-    }
+	$register_globals = @ini_get('register_globals');
+	if (!empty($register_globals) && !eregi("no|off|false", $register_globals)) {
+		foreach (array_keys($_REQUEST) as $key) {
+			unset($$key);
+		}
+	}
 }
 
 // Optional developer hook - location to add useful
 // functions such as code profiling modules
 if (file_exists(dirname(__FILE__) . "/lib/devel.php")) {
-    require_once(dirname(__FILE__) . "/lib/devel.php");
+	require_once(dirname(__FILE__) . "/lib/devel.php");
 }
 
 /*
- * Now we can catch if were are in GeekLog and if yes, include the common lib file.
+ * Now we can catch if were are in GeekLog
+ * We also include the common lib file as we need it in initLanguage()
  *
  * If the old example path is still set, remove it.
 */
-if (!empty($gallery->app->geeklog_dir) && $gallery->app->geeklog_dir == "/path/to/geeklog/public_html") {
-    $gallery->app->geeklog_dir = '';
+if (!empty($gallery->app->geeklog_dir) &&
+	$gallery->app->geeklog_dir == "/path/to/geeklog/public_html")
+{
+	$gallery->app->geeklog_dir = '';
 }
 
 // Verify that the geeklog_dir isn't overwritten with a remote exploit
 if (!empty($gallery->app->geeklog_dir) && !realpath($gallery->app->geeklog_dir)) {
-    print _("Security violation. Geeklog Dir is invalid.") ."\n";
+    print gTranslate('core', "Security violation. Geeklog Dir is invalid.") ."\n";
     exit;
 }
 elseif (!empty($gallery->app->geeklog_dir)) {
-    $GALLERY_EMBEDDED_INSIDE='GeekLog';
-    $GALLERY_EMBEDDED_INSIDE_TYPE = 'GeekLog';
+	$GALLERY_EMBEDDED_INSIDE='GeekLog';
+	$GALLERY_EMBEDDED_INSIDE_TYPE = 'GeekLog';
 
-    if (! defined ("GEEKLOG_DIR")) {
-        define ("GEEKLOG_DIR",$gallery->app->geeklog_dir);
-    }
+	if (! defined ("GEEKLOG_DIR")) {
+		define ("GEEKLOG_DIR",$gallery->app->geeklog_dir);
+	}
 
-    require_once(GEEKLOG_DIR . '/lib-common.php');
+	require_once(GEEKLOG_DIR . '/lib-common.php');
 }
 
 if (isset($gallery->app->devMode) && $gallery->app->devMode == 'yes') {
-    ini_set("display_errors", "1");
-    error_reporting(E_ALL);
+	ini_set("display_errors", "1");
+	error_reporting(E_ALL);
 }
 else {
-    error_reporting(E_ALL & ~E_NOTICE);
+	error_reporting(E_ALL & ~E_NOTICE);
 }
 
+error_reporting(E_ALL);
 /*
  * Detect if we're running under SSL and adjust the URL accordingly.
 */
@@ -146,14 +144,20 @@ if(isset($gallery->app)) {
     */
     if(isset($_SERVER['HTTP_USER_AGENT']) && strstr($_SERVER['HTTP_USER_AGENT'], 'CoralWebPrx')) {
         if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->photoAlbumURL)) {
-            $gallery->app->photoAlbumURL = ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->photoAlbumURL);
+			$gallery->app->photoAlbumURL =
+				ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->photoAlbumURL);
         }
 
-        $gallery->app->photoAlbumURL = ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->photoAlbumURL);
+		$gallery->app->photoAlbumURL =
+			ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->photoAlbumURL);
+
         if (ereg("^(http://[^:]+):(\d+)(.*)$", $gallery->app->albumDirURL)) {
-            $gallery->app->albumDirURL = ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->albumDirURL);
+			$gallery->app->albumDirURL =
+				ereg_replace("^(http://[^:]+):(\d+)(.*)$", "\1.\2\3", $galllery->app->albumDirURL);
         }
-        $gallery->app->albumDirURL = ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->albumDirURL);
+
+		$gallery->app->albumDirURL =
+			ereg_replace("^(http://[^/]+)(.*)$", '\1.nyud.net:8090\2',$gallery->app->albumDirURL);
     }
 }
 
@@ -164,7 +168,7 @@ if(isset($gallery->app)) {
 set_magic_quotes_runtime(0);
 
 if (!isset($GALLERY_NO_SESSIONS)) {
-    require(dirname(__FILE__) . "/session.php");
+	require(dirname(__FILE__) . "/session.php");
 }
 
 // We need to init the language before we include the files below, as they contain gettext calls.
@@ -304,6 +308,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             else {
                 $gallery->database{"user_prefix"} = 'nukea_';
             }
+
             $gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
             $gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
 
@@ -347,7 +352,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             	$dbuser = $GLOBALS['dbuser'];
             	$dbpasswd = $GLOBALS['dbpasswd'];
             	$dbname = $GLOBALS['dbname'];
-            } else {
+			}
+			else {
             	$dbhost = $GLOBALS['db']->server;
             	$dbuser = $GLOBALS['db']->user;
             	$dbpasswd = $GLOBALS['db']->password;
@@ -356,7 +362,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 
             $gallery->database{"phpbb"} = new MySQL_Database($dbhost, $dbuser, $dbpasswd, $dbname);
 
-            //	    $gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
+			//		$gallery->database{"phpbb"}->setTablePrefix($GLOBALS['table_prefix']);
             $gallery->database{"prefix"} = $GLOBALS['table_prefix'];
             /* Load our user database (and user object) */
             $gallery->userDB = new phpbb_UserDB;
@@ -399,23 +405,29 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             }
             elseif (!empty($mosConfig_db)) {
                 $gallery->session->mambo->mosRoot = dirname($_SERVER['PHP_SELF']);
+
                 if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
                     $gallery->session->mambo->mosRoot .= '/';
                 }
-                $gallery->session->mambo->mosConfig_host     = $mosConfig_host;
-                $gallery->session->mambo->mosConfig_user     = $mosConfig_user;
+				$gallery->session->mambo->mosConfig_host	 = $mosConfig_host;
+				$gallery->session->mambo->mosConfig_user	 = $mosConfig_user;
                 $gallery->session->mambo->mosConfig_password = $mosConfig_password;
-                $gallery->session->mambo->mosConfig_db       = $mosConfig_db;
+				$gallery->session->mambo->mosConfig_db	   = $mosConfig_db;
                 $gallery->session->mambo->mosConfig_dbprefix = $mosConfig_dbprefix;
-                $gallery->session->mambo->mosConfig_lang     = $mosConfig_lang;
+				$gallery->session->mambo->mosConfig_lang	 = $mosConfig_lang;
                 $gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
             }
             else {
-                echo 'init.php: ' . _("Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
+				echo 'init.php: ' . gTranslate('core', "Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
                 exit;
             }
 
-            $gallery->database{'mambo'} = new MySQL_Database($mosConfig_host, $mosConfig_user, $mosConfig_password, $mosConfig_db);
+			$gallery->database{'mambo'} = new MySQL_Database(
+												$mosConfig_host,
+												$mosConfig_user,
+												$mosConfig_password,
+												$mosConfig_db);
+
             $gallery->database{'user_prefix'} = $mosConfig_dbprefix;
             $gallery->database{'fields'} = array (
                 'name'  => 'name',
@@ -432,10 +444,12 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
                 $gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 
                 /* We were loaded correctly through Mambo, so we dont need/want "old" session infos */
-            } elseif (!empty($gallery->session->username) && empty($my)) {
+			}
+			elseif (!empty($gallery->session->username) && empty($my)) {
                 /* This happens, when we are in a Popup */
                 $gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
-            } else {
+			}
+			else {
                 /* logout */
                 unset($gallery->session->username);
                 unset($gallery->session->language);
@@ -507,8 +521,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
             $gallery->database{"admin_prefix"} = $GLOBALS['prefix'] . 'b_';
 
             /* Select the appropriate field names */
-            $gallery->database{'fields'} =
-            array (
+			$gallery->database{'fields'} = array (
                 'name'  => 'name',
                 'uname' => 'username',
                 'email' => 'user_email',
@@ -581,7 +594,8 @@ if (!empty($gallery->session->albumName)) {
     $ret = $gallery->album->load($gallery->session->albumName);
     if (!$ret) {
         $gallery->session->albumName = "";
-    } else {
+	}
+	else {
         if ($gallery->album->versionOutOfDate()) {
             include_once(dirname(__FILE__) . "/upgrade_album.php");
             exit;

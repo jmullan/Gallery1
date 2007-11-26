@@ -1,23 +1,23 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id$
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2007 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
 */
 ?>
 <?php
@@ -31,26 +31,27 @@ list($full, $index, $imageareas, $formaction) = getRequestVar(array('full', 'ind
 
 // Hack check and prevent errors
 if (! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    header("Location: " . makeAlbumHeaderUrl());
-    return;
+	header("Location: " . makeAlbumHeaderUrl());
+	return;
 }
 
 if ($index > $gallery->album->numPhotos(1)) {
-    $index = 1;
+	$index = 1;
 }
 $id = $gallery->album->getPhotoId($index);
 
 // Determine if user has the rights to view full-sized images
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
-    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
-    return;
-} elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
-    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
-    return;
+	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
+	return;
+}
+elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
+	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+	return;
 }
 
 if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
-    $full = NULL;
+	$full = NULL;
 }
 
 switch($formaction) {
@@ -62,6 +63,7 @@ switch($formaction) {
             $gallery->album->save();
         }
     break;
+
     case 'create':
         list($xvals, $yvals, $url, $text) = getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
         if (isset($xvals) && isset($yvals)) {
@@ -70,28 +72,34 @@ switch($formaction) {
 
             if (!empty($xcoords)) {
                 $coords = $xcoords[0] .',' . $ycoords[0];
+
                 for ($i = 1 ; $i < sizeof($xcoords); $i++) {
                     $coords .= ','. $xcoords[$i] .',' . $ycoords[$i];
                 }
+
                 $gallery->album->addImageArea($index, array(
                     'coords'   => $coords,
                     'x_coords' => $xvals,
                     'y_coords' => $yvals,
-                    'url'      => $url,
+					'url'	  => $url,
                     'hover_text' => $text)
                 );
+
                 $gallery->album->save();
             }
         }
     break;
+
     case 'update':
         list($url, $text) = getRequestVar(array('areaurl', 'areatext'));
+
         foreach($imageareas as $area_index) {
             $gallery->album->updateImageArea($index, $area_index, array(
-                'url'      => $url,
+				'url'	  => $url,
                 'hover_text' => $text)
             );
         }
+
         $gallery->album->save();
     break;
 
@@ -113,8 +121,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $gallery->app->galleryTitle; ?> :: ImageMaps :: </title>
   <?php
-common_header();
-?>
+  common_header();
+  ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php
@@ -129,8 +137,8 @@ if (!empty($allImageAreas)) {
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
-      init_mousemove();
- </script>
+  init_mousemove();
+  </script>
 
 <?php
 
@@ -195,17 +203,17 @@ list($width, $height) = $photo->getDimensions($full);
 echo showImageMap($index, $gallery->album->getPhotoPath($index, $full));
 
 if (!empty($allImageAreas)) {
-    echo "\n". '<script type="text/javascript">';
-    echo "\n\tvar map = new Array();";
-    foreach($gallery->album->getAllImageAreas($index) as $nr => $area) {
-        echo "\n\t map[$nr] = new Array();";
-        echo "\n\t map[$nr]['x_coords'] = new Array(". $area['x_coords'] .');';
-        echo "\n\t map[$nr]['y_coords'] = new Array(". $area['y_coords'] .');';
-        echo "\n\t map[$nr]['url'] = '". $area['url'] ."';";
-        echo "\n\t map[$nr]['hover_text'] = '". addslashes($area['hover_text']) ."';";
-    }
+	echo "\n". '<script type="text/javascript">';
+	echo "\n\tvar map = new Array();";
+	foreach($gallery->album->getAllImageAreas($index) as $nr => $area) {
+		echo "\n\t map[$nr] = new Array();";
+		echo "\n\t map[$nr]['x_coords'] = new Array(". $area['x_coords'] .');';
+		echo "\n\t map[$nr]['y_coords'] = new Array(". $area['y_coords'] .');';
+		echo "\n\t map[$nr]['url'] = '". $area['url'] ."';";
+		echo "\n\t map[$nr]['hover_text'] = '". addslashes($area['hover_text']) ."';";
+	}
 
-    echo "\n</script>";
+	echo "\n</script>";
 
     $photoTag = $gallery->album->getPhotoTag($index, $full,"id=\"myPic\" usemap=\"myMap\"");
 }
@@ -255,7 +263,7 @@ echo makeFormIntro('imagemap.php',
 if (!empty($allImageAreas)) {
     $selectSize = (sizeof($allImageAreas) > 10) ? 10:sizeof($allImageAreas);
 
-    echo gTranslate('core', "Select entries to show image area in your photo.");
+	echo gTranslate('core', "Select entries to show ImageMap areas in your photo.");
     echo "<br><select id=\"imageareas\" name=\"imageareas[]\" size=\"$selectSize\" multiple onChange=\"updatePictureAndArea()\">";
     foreach($gallery->album->getAllImageAreas($index) as $nr => $coords) {
         echo "\n<option value=\"$nr\">Map $nr</option>";
@@ -271,14 +279,14 @@ if (!empty($allImageAreas)) {
     echo '<div class="attention">'. gTranslate('core', "Be aware, that the text of ALL selected entries will be updated!") .'</div>';
 }
 else {
-    echo gTranslate('core', "No ImageMaps");
+	echo gTranslate('core', "No ImageMaps");
 }
 ?>
   </td>
   <td>
-    <div id="myCanvas" style="border: 1px dashed red; width:<?php echo $image->width; ?>px; height:<?php echo $image->height; ?>px">
-      <?php echo $photoTag; ?>
-    </div>
+	<div id="myCanvas" style="border: 1px dashed red; width:<?php echo $image->width; ?>px; height:<?php echo $image->height; ?>px">
+	  <?php echo $photoTag; ?>
+	</div>
   </td>
 </tr>
 </table>
@@ -300,7 +308,7 @@ echo languageSelector();
 ?>
  	<script type="text/javascript">
 	<!--
-		initPaintArea ();
+	initPaintArea ();
 	//-->
 	</script>
 <?php
