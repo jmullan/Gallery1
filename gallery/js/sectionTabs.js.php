@@ -1,15 +1,15 @@
 <?php
+
 /**
- * Gallery SVN info
+ * Gallery SVN ID:
  * $Id$
 */
 
 function insertSectionToggle() {
 ?>
+	<!-- This Javascript and the Tabs are inspired by the Horde Forms code -->
 
-<!-- This Javascript and the Tabs are inspired by the Horde Forms code -->
-
-        function configSection(inittab) {
+	function configSection(inittab) {
 
                 this.toggle = function(id) {
                         document.getElementById(this.oldtab).style.display 	= 'none';
@@ -31,7 +31,7 @@ function insertSectionToggle() {
 		}
 
 		this.getTabByName = function(name) {
-			for (var itemNr=0; itemNr <= Sections.length; itemNr++) {
+			for (var itemNr = 0; itemNr <= Sections.length; itemNr++) {
 				if (Sections[itemNr] == name) {
 					return (itemNr);
 				}
@@ -40,23 +40,24 @@ function insertSectionToggle() {
 
 		this.nextTab = function() {
 			if (this.currentSectionNr < Sections.length-1) {
-				nextTab=this.getTabByNr(this.currentSectionNr+1);
+				nextTab = this.getTabByNr(this.currentSectionNr+1);
 				this.toggle(nextTab);
 			}
 		}
 
 		this.prevTab = function() {
 			if (this.currentSectionNr >0) {
-				prevTab=this.getTabByNr(this.currentSectionNr-1);
+				prevTab = this.getTabByNr(this.currentSectionNr-1);
 				this.toggle(prevTab);
 			}
 		}
 
 		// Init Values
 
-                this.oldtab=inittab;
-		this.currentSectionNr= this.getTabByName(inittab);
+		this.oldtab = inittab;
+		this.currentSectionNr = this.getTabByName(inittab);
 
 	}
 <?php
 }
+

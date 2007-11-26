@@ -1,27 +1,29 @@
 <?php
 /*
- * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or (at
- * your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
- *
- * $Id$
- */
+* Gallery - a web based photo album viewer and editor
+* Copyright (C) 2000-2007 Bharat Mediratta
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or (at
+* your option) any later version.
+*
+* This program is distributed in the hope that it will be useful, but
+* WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+*
+* $Id$
+*/
 ?>
 <?php
-    require_once(dirname(__FILE__) . '/init.php');
+	require_once(dirname(__FILE__) . '/init.php');
+
+	doctype();
 ?>
 <html>
 <head>
@@ -33,13 +35,15 @@
 <?php configLogin(basename(__FILE__)); ?>
 
 <div class="header"><?php echo gTranslate('config', "Gallery Diagnostics") ?></div>
-<p></p>
+
 <div class="sitedesc">
 <?php echo gTranslate('config', "This page is designed to provide some diagnostics about your server to help you find issues that may prevent Gallery from functioning properly.") ?>
 <?php echo ' ' . gTranslate('config', "The config wizard tries all kinds of diagnostics to try to find and work around any issues that it finds on your system, but there may be other problems that we have not thought of.") ?>
 <?php echo ' ' . gTranslate('config', "You can use these tools to find out more about your setup") ?>:
 </div>
-<p></p>
+
+<br>
+
 	<table class="inner" width="100%">
 	  <tr>
 	    <th class="separator"> <?php echo gTranslate('config', "Tool") ?> </th>
@@ -106,12 +110,8 @@
 	  </tr>
 	</table>
 
-	<p> </p>
+	<p align="center"><?php echo returnToConfig(); ?></p>
 
-	<center>
-	  <?php echo returnToConfig(); ?>
-	</center>
-
-    </body>
-  </html>
+</body>
+</html>
 

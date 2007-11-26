@@ -117,15 +117,15 @@ foreach ($constants as $key => $val) {
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
 
-/*
-** This is a somewhat strange workaround i made for a strange SunOS with
-** register global On an Magic Quotes On.
-** The problem is that we have send/get hidden fields which are named like
-** foo[bar]. So the result is, the $key=foo[bar] and $gallery->session->configForm->$key seems to fail.
-** The former solution were to do create a string which is like the value
-** of $key and put it in $real via eval().
-** This also seemed not to work.
-** 06/2004, Jens Tkotz
+	/*
+	 * This is a somewhat strange workaround i made for a strange SunOS with
+	 * register global On an Magic Quotes On.
+	 * The problem is that we have send/get hidden fields which are named like
+	 * foo[bar]. So the result is, the $key=foo[bar] and $gallery->session->configForm->$key seems to fail.
+	 * The former solution were to do create a string which is like the value
+	 * of $key and put it in $real via eval().
+	 * This also seemed not to work.
+	 * 06/2004, Jens Tkotz
 */
 	if ($bracketStart > 0 && $bracketEnd > 0) {
 		$subKey = substr($key,0, $bracketStart);
@@ -133,9 +133,11 @@ foreach ($constants as $key => $val) {
 		$newKey = $gallery->session->configForm->$subKey;
 		key_strip_slashes($newKey);
 		$real = $newKey[$subValue];
-	} elseif (isset($gallery->session->configForm->$key)) {
+	}
+	elseif (isset($gallery->session->configForm->$key)) {
 		$real = $gallery->session->configForm->$key;
-	} else {
+	}
+	else {
 		$real = '';
         }
 
@@ -413,7 +415,8 @@ foreach ($defaults as $key => $val) {
 	if (!isset($gallery->session->configForm->$key) && !isset($defaults[$key]['optional'])) {
 		$gallery->session->configData .= error_missing($defaults[$key]['prompt'], $key);
 		$error++;
-	} elseif (isset($gallery->session->configForm->$key)) {
+	}
+	elseif (isset($gallery->session->configForm->$key)) {
 		if (get_magic_quotes_gpc() && !isset($val['noStripSlash'])) {
 			$gallery->session->configForm->$key = array_stripslashes($gallery->session->configForm->$key);
 		}
@@ -428,14 +431,17 @@ foreach ($defaults as $key => $val) {
 						$string="\$gallery->app->default[\"$key\"][$sub_key][\"$sub_sub_key\"] = \"$sub_sub_value\";\n";
 						$gallery->session->configData .= $string;
 					}
-				} else {
+				}
+				else {
 					$string = "\$gallery->app->default[\"$key\"][] = \"$sub_value\";\n";
 					$gallery->session->configData .= $string;
 				}
 			}
-		} else {
+		}
+		else {
 			$gallery->session->configData .= defaults($key, $gallery->session->configForm->$key);
 		}
+
 		if (isset($defaults[$key]['verify-func'])) {
 			$func = $defaults[$key]['verify-func'];
 			list($success, $fail) = $func($gallery->session->configForm->$key);

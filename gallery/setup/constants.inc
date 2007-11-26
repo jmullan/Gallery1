@@ -72,7 +72,6 @@ function toggleSMTP(show) {
 		document.getElementById('subgroup_SMTP').style.display = 'none';
 	}
 }
-
 </script>
 <?php
 $i = 0;

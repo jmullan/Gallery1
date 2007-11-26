@@ -42,23 +42,23 @@ function infoLine($messages, $type = '') {
 function errorRow($key) {
     global $gErrors;
 
-    if (!empty($gErrors[$key])) {
-        echo "\n<tr>";
-        echo "\n  <td colspan=\"2\">";
-	echo "\n  ". gallery_error($gErrors[$key]);
-	echo "  </td>";
-        echo "\n</tr>";
-    }
+	if (!empty($gErrors[$key])) {
+		echo "\n<tr>";
+		echo "\n  <td colspan=\"2\">";
+		echo "\n  ". gallery_error($gErrors[$key]);
+		echo "  </td>";
+		echo "\n</tr>";
+	}
 }
 
 function processingMsg($buf) {
-    echo "\n<br>$buf";
-    my_flush();
+	echo "\n- $buf<br>";
+	my_flush();
 }
 
 /* returns the offical name of the gallery */
 function Gallery() {
-    return "Gallery";
+	return "Gallery";
 }
 
 function poweredBy () {
@@ -78,7 +78,7 @@ function poweredBy () {
 }
 
 function debugMessage($msg, $file, $line, $level = NULL) {
-    global $gallery;
+	global $gallery;
 
     if (isDebugging($level)) {
         echo "\n<div class=\"debugmessage\">". basename($file) ."::$line -> $msg</div>\n";

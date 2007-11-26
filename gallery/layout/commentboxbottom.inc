@@ -15,8 +15,10 @@ if(!$embeddedAlbum == 1) {
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
 		echo "\n". '<input type="submit" value="'. _("Delete marked comments") .'">';
 	}
+
 	?>
 	</form>
+
 <br>
 	</td>
 	<td width="20">&nbsp;</td>

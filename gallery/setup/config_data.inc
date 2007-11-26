@@ -1269,7 +1269,7 @@ $constants = array_merge($constants, array(
 		'desc' => gTranslate('config',"The settings in this section are intended for advanced users only.") .
 		  '<br><span class="attention">'.
 		  gTranslate('config',"Be aware that settings changed on this tab may have severe performance or security consequences and do so at your own risk.") .
-		'<span>'
+		'</span>'
 	),
 	'debuglevel' => array(
 		'prompt' => gTranslate('config',"Debug Level"),

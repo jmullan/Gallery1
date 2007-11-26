@@ -22,25 +22,28 @@
 ?>
 <?php 
     require_once(dirname(__FILE__) . '/init.php');
+    
+    doctype();
 ?>
 <html>
 <head>
-	<title><?php echo _("Gallery Netpbm Check") ?></title>
+	<title><?php echo gTranslate('config', "Gallery Netpbm Check") ?></title>
 	<?php echo getStyleSheetLink() ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php configLogin(basename(__FILE__)); ?>
 <?php $app_name='Netpbm' ?>
 
-<h1 class="header"><?php echo sprintf(_("Check %s"), $app_name) ?></h1>
+<h1 class="header"><?php printf(gTranslate('config', "Check %s"), $app_name) ?></h1>
 
 <div class="sitedesc">
 <?php 
-    echo sprintf(_("This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
-    echo sprintf(_("You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
+	printf(gTranslate('config', "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
+    printf(gTranslate('config', "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
 ?>
 </div>
-<p>
+
+<br>
 
 <table width="100%">
 <tr>
@@ -48,7 +51,7 @@
 		<table class="inner" width="100%">
 		<tr>
 			<td class="desc">
-				<?php echo _("Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
+				<?php echo gTranslate('config', "Loading configuration files.  If you see an error here, it is probably because you have not successfully run the config wizard.") ?>
 			</td>
 
 <?php
@@ -56,7 +59,7 @@ if (gallerySanityCheck() != NULL) {
 ?>
 		</tr>
 		<tr>
-			<td class="errorlong"><?php echo _("It seems that you did not configure your GALLERY. Please run and finish the configuration wizard.") ?></td>
+			<td class="errorlong"><?php echo gTranslate('config', "It seems that you did not configure your GALLERY. Please run and finish the configuration wizard.") ?></td>
 		</tr>
 		</table>
 		<p><?php echo returnToConfig(); ?></p>
@@ -67,10 +70,11 @@ if (gallerySanityCheck() != NULL) {
 </html>
 <?php
         exit;
-} else {
+}
+else {
 	require(GALLERY_BASE . '/config.php'); 
 ?>
-			<td class="Success"><?php echo _("OK") ?></td>
+			<td class="success"><?php echo gTranslate('config', "OK") ?></td>
 		</tr>
 		</table>
 <?php } ?>
@@ -80,22 +84,22 @@ if (gallerySanityCheck() != NULL) {
 	<td>
 		<table class="inner" width="100%">	
 		<tr>
-			<td class="desc"><?php echo _("Let us see if we can figure out what operating system you are using.") ?></td>
+			<td class="desc"><?php echo gTranslate('config', "Let us see if we can figure out what operating system you are using.") ?></td>
 		</tr>
 		<tr>
 			<td class="desc">
-			<?php echo _("This is what your system reports") ?>:
+			<?php echo gTranslate('config', "This is what your system reports") ?>:
 			<p><b><?php passthru("uname -a"); ?></b></p>
 
-			<p><?php echo _("This is the type of system on which PHP was compiled") ?>:</p>
+			<p><?php echo gTranslate('config', "This is the type of system on which PHP was compiled") ?>:</p>
 			<p><b><?php echo php_uname() ?></b></p>
-			<p><?php echo _("Make sure that the values above make sense to you.") ?></p>
+			<p><?php echo gTranslate('config', "Make sure that the values above make sense to you.") ?></p>
 			
 			<p>
-<?php echo "\t\t\t". sprintf(_("Look for keywords like %s, %s, %s etc. in the output above."), 
+<?php echo "\t\t\t". sprintf(gTranslate('config', "Look for keywords like %s, %s, %s etc. in the output above."), 
 		'&quot;Linux&quot;', '&quot;Windows&quot;', '&quot;FreeBSD&quot;');
-	echo _("If both the attempts above failed, you should ask your ISP what operating system you are using."); 
-	echo sprintf(_("You can check via %s, they can often tell you."),
+	echo gTranslate('config', "If both the attempts above failed, you should ask your ISP what operating system you are using."); 
+	printf(gTranslate('config', "You can check via %s, they can often tell you."),
 		'<a href="http://www.netcraft.com/whats?host=' .
 		$_SERVER['HTTP_HOST'] . 
 		'">Netcraft</a>') ;
@@ -111,9 +115,9 @@ if (gallerySanityCheck() != NULL) {
 		<table class="inner" width="100%">
 		<tr>
 			<td class="desc">
-				<?php echo sprintf(_("You told the config wizard that your %s binaries live here:"), $app_name) . "\n" ?>
-				<p><ul><b><?php echo $gallery->app->pnmDir ?></b></ul></p>
-				<p><?php echo sprintf(_("If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."), $app_name) . "\n"; ?>
+				<?php printf(gTranslate('config', "You told the config wizard that your %s binaries live here:"), $app_name) . "\n" ?>
+				<div style="padding: 20px;" class="emphasis"><?php echo $gallery->app->pnmDir ?></div>
+				<?php printf(gTranslate('config', "If that is not right (or if it is blank), re-run the configuration wizard and enter a location for %s."), $app_name) . "\n"; ?>
 			</td>
 		</tr>
 <?php
@@ -122,12 +126,12 @@ if (gallerySanityCheck() != NULL) {
 	if (! inOpenBasedir($gallery->app->pnmDir)) {
 ?>
 		<tr>
-			<td class="warningpct" width="100%"><?php echo sprintf(_("<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"), 
+			<td class="warningpct" width="100%"><?php printf(gTranslate('config', "<b>Note:</b> Your %s directory (%s) is not in your open_basedir list %s"), 
 						$app_name,
 						$gallery->app->pnmDir,
 						'<ul>'.  ini_get('open_basedir') . '</ul>');
-						echo _("The open_basedir list is specified in php.ini.") . "<br>";
-						echo _("The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable.") ."\n"; ?>
+						echo gTranslate('config', "The open_basedir list is specified in php.ini.") . "<br>";
+						echo gTranslate('config', "The result is, that we can't perform all of our basic checks on the files to make sure that they exist and they're executable.") ."\n"; ?>
 			</td>
 		</tr>
 <?php	} ?>
@@ -139,13 +143,13 @@ if (gallerySanityCheck() != NULL) {
 		<table class="inner" width="100%">
 		<tr>
 			<td class="desc">
-				<?php echo sprintf(_("We are going to test each %s binary individually."), $app_name) ?>  
+				<?php printf(gTranslate('config', "We are going to test each %s binary individually."), $app_name) ?>  
 				<p><?php
 				if (!empty($show_details)) {
-					print sprintf(_("%sClick here%s to hide the details"), 
+					print sprintf(gTranslate('config', "%sClick here%s to hide the details"), 
 						'<a href="check_Netpbm.php?show_details=0">','</a>');
 				} else {
-					print sprintf(_("If you see errors, you should %sclick here%s to see more details"),
+					print sprintf(gTranslate('config', "If you see errors, you should %sclick here%s to see more details"),
 						'<a href="check_Netpbm.php?show_details=1">','</a>');
 				}
 ?>				
@@ -173,14 +177,18 @@ $binaries = array("giftopnm",
 	    );
 
 foreach ($binaries as $bin) {
-	$result=checkNetpbm($bin);
+	$result = checkNetpbm($bin);
+	
 	if (isset($result['details'])) {
 		$width_1col="30%";
-	} else {
+	}
+	else {
 		$width_1col="100%";
 	}
+	
 	echo "\n\t\t<tr>";
-	echo "\n\t\t\t". '<td class="desc" width="'. $width_1col .'">' . _("Checking:"). ' <b>' . $result[0] . '</b></td>';
+	echo "\n\t\t\t". '<td class="desc" width="'. $width_1col .'">' . gTranslate('config', "Checking:"). ' <b>' . $result[0] . '</b></td>';
+	
 	if (isset($result['error'])) {
 		echo "\n\t\t\t". '<td style="white-space:nowrap;" class="errorpct">'. $result['error'] . '</td>';
 	} else {
@@ -192,7 +200,7 @@ foreach ($binaries as $bin) {
 			echo "\n\t\t\t<br>" . $detail;
 		}
 	}
-	echo "\n\t\t\t</td>";
+
 	echo "\n\t\t</tr>";
 }
 
@@ -210,27 +218,25 @@ if (fs_file_exists($debugfile)) {
 		<table class="inner" width="100%">
 		<tr>
 			<td class="desc"><?php 
-				echo sprintf(_("If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
+				printf(gTranslate('config', "If you see an error above complaining about reading or writing to %s then this is likely a permission/configuration issue on your system.  If it mentions %s then it's because your system is configured with %s enabled."),
 					"<b>$debugfile</b>",
 					'<i>open_basedir</i>',
 					'<a href="http://www.php.net/manual/en/configuration.php#ini.open-basedir"> open_basedir</a>') ;
-				echo "   ". sprintf(_("You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
+				echo "   ". sprintf(gTranslate('config', "You should talk to your system administrator about this, or see the %sGallery Help Page%s."),
 					'<a href="http://gallery.sourceforge.net/help.php">',
 					'</a>');
 
 ?>
-			<p><?php echo sprintf(_("For other errors, please refer to the list of possible responses in %s to get more information."), '<a href="http://gallery.sourceforge.net/faq.php">FAQ</a> C.2'); ?>
+			<p><?php printf(gTranslate('config', "For other errors, please refer to the list of possible responses in %s to get more information."), '<a href="http://gallery.sourceforge.net/faq.php">FAQ</a> C.2'); ?>
 			</p>
 			</td>
 		</tr>
 		</table>
-		<table class="inner" width="100%">
-		<tr>
-			<td class="desc" align="center"><?php 	echo returnToConfig(); ?></td>
-		</tr>
-		</table>
 	</td>
 </tr>
+</table>
+
+<p class="inner" align="center"><?php echo returnToConfig(); ?></p>
 
 </body>
 </html>
@@ -247,7 +253,7 @@ function checkNetpbm($cmd) {
 	$ok=1;
 	if (inOpenBasedir($gallery->app->pnmDir)) {
 		if (! fs_file_exists($cmd)) {
-			$result['error'] = sprintf(_("File %s does not exist."), $cmd);
+			$result['error'] = sprintf(gTranslate('config', "File %s does not exist."), $cmd);
 			$ok = 0;
 		}
 	}
@@ -258,7 +264,7 @@ function checkNetpbm($cmd) {
 
 	if ($ok) {
 		if ($status != $gallery->app->expectedExecStatus) {
-			$result['error'] = sprintf(_("Expected status: %s, but actually received status %s."),
+			$result['error'] = sprintf(gTranslate('config', "Expected status: %s, but actually received status %s."),
 					$gallery->app->expectedExecStatus,
 					$status);
 
@@ -272,7 +278,7 @@ function checkNetpbm($cmd) {
 	 */
 	if ($ok) {
 		if (getOS() == OS_WINDOWS) {
-			$version = "<i>" . _("can't detect version on Windows") ."</i>";
+			$version = "<i>" . gTranslate('config', "can't detect version on Windows") ."</i>";
 		} else {
 			if ($fd = fopen($debugfile, "r")) {
 				$linecount = 0;
@@ -298,7 +304,7 @@ function checkNetpbm($cmd) {
 	}
 
 	if (! empty($ok)) {
-		$result['ok']=sprintf(_("OK!  Version: %s"), $version);
+		$result['ok'] = sprintf(gTranslate('config', "OK!  Version: %s"), $version);
 	}
 	return $result;
 }

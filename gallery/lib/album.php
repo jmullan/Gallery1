@@ -27,41 +27,50 @@
 
 /**
  * Returns the default value for an album property. Either for a specific album, or global
- * @param   string    $property
- * @param   object    $album
+ * @param   string	$property
+ * @param   object	$album
  * @param   boolean   $global
- * @return  mixed     $retPoperty
- * @author Jens Tkotz <jens@peino.de>
+ * @return  mixed	 $retPoperty
+ * @author  Jens Tkotz
  */
 function getPropertyDefault($property, $album = false, $global = false) {
-    global $gallery;
+	global $gallery;
 
-    $retProperty = false;
+	$retProperty = false;
 
-    if ($album) {
-        if ($global) {
-            if(isset($gallery->app->default[$property])) {
-                $retProperty = $gallery->app->default[$property];
-            }
-        }
-        else {
-            if(isset($album->fields[$property])) {
-                $retProperty = $album->fields[$property];
-            }
-        }
-    }
-    elseif ($global) {
-        $retProperty = $gallery->app->$property;
-    }
+	if ($album) {
+		if ($global) {
+			if(isset($gallery->app->default[$property])) {
+				$retProperty = $gallery->app->default[$property];
+			}
+		}
+		else {
+			if(isset($album->fields[$property])) {
+				$retProperty = $album->fields[$property];
+			}
+		}
+	}
+	elseif ($global) {
+		$retProperty = $gallery->app->$property;
+	}
 
-    return $retProperty;
+	return $retProperty;
 }
 
-function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
+/**
+ * Creates a new album
+ *
+ * @param string	$parentName
+ * @param string	$newAlbumName
+ * @param string	$newAlbumTitle
+ * @param string	$newAlbumDesc
+ * @return mixed
+ */
+function createNewAlbum($parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
 	global $gallery;
 
 	// get parent album name
-	$albumDB = new AlbumDB(FALSE);
+	$albumDB = new AlbumDB(false);
 
 	// set new album name from param or default
 	$gallery->session->albumName = $albumDB->newAlbumName($newAlbumName);
@@ -91,49 +100,50 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 		$parentAlbum->addNestedAlbum($gallery->session->albumName);
 		$parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
 		// Set default values in nested album to match settings of parent.
-		$gallery->album->fields["perms"]           = $parentAlbum->fields["perms"];
-		$gallery->album->fields['extra_fields']    = $parentAlbum->fields['extra_fields'];
-		$gallery->album->fields["bgcolor"]         = $parentAlbum->fields["bgcolor"];
-		$gallery->album->fields["textcolor"]       = $parentAlbum->fields["textcolor"];
-		$gallery->album->fields["linkcolor"]       = $parentAlbum->fields["linkcolor"];
-		$gallery->album->fields['background']      = $parentAlbum->fields['background'];
-		$gallery->album->fields["font"]            = $parentAlbum->fields["font"];
-		$gallery->album->fields["border"]          = $parentAlbum->fields["border"];
-		$gallery->album->fields["bordercolor"]     = $parentAlbum->fields["bordercolor"];
-		$gallery->album->fields["thumb_size"]      = $parentAlbum->fields["thumb_size"];
-		$gallery->album->fields["resize_size"]     = $parentAlbum->fields["resize_size"];
-		$gallery->album->fields["resize_file_size"]     = $parentAlbum->fields["resize_file_size"];
-		$gallery->album->fields['max_size']        = $parentAlbum->fields['max_size'];
-		$gallery->album->fields['max_file_size']   = $parentAlbum->fields['max_file_size'];
-		$gallery->album->fields['returnto']        = $parentAlbum->fields['returnto'];
-		$gallery->album->fields["rows"]            = $parentAlbum->fields["rows"];
-		$gallery->album->fields["cols"]            = $parentAlbum->fields["cols"];
-		$gallery->album->fields["fit_to_window"]   = $parentAlbum->fields["fit_to_window"];
-		$gallery->album->fields["use_fullOnly"]    = $parentAlbum->fields["use_fullOnly"];
-		$gallery->album->fields["print_photos"]    = $parentAlbum->fields["print_photos"];
-		$gallery->album->fields['slideshow_type']  = $parentAlbum->fields['slideshow_type'];
-		$gallery->album->fields['slideshow_recursive'] = $parentAlbum->fields['slideshow_recursive'];
-		$gallery->album->fields['slideshow_length'] = $parentAlbum->fields['slideshow_length'];
-		$gallery->album->fields['slideshow_loop'] = $parentAlbum->fields['slideshow_loop'];
-		$gallery->album->fields['album_frame']    = $parentAlbum->fields['album_frame'];
-		$gallery->album->fields['thumb_frame']    = $parentAlbum->fields['thumb_frame'];
-		$gallery->album->fields['image_frame']    = $parentAlbum->fields['image_frame'];
-		$gallery->album->fields["use_exif"]        = $parentAlbum->fields["use_exif"];
-		$gallery->album->fields["display_clicks"]  = $parentAlbum->fields["display_clicks"];
-		$gallery->album->fields["item_owner_display"] = $parentAlbum->fields["item_owner_display"];
-		$gallery->album->fields["item_owner_modify"]  = $parentAlbum->fields["item_owner_modify"];
-		$gallery->album->fields["item_owner_delete"]  = $parentAlbum->fields["item_owner_delete"];
-		$gallery->album->fields["add_to_beginning"]   = $parentAlbum->fields["add_to_beginning"];
-		$gallery->album->fields['showDimensions']  = $parentAlbum->fields['showDimensions'];
+		$gallery->album->fields["perms"]			= $parentAlbum->fields["perms"];
+		$gallery->album->fields['extra_fields']		= $parentAlbum->fields['extra_fields'];
+		$gallery->album->fields["bgcolor"]			= $parentAlbum->fields["bgcolor"];
+		$gallery->album->fields["textcolor"]		= $parentAlbum->fields["textcolor"];
+		$gallery->album->fields["linkcolor"]		= $parentAlbum->fields["linkcolor"];
+		$gallery->album->fields['background']		= $parentAlbum->fields['background'];
+		$gallery->album->fields["font"]				= $parentAlbum->fields["font"];
+		$gallery->album->fields["border"]			= $parentAlbum->fields["border"];
+		$gallery->album->fields["bordercolor"]		= $parentAlbum->fields["bordercolor"];
+		$gallery->album->fields["thumb_size"]		= $parentAlbum->fields["thumb_size"];
+		$gallery->album->fields["resize_size"]		= $parentAlbum->fields["resize_size"];
+		$gallery->album->fields["resize_file_size"] = $parentAlbum->fields["resize_file_size"];
+		$gallery->album->fields['max_size']			= $parentAlbum->fields['max_size'];
+		$gallery->album->fields['max_file_size']	= $parentAlbum->fields['max_file_size'];
+		$gallery->album->fields['returnto']			= $parentAlbum->fields['returnto'];
+		$gallery->album->fields["rows"]				= $parentAlbum->fields["rows"];
+		$gallery->album->fields["cols"]				= $parentAlbum->fields["cols"];
+		$gallery->album->fields["fit_to_window"]	= $parentAlbum->fields["fit_to_window"];
+		$gallery->album->fields["use_fullOnly"]		= $parentAlbum->fields["use_fullOnly"];
+		$gallery->album->fields["print_photos"]		= $parentAlbum->fields["print_photos"];
+		$gallery->album->fields['slideshow_type']	= $parentAlbum->fields['slideshow_type'];
+		$gallery->album->fields['slideshow_recursive']	= $parentAlbum->fields['slideshow_recursive'];
+		$gallery->album->fields['slideshow_length']	= $parentAlbum->fields['slideshow_length'];
+		$gallery->album->fields['slideshow_loop']	= $parentAlbum->fields['slideshow_loop'];
+		$gallery->album->fields['album_frame']		= $parentAlbum->fields['album_frame'];
+		$gallery->album->fields['thumb_frame']		= $parentAlbum->fields['thumb_frame'];
+		$gallery->album->fields['image_frame']		= $parentAlbum->fields['image_frame'];
+		$gallery->album->fields["use_exif"]			= $parentAlbum->fields["use_exif"];
+		$gallery->album->fields["display_clicks"]	= $parentAlbum->fields["display_clicks"];
+		$gallery->album->fields["item_owner_display"]	= $parentAlbum->fields["item_owner_display"];
+		$gallery->album->fields["item_owner_modify"]	= $parentAlbum->fields["item_owner_modify"];
+		$gallery->album->fields["item_owner_delete"]	= $parentAlbum->fields["item_owner_delete"];
+		$gallery->album->fields["add_to_beginning"]	= $parentAlbum->fields["add_to_beginning"];
+		$gallery->album->fields['showDimensions']	= $parentAlbum->fields['showDimensions'];
 
 		$returnVal = $gallery->album->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
-	} else {
+	}
+	else {
 		$gallery->album->save(array(i18n("Root album \"{$gallery->album->fields['name']}\" created.")));
 		/*
 		* Get a new albumDB because our old copy is not up to
 		* date after we created a new album
 		*/
-		$albumDB = new AlbumDB(FALSE);
+		$albumDB = new AlbumDB(false);
 
 		/* move the album to the top if not a nested album*/
 		$numAlbums = $albumDB->numAlbums($gallery->user);
@@ -143,7 +153,8 @@ function createNewAlbum( $parentName, $newAlbumName = '', $newAlbumTitle = '', $
 
 	if (!empty($returnVal)) {
 		return $gallery->session->albumName;
-	} else {
+	}
+	else {
 		return 0;
 	}
 }

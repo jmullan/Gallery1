@@ -28,39 +28,39 @@
  * The return is given by the valcheck function
 */
 function sanityCheck($var, $type, $default = NULL, $choices = array()) {
-      switch ($type) {
-        case 'int':
-            return isValidInteger($var, true, NULL, true);
-            break;
-        case 'int_notnull':
-            return isValidInteger($var, true, $default, false);
-            break;
-        case 'int_empty':
-            return isValidInteger($var, true, $default, true);
-            break;
-        case 'pictureFrame':
-            if(array_key_exists($var, available_frames())) {
-                return array(0, $var, '');
-            }
-            else {
-                return array(2, $var, gTranslate('common', "The given frame is not valid."));
-            }
-            break;
-        case 'inChoice':
-            if(in_array($var, $choices)) {
-                return array(0, $var, '');
-            }
-            elseif (isset($default)) {
+	  switch ($type) {
+		case 'int':
+			return isValidInteger($var, true, NULL, true);
+			break;
+		case 'int_notnull':
+			return isValidInteger($var, true, $default, false);
+			break;
+		case 'int_empty':
+			return isValidInteger($var, true, $default, true);
+			break;
+		case 'pictureFrame':
+			if(array_key_exists($var, available_frames())) {
+				return array(0, $var, '');
+			}
+			else {
+				return array(2, $var, gTranslate('common', "The given frame is not valid."));
+			}
+			break;
+		case 'inChoice':
+			if(in_array($var, $choices)) {
+				return array(0, $var, '');
+			}
+			elseif (isset($default)) {
                 return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
-            }
-            else {
+			}
+			else {
                 return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
-            }
-            break;
-        default:
-        case 'text':
-            return isValidText($var, $default);
-            break;
+			}
+			break;
+		default:
+		case 'text':
+			return isValidText($var, $default);
+			break;
 	}
 }
 
@@ -77,77 +77,78 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
  * --- Debug message
 */
 function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyAllowed = false) {
-    $minimum = ($includingZero == true) ? 0 : 1;
+	$minimum = ($includingZero == true) ? 0 : 1;
 
-    if ( $mixed == '' && $emptyAllowed) {
-        return array(0, $mixed, '');
-    }
+	if ( $mixed == '' && $emptyAllowed) {
+		return array(0, $mixed, '');
+	}
 
-    if (! is_numeric($mixed)) {
-        if (isset($default)) {
+	if (! is_numeric($mixed)) {
+		if (isset($default)) {
             return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not numeric."));
-        }
-        else {
+		}
+		else {
             return array(2, false, gTranslate('common', "The given value is not numeric."));
-        }
-    }
+		}
+	}
 
-    if($mixed < $minimum) {
-        if (isset($default)) {
+	if($mixed < $minimum) {
+		if (isset($default)) {
             return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid integer."));
-        }
-        else {
+		}
+		else {
             return array(2, false, gTranslate('common', "The given value not a valid integer."));
-        }
-    }
+		}
+	}
 
-    return array(0, $mixed, '');
+	return array(0, $mixed, '');
 }
 
 function isValidText($text, $default = NULL) {
-    $sanitized = sanitizeInput($text);
+	$sanitized = sanitizeInput($text);
 
-    if($sanitized != $text) {
-        if(isset($default)) {
+	if($sanitized != $text) {
+		if(isset($default)) {
             return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid text."));
-        }
-        else {
+		}
+		else {
             return array(1, $sanitized, gTranslate('common', "Value was corrected, because the original value is not a valid text."));
-        }
-    }
-    else {
-        return array(0, $text, '');
-    }
+		}
+	}
+	else {
+		return array(0, $text, '');
+	}
 }
 
 function sanitizeInput($value) {
-    if(!is_array($value) && strip_tags($value) == $value) {
-        return $value;
-    }
+	if(!is_array($value) && strip_tags($value) == $value) {
+		return $value;
+	}
 
-    require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
-    static $safehtml;
+	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+	static $safehtml;
 
-    if (empty($safehtml)) {
-        $safehtml =& new HTML_Safe();
-    }
+	if (empty($safehtml)) {
+		$safehtml =& new HTML_Safe();
+	}
 
-    if(is_array($value)) {
-        //echo "\n -> Array";
-        //echo "\n<ul>";
-        foreach($value as $subkey => $subvalue) {
-            //printf("\n<li>Checking SubValue: %s", htmlspecialchars($subkey));
-            $sanitized[$subkey] = sanitizeInput($subvalue);
-        }
-        //echo "\n</ul>";
-    }
-    else {
-        //echo " === ". htmlspecialchars($value);
-        $sanitized = $safehtml->parse($value);
-        if($sanitized != $value) {
-            //echo "--->". $sanitized;
-        }
-    }
-    return $sanitized;
+	if(is_array($value)) {
+		//echo "\n -> Array";
+		//echo "\n<ul>";
+		foreach($value as $subkey => $subvalue) {
+			//printf("\n<li>Checking SubValue: %s", htmlspecialchars($subkey));
+			$sanitized[$subkey] = sanitizeInput($subvalue);
+		}
+		//echo "\n</ul>";
+	}
+	else {
+		//echo " === ". htmlspecialchars($value);
+		$sanitized = $safehtml->parse($value);
+		if($sanitized != $value) {
+			//echo "--->". $sanitized;
+		}
+	}
+	return $sanitized;
 }
+
 ?>

@@ -27,20 +27,21 @@
 
 /**
  * Copies a file from $source to $dest.
- * @param  string    $source    Full path to source file.
- * @param  string    $dest      Full path to destination file.
- * @return boolean   $result    true on success, otherwise false
+ * @param  string	$source	Full path to source file.
+ * @param  string	$dest	Full path to destination file.
+ * @return boolean	$result	true on success, otherwise false
  */
 function fs_copy($source, $dest) {
-    $result = copy(fs_import_filename($source, 0), fs_import_filename($dest, 0));
-    chmod (fs_import_filename($dest, 0), 0644);
+	$result = copy(fs_import_filename($source, 0), fs_import_filename($dest, 0));
+	chmod (fs_import_filename($dest, 0), 0644);
 
-    return $result;
+	return $result;
 }
 
 function fs_file_exists($filename) {
 	$filename = fs_import_filename($filename, 0);
 	debug("Checking for [$filename] == " . @file_exists($filename));
+
 	return @file_exists($filename);
 }
 
@@ -64,7 +65,8 @@ function fs_file_get_contents($filename) {
 
 	if (function_exists("file_get_contents")) {
 		$tmp = @file_get_contents($filename);
-	} else {
+	}
+	else {
 		if ($fd = fs_fopen($fname, "rb")) {
 			while (!feof($fd)) {
 				$tmp .= fread($fd, 65536);
@@ -92,20 +94,20 @@ function fs_is_readable($filename) {
 
 function fs_is_writable($filename) {
 	$filename = fs_import_filename($filename, 0);
-        return @is_writable($filename);
+		return @is_writable($filename);
 }
 
 function fs_opendir($path) {
-    $path = fs_import_filename($path, 0);
+	$path = fs_import_filename($path, 0);
 
-    $dir_handle = @opendir($path);
-    if ($dir_handle) {
-        return $dir_handle;
-    }
-    else {
-        echo gallery_error(sprintf(_("Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
-	return false;
-    }
+	$dir_handle = @opendir($path);
+	if ($dir_handle) {
+		return $dir_handle;
+	}
+	else {
+		echo gallery_error(sprintf(gTranslate('core', "Gallery was not able to open dir: %s. <br>Please check permissions and existence"), $path));
+		return false;
+	}
 }
 
 function fs_rename($oldname, $newname) {
@@ -121,13 +123,15 @@ function fs_rename($oldname, $newname) {
 
 	debug("Rename $oldname -> $newname");
 	clearstatcache();
+
 	if (file_exists("$newname.bak")) {
 		unlink("$newname.bak");
 	}
 	if (file_exists("$newname")) {
 		return rename($newname, "$newname.bak") &&
 			rename($oldname, $newname);
-	} else {
+	}
+	else {
 		return rename($oldname, $newname);
 	}
 }
@@ -137,8 +141,9 @@ function fs_stat($filename) {
 	return stat($filename);
 }
 
-/* This function deletes a file.
-** The errormessage is surpressed !
+/**
+ * This function deletes a file.
+ * The errormessage is surpressed !
 */
 function fs_unlink($filename) {
 	$filename = fs_import_filename($filename, 0);
@@ -155,14 +160,14 @@ function fs_executable($filename) {
 
 /**
  * Creates a directory
- * @param  string    $dirname
- * @param  string    $perms     Optional perms, given in octal format
- * @return boolean   $result    true on success, otherwise false
+ * @param  string	$dirname
+ * @param  string	$perms		Optional perms, given in octal format
+ * @return boolean	$result		true on success, otherwise false
  */
 function fs_mkdir($dirname, $perms = 0700) {
-    $result = @mkdir(fs_import_filename($dirname, 0), $perms);
+	$result = @mkdir(fs_import_filename($dirname, 0), $perms);
 
-    return $result;
+	return $result;
 }
 
 function fs_import_filename($filename, $for_exec=1) {
@@ -198,7 +203,6 @@ function fs_import_filename($filename, $for_exec=1) {
 }
 
 function fs_export_filename($filename) {
-
 	# Convert "d:\winnt\temp" to "d:/winnt/temp"
 	#
 	while (strstr($filename, "\\\\")) {
@@ -210,7 +214,6 @@ function fs_export_filename($filename) {
 }
 
 function fs_exec($cmd, &$results, &$status, $debugfile) {
-
 	// We can't redirect stderr with Windows.  Hope that we won't need to.
 	return exec($cmd, $results, $status);
 }
