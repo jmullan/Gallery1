@@ -44,8 +44,8 @@ if (!function_exists ('array_key_exists')) {
  *  This class partially mirrors the functionality of the java class
  *	java.util.Properties.
  *
- *@author     tmiller
- *@created    September 29, 2002
+ *@author	 tmiller
+ *@created	September 29, 2002
  */
 class Properties {
 	var $map;

@@ -7,12 +7,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -66,7 +66,7 @@ class Image {
 
 		/*
 		 * Fix a specific bug where the width/height are reversed
-		 * for sized images 
+		 * for sized images
 		 */
 		if ($this->version < 3) {
 			if ($this->resizedName) {
@@ -78,9 +78,11 @@ class Image {
 		}
 
 		$filename = "$dir/$this->name.$this->type";
+
 		if (!isMovie($this->type)) {
 			if (!$this->raw_width) {
 				list($w, $h) = getDimensions($filename);
+
 				$this->raw_width = $w;
 				$this->raw_height = $h;
 				$changed = 1;
@@ -101,7 +103,7 @@ class Image {
 	function resize($dir, $target, $filesize, $pathToResized) {
 		global $gallery;
 
-		/* getting rid of the resized image */
+		// getting rid of the resized image
 		if (stristr($target, "orig")) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
 			$this->width = $w;
@@ -110,8 +112,9 @@ class Image {
 				fs_unlink("$dir/$this->resizedName.$this->type");
 			}
 			$this->resizedName = '';
-		/* doing a resize */
-		} else {
+		}
+		// doing a resize
+		else {
 			$name = $this->name;
 			$type = $this->type;
 			
@@ -136,12 +139,15 @@ class Image {
 
 	function delete($dir) {
 		clearstatcache();
+
 		if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 			fs_unlink("$dir/$this->resizedName.$this->type");
 		}
+
 		if (fs_file_exists("$dir/$this->name.highlight.$this->type")) {
 			fs_unlink("$dir/$this->name.highlight.$this->type");
 		}
+
 		fs_unlink("$dir/$this->name.$this->type");
 	}
 
@@ -194,10 +200,11 @@ class Image {
 	    }
 	}
 
-	function getName($dir, $full=0) {
+	function getName($dir, $full = false) {
 		if ((!$full) && (fs_file_exists("$dir/$this->resizedName.$this->type"))) {
 			return $this->resizedName;
-		} else {
+		}
+		else {
 			return $this->name;
 		}
 	}
@@ -209,7 +216,8 @@ class Image {
 	function getPath($dir, $full=0) {
 		if ($full || !$this->resizedName) {
 		    $name = $this->name;
-		} else {
+		}
+		else {
 		    $name = $this->resizedName;
 		}
 		return "$dir/$name.$this->type";
@@ -271,8 +279,10 @@ class Image {
 	}
 
 	function getThumbRectangle() {
-		return array($this->thumb_x, $this->thumb_y,
-		             $this->thumb_width, $this->thumb_height);
+		return array($this->thumb_x,
+					 $this->thumb_y,
+					 $this->thumb_width,
+					 $this->thumb_height);
 	}
 
 	function getRawDimensions() {
@@ -283,6 +293,6 @@ class Image {
 	    $filename = "$dir/$this->name.$this->type";
 	    return fs_filesize($filename);
 	}
-}	
+}
 
 ?>

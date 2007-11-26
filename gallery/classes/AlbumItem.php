@@ -54,7 +54,7 @@ class AlbumItem {
     function setUploadDate($uploadDate = '') {
         global $gallery;
 
-        if ($uploadDate) {
+		if (!empty($uploadDate)) {
             // set the upload time from the time provided
             $this->uploadDate = $uploadDate;
         } else {
@@ -75,11 +75,11 @@ class AlbumItem {
         }
     }
 
-    function setItemCaptureDate($itemCaptureDate="") {
+	function setItemCaptureDate($itemCaptureDate = '') {
         global $gallery;
         /* Before 1.4.5-cvs-b106 this was an associative array */
 
-        if (!$itemCaptureDate) {
+		if (empty($itemCaptureDate)) {
             // we want to attempt to set the $itemCaptureDate from the information that
             // is available to us.  First, look in the exif data if it is a jpeg file.  If that
             // doesn't help us, then use the file creation date.
@@ -97,20 +97,22 @@ class AlbumItem {
         // need to set this value for old photos that don't yet contain it.
         if (!$this->itemCaptureDate) {
             return 0;
-        } else {
+		}
+		else {
             return $this->itemCaptureDate;
         }
     }
 
-    function getExif($dir, $forceRefresh = 0) {
+	function getExif($dir, $forceRefresh = false) {
         global $gallery;
+
         $file = $dir . "/" . $this->image->name . "." . $this->image->type;
 
         /*
         * If we don't already have the exif data, get it now.
         * Otherwise return what we have.
         */
-        $needToSave = 0;
+		$needToSave = false;
         if ($gallery->app->cacheExif != 'yes') {
             if (empty($this->exifData) || $forceRefresh) {
                 /* Cache the current EXIF data and update the item capture date */
@@ -122,11 +124,12 @@ class AlbumItem {
                 $status = 0;
             }
             $returnExifData = $this->exifData;
-        } else {
+		}
+		else {
             /* If the data is cached but the feature is disabled, remove the cache */
             if (!empty($this->exifData)) {
                 unset($this->exifData);
-                $needToSave = 1;
+				$needToSave = true;
             }
             list($status, $returnExifData) = getExif($file);
         }
@@ -237,10 +240,12 @@ class AlbumItem {
                 }
             }
         }
+
         if (strcmp($this->version, $gallery->album_version)) {
             $this->version = $gallery->album_version;
             $changed = 1;
         }
+
         return $changed;
     }
 
@@ -442,7 +447,8 @@ class AlbumItem {
     function getThumbDimensions($size = 0) {
         if ($this->thumbnail) {
             return $this->thumbnail->getDimensions($size);
-        } else {
+		}
+		else {
             return array(0, 0);
         }
     }
@@ -450,7 +456,8 @@ class AlbumItem {
     function getHighlightDimensions($size = 0) {
         if (is_object($this->highlightImage)) {
             return $this->highlightImage->getDimensions($size);
-        } else {
+		}
+		else {
             return array(0, 0);
         }
     }
@@ -483,7 +490,9 @@ class AlbumItem {
 
         $name = $this->image->name;
         $type = $this->image->type;
+
         $retval = rotate_image("$dir/$name.$type", "$dir/$name.$type", $direction, $type);
+
         if ($clearexifrotate && isset($gallery->app->use_exif) && ($type === 'jpg' || $type === 'jpeg')) {
             $path = $gallery->app->use_exif;
             exec_internal(fs_import_filename($path, 1) . " -norot '$dir/$name.$type'");
@@ -492,6 +501,7 @@ class AlbumItem {
         if (!$retval) {
             return $retval;
         }
+
         list($w, $h) = getDimensions("$dir/$name.$type");
         $this->image->setRawDimensions($w, $h);
 
@@ -504,18 +514,21 @@ class AlbumItem {
 
             list($w, $h) = getDimensions("$dir/$name.sized.$type");
             $this->image->setDimensions($w, $h);
-        } else {
+		}
+		else {
             $this->image->setDimensions($w, $h);
         }
 
         /* Reset the thumbnail to the default before regenerating thumb */
         $this->image->setThumbRectangle(0, 0, 0, 0);
         $this->makeThumbnail($dir, $thumb_size, $album);
+
         return 1;
     }
 
-    function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview=0, $previewSize=0, $wmSelect=0) {
+	function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview = 0, $previewSize = 0, $wmSelect = 0) {
         global $gallery;
+
         $type = $this->image->type;
         if (isMovie($type) || $this->isAlbum()) {
             // currently there is no watermarking support for movies
@@ -527,6 +540,7 @@ class AlbumItem {
         else if ($wmSelect > 2) {
             $wmSelect = 2;
         }
+
         $name = $this->image->name;
         $oldpreviews = glob($dir . "/$name.preview*.$type");
         if (!empty($oldpreviews) && is_array($oldpreviews)) {
@@ -534,13 +548,16 @@ class AlbumItem {
                 unlink($oldpreview);
             }
         }
+
         if ($preview) {
             $previewtag = "preview" . time();
             if (($previewSize == 0) && $this->isResized()) {
                 $src_image = "$dir/" . $this->image->resizedName . ".$type";
-            } else {
+			}
+			else {
                 $src_image = "$dir/$name.$type";
             }
+
             $retval = watermark_image(
               $src_image,
               "$dir/$name.$previewtag.$type",
@@ -548,6 +565,7 @@ class AlbumItem {
               $gallery->app->watermarkDir."/$wmAlphaName",
               $wmAlign, $wmAlignX, $wmAlignY
             );
+
             if ($retval) {
                 list($w, $h) = getDimensions("$dir/$name.$previewtag.$type");
 
@@ -579,18 +597,30 @@ class AlbumItem {
                     $retval = watermark_image(
                       "$dir/$name.sized.$type",
                       "$dir/$name.sized.$type",
-                      $gallery->app->watermarkDir."/$wmName",
-                      $gallery->app->watermarkDir."/$wmAlphaName",
-                      $wmAlign,
-                      $wmAlignX,
-                      $wmAlignY
+						$gallery->app->watermarkDir . '/' . $wmName,
+						$gallery->app->watermarkDir . '/' . $wmAlphaName,
+						$wmAlign,
+						$wmAlignX,
+						$wmAlignY
                     );
                 }
             }
         }
+
         return ($retval);
     }
 
+	/**
+	 * Creates the Image Object for an albumitem
+	 *
+	 * @param string	$dir	Albumdir
+	 * @param string	$name	Filname without extension
+	 * @param string	$tag	Extension
+	 * @param int		$thumb_size
+	 * @param object	$album
+	 * @param string	$pathToThumb
+	 * @return mixed	$ret
+	 */
     function setPhoto($dir, $name, $tag, $thumb_size, &$album, $pathToThumb = '') {
         global $gallery;
 
@@ -598,7 +628,7 @@ class AlbumItem {
         * Sanity: make sure we can handle the file first.
         */
         if (!isMovie($tag) && !valid_image("$dir/$name.$tag")) {
-            return gTranslate('core', "Invalid image") .": $name.$tag";
+			return sprintf(gTranslate('core',"Invalid image: %s"), "$name.$tag");
         }
 
         /* Set our image. */
@@ -606,9 +636,19 @@ class AlbumItem {
         $this->image->setFile($dir, $name, $tag);
 
         $ret = $this->makeThumbnail($dir, $thumb_size, $album, $pathToThumb);
+
         return $ret;
     }
 
+	/**
+	 * Creates the thumbnail for an image, or use a predefined for movies.
+	 *
+	 * @param string	$dir		Path to album
+	 * @param int		$thumb_size
+	 * @param object	$album
+	 * @param string	$pathToThumb
+	 * @return mixed
+	 */
     function makeThumbnail($dir, $thumb_size, &$album, $pathToThumb = '') {
         global $gallery;
         $name = $this->image->name;
@@ -641,6 +681,7 @@ class AlbumItem {
                   $this->image->thumb_y,
                   $this->image->thumb_width,
                   $this->image->thumb_height);
+
                 if ($ret) {
                     $ret = resize_image(
                     	"$dir/$name.thumb.$tag",
@@ -670,7 +711,8 @@ class AlbumItem {
                         	true,
                         	$gallery->app->thumbJpegImageQuality
                         );
-                    } else {
+					}
+					else {
                         $ret = resize_image(
                         	"$dir/$name.$tag",
                         	"$dir/$name.thumb.$tag",
@@ -708,12 +750,13 @@ class AlbumItem {
                 if ($this->highlight) {
                     $this->setHighlight($dir, 1, $album);
                 }
-            } else {
+            }
+			else {
                 return gTranslate('core', "Unable to make thumbnail.") ." ($ret)";
             }
         }
 
-        return 0;
+		return true;
     }
 
     function getPreviewTag($dir, $size = 0, $attrs = '') {
@@ -726,13 +769,15 @@ class AlbumItem {
 
     /**
 	 * @return	string	$alttext
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	 */
     function getAlttext() {
         $alttext = '';
+
         if (!empty($this->extraFields['AltText'])) {
             $alttext = $this->extraFields['AltText'];
-        } elseif (!empty($this->caption)) {
+		}
+		elseif (!empty($this->caption)) {
             $alttext = $this->caption;
         }
 
@@ -773,10 +818,11 @@ class AlbumItem {
         }
     }
 
-    function getPhotoPath($dir, $full = 0) {
+	function getPhotoPath($dir, $full = false) {
         if ($this->image) {
             return $this->image->getPath($dir, $full);
-        } else {
+		}
+		else {
             return "about:blank";
         }
     }
@@ -784,7 +830,7 @@ class AlbumItem {
     /**
 	 * @param	$full		boolean
 	 * @return	$imageName	string
-	 * @author	Jens Tkotz<jens@peino.de
+	 * @author	Jens Tkotz
 	 */
     function getImageName($full = false) {
         if($this->image) {
@@ -793,13 +839,15 @@ class AlbumItem {
         else {
             $imageName = "about:blank";
         }
+
         return $imageName;
     }
 
     function getPhotoId() {
         if ($this->image) {
             return $this->image->getId();
-        } else {
+		}
+		else {
             return "unknown";
         }
     }
@@ -816,6 +864,7 @@ class AlbumItem {
         if ($this->thumbnail) {
             $this->thumbnail->delete($dir);
         }
+
         if ($this->preview) {
             $this->preview->delete($dir);
         }
@@ -842,7 +891,7 @@ class AlbumItem {
     }
 
     /**
-	 * Returns true or false wether the item is in acceptableMovieList or not
+	 * Returns true or false whether the item is in acceptableMovieList or not
 	 * @return bool
 	 */
     function isMovie() {
