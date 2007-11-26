@@ -40,7 +40,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo _("Search") ?></title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo gTranslate('core', "Search") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
@@ -274,10 +274,10 @@ if (!empty($searchstring)) {
 	}
 
 	if (sizeof($skip) > 0) {
-		echo gallery_error(sprintf(_("Some albums not searched as they require upgrading to the latest version of %s first."),Gallery()));
+		echo gallery_error(sprintf(gTranslate('core', "Some albums not searched as they require upgrading to the latest version of %s first."),Gallery()));
 		if ($gallery->user->isAdmin()) {
 			print "<br>";
-			echo popup_link(_("Upgrade all albums."), "upgrade_album.php");
+			echo popup_link(gTranslate('core', "Upgrade all albums."), "upgrade_album.php");
 			print "<br>(";
 			$join_text='';
 			foreach($skip as $album) {
@@ -293,11 +293,10 @@ if (!empty($searchstring)) {
 }
 else {
 	/* No searchstring was given */
-	echo "\n<div align=\"center\">";
-	echo _("Search the Gallery's Album and Photo titles, descriptions and comments.");
-	echo "\n<br>";
-	echo addSearchForm($searchstring, 'center');
-	echo "</div>";
+	echo "\n<p align=\"center\">";
+	echo gTranslate('core', "Search the Gallery's Album and Photo titles, descriptions and comments.");
+	echo "\n</p>\n";
+	echo '<div class="right">'. addSearchForm($searchstring) . "\n</div>";
 }
 
 echo '<hr width="100%">';

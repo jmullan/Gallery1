@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -43,16 +43,20 @@ doctype();
 <b><?php echo _("Step 1") ?></b>
 <br>
 <?php 
-	echo sprintf(_("Download the %sXP Configuration File%s"), 
+	echo sprintf(gTranslate('core', "Download the %sXP Configuration File%s"),
 		'<a href="'.makeGalleryUrl('publish_xp.php').'">', '</a>');
-	echo sprintf(_("Save this file on your PC and rename it %s."), '"install_registry.reg"');
-	echo _("If it asks you for confirmation about changing the file type, answer &quot;yes&quot;.");
-	echo _("Right click on this file and you should see a menu appear.");
-	echo _("Select the <b>Merge</b> option (this should be at the top of the menu).");
-	echo _("It will ask you if you want to import these values into your registry.");
-	echo _("Click &quot;ok&quot;.");
-	echo _("It will tell you that the files were imported successfully.");
-	echo _("Click &quot;ok&quot; again.");
+	echo sprintf(gTranslate('core', "Save this file on your PC and rename it %s."), '"install_registry.reg"');
+	echo "\n<br>";
+	echo gTranslate('core', "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;.");
+	echo "\n<br>";
+	echo gTranslate('core', "Right click on this file and you should see a menu appear.");
+	echo "\n<br>";
+	echo gTranslate('core', "Select the <b>Merge</b> option (this should be at the top of the menu).");
+	echo "\n<br>";
+	echo gTranslate('core', "It will ask you if you want to import these values into your registry. Click &quot;ok&quot;.");
+	echo "\n<br>";
+	echo gTranslate('core', "It will tell you that the files were imported successfully.");
+	echo gTranslate('core', "Click &quot;ok&quot; again.");
 ?>
 <br><br>
 
@@ -69,6 +73,11 @@ doctype();
 <center>
 
 </div>
+
+<div class="center">
+  <?php echo galleryLink(makeGalleryUrl('add_photos.php', array('type' => 'popup')),gTranslate('core', "Return to Add Photos")); ?>
+</div>
+
 </body>
 </html>
 <?php

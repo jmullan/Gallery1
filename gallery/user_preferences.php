@@ -146,7 +146,7 @@ include(dirname(__FILE__) . '/html/userData.inc');
 	<input type="button" name="close" value="<?php echo gTranslate('core', "Close Window") ?>" onclick="parent.close()">
 </div>
 </form>
-</div>
+
 <script language="javascript1.2" type="text/JavaScript">
 <!--
 // position cursor in top form field
@@ -154,7 +154,6 @@ document.usermodify_form.uname.focus();
 //-->
 </script>
 </div>
-
 <?php print gallery_validation_link("user_preferences.php"); ?>
 
 </body>

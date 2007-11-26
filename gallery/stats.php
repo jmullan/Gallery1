@@ -15,10 +15,10 @@
  * Use stats.php?type=date&period=<x> where x is the number of months
  * that you want to display. For example:
  *   stats.php?type=date&period=0 displays all photos uploaded during
- *       the current month.
+ *	   the current month.
  *   stats.php?type=views?period=1 displays the number of views (clicks)
- *       for all photos uploaded during the last month and the current month
- *       stats.php?type=date&period=6 covers the last 6 months.
+ *	   for all photos uploaded during the last month and the current month
+ *	   stats.php?type=date&period=6 covers the last 6 months.
  *
  * The images listed can be restricted to one album by using the album
  * parameter. For example:
@@ -173,7 +173,7 @@ class cacheCtrl {
     var $expireSecs;
 
     function cacheCtrl($enabled = 0, $expireSecs = -1) {
-        $this->enabled    = $enabled;
+		$this->enabled	= $enabled;
         $this->expireSecs = $expireSecs;
     }
 }
@@ -514,21 +514,27 @@ if (empty($useCache)) {
 	    case 'votes':
 	        array_sort_by_fields($arrPhotos, 'votes', $order);
 		break;
+
 	    case 'views':
 	        array_sort_by_fields($arrPhotos, 'views', $order);
 		break;
+
 	    case 'date':
 	        array_sort_by_fields($arrPhotos, 'uploaddate', $order);
 		break;
+
 	    case 'cdate':
 	        array_sort_by_fields($arrPhotos, 'capturedate', $order);
 		break;
+
 	    case 'comments':
 	        array_sort_by_fields($arrPhotos, 'commentdate', $order);
 		break;
+
 	    case 'ratings':
 	        array_sort_by_fields($arrPhotos, 'rating', $order);
 		break;
+
 	    case 'random':
 	        array_sort_by_fields($arrPhotos, 'random', $order);
 		break;
@@ -539,7 +545,8 @@ if (empty($useCache)) {
 if (!empty($refreshcache) &&
     !isset($period) &&
     !isset($album) &&
-    is_array($arrPhotos)) {
+	is_array($arrPhotos))
+{
     writeGalleryStatsCache($cacheFilename);
 }
 
@@ -580,7 +587,8 @@ if (isset($album)) {
     if (isset($albumobj)) {
         if ($type == "comments" ) {
             $adminText .= sprintf(gTranslate('core', "%d items with comments in album: %s."), count($arrPhotos), $albumLink);
-        } else {
+        }
+		else {
             $adminText .= sprintf(gTranslate('core', "%d items in album: %s"), count($arrPhotos), $albumLink);
         }
     } else {
@@ -632,6 +640,7 @@ echo "<!-- End top nav -->";
 if ($useCache ) {
     readGalleryStatsCache($cacheFilename, $startPhoto, $photosPerPage );
 }
+
 if (isset($stm)) {
     $time = getmicrotime() - $time_start;
     echo sprintf(gTranslate('core', "Data load time %d seconds."), $time);
@@ -642,7 +651,8 @@ if (isset($stm)) {
 if (empty($showGrid)) {
     $cols = 1;
     $style = 'style="margin-right:3px; float:left"';
-} else {
+}
+else {
     $style = '';
 }
 
