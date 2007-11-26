@@ -37,7 +37,8 @@ if ($gallery->user->isLoggedIn() ) {
 	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
 		$commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
 	}
-} elseif (!isset($commenter_name)) {
+}
+elseif (!isset($commenter_name)) {
 	$commenter_name = '';
 }
 
@@ -47,20 +48,24 @@ if (empty($comment_text)) {
 
 if (isset($gallery->app->comments_length)) {
 	$maxlength = $gallery->app->comments_length;
-} else {
+}
+else {
 	$maxlength = 0;
 }
 
 if (isset($save)) {
 	if ( empty($commenter_name) || empty($comment_text)) {
 		$error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
-	} elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
+	}
+	elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
 		$error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars."), $maxlength);
-	} elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
+	}
+	elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
 		$error_text = gTranslate('core', "Your comment contains forbidden words. It will not be added.");
-	} else {
-// Uncomment to forbid html in comments.
-//		$comment_text = strip_tags($comment_text);
+	}
+	else {
+	// Uncomment to forbid html in comments.
+	//	$comment_text = strip_tags($comment_text);
 		$commenter_name = strip_tags($commenter_name);
 		$IPNumber = $_SERVER['REMOTE_ADDR'];
 		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);

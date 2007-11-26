@@ -36,6 +36,7 @@ if (isset($formaction) && $formaction == 'delete') {
 		$gallery->userDB->deleteUserByUsername($user);
 	}
 }
+
 if (!empty($formaction)) {
 	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
 }
@@ -68,7 +69,7 @@ foreach ($unames as $user) {
 if (! isset($error)) {
 	echo gTranslate('core', "Users can have special permissions in each album.") .
 	gTranslate('core', "If you delete this user, any such permissions go away.", "If you delete these users, any permissions will go away.", sizeof($unames)) .
-	gTranslate('core', "Users cannot be recreated.") .
+	gTranslate('core', "Deleted users cannot be recovered.") .
 	gTranslate('core', "Even if this user is recreated, those permissions are gone.", "Even if you recreate one of those users, the permissions are gone.", sizeof($unames));
 
 	echo "\n<p>" . gTranslate('core', "Do you really want to delete user:", "Do you really want to delete these users:", sizeof($unames));

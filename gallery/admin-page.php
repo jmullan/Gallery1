@@ -24,7 +24,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-        require_once(dirname(__FILE__) . '/init.php');
+		require_once(dirname(__FILE__) . '/init.php');
 }
 
 // Security check
@@ -33,9 +33,10 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-$adminOptions[] = array( 'text' => gTranslate('core', "Statistics"),
-			 'url' => makeGalleryUrl('stats-wizard.php'),
-			 'longtext' => gTranslate('core', "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
+$adminOptions[] = array(
+			'text' => gTranslate('core', "Statistics"),
+			'url' => makeGalleryUrl('stats-wizard.php'),
+			'longtext' => gTranslate('core', "View some statistics about your Gallery. Such as most viewed pictures, or best rated photos etc."));
 
 $adminOptions[] = array( 'text' => gTranslate('core', "Configuration wizard"),
 			 'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
@@ -53,9 +54,12 @@ $adminOptions[] = array( 'text' => gTranslate('core', "Validate albums"),
 			 'url' => makeGalleryUrl('tools/validate_albums.php'),
 			 'longtext' => gTranslate('core', "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2."));
 
-#$adminOptions[] = array( 'text' => gTranslate('core', "Gallery backup"),
-#			 'url' => makeGalleryUrl('backup_albums.php'),
-#			 'longtext' => gTranslate('core', "Make a backup of your Gallery."));
+/*
+$adminOptions[] = array(
+		'text' => gTranslate('core', "Gallery backup"),
+		'url' => makeGalleryUrl('backup_albums.php'),
+		'longtext' => gTranslate('core', "Make a backup of your Gallery."));
+*/
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
     $adminOptions[]  = array('text' => gTranslate('core', "Manage users"),

@@ -29,26 +29,28 @@ list($captionedAlbum, $extra_fields) = getRequestVar(array('captionedAlbum', 'ex
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    header("Location: " . makeAlbumHeaderUrl());
-    return;
+	header("Location: " . makeAlbumHeaderUrl());
+	return;
 }
 
 if (!isset($page)) {
-    $page = 1;
+	$page = 1;
 }
 
 $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
 
 if (!isset($perPage)) {
-    $perPage = $gallery->album->fields['rows'] * $gallery->album->fields['cols'];
-    if (!$perPage) {
-        $perPage = 5;
-    }
+	$perPage = $gallery->album->fields['rows'] * $gallery->album->fields['cols'];
+	if (!$perPage) {
+		$perPage = 5;
+	}
 }
 
 #-- save the captions from the previous page ---
-if (isset($save) || isset($next) || isset($prev)) {
-
+if (isset($save) ||
+	isset($next) ||
+	Isset($prev))
+{
     if ($captionedAlbum != $gallery->album->fields['name']) {
         echo gallery_error(gTranslate('core', "Captioned album does not match current album - aborting changes!"));
         echo '<br><br>';
@@ -56,65 +58,69 @@ if (isset($save) || isset($next) || isset($prev)) {
         exit;
     }
 
-    $i = 0;
-    $start = ($page - 1) * $perPage + 1;
-    while ($i < $start) {
-        $i++;
-    }
+	$i = 0;
+	$start = ($page - 1) * $perPage + 1;
+	while ($i < $start) {
+		$i++;
+	}
 
-    $count = 0;
-    while ($count < $perPage && $i <= $numPhotos) {
-        if ($gallery->album->isAlbum($i)) {
-            $myAlbumName = $gallery->album->getAlbumName($i);
-            $myAlbum = new Album();
-            $myAlbum->load($myAlbumName);
-            $myAlbum->fields['description'] = getRequestVar("new_captions_$i");
-            $myAlbum->save(array(i18n("Text has been changed")));
+	$count = 0;
+	while ($count < $perPage && $i <= $numPhotos) {
+		if ($gallery->album->isAlbum($i)) {
+			$myAlbumName = $gallery->album->getAlbumName($i);
+			$myAlbum = new Album();
+			$myAlbum->load($myAlbumName);
+			$myAlbum->fields['description'] = getRequestVar("new_captions_$i");
+			$myAlbum->save(array(i18n("Text has been changed")));
 
-        } else {
-            $gallery->album->setCaption($i, getRequestVar("new_captions_$i"));
-            $gallery->album->setKeywords($i, getRequestVar("new_keywords_$i"));
-            if (isset($extra_fields)) {
-                foreach ($extra_fields[$i] as $field => $value) {
-                    $gallery->album->setExtraField($i, $field, trim($value));
-                }
-            }
-        }
+		}
+		else {
+			$gallery->album->setCaption($i, getRequestVar("new_captions_$i"));
+			$gallery->album->setKeywords($i, getRequestVar("new_keywords_$i"));
+			if (isset($extra_fields)) {
+				foreach ($extra_fields[$i] as $field => $value) {
+					$gallery->album->setExtraField($i, $field, trim($value));
+				}
+			}
+		}
 
-        $i++;
-        $count++;
-    }
+		$i++;
+		$count++;
+	}
 
-    $gallery->album->save(array(i18n("Text has been changed")));
+	$gallery->album->save(array(i18n("Text has been changed")));
 }
 
 if (isset($cancel) || isset($save)) {
-    if (!isDebugging())
-    header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
-    else
-    echo "<br><a href='" . makeAlbumUrl($captionedAlbum) . "'>" . gTranslate('core', "Debugging: Click here to return to the album") . "</a><br>";
-    return;
+	if (!isDebugging()) {
+		header("Location: " . makeAlbumHeaderUrl($captionedAlbum));
+	}
+	else {
+		echo "<br><a href='" . makeAlbumUrl($captionedAlbum) . "'>" . gTranslate('core', "Debugging: Click here to return to the album") . "</a><br>";
+	}
+	return;
 }
 
 #-- did they hit next? ---
 if (isset($next)) {
-    $page++;
-} else if (isset($prev)) {
-    $page--;
+	$page++;
+}
+else if (isset($prev)) {
+	$page--;
 }
 
 $start = ($page - 1) * $perPage + 1;
 $maxPages = max(ceil($numPhotos / $perPage), 1);
 
 if ($page > $maxPages) {
-    $page = $maxPages;
+	$page = $maxPages;
 }
 $end = $start + $perPage;
 
 $nextPage = $page + 1;
 if ($nextPage > $maxPages) {
-    $nextPage = 1;
-    $last = 1;
+	$nextPage = 1;
+	$last = 1;
 }
 
 $thumbSize = $gallery->app->default["thumb_size"];
@@ -124,7 +130,7 @@ $pixelImage = "<img src=\"" . getImagePath('pixel_trans.gif') . "\" width=\"1\" 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
+	doctype();
 ?>
 <html>
 <head>
@@ -166,11 +172,12 @@ $borderwidth = $gallery->album->fields["border"];
 if ($borderwidth == 0) {
     $bordercolor = $gallery->album->fields["bgcolor"];
     $borderwidth = 0;
-} else {
+}
+else {
     $bordercolor = "black";
 }
 
-$adminText = gTranslate('core', "Multiple caption editor.") . " ";
+$adminText = gTranslate('core', "Multiple Caption Editor.") . " ";
 
 if ($maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%d items in this album on %s"),

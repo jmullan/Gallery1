@@ -27,13 +27,13 @@
 <?php
 
 if (!isset($gallery->version)) {
-    require_once(dirname(dirname(__FILE__)) . '/init.php');
+	require_once(dirname(dirname(__FILE__)) . '/init.php');
 }
 
 // Security check
 if (!$gallery->user->isAdmin()) {
-    header("Location: " . makeAlbumHeaderUrl());
-    exit;
+	header("Location: " . makeAlbumHeaderUrl());
+	exit;
 }
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
@@ -77,34 +77,34 @@ $g1_mode=getRequestVar('g1_mode');
 
 echo '<td class="borderleft-popup">';
 switch($g1_mode) {
-    case 'deleteComments':
-        deleteComments();
-    break;
+	case 'deleteComments':
+		deleteComments();
+	break;
 
-    case 'findBlacklistedComments':
-        findBlacklistedComments();
-    break;
+	case 'findBlacklistedComments':
+		findBlacklistedComments();
+	break;
 
-    case 'updateBlacklist':
-        updateBlacklist();
-    break;
+	case 'updateBlacklist':
+		updateBlacklist();
+	break;
 
-    case 'viewBlacklist':
-        viewBlacklist();
-    break;
+	case 'viewBlacklist':
+		viewBlacklist();
+	break;
 
-    case 'editBlacklist':
-        editBlacklist();
-    break;
+	case 'editBlacklist':
+		editBlacklist();
+	break;
 
-    case 'addBlacklistEntries':
-        showAddBox();
-    break;
+	case 'addBlacklistEntries':
+		showAddBox();
+	break;
 
-    default:
-    break;
+	default:
+	break;
 }
-echo "</td></tr>";
+echo "</td></tr>\n";
 ?>
 </table>
 </div>

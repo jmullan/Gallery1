@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,7 +23,7 @@
 <?php
 
 if (!isset($gallery->version)) {
-        require_once(dirname(dirname(__FILE__)) . '/init.php');
+	require_once(dirname(dirname(__FILE__)) . '/init.php');
 }
 
 $action = getRequestVar('action');
@@ -228,12 +228,12 @@ if (empty($action)) {
 		<center>
 		<table>
 		<tr>
-			<th><?php echo _("Parent Album") ?></th>
+			<th><?php echo gTranslate('core', "Parent Album") ?></th>
 			<th>&nbsp;</th>
-			<th><?php echo _("Orphaned Album") ?></th>
+			<th><?php echo gTranslate('core', "Orphaned Album") ?></th>
 		</tr>
 <?php
-		$current="";
+		$current = '';
 		foreach ($orphanAlbums as $childName => $parentName) {
 			echo "\t<tr>";
 			if ($current == $parentName) {
@@ -242,7 +242,7 @@ if (empty($action)) {
 			} else {
 				echo "\n\t<td>\------</td>";
 			}
-			echo "\n\t<td>=&gt;</td>";			
+			echo "\n\t<td>=&gt;</td>";
 			echo "\n\t<td><a href=\"" . makeAlbumUrl($childName) . "\">" . $childName . "</a></td>";
 			echo "\n\t</tr>";
 		}
@@ -263,12 +263,12 @@ if (empty($action)) {
 		<center>
 		<table>
 		<tr>
-			<th><?php echo _("Album directory") ?></th>
+			<th><?php echo gTranslate('core', "Album directory") ?></th>
 			<th>&nbsp;</th>
-			<th><?php echo _("Orphaned file") ?></th>
+			<th><?php echo gTranslate('core', "Orphaned file") ?></th>
 		</tr>
 <?php
-		$current="";
+		$current = '';
 		foreach ($orphanImages as $albumName => $imageVal) {
 			foreach (array_keys($imageVal) as $fileName) {
 				echo "\n\t\t<tr>";
@@ -277,12 +277,12 @@ if (empty($action)) {
 					$current = $albumName;
 				} else {
 					echo "\n\t\t\t<td>\------</td>";
-				} 
+				}
 				echo "\n\t\t\t<td>=&gt;</td>";
 				echo "\n\t\t\t<td><a href='" . $gallery->app->albumDirURL . "/" . $albumName . "/" . $fileName . "'>" . $fileName . "</a></td>";
 				echo "\n\t\t</tr>";
-			}       
-		}       
+			}
+		}
 ?>
 		</table>
 		<br>

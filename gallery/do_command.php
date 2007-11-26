@@ -71,6 +71,7 @@ switch ($cmd) {
             }
         }
         dismissAndReload();
+
     break;
 
 	case 'remake-thumbnail':
@@ -151,7 +152,8 @@ switch ($cmd) {
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->hidePhoto($index);
 			$gallery->album->save();
-		} else {
+		}
+		else {
 			if ($gallery->album->isAlbum($index)) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
@@ -159,7 +161,8 @@ switch ($cmd) {
 			}
 
 			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-	   		$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+	   			$gallery->album->isItemOwner($gallery->user->getUid(), $index))
+	   		{
 				$gallery->album->hidePhoto($index);
 				$gallery->album->save();
 			}
@@ -172,7 +175,8 @@ switch ($cmd) {
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$gallery->album->unhidePhoto($index);
 			$gallery->album->save();
-		} else {
+		}
+		else {
 			if ($gallery->album->isAlbum($index)) {
 				$myAlbumName = $gallery->album->getAlbumName($index);
 				$myAlbum = new Album;
@@ -196,6 +200,7 @@ switch ($cmd) {
 		}
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
+
 	break;
 
 	case 'new-album':
@@ -204,15 +209,20 @@ switch ($cmd) {
 			if (!isset($parentName)) {
 				$parentName = null;
 			}
+
 			createNewAlbum($parentName);
+
 			if(!headers_sent()) {
 			    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
-			} else {
+			}
+			else {
 			    $backUrl = makeAlbumUrl($gallery->session->albumName);
 			}
-		} else {
+		}
+		else {
 		        header("Location: " . makeAlbumHeaderUrl());
 		}
+
 	break;
 
 	case 'reset-album-clicks':
@@ -220,9 +230,11 @@ switch ($cmd) {
 			$gallery->album->resetAllClicks();
 			// this is a popup do dismiss and reload!
 			dismissAndReload();
-		} else {
+		}
+		else {
        			header("Location: " . makeAlbumHeaderUrl());
 		}
+
 	break;
 
 	case 'delete-comment':
@@ -241,9 +253,11 @@ switch ($cmd) {
 			else {
 				dismissAndReload();
 			}
-		} else {
+		}
+		else {
 	    	    header("Location: " . makeAlbumHeaderUrl());
 		}
+
 	break;
 
 	default:
@@ -252,6 +266,7 @@ switch ($cmd) {
 			header("Location: $return");
 		}
 	break;
+
 }
 
 ?>

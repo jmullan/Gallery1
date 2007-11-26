@@ -76,7 +76,7 @@ elseif (empty($order)) {
     echo makeFormIntro('administer_startpage.php');
 ?>
 <table>
-<caption"><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
+<caption><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
 <?php
     foreach ($sortOptions as $sortBy => $text) {
         echo "\n <tr>";

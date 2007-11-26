@@ -57,6 +57,7 @@ $ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click 
 $error_msg = '';
 $mandatory = array('name_sender', 'email_sender', 'name_recipient', 'email_recipient', 'message');
 $ecard_send = false;
+$sendButtonTest = gTranslate('core',"_Send eCard");
 
 if (! empty($submit_action)) {
     foreach ($mandatory as $mandatoryField) {
@@ -132,7 +133,8 @@ function check() {
     }
 
     if ((document.ecard_form["ecard[email_sender]"].value == "") &&
-    (document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1)) {
+		(document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1))
+	{
         error = true;
         error_message += "<?php echo gTranslate('core', "- Your Email"); ?>\n";
     }
@@ -154,10 +156,11 @@ function check() {
     }
 
     if (error) {
-        error_message += "\n\n<?php echo gTranslate('core', 'Please fill all fields next click >Send<.'); ?>";
+		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), $sendButtonTest); ?>";
         alert(error_message);
         return false;  // Form not sent
-    } else {
+	}
+	else {
         return true;  // Form sent
     }
 
@@ -171,7 +174,8 @@ function CountMax() {
         document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
         wert = 0;
         document.ecard_form.counter.value = wert;
-    } else {
+	}
+	else {
         document.ecard_form.counter.value = max - document.ecard_form["ecard[message]"].value.length;
     }
 } // Ende function CountMax()
@@ -191,7 +195,7 @@ if (! $ecard_send) {
     array("name" => "ecard_form"),
     array("type" => "popup"));
 ?>
-  <input name="ecard[image_name]" type="hidden" value="<?php echo $ecard["image_name"]; ?>">
+	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard['image_name']; ?>">
   <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
   <input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
   <input name="submit_action" type="hidden" value="">
@@ -235,7 +239,7 @@ if (! $ecard_send) {
 <?php
 for($i = 1; $i <= 27; $i++) {
     $nr = sprintf("%02d", $i-1);
-    echo "\n\t" . '<option value="'. $nr .'">';
+	echo "\n\t\t" . '<option value="'. $nr .'">';
     echo sprintf(gTranslate('core', "Stamp #%d"), $i);
     echo "</option>";
 }
@@ -246,9 +250,8 @@ for($i = 1; $i <= 27; $i++) {
     </td>
   </tr>
   <tr>
-    <td><?php echo gTranslate('core', "Subject:"); ?></td>
-    <?php $defaultSubject = (!empty($defaultSenderName)) ? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : ''; ?>
-    <td colspan="4"><input type="Text" size="65" maxlength="75" name="ecard[subject]" value="<?php echo $defaultSubject; ?>"></td>
+		<td><label for="subject"><?php echo gTranslate('core', "Subject:"); ?></label></td>
+		<td colspan="4"><input type="text" size="65" maxlength="75" name="ecard[subject]" id="subject" value="<?php echo $defaultSubject; ?>"></td>
   </tr>
   <tr>
     <td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
@@ -291,13 +294,6 @@ else {
 <?php }
 ?>
 </div>
-<?php
-global $GALLERY_EMBEDDED_INSIDE;
-$validation_args = array('photoIndex' => $photoIndex);
-$validation_file = basename(__FILE__);
-if (! isset($GALLERY_EMBEDDED_INSIDE)) {
-    print gallery_validation_link($validation_file, true, $validation_args);
-}
-?>
+
 </body>
 </html>

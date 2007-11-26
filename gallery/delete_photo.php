@@ -75,7 +75,8 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 
 	if (isset($nextId) && !empty($nextId)) {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
-	} else {
+	}
+	else {
 	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
 	}
 	return;

@@ -26,29 +26,29 @@ require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 if (empty($gallery->session->username)) {
-    /* Get the cached version if possible */
-    $cache_file = "cache.html";
-    if (!getRequestVar('gallery_nocache')) {
-        $cache_now = time();
-        $cacheFileBaseNames = array(sprintf("cache-%s.html", $_SERVER['HTTP_HOST']), "cache.html");
-        foreach ($cacheFileBaseNames as $cache_file_basename) {
-            $cache_file = dirname(__FILE__) . '/' . $cache_file_basename;
-            if (fs_file_exists($cache_file)) {
-                $cache_stat = @stat($cache_file);
-                if ($cache_now - $cache_stat[9] < (20 * 60)) {
-                    if ($fp = fopen($cache_file, "rb")) {
-                        while (!feof($fp)) {
-                            print fread($fp, 4096);
-                        }
-                        fclose($fp);
-                        printf("<!-- From %s, created at %s -->",
-                        $cache_file_basename, strftime("%D %T", $cache_stat[9]));
-                        return;
-                    }
-                }
-            }
-        }
-    }
+	/* Get the cached version if possible */
+	$cache_file = "cache.html";
+	if (!getRequestVar('gallery_nocache')) {
+		$cache_now = time();
+		$cacheFileBaseNames = array(sprintf("cache-%s.html", $_SERVER['HTTP_HOST']), "cache.html");
+		foreach ($cacheFileBaseNames as $cache_file_basename) {
+			$cache_file = dirname(__FILE__) . '/' . $cache_file_basename;
+			if (fs_file_exists($cache_file)) {
+				$cache_stat = @stat($cache_file);
+				if ($cache_now - $cache_stat[9] < (20 * 60)) {
+					if ($fp = fopen($cache_file, "rb")) {
+						while (!feof($fp)) {
+							print fread($fp, 4096);
+						}
+						fclose($fp);
+						printf("<!-- From %s, created at %s -->",
+						$cache_file_basename, strftime("%D %T", $cache_stat[9]));
+						return;
+					}
+				}
+			}
+		}
+	}
 }
 
 $gallery->session->offlineAlbums["albums.php"] = true;
@@ -65,6 +65,7 @@ list ($numPhotos, $numAccess, $numAlbums) = $albumDB->numAccessibleItems($galler
 if (empty($gallery->session->albumListPage) || $gallery->session->albumListPage < 1) {
 	$gallery->session->albumListPage = 1;
 }
+
 $perPage = $gallery->app->albumsPerPage;
 $maxPages = max(ceil($numAlbums / $perPage), 1);
 
@@ -159,18 +160,24 @@ if ($numAccess == $numAlbums) {
 	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, gTranslate('core', "No top-level albums"));
 }
 
-$total_str = sprintf(gTranslate('core', "%d total"), $numAccess);
-$image_str = gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"));
-$page_str = gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"));
+$total_str	= sprintf(gTranslate('core', "%d total"), $numAccess);
+$image_str	= gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"), true);
+$page_str	= gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "no pages"), true);
 
-if (($numAccess != $numAlbums) && $maxPages > 1) {
-	$adminText .= sprintf(gTranslate('core', "%s (%s), %s on %s"), $toplevel_str, $total_str, $image_str, $page_str);
+if ($numAccess != $numAlbums && $maxPages > 1) {
+	$adminText .= sprintf(gTranslate('core',"%s (%s), %s on %s"),
+		$toplevel_str,
+		$total_str,
+		$image_str, $page_str
+	);
 }
 else if ($numAccess != $numAlbums) {
 	$adminText .= sprintf(gTranslate('core', "%s (%s), %s"), $toplevel_str, $total_str, $image_str);
-} else if ($maxPages > 1) {
+}
+else if ($maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%s, %s on %s"), $toplevel_str, $image_str, $page_str);
-} else {
+}
+else {
 	$adminText .= sprintf(gTranslate('core', "%s, %s"), $toplevel_str, $image_str);
 }
 
@@ -184,7 +191,6 @@ $adminCommands = '';
 $iconElements = array();
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
-
 	$displayName = $gallery->user->displayName();
 	$adminCommands .= sprintf(gTranslate('core', "Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
 }
@@ -237,9 +243,9 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
     }
 }
 
-$adminbox["text"] = $adminText;
-$adminbox["commands"] = $adminCommands . makeIconMenu($iconElements, 'right');
-$adminbox["bordercolor"] = $borderColor;
+$adminbox['text']			= $adminText;
+$adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor']	= $borderColor;
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');

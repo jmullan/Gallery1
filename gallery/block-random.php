@@ -60,7 +60,8 @@ if (fs_file_exists(CACHE_FILE)) {
 if ($rebuild) {
 	scanAlbums();
 	saveGalleryBlockRandomCache();
-} else {
+}
+else {
 	readGalleryBlockRandomCache();
 }
 
@@ -71,7 +72,7 @@ do {
 } while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
-	echo _("No photo chosen.");
+	echo gTranslate('core', "No photo chosen.");
 }
 
 function doPhoto() {
