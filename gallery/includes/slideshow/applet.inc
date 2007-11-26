@@ -21,13 +21,28 @@
  */
 ?>
 <?php
+
+/**
+ * Functions for the slideshow using Gallery Remote
+ *
+ * @package Slideshow
+ * @subpackage Gallery_Remote
+ *
+ */
+
+/**
+ * "Initialize" the slideshow, actually just set the title.
+ * If $albumName is ommitted, the Gallery is used.
+ *
+ */
 function slideshow_initialize() {
 	global $albumName, $gallery, $title;
 
 	if (empty($albumName)) {
         $title = sprintf(gTranslate('core', "Slideshow for Gallery :: %s"),
             $gallery->app->galleryTitle);
-	} else {
+	}
+	else {
         $title = sprintf(gTranslate('core', "Slideshow for album :: %s"), $gallery->album->fields["title"]);
 	}
 }
