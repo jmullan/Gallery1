@@ -21,7 +21,15 @@
  */
 ?>
 <?php
+
+/**
+ * Abstract class for the user object.
+ * Methodes might be overwritten by special classes.
+ *
+ * @package User
+ */
 class Abstract_User {
+
     var $username;
     var $fullname;
     var $password;
@@ -40,20 +48,26 @@ class Abstract_User {
     function integrityCheck() {
         return 0;
     }
+
     function versionOutOfDate() {
         return false;
     }
 
-    function salt($len = 4)
-    {
+	function salt($len = 4) {
         $salt = '';
-        for($i = 0; $i < $len; $i++)
-        {
+		for($i = 0; $i < $len; $i++) {
             $char = mt_rand(48, 109);
-            if($char > 57) $char += 7;
-            if($char > 90) $char += 6;
+			if($char > 57) {
+				$char += 7;
+			}
+
+			if($char > 90) {
+				$char += 6;
+			}
+
             $salt .= chr($char);
         }
+
         return $salt;
     }
 
@@ -64,6 +78,7 @@ class Abstract_User {
 
     function isCorrectPassword($password) {
         $hash = '';
+
         if(strlen($this->password) == 32) { // old password schema
         $hash =  md5($password);
         }
@@ -71,6 +86,7 @@ class Abstract_User {
             $salt = substr($this->password,0, 4);
             $hash = $salt.md5($salt.$password);
         }
+
         return (!strcmp($this->password, $hash));
     }
 
@@ -104,6 +120,7 @@ class Abstract_User {
         if(empty($name)) {
             $name = $this->username;
         }
+
         return $name;
     }
 
@@ -122,7 +139,8 @@ class Abstract_User {
     function getFullName() {
         if (get_magic_quotes_gpc()) {
             return stripslashes($this->fullname);
-        } else {
+		}
+		else {
             return $this->fullname;
         }
     }
@@ -176,8 +194,7 @@ class Abstract_User {
             return true;
         }
 
-        if (!$album)
-        {
+		if (!$album) {
             return false;
         }
 
@@ -339,13 +356,12 @@ class Abstract_User {
     }
 
    function canDownloadAlbum($album) {
-	if ($this->hasAlbumPermission('zipDownload', $album) &&
-	  canCreateArchive('zip')) {
-	    return true;
-	}
-	else {
-	    return false;
-	}
+		if ($this->hasAlbumPermission('zipDownload', $album) && canCreateArchive('zip')) {
+			return true;
+		}
+		else {
+			return false;
+		}
     }
 
    function hasAlbumPermission($perm, $album) {

@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -100,7 +100,7 @@ function getThumbsAndCaptions($album) {
 function makeDCDate($unixDate) {
 	$dcDate = date("Y-m-d\TH:i:sO", $unixDate);
 	
-	/* CAUTION: This will not work in zones with 
+	/* CAUTION: This will not work in zones with
 	 * half-our time offsets
 	 */
 	
@@ -154,9 +154,9 @@ foreach ($rssAlbumList as $album) {
 
 	// COMMENTS TAG
 
-	if (method_exists($album, "canViewComments") 
+	if (method_exists($album, "canViewComments")
 	   && $album->canViewComments($gallery->user->uid)) {
-		$albumInfo["comments"] = makeGalleryUrl("view_comments.php", 
+		$albumInfo["comments"] = makeGalleryUrl("view_comments.php",
 		  array("set_albumName" => $album->fields["name"]));
 	}
 
@@ -261,10 +261,10 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = gTranslate('core', "1 album", "%s albums", $numAlbums, _("no albums"));
-$image_str = gTranslate('core', "1 photo", "%s photos", $numPhotos, _("no photos"));
+$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, _("no albums"));
+$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, _("no photos"));
 
-$description = sprintf(_("%s in %s"), $image_str, $total_str);
+$description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 
 header("Content-Type: application/xml");
 
@@ -318,7 +318,7 @@ foreach($albumList as $album) {
 		if ($myAlbum->isHiddenRecurse() || !$myAlbum->canReadRecurse($gallery->user->uid)) {
 			continue;
 		}
-	} 
+	}
 
 	// Only increment after we've determined that the album
 	// is valid to add to the feed

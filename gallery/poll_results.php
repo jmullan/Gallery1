@@ -4,17 +4,17 @@
  * Copyright (C) 2000-2007 Bharat Mediratta
  *
  * Additional voting code Copyright (C) 2003-2004 Joan McGalliard
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -34,8 +34,8 @@ if (!$gallery->album->isLoaded()) {
 
 // Is user allowed to see this page ?
 if (!testRequirement('isAdminOrAlbumOwner')) {
-	echo _("You are not allowed to perform this action!");
-	echo '<p><a href="'. makeAlbumUrl() .'">'. _("Back to Gallery") .'</a></p>';
+	echo gTranslate('core', "You are not allowed to perform this action!");
+	echo '<p><a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Back to Gallery") .'</a></p>';
 	exit;
 }
 
@@ -44,7 +44,7 @@ $albumName = $gallery->session->albumName;
 if (!$gallery->session->viewedAlbum[$albumName]) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
-} 
+}
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
@@ -87,7 +87,7 @@ if ($gallery->album->fields["textcolor"]) {
   </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php } 
+<?php }
 
 includeHtmlWrap("album.header");
 $breadcrumb["top"] = true;

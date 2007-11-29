@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -41,11 +41,11 @@ if (!$gallery->album->isLoaded()) {
 
 $albumName = $gallery->session->albumName;
 
-if (empty($gallery->session->viewedAlbum[$albumName]) && 
+if (empty($gallery->session->viewedAlbum[$albumName]) &&
 	!$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
-} 
+}
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
@@ -67,13 +67,13 @@ $breadcrumb["bottom"] = true;
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
-<html> 
+<html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <style type="text/css">
 <?php
-// the link colors have to be done here to override the style sheet 
+// the link colors have to be done here to override the style sheet
 if ($gallery->album->fields["linkcolor"]) {
 ?>
     A:link, A:visited, A:active
@@ -85,9 +85,11 @@ if ($gallery->album->fields["linkcolor"]) {
 if ($gallery->album->fields["bgcolor"]) {
 	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
 }
+
 if ($gallery->album->fields["background"]) {
 	echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
 }
+
 if ($gallery->album->fields["textcolor"]) {
 	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
 	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
@@ -98,23 +100,28 @@ if ($gallery->album->fields["textcolor"]) {
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
-<?php } 
+<?php }
 
 /* User wants to delete comments */
 list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
+
 if (!empty($comment_index)) {
-	$saveMsg = "";
+	$saveMsg = '';
 	/* First we reverse the index array, as we want to delete backwards */
 	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
-		$comment=$gallery->album->getComment($index, $com_index);
+		$comment = $gallery->album->getComment($index, $com_index);
+
 		/* maybe user reloaded page, this prevents an errormessage */
 		if (!isset($comment)) {
 			continue;
 		}
+
 		if (isDebugging()) {
-			echo "\n<br>". sprintf(_("Deleting comment %d from item with index: %d"), $com_index, $index);
+			echo "\n<br>". sprintf(gTranslate('core', "Deleting comment %d from item with index: %d"), $com_index, $index);
 		}
-		$saveMsg = array(i18n("Comment \"%s\" by %s deleted from %s"),
+
+		$saveMsg = array(
+			i18n("Comment \"%s\" by %s deleted from %s"),
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
@@ -152,26 +159,35 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 		$myAlbumName = $gallery->album->getAlbumName($i);
 		$myAlbum = new Album();
 		$myAlbum->load($myAlbumName);
-		if ( $myAlbum->lastCommentDate("no") != -1 && 
-			((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) || 
-			$gallery->user->isAdmin() || 
-			$gallery->user->isOwnerOfAlbum($gallery->album) || 
-			$gallery->user->isOwnerOfAlbum($myAlbum))) {
+
+			if ( $myAlbum->lastCommentDate("no") != -1 &&
+				((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
+				 $gallery->user->isAdmin() ||
+				 $gallery->user->isOwnerOfAlbum($gallery->album) ||
+				 $gallery->user->isOwnerOfAlbum($myAlbum)
+				)
+			   )
+			{
 			$embeddedAlbum = 1;
 			$myHighlightTag = $myAlbum->getHighlightTag();
 			includeLayout('commentboxtop.inc');
 			includeLayout('commentboxbottom.inc');
 	        }
 	}
-        elseif (!$gallery->album->isHidden($i) || $gallery->user->isAdmin() ||  
-		$gallery->user->isOwnerOfAlbum($gallery->album) || $gallery->album->isItemOwner($gallery->user, $i)) {
+		elseif (!$gallery->album->isHidden($i) ||
+				$gallery->user->isAdmin() ||
+				$gallery->user->isOwnerOfAlbum($gallery->album) ||
+				$gallery->album->isItemOwner($gallery->user, $i))
+		{
 		$comments = $gallery->album->numComments($i);
 		if($comments > 0) {
 			includeLayout('commentboxtop.inc');
+
 			for($j = 1; $j <= $comments; $j++) {
                     $comment = $gallery->album->getComment($index, $j);
 		    includeLayout('commentbox.inc');
                 }
+
 		includeLayout('commentboxbottom.inc');
             }
         }

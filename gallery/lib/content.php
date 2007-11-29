@@ -53,6 +53,11 @@ function editField($album, $field, $link = null) {
 	return $buf;
 }
 
+/** Shows the caption of an albumitem and if permitted also a link to the edit popup
+ * @param   object  $album
+ * @param   integer $index	albumitem index
+ * @return  string  $buf
+*/
 function editCaption($album, $index) {
 	global $gallery;
 
@@ -206,7 +211,8 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 				else {
 					// try to find Joomla cookie (this is shaky)
 					foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
-						if (strlen($cookie1_name) == 32 && strlen($cookie1_value) == 32) {
+						if (strlen($cookie1_name) == 32 &&
+						strlen($cookie1_value) == 32) {
 							// this is probably the right cookie...
 							break;
 						}
@@ -412,7 +418,7 @@ function printMetaData($image_info) {
 
 /**
  * Returns a link to the docs, if present, or NULL
- * @author    Andrew Lindeman
+ * @author	Andrew Lindeman
  */
 function galleryDocs() {
 	global $gallery;
@@ -442,7 +448,7 @@ function galleryDocs() {
  * @param	mixed	$full				Needed for getting dimensions of the photo
  * @param	boolean	$forceRefresh		Needed for getting EXIF Data
  */
-function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = 0) {
+function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = false) {
 	global $gallery;
 
 	$photo = $gallery->album->getPhoto($index);
@@ -595,30 +601,30 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
 	foreach ($iconElements as $element) {
 		$i++;
 		if (stristr($element,'</a>')) {
-			$html .= "\n\t". '<td>'. $element .'</td>';
+			$html .= "\n\t<td>$element</td>";
 		}
 		else {
 			$html .= "\n\t". '<td class="noLink">'. $element .'</td>';
 		}
 
 		if($i > sizeof($iconElements)/2 && $linebreak) {
-			$html .= "\n</tr>\n</tr>";
-			$i=0;
+			$html .= "\n</tr>\n<tr>";
+			$i = 0;
 		}
 	}
 
 	if ($closeTable == true) {
-		$html .= "</tr>\n</table>";
+		$html .= "\n</tr>\n</table>";
 	}
 
 	return $html;
 }
 
 /**
- * @param	string	$formerSearchString	Optional former searchh string
- * @param	string	$align			Optional alignment
- * @return	string	$html			HTML code that contains a form for entering the searchstring
- * @author	Jens Tkotz <jens@peino.de>
+ * @param	string	$formerSearchString	Optional former search string
+ * @param	string	$align				Optional alignment
+ * @return	string	$html				HTML code that contains a form for entering the searchstring
+ * @author	Jens Tkotz
  */
 function addSearchForm($formerSearchString = '', $align = '') {
 	$html = '';
@@ -644,7 +650,7 @@ function addSearchForm($formerSearchString = '', $align = '') {
  * @param   string  $filesize   if omitted, function gets filesize of given filename
  * @param	string	$filename
  * @return	string  the formated filesize
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function formatted_filesize($filesize = 0, $filename = '') {
 
@@ -653,7 +659,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
 		$filesize = fs_filesize($filename);
 	}
 
-	$units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+	$units = array('&nbsp;&nbsp;B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 	$unit_count = (count($units) - 1);
 
 	$pass = 0; // set zero, for Bytes
@@ -665,6 +671,9 @@ function formatted_filesize($filesize = 0, $filename = '') {
 	return round($filesize, 2) .'&nbsp;'. $units[$pass];
 }
 
+/**
+ * Generates a HTML page "header" that closes itself and reloads the opener window.
+ */
 function dismissAndReload() {
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
@@ -755,7 +764,7 @@ function includeHtmlWrap($name, $skinname = '') {
 		}
 	}
 
-	return 1;
+	return true;
 }
 
 /**
@@ -798,13 +807,16 @@ function getStyleSheetLink() {
  * @param	string	$skinname	Optional skinname, if omitted and not embedded, default skin is used.
  * @return	string
  */
-function _getStyleSheetLink($filename, $skinname='') {
+function _getStyleSheetLink($filename, $skinname = '') {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 
 	$base = dirname(dirname(__FILE__));
 
-	if (!$skinname && isset($gallery->app) && isset($gallery->app->skinname) && !$GALLERY_EMBEDDED_INSIDE) {
+	if (!$skinname &&
+		isset($gallery->app) &&
+		isset($gallery->app->skinname) &&
+		!$GALLERY_EMBEDDED_INSIDE) {
 		$skinname = $gallery->app->skinname;
 	}
 
@@ -825,7 +837,7 @@ function _getStyleSheetLink($filename, $skinname='') {
 		$file = $sheetdefaultdomainname;
 	}
 	else {
-		$file = $sheetdefaultname. '.default';
+		$file = "${sheetdefaultname}.default";
 	}
 
 	$url = getGalleryBaseUrl() ."/$file";
@@ -841,21 +853,21 @@ function _getStyleSheetLink($filename, $skinname='') {
 //
 // For moving albums, there are 2 cases:
 // 1. moving root albums:  the user should be able to move a
-//    root album to any album to which they have write permissions
-//    AND not to an album nested beneath it in the same tree
-//    AND not to itself.
+//	root album to any album to which they have write permissions
+//	AND not to an album nested beneath it in the same tree
+//	AND not to itself.
 // 2. moving nested albums:  the user should be able to move a
-//    nested album to any album to which they have write permissions
-//    AND not to an album nested beneath it in the same tree
-//    AND not to itself
-//    AND not to its parent album.
-//    The user should also be able to move it to the ROOT level
-//    with appropriate permissions.
+//	nested album to any album to which they have write permissions
+//	AND not to an album nested beneath it in the same tree
+//	AND not to itself
+//	AND not to its parent album.
+//	The user should also be able to move it to the ROOT level
+//	with appropriate permissions.
 //
 // For moving pictures, there is 1 case:
 // 1. moving pictures:  the user should be able to move a picture
-//    to any album to which they have write permissions
-//    AND not to the album to which it already belongs.
+//	to any album to which they have write permissions
+//	AND not to the album to which it already belongs.
 //
 // -jpk
 
@@ -932,6 +944,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 			$myName = $myAlbum->getAlbumName($i);
 			$nestedAlbum = new Album();
 			$nestedAlbum->load($myName);
+
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
 			($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
@@ -943,8 +956,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 					echo "<option value=\"0\"> $val2 (". gTranslate('common', "Current location") .")</option>\n\t";
 				}
 				elseif (!$readOnly && !$gallery->album->isRoot() &&
-					($nestedAlbum == $gallery->album->getNestedAlbum($index)))
-				{
+				  ($nestedAlbum == $gallery->album->getNestedAlbum($index))) {
 					echo "<option value=\"0\"> $val2 (". gTranslate('common', "This album itself"). ")</option>\n\t";
 				}
 				else {
@@ -953,8 +965,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 			}
 
 			if (!$readOnly && !$gallery->album->isRoot() &&
-				($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )
-			{
+			 ($nestedAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto ) {
 				// do nothing -- don't allow album move into its own tree
 			}
 			else {
@@ -964,23 +975,29 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 	}
 }
 
-/* Formats a nice string to print below an item with comments */
+/**
+ * Formats a nice string to print below an item with comments
+ * @param  int		$lastCommentDate		Timestamp of last comment
+ * @param  boolean	$displayCommentLegend	indicator whether a Legend showed be showed later.
+ * @return string	$html
+ */
 function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 	global $gallery;
 
 	if ($lastCommentDate  <= 0) {
 		return  '';
 	}
+
 	if ($gallery->app->comments_indication_verbose == 'yes') {
-		$ret = "<br>".
+		$html = "<br>".
 		sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
 	}
 	else {
-		$ret= '<span class="commentIndication">*</span>';
-		$displayCommentLegend = 1;
+		$html= '<span class="commentIndication">*</span>';
+		$displayCommentLegend = true;
 	}
 
-	return $ret;
+	return $html;
 }
 
 function available_skins($description_only = false) {

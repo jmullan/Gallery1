@@ -22,7 +22,7 @@
 ?>
 <?php
 
-/*
+/**
  * expects as input an array where the keys
  * are string labels and the values are
  * numbers.  Values must be non-negative
@@ -33,12 +33,12 @@
 function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $col_1_head=null, $col_2_head=null) {
 	global $gallery;
 	foreach ($array as $value) {
-		if ((IsSet($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
+		if ((isset($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
 			$max_value = $value;
 		}
 	}
 
-	if (!isSet($max_value)) {
+	if (!isset($max_value)) {
 		// no results!
 		return null;
 	}
@@ -64,14 +64,16 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $c
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
 		$img_url= getImagePath('bar.gif');
-		$string_to_return .= "\n\t<tr>"
-			. "\n\t<td>(". ++$counter .")</td>"
-			. "\n\t<td>$name ($value)</td>"
-			. "\n\t<td><img src=\"". $img_url ."\" border=\"1\""
-			. " width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>"
-			. "\n\t</tr>";
+
+		$string_to_return .= "\n\t<tr>" .
+			"\n\t<td>(". ++$counter .")</td>" .
+			"\n\t<td>$name ($value)</td>" .
+			"\n\t<td><img src=\"$img_url\" width=\"$bar_width\" height=\"10\" alt=\"BAR\"></td>" .
+			"\n\t</tr>";
 	}
+
 	$string_to_return .= "\n  </table>";
+
 	return($string_to_return);
 }
 
@@ -102,8 +104,8 @@ function saveResults($votes) {
 			}
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote) {
 				if (isset($previous_vote[getVotingID()]) &&
-						$previous_vote[getVotingID()]
-							=== intval($vote_value)) {
+					$previous_vote[getVotingID()] === intval($vote_value))
+				{
 					unset($gallery->album->fields["votes"][$previous_key][getVotingID()]);
 				}
 			}
@@ -128,6 +130,11 @@ function getVotingID() {
 
 }
 
+/**
+ * Is user allowed to vote?
+ *
+ * @return $canVote	boolean		true if user can vote, false if not.
+ */
 function canVote() {
 	global $gallery;
 	static $canVote;
@@ -152,7 +159,7 @@ function canVote() {
 	return $canVote;
 }
 
-function addPolling ($id, $form_pos=-1, $immediate=true) {
+function addPolling ($id, $form_pos = -1, $immediate = true) {
 	global $gallery;
 
 	if ( !canVote()) {
@@ -161,7 +168,8 @@ function addPolling ($id, $form_pos=-1, $immediate=true) {
 
 	if (isset($gallery->album->fields['votes'][$id][getVotingID()])) {
 	       	$current_vote = $gallery->album->fields['votes'][$id][getVotingID()];
-	} else {
+	}
+	else {
 		$current_vote = -1;
 	}
 
@@ -268,6 +276,7 @@ function showResultsGraph($num_rows) {
 	$rank = 0;
 	$graph = array();
 	$needs_saving = false;
+
 	foreach ($results as $element => $count) {
 		$index = $gallery->album->getIndexByVotingId($element);
 		if ($index < 0)  {
@@ -281,7 +290,8 @@ function showResultsGraph($num_rows) {
 			$desc = sprintf(gTranslate('common', "Album: %s"),
 					$album->fields['title']);
 
-		} else {
+		}
+		else {
 			$id = $gallery->album->getPhotoId($index);
 			$url = makeAlbumUrl($gallery->session->albumName, $id);
 			$desc = $gallery->album->getCaption($index);
@@ -289,6 +299,7 @@ function showResultsGraph($num_rows) {
 				$desc = $id;
 			}
 		}
+
 		$current_rank = $gallery->album->getRank($index);
 		$rank++;
 		if ($rank != $current_rank) {
@@ -326,7 +337,7 @@ function showResultsGraph($num_rows) {
     	    '</span>';
 
 	    if ($gallery->album->getPollType() == "critique") {
-	        $key_string="";
+			$key_string = '';
 	        foreach ($nv_pairs as $nv_pair) {
 	            if (empty($nv_pair["name"])) {
 	                continue;
@@ -349,13 +360,13 @@ function showResultsGraph($num_rows) {
 function showResults($id) {
 	global $gallery;
 
-	$vote_tally=array();
-	$nv_pairs=$gallery->album->getVoteNVPairs();
+	$vote_tally = array();
+	$nv_pairs = $gallery->album->getVoteNVPairs();
 	$buf='';
 	if (isSet ($gallery->album->fields["votes"][$id])) {
 		foreach ($gallery->album->fields["votes"][$id] as $vote) {
 			if (!isSet($vote_tally[$vote])) {
-				$vote_tally[$vote]=1;
+				$vote_tally[$vote] = 1;
 			}
 			else {
 				$vote_tally[$vote]++;
@@ -380,17 +391,16 @@ function showResults($id) {
 	return $buf;
 }
 
-/*
-** This is a hack around the voting code.
-** Note $gallery->album must be set
+/**
+ * This is a hack around the voting code.
+ * Note $gallery->album must be set
 */
-
 function buildVotingInputFields() {
     global $gallery;
 
     $nv_pairs = $gallery->album->getVoteNVPairs();
     $votingInputFieldArray = array();
-    for ($i=0; $i<$gallery->album->getPollScale() ; $i++) {
+	for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
 	 $votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";
 	 $votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][value]\" value=\"". $nv_pairs[$i]["value"] ."\">";
     }

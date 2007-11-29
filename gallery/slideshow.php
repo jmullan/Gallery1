@@ -31,7 +31,8 @@ if (isset($mode)) {
 	if ($modeCookie != $mode) {
 	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
 	}
-} else {
+}
+else {
 	if (isset($modeCookie)) {
 	    $mode = $modeCookie;
 	}
@@ -67,8 +68,8 @@ if (!empty($albumName)) {
 
 // common initialization
 if (empty($albumName)) {
-	$album = null;
-	$recursive = true;
+	$album		= null;
+	$recursive	= true;
 	$number		= (int)$gallery->app->gallery_slideshow_length;
 	$random		= ($gallery->app->gallery_slideshow_type == "random");
 	$loop		= ($gallery->app->gallery_slideshow_loop == "yes");
@@ -97,14 +98,15 @@ $loopIconText =  getIcontext('reload.gif', _("Loop:"));
 // one where the photos can be spidered...
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&
 	file_exists(dirname(__FILE__) . "/java/GalleryRemoteHTTPClient.jar") &&
-	! $gallery->session->offline) {
-	$modes["applet"] = _("Fullscreen applet");
+	! $gallery->session->offline)
+{
+	$modes["applet"] = gTranslate('core', "Fullscreen applet");
 }
 
-$modes["high"] = _("Modern browsers");
+$modes["high"] = gTranslate('core', "Modern browsers");
 
 if (!empty($albumName) && !$gallery->session->offline) {
-    $modes["low"] = _("Compatible but limited");
+	$modes["low"] = gTranslate('core', "Compatible but limited");
 }
 
 if (!isset($mode) || !isset($modes[$mode])) {
@@ -112,7 +114,6 @@ if (!isset($mode) || !isset($modes[$mode])) {
 }
 
 include(dirname(__FILE__) . "/includes/slideshow/$mode.inc");
-
 
 slideshow_initialize();
 
@@ -122,7 +123,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $title; ?></title>
-<?php 
+<?php
 	common_header();
 
 // the link colors have to be done here to override the style sheet
@@ -174,6 +175,7 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 </script>
 
 <?php
+
 	slideshow_body();
 
 $imageDir = $gallery->app->photoAlbumURL."/images";

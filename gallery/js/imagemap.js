@@ -1,4 +1,8 @@
-  /* $Id$ */
+/**
+ * Gallery SVN ID:
+ * $Id$
+*/
+
   var minX;
   var minY;
   var width;
@@ -140,7 +144,7 @@
       document.areas.yvals.value    =  yVals;
   }
 
-  function updatePictureAndArea () {
+  function updatePictureAndArea() {
       el = document.getElementById('imageareas');
       areaurl = document.getElementById('areaurl');
       areatext = document.getElementById('areatext');

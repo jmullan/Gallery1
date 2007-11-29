@@ -1,6 +1,6 @@
 <?php
 /**
- * Gallery SVN info
+ * Gallery SVN ID:
  * $Id$
 */
 ?>
@@ -14,13 +14,13 @@
  *   If you're nice, you'll leave this bit:
  *
  *   Class by Stickman -- http://www.the-stickman.com
- *      with thanks to:
- *      [for Safari fixes]
- *         Luis Torrefranca -- http://www.law.pitt.edu
- *         and
- *         Shawn Parker & John Pennypacker -- http://www.fuzzycoconut.com
- *      [for duplicate name bug]
- *         'neal'
+ *	  with thanks to:
+ *	  [for Safari fixes]
+ *		 Luis Torrefranca -- http://www.law.pitt.edu
+ *		 and
+ *		 Shawn Parker & John Pennypacker -- http://www.fuzzycoconut.com
+ *	  [for duplicate name bug]
+ *		 'neal'
  */
 function MultiSelector(list_target, max, fieldname, withCaption){
 
@@ -33,7 +33,8 @@ function MultiSelector(list_target, max, fieldname, withCaption){
     // Is there a maximum?
     if( max ){
         this.max = max;
-    } else {
+	}
+	else {
         this.max = -1;
     };
     this.fieldname = fieldname;
@@ -97,13 +98,13 @@ function MultiSelector(list_target, max, fieldname, withCaption){
     this.addListRow = function( element ){
 
         var line = document.createElement('div');
-        line.style.textAlign='right';
+		line.style.textAlign = 'right';
         if(! (this.count % 2)) {
-        	line.style.backgroundColor='white';
-		line.style.color='black';
+			line.style.backgroundColor = 'white';
+			line.style.color = 'black';
         }
         var filenameCaptionDiv = document.createElement('div');
-        filenameCaptionDiv.style.textAlign='left';
+		filenameCaptionDiv.style.textAlign = 'left';
 
         line.appendChild(filenameCaptionDiv);
 
@@ -140,8 +141,8 @@ function MultiSelector(list_target, max, fieldname, withCaption){
             this.parentNode.element.multi_selector.current_element.disabled = false;
 
             // Appease Safari
-            //    without it Safari wants to reload the browser window
-            //    which nixes your already queued uploads
+			//	without it Safari wants to reload the browser window
+			//	which nixes your already queued uploads
             return false;
         };
 

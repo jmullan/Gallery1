@@ -138,7 +138,7 @@ function generateAttrs($attrList) {
 function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
     $crlf = ($prettyPrinting) ? "\n\t" : '';
     $attrs = generateAttrs($attrList);
-    $buf = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
+	$html = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
 	if(!empty($options)) {
 		foreach ($options as $value => $text) {
@@ -151,19 +151,19 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 			else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
 				$sel = ' selected';
 			}
-			$buf .= "<option value=\"$value\"$sel>". $text ."</option>" . $crlf;
+			$html .= "<option value=\"$value\"$sel>$text</option>" . $crlf;
 		}
     }
-    $buf .= '</select>'. $crlf;
+	$html .= '</select>'. $crlf;
 
-    return $buf;
+	return $html;
 }
 
 /**
  * Returns the HTML code for a selectbox
  *
  * @param string  $name		 Name attribute of the selectbox
- * @param array   $options	 Array of options. Format 'trash' => array('text' => .., 'value' => '', 'selected' => set/not set
+ * @param array   $options	 Array of options. Format 'trash' => array('text' => .., 'value' => ''
  * @param array   $attrList	 Optional Attributs for the selectbox
  * @return string $html
  * @author Jens Tkotz

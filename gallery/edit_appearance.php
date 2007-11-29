@@ -284,9 +284,9 @@ foreach ($properties as $key => $val) {
     if (isset($val["type"]) && !strcmp($val["type"], "hidden")) {
         list($f1, $f2) = make_fields($key, $val);
         echo $f2;
-    } else {
-        echo evenOdd_row(make_fields($key, $val),
-        $i++ % 2);
+    }
+	else {
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
     }
 
     $onThisPage[$key] = 1;

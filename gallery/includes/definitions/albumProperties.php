@@ -21,6 +21,12 @@
  */
 ?>
 <?php
+/**
+ * Defintion for album properties.
+ *
+ * @package Definitions
+ * @author Jens Tkotz
+ */
 
 $properties = array(
     'group_text_start' => array (
@@ -34,7 +40,7 @@ $properties = array(
         'prompt' => gTranslate('common', "Album Summary"),
         'desc' => '',
         'value' => $gallery->album->fields["summary"],
-        'type' => "textarea",
+		'type' => 'textarea',
         'attrs' => array('cols' => 40, 'rows' => 6)
     ),
     'title' => array(
@@ -45,7 +51,7 @@ $properties = array(
         'attrs' => array('size' => 50)
     ),
     'group_text_end' => array (
-        'type' => "group_end",
+		'type' => 'group_end',
     ),
     'group_layout_start' => array (
         'type' => "group_start",
@@ -85,7 +91,7 @@ $properties = array(
         'value' => $gallery->album->fields["border"]
     ),
     'subgroup_colors' => array (
-        'type' => "subgroup",
+		'type' => 'subgroup',
         'title' => gTranslate('common', "Colors")
     ),
     'bgcolor' => array(
@@ -113,7 +119,7 @@ $properties = array(
         'value' => $gallery->album->fields["bordercolor"]
     ),
     'subgroup_frams' => array (
-        'type' => "subgroup",
+		'type' => 'subgroup',
         'title' => gTranslate('common', "Frames")
     ),
     'album_frame' => array(
@@ -138,7 +144,7 @@ $properties = array(
         'vartype' => 'pictureFrame'
     ),
     'group_layout_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_slideshow_start' => array (
         'type' => "group_start",
@@ -173,7 +179,7 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'group_slideshow_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_sizes_start' => array (
         'type' => "group_start",
@@ -224,7 +230,7 @@ $properties = array(
         'vartype' => 'int_empty'
     ),
     'group_sizes_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_display_start' => array (
         'type' => "group_start",
@@ -259,7 +265,7 @@ $properties = array(
         'skip' => (empty($gallery->app->use_exif)) ? true : false
     ),
     'group_display_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_services_start' => array (
         'type' => "group_start",
@@ -288,7 +294,7 @@ $properties = array(
         'skip' => ($gallery->app->emailOn == 'yes') ? false : true
     ),
     'group_services_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_pollProperties_start' => array (
         'type' => "group_start",
@@ -352,7 +358,7 @@ $properties = array(
         'value' => ''
     ),
     'group_pollProperties_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_misc_start' => array (
         'type' => "group_start",
@@ -386,7 +392,7 @@ $properties = array(
         'value' => $gallery->album->fields["fit_to_window"]
     ),
     'subgroup_ermission' => array (
-        'type' => "subgroup",
+		'type' => 'subgroup',
         'title' => gTranslate('common', "Permissions")
     ),
     'item_owner_modify' => array(
@@ -402,7 +408,7 @@ $properties = array(
         'value' => $gallery->album->fields["item_owner_delete"]
     ),
     'group_misc_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_CustomFields_start' => array (
         'type' => "group_start",
@@ -429,7 +435,7 @@ if (isset($customFields)) {
 }
 $properties = array_merge($properties, array(
     'group_CustomFields_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
     'group_MicroThumbs_start' => array (
         'type' => "group_start",
@@ -440,7 +446,10 @@ $properties = array_merge($properties, array(
     'nav_thumbs' => array(
         'prompt' => gTranslate('common', "Use microthumb photo navigation?"),
         'desc' => '',
-        'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No"), "both" => gTranslate('common', "Both")),
+		'choices' => array(
+			"yes" => gTranslate('common', "Yes"),
+			"no" => gTranslate('common', "No, just the normal navigation"),
+			"both" => gTranslate('common', "Both kinds of Navigation")),
         'value' => $gallery->album->fields["nav_thumbs"]
     ),
     'nav_thumbs_style' => array(
@@ -490,7 +499,7 @@ $properties = array_merge($properties, array(
         'attrs' => array('size' => 3)
     ),
     'group_MicroThumbs_end' => array (
-        'type' => "group_end"
+		'type' => 'group_end'
     ),
   )
 );

@@ -29,24 +29,31 @@
 /**
  * Checks whether an emailstring has a valid format or not
  *
- * @param string	$email
+ * @param string    $email
  * @return boolean
  */
 function check_email($email) {
-	return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,6}$/', $email) >0; 
+	return preg_match('/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z]{2,6}$/', $email) >0;
 }
 
 function emailDisclaimer() {
 	global $gallery;
-	$msg = unhtmlentities(sprintf(gTranslate('common', "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),$gallery->app->photoAlbumURL).
+
+	$msg = unhtmlentities(
+			sprintf(
+			  gTranslate('common', "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),
+			  $gallery->app->photoAlbumURL) .
 		"  \r\n".
-		sprintf(gTranslate('common', "Report abuse to %s"),$gallery->app->adminEmail));
+		   sprintf(gTranslate('common', "Report abuse to %s"),$gallery->app->adminEmail)
+	);
+
 	$msg2 = sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s",
 	$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
 
 	if ($msg != $msg2) {
 		return "\r\n\r\n$msg\r\n\r\n$msg2";
-	} else {
+	}
+	else {
 		return "\r\n\r\n$msg";
 	}
 }
@@ -59,14 +66,16 @@ function emailDisclaimer() {
  */
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL, $isNotifyMail = false, $isHTML = false) {
 	global $gallery;
+
 	$bcc = array();
 
 	if(!is_array($to)) {
 		$to = array($to);
 	}
-	/* Begin Catch errors */
+
+	/* Begin catch errors from call */
 	if ($gallery->app->emailOn == "no") {
-		echo "\n<br>". gallery_error(gTranslate('common', "Email not sent as it is disabled for this gallery."));
+		echo gallery_error(gTranslate('common', "Email not sent as it is disabled for this gallery."));
 		return false;
 	}
 
@@ -90,7 +99,7 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 
 	if (! check_email($from)) {
 		if (isDebugging() && $from) {
-			echo "\n<br>".
+			echo "\n<br>". 
 				gallery_error(sprintf(gTranslate('common', "Sender address %s is invalid, using %s."),
 							  $from, $gallery->app->senderEmail));
 		}
@@ -181,7 +190,6 @@ Your !!GALLERYTITLE!! Administrator");
 }
 
 function welcomeMsgPlaceholderList() {
-
 	$placeholders = array(
 		'galleryurl'	=> gTranslate('common', "The URL to your Gallery."),
 		'gallerytitle'	=> gTranslate('common', "Title of your Gallery."),
@@ -263,21 +271,25 @@ function emailLogMessage($logmsg, $result, $isNotifyMail) {
 	}
 
 	if (isset($gallery->app->email_notification) &&
-	  in_array("logfile", $gallery->app->email_notification)) {
+		in_array("logfile", $gallery->app->email_notification))
+	{
 		$logfile = $gallery->app->userDir."/email.log";
 		logMessage($logmsg, $logfile);
 	}
 
 	if (isset($gallery->app->email_notification) &&
-	  in_array("email", $gallery->app->email_notification)) {
+		in_array("email", $gallery->app->email_notification))
+	{
 		$subject = gTranslate('common', "Email activity");
 		if ($subject != "Email activity") {
 			$subject .= "/Email activity";
 		}
+
 		$subject .= ": ".  $gallery->app->galleryTitle;
 		$subject = unhtmlentities($subject);
 
-		gallery_mail($gallery->app->adminEmail,
+		gallery_mail(
+			$gallery->app->adminEmail,
 			$subject,
 			$logmsg . emailDisclaimer(),
 			'',

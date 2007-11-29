@@ -21,20 +21,23 @@
  */
 ?>
 <?php
-function build_popup_url($url, $url_is_complete=0) {
+
+function build_popup_url($url, $url_is_complete = false) {
 	/* Separate the target from the arguments */
 	$result = explode('?', $url);
 	$target = $result[0];
+
 	if (isset($result[1])) {
 		$arglist = $result[1];
-	} else {
+	}
+	else {
 		$arglist = '';
 	}
 
 	/* Parse the query string arguments */
 	$args = array();
 	parse_str($arglist, $args);
-	$args['gallery_popup'] = 'true';
+	$args['gallery_popup'] = true;
 
 	if (!$url_is_complete) {
 		$url = makeGalleryUrl($target, $args);

@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -23,22 +23,25 @@
 ?>
 <?php
 
-/* This defines all posibilities for the stats-wizard
-**
-** The wizard is divided into 4 sections
-** - types
-** - options
-** - layout
-** - filters
-**
-** Every item has properties:
-**   type	which html type is used in the gui.
-**		'radio', 'checkbox', 'text' or 'select'
-**   default	default value
-**		NOTE: this is also used for the publich links to stats !
-**   name	used for radiogroups. all elements with same name are grouped.
-**   text	This Text is displayed next to the element
-**   linktext	This Text is used for the public links
+/**
+ * This defines all posibilities for the stats-wizard
+ *
+ * The wizard is divided into 4 sections
+ * - types
+ * - options
+ * - layout
+ * - filters
+ *
+ * Every item has properties:
+ *   type	which html type is used in the gui.
+ *		'radio', 'checkbox', 'text' or 'select'
+ *   default	default value
+ *		NOTE: this is also used for the publich links to stats !
+ *   name	used for radiogroups. all elements with same name are grouped.
+ *   text	This Text is displayed next to the element
+ * 	 linktext	This Text is used for the public links
+ *
+ * @package Statistics
 */
 
 $stats['types'] = array (
@@ -158,6 +161,11 @@ $stats['filter'] = array(
 				 'text' => _("Filter by day")),
 );
 
+/**
+ * Returns a string that contains the HTML code for links to certain statistics
+ *
+ * @return	string	$links	HTML code to statistics
+ */
 function generateStatsLinks() {
     global $gallery;
     global $stats;
@@ -178,8 +186,9 @@ function generateStatsLinks() {
 function stats_showBlock($block, $caption=null) {
 	echo "\n<table>";
 	if (isset($caption)) {
-		echo "\n<caption>$caption</caption>"; 
+		echo "\n<caption>$caption</caption>";
 	}
+
 	foreach ($block as $option => $attr) {
 		echo "\n<tr>";
 		switch ($attr['type']) {
@@ -208,9 +217,10 @@ function stats_showBlock($block, $caption=null) {
 
 function defaultStatsUrl($type='') {
 	global $stats;
+
 	$urlParams = array();
 
-	$paramListGroups = array('options', 'layout', 'filter'); 
+	$paramListGroups = array('options', 'layout', 'filter');
 	if (isset($type)) {
 		$urlParams['type'] = $type;
 		foreach($paramListGroups as $group) {
@@ -218,7 +228,8 @@ function defaultStatsUrl($type='') {
 				if (!empty($stats[$group][$itemKey]['default'])) {
 					if($stats[$group][$itemKey]['default'] == 'checked') {
 						$urlParams[$itemKey] = 1;
-					} else {
+					}
+					else {
 						$urlParams[$itemKey] = $stats[$group][$itemKey]['default'];
 					}
 				}
@@ -226,7 +237,7 @@ function defaultStatsUrl($type='') {
 		}
 	}
 
-	$msStatsUrl = makeGalleryUrl( "stats.php", $urlParams);
+	$msStatsUrl = makeGalleryUrl('stats.php', $urlParams);
 
 	return $msStatsUrl;
 }

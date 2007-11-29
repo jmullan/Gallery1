@@ -1,6 +1,22 @@
 <?php
-/**
- * Gallery SVN info
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2007 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
  * $Id$
 */
 ?>
@@ -8,22 +24,22 @@
 <!--
 
 /*
-** These values define the margin between your image and the navigation and or a left block.
-** Change to your suites.
+ * These values define the margin between your image and the navigation and or a left block.
+ * Change to your suites.
 */
 var marginLeft = 100;
 var marginTop  = 275;
 
 /*
-** Dont touch
-** Here are the dimensions of the original image
+ * Don't touch
+ * Here are the dimensions of the original image
 */
 var imagewidth  = <?php echo $imageWidth; ?>;
 var imageheight = <?php echo $imageHeight; ?>;
 var imageratio  = imagewidth/imageheight;
 
 /*
-** Get the window width. NS and IE use different methods
+ * Get the window width. NS and IE use different methods
 */
 function windowWidth() {
 	if (window.innerWidth) {
@@ -38,7 +54,7 @@ function windowWidth() {
 }
 
 /*
-** Get the window height. NS and IE use different methods
+ * Get the window height. NS and IE use different methods
 */
 function windowHeight() {
 	if (window.innerHeight) {
@@ -53,8 +69,8 @@ function windowHeight() {
 }
 
 /*
-** We load this in the header, so the page is not fully rendered.
-** save the windowdimensions.
+ * We load this in the header, so the page is not fully rendered.
+ * save the windowdimensions.
 */
 function calculateNewSize(){
 	windowWidth = windowWidth();

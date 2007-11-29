@@ -247,7 +247,6 @@ function initLanguage($sendHeader = true) {
      * Init was already done. Just return, or do a reinit
      * if the giving userlanguage is different than the current language
     */
-
     if($languages_initialized) {
 		return;
     }
@@ -481,7 +480,7 @@ function emulate_ngettext($languages_initialized = false) {
     if (in_array($gallery->language,array_keys(gallery_languages())) &&
         $gallery->language != 'en_US') {
 
-        $lines = getTranslationFile();
+		$lines=getTranslationFile();
         foreach ($lines as $key => $value) {
             // We trim the String to get rid of cr/lf
             $value = trim($value);
@@ -505,9 +504,9 @@ function emulate_ngettext($languages_initialized = false) {
 
     // Substitute ngettext() function
     if(! $languages_initialized) {
-        function ngettext($singular, $quasi_plural, $num = 0) {
-            //  echo "\n<br>----";
-            //  echo "\nSL: $singular, PL: $quasi_plural, N: $num";
+		function ngettext($singular, $quasi_plural,$num=0) {
+//			echo "\n<br>----";
+//			echo "\nSL: $singular, PL: $quasi_plural, N: $num";
             global $gallery;
 
             if($gallery->language == 'en_US') {
@@ -581,7 +580,6 @@ function emulate_gettext($languages_initialized) {
                 return $search;
             }
             else {
-
                 if (! empty($GLOBALS['translation'][$search])) {
                     return $GLOBALS['translation'][$search] ;
                 }
@@ -633,7 +631,8 @@ function getLanguageAlias($language) {
 
     if (isset($nls['alias'][$language])) {
         return $nls['alias'][$language];
-    } else {
+	}
+	else {
         return $language;
     }
 }
@@ -659,10 +658,12 @@ function getNLS() {
                     foreach ($modules as $module) {
                         if (gettext_installed()) {
                             if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
-                        } else {
+						}
+						else {
                             if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
                         }
                     }
+
                     if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
                         include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
                     }
@@ -692,7 +693,7 @@ function isSupportedCharset($charset) {
         'EUC-JP'
     );
 
-    $supportedCharsetsNewerPHP=array(
+	$supportedCharsetsNewerPHP = array(
         'cp866',
         'cp1251',
         'KOI8-R'
@@ -848,7 +849,8 @@ function languageSelector() {
                     if (! isset($nls['phpnuke'][$value])) continue;
                     $new_lang = $nls['phpnuke'][$value];
                 }
-            } else {
+			}
+			else {
                 $new_lang = $value;
             }
 
@@ -887,13 +889,16 @@ function languageSelector() {
             $nls['language'][$gallery->language],
             1,
             array('style' => 'font-size:8pt;', 'onChange' => 'ML_reload()'),
-            true);
+				true
+			);
+
             $langSelectTable->addElement(array('content' => $content));
         }
 
         $html .= $langSelectTable->render();
         $html .= '</form><br clear="all">';
     }
+
     return $html;
 }
 

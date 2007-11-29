@@ -52,7 +52,8 @@ if (isset($id)) {
         header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
         return;
     }
-} else {
+}
+else {
     if ($index > $gallery->album->numPhotos(1)) {
         $index = $gallery->album->numPhotos(1);
     }
@@ -77,7 +78,8 @@ if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
 if (!empty($votes) && canVote()) {
     if (!isset($votes[$id]) &&
         $gallery->album->getPollScale() == 1 &&
-        $gallery->album->getPollType() == "critique") {
+		$gallery->album->getPollType() == "critique")
+	{
         $votes[$id] = null;
     }
 
@@ -101,7 +103,8 @@ $photo = $gallery->album->getPhoto($index);
 
 if ($photo->isMovie()) {
     $image = $photo->thumbnail;
-} else {
+}
+else {
     $image = $photo->image;
 }
 
@@ -136,7 +139,7 @@ if ($prev <= 0) {
     $first = 1;
 }
 
-/*
+/**
 * We might be prev/next navigating using this page
 *  so recalculate the 'page' variable
 */
@@ -147,7 +150,7 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 
-/*
+/**
 * Relative URLs are tricky if we don't know if we're rewriting
 * URLs or not.  If we're rewriting, then the browser will think
 * we're down 1 dir farther than we really are.  Use absolute
@@ -155,7 +158,7 @@ $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 */
 $top = $gallery->app->photoAlbumURL;
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album->fields['bordercolor'];
 
 $mainWidth = "100%";
 
@@ -227,11 +230,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   $navcount = sizeof($navigator['allIds']);
   $navpage = $navcount - 1;
 
-  $firstUrl  = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0],
-                            array('noCount' => 1));
-
-  $lastUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1],
-                            array('noCount' => 1));
+  $firstUrl  = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0], array('noCount' => 1));
+  $lastUrl   = makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1], array('noCount' => 1));
   $upUrl     = makeAlbumUrl($gallery->session->albumName, '', array('noCount' => 1));
 
   while ($navpage > 0) {
@@ -335,7 +335,8 @@ if (!$gallery->album->isMovie($id)) {
     if ($gallery->album->fields["use_exif"] == "yes" &&
       (eregi("jpe?g\$", $photo->image->type)) &&
       (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
-      sizeof($albumItemOptions) == 2) {
+		sizeof($albumItemOptions) == 2)
+	{
         $albumName = $gallery->session->albumName;
         $iconText = getIconText('frame_query.gif', gTranslate('core', "photo properties"));
         $iconElements[] =  popup_link($iconText, "view_photo_properties.php?set_albumName=$albumName&index=$index", 0, false, 500, 500);
@@ -343,8 +344,8 @@ if (!$gallery->album->isMovie($id)) {
 
     if (!empty($gallery->album->fields["print_photos"]) &&
       !$gallery->session->offline &&
-      !$gallery->album->isMovie($id)){
-
+		!$gallery->album->isMovie($id))
+	{
         $photo = $gallery->album->getPhoto($GLOBALS["index"]);
         $photoPath = $gallery->album->getAlbumDirURL("full");
         $prependURL = '';
@@ -362,17 +363,17 @@ if (!$gallery->album->isMovie($id)) {
         $thumbImage= $prependURL . $photoPath . "/";
         if ($photo->thumbnail) {
             $thumbImage .= $photo->image->name . "." . "thumb" . "." . $photo->image->type;
-        } else if ($photo->image->resizedName) {
+		}
+		else if ($photo->image->resizedName) {
             $thumbImage .= $photo->image->name . "." . "sized" . "." . $photo->image->type;
-        } else {
+		}
+		else {
             $thumbImage .= $photo->image->name . "." . $photo->image->type;
         }
 
         list($imageWidth, $imageHeight) = $photo->image->getRawDimensions();
 
-        /**
-         * Now build the admin Texts / left colun
-         */
+		/* Now build the admin Texts / left colun */
         function enablePrintForm($name) {
             global $printPhotoAccessForm, $printShutterflyForm, $printFotoserveForm;
 
@@ -380,12 +381,15 @@ if (!$gallery->album->isMovie($id)) {
                 case 'shutterfly':
                     $printShutterflyForm = true;
                     break;
+                
                 case 'fotoserve':
                     $printFotoserveForm = true;
                     break;
+				
                 case 'photoaccess':
                     $printPhotoAccessForm = true;
                     break;
+                    
                 default:
                 break;
             }
@@ -402,7 +406,7 @@ if (!$gallery->album->isMovie($id)) {
                 'shutterfly'  => 'Shutterfly',
                 'photoaccess' => 'PhotoWorks',
             ),
-        '   Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
+			'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
         );
 
         /* display a <select> menu if more than one option */
@@ -412,7 +416,8 @@ if (!$gallery->album->isMovie($id)) {
                 foreach ($serviceGroup as $name => $fullName) {
                     if (!in_array($name, $printServices)) {
                         continue;
-                    } else {
+					}
+					else {
                         $serviceGroups[$serviceGroupName][$name] = $fullName;
                     }
                 }
@@ -422,7 +427,8 @@ if (!$gallery->album->isMovie($id)) {
 
             if (isset($serviceGroups['Mobile Service'])) {
                 $options[] = gTranslate('core', "Send photo to...") ;
-            } else {
+			}
+			else {
                 $options[] = gTranslate('core', "Print photo with...");
             }
 
@@ -433,6 +439,7 @@ if (!$gallery->album->isMovie($id)) {
                     $options[]= '----------';
                 }
                 $firstGroup = false;
+
                 foreach ($serviceGroup as $name => $fullName) {
                     enablePrintForm($name);
                     $options[$name] = '&nbsp;&nbsp;&nbsp;'. $fullName;
@@ -451,13 +458,14 @@ if (!$gallery->album->isMovie($id)) {
             $adminTextIconElemens[] = $printServicesText;
 
             /* just print out text if only one option */
-        } elseif ($numServices == 1) {
-
+		}
+		elseif ($numServices == 1) {
             foreach ($fullNames as $serviceGroupName => $serviceGroup) {
                 foreach ($serviceGroup as $name => $fullName) {
                     if (!in_array($name, $printServices)) {
                         continue;
-                    } else {
+					}
+					else {
 			enablePrintForm($name);
                         $iconText = getIconText('', sprintf(gTranslate('core', "process this photo with %s"), $fullName));
                         $adminTextIconElemens[] = "<a class=\"admin\" href=\"#\" onClick=\"doPrintService('$name');\">$iconText</a>";
@@ -499,7 +507,8 @@ function doPrintService(input) {
     }
     if (!strcmp($gallery->album->fields["use_fullOnly"], "yes") &&
       !$gallery->session->offline  &&
-      $gallery->user->canViewFullImages($gallery->album)) {
+	  	$gallery->user->canViewFullImages($gallery->album))
+	{
         $lparams['set_fullOnly'] = (!isset($gallery->session->fullOnly) || strcmp($gallery->session->fullOnly,"on")) ? "on" : "off";
         $link = makeAlbumURL($gallery->session->albumName, $id, $lparams);
         $adminTextIconElemens[] = gTranslate('core', 'View Images:');
@@ -510,7 +519,8 @@ function doPrintService(input) {
             $adminTextIconElemens[] = $iconTextNormal;
             $adminTextIconElemens[] = '|';
             $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[". $iconTextFull .']</a>';
-        } else {
+        }
+		else {
             $adminTextIconElemens[] = "<a class=\"admin\" href=\"$link\">[" .$iconTextNormal .']</a>';
             $adminTextIconElemens[] = '|';
             $adminTextIconElemens[] = $iconTextFull;
@@ -630,7 +640,8 @@ if (!$gallery->album->isMovie($id)) {
                 break;
         }
     }
-} else {
+}
+else {
     $href = $gallery->album->getPhotoPath($index) ;
 }
 
@@ -734,7 +745,8 @@ if ($gallery->user->isLoggedIn() &&
     if (!empty($emailMeComments)) {
         if ($emailMeComments == 'true') {
             $gallery->album->setEmailMe('comments', $gallery->user, $id);
-        } else {
+		}
+		else {
             $gallery->album->unsetEmailMe('comments', $gallery->user, $id);
         }
     }

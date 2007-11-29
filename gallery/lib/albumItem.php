@@ -73,12 +73,14 @@ $javascriptSet = true;
     	if(!isset($myAlbum)) {
     		$myAlbum = $gallery->album->getNestedAlbum($i, true);
     	}
+		
     	$isAlbum = true;
     }
     elseif ($gallery->album->isMovieByIndex($i)) {
     	$label = gTranslate('core', "Movie");
     	$isMovie = true;
-    } else {
+	}
+	else {
     	$label = gTranslate('core', "Photo");
 		$isPhoto = true;
     }
@@ -296,6 +298,15 @@ $javascriptSet = true;
     return $options;
 }
 
+/**
+ * Returns a HTML with all comments of an album item.
+ *
+ * @param integer   $index		itemindex
+ * @param string	$albumName	Name of the album containing the item
+ * @param boolean   $reverse	Wether to show in reverse order or not
+ * @return string				A rendered HTML Table that contains the comments.
+ * @author Jens Tkotz
+ */
 function showComments ($index, $albumName, $reverse = false) {
     global $gallery;
 
@@ -365,6 +376,9 @@ function showComments ($index, $albumName, $reverse = false) {
  * Determine id of next photo or movie.
  * Ater deletion we move to previous image if we're at the end.
  * and move forward if we're not.
+ *
+ * @param integer	$currentId
+ * @return integer	NextId ;)
  */
 function getNextId($currentId) {
     global $gallery;
@@ -374,9 +388,11 @@ function getNextId($currentId) {
 
     if ($current < sizeof($allIds)-1) {
         $nextId = $allIds[$current+1];
-    } elseif ($current > 0) {
+	}
+	elseif ($current > 0) {
         $nextId = $allIds[$current-1];
-    } else {
+	}
+	else {
         $nextId = $currentId;
     }
 

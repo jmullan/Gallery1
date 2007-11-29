@@ -44,7 +44,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 				echo gallery_error(sprintf(gTranslate('core', "Unable to create dir: '%s'."),$userDir));
 				return;
 			}
-		} else {
+		}
+		else {
 			if (!fs_is_dir($userDir)) {
 				echo gallery_error(sprintf(gTranslate('core', "%s exists, but is not a directory!"),
 							$userDir));
@@ -57,8 +58,9 @@ class Gallery_UserDB extends Abstract_UserDB {
 				$fd = fs_fopen("$userDir/.htaccess", "w");
 				fwrite($fd, "Order deny,allow\nDeny from all\n");
 				fclose($fd);
-			} else {
-				echo gallery_error(sprintf(gtranslate('core', "The folder which contain your userinformation (%s) is not writable."),
+			}
+			else {
+				echo gallery_error(sprintf(gTranslate('core', "The folder which contains your user information (%s) is not writable for the webserver."),
 								$userDir));
 				exit;
 			}
@@ -118,9 +120,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!strcmp($username, $this->nobody->getUsername())) {
 			return $this->nobody;
-		} else if (!strcmp($username, $this->everybody->getUsername())) {
+		}
+		else if (!strcmp($username, $this->everybody->getUsername())) {
 			return $this->everybody;
-		} else if (!strcmp($username, $this->loggedIn->getUsername())) {
+		}
+		else if (!strcmp($username, $this->loggedIn->getUsername())) {
 			return $this->loggedIn;
 		}
 
@@ -128,13 +132,16 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$this->rebuildUserMap();
 			if (!isset($this->userMap[$username])) {
 				return;
-			} else {
+			}
+			else {
 				$uid = $this->userMap[$username];
 			}
-		} else {
+		}
+		else {
 			$uid = $this->userMap[$username];
 
 		}
+		
 		$uid = $this->convertUidToNewFormat($uid);
 		$user = $this->getUserByUid($uid);
 		if (!$user || strcmp($user->getUsername(), $username)) {
@@ -143,7 +150,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			// this means our map is out of date.
 			$this->rebuildUserMap();
 			return $this->getUserByUsername($username, ++$level);
-		} else {
+		}
+		else {
 			return $user;
 		}
 
@@ -155,9 +163,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
 			return $this->nobody;
-		} else if (!strcmp($uid, $this->everybody->getUid())) {
+		}
+		else if (!strcmp($uid, $this->everybody->getUid())) {
 			return $this->everybody;
-		} else if (!strcmp($uid, $this->loggedIn->getUid())) {
+		}
+		else if (!strcmp($uid, $this->loggedIn->getUid())) {
 			return $this->loggedIn;
 		}
 
@@ -166,9 +176,11 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (fs_file_exists("$userDir/$uidNew")) {
 			$user->load($uidNew);
-		} else if ($tryOldFormat && fs_file_exists("$userDir/$uid")) {
+		}
+		else if ($tryOldFormat && fs_file_exists("$userDir/$uid")) {
 			$user->load($uid);
-		} else {
+		}
+		else {
 			$user = $this->nobody;
 		}
 
@@ -231,6 +243,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		return safe_serialize($this, "$userDir/userdb.dat");
 	}
+	
 	function save() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
@@ -256,7 +269,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 				/* In v1.2 we renamed User to Gallery_User */
 				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
-				    $tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
+					$tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
 				}
 
 				$user = unserialize($tmp);
@@ -271,6 +284,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		array_push($uidList, $this->loggedIn->getUid());
 
 		sort($uidList);
+		
 		return $uidList;
 	}
 
@@ -320,13 +334,20 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return null;
 	}
 
+	/**
+	 * Checks whether the UserDB is out of Date.
+	 *
+	 * @return boolean	 true if out of Date.
+	 */
 	function versionOutOfDate() {
 		global $gallery;
+		
 		if (strcmp($this->version, $gallery->user_version)) {
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
+	
 	function integrityCheck() {
 		global $gallery;
 
@@ -368,41 +389,40 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return $success;
 	}
 
-	function CreateUser($uname, $email, $new_password,
-			$fullname, $canCreate, $language, $log) {
+	function CreateUser($uname, $email, $new_password, $fullname, $canCreate, $language, $log) {
 		global $gErrors;
-	       	$errorCount=0;
-	       	$gErrors=array();
-	       	$gErrors["uname"] = $this->validNewUserName($uname);
-	       	if ($gErrors["uname"]) {
-		       	$errorCount++;
-	       	} else {
-		       	$gErrors["new_password"] = $this->validPassword($new_password);
-		       	if ($gErrors["new_password"]) {
-			       	$errorCount++;
-		       	}
-	       	}
+		   	$errorCount = 0;
+		   	$gErrors = array();
+		   	$gErrors["uname"] = $this->validNewUserName($uname);
+		   	if ($gErrors["uname"]) {
+			   	$errorCount++;
+		   	} else {
+			   	$gErrors["new_password"] = $this->validPassword($new_password);
+			   	if ($gErrors["new_password"]) {
+				   	$errorCount++;
+			   	}
+		   	}
 
 		if (!$errorCount) {
-		       	$tmpUser = new Gallery_User();
-		       	$tmpUser->setUsername($uname);
-		       	$tmpUser->setPassword($new_password);
-		       	$tmpUser->setFullname($fullname);
-		       	$tmpUser->setCanCreateAlbums($canCreate);
-		       	$tmpUser->setEmail($email);
-		       	$tmpUser->setDefaultLanguage($language);
+			   	$tmpUser = new Gallery_User();
+			   	$tmpUser->setUsername($uname);
+			   	$tmpUser->setPassword($new_password);
+			   	$tmpUser->setFullname($fullname);
+			   	$tmpUser->setCanCreateAlbums($canCreate);
+			   	$tmpUser->setEmail($email);
+			   	$tmpUser->setDefaultLanguage($language);
 			$tmpUser->origEmail=$email;
-		       	$tmpUser->log($log);
-		       	$tmpUser->save();
-		       	return $tmpUser;
-	       	} else {
+			   	$tmpUser->log($log);
+			   	$tmpUser->save();
+			   	return $tmpUser;
+		   	} else {
 			processingMsg( "<b>" . sprintf(gTranslate('core', "Problem adding %s:"), $uname)."</b>");
-		       	foreach ($gErrors as $key_var => $value_var) {
-			       	echo "\n<br>". gallery_error($gErrors[$key_var]);
-		       	}
-		       	return false;
-	       	}
-       	}
+			   	foreach ($gErrors as $key_var => $value_var) {
+				   	echo "\n<br>". gallery_error($gErrors[$key_var]);
+			   	}
+			   	return false;
+		   	}
+	   	}
 
 	/*
 	 * Since user_version == 4, we've replaced ':' and ';' with '_'
