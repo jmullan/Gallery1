@@ -25,11 +25,12 @@
 /**
  * Functions that provide possibility to create and modify URLS
  *
- * @package	urls
+ * @package     Libs
+ * @subpackage  URLs
  */
 
 /**
- * Define Constants for Gallery pathes.
+ * Define Constants for absolute Gallery pathes.
  */
 function setGalleryPaths() {
 	if (defined('GALLERY_BASE')) {
@@ -38,10 +39,11 @@ function setGalleryPaths() {
 
 	$currentFile = __FILE__;
 	if ( $currentFile == '/usr/share/gallery/lib/url.php') {
-		/* We assum Gallery runs on as Debian Package */
+		/* We assume Gallery runs on as Debian Package */
 		define ("GALLERY_CONFDIR", "/etc/gallery");
 		define ("GALLERY_SETUPDIR", "/var/lib/gallery/setup");
-	} else {
+	}
+	else {
 		define ("GALLERY_CONFDIR", dirname(dirname(__FILE__)));
 		define ("GALLERY_SETUPDIR", dirname(dirname(__FILE__)) . "/setup");
 	}
@@ -50,26 +52,29 @@ function setGalleryPaths() {
 }
 
 /**
+ * Return the URL to your Gallery
  *
+ * @return string	$base
  */
 function getGalleryBaseUrl() {
-    global $gallery;
+	global $gallery;
 
-    if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
-        $base = $gallery->app->photoAlbumURL;
-    }
-    elseif(where_i_am() == 'config') {
-        $base = '..';
-    }
-    elseif (defined('GALLERY_URL')) {
-        $base = GALLERY_URL;
-    }
-    else {
-        $base = '.';
-    }
+	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
+		$base = $gallery->app->photoAlbumURL;
+	}
+	elseif(where_i_am() == 'config') {
+		$base = '..';
+	}
+	elseif (defined('GALLERY_URL')) {
+		$base = GALLERY_URL;
+	}
+	else {
+		$base = '.';
+	}
 
-    return $base;
+	return $base;
 }
+
 /**
  * Any URL that you want to use can either be accessed directly
  * in the case of a standalone Gallery, or indirectly if we're
@@ -83,7 +88,6 @@ function getGalleryBaseUrl() {
  *				(eg, array("index" => 1, "set_albumName" => "foo"))
  * @return	string
  */
-
 function makeGalleryUrl($target = '', $args = array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
@@ -126,7 +130,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 		}
 	}
 	else {
-	    $urlprefix = '';
+		$urlprefix = '';
 	}
 
 	/* make sure the urlprefix doesnt end with a / */
@@ -206,16 +210,16 @@ function makeGalleryUrl($target = '', $args = array()) {
 				if ((isset($args['type']) && $args['type'] == 'popup') ||
 					(!empty($args['gallery_popup']))) {
 					$target = 'index.php';
-				} else {
+				}
+				else {
 					if (!empty($gallery->session->mambo->mosRoot)) {
 						$url = $urlprefix . $gallery->session->mambo->mosRoot . 'index.php';
-					} else {
-						$url ='index.php';
+					}
+					else {
+						$url = 'index.php';
 					}
 				}
 			break;
-
-
 
 			// Maybe something went wrong, we do nothing as URL we be build later.
 			default:
@@ -224,7 +228,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	}
 
 	if (empty($url)) {
-	    $url = getGalleryBaseUrl() ."/$target";
+		$url = getGalleryBaseUrl() ."/$target";
 	}
 
 	if ($args) {
@@ -232,13 +236,15 @@ function makeGalleryUrl($target = '', $args = array()) {
 		foreach ($args as $key => $value) {
 			if ($i++) {
 				$url .= "&";  // should replace with &amp; for validatation
-			} else {
+			}
+			else {
 				$url .= "?";
 			}
 
 			if (! is_array($value)) {
 				$url .= "$key=$value";
-			} else {
+			}
+			else {
 				$j = 0;
 				foreach ($value as $subkey => $subvalue) {
 					if ($j++) {
@@ -251,19 +257,25 @@ function makeGalleryUrl($target = '', $args = array()) {
 	}
 	return htmlspecialchars($url);
 }
-
-function makeGalleryHeaderUrl($target, $args=array()) {
+/**
+ * A wrapper around makeGalleryUrl that returns the url with decoded htmlentities
+ *
+ * @param string	$target
+ * @param array		$args
+ * @return string
+ */
+function makeGalleryHeaderUrl($target = '', $args = array()) {
 	$url = makeGalleryUrl($target, $args);
+
 	return unhtmlentities($url);
 }
 
-/*
+/**
  * makeAlbumUrl is a wrapper around makeGalleryUrl.  You tell it what
  * album (and optional photo id) and it does the rest.  You can also
  * specify additional key/value pairs in the optional third argument.
- */
-
-function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
+*/
+function makeAlbumUrl($albumName = '', $photoId = '', $args = array()) {
 	global $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
 	global $gallery;
 
@@ -271,11 +283,11 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 	if ( $gallery->app->feature["rewrite"] == 1 &&
 		(! $GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE_TYPE == 'GeekLog')) {
 		if ($albumName) {
-			$target = urlencode ($albumName);
+			$target = urlencode($albumName);
 
 			// Can't have photo without album
 			if ($photoId) {
-				$target .= "/".urlencode ($photoId);
+				$target .= '/'. urlencode($photoId);
 			}
 		} else {
 			$target = "albums.php";
@@ -285,7 +297,7 @@ function makeAlbumUrl($albumName="", $photoId="", $args=array()) {
 			$args["set_albumName"] = urlencode ($albumName);
 			if ($photoId) {
 				$target = "view_photo.php";
-				$args["id"] = urlencode ($photoId);
+				$args['id'] = urlencode($photoId);
 			} else {
 				$target = "view_album.php";
 			}
@@ -315,8 +327,8 @@ function addUrlArg($url, $arg) {
  * @return	string	$retUrl		Complete URL to the Image
  */
 function getImagePath($name, $skinname = '') {
-    global $gallery;
-    $retUrl = '';
+	global $gallery;
+	$retUrl = '';
 
     if (!$skinname) {
 	$skinname = $gallery->app->skinname;
@@ -341,36 +353,36 @@ function getImagePath($name, $skinname = '') {
  * @param	string	$name		Name of Image
  * @param	string	$skinname	Optional Name skin, if file is not found, fallback to default location
  * @return	string	$retPath	Complete Path to the Image
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function getAbsoluteImagePath($name, $skinname = '') {
-    global $gallery;
-    $retPath = '';
+	global $gallery;
+	$retPath = '';
 
-    $base = dirname(dirname(__FILE__));
+	$base = dirname(dirname(__FILE__));
 
-    $defaultPath = "$base/images/$name";
+	$defaultPath = "$base/images/$name";
 
-    /* Skin maybe 'none', but this is never found, so we fall back to default. */
-    if (!$skinname) {
-    	$skinname = $gallery->app->skinname;
-    }
-    $skinPath = "$base/skins/$skinname/images/$name";
+	/* Skin maybe 'none', but this is never found, so we fall back to default. */
+	if (!$skinname) {
+		$skinname = $gallery->app->skinname;
+	}
+	$skinPath = "$base/skins/$skinname/images/$name";
 
-    if (fs_file_exists($skinPath)) {
-    	$retPath = $skinPath;
-    } else {
-    	$retPath = $defaultPath;
-    }
+	if (fs_file_exists($skinPath)) {
+		$retPath = $skinPath;
+	} else {
+		$retPath = $defaultPath;
+	}
 
     return $retPath;
 }
 
 /**
- * Checkes wether an URL is relative or not
+ * Checkes whether an URL is relative or not
  * @param	string	$url
  * @return	boolean
- * @author	Jens Tkotz <jens@peino.de>
+ * @author	Jens Tkotz
  */
 function urlIsrelative($url) {
 	if (substr($url, 0,4) == 'http') {
@@ -382,11 +394,12 @@ function urlIsrelative($url) {
 }
 
 function broken_link($file) {
-    if (fs_is_link($file)) {
-        return !fs_is_file($file);
-    } else {
-        return 0;
-    }
+	if (fs_is_link($file)) {
+		return !fs_is_file($file);
+	}
+	else {
+		return false;
+	}
 }
 
 function galleryLink($url, $content, $attrList = array()) {

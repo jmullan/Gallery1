@@ -87,18 +87,18 @@ function saveResults($votes) {
 	if ($gallery->album->getPollType() == "critique") {
 		foreach ($votes as $vote_key => $vote_value) {
 			if ($vote_value === null || $vote_value == "NULL")  {
-			       	if (isset($gallery->album->fields["votes"][$vote_key][getVotingID()])) {
-				       	unset($gallery->album->fields["votes"][$vote_key][getVotingID()]);
-			       	}
-		       	} else {
+				if (isset($gallery->album->fields["votes"][$vote_key][getVotingID()])) {
+					unset($gallery->album->fields["votes"][$vote_key][getVotingID()]);
+				}
+			} else {
 				$gallery->album->fields["votes"][$vote_key][getVotingID()]=intval($vote_value);
 			}
 		}
-       	} else {
-	       	krsort($votes, SORT_NUMERIC);
+	} else {
+		krsort($votes, SORT_NUMERIC);
 		foreach ($votes as $vote_value => $vote_key) {
-		       	if (isset($gallery->album->fields["votes"] [$vote_key] [getVotingID()]) &&
-				  $gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value)) {
+			if (isset($gallery->album->fields["votes"] [$vote_key] [getVotingID()]) &&
+			$gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value)) {
 				//vote hasn't changed, so skip to next one
 				continue;
 			}
@@ -167,7 +167,7 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 	}
 
 	if (isset($gallery->album->fields['votes'][$id][getVotingID()])) {
-	       	$current_vote = $gallery->album->fields['votes'][$id][getVotingID()];
+		$current_vote = $gallery->album->fields['votes'][$id][getVotingID()];
 	}
 	else {
 		$current_vote = -1;
@@ -240,37 +240,37 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 }
 
 function showResultsGraph($num_rows) {
-    global $gallery;
+	global $gallery;
 
-    $results = array();
-    $results_count = array();
-    $nv_pairs = $gallery->album->getVoteNVPairs();
-    $buf = '';
+	$results		= array();
+	$results_count	= array();
+	$nv_pairs		= $gallery->album->getVoteNVPairs();
+	$buf			= '';
 
-    $voters = array();
-    foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
-        $accum_votes = 0;
-        $count = 0;
-        foreach ($image_votes as $voter => $vote_value ) {
-            $voters[$voter] = true;
-            if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
-                $vote_value = $gallery->album->getPollScale();
-            }
-            $accum_votes += $nv_pairs[$vote_value]["value"];
-            $count++;
-        }
-        if ($accum_votes > 0)  {
-            $results_count[$element]=$count;
-            if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
-                $results[$element]=$accum_votes;
-                $summary = gTranslate('common', "(Total points in brackets)");
-            }
-            else {
-                $results[$element] = number_format(((double)$accum_votes)/$count, 2);
-                $summary = gTranslate('common', "(Average points in brackets)");
-            }
-        }
-    }
+	$voters = array();
+	foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
+		$accum_votes = 0;
+		$count = 0;
+		foreach ($image_votes as $voter => $vote_value ) {
+			$voters[$voter] = true;
+			if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
+				$vote_value = $gallery->album->getPollScale();
+			}
+			$accum_votes += $nv_pairs[$vote_value]["value"];
+			$count++;
+		}
+		if ($accum_votes > 0)  {
+			$results_count[$element]=$count;
+			if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
+				$results[$element]=$accum_votes;
+				$summary = gTranslate('common', "(Total points in brackets)");
+			}
+			else {
+				$results[$element] = number_format(((double)$accum_votes)/$count, 2);
+				$summary = gTranslate('common', "(Average points in brackets)");
+			}
+		}
+	}
 
 	array_multisort($results, SORT_NUMERIC, SORT_DESC, $results_count, SORT_NUMERIC, SORT_DESC);
 	$rank = 0;
@@ -288,7 +288,7 @@ function showResultsGraph($num_rows) {
 			$url = makeAlbumUrl($gallery->album->getAlbumName($index));
 			$album = $gallery->album->getSubAlbum($index);
 			$desc = sprintf(gTranslate('common', "Album: %s"),
-					$album->fields['title']);
+			$album->fields['title']);
 
 		}
 		else {
@@ -311,7 +311,7 @@ function showResultsGraph($num_rows) {
 			continue;
 		}
 
-        $name_string = '<a href="';
+		$name_string = '<a href="';
 
 		$name_string.= $url;
 		$name_string.= '">';
@@ -320,7 +320,7 @@ function showResultsGraph($num_rows) {
 		$name_string.= " - ".
 		  gTranslate('common', "1 voter", "%d voters", $results_count[$element]);
 
-        $graph[$name_string] = $count;
+		$graph[$name_string] = $count;
 	}
 
 	if ($needs_saving) {
@@ -336,22 +336,22 @@ function showResultsGraph($num_rows) {
         	    sizeof($voters), '', true) .
     	    '</span>';
 
-	    if ($gallery->album->getPollType() == "critique") {
+		if ($gallery->album->getPollType() == "critique") {
 			$key_string = '';
-	        foreach ($nv_pairs as $nv_pair) {
-	            if (empty($nv_pair["name"])) {
-	                continue;
-	            }
-	            $key_string .= sprintf(gTranslate('common',"%s: %s points; "),
-	            $nv_pair["name"],
-	            $nv_pair["value"]);
-	        }
-	        if (strlen($key_string) > 0) {
-	            $buf .= "<br>". sprintf(gTranslate('common',"Key - %s"),
-	            $key_string)." $summary<br>";
-	        }
-	    }
-	    $buf .= $graph . '</div>';
+			foreach ($nv_pairs as $nv_pair) {
+				if (empty($nv_pair["name"])) {
+					continue;
+				}
+				$key_string .= sprintf(gTranslate('common',"%s: %s points; "),
+				$nv_pair["name"],
+				$nv_pair["value"]);
+			}
+			if (strlen($key_string) > 0) {
+				$buf .= "<br>". sprintf(gTranslate('common',"Key - %s"),
+				$key_string)." $summary<br>";
+			}
+		}
+		$buf .= $graph . '</div>';
 	}
 
 	return array($buf, $results);
@@ -396,16 +396,16 @@ function showResults($id) {
  * Note $gallery->album must be set
 */
 function buildVotingInputFields() {
-    global $gallery;
+	global $gallery;
 
-    $nv_pairs = $gallery->album->getVoteNVPairs();
-    $votingInputFieldArray = array();
+	$nv_pairs = $gallery->album->getVoteNVPairs();
+	$votingInputFieldArray = array();
 	for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
-	 $votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";
-	 $votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][value]\" value=\"". $nv_pairs[$i]["value"] ."\">";
-    }
+		$votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][name]\" value=\"". $nv_pairs[$i]["name"] ."\">";
+		$votingInputFieldArray[] = "<input type=\"text\" name=\"nv_pairs[$i][value]\" value=\"". $nv_pairs[$i]["value"] ."\">";
+	}
 
-    return $votingInputFieldArray;
+	return $votingInputFieldArray;
 }
 
 ?>

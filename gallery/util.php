@@ -618,8 +618,8 @@ function getExif($file) {
             }
             $path = $gallery->app->use_exif;
 			// -v removed as the structure is different.
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' 
-            fs_import_filename($file, 1));
+			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' .
+            							fs_import_filename($file, 1));
 
             $unwantedFields = array('File name');
         break;

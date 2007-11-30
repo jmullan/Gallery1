@@ -43,12 +43,12 @@ function emailDisclaimer() {
 			sprintf(
 			  gTranslate('common', "Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message."),
 			  $gallery->app->photoAlbumURL) .
-		"  \r\n".
+		   "  \r\n".
 		   sprintf(gTranslate('common', "Report abuse to %s"),$gallery->app->adminEmail)
 	);
 
 	$msg2 = sprintf("Note: This is an automatically generated email message sent from the %s website.  If you have received this in error, please ignore this message.  \r\nReport abuse to %s",
-	$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
+				$gallery->app->photoAlbumURL, $gallery->app->adminEmail);
 
 	if ($msg != $msg2) {
 		return "\r\n\r\n$msg\r\n\r\n$msg2";
@@ -131,12 +131,12 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	$gallery_mail->setHeadCharset($gallery->charset);
 
 	if($isHTML) {
-	    $gallery_mail->setHtmlCharset($gallery->charset);
+		$gallery_mail->setHtmlCharset($gallery->charset);
         $gallery_mail->setHtml($msg, gTranslate('common', "This is a HTML mail, please have a look at the Attachment."));
 	}
 	else {
-	    $gallery_mail->setText($msg);
-	    $gallery_mail->setTextCharset($gallery->charset);
+		$gallery_mail->setText($msg);
+		$gallery_mail->setTextCharset($gallery->charset);
 	}
 	$gallery_mail->setFrom($from);
 	$gallery_mail->setReturnPath($reply_to);
@@ -239,26 +239,26 @@ function emailComments($id, $comment_text, $commenter_name) {
 	$text = '';
 
 	if (!empty($to)) {
-	    $text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
-	    $text .= "\n\n<html>";
-	    $text .= "\n  <head>";
-	    $text .= "\n  <title>$subject</title>";
-	    $text .= "\n  </head>\n<body>\n<p>";
+		$text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
+		$text .= "\n\n<html>";
+		$text .= "\n  <head>";
+		$text .= "\n  <title>$subject</title>";
+		$text .= "\n  </head>\n<body>\n<p>";
 	    $text .= sprintf(gTranslate('common', "A new comment has been added to Gallery: %s"), $gallery->app->galleryTitle);
-	    $text .= "\n</p>";
+		$text .= "\n</p>";
 	    $text .= sprintf(gTranslate('common', "The comment was added by %s to this %s in this %s."),
-			$commenter_name,
+		$commenter_name,
 			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName, $id) .'">'. gTranslate('common', "Item") .'</a>',
 			'<a href="'. makeAlbumHeaderUrl($gallery->session->albumName) .'">'. gTranslate('common', "Album") .'</a>');
 	    $text .= "\n<br>". gTranslate('common', "*** Begin comment ***") ."<br>\n";
-	    $text .= nl2br($comment_text);
+		$text .= nl2br($comment_text);
 	    $text .= "<br>\n". gTranslate('common', "*** End comment ***") . "\n<p>\n";
 	    $text .= gTranslate('common', "If you no longer wish to receive emails about this item, follow the links above and ensure that 'Email me when comments are added' is unchecked in both the item and album page (you'll need to login first).");
-	    $text .= "\n</p>\n</body>\n</html>";
+		$text .= "\n</p>\n</body>\n</html>";
 
         $logmsg = sprintf(gTranslate('common', "New comment for %s."), makeAlbumHeaderUrl($gallery->session->albumName, $id));
 
-	    gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
+		gallery_mail($to, $subject, $text, $logmsg, true, NULL, false, true);
 	}
 }
 

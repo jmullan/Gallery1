@@ -153,7 +153,7 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
 			}
 			$html .= "<option value=\"$value\"$sel>$text</option>" . $crlf;
 		}
-    }
+	}
 	$html .= '</select>'. $crlf;
 
 	return $html;

@@ -21,7 +21,7 @@
  * very pimp application that is Gallery.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 
@@ -51,13 +51,13 @@ $bordercolor = $gallery->album->fields["bordercolor"];
 
 #-- breadcrumb text ---
 $upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-                'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
+			  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
 
 if ($gallery->album->fields['returnto'] != 'no') {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-        $breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-          $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
+	foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
+		$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
+		$navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
+	}
 }
 
 $breadcrumb["bordercolor"] = $bordercolor;
@@ -75,7 +75,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 // the link colors have to be done here to override the style sheet
 if ($gallery->album->fields["linkcolor"]) {
-?>
+	?>
     A:link, A:visited, A:active
       { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
     A:hover
@@ -125,7 +125,8 @@ if (!empty($comment_index)) {
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
-			);
+		);
+
 		$gallery->album->deleteComment($index, $com_index);
 		$gallery->album->save($saveMsg);
 	}
@@ -147,18 +148,19 @@ includeLayout('navtableend.inc');
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
 	echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
-} else {
-    $numPhotos = $gallery->album->numPhotos(1);
-    $commentbox["bordercolor"] = $bordercolor;
-    $i = 1;
-    while($i <= $numPhotos) {
-	set_time_limit($gallery->app->timeLimit);
-        $id = $gallery->album->getPhotoId($i);
-        $index = $gallery->album->getPhotoIndex($id);
-        if ($gallery->album->isAlbum($i)) {
-		$myAlbumName = $gallery->album->getAlbumName($i);
-		$myAlbum = new Album();
-		$myAlbum->load($myAlbumName);
+}
+else {
+	$numPhotos = $gallery->album->numPhotos(1);
+	$commentbox["bordercolor"] = $bordercolor;
+	$i = 1;
+	while($i <= $numPhotos) {
+		set_time_limit($gallery->app->timeLimit);
+		$id = $gallery->album->getPhotoId($i);
+		$index = $gallery->album->getPhotoIndex($id);
+		if ($gallery->album->isAlbum($i)) {
+			$myAlbumName = $gallery->album->getAlbumName($i);
+			$myAlbum = new Album();
+			$myAlbum->load($myAlbumName);
 
 			if ( $myAlbum->lastCommentDate("no") != -1 &&
 				((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
@@ -168,32 +170,32 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 				)
 			   )
 			{
-			$embeddedAlbum = 1;
-			$myHighlightTag = $myAlbum->getHighlightTag();
-			includeLayout('commentboxtop.inc');
-			includeLayout('commentboxbottom.inc');
-	        }
-	}
+				$embeddedAlbum = 1;
+				$myHighlightTag = $myAlbum->getHighlightTag();
+				includeLayout('commentboxtop.inc');
+				includeLayout('commentboxbottom.inc');
+			}
+		}
 		elseif (!$gallery->album->isHidden($i) ||
 				$gallery->user->isAdmin() ||
 				$gallery->user->isOwnerOfAlbum($gallery->album) ||
 				$gallery->album->isItemOwner($gallery->user, $i))
 		{
-		$comments = $gallery->album->numComments($i);
-		if($comments > 0) {
-			includeLayout('commentboxtop.inc');
+			$comments = $gallery->album->numComments($i);
+			if($comments > 0) {
+				includeLayout('commentboxtop.inc');
 
-			for($j = 1; $j <= $comments; $j++) {
-                    $comment = $gallery->album->getComment($index, $j);
-		    includeLayout('commentbox.inc');
-                }
+				for($j = 1; $j <= $comments; $j++) {
+					$comment = $gallery->album->getComment($index, $j);
+					includeLayout('commentbox.inc');
+				}
 
-		includeLayout('commentboxbottom.inc');
-            }
-        }
-        $embeddedAlbum = 0;
-        $i = getNextPhoto($i);
-    }
+				includeLayout('commentboxbottom.inc');
+			}
+		}
+		$embeddedAlbum = 0;
+		$i = getNextPhoto($i);
+	}
 }
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;

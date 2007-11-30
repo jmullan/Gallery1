@@ -72,22 +72,22 @@ if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 }
 
 if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
-    $full = NULL;
+	$full = NULL;
 }
 
 if (!empty($votes) && canVote()) {
-    if (!isset($votes[$id]) &&
-        $gallery->album->getPollScale() == 1 &&
+	if (!isset($votes[$id]) &&
+		$gallery->album->getPollScale() == 1 &&
 		$gallery->album->getPollType() == "critique")
 	{
-        $votes[$id] = null;
-    }
+		$votes[$id] = null;
+	}
 
-    saveResults($votes);
-    if ($gallery->album->getPollShowResults()) {
-        list($buf, $rank)=showResultsGraph(0);
-        print $buf;
-    }
+	saveResults($votes);
+	if ($gallery->album->getPollShowResults()) {
+		list($buf, $rank)=showResultsGraph(0);
+		print $buf;
+	}
 }
 
 $albumName = $gallery->session->albumName;
@@ -95,25 +95,25 @@ $noCount = getRequestVar('noCount');
 
 if ($noCount != 1 && !isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
   !$gallery->session->offline) {
-    $gallery->session->viewedItem[$albumName][$id] = 1;
-    $gallery->album->incrementItemClicks($index);
+	$gallery->session->viewedItem[$albumName][$id] = 1;
+	$gallery->album->incrementItemClicks($index);
 }
 
 $photo = $gallery->album->getPhoto($index);
 
 if ($photo->isMovie()) {
-    $image = $photo->thumbnail;
+	$image = $photo->thumbnail;
 }
 else {
-    $image = $photo->image;
+	$image = $photo->image;
 }
 
 $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." . $image->type;
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
-    !strcmp($gallery->session->fullOnly,"on") &&
-    !strcmp($gallery->album->fields["use_fullOnly"],"yes");
+					 !strcmp($gallery->session->fullOnly,"on") &&
+    				 !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 
 if ($do_fullOnly) {
     $full = $gallery->user->canViewFullImages($gallery->album);
@@ -135,14 +135,14 @@ if ($next > $numPhotos) {
 
 $prev = $index-1;
 if ($prev <= 0) {
-    //$prev = $numPhotos;
-    $first = 1;
+	//$prev = $numPhotos;
+	$first = 1;
 }
 
-/**
-* We might be prev/next navigating using this page
-*  so recalculate the 'page' variable
-*/
+/*
+ * We might be prev/next navigating using this page
+ *  so recalculate the 'page' variable
+ */
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $perPage = $rows * $cols;
@@ -150,11 +150,11 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 
-/**
-* Relative URLs are tricky if we don't know if we're rewriting
-* URLs or not.  If we're rewriting, then the browser will think
-* we're down 1 dir farther than we really are.  Use absolute
-* urls wherever possible.
+/*
+ * Relative URLs are tricky if we don't know if we're rewriting
+ * URLs or not.  If we're rewriting, then the browser will think
+ * we're down 1 dir farther than we really are.  Use absolute
+ * urls wherever possible.
 */
 $top = $gallery->app->photoAlbumURL;
 
@@ -269,7 +269,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   echo "\n  ". '<link rel="up" href="' . $upUrl .'">';
 
   if ($gallery->album->isRoot() &&
-  (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
+  	 (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"]))) {
       echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
   }
 ?>
@@ -333,8 +333,8 @@ if (!$gallery->album->isMovie($id)) {
     print '<a id="page_url" href="'. $page_url .'"></a>'."\n";
 
     if ($gallery->album->fields["use_exif"] == "yes" &&
-      (eregi("jpe?g\$", $photo->image->type)) &&
-      (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
+		(eregi("jpe?g\$", $photo->image->type)) &&
+		(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
 		sizeof($albumItemOptions) == 2)
 	{
         $albumName = $gallery->session->albumName;
@@ -343,7 +343,7 @@ if (!$gallery->album->isMovie($id)) {
     }
 
     if (!empty($gallery->album->fields["print_photos"]) &&
-      !$gallery->session->offline &&
+		!$gallery->session->offline &&
 		!$gallery->album->isMovie($id))
 	{
         $photo = $gallery->album->getPhoto($GLOBALS["index"]);
@@ -380,15 +380,15 @@ if (!$gallery->album->isMovie($id)) {
             switch ($name) {
                 case 'shutterfly':
                     $printShutterflyForm = true;
-                    break;
+				break;
                 
-                case 'fotoserve':
+				case 'fotoserve':
                     $printFotoserveForm = true;
-                    break;
+				break;
 				
                 case 'photoaccess':
                     $printPhotoAccessForm = true;
-                    break;
+				break;
                     
                 default:
                 break;
@@ -581,8 +581,13 @@ if(sizeof($albumItemOptions) > 2 && $useIcons) {
     foreach ($albumItemOptions as $trash => $option) {
         if(!empty($option['value'])) {
             if (stristr($option['value'], 'popup')) {
-                $content = popup_link($option['text'], $option['value'], true, false, 500, 500, 'iconLink');
-            } else {
+                $content = popup_link(
+							$option['text'],
+							$option['value'],
+							true, false, 500, 500,
+							'iconLink');
+            } 
+			else {
                 $content = '<a class="iconLink" href="'. $option['value'] .'">'. $option['text'] . '</a>';
             }
             $itemActionTable->addElement(array('content' => $content));
@@ -755,7 +760,7 @@ if ($gallery->user->isLoggedIn() &&
         echo "\n<form name=\"emailMe\" action=\"#\">";
 
         $url= makeAlbumUrl($gallery->session->albumName, $id, array(
-        'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
+        	'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
         );
 
         echo gTranslate('core', "Email me when comments are added");

@@ -58,9 +58,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
 
-<html> 
+<html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . _("Poll Results") ?></title>
+  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . gTranslate('core', "Poll Results") ?></title>
   <?php common_header(); ?>
   <style type="text/css">
 <?php
@@ -92,7 +92,7 @@ if ($gallery->album->fields["textcolor"]) {
 includeHtmlWrap("album.header");
 $breadcrumb["top"] = true;
 $breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["text"][] = sprintf(_("Return to  %s"), 
+$breadcrumb["text"][] = sprintf(gTranslate('core', "Return to  %s"), 
 		"<a href=\"" .  makeAlbumUrl($gallery->session->albumName) .
       		"\">" . $pAlbum->fields['title'] . "</a>");
 
@@ -118,7 +118,7 @@ includeLayout('navigator.inc');
 	print $buf;
 		?>
 			<p>
-			    <span class="pollresults"><?php echo _("Results Breakdown") ?></span>
+			    <span class="pollresults"><?php echo gTranslate('core', "Results Breakdown") ?></span>
 			<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
 			<?php
 		
@@ -145,8 +145,9 @@ includeLayout('navigator.inc');
 					if ($gallery->album->isAlbum($index)) {
 						$albumName = $gallery->album->getAlbumName($index);
 						$album = $gallery->album->getSubAlbum($index);
-						print sprintf(_("Album: %s"),$album->fields['title'])."<Br>";
-					} else {
+						printf(gTranslate('core', "Album: %s"),$album->fields['title'])."<Br>";
+					}
+					else {
 						print $gallery->album->getCaption($index)."<br>";
 					}
 
@@ -160,7 +161,7 @@ includeLayout('navigator.inc');
 				$rowStart = $i;
 			}
 			if (!$result) {
-				print _("No votes so far.");
+				print gTranslate('core', "No votes so far.");
 			}
 		?>
 		

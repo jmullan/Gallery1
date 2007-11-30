@@ -83,20 +83,20 @@ $javascriptSet = true;
 	else {
     	$label = gTranslate('core', "Photo");
 		$isPhoto = true;
-    }
-
-    if ($gallery->user->isAdmin()) {
-    	$isAdmin = true;
-    }
-
-    if (isset($isAdmin) ||
-      (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-      $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
-      	$isOwner = true;
 	}
 
-    if ($gallery->user->canWriteToAlbum($gallery->album) ||
-       ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
+	if ($gallery->user->isAdmin()) {
+		$isAdmin = true;
+	}
+
+	if (isset($isAdmin) ||
+	  (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+	  $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
+	  	$isOwner = true;
+	}
+
+	if ($gallery->user->canWriteToAlbum($gallery->album) ||
+	   ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
 		$canModify = true;
 	}
 
@@ -295,6 +295,7 @@ $javascriptSet = true;
 	    	), $options
     	);
     }
+
     return $options;
 }
 

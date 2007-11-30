@@ -189,17 +189,17 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			case 'phpnuke':
 				$cookie_name = 'user';
 				$cookie_value = $_COOKIE[$cookie_name];
-				break;
+			break;
 
 			case 'GeekLog':
 				$cookie_name = $_CONF['cookie_session'];
 				$cookie_value = $_COOKIE[$cookie_name];
-				break;
+			break;
 
 			case 'phpBB2':
 				$cookie_name = $board_config['cookie_name'] . '_sid';
 				$cookie_value = $_COOKIE[$cookie_name];
-				break;
+			break;
 
 			case 'mambo':
 			case 'joomla':
@@ -218,7 +218,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 						}
 					}
 				}
-				break;
+			break;
 		}
 	}
 
@@ -894,7 +894,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 		$myAlbumTitle = $myAlbum->fields['title'];
 
 		if ($gallery->user->canWriteToAlbum($myAlbum) ||
-		($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
+		  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 			if ($myAlbum->versionOutOfDate()) {
 				$uptodate = false;
 				continue;
@@ -919,7 +919,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 		}
 		elseif (!$readOnly && !$gallery->album->isRoot() &&
 			($myAlbum == $gallery->album->getNestedAlbum($index)) && !$movePhoto )
-			{
+		{
 			// do nothing -- we are moving an album, and we don't
 			// want to move it into its own album tree
 		}
@@ -946,7 +946,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 			$nestedAlbum->load($myName);
 
 			if ($gallery->user->canWriteToAlbum($nestedAlbum) ||
-			($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
+			  ($readOnly && $gallery->user->canReadAlbum($myAlbum))) {
 				$val2 = str_repeat("-- ", $level+1);
 				$val2 .= $nestedAlbum->fields['title'];
 
@@ -990,7 +990,7 @@ function lastCommentString($lastCommentDate, &$displayCommentLegend) {
 
 	if ($gallery->app->comments_indication_verbose == 'yes') {
 		$html = "<br>".
-		sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
+		  sprintf(gTranslate('common', "Last comment %s."), strftime($gallery->app->dateString, $lastCommentDate));
 	}
 	else {
 		$html= '<span class="commentIndication">*</span>';
@@ -1053,7 +1053,7 @@ function available_skins($description_only = false) {
 				$name = $file;
 			}
 
-			$opts[$file]=$name;
+			$opts[$file] = $name;
 			if (fs_file_exists("$dir/$file/images/screenshot.jpg")) {
 				$screenshot = $base_url . "/skins/$file/images/screenshot.jpg";
 			}
@@ -1120,14 +1120,12 @@ function available_frames($description_only = false) {
 				$name = NULL;
 				$description = NULL;
 				require($frameinc);
-				if (empty($name )) {
+				if (empty($name)) {
 					$name = $file;
 				}
-
 				if (empty($description )) {
 					$description = $file;
 				}
-
 				$opts[$file] = $name;
 				$descriptions.="\n<dt>" . popup_link($name, "frame_test.php?frame=$file", 1) . "</dt><dd>$description</dd>";
 			}
@@ -1144,7 +1142,6 @@ function available_frames($description_only = false) {
 	}
 
 	$descriptions .= "\n</dl>";
-
 	if ($description_only) {
 		return $descriptions;
 	}

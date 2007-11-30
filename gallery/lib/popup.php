@@ -55,12 +55,11 @@ function popup($url, $url_is_complete=0, $height=500,$width=500) {
 	return popup_js($url, "Edit","height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
-
 function popup_js($url, $window, $attrs) {
 	if (ereg("^http|^ftp|&amp;", $url)) {
 		$url = "'$url'";
 	}
-        
+
 	return "nw=window.open($url,'$window','$attrs'); nw.opener=self; return false;";
 }
 
