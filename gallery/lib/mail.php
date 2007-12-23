@@ -172,16 +172,22 @@ function welcome_email($show_default=false) {
 
 	$default= gTranslate('common', "Hi !!FULLNAME!!,
 
-Congratulations.  You have just been subscribed to the Gallery !!GALLERYTITLE!! at !!GALLERYURL!!.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
+Congratulations.  You have just been subscribed to %s at %s.  Your account name is !!USERNAME!!.  Please visit the gallery soon, and create a password by clicking this link:
 
 !!NEWPASSWORDLINK!!
 
-Your !!GALLERYTITLE!! Administrator");
+Your %s Administrator.");
 	if ($show_default) {
-		return $default;
+		return sprintf($default,
+		'<b><span style="white-space: nowrap;">&lt;' . gTranslate('core', "gallery title") . "&gt;</span></b>",
+		'<b><span style="white-space: nowrap;">&lt;' . gTranslate('core', "gallery URL") . "&gt;</span></b>",
+		'<b><span style="white-space: nowrap;">&lt;' . gTranslate('core', "gallery title") . "&gt;</span></b>");
 	}
 	elseif (empty($gallery->app->emailGreeting)) {
-		return $default;
+		return sprintf($default,
+		$gallery->app->galleryTitle,
+		$gallery->app->photoAlbumURL,
+		$gallery->app->galleryTitle);
 	}
 	else {
 		return $gallery->app->emailGreeting;

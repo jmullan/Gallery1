@@ -223,6 +223,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	}
 
 	$defaults['uiLocale'] = $gallery->language;
+	$agent = $_SERVER['HTTP_USER_AGENT'];
 ?>
 	<object
 		classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
@@ -247,6 +248,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 	<param name="gr_cookie1_value" value="<?php echo $cookie1_value ?>">
 <?php } ?>
 	<param name="gr_album" value="<?php echo $album ?>">
+	<param name="gr_user_agent" value="<?php echo $agent ?>">
 <?php
 foreach ($defaults as $key => $value) {
 	echo "\t<param name=\"GRDefault_". $key ."\" value=\"". $value ."\">\n";
@@ -281,6 +283,7 @@ foreach ($overrides as $key => $value) {
 				gr_cookie1_value="<?php echo $cookie1_value ?>"
 <?php } ?>
 				gr_album="<?php echo $album ?>"
+				gr_user_agent="<?php echo $agent ?>"
 <?php
 foreach ($defaults as $key => $value) {
 	echo "\t\t\t\tGRDefault_". $key ."=\"". $value ."\"\n";
@@ -668,15 +671,23 @@ function formatted_filesize($filesize = 0, $filename = '') {
 		$pass++;
 	}
 
-	return round($filesize, 2) .'&nbsp;'. $units[$pass];
+	$result = round($filesize, 2);
+	$result = number_format($result, 2, '.', '');
+
+	return $result ."&nbsp;". $units[$pass];
 }
 
 /**
  * Generates a HTML page "header" that closes itself and reloads the opener window.
  */
 function dismissAndReload() {
+	doctype();
+	echo "\n<html>";
+	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
+
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
+		common_header();
 		echo '<p align="center" class="error">';
 		echo gTranslate('common', "Not closing this window because debug mode is on.") ;
 		echo "\n<hr>\n</p>";
@@ -695,15 +706,31 @@ function reload() {
 	echo '</script>';
 }
 
-function dismissAndLoad($url) {
+/**
+ * Prints a HTML page "header" that closes itself and (if an url is given)
+ * loads a specific url in the opener window.
+ *
+ * @param string $url
+ */
+function dismissAndLoad($url = '') {
+	doctype();
+	echo "\n<html>";
+	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
+
 	if (isDebugging()) {
-		echo("<BODY onLoad='opener.location = \"$url\"; '>");
-		echo("Loading URL: $url");
-		echo("<center><b>" . gTranslate('common', "Not closing this window because debug mode is on.") ."</b></center>");
-		echo("<hr>");
+		echo "<body onLoad=\"opener.location='$url';\">";
+		common_header();
+		echo "Loading URL: $url";
+		echo "<center><b>" . gTranslate('common', "Not closing this window because debug mode is on.") ."</b></center>";
+		echo "<hr>";
+	}
+	elseif(!empty($url)) {
+		echo "<body onLoad=\"opener.location='$url' ; parent.close()\">";
+		echo "\n</html>";
 	}
 	else {
-		echo("<BODY onLoad='opener.location = \"$url\"; parent.close()'>");
+		echo "<body onLoad=\"parent.close()\">";
+		echo "\n</html>";
 	}
 }
 
@@ -747,7 +774,7 @@ function includeHtmlWrap($name, $skinname = '') {
 	}
 
 	if (fs_file_exists($domainname) && !broken_link($domainname)) {
-		include ($domainname);
+		require($domainname);
 	}
 	else {
 		$defaultname = "$base/html_wrap/$name";
@@ -1029,6 +1056,7 @@ function available_skins($description_only = false) {
 
 	if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 		while ($file = readdir($fd)) {
+			if($file === '.' || $file === '..') continue;
 			$subdir = "$dir/$file/css";
 			$skincss = "$subdir/screen.css";
 			if (fs_is_dir($subdir) && fs_file_exists($skincss)) {
@@ -1324,4 +1352,46 @@ function gImage($relativePath, $altText, $attrs = array(), $skin = '') {
 	return $html;
 }
 
+/**
+ * Creates a toggle Button. Button calls Javascript function gallery_toggle()
+ * This needs to be loaded separately.
+ *
+ * @param string $id
+ * @return string   The HTML code.
+ * @author Jens Tkotz
+ */
+function toggleButton($id) {
+	$html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
+			gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toggleBut_$id")) .
+			'</a> ';
+
+	return $html;
+
+}
+
+/**
+ * Creates a toggle Box. Optionally a toggle Button is added before, or after.
+ *
+ * @param string $id
+ * @param string $text
+ * @param string $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
+ * @return string   The HTML code.
+ * @author Jens Tkotz
+ */
+function toggleBox($id, $text, $toggleButton = 'prepend') {
+	$html = "\n<div id=\"toggleFrame_$id\" style=\"display:none;\">$text\n</div>";
+
+	if ($toggleButton == 'prepend') {
+		$html = toggleButton($id) . $html;
+	}
+
+	if ($toggleButton == 'append') {
+		$html .= toggleButton($id);
+	}
+
+	$html = '<br>' . $html;
+
+	return $html;
+
+}
 ?>
