@@ -38,12 +38,12 @@ $properties = array(
     ),
     'summary' => array(
         'prompt' => gTranslate('common', "Album Summary"),
-        'desc' => '',
-        'value' => $gallery->album->fields["summary"],
+		'desc' => '',
+		'value' => $gallery->album->fields["summary"],
 		'type' => 'textarea',
-        'attrs' => array('cols' => 40, 'rows' => 6)
-    ),
-    'title' => array(
+		'attrs' => array('cols' => 40, 'rows' => 6)
+	),
+	'title' => array(
         'prompt' => gTranslate('common', "Album Title"),
         'desc' => '',
         'type' => 'text',
@@ -278,11 +278,11 @@ $properties = array(
         'prompt' => gTranslate('common', "Which photo printing services<br>do you want to let visitors use?"),
         'desc' => '',
         'multiple_choices' => array(
-            'photoaccess' => '<a href="http://www.photoworks.com/">PhotoWorks</a>',
-            'shutterfly'  => '<a href="http://www.shutterfly.com/">Shutterfly</a>',
-            'fotoserve'   => '<a href="http://www.fotoserve.com/">Fotoserve.com</a>',
-            'fotokasten'  => '<a href="http://www.fotokasten.de/">Fotokasten</a>',
-            'mpush'       => '<a href="http://www.mpush.cc/">mPush</a>'
+			'photoaccess' => '<a href="http://www.photoworks.com/" target="_blank">PhotoWorks</a>',
+			'shutterfly'  => '<a href="http://www.shutterfly.com/" target="_blank">Shutterfly</a>',
+			'fotoserve'   => '<a href="http://www.fotoserve.com/" target="_blank">Fotoserve.com</a>',
+			'fotokasten'  => '<a href="http://www.fotokasten.de/" target="_blank">Fotokasten</a>',
+			'mpush'	   => '<a href="http://www.mpush.cc/" target="_blank">mPush</a>'
         ),
         'value' => $gallery->album->fields['print_photos']
     ),

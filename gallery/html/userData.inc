@@ -126,14 +126,15 @@ if ($gallery->user->isAdmin()) { ?>
 	<?php 
 		if ($allowChange["admin"] === true) {
 		    if ($uname=$gallery->user->getUsername() == $uname) {
-			echo '<td>'. $yesNoChoices[$isAdmin] .'</td></tr>';
-			echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
-			$hidden[]=array('isAdmin', $isAdmin);
-		    } else {
-			echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . '</td>';
-			echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i>';
+				echo '<td>'. $yesNoChoices[$isAdmin] . "</td></tr>\n";
+				echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
+				$hidden[] = array('isAdmin', $isAdmin);
 		    }
-		} ?></td>
+		    else {
+				echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . "</td></tr>\n";
+				echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i>';
+		    }
+		} ?>
 </tr>
 <?php 
 }
