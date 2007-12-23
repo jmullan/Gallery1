@@ -103,8 +103,8 @@ class Abstract_User {
     }
 
     function printableName($format = '!!FULLNAME!! (!!USERNAME!!)') {
-        if (empty($this) || $this->isPseudo()) {
-            return '';
+		if (empty($this)) {
+			$name = '>Unknown User<';
         }
         else {
             $name = $format;

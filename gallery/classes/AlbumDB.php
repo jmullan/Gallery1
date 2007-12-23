@@ -32,6 +32,18 @@ class AlbumDB {
 
         $dir = $gallery->app->albumDir;
 
+		$allowedInvalidAlbums = array('CVS', 'SVN', '_vti_cnf', 'lost+found', 'captcha_tmp');
+
+		if(!fs_is_dir($dir)) {
+			echo infoBox(array(array(
+				'type' => 'error',
+				'text' => sprintf("Albumdir (%s) not found! Please check the path to the albums folder in your config.php.",
+								  $dir)
+			)));
+
+			return false;
+		}
+
         $tmp = getFile("$dir/albumdb.dat");
 		if (strcmp($tmp, '')) {
             $this->albumOrder = unserialize($tmp);
@@ -63,7 +75,8 @@ class AlbumDB {
                     if ($album->versionOutOfDate()) {
                         array_push($this->outOfDateAlbums, $name);
                     }
-                } else if ($name != 'CVS') {
+					}
+					else if (!in_array($name, $allowedInvalidAlbums)) {
                     array_push($this->brokenAlbums, $name);
                 }
                 $i++;
@@ -79,8 +92,9 @@ class AlbumDB {
             while ($file = readdir($fd)) {
                 if (!ereg("^\.", $file) &&
                 fs_is_dir("$dir/$file") &&
-                strcmp($file, "_vti_cnf") &&
-                !in_array($file, $this->albumOrder)) {
+						!in_array($file, $allowedInvalidAlbums) &&
+						!in_array($file, $this->albumOrder))
+					{
                     $album = new Album;
                     $album->load($file,$loadphotos);
                     array_push($this->albumList, $album);

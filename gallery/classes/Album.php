@@ -1259,8 +1259,12 @@ class Album {
 
         if (isImage($tag)) {
             resize_image($newFile, $newFile, $this->fields['max_size'], $this->fields['max_file_size'], true, false);
-        } else {
-            processingMsg(gTranslate('core', "Cannot resize/compress this filetype."));
+        }
+		elseif (isMovie($tag)) {
+			processingMsg(gTranslate('core', "File is a movie, no resizing done."));
+		}
+		else {
+			processingMsg(sprintf(gTranslate('core', "Invalid filetype: %s. Skipping."), $tag));
         }
 
 		/* Create an albumitem */
@@ -2968,7 +2972,7 @@ class Album {
     	$this->save(array(), false);
     }
 
-    function unsetEmailMe($type, $user, $id = null, $recursive) {
+    function unsetEmailMe($type, $user, $id = null, $recursive = false) {
     	$uid = $user->getUid();
 
     	if (!$this->getEmailMe($type, $user, $id)  && !$recursive) {

@@ -1,3 +1,16 @@
+2007-12-23 Jens Tkotz <jens@peino.de> 1.5.8-svn-b5
+
+ * Change: Give better information when adding an item in case its a movie.
+
+ * Change: Sometimes there a folder in the albums dir that are valid,
+		   but Gallery sees them as invalid.
+		   Was only 'CVS' in the past. Increased the list. ('svn' etc.)
+
+ * Change: method printableName() returned '' in case the userobject
+		   is empty or a pseudouser.
+		   Change to return 'unknown user' when its a empty. Pseudousers are
+		   handled normally.
+
 2007-12-23 Jens Tkotz <jens@peino.de> 1.5.8-svn-b4
 
  * Update: XML_HTMLSax3 classes. Fixed also a license issue with debian.
@@ -11,7 +24,7 @@
  * Change: When a new user is added and the username is invalid,
 		   the display was not sanitized for all cases.
 
-		   Better/more detailed information from the user integrity check.
+ * Change: Better/more detailed information from the user integrity check.
 
 2007-12-23 Jens Tkotz <jens@peino.de> 1.5.8-svn-b1
 
