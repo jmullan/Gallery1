@@ -54,24 +54,6 @@ function evenOdd_row($fields) {
     return $html;
 }
 
-function make_attrs($attrList) {
-	$attrs = '';
-	if ($attrList) {
-		/*
-		** I commented this out, because it produces non valid html for textareas.
-		** 06.04.2004, Jens Tkotz
-		if (!isset($attrList["size"])) {
-			$attrList["size"] = 40;
-		}
-		*/
-
-		foreach ($attrList as $attrKey => $attrVal) {
-			$attrs .= "$attrKey=\"$attrVal\" ";
-		}
-	}
-	return $attrs;
-}
-
 function make_fields($key, $arr) {
 	if (isset($arr['prompt'])) {
 		$col1 = $arr['prompt'];
@@ -127,14 +109,16 @@ function make_fields($key, $arr) {
 }
 
 function form_textarea($key, $arr) {
-	$attrs = make_attrs($arr["attrs"]);
-	return "<textarea name=\"$key\" $attrs>". $arr['value'] ."</textarea>";
+	$attrs = generateAttrs($arr['attrs']);
+	$html = "<textarea name=\"$key\" $attrs>{$arr['value']}</textarea>";
+
+	return $html;
 }
 
 function form_input($key, $arr) {
     $type  = (isset($arr['type'])) ? 'type="'.$arr['type'].'"' : '';
 
-    $attrs = (isset($arr['attrs'])) ? make_attrs($arr['attrs']) : '';
+    $attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
     $name  = (isset($arr['name'])) ? $arr['name'] : $key;
 
@@ -142,11 +126,7 @@ function form_input($key, $arr) {
 }
 
 function form_password($key, $arr) {
-	if (isset($arr["attrs"])) {
-		$attrs = make_attrs($arr["attrs"]);
-	} else {
-		$attrs = '';
-	}
+	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
 	if (empty($arr['value'])) {
 		$arr['value'] = array('', '', '', '');
@@ -289,8 +269,11 @@ function form_print_services($key, $arr) {
 				}
 			}
 			else {
-				$value = array('checked' => false);
+				$value = array('checked' => true);
 			}
+		}
+		else {
+			$value = array('checked' => false);
 		}
 
 		$checked = $value['checked'] ? ' checked' : '';
@@ -314,6 +297,11 @@ function form_print_services($key, $arr) {
  * @return array	$path
  */
 function getPath() {
+	static $path;
+
+	if(!empty($path)) {
+		return $path;
+	}
 
 	/* Start with the server user's path */
 	if (getOS() != OS_WINDOWS) {
@@ -737,12 +725,15 @@ function check_jpegtran($location = '') {
 
 	if ($location) {
 		$dir = locateDir($bin, $location);
-	} else {
+	}
+	else {
 		$dir = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : '');
 	}
+
 	if (!$dir) {
 		$warn["fail-jpegtran"] = gTranslate('common', "jpegtran was not found.");
-	} else {
+	}
+	else {
 		$success[] = gTranslate('common', "jpegtran binary located.");
 	}
 
@@ -767,19 +758,18 @@ function check_gallery_languages() {
 	$fail = array();
 	$success = array();
 	$warn = array();
-	$nls = getNLS();
 
-	$languages=gallery_languages();
+	$languages = gallery_languages();
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = gTranslate('common', "No languages found."); // should never occur!
 	} else if (sizeof($languages) == 1 ) {
 		$warn['only_english'] = gTranslate('common', "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
-	$success[] = sprintf(gTranslate('common', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
-					sizeof($languages),
-					"<a href=\"$gallery->url\">",
-					'</a>');
+		$success[] = sprintf(gTranslate('common', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
+		sizeof($languages),
+		"<a href=\"$gallery->url\" target=\"_blank\">",
+		'</a>');
 	}
 	return array($success, $fail, $warn);
 }
@@ -791,30 +781,46 @@ function check_gallery_version() {
 	$success = array();
 	$warn = array();
 
+	$maxAge = 180;
+	$maxBetaAge = 14;
+
 	/* how many days old is the gallery version? */
 	$age = (time() - $gallery->last_change)/86400;
 
 	/* is this a beta or RC version? */
 	$beta = ereg('-(b|RC)[0-9]*$', $gallery->version);
 
-	$link="<a href=\"$gallery->url\">$gallery->url</a>";
+	$link = galleryLink($gallery->url, $gallery->url, array('target' => '_blank'));
 
 	$visit = sprintf(gTranslate('common', "You can check for more recent versions by visiting %s."), $link);
+
 	$this_version = sprintf(gTranslate('common', "This version of %s was released on %s."),
-			Gallery(), strftime("%x", $gallery->last_change));
+		Gallery(), strftime("%x", $gallery->last_change));
 
 	$this_beta_version = sprintf(gTranslate('common', "This is a development build of %s that was released on %s."),
-			Gallery(), strftime("%x", $gallery->last_change));
+		Gallery(), strftime("%x", $gallery->last_change));
 
-	if ($age > 180) {
-		$fail["too_old"] = "$this_version  $visit";
-	} else if ($age > 14 && $beta) {
-		$fail["too_old"] = "$this_beta_version  $visit";
-	} else if ($beta) {
-		$success["ok"] = "$this_beta_version  $visit" . "  "
-			. gTranslate('common', "Please check regularly for updates.");
-	} else {
-		$success["ok"] = "$this_version  $visit";
+	if ($age > $maxAge) {
+		if($beta) {
+			$fail['too_old'] = $this_beta_version . ' ' .
+							   sprintf(gTranslate('common', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
+							   toggleBox('g_version', $visit);
+		}
+		else {
+		  $fail['too_old'] = $this_version . ' ' .
+						   sprintf(gTranslate('common', "Thats more than %d days ago."), $maxAge) .
+						   toggleBox('g_version', $visit);
+		}
+	}
+	else if ($beta && $age > $maxBetaAge) {
+		$fail['too_old'] = $this_beta_version . toggleBox('g_version', $visit);
+	}
+	else if ($beta) {
+		$visit .= ' '. gTranslate('common', "Please check regularly for updates.");
+		$success['ok'] = $this_beta_version . toggleBox('g_version', $visit);
+	}
+	else {
+		$success['ok'] = $this_version . toggleBox('g_version', $visit);
 	}
 
 	return array($success, $fail, $warn);
@@ -1663,7 +1669,7 @@ function checkVersions($verbose=false) {
 	$fail = array();
 	$warn = array();
 	if (!fs_file_exists($manifest)) {
-		$fail["manifest.inc"]=gTranslate('common', "File missing or unreadable.  Please install then re-run this test.");
+		$fail['manifest.inc'] = gTranslate('common', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
 		return array($success, $fail, $warn);
 	}
 
@@ -1688,14 +1694,14 @@ function checkVersions($verbose=false) {
 			$fail[$file] = gTranslate('common', "File missing or unreadable.");
 			continue;
 		}
-		elseif ($found_version === "" ) {
-			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|.\mo|\.ico|\.tpl|Changelog)$/i', $file, $matches)) {
+		elseif ($found_version === '' ) {
+			if (preg_match('/(\.jpg|\.png|\.gif|\.jar|\.mo|\.ico|Changelog|.ttf)$|^includes\/ecard\/templates/i', $file, $matches)) {
 				if($verbose) {
 					echo "<br>\n";
-					printf("File with type: %s can not have a compareable Revision Nr.", $matches[1]);
+					printf("File with type: %s can not have a compareable Revision Nr.", $matches[0]);
 					continue;
 				}
-				$success[$file] = sprintf("No comparable Rev for type: %s.", $matches[1]);
+				$success[$file] = sprintf("No comparable Rev for type: %s.", $matches[0]);
 				continue;
 			}
 			elseif (in_array($file, $fileskiplist)) {
@@ -1711,6 +1717,10 @@ function checkVersions($verbose=false) {
 				continue;
 			}
 		}
+		elseif (empty($version)) {
+			$warn[$file] = sprintf(gTranslate('common', "Found Version: %s"), $found_version);
+			continue;
+		}
 
 		$compare = compareVersions($version, $found_version);
 
@@ -1719,7 +1729,7 @@ function checkVersions($verbose=false) {
 				print "<br>\n";
 				printf(gTranslate('common', "Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
 			}
-			$fail[$file]=sprintf(gTranslate('common', "Expected version %s (or greater) but found %s."), $version, $found_version);
+			$warn[$file] = sprintf(gTranslate('common', "Expected version %s (or greater) but found %s."), $version, $found_version);
 		}
 		else if ($compare > 0) {
 			if ($verbose) {
@@ -1868,7 +1878,7 @@ function placeholderDescription() {
 		gTranslate('common', "This email will be sent when new accounts are created.") . '  ' .
 		gTranslate('common', "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") . '  ' .
 		gTranslate('common', "The following placeholder can be used:") .
-		'<p><table>';
+		'<table width="80%">';
 
 	foreach(welcomeMsgPlaceholderList() as $placeholder => $description) {
 		$placeholderDescription .= '<tr>'.
@@ -1877,7 +1887,7 @@ function placeholderDescription() {
 			'</tr>';
 	}
 
-	$placeholderDescription .= '</table></p>'.
+	$placeholderDescription .= '</table><br>'.
 
 	'<fieldset><legend>' . gTranslate('common', "Current used welcome mail text") .'</legend>' .
 		nl2br(welcome_email(true)) .
