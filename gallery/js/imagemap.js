@@ -163,7 +163,7 @@
       jg.paint();
       if (count_selected == 1) {
           areaurl.value = map[selected]['url'];
-          areatext.value = map[selected]['hover_text'];
+          areatext.value = unescape(map[selected]['hover_text']);
       }
       else {
           areaurl.value = '';
