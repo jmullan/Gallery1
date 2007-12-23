@@ -93,11 +93,17 @@ function calculateNewSize(){
 }
 
 function setReducedSize() {
-	document.getElementById('galleryImage').height = newheight;
-	document.getElementById('galleryImage').width = newwidth;
-	if (document.getElementsByName('frameRR')) {
-		document.getElementsByName('frameRR').height = newheight;
-		document.getElementsByName('frameLL').height = newheight;
+	document.getElementById('galleryImage').height	= newheight;
+	document.getElementById('galleryImage').width	= newwidth;
+
+	if (document.getElementById('frameRR')) {
+			document.getElementById('frameRR').style.height = newheight + 'px';
+			document.getElementById('frameLL').style.height = newheight + 'px';
+	}
+
+	if (document.getElementById('galleryImageFrame')) {
+		document.getElementById('galleryImageFrame').style.height = newheight + 'px';
+		document.getElementById('galleryImageFrame').style.width  = newwidth  + 'px';
 	}
 }
 
@@ -106,12 +112,23 @@ function sizeChange() {
 
 	this.toggle = function toggle() {
 		if (this.full == true) {
-			this.full = false;
 			setReducedSize();
+
+			this.full = false;
 		}
 		else {
-			document.getElementById('galleryImage').height = imageheight;
-			document.getElementById('galleryImage').width = imagewidth;
+			document.getElementById('galleryImage').height	= imageheight;
+			document.getElementById('galleryImage').width	= imagewidth;
+
+			if (document.getElementById('frameRR')) {
+				document.getElementById('frameRR').style.height = imageheight + 'px';
+				document.getElementById('frameLL').style.height = imageheight + 'px';
+			}
+
+			if (document.getElementById('galleryImageFrame')) {
+				document.getElementById('galleryImageFrame').style.height = imageheight + 'px';
+				document.getElementById('galleryImageFrame').style.width  = imagewidth  + 'px';
+			}
 
 			this.full = true;
 		}
