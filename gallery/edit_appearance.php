@@ -61,7 +61,7 @@ if (getRequestVar('save')) {
     }
 
     $gallery->album->fields["summary"] = $summary;
-    $gallery->album->fields["title"] = $title;
+	$gallery->album->fields["title"] = trim($title);
     $gallery->album->fields["bgcolor"] = $bgcolor;
     $gallery->album->fields["textcolor"] = $textcolor;
     $gallery->album->fields["linkcolor"] = $linkcolor;

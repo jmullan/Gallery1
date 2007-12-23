@@ -318,7 +318,7 @@ function showResultsGraph($num_rows) {
 		$name_string.= $desc;
 		$name_string.= "</a>";
 		$name_string.= " - ".
-		  gTranslate('common', "1 voter", "%d voters", $results_count[$element]);
+		gTranslate('common', "1 voter", "%d voters", $results_count[$element], '', true);
 
 		$graph[$name_string] = $count;
 	}

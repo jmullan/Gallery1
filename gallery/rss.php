@@ -62,9 +62,7 @@ function bestDate($album) {
 }
 
 function getThumbs($album) {
-	$tags = "border=0 vspace=2 hspace=0 align=top";
-	
-	$photos = "";
+	$photos = '';
 	$photoCount = $album->numPhotos(1);
 	
 	for ($i = 1; $i <= $photoCount; $i += 1) {
@@ -79,9 +77,7 @@ function getThumbs($album) {
 }
 
 function getThumbsAndCaptions($album) {
-	$tags = "border=0 vspace=2 hspace=0 align=top";
-	
-	$photos = "";
+	$photos = '';
 	$photoCount = $album->numPhotos(1);
 	
 	for ($i = 1; $i <= $photoCount; $i += 1) {

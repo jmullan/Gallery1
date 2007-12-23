@@ -174,7 +174,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 if (!$gallery->session->offline ||
 	 isset($gallery->session->offlineAlbums["albums.php"])) { ?>
   <link rel="top" href="<?php echo makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) ?>" >
-<?php } ?>
+<?php }
+
+if (!empty($gallery->album->fields["linkcolor"]) ||
+	!empty($gallery->album->fields["bgcolor"]) ||
+	!empty($gallery->album->fields['background']) ||
+	!empty($gallery->album->fields["textcolor"])) {
+?>
   <style type="text/css">
 <?php
 // the link colors have to be done here to override the style sheet
@@ -199,6 +205,7 @@ if ($gallery->album->fields["textcolor"]) {
 }
 ?>
   </style>
+<?php } ?>
 </head>
 
 <body dir="<?php echo $gallery->direction ?>">
@@ -253,16 +260,12 @@ else {
 	$imags_str);
 }
 
-if ($gallery->user->canWriteToAlbum($gallery->album) &&
-!$gallery->session->offline) {
-    $hidden = $gallery->album->numHidden();
-    $verb = gTranslate('core', "%s are hidden");
-    if ($hidden == 1) {
-        $verb = gTranslate('core', "%s is hidden");
-    }
-    if ($hidden) {
-        $adminText .= "(".sprintf($verb, $hidden).")";
-    }
+if ($gallery->user->canWriteToAlbum($gallery->album) && !$gallery->session->offline) {
+	$numHidden = $gallery->album->numHidden();
+
+	if ($numHidden > 0) {
+		$adminText .= sprintf(Translate('core', "(One is hidden)", "(%d are hidden)", $numHidden), $numHidden);
+	}
 }
 
 /* admin items for drop-down menu */
@@ -918,7 +921,7 @@ if ($numPhotos) {
 				$form_pos++;
 			}
 
-			$albumItemOptions = getItemActions($i, false);
+			$albumItemOptions = getItemActions($i, false, true, true);
 			if (sizeof($albumItemOptions) > 2 ||
 				(sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif']))) 
 			{

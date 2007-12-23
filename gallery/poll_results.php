@@ -61,30 +61,37 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . gTranslate('core', "Poll Results") ?></title>
-  <?php common_header(); ?>
-  <style type="text/css">
-<?php
-// the link colors have to be done here to override the style sheet 
+  <?php common_header();
+
+  if(! empty($gallery->album->fields["linkcolor"]) ||
+  	 !empty($gallery->album->fields["bgcolor"]) ||
+  	 !empty($gallery->album->fields["textcolor"]))
+   {
+
+  	echo "\n<style type=\"text/css\">";
+  	// the link colors have to be done here to override the style sheet
 if ($gallery->album->fields["linkcolor"]) {
-?>
-    A:link, A:visited, A:active
-      { color: <?php echo $gallery->album->fields[linkcolor] ?>; }
-    A:hover
-      { color: #ff6600; }
-<?php }
+  		echo "\n  a:link, a:visited, a:active {";
+  		echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
+  		echo "\n  a:hover { color: #ff6600; }";
+
+  	}
 if ($gallery->album->fields["bgcolor"]) {
-	echo "BODY { background-color:".$gallery->album->fields[bgcolor]."; }";
+  		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
 }
-if ($gallery->album->fields["background"]) {
-	echo "BODY { background-image:url(".$gallery->album->fields[background]."); } ";
+  	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+  		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
 }
 if ($gallery->album->fields["textcolor"]) {
-	echo "BODY, TD {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".head {color:".$gallery->album->fields[textcolor]."; }";
-	echo ".headbox {background-color:".$gallery->album->fields[bgcolor]."; }";
+  		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+  	}
+
+  	echo "\n  </style>";
 }
 ?>
-  </style>
+
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
