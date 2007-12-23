@@ -2,28 +2,40 @@
 /**
  * Gallery SVN info
  * $Id$
+ * 
+ * Note: This file was very slightly modified to fit into Gallery 1.x
+ * - PHP 5 compatible: Changed all $HTTP_ to $_SERVER
+ * - Added some Gallery error messages
 */
 
 /**
- * Filename.......: class.html.mime.mail.inc
- * Project........: HTML Mime mail class
- * Last Modified..: $Date$
- * CVS Revision...: $Revision$
- * Copyright......: 2001, 2002 Richard Heyes
- * @package Mail
+* This file is part of the htmlMimeMail package (http://www.phpguru.org/)
+*
+* htmlMimeMail is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* htmlMimeMail is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with htmlMimeMail; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+* 
+* © Copyright 2004 Richard Heyes
 */
 
-/**
- *
- */
 require_once(dirname(__FILE__) . '/mimePart.php');
 
 class htmlMimeMail
 {
 	/**
 	* The html part of the message
-    * @var string
-    */
+	* @var string
+	*/
 	var $html;
 
 	/**
@@ -81,16 +93,16 @@ class htmlMimeMail
 	var $is_built;
 
 	/**
-    * The return path address. If not set the From:
+	* The return path address. If not set the From:
 	* address is used instead
 	* @var string
-    */
+	*/
 	var $return_path;
 
 	/**
-    * Array of information needed for smtp sending
+	* Array of information needed for smtp sending
 	* @var array
-    */
+	*/
 	var $smtp_params;
 
 /**
@@ -101,17 +113,17 @@ class htmlMimeMail
 	function htmlMimeMail()
 	{
 		/**
-        * Initialise some variables.
-        */
+		* Initialise some variables.
+		*/
 		$this->html_images = array();
-		$this->headers     = array();
-		$this->is_built    = false;
+		$this->headers	 = array();
+		$this->is_built	= false;
 
 		/**
-        * If you want the auto load functionality
+		* If you want the auto load functionality
 		* to find other image/file types, add the
 		* extension and content type here.
-        */
+		*/
 		$this->image_types = array(
 									'gif'	=> 'image/gif',
 									'jpg'	=> 'image/jpeg',
@@ -125,18 +137,18 @@ class htmlMimeMail
 								  );
 
 		/**
-        * Set these up
-        */
+		* Set these up
+		*/
 		$this->build_params['html_encoding'] = 'quoted-printable';
 		$this->build_params['text_encoding'] = '7bit';
 		$this->build_params['html_charset']  = 'ISO-8859-1';
 		$this->build_params['text_charset']  = 'ISO-8859-1';
 		$this->build_params['head_charset']  = 'ISO-8859-1';
-		$this->build_params['text_wrap']     = 998;
+		$this->build_params['text_wrap']	 = 998;
 
 		/**
-        * Defaults for smtp sending
-        */
+		* Defaults for smtp sending
+		*/
 		if (!empty($_SERVER['HTTP_HOST'])) {
 			$helo = $_SERVER['HTTP_HOST'];
 		} elseif (!empty($_SERVER['SERVER_NAME'])) {
@@ -153,8 +165,8 @@ class htmlMimeMail
 		$this->smtp_params['pass'] = '';
 
 		/**
-        * Make sure the MIME version header is first.
-        */
+		* Make sure the MIME version header is first.
+		*/
 		$this->headers['MIME-Version'] = '1.0';
 	}
 
@@ -319,7 +331,7 @@ class htmlMimeMail
 */
 	function setHtml($html, $text = null, $images_dir = null)
 	{
-		$this->html      = $html;
+		$this->html	  = $html;
 		$this->html_text = $text;
 
 		if (isset($images_dir)) {
@@ -380,7 +392,7 @@ class htmlMimeMail
 										'body'   => $file,
 										'name'   => $name,
 										'c_type' => $c_type,
-										'cid'    => md5(uniqid(time()))
+										'cid'	=> md5(uniqid(time()))
 									);
 	}
 
@@ -404,8 +416,8 @@ class htmlMimeMail
 	function &_addTextPart(&$obj, $text)
 	{
 		$params['content_type'] = 'text/plain';
-		$params['encoding']     = $this->build_params['text_encoding'];
-		$params['charset']      = $this->build_params['text_charset'];
+		$params['encoding']	 = $this->build_params['text_encoding'];
+		$params['charset']	  = $this->build_params['text_charset'];
 		if (is_object($obj)) {
 			$ret = & $obj->addSubpart($text, $params);
 		} else {
@@ -420,8 +432,8 @@ class htmlMimeMail
 	function &_addHtmlPart(&$obj)
 	{
 		$params['content_type'] = 'text/html';
-		$params['encoding']     = $this->build_params['html_encoding'];
-		$params['charset']      = $this->build_params['html_charset'];
+		$params['encoding']	 = $this->build_params['html_encoding'];
+		$params['charset']	  = $this->build_params['html_charset'];
 		if (is_object($obj)) {
 			$ret = & $obj->addSubpart($this->html, $params);
 		} else {
@@ -474,10 +486,10 @@ class htmlMimeMail
 	function _addHtmlImagePart(&$obj, $value)
 	{
 		$params['content_type'] = $value['c_type'];
-		$params['encoding']     = 'base64';
+		$params['encoding']	 = 'base64';
 		$params['disposition']  = 'inline';
-		$params['dfilename']    = $value['name'];
-		$params['cid']          = $value['cid'];
+		$params['dfilename']	= $value['name'];
+		$params['cid']		  = $value['cid'];
 		$obj->addSubpart($value['body'], $params);
 	}
 
@@ -487,9 +499,9 @@ class htmlMimeMail
 	function _addAttachmentPart(&$obj, $value)
 	{
 		$params['content_type'] = $value['c_type'];
-		$params['encoding']     = $value['encoding'];
+		$params['encoding']	 = $value['encoding'];
 		$params['disposition']  = 'attachment';
-		$params['dfilename']    = $value['name'];
+		$params['dfilename']	= $value['name'];
 		$obj->addSubpart($value['body'], $params);
 	}
 
@@ -500,19 +512,19 @@ class htmlMimeMail
 * of the message. Currently supported are:
 *
 * $params['html_encoding'] - The type of encoding to use on html. Valid options are
-*                            "7bit", "quoted-printable" or "base64" (all without quotes).
-*                            7bit is EXPRESSLY NOT RECOMMENDED. Default is quoted-printable
+*							"7bit", "quoted-printable" or "base64" (all without quotes).
+*							7bit is EXPRESSLY NOT RECOMMENDED. Default is quoted-printable
 * $params['text_encoding'] - The type of encoding to use on plain text Valid options are
-*                            "7bit", "quoted-printable" or "base64" (all without quotes).
-*                            Default is 7bit
-* $params['text_wrap']     - The character count at which to wrap 7bit encoded data.
-*                            Default this is 998.
+*							"7bit", "quoted-printable" or "base64" (all without quotes).
+*							Default is 7bit
+* $params['text_wrap']	 - The character count at which to wrap 7bit encoded data.
+*							Default this is 998.
 * $params['html_charset']  - The character set to use for a html section.
-*                            Default is ISO-8859-1
+*							Default is ISO-8859-1
 * $params['text_charset']  - The character set to use for a text section.
-*                          - Default is ISO-8859-1
+*						  - Default is ISO-8859-1
 * $params['head_charset']  - The character set to use for header encoding should it be needed.
-*                          - Default is ISO-8859-1
+*						  - Default is ISO-8859-1
 */
 	function buildMessage($params = array())
 	{
@@ -528,11 +540,11 @@ class htmlMimeMail
 			}
 		}
 
-		$null        = null;
+		$null		= null;
 		$attachments = !empty($this->attachments) ? true : false;
 		$html_images = !empty($this->html_images) ? true : false;
-		$html        = !empty($this->html)        ? true : false;
-		$text        = isset($this->text)         ? true : false;
+		$html		= !empty($this->html)		? true : false;
+		$text		= isset($this->text)		 ? true : false;
 
 		switch (true) {
 			case $text AND !$attachments:
@@ -638,9 +650,9 @@ class htmlMimeMail
 */
 	function _encodeHeader($input, $charset = 'ISO-8859-1')
 	{
-		preg_match_all('/(\w*[\x80-\xFF]+\w*)/', $input, $matches);
+        preg_match_all('/(\s?\w*[\x80-\xFF]+\w*\s?)/', $input, $matches);
 		foreach ($matches[1] as $value) {
-			$replacement = preg_replace('/([\x80-\xFF])/e', '"=" . strtoupper(dechex(ord("\1")))', $value);
+            $replacement = preg_replace('/([\x20\x80-\xFF])/e', '"=" . strtoupper(dechex(ord("\1")))', $value);
 			$input = str_replace($value, '=?' . $charset . '?Q?' . $replacement . '?=', $input);
 		}
 
@@ -692,7 +704,6 @@ class htmlMimeMail
 
 				// Return
 				return $result;
-
 				break;
 
 			case 'smtp':
@@ -728,9 +739,9 @@ class htmlMimeMail
 				$headers[] = 'To: ' . $this->_encodeHeader(implode(', ', $recipients), $this->build_params['head_charset']);
 
 				// Add headers to send_params
-				$send_params['headers']    = $headers;
+				$send_params['headers']	= $headers;
 				$send_params['recipients'] = array_values(array_unique($smtp_recipients));
-				$send_params['body']       = $this->output;
+				$send_params['body']	   = $this->output;
 
 				// Setup return path
 				if (isset($this->return_path)) {
@@ -745,12 +756,12 @@ class htmlMimeMail
 				// Send it
 				if (!$smtp->send($send_params)) {
 					$this->errors = $smtp->errors;
-					echo gallery_error(_("Sending mail via the smtp method failed with these errors:"));
+					echo gallery_error(gTranslate('Sending mail via smtp method failed with these errors:')) .
+						 '<br>';
 					print_r($smtp->errors);
 					return false;
 				}
 				return true;
-
 				break;
 		}
 	}
