@@ -1301,26 +1301,29 @@ function showImageMap($index, $noUrlUrl = '#') {
 
 	$allImageAreas = $gallery->album->getAllImageAreas($index);
 	$html = '';
+	$wz_tooltips = '';
 
 	if (!empty($allImageAreas)) {
 		$html .= "\n". '<map name="myMap">';
+
 		foreach($allImageAreas as $nr => $area) {
-			$html .= "\n\t<area shape=\"poly\" coords=\"". $area['coords'] ."\" ";
+			$html .= "\n\t<area shape=\"poly\" alt=\"\" coords=\"". $area['coords'] ."\" ";
 
 			if(!empty($area['hover_text'])) {
-				$html .= "onmouseover=\"Tip('". htmlentities(addslashes($area['hover_text']), ENT_QUOTES) ."',FADEIN, 300, FADEOUT, 300);\"";
+				$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true);\"";
+				$wz_tooltips .= "\n <div id=\"wzTooltip_$nr\" style=\"display: none; \">" . htmlentities($area['hover_text'], ENT_QUOTES) . '</div>';
 			}
 
 			if(!empty($area['url'])) {
-				$html .= ' href="'. $area['url'] .'"';
+				$html .=' href="'. $area['url'] .'"';
 			}
 			else {
 				$html .= ' href="'. $noUrlUrl .'"';
 			}
-
 			$html .='>';
 		}
-		$html .= "\n</map>\n";
+
+		$html .= "\n</map>\n" . $wz_tooltips;
 	}
 
 	return $html;
@@ -1331,7 +1334,7 @@ function showImageMap($index, $noUrlUrl = '#') {
  * @param $relativPath  string  path to the images relativ to gallery root
  * @param $altText      string  alt Text
  * @param $attrs        array   optional additional attributs (id, name..)
- * @param $skin		string	optional input of skin, because the image could be in skindir.
+ * @param $skin			string	optional input of skin, because the image could be in skindir.
  * @author Jens Tkotz <jens@peino.de>
  */
 function gImage($relativePath, $altText, $attrs = array(), $skin = '') {

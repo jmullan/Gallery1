@@ -66,7 +66,8 @@ $nextId = getNextId($id);
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName, $id));
     return;
-} elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
+}
+elseif (!$gallery->album->isResized($index) && !$gallery->user->canViewFullImages($gallery->album)) {
     header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
     return;
 }
@@ -209,8 +210,12 @@ if (!empty($save) && $gallery->user->canAddComments($gallery->album)) {
         emailComments($id, $comment_text, $commenter_name);
     }
 }
-
-$allImageAreas = $gallery->album->getAllImageAreas($index);
+if(!$fitToWindow) {
+	$allImageAreas = $gallery->album->getAllImageAreas($index);
+}
+else {
+	$allImageAreas = '';
+}
 
 $metaTags = array();
 $keyWords = $gallery->album->getKeywords($index);
@@ -381,15 +386,15 @@ if (!$gallery->album->isMovie($id)) {
                 case 'shutterfly':
                     $printShutterflyForm = true;
 				break;
-                
+
 				case 'fotoserve':
                     $printFotoserveForm = true;
 				break;
-				
+
                 case 'photoaccess':
                     $printPhotoAccessForm = true;
 				break;
-                    
+
                 default:
                 break;
             }
@@ -571,29 +576,25 @@ includeLayout('navtablemiddle.inc');
 $breadcrumb["bordercolor"] = $bordercolor;
 includeLayout('breadcrumb.inc');
 
-/* Show itemOptions only if we have more then one (photo properties) */
-if(sizeof($albumItemOptions) > 2 && $useIcons) {
-    includeLayout('navtablemiddle.inc');
-    $albumItemOptionElements = array();
-    $itemActionTable = new galleryTable();
-    $itemActionTable->setColumnCount(10);
-    $itemActionTable->setAttrs(array('align' => langLeft()));
+/* Icon menu above the photo */
+if($useIcons && sizeof($albumItemOptions) > 1) {
     foreach ($albumItemOptions as $trash => $option) {
         if(!empty($option['value'])) {
             if (stristr($option['value'], 'popup')) {
-                $content = popup_link(
-							$option['text'],
-							$option['value'],
-							true, false, 500, 500,
-							'iconLink');
-            } 
-			else {
-                $content = '<a class="iconLink" href="'. $option['value'] .'">'. $option['text'] . '</a>';
+				$content = popup_link(
+								$option['text'],
+								$option['value'],
+								true, false, 550, 600, '', '',
+								$option['icon']);
             }
-            $itemActionTable->addElement(array('content' => $content));
-        }
+			else {
+				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
+        	}
+
+			$itemActions[] = $content;
+    	}
     }
-    echo $itemActionTable->render();
+    echo makeIconMenu($itemActions, 'center', true, true);
 }
 
 includeLayout('navtablemiddle.inc');
@@ -742,10 +743,12 @@ echo "<br>";
 
 includeHtmlWrap("inline_photo.footer");
 
-if ($gallery->user->isLoggedIn() &&
-  $gallery->user->getEmail() &&
-  !$gallery->session->offline &&
-  $gallery->app->emailOn == "yes") {
+if ($gallery->app->comments_enabled == 'yes' &&
+	$gallery->user->isLoggedIn() &&
+	$gallery->user->getEmail() &&
+	!$gallery->session->offline &&
+	$gallery->app->emailOn == "yes")
+{
     $emailMeComments = getRequestVar('emailMeComments');
     if (!empty($emailMeComments)) {
         if ($emailMeComments == 'true') {
