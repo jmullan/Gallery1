@@ -2,7 +2,7 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 class Image {
@@ -67,7 +67,7 @@ class Image {
 		/*
 		 * Fix a specific bug where the width/height are reversed
 		 * for sized images
-		 */
+		*/
 		if ($this->version < 3) {
 			if ($this->resizedName) {
 				list($w, $h) = getDimensions("$dir/$this->resizedName.$this->type");
@@ -117,13 +117,13 @@ class Image {
 		else {
 			$name = $this->name;
 			$type = $this->type;
-			
+
 			if ($pathToResized) {
-				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");	
+				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");
 			} else {
 				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
 			}
-			
+
 			#-- resized image is not always a jpeg ---
 			if ($ret == 1) {
 				$this->resizedName = "$name.sized";
@@ -134,7 +134,7 @@ class Image {
 			elseif ($ret == 2) {
 				$this->resize($dir, "orig", 0, $pathToResized);
 			}
-		}	
+		}
 	}
 
 	function delete($dir) {
@@ -158,46 +158,53 @@ class Image {
 	}
 
 	function getTag($dir, $full = 0, $size = 0, $attrs = '',$alttext = '') {
-	    global $gallery;
+		global $gallery;
 
-	    /* Prevent non-integer data */
-	    $size = (int)$size;
+		/* Prevent non-integer data */
+		$size = (int)$size;
 
-	    $name = $this->getName($dir);
-	    $alttext = htmlspecialchars(strip_tags($alttext));
+		$name = $this->getName($dir);
+		$alttext = htmlspecialchars(strip_tags($alttext));
 
-	    $attrs .= ' border="0"';
-	    if ($size) {
-		if ($this->width > $this->height) {
-		    $width = $size;
-		    $height = round($size * ($this->height / $this->width));
-		} else {
-		    $width = round($size * ($this->width / $this->height));
-		    $height = $size;
+		$attrs .= ' border="0"';
+
+		if ($size) {
+			if ($this->width > $this->height) {
+				$width = $size;
+				$height = round($size * ($this->height / $this->width));
+			}
+			else {
+				$width = round($size * ($this->width / $this->height));
+				$height = $size;
+			}
+
+			$size_val = "width=\"$width\" height=\"$height\"";
 		}
-		$size_val = "width=\"$width\" height=\"$height\"";
-	    } else if ($full || !$this->resizedName) {
-		$size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
-	    } else {
-		$size_val = "width=\"$this->width\" height=\"$this->height\"";
-	    }
+		else if ($full || !$this->resizedName) {
+			$size_val = "width=\"$this->raw_width\" height=\"$this->raw_height\"";
+		}
+		else {
+			$size_val = "width=\"$this->width\" height=\"$this->height\"";
+		}
 
-	    $fullImage = urlencode($this->name) .".$this->type";
-	    $resizedImage = urlencode($this->resizedName) .".$this->type";
+		$fullImage		= urlencode($this->name) .".$this->type";
+		$resizedImage	= urlencode($this->resizedName) .".$this->type";
 
-	    if ($this->resizedName && $size == 0) {
-		if ($full) {
-		    return "<img src=\"$dir/$fullImage\" ".
-			"width=\"$this->raw_width\" height=\"$this->raw_height\" .
+		if ($this->resizedName && $size == 0) {
+			if ($full) {
+				return "<img src=\"$dir/$fullImage\" ".
+				"width=\"$this->raw_width\" height=\"$this->raw_height\" .
 			$attrs alt=\"$alttext\" title=\"$alttext\">";
-		} else {
-		    return "<img src=\"$dir/$resizedImage\" ".
-			"width=\"$this->width\" height=\"$this->height\" " .
-			"$attrs alt=\"$alttext\" title=\"$alttext\">";
+			}
+			else {
+				return "<img src=\"$dir/$resizedImage\" ".
+				"width=\"$this->width\" height=\"$this->height\" " .
+				"$attrs alt=\"$alttext\" title=\"$alttext\">";
+			}
 		}
-	    } else {
-		return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
-	    }
+		else {
+			return "<img src=\"$dir/$fullImage\" $size_val $attrs alt=\"$alttext\" title=\"$alttext\" name=\"photo_j\">";
+		}
 	}
 
 	function getName($dir, $full = false) {
@@ -212,31 +219,34 @@ class Image {
 	function getId() {
 		return $this->name;
 	}
-	
+
 	function getPath($dir, $full=0) {
 		if ($full || !$this->resizedName) {
-		    $name = $this->name;
+			$name = $this->name;
 		}
 		else {
-		    $name = $this->resizedName;
+			$name = $this->resizedName;
 		}
+
 		return "$dir/$name.$this->type";
 	}
 
 	function getImageName($full = false) {
 		if ($full || !$this->resizedName) {
-		    $name = $this->name;
+			$name = $this->name;
 		} else {
-		    $name = $this->resizedName;
+			$name = $this->resizedName;
 		}
+
 		return "$name.$this->type";
 	}
 
 	function isResized() {
 		if ($this->resizedName) {
-			return 1;
-		} else {
-			return 0;
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
@@ -251,23 +261,25 @@ class Image {
 	}
 
 	function getDimensions($size=0, $full=false) {
-	    if ($size) {
-                if ($this->width > $this->height) {
-                    $width = $size;
-                    $height = round($size * ($this->height / $this->width));
-                } else {
-                    $width = round($size * ($this->width / $this->height));
-                    $height = $size;
-                }
-            } else if ($full) {
-		$width = $this->raw_width;
-		$height = $this->raw_height;
-	    }
-	    else {
-		$width = $this->width;
-		$height = $this->height;
-            }
-	        
+		if ($size) {
+			if ($this->width > $this->height) {
+				$width = $size;
+				$height = round($size * ($this->height / $this->width));
+			}
+			else {
+				$width = round($size * ($this->width / $this->height));
+				$height = $size;
+			}
+		}
+		else if ($full) {
+			$width = $this->raw_width;
+			$height = $this->raw_height;
+		}
+		else {
+			$width = $this->width;
+			$height = $this->height;
+		}
+
 		return array($width, $height);
 	}
 
@@ -279,10 +291,12 @@ class Image {
 	}
 
 	function getThumbRectangle() {
-		return array($this->thumb_x,
-					 $this->thumb_y,
-					 $this->thumb_width,
-					 $this->thumb_height);
+		return array(
+			$this->thumb_x,
+			$this->thumb_y,
+			$this->thumb_width,
+			$this->thumb_height
+		);
 	}
 
 	function getRawDimensions() {
@@ -290,8 +304,9 @@ class Image {
 	}
 
 	function rawFileSize($dir) {
-	    $filename = "$dir/$this->name.$this->type";
-	    return fs_filesize($filename);
+		$filename = "$dir/$this->name.$this->type";
+
+		return fs_filesize($filename);
 	}
 }
 
