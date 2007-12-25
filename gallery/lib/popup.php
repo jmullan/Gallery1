@@ -46,13 +46,13 @@ function build_popup_url($url, $url_is_complete = false) {
 	return $url;
 }
 
-function popup($url, $url_is_complete=0, $height=500,$width=500) {
+function popup($url, $url_is_complete=0, $height=550, $width=600) {
 	// Force int data type
 	$height = (int)$height;
 	$width = (int)$width;
 
 	$url = build_popup_url($url, $url_is_complete);
-	return popup_js($url, "Edit","height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
+	return popup_js($url, "GalleryPopup","height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes");
 }
 
 function popup_js($url, $window, $attrs) {
@@ -72,31 +72,33 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=500,$width=500, $cssclass='', $extraJS='') {
-	static $popup_counter = 0;
+function popup_link($title, $url, $url_is_complete = 0, $online_only = true, $height = 550,$width = 600, $cssclass='', $extraJS = '', $icon = '', $addBrackets = true) {
 	global $gallery;
-
-	// Force int data type
-	$height = (int)$height;
-	$width = (int)$width;
+	global $specialIconMode;
 
 	if ( !empty($gallery->session->offline) && $online_only ) {
 		return null;
 	}
-        
-	$cssclass = empty($cssclass) ? '' : "class=\"$cssclass\"";
 
-	$popup_counter++;
+	$iconMode = isset($specialIconMode) ? $specialIconMode : '';
 
-	$link_name = "popuplink_".$popup_counter;
 	$url = build_popup_url($url, $url_is_complete);
+	// Force int data type
+	$height = (int)$height;
+	$width = (int)$width;
 
-	$a1 = "<a $cssclass style=\"white-space:nowrap;\" id=\"$link_name\" target=\"Edit\" href=\"$url\" onClick=\"javascript:".
-		$extraJS .
-		popup_js("document.getElementById('$link_name').href", "Edit",
-		"height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes") .
-		"\">$title</a>";
+	$attrList = array(
+	   'class' => "g-popuplink $cssclass",
+	   'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+	);
 
-	return "$a1";
+	if(!empty($icon)) {
+		$html = galleryIconLink($url, $icon, $title, $iconMode, $attrList);
+	}
+	else {
+		$html = galleryLink($url, $title, $attrList, $icon, $addBrackets);
+	}
+
+	return $html;
 }
 ?>

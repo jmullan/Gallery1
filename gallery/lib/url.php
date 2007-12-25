@@ -314,9 +314,10 @@ function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
 }
 
 function addUrlArg($url, $arg) {
-	if (strchr($url, "?")) {
-		return "$url&$arg"; // should replace with &amp; for validatation
-	} else {
+	if (strstr ($url, "?")) {
+		return "$url&amp;$arg";
+	}
+	else {
 		return "$url?$arg";
 	}
 }
@@ -330,23 +331,26 @@ function getImagePath($name, $skinname = '') {
 	global $gallery;
 	$retUrl = '';
 
-    if (!$skinname) {
-	$skinname = $gallery->app->skinname;
-    }
+	if (!$skinname) {
+		$skinname = $gallery->app->skinname;
+	}
 
-    /* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
-    $base = getGalleryBaseUrl();
-    $defaultname = "$base/images/$name";
-    $fullname = dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
-    $fullURL = "$base/skins/$skinname/images/$name";
+	/* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
+	$base			= getGalleryBaseUrl();
+	$defaultname	= dirname(dirname(__FILE__)) . "/images/$name";
+	$fullname		= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
 
-    if (fs_file_exists($fullname) && !broken_link($fullname)) {
-    	$retUrl = $fullURL;
-    } else {
-    	$retUrl = $defaultname;
-    }
+	$defaultURL		= "$base/images/$name";
+	$fullURL		= "$base/skins/$skinname/images/$name";
 
-    return $retUrl;
+	if (fs_file_exists($fullname) && !broken_link($fullname)) {
+		$retUrl = $fullURL;
+	}
+	elseif (fs_file_exists($defaultname) && !broken_link($defaultname)) {
+		$retUrl = $defaultURL;
+	}
+
+	return $retUrl;
 }
 
 /**
@@ -384,7 +388,7 @@ function getAbsoluteImagePath($name, $skinname = '') {
  * @return	boolean
  * @author	Jens Tkotz
  */
-function urlIsrelative($url) {
+function urlIsRelative($url) {
 	if (substr($url, 0,4) == 'http') {
 		return false;
 	}
@@ -415,5 +419,32 @@ function galleryLink($url, $content, $attrList = array()) {
 	return $html;
 }
 
+function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()) {
+	global $gallery;
+
+	$html		= '';
+	$altText	= '';
+
+	$iconMode = !empty($iconMode) ? $iconMode : $gallery->app->useIcons;
+
+	if($iconMode == 'yes') {
+		$altText = $text;
+	}
+
+	$addBrackets = ($iconMode == 'no') ? true : false;
+
+	$content = getIconText($icon, $text, $iconMode, $addBrackets, $altText, true);
+
+	$attrs = generateAttrs($attrList);
+
+	if (!empty($url)) {
+		$html .= "<a href=\"$url\"$attrs>$content</a>";
+	}
+	else {
+		$html .= "<a$attrs>$content</a>";
+	}
+
+	return $html;
+}
 
 ?>

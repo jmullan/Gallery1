@@ -140,7 +140,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
     		}
 
 			if(!$popupsOnly) {
-    		$options[] = array(
+    			$options[] = array(
 					'text'	=> gTranslate('core', "ImageMap"),
 	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
 					'icon'	=> ($withIcons) ? 'behavior-capplet.gif' : ''
