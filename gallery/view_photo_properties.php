@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -28,7 +28,7 @@ $index = getRequestVar('index');
 
 // Hack check
 if (!$gallery->user->canReadAlbum($gallery->album)) {
-        print _("Security violation") ."\n";
+        print gTranslate('core', "Security violation") ."\n";
 	return;
 }
 
@@ -36,15 +36,15 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Photo Properties") ?></title>
+  <title><?php echo gTranslate('core', "Photo Properties") ?></title>
   <?php common_header(); ?>
-  <style> td { text-align: <?php echo langLeft() ?> } </style>
+  <style type="text/css"> td { text-align: <?php echo langLeft() ?> } </style>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
 <?php
 if ($gallery->session->albumName && $index) {
 ?>
-<div class="popuphead"><?php echo _("Photo Properties") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Photo Properties") ?></div>
 <div class="popup" align="center">
 <span>
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
@@ -55,10 +55,10 @@ if ($gallery->session->albumName && $index) {
 </span>
 
 <?php
-/* 
+/*
 Here is the EXIF parsing code...
 I have chosen to use a program called "jhead" to do EXIF parsing.
-            
+
 jhead is a public domain EXIF parser.  Source, linux binaries, and
 windows binaries can be found at:
 http://www.sentex.net/~mwandel/jhead/index.html
@@ -72,12 +72,12 @@ into PHP in any default installation that I have access to.
 2.  After compiling this module into PHP, I found it to be
 unusable because ALL error conditions in it are E_ERROR conditions.
 E_ERROR conditions cause php to report a "fatal error" and stop
-parsing the php script.  Well, the exif PHP module was reporting   
+parsing the php script.  Well, the exif PHP module was reporting
 a "fatal error" even in the cases where you tried to read an
 EXIF header from a JPEG file that didn't contain one.  Since I don't
 know whether any given JPEG file contains an EXIF header, I had
 to use read_exif_data to check... and then... BAM... fatal error.
-You cannot trap fatal errors (I tried this already), so I was stuck.  
+You cannot trap fatal errors (I tried this already), so I was stuck.
 
 After reading through the read_exif_data source from the PHP web
 site, I changed some of the E_ERROR conditions to E_NOTICE conditions
@@ -109,7 +109,7 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
     displayPhotoFields($index, $extra_fields, false, true,NULL,$forceRefresh);
 
     if ($gallery->album->getKeyWords($index)) {
-        echo "<br><b>". _("KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
+        echo "<br><b>". gTranslate('core', "KEYWORDS") ."</b>: &nbsp;&nbsp; " . $gallery->album->getKeyWords($index);
     }
 
     if ($gallery->user->canWriteToAlbum($gallery->album) &&
@@ -120,25 +120,26 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
                     array("reloadExifFromFile" => 1,
                         "set_albumName" => $gallery->session->albumName,
                         "index" => $index)) .
-            "\">[". _("Reload EXIF Data From File") ."]</a>";
+            "\">[". gTranslate('core', "Reload EXIF Data From File") ."]</a>";
         echo "<br></span>";
         echo "<span class=popup>";
-        echo _("(if the data is current, this will not appear to do anything)");
+        echo gTranslate('core', "(if the data is current, this will not appear to do anything)");
         echo "</span>";
     }
 } else {
-	echo gallery_error(_("no album / index specified"));
+	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
 ?>
 <br><br>
 </div>
+
 <center>
-<form action="#">
-<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
-</form>
+	<form action="#">
+	<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
+	</form>
 </center>
 
 <?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
-</div>
+
 </body>
 </html>

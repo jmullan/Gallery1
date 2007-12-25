@@ -4,17 +4,17 @@
  * Copyright (C) 2000-2007 Bharat Mediratta
  *
  * This file by Joan McGalliard
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -29,9 +29,9 @@ require_once(dirname(__FILE__) . '/init.php');
 list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
 
 // Hack check
-if (!$gallery->user->isAdmin() && 
+if (!$gallery->user->isAdmin() &&
     !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
@@ -41,7 +41,7 @@ echo "\n<html>";
 if ( isset($save) && $owner) {
 	$gallery->album->setItemOwnerById($id, $owner);
 	$user=$gallery->userDB->getUserByUid($owner);
-	$gallery->album->save(array(i18n("New owner %s for %s"),  
+	$gallery->album->save(array(i18n("New owner %s for %s"),
 				$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
 				makeAlbumURL($gallery->album->fields["name"], $id)));
 
@@ -62,46 +62,45 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 	$uAll[$uid] = $tmpUser->getFullName()." (".$tmpUser->getUsername().")";
 }
 
-$owner=$gallery->album->getItemOwnerById($id);
-if ($gallery->userDB->getUserByUid($owner) == NULL)
-{
-	$nobody = $gallery->userDB->getNobody(); 
+$owner = $gallery->album->getItemOwnerById($id);
+
+if ($gallery->userDB->getUserByUid($owner) == NULL) {
+	$nobody = $gallery->userDB->getNobody();
 	$owner = $nobody->getUid();
 
 }
 
 asort($uAll);
 
-
 ?>
 <head>
-  <title><?php echo _("Change Owner") ?></title>
+  <title><?php echo gTranslate('core', "Change Owner") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Change Owner") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Change Owner") ?></div>
 <div class="popup" align="center">
-<?php 
+<?php
 	$index=$gallery->album->getPhotoIndex($id);
 	echo $gallery->album->getThumbnailTag($index);
 	$gallery->album->getCaption($index);
-?>
 
-<p>
-<?php 
-	echo makeFormIntro("photo_owner.php", 
+	echo "\n<br><br>";
+
+	echo makeFormIntro("photo_owner.php",
 		array("name" => "photoowner_form"),
 		array("type" => "popup"));
+
 	if ($gallery->user->isAdmin) {
-		echo _("Owner") .": ";
+		echo gTranslate('core', "Owner") .": ";
 		echo drawSelect("owner", $uAll, $owner, 1);
 	}
 ?>
 
 <p>
 	<input type="hidden" name="id" value="<?php echo $id ?>">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
-	<input type="button" name="done" value="<?php echo _("Done") ?>" onclick='parent.close()'>
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
+	<input type="button" name="done" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
 </p>
 </form>
 </div>

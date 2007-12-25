@@ -29,8 +29,9 @@ list($index, $manual, $resize, $resize_file_size, $remove_resized, $resizeRecurs
 
 // Hack check
 if (! $gallery->user->canWriteToAlbum($gallery->album) &&
-  ! $gallery->album->getItemOwnerModify() &&
-  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+ 	! $gallery->album->getItemOwnerModify() &&
+ 	! $gallery->album->isItemOwner($gallery->user->getUid(), $index))
+ {
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
@@ -41,7 +42,7 @@ doctype();
 <head>
   <title><?php echo gTranslate('core', "Resize Photo") ?></title>
   <?php common_header(); ?>
-  <style>
+  <style type="text/css">
 	.nowrap { white-space:nowrap; }
   </style>
 </head>
