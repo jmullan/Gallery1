@@ -135,9 +135,9 @@ function generateAttrs($attrList) {
  * @param array   $attrList	 Optional Attributs for the selectbox
  * @return string $html
  */
-function drawSelect($name, $options, $selected, $size, $attrList = array(), $prettyPrinting = false) {
-    $crlf = ($prettyPrinting) ? "\n\t" : '';
-    $attrs = generateAttrs($attrList);
+function drawSelect($name, $options, $selected = '', $size = 1, $attrList = array(), $prettyPrinting = false) {
+	$crlf = ($prettyPrinting) ? "\n\t" : '';
+	$attrs = generateAttrs($attrList);
 	$html = "<select name=\"$name\" size=\"$size\"$attrs>" . $crlf;
 
 	if(!empty($options)) {
@@ -169,27 +169,49 @@ function drawSelect($name, $options, $selected, $size, $attrList = array(), $pre
  * @author Jens Tkotz
  */
 function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-    $crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+	$crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+
+	// This attributes are no real HTML attribs and thus should be deleted.
+	$optionIgnoreAttrs = array('text', 'icon', 'separate', 'html', 'type', 'requirements');
 
 	if (!isset($attrList['size'])) {
 		$attrList['size'] = 1;
 	}
 
-    $attrs = generateAttrs($attrList);
+	$attrs = generateAttrs($attrList);
 
-    $buf = "$crlf<select name=\"$name\" $attrs>";
+	$html = "$crlf<select name=\"$name\"$attrs>$crlf";
 
-    if(!empty($options)) {
-        foreach ($options as $nr => $option) {
-            $sel = isset($option['selected']) ? ' selected' : '';
-            $optAttrs = isset($option['attrs']) ? generateAttrs($option['attrs']) : '';
-            $buf .= "\n\t". "<option $optAttrs value=\"". $option['value'] ."\" $sel>". $option['text'] ."</option>$crlf";
-        }
-    }
+	if(!empty($options)) {
+		foreach ($options as $option) {
+			if(!isset($option['class'])) {
+				$option['class'] = '';
+			}
 
-    $buf .= "</select>". $crlf;
+			if(isset($option['selected']) && $option['selected'] != false) {
+				$option['selected'] = null;
+				$option['class'] .= ' g-selected';
 
-    return $buf;
+			}
+
+			if(!isset($option['value'])) {
+				$option['class'] .= ' center g-disabled';
+			}
+
+			$text = $option['text'];
+
+			foreach ($optionIgnoreAttrs as $delete) {
+				unset($option[$delete]);
+			}
+
+			$optAttrs = generateAttrs($option);
+			$html .= '<option'. $optAttrs .'>'. $text .'</option>' . $crlf;
+		}
+	}
+
+	$html .= "</select>". $crlf;
+
+	return $html;
 }
 
 /**
