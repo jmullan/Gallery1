@@ -39,7 +39,7 @@ var imageheight = <?php echo $imageHeight; ?>;
 var imageratio  = imagewidth/imageheight;
 
 /*
-<* Get the window width. NS and IE use different methods
+ * Get the window width. NS and IE use different methods
 */
 function windowWidth() {
 	if (window.innerWidth) {

@@ -33,7 +33,8 @@ function MultiSelector(list_target, max, fieldname, withCaption){
 	// Is there a maximum?
 	if( max ){
 		this.max = max;
-	} else {
+	}
+	else {
 		this.max = -1;
 	};
 	this.fieldname = fieldname;

@@ -36,7 +36,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Color Picker") ?></title>
+  <title><?php echo gTranslate('common', "Color Picker") ?></title>
   <?php echo getStyleSheetLink();; ?>
 </head>
 
@@ -48,13 +48,13 @@ doctype();
 function changeColor(color)
 {
 	if (parent.opener.closed) {
-		alert("<?php echo addslashes(_("The Options window has closed. Exiting.")) ?>");
+		alert("<?php echo addslashes(gTranslate('common', "The Options window has closed. Exiting.")) ?>");
 		this.close();
 		return;
 	}
 
 	if (!parent.opener.document.getElementById('<?php echo $target ?>')) {
-		alert("<?php echo addslashes(_("This window must be called from an Options window")) ?>");
+		alert("<?php echo addslashes(gTranslate('common', "This window must be called from an Options window.")) ?>");
 		this.close();
 		return;
 	}

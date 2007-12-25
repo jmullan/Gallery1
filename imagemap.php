@@ -135,7 +135,6 @@ if (!empty($allImageAreas)) {
 	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
 	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/tip_balloon.js"></script>';
 }
-
 ?>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
   <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>

@@ -172,7 +172,8 @@ function parsePoFiles($poFiles) {
 						$fuzzy++;
 					}
 					$translated++;
-				} else {
+				}
+				else {
 					if ($nextIsFuzzy) {
 						print "ERROR: DISCARD FUZZY for [$locale, $plugin, $msgId]<br>";
 					}

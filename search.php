@@ -87,6 +87,7 @@ if (!empty($searchstring)) {
 			// User is not allowed to search through see album
 			continue;
 		}
+
 		if ($searchAlbum->versionOutOfDate()) {
 			$skip[] = $searchAlbum;
 			continue;

@@ -19,7 +19,6 @@
  *
  * $Id$
  */
-
 /*
  * This block selects a random photo for display.  It will only display photos
  * from albums that are visible to the public.  It will not display hidden
@@ -61,7 +60,8 @@ if (fs_file_exists(CACHE_FILE)) {
 if ($rebuild) {
 	scanAlbums();
 	saveGalleryBlockRandomCache();
-} else {
+}
+else {
 	readGalleryBlockRandomCache();
 }
 
@@ -69,8 +69,7 @@ $i = 0;
 do { 
 	$success = doPhoto();
 	$i++;
-}
-while (empty($success) && $i < $gallery->app->blockRandomAttempts);
+} while (empty($success) && $i < $gallery->app->blockRandomAttempts);
 
 if (empty($success)) {
 	echo gTranslate('core', "No photo chosen.");

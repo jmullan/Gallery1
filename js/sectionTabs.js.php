@@ -63,8 +63,6 @@ function insertSectionToggle() {
 			if (this.currentSectionNr >0) {
 				prevTab = this.getTabByNr(this.currentSectionNr-1);
 				this.toggle(prevTab);
-
-
 			}
 		}
 

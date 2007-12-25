@@ -95,7 +95,7 @@ function saveResults($votes) {
 			}
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote) {
 				if (isset($previous_vote[getVotingID()]) &&
-				 $previous_vote[getVotingID()] === intval($vote_value)) {
+					$previous_vote[getVotingID()] === intval($vote_value)) {
 					unset($gallery->album->fields["votes"][$previous_key][getVotingID()]);
 				}
 			}
@@ -261,7 +261,7 @@ function showResultsGraph($num_rows) {
 			}
 			else {
 				$results[$element] = number_format(((double)$accum_votes)/$count, 2);
-				$summary = gTranslate('common',"(Average points in brackets)");
+				$summary = gTranslate('common', "(Average points in brackets)");
 			}
 		}
 	}
