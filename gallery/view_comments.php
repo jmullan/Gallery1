@@ -102,6 +102,7 @@ if ($gallery->album->fields["textcolor"]) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
 
+insertFormJS('delete_comments');
 /* User wants to delete comments */
 list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
 
@@ -146,8 +147,8 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
-if (!$gallery->album->fields["perms"]['canAddComments']) {
-	echo "<p>". gallery_error(_("Sorry.  This album does not allow comments.")) ."</p>";
+if (!$gallery->user->canViewComments($gallery->album)) {
+	echo "<p>". gallery_error(_("Sorry.  You are not allowed to see comments of this album.")) ."</p>";
 }
 else {
 	$numPhotos = $gallery->album->numPhotos(1);

@@ -166,7 +166,7 @@ function exec_internal($cmd) {
 
 	fs_exec($cmd, $results, $status, $debugfile);
 
-	if (isDebugging()) {
+	if (isDebugging(2)) {
 		print "\n<br>". gTranslate('core', "Results:") ."<pre>";
 		if ($results) {
 			print join("\n", $results);
@@ -1250,12 +1250,16 @@ function findInPath($program) {
 */
 function getImVersion() {
     global $gallery;
-    $version = array();
+    static $version;
 
-    fs_exec($gallery->app->ImPath .'/convert -version', $results, $status);
+	if (!isset($version)) {
+    	$version = array();
 
-    $pieces = explode(' ', $results[0]);
-    $version = $pieces[2];
+		exec($gallery->app->ImPath . '/' . fs_executable('convert') .' -version', $results);
+
+    	$pieces = explode(' ', $results[0]);
+    	$version = $pieces[2];
+	}
 
     return $version;
 }
