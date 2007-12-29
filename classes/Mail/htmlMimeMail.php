@@ -2,20 +2,32 @@
 /**
  * Gallery SVN info
  * $Id$
+ * 
+ * Note: This file was very slightly modified to fit into Gallery 1.x
+ * - PHP 5 compatible: Changed all $HTTP_ to $_SERVER
+ * - Added some Gallery error messages
 */
 
 /**
- * Filename.......: class.html.mime.mail.inc
- * Project........: HTML Mime mail class
- * Last Modified..: $Date$
- * CVS Revision...: $Revision$
- * Copyright......: 2001, 2002 Richard Heyes
- * @package Mail
+* This file is part of the htmlMimeMail package (http://www.phpguru.org/)
+*
+* htmlMimeMail is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* htmlMimeMail is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with htmlMimeMail; if not, write to the Free Software
+* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+* 
+* © Copyright 2004 Richard Heyes
 */
 
-/**
- *
- */
 require_once(dirname(__FILE__) . '/mimePart.php');
 
 class htmlMimeMail
@@ -638,9 +650,9 @@ class htmlMimeMail
 */
 	function _encodeHeader($input, $charset = 'ISO-8859-1')
 	{
-		preg_match_all('/(\w*[\x80-\xFF]+\w*)/', $input, $matches);
+        preg_match_all('/(\s?\w*[\x80-\xFF]+\w*\s?)/', $input, $matches);
 		foreach ($matches[1] as $value) {
-			$replacement = preg_replace('/([\x80-\xFF])/e', '"=" . strtoupper(dechex(ord("\1")))', $value);
+            $replacement = preg_replace('/([\x20\x80-\xFF])/e', '"=" . strtoupper(dechex(ord("\1")))', $value);
 			$input = str_replace($value, '=?' . $charset . '?Q?' . $replacement . '?=', $input);
 		}
 
