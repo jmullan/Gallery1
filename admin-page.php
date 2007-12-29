@@ -41,7 +41,7 @@ $adminOptions[] = array(
 $adminOptions[] = array(
 			'text' => gTranslate('core', "Configuration _wizard"),
 			'url' => $gallery->app->photoAlbumURL . '/setup/index.php',
-			'longtext' => gTranslate('core', "Use the Configuration wizard to reconfigure or tweak your Gallery"));
+			'longtext' => gTranslate('core', "Use the config wizard to reconfigure or tweak your Gallery."));
 
 $adminOptions[] = array(
 		'text' => gTranslate('core', "Find _orphans"),

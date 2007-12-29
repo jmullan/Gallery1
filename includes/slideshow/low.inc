@@ -63,15 +63,19 @@ function slideshow_initialize() {
     if (!isset($slide_index)) {
         $slide_index = 1;
     }
+
     if (!isset($slide_pause)) {
         $slide_pause = $defaultPause;
     }
+
     if (!isset($slide_loop)) {
         $slide_loop = $defaultLoop;
     }
+
     if (!isset($slide_full)) {
         $slide_full = $defaultFull;
     }
+
     if (!isset($slide_dir)) {
         $slide_dir = $defaultDir;
     }
@@ -81,7 +85,7 @@ function slideshow_initialize() {
     }
 
     $bgcolor = $gallery->album->fields['bgcolor'];
-    $title = gTranslate('core', "Slide Show for album") ." :: ". $gallery->album->fields["title"];
+	$title = gTranslate('core', "Slideshow for album") ." :: ". $gallery->album->fields["title"];
 }
 
 function makeSlideLowUrl($index, $loop, $pause, $full, $dir) {
@@ -107,17 +111,17 @@ function slideshow_body() {
         $photoURL, $caption, $imageDir, $pixelImage, $number;
 ?>
 <script type="text/javascript">
-var timer;
-var current_location = <?php echo $slide_index ?>;
-var next_location = <?php echo $slide_index ?>;
-var pics_loaded = 0;
-var onoff = 0;
-var timeout_value;
-var images = new Array;
-var photo_urls = new Array;
-var photo_captions = new Array;
-var loop = <?php echo $slide_loop ?>;
-var full = <?php echo $slide_full ?>;
+	var timer;
+	var current_location = <?php echo $slide_index ?>;
+	var next_location = <?php echo $slide_index ?>;
+	var pics_loaded = 0;
+	var onoff = 0;
+	var timeout_value;
+	var images = new Array;
+	var photo_urls = new Array;
+	var photo_captions = new Array;
+	var loop = <?php echo $slide_loop ?>;
+	var full = <?php echo $slide_full ?>;
 var direction = <?php echo $slide_dir ?>;
 <?php
 
@@ -141,6 +145,7 @@ while ($numDisplayed < $numPhotos && $numDisplayed < $number) {
         */
         break;
     }
+
     $photo = $gallery->album->getPhoto($index);
     $numDisplayed++;
 
@@ -155,9 +160,11 @@ while ($numDisplayed < $numPhotos && $numDisplayed < $number) {
     $image = $photo->image;
     if ($photo->image->resizedName) {
         $thumbImage = $photo->image->resizedName;
-    } else {
+    }
+	else {
         $thumbImage = $photo->image->name;
     }
+
     $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 
     // Now lets get the captions
@@ -180,13 +187,13 @@ var photo_count = <?php echo $photo_count ?>;
 
 function stop() {
     onoff = 0;
-    status = "<?php echo unhtmlentities(gTranslate('core', "The slide show is stopped, Click [play] to resume.")) ?>";
+    status = "<?php echo unhtmlentities(gTranslate('core', "The slideshow is stopped, click [play] to resume.")) ?>";
     clearTimeout(timer);
 }
 
 function play() {
     onoff = 1;
-    status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>";
+    status = "<?php echo unhtmlentities(gTranslate('core', "Slideshow is running...")) ?>";
     wait_for_current_photo();
 }
 
@@ -221,7 +228,8 @@ function wait_for_current_photo() {
         clearTimeout(timer);
         timer = setTimeout('wait_for_current_photo()', 500);
         return 0;
-    } else {
+    }
+	else {
         preload_next_photo();
         reset_timer();
     }

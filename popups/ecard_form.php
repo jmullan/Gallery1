@@ -54,7 +54,7 @@ list($width, $height) = $photo->getDimensions(0, false);
 $max_length = 300;   // Maximum length of the e-Card text
 $ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click to see.");
 $error_msg = '';
-$mandatory = array('name_sender', 'email_sender', 'name_recepient', 'email_recepient', 'message');
+$mandatory = array('name_sender', 'email_sender', 'name_recipient', 'email_recipient', 'message');
 $ecard_send = false;
 $sendButtonTest = gTranslate('core',"_Send eCard");
 
@@ -67,8 +67,8 @@ if (! empty($submit_action)) {
 		}
 	}
 
-	if (!check_email($ecard["email_recepient"]) || !check_email($ecard["email_sender"])) {
-		$error_msg .= gTranslate('core', "The sender or recepient email adress is not valid.");
+    if (!check_email($ecard["email_recipient"]) || !check_email($ecard["email_sender"])) {
+        $error_msg .= gTranslate('core', "The sender or recipient email adress is not valid.");
 		$error_msg .= '<br>';
 	}
 
@@ -124,7 +124,7 @@ function send_ecard() {
 function check() {
 	var error = false;
 	var error_message = "<?php echo gTranslate('core', "Error: to send an eCard you need to fill out all fields."); ?>";
-	error_message +="\n<?php echo gTranslate('core', "Please fill this fields:"); ?>\n\n";
+    error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
 
 	if (document.ecard_form["ecard[name_sender]"].value == "") {
 		error = true;
@@ -138,14 +138,13 @@ function check() {
 		error_message += "<?php echo gTranslate('core', "- Your Email"); ?>\n";
 	}
 
-	if (document.ecard_form["ecard[name_recepient]"].value == "") {
+    if (document.ecard_form["ecard[name_recipient]"].value == "") {
 		error = true;
 		error_message += "<?php echo gTranslate('core', "- Recipient's Name"); ?>\n";
 	}
 
-	if ((document.ecard_form["ecard[email_recepient]"].value == "") &&
-		(document.ecard_form["ecard[email_recepient]"].value.indexOf("@") == -1))
-	{
+    if ((document.ecard_form["ecard[email_recipient]"].value == "") &&
+    (document.ecard_form["ecard[email_recipient]"].value.indexOf("@") == -1)) {
 		error = true;
 		error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
 	}
@@ -170,7 +169,7 @@ function CountMax() {
 	max = <?php echo $max_length ?>;
 	wert = max - document.ecard_form["ecard[message]"].value.length;
 	if (wert < 0) {
-		alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters"), $max_length); ?>");
+        alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters!"), $max_length); ?>");
 		document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
 		wert = 0;
 		document.ecard_form.counter.value = wert;
@@ -211,8 +210,8 @@ if (! $ecard_send) {
 
 	$name_sender	= empty($ecard['name_sender'])		? $defaultSenderName : $ecard['name_sender'];
 	$email_sender	= empty($ecard['email_sender'])		? $defaultSenderEmail : $ecard['email_sender'];
-	$name_recepient	= !empty($ecard['name_recepient'])	? $ecard['name_recepient'] : '';
-	$email_recepient= !empty($ecard['email_recepient'])	? $ecard['email_recepient'] : '';
+	$name_recipient	= !empty($ecard['name_recipient'])	? $ecard['name_recipient'] : '';
+	$email_recipient= !empty($ecard['email_recipient'])	? $ecard['email_recipient'] : '';
 	$defaultSubject	= !empty($defaultSenderName)		? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : '';
 ?>
 	<table cellpadding="0" cellspacing="4" align="center" border="0">
@@ -224,13 +223,13 @@ if (! $ecard_send) {
 	<tr>
 	<?php echo gInput('text', 'ecard[name_sender]', gTranslate('core', "Name"), 'cell', $name_sender, array('tabindex' => 1, 'size' => 18, 'id' => 'name_sender')); ?>
 	<td>&nbsp;</td>
-	<?php echo gInput('text', 'ecard[name_recepient]', gTranslate('core', "Name"), 'cell', $name_recepient, array('tabindex' => 3, 'size' => 18, 'id' => 'name_recepient')); ?>
+	<?php echo gInput('text', 'ecard[name_recipient]', gTranslate('core', "Name"), 'cell', $name_recipient, array('tabindex' => 3, 'size' => 18, 'id' => 'name_recipient')); ?>
 	</tr>
 
 	<tr>
 	<?php echo gInput('text', 'ecard[email_sender]', gTranslate('core', "E-Mail"), 'cell', $email_sender, array('tabindex' => 2, 'size' => 18, 'id' => 'email_sender')); ?>
 	<td>&nbsp;</td>
-	<?php echo gInput('text', 'ecard[email_recepient]', gTranslate('core', "E-Mail"), 'cell', $email_recepient, array('tabindex' => 4, 'size' => 18, 'id' => 'email_recepient')); ?>
+	<?php echo gInput('text', 'ecard[email_recipient]', gTranslate('core', "E-Mail"), 'cell', $email_recipient, array('tabindex' => 4, 'size' => 18, 'id' => 'email_recipient')); ?>
 	</tr>
 
 	<tr>
@@ -284,7 +283,7 @@ for($i = 1; $i <= 27; $i++) {
 </form>
 <?php }
 else {
-	printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recepient"], $ecard["email_recepient"]);
+	printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recipient"], $ecard["email_recipient"]);
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($ecard['photoIndex']); ?></p>
   <br>

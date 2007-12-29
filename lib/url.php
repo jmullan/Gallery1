@@ -94,16 +94,18 @@ function makeGalleryUrl($target = '', $args = array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
-	global $GALLERY_POSTNUKE_VERSION;
 	global $GALLERY_MODULENAME;
 	global $modpath;
 
 	if (empty($GALLERY_MODULENAME) &&
-		$GALLERY_EMBEDDED_INSIDE == 'nuke' &&
+		$GALLERY_EMBEDDED_INSIDE =='nuke' &&
 		!empty($modpath))
 	{
 		$GALLERY_MODULENAME = basename(dirname($modpath));
 	}
+
+	/* Needed for postNuke (0.8 and above) */
+	global $GALLERY_POSTNUKE_VERSION;
 
 	/* Needed for phpBB2 */
 	global $userdata;
@@ -304,7 +306,7 @@ function makeAlbumUrl($albumName = '', $photoId = '', $args = array()) {
 			$args["set_albumName"] = urlencode ($albumName);
 			if ($photoId) {
 				$target = "view_photo.php";
-				$args["id"] = urlencode($photoId);
+				$args['id'] = urlencode($photoId);
 			} else {
 				$target = "view_album.php";
 			}

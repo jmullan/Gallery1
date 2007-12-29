@@ -18,10 +18,11 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
-	require(dirname(__FILE__)  . '/init.php');
+
+require(dirname(__FILE__)  . '/init.php');
 
 list($mode) = getRequestVar(array('mode'));
 
@@ -40,7 +41,8 @@ else {
 
 // Hack check
 if (empty($gallery->session->albumName) &&
-	   $gallery->app->gallery_slideshow_type == "off") {
+	$gallery->app->gallery_slideshow_type == "off")
+{
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
@@ -82,12 +84,12 @@ else {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText		= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "play"));
-$stopIconText		= getIconText('slideshow/play_stop.gif', gTranslate('core', "stop"));
-$normalSizeIconText	= getIconText('window_nofullscreen.gif', gTranslate('core', "normal size"));
-$fullSizeIconText	= getIconText('window_fullscreen.gif', gTranslate('core', "full size"));
-$forwardIconText	= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "forward direction"));
-$backwardIconText	= getIconText('slideshow/1leftarrow.gif', gTranslate('core', "reverse direction"));
+$playIconText		= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "Play"));
+$stopIconText		= getIconText('slideshow/play_stop.gif', gTranslate('core', "Stop"));
+$normalSizeIconText	= getIconText('window_nofullscreen.gif', gTranslate('core', "Normal size"));
+$fullSizeIconText	= getIconText('window_fullscreen.gif', gTranslate('core', "Full size"));
+$forwardIconText	= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "Forward direction"));
+$backwardIconText	= getIconText('slideshow/1leftarrow.gif', gTranslate('core', "Reverse direction"));
 $delayIconText		= getIcontext('history.gif', gTranslate('core', "Delay"));
 $loopIconText		= getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
@@ -121,7 +123,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <head>
   <title><?php echo $title; ?></title>
 <?php
-	common_header();
+common_header();
 
 // the link colors have to be done here to override the style sheet
 if ($albumName) {
@@ -137,12 +139,15 @@ if ($albumName) {
 			echo "\n  a:hover { color: #ff6600; }";
 
 		}
+
 		if ($gallery->album->fields["bgcolor"]) {
 			echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
 		}
+
 		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
 			echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
 		}
+
 		if ($gallery->album->fields["textcolor"]) {
 			echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
 			echo ".head {color:".$gallery->album->fields['textcolor']."; }";
@@ -165,13 +170,13 @@ includeTemplate("slideshow.header"); ?>
 <script type="text/javascript">
 <?php
 if ($mode != 'low') {
-?>
-// Browser capabilities detection ---
-// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low
-if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
-	document.location = "<?php echo makeGalleryUrl('slideshow.php',array('mode' => 'low', "set_albumName" => $gallery->session->albumName)); ?>";
-}
-<?php
+	?>
+	// Browser capabilities detection ---
+	// - assume only IE4+ and NAV6+ can do image resizing, others redirect to low
+	if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up)) {
+		document.location = "<?php echo makeGalleryUrl('slideshow.php',array('mode' => 'low', "set_albumName" => $gallery->session->albumName)); ?>";
+	}
+	<?php
 }
 ?>
 </script>

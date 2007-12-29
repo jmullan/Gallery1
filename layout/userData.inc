@@ -89,7 +89,7 @@ if (isset($allowChange["default_language"]) && $allowChange["default_language"])
 
 if (isset($allowChange["canChangeOwnPw"]) && $allowChange["canChangeOwnPw"] === true) { ?>
 <tr>
-        <td><?php echo gTranslate('core', "User can change its own password") ?></td>
+        <td><?php echo gTranslate('core', "User can change its own password?") ?></td>
         <td><?php echo drawSelect("canChangeOwnPw", $yesNoChoices, $canChangeOwnPw, 1); ?></td>
 </tr>
 <?php
@@ -110,7 +110,7 @@ if ($gallery->user->isAdmin()) { ?>
 		if ($allowChange["admin"] === true) {
 		    if ($uname=$gallery->user->getUsername() == $uname) {
 				echo '<td>'. $yesNoChoices[$isAdmin] .'</td></tr>';
-				echo '<tr><td colspan="2"><i>('. gTranslate('core', "you can't un-admin yourself") . ')</i></td>';
+				echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
 				$hidden[] = array('isAdmin', $isAdmin);
 		    }
 		    else {

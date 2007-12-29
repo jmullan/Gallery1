@@ -85,7 +85,7 @@ function slideshow_initialize() {
                     $number,
                     $gallery->app->galleryTitle);
             } else {
-                $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
+                $title = sprintf(gTranslate('core', "Slideshow for Gallery :: %s"),
                     $gallery->app->galleryTitle);
             }
         } else {
@@ -94,7 +94,7 @@ function slideshow_initialize() {
                     $number,
                     $gallery->album->fields["title"]);
             } else {
-                $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
+                $title = sprintf(gTranslate('core', "Slideshow for album :: %s"), $gallery->album->fields["title"]);
             }
         }
     }
@@ -331,7 +331,7 @@ function stop() {
 	changeElementText("stopOrStartText", '<?php echo $playIconText; ?>');
 
 	onoff = 0;
-	status = "<?php echo unhtmlentities(gTranslate('core', "The slide show is stopped, Click [play] to resume.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slideshow is stopped, click [play] to resume.")) ?>";
 	clearTimeout(timer);
 
 }
@@ -339,21 +339,21 @@ function stop() {
 function play() {
 	changeElementText("stopOrStartText", '<?php echo $stopIconText; ?>');
 	onoff = 1;
-	status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "Slideshow is running...")) ?>";
 	go_to_next_photo();
 }
 
 function full() {
 	changeElementText("fullOrNormalText", '<?php echo $normalSizeIconText; ?>');
 	fullsized = 1;
-	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing full sized images, Click [normal size] to view resized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing full sized images, click [normal size] to view resized images.")) ?>";
 }
 
 function normal() {
 	changeElementText("fullOrNormalText", '<?php echo $fullSizeIconText; ?>');
 
 	fullsized = 0;
-	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing normal sized images, Click [full size] to view full sized images.")) ?>";
+	status = "<?php echo unhtmlentities(gTranslate('core', "The slide is showing normal sized images, click [full size] to view full sized images.")) ?>";
 }
 
 function changeDirection() {
@@ -396,7 +396,7 @@ function wait_for_current_photo() {
 		timer = setTimeout('wait_for_current_photo()', 500);
 		return 0;
 	} else {
-		status = "<?php echo unhtmlentities(gTranslate('core', "Slide show is running...")) ?>" ;
+		status = "<?php echo unhtmlentities(gTranslate('core', "Slideshow is running...")) ?>" ;
 		preload_next_photo();
 		reset_timer();
 	}

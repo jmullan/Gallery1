@@ -86,7 +86,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				fclose($fd);
 			}
 			else {
-				echo gallery_error(sprintf(gTranslate('core', "The folder folder which contains your user information (%s) is not writable for the webserver."),
+				echo gallery_error(sprintf(gTranslate('core', "The folder which contains your user information (%s) is not writable for the webserver."),
 								$userDir));
 				exit;
 			}
@@ -107,7 +107,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 				}
 			}
 		} elseif (fs_file_exists("$userDir/userdb.dat") && !is_writeable("$userDir/userdb.dat")) {
-			echo gallery_error(gTranslate('core', "Your Userfile is not writeable"));
+			echo gallery_error(gTranslate('core', "Your userfile is not writeable."));
 			exit;
 		}
 
@@ -376,7 +376,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function validPassword($password) {
 		if (strlen($password) < 3) {
-			return gTranslate('core', "Password must be at least 3 characters");
+			return gTranslate('core', "Password must be at least 3 characters.");
 		}
 
 		return null;
@@ -414,7 +414,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$count = 1;
 		$total = sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {
-			printf("\n<br>". gTranslate('core', "Checking user %d of %d . . . .") .' ', $count++, $total);
+			printf("\n<br>". gTranslate('core', "Checking user %d of %d ... ") .' ', $count++, $total);
 			$user = $this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 				$user->username == $everybody ||

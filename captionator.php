@@ -53,7 +53,6 @@ if (isset($save) ||
 	isset($next) ||
 	Isset($prev))
 {
-
 	if ($captionedAlbum != $gallery->album->fields['name']) {
 		echo gallery_error(gTranslate('core', "Captioned album does not match current album - aborting changes!"));
 		echo '<br><br>';
@@ -186,17 +185,17 @@ else {
 
 $adminText = gTranslate('core', "Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
-	$adminText .= gTranslate('core', "1 photo in this album") ;
+	$adminText .= gTranslate('core', "1 item in this album") ;
 }
 else {
 	if ($maxPages > 1) {
-		$adminText .= sprintf (gTranslate('core', "%s items in this album on %s"),
-		$numPhotos,
-		gTranslate('core', "one page", "%d pages", $maxPages,'', true));
+		$adminText .= sprintf(gTranslate('core', "%d items in this album on %s"),
+			$numPhotos,
+			gTranslate('core', "one page", "%d pages.", $maxPages,'', true)
+		);
 	}
 	else {
-		$adminText .= sprintf (gTranslate('core', "%s items in this album"), $numPhotos);
-	}
+		$adminText .= gTranslate('core', "One item in this album.", "%d items in this album.", $numPhoto);
 }
 
 $adminbox['text'] = $adminText;

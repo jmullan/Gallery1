@@ -39,11 +39,11 @@ function slideshow_initialize() {
 	global $albumName, $gallery, $title;
 
 	if (empty($albumName)) {
-        $title = sprintf(gTranslate('core', "Slide Show for Gallery :: %s"),
+        $title = sprintf(gTranslate('core', "Slideshow for Gallery :: %s"),
             $gallery->app->galleryTitle);
 	}
 	else {
-        $title = sprintf(gTranslate('core', "Slide Show for album :: %s"), $gallery->album->fields["title"]);
+        $title = sprintf(gTranslate('core', "Slideshow for album :: %s"), $gallery->album->fields["title"]);
 	}
 }
 

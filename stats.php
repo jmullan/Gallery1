@@ -583,10 +583,10 @@ $adminText = '';
 if (isset($album)) {
 	if (isset($albumobj)) {
 		if ($type == "comments" ) {
-			$adminText .= sprintf(gTranslate('core', "%d images with comments in album: %s"), count($arrPhotos), $albumLink);
+            $adminText .= sprintf(gTranslate('core', "%d items with comments in album: %s."), count($arrPhotos), $albumLink);
 		}
 		else {
-			$adminText .= sprintf(gTranslate('core', "%d images in album: %s"), count($arrPhotos), $albumLink);
+			$adminText .= sprintf(gTranslate('core', "%d items in album: %s"), count($arrPhotos), $albumLink);
 		}
 	}
 	else {
@@ -595,10 +595,10 @@ if (isset($album)) {
 }
 else {
 	if ($type == "comments" ) {
-		$adminText .= sprintf(gTranslate('core', "%d images with comments in this Gallery"), count($arrPhotos));
+        $adminText .= sprintf(gTranslate('core', "%d items with comments in this Gallery."), count($arrPhotos));
 	}
 	else {
-		$adminText .= sprintf(gTranslate('core', "%d images this Gallery"), count($arrPhotos));
+        $adminText .= sprintf(gTranslate('core', "%d items this Gallery."), count($arrPhotos));
 	}
 }
 
@@ -611,7 +611,7 @@ if ($gallery->user->isAdmin()) {
 			array(), '', true);
 }
 $adminbox["commands"] .=
-	galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
+	galleryLink(makeAlbumUrl(), gTranslate('core', "Return to _gallery"), array(), '', true);
 
 if (!empty($gallery->app->stats_foruser)) {
 	$adminText .= "\n<br>&nbsp;". generateStatsLinks();
@@ -643,7 +643,7 @@ if ($useCache ) {
 
 if (isset($stm)) {
 	$time = getmicrotime() - $time_start;
-	echo sprintf(gTranslate('core', "Data load time %d seconds"), $time);
+    echo sprintf(gTranslate('core', "Data load time %d seconds."), $time);
 }
 
 /* Start of album layout style. */

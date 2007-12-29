@@ -49,7 +49,7 @@ else {
 		$mode = $modeCookie;
 	}
 }
-printPopupStart(gTranslate('core', "Add Photos"), '', 'left');
+printPopupStart(gTranslate('core', "Add items"), '', 'left');
 
 ?>
 

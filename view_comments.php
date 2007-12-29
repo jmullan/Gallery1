@@ -21,15 +21,16 @@
  * very pimp application that is Gallery.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canViewComments($gallery->album)
-	&& (! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes")) {
+if (!$gallery->user->canViewComments($gallery->album) &&
+   (! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes"))
+{
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
@@ -41,8 +42,7 @@ if (!$gallery->album->isLoaded()) {
 
 $albumName = $gallery->session->albumName;
 
-if (empty($gallery->session->viewedAlbum[$albumName]) &&
-	!$gallery->session->offline) {
+if (empty($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
 }
@@ -59,32 +59,34 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] ?></title>
   <?php echo getStyleSheetLink() ?>
   <?php
-	if( !empty($gallery->album->fields["linkcolor"]) ||
-		!empty($gallery->album->fields["bgcolor"]) ||
-		!empty($gallery->album->fields["textcolor"])) {
+  if( !empty($gallery->album->fields["linkcolor"]) ||
+  	  !empty($gallery->album->fields["bgcolor"]) ||
+  	  !empty($gallery->album->fields["textcolor"]))
+  {
+  	echo "\n<style type=\"text/css\">";
+  	// the link colors have to be done here to override the style sheet
+  	if ($gallery->album->fields["linkcolor"]) {
+  		echo "\n  a:link, a:visited, a:active {";
+  		echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
+  		echo "\n  a:hover { color: #ff6600; }";
 
-		echo "\n<style type=\"text/css\">";
-		// the link colors have to be done here to override the style sheet
-		if ($gallery->album->fields["linkcolor"]) {
-				echo "\n  a:link, a:visited, a:active {";
-				echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
-				echo "\n  a:hover { color: #ff6600; }";
+  	}
+  	if ($gallery->album->fields["bgcolor"]) {
+  		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+  	}
 
-		}
-		if ($gallery->album->fields["bgcolor"]) {
-				echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
-		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-				echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-		}
-		if ($gallery->album->fields["textcolor"]) {
-				echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-				echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-				echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-		}
+  	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+  		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+  	}
 
-		echo "\n  </style>";
-	}
+  	if ($gallery->album->fields["textcolor"]) {
+  		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+  		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+  	}
+
+  	echo "\n  </style>";
+  }
   ?>
 </head>
 
@@ -97,19 +99,24 @@ if (!empty($comment_index)) {
 	$saveMsg = '';
 	/* First we reverse the index array, as we want to delete backwards */
 	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
-		$comment=$gallery->album->getComment($index, $com_index);
+		$comment = $gallery->album->getComment($index, $com_index);
+
 		/* maybe user reloaded page, this prevents an errormessage */
 		if (!isset($comment)) {
 			continue;
 		}
+
 		if (isDebugging()) {
 			echo "\n<br>". sprintf(gTranslate('core', "Deleting comment %d from item with index: %d"), $com_index, $index);
 		}
-		$saveMsg = array(i18n("Comment \"%s\" by %s deleted from %s"),
+
+		$saveMsg = array(
+			i18n("Comment \"%s\" by %s deleted from %s"),
 			$comment->getCommentText(),
 			$comment->getName(),
 			makeAlbumURL($gallery->album->fields["name"], $gallery->album->getPhotoId($index))
 		);
+
 		$gallery->album->deleteComment($index, $com_index);
 		$gallery->album->save($saveMsg);
 	}
@@ -117,9 +124,9 @@ if (!empty($comment_index)) {
 
 includeTemplate('album.header');
 
-$adminbox["text"] = gTranslate('core', "Comments for this Album");
-$adminbox["commands"] = galleryLink(makeAlbumUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
-$adminbox["bordercolor"] = $bordercolor;
+$adminbox['text']		 = gTranslate('core', "Comments for this Album");
+$adminbox['commands']	 = galleryLink(makeAlbumUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
+$adminbox['bordercolor'] = $bordercolor;
 
 includeLayout('adminbox.inc');
 
@@ -128,7 +135,8 @@ includeLayout('breadcrumb.inc');
 
 if (!$gallery->album->fields["perms"]['canAddComments']) {
 	echo "<p>". gallery_error(gTranslate('core', "Sorry.  This album does not allow comments.")) ."</p>";
-} else {
+}
+else {
 	$numPhotos = $gallery->album->numPhotos(1);
 	$commentbox["bordercolor"] = $bordercolor;
 	$i = 1;
@@ -140,25 +148,29 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 			$myAlbumName = $gallery->album->getAlbumName($i);
 			$myAlbum = new Album();
 			$myAlbum->load($myAlbumName);
+
 			if ( $myAlbum->lastCommentDate("no") != -1 &&
-			((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
-			$gallery->user->isAdmin() ||
-			$gallery->user->isOwnerOfAlbum($gallery->album) ||
-			$gallery->user->isOwnerOfAlbum($myAlbum))) {
+				((!$gallery->album->isHidden($i) && $gallery->user->canReadAlbum($myAlbum)) ||
+				$gallery->user->isAdmin() ||
+				$gallery->user->isOwnerOfAlbum($gallery->album) ||
+				$gallery->user->isOwnerOfAlbum($myAlbum)))
+			{
 				$subAlbum = true;
 				$myHighlightTag = $myAlbum->getHighlightTag();
 				require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
 			}
 		}
 		elseif (!$gallery->album->isHidden($i) ||
-		  $gallery->user->isAdmin() ||
-		  $gallery->user->isOwnerOfAlbum($gallery->album) ||
-		  $gallery->album->isItemOwner($gallery->user, $i)) {
+				$gallery->user->isAdmin() ||
+				$gallery->user->isOwnerOfAlbum($gallery->album) ||
+				$gallery->album->isItemOwner($gallery->user, $i))
+		{
 			$comments = $gallery->album->numComments($i);
 			if($comments > 0) {
 				require(dirname(__FILE__) .'/templates/commentbox.tpl.default');
+			}
 		}
-		}
+
 		$subAlbum = false;
 		$i = getNextPhoto($i);
 	}
@@ -167,9 +179,6 @@ if (!$gallery->album->fields["perms"]['canAddComments']) {
 includeLayout('breadcrumb.inc');
 
 echo languageSelector();
-
-$validation_file = 'view_comments.php';
-$validation_args = array('set_albumName' => $gallery->session->albumName);
 
 // Its better not to touch anything below this.
 includeTemplate('info_donation-block');

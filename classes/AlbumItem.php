@@ -785,7 +785,7 @@ class AlbumItem {
 					}
 				}
 				else {
-					debugMessage(gTranslate('core', "Generating normal thumbs"), __FILE__, __LINE__);
+                    debugMessage(gTranslate('core', "Generating normal thumbs."), __FILE__, __LINE__);
 					// no resizing, use ratio for thumb as for the image itself;
 					$ret = resize_image(
 						"$dir/$name.$tag",
@@ -812,7 +812,7 @@ class AlbumItem {
 				}
 			}
 			else {
-				return gTranslate('core', "Unable to make thumbnail") ." ($ret)";
+                return gTranslate('core', "Unable to make thumbnail.") ." ($ret)";
 			}
 		}
 

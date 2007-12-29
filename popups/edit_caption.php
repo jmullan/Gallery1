@@ -94,7 +94,7 @@ if (isset($save) || isset($saveclose)) {
 	else {
 		$infoMessages[] = array(
 			'type' => 'error',
-			'text' => gTranslate('core', "Year must be between 1969 and 2070")
+			'text' => gTranslate('core', "Year must be between 1969 and 2070.")
 		);
 	}
 }

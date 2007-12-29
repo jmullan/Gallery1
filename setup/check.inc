@@ -26,32 +26,32 @@ require(GALLERY_BASE . '/includes/setup/checks.inc');
 
 $configTestStatus = array(
     0 => array(
-        'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success")),
-        'text' => gTranslate('config', "Success"),
+		'image' => gImage('green_trafficlight.gif', gTranslate('config', "Success!")),
+        'text' => gTranslate('config', "Success!"),
         'border' => 'border: 1px solid #b2ffb2',
         'type' => 'success'
     ),
     5 => array(
-        'image' => gImage('yellow_trafficlight.gif', gTranslate('config', "Warning, but optional")),
-        'text' => gTranslate('config', "Warning, but optional"),
+		'image' => gImage('yellow_trafficlight.gif', gTranslate('config', "Warning, but optional.")),
+        'text' => gTranslate('config', "Warning, but optional."),
         'border' => 'border: 2px solid #ffff98',
         'type' => 'warning'
     ),
     10 => array(
-        'image' => gImage('yellow_red_trafficlight.gif', gTranslate('config', "Serious warning, but optional")),
-        'text' => gTranslate('config', "Serious warning, but optional"),
+		'image' => gImage('yellow_red_trafficlight.gif', gTranslate('config', "Serious warning, but optional.")),
+        'text' => gTranslate('config', "Serious warning, but optional."),
         'border' => 'border: 2px solid #ff9898',
         'type' => 'error'
     ),
     51 => array(
-        'image' => gImage('red_trafficlight.gif', gTranslate('config', "Serious warning, no go !")),
-        'text' => gTranslate('config', "Serious warning, no go !"),
+        'image' => gImage('red_trafficlight.gif', gTranslate('config', "Serious warning, no go!")),
+        'text' => gTranslate('config', "Serious warning, no go!"),
         'border' => 'border: 4px solid #ec000a',
         'type' => 'error'
     ),
     100 => array(
-        'image' => gImage('red_trafficlight.gif', gTranslate('config', "Failure")),
-        'text' => gTranslate('config', "Failure"),
+        'image' => gImage('red_trafficlight.gif', gTranslate('config', "Failure!")),
+        'text' => gTranslate('config', "Failure!"),
         'border' => 'border: 4px solid #ec000a',
         'type' => 'error'
     )

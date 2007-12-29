@@ -54,13 +54,13 @@ printPopupStart(gTranslate('core', "Metadata on Upload Help"),'', langLeft());
 		  <span class="g-attention"><?php echo gTranslate('core', "In which format has the data to be?"); ?></span>
 	
 		  <p>
-		<?php echo gTranslate('core', "The first row must be the field names, there is one mandatory field, some predefined fields and you can use your own custom fields."); ?>
+		<?php echo gTranslate('core', "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."); ?>
 		<?php echo gTranslate('core', "Order does not matter, but you have to use you a <b>;</b> (Semicolon) as separator as your texts might have commas."); ?>
 			<ul><li><?php printf(gTranslate('core', "Mandatory: %s"), "'Filename'"); ?>
 				<li><?php printf(gTranslate('core', "Predefined: %s, %s, %s"), "'Caption'", "'Title'", "'Description'"); ?>
 			</ul>
 	
-			<br><?php echo gTranslate('core', "Then follow the lines containing the info it self"); ?>
+			<br><?php echo gTranslate('core', "Then follow the lines containing the info itself."); ?>
 	  </li>
 	</ul>
 

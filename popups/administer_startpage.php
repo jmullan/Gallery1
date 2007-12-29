@@ -49,12 +49,12 @@ $adminOptions[] = array(
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 $sortOptions = array(
-	'name'		  => gTranslate('core', "By (physical) name"),
-	'clicks_date'   => gTranslate('core', "By last reset date"),
-	'creation_date' => gTranslate('core', "By creation date (works only with albums created with 1.5.2 or newer)")
+    'name'          => gTranslate('core', "By (physical) name."),
+    'clicks_date'   => gTranslate('core', "By last reset date."),
+    'creation_date' => gTranslate('core', "By creation date (works only with albums created with 1.5.2 or newer).")
 );
 
-printPopupStart(gTranslate('core', "Administer Startpage"), '', 'left');
+printPopupStart(gTranslate('core', "Administer startpage"), '', 'left');
 
 if(empty($sort)) {
 	echo "\n<table width=\"100%\">";

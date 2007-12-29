@@ -26,7 +26,7 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 printPopupStart(gTranslate('core', "ImageMap Help"), '', 'left')
 ?>
 	<div class="g-emphasis">
-	  <?php  echo gTranslate('core', "This is a help for working with Gallerys so-called 'ImageMaps'"); ?>
+	  <?php  echo gTranslate('core', "This is a help for working with Gallerys so called 'ImageMaps'"); ?>
 	</div>
 
 	<p class="left">
@@ -48,12 +48,12 @@ printPopupStart(gTranslate('core', "ImageMap Help"), '', 'left')
 	
 		  <p>
 			<?php echo gTranslate('core', "When you are satisifed with your selection (e.g. a person or object), enter the describing text for your for your ImageMap in the 'Description' field on the left hand side."); ?>
-			<br><?php echo gTranslate('core', "The text entered in the Description field will be displayed when your users point their mouse cursor over the ImageMap"); ?>
+			<br><?php echo gTranslate('core', "The text entered in the description field, will be displayed when your users point their mouse cursor over the ImageMap"); ?>
 		  </p>
 	
 		  <p>
-			<?php echo gTranslate('core', "Optionally you can enter a Link-Url for your ImageMap, which is activated when a user clicks your ImageMap selection."); ?>
-			<br><?php echo gTranslate('core', "When you satisfied, click the 'Save ImageMap' button at the left side."); ?>
+			<?php echo gTranslate('core', "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."); ?>
+			<br><?php echo gTranslate('core', "When you are satisfied, click the 'Save ImageMap' button at the left side."); ?>
 		  </p>
 		  </li>
 	</ul>
@@ -63,14 +63,14 @@ printPopupStart(gTranslate('core', "ImageMap Help"), '', 'left')
 		  <span class="g-attention"><?php echo gTranslate('core', "How to update an ImageMap in Gallery?"); ?></span>
 	
 		  <p>
-			<?php echo gTranslate('core', "Currently you can only modify the text and the url for an ImageMap. The polygon for the ImageMap is currently not changeable."); ?>
+			<?php echo gTranslate('core', "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."); ?>
 			<br><?php echo gTranslate('core', "If you do need to change the actual shape of the selection, you need to delete it and create a new selection in the shape you want."); ?>
 		  </p>
 		  <p>
 			<?php echo gTranslate('core', "Select the ImageMap you want to edit in the box on the left hand side."); ?>
-			<br><?php echo gTranslate('core', "The Image preview on the right hand side, will show which area is covered by the ImageMap currently selected."); ?>
+			<br><?php echo gTranslate('core', "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."); ?>
 			<br><?php echo gTranslate('core', "You can then modify your 'Description', or edit the 'Link-URL'."); ?>
-			<br><?php echo gTranslate('core', "When finished, click the 'Update ImageMap' button. "); ?>
+			<br><?php echo gTranslate('core', "When finished, click the 'Update ImageMap' button."); ?>
 		  </p>
 		</li>
 	</ul>
@@ -80,7 +80,7 @@ printPopupStart(gTranslate('core', "ImageMap Help"), '', 'left')
 		  <span class="g-attention"><?php echo gTranslate('core', "How to delete an ImageMap in Gallery?"); ?></span>
 	
 		  <p>
-		<?php echo gTranslate('core', "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selectes ImageMap(s)' button."); ?>
+		<?php echo gTranslate('core', "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."); ?>
 		  </p>
 		</li>
 	</ul>

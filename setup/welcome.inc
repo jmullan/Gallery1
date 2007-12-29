@@ -87,7 +87,7 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 					<td><?php echo gTranslate('config', "Create an albums folder for your pictures and movies. This must be in your webfolder. We recommend that you don't put it in your Gallery folder, but that's up to you."); ?></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="g-emphasis"><?php echo gTranslate('config', "Make sure that both files and the folder are read and writeable for your webserver !"); ?></td>
+					<td colspan="2" class="g-emphasis"><?php echo gTranslate('config', "Make sure that both files and the folder are read and writeable for your webserver!"); ?></td>
 				</tr>
 			</table>
 

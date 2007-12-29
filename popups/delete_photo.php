@@ -84,7 +84,7 @@ if (isset($formaction) && $formaction == 'delete' && isset($id)) {
 	return;
 }
 
-printPopupStart(isset($albumDelete) ? gTranslate('core', "Delete Album") : gTranslate('core', "Delete Photo"));
+printPopupStart(isset($albumDelete) ? gTranslate('core', "Delete album") : gTranslate('core', "Delete item"));
 
 if ($gallery->album && isset($id)) {
 	if (isset($albumDelete)) {
@@ -111,7 +111,7 @@ if ($gallery->album && isset($id)) {
 <?php
 	}
 	else {
-		echo gTranslate('core', "Do you really want to delete this photo?") ;
+		echo gTranslate('core', "Do you really want to delete this item?") ;
 		echo makeFormIntro('delete_photo.php',
 		  array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
 		  array('type' => 'popup')

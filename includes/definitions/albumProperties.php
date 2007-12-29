@@ -36,17 +36,17 @@ $properties = array(
 		'contains_required' => false,
 	),
 	'summary' => array(
-		'prompt' => gTranslate('common', "Album summary"),
+        'prompt' => gTranslate('common', "Album summary"),
 		'desc' => '',
-		'value' => $gallery->album->fields["summary"],
+		'value' => $gallery->album->fields['summary'],
 		'type' => 'textarea',
 		'attrs' => array('cols' => 40, 'rows' => 6)
 	),
 	'title' => array(
-		'prompt' => gTranslate('common', "Album title"),
+        'prompt' => gTranslate('common', "Album title"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["title"],
+		'value' => $gallery->album->fields['title'],
 		'attrs' => array('size' => 50)
 	),
 	'group_text_end' => array (
@@ -59,87 +59,86 @@ $properties = array(
 		'desc' => ''
 	),
 	'background' => array(
-		'prompt' => gTranslate('common', "Background Image (URL)"),
+		'prompt' => gTranslate('common', "Background image (URL)"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["background"]
+		'value' => $gallery->album->fields['background']
 	),
 	'font' => array(
 		'prompt' => gTranslate('common', "Font"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["font"]
+		'value' => $gallery->album->fields['font']
 	),
 	'cols' => array(
 		'prompt' => gTranslate('common', "Columns"),
 		'desc' => '',
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-		'value' => $gallery->album->fields["cols"]
+		'value' => $gallery->album->fields['cols']
 	),
-
 	'rows' => array(
 		'prompt' => gTranslate('common', "Rows"),
 		'desc' => '',
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-		'value' => $gallery->album->fields["rows"]
+		'value' => $gallery->album->fields['rows']
 	),
 	'border' => array(
 		'prompt' => gTranslate('common', "Borders"),
 		'desc' => '',
 		'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 10 => 10, 15 => 15, 20 => 20),
-		'value' => $gallery->album->fields["border"]
+		'value' => $gallery->album->fields['border']
 	),
 	'subgroup_colors' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('common', "Colors")
 	),
 	'bgcolor' => array(
-		'prompt' => gTranslate('common', "Background Color"),
+		'prompt' => gTranslate('common', "Background color"),
 		'desc' => '',
 		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["bgcolor"]
+		'value' => $gallery->album->fields['bgcolor']
 	),
 	'textcolor' => array(
-		'prompt' => gTranslate('common', "Text Color"),
+		'prompt' => gTranslate('common', "Text color"),
 		'desc' => '',
 		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["textcolor"]
+		'value' => $gallery->album->fields['textcolor']
 	),
 	'linkcolor' => array(
-		'prompt' => gTranslate('common', "Link Color"),
+		'prompt' => gTranslate('common', "Link color"),
 		'desc' => '',
 		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["linkcolor"]
+		'value' => $gallery->album->fields['linkcolor']
 	),
 	'bordercolor' => array(
-		'prompt' => gTranslate('common', "Border Color"),
+		'prompt' => gTranslate('common', "Border color"),
 		'desc' => '',
 		'type' => 'colorpicker',
-		'value' => $gallery->album->fields["bordercolor"]
+		'value' => $gallery->album->fields['bordercolor']
 	),
 	'subgroup_frams' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('common', "Frames")
 	),
 	'album_frame' => array(
-		'prompt' => gTranslate('common', "Album Frame"),
+		'prompt' => gTranslate('common', "Album frame"),
 		'desc' => '',
 		'choices' => available_frames(),
-		'value' => $gallery->album->fields["album_frame"],
+		'value' => $gallery->album->fields['album_frame'],
 		'vartype' => 'pictureFrame'
 	),
 	'thumb_frame' => array(
-		'prompt' => gTranslate('common', "Thumb Frame"),
+		'prompt' => gTranslate('common', "Thumb frame"),
 		'desc' => '',
 		'choices' => available_frames(),
-		'value' => $gallery->album->fields["thumb_frame"],
+		'value' => $gallery->album->fields['thumb_frame'],
 		'vartype' => 'pictureFrame'
 	),
 	'image_frame' => array(
-		'prompt' => gTranslate('common', "Image Frame"),
+        'prompt' => gTranslate('common', "Item frame"),
 		'desc' => '',
 		'choices' => available_frames(),
-		'value' => $gallery->album->fields["image_frame"],
+		'value' => $gallery->album->fields['image_frame'],
 		'vartype' => 'pictureFrame'
 	),
 	'group_layout_end' => array (
@@ -152,28 +151,28 @@ $properties = array(
 		'desc' => ''
 	),
 	'slideshow_type' => array(
-		'prompt' => gTranslate('common', "Slideshow Type"),
+        'prompt' => gTranslate('common', "Slideshow type?"),
 		'desc' => '',
 		'choices' => array( "off" => gTranslate('common', "Off"), "ordered" => gTranslate('common', "Ordered"), "random" => gTranslate('common', "Random")),
-		'value' => $gallery->album->fields["slideshow_type"]
+		'value' => $gallery->album->fields['slideshow_type']
 	),
 	'slideshow_recursive' => array(
-		'prompt' => gTranslate('common', "Include sub-albums in slideshow"),
+        'prompt' => gTranslate('common', "Include sub-albums in slideshow?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["slideshow_recursive"]
+		'value' => $gallery->album->fields['slideshow_recursive']
 	),
 	'slideshow_loop' => array(
-		'prompt' => gTranslate('common', "Allow slideshow to loop"),
+        'prompt' => gTranslate('common', "Allow slideshow to loop?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["slideshow_loop"]
+		'value' => $gallery->album->fields['slideshow_loop']
 	),
 	'slideshow_length' => array(
 		'prompt' => gTranslate('common', "Slideshow Length"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["slideshow_length"],
+		'value' => $gallery->album->fields['slideshow_length'],
 		'vartype' => 'int_empty'
 	),
 	'group_slideshow_end' => array (
@@ -186,44 +185,44 @@ $properties = array(
 		'desc' => ''
 	),
 	'thumb_size' => array(
-		'prompt' => gTranslate('common', "Thumbnail size"),
+        'prompt' => gTranslate('common', "Thumbnail size (in px)?"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["thumb_size"],
+		'value' => $gallery->album->fields['thumb_size'],
 		'vartype' => 'int_notnull'
 	),
 	'thumb_ratio' => array(
-		'prompt' => gTranslate('common', "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'"),
+        'prompt' => gTranslate('common', "The ratio in which the thumbnails are made.<br>This affects only new thumbs. For existing use 'rebuild thumbs'."),
 		'desc' => '',
 		'choices' => array('0' => gTranslate('common', "As the original image"), '1/1' => gTranslate('common', "Square thumbs")),
 		'value' => getPropertyDefault('thumb_ratio', $gallery->album, false),
 	),
 	'resize_size' => array(
-		'prompt' => gTranslate('common', "Maximum dimensions of intermediate sized images"),
+        'prompt' => gTranslate('common', "Maximum size of intermediate sized images (in px)?"),
 		'desc' => '',
 		'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => 1280),
-		'value' => $gallery->album->fields["resize_size"],
+		'value' => $gallery->album->fields['resize_size'],
 		'vartype' => 'int_empty'
 	),
 	'resize_file_size' => array(
-		'prompt' => gTranslate('common', "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+        'prompt' => gTranslate('common', "Maximum file size of intermediate sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)?"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["resize_file_size"],
+		'value' => $gallery->album->fields['resize_file_size'],
 		'vartype' => 'int_empty'
 	),
 	'max_size' => array(
-		'prompt' => gTranslate('common', "Maximum dimensions of full sized images"),
+        'prompt' => gTranslate('common', "Maximum size of full sized images (in px)?"),
 		'desc' => '',
 		'choices' => array(0 => gTranslate('common', "Off"), 400 => 400, 500 => 500, 600 => 600, 640 => 640, 700 => 700, 800 => 800, 1024 => 1024, 1280 => sprintf(gTranslate('common', '%d (%d MPix)'), 1280, 1), 1600 => sprintf(gTranslate('common', '%d (%d MPix)'), 1600, 2), 2048 => sprintf(gTranslate('common', '%d (%d MPix)'), 2048, 3)),
-		'value' => $gallery->album->fields["max_size"],
+		'value' => $gallery->album->fields['max_size'],
 		'vartype' => 'int_empty'
 	),
 	'max_file_size' => array(
-		'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kilobytes (0 or blank for no size restriction)"),
+        'prompt' => gTranslate('common', "Maximum file size of full sized JPEG/PNG images in kb (0 or blank for no size restriction)?"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["max_file_size"],
+		'value' => $gallery->album->fields['max_file_size'],
 		'vartype' => 'int_empty'
 	),
 	'group_sizes_end' => array (
@@ -239,31 +238,31 @@ $properties = array(
 		'prompt' => gTranslate('common', "Display click counter for this album?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["display_clicks"]
+		'value' => $gallery->album->fields['display_clicks']
 	),
 	'item_owner_display' => array(
-		'prompt' => gTranslate('common', "Display owners name with caption?"),
+        'prompt' => gTranslate('common', "Display owner's name with caption?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["item_owner_display"]
+		'value' => $gallery->album->fields['item_owner_display']
 	),
 	'showDimensions' => array(
 		'prompt' => gTranslate('common', "Display clickable image dimensions?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["showDimensions"]
+		'value' => $gallery->album->fields['showDimensions']
 	),
 	'dimensionsAsPopup' => array(
 		'prompt'	=> gTranslate('common', "Open dimensions-link as popup?"),
 		'desc'		=> gTranslate('common', "If you show the dimensions-links, you can choose whether you just want the images shown in a popup, or open the complete photoview."),
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["dimensionsAsPopup"]
+		'value' => $gallery->album->fields['dimensionsAsPopup']
 	),
 	'use_exif' => array(
 		'prompt' => gTranslate('common', "Display EXIF data?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["use_exif"],
+		'value' => $gallery->album->fields['use_exif'],
 		'skip' => (empty($gallery->app->use_exif)) ? true : false
 	),
 	'group_display_end' => array (
@@ -288,10 +287,10 @@ $properties = array(
 		'value' => $gallery->album->fields['print_photos']
 	),
 	'ecards' => array(
-		'prompt' => gTranslate('common', "Enable Ecards ?"),
+        'prompt' => gTranslate('common', "Enable ecards?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => isset($gallery->album->fields["ecards"]) ? $gallery->album->fields["ecards"] : 'no',
+		'value' => isset($gallery->album->fields['ecards']) ? $gallery->album->fields['ecards'] : 'no',
 		'skip' => ($gallery->app->emailOn == 'yes') ? false : true
 	),
 	'group_services_end' => array (
@@ -300,20 +299,20 @@ $properties = array(
 	'group_pollProperties' => array (
 		'type' => 'group_start',
 		'default' => 'none',
-		'title' => gTranslate('common', "_Poll Properties"),
+		'title' => gTranslate('common', "_Poll properties"),
 		'desc' => ''
 	),
 	'voter_class' => array(
 		'prompt' => gTranslate('common', "Who can vote?"),
-		'desc' => gTranslate('common', "This enables/disable voting and if enabled it controlles who can vote."),
+        'desc' => gTranslate('common', "This enables/disable voting and if enabled it controls who can vote."),
 		'choices' => array("Logged in" => gTranslate('common', "Logged in"), "Everybody" => gTranslate('common', "Everybody"), "Nobody" => gTranslate('common', "Nobody")),
-		'value' => $gallery->album->fields["voter_class"]
+		'value' => $gallery->album->fields['voter_class']
 	),
 	'poll_type' => array(
 		'prompt' => gTranslate('common', "Type of poll for this album"),
 		'desc' => '',
 		'choices' => array("rank" => gTranslate('common', "Rank"), "critique" => gTranslate('common', "Critique")),
-		'value' => $gallery->album->fields["poll_type"]
+		'value' => $gallery->album->fields['poll_type']
 	),
 	'poll_scale' => array(
 		'prompt' => gTranslate('common', "Number of voting options"),
@@ -326,7 +325,7 @@ $properties = array(
 		'prompt' => gTranslate('common', "Show results of voting to all visitors?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["poll_show_results"]
+		'value' => $gallery->album->fields['poll_show_results']
 	),
 	'poll_num_results' => array(
 		'prompt' => gTranslate('common', "Number of lines of results graph to display on the album page"),
@@ -336,7 +335,7 @@ $properties = array(
 		'vartype' => 'int_empty'
 	),
 	'poll_orientation' => array(
-		'prompt' => gTranslate('common', "Orientation of vote choices"),
+        'prompt' => gTranslate('common', "Orientation of vote choices?"),
 		'desc' => '',
 		'choices' => array('horizontal' => gTranslate('common', "Horizontal"), 'vertical' => gTranslate('common', "Vertical")),
 		'value' => isset($gallery->album->fields['poll_orientation']) ?
@@ -350,7 +349,7 @@ $properties = array(
 		'attrs' => array('cols' => 40, 'rows' => 2)
 	),
 	'poll_displayed_values' => array(
-		'prompt' => gTranslate('common', "Voting Options"),
+		'prompt' => gTranslate('common', "Voting options"),
 		'desc' => '',
 		'type' => 'table_values',
 		'elements' => buildVotingInputFields(),
@@ -367,44 +366,44 @@ $properties = array(
 		'desc' => ''
 	),
 	'add_to_beginning' => array(
-		'prompt' => gTranslate('common', "Add new items at beginning of album"),
+        'prompt' => gTranslate('common', "Add new items at beginning of album?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["add_to_beginning"]
+		'value' => $gallery->album->fields['add_to_beginning']
 	),
 	'returnto' => array(
-		'prompt' => gTranslate('common', "Show <i>Return to</i> link"),
+        'prompt' => gTranslate('common', "Show <i>Return to</i> link?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["returnto"]
+		'value' => $gallery->album->fields['returnto']
 	),
 	'use_fullOnly' => array(
-		'prompt' => gTranslate('common', "Offer visitors ability to specify<br>preference for full-size or resized images"),
+        'prompt' => gTranslate('common', "Offer visitors ability to specify<br>preference for full-size or resized images?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["use_fullOnly"]
+		'value' => $gallery->album->fields['use_fullOnly']
 	),
 	'fit_to_window' => array(
-		'prompt' => gTranslate('common', "Auto fit-to-window for<br>images without a resized copy"),
+        'prompt' => gTranslate('common', "Auto fit-to-window for<br>images without a resized copy?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["fit_to_window"]
+		'value' => $gallery->album->fields['fit_to_window']
 	),
 	'subgroup_ermission' => array (
 		'type' => 'subgroup',
 		'title' => gTranslate('common', "Permissions")
 	),
 	'item_owner_modify' => array(
-		'prompt' => gTranslate('common', "Allow item owners to modify their images"),
+        'prompt' => gTranslate('common', "Allow users to modify their own items?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["item_owner_modify"]
+		'value' => $gallery->album->fields['item_owner_modify']
 	),
 	'item_owner_delete' => array(
-		'prompt' => gTranslate('common', "Allow item owners to delete their images"),
+        'prompt' => gTranslate('common', "Allow users to delete their own items?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["item_owner_delete"]
+		'value' => $gallery->album->fields['item_owner_delete']
 	),
 	'group_misc_end' => array (
 		'type' => 'group_end'
@@ -412,7 +411,7 @@ $properties = array(
 	'group_CustomFields' => array (
 		'type' => 'group_start',
 		'default' => 'none',
-		'title' => gTranslate('common', "Custom _Fields")
+		'title' => gTranslate('common', "Custom _fields")
 	),
 	'extra_fields' => array(
 		'prompt' => '',
@@ -441,58 +440,58 @@ $properties = array_merge($properties, array(
 		'title' => gTranslate('common', "M_icrothumbs")
 	),
 	'nav_thumbs' => array(
-		'prompt' => gTranslate('common', "Use microthumb for photo navigation"),
+        'prompt' => gTranslate('common', "Use microthumb photo navigation?"),
 		'desc' => '',
 		'choices' => array(
 			"yes" => gTranslate('common', "Yes"),
 			"no" => gTranslate('common', "No, just the normal navigation"),
 			"both" => gTranslate('common', "Both kinds of Navigation")),
-		'value' => $gallery->album->fields["nav_thumbs"]
+		'value' => $gallery->album->fields['nav_thumbs']
 	),
 	'nav_thumbs_style' => array(
-		'prompt' => gTranslate('common', "Microthumb style"),
+        'prompt' => gTranslate('common', "Microthumb style?"),
 		'desc' => '',
 		'choices' => array("fixed" => gTranslate('common', "Fixed"), "dynamic" => gTranslate('common', "Dynamic")),
-		'value' => $gallery->album->fields["nav_thumbs_style"]
+		'value' => $gallery->album->fields['nav_thumbs_style']
 	),
 	'nav_thumbs_first_last' => array(
-		'prompt' => gTranslate('common', "Show first &amp; last microthumb"),
+        'prompt' => gTranslate('common', "Show first &amp; last microthumb?"),
 		'desc' => '',
 		'choices' => array("yes" => gTranslate('common', "Yes"), "no" => gTranslate('common', "No")),
-		'value' => $gallery->album->fields["nav_thumbs_first_last"]
+		'value' => $gallery->album->fields['nav_thumbs_first_last']
 	),
 	'nav_thumbs_prev_shown' => array(
-		'prompt' => gTranslate('common', "Number of previous thumbs"),
+        'prompt' => gTranslate('common', "Number of previous thumbs?"),
 		'desc' => '',
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-		'value' => $gallery->album->fields["nav_thumbs_prev_shown"]
+		'value' => $gallery->album->fields['nav_thumbs_prev_shown']
 	),
 	'nav_thumbs_next_shown' => array(
-		'prompt' => gTranslate('common', "Number of next thumbs"),
+        'prompt' => gTranslate('common', "Number of next thumbs?"),
 		'desc' => '',
 		'choices' => array(1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5, 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10),
-		'value' => $gallery->album->fields["nav_thumbs_next_shown"]
+		'value' => $gallery->album->fields['nav_thumbs_next_shown']
 	),
 	'nav_thumbs_location' => array(
-		'prompt' => gTranslate('common', "Position of microthumb navigation bar"),
+        'prompt' => gTranslate('common', "Position of microthumb navigation bar?"),
 		'desc' => '',
 		'choices' => array("top" => gTranslate('common', "Top"),
 			   "both" => gTranslate('common', "Both"),
 			   "bottom" => gTranslate('common', "Bottom")),
-		'value' => $gallery->album->fields["nav_thumbs_location"]
+		'value' => $gallery->album->fields['nav_thumbs_location']
 	),
 	'nav_thumbs_size' => array(
-		'prompt' => gTranslate('common', "Height of microthumbs in navigation bar"),
+        'prompt' => gTranslate('common', "Height of microthumbs in navigation bar (in px)?"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["nav_thumbs_size"],
+		'value' => $gallery->album->fields['nav_thumbs_size'],
 		'attrs' => array('size' => 3)
 	),
 	'nav_thumbs_current_bonus' => array(
-		'prompt' => gTranslate('common', "Bonus to height of current microthumb (pixels)"),
+        'prompt' => gTranslate('common', "Bonus to height of current microthumb (in px)?"),
 		'desc' => '',
 		'type' => 'text',
-		'value' => $gallery->album->fields["nav_thumbs_current_bonus"],
+		'value' => $gallery->album->fields['nav_thumbs_current_bonus'],
 		'attrs' => array('size' => 3)
 	),
 	'group_MicroThumbs_end' => array (

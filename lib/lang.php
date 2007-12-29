@@ -137,9 +137,9 @@ function setLangDefaults($nls) {
 function getEnvLang() {
 	global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
-	global $board_config;					   /* Needed for phpBB2			*/
-	global $_CONF;							  /* Needed for GeekLog   		*/
-	global $mosConfig_locale, $mosConfig_lang;  /* Needed for Mambo / Joomla!	*/
+	global $board_config;						/* Needed for phpBB2			*/
+	global $_CONF;								/* Needed for GeekLog   		*/
+	global $mosConfig_locale, $mosConfig_lang;	/* Needed for Mambo / Joomla!	*/
 	global $currentlang;						/* Needed for CPGNuke		*/
 
 	$envLang = NULL;
@@ -400,7 +400,7 @@ function initLanguage($sendHeader = true) {
 	$checklist = array('direction', 'charset') ;
 
 	/**
-	 * This checks whether the previously defined values are available.
+     * This checks wether the previously defined values are available.
 	 * All available values are in $nls
 	 * If they are not defined we used the defaults from nls.php
 	 */
@@ -491,7 +491,7 @@ function emulate_ngettext($languages_initialized = false) {
 			if (stristr($value, "msgid") &&
 				! stristr($lines[$key-1],"fuzzy") && !stristr($value,"msgid_plural")) {
 //				echo "\n<br>---SID". $value;
-//					echo "\n<br>---PID". $lines[$key+1];
+//				echo "\n<br>---PID". $lines[$key+1];
 				if (stristr($lines[$key+1],"msgid_plural")) {
 					$singular_key=substr($value, 7,-1);
 					$translation[$singular_key]=substr(trim($lines[$key+2]),11,-1);
@@ -522,24 +522,24 @@ function emulate_ngettext($languages_initialized = false) {
 				}
 			}
 			else {
-			if ($num == 1) {
-				if (! empty($GLOBALS['translation'][$singular])) {
-					return $GLOBALS['translation'][$singular] ;
+				if ($num == 1) {
+					if (! empty($GLOBALS['translation'][$singular])) {
+						return $GLOBALS['translation'][$singular] ;
 					}
 					else {
-					return $singular;
-				}
-			}
-			else {
-				if (! empty($GLOBALS['translation'][$quasi_plural])) {
-					return $GLOBALS['translation'][$quasi_plural] ;
+						return $singular;
+					}
 				}
 				else {
-					return $quasi_plural;
+					if (! empty($GLOBALS['translation'][$quasi_plural])) {
+						return $GLOBALS['translation'][$quasi_plural] ;
+					}
+					else {
+						return $quasi_plural;
+					}
 				}
 			}
 		}
-	}
 	}
 }
 
@@ -584,15 +584,14 @@ function emulate_gettext($languages_initialized) {
 				return $search;
 			}
 			else {
-
-			if (! empty($GLOBALS['translation'][$search])) {
-				return $GLOBALS['translation'][$search] ;
-			}
-			else {
-				return $search;
+				if (! empty($GLOBALS['translation'][$search])) {
+					return $GLOBALS['translation'][$search] ;
+				}
+				else {
+					return $search;
+				}
 			}
 		}
-	}
 	}
 }
 
@@ -636,7 +635,8 @@ function getLanguageAlias($language) {
 
 	if (isset($nls['alias'][$language])) {
 	   return $nls['alias'][$language];
-	} else {
+	}
+	else {
 		return $language;
 	}
 }
@@ -662,10 +662,12 @@ function getNLS() {
 					foreach ($modules as $module) {
 						if (gettext_installed()) {
 							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-gallery_$module.po")) $fc++;
-						} else {
+						}
+						else {
 							if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/LC_MESSAGES/$locale-gallery_$module.mo")) $fc++;
 						}
 					}
+
 					if (fs_file_exists(dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php") && $fc==sizeof($modules)) {
 						include (dirname(dirname(__FILE__)) . "/locale/$dirname/$locale-nls.php");
 					}
@@ -787,10 +789,10 @@ return $return;
  */
 function automaticFieldsList() {
 	return array(
-		'Upload Date'   => gTranslate('common', "Upload Date"),
-		'Capture Date' 	=> gTranslate('common', "Capture Date"),
-		'Dimensions' 	=> gTranslate('common', "Image Size"),
-		'EXIF'		  => gTranslate('common', "Additional EXIF Data"));
+        'Upload Date'   => gTranslate('common', "Upload date"),
+        'Capture Date' 	=> gTranslate('common', "Capture date"),
+        'Dimensions' 	=> gTranslate('common', "Image size"),
+        'EXIF'          => gTranslate('common', "Additional EXIF data"));
 }
 
 /** These are custom fields which can be entered manual by the User
@@ -802,7 +804,7 @@ function translateableFields() {
 		'Title'			=> gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
-		'AltText'		=> gTranslate('common', "Alt Text / tooltip"),
+        'AltText'		=> gTranslate('common', "Alt text / Tooltip"),
 	);
 }
 
@@ -851,7 +853,8 @@ function languageSelector() {
 					if (! isset($nls['phpnuke'][$value])) continue;
 					$new_lang = $nls['phpnuke'][$value];
 				}
-			} else {
+			}
+			else {
 				$new_lang = $value;
 			}
 
@@ -909,10 +912,10 @@ function langLeft() {
 	global $gallery;
 
 	if ($gallery->direction == 'ltr') {
-	return 'left';
+		return 'left';
 	}
 	else {
-	return 'right';
+		return 'right';
 	}
 }
 

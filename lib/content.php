@@ -598,6 +598,7 @@ function makeIconMenu($iconElements, $align = 'left', $closeTable = true, $lineb
 		else {
 			$html .= "\n\t<td style=\"padding: 2px;\" class=\"g-icon-nolink\">$element</td>";
 		}
+
 		if($i > sizeof($iconElements)/2 && $linebreak) {
 			$html .= "\n</tr>\n<tr>";
 			$i = 0;
@@ -748,7 +749,7 @@ function includeLayout($name, $skinname='') {
 		include ($defaultname);
 	}
 	else {
-		echo gallery_error(sprintf(gTranslate('common', "Problem including file %s"), $name));
+		echo gallery_error(sprintf(gTranslate('common', "Problem including file %s."), $name));
 	}
 }
 
@@ -818,7 +819,6 @@ function getStyleSheetLink() {
 		else {
 			$styleSheetLinks .= _getStyleSheetLink("ltr");
 		}
-
 
 		if ($GALLERY_EMBEDDED_INSIDE) {
 			$styleSheetLinks .= _getStyleSheetLink("embedded_style");
@@ -934,7 +934,7 @@ function printAlbumOptionList($rootDisplay = true, $moveRootAlbum = false, $move
 			if (!$readOnly && ($myAlbum == $gallery->album)) {
 				// Don't allow the user to move to the current location with
 				// value=0, but notify them that this is the current location
-				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "current location"). ")</option>\n\t";
+				echo "<option value=\"$myAlbumName\">-- $myAlbumTitle (". gTranslate('common', "Current location"). ")</option>\n\t";
 			}
 			else {
 				if (sizeof($gallery->album->fields["votes"]) &&
@@ -1207,7 +1207,7 @@ function available_frames($description_only = false, $forRandomBlock = false) {
 		}
 	}
 	else {
-		echo gallery_error(sprintf(gTranslate('common', "Can't open %s"), $dir));
+		echo gallery_error(sprintf(gTranslate('common', "Can't open %s."), $dir));
 	}
 
 	$descriptions .= "\n</dl>";
@@ -1225,6 +1225,7 @@ function doctype() {
 
 function common_header($adds = array()) {
 	$metaTagAdds = array();
+
 	if(isset($adds['metaTags'])) {
 		$metaTagAdds = $adds['metaTags'];
 	}
@@ -1332,7 +1333,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
 		if ($gallery->user->isLoggedIn()) {
 			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return, 'cmd' => 'logout'));
-			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "log_out"));
+			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "Log_out"));
 		}
 		else {
 			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return));
@@ -1340,7 +1341,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 				$loginText = gTranslate('common', "_Login to see or add more items.");
 			}
 			else {
-				$loginText = gTranslate('common', "log_in");
+				$loginText = gTranslate('common', "Log_in");
 			}
 
 			$html = galleryIconLink($returnUrl, 'login.gif', $loginText);

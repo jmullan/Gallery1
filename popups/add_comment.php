@@ -42,9 +42,9 @@ if (isset($reload)) {
 	dismissAndReload();
 }
 
-printPopupStart(gTranslate('core', "Add Comment"));
+printPopupStart(gTranslate('core', "Add comment"));
 
-echo "\n<p>". gTranslate('core', "Enter your comment for this picture in the text box below.") . '</p>';
+echo "\n<p>". gTranslate('core', "Enter your comment in the text box below.") . '</p>';
 
 echo $gallery->album->getThumbnailTagById($id);
 

@@ -51,9 +51,9 @@ if (!empty($albumName)) {
 }
 
 if (empty($rebuild_type)) {
-	$title = gTranslate('core', "Rebuilding Thumbnails");
+	$title = gTranslate('core', "Rebuilding thumbnails");
 } else {
-	$title = gTranslate('core', "Performing Operation..");
+	$title = gTranslate('core', "Performing operation...");
 }
 
 switch ($cmd) {

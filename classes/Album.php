@@ -311,7 +311,7 @@ class Album {
 		if (strcmp($this->version, $gallery->album_version)) {
 			return true;
 		}
-	else {
+		else {
 		   return false;
 	   }
 	}
@@ -611,7 +611,7 @@ class Album {
 			$onePercent = 100/$count;
 			for ($i = 1; $i <= $count; $i++) {
 				set_time_limit(30);
-				$status = sprintf(gTranslate('core', "Upgrading item %d of %d . . . "), $i, $count);
+				$status = sprintf(gTranslate('core', "Upgrading item %d of %d..."), $i, $count);
 				echo "\n<script type=\"text/javascript\">updateProgressBar('albumProgessbar', '$status',". ceil($i * $onePercent) .")</script>";
 				my_flush();
 
@@ -994,7 +994,7 @@ class Album {
 
 		$this->transient->photosloaded = TRUE;
 
-		return 1;
+		return true;
 	}
 
 	function loadFromFile($filename) {
@@ -1042,9 +1042,10 @@ class Album {
 
 	function isLoaded() {
 		if ($this->fields['name']) {
-			return 1;
-		} else {
-			return 0;
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 
@@ -1089,15 +1090,15 @@ class Album {
 		if ($this->transient->photosloaded) {
 			$success = (safe_serialize($this->photos, "$dir/photos.dat"));
 			if ($success) {
-				$this->fields['photos_separate'] = TRUE;
+				$this->fields['photos_separate'] = true;
 				unset ($this->photos);
 			}
 			else {
-				$success = FALSE;
+				$success = false;
 			}
 		}
 		else {
-			$success = TRUE;
+			$success = true;
 		}
 
 		/* Don't save transient data */
@@ -1140,7 +1141,7 @@ class Album {
 			if (!empty($to)) {
 				$text = '';
 				$msg_str = call_user_func_array('sprintf', $msg);
-				$subject = sprintf(gTranslate('core', "Changes to Album: %s"), $this->fields['name']);
+                $subject = sprintf(gTranslate('core', "Changes to album: %s"), $this->fields['name']);
 				$logmsg = sprintf("Change to %s: %s.", makeAlbumHeaderUrl($this->fields['name']), $msg_str);
 
 				$text .= '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">';
@@ -1148,13 +1149,13 @@ class Album {
 				$text .= "\n  <head>";
 				$text .= "\n  <title>$subject</title>";
 				$text .= "\n  </head>\n<body>\n<p>";
-				$text .= sprintf(gTranslate('core', "A change has been made to Album: %s by %s (IP %s).  The change is: %s"),
+                $text .= sprintf(gTranslate('core', "A change has been made to album: %s by %s (IP %s).  The change is: %s"),
 				  '<a href="'. makeAlbumHeaderUrl($this->fields['name']) .'">'. $this->fields['name'] .'</a>',
 				  $gallery->user->printableName($gallery->app->name_display),
 				  $_SERVER['REMOTE_ADDR'],
 				$msg_str);
 
-				$text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first).");
+                $text .= "\n<p>". gTranslate('core', "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)");
 				$text .= "\n</p>\n</body>\n</html>";
 
 
@@ -1162,7 +1163,7 @@ class Album {
 
 			}
 			else if (isDebugging()) {
-				print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found");
+                print "\n<br>". gTranslate('core', "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found.");
 			}
 		}
 /*
@@ -1217,7 +1218,6 @@ class Album {
 
 		/* Delete album dir */
 		rmdir($dir);
-
 	}
 
 	/**
@@ -1233,7 +1233,6 @@ class Album {
 		$this->updateSerial = 1;
 
 		$photo = &$this->getPhoto($index);
-
 		if (!$photo->isMovie()) {
 			$photo->resize($this->getAlbumDir(), $target, $filesize, $pathToResized, $full);
 		}
@@ -1241,7 +1240,6 @@ class Album {
 			echo gTranslate('core', "Skipping Movie");
 		}
 	}
-
 	/**
 	 * Resize and optionally shrink all photos of an album. Movies are skipped.
 	 * If wanted this can be done recursive.
@@ -1402,7 +1400,7 @@ class Album {
 		$newFile = "$dir/$name.$tag";
 		fs_copy($file, $newFile);
 
-		echo debugMessage(gTranslate('core', "Image Preprocessing"), __FILE__, __LINE__);
+        echo debugMessage(gTranslate('core', "Image preprocessing"), __FILE__, __LINE__);
 		/* Do any preprocessing necessary on the image file */
 		preprocessImage($dir, "$name.$tag");
 
@@ -1724,7 +1722,7 @@ class Album {
 		}
 
 		if(empty($attrs['id'])) {
-			$attrs['id'] = "thumbnail_$index";
+			$attrs['id'] = "thumbnail_${index}";
 		}
 
 		$photo = $this->getPhoto($index);
@@ -1777,7 +1775,7 @@ class Album {
 			else {
 				$attrList['class'] = 'g-title';
 			}
-			
+
 			$attrs = generateAttrs($attrList);
 
 			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
@@ -1814,7 +1812,7 @@ class Album {
 			else {
 				$attrList['class'] = 'g-title';
 			}
-			
+
 			$attrs = generateAttrs($attrList);
 
 			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
@@ -2241,7 +2239,7 @@ class Album {
 				$np = $nestedAlbum->numPhotos(1);
 
 				echo "<br>";
-				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items."), $this->getAlbumName($i), $np);
 				$nestedAlbum->rebuildCaptureDates($recursive);
 				$nestedAlbum->save();
 			}
@@ -2573,7 +2571,7 @@ class Album {
 			// An error occurred.
 			return array(
 				'junk1' => '',
-				'Error' => sprintf(gTranslate('core', "Error getting EXIF data. Expected Status 0, got %s."),$status),
+            	'Error' => sprintf(gTranslate('core', "Error getting EXIF data. Expected status 0, got %s."),$status),
 				'status' => $status);
 		}
 
@@ -3285,7 +3283,7 @@ class Album {
 		global $gallery;
 		$emails = array();
 		$uids = array();
-	$messages = array();
+		$messages = array();
 
 		/* First check if someone assigned to "type" for this album */
 		if (isset($this->fields['email_me'][$type])) {
@@ -3319,18 +3317,19 @@ class Album {
 				continue;
 			}
 
-		$email = $user->getEmail();
+			$email = $user->getEmail();
 			if (check_email($email)) {
 				$emails[] = $email;
-			} else {
-		if(empty($email)) {
-			$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because no email address was set."),
-				$user->getUsername(), $uid);
-		}
-		else {
-			$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
-								$user->getUsername(), $uid, $email);
-		}
+			}
+			else {
+				if(empty($email)) {
+					$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because no email address was set."),
+					$user->getUsername(), $uid);
+				}
+				else {
+					$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
+					$user->getUsername(), $uid, $email);
+				}
 
 				$messages[] = array('type' => 'error', 'text' => $text);
 			}
@@ -3375,7 +3374,7 @@ class Album {
     	$this->save(array(), false);
     }
 
-	function unsetEmailMe($type, $user, $id = null, $recursive) {
+	function unsetEmailMe($type, $user, $id = null, $recursive = false) {
     	$uid = $user->getUid();
 
     	if (!$this->getEmailMe($type, $user, $id)  && !$recursive) {
@@ -3523,7 +3522,7 @@ class Album {
 	 * Updates an imagearea of an album item
 	 * @param	$photo_index  integer	albumitem index
 	 * @param	$area_index	  integer	area index
-	 * @param	$area_data	  array	 updated array data
+	 * @param	$area_data	  array		updated array data
 	 * @author	Jens Tkotz <jens@peino.de>
 	*/
 	function updateImageArea($photo_index, $area_index, $area_data) {

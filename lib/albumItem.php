@@ -29,7 +29,9 @@
  * This function shows all possible actions for an album item.
  *
  * @param	integer	$i			index number of the item
- * @param   boolean	$withIcons	Wether icons should be used, or not.
+ * @param   boolean	$withIcons	Whether icons should be used, or not.
+ * @param 	boolean	$popupsOnly	Whether only options that result in a popup should be shown, or all
+ * @param 	boolean	$caption	Add a 'caption' option or not. (mostly just in dropdowns)
  * @return  array	$options	Array of all possible album item for the current user.
  * @author  Jens Tkotz
  */
@@ -50,7 +52,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		if(!isset($myAlbum)) {
 			$myAlbum = $gallery->album->getNestedAlbum($i, true);
 		}
-		
+
 		$isAlbum = true;
 	}
 	elseif ($gallery->album->isMovieByIndex($i)) {
@@ -81,13 +83,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	if (isset($canModify)) {
 		if ($isPhoto) {
 			$options[] = array(
-				'text'	=> gTranslate('core', "Edit _Text"),
+				'text'	=> gTranslate('core', "Edit _text"),
 				'value'	=> showChoice2("edit_caption.php", array("index" => $i)),
 				'icon'	=> ($withIcons) ? 'kcmfontinst.gif' : ''
 			);
 
 			$options[] = array(
-				'text'	=> gTranslate('core', "Edit Th_umbnail"),
+				'text'	=> gTranslate('core', "Edit th_umbnail"),
 				'value'	=> showChoice2('edit_thumb.php', array('index' => $i)),
 				'icon'	=> ($withIcons) ? 'thumbnail.gif' : ''
 			);
@@ -120,7 +122,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				);
 
 				$options[] = array(
-					'text'	=> gTranslate('core', "Crop Image"),
+					'text'	=> gTranslate('core', "Crop image"),
 					'value'	=> showChoice2('crop_photo.php', array('index' => $i), false),
 					'icon'	=> ($withIcons) ? 'imageedit/frame_edit.gif' : ''
 				);
@@ -130,23 +132,23 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		/* ----- Item is subalbum ----- */
 		if ($isAlbum) {
 			$options[] = array(
-				'text'	=> gTranslate('core', "Edit Title"),
+				'text'	=> gTranslate('core', "Edit title"),
 				'value'	=>  showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
 			);
 
 			$options[] = array(
-				'text' => gTranslate('core', "Edit Description"),
+				'text' => gTranslate('core', "Edit description"),
 				'value'	=> showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
 				'icon'	=> ''
 			);
 
 			$options[] = array(
-				'text'	=> gTranslate('core', "Rename Album"),
+				'text'	=> gTranslate('core', "Rename album"),
 				'value'	=> showChoice2('rename_album.php', array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
 			);
 
 			$options[] = array(
-				'text'	=> gTranslate('core', "Reset Counter"),
+				'text'	=> gTranslate('core', "Reset counter"),
 				'value'	=> showChoice2('do_command.php',
 								array(
 									'cmd' => 'reset-album-clicks',
@@ -171,7 +173,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 
 			if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
 				$options[] = array(
-					'text'	=> gTranslate('core', "View Comments"),
+					'text'	=> gTranslate('core', "View comments"),
 					'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url"),
 				);
 			}
@@ -211,7 +213,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 
 	if (isset($isAdmin)) {
 		$options[] = array(
-			'text'	=> gTranslate('core', "Change Ow_ner"),
+			'text'	=> gTranslate('core', "Change ow_ner"),
 			'value'	=> showChoice2("photo_owner.php", array("id" => $id)),
 			'icon'	=> ($withIcons) ? 'yast_kuser.gif' : ''
 		);
@@ -293,7 +295,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	}
 
 	array_sort_by_fields($options, 'text');
-	
+
 	if(!empty($options) && $caption) {
 		array_unshift($options, array(
 			'text'	=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
@@ -317,7 +319,7 @@ function showComments ($index, $albumName, $reverse = false) {
 	global $gallery;
 
 	$numComments = $gallery->album->numComments($index);
-	$delCommentText = getIconText('delete.gif', gTranslate('core', "delete comment"), 'yes');
+    $delCommentText = getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
 
 	$commentdraw["index"] = $index;
 
@@ -380,8 +382,8 @@ function showComments ($index, $albumName, $reverse = false) {
  * Ater deletion we move to previous image if we're at the end.
  * and move forward if we're not.
  *
- * @param integer $currentId
- * @return integer			  NextId ;)
+ * @param integer	$currentId
+ * @return integer	NextId ;)
  */
 function getNextId($currentId) {
 	global $gallery;
