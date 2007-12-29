@@ -218,7 +218,7 @@ function getDimensions($file) {
 	debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
 
 	if (! fs_file_exists($file)) {
-		debugMessage(gTranslate('core', "The file does not exist ?!"), __FILE__, __LINE__);
+        debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
 		return array(0, 0);
 	}
 
@@ -693,7 +693,7 @@ function getItemCaptureDate($file, $exifData = array()) {
 						  __FILE__, __LINE__);
 	}
 
-	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date : %s"),
+	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date: %s"),
 							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
 					  __FILE__, __LINE__);
 
@@ -950,7 +950,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 		debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
 		return false;
 	} else {
-		debugMessage(sprintf(gTranslate('core', "Creating Zip file with %s"), $tool), __FILE__, __LINE__, 2);
+        debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
 	}
 
 	$tmpDir = $gallery->app->tmpDir .'/'. uniqid(rand());
@@ -964,7 +964,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 
 	if(! fs_mkdir($tmpDir)) {
 		echo gallery_error(
-		  sprintf(gTranslate('core', "Your temp folder is not writeable! Please check permissions of this dir: %s"),
+          sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
 		  $gallery->app->tmpDir));
 		return false;
 	}
@@ -1023,7 +1023,6 @@ function getImVersion() {
 
 		$pieces = explode(' ', $results[0]);
 		$version = $pieces[2];
-
 	}
 
 	return $version;
@@ -1183,7 +1182,6 @@ function getSVNRevision($file) {
 	return '';
 }
 
-
 /* Return -1 if old version is greater than new version, 0 if they are the
    same and 1 if new version is greater.
  */
@@ -1191,26 +1189,34 @@ function compareVersions($old_str, $new_str) {
 	if ($old_str === $new_str) {
 		return 0;
 	}
-	$old=explode('.', $old_str);
-	$new=explode('.', $new_str);
+
+	$old = explode('.', $old_str);
+	$new = explode('.', $new_str);
+
 	foreach ($old as $old_number) {
 		$old_number=0+$old_number;
 		$new_number=0+array_shift($new);
+
 		if ($new_number  == null) {
 			return -1;
 		}
+
 		if ($old_number == $new_number) {
 			continue;
 		}
+
 		if ($old_number > $new_number) {
 			return -1;
 		}
+
 		// if ($old_number < $new_number)
 		return 1;
 	}
+
 	if (count($new) == 0) {
 		return 0;
 	}
+
 	return 1;
 }
 
@@ -1219,7 +1225,8 @@ function contextHelp ($link) {
 
 	if ($gallery->app->showContextHelp == 'yes') {
 		return popup_link ('?', 'docs/context-help/' . $link, false, true, 500, 500);
-	} else {
+	}
+	else {
 		return null;
 	}
 }
@@ -1228,6 +1235,7 @@ function parse_csv ($filename, $delimiter=";") {
 	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;
 	$return_array = array();
+
 	if ($fd = fs_fopen($filename, "rt")) {
 		$headers = fgetcsv($fd, $maxLength, $delimiter);
 		while ($columns = fgetcsv($fd, $maxLength, $delimiter)) {
@@ -1240,6 +1248,7 @@ function parse_csv ($filename, $delimiter=";") {
 		}
 		fclose($fd);
 	}
+
 	if(isDebugging()){
 	   echo gTranslate('core', "csv result:");
 	   print_r($return_array);
@@ -1431,9 +1440,11 @@ function get_ecard_template($template_name) {
 	$error = false;
 	$file_data = '';
 	$fpread = @fopen(dirname(__FILE__) . '/includes/ecard/templates/'. $template_name, 'r');
+
 	if (!$fpread) {
 		$error = true;
-	} else {
+	}
+	else {
 		while(! feof($fpread) ) {
 			$file_data .= fgets($fpread, 4096);
 		}
@@ -1612,7 +1623,7 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
 	if(! fs_mkdir($dir)) {
 		echo gallery_error(
-		  sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your temp folder. Please check permissions of this dir: %s"),
+          sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
 		  $gallery->app->tmpDir));
 		return false;
 	}
@@ -1650,7 +1661,7 @@ function downloadFile($filename) {
 		return false;
 	}
 	elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
-		echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself ?! Download aborted."));
+        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
 		return false;
 	}
 

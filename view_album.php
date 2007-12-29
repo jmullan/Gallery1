@@ -178,14 +178,17 @@ $adminCommands = getAlbumCommands($gallery->album, true, false);
 
 /* build up drop-down menu and related javascript */
 if (!empty($adminCommands)) {
-	$iconElements[] = makeFormIntro('view_album.php',
-						array('name' => 'admin_options_form',
-							  'class' => 'right',
-							  'style' => 'margin: 0 10px;')) .
-					  drawSelect2('admin_select', $adminCommands,
-					  	array('class' => 'g-admin',
-					  		  'onChange' => 'jopen(this)')) .
-					  '</form>';
+	$iconElements[] = makeFormIntro(
+		'view_album.php',
+		array(
+			'name' => 'admin_options_form',
+			'class' => 'right',
+			'style' => 'margin: 0 10px;')) .
+		drawSelect2(
+			'admin_select',
+			$adminCommands,
+			array('class' => 'g-admin', 'onChange' => 'jopen(this)')) .
+	'</form>';
 }
 
 if ($gallery->album->fields['slideshow_type'] != "off" &&
@@ -194,7 +197,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => $albumName)),
-		gTranslate('core', "slidesho_w"),
+		gTranslate('core', "Slidesho_w"),
 		array(),
 		'presentation.gif',
 		true
@@ -205,7 +208,7 @@ if ($gallery->album->fields['slideshow_type'] != "off" &&
 if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("view_comments.php", array("set_albumName" => $gallery->session->albumName)),
-		gTranslate('core', "view&nbsp;_comments"),
+		gTranslate('core', "View&nbsp;_comments"),
 		array(),
 		'view_comment.gif',
 		true
@@ -248,7 +251,7 @@ if (($gallery->album->getPollType() == 'rank') && canVote()) {
 		foreach ($my_choices as $key => $id) {
 			$index = $gallery->album->getIndexByVotingId($id);
 
-			$pollInfoTable->addElement(array('content' => $nv_pairs[$key]['name']));
+            $pollInfoTable->addElement(array('content' => "- ". $nv_pairs[$key]["name"]));
 			$pollInfoTable->addElement(array('content' => ':'));
 			if ($gallery->album->isAlbum($index)) {
 				$albumName = $gallery->album->getAlbumName($index);

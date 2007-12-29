@@ -169,7 +169,7 @@ function form_password($key, $arr) {
 	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
 		. '<div style="margin-top: 3px;"></div>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
-		. gTranslate('common', 'Please retype your password here')
+		. gTranslate('common', "Please retype your password here")
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
 		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
 }
@@ -385,10 +385,10 @@ function locateFile($filename) {
 	$file = null;
 
 	foreach (getPath() as $path) {
-	if (fs_file_exists("$path/$filename") && !empty($path)) {
-		$file = "$path/$filename";
-		break;
-	}
+		if (fs_file_exists("$path/$filename") && !empty($path)) {
+			$file = "$path/$filename";
+			break;
+		}
 	}
 
 	return $file;
@@ -579,13 +579,13 @@ function check_graphics($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('pnmcomp') =>
-		gTranslate('common', "Without pnmcomp and pamcomp gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
+		gTranslate('common', "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 
 	/* Start checks */
 
 	if ($graphtool == 'ImageMagick') {
-		$success[] = gTranslate('common', "NetPBM not being used in this installation.");
+		$success[] = gTranslate('common', "Netpbm not being used in this installation.");
 		return array($success, $fail, $warn);
 	}
 
@@ -643,7 +643,7 @@ function check_graphics($location = '', $graphtool = '') {
 		$warn = array();
 	}
 	elseif ($missing > 0) {
-		$warn[] = "\n<br>" . sprintf(gTranslate('common', "%d of %d NetPBM binaries located."),
+		$warn[] = "\n<br>" . sprintf(gTranslate('common', "%d of %d Netpbm binaries located."),
 		count($netpbm) - $missing, count($netpbm));
 
 		if(count($missing_critical) > 0 || 1 != 2) {
@@ -651,7 +651,7 @@ function check_graphics($location = '', $graphtool = '') {
 		}
 	}
 	else {
-		$success[] = sprintf(gTranslate('common', "%d of %d NetPBM binaries located."),
+		$success[] = sprintf(gTranslate('common', "%d of %d Netpbm binaries located."),
 		count($netpbm), count($netpbm));
 	}
 
@@ -913,11 +913,14 @@ function check_locale() {
 
 		if(count($results) >2) {
 			$system_locales = $results;
-		} elseif (@is_readable("/etc/locale.gen")) {
+		}
+		elseif (@is_readable("/etc/locale.gen")) {
 			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
-		} elseif (@is_readable("/usr/share/locale")) {
+		}
+		elseif (@is_readable("/usr/share/locale")) {
 			exec("ls /usr/share/locale", $system_locales);
-		} elseif (@is_readable("/usr/local/share/locale")) {
+		}
+		elseif (@is_readable("/usr/local/share/locale")) {
 			exec("ls /usr/local/share/locale", $system_locales);
 		}
 	}
@@ -943,7 +946,7 @@ function check_locale() {
 		 * First, we try using the full lang, (first 5 chars) if
 		 * that doesn't match then
 		 * we use the first 2 letter to build an alias list
-		 *  e.g. nl to find nl_BE or nl_NL
+		 * e.g. nl to find nl_BE or nl_NL
 		 */
 		if (in_array($locale,$nls['alias'])) {
 			$keylist = array_keys($nls['alias'],$locale);
@@ -959,7 +962,8 @@ function check_locale() {
 					}
 				}
 			}
-		} else {
+		}
+		else {
 			foreach ($system_locales as $key => $value) {
 				if (ereg('^' . substr($locale,0,2), $value)) {
 					$aliases[] = $value;
@@ -982,7 +986,8 @@ function check_locale() {
 			if (! isset($maybe_locales[$locale])) {
 				$unavailable_locales[] = $locale;
 			}
-		} else {
+		}
+		else {
 			$unavailable_locales[] = $locale;
 		}
 	}
@@ -1018,7 +1023,7 @@ function config_maybe_locales() {
 	// If we are in Linux, our PHP has gettext,
 	// but we could not find any locale we skip the whole aliasing part.
 	if($locales == NULL) {
-	return array();
+		return array();
 	}
 
 	$nls = getNLS();
@@ -1035,10 +1040,10 @@ function config_maybe_locales() {
 		/*
 		if (sizeof($aliases) == 1) {
 			$results["locale_alias['$key']"] = array (
-			"type" => "hidden",
-			"value" => array_pop($aliases),
-			"desc" => "locale_alias[$key]",
-			"prompt" => "locale_alias[$key]"
+			  "type" => "hidden",
+			  "value" => array_pop($aliases),
+			  "desc" => "locale_alias[$key]",
+			  "prompt" => "locale_alias[$key]"
 			);
 			continue;
 		}
@@ -1176,7 +1181,8 @@ function default_graphics() {
 
 	if (count ($imageMagick)) {
 		return "ImageMagick";
-	} else {
+	}
+	else {
 		return "NetPBM";
 	}
 }
@@ -1189,9 +1195,9 @@ function check_safe_mode() {
 	$safe_mode = ini_get("safe_mode");
 
 	if (empty($safe_mode) ||
-	!strcasecmp($safe_mode, "off") ||
-	!strcasecmp($safe_mode, "0") ||
-	!strcasecmp($safe_mode, "false")) {
+	    !strcasecmp($safe_mode, "off") ||
+	    !strcasecmp($safe_mode, "0") ||
+	    !strcasecmp($safe_mode, "false")) {
 		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {
@@ -1225,19 +1231,21 @@ function check_poll_nv_pairs($var) {
 			$finished=true;
 			if ($element["value"]) {
 				$fail[]=sprintf(gTranslate('common', "In %s, missing %s in row %d with %s %s."),
-				gTranslate('common', "Vote words and values"),
-				gTranslate('common', "Name"), $rownum, gTranslate('common', "Value"),
-				$element["value"]);
+					gTranslate('common', "Vote words and values"),
+					gTranslate('common', "Name"), $rownum, gTranslate('common', "Value"),
+					$element["value"]);
 				break;
 			}
 			continue;
-		} else {
+		}
+		else {
 			if ($finished) {
 				$fail[] = sprintf(gTranslate('common', "In %s, blank in row %d."),
 					gTranslate('common', "Vote words and values"),
 					$rownum-1);
 				break;
-			} else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
+			}
+			else if (!ereg("^[1-9][0-9]*$", $element["value"])) {
 				$fail[] = sprintf(gTranslate('common', "In %s, for name %s (row %d) value %s should be a positive whole number"),
 					gTranslate('common', "Vote words and values"),
 					$element["name"],
@@ -1328,9 +1336,9 @@ function detect_exec_status() {
 }
 
 /*
-* Actually try to write to a file inside the directory.  This detects
-* open_basedir restrictions.
-*/
+ * Actually try to write to a file inside the directory.  This detects
+ * open_basedir restrictions.
+ */
 function test_write_to_dir($dir) {
 	$tmpfile = tempnam($dir, "dbg");
 	if ($fd = fs_fopen($tmpfile, "w")) {
@@ -1455,14 +1463,16 @@ function verify_email($emailMaster) {
 
 	if (check_email($gallery->session->configForm->adminEmail)) {
 		$success[] = gTranslate('common', "Valid admin email address given.");
-	} else {
+	}
+	else {
 		$adminEmail = ereg_replace('([[:space:]]+)', '', $gallery->session->configForm->adminEmail);
 		$emails = array_filter1(explode(',', $gallery->session->configForm->adminEmail));
 		$size  = sizeof($emails);
 
 		if ($size < 1) {
-			$fail[]= gTranslate('common', "You must specify valid admin email addresses");
-		} else {
+			$fail[]= gTranslate('common', "You must specify valid admin email addresses.");
+		}
+		else {
 			$adminEmail = '';
 			$join = '';
 			foreach ($emails as $email) {
@@ -1477,21 +1487,26 @@ function verify_email($emailMaster) {
 			}
 		}
 	}
+
 	if (check_email($gallery->session->configForm->senderEmail)) {
 		$success[] = gTranslate('common', "Valid sender email address given.");
-	} else {
-		$fail[] = gTranslate('common', "You must specify a valid sender email address");
 	}
+	else {
+	       	$fail[] = gTranslate('common', "You must specify a valid sender email address.");
+	}
+
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
-		$fail[] = sprintf(gTranslate('common', "You must include %s in your welcome email"), "<b>!!USERNAME!!</b>");
+	       	$fail[] = sprintf(gTranslate('common', "You must include %s in your welcome email."), "<b>!!USERNAME!!</b>");
 	}
+
 	if (!empty($emailGreeting) &&
 	  !strstr($gallery->session->configForm->emailGreeting, "!!PASSWORD!!" ) &&
 	  !strstr($gallery->session->configForm->emailGreeting, "!!NEWPASSWORDLINK!!" )) {
-		$fail[]= sprintf(gTranslate('common', "You must include %s or %s in your welcome email"),
+	       	$fail[]= sprintf(gTranslate('common', "You must include %s or %s in your welcome email."),
 			"<b>!!PASSWORD!!</b>",
 			"<b>!!NEWPASSWORDLINK!!</b>");
 	}
+
 	return array($success, $fail);
 }
 
@@ -1503,6 +1518,7 @@ function check_ecards($num) {
 		$success = array();
 		$success[] = "Valid value specified.";
 	}
+
 	return array($success, $fail);
 }
 
@@ -1561,7 +1577,7 @@ function check_admins() {
 				$tmpUser = $userDB->getUserByUid($uid, true);
 
 				if ($tmpUser->isAdmin()) {
-					$admins[]=$tmpUser->getUsername();
+					$admins[] = $tmpUser->getUsername();
 				}
 			}
 		}
@@ -1569,12 +1585,12 @@ function check_admins() {
 
 	if (empty($admins)) {
 		$result = array(
-		'desc' => sprintf(gTranslate('common', 'You must enter a password for the %s account.'), '<b>admin</b>')
+			'desc' => sprintf(gTranslate('common', 'You must enter a password for the %s account.'), '<b>admin</b>')
 		);
 	}
 	else if (! in_array("admin",$admins)) {
 		if (sizeof($admins) == 1) {
-			$desc_text = sprintf(gTranslate('common', "It seems you've already configured Gallery, because there is one admin account, but its not called %s."), '<b>admin</b>');
+			$desc_text=sprintf(gTranslate('common', "It seems you've already configured Gallery, because there is one admin account, but it is not called %s."), '<b>admin</b>');
 		}
 		else {
 			$desc_text = sprintf(gTranslate('common', "It seems you've already configured Gallery, because there are %d admin accounts, but no user called %s."), sizeof($admins), '<b>admin</b>');
@@ -1741,18 +1757,18 @@ function checkVersions($verbose = false) {
 		else if ($compare > 0) {
 			if ($verbose) {
 				print "<br>\n";
-				printf(gTranslate('common', "%s OK.  Actual version (%s) more recent than expected version (%s)"), $file, $found_version, $version);
+				printf(gTranslate('common', "%s OK.  Actual version (%s) more recent than expected version (%s)."), $file, $found_version, $version);
 			}
 			$versionStatus['newer'][$file] =
 				sprintf(gTranslate('common', "Expected version %s but found %s."), $version, $found_version);
-		} else {
+		}
+		else {
 			if ($verbose) {
 				print "<br>\n";
-				printf(gTranslate('common', "%s OK"), $file);
+				printf(gTranslate('common', "%s OK."), $file);
 			}
 			$versionStatus['ok'][$file] = sprintf(gTranslate('common', "Found expected version %s."), $version);
 		}
-
 	}
 
 	return $versionStatus;
@@ -1805,8 +1821,8 @@ function configLogin($target) {
 
 function placeholderDescription() {
 	$placeholderDescription =
-		gTranslate('common', "This email will be sent when new accounts are created.") .
-		gTranslate('common', "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") .
+		gTranslate('common', "This email will be sent when new accounts are created.") . '  ' .
+		gTranslate('common', "Leaving this field empty sets Gallery to use the default message (see below) which can be translated, or use your own welcome message.") . '  ' .
 		gTranslate('common', "The following placeholder can be used:") .
 		'<table width="80%">';
 
@@ -1816,6 +1832,7 @@ function placeholderDescription() {
 			"<td>$description</td>".
 			'</tr>';
 	}
+
 	$placeholderDescription .= '</table><br>'.
 		'<div style="border: 1px black solid; padding-left:10%; padding-right:10%">'.
 		nl2br(welcome_email(true)) .
@@ -1900,7 +1917,7 @@ function checkImageMagick($cmd) {
 	* means that we can't detect the version number.
 	*/
 	if (getOS() == OS_WINDOWS) {
-		$result['warning'] = "<i>" . gTranslate('common', "can't detect version on Windows") ."</i>";
+		$result['warning'] = "<i>" . gTranslate('common', "can't detect version on Windows.") ."</i>";
 	}
 	else if (eregi("version: (.*) http(.*)$", $results[0], $regs)) {
 		$version = $regs[1];
@@ -1985,7 +2002,8 @@ function getCurrentGraphicTool() {
 	global $gallery;
 	if(isset($gallery->app->graphics)) {
 		return $gallery->app->graphics;
-	} else {
+	}
+	else {
 		return default_graphics();
 	}
 }

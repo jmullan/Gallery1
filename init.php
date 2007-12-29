@@ -25,10 +25,10 @@
 // Hack Prevention
 $sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
 foreach ($sensitiveList as $sensitive) {
-	if (!empty($_REQUEST[$sensitive])) {
-		print gTranslate('core', "Security violation") ."\n";
-		exit;
-	}
+    if (!empty($_REQUEST[$sensitive])) {
+        echo "Security violation! Override attempt.\n";
+        exit;
+    }
 }
 
 /*
@@ -115,8 +115,8 @@ if (!empty($gallery->app->geeklog_dir) &&
 
 // Verify that the geeklog_dir isn't overwritten with a remote exploit
 if (!empty($gallery->app->geeklog_dir) && !realpath($gallery->app->geeklog_dir)) {
-	print gTranslate('core', "Security violation") ."\n";
-	exit;
+    print gTranslate('core', "Security violation. Geeklog Dir is invalid.") ."\n";
+    exit;
 }
 elseif (!empty($gallery->app->geeklog_dir)) {
 	$GALLERY_EMBEDDED_INSIDE='GeekLog';
@@ -185,6 +185,7 @@ if (!isset($GALLERY_NO_SESSIONS)) {
 	require(dirname(__FILE__) . "/session.php");
 }
 
+// We need to init the language before we include the files below, as they contain gettext calls.
 initLanguage();
 
 /* Load classes

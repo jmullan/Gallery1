@@ -58,8 +58,8 @@ configLogin(basename(__FILE__));
 		  <?php echo galleryLink('check_netpbm.php', gTranslate('config', "Check _NetPBM")); ?>
 		</td>
 		<td class="g-longdesc">
-		  <?php echo gTranslate('config', "This page provides information about your NetPBM binaries.") ?>
-		  <?php echo gTranslate('config', "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to NetPBM).") ?>
+		  <?php echo gTranslate('config', "This page provides information about your Netpbm binaries.") ?>
+		  <?php echo gTranslate('config', "You can only use this page after you have successfully completed the configuration wizard (as it expects that you've already located and configured Gallery with the right path to Netpbm).") ?>
 		</td>
 	  </tr>
 

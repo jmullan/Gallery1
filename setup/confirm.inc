@@ -376,7 +376,7 @@ foreach ($constants as $key => $val) {
 			$reqFeatures = $constants[$key]['requires-features'];
 			foreach ($reqFeatures as $reqFeatKey => $desc) {
 				if ($gallery->session->configForm->$reqFeatKey  == 'no') {
-					$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be an enabled for this feature to function!"), $key, $desc));
+					$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be enabled for this feature to function!"), $key, $desc));
 					$error++;
 				}
 			}
@@ -385,9 +385,9 @@ foreach ($constants as $key => $val) {
 }
 
 /**
- * In NetPBM 9.19, they renamed 'ppmtojpeg' to 'pnmtojpeg'.  !@#$%
+ * In Netpbm 9.19, they renamed 'ppmtojpeg' to 'pnmtojpeg'.  !@#$%
  *
- * In NetPBM 10.21 (March 2004), they renamed 'pnmcomp' to 'pamcomp'.
+ * In Netpbm 10.21 (March 2004), they renamed 'pnmcomp' to 'pamcomp'.
  *
  * Don't bother if we are configuring for ImageMagick.
  */
@@ -401,7 +401,7 @@ if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmtojpeg))) {
 			$error++;
 			$gallery->session->configData .= configError(
-			sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+			sprintf(gTranslate('config', "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 			"<i>$graphpath/$pnmtojpeg</i>",
 			($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
 		}
@@ -409,7 +409,7 @@ if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmcomp))) {
 			$error++;
 			$gallery->session->configData .= configError(
-			sprintf(gTranslate('config', "Could not find %s.  Check your NetPBM directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
+			sprintf(gTranslate('config', "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 			"<i>$graphpath/$pnmcomp</i>",
 			($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
 		}
@@ -421,7 +421,7 @@ if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
 * chose is configured properly.
 */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-	$gallery->session->configData .= configError(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>netpbm</i>",  "<i>ImageMagick</i>"));
+	$gallery->session->configData .= configError(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>Netpbm</i>",  "<i>ImageMagick</i>"));
 	$error++;
 }
 else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
@@ -429,7 +429,7 @@ else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
 	$error++;
 }
 else if ($graphtool == 'NetPBM' && !empty($graphtest['pnmDir'])) {
-	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'NetPBM','NetPBM'));
+	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'Netpbm','Netpbm'));
 	$error++;
 }
 

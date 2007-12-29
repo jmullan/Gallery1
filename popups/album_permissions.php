@@ -59,7 +59,7 @@ if (!empty($submit)) {
 			}
 		}
 	}
-	$gallery->album->save(array(i18n("Permissions have been changed")));
+	$gallery->album->save(array(i18n("Permissions have been changed.")));
 	if (getRequestVar('setNested')) {
 		$gallery->album->setNestedPermissions();
 	}
@@ -121,19 +121,19 @@ $perms_detailed = array(
 	'canAddTo'  => array(
 		'type'	  => 'group',
 		'title'	 => gTranslate('core', "_Add items"),
-		'desc'	  => gTranslate('core', "Users / Groups that can add photos."),
+		'desc'	  => gTranslate('core', "Users / Groups that can add items."),
 		'content'   => userBox('canAddTo')
 	),
 	'canDeleteFrom'  => array(
 		'type'	  => 'group',
 		'title'	 => gTranslate('core', "_Delete items"),
-		'desc'	  => gTranslate('core', "Users / Groups that can delete photos."),
+		'desc'	  => gTranslate('core', "Users / Groups that can delete items."),
 		'content'   => userBox('canDeleteFrom')
 	),
 	'canWrite'  => array(
 		'type'	  => 'group',
 		'title'	 => gTranslate('core', "_Modify items"),
-		'desc'	  => gTranslate('core', "Users / Groups that can modify photos."),
+		'desc'	  => gTranslate('core', "Users / Groups that can modify items."),
 		'content'   => userBox('canWrite')
 	),
 	'canCreateSubAlbum'  => array(
@@ -227,7 +227,7 @@ $all = array_merge($sep1, $specialUsers, $sep2, $users, $sep3, $groups);
 /* HTML Output Start */
 printPopupStart(gTranslate('core', "Album Permissions"));
 
-echo sprintf(gTranslate('core', "Changing permissions for %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
+echo sprintf(gTranslate('core', "Changing permissions for: %s"), '<b>'.$gallery->album->fields["title"] . '</b>');
 
 echo makeFormIntro('album_permissions.php',
 	array('name' => 'albumperms_form'),
