@@ -185,15 +185,15 @@ function drawSelect2($name, $options, $attrList = array()) {
 	if(!empty($options)) {
 		foreach ($options as $option) {
 			$option['text'] = removeAccessKey($option['text']);
-			
+
 			if(!isset($option['class'])) {
 				$option['class'] = '';
 			}
-			
+
 			if(isset($option['selected']) && $option['selected'] != false) {
 				$option['selected'] = null;
 				$option['class'] .= ' g-selected';
-				
+
 			}
 
 			if(!isset($option['value'])) {
@@ -452,6 +452,7 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 	if(!isset($attrList['id'])) {
 		$attrList['id'] = $attrList['name'];
 	}
+
 	$id = $attrList['id'];
 
 	if ($value !== null && $type != 'textarea') {
@@ -531,10 +532,10 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 
 	if($multiInput) {
 		$html .= gButton('addField', gTranslate('common', "Add field"), "${id}obj.newField()");
-		$html .= "\n<div id=\"${id}_Container\"></div>\n\n";
+		$html .= "\n<div id=\"${id}_multiInputContainer\"></div>\n\n";
 
 		$html .= '<script language="JavaScript" type="text/javascript">';
-		$html .= "\n\tvar ${id}obj = new MultiInput('$id', '${id}_Container')";
+		$html .= "\n\tvar ${id}obj = new MultiInput('$id', '${id}_multiInputContainer')";
 		$html .= "\n</script>\n";
 	}
 
@@ -542,13 +543,22 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 }
 
 function gButton($name, $value, $onClick, $additionalAttrs = array()) {
-	$attrList['name']		= $attrList['id'] = $name;
+	static $ids = array();
+
 	$attrList['type']		= 'button';
 	$attrList['accesskey']	= getAndRemoveAccessKey($value);
 	$attrList['value']		= $value;
 	$attrList['class']		= 'g-button';
 	$attrList['onClick']	= $onClick;
 	$attrList['title']		= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	if(!in_array($name, $ids)) {
+		$attrList['name'] = $attrList['id'] = $name;
+		$ids[] = $name;
+	}
+	else {
+		$attrList['name'] = $name;
+	}
 
 	$attrList = array_merge($attrList, $additionalAttrs);
 
