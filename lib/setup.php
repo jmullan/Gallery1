@@ -537,11 +537,18 @@ function check_exif($location = '') {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 	}
 
+	$jheadVersion = getJheadVersion($dir);
+	
 	if (empty($dir)) {
-		$warn["fail-exif"] = gTranslate('common', "Can't find <i>jhead</i>");
+		$warn["warn-noexif"] = gTranslate('common', "Can't find <i>jhead</i>.");
+	}
+	elseif(compareVersions($jheadVersion, '2.7') > 0) {
+		$fail["fail-exif-old"] =
+			sprintf(gTranslate('common', "<b>jhead</b> binary version %s located."), $jheadVersion) . '<br>' .
+			gTranslate('common', "You are using an older version of jhead. There are at least known problems with version 2.0. We recommend version 2.7 and higher.");
 	}
 	else {
-		$success[] = gTranslate('common', "jhead binary located.");
+		$success[] = sprintf(gTranslate('common', "<b>jhead</b> binary version %s located."), $jheadVersion);
 	}
 
 	return array($success, $fail, $warn);
@@ -581,6 +588,8 @@ function check_graphics($location = '', $graphtool = '') {
 		fs_executable('pnmcomp') =>
 		gTranslate('common', "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
+
+	$missing_optional = 0;
 
 	/* Start checks */
 
@@ -646,7 +655,7 @@ function check_graphics($location = '', $graphtool = '') {
 		$warn[] = "\n<br>" . sprintf(gTranslate('common', "%d of %d Netpbm binaries located."),
 		count($netpbm) - $missing, count($netpbm));
 
-		if(count($missing_critical) > 0 || 1 != 2) {
+		if(count($missing_critical) > 0) {
 			$fail['fail-netpbm-partial'] = array_values($missing_critical);
 		}
 	}
@@ -680,7 +689,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 
 	/* Begin Checks */
-	if ($graphtool == 'NetPBM') {
+	if ($graphtool == 'Netpbm') {
 		$success[] = gTranslate('common', "ImageMagick not being used in this installation.");
 		return array($success, $fail, $warn);
 	}
@@ -1183,7 +1192,7 @@ function default_graphics() {
 		return "ImageMagick";
 	}
 	else {
-		return "NetPBM";
+		return "Netpbm";
 	}
 }
 
@@ -1715,8 +1724,8 @@ function checkVersions($verbose = false) {
 			if ($verbose) {
 				print "<br>\n";
 				print sprintf(gTranslate('common', "Cannot read file %s."), $file);
-			}
-			$versionStatus['missing'][$file] = gTranslate('common', "File missing or unreadable.");
+			}			
+			$fail[$file] = gTranslate('common', "File missing or unreadable.");
 			continue;
 		}
 		elseif ($found_version === '' ) {
@@ -1834,9 +1843,10 @@ function placeholderDescription() {
 	}
 
 	$placeholderDescription .= '</table><br>'.
-		'<div style="border: 1px black solid; padding-left:10%; padding-right:10%">'.
+
+	'<fieldset><legend>' . gTranslate('common', "Current used welcome mail text") .'</legend>' .
 		nl2br(welcome_email(true)) .
-		'</div>';
+	'</fieldset>';
 
 	return $placeholderDescription;
 }

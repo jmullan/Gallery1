@@ -391,7 +391,7 @@ foreach ($constants as $key => $val) {
  *
  * Don't bother if we are configuring for ImageMagick.
  */
-if ($graphtool == 'NetPBM' && empty($graphtest['pnmDir'])) {
+if ($graphtool == 'Netpbm' && empty($graphtest['pnmDir'])) {
 	/*
 	* If the graph path is not in the open_basedir list, then we can't tell.
 	* Assume whatever they entered is correct and hope for the best
@@ -428,7 +428,7 @@ else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
 	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
 	$error++;
 }
-else if ($graphtool == 'NetPBM' && !empty($graphtest['pnmDir'])) {
+else if ($graphtool == 'Netpbm' && !empty($graphtest['pnmDir'])) {
 	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'Netpbm','Netpbm'));
 	$error++;
 }

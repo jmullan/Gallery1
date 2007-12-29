@@ -234,9 +234,9 @@ function getDimensions($file) {
 
 	/* Just in case php can't determine dimensions. */
 	switch($gallery->app->graphics) {
-		case 'NetPBM':
+        case 'Netpbm':
 			list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-				NetPBM('pnmfile', '--allimages'));
+                Netpbm('pnmfile', '--allimages'));
 			break;
 		case "ImageMagick":
 			/* This fails under windows, IM isn't returning parsable status output. */
@@ -252,7 +252,7 @@ function getDimensions($file) {
 	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
 			switch($gallery->app->graphics) {
-				case 'NetPBM':
+                case 'Netpbm':
 					if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
 						return array($regs[1], $regs[2]);
 					}
@@ -1026,6 +1026,32 @@ function getImVersion() {
 	}
 
 	return $version;
+}
+
+/**
+ * Return the version number of jhead, identified by "jhead -v"
+ * @return $version	string	Versionnumber as string
+*/
+function getJheadVersion($dir = '') {
+    global $gallery;
+    
+	$bin = fs_executable('jhead');
+
+    if(empty($dir)) {
+		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
+		if(empty($dir)) {
+			return 0;
+		}
+	}
+
+	$path ="$dir/$bin";
+
+    fs_exec($path . ' -V', $results, $status);
+
+    $pieces = explode(' ', $results[0]);
+    $version = $pieces[2];
+
+    return $version;
 }
 
 define("OS_WINDOWS", "win");

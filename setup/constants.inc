@@ -59,11 +59,11 @@
 function toggleGraphics(show) {
 	if(show == 'ImageMagick') {
 		document.getElementById('subgroup_ImageMagick').style.display = 'inline';
-		document.getElementById('subgroup_NetPBM').style.display      = 'none';
+		document.getElementById('subgroup_Netpbm').style.display      = 'none';
 	}
 	else {
 		document.getElementById('subgroup_ImageMagick').style.display = 'none';
-		document.getElementById('subgroup_NetPBM').style.display      = 'inline';
+		document.getElementById('subgroup_Netpbm').style.display      = 'inline';
 	}
 }
 
