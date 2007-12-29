@@ -32,13 +32,6 @@ foreach ($sensitiveList as $sensitive) {
 }
 
 /*
-* Turn down the error reporting to just critical errors for now.
-* In v1.2, we know that we'll have lots and lots of warnings if
-* error reporting is turned all the way up.  We'll fix this in v2.0
-*/
-//error_reporting(E_ALL & ~E_NOTICE);
-
-/*
 *  Seed the randomization pool once, instead of doing it every place
 *  that we use rand() or mt_rand()
 */

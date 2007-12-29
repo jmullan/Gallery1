@@ -25,8 +25,8 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 require_once(dirname(dirname(__FILE__)) . '/lib/tabs.php');
 require_once(dirname(dirname(__FILE__)) . '/lib/groups.php');
-require_once(dirname(dirname(__FILE__)) .'/classes/Group.php');
-require_once(dirname(dirname(__FILE__)) .'/classes/gallery/Group.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
+require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
 list($save, $ownerUid, $submit, $actionUid, $initialtab) =
 	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUid' ,'initialtab'));
@@ -218,9 +218,9 @@ if(! empty($groupIdList)) {
 array_sort_by_fields($users, 'text', 'asc', true, true);
 array_sort_by_fields($groups, 'text', 'asc', true, true);
 
-$sep1 = array(array('value' => null, 'text' => gTranslate('core', "-- Special user --")));
-$sep2 = array(array('value' => null, 'text' => gTranslate('core', "-- User --")));
-$sep3 = array(array('value' => null, 'text' => gTranslate('core', "-- Groups --")));
+$sep1 = array(array('text' => gTranslate('core', "-- Special user --")));
+$sep2 = array(array('text' => gTranslate('core', "-- User --")));
+$sep3 = array(array('text' => gTranslate('core', "-- Groups --")));
 
 $all = array_merge($sep1, $specialUsers, $sep2, $users, $sep3, $groups);
 

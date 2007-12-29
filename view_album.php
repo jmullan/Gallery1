@@ -662,7 +662,7 @@ if ($numPhotos) {
 					$gallery->album->getItemClicks($i) > 0)
 				{
 					$albumItems[$nr]['clickcounter'] =
-						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getClicks($i), '', true);
+						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
 				}
 			}
 			// End Caption & Description

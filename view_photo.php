@@ -50,7 +50,7 @@ list($full, $id, $index, $votes) =
 list($save, $commenter_name, $comment_text) =
 	getRequestVar(array('save', 'commenter_name', 'comment_text'));
 
-/* Set $index from $id */
+// Set $index from $id
 if (isset($id)) {
 	$index = $gallery->album->getPhotoIndex($id);
 	if ($index == -1) {
@@ -60,10 +60,10 @@ if (isset($id)) {
 	}
 }
 else {
-	if ($index > $gallery->album->numPhotos(1)) {
-		$index = $numPhotos;
-	}
-	$id = $gallery->album->getPhotoId($index);
+    if ($index > $gallery->album->numPhotos(1)) {
+        $index = $gallery->album->numPhotos(1);
+    }
+    $id = $gallery->album->getPhotoId($index);
 }
 
 $nextId = getNextId($id);
@@ -102,7 +102,9 @@ if (!empty($votes) && canVote()) {
 }
 
 $albumName = $gallery->session->albumName;
-if (!isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
+$noCount = getRequestVar('noCount');
+
+if ($noCount != 1 && !isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
   !$gallery->session->offline) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
@@ -122,7 +124,7 @@ list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
 					 !strcmp($gallery->session->fullOnly,"on") &&
-					 strcmp($gallery->album->fields["use_fullOnly"],"yes");
+    				 !strcmp($gallery->album->fields["use_fullOnly"],"yes");
 
 if ($do_fullOnly) {
 	$full = $gallery->user->canViewFullImages($gallery->album);
@@ -277,7 +279,7 @@ if (!$gallery->album->isMovie($id)) {
 
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
-			/* Build an array with groups, but only for enabled services */
+            // Build an array with groups, but only for enabled services
 			foreach ($fullNames as $serviceGroupName => $serviceGroup) {
 				foreach ($serviceGroup as $name => $fullName) {
 					if (!in_array($name, $printServices)) {
@@ -299,7 +301,7 @@ if (!$gallery->album->isMovie($id)) {
 			}
 
 			$firstGroup = true;
-			/* now build the real select options. */
+            // now build the real select options.
 			foreach ($serviceGroups as $serviceGroupName => $serviceGroup) {
 				if (! $firstGroup) {
 					$options[]= '----------';
