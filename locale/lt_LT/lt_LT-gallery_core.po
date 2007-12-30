@@ -19,7 +19,6 @@
 #
 #
 # @version      1.5.2
-# @version      1.5.3-cvs
 # @package	Languagepack
 # @subpackage	Lithuanian
 # @author	Rimvydas Zilinskas <aladdin AT antakalnis DOT lt>, 2003, 2004.
@@ -30,19 +29,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-28 16:06+0200\n"
+"POT-Creation-Date: 2007-12-30 13:11+0100\n"
 "PO-Revision-Date: 2004-09-18 23:43+0200\n"
 "Last-Translator: Suktas <suktas_ AT users DOT sourceforge DOT net>\n"
 "Language-Team: Vilius Ðumskas <vilius AT lnk DOT lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-13\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;     plural=n%10==1 && n%100!=11 ? 0 :            n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../admin-page.php:37
 #, fuzzy
 msgid "_Statistics"
-msgstr "Statistika"
+msgstr "statistika"
 
 #: ../admin-page.php:39
 #, fuzzy
@@ -56,7 +55,7 @@ msgstr "konfigûravimo vedlys"
 
 #: ../admin-page.php:44
 #, fuzzy
-msgid "Use the Configuration wizard to reconfigure or tweak your Gallery"
+msgid "Use the config wizard to reconfigure or tweak your Gallery."
 msgstr "Naudokite konfigûravimo vedlá perkonfiguruoti arba patobulinti Jûsø galerijà."
 
 #: ../admin-page.php:47
@@ -109,9 +108,8 @@ msgid "Manage your user groups."
 msgstr "Vartotojø tvarkymas"
 
 #: ../admin-page.php:83
-#, fuzzy
 msgid "_Filesystem usage"
-msgstr "Pirmas puslapis"
+msgstr ""
 
 #: ../admin-page.php:85
 msgid "See how much space your Gallery consumes. Viewable by usage per user and per album."
@@ -123,36 +121,35 @@ msgid "Admin options"
 msgstr "administravimas"
 
 #: ../admin-page.php:106 ../search.php:57 ../stats-wizard.php:47
-#: ../stats.php:614 ../tools/despam-comments.php:51
-#: ../tools/find_orphans.php:57 ../tools/validate_albums.php:69
-#: ../usage.php:42
+#: ../tools/despam-comments.php:51 ../tools/find_orphans.php:57
+#: ../tools/validate_albums.php:69 ../usage.php:42
 #, fuzzy
 msgid "return to _gallery"
 msgstr "Gráþti á Galerijà"
 
-#: ../albums.php:107 ../rss.php:260
-msgid "no albums"
-msgstr "albumø nëra"
+#: ../albums.php:107 ../view_album.php:147
+msgid "No albums"
+msgstr "Albumø nëra"
 
 #: ../albums.php:105 ../rss.php:260
-#, php-format
+#, fuzzy, php-format
 msgid "1 album"
 msgid_plural "%d albums"
-msgstr[0] "1 albumas"
-msgstr[1] "%d albumai"
-msgstr[2] "%d albumø"
+msgstr[0] "albumø nëra"
+msgstr[1] "albumø nëra"
+msgstr[2] "albumø nëra"
 
 #: ../albums.php:116
 msgid "No top-level albums"
 msgstr "Nëra pagr. albumø"
 
 #: ../albums.php:113
-#, php-format
+#, fuzzy, php-format
 msgid "1 top-level album"
 msgid_plural "%d top-level albums"
-msgstr[0] "1 pagr. albumas"
-msgstr[1] "%d pagr. albumai"
-msgstr[2] "%d pagr. albumø"
+msgstr[0] "Nëra pagr. albumø"
+msgstr[1] "Nëra pagr. albumø"
+msgstr[2] "Nëra pagr. albumø"
 
 #: ../albums.php:120
 #, php-format
@@ -164,24 +161,24 @@ msgid "no images"
 msgstr "0 nuotraukø"
 
 #: ../albums.php:121 ../view_album.php:148
-#, php-format
+#, fuzzy, php-format
 msgid "1 image"
 msgid_plural "%d images"
-msgstr[0] "1 nuotrauka"
-msgstr[1] "%d nuotraukos"
-msgstr[2] "%d nuotraukø"
+msgstr[0] "0 nuotraukø"
+msgstr[1] "0 nuotraukø"
+msgstr[2] "0 nuotraukø"
 
 #: ../albums.php:122
 msgid "no pages"
 msgstr "0 puslapiø"
 
 #: ../albums.php:122 ../view_album.php:149
-#, php-format
+#, fuzzy, php-format
 msgid "1 page"
 msgid_plural "%d pages"
-msgstr[0] "1 puslapis"
-msgstr[1] "%d puslapiai"
-msgstr[2] "%d puslapiø"
+msgstr[0] "0 puslapiø"
+msgstr[1] "0 puslapiø"
+msgstr[2] "0 puslapiø"
 
 #: ../albums.php:125
 #, php-format
@@ -208,42 +205,43 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Sveiki, %s"
 
-#: ../albums.php:158 ../view_album.php:197
+#: ../albums.php:158 ../view_album.php:200
 #, fuzzy
-msgid "slidesho_w"
+msgid "Slidesho_w"
 msgstr "nuotraukø perþiûra"
 
 #: ../albums.php:165
 #, fuzzy
-msgid "new _album"
+msgid "New _album"
 msgstr "naujas albumas"
 
 #: ../albums.php:175
 #, fuzzy
-msgid "administer fron_tpage"
+msgid "Administer fron_tpage"
 msgstr "Administratorius"
 
 #: ../albums.php:181
 #, fuzzy
-msgid "ad_min page"
+msgid "Ad_min page"
 msgstr "administratoriaus puslapis"
 
 #: ../albums.php:188
 #, fuzzy
-msgid "_documentation"
+msgid "_Documentation"
 msgstr "dokumentacija"
 
 #: ../albums.php:195
 #, fuzzy
-msgid "pr_eferences"
+msgid "Pr_eferences"
 msgstr "nustatymai"
 
 #: ../albums.php:205
 #, fuzzy
-msgid "_register"
+msgid "_Register"
 msgstr "registruotis"
 
 #: ../albums.php:245
+#, fuzzy
 msgid "Attention Gallery Administrator!"
 msgstr "Dëmesio Galerijos Administratoriau!"
 
@@ -293,14 +291,14 @@ msgstr ""
 #: ../albums.php:298
 #, fuzzy
 msgid "Login page"
-msgstr "vienas puslapis"
+msgstr "0 puslapiø"
 
 #: ../albums.php:318
 #, php-format
-msgid "The requested album with index %s is not valid"
+msgid "The requested album with index %s is not valid."
 msgstr ""
 
-#: ../albums.php:359 ../view_album.php:576
+#: ../albums.php:359 ../view_album.php:579
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "nenudorytas albumas"
@@ -311,8 +309,9 @@ msgid "Owner: %s"
 msgstr "Savininkas:"
 
 #: ../albums.php:384
-msgid "url:"
-msgstr "url:"
+#, fuzzy
+msgid "URL:"
+msgstr "URL"
 
 #: ../albums.php:399
 msgid "Hey!"
@@ -326,7 +325,7 @@ msgstr "%s kadangi jo URL nëra unikalus!"
 #: ../albums.php:402
 #, fuzzy
 msgid "Change the foldername of this album"
-msgstr "Pervadinti ðá albumà"
+msgstr "elementai(-ø) ðiame albume"
 
 #: ../albums.php:418
 #, fuzzy, php-format
@@ -338,7 +337,7 @@ msgstr "Paskutiná kartà keistas %s."
 msgid "Last changed on %s."
 msgstr "Paskutiná kartà keistas %s."
 
-#: ../albums.php:436 ../view_album.php:747
+#: ../albums.php:436 ../view_album.php:750
 msgid "This album is empty."
 msgstr "Ðis albumas yra tuðèias."
 
@@ -383,124 +382,129 @@ msgstr ""
 #: ../block-feature-item.php:134
 #, fuzzy, php-format
 msgid "This featured photo is from album: %s"
-msgstr "Pasirinkite naujà albumo vietà"
+msgstr "%d atsitiktiniai paveikslëliai albumui :: %s"
 
 #: ../block-feature-item.php:142
 #, fuzzy
 msgid "Currently no item is featured by this Gallery."
 msgstr "Neþinoma klaida funkcijoje %s!"
 
-#: ../block-random.php:76
+#: ../block-random.php:75
 #, fuzzy
 msgid "No photo chosen."
 msgstr "Nuotraukø, tenkinanèiø ðià uþklausà, nëra"
 
-#: ../block-random.php:132 ../lib/stats.php:361
+#: ../block-random.php:131 ../lib/stats.php:361
 #, fuzzy, php-format
 msgid "From album: %s"
 msgstr "Ið albumo"
 
-#: ../captionator.php:58
+#: ../captionator.php:57
 msgid "Captioned album does not match current album - aborting changes!"
 msgstr "Albumas su antraðtëmis neatitinka dabartinio albumo - atðaukiame pakeitimus!"
 
-#: ../captionator.php:102
+#: ../captionator.php:101
 msgid "Debugging: Click here to return to the album"
 msgstr "Suderinama: spauskite èia sugráþti á albumà"
 
-#: ../captionator.php:140
+#: ../captionator.php:139
 msgid "Captionator"
 msgstr "Apraðymai"
 
-#: ../captionator.php:187
+#: ../captionator.php:186
+#, fuzzy
 msgid "Multiple Caption Editor."
 msgstr "Keleto apraðymø redaktorius."
 
-#: ../captionator.php:189
-msgid "1 photo in this album"
-msgstr "Ðiame albume yra 1 nuotrauka"
+#: ../captionator.php:188
+#, fuzzy
+msgid "1 item in this album"
+msgstr "elementai(-ø) ðiame albume"
 
-#: ../captionator.php:193
+#: ../captionator.php:192
 #, fuzzy, php-format
-msgid "%s items in this album on %s"
+msgid "%d items in this album on %s"
 msgstr "Ðiame albume yra %s %s"
 
-#: ../captionator.php:195
-#, php-format
+#: ../captionator.php:194
+#, fuzzy, php-format
 msgid "one page"
-msgid_plural "%d pages"
-msgstr[0] "vienas puslapis"
-msgstr[1] "%d puslapiai"
-msgstr[2] "%d puslapiø"
+msgid_plural "%d pages."
+msgstr[0] "0 puslapiø"
+msgstr[1] "0 puslapiø"
+msgstr[2] "0 puslapiø"
 
 #: ../captionator.php:198
 #, fuzzy, php-format
-msgid "%s items in this album"
-msgstr "elementai(-ø) ðiame albume"
+msgid "One item in this album."
+msgid_plural "%d items in this album."
+msgstr[0] "elementai(-ø) ðiame albume"
+msgstr[1] "elementai(-ø) ðiame albume"
+msgstr[2] "elementai(-ø) ðiame albume"
 
-#: ../captionator.php:226 ../captionator.php:342
+#: ../captionator.php:225 ../captionator.php:341
 msgid "Save and Exit"
 msgstr "Iðsaugoti ir iðeiti"
 
-#: ../captionator.php:229 ../captionator.php:345
+#: ../captionator.php:228 ../captionator.php:344
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "Iðsaugoti ir redaguoti kitus %d"
 
-#: ../captionator.php:233 ../captionator.php:349
+#: ../captionator.php:232 ../captionator.php:348
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "Iðsaugoti ir redaguoti ankstesnius %d"
 
-#: ../captionator.php:237 ../captionator.php:353
+#: ../captionator.php:236 ../captionator.php:352
 msgid "Exit"
 msgstr "Iðeiti"
 
-#: ../captionator.php:257
+#: ../captionator.php:256
 #, fuzzy
 msgid "(click to enter album)"
 msgstr "(bakstelkite padidinti)"
 
-#: ../captionator.php:270
+#: ../captionator.php:269
 msgid "(click to enlarge)"
 msgstr "(bakstelkite padidinti)"
 
-#: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:560
+#: ../captionator.php:276 ../templates/commentbox.tpl.default:22
+#: ../templates/commentbox.tpl.default:49 ../view_album.php:563
 msgid "hidden"
 msgstr "paslëpta"
 
-#: ../captionator.php:290
+#: ../captionator.php:289
 #, fuzzy
 msgid "Album Caption: "
 msgstr "Albumo apraðymas"
 
-#: ../captionator.php:299
+#: ../captionator.php:298
 #, fuzzy
 msgid "Movie Caption: "
 msgstr "Filmo apraðymas"
 
-#: ../captionator.php:302
+#: ../captionator.php:301
 #, fuzzy
 msgid "Photo Caption: "
 msgstr "Fotografijos apraðymas"
 
-#: ../captionator.php:314
+#: ../captionator.php:313
 #, fuzzy
 msgid "Title: "
 msgstr "Pavadinimas"
 
-#: ../captionator.php:324 ../popups/view_photo_properties.php:104
+#: ../captionator.php:323 ../popups/view_photo_properties.php:104
 #, fuzzy
 msgid "Keywords: "
 msgstr "Raktiniai þodþiai"
 
-#: ../captionator.php:330
+#: ../captionator.php:329
 #, fuzzy, php-format
 msgid "Capture Date: %s"
 msgstr "Nuotraukos padarymo data"
 
-#: ../captionator.php:360
+#: ../captionator.php:359
 #, fuzzy
 msgid "There are not elements to set a caption for."
 msgstr "Neþinoma klaida funkcijoje %s!"
@@ -509,9 +513,9 @@ msgstr "Neþinoma klaida funkcijoje %s!"
 msgid "Untitled"
 msgstr "Nepavadintas"
 
-#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:49
-#: ../lib/albumItem.php:467 ../lib/usage.php:84
-#: ../templates/commentbox.tpl.default:16
+#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:51
+#: ../lib/albumItem.php:469 ../lib/usage.php:84
+#: ../templates/commentbox.tpl.default:19
 msgid "Album"
 msgstr "Albumas"
 
@@ -533,17 +537,18 @@ msgid "Renaming album from %s to %s..."
 msgstr "Pervadiname %s albumà á %s..."
 
 #: ../classes/Album.php:562 ../classes/AlbumItem.php:228
+#, fuzzy
 msgid "description"
-msgstr "apibûdinimà"
+msgstr "Apraðymas"
 
-#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:246
+#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:245
 #: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:195
 msgid "Description"
 msgstr "Apraðymas"
 
 #: ../classes/Album.php:614
-#, php-format
-msgid "Upgrading item %d of %d . . . "
+#, fuzzy, php-format
+msgid "Upgrading item %d of %d..."
 msgstr "Atnaujinu elementà %d ið %d . . . "
 
 #: ../classes/Album.php:874
@@ -561,185 +566,189 @@ msgstr "Titulinës nuotraukos nëra"
 msgid "Setting highlight"
 msgstr "Titulinës nuotraukos nëra"
 
-#: ../classes/Album.php:1134
+#: ../classes/Album.php:1135
 msgid "msg should be an array!"
 msgstr "msg turi bûti masyvas!"
 
-#: ../classes/Album.php:1143
+#: ../classes/Album.php:1144
 #, fuzzy, php-format
-msgid "Changes to Album: %s"
+msgid "Changes to album: %s"
 msgstr "Negaliu raðyti á %s."
 
-#: ../classes/Album.php:1151
+#: ../classes/Album.php:1152
 #, php-format
-msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
+msgid "A change has been made to album: %s by %s (IP %s).  The change is: %s"
 msgstr ""
 
-#: ../classes/Album.php:1157
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
+#: ../classes/Album.php:1158
+msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
 msgstr ""
 
-#: ../classes/Album.php:1165
-msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
+#: ../classes/Album.php:1166
+msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found."
 msgstr ""
 
-#: ../classes/Album.php:1241 ../classes/Album.php:1322
-#, fuzzy
+#: ../classes/Album.php:1240 ../classes/Album.php:1320
 msgid "Skipping Movie"
-msgstr "Praleidþiame %s."
+msgstr ""
 
-#: ../classes/Album.php:1257 ../classes/Album.php:2215
-#: ../classes/Album.php:2368
-#, fuzzy
+#: ../classes/Album.php:1255 ../classes/Album.php:2213
+#: ../classes/Album.php:2366
 msgid " -- Skipping"
-msgstr "Praleidþiame %s."
+msgstr ""
 
-#: ../classes/Album.php:1267
+#: ../classes/Album.php:1265
 #, fuzzy, php-format
 msgid "Resizig items in album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Einama á %s albumà, apdorojamos %d nuotraukos"
 
-#: ../classes/Album.php:1276 ../classes/Album.php:2234
-#: ../classes/Album.php:2403
+#: ../classes/Album.php:1274 ../classes/Album.php:2232
+#: ../classes/Album.php:2401
 #, fuzzy, php-format
 msgid "Processing item %d..."
 msgstr "Apdoroju %d nuotraukà..."
 
-#: ../classes/Album.php:1291
+#: ../classes/Album.php:1289
 #, fuzzy, php-format
 msgid "Resizing item %d..."
 msgstr "Apdoroju %d nuotraukà..."
 
-#: ../classes/Album.php:1325
+#: ../classes/Album.php:1323
 #, fuzzy
 msgid "Skipping Subalbum"
 msgstr "Praleidþiu albumà #%d"
 
-#: ../classes/Album.php:1369
+#: ../classes/Album.php:1367
 msgid "Doing the naming of the physical file."
 msgstr ""
 
-#: ../classes/Album.php:1405
+#: ../classes/Album.php:1403
 #, fuzzy
-msgid "Image Preprocessing"
+msgid "Image preprocessing"
 msgstr "Nuotraukø apdorojimas ir rodymas"
 
-#: ../classes/Album.php:1410
+#: ../classes/Album.php:1408
 #, fuzzy
 msgid "Resizing/compressing original file"
 msgstr "Keièiu/suspaudþiu originalà"
 
-#: ../classes/Album.php:1416
+#: ../classes/Album.php:1414
 msgid "File is a movie, no resizing done."
 msgstr ""
 
-#: ../classes/Album.php:1419
+#: ../classes/Album.php:1417
 #, php-format
 msgid "Invalid filetype: %s. Skipping."
 msgstr ""
 
-#: ../classes/Album.php:1432 ../classes/Album.php:1437
+#: ../classes/Album.php:1430 ../classes/Album.php:1435
 #, fuzzy
 msgid "Item not added."
 msgstr "Nuotraukos padarymo data"
 
-#: ../classes/Album.php:1502
+#: ../classes/Album.php:1500
 #, fuzzy, php-format
 msgid "Creating resized intermediate Version of %s"
 msgstr "Koks bus vienos vidutinio dydþio nuotraukos dydis?"
 
-#: ../classes/Album.php:1513
+#: ../classes/Album.php:1511
 msgid "Check if image needs to be rotated"
 msgstr ""
 
-#: ../classes/Album.php:1531
+#: ../classes/Album.php:1529
 #, fuzzy, php-format
 msgid "Orientation: %s "
 msgstr "Dabartinë pozicija yra %s"
 
-#: ../classes/Album.php:1575
+#: ../classes/Album.php:1573
 msgid "Photo auto-rotated/transformed"
 msgstr "Nuotrauka automatiðkai pasukta"
 
-#: ../classes/Album.php:1578
+#: ../classes/Album.php:1576
 #, fuzzy
 msgid "Photo NOT auto-rotated/transformed"
 msgstr "Nuotrauka automatiðkai pasukta"
 
-#: ../classes/Album.php:1588
+#: ../classes/Album.php:1586
+#, fuzzy
 msgid "Watermarking Image"
 msgstr "Dedame vandens þenklus á nuotraukà"
 
-#: ../classes/Album.php:1595 ../classes/Album.php:1600
+#: ../classes/Album.php:1593 ../classes/Album.php:1598
 #, fuzzy
 msgid "Item successfully added."
 msgstr "Vartotojø duomenø bazë atnaujinta sëkmingai."
 
-#: ../classes/Album.php:1783 ../classes/Album.php:1820
+#: ../classes/Album.php:1781 ../classes/Album.php:1818
 #, fuzzy
 msgid "No highlight!"
 msgstr "Titulinës nuotraukos nëra"
 
-#: ../classes/Album.php:1792 ../classes/Album.php:1795
+#: ../classes/Album.php:1790 ../classes/Album.php:1793
 #, fuzzy, php-format
 msgid "Highlight for album: %s"
 msgstr "Titulinë nuotrauka albumui:"
 
-#: ../classes/Album.php:2051
+#: ../classes/Album.php:2049
 #, fuzzy, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Reikalaujamas indeksas [%d] netelpa á ribas [%d]"
 
-#: ../classes/Album.php:2104
+#: ../classes/Album.php:2102
 #, php-format
 msgid "Recreating %d captions..."
 msgstr ""
 
-#: ../classes/Album.php:2106
+#: ../classes/Album.php:2104
 #, php-format
 msgid "Processing image %d..."
 msgstr "Apdoroju %d nuotraukà..."
 
-#: ../classes/Album.php:2113
-#, php-format
+#: ../classes/Album.php:2111
+#, fuzzy, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Einama á %s albumà, apdorojamos %d nuotraukos"
 
-#: ../classes/Album.php:2225 ../classes/Album.php:2378
-#, php-format
+#: ../classes/Album.php:2223 ../classes/Album.php:2376
+#, fuzzy, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
-msgstr ""
+msgstr "Einama á %s albumà, apdorojamos %d nuotraukos"
 
-#: ../classes/Album.php:2244 ../classes/Album.php:2391
+#: ../classes/Album.php:2242
+#, fuzzy, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items."
+msgstr "Einama á %s albumà, apdorojamos %d nuotraukos"
+
+#: ../classes/Album.php:2389
 #, fuzzy, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items"
 msgstr "Einama á %s albumà, apdorojamos %d nuotraukos"
 
-#: ../classes/Album.php:2576
+#: ../classes/Album.php:2574
 #, php-format
-msgid "Error getting EXIF data. Expected Status 0, got %s."
+msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr ""
 
-#: ../classes/Album.php:2827
+#: ../classes/Album.php:2825
 msgid "(Group)"
 msgstr ""
 
-#: ../classes/Album.php:3160
+#: ../classes/Album.php:3158
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3327
+#: ../classes/Album.php:3326
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Paðto problema: praleidþiu %s (UID %s), nes el. paðto adreso %s nëra."
 
-#: ../classes/Album.php:3331
+#: ../classes/Album.php:3330
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Paðto problema: praleidþiu %s (UID %s), nes el. paðto adreso %s nëra."
 
-#: ../classes/Album.php:3341
+#: ../classes/Album.php:3340
 #, fuzzy
 msgid "Email problems"
 msgstr "El. paðto adresas"
@@ -771,11 +780,12 @@ msgstr ""
 
 #: ../classes/AlbumItem.php:788
 #, fuzzy
-msgid "Generating normal thumbs"
+msgid "Generating normal thumbs."
 msgstr "Generuoju sumaþintà nuotraukà"
 
 #: ../classes/AlbumItem.php:815
-msgid "Unable to make thumbnail"
+#, fuzzy
+msgid "Unable to make thumbnail."
 msgstr "Negaliu sumaþinti nuotraukos"
 
 #: ../classes/AlbumItem.php:826
@@ -821,17 +831,18 @@ msgstr "%s egzistuoja, bet nëra katalogas!"
 
 #: ../classes/gallery/UserDB.php:89
 #, fuzzy, php-format
-msgid "The folder folder which contains your user information (%s) is not writable for the webserver."
+msgid "The folder which contains your user information (%s) is not writable for the webserver."
 msgstr "Katalogas, kuriame yra jûsø vartotojo informacija, (%s) nëra áraðomas"
 
 #: ../classes/gallery/UserDB.php:110
-msgid "Your Userfile is not writeable"
+#, fuzzy
+msgid "Your userfile is not writeable."
 msgstr "Jûsø vartotojo failas nëra áraðomas"
 
 #: ../classes/gallery/UserDB.php:338
-#, php-format
+#, fuzzy, php-format
 msgid "Checking username '%s' for validity"
-msgstr ""
+msgstr "Tikrinu vartotojà %d ið %d . . . . "
 
 #: ../classes/gallery/UserDB.php:342
 #, fuzzy
@@ -864,12 +875,13 @@ msgid "A user with the username of '%s' already exists"
 msgstr "Vartotojas %s jau egzistuoja"
 
 #: ../classes/gallery/UserDB.php:379
-msgid "Password must be at least 3 characters"
+#, fuzzy
+msgid "Password must be at least 3 characters."
 msgstr "Slaptaþodis turi bûti bent ið trijø simboliø"
 
 #: ../classes/gallery/UserDB.php:417
 #, fuzzy, php-format
-msgid "Checking user %d of %d . . . ."
+msgid "Checking user %d of %d ... "
 msgstr "Tikrinu vartotojà %d ið %d . . . . "
 
 #: ../classes/gallery/UserDB.php:422
@@ -882,7 +894,7 @@ msgstr ""
 msgid "Problem adding %s:"
 msgstr "Problemos pridedant %s:"
 
-#: ../crop_photo.php:67 ../imagemap.php:179
+#: ../crop_photo.php:67 ../imagemap.php:178
 #, fuzzy
 msgid "Original photo"
 msgstr "Originalus stilius"
@@ -897,9 +909,8 @@ msgid "Here you can crop the fullsize Version of your Image. Optionally you can 
 msgstr ""
 
 #: ../crop_photo.php:136
-#, fuzzy
 msgid "Current Dimension:"
-msgstr "Vartotojo kûrimas"
+msgstr ""
 
 #: ../crop_photo.php:137 ../crop_photo.php:145
 msgid "Width"
@@ -922,13 +933,13 @@ msgstr ""
 msgid "Recreate re_sized"
 msgstr ""
 
-#: ../crop_photo.php:160 ../popups/ecard_form.php:274
+#: ../crop_photo.php:160 ../popups/ecard_form.php:273
 #: ../popups/edit_watermark.php:120 ../popups/watermark_album.php:143
 #, fuzzy
 msgid "_Preview"
 msgstr "Perþiûra"
 
-#: ../crop_photo.php:161 ../popups/ecard_form.php:275
+#: ../crop_photo.php:161 ../popups/ecard_form.php:274
 #, fuzzy
 msgid "_Reset"
 msgstr "Atitaisyti"
@@ -952,7 +963,7 @@ msgid "ImageMap Help"
 msgstr "Nuotraukos dydis"
 
 #: ../help/imagemap.php:29
-msgid "This is a help for working with Gallerys so-called 'ImageMaps'"
+msgid "This is a help for working with Gallerys so called 'ImageMaps'"
 msgstr ""
 
 #: ../help/imagemap.php:33
@@ -992,15 +1003,15 @@ msgid "When you are satisifed with your selection (e.g. a person or object), ent
 msgstr ""
 
 #: ../help/imagemap.php:51
-msgid "The text entered in the Description field will be displayed when your users point their mouse cursor over the ImageMap"
+msgid "The text entered in the description field, will be displayed when your users point their mouse cursor over the ImageMap"
 msgstr ""
 
 #: ../help/imagemap.php:55
-msgid "Optionally you can enter a Link-Url for your ImageMap, which is activated when a user clicks your ImageMap selection."
+msgid "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."
 msgstr ""
 
 #: ../help/imagemap.php:56
-msgid "When you satisfied, click the 'Save ImageMap' button at the left side."
+msgid "When you are satisfied, click the 'Save ImageMap' button at the left side."
 msgstr ""
 
 #: ../help/imagemap.php:63
@@ -1008,7 +1019,7 @@ msgid "How to update an ImageMap in Gallery?"
 msgstr ""
 
 #: ../help/imagemap.php:66
-msgid "Currently you can only modify the text and the url for an ImageMap. The polygon for the ImageMap is currently not changeable."
+msgid "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."
 msgstr ""
 
 #: ../help/imagemap.php:67
@@ -1020,7 +1031,7 @@ msgid "Select the ImageMap you want to edit in the box on the left hand side."
 msgstr ""
 
 #: ../help/imagemap.php:71
-msgid "The Image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
+msgid "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
 msgstr ""
 
 #: ../help/imagemap.php:72
@@ -1028,7 +1039,7 @@ msgid "You can then modify your 'Description', or edit the 'Link-URL'."
 msgstr ""
 
 #: ../help/imagemap.php:73
-msgid "When finished, click the 'Update ImageMap' button. "
+msgid "When finished, click the 'Update ImageMap' button."
 msgstr ""
 
 #: ../help/imagemap.php:80
@@ -1036,7 +1047,7 @@ msgid "How to delete an ImageMap in Gallery?"
 msgstr ""
 
 #: ../help/imagemap.php:83
-msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selectes ImageMap(s)' button."
+msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."
 msgstr ""
 
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:100
@@ -1092,7 +1103,7 @@ msgid "In which format has the data to be?"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:57
-msgid "The first row must be the field names, there is one mandatory field, some predefined fields and you can use your own custom fields."
+msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:58
@@ -1110,7 +1121,7 @@ msgid "Predefined: %s, %s, %s"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:63
-msgid "Then follow the lines containing the info it self"
+msgid "Then follow the lines containing the info itself."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:67
@@ -1122,63 +1133,62 @@ msgstr ""
 msgid "_Back to upload"
 msgstr "Gráþti á Galerijà"
 
-#: ../imagemap.php:158
+#: ../imagemap.php:157
 #, fuzzy
 msgid "log_out"
 msgstr "atsijungti"
 
-#: ../imagemap.php:165
+#: ../imagemap.php:164
 #, fuzzy
 msgid "_login"
 msgstr "prisijungti"
 
-#: ../imagemap.php:218
+#: ../imagemap.php:217
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr ""
 
-#: ../imagemap.php:220
+#: ../imagemap.php:219
 msgid "Click the question mark icon for helpful instructions."
 msgstr ""
 
-#: ../imagemap.php:221 ../includes/add_photos/add_form.inc:74
+#: ../imagemap.php:220 ../includes/add_photos/add_form.inc:74
 msgid "Help"
 msgstr ""
 
-#: ../imagemap.php:240
+#: ../imagemap.php:239
 msgid "Clear and reset canvas"
 msgstr ""
 
-#: ../imagemap.php:241
-#, fuzzy
+#: ../imagemap.php:240
 msgid "Brush color:"
-msgstr "Rëmeliø spalva"
+msgstr ""
 
-#: ../imagemap.php:244
+#: ../imagemap.php:243
 #, fuzzy
 msgid "Optional link-url"
 msgstr "Pagalbiniai árankiai"
 
-#: ../imagemap.php:248
+#: ../imagemap.php:247
 msgid "Save Imagemap"
 msgstr ""
 
-#: ../imagemap.php:255
+#: ../imagemap.php:254
 msgid "Select entries to show ImageMap areas in your photo."
 msgstr ""
 
-#: ../imagemap.php:263
+#: ../imagemap.php:262
 msgid "Delete selected ImageMap(s)"
 msgstr ""
 
-#: ../imagemap.php:266
+#: ../imagemap.php:265
 msgid "Update selected ImageMap(s)"
 msgstr ""
 
-#: ../imagemap.php:268
+#: ../imagemap.php:267
 msgid "Be aware, that the text of ALL selected entries will be updated!"
 msgstr ""
 
-#: ../imagemap.php:271
+#: ../imagemap.php:270
 #, fuzzy
 msgid "No ImageMaps"
 msgstr "0 nuotraukø"
@@ -1206,11 +1216,11 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Norëdami ádëti nuotraukà, spauskite <b>Browse</b>."
 
 #: ../includes/add_photos/add_form.inc:35
-msgid "After you have added a file, you can add more files the same way, just use the browse button as often as you want."
+msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
 msgstr ""
 
 #: ../includes/add_photos/add_form.inc:36
-msgid "It's possible to enter a manual caption for each item you upload, or you can gallery set the captions."
+msgid "It's possible to enter a manual caption for each item you upload, or you can let gallery set the captions."
 msgstr ""
 
 #: ../includes/add_photos/add_form.inc:37
@@ -1218,7 +1228,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Galimi failø formatai"
 
-#: ../includes/add_photos/add_form.inc:47 ../view_album.php:313
+#: ../includes/add_photos/add_form.inc:47 ../view_album.php:316
 msgid " or "
 msgstr "arba"
 
@@ -1260,7 +1270,7 @@ msgstr "Ádëti dabar"
 #: ../includes/add_photos/add_url.inc:62 ../login.php:206
 #: ../new_password.php:128 ../popups/add_comment.php:59
 #: ../popups/copy_photo.php:212 ../popups/delete_photo.php:135
-#: ../popups/download.php:86 ../popups/ecard_form.php:277
+#: ../popups/download.php:86 ../popups/ecard_form.php:276
 #: ../popups/edit_caption.php:233 ../popups/edit_field.php:57
 #: ../popups/edit_watermark.php:123 ../popups/move_album.php:112
 #: ../popups/move_album.php:140 ../popups/move_photo.php:284
@@ -1337,9 +1347,8 @@ msgid "Upload any images found at this location."
 msgstr "Ákelti visas nuotraukas, rastas ðioje vietoje."
 
 #: ../includes/add_photos/add_url.inc:61
-#, fuzzy
 msgid "_Submit URL"
-msgstr "Ádëti ið URL arba katalogo serveryje"
+msgstr ""
 
 #: ../includes/add_photos/captionOptions.inc.php:34
 msgid "Leave blank."
@@ -1389,9 +1398,8 @@ msgid "4:6 = 10:15 (Photo)"
 msgstr ""
 
 #: ../includes/definitions/cropOptions.php:36
-#, fuzzy
 msgid "9:13 (Photo)"
-msgstr "ádëti nuotaukas"
+msgstr ""
 
 #: ../includes/definitions/cropOptions.php:37
 #, fuzzy
@@ -1403,9 +1411,8 @@ msgid "3:4 (Screen)"
 msgstr ""
 
 #: ../includes/definitions/cropOptions.php:39
-#, fuzzy
 msgid "8:10 (Photo)"
-msgstr "ádëti nuotaukas"
+msgstr ""
 
 #: ../includes/definitions/cropOptions.php:40
 #, fuzzy
@@ -1421,13 +1428,13 @@ msgid "Landscape"
 msgstr ""
 
 #: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:88
-#, php-format
-msgid "Slide Show for Gallery :: %s"
+#, fuzzy, php-format
+msgid "Slideshow for Gallery :: %s"
 msgstr "Nuotraukø perþiûra Galerijai :: %s"
 
 #: ../includes/slideshow/applet.inc:46 ../includes/slideshow/high.inc:97
-#, php-format
-msgid "Slide Show for album :: %s"
+#, fuzzy, php-format
+msgid "Slideshow for album :: %s"
 msgstr "Nuotraukø perþiûra albumui :: %s"
 
 #: ../includes/slideshow/applet.inc:55
@@ -1512,78 +1519,82 @@ msgstr "Iðtempti"
 msgid "RANDOM!"
 msgstr "ATSITIKTINIS!"
 
-#: ../includes/slideshow/high.inc:334 ../includes/slideshow/low.inc:183
-msgid "The slide show is stopped, Click [play] to resume."
+#: ../includes/slideshow/high.inc:334 ../includes/slideshow/low.inc:190
+#, fuzzy
+msgid "The slideshow is stopped, click [play] to resume."
 msgstr "Nuotraukø perþiûra sustabdyta. Jei norite tæsti, spauskite [pradëti]."
 
 #: ../includes/slideshow/high.inc:342 ../includes/slideshow/high.inc:399
-#: ../includes/slideshow/low.inc:189
-msgid "Slide show is running..."
+#: ../includes/slideshow/low.inc:196
+#, fuzzy
+msgid "Slideshow is running..."
 msgstr "Vyksta nuotraukø perþiûra..."
 
 #: ../includes/slideshow/high.inc:349
-msgid "The slide is showing full sized images, Click [normal size] to view resized images."
+#, fuzzy
+msgid "The slide is showing full sized images, click [normal size] to view resized images."
 msgstr "Nuotraukø rodomos originaliu dydþiu. Vidutinio dydþio nuotraukoms paspauskite [vidutinis dydis] mygtukà."
 
 #: ../includes/slideshow/high.inc:356
-msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
+#, fuzzy
+msgid "The slide is showing normal sized images, click [full size] to view full sized images."
 msgstr "Nuotraukos rodomos vidutiniu dydþiu. Originalaus dydþio nuotraukoms paspauskite [originalus dydis] mygtukà."
 
-#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:218
+#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:225
 msgid "Picture is loading..."
 msgstr "Nuotrauka kraunasi..."
 
 #: ../includes/slideshow/high.inc:394 ../includes/slideshow/high.inc:489
-#: ../includes/slideshow/low.inc:218 ../includes/slideshow/low.inc:376
+#: ../includes/slideshow/low.inc:225 ../includes/slideshow/low.inc:384
 msgid "of"
 msgstr "ið"
 
-#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:219
+#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:226
 #: ../upgrade_users.php:44
 msgid "Please Wait..."
 msgstr "Praðome palaukti..."
 
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:329
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:337
 #, fuzzy
 msgid "1 second"
 msgstr "sekundæ"
 
-#: ../includes/slideshow/high.inc:519 ../includes/slideshow/low.inc:330
+#: ../includes/slideshow/high.inc:519 ../includes/slideshow/low.inc:338
 #, fuzzy
 msgid "2 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:520 ../includes/slideshow/low.inc:331
+#: ../includes/slideshow/high.inc:520 ../includes/slideshow/low.inc:339
 #, fuzzy
 msgid "3 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:521 ../includes/slideshow/low.inc:332
+#: ../includes/slideshow/high.inc:521 ../includes/slideshow/low.inc:340
 #, fuzzy
 msgid "5 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:522 ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/high.inc:522 ../includes/slideshow/low.inc:341
 #, fuzzy
 msgid "10 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:523 ../includes/slideshow/low.inc:334
+#: ../includes/slideshow/high.inc:523 ../includes/slideshow/low.inc:342
 #, fuzzy
 msgid "15 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:524 ../includes/slideshow/low.inc:335
+#: ../includes/slideshow/high.inc:524 ../includes/slideshow/low.inc:343
 #, fuzzy
 msgid "30 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:525 ../includes/slideshow/low.inc:336
+#: ../includes/slideshow/high.inc:525 ../includes/slideshow/low.inc:344
 #, fuzzy
 msgid "45 seconds"
 msgstr "sekundes(-dþiø)"
 
-#: ../includes/slideshow/high.inc:526 ../includes/slideshow/low.inc:337
+#: ../includes/slideshow/high.inc:526 ../includes/slideshow/low.inc:345
 #, fuzzy
 msgid "1 Minute"
 msgstr "Minutës"
@@ -1592,12 +1603,13 @@ msgstr "Minutës"
 msgid "Transition:"
 msgstr "Perëjimas:"
 
-#: ../includes/slideshow/high.inc:597 ../includes/slideshow/low.inc:385
+#: ../includes/slideshow/high.inc:597 ../includes/slideshow/low.inc:393
 msgid "This album has no photos to show in a slide show."
 msgstr "Ðiame albume nëra nuotraukø."
 
-#: ../includes/slideshow/low.inc:84
-msgid "Slide Show for album"
+#: ../includes/slideshow/low.inc:88
+#, fuzzy
+msgid "Slideshow for album"
 msgstr "Nuotraukø perþiûra albumui"
 
 #: ../includes/stats/stats.inc.php:52
@@ -1767,27 +1779,26 @@ msgstr "Nuotraukos padarymo data"
 msgid "Filter by day"
 msgstr "Nuotraukos padarymo data"
 
-#: ../init.php:29 ../init.php:118 ../popups/view_photo_properties.php:31
-#: ../templates/overall.header.tpl.default:80
-msgid "Security violation"
-msgstr "Saugumo paþeidimas"
+#: ../init.php:111
+msgid "Security violation. Geeklog Dir is invalid."
+msgstr ""
 
-#: ../init.php:426
+#: ../init.php:420
 msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
 msgstr ""
 
-#: ../init.php:570
+#: ../init.php:564
 msgid "Fatal error: UserDB failed to initialize!"
 msgstr ""
 
-#: ../js/multifile.js.php:113 ../popups/delete_album.php:64
-#: ../popups/delete_user.php:76 ../templates/commentbox.tpl.default:67
+#: ../js/multifile.js.php:114 ../popups/delete_album.php:64
+#: ../popups/delete_user.php:76 ../templates/commentbox.tpl.default:70
 #: ../tools/lib/lib-despam_comments.php:121
 #: ../tools/lib/lib-despam_comments.php:278
 msgid "Delete"
 msgstr "Iðtrinti"
 
-#: ../js/multifile.js.php:150
+#: ../js/multifile.js.php:151
 #, fuzzy
 msgid "Caption:"
 msgstr "Apraðymas:"
@@ -1906,7 +1917,7 @@ msgid "Gallery language"
 msgstr "Kalba"
 
 #: ../layout/userData.inc:92
-msgid "User can change its own password"
+msgid "User can change its own password?"
 msgstr ""
 
 #: ../layout/userData.inc:100
@@ -1918,7 +1929,8 @@ msgid "User is an admin"
 msgstr "Vartotojas yra administratorius"
 
 #: ../layout/userData.inc:113
-msgid "you can't un-admin yourself"
+#, fuzzy
+msgid "You can't un-admin yourself."
 msgstr "Jûs negalite atimti administratoriaus teisiø sau"
 
 #: ../layout/userData.inc:118
@@ -2031,223 +2043,229 @@ msgstr "pakeisti nuotraukos dydá"
 msgid "Only full photos"
 msgstr "Tik pilnos nuotraukos"
 
-#: ../lib/albumItem.php:57 ../lib/albumItem.php:470
+#: ../lib/albumItem.php:59 ../lib/albumItem.php:472
 #: ../popups/rearrange.php:125
 msgid "Movie"
 msgstr "video"
 
-#: ../lib/albumItem.php:61 ../lib/albumItem.php:473
+#: ../lib/albumItem.php:63 ../lib/albumItem.php:475
 msgid "Photo"
 msgstr "nuotraukà"
 
-#: ../lib/albumItem.php:84
+#: ../lib/albumItem.php:86
 #, fuzzy
-msgid "Edit _Text"
+msgid "Edit _text"
 msgstr "Redaguoti apraðymà"
 
-#: ../lib/albumItem.php:90
+#: ../lib/albumItem.php:92
 #, fuzzy
-msgid "Edit Th_umbnail"
+msgid "Edit th_umbnail"
 msgstr "Redaguoti Paveikslëlá"
 
-#: ../lib/albumItem.php:96
+#: ../lib/albumItem.php:98
 #, fuzzy
 msgid "Rotate/_Flip"
 msgstr "Pasukti/apversti %s"
 
-#: ../lib/albumItem.php:102
+#: ../lib/albumItem.php:104
 #, fuzzy
 msgid "Re_size"
 msgstr "Pakeistas dydis"
 
-#: ../lib/albumItem.php:109
+#: ../lib/albumItem.php:111
 #, fuzzy
 msgid "_Watermark"
 msgstr "Vandens þenklas"
 
-#: ../lib/albumItem.php:117
+#: ../lib/albumItem.php:119
 #, fuzzy
 msgid "Image_Map"
 msgstr "Nuotraukos rëmelis"
 
-#: ../lib/albumItem.php:123
+#: ../lib/albumItem.php:125
 #, fuzzy
-msgid "Crop Image"
+msgid "Crop image"
 msgstr "0 nuotraukø"
 
-#: ../lib/albumItem.php:133
-msgid "Edit Title"
+#: ../lib/albumItem.php:135
+#, fuzzy
+msgid "Edit title"
 msgstr "Keisti pavadinimà"
 
-#: ../lib/albumItem.php:138
-msgid "Edit Description"
+#: ../lib/albumItem.php:140
+#, fuzzy
+msgid "Edit description"
 msgstr "Keisti apraðymà"
 
-#: ../lib/albumItem.php:144 ../popups/rename_album.php:35
-msgid "Rename Album"
-msgstr "Pervadinti albumà"
+#: ../lib/albumItem.php:146
+#, fuzzy
+msgid "Rename album"
+msgstr "pervadinti albumà"
 
-#: ../lib/albumItem.php:149
-msgid "Reset Counter"
+#: ../lib/albumItem.php:151
+#, fuzzy
+msgid "Reset counter"
 msgstr "pradëti nuo nulio"
 
-#: ../lib/albumItem.php:160
+#: ../lib/albumItem.php:162
 msgid "Permissions"
 msgstr "Teisës"
 
-#: ../lib/albumItem.php:167 ../popups/watermark_album.php:103
+#: ../lib/albumItem.php:169 ../popups/watermark_album.php:103
 msgid "Watermark Album"
 msgstr "Vandenþenkliø Albumas"
 
-#: ../lib/albumItem.php:174
-msgid "View Comments"
+#: ../lib/albumItem.php:176
+#, fuzzy
+msgid "View comments"
 msgstr "Þiûrëti Komentarus"
 
-#: ../lib/albumItem.php:182
+#: ../lib/albumItem.php:184
 #, fuzzy
 msgid "Cop_y"
 msgstr "Kopijuoti %s"
 
-#: ../lib/albumItem.php:191
+#: ../lib/albumItem.php:193
 #, fuzzy
 msgid "_Reorder"
 msgstr "Rûðiuoti %s"
 
-#: ../lib/albumItem.php:197
+#: ../lib/albumItem.php:199
 #, fuzzy
 msgid "Mo_ve"
 msgstr "video"
 
-#: ../lib/albumItem.php:205
+#: ../lib/albumItem.php:207
 #, fuzzy
 msgid "Set as high_light"
 msgstr "Titulinës nuotraukos nëra"
 
-#: ../lib/albumItem.php:214
+#: ../lib/albumItem.php:216
 #, fuzzy
-msgid "Change Ow_ner"
+msgid "Change ow_ner"
 msgstr "Keisti savininkà"
 
-#: ../lib/albumItem.php:219
+#: ../lib/albumItem.php:221
 #, fuzzy, php-format
 msgid "Feature %s"
-msgstr "Iðtrinti %s"
+msgstr "Gráþti á %s"
 
-#: ../lib/albumItem.php:232
+#: ../lib/albumItem.php:234
 #, fuzzy
 msgid "_Unhide"
 msgstr "paslëpta"
 
-#: ../lib/albumItem.php:239
+#: ../lib/albumItem.php:241
 #, fuzzy
 msgid "_Hide"
 msgstr "paslëpta"
 
-#: ../lib/albumItem.php:251 ../lib/albumItem.php:261
+#: ../lib/albumItem.php:253 ../lib/albumItem.php:263
 #: ../popups/delete_photo.php:134 ../popups/manage_users.php:167
 #, fuzzy
 msgid "_Delete"
 msgstr "Iðtrinti"
 
-#: ../lib/albumItem.php:275
+#: ../lib/albumItem.php:277
 #, fuzzy
 msgid "Photo _properties"
 msgstr "nuotraukos savybës"
 
-#: ../lib/albumItem.php:287
+#: ../lib/albumItem.php:289
 #, fuzzy
 msgid "Send photo as e_Card"
 msgstr "Atsiøsti man mano slaptaþodá"
 
-#: ../lib/albumItem.php:299
+#: ../lib/albumItem.php:301
 #, fuzzy, php-format
 msgid "%s actions"
 msgstr "dokumentacija"
 
-#: ../lib/albumItem.php:320
-msgid "delete comment"
+#: ../lib/albumItem.php:322
+#, fuzzy
+msgid "Delete comment"
 msgstr "iðtrinti komentarà"
 
-#: ../lib/albumItem.php:343
+#: ../lib/albumItem.php:345
 msgid "From:"
 msgstr "Nuo:"
 
-#: ../lib/albumItem.php:451
-#, fuzzy, php-format
+#: ../lib/albumItem.php:453
+#, php-format
 msgid "Generated caption. Type: %s"
-msgstr "redaguoti apraðymus"
+msgstr ""
 
-#: ../lib/albumItem.php:483
+#: ../lib/albumItem.php:485
 #, php-format
 msgid "Entering function: '%s'"
 msgstr ""
 
-#: ../lib/albumItem.php:485
+#: ../lib/albumItem.php:487
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Apdoroju %d nuotraukà..."
 
-#: ../lib/albumItem.php:489
+#: ../lib/albumItem.php:491
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "Apdoroju %s kaip vietiná katalogà."
 
-#: ../lib/albumItem.php:492
+#: ../lib/albumItem.php:494
 #, fuzzy, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Praleidþiu %s (ZIP palaikymas iðjungtas)"
 
-#: ../lib/albumItem.php:501
+#: ../lib/albumItem.php:503
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../lib/albumItem.php:519
+#: ../lib/albumItem.php:521
 msgid "No Metadata"
 msgstr ""
 
-#: ../lib/albumItem.php:523
+#: ../lib/albumItem.php:525
 msgid "Processing files in archive"
 msgstr ""
 
-#: ../lib/albumItem.php:529
+#: ../lib/albumItem.php:531
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../lib/albumItem.php:532
+#: ../lib/albumItem.php:534
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "Negaliu atidaryti katalogo: %s"
 
-#: ../lib/albumItem.php:576
+#: ../lib/albumItem.php:578
 #, fuzzy
 msgid "Start Processing single file (Image, not archive)"
-msgstr "Apdoroju %d nuotraukà..."
+msgstr "Apdoroju %s kaip vietiná katalogà."
 
-#: ../lib/albumItem.php:579
+#: ../lib/albumItem.php:581
 msgid "extension is accepted."
 msgstr ""
 
-#: ../lib/albumItem.php:581
+#: ../lib/albumItem.php:583
 #, fuzzy
 msgid "Filename processing."
 msgstr "Nuotraukø apdorojimas ir rodymas"
 
-#: ../lib/albumItem.php:630
+#: ../lib/albumItem.php:632
 msgid "No caption given, generating it."
 msgstr ""
 
-#: ../lib/albumItem.php:636
+#: ../lib/albumItem.php:638
 #, php-format
 msgid "Adding %s"
 msgstr "Pridedu %s"
 
-#: ../lib/albumItem.php:662
+#: ../lib/albumItem.php:664
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Reikia pagalbos? Paskaitykite %s%s DUK%s"
 
-#: ../lib/albumItem.php:668
+#: ../lib/albumItem.php:670
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Praleidþiu %s (%s formatas nepalaikomas)"
@@ -2347,7 +2365,7 @@ msgstr "Vartotojo vardas"
 #: ../lib/usage.php:86
 #, fuzzy
 msgid "Disk usage main album"
-msgstr "Nuotraukø perþiûra albumui"
+msgstr "Pridedam vandens þenklus á albumà."
 
 #: ../lib/usage.php:87
 #, fuzzy
@@ -2360,8 +2378,9 @@ msgid "Space used by users :: Sorted by %s"
 msgstr ""
 
 #: ../lib/usage.php:135
+#, fuzzy
 msgid "Disk usage"
-msgstr ""
+msgstr "Pirmas puslapis"
 
 #: ../login.php:82
 msgid "SUCCEEDED"
@@ -2412,9 +2431,8 @@ msgid "An email has been sent to the address stored for %s.  Follow the instruct
 msgstr "Vartotojui %s iðsiøstas laiðkas. Sekite instrukcijas laiðke. Jeigu laiðko negausite susisiekite su ðios Galerijos administratoriumi."
 
 #: ../login.php:137
-#, fuzzy
 msgid "Email could not be sent."
-msgstr "Laiðkas neiðsiøstas"
+msgstr ""
 
 #: ../login.php:139 ../login.php:148
 #, fuzzy, php-format
@@ -2424,7 +2442,7 @@ msgstr "Laiðkas neiðsiøstas. Keipkitës á %s administratorius"
 #: ../login.php:146
 #, fuzzy
 msgid "There is no valid email for this account."
-msgstr "Ðis vartotojas neturi teisingo el. paðto adreso. Keipkitës á %s administratorius"
+msgstr "Neþinoma klaida funkcijoje %s!"
 
 #: ../login.php:155
 #, fuzzy
@@ -2437,7 +2455,6 @@ msgid "Login to %s"
 msgstr "Prisijungimas prie %s"
 
 #: ../login.php:167 ../login.php:177 ../login.php:192
-#, fuzzy
 msgid "Login"
 msgstr "Prisijungimo vardas"
 
@@ -2569,7 +2586,7 @@ msgid "_Return to  %s"
 msgstr "Gráþti á %s"
 
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:261 ../view_album.php:585
+#: ../popups/upgrade_album.php:97 ../view_album.php:264 ../view_album.php:588
 #, php-format
 msgid "Album: %s"
 msgstr "Albumas: %s"
@@ -2579,16 +2596,19 @@ msgid "Results Breakdown"
 msgstr "Rezultatai"
 
 #: ../popups/add_comment.php:45
-msgid "Add Comment"
+#, fuzzy
+msgid "Add comment"
 msgstr "Komentaro raðymas"
 
 #: ../popups/add_comment.php:47
-msgid "Enter your comment for this picture in the text box below."
+#, fuzzy
+msgid "Enter your comment in the text box below."
 msgstr "Laukelyje apaèioje galite palikti komentarà apie nuotraukà."
 
-#: ../popups/add_photos.php:52 ../popups/add_photos_frame.php:36
-msgid "Add Photos"
-msgstr "Nuotraukø ádëjimas"
+#: ../popups/add_photos.php:52
+#, fuzzy
+msgid "Add items"
+msgstr "Pridëti failus"
 
 #: ../popups/add_photos.php:69
 msgid "Applet"
@@ -2607,9 +2627,12 @@ msgid "URL"
 msgstr "URL"
 
 #: ../popups/add_photos.php:78
-#, fuzzy
 msgid "From Local Server"
-msgstr "Naudokite ne vietiná SMTP serverá."
+msgstr ""
+
+#: ../popups/add_photos_frame.php:36
+msgid "Add Photos"
+msgstr "Nuotraukø ádëjimas"
 
 #: ../popups/administer_startpage.php:38
 #, fuzzy
@@ -2631,20 +2654,20 @@ msgstr ""
 
 #: ../popups/administer_startpage.php:52
 #, fuzzy
-msgid "By (physical) name"
+msgid "By (physical) name."
 msgstr "Pagal failo pavadinimà"
 
 #: ../popups/administer_startpage.php:53
-msgid "By last reset date"
+msgid "By last reset date."
 msgstr ""
 
 #: ../popups/administer_startpage.php:54
-msgid "By creation date (works only with albums created with 1.5.2 or newer)"
+msgid "By creation date (works only with albums created with 1.5.2 or newer)."
 msgstr ""
 
 #: ../popups/administer_startpage.php:57
 #, fuzzy
-msgid "Administer Startpage"
+msgid "Administer startpage"
 msgstr "Administratorius"
 
 #: ../popups/administer_startpage.php:79
@@ -2685,33 +2708,33 @@ msgstr "Pridëti failus"
 
 #: ../popups/album_permissions.php:124
 #, fuzzy
-msgid "Users / Groups that can add photos."
+msgid "Users / Groups that can add items."
 msgstr "Vartotojai, kurie gali ádëti nuotraukas."
 
 #: ../popups/album_permissions.php:129
 #, fuzzy
 msgid "_Delete items"
-msgstr "Iðtrinti %s"
+msgstr "Iðtrinti vartotojà"
 
 #: ../popups/album_permissions.php:130
 #, fuzzy
-msgid "Users / Groups that can delete photos."
+msgid "Users / Groups that can delete items."
 msgstr "Vartotojai, kurie gali trinti nuotraukas."
 
 #: ../popups/album_permissions.php:135
 #, fuzzy
 msgid "_Modify items"
-msgstr "Redaguoti"
+msgstr "Vartotojo redagavimas"
 
 #: ../popups/album_permissions.php:136
 #, fuzzy
-msgid "Users / Groups that can modify photos."
+msgid "Users / Groups that can modify items."
 msgstr "Vartotojai, kurie gali redaguoti nuotraukas."
 
 #: ../popups/album_permissions.php:141
 #, fuzzy
 msgid "Create _Subalbums"
-msgstr "Sukurti naujà albumà"
+msgstr "pervadinti albumà"
 
 #: ../popups/album_permissions.php:142
 #, fuzzy
@@ -2723,8 +2746,9 @@ msgid "Zip_download"
 msgstr ""
 
 #: ../popups/album_permissions.php:148
+#, fuzzy
 msgid "Users / Groups that can to download album (with subalbums) as archive."
-msgstr ""
+msgstr "Vartotojai, kurie gali kurti gilesnius albumus."
 
 #: ../popups/album_permissions.php:154
 #, fuzzy
@@ -2783,8 +2807,8 @@ msgid "Album Permissions"
 msgstr "Teisës á albumà"
 
 #: ../popups/album_permissions.php:230
-#, php-format
-msgid "Changing permissions for %s"
+#, fuzzy, php-format
+msgid "Changing permissions for: %s"
 msgstr "Teisiø keitimas albumui %s"
 
 #: ../popups/album_permissions.php:253
@@ -2924,8 +2948,7 @@ msgstr "Vartotojo kûrimas"
 msgid "Back to usermanagement"
 msgstr ""
 
-#: ../popups/delete_album.php:46 ../popups/delete_photo.php:87
-#: ../tools/validate_albums.php:49
+#: ../popups/delete_album.php:46 ../tools/validate_albums.php:49
 msgid "Delete Album"
 msgstr "Albumo trynimas"
 
@@ -2941,15 +2964,23 @@ msgstr "Atðaukti"
 msgid "no album specified"
 msgstr "nenudorytas albumas"
 
-#: ../popups/delete_photo.php:87 ../tools/validate_albums.php:52
-msgid "Delete Photo"
-msgstr "Nuotraukos trynimas"
+#: ../popups/delete_photo.php:87
+#, fuzzy
+msgid "Delete album"
+msgstr "Albumo trynimas"
+
+#: ../popups/delete_photo.php:87
+#, fuzzy
+msgid "Delete item"
+msgstr "Iðtrinti vartotojà"
 
 #: ../popups/delete_photo.php:114
-msgid "Do you really want to delete this photo?"
-msgstr "Ar tikrai norite iðtrinti ðià nuotraukà?"
+#, fuzzy
+msgid "Do you really want to delete this item?"
+msgstr "A tikrai norite iðtrinti ðá albumà?"
 
 #: ../popups/delete_user.php:44
+#, fuzzy
 msgid "Delete User"
 msgstr "Iðtrinti vartotojà"
 
@@ -3002,11 +3033,12 @@ msgstr ""
 
 #: ../popups/do_command.php:54
 #, fuzzy
-msgid "Rebuilding Thumbnails"
+msgid "Rebuilding thumbnails"
 msgstr "Pergeneruoju %d nuotraukø..."
 
 #: ../popups/do_command.php:56
-msgid "Performing Operation.."
+#, fuzzy
+msgid "Performing operation..."
 msgstr "Atliekamos operacijos.."
 
 #: ../popups/do_command.php:68
@@ -3116,7 +3148,7 @@ msgid "Some input fields are not correctly filled out. Please fill out."
 msgstr ""
 
 #: ../popups/ecard_form.php:71
-msgid "The sender or recepient email adress is not valid."
+msgid "The sender or recipient email adress is not valid."
 msgstr ""
 
 #: ../popups/ecard_form.php:81
@@ -3132,7 +3164,7 @@ msgid "Error: to send an eCard you need to fill out all fields."
 msgstr ""
 
 #: ../popups/ecard_form.php:127
-msgid "Please fill this fields:"
+msgid "Please fill these fields:"
 msgstr ""
 
 #: ../popups/ecard_form.php:131
@@ -3149,131 +3181,131 @@ msgstr "Þinutë"
 msgid "- Recipient's Name"
 msgstr ""
 
-#: ../popups/ecard_form.php:150
+#: ../popups/ecard_form.php:149
 msgid "- Recipient's Email"
 msgstr ""
 
-#: ../popups/ecard_form.php:155
+#: ../popups/ecard_form.php:154
 #, fuzzy
 msgid "- Your Message"
 msgstr "Þinutë"
 
-#: ../popups/ecard_form.php:159
+#: ../popups/ecard_form.php:158
 #, php-format
 msgid "Please fill all fields. Then click '%s' again."
 msgstr ""
 
-#: ../popups/ecard_form.php:173
+#: ../popups/ecard_form.php:172
 #, php-format
-msgid "You have entered more than %d characters"
+msgid "You have entered more than %d characters!"
 msgstr ""
 
-#: ../popups/ecard_form.php:216
+#: ../popups/ecard_form.php:215
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr ""
 
-#: ../popups/ecard_form.php:220
+#: ../popups/ecard_form.php:219
 msgid "Your info"
 msgstr ""
 
-#: ../popups/ecard_form.php:222
+#: ../popups/ecard_form.php:221
 msgid "Recipient's info"
 msgstr ""
 
-#: ../popups/ecard_form.php:225 ../popups/ecard_form.php:227
+#: ../popups/ecard_form.php:224 ../popups/ecard_form.php:226
 msgid "Name"
 msgstr "Pavadinimas"
 
-#: ../popups/ecard_form.php:231 ../popups/ecard_form.php:233
+#: ../popups/ecard_form.php:230 ../popups/ecard_form.php:232
 #, fuzzy
 msgid "E-Mail"
 msgstr "E-paðtas"
 
-#: ../popups/ecard_form.php:239
+#: ../popups/ecard_form.php:238
 msgid "Choose a Stamp"
 msgstr ""
 
-#: ../popups/ecard_form.php:244
+#: ../popups/ecard_form.php:243
 #, php-format
 msgid "Stamp #%d"
 msgstr ""
 
-#: ../popups/ecard_form.php:254
+#: ../popups/ecard_form.php:253
 msgid "Subject:"
 msgstr ""
 
-#: ../popups/ecard_form.php:258
+#: ../popups/ecard_form.php:257
 #, fuzzy
 msgid "Your Message:"
 msgstr "Þinutë:"
 
-#: ../popups/ecard_form.php:287
+#: ../popups/ecard_form.php:286
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr ""
 
-#: ../popups/ecard_form.php:291
+#: ../popups/ecard_form.php:290
 #, fuzzy
 msgid "Close this window"
 msgstr "Uþdaryti langà"
 
-#: ../popups/edit_appearance.php:58
+#: ../popups/edit_appearance.php:62
 #, fuzzy, php-format
 msgid "Problem with input of field '%s'. %s"
 msgstr "Vartotojas %s negavo laiðko"
 
-#: ../popups/edit_appearance.php:123
+#: ../popups/edit_appearance.php:130
 #, fuzzy, php-format
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr "Dëmesio: jûs pakeitëte balsuotojus ið %s á %s. Patartina balsavimà pradëti ið naujo."
 
-#: ../popups/edit_appearance.php:124
+#: ../popups/edit_appearance.php:131
 msgid "Everybody"
 msgstr "Visiems"
 
-#: ../popups/edit_appearance.php:125
+#: ../popups/edit_appearance.php:132
 msgid "Logged in"
 msgstr "Prisijungti"
 
-#: ../popups/edit_appearance.php:153
+#: ../popups/edit_appearance.php:161
 msgid "untitled field"
 msgstr "nepavadintas laukas"
 
-#: ../popups/edit_appearance.php:189
+#: ../popups/edit_appearance.php:198
 msgid "Title"
 msgstr "Pavadinimas"
 
-#: ../popups/edit_appearance.php:190
+#: ../popups/edit_appearance.php:199
 #, fuzzy
-msgid "Alt Text / tooltip"
+msgid "Alt text / Tooltip"
 msgstr "Alt Text / onMouseOver"
 
-#: ../popups/edit_appearance.php:220
+#: ../popups/edit_appearance.php:232
 #, fuzzy, php-format
 msgid "Field %s:"
 msgstr "Laukas"
 
-#: ../popups/edit_appearance.php:237 ../popups/edit_appearance.php:244
+#: ../popups/edit_appearance.php:248 ../popups/edit_appearance.php:255
 msgid "Album Properties"
 msgstr "Albumo nustatymai"
 
-#: ../popups/edit_appearance.php:304
+#: ../popups/edit_appearance.php:316
 #, fuzzy
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Pritaikyti pakeitimus gilesniems albumams (iðskyrus albumo pavadinimà)."
 
-#: ../popups/edit_appearance.php:307
+#: ../popups/edit_appearance.php:319
 #, fuzzy
 msgid "_Apply"
 msgstr "Patvirtinti"
 
-#: ../popups/edit_appearance.php:308
+#: ../popups/edit_appearance.php:320
 #, fuzzy
 msgid "_Undo"
 msgstr "Atðaukti"
 
-#: ../popups/edit_appearance.php:309 ../popups/rebuild_thumbs.php:41
+#: ../popups/edit_appearance.php:321 ../popups/rebuild_thumbs.php:41
 #: ../popups/rebuild_thumbs.php:59 ../popups/rebuild_capture_dates.php:41
 #: ../popups/rebuild_capture_dates.php:59 ../popups/recreate_captions.php:71
 #: ../popups/rotate_photo.php:127 ../popups/watermark_album.php:73
@@ -3293,7 +3325,7 @@ msgstr "Galerija nesukonfigûruota!"
 
 #: ../popups/edit_caption.php:97
 #, fuzzy
-msgid "Year must be between 1969 and 2070"
+msgid "Year must be between 1969 and 2070."
 msgstr "Metai turi bûti tarp 1000 ir 3000"
 
 #: ../popups/edit_caption.php:103
@@ -3322,7 +3354,7 @@ msgstr "Raktiniai þodþiai"
 #: ../popups/edit_caption.php:149
 #, fuzzy
 msgid "Custom fields"
-msgstr "Papildomi laukai"
+msgstr "Nustatyti kitus laukus"
 
 #: ../popups/edit_caption.php:191
 msgid "Photo Capture Date"
@@ -3439,7 +3471,7 @@ msgstr "Taip"
 #: ../popups/manage_users.php:95
 #, fuzzy
 msgid "no"
-msgstr "Snow"
+msgstr "Atðaukti"
 
 #: ../popups/manage_users.php:100
 #, fuzzy
@@ -3452,8 +3484,9 @@ msgid "Email"
 msgstr "E-paðtas"
 
 #: ../popups/manage_users.php:104
+#, fuzzy
 msgid "Admin"
-msgstr ""
+msgstr "administratoriaus puslapis"
 
 #: ../popups/manage_users.php:106
 #, fuzzy
@@ -3532,7 +3565,7 @@ msgstr "Vartotojo kûrimas"
 #: ../popups/modify_group.php:134
 #, fuzzy
 msgid "Available user"
-msgstr "Esamos kalbos"
+msgstr "tvarkyti vartotojus"
 
 #: ../popups/modify_group.php:139
 msgid "<-- Add"
@@ -3656,12 +3689,14 @@ msgid "Move the album to different position in your gallery:"
 msgstr ""
 
 #: ../popups/move_photo.php:305
+#, fuzzy
 msgid "Move a range of photos to a new album:"
-msgstr "Perkelkite keletà nuotraukø á kità albumà:"
+msgstr "Nukopijuoti keletà nuotraukø á kità albumà:"
 
 #: ../popups/move_photo.php:307
+#, fuzzy
 msgid "To move just one photo, make First and Last the same."
-msgstr "Norëdami perkelti vienà nuotraukà 'Pirma' ir 'Paskutinë' reikðmes pasirinkite vienodas."
+msgstr "Norëdami kopijuoti vienà nuotraukà 'Pirma' ir 'Paskutinë' reikðmes pasirinkite vienodas."
 
 #: ../popups/move_photo.php:363
 msgid "Note: items that have votes will lose these votes when moved to another album"
@@ -3723,9 +3758,9 @@ msgstr "%s pridëtas, %s praleistas"
 #, php-format
 msgid "1 user"
 msgid_plural "%d users"
-msgstr[0] "1 vartotojas"
-msgstr[1] "%d vartotojai"
-msgstr[2] "%d vartotojø"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: ../popups/multi_create_user.php:156
 msgid "Create multiple new users from a file."
@@ -3789,7 +3824,7 @@ msgstr "Ðis puslapis iðnyks automatiðkai, kai tik ádëjimas bus baigtas. Palaukit
 #: ../popups/rearrange.php:51
 #, fuzzy, php-format
 msgid "Rearrange items in album: %s"
-msgstr "Keièiu %s"
+msgstr "%d atsitiktiniai paveikslëliai albumui :: %s"
 
 #: ../popups/rearrange.php:114
 #, fuzzy, php-format
@@ -3859,7 +3894,7 @@ msgstr "Rûðiuoti"
 #: ../popups/rebuild_capture_dates.php:35
 #, fuzzy, php-format
 msgid "Rebuilding capture dates: %s"
-msgstr "Pergeneruoju %d nuotraukø..."
+msgstr "Nuotraukos padarymo data"
 
 #: ../popups/rebuild_capture_dates.php:44
 msgid "Here you can rebuild all capture dates of your photos."
@@ -3901,7 +3936,7 @@ msgstr "A tikrai norite iðtrinti ðá albumà?"
 #: ../popups/recreate_captions.php:70
 #, fuzzy
 msgid "_Start over"
-msgstr "Pradëti ið pradþiø"
+msgstr "Rûðiuoti"
 
 #: ../popups/register.php:37
 #, fuzzy
@@ -3950,6 +3985,10 @@ msgstr "Visa jûsø prisijungimo informacija bus iðsiøsta el. paðto adresu, kurá á
 #, fuzzy
 msgid "_Send request"
 msgstr "Naujo slaptaþodio praðymas"
+
+#: ../popups/rename_album.php:35
+msgid "Rename Album"
+msgstr "Pervadinti albumà"
 
 #: ../popups/rename_album.php:87
 msgid "There is already an album with that name!"
@@ -4014,7 +4053,7 @@ msgstr "Operacija pakeis vidutinio dydþio nuotraukø dydþius taip, kad ilgiausia 
 #: ../popups/resize_photo.php:89
 #, fuzzy
 msgid "Resizing"
-msgstr "Pakeistas dydis"
+msgstr "Keièiu %s"
 
 #: ../popups/resize_photo.php:91
 msgid "Which version of your image do you want to resize?"
@@ -4024,7 +4063,7 @@ msgstr ""
 msgid "intermediate"
 msgstr ""
 
-#: ../popups/resize_photo.php:95 ../view_photo.php:352
+#: ../popups/resize_photo.php:95 ../view_photo.php:354
 msgid "full"
 msgstr "originalas"
 
@@ -4146,9 +4185,8 @@ msgid "Unable to find %s locally - trying %s."
 msgstr ""
 
 #: ../popups/save_photos.php:165
-#, fuzzy
 msgid "local file"
-msgstr "Iðsaugoti faile"
+msgstr ""
 
 #: ../popups/save_photos.php:191
 #, php-format
@@ -4281,14 +4319,13 @@ msgid "Album Progress:"
 msgstr "Albumo nustatymai"
 
 #: ../popups/upgrade_album.php:88
-#, fuzzy
 msgid "Statusbox"
-msgstr "Bûklës kodas"
+msgstr ""
 
 #: ../popups/upgrade_album.php:89
 #, fuzzy
 msgid "Please ensure there are no errors."
-msgstr "Praðome ásitikinti kad %s yra naujausios versijos."
+msgstr "Praðome ávesti vartotojo vardà ir slaptaþodá."
 
 #: ../popups/upgrade_album.php:113
 msgid "Upgrade Albums"
@@ -4329,6 +4366,7 @@ msgid "upgrade them all at once"
 msgstr "atnaujinti visus kartu"
 
 #: ../popups/upgrade_album.php:161
+#, fuzzy
 msgid "Empty"
 msgstr "Tuðèia"
 
@@ -4336,9 +4374,9 @@ msgstr "Tuðèia"
 #, fuzzy, php-format
 msgid "One item"
 msgid_plural "%s items"
-msgstr[0] "1 elementas"
-msgstr[1] "%d elementai"
-msgstr[2] "%d elementø"
+msgstr[0] "elementai(-ø)"
+msgstr[1] "elementai(-ø)"
+msgstr[2] "elementai(-ø)"
 
 #: ../popups/upgrade_album.php:168
 msgid "upgrade"
@@ -4355,6 +4393,7 @@ msgid "You are not allowed to change your username."
 msgstr "Jums neleista atlikti ðá veiksmà.."
 
 #: ../popups/user_preferences.php:60
+#, fuzzy
 msgid "Incorrect password"
 msgstr "Slaptaþodis neteisingas"
 
@@ -4378,6 +4417,11 @@ msgstr "Jeigu norite pakeisti slaptaþodá, turi ávesti senàjá. Naujà slaptaþodá r
 #: ../popups/user_preferences.php:137
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Vartotojo vardà galite pasikeisti á bet kokià raidþiø arba skaièiø kombinacijà."
+
+#: ../popups/view_photo_properties.php:31
+#: ../templates/overall.header.tpl.default:80
+msgid "Security violation"
+msgstr "Saugumo paþeidimas"
 
 #: ../popups/view_photo_properties.php:35
 msgid "Photo Properties"
@@ -4418,8 +4462,9 @@ msgid "Please enter username and password."
 msgstr "Praðome ávesti vartotojo vardà ir slaptaþodá."
 
 #: ../publish_xp.php:127 ../publish_xp.php:196
+#, fuzzy
 msgid "Select Album"
-msgstr "Pasirinkite albumà"
+msgstr "Albumo trynimas"
 
 #: ../publish_xp.php:128
 msgid "Select the Album to which to Publish"
@@ -4560,6 +4605,10 @@ msgstr "Paspauskite and jos ir sekite instrukcijas ekrane, prisijunkite prie gal
 msgid "Return to Add Photos"
 msgstr "Gráþti á nuotraukø ádëjimà"
 
+#: ../rss.php:260
+msgid "no albums"
+msgstr "albumø nëra"
+
 #: ../rss.php:261
 #, fuzzy
 msgid "no photos"
@@ -4582,99 +4631,105 @@ msgstr "Nenustatymas %s."
 msgid "Search"
 msgstr "Ieðkoti"
 
-#: ../search.php:147
+#: ../search.php:148
 #, fuzzy
 msgid "Caption: "
 msgstr "Apraðymas:"
 
-#: ../search.php:170
+#: ../search.php:171
 msgid "Matching Comments"
 msgstr "Uþklausà atitinkantys komentarai"
 
-#: ../search.php:202
+#: ../search.php:203
 msgid "From Album"
 msgstr "Ið albumo"
 
-#: ../search.php:209
+#: ../search.php:210
 msgid "KEYWORDS"
 msgstr "RAKTINIAI ÞODÞIAI"
 
-#: ../search.php:227
+#: ../search.php:228
 #, php-format
 msgid "Albums containing %s"
 msgstr "Albumai tenkinantys uþklausà %s"
 
-#: ../search.php:228
+#: ../search.php:229
 msgid "No Album Matches"
 msgstr "Albumø, tenkinanèiø ðià uþklausà, nëra"
 
-#: ../search.php:231
+#: ../search.php:232
 #, fuzzy, php-format
 msgid "Photos containing %s in caption, comment or name."
 msgstr "Nuotraukos tenkinanèios uþklausà %s"
 
-#: ../search.php:232
+#: ../search.php:233
 msgid "No Photo Matches"
 msgstr "Nuotraukø, tenkinanèiø ðià uþklausà, nëra"
 
-#: ../search.php:252
+#: ../search.php:253
 #, fuzzy, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
 msgstr "Negaliu ieðkoti kai kuriuose albumuose, nes jie yra prieð tai turi bûti atnaujinti naujesnia %s versija"
 
-#: ../search.php:255
+#: ../search.php:256
 #, fuzzy
 msgid "Upgrade all albums."
 msgstr "atnaujinti visus albumus"
 
-#: ../search.php:272
+#: ../search.php:273
 #, fuzzy
 msgid "Search the Gallery's Album and Photo titles, descriptions and comments."
 msgstr "Galite ieðkoti algumo arba nuotraukø pavadinimuose, bei apraðymuose ir komentaruose"
 
-#: ../slideshow.php:85
-msgid "play"
+#: ../slideshow.php:87
+#, fuzzy
+msgid "Play"
 msgstr "pradëti"
 
-#: ../slideshow.php:86
-msgid "stop"
+#: ../slideshow.php:88
+#, fuzzy
+msgid "Stop"
 msgstr "sustabdyti"
 
-#: ../slideshow.php:87
-msgid "normal size"
+#: ../slideshow.php:89
+#, fuzzy
+msgid "Normal size"
 msgstr "vidutinis dydis"
 
-#: ../slideshow.php:88
-msgid "full size"
+#: ../slideshow.php:90
+#, fuzzy
+msgid "Full size"
 msgstr "originalus dydis"
 
-#: ../slideshow.php:89
-msgid "forward direction"
+#: ../slideshow.php:91
+#, fuzzy
+msgid "Forward direction"
 msgstr "pirmyn"
 
-#: ../slideshow.php:90
-msgid "reverse direction"
+#: ../slideshow.php:92
+#, fuzzy
+msgid "Reverse direction"
 msgstr "atgal"
 
-#: ../slideshow.php:91
+#: ../slideshow.php:93
 #, fuzzy
 msgid "Delay"
 msgstr "Rodyti:"
 
-#: ../slideshow.php:92
+#: ../slideshow.php:94
 #, fuzzy
 msgid "Loop:"
 msgstr "Kartoti"
 
-#: ../slideshow.php:100
+#: ../slideshow.php:102
 msgid "Fullscreen applet"
 msgstr "Pilnaekranë aplikacija"
 
-#: ../slideshow.php:103
+#: ../slideshow.php:105
 msgid "Modern browsers"
 msgstr "Ðiuolaikinës narðyklës"
 
-#: ../slideshow.php:106
+#: ../slideshow.php:108
 msgid "Compatible but limited"
 msgstr "Suderinamas bet apribotas"
 
@@ -4869,12 +4924,12 @@ msgstr ""
 
 #: ../stats.php:586
 #, fuzzy, php-format
-msgid "%d images with comments in album: %s"
+msgid "%d items with comments in album: %s."
 msgstr "%d atsitiktiniai paveikslëliai albumui :: %s"
 
 #: ../stats.php:589
 #, fuzzy, php-format
-msgid "%d images in album: %s"
+msgid "%d items in album: %s"
 msgstr "%d atsitiktiniai paveikslëliai albumui :: %s"
 
 #: ../stats.php:593
@@ -4884,21 +4939,27 @@ msgstr ""
 
 #: ../stats.php:598
 #, fuzzy, php-format
-msgid "%d images with comments in this Gallery"
+msgid "%d items with comments in this Gallery."
 msgstr "Neþinoma klaida funkcijoje %s!"
 
 #: ../stats.php:601
 #, fuzzy, php-format
-msgid "%d images this Gallery"
+msgid "%d items this Gallery."
 msgstr "Áeiti á Galerijà"
 
 #: ../stats.php:610
 msgid "Back to stats-_wizard"
 msgstr ""
 
+#: ../stats.php:614 ../tools/validate_albums.php:96
+#: ../tools/validate_albums.php:124
+#, fuzzy
+msgid "Return to _gallery"
+msgstr "Gráþti á Galerijà"
+
 #: ../stats.php:646
 #, php-format
-msgid "Data load time %d seconds"
+msgid "Data load time %d seconds."
 msgstr ""
 
 #: ../stats.php:717
@@ -4926,7 +4987,7 @@ msgid "upgrade all albums"
 msgstr "atnaujinti visus albumus"
 
 #: ../templates/album.tpl.default:130 ../templates/album.tpl.default:195
-#: ../view_album.php:321
+#: ../view_album.php:324
 msgid "Vote"
 msgstr "Balsai"
 
@@ -4952,34 +5013,33 @@ msgstr "Atlikti kiti pakeitimai"
 msgid "Apply settings (both) recursive for subalbums."
 msgstr ""
 
-#: ../templates/commentbox.tpl.default:27
+#: ../templates/commentbox.tpl.default:30
 msgid "view comments for this nested album"
 msgstr "perþiûrëti ðio albumo komentarus"
 
-#: ../templates/commentbox.tpl.default:31
+#: ../templates/commentbox.tpl.default:34
 msgid "Album contains no comments"
 msgstr "Albumas neturi komentarø"
 
-#: ../templates/commentbox.tpl.default:63
+#: ../templates/commentbox.tpl.default:66
 #, fuzzy, php-format
 msgid "From: %s"
 msgstr "Nuo:"
 
-#: ../templates/commentbox.tpl.default:79
+#: ../templates/commentbox.tpl.default:83
 #, fuzzy
 msgid "_Add comment"
 msgstr "Komentaro raðymas"
 
-#: ../templates/commentbox.tpl.default:81
+#: ../templates/commentbox.tpl.default:86
 #, fuzzy
 msgid "_Delete marked comments"
 msgstr "iðtrinti komentarà"
 
 #: ../templates/classic/gallery.tpl.default:132
 #: ../templates/matrix/gallery.tpl.default:109
-#, fuzzy
 msgid "No admin commands available."
-msgstr "Elektroninio paðto adresas, kuriuo administratoriui bus siunèiami praneðimai apie komentarus"
+msgstr ""
 
 #: ../templates/info_donation-block.tpl.default:18
 #, fuzzy
@@ -5010,9 +5070,8 @@ msgid "You are currently logged in as %s."
 msgstr ""
 
 #: ../tools/find_orphans.php:71 ../usage.php:56
-#, fuzzy
 msgid "You must be logged in as an administrator to see the usage."
-msgstr "Privalote prisijungti kaip administratorius, jei norite paredaguoti ðio serverio konfigûracijà."
+msgstr ""
 
 #: ../tools/find_orphans.php:92
 #, fuzzy, php-format
@@ -5091,6 +5150,10 @@ msgstr ""
 msgid "Reload"
 msgstr "Rûðiuoti %s"
 
+#: ../tools/validate_albums.php:52
+msgid "Delete Photo"
+msgstr "Nuotraukos trynimas"
+
 #: ../tools/validate_albums.php:56
 #, fuzzy
 msgid "Validate Albums"
@@ -5110,11 +5173,6 @@ msgstr "Keisti dar kartà?"
 #, fuzzy
 msgid "Return to _admin page"
 msgstr "gráþti á albumà"
-
-#: ../tools/validate_albums.php:96 ../tools/validate_albums.php:124
-#, fuzzy
-msgid "Return to _gallery"
-msgstr "Gráþti á Galerijà"
 
 #: ../tools/validate_albums.php:100
 msgid "Are you sure you want to delete the folder below and all of its content ?"
@@ -5408,7 +5466,7 @@ msgstr ""
 #: ../usage.php:98
 #, fuzzy
 msgid "ordered:"
-msgstr "Surûðiuota"
+msgstr "Rûðiuoti %s"
 
 #: ../usage.php:100
 #, fuzzy
@@ -5478,7 +5536,7 @@ msgstr ""
 
 #: ../util.php:221
 #, fuzzy
-msgid "The file does not exist ?!"
+msgid "The file does not exist?!"
 msgstr "%s byla neegzistuoja ?!"
 
 #: ../util.php:228
@@ -5519,9 +5577,9 @@ msgid "Can't read %s."
 msgstr "Negaliu skaityti %s."
 
 #: ../util.php:588
-#, fuzzy, php-format
+#, php-format
 msgid "Getting Exif from: %s"
-msgstr "Testinis laiðkas nuo %s"
+msgstr ""
 
 #: ../util.php:692
 msgid "Got no capture date. Using file modification time."
@@ -5529,7 +5587,7 @@ msgstr ""
 
 #: ../util.php:696
 #, fuzzy, php-format
-msgid "Item Capture Date : %s"
+msgid "Item Capture Date: %s"
 msgstr "Nuotraukos padarymo data"
 
 #: ../util.php:743
@@ -5557,76 +5615,71 @@ msgid "No Support for creating Zips"
 msgstr ""
 
 #: ../util.php:953
-#, fuzzy, php-format
-msgid "Creating Zip file with %s"
-msgstr "Vykdau:"
+#, php-format
+msgid "Creating Zipfile with %s"
+msgstr ""
 
 #: ../util.php:967
 #, php-format
-msgid "Your temp folder is not writeable! Please check permissions of this dir: %s"
+msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1111
+#: ../util.php:1136
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Negaliu atidaryti log failo: %s"
 
-#: ../util.php:1228
+#: ../util.php:1261
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1244
+#: ../util.php:1279
 #, fuzzy
 msgid "csv result:"
 msgstr "Balsavimo rezultatai:"
 
-#: ../util.php:1423
+#: ../util.php:1458
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr ""
 
-#: ../util.php:1513
+#: ../util.php:1550
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr ""
 
-#: ../util.php:1615
+#: ../util.php:1652
 #, php-format
-msgid "Gallery was unable to create a temporary subfolder in your temp folder. Please check permissions of this dir: %s"
+msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1640
+#: ../util.php:1677
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1648
+#: ../util.php:1685
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1653
-msgid "We are trying to download the tempdir itself ?! Download aborted."
+#: ../util.php:1690
+msgid "We are trying to download the tempdir itself?! Download aborted."
 msgstr ""
 
-#: ../util.php:1788
+#: ../util.php:1825
 #, fuzzy, php-format
 msgid "Debug ON ! Level %s"
 msgstr "Detalus klaidø reþimas"
 
 #: ../view_album.php:147
-#, fuzzy
-msgid "No albums"
-msgstr "albumø nëra"
-
-#: ../view_album.php:147
-#, php-format
+#, fuzzy, php-format
 msgid "1 sub-album"
 msgid_plural "%d sub-albums"
-msgstr[0] "1 vidinis albumas"
-msgstr[1] "%d vidiniai albumai"
-msgstr[2] "%d vidiniø albumø"
+msgstr[0] "Albumø nëra"
+msgstr[1] "Albumø nëra"
+msgstr[2] "Albumø nëra"
 
 #: ../view_album.php:148
 #, fuzzy
@@ -5634,7 +5687,6 @@ msgid "No images"
 msgstr "0 nuotraukø"
 
 #: ../view_album.php:149
-#, fuzzy
 msgid "0 pages"
 msgstr "0 puslapiø"
 
@@ -5666,35 +5718,36 @@ msgstr[0] "%s paslëpta"
 msgstr[1] "%s paslëpta"
 msgstr[2] "%s paslëpta"
 
-#: ../view_album.php:208
+#: ../view_album.php:211
 #, fuzzy
-msgid "view&nbsp;_comments"
+msgid "View&nbsp;_comments"
 msgstr "þiûrëti&nbsp;komentarus"
 
-#: ../view_album.php:245
+#: ../view_album.php:248
 #, fuzzy
 msgid "Your votes are:"
 msgstr "Þinutë:"
 
-#: ../view_album.php:292
+#: ../view_album.php:295
+#, fuzzy
 msgid "See full poll results"
 msgstr "Balsavimo rezultatai"
 
-#: ../view_album.php:311
+#: ../view_album.php:314
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:317
+#: ../view_album.php:320
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "Norëdami balsuoti uþ nuotraukas paspauskite ant %s."
 
-#: ../view_album.php:320
+#: ../view_album.php:323
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Norëdami kad jûsø balsas bûtø uþregistruotas PRIVALOTE paspausti ant %s."
 
-#: ../view_album.php:327
+#: ../view_album.php:330
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
@@ -5702,36 +5755,36 @@ msgstr[0] "Ið viso turite %s ir, jeigu norite, galite juos pakeisti."
 msgstr[1] "Ið viso turite %s ir, jeigu norite, galite juos pakeisti."
 msgstr[2] "Ið viso turite %s ir, jeigu norite, galite juos pakeisti."
 
-#: ../view_album.php:332
+#: ../view_album.php:335
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Jeigu norite, galite pakeisti savo pasirinkimà."
 
-#: ../view_album.php:478 ../view_album.php:479
+#: ../view_album.php:481 ../view_album.php:482
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:492 ../view_album.php:515
+#: ../view_album.php:495 ../view_album.php:518
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
-#: ../view_album.php:567
+#: ../view_album.php:570
 #, fuzzy
 msgid "highlight"
 msgstr "Titulinës nuotraukos nëra"
 
-#: ../view_album.php:595
+#: ../view_album.php:598
 msgid "No description"
 msgstr "Apibûdinimo nëra"
 
-#: ../view_album.php:603
+#: ../view_album.php:606
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Paskutiná kartà keistas %s."
 
-#: ../view_album.php:606
+#: ../view_album.php:609
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
@@ -5739,7 +5792,7 @@ msgstr[0] "Yra: "
 msgstr[1] "Yra: "
 msgstr[2] "Yra: "
 
-#: ../view_album.php:623
+#: ../view_album.php:626
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
@@ -5747,17 +5800,17 @@ msgstr[0] "Þiûrëta:"
 msgstr[1] "Þiûrëta:"
 msgstr[2] "Þiûrëta:"
 
-#: ../view_album.php:650
+#: ../view_album.php:653
 #, fuzzy
 msgid "Description for"
 msgstr "Apraðymas"
 
-#: ../view_album.php:651
+#: ../view_album.php:654
 #, fuzzy
 msgid "... show full description"
 msgstr "Apibûdinimo nëra"
 
-#: ../view_album.php:662
+#: ../view_album.php:665
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
@@ -5765,103 +5818,402 @@ msgstr[0] "Þiûrëta:"
 msgstr[1] "Þiûrëta:"
 msgstr[2] "Þiûrëta:"
 
-#: ../view_album.php:744
+#: ../view_album.php:747
 msgid "Hey! Add some photos."
 msgstr "Ei! Ádëkite keletà nuotraukø."
 
-#: ../view_comments.php:106
+#: ../view_comments.php:110
 #, php-format
 msgid "Deleting comment %d from item with index: %d"
 msgstr "Trinamas komentaras %d ið elemto, kurio indeksas: %d"
 
-#: ../view_comments.php:120
+#: ../view_comments.php:127
 msgid "Comments for this Album"
 msgstr "Komentarai ðiame albume"
 
-#: ../view_comments.php:121
+#: ../view_comments.php:128
 #, fuzzy
 msgid "return to _album"
 msgstr "gráþti á albumà"
 
-#: ../view_comments.php:130
+#: ../view_comments.php:137
 msgid "Sorry.  This album does not allow comments."
 msgstr "Atsipraðome. Ðiame albume negalite palikti komentarø."
 
-#: ../view_photo.php:295
+#: ../view_photo.php:297
 #, fuzzy
 msgid "Send photo to..."
 msgstr "Keièiu 1 nuotraukos dydá..."
 
-#: ../view_photo.php:298
+#: ../view_photo.php:300
 #, fuzzy
 msgid "Print photo with..."
 msgstr "Keièiu 1 nuotraukos dydá..."
 
-#: ../view_photo.php:335
+#: ../view_photo.php:337
 #, fuzzy, php-format
 msgid "process this photo with %s"
 msgstr "spausdinti ðià nuotraukà %s servise"
 
-#: ../view_photo.php:350
+#: ../view_photo.php:352
 #, fuzzy
 msgid "View Images:"
 msgstr "Þiûrëti nuotraukas"
 
-#: ../view_photo.php:351
+#: ../view_photo.php:353
 msgid "normal"
 msgstr "vidutinë"
 
-#: ../view_photo.php:519
+#: ../view_photo.php:521
 #, fuzzy
 msgid "Email me when comments are added"
 msgstr "Atsiras naujø komentarø"
 
+#~ msgid "Name and comment are both required to save a new comment!"
+#~ msgstr "Neáraðëte vardo arba komentaro!"
+
 #, fuzzy
-#~ msgid "Processing element %d..."
-#~ msgstr "Apdoroju %d nuotraukà..."
+#~ msgid "Your comment is too long, the admin set maximum length to %d chars."
+#~ msgstr "Jûsø komentaras per ilgas, administratorius nustatë maksimalø %d simboliø ilgá."
 
-#~ msgid "<i>Note:</i> this feature is still experimental!"
-#~ msgstr "<i>Dëmesio:</i>ði galimybë vis dar bandoma!"
+#, fuzzy
+#~ msgid "Your comment contains forbidden words. It will not be added."
+#~ msgstr "Jûsø komentaras turi uþdraustà(-us) þodá(-þius). Komentaras nebus pridëtas."
 
-#~ msgid "delete album"
-#~ msgstr "iðtrinti albumà"
+#~ msgid "Add Comment"
+#~ msgstr "Komentaro raðymas"
 
-#~ msgid "move album"
+#, fuzzy
+#~ msgid "Logout"
+#~ msgstr "atsijungti"
+
+#~ msgid "upgrade those albums"
+#~ msgstr "atnaujinkit ðiuos albumus"
+
+#, fuzzy
+#~ msgid "Attention!"
+#~ msgstr "dokumentacija"
+
+#, fuzzy
+#~ msgid "Log in"
+#~ msgstr "Prisijungti"
+
+#~ msgid "Rename this album"
+#~ msgstr "Pervadinti ðá albumà"
+
+#~ msgid "0 times"
+#~ msgstr "0 kartø"
+
+#, fuzzy
+#~ msgid "1 time"
+#~ msgid_plural "%d times"
+#~ msgstr[0] "0 kartø"
+#~ msgstr[1] "0 kartø"
+#~ msgstr[2] "0 kartø"
+
+#~ msgid "navigate UP"
+#~ msgstr "keliauti AUKÐTYN"
+
+#~ msgid "Capture Date"
+#~ msgstr "Nuotraukos padarymo data"
+
+#~ msgid "NO PHOTOS!"
+#~ msgstr "NUOTRAUKØ NËRA!"
+
+#~ msgid "done"
+#~ msgstr "atlikta"
+
+#, fuzzy
+#~ msgid "Getting highlight"
+#~ msgstr "Titulinës nuotraukos nëra"
+
+#~ msgid "No highlight"
+#~ msgstr "Titulinës nuotraukos nëra"
+
+#, fuzzy
+#~ msgid "Unable to create dir: '%s'."
+#~ msgstr "Nagaliu sukurti katalogo"
+
+#~ msgid "Rebuilding %d thumbnails..."
+#~ msgstr "Pergeneruoju %d nuotraukø..."
+
+#, fuzzy
+#~ msgid "Send eCard"
+#~ msgstr "Atsiøsti man mano slaptaþodá"
+
+#~ msgid "Edit Caption"
+#~ msgstr "Redaguoti Apraðymà"
+
+#, fuzzy
+#~ msgid "Edit the title and click %s when you're done"
+#~ msgstr "Redaguokite %s. Kai baigsite paspauskite %s"
+
+#, fuzzy
+#~ msgid "Edit the description and click %s when you're done"
+#~ msgstr "Redaguokite %s. Kai baigsite paspauskite %s"
+
+#~ msgid "Number of user defined custom fields"
+#~ msgstr "Vartotojo nustatytø laukø skaièius"
+
+#~ msgid "Field"
+#~ msgstr "Laukas"
+
+#, fuzzy
+#~ msgid "Apply values to nested albums."
+#~ msgstr "Pritaikyti reikðmes gilesniems albumams."
+
+#~ msgid "Gold Frame"
+#~ msgstr "Auksinis Rëmelis"
+
+#~ msgid "A fancy golden frame"
+#~ msgstr "Þavintis auksinis rëmelis"
+
+#~ msgid "Spiral Notebook"
+#~ msgstr "Spiralinis Blonknotas"
+
+#~ msgid "A white shadowed frame with spiral notebook binding on the left side"
+#~ msgstr "Baltas rëmelis su ðeðëliu ir su spiraliniu blonknotu, suriðtu kairëje pusëje"
+
+#~ msgid "Polaroid"
+#~ msgstr "Polaroidas"
+
+#~ msgid "A photo with a large white frame, extra wide at the bottom edge"
+#~ msgstr "Fotografija su dideliu baltu rëmeliu, ypatingai dideliu apaèioje"
+
+#~ msgid "Polaroids"
+#~ msgstr "Polaroidai"
+
+#~ msgid "A stack of photos with a large white frame, extra wide at the bottom edge"
+#~ msgstr "Fotografijø rinkinys su dideliu baltu rëmeliu, ypatingai plaèiu apaèioje"
+
+#~ msgid "Shadows"
+#~ msgstr "Ðeðëliai"
+
+#~ msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+#~ msgstr "PNG permatomi ðeðëliai krentantys á deðinæ ir þemyn. Teisingas permatomumas, todël turetø veikti su daugeliu foniniø spalvø, iðskyrus juodà."
+
+#~ msgid "Original Style"
+#~ msgstr "Originalus stilius"
+
+#~ msgid "The original %s album frame style."
+#~ msgstr "Originalus %s albumo rëmelio stilius."
+
+#~ msgid "Wood Frame"
+#~ msgstr "Medinis Rëmelis"
+
+#~ msgid "A textured wooden frame"
+#~ msgstr "Tekstûrinis medinis rëmelis"
+
+#~ msgid "The location can either be a URL or a local directory on the server."
+#~ msgstr "Vieta gali bûti kaip URL arba serveryje esantis katalogas."
+
+#~ msgid "Tip:"
+#~ msgstr "Patarimas:"
+
+#~ msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
+#~ msgstr "Jeigu kilo sunkumø, pagalbà galite rasti %sGalerijos pagalbos puslapyje%s."
+
+#~ msgid "Gallery needs Reconfiguration"
+#~ msgstr "Reikia perkonfigûruoti galerijà"
+
+#~ msgid "Your Gallery settings were configured with an older version of Gallery, and are out of date. Please re-run the Configuration Wizard!"
+#~ msgstr "Konfigûracijos failas buvo sukurtas senesne Gallery versija."
+
+#~ msgid "Launch the %sConfiguration Wizard%s."
+#~ msgstr "Paveisti %sKonfigûravimo Vedlá%s"
+
+#~ msgid "Gallery Configuration Error"
+#~ msgstr "Konfigûracijos klaida"
+
+#~ msgid "Gallery must be configured before you can use it."
+#~ msgstr "Prieð naudojantis Galerija ji privalo bûti sukonfigûruota."
+
+#~ msgid "1."
+#~ msgstr "1."
+
+#, fuzzy
+#~ msgid "Create an empty file .htaccess and an empty file config.php in your Gallery folder."
+#~ msgstr "Sukurti tuðèià .htaccess ir tuðèià config.php bylas"
+
+#~ msgid "2."
+#~ msgstr "2."
+
+#, fuzzy
+#~ msgid "Create an albums folder for your pictures and movies. This folder can be anywhere in your webspace."
+#~ msgstr "Sukurti albumø katalogà Jûsø nuotraukoms ir filmams."
+
+#, fuzzy
+#~ msgid "Make sure that both files and the folder are read and writeable for your webserver!"
+#~ msgstr "Ásitikinkite kad web serverio vartotojas turi teisæ nuskaityti Galerijos bylas ir katalogus o taip pat ir áraðyti á juos !"
+
+#~ msgid "Then start the %sConfiguration Wizard%s."
+#~ msgstr "Tada pradëkite %skonfigûracijos procesà%s."
+
+#~ msgid "back to album"
+#~ msgstr "gráþti á albumà"
+
+#, fuzzy
+#~ msgid "Move album"
 #~ msgstr "perkelti albumà"
 
-#~ msgid "reorder album"
+#, fuzzy
+#~ msgid "Reorder album"
 #~ msgstr "surûðiuoti albumà"
 
-#~ msgid "edit captions"
+#, fuzzy
+#~ msgid "Edit captions"
 #~ msgstr "redaguoti apraðymus"
 
-#~ msgid "permissions"
-#~ msgstr "teisës"
-
-#~ msgid "properties"
+#, fuzzy
+#~ msgid "Properties"
 #~ msgstr "nustatymai"
 
-#~ msgid "view&nbsp;comments"
-#~ msgstr "þiûrëti&nbsp;komentarus"
-
-#~ msgid "watermark&nbsp;album"
+#, fuzzy
+#~ msgid "Watermark&nbsp;album"
 #~ msgstr "watermark&nbsp;album"
 
+#~ msgid "delete comment"
+#~ msgstr "iðtrinti komentarà"
+
+#~ msgid "Reset Counter"
+#~ msgstr "pradëti nuo nulio"
+
+#~ msgid "View Comments"
+#~ msgstr "Þiûrëti Komentarus"
+
+#~ msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
+#~ msgstr "Ðis vartotojas neturi teisingo el. paðto adreso. Keipkitës á %s administratorius"
+
 #, fuzzy
-#~ msgid "_Show"
-#~ msgstr "Snow"
+#~ msgid "Move a range of items to a new album:"
+#~ msgstr "Perkelkite keletà nuotraukø á kità albumà:"
+
+#, fuzzy
+#~ msgid "To move just one item, make first and last the same."
+#~ msgstr "Norëdami perkelti vienà nuotraukà 'Pirma' ir 'Paskutinë' reikðmes pasirinkite vienodas."
+
+#~ msgid "Create Users"
+#~ msgstr "Vartotojo kûrimas"
+
+#~ msgid "Owner"
+#~ msgstr "Savininkas"
+
+#~ msgid "Warning: you have changed voters from %s to %s.  It is advisable to reset the poll to remove all previous votes."
+#~ msgstr "Dëmesio: jûs pakeitëte balsuotojus ið %s á %s. Patartina balsavimà pradëti ið naujo."
+
+#~ msgid "Poll Properties"
+#~ msgstr "Balsavimo nustatymai"
+
+#~ msgid "Type of poll for this album"
+#~ msgstr "Balsavimo tipas ðiam albumui"
+
+#~ msgid "Rank"
+#~ msgstr "Kategorija"
+
+#~ msgid "Critique"
+#~ msgstr "Kritika"
+
+#~ msgid "Number of voting options"
+#~ msgstr "Balsavimo punktø skaièius"
+
+#~ msgid "Show results of voting to all visitors?"
+#~ msgstr "Rodyti balsavimo rezultatus visiems lankytojams?"
+
+#~ msgid "Number of lines of results graph to display on the album page"
+#~ msgstr "Rezultatø linijø skaièius albume"
+
+#~ msgid "Who can vote"
+#~ msgstr "Kas gali balsuoti"
+
+#~ msgid "Orientation of vote choices"
+#~ msgstr "Balsavimo punktø iðdëstymas"
+
+#~ msgid "Vote hint"
+#~ msgstr "Kvietimas balsuoti"
+
+#~ msgid "Displayed Value"
+#~ msgstr "Tekstas"
+
+#, fuzzy
+#~ msgid "Points"
+#~ msgstr "Minutës"
+
+#~ msgid "No votes so far."
+#~ msgstr "Kolkas balsø nëra."
+
+#~ msgid "File upload in progress!"
+#~ msgstr "Vyksta failo(ø) siuntimas á serverá!"
+
+#~ msgid "Please Enter Username and Password"
+#~ msgstr "Áraðykite vartotojo vardà arba slaptaþodá"
+
+#~ msgid "Username:"
+#~ msgstr "Vartotojo vardas:"
+
+#~ msgid "Password:"
+#~ msgstr "Slaptaþodis:"
+
+#~ msgid "Using the Windows XP <i>Publish To the Web</i> feature"
+#~ msgstr "Kaip naudotis Windows XP <i>Publikavimo á Internetà</i> galimybe"
+
+#, fuzzy
+#~ msgid "save"
+#~ msgstr "Iðsaugoti"
+
+#, fuzzy
+#~ msgid "cancel"
+#~ msgstr "Atðaukti"
+
+#~ msgid "Resizing photos"
+#~ msgstr "Nuotraukos dydþio keitimas"
 
 #~ msgid "What is the target size for all the intermediate photos in this album?"
 #~ msgstr "Koks bus visø vidutinio dydþio nuotraukø dydis ðiame albume?"
 
-#~ msgid "What is the target size for the intermediate version of this photo?"
-#~ msgstr "Koks bus vienos vidutinio dydþio nuotraukos dydis?"
-
 #~ msgid "(Use only the original picture)"
 #~ msgstr "(Naudoti tik originalià)"
 
-#~ msgid "Click &quot;ok&quot;."
-#~ msgstr "Paspauskite &quot;ok&quot;. "
+#~ msgid "Processing status..."
+#~ msgstr "Procesas..."
+
+#~ msgid "Slide Show"
+#~ msgstr "Nuotraukø perþiûra"
+
+#, fuzzy
+#~ msgid "Useful blacklists: "
+#~ msgstr "dabartinë pozicija"
+
+#~ msgid "No Orphans Found"
+#~ msgstr "Neprijungtø failø nerasta."
+
+#~ msgid "Albums"
+#~ msgstr "Albumø"
+
+#~ msgid "Files"
+#~ msgstr "Failai"
+
+#, fuzzy
+#~ msgid "Item deleted."
+#~ msgstr "Albumas atnaujintas."
+
+#, fuzzy
+#~ msgid "Yes, delete"
+#~ msgstr "Iðtrinti"
+
+#, fuzzy
+#~ msgid "No, cancel"
+#~ msgstr "Atðaukti"
+
+#, fuzzy
+#~ msgid "Missing file"
+#~ msgstr "Reikðmë nenurodyta"
+
+#, fuzzy
+#~ msgid "Invalid album"
+#~ msgstr "Vartotojas neteisingas"
+
+#~ msgid "items"
+#~ msgstr "elementai(-ø)"
 
 #, fuzzy
 #~ msgid "Add photos"
@@ -5876,16 +6228,8 @@ msgstr "Atsiras naujø komentarø"
 #~ msgstr "Pervadinti ðá albumà"
 
 #, fuzzy
-#~ msgid "Change foldername"
-#~ msgstr "Keisti savininkà"
-
-#, fuzzy
 #~ msgid "New nested album"
 #~ msgstr "naujas vidinis albumas"
-
-#, fuzzy
-#~ msgid "Edit captions"
-#~ msgstr "redaguoti apraðymus"
 
 #, fuzzy
 #~ msgid "Sort items"
@@ -5896,20 +6240,12 @@ msgstr "Atsiras naujø komentarø"
 #~ msgstr "dydþiø keitimas"
 
 #, fuzzy
-#~ msgid "Recreate captions"
-#~ msgstr "redaguoti apraðymus"
-
-#, fuzzy
-#~ msgid "Rebuild capture dates"
-#~ msgstr "Nuotraukos padarymo data"
-
-#, fuzzy
 #~ msgid "Rebuild thumbs"
 #~ msgstr "pergeneruoti nuotraukas"
 
 #, fuzzy
-#~ msgid "Properties"
-#~ msgstr "nustatymai"
+#~ msgid "Rebuild capture dates"
+#~ msgstr "Nuotraukos padarymo data"
 
 #, fuzzy
 #~ msgid "Rearrange items"
@@ -5924,13 +6260,109 @@ msgstr "Atsiras naujø komentarø"
 #~ msgstr "pradëti balsavimà ið naujo"
 
 #, fuzzy
-#~ msgid "View comments"
-#~ msgstr "Þiûrëti Komentarus"
-
-#, fuzzy
 #~ msgid "Watermark album"
 #~ msgstr "Vandenþenkliø Albumas"
 
 #, fuzzy
 #~ msgid "Album Actions"
 #~ msgstr "Albumo apraðymas"
+
+#~ msgid "Highlight for Album:"
+#~ msgstr "Titulinë nuotrauka albumui:"
+
+#, fuzzy
+#~ msgid "Viewed: %s"
+#~ msgstr "Þiûrëta:"
+
+#, fuzzy
+#~ msgid "Sorry.  You are not allowed to see comments of this album."
+#~ msgstr "Jums neleista atlikti ðá veiksmà !"
+
+#~ msgid "Your comment is too long, the admin set maximum length to %d chars"
+#~ msgstr "Jûsø komentaras per ilgas, administratorius nustatë maksimalø %d simboliø ilgá."
+
+#~ msgid "Your Comment contains forbidden words. It will not be added."
+#~ msgstr "Jûsø komentaras turi uþdraustà(-us) þodá(-þius). Komentaras nebus pridëtas."
+
+#~ msgid "photo properties"
+#~ msgstr "nuotraukos savybës"
+
+#, fuzzy
+#~ msgid "Send Photo as eCard"
+#~ msgstr "Atsiøsti man mano slaptaþodá"
+
+#, fuzzy
+#~ msgid "Cannot resize/compress this filetype."
+#~ msgstr "Negaliu pakeisti/suspausti ðio formato"
+
+#~ msgid "skipped"
+#~ msgstr "praleistas"
+
+#~ msgid "<i>Note:</i> this feature is still experimental!"
+#~ msgstr "<i>Dëmesio:</i>ði galimybë vis dar bandoma!"
+
+#, fuzzy
+#~ msgid "Show"
+#~ msgstr "Snow"
+
+#~ msgid "Click &quot;ok&quot;."
+#~ msgstr "Paspauskite &quot;ok&quot;. "
+
+#~ msgid "%s are hidden"
+#~ msgstr "%s paslëptos(-ø)"
+
+#~ msgid "delete album"
+#~ msgstr "iðtrinti albumà"
+
+#~ msgid "edit captions"
+#~ msgstr "redaguoti apraðymus"
+
+#~ msgid "permissions"
+#~ msgstr "teisës"
+
+#~ msgid "properties"
+#~ msgstr "nustatymai"
+
+#~ msgid "view&nbsp;comments"
+#~ msgstr "þiûrëti&nbsp;komentarus"
+
+#, fuzzy
+#~ msgid "delete item"
+#~ msgstr "iðtrinti albumà"
+
+#~ msgid "1 photo in this album"
+#~ msgstr "Ðiame albume yra 1 nuotrauka"
+
+#~ msgid "Do you really want to delete this photo?"
+#~ msgstr "Ar tikrai norite iðtrinti ðià nuotraukà?"
+
+#, fuzzy
+#~ msgid "Administer Startpage"
+#~ msgstr "Administratorius"
+
+#~ msgid "url:"
+#~ msgstr "url:"
+
+#, fuzzy
+#~ msgid "Return to Gallery"
+#~ msgstr "Gráþti á Galerijà"
+
+#, fuzzy
+#~ msgid "No Missing Files"
+#~ msgstr "Reikðmë nenurodyta"
+
+#, fuzzy
+#~ msgid "No Invalid Albums Found"
+#~ msgstr "Vartotojas neteisingas"
+
+#~ msgid "You have no votes recorded for this poll."
+#~ msgstr "Jûs dar nebalsavote ðiame balsavime."
+
+#~ msgid "Your current choices are"
+#~ msgstr "Pasirinkite ið"
+
+#~ msgid "1 vote"
+#~ msgid_plural "%d votes"
+#~ msgstr[0] "1 balsas"
+#~ msgstr[1] "%d balsai"
+#~ msgstr[2] "%d balsø"

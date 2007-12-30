@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-09-28 16:06+0200\n"
+"POT-Creation-Date: 2007-12-30 13:04+0100\n"
 "PO-Revision-Date: 2005-09-14 10:00+0100\n"
 "Last-Translator: Peter Liversten <skansberget AT telia DOT com>\n"
 "Language-Team: Swedish <gallery-devel@lists.sourceforge.net>\n"
@@ -57,7 +57,7 @@ msgstr "Konfigurationsguiden"
 
 #: ../admin-page.php:44
 #, fuzzy
-msgid "Use the Configuration wizard to reconfigure or tweak your Gallery"
+msgid "Use the config wizard to reconfigure or tweak your Gallery."
 msgstr "Använd konfigurationsguiden för att omkonfigurera eller finjustera ditt Gallery"
 
 #: ../admin-page.php:47
@@ -121,15 +121,15 @@ msgid "Admin options"
 msgstr "Administratörsalternativ"
 
 #: ../admin-page.php:106 ../search.php:57 ../stats-wizard.php:47
-#: ../stats.php:614 ../tools/despam-comments.php:51
-#: ../tools/find_orphans.php:57 ../tools/validate_albums.php:69
-#: ../usage.php:42
+#: ../tools/despam-comments.php:51 ../tools/find_orphans.php:57
+#: ../tools/validate_albums.php:69 ../usage.php:42
 #, fuzzy
 msgid "return to _gallery"
 msgstr "Återgå till Gallery"
 
-#: ../albums.php:107 ../rss.php:260
-msgid "no albums"
+#: ../albums.php:107 ../view_album.php:147
+#, fuzzy
+msgid "No albums"
 msgstr "inga album"
 
 #: ../albums.php:105 ../rss.php:260
@@ -202,39 +202,39 @@ msgstr "%s, %s"
 msgid "Welcome, %s"
 msgstr "Välkommen, %s"
 
-#: ../albums.php:158 ../view_album.php:197
+#: ../albums.php:158 ../view_album.php:200
 #, fuzzy
-msgid "slidesho_w"
+msgid "Slidesho_w"
 msgstr "Bildspel"
 
 #: ../albums.php:165
 #, fuzzy
-msgid "new _album"
+msgid "New _album"
 msgstr "Nytt album"
 
 #: ../albums.php:175
 #, fuzzy
-msgid "administer fron_tpage"
+msgid "Administer fron_tpage"
 msgstr "Administratörssida"
 
 #: ../albums.php:181
 #, fuzzy
-msgid "ad_min page"
+msgid "Ad_min page"
 msgstr "Administratörssida"
 
 #: ../albums.php:188
 #, fuzzy
-msgid "_documentation"
+msgid "_Documentation"
 msgstr "Gallerys Dokumentation"
 
 #: ../albums.php:195
 #, fuzzy
-msgid "pr_eferences"
+msgid "Pr_eferences"
 msgstr "Inställningar"
 
 #: ../albums.php:205
 #, fuzzy
-msgid "_register"
+msgid "_Register"
 msgstr "Registrera"
 
 #: ../albums.php:245
@@ -287,11 +287,11 @@ msgid "Login page"
 msgstr "en sida"
 
 #: ../albums.php:318
-#, php-format
-msgid "The requested album with index %s is not valid"
+#, fuzzy, php-format
+msgid "The requested album with index %s is not valid."
 msgstr "Det begärda albumet med index %s är inte giltigt"
 
-#: ../albums.php:359 ../view_album.php:576
+#: ../albums.php:359 ../view_album.php:579
 #, fuzzy
 msgid "Download entire album as archive"
 msgstr "Inget album är specificerat"
@@ -302,8 +302,9 @@ msgid "Owner: %s"
 msgstr "Ägare: "
 
 #: ../albums.php:384
-msgid "url:"
-msgstr "Webbadress:"
+#, fuzzy
+msgid "URL:"
+msgstr "URL"
 
 #: ../albums.php:399
 msgid "Hey!"
@@ -329,7 +330,7 @@ msgstr "Senaste ändring %s."
 msgid "Last changed on %s."
 msgstr "Senaste ändring %s."
 
-#: ../albums.php:436 ../view_album.php:747
+#: ../albums.php:436 ../view_album.php:750
 msgid "This album is empty."
 msgstr "Detta album är tomt."
 
@@ -379,116 +380,119 @@ msgstr "Välj ny plats för album: %s"
 msgid "Currently no item is featured by this Gallery."
 msgstr "Det finns inga saknande filer i detta Galleri."
 
-#: ../block-random.php:76
+#: ../block-random.php:75
 #, fuzzy
 msgid "No photo chosen."
 msgstr "Inga foton matchar"
 
-#: ../block-random.php:132 ../lib/stats.php:361
+#: ../block-random.php:131 ../lib/stats.php:361
 #, php-format
 msgid "From album: %s"
 msgstr "Från album: %s"
 
-#: ../captionator.php:58
+#: ../captionator.php:57
 msgid "Captioned album does not match current album - aborting changes!"
 msgstr "Rubriksatt album matchar inte nuvarande album - utesluter ändringar!"
 
-#: ../captionator.php:102
+#: ../captionator.php:101
 msgid "Debugging: Click here to return to the album"
 msgstr "Felsökning: Klicka här för gå tillbaka till albumet"
 
-#: ../captionator.php:140
+#: ../captionator.php:139
 msgid "Captionator"
 msgstr "Objektrubrikskapare"
 
-#: ../captionator.php:187
+#: ../captionator.php:186
 msgid "Multiple Caption Editor."
 msgstr "Redigera flera objekttexter. "
 
-#: ../captionator.php:189
-msgid "1 photo in this album"
-msgstr "1 foto i detta album"
+#: ../captionator.php:188
+#, fuzzy
+msgid "1 item in this album"
+msgstr "objekt i detta album"
 
-#: ../captionator.php:193
+#: ../captionator.php:192
 #, fuzzy, php-format
-msgid "%s items in this album on %s"
+msgid "%d items in this album on %s"
 msgstr "%s i detta album på %s"
 
-#: ../captionator.php:195
-#, php-format
+#: ../captionator.php:194
+#, fuzzy, php-format
 msgid "one page"
-msgid_plural "%d pages"
+msgid_plural "%d pages."
 msgstr[0] "en sida"
 msgstr[1] "%d sidor"
 
 #: ../captionator.php:198
 #, fuzzy, php-format
-msgid "%s items in this album"
-msgstr "objekt i detta album"
+msgid "One item in this album."
+msgid_plural "%d items in this album."
+msgstr[0] "objekt i detta album"
+msgstr[1] "objekt i detta album"
 
-#: ../captionator.php:226 ../captionator.php:342
+#: ../captionator.php:225 ../captionator.php:341
 msgid "Save and Exit"
 msgstr "Spara och avsluta"
 
-#: ../captionator.php:229 ../captionator.php:345
+#: ../captionator.php:228 ../captionator.php:344
 #, php-format
 msgid "Save and Edit Next %d"
 msgstr "Spara och redigera nästa %d"
 
-#: ../captionator.php:233 ../captionator.php:349
+#: ../captionator.php:232 ../captionator.php:348
 #, php-format
 msgid "Save and Edit Previous %d"
 msgstr "Spara och redigera föregående %d"
 
-#: ../captionator.php:237 ../captionator.php:353
+#: ../captionator.php:236 ../captionator.php:352
 msgid "Exit"
 msgstr "Avsluta"
 
-#: ../captionator.php:257
+#: ../captionator.php:256
 #, fuzzy
 msgid "(click to enter album)"
 msgstr "(klicka för att förstora)"
 
-#: ../captionator.php:270
+#: ../captionator.php:269
 msgid "(click to enlarge)"
 msgstr "(klicka för att förstora)"
 
-#: ../captionator.php:277 ../templates/commentbox.tpl.default:19
-#: ../templates/commentbox.tpl.default:46 ../view_album.php:560
+#: ../captionator.php:276 ../templates/commentbox.tpl.default:22
+#: ../templates/commentbox.tpl.default:49 ../view_album.php:563
 msgid "hidden"
 msgstr "Dold"
 
-#: ../captionator.php:290
+#: ../captionator.php:289
 #, fuzzy
 msgid "Album Caption: "
 msgstr "Albumrubrik"
 
-#: ../captionator.php:299
+#: ../captionator.php:298
 #, fuzzy
 msgid "Movie Caption: "
 msgstr "Filmrubrik"
 
-#: ../captionator.php:302
+#: ../captionator.php:301
 #, fuzzy
 msgid "Photo Caption: "
 msgstr "Fotorubrik"
 
-#: ../captionator.php:314
+#: ../captionator.php:313
 #, fuzzy
 msgid "Title: "
 msgstr "Titel"
 
-#: ../captionator.php:324 ../popups/view_photo_properties.php:104
+#: ../captionator.php:323 ../popups/view_photo_properties.php:104
 #, fuzzy
 msgid "Keywords: "
 msgstr "Nyckelord"
 
-#: ../captionator.php:330
+#: ../captionator.php:329
 #, fuzzy, php-format
 msgid "Capture Date: %s"
 msgstr "Fotodatum:"
 
-#: ../captionator.php:360
+#: ../captionator.php:359
 #, fuzzy
 msgid "There are not elements to set a caption for."
 msgstr "Det finns inga föräldralösa objekt i detta Galleri."
@@ -497,9 +501,9 @@ msgstr "Det finns inga föräldralösa objekt i detta Galleri."
 msgid "Untitled"
 msgstr "Ingen titel"
 
-#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:49
-#: ../lib/albumItem.php:467 ../lib/usage.php:84
-#: ../templates/commentbox.tpl.default:16
+#: ../classes/Album.php:264 ../classes/Album.php:276 ../lib/albumItem.php:51
+#: ../lib/albumItem.php:469 ../lib/usage.php:84
+#: ../templates/commentbox.tpl.default:19
 msgid "Album"
 msgstr "Album"
 
@@ -525,14 +529,14 @@ msgstr "Döper om album från %s till %s..."
 msgid "description"
 msgstr "beskrivning"
 
-#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:246
+#: ../classes/Album.php:563 ../classes/AlbumItem.php:229 ../imagemap.php:245
 #: ../popups/edit_caption.php:129 ../templates/photo.tpl.default:195
 msgid "Description"
 msgstr "Beskrivning"
 
 #: ../classes/Album.php:614
-#, php-format
-msgid "Upgrading item %d of %d . . . "
+#, fuzzy, php-format
+msgid "Upgrading item %d of %d..."
 msgstr "Uppgraderar objekt %d av %d . . . "
 
 #: ../classes/Album.php:874
@@ -550,184 +554,192 @@ msgstr "Ingen förgrundsbild"
 msgid "Setting highlight"
 msgstr "Sätt som förgrundsbild"
 
-#: ../classes/Album.php:1134
+#: ../classes/Album.php:1135
 msgid "msg should be an array!"
 msgstr "meddelande bör vara en ordnad rad!"
 
-#: ../classes/Album.php:1143
-#, php-format
-msgid "Changes to Album: %s"
+#: ../classes/Album.php:1144
+#, fuzzy, php-format
+msgid "Changes to album: %s"
 msgstr "Ändringar på album: %s"
 
-#: ../classes/Album.php:1151
-#, php-format
-msgid "A change has been made to Album: %s by %s (IP %s).  The change is: %s"
+#: ../classes/Album.php:1152
+#, fuzzy, php-format
+msgid "A change has been made to album: %s by %s (IP %s).  The change is: %s"
 msgstr "En ändring har gjorts i album: %s av %s (IP %s).  Ändringen är: %s"
 
-#: ../classes/Album.php:1157
-msgid "If you no longer wish to receive emails about this image, follow the links above and ensure that 'Email me when other changes are made' is unchecked (You'll need to login first)."
+#: ../classes/Album.php:1158
+#, fuzzy
+msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
 msgstr "Om du inte längre önskar att mottaga e-post om denna bild, följ länkarna ovan och försäkra att &quot;Skicka e-post till mig när andra ändringar har gjorts&quot; är avmarkerad (Du  behöver logga in först)."
 
-#: ../classes/Album.php:1165
-msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found"
+#: ../classes/Album.php:1166
+#, fuzzy
+msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found."
 msgstr "Operationen genomfördes framgångsrikt.  E-postning är på men ingen e-post skickades eftersom ingen giltig e-postadress hittades"
 
-#: ../classes/Album.php:1241 ../classes/Album.php:1322
+#: ../classes/Album.php:1240 ../classes/Album.php:1320
 #, fuzzy
 msgid "Skipping Movie"
 msgstr "Utesluter %s."
 
-#: ../classes/Album.php:1257 ../classes/Album.php:2215
-#: ../classes/Album.php:2368
+#: ../classes/Album.php:1255 ../classes/Album.php:2213
+#: ../classes/Album.php:2366
 #, fuzzy
 msgid " -- Skipping"
 msgstr "Utesluter %s."
 
-#: ../classes/Album.php:1267
+#: ../classes/Album.php:1265
 #, fuzzy, php-format
 msgid "Resizig items in album: '<i>%s</i>' (%s)' with %d items"
 msgstr "Öppnar album %s, bearbetar %d foton"
 
-#: ../classes/Album.php:1276 ../classes/Album.php:2234
-#: ../classes/Album.php:2403
+#: ../classes/Album.php:1274 ../classes/Album.php:2232
+#: ../classes/Album.php:2401
 #, fuzzy, php-format
 msgid "Processing item %d..."
 msgstr "Bearbetar bild %d..."
 
-#: ../classes/Album.php:1291
+#: ../classes/Album.php:1289
 #, fuzzy, php-format
 msgid "Resizing item %d..."
 msgstr "Bearbetar bild %d..."
 
-#: ../classes/Album.php:1325
+#: ../classes/Album.php:1323
 #, fuzzy
 msgid "Skipping Subalbum"
 msgstr "Utesluter album #%d"
 
-#: ../classes/Album.php:1369
+#: ../classes/Album.php:1367
 msgid "Doing the naming of the physical file."
 msgstr ""
 
-#: ../classes/Album.php:1405
-msgid "Image Preprocessing"
+#: ../classes/Album.php:1403
+#, fuzzy
+msgid "Image preprocessing"
 msgstr "Bild-förbearbetning"
 
-#: ../classes/Album.php:1410
+#: ../classes/Album.php:1408
 #, fuzzy
 msgid "Resizing/compressing original file"
 msgstr "Storleksändrar/komprimerar originalbild"
 
-#: ../classes/Album.php:1416
+#: ../classes/Album.php:1414
 msgid "File is a movie, no resizing done."
 msgstr ""
 
-#: ../classes/Album.php:1419
+#: ../classes/Album.php:1417
 #, php-format
 msgid "Invalid filetype: %s. Skipping."
 msgstr ""
 
-#: ../classes/Album.php:1432 ../classes/Album.php:1437
+#: ../classes/Album.php:1430 ../classes/Album.php:1435
 #, fuzzy
 msgid "Item not added."
 msgstr "Senaste inlagda"
 
-#: ../classes/Album.php:1502
+#: ../classes/Album.php:1500
 #, fuzzy, php-format
 msgid "Creating resized intermediate Version of %s"
 msgstr "Vad är målstorleken för den mellanliggande versionen av detta foto?"
 
-#: ../classes/Album.php:1513
+#: ../classes/Album.php:1511
 msgid "Check if image needs to be rotated"
 msgstr ""
 
-#: ../classes/Album.php:1531
+#: ../classes/Album.php:1529
 #, fuzzy, php-format
 msgid "Orientation: %s "
 msgstr "Nuvarande plats är %s"
 
-#: ../classes/Album.php:1575
+#: ../classes/Album.php:1573
 msgid "Photo auto-rotated/transformed"
 msgstr "Foto automatiskt roterat/omvandlat"
 
-#: ../classes/Album.php:1578
+#: ../classes/Album.php:1576
 #, fuzzy
 msgid "Photo NOT auto-rotated/transformed"
 msgstr "Foto automatiskt roterat/omvandlat"
 
-#: ../classes/Album.php:1588
+#: ../classes/Album.php:1586
 msgid "Watermarking Image"
 msgstr "Vattenstämpla Bild"
 
-#: ../classes/Album.php:1595 ../classes/Album.php:1600
+#: ../classes/Album.php:1593 ../classes/Album.php:1598
 #, fuzzy
 msgid "Item successfully added."
 msgstr "Användarinformation uppdaterades framgångsrikt."
 
-#: ../classes/Album.php:1783 ../classes/Album.php:1820
+#: ../classes/Album.php:1781 ../classes/Album.php:1818
 #, fuzzy
 msgid "No highlight!"
 msgstr "Ingen förgrundsbild"
 
-#: ../classes/Album.php:1792 ../classes/Album.php:1795
+#: ../classes/Album.php:1790 ../classes/Album.php:1793
 #, fuzzy, php-format
 msgid "Highlight for album: %s"
 msgstr "Förgrundsbild till album:"
 
-#: ../classes/Album.php:2051
+#: ../classes/Album.php:2049
 #, fuzzy, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Begärt index [%d] på förbjudet område [%d]"
 
-#: ../classes/Album.php:2104
+#: ../classes/Album.php:2102
 #, php-format
 msgid "Recreating %d captions..."
 msgstr ""
 
-#: ../classes/Album.php:2106
+#: ../classes/Album.php:2104
 #, php-format
 msgid "Processing image %d..."
 msgstr "Bearbetar bild %d..."
 
-#: ../classes/Album.php:2113
+#: ../classes/Album.php:2111
 #, php-format
 msgid "Entering album %s, processing %d photos"
 msgstr "Öppnar album %s, bearbetar %d foton"
 
-#: ../classes/Album.php:2225 ../classes/Album.php:2378
+#: ../classes/Album.php:2223 ../classes/Album.php:2376
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
 msgstr ""
 
-#: ../classes/Album.php:2244 ../classes/Album.php:2391
+#: ../classes/Album.php:2242
+#, fuzzy, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items."
+msgstr "Öppnar album %s, bearbetar %d foton"
+
+#: ../classes/Album.php:2389
 #, fuzzy, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items"
 msgstr "Öppnar album %s, bearbetar %d foton"
 
-#: ../classes/Album.php:2576
-#, php-format
-msgid "Error getting EXIF data. Expected Status 0, got %s."
+#: ../classes/Album.php:2574
+#, fuzzy, php-format
+msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr "Fel vid hämtning av EXIF-information.  Förväntad status 0, fick %s."
 
-#: ../classes/Album.php:2827
+#: ../classes/Album.php:2825
 msgid "(Group)"
 msgstr ""
 
-#: ../classes/Album.php:3160
+#: ../classes/Album.php:3158
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3327
+#: ../classes/Album.php:3326
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problem med e-post: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
 
-#: ../classes/Album.php:3331
+#: ../classes/Album.php:3330
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problem med e-post: utesluter %s (UID %s) eftersom e-postadress %s inte är giltig."
 
-#: ../classes/Album.php:3341
+#: ../classes/Album.php:3340
 #, fuzzy
 msgid "Email problems"
 msgstr "E-postadress:"
@@ -758,11 +770,12 @@ msgstr ""
 
 #: ../classes/AlbumItem.php:788
 #, fuzzy
-msgid "Generating normal thumbs"
+msgid "Generating normal thumbs."
 msgstr "Skapar miniatyrbild."
 
 #: ../classes/AlbumItem.php:815
-msgid "Unable to make thumbnail"
+#, fuzzy
+msgid "Unable to make thumbnail."
 msgstr "Kunde inte skapa miniatyrbild"
 
 #: ../classes/AlbumItem.php:826
@@ -808,11 +821,12 @@ msgstr "%s finns, men är inte en katalog!"
 
 #: ../classes/gallery/UserDB.php:89
 #, fuzzy, php-format
-msgid "The folder folder which contains your user information (%s) is not writable for the webserver."
+msgid "The folder which contains your user information (%s) is not writable for the webserver."
 msgstr "Katalogen som innehåller din användarinformation (%s) är inte skrivbar."
 
 #: ../classes/gallery/UserDB.php:110
-msgid "Your Userfile is not writeable"
+#, fuzzy
+msgid "Your userfile is not writeable."
 msgstr "Din användarfil är inte skrivbar"
 
 #: ../classes/gallery/UserDB.php:338
@@ -851,12 +865,13 @@ msgid "A user with the username of '%s' already exists"
 msgstr "En användare med användarnamnet %s finns redan"
 
 #: ../classes/gallery/UserDB.php:379
-msgid "Password must be at least 3 characters"
+#, fuzzy
+msgid "Password must be at least 3 characters."
 msgstr "Lösenordet måste bestå av minst 3 tecken"
 
 #: ../classes/gallery/UserDB.php:417
 #, fuzzy, php-format
-msgid "Checking user %d of %d . . . ."
+msgid "Checking user %d of %d ... "
 msgstr "Kontrollerar användare %d av %d. . . . "
 
 #: ../classes/gallery/UserDB.php:422
@@ -869,7 +884,7 @@ msgstr ""
 msgid "Problem adding %s:"
 msgstr "Problem med att lägga till %s:"
 
-#: ../crop_photo.php:67 ../imagemap.php:179
+#: ../crop_photo.php:67 ../imagemap.php:178
 #, fuzzy
 msgid "Original photo"
 msgstr "Originalstil"
@@ -909,13 +924,13 @@ msgstr ""
 msgid "Recreate re_sized"
 msgstr ""
 
-#: ../crop_photo.php:160 ../popups/ecard_form.php:274
+#: ../crop_photo.php:160 ../popups/ecard_form.php:273
 #: ../popups/edit_watermark.php:120 ../popups/watermark_album.php:143
 #, fuzzy
 msgid "_Preview"
 msgstr "Förhandsgranska"
 
-#: ../crop_photo.php:161 ../popups/ecard_form.php:275
+#: ../crop_photo.php:161 ../popups/ecard_form.php:274
 #, fuzzy
 msgid "_Reset"
 msgstr "Återställ"
@@ -939,7 +954,7 @@ msgid "ImageMap Help"
 msgstr "Bildstorlek"
 
 #: ../help/imagemap.php:29
-msgid "This is a help for working with Gallerys so-called 'ImageMaps'"
+msgid "This is a help for working with Gallerys so called 'ImageMaps'"
 msgstr ""
 
 #: ../help/imagemap.php:33
@@ -979,15 +994,15 @@ msgid "When you are satisifed with your selection (e.g. a person or object), ent
 msgstr ""
 
 #: ../help/imagemap.php:51
-msgid "The text entered in the Description field will be displayed when your users point their mouse cursor over the ImageMap"
+msgid "The text entered in the description field, will be displayed when your users point their mouse cursor over the ImageMap"
 msgstr ""
 
 #: ../help/imagemap.php:55
-msgid "Optionally you can enter a Link-Url for your ImageMap, which is activated when a user clicks your ImageMap selection."
+msgid "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."
 msgstr ""
 
 #: ../help/imagemap.php:56
-msgid "When you satisfied, click the 'Save ImageMap' button at the left side."
+msgid "When you are satisfied, click the 'Save ImageMap' button at the left side."
 msgstr ""
 
 #: ../help/imagemap.php:63
@@ -995,7 +1010,7 @@ msgid "How to update an ImageMap in Gallery?"
 msgstr ""
 
 #: ../help/imagemap.php:66
-msgid "Currently you can only modify the text and the url for an ImageMap. The polygon for the ImageMap is currently not changeable."
+msgid "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."
 msgstr ""
 
 #: ../help/imagemap.php:67
@@ -1007,7 +1022,7 @@ msgid "Select the ImageMap you want to edit in the box on the left hand side."
 msgstr ""
 
 #: ../help/imagemap.php:71
-msgid "The Image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
+msgid "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
 msgstr ""
 
 #: ../help/imagemap.php:72
@@ -1015,7 +1030,7 @@ msgid "You can then modify your 'Description', or edit the 'Link-URL'."
 msgstr ""
 
 #: ../help/imagemap.php:73
-msgid "When finished, click the 'Update ImageMap' button. "
+msgid "When finished, click the 'Update ImageMap' button."
 msgstr ""
 
 #: ../help/imagemap.php:80
@@ -1023,7 +1038,7 @@ msgid "How to delete an ImageMap in Gallery?"
 msgstr ""
 
 #: ../help/imagemap.php:83
-msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selectes ImageMap(s)' button."
+msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."
 msgstr ""
 
 #: ../help/imagemap.php:89 ../popups/administer_startpage.php:100
@@ -1079,7 +1094,7 @@ msgid "In which format has the data to be?"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:57
-msgid "The first row must be the field names, there is one mandatory field, some predefined fields and you can use your own custom fields."
+msgid "The first row must be the fieldnames, there is one mandatory field, some predefined fields and you can use your own custom fields."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:58
@@ -1097,7 +1112,7 @@ msgid "Predefined: %s, %s, %s"
 msgstr ""
 
 #: ../help/metadataOnUpload.php:63
-msgid "Then follow the lines containing the info it self"
+msgid "Then follow the lines containing the info itself."
 msgstr ""
 
 #: ../help/metadataOnUpload.php:67
@@ -1109,63 +1124,63 @@ msgstr ""
 msgid "_Back to upload"
 msgstr "Tillbaka till Gallery"
 
-#: ../imagemap.php:158
+#: ../imagemap.php:157
 #, fuzzy
 msgid "log_out"
 msgstr "Logga ut"
 
-#: ../imagemap.php:165
+#: ../imagemap.php:164
 #, fuzzy
 msgid "_login"
 msgstr "Logga in"
 
-#: ../imagemap.php:218
+#: ../imagemap.php:217
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr ""
 
-#: ../imagemap.php:220
+#: ../imagemap.php:219
 msgid "Click the question mark icon for helpful instructions."
 msgstr ""
 
-#: ../imagemap.php:221 ../includes/add_photos/add_form.inc:74
+#: ../imagemap.php:220 ../includes/add_photos/add_form.inc:74
 msgid "Help"
 msgstr ""
 
-#: ../imagemap.php:240
+#: ../imagemap.php:239
 msgid "Clear and reset canvas"
 msgstr ""
 
-#: ../imagemap.php:241
+#: ../imagemap.php:240
 #, fuzzy
 msgid "Brush color:"
 msgstr "Kantfärg?"
 
-#: ../imagemap.php:244
+#: ../imagemap.php:243
 #, fuzzy
 msgid "Optional link-url"
 msgstr "Tillvalsverktyg"
 
-#: ../imagemap.php:248
+#: ../imagemap.php:247
 msgid "Save Imagemap"
 msgstr ""
 
-#: ../imagemap.php:255
+#: ../imagemap.php:254
 msgid "Select entries to show ImageMap areas in your photo."
 msgstr ""
 
-#: ../imagemap.php:263
+#: ../imagemap.php:262
 msgid "Delete selected ImageMap(s)"
 msgstr ""
 
-#: ../imagemap.php:266
+#: ../imagemap.php:265
 msgid "Update selected ImageMap(s)"
 msgstr ""
 
-#: ../imagemap.php:268
+#: ../imagemap.php:267
 msgid "Be aware, that the text of ALL selected entries will be updated!"
 msgstr ""
 
-#: ../imagemap.php:271
+#: ../imagemap.php:270
 #, fuzzy
 msgid "No ImageMaps"
 msgstr "inga bilder"
@@ -1193,11 +1208,11 @@ msgid "Click the <b>Browse</b> button to locate a photo to upload."
 msgstr "Klicka på <b>Bläddra</b>-knappen för att lokalisera foto eller film att ladda upp."
 
 #: ../includes/add_photos/add_form.inc:35
-msgid "After you have added a file, you can add more files the same way, just use the browse button as often as you want."
+msgid "After you added a file, you can add more files on the sane way, just use the browse button as often as you want."
 msgstr ""
 
 #: ../includes/add_photos/add_form.inc:36
-msgid "It's possible to enter a manual caption for each item you upload, or you can gallery set the captions."
+msgid "It's possible to enter a manual caption for each item you upload, or you can let gallery set the captions."
 msgstr ""
 
 #: ../includes/add_photos/add_form.inc:37
@@ -1205,7 +1220,7 @@ msgstr ""
 msgid "Supported file types: %s"
 msgstr "Filtyper som stöds"
 
-#: ../includes/add_photos/add_form.inc:47 ../view_album.php:313
+#: ../includes/add_photos/add_form.inc:47 ../view_album.php:316
 msgid " or "
 msgstr " eller "
 
@@ -1247,7 +1262,7 @@ msgstr "Ladda upp nu"
 #: ../includes/add_photos/add_url.inc:62 ../login.php:206
 #: ../new_password.php:128 ../popups/add_comment.php:59
 #: ../popups/copy_photo.php:212 ../popups/delete_photo.php:135
-#: ../popups/download.php:86 ../popups/ecard_form.php:277
+#: ../popups/download.php:86 ../popups/ecard_form.php:276
 #: ../popups/edit_caption.php:233 ../popups/edit_field.php:57
 #: ../popups/edit_watermark.php:123 ../popups/move_album.php:112
 #: ../popups/move_album.php:140 ../popups/move_photo.php:284
@@ -1408,13 +1423,13 @@ msgid "Landscape"
 msgstr ""
 
 #: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:88
-#, php-format
-msgid "Slide Show for Gallery :: %s"
+#, fuzzy, php-format
+msgid "Slideshow for Gallery :: %s"
 msgstr "Bildspel för Galleri :: %s"
 
 #: ../includes/slideshow/applet.inc:46 ../includes/slideshow/high.inc:97
-#, php-format
-msgid "Slide Show for album :: %s"
+#, fuzzy, php-format
+msgid "Slideshow for album :: %s"
 msgstr "Bildspel för album :: %s"
 
 #: ../includes/slideshow/applet.inc:55
@@ -1499,70 +1514,74 @@ msgstr "Dragning"
 msgid "RANDOM!"
 msgstr "SLUMPMÄSSIGT!"
 
-#: ../includes/slideshow/high.inc:334 ../includes/slideshow/low.inc:183
-msgid "The slide show is stopped, Click [play] to resume."
+#: ../includes/slideshow/high.inc:334 ../includes/slideshow/low.inc:190
+#, fuzzy
+msgid "The slideshow is stopped, click [play] to resume."
 msgstr "Bildspelet är stoppat, Klicka [Starta] för att återuppta."
 
 #: ../includes/slideshow/high.inc:342 ../includes/slideshow/high.inc:399
-#: ../includes/slideshow/low.inc:189
-msgid "Slide show is running..."
+#: ../includes/slideshow/low.inc:196
+#, fuzzy
+msgid "Slideshow is running..."
 msgstr "Bildspelet är igång..."
 
 #: ../includes/slideshow/high.inc:349
-msgid "The slide is showing full sized images, Click [normal size] to view resized images."
+#, fuzzy
+msgid "The slide is showing full sized images, click [normal size] to view resized images."
 msgstr "Bildspelet visar fullskaliga storlekar på bilder, Klicka [Normalstorlek] för att visa storleksändrade bilder."
 
 #: ../includes/slideshow/high.inc:356
-msgid "The slide is showing normal sized images, Click [full size] to view full sized images."
+#, fuzzy
+msgid "The slide is showing normal sized images, click [full size] to view full sized images."
 msgstr "Bildspelet visar normalstorlek på bilder, Klicka [Fullskalig storlek] för att visa fullskaliga storlekar på bilder."
 
-#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:218
+#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:225
 msgid "Picture is loading..."
 msgstr "Bild laddas..."
 
 #: ../includes/slideshow/high.inc:394 ../includes/slideshow/high.inc:489
-#: ../includes/slideshow/low.inc:218 ../includes/slideshow/low.inc:376
+#: ../includes/slideshow/low.inc:225 ../includes/slideshow/low.inc:384
 msgid "of"
 msgstr "av"
 
-#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:219
+#: ../includes/slideshow/high.inc:394 ../includes/slideshow/low.inc:226
 #: ../upgrade_users.php:44
 msgid "Please Wait..."
 msgstr "Vänligen vänta..."
 
-#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:329
+#: ../includes/slideshow/high.inc:518 ../includes/slideshow/low.inc:337
 msgid "1 second"
 msgstr "1 sekund"
 
-#: ../includes/slideshow/high.inc:519 ../includes/slideshow/low.inc:330
+#: ../includes/slideshow/high.inc:519 ../includes/slideshow/low.inc:338
 msgid "2 seconds"
 msgstr "2 sekunder"
 
-#: ../includes/slideshow/high.inc:520 ../includes/slideshow/low.inc:331
+#: ../includes/slideshow/high.inc:520 ../includes/slideshow/low.inc:339
 msgid "3 seconds"
 msgstr "3 sekunder"
 
-#: ../includes/slideshow/high.inc:521 ../includes/slideshow/low.inc:332
+#: ../includes/slideshow/high.inc:521 ../includes/slideshow/low.inc:340
 msgid "5 seconds"
 msgstr "5 sekunder"
 
-#: ../includes/slideshow/high.inc:522 ../includes/slideshow/low.inc:333
+#: ../includes/slideshow/high.inc:522 ../includes/slideshow/low.inc:341
 msgid "10 seconds"
 msgstr "10 sekunder"
 
-#: ../includes/slideshow/high.inc:523 ../includes/slideshow/low.inc:334
+#: ../includes/slideshow/high.inc:523 ../includes/slideshow/low.inc:342
 msgid "15 seconds"
 msgstr "15 sekunder"
 
-#: ../includes/slideshow/high.inc:524 ../includes/slideshow/low.inc:335
+#: ../includes/slideshow/high.inc:524 ../includes/slideshow/low.inc:343
 msgid "30 seconds"
 msgstr "30 sekunder"
 
-#: ../includes/slideshow/high.inc:525 ../includes/slideshow/low.inc:336
+#: ../includes/slideshow/high.inc:525 ../includes/slideshow/low.inc:344
 msgid "45 seconds"
 msgstr "45 sekunder"
 
-#: ../includes/slideshow/high.inc:526 ../includes/slideshow/low.inc:337
+#: ../includes/slideshow/high.inc:526 ../includes/slideshow/low.inc:345
 msgid "1 Minute"
 msgstr "1 minut"
 
@@ -1570,12 +1589,13 @@ msgstr "1 minut"
 msgid "Transition:"
 msgstr "Övergång:"
 
-#: ../includes/slideshow/high.inc:597 ../includes/slideshow/low.inc:385
+#: ../includes/slideshow/high.inc:597 ../includes/slideshow/low.inc:393
 msgid "This album has no photos to show in a slide show."
 msgstr "Detta album har inga foton att visa i ett bildspel."
 
-#: ../includes/slideshow/low.inc:84
-msgid "Slide Show for album"
+#: ../includes/slideshow/low.inc:88
+#, fuzzy
+msgid "Slideshow for album"
 msgstr "Bildspel för album"
 
 #: ../includes/stats/stats.inc.php:52
@@ -1718,27 +1738,26 @@ msgstr "Filtrera efter månad"
 msgid "Filter by day"
 msgstr "Filtrera efter dag"
 
-#: ../init.php:29 ../init.php:118 ../popups/view_photo_properties.php:31
-#: ../templates/overall.header.tpl.default:80
-msgid "Security violation"
-msgstr "Säkerhetsintrång"
+#: ../init.php:111
+msgid "Security violation. Geeklog Dir is invalid."
+msgstr ""
 
-#: ../init.php:426
+#: ../init.php:420
 msgid "Gallery seems to be inside Mambo, but we couldn't get the necessary info."
 msgstr ""
 
-#: ../init.php:570
+#: ../init.php:564
 msgid "Fatal error: UserDB failed to initialize!"
 msgstr ""
 
-#: ../js/multifile.js.php:113 ../popups/delete_album.php:64
-#: ../popups/delete_user.php:76 ../templates/commentbox.tpl.default:67
+#: ../js/multifile.js.php:114 ../popups/delete_album.php:64
+#: ../popups/delete_user.php:76 ../templates/commentbox.tpl.default:70
 #: ../tools/lib/lib-despam_comments.php:121
 #: ../tools/lib/lib-despam_comments.php:278
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../js/multifile.js.php:150
+#: ../js/multifile.js.php:151
 #, fuzzy
 msgid "Caption:"
 msgstr "Objektrubrik: "
@@ -1857,7 +1876,8 @@ msgid "Gallery language"
 msgstr "Språk i Gallery:"
 
 #: ../layout/userData.inc:92
-msgid "User can change its own password"
+#, fuzzy
+msgid "User can change its own password?"
 msgstr "Användare kan ändra sitt eget lösenord"
 
 #: ../layout/userData.inc:100
@@ -1869,7 +1889,8 @@ msgid "User is an admin"
 msgstr "Användaren är en administratör"
 
 #: ../layout/userData.inc:113
-msgid "you can't un-admin yourself"
+#, fuzzy
+msgid "You can't un-admin yourself."
 msgstr "Du kan inte ta bort administratör från dig själv"
 
 #: ../layout/userData.inc:118
@@ -1976,223 +1997,229 @@ msgstr "Endast storleksändrade foton"
 msgid "Only full photos"
 msgstr "Endast fullskaliga foton"
 
-#: ../lib/albumItem.php:57 ../lib/albumItem.php:470
+#: ../lib/albumItem.php:59 ../lib/albumItem.php:472
 #: ../popups/rearrange.php:125
 msgid "Movie"
 msgstr "Film"
 
-#: ../lib/albumItem.php:61 ../lib/albumItem.php:473
+#: ../lib/albumItem.php:63 ../lib/albumItem.php:475
 msgid "Photo"
 msgstr "Foto"
 
-#: ../lib/albumItem.php:84
+#: ../lib/albumItem.php:86
 #, fuzzy
-msgid "Edit _Text"
+msgid "Edit _text"
 msgstr "Redigera text"
 
-#: ../lib/albumItem.php:90
+#: ../lib/albumItem.php:92
 #, fuzzy
-msgid "Edit Th_umbnail"
+msgid "Edit th_umbnail"
 msgstr "Redigera miniatyrbild"
 
-#: ../lib/albumItem.php:96
+#: ../lib/albumItem.php:98
 #, fuzzy
 msgid "Rotate/_Flip"
 msgstr "Rotera/Vänd"
 
-#: ../lib/albumItem.php:102
+#: ../lib/albumItem.php:104
 #, fuzzy
 msgid "Re_size"
 msgstr "Storleksändra"
 
-#: ../lib/albumItem.php:109
+#: ../lib/albumItem.php:111
 #, fuzzy
 msgid "_Watermark"
 msgstr "Vattenstämpel"
 
-#: ../lib/albumItem.php:117
+#: ../lib/albumItem.php:119
 #, fuzzy
 msgid "Image_Map"
 msgstr "Ram runt bild?"
 
-#: ../lib/albumItem.php:123
+#: ../lib/albumItem.php:125
 #, fuzzy
-msgid "Crop Image"
+msgid "Crop image"
 msgstr "inga bilder"
 
-#: ../lib/albumItem.php:133
-msgid "Edit Title"
+#: ../lib/albumItem.php:135
+#, fuzzy
+msgid "Edit title"
 msgstr "Redigera titel"
 
-#: ../lib/albumItem.php:138
-msgid "Edit Description"
+#: ../lib/albumItem.php:140
+#, fuzzy
+msgid "Edit description"
 msgstr "Redigera beskrivning"
 
-#: ../lib/albumItem.php:144 ../popups/rename_album.php:35
-msgid "Rename Album"
+#: ../lib/albumItem.php:146
+#, fuzzy
+msgid "Rename album"
 msgstr "Döp om album"
 
-#: ../lib/albumItem.php:149
-msgid "Reset Counter"
+#: ../lib/albumItem.php:151
+#, fuzzy
+msgid "Reset counter"
 msgstr "Nollställ räknare"
 
-#: ../lib/albumItem.php:160
+#: ../lib/albumItem.php:162
 msgid "Permissions"
 msgstr "Rättigheter"
 
-#: ../lib/albumItem.php:167 ../popups/watermark_album.php:103
+#: ../lib/albumItem.php:169 ../popups/watermark_album.php:103
 msgid "Watermark Album"
 msgstr "Vattenstämpla album"
 
-#: ../lib/albumItem.php:174
-msgid "View Comments"
+#: ../lib/albumItem.php:176
+#, fuzzy
+msgid "View comments"
 msgstr "Visa kommentarer"
 
-#: ../lib/albumItem.php:182
+#: ../lib/albumItem.php:184
 #, fuzzy
 msgid "Cop_y"
 msgstr "Kopiera"
 
-#: ../lib/albumItem.php:191
+#: ../lib/albumItem.php:193
 #, fuzzy
 msgid "_Reorder"
 msgstr "Omsortera"
 
-#: ../lib/albumItem.php:197
+#: ../lib/albumItem.php:199
 #, fuzzy
 msgid "Mo_ve"
 msgstr "Flytta"
 
-#: ../lib/albumItem.php:205
+#: ../lib/albumItem.php:207
 #, fuzzy
 msgid "Set as high_light"
 msgstr "Sätt som förgrundsbild"
 
-#: ../lib/albumItem.php:214
+#: ../lib/albumItem.php:216
 #, fuzzy
-msgid "Change Ow_ner"
+msgid "Change ow_ner"
 msgstr "Ändra ägare"
 
-#: ../lib/albumItem.php:219
+#: ../lib/albumItem.php:221
 #, fuzzy, php-format
 msgid "Feature %s"
 msgstr "Ta bort"
 
-#: ../lib/albumItem.php:232
+#: ../lib/albumItem.php:234
 #, fuzzy
 msgid "_Unhide"
 msgstr "Dölj"
 
-#: ../lib/albumItem.php:239
+#: ../lib/albumItem.php:241
 #, fuzzy
 msgid "_Hide"
 msgstr "Dölj"
 
-#: ../lib/albumItem.php:251 ../lib/albumItem.php:261
+#: ../lib/albumItem.php:253 ../lib/albumItem.php:263
 #: ../popups/delete_photo.php:134 ../popups/manage_users.php:167
 #, fuzzy
 msgid "_Delete"
 msgstr "Ta bort"
 
-#: ../lib/albumItem.php:275
+#: ../lib/albumItem.php:277
 #, fuzzy
 msgid "Photo _properties"
 msgstr "Fotoegenskaper"
 
-#: ../lib/albumItem.php:287
+#: ../lib/albumItem.php:289
 #, fuzzy
 msgid "Send photo as e_Card"
 msgstr "Skicka foto som eCard"
 
-#: ../lib/albumItem.php:299
+#: ../lib/albumItem.php:301
 #, php-format
 msgid "%s actions"
 msgstr "%såtgärder"
 
-#: ../lib/albumItem.php:320
-msgid "delete comment"
+#: ../lib/albumItem.php:322
+#, fuzzy
+msgid "Delete comment"
 msgstr "Ta bort kommentar"
 
-#: ../lib/albumItem.php:343
+#: ../lib/albumItem.php:345
 msgid "From:"
 msgstr "Från: "
 
-#: ../lib/albumItem.php:451
+#: ../lib/albumItem.php:453
 #, fuzzy, php-format
 msgid "Generated caption. Type: %s"
 msgstr "Redigera objekttexter"
 
-#: ../lib/albumItem.php:483
+#: ../lib/albumItem.php:485
 #, php-format
 msgid "Entering function: '%s'"
 msgstr ""
 
-#: ../lib/albumItem.php:485
+#: ../lib/albumItem.php:487
 #, fuzzy, php-format
 msgid "Processing file: %s"
 msgstr "Bearbetar bild %d..."
 
-#: ../lib/albumItem.php:489
+#: ../lib/albumItem.php:491
 #, fuzzy, php-format
 msgid "Processing file '%s' as archive"
 msgstr "Bearbetar %s som en lokal katalog."
 
-#: ../lib/albumItem.php:492
+#: ../lib/albumItem.php:494
 #, php-format
 msgid "Skipping %s (%s support not enabled)"
 msgstr "Utesluter %s (%s stöd är inte aktiverat)"
 
-#: ../lib/albumItem.php:501
+#: ../lib/albumItem.php:503
 msgid "Getting archive content Filenames"
 msgstr ""
 
-#: ../lib/albumItem.php:519
+#: ../lib/albumItem.php:521
 msgid "No Metadata"
 msgstr ""
 
-#: ../lib/albumItem.php:523
+#: ../lib/albumItem.php:525
 msgid "Processing files in archive"
 msgstr ""
 
-#: ../lib/albumItem.php:529
+#: ../lib/albumItem.php:531
 #, fuzzy, php-format
 msgid "%d. %s"
 msgstr "%s, %s"
 
-#: ../lib/albumItem.php:532
+#: ../lib/albumItem.php:534
 #, fuzzy, php-format
 msgid "Could not extract %s"
 msgstr "Kunde inte öppna katalog %s"
 
-#: ../lib/albumItem.php:576
+#: ../lib/albumItem.php:578
 #, fuzzy
 msgid "Start Processing single file (Image, not archive)"
 msgstr "Bearbetar bild %d..."
 
-#: ../lib/albumItem.php:579
+#: ../lib/albumItem.php:581
 msgid "extension is accepted."
 msgstr ""
 
-#: ../lib/albumItem.php:581
+#: ../lib/albumItem.php:583
 #, fuzzy
 msgid "Filename processing."
 msgstr "Bild-förbearbetning"
 
-#: ../lib/albumItem.php:630
+#: ../lib/albumItem.php:632
 msgid "No caption given, generating it."
 msgstr ""
 
-#: ../lib/albumItem.php:636
+#: ../lib/albumItem.php:638
 #, php-format
 msgid "Adding %s"
 msgstr "Lägger till %s"
 
-#: ../lib/albumItem.php:662
+#: ../lib/albumItem.php:664
 #, php-format
 msgid "Need help?  Look in the  %s%s FAQ%s"
 msgstr "Behöver du hjälp?  Titta i  %s%s Frågor och Svar%s"
 
-#: ../lib/albumItem.php:668
+#: ../lib/albumItem.php:670
 #, php-format
 msgid "Skipping %s (can't handle %s format)"
 msgstr "Utesluter %s (kan inte hantera %s format)"
@@ -2505,7 +2532,7 @@ msgid "_Return to  %s"
 msgstr "Tillbaka till %s"
 
 #: ../poll_results.php:143 ../popups/upgrade_album.php:72
-#: ../popups/upgrade_album.php:97 ../view_album.php:261 ../view_album.php:585
+#: ../popups/upgrade_album.php:97 ../view_album.php:264 ../view_album.php:588
 #, php-format
 msgid "Album: %s"
 msgstr "Album: %s"
@@ -2515,16 +2542,19 @@ msgid "Results Breakdown"
 msgstr "Resultatsammanbrott"
 
 #: ../popups/add_comment.php:45
-msgid "Add Comment"
+#, fuzzy
+msgid "Add comment"
 msgstr "Lägg till kommentar"
 
 #: ../popups/add_comment.php:47
-msgid "Enter your comment for this picture in the text box below."
+#, fuzzy
+msgid "Enter your comment in the text box below."
 msgstr "Skriv in din kommentar till denna bild i textrutan nedan."
 
-#: ../popups/add_photos.php:52 ../popups/add_photos_frame.php:36
-msgid "Add Photos"
-msgstr "Lägg till foton"
+#: ../popups/add_photos.php:52
+#, fuzzy
+msgid "Add items"
+msgstr "Ladda upp filer"
 
 #: ../popups/add_photos.php:69
 msgid "Applet"
@@ -2547,6 +2577,10 @@ msgstr "URL"
 msgid "From Local Server"
 msgstr "Använd SMTP-server som ej är lokal."
 
+#: ../popups/add_photos_frame.php:36
+msgid "Add Photos"
+msgstr "Lägg till foton"
+
 #: ../popups/administer_startpage.php:38
 #, fuzzy
 msgid "Rebuild highlights"
@@ -2567,20 +2601,21 @@ msgstr ""
 
 #: ../popups/administer_startpage.php:52
 #, fuzzy
-msgid "By (physical) name"
+msgid "By (physical) name."
 msgstr "Efter filnamn"
 
 #: ../popups/administer_startpage.php:53
-msgid "By last reset date"
+msgid "By last reset date."
 msgstr ""
 
 #: ../popups/administer_startpage.php:54
-msgid "By creation date (works only with albums created with 1.5.2 or newer)"
+msgid "By creation date (works only with albums created with 1.5.2 or newer)."
 msgstr ""
 
 #: ../popups/administer_startpage.php:57
-msgid "Administer Startpage"
-msgstr ""
+#, fuzzy
+msgid "Administer startpage"
+msgstr "Administratörssida"
 
 #: ../popups/administer_startpage.php:79
 msgid "Sort albums on startpage"
@@ -2620,7 +2655,7 @@ msgstr "Ladda upp filer"
 
 #: ../popups/album_permissions.php:124
 #, fuzzy
-msgid "Users / Groups that can add photos."
+msgid "Users / Groups that can add items."
 msgstr "Användare som kan lägga till foton."
 
 #: ../popups/album_permissions.php:129
@@ -2630,7 +2665,7 @@ msgstr "Ta bort"
 
 #: ../popups/album_permissions.php:130
 #, fuzzy
-msgid "Users / Groups that can delete photos."
+msgid "Users / Groups that can delete items."
 msgstr "Användare som kan ta bort foton."
 
 #: ../popups/album_permissions.php:135
@@ -2640,7 +2675,7 @@ msgstr "Anpassa"
 
 #: ../popups/album_permissions.php:136
 #, fuzzy
-msgid "Users / Groups that can modify photos."
+msgid "Users / Groups that can modify items."
 msgstr "Användare som kan bearbeta foton."
 
 #: ../popups/album_permissions.php:141
@@ -2718,8 +2753,8 @@ msgid "Album Permissions"
 msgstr "Albumrättigheter"
 
 #: ../popups/album_permissions.php:230
-#, php-format
-msgid "Changing permissions for %s"
+#, fuzzy, php-format
+msgid "Changing permissions for: %s"
 msgstr "Ändrar rättigheter för %s"
 
 #: ../popups/album_permissions.php:253
@@ -2859,8 +2894,7 @@ msgstr "Skapa användare"
 msgid "Back to usermanagement"
 msgstr "Tillbaka till användarhandhavande"
 
-#: ../popups/delete_album.php:46 ../popups/delete_photo.php:87
-#: ../tools/validate_albums.php:49
+#: ../popups/delete_album.php:46 ../tools/validate_albums.php:49
 msgid "Delete Album"
 msgstr "Ta bort album"
 
@@ -2876,13 +2910,20 @@ msgstr "Avbryt"
 msgid "no album specified"
 msgstr "Inget album är specificerat"
 
-#: ../popups/delete_photo.php:87 ../tools/validate_albums.php:52
-msgid "Delete Photo"
-msgstr "Ta bort foto"
+#: ../popups/delete_photo.php:87
+#, fuzzy
+msgid "Delete album"
+msgstr "Ta bort album"
+
+#: ../popups/delete_photo.php:87
+#, fuzzy
+msgid "Delete item"
+msgstr "Ta bort"
 
 #: ../popups/delete_photo.php:114
-msgid "Do you really want to delete this photo?"
-msgstr "Vill du verkligen ta bort detta foto?"
+#, fuzzy
+msgid "Do you really want to delete this item?"
+msgstr "Vill du verkligen ta bort detta album?"
 
 #: ../popups/delete_user.php:44
 msgid "Delete User"
@@ -2930,11 +2971,13 @@ msgid "Attempted security breach."
 msgstr "Försök till säkerhetintrång."
 
 #: ../popups/do_command.php:54
-msgid "Rebuilding Thumbnails"
+#, fuzzy
+msgid "Rebuilding thumbnails"
 msgstr "Återskapar miniatyrbilder"
 
 #: ../popups/do_command.php:56
-msgid "Performing Operation.."
+#, fuzzy
+msgid "Performing operation..."
 msgstr "Genomför operation.."
 
 #: ../popups/do_command.php:68
@@ -3042,7 +3085,7 @@ msgstr "Några ifyllnadsfält är inte korrekt ifyllda. Vänligen fyll i dessa."
 
 #: ../popups/ecard_form.php:71
 #, fuzzy
-msgid "The sender or recepient email adress is not valid."
+msgid "The sender or recipient email adress is not valid."
 msgstr "Det begärda albumet med index %s är inte giltigt"
 
 #: ../popups/ecard_form.php:81
@@ -3059,7 +3102,7 @@ msgstr "Felmeddelande: för att skicka ett eCard så måste du fylla i alla fält. "
 
 #: ../popups/ecard_form.php:127
 #, fuzzy
-msgid "Please fill this fields:"
+msgid "Please fill these fields:"
 msgstr "Vänligen fyll i dessa fält:"
 
 #: ../popups/ecard_form.php:131
@@ -3074,126 +3117,126 @@ msgstr "- Din e-post"
 msgid "- Recipient's Name"
 msgstr "- Mottagarens namn"
 
-#: ../popups/ecard_form.php:150
+#: ../popups/ecard_form.php:149
 msgid "- Recipient's Email"
 msgstr "- Mottagarens e-post"
 
-#: ../popups/ecard_form.php:155
+#: ../popups/ecard_form.php:154
 msgid "- Your Message"
 msgstr "- Ditt meddelande"
 
-#: ../popups/ecard_form.php:159
+#: ../popups/ecard_form.php:158
 #, fuzzy, php-format
 msgid "Please fill all fields. Then click '%s' again."
 msgstr "Vänligen fyll i alla fält, klick sedan på >Skicka<."
 
-#: ../popups/ecard_form.php:173
-#, php-format
-msgid "You have entered more than %d characters"
+#: ../popups/ecard_form.php:172
+#, fuzzy, php-format
+msgid "You have entered more than %d characters!"
 msgstr "Du har skrivit in mer än %d tecken"
 
-#: ../popups/ecard_form.php:216
+#: ../popups/ecard_form.php:215
 #, php-format
 msgid "%s sent you an E-C@rd"
 msgstr "%s har skickat ett E-C@rd till dig"
 
-#: ../popups/ecard_form.php:220
+#: ../popups/ecard_form.php:219
 msgid "Your info"
 msgstr "Din information"
 
-#: ../popups/ecard_form.php:222
+#: ../popups/ecard_form.php:221
 msgid "Recipient's info"
 msgstr "Mottagarens information"
 
-#: ../popups/ecard_form.php:225 ../popups/ecard_form.php:227
+#: ../popups/ecard_form.php:224 ../popups/ecard_form.php:226
 msgid "Name"
 msgstr "Namn"
 
-#: ../popups/ecard_form.php:231 ../popups/ecard_form.php:233
+#: ../popups/ecard_form.php:230 ../popups/ecard_form.php:232
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../popups/ecard_form.php:239
+#: ../popups/ecard_form.php:238
 msgid "Choose a Stamp"
 msgstr "Välj en stämpel"
 
-#: ../popups/ecard_form.php:244
+#: ../popups/ecard_form.php:243
 #, php-format
 msgid "Stamp #%d"
 msgstr "Stämpel #%d"
 
-#: ../popups/ecard_form.php:254
+#: ../popups/ecard_form.php:253
 msgid "Subject:"
 msgstr "Ämne:"
 
-#: ../popups/ecard_form.php:258
+#: ../popups/ecard_form.php:257
 msgid "Your Message:"
 msgstr "Ditt meddelande:"
 
-#: ../popups/ecard_form.php:287
+#: ../popups/ecard_form.php:286
 #, php-format
 msgid "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."
 msgstr "Ditt E-C@rd med bilden nedan har skickats till %s &lt;%s&gt;."
 
-#: ../popups/ecard_form.php:291
+#: ../popups/ecard_form.php:290
 msgid "Close this window"
 msgstr "Stäng detta fönster"
 
-#: ../popups/edit_appearance.php:58
+#: ../popups/edit_appearance.php:62
 #, php-format
 msgid "Problem with input of field '%s'. %s"
 msgstr "Problem med inmatning av fält '%s'. %s"
 
-#: ../popups/edit_appearance.php:123
+#: ../popups/edit_appearance.php:130
 #, php-format
 msgid "Warning: you have changed voters from %s to %s. It is advisable to reset the poll to remove all previous votes."
 msgstr "Varning: Du har ändrat antal röster från %s till %s.  Det är klokt att nollställa omröstningen för att ta bort alla föregående röster."
 
-#: ../popups/edit_appearance.php:124
+#: ../popups/edit_appearance.php:131
 msgid "Everybody"
 msgstr "Allihopa"
 
-#: ../popups/edit_appearance.php:125
+#: ../popups/edit_appearance.php:132
 msgid "Logged in"
 msgstr "Inloggad"
 
-#: ../popups/edit_appearance.php:153
+#: ../popups/edit_appearance.php:161
 msgid "untitled field"
 msgstr "Fält utan rubrik"
 
-#: ../popups/edit_appearance.php:189
+#: ../popups/edit_appearance.php:198
 msgid "Title"
 msgstr "Titel"
 
-#: ../popups/edit_appearance.php:190
+#: ../popups/edit_appearance.php:199
 #, fuzzy
-msgid "Alt Text / tooltip"
+msgid "Alt text / Tooltip"
 msgstr "Alternativ text / onMouseOver"
 
-#: ../popups/edit_appearance.php:220
+#: ../popups/edit_appearance.php:232
 #, php-format
 msgid "Field %s:"
 msgstr "Fält %s:"
 
-#: ../popups/edit_appearance.php:237 ../popups/edit_appearance.php:244
+#: ../popups/edit_appearance.php:248 ../popups/edit_appearance.php:255
 msgid "Album Properties"
 msgstr "Albumegenskaper"
 
-#: ../popups/edit_appearance.php:304
+#: ../popups/edit_appearance.php:316
 msgid "Apply values to nested albums (except album title and summary)."
 msgstr "Verkställ dessa värden på underliggande album (förutom albumtitel och sammanfattning)."
 
-#: ../popups/edit_appearance.php:307
+#: ../popups/edit_appearance.php:319
 #, fuzzy
 msgid "_Apply"
 msgstr "Verkställ"
 
-#: ../popups/edit_appearance.php:308
+#: ../popups/edit_appearance.php:320
 #, fuzzy
 msgid "_Undo"
 msgstr "Ångra"
 
-#: ../popups/edit_appearance.php:309 ../popups/rebuild_thumbs.php:41
+#: ../popups/edit_appearance.php:321 ../popups/rebuild_thumbs.php:41
 #: ../popups/rebuild_thumbs.php:59 ../popups/rebuild_capture_dates.php:41
 #: ../popups/rebuild_capture_dates.php:59 ../popups/recreate_captions.php:71
 #: ../popups/rotate_photo.php:127 ../popups/watermark_album.php:73
@@ -3212,7 +3255,8 @@ msgid "Gallery was not able to save the data."
 msgstr "Gallery har inte blivit konfigurerat!"
 
 #: ../popups/edit_caption.php:97
-msgid "Year must be between 1969 and 2070"
+#, fuzzy
+msgid "Year must be between 1969 and 2070."
 msgstr "Året måste vara mellan 1969 och 2070"
 
 #: ../popups/edit_caption.php:103
@@ -3866,6 +3910,10 @@ msgstr "Din kontoinformation kommer att skickas till e-postadressen du angav."
 msgid "_Send request"
 msgstr "Begäran om nytt lösenord"
 
+#: ../popups/rename_album.php:35
+msgid "Rename Album"
+msgstr "Döp om album"
+
 #: ../popups/rename_album.php:87
 msgid "There is already an album with that name!"
 msgstr "Det finns redan ett album med det namnet!"
@@ -3939,7 +3987,7 @@ msgstr ""
 msgid "intermediate"
 msgstr ""
 
-#: ../popups/resize_photo.php:95 ../view_photo.php:352
+#: ../popups/resize_photo.php:95 ../view_photo.php:354
 msgid "full"
 msgstr "fullskalig"
 
@@ -4289,6 +4337,11 @@ msgstr "Om du vill ändra ditt lösenord så måste du skriva in ditt gamla lösenord
 msgid "You can change your username to any combination of letters and digits."
 msgstr "Du kan ändra ditt användarnamn till valfri kombination av bokstäver och siffror."
 
+#: ../popups/view_photo_properties.php:31
+#: ../templates/overall.header.tpl.default:80
+msgid "Security violation"
+msgstr "Säkerhetsintrång"
+
 #: ../popups/view_photo_properties.php:35
 msgid "Photo Properties"
 msgstr "Fotoegenskaper"
@@ -4471,6 +4524,10 @@ msgstr "Klicka på länken och följ instruktionerna för att logga in på Gallery, v
 msgid "Return to Add Photos"
 msgstr "Återvänd till Ladda upp foton"
 
+#: ../rss.php:260
+msgid "no albums"
+msgstr "inga album"
+
 #: ../rss.php:261
 #, fuzzy
 msgid "no photos"
@@ -4492,94 +4549,100 @@ msgstr "%s inte inställd."
 msgid "Search"
 msgstr "Sök"
 
-#: ../search.php:147
+#: ../search.php:148
 msgid "Caption: "
 msgstr "Objektrubrik: "
 
-#: ../search.php:170
+#: ../search.php:171
 msgid "Matching Comments"
 msgstr "Matchande kommentarer"
 
-#: ../search.php:202
+#: ../search.php:203
 msgid "From Album"
 msgstr "Från album"
 
-#: ../search.php:209
+#: ../search.php:210
 msgid "KEYWORDS"
 msgstr "NYCKELORD"
 
-#: ../search.php:227
+#: ../search.php:228
 #, php-format
 msgid "Albums containing %s"
 msgstr "Album innehållande %s"
 
-#: ../search.php:228
+#: ../search.php:229
 msgid "No Album Matches"
 msgstr "Inga album matchar"
 
-#: ../search.php:231
+#: ../search.php:232
 #, php-format
 msgid "Photos containing %s in caption, comment or name."
 msgstr "Foton som innehåller %s i rubrik, kommentar eller kommentar"
 
-#: ../search.php:232
+#: ../search.php:233
 msgid "No Photo Matches"
 msgstr "Inga foton matchar"
 
-#: ../search.php:252
+#: ../search.php:253
 #, php-format
 msgid "Some albums not searched as they require upgrading to the latest version of %s first."
 msgstr "Vissa album genomsöktes inte eftersom de kräver uppgradering till senaste versionen av %s först."
 
-#: ../search.php:255
+#: ../search.php:256
 msgid "Upgrade all albums."
 msgstr "Uppgradera alla album."
 
-#: ../search.php:272
+#: ../search.php:273
 msgid "Search the Gallery's Album and Photo titles, descriptions and comments."
 msgstr "Sök i Gallerys Album och Foton Titlar, Beskrivningar och Kommentarer"
 
-#: ../slideshow.php:85
-msgid "play"
+#: ../slideshow.php:87
+#, fuzzy
+msgid "Play"
 msgstr "Starta"
 
-#: ../slideshow.php:86
-msgid "stop"
+#: ../slideshow.php:88
+#, fuzzy
+msgid "Stop"
 msgstr "Stoppa"
 
-#: ../slideshow.php:87
-msgid "normal size"
+#: ../slideshow.php:89
+#, fuzzy
+msgid "Normal size"
 msgstr "Normalstorlek"
 
-#: ../slideshow.php:88
-msgid "full size"
+#: ../slideshow.php:90
+#, fuzzy
+msgid "Full size"
 msgstr "Fullskalig storlek"
 
-#: ../slideshow.php:89
-msgid "forward direction"
+#: ../slideshow.php:91
+#, fuzzy
+msgid "Forward direction"
 msgstr "Framåt"
 
-#: ../slideshow.php:90
-msgid "reverse direction"
+#: ../slideshow.php:92
+#, fuzzy
+msgid "Reverse direction"
 msgstr "Bakåt"
 
-#: ../slideshow.php:91
+#: ../slideshow.php:93
 msgid "Delay"
 msgstr "Fördröjning"
 
-#: ../slideshow.php:92
+#: ../slideshow.php:94
 msgid "Loop:"
 msgstr "Slinga:"
 
-#: ../slideshow.php:100
+#: ../slideshow.php:102
 msgid "Fullscreen applet"
 msgstr "Applet-program för helskärm"
 
-#: ../slideshow.php:103
+#: ../slideshow.php:105
 msgid "Modern browsers"
 msgstr "Modern webbläsare"
 
-#: ../slideshow.php:106
+#: ../slideshow.php:108
 msgid "Compatible but limited"
 msgstr "Kompatibel men begränsad"
 
@@ -4751,13 +4814,13 @@ msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Totalt: %s ; Start: %s ; Sista sidan: %s"
 
 #: ../stats.php:586
-#, php-format
-msgid "%d images with comments in album: %s"
+#, fuzzy, php-format
+msgid "%d items with comments in album: %s."
 msgstr "%d bilder med kommentarer i album: %s"
 
 #: ../stats.php:589
-#, php-format
-msgid "%d images in album: %s"
+#, fuzzy, php-format
+msgid "%d items in album: %s"
 msgstr "%d bilder i album: %s"
 
 #: ../stats.php:593
@@ -4766,13 +4829,13 @@ msgid "Given albumname: '%s' is invalid !"
 msgstr "Givet albumnamn: '%s' är ogiltigt!"
 
 #: ../stats.php:598
-#, php-format
-msgid "%d images with comments in this Gallery"
+#, fuzzy, php-format
+msgid "%d items with comments in this Gallery."
 msgstr "%d bilder med kommentarer i detta galleri"
 
 #: ../stats.php:601
-#, php-format
-msgid "%d images this Gallery"
+#, fuzzy, php-format
+msgid "%d items this Gallery."
 msgstr "%d bilder i detta galleri"
 
 #: ../stats.php:610
@@ -4780,9 +4843,15 @@ msgstr "%d bilder i detta galleri"
 msgid "Back to stats-_wizard"
 msgstr "Tillbaka till statistikguiden"
 
+#: ../stats.php:614 ../tools/validate_albums.php:96
+#: ../tools/validate_albums.php:124
+#, fuzzy
+msgid "Return to _gallery"
+msgstr "Återgå till Gallery"
+
 #: ../stats.php:646
-#, php-format
-msgid "Data load time %d seconds"
+#, fuzzy, php-format
+msgid "Data load time %d seconds."
 msgstr "Data hämtades på %d sekunder"
 
 #: ../stats.php:717
@@ -4808,7 +4877,7 @@ msgid "upgrade all albums"
 msgstr "uppgradera alla album"
 
 #: ../templates/album.tpl.default:130 ../templates/album.tpl.default:195
-#: ../view_album.php:321
+#: ../view_album.php:324
 msgid "Vote"
 msgstr "Rösta"
 
@@ -4834,25 +4903,25 @@ msgstr "Andra ändringar är gjorda"
 msgid "Apply settings (both) recursive for subalbums."
 msgstr ""
 
-#: ../templates/commentbox.tpl.default:27
+#: ../templates/commentbox.tpl.default:30
 msgid "view comments for this nested album"
 msgstr "visa kommentarer för detta underliggande album"
 
-#: ../templates/commentbox.tpl.default:31
+#: ../templates/commentbox.tpl.default:34
 msgid "Album contains no comments"
 msgstr "Album innehåller inga kommentarer"
 
-#: ../templates/commentbox.tpl.default:63
+#: ../templates/commentbox.tpl.default:66
 #, php-format
 msgid "From: %s"
 msgstr "Från: %s"
 
-#: ../templates/commentbox.tpl.default:79
+#: ../templates/commentbox.tpl.default:83
 #, fuzzy
 msgid "_Add comment"
 msgstr "Lägg till kommentar"
 
-#: ../templates/commentbox.tpl.default:81
+#: ../templates/commentbox.tpl.default:86
 #, fuzzy
 msgid "_Delete marked comments"
 msgstr "Ta bort markerade kommentarer"
@@ -4970,6 +5039,10 @@ msgstr "Vänligen kontollera rättigheterna för dessa filer och katalogen ovan, än
 msgid "Reload"
 msgstr "Uppdatera"
 
+#: ../tools/validate_albums.php:52
+msgid "Delete Photo"
+msgstr "Ta bort foto"
+
 #: ../tools/validate_albums.php:56
 msgid "Validate Albums"
 msgstr "Validera album"
@@ -4988,11 +5061,6 @@ msgstr "Bearbeta igen?"
 #, fuzzy
 msgid "Return to _admin page"
 msgstr "Tillbaka till administrationsida"
-
-#: ../tools/validate_albums.php:96 ../tools/validate_albums.php:124
-#, fuzzy
-msgid "Return to _gallery"
-msgstr "Återgå till Gallery"
 
 #: ../tools/validate_albums.php:100
 msgid "Are you sure you want to delete the folder below and all of its content ?"
@@ -5339,7 +5407,8 @@ msgid "Getting Dimension of file: %s"
 msgstr "Hämtar storlek på fil: %s"
 
 #: ../util.php:221
-msgid "The file does not exist ?!"
+#, fuzzy
+msgid "The file does not exist?!"
 msgstr "Filen finns inte ?!"
 
 #: ../util.php:228
@@ -5388,8 +5457,8 @@ msgid "Got no capture date. Using file modification time."
 msgstr ""
 
 #: ../util.php:696
-#, php-format
-msgid "Item Capture Date : %s"
+#, fuzzy, php-format
+msgid "Item Capture Date: %s"
 msgstr "Fotodatum: %s"
 
 #: ../util.php:743
@@ -5418,67 +5487,62 @@ msgstr ""
 
 #: ../util.php:953
 #, fuzzy, php-format
-msgid "Creating Zip file with %s"
+msgid "Creating Zipfile with %s"
 msgstr "Verkställer: %s"
 
 #: ../util.php:967
 #, php-format
-msgid "Your temp folder is not writeable! Please check permissions of this dir: %s"
+msgid "Your tempfolder is not writeable! Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1111
+#: ../util.php:1136
 #, php-format
 msgid "Cannot open logfile: %s"
 msgstr "Kan inte öppna loggfil: %s"
 
-#: ../util.php:1228
+#: ../util.php:1261
 #, php-format
 msgid "Parsing for csv data in file: %s"
 msgstr ""
 
-#: ../util.php:1244
+#: ../util.php:1279
 #, fuzzy
 msgid "csv result:"
 msgstr "Omröstningsresultat:"
 
-#: ../util.php:1423
+#: ../util.php:1458
 #, fuzzy, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "Hämtar storlek på fil: %s"
 
-#: ../util.php:1513
+#: ../util.php:1550
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s har skickat ett E-C@rd till dig."
 
-#: ../util.php:1615
+#: ../util.php:1652
 #, php-format
-msgid "Gallery was unable to create a temporary subfolder in your temp folder. Please check permissions of this dir: %s"
+msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr ""
 
-#: ../util.php:1640
+#: ../util.php:1677
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1648
+#: ../util.php:1685
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1653
-msgid "We are trying to download the tempdir itself ?! Download aborted."
+#: ../util.php:1690
+msgid "We are trying to download the tempdir itself?! Download aborted."
 msgstr ""
 
-#: ../util.php:1788
+#: ../util.php:1825
 #, php-format
 msgid "Debug ON ! Level %s"
 msgstr "Felsökning PÅ ! Nivå %s"
-
-#: ../view_album.php:147
-#, fuzzy
-msgid "No albums"
-msgstr "inga album"
 
 #: ../view_album.php:147
 #, php-format
@@ -5524,146 +5588,164 @@ msgid_plural "%s elements are hidden."
 msgstr[0] "%s är dold"
 msgstr[1] "%s är dold"
 
-#: ../view_album.php:208
+#: ../view_album.php:211
 #, fuzzy
-msgid "view&nbsp;_comments"
+msgid "View&nbsp;_comments"
 msgstr "Visa&nbsp;kommentarer"
 
-#: ../view_album.php:245
+#: ../view_album.php:248
 #, fuzzy
 msgid "Your votes are:"
 msgstr "Ditt meddelande:"
 
-#: ../view_album.php:292
+#: ../view_album.php:295
 msgid "See full poll results"
 msgstr "Se fullständigt röstningsresultat"
 
-#: ../view_album.php:311
+#: ../view_album.php:314
 msgid ", "
 msgstr ", "
 
-#: ../view_album.php:317
+#: ../view_album.php:320
 #, php-format
 msgid "To vote for an image, click on %s."
 msgstr "För att rösta på en bild klicka på %s."
 
-#: ../view_album.php:320
+#: ../view_album.php:323
 #, php-format
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Du MÅSTE klicka på %s för att din röst skall registreras."
 
-#: ../view_album.php:327
+#: ../view_album.php:330
 #, fuzzy, php-format
 msgid "You have a total of %d vote and can change it later if you wish."
 msgid_plural "You have a total of %d votes and can change them later if you wish."
 msgstr[0] "Du har totalt %s och kan ändra dem om du vill."
 msgstr[1] "Du har totalt %s och kan ändra dem om du vill."
 
-#: ../view_album.php:332
+#: ../view_album.php:335
 #, fuzzy
 msgid "You can change your votes later, if you wish."
 msgstr "Du kan ändra dina val här om du vill."
 
-#: ../view_album.php:478 ../view_album.php:479
+#: ../view_album.php:481 ../view_album.php:482
 #, php-format
 msgid "%dkB"
 msgstr "%dkB"
 
-#: ../view_album.php:492 ../view_album.php:515
+#: ../view_album.php:495 ../view_album.php:518
 #, php-format
 msgid "Opens picture in %s x %s in a popup."
 msgstr ""
 
-#: ../view_album.php:567
+#: ../view_album.php:570
 msgid "highlight"
 msgstr "förgrundsbild"
 
-#: ../view_album.php:595
+#: ../view_album.php:598
 msgid "No description"
 msgstr "Ingen beskrivning"
 
-#: ../view_album.php:603
+#: ../view_album.php:606
 #, fuzzy, php-format
 msgid "Last change: %s"
 msgstr "Senaste ändring %s."
 
-#: ../view_album.php:606
+#: ../view_album.php:609
 #, fuzzy, php-format
 msgid "Contains: One Item"
 msgid_plural "Contains %d items"
 msgstr[0] "Innehåller: "
 msgstr[1] "Innehåller: "
 
-#: ../view_album.php:623
+#: ../view_album.php:626
 #, fuzzy, php-format
 msgid "Viewed: Once."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Visad:"
 msgstr[1] "Visad:"
 
-#: ../view_album.php:650
+#: ../view_album.php:653
 #, fuzzy
 msgid "Description for"
 msgstr "Beskrivning"
 
-#: ../view_album.php:651
+#: ../view_album.php:654
 #, fuzzy
 msgid "... show full description"
 msgstr "Visa beskrivning"
 
-#: ../view_album.php:662
+#: ../view_album.php:665
 #, fuzzy, php-format
 msgid "Viewed: 1 time."
 msgid_plural "Viewed: %d times."
 msgstr[0] "Visad:"
 msgstr[1] "Visad:"
 
-#: ../view_album.php:744
+#: ../view_album.php:747
 msgid "Hey! Add some photos."
 msgstr "Hallå! Ladda upp några foton."
 
-#: ../view_comments.php:106
+#: ../view_comments.php:110
 #, php-format
 msgid "Deleting comment %d from item with index: %d"
 msgstr "Tar bort kommentar %d från objekt med index: %d"
 
-#: ../view_comments.php:120
+#: ../view_comments.php:127
 msgid "Comments for this Album"
 msgstr "Kommentarer till detta album"
 
-#: ../view_comments.php:121
+#: ../view_comments.php:128
 #, fuzzy
 msgid "return to _album"
 msgstr "Tillbaka till album"
 
-#: ../view_comments.php:130
+#: ../view_comments.php:137
 msgid "Sorry.  This album does not allow comments."
 msgstr "Tyvärr.  Detta album tillåter inga kommentarer."
 
-#: ../view_photo.php:295
+#: ../view_photo.php:297
 msgid "Send photo to..."
 msgstr "Skicka foto till..."
 
-#: ../view_photo.php:298
+#: ../view_photo.php:300
 msgid "Print photo with..."
 msgstr "Skriv ut foto med..."
 
-#: ../view_photo.php:335
+#: ../view_photo.php:337
 #, php-format
 msgid "process this photo with %s"
 msgstr "Bearbeta detta foto med %s"
 
-#: ../view_photo.php:350
+#: ../view_photo.php:352
 msgid "View Images:"
 msgstr "Visa bilder:"
 
-#: ../view_photo.php:351
+#: ../view_photo.php:353
 msgid "normal"
 msgstr "normalt"
 
-#: ../view_photo.php:519
+#: ../view_photo.php:521
 msgid "Email me when comments are added"
 msgstr "Skicka e-post till mig när kommentarer läggs till"
+
+#~ msgid "url:"
+#~ msgstr "Webbadress:"
+
+#~ msgid "1 photo in this album"
+#~ msgstr "1 foto i detta album"
+
+#~ msgid "Reset Counter"
+#~ msgstr "Nollställ räknare"
+
+#~ msgid "View Comments"
+#~ msgstr "Visa kommentarer"
+
+#~ msgid "Add Comment"
+#~ msgstr "Lägg till kommentar"
+
+#~ msgid "Do you really want to delete this photo?"
+#~ msgstr "Vill du verkligen ta bort detta foto?"
 
 #~ msgid "delete album"
 #~ msgstr "Ta bort album"
@@ -5748,10 +5830,6 @@ msgstr "Skicka e-post till mig när kommentarer läggs till"
 #, fuzzy
 #~ msgid "Poll reset"
 #~ msgstr "Nollställ omröstning"
-
-#, fuzzy
-#~ msgid "View comments"
-#~ msgstr "Visa kommentarer"
 
 #, fuzzy
 #~ msgid "Watermark album"
