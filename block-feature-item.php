@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * $Id$
+ * $Id: block-feature-item.php 16788 2007-07-24 09:08:45Z jenst $
  *
  * Featured item block for Gallery
  * Beckett Madden-Woods (beckett@beckettmw.com)
