@@ -55,7 +55,7 @@ configLogin(basename(__FILE__));
 
 	  <tr>
 		<td class="g-desc-cell" style="padding: 10px;" width="140">
-		  <?php echo galleryLink('check_netpbm.php', gTranslate('config', "Check _NetPBM")); ?>
+		  <?php echo galleryLink('check_netpbm.php', gTranslate('config', "Check _Netpbm")); ?>
 		</td>
 		<td class="g-longdesc">
 		  <?php echo gTranslate('config', "This page provides information about your Netpbm binaries.") ?>

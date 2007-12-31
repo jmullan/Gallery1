@@ -23,11 +23,11 @@
 <?php
 require_once(dirname(__FILE__) . '/init.php');
 
-printPopupStart(gTranslate('config', "Gallery NetPBM Check"));
+printPopupStart(gTranslate('config', "Gallery Netpbm Check"));
 
 configLogin(basename(__FILE__));
 
-$app_name = 'NetPBM';
+$app_name = 'Netpbm';
 
 $tpl->appPath = $gallery->app->pnmDir;
 

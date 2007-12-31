@@ -25,8 +25,8 @@
  * @package Gallery
  */
 
-$gallery->version = '1.6-RC1-svn-b117';
-$gallery->config_version = 101;
+$gallery->version = '1.6-RC1-svn-b118';
+$gallery->config_version = 102;
 $gallery->album_version = 41;
 $gallery->user_version = 6;
 $gallery->url = "http://gallery.sourceforge.net";

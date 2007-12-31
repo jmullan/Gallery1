@@ -70,14 +70,14 @@ else {
 
 $common_messages['getting-netpbm'] = '<br>'.
   sprintf(
-      gTranslate('config',"Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."),
+      gTranslate('config',"Gallery prefers Netpbm version 10.3 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."),
       '"<a href="http://sourceforge.net/projects/gallery" target="_blank">',
       '</a>',
       '<a href="http://sourceforge.net/projects/netpbm" target="_blank">',
       '</a>'
   )  .
   '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
-  gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead.");
+  gTranslate('config',"You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead.");
 
 $common_messages['getting-imagemagick'] = '<br>'.
   sprintf(
@@ -85,7 +85,7 @@ $common_messages['getting-imagemagick'] = '<br>'.
     '<a href="http://www.imagemagick.org" target="_blank">', '</a>'
   ) .
   '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
-  gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead.");
+  gTranslate('config',"The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead.");
 
 $common_messages['open-basedir-active'] =
   '<p class="g-emphasis">' . gTranslate('config',"Note:"). '</p>' .
@@ -143,7 +143,7 @@ $checklist = array(
 	),
 	'exec' => array(
 		'prompt' => gTranslate('config',"PHPs exec() function"),
-		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
+		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		'func' => 'check_exec',
 		'fail-exec' => gTranslate('config',"The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		'serious' => 1,
@@ -181,18 +181,18 @@ $checklist = array(
 		'fail-mod-rewrite-nohtaccess' => gTranslate('config',"Gallery could not test if <b>mod_rewrite</b> is working, as the (original) .htaccess file in your setup folder is missing."),
 		'optional' => 1
 	),
-	'NetPBM' => array(
-		'prompt' => gTranslate('config',"NetPBM installed"),
-    	'desc' => gTranslate('config',"Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."),
+	'Netpbm' => array(
+		'prompt' => gTranslate('config',"Netpbm installed"),
+    	'desc' => gTranslate('config',"Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."),
 		'func' => 'check_graphics',
-		'fail-netpbm' => gTranslate('config',"NetPBM was not found") .
-            toggleBox('checkNetPBM', gTranslate('config',
-                "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: " ) .
+		'fail-netpbm' => gTranslate('config',"Netpbm was not found") .
+            toggleBox('checkNetpbm', gTranslate('config',
+                "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
                 $common_messages['getting-netpbm']),
-		'fail-netpbm-partial' => gTranslate('config',"I've found part of NetPBM, but some components are missing (see below).") .
-            toggleBox('fail_netpbm_partial', gTranslate('config',"Perhaps your version of NetPBM is out of date.") . '  ' .
+		'fail-netpbm-partial' => gTranslate('config',"I've found part of Netpbm, but some components are missing (see below).") .
+            toggleBox('fail_netpbm_partial', gTranslate('config',"Perhaps your version of Netpbm is out of date.") . '  ' .
                 $common_messages['getting-netpbm'] .
-                '<p><b> ' . gTranslate('config',"If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page.") .' </b>'
+                '<p><b> ' . gTranslate('config',"If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page.") .' </b>'
             ),
         'open-basedir-note' => $common_messages['open-basedir-active'],
         'optional' => 1,
@@ -200,7 +200,7 @@ $checklist = array(
 	'ImageMagick' => array(
 		'prompt' => gTranslate('config',"ImageMagick installed"),
 		'optional' => 1,
-		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."),
+		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."),
 		'func' => 'check_graphics_im',
 		'fail-imagemagick' => gTranslate('config',"ImageMagick was not found.") .
             toggleBox('fail_imagemagick', gTranslate('config',
@@ -270,7 +270,7 @@ $checklist = array(
 $checkPriority = array(
     'mandatory' => array(
         'checkslist' => array('gallery_version', 'php', 'safe_mode', 'exec',
-                             'NetPBM', 'ImageMagick', 'check-versions'),
+                             'Netpbm', 'ImageMagick', 'check-versions'),
         'shortdesc' => gTranslate('config',"Mandatory checks"),
         'longdesc' => gTranslate('config' ,"If any of these items are highlighted in red then please take actions to correct them. Failure to do so could lead to your Gallery installation not functioning correctly.")
     ),
