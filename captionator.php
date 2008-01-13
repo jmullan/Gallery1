@@ -196,6 +196,7 @@ else {
 	}
 	else {
 		$adminText .= gTranslate('core', "One item in this album.", "%d items in this album.", $numPhoto);
+	}
 }
 
 $adminbox['text'] = $adminText;
