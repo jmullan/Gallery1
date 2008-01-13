@@ -19,7 +19,7 @@
 // | Authors: Many @ Sitepointforums Advanced PHP Forums                  |
 // +----------------------------------------------------------------------+
 //
-// $Id$
+// Id: States.php,v 1.3 2007/10/29 21:41:35 hfuecks Exp
 //
 /**
 * Parsing states.

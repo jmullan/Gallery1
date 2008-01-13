@@ -19,7 +19,7 @@
 // | Authors: Many @ Sitepointforums Advanced PHP Forums                  |
 // +----------------------------------------------------------------------+
 //
-// $Id$
+// Id: Decorators.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp
 //
 /**
 * Decorators for dealing with parser options

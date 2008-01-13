@@ -24,7 +24,7 @@
 /**
 * Main parser components
 * @package XML_HTMLSax3
-* @version $Id$
+* @version Id: HTMLSax3.php,v 1.2 2007/10/29 21:41:34 hfuecks Exp
 */
 /**
 * Required classes

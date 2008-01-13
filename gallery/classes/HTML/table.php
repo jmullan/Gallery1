@@ -93,26 +93,27 @@ class galleryTable {
 			$ind .= '	';
 		}
 
-		$buf = "\n$ind<table";
+		$html = "\n$ind<table";
+
 		foreach ($this->attrs as $attr => $value) {
-			$buf .= " $attr=\"$value\"";
+			$html .= " $attr=\"$value\"";
 		}
-		$buf .= '>';
+		$html .= '>';
 
 		if (!empty($this->caption)) {
-			$buf .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
+			$html .= "\n$ind<caption class=\"". $this->captionClass ."\">". $this->caption ."</caption>";
 		}
 
 		if (!empty($this->headers)) {
-			$buf .= "\n$ind<tr>";
+			$html .= "\n$ind<tr>";
 			$i = 0;
 			foreach ($this->headers as $header) {
 				$i++;
-				$buf .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
+				$html .="\n$ind<th class=\"". $this->headerClass ."\">$header</th>";
 			}
 
 			for (; $i < $this->columnCount; $i++) {
-				$buf .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
+				$html .="\n$ind<th class=\"". $this->headerClass ."\">&nbsp;</th>";
 			}
 
 			/* Override value of columnCount */
@@ -121,15 +122,15 @@ class galleryTable {
 
 		if (!empty($this->elements)) {
 			$i = 0;
-			$buf .= "\n$ind<tr>";
+			$html .= "\n$ind<tr>";
 			foreach ($this->elements as $nr => $element) {
-				$buf .= "\n$ind    <td";
+				$html .= "\n$ind	<td";
 				if(!empty($element['cellArgs'])) {
 					foreach ($element['cellArgs'] as $attr => $value) {
-						$buf .= " $attr=\"$value\"";
+						$html .= " $attr=\"$value\"";
 					}
 				}
-				$buf .= '>'. $element['content'] .'</td>';
+				$html .= '>'. $element['content'] .'</td>';
 
 				if(isset($element['cellArgs']['colspan'])) {
 					$i += $element['cellArgs']['colspan'];
@@ -139,15 +140,15 @@ class galleryTable {
 				}
 
 				if (!($i % $this->columnCount) && $nr < $numElements-1 && $this->columnCount > 0) {
-					$buf .= "\n$ind </tr>\n$ind<tr>";
+					$html .= "\n$ind </tr>\n$ind<tr>";
 				}
 			}
-			$buf .= "\n$ind</tr>";
+			$html .= "\n$ind</tr>";
 		}
 
-		$buf .= "\n$ind</table>\n$ind";
+		$html .= "\n$ind</table>\n$ind";
 
-		return $buf;
+		return $html;
 	}
 }
 
