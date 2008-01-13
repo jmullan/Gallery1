@@ -18,20 +18,20 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
+*/
 ?>
 <?php
 require_once(dirname(__FILE__) . '/init.php');
 
 // Set defaults, if RSS has not been setup via config wizard
 if (!isset($gallery->app->rssEnabled)) {
-	$gallery->app->rssEnabled = "yes";
-	$gallery->app->rssMode = "basic";
-	$gallery->app->rssHighlight = "";
-	$gallery->app->rssVisibleOnly = "yes";
-	$gallery->app->rssDCDate = "no";
-	$gallery->app->rssBigPhoto = "yes";
-	$gallery->app->rssPhotoTag = "yes";
+	$gallery->app->rssEnabled		= "yes";
+	$gallery->app->rssMode			= "basic";
+	$gallery->app->rssHighlight		= "";
+	$gallery->app->rssVisibleOnly	= "yes";
+	$gallery->app->rssDCDate		= "no";
+	$gallery->app->rssBigPhoto		= "yes";
+	$gallery->app->rssPhotoTag		= "yes";
 }
 
 if ($gallery->app->rssEnabled == "no") {
@@ -47,13 +47,16 @@ function albumSort($a, $b) {
 
 	if ($aTime < $bTime) {
 		return 1;
-	} else {
+	}
+	else {
 		return -1;
 	}
 }
 
 function bestDate($album) {
-	if (isset($album->fields['clicks_date']) && strtotime($album->fields["clicks_date"]) > strtotime($album->fields["last_mod_time"])) {
+	if (isset($album->fields['clicks_date']) &&
+		strtotime($album->fields["clicks_date"]) > strtotime($album->fields["last_mod_time"]))
+	{
 		return $album->fields['clicks_date'];
 	}
 	else {
@@ -64,7 +67,7 @@ function bestDate($album) {
 function getThumbs($album) {
 	$photos = '';
 	$photoCount = $album->numPhotos(1);
-	
+
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && $photo->thumbnail) {
@@ -72,34 +75,34 @@ function getThumbs($album) {
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>\n";
 		}
 	}
-	
+
 	return $photos;
 }
 
 function getThumbsAndCaptions($album) {
 	$photos = '';
 	$photoCount = $album->numPhotos(1);
-	
+
 	for ($i = 1; $i <= $photoCount; $i += 1) {
 		$photo = $album->getPhoto($i);
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
 			$imgtag = $album->getThumbnailTag($i, 0, $tags);
 			$caption = $photo->getCaption();
 			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) .
-"\">" . $imgtag . "</a>$caption<br />\n";
+			"\">" . $imgtag . "</a>$caption<br />\n";
 		}
 	}
-	
+
 	return $photos;
 }
 
 function makeDCDate($unixDate) {
 	$dcDate = date("Y-m-d\TH:i:sO", $unixDate);
-	
+
 	/* CAUTION: This will not work in zones with
-	 * half-our time offsets
-	 */
-	
+	* half-our time offsets
+	*/
+
 	return eregi_replace("..$", ":00", $dcDate);
 }
 
@@ -136,7 +139,8 @@ foreach ($rssAlbumList as $album) {
 		"link" => makeAlbumUrl($album->fields["name"]),
 		"guid" => array($album->fields['guid'], array("isPermaLink" => "false")),
 		"!date" => bestDate($album),
-		"title" => htmlspecialchars($album->fields["title"]));
+		"title" => htmlspecialchars($album->fields["title"])
+	);
 
 	// DATE TAGS
 
@@ -151,9 +155,9 @@ foreach ($rssAlbumList as $album) {
 	// COMMENTS TAG
 
 	if (method_exists($album, "canViewComments")
-	   && $album->canViewComments($gallery->user->uid)) {
+	&& $album->canViewComments($gallery->user->uid)) {
 		$albumInfo["comments"] = makeGalleryUrl("view_comments.php",
-		  array("set_albumName" => $album->fields["name"]));
+		array("set_albumName" => $album->fields["name"]));
 	}
 
 	// PHEED AND PHOTO TAGS
@@ -173,7 +177,7 @@ foreach ($rssAlbumList as $album) {
 			$base = $subalbum->getAlbumDirURL("highlight");
 			$albumInfo["photo:imgsrc"] = $highlight->thumbnail->getPath($base);
 			$albumInfo["photo:thumbnail"] = $highlight->getPhotoPath($base);
-			
+
 			$width = $highlight->thumbnail->width;
 			$height = $highlight->thumbnail->height;
 
@@ -183,7 +187,7 @@ foreach ($rssAlbumList as $album) {
 					$ratio = 144 / $width;
 					$width = 144;
 				}
-			
+
 				if ($height > 400 || $ratio != 1) {
 					if (($height * $ratio) > 400) {
 						$ratio = 400 / ($height * $ratio);
@@ -197,9 +201,9 @@ foreach ($rssAlbumList as $album) {
 				$width = floor($width);
 			}
 
-		$albumInfo['pb:thumb'] = $highlight->thumbnail->getPath($base);
-		$albumInfo['pb:height'] = $height;
-		$albumInfo['pb:width'] = $width;
+			$albumInfo['pb:thumb'] = $highlight->thumbnail->getPath($base);
+			$albumInfo['pb:height'] = $height;
+			$albumInfo['pb:width'] = $width;
 		}
 	}
 
@@ -213,22 +217,25 @@ foreach ($rssAlbumList as $album) {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
-		
+
 		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbs($album);
-	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
+	}
+	elseif ($gallery->app->rssMode == "thumbs-with-captions") {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
 		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbsAndCaptions($album);
-	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
+	}
+	elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
 		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a><br>";
 		$albumInfo["description"] .= $album->fields["description"];
-	} else { # mode = "basic"
+	}
+	else { # mode = "basic"
 		$albumInfo["description"] = $album->fields["description"];
 	}
 
@@ -239,7 +246,9 @@ foreach ($rssAlbumList as $album) {
 
 usort($albumList, "albumSort");
 
-unset($ha); $channel_image = $channel_width = $channel_height = "";
+unset($ha);
+$channel_image = $channel_width = $channel_height = "";
+
 if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 	foreach($albumList as $album) {
 		if ($album["!name"] == $gallery->app->rssHighlight && isset($album["pb:thumb"])) {
@@ -247,7 +256,8 @@ if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 			break;
 		}
 	}
-} elseif (isset($albumList[0]["pb:thumb"])) {
+}
+elseif (isset($albumList[0]["pb:thumb"])) {
 	$ha = $albumList[0];
 }
 
@@ -302,7 +312,7 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 
 $maxAlbums = 0;
 foreach($albumList as $album) {
-	
+
 	// If we've hit the max album limit, bust out.
 	if($maxAlbums > $gallery->app->rssMaxAlbums) {
 		break;
@@ -327,7 +337,7 @@ foreach($albumList as $album) {
 		if (ereg("^!", $tag)) {
 			continue;
 		}
-		
+
 		if (is_array($info)) {
 			echo "\t\t\t<$tag";
 			foreach($info[1] as $attr => $value) {
@@ -338,7 +348,7 @@ foreach($albumList as $album) {
 			echo "\t\t\t<$tag>$info</$tag>\n";
 		}
 	}
-	
+
 	echo "\t\t</item>\n";
 }
 
