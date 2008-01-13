@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.6\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-30 12:58+0100\n"
+"POT-Creation-Date: 2008-01-13 15:35+0100\n"
 "PO-Revision-Date: 2007-12-30 13:23+0100\n"
 "Last-Translator: Jens Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -40,40 +40,35 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
-#: ../includes/setup/checks.inc:67
-#: ../includes/setup/constants.inc:83
+#: ../includes/setup/checks.inc:67 ../includes/setup/constants.inc:83
 msgid "unknown"
 msgstr "Unbekannt"
 
 #: ../includes/setup/checks.inc:73
-#, php-format
-msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
-msgstr "Gallery ben&ouml;tigt NetPBM Version 9.9 oder h&ouml;her. Sie haben die M&ouml;glichkeit, nur die Binaries von %sGallery auf SourceForge%s herunterzuladen und zu installieren oder die Quellen von %sNetPBM auf SourceForge%s herunterladen und selber zu kompilieren."
+#, fuzzy, php-format
+msgid "Gallery prefers Netpbm version 10.3 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
+msgstr "Gallery ben&ouml;tigt NetPBM Version 10.13 oder höher. Sie haben die Möglichkeit nur die Binaries von %sGallery auf SourceForge%s herunterzuladen und zu installieren oder die Quellen von %sNetPBM auf SourceForge%s herunterladen und selber zu kompilieren."
 
-#: ../includes/setup/checks.inc:79
-#: ../includes/setup/checks.inc:87
-#: ../includes/setup/checks.inc:91
-#: ../includes/setup/checks.inc:136
-#: ../includes/setup/constants.inc:94
-#: ../includes/setup/constants.inc:104
+#: ../includes/setup/checks.inc:79 ../includes/setup/checks.inc:87
+#: ../includes/setup/checks.inc:91 ../includes/setup/checks.inc:136
+#: ../includes/setup/constants.inc:94 ../includes/setup/constants.inc:104
 #: ../includes/setup/constants.inc:694
 msgid "Note:"
 msgstr "Hinweis:"
 
-#: ../includes/setup/checks.inc:80
-#: ../includes/setup/constants.inc:95
-msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the NetPBM path blank and using ImageMagick instead."
+#: ../includes/setup/checks.inc:80 ../includes/setup/constants.inc:95
+#, fuzzy
+msgid "You can install the binaries from the Gallery site even if you don't have root access on your box!  If you can't get it working, try leaving the Netpbm path blank and using ImageMagick instead."
 msgstr "Sie k&ouml;nnen die Binaries der Gallery-Website auch installieren, wenn Sie keinen Root-Zugang zu Ihrem Server haben! Falls Sie es nicht zum Laufen bekommen, lassen Sie den NetPBM Pfad leer und benutzen stattdessen ImageMagick."
 
-#: ../includes/setup/checks.inc:84
-#: ../includes/setup/constants.inc:102
+#: ../includes/setup/checks.inc:84 ../includes/setup/constants.inc:102
 #, php-format
 msgid "Gallery prefers ImageMagick version 5.4.8 and up. (Tough Version 6.x is recommended.)  You can get the entire ImageMagick package from the %sImageMagick website%s."
 msgstr "Gallery bevorzugt ImageMagick 5.4.8 und höher (Wir empfehlen Version 6.x) . Sie können aber auch das gesamte ImageMagick Packet von der %sImageMagick website%s herunterladen und selber installieren."
 
-#: ../includes/setup/checks.inc:88
-#: ../includes/setup/constants.inc:105
-msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using NetPBM instead."
+#: ../includes/setup/checks.inc:88 ../includes/setup/constants.inc:105
+#, fuzzy
+msgid "The site also has binaries available for assorted operating systems.  If you can't get it working, try leaving the ImageMagick path blank and using Netpbm instead."
 msgstr "Dort finden Sie auch Binaries f&uuml;r die verschiedensten Systeme.  Falls Sie es nicht zum Laufen bekommen, lassen Sie den Pfad zu ImageMagick leer und benutzen NetPBM stattdessen."
 
 #: ../includes/setup/checks.inc:92
@@ -155,7 +150,8 @@ msgid "PHPs exec() function"
 msgstr "PHPs exec() Funktion"
 
 #: ../includes/setup/checks.inc:146
-msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as NetPBM, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
+#, fuzzy
+msgid "The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."
 msgstr "Gallery benutzt die <b>exec()</b> Funktion um externe Programme wie NetPBM, ImageMagick oder jhead auszuf&uuml;hren.  Falls <b>exec()</b> nicht aktiviert ist, dann wird Ihr Gallery nicht funktionieren."
 
 #: ../includes/setup/checks.inc:148
@@ -217,31 +213,38 @@ msgid "Gallery could not test if <b>mod_rewrite</b> is working, as the (original
 msgstr "Gallery konnte nicht testen ob Ihr Webserver mod_rewrite unterstützt, da die (original) .htaccess Datei in Ihrem Setup Ordner fehlt."
 
 #: ../includes/setup/checks.inc:185
-msgid "NetPBM installed"
+#, fuzzy
+msgid "Netpbm installed"
 msgstr "NetPBM installiert"
 
 #: ../includes/setup/checks.inc:186
-msgid "Check to see if NetPBM is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either NetPBM <b>or</b> ImageMagick installed."
+#, fuzzy
+msgid "Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."
 msgstr "Pr&uuml;fung, ob NetPBM installiert ist, damit Gallery Bilder bearbeiten kann (Rotieren, Gr&ouml;ssen ver&auml;ndern, Thumbnails erzeugen, etc).  Sie ben&ouml;tigen entweder NetPBM <b>oder</b> ImageMagick."
 
 #: ../includes/setup/checks.inc:188
-msgid "NetPBM was not found"
+#, fuzzy
+msgid "Netpbm was not found"
 msgstr "Netpbm nicht gefunden"
 
 #: ../includes/setup/checks.inc:190
-msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to NetPBM by hand on the following page.  If it's not installed, you have two choices: "
+#, fuzzy
+msgid "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: "
 msgstr " Falls es installiert wurde, jedoch nicht im Pfad des Benutzers des Webserver, ist dies kein Problem. Sie können den Pfad zu NetPBM selber auf der folgenden Seite angeben. Falls es nicht installiert ist, haben Sie zwei Möglichkeiten:"
 
 #: ../includes/setup/checks.inc:192
-msgid "I've found part of NetPBM, but some components are missing (see below)."
+#, fuzzy
+msgid "I've found part of Netpbm, but some components are missing (see below)."
 msgstr "Es wurden Teile von NetPBM gefunden, jedoch fehlen einige Komponenten (siehe unten)."
 
 #: ../includes/setup/checks.inc:193
-msgid "Perhaps your version of NetPBM is out of date."
+#, fuzzy
+msgid "Perhaps your version of Netpbm is out of date."
 msgstr "Eventuell ist Ihre NetPBM veraltet."
 
 #: ../includes/setup/checks.inc:195
-msgid "If NetPBM is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to NetPBM by hand on the following page."
+#, fuzzy
+msgid "If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page."
 msgstr "Wenn NetPBM installiert ist, aber Gallery es nicht automatisch finden kann, ist dies kein Problem  -- Sie k&ouml;nnen den Pfad zu NetPBM selber auf der folgenden Seite angeben."
 
 #: ../includes/setup/checks.inc:201
@@ -249,7 +252,8 @@ msgid "ImageMagick installed"
 msgstr "ImageMagick installiert"
 
 #: ../includes/setup/checks.inc:203
-msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> NetPBM installed."
+#, fuzzy
+msgid "Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."
 msgstr "Pr&uuml;fung, ob ImageMagick installiert ist, damit Gallery Bilder bearbeiten kann (Rotieren, Gr&ouml;ssen ver&auml;ndern, Thumbnails erzeugen, etc).  Sie ben&ouml;tigen entweder NetPBM <b>oder</b> ImageMagick."
 
 #: ../includes/setup/checks.inc:205
@@ -360,12 +364,13 @@ msgid "Nice to have."
 msgstr "Nice to have ;)"
 
 #: ../includes/setup/constants.inc:89
-#, php-format
-msgid "Gallery prefers NetPBM version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#, fuzzy, php-format
+msgid "Gallery prefers Netpbm version 10.13 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire Netpbm package from the %sNetpbm website%s."
 msgstr "Gallery ben&ouml;tigt NetPBM Version 10.13 oder höher. Sie haben die Möglichkeit nur die Binaries von %sGallery auf SourceForge%s herunterzuladen und zu installieren oder die Quellen von %sNetPBM auf SourceForge%s herunterladen und selber zu kompilieren."
 
 #: ../includes/setup/constants.inc:98
-msgid "I've found part of NetPBM, but some critical components are missing (see below).  Perhaps your version of NetPBM is out of date."
+#, fuzzy
+msgid "I've found part of Netpbm, but some critical components are missing (see below).  Perhaps your version of Netpbm is out of date."
 msgstr "Es wurden Teile von NetPBM gefunden, jedoch fehlen wichtige Komponenten (siehe unten).  Vielleicht ist Ihre NetPBM Version veraltet ?"
 
 #: ../includes/setup/constants.inc:112
@@ -522,8 +527,7 @@ msgstr "Pfad zu ImageMagick"
 msgid "The path to the directory containing ImageMagick on your system."
 msgstr "Pfad zum Ordner, der ImageMagick enth&auml;lt."
 
-#: ../includes/setup/constants.inc:264
-#: ../includes/setup/constants.inc:293
+#: ../includes/setup/constants.inc:264 ../includes/setup/constants.inc:293
 #, php-format
 msgid "This path is only required if you choosed %s above. Otherwise you can leave it like it is, or empty."
 msgstr "Diese Pfadangabe ist nur nötig, wenn Sie %s ausgewählt haben."
@@ -533,20 +537,23 @@ msgid "I can't find ImageMagick at the location you provided."
 msgstr "ImageMagick kann nicht an der von Ihnen angegebenen Stelle gefunden werden."
 
 #: ../includes/setup/constants.inc:282
-msgid "NetPBM Settings"
+#, fuzzy
+msgid "Netpbm Settings"
 msgstr "NetPBM Einstellungen"
 
 #: ../includes/setup/constants.inc:288
-msgid "Path to NetPBM"
+#, fuzzy
+msgid "Path to Netpbm"
 msgstr "Pfad zu NetPBM"
 
 #: ../includes/setup/constants.inc:289
-#, php-format
-msgid "The path to the directory containing NetPBM on your system.  If you downloaded NetPBM from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
+#, fuzzy, php-format
+msgid "The path to the directory containing Netpbm on your system.  If you downloaded Netpbm from the Gallery download page, don't forget to make the files executable.  E.g. %s or %s or %s"
 msgstr "Der absolute Pfad zu dem Ort wo NetPBM installiert ist.  Wenn Sie NetPBM von der Gallery-Downloadseite geladen haben, vergessen Sie nicht, die Dateien ausf&uuml;hrbar zu machen. Z.B.: %s, %s oder %s."
 
 #: ../includes/setup/constants.inc:296
-msgid "I can't find NetPBM at the location you provided."
+#, fuzzy
+msgid "I can't find Netpbm at the location you provided."
 msgstr "NetPBM kann nicht an der von Ihnen angegebenen Position gefunden werden."
 
 #: ../includes/setup/constants.inc:308
@@ -554,7 +561,8 @@ msgid "PNM to JPEG converter"
 msgstr "PNM zu JPEG Konverter"
 
 #: ../includes/setup/constants.inc:309
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to encode its internal image format into JPEG.  This tool is called either <i>ppmtojpeg</i> or <i>pnmtojpeg</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Diese Angabe ist nur relevant, wenn Sie NetPBM einsetzen.  NetPBM benutzt ein Tool, um sein internes Bildformat umzuwandeln in JPEG.  Dieses Tool heißt entweder <i>ppmtojpeg</i> oder <i>pnmtojpeg</i>, je nachdem welche Version von NetPBM Sie installiert haben.  Schauen Sie in Ihrem NetPBM-Ordner nach und tragen Sie den Namen entsprechend ein.  Falls Sie sich nicht sicher sind, &uuml;bernehmen Sie die Vorgabe."
 
 #: ../includes/setup/constants.inc:314
@@ -562,7 +570,8 @@ msgid "PNM Composite (Overlay)"
 msgstr "PNM Composite (Overlay)"
 
 #: ../includes/setup/constants.inc:315
-msgid "This value is only relevant if you use NetPBM.  NetPBM uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of NetPBM that you have installed.  Check your NetPBM directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
+#, fuzzy
+msgid "This value is only relevant if you use Netpbm.  Netpbm uses a tool to overlay one image over another.  This tool is called either <i>pnmcomp</i> or <i>pamcomp</i> depending on the version of Netpbm that you have installed.  Check your Netpbm directory to see which one you have installed and specify it here.  If you aren't sure, just take a guess and we'll try to verify it for you."
 msgstr "Diese Angabe ist nur relevant, wenn Sie NetPBM einsetzen.  NetPBM benutzt ein Tool, um Bilder übereinander zu legen.  Dieses Tool heißt entweder <i>pnmcomp</i> oder <i>pancomp</i>, je nachdem welche Version von NetPBM Sie installiert haben.  Schauen Sie in Ihrem NetPBM-Ordner nach und tragen Sie den Namen entsprechend ein.  Falls Sie sich nicht sicher sind, &uuml;bernehmen Sie die Vorgabe."
 
 #: ../includes/setup/constants.inc:323
@@ -577,107 +586,58 @@ msgstr "Wenn Sie diese Option einschalten, wird Gallery versuchen die Bilder aut
 msgid "Requires Jhead EXIF parser v.1.9 or greater (See optional tools)."
 msgstr "Ben&ouml;tigt Jhead EXIF Parser V 1.9 oder neuer (Siehe optionale Tools)."
 
-#: ../includes/setup/constants.inc:326
-#: ../includes/setup/constants.inc:432
-#: ../includes/setup/constants.inc:454
-#: ../includes/setup/constants.inc:468
-#: ../includes/setup/constants.inc:474
-#: ../includes/setup/constants.inc:649
-#: ../includes/setup/constants.inc:698
-#: ../includes/setup/constants.inc:738
-#: ../includes/setup/constants.inc:747
-#: ../includes/setup/constants.inc:768
-#: ../includes/setup/constants.inc:837
-#: ../includes/setup/constants.inc:847
-#: ../includes/setup/constants.inc:855
-#: ../includes/setup/constants.inc:899
-#: ../includes/setup/constants.inc:925
-#: ../includes/setup/constants.inc:954
-#: ../includes/setup/constants.inc:962
-#: ../includes/setup/constants.inc:964
-#: ../includes/setup/constants.inc:989
-#: ../includes/setup/constants.inc:1256
-#: ../includes/setup/constants.inc:1274
-#: ../includes/setup/constants.inc:1284
-#: ../includes/setup/constants.inc:1294
-#: ../includes/setup/constants.inc:1303
-#: ../includes/setup/constants.inc:1312
-#: ../includes/setup/constants.inc:1344
-#: ../includes/setup/constants.inc:1385
-#: ../includes/setup/constants.inc:1393
-#: ../includes/setup/constants.inc:1401
-#: ../includes/setup/defaults.inc:167
-#: ../includes/setup/defaults.inc:177
-#: ../includes/setup/defaults.inc:187
-#: ../includes/setup/defaults.inc:197
-#: ../includes/setup/defaults.inc:247
-#: ../includes/setup/defaults.inc:256
-#: ../includes/setup/defaults.inc:284
-#: ../includes/setup/defaults.inc:302
-#: ../includes/setup/defaults.inc:311
-#: ../includes/setup/defaults.inc:328
-#: ../includes/setup/defaults.inc:337
-#: ../includes/setup/defaults.inc:345
-#: ../includes/setup/defaults.inc:422
-#: ../includes/setup/defaults.inc:431
-#: ../includes/setup/defaults.inc:486
-#: ../includes/setup/defaults.inc:488
-#: ../includes/setup/defaults.inc:497
-#: ../includes/setup/defaults.inc:524
-#: ../includes/setup/defaults.inc:548
+#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
+#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
+#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
+#: ../includes/setup/constants.inc:698 ../includes/setup/constants.inc:738
+#: ../includes/setup/constants.inc:747 ../includes/setup/constants.inc:768
+#: ../includes/setup/constants.inc:837 ../includes/setup/constants.inc:847
+#: ../includes/setup/constants.inc:855 ../includes/setup/constants.inc:899
+#: ../includes/setup/constants.inc:925 ../includes/setup/constants.inc:954
+#: ../includes/setup/constants.inc:962 ../includes/setup/constants.inc:964
+#: ../includes/setup/constants.inc:989 ../includes/setup/constants.inc:1256
+#: ../includes/setup/constants.inc:1274 ../includes/setup/constants.inc:1284
+#: ../includes/setup/constants.inc:1294 ../includes/setup/constants.inc:1303
+#: ../includes/setup/constants.inc:1312 ../includes/setup/constants.inc:1344
+#: ../includes/setup/constants.inc:1385 ../includes/setup/constants.inc:1393
+#: ../includes/setup/constants.inc:1401 ../includes/setup/defaults.inc:167
+#: ../includes/setup/defaults.inc:177 ../includes/setup/defaults.inc:187
+#: ../includes/setup/defaults.inc:197 ../includes/setup/defaults.inc:247
+#: ../includes/setup/defaults.inc:256 ../includes/setup/defaults.inc:284
+#: ../includes/setup/defaults.inc:302 ../includes/setup/defaults.inc:311
+#: ../includes/setup/defaults.inc:328 ../includes/setup/defaults.inc:337
+#: ../includes/setup/defaults.inc:345 ../includes/setup/defaults.inc:422
+#: ../includes/setup/defaults.inc:431 ../includes/setup/defaults.inc:486
+#: ../includes/setup/defaults.inc:488 ../includes/setup/defaults.inc:497
+#: ../includes/setup/defaults.inc:524 ../includes/setup/defaults.inc:548
 msgid "Yes"
 msgstr "Ja"
 
-#: ../includes/setup/constants.inc:326
-#: ../includes/setup/constants.inc:432
-#: ../includes/setup/constants.inc:454
-#: ../includes/setup/constants.inc:468
-#: ../includes/setup/constants.inc:474
-#: ../includes/setup/constants.inc:649
-#: ../includes/setup/constants.inc:693
-#: ../includes/setup/constants.inc:699
-#: ../includes/setup/constants.inc:739
-#: ../includes/setup/constants.inc:748
-#: ../includes/setup/constants.inc:767
-#: ../includes/setup/constants.inc:838
-#: ../includes/setup/constants.inc:848
-#: ../includes/setup/constants.inc:856
-#: ../includes/setup/constants.inc:897
-#: ../includes/setup/constants.inc:900
-#: ../includes/setup/constants.inc:926
-#: ../includes/setup/constants.inc:955
-#: ../includes/setup/constants.inc:965
-#: ../includes/setup/constants.inc:990
-#: ../includes/setup/constants.inc:1257
-#: ../includes/setup/constants.inc:1275
-#: ../includes/setup/constants.inc:1285
-#: ../includes/setup/constants.inc:1295
-#: ../includes/setup/constants.inc:1304
-#: ../includes/setup/constants.inc:1313
-#: ../includes/setup/constants.inc:1345
-#: ../includes/setup/constants.inc:1386
-#: ../includes/setup/constants.inc:1394
-#: ../includes/setup/constants.inc:1402
-#: ../includes/setup/constants.inc:1442
-#: ../includes/setup/defaults.inc:168
-#: ../includes/setup/defaults.inc:178
-#: ../includes/setup/defaults.inc:188
-#: ../includes/setup/defaults.inc:198
-#: ../includes/setup/defaults.inc:248
-#: ../includes/setup/defaults.inc:257
-#: ../includes/setup/defaults.inc:285
-#: ../includes/setup/defaults.inc:303
-#: ../includes/setup/defaults.inc:312
-#: ../includes/setup/defaults.inc:329
-#: ../includes/setup/defaults.inc:338
-#: ../includes/setup/defaults.inc:346
-#: ../includes/setup/defaults.inc:420
-#: ../includes/setup/defaults.inc:423
-#: ../includes/setup/defaults.inc:489
-#: ../includes/setup/defaults.inc:495
-#: ../includes/setup/defaults.inc:498
-#: ../includes/setup/defaults.inc:525
-#: ../includes/setup/defaults.inc:549
+#: ../includes/setup/constants.inc:326 ../includes/setup/constants.inc:432
+#: ../includes/setup/constants.inc:454 ../includes/setup/constants.inc:468
+#: ../includes/setup/constants.inc:474 ../includes/setup/constants.inc:649
+#: ../includes/setup/constants.inc:693 ../includes/setup/constants.inc:699
+#: ../includes/setup/constants.inc:739 ../includes/setup/constants.inc:748
+#: ../includes/setup/constants.inc:767 ../includes/setup/constants.inc:838
+#: ../includes/setup/constants.inc:848 ../includes/setup/constants.inc:856
+#: ../includes/setup/constants.inc:897 ../includes/setup/constants.inc:900
+#: ../includes/setup/constants.inc:926 ../includes/setup/constants.inc:955
+#: ../includes/setup/constants.inc:965 ../includes/setup/constants.inc:990
+#: ../includes/setup/constants.inc:1257 ../includes/setup/constants.inc:1275
+#: ../includes/setup/constants.inc:1285 ../includes/setup/constants.inc:1295
+#: ../includes/setup/constants.inc:1304 ../includes/setup/constants.inc:1313
+#: ../includes/setup/constants.inc:1345 ../includes/setup/constants.inc:1386
+#: ../includes/setup/constants.inc:1394 ../includes/setup/constants.inc:1402
+#: ../includes/setup/constants.inc:1442 ../includes/setup/defaults.inc:168
+#: ../includes/setup/defaults.inc:178 ../includes/setup/defaults.inc:188
+#: ../includes/setup/defaults.inc:198 ../includes/setup/defaults.inc:248
+#: ../includes/setup/defaults.inc:257 ../includes/setup/defaults.inc:285
+#: ../includes/setup/defaults.inc:303 ../includes/setup/defaults.inc:312
+#: ../includes/setup/defaults.inc:329 ../includes/setup/defaults.inc:338
+#: ../includes/setup/defaults.inc:346 ../includes/setup/defaults.inc:420
+#: ../includes/setup/defaults.inc:423 ../includes/setup/defaults.inc:489
+#: ../includes/setup/defaults.inc:495 ../includes/setup/defaults.inc:498
+#: ../includes/setup/defaults.inc:525 ../includes/setup/defaults.inc:549
 msgid "No"
 msgstr "Nein"
 
@@ -749,8 +709,7 @@ msgstr "Albumbaum zeigen ?"
 msgid "If you turn this option on, you'll see a list of sub-albums when you're browsing the top level of your Gallery.  This will make navigating to a specific sub album much easier. You can choose whether or not you want to limit the depth of the tree to avoid severely cluttering the appearance of the top Gallery page."
 msgstr "Wenn Sie diese Option einschalten, können Sie sich einen Baum mit den Unteralben auf der Startseite der Gallery anzeigen lassen. Dies macht die Navigation zu einem speziellen Unteralbum viel leichter. Um die Optik der Gallery-Seite nicht zu stark zu verunstalteten, können Sie die Tiefe angeben."
 
-#: ../includes/setup/constants.inc:411
-#: ../includes/setup/constants.inc:430
+#: ../includes/setup/constants.inc:411 ../includes/setup/constants.inc:430
 msgid "This setting has no effect in matrix theme."
 msgstr "Diese Einstellungen haben keine Auswirkung im Matrix Motiv."
 
@@ -763,10 +722,8 @@ msgstr "Keinen Baum"
 msgid "%d sublevel"
 msgstr "%d Untereben"
 
-#: ../includes/setup/constants.inc:416
-#: ../includes/setup/constants.inc:417
-#: ../includes/setup/constants.inc:418
-#: ../includes/setup/constants.inc:419
+#: ../includes/setup/constants.inc:416 ../includes/setup/constants.inc:417
+#: ../includes/setup/constants.inc:418 ../includes/setup/constants.inc:419
 #: ../includes/setup/constants.inc:420
 #, php-format
 msgid "%d sublevels"
@@ -800,8 +757,7 @@ msgstr "Seitenverhältnis Vorschaubild"
 msgid "The ratio in which the highlights are made. This affects only new highlights. For existing use 'rebuild highlights'"
 msgstr "Das Seitenverhältnis in dem die Vorschaubilder auf der Startseite erstellt werden. Diese Einstellung gilt nur für neue Vorschaubilder. Um existierende zu erneuern benutzen Sie 'Vorschau erneuern'"
 
-#: ../includes/setup/constants.inc:447
-#: ../includes/setup/defaults.inc:104
+#: ../includes/setup/constants.inc:447 ../includes/setup/defaults.inc:104
 msgid "As the original image"
 msgstr "Wie Original"
 
@@ -857,10 +813,8 @@ msgstr "Optionale Tools"
 msgid "Archives"
 msgstr "Archive"
 
-#: ../includes/setup/constants.inc:500
-#: ../includes/setup/constants.inc:513
-#: ../includes/setup/constants.inc:526
-#: ../includes/setup/constants.inc:539
+#: ../includes/setup/constants.inc:500 ../includes/setup/constants.inc:513
+#: ../includes/setup/constants.inc:526 ../includes/setup/constants.inc:539
 #, php-format
 msgid "The filesystem path to the <b>%s</b> binary.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Der absolute Pfad zum <b>%s</b> binary.  Z.B. %s oder %s.  Dieses Feature ist optional, Sie k&ouml;nnen dieses Feld leer lassen."
@@ -869,8 +823,7 @@ msgstr "Der absolute Pfad zum <b>%s</b> binary.  Z.B. %s oder %s.  Dieses Featur
 msgid "EXIF Data"
 msgstr "Cache EXIF-Daten"
 
-#: ../includes/setup/constants.inc:560
-#: ../includes/setup/constants.inc:573
+#: ../includes/setup/constants.inc:560 ../includes/setup/constants.inc:573
 #, php-format
 msgid "The filesystem path to the <b>%s</b> EXIF parser.  E.g. %s or %s. This is optional so if you don't have it, don't worry about it too much."
 msgstr "Der absolute Pfad zum <b>%s</b> EXIF-Parser.  Zum Beispiel %s oder %s. Dieses Feature ist optional, Sie k&ouml;nnen dieses Feld leer lassen."
@@ -937,8 +890,7 @@ msgstr "Zeige Flaggen?"
 msgid "In Mode 3 you can choose to display national flags instead of a small pulldown menu for the available languages."
 msgstr "Falls Sie Modus 3 verwenden, haben Sie die M&ouml;glichkeit zwischen einem schlanken Pulldown Menu oder Flaggen zu w&auml;hlen."
 
-#: ../includes/setup/constants.inc:654
-#: ../includes/setup/constants.inc:665
+#: ../includes/setup/constants.inc:654 ../includes/setup/constants.inc:665
 #: ../includes/setup/constants.inc:1281
 msgid "Advanced"
 msgstr "Fortgeschritten"
@@ -947,8 +899,7 @@ msgstr "Fortgeschritten"
 msgid "Format for date strings."
 msgstr "Format f&uuml;r die Anzeige des Datums."
 
-#: ../includes/setup/constants.inc:655
-#: ../includes/setup/constants.inc:666
+#: ../includes/setup/constants.inc:655 ../includes/setup/constants.inc:666
 #, php-format
 msgid "This format string will be used to display %s in %s.  It is recommended to use %s which will change format depending on language choice.  However, if you wish to change this string, please look at the %sPHP documentation%s."
 msgstr "Dieser String wird benutzt um %s in %s anzuzeigen. Wir empfehlen dringend die Verwendung von %s, da das Datum dann entsprechend der angezeigten Sprache angezeigt wird.  Falls Sie diesen String &auml;ndern, bitte werfen Sie einen Blick auf die %sPHP Dokumentation%s."
@@ -957,8 +908,7 @@ msgstr "Dieser String wird benutzt um %s in %s anzuzeigen. Wir empfehlen dringen
 msgid "date without time"
 msgstr "Datum ohne Zeit"
 
-#: ../includes/setup/constants.inc:657
-#: ../includes/setup/constants.inc:668
+#: ../includes/setup/constants.inc:657 ../includes/setup/constants.inc:668
 msgid "http://www.php.net/manual/en/function.strftime.php"
 msgstr "http://www.php.net/manual/de/function.strftime.php"
 
@@ -980,8 +930,7 @@ msgstr "Datum mit Zeit"
 msgid "For example, %s will display date and time like this: %s."
 msgstr "Zum Beispiel wird %s Ihre Daten/Zeiten so aussehen lassen: %s."
 
-#: ../includes/setup/constants.inc:686
-#: ../includes/setup/constants.inc:841
+#: ../includes/setup/constants.inc:686 ../includes/setup/constants.inc:841
 msgid "Email"
 msgstr "Email"
 
@@ -1171,8 +1120,7 @@ msgstr "Diashow &uuml;ber die gesamte Galerie"
 msgid "Adds a slide show link on the main page of the gallery.   Note for large galleries this may run very slowly and use a lot of system resources."
 msgstr "F&uuml;gt einen Diashow-Link auf der Gallery Startseite.  Bei grossen Gallerien kann diese Diashow sehr langsam sein und zudem viele Systemresourcen verbrauchen!"
 
-#: ../includes/setup/constants.inc:868
-#: ../includes/setup/defaults.inc:464
+#: ../includes/setup/constants.inc:868 ../includes/setup/defaults.inc:464
 msgid "These settings do not apply to the low tech slideshow."
 msgstr "Diese Einstellungen gelten nicht f&uuml;r die einfache Variante der Diashow."
 
@@ -1180,63 +1128,47 @@ msgstr "Diese Einstellungen gelten nicht f&uuml;r die einfache Variante der Dias
 msgid "Slideshow preferences"
 msgstr "Diashow Einstellungen"
 
-#: ../includes/setup/constants.inc:873
-#: ../includes/setup/constants.inc:881
-#: ../includes/setup/constants.inc:933
-#: ../includes/setup/constants.inc:943
-#: ../includes/setup/constants.inc:1055
-#: ../includes/setup/constants.inc:1069
-#: ../includes/setup/constants.inc:1083
-#: ../includes/setup/constants.inc:1097
-#: ../includes/setup/constants.inc:1111
-#: ../includes/setup/constants.inc:1125
-#: ../includes/setup/defaults.inc:140
-#: ../includes/setup/defaults.inc:470
+#: ../includes/setup/constants.inc:873 ../includes/setup/constants.inc:881
+#: ../includes/setup/constants.inc:933 ../includes/setup/constants.inc:943
+#: ../includes/setup/constants.inc:1055 ../includes/setup/constants.inc:1069
+#: ../includes/setup/constants.inc:1083 ../includes/setup/constants.inc:1097
+#: ../includes/setup/constants.inc:1111 ../includes/setup/constants.inc:1125
+#: ../includes/setup/defaults.inc:140 ../includes/setup/defaults.inc:470
 #: ../includes/setup/defaults.inc:478
 msgid "Off"
 msgstr "Aus"
 
-#: ../includes/setup/constants.inc:874
-#: ../includes/setup/defaults.inc:471
+#: ../includes/setup/constants.inc:874 ../includes/setup/defaults.inc:471
 msgid "No slideshow link will appear."
 msgstr "Keine Diashowlink."
 
-#: ../includes/setup/constants.inc:875
-#: ../includes/setup/constants.inc:882
-#: ../includes/setup/defaults.inc:472
-#: ../includes/setup/defaults.inc:479
+#: ../includes/setup/constants.inc:875 ../includes/setup/constants.inc:882
+#: ../includes/setup/defaults.inc:472 ../includes/setup/defaults.inc:479
 msgid "Ordered"
 msgstr "Geordnet"
 
-#: ../includes/setup/constants.inc:876
-#: ../includes/setup/defaults.inc:473
+#: ../includes/setup/constants.inc:876 ../includes/setup/defaults.inc:473
 msgid "Images will display in the same order as they appear in the Gallery."
 msgstr "Die Bilder werden in der selben Reihenfolge angezeigt, wie Sie in der Gallerie liegen."
 
-#: ../includes/setup/constants.inc:877
-#: ../includes/setup/constants.inc:883
-#: ../includes/setup/defaults.inc:474
-#: ../includes/setup/defaults.inc:480
+#: ../includes/setup/constants.inc:877 ../includes/setup/constants.inc:883
+#: ../includes/setup/defaults.inc:474 ../includes/setup/defaults.inc:480
 msgid "Random"
 msgstr "Zuf&auml;llig"
 
-#: ../includes/setup/constants.inc:878
-#: ../includes/setup/defaults.inc:475
+#: ../includes/setup/constants.inc:878 ../includes/setup/defaults.inc:475
 msgid "Images will appear in a random order."
 msgstr "Die Bilder werden in zuf&auml;lliger Reihenfolge angezeigt."
 
-#: ../includes/setup/constants.inc:888
-#: ../includes/setup/defaults.inc:503
+#: ../includes/setup/constants.inc:888 ../includes/setup/defaults.inc:503
 msgid "Slideshow length"
 msgstr "L&auml;nge der Diashow"
 
-#: ../includes/setup/constants.inc:889
-#: ../includes/setup/defaults.inc:504
+#: ../includes/setup/constants.inc:889 ../includes/setup/defaults.inc:504
 msgid "Number of images to display in slideshow.  Set to 0 or blank to display all images.  Set to a number if slideshow is random and you want to display only a selection of the images."
 msgstr "Anzahl der Bilder die in der Diashow gezeigt werden sollen. 0 oder keine Angabe f&uuml;r alle Bilder.  Falls Sie eine Zahl eintragen, werden bei der zuf&auml;lligen Diashow diese Anzahl von Bildern gezeigt."
 
-#: ../includes/setup/constants.inc:896
-#: ../includes/setup/defaults.inc:494
+#: ../includes/setup/constants.inc:896 ../includes/setup/defaults.inc:494
 msgid "Allow slideshow to loop"
 msgstr "Erlaube die Diashow in einer Schleife zu betrachten"
 
@@ -1281,8 +1213,7 @@ msgstr "Anzeige ob Kommentare vorhanden sind."
 msgid "No indication that an item has comments."
 msgstr "Keine Anzeige ob Kommentare vorhanden sind."
 
-#: ../includes/setup/constants.inc:935
-#: ../includes/setup/constants.inc:944
+#: ../includes/setup/constants.inc:935 ../includes/setup/constants.inc:944
 msgid "Photos"
 msgstr "Photos"
 
@@ -1290,8 +1221,7 @@ msgstr "Photos"
 msgid "Images that have comments will be marked."
 msgstr "Bilder mit Kommentar werden gekennzeichnet."
 
-#: ../includes/setup/constants.inc:937
-#: ../includes/setup/constants.inc:945
+#: ../includes/setup/constants.inc:937 ../includes/setup/constants.inc:945
 msgid "Albums"
 msgstr "Alben"
 
@@ -1299,8 +1229,7 @@ msgstr "Alben"
 msgid "Albums and sub-albums that have comments will be marked."
 msgstr "Alben und Unteralben werden markiert, falls Kommentare vorhanden sind."
 
-#: ../includes/setup/constants.inc:939
-#: ../includes/setup/constants.inc:946
+#: ../includes/setup/constants.inc:939 ../includes/setup/constants.inc:946
 #: ../includes/setup/defaults.inc:578
 msgid "Both"
 msgstr "Beides"
@@ -1445,12 +1374,9 @@ msgstr "Für jeden selektierten Eintrag wird ein Link auf der Hauptseite erzeugt.
 msgid "View cache"
 msgstr "Cache für die Betrachtungen"
 
-#: ../includes/setup/constants.inc:1054
-#: ../includes/setup/constants.inc:1068
-#: ../includes/setup/constants.inc:1082
-#: ../includes/setup/constants.inc:1096
-#: ../includes/setup/constants.inc:1110
-#: ../includes/setup/constants.inc:1124
+#: ../includes/setup/constants.inc:1054 ../includes/setup/constants.inc:1068
+#: ../includes/setup/constants.inc:1082 ../includes/setup/constants.inc:1096
+#: ../includes/setup/constants.inc:1110 ../includes/setup/constants.inc:1124
 msgid "On"
 msgstr "An"
 
@@ -1937,8 +1863,7 @@ msgstr "Maximale Gr&ouml;&szlig;e der Bilder"
 msgid "You can optionally limit the dimensions your images on upload to Gallery."
 msgstr "Sie k&ouml;nnen optional die Dimension der Bilder einschr&auml;nken die Sie hochladen."
 
-#: ../includes/setup/defaults.inc:136
-#: ../includes/setup/defaults.inc:156
+#: ../includes/setup/defaults.inc:136 ../includes/setup/defaults.inc:156
 msgid "Warning:"
 msgstr "Warnung:"
 
@@ -1946,8 +1871,7 @@ msgstr "Warnung:"
 msgid "Enabling this feature will leave you <b>without a full size original</b> image in your Gallery, but allows you to save limited hard drive space. Gallery will attempt to preserve JPEG comments and EXIF data for the shrunken image, but this will require either <b>ImageMagick</b> or the optional <b>jhead</b> programs (see Step 2)."
 msgstr "Wenn Sie dieses Feature einschalten, werden Sie Bilder <b>nicht in der Originalgr&ouml;&szlig;e</b> in Ihrer Gallery haben. Gallery wird versuchen die JPEG Kommentare und EXIF Informationen zu bewahren. Hierzu brauchen Sie dann entweder <b>ImageMagick</b> oder das optionalle <b>jhead</b>. NetPBM alleine reicht nicht !"
 
-#: ../includes/setup/defaults.inc:148
-#: ../includes/setup/defaults.inc:149
+#: ../includes/setup/defaults.inc:148 ../includes/setup/defaults.inc:149
 #: ../includes/setup/defaults.inc:150
 #, php-format
 msgid "%d (%d MPix)"
@@ -2046,8 +1970,7 @@ msgstr "Default Album Rechte"
 msgid "Defines the default set of permissions for an album.  Specifically, who can see the album, and view its photos."
 msgstr "Dies gibt die Standardeinstellungen der Rechte f&uuml;r neue Alben an."
 
-#: ../includes/setup/defaults.inc:265
-#: ../includes/setup/defaults.inc:376
+#: ../includes/setup/defaults.inc:265 ../includes/setup/defaults.inc:376
 #: ../includes/setup/defaults.inc:383
 msgid "Everybody"
 msgstr "Jeder"
@@ -2056,8 +1979,7 @@ msgstr "Jeder"
 msgid "Logged-In Users"
 msgstr "Eingeloggte Benutzer"
 
-#: ../includes/setup/defaults.inc:267
-#: ../includes/setup/defaults.inc:374
+#: ../includes/setup/defaults.inc:267 ../includes/setup/defaults.inc:374
 #: ../includes/setup/defaults.inc:382
 msgid "Nobody"
 msgstr "Niemand"
@@ -2144,17 +2066,13 @@ msgstr "Diese Einstellung kann f&uuml;r jedes Album separat abgeschaltet, nur f&
 msgid "There are two sorts of polls: %s, which allows voters to chose their favourites as first, second, third etc., and %s, which allows voters to rate any or all of the images without restriction.  %s is like a film review where all the images can get (for example) 5 points, while %s is useful in scoring competitions."
 msgstr "Es gibt zwei Arten von Abstimmungen: %s, welches den Benutzern erlaubt Ihren pers&ouml;nlichen Favoriten zu w&auml;hlen und %s welches den Benutzern erlaubt alle Bilder ohne Einschr&auml;nkung zu bewerten.  %s  ist vergleichbar mit einer Film-Kritik, Sie k&ouml;nnen jedem Bild 5 Punkte geben. Wobei %s eher n&uuml;tzlich f&uuml;r &quot;Wettk&auml;mpfe&quot; ist."
 
-#: ../includes/setup/defaults.inc:364
-#: ../includes/setup/defaults.inc:367
-#: ../includes/setup/defaults.inc:392
-#: ../includes/setup/defaults.inc:398
+#: ../includes/setup/defaults.inc:364 ../includes/setup/defaults.inc:367
+#: ../includes/setup/defaults.inc:392 ../includes/setup/defaults.inc:398
 msgid "Rank"
 msgstr "Rang"
 
-#: ../includes/setup/defaults.inc:365
-#: ../includes/setup/defaults.inc:366
-#: ../includes/setup/defaults.inc:394
-#: ../includes/setup/defaults.inc:399
+#: ../includes/setup/defaults.inc:365 ../includes/setup/defaults.inc:366
+#: ../includes/setup/defaults.inc:394 ../includes/setup/defaults.inc:399
 msgid "Critique"
 msgstr "Kritik"
 
@@ -2174,8 +2092,7 @@ msgstr "Keine Abstimmungen"
 msgid "Anyone can vote.  Votes are recorded against session ID."
 msgstr "Jeder kann abstimmen.  Stimmen werden per SessionID gespeichert."
 
-#: ../includes/setup/defaults.inc:378
-#: ../includes/setup/defaults.inc:384
+#: ../includes/setup/defaults.inc:378 ../includes/setup/defaults.inc:384
 msgid "Logged in"
 msgstr "Eingeloggter Benutzer"
 
@@ -2219,8 +2136,7 @@ msgstr "Dies wird oberhalb der Abstimmung unter jedem Bild angezeigt."
 msgid "Vote for this image"
 msgstr "Geben Sie eine Bewertung f&uuml;r dieses Bild ab"
 
-#: ../includes/setup/defaults.inc:418
-#: ../includes/setup/defaults.inc:430
+#: ../includes/setup/defaults.inc:418 ../includes/setup/defaults.inc:430
 msgid "Show vote results"
 msgstr "Zeige Wertungsergebnisse"
 
@@ -2304,8 +2220,7 @@ msgstr "Setzen Sie dies auf %s, wenn Sie Bilder aus Unteralben in die Diashow ei
 msgid "This option will allow visitors to have your slideshow repeat until they close the window or go to another page.  Set it to %s if you want to save bandwidth."
 msgstr "Diese Option erlaubt es, dass Benutzer die Diashow in einer Schleife anschauen k&ouml;nnen. Das heißt solange bis der Benutzer das Fenster schließt, oder eine andere Seite benutzt. Setzen Sie dies auf %s um so Bandbreite zu sparen."
 
-#: ../includes/setup/defaults.inc:516
-#: ../includes/setup/defaults.inc:520
+#: ../includes/setup/defaults.inc:516 ../includes/setup/defaults.inc:520
 #: ../includes/setup/defaults.inc:530
 msgid "Microthumb Photo Navigation"
 msgstr "Microvorschau Photonavigation"
@@ -2322,8 +2237,7 @@ msgstr "Mircovorschau einschalten. Die Microvorschau ist ein Balken, der eine ve
 msgid "both"
 msgstr "Beides"
 
-#: ../includes/setup/defaults.inc:532
-#: ../includes/setup/defaults.inc:539
+#: ../includes/setup/defaults.inc:532 ../includes/setup/defaults.inc:539
 msgid "Fixed"
 msgstr "Fest"
 
@@ -2331,8 +2245,7 @@ msgstr "Fest"
 msgid "Displays prev and next groups of thumbs, changing only to display next group of thumbs."
 msgstr "Es wird eine Gruppe der nächsten und vorherigen Bilder angezeigt, wobei sich nur die Anzeige der nächsten Bilder ändert."
 
-#: ../includes/setup/defaults.inc:534
-#: ../includes/setup/defaults.inc:540
+#: ../includes/setup/defaults.inc:534 ../includes/setup/defaults.inc:540
 msgid "Dynamic"
 msgstr "Dynamisch"
 
@@ -2396,8 +2309,7 @@ msgstr "Zusätzliche Höhe für das aktuelle Mircovorschaubild"
 msgid "This is the bonus in pixels to the size of the current microthumb.  This creates a nice look and a value of 10-15 is reasonable.  Zero (0) and negative numbers (-10) are also valid here.  Zero (0) will result in the current thumb being of identical size to all the other microthumbs and a negative value will result in a smaller microthumb."
 msgstr "Diese Angabe ist dazu gedacht eine zusätzliche Höhe für das aktuelle Vorschaubild anzugeben. Dadurch kann das aktuelle Vorschaubild hervorgehoben werden. Eine negative Angabe ist ebenfalls möglich und würde eine Verkleinerung bedeuten. Bei keiner Angabe, oder 0 wird das Bild in gleicher Größe die übrigen Vorschaubilder angezeigt. Empfohlener Wert ist 10-15 Pixel."
 
-#: ../includes/setup/defaults.inc:600
-#: ../setup/frame_test.php:28
+#: ../includes/setup/defaults.inc:600 ../setup/frame_test.php:28
 msgid "Frames"
 msgstr "Rahmen"
 
@@ -2434,22 +2346,16 @@ msgstr "Dieser Rahmen wird um die Bilder gezeichnet."
 msgid "Gallery Logo"
 msgstr "Gallery Logo"
 
-#: ../setup/welcome.inc:33
-#: ../setup/check.inc:86
-#: ../setup/confirm.inc:521
-#: ../setup/constants.inc:81
-#: ../setup/defaults.inc:48
-#: ../setup/write.inc:201
+#: ../setup/welcome.inc:33 ../setup/check.inc:86 ../setup/confirm.inc:521
+#: ../setup/constants.inc:81 ../setup/defaults.inc:48 ../setup/write.inc:201
 msgid "Gallery configuration wizard"
 msgstr "Gallery Konfigurationsassistent"
 
-#: ../setup/welcome.inc:40
-#: ../setup/index.php:119
+#: ../setup/welcome.inc:40 ../setup/index.php:119
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: ../setup/welcome.inc:43
-#: ../setup/welcome.inc:152
+#: ../setup/welcome.inc:43 ../setup/welcome.inc:152
 msgid "_Next Step >>"
 msgstr "_Nächster Schritt &gt;&gt;"
 
@@ -2572,28 +2478,23 @@ msgstr "Speicherung Ihrer Konfiguration."
 msgid "If you experience problems, you can find help on the %sGallery Help Page%s."
 msgstr "Falls Sie Probleme haben, werfen Sie einen Blick auf die %sGallery Hilfeseite%s."
 
-#: ../setup/check.inc:29
-#: ../setup/check.inc:30
+#: ../setup/check.inc:29 ../setup/check.inc:30
 msgid "Success!"
 msgstr "In Ordnung!"
 
-#: ../setup/check.inc:35
-#: ../setup/check.inc:36
+#: ../setup/check.inc:35 ../setup/check.inc:36
 msgid "Warning, but optional."
 msgstr "Warnung, jedoch optional."
 
-#: ../setup/check.inc:41
-#: ../setup/check.inc:42
+#: ../setup/check.inc:41 ../setup/check.inc:42
 msgid "Serious warning, but optional."
 msgstr "Ernsthafte Warnung, jedoch optional."
 
-#: ../setup/check.inc:47
-#: ../setup/check.inc:48
+#: ../setup/check.inc:47 ../setup/check.inc:48
 msgid "Serious warning, no go!"
 msgstr "Ernsthafte Warnung, NO GO!"
 
-#: ../setup/check.inc:53
-#: ../setup/check.inc:54
+#: ../setup/check.inc:53 ../setup/check.inc:54
 msgid "Failure!"
 msgstr "FEHLER!"
 
@@ -2651,11 +2552,8 @@ msgstr "Ihre Installation erzeugt Warnungen, was im allgemeinen jedoch kein Prob
 msgid "Your installation passed with flying colors!  Go go go!"
 msgstr "Ihr System sieht 1a aus. Los gehts!!"
 
-#: ../setup/check.inc:291
-#: ../setup/constants.inc:92
-#: ../setup/constants.inc:271
-#: ../setup/defaults.inc:59
-#: ../setup/defaults.inc:172
+#: ../setup/check.inc:291 ../setup/constants.inc:92 ../setup/constants.inc:271
+#: ../setup/defaults.inc:59 ../setup/defaults.inc:172
 msgid "_Next Step &gt;&gt;"
 msgstr "_Nächster Schritt &gt;&gt;"
 
@@ -2715,8 +2613,7 @@ msgstr "Versuchen Sie es erneut."
 msgid "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"
 msgstr "Dies gibt Ihnen die M&ouml;glichkeit zu testen, ob Emailing auf Ihrem Server korrekt funktioniert.  Es wird versucht eine Testemail an die von Ihnen anzugebende Adresse zu schicken.  Falls Sie ankommt, wissen Sie das das Emailing funktioniert."
 
-#: ../setup/check_mail.php:77
-#: ../setup/check_mail.php:85
+#: ../setup/check_mail.php:77 ../setup/check_mail.php:85
 #, php-format
 msgid "%s not set in php.ini."
 msgstr "%s nicht in der php.ini angegeben."
@@ -2730,7 +2627,8 @@ msgid "_Send Email"
 msgstr "Email _senden"
 
 #: ../setup/check_netpbm.php:26
-msgid "Gallery NetPBM Check"
+#, fuzzy
+msgid "Gallery Netpbm Check"
 msgstr "Gallery NetPBM Test"
 
 #: ../setup/check_versions.php:26
@@ -2753,8 +2651,7 @@ msgid_plural "%d files are missing or corrupt."
 msgstr[0] "Eine Datei fehlt oder ist defekt."
 msgstr[1] "%d Dateien fehlen oder sind defekt."
 
-#: ../setup/check_versions.php:50
-#: ../setup/check_versions.php:69
+#: ../setup/check_versions.php:50 ../setup/check_versions.php:69
 #, php-format
 msgid "There are problems with the following files.  Please correct them before configuring %s."
 msgstr "Es gibt Probleme mit folgenden Dateien.  Bitte korrigieren Sie dies bevor Sie Ihre %s konfigurieren."
@@ -2828,9 +2725,7 @@ msgstr "Die %s Datei in Ihrem Gallery Hauptordner ist optional. Jedoch benötigen
 msgid "The %s file in your Gallery mainfolder is not writable by the webserver - chmod it 777 before proceeding.  See %s for more details."
 msgstr "Die Datei %s in Ihrem Gallery Hauptordner ist nicht schreibbar f&uuml;r den Webserver. F&uuml;hren Sie chmod 777 aus befor sie fortfahren. Schauen Sie in die %s f&uuml;r Details."
 
-#: ../setup/confirm.inc:103
-#: ../setup/confirm.inc:206
-#: ../setup/confirm.inc:331
+#: ../setup/confirm.inc:103 ../setup/confirm.inc:206 ../setup/confirm.inc:331
 msgid "missing"
 msgstr "Fehlende Angabe"
 
@@ -2838,8 +2733,7 @@ msgstr "Fehlende Angabe"
 msgid "it's optional"
 msgstr "Ist optional"
 
-#: ../setup/confirm.inc:206
-#: ../setup/confirm.inc:331
+#: ../setup/confirm.inc:206 ../setup/confirm.inc:331
 msgid "optional"
 msgstr "optional"
 
@@ -2908,8 +2802,7 @@ msgstr "%s konnte nicht gefunden werden. Schauen Sie in Ihren Netpbm Ordner, wel
 msgid "You must specify a path for %s or %s for Gallery to function!!"
 msgstr "Sie m&uuml;ssen entweder den Pfad f&uuml;r %s oder %s angeben, damit die Gallery funktioniert !"
 
-#: ../setup/confirm.inc:428
-#: ../setup/confirm.inc:432
+#: ../setup/confirm.inc:428 ../setup/confirm.inc:432
 #, php-format
 msgid "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."
 msgstr "%s ist nicht richtig konfiguriert, um es als Bildverarbeitungsprogramm zu nutzen. Stellen Sie sicher, dass Sie den Pfad zu den %s Binaries angegeben haben in Schritt 2."
@@ -2927,19 +2820,15 @@ msgstr "Dies bedeutet nicht, dass diese falsch sind, es bedeutet nur, dass Sie n
 msgid "Confirmation"
 msgstr "Best&auml;tigung"
 
-#: ../setup/confirm.inc:531
-#: ../setup/confirm.inc:574
+#: ../setup/confirm.inc:531 ../setup/confirm.inc:574
 msgid "&lt;&lt; Edit Config"
 msgstr "&lt;&lt;  Konfiguration bearbeiten"
 
-#: ../setup/confirm.inc:533
-#: ../setup/confirm.inc:577
+#: ../setup/confirm.inc:533 ../setup/confirm.inc:577
 msgid "Save Config &gt;&gt;"
 msgstr "Konfiguration speichern &gt;&gt;"
 
-#: ../setup/confirm.inc:536
-#: ../setup/confirm.inc:580
-#: ../setup/login.inc:89
+#: ../setup/confirm.inc:536 ../setup/confirm.inc:580 ../setup/login.inc:89
 msgid "Refresh"
 msgstr "Neu laden"
 
@@ -2978,15 +2867,12 @@ msgstr "Bitte kehren Sie zum entsprechenden Schritt zur&uuml;ck und beheben den 
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../setup/constants.inc:91
-#: ../setup/constants.inc:268
-#: ../setup/defaults.inc:58
-#: ../setup/defaults.inc:169
+#: ../setup/constants.inc:91 ../setup/constants.inc:268
+#: ../setup/defaults.inc:58 ../setup/defaults.inc:169
 msgid "&lt;&lt; _Previous Step"
 msgstr "&lt;&lt;  _Vorheriger Schritt"
 
-#: ../setup/constants.inc:96
-#: ../setup/defaults.inc:63
+#: ../setup/constants.inc:96 ../setup/defaults.inc:63
 #, php-format
 msgid "Installation type: %s"
 msgstr "Installationsart: %s"
@@ -2995,29 +2881,22 @@ msgstr "Installationsart: %s"
 msgid "In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much."
 msgstr "In diesem Schritt k&ouml;nnen Sie verschiedene Einstellungen Ihrer Gallery anpassen.  Wenn dies das erste Mal ist, dass Sie die Gallery einrichten, werden Sie feststellen, dass Ihnen die Gallery sinnvolle Voreinstellungen anbietet. Es kann jedoch vorkommen, dass Sie selbstst&auml;ndig Ver&auml;nderungen vornehmen m&uuml;ssen."
 
-#: ../setup/constants.inc:105
-#: ../setup/defaults.inc:75
+#: ../setup/constants.inc:105 ../setup/defaults.inc:75
 msgid "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step."
 msgstr "Gehen Sie durch die entsprechenden Laschen und tragen die Werte ein die Sie ben&ouml;tigen. Manche, jedoch nicht alle werden ben&ouml;tigt. Wenn Sie fertig sind, benuzten Sie den Button um in den n&auml;chsten Schritt zu gelangen."
 
-#: ../setup/constants.inc:114
-#: ../setup/constants.inc:269
-#: ../setup/defaults.inc:88
-#: ../setup/defaults.inc:170
+#: ../setup/constants.inc:114 ../setup/constants.inc:269
+#: ../setup/defaults.inc:88 ../setup/defaults.inc:170
 msgid "&lt; Previous Tab"
 msgstr "&lt; Vorheriger Reiter"
 
-#: ../setup/constants.inc:115
-#: ../setup/constants.inc:270
-#: ../setup/defaults.inc:89
-#: ../setup/defaults.inc:171
+#: ../setup/constants.inc:115 ../setup/constants.inc:270
+#: ../setup/defaults.inc:89 ../setup/defaults.inc:171
 msgid "Next Tab &gt;"
 msgstr "Nächster Reiter &gt;"
 
-#: ../setup/constants.inc:116
-#: ../setup/constants.inc:272
-#: ../setup/defaults.inc:90
-#: ../setup/defaults.inc:173
+#: ../setup/constants.inc:116 ../setup/constants.inc:272
+#: ../setup/defaults.inc:90 ../setup/defaults.inc:173
 msgid "Use Defaults"
 msgstr "Benutze Voreinstellungen"
 
@@ -3078,7 +2957,8 @@ msgid "It's a good place to look to examine all the various PHP configuration se
 msgstr "Es is immer sinnvoll, einen Blick auf die verschiedenen PHP-Konfigurationseinstellungen zu werfen und herauszufinden, auf welchem System Sie sich befinden (manchmal kann dies schwierig sein, je nachdem bei welchem Provider Sie sind)."
 
 #: ../setup/diagnostics.php:58
-msgid "Check _NetPBM"
+#, fuzzy
+msgid "Check _Netpbm"
 msgstr "_NetPBM prüfen"
 
 #: ../setup/diagnostics.php:61
@@ -3140,8 +3020,7 @@ msgstr "Diese Seite ist für %s Aktualisierungen bei denen Probleme auftraten."
 msgid "This allows you to check you have the correct version of all your %s files."
 msgstr "Dieser Test prüft, ob Sie die jeweils aktuelle Version der %s Dateien installiert haben."
 
-#: ../setup/frame_test.php:28
-#: ../setup/index.php:44
+#: ../setup/frame_test.php:28 ../setup/index.php:44
 msgid "Gallery Configuration"
 msgstr "Gallery Konfiguration"
 
@@ -3475,3 +3354,6 @@ msgstr "Sprechen Sie mit Ihrem Systemadministrator, oder werfen Sie einen Blick 
 #, php-format
 msgid "For other errors, please refer to the list of possible responses in %s to get more information."
 msgstr "Für andere Fehler werfen Sie bitte einen Blick auf die %s Seite um weitere Unterstützung zu bekommen."
+
+#~ msgid "Gallery prefers NetPBM version 9.9 and up.  You can install just the binaries Gallery needs from the %sGallery Download Page%s. Or, you can compile and install the entire NetPBM package from the %sNetPBM website%s."
+#~ msgstr "Gallery ben&ouml;tigt NetPBM Version 9.9 oder h&ouml;her. Sie haben die M&ouml;glichkeit, nur die Binaries von %sGallery auf SourceForge%s herunterzuladen und zu installieren oder die Quellen von %sNetPBM auf SourceForge%s herunterladen und selber zu kompilieren."
