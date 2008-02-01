@@ -30,6 +30,7 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 define('FEATURE_CACHE', $gallery->app->albumDir . '/featured-item.cache');
 
 list($set, $index) = getRequestVar(array('set', 'index'));
+
 $notice_messages = array();
 
 if (!empty($set)) {
@@ -65,7 +66,7 @@ if (!empty($set)) {
 		}
 	}
 	else {
-		printPopupStart(gTranslate('core', "Featured item"), $label);
+		printPopupStart(gTranslate('core', "Featured item"));
 
 		$notice_messages[] = array(
 				'type' => 'error',

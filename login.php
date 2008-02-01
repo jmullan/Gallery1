@@ -27,8 +27,7 @@ require_once(dirname(__FILE__) . '/init.php');
 list($username, $gallerypassword, $login, $reset_username, $forgot) =
 	getRequestVar(array('username', 'gallerypassword', 'login', 'reset_username', 'forgot'));
 
-list($g1_return, $cmd) =
-	getRequestVar(array('g1_return', 'cmd'));
+list($g1_return, $cmd) = getRequestVar(array('g1_return', 'cmd'));
 
 /* decode user data, remove tags, and then re-encode using html entities for safe page display */
 $username = htmlspecialchars(strip_tags(urldecode($username)));

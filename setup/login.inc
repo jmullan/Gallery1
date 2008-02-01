@@ -62,7 +62,7 @@ elseif (!empty($login)) {
 
 			$messages[] = array(
 				'type' => 'error',
-				'text' => gTranslate('config', "Invalid username or password")
+				'text' => gTranslate('config', "Invalid username or password.")
 			);
 		}
 		elseif (!$tmpUser->isAdmin()) {
@@ -71,7 +71,7 @@ elseif (!empty($login)) {
 
 			$messages[] = array(
 				'type' => 'error',
-				'text' => gTranslate('config', "User is not an admin - access denied")
+				'text' => gTranslate('config', "User is not an admin - access denied.")
 			);
 		}
 	}

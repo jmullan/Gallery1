@@ -26,6 +26,8 @@
 
 require_once(dirname(__FILE__) . "/init.php");
 
+printPopupStart(gTranslate('config', "Gallery Host Compatability Checker"));
+
 configLogin(basename(__FILE__));
 
 /*

@@ -81,7 +81,8 @@ if (!empty($newName)) {
 			}
 		}
 		$dismiss = 1;
-	} else {
+	}
+	else {
 		echo infoBox(array(array(
 			'type' => 'error',
 			'text' => gTranslate('core', "There is already an album with that name!")))
@@ -98,8 +99,8 @@ if (!empty($newName)) {
 		}
 		return;
 	}
-
-} else {
+}
+else {
 	$newName = $gallery->session->albumName;
 }
 
@@ -108,11 +109,14 @@ echo "\n<br><br>";
 echo gTranslate('core', "The name cannot contain any of the following characters") ?>:
 <br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo gTranslate('core', "or") ?><b> <?php echo gTranslate('core', "spaces") ?></b>
 <br>
-<?php echo gTranslate('core', "Those characters will be ignored in your new album name."); ?>
+<?php echo gTranslate('core', "Those characters are not allowed in your new album name."); ?>
 
 <?php echo makeFormIntro('rename_album.php',  array(), array('type' => 'popup')); ?>
 <p>
-<input type="text" name="newName" value="<?php echo $newName; ?>">
+<?php echo gInput('text', 'newName',
+					gTranslate('core', "New name for album folder:"), false,
+					$newName, array('size' => 30));
+?>
 <input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
 <input type="hidden" name="useLoad" value="<?php echo $useLoad; ?>">
 </p>

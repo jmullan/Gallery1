@@ -538,7 +538,7 @@ function check_exif($location = '') {
 	}
 
 	$jheadVersion = getJheadVersion($dir);
-	
+
 	if (empty($dir)) {
 		$warn["warn-noexif"] = gTranslate('common', "Can't find <i>jhead</i>.");
 	}
@@ -1724,7 +1724,7 @@ function checkVersions($verbose = false) {
 			if ($verbose) {
 				print "<br>\n";
 				print sprintf(gTranslate('common', "Cannot read file %s."), $file);
-			}			
+			}
 			$fail[$file] = gTranslate('common', "File missing or unreadable.");
 			continue;
 		}

@@ -359,17 +359,17 @@ class Abstract_User {
 
 	function displayName() {
 		$FullName = $this->getFullName();
+		
 		if (! empty($FullName)) {
 			return $this->getFullname();
-		} else {
+		}
+		else {
 			return $this->getUsername();
 		}
 	}
 
 	function canDownloadAlbum($album) {
-		if ($this->hasAlbumPermission('zipDownload', $album) &&
-			canCreateArchive('zip'))
-		{
+		if ($this->hasAlbumPermission('zipDownload', $album) && canCreateArchive('zip')) {
 			return true;
 		}
 		else {

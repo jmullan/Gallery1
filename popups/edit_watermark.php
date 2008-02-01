@@ -33,15 +33,15 @@
  */
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($index, $save, $preview, $previewFull) =
-	getRequestVar(array('index', 'save', 'preview', 'previewFull'));
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
-	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
+list($index, $save, $preview) = getRequestVar(array('index', 'save', 'preview'));
+
+list($wmAlignX, $wmAlignY) = getRequestVar(array('wmAlignX', 'wmAlignY'));
 
 // Hack check
 if (! $gallery->user->canWriteToAlbum($gallery->album) &&
-  ! $gallery->album->getItemOwnerModify() &&
-  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
+	! $gallery->album->getItemOwnerModify() &&
+	! $gallery->album->isItemOwner($gallery->user->getUid(), $index))
+{
 	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
@@ -86,24 +86,25 @@ if (isset($save) || isset($preview)) {
 }
 
 printPopupStart(gTranslate('core', "Edit Watermark"));
-?>
-<p>
-<?php
+echo "\n<p>";
+
 if (isset($preview)) {
 	echo $gallery->album->getPreviewTag($index);
-} else {
+}
+else {
 	echo $gallery->album->getThumbnailTag($index);
 }
-?>
-</p>
-<?php
+echo "\n</p>";
 
 if (!empty($err)) {
 	echo '<p class="g-error">'. $err .'</p>';
 }
 
 if ($photo->image->type == 'gif') {
-	echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will 'deface & unanimate' your picture."), 'notice');
+	echo infoBox(array(array(
+		'type' => 'info',
+		'text' => gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported. It will 'deface' and 'unanimate' your picture.")
+	)));
 }
 
 echo makeFormIntro('edit_watermark.php', array(), array('type' => 'popup', 'index' => $index));
@@ -112,9 +113,9 @@ $watermarkForm["askRecursive"] = 0;
 $watermarkForm["askPreview"] = 1;
 $watermarkForm["allowNone"] = 0;
 includeLayout('watermarkform.inc');
-?>
-<br><br>
-<?php
+
+echo "\n<br><br>\n";
+
 if(empty($errors)) {
 	echo gSubmit('save', gTranslate('core', "_Save"));
 	echo gSubmit('preview', gTranslate('core', "_Preview"));

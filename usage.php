@@ -34,12 +34,12 @@ $adminbox['text'] = gTranslate('core', "Filesystem usage");
 
 $iconElements[] = galleryLink(
 					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
+					gTranslate('core', "Return to _admin page"),
 					array(), '', true);
 
 $iconElements[] = galleryLink(
 					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
+					gTranslate('core', "Return to _gallery"),
 					array(), '', true);
 
 if (!($gallery->user->isAdmin())) {

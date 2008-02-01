@@ -28,10 +28,9 @@ require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
 list($groupId, $save, $gname, $description, $currentUser) =
-	getRequestVar(array('groupId', 'save', 'gname', 'description', 'currentUser'));
+		getRequestVar(array('groupId', 'save', 'gname', 'description', 'currentUser'));
 
-list($backToGroup, $backToUser) =
-	getRequestVar(array('backToGroup', 'backToUser'));
+list($backToGroup, $backToUser) = getRequestVar(array('backToGroup', 'backToUser'));
 
 if (!$gallery->user->isAdmin()) {
 	echo gTranslate('core', "You are not allowed to perform this action!");
@@ -39,7 +38,7 @@ if (!$gallery->user->isAdmin()) {
 }
 
 if(!empty($backToGroup)) {
-	 header("Location: " . makeGalleryHeaderUrl('manage_groups.php', array('type' => 'popup')));
+	header("Location: " . makeGalleryHeaderUrl('manage_groups.php', array('type' => 'popup')));
 }
 
 if (!empty($backToUser)) {

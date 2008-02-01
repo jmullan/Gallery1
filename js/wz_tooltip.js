@@ -94,7 +94,7 @@ config. TextAlign		= 'left'	// 'left', 'right' or 'justify'
 config. Title			= ''		// Default title text applied to all tips (no default title: empty string '')
 config. TitleAlign		= 'left'	// 'left' or 'right' - text alignment inside the title bar
 config. TitleBgColor	= ''		// If empty string '', BorderColor will be used
-config. TitleFontColor	= ''	// Color of title text - if '', BgColor (of tooltip body) will be used
+config. TitleFontColor	= ''		// Color of title text - if '', BgColor (of tooltip body) will be used
 config. TitleFontFace	= ''		// If '' use FontFace (boldified)
 config. TitleFontSize	= ''		// If '' use FontSize
 config. Width			= 0 		// Tooltip width; 0 for automatic adaption to tooltip content
@@ -611,8 +611,9 @@ function tt_MkTipContent(a)
 }
 function tt_MkTipSubDivs()
 {
-	var sCss = 'position:relative;margin:0px;padding:0px;border-width:0px;left:0px;top:0px;width:auto;';
-	sTbTrTd = ' cellspacing=0 cellpadding=0 border=0 style="border: 1px solid red; ' + sCss + '"><tbody style="' + sCss + '"><tr><td ';
+	//var sCss = 'position:relative;margin:0px;padding:0px;border-width:0px;left:0px;top:0px;width:auto;';
+	var sCss = 'position:relative;left:0px;top:0px;width:auto;';
+	sTbTrTd = ' cellspacing=0 cellpadding=0 border=0 style="' + sCss + '"><tbody style="' + sCss + '"><tr><td ';
 
 	tt_aElt[0].innerHTML =
 		(''

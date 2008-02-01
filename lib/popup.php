@@ -120,7 +120,7 @@ function popup_link2($title, $url, $args = array()) {
 	}
 
 	$args['gallery_popup'] = true;
-	
+
 	$url = build_popup_url($url, $url_is_complete);
 
 	// Force int data type

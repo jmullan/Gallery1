@@ -49,7 +49,7 @@ if ($gallery->album->isHidden($i)) {
 	echo "  (". gTranslate('core', "hidden") .")";
 }
 
-echo makeFormIntro('view_comments.php',array('name' => 'delete_comments_'.$index));
+echo makeFormIntro('view_comments.php', array('name' => 'delete_comments_'.$index));
 ?>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
 <?php

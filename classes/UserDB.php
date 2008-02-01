@@ -84,7 +84,7 @@ class Abstract_UserDB {
 	 * Is currently only used for standalone Gallery UserDB.
 	 *
 	 * @return boolean	 true if succesfully initialized.
-	 * @author Jens Tkotz <jens@peino.de>
+	 * @author Jens Tkotz
 	 */
 	function isInitialized() {
 		return true;

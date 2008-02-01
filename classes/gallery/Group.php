@@ -27,18 +27,25 @@ class Gallery_Group extends Abstract_Group {
 	function Gallery_Group() {
 		global $gallery;
 
-		$this->name		 = '';
-		$this->description  = '';
-		$this->memberList   = array();
-		$this->gid		  = 'g_' . time() . '_' . mt_rand();
+		$this->name			= '';
+		$this->description	= '';
+		$this->memberList	= array();
+		$this->gid			= 'g_' . time() . '_' . mt_rand();
 	}
 
+	/**
+	 * Loads serialized data into a group object.
+	 *
+	 * @param integer	$gid
+	 * @return boolean	true on a successfull load, otherwise false.
+	 */
 	function load($gid) {
 		global $gallery;
 
 		$dir = $gallery->app->userDir;
 
 		$tmp = getFile("$dir/$gid");
+		
 		if($tmp) {
 			foreach (unserialize($tmp) as $k => $v) {
 				$this->$k = $v;

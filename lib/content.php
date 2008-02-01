@@ -48,7 +48,7 @@ function editField($album, $field, $url = null) {
 		// should replace with &amp; for validatation
 		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
 
-		$html .= ' '. popup_link(sprintf(gTranslate('common', "edit %s"), _($field)), $url, 0,true, 500, 500, 'g-small');
+		$html .= ' '. popup_link(sprintf(gTranslate('common', "edit %s"), _($field)), $url, 0, true, 500, 500, 'g-small');
 	}
 
 	return $html;
@@ -690,9 +690,7 @@ function dismissAndReload() {
 }
 
 function reload() {
-	echo '<script language="javascript1.2" type="text/JavaScript">';
-	echo 'opener.location.reload()';
-	echo '</script>';
+	echo '<script type="text/javascript">opener.location.reload()</script>';
 }
 
 /**
@@ -1338,7 +1336,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 		else {
 			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return));
 			if($photoCount == 0) {
-				$loginText = gTranslate('common', "_Login to see or add more items.");
+				$loginText = gTranslate('common', "Log_in to see or add more items.");
 			}
 			else {
 				$loginText = gTranslate('common', "Log_in");

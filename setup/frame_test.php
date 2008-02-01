@@ -50,14 +50,14 @@ printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate
 $descriptions = array();
 $names = array();
 
-$names["none"] = gTranslate('config', "No Frame");
-$descriptions["none"] = gTranslate('config', "No frames");
-$names["dots"] = gTranslate('config', "Dots");
-$descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
-$names["solid"] = gTranslate('config', "Solid");
-$descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
-$names["siriux"] = 'Siriux';
-$descriptions["siriux"] = gTranslate('config', "The frame from Nico Kaisers Siriux theme.") ;
+$names["none"]			= gTranslate('config', "No Frame");
+$descriptions["none"]	= gTranslate('config', "No frames");
+$names["dots"]			= gTranslate('config', "Dots");
+$descriptions["dots"]	= gTranslate('config', "Just a simple dashed border around the thumb.");
+$names["solid"]			= gTranslate('config', "Solid");
+$descriptions["solid"]	= gTranslate('config', "Just a simple solid border around the thumb.");
+$names["siriux"]		= 'Siriux';
+$descriptions["siriux"]	= gTranslate('config', "The frame from Nico Kaisers Siriux theme.") ;
 
 $dir = GALLERY_BASE . '/layout/frames';
 if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
@@ -68,21 +68,26 @@ if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
 			$name = NULL;
 			$description = NULL;
 			require($frameinc);
+
 			if (empty($name)) {
 				$name = $file;
 			}
+
 			if (empty($description)) {
 				$description = $file;
 			}
+
 			$names[$file] = $name;
 			$descriptions[$file] = $description;
-		} else {
+		}
+		else {
 			if (false && isDebugging()) {
 				echo gallery_error(sprintf(gTranslate('config', "Skipping %s."), $subdir));
 			}
 		}
 	}
-} else {
+}
+else {
 	echo '<--' . sprintf(gTranslate('config', "Can't open %s"), $dir) . '-->';
 }
 

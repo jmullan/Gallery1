@@ -35,19 +35,19 @@ $properties = array(
 		'title' => gTranslate('common', "_Texts"),
 		'contains_required' => false,
 	),
-	'summary' => array(
-        'prompt' => gTranslate('common', "Album summary"),
-		'desc' => '',
-		'value' => $gallery->album->fields['summary'],
-		'type' => 'textarea',
-		'attrs' => array('cols' => 40, 'rows' => 6)
-	),
 	'title' => array(
         'prompt' => gTranslate('common', "Album title"),
 		'desc' => '',
 		'type' => 'text',
 		'value' => $gallery->album->fields['title'],
 		'attrs' => array('size' => 50)
+	),
+	'summary' => array(
+        'prompt' => gTranslate('common', "Album summary"),
+		'desc' => '',
+		'value' => $gallery->album->fields['summary'],
+		'type' => 'textarea',
+		'attrs' => array('cols' => 40, 'rows' => 6)
 	),
 	'group_text_end' => array (
 		'type' => 'group_end',

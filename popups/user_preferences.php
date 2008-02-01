@@ -26,11 +26,18 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($save, $old_password, $new_password1, $new_password2) =
 	getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+	
 list($uname, $email, $fullname, $defaultLanguage) =
 	getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 if (!$gallery->user->isLoggedIn()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
+	printInfoBox(array(array(
+		'type' => 'error',
+		'text' => sprintf(gTranslate('core', "You are not allowed to perform this action!. Please go back to %s."),
+					galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
+	)));
+	includeTemplate('overall.footer');
 	exit;
 }
 
@@ -46,54 +53,58 @@ if (isset($save)) {
 
 	if ($gallery->user->getUsername() != $uname) {
 		if ($gallery->user->isAdmin()) {
-			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-			if ($gErrors["uname"]) {
+			$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
+			if ($gErrors['uname']) {
 				$errorCount++;
 			}
-		} else {
+		}
+		else {
 			$gErrors['uname'] = gTranslate('core', "You are not allowed to change your username.");
 			$errorCount++;
 		}
 	}
 
 	if (!empty($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
-		$gErrors["old_password"] = gTranslate('core', "Incorrect password") ;
+		$gErrors['old_password'] = gTranslate('core', "Password was incorrect.") ;
 		$errorCount++;
 	}
 
 	if (!empty($new_password1) || !empty($new_password2)) {
 		if (empty($old_password)) {
-			$gErrors["old_password"] = gTranslate('core', "You must provide your old password to change it.");
+			$gErrors['old_password'] = gTranslate('core', "You must provide your old password to change it.");
 			$errorCount++;
 		}
 
 		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
+			$gErrors['new_password2'] = gTranslate('core', "Passwords did not match!");
 			$errorCount++;
-		} else {
-			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-			if ($gErrors["new_password1"]) {
+		}
+		else {
+			$gErrors['new_password1'] = $gallery->userDB->validPassword($new_password1);
+			if ($gErrors['new_password1']) {
 				$errorCount++;
 			}
 		}
 	}
 
 	if (!empty($email) && !check_email($email)) {
-				$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-				$errorCount++;
-		}
+		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
+		$errorCount++;
+	}
 
 	if (!$errorCount) {
 		$gallery->user->setUsername($uname);
 		$gallery->user->setFullname($fullname);
 		$gallery->user->setEmail($email);
+		
 		if (isset($defaultLanguage)) {
 			$gallery->user->setDefaultLanguage($defaultLanguage);
 			$gallery->session->language=$defaultLanguage;
 		}
+		
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
- 			$gallery->user->setPassword($new_password1);
+			$gallery->user->setPassword($new_password1);
 		}
 		$gallery->user->save();
 
@@ -103,33 +114,36 @@ if (isset($save)) {
 	}
 }
 
-$uname = $gallery->user->getUsername();
-$fullname = $gallery->user->getFullname();
-$email = $gallery->user->getEmail();
+$uname			 = $gallery->user->getUsername();
+$fullname		 = $gallery->user->getFullname();
+$email			 = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
 
-$allowChange["uname"] = $gallery->user->isAdmin() ? true : false;
-$allowChange["email"] = true;
-$allowChange["fullname"] = true;
-$allowChange["old_password"] = true;
-$allowChange["default_language"] = true;
-$allowChange["send_email"] = false;
-$allowChange["member_file"] = false;
-$allowChange["create_albums"] = false;
-$allowChange["password"] = $gallery->user->canChangeOwnPw() ? true : false;
-$allowChange["admin"] = true;
+$allowChange['uname']			 = $gallery->user->isAdmin() ? true : false;
+$allowChange['email']			 = true;
+$allowChange['fullname']		 = true;
+$allowChange['old_password']	 = true;
+$allowChange['default_language'] = true;
+$allowChange['send_email']		 = false;
+$allowChange['member_file']		 = false;
+$allowChange['create_albums']	 = false;
+$allowChange['password']		 = $gallery->user->canChangeOwnPw() ? true : false;
+$allowChange['admin']			 = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
 printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 
 if(isset($saveOK)) {
-	echo infoBox(array(array(
+	$notice_messages[] = array(
 		'type' => 'success',
-		'text' => gTranslate('core', "User successfully updated.")))
+		'text' => gTranslate('core', "User successfully updated.")
 	);
+	
+	echo infoBox($notice_messages);
+	
 	echo "\n<br>\n";
-	echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
+	reload();
 }
 
 echo gTranslate('core', "You can change your user information here.");

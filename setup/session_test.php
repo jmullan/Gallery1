@@ -42,7 +42,7 @@ printPopupStart(gTranslate('config', "Session Test"), '', 'left');
 	<br>
 		<?php echo gTranslate('config', "The &quot;page views&quot; number should increase every time you reload the page."); ?>
 	<br>
-		<?php echo gTranslate('config', "Clicking &quot;Start over&quot; should reset the page view number back to 1."); ?>
+		<?php echo gTranslate('config', "Clicking &quot;Start over&quot; should reset the page view number back to 1 (But you need to login again)."); ?>
 	<br><br>
 		<?php echo infoBox(array(array(
 			  'type' => 'warning',

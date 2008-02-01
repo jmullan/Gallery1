@@ -36,89 +36,89 @@ global $errors;
 $errors = array();
 
 if (!isset($wmAlignX) || ($wmAlignX <= 0)) {
-    $wmAlignX = 0;
+	$wmAlignX = 0;
 }
 
 if (!isset($wmAlignY) || ($wmAlignY <= 0)) {
-    $wmAlignY = 0;
+	$wmAlignY = 0;
 }
 
 if (!isset($wmName)) {
-    $wmName = '';
+	$wmName = '';
 }
 
 if (!isset($wmAlign)) {
-    $wmAlign = 9;
+	$wmAlign = 9;
 }
 
 if (!isset($previewFull)) {
-    $previewFull = 0;
+	$previewFull = 0;
 }
 
 if (!isset($wmSelect)) {
-    $wmSelect = $gallery->app->watermarkSizes;
+	$wmSelect = $gallery->app->watermarkSizes;
 }
 
 if (!isset($wmAlign)) {
-    $wmAlign = 0;
+	$wmAlign = 0;
 }
 
 echo "\n<p>";
 
 // get a list of watermarks
 if ($wmDir = opendir($gallery->app->watermarkDir)) {
-    $found = 0;
-    $extensions = array ("png", "gif", "tif");
-    $extensions_string = "png, gif, tif";
-    while ($wmFile = readdir($wmDir)) {
-        $matches_ext = 0;
-        foreach ($extensions as $ext) {
-            if (eregi("\\.$ext$", $wmFile, $regs)) {
-                $matches_ext = 1;
-            }
-        }
-        if ($matches_ext) {
-	     if(!empty($wmName) && $wmName == $wmFile) {
-                 $options[] = array('value' => $wmFile, 'text' => $wmFile, 'selected' => true);
-	     }
-	     else {
-                 $options[] = array('value' => $wmFile, 'text' => $wmFile);
-	     }
-        }
-    }
-    closedir($wmDir);
+	$found = 0;
+	$extensions = array ("png", "gif", "tif");
+	$extensions_string = "png, gif, tif";
+	while ($wmFile = readdir($wmDir)) {
+		$matches_ext = 0;
+		foreach ($extensions as $ext) {
+			if (eregi("\\.$ext$", $wmFile, $regs)) {
+				$matches_ext = 1;
+			}
+		}
+		if ($matches_ext) {
+			if(!empty($wmName) && $wmName == $wmFile) {
+				$options[] = array('value' => $wmFile, 'text' => $wmFile, 'selected' => true);
+			}
+			else {
+				$options[] = array('value' => $wmFile, 'text' => $wmFile);
+			}
+		}
+	}
+	closedir($wmDir);
 
-    if(isset($options) && sizeof($options) > 0) {
-        echo "<b>". gTranslate('core', "Watermark:") ."</b>&nbsp;";
+	if(isset($options) && sizeof($options) > 0) {
+		echo "<b>". gTranslate('core', "Watermark:") ."</b>&nbsp;";
 
-        array_sort_by_fields($options, 'text', 'desc', false);
-        if ($watermarkForm["allowNone"]) {
-            $options[] = array('value' => '', 'text' => gTranslate('core', "* No Watermark *"), 'selected' => true);
-        }
-        $options = array_reverse($options);
-        echo drawSelect2('wmName', $options);
-    }
-    else {
-        $errors[] = array(
-            'type' => 'error',
-            'text' => sprintf(gTranslate('core', "No files matching %s found in %s"),
-	            "<b>" . $extensions_string . "</b>",
-	            "<b>" . $gallery->app->watermarkDir . "</b>")
-    		);
-    }
+		array_sort_by_fields($options, 'text', 'desc', false);
+		if ($watermarkForm["allowNone"]) {
+			$options[] = array('value' => '', 'text' => gTranslate('core', "* No Watermark *"), 'selected' => true);
+		}
+		$options = array_reverse($options);
+		echo drawSelect2('wmName', $options);
+	}
+	else {
+		$errors[] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "No files matching %s found in %s"),
+			"<b>" . $extensions_string . "</b>",
+			"<b>" . $gallery->app->watermarkDir . "</b>")
+		);
+	}
 }
 else {
-    $errors[] = array(
-            'type' => 'error',
-            'text' => sprintf(gTranslate('core', "Could not open directory %s"), $gallery->app->watermarkDir)
-    );
+	$errors[] = array(
+		'type' => 'error',
+		'text' => sprintf(gTranslate('core', "Could not open directory %s"), $gallery->app->watermarkDir)
+	);
 }
 ?>
 </p>
 
 <?php
 if(!empty($errors)) {
-   echo infoBox($errors);
+	echo infoBox($errors);
 }
 else { ?>
 
@@ -160,26 +160,23 @@ else { ?>
 </table>
 </div>
 <br>
-<?php if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) { ?>
-<b><?php echo gTranslate('core', "Preview Size") ?>:</b><br>
-<table border="0">
-<tr>
-  <td><input type="radio" name="previewFull" value="0"<?php if ($previewFull==0) echo " checked"; ?>><?php echo gTranslate('core', "Resized"); ?></td>
-</tr>
-<tr>
-  <td><input type="radio" name="previewFull" value="1"<?php if ($previewFull==1) echo " checked"; ?>><?php echo gTranslate('core', "Full"); ?></td>
-</tr>
-</table>
-<?php } // end if canViewFullImages
+<?php
+if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->album)) {
+	echo '<div class="g-emphasis">' . gTranslate('core', "Preview Size:") . '</div>';
+
+	echo gInput('radio','previewFull', gTranslate('core', "Resized"), '', 0, array('id' => 'previewResized', 'checked' => $previewFull==0 ? NULL : false));
+	echo "&nbsp;&nbsp;";
+	echo gInput('radio','previewFull', gTranslate('core', "Full"), '', 0, array('checked' => $previewFull==0 ? NULL : false));
+}
 ?>
-<br>
+<br><br>
 <?php if ($watermarkForm["askRecursive"]) {
-    global $recursive;
-    print '<input type="checkbox" name="recursive"';
-    if (isset($recursive)) {
-        echo " checked";
-    }
-    print ">" . gTranslate('core', "Watermark subalbums") . "<br><br>";
+	global $recursive;
+	print '<input type="checkbox" name="recursive"';
+	if (isset($recursive)) {
+		echo " checked";
+	}
+	print ">" . gTranslate('core', "Watermark subalbums") . "<br><br>";
 }
 
 echo gTranslate('core', "Apply watermark to") ?> <select name="wmSelect">

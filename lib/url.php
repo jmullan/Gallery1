@@ -415,7 +415,7 @@ function broken_link($file) {
 	}
 }
 
-function galleryLink($url, $text='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
+function galleryLink($url, $text ='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
 	global $gallery;
 	static $accessKeyUsed = array();
 

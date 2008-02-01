@@ -54,8 +54,8 @@ if (getRequestVar('save')) {
 					${$fieldName},
 					$properties[$fieldName]['vartype'],
 					$gallery->app->default[$fieldName]
-					);
-			
+				);
+
 			if (!empty($infoMessage)) {
 				$notice_messages[] = array(
 					'type' => 'error',
@@ -103,25 +103,25 @@ if (getRequestVar('save')) {
 	$gallery->album->fields['dimensionsAsPopup']	= $dimensionsAsPopup;
 	$gallery->album->fields['ecards']				= $ecards;
 
-	$gallery->album->fields['nav_thumbs']			= $nav_thumbs;
-	$gallery->album->fields['nav_thumbs_style']		= $nav_thumbs_style;
-	$gallery->album->fields['nav_thumbs_first_last'] = $nav_thumbs_first_last;
-	$gallery->album->fields['nav_thumbs_prev_shown'] = $nav_thumbs_prev_shown;
-	$gallery->album->fields['nav_thumbs_next_shown'] = $nav_thumbs_next_shown;
-	$gallery->album->fields['nav_thumbs_location'] = $nav_thumbs_location;
-	$gallery->album->fields['nav_thumbs_size'] = $nav_thumbs_size;
-	$gallery->album->fields['nav_thumbs_current_bonus'] = $nav_thumbs_current_bonus;
+	$gallery->album->fields['nav_thumbs']				= $nav_thumbs;
+	$gallery->album->fields['nav_thumbs_style']			= $nav_thumbs_style;
+	$gallery->album->fields['nav_thumbs_first_last']	= $nav_thumbs_first_last;
+	$gallery->album->fields['nav_thumbs_prev_shown']	= $nav_thumbs_prev_shown;
+	$gallery->album->fields['nav_thumbs_next_shown']	= $nav_thumbs_next_shown;
+	$gallery->album->fields['nav_thumbs_location']		= $nav_thumbs_location;
+	$gallery->album->fields['nav_thumbs_size']			= $nav_thumbs_size;
+	$gallery->album->fields['nav_thumbs_current_bonus']	= $nav_thumbs_current_bonus;
 
 	/* Poll properties */
 	for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
 		//convert values to numbers
 		$nv_pairs[$i]['value'] = 0 + $nv_pairs[$i]['value'];
 	}
-	
+
 	$gallery->album->fields['poll_nv_pairs']	= $nv_pairs;
 	$gallery->album->fields['poll_hint']		= $poll_hint;
 	$gallery->album->fields['poll_type']		= $poll_type;
-	
+
 	if ($voter_class == "Logged in" &&
 		$gallery->album->fields['voter_class'] == "Everybody" &&
 		sizeof($gallery->album->fields['votes']) > 0)
@@ -131,7 +131,7 @@ if (getRequestVar('save')) {
 			"<i>". gTranslate('core', "Everybody") ."</i>",
 			"<i>". gTranslate('core', "Logged in") ."</i>");
 	}
-	
+
 	$gallery->album->fields['voter_class']			= $voter_class;
 	$gallery->album->fields['poll_scale']			= $poll_scale;
 	$gallery->album->fields['poll_show_results']	= $poll_show_results;
@@ -178,7 +178,7 @@ if (getRequestVar('save')) {
 /* Custom / Extra Fields */
 function num_special_fields($extra_fields) {
 	$num_special_fields = 0;
-	
+
 	foreach (array_keys(automaticFieldsList()) as $special_field) {
 		if (in_array($special_field, $extra_fields)) {
 			$num_special_fields++;
@@ -208,7 +208,7 @@ foreach (automaticFieldsList() as $automatic => $printable_automatic) {
 	{
 		continue;
 	}
-	
+
 	$multiple_choices_EF[$automatic] = $printable_automatic;
 }
 
@@ -234,7 +234,7 @@ foreach ($extra_fields as $value) {
 		'type'		=> 'text',
 		'value'		=> $value
 	);
-	
+
 	$i++;
 }
 /* We may load the properties now the second time, but its needed as they might have change above. */

@@ -822,7 +822,8 @@ class AlbumItem {
 	function getPreviewTag($dir, $size = 0, $attrs = array()) {
 		if ($this->preview) {
 			return $this->preview->getTag($dir, 0, $size, $attrs);
-		} else {
+		}
+		else {
 			return "<i>". gTranslate('core', "No preview") ."</i>";
 		}
 	}

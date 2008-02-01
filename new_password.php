@@ -26,6 +26,7 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($hash, $uname, $save, $new_password1, $new_password2) =
 	getRequestVar(array('hash', 'uname', 'save', 'new_password1', 'new_password2'));
+
 list($fullname, $email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
@@ -68,43 +69,45 @@ if (!empty($save)) {
 		}
 
 	if (!empty($email) && !check_email($email)) {
-				$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-				$errorCount++;
+		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
+		$errorCount++;
+	}
+
+	if (!$error_string && !$errorCount) {
+		$tmpUser->setFullname($fullname);
+		$tmpUser->setEmail($email);
+		if (isset($defaultLanguage)) {
+			$tmpUser->setDefaultLanguage($defaultLanguage);
+			$gallery->session->language=$defaultLanguage;
 		}
 
-	   	if (!$error_string && !$errorCount) {
-	   		$tmpUser->setFullname($fullname);
-	   		$tmpUser->setEmail($email);
-	   		if (isset($defaultLanguage)) {
-	   			$tmpUser->setDefaultLanguage($defaultLanguage);
-	   			$gallery->session->language=$defaultLanguage;
-	   		}
-	   		if ($new_password1) {
-	   			$tmpUser->setPassword($new_password1);
-	   		}
-	   		$tmpUser->genRecoverPasswordHash(true);
-	   		$tmpUser->log("new_password_set");
-	   		$tmpUser->save();
+		if ($new_password1) {
+			$tmpUser->setPassword($new_password1);
+		}
 
-	   		// Switch over to the new username in the session
-	   		$gallery->session->username = $uname;
-	   		header("Location: " . makeAlbumHeaderUrl());
-	   	}
+		$tmpUser->genRecoverPasswordHash(true);
+		$tmpUser->log("new_password_set");
+		$tmpUser->save();
+
+		// Switch over to the new username in the session
+		$gallery->session->username = $uname;
+		header("Location: " . makeAlbumHeaderUrl());
+	}
 }
 
-$allowChange["uname"] = false;
-$allowChange["email"] = true;
-$allowChange["fullname"] = true;
-$allowChange["password"] = true;
-$allowChange["old_password"] = false;
-$allowChange["send_email"] = false;
-$allowChange["member_file"] = false;
+$allowChange['uname']		 = false;
+$allowChange['email']		 = true;
+$allowChange['fullname']	 = true;
+$allowChange['password']	 = true;
+$allowChange['old_password'] = false;
+$allowChange['send_email']	 = false;
+$allowChange['member_file']	 = false;
 
 printPopupStart(gTranslate('core', "Make New Password"));
 
 if (!empty($messages)) {
-	   	echo infobox($messages);
-	   	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
+	echo infobox($messages);
+	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
 	exit;
 }
 
@@ -115,8 +118,8 @@ echo gTranslate('core', "You must enter the new password twice.");
 echo "\n</div>";
 
 echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
-$fullname = $tmpUser->getFullname();
-$email = $tmpUser->getEmail();
+$fullname	= $tmpUser->getFullname();
+$email		= $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
 include(dirname(__FILE__) . '/layout/userData.inc');

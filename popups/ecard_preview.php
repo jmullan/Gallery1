@@ -45,7 +45,8 @@ list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 
 if (!empty($error)) {
 	header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));
-} else {
+}
+else {
 	echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
 }
 

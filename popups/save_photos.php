@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 /**
  * @package Item
@@ -32,12 +32,18 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 list($urls, $meta, $usercaption, $setCaption) =
 	getRequestVar(array('urls', 'meta', 'usercaption','setCaption'));
 
-	list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
+list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
 	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(clearGalleryTitle(gTranslate('core', "Add items")));
+	printInfoBox(array(array(
+		'type' => 'error',
+		'text' => sprintf(gTranslate('core', "You are not allowed to perform this action!. Please go back to %s."),
+					galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
+	)));
+	includeTemplate('overall.footer');
 	exit;
 }
 
@@ -57,8 +63,8 @@ if(!empty($_FILES)) {
 	}
 }
 
-$image_tags = array();
-$info_tags = array();
+$image_tags	= array();
+$info_tags	= array();
 
 doctype();
 ?>
@@ -88,14 +94,13 @@ if (!empty($urls)) {
 		$url = trim($url);
 
 		/*
-		* Check to see if the URL is a local directory (inspired by
-		* code from Jared (hogalot))
-		*/
+		 * Check to see if the URL is a local directory (inspired by code from Jared (hogalot))
+		 */
 		if (fs_is_dir($url)) {
 			echo infobox(array(array(
 				'type' => 'information',
-				'text' => sprintf(gTranslate('core', "Processing %s as a local directory."),
-						  '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
+				'text' => sprintf(gTranslate('core', "Processing '%s' as a local directory."),
+							'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
 			)));
 
 			$handle = fs_opendir($url);
@@ -131,17 +136,14 @@ if (!empty($urls)) {
 		else {
 			echo infoBox(array(array(
 				'type' => 'information',
-				'text' => sprintf(gTranslate('core', "Processing '%s'."),
-						  '<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
+				'text' => sprintf(gTranslate('core', "Processing '%s' as file or URL."),
+							'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
 			)));
 		}
 
-		/* Get rid of any preceding whitespace (fix for odd browsers like konqueror) */
-		$url = ltrim($url);
-
-		$urlParts = parse_url($url);
-		$urlPathInfo = isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
-		$urlExt = isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
+		$urlParts		= parse_url($url);
+		$urlPathInfo	= isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
+		$urlExt			= isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
 		if (!empty($url) && !fs_is_file($url)) {
@@ -159,6 +161,7 @@ if (!empty($urls)) {
 			if (!isset($url_stuff["path"])) {
 				$url_stuff["path"] = "";
 			}
+
 			$name = basename($url_stuff["path"]);
 		}
 		else {
@@ -166,19 +169,18 @@ if (!empty($urls)) {
 			$name = basename($url);
 		}
 
-		/* Dont output warning messages if we cant open url */
-
 		/*
-		* Try to open the url in lots of creative ways.
-		* Do NOT use fs_fopen here because that will pre-process
-		* the URL in win32 style (ie, convert / to \, etc).
-		*/
+		 * Try to open the url in lots of creative ways.
+		 * Do NOT use fs_fopen here because that will pre-process
+		 * the URL in win32 style (ie, convert / to \, etc).
+		 */
 		$urlArray = array($url, "$url/");
 		if (!ereg("http", $url)) {
 			$urlArray[] = "http://$url";
 			$urlArray[] = "http://$url/";
 		}
 
+		// Dont output warning messages if we cant open url
 		do {
 			$tryUrl = array_shift($urlArray);
 			$id = @fopen($tryUrl, "rb");
@@ -193,17 +195,17 @@ if (!empty($urls)) {
 			continue;
 		}
 		else {
-			debugMessage(sprintf(gTranslate('core', "Opened %s successfully"), $url), __FILE__, __LINE__, 2);
+			debugMessage(sprintf(gTranslate('core', "Opened '%s' successfully"), $url), __FILE__, __LINE__, 2);
 		}
 
-		/**
-		  * If this is an image or movie -
-		  * copy it locally and add it to the processor array
+		/*
+		 * If this is an image or movie -
+		 * copy it locally and add it to the processor array
 		 */
 		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
 			/* copy file locally
 			 * use fopen instead of fs_fopen to prevent directory and filename disclosure
-			*/
+			 */
 			$file = $gallery->app->tmpDir . "/upload." . genGUID();
 			$od = @fopen($file, "wb");
 			if ($id && $od) {
@@ -218,8 +220,8 @@ if (!empty($urls)) {
 			$temp_files[$file] = 1;
 
 			/* Add it to userfile */
-			$_FILES['userfile']['name'][] = $name;
-			$_FILES['userfile']['tmp_name'][] = $file;
+			$_FILES['userfile']['name'][]		= $name;
+			$_FILES['userfile']['tmp_name'][]	= $file;
 			debugMessage(gTranslate('core', "Copy file locally"), __FILE__, __LINE__, 2);
 		}
 		else {
@@ -252,8 +254,8 @@ if (!empty($urls)) {
 				$base_dir .= '/';
 			}
 
-			$things = array();
-			$results =array();
+			$things	 = array();
+			$results = array();
 
 			if (preg_match_all('{(?:src|href)\s*=\s*(["\'])([^\'">]+\.'. acceptableFormatRegexp() .')(?:\1)}i', $contents, $matches)) {
 				foreach ($matches[2] as $url) {
@@ -264,8 +266,8 @@ if (!empty($urls)) {
 			/* Add each unique link to an array we scan later */
 			foreach (array_keys($things) as $thing) {
 				/*
-				* Some sites (slashdot) have images that start with // and this
-				* confuses Gallery.  Prepend 'http:'
+				 * Some sites (slashdot) have images that start with // and this
+				 * confuses Gallery.  Prepend 'http:'
 				*/
 				if (substr($thing, 0, 2) == '//') {
 					$thing = "http:$thing";
@@ -296,8 +298,10 @@ $image_info = array();
 // Get meta data
 if (isset($meta)) {
 	echo infoBox(array(array(
-			'type' => 'information',
-			'text' => gTranslate('core',"Metainfo found"))));
+		'type' => 'information',
+		'text' => gTranslate('core',"Metainfo found.")
+	)));
+
 	foreach ($meta as $data) {
 		$image_info = array_merge($image_info, parse_csv(fs_export_filename($data),";"));
 	}
@@ -305,9 +309,10 @@ if (isset($meta)) {
 
 if(!empty($_FILES['metafile'])) {
 	if (!isset($meta) || isDebugging()) {
-		 echo infoBox(array(array(
+		echo infoBox(array(array(
 			'type' => 'information',
-			'text' => gTranslate('core',"Metainfo found"))));
+			'text' => gTranslate('core',"Metainfo found")
+		)));
 	}
 
 	$image_info = array();
@@ -338,7 +343,7 @@ if(!empty($_FILES['metafile'])) {
 
 	/* $captionMetaFields is an array that containes possible fields for the caption.
 	 * Ordered in priority from high to low.
-	*/
+	 */
 	$captionMetaFields = array("Caption", "Title", "Description");
 }
 // End Metadata preprocessing
@@ -435,16 +440,15 @@ echo gButton('close', gTranslate('core', "_Dismiss"), 'parent.close()');
 
 /* Prompt for additional files if we found links in the HTML slurpage */
 if (count($image_tags)) {
-
 	/*
-	** include JavaScript (de)selection and invert
-	*/
+	 * include JavaScript (de)selection and invert
+	 */
 	insertFormJS('uploadurl_form');
 
 	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>\n";
 
 	echo '<div class="left">';
-	echo gTranslate('core', "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac)");
+	echo gTranslate('core', "Select the items you want to upload. To select multiple hold 'ctrl' (PC) or 'Command' (Mac).");
 	echo "\n</div>";
 
 	echo makeFormIntro("save_photos.php",
@@ -463,8 +467,8 @@ if (count($image_tags)) {
 	echo "</select>\n";
 
 	/* REVISIT - it'd be nice to have these functions get shoved
-	* into util.php at some time - maybe added functionality to the makeFormIntro?
-	*/
+	 * into util.php at some time - maybe added functionality to the makeFormIntro?
+	 */
 	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
 
 	if (count($info_tags)) { ?>
@@ -474,16 +478,16 @@ printf(gTranslate('core', "%d meta file(s) found.  These files contain informati
 ?>
 </div>
 <?php
-echo insertFormJSLinks('meta[]');
-echo "\n<br><br>";
+		echo insertFormJSLinks('meta[]');
+		echo "\n<br><br>";
 
-foreach ($info_tags as $info_tag) {
-	echo "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked>$info_tag<br>\n";
-}
+		foreach ($info_tags as $info_tag) {
+			echo "\t<input type=\"checkbox\" name=\"meta[]\" value=\"$info_tag\" checked>$info_tag<br>\n";
+		}
 
-echo "\n<br>";
+		echo "\n<br>";
 
-echo insertFormJSLinks('meta[]');
+		echo insertFormJSLinks('meta[]');
 	}
 	/* end if (count($info_tags)) */
 ?>
@@ -501,7 +505,9 @@ echo insertFormJSLinks('meta[]');
 </form>
 
 <?php
-} /* End if links slurped */ ?>
+} /* End if links slurped */
+
+?>
 </div>
 </body>
 </html>

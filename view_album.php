@@ -729,7 +729,7 @@ if ($numPhotos) {
 		while ($j <= $cols && $i <= $numPhotos) {
 			$j++;
 			$visibleItemIndex++;
-			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
+			$i = $visibleItemIndex <= $numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
 		}
 
 		$rowCount++;
@@ -748,7 +748,6 @@ else {
 	}
 	else {
 		$va_notice = gTranslate('core', "This album is empty.");
-
 	}
 }
 

@@ -38,6 +38,7 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
 		case 'int_empty':
 			return isValidInteger($var, true, $default, true);
 			break;
+
 		case 'pictureFrame':
 			if(array_key_exists($var, available_frames())) {
 				return array(0, $var, '');
@@ -45,7 +46,9 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
 			else {
 				return array(2, $var, gTranslate('common', "The given frame is not valid."));
 			}
+
 			break;
+
 		case 'inChoice':
 			if(in_array($var, $choices)) {
 				return array(0, $var, '');
@@ -56,6 +59,7 @@ function sanityCheck($var, $type, $default = NULL, $choices = array()) {
 			else {
                 return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
 			}
+
 			break;
 		default:
 		case 'text':
@@ -172,11 +176,9 @@ function isValidGalleryUrl($url) {
 		* We check for ../ and /../ patterns and on windows \../ would also break out,
 		* normalize to URL / *nix style paths to check fewer cases
 		*/
-
 		$normalizedUrl = str_replace("\\", '/', $url);
 
-		if (
-			strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
+		if (strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
 			strpos($normalizedUrl, '/../') !== false)
 		{
 			debugMessage(gTranslate('core', "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."), __FILE__, __LINE__);
@@ -191,10 +193,11 @@ function isValidGalleryUrl($url) {
 }
 
 /**
- * Checks whether a URL does contains malicious characters.
+ * Checks whether a header contains malicious characters.
  *
  * @param string	$header
- * @return boolean
+ * @return boolean				True in case its a safe header, otherwise false.
+ * @author Jens Tkotz
  */
 function isSafeHttpHeader($header) {
 	if (!is_string($header)) {
@@ -212,6 +215,5 @@ function isSafeHttpHeader($header) {
 	}
 
 	return true;
-
 }
 ?>

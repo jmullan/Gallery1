@@ -51,12 +51,11 @@ if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
 /* Get the dimensions of the sized Photo */
 list($width, $height) = $photo->getDimensions(0, false);
 
-$max_length = 300;   // Maximum length of the e-Card text
-$ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click to see.");
-$error_msg = '';
-$mandatory = array('name_sender', 'email_sender', 'name_recipient', 'email_recipient', 'message');
-$ecard_send = false;
-$sendButtonTest = gTranslate('core',"_Send eCard");
+$max_length			= 300;   // Maximum length of the e-Card text
+$ecard_PLAIN_data	= gTranslate('core', "You have an e-card as attachment. Click to see.");
+$error_msg			= '';
+$ecard_send			= false;
+$sendButtonTest		= gTranslate('core',"_Send eCard");
 
 if (! empty($submit_action)) {
 	foreach ($mandatory as $mandatoryField) {
@@ -77,14 +76,15 @@ if (! empty($submit_action)) {
 	}
 
 	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+
 	if ($error) {
 		$error_msg .= gTranslate('core', "Couldn't load the ecard template. Please contact the Gallery admin!");
 		$error_msg .= '<br>';
 	}
 
 	if (empty($error_msg)) {
-		$ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse, false);
-		$result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
+		$ecard_HTML_data = parse_ecard_template($ecard, $ecard_data_to_parse, false);
+		$result = send_ecard($ecard, $ecard_HTML_data, $ecard_PLAIN_data);
 		if ($result) {
 			$ecard_send = true;
 		}
@@ -187,7 +187,8 @@ function CountMax() {
 if (! $ecard_send) {
 	echo $gallery->album->getThumbnailTag($ecard['photoIndex']);
 	if (!empty($error_msg)) {
-		echo '<p>'. gallery_error($error_msg) .'</p>';
+		echo "\n<br><br>";
+		echo gallery_error($error_msg);
 	}
 
 	echo makeFormIntro("ecard_form.php",

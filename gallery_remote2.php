@@ -844,27 +844,32 @@ function processFile($file, $tag, $name, $setCaption="") {
 			continue;
 		}
 		/* Figure out what files we can handle */
+		
 		list($files, $status) = exec_internal(
-		fs_import_filename($gallery->app->zipinfo, 1) .
-		" -1 " .
-		fs_import_filename($file, 1));
+									fs_import_filename($gallery->app->zipinfo, 1) .
+									" -1 " .
+									fs_import_filename($file, 1)
+		);
 		sort($files);
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
-			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-			$tag = strtolower($tag);
+			$tag = getExtension($pic);
 
 			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path);
+				
 				$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
+				
 				exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
-				" -j -o " .
-				fs_import_filename($file, 1) .
-				" \"" .
-				fs_import_filename($cmd_pic_path, 1) .
-				"\" -d " .
-				fs_import_filename($gallery->app->tmpDir, 1));
+							 " -j -o " .
+							 fs_import_filename($file, 1) .
+							 " \"" .
+							fs_import_filename($cmd_pic_path, 1) .
+							"\" -d " .
+							fs_import_filename($gallery->app->tmpDir, 1));
+							
 				processFile($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
+				
 				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
 		}
@@ -943,13 +948,14 @@ function processFile($file, $tag, $name, $setCaption="") {
 			//echo "Extra fields ". implode("/", array_keys($myExtraFields)) ." -- ". implode("/", array_values($myExtraFields)) ."\n";
 
 			$plainErrorMessage = true;
+			
 			list($status, $statusMsg) = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, '', $myExtraFields, $gallery->user->getUid());
 			if(!$status) {
 				$error = $statusMsg;
 			}
 		}
 		else {
-			$error = "Skipping $name (can't handle '$tag' format)";
+			$error = sprintf(gTranslate('core', "Skipping %s (can't handle '%s' format)"), $name, $tag);
 		}
 	}
 

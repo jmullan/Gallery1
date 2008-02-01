@@ -32,10 +32,8 @@ class Gallery_User extends Abstract_User {
 		// the email from original account creation.  Just incase user goes feral
 
 	function Gallery_User() {
-		global $gallery;
 		Abstract_User::Abstract_User();
 		$this->setDefaultLanguage("");
-
 
 		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes
@@ -70,8 +68,6 @@ class Gallery_User extends Abstract_User {
 
 	function save() {
 		global $gallery;
-
-		$success = 0;
 
 		$dir = $gallery->app->userDir;
 
@@ -140,11 +136,11 @@ class Gallery_User extends Abstract_User {
 
 		if ($this->save()) {
 			$success = true;
-			print gTranslate('core', "upgraded");
+			print gTranslate('core', "Upgraded");
 		}
 		else {
 			$success = false;
-			print gTranslate('core', "saving failed");
+			print gTranslate('core', "Saving failed");
 		}
 
 		return $success;
@@ -158,7 +154,7 @@ class Gallery_User extends Abstract_User {
 		return $this->defaultLanguage;
 	}
 
-	function genRecoverPasswordHash($reset=false) {
+	function genRecoverPasswordHash($reset = false) {
 		if ($reset) {
 			$this->recoverPassHash = NULL;
 			return '';

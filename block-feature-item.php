@@ -71,7 +71,7 @@ if (!empty($albumName) && !empty($index)) {
 		exit;
 	}
 
-	$id		= $item->getPhotoId();
+	$id			= $item->getPhotoId();
 
 	$caption	= $item->getCaption() ? $item->getCaption() : '';
 	$imageUrl	= $album->getThumbnailTag($index);

@@ -52,7 +52,8 @@ if (!empty($albumName)) {
 
 if (empty($rebuild_type)) {
 	$title = gTranslate('core', "Rebuilding thumbnails");
-} else {
+}
+else {
 	$title = gTranslate('core', "Performing operation...");
 }
 
@@ -127,6 +128,7 @@ switch ($cmd) {
 					$gallery->album->save();
 			}
 		}
+		
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
@@ -136,6 +138,7 @@ switch ($cmd) {
 			$gallery->album->setHighlight($index);
 			$gallery->album->save(array(i18n("Changed Highlight")));
 		}
+
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 
@@ -143,7 +146,8 @@ switch ($cmd) {
 
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
-			$gallery->user->canCreateSubAlbum($gallery->album)) {
+			$gallery->user->canCreateSubAlbum($gallery->album))
+		{
 			if (!isset($parentName)) {
 				$parentName = null;
 			}

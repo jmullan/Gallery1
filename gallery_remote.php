@@ -164,16 +164,17 @@ function process($file, $tag, $name, $setCaption="") {
 			$error = "Zip not supported";
 			continue;
 		}
+
 		/* Figure out what files we can handle */
 		list($files, $status) = exec_internal(
-			fs_import_filename($gallery->app->zipinfo, 1) .
-			" -1 " .
-			fs_import_filename($file, 1));
+								fs_import_filename($gallery->app->zipinfo, 1) .
+								" -1 " .
+								fs_import_filename($file, 1)
+		);
 		sort($files);
 		foreach ($files as $pic_path) {
 			$pic = basename($pic_path);
-			$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-			$tag = strtolower($tag);
+			$tag = getExtension($pic);
 
 			if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
 				$cmd_pic_path = str_replace("[", "\[", $pic_path);

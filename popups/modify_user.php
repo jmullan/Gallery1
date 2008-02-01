@@ -89,20 +89,16 @@ if (!empty($save)) {
 		if (!strcmp($old_uname, $gallery->session->username)) {
 			$gallery->session->username = $uname;
 		}
+		
 		$notice_messages[] = array(
 			'type' => 'success',
 			'text' => gTranslate('core',"User information succesfully updated.")
 		);
 	}
 	else {
-		$errorText = gTranslate('core',"User information was not succesfully updated!");
-		foreach ($gErrors as $text) {
-			$errorText .= "\n<br>" . $text;
-
-		}
 		$notice_messages[] = array(
 			'type' => 'error',
-			'text' => $errorText
+			'text' => gTranslate('core',"User information was not succesfully updated!")
 		);
 	}
 }

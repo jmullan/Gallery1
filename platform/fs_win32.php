@@ -213,7 +213,7 @@ function fs_export_filename($filename) {
 	return $filename;
 }
 
-function fs_exec($cmd, &$results, &$status, $debugfile) {
+function fs_exec($cmd, &$results, &$status) {
 	// We can't redirect stderr with Windows.  Hope that we won't need to.
 	return exec($cmd, $results, $status);
 }

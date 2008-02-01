@@ -1654,6 +1654,14 @@ class Album {
 		return false;
 	}
 
+	/**
+	 * Deletes a photo from an album.
+	 *
+	 * @param int	$index
+	 * @param int	$forceResetHighlight
+	 * @param int	$recursive
+	 * @return boolean	false if item to delete exist, true otherwise.
+	 */
 	function deletePhoto($index, $forceResetHighlight = "0", $recursive = 1) {
 		global $gallery;
 
@@ -1666,6 +1674,7 @@ class Album {
 
 		$this->updateSerial = 1;
 		$photo = array_splice($this->photos, $index-1, 1);
+
 		// need to check for nested albums and delete them ...
 		if ($recursive && $photo[0]->isAlbum()) {
 			$albumName = $photo[0]->getAlbumName();
@@ -1673,6 +1682,7 @@ class Album {
 			$album->load($albumName);
 			$album->delete();
 		}
+
 		/* are we deleting the highlight? pick a new one */
 		$needToRehighlight = 0;
 		if ( ($photo[0]->isHighlight()) && ($this->numPhotos(1) > 0) && (!$forceResetHighlight==-1)) {
@@ -2010,7 +2020,8 @@ class Album {
 						$visibleItems[++$numVisibleItems] = $i;
 					}
 				}
-			} elseif ($canWrite || !$photo->isHidden() || $this->isItemOwner($uuid, $i)) {
+			}
+			elseif ($canWrite || !$photo->isHidden() || $this->isItemOwner($uuid, $i)) {
 				$numPhotos++;
 				if ($returnVisibleItems) {
 					$visibleItems[++$numVisibleItems] = $i;
@@ -2131,7 +2142,7 @@ class Album {
 	 *
 	 * @param integer $index
 	 * @return string
-	 * @author Jens Tkotz <jens@peino.de>
+	 * @author Jens Tkotz
 	 */
 	function getDescription($index) {
 		$photo = $this->getPhoto($index);
@@ -3479,7 +3490,7 @@ class Album {
 	 * Adds an imagearea to an album item
 	 * @param	$index	integer	albumitem index
 	 * @param	$area	string	area coordinates.
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	*/
 	function addImageArea($index, $area) {
 		$photo = &$this->getPhoto($index);
@@ -3493,7 +3504,7 @@ class Album {
 	 * Returns all imageareas of an album item
 	 * @param	$index	integer	albumitem index
 	 * @return	$areas	array	array of imageareas
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	*/
 	function getAllImageAreas($index) {
 		$photo = $this->getPhoto($index);
@@ -3508,7 +3519,7 @@ class Album {
 	 * Deletes an imagearea of an album item
 	 * @param	$photo_index	integer	albumitem index
 	 * @param	$arean_index	integer	area index
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	*/
 	function deleteImageArea($photo_index, $area_index) {
 		$photo = &$this->getPhoto($photo_index);
@@ -3523,7 +3534,7 @@ class Album {
 	 * @param	$photo_index  integer	albumitem index
 	 * @param	$area_index	  integer	area index
 	 * @param	$area_data	  array		updated array data
-	 * @author	Jens Tkotz <jens@peino.de>
+	 * @author	Jens Tkotz
 	*/
 	function updateImageArea($photo_index, $area_index, $area_data) {
 		$photo = &$this->getPhoto($photo_index);

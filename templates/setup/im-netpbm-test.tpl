@@ -54,7 +54,8 @@ if (gallerySanityCheck() != NULL) {
 </html>
 <?php
     exit;
-} else {
+}
+else {
     require(GALLERY_BASE . '/config.php');
 ?>
   <td><?php echo infoBox(array(array(
@@ -82,6 +83,7 @@ if (gallerySanityCheck() != NULL) {
 echo "\t\t\t". sprintf(gTranslate('config', "Look for keywords like %s, %s, %s etc. in the output above."),
   '&quot;Linux&quot;', '&quot;Windows&quot;', '&quot;FreeBSD&quot;'
 );
+
 echo gTranslate('config', "If both the attempts above failed, you should ask your ISP what operating system you are using.");
 printf(gTranslate('config', "You can check via %s, they can often tell you."),
   '<a href="http://www.netcraft.com/whats?host=' . $_SERVER['HTTP_HOST'] . '" target="_blank">Netcraft</a>'

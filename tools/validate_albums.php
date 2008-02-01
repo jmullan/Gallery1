@@ -84,6 +84,7 @@ if (!empty($action)) {
 	switch ($action) {
 		case 'unlinkInvalidAlbum':
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
+			
 			if ($verified) {
 				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 

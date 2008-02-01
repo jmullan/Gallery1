@@ -69,7 +69,7 @@ function search($query) {
 
 	if ($handle = fs_opendir($dirname)) {
 		while (false !== ($file = readdir($handle))) {
-			$ext = strtolower(ereg_replace(".*\.([^\.]*)$", "\\1", $file));
+			$ext = getExtension($file);
 
 			if(empty($basename)) {
 				$path = $dirname . $file;

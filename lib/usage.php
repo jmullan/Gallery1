@@ -72,7 +72,7 @@ function showUsagePerAlbum($sortby = 'bytes', $order = 'desc') {
 
 	array_sort_by_fields($usageTable, $sortby, $order);
 ?>
-<style> .bottom {
+<style type="text/css"> .bottom {
 	border-top: 1px solid silver;
 }
 </style>

@@ -139,7 +139,8 @@ if(isset($gallery->app)) {
 			eregi_replace("^http:", "https:", $gallery->app->photoAlbumURL);
 		$gallery->app->albumDirURL =
 			eregi_replace("^http:", "https:", $gallery->app->albumDirURL);
-	} else {
+	}
+	else {
 		$gallery->app->photoAlbumURL =
 			eregi_replace("^https:", "http:", $gallery->app->photoAlbumURL);
 		$gallery->app->albumDirURL =
@@ -183,7 +184,7 @@ initLanguage();
 
 /* Load classes
  * Note: Some classes and libs are loaded in util.php
-*/
+ */
 require(dirname(__FILE__) . "/classes/Album.php");
 require(dirname(__FILE__) . "/classes/Image.php");
 require(dirname(__FILE__) . "/classes/AlbumItem.php");
@@ -391,8 +392,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			global $my;
 
 			/* Session info about Mambo are available when we open a Popup from Mambo,
-			** but content isnt parsed through Mambo
-			*/
+			 * but content isnt parsed through Mambo
+			 */
 			if (!empty($gallery->session->mambo) && empty($mosConfig_db)) {
 				$mosConfig_host		= $gallery->session->mambo->mosConfig_host;
 				$mosConfig_user		= $gallery->session->mambo->mosConfig_user;
@@ -477,7 +478,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			/* Check if user is logged in, else explicit log him/her out */
 			if (isset($_USER["username"])) {
 				$gallery->session->username = $_USER['username'];
-			} else {
+			}
+			else {
 				unset($gallery->session->username);
 				unset($gallery->session->language);
 			}
@@ -546,7 +548,6 @@ else {
 	/* Standalone */
 	include_once(dirname(__FILE__) . "/classes/gallery/UserDB.php");
 	include_once(dirname(__FILE__) . "/classes/gallery/User.php");
-
 	/* Load our user database (and user object) */
 	$gallery->userDB = new Gallery_UserDB;
 

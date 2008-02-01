@@ -42,6 +42,7 @@ function getRequestVar($str) {
 		if (!isset($_REQUEST[$str])) {
 			return null;
 		}
+
 		$ret = & $_REQUEST[$str];
 
 		if (get_magic_quotes_gpc()) {
@@ -350,7 +351,6 @@ function correctPseudoUsers(&$array, $ownerUid) {
 /**
  * Checks whether our Gallery configuration is configured.
  * This check also loads the config.php (if present)
- *
  *
  * @return mixed	NULL, 'unconfigured', 'reconfigure'
  */
@@ -1034,7 +1034,7 @@ function getImVersion() {
 */
 function getJheadVersion($dir = '') {
     global $gallery;
-    
+
 	$bin = fs_executable('jhead');
 
     if(empty($dir)) {
@@ -1768,7 +1768,7 @@ function gdAvailable($tag = 'jpg') {
 	if(!function_exists('imagetypes')) {
 		return false;
 	}
-	
+
 	$gdTests = array(
 		'gif'	=> IMG_GIF,
 		'jpg'	=> IMG_JPG,
