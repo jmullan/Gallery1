@@ -29,12 +29,13 @@ class Gallery_User extends Abstract_User {
 	var $lastAction;
 	var $lastActionDate;
 	var $origEmail;
-		// the email from original account creation.  Just incase user goes feral
+	// the email from original account creation.  Just incase user goes feral
 
 	function Gallery_User() {
 		global $gallery;
+
 		Abstract_User::Abstract_User();
-		$this->setDefaultLanguage("");
+		$this->setDefaultLanguage('');
 
 
 		// assuming revision 4 ensures that if the user_version is
@@ -51,9 +52,9 @@ class Gallery_User extends Abstract_User {
 		$tmp = getFile("$dir/$uid");
 
 		/*
-		 * We renamed User.php to Gallery_User.php in v1.2, so port forward
-		 * any saved user objects.
-		 */
+		* We renamed User.php to Gallery_User.php in v1.2, so port forward
+		* any saved user objects.
+		*/
 		if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
 			$tmp = ereg_replace('O:4:"user"', 'O:12:"gallery_user"', $tmp);
 			foreach (unserialize($tmp) as $k => $v) {
@@ -130,8 +131,8 @@ class Gallery_User extends Abstract_User {
 		}
 
 		/* New attribut introduced in Gallery 1.5.1-cvs-b10
-		** Set to 1 (yes) as this was the behaviour before.
-		*/
+		 * Set to 1 (yes) as this was the behaviour before.
+		 */
 		if ($this->version < 6)  {
 			$this->canChangeOwnPw = 1;
 		}
@@ -190,7 +191,7 @@ class Gallery_User extends Abstract_User {
 
 		if (!in_array($action, $valid_actions)) {
 			echo gallery_error(sprintf(gTranslate('core', "Not a valid action: %s"),
-								$action));
+			$action));
 			return;
 		}
 
