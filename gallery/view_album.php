@@ -264,7 +264,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album) && !$gallery->session->offl
 	$numHidden = $gallery->album->numHidden();
 
 	if ($numHidden > 0) {
-		$adminText .= sprintf(Translate('core', "(One is hidden)", "(%d are hidden)", $numHidden), $numHidden);
+		$adminText .= sprintf(gTranslate('core', "(One is hidden)", "(%d are hidden)", $numHidden), $numHidden);
 	}
 }
 

@@ -267,19 +267,16 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, _("no albums"));
-$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, _("no photos"));
+$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, gTranslate('core', "no albums"));
+$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, gTranslate('core', "no photos"));
 
 $description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 
 header("Content-Type: application/xml");
 
 $xml_header = 'xml version="1.0"';
-if ($gallery->locale == 0) {
-	$gallery->locale = 'ISO-8859-1';
-}
 
-echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
+echo '<' . '?xml version="1.0" encoding="' . $gallery->charset . '"?' . '>';
 
 ?>
 
@@ -288,9 +285,7 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 		<title><?php echo htmlspecialchars($gallery->app->galleryTitle) ?></title>
 		<link><?php echo $gallery->app->photoAlbumURL ?></link>
 		<description><?php echo htmlspecialchars($description) ?></description>
-<?php if (isset($gallery->app->default_language)) { ?>
-		<language><?php echo ereg_replace("_", "-", $gallery->app->default_language) ?></language>
-<?php } ?>
+		<language><?php echo ereg_replace("_", "-", $gallery->language) ?></language>
 		<lastBuildDate><?php echo date("r"); ?></lastBuildDate>
 <?php if (isset($gallery->app->adminEmail)) { ?>
 		<managingEditor><?php echo $gallery->app->adminEmail ?></managingEditor>

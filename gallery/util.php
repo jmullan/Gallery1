@@ -1270,7 +1270,7 @@ function getImVersion() {
 */
 function getJheadVersion($dir = '') {
     global $gallery;
-    
+
 	$bin = fs_executable('jhead');
 
     if(empty($dir)) {
@@ -1795,8 +1795,8 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
     $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
-	$ecard_data = preg_replace ("/<%ecard_reciepient_email%>/", $ecard["email_recepient"], $ecard_data);
-	$ecard_data = preg_replace ("/<%ecard_reciepient_name%>/", $ecard["name_recepient"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_recipient_email%>/", $ecard["email_recipient"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_recipient_name%>/", $ecard["name_recipient"], $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_stamp%>/", $stampName, $ecard_data);
     $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
@@ -1841,7 +1841,7 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
       $ecard_mail->setSubject($ecard['subject']);
       $ecard_mail->setReturnPath($ecard["email_sender"]);
 
-	  $result = $ecard_mail->send(array($ecard["name_recepient"] .' <'. $ecard["email_recepient"] .'>'));
+	  $result = $ecard_mail->send(array($ecard["name_recipient"] .' <'. $ecard["email_recipient"] .'>'));
 
       return $result;
   }
