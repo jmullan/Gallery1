@@ -4,17 +4,17 @@
 #
 # Gallery - a web based photo album viewer and editor
 # Copyright (C) 2000-2007 Bharat Mediratta
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or (at
 # your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 # General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 #
@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-25 15:31+0100\n"
+"POT-Creation-Date: 2008-02-02 15:31+0100\n"
 "PO-Revision-Date: 2005-03-24 07:20+0900\n"
 "Last-Translator: Kennichi Uehara <ken_w3m AT yahoo DOT co DOT jp>\n"
 "Language-Team: Japanese <ken_w3m AT yahoo DOT co DOT jp>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rebuild_capture_dates.php:31 ../rename_album.php:31
-#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../reset_votes.php:37 ../resize_photo.php:35 ../rotate_photo.php:33
 #: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
@@ -86,7 +86,7 @@ msgstr "この画像に対するコメントを下のテキストボックスに
 #: ../includes/add_photos/add_url.inc:55 ../login.php:102
 #: ../move_album.php:117 ../move_album.php:134 ../move_photo.php:273
 #: ../move_photo.php:363 ../new_password.php:138 ../register.php:144
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:140
+#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:141
 #: ../sort_album.php:121 ../watermark_album.php:153
 msgid "Cancel"
 msgstr "キャンセル"
@@ -242,7 +242,7 @@ msgstr "ソート"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
 #: ../download.php:91 ../edit_field.php:77 ../help/imagemap.php:88
-#: ../user_preferences.php:146 ../view_photo_properties.php:137
+#: ../user_preferences.php:146 ../view_photo_properties.php:138
 msgid "Close Window"
 msgstr "ウィンドウを閉じる"
 
@@ -312,13 +312,13 @@ msgstr "パーミッション設定を全てのサブアルバムに適用する
 #: ../album_permissions.php:164 ../edit_caption.php:186 ../edit_field.php:56
 #: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
 #: ../edit_watermark.php:119 ../modify_user.php:163 ../new_password.php:137
-#: ../photo_owner.php:103 ../user_preferences.php:145
+#: ../photo_owner.php:102 ../user_preferences.php:145
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "保存"
 
 #: ../album_permissions.php:165 ../manage_users.php:100 ../modify_user.php:165
-#: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
+#: ../photo_owner.php:103 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
 msgstr "完了"
@@ -896,7 +896,7 @@ msgstr "ここにユーザ名とパスワードをもう一度入力してくだ
 
 #: ../classes/gallery/UserDB.php:307
 #, fuzzy, php-format
-msgid "Username '%s' is to short. Must be at least 2 characters."
+msgid "Username '%s' is too short. Must be at least 2 characters."
 msgstr "パスワードは3文字以上でないといけません"
 
 #: ../classes/gallery/UserDB.php:312
@@ -1015,7 +1015,7 @@ msgid "Copy to Album!"
 msgstr "アルバムにコピーする"
 
 #: ../copy_photo.php:218 ../delete_photo.php:151 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:147
+#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:148
 #: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "アルバム / インデックスが指定されていません"
@@ -2735,7 +2735,7 @@ msgstr "動画"
 msgid "Set as highlight"
 msgstr "ハイライト"
 
-#: ../lib/albumItem.php:235 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:235 ../photo_owner.php:77 ../photo_owner.php:81
 msgid "Change Owner"
 msgstr "所有者変更"
 
@@ -3146,7 +3146,7 @@ msgstr "ここで自分の情報を変更できます。"
 msgid "You must enter the new password twice."
 msgstr "新しいパスワードは2回入力しなくてはいけません。"
 
-#: ../photo_owner.php:96
+#: ../photo_owner.php:95
 msgid "Owner"
 msgstr "所有者"
 
@@ -3574,56 +3574,56 @@ msgstr "本当に%sの全ての投票を削除しますか"
 msgid "Remove Votes"
 msgstr "投票を削除"
 
-#: ../resize_photo.php:42
+#: ../resize_photo.php:43
 msgid "Resize Photo"
 msgstr "画像のリサイズ"
 
-#: ../resize_photo.php:49
+#: ../resize_photo.php:50
 msgid "Resizing photos"
 msgstr "画像のリサイズ"
 
-#: ../resize_photo.php:64
+#: ../resize_photo.php:65
 msgid "Resizing 1 photo..."
 msgstr "1 画像をリサイズ..."
 
-#: ../resize_photo.php:76
+#: ../resize_photo.php:77
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "これは以下で指定した値に画像の長辺をあわせ、ファイルサイズはなるべく近くなるように画像をリサイズします。"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "このアルバム内の全ての中間縮小画像に対するターゲットサイズはいくつですか?"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "この中間縮小画像に対するターゲットサイズはいくつですか?"
 
-#: ../resize_photo.php:95
+#: ../resize_photo.php:96
 msgid "Target filesize"
 msgstr "ターゲットファイルサイズ"
 
-#: ../resize_photo.php:99
+#: ../resize_photo.php:100
 msgid "Maximum side length in pixels"
 msgstr "最大の辺の長さ(ピクセル)"
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr "(手動の値)"
 
-#: ../resize_photo.php:127
+#: ../resize_photo.php:128
 #, fuzzy
 msgid "Apply to nested albums?"
 msgstr "ネストアルバムにも適用しますか?"
 
-#: ../resize_photo.php:133
+#: ../resize_photo.php:134
 msgid "Get rid of resized"
 msgstr "リサイズされたものを除く"
 
-#: ../resize_photo.php:134
+#: ../resize_photo.php:135
 msgid "(Use only the original picture)"
 msgstr "(オリジナル画像のみを使う)"
 
-#: ../resize_photo.php:139
+#: ../resize_photo.php:140
 msgid "Change Size"
 msgstr "サイズ変更"
 
@@ -4844,6 +4844,12 @@ msgstr "このアルバムの %2$s 上に %1$s"
 msgid "%s in this album."
 msgstr "このアルバム中に %s"
 
+#: ../view_album.php:267
+#, fuzzy, php-format
+msgid "(One is hidden)"
+msgid_plural "(%d are hidden)"
+msgstr[0] "%s は隠されています"
+
 #: ../view_album.php:274
 #, fuzzy
 msgid "Add photos"
@@ -5140,9 +5146,6 @@ msgstr ""
 #~ msgstr "&quot;OK&quot; をクリックしてください。"
 
 #~ msgid "%s are hidden"
-#~ msgstr "%s は隠されています"
-
-#~ msgid "%s is hidden"
 #~ msgstr "%s は隠されています"
 
 #~ msgid "Sorry.  This album does not allow comments."

@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-25 15:31+0100\n"
+"POT-Creation-Date: 2008-02-02 15:31+0100\n"
 "PO-Revision-Date: 2006-01-13 12:34+0100\n"
 "Last-Translator: Ermanno Baschiera <ebaschiera AT gmail DOT com>\n"
 "Language-Team: Italian <gallery-devel@lists.sourceforge.net>>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rebuild_capture_dates.php:31 ../rename_album.php:31
-#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../reset_votes.php:37 ../resize_photo.php:35 ../rotate_photo.php:33
 #: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:43
 msgid "You are not allowed to perform this action!"
@@ -89,7 +89,7 @@ msgstr "Inserisci il tuo commento per questa immagine nello spazio qui sotto."
 #: ../includes/add_photos/add_url.inc:55 ../login.php:102
 #: ../move_album.php:117 ../move_album.php:134 ../move_photo.php:273
 #: ../move_photo.php:363 ../new_password.php:138 ../register.php:144
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:140
+#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:141
 #: ../sort_album.php:121 ../watermark_album.php:153
 msgid "Cancel"
 msgstr "Annulla"
@@ -247,7 +247,7 @@ msgstr "Ordina"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
 #: ../download.php:91 ../edit_field.php:77 ../help/imagemap.php:88
-#: ../user_preferences.php:146 ../view_photo_properties.php:137
+#: ../user_preferences.php:146 ../view_photo_properties.php:138
 msgid "Close Window"
 msgstr "Chiudi finestra"
 
@@ -316,13 +316,13 @@ msgstr "Applica i permessi a tutti i sotto-album"
 #: ../album_permissions.php:164 ../edit_caption.php:186 ../edit_field.php:56
 #: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
 #: ../edit_watermark.php:119 ../modify_user.php:163 ../new_password.php:137
-#: ../photo_owner.php:103 ../user_preferences.php:145
+#: ../photo_owner.php:102 ../user_preferences.php:145
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Salva"
 
 #: ../album_permissions.php:165 ../manage_users.php:100 ../modify_user.php:165
-#: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
+#: ../photo_owner.php:103 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
 msgstr "Fatto"
@@ -905,7 +905,7 @@ msgstr "Inserisci nome utente e password."
 
 #: ../classes/gallery/UserDB.php:307
 #, fuzzy, php-format
-msgid "Username '%s' is to short. Must be at least 2 characters."
+msgid "Username '%s' is too short. Must be at least 2 characters."
 msgstr "La password deve avere almeno 3 caratteri"
 
 #: ../classes/gallery/UserDB.php:312
@@ -1024,7 +1024,7 @@ msgid "Copy to Album!"
 msgstr "Copia nell'Album!"
 
 #: ../copy_photo.php:218 ../delete_photo.php:151 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:147
+#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:148
 #: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "nessun album / indice specificato"
@@ -2730,7 +2730,7 @@ msgstr "Sposta"
 msgid "Set as highlight"
 msgstr "Metti in copertina"
 
-#: ../lib/albumItem.php:235 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:235 ../photo_owner.php:77 ../photo_owner.php:81
 msgid "Change Owner"
 msgstr "Cambia Proprietario"
 
@@ -3137,7 +3137,7 @@ msgstr "Qui puoi cambiare le tue informazioni utente."
 msgid "You must enter the new password twice."
 msgstr "Devi inserire la tua nuova password due volte."
 
-#: ../photo_owner.php:96
+#: ../photo_owner.php:95
 msgid "Owner"
 msgstr "Proprietario"
 
@@ -3559,56 +3559,56 @@ msgstr "Vuoi veramente eliminare tutti i voti in %s?"
 msgid "Remove Votes"
 msgstr "Elimina Voti"
 
-#: ../resize_photo.php:42
+#: ../resize_photo.php:43
 msgid "Resize Photo"
 msgstr "Ridimensiona Foto"
 
-#: ../resize_photo.php:49
+#: ../resize_photo.php:50
 msgid "Resizing photos"
 msgstr "Ridimensionamento foto in corso"
 
-#: ../resize_photo.php:64
+#: ../resize_photo.php:65
 msgid "Resizing 1 photo..."
 msgstr "Ridimensionamento di una foto in corso..."
 
-#: ../resize_photo.php:76
+#: ../resize_photo.php:77
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "Questo ridimensioner&agrave; le tue foto cos&igrave; che il lato pi&ugrave; lungo di queste sar&agrave; uguale alla dimensione voluta e la dimensione del file sar&agrave; vicina a quella impostata."
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "Quale &egrave; la dimesione preferita per tutte le foto intermedie di questo album?"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "Quale &egrave; la dimensione preferita per questa foto intermedia?"
 
-#: ../resize_photo.php:95
+#: ../resize_photo.php:96
 msgid "Target filesize"
 msgstr "Dimensione desiderata del file"
 
-#: ../resize_photo.php:99
+#: ../resize_photo.php:100
 msgid "Maximum side length in pixels"
 msgstr "Lunghezza massima di un lato in pixels"
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr "(valore manuale)"
 
-#: ../resize_photo.php:127
+#: ../resize_photo.php:128
 #, fuzzy
 msgid "Apply to nested albums?"
 msgstr "Applica agli Album interni ?"
 
-#: ../resize_photo.php:133
+#: ../resize_photo.php:134
 msgid "Get rid of resized"
 msgstr "Eliminare le immagini ridimensionte"
 
-#: ../resize_photo.php:134
+#: ../resize_photo.php:135
 msgid "(Use only the original picture)"
 msgstr "(Usa solo la foto originale)"
 
-#: ../resize_photo.php:139
+#: ../resize_photo.php:140
 msgid "Change Size"
 msgstr "Cambia Dimensione"
 
@@ -4823,6 +4823,13 @@ msgstr "%s in questo album su %s"
 msgid "%s in this album."
 msgstr "%s in questo album"
 
+#: ../view_album.php:267
+#, fuzzy, php-format
+msgid "(One is hidden)"
+msgid_plural "(%d are hidden)"
+msgstr[0] "%s &egrave; nascosto"
+msgstr[1] "%s &egrave; nascosto"
+
 #: ../view_album.php:274
 msgid "Add photos"
 msgstr "Aggiungi foto"
@@ -5110,9 +5117,6 @@ msgstr "Ricorda che la marchiatura sulle gif animate non &egrave; al momento sup
 
 #~ msgid "%s are hidden"
 #~ msgstr "%s sono nascosti"
-
-#~ msgid "%s is hidden"
-#~ msgstr "%s &egrave; nascosto"
 
 #~ msgid "Sorry.  This album does not allow comments."
 #~ msgstr "Spiacente. Questo album non consente commenti."

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-25 15:31+0100\n"
+"POT-Creation-Date: 2008-02-02 15:31+0100\n"
 "PO-Revision-Date: 2004-10-12 11:55+0100\n"
 "Last-Translator: Jens Tkotz <jens AT peino DOT de>\n"
 "Language-Team: Tamer Yahia <tamer_yahia AT hotmail DOT com >\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rebuild_capture_dates.php:31 ../rename_album.php:31
-#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../reset_votes.php:37 ../resize_photo.php:35 ../rotate_photo.php:33
 #: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:43
 #, fuzzy
@@ -88,7 +88,7 @@ msgstr "÷Ÿ  Ÿ‰Í‚„ Ÿ‰È Á–Á «‰’Ë—… ·È ’ÊœË‚ «‰Ê’ «‰ÂËÃËœ √”·‰Á "
 #: ../includes/add_photos/add_url.inc:55 ../login.php:102
 #: ../move_album.php:117 ../move_album.php:134 ../move_photo.php:273
 #: ../move_photo.php:363 ../new_password.php:138 ../register.php:144
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:140
+#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:141
 #: ../sort_album.php:121 ../watermark_album.php:153
 msgid "Cancel"
 msgstr "≈‰⁄«¡"
@@ -243,7 +243,7 @@ msgstr "·—“"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
 #: ../download.php:91 ../edit_field.php:77 ../help/imagemap.php:88
-#: ../user_preferences.php:146 ../view_photo_properties.php:137
+#: ../user_preferences.php:146 ../view_photo_properties.php:138
 msgid "Close Window"
 msgstr ""
 
@@ -313,13 +313,13 @@ msgstr ""
 #: ../album_permissions.php:164 ../edit_caption.php:186 ../edit_field.php:56
 #: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
 #: ../edit_watermark.php:119 ../modify_user.php:163 ../new_password.php:137
-#: ../photo_owner.php:103 ../user_preferences.php:145
+#: ../photo_owner.php:102 ../user_preferences.php:145
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Õ·ÿ"
 
 #: ../album_permissions.php:165 ../manage_users.php:100 ../modify_user.php:165
-#: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
+#: ../photo_owner.php:103 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
 msgstr " Â"
@@ -912,7 +912,7 @@ msgstr "ÂÊ ·÷‰„ √Ÿœ „ «»… „‰Â… «‰Â—Ë— «‰Œ«’… »„ ÁÊ«"
 
 #: ../classes/gallery/UserDB.php:307
 #, fuzzy, php-format
-msgid "Username '%s' is to short. Must be at least 2 characters."
+msgid "Username '%s' is too short. Must be at least 2 characters."
 msgstr "ÍÃ» √Ê   „ËÊ „‰Â… «‰”— Ÿ‰È «‰√‚‰ ÂÊ 3 Õ—Ë·"
 
 #: ../classes/gallery/UserDB.php:312
@@ -1033,7 +1033,7 @@ msgid "Copy to Album!"
 msgstr "Ê”Œ ‰‰√‰»ËÂ"
 
 #: ../copy_photo.php:218 ../delete_photo.php:151 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:147
+#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:148
 #: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "‰«ÍËÃœ √‰»ËÂ √Ë ·Á—” ÂÕœœ"
@@ -2812,7 +2812,7 @@ msgstr "·Í‰Â"
 msgid "Set as highlight"
 msgstr "‰« ÍËÃœ  ÕœÍœ "
 
-#: ../lib/albumItem.php:235 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:235 ../photo_owner.php:77 ../photo_owner.php:81
 msgid "Change Owner"
 msgstr "⁄Í— «‰Â«‰„"
 
@@ -3226,7 +3226,7 @@ msgstr "ÍÂ„Ê„  ⁄ÍÍ— »Í«Ê« „ „Â” ŒœÂ ÁÊ«"
 msgid "You must enter the new password twice."
 msgstr "ÍÃ» ≈œŒ«‰ „‰Â… «‰Â—Ë— «‰ÃœÍœ… Â— ÍÊ"
 
-#: ../photo_owner.php:96
+#: ../photo_owner.php:95
 msgid "Owner"
 msgstr "«‰Â«‰„"
 
@@ -3658,59 +3658,59 @@ msgstr "Á‰  —Íœ Õ‚« Õ–· „‰ «‰√’Ë«  ·È %s."
 msgid "Remove Votes"
 msgstr "Õ–· √’Ë« ."
 
-#: ../resize_photo.php:42
+#: ../resize_photo.php:43
 msgid "Resize Photo"
 msgstr " ⁄ÍÍ— ÕÃÂ «‰’Ë—…."
 
-#: ../resize_photo.php:49
+#: ../resize_photo.php:50
 msgid "Resizing photos"
 msgstr "Ã«—Í  ⁄ÍÍ— ÕÃÂ «‰’Ë—"
 
-#: ../resize_photo.php:64
+#: ../resize_photo.php:65
 msgid "Resizing 1 photo..."
 msgstr "Ã«—Í  ⁄ÍÍ— ÕÃÂ ’Ë—… 1 ... "
 
-#: ../resize_photo.php:76
+#: ../resize_photo.php:77
 #, fuzzy
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "Á–« ”Ë· Í⁄Í— ÕÃÂ ’Ë—„ Ë»–‰„ Í’»Õ √◊Ë‰ Ã«Ê» ÂÊ «‰’Ë—… Â”«ËÍ« ‰‰ÕÃÂ «‰Â” Áœ· √”·‰Á ËÍ„ËÊ ÕÃÂ «‰Â‰· Â‚«—»« ‰‰ÕÃÂ «‰ÂŒ «—"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 #, fuzzy
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "Â« ÁË «‰ÕÃÂ «‰Â” Áœ· ‰„‰ «‰’Ë— ·È Á–« «‰√‰»ËÂø"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 #, fuzzy
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "Â« ÁË «‰ÕÃÂ «‰Â” Áœ· ‰Á–Á «‰’Ë—…ø"
 
-#: ../resize_photo.php:95
+#: ../resize_photo.php:96
 msgid "Target filesize"
 msgstr "«‰ÕÃÂ «‰Â” Áœ· ‰‰Â‰·"
 
-#: ../resize_photo.php:99
+#: ../resize_photo.php:100
 msgid "Maximum side length in pixels"
 msgstr "«‰Õœ «‰√‚’È ‰◊Ë‰ «‰Ã«Ê» »«‰»„”‰."
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr "( «‰‚ÍÂ… «‰ÍœËÍ…)"
 
-#: ../resize_photo.php:127
+#: ../resize_photo.php:128
 #, fuzzy
 msgid "Apply to nested albums?"
 msgstr "◊»‚ Ÿ‰È «‰√‰»ËÂ«  «‰Â œ«Œ‰…"
 
-#: ../resize_photo.php:133
+#: ../resize_photo.php:134
 msgid "Get rid of resized"
 msgstr "≈“«‰…  ⁄ÍÍ— «‰ÕÃÂ."
 
-#: ../resize_photo.php:134
+#: ../resize_photo.php:135
 msgid "(Use only the original picture)"
 msgstr "( «” ŒœÂ «‰’Ë—… «‰√’‰Í… ·‚◊)"
 
-#: ../resize_photo.php:139
+#: ../resize_photo.php:140
 msgid "Change Size"
 msgstr "⁄Í— «‰ÕÃÂ."
 
@@ -4996,6 +4996,13 @@ msgstr "%s ·È Á–« «‰√‰»ËÂ Ÿ‰È%s"
 msgid "%s in this album."
 msgstr "%s ·È Á–« «‰√‰»ËÂ"
 
+#: ../view_album.php:267
+#, fuzzy, php-format
+msgid "(One is hidden)"
+msgid_plural "(%d are hidden)"
+msgstr[0] "%s ÂŒ ·È"
+msgstr[1] "%s ÂŒ ·È"
+
 #: ../view_album.php:274
 #, fuzzy
 msgid "Add photos"
@@ -5303,9 +5310,6 @@ msgstr ""
 
 #~ msgid "%s are hidden"
 #~ msgstr "%s ÂŒ ·Í…"
-
-#~ msgid "%s is hidden"
-#~ msgstr "%s ÂŒ ·È"
 
 #~ msgid "Sorry.  This album does not allow comments."
 #~ msgstr "Ÿ–—«Î. Á–« «‰√‰»ËÂ ‰«Í”ÂÕ »«‰ Ÿ‰Í‚« "

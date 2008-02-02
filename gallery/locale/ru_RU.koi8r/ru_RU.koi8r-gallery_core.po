@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.2-cvs\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2007-12-25 15:31+0100\n"
+"POT-Creation-Date: 2008-02-02 15:31+0100\n"
 "PO-Revision-Date: 2004-08-04 23:10+0600\n"
 "Last-Translator: Yuri Gural <yurigural AT inbox DOT ru>\n"
 "Language-Team: Yuri Gural <yurigural AT inbox DOT ru>\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: ../move_photo.php:32 ../multi_create_user.php:34 ../photo_owner.php:34
 #: ../poll_properties.php:34 ../poll_results.php:37 ../rearrange.php:28
 #: ../rebuild_capture_dates.php:31 ../rename_album.php:31
-#: ../reset_votes.php:37 ../resize_photo.php:34 ../rotate_photo.php:33
+#: ../reset_votes.php:37 ../resize_photo.php:35 ../rotate_photo.php:33
 #: ../save_photos.php:38 ../upgrade_album.php:57 ../user_preferences.php:31
 #: ../watermark_album.php:43
 #, fuzzy
@@ -86,7 +86,7 @@ msgstr "Введите ваш комментарий для этой фотографии в текстовом поле ниже."
 #: ../includes/add_photos/add_url.inc:55 ../login.php:102
 #: ../move_album.php:117 ../move_album.php:134 ../move_photo.php:273
 #: ../move_photo.php:363 ../new_password.php:138 ../register.php:144
-#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:140
+#: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:141
 #: ../sort_album.php:121 ../watermark_album.php:153
 msgid "Cancel"
 msgstr "Отмена"
@@ -258,7 +258,7 @@ msgstr "Сортировать"
 
 #: ../administer_startpage.php:99 ../administer_startpage.php:109
 #: ../download.php:91 ../edit_field.php:77 ../help/imagemap.php:88
-#: ../user_preferences.php:146 ../view_photo_properties.php:137
+#: ../user_preferences.php:146 ../view_photo_properties.php:138
 msgid "Close Window"
 msgstr "Закрыть окно"
 
@@ -342,14 +342,14 @@ msgstr ""
 #: ../album_permissions.php:164 ../edit_caption.php:186 ../edit_field.php:56
 #: ../edit_field.php:60 ../edit_field.php:65 ../edit_field.php:76
 #: ../edit_watermark.php:119 ../modify_user.php:163 ../new_password.php:137
-#: ../photo_owner.php:103 ../user_preferences.php:145
+#: ../photo_owner.php:102 ../user_preferences.php:145
 #: ../watermark_album.php:148
 msgid "Save"
 msgstr "Сохранить"
 
 #
 #: ../album_permissions.php:165 ../manage_users.php:100 ../modify_user.php:165
-#: ../photo_owner.php:104 ../upgrade_album.php:66 ../upgrade_album.php:179
+#: ../photo_owner.php:103 ../upgrade_album.php:66 ../upgrade_album.php:179
 #: ../upgrade_users.php:61
 msgid "Done"
 msgstr "Закрыть"
@@ -1016,7 +1016,7 @@ msgstr "Пожалуйста введите имя пользователя и пароль."
 #
 #: ../classes/gallery/UserDB.php:307
 #, fuzzy, php-format
-msgid "Username '%s' is to short. Must be at least 2 characters."
+msgid "Username '%s' is too short. Must be at least 2 characters."
 msgstr "Пароль должен содержать не менее 3 символов"
 
 #
@@ -1156,7 +1156,7 @@ msgstr "Копировать в альбом!"
 
 #
 #: ../copy_photo.php:218 ../delete_photo.php:151 ../edit_thumb.php:131
-#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:147
+#: ../move_album.php:140 ../move_photo.php:369 ../resize_photo.php:148
 #: ../rotate_photo.php:129 ../view_photo_properties.php:130
 msgid "no album / index specified"
 msgstr "не указан альбом / индекс"
@@ -3125,7 +3125,7 @@ msgid "Set as highlight"
 msgstr "Нет обложки"
 
 #
-#: ../lib/albumItem.php:235 ../photo_owner.php:78 ../photo_owner.php:82
+#: ../lib/albumItem.php:235 ../photo_owner.php:77 ../photo_owner.php:81
 msgid "Change Owner"
 msgstr "Изменить владельца"
 
@@ -3595,7 +3595,7 @@ msgid "You must enter the new password twice."
 msgstr "Вы должны дважды ввести новый пароль."
 
 #
-#: ../photo_owner.php:96
+#: ../photo_owner.php:95
 msgid "Owner"
 msgstr "Владелец"
 
@@ -4088,60 +4088,60 @@ msgid "Remove Votes"
 msgstr "Удалить голоса"
 
 #
-#: ../resize_photo.php:42
+#: ../resize_photo.php:43
 msgid "Resize Photo"
 msgstr "Изменение размера фотографии"
 
 #
-#: ../resize_photo.php:49
+#: ../resize_photo.php:50
 msgid "Resizing photos"
 msgstr "Изменение размера фотографий"
 
 #
-#: ../resize_photo.php:64
+#: ../resize_photo.php:65
 msgid "Resizing 1 photo..."
 msgstr "Изменение размера 1 фотографии..."
 
-#: ../resize_photo.php:76
+#: ../resize_photo.php:77
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
 msgstr "Для изменения размера ваших промежуточных фотографий, нужно указать размер самой большей стороны фото и объем файла будет близким к выбранному размеру."
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for all the intermediate photos in this album?"
 msgstr "Какой размер для всех промежуточных фотографий в этом альбоме?"
 
-#: ../resize_photo.php:84
+#: ../resize_photo.php:85
 msgid "What is the target size for the intermediate version of this photo?"
 msgstr "Какой размер для этой промежуточной фотографии?"
 
-#: ../resize_photo.php:95
+#: ../resize_photo.php:96
 msgid "Target filesize"
 msgstr "Результирующий объем файла"
 
-#: ../resize_photo.php:99
+#: ../resize_photo.php:100
 msgid "Maximum side length in pixels"
 msgstr "Длина наибольшей стороны в пикселях"
 
-#: ../resize_photo.php:114
+#: ../resize_photo.php:115
 msgid "(manual value)"
 msgstr "(своё значение)"
 
 #
-#: ../resize_photo.php:127
+#: ../resize_photo.php:128
 #, fuzzy
 msgid "Apply to nested albums?"
 msgstr "Применить к вложенным альбомам."
 
-#: ../resize_photo.php:133
+#: ../resize_photo.php:134
 msgid "Get rid of resized"
 msgstr "Отделить от уменьшенных"
 
-#: ../resize_photo.php:134
+#: ../resize_photo.php:135
 msgid "(Use only the original picture)"
 msgstr "(Использовать только оригинальные изображения)"
 
 #
-#: ../resize_photo.php:139
+#: ../resize_photo.php:140
 msgid "Change Size"
 msgstr "Изменить размер "
 
@@ -5575,6 +5575,15 @@ msgid "%s in this album."
 msgstr "%s в альбоме"
 
 #
+#: ../view_album.php:267
+#, fuzzy, php-format
+msgid "(One is hidden)"
+msgid_plural "(%d are hidden)"
+msgstr[0] "%s скрыт"
+msgstr[1] "%s скрыт"
+msgstr[2] "%s скрыт"
+
+#
 #: ../view_album.php:274
 #, fuzzy
 msgid "Add photos"
@@ -5921,10 +5930,6 @@ msgstr ""
 #
 #~ msgid "%s are hidden"
 #~ msgstr "%s скрыты"
-
-#
-#~ msgid "%s is hidden"
-#~ msgstr "%s скрыт"
 
 #
 #~ msgid "Sorry.  This album does not allow comments."
