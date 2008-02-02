@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.7-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-02-02 15:31+0100\n"
+"POT-Creation-Date: 2008-02-02 15:41+0100\n"
 "PO-Revision-Date: 2005-10-06 06:55+0900\n"
 "Last-Translator: Julien ÉLIE <iulius AT via DOT ecp DOT fr>\n"
 "Language-Team: Jens Tkotz <jens AT peino DOT de>\n"
@@ -277,7 +277,7 @@ msgstr "Utilisateurs pouvant changer le texte de cet album."
 
 #: ../album_permissions.php:111 ../album_permissions.php:115
 msgid "Album Permissions"
-msgstr "Permissions de l'album "
+msgstr "Permissions de l'album"
 
 #: ../album_permissions.php:117
 #, php-format
@@ -552,7 +552,6 @@ msgid "Captionator"
 msgstr "Légendator"
 
 #: ../captionator.php:180
-#, fuzzy
 msgid "Multiple Caption Editor."
 msgstr "Éditeur de légendes multiples."
 
@@ -669,7 +668,7 @@ msgstr "terminé"
 #: ../classes/Album.php:573
 #, php-format
 msgid "Upgrading item %d of %d..."
-msgstr "Mise à jour de l'élément %d sur %d..."
+msgstr "Mise à jour de l'élément %d sur %d... "
 
 #: ../classes/Album.php:831
 msgid "Getting highlight"
@@ -694,18 +693,16 @@ msgid "A change has been made to album: %s by %s (IP %s).  The change is: %s"
 msgstr "Une modification a été apportée à l'album : %s par %s (IP %s). La modification est : %s"
 
 #: ../classes/Album.php:1103
-#, fuzzy
 msgid "If you no longer wish to receive emails about this item, follow the links above and ensure that the 'other' checkbox in the 'Email me' box is unchecked. (You'll need to login first.)"
-msgstr "Si vous ne souhaitez plus recevoir de courriels pour cet élément, cliquez sur le lien ci-dessus et assurez-vous que la case « M'envoyer un courriel lorsque des modifications sont apportées » est décochée (vous devrez d'abord vous authentifier)."
+msgstr "Si vous ne souhaitez plus recevoir de courriels pour cet élément, cliquez sur le lien ci-dessus et assurez-vous que la case « M'envoyer un courriel » est décochée (vous devrez d'abord vous authentifier)."
 
 #: ../classes/Album.php:1111
 msgid "Operation was done successfully. Emailing is on, but no email was sent as no valid email address was found."
 msgstr "Opération complétée avec succès. Le courriel est configuré, mais rien n'a été envoyé car je n'ai pas trouvé d'adresse valide."
 
 #: ../classes/Album.php:1176
-#, fuzzy
 msgid "Skipping Movie"
-msgstr " -- Ignoré"
+msgstr "Vidéo ignorée"
 
 #: ../classes/Album.php:1195 ../classes/Album.php:2048
 #, php-format
@@ -719,27 +716,25 @@ msgid "Processing item %d..."
 msgstr "Traitement de l'image %d..."
 
 #: ../classes/Album.php:1217
-#, fuzzy
 msgid "Doing the naming of the physical file."
-msgstr "Faites de même pour les fichiers de métadonnées éventuels :"
+msgstr "Renommage du fichier physique."
 
 #: ../classes/Album.php:1253
 msgid "Image preprocessing"
 msgstr "Prétraitement de l'image"
 
 #: ../classes/Album.php:1258
-#, fuzzy
 msgid "Resizing/compressing original file"
-msgstr "Redimensionnement/compression de l'image originale"
+msgstr "Redimensionnement/compression du fichier originel"
 
 #: ../classes/Album.php:1264
 msgid "File is a movie, no resizing done."
-msgstr ""
+msgstr "Le fichier est une vidéo ; pas de redimensionnement fait."
 
 #: ../classes/Album.php:1267
 #, php-format
 msgid "Invalid filetype: %s. Skipping."
-msgstr ""
+msgstr "Type de fichier invalide : %s. Ignoré."
 
 #: ../classes/Album.php:1325
 #, php-format
@@ -784,7 +779,7 @@ msgstr "Album « <i>%s</i> », traitement de %d éléments."
 #: ../classes/Album.php:2230
 #, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
-msgstr "Erreur de récupération des données EXIF. L'état retourné est %s, au lieu de 0."
+msgstr "Erreur de récupération des informations EXIF. L'état retourné est %s, au lieu de 0."
 
 #: ../classes/Album.php:2775
 #, php-format
@@ -797,9 +792,9 @@ msgid "Email problem: skipping %s (UID %s) because email address %s is not valid
 msgstr "Problème de courriel : %s (UID %s) ignoré car l'adresse électronique %s est invalide."
 
 #: ../classes/AlbumItem.php:631
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid image: %s"
-msgstr "Image invalide"
+msgstr "Image invalide : %s"
 
 #: ../classes/AlbumItem.php:659
 msgid "Generating thumbnail."
@@ -851,16 +846,16 @@ msgstr "%s existe, mais n'est pas un répertoire !"
 #: ../classes/gallery/UserDB.php:63
 #, php-format
 msgid "The folder which contains your user information (%s) is not writable for the webserver."
-msgstr ""
+msgstr "Le répertoire qui contient vos informations d'utilisateur (%s) n'est pas accessible en écriture par le serveur web."
 
 #: ../classes/gallery/UserDB.php:84
 msgid "Your userfile is not writeable."
 msgstr "Votre fichier d'utilisateur n'est pas accessible en écriture."
 
 #: ../classes/gallery/UserDB.php:299
-#, fuzzy, php-format
+#, php-format
 msgid "Checking username '%s' for validity"
-msgstr "Vérification de l'utilisateur %d sur %d... "
+msgstr "Vérification de la validité de l'utilisateur « %s »"
 
 #: ../classes/gallery/UserDB.php:303
 msgid "Please enter a username."
@@ -882,14 +877,14 @@ msgid "Illegal username '%s'. Only letters and digits allowed."
 msgstr "Le nom d'utilisateur « %s » est incorrect. Il doit contenir uniquement des chiffres et des lettres."
 
 #: ../classes/gallery/UserDB.php:325
-#, fuzzy, php-format
+#, php-format
 msgid "'%s' is reserved and cannot be used."
-msgstr "%s est un mot réservé et ne peut être utilisé."
+msgstr "« %s » est un mot réservé et ne peut donc pas être utilisé."
 
 #: ../classes/gallery/UserDB.php:331
-#, fuzzy, php-format
+#, php-format
 msgid "A user with the username of '%s' already exists"
-msgstr "Un utilisateur du nom de %s existe déjà."
+msgstr "Un utilisateur du nom de « %s » existe déjà"
 
 #: ../classes/gallery/UserDB.php:340
 msgid "Password must be at least 3 characters."
@@ -903,7 +898,7 @@ msgstr "Vérification de l'utilisateur %d sur %d... "
 #: ../classes/gallery/UserDB.php:383
 #, php-format
 msgid "Skipped %s (Reserved username from Gallery)"
-msgstr ""
+msgstr "%s ignoré (nom d'utilisateur réservé par Gallery)"
 
 #: ../classes/gallery/UserDB.php:428
 #, php-format
@@ -1091,9 +1086,8 @@ msgstr[0] "Si vous supprimez cet utilisateur, toutes les permissions seront perd
 msgstr[1] "Si vous supprimez ces utilisateurs, toutes les permissions seront perdues."
 
 #: ../delete_user.php:72
-#, fuzzy
 msgid "Deleted users cannot be recovered."
-msgstr "Les utilisateurs ne peuvent pas être recréés."
+msgstr "Les utilisateurs supprimés ne peuvent pas être récupérés."
 
 #: ../delete_user.php:73
 msgid "Even if this user is recreated, those permissions are gone."
@@ -1216,7 +1210,6 @@ msgid "Download"
 msgstr "Télécharger"
 
 #: ../download.php:89
-#, fuzzy
 msgid "This album is not empty, but contains no photo or movie! Download wouldn't make sense."
 msgstr "Cet album n'est pas vide, mais il ne contient ni image ni vidéo ! Il n'y a donc rien à télécharger."
 
@@ -1233,16 +1226,14 @@ msgid "You have an e-card as attachment. Click to see."
 msgstr "Vous avez une carte électronique jointe au message. Cliquez pour la voir."
 
 #: ../ecard_form.php:60
-#, fuzzy
 msgid "_Send eCard"
-msgstr "Envoyer une carte électronique"
+msgstr "_Envoyer une carte électronique"
 
 #: ../ecard_form.php:65
 msgid "Some input fields are not correctly filled out. Please fill out."
 msgstr "Certains champs ne sont pas correctement renseignés. Veuillez vérifier."
 
 #: ../ecard_form.php:72
-#, fuzzy
 msgid "The sender or recipient email adress is not valid."
 msgstr "L'adresse électronique du destinataire ou du destinateur n'est pas valide."
 
@@ -1259,7 +1250,6 @@ msgid "Error: to send an eCard you need to fill out all fields."
 msgstr "Erreur : vous devez renseigner tous les champs pour pouvoir envoyer une carte électronique."
 
 #: ../ecard_form.php:128
-#, fuzzy
 msgid "Please fill these fields:"
 msgstr "Veuillez renseigner ces champs :"
 
@@ -1284,14 +1274,14 @@ msgid "- Your Message"
 msgstr "- Votre message"
 
 #: ../ecard_form.php:159
-#, fuzzy, php-format
+#, php-format
 msgid "Please fill all fields. Then click '%s' again."
-msgstr "Veuillez renseigner tous les champs puis cliquez sur >Envoyer<."
+msgstr "Veuillez renseigner tous les champs puis cliquez à nouveau sur « %s »."
 
 #: ../ecard_form.php:173
-#, fuzzy, php-format
+#, php-format
 msgid "You have entered more than %d characters!"
-msgstr "Vous avez entré plus de %d caractères"
+msgstr "Vous avez entré plus de %d caractères !"
 
 #: ../ecard_form.php:206
 msgid "Your info"
@@ -1405,9 +1395,8 @@ msgid "Close"
 msgstr "Fermer"
 
 #: ../edit_caption.php:70
-#, fuzzy
 msgid "Year must be between 1969 and 2070."
-msgstr "L'année doit être entre 1969 et 2070"
+msgstr "L'année doit être comprise entre 1969 et 2070."
 
 #: ../edit_caption.php:75 ../lib/albumItem.php:111
 msgid "Edit Text"
@@ -1455,14 +1444,14 @@ msgid "Edit %s"
 msgstr "Modifier %s"
 
 #: ../edit_field.php:55
-#, fuzzy, php-format
+#, php-format
 msgid "Edit the title and click %s when you're done"
-msgstr "Modifiez le %s et cliquez sur %s une fois terminé"
+msgstr "Modifiez le titre et cliquez sur %s une fois terminé"
 
 #: ../edit_field.php:59
-#, fuzzy, php-format
+#, php-format
 msgid "Edit the description and click %s when you're done"
-msgstr "Modifiez le %s et cliquez sur %s une fois terminé"
+msgstr "Modifiez la description et cliquez sur %s une fois terminé"
 
 #: ../edit_field.php:63
 #, php-format
@@ -1494,7 +1483,6 @@ msgid "Edit Watermark"
 msgstr "Modifier le filigrane numérique"
 
 #: ../edit_watermark.php:107
-#, fuzzy
 msgid "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface and 'unanimate' your picture."
 msgstr "Cette image est au format GIF. Faire un filigrane sur une image GIF animée n'est pas supporté : cela changera l'apparence de l'image et arrêtera l'animation."
 
@@ -1515,14 +1503,12 @@ msgid "Apply values to nested albums."
 msgstr "Appliquer les valeurs aux sous-albums."
 
 #: ../help/imagemap.php:26
-#, fuzzy
 msgid "ImageMap help"
 msgstr "Aide sur ImageZone"
 
 #: ../help/imagemap.php:33
-#, fuzzy
 msgid "This is a help for working with Gallerys so called 'ImageMaps'."
-msgstr "Ceci est une aide pour travailler avec les galeries appelées « imagezones »"
+msgstr "Ceci est une aide pour travailler avec les galeries appelées « ImageZones »."
 
 #: ../help/imagemap.php:37
 msgid "An ImageMap is a predefined area of a picture, or a hotspot if you will."
@@ -1557,22 +1543,18 @@ msgid "Click again to create another spot. Add spots until your polygon shape su
 msgstr "Cliquez à nouveau pour créer un autre point. Ajoutez-en jusqu'à ce que le polygone formé entoure l'entière zone que vous souhaitez définir comme ImageZone."
 
 #: ../help/imagemap.php:53
-#, fuzzy
 msgid "When you are satisifed with your selection (e.g. a person or object), enter the describing text for your ImageMap in the 'description' form on the left hand side."
 msgstr "Lorsque vous êtes satisfait de votre sélection (par exemple une personne ou un objet), entrez le texte décrivant votre ImageZone dans le champ « Description » à gauche."
 
 #: ../help/imagemap.php:54
-#, fuzzy
 msgid "The text entered in the description field, will be displayed when your users point their mousecursor over the ImageMap."
-msgstr "Le texte entré dans le champ « Description » s'affichera lorsque vos utilisateurs déplaceront leur souris sur l'ImageZone"
+msgstr "Le texte entré dans le champ « Description » s'affichera lorsque vos utilisateurs déplaceront leur souris sur l'ImageZone."
 
 #: ../help/imagemap.php:58
-#, fuzzy
 msgid "Optionally you can enter a Link-URL for your ImageMap, which is activated when a user clicks your ImageMap selection."
 msgstr "Vous pouvez entrer une adresse URL pour votre ImageZone, qui s'activera lorsque l'utilisateur cliquera dans la région de l'ImageZone."
 
 #: ../help/imagemap.php:59
-#, fuzzy
 msgid "When you are satisfied, click the 'Save ImageMap' button at the left side."
 msgstr "Lorsque vous êtes satisfait, cliquez sur le bouton « Enregistrer l'ImageZone » à gauche."
 
@@ -1581,7 +1563,6 @@ msgid "How to update an ImageMap in Gallery?"
 msgstr "Comment mettre à jour une ImageZone dans Gallery ?"
 
 #: ../help/imagemap.php:67
-#, fuzzy
 msgid "Currently you can only modify the text and the URL for an ImageMap. The polygon for the ImageMap is currently not changeable."
 msgstr "Actuellement, vous pouvez seulement modifier le texte et l'URL d'une ImageZone. Le polygone de l'ImageZone n'est pour le moment pas modifiable."
 
@@ -1594,7 +1575,6 @@ msgid "Select the ImageMap you want to edit in the box on the left hand side."
 msgstr "Sélectionnez l'ImageZone que vous souhaitez éditer dans le panneau à gauche."
 
 #: ../help/imagemap.php:72
-#, fuzzy
 msgid "The image preview on the right hand side, will show which area is covered by the ImageMap currently selected."
 msgstr "L'aperçu de l'image à droite montrera quelle région est couverte par l'ImageZone actuellement sélectionnée."
 
@@ -1603,7 +1583,6 @@ msgid "You can then modify your 'Description', or edit the 'Link-URL'."
 msgstr "Vous pouvez modifier votre description ou éditer l'adresse URL."
 
 #: ../help/imagemap.php:74
-#, fuzzy
 msgid "When finished, click the 'Update ImageMap' button."
 msgstr "Une fois cela fini, cliquez sur le bouton « Mettre à jour l'ImageZone »."
 
@@ -1612,7 +1591,6 @@ msgid "How to delete an ImageMap in Gallery?"
 msgstr "Comment supprimer une ImageZone dans Gallery ?"
 
 #: ../help/imagemap.php:82
-#, fuzzy
 msgid "Just select the ImageMap(s) you want to delete in the box. Then click the 'Delete selected ImageMap(s)' button."
 msgstr "Sélectionnez simplement la ou les ImageZone(s) que vous souhaitez supprimer dans le panneau. Puis cliquez sur le bouton « Supprimer la ou les ImageZone(s) sélectionnée(s) »."
 
@@ -1621,7 +1599,6 @@ msgid "Metadata on Upload Help"
 msgstr "Aide sur les métadonnées à envoyer"
 
 #: ../help/metadataOnUpload.php:32
-#, fuzzy
 msgid "What is meant with metadata in this context?"
 msgstr "Que signifie métadonnée dans ce contexte ?"
 
@@ -1642,9 +1619,8 @@ msgid "You can also do this automatically during your uploads."
 msgstr "Vous pouvez aussi le faire automatiquement durant vos envois."
 
 #: ../help/metadataOnUpload.php:47
-#, fuzzy
 msgid "How can I add the metadata?"
-msgstr "Comment puis-je ajouter des métadonnées ?"
+msgstr "Comment puis-je ajouter les métadonnées ?"
 
 #: ../help/metadataOnUpload.php:50
 #, php-format
@@ -1656,7 +1632,6 @@ msgid "Upload this file at the same time as you upload your files, you cannot up
 msgstr "Envoyer ce fichier en même temps que vous envoyez vos fichier. Vous ne pourrez pas l'envoyer plus tard ; Gallery ne pourra alors pas importer les métadonnées."
 
 #: ../help/metadataOnUpload.php:56
-#, fuzzy
 msgid "In which format does the data have to be?"
 msgstr "Dans quel format doivent être les données ?"
 
@@ -1665,7 +1640,6 @@ msgid "The first row must be the fieldnames, there is one mandatory field, some 
 msgstr "La première ligne doit contenir les noms des champs : il y a un champ obligatoire, quelques champs prédéfinis et vous pouvez aussi utiliser vos propres champs personnalisés."
 
 #: ../help/metadataOnUpload.php:60
-#, fuzzy
 msgid "Order does not matter, but you have to you use a <b>;</b> (Semicolon) as separator."
 msgstr "L'ordre est indifférent mais vous devez utiliser <b>;</b> (point-virgule) comme séparateur."
 
@@ -1680,9 +1654,8 @@ msgid "Predefined: %s, %s, %s"
 msgstr "Prédéfinis : %s, %s, %s"
 
 #: ../help/metadataOnUpload.php:65
-#, fuzzy
 msgid "Then follow the lines containing the info itself."
-msgstr "Suivent les lignes contenant l'information elle-même"
+msgstr "Suivent les lignes contenant l'information elle-même."
 
 #: ../help/metadataOnUpload.php:68
 msgid "Example:"
@@ -1725,9 +1698,8 @@ msgid "Gallery language"
 msgstr "Langue de Gallery"
 
 #: ../html/userData.inc:109
-#, fuzzy
 msgid "User can change its own password?"
-msgstr "L'utilisateur peut modifier son propre mot de passe"
+msgstr "L'utilisateur peut-il modifier son propre mot de passe ?"
 
 #: ../html/userData.inc:117
 msgid "User can create albums"
@@ -1738,7 +1710,6 @@ msgid "User is an admin"
 msgstr "L'utilisateur est un administrateur"
 
 #: ../html/userData.inc:130
-#, fuzzy
 msgid "You can't un-admin yourself."
 msgstr "Vous n'avez pas le droit de supprimer les droits d'administrateur de votre compte."
 
@@ -1863,9 +1834,8 @@ msgid "Save Imagemap"
 msgstr "Enregistrer l'ImageZone"
 
 #: ../imagemap.php:265
-#, fuzzy
 msgid "Select entries to show ImageMap areas in your photo."
-msgstr "Sélectionnez les entrées pour afficher les zones d'image sur votre photo."
+msgstr "Sélectionnez les entrées pour afficher les régions d'ImageZones sur votre photo."
 
 #: ../imagemap.php:273
 msgid "Delete selected ImageMap(s)"
@@ -1910,7 +1880,6 @@ msgid "After you added a file, you can add more files on the sane way, just use 
 msgstr "Après avoir ajouté un fichier, vous pouvez en ajouter d'autres de la même façon ; cliquez simplement sur le bouton « Parcourir » autant de fois que vous le souhaitez."
 
 #: ../includes/add_photos/add_form.inc:36
-#, fuzzy
 msgid "It's possible to enter a manual caption for each item you upload, or you can let gallery set the captions."
 msgstr "Il est possible d'entrer manuellement une légende pour chaque élément chargé ou vous pouvez laisser Gallery les définir."
 
@@ -2013,9 +1982,8 @@ msgid "Set photo captions with file capture times."
 msgstr "Utiliser la date de capture."
 
 #: ../includes/add_photos/captionOptions.inc.php:38
-#, fuzzy
 msgid "For the date/time related options Gallery will use the format you specified in the config for date/time strings."
-msgstr "Pour les deux dernières options, Gallery utilisera le format de date que vous avez spécifié pendant sa configuration."
+msgstr "Pour les options de date et d'heure, Gallery utilisera le format de date et d'heure que vous avez spécifié pendant sa configuration."
 
 #: ../includes/errors/configure_help.php:2
 #, php-format
@@ -2405,12 +2373,10 @@ msgid "Caption:"
 msgstr "Légende :"
 
 #: ../layout/adminAlbumCommands.inc:17
-#, fuzzy
 msgid "Move album"
 msgstr "Déplacer l'album"
 
 #: ../layout/adminAlbumCommands.inc:18
-#, fuzzy
 msgid "Reorder album"
 msgstr "Réordonner l'album"
 
@@ -2436,9 +2402,8 @@ msgid "View&nbsp;comments"
 msgstr "Voir les commentaires"
 
 #: ../layout/adminAlbumCommands.inc:46
-#, fuzzy
 msgid "Watermark&nbsp;album"
-msgstr "Créer des filigranes de l'album"
+msgstr "Créer des filigranes pour l'album"
 
 #: ../layout/breadcrumb.inc:40
 msgid "Logged in as:"
@@ -2619,7 +2584,7 @@ msgstr "Modifier la miniature"
 
 #: ../lib/albumItem.php:123
 msgid "Rotate/Flip"
-msgstr "Pivoter/Renverser "
+msgstr "Pivoter/Renverser"
 
 #: ../lib/albumItem.php:129
 msgid "Resize"
@@ -2679,9 +2644,8 @@ msgid "Change Owner"
 msgstr "Changer le Propriétaire"
 
 #: ../lib/albumItem.php:244
-#, fuzzy
 msgid "Unhide"
-msgstr "caché"
+msgstr "Montrer"
 
 #: ../lib/albumItem.php:251
 msgid "Hide"
@@ -2692,7 +2656,6 @@ msgid "Photo properties"
 msgstr "Propriétés de la photo"
 
 #: ../lib/albumItem.php:299
-#, fuzzy
 msgid "Send photo as eCard"
 msgstr "Envoyer la photo par e-carte"
 
@@ -2702,19 +2665,20 @@ msgid "%s actions"
 msgstr "Actions sur %s"
 
 #: ../lib/albumItem.php:332
-#, fuzzy
 msgid "Delete comment"
 msgstr "Supprimer le commentaire"
 
 #: ../login.php:55
 msgid "SUCCEEDED"
-msgstr "REUSSITE"
+msgstr ""
 
 #: ../login.php:60
+#, fuzzy
 msgid "Invalid username or password"
-msgstr "Nom d'utilisateur ou mot de passe incorrect."
+msgstr "Cet utilisateur n'existe pas"
 
 #: ../login.php:66
+#, fuzzy
 msgid "Please enter username and password."
 msgstr "Merci d'entrer un Nom d'Utilisateur et un Mot de Passe"
 
@@ -2725,70 +2689,74 @@ msgstr "Connexion à %s"
 
 #: ../login.php:81
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
-msgstr "Se connecter vous donne plus de droits pour voir, créer, modifier et supprimer des albums."
+msgstr ""
 
 #: ../login.php:95
+#, fuzzy
 msgid "Password"
-msgstr "Mot de passe"
+msgstr "Mot de passe:"
 
 #: ../login.php:109
+#, fuzzy
 msgid "Forgotten your password?"
-msgstr "Mot de passe oublié ?"
+msgstr "Vous devez fournir votre nouveau mot de passe."
 
 #: ../login.php:121
 #, php-format
 msgid "The last request for a password was less than %d minutes ago.  Please check for previous email, or wait before trying again."
-msgstr "La dernière demande de mot de passe date de moins de %d minutes. Veuillez vérifier vos derniers courriels reçus, ou bien attendez avant d'essayer à nouveau."
+msgstr ""
 
 #: ../login.php:127
+#, fuzzy
 msgid "New password request"
-msgstr "Demande de nouveau mot de passe"
+msgstr "Nouveau mot de passe"
 
 #: ../login.php:128
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
-msgstr "Quelqu'un a demandé un nouveau mot de passe pour l'utilisateur %s de la galerie '%s' sur %s. Vous pouvez créer un mot de passe en visitant le lien ci-dessous. Si vous n'avez pas demandé de mot de passe, merci d'ignorer ce courriel."
+msgstr ""
 
 #: ../login.php:129
 #, php-format
 msgid "Click to reset your password: %s"
-msgstr "Cliquez pour réinitialiser votre mot de passe: %s"
+msgstr ""
 
 #: ../login.php:131
-#, php-format
+#, fuzzy, php-format
 msgid "New password request %s"
-msgstr "Nouvelle demande de mot de passe %s"
+msgstr "Nouveau mot de passe"
 
 #: ../login.php:135
 #, php-format
 msgid "An email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
-msgstr "Un courriel a été envoyé à l'adresse enregistrée pour %s. Veuillez suivre les instructions pour changer votre mot de passe. Si vous ne recevez pas ce courriel, merci de contacter les administrateurs de la galerie."
+msgstr ""
 
 #: ../login.php:141
-#, php-format
+#, fuzzy, php-format
 msgid "Email could not be sent.  Please contact %s administrators for a new password"
-msgstr "Le courriel n'a pu être envoyé. Merci de contacter les administrateurs de %s pour un nouveau mot de passe"
+msgstr "Le courriel n'a pas pu être envoyé. Merci de contacter les administrateurs de la galerie pour vous enregistrer sur ce site"
 
 #: ../login.php:146
 #, php-format
 msgid "There is no valid email for this account.  Please contact %s administrators for a new password"
-msgstr "Aucune adresse électronique valide pour ce compte. Merci de contacter les administrateurs de %s pour un nouveau mot de passe"
+msgstr ""
 
 #: ../login.php:150 ../new_password.php:38 ../new_password.php:42
 msgid "Not a valid username"
 msgstr "Nom d'utilisateur invalide"
 
 #: ../login.php:162
+#, fuzzy
 msgid "Send me my password"
-msgstr "M'expédier mon mot de passe"
+msgstr "Envoyer une carte électronique"
 
 #: ../login.php:169
 msgid "No account at all?"
-msgstr "Vraiment aucun compte ?"
+msgstr ""
 
 #: ../login.php:171
 msgid "Register a new account."
-msgstr "Enregistrer un nouveau compte."
+msgstr ""
 
 #: ../manage_users.php:43
 msgid "Please select a user"
@@ -2827,9 +2795,8 @@ msgid "User information succesfully updated."
 msgstr "Informations de l'utilisateur mises à jour avec succès."
 
 #: ../modify_user.php:93
-#, fuzzy
 msgid "User information was not succesfully updated!"
-msgstr "Problème de mise à jour des informations de l'utilisateur !!"
+msgstr "Problème de mise à jour des informations de l'utilisateur !"
 
 #: ../modify_user.php:104
 msgid "Invalid user"
@@ -3306,7 +3273,7 @@ msgstr "Sauvez ce fichier sur votre PC et renommez-le en %s."
 
 #: ../publish_xp_docs.php:50
 msgid "If it asks you for confirmation about changing the file type, answer &quot;yes&quot;."
-msgstr "S'il vous demande de confirmer le changement de type de fichier, répondez &quot;Oui&quot;."
+msgstr "S'il vous demande de confirmer le changement de type de fichier, répondez « Oui »."
 
 #: ../publish_xp_docs.php:52
 msgid "Right click on this file and you should see a menu appear."
@@ -3317,9 +3284,8 @@ msgid "Select the <b>Merge</b> option (this should be at the top of the menu)."
 msgstr "Sélectionner l'option <b>Fusionner</b> (qui devrait être la première du menu)"
 
 #: ../publish_xp_docs.php:56
-#, fuzzy
 msgid "It will ask you if you want to import these values into your registry. Click &quot;ok&quot;."
-msgstr "Il vous demandera si vous voulez importer ces valeurs dans votre base de registres."
+msgstr "Il vous demandera si vous voulez importer ces valeurs dans votre base de registres. Cliquer sur « ok »."
 
 #: ../publish_xp_docs.php:58
 msgid "It will tell you that the files were imported successfully."
@@ -3339,7 +3305,7 @@ msgstr "Ouvrez votre Explorateur Windows et parcourez un dossier contenant des i
 
 #: ../publish_xp_docs.php:66
 msgid "Select the image(s) or a folder and there should be a link on the left that says &quot;Publish this file to the web...&quot;"
-msgstr "Sélectionnez une image ou un répertoire. Il devrait y avoir un lien sur le panel de gauche appelé  &quot;Publier sur Internet...&quot;"
+msgstr "Sélectionnez une image ou un répertoire. Il devrait y avoir un lien sur le panel de gauche appelé « Publier sur Internet... »"
 
 #: ../publish_xp_docs.php:67
 msgid "Click this link and then follow the instructions to log into your Gallery, select an album and publish the image."
@@ -3473,7 +3439,7 @@ msgstr "Le nom de cet album ne peut contenir les caractères suivants"
 
 #: ../rename_album.php:118
 msgid "or"
-msgstr " ou "
+msgstr "ou"
 
 #: ../rename_album.php:118
 msgid "spaces"
@@ -3514,7 +3480,7 @@ msgstr "Redimensionnement d'une photo..."
 
 #: ../resize_photo.php:77
 msgid "This will resize your intermediate photos so that the longest side of the photo is equal to the target size below and the filesize will be close to the chosen size."
-msgstr "Ceci va redimensionner vos photos pour que le côté le plus long de la photo soit égal à la taille cible ci-dessous, et que la taille du fichier soit proche de celle désirée. "
+msgstr "Ceci va redimensionner vos photos pour que le côté le plus long de la photo soit égal à la taille cible ci-dessous, et que la taille du fichier soit proche de celle désirée."
 
 #: ../resize_photo.php:85
 msgid "What is the target size for all the intermediate photos in this album?"
@@ -3686,7 +3652,7 @@ msgstr "Photos qui contiennent %s dans la légende, les commentaires ou le nom."
 
 #: ../search.php:256
 msgid "No Photo Matches"
-msgstr "Aucune photo ne correspond  à vos critères de recherche "
+msgstr "Aucune photo ne correspond à vos critères de recherche"
 
 #: ../search.php:277
 #, php-format
@@ -3968,38 +3934,38 @@ msgid "Total: %s ; Start: %s ; Last Page: %s"
 msgstr "Total : %s ; Début : %s ; Dernière Page : %s"
 
 #: ../stats.php:589
-#, fuzzy, php-format
+#, php-format
 msgid "%d items with comments in album: %s."
-msgstr "%d images avec des commentaires dans l'album : %s"
+msgstr "%d éléments avec des commentaires dans l'album : %s."
 
 #: ../stats.php:592
-#, fuzzy, php-format
+#, php-format
 msgid "%d items in album: %s"
-msgstr "%d images dans l'album : %s"
+msgstr "%d éléments dans l'album : %s"
 
 #: ../stats.php:595
-#, fuzzy, php-format
+#, php-format
 msgid "Given albumname: '%s' is invalid!"
-msgstr "« %s » : nom d'album invalide !"
+msgstr "Nom d'album donné : « %s » est invalide !"
 
 #: ../stats.php:600
-#, fuzzy, php-format
+#, php-format
 msgid "%d items with comments in this Gallery."
-msgstr "%d images avec un commentaire dans cette galerie"
+msgstr "%d éléments avec des commentaires dans cette galerie."
 
 #: ../stats.php:603
-#, fuzzy, php-format
+#, php-format
 msgid "%d items this Gallery."
-msgstr "%d images dans cette galerie"
+msgstr "%d éléments dans cette galerie."
 
 #: ../stats.php:609
 msgid "Back to stats-wizard"
 msgstr "Retourner à l'assistant de configuration des statistiques"
 
 #: ../stats.php:646
-#, fuzzy, php-format
+#, php-format
 msgid "Data load time %d seconds."
-msgstr "Chargement effectué en %d secondes"
+msgstr "Chargement effectué en %d secondes."
 
 #: ../stats.php:713
 #, php-format
@@ -4012,7 +3978,7 @@ msgstr "Mise à jour"
 
 #: ../stats.php:719
 msgid "Cache update required. "
-msgstr "Le cache a besoin d'être reconstruit"
+msgstr "Le cache a besoin d'être reconstruit. "
 
 #: ../stats.php:723
 #, php-format
@@ -4189,7 +4155,7 @@ msgstr "Entrez de nouvelles données dans la liste noire"
 
 #: ../tools/despam-comments.php:370
 msgid "Useful blacklists: "
-msgstr "Listes noires utiles:"
+msgstr "Listes noires utiles : "
 
 #: ../tools/despam-comments.php:375
 msgid "You can just cut and paste these blacklists into the text box, or add new entries of your own."
@@ -4297,7 +4263,6 @@ msgid "Validate again"
 msgstr "Valider à nouveau"
 
 #: ../tools/validate_albums.php:92
-#, fuzzy
 msgid "Are you sure you want to delete the folder below and all of its content?"
 msgstr "Êtes-vous sûr de vouloir supprimer le répertoire ci-dessous et tout son contenu ?"
 
@@ -4375,9 +4340,8 @@ msgid "Invalid albums"
 msgstr "Albums invalides"
 
 #: ../tools/validate_albums.php:237
-#, fuzzy
 msgid "Invalid albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x."
-msgstr "Les albums invalides sont des répertoires créés dans le répertoire d'albums, mais ne contenant pas de données d'album. La présence de ces répertoires peut causer des problèmes à Gallery, par exemple lors de la migration vers Gallery 2.x"
+msgstr "Les albums invalides sont des répertoires créés dans le répertoire d'albums, mais ne contenant pas de données d'album. La présence de ces répertoires peut causer des problèmes à Gallery et aussi lors d'une tentative de migration vers Gallery 2.x."
 
 #: ../tools/validate_albums.php:240
 #, php-format
@@ -4389,7 +4353,6 @@ msgid "Invalid album"
 msgstr "Album invalide"
 
 #: ../tools/validate_albums.php:256
-#, fuzzy
 msgid "Delete directory"
 msgstr "Effacer le répertoire"
 
@@ -4534,7 +4497,6 @@ msgid "Getting Dimension of file: %s"
 msgstr "récupération des dimensions du fichier %s"
 
 #: ../util.php:220
-#, fuzzy
 msgid "The file does not exist?!"
 msgstr "Le fichier n'existe pas ?!"
 
@@ -4567,16 +4529,16 @@ msgid "Can't read %s."
 msgstr "Impossible de lire %s."
 
 #: ../util.php:600
-#, fuzzy, php-format
+#, php-format
 msgid "Getting Exif from: %s"
-msgstr "récupération des dimensions du fichier %s"
+msgstr "Récupération des données Exif de : %s"
 
 #: ../util.php:703
 msgid "Got no capture date. Using file modification time."
 msgstr "Aucune date de prise de vue. Utilisation de la date de modification du fichier."
 
 #: ../util.php:707
-#, fuzzy, php-format
+#, php-format
 msgid "Item Capture Date: %s"
 msgstr "Date de prise de vue de l'élément : %s"
 
@@ -4711,7 +4673,6 @@ msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr "Le fichier « %s » ne semble pas être dans le répertoire temporaire %s de Gallery ; le téléchargement est abandonné."
 
 #: ../util.php:1988
-#, fuzzy
 msgid "We are trying to download the tempdir itself?! Download aborted."
 msgstr "Sommes-nous en train d'essayer de télécharger le répertoire temporaire lui-même ?! Téléchargement abandonné."
 
@@ -4732,26 +4693,26 @@ msgid "%s and %s in this album on %s"
 msgstr "%s et %s dans cet album sur %s"
 
 #: ../view_album.php:251
-#, fuzzy, php-format
+#, php-format
 msgid "%s and %s in this album."
-msgstr "%s et %s dans cet album"
+msgstr "%s et %s dans cet album."
 
 #: ../view_album.php:255
-#, fuzzy, php-format
+#, php-format
 msgid "%s in this album on %s."
-msgstr "%s dans cet album sur %s"
+msgstr "%s dans cet album sur %s."
 
 #: ../view_album.php:259
-#, fuzzy, php-format
+#, php-format
 msgid "%s in this album."
-msgstr "%s dans cet album"
+msgstr "%s dans cet album."
 
 #: ../view_album.php:267
-#, fuzzy, php-format
+#, php-format
 msgid "(One is hidden)"
 msgid_plural "(%d are hidden)"
-msgstr[0] "%s est caché"
-msgstr[1] "%s est caché"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../view_album.php:274
 msgid "Add photos"
@@ -4930,9 +4891,8 @@ msgid "return to album"
 msgstr "Retour vers l'album"
 
 #: ../view_comments.php:151
-#, fuzzy
 msgid "Sorry.  You are not allowed to see comments of this album."
-msgstr "Vous n'êtes pas autorisé à effectuer cette opération !"
+msgstr "Désolé, vous n'êtes pas autorisé à voir les commentaires de cet album."
 
 #: ../view_photo.php:201
 #, php-format
@@ -4994,7 +4954,7 @@ msgstr "Propriétés de la photo"
 
 #: ../view_photo_properties.php:123
 msgid "Reload EXIF Data From File"
-msgstr "Recharger les Données EXIF depuis le fichier"
+msgstr "Recharger les informations EXIF depuis le fichier"
 
 #: ../view_photo_properties.php:126
 msgid "(if the data is current, this will not appear to do anything)"
@@ -5011,30 +4971,3 @@ msgstr "Pas de photos disponible pour le filigrane"
 #: ../watermark_album.php:137
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."
 msgstr "Rapellez-vous que faire un filigrane sur un fichier GIF animé n'est pas supporté, cela modifiera l'apparence du fichier et stoppera l'animation."
-
-#~ msgid "Processing element %d..."
-#~ msgstr "Traitement de l'élément %d..."
-
-#~ msgid "Cannot resize/compress this filetype."
-#~ msgstr "Impossible de redimensionner/compresser ce type de fichier."
-
-#~ msgid "skipped"
-#~ msgstr "ignoré"
-
-#~ msgid "%s sent you an E-C@rd"
-#~ msgstr "%s vous a envoyé une carte électronique"
-
-#~ msgid "<i>Note:</i> this feature is still experimental!"
-#~ msgstr "<i>Note :</i> cette fonctionnalité est encore expérimentale !"
-
-#~ msgid "Show"
-#~ msgstr "Montrer"
-
-#~ msgid "Click &quot;ok&quot;."
-#~ msgstr "Cliquez &quot;ok&quot;."
-
-#~ msgid "%s are hidden"
-#~ msgstr "%s sont cachés"
-
-#~ msgid "Sorry.  This album does not allow comments."
-#~ msgstr "Désolé, cet album n'accepte pas les commentaires."
