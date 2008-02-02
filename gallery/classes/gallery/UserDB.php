@@ -116,7 +116,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
 		echo debugMessage(sprintf("Geting user by username '%s'", $saveToDisplayUserName),
 			__FILE__, __LINE__, 4);
-			
+
 		if ($level > 1) {
 			// We've recursed too many times.  Abort;
 			return;
@@ -145,7 +145,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$uid = $this->userMap[$username];
 
 		}
-		
+
 		$uid = $this->convertUidToNewFormat($uid);
 		$user = $this->getUserByUid($uid);
 		if (!$user || strcmp($user->getUsername(), $username)) {
@@ -247,7 +247,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		return safe_serialize($this, "$userDir/userdb.dat");
 	}
-	
+
 	function save() {
 		global $gallery;
 		$userDir = $gallery->app->userDir;
@@ -288,23 +288,23 @@ class Gallery_UserDB extends Abstract_UserDB {
 		array_push($uidList, $this->loggedIn->getUid());
 
 		sort($uidList);
-		
+
 		return $uidList;
 	}
 
 	function validNewUserName($username) {
 		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
-		
+
 		echo debugMessage(sprintf(gTranslate('core',
 			"Checking username '%s' for validity"), $saveToDisplayUserName),
 			__FILE__, __LINE__, 4);
-			
+
 		if (strlen($username) == 0) {
 			return gTranslate('core', "Please enter a username.");
 		}
 
 		if (strlen($username) < 2) {
-			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
+			return sprintf(gTranslate('core', "Username '%s' is too short. Must be at least 2 characters."),
 					$saveToDisplayUserName);
 		}
 
@@ -350,13 +350,13 @@ class Gallery_UserDB extends Abstract_UserDB {
 	 */
 	function versionOutOfDate() {
 		global $gallery;
-		
+
 		if (strcmp($this->version, $gallery->user_version)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	function integrityCheck() {
 		global $gallery;
 
@@ -371,7 +371,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$nobody = $this->nobody->getUsername();
 		$everybody = $this->everybody->getUsername();
 		$loggedin = $this->loggedIn->getUsername();
-		
+
 		$count = 1;
 		$total = sizeof($this->getUidList());
 		foreach ($this->getUidList() as $uid) {

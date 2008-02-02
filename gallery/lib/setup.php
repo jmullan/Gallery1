@@ -24,7 +24,7 @@
 
 function evenOdd_row($fields) {
 	global $shortdescWidth;
-	
+
 	if(empty($shortdescWidth)) {
 		$shortdescWidth = '40%';
 	}
@@ -150,14 +150,14 @@ function form_nv_pairs($key, $arr) {
 	else {
 		$attrs = '';
 	}
-	
+
 	$x = 0;
 	$buf = "\n<table>"
 		. "<tr>"
 		. "<td><b>". gTranslate('common', "Name") . "</b></td>"
 		. "<td><b>". gTranslate('common', "Value") ."</b></td>"
 		. "</tr>";
-		
+
 	foreach ($arr["value"] as $result) {
 		$name=$result["name"];
 		$value=$result["value"];
@@ -170,22 +170,22 @@ function form_nv_pairs($key, $arr) {
 			break;
 		}
 	}
-	
+
 	for (; $x<$arr["size"]; $x++) {
 		$buf .= '<tr><td><input type="text" name="' . $key ."[$x][name]\" $attrs></td>\n";
 		$buf .= '<td><input type="text" name="' . $key ."[$x][value]\" $attrs></td></tr>\n";
 	}
-	
+
 	$buf.="</table>";
-	
+
 	return $buf;
 }
 
 function form_choice($key, $arr) {
     $attrs  = !empty($arr['attrs']) ? $arr['attrs'] : array();
-    
+
     return drawSelect($key, $arr["choices"], $arr["value"], 1, $attrs, true);
-    
+
 }
 
 function form_multiple_choice($key, $arr) {
@@ -413,7 +413,7 @@ function check_exec() {
 	$success	= array();
 	$fail		= array();
 	$warn		= array();
-	
+
 	if (!empty($disabled)) {
 		foreach(explode(',', $disabled) as $disabled_func) {
 			if(eregi('^exec$', $disabled_func)) {
@@ -439,7 +439,7 @@ function check_htaccess() {
 	$success	= array();
 	$fail		= array();
 	$warn		= array();
-	
+
 	if ($GALLERY_PHP_VALUE_OK) {
 		$success[] = gTranslate('common', "I can read your <b>.htaccess</b> file.");
 	}
@@ -478,7 +478,7 @@ function check_mod_rewrite()  {
 	$success	= array();
 	$fail		= array();
 	$warn		= array();
-	
+
 	if ($GALLERY_REWRITE_OK) {
 		$success[] = gTranslate('common', "<b>mod_rewrite</b> is enabled.");
 	}
@@ -495,7 +495,7 @@ function check_exif($location = '') {
 	$success	= array();
 	$fail		= array();
 	$warn		= array();
-	
+
 	$bin = fs_executable('jhead');
 
 	if ($location) {
@@ -506,7 +506,7 @@ function check_exif($location = '') {
 	}
 
 	$jheadVersion = getJheadVersion($dir);
-	
+
 	if (empty($dir)) {
 		$warn["warn-noexif"] = gTranslate('common', "Can't find <i>jhead</i>.");
 	}
@@ -652,7 +652,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('composite') =>
-		gTranslate('common', "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
+		gTranslate('common', "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."),
 	);
 
 
@@ -803,12 +803,12 @@ function check_gallery_version() {
 	if ($age > $maxAge) {
 		if($beta) {
 			$fail['too_old'] = $this_beta_version . ' ' .
-							   sprintf(gTranslate('common', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
+							   sprintf(gTranslate('common', "That's more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
 							   toggleBox('g_version', $visit);
 		}
 		else {
 		  $fail['too_old'] = $this_version . ' ' .
-						   sprintf(gTranslate('common', "Thats more than %d days ago."), $maxAge) .
+						   sprintf(gTranslate('common', "That's more than %d days ago."), $maxAge) .
 						   toggleBox('g_version', $visit);
 		}
 	}

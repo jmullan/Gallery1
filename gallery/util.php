@@ -2037,7 +2037,7 @@ function array_flaten($array) {
 }
 
 /**
- * This function returns the Gallery Title as a string thats save to show in <title>...</title>
+ * This function returns the Gallery Title as a string that's save to show in <title>...</title>
  *
  * @param string $topic	 optional
  * @return string $ret
