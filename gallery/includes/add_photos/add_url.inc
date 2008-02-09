@@ -21,37 +21,38 @@
  */
 ?>
 <?php
-	echo "\n<p>";
-	echo _("Upload any images found at this location.") . ' ';
-	echo _("The location can either be a URL or a local directory on the server.");
-	echo "\n<p>\n";
+echo "\n<p>";
+echo gTranslate('core', "Upload any images found at this location.") . ' ';
+echo gTranslate('core', "The location can either be a URL or a local directory on the server.");
+echo "\n<p>\n";
 
-	echo '<b>'. _("Tip:") . '</b> ';
-	echo _("FTP images to a directory on your server then provide that path here!");
+echo '<b>'. gTranslate('core', "Tip:") . '</b> ';
+echo gTranslate('core', "FTP images to a directory on your server then provide that path here!");
 
-	echo makeFormIntro("save_photos.php",
-			array('name' => 'uploadurl_form'),
-			array('type' => 'popup'));
+echo makeFormIntro("save_photos.php",
+array('name' => 'uploadurl_form'),
+array('type' => 'popup'));
 ?>
 <input type="text" name="urls[]" size="40">
 <p>
 <?php
-	echo _("What would you like the captions to default to?");
-	 echo "\n<br><br>";
-	include(dirname(__FILE__) .'/captionOptions.inc.php');
+echo gTranslate('core', "What would you like the captions to default to?");
+echo "\n<br><br>";
+include(dirname(__FILE__) .'/captionOptions.inc.php');
 ?>
 </p>
 <?php
 if (isset($gallery->app->watermarkDir)) {
-   global $watermarkForm;
-   $watermarkForm["askRecursive"] = 0;
-   $watermarkForm["askPreview"] = 0;
-   $watermarkForm["allowNone"] = 1;
-   includeLayout('watermarkform.inc');
+	global $watermarkForm;
+	
+	$watermarkForm['askRecursive']	= 0;
+	$watermarkForm['askPreview']	= 0;
+	$watermarkForm['allowNone']		= 1;
+	includeLayout('watermarkform.inc');
 }
 ?>
 <p align="center">
-<input type=submit value="<?php echo _("Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<input type=submit value="<?php echo gTranslate('core', "Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
+<input type=submit value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
