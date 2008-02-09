@@ -40,7 +40,7 @@ list($wmAlignX, $wmAlignY, $recursive, $previewFull) =
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    echo _("You are not allowed to perform this action!");
+    echo gTranslate('core', "You are not allowed to perform this action!");
     exit;
 }
 
@@ -57,12 +57,12 @@ if (isset($save) || isset($preview)) {
 ?>
 <html>
 <head>
-  <title><?php echo _("Watermarking album.") ?></title>
+  <title><?php echo gTranslate('core', "Watermarking album.") ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Watermarking album."); ?></div>
-<div class="popup" align="center"><?php echo _("(this may take a while)"); ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Watermarking album."); ?></div>
+<div class="popup" align="center"><?php echo gTranslate('core', "(this may take a while)"); ?></div>
 <div class="popup">
 <?php
                 my_flush();
@@ -97,10 +97,10 @@ if (isset($save) || isset($preview)) {
                     isset($previewFull) ? $previewFull : 0);
             }
         } else {
-            $err = _("Please select a watermark.");
+            $err = gTranslate('core', "Please select a watermark.");
         }
     } else {
-        $err = _("Please select an alignment.");
+        $err = gTranslate('core', "Please select an alignment.");
     }
 } else {
     if (!isset($recursive)) {
@@ -111,15 +111,15 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo _("Watermark Album") ?></title>
+  <title><?php echo gTranslate('core', "Watermark Album") ?></title>
   <?php common_header(); ?>
 </head>
 <body class="popupbody" dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo _("Watermark Album") ?></div>
+<div class="popuphead"><?php echo gTranslate('core', "Watermark Album") ?></div>
 <div class="popup" align="center">
 <?php
 if (!$gallery->album->numPhotos(1)) {
-    echo "\n<p>". gallery_error(_("No items to watermark.")) . "</p>";
+    echo "\n<p>". gallery_error(gTranslate('core', "No items to watermark.")) . "</p>";
 } else {
     $highlightIndex = $gallery->album->getHighlight();
     if (isset($highlightIndex)) {
@@ -134,7 +134,7 @@ if (!$gallery->album->numPhotos(1)) {
         echo "\n<p>". gallery_error($err) . "</p>";
     }
 
-    echo infoLine(_("Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."), 'notice');
+    echo infoLine(gTranslate('core', "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."), 'notice');
     echo makeFormIntro('watermark_album.php',  array('name' => 'theform'));
     global $watermarkForm;
     $watermarkForm["askRecursive"] = 1;
@@ -145,21 +145,15 @@ if (!$gallery->album->numPhotos(1)) {
 
 <p>
 	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="save" value="<?php echo _("Save") ?>">
+	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
 <?php // only allow preview if there is a highlight
  if (isset($highlightIndex)) { ?>
-	<input type="submit" name="preview" value="<?php echo _("Preview") ?>">
+	<input type="submit" name="preview" value="<?php echo gTranslate('core', "Preview") ?>">
 <?php } ?>
-	<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </p>
 </form>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-// position cursor in top form field
-document.theform.data.focus();
-//-->
-</script>
 <?php 
 } // end if numPhotos()
 ?>
