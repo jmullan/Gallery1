@@ -36,7 +36,7 @@ if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 }
 elseif (!empty($login)) {
 	if (empty($username) || empty($gallerypassword)) {
-		$error = _("Please enter username and password.");
+		$error = gTranslate('config', "Please enter username and password.");
 	} else {
 		$tmpUser = $gallery->userDB->getUserByUsername($username);
 		if ($tmpUser && $tmpUser->isCorrectPassword($gallerypassword) && $tmpUser->isAdmin()) {
@@ -53,12 +53,12 @@ elseif (!empty($login)) {
 			$tmpUser = null;
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
-			$error= _("Invalid username or password");
+			$error= gTranslate('config', "Invalid username or password");
 		}
 		elseif (!$tmpUser->isAdmin()) {
 			$gallerypassword = null;
 			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
-			$error=_("User is not an admin - access denied");
+			$error=gTranslate('config', "User is not an admin - access denied");
 		}
 	}
 }
@@ -66,10 +66,10 @@ elseif (!empty($login)) {
 if (isset($gallery->session->resetAdminGuid)) {
 ?>
 <div align="center">
-<div class="header"><?php echo sprintf(_("Reset %s Password"), "admin"); ?></div>
-<div class="desc"><?php echo sprintf(_("To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin"); ?></div>
+<div class="header"><?php echo sprintf(gTranslate('config', "Reset %s Password"), "admin"); ?></div>
+<div class="desc"><?php echo sprintf(gTranslate('config', "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin"); ?></div>
 <br>
-<input type="button" onclick="location.reload()" value="<?php echo _("Refresh"); ?>">
+<input type="button" onclick="location.reload()" value="<?php echo gTranslate('config', "Refresh"); ?>">
 </body>
 </html>
 <?php
@@ -80,9 +80,9 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 ?>
 
 <div align="center">
-<div class="header"><?php echo sprintf (_("%s configuration"), gallery()) ?></div>
-<div class="desc"><?php echo _("You must log in as an administrator to edit this server's configuration.") ?></div>
-<div class="desc"><?php echo sprintf(_("If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR) ?></div>
+<div class="header"><?php echo sprintf (gTranslate('config', "%s configuration"), gallery()) ?></div>
+<div class="desc"><?php echo gTranslate('config', "You must log in as an administrator to edit this server's configuration.") ?></div>
+<div class="desc"><?php echo sprintf(gTranslate('config', "If you have forgotten the password to your admin account, you can reset it by creating a blank file named '%s' in your %s directory and then refreshing and following the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR) ?></div>
 <p>
 <?php if(isset($error)) {
 	echo gallery_error($error) ."</p>\n<p>";
@@ -91,19 +91,19 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 
 <table>
 <tr>
-	<td class="popup"><?php echo _("Username") ?></td>
+	<td class="popup"><?php echo gTranslate('config', "Username") ?></td>
 	<td><input type="text" name="username" value="<?php if (isset($username)) echo $username; ?>"></td>
 </tr>
 <tr>
-	<td class="popup"><?php echo _("Password") ?></td>
+	<td class="popup"><?php echo gTranslate('config', "Password") ?></td>
 	<td><input type="password" name="gallerypassword"></td>
 </tr>
 </table>
 </p>
 
-<input type="submit" name="login" value="<?php echo _("Login") ?>">
-<input type="reset" name="reset" value="<?php echo _("Reset") ?>">
-<input type="button" name="cacle" value="<?php echo _("Cancel") ?>" onClick="javascript:location.href='../'">
+<input type="submit" name="login" value="<?php echo gTranslate('config', "Login") ?>">
+<input type="reset" name="reset" value="<?php echo gTranslate('config', "Reset") ?>">
+<input type="button" name="cacle" value="<?php echo gTranslate('config', "Cancel") ?>" onClick="javascript:location.href='../'">
 </form>
 
 </body>
