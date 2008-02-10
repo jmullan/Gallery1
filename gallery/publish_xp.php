@@ -53,7 +53,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></title>
+  <title><?php echo sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
 
@@ -83,12 +83,12 @@ if (!strcmp($cmd, "login")) {
 			$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
                         $ONBACK_SCRIPT="history.go(-1);";
 		} else {
-			echo gallery_error(_("Username and Password are not correct."));
+			echo gallery_error(gTranslate('core', "Username and Password are not correct."));
 			$returnval = "Login Incorrect";
 			$WIZARD_BUTTONS="false,true,false";
 		}
 	} else {
-		echo gallery_error(_("Please Enter Username and Password"));
+		echo gallery_error(gTranslate('core', "Please Enter Username and Password"));
 		$returnval = "Login Incorrect";
 		$WIZARD_BUTTONS="false,true,false";
 	}
@@ -96,17 +96,17 @@ if (!strcmp($cmd, "login")) {
 }
 
 if (!strcmp($cmd,"publish") || (isset($returnval) && $returnval == "Login Incorrect") ) { ?>
-<p align="center" class="popuphead"><?php echo sprintf(_("Login to %s"), $gallery->app->galleryTitle) ?></p>
+<p align="center" class="popuphead"><?php echo sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle) ?></p>
 
 <?php echo  makeFormIntro('publish_xp.php', array('id' => 'login')); ?>
 
 <table border="0" align="center">
 <tr>
-	<td><?php echo _("Username:") ?></td>
+	<td><?php echo gTranslate('core', "Username:") ?></td>
 	<td><input type="text" name="uname" value=""></td>
 </tr>
 <tr>
-	<td><?php echo _("Password:") ?></td>
+	<td><?php echo gTranslate('core', "Password:") ?></td>
 	<td><input type="password" name="password" value=""></td>
 </tr>
 </table>
@@ -126,7 +126,7 @@ if (!strcmp($cmd,"publish") || (isset($returnval) && $returnval == "Login Incorr
 
 if (!strcmp($cmd, "fetch-albums")) {
 ?>
-<p align="center" class="popuphead"><?php echo _("Select the Album to which to Publish") ?></p>
+<p align="center" class="popuphead"><?php echo gTranslate('core', "Select the Album to which to Publish") ?></p>
 
 <div class="popup" align="center">
 <form id="folder">
@@ -151,10 +151,10 @@ if (!strcmp($cmd, "fetch-albums")) {
 ?>
 	</select><br>
 
-	<input id="setCaption" type="checkbox" name="setCaption" checked value="1"><?php echo _("Use filenames as captions") ?>
+	<input id="setCaption" type="checkbox" name="setCaption" checked value="1"><?php echo gTranslate('core', "Use filenames as captions") ?>
 	
 	<br><br>
-	<input type="button" value="<?php echo _("Create New Album") ?>" onClick="folder.cmd.value='new-album';folder.submit();">
+	<input type="button" value="<?php echo gTranslate('core', "Create New Album") ?>" onClick="folder.cmd.value='new-album';folder.submit();">
 
 	<input type="hidden" name="cmd" value="select-album">
 </form>
@@ -199,19 +199,19 @@ if (!strcmp($cmd, "select-album")) {
 
 	// Do we have a logged in user?
 	if (!$gallery->user->isLoggedIn()) {
-		$error= _("Not Logged In!");
+		$error= gTranslate('core', "Not Logged In!");
 	}
 
 	if (empty($gallery->album) || empty($set_albumName)) {
-		$error = _("No album specified!");
+		$error = gTranslate('core', "No album specified!");
 	} elseif (!$gallery->user->canAddToAlbum($gallery->album) && $set_albumName) {
-	    $error = sprintf(_("This user cannot add photos in %s."), 
+	    $error = sprintf(gTranslate('core', "This user cannot add photos in %s."), 
 			    $gallery->album->fields[title]);
 	}
 
 	if (!empty($error)) {
 		echo gallery_error($error). "<br>";
-		echo _("Press the 'Back' button and try again!");
+		echo gTranslate('core', "Press the 'Back' button and try again!");
 		$ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=fetch-albums\";";
     		$WIZARD_BUTTONS="true,false,true";
 	} else {
@@ -232,22 +232,22 @@ if (!strcmp($cmd, "new-album")) {
 
     // Do we have a logged in user?
     if (!$gallery->user->isLoggedIn()) {
-        $error= _("Not Logged In!");
+        $error= gTranslate('core', "Not Logged In!");
 
         // Permission checks
         // can the user create albums in the ROOT level
     } elseif (isset($createNewAlbum) && ($set_albumName == '_xp_wiz_root') && !($gallery->user->canCreateAlbums()) ) {
-        $error = _("User cannot create ROOT level album.") ."<br>\n";
+        $error = gTranslate('core', "User cannot create ROOT level album.") ."<br>\n";
 
         // can the user create nested albums in the specified album
     } elseif (isset($createNewAlbum) &&
     isset($set_albumName) &&
       $set_albumName != '_xp_wiz_root' &&
       !($gallery->user->canCreateSubAlbum($gallery->album))) {
-        $error = sprintf(_("User cannot create nested album in %s."),
+        $error = sprintf(gTranslate('core', "User cannot create nested album in %s."),
         $gallery->album->fields[title]);
     } elseif (isset($createNewAlbum) && empty($set_albumName)) {
-        $error = _("No Parent Album Specified!");
+        $error = gTranslate('core', "No Parent Album Specified!");
     } elseif (isset($createNewAlbum)) {
         if ($set_albumName == '_xp_wiz_root') {
             $parentName = '';
@@ -267,21 +267,21 @@ if (!strcmp($cmd, "new-album")) {
     } else {
 		if (empty($newAlbumTitle)) $newAlbumTitle = "Untitled";
 		?>
-<p class="popuphead" align="center"><?php echo _("Create New Album") ?></p>
+<p class="popuphead" align="center"><?php echo gTranslate('core', "Create New Album") ?></p>
 
 <div class="popup" align="center">
 <form id="folder">
-	<?php echo _("Enter New Album Title") ?>: 
+	<?php echo gTranslate('core', "Enter New Album Title") ?>: 
 	<input id="newAlbumTitle" type="text" name="newAlbumTitle" value="<?php echo $newAlbumTitle ?>" size="25">
 
-	<br><br><?php echo _("Select Parent Album") ?>:
+	<br><br><?php echo gTranslate('core', "Select Parent Album") ?>:
 	<br><br>
 	<select id="album" name="set_albumName" size="10" width="40">
 		<?php
                 $albumDB = new AlbumDB(FALSE);
                 $mynumalbums = $albumDB->numAlbums($gallery->user);
                 if ($gallery->user->canCreateAlbums()) {
-			echo "<option value=\"_xp_wiz_root\">" . _("NEW TOP LEVEL ALBUM") ."</option>\n";
+			echo "<option value=\"_xp_wiz_root\">" . gTranslate('core', "NEW TOP LEVEL ALBUM") ."</option>\n";
                 }
                 // display all albums that the user can move album to
                 for ($i=1; $i<=$mynumalbums; $i++) {
@@ -309,7 +309,7 @@ if (!strcmp($cmd, "new-album")) {
 
         if (!empty($error)) {
                 echo gallery_error($error);
-		echo _("Press the 'Back' button and try again!");
+		echo gTranslate('core', "Press the 'Back' button and try again!");
 		echo "<form id=\"folder\">";
 		echo "<input type=\"hidden\" name=\"cmd\" value=\"new-album\">\n";
 		echo "<input type=\"hidden\" name=\"newAlbumTitle\" value=\"$newAlbumTitle\">\n";
@@ -336,11 +336,11 @@ if (!strcmp($cmd, "add-item")) {
 
 	// Hack check
 	if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	    $error = _("User cannot add to album");
+	    $error = gTranslate('core', "User cannot add to album");
 	}
 
 	else if (empty($_FILES['userfile']['name'])) {
-	    	$error = _("No file specified");
+	    	$error = gTranslate('core', "No file specified");
 	}
 
 	else {
