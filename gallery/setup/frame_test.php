@@ -26,7 +26,7 @@
 ?>
 <html>
 <head>
-  <title> <?php echo gTranslate('core', "Gallery Configuration") .':: '. gTranslate('core', "Frames") ?> </title>
+  <title> <?php echo gTranslate('config', "Gallery Configuration") .':: '. gTranslate('config', "Frames") ?> </title>
   <?php common_header(); ?>
 
 	<!--
@@ -56,12 +56,12 @@
 	$descriptions = array();
         $names = array();
 
-        $names["none"] = gTranslate('core', "None");
-        $descriptions["none"] = gTranslate('core', "No frames");
-        $names["dots"] = gTranslate('core', "Dots");
-        $descriptions["dots"] = gTranslate('core', "Just a simple dashed border around the thumb.");
-        $names["solid"] = gTranslate('core', "Solid");
-        $descriptions["solid"] = gTranslate('core', "Just a simple solid border around the thumb.");
+        $names["none"] = gTranslate('config', "None");
+        $descriptions["none"] = gTranslate('config', "No frames");
+        $names["dots"] = gTranslate('config', "Dots");
+        $descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
+        $names["solid"] = gTranslate('config', "Solid");
+        $descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
 
         $dir = GALLERY_BASE . '/html_wrap/frames';
         if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
@@ -84,13 +84,13 @@
                         } else {
                                 if (false && isDebugging())
                                 {
-                                        echo gallery_error(sprintf(gTranslate('core', "Skipping %s."),
+                                        echo gallery_error(sprintf(gTranslate('config', "Skipping %s."),
 								$subdir));
                                 }
                         }
                 }
         } else {
-                echo '<--' . sprintf(gTranslate('core', "Can't open %s"), $dir) . '-->';
+                echo '<--' . sprintf(gTranslate('config', "Can't open %s"), $dir) . '-->';
         }
         foreach (array_keys($names) as $key) {
   //         print '<option value="' . $key . '">' . $names[$key] . '</option>';
@@ -168,7 +168,7 @@
    }
 ?>
 <p align="center">
-	<input type="button" name="close" value="<?php echo gTranslate('core', "Close Window") ?>" onClick="window.close()">
+	<input type="button" name="close" value="<?php echo gTranslate('config', "Close Window") ?>" onClick="window.close()">
 </p>
 </body>
 </html>
