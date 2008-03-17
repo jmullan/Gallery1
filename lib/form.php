@@ -385,19 +385,21 @@ function showChoice2($target, $args, $popup = true) {
 	if (empty($args['set_albumName'])) {
 		$args['set_albumName'] = $gallery->session->albumName;
 	}
+
 	if($popup) {
-		$args['type'] = 'popup';
+		$args['type']	= 'popup';
 	}
+
 	return makeGalleryUrl($target, $args);
 }
 
 /**
  * Returns the HTML Code for a submit button (<input type="submit">).
  *
- * @param string	$name			 Name of the button.
- * @param string	$value			Value shown on the button.
- * @param array	 $additionalAttrs  Additional HTML attributes
- * @return string   $html			 The HTML code.
+ * @param string   $name				Name of the button.
+ * @param string   $value				Value shown on the button.
+ * @param array	   $additionalAttrs 	Additional HTML attributes
+ * @return string  $html				The HTML code.
  * @author Jens Tkotz
  */
 function gSubmit($name, $value, $additionalAttrs = array()) {

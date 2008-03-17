@@ -392,7 +392,7 @@ function getAbsoluteImagePath($name, $skinname = '') {
 }
 
 /**
- * Checkes whether an URL is relative or not
+ * Checks whether an URL is relative or not
  * @param	string	$url
  * @return	boolean
  * @author	Jens Tkotz
@@ -518,6 +518,7 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
 
 	return $html;
 }
+
 /**
  * This function extract the complete inner Text of the first link inside $link
  * E.g. '<a href="foo.bar"><div class="text">Jens</div></a>'

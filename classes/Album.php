@@ -960,7 +960,7 @@ class Album {
 			* uses album.bak for it's backup file names.
 			*/
 			if (!$this->loadFromFile("$dir/album.dat.bak") &&
-			!$this->loadFromFile("$dir/album.bak")) {
+				!$this->loadFromFile("$dir/album.bak")) {
 				/* Uh oh */
 				return false;
 			}

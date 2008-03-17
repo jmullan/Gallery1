@@ -236,7 +236,7 @@ function debug($msg) {
  * Files in windows cant start with a .
  * @param   string	$filename
  * @return	boolean
- * @author  Jens Tkotz <jens@peino.de>
+ * @author  Jens Tkotz
 */
 function fs_fileIsHidden($filename) {
 	return false;
