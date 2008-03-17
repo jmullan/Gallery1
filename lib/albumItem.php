@@ -171,11 +171,14 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				);
 			}
 
-			if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
-				$options[] = array(
-					'text'	=> gTranslate('core', "View comments"),
-					'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url"),
-				);
+			if(! $popupsOnly) {
+				if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
+					$options[] = array(
+						'text'	=> gTranslate('core', "View comments"),
+						'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]), false),
+						'class' => 'url'
+					);
+				}
 			}
 		}
 
