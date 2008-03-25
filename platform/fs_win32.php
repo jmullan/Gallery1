@@ -213,8 +213,10 @@ function fs_export_filename($filename) {
 	return $filename;
 }
 
-function fs_exec($cmd, &$results, &$status) {
-	// We can't redirect stderr with Windows.  Hope that we won't need to.
+function fs_exec($cmd, &$results, &$status, $debugfile = '') {
+	/* We can't redirect stderr with Windows.  Hope that we won't need to.
+	 * Thus $debugfile is not used when Gallery runs on windows.
+	 */
 	return exec($cmd, $results, $status);
 }
 

@@ -34,10 +34,6 @@ if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)
 
 printPopupStart(gTranslate('core', "Rename Album"));
 
-if (!isset($useLoad)) {
-	$useLoad = '';
-}
-
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
@@ -52,11 +48,12 @@ if (!empty($newName)) {
 	$newName = ereg_replace("\-$", "", $newName);
 	if ($oldName == $newName || empty($newName)) {
 		$dismiss = 1;
-	} elseif ($albumDB->renameAlbum($oldName, $newName)) {
+	}
+	elseif ($albumDB->renameAlbum($oldName, $newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
 		// the parent album when renaming an album
-			if ($gallery->album->fields['parentAlbumName']) {
+		if ($gallery->album->fields['parentAlbumName']) {
 			$parentName = $gallery->album->fields['parentAlbumName'];
 			if (isDebugging()) {
 				print "parentName=".$parentName."<br>";
@@ -64,7 +61,7 @@ if (!empty($newName)) {
 				print "oldName=".$oldName."<br>";
 			}
 			$parentAlbum = $albumDB->getAlbumByName($parentName);
-			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
+			for ($i = 1; $i <= $parentAlbum->numPhotos(1); $i++) {
 				if ($parentAlbum->getAlbumName($i) == $oldName) {
 					$parentAlbum->setAlbumName($i,$newName);
 					$parentAlbum->save();
@@ -73,7 +70,7 @@ if (!empty($newName)) {
 			}
 		}
 		// then we need to update the parentAlbumName field in the children
-		for ($i=1; $i <= $gallery->album->numPhotos(1); $i++) {
+		for ($i = 1; $i <= $gallery->album->numPhotos(1); $i++) {
 			if ($gallery->album->isAlbum($i)) {
 				$childAlbum = $gallery->album->getNestedAlbum($i);
 				$childAlbum->fields['parentAlbumName'] = $newName;
@@ -91,7 +88,7 @@ if (!empty($newName)) {
 
 	// Dismiss and reload if requested
 	if ($dismiss) {
-		if ($useLoad == 1) {
+		if (empty($useLoad)) {
 			dismissAndLoad(makeAlbumUrl($newName));
 		}
 		else {

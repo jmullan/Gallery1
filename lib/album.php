@@ -622,8 +622,8 @@ function getAlbumCommands($album, $caption = false, $mainpage = true) {
 		$albumCommands[] = array(
 			'text'	=> gTranslate('common', "Change foldername"),
 			'html'	=> popup_link(gTranslate('common',"Change foldername"),
-								  "rename_album.php?set_albumName={$albumName}&useLoad=true"),
-			'value'	=> build_popup_url("rename_album.php?set_albumName={$albumName}&useLoad=true")
+								  "rename_album.php?set_albumName={$albumName}&useLoad={$mainpage}"),
+			'value'	=> build_popup_url("rename_album.php?set_albumName={$albumName}&useLoad={$mainpage}")
 		);
 
 		/* User is allowed to change album permissions */
