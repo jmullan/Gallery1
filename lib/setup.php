@@ -684,7 +684,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('composite') =>
-		gTranslate('common', "Without composite gallery will not be able to watermark images, except you use NetPBM and have the pnmcomp binary installed."),
+		gTranslate('common', "Without composite gallery will not be able to watermark images, except you use Netpbm and have the pnmcomp binary installed."),
 	);
 
 
@@ -832,12 +832,12 @@ function check_gallery_version() {
 	if ($age > $maxAge) {
 		if($beta) {
 			$fail['too_old'] = $this_beta_version . ' ' .
-							   sprintf(gTranslate('common', "Thats more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
+							   sprintf(gTranslate('common', "That's more than %d days ago. Which is way too old for a pre Release version."), $maxAge) .
 							   toggleBox('g_version', $visit);
 		}
 		else {
 		  $fail['too_old'] = $this_version . ' ' .
-						   sprintf(gTranslate('common', "Thats more than %d days ago."), $maxAge) .
+						   sprintf(gTranslate('common', "That's more than %d days ago."), $maxAge) .
 						   toggleBox('g_version', $visit);
 		}
 	}

@@ -27,10 +27,10 @@
 
 /**
  * Returns the default value for an album property. Either for a specific album, or global
- * @param   string	$property
- * @param   object	$album
- * @param   boolean   $global
- * @return  mixed	 $retPoperty
+ * @param   string $property
+ * @param   object $album
+ * @param   boolean $global
+ * @return  mixed $retPoperty
  * @author  Jens Tkotz
  */
 function getPropertyDefault($property, $album = false, $global = false) {
@@ -60,10 +60,10 @@ function getPropertyDefault($property, $album = false, $global = false) {
 /**
  * Creates a new album
  *
- * @param string	$parentName
- * @param string	$newAlbumName
- * @param string	$newAlbumTitle
- * @param string	$newAlbumDesc
+ * @param string $parentName
+ * @param string $newAlbumName
+ * @param string $newAlbumTitle
+ * @param string $newAlbumDesc
  * @return mixed
  */
 function createNewAlbum($parentName, $newAlbumName = '', $newAlbumTitle = '', $newAlbumDesc = '') {
@@ -303,9 +303,9 @@ function customCSS() {
 /**
  * returns the a HTML string containg links to the upper albums
  *
- * @param object	$album
- * @param boolean   $withCurrentAlbum
- * @return string   $pathArray
+ * @param object  $album
+ * @param boolean $withCurrentAlbum
+ * @return string $pathArray
  */
 function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview = false) {
 	global $gallery;
@@ -375,8 +375,8 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
  *
  * This function is recursive, so the subtree is again a tree.
  * @param string    $albumName
- * @param int       $depth          Maximum depth of the tree
- * @return array    $tree           Structure like described above
+ * @param integer   $depth		Maximum depth of the tree
+ * @return array    $tree		Structure like described above
  * @author Jens Tkotz
  */
 function createTreeArray($albumName,$depth = 0) {
@@ -439,7 +439,6 @@ function createTreeArray($albumName,$depth = 0) {
  * @return boolean
  * @author Beckett Madden-Woods
  */
-
 function testRequirement($test) {
 	global $gallery;
 
@@ -534,7 +533,7 @@ function testRequirement($test) {
 }
 
 /**
- * Enter description here...
+ * Checks whether a requirement is set.
  *
  * @return unknown
  */
@@ -552,9 +551,12 @@ function checkRequirements() {
 }
 
 /**
- * returns an Array with all album options for a user
+ * Returns an array with all album options for an user
  *
- * @param object	$album
+ * @param object $album
+ * @param boolean $caption
+ * @param boolean $mainpage
+ * @return array $albumCommands
  */
 function getAlbumCommands($album, $caption = false, $mainpage = true) {
 	global $i;

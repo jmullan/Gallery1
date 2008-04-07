@@ -143,6 +143,7 @@ function popup_link2($title, $url, $args = array()) {
  */
 function printPopupStart($title = '', $header = '', $align = 'center') {
 	global $gallery;
+	
 	if (!empty($title) && empty($header)) {
 		$header = $title;
 	}

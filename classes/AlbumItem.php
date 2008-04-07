@@ -923,6 +923,13 @@ class AlbumItem {
 		return $imageName;
 	}
 
+
+	/**
+	 * Returns the name of an item.
+	 * Can either be the name of the photo, or the albumname.
+	 *
+	 * @return string
+	 */
 	function getPhotoId() {
 		if ($this->image) {
 			return $this->image->getId();

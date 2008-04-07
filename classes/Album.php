@@ -1224,10 +1224,11 @@ class Album {
 	 * Resize one photo of an album. Movies are skipped.
 	 * If the (optional) filesize is given, then file is
 	 *
-	 * @param integer	$index			Index of the item.
-	 * @param integer	$target			New size of the longest site in pixel.
-	 * @param integer	$filesize		New minimum filesize
-	 * @param string	$pathToResized
+	 * @param integer $index			Index of the item.
+	 * @param integer $target			New size of the longest site in pixel.
+	 * @param integer $filesize			New minimum filesize
+	 * @param string  $pathToResized
+	 * @param boolean $full
 	 */
 	function resizePhoto($index, $target, $filesize = 0, $pathToResized = '', $full = false) {
 		$this->updateSerial = 1;
@@ -1244,9 +1245,11 @@ class Album {
 	 * Resize and optionally shrink all photos of an album. Movies are skipped.
 	 * If wanted this can be done recursive.
 	 *
-	 * @param integer	$target			New size of the longest site in pixel.
-	 * @param integer	$filesize		New minimum filesize.
-	 * @param boolean	$recursive		True if you want to resize elements in subalbums, too.
+	 * @param integer $target		New size of the longest site in pixel.
+	 * @param integer $filesize		New minimum filesize.
+	 * @param boolean $recursive	True if you want to resize elements in subalbums, too.
+	 * @param boolean $full
+	 * @return boolean
 	 */
 	function resizeAllPhotos($target, $filesize = 0, $recursive = false, $full = false) {
 		$numItems = $this->numPhotos(1);
@@ -1660,7 +1663,7 @@ class Album {
 	 * @param int	$index
 	 * @param int	$forceResetHighlight
 	 * @param int	$recursive
-	 * @return boolean	false if item to delete exist, true otherwise.
+	 * @return boolean	false if item to delete does not exist, true otherwise.
 	 */
 	function deletePhoto($index, $forceResetHighlight = "0", $recursive = 1) {
 		global $gallery;
@@ -1726,6 +1729,15 @@ class Album {
 		}
 	}
 
+	/**
+	 * Returns the HTML code for displaying the thumbnail of a albumitem,
+	 * or highlight, if its a subalbum.
+	 *
+	 * @param integer $index
+	 * @param integer $size
+	 * @param array $attrs
+	 * @return string
+	 */
 	function getThumbnailTag($index, $size = 0, $attrs = array()) {
 		if ($index === null) {
 			return '';
@@ -1872,10 +1884,17 @@ class Album {
 		return $photo->getPhotoPath($this->getAlbumDir(), $full);
 	}
 
+	/**
+	 * Returns the name of an item.
+	 * Can either be the name of the photo, or the albumname.
+	 *
+	 * @param integer $index
+	 * @return string
+	 */
 	function getPhotoId($index) {
-		$photo = $this->getPhoto($index);
+		$item = $this->getPhoto($index);
 
-		return $photo->getPhotoId();
+		return $item->getPhotoId();
 	}
 
 	function getAlbumDir() {
@@ -2457,6 +2476,13 @@ class Album {
 		return $photo->isMovie();
 	}
 
+	/**
+	 * Is a user owner of an item?
+	 *
+	 * @param string $uid
+	 * @param integer $index
+	 * @return boolean
+	 */
 	function isItemOwner($uid, $index) {
 		global $gallery;
 
@@ -2845,6 +2871,13 @@ class Album {
 		return $perms;
 	}
 
+	/**
+	 * Set or unset a permission on an album for a user
+	 * 	 *
+	 * @param string  $permName   Name of permission. See includes/definitions/albumPermissions.php
+	 * @param integer $id         User or Group ID.
+	 * @param boolean $bool       If true, permissions is granted, otherwise revoked.
+	 */
 	function setPerm($permName, $id, $bool) {
 		if ($bool) {
 			$this->fields['perms'][$permName][$id] = 1;
@@ -2979,6 +3012,12 @@ class Album {
 		return false;
 	}
 
+	/**
+	 * Sets the owner of an album.
+	 *
+	 * @param integer $uid
+	 * @return boolean		True if a corresponding user to the UID exits.
+	 */
 	function setOwner($uid) {
 		$this->fields['owner'] = $uid;
 	}
@@ -3049,24 +3088,58 @@ class Album {
 		return true;
 	}
 
+	/**
+	 * Can the owner of items modify his/her own items?
+	 *
+	 * @return boolean $ret
+	 */
 	function getItemOwnerModify() {
 		if (isset($this->fields['item_owner_modify']) &&
-		  $this->fields['item_owner_modify'] == 'yes') {
-			return true;
+			$this->fields['item_owner_modify'] == 'yes')
+		{
+			$ret = true;
 		}
 		else {
-			return false;
+			$ret = false;
 		}
+
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(gTranslate('core',"Owner can modify his/her own items."), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(gTranslate('core',"Owner can NOT modify his/her own items."), __FILE__, __LINE__);
+			}
+		}
+
+		return $ret;
 	}
 
+	/**
+	 * Can the owner of items delete his/her own items?
+	 *
+	 * @return boolean $ret
+	 */
 	function getItemOwnerDelete() {
 		if (isset($this->fields['item_owner_delete']) &&
-		  $this->fields['item_owner_delete'] == 'yes') {
-			return true;
+			$this->fields['item_owner_delete'] == 'yes')
+		{
+			$ret = true;
 		}
 		else {
-			return false;
+			$ret = false;
 		}
+		
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(gTranslate('core',"Owner can delete his/her own items."), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(gTranslate('core',"Owner can NOT delete his/her own items."), __FILE__, __LINE__);
+			}
+		}
+		
+		return $ret;
 	}
 
 	function getAddToBeginning() {

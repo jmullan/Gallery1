@@ -193,16 +193,33 @@ class Abstract_User {
 		return false;
 	}
 
+	/**
+	 * Can a user write to an album? Aka can he/she modify it.
+	 *
+	 * @param object $album
+	 * @return boolean
+	 */
 	function canWriteToAlbum($album) {
 		if ($this->isAdmin()) {
-			return true;
+			$ret = true;
+		}
+		elseif ($album->canWrite($this->uid)) {
+			$ret =  true;
+		}
+		else {
+			$ret =  false;
 		}
 
-		if ($album->canWrite($this->uid)) {
-			return true;
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(sprintf(gTranslate('core',"User %s can write to album '%s'"), $this->getUsername(), $album->fields['name']), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(sprintf(gTranslate('core',"User %s can NOT write to album '%s'"), $this->getUsername(), $album->fields['name']), __FILE__, __LINE__);
+			}
 		}
 
-		return false;
+		return $ret;
 	}
 
 	function canAddToAlbum($album) {
@@ -364,7 +381,7 @@ class Abstract_User {
 
 	function displayName() {
 		$FullName = $this->getFullName();
-		
+
 		if (! empty($FullName)) {
 			return $this->getFullname();
 		}

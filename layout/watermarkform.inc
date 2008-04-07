@@ -180,9 +180,9 @@ if ($watermarkForm["askPreview"] && $gallery->user->canViewFullImages($gallery->
 }
 
 echo gTranslate('core', "Apply watermark to") ?> <select name="wmSelect">
-  <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo gTranslate('core', "All photos");?></option>
-  <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo gTranslate('core', "Only sized photos");?></option>
-  <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo gTranslate('core', "Only full photos");?></option>
+  <option value="0"<?php if ($wmSelect <  1) echo " selected"; ?>><?php echo gTranslate('core', "Sized and full photo");?></option>
+  <option value="1"<?php if ($wmSelect == 1) echo " selected"; ?>><?php echo gTranslate('core', "Only sized photo");?></option>
+  <option value="2"<?php if ($wmSelect >  1) echo " selected"; ?>><?php echo gTranslate('core', "Only full photo");?></option>
 </select>
 <br>
 

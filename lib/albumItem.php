@@ -69,13 +69,15 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	}
 
 	if (isset($isAdmin) ||
-	  (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-	  $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
-	  	$isOwner = true;
+		(isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+		$gallery->album->isItemOwner($gallery->user->getUid(), $i))
+	{
+		$isOwner = true;
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album) ||
-	   ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
+		($gallery->album->getItemOwnerModify() && isset($isOwner)))
+	{
 		$canModify = true;
 	}
 
@@ -133,41 +135,46 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		if ($isAlbum) {
 			$options[] = array(
 				'text'	=> gTranslate('core', "Edit title"),
-				'value'	=>  showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
+				'value'	=>  showChoice2('edit_field.php',
+										array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
 			);
 
 			$options[] = array(
 				'text' => gTranslate('core', "Edit description"),
-				'value'	=> showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
+				'value'	=> showChoice2('edit_field.php',
+									   array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
 				'icon'	=> ''
 			);
 
 			$options[] = array(
 				'text'	=> gTranslate('core', "Rename album"),
-				'value'	=> showChoice2('rename_album.php', array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
+				'value'	=> showChoice2('rename_album.php',
+									   array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
 			);
 
 			$options[] = array(
 				'text'	=> gTranslate('core', "Reset counter"),
 				'value'	=> showChoice2('do_command.php',
-								array(
-									'cmd' => 'reset-album-clicks',
-									'set_albumName' => $gallery->album->getAlbumName($i),
-									'return' => urlencode(makeGalleryUrl('view_album.php'))
-								)
-				),
+					array(
+						'cmd' 			=> 'reset-album-clicks',
+						'set_albumName' => $gallery->album->getAlbumName($i),
+						'return'		=> urlencode(makeGalleryUrl('view_album.php'))
+					)
+				)
 			);
 
 			$options[] = array(
 				'text'	=> gTranslate('core', "Permissions"),
-				'value'	=> showChoice2('album_permissions.php', array('set_albumName' => $myAlbum->fields['name'])),
+				'value'	=> showChoice2('album_permissions.php',
+									   array('set_albumName' => $myAlbum->fields['name'])),
 			);
 
 			// Watermarking support is enabled and user is allowed to watermark images/albums /
 			if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
 				$options[] = array(
 					'text'	=> gTranslate('core', "Watermark Album"),
-					'value'	=> showChoice2('watermark_album.php', array('set_albumName' => $myAlbum->fields['name'])),
+					'value'	=> showChoice2('watermark_album.php',
+										   array('set_albumName' => $myAlbum->fields['name'])),
 				);
 			}
 
@@ -220,13 +227,14 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 			'value'	=> showChoice2("photo_owner.php", array("id" => $id)),
 			'icon'	=> ($withIcons) ? 'yast_kuser.gif' : ''
 		);
+
 		$options[] = array(
 			'text'	=> sprintf(gTranslate('core', "Feature %s"), $label),
 			'value'	=> showChoice2('featured-item.php',
-							array(
-								'set' => 1,
-								'set_albumName' => $gallery->album->fields['name'],
-								'index' => $i)),
+						array(
+							'set' => 1,
+							'set_albumName' => $gallery->album->fields['name'],
+							'index' => $i)),
 			'icon'	=> ($withIcons) ? 'signal-1.gif' : ''
 		);
 	}
@@ -249,7 +257,8 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	}
 
 	if ($gallery->user->canDeleteFromAlbum($gallery->album) ||
-	  ($gallery->album->getItemOwnerDelete() && isset($isOwner))) {
+		($gallery->album->getItemOwnerDelete() && isset($isOwner)))
+	{
 		if($isAlbum) {
 			if($gallery->user->canDeleteAlbum($myAlbum)) {
 				$options[]	= array(
@@ -278,15 +287,16 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		{
 			$options['showExif'] = array(
 				'text'	=> gTranslate('core', "Photo _properties"),
-				'value'	=> showChoice2("view_photo_properties.php", array("index" => $i)),
+				'value'	=> showChoice2("view_photo_properties.php", array('index' => $i)),
 				'icon'	=> ($withIcons) ? 'frame_query.gif' : '',
 				'separate'	=> true
 			);
 		}
 
 
-		if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
-				 $gallery->app->emailOn == 'yes')
+		if(isset($gallery->album->fields["ecards"]) &&
+		   $gallery->album->fields["ecards"] == 'yes' &&
+		   $gallery->app->emailOn == 'yes')
 		{
 			$options['eCard'] = array(
 				'text'	=> gTranslate('core', "Send photo as e_Card"),
@@ -300,9 +310,10 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	array_sort_by_fields($options, 'text');
 
 	if(!empty($options) && $caption) {
-		array_unshift($options, array(
-			'text'	=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
-			'selected'	=> true
+		array_unshift($options,
+					  array(
+						'text'	=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
+						'selected'	=> true
 		));
 	}
 
@@ -322,15 +333,15 @@ function showComments ($index, $albumName, $reverse = false) {
 	global $gallery;
 
 	$numComments = $gallery->album->numComments($index);
-    $delCommentText = getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
+	$delCommentText = getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
 
 	$commentdraw["index"] = $index;
 
 	$commentTable = new galleryTable();
 	$commentTable->setAttrs(array(
-		'cellspacing' => 0,
-		'cellpadding' => 0,
-		'class' => 'g-comment-box')
+								'cellspacing'	=> 0,
+								'cellpadding'	=> 0,
+								'class'			=> 'g-comment-box')
 	);
 
 	$columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
@@ -345,22 +356,26 @@ function showComments ($index, $albumName, $reverse = false) {
 		}
 
 		$commentTable->addElement(array(
-			'content' => gTranslate('core', "From:"),
-			'cellArgs' => array('class' => 'left', 'width' => 50, 'height' => '25')));
+			'content'	=> gTranslate('core', "From:"),
+			'cellArgs'	=> array('class' => 'left', 'width' => 50, 'height' => '25'))
+		);
 
 		$commentTable->addElement(array(
-			'content' => $commenterName,
-			'cellArgs' => array('class' => 'left', 'width' => '55%')));
+			'content'	=> $commenterName,
+			'cellArgs'	=> array('class' => 'left', 'width' => '55%'))
+		);
 
 		$commentTable->addElement(array(
-			'content' => '('. $comment->getDatePosted() .')',
-			'cellArgs' => array('class' => 'left')));
+			'content'	=> '('. $comment->getDatePosted() .')',
+			'cellArgs'	=> array('class' => 'left'))
+		);
 
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
 			$url = doCommand('delete-comment',
-			array('index'=> $index,
-				'comment_index' => $nr,
-				'albumName' => $albumName)
+								array(
+									'index'			=> $index,
+									'comment_index'	=> $nr,
+									'albumName'		=> $albumName)
 			);
 
 			$commentTable->addElement(array(
@@ -369,8 +384,10 @@ function showComments ($index, $albumName, $reverse = false) {
 		}
 
 		$commentTable->addElement(array(
-			'content' => wordwrap($comment->getCommentText(), 100, " ", 1),
-			'cellArgs' => array('colspan' => $columns, 'class' => 'left g-desc-cell g-comment-text-cell'))
+			'content'	=> wordwrap($comment->getCommentText(), 100, " ", 1),
+			'cellArgs'	=> array(
+							'colspan'	=> $columns,
+							'class'		=> 'left g-desc-cell g-comment-text-cell'))
 		);
 	}
 	if ($reverse) {
@@ -386,7 +403,7 @@ function showComments ($index, $albumName, $reverse = false) {
  * and move forward if we're not.
  *
  * @param integer	$currentId
- * @return integer	NextId ;)
+ * @return integer	$nextId			;-)
  */
 function getNextId($currentId) {
 	global $gallery;
@@ -429,27 +446,27 @@ function generateCaption($captionType = 1, $originalFilename, $filename) {
 
 	switch ($captionType) {
 		case 0:
-			$caption = '';
-			$captionTypeString = 'no caption';
+			$caption			= '';
+			$captionTypeString	= 'no caption';
 			break;
 
 		case 1:
 		default:
 			/* Use filename */
-			$caption = strtr($originalFilename, '_', ' ');
-			$captionTypeString = 'filename';
+			$caption			= strtr($originalFilename, '_', ' ');
+			$captionTypeString	= 'filename';
 			break;
 
 		case 2:
 			/* Use file creation date */
-			$caption = strftime($dateTimeFormat, filectime($filename));
-			$captionTypeString = 'file creation date';
+			$caption			= strftime($dateTimeFormat, filectime($filename));
+			$captionTypeString	= 'file creation date';
 			break;
 
 		case 3:
 			/* Use capture date */
-			$caption = strftime($dateTimeFormat, getItemCaptureDate($filename));
-			$captionTypeString = 'file capture date';
+			$caption			= strftime($dateTimeFormat, getItemCaptureDate($filename));
+			$captionTypeString	= 'file capture date';
 			break;
 	}
 
@@ -481,7 +498,23 @@ function getLabelByIndex($index) {
 	return $label;
 }
 
-function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
+/**
+ * Processes an image and adds it to $gallery->album
+ *
+ * @param string    $file
+ * @param string	$ext
+ * @param string    $name
+ * @param string    $caption
+ * @param integer   $setCaption
+ * @param array     $extra_fields
+ * @param string    $wmName
+ * @param integer   $wmAlign
+ * @param integer   $wmAlignX
+ * @param integer   $wmAlignY
+ * @param integer   $wmSelect
+ * @return string                  Empty on succes, otherwise an errormessage.
+ */
+function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields = array(), $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0) {
 	global $gallery;
 	global $temp_files;
 
@@ -617,7 +650,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			 * Move the uploaded image to our temporary directory
 			 * using move_uploaded_file so that we work around
 			 * issues with the open_basedir restriction.
-			*/
+			 */
 			if (function_exists('move_uploaded_file')) {
 				$newFile = tempnam($gallery->app->tmpDir, "gallery");
 				if (move_uploaded_file($file, $newFile)) {
@@ -630,16 +663,16 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 
 			/* What should the caption be, if no caption was given by user ?
 			 * See captionOptions.inc.php for options
-			*/
+			 */
 			if (empty($caption)) {
 				echo debugMessage(gTranslate('core', "No caption given, generating it."), __FILE__, __LINE__, 1);
 				$caption = generateCaption($setCaption, $originalFilename, $file);
 			}
 
 			echo infobox(array(array(
-					'type' => 'informationm',
-					'text' => '<b>'. sprintf(gTranslate('core', "Adding %s"), $name) .'</b>'
-				)));
+				'type' => 'information',
+				'text' => '<b>'. sprintf(gTranslate('core', "Adding %s"), $name) .'</b>'
+			)));
 
 			/* After all the preprocessing, NOW ADD THE element */
 			set_time_limit($gallery->app->timeLimit);
@@ -647,30 +680,36 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			/*
 			 * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
 			 *				     $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
-			*/
-
+		 	*/
 			list($status, $statusMsg) = $gallery->album->addPhoto(
-				$file,
-				$ext,
-				$mangledFilename,
-				$caption,
-				'',
-				$extra_fields,
-				$gallery->user->uid,
-				NULL,
-				$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+															$file,
+															$ext,
+															$mangledFilename,
+															$caption,
+															'',
+															$extra_fields,
+															$gallery->user->uid,
+															NULL,
+															$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
 			);
 
 			echo $statusMsg;
 
-			if (!$status) {
-				processingMsg("<b>". sprintf(gTranslate('core', "Need help?  Look in the  %s%s FAQ%s"),
-				'<a href="http://gallery.sourceforge.net/faq.php" target=_new>', Gallery(), '</a>') .
-				"</b>");
+			if (! $status) {
+				$error = gTranslate('core',"Adding item failed. Please enable debug mode and redo the procedure to get more information.");
+				echo gallery_error($error);
+				processingMsg('<b>' .
+					sprintf(gTranslate('core', "Need more help?  Look in the  %s%s FAQ%s"),
+					'<a href="http://gallery.sourceforge.net/faq.php" target=_new>',
+					Gallery(),
+					'</a>') .
+					'</b>'
+				);
 			}
 		}
 		else {
-			processingMsg(sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext));
+			$error = sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext);
+			echo gallery_error($error);
 		}
 	}
 }

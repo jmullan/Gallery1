@@ -280,7 +280,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 			$usedIDs[] = $id;
 		}
 
-		$form .= "<input type=\"hidden\" id=\"$id\" name=\"$key\" value=\"$val\">\n";
+		$form .= gInput('hidden', $key, null, false, $val, array('id' => $id));
 	}
 
 	return $form;
@@ -289,7 +289,8 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 function formVar($name) {
 	if (!strncmp($_REQUEST[$name], 'false', 5)) {
 		return false;
-	} else {
+	}
+	else {
 		return getRequestVar($name);
 	}
 }
@@ -387,7 +388,7 @@ function showChoice2($target, $args, $popup = true) {
 	}
 
 	if($popup) {
-		$args['type']	= 'popup';
+		$args['type'] = 'popup';
 	}
 
 	return makeGalleryUrl($target, $args);
@@ -396,10 +397,10 @@ function showChoice2($target, $args, $popup = true) {
 /**
  * Returns the HTML Code for a submit button (<input type="submit">).
  *
- * @param string   $name				Name of the button.
- * @param string   $value				Value shown on the button.
- * @param array	   $additionalAttrs 	Additional HTML attributes
- * @return string  $html				The HTML code.
+ * @param string	$name			 Name of the button.
+ * @param string	$value			Value shown on the button.
+ * @param array	 $additionalAttrs  Additional HTML attributes
+ * @return string   $html			 The HTML code.
  * @author Jens Tkotz
  */
 function gSubmit($name, $value, $additionalAttrs = array()) {
@@ -426,7 +427,7 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
 	$attrList = array_merge($attrList, $additionalAttrs);
 	$attrs = generateAttrs($attrList);
 
-	$html = "<input$attrs>\n";
+	$html = "  <input$attrs>\n";
 
 	return $html;
 }
@@ -570,7 +571,7 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 
 	$attrs = generateAttrs($attrList);
 
-	$html = "<input$attrs>\n";
+	$html = "  <input$attrs>\n";
 
 	return $html;
 }

@@ -25,10 +25,16 @@
 /**
  * This is a wrapper around different valchecks
  * The input is the value, the type its tested against and optional a default
- * The return is given by the valcheck function
-*/
-function sanityCheck($var, $type, $default = NULL, $choices = array()) {
-	  switch ($type) {
+  *
+ * @param mixed		$value
+ * @param string	$type
+ * @param mixed		$default
+ * @param array		$choices
+ * @return mixed	$result
+ * @author Jens Tkotz
+ */
+function sanityCheck($value, $type, $default = NULL, $choices = array()) {
+	switch ($type) {
 		case 'int':
 			return isValidInteger($var, true, NULL, true);
 			break;

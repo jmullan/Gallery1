@@ -90,7 +90,12 @@ function fs_file_get_contents($filename) {
 
 	return $content;
 }
-
+/**
+ * Tells whether the given filename is a directory.
+ *
+ * @param string    $filename
+ * @return boolean	TRUE if the filename exists and is a directory, FALSE  otherwise.
+ */
 function fs_is_dir($filename) {
 	return @is_dir($filename);
 }
@@ -98,7 +103,7 @@ function fs_is_dir($filename) {
 /**
  * Checks whether a file exists on the local filesystem and is a regular file
  *
- * @param  string   $filename
+ * @param  string    $filename
  * @return boolean
  */
 function fs_is_file($filename) {
