@@ -10,15 +10,26 @@ function cursor_nav(e) {
 	else {
 		taste = e.which;
 	}
+
+	if(document.getElementById("g-navtable").dir == 'ltr') {
+		var back    = 37;
+		var forward = 39;
+	}
+	else {
+		var back    = 39;
+		var forward = 37;
+
+	}
+
 	switch (taste) {
-		case 37:
+		case back:
 			backward = document.getElementById("g-nav-backward_1");
 			if(backward) {
 				window.location.href = backward.href;
 			}
 		break;
 
-		case 39:
+		case forward:
 			forward = document.getElementById("g-nav-forward_1");
 			if(forward) {
 				window.location.href = forward.href;

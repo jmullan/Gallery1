@@ -926,7 +926,7 @@ class Album {
 	 * Returns ratio of highlight,
 	 * which is either thumb ratio of parent album, or value from config if root.
 	 * @return string   $size
-	 * @author Jens Tkotz <jens@peino.de>
+	 * @author Jens Tkotz
 	 */
 	function getHighlightRatio() {
 		global $gallery;
@@ -1443,19 +1443,8 @@ class Album {
 		}
 		else {
 			$item->setCaption("$caption");
-			/* Only try to get Capture Date if file could have it.
-			 * Otherwise use file creation time
-			*/
-			if(hasExif($tag)) {
-				$originalItemCaptureDate = getItemCaptureDate($file);
-			}
-			else {
-				$originalItemCaptureDate = filemtime($file);
-			}
-
-			$now = time();
-			$item->setItemCaptureDate($originalItemCaptureDate);
-			$item->setUploadDate($now);
+			$item->setItemCaptureDate('', $this);
+			$item->setUploadDate(time());
 
 			/* Prior to 1.6 'desciption' was an extrafield */
 			if(!empty($extraFields)) {
@@ -2229,9 +2218,11 @@ class Album {
 		return $itemCaptureDate;
 	}
 
-	function setItemCaptureDate($index, $itemCaptureDate='') {
-		$photo = &$this->getPhoto($index);
-		$photo->setItemCaptureDate($itemCaptureDate);
+	function setItemCaptureDate($index, $itemCaptureDate = '') {
+		$photo	= &$this->getPhoto($index);
+		$ret	= $photo->setItemCaptureDate($itemCaptureDate, $this);
+
+		return $ret;
 	}
 
 	function rebuildCaptureDates($recursive = false) {

@@ -173,7 +173,7 @@ if(!includeTemplate('navigator.tpl')) {
 ?>
 
 <!-- Navigator -->
-<table cellspacing="0" cellpadding="0" width="100%">
+<table cellspacing="0" cellpadding="0" id="g-navtable" dir="<?php echo $gallery->direction; ?>">
 <tr>
 	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $fpContent ?></td>
 	<td class="<?php echo $pClass ?>" width="25" height="18"><?php echo $ppContent ?></td>
