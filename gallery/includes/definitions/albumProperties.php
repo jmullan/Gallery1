@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * Defintion for album properties.
  *

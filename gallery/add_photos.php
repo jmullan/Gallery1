@@ -19,9 +19,10 @@
  *
  * $Id$
  */
-?>
-<?php
 
+/**
+ * @package Add Photos
+ */
 require_once(dirname(__FILE__) . '/init.php');
 
 $mode = getRequestVar('mode');
@@ -39,7 +40,8 @@ if (isset($mode)) {
 	if ($modeCookie != $mode) {
 	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
 	}
-} else {
+}
+else {
 	if (isset($modeCookie)) {
 	    $mode = $modeCookie;
 	}

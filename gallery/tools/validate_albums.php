@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require(dirname(dirname(__FILE__)) . '/init.php');
 require(dirname(__FILE__) . '/lib/lib-validate_albums.php');
@@ -78,6 +76,7 @@ else {
 	switch ($action) {
 		case 'unlinkInvalidAlbum':
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
+
 			if ($verified) {
 				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 

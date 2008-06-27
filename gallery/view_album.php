@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -36,19 +34,19 @@ if (empty($gallery->session->albumName) ||
 	return;
 }
 
-$gallery->session->offlineAlbums[$gallery->album->fields["name"]]=true;
+$gallery->session->offlineAlbums[$gallery->album->fields['name']] = true;
 
 $page = intval($page);
 if (empty($page) || $page < 0) {
 	if (isset($gallery->session->albumPage[$gallery->album->fields['name']])) {
-		$page = $gallery->session->albumPage[$gallery->album->fields["name"]];
+		$page = $gallery->session->albumPage[$gallery->album->fields['name']];
 	}
 	else {
 		$page = 1;
 	}
 }
 else {
-	$gallery->session->albumPage[$gallery->album->fields["name"]] = $page;
+	$gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 }
 
 $albumName = $gallery->session->albumName;
@@ -238,10 +236,10 @@ if (!$gallery->session->offline) { ?>
   </script>
 <?php }
 
-$adminText = '';
-$albums_str = gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, gTranslate('core', "No albums"));
-$imags_str = gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "no images"));
-$pages_str = gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "0 pages"));
+$adminText	= '';
+$albums_str	= gTranslate('core', "1 sub-album", "%d sub-albums", $numAlbums, gTranslate('core', "No albums"), true);
+$imags_str	= gTranslate('core', "1 image", "%d images", $numPhotos, gTranslate('core', "No images"), true);
+$pages_str	= gTranslate('core', "1 page", "%d pages", $maxPages, gTranslate('core', "0 pages"), true);
 
 if ($numAlbums && $maxPages > 1) {
 	$adminText .= sprintf(gTranslate('core', "%s and %s in this album on %s"),
@@ -540,10 +538,10 @@ if (($gallery->album->getPollType() == 'rank') && canVote()) {
 				$myAlbum->load($albumName);
 
 				$pollInfoTable->addElement(array('content' =>
-				galleryLink(
-				makeAlbumUrl($albumName),
-				sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
-				)
+					galleryLink(
+					   makeAlbumUrl($albumName),
+					   sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']))
+					)
 				);
 			}
 			else {
@@ -554,7 +552,7 @@ if (($gallery->album->getPollType() == 'rank') && canVote()) {
 
 				$photoId = str_replace('item.', '', $id);
 				$pollInfoTable->addElement(array('content' =>
-				galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
+				   galleryLink(makeAlbumUrl($gallery->session->albumName, $photoId), $desc)
 				));
 			}
 		}
@@ -618,7 +616,7 @@ if (canVote()) {
 	$va_poll_box3 .= ' ';
 	$va_poll_box3 .= sprintf(gTranslate('core', "You MUST click on %s for your vote to be recorded."), "<b>".gTranslate('core', "Vote")."</b>");
 	$va_poll_box3 .= ' ';
-	
+
 	if ($gallery->album->getPollType() == 'rank') {
 		$voteCount = $gallery->album->getPollScale();
 		$va_poll_box3 .= gTranslate('core',
@@ -653,7 +651,7 @@ if ($numPhotos) {
 	// Find the correct starting point, accounting for hidden photos
 	$rowStart = 0;
 	$cnt = 0;
-	$form_pos=0; // counts number of images that have votes below, ie withou albums;
+	$form_pos = 0; // counts number of images that have votes below, ie without albums;
 	$rowStart = $start;
 
 	while ($rowCount < $rows) {
@@ -694,7 +692,7 @@ if ($numPhotos) {
 			else {
 				unset($myAlbum);
 				$scaleTo = 0;  // thumbs already the right
-				//	size for this album
+				// size for this album
 				list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			}
 
@@ -778,7 +776,7 @@ if ($numPhotos) {
 					$fullOnly = (isset($gallery->session->fullOnly) &&
 								!strcmp($gallery->session->fullOnly, 'on') &&
 								!strcmp($gallery->album->fields['use_fullOnly'], 'yes'));
-					
+
 					list($wr, $hr) = $image->getDimensions();
 					list($wf, $hf) = $image->getRawDimensions();
 					/* display file sizes if dimensions are identical */
@@ -838,7 +836,7 @@ if ($numPhotos) {
 			$photo->isHighlight() && !$gallery->session->offline) {
 				echo "(" . gTranslate('core', "highlight") .")<br>";
 			}
-			
+
 			if (isset($myAlbum)) {
 				$myDescription = $myAlbum->fields['description'];
 				$buf = '';
@@ -923,7 +921,7 @@ if ($numPhotos) {
 
 			$albumItemOptions = getItemActions($i, false, true, true);
 			if (sizeof($albumItemOptions) > 2 ||
-				(sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif']))) 
+				(sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif'])))
 			{
 				echo drawSelect2("s$i", $albumItemOptions, array(
 										'onChange' => "imageEditChoice(document.vote_form.s$i)",

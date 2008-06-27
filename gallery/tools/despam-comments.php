@@ -23,8 +23,6 @@
  * MT-Blacklist, a plugin for MovableType that helps kill spam dead.  No code
  * was taken, though.
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
 	require_once(dirname(dirname(__FILE__)) . '/init.php');
@@ -42,13 +40,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
 <title><?php echo $gallery->app->galleryTitle ?></title>
-<?php 
+<?php
 common_header() ;
 ?>
 
 </head>
 <body dir="<?php echo $gallery->direction ?>">
-<?php  
+<?php
 }
 includeHtmlWrap("gallery.header");
 $adminbox['text'] ='<span class="head">'. _("Find and remove comment spam") .'</span>';
@@ -193,14 +191,16 @@ function findBlacklistedComments() {
     $stop = explode(' ', microtime());
     $elapsed = ($stop[0] - $start[0]) + ($stop[1] - $start[1]);
 
-    sprintf('<h3>'. _("Scanned %d albums, %d photos, %d comments in %2.2f seconds") .'</h3>',
+    printf('<h3>'. _("Scanned %d albums, %d photos, %d comments in %2.2f seconds") .'</h3>',
         $totals['albums'],
         $totals['photos'],
         $totals['comments'],
         $elapsed);
+
     if (empty($list)) {
         printf("<h3>%s</h3>", _("No spam comments."));
-    } else {
+    }
+    else {
         print makeFormIntro('tools/despam-comments.php', array('name' => 'deleteComments'));
         print "\n<table>";
         printf("\n\t<tr> <th> %s </th> <th>%s</th> </tr>", _("Entry"), _("Delete"));

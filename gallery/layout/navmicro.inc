@@ -1,5 +1,9 @@
 <?php /* $Id$ */ ?>
 <?php
+/*
+	$Id$
+*/
+
 global $navigator;
 global $full;
 
@@ -49,6 +53,7 @@ if ( !strcmp($gallery->album->fields["nav_thumbs_style"],"dynamic") ) {
 
 	/* Create a list of the previous thumbs, starting at the farthest back. */
 	$navThumbsPrev = '';
+
 	for ($i = $gallery->album->fields["nav_thumbs_prev_shown"]; $i >= 1; $i--) {
 		if ( $navpage-$i < 0 ) { continue; }
 		$prevPage = $navigator["allIds"][$navpage-$i];

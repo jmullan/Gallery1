@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
+
 class Image {
 	var $name;
 	var $type;
@@ -67,7 +66,7 @@ class Image {
 		/*
 		 * Fix a specific bug where the width/height are reversed
 		 * for sized images
-		*/
+		 */
 		if ($this->version < 3) {
 			if ($this->resizedName) {
 				list($w, $h) = getDimensions("$dir/$this->resizedName.$this->type");
@@ -106,8 +105,10 @@ class Image {
 		// getting rid of the resized image
 		if (stristr($target, "orig")) {
 			list($w, $h) = getDimensions("$dir/$this->name.$this->type");
+
 			$this->width = $w;
 			$this->height = $h;
+
 			if (fs_file_exists("$dir/$this->resizedName.$this->type")) {
 				fs_unlink("$dir/$this->resizedName.$this->type");
 			}

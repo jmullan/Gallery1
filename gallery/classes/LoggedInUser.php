@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class LoggedinUser extends Abstract_User {
 	function LoggedinUser() {
 		$this->username = "LOGGEDIN";

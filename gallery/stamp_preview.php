@@ -21,17 +21,14 @@
  *
  * $Id$
  */
-?>
-<?php
+
 // ###################################################################
 // # IBPS E-C@ard for Gallery           Version 1                    #
 // # Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de      #
 // # Ported for Gallery By freenik      webmaster@cittadipolicoro.com#
 // ###################################################################
 
-/* Modified by Jens Tkotz <jens@jems.de> */
-?>
-<?php
+/* Modified by Jens Tkotz */
 
 require_once(dirname(__FILE__) . '/init.php');
 

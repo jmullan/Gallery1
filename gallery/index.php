@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 global $GALLERY_EMBEDDED_INSIDE;
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
@@ -31,7 +29,7 @@ global $MOS_GALLERY_PARAMS;
 // sure that the option var has been extracted into the environment
 // otherwise it just won't work.
 $option		= isset($_REQUEST['option']) ? $_REQUEST['option'] : null;
-$op			= isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
+$op		= isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop		= isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name		= isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include	= isset($_REQUEST['include']) ? $_REQUEST['include'] : null;

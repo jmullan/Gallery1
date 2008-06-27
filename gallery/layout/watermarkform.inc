@@ -2,17 +2,17 @@
 /*
  * Gallery - a web based photo album viewer and editor
  * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -34,31 +34,31 @@ global $wmSelect;
 
 $err = "";
 if (!isset($wmAlignX) || ($wmAlignX <= 0)) {
-    $wmAlignX = 0;
+	$wmAlignX = 0;
 }
 
 if (!isset($wmAlignY) || ($wmAlignY <= 0)) {
-    $wmAlignY = 0;
+	$wmAlignY = 0;
 }
 
 if (!isset($wmName)) {
-    $wmName = '';
+	$wmName = '';
 }
 
 if (!isset($wmAlign)) {
-    $wmAlign = 9;
+	$wmAlign = 9;
 }
 
 if (!isset($previewFull)) {
-    $previewFull = 0;
+	$previewFull = 0;
 }
 
 if (!isset($wmSelect)) {
-    $wmSelect = $gallery->app->watermarkSizes;
+	$wmSelect = $gallery->app->watermarkSizes;
 }
 
 if (!isset($wmAlign)) {
-    $wmAlign = 0;
+	$wmAlign = 0;
 }
 
 echo "\n<p>";

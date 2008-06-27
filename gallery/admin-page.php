@@ -20,8 +20,6 @@
  * $Id$
  *
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
 		require_once(dirname(__FILE__) . '/init.php');
@@ -70,7 +68,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
+	doctype();
 ?>
 <html>
 <head>

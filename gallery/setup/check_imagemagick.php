@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php 
+
 require_once(dirname(__FILE__) . '/init.php');
 
 doctype();
@@ -67,7 +66,7 @@ if (gallerySanityCheck() != NULL) {
 } else {
     require(GALLERY_BASE . '/config.php');
 ?>
-			<td class="Success"><?php echo gTranslate('config', "OK") ?></td>
+			<td class="success"><?php echo gTranslate('config', "OK") ?></td>
 		</tr>
 		</table>
 <?php } ?>

@@ -19,9 +19,8 @@
  *
  * $Id$
  */
-?>
-<?php 
-    require_once(dirname(__FILE__) . '/init.php');
+
+require_once(dirname(__FILE__) . '/init.php');
 
     echo doctype();
 ?>
@@ -76,7 +75,7 @@ foreach($tests as $testname => $args) {
     <a href="#" onClick="gallery_toggle('<?php echo $testname; ?>'); return false;"><?php echo gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toogleBut_$testname")); ?></a>
     <span class="<?php echo $args['class']; ?>"><?php echo $args['text']; ?></span>
   </div>
-  <div style="width:100%; display:none;" id="toogleFrame_<?php echo $testname; ?>">
+  <div style="width:100%; display:none;" id="toggleFrame_<?php echo $testname; ?>">
     <table>
 	  <tr>
         <td class="desc" colspan="2"><?php echo $args['hinttext']; ?></td>

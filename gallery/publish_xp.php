@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -28,12 +26,12 @@ list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newA
 
 if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
     $proto = "https";
-} else {
+}
+else {
     $proto = "http";
 }
 
 if(empty($cmd)){
-
   header("Cache-control: private");
   header("Content-Type: application/octet-stream");
   header("Content-Disposition: filename=install_registry.reg");
@@ -140,6 +138,7 @@ if (!strcmp($cmd, "fetch-albums")) {
         $myAlbum=$albumDB->getAlbum($gallery->user, $i);
         $albumName = $myAlbum->fields['name'];
         $albumTitle = $myAlbum->fields['title'];
+
         if ($gallery->user->canAddToAlbum($myAlbum)) {
 		echo "\t<option ";
 		if (isset($album) && $albumName == $album) echo "selected ";
@@ -184,7 +183,9 @@ function appendNestedAlbums($level, $permission, $albumName, $albumCompare = "")
 				$nextTitle = $nextTitle;
                 $nextName = $nestedAlbum->fields['name'];
 				echo "\t<option ";
-				if ($nextName == $albumCompare) echo "selected ";
+				if ($nextName == $albumCompare) {
+					echo "selected ";
+				}
 				echo "value=\"$nextName\">$nextTitle</option>\n";
                 appendNestedAlbums($level + 1, $permission, $myName, $albumCompare);
             }
@@ -365,12 +366,12 @@ if (!strcmp($cmd, "add-item")) {
 
 	if (!empty($error)) {
 	    	echo gallery_error($error);
-	} else {
+	}
+	else {
     		echo "SUCCESS";
 	}
 }
-?>
-<?php
+
 function forceQuestionMark($url) {
     if (!strstr("?", $url)) {
 	$url .= "?";

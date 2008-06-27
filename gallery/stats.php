@@ -319,7 +319,8 @@ debugMessage(sprintf (gTranslate('core', "Cache filename = %s ; enabled = %s ; e
 if (!isset($refreshcache) &&
     !isset($period) &&
     !isset($album)  &&
-    $cache->enabled ) {
+	$cache->enabled )
+{
     if (fs_file_exists($cacheFilename)) {
         $cacheState = fs_stat($cacheFilename);
         $cacheTime = $cacheState[9];

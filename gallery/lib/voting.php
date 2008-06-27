@@ -19,16 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
- * expects as input an array where the keys
- * are string labels and the values are
- * numbers.  Values must be non-negative
- * returns an HTML bar graph as a string
- * assumes bar.gif, located in images/
- * modified from example in PHP Bible
+ * Expects as input an array where the keys are string labels and the values are numbers.
+ * Values must be non-negative returns an HTML bar graph as a string assumes bar.gif,
+ * located in images/
+ * Modified from example in PHP Bible
  */
 function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $col_1_head=null, $col_2_head=null) {
 	global $gallery;
@@ -90,18 +86,22 @@ function saveResults($votes) {
 				if (isset($gallery->album->fields["votes"][$vote_key][getVotingID()])) {
 					unset($gallery->album->fields["votes"][$vote_key][getVotingID()]);
 				}
-			} else {
+			}
+			else {
 				$gallery->album->fields["votes"][$vote_key][getVotingID()]=intval($vote_value);
 			}
 		}
-	} else {
+	}
+	else {
 		krsort($votes, SORT_NUMERIC);
 		foreach ($votes as $vote_value => $vote_key) {
 			if (isset($gallery->album->fields["votes"] [$vote_key] [getVotingID()]) &&
-			$gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value)) {
+			    $gallery->album->fields["votes"] [$vote_key] [getVotingID()] ===intval($vote_value))
+			{
 				//vote hasn't changed, so skip to next one
 				continue;
 			}
+
 			foreach ($gallery->album->fields["votes"] as $previous_key => $previous_vote) {
 				if (isset($previous_vote[getVotingID()]) &&
 					$previous_vote[getVotingID()] === intval($vote_value))

@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
@@ -99,7 +97,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 	/* prefetching/navigation */
 	$topUrl  = makeGalleryUrl('albums.php', array('set_albumListPage' => 1));
-    $firstUrl = makeGalleryUrl('albums.php',array('set_albumListPage' => 1));
+	$firstUrl = makeGalleryUrl('albums.php',array('set_albumListPage' => 1));
 	$prevUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']-1));
 	$nextUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $navigator['page']+1));
 	$lastUrl = makeGalleryUrl('albums.php', array('set_albumListPage' => $maxPages));

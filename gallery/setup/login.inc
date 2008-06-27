@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 list($login, $username, $gallerypassword) =
 	getRequestVar(array('login', 'username', 'gallerypassword'));

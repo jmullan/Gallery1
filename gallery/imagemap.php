@@ -19,8 +19,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 /**
  * @package Item
  */
@@ -55,56 +54,57 @@ if (!isset($full) || (isset($full) && !$gallery->album->isResized($index))) {
 }
 
 switch($formaction) {
-    case 'delete':
-        if(!empty($imageareas)) {
-            foreach($imageareas as $nr) {
-                $gallery->album->deleteImageArea($index, $nr);
-            }
-            $gallery->album->save();
-        }
-    break;
+	case 'delete':
+		if(!empty($imageareas)) {
+			foreach($imageareas as $nr) {
+				$gallery->album->deleteImageArea($index, $nr);
+			}
+			$gallery->album->save();
+		}
+		break;
 
-    case 'create':
-        list($xvals, $yvals, $url, $text) = getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
-        if (isset($xvals) && isset($yvals)) {
-            $xcoords = explode(',', $xvals);
-            $ycoords = explode(',', $yvals);
+	case 'create':
+		list($xvals, $yvals, $url, $text) = getRequestVar(array('xvals', 'yvals', 'areaurl', 'areatext'));
+		if (isset($xvals) && isset($yvals)) {
+			$xcoords = explode(',', $xvals);
+			$ycoords = explode(',', $yvals);
 
-            if (!empty($xcoords)) {
-                $coords = $xcoords[0] .',' . $ycoords[0];
+			if (!empty($xcoords)) {
+				$coords = $xcoords[0] .',' . $ycoords[0];
 
-                for ($i = 1 ; $i < sizeof($xcoords); $i++) {
-                    $coords .= ','. $xcoords[$i] .',' . $ycoords[$i];
-                }
+				for ($i = 1 ; $i < sizeof($xcoords); $i++) {
+					$coords .= ','. $xcoords[$i] .',' . $ycoords[$i];
+				}
 
-                $gallery->album->addImageArea($index, array(
-                    'coords'   => $coords,
-                    'x_coords' => $xvals,
-                    'y_coords' => $yvals,
+				$gallery->album->addImageArea($index, array(
+					'coords'   => $coords,
+					'x_coords' => $xvals,
+					'y_coords' => $yvals,
 					'url'	  => $url,
-                    'hover_text' => $text)
-                );
+					'hover_text' => $text)
+				);
 
-                $gallery->album->save();
-            }
-        }
-    break;
+				$gallery->album->save();
+			}
+		}
+	
+		break;
 
-    case 'update':
-        list($url, $text) = getRequestVar(array('areaurl', 'areatext'));
+	case 'update':
+		list($url, $text) = getRequestVar(array('areaurl', 'areatext'));
 
-        foreach($imageareas as $area_index) {
-            $gallery->album->updateImageArea($index, $area_index, array(
-				'url'	  => $url,
-                'hover_text' => $text)
-            );
-        }
+		foreach($imageareas as $area_index) {
+			$gallery->album->updateImageArea($index, $area_index, array(
+			'url'	  => $url,
+			'hover_text' => $text)
+			);
+		}
 
-        $gallery->album->save();
-    break;
+		$gallery->album->save();
+		break;
 
-    default:
-    break;
+	default:
+		break;
 }
 
 $photo = $gallery->album->getPhoto($index);

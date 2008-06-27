@@ -19,9 +19,8 @@
  *
  * $Id$
  */
-?>
-<?php 
-    require_once(dirname(__FILE__) . '/init.php');
+
+require_once(dirname(__FILE__) . '/init.php');
     
     doctype();
 ?>
@@ -38,7 +37,7 @@
 
 <div class="sitedesc">
 <?php 
-	printf(gTranslate('config', "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
+    printf(gTranslate('config', "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
     printf(gTranslate('config', "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
 ?>
 </div>

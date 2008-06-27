@@ -1,6 +1,14 @@
 <?php
 // $Id$
 
+/**
+ * Prints a wrapped image. Wrapped inside a given frame and/or link.
+ *
+ * @package  Gallery
+ * @todo     Cleanup
+ *
+ * @version $Id$
+ */
 
 //-- shorten the variables for convinience ---
 $borderWidth = $gallery->html_wrap['borderWidth'];
@@ -14,9 +22,11 @@ $frame = $gallery->html_wrap['frame'];
 $attr = isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : '';
 
 $base = '';
+
 if (isset($gallery->html_wrap['base'])) {
     $base = $gallery->html_wrap['base'];
-} else {
+}
+else {
     $base = getGalleryBaseUrl();
 }
 
@@ -67,7 +77,6 @@ switch ($frame) {
 	    $hLL = $imageHeight - $heightLLT - $heightLLB;
 	    $hRR = $imageHeight - $heightRRT - $heightRRB;
 ?>
-
   <table cellspacing="0" cellpadding="0" dir="ltr" style="margin: 0 auto">
   <tr>
 	<!-- TL -->

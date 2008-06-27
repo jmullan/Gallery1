@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * @package Filesystem_unix
  */
@@ -90,7 +89,12 @@ function fs_file_get_contents($filename) {
 
 	return $content;
 }
-
+/**
+ * Tells whether the given filename is a directory.
+ *
+ * @param string    $filename
+ * @return boolean	TRUE if the filename exists and is a directory, FALSE  otherwise.
+ */
 function fs_is_dir($filename) {
 	return @is_dir($filename);
 }

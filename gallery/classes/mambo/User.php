@@ -22,8 +22,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 class Mambo_User extends Abstract_User {
 	var $db;
 	var $prefix;

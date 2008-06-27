@@ -1,4 +1,9 @@
 <?php
+/**
+ * Gallery SVN info
+ * $Id: Grammar.php 149 2008-06-26 23:09:32Z jens $
+ */
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 //
 // +----------------------------------------------------------------------+
@@ -19,12 +24,12 @@
 // | Authors: Many @ Sitepointforums Advanced PHP Forums                  |
 // +----------------------------------------------------------------------+
 //
-// $Id: Grammar.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp $
+// Id: Grammar.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp
 //
 /**
 * For dealing with HTML's special cases
 * @package XML_HTMLSax3
-* @version $Id: Grammar.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp $
+* @version Id: Grammar.php,v 1.2 2007/10/29 21:41:35 hfuecks Exp
 */
 /**
 * Passed as fourth argument to opening and closing handler to signify

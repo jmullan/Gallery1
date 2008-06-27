@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Nuke5_AdminUser extends Abstract_User {
 	var $db;
 	var $prefix;

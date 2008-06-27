@@ -20,7 +20,7 @@ if ($gallery->user->isAdmin()) {
 }
 
 $commentTable->addElement(array(
-        'content' => _("From:"),
+        'content' => gTranslate('core', "From:"),
         'cellArgs' => array('class' => 'commentboxhead', 'width' => 50)));
 
 $commentTable->addElement(array(
@@ -45,7 +45,7 @@ if ($gallery->user->canWriteToAlbum($gallery->album)) {
 	);
 
    $commentTable->addElement(array(
-        'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">['. _("delete comment") . ']</a>',
+        'content' => '<a href="#" onclick="javascript:' . popup($url,1) . '">['. gTranslate('core', "delete comment") . ']</a>',
         'cellArgs' => array('colspan' => '3', 'class' => 'commentboxfooter', 'align' => 'center')));
 }
 

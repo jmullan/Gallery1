@@ -92,7 +92,8 @@ foreach ($features as $feature => $dependents) {
 
 	if ($use) {
 		$gallery->session->configData .= use_feature($feature);
-	} else {
+	}
+	else {
 		$gallery->session->configData .= no_feature($feature, $cause);
 	}
 }
@@ -105,7 +106,16 @@ $graphtool = '';
 $graphpath = '';
 $graphtest = array();
 
-$continueTypes = array('block_start', 'block_end', 'group_start', 'group_end', 'subgroup', 'subgroup_end');
+$continueTypes = array(
+	'block_start',
+	'block_end',
+	'group_start',
+	'group_end',
+	'subgroup',
+	'subgroup_end',
+	'message'
+);
+
 foreach ($constants as $key => $val) {
 
 	if (isset($val['enabled']) && $val['enabled'] == 'no') continue;
@@ -165,6 +175,7 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]['remove_empty'])) {
 			continue;
 		}
+
 		if (isset($constants[$key]['allow_empty'])) {
 			$line = one_constant($key, $real);
 			$gallery->session->configData .= $line;
@@ -176,13 +187,16 @@ foreach ($constants as $key => $val) {
 		else if (!strcmp($key, 'ImPath')) {
 		        $graphtest['ImPath'] = 1;
 		}
+
 		if (isset($constants[$key]['optional'])) {
 			$gallery->session->configData .= '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
-		} else {
+		}
+		else {
 			$gallery->session->configData .= error_missing($constants[$key]['prompt'], $key).'<br>';
 			$error++;
 		}
-	} else {
+	}
+	else {
 		if (isset($constants[$key]['filename'])) {
 			$real = fs_export_filename($real);
 		}
@@ -267,8 +281,7 @@ foreach ($constants as $key => $val) {
 				continue;
 			}
 
-			if (!is_writeable($dir) ||
-			    !test_write_to_dir($dir)) {
+			if (!is_writeable($dir) || !test_write_to_dir($dir)) {
 				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
 						$key, $dir,
 						'<br><b><code>' .
@@ -289,7 +302,8 @@ foreach ($constants as $key => $val) {
 				$line = array_constant($key, $real);
 			} elseif (is_array($real) && $constants[$key]['type'] == 'password') {
 				$line = one_constant($key, $real[2]);
-			} else {
+			}
+			else {
 				$line = one_constant($key, $real);
 			}
 			$gallery->session->configData .= $line;
@@ -299,7 +313,8 @@ foreach ($constants as $key => $val) {
 			$func = $constants[$key]['verify-func'];
 			if (isset($constants[$key]['verify-func-takes-graphics-type'])) {
 			    list($success, $fail, $warn) = $func($real, $graphtool);
-			} else {
+			}
+			else {
 			    list($success, $fail) = $func($real);
 			}
 
@@ -309,7 +324,8 @@ foreach ($constants as $key => $val) {
 				}
 				if (is_string($fval)) {
 					$gallery->session->configData .= gallery_error($fval);
-				} else if (is_array($fval)) {
+				}
+				else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
 							$gallery->session->configData .= gallery_error($msg);
@@ -326,10 +342,10 @@ foreach ($constants as $key => $val) {
 		}
 
 		/*
-		** This checks for dependencies between to constants values.
-		**
-		** Note: This breaks if the key of the constant is an array.
-		*/
+		 * This checks for dependencies between to constants values.
+		 *
+		 * Note: This breaks if the key of the constant is an array.
+		 */
 		if (isset($constants[$key]['requires-features']) && $real == 'yes') {
 			$reqFeatures = $constants[$key]['requires-features'];
 			foreach ($reqFeatures as $reqFeatKey => $desc) {

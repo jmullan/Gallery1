@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 	require(dirname(__FILE__)  . '/init.php');
 
 list($mode) = getRequestVar(array('mode'));
@@ -140,12 +139,15 @@ if ($albumName) {
 			echo "\n  a:hover { color: #ff6600; }";
 
        	}
+
        	if ($gallery->album->fields["bgcolor"]) {
 			echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
        	}
+
 		if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
 			echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
        	}
+
        	if ($gallery->album->fields["textcolor"]) {
 			echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
 			echo ".head {color:".$gallery->album->fields['textcolor']."; }";
@@ -211,7 +213,8 @@ if ( !$gallery->session->offline) {
 		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
 			$adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"$url\">[" .$modes[$m] ."]</a>";
-		} else {
+		}
+		else {
 			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
 		}
 	}

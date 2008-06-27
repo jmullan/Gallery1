@@ -75,6 +75,7 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
 			$translation = sprintf(ngettext($singular, $plural, $count), $count);
 		}
 	}
+
 	return $translation;
 }
 
@@ -833,9 +834,9 @@ function languageSelector() {
 
 		foreach ($gallery->app->available_lang as $value) {
 			/*
-             * We only allow show languages which are available in gallery.
-             * These could differ to the languages defined in config.php.
-            */
+			 * We only allow show languages which are available in gallery.
+			 * These could differ to the languages defined in config.php.
+			 */
 			if (! isset($nls['language'][$value])) continue;
 
 			if (isset($GALLERY_EMBEDDED_INSIDE) && $GALLERY_EMBEDDED_INSIDE=='nuke') {

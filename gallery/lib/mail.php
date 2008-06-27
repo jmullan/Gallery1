@@ -23,8 +23,6 @@
 /**
  * @package	Mail
  */
-?>
-<?php
 
 /**
  * Checks whether an emailstring has a valid format or not
@@ -63,6 +61,16 @@ function emailDisclaimer() {
  * It has currently the same structure as gallery_mail_old
  * Return is true when succesfully send, otherise false
  * Errormessages are printed immediately
+ *
+ * @param string $to
+ * @param string $subject
+ * @param string $msg
+ * @param string $logmsg
+ * @param boolean $hide_recipients
+ * @param string $from
+ * @param boolean $isNotifyMail
+ * @param boolean $isHTML
+ * @return boolean
  */
 function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $from = NULL, $isNotifyMail = false, $isHTML = false) {
 	global $gallery;

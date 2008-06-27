@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class PostNuke_UserDB extends Abstract_UserDB {
 	var $db;
 	var $prefix;

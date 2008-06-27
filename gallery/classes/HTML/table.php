@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
+
 /**
  * Class for handling a HTML table
  *
@@ -57,9 +56,9 @@ class galleryTable {
 	 * Adds an element to the table.
 	 *
 	 * @param array $element	an element is an array consiting of 'content' and 'cellArgs'.
-	 *							'cellArgs' is also an array.
-	 * @return boolean		  true if the element was successfully added.
-	 * @author Jens Tkotz <jens@peino.de>
+	 *				'cellArgs' is also an array.
+	 * @return boolean		true if the element was successfully added.
+	 * @author Jens Tkotz
 	 */
 	function addElement($element = array('content' => null, 'cellArgs' => array())) {
 		if (!empty($element)) {

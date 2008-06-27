@@ -19,26 +19,25 @@
  *
  * $Id$
  */
-?>
-<?php
-    /**
-     * @package setup
-     */
 
-	/** 
-	 * Its important to have this as first position.
-	 * Otherwise constants are not defined.
-	 */
-	require (dirname(__FILE__) . '/init.php');
-	
-	require (dirname(__FILE__) . '/config_data.inc');
-	require (GALLERY_BASE . '/js/sectionTabs.js.php');
+/**
+ * @package setup
+ */
 
-	list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
-	  getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
+/**
+ * Its important to have this as first position.
+ * Otherwise constants are not defined.
+ */
 
+require (dirname(__FILE__) . '/init.php');
 
-doctype(); 
+require (dirname(__FILE__) . '/config_data.inc');
+require (GALLERY_BASE . '/js/sectionTabs.js.php');
+
+list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
+	getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
+
+doctype();
 ?>
 <html>
 <head>
@@ -96,11 +95,13 @@ configLogin(basename(__FILE__));
 
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
-} else if (isset($go_next)) {
+}
+else if (isset($go_next)) {
 	$setup_page = $next_page;
-} else if (isset($go_back)) {
+}
+else if (isset($go_back)) {
 	$setup_page = $back_page;
-}	
+}
 
 /* Array-ize the preserve list */
 if (!empty($preserve)) {
@@ -113,8 +114,9 @@ if (!empty($preserve)) {
 			continue;
 		}
 	}
-        $preserve = array();
-} else {
+	$preserve = array();
+}
+else {
 	$preserve = array();
 }
 
@@ -143,8 +145,9 @@ if (!isset($setup_page)) {
 $legit = array("check", "constants", "defaults", "confirm", "write");
 if (in_array($setup_page, $legit)) {
 	include(dirname(__FILE__) ."/$setup_page.inc");
-} else {
-	print _("Security violation") .".\n";
+}
+else {
+	print gTranslate('config', "Security violation") .".\n";
 	exit;
 }
 ?>

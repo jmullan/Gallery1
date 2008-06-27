@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class NobodyUser extends Abstract_User {
 	function NobodyUser() {
 		$this->username = "NOBODY";

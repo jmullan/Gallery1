@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * @package Filesystem_windows
  */
@@ -101,6 +100,7 @@ function fs_opendir($path) {
 	$path = fs_import_filename($path, 0);
 
 	$dir_handle = @opendir($path);
+	
 	if ($dir_handle) {
 		return $dir_handle;
 	}

@@ -20,8 +20,6 @@
  * $Id$
  *
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
         require_once(dirname(__FILE__) . '/init.php');

@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -97,14 +95,14 @@ if (getRequestVar('save')) {
     $gallery->album->fields["showDimensions"] = $showDimensions;
     $gallery->album->fields["ecards"] = $ecards;
 
-    $gallery->album->fields["nav_thumbs"] = $nav_thumbs;
-    $gallery->album->fields["nav_thumbs_style"] = $nav_thumbs_style;
-    $gallery->album->fields["nav_thumbs_first_last"] = $nav_thumbs_first_last;
-    $gallery->album->fields["nav_thumbs_prev_shown"] = $nav_thumbs_prev_shown;
-    $gallery->album->fields["nav_thumbs_next_shown"] = $nav_thumbs_next_shown;
-    $gallery->album->fields["nav_thumbs_location"] = $nav_thumbs_location;
-    $gallery->album->fields["nav_thumbs_size"] = $nav_thumbs_size;
-    $gallery->album->fields["nav_thumbs_current_bonus"] = $nav_thumbs_current_bonus;
+	$gallery->album->fields['nav_thumbs']			= $nav_thumbs;
+	$gallery->album->fields['nav_thumbs_style']		= $nav_thumbs_style;
+	$gallery->album->fields['nav_thumbs_first_last']	= $nav_thumbs_first_last;
+	$gallery->album->fields['nav_thumbs_prev_shown']	= $nav_thumbs_prev_shown;
+	$gallery->album->fields['nav_thumbs_next_shown']	= $nav_thumbs_next_shown;
+	$gallery->album->fields['nav_thumbs_location']		= $nav_thumbs_location;
+	$gallery->album->fields['nav_thumbs_size']		= $nav_thumbs_size;
+	$gallery->album->fields['nav_thumbs_current_bonus']	= $nav_thumbs_current_bonus;
 
     /* Poll properties */
     for ($i = 0; $i < $gallery->album->getPollScale() ; $i++) {
@@ -161,26 +159,27 @@ if (getRequestVar('save')) {
         $gallery->album->setNestedProperties();
     }
 
-    $reloadOpener = true;
+	$reloadOpener = true;
 }
 
 
 /* Custom / Extra Fields */
 function num_special_fields($extra_fields) {
-    $num_special_fields = 0;
-    foreach (array_keys(automaticFieldsList()) as $special_field) {
-        if (in_array($special_field, $extra_fields)) {
-            $num_special_fields++;
-        }
-    }
+	$num_special_fields = 0;
 
-    foreach (array("Title", "AltText") as $named_field) {
-        if (in_array($named_field, $extra_fields)) {
-            $num_special_fields++;
-        }
-    }
+	foreach (array_keys(automaticFieldsList()) as $special_field) {
+		if (in_array($special_field, $extra_fields)) {
+			$num_special_fields++;
+		}
+	}
 
-    return $num_special_fields;
+	foreach (array("Title", "AltText") as $named_field) {
+		if (in_array($named_field, $extra_fields)) {
+			$num_special_fields++;
+		}
+	}
+
+	return $num_special_fields;
 }
 
 $multiple_choices_EF = array(
@@ -188,21 +187,23 @@ $multiple_choices_EF = array(
     'AltText' => gTranslate('core', "Alt text / Tooltip")
 );
 
-$extra_fields = $gallery->album->getExtraFields();
-$checked_EF = array();
+$extra_fields	= $gallery->album->getExtraFields();
+$checked_EF	= array();
 
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
-    if ($automatic === "EXIF" &&
-       (($gallery->album->fields["use_exif"] != "yes") || !isset($gallery->app->use_exif))) {
-        continue;
-    }
-    $multiple_choices_EF[$automatic] = $printable_automatic;
+	if ($automatic === "EXIF" &&
+		(($gallery->album->fields['use_exif'] != "yes") || !isset($gallery->app->use_exif)))
+	{
+		continue;
+	}
+
+	$multiple_choices_EF[$automatic] = $printable_automatic;
 }
 
 foreach($multiple_choices_EF as $field => $trash) {
-    if (in_array($field, $extra_fields)) {
-        $checked_EF[] = $field;
-    }
+	if (in_array($field, $extra_fields)) {
+		$checked_EF[] = $field;
+	}
 }
 
 $num_user_fields = sizeof($extra_fields) - num_special_fields($extra_fields);
@@ -210,18 +211,19 @@ $num_user_fields = sizeof($extra_fields) - num_special_fields($extra_fields);
 $customFields = array();
 $i = 1;
 foreach ($extra_fields as $value) {
-    if (in_array($value, array_keys(automaticFieldsList())) || !strcmp($value, "Title") || !strcmp($value, "AltText")) {
-        continue;
-    }
+	if (in_array($value, array_keys(automaticFieldsList())) || !strcmp($value, "Title") || !strcmp($value, "AltText")) {
+		continue;
+	}
 
-    $customFields["cf_$i"] = array(
-        'name' => 'extra_fields[]',
-        'prompt' => sprintf(gTranslate('core', "Field %s:"),$i),
-        'desc' => '',
-        'type' => 'text',
-        'value' => $value
-    );
-    $i++;
+    	$customFields["cf_$i"] = array(
+		'name'		=> 'extra_fields[]',
+		'prompt'	=> sprintf(gTranslate('core', "Field %s:"),$i),
+		'desc'		=> '',
+		'type'		=> 'text',
+		'value'		=> $value
+	);
+
+	$i++;
 }
 /* We may load the properties now the second time, but its needed as they might have change above. */
 include (dirname(__FILE__) . '/includes/definitions/albumProperties.php');

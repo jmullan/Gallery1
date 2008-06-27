@@ -18,20 +18,19 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
+
 require_once(dirname(__FILE__) . '/init.php');
 
 // Set defaults, if RSS has not been setup via config wizard
 if (!isset($gallery->app->rssEnabled)) {
-	$gallery->app->rssEnabled		= "yes";
-	$gallery->app->rssMode			= "basic";
-	$gallery->app->rssHighlight		= "";
-	$gallery->app->rssVisibleOnly	= "yes";
-	$gallery->app->rssDCDate		= "no";
-	$gallery->app->rssBigPhoto		= "yes";
-	$gallery->app->rssPhotoTag		= "yes";
+	$gallery->app->rssEnabled = "yes";
+	$gallery->app->rssMode = "basic";
+	$gallery->app->rssHighlight = "";
+	$gallery->app->rssVisibleOnly = "yes";
+	$gallery->app->rssDCDate = "no";
+	$gallery->app->rssBigPhoto = "yes";
+	$gallery->app->rssPhotoTag = "yes";
 }
 
 if ($gallery->app->rssEnabled == "no") {
@@ -47,8 +46,7 @@ function albumSort($a, $b) {
 
 	if ($aTime < $bTime) {
 		return 1;
-	}
-	else {
+	} else {
 		return -1;
 	}
 }
@@ -88,8 +86,8 @@ function getThumbsAndCaptions($album) {
 		if (!$photo->isHidden() && !$photo->isMovie() && is_object($photo->thumbnail)) {
 			$imgtag = $album->getThumbnailTag($i, 0, $tags);
 			$caption = $photo->getCaption();
-			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) .
-			"\">" . $imgtag . "</a>$caption<br />\n";
+			$photos .= "<a href=\"" . makeAlbumUrl($album->fields['name'], $i) . "\">" . $imgtag . "</a>";
+			$photos .= $caption . "<br>\n";
 		}
 	}
 
@@ -100,8 +98,8 @@ function makeDCDate($unixDate) {
 	$dcDate = date("Y-m-d\TH:i:sO", $unixDate);
 
 	/* CAUTION: This will not work in zones with
-	* half-our time offsets
-	*/
+	 * half-our time offsets
+	 */
 
 	return eregi_replace("..$", ":00", $dcDate);
 }

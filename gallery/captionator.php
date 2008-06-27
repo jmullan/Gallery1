@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -170,11 +168,11 @@ includeHtmlWrap("album.header");
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
 if ($borderwidth == 0) {
-    $bordercolor = $gallery->album->fields["bgcolor"];
-    $borderwidth = 0;
+	$bordercolor = $gallery->album->fields["bgcolor"];
+	$borderwidth = 0;
 }
 else {
-    $bordercolor = "black";
+	$bordercolor = "black";
 }
 
 $adminText = gTranslate('core', "Multiple Caption Editor.") . " ";

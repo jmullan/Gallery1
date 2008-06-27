@@ -19,16 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * @package Forms
  *
  * Function for HTML forms
  */
-?>
-<?php
 
 function insertFormJS($formName) {
 
@@ -221,9 +217,9 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
  * argument.  Eg:
  *
  * makeFormIntro("add_photos.php",
- *					  array("name" => "count_form",
- *							  "enctype" => "multipart/form-data",
- *							  "method" => "post"));
+ *			  array("name" => "count_form",
+ *					  "enctype" => "multipart/form-data",
+ *					  "method" => "post"));
  *
  * If no method is given in attrList, then "post" is used.
  * @param string	$target
@@ -329,9 +325,11 @@ function showChoice2($target, $args, $popup = true) {
 	if (empty($args['set_albumName'])) {
 		$args['set_albumName'] = $gallery->session->albumName;
 	}
+
 	if($popup) {
 		$args['type'] = 'popup';
 	}
+
 	return makeGalleryUrl($target, $args);
 }
 

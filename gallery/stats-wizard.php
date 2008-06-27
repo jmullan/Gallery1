@@ -20,8 +20,6 @@
  * $Id$
  *
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
 	require_once(dirname(__FILE__) . '/init.php');
@@ -87,21 +85,21 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 		}
 		switch(document.stats_form.elements[i].type) {
 			case 'submit':
-			    continue;
+				continue;
 			break;
-			
+
 			case 'checkbox':
-			    if(document.stats_form.elements[i].checked) {
+				if(document.stats_form.elements[i].checked) {
 				value = 1;
-			    }
+				}
 			break;
 
 			case 'radio':
-			    if (document.stats_form.elements[i].checked) {
+				if (document.stats_form.elements[i].checked) {
 				value = document.stats_form.elements[i].value;
-			    }
+				}
 			break;
-			
+
 			default:
 				value = document.stats_form.elements[i].value;
 			break;
@@ -110,7 +108,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
 		}
 	}
-	document.url_form.stats_url.value = url;
+	document.getElementById('stats_url').value = url;
 }
 </script>
 

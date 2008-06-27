@@ -22,8 +22,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Mambo_UserDB extends Abstract_UserDB {
 	var $db;
 	var $fields;

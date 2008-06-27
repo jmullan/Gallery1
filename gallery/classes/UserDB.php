@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Abstract_UserDB {
 
 	/* By default, UserDB can't create a user */
@@ -76,7 +75,7 @@ class Abstract_UserDB {
 	 * No conversion is necessary for most user database formats.
 	 */
 	function convertUidToNewFormat($uid) {
-	        return $uid;
+		return $uid;
 	}
 }
 ?>

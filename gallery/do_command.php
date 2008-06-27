@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(__FILE__) . '/init.php');
 
 list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
@@ -52,7 +51,8 @@ if (!empty($albumName)) {
 
 if (empty($rebuild_type)) {
 	$title = gTranslate('core', "Rebuilding thumbnails");
-} else {
+}
+else {
 	$title = gTranslate('core', "Performing operation...");
 }
 
@@ -205,7 +205,8 @@ switch ($cmd) {
 
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
-	    	$gallery->user->canCreateSubAlbum($gallery->album)) {
+			$gallery->user->canCreateSubAlbum($gallery->album))
+		{
 			if (!isset($parentName)) {
 				$parentName = null;
 			}
@@ -213,14 +214,14 @@ switch ($cmd) {
 			createNewAlbum($parentName);
 
 			if(!headers_sent()) {
-			    header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
+				header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 			}
 			else {
-			    $backUrl = makeAlbumUrl($gallery->session->albumName);
+				$backUrl = makeAlbumUrl($gallery->session->albumName);
 			}
 		}
 		else {
-		        header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
 	break;
@@ -232,7 +233,7 @@ switch ($cmd) {
 			dismissAndReload();
 		}
 		else {
-       			header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
 	break;
@@ -255,7 +256,7 @@ switch ($cmd) {
 			}
 		}
 		else {
-	    	    header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
 	break;

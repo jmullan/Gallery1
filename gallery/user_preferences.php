@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -47,50 +45,54 @@ if (isset($save)) {
 			if ($gErrors["uname"]) {
 				$errorCount++;
 			}
-		} else {
+		}
+		else {
 			$gErrors['uname'] = gTranslate('core', "You are not allowed to change your username.");
 			$errorCount++;
 		}
 	}
 
 	if (!empty($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
-		$gErrors["old_password"] = gTranslate('core', "Incorrect password.") ;
+		$gErrors['old_password'] = gTranslate('core', "Incorrect password.") ;
 		$errorCount++;
 	}
 
 	if (!empty($new_password1) || !empty($new_password2)) {
 		if (empty($old_password)) {
-			$gErrors["old_password"] = gTranslate('core', "You must provide your old password to change it.");
+			$gErrors['old_password'] = gTranslate('core', "You must provide your old password to change it.");
 			$errorCount++;
 		}
 
 		if (strcmp($new_password1, $new_password2)) {
-			$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
+			$gErrors['new_password2'] = gTranslate('core', "Passwords did not match!");
 			$errorCount++;
-		} else {
-			$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-			if ($gErrors["new_password1"]) {
+		}
+		else {
+			$gErrors['new_password1'] = $gallery->userDB->validPassword($new_password1);
+			if ($gErrors['new_password1']) {
 				$errorCount++;
 			}
 		}
 	}
 
 	if (!empty($email) && !check_email($email)) {
-                $gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-                $errorCount++;
-        }
+		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
+		$errorCount++;
+	}
 
 	if (!$errorCount) {
 		$gallery->user->setUsername($uname);
 		$gallery->user->setFullname($fullname);
 		$gallery->user->setEmail($email);
+
 		if (isset($defaultLanguage)) {
 			$gallery->user->setDefaultLanguage($defaultLanguage);
 			$gallery->session->language = $defaultLanguage;
 		}
+
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
- 			$gallery->user->setPassword($new_password1);
+			$gallery->user->setPassword($new_password1);
 		}
 		$gallery->user->save();
 
@@ -105,16 +107,16 @@ $fullname = $gallery->user->getFullname();
 $email = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
 
-$allowChange["uname"]			= $gallery->user->isAdmin() ? true : false;
-$allowChange["email"]			= true;
-$allowChange["fullname"]		= true;
-$allowChange["old_password"]	= true;
-$allowChange["default_language"]= true;
-$allowChange["send_email"]		= false;
-$allowChange["member_file"]		= false;
-$allowChange["create_albums"]	= false;
-$allowChange["password"]		= $gallery->user->canChangeOwnPw() ? true : false;
-$allowChange["admin"]			= true;
+$allowChange['uname']		 = $gallery->user->isAdmin() ? true : false;
+$allowChange['email']		 = true;
+$allowChange['fullname']	 = true;
+$allowChange['old_password']	 = true;
+$allowChange['default_language'] = true;
+$allowChange['send_email']	 = false;
+$allowChange['member_file']	 = false;
+$allowChange['create_albums']	 = false;
+$allowChange['password']	 = $gallery->user->canChangeOwnPw() ? true : false;
+$allowChange['admin']		 = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 

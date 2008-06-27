@@ -19,9 +19,9 @@
  *
  * $Id$
  */
-?>
-<?php
-	include(dirname(__FILE__) . '/init.php');
+
+require_once(dirname(__FILE__) . '/init.php');
+
 	doctype();
 ?>
 <html>
@@ -52,18 +52,18 @@
 	</script>
 </head>
 <body>
-      <?php
+	<?php
 	$descriptions = array();
-        $names = array();
+	$names = array();
 
-        $names["none"] = gTranslate('config', "None");
-        $descriptions["none"] = gTranslate('config', "No frames");
-        $names["dots"] = gTranslate('config', "Dots");
-        $descriptions["dots"] = gTranslate('config', "Just a simple dashed border around the thumb.");
-        $names["solid"] = gTranslate('config', "Solid");
-        $descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
+	$names["none"]		= gTranslate('config', "No Frame");
+	$descriptions["none"]	= gTranslate('config', "No frames");
+	$names["dots"]		= gTranslate('config', "Dots");
+	$descriptions["dots"]	= gTranslate('config', "Just a simple dashed border around the thumb.");
+	$names["solid"]		= gTranslate('config', "Solid");
+	$descriptions["solid"] = gTranslate('config', "Just a simple solid border around the thumb.");
 
-        $dir = GALLERY_BASE . '/html_wrap/frames';
+	$dir = GALLERY_BASE . '/html_wrap/frames';
         if (fs_is_dir($dir) && is_readable($dir) && $fd = fs_opendir($dir)) {
                 while ($file = readdir($fd)) {
                         $subdir="$dir/$file";

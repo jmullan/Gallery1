@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class CPGNuke_UserDB extends Abstract_UserDB {
 	var $db;
 	var $fields;

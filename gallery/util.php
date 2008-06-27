@@ -37,85 +37,85 @@ require_once(dirname(__FILE__) . '/lib/messages.php');
 require_once(dirname(__FILE__) . '/lib/content.php');
 
 function getRequestVar($str) {
-    if (!is_array($str)) {
-        if (!isset($_REQUEST[$str])) {
-            return null;
-        }
-        $ret = & $_REQUEST[$str];
+	if (!is_array($str)) {
+		if (!isset($_REQUEST[$str])) {
+			return null;
+		}
+		$ret = & $_REQUEST[$str];
 
-        if (get_magic_quotes_gpc()) {
-            $ret = stripslashes_deep($ret);
-        }
+		if (get_magic_quotes_gpc()) {
+			$ret = stripslashes_deep($ret);
+		}
 
-        //echo "\n<br>- Checking:". htmlspecialchars($str);
-        $ret = sanitizeInput($ret);
-    }
-    else {
-        foreach ($str as $reqvar) {
-            $ret[] = getRequestVar($reqvar);
-        }
-    }
+		//echo "\n<br>- Checking:". htmlspecialchars($str);
+		$ret = sanitizeInput($ret);
+	}
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getRequestVar($reqvar);
+		}
+	}
 
-    return $ret;
+	return $ret;
 }
 
 function getFilesVar($str) {
-    if (!is_array($str)) {
-        if (!isset($_FILES[$str])) {
-            return null;
-        }
-        $ret = &$_FILES[$str];
-    }
-    else {
-        foreach ($str as $reqvar) {
-            $ret[] = getFilesVar($reqvar);
-        }
-    }
+	if (!is_array($str)) {
+		if (!isset($_FILES[$str])) {
+			return null;
+		}
+		$ret = &$_FILES[$str];
+	}
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getFilesVar($reqvar);
+		}
+	}
 
-    return $ret;
+	return $ret;
 }
 
 function getEnvVar($str) {
-    if (!is_array($str)) {
-        if (!isset($_ENV[$str])) {
-            return null;
-        }
-        $ret = &$_ENV[$str];
-    }
-    else {
-        foreach ($str as $reqvar) {
-            $ret[] = getEnvVar($reqvar);
-        }
-    }
+	if (!is_array($str)) {
+		if (!isset($_ENV[$str])) {
+			return null;
+		}
+		$ret = &$_ENV[$str];
+	}
+	else {
+		foreach ($str as $reqvar) {
+			$ret[] = getEnvVar($reqvar);
+		}
+	}
 
-    return $ret;
+	return $ret;
 }
 
 function stripslashes_deep($value) {
-    $value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
-    return $value;
+	$value = is_array($value) ? array_map('stripslashes_deep', $value) : stripslashes($value);
+	return $value;
 }
 
 function getBlacklistFilename() {
-    global $gallery;
-    return sprintf("%s/blacklist.dat", $gallery->app->albumDir);
+	global $gallery;
+	return sprintf("%s/blacklist.dat", $gallery->app->albumDir);
 }
 
 function loadBlacklist() {
-    static $blacklist;
+	static $blacklist;
 
-    if (!isset($blacklist)) {
-        $tmp = getFile(getBlacklistFilename());
-        $blacklist = unserialize($tmp);
+	if (!isset($blacklist)) {
+		$tmp = getFile(getBlacklistFilename());
+		$blacklist = unserialize($tmp);
 
-        if (empty($blacklist)) {
-            // Initialize the blacklist
-            $blacklist = array();
-            $blacklist['entries'] = array();
-        }
-    }
+		if (empty($blacklist)) {
+			// Initialize the blacklist
+			$blacklist = array();
+			$blacklist['entries'] = array();
+		}
+	}
 
-    return $blacklist;
+	return $blacklist;
 }
 
 function isBlacklistedComment(&$comment, $existingComment = true) {
@@ -124,7 +124,7 @@ function isBlacklistedComment(&$comment, $existingComment = true) {
 	if ($existingComment) {
 		foreach ($blacklist['entries'] as $key => $entry) {
 			if (ereg($entry, $comment->getCommentText()) ||
-			    ereg($entry, $comment->getName())) {
+				ereg($entry, $comment->getName())) {
 				return true;
 			}
 		}
@@ -132,7 +132,7 @@ function isBlacklistedComment(&$comment, $existingComment = true) {
 	else {
 		foreach ($blacklist['entries'] as $entry) {
 			if (ereg($entry, $comment['commenter_name']) ||
-			    ereg($entry, $comment['comment_text'])) {
+				ereg($entry, $comment['comment_text'])) {
 				return true;
 			}
 		}
@@ -160,8 +160,8 @@ function exec_internal($cmd) {
 	$results = array();
 
 	if (isDebugging()) {
-	    debugMessage(sprintf(gTranslate('core', "Executing: %s"), $cmd), __FILE__, __LINE__);
-	    $debugfile = tempnam($gallery->app->tmpDir, "dbg");
+		debugMessage(sprintf(gTranslate('core', "Executing: %s"), $cmd), __FILE__, __LINE__);
+		$debugfile = tempnam($gallery->app->tmpDir, "dbg");
 	}
 
 	fs_exec($cmd, $results, $status, $debugfile);
@@ -196,79 +196,79 @@ function exec_internal($cmd) {
 }
 
 function exec_wrapper($cmd) {
-    global $gallery;
+	global $gallery;
 
-    list($results, $status) = exec_internal($cmd);
+	list($results, $status) = exec_internal($cmd);
 
-    if ($status == $gallery->app->expectedExecStatus) {
-        return true;
+	if ($status == $gallery->app->expectedExecStatus) {
+		return true;
 	}
 	else {
-        if ($results) {
-            echo '<hr><p>'. gallery_error("") . join("<br>", $results) .'</p>';
-        }
-        return false;
-    }
+		if ($results) {
+			echo '<hr><p>'. gallery_error("") . join("<br>", $results) .'</p>';
+		}
+		return false;
+	}
 }
 
 function getDimensions($file) {
-    global $gallery;
+	global $gallery;
 
-    debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
+	debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
 
-    if (! fs_file_exists($file)) {
-        debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
-        return array(0, 0);
-    }
+	if (! fs_file_exists($file)) {
+		debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
+		return array(0, 0);
+	}
 
-    list($width, $height) = getimagesize($file);
+	list($width, $height) = getimagesize($file);
 
-    if ($width > 1 && $height > 1) {
-        debugMessage(sprintf(gTranslate('core', "Dimensions: x: %d y: %d"), $width, $height), __FILE__, __LINE__, 3);
+	if ($width > 1 && $height > 1) {
+		debugMessage(sprintf(gTranslate('core', "Dimensions: x: %d y: %d"), $width, $height), __FILE__, __LINE__, 3);
 
-        return array($width, $height);
-    }
+		return array($width, $height);
+	}
 
-    debugMessage(sprintf(gTranslate('core', "PHP's %s function is unable to determine dimensions."), "getimagesize()"), __FILE__, __LINE__);
+	debugMessage(sprintf(gTranslate('core', "PHP's %s function is unable to determine dimensions."), "getimagesize()"), __FILE__, __LINE__);
 
-    /* Just in case php can't determine dimensions. */
-    switch($gallery->app->graphics) {
-        case 'Netpbm':
-            list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-                Netpbm('pnmfile', '--allimages'));
-            break;
-        case "ImageMagick":
-            /* This fails under windows, IM isn't returning parsable status output. */
-              list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
-        break;
+	/* Just in case php can't determine dimensions. */
+	switch($gallery->app->graphics) {
+		case 'Netpbm':
+			list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
+			Netpbm('pnmfile', '--allimages'));
+		break;
+		case "ImageMagick":
+			/* This fails under windows, IM isn't returning parsable status output. */
+			list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
+		break;
 
-	default:
-	    echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"));
-	    return array(0, 0);
-        break;
-    }
+		default:
+			echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"));
+			return array(0, 0);
+		break;
+	}
 
-    if ($status == $gallery->app->expectedExecStatus) {
-        foreach ($lines as $line) {
-            switch($gallery->app->graphics) {
-                case 'Netpbm':
-                    if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
-                        return array($regs[1], $regs[2]);
-                    }
-                break;
+	if ($status == $gallery->app->expectedExecStatus) {
+		foreach ($lines as $line) {
+			switch($gallery->app->graphics) {
+				case 'Netpbm':
+					if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
+						return array($regs[1], $regs[2]);
+					}
+				break;
 
-                case 'ImageMagick':
-                    if (ereg("([0-9]+)x([0-9]+)", $line, $regs)) {
-                        return array($regs[1], $regs[2]);
-                    }
-                break;
-            }
-        }
-    }
+				case 'ImageMagick':
+					if (ereg("([0-9]+)x([0-9]+)", $line, $regs)) {
+						return array($regs[1], $regs[2]);
+					}
+				break;
+			}
+		}
+	}
 
-    debugMessage(gTranslate('core', "Unable to determine image dimensions!"), __FILE__, __LINE__);
+	debugMessage(gTranslate('core', "Unable to determine image dimensions!"), __FILE__, __LINE__);
 
-    return array(0, 0);
+	return array(0, 0);
 }
 
 function acceptableFormat($tag) {
@@ -280,25 +280,25 @@ function acceptableFormatRegexp() {
 }
 
 function acceptableMovieList() {
-    return array('asx', 'asf', 'avi', 'mpg', 'mpeg', 'mp2', 'wmv', 'mov', 'qt', 'swf', 'mp4', 'rm', 'ram');
+	return array('asx', 'asf', 'avi', 'mpg', 'mpeg', 'mp2', 'wmv', 'mov', 'qt', 'swf', 'mp4', 'rm', 'ram');
 }
 
 function acceptableImageList() {
-    return array('jpg', 'jpeg', 'gif', 'png');
+	return array('jpg', 'jpeg', 'gif', 'png');
 }
 
 function acceptableFormatList() {
-    return array_merge(acceptableImageList(), acceptableMovieList());
+	return array_merge(acceptableImageList(), acceptableMovieList());
 }
 
 function isImage($tag) {
-    $tag = strtolower($tag);
-    return in_array($tag, acceptableImageList());
+	$tag = strtolower($tag);
+	return in_array($tag, acceptableImageList());
 }
 
 function isMovie($tag) {
-    $tag = strtolower($tag);
-    return in_array($tag, acceptableMovieList());
+	$tag = strtolower($tag);
+	return in_array($tag, acceptableMovieList());
 }
 
 function getFile($fname, $legacy=false) {
@@ -313,10 +313,10 @@ function getFile($fname, $legacy=false) {
 	}
 
 	if ($legacy) {
-	    $modes = "rt";
+		$modes = "rt";
 	}
 	else {
-	    $modes = "rb";
+		$modes = "rb";
 	}
 
 	if ($fd = fs_fopen($fname, $modes)) {
@@ -330,7 +330,7 @@ function getFile($fname, $legacy=false) {
 }
 
 function my_flush() {
-    print str_repeat(" ", 4096);	// force a flush
+	print str_repeat(" ", 4096);	// force a flush
 }
 
 function correctPseudoUsers(&$array, $ownerUid) {
@@ -341,7 +341,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	 */
 	$everybody = $gallery->userDB->getEverybody();
 	if (!empty($array[$everybody->getUid()])) {
-	        $array = array($everybody->getUid() => $everybody->getUsername());
+			$array = array($everybody->getUid() => $everybody->getUsername());
 		return;
 	}
 
@@ -368,7 +368,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	 */
 	if (count($array) == 0) {
 		if (!strcmp($ownerUid, $everybody->getUid())) {
-		        $array = array($everybody->getUid() => $everybody->getUsername());
+			$array = array($everybody->getUid() => $everybody->getUsername());
 		}
 		else {
 			$array[$nobody->getUid()] = $nobody->getUsername();
@@ -380,21 +380,20 @@ function correctPseudoUsers(&$array, $ownerUid) {
  * Checks whether our Gallery configuration is configured.
  * This check also loads the config.php (if present)
  *
- *
  * @return mixed	NULL, 'unconfigured', 'reconfigure'
  */
 function gallerySanityCheck() {
 	global $gallery, $GALLERY_OK;
 
-       	if (!empty($gallery->backup_mode)) {
-	       	return NULL;
-       	}
+	if (!empty($gallery->backup_mode)) {
+		return NULL;
+	}
 
 	setGalleryPaths();
 
 	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
-                broken_link(GALLERY_CONFDIR . "config.php") ||
-                !$gallery->app) {
+	broken_link(GALLERY_CONFDIR . "config.php") ||
+	!$gallery->app) {
 		$GALLERY_OK = false;
 		return "unconfigured.php";
 	}
@@ -439,9 +438,9 @@ function preprocessImage($dir, $file) {
 			if ($newfd = fs_fopen($tempfile, "wb", 0755)) {
 				while (!feof($fd)) {
 					/*
-					 * Copy the rest of the file.  Specify a length
-					 * to fwrite so that we ignore magic_quotes.
-					 */
+					* Copy the rest of the file.  Specify a length
+					* to fwrite so that we ignore magic_quotes.
+					*/
 					fwrite($newfd, fread($fd, 64*1024), 64*1024+1);
 				}
 				fclose($newfd);
@@ -453,7 +452,7 @@ function preprocessImage($dir, $file) {
 			}
 			else {
 				echo gallery_error(
-						sprintf(gTranslate('core', "Can't write to %s."), $tempfile));
+				sprintf(gTranslate('core', "Can't write to %s."), $tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
@@ -557,17 +556,17 @@ function getNextPhoto($idx, $album=NULL) {
  * @author Jens Tkotz
  */
 function getExifDisplayTool() {
-    global $gallery;
+	global $gallery;
 
-    if(isset($gallery->app->exiftags)) {
-        return 'exiftags';
+	if(isset($gallery->app->exiftags)) {
+		return 'exiftags';
 	}
 	elseif (isset($gallery->app->use_exif)) {
-        return 'jhead';
+		return 'jhead';
 	}
 	else {
-        return false;
-    }
+		return false;
+	}
 }
 
 /**
@@ -578,12 +577,12 @@ function getExifDisplayTool() {
  * @author  Jens Tkotz
  */
 function hasExif($file) {
-    if(eregi('jpe?g$', $file)) {
-        return true;
+	if(eregi('jpe?g$', $file)) {
+		return true;
 	}
 	else {
-        return false;
-    }
+		return false;
+	}
 }
 
 /**
@@ -591,71 +590,71 @@ function hasExif($file) {
  * Only fields with data are returned.
  */
 function getExif($file) {
-    global $gallery;
+	global $gallery;
 
-    $return = array();
-    $myExif = array();
-    $unwantedFields = array();
+	$return = array();
+	$myExif = array();
+	$unwantedFields = array();
 
 	echo debugMessage(sprintf(gTranslate('core', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
 
-    switch(getExifDisplayTool()) {
-        case 'exiftags':
-            if (empty($gallery->app->exiftags)) {
-                break;
-            }
+	switch(getExifDisplayTool()) {
+		case 'exiftags':
+			if (empty($gallery->app->exiftags)) {
+				break;
+			}
 
 			$path	= $gallery->app->exiftags;
 			$cmd	= fs_import_filename($path, 1) . ' -au';
 			$target	= fs_import_filename($file, 1);
 
 			list($return, $status) = @exec_internal($cmd . ' ' . $target);
-        break;
+			break;
 
-        case 'jhead':
-            if (empty($gallery->app->use_exif)) {
-                break;
-            }
-            $path = $gallery->app->use_exif;
+		case 'jhead':
+			if (empty($gallery->app->use_exif)) {
+				break;
+			}
+			$path = $gallery->app->use_exif;
 			// -v removed as the structure is different.
 			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' .
-            							fs_import_filename($file, 1));
+			fs_import_filename($file, 1));
 
-            $unwantedFields = array('File name');
-        break;
+			$unwantedFields = array('File name');
+			break;
 
-        default:
-            return array(false,'');
-        break;
-    }
+		default:
+			return array(false,'');
+			break;
+	}
 
-    if ($status == 0) {
-        foreach ($return as $value) {
-            $value = trim($value);
+	if ($status == 0) {
+		foreach ($return as $value) {
+			$value = trim($value);
 
-            if (!empty($value)) {
-                $explodeReturn = explode(':', $value, 2);
-                $exifDesc = trim(htmlentities($explodeReturn[0]));
-                $exifData = trim(htmlentities($explodeReturn[1]));
+			if (!empty($value)) {
+				$explodeReturn = explode(':', $value, 2);
+				$exifDesc = trim(htmlentities($explodeReturn[0]));
+				$exifData = trim(htmlentities($explodeReturn[1]));
 
-                if(!empty($exifData) &&
-                   !in_array($exifDesc, $unwantedFields) &&
-                   !isset($myExif[$exifDesc]))
-                {
-                    if (isset($myExif[$exifDesc])) {
-                        $myExif[$exifDesc] .= "<br>";
+				if(!empty($exifData) &&
+				!in_array($exifDesc, $unwantedFields) &&
+				!isset($myExif[$exifDesc]))
+				{
+					if (isset($myExif[$exifDesc])) {
+						$myExif[$exifDesc] .= "<br>";
 					}
 					else {
-                        $myExif[$exifDesc] = '';
-                    }
+						$myExif[$exifDesc] = '';
+					}
 
-                    $myExif[$exifDesc] .= trim($exifData);
-                }
-            }
-        }
-    }
+					$myExif[$exifDesc] .= trim($exifData);
+				}
+			}
+		}
+	}
 
-    return array($status, $myExif);
+	return array($status, $myExif);
 }
 
 /**
@@ -701,12 +700,12 @@ function getItemCaptureDate($file) {
 	if (!$success) {
 		$itemCaptureTimeStamp = filemtime($file);
 		echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
-						  __FILE__, __LINE__);
+		__FILE__, __LINE__);
 	}
 
 	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date: %s"),
-							strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
-					  __FILE__, __LINE__);
+	strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
+	__FILE__, __LINE__);
 
 	return $itemCaptureTimeStamp;
 }
@@ -726,7 +725,7 @@ function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
 	for ($i = 0; $i < strlen($buf); $i++, $col++) {
 		$result .= $buf{$i};
 		if (($col > $desired_len && $buf{$i} == $space_char) ||
-		    ($col > $desired_len + $overflow)) {
+		($col > $desired_len + $overflow)) {
 			$col = 0;
 			$result .= '<br>';
 		}
@@ -751,21 +750,21 @@ function safe_serialize($obj, $file) {
 		$lockfd = fs_fopen("$file.lock", "a+");
 		if (!$lockfd) {
 			echo gallery_error(sprintf(gTranslate('core', "Could not open lock file (%s) for writing!"),
-						"$file.lock"));
+			"$file.lock"));
 			return 0;
 		}
 		if (!flock($lockfd, LOCK_EX)) {
 			echo gallery_error(sprintf(gTranslate('core', "Could not acquire lock (%s)!"),
-						"$file.lock"));
+			"$file.lock"));
 			return 0;
 		}
 	}
 
 	/*
-	 * Don't use tempnam because it may create a file on a different
-	 * partition which would cause rename() to fail.  Instead, create our own
-	 * temporary file.
-	 */
+	* Don't use tempnam because it may create a file on a different
+	* partition which would cause rename() to fail.  Instead, create our own
+	* temporary file.
+	*/
 	$i = 0;
 	do {
 		$tmpfile = "$file.$i";
@@ -773,7 +772,7 @@ function safe_serialize($obj, $file) {
 	} while (fs_file_exists($tmpfile));
 
 	if ($fd = fs_fopen($tmpfile, "wb")) {
-	        $buf = serialize($obj);
+		$buf = serialize($obj);
 		$bufsize = strlen($buf);
 		$count = fwrite($fd, $buf);
 		fclose($fd);
@@ -784,17 +783,17 @@ function safe_serialize($obj, $file) {
 		}
 		else {
 			/*
-			 * Make the current copy the backup, and then
-			 * write the new current copy.  There's a
-			 * potential race condition here if the
-			 * advisory lock (above) fails; two processes
-			 * may try to do the initial rename() at the
-			 * same time.  In that case the initial rename
-			 * will fail, but we'll ignore that.  The
-			 * second rename() will always go through (and
-			 * the second process's changes will probably
-			 * overwrite the first process's changes).
-			 */
+			* Make the current copy the backup, and then
+			* write the new current copy.  There's a
+			* potential race condition here if the
+			* advisory lock (above) fails; two processes
+			* may try to do the initial rename() at the
+			* same time.  In that case the initial rename
+			* will fail, but we'll ignore that.  The
+			* second rename() will always go through (and
+			* the second process's changes will probably
+			* overwrite the first process's changes).
+			*/
 			if (fs_file_exists($file)) {
 				fs_rename($file, "$file.bak");
 			}
@@ -817,11 +816,11 @@ function safe_serialize($obj, $file) {
  * lastCommentDate functions in classes Album and AlbumItem.
  */
 function mostRecentComment($album, $i) {
-        $id = $album->getPhotoId($i);
-        $index = $album->getPhotoIndex($id);
-        $recentcomment = $album->getComment($index, $album->numComments($i));
+	$id = $album->getPhotoId($i);
+	$index = $album->getPhotoIndex($id);
+	$recentcomment = $album->getComment($index, $album->numComments($i));
 
-        return $recentcomment->getDatePosted();
+	return $recentcomment->getDatePosted();
 }
 
 function ordinal($num = 1) {
@@ -867,25 +866,25 @@ function acceptableArchive($ext) {
  */
 function canDecompressArchive($ext) {
 	global $gallery;
-    $tool = false;
+	$tool = false;
 
 	$ext = strtolower($ext);
 	switch ($ext) {
-	    case 'zip':
-	        if ($gallery->app->feature["zip"] == 1) {
-	            $tool = 'zip';
-	        }
-	        break;
+		case 'zip':
+			if ($gallery->app->feature["zip"] == 1) {
+				$tool = 'zip';
+			}
+			break;
 
-	    case 'rar':
-	        if (!empty($gallery->app->rar)) {
-	            $tool = 'rar';
-	        }
-        break;
+		case 'rar':
+			if (!empty($gallery->app->rar)) {
+				$tool = 'rar';
+			}
+			break;
 
-	    default:
-	        /* Extension not supported, $tool stays fals */
-	        break;
+		default:
+			/* Extension not supported, $tool stays fals */
+			break;
 	}
 	return $tool;
 }
@@ -909,8 +908,8 @@ function canCreateArchive($ext = 'zip') {
 		return 'rar';
 	}
 	else {
-	    /* No suitable tool found */
-	    return false;
+		/* No suitable tool found */
+		return false;
 	}
 }
 
@@ -921,22 +920,22 @@ function getArchiveFileNames($archive, $ext) {
 	$files = array();
 
 	if ($tool = canDecompressArchive($ext)) {
-	    $filename = fs_import_filename($archive);
-	    switch ($tool) {
-	        case 'zip':
-	            $cmd = fs_import_filename($gallery->app->zipinfo) ." -1 ". $filename;
-	            break;
+		$filename = fs_import_filename($archive);
+		switch ($tool) {
+			case 'zip':
+				$cmd = fs_import_filename($gallery->app->zipinfo) ." -1 ". $filename;
+				break;
 
-	        case 'rar':
-	            $cmd = fs_import_filename($gallery->app->rar) ." vb ". $filename;
-	            break;
-	    }
+			case 'rar':
+				$cmd = fs_import_filename($gallery->app->rar) ." vb ". $filename;
+				break;
+		}
 
-	    list($files, $status) = exec_internal($cmd);
+		list($files, $status) = exec_internal($cmd);
 
-	    if (!empty($files)) {
-	        sort($files);
-	    }
+		if (!empty($files)) {
+			sort($files);
+		}
 	}
 
 	return $files;
@@ -950,282 +949,282 @@ function extractFileFromArchive($archive, $ext, $file) {
 	$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
 
 	if($tool = canDecompressArchive($ext)) {
-	    echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
-	    switch($tool) {
-	        case 'zip':
-	            $cmd = fs_import_filename($gallery->app->unzip) . " -j -o " .
-	            fs_import_filename($archive) . ' ' . fs_import_filename($cmd_pic_path) .
-	            ' -d ' . fs_import_filename($gallery->app->tmpDir);
-	            break;
+		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
+		switch($tool) {
+			case 'zip':
+				$cmd = fs_import_filename($gallery->app->unzip) . " -j -o " .
+				fs_import_filename($archive) . ' ' . fs_import_filename($cmd_pic_path) .
+				' -d ' . fs_import_filename($gallery->app->tmpDir);
+				break;
 
-	        case 'rar':
-	            $cmd = fs_import_filename($gallery->app->rar) ." e ".
-	            fs_import_filename($archive) .' -x '. fs_import_filename($cmd_pic_path) .' '.
-	            fs_import_filename($gallery->app->tmpDir);
-	            break;
-	    }
+			case 'rar':
+				$cmd = fs_import_filename($gallery->app->rar) ." e ".
+				fs_import_filename($archive) .' -x '. fs_import_filename($cmd_pic_path) .' '.
+				fs_import_filename($gallery->app->tmpDir);
+				break;
+		}
 
-	    return exec_wrapper($cmd);
+		return exec_wrapper($cmd);
 	}
 	else {
-	    echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
-	    return false;
+		echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
+		return false;
 	}
 }
 
 function createZip($folderName = '', $zipName = '', $deleteSource = true) {
-    global $gallery;
+	global $gallery;
 
-    if ($folderName == '') {
-	   return false;
-    }
+	if ($folderName == '') {
+		return false;
+	}
 
-    $tool = canCreateArchive('zip');
+	$tool = canCreateArchive('zip');
 
-    if (! $tool) {
-        debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
-        return false;
-    } else {
-        debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
-    }
+	if (! $tool) {
+		debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
+		return false;
+	} else {
+		debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
+	}
 
-    $tmpDir = $gallery->app->tmpDir .'/'. uniqid(rand());
+	$tmpDir = $gallery->app->tmpDir .'/'. uniqid(rand());
 
-    if ($zipName == '') {
-	   $fullZipName = 'gallery_zip.zip';
-    }
-    else {
-        $fullZipName = "$tmpDir/$zipName.zip";
-    }
+	if ($zipName == '') {
+		$fullZipName = 'gallery_zip.zip';
+	}
+	else {
+		$fullZipName = "$tmpDir/$zipName.zip";
+	}
 
-    if(! fs_mkdir($tmpDir)) {
-        echo gallery_error(
-          sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
-          $gallery->app->tmpDir));
-        return false;
-    }
-    /* Keep Current Dir in mind */
-    $currentDir = getcwd();
-    /* Switch to the folder that content is going to be zipped */
-    chdir($folderName);
+	if(! fs_mkdir($tmpDir)) {
+		echo gallery_error(
+		sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
+		$gallery->app->tmpDir));
+		return false;
+	}
+	/* Keep Current Dir in mind */
+	$currentDir = getcwd();
+	/* Switch to the folder that content is going to be zipped */
+	chdir($folderName);
 
-			$cmd = fs_import_filename($gallery->app->zip) ." -r $fullZipName *";
+	$cmd = fs_import_filename($gallery->app->zip) ." -r $fullZipName *";
 
-    if (! exec_wrapper($cmd)) {
-	   echo gallery_error("Zipping failed");
-	   /* Go back */
-	   chdir($currentDir);
-	   return false;
-    }
-    else {
-       /* Go back */
-        chdir($currentDir);
-	   if($deleteSource) {
-	       rmdirRecursive($folderName);
-	   }
+	if (! exec_wrapper($cmd)) {
+		echo gallery_error("Zipping failed");
+		/* Go back */
+		chdir($currentDir);
+		return false;
+	}
+	else {
+		/* Go back */
+		chdir($currentDir);
+		if($deleteSource) {
+			rmdirRecursive($folderName);
+		}
 
-	return $fullZipName;
-    }
+		return $fullZipName;
+	}
 }
 
 function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
-    global $gallery;
-    global $temp_files;
+	global $gallery;
+	global $temp_files;
 
-    echo debugMessage(sprintf(gTranslate('core', "Processing file: %s"), $file), __FILE__, __LINE__,3);
-    /* Begin of code for the case the uploaded file is an archive */
-    if (acceptableArchive($ext)) {
-        processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
-        $tool = canDecompressArchive($ext);
-        if (!$tool) {
-            processingMsg(sprintf(gTranslate('core', "Skipping %s (%s support not enabled)"), $name, $ext));
-            echo "<br>";
-            return;
-        }
+	echo debugMessage(sprintf(gTranslate('core', "Processing file: %s"), $file), __FILE__, __LINE__,3);
+	/* Begin of code for the case the uploaded file is an archive */
+	if (acceptableArchive($ext)) {
+		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
+		$tool = canDecompressArchive($ext);
+		if (!$tool) {
+			processingMsg(sprintf(gTranslate('core', "Skipping %s (%s support not enabled)"), $name, $ext));
+			echo "<br>";
+			return;
+		}
 
-        /*
-         * Figure out what files inside the archive we can handle.
-         * Put all Filenames into $files.
-        */
-        echo debugMessage(gTranslate('core', "Getting archive content Filenames"), __FILE__, __LINE__);
-        $files = getArchiveFileNames($file, $ext);
+		/*
+		* Figure out what files inside the archive we can handle.
+		* Put all Filenames into $files.
+		*/
+		echo debugMessage(gTranslate('core', "Getting archive content Filenames"), __FILE__, __LINE__);
+		$files = getArchiveFileNames($file, $ext);
 
-        /* Get meta data */
-        $image_info = array();
-        foreach ($files as $pic_path) {
-            $pic = basename($pic_path);
-            $tag = getExtension($pic);
-            if ($tag == 'csv') {
-                extractFileFromArchive($file, $ext, $pic_path);
-                $image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
-            }
-        }
+		/* Get meta data */
+		$image_info = array();
+		foreach ($files as $pic_path) {
+			$pic = basename($pic_path);
+			$tag = getExtension($pic);
+			if ($tag == 'csv') {
+				extractFileFromArchive($file, $ext, $pic_path);
+				$image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
+			}
+		}
 
-        if(!empty($image_info)) {
-            debugMessage(printMetaData($image_info), __FILE__, __LINE__);
-        }
-        else {
-            echo debugMessage(gTranslate('core', "No Metadata"), __FILE__, __LINE__);
-        }
+		if(!empty($image_info)) {
+			debugMessage(printMetaData($image_info), __FILE__, __LINE__);
+		}
+		else {
+			echo debugMessage(gTranslate('core', "No Metadata"), __FILE__, __LINE__);
+		}
 
-        /* Now process all valid files we found */
-        echo debugMessage(gTranslate('core', "Processing files in archive"), __FILE__, __LINE__);
-        $loop = 0;
-        foreach ($files as $pic_path) {
-            $loop++;
-            $pic = basename($pic_path);
-            $tag = getExtension($pic);
-            echo debugMessage(sprintf(gTranslate('core', "%d. %s"), $loop, $pic_path), __FILE__, __LINE__);
-            if (acceptableFormat($tag) || acceptableArchive($tag)) {
-                if(!extractFileFromArchive($file, $ext, $pic_path)) {
-                    echo '<br>'. gallery_error(sprintf(gTranslate('core', "Could not extract %s"), $pic_path));
-                    continue;
-                }
+		/* Now process all valid files we found */
+		echo debugMessage(gTranslate('core', "Processing files in archive"), __FILE__, __LINE__);
+		$loop = 0;
+		foreach ($files as $pic_path) {
+			$loop++;
+			$pic = basename($pic_path);
+			$tag = getExtension($pic);
+			echo debugMessage(sprintf(gTranslate('core', "%d. %s"), $loop, $pic_path), __FILE__, __LINE__);
+			if (acceptableFormat($tag) || acceptableArchive($tag)) {
+				if(!extractFileFromArchive($file, $ext, $pic_path)) {
+					echo '<br>'. gallery_error(sprintf(gTranslate('core', "Could not extract %s"), $pic_path));
+					continue;
+				}
 
-                /* Now process the metadates. */
-                $extra_fields = array();
+				/* Now process the metadates. */
+				$extra_fields = array();
 
-                /* Find in meta data array */
-                $firstRow = 1;
-                $fileNameKey = "File Name";
+				/* Find in meta data array */
+				$firstRow = 1;
+				$fileNameKey = "File Name";
 
-                /* $captionMetaFields will store the names (in order of priority to set caption to) */
-                $captionMetaFields = array("Caption", "Title", "Description", "Persons");
-                foreach ( $image_info as $info ) {
-                    if ($firstRow) {
-                        /* Find the name of the file name field */
-                        foreach (array_keys($info) as $currKey) {
-                            if (eregi("^\"?file\ ?name\"?$", $currKey)) {
-                                $fileNameKey = $currKey;
-                            }
-                        }
-                        $firstRow = 0;
-                    }
+				/* $captionMetaFields will store the names (in order of priority to set caption to) */
+				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
+				foreach ( $image_info as $info ) {
+					if ($firstRow) {
+						/* Find the name of the file name field */
+						foreach (array_keys($info) as $currKey) {
+							if (eregi("^\"?file\ ?name\"?$", $currKey)) {
+								$fileNameKey = $currKey;
+							}
+						}
+						$firstRow = 0;
+					}
 
-                    if ($info[$fileNameKey] == $pic) {
-                        /* Loop through fields */
-                        foreach ($captionMetaFields as $field) {
-                            /* If caption isn't populated and current field is */
-                            if (!strlen($caption) && strlen($info[$field])) {
-                                $caption = $info[$field];
-                            }
-                        }
+					if ($info[$fileNameKey] == $pic) {
+						/* Loop through fields */
+						foreach ($captionMetaFields as $field) {
+							/* If caption isn't populated and current field is */
+							if (!strlen($caption) && strlen($info[$field])) {
+								$caption = $info[$field];
+							}
+						}
 
-                        $extra_fields = $info;
-                    }
-                }
-                /* Don't use the second argument for $cmd_pic_path, because it is already quoted. */
+						$extra_fields = $info;
+					}
+				}
+				/* Don't use the second argument for $cmd_pic_path, because it is already quoted. */
 
-                processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
-                fs_unlink($gallery->app->tmpDir . "/$pic");
-            }
-        }
-    } else {
-        /* Its a single file
-         * remove %20 and the like from name
-         */
-        $name = urldecode($name);
+				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
+				fs_unlink($gallery->app->tmpDir . "/$pic");
+			}
+		}
+	} else {
+		/* Its a single file
+		* remove %20 and the like from name
+		*/
+		$name = urldecode($name);
 
-        /* parse out original filename without extension */
-        $originalFilename = eregi_replace(".$ext$", "", $name);
+		/* parse out original filename without extension */
+		$originalFilename = eregi_replace(".$ext$", "", $name);
 
-        /* replace multiple non-word characters with a single "_" */
-        $mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+		/* replace multiple non-word characters with a single "_" */
+		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
 
-        /* Get rid of extra underscores */
-        $mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-        $mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-        if (empty($mangledFilename)) {
-            $mangledFilename = $gallery->album->newPhotoName();
-        }
+		/* Get rid of extra underscores */
+		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
+		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+		if (empty($mangledFilename)) {
+			$mangledFilename = $gallery->album->newPhotoName();
+		}
 
-        /*
-         * need to prevent users from using original filenames that are purely numeric.
-         * Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-         * specifically:
-         * RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
-        */
+		/*
+		* need to prevent users from using original filenames that are purely numeric.
+		* Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+		* specifically:
+		* RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
+		*/
 
-        if (ereg("^([0-9]+)$", $mangledFilename)) {
-            $mangledFilename .= "_G";
-        }
+		if (ereg("^([0-9]+)$", $mangledFilename)) {
+			$mangledFilename .= "_G";
+		}
 
-        set_time_limit($gallery->app->timeLimit);
-        if (acceptableFormat($ext)) {
-            /*
-             * Move the uploaded image to our temporary directory
-             * using move_uploaded_file so that we work around
-             * issues with the open_basedir restriction.
-            */
-            if (function_exists('move_uploaded_file')) {
-                $newFile = tempnam($gallery->app->tmpDir, "gallery");
-                if (move_uploaded_file($file, $newFile)) {
-                    $file = $newFile;
-                }
+		set_time_limit($gallery->app->timeLimit);
+		if (acceptableFormat($ext)) {
+			/*
+			* Move the uploaded image to our temporary directory
+			* using move_uploaded_file so that we work around
+			* issues with the open_basedir restriction.
+			*/
+			if (function_exists('move_uploaded_file')) {
+				$newFile = tempnam($gallery->app->tmpDir, "gallery");
+				if (move_uploaded_file($file, $newFile)) {
+					$file = $newFile;
+				}
 
-                /* Make sure we remove this file when we're done */
-                $temp_files[$newFile] = 1;
-            }
+				/* Make sure we remove this file when we're done */
+				$temp_files[$newFile] = 1;
+			}
 
-            /* What should the caption be, if no caption was given by user ?
-             * See captionOptions.inc.php for options
-            */
+			/* What should the caption be, if no caption was given by user ?
+			* See captionOptions.inc.php for options
+			*/
 
-            if (isset($gallery->app->dateTimeString)) {
-                $dateTimeFormat = $gallery->app->dateTimeString;
-            } else {
-                $dateTimeFormat = "%D %T";
-            }
+			if (isset($gallery->app->dateTimeString)) {
+				$dateTimeFormat = $gallery->app->dateTimeString;
+			} else {
+				$dateTimeFormat = "%D %T";
+			}
 
-            if (empty($caption)) {
-                switch ($setCaption) {
-                    case 0:
-			$caption = '';
-		    break;
-                    case 1:
-                    default:
-                        /* Use filename */
-                        $caption = strtr($originalFilename, '_', ' ');
-                    break;
-                    case 2:
-                        /* Use file cration date */
-                        $caption = strftime($dateTimeFormat, filectime($file));
-                    break;
-                    case 3:
-                        /* Use capture date */
-                        $caption = strftime($dateTimeFormat, getItemCaptureDate($file));
-                    break;
-                }
-            }
+			if (empty($caption)) {
+				switch ($setCaption) {
+					case 0:
+						$caption = '';
+						break;
+					case 1:
+					default:
+						/* Use filename */
+						$caption = strtr($originalFilename, '_', ' ');
+						break;
+					case 2:
+						/* Use file cration date */
+						$caption = strftime($dateTimeFormat, filectime($file));
+						break;
+					case 3:
+						/* Use capture date */
+						$caption = strftime($dateTimeFormat, getItemCaptureDate($file));
+						break;
+				}
+			}
 
-            echo "\n<p><b>******". sprintf(gTranslate('core', "Adding %s"), $name) ."*****</b></p>";
+			echo "\n<p><b>******". sprintf(gTranslate('core', "Adding %s"), $name) ."*****</b></p>";
 
-            /* After all the preprocessing, NOW ADD THE element
-             * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
-             *                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
-            */
-            $err = $gallery->album->addPhoto(
-                $file,
-                $ext,
-                $mangledFilename,
-                $caption,
-                '',
-                $extra_fields,
-                $gallery->user->uid,
-                NULL,
-                $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
-            );
+			/* After all the preprocessing, NOW ADD THE element
+			* function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
+			*                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
+			*/
+			$err = $gallery->album->addPhoto(
+			$file,
+			$ext,
+			$mangledFilename,
+			$caption,
+			'',
+			$extra_fields,
+			$gallery->user->uid,
+			NULL,
+			$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+			);
 
-            if ($err) {
-                processingMsg(gallery_error($err));
-                processingMsg("<b>". sprintf(gTranslate('core', "Need help?  Look in the  %s%s FAQ%s"),
-                '<a href="http://gallery.sourceforge.net/faq.php" target=_new>', Gallery(), '</a>') .
-                "</b>");
-            }
-        } else {
-            processingMsg(sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext));
-        }
-    }
+			if ($err) {
+				processingMsg(gallery_error($err));
+				processingMsg("<b>". sprintf(gTranslate('core', "Need help?  Look in the  %s%s FAQ%s"),
+				'<a href="http://gallery.sourceforge.net/faq.php" target=_new>', Gallery(), '</a>') .
+				"</b>");
+			}
+		} else {
+			processingMsg(sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext));
+		}
+	}
 }
 
 function escapeEregChars($string) {
@@ -1249,19 +1248,19 @@ function findInPath($program) {
  * @return $version	string	Versionnumber as string
 */
 function getImVersion() {
-    global $gallery;
-    static $version;
+	global $gallery;
+	static $version;
 
 	if (!isset($version)) {
-    	$version = array();
+		$version = array();
 
 		exec($gallery->app->ImPath . '/' . fs_executable('convert') .' -version', $results);
 
-    	$pieces = explode(' ', $results[0]);
-    	$version = $pieces[2];
+		$pieces = explode(' ', $results[0]);
+		$version = $pieces[2];
 	}
 
-    return $version;
+	return $version;
 }
 
 /**
@@ -1269,11 +1268,11 @@ function getImVersion() {
  * @return $version	string	Versionnumber as string
 */
 function getJheadVersion($dir = '') {
-    global $gallery;
+	global $gallery;
 
 	$bin = fs_executable('jhead');
 
-    if(empty($dir)) {
+	if(empty($dir)) {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 		if(empty($dir)) {
 			return 0;
@@ -1282,12 +1281,12 @@ function getJheadVersion($dir = '') {
 
 	$path ="$dir/$bin";
 
-    fs_exec($path . ' -V', $results, $status);
+	fs_exec($path . ' -V', $results, $status);
 
-    $pieces = explode(' ', $results[0]);
-    $version = $pieces[2];
+	$pieces = explode(' ', $results[0]);
+	$version = $pieces[2];
 
-    return $version;
+	return $version;
 }
 
 define("OS_WINDOWS", "win");
@@ -1313,8 +1312,8 @@ function getOS () {
 function generate_password($len = 10) {
 	$result = '';
 	$alpha  = 'abcdefghijklmnopqrstuvwxyz' .
-			  '0123456789' .
-			  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	'0123456789' .
+	'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 	$size = strlen($alpha) - 1;
 	$used = array();
@@ -1375,89 +1374,89 @@ function logMessage ($msg, $logfile) {
 
 /* simplify condition tests */
 function testRequirement($test) {
-    global $gallery;
-    if(substr($test, 0,1 ) == "!") {
-        $test = substr($test, 1);
-        $negativeTest = true;
-    }
-    else {
-        $negativeTest = false;
-    }
+	global $gallery;
+	if(substr($test, 0,1 ) == "!") {
+		$test = substr($test, 1);
+		$negativeTest = true;
+	}
+	else {
+		$negativeTest = false;
+	}
 
-    switch ($test) {
-        case 'albumIsRoot':
-            $result = $gallery->album->isRoot();
-        break;
-        case 'isAdminOrAlbumOwner':
-            $result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
-        break;
+	switch ($test) {
+		case 'albumIsRoot':
+			$result = $gallery->album->isRoot();
+			break;
+		case 'isAdminOrAlbumOwner':
+			$result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+			break;
 
-        case 'comments_enabled':
-            $result = $gallery->app->comments_enabled == 'yes';
-        break;
+		case 'comments_enabled':
+			$result = $gallery->app->comments_enabled == 'yes';
+			break;
 
-        case 'allowComments':
-            $result = $gallery->album->fields["perms"]['canAddComments'];
-        break;
+		case 'allowComments':
+			$result = $gallery->album->fields["perms"]['canAddComments'];
+			break;
 
-        case 'hasComments':
-            $result = ($gallery->album->lastCommentDate("no") != -1);
-        break;
+		case 'hasComments':
+			$result = ($gallery->album->lastCommentDate("no") != -1);
+			break;
 
-        case 'canAddToAlbum':
-            $result = $gallery->user->canAddToAlbum($gallery->album);
-        break;
+		case 'canAddToAlbum':
+			$result = $gallery->user->canAddToAlbum($gallery->album);
+			break;
 
-        case 'canDeleteAlbum':
-            $result = $gallery->user->canDeleteAlbum($gallery->album);
-        break;
+		case 'canDeleteAlbum':
+			$result = $gallery->user->canDeleteAlbum($gallery->album);
+			break;
 
-        case 'extraFieldsExist':
-            $extraFields = $gallery->album->getExtraFields();
-            $result = !empty($extraFields);
-        break;
+		case 'extraFieldsExist':
+			$extraFields = $gallery->album->getExtraFields();
+			$result = !empty($extraFields);
+			break;
 
-        case 'isAlbumOwner':
-            $result = $gallery->user->isOwnerOfAlbum($gallery->album);
-        break;
+		case 'isAlbumOwner':
+			$result = $gallery->user->isOwnerOfAlbum($gallery->album);
+			break;
 
-        case 'canCreateSubAlbum':
-            $result = $gallery->user->canCreateSubAlbum($gallery->album);
-        break;
+		case 'canCreateSubAlbum':
+			$result = $gallery->user->canCreateSubAlbum($gallery->album);
+			break;
 
-        case 'notOffline':
-            $result = !$gallery->session->offline;
-        break;
+		case 'notOffline':
+			$result = !$gallery->session->offline;
+			break;
 
-        case 'canChangeText':
-            $result = $gallery->user->canChangeTextOfAlbum($gallery->album);
-        break;
+		case 'canChangeText':
+			$result = $gallery->user->canChangeTextOfAlbum($gallery->album);
+			break;
 
-        case 'canWriteToAlbum':
-            $result = $gallery->user->canWriteToAlbum($gallery->album);
-        break;
+		case 'canWriteToAlbum':
+			$result = $gallery->user->canWriteToAlbum($gallery->album);
+			break;
 
-        case 'photosExist':
-            $result = $gallery->album->numPhotos(true);
-        break;
+		case 'photosExist':
+			$result = $gallery->album->numPhotos(true);
+			break;
 
-        case 'watermarkingEnabled':
-            $result = isset($gallery->app->watermarkDir);
-        break;
+		case 'watermarkingEnabled':
+			$result = isset($gallery->app->watermarkDir);
+			break;
 
-        case 'exif':
-        	$result = (getExifDisplayTool() !== false);
-        break;
+		case 'exif':
+			$result = (getExifDisplayTool() !== false);
+			break;
 
-        default:
-            $result = false;
-        break;
-    }
-    if ($negativeTest) {
-        $result = ! $result;
-    }
+		default:
+			$result = false;
+			break;
+	}
+	if ($negativeTest) {
+		$result = ! $result;
+	}
 
-    return $result;
+	return $result;
 }
 
 /**
@@ -1465,45 +1464,45 @@ function testRequirement($test) {
  * @author Jens Tkotz <jens@peino.de>
  */
 function where_i_am() {
-    global $GALLERY_OK;
+	global $GALLERY_OK;
 
-    if (!stristr($_SERVER['REQUEST_URI'],'setup') || $GALLERY_OK) {
-        $location = 'core';
-    } else {
-        $location = 'config';
-    }
-    return $location;
+	if (!stristr($_SERVER['REQUEST_URI'],'setup') || $GALLERY_OK) {
+		$location = 'core';
+	} else {
+		$location = 'config';
+	}
+	return $location;
 }
 
 // Returns the SVN revision  as a string, NULL if file can't be read, or ""
 // if version can't be found.
 function getSVNRevision($file) {
-    $path = dirname(__FILE__) . "/$file";
+	$path = dirname(__FILE__) . "/$file";
 
-    if (!fs_file_exists($path)) {
-        return NULL;
-    }
+	if (!fs_file_exists($path)) {
+		return NULL;
+	}
 
-    if (!fs_is_readable($path)) {
-        return NULL;
-    }
+	if (!fs_is_readable($path)) {
+		return NULL;
+	}
 
-    $contents = file($path);
-    foreach ($contents as $line) {
-        if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24$", trim($line), $matches) ||
-        ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches)) {
-            if ($matches[1]) {
-                return $matches[1];
-            }
-        }
-    }
+	$contents = file($path);
+	foreach ($contents as $line) {
+		if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24$", trim($line), $matches) ||
+		ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches)) {
+			if ($matches[1]) {
+				return $matches[1];
+			}
+		}
+	}
 
-    return '';
+	return '';
 }
 
 /* Return -1 if old version is greater than new version, 0 if they are the
-   same and 1 if new version is greater.
- */
+same and 1 if new version is greater.
+*/
 function compareVersions($old_str, $new_str) {
 	if ($old_str === $new_str) {
 		return 0;
@@ -1551,7 +1550,7 @@ function contextHelp ($link) {
 }
 
 function parse_csv ($filename, $delimiter=";") {
-    echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
+	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
 	$maxLength = 1024;
 	$return_array = array();
 
@@ -1569,8 +1568,8 @@ function parse_csv ($filename, $delimiter=";") {
 	}
 
 	if(isDebugging()){
-	   echo gTranslate('core', "csv result:");
-	   print_r($return_array);
+		echo gTranslate('core', "csv result:");
+		print_r($return_array);
 	}
 	return $return_array;
 }
@@ -1583,75 +1582,75 @@ function parse_csv ($filename, $delimiter=";") {
  * @author Andrew Lindeman, 02/2004
 */
 function key_strip_slashes (&$arr) {
-    $keys = array_keys ($arr);
+	$keys = array_keys ($arr);
 
-    foreach ($keys as $val) {
-        $tmpVal = stripslashes ($val);
+	foreach ($keys as $val) {
+		$tmpVal = stripslashes ($val);
 
-        if ($tmpVal != $val) {
-            $arr[$tmpVal] = $arr[$val];
-            unset ($arr[$val]);
-        }
+		if ($tmpVal != $val) {
+			$arr[$tmpVal] = $arr[$val];
+			unset ($arr[$val]);
+		}
 
-        if (is_array ($arr[$tmpVal])) {
-            key_strip_slashes ($arr[$tmpVal]);
-        }
-    }
+		if (is_array ($arr[$tmpVal])) {
+			key_strip_slashes ($arr[$tmpVal]);
+		}
+	}
 }
 
 function getExtraFieldsValues($index, $extra_fields, $full) {
-    global $gallery;
-    $photo = $gallery->album->getPhoto($index);
-    $automaticFields = automaticFieldsList();
+	global $gallery;
+	$photo = $gallery->album->getPhoto($index);
+	$automaticFields = automaticFieldsList();
 
-    $table = array();
+	$table = array();
 
-    foreach ($extra_fields as $key) {
-        if (isset($automaticFields[$key]) && $key != 'EXIF') {
-            if ($key == 'Upload Date') {
-                $table[$automaticFields[$key]] = strftime($gallery->app->dateTimeString , $gallery->album->getUploadDate($index));
-            }
+	foreach ($extra_fields as $key) {
+		if (isset($automaticFields[$key]) && $key != 'EXIF') {
+			if ($key == 'Upload Date') {
+				$table[$automaticFields[$key]] = strftime($gallery->app->dateTimeString , $gallery->album->getUploadDate($index));
+			}
 
-            if ($key == 'Capture Date') {
-                $itemCaptureDate = $gallery->album->getItemCaptureDate($index);
-                $table[$automaticFields[$key]] = strftime($gallery->app->dateTimeString , $itemCaptureDate);
-            }
+			if ($key == 'Capture Date') {
+				$itemCaptureDate = $gallery->album->getItemCaptureDate($index);
+				$table[$automaticFields[$key]] = strftime($gallery->app->dateTimeString , $itemCaptureDate);
+			}
 
-            if ($key == 'Dimensions') {
-                $dimensions = $photo->getDimensions($full);
-                $table[$automaticFields[$key]] = $dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10) ."k)";
-            }
-        }
-        else {
-            $value = $gallery->album->getExtraField($index, $key);
-            if (!empty($value)) {
-                /* Might be look strange, but $key could be in translateableFields() */
-                $table[gTranslate('core', $key)] = str_replace("\n", "<br>", $value);
-            }
-        }
-    }
-    return $table;
+			if ($key == 'Dimensions') {
+				$dimensions = $photo->getDimensions($full);
+				$table[$automaticFields[$key]] = $dimensions[0]." x ".$dimensions[1]." (". ((int) $photo->getFileSize($full) >> 10) ."k)";
+			}
+		}
+		else {
+			$value = $gallery->album->getExtraField($index, $key);
+			if (!empty($value)) {
+				/* Might be look strange, but $key could be in translateableFields() */
+				$table[gTranslate('core', $key)] = str_replace("\n", "<br>", $value);
+			}
+		}
+	}
+	return $table;
 }
 
 if (!function_exists('glob')) {
-    function glob($pattern) {
-        $path_parts = pathinfo($pattern);
-        $pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
-        $dir = fs_opendir($path_parts['dirname']);
-        while ($file = readdir($dir)) {
-            if ($file != '.' && $file != '..' && ereg($pattern, $file)) {
-                 $result[] = "{$path_parts['dirname']}/$file";
-            }
-        }
-        closedir($dir);
+	function glob($pattern) {
+		$path_parts = pathinfo($pattern);
+		$pattern = '^' . str_replace(array('*',  '?'), array('(.+)', '(.)'), $path_parts['basename'] . '$');
+		$dir = fs_opendir($path_parts['dirname']);
+		while ($file = readdir($dir)) {
+			if ($file != '.' && $file != '..' && ereg($pattern, $file)) {
+				$result[] = "{$path_parts['dirname']}/$file";
+			}
+		}
+		closedir($dir);
 
-        // my changes here
-        if (isset($result)) {
-            return $result;
-        }
+		// my changes here
+		if (isset($result)) {
+			return $result;
+		}
 
-        return array();
-    }
+		return array();
+	}
 }
 
 function genGUID() {
@@ -1665,7 +1664,7 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 	// If the user has set their Gallery to display larger images,
 	// accomodate for it.
 	if (!($iHeight < $thumbsize && $iWidth < $thumbsize)) {
-	    $thumbsize = max($iHeight, $iWidth);
+		$thumbsize = max($iHeight, $iWidth);
 	}
 
 
@@ -1674,29 +1673,29 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 		case "none":
 			$divCellWidth = $thumbsize + 3;
 			$divCellAdd =  3;
-		break;
+			break;
 
 		case "dots":
 			$divCellWidth = $thumbsize + 7;
 			$divCellAdd =  7;
-		break;
+			break;
 
 		case "solid":
 			$divCellWidth = $thumbsize + $borderwidth + 3;
 			$divCellAdd =  $borderwidth + 3;
-		break;
+			break;
 
 		default: // use frames directory or fallback to none.
-		    if(array_key_exists($frame, available_frames())) {
+		if(array_key_exists($frame, available_frames())) {
 			require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
 
 			$divCellWidth = $thumbsize + $widthTL + $widthTR;
 			$divCellAdd = $heightTT + $heightBB;
-		    }
-		    else {
+		}
+		else {
 			$divCellWidth = $thumbsize + 3;
 			$divCellAdd =  3;
-		    }
+		}
 		break;
 	} // end of switch
 
@@ -1734,37 +1733,37 @@ function recursiveCount (&$arr) {
  * @author Jens Tkotz
  */
 function getMimeType($filename) {
-    static $mime_extension_map;
+	static $mime_extension_map;
 
-    if (empty($mime_extension_map)) {
-        require(dirname(__FILE__) . '/includes/definitions/mime.mapping.php');
-    }
+	if (empty($mime_extension_map)) {
+		require(dirname(__FILE__) . '/includes/definitions/mime.mapping.php');
+	}
 
-    $extension = getExtension($filename);
-    $mimetype = $mime_extension_map[$extension];
+	$extension = getExtension($filename);
+	$mimetype = $mime_extension_map[$extension];
 
-    echo debugMessage(sprintf(gTranslate('core', "MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
-    return $mimetype;
+	echo debugMessage(sprintf(gTranslate('core', "MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
+	return $mimetype;
 }
 
 /* Ecard Function begin */
 function get_ecard_template($template_name) {
-    global $gallery;
+	global $gallery;
 
-    $error = false;
-    $file_data = '';
-    $fpread = @fopen(dirname(__FILE__) . '/includes/ecard/templates/'. $template_name, 'r');
+	$error = false;
+	$file_data = '';
+	$fpread = @fopen(dirname(__FILE__) . '/includes/ecard/templates/'. $template_name, 'r');
 
-    if (!$fpread) {
-        $error = true;
+	if (!$fpread) {
+		$error = true;
 	}
 	else {
-        while(! feof($fpread) ) {
-            $file_data .= fgets($fpread, 4096);
-        }
-        fclose($fpread);
-    }
-    return array($error,$file_data);
+		while(! feof($fpread) ) {
+			$file_data .= fgets($fpread, 4096);
+		}
+		fclose($fpread);
+	}
+	return array($error,$file_data);
 }
 
 /**
@@ -1775,76 +1774,76 @@ function get_ecard_template($template_name) {
  * @return   string   $ecard_data	modified template data
  */
 function parse_ecard_template($ecard,$ecard_data, $preview = true) {
-    global $gallery;
+	global $gallery;
 
-    $imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
-    $photo = $gallery->album->getPhoto($ecard['photoIndex']);
-    if($preview) {
-        $imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
-        $stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
-    }
-    else {
-        $imageName = $photo->getImageName(false);
-        $stampName = $ecard['stamp'] .'.gif';
-    }
+	$imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
+	$photo = $gallery->album->getPhoto($ecard['photoIndex']);
+	if($preview) {
+		$imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
+		$stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
+	}
+	else {
+		$imageName = $photo->getImageName(false);
+		$stampName = $ecard['stamp'] .'.gif';
+	}
 
-    list ($width, $height) = getDimensions($imagePath);
-    $widthReplace = ($width < 200) ? 'width="500"' : '';
+	list ($width, $height) = getDimensions($imagePath);
+	$widthReplace = ($width < 200) ? 'width="500"' : '';
 
-    $ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_sender_email%>/", $ecard["email_sender"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_sender_name%>/", $ecard["name_sender"], $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_image_name%>/", $imageName, $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_message%>/", preg_replace ("/\r?\n/", "<BR>\n", htmlspecialchars($ecard["message"])), $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_recipient_email%>/", $ecard["email_recipient"], $ecard_data);
 	$ecard_data = preg_replace ("/<%ecard_recipient_name%>/", $ecard["name_recipient"], $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_stamp%>/", $stampName, $ecard_data);
-    $ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_stamp%>/", $stampName, $ecard_data);
+	$ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
-    return $ecard_data;
+	return $ecard_data;
 }
 
-  function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
-      global $gallery;
+function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
+	global $gallery;
 
-      $ecard_pictures = array();
-      $photo = $gallery->album->getPhoto($ecard['photoIndex']);
-      $ecard_mail = new htmlMimeMail();
+	$ecard_pictures = array();
+	$photo = $gallery->album->getPhoto($ecard['photoIndex']);
+	$ecard_mail = new htmlMimeMail();
 
-      $imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
-      $imageName = $photo->getImageName(false);
+	$imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
+	$imageName = $photo->getImageName(false);
 
-      $stampName = $ecard['stamp'] .'.gif';
-      $stampPath = getAbsoluteImagePath("ecard_images/$stampName");
+	$stampName = $ecard['stamp'] .'.gif';
+	$stampPath = getAbsoluteImagePath("ecard_images/$stampName");
 
-      $ecard_pictures[$imageName] = $imagePath;
-      $ecard_pictures[$stampName] = $stampPath;
+	$ecard_pictures[$imageName] = $imagePath;
+	$ecard_pictures[$stampName] = $stampPath;
 
-      foreach ($ecard_pictures as $pictureName => $picturePath) {
-          $picture = $ecard_mail->getFile($picturePath);
-          $ecard_mail->addHtmlImage($picture, $pictureName, getMimeType($picturePath));
-      }
+	foreach ($ecard_pictures as $pictureName => $picturePath) {
+		$picture = $ecard_mail->getFile($picturePath);
+		$ecard_mail->addHtmlImage($picture, $pictureName, getMimeType($picturePath));
+	}
 
-      /*
-       * Currently all other images in the template are ignored.
-      if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
-        for ($i = 0; $i < count($matchArray[0]); ++$i) {
-            $ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
-        }
-      }
-      */
-      $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
-      $ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
-      if (empty($ecard['subject'])) {
-          $ecard['subject'] = sprintf(gTranslate('core', "%s sent you an E-C@rd."), $ecard["name_sender"]);
-      }
+	/*
+	* Currently all other images in the template are ignored.
+	if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
+	for ($i = 0; $i < count($matchArray[0]); ++$i) {
+	$ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
+	}
+	}
+	*/
+	$ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
+	$ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
+	if (empty($ecard['subject'])) {
+		$ecard['subject'] = sprintf(gTranslate('core', "%s sent you an E-C@rd."), $ecard["name_sender"]);
+	}
 
-      $ecard_mail->setSubject($ecard['subject']);
-      $ecard_mail->setReturnPath($ecard["email_sender"]);
+	$ecard_mail->setSubject($ecard['subject']);
+	$ecard_mail->setReturnPath($ecard["email_sender"]);
 
-	  $result = $ecard_mail->send(array($ecard["name_recipient"] .' <'. $ecard["email_recipient"] .'>'));
+	$result = $ecard_mail->send(array($ecard["name_recipient"] .' <'. $ecard["email_recipient"] .'>'));
 
-      return $result;
-  }
+	return $result;
+}
 
 /**
  * This function is taken from
@@ -1863,16 +1862,16 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	$order = ($order == 'asc') ? 1 : -1;
 
 	if (empty($sort_funcs[$sortby])) {
-	    if ($special) {
-		$a = "\$a->fields[\"$sortby\"]";
-		$b = "\$b->fields[\"$sortby\"]";
-	    }
-	    else {
-		$a = "\$a['$sortby']";
-		$b = "\$b['$sortby']";
-	    }
+		if ($special) {
+			$a = "\$a->fields[\"$sortby\"]";
+			$b = "\$b->fields[\"$sortby\"]";
+		}
+		else {
+			$a = "\$a['$sortby']";
+			$b = "\$b['$sortby']";
+		}
 
-	    if ($caseSensitive) {
+		if ($caseSensitive) {
 			$code = "
 	    if( $a == $b ) {
 	        return 0;
@@ -1883,7 +1882,7 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	        return -1 * $order;
 	    }";
 		}
-	    else {
+		else {
 			$code = "
 	    if(strtoupper($a) == strtoupper($b)) {
 	        return 0;
@@ -1893,11 +1892,11 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
 	    } else {
 	        return -1 * $order;
 	    }";
-	    }
+		}
 
-	    $sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
+		$sort_func = $sort_funcs[$sortby] = create_function('$a, $b', $code);
 	} else {
-	    $sort_func = $sort_funcs[$sortby];
+		$sort_func = $sort_funcs[$sortby];
 	}
 
 	debugMessage($code, __FILE__, __LINE__, 3);
@@ -1918,102 +1917,102 @@ function array_sort_by_fields(&$data, $sortby, $order = 'asc', $caseSensitive = 
  * @author   Jens Tkotz
  */
 function createTempAlbum($albumItemNames = array(), $dir = '') {
-    global $gallery;
+	global $gallery;
 
-    if(empty($albumItemNames)) {
-        return false;
-    }
+	if(empty($albumItemNames)) {
+		return false;
+	}
 
-    $prefix = 'gallery_download_';
+	$prefix = 'gallery_download_';
 
-    if (empty($dir)) {
-        $token = uniqid(rand());
-        $dir = $gallery->app->tmpDir .'/'. $prefix . $token;
-    }
+	if (empty($dir)) {
+		$token = uniqid(rand());
+		$dir = $gallery->app->tmpDir .'/'. $prefix . $token;
+	}
 
-    if(! fs_mkdir($dir)) {
-        echo gallery_error(
-          sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
-        $gallery->app->tmpDir));
-        return false;
-    }
+	if(! fs_mkdir($dir)) {
+		echo gallery_error(
+		sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
+		$gallery->app->tmpDir));
+		return false;
+	}
 
-    foreach($albumItemNames as $possibleAlbumName => $filename) {
-        if(is_array($filename)) {
-            createTempAlbum($filename, "$dir/$possibleAlbumName");
-        }
-        else {
-            $destination = $dir .'/'. basename ($filename);
-            if(! fs_copy($filename, $destination)) {
-                echo gallery_error("Copy Failed");
-            }
-        }
-    }
+	foreach($albumItemNames as $possibleAlbumName => $filename) {
+		if(is_array($filename)) {
+			createTempAlbum($filename, "$dir/$possibleAlbumName");
+		}
+		else {
+			$destination = $dir .'/'. basename ($filename);
+			if(! fs_copy($filename, $destination)) {
+				echo gallery_error("Copy Failed");
+			}
+		}
+	}
 
-    return $dir;
+	return $dir;
 }
 
 function rmdirRecursive($dir) {
-    if($objs = glob($dir."/*")){
-        foreach($objs as $obj) {
-            if(is_dir($obj)) {
-                rmdirRecursive($obj);
-           }
-           else {
-             unlink($obj);
-           }
-       }
-   }
-   rmdir($dir);
+	if($objs = glob($dir."/*")){
+		foreach($objs as $obj) {
+			if(is_dir($obj)) {
+				rmdirRecursive($obj);
+			}
+			else {
+				unlink($obj);
+			}
+		}
+	}
+	rmdir($dir);
 }
 
 function downloadFile($filename) {
-    global $gallery;
+	global $gallery;
 
-    /* Verify its really a file */
-    if(!fs_is_file($filename) || broken_link($filename)) {
-        echo gallery_error(sprintf(gTranslate('core', "'%s' seems not to be a valid file. Download aborted."),
-            $filename));
-        return false;
-    }
+	/* Verify its really a file */
+	if(!fs_is_file($filename) || broken_link($filename)) {
+		echo gallery_error(sprintf(gTranslate('core', "'%s' seems not to be a valid file. Download aborted."),
+		$filename));
+		return false;
+	}
 
-    /* Verify $filename is inside the temp dir */
-    $validFileName = strncmp($filename, $gallery->app->tmpDir, strlen($filename));
-    if($validFileName < 0) {
-        echo gallery_error(sprintf(gTranslate('core', "The file '%s' seems not inside Gallery tempdir %s, download aborted."),
-            $filename,  $gallery->app->tmpDir));
-        return false;
-    }
-    elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
-        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
-        return false;
-    }
+	/* Verify $filename is inside the temp dir */
+	$validFileName = strncmp($filename, $gallery->app->tmpDir, strlen($filename));
+	if($validFileName < 0) {
+		echo gallery_error(sprintf(gTranslate('core', "The file '%s' seems not inside Gallery tempdir %s, download aborted."),
+		$filename,  $gallery->app->tmpDir));
+		return false;
+	}
+	elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
+		echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
+		return false;
+	}
 
-    $contentType = getMimeType($filename);
-    $size = fs_filesize($filename);
+	$contentType = getMimeType($filename);
+	$size = fs_filesize($filename);
 
-    $fp = fopen($filename, 'r');
-    $filedata = fread($fp, $size);
-    fclose($fp);
+	$fp = fopen($filename, 'r');
+	$filedata = fread($fp, $size);
+	fclose($fp);
 
-    header('Pragma: private');
-    header('Cache-control: private, must-revalidate');
-    header("Content-type: $contentType");
+	header('Pragma: private');
+	header('Cache-control: private, must-revalidate');
+	header("Content-type: $contentType");
 
-    if ($size > 0) {
-       header("Content-Length: $size");
-    }
+	if ($size > 0) {
+		header("Content-Length: $size");
+	}
 
-    header('Content-Disposition: attachment; filename="'. basename($filename) .'"');
+	header('Content-Disposition: attachment; filename="'. basename($filename) .'"');
 
-    echo $filedata;
+	echo $filedata;
 
-    /* As downloadable files are always created in a subfolder of the tempdir,
-     * we delete this folder and its content
-    */
-    rmdirRecursive(dirname($filename));
+	/* As downloadable files are always created in a subfolder of the tempdir,
+	* we delete this folder and its content
+	*/
+	rmdirRecursive(dirname($filename));
 
-    return true;
+	return true;
 }
 
 /**
@@ -2024,16 +2023,16 @@ function downloadFile($filename) {
  * @author Jens Tkotz
  */
 function array_flaten($array) {
-    $flatArray = array();
-    foreach($array as $value) {
-        if(is_array($value)) {
-            $flatArray = array_merge($flatArray, array_flaten($value));
-        }
-        else {
-            $flatArray[] = $value;
-        }
-    }
-    return $flatArray;
+	$flatArray = array();
+	foreach($array as $value) {
+		if(is_array($value)) {
+			$flatArray = array_merge($flatArray, array_flaten($value));
+		}
+		else {
+			$flatArray[] = $value;
+		}
+	}
+	return $flatArray;
 }
 
 /**

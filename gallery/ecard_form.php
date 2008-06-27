@@ -20,10 +20,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
-/*
+
 ####################################################################################
 # IBPS E-C@ard for Gallery           Version 1                                     #
 # Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de                       #
@@ -70,114 +67,115 @@ if (! empty($submit_action)) {
 
     if (!check_email($ecard["email_recipient"]) || !check_email($ecard["email_sender"])) {
         $error_msg .= gTranslate('core', "The sender or recipient email adress is not valid.");
-        $error_msg .= '<br>';
-    }
+		$error_msg .= '<br>';
+	}
 
-    if (strlen($ecard["message"]) > $max_length) {
-        $ecard["message"] = substr($ecard["message"],0,$max_length-1);
-    }
+	if (strlen($ecard["message"]) > $max_length) {
+		$ecard["message"] = substr($ecard["message"],0,$max_length-1);
+	}
 
-    list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
-    if ($error) {
-        $error_msg .= gTranslate('core', "Couldn't load the ecard template. Please contact the Gallery admin!");
-        $error_msg .= '<br>';
-    }
+	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 
-    if (empty($error_msg)) {
-        $ecard_HTML_data = parse_ecard_template($ecard,$ecard_data_to_parse, false);
-        $result = send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data);
-        if ($result) {
-            $ecard_send = true;
-        }
-        else {
-            $error_msg .= gTranslate('core', "Problem with sending the eCard. Please contact the Gallery admin!");
-            $error_msg .= '<br>';
-        }
-    }
+	if ($error) {
+		$error_msg .= gTranslate('core', "Couldn't load the ecard template. Please contact the Gallery admin!");
+		$error_msg .= '<br>';
+	}
+
+	if (empty($error_msg)) {
+		$ecard_HTML_data = parse_ecard_template($ecard, $ecard_data_to_parse, false);
+		$result = send_ecard($ecard, $ecard_HTML_data, $ecard_PLAIN_data);
+		if ($result) {
+			$ecard_send = true;
+		}
+		else {
+			$error_msg .= gTranslate('core', "Problem with sending the eCard. Please contact the Gallery admin!");
+			$error_msg .= '<br>';
+		}
+	}
 }
 else {
-    if (!isset($ecard["image_name"])) {
-        $ecard["image_name"] = $photo->getPhotoPath($gallery->album->fields['name'], false);
-    }
+	if (!isset($ecard["image_name"])) {
+		$ecard["image_name"] = $photo->getPhotoPath($gallery->album->fields['name'], false);
+	}
 }
 ?>
 <script type="text/javascript">
 <!--
 function popup_win(theURL,winName,winOptions) {
-    win = window.open(theURL,winName,winOptions);
-    win.focus();
+	win = window.open(theURL,winName,winOptions);
+	win.focus();
 }
 
 function make_preview() {
-    document.ecard_form.action = "<?php echo $gallery->app->photoAlbumURL ; ?>/ecard_preview.php";
-    popup_win('','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
-    document.ecard_form.target = "ecard_preview";
-    document.ecard_form.submit();
+	document.ecard_form.action = "<?php echo $gallery->app->photoAlbumURL ; ?>/popups/ecard_preview.php";
+	popup_win('','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
+	document.ecard_form.target = "ecard_preview";
+	document.ecard_form.submit();
 }
 
 function send_ecard() {
-    document.ecard_form.action = "<?php echo $_SERVER["PHP_SELF"] ?>";
-    document.ecard_form.target = "_self";
-    document.ecard_form["submit_action"].value = "send";
-    if (check()) { document.ecard_form.submit(); }
+	document.ecard_form.action = "<?php echo $_SERVER["PHP_SELF"] ?>";
+	document.ecard_form.target = "_self";
+	document.ecard_form["submit_action"].value = "send";
+	if (check()) { document.ecard_form.submit(); }
 }
 
 function check() {
-    var error = false;
-    var error_message = "<?php echo gTranslate('core', "Error: to send an eCard you need to fill out all fields."); ?>";
-    error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
+	var error = false;
+	var error_message = "<?php echo gTranslate('core', "Error: to send an eCard you need to fill out all fields."); ?>";
+	error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
 
-    if (document.ecard_form["ecard[name_sender]"].value == "") {
-        error = true;
-        error_message += "<?php echo gTranslate('core', "- Your Name"); ?>\n";
-    }
+	if (document.ecard_form["ecard[name_sender]"].value == "") {
+		error = true;
+		error_message += "<?php echo gTranslate('core', "- Your Name"); ?>\n";
+	}
 
-    if ((document.ecard_form["ecard[email_sender]"].value == "") &&
+	if ((document.ecard_form["ecard[email_sender]"].value == "") &&
 		(document.ecard_form["ecard[email_sender]"].value.indexOf("@") == -1))
 	{
-        error = true;
-        error_message += "<?php echo gTranslate('core', "- Your Email"); ?>\n";
-    }
+		error = true;
+		error_message += "<?php echo gTranslate('core', "- Your Email"); ?>\n";
+	}
 
     if (document.ecard_form["ecard[name_recipient]"].value == "") {
-        error = true;
-        error_message += "<?php echo gTranslate('core', "- Recipient's Name"); ?>\n";
-    }
+		error = true;
+		error_message += "<?php echo gTranslate('core', "- Recipient's Name"); ?>\n";
+	}
 
     if ((document.ecard_form["ecard[email_recipient]"].value == "") &&
-    (document.ecard_form["ecard[email_recipient]"].value.indexOf("@") == -1)) {
-        error = true;
-        error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
-    }
+        (document.ecard_form["ecard[email_recipient]"].value.indexOf("@") == -1)) {
+		error = true;
+		error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
+	}
 
-    if (document.ecard_form["ecard[message]"].value == "") {
-        error = true;
-        error_message += "<?php echo gTranslate('core', "- Your Message"); ?>\n";
-    }
+	if (document.ecard_form["ecard[message]"].value == "") {
+		error = true;
+		error_message += "<?php echo gTranslate('core', "- Your Message"); ?>\n";
+	}
 
-    if (error) {
-		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), $sendButtonTest); ?>";
-        alert(error_message);
-        return false;  // Form not sent
+	if (error) {
+		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), removeAccessKey($sendButtonTest)); ?>";
+		alert(error_message);
+		return false;  // Form not sent
 	}
 	else {
-        return true;  // Form sent
-    }
+		return true;  // Form sent
+	}
 
 } // Ende function check()
 
 function CountMax() {
-    max = <?php echo $max_length ?>;
-    wert = max - document.ecard_form["ecard[message]"].value.length;
-    if (wert < 0) {
-        alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters!"), $max_length); ?>");
-        document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
-        wert = 0;
-        document.ecard_form.counter.value = wert;
+	max = <?php echo $max_length ?>;
+	wert = max - document.ecard_form["ecard[message]"].value.length;
+	if (wert < 0) {
+		alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters!"), $max_length); ?>");
+		document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
+		wert = 0;
+		document.ecard_form.counter.value = wert;
 	}
 	else {
-        document.ecard_form.counter.value = max - document.ecard_form["ecard[message]"].value.length;
-    }
+		document.ecard_form.counter.value = max - document.ecard_form["ecard[message]"].value.length;
+	}
 } // Ende function CountMax()
 
 
@@ -191,9 +189,9 @@ if (! $ecard_send) {
         echo '<p>'. gallery_error($error_msg) .'</p>';
     }
 
-    echo makeFormIntro("ecard_form.php",
-    array("name" => "ecard_form"),
-    array("type" => "popup"));
+	echo makeFormIntro("ecard_form.php",
+	array("name" => "ecard_form"),
+	array("type" => "popup"));
 ?>
 	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard['image_name']; ?>">
   <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
@@ -286,7 +284,7 @@ for($i = 1; $i <= 27; $i++) {
   </form>
 <?php }
 else {
-    printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recipient"], $ecard["email_recipient"]);
+	printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recipient"], $ecard["email_recipient"]);
 ?>
   <p align="center"><?php echo $gallery->album->getThumbnailTag($ecard['photoIndex']); ?></p>
   <br>

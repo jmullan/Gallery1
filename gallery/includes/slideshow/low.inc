@@ -63,15 +63,19 @@ function slideshow_initialize() {
     if (!isset($slide_index)) {
         $slide_index = 1;
     }
+
     if (!isset($slide_pause)) {
         $slide_pause = $defaultPause;
     }
+
     if (!isset($slide_loop)) {
         $slide_loop = $defaultLoop;
     }
+
     if (!isset($slide_full)) {
         $slide_full = $defaultFull;
     }
+
     if (!isset($slide_dir)) {
         $slide_dir = $defaultDir;
     }
@@ -141,6 +145,7 @@ while ($numDisplayed < $numPhotos && $numDisplayed < $number) {
         */
         break;
     }
+
     $photo = $gallery->album->getPhoto($index);
     $numDisplayed++;
 
@@ -159,6 +164,7 @@ while ($numDisplayed < $numPhotos && $numDisplayed < $number) {
 	else {
         $thumbImage = $photo->image->name;
     }
+
     $photoURL = $gallery->album->getPhotoPath($index, $slide_full);
 
     // Now lets get the captions
@@ -222,7 +228,8 @@ function wait_for_current_photo() {
         clearTimeout(timer);
         timer = setTimeout('wait_for_current_photo()', 500);
         return 0;
-    } else {
+    }
+	else {
         preload_next_photo();
         reset_timer();
     }

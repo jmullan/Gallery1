@@ -25,22 +25,22 @@ includeTemplate('gallery.footer.tpl');
             <span class="fineprint">
 	    <?php print poweredBy() ?>
             </span>
-<?php 
+<?php
 global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
 	       	print gallery_validation_link("albums.php");
        	} ?>
           </td>
 <?php if (!$gallery->session->offline && (!isset($gallery->app->rssEnabled) || $gallery->app->rssEnabled == "yes")) { ?>
-          <td style="text-align:right"><a href="<?php echo $gallery->app->photoAlbumURL . "/rss.php"; ?>" style="background-color:#f60; border:2px outset #ffc8a4; color:white; text-decoration:none; font:bold 10px sans-serif; padding:0px 3px 0px 5px; letter-spacing:1px;">RSS</a></td> 
-<?php 
+          <td style="text-align:right"><a href="<?php echo $gallery->app->photoAlbumURL . "/rss.php"; ?>" style="background-color:#f60; border:2px outset #ffc8a4; color:white; text-decoration:none; font:bold 10px sans-serif; padding:0px 3px 0px 5px; letter-spacing:1px;">RSS</a></td>
+<?php
 } // if rssEnabled
 if ($gallery->user->isAdmin() ) { ?>
 
           <!-- donation block -->
 
           <td width="300" align="right">
-            <span class="fineprint"> 
+            <span class="fineprint">
               Are you happy with Gallery?<br>
 	      Make us happy too!  Donate!<br>
 	      (only admins see this message and button)<br>

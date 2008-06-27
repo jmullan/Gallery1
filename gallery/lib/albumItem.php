@@ -28,11 +28,11 @@
 /**
  * This function shows all possible actions for an album item.
  *
- * @param	integer	$i			index number of the item
- * @param   boolean	$withIcons	Whether icons should be used, or not.
- * @param 	boolean	$popupsOnly	Whether only options that result in a popup should be shown, or all
- * @param 	boolean	$caption	Add a 'caption' option or not. (mostly just in dropdowns)
- * @return  array	$options	Array of all possible album item for the current user.
+ * @param   integer     $i            index number of the item
+ * @param   boolean     $withIcons    Whether icons should be used, or not.
+ * @param   boolean     $popupsOnly   Whether only options that result in a popup should be shown, or all
+ * @param   boolean     $caption      Add a 'caption' option or not. (mostly just in dropdowns)
+ * @return  array       $options      Array of all possible album item for the current user.
  * @author  Jens Tkotz
  */
 function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = false) {
@@ -85,7 +85,7 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
     	$isMovie = true;
 	}
 	else {
-    	$label = gTranslate('core', "Photo");
+		$label = gTranslate('core', "Photo");
 		$isPhoto = true;
 	}
 
@@ -94,149 +94,156 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 	}
 
 	if (isset($isAdmin) ||
-	  (isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-	  $gallery->album->isItemOwner($gallery->user->getUid(), $i)) {
-	  	$isOwner = true;
+		(isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
+		$gallery->album->isItemOwner($gallery->user->getUid(), $i))
+	{
+		$isOwner = true;
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album) ||
-	   ($gallery->album->getItemOwnerModify() && isset($isOwner))) {
+		($gallery->album->getItemOwnerModify() && isset($isOwner)))
+	{
 		$canModify = true;
 	}
 
-    /* ----- User can write to album, or is owner of the item and item-owner can modify items ----- */
-    if (isset($canModify)) {
-    	if ($isPhoto) {
-    		$options[] = array(
+	/* ----- User can write to album, or is owner of the item and item-owner can modify items ----- */
+	if (isset($canModify)) {
+		if ($isPhoto) {
+			$options[] = array(
 				'text'	=> gTranslate('core', "Edit Text"),
 				'value'	=> showChoice2("edit_caption.php", array("index" => $i)),
 				'icon'	=> ($withIcons) ? 'kcmfontinst.gif' : ''
-    		);
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> gTranslate('core', "Edit Thumbnail"),
 				'value'	=> showChoice2('edit_thumb.php', array('index' => $i)),
 				'icon'	=> ($withIcons) ? 'thumbnail.gif' : ''
-    		);
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> sprintf(gTranslate('core', "Rotate/Flip"), $label),
 				'value'	=> showChoice2('rotate_photo.php', array('index' => $i)),
 				'icon'	=> ($withIcons) ? 'reload.gif' : ''
-    		);
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> gTranslate('core', "Resize"),
 				'value'	=> showChoice2('resize_photo.php', array('index' => $i)),
 				'icon'	=> ($withIcons) ? 'window_fullscreen.gif' : ''
-    		);
+			);
 
-    		if (!empty($gallery->app->watermarkDir)) {
-    			$options[] = array(
+			if (!empty($gallery->app->watermarkDir)) {
+				$options[] = array(
 					'text'	=> gTranslate('core', "Watermark"),
 					'value'	=>  showChoice2('edit_watermark.php', array('index' => $i)),
 					'icon'	=> ($withIcons) ? 'camera.gif' : ''
-    			);
-    		}
+				);
+			}
 
 			if(!$popupsOnly) {
-    			$options[] = array(
+				$options[] = array(
 					'text'	=> gTranslate('core', "ImageMap"),
-	    			'value' => showChoice2('imagemap.php', array('index' => $i), false),
+					'value'	=> showChoice2('imagemap.php', array('index' => $i), false),
 					'icon'	=> ($withIcons) ? 'behavior-capplet.gif' : ''
-    			);
+				);
 			}
 		}
 
-    	/* ----- Item is subalbum ----- */
-    	if ($isAlbum) {
-    		$options[] = array(
+		/* ----- Item is subalbum ----- */
+		if ($isAlbum) {
+			$options[] = array(
 				'text'	=> gTranslate('core', "Edit Title"),
-				'value'	=>  showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
-    		);
+				'value'	=>  showChoice2('edit_field.php',
+							array('set_albumName' => $myAlbum->fields['name'], 'field' => 'title')),
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text' => gTranslate('core', "Edit Description"),
-				'value'	=> showChoice2('edit_field.php', array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
+				'value'	=> showChoice2('edit_field.php',
+							array('set_albumName' => $myAlbum->fields['name'], 'field' => 'description')),
 				'icon'	=> ''
-    		);
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> gTranslate('core', "Rename Album"),
-				'value'	=> showChoice2('rename_album.php', array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
-    		);
+				'value'	=> showChoice2('rename_album.php',
+							array('set_albumName' => $myAlbum->fields['name'], 'index' => $i)),
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> gTranslate('core', "Reset Counter"),
 				'value'	=> showChoice2('do_command.php',
-		    		array(
-			    		'cmd' => 'reset-album-clicks',
-			    		'set_albumName' => $gallery->album->getAlbumName($i),
-									'return' => urlencode(makeGalleryUrl('view_album.php'))
-	    				)
-				),
-    		);
+					array(
+						'cmd' 		=> 'reset-album-clicks',
+						'set_albumName' => $gallery->album->getAlbumName($i),
+						'return'	=> urlencode(makeGalleryUrl('view_album.php'))
+					)
+				)
+			);
 
-    		$options[] = array(
+			$options[] = array(
 				'text'	=> gTranslate('core', "Permissions"),
-				'value'	=> showChoice2('album_permissions.php', array('set_albumName' => $myAlbum->fields['name'])),
-    		);
+				'value'	=> showChoice2('album_permissions.php',
+							array('set_albumName' => $myAlbum->fields['name'])),
+			);
 
-    		// Watermarking support is enabled and user is allowed to watermark images/albums /
-    		if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
-    			$options[] = array(
+			// Watermarking support is enabled and user is allowed to watermark images/albums /
+			if (!empty($gallery->app->watermarkDir) && $myAlbum->numPhotos(1)) {
+				$options[] = array(
 					'text'	=> gTranslate('core', "Watermark Album"),
-					'value'	=> showChoice2('watermark_album.php', array('set_albumName' => $myAlbum->fields['name'])),
-    			);
-    		}
+					'value'	=> showChoice2('watermark_album.php',
+								array('set_albumName' => $myAlbum->fields['name'])),
+				);
+			}
 
-    		if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
-    			$options[] = array(
+			if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
+				$options[] = array(
 					'text'	=> gTranslate('core', "View Comments"),
 					'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url"),
-    			);
-    		}
-    	}
+    				);
+			}
+		}
 
-    	if (! $isAlbum) {
-    	    $options[] = array(
+		if (! $isAlbum) {
+			$options[] = array(
 				'text' => gTranslate('core', "Copy"),
 				'value'	=> showChoice2("copy_photo.php", array("index" => $i)),
 				'icon'	=> ($withIcons) ? 'editcopy.gif' : ''
-    	    );
-    	}
+			);
+		}
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-    		$options[] = array(
+		$options[] = array(
 			'text'	=> gTranslate('core', "Reorder"),
 			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 1)),
 			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
-    		);
+		);
 
-    	$options[] = array(
+		$options[] = array(
 			'text'	=> gTranslate('core', "Move"),
 			'value'	=> showChoice2("move_photo.php", array("index" => $i, 'reorder' => 0)),
 			'icon'	=> ($withIcons) ? 'tab_duplicate.gif' : ''
-    	);
+		);
 
-    	/* ----- Item is photo, or subalbum with highlight ----- */
-    	if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
-    		$options[] = array(
+		/* ----- Item is photo, or subalbum with highlight ----- */
+		if ($isPhoto || (isset($myAlbum) && $myAlbum->hasHighlight())) {
+			$options[] = array(
 				'text'	=> gTranslate('core', "Set as highlight"),
 				'value'	=> showChoice2('do_command.php', array('cmd' => 'highlight', 'index' => $i)),
 				'icon'	=> ($withIcons) ? 'viewmag1.gif' : ''
-    		);
-    	}
-    }
+			);
+		}
+	}
 
 	if (isset($isAdmin)) {
-    	$options[] = array(
+		$options[] = array(
 			'text'	=> gTranslate('core', "Change Owner"),
 			'value'	=> showChoice2("photo_owner.php", array("id" => $id)),
 			'icon'	=> ($withIcons) ? 'yast_kuser.gif' : ''
 		);
-    }
+	}
 
 	if (isset($isOwner)) {
 		if ($gallery->album->isHidden($i)) {
@@ -255,11 +262,12 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		}
 	}
 
-    if ($gallery->user->canDeleteFromAlbum($gallery->album) ||
-	  ($gallery->album->getItemOwnerDelete() && isset($isOwner))) {
-    	if($isAlbum) {
-    		if($gallery->user->canDeleteAlbum($myAlbum)) {
-    			$options[] = array(
+	if ($gallery->user->canDeleteFromAlbum($gallery->album) ||
+	    ($gallery->album->getItemOwnerDelete() && isset($isOwner)))
+	{
+		if($isAlbum) {
+			if($gallery->user->canDeleteAlbum($myAlbum)) {
+				$options[] = array(
 					'text'	=> gTranslate('core', "Delete"),
 					'value'	=> showChoice2("delete_photo.php",
 										   array(
@@ -273,75 +281,76 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				'text'	=> gTranslate('core', "Delete"),
 				'value'	=> showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId)),
 				'icon'	=> ($withIcons) ? 'delete.gif' : ''
-    		);
-    	}
-    }
+			);
+		}
+	}
 
-    if($isPhoto) {
-    	$photo = $gallery->album->getPhoto($i);
-    	if ($gallery->album->fields["use_exif"] == 'yes' &&
-    	  (eregi("jpe?g\$", $photo->image->type)) &&
-    	  (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)))
+	if($isPhoto) {
+		$photo = $gallery->album->getPhoto($i);
+		if ($gallery->album->fields["use_exif"] == 'yes' &&
+			(eregi("jpe?g\$", $photo->image->type)) &&
+			(isset($gallery->app->use_exif) || isset($gallery->app->exiftags)))
 		{
-    		$options['showExif'] = array(
+			$options['showExif'] = array(
 				'text'	=> gTranslate('core', "Photo properties"),
 				'value'	=> showChoice2("view_photo_properties.php", array("index" => $i)),
 				'icon'	=> ($withIcons) ? 'frame_query.gif' : '',
-				'separate'	=> true
-    		);
-    	}
+				'separate' => true
+			);
+		}
 
 
-		if(isset($gallery->album->fields["ecards"]) && $gallery->album->fields["ecards"] == 'yes' &&
-				 $gallery->app->emailOn == 'yes')
+		if(isset($gallery->album->fields["ecards"]) &&
+		   $gallery->album->fields["ecards"] == 'yes' &&
+		   $gallery->app->emailOn == 'yes')
 		{
 			$options['eCard'] = array(
 				'text'	=> gTranslate('core', "Send photo as eCard"),
 				'value'	=> showChoice2('ecard_form.php', array('photoIndex' => $i)),
 				'icon'	=> ($withIcons) ? 'ecard.gif' : '',
-				'separate'	=> true
+				'separate' => true
 			);
-    	}
+		}
 	}
 
 	array_sort_by_fields($options, 'text');
-	
-	if(!empty($options) && $caption) {
-		array_unshift($options, array(
-	    	'text' => '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
-			'selected'	=> true
-		));
-    }
 
-    return $options;
+	if(!empty($options) && $caption) {
+		array_unshift($options,array(
+					'text'		=> '&laquo; '. sprintf(gTranslate('core', "%s actions"), $label) . ' &raquo;',
+					'selected'	=> true
+		));
+	}
+
+	return $options;
 }
 
 /**
  * Returns a HTML with all comments of an album item.
  *
- * @param integer   $index		itemindex
- * @param string	$albumName	Name of the album containing the item
- * @param boolean   $reverse	Wether to show in reverse order or not
- * @return string				A rendered HTML Table that contains the comments.
+ * @param integer    $index        itemindex
+ * @param string     $albumName    Name of the album containing the item
+ * @param boolean    $reverse      Wether to show in reverse order or not
+ * @return string                  A rendered HTML Table that contains the comments.
  * @author Jens Tkotz
  */
 function showComments ($index, $albumName, $reverse = false) {
-    global $gallery;
+	global $gallery;
 
-    $numComments = $gallery->album->numComments($index);
-    $delCommentText = getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
+	$numComments	= $gallery->album->numComments($index);
+	$delCommentText	= getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
 
-    $commentdraw["index"] = $index;
+	$commentdraw['index'] = $index;
 
-    $commentTable = new galleryTable();
-    $commentTable->setAttrs(array(
-        'width' => '75%',
-        'style' => 'padding-left:30px;',
-        'border' => 0,
-        'cellspacing' => 0,
-        'cellpadding' => 0,
-        'class' => 'commentbox')
-    );
+	$commentTable = new galleryTable();
+	$commentTable->setAttrs(array(
+		'width' => '75%',
+		'style' => 'padding-left:30px;',
+		'border' => 0,
+		'cellspacing' => 0,
+		'cellpadding' => 0,
+		'class' => 'commentbox')
+	);
 
     $columns = ($gallery->user->canWriteToAlbum($gallery->album)) ? 4 : 3;
     $commentTable->setColumnCount($columns);
@@ -395,25 +404,25 @@ function showComments ($index, $albumName, $reverse = false) {
  * Ater deletion we move to previous image if we're at the end.
  * and move forward if we're not.
  *
- * @param integer	$currentId
- * @return integer	NextId ;)
+ * @param integer     $currentId
+ * @return integer    $nextId			;-)
  */
 function getNextId($currentId) {
-    global $gallery;
+	global $gallery;
 
-    $allIds = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
-    $current = array_search($currentId, $allIds);
+	$allIds	 = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
+	$current = array_search($currentId, $allIds);
 
-    if ($current < sizeof($allIds)-1) {
-        $nextId = $allIds[$current+1];
+	if ($current < sizeof($allIds)-1) {
+		$nextId = $allIds[$current+1];
 	}
 	elseif ($current > 0) {
-        $nextId = $allIds[$current-1];
+		$nextId = $allIds[$current-1];
 	}
 	else {
-        $nextId = $currentId;
-    }
+		$nextId = $currentId;
+	}
 
-    return $nextId;
+	return $nextId;
 }
 ?>

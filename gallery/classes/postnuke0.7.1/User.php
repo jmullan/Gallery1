@@ -19,8 +19,7 @@
 *
 * $Id$
 */
-?>
-<?php
+
 class PostNuke_User extends Abstract_User {
 	function loadByUid($uid) {
 		/*

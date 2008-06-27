@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(__FILE__) . '/init.php');
 
 if (isset($_REQUEST['destroy'])) {

@@ -14,7 +14,7 @@
 //   a little. Use the following code snippet to display the current
 //   Gallery version linked to the Gallery home page.
 //
-?>  
+?>
 <?php
 includeTemplate('stats.footer.tpl');
 ?>
@@ -23,7 +23,7 @@ includeTemplate('stats.footer.tpl');
 		<td valign="top">
 		<!-- The Gallery code version number, linked to the Gallery home page -->
 		<span class="fineprint"><?php print poweredBy() ?> </span>
-<?php 
+<?php
 
 	global $GALLERY_EMBEDDED_INSIDE;
        	if (! isset($GALLERY_EMBEDDED_INSIDE)) {
@@ -34,13 +34,12 @@ includeTemplate('stats.footer.tpl');
 <?php if ($gallery->user->isAdmin()) { ?>
 		<!-- donation block -->
 		<td width="300" align="right">
-		<span class="fineprint"> 
-		Are you happy with Gallery ?              
+		<span class="fineprint">
+		Are you happy with Gallery ?
 		Make us happy too!  Donate!<br>
 		(only admins see this message and button)<br>
 		</span>
 		</td>
-		
 		<td width="90" align="right">
 		<a href="<?php echo $gallery->url ?>/donate.php?donate_tag=v<?php echo $gallery->version ?>">
 			<img align="right" src="<?php echo getImagePath('donate.jpg') ?>" width="88" height="31" border="0" ALT="<?php echo _("Donate to Gallery now!!") ?>">

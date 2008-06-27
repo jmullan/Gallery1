@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 function build_popup_url($url, $url_is_complete = false) {
 	/* Separate the target from the arguments */
@@ -72,7 +70,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete = 0, $online_only = true, $height = 550,$width = 600, $cssclass='', $extraJS = '', $icon = '', $addBrackets = true) {
+function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=550,$width=600, $cssclass='', $extraJS='', $icon ='', $addBrackets = true) {
 	global $gallery;
 	global $specialIconMode;
 

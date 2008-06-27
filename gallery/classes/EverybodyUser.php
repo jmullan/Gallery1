@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class EverybodyUser extends Abstract_User {
 	function EverybodyUser() {
 		$this->username = "EVERYBODY" ;

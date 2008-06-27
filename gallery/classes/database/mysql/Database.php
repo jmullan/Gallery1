@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class MySQL_Database extends Abstract_Database {
 	var $link;
 

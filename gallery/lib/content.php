@@ -1,23 +1,23 @@
 <?php
 /*
-* Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or (at
-* your option) any later version.
-*
-* This program is distributed in the hope that it will be useful, but
-* WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
-*
-* $Id$
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2007 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id$
 */
 
 /**
@@ -54,6 +54,7 @@ function editField($album, $field, $link = null) {
 }
 
 /** Shows the caption of an albumitem and if permitted also a link to the edit popup
+ *
  * @param   object  $album
  * @param   integer $index	albumitem index
  * @return  string  $buf
@@ -204,7 +205,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			case 'mambo':
 			case 'joomla':
 				if (!empty($_COOKIE['sessioncookie'])) {
-					// really mambo
+					// Really mambo
 					$cookie1_name = 'sessioncookie';
 					$cookie1_value = $_COOKIE[$cookie1_name];
 				}
@@ -444,6 +445,7 @@ function galleryDocs() {
 
 /**
  * This function displays tables with the Fields of an Photo
+ *
  * @param	integer	$index				Fields of this photo are displayed.
  * @param	array	$extra_fields		You need to give the extrafields ; hint: use getExtraFields()
  * @param	boolean	$withExtraFields	if true, then the extra fields are displayed
@@ -1004,6 +1006,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 
 /**
  * Formats a nice string to print below an item with comments
+ *
  * @param  int		$lastCommentDate		Timestamp of last comment
  * @param  boolean	$displayCommentLegend	indicator whether a Legend showed be showed later.
  * @return string	$html
@@ -1331,9 +1334,10 @@ function showImageMap($index, $noUrlUrl = '#') {
 
 /**
  * Generates a complete <img ...> html
+ *
  * @param $relativPath  string  path to the images relativ to gallery root
- * @param $altText      string  alt Text
- * @param $attrs        array   optional additional attributs (id, name..)
+ * @param $altText		string  alt Text
+ * @param $attrs		array   optional additional attributs (id, name..)
  * @param $skin			string	optional input of skin, because the image could be in skindir.
  * @author Jens Tkotz <jens@peino.de>
  */
@@ -1369,16 +1373,15 @@ function toggleButton($id) {
 			'</a> ';
 
 	return $html;
-
 }
 
 /**
  * Creates a toggle Box. Optionally a toggle Button is added before, or after.
  *
- * @param string $id
- * @param string $text
- * @param string $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
- * @return string   The HTML code.
+ * @param string  $id
+ * @param string  $text
+ * @param string  $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
+ * @return string $html          The HTML code.
  * @author Jens Tkotz
  */
 function toggleBox($id, $text, $toggleButton = 'prepend') {

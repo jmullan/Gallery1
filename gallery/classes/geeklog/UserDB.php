@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 class Geeklog_UserDB extends Abstract_UserDB {
 	var $db;
@@ -31,9 +29,6 @@ class Geeklog_UserDB extends Abstract_UserDB {
 		$this->nobody = new NobodyUser();
 		$this->everybody = new EverybodyUser();
 
-		/* New Property with Gallery 1.3 - created by object classes/gallery/UserDB  */
-		/* May 08/2002: Blaine Lang  */
-
 		$this->loggedIn = new LoggedInUser();
 
 	}
@@ -43,16 +38,16 @@ class Geeklog_UserDB extends Abstract_UserDB {
 
 		$uidList = array();
 
-		$result = DB_query("SELECT uid FROM {$_TABLES['users']} WHERE uid > 1 AND passwd <> '" . md5('') . "' ORDER BY username");
-		$nrows = DB_numRows($result);
+		$result	= DB_query("SELECT uid FROM {$_TABLES['users']} WHERE uid > 1 AND passwd <> '" . md5('') . "' ORDER BY username");
+		$nrows	= DB_numRows($result);
 
 		for ($i = 0; $i < $nrows; $i++) {
 			$A = DB_fetchArray($result);
 			array_push($uidList, $A['uid']);
 		}
 
-		$result = DB_query("SELECT grp_id FROM {$_TABLES['groups']} WHERE grp_id > 2 AND grp_id <> 13 ORDER BY grp_name");
-		$nrows = DB_numRows($result);
+		$result	= DB_query("SELECT grp_id FROM {$_TABLES['groups']} WHERE grp_id > 2 AND grp_id <> 13 ORDER BY grp_name");
+		$nrows	= DB_numRows($result);
 
 		for ($i = 0; $i < $nrows; $i++) {
 			$A = DB_fetchArray($result);
@@ -68,7 +63,7 @@ class Geeklog_UserDB extends Abstract_UserDB {
 
 	function getUserByUsername($username, $level=0) {
 		global $uid;
-		
+
 		if (!strcmp($username, $this->nobody->getUsername())) {
 			return $this->nobody;
 		}
@@ -87,6 +82,7 @@ class Geeklog_UserDB extends Abstract_UserDB {
 
 	function getUserByUid($uid) {
 		global $gallery;
+		
 		$userDir = $gallery->app->userDir;
 
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
@@ -101,7 +97,7 @@ class Geeklog_UserDB extends Abstract_UserDB {
 
 		$user = new Geeklog_User();
 		$user->loadByUid($uid);
-		
+
 		return $user;
 	}
 }

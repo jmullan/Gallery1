@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -42,7 +40,9 @@ $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
 $numPhotos = $gallery->album->numPhotos(1);
 
-doctype() ?>
+doctype();
+
+?>
 <html>
 <head>
   <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo sprintf (_("Rearrange Album: %s"),$gallery->album->fields["title"]) ?></title>

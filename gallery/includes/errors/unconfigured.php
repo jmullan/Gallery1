@@ -35,7 +35,7 @@
 
 <p>
 <?php
-    echo sprintf(gTranslate('core', "Then start the %sConfiguration Wizard%s."),
+    printf(gTranslate('core', "Then start the %sConfiguration Wizard%s."),
 	'<a href="'. makeGalleryUrl('setup/index.php') .'">', '</a>');
     echo '<br>';
     include(dirname(__FILE__) . "/configure_help.php");
@@ -43,7 +43,7 @@
 </p>
 </div>
 <?php
-    echo sprintf(gTranslate('core', "%sNote:%s When you get an 'error 500' when accessing the config wizard, try removing the .htaccess file the setup folder."), '<b>', '</b>');
+    printf(gTranslate('core', "%sNote:%s When you get an 'error 500' when accessing the config wizard, try removing the .htaccess file the setup folder."), '<b>', '</b>');
     echo "\n<br>";
     echo gallery_validation_link('index.php', true);
 ?>

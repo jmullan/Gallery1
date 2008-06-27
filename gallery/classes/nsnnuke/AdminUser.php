@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class CPGNuke_AdminUser extends Abstract_User {
 	var $db;
 	var $prefix;

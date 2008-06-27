@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -143,7 +141,6 @@ if (!empty($searchstring)) {
 		}
 
 		/* now search for photos .. */
-
 		$numPhotos = $searchAlbum->numPhotos(1);
 		for ($j = 1; $j <= $numPhotos; $j++) {
 			if ($searchAlbum->isHidden($j)) {
@@ -168,7 +165,7 @@ if (!empty($searchstring)) {
 
 					if (eregi($searchstring, $searchComment)) {
 						if (!$commentMatch) {
-							$commentText = _("Matching Comments").":<br>";
+							$commentText = gTranslate('core', "Matching Comments").":<br>";
 							$commentMatch = 1;
 						}
 

@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
  * stdClass instance correctly.  So create a dummy class to hold all
@@ -37,8 +36,8 @@ class GallerySession {}
 /* If using PHP < 4.3.2, create our own session_regenerate_id() function */
 if (!function_exists('session_regenerate_id')) {
 	function make_seed() {
-	    list($usec, $sec) = explode(' ', microtime());
-	    return (float)$sec + ((float)$usec * 100000);
+		list($usec, $sec) = explode(' ', microtime());
+		return (float)$sec + ((float)$usec * 100000);
 	}
 
 	function php_combined_lcg() {
@@ -114,7 +113,7 @@ function createGallerySession($newSession = false) {
 
 	// If we're requesting a new session, generate a new session id
 	if ($newSession) {
-	    session_regenerate_id();
+		session_regenerate_id();
 	}
 
 	/*
@@ -167,9 +166,9 @@ update_session_var("fullOnly");
 update_session_var("username", 1);
 update_session_var("offline");
 update_session_var("offlineAlbums");
-if (!isset($gallery->session->offlineAlbums) || $gallery->session->offlineAlbums == null)
-{
-      $gallery->session->offlineAlbums=array();
+
+if (!isset($gallery->session->offlineAlbums) || $gallery->session->offlineAlbums == null) {
+	  $gallery->session->offlineAlbums = array();
 }
 
 /*

@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * @package Item
  */
@@ -113,11 +112,11 @@ $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." .
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
-					 !strcmp($gallery->session->fullOnly,"on") &&
-    				 !strcmp($gallery->album->fields["use_fullOnly"],"yes");
+			!strcmp($gallery->session->fullOnly,"on") &&
+			!strcmp($gallery->album->fields["use_fullOnly"],"yes");
 
 if ($do_fullOnly) {
-    $full = $gallery->user->canViewFullImages($gallery->album);
+	$full = $gallery->user->canViewFullImages($gallery->album);
 }
 
 $fitToWindow = !strcmp($gallery->album->fields["fit_to_window"], "yes") &&
@@ -130,8 +129,8 @@ $numPhotos = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery
 
 $next = $index+1;
 if ($next > $numPhotos) {
-    //$next = 1;
-    $last = 1;
+	//$next = 1;
+	$last = 1;
 }
 
 $prev = $index-1;
@@ -141,8 +140,7 @@ if ($prev <= 0) {
 }
 
 /*
- * We might be prev/next navigating using this page
- *  so recalculate the 'page' variable
+ * We might be prev/next navigating using this page so recalculate the 'page' variable
  */
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
@@ -197,11 +195,14 @@ if (isset($gallery->app->comments_length)) {
 if (!empty($save) && $gallery->user->canAddComments($gallery->album)) {
     if ( empty($commenter_name) || empty($comment_text)) {
         $error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
-    } elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
+    }
+    elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
         $error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars"), $maxlength);
-    } elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
+    }
+    elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
         $error_text = gTranslate('core', "Your Comment contains forbidden words. It will not be added.");
-    } else {
+    }
+    else {
         $comment_text = $comment_text;
         $commenter_name = $commenter_name;
         $IPNumber = $_SERVER['REMOTE_ADDR'];
@@ -385,15 +386,15 @@ if (!$gallery->album->isMovie($id)) {
             switch ($name) {
                 case 'shutterfly':
                     $printShutterflyForm = true;
-				break;
+		break;
 
-				case 'fotoserve':
+		case 'fotoserve':
                     $printFotoserveForm = true;
-				break;
+		break;
 
                 case 'photoaccess':
                     $printPhotoAccessForm = true;
-				break;
+		break;
 
                 default:
                 break;
@@ -411,7 +412,7 @@ if (!$gallery->album->isMovie($id)) {
                 'shutterfly'  => 'Shutterfly',
                 'photoaccess' => 'PhotoWorks',
             ),
-			'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
+		'Mobile Service' => array('mpush' => 'mPUSH (mobile service)')
         );
 
         /* display a <select> menu if more than one option */
@@ -432,8 +433,8 @@ if (!$gallery->album->isMovie($id)) {
 
             if (isset($serviceGroups['Mobile Service'])) {
                 $options[] = gTranslate('core', "Send photo to...") ;
-			}
-			else {
+	    }
+	    else {
                 $options[] = gTranslate('core', "Print photo with...");
             }
 
@@ -582,16 +583,15 @@ if($useIcons && sizeof($albumItemOptions) > 1) {
         if(!empty($option['value'])) {
             if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
-								$option['text'],
-								$option['value'],
-								true, false, 550, 600, '', '',
-								$option['icon']);
+						$option['text'],
+						$option['value'],
+						true, false, 550, 600, '', '',
+						$option['icon']);
             }
-			else {
-				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
-        	}
-
-			$itemActions[] = $content;
+	    else {
+		$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
+            }
+	    $itemActions[] = $content;
     	}
     }
     echo makeIconMenu($itemActions, 'center', true, true);
@@ -648,13 +648,13 @@ if (!$gallery->album->isMovie($id)) {
     }
 }
 else {
-    $href = $gallery->album->getPhotoPath($index) ;
+	$href = $gallery->album->getPhotoPath($index) ;
 }
 
 $frame = $gallery->album->fields['image_frame'];
 if ($fitToWindow && (eregi('safari|opera', $_SERVER['HTTP_USER_AGENT']) || $gallery->session->offline)) {
-    //Safari/Opera can't render dynamically sized image frame
-    $frame = 'none';
+	//Safari/Opera can't render dynamically sized image frame
+	$frame = 'none';
 }
 
 if(empty($full) && !empty($allImageAreas)) {
@@ -671,13 +671,15 @@ if($gallery->album->isMovie($id)) {
 else {
     list($width, $height) = $photo->getDimensions($full);
 }
-$gallery->html_wrap['borderColor'] = $gallery->album->fields["bordercolor"];
-$gallery->html_wrap['borderWidth'] = $gallery->album->fields["border"];
-$gallery->html_wrap['frame'] = $frame;
-$gallery->html_wrap['imageWidth'] = $width;
-$gallery->html_wrap['imageHeight'] = $height;
-$gallery->html_wrap['imageHref'] = $href;
-$gallery->html_wrap['imageTag'] = $photoTag;
+
+$gallery->html_wrap['borderColor']		= $gallery->album->fields["bordercolor"];
+$gallery->html_wrap['borderWidth']		= $gallery->album->fields["border"];
+$gallery->html_wrap['frame']			= $frame;
+$gallery->html_wrap['imageWidth']		= $width;
+$gallery->html_wrap['imageHeight']		= $height;
+$gallery->html_wrap['imageHref']		= $href;
+$gallery->html_wrap['imageTag']			= $photoTag;
+
 if ($fitToWindow && $gallery->user->canViewFullImages($gallery->album)) {
     $gallery->html_wrap['attr'] = 'onclick="sizeChange.toggle()"';
 }
@@ -749,15 +751,15 @@ if ($gallery->app->comments_enabled == 'yes' &&
 	!$gallery->session->offline &&
 	$gallery->app->emailOn == "yes")
 {
-    $emailMeComments = getRequestVar('emailMeComments');
-    if (!empty($emailMeComments)) {
-        if ($emailMeComments == 'true') {
-            $gallery->album->setEmailMe('comments', $gallery->user, $id);
+	$emailMeComments = getRequestVar('emailMeComments');
+	if (!empty($emailMeComments)) {
+		if ($emailMeComments == 'true') {
+			$gallery->album->setEmailMe('comments', $gallery->user, $id);
 		}
 		else {
-            $gallery->album->unsetEmailMe('comments', $gallery->user, $id);
-        }
-    }
+			$gallery->album->unsetEmailMe('comments', $gallery->user, $id);
+		}
+	}
 
     if (! $gallery->album->getEmailMe('comments', $gallery->user)) {
         echo "\n<form name=\"emailMe\" action=\"#\">";

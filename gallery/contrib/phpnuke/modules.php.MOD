@@ -1,6 +1,6 @@
 ##############################################################
 ## MOD Title: mod_fix_gallery_popups_7.x
-## MOD Author: Jens Tkotz <jens@peino.de>
+## MOD Author: Jens Tkotz
 ## MOD Description: ---
 ## MOD Version: 7.x.x
 ##

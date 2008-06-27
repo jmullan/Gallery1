@@ -19,11 +19,8 @@
  *
  * $Id$
  */
-?>
-<?php
 
-/* should only be called from init.php
-*/
+// should only be called from init.php
 if (!$gallery->version) { 
 	exit; 
 }

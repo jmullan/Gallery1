@@ -1,4 +1,9 @@
 <?php
+/**
+ * Gallery SVN info
+ * $Id$
+ */
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 //
 // +----------------------------------------------------------------------+

@@ -104,7 +104,7 @@ if (isset($allowChange["default_language"]) && $allowChange["default_language"])
 	}
 }
 
-if (isset($allowChange["canChangeOwnPw"]) && $allowChange["canChangeOwnPw"] === true) { ?>
+if (isset($allowChange['canChangeOwnPw']) && $allowChange['canChangeOwnPw'] === true) { ?>
 <tr>
         <td><?php echo gTranslate('core', "User can change its own password?") ?></td>
         <td><?php echo drawSelect("canChangeOwnPw", $yesNoChoices, $canChangeOwnPw, 1); ?></td>
@@ -112,7 +112,7 @@ if (isset($allowChange["canChangeOwnPw"]) && $allowChange["canChangeOwnPw"] === 
 <?php
 }
 
-if (isset($allowChange["create_albums"]) && $allowChange["create_albums"] === true) { ?>
+if (isset($allowChange['create_albums']) && $allowChange['create_albums'] === true) { ?>
 <tr>
 	<td><?php echo gTranslate('core', "User can create albums") ?></td>
 	<td><?php echo drawSelect("canCreate", $yesNoChoices, $canCreate, 1); ?></td>
@@ -124,35 +124,36 @@ if ($gallery->user->isAdmin()) { ?>
 <tr>
 	<td><?php echo gTranslate('core', "User is an admin") ?></td>
 	<?php 
-		if ($allowChange["admin"] === true) {
+	if ($allowChange['admin'] === true) {
 		    if ($uname=$gallery->user->getUsername() == $uname) {
 				echo '<td>'. $yesNoChoices[$isAdmin] . "</td></tr>\n";
 				echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
 				$hidden[] = array('isAdmin', $isAdmin);
 		    }
 		    else {
-				echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . "</td></tr>\n";
-				echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i>';
+			echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . "</td></tr>\n";
+			echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i></td>';
 		    }
-		} ?>
+	} ?>
 </tr>
-<?php 
+<?php
 }
 
-if ($allowChange["send_email"] === true && $gallery->app->emailOn == "yes") { ?>
+if ($allowChange['send_email'] === true && $gallery->app->emailOn == "yes") { ?>
 <tr>
 	<td><?php echo gTranslate('core', "Send email to user when account is created") ?></td>
 	<td><input checked name="send_email" type="checkbox"></td>
 </tr>
-<?php 
-} else { 
-	$hidden[]=array('send_email', "");
+<?php
+}
+else {
+	$hidden[] = array('send_email', "");
 }
 ?>
 </table>
 <?php
-	foreach ($hidden as $line) {
-		echo "\n". '<input type="hidden" name="'. $line[0] .'" value="'. $line[1] .'">';
-	}
-	echo "\n";
+foreach ($hidden as $line) {
+	echo "\n". '<input type="hidden" name="'. $line[0] .'" value="'. $line[1] .'">';
+}
+echo "\n";
 ?>

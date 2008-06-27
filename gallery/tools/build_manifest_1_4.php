@@ -25,8 +25,6 @@
 * This script must be run from command line, in directory gallery/
 * eg php tools/build_manifest_1_4.php
 */
-?>
-<?php
 
 $debug = false;
 

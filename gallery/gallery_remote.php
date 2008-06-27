@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -86,10 +84,10 @@ if (!strcmp($cmd, "fetch-albums")) {
 
 function appendNestedAlbums($level, $albumName, $albumString) {
     global $gallery;
- 
+
     $myAlbum = new Album();
     $myAlbum->load($albumName);
-   
+
     $numPhotos = $myAlbum->numPhotos(1);
 
     for ($i=1; $i <= $numPhotos; $i++) {

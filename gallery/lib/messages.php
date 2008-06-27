@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 function gallery_error($message) {
     return '<span class="error">'. gTranslate('common', "Error:") . " $message</span>\n";

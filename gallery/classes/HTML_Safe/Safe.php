@@ -1,4 +1,9 @@
 <?php
+/**
+ * Gallery SVN info
+ * $Id$
+ */
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -11,7 +16,7 @@
  * @author     Roman Ivanov <thingol@mail.ru>
  * @copyright  2004-2005 Roman Ivanov
  * @license    http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version    CVS: $Id$
+ * @version    CVS: Id: Safe.php,v 1.1 2005/09/03 17:39:39 bolk Exp
  * @link       http://pear.php.net/package/HTML_Safe
  */
 
@@ -215,8 +220,8 @@ class HTML_Safe
      * @access public
      */
     var $cssKeywords = array(
-        'absolute', 'behavior',       'behaviour',   'content', 'expression',
-        'fixed',    'include-source', 'moz-binding',
+        'absolute', 'behavior', 'behaviour', 'content', 'expression',
+        'fixed', 'include-source', 'moz-binding',
         );
 
     /**
@@ -261,7 +266,7 @@ class HTML_Safe
      * @var array
      * @access public
      */
-    var $listTags = array('dir', 'menu', 'ol', 'ul', 'dl', );
+    var $listTags = array('dir', 'menu', 'ol', 'ul', 'dl');
 
     /**
      * List of dangerous attributes

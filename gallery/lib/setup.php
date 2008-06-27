@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 function evenOdd_row($fields) {
 	global $shortdescWidth;
@@ -1161,7 +1159,8 @@ function default_graphics() {
 
 	if (count ($imageMagick)) {
 		return "ImageMagick";
-	} else {
+	}
+	else {
 		return "Netpbm";
 	}
 }

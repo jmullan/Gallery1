@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.7-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-02-02 15:41+0100\n"
+"POT-Creation-Date: 2008-06-19 14:57+0200\n"
 "PO-Revision-Date: 2005-10-06 06:55+0900\n"
 "Last-Translator: Julien ÉLIE <iulius AT via DOT ecp DOT fr>\n"
 "Language-Team: Jens Tkotz <jens AT peino DOT de>\n"
@@ -85,7 +85,7 @@ msgstr "Entrez votre commentaire dans la zone de texte ci-dessous."
 #: ../delete_photo.php:146 ../delete_user.php:86 ../download.php:84
 #: ../ecard_form.php:279 ../edit_caption.php:187 ../edit_watermark.php:121
 #: ../includes/add_photos/add_form.inc:107
-#: ../includes/add_photos/add_url.inc:55 ../login.php:102
+#: ../includes/add_photos/add_url.inc:56 ../login.php:102
 #: ../move_album.php:117 ../move_album.php:134 ../move_photo.php:273
 #: ../move_photo.php:363 ../new_password.php:138 ../register.php:144
 #: ../rename_album.php:131 ../reset_votes.php:64 ../resize_photo.php:141
@@ -704,13 +704,13 @@ msgstr "Opération complétée avec succès. Le courriel est configuré, mais rien n'
 msgid "Skipping Movie"
 msgstr "Vidéo ignorée"
 
-#: ../classes/Album.php:1195 ../classes/Album.php:2048
+#: ../classes/Album.php:1195 ../classes/Album.php:2049
 #, php-format
 msgid "Entering album %s, processing %d items."
 msgstr "Album %s, traitement de %d éléments."
 
-#: ../classes/Album.php:1202 ../classes/Album.php:1911
-#: ../classes/Album.php:2060
+#: ../classes/Album.php:1202 ../classes/Album.php:1912
+#: ../classes/Album.php:2061
 #, php-format
 msgid "Processing item %d..."
 msgstr "Traitement de l'image %d..."
@@ -745,48 +745,52 @@ msgstr "Redimensionnement de %s"
 msgid "Doing the naming"
 msgstr "Renommage..."
 
+#: ../classes/Album.php:1341
+msgid "Autorotate if needed."
+msgstr ""
+
 #: ../classes/Album.php:1394
 msgid "Photo auto-rotated/transformed"
 msgstr "Photo auto-pivotée/transformée"
 
-#: ../classes/Album.php:1402
+#: ../classes/Album.php:1403
 msgid "Watermarking image"
 msgstr "Création d'un filigrane numérique dans l'image"
 
-#: ../classes/Album.php:1570 ../classes/Album.php:1580
+#: ../classes/Album.php:1571 ../classes/Album.php:1581
 msgid "No highlight!"
 msgstr "Pas d'image-titre !"
 
-#: ../classes/Album.php:1792
+#: ../classes/Album.php:1793
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Index demandé [%d] hors limites [%d]. Gallery n'a pas pu charger l'élément souhaité de l'album."
 
-#: ../classes/Album.php:1898
+#: ../classes/Album.php:1899
 msgid " -- Skipping"
 msgstr " -- Ignoré"
 
-#: ../classes/Album.php:1903
+#: ../classes/Album.php:1904
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s)' with %d items."
 msgstr "Mise à jour de l'album : « <i>%s</i> » (%s) avec %d éléments."
 
-#: ../classes/Album.php:1919
+#: ../classes/Album.php:1920
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items."
 msgstr "Album « <i>%s</i> », traitement de %d éléments."
 
-#: ../classes/Album.php:2230
+#: ../classes/Album.php:2231
 #, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr "Erreur de récupération des informations EXIF. L'état retourné est %s, au lieu de 0."
 
-#: ../classes/Album.php:2775
+#: ../classes/Album.php:2776
 #, php-format
 msgid "#%d"
 msgstr "n°%d"
 
-#: ../classes/Album.php:2939
+#: ../classes/Album.php:2940
 #, php-format
 msgid "Email problem: skipping %s (UID %s) because email address %s is not valid."
 msgstr "Problème de courriel : %s (UID %s) ignoré car l'adresse électronique %s est invalide."
@@ -1961,7 +1965,7 @@ msgstr "Envoyez les images par FTP dans un répertoire sur votre serveur, puis in
 msgid "What would you like the captions to default to?"
 msgstr "Quelle légende par défaut souhaitez-vous définir ?"
 
-#: ../includes/add_photos/add_url.inc:54
+#: ../includes/add_photos/add_url.inc:55
 msgid "Submit URL or directory"
 msgstr "Soumettre l'URL ou le répertoire"
 

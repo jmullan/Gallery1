@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Gallery_UserDB extends Abstract_UserDB {
 	var $userMap;
 	var $nobody;
@@ -61,7 +60,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			}
 			else {
 				echo gallery_error(sprintf(gTranslate('core', "The folder which contains your user information (%s) is not writable for the webserver."),
-								$userDir));
+							$userDir));
 				exit;
 			}
 		}
@@ -80,7 +79,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 					$this->$k = $v;
 				}
 			}
-		} elseif (fs_file_exists("$userDir/userdb.dat") && !is_writeable("$userDir/userdb.dat")) {
+		}
+		elseif (fs_file_exists("$userDir/userdb.dat") && !is_writeable("$userDir/userdb.dat")) {
 			echo gallery_error(gTranslate('core', "Your userfile is not writeable."));
 			exit;
 		}
@@ -110,7 +110,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return true;
 	}
 
-	function getUserByUsername($username, $level=0) {
+	function getUserByUsername($username, $level = 0) {
 		global $gallery;
 
 		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
@@ -146,13 +146,15 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		}
 
-		$uid = $this->convertUidToNewFormat($uid);
-		$user = $this->getUserByUid($uid);
+		$uid	= $this->convertUidToNewFormat($uid);
+		$user	= $this->getUserByUid($uid);
+
 		if (!$user || strcmp($user->getUsername(), $username)) {
 			// We either got no uid for this name, or we got a uid
 			// but that uid has a different username.  Either way
 			// this means our map is out of date.
 			$this->rebuildUserMap();
+
 			return $this->getUserByUsername($username, ++$level);
 		}
 		else {
@@ -161,8 +163,9 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	}
 
-	function getUserByUid($uid, $tryOldFormat=false) {
+	function getUserByUid($uid, $tryOldFormat = false) {
 		global $gallery;
+
 		$userDir = $gallery->app->userDir;
 
 		if (!$uid || !strcmp($uid, $this->nobody->getUid())) {
@@ -175,8 +178,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 			return $this->loggedIn;
 		}
 
-		$user = new Gallery_User();
-		$uidNew = $this->convertUidToNewFormat($uid);
+		$user	= new Gallery_User();
+		$uidNew	= $this->convertUidToNewFormat($uid);
 
 		if (fs_file_exists("$userDir/$uidNew")) {
 			$user->load($uidNew);
@@ -200,6 +203,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$user->setUsername($username);
 			$user->version = $gallery->user_version;
 		}
+
 		return $user;
 	}
 
@@ -213,17 +217,21 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function deleteUserByUsername($username) {
 		global $gallery;
+
 		$userDir = $gallery->app->userDir;
 
 		$user = $this->getUserByUsername($username);
 		if ($user) {
 			$uid = $user->getUid();
+
 			if (fs_file_exists("$userDir/$uid")) {
 				return fs_unlink("$userDir/$uid");
 			}
+
 			if (fs_file_exists("$userDir/$uid.bak")) {
 				return fs_unlink("$userDir/$uid.bak");
 			}
+
 			if (fs_file_exists("$userDir/$uid.lock")) {
 				return fs_unlink("$userDir/$uid.lock");
 			}
@@ -235,14 +243,15 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function rebuildUserMap() {
 		global $gallery;
+
 		$userDir = $gallery->app->userDir;
 
 		$this->userMap = array();
 		foreach ($this->getUidList() as $uid) {
-			$tmpUser = $this->getUserByUid($uid);
-			$username = $tmpUser->getUsername();
-			$this->userMap[$username] = $uid;
-			$this->userMap[$uid] = $username;
+			$tmpUser			= $this->getUserByUid($uid);
+			$username			= $tmpUser->getUsername();
+			$this->userMap[$username]	= $uid;
+			$this->userMap[$uid]		= $username;
 		}
 
 		return safe_serialize($this, "$userDir/userdb.dat");
@@ -250,6 +259,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function save() {
 		global $gallery;
+
 		$userDir = $gallery->app->userDir;
 
 		return safe_serialize($this, "$userDir/userdb.dat");
@@ -296,34 +306,35 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
 
 		echo debugMessage(sprintf(gTranslate('core',
-			"Checking username '%s' for validity"), $saveToDisplayUserName),
-			__FILE__, __LINE__, 4);
+							"Checking username '%s' for validity"), $saveToDisplayUserName),
+							__FILE__, __LINE__, 4);
 
 		if (strlen($username) == 0) {
 			return gTranslate('core', "Please enter a username.");
 		}
 
 		if (strlen($username) < 2) {
-			return sprintf(gTranslate('core', "Username '%s' is too short. Must be at least 2 characters."),
-					$saveToDisplayUserName);
+			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
+				$saveToDisplayUserName);
 		}
 
 		if (strlen($username) > 15) {
 			return sprintf(gTranslate('core', "Username '%s' too long. Must be at most 15 characters."),
-					$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
 			return sprintf(gTranslate('core', "Illegal username '%s'. Only letters and digits allowed."),
-					$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
-			!strcmp($username, $this->everybody->getUsername()) ||
-			!strcmp($username, $this->loggedIn->getUsername())) {
+		    !strcmp($username, $this->everybody->getUsername()) ||
+		    !strcmp($username, $this->loggedIn->getUsername()))
+		{
 			return sprintf(gTranslate('core', "'%s' is reserved and cannot be used."),
-					$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		$user = $this->getUserByUsername($username);
@@ -354,6 +365,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (strcmp($this->version, $gallery->user_version)) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -368,9 +380,9 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		$success = true;
-		$nobody = $this->nobody->getUsername();
-		$everybody = $this->everybody->getUsername();
-		$loggedin = $this->loggedIn->getUsername();
+		$nobody		= $this->nobody->getUsername();
+		$everybody	= $this->everybody->getUsername();
+		$loggedin	= $this->loggedIn->getUsername();
 
 		$count = 1;
 		$total = sizeof($this->getUidList());
@@ -379,15 +391,17 @@ class Gallery_UserDB extends Abstract_UserDB {
 			$user = $this->getUserByUid($uid, true);
 			if ($user->username == $nobody ||
 				$user->username == $everybody ||
-				$user->username == $loggedin) {
+				$user->username == $loggedin)
+			{
 				printf(gTranslate('core', "Skipped %s (Reserved username from Gallery)"), $user->username);
 				continue;
 			}
+
 			if (!$user->integrityCheck()) {
 				$success = false;
 			}
 		}
-		$this->version=$gallery->user_version;
+		$this->version = $gallery->user_version;
 		if ($success) {
 			$this->rebuildUserMap();
 			if (!$this->save()) {
@@ -400,38 +414,44 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	function CreateUser($uname, $email, $new_password, $fullname, $canCreate, $language, $log) {
 		global $gErrors;
-		   	$errorCount = 0;
-		   	$gErrors = array();
-		   	$gErrors["uname"] = $this->validNewUserName($uname);
-		   	if ($gErrors["uname"]) {
-			   	$errorCount++;
-		   	} else {
-			   	$gErrors["new_password"] = $this->validPassword($new_password);
-			   	if ($gErrors["new_password"]) {
-				   	$errorCount++;
-			   	}
-		   	}
+
+		$errorCount		= 0;
+		$gErrors		= array();
+		$gErrors["uname"]	= $this->validNewUserName($uname);
+
+		if ($gErrors["uname"]) {
+			$errorCount++;
+		}
+		else {
+			$gErrors["new_password"] = $this->validPassword($new_password);
+			if ($gErrors["new_password"]) {
+				$errorCount++;
+			}
+		}
 
 		if (!$errorCount) {
-			   	$tmpUser = new Gallery_User();
-			   	$tmpUser->setUsername($uname);
-			   	$tmpUser->setPassword($new_password);
-			   	$tmpUser->setFullname($fullname);
-			   	$tmpUser->setCanCreateAlbums($canCreate);
-			   	$tmpUser->setEmail($email);
-			   	$tmpUser->setDefaultLanguage($language);
+			$tmpUser = new Gallery_User();
+			$tmpUser->setUsername($uname);
+			$tmpUser->setPassword($new_password);
+			$tmpUser->setFullname($fullname);
+			$tmpUser->setCanCreateAlbums($canCreate);
+			$tmpUser->setEmail($email);
+			$tmpUser->setDefaultLanguage($language);
 			$tmpUser->origEmail=$email;
-			   	$tmpUser->log($log);
-			   	$tmpUser->save();
-			   	return $tmpUser;
-		   	} else {
+			$tmpUser->log($log);
+			$tmpUser->save();
+
+			return $tmpUser;
+		}
+		else {
 			processingMsg( "<b>" . sprintf(gTranslate('core', "Problem adding %s:"), $uname)."</b>");
-			   	foreach ($gErrors as $key_var => $value_var) {
-				   	echo "\n<br>". gallery_error($gErrors[$key_var]);
-			   	}
-			   	return false;
-		   	}
-	   	}
+			foreach ($gErrors as $key_var => $value_var) {
+				echo "\n<br>". gallery_error($gErrors[$key_var]);
+			}
+
+			return false;
+		}
+	}
 
 	/*
 	 * Since user_version == 4, we've replaced ':' and ';' with '_'

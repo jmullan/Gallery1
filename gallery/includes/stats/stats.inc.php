@@ -20,8 +20,6 @@
  * $Id$
  *
 */
-?>
-<?php
 
 /**
  * This defines all posibilities for the stats-wizard

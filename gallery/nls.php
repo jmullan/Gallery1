@@ -26,7 +26,6 @@
  * The original filename was horde/config/nls.php.dist and it was
  * maintained by Jan Schneider (jan@horde.org)
  * The modifications to fit it for Gallery were made by Jens Tkotz
- * (jens@peino.de)
  *
  * @package	Language
  */
@@ -40,7 +39,7 @@
 	$nls['phpnuke']['en_US']	=	'english';
 	$nls['alias']['english']	=	'en_US';
 
-	$nls['alias']['en']			=	'en_US';
+	$nls['alias']['en']		=	'en_US';
 
 /* Charset*/
 	$nls['default']['charset']	= 	'ISO-8859-1';

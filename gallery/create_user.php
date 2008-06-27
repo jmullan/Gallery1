@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -31,11 +29,12 @@ list($formaction, $canCreate, $canChangeOwnPw, $isAdmin, $send_email, $dismiss) 
     getRequestVar(array('formaction', 'canCreate', 'canChangeOwnPw', 'isAdmin', 'send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin()) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;	
 }
 
 $errorCount = 0;
+
 if (!empty($formaction) && $formaction == 'create') {
 	$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
 	if ($gErrors["uname"]) {
@@ -43,7 +42,7 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (strcmp($new_password1, $new_password2)) {
-		$gErrors["new_password2"] = _("Passwords do not match!");
+		$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
 		$errorCount++;
 	} else {
 		$gErrors["new_password1"] = 
@@ -91,7 +90,7 @@ if (!empty($formaction) && $formaction == 'create') {
 
 			echo "\n<p><pre>". wordwrap($msg,80) ."\n</pre></p>";
 
-		       	$logmsg = sprintf(_("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
+			$logmsg = sprintf(gTranslate('core', "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
 				       	$uname, $gallery->user->getUsername(), $email);
 		       	$logmsg2  = sprintf("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s.",
 				       	$uname, $gallery->user->getUsername(), $email);
@@ -99,10 +98,11 @@ if (!empty($formaction) && $formaction == 'create') {
 			       	$logmsg .= " <<<<>>>>> $logmsg2";
 		       	}
 
-			if (gallery_mail($email, _("Gallery Registration"),$msg, $logmsg)) {
+			if (gallery_mail($email, gTranslate('core', "Gallery Registration"),$msg, $logmsg)) {
 			       	clearstatcache();
 			       	$tmpUser->save();
-			       	print sprintf(_("Email sent to %s."), $email);
+				
+				print sprintf(gTranslate('core', "Email sent to %s."), $email);
 			       	print "<br><br>";
 		       	}
 	       	} 
@@ -134,17 +134,17 @@ doctype();
 <?php
 $canCreate = 0;
 
-$allowChange["uname"] = true;
-$allowChange["email"] = true;
-$allowChange["password"] = true;
-$allowChange["old_password"] = false;
-$allowChange["fullname"] = true;
-$allowChange["send_email"] = true;
-$allowChange["create_albums"] = true;
-$allowChange["canChangeOwnPw"] = true;
+$allowChange["uname"]		= true;
+$allowChange["email"]		= true;
+$allowChange["password"]	= true;
+$allowChange["old_password"]	= false;
+$allowChange["fullname"]	= true;
+$allowChange["send_email"]	= true;
+$allowChange["create_albums"]	= true;
+$allowChange["canChangeOwnPw"]	= true;
 $allowChange["default_language"] = true;
-$allowChange["member_file"] = false;
-$allowChange["admin"] = true;
+$allowChange["member_file"]	= false;
+$allowChange["admin"]		= true;
 
 echo _("Create a new user here.");
 ?>

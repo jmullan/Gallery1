@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * This popup provides the possibility to put a watermark on a picture.
  * A preview can be viewed before.
@@ -33,8 +32,9 @@
  */
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $save, $preview, $previewFull) = 
+list($index, $save, $preview, $previewFull) =
 	getRequestVar(array('index', 'save', 'preview', 'previewFull'));
+
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) = 
 	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
 

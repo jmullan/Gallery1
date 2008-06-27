@@ -19,26 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
-
-/*
- * workaround for php < 4.1.0
- */
-if (!function_exists ('array_key_exists')) {
-	function array_key_exists($key, $arr)
-	{
-		if (!is_array($arr)) {
-			return false;
-		}
-		foreach (array_keys($arr) as $k) {
-			if ($k == $key) {
-				return true;
-			}
-		}
-		return false;
-	}
-}
 
 /**
  *  This class partially mirrors the functionality of the java class

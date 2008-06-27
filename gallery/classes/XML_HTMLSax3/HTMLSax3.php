@@ -1,4 +1,9 @@
 <?php
+/**
+ * Gallery SVN info
+ * $Id$
+ */
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 //
 // +----------------------------------------------------------------------+
@@ -19,7 +24,7 @@
 // | Authors: Many @ Sitepointforums Advanced PHP Forums                  |
 // +----------------------------------------------------------------------+
 //
-// $Id$
+// Id: HTMLSax3.php,v 1.2 2007/10/29 21:41:34 hfuecks Exp
 //
 /**
 * Main parser components
@@ -30,7 +35,7 @@
 * Required classes
 */
 if (!defined('XML_HTMLSAX3')) {
-    define('XML_HTMLSAX3', dirname(__FILE__) .'/');
+	define('XML_HTMLSAX3', dirname(__FILE__) .'/');
 }
 require_once(XML_HTMLSAX3 . 'HTMLSax3/States.php');
 require_once(XML_HTMLSAX3 . 'HTMLSax3/Decorators.php');
