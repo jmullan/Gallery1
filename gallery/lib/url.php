@@ -383,7 +383,7 @@ function getAbsoluteImagePath($name, $skinname = '') {
 }
 
 /**
- * Checkes whether an URL is relative or not
+ * Checks whether an URL is relative or not
  * @param	string	$url
  * @return	boolean
  * @author	Jens Tkotz
