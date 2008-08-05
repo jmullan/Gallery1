@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,42 +26,51 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canViewComments($gallery->album)
-	&& (! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes")) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
+if (empty ($gallery->album) || !$gallery->album->isLoaded()) {
+	printPopupStart(gTranslate('core', "View Comments"));
+	showInvalidReqMesg();
+	exit;
 }
 
-if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
+// Further hack check
+if (!$gallery->user->canViewComments($gallery->album) &&
+	(! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes"))
+{
+	printPopupStart(gTranslate('core', "View Comments"));
+	showInvalidReqMesg();
+	exit;
 }
 
 $albumName = $gallery->session->albumName;
 
-if (empty($gallery->session->viewedAlbum[$albumName]) &&
-	!$gallery->session->offline) {
+if (empty($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
 	$gallery->album->incrementClicks();
 }
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
-#-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-			  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-
-if ($gallery->album->fields['returnto'] != 'no') {
-	foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-		$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-		$navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-	}
-}
-
+$breadcrumb["text"] = returnToPathArray($gallery->album, true);
 $breadcrumb["bordercolor"] = $bordercolor;
+
 $breadcrumb["top"] = true;
 $breadcrumb["bottom"] = true;
 
+$adminCommandIcons   = array();
+$adminCommandIcons[] = galleryIconLink(makeAlbumUrl($gallery->session->albumName),
+						'navigation/return_to.gif',
+						gTranslate('core', "Return to album"));
+
+$adminCommandIcons[] = LoginLogoutButton();
+
+$adminbox['text']	 = gTranslate('core', "Comments for this Album");
+$adminbox['commands']	 = makeIconMenu($adminCommandIcons, 'right');
+$adminbox['bordercolor'] = $bordercolor;
+
+$breadcrumb["text"] = returnToPathArray($gallery->album, true);
+
+$navigator['fullWidth'] = '100';
+$navigator['widthUnits'] ='%';
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -100,11 +109,13 @@ if ($gallery->album->fields["textcolor"]) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
 
-insertFormJS('delete_comments');
-/* User wants to delete comments */
-list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
+/* User maybe wants to delete comments */
+list($index, $comment_index, $submit) = getRequestVar(array('index', 'comment_index', 'submit'));
 
-if (!empty($comment_index)) {
+if (!empty($submit) && $gallery->user->canWriteToAlbum($gallery->album) &&
+	!empty($comment_index) && isValidGalleryInteger($comment_index) &&
+	!empty($index) && $comment_index[$index])
+{
 	$saveMsg = '';
 	/* First we reverse the index array, as we want to delete backwards */
 	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
@@ -132,12 +143,6 @@ if (!empty($comment_index)) {
 }
 
 includeHtmlWrap("album.header");
-$adminbox["text"] = _("Comments for this Album");
-$adminbox["commands"] = "<a class=\"admin\" href=\"" . makeAlbumUrl($gallery->session->albumName) . "\">[". _("return to album") ."]</a>";
-$adminbox["bordercolor"] = $bordercolor;
-
-$navigator['fullWidth'] = '100';
-$navigator['widthUnits'] ='%';
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');

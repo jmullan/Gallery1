@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -213,12 +213,14 @@ function fs_export_filename($filename) {
 	return $filename;
 }
 
-function fs_exec($cmd, &$results, &$status, $debugfile) {
+function fs_exec($cmd, &$results, &$status) {
 	// We can't redirect stderr with Windows.  Hope that we won't need to.
 	return exec($cmd, $results, $status);
 }
 
 function fs_tempdir() {
+	global $gallery;
+
 	return export_filename($gallery->app->tmpDir);
 }
 
@@ -230,5 +232,15 @@ function debug($msg) {
 	if (0) {
 		print "<br>$msg<br>";
 	}
+}
+
+/**
+ * Deletes a directory
+ *
+ * @param String $dir
+ * @return boolean
+ */
+function fs_rmdir($dir) {
+	return rmdir(fs_export_filename($dir));
 }
 ?>

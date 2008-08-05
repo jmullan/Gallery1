@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,21 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($doit, $full) =
-getRequestVar(array('doit', 'full'));
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Download album as archive"));
+	showInvalidReqMesg();
+	exit;
+}
+
+if(! $gallery->user->canDownloadAlbum($gallery->album)) {
+	printPopupStart(gTranslate('core', "Download album as archive"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
+list($doit, $full) = getRequestVar(array('doit', 'full'));
+
+$message = array();
 
 if (!empty($doit)) {
 	$albumItemNames = $gallery->album->getAlbumItemNames($gallery->user, $full, false, true);
@@ -35,59 +48,60 @@ if (!empty($doit)) {
 				downloadFile($zipfileName);
 			}
 			else {
-				echo gallery_error('<br>'. gTranslate('core', "Zipdownload would work, but is disabled when debugging."));
+				$message = array(array(
+					'type' => 'information',
+					'text' => gTranslate('core', "Zipdownload would work, but is disabled when debugging."))
+				);
 			}
 		}
 	}
 }
-else {
-    list($numItems, $numAlbums, $numPhotos) = $gallery->album->numItems($gallery->user, true);
 
-    $albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
+printPopupStart(gTranslate('core', "Download album as archive"));
 
-    doctype();
-    echo "\n<html>";
-?>
-<head>
-  <title><?php echo gTranslate('core', "Download album as archive") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Download album as archive") ?></div>
-<div class="popup" align="center">
-<p class="title">
-<?php
-    if ($gallery->album->numPhotos(1)) {
+echo infoBox($message);
+
+list($numItems, $numAlbums, $numPhotos) = $gallery->album->numItems($gallery->user, true);
+
+$albumSize = $gallery->album->getAlbumSize($gallery->user, $full, false, true);
+
+echo "\n<p class=\"title g-emphasis\">";
+
+if ($gallery->album->numPhotos(1)) {
 	echo $gallery->album->getHighlightTag();
 	echo "<br>";
-    }
-    echo $gallery->album->fields["title"];
-    echo "</p>";
+}
+echo $gallery->album->fields["title"];
+echo "</p>";
 
-    $textNumItems = sprintf(gTranslate('core', "This album contains just one item in total.", "This album contains %d items in total.", $numItems), $numItems);
-    $textNumSubAlbums = sprintf(gTranslate('core', "One subalbum", "%d subalbums", $numAlbums, gTranslate('core', "No subalbums")), $numAlbums);
-    $textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies", $numPhotos , gTranslate('core', "no photo/movie")), $numPhotos);
+$textNumItems	  = sprintf(gTranslate('core', "This album contains just one item in total.", "This album contains %d items in total.", $numItems), $numItems);
+$textNumSubAlbums = sprintf(gTranslate('core', "One subalbum", "%d subalbums", $numAlbums, gTranslate('core', "No subalbums")), $numAlbums);
+$textNumPhotos	  = sprintf(gTranslate('core', "One photo/movie", "%d photos/movies", $numPhotos , gTranslate('core', "no photo/movie")), $numPhotos);
 
-    echo sprintf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
+printf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
-    if($numPhotos > 0) {
-        echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
+if($numPhotos > 0) {
+	echo '<p>'. sprintf(gTranslate('core', "Approximate size of zipfile: %s"), formatted_filesize($albumSize)) .'</p>';
 
-        echo makeFormIntro('download.php', array('onChange' => 'document.g1_form.submit()'), array('gallery_popup' => 'true'));
+	echo makeFormIntro('download.php', array(), array('type' => 'popup'));
+	?>
+		<input type="radio" id="full" name="full" value="1" <?php echo ($full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
+		<label for="full"><?php echo gTranslate('core', "Full Version"); ?></label>
+		<br>
+		<input type="radio" id="resized" name="full" value="0" <?php echo (!$full ? ' checked' : '') ?> onChange="document.g1_form.submit()">
+		<label for="resized"><?php echo gTranslate('core', "Resized Version"); ?></label>
 
-        echo "\n". '<input type="radio" name="full" value="1"'. ($full ? ' checked' : '') .'>'. gTranslate('core', "Full Version") .'<br>';
-        echo "\n". '<input type="radio" name="full" value="0"'. (!$full ? ' checked' : '') .'>'. gTranslate('core', "Resized Version") .'<br>';
-        echo "\n<br>";
-        echo "\n". '<input type="submit" name="doit" value="'. gTranslate('core', "Download") .'">';
-        echo "\n". '<input type="button" value="'. gTranslate('core', "Cancel") .'" onclick="parent.close()">';
-        echo "\n</form>";
-    }
-    else {
+		<br><br>
+	<?php
+	echo gSubmit('doit', gTranslate('core', "Download"));
+	echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
+	echo "\n</form>";
+}
+else {
 	echo "<br><br>";
 	echo gTranslate('core', "This album is not empty, but contains no photo or movie! Download wouldn't make sense.");
 	echo "<br><br>";
-        echo "\n". '<input type="button" value="'. gTranslate('core', "Close Window") .'" onclick="parent.close()">';
-    }
+	echo gButton('close', gTranslate('core', "Close Window"),'parent.close()');
 }
 ?>
 </div>

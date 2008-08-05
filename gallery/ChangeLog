@@ -1,3 +1,26 @@
+2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b29
+
+ *
+ **
+ *** SECURITY BUGFIX ****
+
+ + Role-Based Authorization Not Adequately Enforced +
+
+ The application determines whether certain functionality is available in 
+ the user-interface (UI) based on role/group-membership
+ (admin, custom groups, etc) and assigned permissions (i.e. canChangeOwnPw,
+ canWriteToAlbum, etc).
+ Several components were identified that do not perform adequate server-side
+ checks for appropriate role-membership and/or assigned permissions.
+ This makes it possible to access functionality not normally available in the
+ UI and perform potentially sensitive application-level tasks.
+
+
+ * New functions:
+   - returnToPathArray($album = NULL, $withCurrentAlbum = true,
+                       $photoview = false)
+   - fs_rmdir($dir)
+
 2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b28
 
  *

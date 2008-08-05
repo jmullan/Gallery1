@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -182,4 +182,60 @@ function getParentAlbums($childAlbum, $addChild = false) {
 
 	return $parentNameArray;
 }
+
+/**
+ * returns the a HTML string containg links to the upper albums
+ *
+ * @param object  $album
+ * @param boolean $withCurrentAlbum
+ * @return string $pathArray
+ */
+function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview = false) {
+	global $gallery;
+
+	$pathArray = array();
+
+	$upArrowAltText = gTranslate('common', "navigate up");
+	$upArrow = gImage('icons/navigation/nav_home.gif', $upArrowAltText);
+
+	$lastUpArrowAltText = $upArrowAltText;
+
+	$lastUpArrow = gImage('icons/navigation/nav_home.gif', $lastUpArrowAltText);
+
+	if (!empty($album)) {
+		if ($album->fields['returnto'] != 'no') {
+			$parents = $album->getParentAlbums($withCurrentAlbum);
+			$numParents = sizeof($parents);
+			$i = 0;
+			foreach ($parents as $navAlbum) {
+				$i++;
+				$link = $navAlbum['prefixText'] .': ';
+				if($i == $numParents) {
+					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$lastUpArrow");
+				}
+				else {
+					$link .= galleryLink($navAlbum['url'], $navAlbum['title'] ."&nbsp;$upArrow",
+						array(), '', false, false);
+				}
+				$pathArray[] = $link;
+			}
+		}
+		elseif ($photoview) {
+			$pathArray[] = galleryLink(
+						makeAlbumUrl($gallery->album->fields['name']),
+						$gallery->album->fields['title'] ."&nbsp;$lastUpArrow");
+		}
+	}
+	else {
+		$pathArray[] = sprintf(
+			gTranslate('common', "Gallery: %s"),
+			galleryLink(
+				makeGalleryUrl("albums.php"),
+				clearGalleryTitle() ."&nbsp;$lastUpArrow")
+		);
+	}
+
+	return $pathArray;
+}
+
 ?>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,24 +34,16 @@ if(!isset($_SESSION['count'])) {
 
 $_SESSION['count']++;
 
-doctype();
+printPopupStart(gTranslate('config', "Check Session"));
+
+configLogin(basename(__FILE__));
 ?>
-
-<html>
-<head>
-	<title><?php echo gTranslate('config', "Gallery Session Test") ?></title>
-	<?php echo getStyleSheetLink() ?>
-</head>
-
-<body dir="<?php echo $gallery->direction ?>">
-	<h1 class="header"><?php echo gTranslate('config', "Session Test") ?></h1>
-
-	<div class="sitedesc">
+	<div class="sitedesc left">
 		<?php echo gTranslate('config', "If sessions are configured properly in your PHP installation, then you should see a session id below.") ?>
 	<br>
 		<?php echo gTranslate('config', "The &quot;page views&quot; number should increase every time you reload the page.") ?>
 	<br>
-		<?php echo sprintf(gTranslate('config', "Clicking %s should reset the page view number back to 1. (But it will also log you out.)"), '"Start over"') ?>
+		<?php printf(gTranslate('config', "Clicking %s should reset the page view number back to 1. (But it will also log you out.)"), '"Start over"') ?>
 	<p>
 		<?php echo gTranslate('config', "If this <b>does not</b> work, then you most likely have a configuration issue with your PHP installation.") ?>   
 		<?php echo gTranslate('config', "Gallery will not work properly until PHP's session management is configured properly.") ?>  
@@ -89,5 +81,7 @@ doctype();
      </table>
      
      <p><?php echo returnToConfig(); ?></p>
+
+</div>
 </body>
 </html>
