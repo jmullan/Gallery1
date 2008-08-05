@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,48 @@ function infoLine($messages, $type = '') {
 	else {
 		return '';
 	}
+}
+
+/**
+ * Returns the HTML code for a nice notice box
+ *
+ * @param  array  $messages		Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption		An optional caption
+ * @param  bool   $withOuterBorder	Whether to show an outlined border, or not
+ * @return string $html
+ * @author Jens Tkotz
+ */
+function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
+	$html = '';
+	$types = array('success', 'warning', 'error', 'information');
+
+	if(!empty($messages)) {
+		if($withOuterBorder) {
+			$html .= "\n<div class=\"g-notice\">";
+		}
+
+		if(!empty($caption)) {
+			$html .= "<span class=\"g-notice-caption\">$caption</span>";
+		}
+
+		ksort($messages);
+		foreach ($messages as $message) {
+			if(!isset($message['type']) || ! in_array($message['type'], $types)) {
+				$message['type'] = 'information';
+			}
+
+			$html .= "\n  ". '<div class="g-'. $message['type'] .' left g-message">';
+			$html .= gImage('icons/notice/'. $message['type'] .'.gif');
+			$html .= ' '. $message['text'];
+			$html .= "\n  </div>";
+		}
+
+		if($withOuterBorder) {
+			$html .= "\n</div>";
+		}
+	}
+
+	return $html;
 }
 
 function errorRow($key) {
@@ -83,4 +125,21 @@ function debugMessage($msg, $file, $line, $level = NULL) {
     }
 }
 
+function showInvalidReqMesg($text = '') {
+	global $gallery;
+
+	if (empty($text)) {
+		$text = gTranslate('core', "Invalid Request.");
+	}
+
+	echo gallery_error(
+		$text . ' ' . 
+//		sprintf(gTranslate('core', "Please go back to %s."),
+//			galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
+		sprintf(gTranslate('core', "Please go back to %s."), 
+			$gallery->app->galleryTitle)
+	);
+
+	echo "\n</div>\n";
+}
 ?>

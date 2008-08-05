@@ -1,3 +1,69 @@
+2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b25
+
+ *
+ **
+ *** SECURITY BUGFIX ****
+
+ Insecure Command Execution in:
+
+   - gallery_remote2.php
+   - gallery_remote.php
+   - publish_xp.php
+   - save_photos.php
+   - edit_watermark.php
+
+  
+   Majorly changed the way files and archives are processed!
+
+
+ * New functions:
+   - xssCleanup($string, $level = 1) !!!
+   - getMaliciousChars($level = 1)
+   - infoBox($messages = array(), $caption = '', $withOuterBorder = true) 
+     niiice
+   - showInvalidReqMesg($text = '')
+   - checkWatermarkSetting(...)
+   - gReset($name, $value, $additionalAttrs = array()) 
+   - generateCaption($captionType = 1, $originalFilename, $filename) !
+
+ * Removed functions:
+   - extractFileFromArchive()
+
+ * Change: Albums::addPhoto() does now return array(true, $statusMsg)
+
+ * Change: Modified processNewImage() massively und moved into lib/albumItem.php
+
+ * Change: Renamed lib/Form.php into lib/form.php !
+  
+ * New: lib/filetypes.php
+   - Renamed acceptableArchive() into isAcceptableArchive()
+     Moved over from util.php
+
+   - Renamed acceptableFormat() into isAcceptableFormat()
+     Moved over from util.php
+
+   - Moved from util.php:
+   -- acceptableArchiveList()
+   -- isImage()
+   -- acceptableImageList()
+   -- isMovie()
+   -- acceptableMovieList()
+   -- acceptableFormatRegexp()
+   -- acceptableFormatList()
+
+ * New: lib/filesystem.php
+   - New functions:
+   -- extractArchive($archive, $ext, $destination)
+
+   - Moved from util.php:
+   -- getExtension()
+   -- getArchiveFileNames()
+   -- rmdirRecursive()
+   -- findinpath()
+   -- parse_csv()
+   -- getexif()
+   -- safe_serialize()
+   
 2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b24
 
  * Fix: Two little bugs in lib/url.php

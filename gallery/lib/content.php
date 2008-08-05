@@ -1339,22 +1339,24 @@ function showImageMap($index, $noUrlUrl = '#') {
  * @param $altText		string  alt Text
  * @param $attrs		array   optional additional attributs (id, name..)
  * @param $skin			string	optional input of skin, because the image could be in skindir.
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
-function gImage($relativePath, $altText, $attrs = array(), $skin = '') {
+function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 	global $gallery;
 
 	$html = '';
-	$imgUrl = getImagePath($relativePath, $skin);
 
-	$html .= "<img src=\"$imgUrl\" alt=\"$altText\" title=\"$altText\"";
+	$attrList['src']	= getImagePath($relativePath, $skin);
+	$attrList['alt']	= $altText;
+	$attrList['title']	= $altText;
 
-	if(!empty($attrs)) {
-		foreach ($attrs as $key => $value) {
-			$html .= " $key=\"$value\"";
-		}
+	if(!empty($attrList['src'])) {
+		$attrs = generateAttrs($attrList);
+		$html .= "<img$attrs>";
 	}
-	$html .= '>';
+	else {
+		$html = "no src";
+	}
 
 	return $html;
 }

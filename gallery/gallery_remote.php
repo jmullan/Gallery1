@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -126,10 +126,12 @@ if (!strcmp($cmd, "add-item")) {
 		$tag = strtolower($tag);
 
 		if ($name) {
-			process($userfile, $tag, $userfile_name, $setCaption);
+			$error = process($userfile, $tag, $userfile_name, $setCaption);
 		}
 
-		$gallery->album->save(array(i18n("Image added")));
+		if(empty($error)) {
+			$gallery->album->save(array(i18n("Image added")));
+		}
 
 		if ($temp_files) {
 			/* Clean up the temporary url file */
@@ -157,90 +159,135 @@ function process($file, $tag, $name, $setCaption="") {
 	global $gallery;
 	global $temp_files;
 
-    if (!strcmp($tag, "zip")) {
-        if (!$gallery->app->feature["zip"]) {
-            $error = "Zip not supported";
-            continue;
-        }
-        /* Figure out what files we can handle */
-        list($files, $status) = exec_internal(
-            fs_import_filename($gallery->app->zipinfo, 1) .
-            " -1 " .
-            fs_import_filename($file, 1));
-        sort($files);
-        foreach ($files as $pic_path) {
-            $pic = basename($pic_path);
-            $tag = ereg_replace(".*\.([^\.]*)$", "\\1", $pic);
-            $tag = strtolower($tag);
+	$error = '';
 
-            if (acceptableFormat($tag) || !strcmp($tag, "zip")) {
-                $cmd_pic_path = str_replace("[", "\[", $pic_path);
-                $cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
-                exec_wrapper(fs_import_filename($gallery->app->unzip, 1) .
-                         " -j -o " .
-                         fs_import_filename($file, 1) .
-                         " '" .
-                         fs_import_filename($cmd_pic_path, 1) .
-                         "' -d " .
-                         fs_import_filename($gallery->app->tmpDir, 1));
-                process($gallery->app->tmpDir . "/$pic", $tag, $pic, $setCaption);
-                fs_unlink($gallery->app->tmpDir . "/$pic");
-            }
-        }
-    } else {
-        // remove %20 and the like from name
-        $name = urldecode($name);
-        // parse out original filename without extension
-        $originalFilename = eregi_replace(".$tag$", "", $name);
-        // replace multiple non-word characters with a single "_"
-        $mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
-
-        /* Get rid of extra underscores */
-        $mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-        $mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-   
-        /*
-        need to prevent users from using original filenames that are purely numeric.
-        Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-        specifically:
-        RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
-        */
-   
-        if (ereg("^([0-9]+)$", $mangledFilename)) {
-            $mangledFilename .= "_G";
-        }
-   
-        set_time_limit($gallery->app->timeLimit);
-        if (acceptableFormat($tag)) {
-            if ($setCaption) {
-                $caption = $originalFilename;
-            } else {
-                $caption = "";
-            }
-   
-	    /*
-	     * Move the uploaded image to our temporary directory
-	     * using move_uploaded_file so that we work around
-	     * issues with the open_basedir restriction.
-	     */
-	    if (function_exists('move_uploaded_file')) {
-		$newFile = tempnam($gallery->app->tmpDir, "gallery");
-		if (move_uploaded_file($file, $newFile)) {
-		    $file = $newFile;
-
-		    /* Make sure we remove this file when we're done */
-		    $temp_files[$file]++;
+	if (isAcceptableArchive($tag)) {
+		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
+		$tool = canDecompressArchive($tag);
+		if (!$tool) {
+			$error = sprintf(gTranslate('core', "Skipping '%s' (%s support not enabled)"), $name, $tag);
+			return $error;
 		}
-	    }
 
-            $err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, array(), $gallery->user->getUid());
-            if ($err) {
-                $error = "$err";
-            }
-        } else {
-            $error = "Skipping $name (can't handle '$tag' format)";
-        }
-    }
+		$temp_filename	= tempnam($gallery->app->tmpDir, 'g1_tmp_');
+		$temp_dirname	= $temp_filename . '.dir';
+
+		if (fs_is_dir($temp_dirname)) {
+			$error = gTranslate('core', "Error occured before extracting the archive. Temporary destination exists.");
+			return $error;
+		}
+
+		if (! fs_mkdir($temp_dirname)) {
+			$error = gTranslate('core', "Error occured before extracting the archive. Temporary destination could not be created.");
+			return $error;
+		}
+
+		if(! extractArchive($file, $tag, $temp_dirname)) {
+			$error = gTranslate('core', "Extracting archive failed.");
+			return $error;
+		}
+
+		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+		$files_to_process	= array();
+		$dir_handle		= fs_opendir($temp_dirname);
+		while (false !== ($content_filename = readdir($dir_handle))) {
+			if(! isXSSclean($content_filename) ||
+			   $content_filename == "." || $content_filename == '..')
+			{
+				continue;
+			}
+
+			$content_file_ext	= getExtension($content_filename);
+			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
+
+			if (isAcceptableFormat($content_file_ext) ||
+			    isAcceptableArchive($content_file_ext))
+			{
+				$files_to_process[] = array(
+				'filename'	=> $fullpath_content_file,
+				'ext'		=> $content_file_ext
+				);
+			}
+		}
+
+		closedir($dir_handle);
+
+		/* Now process all valid files we found */
+		echo debugMessage(gTranslate('core', "Processing valid files from archive"), __FILE__, __LINE__);
+		$loop = 0;
+		foreach ($files_to_process as $current_file) {
+			$current_file_name = basename($current_file['filename']);
+			$current_file_ext  = basename($current_file['ext']);
+
+			process($current_file['filename'],
+				$current_file_ext,
+				$current_file_name,
+				$caption,
+				$setCaption
+			);
+		}
+		/* End of archive processing */
+		rmdirRecursive($temp_dirname);
+		fs_unlink($temp_filename);
+	}
+	else {
+		// remove %20 and the like from name
+		$name = urldecode($name);
+		// parse out original filename without extension
+		$originalFilename = eregi_replace(".$tag$", "", $name);
+		// replace multiple non-word characters with a single "_"
+		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+
+		/* Get rid of extra underscores */
+		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
+		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+
+		/*
+		need to prevent users from using original filenames that are purely numeric.
+		Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+		specifically:
+		RewriteRule ^([^\.\?/]+)/([0-9]+)$  /~jpk/gallery/view_photo.php?set_albumName=$1&index=$2  [QSA]
+		*/
+
+		if (ereg("^([0-9]+)$", $mangledFilename)) {
+			$mangledFilename .= "_G";
+		}
+
+		set_time_limit($gallery->app->timeLimit);
+		if (isAcceptableFormat($tag) || isAcceptableArchive($tag)) {
+			if ($setCaption) {
+				$caption = $originalFilename;
+			}
+			else {
+				$caption = '';
+			}
+
+			/*
+			* Move the uploaded image to our temporary directory
+			* using move_uploaded_file so that we work around
+			* issues with the open_basedir restriction.
+			*/
+			if (function_exists('move_uploaded_file')) {
+				$newFile = tempnam($gallery->app->tmpDir, "gallery");
+				if (move_uploaded_file($file, $newFile)) {
+					$file = $newFile;
+
+					/* Make sure we remove this file when we're done */
+					$temp_files[$file]++;
+				}
+			}
+
+			$err = $gallery->album->addPhoto($file, $tag, $mangledFilename, $caption, array(), $gallery->user->getUid());
+			if ($err) {
+				$error = "$err";
+			}
+		}
+		else {
+			$error = "Skipping $name (can't handle '$tag' format)";
+		}
+	}
+
+	return $error;
 }
 
 ?>

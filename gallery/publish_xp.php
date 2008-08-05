@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ doctype();
 ?>
 <html>
 <head>
-  <title><?php echo sprintf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle) ?></title>
+  <title><?php printf(gTranslate('core', "Login to %s"), $gallery->app->galleryTitle) ?></title>
   <?php common_header(); ?>
 </head>
 
@@ -67,7 +67,7 @@ $ONNEXT_SCRIPT="";
 $SCRIPT_CMD="";
 
 //-- login --
-if (!strcmp($cmd, "login")) {
+if ($cmd == 'login') {
 
 	if ($uname && $password) {
 		$tmpUser = $gallery->userDB->getUserByUsername($uname);
@@ -80,7 +80,8 @@ if (!strcmp($cmd, "login")) {
                         // I think this actually does the "login'
 			$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
                         $ONBACK_SCRIPT="history.go(-1);";
-		} else {
+		}
+		else {
 			echo gallery_error(gTranslate('core', "Username and Password are not correct."));
 			$returnval = "Login Incorrect";
 			$WIZARD_BUTTONS="false,true,false";
@@ -114,7 +115,7 @@ if (!strcmp($cmd,"publish") || (isset($returnval) && $returnval == "Login Incorr
 	<input type="hidden" name="cmd" value="login">
 </form>
 
-<?php 
+<?php
 	$ONNEXT_SCRIPT="login.submit();";
 	$SCRIPT_CMD="this.login.uname.focus();";
 }
@@ -151,9 +152,9 @@ if (!strcmp($cmd, "fetch-albums")) {
 	</select><br>
 
 	<input id="setCaption" type="checkbox" name="setCaption" checked value="1"><?php echo gTranslate('core', "Use filenames as captions") ?>
-	
+
 	<br><br>
-	<input type="button" value="<?php echo gTranslate('core', "Create New Album") ?>" onClick="folder.cmd.value='new-album';folder.submit();">
+	<?php echo gButton('create', gTranslate('core', "Create New Album"), "folder.cmd.value='new-album';folder.submit()"); ?>
 
 	<input type="hidden" name="cmd" value="select-album">
 </form>
@@ -166,10 +167,10 @@ if (!strcmp($cmd, "fetch-albums")) {
 
 function appendNestedAlbums($level, $permission, $albumName, $albumCompare = "") {
     global $gallery;
- 
+
     $myAlbum = new Album();
     $myAlbum->load($albumName);
-   
+
     $numPhotos = $myAlbum->numPhotos(1);
 
     for ($i=1; $i <= $numPhotos; $i++) {
@@ -205,8 +206,9 @@ if (!strcmp($cmd, "select-album")) {
 
 	if (empty($gallery->album) || empty($set_albumName)) {
 		$error = gTranslate('core', "No album specified!");
-	} elseif (!$gallery->user->canAddToAlbum($gallery->album) && $set_albumName) {
-	    $error = sprintf(gTranslate('core', "This user cannot add photos in %s."), 
+	}
+	elseif (!$gallery->user->canAddToAlbum($gallery->album) && $set_albumName) {
+	    $error = sprintf(gTranslate('core', "This user cannot add photos in %s."),
 			    $gallery->album->fields[title]);
 	}
 
@@ -272,7 +274,7 @@ if (!strcmp($cmd, "new-album")) {
 
 <div class="popup" align="center">
 <form id="folder">
-	<?php echo gTranslate('core', "Enter New Album Title") ?>: 
+	<?php echo gTranslate('core', "Enter New Album Title") ?>:
 	<input id="newAlbumTitle" type="text" name="newAlbumTitle" value="<?php echo $newAlbumTitle ?>" size="25">
 
 	<br><br><?php echo gTranslate('core', "Select Parent Album") ?>:
@@ -323,7 +325,7 @@ if (!strcmp($cmd, "new-album")) {
 		echo "<input type=\"hidden\" name=\"cmd\" value=\"fetch-albums\">\n";
                 echo "</form>\n";
 
-		if ($success) {	
+		if ($success) {
 			$SCRIPT_CMD = "folder.submit();";
 		}
         }
@@ -350,11 +352,15 @@ if (!strcmp($cmd, "add-item")) {
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 		$tag = strtolower($tag);
 
-		if (!empty($name)) {
-    			processNewImage($file, $tag, $name, "", $setCaption);
+		if (!empty($name) && isXSSclean($name,0 )) {
+			$error = processNewImage($file, $tag, $name, '', $setCaption);
+			if(empty($error)) {
+				$gallery->album->save(array(i18n("Image added")));
+			}
 		}
-
-		$gallery->album->save(array(i18n("Image added")));
+		else {
+			$error = gTranslate('core', "Skipping file, as it contains malicious characters.");
+		}
 
 		if (!empty($temp_files)) {
     			/* Clean up the temporary url file */

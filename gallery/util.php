@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,13 +28,15 @@
  * First include some necessary files
  */
 require_once(dirname(__FILE__) . '/nls.php');
+require_once(dirname(__FILE__) . '/lib/lang.php');
+require_once(dirname(__FILE__) . '/lib/content.php');
 require_once(dirname(__FILE__) . '/lib/url.php');
 require_once(dirname(__FILE__) . '/lib/popup.php');
 require_once(dirname(__FILE__) . '/classes/Mail/htmlMimeMail.php');
 require_once(dirname(__FILE__) . '/classes/HTML/table.php');
 require_once(dirname(__FILE__) . '/lib/valchecks.php');
 require_once(dirname(__FILE__) . '/lib/messages.php');
-require_once(dirname(__FILE__) . '/lib/content.php');
+require_once(dirname(__FILE__) . '/lib/filetypes.php');
 
 function getRequestVar($str) {
 	if (!is_array($str)) {
@@ -271,36 +273,6 @@ function getDimensions($file) {
 	return array(0, 0);
 }
 
-function acceptableFormat($tag) {
-	return (isImage($tag) || isMovie($tag));
-}
-
-function acceptableFormatRegexp() {
-	return "(?:" . join("|", acceptableFormatList()) . ")";
-}
-
-function acceptableMovieList() {
-	return array('asx', 'asf', 'avi', 'mpg', 'mpeg', 'mp2', 'wmv', 'mov', 'qt', 'swf', 'mp4', 'rm', 'ram');
-}
-
-function acceptableImageList() {
-	return array('jpg', 'jpeg', 'gif', 'png');
-}
-
-function acceptableFormatList() {
-	return array_merge(acceptableImageList(), acceptableMovieList());
-}
-
-function isImage($tag) {
-	$tag = strtolower($tag);
-	return in_array($tag, acceptableImageList());
-}
-
-function isMovie($tag) {
-	$tag = strtolower($tag);
-	return in_array($tag, acceptableMovieList());
-}
-
 function getFile($fname, $legacy=false) {
 	$tmp = "";
 
@@ -385,22 +357,39 @@ function correctPseudoUsers(&$array, $ownerUid) {
 function gallerySanityCheck() {
 	global $gallery, $GALLERY_OK;
 
+	setGalleryPaths();
+
+	if (!fs_file_exists(GALLERY_CONFDIR . '/config.php') ||
+		broken_link(GALLERY_CONFDIR . '/config.php')) {
+
+		$GALLERY_OK = false;
+		return 'unconfigured.php';
+	}
+
+	include_once(GALLERY_CONFDIR . '/config.php');
+
 	if (!empty($gallery->backup_mode)) {
 		return NULL;
 	}
 
-	setGalleryPaths();
-
-	if (!fs_file_exists(GALLERY_CONFDIR . "/config.php") ||
-	broken_link(GALLERY_CONFDIR . "config.php") ||
-	!$gallery->app) {
+	if (!isset($gallery->app)) {
 		$GALLERY_OK = false;
-		return "unconfigured.php";
+		return 'unconfigured.php';
+	}
+
+	if(!realpath($gallery->app->albumDir)) {
+		echo infoBox(array(array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Gallery seems to be configured, but the path to the albums dir is wrong. Maybe you did a host change?") .
+					  '<br>' .
+					  gTranslate('core', "Check all paths and URLs in your config.php; unfortunately this can't be done via the config wizard.")
+		)));
+		exit;
 	}
 
 	if ($gallery->app->config_version != $gallery->config_version) {
 		$GALLERY_OK = false;
-		return "reconfigure.php";
+		return 'reconfigure.php';
 	}
 
 	$GALLERY_OK = true;
@@ -438,9 +427,9 @@ function preprocessImage($dir, $file) {
 			if ($newfd = fs_fopen($tempfile, "wb", 0755)) {
 				while (!feof($fd)) {
 					/*
-					* Copy the rest of the file.  Specify a length
-					* to fwrite so that we ignore magic_quotes.
-					*/
+					 * Copy the rest of the file.  Specify a length
+					 * to fwrite so that we ignore magic_quotes.
+					 */
 					fwrite($newfd, fread($fd, 64*1024), 64*1024+1);
 				}
 				fclose($newfd);
@@ -452,7 +441,7 @@ function preprocessImage($dir, $file) {
 			}
 			else {
 				echo gallery_error(
-				sprintf(gTranslate('core', "Can't write to %s."), $tempfile));
+						sprintf(gTranslate('core', "Can't write to %s."), $tempfile));
 			}
 			chmod("$dir/$file", 0644);
 		}
@@ -586,78 +575,6 @@ function hasExif($file) {
 }
 
 /**
- * If an exiftool is installed then gallery tries to pull out EXIF Data.
- * Only fields with data are returned.
- */
-function getExif($file) {
-	global $gallery;
-
-	$return = array();
-	$myExif = array();
-	$unwantedFields = array();
-
-	echo debugMessage(sprintf(gTranslate('core', "Getting Exif from: %s"), $file), __FILE__, __LINE__, 3);
-
-	switch(getExifDisplayTool()) {
-		case 'exiftags':
-			if (empty($gallery->app->exiftags)) {
-				break;
-			}
-
-			$path	= $gallery->app->exiftags;
-			$cmd	= fs_import_filename($path, 1) . ' -au';
-			$target	= fs_import_filename($file, 1);
-
-			list($return, $status) = @exec_internal($cmd . ' ' . $target);
-			break;
-
-		case 'jhead':
-			if (empty($gallery->app->use_exif)) {
-				break;
-			}
-			$path = $gallery->app->use_exif;
-			// -v removed as the structure is different.
-			list($return, $status) = @exec_internal(fs_import_filename($path, 1) .' ' .
-			fs_import_filename($file, 1));
-
-			$unwantedFields = array('File name');
-			break;
-
-		default:
-			return array(false,'');
-			break;
-	}
-
-	if ($status == 0) {
-		foreach ($return as $value) {
-			$value = trim($value);
-
-			if (!empty($value)) {
-				$explodeReturn = explode(':', $value, 2);
-				$exifDesc = trim(htmlentities($explodeReturn[0]));
-				$exifData = trim(htmlentities($explodeReturn[1]));
-
-				if(!empty($exifData) &&
-				!in_array($exifDesc, $unwantedFields) &&
-				!isset($myExif[$exifDesc]))
-				{
-					if (isset($myExif[$exifDesc])) {
-						$myExif[$exifDesc] .= "<br>";
-					}
-					else {
-						$myExif[$exifDesc] = '';
-					}
-
-					$myExif[$exifDesc] .= trim($exifData);
-				}
-			}
-		}
-	}
-
-	return array($status, $myExif);
-}
-
-/**
  * This function tries to get the ItemCaptureDate from Exif Data.
  * If exif is not supported, or no date was gotten, then the file creation date is returned.
  * Note: i used switch/case because this is easier to extend later.
@@ -742,75 +659,6 @@ function padded_range_array($start, $end) {
 	return $arr;
 }
 
-function safe_serialize($obj, $file) {
-	global $gallery;
-
-	if (!strcmp($gallery->app->use_flock, "yes")) {
-		/* Acquire an advisory lock */
-		$lockfd = fs_fopen("$file.lock", "a+");
-		if (!$lockfd) {
-			echo gallery_error(sprintf(gTranslate('core', "Could not open lock file (%s) for writing!"),
-			"$file.lock"));
-			return 0;
-		}
-		if (!flock($lockfd, LOCK_EX)) {
-			echo gallery_error(sprintf(gTranslate('core', "Could not acquire lock (%s)!"),
-			"$file.lock"));
-			return 0;
-		}
-	}
-
-	/*
-	* Don't use tempnam because it may create a file on a different
-	* partition which would cause rename() to fail.  Instead, create our own
-	* temporary file.
-	*/
-	$i = 0;
-	do {
-		$tmpfile = "$file.$i";
-		$i++;
-	} while (fs_file_exists($tmpfile));
-
-	if ($fd = fs_fopen($tmpfile, "wb")) {
-		$buf = serialize($obj);
-		$bufsize = strlen($buf);
-		$count = fwrite($fd, $buf);
-		fclose($fd);
-
-		if ($count != $bufsize || fs_filesize($tmpfile) != $bufsize) {
-			/* Something went wrong! */
-			$success = 0;
-		}
-		else {
-			/*
-			* Make the current copy the backup, and then
-			* write the new current copy.  There's a
-			* potential race condition here if the
-			* advisory lock (above) fails; two processes
-			* may try to do the initial rename() at the
-			* same time.  In that case the initial rename
-			* will fail, but we'll ignore that.  The
-			* second rename() will always go through (and
-			* the second process's changes will probably
-			* overwrite the first process's changes).
-			*/
-			if (fs_file_exists($file)) {
-				fs_rename($file, "$file.bak");
-			}
-			fs_rename($tmpfile, $file);
-			$success = 1;
-		}
-	}
-	else {
-		$success = 0;
-	}
-
-	if (!strcmp($gallery->app->use_flock, "yes")) {
-		flock($lockfd, LOCK_UN);
-	}
-	return $success;
-}
-
 /**
  * This function left in place to support patches that use it, but please use
  * lastCommentDate functions in classes Album and AlbumItem.
@@ -828,32 +676,6 @@ function ordinal($num = 1) {
 	$val = $num;
 	if ((($num%=100)>9 && $num<20) || ($num%=10)>3) $num=0;
 	return "$val" . $ords[$num];
-}
-
-/**
- * Extracts the extension of a given filename and returns it in lower chars.
- * @param  string   $filename
- * @return string   $ext
- * @author Jens Tkotz <jens@peino.de>
- */
-function getExtension($filename) {
-	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
-	$ext = strtolower($ext);
-
-	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
-	return $ext;
-}
-
-function acceptableArchiveList() {
-	return array('zip', 'rar');
-}
-
-function acceptableArchive($ext) {
-	if (in_array($ext, acceptableArchiveList())) {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 /**
@@ -880,10 +702,10 @@ function canDecompressArchive($ext) {
 			if (!empty($gallery->app->rar)) {
 				$tool = 'rar';
 			}
-			break;
+		break;
 
 		default:
-			/* Extension not supported, $tool stays fals */
+			/* Extension not supported, $tool stays false */
 			break;
 	}
 	return $tool;
@@ -909,65 +731,6 @@ function canCreateArchive($ext = 'zip') {
 	}
 	else {
 		/* No suitable tool found */
-		return false;
-	}
-}
-
-function getArchiveFileNames($archive, $ext) {
-	global $gallery;
-
-	$cmd = '';
-	$files = array();
-
-	if ($tool = canDecompressArchive($ext)) {
-		$filename = fs_import_filename($archive);
-		switch ($tool) {
-			case 'zip':
-				$cmd = fs_import_filename($gallery->app->zipinfo) ." -1 ". $filename;
-				break;
-
-			case 'rar':
-				$cmd = fs_import_filename($gallery->app->rar) ." vb ". $filename;
-				break;
-		}
-
-		list($files, $status) = exec_internal($cmd);
-
-		if (!empty($files)) {
-			sort($files);
-		}
-	}
-
-	return $files;
-}
-
-/* extract a file into Gallery temp dir */
-function extractFileFromArchive($archive, $ext, $file) {
-	global $gallery;
-
-	$cmd_pic_path = str_replace("[", "\[", $file);
-	$cmd_pic_path = str_replace("]", "\]", $cmd_pic_path);
-
-	if($tool = canDecompressArchive($ext)) {
-		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
-		switch($tool) {
-			case 'zip':
-				$cmd = fs_import_filename($gallery->app->unzip) . " -j -o " .
-				fs_import_filename($archive) . ' ' . fs_import_filename($cmd_pic_path) .
-				' -d ' . fs_import_filename($gallery->app->tmpDir);
-				break;
-
-			case 'rar':
-				$cmd = fs_import_filename($gallery->app->rar) ." e ".
-				fs_import_filename($archive) .' -x '. fs_import_filename($cmd_pic_path) .' '.
-				fs_import_filename($gallery->app->tmpDir);
-				break;
-		}
-
-		return exec_wrapper($cmd);
-	}
-	else {
-		echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive.", $archive, $ext)),__FILE__, __LINE__);
 		return false;
 	}
 }
@@ -1000,7 +763,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	if(! fs_mkdir($tmpDir)) {
 		echo gallery_error(
 		sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
-		$gallery->app->tmpDir));
+			$gallery->app->tmpDir));
 		return false;
 	}
 	/* Keep Current Dir in mind */
@@ -1027,220 +790,8 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	}
 }
 
-function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields=array(), $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0) {
-	global $gallery;
-	global $temp_files;
-
-	echo debugMessage(sprintf(gTranslate('core', "Processing file: %s"), $file), __FILE__, __LINE__,3);
-	/* Begin of code for the case the uploaded file is an archive */
-	if (acceptableArchive($ext)) {
-		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
-		$tool = canDecompressArchive($ext);
-		if (!$tool) {
-			processingMsg(sprintf(gTranslate('core', "Skipping %s (%s support not enabled)"), $name, $ext));
-			echo "<br>";
-			return;
-		}
-
-		/*
-		* Figure out what files inside the archive we can handle.
-		* Put all Filenames into $files.
-		*/
-		echo debugMessage(gTranslate('core', "Getting archive content Filenames"), __FILE__, __LINE__);
-		$files = getArchiveFileNames($file, $ext);
-
-		/* Get meta data */
-		$image_info = array();
-		foreach ($files as $pic_path) {
-			$pic = basename($pic_path);
-			$tag = getExtension($pic);
-			if ($tag == 'csv') {
-				extractFileFromArchive($file, $ext, $pic_path);
-				$image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
-			}
-		}
-
-		if(!empty($image_info)) {
-			debugMessage(printMetaData($image_info), __FILE__, __LINE__);
-		}
-		else {
-			echo debugMessage(gTranslate('core', "No Metadata"), __FILE__, __LINE__);
-		}
-
-		/* Now process all valid files we found */
-		echo debugMessage(gTranslate('core', "Processing files in archive"), __FILE__, __LINE__);
-		$loop = 0;
-		foreach ($files as $pic_path) {
-			$loop++;
-			$pic = basename($pic_path);
-			$tag = getExtension($pic);
-			echo debugMessage(sprintf(gTranslate('core', "%d. %s"), $loop, $pic_path), __FILE__, __LINE__);
-			if (acceptableFormat($tag) || acceptableArchive($tag)) {
-				if(!extractFileFromArchive($file, $ext, $pic_path)) {
-					echo '<br>'. gallery_error(sprintf(gTranslate('core', "Could not extract %s"), $pic_path));
-					continue;
-				}
-
-				/* Now process the metadates. */
-				$extra_fields = array();
-
-				/* Find in meta data array */
-				$firstRow = 1;
-				$fileNameKey = "File Name";
-
-				/* $captionMetaFields will store the names (in order of priority to set caption to) */
-				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
-				foreach ( $image_info as $info ) {
-					if ($firstRow) {
-						/* Find the name of the file name field */
-						foreach (array_keys($info) as $currKey) {
-							if (eregi("^\"?file\ ?name\"?$", $currKey)) {
-								$fileNameKey = $currKey;
-							}
-						}
-						$firstRow = 0;
-					}
-
-					if ($info[$fileNameKey] == $pic) {
-						/* Loop through fields */
-						foreach ($captionMetaFields as $field) {
-							/* If caption isn't populated and current field is */
-							if (!strlen($caption) && strlen($info[$field])) {
-								$caption = $info[$field];
-							}
-						}
-
-						$extra_fields = $info;
-					}
-				}
-				/* Don't use the second argument for $cmd_pic_path, because it is already quoted. */
-
-				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
-				fs_unlink($gallery->app->tmpDir . "/$pic");
-			}
-		}
-	} else {
-		/* Its a single file
-		* remove %20 and the like from name
-		*/
-		$name = urldecode($name);
-
-		/* parse out original filename without extension */
-		$originalFilename = eregi_replace(".$ext$", "", $name);
-
-		/* replace multiple non-word characters with a single "_" */
-		$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
-
-		/* Get rid of extra underscores */
-		$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
-		$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
-		if (empty($mangledFilename)) {
-			$mangledFilename = $gallery->album->newPhotoName();
-		}
-
-		/*
-		* need to prevent users from using original filenames that are purely numeric.
-		* Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
-		* specifically:
-		* RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
-		*/
-
-		if (ereg("^([0-9]+)$", $mangledFilename)) {
-			$mangledFilename .= "_G";
-		}
-
-		set_time_limit($gallery->app->timeLimit);
-		if (acceptableFormat($ext)) {
-			/*
-			* Move the uploaded image to our temporary directory
-			* using move_uploaded_file so that we work around
-			* issues with the open_basedir restriction.
-			*/
-			if (function_exists('move_uploaded_file')) {
-				$newFile = tempnam($gallery->app->tmpDir, "gallery");
-				if (move_uploaded_file($file, $newFile)) {
-					$file = $newFile;
-				}
-
-				/* Make sure we remove this file when we're done */
-				$temp_files[$newFile] = 1;
-			}
-
-			/* What should the caption be, if no caption was given by user ?
-			* See captionOptions.inc.php for options
-			*/
-
-			if (isset($gallery->app->dateTimeString)) {
-				$dateTimeFormat = $gallery->app->dateTimeString;
-			} else {
-				$dateTimeFormat = "%D %T";
-			}
-
-			if (empty($caption)) {
-				switch ($setCaption) {
-					case 0:
-						$caption = '';
-						break;
-					case 1:
-					default:
-						/* Use filename */
-						$caption = strtr($originalFilename, '_', ' ');
-						break;
-					case 2:
-						/* Use file cration date */
-						$caption = strftime($dateTimeFormat, filectime($file));
-						break;
-					case 3:
-						/* Use capture date */
-						$caption = strftime($dateTimeFormat, getItemCaptureDate($file));
-						break;
-				}
-			}
-
-			echo "\n<p><b>******". sprintf(gTranslate('core', "Adding %s"), $name) ."*****</b></p>";
-
-			/* After all the preprocessing, NOW ADD THE element
-			* function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
-			*                   $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
-			*/
-			$err = $gallery->album->addPhoto(
-			$file,
-			$ext,
-			$mangledFilename,
-			$caption,
-			'',
-			$extra_fields,
-			$gallery->user->uid,
-			NULL,
-			$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
-			);
-
-			if ($err) {
-				processingMsg(gallery_error($err));
-				processingMsg("<b>". sprintf(gTranslate('core', "Need help?  Look in the  %s%s FAQ%s"),
-				'<a href="http://gallery.sourceforge.net/faq.php" target=_new>', Gallery(), '</a>') .
-				"</b>");
-			}
-		} else {
-			processingMsg(sprintf(gTranslate('core', "Skipping %s (can't handle %s format)"), $name, $ext));
-		}
-	}
-}
-
 function escapeEregChars($string) {
 	return ereg_replace('(\.|\\\\|\+|\*|\?|\[|\]|\^|\$|\(|\)|\{|\}|\=|\!|<|>|\||\:)', '\\\\1', $string);
-}
-
-function findInPath($program) {
-	$path = explode(':', getenv('PATH'));
-
-	foreach ($path as $dir) {
-		if (fs_file_exists("$dir/$program")) {
-			return "$dir/$program";
-		}
-	}
-
-	return false;
 }
 
 /**
@@ -1549,31 +1100,6 @@ function contextHelp ($link) {
 	}
 }
 
-function parse_csv ($filename, $delimiter=";") {
-	echo debugMessage(sprintf(gTranslate('core', "Parsing for csv data in file: %s"), $filename), __FILE__, __LINE__);
-	$maxLength = 1024;
-	$return_array = array();
-
-	if ($fd = fs_fopen($filename, "rt")) {
-		$headers = fgetcsv($fd, $maxLength, $delimiter);
-		while ($columns = fgetcsv($fd, $maxLength, $delimiter)) {
-			$i = 0;
-			$current_image = array();
-			foreach ($columns as $column) {
-				$current_image[$headers[$i++]] = $column;
-			}
-			$return_array[] = $current_image;
-		}
-		fclose($fd);
-	}
-
-	if(isDebugging()){
-		echo gTranslate('core', "csv result:");
-		print_r($return_array);
-	}
-	return $return_array;
-}
-
 /**
  * This function strips slashes from an array Key
  * e.g. $foo[\'bar\'] will become $foo['bar']
@@ -1740,7 +1266,7 @@ function getMimeType($filename) {
 	}
 
 	$extension = getExtension($filename);
-	$mimetype = $mime_extension_map[$extension];
+	$mimetype  = $mime_extension_map[$extension];
 
 	echo debugMessage(sprintf(gTranslate('core', "MIMEtype of file %s is %s"), basename($filename), $mimetype), __FILE__, __LINE__, 2);
 	return $mimetype;
@@ -1826,9 +1352,9 @@ function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
 	/*
 	* Currently all other images in the template are ignored.
 	if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
-	for ($i = 0; $i < count($matchArray[0]); ++$i) {
-	$ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
-	}
+		for ($i = 0; $i < count($matchArray[0]); ++$i) {
+			$ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
+		}
 	}
 	*/
 	$ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
@@ -1932,8 +1458,10 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 
 	if(! fs_mkdir($dir)) {
 		echo gallery_error(
-		sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
-		$gallery->app->tmpDir));
+		  sprintf(gTranslate('core', "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"),
+		  $gallery->app->tmpDir)
+		);
+
 		return false;
 	}
 
@@ -1952,27 +1480,13 @@ function createTempAlbum($albumItemNames = array(), $dir = '') {
 	return $dir;
 }
 
-function rmdirRecursive($dir) {
-	if($objs = glob($dir."/*")){
-		foreach($objs as $obj) {
-			if(is_dir($obj)) {
-				rmdirRecursive($obj);
-			}
-			else {
-				unlink($obj);
-			}
-		}
-	}
-	rmdir($dir);
-}
-
 function downloadFile($filename) {
 	global $gallery;
 
 	/* Verify its really a file */
 	if(!fs_is_file($filename) || broken_link($filename)) {
 		echo gallery_error(sprintf(gTranslate('core', "'%s' seems not to be a valid file. Download aborted."),
-		$filename));
+			$filename));
 		return false;
 	}
 
@@ -1980,7 +1494,7 @@ function downloadFile($filename) {
 	$validFileName = strncmp($filename, $gallery->app->tmpDir, strlen($filename));
 	if($validFileName < 0) {
 		echo gallery_error(sprintf(gTranslate('core', "The file '%s' seems not inside Gallery tempdir %s, download aborted."),
-		$filename,  $gallery->app->tmpDir));
+			$filename,  $gallery->app->tmpDir));
 		return false;
 	}
 	elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
@@ -2008,7 +1522,7 @@ function downloadFile($filename) {
 	echo $filedata;
 
 	/* As downloadable files are always created in a subfolder of the tempdir,
-	* we delete this folder and its content
+	 * we delete this folder and its content
 	*/
 	rmdirRecursive(dirname($filename));
 
@@ -2036,7 +1550,7 @@ function array_flaten($array) {
 }
 
 /**
- * This function returns the Gallery Title as a string that's save to show in <title>...</title>
+ * This function returns the Gallery Title as a string that's safe to show in <title>...</title>
  *
  * @param string $topic	 optional
  * @return string $ret
@@ -2054,12 +1568,12 @@ function clearGalleryTitle($topic = '') {
 	return $ret;
 }
 
-require_once(dirname(__FILE__) . '/lib/lang.php');
-require_once(dirname(__FILE__) . '/lib/Form.php');
+require_once(dirname(__FILE__) . '/lib/form.php');
 require_once(dirname(__FILE__) . '/lib/voting.php');
 require_once(dirname(__FILE__) . '/lib/album.php');
 require_once(dirname(__FILE__) . '/lib/albumItem.php');
 require_once(dirname(__FILE__) . '/lib/imageManipulation.php');
 require_once(dirname(__FILE__) . '/lib/mail.php');
+require_once(dirname(__FILE__) . '/lib/filesystem.php');
 
 ?>

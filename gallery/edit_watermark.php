@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,102 +35,107 @@ require_once(dirname(__FILE__) . '/init.php');
 list($index, $save, $preview, $previewFull) =
 	getRequestVar(array('index', 'save', 'preview', 'previewFull'));
 
-list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) = 
-	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
+list($wmName, $wmAlign, $wmSelect, $wmAlignX, $wmAlignY) =
+	getRequestVar(array('wmName', 'wmAlign', 'wmSelect', 'wmAlignX', 'wmAlignY'));
 
-// Hack check
-if (! $gallery->user->canWriteToAlbum($gallery->album) &&
-  ! $gallery->album->getItemOwnerModify() &&
-  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+printPopupStart(gTranslate('core', "Edit Watermark"));
+
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+	! $photo = $gallery->album->getPhoto($index))
+{
+	showInvalidReqMesg();
 	exit;
 }
 
-
-$photo = $gallery->album->getPhoto($index);
-$err = '';
-
-if (isset($save) || isset($preview)) {
-    if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
-        if (isset($wmName) && !empty($wmName)) {
-            if (isset($save)) {
-                my_flush();
-                set_time_limit($gallery->app->timeLimit);
-                $gallery->album->watermarkPhoto($index, $wmName, "", $wmAlign,
-                  isset($wmAlignX) ? $wmAlignX : 0,
-                  isset($wmAlignY) ? $wmAlignY : 0,
-                  0, 0, // Not a preview
-                  isset($wmSelect) ? $wmSelect : 0
-                );
-                dismissAndReload();
-                return;
-            }
-            else {
-                $gallery->album->watermarkPhoto(
-                  $index,
-                  $wmName,
-                  '',
-                  $wmAlign,
-                  isset($wmAlignX) ? $wmAlignX : 0,
-                  isset($wmAlignY) ? $wmAlignY : 0,
-                  1, // set as preview
-                  isset($previewFull) ? $previewFull : 0
-                );
-            }
-        } else {
-            $err = gTranslate('core', "Please select a watermark.");
-        }
-    } else {
-        $err = gTranslate('core', "Please select an alignment.");
-    }
+// Hack check
+if (! $gallery->user->canWriteToAlbum($gallery->album) &&
+	! $gallery->album->getItemOwnerModify() &&
+	! $gallery->album->isItemOwner($gallery->user->getUid(), $index))
+{
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
 
-doctype();
-printPopupStart(gTranslate('core', "Edit Watermark"));
-?>
-<p>
-<?php
-if (isset($preview)) {
-    echo $gallery->album->getPreviewTag($index);
-} else {
-    echo $gallery->album->getThumbnailTag($index);
-}
-?>
-</p>
-<?php 
+$notice_messages = array();
 
-if (!empty($err)) {
-    echo '<p class="error">'. $err . '</p>';
+if ((isset($save) || isset($preview))) {
+	$notice_messages =
+		checkWatermarkSetting($wmName, $wmAlign, $wmSelect, $previewFull, $wmAlignX, $wmAlignY);
+
+	if(empty($notice_messages)) {
+		if (isset($save)) {
+			my_flush();
+			set_time_limit($gallery->app->timeLimit);
+			$gallery->album->watermarkPhoto(
+				$index,
+				$wmName,
+				'',
+				$wmAlign,
+				$wmAlignX,
+				$wmAlignY,
+				0, 0, // Not a preview
+				$wmSelect
+			);
+
+			dismissAndReload();
+			return;
+		}
+		else {
+			$gallery->album->watermarkPhoto(
+				$index,
+				$wmName,
+				'',
+				$wmAlign,
+				$wmAlignX,
+				$wmAlignY,
+				1, // set as preview
+				$previewFull
+			);
+		}
+	}
 }
+
+echo infoBox($notice_messages);
+echo "\n<p>";
+
+if (isset($preview) && empty($notice_messages)) {
+	echo $gallery->album->getPreviewTag($index);
+}
+else {
+	echo $gallery->album->getThumbnailTag($index);
+}
+echo "\n</p>";
 
 if ($photo->image->type == 'gif') {
-    echo infoLine(gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported and will deface and 'unanimate' your picture."), 'notice');
+	echo infoBox(array(array(
+		'type' => 'info',
+		'text' => gTranslate('core', "Your image is a gif. Watermarking on animated gifs is currently not supported. It will 'deface' and 'unanimate' your picture.")
+	)));
 }
 
-echo makeFormIntro('edit_watermark.php');
+echo makeFormIntro('edit_watermark.php', array(), array('type' => 'popup', 'index' => $index));
+
 global $watermarkForm;
-$watermarkForm["askRecursive"] = 0;
-$watermarkForm["askPreview"] = 1;
-$watermarkForm["allowNone"] = 0;
-includeLayout ('watermarkform.inc');
+$watermarkForm['askRecursive']	= 0;
+$watermarkForm['askPreview']	= 1;
+$watermarkForm['allowNone']	= 0;
+includeLayout('watermarkform.inc');
+
+echo "\n<br>\n";
+
+// $errors is from watermarkform.inc
+if(empty($errors)) {
+	echo gSubmit('save', gTranslate('core', "Save"));
+}
+
+echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
 ?>
-<p>
-	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-	<input type="submit" name="preview" value="<?php echo gTranslate('core', "Preview") ?>">
-	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
-</p>
 </form>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-// position cursor in top form field
-document.g1_form.cancel.focus();
-//-->
-</script>
 </div>
-<?php 
-print gallery_validation_link("edit_watermark.php", false,
+<?php
+print gallery_validation_link("edit_watermark.php", true,
   array('index' => $index, 'set_albumName' => $gallery->album->fields["name"]));
 ?>
 </body>

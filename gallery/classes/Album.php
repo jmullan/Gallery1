@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1218,8 +1218,38 @@ class Album {
 		}
 	}
 
+	/**
+	 * This adds a photo to an album.
+	 * A few steps are done, here are the important
+	 *  - Filename processing
+	 *  - Resizing the original photo
+	 *  - Setting metainfos
+	 *  - Autorotate based on EXIF
+	 *
+	 * @param string	$file			Absolute filename to the physical file to add.
+	 * @param string	$tag			Extension of the file (e.g. 'jpg')
+	 * @param string	$originalFilename
+	 * @param string	$caption
+	 * @param string	$pathToThumb		You can set a non generic path to a thumbnail.
+	 * 						(e.g. for movies this is done)
+	 * @param array		$extraFields
+	 * @param string	$owner			UID of the item owner
+	 * @param mixed		$votes			Either an array containing the votes, or NULL
+	 * @param string	$wmName			Name for an optional watermark image
+	 * @param int		$wmAlign		Number from 1-10 for the position of the watermark.
+	 * 						See watermark_image() in lib/imageManipulation for details
+	 * @param mixed		$wmAlignX		If $wmAlign = 10 then this is used as horizontal alignment
+	 * 						Can be a number or a percentage string.
+	 * @param mixed		$wmAlignY		Same like $wmAlignX for the vertical alignment
+	 * @param int		$wmSelect		0 - Both, sized and Full
+	 *						1 - Only sized photos
+	 *						2 - Only full photos
+	 * @param boolean	$exifRotate		Autorotate
+	 * @return array				(true, $statusMsg)
+	 */
 	function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb = '', $extraFields = array(), $owner = '', $votes = NULL, $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0, $exifRotate = true) {
 		global $gallery;
+		global $plainErrorMessage; 		// Set only when using Gallery Remote
 
 		$this->updateSerial = 1;
 		$dir = $this->getAlbumDir();
@@ -1282,43 +1312,50 @@ class Album {
 
 		/* Create an albumitem */
 		$item = new AlbumItem();
-		$err = $item->setPhoto($dir, $name, $tag, $this->fields["thumb_size"], $this, $pathToThumb);
-		if ($err) {
+		$status = $item->setPhoto($dir, $name, $tag, $this->fields['thumb_size'], $this, $pathToThumb);
+
+		if (!$status) {
 			if (fs_file_exists($newFile)) {
 				fs_unlink($newFile);
 			}
-			return $err;
+
+			if($plainErrorMessage) {
+				$errorMsg = gTranslate('core', "Item not added.");
+			}
+			else {
+				$errorMsg = infobox(array(array(
+						'type' => 'error',
+						'text' => gTranslate('core', "Item not added.")
+				)));
+			}
+
+			return array($status, $errorMsg);
 		}
 		else {
 			$item->setCaption("$caption");
-			/* Only try to get Capture Date if file could have it.
-			* Otherwise use file creation time
-			*/
-			if(hasExif($tag)) {
-				$originalItemCaptureDate = getItemCaptureDate($file);
-			}
-			else {
-				$originalItemCaptureDate = filemtime($file);
+			$item->setItemCaptureDate('', $this);
+			$item->setUploadDate(time());
+
+			if(!empty($extraFields)) {
+				foreach($extraFields as $fieldname => $value) {
+					$item->setExtraField($fieldname, $value);
+				}
 			}
 
-			$now = time();
-			$item->setItemCaptureDate($originalItemCaptureDate);
-			$item->setUploadDate($now);
-			foreach ($extraFields as $field => $value) {
-				$item->setExtraField($field, $value);
-			}
 			if (empty($owner)) {
-				$nobody = $gallery->userDB->getNobody();
-				$owner = $nobody->getUid();
+				$nobody	= $gallery->userDB->getNobody();
+				$owner	= $nobody->getUid();
 			}
 			$item->setOwner($owner);
 		}
 
 		/* Add the item to the photo list */
 		$this->photos[] = $item;
+		$index = $this->numPhotos(1);
+		$photo = $this->getPhoto($index);
 
 		/* If this is the only photo, make it the highlight */
-		if ($this->numPhotos(1) == 1 && !$item->isMovie()) {
+		if ($index == 1 && !isMovie($tag)) {
 			$this->setHighlight(1);
 		}
 
@@ -1326,34 +1363,34 @@ class Album {
 			$this->fields['votes']["item.$name"] = $votes;
 		}
 
-		/* resize the photo if needed */
-		if (($this->fields["resize_size"] > 0 || $this->fields["resize_file_size"] > 0 ) &&
-		isImage($tag))
+		/* Create the resized photo if wanted/needed */
+		if (isImage($tag) &&
+		    ($this->fields['resize_size'] > 0 || $this->fields['resize_file_size'] > 0))
 		{
-			$index = $this->numPhotos(1);
-			$photo = $this->getPhoto($index);
 			list($w, $h) = $photo->image->getRawDimensions();
-			if ($w > $this->fields["resize_size"] ||
-			$h > $this->fields["resize_size"] ||
-			$this->fields["resize_file_size"] > 0) {
-				processingMsg("- " . sprintf(gTranslate('core', "Resizing %s"), $name));
-				$this->resizePhoto($index,
-				$this->fields["resize_size"],
-				$this->fields["resize_file_size"]);
+			if ($w > $this->fields['resize_size'] ||
+			    $h > $this->fields['resize_size'] ||
+			    $this->fields['resize_file_size'] > 0)
+			{
+				processingMsg(
+					sprintf(gTranslate('core', "Creating resized intermediate Version of %s"), $name));
+
+				$this->resizePhoto(
+					$index,
+					$this->fields['resize_size'],
+					$this->fields['resize_file_size']
+				);
 			}
 		}
 
 		/* auto-rotate the photo if needed */
-		$index = $this->numPhotos(1);
-
-		echo debugMessage(gTranslate('core', "Doing the naming"), __FILE__, __LINE__);
+		echo debugMessage(gTranslate('core', "Check if image needs to be rotated"), __FILE__, __LINE__);
 		if ($exifRotate && hasExif($tag) &&
-		!empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
-		(!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
-		(!empty($gallery->app->exiftags) && $gallery->app->exiftags))
-		){
-			echo debugMessage(gTranslate('core', "Autorotate if needed."), __FILE__, __LINE__);
-			$exifData = $this->getExif($index);
+		    !empty($gallery->app->autorotate) && $gallery->app->autorotate == 'yes'  &&
+		    (!empty($gallery->app->use_exif) && $gallery->app->use_exif ||
+		    (!empty($gallery->app->exiftags) && $gallery->app->exiftags)))
+		{
+			list($status, $exifData) = getExif($file);
 
 			if (isset($exifData['Orientation'])) {
 				$orientation = trim($exifData['Orientation']);
@@ -1365,21 +1402,25 @@ class Album {
 				$orientation = '';
 			}
 
-			$photo = $this->getPhoto($index);
+			echo debugMessage(sprintf(gTranslate('core', "Orientation: %s "), $orientation), __FILE__, __LINE__);
+
 			switch ($orientation) {
 				case "Right-Hand, Top":		// exiftags
-				case "rotate 90":			// jhead
-				$rotate = -90;
+				case "Top, Right-Hand":
+				case "rotate 90":		// jhead
+					$rotate = '90';
 				break;
 
-				case "Bottom, Right-Hand":	// exiftags
-				case "rotate 180":			// jhead
-				$rotate = 180;
+				case "Right-Hand, Bottom":	// exiftags
+				case "Bottom, Right-Hand":
+				case "rotate 180":		// jhead
+					$rotate = '180';
 				break;
 
 				case "Left-Hand, Bottom":	// exiftags
-				case "rotate 270":			// jhead
-				$rotate = 90;
+				case "Bottom, Left-Hand":
+				case "rotate 270":		// jhead
+					$rotate = '90';
 				break;
 
 				case "flip horizontal":
@@ -1405,23 +1446,36 @@ class Album {
 
 			if ($rotate) {
 				$this->rotatePhoto($index, $rotate, true);
-				processingMsg("- ". gTranslate('core', "Photo auto-rotated/transformed"));
+				processingMsg(gTranslate('core', "Photo auto-rotated/transformed"));
+			}
+			elseif(isDebugging()) {
+				processingMsg(gTranslate('core', "Photo NOT auto-rotated/transformed"));
 			}
 		}
+
 		/* move to the beginning if needed */
 		if ($this->getAddToBeginning() ) {
 			$this->movePhoto($this->numPhotos(1), 0);
 		}
 
-		if (isImage($tag) && strlen($wmName)) {
+		if (strlen($wmName) && isImage($tag)) {
 			processingMsg("- ". gTranslate('core', "Watermarking image"));
 			$photo->watermark($this->getAlbumDir(),
 			$wmName, '', $wmAlign, $wmAlignX, $wmAlignY, 0, 0, $wmSelect);
 		}
 
 		$this->fields['guid'] = genGUID();
+		if($plainErrorMessage) {
+			$statusMsg = gTranslate('core', "Item successfully added.");
+		}
+		else {
+			$statusMsg = infobox(array(array(
+						'type' => 'success',
+						'text' => gTranslate('core', "Item successfully added.")
+			)));
+		}
 
-		return 0;
+		return array(true, $statusMsg);
 	}
 
 	function addNestedAlbum($albumName) {

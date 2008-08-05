@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -425,4 +425,305 @@ function getNextId($currentId) {
 
 	return $nextId;
 }
+
+/**
+ * What should the caption be, if no caption was given by user ?
+ * See captionOptions.inc.php for options
+ *
+ * @param intger    $captionType
+ * @param string    $originalFilename
+ * @param string    $filename
+ * @return string   $caption
+ * @author Jens Tkotz
+ */
+function generateCaption($captionType = 1, $originalFilename, $filename) {
+	global $gallery;
+
+	if (isset($gallery->app->dateTimeString)) {
+		$dateTimeFormat = $gallery->app->dateTimeString;
+	}
+	else {
+		$dateTimeFormat = "%D %T";
+	}
+
+	switch ($captionType) {
+		case 0:
+			$caption		= '';
+			$captionTypeString	= 'no caption';
+			break;
+
+		case 1:
+		default:
+			/* Use filename */
+			$caption		= strtr($originalFilename, '_', ' ');
+			$captionTypeString	= 'filename';
+			break;
+
+		case 2:
+			/* Use file creation date */
+			$caption		= strftime($dateTimeFormat, filectime($filename));
+			$captionTypeString	= 'file creation date';
+			break;
+
+		case 3:
+			/* Use capture date */
+			$caption		= strftime($dateTimeFormat, getItemCaptureDate($filename));
+			$captionTypeString	= 'file capture date';
+			break;
+	}
+
+	echo debugMessage(sprintf(gTranslate('core', "Generated caption. Type: %s"), $captionTypeString), __FILE__, __LINE__, 1);
+
+	return $caption;
+}
+
+/**
+ * Processes an image and adds it to $gallery->album
+ *
+ * @param string    $file
+ * @param string    $ext
+ * @param string    $name
+ * @param string    $caption
+ * @param integer   $setCaption
+ * @param array     $extra_fields
+ * @param string    $wmName
+ * @param integer   $wmAlign
+ * @param integer   $wmAlignX
+ * @param integer   $wmAlignY
+ * @param integer   $wmSelect
+ * @return string                       Empty on success, otherwise an errormessage.
+ */
+function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields = array(), $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0) {
+	global $gallery;
+	global $temp_files;
+
+	$error = '';
+
+	echo debugMessage(sprintf(gTranslate('core', "Entering function: '%s'"), __FUNCTION__), __FILE__, __LINE__, 3);
+
+	echo debugMessage(sprintf(gTranslate('core', "Processing file: %s"), $file), __FILE__, __LINE__,3);
+
+	/* Begin of code for the case the uploaded file is an archive */
+	if (isAcceptableArchive($ext)) {
+		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
+		$tool = canDecompressArchive($ext);
+		if (!$tool) {
+			$error = sprintf(gTranslate('core', "Skipping '%s' (%s support not enabled)"), $name, $ext);
+			return $error;
+		}
+
+		$temp_filename	= tempnam($gallery->app->tmpDir, 'g1_tmp_');
+		$temp_dirname	= $temp_filename . '.dir';
+
+		if (fs_is_dir($temp_dirname)) {
+			$error = gTranslate('core', "Error occurred before extracting the archive. Temporary destination exists.");
+			return $error;
+		}
+
+		if (! fs_mkdir($temp_dirname)) {
+			$error = gTranslate('core', "Error occurred before extracting the archive. Temporary destination could not be created.");
+			return $error;
+		}
+
+		processingMsg(gTranslate('core', "Extracting archive"));
+		if(! extractArchive($file, $ext, $temp_dirname)) {
+			$error = gTranslate('core', "Extracting archive failed.");
+			return $error;
+		}
+
+		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+		$files_to_process	= array();
+		$dir_handle		= fs_opendir($temp_dirname);
+		while (false !== ($content_filename = readdir($dir_handle))) {
+			if(! isXSSclean($content_filename) ||
+			   $content_filename == "." || $content_filename == '..')
+			{
+				continue;
+			}
+
+			$content_file_ext	= getExtension($content_filename);
+			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
+
+			if ($content_file_ext == 'csv') {
+				$image_info = array_merge($image_info, parse_csv($fullpath_content_file, ';'));
+			}
+			elseif (isAcceptableFormat($content_file_ext) ||
+					isAcceptableArchive($content_file_ext))
+			{
+				$files_to_process[] = array(
+					'filename'	=> $fullpath_content_file,
+					'ext'		=> $content_file_ext
+				);
+			}
+		}
+
+		closedir($dir_handle);
+
+		if(!empty($image_info)) {
+			debugMessage(printMetaData($image_info), __FILE__, __LINE__);
+		}
+		else {
+			echo debugMessage(gTranslate('core', "No Metadata"), __FILE__, __LINE__);
+		}
+
+		/* Now process all valid files we found */
+		echo debugMessage(gTranslate('core', "Processing valid files from archive"), __FILE__, __LINE__);
+		$loop = 0;
+		foreach ($files_to_process as $current_file) {
+			$current_file_name = basename($current_file['filename']);
+			$current_file_ext  = basename($current_file['ext']);
+
+			/* Now process the metadata. */
+			$extra_fields = array();
+			if(! empty($image_info)) {
+				/* Find in meta data array */
+				$firstRow	= 1;
+				$fileNameKey	= 'File Name';
+
+				/* $captionMetaFields will store the names (in order of priority to set caption to) */
+				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
+				foreach ($image_info as $info ) {
+					if ($firstRow) {
+						/* Find the name of the file name field */
+						foreach (array_keys($info) as $currKey) {
+							if (eregi("^\"?file\ ?name\"?$", $currKey)) {
+								$fileNameKey = $currKey;
+							}
+						}
+						$firstRow = 0;
+					}
+
+					if ($info[$fileNameKey] == $current_file_name) {
+						/* Loop through fields */
+						foreach ($captionMetaFields as $field) {
+							/* If caption isn't populated and current field is */
+							if (!strlen($caption) && strlen($info[$field])) {
+								$caption = $info[$field];
+							}
+						}
+
+						$extra_fields = $info;
+					}
+				}
+			}
+
+			processNewImage($current_file['filename'],
+							$current_file_ext,
+							$current_file_name,
+							$caption,
+							$setCaption,
+							$extra_fields,
+							$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+			);
+		}
+		/* End of archive processing */
+		rmdirRecursive($temp_dirname);
+		fs_unlink($temp_filename);
+	}
+	else {
+		echo debugMessage(gTranslate('core', "Start processing single file (image/movie not archive)."), __FILE__, __LINE__);
+
+		if (isAcceptableFormat($ext)) {
+			echo debugMessage(gTranslate('core', "Extension is accepted."), __FILE__, __LINE__, 3);
+
+			echo debugMessage(gTranslate('core', "Filename processing."), __FILE__, __LINE__,3);
+
+			/* Remove %20 and the like from name */
+			$name = urldecode($name);
+
+			/* parse out original filename without extension */
+			$originalFilename = eregi_replace(".$ext$", "", $name);
+
+			/* replace multiple non-word characters with a single "_" */
+			$mangledFilename = ereg_replace("[^[:alnum:]]", "_", $originalFilename);
+
+			/* Get rid of extra underscores */
+			$mangledFilename = ereg_replace("_+", "_", $mangledFilename);
+			$mangledFilename = ereg_replace("(^_|_$)", "", $mangledFilename);
+
+			if (empty($mangledFilename)) {
+				$mangledFilename = $gallery->album->newPhotoName();
+			}
+
+			/*
+			* need to prevent users from using original filenames that are purely numeric.
+			* Purely numeric filenames mess up the rewriterules that we use for mod_rewrite
+			* specifically:
+			* RewriteRule ^([^\.\?/]+)/([0-9]+)$	/~jpk/gallery/view_photo.php?set_albumName=$1&index=$2	[QSA]
+			*/
+
+			if (ereg("^([0-9]+)$", $mangledFilename)) {
+				$mangledFilename .= "_G";
+			}
+
+			/*
+			 * Move the uploaded image to our temporary directory
+			 * using move_uploaded_file so that we work around
+			 * issues with the open_basedir restriction.
+			 */
+			if (function_exists('move_uploaded_file')) {
+				$newFile = tempnam($gallery->app->tmpDir, "gallery");
+				if (move_uploaded_file($file, $newFile)) {
+					$file = $newFile;
+				}
+
+				/* Make sure we remove this file when we're done */
+				$temp_files[$newFile] = 1;
+			}
+
+			/* What should the caption be, if no caption was given by user ?
+			 * See captionOptions.inc.php for options
+			 */
+			if (empty($caption)) {
+				echo debugMessage(gTranslate('core', "No caption given, generating it."), __FILE__, __LINE__, 1);
+				$caption = generateCaption($setCaption, $originalFilename, $file);
+			}
+
+			echo infobox(array(array(
+				'type' => 'information',
+				'text' => '<b>'. sprintf(gTranslate('core', "Adding %s"), $name) .'</b>'
+			)));
+
+			/* After all the preprocessing, NOW ADD THE element */
+			set_time_limit($gallery->app->timeLimit);
+
+			/*
+			 * function addPhoto($file, $tag, $originalFilename, $caption, $pathToThumb="", $extraFields=array(), $owner="", $votes=NULL,
+			 *				     $wmName="", $wmAlign=0, $wmAlignX=0, $wmAlignY=0, $wmSelect=0)
+		 	*/
+			list($status, $statusMsg) = $gallery->album->addPhoto(
+									$file,
+									$ext,
+									$mangledFilename,
+									$caption,
+									'',
+									$extra_fields,
+									$gallery->user->uid,
+									NULL,
+									$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+			);
+
+			echo $statusMsg;
+
+			if (! $status) {
+				$error = gTranslate('core',"Adding item failed. Please enable debug mode and redo the procedure to get more information.");
+				echo gallery_error($error);
+				processingMsg('<b>' .
+					sprintf(gTranslate('core', "Need more help?  Look in the  %s%s FAQ%s."),
+					'<a href="http://gallery.sourceforge.net/faq.php" target=_new>',
+					Gallery(),
+					'</a>') .
+					'</b>'
+				);
+			}
+		}
+		else {
+			$error = sprintf(gTranslate('core', "Skipping '%s' (can't handle '%s' format)"), $name, $ext);
+			echo gallery_error($error);
+		}
+	}
+
+	return $error;
+}
+
 ?>
