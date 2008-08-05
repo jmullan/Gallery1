@@ -192,6 +192,24 @@ function isValidText($text, $level = 0) {
 }
 
 /**
+ * Checks whether an URL seems valid
+ *
+ * @param string 	$url	An URL.
+ * @return boolean		True in case its a valid Url, otherwise false.
+ * @author Jens Tkotz
+ */
+function isValidUrl($url) {
+	if (!empty($url)) {
+		//Detect header injection attempts, or XSS exposure.
+		if (!isSafeHttpHeader($url) || ! isXSSclean($url, 0)) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
  * Checks whether an URL is a Gallery URL
  *
  * @param string 	$url	Full URL to a Gallery file.
@@ -224,6 +242,32 @@ function isValidGalleryUrl($url) {
 
 	return true;
 }
+
+/**
+ * Checks whether a header contains malicious characters.
+ *
+ * @param string	$header
+ * @return boolean			True in case its a safe header, otherwise false.
+ * @author Jens Tkotz
+ */
+function isSafeHttpHeader($header) {
+	if (!is_string($header)) {
+		return false;
+	}
+
+	/* Don't allow plain occurrences of CR or LF */
+	if (strpos($header, chr(13)) !== false || strpos($header, chr(10)) !== false) {
+		return false;
+	}
+
+	/* Don't allow (x times) url encoded versions of CR or LF */
+	if (preg_match('/%(25)*(0a|0d)/i', $header)) {
+		return false;
+	}
+
+	return true;
+}
+
 /**
  * Returns a set of malicious chars
  * Level 0: Only chars that i (the author) think are evil anytime are considered.

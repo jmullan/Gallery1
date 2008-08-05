@@ -1,3 +1,25 @@
+2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b31
+
+ * Fix: Make logout work on Gallery, Album and Photoview.
+
+ * Fix: Adjust addbrackets param to change link functions.
+
+ * New methods:
+   - albumDB->isInitialized()
+
+ * New functions:
+   - checkRequirements()
+   - getAlbumCommands($album, $caption = false, $mainpage = true)
+   - jsHTML($path)
+   - isValidUrl($url)
+   - isSafeHttpHeader($header)
+   - gInput(...) !!
+   - gReset(..)
+
+ * Change: Some icon changes.
+
+ * Update: All of the great Walter Zorn Js. They have now their own dir.
+
 2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b30
 
  *
@@ -19,7 +41,6 @@
 
  * New functions:
    - configError()
-
 
  * New methods:
    - userDB->isInitialized()

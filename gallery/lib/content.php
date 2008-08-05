@@ -1412,6 +1412,21 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 }
 
 /**
+ * Returns the HTML code to a js file inside the Galley js folder.
+ *
+ * @param  string	$path	e.g. /js/yui/autocomplete-min.js
+ * @return string	The HTML code
+ * @author Jens Tkotz
+ */
+function jsHTML($path) {
+	$baseUrl = getGalleryBaseUrl();
+
+	if(isXSSclean($path, 0)) {
+		return "<script type=\"text/javascript\" src=\"$baseUrl/js/$path\"></script>\n";
+	}
+}
+
+/**
  * Creates a toggle Button. Button calls Javascript function gallery_toggle()
  * This needs to be loaded separately.
  *
@@ -1421,7 +1436,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
  */
 function toggleButton($id) {
 	$html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
-			gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toggleBut_$id")) .
+			gImage('expand.gif', gTranslate('config', "Show/Hide more information"), array('id' => "toggleBut_$id")) .
 			'</a> ';
 
 	return $html;
@@ -1429,6 +1444,7 @@ function toggleButton($id) {
 
 /**
  * Creates a toggle Box. Optionally a toggle Button is added before, or after.
+ * Note: Needs toggle.js.php to be loaded before!
  *
  * @param string  $id
  * @param string  $text
@@ -1450,7 +1466,6 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 	$html = '<br>' . $html;
 
 	return $html;
-
 }
 
 function gHtmlSafe($string) {

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,6 +54,10 @@ $gallery->session->offlineAlbums["albums.php"] = true;
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
+if(! $albumDB->isInitialized()) {
+	exit;
+}
+
 $gallery->session->albumName = '';
 $page = 1;
 
@@ -83,6 +87,8 @@ $navigator["fullWidth"] = 100;
 $navigator["widthUnits"] = "%";
 $navigator["bordercolor"] = $borderColor;
 $displayCommentLegend = 0;  // this determines if we display "* Item contains a comment" at end of page
+
+$currentUrl = makeGalleryUrl("albums.php", array("page" => $gallery->session->albumListPage));
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
     $title = htmlspecialchars($gallery->app->galleryTitle);
@@ -153,9 +159,21 @@ if (!$gallery->session->offline &&
 /* Admin Text (left side) */
 $adminText = '';
 if ($numAccess == $numAlbums) {
-	$toplevel_str = gTranslate('core', "1 album","%d albums", $numAlbums, gTranslate('core', "No albums"));
-} else {
-	$toplevel_str = gTranslate('core', "1 top-level album","%d top-level albums", $numAlbums, gTranslate('core', "No top-level albums"));
+	$toplevel_str = gTranslate(
+		'core',
+		"1 album","%d albums",
+		$numAlbums,
+		gTranslate('core', "No albums"), true
+	);
+}
+else {
+	$toplevel_str = gTranslate(
+		'core',
+		"1 top-level album",
+		"%d top-level albums",
+		$numAlbums,
+		gTranslate('core', "No top-level albums"), true
+	);
 }
 
 $total_str	= sprintf(gTranslate('core', "%d total"), $numAccess);
@@ -194,54 +212,54 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
-    $iconText = getIconText('display.gif', gTranslate('core', "Slideshow"));
-    $iconElements[] = '<a href="'. makeGalleryUrl("slideshow.php",array("set_albumName" => null)) .'">'. $iconText .'</a>';
+	$iconElements[] = galleryLink(
+		makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
+		gTranslate('core', "Slideshow"), array(), 'presentation.gif'
+	);
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
-    $iconText = getIconText('folder_new.gif', gTranslate('core', "New album"));
-    $iconElements[] = '<a href="' . doCommand("new-album", array(), "view_album.php") .'">'. $iconText .'</a>';
+	$iconElements[] = galleryLink(
+		doCommand("new-album", array(), "view_album.php"),
+		gTranslate('core', "New album"), array(), 'new_album.gif', true
+	);
 }
 
-if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
-    if ($gallery->user->isAdmin()) {
+$loggedIn = ($gallery->user->isLoggedIn() && !$gallery->session->offline);
 
-        $iconText = getIconText('unsortedList.gif', gTranslate('core', "Administer startpage"));
-        $linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
-        $iconElements[] = popup_link($iconText, $linkurl, true);
+if ($loggedIn) {
+	if ($gallery->user->isAdmin()) {
+		$linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
+		$iconElements[] = popup_link(
+			gTranslate('core', "Administer frontpage"),
+			$linkurl, true, true, 500, 500, '', '', 'unsortedList.gif'
+		);
 
-        $iconText = getIconText('kdf.gif', gTranslate('core', "Admin page"));
-        $iconElements[] = '<a href="'. makeGalleryUrl('admin-page.php') .'">'. $iconText .'</a> ';
+		$iconElements[] = galleryLink(
+			makeGalleryUrl('admin-page.php'),
+			gTranslate('core', "Admin page"), array(), 'admin.gif', true
+		);
 
-        $docsUrl = galleryDocs('admin');
-        if ($docsUrl) {
-            $iconText = getIconText('info.gif', gTranslate('core', "Documentation"));
-            $iconElements[] = "<a href=\"$docsUrl\">". $iconText .'</a>';
-        }
-    }
+	}
 
-    if ($gallery->userDB->canModifyUser()) {
-        $iconText = getIconText('yast_sysadmin.gif', gTranslate('core', "Preferences"));
-        $iconElements[] = popup_link($iconText, "user_preferences.php", false, true, 500, 500);
-    }
-
-    if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconText = getIconText('exit.gif', gTranslate('core', "Logout"));
-        $iconElements[] = '<a href="'. doCommand("logout", array(), "albums.php") .'">'. $iconText .'</a>';
-    }
-} else {
-    if (!$GALLERY_EMBEDDED_INSIDE) {
-        $iconText = getIconText('identity.gif', gTranslate('core', "Login"));
-        $iconElements[] = popup_link($iconText, "login.php", false, true, 500, 500);
-
-        if (!strcmp($gallery->app->selfReg, 'yes')) {
-            $iconText = getIconText('yast_sysadmin2.gif', gTranslate('core', "Register"));
-            $iconElements[] = popup_link($iconText, "register.php", false, true, 500, 500);
-        }
-    }
+	if ($gallery->userDB->canModifyUser()) {
+		$iconElements[] = popup_link(
+			gTranslate('core', "Preferences"),
+			'user_preferences.php', false, true, 500, 500, '','','preferences.gif'
+		);
+	}
 }
 
-$adminbox['text']			= $adminText;
+$iconElements[] = LoginLogoutButton($currentUrl, $numPhotos, $currentUrl);
+
+if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
+	$iconElements[] = popup_link(
+		gTranslate('core', "Register"),
+		'register.php', false, true, 500, 500, '','','register.gif'
+	);
+}
+
+$adminbox['text']		= $adminText;
 $adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor']	= $borderColor;
 
@@ -319,7 +337,7 @@ for ($i = $start; $i <= $end; $i++) {
   <td height="1"><?php echo $pixelImage ?></td>
   <td height="1"><?php echo $pixelImage ?></td>
 <?php
-  if (isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth >0) {
+  if (isset($gallery->app->albumTreeDepth) && $gallery->app->albumTreeDepth > 0) {
 ?>
   <td height="1"><?php echo $pixelImage ?></td>
 
@@ -341,11 +359,11 @@ for ($i = $start; $i <= $end; $i++) {
           $iWidth = $gallery->app->highlight_size;
           $iHeight = 100;
       }
-      $gallery->html_wrap['imageWidth'] = $iWidth;
-      $gallery->html_wrap['imageHeight'] = $iHeight;
-      $gallery->html_wrap['imageTag'] = $gallery->album->getHighlightTag($scaleTo,'', gTranslate('core', "Highlight for album:") ." ". $gallery->album->fields["title"]);
-      $gallery->html_wrap['imageHref'] = $albumURL;
-      $gallery->html_wrap['frame'] = $gallery->app->gallery_thumb_frame_style;
+      $gallery->html_wrap['imageWidth']		= $iWidth;
+      $gallery->html_wrap['imageHeight']	= $iHeight;
+      $gallery->html_wrap['imageTag']		= $gallery->album->getHighlightTag($scaleTo, array('alt' => gTranslate('core', "Highlight for album:") ." ". $gallery->album->fields["title"]));
+      $gallery->html_wrap['imageHref']		= $albumURL;
+      $gallery->html_wrap['frame']		= $gallery->app->gallery_thumb_frame_style;
       includeHtmlWrap('inline_gallerythumb.frame');
 ?>
   </td>
@@ -363,8 +381,12 @@ for ($i = $start; $i <= $end; $i++) {
                 <?php
 			echo editField($gallery->album, "title", $albumURL);
 			if ($gallery->user->canDownloadAlbum($gallery->album) && $gallery->album->numPhotos(1)) {
-			    $iconText = getIconText('compressed.png', gTranslate('core', "Download entire album as archive"), 'yes');
-			    echo popup_link($iconText, "download.php?set_albumName=$tmpAlbumName",false,false,500,500);
+				echo popup_link(
+					gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive")),
+					"download.php?set_albumName=$tmpAlbumName",
+					false, false, 550, 600, 'g-small', '', '',
+					false, false
+				);
 			}
 		?>
               </td>
@@ -446,23 +468,36 @@ for ($i = $start; $i <= $end; $i++) {
 	echo ' '; // Need a space between these two text blocks
 	list($visibleItems) = $gallery->album->numItems($gallery->user, true);
 
-	echo gTranslate('core', "This album contains 1 item.", "This album contains %d items.", $visibleItems);
+	echo gTranslate('core',
+				"This album contains 1 item.",
+				"This album contains %d items.",
+				$visibleItems,
+				gTranslate('core', "This album is empty."),
+				true
+			);
 
 	/*
 	* Click counter + reset for it
 	*/
 	if (!($gallery->album->fields["display_clicks"] == "no") && !$gallery->session->offline) {
 		$clickCount = $gallery->album->getClicks();
+		$resetDate = $gallery->album->getClicksDate();
+
 
 		echo "\n<br>";
-		printf(gTranslate('core', "This album has been viewed %s since %s."),
-		  gTranslate('core', "1 time", "%d times", $clickCount, gTranslate('core', "0 times")),
-		  $gallery->album->getClicksDate());
+		printf(gTranslate('core',
+					"This album has been viewed %d time since %s.",
+					"This album has been viewed %d times since %s.",
+					$clickCount,
+					sprintf(gTranslate('core', "This album has never been viewed since %s."), $resetDate)
+					),
+					$clickCount, $resetDate
+				);
 	}
 	$albumName = $gallery->album->fields["name"];
 	if ($gallery->user->canWriteToAlbum($gallery->album) &&
 	(!($gallery->album->fields["display_clicks"] == "no"))) {
-		echo " ".popup_link("[" . gTranslate('core', "reset counter") ."]", doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
+		echo " ".popup_link(gTranslate('core', "reset counter"), doCommand("reset-album-clicks", array("set_albumName" => $albumName), "albums.php"), 1);
 	}
 
 	/*

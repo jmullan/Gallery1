@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,13 @@
 class AlbumDB {
 	var $albumList;
 	var $albumOrder;
+	var $initialized;
 
 	function AlbumDB($loadphotos = true) {
 		global $gallery;
 
 		$changed = 0;
+		$this->initialized = false;
 
 		$dir = $gallery->app->albumDir;
 
@@ -43,7 +45,7 @@ class AlbumDB {
 			return false;
 		}
 
-		$tmp = getFile("$dir/albumdb.dat");
+		$tmp = fs_file_get_contents("$dir/albumdb.dat");
 		if (strcmp($tmp, '')) {
 			$this->albumOrder = unserialize($tmp);
 
@@ -107,6 +109,18 @@ class AlbumDB {
 		if ($changed) {
 			$this->save();
 		}
+
+		$this->initialized = true;
+	}
+
+	/**
+	 * Returns whether the AlbumDB was succesfully initialized or not
+	 *
+	 * @return boolean	 true if succesfully initialized.
+	 * @author Jens Tkotz
+	 */
+	function isInitialized() {
+		return $this->initialized === true;
 	}
 
 	function sortByField($fieldname = '', $order = 'desc') {
@@ -270,7 +284,7 @@ class AlbumDB {
 			}
 		}
 
-		return 0;
+		return false;
 	}
 
 	function moveAlbum($user, $index, $newIndex) {

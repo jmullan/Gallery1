@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -361,25 +361,191 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
 	$attrList = array_merge($attrList, $additionalAttrs);
 	$attrs = generateAttrs($attrList);
 
-	$html = "<input$attrs>\n";
+	$html = "  <input$attrs>\n";
+
+	return $html;
+}
+
+/**
+ * Returns the HTML Code for an input element
+ *
+ * @param string $type				E.g. 'text', 'textarea', 'checkbox' et.c
+ * @param string $name
+ * @param string $label
+ * @param boolean $tableElement		Wether the form field should be a table line
+ * @param mixed $value
+ * @param array $attrList			List of attributes for the form field
+ * @param boolean $multiInput		If true, then multiple fields are dynamically added/removed
+ * @return string $html
+ * @author Jens Tkotz
+ */
+function gInput($type, $name, $label = null, $tableElement = false, $value = null, $attrList = array(), $multiInput = false) {
+	global $browser;
+	static $pwCheckAdded	= false;
+	static $idcnt		= 0;
+
+	$attrList['name']	= $name;
+
+	$idcnt++;
+	if(!isset($attrList['id'])) {
+		if ($type != 'radio') {
+			$attrList['id'] = $attrList['name'];
+		}
+		else {
+			$attrList['id'] = $attrList['name'] . '_' . $idcnt;
+		}
+	}
+
+	$id = $attrList['id'];
+
+	if ($value !== null && $type != 'textarea') {
+		$attrList['value'] = $value;
+	}
+
+	// pre-processing
+	switch($type) {
+		case 'fixedhidden':
+			$attrList['type'] = 'hidden';
+		break;
+
+		case 'textarea':
+		break;
+
+		case 'password':
+			$attrList['type'] = $type;
+			if(isset($attrList['addCheck'])) {
+				$attrList['onkeyup'] = "checkPw('{$attrList['id']}')";
+				$addCheck = true;
+				unset($attrList['addCheck']);
+			}
+		break;
+
+		default:
+			$attrList['type'] = $type;
+		break;
+	}
+
+	if(!isset($attrList['class'])) {
+		switch ($type) {
+			case 'text':
+			case 'password':
+				$attrList['class'] = 'g-form-text';
+			break;
+		}
+	}
+
+	$attrs = generateAttrs($attrList);
+
+	if ($type == 'textarea') {
+		$input = "<textarea$attrs>$value</textarea>";
+	}
+	else {
+		$input = "<input$attrs>";
+	}
+
+	// post-processing
+	switch ($type) {
+		case 'fixedhidden':
+			$input .= $value;
+		break;
+	}
+
+	if ($type == 'password' && isset($addCheck)) {
+		$input .= "\n" .
+			gInput(
+				'text',
+				"result_{$attrList['id']}", null, false, '',
+				array('size' => 13, 'class' => 'g-pwcheck', 'disabled' => null));
+
+		if(!$pwCheckAdded) {
+			$input .= jsHTML('number_conversions.js');
+			$input .= jsHTML('passwordStrengthMeter.js');
+			$pwCheckAdded = true;
+		}
+	}
+
+	// End post-processing
+	if($tableElement){
+		$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
+		if($label) {
+			if($type == 'checkbox' || $type == 'radio') {
+				$html .= "\t<td width=\"10\">$input</td>\n";
+				$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
+			}
+			else {
+				$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
+				$html .= "\t<td>$input</td>\n";
+			}
+		}
+		else {
+			$html .= "\t<td>$input</td>\n";
+		}
+		$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
+	}
+	else {
+		if($label) {
+			if($type == 'checkbox' || $type == 'radio') {
+				$html = "  $input<label for=\"$id\">$label</label>\n";
+			}
+			else {
+				$html = "  <label for=\"$id\">$label</label> $input\n";
+			}
+		}
+		else {
+			$html = "  $input\n";
+		}
+	}
+
+	if($multiInput) {
+		$html .= gButton('addField', gTranslate('common', "Add field"), "${id}obj.newField()");
+		$html .= "\n<div id=\"${id}_multiInputContainer\"></div>\n\n";
+
+		$html .= '<script language="JavaScript" type="text/javascript">';
+		$html .= "\n\tvar ${id}obj = new MultiInput('$id', '${id}_multiInputContainer')";
+		$html .= "\n</script>\n";
+	}
 
 	return $html;
 }
 
 function gButton($name, $value, $onClick, $additionalAttrs = array()) {
-	$attrList['name'] = $attrList['id'] = $name;
-	$attrList['type'] = 'button';
-	$attrList['value'] = $value;
-	$attrList['class'] = 'g-button';
-	$attrList['onClick'] = $onClick;
-	$attrList['title'] = isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+	static $ids = array();
+
+	$attrList['type']	= 'button';
+	$attrList['value']	= $value;
+	$attrList['class']	= 'g-button';
+	$attrList['onClick']	= $onClick;
+	$attrList['title']	= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	if(!in_array($name, $ids)) {
+		$attrList['name'] = $attrList['id'] = $name;
+		$ids[] = $name;
+	}
+	else {
+		$attrList['name'] = $name;
+	}
 
 	$attrList = array_merge($attrList, $additionalAttrs);
 
 	$attrs = generateAttrs($attrList);
 
-	$html = "<input$attrs>\n";
+	$html = "  <input$attrs>\n";
 
 	return $html;
 }
+
+function gReset($name, $value, $additionalAttrs = array()) {
+	$attrList['name']	= $name;
+	$attrList['type']	= 'reset';
+	$attrList['value']	= $value;
+	$attrList['class']	= 'g-button';
+	$attrList['title']	= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+
+	$attrs = generateAttrs($attrList);
+
+	$html = "  <input$attrs>\n";
+
+	return $html;
+}
+
 ?>

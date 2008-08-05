@@ -238,4 +238,263 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
 	return $pathArray;
 }
 
+/**
+ * Checks whether a requirement is set.
+ *
+ * @return unknown
+ */
+function checkRequirements() {
+	$requirementList = func_get_args();
+
+	$enabled = true;
+
+	while ($enabled && $test = array_shift($requirementList)) {
+		$success = testRequirement($test);
+		$enabled = ($success) ? true : false;
+	}
+
+	return $enabled;
+}
+
+/**
+ * Returns an array with all album options for an user
+ *
+ * @param object $album
+ * @param boolean $caption
+ * @param boolean $mainpage
+ * @return array $albumCommands
+ */
+function getAlbumCommands($album, $caption = false, $mainpage = true) {
+	global $i;
+	global $page, $perPage;
+
+	$id = $album->fields['name'];
+	$albumCommands = array();
+
+/*
+	global $gallery;
+	if (!$gallery->session->offline) {
+		return $albumCommands;
+	}
+*/
+
+	$albumName = $album->fields["name"];
+
+	/* Commands shown for all albums */
+	if(checkRequirements('canAddToAlbum')) {
+		$albumCommands[] = array(
+			'text'	=> gTranslate('common', "Add photos"),
+			'html'	=> popup_link(gTranslate('common', "Add photos"),
+						"add_photos_frame.php?set_albumName=$albumName"),
+			'value'	=> build_popup_url("add_photos_frame.php?set_albumName=$albumName")
+		);
+	}
+
+	if (checkRequirements('canCreateSubAlbum')) {
+		$albumCommands[] = array(
+			'class'	=> 'url',
+			'text'	=> gTranslate('common', "New nested album"),
+			'html'	=> galleryLink(
+						doCommand('new-album',
+							array('parentName' => $albumName),
+							'view_album.php'),
+						gTranslate('common', "New nested album"),
+						array(), '', true),
+			'value'	=> doCommand('new-album',
+						array('parentName' => $albumName),
+						'view_album.php')
+		);
+	}
+
+	/* User ist allowed to change album captions */
+	/* Should this be into the above group ? */
+	if (checkRequirements('canChangeText')) {
+		$albumCommands[] = array(
+			'class'	=> 'url',
+			'text'	=> gTranslate('common',"Edit captions"),
+			'html'	=> galleryLink(
+					makeGalleryUrl(
+						'captionator.php',
+						array(
+							'set_albumName'=> $albumName,
+							'page' => $page,
+							'perPage' => $perPage)),
+						gTranslate('common',"Edit captions"),
+						array(),'', true),
+			'value'	=> makeGalleryUrl("captionator.php", array("set_albumName" => $albumName))
+		);
+	}
+
+
+	/* User is Admin or Owner */
+	if (checkRequirements('isAdminOrAlbumOwner')) {
+		$albumCommands[] = array(
+			'text'	=> gTranslate('common', "Change foldername"),
+			'html'	=> popup_link(gTranslate('common',"Change foldername"),
+						"rename_album.php?set_albumName={$albumName}&useLoad=true"),
+			'value'	=> build_popup_url("rename_album.php?set_albumName={$albumName}&useLoad=true")
+		);
+
+		/* User is allowed to change album permissions */
+		$albumCommands[] = array(
+			'text'	=> gTranslate('common',"Permissions"),
+			'html'	=> popup_link(gTranslate('common',"Permissions"),
+						"album_permissions.php?set_albumName={$albumName}",
+						0, true,
+						550, 700),
+			'value' => build_popup_url("album_permissions.php?set_albumName=$albumName")
+		);
+
+		/* And to change album properties */
+		$albumCommands[] = array(
+			'text'	=> gTranslate('common',"Properties"),
+			'html'	=> popup_link(gTranslate('common',"Properties"),
+						"edit_appearance.php?set_albumName={$albumName}",
+						0, true,
+						550, 600),
+			'value'	=> build_popup_url("edit_appearance.php?set_albumName=$albumName")
+		);
+
+
+		/* Watermarking support is enabled and user is allowed to watermark images/albums */
+		if (checkRequirements('photosExist','watermarkingEnabled')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common',"Watermark&nbsp;album"),
+				'html'	=> popup_link(gTranslate('common',"Watermark&nbsp;album"),
+							"watermark_album.php?set_albumName=$albumName"),
+				'value'	=> build_popup_url("watermark_album.php?set_albumName=$albumName")
+			);
+		}
+	}
+
+
+	/* Options only shown for root albums */
+	if (checkRequirements('albumIsRoot')) {
+		/* User is allowed to delete the album */
+		if (checkRequirements('canDeleteAlbum')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common',"Delete album"),
+				'html'	=> popup_link(gTranslate('common',"Delete album"),
+							"delete_album.php?set_albumName=$albumName"),
+				'value'	=> build_popup_url("delete_album.php?set_albumName=$albumName")
+			);
+		}
+	}
+	/* Options that are only shown for subalbums */
+	else {
+		/* User is allowed to delete the subalbum */
+		if (checkRequirements('canDeleteAlbum')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common',"Delete this (sub)album"),
+				'html'	=> popup_link2(
+							gTranslate('common', "Delete this (sub)album"),
+							makeGalleryUrl('delete_item.php',
+								array(
+									'set_albumName'	=> $album->fields['parentAlbumName'],
+									'index' => $i,
+									'id' => $id,
+									'gallery_popup' => true)),
+							array('accesskey' => true)),
+				'value'	=> build_popup_url(makeGalleryUrl('delete_item.php',
+								array(
+									'set_albumName' => $album->fields['parentAlbumName'],
+									'index' => $i,
+									'id' => $id,
+									'gallery_popup' => true)),
+								true)
+			);
+		}
+	}
+
+
+	/* Options shown only in thumbsview */
+	if(!$mainpage) {
+		if (checkRequirements('canWriteToAlbum', 'photosExist')) {
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Sort items"),
+				'html'	=> popup_link(gTranslate('common',"Sort items"),
+								 "sort_album.php?set_albumName=$albumName"),
+				'value'	=> build_popup_url("sort_album.php?set_albumName=$albumName")
+			);
+
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Resize all"),
+				'html'	=> popup_link(gTranslate('common',"Resize all"),
+						      "resize_photo.php?set_albumName={$albumName}&index=0"),
+				'value'	=> build_popup_url("resize_photo.php?set_albumName={$albumName}&index=0")
+			);
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Rebuild thumbs"),
+				'html'	=> popup_link(gTranslate('common',"Rebuild thumbs"),
+						      "rebuild_thumbs.php?set_albumName={$albumName}"),
+				'value'	=> build_popup_url("rebuild_thumbs.php?set_albumName={$albumName}")
+			);
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Rearrange items"),
+				'html'	=> popup_link(gTranslate('common',"Rearrange items"),
+						      "rearrange.php?set_albumName={$albumName}"),
+				'value'	=> build_popup_url("rearrange.php?set_albumName={$albumName}")
+			);
+
+			if(checkRequirements('exif')) {
+				$albumCommands[] = array(
+					'text'	=> gTranslate('common', "Rebuild capture dates"),
+					'html'	=> popup_link(gTranslate('common',"Rebuild capture dates"),
+							      "rebuild_capture_dates.php?set_albumName={$albumName}"),
+					'value'	=> build_popup_url("rebuild_capture_dates.php?set_albumName={$albumName}")
+				);
+
+			}
+		}
+
+		if(checkRequirements('isAdminOrAlbumOwner', 'votingOn')) {
+			$albumCommands[] = array(
+				'class'	=> 'url',
+				'text'	=> gTranslate('common', "Poll results"),
+				'html'	=> galleryLink(makeGalleryUrl(
+							'poll_results.php',
+							array('set_albumName' => $albumName),
+							gTranslate('common',"Poll results"),
+							array(),'', true)),
+				'value' => makeGalleryUrl('poll_results.php', array('set_albumName' => $albumName))
+			);
+
+			$albumCommands[] = array(
+				'text'	=> gTranslate('common', "Poll reset"),
+				'html'	=> popup_link(gTranslate('common',"Poll reset"),
+						      "reset_votes.php?set_albumName={$albumName}"),
+				'value'	=> build_popup_url("reset_votes.php?set_albumName={$albumName}")
+			);
+		}
+	}
+	/* Options shown only on the mainpage */
+	else {
+		/* User is allowed to view ALL comments */
+		if (checkRequirements('isAdminOrAlbumOwner', 'allowComments', 'comments_enabled', 'hasComments')) {
+			$albumCommands[] = array(
+				'class'	=> 'url',
+				'text'	=> gTranslate('common',"View&nbsp;comments"),
+				'html'	=> galleryLink(
+							makeGalleryUrl("view_comments.php", array('set_albumName' => $albumName)),
+							gTranslate('common',"View&nbsp;comments"),
+							array(),'', true),
+				'value'	=> makeGalleryUrl("view_comments.php", array("set_albumName" => $albumName))
+			);
+		}
+	}
+
+	array_sort_by_fields($albumCommands, 'text');
+
+	if(!empty($albumCommands) && $caption) {
+		array_unshift($albumCommands, array(
+			'text'		=> gTranslate('common',"&lt;&lt; Album actions &gt;&gt;"),
+			'selected'	=> true
+		));
+	}
+
+	return $albumCommands;
+}
 ?>
