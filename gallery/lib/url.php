@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,9 @@ function setGalleryPaths() {
 function getGalleryBaseUrl() {
 	global $gallery;
 
-	if (isset($gallery->app) && isset($gallery->app->photoAlbumURL)) {
+	if (isset($gallery->app) &&
+		isset($gallery->app->photoAlbumURL))
+	{
 		$base = $gallery->app->photoAlbumURL;
 	}
 	elseif(where_i_am() == 'config') {
@@ -115,7 +117,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 
 	$url = '';
 	$prefix = '';
-	$isSetupUrl = (stristr($target,"setup")) ? true : false;
+	$isSetupUrl = (stristr($target, 'setup')) ? true : false;
 
 	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
@@ -334,12 +336,12 @@ function getImagePath($name, $skinname = '') {
 	}
 
 	/* We cant use makeGalleryUrl() here, as Gallery could be embedded. */
-	$base			= getGalleryBaseUrl();
+	$base		= getGalleryBaseUrl();
 	$defaultname	= dirname(dirname(__FILE__)) . "/images/$name";
-	$fullname		= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
+	$fullname	= dirname(dirname(__FILE__)) . "/skins/$skinname/images/$name";
 
-	$defaultURL		= "$base/images/$name";
-	$fullURL		= "$base/skins/$skinname/images/$name";
+	$defaultURL	= "$base/images/$name";
+	$fullURL	= "$base/skins/$skinname/images/$name";
 
 	if (fs_file_exists($fullname) && !broken_link($fullname)) {
 		$retUrl = $fullURL;
@@ -377,11 +379,11 @@ function getAbsoluteImagePath($name, $skinname = '') {
 		$retPath = $defaultPath;
 	}
 
-    return $retPath;
+	return $retPath;
 }
 
 /**
- * Checkes whether an URL is relative or not
+ * Checks whether an URL is relative or not
  * @param	string	$url
  * @return	boolean
  * @author	Jens Tkotz
