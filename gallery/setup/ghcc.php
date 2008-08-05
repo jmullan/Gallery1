@@ -1,28 +1,27 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file by Andrew Lindeman
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
  */
-?>
-<?php
+
 require(dirname(__FILE__) . "/init.php");
 require(GALLERY_SETUPDIR . "/functions.inc");
 configLogin(basename(__FILE__));
@@ -113,5 +112,5 @@ if ($fatals) {
 	print '<font color="#e0850f">Your PHP configuration flagged some warnings (Gallery may lose some functionality)</font>';
 } else {
 	print '<font color="#00aa00">Your PHP configuration check passed with flying colors!</font>';
-}	
+}
 ?>

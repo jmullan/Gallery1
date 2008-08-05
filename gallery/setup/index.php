@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,36 +45,13 @@ doctype();
 	<?php common_header(); ?>
 
 	<script language="JavaScript" type="text/javascript">
-        <!--
-
-	function localGetElementsByTagName(tagName) {
-		var eleArray;
-		if (window.opera) eleArray = document.body.getElementsByTagName(tagName);
-		else if (document.getElementsByTagName) eleArray = document.getElementsByTagName(tagName);
-		else if (document.all) eleArray = document.all.tags(tagName);
-		else if (document.layers) {
-			eleArray = new Array();
-			nnGetAllLayers(window, eleArray, 0);
-		}
-		return eleArray;
-	}
-
-	function nnGetAllLayers(parent, layerArray, nextIndex) {
-		var i, layer;
-		for (i = 0; i < parent.document.layers.length; i++) {
-			layer = parent.document.layers[i];
-			layerArray[nextIndex++] = layer;
-			if (layer.document.layers.length) nextIndex = nnGetAllLayers(layer, layerArray, nextIndex);
-		}
-		return nextIndex;
-	}
-
+	<!--
 	function enableButtons() {
-		var buttons = localGetElementsByTagName("input");
+		var buttons = document.getElementsByTagName('input');
 
 		var i = 0;
 		while (buttons[i]) {
-			if (buttons[i].type == "submit" || buttons[i].type == "button") {
+			if (buttons[i].type == 'submit' || buttons[i].type == 'button') {
 				buttons[i].disabled = false;
 			}
 			i++;
@@ -121,14 +98,18 @@ else {
 }
 
 /* Cache passwords in order to prevent them from being erased.
- * Otherwise, we'll lose the passwords if someone revisits Step 2
- * and forgets to re-enter them. */
-if (isset($gallery->session->configForm->editPassword) && (!empty($gallery->session->configForm->editPassword[0]) || !empty($gallery->session->configForm->editPassword[1]))) {
+* Otherwise, we'll lose the passwords if someone revisits Step 2
+* and forgets to re-enter them. */
+if (isset($gallery->session->configForm->editPassword) &&
+    (!empty($gallery->session->configForm->editPassword[0]) || !empty($gallery->session->configForm->editPassword[1])))
+{
 	$gallery->session->configForm->editPassword[2] = $gallery->session->configForm->editPassword[0];
 	$gallery->session->configForm->editPassword[3] = $gallery->session->configForm->editPassword[1];
 	$_REQUEST['editPassword'] = $gallery->session->configForm->editPassword;
 }
-if (isset($gallery->session->configForm->smtpPassword) && (!empty($gallery->session->configForm->smtpPassword[0]) || !empty($gallery->session->configForm->smtpPassword[1]))) {
+if (isset($gallery->session->configForm->smtpPassword) &&
+    (!empty($gallery->session->configForm->smtpPassword[0]) || !empty($gallery->session->configForm->smtpPassword[1])))
+{
 	$gallery->session->configForm->smtpPassword[2] = $gallery->session->configForm->smtpPassword[0];
 	$gallery->session->configForm->smtpPassword[3] = $gallery->session->configForm->smtpPassword[1];
 	$_REQUEST['smtpPassword'] = $gallery->session->configForm->smtpPassword;
@@ -149,39 +130,6 @@ if (in_array($setup_page, $legit)) {
 else {
 	print gTranslate('config', "Security violation") .".\n";
 	exit;
-}
-?>
-
-<?php
-
-function embed_hidden($key) {
-	global $$key;
-
-	$buf = "";
-	$real = $$key;
-
-	if (is_array($real)) {
-		foreach ($real as $real_key => $value) {
-			if (is_array($value)) {
-				foreach($value as $sub_key => $sub_value) {
-					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
-					$buf .= '<input type="hidden" name="'. $name .'" value="';
-					$buf .= urlencode($sub_value);
-					$buf .= "\">\n";
-				}
-			} else {
-				$name = stripWQuotesON("$key" . "[$real_key]");
-				$buf .= '<input type="hidden" name="'. $name .'" value="';
-				$buf .= urlencode($value);
-				$buf .= "\">\n";
-			}
-		}
-	} else {
-		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
-		$buf .= urlencode($real);
-		$buf .= "\">\n";
-	}
-	return $buf;
 }
 
 foreach ($preserve as $key => $val) {

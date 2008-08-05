@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +22,9 @@
 
 require_once(dirname(__FILE__) . '/init.php');
     
-    doctype();
-?>
+printPopupStart(gTranslate('config', "Check Mail"));
 
-<html>
-<head>
-	<title> <?php echo gTranslate('config', "Check Mail") ?> </title>
-	<?php echo getStyleSheetLink() ?>
-</head>
-
-<body dir="<?php echo $gallery->direction ?>">
-<?php configLogin(basename(__FILE__)); ?>
-<h1 class="header"><?php echo gTranslate('config', "Check Mail") ?></h1>
-
-<?php 
+configLogin(basename(__FILE__));
 
 list($submit, $email_address) = getRequestVar(array('submit', 'email_address'));
 
@@ -66,7 +55,7 @@ if (isset($submit)) {
 	
 	echo '</tr></table>';
 } else {
-	echo '<div class="sitedesc">';
+	echo '<div class="sitedesc left">';
 	print sprintf(gTranslate('config', "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"));
 	echo '</div>';
 	if (getOS() != OS_WINDOWS) {
@@ -113,5 +102,6 @@ if (isset($submit)) {
 </tr>
 </table>    
 
+</div>
 </body>
 </html>

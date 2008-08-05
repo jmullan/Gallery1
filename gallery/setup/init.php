@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
+
+if(function_exists('date_default_timezone_get')) {
+	$defaultTimeZone = date_default_timezone_get();
+	date_default_timezone_set($defaultTimeZone);
+}
+
 /* load necessary functions */
 if (stristr (__FILE__, '/var/lib/gallery/setup')) {
 	/* Gallery runs on a Debian System */
@@ -46,6 +50,7 @@ else {
 
 @include (GALLERY_BASE . '/config.php');
 require (GALLERY_BASE . '/Version.php');
+define('LOAD_SESSIONS', true);
 require (GALLERY_BASE . '/session.php');
 require (GALLERY_BASE . '/lib/setup.php');
 

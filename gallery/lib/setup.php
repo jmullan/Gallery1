@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -142,12 +142,7 @@ function form_password($key, $arr) {
 }
 
 function form_nv_pairs($key, $arr) {
-	if (isset($arr["attrs"])) {
-		$attrs = make_attrs($arr["attrs"]);
-	}
-	else {
-		$attrs = '';
-	}
+	$attrs = (isset($arr['attrs'])) ? generateAttrs($arr['attrs']) : '';
 
 	$x = 0;
 	$buf = "\n<table>"
@@ -378,11 +373,18 @@ function one_constant($key, $value) {
 	return "\$gallery->app->$key = \"{$value}\";\n";
 }
 
-function array_constant($key, $value) {
+function array_constant($key, $value, $removeEmpty = false) {
 	$html = '';
+
 	foreach ($value as $item) {
-		$html .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+		if($removeEmpty && empty($item)) {
+			continue;
+		}
+		else {
+			$html .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+		}
 	}
+
 	return $html;
 }
 
@@ -402,7 +404,7 @@ function error_missing($desc, $key) {
 	if (empty($desc)) {
 		$desc = $key;
 	}
-	return gallery_error(sprintf(gTranslate('common', "Missing value: %s"),"<b>$desc</b>!"));
+	return configError(sprintf(gTranslate('common', "Missing value: %s"),"<b>$desc</b>!"));
 }
 
 function check_exec() {
@@ -415,7 +417,7 @@ function check_exec() {
 	if (!empty($disabled)) {
 		foreach(explode(',', $disabled) as $disabled_func) {
 			if(eregi('^exec$', $disabled_func)) {
-				$fail['fail-exec'] = 1;
+				$fail['fail-exec'] = true;
 			}
 		}
 	}
@@ -438,11 +440,14 @@ function check_htaccess() {
 	$fail		= array();
 	$warn		= array();
 
-	if ($GALLERY_PHP_VALUE_OK) {
-		$success[] = gTranslate('common', "I can read your <b>.htaccess</b> file.");
+	if(!fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
+		$fail['fail-nohtaccess'] = true;
+	}
+	else if ($GALLERY_PHP_VALUE_OK) {
+		$success[] = gTranslate('common', "Gallery is able to read your .htaccess file.");
 	}
 	else {
-		$fail["fail-htaccess"] = 1;
+		$fail['fail-htaccess'] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -458,13 +463,13 @@ function check_php() {
 
 	if (!function_exists('version_compare') ||
 		!version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
-		$fail['fail-too-old'] = 1;
+		$fail['fail-too-old'] = true;
 	}
 	elseif (strstr(__FILE__, 'lib/setup.php') || strstr(__FILE__, 'lib\\setup.php')) {
 		$success[] = sprintf(gTranslate('common', "PHP v%s is OK."), $version);
 	}
 	else {
-		$fail['fail-buggy__FILE__'] = 1;
+		$fail['fail-buggy__FILE__'] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -477,11 +482,16 @@ function check_mod_rewrite()  {
 	$fail		= array();
 	$warn		= array();
 
-	if ($GALLERY_REWRITE_OK) {
-		$success[] = gTranslate('common', "<b>mod_rewrite</b> is enabled.");
+	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
+		if ($GALLERY_REWRITE_OK) {
+			$success[] = gTranslate('common', "mod_rewrite is enabled.");
+		}
+		else {
+			$fail["fail-mod-rewrite"] = true;
+		}
 	}
 	else {
-		$fail["fail-mod-rewrite"] = 1;
+		$fail["fail-mod-rewrite-nohtaccess"] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -613,7 +623,7 @@ function check_graphics($location = '', $graphtool = '') {
 	}
 
 	if ($missing == count($netpbm)) {
-		$fail['fail-netpbm'] = 1;
+		$fail['fail-netpbm'] = true;
 		/* Any other warning doesnt care */
 		$warn = array();
 	}
@@ -692,7 +702,7 @@ function check_graphics_im($location = '', $graphtool = '') {
 	}
 
 	if ($missing == count($imagick)) {
-		$fail['fail-imagemagick'] = 1;
+		$fail['fail-imagemagick'] = true;
 		/* Any other warning doesnt care */
 		$warn = array();
 	}
@@ -753,22 +763,26 @@ function check_gettext() {
 
 function check_gallery_languages() {
 	global $gallery;
+
 	$fail = array();
 	$success = array();
 	$warn = array();
 
 	$languages = gallery_languages();
+
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = gTranslate('common', "No languages found."); // should never occur!
-	} else if (sizeof($languages) == 1 ) {
+	}
+	else if (sizeof($languages) == 1 ) {
 		$warn['only_english'] = gTranslate('common', "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
 		$success[] = sprintf(gTranslate('common', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
-		sizeof($languages),
-		"<a href=\"$gallery->url\" target=\"_blank\">",
-		'</a>');
+				sizeof($languages),
+				"<a href=\"$gallery->url\" target=\"_blank\">",
+				'</a>');
 	}
+
 	return array($success, $fail, $warn);
 }
 
@@ -887,19 +901,19 @@ function check_locale() {
 		# Unix / Linux
 		# Check which locales are installed
 
-		exec('locale -a', $results, $status);
+		@exec('locale -a', $results, $status);
 
 		if(count($results) >2) {
 			$system_locales = $results;
 		}
 		elseif (@is_readable("/etc/locale.gen")) {
-			exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
+			@exec('grep -v -e "^#" /etc/locale.gen | cut -d " " -f 1', $system_locales);
 		}
 		elseif (@is_readable("/usr/share/locale")) {
-			exec("ls /usr/share/locale", $system_locales);
+			@exec("ls /usr/share/locale", $system_locales);
 		}
 		elseif (@is_readable("/usr/local/share/locale")) {
-			exec("ls /usr/local/share/locale", $system_locales);
+			@exec("ls /usr/local/share/locale", $system_locales);
 		}
 	}
 
@@ -1179,7 +1193,7 @@ function check_safe_mode() {
 		$success[] = gTranslate('common', "safe_mode is off.");
 	}
 	else {
-		$fail["fail-safe-mode"] = 1;
+		$fail["fail-safe-mode"] = true;
 	}
 
 	return array($success, $fail,$warn);
@@ -1192,7 +1206,7 @@ function check_magic_quotes() {
 	if (!get_magic_quotes_gpc()) {
 		$success[] = gTranslate('common', "magic_quotes are off.");
 	} else {
-		$fail["fail-magic-quotes"] = 1;
+		$fail["fail-magic-quotes"] = true;
 	}
 
 	return array($success, $fail, $warn);
@@ -1243,7 +1257,7 @@ function check_register_globals() {
 	$globals_enabled = ini_get('register_globals');
 
 	if (!empty($globals_enabled) && !eregi('no|off|false', $globals_enabled)) {
-		$fail['warn-register_globals'] = 1;
+		$fail['warn-register_globals'] = true;
 	}
 	else {
 		$success[] = gTranslate('common', "register_globals is off.");
@@ -1481,11 +1495,11 @@ function verify_email($emailMaster) {
 		$success[] = gTranslate('common', "Valid sender email address given.");
 	}
 	else {
-	       	$fail[]= gTranslate('common', "You must specify a valid sender email address.");
+	       	$fail[] = gTranslate('common', "You must specify a valid sender email address.");
 	}
 
 	if (!empty($gallery->session->configForm->emailGreeting) && !strstr($gallery->session->configForm->emailGreeting, "!!USERNAME!!")) {
-	       	$fail[]= sprintf(gTranslate('common', "You must include %s in your welcome email."), "<b>!!USERNAME!!</b>");
+	       	$fail[] = sprintf(gTranslate('common', "You must include %s in your welcome email."), "<b>!!USERNAME!!</b>");
 	}
 
 	if (!empty($emailGreeting) &&
@@ -1510,36 +1524,6 @@ function check_ecards($num) {
 
 	return array($success, $fail);
 }
-
-function check_gallery_versions()  {
-	$fail = array();
-	$success = array();
-	$warn = array();
-       	list($oks, $errors, $warnings) = checkVersions(false);
-	if ($errors)  {
-		$fail[]=sprintf(gTranslate('common', "The following files are out of date, corrupted or missing:<br>&nbsp;&nbsp;&nbsp;&nbsp;%s."),
-				implode('<br>&nbsp;&nbsp;&nbsp;&nbsp;', array_keys($errors))). "<p>" .
-			"<br>" . gTranslate('common', "This should be fixed before proceeding.") .
-		      	"<br>" . sprintf(gTranslate('common', "Look at %sCheck Versions%s for more details."),
-					"<a href=check_versions.php>", "</a>");
-	}
-	else if ($warnings) {
-		$warn[] = sprintf(gTranslate('common', "%d files are more recent than expected.  This is OK if you are using pre-release, beta, SVN or modified code."), count($warnings)) .
-		      	"<br>" . sprintf(gTranslate('common', "Look at %sCheck Versions%s for more details."),
-					"<a href=\"check_versions.php\">", "</a>");
-	}
-	else {
-		if (count($oks) == 0) {
-			$success[] = sprintf(gTranslate('common', "All tested files up-to-date."));
-		}
-	else {
-			$success[] = sprintf(gTranslate('common', "All %d tested files up-to-date."), count($oks));
-		}
-	}
-
-	return array($success, $fail, $warn);
-}
-
 
 function newIn($version) {
 	$buf = "\n\t<br><font color=blue><b>(";
@@ -1620,7 +1604,6 @@ function check_admins() {
 	else {
 		$result = array(
 			"desc" => sprintf(gTranslate('common', "It seems you've already configured Gallery, because the %s user exists.  You don't have to enter a password.  But if you do, Gallery will change the password for the %s user."), '<b>admin</b>', '<b>admin</b>'),
-			"optional" => 1,
 			"remove_empty" => true
 		);
 	}
@@ -1652,29 +1635,70 @@ function displayNameOptions() {
 	);
 }
 
-function checkVersions($verbose=false) {
+function check_gallery_versions()  {
+	$fail = array();
+	$success = array();
+	$warn = array();
+
+	$versionStatus = checkVersions(false);
+
+	$fail = $versionStatus['fail'];
+
+	$problems = array_merge(
+		$versionStatus['missing'],
+		$versionStatus['older'],
+		$versionStatus['unkown']
+	);
+
+	$hint = "<p>" . gTranslate('common', "This should be fixed before proceeding.") .
+		"<br>" . sprintf(gTranslate('common', "Look at %sCheck Versions%s for more details."),
+		'<a href="check_versions.php">', '</a>') . '</p>';
+
+	if(!empty($versionStatus['newer'])) {
+		$warn[] = gTranslate('common',
+			"One file is newer then expected.",
+			"%d files are newer then expected.",
+			count($versionStatus['newer']), '', true) .
+			$hint;
+	}
+
+	if(!empty($problems)) {
+		$fail[] = gTranslate('common',
+			"One file is out of date, corrupted or missing.",
+			"%d files are out of date, corrupted or missing.",
+			count($problems), '', true) .
+			(empty($versionStatus['newer']) ? $hint : '<br>');
+	}
+
+	if (empty($warn) && empty($fail)) {
+		$success[] = sprintf(gTranslate('common', "All %d tested files up-to-date."), count($versionStatus['ok']));
+	}
+
+	return array($success, $fail, $warn);
+}
+
+function checkVersions($verbose = false) {
 	global $gallery;
 	/* we assume setup/init.php was loaded ! */
 
 	$manifest = GALLERY_BASE . '/manifest.inc';
-	$fileskiplist = array(
-		'includes/ecard/templates/error.htm',
-		'includes/ecard/templates/leer.htm',
-		'js/imagemap.js',
-		'js/toggle.js',
-		'js/wz_jsgraphics.js',
-		'js/wz_tooltip.js');
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$versionStatus = array(
+		'ok'		=> array(),
+		'fail'		=> array(),
+		'older'		=> array(),
+		'newer'		=> array(),
+		'missing'	=> array(),
+		'unkown'	=> array()
+	);
+
 	if (!fs_file_exists($manifest)) {
-		$fail['manifest.inc'] = gTranslate('common', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
-		return array($success, $fail, $warn);
+		$versionStatus['fail']['manifest'] = gTranslate('common', "The manifest file is missing or unreadable.  Gallery is not able to perform a file version integrity check.  Please install this file and reload this page.");
+		return $versionStatus;
 	}
 
 	if (!function_exists('getSVNRevision')) {
-		$fail['util.php'] = sprintf(gTranslate('common', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
-		return array($success, $fail, $warn);
+		$versionStatus['fail']['util.php'] = sprintf(gTranslate('common', "Please ensure that %s is the latest version. Gallery is not able to perform a file version integrity check.  Please install the correct version and reload this page."), "util.php");
+		return $versionStatus;
 	}
 
 	include (GALLERY_BASE . '/manifest.inc');
@@ -1700,11 +1724,7 @@ function checkVersions($verbose=false) {
 					printf("File with type: %s can not have a compareable Revision Nr.", $matches[0]);
 					continue;
 				}
-				$success[$file] = sprintf("No comparable Rev for type: %s.", $matches[0]);
-				continue;
-			}
-			elseif (in_array($file, $fileskiplist)) {
-				$success[$file] = sprintf("File '%s' is in the skiplist.", $file);
+				$versionStatus['ok'][$file] = sprintf("No comparable Rev for type: %s", $matches[0]);
 				continue;
 			}
 			else {
@@ -1712,12 +1732,13 @@ function checkVersions($verbose=false) {
 					print "<br>\n";
 					printf(gTranslate('common', "Version information not found in %s.  File must be old version or corrupted."), $file);
 				}
-				$fail[$file] = gTranslate('common', "Missing version");
+				$versionStatus['missing'][$file] = gTranslate('common', "Missing version");
 				continue;
 			}
 		}
 		elseif (empty($version)) {
-			$warn[$file] = sprintf(gTranslate('common', "Found Version: %s"), $found_version);
+			$versionStatus['unkown'][$file] = sprintf(gTranslate('common',
+				"Found Version: %s"), $found_version);
 			continue;
 		}
 
@@ -1728,25 +1749,27 @@ function checkVersions($verbose=false) {
 				print "<br>\n";
 				printf(gTranslate('common', "Problem with %s.  Expected version %s (or greater) but found %s."), $file, $version, $found_version);
 			}
-			$warn[$file] = sprintf(gTranslate('common', "Expected version %s (or greater) but found %s."), $version, $found_version);
+			$versionStatus['older'][$file] =
+				sprintf(gTranslate('common', "Expected version %s (or greater) but found %s."), $version, $found_version);
 		}
 		else if ($compare > 0) {
 			if ($verbose) {
 				print "<br>\n";
 				printf(gTranslate('common', "%s OK.  Actual version (%s) more recent than expected version (%s)."), $file, $found_version, $version);
 			}
-			$warn[$file] = sprintf(gTranslate('common', "Expected version %s but found %s."), $version, $found_version);
+			$versionStatus['newer'][$file] =
+				sprintf(gTranslate('common', "Expected version %s but found %s."), $version, $found_version);
 		}
 		else {
 			if ($verbose) {
 				print "<br>\n";
 				printf(gTranslate('common', "%s OK."), $file);
 			}
-			$success[$file] = sprintf(gTranslate('common', "Found expected version %s."), $version);
+			$versionStatus['ok'][$file] = sprintf(gTranslate('common', "Found expected version %s."), $version);
 		}
 	}
 
-	return array($success, $fail, $warn);
+	return $versionStatus;
 }
 
 /**
@@ -1835,7 +1858,7 @@ function configLogin($target) {
 	global $gallery;
 
 	if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-		$resetFile = getFile(GALLERY_SETUPDIR . "/resetadmin");
+		$resetFile = fs_file_get_contents(GALLERY_SETUPDIR . "/resetadmin");
 		$resetFile = trim($resetFile);
 	}
 	else {
@@ -1861,6 +1884,10 @@ function configLogin($target) {
 		require_once(GALLERY_BASE . '/classes/gallery/User.php');
 
 		$gallery->userDB = new Gallery_UserDB();
+
+		if (! $gallery->userDB->isInitialized()) {
+			exit;
+		}
 
 		// Check the UserDB for upgrades before trying to make someone login
 		if ($gallery->userDB->versionOutOfDate()) {
@@ -1916,8 +1943,8 @@ function getCheckStatus($result, $check) {
 		return 0;
 	}
 
-	if (isset($check['optional']) && $check['optional'] == 1) {
-		if (isset($check["serious"]) && $check["serious"] == 1) {
+	if (isset($check['optional']) && $check['optional']) {
+		if (isset($check["serious"]) && $check["serious"]) {
 			if(empty($fail)) {
 				return 5;
 			}
@@ -1930,7 +1957,7 @@ function getCheckStatus($result, $check) {
 		}
 	}
 	else {
-		if (isset($check["serious"]) && $check["serious"] == 1) {
+		if (isset($check["serious"]) && $check["serious"]) {
 			return 51;
 		}
 		else {
@@ -2004,6 +2031,39 @@ function getCurrentGraphicTool() {
 	}
 }
 
+function embed_hidden($key) {
+	global $$key;
+
+	$html = '';
+	$real = $$key;
+
+	if (is_array($real)) {
+		foreach ($real as $real_key => $value) {
+			if (is_array($value)) {
+				foreach($value as $sub_key => $sub_value) {
+					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
+					$html .= '<input type="hidden" name="'. $name .'" value="';
+					$html .= urlencode($sub_value);
+					$html .= "\">\n";
+				}
+			}
+			else {
+				$name = stripWQuotesON("$key" . "[$real_key]");
+				$html .= '<input type="hidden" name="'. $name .'" value="';
+				$html .= urlencode($value);
+				$html .= "\">\n";
+			}
+		}
+	}
+	else {
+		$html .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
+		$html .= urlencode($real);
+		$html .= "\">\n";
+	}
+
+	return $html;
+}
+
 function useSMTP() {
 	global $gallery;
 
@@ -2015,4 +2075,9 @@ function useSMTP() {
 	}
 }
 
+function configError($msg) {
+	$html = "<div class=\"g-error\">$msg</div>";
+
+	return $html;
+}
 ?>

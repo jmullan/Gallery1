@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,30 +19,29 @@
  *
  * $Id$
  */
-?>
-<?php
-	insertFormJS('config');
+
+insertFormJS('config');
 ?>
 <input type="hidden" name="this_page" value="constants">
 <input type="hidden" name="next_page" value="defaults">
 <input type="hidden" name="back_page" value="check">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),2); ?></div>
+<div class="header"><?php printf (gTranslate('config',"Gallery Configuration Wizard: Step %d"), 2); ?></div>
 
 <div class="sitedesc">
 <?php
-	echo _("In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
-	echo '<br>';
-	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
+echo gTranslate('config',"In this step you'll customize various settings for Gallery.  If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  Even so, you'll probably have to make at least some minor changes.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
+echo '<br>';
+echo gTranslate('config',"Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
 ?>
 </div>
 
 <p align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo gTranslate('config',"Previous Step") ?>">
+        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo gTranslate('config',"Previous Tab") ?>" onClick="section_tabs.prevTab()">
+        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config',"Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
+        <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config',"Next Step") ?> --&gt;">
+        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config',"Use Defaults") ?>">
 </p>
 <?php
 
@@ -76,7 +75,9 @@ function toggleSMTP(show) {
 <?php
 $i = 0;
 foreach ($constants as $key => $val) {
-	if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
+	if( isset($val["enabled"]) && $val["enabled"] == "no") {
+		continue;
+	}
 
 	if (isset($val["type"]) && ($val["type"] === "block_start" )) {
 		echo "\n<table width=\"100%\" class=\"inner\">";
@@ -85,18 +86,19 @@ foreach ($constants as $key => $val) {
 	}
 
 	if (isset($val["type"]) && ($val["type"] === 'subgroup' )) {
-	    echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
-        echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
-        if (isset($val['desc'])) {
-        	echo '<div class="inner desc">'. $val['desc'] .'</div>';
-        }
-        continue;
-    }
+		echo '<div id="'. $key .'" style="display: '. $val['display'] .'">';
+		echo '<center><div class="subgroup">'. $val['title'] .'</div></center>';
+		if (isset($val['desc'])) {
+			echo '<div class="inner desc">'. $val['desc'] .'</div>';
+		}
+		continue;
+	}
 
-    if (isset($val["type"]) && ($val["type"] === 'subgroup_end' )) {
-        echo '</div>';
-        continue;
-    }
+	if (isset($val["type"]) && ($val["type"] === 'subgroup_end' )) {
+		echo '</div>';
+		continue;
+	}
+
 	if (isset($val["type"]) && ($val["type"] === "block_end" )) {
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 		echo "\n<tr><td colspan=\"2\"> &nbsp; </td></tr>";
@@ -111,7 +113,7 @@ foreach ($constants as $key => $val) {
 
 	}
 
-	if (isset($val["type"]) && ($val["type"] === 'group_end' )) {
+	if (isset($val["type"]) && $val["type"] === 'group_end') {
 		echo "\n</div>";
 		continue;
 	}
@@ -121,14 +123,14 @@ foreach ($constants as $key => $val) {
 
 	/* if the variable is hidden, lock it in as we don't want to use previous values*/
 	if (isset($val["type"]) && ($val["type"] === "hidden")) {
-	       	if (!empty($val["persistent"]) &&
-				isset($gallery->app->$key)) {
+		if (!empty($val["persistent"]) && isset($gallery->app->$key)) {
 			$val["value"] = $gallery->app->$key;
 		}
 		elseif (is_array($val["value"])) {
-			$key=$key."[]";
-			$val["value"]=$val["value"][0];
+			$key = $key."[]";
+			$val["value"] = $val["value"][0];
 		}
+
 		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
 			unset($preserve[$key]);
 			$preserve[$matches[1]] = 1;
@@ -137,7 +139,8 @@ foreach ($constants as $key => $val) {
 		}
 		list($f1, $f2) = make_fields($key, $val);
 		echo $f2;
-	} else {
+	}
+	else {
 		echo "\n<table width=\"100%\" class=\"inner\">";
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {
@@ -179,7 +182,7 @@ foreach ($constants as $key => $val) {
 		}
 		else {
 			$val['value'] = '';
-                }
+		}
 
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
@@ -192,9 +195,9 @@ foreach ($constants as $key => $val) {
 ?>
 
 <p align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-        <input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo gTranslate('config',"Previous Step") ?>">
+        <input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo gTranslate('config',"Previous Tab") ?>" onClick="section_tabs.prevTab()">
+        <input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config',"Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
+        <input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config',"Next Step") ?> --&gt;">
+        <input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config',"Use Defaults") ?>">
 </p>

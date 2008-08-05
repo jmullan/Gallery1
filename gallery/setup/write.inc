@@ -1,18 +1,18 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
- * 
+ * Copyright (C) 2000-2008 Bharat Mediratta
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
@@ -24,8 +24,6 @@
     /**
      * @package setup
      */
-?>
-<?php
 
 /*
 ** We assume setup/init.php was loaded !
@@ -46,7 +44,8 @@ $outfile = GALLERY_CONFDIR . '/config.php';
 if ($fd = @fs_fopen($outfile, "a")) {
 	fwrite($fd, $gallery->session->configData);
 	fclose($fd);
-} else {
+}
+else {
 	fail($outfile);
 	return;
 }
@@ -99,8 +98,12 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
         if ($fd = @fs_fopen($outfile, "a")) {
             foreach ($htaccess as $line) {
                 if (!ereg('^#', $line)) {
-                    eval("\$line = \"$line\";");
-                    fwrite($fd, $line);
+			// Replace variables
+			// Example: Literal $GALLERY_URL -> real $GALLERY_URL via preg_replace /e
+			// modifier
+			// Avoids use of eval
+			// -Andy Lindeman (June 2008)
+			$line = preg_replace('/\$\{?([A-Za-z][A-Za-z0-9_]*)\}?/e', '$${1}', $line);
                 }
             }
             fclose($fd);
@@ -120,8 +123,13 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
                     continue;
                 }
                 if (!ereg('^#', $line)) {
-                    eval("\$line = \"$line\";");
-                    fwrite($fd, $line);
+			// Replace variables
+			// Example: Literal $GALLERY_URL -> real $GALLERY_URL via preg_replace /e
+			// modifier
+			// Avoids use of eval
+			// -Andy Lindeman (June 2008)
+			$line = preg_replace('/\$\{?([A-Za-z][A-Za-z0-9_]*)\}?/e', '$${1}', $line);
+			fwrite($fd, $line);
                 }
             }
             fclose($fd);
@@ -200,7 +208,7 @@ if (getOS() != OS_WINDOWS) {
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
 	if (!empty($message)) $message .= "<br><br>";
 	$message .= '<span class="attention">'
-			. gTranslate('config', "Note") 
+			. gTranslate('config', "Note")
 			. ':<br>'
 			. sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
 			. '</span>' ;
@@ -214,14 +222,14 @@ if (isset($message)) {
 </div>
 
 <p style="width:80%; text-align:center">
-<?php 
+<?php
 	echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
 	echo '<br>';
 	echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
 	echo '<br>';
 	echo '<span class="emphasis">';
-	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),  
-		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>', 
+	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
+		'<a href="http://gallery.sourceforge.net/lists.php" class="namedurl">gallery-announce</a>',
 	       Gallery());
 ?>
 	</span>

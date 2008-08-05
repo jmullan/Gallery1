@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -162,7 +162,7 @@ foreach ($constants as $key => $val) {
 		eval("\$real = $tmp;");
 	}
 
-	if (!strcmp($key, 'graphics')) {
+	if ($key == 'graphics') {
 		$graphtool = $real;
 	}
 
@@ -172,7 +172,7 @@ foreach ($constants as $key => $val) {
 	}
 
 	if ((is_array($real) && join('', $real) === '') || $real == '') {
-		if (isset($constants[$key]['remove_empty'])) {
+		if (isset($constants[$key]['remove_empty']) && !isset($constants[$key]['optional'])) {
 			continue;
 		}
 
@@ -181,10 +181,11 @@ foreach ($constants as $key => $val) {
 			$gallery->session->configData .= $line;
 			continue;
 		}
-		if (!strcmp($key, 'pnmDir')) {
+
+		if ($key == 'pnmDir') {
 		        $graphtest['pnmDir'] = 1;
 		}
-		else if (!strcmp($key, 'ImPath')) {
+		else if ($key == 'ImPath') {
 		        $graphtest['ImPath'] = 1;
 		}
 
@@ -211,7 +212,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]['must-be-url'])) {
 			if (!ereg('^http', $real)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>%s</b> must be an absolute URL!"), $key, $real));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be an absolute URL!"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -223,7 +224,7 @@ foreach ($constants as $key => $val) {
 				$warn_about_open_basedir = 1;
 			} else {
 				if (!@is_file($real)) {
-					$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real));
+					$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be a valid file (not a directory)!"), $key, $real));
 					$error++;
 					continue;
 				}
@@ -234,7 +235,7 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]['must-be-integer'])) {
 			$int_real = intval($real);
 			if (! is_numeric($int_real) || $int_real < 0) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)) . gettype($real);
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>&quot;%s&quot;</b> must be a positive number"), $key, $real)) . gettype($real);
 				$error++;
 				continue;
 			}
@@ -243,7 +244,7 @@ foreach ($constants as $key => $val) {
 		/* Either a positive or negative number */
 		if (isset($constants[$key]['must-be-number'])) {
 			if (!is_numeric($real)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>&quot;%s&quot;</b> must be a number"), $key, $real));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>&quot;%s&quot;</b> must be a number"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -251,7 +252,7 @@ foreach ($constants as $key => $val) {
 
 		if (isset($constants[$key]['must-not-be-zero'])) {
 			if ($real == 0) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>%s</b> must not be zero"), $key, $real));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must not be zero"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -261,7 +262,7 @@ foreach ($constants as $key => $val) {
 			if (!inOpenBasedir($dir)) {
 				$warn_about_open_basedir = 1;
 			} else if (!fs_is_executable($real)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>%s</b> must be an executable file!"), $key, $real));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be an executable file!"), $key, $real));
 				$error++;
 				continue;
 			}
@@ -270,47 +271,56 @@ foreach ($constants as $key => $val) {
 		if (isset($constants[$key]['require-write-dir'])) {
 			$dir = $real;
 			if (!file_exists($dir)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "Directory %s does not exist.  Please create it."), "<b>$dir</b>"));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "Directory %s does not exist.  Please create it."), "<b>$dir</b>"));
 				$error++;
 				continue;
 			}
 
 			if (!is_dir($dir)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s exists but is not a directory.  Please fix this."), "<b>$dir</b>"));
+				$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s exists but is not a directory.  Please fix this."), "<b>$dir</b>"));
 				$error++;
 				continue;
 			}
 
 			if (!is_writeable($dir) || !test_write_to_dir($dir)) {
-				$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user.  Try: %s or if that doesn't work: %s.  Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
-						$key, $dir,
-						'<br><b><code>' .
-						"chown -R $webserver_user  $dir" .
-						'</code></b><br><br>',
-						'<br><b><code>' .
-						"chmod -R 777 $dir</code>" .
-						'</code></b><br><br>',
-						'<a href="phpinfo.php">open_basedir</a>',
-						'open_basedir'));
+				$gallery->session->configData .=
+					configError(sprintf(gTranslate('config', "%s: %s exists, but is not writeable by the webserver user."), $key, $dir)) .
+					configError(sprintf(gTranslate('config', "Try: %s"),
+						"<b><code>chown -R $webserver_user  $dir</code></b>")) .
+					configError(sprintf(gTranslate('config', "Or if that doesn't work: %s"),
+						"<b><code>chmod -R 777 $dir</code></b>")) .
+					configError(sprintf(gTranslate('config', "Also make sure that if you have an %s restriction then this tmp directory should be under the %s path"),
+						'<a href="phpinfo.php">open_basedir</a>', 'open_basedir')) . '<br>';
+
 				$error++;
 				continue;
 			}
 		}
 
 		if (!isset($constants[$key]['dont-write'])) {
-			if (is_array($real) && (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password')) {
-				$line = array_constant($key, $real);
-			} elseif (is_array($real) && $constants[$key]['type'] == 'password') {
+			if (is_array($real) &&
+			   (empty($constants[$key]['type']) || $constants[$key]['type'] != 'password'))
+			{
+				$line = array_constant($key, $real, isset($constants[$key]['remove_empty']));
+
+			}
+			elseif (is_array($real) && $constants[$key]['type'] == 'password') {
 				$line = one_constant($key, $real[2]);
 			}
 			else {
 				$line = one_constant($key, $real);
 			}
+
+			if (isset($constants[$key]['optional']) && empty($line)) {
+				$line = '// '. gTranslate('config', "optional") . " <i>$key</i> ". gTranslate('config', "missing") ."\n";
+			}
+
 			$gallery->session->configData .= $line;
 		}
 
 		if (isset($constants[$key]['verify-func'])) {
 			$func = $constants[$key]['verify-func'];
+
 			if (isset($constants[$key]['verify-func-takes-graphics-type'])) {
 			    list($success, $fail, $warn) = $func($real, $graphtool);
 			}
@@ -320,15 +330,15 @@ foreach ($constants as $key => $val) {
 
 			foreach ($fail as $fkey => $fval) {
 				if (isset($fkey) && isset($constants[$key][$fkey])) {
-					$gallery->session->configData .= gallery_error($constants[$key][$fkey]);
+					$gallery->session->configData .= configError($constants[$key][$fkey]);
 				}
 				if (is_string($fval)) {
-					$gallery->session->configData .= gallery_error($fval);
+					$gallery->session->configData .= configError($fval) ."\n";
 				}
 				else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$gallery->session->configData .= gallery_error($msg);
+							$gallery->session->configData .= configError($msg);
 						}
 					}
 				}
@@ -336,7 +346,7 @@ foreach ($constants as $key => $val) {
 			}
 
 			/* Needed for the pnmtojpeg<->ppmtojpeg silliness */
-			if (!strcmp($key, 'pnmDir')) {
+			if ($key == 'pnmDir') {
 				$graphpath  = $real;
 			}
 		}
@@ -350,7 +360,7 @@ foreach ($constants as $key => $val) {
 			$reqFeatures = $constants[$key]['requires-features'];
 			foreach ($reqFeatures as $reqFeatKey => $desc) {
 				if ($gallery->session->configForm->$reqFeatKey  == 'no') {
-					$gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s: <b>%s</b> must be enabled for this feature to function!"), $key, $desc));
+					$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s: <b>%s</b> must be enabled for this feature to function!"), $key, $desc));
 					$error++;
 				}
 			}
@@ -365,7 +375,7 @@ foreach ($constants as $key => $val) {
  *
  * Don't bother if we are configuring for ImageMagick.
  */
-if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
+if ($graphtool == 'Netpbm' && empty($graphtest['pnmDir'])) {
 	/*
 	 * If the graph path is not in the open_basedir list, then we can't tell.
      * Assume whatever they entered is correct and hope for the best
@@ -374,7 +384,7 @@ if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
 		$pnmtojpeg = $gallery->session->configForm->pnmtojpeg;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmtojpeg))) {
 			$error++;
-			$gallery->session->configData .= gallery_error(
+			$gallery->session->configData .= configError(
 				sprintf(gTranslate('config', "Could not find %s.  Check your Netpbm directory to see which PNG->JPEG converter you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmtojpeg</i>",
 					($pnmtojpeg == 'pnmtojpeg' ? 'ppmtojpeg' : 'pnmtojpeg')));
@@ -382,7 +392,7 @@ if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
 		$pnmcomp = $gallery->session->configForm->pnmcomp;
 		if (!fs_file_exists(fs_executable($graphpath . '/' . $pnmcomp))) {
 			$error++;
-			$gallery->session->configData .= gallery_error(
+			$gallery->session->configData .= configError(
 				sprintf(gTranslate('config', "Could not find %s.  Check your Netpbm directory to see which PNM Composite/Overlay executable you have (or just try using %s instead).  Please check your configuration (or use ImageMagick)."),
 					"<i>$graphpath/$pnmcomp</i>",
 					($pnmcomp == 'pnmcomp' ? 'pamcomp' : 'pnmcomp')));
@@ -395,13 +405,15 @@ if (!strcmp($graphtool, 'Netpbm') && empty($graphtest['pnmDir'])) {
  * chose is configured properly.
  */
 if (!empty($graphtest['pnmDir']) && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>Netpbm</i>",  "<i>ImageMagick</i>"));
+	$gallery->session->configData .= configError(sprintf(gTranslate('config', "You must specify a path for %s or %s for Gallery to function!!"), "<i>Netpbm</i>",  "<i>ImageMagick</i>"));
     $error++;
-} else if (!strcmp($graphtool, 'ImageMagick') && !empty($graphtest['ImPath'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
+}
+else if ($graphtool == 'ImageMagick' && !empty($graphtest['ImPath'])) {
+	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'ImageMagick','ImageMagick'));
     $error++;
-} else if (!strcmp($graphtool, 'Netpbm') && !empty($graphtest['pnmDir'])) {
-    $gallery->session->configData .= gallery_error(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'Netpbm','Netpbm'));
+}
+else if ($graphtool == 'Netpbm' && !empty($graphtest['pnmDir'])) {
+	$gallery->session->configData .= configError(sprintf(gTranslate('config', "%s is not properly configured for use as a graphics package.  Make sure you entered a path to the %s binaries in step 2."),'Netpbm','Netpbm'));
     $error++;
 }
 
@@ -463,11 +475,11 @@ foreach ($defaults as $key => $val) {
 			list($success, $fail) = $func($gallery->session->configForm->$key);
 			foreach ($fail as $fkey => $fval) {
 				if (is_string($fval)) {
-					$gallery->session->configData .= gallery_error($fval);
+					$gallery->session->configData .= configError($fval);
 				} else if (is_array($fval)) {
 					foreach ($fval as $msg) {
 						if ($val) {
-							$gallery->session->configData .= gallery_error($msg);
+							$gallery->session->configData .= configError($msg);
 						}
 					}
 				}
@@ -492,13 +504,14 @@ if (!$error) {
 	<input type=submit name="go_back" disabled="disabled" value="&lt;- <?php echo gTranslate('config', "Edit Config") ?>">
 <?php if (!$error) {
 		echo '<input type="submit" name="go_next" disabled="disabled" value="' . gTranslate('config', "Save Config") .' -&gt;">';
-	} else {
+	}
+	else {
 		echo '<input type="submit" name="refresh" disabled="disabled" value="' . gTranslate('config', "Refresh") . '">';
-		echo '<br><div class="error" id="top">';
-		echo gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."));
-                echo ' ';
-		echo gTranslate('config', "See Details below.");
-		echo '</div>';
+		echo infoBox(array(array(
+			'type' => 'information',
+			'text' => gTranslate('config', "One error.", "%d errors.", $error, gTranslate('config', "No errors."), true) .
+				   ' ' . gTranslate('config', "See Details below.")
+		)));
 	}
 ?>
 </p>

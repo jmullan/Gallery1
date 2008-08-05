@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,27 +24,27 @@
 <input type="hidden" name="next_page" value="confirm">
 <input type="hidden" name="back_page" value="constants">
 
-<div class="header"><?php echo sprintf (_("Gallery Configuration Wizard: Step %d"),3); ?></div>
+<div class="header"><?php echo sprintf (gTranslate('config', "Gallery Configuration Wizard: Step %d"),3); ?></div>
 
 <div class="sitedesc">
 <?php
-	echo _("Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
+	echo gTranslate('config', "Here you can customize the default values for <b>new albums</b> that you create. These settings have no effect on existing albums!");
 	echo "\n<br>";
-	echo _("Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
-	echo _("If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
+	echo gTranslate('config', "Note that these are <b>not master switches</b>. This means you can change those settings for each separately.");
+	echo gTranslate('config', "If this is the first time you've customized Gallery, you'll notice that we've tried to pick reasonable defaults for you.  If you've already configured Gallery before, then you'll notice that this page already has your current settings loaded, so you probably won't need to do much.");
 	echo "\n<br>";
-	echo _("Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
-	echo "\n<br><br>". '<div class="attention">' . _('Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .'</div>';
+	echo gTranslate('config', "Switch through the corresponding tab and fill the values you need. Some, but not all values are required. If you have finished this step use the button to go to the next Step.");
+	echo "\n<br><br>". '<div class="attention">' . gTranslate('config', 'Note to users upgrading from a previous version: settings new since your old version will be applied to all existing albums. If you wish to change these later, they must be changed one by one in each album. Please choose these default values carefully.') .'</div>';
 
 ?>
 </div>
 
 <p align="center">
-	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type="submit" name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo gTranslate('config', "Previous Step") ?>">
+	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo gTranslate('config', "Previous Tab") ?>" onClick="section_tabs.prevTab()">
+	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
+	<input type="submit" name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step") ?> --&gt;">
+	<input type="submit" name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>">
 </p>
 
 <?php
@@ -128,9 +128,9 @@ foreach ($defaults as $key => $val) {
 ?>
 
 <p align="center">
-	<input type=submit name="go_back" disabled="disabled" value="&lt;-- <?php echo _("Previous Step") ?>">
-	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo _("Previous Tab") ?>" onClick="section_tabs.prevTab()">
-	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo _("Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
-	<input type=submit name="go_next" disabled="disabled" value="<?php echo _("Next Step") ?> --&gt;">
-	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo _("Use Defaults") ?>">
+	<input type="submit" name="go_back" disabled="disabled" value="&lt;-- <?php echo gTranslate('config', "Previous Step") ?>">
+	<input type="button" name="go_backTab" disabled="disabled" value="&lt;- <?php echo gTranslate('config', "Previous Tab") ?>" onClick="section_tabs.prevTab()">
+	<input type="button" name="go_nextTab" disabled="disabled" value="<?php echo gTranslate('config', "Next Tab") ?> -&gt;" onClick="section_tabs.nextTab()">
+	<input type=submit name="go_next" disabled="disabled" value="<?php echo gTranslate('config', "Next Step") ?> --&gt;">
+	<input type=submit name="go_defaults" disabled="disabled" value="<?php echo gTranslate('config', "Use Defaults") ?>">
 </p>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +22,14 @@
 
 require_once(dirname(__FILE__) . '/init.php');
     
-    doctype();
+printPopupStart(gTranslate('config', "Gallery Netpbm Check"));
+
+configLogin(basename(__FILE__));
+
+$app_name='Netpbm';
 ?>
-<html>
-<head>
-	<title><?php echo gTranslate('config', "Gallery Netpbm Check") ?></title>
-	<?php echo getStyleSheetLink() ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php configLogin(basename(__FILE__)); ?>
-<?php $app_name='Netpbm' ?>
 
-<h1 class="header"><?php printf(gTranslate('config', "Check %s"), $app_name) ?></h1>
-
-<div class="sitedesc">
+<div class="sitedesc left">
 <?php 
     printf(gTranslate('config', "This script is designed to examine your %s installation to see if it is ok to be used by Gallery."), $app_name);
     printf(gTranslate('config', "You should run this script <b>after</b> you have run the config wizard, if you have had problems with your %s installation that the wizard did not detect."), $app_name) 
@@ -237,6 +231,7 @@ if (fs_file_exists($debugfile)) {
 
 <p class="inner" align="center"><?php echo returnToConfig(); ?></p>
 
+</div>
 </body>
 </html>
 <?php

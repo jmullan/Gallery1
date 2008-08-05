@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,6 +76,17 @@ class Abstract_UserDB {
 	 */
 	function convertUidToNewFormat($uid) {
 		return $uid;
+	}
+
+	/**
+	 * Returns whether the UserDB was succesfully initialized or not.
+	 * Is currently only used for standalone Gallery UserDB.
+	 *
+	 * @return boolean	 true if succesfully initialized.
+	 * @author Jens Tkotz
+	 */
+	function isInitialized() {
+		return true;
 	}
 }
 ?>
