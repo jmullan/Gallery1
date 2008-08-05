@@ -375,6 +375,22 @@ td.columnheader {
     color: #444;
 }
 
+.g-tabset {
+}
+
+.g-tabset a {
+    background-color: #fff;
+}
+
+.g-tabset a:hover {
+    background-color: #e9e9ff;
+}
+
+.g-tabset a.g-activeTab {
+	/* Colors as the same as a button */
+    border-bottom: 1px solid #66a;
+}
+
 /* Following two classes are used in stats-wizard */
 .blockcell {
 }
@@ -446,8 +462,61 @@ caption {
     background-color: #e9e9ff;
 }
 
-.g-tabset a.tab-hi {
+.g-tabset a.tab-hi, a.tab-hi, .tab-hi {
     color: #fff;
     background: #66a;
     border-bottom: 1px solid #66a;
+}
+
+/***** Some Form styles  ******/
+
+input, textarea, select, .g-usernameInput, .g-passwordInput{
+	color: #000;
+	background-color: #f3f3f9;
+	border: 1px solid #669;
+}
+
+input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordInput:focus {
+	background-color: #FFFFDA;
+	border: 1px solid #99f;
+}
+
+input:hover.g-button, input:focus.g-button {
+    background-color: #370093;
+    color: #fff;
+
+}
+
+.g-button, .g-tabset a.g-activeTab {
+    color: #FFF;
+    background-color: #53a;
+}
+
+.g-button {
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #000;
+    border-left: 1px solid #C4C4B8;
+    border-top: 1px solid #C4C4B8;
+    -moz-border-radius: 5px;
+    padding-top: 0; padding-bottom: 0;
+    padding-left: 2px; padding-right: 2px;
+}
+
+.g-buttonDisable, input:focus.g-buttonDisable {
+    color: #000;
+    background-color: gray;
+    border: 1px solid #efefff;
+    -moz-border-radius: 5px;
+    padding-top: 0; padding-bottom: 0;
+    padding-left: 2px; padding-right: 2px;
+}
+
+.g-disabled {
+	color: gray;
+	text-align: center;
+}
+
+.g-selected {
+    font-weight: bold;
+    font-size: 10pt;
 }

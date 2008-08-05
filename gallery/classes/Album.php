@@ -2214,7 +2214,7 @@ class Album {
 		$nobody		= $gallery->userDB->getNobody();
 		$nobodyUid	= $nobody->getUid();
 		if ($uid == $nobodyUid) {
-			return false;
+			return true;
 		}
 
 		return false;

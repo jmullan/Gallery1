@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file Copyright (C) 2003-2004 Joan McGalliard
  *
@@ -31,39 +31,53 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($photoIndex, $ecard, $submit_action) =
-    getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
-
-doctype();
+	getRequestVar(array('photoIndex', 'ecard', 'submit_action'));
 
 printPopupStart(gTranslate('core', "Send this photo as eCard"));
+
+if(! isValidGalleryInteger($photoIndex)) {
+	echo gallery_error(gTranslate('core', "Invalid element chosen."));
+	echo "\n<br><br>";
+	echo gButton('closeButton', gTranslate('core', "Close Window."),'parent.close()');
+	echo "</div></body></html>";
+	exit;
+}
+
 $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
 
 if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
-    echo gallery_error($errortext);
-    echo "\n<br><br>";
-    echo '<input type="button" value="'. gTranslate('core', "Close Window.") .'" onClick="parent.close()">';
-    echo "</div></body></html>";
-    exit;
+	echo gallery_error($errortext);
+	echo "\n<br><br>";
+	echo gButton('closeButton', gTranslate('core', "Close Window."),'parent.close()');
+	echo "</div></body></html>";
+	exit;
 }
 
 /* Get the dimensions of the sized Photo */
 list($width, $height) = $photo->getDimensions(0, false);
 
-$max_length = 300;   // Maximum length of the e-Card text
-$ecard_PLAIN_data = gTranslate('core', "You have an e-card as attachment. Click to see.");
-$error_msg = '';
-$mandatory = array('name_sender', 'email_sender', 'name_recipient', 'email_recipient', 'message');
-$ecard_send = false;
-$sendButtonTest = gTranslate('core',"_Send eCard");
+$max_length		= 300;   // Maximum length of the e-Card text
+$ecard_PLAIN_data	= gTranslate('core', "You have an e-card as attachment. Click to see.");
+$error_msg		= '';
+$ecard_send		= false;
+$sendButtonTest		= gTranslate('core',"Send eCard");
+
+$checks = array(
+	'photoIndex'		=> array( 0, gTranslate('core', "Element index")),
+	'name_sender'		=> array( 1, gTranslate('core', "Name of sender")),
+	'email_sender'		=> array( 1, gTranslate('core', "Email of sender")),
+	'name_recipient'	=> array( 1, gTranslate('core', "Name of recipient")),
+	'email_recipient'	=> array( 1, gTranslate('core', "Email of recipient")),
+	'message'		=> array( 0, gTranslate('core', "Message"))
+);
 
 if (! empty($submit_action)) {
-    foreach ($mandatory as $mandatoryField) {
-        if(empty($ecard[$mandatoryField])) {
-            $error_msg .= gTranslate('core', "Some input fields are not correctly filled out. Please fill out.") . '<br>';
-            $error_msg .= '<br>';
-            break;
-        }
-    }
+	foreach ($checks as $fieldname => $specs) {
+		if(empty($ecard[$fieldname]) || ! isXSSclean($ecard[$fieldname], $specs[0])) {
+			$error_msg .= sprintf(gTranslate('core', "%s is not valid."), $specs[1]);
+			$error_msg .= '<br>';
+		}
+	}
 
     if (!check_email($ecard["email_recipient"]) || !check_email($ecard["email_sender"])) {
         $error_msg .= gTranslate('core', "The sender or recipient email adress is not valid.");
@@ -184,104 +198,103 @@ function CountMax() {
 
 <?php
 if (! $ecard_send) {
-    echo $gallery->album->getThumbnailTag($ecard['photoIndex']);
-    if (!empty($error_msg)) {
-        echo '<p>'. gallery_error($error_msg) .'</p>';
-    }
+	echo $gallery->album->getThumbnailTag($ecard['photoIndex']);
+	if (!empty($error_msg)) {
+		echo "\n<br><br>";
+		echo gallery_error($error_msg);
+	}
 
 	echo makeFormIntro("ecard_form.php",
 	array("name" => "ecard_form"),
 	array("type" => "popup"));
 ?>
 	<input name="ecard[image_name]" type="hidden" value="<?php echo $ecard['image_name']; ?>">
-  <input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
-  <input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
-  <input name="submit_action" type="hidden" value="">
+	<input name="ecard[template_name]" type="hidden" value="ecard_1.tpl">
+	<input name="ecard[photoIndex]" type="hidden" value="<?php echo $ecard['photoIndex']; ?>">
+	<input name="submit_action" type="hidden" value="">
 
-  <br>
-  <table border="0" cellpadding="0" cellspacing="4" align="center">
-  <tr>
-    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
-    <td width="10">&nbsp;</td>
-    <td class="columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
-  </tr>
-  <tr>
-    <td><?php echo gTranslate('core', "Name") ?></td>
-    <?php
-    $defaultSenderName = '';
-    $defaultSenderEmail = '';
-    if (! empty($gallery->user) && $gallery->user->isLoggedIn()) {
-        $defaultSenderName = $gallery->user->displayName();
-        $defaultSenderEmail = $gallery->user->getEmail();
-    }
+<?php
+	$defaultSenderName = '';
+	$defaultSenderEmail = '';
 
-    $name_sender = empty($ecard['name_sender']) ? $defaultSenderName : $ecard['name_sender'];
-    $email_sender = empty($ecard['email_sender']) ? $defaultSenderEmail : $ecard['email_sender'];
-    ?>
-    <td><input tabindex="1" maxlength="40" name="ecard[name_sender]" size="18" type="Text" value="<?php echo $name_sender; ?>"></td>
-    <td></td>
-    <td><?php echo gTranslate('core', "Name") ?></td>
-    <td><input tabindex="3" maxlength="40" name="ecard[name_recipient]" size="18" type="Text" value="<?php echo $ecard['name_recipient']; ?>"></td>
-  </tr>
-  <tr>
-    <td><?php echo gTranslate('core', "E-Mail"); ?></td>
-    <td><input tabindex="2" maxlength="40" name="ecard[email_sender]" size="18" type="Text" value="<?php echo $email_sender; ?>"></td>
-    <td></td>
-    <td><?php echo gTranslate('core', "E-Mail"); ?></td>
-    <td><input tabindex="4" maxlength="40" name="ecard[email_recipient]" size="18" type="Text" value="<?php echo $ecard['email_recipient']; ?>"></td>
-  </tr>
-  <tr>
-    <td colspan="5" align="center">
-  	  <select id="ecardstamp" name="ecard[stamp]">
-            <option selected value="08"><?php echo gTranslate('core', "Choose a Stamp"); ?></option>
+	if (! empty($gallery->user) && $gallery->user->isLoggedIn()) {
+		$defaultSenderName = $gallery->user->displayName();
+		$defaultSenderEmail = $gallery->user->getEmail();
+	}
+
+	$name_sender	= empty($ecard['name_sender'])		? $defaultSenderName : $ecard['name_sender'];
+	$email_sender	= empty($ecard['email_sender'])		? $defaultSenderEmail : $ecard['email_sender'];
+	$name_recipient	= !empty($ecard['name_recipient'])	? $ecard['name_recipient'] : '';
+	$email_recipient= !empty($ecard['email_recipient'])	? $ecard['email_recipient'] : '';
+	$defaultSubject	= !empty($defaultSenderName)		? sprintf(gTranslate('core', "%s sent you an E-C@rd"), $defaultSenderName) : '';
+?>
+	<table cellpadding="0" cellspacing="4" align="center" border="0">
+	<tr>
+		<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Your info"); ?></td>
+		<td width="10">&nbsp;</td>
+		<td class="g-columnheader" colspan="2"><?php echo gTranslate('core', "Recipient's info"); ?></td>
+	</tr>
+	<tr>
+	<?php echo gInput('text', 'ecard[name_sender]', gTranslate('core', "Name"), 'cell', $name_sender, array('tabindex' => 1, 'size' => 18, 'id' => 'name_sender')); ?>
+	<td>&nbsp;</td>
+	<?php echo gInput('text', 'ecard[name_recipient]', gTranslate('core', "Name"), 'cell', $name_recipient, array('tabindex' => 3, 'size' => 18, 'id' => 'name_recipient')); ?>
+	</tr>
+
+	<tr>
+	<?php echo gInput('text', 'ecard[email_sender]', gTranslate('core', "E-Mail"), 'cell', $email_sender, array('tabindex' => 2, 'size' => 18, 'id' => 'email_sender')); ?>
+	<td>&nbsp;</td>
+	<?php echo gInput('text', 'ecard[email_recipient]', gTranslate('core', "E-Mail"), 'cell', $email_recipient, array('tabindex' => 4, 'size' => 18, 'id' => 'email_recipient')); ?>
+	</tr>
+
+	<tr>
+		<td colspan="5" align="center">
+		<select id="ecardstamp" name="ecard[stamp]">
+			<option selected value="08"><?php echo gTranslate('core', "Choose a Stamp"); ?></option>
 <?php
 for($i = 1; $i <= 27; $i++) {
-    $nr = sprintf("%02d", $i-1);
+	$nr = sprintf("%02d", $i-1);
 	echo "\n\t\t" . '<option value="'. $nr .'">';
-    echo sprintf(gTranslate('core', "Stamp #%d"), $i);
-    echo "</option>";
+	printf(gTranslate('core', "Stamp #%d"), $i);
+	echo "</option>";
 }
 ?>
-        </select>
-        <?php $stamp_previewURL = build_popup_url("stamp_preview.php"); ?>
-        <img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp_Preview','scrollbars=yes, width=150, height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
-    </td>
-  </tr>
-  <tr>
+		</select>
+		<?php $stamp_previewURL = build_popup_url("stamp_preview.php"); ?>
+		<img alt="helpIcon" height="15" hspace="5" onclick="popup_win('<?php echo $stamp_previewURL; ?>', 'Stamp_Preview','scrollbars=yes, width=150, height=300')" src="<?php echo getImagePath('ecard_images/icon_help.gif') ?>" width="15">
+		</td>
+	</tr>
+	<tr>
 		<td><label for="subject"><?php echo gTranslate('core', "Subject:"); ?></label></td>
 		<td colspan="4"><input type="text" size="65" maxlength="75" name="ecard[subject]" id="subject" value="<?php echo $defaultSubject; ?>"></td>
-  </tr>
-  <tr>
-    <td colspan="5"><?php echo gTranslate('core', "Your Message:"); ?></td>
-  </tr>
-  <tr>
-    <td align="center" colspan="5">
-      <textarea cols="55" rows="7" name="ecard[message]" onKeyPress="CountMax();" onfocus="CountMax();"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="5">&nbsp;</td>
-  </tr>
-  <tr>
-    <td align="center" colspan="5">
-	<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="Text">
-    </td>
-  </tr>
-  <tr>
-     <td colspan="5" align="center">
-     <table>
-      <tr>
-        <td><input type="button" onClick="javascript:make_preview();" value="<?php echo gTranslate('core', "Preview"); ?>"></td>
-        <td><input type="reset" value="<?php echo gTranslate('core', "Reset"); ?>"></td>
-	<td width="100%">&nbsp;</td>
-        <td align="left"><input type="button" onClick="javascript:window.close()" value="<?php echo gTranslate('core', "Cancel"); ?>"></td>
-	<td><input type="button" onClick="javascript:send_ecard();" value="<?php echo gTranslate('core', "Send eCard"); ?>"></td>
-      </tr>
-     </table>
-     </td>
-  </tr>
-  </table>
-  </form>
+	</tr>
+	<tr>
+		<td colspan="5" class="left g-small"><label for="message"><?php echo gTranslate('core', "Your Message:"); ?></label></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="5">
+			<textarea cols="55" rows="7" name="ecard[message]" id="message" onKeyPress="CountMax();" onfocus="CountMax();"><?php if (! empty($ecard["message"])) echo $ecard["message"]; ?></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="5">
+			<input maxlength="<?php echo $max_length ?>" name="counter" size="3" type="text">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" align="center">
+		<table>
+		<tr>
+			<td><?php echo gButton('preview', gTranslate('core', "Preview"), 'make_preview();'); ?></td>
+			<td><?php echo gReset('reset', gTranslate('core', "Reset")); ?></td>
+			<td width="100%">&nbsp;</td>
+			<td><?php echo gButton('cancel', gTranslate('core', "Cancel"), 'window.close()'); ?></td>
+			<td><?php echo gButton('send', $sendButtonTest, 'send_ecard();'); ?></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+</form>
 <?php }
 else {
 	printf(gTranslate('core', "Your E-C@rd with the picture below has been sent to %s &lt;%s&gt;."), $ecard["name_recipient"], $ecard["email_recipient"]);

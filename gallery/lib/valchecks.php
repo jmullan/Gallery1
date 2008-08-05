@@ -23,85 +23,207 @@
 /**
  * This is a wrapper around different valchecks
  * The input is the value, the type its tested against and optional a default
- * The return is given by the valcheck function
-*/
-function sanityCheck($var, $type, $default = NULL, $choices = array()) {
-	  switch ($type) {
+  *
+ * @param mixed		$value
+ * @param string	$type
+ * @param mixed		$default
+ * @param array		$choices
+ * @return mixed	$result
+ * @author Jens Tkotz
+ */
+function sanityCheck($value, $type, $default = NULL, $choices = array()) {
+	switch ($type) {
 		case 'int':
-			return isValidInteger($var, true, NULL, true);
+		case 'int_ZeroEmpty':
+			$status = isValidGalleryInteger($value, true, true);
+
 			break;
-		case 'int_notnull':
-			return isValidInteger($var, true, $default, false);
+
+		case 'int_ZeroNotEmpty':
+			$status = isValidGalleryInteger($value, true, false);
+
 			break;
-		case 'int_empty':
-			return isValidInteger($var, true, $default, true);
+
+		case 'int_NotZeroNotEmpty':
+			$status = isValidGalleryInteger($value, false, false);
+
 			break;
+
 		case 'pictureFrame':
-			if(array_key_exists($var, available_frames())) {
-				return array(0, $var, '');
+			if(array_key_exists($value, available_frames())) {
+				$result = array(0, $value, '');
 			}
 			else {
-				return array(2, $var, gTranslate('common', "The given frame is not valid."));
+				$result = array(2, $value, gTranslate('common', "The given frame is not valid."));
 			}
+
 			break;
+
 		case 'inChoice':
-			if(in_array($var, $choices)) {
-				return array(0, $var, '');
+			if(in_array($value, $choices)) {
+				$result = array(0, $value, '');
 			}
 			elseif (isset($default)) {
-                return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
+				$result = array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not in the allowed list of choices."));
 			}
 			else {
-                return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
+				$result = array(2, $value, gTranslate('common', "The given value is not in the allowed list of choices."));
 			}
+
 			break;
+
+		case 'filename':
+			$status = isXSSclean($value);
+
+			if($status) {
+				$result = array(0, $value, '');
+			}
+			else {
+				$result = array(2, $value, gTranslate('common', "The given value is not an allowed filename."));
+			}
+
+			break;
+
+		case 'text_NotEmpty':
+			if (empty($value)) {
+				return array(2, $value, gTranslate('common', "Empty string is not allowed."));
+			}
+
+			$status = isValidText($value);
+
+			break;
+
 		default:
 		case 'text':
-			return isValidText($var, $default);
+			$status = isValidText($value);
+
 			break;
 	}
+
+	/* Handle $result for integers */
+	if (substr($type,0, 3) == 'int') {
+		if(! $status) {
+			if (empty($default)) {
+				$result = array(1, $value, gTranslate('core', "The value is not a valid Gallery integer."));
+			}
+			else {
+				$result = array(2, $default, gTranslate('core', "The value is not a valid Gallery integer and was set to a given default."));
+			}
+		}
+		else {
+			$result = array(0, $value, '');
+		}
+
+		return $result;
+	}
+
+	/* Handle $result for strings */
+	if (substr($type,0, 4) == 'text') {
+		if(! $status) {
+			if (empty($default)) {
+				$result = array(1, $value, gTranslate('core', "The value is not an allowed string."));
+			}
+			else {
+				$result = array(2, $default, gTranslate('core', "The value is not an allowed string and was set to a given default."));
+			}
+		}
+		else {
+			$result = array(0, $value, '');
+		}
+
+		return $result;
+	}
+
+	return $result;
 }
 
 /**
- * This function checks if a given value is a valid integer.
- * Valid means:
- * --- its a numeric value
- * --- is not lower a given minum (can be 1 or 0)
- * You can give a default to correct an invalid input
+ * This function checks if a given value is a valid "Gallery" integer.
+ * A "Gallery" integer is a number of the set |N+ = {0, 1, 2, ...}.
+ * Its not the PHP integer which is a number of the set |Z = {..., -2, -1, 0, 1, 2, ...}.
  *
- * Return is an array that contains:
- * --- Status, can be 0 for OK, 1 for set to default, 2 failure and no default
- * --- Original or default value
- * --- Debug message
-*/
-function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyAllowed = false) {
+ * Valid means:
+ * --- Its a numeric and (real) integer value.
+ * --- Is not lower as a given minimum (can be 1 or 0).
+ *
+ * @param mixed		$value		The value that is to be checked
+ * @param boolean	$includingZero	Is 0 allowed?
+ * @param boolean	$emptyAllowed
+ * @return boolean	$result
+ * @author Jens Tkotz
+ * @author Jesse Mullan
+ */
+function isValidGalleryInteger($value, $includingZero = false, $emptyAllowed = false) {
 	$minimum = ($includingZero == true) ? 0 : 1;
 
-	if ( $mixed == '' && $emptyAllowed) {
-		return array(0, $mixed, '');
+	if($value === '' || !isset($value)) {
+		$result = (boolean) $emptyAllowed;
+	}
+	elseif($value < $minimum || !ctype_digit(trim($value)) || intval($value) != $value) {
+		$result = false;
+	}
+	else {
+		$result = true;
 	}
 
-	if (! is_numeric($mixed)) {
-		if (isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not numeric."));
-		}
-		else {
-            return array(2, false, gTranslate('common', "The given value is not numeric."));
-		}
-	}
-
-	if($mixed < $minimum) {
-		if (isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid integer."));
-		}
-		else {
-            return array(2, false, gTranslate('common', "The given value not a valid integer."));
-		}
-	}
-
-	return array(0, $mixed, '');
+	return $result;
 }
 
+/**
+ * This function checks if a given value is a "valid" text.
+ * Valid means, that is does not contain bad HTML or malicous chars.
+ *
+ * @param string	$text
+ * @package integer	$level	0 = low level, 1 = high level
+ * @return boolean	$result
+ * @author Jens Tkotz
+ */
+function isValidText($text, $level = 0) {
+	$sanitized = sanitizeInput($text);
+
+	if($sanitized == $text && isXSSclean($text, $level)) {
+		$result = true;
+	}
+	else {
+		$result = false;
+	}
+
+	return $result;
+}
+
+/**
+ * Checks whether an URL is a Gallery URL
+ *
+ * @param string 	$url	Full URL to a Gallery file.
+ * @return boolean		True in case its a valid Url, otherwise false.
+ * @author Jens Tkotz
+ */
+function isValidGalleryUrl($url) {
+	if (!empty($url)) {
+
+		if (! isValidUrl($url)) {
+			return false;
+		}
+
+		// Check for phishing attacks, don't allow return URLs to other sites
+		$galleryBaseUrl = getGalleryBaseUrl();
+
+		/*
+		* We check for ../ and /../ patterns and on windows \../ would also break out,
+		* normalize to URL / *nix style paths to check fewer cases
+		*/
+		$normalizedUrl = str_replace("\\", '/', $url);
+
+		if (strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
+			strpos($normalizedUrl, '/../') !== false)
+		{
+			// Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery
+			return false;
+		}
+	}
+
+	return true;
+}
 /**
  * Returns a set of malicious chars
  * Level 0: Only chars that i (the author) think are evil anytime are considered.

@@ -1,19 +1,51 @@
+2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b26
+
+ *
+ **
+ *** SECURITY BUGFIX ****
+
+ + Cross Site Scripting (XSS) +
+
+ Login is now a separate page, not a popup.
+ Verify userinput much more!
+
+
+ + Application Account Lockout not Enforced +
+
+ Account lockouts are not enforced over accounts once an excessive number of
+ failed login attempts have been made.
+ Gallery now locks such an account.
+
+
+ * CHANGE: LOTS of CSS changes!
+
+ * New class: Logins
+
+ * New functions:
+   - gHtmlSafe($string)
+   - isValidGalleryUrl($url)
+   - isValidText($text, $level = 0)
+
+ * Change: Renamed isValidInteger() to isValidGalleryInteger()
+           Also enhanced it.
+
+ * Change: Tabs are no longer a table. They are cssified links.
+
+ * Change: Temporary removed rebuild thumbs functionality.
+
 2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b25
 
  *
  **
  *** SECURITY BUGFIX ****
 
- Insecure Command Execution in:
+ + Insecure Command Execution +
 
-   - gallery_remote2.php
-   - gallery_remote.php
-   - publish_xp.php
-   - save_photos.php
-   - edit_watermark.php
+ By not validating the supplied parameters the application is exposed to
+ arbitrary command execution by remote attackers
 
-  
-   Majorly changed the way files and archives are processed!
+ Majorly changed the way files and archives are processed!
+
 
 
  * New functions:

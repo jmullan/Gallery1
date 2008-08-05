@@ -2,7 +2,7 @@
   $Id$
 
   Gallery - a web based photo album viewer and editor
-  Copyright (C) 2000-2007 Bharat Mediratta
+  Copyright (C) 2000-2008 Bharat Mediratta
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,9 +21,8 @@
 */
 
 body {
-    margin-top: 10px; margin-left: 20px; margin-right: 20px;
-    color: #000000;
-    background-image: url(../images/simplex-bkg.gif);
+	color: #000000;
+	background-image: url(../images/simplex-bkg.gif);
 }
 
 .header {
@@ -47,16 +46,54 @@ img {
     border: none;
 }
 
-p#bottom	{ width: 500px; }
+p#bottom	{
+	width: 500px;
+}
 
 div#top {
     width: 200px;
     text-align:center;
 }
 
-.error		{ font-weight:bold; background-color: #CC0000; color: #FFFFFF ;
-		  padding:2px;
-		}
+.g-error, .error {
+    color: #000;
+    background-color: #ffd5d4;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    border: 1px solid #aaa;
+}
+
+/* Information message */
+.g-information {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+/* Warning message */
+.g-warning {
+    color: #000;
+    background: #ffc;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
+
+.g-success {
+    background-color: #cbffaf;
+    border: 1px solid #aaa;
+    padding: 1px;
+    padding-left: 5px;
+    margin-bottom: 1px;
+    -moz-border-radius: 8px;
+}
 
 .errorpct	{ font-weight:bold; background-color: #CC0000; color: #FFFFFF ;
 		  padding:2px;
@@ -66,7 +103,7 @@ div#top {
 		  padding:2px; width: 100%; padding-left:10px;
 		}
 
-.success        { font-weight:bold; background-color: green; color: #FFFFFF ;
+.success	{ font-weight:bold; background-color: green; color: #FFFFFF ;
 		  width: 150px; padding:2px;
 		}
 
@@ -94,7 +131,8 @@ div#top {
 .separator {
     text-align:center;
     font-size: 22px;
-    background-color: #000099; color:#FFFFFF;
+    background-color: #000099;
+    color: #000;
     padding:2px;
 }
 
@@ -166,12 +204,206 @@ a:hover		{ color: #409D27;
 }
 
 .g-tabset a:hover {
+    color: #000;
+    background-color: #DCDCC0;
     text-decoration: none;
-   background-color: #e9e9ff;
 }
 
-.g-tabset a.tab-hi {
-    color: #fff;
-    background: #66a;
-    border-bottom: 1px solid #66a;
+.g-tabset a.g-activeTab, .g-tabset a.tab-hi, a.tab-hi {
+	color: #fff;
+	background-color: #009;
+	border-bottom: 1px solid #000;
+}
+
+.g-tabset a {
+    float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+.popupbody  /* controls the background of popup. */
+{
+    color: #000;
+}
+
+.popuphead, .separator  /* controls the title and background */
+{
+    text-align:center;
+    font-size: 14px; font-weight: bold;
+    line-height: 150%;
+    background-color: #E6E6DC;
+    padding-left: 5px;
+    border-top: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+}
+
+.popup /* controls the main text and message body */
+{
+    padding: 5px;
+    padding-top:0px;
+    margin-bottom: 10px;
+    color: #202020;
+    border: 1px solid #FFF;
+    background-color: #F0F0F0;
+}
+
+.popupform /* controls form textarea */
+{
+    line-height: 120%;
+    padding: 2px;
+    color: #202020;
+    border: 1px solid #FFF;
+    background-color: #C0C0C0;
+}
+
+.floatleft {
+	float: left;
+}
+
+h1 {
+        font-size: 15px;
+        font-weight: bold;
+        color: #c64934;
+        padding: 0 10px 4px 0;
+        border-bottom: 1px solid #c64934;
+        margin-bottom: 5px;
+}
+
+.g-config-main {
+	margin-top: 5px;
+        border: 1px solid #ccc;
+        background: #E9ECEF;
+        padding: 5px;
+}
+
+.desc div {
+	font-weight: normal;
+}
+
+/******************** Begin Navigation Styles ********************/
+
+.g-navbar-top, g-navbar-bottom, .g-microthumbnavbar-top, .g-microthumbnavbar-bottom {
+    width: 100%;
+}
+
+/* Style for top navigation bar */
+.g-navbar-top {
+    border: 1px dashed gray;
+    margin-bottom: 1px;
+}
+
+/* Style for bottom navigation bar */
+.g-navbar-bottom {
+    border: 1px dashed gray;
+    margin-bottom: 2px;
+}
+
+#g-navtable, #g-navtable-bottom {
+	width: 100%;
+}
+
+.g-microthumbnavbar-top {
+    border-bottom: 1px dashed gray;
+}
+
+.g-microthumbnavbar-bottom {
+    border-bottom: 1px dashed gray;
+}
+
+#g-navtable td, #g-navtable-bottom td, div.g-navbar-top td, div.g-navbar-bottom td, div.g-microthumbnavbar-top td, div.g-microthumbnavbar-bottom td {
+    text-align: center;
+    white-space: nowrap;
+}
+
+table.g-nav-pages {
+    margin: 0 auto;
+}
+
+table.g-nav-pages td {
+     padding: 0;
+}
+
+#g-navtable td.arrows, #g-navtable-bottom td.arrows {
+	padding: 0 10px;
+}
+
+/******************** End Navigation Styles ********************/
+
+/* LTR , ya ya, i know. -> Go 1.6 */
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.floatleft {
+    float: left;
+}
+
+.floatright {
+    float: right;
+}
+
+.g-config-content {
+    width: 630px;
+    border-left: 1px solid #cccccc;
+    padding-left: 10px;
+    float: right;
+}
+
+.right5 {
+    margin-right: 5px;
+}
+
+.g-tabset a {
+    float: left;
+}
+
+.g-borderright {
+     border-right: 1px dashed;
+}
+
+.g-borderleft {
+    border-left: 1px dashed;
+}
+
+/***** Some Form styles  ******/
+
+input, textarea, select, .g-usernameInput, .g-passwordInput{
+}
+
+input:hover.g-button, input:focus.g-button {
+}
+
+.g-usernameInput, .g-usernameInput:focus {
+	background: url('../images/icons/user_gray.gif') no-repeat left top;
+	padding-left: 20px;
+	color: #000;
+	background-color: #f3f3f9;
+	border: 1px solid #669;
+}
+
+.g-passwordInput, .g-passwordInput:focus {
+	background: url('../images/icons/key.gif') no-repeat left top;
+	padding-left: 20px;
+	background-color: #FFFFDA;
+	border: 1px solid #99f;
+}
+
+.g-locked {
+	text-decoration: line-through;
+	background: url('../images/icons/locked.gif') no-repeat right center;
+}
+
+.albumUpgradeStatus {
+    margin-top: 3px;
+    padding: 2px;
+    overflow: scroll;
+    height: 200px;
+    border: 1px dashed red;
 }
