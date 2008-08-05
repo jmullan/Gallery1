@@ -119,7 +119,7 @@ function makeGalleryUrl($target = '', $args = array()) {
 	$prefix = '';
 	$isSetupUrl = (stristr($target, 'setup')) ? true : false;
 
-	if(!urlIsRelative($gallery->app->photoAlbumURL)) {
+	if(isset($gallery->app->photoAlbumURL) && !urlIsRelative($gallery->app->photoAlbumURL)) {
 		$gUrl = parse_url($gallery->app->photoAlbumURL);
 
 		if(isset($gUrl['port'])) {
@@ -315,7 +315,7 @@ function makeAlbumHeaderUrl($albumName="", $photoId="", $args=array()) {
 
 function addUrlArg($url, $arg) {
 	if (strstr ($url, "?")) {
-		return "$url&amp;$arg";
+		return "$url&$arg";
 	}
 	else {
 		return "$url?$arg";
@@ -383,17 +383,36 @@ function getAbsoluteImagePath($name, $skinname = '') {
 }
 
 /**
- * Checks whether an URL is relative or not
+ * Checkes whether an URL is relative or not
  * @param	string	$url
  * @return	boolean
  * @author	Jens Tkotz
  */
 function urlIsRelative($url) {
-	if (substr($url, 0,4) == 'http') {
+	if (substr($url, 0,7) == 'http://') {
+		return false;
+	}
+	elseif(substr($url, 0,6) == 'ftp://') {
 		return false;
 	}
 	else {
 		return true;
+	}
+}
+
+/**
+ * Checks whether a path looks absolute. Means: starting with a /
+ *
+ * @param string	$path
+ * @return boolean
+ * @author Jens Tkotz
+ */
+function pathIsAbsolute($path) {
+	if($path{0} == '/' && $path{1} != '/') {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
@@ -406,15 +425,40 @@ function broken_link($file) {
 	}
 }
 
-function galleryLink($url, $content, $attrList = array()) {
+function galleryLink($url = '', $text ='', $attrList = array(), $icon = '', $addBrackets = false) {
+	global $gallery;
+
+	$html = '';
+	$altText = $text;
+
+	if (!empty($attrList['altText'])) {
+		$altText = $attrList['altText'];
+		unset($attrList['altText']);
+	}
+
 	$attrs = generateAttrs($attrList);
 
+	if(!empty($icon)) {
+		$content = getIconText($icon, $text, '', $addBrackets, $altText);
+	}
+	else {
+		if($addBrackets) {
+			$content = '['. $text .']';
+		}
+		else {
+			$content = $text;
+		}
+	}
+
 	if (!empty($url)) {
-        $html = "<a href=\"$url\"$attrs>$content</a>\n";
-    }
-    else {
-        $html = "<a$attrs>$content</a>\n";
-    }
+		$html .= "<a href=\"$url\"$attrs>$content</a>\n";
+	}
+	elseif (! empty($attrs)) {
+		$html .= "<a$attrs>$content</a>\n";
+	}
+	else {
+		$html = $content;
+	}
 
 	return $html;
 }

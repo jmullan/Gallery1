@@ -1,3 +1,20 @@
+2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b24
+
+ * Fix: Two little bugs in lib/url.php
+   - Avoid PHP notices when Gallery is unconfigured.
+   - Changing languages via flag diretly after login on mainpage failed.
+
+ * Enhancement: Better check for http// in urlIsRelative().
+                Also added check for ftp:// 
+
+   Thanks to Jesse Mullan.
+
+ * New: pathIsAbsolute($path)
+
+ * Enhancement: More params for galleryLink()
+   - $icon = ''
+   - $addBrackets = false
+
 2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b23
 
  * New: Added some new frames.
