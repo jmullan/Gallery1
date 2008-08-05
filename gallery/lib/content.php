@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -162,8 +162,13 @@ function drawCommentAddForm($commenter_name = '', $cols = 50) {
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
-	global $_CONF; // for geeklog
-	global $board_config; // for phpBB2
+	global $_CONF;		// for geeklog
+	global $board_config;	// for phpBB2
+
+	if(!isXSSclean($_SERVER['HTTP_USER_AGENT'], 0)) {
+		echo gallery_error(gTranslate('core', "Security violation!"));
+		return false;
+	}
 
 	if (file_exists($configFile)) {
 		include($configFile);
@@ -301,7 +306,7 @@ foreach ($overrides as $key => $value) {
 <?php
 }
 
-function createTreeArray($albumName,$depth = 0) {
+function createTreeArray($albumName, $depth = 0) {
 	global $gallery;
 
 	$printedHeader = 0;
@@ -715,6 +720,10 @@ function reload() {
  * @param string $url
  */
 function dismissAndLoad($url = '') {
+	if (! isXSSclean($url, 0)) {
+		$url = makeGalleryHeaderUrl();
+	}
+
 	doctype();
 	echo "\n<html>";
 	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
@@ -722,9 +731,16 @@ function dismissAndLoad($url = '') {
 	if (isDebugging()) {
 		echo "<body onLoad=\"opener.location='$url';\">";
 		common_header();
-		echo "Loading URL: $url";
-		echo "<center><b>" . gTranslate('common', "Not closing this window because debug mode is on.") ."</b></center>";
-		echo "<hr>";
+		echo infoBox(array(
+			array(
+				'type' => 'information',
+				'text' => sprintf(gTranslate('common', "Loading URL: %s"), $url)
+			),
+			array(
+				'type' => 'information',
+				'text' => gTranslate('common', "Not closing this window because debug mode is on.")
+			)
+		));
 	}
 	elseif(!empty($url)) {
 		echo "<body onLoad=\"opener.location='$url' ; parent.close()\">";
@@ -1073,7 +1089,7 @@ function available_skins($description_only = false) {
 			$skininc = "$dir/$file/style.def";
 			$name = '';
 			$description = '';
-			$skincss = "$subdir/screen.css";
+
 			$skincount++;
 
 			if (fs_file_exists($skininc)) {
@@ -1362,6 +1378,40 @@ function gImage($relativePath, $altText = '', $attrList = array(), $skin = '') {
 }
 
 /**
+ * Returns a html string that represents the login/logout button, or just the text.
+ *
+ * @param string	$return		Url to go to for loggin out.
+ * @param int		$photoCount
+ * @return string	$html
+ */
+function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
+	global $gallery, $GALLERY_EMBEDDED_INSIDE;
+	$html = '';
+
+	$return = urlencode($return);
+
+	if (!$GALLERY_EMBEDDED_INSIDE && !$gallery->session->offline) {
+		if ($gallery->user->isLoggedIn()) {
+			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return, 'cmd' => 'logout'));
+			$html = galleryIconLink($returnUrl, 'logout.gif', gTranslate('common', "Logout"));
+		}
+		else {
+			$returnUrl = makeGalleryUrl('login.php', array('g1_return' => $return));
+			if($photoCount == 0) {
+				$loginText = gTranslate('common', "Login to see or add more items.");
+			}
+			else {
+				$loginText = gTranslate('common', "Login");
+			}
+
+			$html = galleryIconLink($returnUrl, 'login.gif', $loginText);
+		}
+	}
+
+	return $html;
+}
+
+/**
  * Creates a toggle Button. Button calls Javascript function gallery_toggle()
  * This needs to be loaded separately.
  *
@@ -1401,5 +1451,14 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 
 	return $html;
 
+}
+
+function gHtmlSafe($string) {
+	if (empty($string)) {
+		return $string;
+	}
+	else {
+		return gallery_htmlentities(unhtmlentities($string));
+	}
 }
 ?>

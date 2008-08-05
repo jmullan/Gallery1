@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,40 @@ $results = array(
 	'invalid_album' => array(),
 );
 
+$iconElements = array();
 $action = getRequestVar('action');
+
+if(!empty($action)) {
+	if($action == 'unlinkInvalidAlbum') {
+		$title = gTranslate('core', "Delete Album");
+	}
+	else {
+		$title = gTranslate('core', "Delete Photo");
+	}
+}
+else {
+	$title = gTranslate('core', "Validate Albums");
+}
+
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to admin page"));
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['text'] ='<span class="head">'. $title .'</span>';
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+
+$breadcrumb['text'][] = languageSelector();
+
+
 if (empty($action)) {
 	findInvalidAlbums();
 }
@@ -47,7 +80,7 @@ else {
 ?>
 <html>
 <head>
-  <title><?php echo ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete album") : gTranslate('core', "Delete item") ?></title>
+  <title><?php echo $title; ?></title>
   <?php common_header(); ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
@@ -55,15 +88,6 @@ else {
 	}
 
 	includeHtmlWrap("gallery.header");
-	$adminbox['text'] ='<span class="head">'. ($action == 'unlinkInvalidAlbum') ? gTranslate('core', "Delete album") : gTranslate('core', "Delete item") .'</span>';
-	$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. gTranslate('core', "Return to admin page") .'</a>] ';
-	$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Return to gallery") .'</a>] ';
-
-	$adminbox["commands"] = $adminCommands;
-	$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-
-	$breadcrumb['text'][] = languageSelector();
-
 	includeLayout('navtablebegin.inc');
 	includeLayout('adminbox.inc');
 	includeLayout('navtablemiddle.inc');
@@ -80,7 +104,15 @@ else {
 			if ($verified) {
 				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 
-				echo infoLine(gTranslate('core', "Album deleted."), 'success left');
+				if($ret) {
+					printInfoBox(array(array(
+						'type' => 'success',
+						'text' => gTranslate('core', "Album deleted.")
+					)));
+				}
+				else {
+					echo gallery_error(gTranslate('core', "Album not deleted!"));
+				}
 
 				echo galleryLink(makeGalleryUrl("tools/validate_albums.php"), gTranslate('core', "Validate again"), array(), '', true);
 				echo galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "Return to admin page"), array(), '', true);
@@ -102,10 +134,20 @@ else {
 				$targetAlbum = new Album();
 				$targetAlbum->load($album);
 				$photoIndex = $targetAlbum->getPhotoIndex($id);
-				$targetAlbum->deletePhoto($photoIndex);
-				$targetAlbum->save(array(i18n("Item $id deleted from $album because the target image file is missing.")));
 
-				echo infoLine(gTranslate('core', "Item deleted."), 'success left');
+				$ret = $targetAlbum->deletePhoto($photoIndex);
+
+				if($ret) {
+					$targetAlbum->save(array(i18n("Item '$id' deleted from '$album' because the target image file is missing")));
+
+					printInfoBox(array(array(
+						'type' => 'success',
+						'text' => gTranslate('core', "Item deleted.")
+					)));
+				}
+				else {
+					echo gallery_error(gTranslate('core', "Item not deleted!"));
+				}
 
 				echo galleryLink(makeGalleryUrl("tools/validate_albums.php"), gTranslate('core', "Validate again"), array(), '', true);
 				echo galleryLink(makeGalleryUrl("admin-page.php"), gTranslate('core', "Return to admin page"), array(), '', true);
@@ -133,14 +175,13 @@ else {
 			break;
 
 		default:
-			echo infoLine(gTranslate('core', "Invalid Action!"), 'error left');
-
+			echo gallery_error(gTranslate('core', "Invalid action!"));
 			break;
 	}
 ?>
 </div>
 <?php
-	includeTemplate("overall.footer");
+	includeHtmlWrap("gallery.footer");
 
 	if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
@@ -192,7 +233,8 @@ if (empty($action)) {
 		<li><?php echo gTranslate('core', "The second is to manually re-add the file to the albums directory using the filename you see in the left side of the table."); ?></li>
 		</ul>
 
-		<div class="infoline_error left">
+		<div class="g-error left g-message">
+		<?php echo gImage('icons/notice/error.gif'); ?>
 		<?php echo sprintf(gTranslate('core', "Missing files: %s"), sizeof($results['file_missing'])); ?>
 		<br><br>
 		<table>
@@ -226,7 +268,10 @@ if (empty($action)) {
 	}
 	else {
 		// No Orphans
-		echo infoLine(gTranslate('core', "There are no missing files in this Gallery."), 'success left');
+		printInfoBox(array(array(
+			'type' => 'success',
+			'text' => gTranslate('core', "There are no missing files in this Gallery.")
+		)), '', false);
 	}
 	echo "\n</fieldset><br>";
 
@@ -235,7 +280,8 @@ if (empty($action)) {
 ?>
 		<p><?php echo gTranslate('core', "Invalid albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x.") ?></p>
 
-		<div class="infoline_error left">
+		<div class="g-error left g-message">
+		<?php echo gImage('icons/notice/error.gif'); ?>
 		<?php printf(gTranslate('core', "Invalid albums: %d"), sizeof($results['invalid_album'])) ?>
 		<br><br>
 			<table>
@@ -264,7 +310,10 @@ if (empty($action)) {
 	}
 	else {
 		// No Orphans
-		echo infoLine(gTranslate('core', "There are no invalid albums in this Gallery."), 'success left');
+		printInfoBox(array(array(
+			'type' => 'success',
+			'text' => gTranslate('core', "There are no invalid albums in this Gallery.")
+		)), '', false);
 	}
 	echo "\n</fieldset><br>";
 }

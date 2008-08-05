@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,6 +90,10 @@ function findMissingFiles($album, $albumPath) {
  * @return boolean
  */
 function removeInvalidAlbum($path) {
+	if(!isXSSclean($path)) {
+		return false;
+	}
+	
 	if(!fs_is_dir($path)) {
 		return true;
 	}

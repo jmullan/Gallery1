@@ -1,3 +1,24 @@
+2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b28
+
+ *
+ **
+ *** SECURITY BUGFIX ****
+
+ + Unauthorized Access to File System +
+
+ Several application components expose functionality that permits users to
+ remotely manipulate the underlying file system of the hosting web server.
+ This includes the ability to retrieve arbitrary directory listings,
+ read and delete arbitrary files, and write arbitrary data to existing
+ files.
+
+
+ * New functions:
+   - LoginLogoutButton() !!
+   - printInfoBox()
+
+ * New: Added some new icons.
+
 2008-08-05 Jens Tkotz <jens@peino.de> 1.5.8-svn-b27
 
  * Fix: Removed doubled function deinition.

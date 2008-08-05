@@ -79,6 +79,27 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 	return $html;
 }
 
+/**
+ * Just a wrapper around infoBox. (Prints an InfoBox). Has the same params
+ *
+ * @param  array  $messages		Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption		An optional caption
+ * @param  bool   $withOuterBorder	Whether to show an outlined border, or not
+ * @author Jens Tkotz
+ */
+function printInfoBox($messages = array(), $caption = '', $withOuterBorder = true) {
+	if (!headers_sent() && (ob_get_length() == 0 || ! ob_get_length())) { ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+  <title>Message</title><?php echo getStyleSheetLink(); ?>
+  </head>
+<body>
+<?php
+	}
+	echo infoBox($messages, $caption, $withOuterBorder);
+}
+
 function errorRow($key) {
     global $gErrors;
 

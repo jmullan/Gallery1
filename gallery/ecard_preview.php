@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,19 +30,36 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 $ecard = getRequestVar('ecard');
-
-if(!isset($gallery->album)) {
-    $pieces = explode('/', $ecard['image_name']);
-    $gallery->album = new Album;
-    $gallery->album->load($pieces[0]);
+if (empty($ecard) || empty($ecard['image_name']) || empty($ecard["template_name"])) {
+	$error = true;
+}
+else if(!isset($gallery->album)) {
+	$pieces = explode('/', $ecard['image_name']);
+	$gallery->album = new Album;
+	$loadOk = $gallery->album->load($pieces[0]);
 }
 
-list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+if(isXSSclean($ecard["template_name"])) {
+	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+}
+else {
+	$error = true;
+}
 
-if (!empty($error)) {
-    header("Location: " . makeGalleryHeaderUrl("includes/ecard/_templates/error.htm"));
-} else {
-    echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
+if (!empty($error) || ! $loadOk) {
+	if (!$gallery->user->canDeleteAlbum($gallery->album)) {
+		printPopupStart(gTranslate('core', "Gallery eCard"));
+		printInfoBox(array(array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Gallery could not process your ecard! Please close this window and try again later, thanks!")
+			))
+		);
+		includeTemplate("overall.footer");
+		exit;
+	}
+}
+else {
+	echo parse_ecard_template($ecard,$ecard_data_to_parse, true);
 }
 
 ?>
