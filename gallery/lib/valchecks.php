@@ -314,21 +314,6 @@ function isXSSclean($string, $level = 1) {
 		return true;
 	}
 }
-function isValidText($text, $default = NULL) {
-	$sanitized = sanitizeInput($text);
-
-	if($sanitized != $text) {
-		if(isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid text."));
-		}
-		else {
-            return array(1, $sanitized, gTranslate('common', "Value was corrected, because the original value is not a valid text."));
-		}
-	}
-	else {
-		return array(0, $text, '');
-	}
-}
 
 function sanitizeInput($value) {
 	if(!is_array($value) && strip_tags($value) == $value) {
