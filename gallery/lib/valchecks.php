@@ -499,37 +499,6 @@ function cleanRepetition($partLen, $string) {
 	return $cleaned;
 }
 
-function sanitizeInput($value) {
-	if(!is_array($value) && strip_tags($value) == $value) {
-		return $value;
-	}
-
-	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
-	static $safehtml;
-
-	if (empty($safehtml)) {
-		$safehtml =& new HTML_Safe();
-	}
-
-	if(is_array($value)) {
-		//echo "\n -> Array";
-		//echo "\n<ul>";
-		foreach($value as $subkey => $subvalue) {
-			//printf("\n<li>Checking SubValue: %s", htmlspecialchars($subkey));
-			$sanitized[$subkey] = sanitizeInput($subvalue);
-		}
-		//echo "\n</ul>";
-	}
-	else {
-		//echo " === ". htmlspecialchars($value);
-		$sanitized = $safehtml->parse($value);
-		if($sanitized != $value) {
-			//echo "--->". $sanitized;
-		}
-	}
-	return $sanitized;
-}
-
 /**
  * Check given parameters for watermarking
  *

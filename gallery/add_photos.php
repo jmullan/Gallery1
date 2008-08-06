@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,12 +33,12 @@ if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	exit;
 }
 
-$cookieName = $gallery->app->sessionVar . "_add_photos_mode";
+$cookieName = $gallery->app->sessionVar . '_add_photos_mode';
 $modeCookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : null;
 
 if (isset($mode)) {
 	if ($modeCookie != $mode) {
-	    setcookie($cookieName, $mode, time()+60*60*24*365, "/" );
+		setcookie($cookieName, $mode, time()+60*60*24*365, '/' );
 	}
 }
 else {
@@ -46,13 +46,10 @@ else {
 	    $mode = $modeCookie;
 	}
 }
-doctype();
+printPopupStart(gTranslate('core', "Add items"), '', 'left');
+
 ?>
 
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Add items") ?></title>
-  <?php common_header(); ?>
   <script type="text/javascript" language="Javascript">
   <!--
 	function reloadPage() {
@@ -61,10 +58,6 @@ doctype();
 	}
   // -->
   </script>
-</head>
-<body dir="<?php echo $gallery->direction ?>" onload="window.focus()" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Add items") ?></div>
-<div class="popup">
 <?php
 
 if (file_exists(dirname(__FILE__) . "/java/GalleryRemoteAppletMini.jar") &&

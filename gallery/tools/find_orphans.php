@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,11 +204,22 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php 
 } 
     includeHtmlWrap("gallery.header");
-    $adminbox['text'] ='<span class="head">'. _("Find Orphans") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("Return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
+    $adminbox['text'] ='<span class="head">'. gTranslate('core', "Find Orphans") .'</span>';
+    
+    $iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to admin page"));
 
-    $adminbox["commands"] = $adminCommands;
+    $iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to gallery"));
+
+    $iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+    $adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
     $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
     $breadcrumb['text'][] = languageSelector();
 

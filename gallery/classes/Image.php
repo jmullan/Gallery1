@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,7 +121,8 @@ class Image {
 
 			if ($pathToResized) {
 				$ret = copy($pathToResized,"$dir/$name.sized.$this->type");
-			} else {
+			}
+			else {
 				$ret = resize_image("$dir/$name.$type", "$dir/$name.sized.$this->type", $target, $filesize);
 			}
 
@@ -306,7 +307,6 @@ class Image {
 
 	function rawFileSize($dir) {
 		$filename = "$dir/$this->name.$this->type";
-
 		return fs_filesize($filename);
 	}
 }

@@ -25,65 +25,62 @@
  * @author	Jens Tkotz
  */
 
-function editField($album, $field, $link = null) {
+/** Shows the content of a field and if permitted also a link to the edit popup
+ *
+ * @param   object  $album
+ * @param   string  $field
+ * @param   string  $url
+ * @return  string  $html
+*/
+function editField($album, $field, $url = null) {
 	global $gallery;
 
-	$buf = '';
-
-	if ($link) {
-		$buf .= "<a href=\"$link\">";
+	if($url) {
+		$html = galleryLink($url, $album->fields[$field], array(), '', false, false);
 	}
-
-	$buf .= $album->fields[$field];
-
-	if ($link) {
-		$buf .= '</a>';
+	else {
+		$html = nl2br($album->fields[$field]);
 	}
 
 	if ($gallery->user->canChangeTextOfAlbum($album)) {
-		if (!strcmp($buf, "")) {
-			$buf = "<i>&lt;". gTranslate('common', "Empty") . "&gt;</i>";
+		if (empty($album->fields[$field])) {
+			$html = "<i>&lt;". gTranslate('common', "Empty") . "&gt;</i>";
 		}
-		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field"; // should replace with &amp; for validatation
-		$buf .= ' <span class="editlink">';
-		$buf .= popup_link( "[". sprintf(gTranslate('common', "edit %s"), gTranslate('common', $field)) . "]", $url) ;
-		$buf .= '</span>';
+		// should replace with &amp; for validatation
+		$url = "edit_field.php?set_albumName={$album->fields['name']}&field=$field";
+
+		$html .= ' '. popup_link(sprintf(gTranslate('common', "edit %s"), _($field)), $url, 0, true, 500, 500, 'g-small');
 	}
 
-	return $buf;
+	return $html;
 }
 
 /** Shows the caption of an albumitem and if permitted also a link to the edit popup
  *
  * @param   object  $album
  * @param   integer $index	albumitem index
- * @return  string  $buf
+ * @return  string  $html
 */
 function editCaption($album, $index) {
 	global $gallery;
 
-	$abuf ='';
-	$buf  = nl2br($album->getCaption($index));
+	$html  = nl2br($album->getCaption($index));
 
 	if (($gallery->user->canChangeTextOfAlbum($album) ||
-		($gallery->album->getItemOwnerModify() &&
-		$gallery->album->isItemOwner($gallery->user->getUid(), $index))) &&
-		!$gallery->session->offline)
-	{
-		if (empty($buf)) {
-			$buf = '<i>&lt;'. gTranslate('common', "No Caption") .'&gt;</i>';
-		}
+	  ($gallery->album->getItemOwnerModify() &&
+	  $gallery->album->isItemOwner($gallery->user->getUid(), $index))) &&
+	  !$gallery->session->offline) {
 
+		if (empty($html)) {
+			$html = '<i>&lt;'. gTranslate('common', "No Caption") .'&gt;</i>';
+		}
 		$url = "edit_caption.php?set_albumName={$album->fields['name']}&index=$index";
-		$abuf = '<span class="editlink">';
-		$abuf .= popup_link("[". gTranslate('common',"edit") ."]", $url);
-		$abuf .= '</span>';
+		$html .= popup_link(gTranslate('common',"edit"), $url);
 	}
 
-	$buf .= $album->getCaptionName($index);
-	$buf .= $abuf;
+	$html .= $album->getCaptionName($index);
 
-	return $buf;
+	return $html;
 }
 
 function viewComments($index, $addComments, $page_url, $newestFirst = false, $addType = '', $album = false) {
@@ -110,7 +107,7 @@ function viewComments($index, $addComments, $page_url, $newestFirst = false, $ad
 			$url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 
 			echo "\n" .'<div align="center" class="editlink">' .
-				popup_link('[' . gTranslate('common', "add comment") . ']', $url, 0) .
+				popup_link(gTranslate('common', "add comment"), $url, 0) .
 				'</div><br>';
 		}
 	}
@@ -332,7 +329,7 @@ function createTreeArray($albumName, $depth = 0) {
 				if (!strcmp($nestedAlbum->fields['display_clicks'], 'yes') &&
 					!$gallery->session->offline)
 				{
-					$clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks()) . ")";
+					$clicksText = "(" . gTranslate('common', "1 view", "%d views", $nestedAlbum->getClicks(),'', true) . ")";
 				}
 				else {
 					$clicksText = '';
@@ -347,16 +344,17 @@ function createTreeArray($albumName, $depth = 0) {
 				$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 
 				$tree[] = array(
-						'albumUrl' => $albumUrl,
-						'albumName' => $myName,
-						'titel' => $title,
-						'clicksText' => $clicksText,
-						'microthumb' => $microthumb,
-						'subTree' => $subtree
+						'albumUrl'	=> $albumUrl,
+						'albumName'	=> $myName,
+						'titel'		=> $title,
+						'clicksText'	=> $clicksText,
+						'microthumb'	=> $microthumb,
+						'subTree'	=> $subtree
 				);
 			}
 		}
 	}
+
 	return $tree;
 }
 
@@ -461,6 +459,8 @@ function galleryDocs() {
 function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $withExif = true, $full = NULL, $forceRefresh = false) {
 	global $gallery;
 
+	$html = '';
+
 	$photo = $gallery->album->getPhoto($index);
 
 	// if we have extra fiels and we want to show them, then get the values
@@ -472,15 +472,17 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 	}
 
 	if ($withExif && (isset($gallery->app->use_exif) || isset($gallery->app->exiftags)) &&
-		(eregi("jpe?g\$", $photo->image->type)))
-	{
-		$myExif = $gallery->album->getExif($index, isset($forceRefresh));
-		if (!empty($myExif) && !isset($myExif['Error'])) {
+	   (eregi("jpe?g\$", $photo->image->type))) {
+		$myExif = $gallery->album->getExif($index, $forceRefresh);
 
+		 if (!empty($myExif) && !isset($myExif['Error'])) {
 			$tables[gTranslate('common', "EXIF Data")]  = $myExif;
 		}
 		elseif (isset($myExif['status']) && $myExif['status'] == 1) {
-			echo '<p class="warning">'. gTranslate('common', "Display of EXIF data enabled, but no data found.") .'</p>';
+			echo infoBox(array(array(
+				'text' => gTranslate('common', "Display of EXIF data enabled, but no data found.")
+				)), '', false
+			);
 		}
 	}
 
@@ -494,12 +496,14 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 		$customFieldsTable->setCaption($caption, 'customFieldsTableCaption');
 
 		foreach ($fields as $key => $value) {
-			$customFieldsTable->addElement(array('content' => $key));
-			$customFieldsTable->addElement(array('content' => ':'));
-			$customFieldsTable->addElement(array('content' => $value));
+			$customFieldsTable->addElement(array('content' => $key, 'cellArgs' => array('align' => 'right')));
+			$customFieldsTable->addElement(array('content' => ':', 'cellArgs' => array('align' => 'center', 'width' => '20')));
+			$customFieldsTable->addElement(array('content' => $value, 'cellArgs' => array('align' => 'left')));
 		}
-		echo $customFieldsTable->render();
+		$html = $customFieldsTable->render();
 	}
+
+	echo $html;
 }
 
 function includeTemplate($tplName, $skinname='') {
@@ -695,9 +699,10 @@ function dismissAndReload() {
 	if (isDebugging()) {
 		echo "\n<body onLoad='opener.location.reload();'>\n";
 		common_header();
-		echo '<p align="center" class="error">';
-		echo gTranslate('common', "Not closing this window because debug mode is on.") ;
-		echo "\n<hr>\n</p>";
+		echo infoBox(array(
+			array('type' => 'information',
+			'text' => gTranslate('common', "Not closing this window because debug mode is on.")
+		)));
 		echo "\n</body>";
 	}
 	else {
@@ -708,9 +713,7 @@ function dismissAndReload() {
 }
 
 function reload() {
-	echo '<script language="javascript1.2" type="text/JavaScript">';
-	echo 'opener.location.reload()';
-	echo '</script>';
+	echo '<script type="text/javascript">opener.location.reload()</script>';
 }
 
 /**
@@ -1168,7 +1171,7 @@ function available_skins($description_only = false) {
 
 			if ($screenshot) {
 				$name = popup_link($name, $screenshot, 1, false,
-				500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ');
+				500, 800, '', 'document.config.skinname.options['. $skincount. '].selected=true; ', false, false);
 			}
 
 			$descriptions.="\n<dt style=\"margin-top:5px;\">$name";
@@ -1497,6 +1500,58 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 	$html = '<br>' . $html;
 
 	return $html;
+}
+
+/**
+ * Gallery Version of htmlentities
+ * Enhancement: Depending on PHP Version and Charset use
+ * optional 3rd Parameter of php's htmlentities
+ */
+function gallery_htmlentities($string) {
+	global $gallery;
+
+	if (isset($gallery->charset) && isSupportedCharset($gallery->charset)) {
+		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
+	}
+	else {
+		return htmlentities($string);
+	}
+}
+
+/**
+ * Sanitize an (input) value.
+ *
+ * @param string	$value
+ * @return string	$sanitized
+ * @author Jens Tkotz
+ */
+function sanitizeInput($value) {
+	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+	static $safehtml;
+
+	if (empty($safehtml)) {
+		$safehtml =& new HTML_Safe();
+	}
+
+	if(is_array($value)) {
+		//echo "\n -> Array";
+		//echo "\n<ul>";
+		foreach($value as $subkey => $subvalue) {
+			//printf("\n<li>Checking SubValue: %s", gHtmlSafe($subkey));
+			$sanitized[$subkey] = sanitizeInput($subvalue);
+		}
+		//echo "\n</ul>";
+	}
+	else {
+		//$sanitized = gHtmlSafe($safehtml->parse($value));
+		$sanitized = unhtmlentities($safehtml->parse($value));
+
+		if($sanitized != $value) {
+			//echo "--->". $sanitized;
+		}
+	}
+
+	return $sanitized;
 }
 
 function gHtmlSafe($string) {

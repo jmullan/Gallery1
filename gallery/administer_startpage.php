@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,8 +52,7 @@ $sortOptions = array(
     'creation_date' => gTranslate('core', "By creation date (works only with albums created with 1.5.2 or newer).")
 );
 
-doctype();
-printPopupStart(gTranslate('core', "Administer startpage"));
+printPopupStart(gTranslate('core', "Administer startpage"), '', 'left');
 
 if(empty($sort)) {
     echo "\n<table width=\"100%\">";
@@ -71,7 +70,7 @@ if(empty($sort)) {
     echo "\n</table>";
 }
 elseif (empty($order)) {
-    echo makeFormIntro('administer_startpage.php');
+	echo makeFormIntro('administer_startpage.php', array(), array('type' => 'popup'));
 ?>
 <table>
 <caption><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
@@ -93,8 +92,8 @@ elseif (empty($order)) {
 </p>
 
 <input type="hidden" name="sort" value="1">
-<input type="submit" name="confirm" value="<?php echo gTranslate('core', "Sort") ?>">
-<input type="button" name="cancel" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
+<?php echo gSubmit('confirm', gTranslate('core', "Sort")); ?>
+<?php echo gButton('cancel', gTranslate('core', "Close Window"),'parent.close()'); ?>
 </form>
 <?php
 }
@@ -103,9 +102,8 @@ else {
     $albumDB = new AlbumDB(FALSE);
     $albumDB->sortByField($fieldname, $order);
     dismissAndReload();
-?>
-    <input type="button" name="cancel" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
-<?php
+
+    echo gButton('cancel', gTranslate('core', "Close Window"),'parent.close()');
 }
 ?>
 </div>

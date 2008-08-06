@@ -340,47 +340,48 @@ class Album {
 
 		$this->fields['last_quality'] = $gallery->app->jpegImageQuality;
 		$check = array(
-		'thumb_size',
-		'thumb_ratio',
-		'resize_size',
-		'resize_file_size',
-		'max_size',
-		'max_file_size',
-		'rows',
-		'cols',
-		'fit_to_window',
-		'use_fullOnly',
-		'print_photos',
-		'display_clicks',
-		'item_owner_display',
-		'item_owner_modify',
-		'item_owner_delete',
-		'add_to_beginning',
-		'poll_type',
-		'poll_scale',
-		'poll_nv_pairs',
-		'poll_hint',
-		'poll_show_results',
-		'poll_num_results',
-		'voter_class',
-		'slideshow_type',
-		'slideshow_length',
-		'slideshow_recursive',
-		'slideshow_loop',
-		'album_frame',
-		'thumb_frame',
-		'image_frame',
-		'showDimensions',
-		'background',
-		'nav_thumbs',
-		'nav_thumbs_style',
-		'nav_thumbs_first_last',
-		'nav_thumbs_prev_shown',
-		'nav_thumbs_next_shown',
-		'nav_thumbs_location',
-		'nav_thumbs_size',
-		'nav_thumbs_current_bonus'
+			'thumb_size',
+			'thumb_ratio',
+			'resize_size',
+			'resize_file_size',
+			'max_size',
+			'max_file_size',
+			'rows',
+			'cols',
+			'fit_to_window',
+			'use_fullOnly',
+			'print_photos',
+			'display_clicks',
+			'item_owner_display',
+			'item_owner_modify',
+			'item_owner_delete',
+			'add_to_beginning',
+			'poll_type',
+			'poll_scale',
+			'poll_nv_pairs',
+			'poll_hint',
+			'poll_show_results',
+			'poll_num_results',
+			'voter_class',
+			'slideshow_type',
+			'slideshow_length',
+			'slideshow_recursive',
+			'slideshow_loop',
+			'album_frame',
+			'thumb_frame',
+			'image_frame',
+			'showDimensions',
+			'background',
+			'nav_thumbs',
+			'nav_thumbs_style',
+			'nav_thumbs_first_last',
+			'nav_thumbs_prev_shown',
+			'nav_thumbs_next_shown',
+			'nav_thumbs_location',
+			'nav_thumbs_size',
+			'nav_thumbs_current_bonus'
 		);
+
 		foreach ($check as $field) {
 			if (!isset($this->fields[$field]) && isset($gallery->app->default[$field])) {
 				$this->fields[$field] = $gallery->app->default[$field];
@@ -513,8 +514,9 @@ class Album {
 			if (isset($this->fields['print_photos']['shutterfly']['donation'])) {
 				unset($this->fields['print_photos']['shutterfly']['donation']);
 			}
+
 			if (isset($this->fields['print_photos']['shutterfly']) &&
-			!isset($this->fields['print_photos']['shutterfly']['checked'])) {
+				!isset($this->fields['print_photos']['shutterfly']['checked'])) {
 				unset($this->fields['print_photos']['shutterfly']);
 			}
 		}
@@ -528,6 +530,7 @@ class Album {
 				$changed = true;
 			}
 		}
+
 		// In gallery 1.5.1 the Structure for print services was 'de-suck-ified' (quoted B.M.W.)
 		if ($this->version < 35) {
 			$tempArray = array();
@@ -856,6 +859,18 @@ class Album {
 		return $size;
 	}
 
+	function setHighlight($index) {
+		debugMessage(gTranslate('core', "Setting highlight"), __FILE__, __LINE__, 3);
+
+		$this->updateSerial = 1;
+		$numPhotos = $this->numPhotos(1);
+
+		for ($i = 1; $i <= $numPhotos; $i++) {
+			$photo = &$this->getPhoto($i);
+			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
+		}
+	}
+
 	/**
 	 * Returns ratio of highlight,
 	 * which is either thumb ratio of parent album, or value from config if root.
@@ -875,18 +890,6 @@ class Album {
 		}
 
 		return $ratio;
-	}
-
-	function setHighlight($index) {
-		debugMessage(gTranslate('core', "Setting highlight"), __FILE__, __LINE__, 3);
-
-		$this->updateSerial = 1;
-		$numPhotos = $this->numPhotos(1);
-
-		for ($i = 1; $i <= $numPhotos; $i++) {
-			$photo = &$this->getPhoto($i);
-			$photo->setHighlight($this->getAlbumDir(), $i == $index, $this);
-		}
 	}
 
 	function load($name, $loadphotos = true) {
@@ -952,10 +955,10 @@ class Album {
 	}
 
 	function loadFromFile($filename) {
-		$tmp = unserialize(getFile($filename));
+		$tmp = unserialize(fs_file_get_contents($filename));
 		if (strcasecmp(get_class($tmp), "album")) {
 			/* Dunno what we unserialized .. but it wasn't an album! */
-			$tmp = unserialize(getFile($filename, true));
+			$tmp = unserialize(fs_file_get_contents($filename, true));
 			if (strcasecmp(get_class($tmp), "album")) {
 				return 0;
 			}
@@ -968,9 +971,9 @@ class Album {
 	}
 
 	function loadPhotosFromFile($filename) {
-		$tmp = unserialize(getFile($filename));
+		$tmp = unserialize(fs_file_get_contents($filename));
 		if (!is_Array($tmp)){
-			$tmp = unserialize(getFile($filename, true));
+			$tmp = unserialize(fs_file_get_contents($filename, true));
 			if (!is_Array($tmp)){
 				return 0;
 			}
@@ -1549,6 +1552,12 @@ class Album {
 	function deletePhoto($index, $forceResetHighlight = "0", $recursive = 1) {
 		global $gallery;
 
+		$index = intval($index);
+
+		if (! $this->getPhoto($index)) {
+			return false;
+		}
+
 		// Get rid of the block-random cache file, to prevent out-of-bounds
 		// errors from getPhoto()
 		$randomBlockCache = $gallery->app->albumDir . "/block-random.dat";
@@ -1704,9 +1713,9 @@ class Album {
 	 * @return string
 	 */
 	function getPhotoId($index) {
-		$photo = $this->getPhoto($index);
+		$item = $this->getPhoto($index);
 
-		return $photo->getPhotoId();
+		return $item->getPhotoId();
 	}
 
 	function getAlbumDir() {
@@ -1730,8 +1739,10 @@ class Album {
 		* image.  Highlights are also typically pretty small.  So,
 		* if this is for a highlight, don't mirror it.
 		*/
-		if (isset($gallery->app->feature["mirror"]) && isset($gallery->app->mirrorSites) &&
-		strcmp($type, "highlight")) {
+		if (isset($gallery->app->feature['mirror']) &&
+		    isset($gallery->app->mirrorSites) &&
+		    strcmp($type, "highlight"))
+		{
 			foreach(split("[[:space:]]+", $gallery->app->mirrorSites) as $base_url) {
 				$base_url .= $albumPath;
 				$serial = $base_url . "/serial.{$this->fields['serial_number']}.dat";
@@ -1878,6 +1889,8 @@ class Album {
 
 	function &getPhoto($index) {
 		global $errortext;
+
+		$index = intval($index);
 
 		if ($index >= 1 && $index <= sizeof($this->photos)) {
 			$photo = & $this->photos[$index-1];
@@ -2242,9 +2255,26 @@ class Album {
 		return false;
 	}
 
+	/**
+	 * Is an albumitem an album?
+	 *
+	 * @param integer  $index
+	 * @return boolean $ret
+	 */
 	function isAlbum($index) {
 		$photo = $this->getPhoto($index);
-		return ($photo->getAlbumName() !== NULL) ? true : false;
+
+		if(!$photo) {
+			$ret = false;
+		}
+		elseif($photo->getAlbumName() === NULL) {
+			$ret = false;
+		}
+		else {
+			$ret = true;
+		}
+
+		return $ret;
 	}
 
 	/**
@@ -2708,6 +2738,10 @@ class Album {
 	function isOwner($uid) {
 		global $gallery;
 
+		if(!isset($this->fields['owner'])) {
+			return false;
+		}
+
 		if($uid == $this->fields['owner']) {
 			return true;
 		}
@@ -2721,8 +2755,24 @@ class Album {
 		return false;
 	}
 
+	/**
+	 * Sets the owner of an album.
+	 *
+	 * @param integer $uid
+	 * @return boolean		True if a corresponding user to the UID exits.
+	 */
 	function setOwner($uid) {
-		$this->fields['owner'] = $uid;
+		global $gallery;
+
+		$tempUser = $gallery->userDB->getUserByUid($uid);
+
+		if($tempUser->getUid() == $uid) {
+			$this->fields['owner'] = $uid;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	function getOwner() {
@@ -2737,17 +2787,19 @@ class Album {
 	 * @return array
 	 */
 	function getExtraFields($all = true) {
+		$extra_fields = array();
+
 		if ($all) {
-			return $this->fields["extra_fields"];
-		} else {
-			$return = array();
-			foreach($this->fields["extra_fields"] as $value) {
+			$extra_fields = $this->fields['extra_fields'];
+		}
+		else {
+			foreach($this->fields['extra_fields'] as $value) {
 				if ($value != 'AltText') {
-					$return[]=$value;
+					$extra_fields[] = $value;
 				}
 			}
-			return $return;
 		}
+		return $extra_fields;
 	}
 
 	function setExtraFields($extra_fields) {
@@ -2796,22 +2848,51 @@ class Album {
 	 */
 	function getItemOwnerModify() {
 		if (isset($this->fields['item_owner_modify']) &&
-		$this->fields['item_owner_modify'] == 'yes') {
-			return true;
+			$this->fields['item_owner_modify'] == 'yes')
+		{
+			$ret = true;
 		}
 		else {
-			return false;
+			$ret = false;
 		}
+
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(gTranslate('core',"Owner can modify his/her own items."), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(gTranslate('core',"Owner can NOT modify his/her own items."), __FILE__, __LINE__);
+			}
+		}
+
+		return $ret;
 	}
 
+	/**
+	 * Can the owner of items delete his/her own items?
+	 *
+	 * @return boolean $ret
+	 */
 	function getItemOwnerDelete() {
 		if (isset($this->fields['item_owner_delete']) &&
-		$this->fields['item_owner_delete'] == 'yes') {
-			return true;
+			$this->fields['item_owner_delete'] == 'yes')
+		{
+			$ret = true;
 		}
 		else {
-			return false;
+			$ret = false;
 		}
+
+		if (isDebugging(2)) {
+			if ($ret) {
+				debugMessage(gTranslate('core',"Owner can delete his/her own items."), __FILE__, __LINE__);
+			}
+			else {
+				debugMessage(gTranslate('core',"Owner can NOT delete his/her own items."), __FILE__, __LINE__);
+			}
+		}
+
+		return $ret;
 	}
 
 	function getAddToBeginning() {
@@ -2992,9 +3073,14 @@ class Album {
 
 	function getVotingIdByIndex($index) {
 		$albumName = $this->getAlbumName($index);
-		if ($albumName) {
+
+		if($albumName === null) {
+			$vote_id = null;
+		}
+		elseif (!empty($albumName)) {
 			$vote_id = "album.$albumName";
-		} else {
+		}
+		else {
 			$vote_id = "item.".$this->getPhotoId($index);
 		}
 

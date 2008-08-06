@@ -68,7 +68,7 @@ class AlbumItem {
 
 	function getUploadDate() {
 		if (!$this->uploadDate) {
-			return 0;
+			return false;
 		}
 		else {
 			return $this->uploadDate;
@@ -108,6 +108,8 @@ class AlbumItem {
 
 		$file = $dir . "/" . $this->image->name . "." . $this->image->type;
 
+		echo debugMessage(sprintf(gTranslate('core', "Getting Exif of file '%s'"), $file), __FILE__, __LINE__);
+
 		/*
 		* If we don't already have the exif data, get it now.
 		* Otherwise return what we have.
@@ -117,8 +119,8 @@ class AlbumItem {
 			if (empty($this->exifData) || $forceRefresh) {
 				/* Cache the current EXIF data and update the item capture date */
 				list($status, $this->exifData) = getExif($file);
-				$this->setItemCaptureDate();
-				$needToSave = 1;
+				$this->setItemCaptureDate($this->exifData);
+				$needToSave = true;
 			}
 			else {
 				/* We have a cached value and are not forcing a refresh */
@@ -534,7 +536,13 @@ class AlbumItem {
 	function watermark($dir, $wmName, $wmAlphaName, $wmAlign, $wmAlignX, $wmAlignY, $preview = 0, $previewSize = 0, $wmSelect = 0) {
 		global $gallery;
 
-		$type = $this->image->type;
+		if(isset($this->image)) {
+			$type = $this->image->type;
+		}
+		else {
+			return false;
+		}
+
 		if (isMovie($type) || $this->isAlbum()) {
 			// currently there is no watermarking support for movies
 			return (0);
@@ -579,18 +587,26 @@ class AlbumItem {
 				$high->setDimensions($w, $h);
 				$this->preview = $high;
 			}
-		} else {
-			// $wmSelect of 0=both Sized and Full
-			if ($wmSelect != 1) { // 1=Only Sized Photos
+		}
+		else {
+			/* $wmSelect =
+			 * 0 - Both, sized and Full
+			 * 1 - Only sized photos
+			 * 2 - Only full photos
+			*/
+
+			// Watermark the fullsize
+			if ($wmSelect != 1) {
 				$retval = watermark_image(
-				"$dir/$name.$type",
-				"$dir/$name.$type",
-				$gallery->app->watermarkDir."/$wmName",
-				$gallery->app->watermarkDir."/$wmAlphaName",
-				$wmAlign, $wmAlignX, $wmAlignY
+					"$dir/$name.$type",
+					"$dir/$name.$type",
+					$gallery->app->watermarkDir . '/' . $wmName,
+					$gallery->app->watermarkDir . '/' . $wmAlphaName,
+					$wmAlign, $wmAlignX, $wmAlignY
 				);
 			}
-			// 2=Only Full Photos
+
+			// Watermark the resized
 			if ($wmSelect != 2) {
 				if (($wmSelect == 1) && !$this->isResized()) {
 					// If watermarking only resized images, and image is not resized
@@ -668,7 +684,18 @@ class AlbumItem {
 
 		if ($this->isMovie()) {
 			/* Use a preset thumbnail */
-			fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
+			if(realpath($gallery->app->movieThumbnail)) {
+				fs_copy($gallery->app->movieThumbnail, "$dir/$name.thumb.jpg");
+			}
+			else {
+				echo infobox(array(array(
+					'type' => 'error',
+					'text' => sprintf(gTranslate('core', "Defined thumbnail does not exist. %s"),
+								'<br>'. $gallery->app->movieThumbnail)
+				)));
+				return false;
+			}
+
 			$this->thumbnail = new Image;
 			$this->thumbnail->setFile($dir, "$name.thumb", "jpg");
 			list($w, $h) = getDimensions("$dir/$name.thumb.jpg");
@@ -852,9 +879,19 @@ class AlbumItem {
 		return $imageName;
 	}
 
+
+	/**
+	 * Returns the name of an item.
+	 * Can either be the name of the photo, or the albumname.
+	 *
+	 * @return string
+	 */
 	function getPhotoId() {
 		if ($this->image) {
 			return $this->image->getId();
+		}
+		elseif ($this->getAlbumName() != NULL) {
+			return $this->getAlbumName();
 		}
 		else {
 			return "unknown";
@@ -991,6 +1028,7 @@ class AlbumItem {
 			return;
 		}
 		$uid = $user->getUid();
+		
 		unset($this->emailMe[$type][$uid]);
 	}
 

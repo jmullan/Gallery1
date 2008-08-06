@@ -107,7 +107,7 @@ function loadBlacklist() {
 	static $blacklist;
 
 	if (!isset($blacklist)) {
-		$tmp = getFile(getBlacklistFilename());
+		$tmp = fs_file_get_contents(getBlacklistFilename());
 		$blacklist = unserialize($tmp);
 
 		if (empty($blacklist)) {
@@ -863,8 +863,8 @@ function getOS () {
 function generate_password($len = 10) {
 	$result = '';
 	$alpha  = 'abcdefghijklmnopqrstuvwxyz' .
-	'0123456789' .
-	'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		  '0123456789' .
+		  'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 	$size = strlen($alpha) - 1;
 	$used = array();
@@ -1012,16 +1012,18 @@ function testRequirement($test) {
 
 /**
  * @return string	$location	Location where Gallery assmes the user. Can be 'core' or 'config'
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function where_i_am() {
 	global $GALLERY_OK;
 
 	if (!stristr($_SERVER['REQUEST_URI'],'setup') || $GALLERY_OK) {
 		$location = 'core';
-	} else {
+	}
+	else {
 		$location = 'config';
 	}
+
 	return $location;
 }
 
@@ -1041,7 +1043,8 @@ function getSVNRevision($file) {
 	$contents = file($path);
 	foreach ($contents as $line) {
 		if (ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24$", trim($line), $matches) ||
-		ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches)) {
+		    ereg("\\\x24\x49\x64: [A-Za-z_.0-9-]* ([0-9]*) .*\x24 ", trim($line), $matches))
+		{
 			if ($matches[1]) {
 				return $matches[1];
 			}
@@ -1052,15 +1055,15 @@ function getSVNRevision($file) {
 }
 
 /* Return -1 if old version is greater than new version, 0 if they are the
-same and 1 if new version is greater.
-*/
+ * same and 1 if new version is greater.
+ */
 function compareVersions($old_str, $new_str) {
 	if ($old_str === $new_str) {
 		return 0;
 	}
 
-	$old=explode('.', $old_str);
-	$new=explode('.', $new_str);
+	$old = explode('.', $old_str);
+	$new = explode('.', $new_str);
 
 	foreach ($old as $old_number) {
 		$old_number=0+$old_number;
@@ -1199,29 +1202,29 @@ function calcVAdivDimension($frame, $iHeight, $iWidth, $borderwidth) {
 		case "none":
 			$divCellWidth = $thumbsize + 3;
 			$divCellAdd =  3;
-			break;
+		break;
 
 		case "dots":
 			$divCellWidth = $thumbsize + 7;
 			$divCellAdd =  7;
-			break;
+		break;
 
 		case "solid":
 			$divCellWidth = $thumbsize + $borderwidth + 3;
 			$divCellAdd =  $borderwidth + 3;
-			break;
+		break;
 
 		default: // use frames directory or fallback to none.
-		if(array_key_exists($frame, available_frames())) {
-			require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
+			if(array_key_exists($frame, available_frames())) {
+				require(dirname(__FILE__) . "/html_wrap/frames/$frame/frame.def");
 
-			$divCellWidth = $thumbsize + $widthTL + $widthTR;
-			$divCellAdd = $heightTT + $heightBB;
-		}
-		else {
-			$divCellWidth = $thumbsize + 3;
-			$divCellAdd =  3;
-		}
+				$divCellWidth = $thumbsize + $widthTL + $widthTR;
+				$divCellAdd = $heightTT + $heightBB;
+			}
+			else {
+				$divCellWidth = $thumbsize + 3;
+				$divCellAdd =  3;
+			}
 		break;
 	} // end of switch
 

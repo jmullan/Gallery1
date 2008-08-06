@@ -11,15 +11,15 @@
  */
 
 //-- shorten the variables for convinience ---
-$borderWidth = $gallery->html_wrap['borderWidth'];
-$borderColor = $gallery->html_wrap['borderColor'];
-$pixelImage = isset($gallery->html_wrap['pixelImage']) ? $gallery->html_wrap['pixelImage'] : getImagePath('pixel_trans.gif');
-$imageWidth = $gallery->html_wrap['imageWidth'];
-$imageHeight = $gallery->html_wrap['imageHeight'];
-$href = $gallery->html_wrap['imageHref'];
-$tag = $gallery->html_wrap['imageTag'];
-$frame = $gallery->html_wrap['frame'];
-$attr = isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : '';
+$borderWidth	= $gallery->html_wrap['borderWidth'];
+$borderColor	= $gallery->html_wrap['borderColor'];
+$pixelImage	= isset($gallery->html_wrap['pixelImage']) ? $gallery->html_wrap['pixelImage'] : getImagePath('pixel_trans.gif');
+$imageWidth	= $gallery->html_wrap['imageWidth'];
+$imageHeight	= $gallery->html_wrap['imageHeight'];
+$href		= $gallery->html_wrap['imageHref'];
+$tag		= $gallery->html_wrap['imageTag'];
+$frame		= $gallery->html_wrap['frame'];
+$attr		= isset($gallery->html_wrap['attr']) ? $gallery->html_wrap['attr'] : '';
 
 $base = '';
 
@@ -30,15 +30,12 @@ else {
     $base = getGalleryBaseUrl();
 }
 
-if (!empty($href) ) {
-  $href_tag= "<a href=\"$href\" ". $attr .">$tag</a>";
-} else {
-  $href_tag= '<a '. $attr .">$tag</a>";
-}
+$href_tag = trim(galleryLink($href, $tag, $attr, '', false, false));
 
 if (!in_array($frame, array('none', 'dots', 'solid')) &&
-    !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def")) {
-        $frame = 'none';
+    !fs_file_exists(dirname(__FILE__) . "/frames/$frame/frame.def"))
+{
+	$frame = 'none';
 }
 
 if($borderWidth > 0 && $borderColor != '') {
@@ -68,7 +65,11 @@ switch ($frame) {
 		echo "<div class=\"g-photo\" $idImage style=\"$style; border:${borderWidth}px dashed $borderColor;\">$href_tag</div>";
 	break;
 
-    default: // use frames directory or fallback to none
+    // use frames directory or fallback to none
+    default:
+	/**
+    	 * If given frame name is valid, include the infos, else use no frame.
+    	 */
 	if(array_key_exists($frame, available_frames())) {
 	    $base .= "/html_wrap/frames/$frame";
 	    require(dirname(__FILE__) . "/frames/$frame/frame.def");

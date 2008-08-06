@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,17 +53,8 @@ if (!empty($formaction) && $formaction == 'create') {
 	}
 
 	if (!$errorCount) {
-		doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Create User") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-	<div class="popup" align="center">
-		<div class="popuphead"><?php echo _("Create User") ?></div>
-	<?php
+		printPopupStart(gTranslate('core', "Create User"), '', 'left');
+
 		$tmpUser = new Gallery_User();
 		$tmpUser->setUsername($uname);
 		$tmpUser->setPassword($new_password1);
@@ -78,7 +69,10 @@ if (!empty($formaction) && $formaction == 'create') {
 		$tmpUser->log("register");
 		$tmpUser->save();
 
-		echo infoLine(sprintf(_("User %s created"), $uname), 'success');
+		echo infoBox(array(array(
+		  'type' => 'success',
+		  'text' => sprintf(gTranslate('core', "User %s created"), $uname)))
+		);
 
 		if (!empty($send_email)) {
 			$values = array('password' => $new_password1, 
@@ -106,11 +100,12 @@ if (!empty($formaction) && $formaction == 'create') {
 			       	print "<br><br>";
 		       	}
 	       	} 
+
+	echo "\n<br><br>";
+	echo makeFormIntro('create_user.php', array(), array('type' => 'popup'));
+	echo gSubmit('moreuser', gTranslate('core', "Create another user"));
+	echo gSubmit('dismiss', gTranslate('core', "Back to usermanagement"));
 	?>
-	<br><br>
-	<form>
-		<input type="submit" name="moreuser" value="<?php echo _("Create another user") ?>">
-		<input type="submit" name="dismiss" value="<?php echo _("Back to usermanagement") ?>">
 	</form>
 	</div>
 </body>
@@ -119,19 +114,10 @@ if (!empty($formaction) && $formaction == 'create') {
 		exit;
        	}
 } else if (!empty($formaction) || isset($dismiss)) {
-	header("Location: " . makeGalleryHeaderUrl("manage_users.php"));
+	header("Location: " . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
 }
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Create User") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Create User") ?></div>
-<div class="popup" align="center">
-<?php
+printPopupStart(gTranslate('core', "Create User"), '', 'left');
+
 $canCreate = 0;
 
 $allowChange["uname"]		= true;
@@ -146,13 +132,11 @@ $allowChange["default_language"] = true;
 $allowChange["member_file"]	= false;
 $allowChange["admin"]		= true;
 
-echo _("Create a new user here.");
-?>
-<br>
+echo "\n<center>". gTranslate('core', "Create a new user here.") .'</center>';
 
-<?php echo makeFormIntro('create_user.php', array(
-        'name'     => 'usercreate_form', 
-        'onsubmit' => 'usercreate_form.create.disabled = true;'));
+echo makeFormIntro('create_user.php',
+	array('name' => 'usercreate_form', 'onSubmit' => 'usercreate_form.create.disabled = true;'),
+	array('type' => 'popup'));
 ?>
 <br>
 
@@ -160,9 +144,11 @@ echo _("Create a new user here.");
 
 <br>
 
+  <div style="text-align: center">
 <input type="hidden" name="formaction" value="">
-<input type="submit" name="create" value="<?php echo _("Create user") ?>" onclick="usercreate_form.formaction.value='create'">
-<input type="submit" name="cancel" value="<?php echo _("Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'">
+	<input type="submit" name="create" value="<?php echo gTranslate('core', "Create user") ?>" onclick="usercreate_form.formaction.value='create'" class="g-button">
+	<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="usercreate_form.formaction.value='cancel'" class="g-button">
+  </div>
 </form>
 </div>
 

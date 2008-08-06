@@ -727,22 +727,6 @@ function isSupportedCharset($charset) {
 }
 
 /**
- * Gallery Version of htmlentities
- * Enhancement: Depending on PHP Version and Charset use
- * optional 3rd Parameter of php's htmlentities
- */
-function gallery_htmlentities($string) {
-	global $gallery;
-
-	if (isSupportedCharset($gallery->charset)) {
-		return htmlentities($string,ENT_COMPAT ,$gallery->charset);
-	}
-	else {
-		return htmlentities($string);
-	}
-}
-
-/**
  * Convert all HTML entities to their applicable characters
  */
 function unhtmlentities($string) {

@@ -274,7 +274,7 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 			$usedIDs[] = $id;
 		}
 
-		$form .= "<input type=\"hidden\" id=\"$id\" name=\"$key\" value=\"$val\">\n";
+		$form .= gInput('hidden', $key, null, false, $val, array('id' => $id));
 	}
 
 	return $form;

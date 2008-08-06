@@ -93,7 +93,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 
 		if (fs_file_exists("$userDir/userdb.dat") && is_writeable("$userDir/userdb.dat")) {
-			$tmp = getFile("$userDir/userdb.dat");
+			$tmp = fs_file_get_contents("$userDir/userdb.dat");
 
 			/*
 			 * We moved from class UserDB.php to class Gallery_UserDB.php
@@ -158,7 +158,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if ($level > 1) {
 			// We've recursed too many times.  Abort;
-			return;
+			return false;
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername())) {
@@ -277,7 +277,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 		$this->rebuildUserMap();
 
-		return 0;
+		return false;
 	}
 
 	function rebuildUserMap() {
@@ -318,7 +318,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 					continue;
 				}
 
-				$tmp = getFile($gallery->app->userDir . "/" . $file);
+				$tmp = fs_file_get_contents($gallery->app->userDir . "/" . $file);
 
 				/* In v1.2 we renamed User to Gallery_User */
 				if (!strcmp(substr($tmp, 0, 10), 'O:4:"user"')) {
@@ -353,7 +353,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		if (strlen($username) < 2) {
-			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
+			return sprintf(gTranslate('core', "Username '%s' is too short. Must be at least 2 characters."),
 				$saveToDisplayUserName);
 		}
 

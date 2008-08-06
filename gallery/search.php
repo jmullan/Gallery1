@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,10 +50,10 @@ if (!empty($searchstring)) {
 	echo addSearchForm($searchstring, langRight());
 }
 
-$adminbox['text'] = '<span class="head">'. _("Search") .'</span>';
-$adminbox['commands'] = '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
+$adminbox['text'] = '<span class="head">'. gTranslate('core', "Search") .'</span>';
+$adminbox['commands'] = '[<a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Return to gallery") .'</a>] ';
 
-$breadcrumb["text"][] = _("Gallery") .': <a class="bread" href="'. makeGalleryUrl("albums.php") . '">'.$gallery->app->galleryTitle .'</a>';
+$breadcrumb["text"][] = sprintf(gTranslate('core', "Gallery: %s"), '<a class="bread" href="'. makeGalleryUrl("albums.php") . '">'.$gallery->app->galleryTitle .'</a>');
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
@@ -188,7 +188,7 @@ if (!empty($searchstring)) {
 			}
 
 			/* Search through caption */
-			$searchCaption = _("Caption: ") . $photo->getCaption();
+			$searchCaption = gTranslate('core', "Caption: ") . $photo->getCaption();
 			$searchCaption .= $searchAlbum->getCaptionName($j);
 			$captionMatch = eregi($searchstring, $searchCaption);
 
@@ -218,7 +218,7 @@ if (!empty($searchstring)) {
 				$searchCaption = preg_replace($searchExpr, $searchRepl, $searchCaption);
 				$searchKeywords = preg_replace($searchExpr, $searchRepl, $searchKeywords);
 
-				$text[] = '<div class="desc">'. _("From Album") .":&nbsp;&nbsp;".
+				$text[] = '<div class="desc">'. gTranslate('core', "From Album") .":&nbsp;&nbsp;".
 				$parentURLString .
 				"<a href=\"" .
 					makeAlbumUrl($searchAlbum->fields['name']) . "\">" .
@@ -227,7 +227,7 @@ if (!empty($searchstring)) {
 
 				$text[] = '<div class="desc">'. $searchCaption .'</div>';
 				if ($keywordMatch) { // only display Keywords if there was a keyword match
-					$text[] = '<div class="fineprint">'. _("KEYWORDS") .":&nbsp;&nbsp; $searchKeywords</div><br>";
+					$text[] = '<div class="fineprint">'. gTranslate('core', "KEYWORDS") .":&nbsp;&nbsp; $searchKeywords</div><br>";
 				}
 				$text[] = $commentText;
 				$text[] = $extraFieldsText;
@@ -245,12 +245,12 @@ if (!empty($searchstring)) {
 	/* Now we show what we found ;) */
 	$resultTexts = array(
 		'albums' => array(
-			'found' => sprintf(_("Albums containing %s"), "\"$origstr\""),
-			'none'	=> _("No Album Matches")
+			'found' => sprintf(gTranslate('core', "Albums containing %s"), "\"$origstr\""),
+			'none'	=> gTranslate('core', "No Album Matches")
 		),
 		'images' => array(
-			'found'	=> sprintf(_("Photos containing %s in caption, comment or name."), "\"$origstr\""),
-			'none'	=> _("No Photo Matches")
+			'found'	=> sprintf(gTranslate('core', "Photos containing %s in caption, comment or name."), "\"$origstr\""),
+			'none'	=> gTranslate('core', "No Photo Matches")
 		)
 	);
 
