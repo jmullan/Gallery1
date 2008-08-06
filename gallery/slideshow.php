@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -84,14 +84,14 @@ if (empty($albumName)) {
 	$bgcolor	= $gallery->album->fields['bgcolor'];
 }
 
-$playIconText = getIconText('1rightarrow.gif', _("play"));
-$stopIconText = getIconText('2downarrow.gif', _("stop"));
-$normalSizeIconText = getIconText('window_nofullscreen.gif', _("normal size"));
-$fullSizeIconText = getIconText('window_fullscreen.gif', _("full size"));
-$forwardIconText = getIconText('1rightarrow.gif', _("forward direction"));
-$backwardIconText = getIconText('1leftarrow.gif', _("reverse direction"));
-$delayIconText = getIcontext('history.gif', _("Delay"));
-$loopIconText =  getIcontext('reload.gif', _("Loop:"));
+$playIconText		= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "Play"));
+$stopIconText		= getIconText('slideshow/play_stop.gif', gTranslate('core', "Stop"));
+$normalSizeIconText	= getIconText('window_nofullscreen.gif', gTranslate('core', "Normal size"));
+$fullSizeIconText	= getIconText('window_fullscreen.gif', gTranslate('core', "Full size"));
+$forwardIconText	= getIconText('slideshow/1rightarrow.gif', gTranslate('core', "Forward direction"));
+$backwardIconText	= getIconText('slideshow/1leftarrow.gif', gTranslate('core', "Reverse direction"));
+$delayIconText		= getIcontext('history.gif', gTranslate('core', "Delay"));
+$loopIconText		= getIcontext('reload.gif', gTranslate('core', "Loop:"));
 
 // in offline mode, only high is available, because it's the only
 // one where the photos can be spidered...
@@ -188,20 +188,7 @@ if ( (is_ie && !is_ie4up) || (is_opera && !is_opera5up) || (is_nav && !is_nav6up
 $imageDir = $gallery->app->photoAlbumURL."/images";
 
 #-- breadcrumb text ---
-$upArrowURL = '<img src="' . getImagePath('nav_home.gif') . '" width="13" height="11" '.
-  'alt="' . _("navigate UP") .'" title="' . _("navigate UP") .'" border="0">';
-
-if (isset($gallery->album)) {
-    foreach ($gallery->album->getParentAlbums(true) as $navAlbum) {
-	$breadcrumb["text"][] = $navAlbum['prefixText'] .': <a class="bread" href="'. $navAlbum['url'] . '">'.
-	  $navAlbum['title'] . "&nbsp;" . $upArrowURL . "</a>";
-    }
-}
-else {
-    /* We're on mainpage */
-    $breadcrumb["text"][]= _("Gallery") .": <a class=\"bread\" href=\"" . makeGalleryUrl("albums.php") . "\">" .
-      $gallery->app->galleryTitle . "&nbsp;" . $upArrowURL . "</a>";
-}
+$breadcrumb["text"] = @returnToPathArray($gallery->album, true, true);
 
 $breadcrumb["bordercolor"] = $borderColor;
 
@@ -212,10 +199,10 @@ if ( !$gallery->session->offline) {
 	foreach ($modes as $m => $mt) {
 		$url=makeGalleryUrl('slideshow.php',array('mode' => $m, "set_albumName" => $gallery->session->albumName));
 		if ($m != $mode) {
-			$adminbox["commands"] .= "&nbsp;<a class=\"admin\" href=\"$url\">[" .$modes[$m] ."]</a>";
+			$adminbox['commands'] .= "&nbsp;<a href=\"$url\">[" .$modes[$m] ."]</a>";
 		}
 		else {
-			$adminbox["commands"] .= "&nbsp;" .$modes[$m];
+			$adminbox['commands'] .= "&nbsp;" .$modes[$m];
 		}
 	}
 }

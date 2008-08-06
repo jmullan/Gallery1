@@ -237,11 +237,12 @@ function getDimensions($file) {
 	switch($gallery->app->graphics) {
 		case 'Netpbm':
 			list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-			Netpbm('pnmfile', '--allimages'));
+						netpbm('pnmfile', '--allimages'));
 		break;
+
 		case "ImageMagick":
 			/* This fails under windows, IM isn't returning parsable status output. */
-			list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
+			list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file), '', ''));
 		break;
 
 		default:
