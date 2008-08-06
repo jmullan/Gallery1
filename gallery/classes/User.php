@@ -106,13 +106,24 @@ class Abstract_User {
 		}
 		else {
 			$name = $format;
-			$name = str_replace('!!FULLNAME!!', $this->getFullName(), $name);
-			$name = str_replace('!!USERNAME!!', $this->getUsername(), $name);
-			$name = str_replace('!!EMAIL!!',$this->getEmail(), $name);
-			$name = str_replace('!!MAILTO_FULLNAME!!', '<a href="mailto:' . $this->getEmail().'">'.
-			$this->getFullName() ? $this->getFullName() : $this->getUserName() . '</a>', $name);
-			$name = str_replace('!!MAILTO_USERNAME!!',
-			'<a href="mailto:'. $this->getEmail().'">'.$this->getUserName() . '</a>', $name);
+
+			$fullname = $this->displayName();
+			$username = $this->getUsername();
+			$email = $this->getEmail();
+
+			$name = str_replace('!!FULLNAME!!', $fullname, $name);
+			$name = str_replace('!!USERNAME!!', $username, $name);
+
+			if (!empty($email)) {
+				$name = str_replace('!!EMAIL!!', $email, $name);
+				$name = str_replace('!!MAILTO_FULLNAME!!', "<a href=\"mailto:$email\">$fullname</a>", $name);
+				$name = str_replace('!!MAILTO_USERNAME!!', "<a href=\"mailto:$email\">$username</a>", $name);
+			}
+			else {
+				$name = str_replace('!!EMAIL!!', '', $name);
+				$name = str_replace('!!MAILTO_FULLNAME!!', $fullname , $name);
+				$name = str_replace('!!MAILTO_USERNAME!!', $fullname , $name);
+			}
 		}
 
 		if(empty($name)) {

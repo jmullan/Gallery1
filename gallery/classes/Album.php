@@ -374,6 +374,7 @@ class Album {
 			'thumb_frame',
 			'image_frame',
 			'showDimensions',
+			'dimensionsAsPopup',
 			'background',
 			'nav_thumbs',
 			'nav_thumbs_style',
@@ -2884,6 +2885,48 @@ class Album {
 		return $this->getPerm("canViewFullImages", $uid);
 	}
 
+	/**
+	 * Can a user see an item?
+	 *
+	 * @param object   $user
+	 * @param integer  $index
+	 * @param boolean  $full
+	 * @return boolean
+	 * @author Jens Tkotz
+	 */
+	function canViewItem($user, $index, $full = false) {
+		if(empty($user)) {
+			return false;
+		}
+
+		$uuid		= $user->getUid();
+		$canWrite	= $user->canWriteToAlbum($this);
+		$item		= $this->getPhoto($index);
+
+		if ($item->isAlbum()) {
+			$subalbum = new Album();
+			$subalbum->load($item->getAlbumName());
+			if (($user->canReadAlbum($subalbum) && !$item->isHidden()) || $user->canWriteToAlbum($subalbum)) {
+				if($full) {
+					return $this->canViewFullImages($uuid);
+				}
+				else {
+					return true;
+				}
+			}
+		}
+		elseif ($canWrite || !$item->isHidden() || $this->isItemOwner($uuid, $itemNr)) {
+			if($full) {
+				return $this->canViewFullImages($uuid);
+			}
+			else {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	// -------------
 	function canAddComments($uid) {
 		if ($this->isOwner($uid)) {
@@ -3082,28 +3125,20 @@ class Album {
 		$everybody = $gallery->userDB->getEverybody();
 		$everybodyUid = $everybody->getUid();
 
-		$user = $gallery->userDB->getUserByUid($this->getItemOwner($index));
+		$owner = $gallery->userDB->getUserByUid($this->getItemOwner($index));
 
-		if ( !$user) {
-			return '';
-		}
-		if ( !strcmp($user->getUid(), $nobodyUid) || !strcmp($user->getUid(), $everybodyUid) ) {
+		if ( !$owner) {
 			return '';
 		}
 
-		$fullName = $user->getFullname();
-		if (empty($fullName)) {
-			return ' - '. $user->getUsername();
-		} else {
-			return ' - '. $user->getFullname() .' ('. $user->getUsername() .')';
-		}
+	return '('. showOwner($owner) .')';
 	}
 
 	/**
-     * Voting type can either be Rank (first, second, third) or critique
-     * (1 point, 2 point 3 point).  The difference is with rank there
-     * can be only one of each point value.
-     */
+	 * Voting type can either be Rank (first, second, third) or critique
+	 * (1 point, 2 point 3 point).  The difference is with rank there
+	 * can be only one of each point value.
+	 */
 	function getPollType() {
 		if (!isset($this->fields['poll_type']) || $this->fields['poll_type'] == '')
 		{
@@ -3332,12 +3367,29 @@ class Album {
 				continue;
 			}
 
-			if (check_email($user->getEmail())) {
-				$emails[] = $user->getEmail();
-			} else if (isDebugging()) {
-				echo gallery_error( sprintf(gTranslate('core', "Email problem: skipping %s (UID %s) because email address %s is not valid."),
-				$user->getUsername(), $uid, $user->getEmail()));
+			$email = $user->getEmail();
+			if (check_email($email)) {
+				$emails[] = $email;
 			}
+			else {
+				if(empty($email)) {
+					$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because no email address was set."),
+					$user->getUsername(), $uid);
+				}
+				else {
+					$text = sprintf(gTranslate('core', "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."),
+					$user->getUsername(), $uid, $email);
+				}
+
+				$messages[] = array('type' => 'error', 'text' => $text);
+			}
+		}
+
+		if(isDebugging() && !empty($messages)) {
+			if(!headers_sent()) {
+				printPopupStart(gTranslate('core', "Email problems"));
+			}
+			echo infoBox($messages);
 		}
 
 		return array_unique($emails);
@@ -3523,6 +3575,16 @@ class Album {
 		foreach ($area_data as $key => $value) {
 			$photo->imageAreas[$area_index][$key] = $value;
 		}
+	}
+
+	function getAltText($index) {
+		if ($index === null) {
+			return '';
+		}
+
+		$photo = $this->getPhoto($index);
+
+		return $photo->getAlttext();
 	}
 }
 ?>
