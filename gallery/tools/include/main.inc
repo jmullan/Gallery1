@@ -63,7 +63,7 @@
 	<tr>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>"><?php echo $index ?></td>
 		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" colspan="2" align="center">All</td>
-		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" bgcolor="#<?php echo percentColor(round($total_percentDone['all']/$index,2)) ?>"><?php echo round($total_percentDone['all']/$index,2) ?>%</td>
+		<td rowspan="<?php print sizeof($localeData['plugins'])+1 ?>" bgcolor="<?php echo percentColor(round($total_percentDone['all']/$index,2)) ?>"><?php echo round($total_percentDone['all']/$index,2) ?>%</td>
 	</tr>
 <?php
 
@@ -71,7 +71,7 @@
 		if ($key == 'all') continue;
 		echo '<tr>';
 		echo '<td>' . $key . '</td>';
-		echo '<td bgcolor="#' . percentColor(round($percentDone/$index,2)) . '">' . round($percentDone/$index,2) . '%</td>';
+		echo '<td bgcolor="' . percentColor(round($percentDone/$index,2)) . '">' . round($percentDone/$index,2) . '%</td>';
 		echo '<td colspan="5"></td>';
 		echo '</tr>';
 	}

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * This file by Joan McGalliard.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -68,7 +68,13 @@ function getManifestFiles($folder) {
 	$results = array();
 	$svnfile = "$folder/.svn/entries";
 	$skipfolder = array('docs', 'po', 'tools', 'locale');
-	$skipfiles = array('ChangeLog.archive.gz', '.htaccess','modules.php.patch');
+	$skipfiles = array(
+		'ChangeLog.archive.gz',
+		'.htaccess',
+		'modules.php.patch',
+		'license.txt',
+		'lgpl-3.0.txt'
+	);
 
 	printf("\nFolder: %s", $folder);
 

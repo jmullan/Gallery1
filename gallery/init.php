@@ -33,6 +33,11 @@ foreach ($sensitiveList as $sensitive) {
     }
 }
 
+if(function_exists('date_default_timezone_get')) {
+	$defaultTimeZone = date_default_timezone_get();
+	date_default_timezone_set($defaultTimeZone);
+}
+
 /*
 *  Seed the randomization pool once, instead of doing it every place
 *  that we use rand() or mt_rand()
@@ -592,16 +597,18 @@ if ($gallery->userDB->isInitialized() && $gallery->userDB->versionOutOfDate()) {
 
 /* Load the correct album object */
 if (!empty($gallery->session->albumName)) {
-    $gallery->album = new Album;
-    $ret = $gallery->album->load($gallery->session->albumName);
-    if (!$ret) {
-        $gallery->session->albumName = "";
+	$gallery->album = new Album;
+	$ret = $gallery->album->load($gallery->session->albumName);
+	if (!$ret) {
+		$gallery->session->albumName = '';
+		// New in 1.6 ! For some reason i want to point this out. - Jens 15.05.2008
+		$gallery->album = NULL;
 	}
 	else {
-        if ($gallery->album->versionOutOfDate()) {
-            include_once(dirname(__FILE__) . "/upgrade_album.php");
-            exit;
-        }
-    }
+		if ($gallery->album->versionOutOfDate()) {
+			include_once(dirname(__FILE__) . "/upgrade_album.php");
+			exit;
+		}
+	}
 }
 ?>

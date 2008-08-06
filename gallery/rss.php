@@ -280,8 +280,11 @@ $description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 header("Content-Type: application/xml");
 
 $xml_header = 'xml version="1.0"';
+if ($gallery->locale == 0) {
+	$gallery->locale = 'ISO-8859-1';
+}
 
-echo '<' . '?xml version="1.0" encoding="' . $gallery->charset . '"?' . '>';
+echo '<' . '?xml version="1.0" encoding="' . $gallery->locale . '"?' . '>';
 
 ?>
 
@@ -290,7 +293,9 @@ echo '<' . '?xml version="1.0" encoding="' . $gallery->charset . '"?' . '>';
 		<title><?php echo htmlspecialchars($gallery->app->galleryTitle) ?></title>
 		<link><?php echo $gallery->app->photoAlbumURL ?></link>
 		<description><?php echo htmlspecialchars($description) ?></description>
-		<language><?php echo ereg_replace("_", "-", $gallery->language) ?></language>
+<?php if (isset($gallery->app->default_language)) { ?>
+		<language><?php echo ereg_replace("_", "-", $gallery->app->default_language) ?></language>
+<?php } ?>
 		<lastBuildDate><?php echo date("r"); ?></lastBuildDate>
 <?php if (isset($gallery->app->adminEmail)) { ?>
 		<managingEditor><?php echo $gallery->app->adminEmail ?></managingEditor>
