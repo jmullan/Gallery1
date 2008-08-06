@@ -792,7 +792,11 @@ class AlbumItem {
 		return true;
 	}
 
-	function getPreviewTag($dir, $size = 0, $attrs = '') {
+	function getPreviewTag($dir, $size = 0, $attrs = array()) {
+		if(empty($attrs['alt'])) {
+			$attrs['alt'] = $this->getAlttext();
+		}
+
 		if ($this->preview) {
 			return $this->preview->getTag($dir, 0, $size, $attrs);
 		}
@@ -818,36 +822,57 @@ class AlbumItem {
 		return $alttext;
 	}
 
-	function getThumbnailTag($dir, $size = 0, $attrs = '') {
+	function getThumbnailTag($dir, $size = 0, $attrs = array()) {
 		// Prevent non-integer data from being passed
 		$size = (int)$size;
 
+		if(empty($attrs['alt'])) {
+			$attrs['alt'] = $this->getAlttext();
+		}
+
 		if ($this->thumbnail) {
-			return $this->thumbnail->getTag($dir, 0, $size, $attrs, $this->getAlttext());
+			return $this->thumbnail->getTag($dir, false, $size, $attrs);
 		}
 		else {
 			return "<i>". gTranslate('core', "No thumbnail") ."</i>";
 		}
 	}
 
-	function getHighlightTag($dir, $size = 0, $attrs = '', $alttext = '') {
+	function getHighlightTag($dir, $size = 0, $attrList = array()) {
 		// Prevent non-integer data from being passed
 		$size = (int)$size;
 
 		if (is_object($this->highlightImage)) {
-			if (!isset($alttext)) {
-				$alltext=$this->getAlttext();
+			if (empty($attrs['alt'])) {
+				$attrs['alt'] = $this->getAlttext();
+			}
+			return $this->highlightImage->getTag($dir, 0, $size, $attrList);
+		}
+		else {
+			if(isset($attrList['alt'])) {
+				unset($attrList['alt']);
 			}
 
-			return $this->highlightImage->getTag($dir, 0, $size, $attrs, $alttext);
-		} else {
-			return "<i>". gTranslate('core', "No highlight") ."</i>";
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= ' title';
+			}
+			else {
+				$attrList['class'] = 'title';
+			}
+
+			$attrs = generateAttrs($attrList);
+
+			return "<span$attrs>". gTranslate('core', "Requested item has no highlight!") .'</span>';
 		}
 	}
 
-	function getPhotoTag($dir, $full = 0, $attrs) {
+	function getPhotoTag($dir, $full = false, $attrs) {
+		if (empty($attrs['alt'])) {
+			$attrs['alt'] = $this->getAlttext();
+		}
+
 		if ($this->image) {
-			return $this->image->getTag($dir, $full, '', $attrs, $this->getAlttext());
+			return $this->image->getTag($dir, $full, 0, $attrs);
 		}
 		else {
 			return "about:blank";

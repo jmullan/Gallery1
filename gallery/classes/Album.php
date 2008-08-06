@@ -236,19 +236,22 @@ class Album {
 	}
 
 	/**
-     * Returns an array of the parent albums.
-     * Each elemt contains a prefix Text, the title and the url.
-     * Array is reverted, so the first Element is the topalbum.
-     * If you set $addChild true, then the child album itself is added as last Element.
-     * If you set $ignoreReturnto, then really ALL toplevel albums are added.
-     * Based on code by Dariush Molavi
-     * Note: the 30 is a limit to prevent unlimited recursing.
-     * @param $addChild		boolean
-     * @param $ignoreReturnto	boolean
-     * @author Dari Molavi
-     * @author Jens Tkotz
-     */
-	function getParentAlbums($addChild = false, $ignoreReturnto = false) {
+	 * Returns an array of the parent albums.
+	 * Each elemt contains a prefix Text, the title and the url.
+	 * Array is reverted, so the first Element is the topalbum.
+	 * If you set $ignoreReturnto, then really ALL toplevel albums are added.
+	 * Based on code by Dariush Molavi
+	 * Note: the 30 is a limit to prevent unlimited recursing.
+	 *
+	 * @param boolean $addChild        if true, then the child album itself is added as last Element.
+	 * @param boolean $ignoreReturnto  if true, then really ALL toplevel albums are added.
+	 * @param boolean $withGalleryLink if true, and the last album in the array is a rootalbum, a link to Gallery is added.
+	 * @param integer $uplevel         How much level of parent albums to you want to show?
+	 * @return unknown
+	 * @author Dari Molavi
+	 * @author Jens Tkotz
+	 */
+	function getParentAlbums($addChild = false, $ignoreReturnto = false, $withGalleryLink = true, $uplevel = 30) {
 		global $gallery;
 
 		$currentAlbum		= $this;
@@ -266,8 +269,8 @@ class Album {
 		 * then add it to the parent album to the list.
 		 */
 		while (($parentAlbum = $currentAlbum->getParentAlbum(FALSE)) &&
-		$depth < 30 &&
-		($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
+		  $depth < $uplevel &&
+		  ($currentAlbum->fields['returnto'] != 'no' || $ignoreReturnto == true)) {
 			$parentAlbumsArray[] = array(
 				'prefixText'	=> gTranslate('core', "Album"),
 				'title'		=> $parentAlbum->fields['title'],
@@ -278,9 +281,9 @@ class Album {
 		}
 
 		/* If the last album is a root album (= has no parent) and a returnto link is wanted,
-        	 *  add the link to Gallery mainpage
-         	 */
-		if (!isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
+		 * add the link to Gallery mainpage
+		 */
+		if ($withGalleryLink && !isset($parentAlbum) && $currentAlbum->fields['returnto'] != 'no'){
 			$parentAlbumsArray[] = array(
 			'prefixText' => gTranslate('core', "Gallery"),
 			'title' => $gallery->app->galleryTitle,
@@ -1220,26 +1223,52 @@ class Album {
 	 * @param boolean	$recursive	True if you want to resize elements in subalbums, too.
 	 */
 	function resizeAllPhotos($target, $filesize = 0, $recursive = false) {
-		for ($i=1; $i <= $this->numPhotos(1); $i++) {
+		$numItems = $this->numPhotos(1);
+
+		if($numItems == 0) {
+			echo gTranslate('core', " -- Skipping") . '<br>';
+			return true;
+		}
+
+		$onePercent	= 100/$numItems;
+		$progressbarID	= $this->fields['name'];
+
+		echo addProgressbar(
+			$progressbarID,
+			sprintf(
+				gTranslate('core', "Resizing items in album: '<i>%s</i>' (%s)' with %d items"),
+				$this->fields['title'],
+				$this->fields['name'],
+				$numItems)
+		);
+
+		for ($i = 1; $i <= $numItems; $i++) {
+			updateProgressBar(
+				$progressbarID,
+				sprintf(gTranslate('core', "Processing item %d..."), $i),
+				ceil($i * $onePercent)
+			);
+
 			if ($this->isAlbum($i) && $recursive == true) {
 				$nestedAlbum = new Album();
 				$nestedAlbum->load($this->getAlbumName($i));
 				$np = $nestedAlbum->numPhotos(1);
 
-				echo "\n<br>";
-				printf (gTranslate('core', "Entering album %s, processing %d items."), $this->getAlbumName($i), $np);
-
-				$nestedAlbum->resizeAllPhotos($target,$filesize, $recursive);
+				$nestedAlbum->resizeAllPhotos($target, $filesize, $recursive);
 				$nestedAlbum->save();
 			}
 			else {
-				echo "\n<br>";
-				printf(gTranslate('core', "Processing item %d..."), $i);
+				if(isDebugging()) {
+					echo "\n<br>";
+					printf(gTranslate('core', "Resizing item %d..."), $i);
+				}
 
+				// Here is actually the action
 				my_flush();
 				$this->resizePhoto($i, $target, $filesize);
 			}
 		}
+		$this->save();
 	}
 
 	/**
@@ -1612,7 +1641,7 @@ class Album {
 		return $this->fields['nextname']++;
 	}
 
-	function getPreviewTag($index, $size=0, $attrs="") {
+	function getPreviewTag($index, $size = 0, $attrs = array()) {
 		if ($index === null) {
 			return '';
 		}
@@ -1629,11 +1658,29 @@ class Album {
 		}
 	}
 
-	function getThumbnailTag($index, $size=0, $attrs="") {
+	/**
+	 * Returns the HTML code for displaying the thumbnail of a albumitem,
+	 * or highlight, if its a subalbum.
+	 *
+	 * @param integer $index
+	 * @param integer $size
+	 * @param array $attrs
+	 * @return string
+	 */
+	function getThumbnailTag($index, $size = 0, $attrs = array()) {
 		if ($index === null) {
 			return '';
 		}
+
+		if(empty($attrs['id'])) {
+			$attrs['id'] = "thumbnail_${index}";
+		}
+
 		$photo = $this->getPhoto($index);
+
+		if(! $photo) {
+			return '';
+		}
 
 		if ($photo->isAlbum()) {
 			$myAlbum = $this->getNestedAlbum($index);
@@ -1644,7 +1691,7 @@ class Album {
 		}
 	}
 
-	function getThumbnailTagById($id, $size=0, $attrs="") {
+	function getThumbnailTagById($id, $size = 0, $attrs = array()) {
 		return $this->getThumbnailTag($this->getPhotoIndex($id), $size, $attrs);
 	}
 
@@ -1670,27 +1717,68 @@ class Album {
 		return array($album, $photo);
 	}
 
-	function getHighlightAsThumbnailTag($size = 0, $attrs = '') {
+	function getHighlightAsThumbnailTag($size = 0, $attrList = array()) {
 		list ($album, $photo) = $this->getHighlightedItem();
 
 		if ($photo) {
-			return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrs);
-		} else {
-			return '<span class="title">'. gTranslate('core', "No highlight!") .'</span>';
+			return $photo->getThumbnailTag($album->getAlbumDirURL('highlight'), $size, $attrList);
+		}
+		else {
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= 'title';
+			}
+			else {
+				$attrList['class'] = 'title';
+			}
+
+			$attrs = generateAttrs($attrList);
+
+			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
 		}
 	}
 
-	function getHighlightTag($size = 0, $attrs = '', $alttext = '') {
+	function getHighlightTag($size = 0, $attrList = array(), $useDefaults = true) {
 		$index = $this->getHighlight();
+
+		$defaults = array(
+			'alt' => sprintf(
+				gTranslate('core', "Highlight for album: %s"),
+							strip_tags($this->fields['title'])),
+			'title' => sprintf(
+				gTranslate('core', "Highlight for album: %s"),
+							gallery_htmlentities(strip_tags($this->fields['title'])))
+		);
+
 		if (isset($index)) {
 			$photo = $this->getPhoto($index);
-			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrs, $alttext);
-		} else {
-			return '<span class="title">'. gTranslate('core', "No highlight!") .'</span>';
+
+			if($useDefaults) {
+				foreach($defaults as $attr => $default) {
+					if(empty($attrList[$attr])) {
+						$attrList[$attr] = $defaults[$attr];
+					}
+				}
+			}
+
+			return $photo->getHighlightTag($this->getAlbumDirURL('highlight'), $size, $attrList);
+		}
+		else {
+			unset($attrList['alt']);
+
+			if(isset($attrList['class'])) {
+				$attrList['class'] .= ' title';
+		}
+		else {
+				$attrList['class'] = 'title';
+			}
+
+			$attrs = generateAttrs($attrList);
+
+			return "<span$attrs>". gTranslate('core', "No highlight!") .'</span>';
 		}
 	}
 
-	function getPhotoTag($index, $full, $attrs) {
+	function getPhotoTag($index, $full = false, $attrs = array()) {
 		$photo = $this->getPhoto($index);
 		if ($photo->isMovie()) {
 			return $photo->getThumbnailTag($this->getAlbumDirURL("thumb"));
