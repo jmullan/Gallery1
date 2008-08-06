@@ -338,8 +338,10 @@ function createTreeArray($albumName, $depth = 0) {
 				$albumUrl = makeAlbumUrl($myName);
 				$subtree = createTreeArray($myName, $depth+1);
 
-				$highlightTag = $nestedAlbum->getHighlightTag($gallery->app->default["nav_thumbs_size"],
-					'class="nav_micro_img"', "$title $clicksText");
+				$highlightTag = $nestedAlbum->getHighlightTag(
+					$gallery->app->default["nav_thumbs_size"],
+					array('class' => 'nav_micro_img', 'alt' => "$title $clicksText")
+				);
 
 				$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 
@@ -1363,8 +1365,10 @@ function showImageMap($index, $noUrlUrl = '#') {
 			$html .= "\n\t<area shape=\"poly\" alt=\"\" coords=\"". $area['coords'] ."\" ";
 
 			if(!empty($area['hover_text'])) {
+				//$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true, BALLOON, true, OFFSETX, 0, OFFSETY, 0, BALLOONIMGPATH, '". $gallery->app->photoAlbumURL ."/js/wz/tip_balloon/');\"";
 				$html .= "onmouseover=\"TagToTip('wzTooltip_$nr', ABOVE, true);\"";
-				$wz_tooltips .= "\n <div id=\"wzTooltip_$nr\" style=\"display: none; \">" . htmlentities($area['hover_text'], ENT_QUOTES) . '</div>';
+				$html .= ' onmouseout="UnTip()"';
+				$wz_tooltips .= "\n <div id=\"wzTooltip_$nr\" style=\"display: none; \">" . htmlentities(addslashes($area['hover_text']), ENT_QUOTES) . '</div>';
 			}
 
 			if(!empty($area['url'])) {
@@ -1565,6 +1569,52 @@ function gallery_htmlentities($string) {
 	else {
 		return htmlentities($string);
 	}
+}
+
+/**
+ * Convert all HTML entities to their applicable characters
+ */
+function unhtmlentities($string) {
+	global $gallery;
+
+	if (empty($string)) {
+		return $string;
+	}
+
+	if (function_exists('html_entity_decode')) {
+		$nls = getNLS();
+
+		if (isset($gallery->language) && isset($nls['charset'][$gallery->language])) {
+			$charset = $nls['charset'][$gallery->language];
+		}
+		else {
+			$charset = $nls['default']['charset'];
+		}
+
+		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
+			$return = html_entity_decode($string, ENT_COMPAT ,$charset);
+		}
+		else {
+			$return = old_unhtmlentities($string);
+		}
+	}
+	else {
+		$return = old_unhtmlentities($string);
+	}
+
+	return $return;
+}
+
+function old_unhtmlentities($string)
+{
+    // replace numeric entities
+    $string = preg_replace('~&#x([0-9a-f]+);~ei', 'chr(hexdec("\\1"))', $string);
+    $string = preg_replace('~&#([0-9]+);~e', 'chr("\\1")', $string);
+    // replace literal entities
+    $trans_tbl = get_html_translation_table(HTML_ENTITIES);
+    $trans_tbl = array_flip($trans_tbl);
+
+    return strtr($string, $trans_tbl);
 }
 
 /**

@@ -39,18 +39,35 @@ require_once(dirname(__FILE__) . '/lib/messages.php');
 require_once(dirname(__FILE__) . '/lib/filetypes.php');
 
 function getRequestVar($str) {
+	global $global_notice_messages;
+
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	if (!is_array($str)) {
 		if (!isset($_REQUEST[$str])) {
 			return null;
 		}
+
 		$ret = & $_REQUEST[$str];
 
 		if (get_magic_quotes_gpc()) {
 			$ret = stripslashes_deep($ret);
 		}
 
-		//echo "\n<br>- Checking:". htmlspecialchars($str);
-		$ret = sanitizeInput($ret);
+		$ret_orig = $ret;
+
+		// echo "\n<br>- Checking:". gHtmlSafe($str) . " -- $ret";
+		$sanitized = sanitizeInput($ret);
+
+		if($sanitized != $ret_orig) {
+			$global_notice_messages[] = array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "'%s' was sanitized"), $str));
+		}
+
+		$ret = $sanitized;
+
+		//echo "\n<br>- Result:". gHtmlSafe($str) . " -- $sanitized";
 	}
 	else {
 		foreach ($str as $reqvar) {
@@ -580,15 +597,17 @@ function hasExif($file) {
  * If exif is not supported, or no date was gotten, then the file creation date is returned.
  * Note: i used switch/case because this is easier to extend later.
  */
-function getItemCaptureDate($file) {
+function getItemCaptureDate($file, $exifData = array()) {
 	global $gallery;
 
 	$success = false;
 	$exifSupported = getExifDisplayTool();
 
-	if ($exifSupported) {
-		$return = getExif($file);
-		$exifData = $return[1];
+	if (!empty($exifSupported)) {
+		if(empty($exifData)) {
+			list($status, $exifData) = getExif($file);
+		}
+
 		switch($exifSupported) {
 			case 'exiftags':
 				if (isset($exifData['Image Created'])) {
@@ -616,14 +635,22 @@ function getItemCaptureDate($file) {
 
 	// we were not able to get the capture date from exif... use file creation time
 	if (!$success) {
-		$itemCaptureTimeStamp = filemtime($file);
-		echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
-		__FILE__, __LINE__);
+		if(@filemtime($file)) {
+			$itemCaptureTimeStamp = filemtime($file);
+
+			echo debugMessage(gTranslate('core', "Got no capture date. Using file modification time."),
+						  __FILE__, __LINE__);
+		}
+		else {
+			$itemCaptureTimeStamp = false;
+			echo debugMessage(gTranslate('core', "Got no capture date and an error on getting the file modification time."),
+						  __FILE__, __LINE__);
+		}
 	}
 
-	echo debugMessage(sprintf (gTranslate('core', "Item Capture Date: %s"),
-	strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
-	__FILE__, __LINE__);
+	echo debugMessage(sprintf(gTranslate('core', "Item Capture Date: %s"),
+				strftime($gallery->app->dateTimeString, $itemCaptureTimeStamp)),
+			__FILE__, __LINE__);
 
 	return $itemCaptureTimeStamp;
 }
@@ -643,7 +670,7 @@ function breakString($buf, $desired_len=40, $space_char=' ', $overflow=5) {
 	for ($i = 0; $i < strlen($buf); $i++, $col++) {
 		$result .= $buf{$i};
 		if (($col > $desired_len && $buf{$i} == $space_char) ||
-		($col > $desired_len + $overflow)) {
+			($col > $desired_len + $overflow)) {
 			$col = 0;
 			$result .= '<br>';
 		}

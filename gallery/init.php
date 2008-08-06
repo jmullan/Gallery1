@@ -573,33 +573,21 @@ else {
 
 /* If there's no specific user, they are the special Everybody user */
 if (!isset($gallery->user) || empty($gallery->user)) {
-    if (empty($gallery->userDB)) {
-        exit("Fatal error: UserDB failed to initialize!");
-    }
-    $gallery->user = $gallery->userDB->getEverybody();
-    $gallery->session->username = "";
-}
+	if (!$gallery->userDB->isInitialized()) {
+		echo gallery_error(gTranslate('core', "Fatal error: UserDB failed to initialize!"));
+	}
 
-/*
- * 18.12.2006
- * In previous Versions we did a second language init after the user init.
- * But i do'nt see a reason a reason. So i commented it out.
- if (!empty($gallery->user)) {
-     $userlanguage = $gallery->user->getDefaultLanguage();
- 
-     if($userlanguage != $gallery->language) {
-         initLanguage(true, $userlanguage);
-     }
- }
-*/
+	$gallery->user = $gallery->userDB->getEverybody();
+	$gallery->session->username = '';
+}
 
 if (!isset($gallery->session->offline)) {
-    $gallery->session->offline = FALSE;
+	$gallery->session->offline = FALSE;
 }
 
-if ($gallery->userDB->versionOutOfDate()) {
-    include_once(dirname(__FILE__) . "/upgrade_users.php");
-    exit;
+if ($gallery->userDB->isInitialized() && $gallery->userDB->versionOutOfDate()) {
+	include_once(dirname(__FILE__) . "/upgrade_users.php");
+	exit;
 }
 
 /* Load the correct album object */

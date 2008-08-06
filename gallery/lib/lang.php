@@ -727,46 +727,6 @@ function isSupportedCharset($charset) {
 }
 
 /**
- * Convert all HTML entities to their applicable characters
- */
-function unhtmlentities($string) {
-	global $gallery;
-
-	if (empty($string)) {
-		return '';
-	}
-
-	if (function_exists('html_entity_decode')) {
-		$nls = getNLS();
-
-		if (isset($gallery->language) && isset($nls['charset'][$gallery->language])) {
-			$charset = $nls['charset'][$gallery->language];
-		}
-		else {
-			$charset = $nls['default']['charset'];
-		}
-
-		if (isSupportedCharset($charset) && strtolower($charset) != 'utf-8') {
-			$return = html_entity_decode($string,ENT_COMPAT ,$charset);
-		}
-		else {
-			// For unsupported charsets you may do this:
-			$trans_tbl = get_html_translation_table (HTML_ENTITIES);
-			$trans_tbl = array_flip ($trans_tbl);
-			$return = strtr ($string, $trans_tbl);
-		}
-	}
-	else {
-		// For users with PHP prior to 4.3.0 you may do this:
-		$trans_tbl = get_html_translation_table (HTML_ENTITIES);
-		$trans_tbl = array_flip ($trans_tbl);
-		$return = strtr ($string, $trans_tbl);
-	}
-
-	return $return;
-}
-
-/**
  * These are custom fields that are turned on and off at an album
  * level, and are populated for each photo automatically, without the
  * user typing values.  The $value of each pair should be translated
@@ -785,8 +745,8 @@ function automaticFieldsList() {
  */
 function translateableFields() {
 	return array(
-		'title'			=> gTranslate('common', "title"),
-		'Title'			=> gTranslate('common', "Title"),
+		'title'		=> gTranslate('common', "title"),
+		'Title'		=> gTranslate('common', "Title"),
 		'Description'	=> gTranslate('common', "Description"),
 		'description'	=> gTranslate('common', "description"),
         'AltText'		=> gTranslate('common', "Alt text / Tooltip"),

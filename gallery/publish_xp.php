@@ -22,7 +22,14 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newAlbumTitle, $createNewAlbum, $album ) = getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd', 'set_albumName', 'setCaption', 'newAlbumTitle', 'createNewAlbum', 'album'));
+list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newAlbumTitle, $createNewAlbum, $album ) =
+	getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd', 'set_albumName', 'setCaption', 'newAlbumTitle', 'createNewAlbum', 'album'));
+
+if(!isXSSclean($langid) || !isXSSclean($lcid)) {
+	printPopupStart(gTranslate('core', "Windows XP publishing wizard"));
+	showInvalidReqMesg();
+	exit;
+}
 
 if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
     $proto = "https";

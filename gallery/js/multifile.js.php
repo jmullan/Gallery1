@@ -3,6 +3,10 @@
  * Gallery SVN ID:
  * $Id$
 */
+
+if (!isset($gallery)) {
+	exit;
+}
 ?>
 <script language="JavaScript" type="text/javascript">
 /**

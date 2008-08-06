@@ -164,10 +164,15 @@ function updatePictureAndArea() {
 	jg.paint();
 	if (count_selected == 1) {
 		areaurl.value = map[selected]['url'];
-		areatext.value = unescape(document.getElementById('wzTooltip_'+selected).innerHTML);
+		areatext.value = unescape(map[selected]['hover_text']);
 	}
 	else {
 		areaurl.value = '';
 		areatext.value = '';
 	}
+}
+
+function callBack(color) {
+	jg.setColor(color);
+	updatePictureAndArea();
 }

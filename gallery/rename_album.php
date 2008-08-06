@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -28,24 +26,14 @@ list($oldName, $newName, $useLoad) = getRequestVar(array('oldName', 'newName', '
 
 // Hack check
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+	echo gTranslate('core', "You are not allowed to perform this action!");
 	exit;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo _("Rename Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Rename Album") ?></div>
-<div class="popup" align="center">
-<?php
+printPopupStart(gTranslate('core', "Rename Album"));
 
 if (!isset($useLoad)) {
-	$useLoad="";
+	$useLoad = '';
 }
 
 /* Read the album list */
@@ -53,6 +41,8 @@ $albumDB = new AlbumDB(FALSE);
 
 if (!empty($newName)) {
 	$dismiss = 0;
+
+	$newNameOrig = $newName;
 	$newName = str_replace("'", "", $newName);
 	$newName = str_replace("`", "", $newName);
 	$newName = strtr($newName, "%\\/*?\"<>|& .+#(){}~", "-------------------");
@@ -60,9 +50,17 @@ if (!empty($newName)) {
 	$newName = ereg_replace("\-+$", "", $newName);
 	$newName = ereg_replace("^\-", "", $newName);
 	$newName = ereg_replace("\-$", "", $newName);
-	if ($oldName == $newName || empty($newName)) {
+
+	if ($newName != $newNameOrig) {
+		echo infoBox(array(array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Your new foldername contained unallowed chars. They were removed. Please try again.")))
+		);
+	}
+	elseif ($oldName == $newName || empty($newName)) {
 		$dismiss = 1;
-	} elseif ($albumDB->renameAlbum($oldName, $newName)) {
+	}
+	elseif ($albumDB->renameAlbum($oldName, $newName)) {
 		$albumDB->save();
 		// need to account for nested albums by updating
 		// the parent album when renaming an album
@@ -73,6 +71,7 @@ if (!empty($newName)) {
 				print "newName=".$newName."<br>";
 				print "oldName=".$oldName."<br>";
 			}
+
 			$parentAlbum = $albumDB->getAlbumByName($parentName);
 			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
 				if ($parentAlbum->getAlbumName($i) == $oldName) {
@@ -91,13 +90,14 @@ if (!empty($newName)) {
 			}
 		}
 		$dismiss = 1;
-	} else {
-		echo gallery_error(_("There is already an album with that name!"));
+	}
+	else {
+		echo gallery_error(gTranslate('core', "There is already an album with that name!"));
 	}
 
 	// Dismiss and reload if requested
 	if ($dismiss) {
-		if ($useLoad == 1) {
+		if ($useLoad) {
 			dismissAndLoad(makeAlbumUrl($newName));
 		}
 		else {
@@ -105,36 +105,44 @@ if (!empty($newName)) {
 		}
 		return;
 	}
-
-} else {
+}
+else {
 	$newName = $gallery->session->albumName;
 }
 
-?>
+echo gTranslate('core', "What do you want to name this album?");
+echo "\n<br><br>";
+echo gTranslate('core', "The name cannot contain any of the following characters") ?>:
+<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo gTranslate('core', "or") ?><b> <?php echo gTranslate('core', "spaces") ?></b>
 <br>
-<?php echo _("What do you want to name this album?") ?>
-<br>
-<?php echo _("The name cannot contain any of the following characters") ?>:
-<br><b>% \ / * ? &quot; &rsquo; &amp; &lt; &gt; | . + # ( )</b><?php echo _("or") ?><b> <?php echo _("spaces") ?></b><br>
-<p><?php echo _("Those characters will be ignored in your new album name.") ?></p>
+<?php echo gTranslate('core', "Those characters are not allowed in your new album name."); ?>
 
-<br>
-<?php echo makeFormIntro("rename_album.php", 
-	array("name" => "theform"),
-	array("type" => "popup"));
-?>
-<input type="text" name="newName" value="<?php echo $newName?>">
-<input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
-<input type="hidden" name="useLoad" value="<?php echo $useLoad?>">    
+<?php echo makeFormIntro('rename_album.php',  array(), array('type' => 'popup')); ?>
 <p>
-<input type="submit" name="rename" value="<?php echo _("Rename") ?>">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
+<?php echo gInput('text', 'newName',
+					gTranslate('core', "New name for album folder:"), false,
+					$newName, array('size' => 30));
+?>
+<input type="hidden" name="oldName" value="<?php echo $gallery->session->albumName?>">
+<input type="hidden" name="useLoad" value="<?php echo $useLoad; ?>">
+</p>
+
+<?php echo gSubmit('rename', gTranslate('core', "Rename")); ?>
+<?php echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()'); ?>
 </form>
 
+<br><br>
+<?php
+echo infoBox(array(array(
+	'type' => 'information',
+	'text' => gTranslate('core', "This is not the title of the album, but the filename of the directory on your webserver. The name is also used in the URL.")
+)));
+
+?>
 <script language="javascript1.2" type="text/JavaScript">
 <!--   
 // position cursor in top form field
-document.theform.newName.focus();
+document.g1_form.newName.focus();
 //-->
 </script>
 </div>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  * located in images/
  * Modified from example in PHP Bible
  */
-function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $col_1_head=null, $col_2_head=null) {
+function arrayToBarGraph ($array, $max_width) {
 	global $gallery;
 	foreach ($array as $value) {
 		if ((isset($max_value) && ($value > $max_value)) || (!IsSet($max_value)))  {
@@ -39,28 +39,19 @@ function arrayToBarGraph ($array, $max_width, $table_values="CELLPADDING=5",  $c
 		return null;
 	}
 
-	$string_to_return = "\n  <table $table_values>";
-	if ($col_1_head || $col_2_head) {
-		$string_to_return .=	'<tr>' .
-					"\n\t<td></td>".
-					"\n\t<td class=\"admin\">$col_1_head</td>".
-					"\n\t<td class=\"admin\">$col_2_head</td>".
-					"</tr>";
-	}
+	$string_to_return = "\n  <table>";
 
 	if ($max_value > 0) {
-		$pixels_per_value = ((double) $max_width)
-			/ $max_value;
+		$pixels_per_value = ((double) $max_width) / $max_value;
 	}
 	else {
 		$pixels_per_value = 0;
 	}
 
 	$counter = 0;
+	$img_url= getImagePath('bar.gif');
 	foreach ($array as $name => $value) {
 		$bar_width = $value * $pixels_per_value;
-		$img_url= getImagePath('bar.gif');
-
 		$string_to_return .= "\n\t<tr>" .
 			"\n\t<td>(". ++$counter .")</td>" .
 			"\n\t<td>$name ($value)</td>" .
