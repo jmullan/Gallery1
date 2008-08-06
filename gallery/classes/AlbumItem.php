@@ -75,22 +75,38 @@ class AlbumItem {
 		}
 	}
 
-	function setItemCaptureDate($itemCaptureDate = '') {
+	/**
+	 * Sets the capture date for an item.
+	 * Either a given, or from EXIF data, or the creation date.
+	 *
+	 * @param string $itemCaptureDate
+	 * @param object $album
+	 * @return boolean
+	 */
+	function setItemCaptureDate($itemCaptureDate = '', $album = null) {
 		global $gallery;
 		/* Before 1.4.5-cvs-b106 this was an associative array */
 
 		if (empty($itemCaptureDate)) {
-			// we want to attempt to set the $itemCaptureDate from the information that
-			// is available to us.  First, look in the exif data if it is a jpeg file.  If that
-			// doesn't help us, then use the file creation date.
-			$dir = $gallery->album->getAlbumDir();
-			$name = $this->image->name;
-			$tag = $this->image->type;
-			$file = "$dir/$name.$tag";
-			$itemCaptureDate = getItemCaptureDate($file);
+			if(empty($album)) {
+				return false;
+			}
+			else {
+				$dir	= $album->getAlbumDir();
+				$name	= $this->image->name;
+				$tag	= $this->image->type;
+				$file	= "$dir/$name.$tag";
+
+				$itemCaptureDate = getItemCaptureDate($file);
+				if(! $itemCaptureDate) {
+					return false;
+				}
+			}
 		}
 
 		$this->itemCaptureDate = $itemCaptureDate;
+
+		return true;
 	}
 
 	function getItemCaptureDate() {
