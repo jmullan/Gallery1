@@ -47,9 +47,16 @@ class Gallery_User extends Abstract_User {
 	function load($uid) {
 		global $gallery;
 
-		$dir = $gallery->app->userDir;
+		if(! isXSSclean($uid, 0)) {
+			return false;
+		}
 
-		$tmp = getFile("$dir/$uid");
+		$dir = $gallery->app->userDir;
+		$tmp = fs_file_get_contents("$dir/$uid");
+
+		if(empty($tmp)) {
+			return false;
+		}
 
 		/*
 		 * We renamed User.php to Gallery_User.php in v1.2, so port forward
@@ -139,11 +146,11 @@ class Gallery_User extends Abstract_User {
 
 		if ($this->save()) {
 			$success = true;
-			print gTranslate('core', "upgraded");
+			print gTranslate('core', "Upgraded");
 		}
 		else {
 			$success = false;
-			print gTranslate('core', "saving failed");
+			print gTranslate('core', "Saving failed");
 		}
 
 		return $success;
@@ -163,10 +170,24 @@ class Gallery_User extends Abstract_User {
 			return '';
 		}
 
-		$rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
+		/**
+		 * Code below is borrowed from G2 _generateAuthString()
+		 */
+		mt_srand(crc32(microtime()));
+
+		$rand = '';
+		for ($len = 64 ; strlen($rand) < $len ; ) {
+			$rand .= chr(!mt_rand(0,2) ? mt_rand(48,57) :
+			(!mt_rand(0,1) ? mt_rand(65,90) :
+			mt_rand(97,122)));
+		}
+
+		$rec_pass_hash = $rand;
 		$this->recoverPassHash = md5($rec_pass_hash);
 
-		return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
+		return makeGalleryUrl(
+			'new_password.php',
+			array('hash' => $rec_pass_hash, 'uname' => $this->getUsername()));
 	}
 
 	function checkRecoverPasswordHash($hash) {

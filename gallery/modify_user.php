@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -160,9 +160,9 @@ doctype();
 <?php include(dirname(__FILE__) . '/html/userData.inc'); ?>
 
 <br>
-<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-<input type="submit" name="dismiss" value="<?php echo gTranslate('core', "Back to usermanagement") ?>">
-<input type="button" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
+<?php echo gSubmit('save', gTranslate('core', "Save")); ?>
+<?php echo gSubmit('dismiss', gTranslate('core', "Back to usermanagement")); ?>
+<?php echo gButton('close', gTranslate('core', "Done"), 'parent.close()'); ?>
 </form>
 </div>
 

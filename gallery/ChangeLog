@@ -1,3 +1,20 @@
+2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b37
+
+ Security fixes.
+
+ * Fix: Possible XSS protection in User->load and Album->load()
+
+ * Fix: Stronger hash algorithm for new/lost password.
+
+ * Fix: Added much better password strengthness.
+   
+ * Fix: Better check for valid album names.
+
+ * New functions:
+   - validAlbumName($name)
+   - passwordStrength($password)
+   - cleanRepetition($partLen, $string)
+
 2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b36
 
  * Change: Nice new donate icon.

@@ -890,10 +890,18 @@ class Album {
 	}
 
 	function load($name, $loadphotos = true) {
+		if(!isXSSclean($name, 0)) {
+			return false;
+		}
+
 		global $gallery;
 
 		$this->transient->photosloaded = FALSE;
 		$dir = $gallery->app->albumDir . "/$name";
+
+		if(! fs_is_dir($dir)) {
+			return false;
+		}
 
 		if (!$this->loadFromFile("$dir/album.dat")) {
 			/*
@@ -1961,6 +1969,7 @@ class Album {
 	function getItemCaptureDate($index) {
 		$photo = $this->getPhoto($index);
 		$itemCaptureDate = $photo->getItemCaptureDate();
+
 		// populating old photos with data
 		if (!$itemCaptureDate) {
 			$this->setItemCaptureDate($index);

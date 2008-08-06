@@ -359,6 +359,146 @@ function isXSSclean($string, $level = 1) {
 	}
 }
 
+/**
+ * Checks whether an albuname has unallowed chars
+ *
+ * @param string $name
+ * @return string		empty on success, otherwise the sanitized albumname.
+ */
+function validAlbumName($name) {
+
+	$nameOrig = $name;
+
+	$name = str_replace("'", "", $name);
+	$name = str_replace("`", "", $name);
+	$name = strtr($name, "%\\/*?\"<>|& .+#(){}~", "-------------------");
+	$name = ereg_replace("\-+", "-", $name);
+	$name = ereg_replace("\-+$", "", $name);
+	$name = ereg_replace("^\-", "", $name);
+	$name = ereg_replace("\-$", "", $name);
+
+	if ($name != $nameOrig) {
+		$ret = $name;
+	}
+	else {
+		$ret = '';
+	}
+
+	return $ret;
+}
+
+/**
+ * Calculates the password strength of a password.
+ *
+ * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
+ * Written by firas kassem [2007.04.05]
+ * Firas Kassem  phiras.wordpress.com || phiras at gmail {dot} com
+ * For more information : http://phiras.wordpress.com/2007/04/08/password-strength-meter-a-jquery-plugin/
+ *
+ * @param string	$password
+ * @return integer	$score
+ */
+function passwordStrength($password) {
+	$score = 0 ;
+
+	//password length
+	$password_length = strlen($password);
+	$score += $password_length * 4;
+
+	$score += strlen(cleanRepetition(1, $password)) - $password_length;
+	$score += strlen(cleanRepetition(2, $password)) - $password_length;
+	$score += strlen(cleanRepetition(3, $password)) - $password_length;
+	$score += strlen(cleanRepetition(4, $password)) - $password_length;
+
+	//password has 3 numbers
+	if (preg_match('/(.*[0-9].*[0-9].*[0-9])/', $password)) {
+		$score += 5;
+	}
+
+	//password has 2 symbols
+	if (preg_match('/(.*[!,@,#,$,%,^,&,*,?,_,~].*[!,@,#,$,%,^,&,*,?,_,~])/', $password)) {
+		$score += 5;
+	}
+
+	//password has Upper and Lower chars
+	if (preg_match('/([a-z].*[A-Z])|([A-Z].*[a-z])/', $password)) {
+		$score += 10;
+	}
+
+	//password has number and chars
+	if (preg_match('/([a-zA-Z])/', $password) && preg_match('/([0-9])/', $password)) {
+		$score += 15;
+	}
+
+	//password has number and symbol
+	if (preg_match('/([!,@,#,$,%,^,&,*,?,_,~])/', $password) && preg_match('/([0-9])/', $password)) {
+		$score += 15;
+	}
+
+	//password has char and symbol
+	if (preg_match('/([!,@,#,$,%,^,&,*,?,_,~])/', $password) && preg_match('/([a-zA-Z])/', $password)) {
+		$score += 15;
+	}
+
+	//password is just a nubers or chars
+	if (preg_match('/^\w+$/', $password) || preg_match('/^\d+$/', $password)) {
+		$score -= 10;
+	}
+
+	//verifing 0 < score < 100
+	if ($score < 0)  {
+		$score = 0;
+	}
+
+	if ($score > 100) {
+		$score = 100;
+	}
+
+	return $score;
+}
+
+/**
+ * Removes repeated char(s) from a String
+ *
+ * The code is *VERY* inspired (nearly copied) from the 'Password strength meter'
+ * Written by firas kassem [2007.04.05]
+ * Firas Kassem  phiras.wordpress.com || phiras at gmail {dot} com
+ * For more information : http://phiras.wordpress.com/2007/04/08/password-strength-meter-a-jquery-plugin/
+ *
+ * @param integer	$partLen	How big is the repeated string?
+ * @param string	$string		String to check
+ * @example checkRepetition(1,'aaaaaaabcbc')   = 'abcbc'
+ * @example checkRepetition(2,'aaaaaaabcbc')   = 'aabc'
+ * @example checkRepetition(2,'aaaaaaabcdbcd') = 'aabcd'
+ * @return string	$cleaned
+ */
+function cleanRepetition($partLen, $string) {
+	$cleaned = '';
+
+	for ( $i = 0; $i < strlen($string) ; $i++ ) {
+		$repeated = true;
+
+		for ($j = 0; $j < $partLen && ($j + $i + $partLen) < strlen($string) ; $j++) {
+			$repeated = $repeated && ($string{($j + $i)} == $string{($j + $i + $partLen)});
+		}
+
+		if ($j < $partLen) {
+			$repeated = false;
+		}
+
+		if ($repeated) {
+			$i += $partLen - 1;
+			$repeated = false;
+		}
+		else {
+			$cleaned .= $string{$i};
+		}
+
+	}
+
+	return $cleaned;
+}
+
 function sanitizeInput($value) {
 	if(!is_array($value) && strip_tags($value) == $value) {
 		return $value;

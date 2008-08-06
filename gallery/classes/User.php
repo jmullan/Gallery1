@@ -160,7 +160,12 @@ class Abstract_User {
 	}
 
 	function canChangeOwnPw() {
-		return $this->canChangeOwnPw;
+		if ($this->isAdmin()) {
+			return true;
+		}
+		else {
+			return $this->canChangeOwnPw;
+		}
 	}
 
 	function canReadAlbum($album) {
