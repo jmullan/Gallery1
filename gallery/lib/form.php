@@ -281,39 +281,77 @@ function makeFormIntro($target, $attrList = array(), $urlargs = array()) {
 }
 
 function formVar($name) {
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	if (!strncmp($_REQUEST[$name], 'false', 5)) {
 		return false;
-	} else {
+	}
+	else {
 		return getRequestVar($name);
 	}
 }
 
 function emptyFormVar($name) {
+	$_REQUEST = array_merge($_GET, $_POST);
+
 	return !isset($_REQUEST[$name]);
 }
 
 /**
- * The code below was inspired from the Horde Framework (http://www.horde.org)
- * It was taken from: framework/UI/UI/VarRenderer/html.php,v 1.106
- * Copyright 2003-2005 Jason M. Felice <jfelice@cronosys.com>
+ * Returns the HTML for a so called colorpicker.
+ * Its a table with 3 cells.
+ * First one is the Hexcode or colorname.
+ * Second is a box with the color as background.
+ * Third is an icon that open a fance colorpicker thing.
  *
- * Jens Tkotz 25.04.2005
-*/
-function showColorpicker($attrs = array()) {
-	$args = array(
-		'target' => $attrs['name'],
-		'gallery_popup' => true
-	);
+ * @param array		$attrs
+ * @return string	$html
+ * @author Jens Tkotz
+ */
+function showColorpicker($attrs = array(), $addCallBack = false) {
+	static $initDone = false;
 
-	$colorPickerUrl = makeGalleryUrl('lib/colorpicker.php', $args);
-	$imgColorpicker = '<img src="'. getImagePath('colorpicker.png') .'" height="16" alt="colorpicker">';
+	$html = '';
 
-	$html = "\n<table cellspacing=\"0\" style=\"margin-top: 1px\">";
+	if($addCallBack) {
+		$callBack = " callBack(document.getElementById('gColorpickerHEX').innerHTML);";
+	}
+	else {
+		$callBack = '';
+	}
+
+	if(! $initDone) {
+		$html .= _getStyleSheetLink('mooRainbow');
+		$html .= "\n";
+		$html .= jsHTML('rgbcolor.js');
+		$html .= jsHTML('moorainbow/mootools.v1.11.js');
+		$html .= jsHTML('moorainbow/mooRainbow.js.php');
+
+		$initDone = true;
+	}
+
+	$imgColorpicker = gImage("colorpicker.png", gTranslate('core', "colorpicker"));
+
+	$id = $name = $attrs['name'];
+
+	$html .='<script type="text/javascript">';
+	$html .="window.addEvent('load', function() {";
+	$html .="var g_colorpicker_$id = new MooRainbow('colorpicker_$id', {";
+	$html .="id: 'gal_colorpicker_$id',";
+	$html .="destination : '$id',";
+	$html .="imgPath: '". makeGalleryUrl("images/moorainbow/") ."',";
+	$html .="onComplete: function(color) {";
+	$html .="\$('$id').value = color.hex;";
+	$html .="}";
+	$html .="});";
+	$html .="});";
+	$html .="</script>";
+
+	$html .= "\n<table cellspacing=\"0\">";
 	$html .= "\n<tr>";
-	$html .= "\n". '<td><input type="text" size="10" maxlength="7" name="'. $attrs['name'] .'" id="'. $attrs['name'] .'" value="'. $attrs['value'] .'"></td>';
-	$html .= "\n". '<td width="20" id="colordemo_' . $attrs['name'] . '" style="background-color:' . $attrs['value'] . '"> </td>';
-	$html .= "\n<td><a href=\"$colorPickerUrl\" onclick=\"window.open('$colorPickerUrl', 'colorpicker', 'toolbar=no,location=no,status=no,scrollbars=no,resizable=no,width=120,height=250,left=100,top=100'); return false;\" onmouseout=\"window.status='';\" onmouseover=\"window.status='". _("Colorpicker") ."'; return true;\" target=\"colorpicker\">".  $imgColorpicker .'</a></td>';
-	$html .= "\n". '<td><div id="colorpicker_' . $attrs['name'] . '"></div></td>';
+	$html .= gInput('text', $name,'','cell', $attrs['value'], array('size' => 8, 'maxlength' => 7));
+	$html .= "\n\t<td id=\"mooDestination_$id\" width=\"20\" style=\"background-color: {$attrs['value'] }\"></td>";
+	$html .= "\n\t<td id=\"colorpicker_$id\">${imgColorpicker}</td>";
 	$html .= "\n</tr></table>\n";
 
 	return $html;
