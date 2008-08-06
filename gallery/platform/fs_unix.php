@@ -200,6 +200,21 @@ function fs_mkdir($dirname, $perms = 0700) {
 }
 
 /**
+ * Is file hidden ? Means it starts with a .
+ * @param   string     $filename
+ * @return  boolean
+ * @author  Jens Tkotz
+*/
+function fs_fileIsHidden($filename) {
+	if($filename{0} == '.') {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+/**
  * Deletes a directory
  *
  * @param String $dir

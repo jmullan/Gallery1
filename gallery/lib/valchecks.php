@@ -500,6 +500,77 @@ function cleanRepetition($partLen, $string) {
 }
 
 /**
+ * Checks whether a value seems to be a valid timestamp.
+ *
+ * @param integer  $timestamp
+ * @return boolean $valid
+ * @author Jesse Mullan
+ */
+function isValidTimestamp($timestamp) {
+    /* See http://us3.php.net/strtotime */
+    $valid = is_numeric($timestamp);
+    $value = intval($timestamp);
+
+    /* Negative values are not always legal (but sometimes are) */
+    $valid &= (0 <= $value);
+    /* This is the same test */
+    $valid &= (strtotime('1970/1/1 GMT') < $timestamp);
+
+    /* The maximum value of a 32-bit signed integer is 4294967296, or the y2k39 "bug" */
+    $valid &= (strtotime('2038/01/19 03:14:07 GMT') > $timestamp);
+
+    return $valid;
+}
+
+/**
+ * Does the given watermark file exists in our watemark folder?
+ * Hint: No subfolders supported.
+ *
+ * @param string    $wmName
+ * @return boolean
+ */
+function watermarkPicExists($wmName = '') {
+	global $gallery;
+
+	if(empty($gallery->app->watermarkDir) || empty($wmName)) {
+		return false;
+	}
+
+	if(!isXSSclean($wmName)) {
+		return false;
+	}
+
+	if(fs_file_exists($gallery->app->watermarkDir . '/' . $wmName)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+/**
+ * Is a given value (number) in a certain range?
+ *
+ * @param float     $value
+ * @param float     $min
+ * @param float     $max
+ * @return boolean
+ */
+function inRange($value, $min, $max) {
+	if(!ctype_digit(trim($value))) {
+		return false;
+	}
+
+	if ($value < $min || $value > $max) {
+		return false;
+	}
+	else {
+		return true;
+	}
+
+}
+
+/**
  * Check given parameters for watermarking
  *
  * @param string  $wmName

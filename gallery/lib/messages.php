@@ -21,7 +21,47 @@
  */
 
 function gallery_error($message) {
-    return '<span class="error">'. gTranslate('common', "Error:") . " $message</span>\n";
+	$html = infoBox(array(array(
+		'type' => 'error',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
+function gallery_success($message) {
+	$html = infoBox(array(array(
+		'type' => 'success',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
+function gallery_info($message) {
+	$html = infoBox(array(array(
+		'type' => 'information',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
+}
+
+function gallery_warning($message) {
+	$html = infoBox(array(array(
+		'type' => 'warning',
+		'text' => $message
+	)));
+
+	$html .= "\n";
+
+	return $html;
 }
 
 function infoLine($messages, $type = '') {

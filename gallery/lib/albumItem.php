@@ -41,9 +41,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 
 	static $javascriptSet;
 
-	$id = $gallery->album->getPhotoId($i);
-	$override = ($withIcons) ? '' : 'no';
-	$options = array();
+	$id		= $gallery->album->getPhotoId($i);
+	$override	= ($withIcons) ? '' : 'no';
+	$options	= array();
+
+	$isAlbum	= false;
+	$isMovie	= false;
+	$isPhoto	= false;
 
     if (!$gallery->session->offline && empty($javascriptSet) && !$withIcons) { ?>
   <script language="javascript1.2" type="text/JavaScript">
@@ -68,21 +72,17 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 		$javascriptSet = true;
     }
 
-    $isAlbum = false;
-    $isMovie = false;
-    $isPhoto = false;
+	if ($gallery->album->isAlbum($i)) {
+		$label = gTranslate('core', "Album");
+		if(!isset($myAlbum)) {
+			$myAlbum = $gallery->album->getNestedAlbum($i, true);
+		}
 
-    if ($gallery->album->isAlbum($i)) {
-    	$label = gTranslate('core', "Album");
-    	if(!isset($myAlbum)) {
-    		$myAlbum = $gallery->album->getNestedAlbum($i, true);
-    	}
-		
-    	$isAlbum = true;
-    }
-    elseif ($gallery->album->isMovieByIndex($i)) {
-    	$label = gTranslate('core', "Movie");
-    	$isMovie = true;
+		$isAlbum = true;
+	}
+	elseif ($gallery->album->isMovieByIndex($i)) {
+		$label = gTranslate('core', "Movie");
+		$isMovie = true;
 	}
 	else {
 		$label = gTranslate('core', "Photo");
@@ -197,11 +197,13 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 				);
 			}
 
-			if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
-				$options[] = array(
-					'text'	=> gTranslate('core', "View Comments"),
-					'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url"),
-    				);
+			if(! $popupsOnly) {
+				if ($gallery->user->canViewComments($myAlbum) && ($myAlbum->lastCommentDate("no") != -1)) {
+					$options[] = array(
+						'text'	=> gTranslate('core', "View Comments"),
+						'value'	=> showChoice2("view_comments.php", array("set_albumName" => $myAlbum->fields["name"]),"url"),
+					);
+				}
 			}
 		}
 
@@ -269,17 +271,15 @@ function getItemActions($i, $withIcons = false, $popupsOnly = false, $caption = 
 			if($gallery->user->canDeleteAlbum($myAlbum)) {
 				$options[] = array(
 					'text'	=> gTranslate('core', "Delete"),
-					'value'	=> showChoice2("delete_photo.php",
-										   array(
-											"id" => $myAlbum->fields["name"],
-											"albumDelete" => 1)),
-    			);
-    		}
-    	}
-    	else {
-    		$options[] = array(
+					'value'	=> showChoice2("delete_photo.php", array('index' => $i)),
+					'icon'	=> ($withIcons) ? 'delete.gif' : ''
+				);
+			}
+		}
+		else {
+			$options[] = array(
 				'text'	=> gTranslate('core', "Delete"),
-				'value'	=> showChoice2('delete_photo.php', array('id' => $id, 'nextId' => $nextId)),
+				'value'	=> showChoice2('delete_photo.php', array('index' => $i, 'nextId' => $nextId)),
 				'icon'	=> ($withIcons) ? 'delete.gif' : ''
 			);
 		}

@@ -144,8 +144,9 @@ function drawSelect($name, $options, $selected = '', $size = 1, $attrList = arra
 					$sel = ' selected';
 				}
 			}
-			else if (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__') {
+			else if (!isset($selSet) && (!strcmp($value, $selected) || !strcmp($text, $selected) || $selected === '__ALL__')) {
 				$sel = ' selected';
+				$selSet = true;
 			}
 			$html .= "<option value=\"$value\"$sel>$text</option>" . $crlf;
 		}
@@ -164,8 +165,8 @@ function drawSelect($name, $options, $selected = '', $size = 1, $attrList = arra
  * @return string $html
  * @author Jens Tkotz
  */
-function drawSelect2($name, $options, $attrList = array(), $args = array()) {
-	$crlf = (isset($args['prettyPrinting'])) ? "\n\t" : '';
+function drawSelect2($name, $options, $attrList = array()) {
+	$crlf = "\n\t";
 
 	// This attributes are no real HTML attribs and thus should be deleted.
 	$optionIgnoreAttrs = array('text', 'icon', 'separate', 'html', 'type', 'requirements');
@@ -192,6 +193,10 @@ function drawSelect2($name, $options, $attrList = array(), $args = array()) {
 
 			if(!isset($option['value'])) {
 				$option['class'] .= ' center g-disabled';
+			}
+
+			if(empty($option['class'])) {
+				unset($option['class']);
 			}
 
 			$text = $option['text'];

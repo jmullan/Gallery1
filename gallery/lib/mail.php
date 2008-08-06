@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -155,6 +155,10 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	}
 
 	if ($gallery->app->useOtherSMTP == "yes") {
+		if (!checkSMTPParams()) {
+			return false;
+		}
+
 		$gallery_mail->setSMTPParams(
 			$gallery->app->smtpHost,
 			$gallery->app->smtpPort,
@@ -174,6 +178,19 @@ function gallery_mail($to, $subject, $msg, $logmsg, $hide_recipients = false, $f
 	return $result;
 }
 
+function checkSMTPParams() {
+	global $gallery;
+
+	$checklist = array('smtpHost', 'smtpPort', 'smtpUserName', 'smtpPassword');
+
+	foreach ($checklist as $paramName) {
+		if(empty($gallery->app->$paramName)) {
+			return false;
+		}
+	}
+
+	return true;
+}
 
 function welcome_email($show_default=false) {
 	global $gallery;
