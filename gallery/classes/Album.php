@@ -551,6 +551,19 @@ class Album {
 			$changed = true;
 		}
 
+		// In gallery 1.5.8 'fotoserve.com' was removed.
+		if ($this->version < 38) {
+			if(!empty($this->fields['print_photos'])) {
+				foreach($this->fields['print_photos'] as $nr => $service) {
+					if ($service == 'fotoserve') {
+						unset($this->fields['print_photos'][$nr]);
+					}
+				}
+			}
+
+			$changed = true;
+		}
+
 		/* Special case for EXIF :-( */
 		if (!$this->fields['use_exif']) {
 			if (!empty($gallery->app->use_exif)) {
@@ -568,22 +581,22 @@ class Album {
 			$changed = true;
 		}
 
-		print gTranslate('core', "done").".<br>";
-
 		/* Check all items */
 		$count = $this->numPhotos(1);
-		for ($i = 1; $i <= $count; $i++) {
-			set_time_limit(30);
-			print sprintf(gTranslate('core', "Upgrading item %d of %d..."), $i, $count);
-			my_flush();
+		if($count > 0) {
+			$onePercent = 100/$count;
+			for ($i = 1; $i <= $count; $i++) {
+				set_time_limit(30);
+				$status = sprintf(gTranslate('core', "Upgrading item %d of %d..."), $i, $count);
+				echo "\n<script type=\"text/javascript\">updateProgressBar('albumProgessbar', '$status',". ceil($i * $onePercent) .")</script>";
+				my_flush();
 
-			$photo = &$this->getPhoto($i);
-			if ($photo->integrityCheck($this->getAlbumDir())) {
-				$changed = true;
-				$this->updateSerial = 1;
+				$photo = &$this->getPhoto($i);
+				if ($photo->integrityCheck($this->getAlbumDir())) {
+					$changed = true;
+					$this->updateSerial = 1;
+				}
 			}
-
-			print gTranslate('core', "done").".<br>";
 		}
 
 		if (strcmp($this->version, $gallery->album_version)) {

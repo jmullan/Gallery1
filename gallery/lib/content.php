@@ -1503,6 +1503,55 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 }
 
 /**
+ * Returns the HTML code for a progressbar.
+ *
+ * @param string  $id       HTML ID you want to assing to the progressbar
+ * @param string  $label    A descriptive Label
+ * @return string $html
+ * @author Jens Tkotz
+ */
+function addProgressbar($id, $label = '') {
+	global $gallery;
+	static $jsSet = false;
+
+	$html = '';
+
+	if(!$jsSet) {
+		$html .= jsHtml('progressbar.js');
+	}
+
+	$html .= "\n<div class=\"g-emphasis\">$label</div>\n";
+	$html .= "<div id=\"$id\" class=\"progressBar\"><div id=\"progressBarDone_$id\" class=\"progressBarDone\"></div></div>\n";
+	$html .= "<div id=\"progressDescription_$id\"></div>\n";
+	$html .= "<div id=\"progressAddText_$id\"></div>\n";
+
+	return $html;
+}
+
+/**
+ * Wrapper around js function updateProgressBar. Updates a progressbar.
+ *
+ * @param string  $htmlId       HTML ID of the progressbar you want to update.
+ * @param string  $status       Optional text you want to write in the description field.
+ * @param float   $percentDone
+ */
+function updateProgressBar($htmlId, $status, $percentDone) {
+	echo "\n<script type=\"text/javascript\">updateProgressBar('$htmlId', '$status', $percentDone)</script>";
+	my_flush();
+}
+
+/**
+ * Wrapper around js function addProgressBarText. Updates a progressbar.
+ *
+ * @param string  $htmlId    HTML ID of the progressbar you want to update.
+ * @param string  $text
+ */
+function addProgressBarText($htmlId, $text) {
+	echo "\n<script type=\"text/javascript\">addProgressBarText('$htmlId', '$text')</script>";
+	my_flush();
+}
+
+/**
  * Gallery Version of htmlentities
  * Enhancement: Depending on PHP Version and Charset use
  * optional 3rd Parameter of php's htmlentities
