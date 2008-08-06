@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,27 +22,34 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($save, $old_password, $new_password1, $new_password2) = getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
-list($uname, $email, $fullname, $defaultLanguage) = getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
+list($save, $old_password, $new_password1, $new_password2) =
+	getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
+
+list($uname, $email, $fullname, $defaultLanguage) =
+	getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
+
+list($saveOK) = getRequestVar('saveOK');
 
 if (!$gallery->user->isLoggedIn()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
 $errorCount = 0;
 if (isset($save)) {
 	// security check;
-	if($fullname != strip_tags($fullname)) {
-	    $gErrors["fullname"] =
-		sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
-	    $errorCount++;
-        }
+	if(! isXSSclean($fullname)) {
+		$gErrors['fullname'] =
+			sprintf(gTranslate('core', "%s contained invalid data, sanitizing input."),
+					sanitizeInput($fullname));
+		$errorCount++;
+	}
 
 	if ($gallery->user->getUsername() != $uname) {
 		if ($gallery->user->isAdmin()) {
-			$gErrors["uname"] = $gallery->userDB->validNewUserName($uname);
-			if ($gErrors["uname"]) {
+			$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
+			if ($gErrors['uname']) {
 				$errorCount++;
 			}
 		}
@@ -98,13 +105,14 @@ if (isset($save)) {
 
 		// Switch over to the new username in the session
 		$gallery->session->username = $uname;
-		$saveOK = true;
+		$url = makeGalleryHeaderUrl('user_preferences.php', array('saveOK' => true));
+		header("Location: $url");
 	}
 }
 
-$uname = $gallery->user->getUsername();
-$fullname = $gallery->user->getFullname();
-$email = $gallery->user->getEmail();
+$uname		 = $gallery->user->getUsername();
+$fullname	 = $gallery->user->getFullname();
+$email		 = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
 
 $allowChange['uname']		 = $gallery->user->isAdmin() ? true : false;
@@ -120,9 +128,7 @@ $allowChange['admin']		 = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
-doctype();
-
-printPopupStart(gTranslate('core', "Change User Preferences"), gTranslate('core', "Change User Preferences"), langLeft());
+printPopupStart(gTranslate('core', "Change User Preferences"), '', langleft());
 
 if(isset($saveOK)) {
     echo infoLine(gTranslate('core', "User successfully updated."), 'success');
@@ -130,13 +136,19 @@ if(isset($saveOK)) {
     echo '<script language="JavaScript" type="text/javascript">opener.location.reload()</script>';
 }
 
-echo gTranslate('core', "You can change your user information here.") . '  ' .
-	 gTranslate('core', "If you want to change your password, you must provide your old password and then enter the new one twice.") . '  ' .
-	 gTranslate('core', "You can change your username to any combination of letters and digits.");
+echo gTranslate('core', "You can change your user information here.");
+if($allowChange['password']) {
+	echo gTranslate('core', "If you want to change your password, you must provide your old password and then enter the new one twice.");
+}
+if($allowChange['uname']) {
+	echo gTranslate('core', "You can change your username to any combination of letters and digits.");
+}
 
 echo "\n<br>\n";
 
-echo makeFormIntro('user_preferences.php', array('name' => 'usermodify_form'));
+echo makeFormIntro('user_preferences.php',
+	array('name' => 'usermodify_form'),
+	array('type' => 'popup'));
 
 echo "\n<br>";
 include(dirname(__FILE__) . '/html/userData.inc');
@@ -144,18 +156,19 @@ include(dirname(__FILE__) . '/html/userData.inc');
 ?>
 <br>
 <div align="center">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-	<input type="button" name="close" value="<?php echo gTranslate('core', "Close Window") ?>" onclick="parent.close()">
+	<?php echo gSubmit('save', gTranslate('core', "Save")); ?>
+	<?php echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()'); ?>
 </div>
 </form>
 
-<script language="javascript1.2" type="text/JavaScript">
+</div>
+<script type="text/javascript">
 <!--
 // position cursor in top form field
 document.usermodify_form.uname.focus();
 //-->
 </script>
-</div>
+
 <?php print gallery_validation_link("user_preferences.php"); ?>
 
 </body>

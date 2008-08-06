@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,34 +33,31 @@ if (!$gallery->user->isAdmin()) {
 
 require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
+$iconElements = array();
+
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to admin page"));
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['text'] = gTranslate('core', "Gallery statistics - Wizard");
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
+$breadcrumb['text'][] = languageSelector();
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
-?>
-<html>
-<head>
-<title><?php echo $gallery->app->galleryTitle ?>::<?php echo _("Gallery statistics - Wizard") ?></title>
-<?php 
-	common_header() ;
-?>
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php  
+	printPopupStart(clearGalleryTitle($adminbox['text']), '', 'left');
 }
-    includeHtmlWrap("gallery.header");
 
-    $adminbox['text'] ='<span class="head">'. _("Gallery statistics - Wizard") .'</span>';
-    $adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("Return to admin page") .'</a>] ';
-    $adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
-
-    $adminbox["commands"] = $adminCommands;
-    $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-    $breadcrumb['text'][] = languageSelector();
-
-    includeLayout('navtablebegin.inc');
-    includeLayout('adminbox.inc');
-    includeLayout('navtablemiddle.inc');
-    includeLayout('breadcrumb.inc');
-    includeLayout('navtableend.inc');
+includeLayout('adminbox.inc');
+includeLayout('breadcrumb.inc');
 
 ?>
 <div class="popup" align="center">
@@ -117,29 +114,29 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['types'], _("Type"));
+		stats_showBlock($stats['types'], gTranslate('core', "Type"));
 	echo "\n</td>";
 
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['options'], _("Options"));
+		stats_showBlock($stats['options'], gTranslate('core', "Options"));
 	echo "\n\t</td>";
 	echo "\n</tr>";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['layout'], _("Layout"));
+		stats_showBlock($stats['layout'], gTranslate('core', "Layout"));
 	echo "\n\t</td>";
-	
+
 	echo "\n<td class=\"blockcell\">";
-		stats_showBlock($stats['filter'], _("Filter by Capture Date"));
+		stats_showBlock($stats['filter'], gTranslate('core', "Filter by Capture Date"));
 	echo "\n\t</td>";
-	
+
 	echo "\n</tr>";
 	echo "\n</table>";
-	echo "\n". '<input type="submit" name="submitbutton" value="'. _("Show statistics") . '">';
+	echo gsubmit('submitbutton', gTranslate('core', "Show statistics"));
 	echo "\n</form>";
 
 	echo "\n". '<div align="left">';
-	echo _("Maybe your want to use your OWN statistics somewhere .. Just copy and paste the url from this textbox.");
+	echo gTranslate('core', "Maybe your want to use your OWN statistics somewhere... Just copy and paste the URL from this textbox.");
 	echo "\n<br>". '<form name="url_form" action="#">';
 	echo "\n". '<input type="text" name="stats_url" size="150" value="" readonly';
 	echo "\"</div>";

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,18 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
+$iconElements[] = galleryIconLink(
+			makeAlbumUrl(),
+			'navigation/return_to.gif',
+			gTranslate('core', "Return to gallery"));
+
+$iconElements[] = LoginLogoutButton();
+
+$adminbox['text']     = gTranslate('core', "Admin options");
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
+$breadcrumb['text'][] = languageSelector();
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -83,10 +95,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 includeHtmlWrap('gallery.header');
 
-$adminbox['text'] ='<span class="head">'. gTranslate('core', "Admin options") .'</span>';
-$adminbox['commands'] = '[<a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Return to gallery") .'</a>]';
-$breadcrumb['text'][] = languageSelector();
-
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
 includeLayout('navtablemiddle.inc');
@@ -101,7 +109,7 @@ if(!empty($adminOptions)) {
 		if (isset($option['url'])) {
 			$link = '<a class="admin" href="'. $option['url'] .'">'. $option['text'] .'</a>';
 		} else {
-			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin');
+			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin', '', '', false);
 		}
 		echo "\n<td class=\"adm_options\">$link</td>";
 		echo "\n<td class=\"adm_options\">". $option['longtext'] ."</td>";

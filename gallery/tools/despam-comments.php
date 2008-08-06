@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,11 +49,23 @@ common_header() ;
 <?php
 }
 includeHtmlWrap("gallery.header");
-$adminbox['text'] ='<span class="head">'. _("Find and remove comment spam") .'</span>';
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. _("Return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. _("Return to gallery") .'</a>] ';
+$adminbox['text'] = '<span class="head">'. gTranslate('core', "Find and remove comment spam") .'</span>';
 
-$adminbox["commands"] = $adminCommands;
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to admin page"));
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to gallery"));
+
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
 $breadcrumb['text'][] = languageSelector();
 
@@ -116,9 +128,9 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 /* Everything below is a utility function */
 function deleteComments() {
-    printf("<h2>%s</h2>", _("Delete Comments"));
+    printf("<h2>%s</h2>", gTranslate('core', "Delete Comments"));
     if (!getRequestVar('delete')) {
-        printf("<h3>%s</h3>", _("No action taken!"));
+        printf("<h3>%s</h3>", gTranslate('core', "No action taken!"));
     } else {
         $removedTotal = 0;
         foreach (getRequestVar('delete') as $key) {
@@ -142,12 +154,12 @@ function deleteComments() {
                     }
                 }
             }
-            $album->save(array(_("Deleted %d spam comments"), $removedInAlbum));
+            $album->save(array(gTranslate('core', "Deleted %d spam comments"), $removedInAlbum));
         }
 
         printf("<h3> %s </h3>",
             gTranslate('core', "Deleted %d spam comment.", "Deleted %d spam comments.",
-            $removedTotal, _("No comment deleted.")));
+            $removedTotal, gTranslate('core', "No comment deleted."), true));
     }
 }
 
@@ -191,31 +203,31 @@ function findBlacklistedComments() {
     $stop = explode(' ', microtime());
     $elapsed = ($stop[0] - $start[0]) + ($stop[1] - $start[1]);
 
-    printf('<h3>'. _("Scanned %d albums, %d photos, %d comments in %2.2f seconds") .'</h3>',
+    printf('<h3>'. gTranslate('core', "Scanned %d albums, %d photos, %d comments in %2.2f seconds") .'</h3>',
         $totals['albums'],
         $totals['photos'],
         $totals['comments'],
         $elapsed);
 
     if (empty($list)) {
-        printf("<h3>%s</h3>", _("No spam comments."));
+        printf("<h3>%s</h3>", gTranslate('core', "No spam comments."));
     }
     else {
         print makeFormIntro('tools/despam-comments.php', array('name' => 'deleteComments'));
         print "\n<table>";
-        printf("\n\t<tr> <th> %s </th> <th>%s</th> </tr>", _("Entry"), _("Delete"));
+        printf("\n\t<tr> <th> %s </th> <th>%s</th> </tr>", gTranslate('core', "Entry"), gTranslate('core', "Delete"));
         foreach ($list as $entry) {
             print "\n\t<tr>";
             print "<td>";
-            printf("%s: <a href=\"%s\">%s/%s</a> <br/>\n", _("Location"),
+            printf("%s: <a href=\"%s\">%s/%s</a> <br/>\n", gTranslate('core', "Location"),
             makeAlbumUrl($entry['albumName'], $entry['imageId']),
                 $entry['albumName'],
                 $entry['imageId']);
-            printf("%s: %s (on %s from %s) <br/>\n", _("Commenter"),
+            printf("%s: %s (on %s from %s) <br/>\n", gTranslate('core', "Commenter"),
                 $entry['comment']->getName(),
                 $entry['comment']->getDatePosted(),
                 $entry['comment']->getIPNumber());
-            printf("%s: %s <br/>\n", _("Comment"), $entry['comment']->getCommentText());
+            printf("%s: %s <br/>\n", gTranslate('core', "Comment"), $entry['comment']->getCommentText());
             print "</td>";
             print "<td>";
             printf("<input type=\"checkbox\" name=\"delete[]\" value=\"%s\" checked=\"checked\"/>",
@@ -229,7 +241,7 @@ function findBlacklistedComments() {
         }
         print("<input type=\"hidden\" name=\"g1_mode\" value=\"deleteComments\"/>");
         print "</table>";
-        printf("<input type=\"submit\" value=\"%s\"/>", _("Delete Checked Comments"));
+        printf("<input type=\"submit\" value=\"%s\"/>", gTranslate('core', "Delete Checked Comments"));
         print "</form>";
     }
 }
@@ -243,37 +255,43 @@ function getCommentKey(&$comment) {
 }
 
 function editBlacklist() {
-    $blacklist = loadBlacklist();
-    printf("<h2>%s</h2>", _("Delete from blacklist"));
-    if (!getRequestVar('delete')) {
-        printf("<h3>%s</h3>", _("No action taken!"));
-    } else {
-        $removed = array();
-        foreach (getRequestVar('delete') as $key) {
-            if (isset($blacklist['entries'][$key])) {
-                $removed[$blacklist['entries'][$key]] = 1;
-                unset($blacklist['entries'][$key]);
-            }
-        }
+	$blacklist = loadBlacklist();
+	printf("<h2>%s</h2>", gTranslate('core', "Delete from blacklist"));
 
-        if (empty($removed)) {
-            printf("<h3>%s</h3>", _("No action taken!"));
-        } else {
-            $success = saveBlacklist($blacklist);
-            if (!$success) {
-                printf("<h3>%s</h3>", _("Error saving blacklist!"));
-            } else {
-                printf("<h3>%s</h3>",
-                gTranslate('core', "Deleted %d entry from blacklist.", "Deleted %d entries from blacklist",
-                sizeof($removed)));
-                print "<ul>";
-                foreach (array_keys($removed) as $entry) {
-                    printf("<li> %s </li>", $entry);
-                }
-                print "</ul>";
-            }
-        }
-    }
+	if (!getRequestVar('delete')) {
+		printf("<h3>%s</h3>", gTranslate('core', "No action taken!"));
+	}
+	else {
+		$removed = array();
+		foreach (getRequestVar('delete') as $key) {
+			if (isset($blacklist['entries'][$key])) {
+				$removed[$blacklist['entries'][$key]] = 1;
+				unset($blacklist['entries'][$key]);
+			}
+		}
+
+		if (empty($removed)) {
+			printf("<h3>%s</h3>", gTranslate('core', "No action taken!"));
+		}
+		else {
+			$success = saveBlacklist($blacklist);
+			if (!$success) {
+				printf("<h3>%s</h3>", gTranslate('core', "Error saving blacklist!"));
+			}
+			else {
+				printf("<h3>%s</h3>",
+					gTranslate('core', "Deleted %d entry from blacklist.", "Deleted %d entries from blacklist",
+					sizeof($removed), '', true)
+				);
+
+				print "<ul>";
+				foreach (array_keys($removed) as $entry) {
+					printf("<li> %s </li>", $entry);
+				}
+				print "</ul>";
+			}
+		}
+	}
 }
 
 function saveBlacklist($blacklist) {
@@ -305,10 +323,10 @@ function updateBlacklist() {
     $success = saveBlacklist($blacklist);
 
     if (!$success) {
-        printf("<h3>%s</h3>", _("Error saving blacklist!"));
+        printf("<h3>%s</h3>", gTranslate('core', "Error saving blacklist!"));
     } else {
         if (!empty($added)) {
-            printf("<h3>%s</h3>", _("Added to blacklist:"));
+            printf("<h3>%s</h3>", gTranslate('core', "Added to blacklist:"));
             print "<ul>";
             foreach (array_keys($added) as $entry) {
                 printf("<li> %s </li>", $entry);
@@ -317,7 +335,7 @@ function updateBlacklist() {
         }
 
         if (!empty($dupes)) {
-            printf("<h3>%s</h3>", _("Following duplicates were not added:"));
+            printf("<h3>%s</h3>", gTranslate('core', "Following duplicates were not added:"));
             print "<ul>";
             foreach (array_keys($dupes) as $entry) {
                 printf("<li> %s </li>", $entry);
@@ -326,23 +344,23 @@ function updateBlacklist() {
         }
 
         if (empty($added) && empty($dupes) && empty($removed)) {
-            printf("<h3>%s</h3>", _("No action taken!"));
+            printf("<h3>%s</h3>", gTranslate('core', "No action taken!"));
         }
     }
 }
 
 function viewBlacklist() {
     $blacklist = loadBlacklist();
-    printf("<h3>%s (%d) </h3>", _("Current blacklist"), sizeof($blacklist['entries']));
+    printf("<h3>%s (%d) </h3>", gTranslate('core', "Current blacklist"), sizeof($blacklist['entries']));
     if (empty($blacklist['entries'])) {
-        print _("Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
+        print gTranslate('core', "Your blacklist is empty.  You must add new entries to your blacklist for it to be useful.");
     } else {
         echo insertFormJS('updateBlacklistForm');
 
         print makeFormIntro("tools/despam-comments.php", array('name' => 'updateBlacklistForm'));
         $blacklistTable = new galleryTable();
         $blacklistTable->setAttrs(array('align' => 'center', 'width' => '60%'));
-        $blacklistTable->setHeaders(array(_("Entry"), _("Delete")));
+        $blacklistTable->setHeaders(array(gTranslate('core', "Entry"), gTranslate('core', "Delete")));
         $blacklistTable->setColumnCount(2);
 
         foreach ($blacklist['entries'] as $key => $regex) {
@@ -359,35 +377,35 @@ function viewBlacklist() {
         echo $blacklistTable->render();
 
         print "\n<input type=\"hidden\" name=\"g1_mode\" value=\"editBlacklist\">";
-        printf("\n<input type=\"submit\" value=\"%s\">", _("Update Blacklist"));
+        printf("\n<input class=\"g-button\" type=\"submit\" value=\"%s\">", gTranslate('core', "Update Blacklist"));
         print "\n</form>";
     }
 }
 
 function showAddBox() {
     print makeFormIntro('tools/despam-comments.php');
-    printf("<h2>%s</h2>", _("Enter new blacklist entries"));
-    print _("Useful blacklists: "). "<ul>";
-    foreach (array("http://www.jayallen.org/comment_spam/blacklist.txt") as $url) {
+    printf("<h2>%s</h2>", gTranslate('core', "Enter new blacklist entries"));
+    print gTranslate('core', "Useful blacklists: "). "<ul>";
+    foreach (array(makeGalleryUrl('help/blacklist.txt')) as $url) {
         printf("<li> <a href=\"%s\">%s</a> ", $url, $url);
     }
     print "</ul>";
-    print _("You can just cut and paste these blacklists into the text box, or add new entries of your own.");
+    print gTranslate('core', "You can just cut and paste these blacklists into the text box, or add new entries of your own.");
     print "<br><textarea rows=\"10\" cols=\"80\" name=\"newBlacklistEntries\"></textarea>";
     print "<br>";
     print "<input type=\"hidden\" name=\"g1_mode\" value=\"updateBlacklist\">";
-    printf("<input type=\"submit\" value=\"%s\"/>", _("Update Blacklist"));
+    printf("<input class=\"g-button\" type=\"submit\" value=\"%s\"/>", gTranslate('core', "Update Blacklist"));
     print "</form>";
 }
 
 function offerOptions() {
     $options = array(
-        "findBlacklistedComments" => _("Find blacklisted comments"),
-        "viewBlacklist" => _("View/Edit blacklist"),
-        "addBlacklistEntries" => _("Add blacklist entries")
+        "findBlacklistedComments" => gTranslate('core', "Find blacklisted comments"),
+        "viewBlacklist" => gTranslate('core', "View/Edit blacklist"),
+        "addBlacklistEntries" => gTranslate('core', "Add blacklist entries")
     );
 
-    echo _("Options");
+    echo gTranslate('core', "Options");
     echo "\n<ol>";
     foreach ($options as $key => $text) {
         printf("\n\t<li><a href=\"%s\">%s</a></li>",

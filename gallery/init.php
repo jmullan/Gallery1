@@ -21,7 +21,11 @@
 */
 
 // Hack Prevention
-$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
+
+$sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS', '_SERVER');
+
+$_REQUEST = array_merge($_GET, $_POST);
+
 foreach ($sensitiveList as $sensitive) {
     if (!empty($_REQUEST[$sensitive])) {
         echo "Security violation! Override attempt.\n";
