@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,28 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($save, $ownerUid, $submit, $actionUid) =
-	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUid'));
+/**
+ * $save	If not empty, the save button was pressed
+ * $ownerUid	Possible new owner Uid
+ * $submit	Array containing indicators which permission should be updated and how
+ * $actionUid	Array containing a set of UIDs. This UIDs are used for the action given in $submit
+ * $setNested	If not empty, permissions are set recursively
+ */
+list($save, $ownerUid, $submit, $actionUid, $initialtab, $setNested) =
+	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUid' ,'initialtab', 'setNested'));
 
-// Hack check
+// Hack checks
+if (! isset($gallery->album)) {
+	printPopupStart(gTranslate('core', "Album Permissions"));
+	showInvalidReqMesg(gTranslate('core', "Invalid Request."));
+	exit;
+}
+
 if (!$gallery->user->isAdmin() &&
-    !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	!$gallery->user->isOwnerOfAlbum($gallery->album))
+{
+	printPopupStart(gTranslate('core', "Album Permissions"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -56,42 +71,55 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 
 asort($uAll);
 
-$changed = 0;
-if(empty($submit)) {
-    $submit = array();
-}
-
+/* User pressed an arrow button */
+if (!empty($submit) && is_array($submit)) {
 foreach ($submit as $perm => $action) {
     if(isset($action) && isset($actionUid)) {
         $action = unhtmlentities($action);
         if($action == '-->') {
             $gallery->album->setPerm($perm, $actionUid, true);
-            $changed++;
         }
         if($action == '<--') {
             $gallery->album->setPerm($perm, $actionUid, false);
-            $changed++;
         }
     }
 }
-
-if (isset($save) && $ownerUid) {
-    $gallery->album->setOwner($ownerUid);
-    $changed++;
-}
-
-if ($changed) {
     $gallery->album->save(array(i18n("Permissions have been changed.")));
-    if (getRequestVar('setNested')) {
+	if (!empty($setNested)) {
         $gallery->album->setNestedPermissions();
     }
 }
 
+/* User pressed 'save' button */
 // Start with a default owner of nobody -- if there is an
 // owner it'll get filled in below.
 $nobody = $gallery->userDB->getNobody();
-$ownerUid = $nobody->getUid();
+$prevOwnerUid	= $nobody->getUid();
 
+$prevOwner	= $gallery->album->getOwner();
+$prevOwnerUid	= $prevOwner->getUid();
+if (!empty($save)) {
+	if (!empty($ownerUid) && $ownerUid != $prevOwnerUid) {
+		if($gallery->album->setOwner($ownerUid)) {
+			$gallery->album->save(array(i18n("Owner has been changed.")));
+			$notice_messages[] = array(
+				'type' => 'success',
+				'text' => gTranslate('core', "Owner has been changed."));
+		}
+		else {
+			$notice_messages[] = array(
+				'type' => 'error',
+				'text' => gTranslate('core', "Owner was not changed, due to invalid User ID."));
+		}
+	}
+
+	if (!empty($setNested)) {
+		$gallery->album->setNestedPermissions();
+		$gallery->album->save(array(i18n("Permissions set for subalbums.")));
+	}
+}
+
+/* Get the current owner */
 $owner = $gallery->album->getOwner();
 $ownerUid = $owner->getUid();
 
@@ -143,8 +171,8 @@ foreach($perms as $perm => $permDesc) {
     $permsTable->addElement(array('content' => $permDesc, 'cellArgs' => array('colspan' => 2)));
     $permsTable->addElement(
 	   array('content' =>
-	    "\n\t<input type=\"submit\" name=\"submit[$perm]\" value=\"-->\"><br>".
-	    "\n\t<input type=\"submit\" name=\"submit[$perm]\" value=\"<--\">"
+	    "\n\t<input class=\"g-button\" type=\"submit\" name=\"submit[$perm]\" value=\"-->\"><br>".
+	    "\n\t<input class=\"g-button\" type=\"submit\" name=\"submit[$perm]\" value=\"<--\">"
 	));
     $permsTable->addElement(
 	array('content' => drawSelect("actionUid", $uids[$perm], '', 3, array(), true))
@@ -159,8 +187,8 @@ echo $permsTable->render();
 <label for="setNested"><?php echo gTranslate('core', "Apply permissions to all sub-albums"); ?></label>
 <input type="checkbox" id="setNested" name="setNested" value="setNested" <?php if (getRequestVar('setNested')) echo 'CHECKED'; ?>>
 <br><br>
-<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-<input type="button" name="done" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
+<?php echo gSubmit('save', gTranslate('core', "Save")); ?>
+<?php echo gButton('done', gTranslate('core', "Done"), 'parent.close()'); ?>
 </form>
 </div>
 <?php print gallery_validation_link("album_permissions.php"); ?>

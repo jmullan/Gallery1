@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -120,6 +120,12 @@ else {
 	$rssAlbumList = $albumDB->albumList;
 }
 
+if (empty($rssAlbumList)) {
+	printPopupStart(gTranslate('core', "Gallery RSS feed"));
+	showInvalidReqMesg();
+	exit;
+}
+
 foreach ($rssAlbumList as $album) {
 
 	// Save time later.. if we can't read it, don't add it.
@@ -152,8 +158,9 @@ foreach ($rssAlbumList as $album) {
 
 	// COMMENTS TAG
 
-	if (method_exists($album, "canViewComments")
-	&& $album->canViewComments($gallery->user->uid)) {
+	if (isset($gallery->app->comments_enabled) && $gallery->app->comments_enabled == "yes" &&
+		method_exists($album, "canViewComments") && $album->canViewComments($gallery->user->uid))
+	{
 		$albumInfo["comments"] = makeGalleryUrl("view_comments.php",
 		array("set_albumName" => $album->fields["name"]));
 	}
@@ -265,8 +272,8 @@ if (isset($ha)) {
 	$channel_image_height = $ha["pb:height"];
 }
 
-$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, gTranslate('core', "no albums"));
-$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, gTranslate('core', "no photos"));
+$total_str = gTranslate('core', "1 album", "%d albums", $numAlbums, gTranslate('core', "no albums"), true);
+$image_str = gTranslate('core', "1 photo", "%d photos", $numPhotos, gTranslate('core', "no photos"), true);
 
 $description = sprintf(gTranslate('core', "%s in %s"), $image_str, $total_str);
 

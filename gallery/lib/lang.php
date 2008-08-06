@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@
  * @return  string  $translation	string with translation on success, otherwise '--- TranslationError --'
  * @author  Jens Tkotz
  */
-function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '') {
+function gTranslate($domain = null, $singular, $plural = '', $count = null, $nonetext = '', $short = false) {
 	global $gallery;
 
 	$allowedDomain = array('config', 'common', 'core');
@@ -69,10 +69,14 @@ function gTranslate($domain = null, $singular, $plural = '', $count = null, $non
 			$count = 1;
 		}
 		if (ngettext_installed()) {
-			$translation = sprintf(dngettext($gDomain, $singular, $plural, $count), $count);
+			$translation = dngettext($gDomain, $singular, $plural, $count);
 		}
 		else {
-			$translation = sprintf(ngettext($singular, $plural, $count), $count);
+			$translation = ngettext($singular, $plural, $count);
+		}
+
+		if($short) {
+			$translation = sprintf($translation, $count);
 		}
 	}
 

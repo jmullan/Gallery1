@@ -99,4 +99,67 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 
 	return $html;
 }
+
+function popup_link2($title, $url, $args = array()) {
+	global $gallery;
+
+	$url_is_complete	= isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
+	$online_only		= isset($args['online_only'])		? $args['online_only']		: true;
+	$height			= isset($args['height'])		? $args['height']		: 550;
+	$width			= isset($args['width'])			? $args['width']		: 600;
+	$cssclass		= isset($args['cssclass'])		? $args['cssclass']		: '';
+	$extraJS		= isset($args['extraJS'])		? $args['extraJS']		: '';
+	$addBrackets		= isset($args['addBrackets'])		? $args['addBrackets']		: false;
+	$icon			= isset($args['icon'])			? $args['icon']			: '';
+
+	if ( !empty($gallery->session->offline) && $online_only ) {
+		return null;
+	}
+
+	$args['gallery_popup'] = true;
+
+	$url = build_popup_url($url, $url_is_complete);
+
+	// Force int data type
+	$height = (int)$height;
+	$width = (int)$width;
+
+	$attrList = array(
+	   'class' => "g-popuplink $cssclass",
+	   'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+	);
+
+	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets);
+
+	return $html;
+}
+
+/**
+ * This function outputs the HTML start elements of an popup.
+ * It was made to beautify php code ;)
+ *
+ * @param string $title
+ * @param string $header
+ * @param string $align
+ */
+function printPopupStart($title = '', $header = '', $align = 'center') {
+	global $gallery;
+
+	if (!empty($title) && empty($header)) {
+		$header = $title;
+	}
+
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo strip_tags($title); ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>" class="popupbody">
+<div class="popuphead"><?php echo $header; ?></div>
+<div class="popup" align="<?php echo $align; ?>">
+
+<?php
+}
 ?>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,12 +23,27 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 list($save, $data, $keywords, $index, $extra_fields) = getRequestVar(array('save', 'data', 'keywords', 'index', 'extra_fields'));
-list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minutes, $capture_seconds) = 
+list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minutes, $capture_seconds) =
 	getRequestVar(array('capture_year', 'capture_mon', 'capture_mday', 'capture_hours', 'capture_minutes', 'capture_seconds'));
 
+$index = getRequestVar('index');
+
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+    ! ($item = $gallery->album->getPhoto($index)))
+{
+	printPopupStart(gTranslate('core', "Edit texts"));
+	showInvalidReqMesg();
+	exit;
+}
+
 // Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album) && !($gallery->album->isItemOwner($gallery->user->getUid(), $index) && $gallery->album->getItemOwnerModify())) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+if (!$gallery->user->canChangeTextOfAlbum($gallery->album) &&
+    !($gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
+    $gallery->album->getItemOwnerModify()))
+{
+	printPopupStart(gTranslate('core', "Edit texts"));
+	echo showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -79,7 +94,7 @@ if (isset($save)) {
 <div class="popup" align="center">
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
 
-<?php echo makeFormIntro("edit_caption.php", 
+<?php echo makeFormIntro("edit_caption.php",
 		array("name" => "theform"),
 		array("type" => "popup"));
 ?>
@@ -109,7 +124,7 @@ foreach ($gallery->album->getExtraFields() as $field) {
 		$rows = 3;
 	}
 
-	echo "\n<tr>";		
+	echo "\n<tr>";
 	echo "\n\t". '<td style="vertical-align: top; font-weight:bold">'. $fieldLabel .':</td>';
 	echo "\n\t". '<td><textarea name="extra_fields['. $field .']" rows="'. $rows .'" cols="40">'. $value .'</textarea></td>';
 	echo "\n</tr>";
@@ -117,7 +132,7 @@ foreach ($gallery->album->getExtraFields() as $field) {
 ?>
 
 <tr>
-	<td valign=top><b><?php echo gTranslate('core', "Keywords") ?>:</b></td>
+	<td valign=top><b><?php echo gTranslate('core', "Keywords:") ?></b></td>
 	<td><textarea name="keywords" rows="1" cols="40"><?php echo $gallery->album->getKeywords($index) ?></textarea></td>
 </tr>
 </table>
@@ -182,14 +197,14 @@ echo "</td>";
 </table>
 
 <p>
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+	<?php echo gSubmit('save',  gTranslate('core', "Save")); ?>
+	<?php echo gButton('close', gTranslate('core', "Cancel"), 'parent.close()'); ?>
 </p>
 
 </form>
 
 <script language="javascript1.2" type="text/JavaScript">
-<!--   
+<!--
 // position cursor in top form field
 document.theform.data.focus();
 //-->

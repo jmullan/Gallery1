@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,19 +19,35 @@
  *
  * $Id$
  */
-?>
-<input type="radio" name="setCaption" value="0" id="setCaption0"><label for="setCaption0"><?php echo gTranslate('core', "Leave blank.") ?></label>
-<br>
-<input type="radio" name="setCaption" value="1" id="setCaption1" checked><label for="setCaption1"><?php echo gTranslate('core', "Use filename as caption.") ?></label>
-<br>
-<input type="radio" name="setCaption" value="2" id="setCaption2"><label for="setCaption2"><?php echo gTranslate('core', "Use file creation date/time stamp.") ?></label>
-<br>
-<?php
+
+/**
+ * Central caption options formular for adding items.
+ * @package Gallery
+ */
+
+if(! function_exists('gInput')) {
+	exit;
+}
+
+if(!isset($setCaption) || (int)$setCaption > 3) {
+	$setCaption = 1;
+}
+
+echo gInput('radio', 'setCaption', gTranslate('core', "Leave blank."), false, 0,
+		array('id' => 'setCaption0', 'checked' => ($setCaption == 0) ? NULL : false));
+echo "\n<br>";
+
+echo gInput('radio', 'setCaption', gTranslate('core', "Use filename as caption."), false, 1,
+		array('id' => 'setCaption1', 'checked' => ($setCaption == 1) ? NULL : false));
+echo "\n<br>";
+
+echo gInput('radio', 'setCaption', gTranslate('core', "Use file creation date/time stamp."), false, 2,
+		array('id' => 'setCaption2', 'checked' => ($setCaption == 2) ? NULL : false));
+echo "\n<br>";
+
 if (isset($gallery->app->use_exif)) {
-        echo '<input type="radio" name="setCaption" value="3" id="setCaption3">';
-	echo '<label for="setCaption3">';
-        echo gTranslate('core', "Set photo captions with file capture times.");
-	echo '</label>';
+	echo gInput('radio', 'setCaption', gTranslate('core', "Set photo captions with file capture times."), false, 3,
+			array('id' => 'setCaption3', 'checked' => ($setCaption == 3) ? NULL : false));
 }
 
 echo "\n<br><br>";

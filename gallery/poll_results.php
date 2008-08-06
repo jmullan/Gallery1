@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * Additional voting code Copyright (C) 2003-2004 Joan McGalliard
  *
@@ -25,15 +25,15 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->album->isLoaded()) {
+if (empty($gallery->album) || !$gallery->album->isLoaded()) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }
 
 // Is user allowed to see this page ?
 if (!testRequirement('isAdminOrAlbumOwner')) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	echo '<p><a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Back to Gallery") .'</a></p>';
+	printPopupStart(gTranslate('core', "Poll Results"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -50,7 +50,28 @@ $cols = $gallery->album->fields["cols"];
 $imageCellWidth = floor(100 / $cols) . "%";
 $fullWidth="100%";
 
-$pAlbum = $gallery->album;
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+$adminbox['text'] = gTranslate('core', "Poll Results");
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl($gallery->session->albumName),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to album")
+);
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
+$navigator["page"] = 1;
+$navigator["pageVar"] = "page";
+$navigator["maxPages"] = 1;
+$navigator["url"] = makeAlbumUrl($gallery->session->albumName);
+$navigator["spread"] = 5;
+$navigator["bordercolor"] = $bordercolor;
+$navigator["fullWidth"] = $fullWidth;
+
+$albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields['title']) . ' :: '. gTranslate('core', "Poll Results"));
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -58,7 +79,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 <html>
 <head>
-  <title><?php echo $gallery->app->galleryTitle ?> :: <?php echo $gallery->album->fields["title"] . "::" . gTranslate('core', "Poll Results") ?></title>
+  <title><?php echo $albumTitle ?></title>
   <?php common_header();
 
   if(! empty($gallery->album->fields["linkcolor"]) ||
@@ -95,89 +116,81 @@ if ($gallery->album->fields["textcolor"]) {
 <?php }
 
 includeHtmlWrap("album.header");
-$breadcrumb["top"] = true;
-$breadcrumb["bordercolor"] = $bordercolor;
-$breadcrumb["text"][] = sprintf(gTranslate('core', "Return to  %s"), 
-		"<a href=\"" .  makeAlbumUrl($gallery->session->albumName) .
-      		"\">" . $pAlbum->fields['title'] . "</a>");
 
+includeLayout('navtablebegin.inc');
+includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
-
-$navigator["page"] = 1;
-$navigator["pageVar"] = "page";
-$navigator["maxPages"] = 1;
-$navigator["fullWidth"] = $fullWidth;
-$navigator["url"] = makeAlbumUrl($gallery->session->albumName);
-$navigator["spread"] = 5;
-$navigator["bordercolor"] = $bordercolor;
-includeLayout('navigator.inc');
+includeLayout('navtableend.inc');
 
 ?>
 
 <!-- image grid table -->
 <br>
 <?php
-	$num_rows=$gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
-	list($buf, $results)=showResultsGraph($num_rows);
-	$ranks=array_keys($results);
+$num_rows = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
+
+if($num_rows > 0) {
+	list($buf, $results) = showResultsGraph($num_rows);
+	$ranks = array_keys($results);
 	print $buf;
-		?>
-			<p>
-			    <span class="pollresults"><?php echo gTranslate('core', "Results Breakdown") ?></span>
-			<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
-			<?php
-		
-			$rowStart = 0;
-			$i = 0;
-			$numPhotos = sizeof($ranks);
-		       	$result = false;
-		
-			while ($i < $numPhotos) {
-				/* Do the inline_albumthumb header row */
-				echo("<tr>");
-				$i = $rowStart;
-				$j = 1;
-		
-				while ($j <= $cols && $i < $numPhotos) {
-					echo("<td>");
-
-					$index = $gallery->album->getIndexByVotingId($ranks[$i]);
-					if ($index < 0) {
-						$i++;
-						continue;
-					}
-					$result=true;
-					if ($gallery->album->isAlbum($index)) {
-						$albumName = $gallery->album->getAlbumName($index);
-						$album = $gallery->album->getSubAlbum($index);
-						printf(gTranslate('core', "Album: %s"),$album->fields['title'])."<Br>";
-					}
-					else {
-						print $gallery->album->getCaption($index)."<br>";
-					}
-
-					print showResults($ranks[$i]);
-					echo("</td>");
-					$j++; 
-					$i++;
-				}
-				echo("</tr>");
-		
-				$rowStart = $i;
-			}
-			if (!$result) {
-				print gTranslate('core', "No votes so far.");
-			}
-		?>
-		
-		</table>
-		
-	<?php
-	$validation_file = basename(__FILE__);
-	includeHtmlWrap("general.footer");
 ?>
+	<p>
+	<span class="pollresults"><?php echo gTranslate('core', "Results Breakdown") ?></span>
+	<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
+<?php
+	$rowStart = 0;
+	$i = 0;
+	$numPhotos = sizeof($ranks);
+	$result = false;
 
-<?php if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+	while ($i < $numPhotos) {
+		/* Do the inline_albumthumb header row */
+		echo("<tr>");
+		$i = $rowStart;
+		$j = 1;
+		while ($j <= $cols && $i < $numPhotos) {
+			echo("<td>");
+			$index = $gallery->album->getIndexByVotingId($ranks[$i]);
+			if ($index < 0) {
+				$i++;
+				continue;
+			}
+
+			$result = true;
+			if ($gallery->album->isAlbum($index)) {
+				$albumName = $gallery->album->getAlbumName($index);
+				$album = $gallery->album->getSubAlbum($index);
+				printf(gTranslate('core', "Album: %s"),$album->fields['title'])."<Br>";
+			}
+			else {
+				print $gallery->album->getCaption($index)."<br>";
+			}
+
+			print showResults($ranks[$i]);
+			echo("</td>");
+			$j++;
+			$i++;
+		}
+		echo("</tr>");
+		$rowStart = $i;
+	}
+	echo "\n</table>";
+}
+else {
+	echo gallery_info(gTranslate('core', "No votes so far."));
+}
+
+echo "<br>";
+
+$validation_file = basename(__FILE__);
+includeLayout('navtablebegin.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
+echo languageSelector();
+includeHtmlWrap("album.footer");
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>
 </html>
 <?php } ?>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,27 +22,25 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-$index = getRequestVar('index');
+list($index, $reloadExifFromFile) = getRequestVar(array('index', 'reloadExifFromFile'));
 
-// Hack check
-if (!$gallery->user->canReadAlbum($gallery->album)) {
-        print gTranslate('core', "Security violation") ."\n";
-	return;
+echo printPopupStart(gTranslate('core', "Photo Properties"));
+
+// Hack checks
+if (empty($gallery->album) ||
+    ! ($item = $gallery->album->getPhoto($index))) {
+	showInvalidReqMesg();
+	exit;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Photo Properties") ?></title>
-  <?php common_header(); ?>
-  <style type="text/css"> td { text-align: <?php echo langLeft() ?> } </style>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<?php
+if (! $gallery->user->canReadAlbum($gallery->album)) {
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
+
 if ($gallery->session->albumName && $index) {
 ?>
-<div class="popuphead"><?php echo gTranslate('core', "Photo Properties") ?></div>
+
 <div class="popup" align="center">
 <span>
 	<?php echo $gallery->album->getThumbnailTag($index) ?>
@@ -130,11 +128,10 @@ PS: Rasmus has fixed this bug in later versions of PHP (yay Rasmus)
 
 <center>
 	<form action="#">
-	<input type="button" value="<?php echo gTranslate('core', "Close Window") ?>" onclick='parent.close()'>
+	<?php echo gButton('close', gTranslate('core', "Close Window"), 'parent.close()'); ?>
 	</form>
 </center>
 
-<?php print gallery_validation_link("view_photo_properties.php", true, array('index' => $index)); ?>
-
+</div>
 </body>
 </html>

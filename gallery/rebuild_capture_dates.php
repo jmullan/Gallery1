@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,42 +25,54 @@ require_once(dirname(__FILE__) . '/init.php');
 $recursive = getRequestVar('recursive');
 $rebuild = getRequestVar('rebuild');
 
-// Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Rebuilding capture dates"));
+	showInvalidReqMesg();
 	exit;
 }
 
-doctype();
+// Hack check
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	printPopupStart(gTranslate('core', "Rebuilding capture dates"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
+
 printPopupStart(sprintf(gTranslate('core', "Rebuilding capture dates: %s"), $gallery->album->fields["title"]), '', 'left');
 
+echo '<p align="center">' . $gallery->album->getHighlightAsThumbnailTag() . '</p>';
+
 if(!empty($rebuild)) {
-	$gallery->album->rebuildCaptureDates($recursive);
-	echo "\n<br><br>";
-	echo gButton('close', gTranslate('core', "Close"), 'parent.close()');
+	if($gallery->album->rebuildCaptureDates($recursive)) {
+		echo '<script type="text/javascript">opener.location.reload();</script>';
+		echo "\n<center>\n";
+		echo gButton('close', gTranslate('core', "Close"), 'parent.close()');
+		echo "</center>";
 }
 else {
+		$error = true;
+	}
+}
+
+if(empty($rebuild) || isset($error)) {
 	echo gTranslate('core', "Here you can rebuild all capture dates of your photos.");
 	echo "\n<br>";
 	echo gTranslate('core', "This is usefull when something went wrong, of you enabled jhead/exiftags after you upload items.");
-	echo "\n<br>";
-	echo gTranslate('core', "Do you also want to rebuild the capture dates of items in subalbums?");
-	echo "\n<br>";
 
 	echo makeFormIntro('rebuild_capture_dates.php', array(), array('type' => 'popup'));
-?>
-	<p align="center">
-	<input type="radio" name="recursive" value="1"> <?php echo gTranslate('core', "Yes"); ?>
-	<input type="radio" name="recursive" value="0" checked> <?php echo gTranslate('core', "No"); ?>
-	<br><br>
-	<?php
 
+	echo gTranslate('core', "Do you also want to rebuild the capture dates of items in subalbums?");
+	echo gInput('radio', 'recursive', gTranslate('core', "Yes"), false, 1);
+	echo gInput('radio', 'recursive', gTranslate('core', "No"), false, 0, array('checked' => null));
+
+	echo "\n<br><br>";
+
+	echo "\n<div align=\"center\">";
 	echo gSubmit('rebuild', gTranslate('core', "Start"));
 	echo gButton('close', gTranslate('core', "Close"), 'parent.close()');
-?>
-	</p>
-	</form>
-<?php
+	echo "</div>";
+	echo "\n</form>";
 }
 ?>
 </div>

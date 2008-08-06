@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,31 @@
  * $Id$
  */
 
+if (! class_exists('Abstract_UserDB')) {
+	exit;
+}
+
 class Gallery_UserDB extends Abstract_UserDB {
 	var $userMap;
 	var $nobody;
 	var $everybody;
 	var $loggedIn;
 	var $version;
+	var $initialized;
 
 	function Gallery_UserDB() {
 		global $gallery;
+
+		$this->initialized = false;
+
+		if(empty($gallery->app->userDir)) {
+			echo gallery_error(
+				sprintf("No userdir defined ! Please rerun the %sconfiguration wizard%s.",
+					'<a href="setup">', '</a>')
+				);
+			exit;
+		}
+
 		$userDir = $gallery->app->userDir;
 
 		// assuming revision 4 ensures that if the user_version is
@@ -39,9 +55,19 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$this->userMap = array();
 
 		if (!fs_file_exists($userDir)) {
-			if (!mkdir($userDir, 0777)) {
-				echo gallery_error(sprintf(gTranslate('core', "Unable to create dir: '%s'."),$userDir));
-				return;
+			if(isDebugging()) {
+				echo gallery_warning(
+					sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
+						$userDir)
+				);
+			}
+
+			if (!@mkdir($userDir, 0777)) {
+				echo gallery_error(
+					"Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount."
+				);
+
+				return false;
 			}
 		}
 		else {
@@ -96,6 +122,19 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (!$this->loggedIn) {
 			$this->loggedIn = new LoggedInUser();
 		}
+
+		$this->initialized = true;
+	}
+
+
+	/**
+	 * Returns whether the UserDB was succesfully initialized or not
+	 *
+	 * @return boolean	 true if succesfully initialized.
+	 * @author Jens Tkotz
+	 */
+	function isInitialized() {
+		return $this->initialized === true;
 	}
 
 	function canCreateUser() {

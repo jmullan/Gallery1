@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,133 +32,116 @@
  */
 require_once(dirname(__FILE__) . '/init.php');
 
-list($index, $save, $preview, $wmAlign, $wmName, $wmSelect) =
-    getRequestVar(array('index', 'save', 'preview', 'wmAlign', 'wmName', 'wmSelect'));
+list($save, $preview, $wmAlign, $wmName, $wmSelect) =
+	getRequestVar(array('save', 'preview', 'wmAlign', 'wmName', 'wmSelect'));
+
 list($wmAlignX, $wmAlignY, $recursive, $previewFull) =
-    getRequestVar(array('wmAlignX', 'wmAlignY', 'recursive', 'previewFull'));
+	getRequestVar(array('wmAlignX', 'wmAlignY', 'recursive', 'previewFull'));
 
-// Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
-    echo gTranslate('core', "You are not allowed to perform this action!");
-    exit;
+// Hack checks
+if (empty($gallery->album)) {
+	printPopupStart(gTranslate('core', "Watermark Album"));
+	showInvalidReqMesg();
+	exit;
 }
 
-if (empty($index)) {
-    $index = '';
+printPopupStart(sprintf(gTranslate('core', "Watermarking album :: %s"), $gallery->album->fields['title']));
+
+if (! $gallery->user->canWriteToAlbum($gallery->album)) {
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
+
+if ($gallery->album->numPhotos(1) == 0) {
+	echo "\n<p>". gallery_error(gTranslate('core', "No items to watermark.")) . "</p>";
+	echo gButton('close', gTranslate('core', "Close"), 'parent.close()');
+	includeTemplate('overall.footer');
+	exit;
+}
+
 $highlightIndex = $gallery->album->getHighlight();
-$err = '';
+
+$notice_messages = array();
 
 if (isset($save) || isset($preview)) {
-    if (isset($wmAlign) && ($wmAlign > 0) && ($wmAlign < 12)) {
-        if (isset($wmName) && !empty($wmName)) {
-            if (isset($save)) {
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Watermarking album.") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Watermarking album."); ?></div>
-<div class="popup" align="center"><?php echo gTranslate('core', "(this may take a while)"); ?></div>
-<div class="popup">
-<?php
-                my_flush();
-                set_time_limit($gallery->app->timeLimit);
-                $gallery->album->watermarkAlbum(
-                    $wmName,
-                    "",
-                    $wmAlign,
-                    $wmAlignX,
-                    $wmAlignY,
-                    $recursive,
-                    $wmSelect
-                );
-                $gallery->album->save();
-?>
-</div>
-</body>
-</html>
-<?php
-                dismissAndReload();
-                return;
-            } else {
-                // create a preview of the highlight image
-                $gallery->album->watermarkPhoto(
-                    $highlightIndex,
-                    $wmName,
-                    "",
-                    $wmAlign,
-                    isset($wmAlignX) ? $wmAlignX : 0,
-                    isset($wmAlignY) ? $wmAlignY : 0,
-                    1, // set as preview
-                    isset($previewFull) ? $previewFull : 0);
-            }
-        } else {
-            $err = gTranslate('core', "Please select a watermark.");
-        }
-    } else {
-        $err = gTranslate('core', "Please select an alignment.");
-    }
-} else {
-    if (!isset($recursive)) {
-        $recursive = 1;
-    }
+	$notice_messages =
+		checkWatermarkSetting($wmName, $wmAlign, $wmSelect, $previewFull, $wmAlignX, $wmAlignY);
+
+	if(empty($notice_messages)) {
+		if (isset($save)) {
+			echo gallery_info(gTranslate('core', "Watermarking album... (this may take a while)"));
+			my_flush();
+			set_time_limit($gallery->app->timeLimit);
+			$gallery->album->watermarkAlbum(
+				$wmName,
+				"",
+				$wmAlign,
+				$wmAlignX,
+				$wmAlignY,
+				$recursive,
+				$wmSelect
+			);
+			$gallery->album->save();
+
+			echo gallery_success(gTranslate('core', "Watermarking done."));
+		}
+		else {
+			// create a preview of the highlight image
+			$gallery->album->watermarkPhoto(
+				$highlightIndex,
+				$wmName,
+				"",
+				$wmAlign,
+				isset($wmAlignX) ? $wmAlignX : 0,
+				isset($wmAlignY) ? $wmAlignY : 0,
+				1, // set as preview
+				isset($previewFull) ? $previewFull : 0);
+		}
+	}
 }
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Watermark Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body class="popupbody" dir="<?php echo $gallery->direction ?>">
-<div class="popuphead"><?php echo gTranslate('core', "Watermark Album") ?></div>
-<div class="popup" align="center">
-<?php
-if (!$gallery->album->numPhotos(1)) {
-    echo "\n<p>". gallery_error(gTranslate('core', "No items to watermark.")) . "</p>";
-} else {
-    $highlightIndex = $gallery->album->getHighlight();
-    if (isset($highlightIndex)) {
-        if (isset($preview)) {
-            echo $gallery->album->getPreviewTag($highlightIndex);
-        } else {
-            echo $gallery->album->getThumbnailTag($highlightIndex);
-        }
-    }
 
-    if (!empty($err)) {
-        echo "\n<p>". gallery_error($err) . "</p>";
-    }
+echo infoBox($notice_messages);
 
-    echo infoLine(gTranslate('core', "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface & unanimate' your pictures."), 'notice');
-    echo makeFormIntro('watermark_album.php',  array('name' => 'theform'));
-    global $watermarkForm;
-    $watermarkForm["askRecursive"] = 1;
-    $watermarkForm["askPreview"] = 1;
-    $watermarkForm["allowNone"] = 0;
-    includeLayout ('watermarkform.inc');
+if (isset($highlightIndex)) {
+	if (isset($preview)) {
+		echo gallery_info(gTranslate('core', "Preview"));
+		echo $gallery->album->getPreviewTag($highlightIndex);
+	}
+	else {
+		echo $gallery->album->getThumbnailTag($highlightIndex);
+	}
+}
+else {
+	echo gallery_error(gTranslate('core', "No preview possible, as this album has no highlight set."));
+}
+
+echo gallery_info(
+	gTranslate('core', "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface &amp; unanimate' your pictures.")
+);
+
+echo makeFormIntro('watermark_album.php', array(), array('type' => 'popup'));
+
+global $watermarkForm;
+$watermarkForm['askRecursive']	= 1;
+$watermarkForm['askPreview']	= 1;
+$watermarkForm['allowNone']	= 0;
+includeLayout ('watermarkform.inc');
+
 ?>
 
 <p>
-	<input type="hidden" name="index" value="<?php echo $index ?>">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-<?php // only allow preview if there is a highlight
- if (isset($highlightIndex)) { ?>
-	<input type="submit" name="preview" value="<?php echo gTranslate('core', "Preview") ?>">
-<?php } ?>
-	<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+<?php
+
+if(empty($errors)) {
+	echo gSubmit('save', gTranslate('core', "Save"));
+}
+echo gButton('close', gTranslate('core', "Close"), 'parent.close()');
+
+?>
 </p>
 </form>
 
-<?php 
-} // end if numPhotos()
-?>
 </div>
-<?php
-print gallery_validation_link("watermark_album.php", false, array('set_albumName' => $gallery->album->fields["name"]));
-?>
+
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,84 +22,48 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-/* Hack check*/
+list($save, $id, $commenter_name, $comment_text) =
+	getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
+
+
+if(empty($gallery->album) ||
+   $gallery->album->getPhotoIndex($id) == -1)
+{
+   	printPopupStart(gTranslate('core', "Add comment"));
+   	showInvalidReqMesg();
+   	exit;
+}
+
 if (!$gallery->user->canAddComments($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;
+	printPopupStart(gTranslate('core', "Add comment"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+   	exit;
 }
 
-list($save, $id, $commenter_name, $comment_text) = getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
+$notice_messages = array();
 
-$error_text = '';
-if ($gallery->user->isLoggedIn() ) {
-	if (empty($commenter_name) || $gallery->app->comments_anonymous == 'no') {
-		$commenter_name = $gallery->user->printableName($gallery->app->comments_display_name);
-	}
-}
-elseif (!isset($commenter_name)) {
-	$commenter_name = '';
+require(dirname(__FILE__) . '/includes/comments/commentHandling.inc.php');
+
+if (isset($reload)) {
+	// Note: In stats.php this causes the browser to show a message about POST data ...
+	dismissAndReload();
 }
 
-if (empty($comment_text)) {
-	$comment_text = '';
-}
+printPopupStart(gTranslate('core', "Add comment"));
 
-if (isset($gallery->app->comments_length)) {
-	$maxlength = $gallery->app->comments_length;
-}
-else {
-	$maxlength = 0;
-}
+echo "\n<p>". gTranslate('core', "Enter your comment in the text box below.") . '</p>';
 
-if (isset($save)) {
-	if ( empty($commenter_name) || empty($comment_text)) {
-		$error_text = gTranslate('core', "Name and comment are both required to save a new comment!");
-	}
-	elseif ($maxlength >0 && strlen($comment_text) > $maxlength) {
-		$error_text = sprintf(gTranslate('core', "Your comment is too long, the admin set maximum length to %d chars."), $maxlength);
-	}
-	elseif (isBlacklistedComment($tmp = array('commenter_name' => $commenter_name, 'comment_text' => $comment_text), false)) {
-		$error_text = gTranslate('core', "Your comment contains forbidden words. It will not be added.");
-	}
-	else {
-	// Uncomment to forbid html in comments.
-	//	$comment_text = strip_tags($comment_text);
-		$commenter_name = strip_tags($commenter_name);
-		$IPNumber = $_SERVER['REMOTE_ADDR'];
-		$gallery->album->addComment($id, $comment_text, $IPNumber, $commenter_name);
-
-		$gallery->album->save();
-		emailComments($id, $comment_text, $commenter_name);
-
-		// Note: In stats.php this causes the browser to show a message about POST data ...
-		dismissAndReload();
-		return;
-	}
-}
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Add Comment") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Add comment") ?></div>
-<div class="popup" align="center">
-<p><?php echo gTranslate('core', "Enter your comment in the text box below.") ?></p>
-
-<?php
 echo $gallery->album->getThumbnailTagById($id);
-if (!empty($error_text)) {
-	echo "\n<br>". gallery_error($error_text);
-}
-echo "<br><br>";
+
+echo infoBox($comment_messages);
+
 echo makeFormIntro("add_comment.php", array(), array('type' => 'popup'));
 
 drawCommentAddForm($commenter_name, 35);
 ?>
 <input type="hidden" name="id" value="<?php echo $id ?>">
-<br><input type="button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+
+<br><?php echo gButton('cancelButton', gTranslate('core', "Cancel"), 'parent.close()'); ?>
 
 </form>
 </div>

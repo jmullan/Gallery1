@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file Copyright (C) 2003-2004 Joan McGalliard
  * 
@@ -24,42 +24,41 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($id, $index, $confirm) = getRequestVar(array('id', 'index', 'confirm'));
+$confirm = getRequestVar('confirm');
 
-if (isset($id)) {
-        $index = $gallery->album->getPhotoIndex($id);
-}
+printPopupStart(gTranslate('core', "Reset Voting"));
 
-// Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->isItemOwner($gallery->user, $index)) {
-	echo _("You are not allowed to perform this action!");
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	showInvalidReqMesg();
 	exit;
 }
 
-doctype();
-echo "\n<html>";
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
+    !$gallery->album->isItemOwner($gallery->user, $index))
+{
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
+
 if (!empty($confirm)) {
-	$gallery->album->fields["votes"]=array();
+	$gallery->album->fields['votes'] = array();
 	$gallery->album->save(array(i18n("All votes removed")));
 	dismissAndReload();
-	return;
+	exit;
 }
+
+echo '<p class="center">'  . $gallery->album->getHighlightAsThumbnailTag() . "</p>\n";
+
+printf("\n" . gTranslate('core', "Do you really want to remove all votes from album '%s'?"),
+	'<span class="g-emphasis">' .$gallery->album->fields['title'] .'</span>');
+
+echo makeFormIntro('reset_votes.php', array(), array('type' => 'popup'));
+
+echo gSubmit('confirm', gTranslate('core', "Remove Votes"));
+echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
 ?>
 
-<head>
-  <title><?php echo _("Reset Voting") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Reset Voting") ?></div>
-<div class="popup" align="center">
-<p>
-<?php echo sprintf(_("Do you really want to remove all votes in %s?"), "<b>{$gallery->album->fields['title']}</b>") ?>
-</p>
-
-<?php echo makeFormIntro("reset_votes.php"); ?>
-<input type=submit name=confirm value="<?php echo _("Remove Votes") ?>">
-<input type=submit value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
 </form>
 <?php print gallery_validation_link("reset_votes.php"); ?>
 </div>

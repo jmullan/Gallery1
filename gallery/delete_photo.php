@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,134 +22,99 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($id, $index, $formaction, $albumDelete, $albumMatch, $nextId) =
-    getRequestVar(array('id', 'index', 'formaction', 'albumDelete', 'albumMatch', 'nextId'));
+list($index, $formaction, $GUID, $nextId, $id) =
+	getRequestVar(array('index', 'formaction', 'GUID', 'nextId', 'id'));
 
-if (isset($id)) {
-	$index = $gallery->album->getPhotoIndex($id);
+printPopupStart(gTranslate('core', "Delete album item"));
+
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
+	showInvalidReqMesg();
+	exit;
 }
-if (isset($albumDelete)) {
+
+
+if(empty($index) && !empty($id)) {
 	$index = $gallery->album->getAlbumIndex($id);
+}
+
+if(! $item = $gallery->album->getPhoto($index)) {
+	showInvalidReqMesg();
+	exit;
+}
+
+if ($gallery->album->isAlbum($index)) {
 	$myAlbum = $gallery->album->getNestedAlbum($index, false);
 }
 
 // Hack check
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
-	(!$gallery->album->getItemOwnerDelete() || !$gallery->album->isItemOwner($gallery->user->getUid(), $index)) &&
-	(isset($myAlbum) && !$myAlbum->isOwner($gallery->user->getUid()))) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	!($gallery->album->getItemOwnerDelete() && $gallery->album->isItemOwner($gallery->user->getUid(), $index)))
+{
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
-doctype();
-echo "\n<html>";
+$id = $item->getPhotoId();
 
-if (isset($formaction) && $formaction == 'delete' && isset($id)) {
-	if (!empty($albumDelete)) {
-		/* Track down the corresponding photo index and remove it */
-		$index = 0;
-		for ($i = 1; $i <= sizeof($gallery->album->photos); $i++) {
-			$photo = $gallery->album->getPhoto($i);
-			if ($photo->isAlbum() && !strcmp($photo->getAlbumName(), $id)) {
-				$myAlbum = new Album();
-				$myAlbum->load($id, false);
-				if ($myAlbum->fields['guid'] == $albumDelete) {
-					/* Found it */
-					$index = $i;
-					$albumMatch = 1;
-					break;
-				}
-			}
-		}
-	}
-
-	// Prevent a user from pressing delete twice out of impatience and
-	// deleting two albums by mistake
-	if (!isset($albumDelete) || isset($albumMatch)) {
+if (isset($formaction) && $formaction == 'delete') {
+	if($GUID == $id) {
 		$gallery->album->deletePhoto($index);
-		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));    // Update guid to reflect change in album contents
-		$gallery->album->save(array(i18n("%s removed"), $id));
-	}
+		$gallery->album->fields['guid'] = md5(uniqid(mt_rand(), true));	// Update guid to reflect change in album contents
 
-	if (isset($nextId) && !empty($nextId)) {
-	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
+		$gallery->album->save(array(i18n("%s removed"), $id));
+
+		if (isset($nextId) && !empty($nextId)) {
+			dismissAndLoad(makeAlbumUrl($gallery->session->albumName, $nextId));
+		}
+		else {
+			dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
+		}
+		includeTemplate('overall.footer');
+		echo "\n\t</body>\n</html>";
+		exit;
 	}
 	else {
-	    dismissAndLoad(makeAlbumUrl($gallery->session->albumName));
+		echo gallery_error(gTranslate('core', "It seems you double clicked the delete button, or refreshed this dialog in an other way. If you really want to delete THIS item, press delete again."));
 	}
-	return;
 }
-?>
 
-<head>
-  <title><?php echo isset($albumDelete) ? gTranslate('core', "Delete album") : gTranslate('core', "Delete item") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<?php
-if ($gallery->album && isset($id)) {
-	if (isset($albumDelete)) {
-?>
-<div class="popuphead"><?php echo gTranslate('core', "Delete album") ?></div>
-<div class="popup" align="center">
-<?php
-		echo makeFormIntro('delete_photo.php', array(
-	      'name' => 'deletephoto_form',
-		  'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
-	      array('type' => 'popup')
-	    );
+if (isset($myAlbum)) {
+	echo makeFormIntro('delete_photo.php',
+		array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
+		array('type' => 'popup')
+	);
 
-	      echo gTranslate('core', "Do you really want to delete this album?");
+	echo gTranslate('core', "Do you really want to delete this album?");
 
-	      $myAlbum = new Album();
-	      $myAlbum->load($id);
-?>
+	echo "<p>" . $myAlbum->getHighlightTag() . "</p>\n";
+	echo '<p class="g-emphasis">' . $myAlbum->fields['title']   . "</p>\n";
+}
+else {
+	echo gTranslate('core', "Do you really want to delete this item?") ;
+	echo makeFormIntro('delete_photo.php',
+		array('name' => 'deletephoto_form', 'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
+		array('type' => 'popup')
+	);
 
-<p><?php echo $myAlbum->getHighlightTag() ?></p>
-
-<b><?php echo $myAlbum->fields['title'] ?></b>
-<br>
-<br>
-<?php echo $myAlbum->fields['description'] ?>
-<br>
-<input type="hidden" name="id" value="<?php echo $id ?>">
-<input type="hidden" name="albumDelete" value="<?php echo $myAlbum->fields['guid']; ?>">
-<?php
-	} else {
-?>
-<div class="popuphead"><?php echo gTranslate('core', "Delete item") ?></div>
-<div class="popup" align="center">
-<?php
-		echo gTranslate('core', "Do you really want to delete this item?") ;
-		echo makeFormIntro('delete_photo.php', array(
-		  'name' => 'deletephoto_form',
-		  'onsubmit' => 'deletephoto_form.confirm.disabled = true;'),
-		  array('type' => 'popup')
-		);
-?>
-
-<p><?php echo $gallery->album->getThumbnailTag($index) ?></p>
-
-<p><?php echo $gallery->album->getCaption($index) ?></p>
-
-<input type="hidden" name="id" value="<?php echo $id?>">
-<?php
-		if (isset($nextId)) {
-			echo "\n". '<input type="hidden" name="nextId" value="'. $nextId .'"> ';
-		}
+	echo "  <p>" . $gallery->album->getThumbnailTag($index) . "</p>\n";
+	if($gallery->album->getCaption($index)) {
+		echo "  <p>" . $gallery->album->getCaption($index)  . "</p>\n";
 	}
+
+	if (isset($nextId)) {
+		echo gInput('hidden', 'nextId', null, false, $nextId);
+	}
+}
+
+echo gInput('hidden', 'GUID', null, false, $id);
+echo gInput('hidden', 'index', null, false, $index);
+echo gInput('hidden', 'formaction', null, false, '');
+echo gButton('confirm', gTranslate('core', "Delete"), "deletephoto_form.formaction.value='delete'; deletephoto_form.submit()");
+echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
 ?>
-<input type="hidden" name="formaction" value="">
-<input type="submit" name="confirm" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deletephoto_form.formaction.value='delete'">
-<input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
 </form>
-<br>
-<?php
-} else {
-	echo gallery_error(gTranslate('core', "no album / index specified"));
-}
-?>
 </div>
-<?php print gallery_validation_link("delete_photo.php", false, array('id' => $id, 'index' => $index)); ?>
+<?php print gallery_validation_link("delete_photo.php", true, array('id' => $id, 'index' => $index)); ?>
 </body>
 </html>

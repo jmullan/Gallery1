@@ -1,3 +1,59 @@
+2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b33
+
+ * SECURITY BUGFIX *
+
+ + Inadequate Application Error Handling and Suppression + 
+
+ Detailed error messages often result from unhandled or unexpected exceptions
+ within application code. These messages are
+ often the stepping-stone to more complex attacks because they typically
+ provide information that indicates why an error
+ occurred which can be further leveraged to refine successful attacks.
+
+
+ Other Changes:
+
+ * CHANGE: The constant LOAD_SESSIONS needs to be set before gallery
+   session.php can be loaded.
+
+
+ * CHANGE: Renamed printAlbumOptionList() into albumOptionList().
+           Also does not print the options list anymore.
+           Its returned as array.
+
+           Same for printNestedVals() -> nestedAlbumOptionList()
+
+ * CHANGE: New parameter for gTranslate
+           $short = false ; previous behaviour is like this is set true!!
+
+ * Fix: After deleting an album, the opener page is reloaded correctly.
+
+ * Fix: Full imlementation for userDB->isInitialized()
+
+ * Change: Cleanup and modified structure of albumProperties.php
+
+ * Change: place of navigation icons.
+
+ * Change: Better error and exception handling in
+	    - album_permissions.php
+            - photo_owner.php
+
+ * NEW:
+        lib/text.php
+        lib/users.php
+
+ * Change: Use printPopupStart() for the most popups.
+           Moved from lib/content.ptp into lib/popup.php
+
+ * New functions:
+   - popup_link2($title, $url, $args = array())
+
+
+ * New methods:
+   -- Album->isImage($id)
+   -- Album->isImageByIndex($index)
+   -- AlbumItemm->isImage()
+
 2008-08-06 Jens Tkotz <jens@peino.de> 1.5.8-svn-b32
 
  *

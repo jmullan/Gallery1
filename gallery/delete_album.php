@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,34 +24,29 @@ require_once(dirname(__FILE__) . '/init.php');
 
 list($formaction, $guid) = getRequestVar(array('formaction', 'guid'));
 
-// Hack check
-if (!$gallery->user->canDeleteAlbum($gallery->album)) {
-	echo _("You are not allowed to perform this action!");
+printPopupStart(gTranslate('core', "Delete Album"));
+if(! isset($gallery->album) ||
+   (!empty($formaction) && $formaction != 'delete'))
+{
+   	showInvalidReqMesg(gTranslate('core', "Wrong call! Please try again, and/or contact your admin."));
 	exit;
 }
 
-doctype();
-echo "\n<html>";
+if (!$gallery->user->canDeleteAlbum($gallery->album)) {
+   	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
 
 if (!empty($formaction) && $formaction == 'delete') {
 	if ($guid == $gallery->album->fields['guid']) {
 		$gallery->album->delete();
 	}
 
-	dismissAndReload();
+	dismissAndLoad(makeGalleryHeaderUrl());
 	return;
 }
 
-if ($gallery->album) {
-?>
-<head>
-  <title><?php echo _("Delete Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo _("Delete Album") ?></div>
-<div class="popup" align="center">
-<?php echo _("Do you really want to delete this album?"); ?>
+echo gTranslate('core', "Do you really want to delete this album?"); ?>
 <p>
 <b><?php echo $gallery->album->fields["title"] ?></b>
 <?php
@@ -61,20 +56,18 @@ if ($gallery->album) {
 	}
 ?>
 </p>
-<?php echo makeFormIntro("delete_album.php", 
-	array('name' => 'deletealbum_form', 'onsubmit' => 'deletealbum_form.deleteButton.disabled = true;'),
- 	array("type" => "popup"));
-?>
-<input type="hidden" name="guid" value="<?php echo $gallery->album->fields['guid']; ?>">
-<input type="hidden" name="formaction" value="">
-<input type="submit" name="deleteButton" value="<?php echo _("Delete") ?>" onclick="deletealbum_form.formaction.value='delete'">
-<input type="button" name="cancel" value="<?php echo _("Cancel") ?>" onclick='parent.close()'>
-</form>
 <?php
-} else {
-	echo gallery_error(_("no album specified"));
-}
+	echo makeFormIntro("delete_album.php",
+		array('name' => 'deletealbum_form', 'onsubmit' => 'deletealbum_form.deleteButton.disabled = true;'),
+ 		array('type' => 'popup'));
+
+ 	echo gInput('hidden', 'guid', null, false, $gallery->album->fields['guid']);
+ 	echo gInput('hidden', 'formaction', null, false, '');
+ 	echo gSubmit('deleteButton', gTranslate('core', "Delete"), array('onClick' => "deletealbum_form.formaction.value='delete'"));
+ 	echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
 ?>
+</form>
+
 </div>
 
 <?php print gallery_validation_link("delete_album.php"); ?>

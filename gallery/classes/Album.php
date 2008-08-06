@@ -2178,6 +2178,19 @@ class Album {
 		$this->photos = $newList;
 	}
 
+	function isImage($id) {
+		$index = $this->getPhotoIndex($id);
+		$photo = $this->getPhoto($index);
+
+		return $photo->isImage();
+	}
+
+	function isImageByIndex($index) {
+		$photo = $this->getPhoto($index);
+
+		return $photo->isImage();
+	}
+
 	function isMovie($id) {
 		$index = $this->getPhotoIndex($id);
 		$photo = $this->getPhoto($index);
@@ -2225,9 +2238,24 @@ class Album {
 		return ($photo->getAlbumName() !== NULL) ? true : false;
 	}
 
+	/**
+	 * Get the albumName of an albumitem
+	 *
+	 * @param integer $index
+	 * @return mixed  $ret    null if $photo does not exits, empty on nonalbums,
+	 *                        otherwise the album name.
+	 */
 	function getAlbumName($index) {
 		$photo = $this->getPhoto($index);
-		return $photo->getAlbumName();
+
+		if(!$photo) {
+			$ret = null;
+		}
+		else {
+			$ret = $photo->getAlbumName();
+		}
+
+		return $ret;
 	}
 
 	function setAlbumName($index, $name) {

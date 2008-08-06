@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,133 +22,145 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($reorder, $index, $newAlbum, $newIndex) = getRequestVar(array('reorder', 'index', 'newAlbum', 'newIndex'));
+list($reorder, $index, $newParentAlbumName, $newIndex) =
+	getRequestVar(array('reorder', 'index', 'newParentAlbumName', 'newIndex'));
+
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName)
+	|| !isset($reorder))
+{
+	printPopupStart(gTranslate('core', "Move Top Album"));
+	showInvalidReqMesg();
+	exit;
+}
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-    echo gTranslate('core', "You are not allowed to perform this action!");
-    exit;
+	printPopupStart(gTranslate('core', "Move Top Album"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
 
-doctype();
-?>
-<html>
-<head>
-  <title><?php echo gTranslate('core', "Move Album") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Move Album") ?></div>
-<div class="popup" align="center">
-<?php
+if($reorder == 0) {
+	printPopupStart(gTranslate('core', "Move Top Album"));
+}
+else {
+	printPopupStart(gTranslate('core', "Reorder Top Album"));
+}
+
 /* Read the album list */
 $albumDB = new AlbumDB(FALSE);
 
-if ($gallery->session->albumName && isset($index)) {
-    if (isset($newAlbum)) { // moving album to a nested location
-    if ($gallery->album->fields['name'] != $newAlbum) {
-        $old_parent = $gallery->album->fields['parentAlbumName'];
-        $gallery->album->fields['parentAlbumName'] = $newAlbum;
+// Moving album to a nested location
+if (isset($newParentAlbumName) && $reorder == 0) {
+	if ($gallery->album->fields['name'] != $newParentAlbumName) {
+		$newParentAlbum = $albumDB->getAlbumByName($newParentAlbumName);
 
-        // Regenerate highlight if needed..
-        if ($gallery->app->highlight_size != $newAlbum->fields["thumb_size"]) {
-            $hIndex = $gallery->album->getHighlight();
-            if (isset($hIndex)) {
-                $hPhoto =& $gallery->album->getPhoto($hIndex);
-                $hPhoto->setHighlight($gallery->album->getAlbumDir(), true, $gallery->album);
-            }
-        }
+		if(!$newParentAlbum) {
+			echo gallery_error(gTranslate('core', "You chose an invalid new parent album?"));
+			$error = true;
+		}
+		else {
+			$old_parent = $gallery->album->fields['parentAlbumName'];
+			$gallery->album->fields['parentAlbumName'] = $newParentAlbumName;
 
-        if ($old_parent == 0) {
-            $old_parent=".root";
-        }
+			// Regenerate highlight if needed..
+			if ($gallery->app->highlight_size != $newParentAlbumName->fields["thumb_size"]) {
+				$hIndex = $gallery->album->getHighlight();
+				if (isset($hIndex)) {
+					$hPhoto =& $gallery->album->getPhoto($hIndex);
+					$hPhoto->setHighlight($gallery->album->getAlbumDir(), true, $gallery->album);
+				}
+			}
 
-        $gallery->album->save(array(i18n("Album moved from %s to %s"),
-        $old_parent,
-        $newAlbum));
+			if ($old_parent == 0) {
+				$old_parent = '.root';
+			}
 
-        $newAlbum = $albumDB->getAlbumByName($newAlbum);
-        $newAlbum->addNestedAlbum($gallery->album->fields['name']);
-        if ($newAlbum->numPhotos(1) == 1) {
-            $newAlbum->setHighlight(1);
-        }
+			$gallery->album->save(array(i18n("Album moved from %s to %s"), $old_parent, $newParentAlbumName));
 
-        $newAlbum->save(array(i18n("New subalbum %s, moved from %s"),
-        $gallery->album->fields['name'],
-        $old_parent));
-    }
-    dismissAndReload();
-    return;
-    }
+			$newParentAlbum->addNestedAlbum($gallery->album->fields['name']);
+			if ($newParentAlbum->numPhotos(1) == 1) {
+				$newParentAlbum->setHighlight(1);
+			}
 
-    if (isset($newIndex)) {
-        $albumDB->moveAlbum($gallery->user, $index, $newIndex);
-        $albumDB->save();
-        dismissAndReload();
-        return;
-    } else {
-        $visibleAlbums = $albumDB-> getVisibleAlbums($gallery->user);
+			$newParentAlbum->save(array(i18n("New subalbum %s. Moved from %s"),
+									$gallery->album->fields['name'],
+									$old_parent)
+			);
+		}
+	}
 
-        echo sprintf(gTranslate('core', "Select the new location of album: %s"), $gallery->album->fields["title"]);
-        echo "\n<br>" . gTranslate('core', "Your Album will be moved to the position you choose below.");
-        echo '<p>' .  $gallery->album->getHighlightTag() . '</p>';
-
-        if (!empty($reorder)) { // Reorder, intra-album move
-        echo makeFormIntro("move_album.php",
-          array("name" => "theform"),
-          array("type" => "popup"));
-?>
-    <input type="hidden" name="index" value="<?php echo $index ?>">
-    <select name="newIndex">
-<?php
-        foreach ($visibleAlbums as $albumIndex => $album) {
-            $i = $albumIndex+1;
-            $sel = '';
-            if ($i == $index) {
-                $sel = "selected";
-            }
-            echo "\n\t<option value=\"$i\" $sel>$i . ". $album->fields['title'] ."</option>";
-        }
-?>
-        </select>
-        <input type="submit" name="move" value="<?php echo gTranslate('core', "Move it!") ?>">
-        <input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
-</form>
-
-<p>
-<?php
-        } else { // Reorder, trans-album move
-        echo gTranslate('core', "Nest within another Album:");
-        echo makeFormIntro("move_album.php",
-          array("name" => "theform"),
-          array("type" => "popup"));
-?>
-        <input type="hidden" name="index" value="<?php echo $index ?>">
-        <select name="newAlbum">
-        <?php printAlbumOptionList(false, true); ?>
-</select>
-        <br><br>
-        <input type="submit" name="move" value="<?php echo gTranslate('core', "Move to Album!") ?>">
-        <input type="button" name="cancel" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
-</form>
-<?php
-        } // End Reorder
-    }
-} else {
-    echo gallery_error(gTranslate('core', "no album / index specified"));
+	if(!isset($error)) {
+		dismissAndReload();
+		exit;
+	}
 }
+elseif (isset($newIndex) && $reorder == 1) {
+	if(!isValidGalleryInteger($index) || !isValidGalleryInteger($newIndex)) {
+		echo gallery_error(gTranslate('core', "Given start and end index are wrong?"));
+	}
+	else {
+		$albumDB->moveAlbum($gallery->user, $index, $newIndex);
+		$albumDB->save();
+		dismissAndReload();
+		exit;
+	}
+}
+
+$visibleAlbums = $albumDB->getVisibleAlbums($gallery->user);
+
+printf(gTranslate('core', "Select the new location of album: '%s%s%s'"),
+		'<b>',
+		$gallery->album->fields["title"],
+		'</b>'
+);
+
+// Move
+if ($reorder == 0) {
+	echo "\n<br>" . gTranslate('core', "Your album will be moved into the album you choose below.");
+	echo '<p>' .  $gallery->album->getHighlightTag() . '</p>';
+
+	echo makeFormIntro('move_album.php',
+				array(),
+				array('type' => 'popup', 'reorder' => $reorder));
+
+	list($uptodate, $albumOptionList) = albumOptionList(false, true);
+
+	echo drawSelect2('newParentAlbumName', $albumOptionList);
+?>
+		<br><br>
+		<?php echo gSubmit('move', gTranslate('core', "Move to Album!")) ;?>
+		<?php echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()'); ?>
+</form>
+<?php
+}
+// Reorder
+else {
+	echo "\n<br>" . gTranslate('core', "Your album will be moved to the position you choose below.");
+	echo '<p>' .  $gallery->album->getHighlightTag() . '</p>';
+
+	echo makeFormIntro('move_album.php',
+				array(),
+				array('type' => 'popup', 'index' => $index, 'reorder' => $reorder));
+
+	foreach ($visibleAlbums as $albumIndex => $album) {
+		$i = $albumIndex+1;
+		$indexArray[$i] = "$i . ". $album->fields['title'];
+	}
+
+	echo drawSelect('newIndex', $indexArray, $index);
+
+	echo "\n<br><br>\n";
+	echo gSubmit('move', gTranslate('core', "Move it!")) ;
+	echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()');
+
+echo "</form>";
+
+} // End Reorder
+
 ?>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-<?php if (!empty($reorder)) { ?>
-// position cursor in top form field
-document.theform.newIndex.focus();
-<?php } else { ?>
-document.theform.newAlbum.focus();
-<?php } ?>
-// -->
-</script>
 </div>
 
 <?php print gallery_validation_link("move_album.php", true, array('index' => $index)); ?>

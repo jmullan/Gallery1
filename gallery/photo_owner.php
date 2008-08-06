@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file by Joan McGalliard
  *
@@ -23,83 +23,73 @@
  */
 
 require_once(dirname(__FILE__) . '/init.php');
+require_once(dirname(__FILE__) . '/lib/users.php');
 
-list($save, $owner, $id) = getRequestVar(array('save', 'owner', 'id'));
+list($save, $ownerUid, $id) = getRequestVar(array('save', 'ownerUid', 'id'));
 
-// Hack check
-if (!$gallery->user->isAdmin() &&
-    !$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName) ||
+    !isset($id))
+{
+	printPopupStart(gTranslate('core', "Item Owner"));
+	showInvalidReqMesg();
 	exit;
 }
 
-doctype();
-echo "\n<html>";
+if (!$gallery->user->isAdmin() &&
+    !$gallery->user->isOwnerOfAlbum($gallery->album))
+{
+	printPopupStart(gTranslate('core', "Item Owner"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
 
-if ( isset($save) && $owner) {
-	$gallery->album->setItemOwnerById($id, $owner);
-	$user=$gallery->userDB->getUserByUid($owner);
-	$gallery->album->save(array(i18n("New owner %s for %s"),
-				$user->printableName('!!FULLNAME!! (!!USERNAME!!)'),
-				makeAlbumURL($gallery->album->fields["name"], $id)));
+if (isset($save) && $ownerUid) {
+	// In case an invalid userid was given, this sets the new owner to nobody.
+	$newOwner	= $gallery->userDB->getUserByUid($ownerUid);
+	$newOwnerUid	= $newOwner->getUid();
 
+	$gallery->album->setItemOwnerById($id, $newOwnerUid);
+
+	$gallery->album->save(array(
+		i18n("New owner %s for %s"),
+			$newOwner->printableName('!!FULLNAME!! (!!USERNAME!!)'),
+			makeAlbumURL($gallery->album->fields["name"], $id))
+	);
 
 	dismissAndReload();
-	return;
+	exit;
 }
 
+list($specialUsers, $users, $allUsers) = buildUsersList(true);
 
-// Start with a default owner of nobody -- if there is an
-// owner it'll get filled in below.
-$nobody = $gallery->userDB->getNobody();
-$owner = $nobody->getUid();
-
-
-foreach ($gallery->userDB->getUidList() as $uid) {
-	$tmpUser = $gallery->userDB->getUserByUid($uid);
-	$uAll[$uid] = $tmpUser->getFullName()." (".$tmpUser->getUsername().")";
+$ownerUid = $gallery->album->getItemOwnerById($id);
+if ($gallery->userDB->getUserByUid($ownerUid) == NULL) {
+	$nobody		= $gallery->userDB->getNobody();
+	$ownerUid	= $nobody->getUid();
 }
 
-$owner = $gallery->album->getItemOwnerById($id);
+printPopupStart(gTranslate('core', "Item Owner"));
 
-if ($gallery->userDB->getUserByUid($owner) == NULL) {
-	$nobody = $gallery->userDB->getNobody();
-	$owner = $nobody->getUid();
+$index = $gallery->album->getPhotoIndex($id);
+echo $gallery->album->getThumbnailTag($index);
+echo "\n<br>";
+echo $gallery->album->getCaption($index);
 
+echo "\n<br>";
+echo makeFormIntro('photo_owner.php',
+	array('name' => 'item_owner_form'),
+	array('type' => 'popup', 'id' => $id));
+
+if ($gallery->user->isAdmin) {
+	echo gTranslate('core', "Owner: ");
+	echo drawSelect("ownerUid", $allUsers, $ownerUid, 1);
 }
 
-asort($uAll);
-
+echo "\n<br><br>";
+echo gSubmit('save', gTranslate('core', "Save"));
+echo gButton('done', gTranslate('core', "Close"), 'parent.close()');
 ?>
-<head>
-  <title><?php echo gTranslate('core', "Change Owner") ?></title>
-  <?php common_header(); ?>
-</head>
-<body dir="<?php echo $gallery->direction ?>" class="popupbody">
-<div class="popuphead"><?php echo gTranslate('core', "Change Owner") ?></div>
-<div class="popup" align="center">
-<?php
-	$index=$gallery->album->getPhotoIndex($id);
-	echo $gallery->album->getThumbnailTag($index);
-	$gallery->album->getCaption($index);
-
-	echo "\n<br><br>";
-
-	echo makeFormIntro("photo_owner.php",
-		array("name" => "photoowner_form"),
-		array("type" => "popup"));
-
-	if ($gallery->user->isAdmin) {
-		echo gTranslate('core', "Owner") .": ";
-		echo drawSelect("owner", $uAll, $owner, 1);
-	}
-?>
-
-<p>
-	<input type="hidden" name="id" value="<?php echo $id ?>">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save") ?>">
-	<input type="button" name="done" value="<?php echo gTranslate('core', "Done") ?>" onclick='parent.close()'>
-</p>
 </form>
 </div>
 <?php print gallery_validation_link("photo_owner.php", true, array('id' => $id)); ?>
