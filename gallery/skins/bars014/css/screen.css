@@ -1,0 +1,386 @@
+/*
+   $Id: screen.css 143 2008-05-30 22:37:00Z root $
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+
+/* 
+   default text styles - background and colors overriden by
+   album 'bgcolor', 'background', and 'textcolor' properties.
+*/
+BODY  
+	{ 
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10pt;
+	  color:#CB3B3B;
+	  font-weight:bold;
+	  background-color: #ffffff;
+	  margin-left: 0px;
+	  margin-right: 0px;
+	}
+TD, P 
+	{ 
+	  font-family: Verdana, Arial, Helvetica, sans-serif;
+	  font-size: 10pt; 
+	}
+/* 
+   link colors - overridden by the album 'linkcolor' property.
+*/
+A   	{ color: #CB3B3B; text-decoration: none; }
+A:link	{ color: #CB3B3B; text-decoration: none; }
+A:visited { color: #CB3B3B; text-decoration: none; }
+A:active { color: #CB3B3B; }
+A:hover	{ color: #C0C0C0; }
+/* 
+   text styles 
+*/
+.title                          /* album titles on main page */
+	{ 
+	  line-height:140%;
+	  padding-right:2px;
+	  padding-left:3px;
+	  padding-top:3px;
+	}
+.title a,
+.title a:link,
+.title a:visited,
+.title a:active {
+	  font-family:verdana, arial, sans-serif;
+	  color:#ffffff;
+	  font-size:x-small;
+	  font-weight:bold;  
+	  text-decoration: none;
+	}
+.title a:hover {
+	  color_: #CB3B3B;
+	  text-decoration: underline;
+	} 
+	
+.mod_title	/* album title  Text is controled by .title */ 
+	{ 
+	 height: 40px;
+	}
+.mod_title_bg	/* album title hightlight Text is controled by .title */ 
+	{ 
+	  background-image: url(../images/mod_highlight_bg.jpg);
+	  height: 40px;
+	  width: 100%;
+	}
+.mod_title_right  /* album title hightlight  Text is controled by .title*/ 
+	{ 
+	  background-image: url(../images/mod_highlight_right.jpg);
+	  height: 40px;
+	  width: 25px;
+	}
+.mod_title_left  /* album title hightlight  Text is controled by .title */ 
+	{ 
+	  background-image: url(../images/mod_highlight_left.jpg);
+	  height: 40px;
+	  width: 25px;
+	}
+.albumdesc  /*album description includes all text and background*/
+	{
+	  font-family:verdana, arial, sans-serif;
+	  color:#CB3B3B;
+	  font-size: 12pt;
+	  font-weight:bold;
+	  line-height:140%;
+	  border:0px solid #CB3B3B;
+	}
+.desc  /* album descriptions on main page just description and author*/
+	{ 
+	  font-family:verdana, arial, sans-serif;
+	  color:#CB3B3B;
+	  font-size:x-small;
+	  font-weight:bold;
+	  line-height:140%;
+	  margin-top:2px;
+	}
+.caption  /* photo captions on all pages */
+	{ 
+	  font-size: 10px; 	
+	}
+.modcaption  /* modifies background for caption text to reside */
+	{
+	  font-family:verdana, arial, sans-serif;
+	  color: #CB3B3B;
+	  font-size: 10px;
+	  font-weight:bold;
+	  line-height:140%;
+	  padding:2px;
+	  margin-top:2px;		
+	  border:1px dashed #CB3B3B;
+	}
+
+.error  /* all error text */
+	{ 
+	  color: red; 
+	  font-size: 12px; 
+	}
+.attention {
+    color: red;
+    font-weight: bold;
+}
+
+.headbox  /* box around the page headers */
+	{
+	}
+.head  /* page headers behind the Gallery title*/
+	{ 
+	  font-family:verdana, arial, sans-serif;
+	  color:#ffffff;
+	  font-size: 16px;
+	  font-weight:bold;
+	  padding-left:2px;
+	  padding-right:2px;
+	  padding-top:3px;
+	  line-height:140%;
+	  border:0px dashed #CB3B3B;
+	  height: 28px;  
+	}
+.mod_headliner  /* Gallery & Album titles. Text is controled by .head */ 
+	{ 
+	  width: 100%;
+	  height: 40px;
+	}
+.mod_toplight_bg  /* Gallery & Album titles. Text is controled by .head */ 
+	{ 
+	  background-image: url(../images/mod_highlight_bg.jpg);
+	  width:100%;
+	  height: 40px;
+	}
+.mod_toplight_right  /* Gallery & Album titles. Text is controled by .head*/ 
+	{ 
+	  background-image: url(../images/mod_highlight_right.jpg);
+	  height: 40px;
+	  width: 25px;
+	}
+.mod_toplight_left  /* Gallery & Album titles. Text is controled by .head */ 
+	{ 
+	  background-image: url(../images/mod_highlight_left.jpg);
+	  height: 40px;
+	  width: 25px
+	}
+.bread  /* used in breadcrumb bars */
+	{ 
+	  font-size: 10px; 
+	}
+.nav    /* used in navigation bars */
+	{
+	  font-size: 12px;
+	}
+.bordertop
+	{
+	}
+.borderright
+	{
+	}
+.borderleft
+	{
+	}
+.fineprint  /* used for fine print */
+	{ 
+	  font-size: 10px; 
+	}
+
+.editlink,  /* Used for the [edit] tags */
+.editlink a,
+.editlink a:link,
+.editlink a:visited,
+.editlink a:active
+	{
+	  font-size: 10px;
+	  font-weight: normal;
+	  color_: #CB3B3B;	  
+	}
+.modnavbox  /* main navigation bar next and previous */ 
+	{ 
+	  font-family:verdana, arial, sans-serif;	
+	  color:#ffffff;
+	  font-size: 12px; 
+	  font-weight:bold;
+	  background-image: url(../images/navbar.jpg);
+	  line-height:140%;
+	  border:0px dashed #CB3B3B;
+	  width: 100%;
+	  height: 22px;
+	}
+.modnavbox a,
+.modnavbox a:link,
+.modnavbox a:visited,
+.modnavbox a:active {
+	  font-weight: normal;
+	  color:#ffffff;
+	  text-decoration: none;
+	}
+.modnavbox a:hover {
+	  font-weight: normal;
+	  color: #CB3B3B;
+	  text-decoration: underline;
+	}
+.admin  /* used in admin bars - the serch text*/
+	{ 
+	  font-size: 10px;
+	  font-weight: bold;
+	}
+.search  /* used in admin bars - the serch text*/
+	{ 
+	  font-size: 10px;
+	  color: #CB3B3B; 
+	  font-weight: bold;
+	}
+.leftspacer /* amount of space to the left of the header and titles */
+	{
+	  width: 0px;
+	}
+.modnavboxtop  /*navagation bar top of screen where admin buttons show*/
+	{ 
+	  font-family:verdana, arial, sans-serif;
+	  color: #CB3B3B;
+	  font-size: 10px;
+	  font-weight:bold;
+	  line-height:140%;
+	  letter-spacing: .1em;
+	  border:0px dashed #CB3B3B;
+	  width: 100%  
+	}
+.modnavboxtop a,
+.modnavboxtop a:link,
+.modnavboxtop a:visited,
+.modnavboxtop a:active {
+	  font-weight: normal;
+	  color: #CB3B3B;
+	  text-decoration: none;
+	}
+.modnavboxtop a:hover {
+	  font-weight: normal;
+	  color: #999999;
+	  text-decoration: none;
+	}
+.modnavboxmid  /*navagation bar middle where the link for the albums show*/
+	{ 
+	  font-family:verdana, arial, sans-serif;
+	  color: #CB3B3B;
+	  font-size: 10px;
+	  font-weight:bold;
+	  line-height:140%;
+	  border:0px dashed #CB3B3B;
+	  width: 100%  
+	}
+.modnavboxmid a,
+.modnavboxmid a:link,
+.modnavboxmid a:visited,
+.modnavboxmid a:active {
+	  font-weight: normal;
+	  color:#CB3B3B;
+	  text-decoration: none;
+	}
+.modnavboxmid a:hover {
+	  font-weight: normal;
+	  color: #999999;
+	  text-decoration: underline;
+	}
+.modfooter  /*footer where the Gallery version is located*/
+	{ 
+	  font-family:verdana, arial, sans-serif;
+	  color:#CB3B3B;
+	  font-size: 8px;
+	  font-weight:normal;
+	  line-height:140%;
+	  padding:2px;
+	  border:0px dashed #CB3B3B;
+	  width=100%   
+	}
+.modfooter a,
+.modfooter a:link,
+.modfooter a:visited,
+.modfooter a:active {
+	  color:#CB3B3B;
+	  text-decoration: none;
+	}
+.modfooter a:hover {
+	  color: #999999;
+	  text-decoration: none;
+	}
+
+.pview /* brackets both the image and all text in one frame */
+{
+	margin:2px;
+	padding:2px;
+ }
+
+.pcaption /* brackets all text below photo */
+{ 
+	padding:2px;
+	margin-top:2px;
+ }
+
+.presults /* text for poll results under photo  */
+ {
+ }
+
+.vatable /* width of the div set for all photo sets - view albums  */
+ { 
+ 	width: 100%;
+ }
+
+.vaspacer /*  spacing in view album  */
+ { 
+	margin-left: 10px;
+	font-size: 5px;
+ }
+
+.vathumbs /* full background bracket for images and text - veiw albums  */
+ { 
+ }
+
+.vafloat /* float for view album - text */
+ {
+	float: none; 
+	margin-left: 10px;
+ }
+
+.vafloat2 /* float for view album - images */
+ {
+ 	float: none; 
+ }
+
+.vasummary /* controls the view of Album summary */
+{
+        font-family:verdana, arial, sans-serif;
+        color: #CB3B3B;
+        font-weight:bold;
+        padding:2px;
+        margin-top:10px;
+        border:3px groove #CB3B3B;
+	width: 80%;
+}
+
+.popupbody  /* controls the background of popup. */
+        {
+          margin: 25px;
+          font-size: 12px; font-weight: none;
+ }
+
+.popup {
+    font-size: 12px;
+    color: #CB3B3B;	  
+    padding: 5px;
+    font-weight: normal;
+    border: 1px solid #FFF;
+    margin-bottom: 10px;
+}
+
+.popuphead, .separator {
+    font-size: 14px; font-weight:bold;
+    text-align: center;
+    color: #FFFFFF;
+    background-image: url(../images/mod_highlight_bg.jpg);
+    padding: 5px; margin: 10px;
+    line-height: 150%;
+}
+
+
+.popupform /* controls form textarea */
+ {
+ }
