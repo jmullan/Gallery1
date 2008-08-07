@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,24 +50,10 @@ function slideshow_initialize() {
 function slideshow_body() {}
 
 function slideshow_controlPanel() {
-	global $pixelImage;
-?>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modnavboxmid">
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td height="25" width="1"><?php echo $pixelImage ?></td>
-    <td align="center" valign="middle"><span class="admin">
-<?php echo gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.") ?>
-    </span></td>
-    <td width="1"><?php echo $pixelImage ?></td>
-  </tr>
-  <tr>
-    <td colspan="3"><?php echo $pixelImage ?></td>
-  </tr>
-</table>
-<?php
+	echo infobox(array(array(
+		'type' => 'information',
+		'text' => gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
+	)));
 }
 
 function slideshow_image() {

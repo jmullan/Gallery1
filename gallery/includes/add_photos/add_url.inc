@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 echo "\n<p>";
 echo gTranslate('core', "Upload any images found at this location.") . ' ';
 echo gTranslate('core', "The location can either be a URL or a local directory on the server.");
@@ -44,7 +43,7 @@ include(dirname(__FILE__) .'/captionOptions.inc.php');
 <?php
 if (isset($gallery->app->watermarkDir)) {
 	global $watermarkForm;
-	
+
 	$watermarkForm['askRecursive']	= 0;
 	$watermarkForm['askPreview']	= 0;
 	$watermarkForm['allowNone']		= 1;
@@ -52,7 +51,7 @@ if (isset($gallery->app->watermarkDir)) {
 }
 ?>
 <p align="center">
-<input type=submit value="<?php echo gTranslate('core', "Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
-<input type=submit value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+<input class="g-button" type="submit" value="<?php echo gTranslate('core', "Submit URL or directory") ?>" onClick='parent.opener.showProgress(); document.uploadurl_form.submit()'>
+<?php echo gButton('close', gTranslate('core', "Cancel"), 'parent.close()'); ?>
 </p>
 </form>

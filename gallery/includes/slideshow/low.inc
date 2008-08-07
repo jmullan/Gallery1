@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,8 +33,6 @@
  *
  *       Thanks
  */
-?>
-<?php
 
 /**
  * Functions for the 'low' slideshow for older browsers.
@@ -311,7 +309,7 @@ function slideshow_controlPanel() {
         $backwardIconText, $normalSizeIconText, $fullSizeIconText,
         $loopIconText;
 ?>
-<form name="TopForm" style="margin:0px">
+<form name="TopForm" style="margin:0px" action="#">
 <?php
 $iconElements[] = '<a href="#" onClick="stop(); return false;">'. $stopIconText .'</a>';
 $iconElements[] = '<a href="#" onClick="play(); return false;">'. $playIconText .'</a>';

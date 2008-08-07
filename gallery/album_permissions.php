@@ -73,27 +73,27 @@ asort($uAll);
 
 /* User pressed an arrow button */
 if (!empty($submit) && is_array($submit)) {
-foreach ($submit as $perm => $action) {
-    if(isset($action) && isset($actionUid)) {
-        $action = unhtmlentities($action);
-        if($action == '-->') {
-            $gallery->album->setPerm($perm, $actionUid, true);
-        }
-        if($action == '<--') {
-            $gallery->album->setPerm($perm, $actionUid, false);
-        }
-    }
-}
-    $gallery->album->save(array(i18n("Permissions have been changed.")));
+	foreach ($submit as $perm => $action) {
+		if(isset($action) && isset($actionUid)) {
+			$action = unhtmlentities($action);
+			if($action == '-->') {
+				$gallery->album->setPerm($perm, $actionUid, true);
+			}
+			if($action == '<--') {
+				$gallery->album->setPerm($perm, $actionUid, false);
+			}
+		}
+	}
+	$gallery->album->save(array(i18n("Permissions have been changed.")));
 	if (!empty($setNested)) {
-        $gallery->album->setNestedPermissions();
-    }
+		$gallery->album->setNestedPermissions();
+	}
 }
 
 /* User pressed 'save' button */
 // Start with a default owner of nobody -- if there is an
 // owner it'll get filled in below.
-$nobody = $gallery->userDB->getNobody();
+$nobody		= $gallery->userDB->getNobody();
 $prevOwnerUid	= $nobody->getUid();
 
 $prevOwner	= $gallery->album->getOwner();
@@ -120,8 +120,8 @@ if (!empty($save)) {
 }
 
 /* Get the current owner */
-$owner = $gallery->album->getOwner();
-$ownerUid = $owner->getUid();
+$owner		= $gallery->album->getOwner();
+$ownerUid	= $owner->getUid();
 
 // Set values for selectboxes
 foreach($perms as $perm => $trash)  {

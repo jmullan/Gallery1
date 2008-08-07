@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
   </li>
 
   <li>
-	<b><a href="#" onClick="parent.opener.location = 'http://gallery.sourceforge.net/wiki.php?page=Other%20methods'; parent.close();"><?php echo gTranslate('core', "Other methods") ?></a></b>
+	<b><a href="#" onClick="parent.opener.location = 'http://codex.gallery2.org/Other_Clients'; parent.close();"><?php echo gTranslate('core', "Other methods") ?></a></b>
 	<br>
 	<?php echo gTranslate('core', "See a couple of other Methods for adding pictures to your Gallery on Gallerys Website.") ?>
 	<br><br>

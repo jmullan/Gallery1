@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ echo "\n<br><br>". gTranslate('core', "Files:");
 
 <p><?php
     echo gTranslate('core', "Do the same for optional metafiles.");
-    echo popup_link(gImage('icons/help.gif', gTranslate('core', "Help")), 'help/metadataOnUpload.php');
+    echo popup_link(gImage('icons/help.gif', gTranslate('core', "Help")), 'help/metadataOnUpload.php', 0, true, 550, 600, '', '', '', false);
 ?>
 </p>
 <input id="trash_metafile" type="file">
@@ -91,6 +91,7 @@ echo "\n<p>";
  * Central caption options
  */
 include(dirname(__FILE__) .'/captionOptions.inc.php');
+echo "\n</p>";
 
 if (isset($gallery->app->watermarkDir)) {
 	global $watermarkForm;
@@ -103,7 +104,8 @@ if (isset($gallery->app->watermarkDir)) {
 }
 ?>
 	<p align="center">
-	<input type="button" value="<?php echo gTranslate('core', "Upload Now") ?>" onClick='parent.opener.showProgress(); document.upload_form.submit()'>
-	<input type="submit" value="<?php echo gTranslate('core', "Cancel") ?>" onclick='parent.close()'>
+	<?php echo gButton('upload', gTranslate('core', "Upload Now"), 'parent.opener.showProgress(); document.upload_form.submit()'); ?>
+	<?php echo gButton('cancel', gTranslate('core', "Cancel"), 'parent.close()'); ?>
 	</p>
+
 	</form>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2006 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -119,7 +119,7 @@ function saveGalleryBlockRandomCache() {
 function readGalleryBlockRandomCache() {
 	global $cache;
 
-	$sCache = getFile(CACHE_FILE);
+	$sCache = fs_file_get_contents(CACHE_FILE);
 	$cache = unserialize($sCache);
 }
 
