@@ -214,7 +214,7 @@ if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-		gTranslate('core', "Slideshow"), array(), 'presentation.gif'
+		gTranslate('core', "Slideshow"), array(), 'display.gif'
 	);
 }
 
@@ -255,7 +255,7 @@ $iconElements[] = LoginLogoutButton($currentUrl, $numPhotos, $currentUrl);
 if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') {
 	$iconElements[] = popup_link(
 		gTranslate('core', "Register"),
-		'register.php', false, true, 500, 500, '','','register.gif'
+		'register.php', false, true, 500, 500, '','', 'register.gif'
 	);
 }
 
