@@ -133,12 +133,14 @@ function form_password($key, $arr) {
 		$arr['value'] = array($arr['value'], $arr['value'], $arr['value'], $arr['value']);
 	}
 
-	return "<input type=\"password\" name=\"${key}[0]\" value=\"{$arr['value'][0]}\" $attrs> "
+	$html = gInput('password', $key[0], null, false, $arr['value'][0], array('addCheck' => true))
 		. '<br>'
 		. "<input type=\"password\" name=\"${key}[1]\" value=\"{$arr['value'][1]}\" $attrs> "
 		. gTranslate('common', "Please retype your password here")
 		. "\n<input type=\"hidden\" name=\"${key}[2]\" value=\"{$arr['value'][2]}\">"
 		. "\n<input type=\"hidden\" name=\"${key}[3]\" value=\"{$arr['value'][3]}\">";
+
+	return $html;
 }
 
 function form_nv_pairs($key, $arr) {
