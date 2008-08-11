@@ -39,6 +39,7 @@ else if(!isset($gallery->album)) {
 	$loadOk = $gallery->album->load($pieces[0]);
 }
 
+
 if(isXSSclean($ecard["template_name"])) {
 	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
 }
@@ -46,17 +47,11 @@ else {
 	$error = true;
 }
 
-if (!empty($error) || ! $loadOk) {
-	if (!$gallery->user->canDeleteAlbum($gallery->album)) {
-		printPopupStart(gTranslate('core', "Gallery eCard"));
-		printInfoBox(array(array(
-			'type' => 'error',
-			'text' => gTranslate('core', "Gallery could not process your ecard! Please close this window and try again later, thanks!")
-			))
-		);
-		includeTemplate("overall.footer");
-		exit;
-	}
+if (!empty($error) || (isset($loadOk) && $loadOk == false)) {
+	printPopupStart(gTranslate('core', "Gallery eCard"));
+	echo gallery_error(gTranslate('core', "Gallery could not process your ecard! Please close this window and try again later, thanks!"));
+	includeHtmlWrap("popup.footer");
+	exit;
 }
 else {
 	echo parse_ecard_template($ecard,$ecard_data_to_parse, true);

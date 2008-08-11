@@ -35,15 +35,15 @@ list($photoIndex, $ecard, $submit_action) =
 
 printPopupStart(gTranslate('core', "Send this photo as eCard"));
 
-if(! isValidGalleryInteger($photoIndex)) {
+$ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
+
+if(! isValidGalleryInteger($ecard['photoIndex'])) {
 	echo gallery_error(gTranslate('core', "Invalid element chosen."));
 	echo "\n<br><br>";
 	echo gButton('closeButton', gTranslate('core', "Close Window."),'parent.close()');
 	echo "</div></body></html>";
 	exit;
 }
-
-$ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
 
 if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
 	echo gallery_error($errortext);
@@ -121,7 +121,7 @@ function popup_win(theURL,winName,winOptions) {
 }
 
 function make_preview() {
-	document.ecard_form.action = "<?php echo $gallery->app->photoAlbumURL ; ?>/popups/ecard_preview.php";
+	document.ecard_form.action = "<?php echo $gallery->app->photoAlbumURL ; ?>/ecard_preview.php";
 	popup_win('','ecard_preview','resizable=yes,scrollbars=yes,width=800,height=600');
 	document.ecard_form.target = "ecard_preview";
 	document.ecard_form.submit();
@@ -168,7 +168,7 @@ function check() {
 	}
 
 	if (error) {
-		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), removeAccessKey($sendButtonTest)); ?>";
+		error_message += "\n\n<?php printf(gTranslate('core', "Please fill all fields. Then click '%s' again."), $sendButtonTest); ?>";
 		alert(error_message);
 		return false;  // Form not sent
 	}
