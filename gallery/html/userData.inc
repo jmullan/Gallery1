@@ -109,8 +109,8 @@ if (isset($allowChange['create_albums']) && $allowChange['create_albums'] === tr
 if ($gallery->user->isAdmin()) { ?>
 <tr>
 	<td><?php echo gTranslate('core', "User is an admin") ?></td>
-	<?php 
-	if ($allowChange['admin'] === true) {
+	<?php
+	if (isset($allowChange['admin']) && $allowChange['admin'] === true) {
 		    if ($uname=$gallery->user->getUsername() == $uname) {
 				echo '<td>'. $yesNoChoices[$isAdmin] . "</td></tr>\n";
 				echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';

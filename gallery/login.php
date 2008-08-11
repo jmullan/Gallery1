@@ -132,12 +132,13 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 
 	if ($tmpUser) {
 		if (check_email($tmpUser->getEmail())) {
-			if (gallery_mail($tmpUser->email,
-				  gTranslate('core', "New password request"),
-				  sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
-				  sprintf(gTranslate('core', "Click to reset your password: %s"),
-				  $tmpUser->genRecoverPasswordHash()) . "\n",
-				  sprintf(gTranslate('core', "New password request %s"), $reset_username)))
+			if (gallery_mail(
+				$tmpUser->email,
+				gTranslate('core', "New password request"),
+				sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+				sprintf(gTranslate('core', "Click to reset your password: %s"),
+				$tmpUser->genRecoverPasswordHash()) . "\n",
+				sprintf(gTranslate('core', "New password request %s"), $reset_username)))
 			{
 				$tmpUser->log("new_password_request");
 				$tmpUser->save();
@@ -146,12 +147,12 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 				$resetInfo[] = array(
 					'type' => 'error',
 					'text' => gTranslate('core', "Email could not be sent.") .
-							  "<br>"  .
-							  sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
+						"<br>"  .
+						sprintf(gTranslate('core', "Please contact %s administrators for a new password."), $gallery->app->galleryTitle)
 				);
 			}
 		}
-}
+	}
 
 	if(empty($resetInfo) && empty($loginFailure)) {
 		$resetInfo[] = array(
