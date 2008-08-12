@@ -745,14 +745,49 @@ if ($numPhotos) {
 				$form_pos++;
 			}
 
-			$albumItemOptions = getItemActions($i, false, true, true);
-			if (sizeof($albumItemOptions) > 2 ||
-				(sizeof($albumItemOptions) == 2 && !isset($albumItemOptions['showExif'])))
-			{
-				echo drawSelect2("s$i", $albumItemOptions, array(
-										'onChange' => "imageEditChoice(document.vote_form.s$i)",
-										'class' => 'adminform'));
+			$albumItemOptions = getItemActions($i, true, true, true);
+
+			if (sizeof($albumItemOptions) > 3) {
+				echo drawSelect2(
+					"s$i",
+					$albumItemOptions,
+					array(
+						'onChange' => "jopen(this)",
+						'class' => 'g-admin')
+				);
 			}
+			/*
+			 * uncomment this part if you want tiny icons
+			 * for photo properties and ecards in the thumbs view.
+			else {
+				$specialIconMode = "yes";
+				$optionsHTML = '';
+
+				// Show item options. Such as eCard or photo properties link.
+				foreach ($albumItemOptions as $key => $option) {
+					if (!isset($option['separate'])) continue;
+
+					if(!empty($option['value'])) {
+						if (stristr($option['value'], 'popup')) {
+							$content = popup_link(
+								$option['text'],
+								$option['value'],
+								true, false, 550, 600, '', '', $option['icon'], true, false
+							);
+						}
+						else {
+							$content = galleryIconLink(
+									$option['value'],
+									$option['icon'],
+									$option['text']
+							);
+						}
+						$optionsHTML .= $content . "&nbsp;\n";
+					}
+				}
+				echo $optionsHTML;
+			}
+			*/
 
 			if (canVote()) {
 				print '</div>';
