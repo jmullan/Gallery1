@@ -1624,6 +1624,7 @@ class Album {
 		if ( ($photo[0]->isHighlight()) && ($this->numPhotos(1) > 0) && (!$forceResetHighlight==-1)) {
 			$needToRehighlight = 1;
 		}
+		
 		$photo[0]->delete($this->getAlbumDir());
 		if (($needToRehighlight) || ($forceResetHighlight==1)){
 			// Prevent hidden items, albums, and movies from
@@ -1636,6 +1637,8 @@ class Album {
 				}
 			}
 		}
+		
+		return true;
 	}
 
 	function newPhotoName() {
