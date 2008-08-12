@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.4\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-07 01:33+0200\n"
+"POT-Creation-Date: 2008-08-12 10:41+0200\n"
 "PO-Revision-Date: 2006-05-17 10:33-0300\n"
 "Last-Translator: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
 "Language-Team: Daniel Neto <danielneto AT terra DOT com DOT br>\n"
@@ -67,11 +67,11 @@ msgstr "Digite seu comentário para esta foto na caixa de texto abaixo."
 #: ../add_comment.php:66 ../delete_album.php:67 ../delete_photo.php:114
 #: ../delete_user.php:85 ../do_command.php:203 ../download.php:97
 #: ../ecard_form.php:290 ../edit_caption.php:201 ../edit_field.php:63
-#: ../edit_watermark.php:132 ../includes/add_photos/add_form.inc:107
-#: ../includes/add_photos/add_url.inc:56 ../login.php:217
+#: ../edit_watermark.php:132 ../includes/add_photos/add_form.inc:108
+#: ../includes/add_photos/add_url.inc:55 ../login.php:218
 #: ../move_album.php:134 ../move_album.php:156 ../move_photo.php:323
-#: ../move_photo.php:387 ../new_password.php:138 ../rearrange.php:148
-#: ../rearrange.php:204 ../register.php:144 ../rename_album.php:131
+#: ../move_photo.php:387 ../new_password.php:142 ../rearrange.php:148
+#: ../rearrange.php:204 ../register.php:148 ../rename_album.php:131
 #: ../reset_votes.php:59 ../resize_photo.php:189 ../sort_album.php:113
 msgid "Cancel"
 msgstr "Cancelar"
@@ -312,7 +312,7 @@ msgstr "Aplicar permissões para todos os sub-álbuns"
 
 #: ../album_permissions.php:190 ../edit_caption.php:200 ../edit_field.php:56
 #: ../edit_field.php:62 ../edit_watermark.php:129 ../modify_user.php:163
-#: ../new_password.php:137 ../photo_owner.php:90 ../rearrange.php:147
+#: ../new_password.php:141 ../photo_owner.php:90 ../rearrange.php:147
 #: ../rearrange.php:203 ../user_preferences.php:159 ../watermark_album.php:136
 msgid "Save"
 msgstr "Salvar"
@@ -887,17 +887,17 @@ msgstr "Usuários que podem apagar fotos."
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3376
+#: ../classes/Album.php:3373
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problema com email: omitindo %s (UID %s) porque o endereço de email %s não é válido."
 
-#: ../classes/Album.php:3380
+#: ../classes/Album.php:3377
 #, fuzzy, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problema com email: omitindo %s (UID %s) porque o endereço de email %s não é válido."
 
-#: ../classes/Album.php:3390
+#: ../classes/Album.php:3387
 #, fuzzy
 msgid "Email problems"
 msgstr "Endereço de E-mail"
@@ -1104,7 +1104,7 @@ msgstr "Copiar para Álbum!"
 #: ../copy_photo.php:188 ../edit_appearance.php:319 ../extra_fields.php:174
 #: ../photo_owner.php:91 ../poll_properties.php:140
 #: ../rebuild_capture_dates.php:50 ../rebuild_capture_dates.php:73
-#: ../rotate_photo.php:137 ../watermark_album.php:57
+#: ../register.php:127 ../rotate_photo.php:137 ../watermark_album.php:57
 #: ../watermark_album.php:138
 msgid "Close"
 msgstr "Fechar"
@@ -1328,12 +1328,12 @@ msgstr "Este álbum não está vazio, mas não contém fotos ou filmes. Download não 
 msgid "Send this photo as eCard"
 msgstr "Enviar esta foto como eCard"
 
-#: ../ecard_form.php:39
+#: ../ecard_form.php:41
 #, fuzzy
 msgid "Invalid element chosen."
 msgstr "Imagem inválida"
 
-#: ../ecard_form.php:41 ../ecard_form.php:51
+#: ../ecard_form.php:43 ../ecard_form.php:51
 #, fuzzy
 msgid "Close Window."
 msgstr "Fechar Janela"
@@ -1488,7 +1488,7 @@ msgstr "Fechar esta janela"
 msgid "Gallery eCard"
 msgstr "Gallery"
 
-#: ../ecard_preview.php:54
+#: ../ecard_preview.php:52
 msgid "Gallery could not process your ecard! Please close this window and try again later, thanks!"
 msgstr ""
 
@@ -1845,8 +1845,8 @@ msgstr "Não"
 msgid "Member file"
 msgstr "Arquivo de usuário"
 
-#: ../html/userData.inc:51 ../html/userData.inc:54 ../login.php:209
-#: ../login.php:234 ../manage_users.php:78
+#: ../html/userData.inc:51 ../html/userData.inc:54 ../login.php:210
+#: ../login.php:235 ../manage_users.php:78
 msgid "Username"
 msgstr "Nome de usuário"
 
@@ -2161,7 +2161,7 @@ msgstr "MetaArquivos:"
 msgid "If no caption is set, what would you like the captions to default to?"
 msgstr "Se nenhuma legenda for adicionada, o que você gostaria que fosse o padrão das legendas?"
 
-#: ../includes/add_photos/add_form.inc:106
+#: ../includes/add_photos/add_form.inc:107
 msgid "Upload Now"
 msgstr "Enviar Agora"
 
@@ -2185,27 +2185,27 @@ msgstr "Veja outros métodos para adicionar fotos para seu Gallery no site do Gal
 msgid "Windows XP Publishing Agent"
 msgstr "Agente de Publicação do Windows XP"
 
-#: ../includes/add_photos/add_url.inc:25
+#: ../includes/add_photos/add_url.inc:24
 msgid "Upload any images found at this location."
 msgstr "Enviar quaisquer imagens encontradas neste diretório."
 
-#: ../includes/add_photos/add_url.inc:26
+#: ../includes/add_photos/add_url.inc:25
 msgid "The location can either be a URL or a local directory on the server."
 msgstr "O local pode ser tanto uma URL ou um diretório no servidor."
 
-#: ../includes/add_photos/add_url.inc:29
+#: ../includes/add_photos/add_url.inc:28
 msgid "Tip:"
 msgstr "Dica:"
 
-#: ../includes/add_photos/add_url.inc:30
+#: ../includes/add_photos/add_url.inc:29
 msgid "FTP images to a directory on your server then provide that path here!"
 msgstr "Envie as imagens através de FTP para um diretório no seu servidor e então informe o diretório aqui!"
 
-#: ../includes/add_photos/add_url.inc:39
+#: ../includes/add_photos/add_url.inc:38
 msgid "What would you like the captions to default to?"
 msgstr "O que você gostaria que fosse o padrão das legendas?"
 
-#: ../includes/add_photos/add_url.inc:55
+#: ../includes/add_photos/add_url.inc:54
 msgid "Submit URL or directory"
 msgstr "Enviar URL ou diretório"
 
@@ -2293,190 +2293,191 @@ msgstr "Então inicie o %sAssistente de Configuração%s."
 msgid "%sNote:%s When you get an 'error 500' when accessing the config wizard, try removing the .htaccess file the setup folder."
 msgstr ""
 
-#: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:71
+#: ../includes/slideshow/applet.inc:42 ../includes/slideshow/high.inc:70
 #, fuzzy, php-format
 msgid "Slideshow for Gallery :: %s"
 msgstr "Slide Show para Gallery :: %s"
 
-#: ../includes/slideshow/applet.inc:46 ../includes/slideshow/high.inc:80
+#: ../includes/slideshow/applet.inc:46 ../includes/slideshow/high.inc:79
 #, fuzzy, php-format
 msgid "Slideshow for album :: %s"
 msgstr "Slide Show para álbum :: %s"
 
-#: ../includes/slideshow/applet.inc:62
+#: ../includes/slideshow/applet.inc:55
 msgid "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions."
 msgstr "Se você não possuir o Java Plugin 1.4 ou superior ou você não quiser esperar para realizar o download do applet, você pode usar uma das versões sem tela-cheia."
 
-#: ../includes/slideshow/applet.inc:95
+#: ../includes/slideshow/applet.inc:81
 msgid "Your browser doesn't support applets; you should use one of the other slideshow methods."
 msgstr "Seu navegador não suporta applets; você deve usar um dos outros métodos de slideshow."
 
-#: ../includes/slideshow/high.inc:67
+#: ../includes/slideshow/high.inc:66
 #, php-format
 msgid "%s Random Images from %s"
 msgstr "%s Imagens Aleatórias de %s"
 
-#: ../includes/slideshow/high.inc:76
+#: ../includes/slideshow/high.inc:75
 #, php-format
 msgid "%d Random Images from album :: %s"
 msgstr "%d Imagens Aleatórias do álbum :: %s"
 
-#: ../includes/slideshow/high.inc:230
+#: ../includes/slideshow/high.inc:229
 msgid "Blend"
 msgstr "Misturar"
 
-#: ../includes/slideshow/high.inc:232
+#: ../includes/slideshow/high.inc:231
 msgid "Blinds"
 msgstr "Cortinas"
 
-#: ../includes/slideshow/high.inc:234
+#: ../includes/slideshow/high.inc:233
 msgid "Checkerboard"
 msgstr "Tabuleiro"
 
-#: ../includes/slideshow/high.inc:236
+#: ../includes/slideshow/high.inc:235
 msgid "Diagonal"
 msgstr "Diagonal"
 
-#: ../includes/slideshow/high.inc:238
+#: ../includes/slideshow/high.inc:237
 msgid "Doors"
 msgstr "Portas"
 
-#: ../includes/slideshow/high.inc:240
+#: ../includes/slideshow/high.inc:239
 msgid "Gradient"
 msgstr "Gradiente"
 
-#: ../includes/slideshow/high.inc:242
+#: ../includes/slideshow/high.inc:241
 msgid "Iris"
 msgstr "Íris"
 
-#: ../includes/slideshow/high.inc:244
+#: ../includes/slideshow/high.inc:243
 msgid "Pinwheel"
 msgstr "Pino"
 
-#: ../includes/slideshow/high.inc:246
+#: ../includes/slideshow/high.inc:245
 msgid "Pixelate"
 msgstr "Deformar"
 
-#: ../includes/slideshow/high.inc:248
+#: ../includes/slideshow/high.inc:247
 msgid "Radial"
 msgstr "Radial"
 
-#: ../includes/slideshow/high.inc:250
+#: ../includes/slideshow/high.inc:249
 msgid "Rain"
 msgstr "Chuviscos"
 
-#: ../includes/slideshow/high.inc:252
+#: ../includes/slideshow/high.inc:251
 msgid "Slide"
 msgstr "Deslizante"
 
-#: ../includes/slideshow/high.inc:254
+#: ../includes/slideshow/high.inc:253
 msgid "Snow"
 msgstr "Neve"
 
-#: ../includes/slideshow/high.inc:256
+#: ../includes/slideshow/high.inc:255
 msgid "Spiral"
 msgstr "Espiral"
 
-#: ../includes/slideshow/high.inc:258
+#: ../includes/slideshow/high.inc:257
 msgid "Stretch"
 msgstr "Encolher"
 
-#: ../includes/slideshow/high.inc:261
+#: ../includes/slideshow/high.inc:260
 msgid "RANDOM!"
 msgstr "ALEATÓRIO!"
 
-#: ../includes/slideshow/high.inc:317 ../includes/slideshow/low.inc:190
+#: ../includes/slideshow/high.inc:316 ../includes/slideshow/low.inc:188
 #, fuzzy
 msgid "The slideshow is stopped, click [play] to resume."
 msgstr "O slide show está parado, Clique [iniciar] para continuar."
 
-#: ../includes/slideshow/high.inc:325 ../includes/slideshow/high.inc:382
-#: ../includes/slideshow/low.inc:196
+#: ../includes/slideshow/high.inc:324 ../includes/slideshow/high.inc:381
+#: ../includes/slideshow/low.inc:194
 #, fuzzy
 msgid "Slideshow is running..."
 msgstr "Slide show está em execução..."
 
-#: ../includes/slideshow/high.inc:332
+#: ../includes/slideshow/high.inc:331
 #, fuzzy
 msgid "The slide is showing full sized images, click [normal size] to view resized images."
 msgstr "O slide show mostrando imagens em tamanho original, Clique em [tamanho normal] para ver imagens redimensionadas."
 
-#: ../includes/slideshow/high.inc:339
+#: ../includes/slideshow/high.inc:338
 #, fuzzy
 msgid "The slide is showing normal sized images, click [full size] to view full sized images."
 msgstr "O slideshow está mostrando imagens em tamanho normal. Clique em [tamanho original] para ver imagens em tamanho original."
 
-#: ../includes/slideshow/high.inc:377 ../includes/slideshow/low.inc:225
+#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:223
 msgid "Picture is loading..."
 msgstr "Imagem está sendo carregada..."
 
-#: ../includes/slideshow/high.inc:377 ../includes/slideshow/high.inc:472
-#: ../includes/slideshow/low.inc:225 ../includes/slideshow/low.inc:390
+#: ../includes/slideshow/high.inc:376 ../includes/slideshow/high.inc:471
+#: ../includes/slideshow/low.inc:223 ../includes/slideshow/low.inc:388
 msgid "of"
 msgstr "de"
 
-#: ../includes/slideshow/high.inc:377 ../includes/slideshow/low.inc:226
+#: ../includes/slideshow/high.inc:376 ../includes/slideshow/low.inc:224
 #: ../upgrade_users.php:46
 msgid "Please Wait..."
 msgstr "Por favor Aguarde..."
 
-#: ../includes/slideshow/high.inc:493
-msgid "reverse direction"
+#: ../includes/slideshow/high.inc:492 ../slideshow.php:92
+#, fuzzy
+msgid "Reverse direction"
 msgstr "direção regressiva"
 
-#: ../includes/slideshow/high.inc:497
+#: ../includes/slideshow/high.inc:496
 msgid "full size"
 msgstr "tamanho original"
 
-#: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:337
+#: ../includes/slideshow/high.inc:501 ../includes/slideshow/low.inc:335
 msgid "1 second"
 msgstr "1 segundo"
 
-#: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:338
+#: ../includes/slideshow/high.inc:502 ../includes/slideshow/low.inc:336
 msgid "2 seconds"
 msgstr "2 segundos"
 
-#: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:339
+#: ../includes/slideshow/high.inc:503 ../includes/slideshow/low.inc:337
 msgid "3 seconds"
 msgstr "3 segundos"
 
-#: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:340
+#: ../includes/slideshow/high.inc:504 ../includes/slideshow/low.inc:338
 msgid "5 seconds"
 msgstr "5 segundos"
 
-#: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:341
+#: ../includes/slideshow/high.inc:505 ../includes/slideshow/low.inc:339
 msgid "10 seconds"
 msgstr "10 segundos"
 
-#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:342
+#: ../includes/slideshow/high.inc:506 ../includes/slideshow/low.inc:340
 msgid "15 seconds"
 msgstr "15 segundos"
 
-#: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:343
+#: ../includes/slideshow/high.inc:507 ../includes/slideshow/low.inc:341
 msgid "30 seconds"
 msgstr "30 segundos"
 
-#: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:344
+#: ../includes/slideshow/high.inc:508 ../includes/slideshow/low.inc:342
 msgid "45 seconds"
 msgstr "45 segundos"
 
-#: ../includes/slideshow/high.inc:510 ../includes/slideshow/low.inc:345
+#: ../includes/slideshow/high.inc:509 ../includes/slideshow/low.inc:343
 msgid "1 Minute"
 msgstr "1 Minuto"
 
-#: ../includes/slideshow/high.inc:528
+#: ../includes/slideshow/high.inc:527
 msgid "Transition:"
 msgstr "Transição: "
 
-#: ../includes/slideshow/high.inc:581 ../includes/slideshow/low.inc:401
+#: ../includes/slideshow/high.inc:580 ../includes/slideshow/low.inc:399
 msgid "This album has no photos to show in a slide show."
 msgstr "Este álbum não possui fotos para mostrar num slide show."
 
-#: ../includes/slideshow/high.inc:585 ../includes/slideshow/low.inc:405
+#: ../includes/slideshow/high.inc:584 ../includes/slideshow/low.inc:403
 msgid "back to album"
 msgstr "voltar ao álbum"
 
-#: ../includes/slideshow/low.inc:88
+#: ../includes/slideshow/low.inc:86
 #, fuzzy
 msgid "Slideshow for album"
 msgstr "Slide Show para o álbum"
@@ -3059,70 +3060,70 @@ msgstr "Por favor, entre com seu nome de usuário e senha."
 msgid "Please enter <i>your</i> username."
 msgstr "Por favor, entre com um nome de usuário."
 
-#: ../login.php:136
+#: ../login.php:137
 msgid "New password request"
 msgstr "Solicitação de nova senha"
 
-#: ../login.php:137
+#: ../login.php:138
 #, php-format
 msgid "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "
 msgstr "Alguém solicitou uma nova senha para o usuário %s do Gallery '%s' em %s. Você pode criar uma senha visitando o link abaixo. Se você não solicitou uma senha, por favor ignore este email."
 
-#: ../login.php:138
+#: ../login.php:139
 #, php-format
 msgid "Click to reset your password: %s"
 msgstr "Clique para limpar sua senha: %s"
 
-#: ../login.php:140
+#: ../login.php:141
 #, php-format
 msgid "New password request %s"
 msgstr "Solicitação de nova senha %s"
 
-#: ../login.php:148
+#: ../login.php:149
 msgid "Email could not be sent."
 msgstr ""
 
-#: ../login.php:150
+#: ../login.php:151
 #, fuzzy, php-format
 msgid "Please contact %s administrators for a new password."
 msgstr "Email não pôde ser enviado. Por favor, entre em contato com os administradores de %s para obter uma nova senha"
 
-#: ../login.php:159
+#: ../login.php:160
 #, fuzzy, php-format
 msgid "If there is a valid email-address for this user, then an email has been sent to the address stored for %s.  Follow the instructions to change your password.  If you do not receive this email, please contact the Gallery administrators."
 msgstr "Um email foi enviado para o endereço armazenado para %s. Siga as instruções contidas nele para trocar sua senha. Se você não receber este e-mail, por favor entre em contato com os administradores do Gallery."
 
-#: ../login.php:164 ../login.php:171 ../login.php:185 ../publish_xp.php:61
+#: ../login.php:165 ../login.php:172 ../login.php:186 ../publish_xp.php:61
 #: ../publish_xp.php:105
 #, php-format
 msgid "Login to %s"
 msgstr "Autenticação em %s"
 
-#: ../login.php:187
+#: ../login.php:188
 msgid "Logging in gives you greater permission to view, create, modify and delete albums."
 msgstr "A autenticação permite a você visualizar, criar, modificar e apagar álbuns."
 
-#: ../login.php:203 ../login.php:216
+#: ../login.php:204 ../login.php:217
 msgid "Login"
 msgstr "Autenticar"
 
-#: ../login.php:211
+#: ../login.php:212
 msgid "Password"
 msgstr "Senha"
 
-#: ../login.php:229
+#: ../login.php:230
 msgid "Forgotten your password?"
 msgstr "Esqueceu sua senha?"
 
-#: ../login.php:236
+#: ../login.php:237
 msgid "Send me my password"
 msgstr "Me envie minha senha"
 
-#: ../login.php:248
+#: ../login.php:249
 msgid "No account at all?"
 msgstr "Nenhuma conta?"
 
-#: ../login.php:250
+#: ../login.php:251
 msgid "Register a new account."
 msgstr "Registrar uma nova conta."
 
@@ -3453,38 +3454,48 @@ msgstr "Somente o campo usuário é obrigatório. Todas as informações após o email
 msgid "The strings !!USERNAME!!, !!FULLNAME!! and !!PASSWORD!! will be substituted in the email with the values from the membership file.  An individual email will be sent to each member with a valid email address in the members file (if &quot;send emails&quot; checkbox is ticked)."
 msgstr "As sentenças !!USERNAME!!, !!FULLNAME!! e !!PASSWORD!! serão substituídas no email com os valores do arquivo de usuários. Um email individual será enviado para cada usuário com um endereço de email válido no arquivo de usuários (se caixa de seleção &quot;enviar emails&quot; estiver marcado)."
 
-#: ../new_password.php:33
+#: ../new_password.php:32
 msgid "Make New Password"
 msgstr "Criar Nova Senha"
 
-#: ../new_password.php:44
+#: ../new_password.php:49
 #, fuzzy
 msgid "The recovery password is not the expected value, please try again."
 msgstr "A senha a ser recuperada não é o valor esperado. Por favor, tente novamente"
 
-#: ../new_password.php:62
+#: ../new_password.php:60
 msgid "You must provide your new password."
 msgstr "Você deve informar sua nova senha."
 
-#: ../new_password.php:66 ../user_preferences.php:74
+#: ../new_password.php:63 ../user_preferences.php:74
 #, fuzzy
 msgid "Passwords did not match!"
 msgstr "Senha não confere!"
 
-#: ../new_password.php:79 ../user_preferences.php:44
+#: ../new_password.php:75 ../user_preferences.php:44
 #, fuzzy, php-format
 msgid "%s contained invalid data, sanitizing input."
 msgstr "%s contém dados inválidos. Reiniciando entrada de dados."
 
-#: ../new_password.php:85 ../register.php:85 ../user_preferences.php:86
+#: ../new_password.php:80 ../register.php:88 ../user_preferences.php:86
 msgid "You must specify a valid email address."
 msgstr "Você deve especificar um endereço de email válido."
 
-#: ../new_password.php:125 ../user_preferences.php:139
+#: ../new_password.php:107
+#, fuzzy
+msgid "The password was successfully saved."
+msgstr "Usuário atualizado com sucesso."
+
+#: ../new_password.php:109
+#, fuzzy
+msgid "Go to Gallery"
+msgstr "Retornar ao Gallery"
+
+#: ../new_password.php:129 ../user_preferences.php:139
 msgid "You can change your user information here."
 msgstr "Você pode alterar suas informações de usuário aqui."
 
-#: ../new_password.php:126
+#: ../new_password.php:130
 msgid "You must enter the new password twice."
 msgstr "Você deve informar a nova senha duas vezes."
 
@@ -3559,7 +3570,7 @@ msgstr "Valor Exibido"
 msgid "Points"
 msgstr "Pontos"
 
-#: ../poll_results.php:35 ../poll_results.php:54 ../poll_results.php:74
+#: ../poll_results.php:35 ../poll_results.php:54 ../poll_results.php:75
 msgid "Poll Results"
 msgstr "Resultados da Votação"
 
@@ -3568,17 +3579,17 @@ msgstr "Resultados da Votação"
 msgid "Return to album"
 msgstr "retornar ao álbum"
 
-#: ../poll_results.php:139
-msgid "Results Breakdown"
-msgstr "Resultados Finais"
-
-#: ../poll_results.php:164 ../upgrade_album.php:71 ../upgrade_album.php:96
+#: ../poll_results.php:127 ../upgrade_album.php:71 ../upgrade_album.php:96
 #: ../view_album.php:374 ../view_album.php:675
 #, php-format
 msgid "Album: %s"
 msgstr "Álbum: %s"
 
-#: ../poll_results.php:181
+#: ../poll_results.php:149
+msgid "Results Breakdown"
+msgstr "Resultados Finais"
+
+#: ../poll_results.php:155
 msgid "No votes so far."
 msgstr "Nenhum voto até agora."
 
@@ -3836,54 +3847,54 @@ msgstr "Você também deseja reconstruir miniaturas nos álbuns ramificados?"
 msgid "Start"
 msgstr "Iniciar"
 
-#: ../register.php:37 ../register.php:41
+#: ../register.php:40 ../register.php:44
 #, php-format
 msgid "Register new user for '%s'"
 msgstr "Registrar novo usuário para '%s'"
 
-#: ../register.php:45
+#: ../register.php:48
 msgid "This Gallery does not support self-registration by visitors."
 msgstr "Esse Gallery não suporta auto-registro por visitantes."
 
-#: ../register.php:47 ../register.php:123 ../save_photos.php:467
+#: ../register.php:50 ../save_photos.php:467
 msgid "Dismiss"
 msgstr "Fechar"
 
-#: ../register.php:69
+#: ../register.php:72
 msgid "Your fullname containes invalid data!"
 msgstr "Seu nome completo contém dados inválidos!"
 
-#: ../register.php:80
+#: ../register.php:83
 msgid "You must specify a name."
 msgstr "Você deve especificar um nome."
 
-#: ../register.php:107
+#: ../register.php:110
 #, php-format
 msgid "%s has registered.  Email has been sent to %s."
 msgstr "%s foi registrado. Email foi enviado para %s."
 
-#: ../register.php:113
+#: ../register.php:116
 msgid "Gallery Self Registration"
 msgstr "Auto Registro do Gallery"
 
-#: ../register.php:115
+#: ../register.php:118
 #, php-format
 msgid "An email has been sent to %s."
 msgstr "Um email foi enviado para %s."
 
-#: ../register.php:117
+#: ../register.php:120
 msgid "Your account information is contained within the email."
 msgstr "Sua informação de conta está contida no email."
 
-#: ../register.php:119
+#: ../register.php:123
 msgid "Email could not be sent.  Please contact gallery administrator to register on this site"
 msgstr "Email não pôde ser enviado. Por favor, entre em contato com o administrador do Gallery para registrar-se nesse site."
 
-#: ../register.php:139
+#: ../register.php:143
 msgid "Your account information will be sent to the email address you provide."
 msgstr "Sua informação de conta será enviada para o email que você informou."
 
-#: ../register.php:143
+#: ../register.php:147
 msgid "Send request"
 msgstr "Enviar requisição"
 
@@ -4217,11 +4228,6 @@ msgstr "tamanho original"
 #, fuzzy
 msgid "Forward direction"
 msgstr "direção progressiva"
-
-#: ../slideshow.php:92
-#, fuzzy
-msgid "Reverse direction"
-msgstr "direção regressiva"
 
 #: ../slideshow.php:93
 msgid "Delay"
@@ -5105,32 +5111,32 @@ msgstr "Sua pasta temporária não permite escrita. Por favor, altere as permissõe
 msgid "Cannot open logfile: %s"
 msgstr "Não pude abrir arquivo de log: %s"
 
-#: ../util.php:1274
+#: ../util.php:1187
 #, php-format
 msgid "MIMEtype of file %s is %s"
 msgstr "Tipo MIME do arquivo %s é %s"
 
-#: ../util.php:1366
+#: ../util.php:1279
 #, php-format
 msgid "%s sent you an E-C@rd."
 msgstr "%s enviou um E-C@ard para você."
 
-#: ../util.php:1464
+#: ../util.php:1377
 #, fuzzy, php-format
 msgid "Gallery was unable to create a temporary subfolder in your tempdir. Please check permissions of this dir: %s"
 msgstr "Sua pasta temporária não permite escrita. Por favor, altere as permissões para este diretório: %s"
 
-#: ../util.php:1491
+#: ../util.php:1404
 #, php-format
 msgid "'%s' seems not to be a valid file. Download aborted."
 msgstr ""
 
-#: ../util.php:1499
+#: ../util.php:1412
 #, php-format
 msgid "The file '%s' seems not inside Gallery tempdir %s, download aborted."
 msgstr ""
 
-#: ../util.php:1504
+#: ../util.php:1417
 msgid "We are trying to download the tempdir itself?! Download aborted."
 msgstr ""
 
@@ -5389,6 +5395,9 @@ msgstr ""
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface &amp; unanimate' your pictures."
 msgstr "Lembre-se que realizando marcas d'água em gifs animadas atualmente não é suportado e poderá 'deformar e congelar' suas imagens."
 
+#~ msgid "reverse direction"
+#~ msgstr "direção regressiva"
+
 #, fuzzy
 #~ msgid "Your comment is too long, the admin set maximum length to %d chars."
 #~ msgstr "Seu comentário é longo demais, o administrador do Gallery ajustou o camanho para %d caracteres"
@@ -5507,9 +5516,6 @@ msgstr "Lembre-se que realizando marcas d'água em gifs animadas atualmente não é
 
 #~ msgid "Enter the Gallery"
 #~ msgstr "Entrar no Gallery"
-
-#~ msgid "Back to Gallery"
-#~ msgstr "Retornar ao Gallery"
 
 #~ msgid "Return to  %s"
 #~ msgstr "Retornar para %s"
