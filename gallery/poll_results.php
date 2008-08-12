@@ -44,14 +44,14 @@ if (!$gallery->session->viewedAlbum[$albumName]) {
 	$gallery->album->incrementClicks();
 }
 
-$bordercolor = $gallery->album->fields["bordercolor"];
+$bordercolor = $gallery->album->fields['bordercolor'];
 
-$cols = $gallery->album->fields["cols"];
+$cols = $gallery->album->fields['cols'];
 $imageCellWidth = floor(100 / $cols) . "%";
-$fullWidth="100%";
+$fullWidth = "100";
 
-$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
-$adminbox['text'] = gTranslate('core', "Poll Results");
+$adminbox['bordercolor']	= $gallery->app->default['bordercolor'];
+$adminbox['text']		= gTranslate('core', "Poll Results");
 
 $iconElements[] = galleryIconLink(
 				makeAlbumUrl($gallery->session->albumName),
@@ -63,13 +63,14 @@ $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
-$navigator["page"] = 1;
-$navigator["pageVar"] = "page";
-$navigator["maxPages"] = 1;
-$navigator["url"] = makeAlbumUrl($gallery->session->albumName);
-$navigator["spread"] = 5;
-$navigator["bordercolor"] = $bordercolor;
-$navigator["fullWidth"] = $fullWidth;
+$navigator['page']		= 1;
+$navigator['pageVar']		= 'page';
+$navigator['maxPages']		= 1;
+$navigator['url']		= makeAlbumUrl($gallery->session->albumName);
+$navigator['spread']		= 5;
+$navigator['bordercolor'] 	= $bordercolor;
+$navigator['fullWidth']		= $fullWidth;
+$navigator['widthUnits'] 	= '%';
 
 $albumTitle = clearGalleryTitle(strip_tags($gallery->album->fields['title']) . ' :: '. gTranslate('core', "Poll Results"));
 
@@ -80,37 +81,11 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <html>
 <head>
   <title><?php echo $albumTitle ?></title>
-  <?php common_header();
-
-  if(! empty($gallery->album->fields["linkcolor"]) ||
-  	 !empty($gallery->album->fields["bgcolor"]) ||
-  	 !empty($gallery->album->fields["textcolor"]))
-   {
-
-  	echo "\n<style type=\"text/css\">";
-  	// the link colors have to be done here to override the style sheet
-if ($gallery->album->fields["linkcolor"]) {
-  		echo "\n  a:link, a:visited, a:active {";
-  		echo "\n		color: ".$gallery->album->fields['linkcolor'] ."; }";
-  		echo "\n  a:hover { color: #ff6600; }";
-
-  	}
-if ($gallery->album->fields["bgcolor"]) {
-  		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
-}
-  	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
-  		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
-}
-if ($gallery->album->fields["textcolor"]) {
-  		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
-  		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
-  		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
-  	}
-
-  	echo "\n  </style>";
-}
-?>
-
+  <?php
+  common_header();
+  $customCSS = customCSS();
+  	echo $customCSS;
+  ?>
 </head>
 <body dir="<?php echo $gallery->direction ?>">
 <?php }
@@ -123,67 +98,64 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
-?>
-
-<!-- image grid table -->
-<br>
-<?php
 $num_rows = $gallery->album->numPhotos($gallery->user->canWriteToAlbum($gallery->album));
+list($buf, $results) = showResultsGraph($num_rows);
+$ranks = array_keys($results);
 
-if($num_rows > 0) {
-	list($buf, $results) = showResultsGraph($num_rows);
-	$ranks = array_keys($results);
-	print $buf;
-?>
-	<p>
-	<span class="pollresults"><?php echo gTranslate('core', "Results Breakdown") ?></span>
-	<table width="<?php print $fullWidth?>" border="0" cellspacing="0" cellpadding="7">
-<?php
-	$rowStart = 0;
-	$i = 0;
-	$numPhotos = sizeof($ranks);
-	$result = false;
+echo "<br>";
+echo $buf;
 
-	while ($i < $numPhotos) {
-		/* Do the inline_albumthumb header row */
-		echo("<tr>");
-		$i = $rowStart;
-		$j = 1;
-		while ($j <= $cols && $i < $numPhotos) {
-			echo("<td>");
-			$index = $gallery->album->getIndexByVotingId($ranks[$i]);
-			if ($index < 0) {
-				$i++;
-				continue;
-			}
+$i = 0;
+$numPhotos = sizeof($ranks);
 
-			$result = true;
-			if ($gallery->album->isAlbum($index)) {
-				$albumName = $gallery->album->getAlbumName($index);
-				$album = $gallery->album->getSubAlbum($index);
-				printf(gTranslate('core', "Album: %s"),$album->fields['title'])."<Br>";
-			}
-			else {
-				print $gallery->album->getCaption($index)."<br>";
-			}
+$resultTable = new galleryTable();
+$resultTable->setAttrs(array('class' => 'vatable'));
+$resultTable->setColumnCount($cols);
 
-			print showResults($ranks[$i]);
-			echo("</td>");
-			$j++;
-			$i++;
-		}
-		echo("</tr>");
-		$rowStart = $i;
+while ($i < $numPhotos) {
+	$content = '';
+
+	$index = $gallery->album->getIndexByVotingId($ranks[$i]);
+	if ($index < 0) {
+		$i++;
+		continue;
 	}
-	echo "\n</table>";
+
+	if ($gallery->album->isAlbum($index)) {
+		$albumName = $gallery->album->getAlbumName($index);
+		$album = $gallery->album->getSubAlbum($index);
+		$content = sprintf(gTranslate('core', "Album: %s"),$album->fields['title']) . "<br>";
+	}
+	else {
+		$content = $gallery->album->getCaption($index) . "<br>";
+	}
+
+	$content = "<b>$content</b>";
+
+	$content .= showResults($ranks[$i]);
+
+	$resultTable ->addElement(array(
+		'content' => $content,
+		'cellArgs' => array('class' => 'vathumbs')
+	));
+
+	$i++;
+}
+
+if (!empty($resultTable->elements)) {
+?>
+<br>
+<p class="g-emphasis title">
+<?php echo gTranslate('core', "Results Breakdown") ?>
+</p>
+<?php
+	echo $resultTable->render();
 }
 else {
 	echo gallery_info(gTranslate('core', "No votes so far."));
 }
 
-echo "<br>";
-
-$validation_file = basename(__FILE__);
+echo "\n<br><br>";
 includeLayout('navtablebegin.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');

@@ -3275,10 +3275,7 @@ class Album {
 	function getVotingIdByIndex($index) {
 		$albumName = $this->getAlbumName($index);
 
-		if($albumName === null) {
-			$vote_id = null;
-		}
-		elseif (!empty($albumName)) {
+		if (!empty($albumName)) {
 			$vote_id = "album.$albumName";
 		}
 		else {

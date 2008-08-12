@@ -233,23 +233,27 @@ function addPolling ($id, $form_pos = -1, $immediate = true) {
 function showResultsGraph($num_rows) {
 	global $gallery;
 
-	$results		= array();
+	$results	= array();
 	$results_count	= array();
-	$nv_pairs		= $gallery->album->getVoteNVPairs();
-	$buf			= '';
+	$nv_pairs	= $gallery->album->getVoteNVPairs();
+	$buf		= '';
 
 	$voters = array();
 	foreach ($gallery->album->fields["votes"] as $element => $image_votes) {
-		$accum_votes = 0;
-		$count = 0;
+		$accum_votes	= 0;
+		$count		= 0;
+
 		foreach ($image_votes as $voter => $vote_value ) {
 			$voters[$voter] = true;
+
 			if ($vote_value> $gallery->album->getPollScale()) { // scale has changed
 				$vote_value = $gallery->album->getPollScale();
 			}
+
 			$accum_votes += $nv_pairs[$vote_value]["value"];
 			$count++;
 		}
+
 		if ($accum_votes > 0)  {
 			$results_count[$element]=$count;
 			if ($gallery->album->getPollType() == "rank" || $gallery->album->getPollScale() == 1) {
@@ -353,7 +357,6 @@ function showResults($id) {
 
 	$vote_tally = array();
 	$nv_pairs = $gallery->album->getVoteNVPairs();
-	$buf='';
 	if (isSet ($gallery->album->fields["votes"][$id])) {
 		foreach ($gallery->album->fields["votes"][$id] as $vote) {
 			if (!isSet($vote_tally[$vote])) {
@@ -364,22 +367,37 @@ function showResults($id) {
 			}
 		}
 	}
-	$buf .= "<span class=\"admin\">"._("Poll results:")."</span><br>";
+	// $buf .= "<span class=\"admin\">"._("Poll results:")."</span><br>";
 
 	if (sizeof($vote_tally) === 0) {
-		$buf .= _("No votes")."<br>";
-		return;
+		return gTranslate('common', "No votes");
 	}
-	$index=$gallery->album->getIndexByVotingId($id);
-	$buf .= sprintf(_("Number %d overall."), $gallery->album->getRank($index)) ."<br>";
+
+	$html = "<table class=\"g-voting-results\">";
+
+/*	$html .= "\n<tr><td colspan=\"3\" class=\"center\">".
+			gTranslate('common', "Poll results") .
+			"</td></tr>";
+*/
+
+	$index = $gallery->album->getIndexByVotingId($id);
+	$html .= "\n<tr><td colspan=\"3\" align=\"". langLeft() . '">' .
+			sprintf(gTranslate('common',
+			"Position %d overall, due to this votes:"),
+			$gallery->album->getRank($index)) .
+			"</td></tr>";
+
 	ksort($vote_tally);
 
 	foreach ($vote_tally as $key => $value) {
-		$buf .= sprintf(_("%s: %s"), $nv_pairs[$key]["name"],
-		      	gTranslate('common', "one vote", "%d votes", $value)) . "<br>";
-
+		$html .= sprintf("\n<tr><td>%s</td><td>:</td><td>%s</td>",
+			$nv_pairs[$key]["name"],
+			gTranslate('common', "One vote", "%d votes", $value, '', true));
 	}
-	return $buf;
+
+	$html .= "</table>";
+
+	return $html;
 }
 
 /**

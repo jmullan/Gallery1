@@ -184,6 +184,36 @@ function getParentAlbums($childAlbum, $addChild = false) {
 }
 
 /**
+ * This function returns the CSS for the settings a user did in the album appearance
+ *
+ */
+function customCSS() {
+	global $gallery;
+
+	$customCSS = '';
+
+	// the link colors have to be done here to override the style sheet
+	if ($gallery->album->fields["linkcolor"]) {
+		$customCSS .= "  a:link, a:visited, a:active { color: ".$gallery->album->fields['linkcolor'] ."; }\n";
+		$customCSS .= "  a:hover { color: #ff6600; }\n";
+	}
+
+	if ($gallery->album->fields["bgcolor"]) {
+		$customCSS .= "  body { background-color:".$gallery->album->fields['bgcolor']."; }\n";
+	}
+
+	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+		$customCSS .= "  body { background-image:url(".$gallery->album->fields['background']."); }\n";
+	}
+
+	if ($gallery->album->fields["textcolor"]) {
+		$customCSS .= "  body, tf { color:".$gallery->album->fields['textcolor']."; } \n";
+	}
+
+	return $customCSS;
+}
+
+/**
  * returns the a HTML string containg links to the upper albums
  *
  * @param object  $album
@@ -236,6 +266,106 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
 	}
 
 	return $pathArray;
+}
+
+/**
+ * Test Suite for albums
+ *
+ * @param string $test
+ * @return boolean
+ * @author Beckett Madden-Woods
+ */
+function testRequirement($test) {
+	global $gallery;
+
+	if(substr($test, 0,1 ) == "!") {
+		$test = substr($test, 1);
+		$negativeTest = true;
+	}
+	else {
+		$negativeTest = false;
+	}
+
+	switch ($test) {
+		case 'albumIsRoot':
+			$result = $gallery->album->isRoot();
+		break;
+
+		case 'isAdminOrAlbumOwner':
+			$result = $gallery->user->isAdmin() || $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+
+		case 'comments_enabled':
+			$result = $gallery->app->comments_enabled == 'yes';
+		break;
+
+		case 'allowComments':
+			$result = $gallery->album->fields["perms"]['canAddComments'];
+		break;
+
+		case 'hasComments':
+			$result = ($gallery->album->lastCommentDate("no") != -1);
+		break;
+
+		case 'canAddToAlbum':
+			$result = $gallery->user->canAddToAlbum($gallery->album);
+		break;
+
+		case 'canDeleteAlbum':
+			$result = $gallery->user->canDeleteAlbum($gallery->album);
+		break;
+
+		case 'extraFieldsExist':
+			$extraFields = $gallery->album->getExtraFields();
+			$result = !empty($extraFields);
+		break;
+
+		case 'isAlbumOwner':
+			$result = $gallery->user->isOwnerOfAlbum($gallery->album);
+		break;
+
+		case 'canCreateSubAlbum':
+			$result = $gallery->user->canCreateSubAlbum($gallery->album);
+		break;
+
+		case 'notOffline':
+			$result = !$gallery->session->offline;
+		break;
+
+		case 'canChangeText':
+			$result = $gallery->user->canChangeTextOfAlbum($gallery->album);
+		break;
+
+		case 'canWriteToAlbum':
+			$result = $gallery->user->canWriteToAlbum($gallery->album);
+		break;
+
+		case 'photosExist':
+			$result = $gallery->album->numPhotos(true);
+		break;
+
+		case 'watermarkingEnabled':
+			$result = isset($gallery->app->watermarkDir);
+		break;
+
+		case 'exif':
+			$result = (getExifDisplayTool() !== false);
+		break;
+
+		case 'votingOn':
+			$result = ($gallery->album->getVoterClass()) != 'Nobody';
+		break;
+
+		default:
+			$result = false;
+		break;
+	}
+
+	if ($negativeTest) {
+		$result = ! $result;
+	}
+
+	return $result;
 }
 
 /**
