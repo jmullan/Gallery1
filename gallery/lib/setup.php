@@ -989,30 +989,35 @@ function check_locale() {
 	// Set locale correct back
 	if (isset($gallery->locale)) {
 		setlocale(LC_ALL,$gallery->locale);
-	} else {
-		setlocale(LC_ALL,"");
+	}
+	else {
+		setlocale(LC_ALL, '');
 	}
 
-	/* DAMN, there are no suitable locales, we use Linux and our PHP uses gettext*/
-	if( sizeof($available_locales) == 0 && sizeof($maybe_locales) == 0 && getOS() == OS_LINUX && gettext_installed()) {
+	/* DAMN, there are no suitable locales, we use Linux but our PHP uses gettext */
+	if(sizeof($available_locales) == 0 &&
+	   sizeof($maybe_locales) == 0 &&
+	   getOS() == OS_LINUX &&
+	   gettext_installed())
+	{
 		return NULL;
 	}
 
 	return array(
-		'available_locales'   => $available_locales,
-		'maybe_locales'		  => $maybe_locales,
-		'unavailable_locales' => $unavailable_locales
+		'available_locales'	=> $available_locales,
+		'maybe_locales'		=> $maybe_locales,
+		'unavailable_locales'	=> $unavailable_locales
 	);
 }
 
 function config_maybe_locales() {
-	global $locale_check, $locales;
+	global $gallery, $locale_check, $locales;
 
-	$results = array();
-	$locales = $locale_check;
-	$available = $locales["available_locales"];
-	$maybe = $locales["maybe_locales"];
-	$unavailable = $locales["unavailable_locales"];
+	$results	= array();
+	$locales	= $locale_check;
+	$available	= $locales["available_locales"];
+	$maybe		= $locales["maybe_locales"];
+	$unavailable	= $locales["unavailable_locales"];
 
 	// If we are in Linux, our PHP has gettext,
 	// but we could not find any locale we skip the whole aliasing part.
@@ -1064,10 +1069,19 @@ function config_maybe_locales() {
 			$choices[$value] = $value;
 		}
 
+		$selected = '';
 		if (getOS() != OS_WINDOWS) {
 			$choices[''] = gTranslate('common', "System locale");
 			next($choices);
+
+			if(!empty($gallery->app->locale_alias[$key])) {
+				$selected = $gallery->app->locale_alias[$key];
+			}
+			else {
+				$selected = key($choices);
+			}
 		}
+
 
 		$results["locale_alias['$key']"] = array (
 			'prompt' => $nr . '.) ' . $nls['language'][$key],
@@ -1076,7 +1090,7 @@ function config_maybe_locales() {
 			'key' => $key,
 			'type' => 'block_element',
 			'choices' => $choices,
-			'value' => (getOS() != OS_WINDOWS) ? key($choices) : '',
+			'value' => $selected,
 			'allow_empty' => true,
 			'remove_empty' => true
 		);
