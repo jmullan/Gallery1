@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5.8-svn\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-12 11:04+0200\n"
+"POT-Creation-Date: 2008-08-13 14:14+0200\n"
 "PO-Revision-Date: 2005-10-06 06:55+0900\n"
 "Last-Translator: Julien ÉLIE <julien AT trigofacile DOT com>\n"
 "Language-Team: Jens Tkotz <jens AT peino DOT de>\n"
@@ -493,7 +493,7 @@ msgstr "Créé le %s, dernier changement le %s."
 msgid "Last changed on %s."
 msgstr "Dernier changement le %s."
 
-#: ../albums.php:475 ../view_album.php:793
+#: ../albums.php:475 ../view_album.php:828
 msgid "This album is empty."
 msgstr "Cet album est vide."
 
@@ -520,7 +520,7 @@ msgstr[1] "Cet album a été consulté %d fois depuis le %s."
 msgid "reset counter"
 msgstr "mettre le compteur à zéro"
 
-#: ../albums.php:545 ../view_album.php:807
+#: ../albums.php:545 ../view_album.php:842
 msgid "Comments available for this item."
 msgstr "Commentaires disponibles pour cet élément."
 
@@ -585,8 +585,8 @@ msgstr "Quitter"
 msgid "(click to enlarge)"
 msgstr "(cliquez pour agrandir)"
 
-#: ../captionator.php:270 ../layout/commentboxtop.inc:20
-#: ../layout/commentboxtop.inc:45 ../view_album.php:655
+#: ../captionator.php:270 ../layout/commentboxtop.inc:22
+#: ../layout/commentboxtop.inc:47 ../view_album.php:655
 msgid "hidden"
 msgstr "caché"
 
@@ -623,7 +623,7 @@ msgid "Untitled"
 msgstr "Sans titre"
 
 #: ../classes/Album.php:263 ../classes/Album.php:275
-#: ../layout/commentboxtop.inc:18 ../lib/albumItem.php:76
+#: ../layout/commentboxtop.inc:20 ../lib/albumItem.php:76
 msgid "Album"
 msgstr "Album"
 
@@ -683,16 +683,16 @@ msgstr "Opération complétée avec succès. Le courriel est configuré, mais rien n'
 msgid "Skipping Movie"
 msgstr "Vidéo ignorée"
 
-#: ../classes/Album.php:1230 ../classes/Album.php:2302
+#: ../classes/Album.php:1230 ../classes/Album.php:2305
 msgid " -- Skipping"
 msgstr " -- Ignoré"
 
 #: ../classes/Album.php:1240
-#, php-format
-msgid "Resizing items in album: '<i>%s</i>' (%s)' with %d items"
+#, fuzzy, php-format
+msgid "Resizing items in album: '<i>%s</i>' (%s) with %d items."
 msgstr "Redimensionnement des éléments de l'album : « <i>%s</i> » (%s) avec %d éléments"
 
-#: ../classes/Album.php:1249 ../classes/Album.php:2337
+#: ../classes/Album.php:1249 ../classes/Album.php:2340
 #, php-format
 msgid "Processing item %d..."
 msgstr "Traitement de l'image %d..."
@@ -757,96 +757,96 @@ msgstr "Création d'un filigrane numérique dans l'image"
 msgid "Item successfully added."
 msgstr "Élément ajouté avec succès."
 
-#: ../classes/Album.php:1737 ../classes/Album.php:1778
+#: ../classes/Album.php:1740 ../classes/Album.php:1781
 msgid "No highlight!"
 msgstr "Pas d'image-titre !"
 
-#: ../classes/Album.php:1746 ../classes/Album.php:1749
+#: ../classes/Album.php:1749 ../classes/Album.php:1752
 #, php-format
 msgid "Highlight for album: %s"
 msgstr "Image-titre pour l'album : %s"
 
-#: ../classes/Album.php:2002
+#: ../classes/Album.php:2005
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Index demandé [%d] hors limites [%d]. Gallery n'a pas pu charger l'élément souhaité de l'album."
 
-#: ../classes/Album.php:2119
+#: ../classes/Album.php:2122
 #, php-format
 msgid "Updating album: '<i>%s</i>'."
 msgstr "Mise à jour de l'album : « <i>%s</i> »."
 
-#: ../classes/Album.php:2123
+#: ../classes/Album.php:2126
 #, php-format
 msgid "Updating subalbum '<i>%s</i>'."
 msgstr "Mise à jour du sous-album : « <i>%s</i> »."
 
-#: ../classes/Album.php:2128
+#: ../classes/Album.php:2131
 msgid "-- Skipped, because it is empty."
 msgstr "-- Ignoré, parce qu'il est vide."
 
-#: ../classes/Album.php:2141
+#: ../classes/Album.php:2144
 #, php-format
 msgid "Processing item %d of %d."
 msgstr "Traitement de l'élément %d sur %d."
 
-#: ../classes/Album.php:2156
+#: ../classes/Album.php:2159
 #, php-format
 msgid "Problem with item #%d (subalbum)."
 msgstr "Problème avec l'élément n°%d (sous-album)."
 
-#: ../classes/Album.php:2170
+#: ../classes/Album.php:2173
 #, php-format
 msgid "Problem with item #%d."
 msgstr "Problème avec l'élément n°%d."
 
-#: ../classes/Album.php:2312
-#, php-format
-msgid "Updating album: '<i>%s</i>' (%s)' with %d items"
+#: ../classes/Album.php:2315
+#, fuzzy, php-format
+msgid "Updating album: '<i>%s</i>' (%s) with %d items."
 msgstr "Mise à jour de l'album : « <i>%s</i> » (%s) avec %d éléments"
 
-#: ../classes/Album.php:2325
-#, php-format
-msgid "Entering subalbum '<i>%s</i>', processing %d items"
+#: ../classes/Album.php:2328
+#, fuzzy, php-format
+msgid "Entering subalbum '<i>%s</i>', processing %d items."
 msgstr "Album « <i>%s</i> », traitement de %d éléments"
 
-#: ../classes/Album.php:2560
+#: ../classes/Album.php:2563
 #, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr "Erreur de récupération des informations EXIF. L'état retourné est %s, au lieu de 0."
 
-#: ../classes/Album.php:3070
+#: ../classes/Album.php:3073
 msgid "Owner can modify his/her own items."
 msgstr "Le propriétaire peut modifier ses propres éléments."
 
-#: ../classes/Album.php:3073
+#: ../classes/Album.php:3076
 msgid "Owner can NOT modify his/her own items."
 msgstr "Le propriétaire NE peut PAS modifier ses propres éléments."
 
-#: ../classes/Album.php:3097
+#: ../classes/Album.php:3100
 msgid "Owner can delete his/her own items."
 msgstr "Le propriétaire peut supprimer ses propres éléments."
 
-#: ../classes/Album.php:3100
+#: ../classes/Album.php:3103
 msgid "Owner can NOT delete his/her own items."
 msgstr "Le propriétaire NE peut PAS supprimer ses propres éléments."
 
-#: ../classes/Album.php:3204
+#: ../classes/Album.php:3207
 #, php-format
 msgid "#%d"
 msgstr "n°%d"
 
-#: ../classes/Album.php:3373
+#: ../classes/Album.php:3376
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problème : %s (UID %s) ignoré car aucune adresse électronique n'a été mise."
 
-#: ../classes/Album.php:3377
+#: ../classes/Album.php:3380
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problème : %s (UID %s) ignoré car l'adresse électronique %s est invalide."
 
-#: ../classes/Album.php:3387
+#: ../classes/Album.php:3390
 msgid "Email problems"
 msgstr "Problème d'adresse électronique"
 
@@ -1116,7 +1116,7 @@ msgid "Do you really want to delete this album?"
 msgstr "Voulez-vous vraiment supprimer cet album ?"
 
 #: ../delete_album.php:66 ../delete_photo.php:113 ../delete_user.php:80
-#: ../js/multifile.js.php:118 ../layout/commentbox.inc:15
+#: ../js/multifile.js.php:118 ../layout/commentbox.inc:17
 #: ../lib/albumItem.php:273 ../lib/albumItem.php:281 ../manage_users.php:147
 #: ../tools/despam-comments.php:218 ../tools/despam-comments.php:363
 msgid "Delete"
@@ -1810,111 +1810,6 @@ msgstr "Envoyer un courriel à l'utilisateur une fois le compte créé"
 msgid "Donate to Gallery now!!"
 msgstr "Faire une donation à Gallery maintenant !!"
 
-#: ../html_wrap/frames/notebook/frame.def:5
-msgid "Spiral Notebook"
-msgstr "Classeur à spirale"
-
-#: ../html_wrap/frames/notebook/frame.def:6
-msgid "A white shadowed frame with spiral notebook binding on the left side."
-msgstr "Un cadre blanc avec ombre, avec une spirale à gauche (style cahier)."
-
-#: ../html_wrap/frames/deryk/frame.def:3
-msgid "Deryks Frame"
-msgstr "Cadre de Deryk"
-
-#: ../html_wrap/frames/deryk/frame.def:4
-msgid "A frame by Deryk. ;-)"
-msgstr "Un cadre conçu par Deryk. ;-)"
-
-#: ../html_wrap/frames/scrapbook_small/frame.def:3
-msgid "Scrapbook Small"
-msgstr "Petit scrapbook"
-
-#: ../html_wrap/frames/scrapbook_small/frame.def:4
-msgid "Smaller 'Olde Tyme' photo corners, good for Thumbnails."
-msgstr "Coins comme dans l'ancien temps, donne un bon rendu dans les miniatures."
-
-#: ../html_wrap/frames/shadows/frame.def:3
-msgid "Shadows"
-msgstr "Ombres"
-
-#: ../html_wrap/frames/shadows/frame.def:4
-msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
-msgstr "Ombres transparentes en PNG dirigées vers en bas à droite. Vraie transparence donc cela devrait fonctionner sur la plupart des fonds d'écran, excepté le noir."
-
-#: ../html_wrap/frames/polaroid/frame.def:3
-msgid "Polaroid"
-msgstr "Polaroïde"
-
-#: ../html_wrap/frames/polaroid/frame.def:4
-msgid "A photo with a large white frame, extra wide at the bottom edge."
-msgstr "Une photo avec un grand cadre, agrandi en bas de l'image."
-
-#: ../html_wrap/frames/polaroids/frame.def:3
-msgid "Polaroids"
-msgstr "Polaroïdes"
-
-#: ../html_wrap/frames/polaroids/frame.def:4
-msgid "A stack of photos with a large white frame, extra wide at the bottom edge."
-msgstr "Une pile de photos avec un grand cadre, agrandi au bas de l'image."
-
-#: ../html_wrap/frames/scrapbookshadow/frame.def:3
-msgid "Scrapbook-shadow"
-msgstr "Scrapbook avec ombres"
-
-#: ../html_wrap/frames/scrapbookshadow/frame.def:4
-msgid "'Olde Tyme' photo corners, with shadow."
-msgstr "Coins comme dans l'ancien temps, avec ombre."
-
-#: ../html_wrap/frames/golden/frame.def:4
-msgid "Gold Frame"
-msgstr "Cadre doré"
-
-#: ../html_wrap/frames/golden/frame.def:5
-msgid "A fancy golden frame."
-msgstr "Un cadre avec texture dorée."
-
-#: ../html_wrap/frames/scrapbookshadowsmall/frame.def:4
-msgid "Scrapbook Small Shadow"
-msgstr "Petit scrapbook avec ombres"
-
-#: ../html_wrap/frames/scrapbookshadowsmall/frame.def:5
-msgid "Smaller 'Olde Tyme' photo corners, good for Thumbnails, with shadow for light pages."
-msgstr "Petits coins avec ombres comme dans l'ancien temps, donne un bon rendu dans les miniatures."
-
-#: ../html_wrap/frames/postage_stamp/frame.def:3
-msgid "Postage Stamp"
-msgstr "Timbre poste"
-
-#: ../html_wrap/frames/postage_stamp/frame.def:4
-msgid "A simple postage stamp effect."
-msgstr "Un effet simple de timbre poste."
-
-#: ../html_wrap/frames/simple_book/frame.def:3
-msgid "Original Style"
-msgstr "Style original"
-
-#: ../html_wrap/frames/simple_book/frame.def:4
-#, php-format
-msgid "The original %s album frame style."
-msgstr "Le style d'album original de %s."
-
-#: ../html_wrap/frames/wooden/frame.def:4
-msgid "Wood Frame"
-msgstr "Cadre en bois"
-
-#: ../html_wrap/frames/wooden/frame.def:5
-msgid "A textured wooden frame."
-msgstr "Un cadre avec texture en bois."
-
-#: ../html_wrap/frames/scrapbook/frame.def:3
-msgid "Scrapbook"
-msgstr "Scrapbook"
-
-#: ../html_wrap/frames/scrapbook/frame.def:4
-msgid "'Olde Tyme' photo corners."
-msgstr "Coins comme dans l'ancien temps."
-
 #: ../html_wrap/wrapper.footer.default:63
 #, php-format
 msgid "Debug ON! Level %s"
@@ -2551,24 +2446,24 @@ msgstr "Créer des filigranes pour l'album"
 msgid "Logged in as:"
 msgstr "Authentifié en tant que :"
 
-#: ../layout/commentbox.inc:12
+#: ../layout/commentbox.inc:14
 #, php-format
 msgid "From: %s"
 msgstr "De : %s"
 
-#: ../layout/commentboxbottom.inc:12
+#: ../layout/commentboxbottom.inc:15
 msgid "add comment"
 msgstr "Ajouter un commentaire"
 
-#: ../layout/commentboxbottom.inc:16
+#: ../layout/commentboxbottom.inc:19
 msgid "Delete marked comments"
 msgstr "Supprimer les commentaires selectionnés."
 
-#: ../layout/commentboxtop.inc:25
+#: ../layout/commentboxtop.inc:27
 msgid "view comments for this nested album"
 msgstr "Voir les commentaires de ce sous-album"
 
-#: ../layout/commentboxtop.inc:27
+#: ../layout/commentboxtop.inc:29
 msgid "Album contains no comments"
 msgstr "L'album ne contient aucun commentaire"
 
@@ -2601,28 +2496,28 @@ msgstr "Dernière page"
 msgid "Jump to page %d"
 msgstr "Sauter vers la page %d"
 
-#: ../layout/navphoto.inc:27
+#: ../layout/navphoto.inc:26
 msgid "First Photo"
 msgstr "Première photo"
 
-#: ../layout/navphoto.inc:28
+#: ../layout/navphoto.inc:27
 msgid "Previous Photo"
 msgstr "Photo précédente"
 
-#: ../layout/navphoto.inc:29
+#: ../layout/navphoto.inc:28
 msgid "Next Photo"
 msgstr "Photo suivante"
 
-#: ../layout/navphoto.inc:30
+#: ../layout/navphoto.inc:29
 msgid "Last Photo"
 msgstr "Dernière photo"
 
-#: ../layout/navphoto.inc:63
+#: ../layout/navphoto.inc:62
 #, php-format
 msgid "%d of %d"
 msgstr "%d sur %d"
 
-#: ../layout/navphoto.inc:102
+#: ../layout/navphoto.inc:101
 msgid "Jump to:"
 msgstr "Sauter vers :"
 
@@ -4996,7 +4891,7 @@ msgstr "Pour voter pour une image, cliquez sur %s."
 msgid "You MUST click on %s for your vote to be recorded."
 msgstr "Vous DEVEZ cliquer sur %s pour que votre vote soit enregistré."
 
-#: ../view_album.php:441 ../view_album.php:459 ../view_album.php:813
+#: ../view_album.php:441 ../view_album.php:459 ../view_album.php:848
 msgid "Vote"
 msgstr "Vote"
 
@@ -5064,23 +4959,23 @@ msgid_plural "Viewed: %d times."
 msgstr[0] "Vu : 1 fois."
 msgstr[1] "Vu : %d fois."
 
-#: ../view_album.php:791
+#: ../view_album.php:826
 msgid "Hey! Add some photos."
 msgstr "Hé ! Ajoutez quelques photos !"
 
-#: ../view_album.php:843
+#: ../view_album.php:878
 msgid "Email me when one of the following actions are done to this album:"
 msgstr "Recevoir un courriel quand une des actions suivantes est effectuée sur cet album :"
 
-#: ../view_album.php:853
+#: ../view_album.php:888
 msgid "Comments are added"
 msgstr "Des commentaires sont ajoutés"
 
-#: ../view_album.php:856
+#: ../view_album.php:891
 msgid "Other changes are made"
 msgstr "D'autres changements sont effectués"
 
-#: ../view_album.php:859
+#: ../view_album.php:894
 msgid "Apply settings (both) recursive for subalbums."
 msgstr "Appliquer les paramètres récursivement sur les sous-albums."
 
@@ -5183,6 +5078,84 @@ msgstr "Pas d'aperçu possible puisque cet album n'a pas d'image-titre sélectionn
 #: ../watermark_album.php:119
 msgid "Keep in mind that watermarking on animated gifs is currently not supported and will 'deface &amp; unanimate' your pictures."
 msgstr "Rappelez-vous que faire un filigrane sur un fichier GIF animé n'est pas supporté : cela modifiera l'apparence du fichier et arrêtera l'animation de vos images."
+
+#~ msgid "Spiral Notebook"
+#~ msgstr "Classeur à spirale"
+
+#~ msgid "A white shadowed frame with spiral notebook binding on the left side."
+#~ msgstr "Un cadre blanc avec ombre, avec une spirale à gauche (style cahier)."
+
+#~ msgid "Deryks Frame"
+#~ msgstr "Cadre de Deryk"
+
+#~ msgid "A frame by Deryk. ;-)"
+#~ msgstr "Un cadre conçu par Deryk. ;-)"
+
+#~ msgid "Scrapbook Small"
+#~ msgstr "Petit scrapbook"
+
+#~ msgid "Smaller 'Olde Tyme' photo corners, good for Thumbnails."
+#~ msgstr "Coins comme dans l'ancien temps, donne un bon rendu dans les miniatures."
+
+#~ msgid "Shadows"
+#~ msgstr "Ombres"
+
+#~ msgid "PNG transparent shadows falling to the right and below. Proper transparency, so should work against most backgrounds, except black."
+#~ msgstr "Ombres transparentes en PNG dirigées vers en bas à droite. Vraie transparence donc cela devrait fonctionner sur la plupart des fonds d'écran, excepté le noir."
+
+#~ msgid "Polaroid"
+#~ msgstr "Polaroïde"
+
+#~ msgid "A photo with a large white frame, extra wide at the bottom edge."
+#~ msgstr "Une photo avec un grand cadre, agrandi en bas de l'image."
+
+#~ msgid "Polaroids"
+#~ msgstr "Polaroïdes"
+
+#~ msgid "A stack of photos with a large white frame, extra wide at the bottom edge."
+#~ msgstr "Une pile de photos avec un grand cadre, agrandi au bas de l'image."
+
+#~ msgid "Scrapbook-shadow"
+#~ msgstr "Scrapbook avec ombres"
+
+#~ msgid "'Olde Tyme' photo corners, with shadow."
+#~ msgstr "Coins comme dans l'ancien temps, avec ombre."
+
+#~ msgid "Gold Frame"
+#~ msgstr "Cadre doré"
+
+#~ msgid "A fancy golden frame."
+#~ msgstr "Un cadre avec texture dorée."
+
+#~ msgid "Scrapbook Small Shadow"
+#~ msgstr "Petit scrapbook avec ombres"
+
+#~ msgid "Smaller 'Olde Tyme' photo corners, good for Thumbnails, with shadow for light pages."
+#~ msgstr "Petits coins avec ombres comme dans l'ancien temps, donne un bon rendu dans les miniatures."
+
+#~ msgid "Postage Stamp"
+#~ msgstr "Timbre poste"
+
+#~ msgid "A simple postage stamp effect."
+#~ msgstr "Un effet simple de timbre poste."
+
+#~ msgid "Original Style"
+#~ msgstr "Style original"
+
+#~ msgid "The original %s album frame style."
+#~ msgstr "Le style d'album original de %s."
+
+#~ msgid "Wood Frame"
+#~ msgstr "Cadre en bois"
+
+#~ msgid "A textured wooden frame."
+#~ msgstr "Un cadre avec texture en bois."
+
+#~ msgid "Scrapbook"
+#~ msgstr "Scrapbook"
+
+#~ msgid "'Olde Tyme' photo corners."
+#~ msgstr "Coins comme dans l'ancien temps."
 
 #~ msgid "reverse direction"
 #~ msgstr "En arrière"
