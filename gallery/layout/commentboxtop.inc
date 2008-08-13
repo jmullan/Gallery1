@@ -1,6 +1,8 @@
-<?php /* $Id$ */ ?>
-<?php global $commentbox, $embeddedAlbum, $myAlbumName, $myHighlightTag, $myAlbum, $index, $id, $i; ?>
+<?php
+/* $Id$ */
 
+global $commentbox, $embeddedAlbum, $myAlbumName, $myHighlightTag, $myAlbum, $index, $id, $i;
+?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding=0>
 <tr>

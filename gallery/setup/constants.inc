@@ -74,6 +74,7 @@ function toggleSMTP(show) {
 </script>
 <?php
 $i = 0;
+
 foreach ($constants as $key => $val) {
 	if( isset($val["enabled"]) && $val["enabled"] == "no") {
 		continue;

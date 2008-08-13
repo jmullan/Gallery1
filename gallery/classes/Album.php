@@ -1237,7 +1237,7 @@ class Album {
 		echo addProgressbar(
 			$progressbarID,
 			sprintf(
-				gTranslate('core', "Resizing items in album: '<i>%s</i>' (%s)' with %d items"),
+				gTranslate('core', "Resizing items in album: '<i>%s</i>' (%s) with %d items."),
 				$this->fields['title'],
 				$this->fields['name'],
 				$numItems)
@@ -1946,7 +1946,7 @@ class Album {
 		return (array($numItemsTotal, $numAlbums, $numPhotos));
 	}
 
-	function numVisibleItems($user, $returnVisibleItems=false) {
+	function numVisibleItems($user, $returnVisibleItems = false) {
 		$uuid = $user->getUid();
 
 		if ($returnVisibleItems) {
@@ -2312,7 +2312,7 @@ class Album {
 		echo addProgressbar(
 				$progressbarID,
 				sprintf(
-					gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
+					gTranslate('core', "Updating album: '<i>%s</i>' (%s) with %d items."),
 					$this->fields['title'],
 					$this->fields['name'],
 					$numItems)
@@ -2325,7 +2325,7 @@ class Album {
 				$np = $nestedAlbum->numPhotos(1);
 
 				echo "<br>";
-				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items"), $this->getAlbumName($i), $np);
+				printf(gTranslate('core', "Entering subalbum '<i>%s</i>', processing %d items."), $this->getAlbumName($i), $np);
 				$nestedAlbum->makeThumbnails($recursive);
 				$nestedAlbum->save();
 			}

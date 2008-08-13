@@ -9,7 +9,8 @@ global $gallery, $adminbox, $navigator;
 // If the border color is not passed in, we do a black/white combo
 if (isset ($adminbox["bordercolor"])) {
 	$borderIn = $adminbox["bordercolor"];
-} else {
+}
+else {
 	$borderIn = "#FFFFFF";
 }
 
@@ -29,7 +30,7 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
 
 ?>
 <table<?php echo $width; ?> cellspacing="0" cellpadding="0" id="adminbox">
-  <tr> 
+  <tr>
     <td align="<?php echo langLeft(); ?>"><?php echo $adminbox["text"] ?></td>
     <td align="<?php echo langRight(); ?>">
 	<form name="admin_options_form" action="view_album.php">
@@ -37,4 +38,4 @@ if (isset($navigator["fullWidth"]) && isset($navigator["widthUnits"])) {
 	</form>
     </td>
   </tr>
-</table>    
+</table>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* $Id$ */
 
@@ -63,7 +63,7 @@ if(!includeTemplate('navigator.tpl')) {
 		$npAltText= gTranslate('core', "Next Page");
 		$lpAltText= gTranslate('core', "Last Page");
 
-		$current = $navigator["page"];
+		$current  = $navigator["page"];
 		$prevPage = $current -1;
 		$nextPage = $current +1;
 		$maxPages = $navigator["maxPages"];
@@ -78,11 +78,11 @@ if(!includeTemplate('navigator.tpl')) {
 			);
 
 			$ppContent = galleryIconLink(
-				$url . $navigator['pageVar'] ."=$prevPage",
-				$ppImg,
-				$ppAltText,
-				'yes',
-				array('id' => "g-nav-backward_$navc")
+					$url . $navigator['pageVar'] ."=$prevPage",
+					$ppImg,
+					$ppAltText,
+					'yes',
+					array('id' => "g-nav-backward_$navc")
 			);
 
 			$pClass = 'g-borderright';
@@ -148,18 +148,18 @@ if(!includeTemplate('navigator.tpl')) {
 		#-- 'next' and 'last' button cell ---
 		if ($current < $maxPages) {
 			$npContent = galleryIconLink(
-				$url . $navigator['pageVar'] ."=$nextPage",
-				$npImg,
-				$npAltText,
-				'yes',
-				array('id' => "g-nav-forward_$navc")
+					$url . $navigator['pageVar'] ."=$nextPage",
+					$npImg,
+					$npAltText,
+					'yes',
+					array('id' => "g-nav-forward_$navc")
 			);
 
 			$lpContent = galleryIconLink(
-				$url . $navigator['pageVar'] .'='. $navigator['maxPages'],
-				$lpImg,
-				$lpAltText,
-				'yes'
+					$url . $navigator['pageVar'] .'='. $navigator['maxPages'],
+					$lpImg,
+					$lpAltText,
+					'yes'
 			);
 
 			$nClass='g-borderleft';

@@ -1,5 +1,8 @@
-<?php /* $Id$ */ ?>
-<?php global $embeddedAlbum, $id, $index ;
+<?php
+/* $Id$ */
+
+global $embeddedAlbum, $id, $index ;
+
 if(!$embeddedAlbum == 1) {
         $url = "add_comment.php?set_albumName={$gallery->album->fields['name']}&id=$id";
 ?>
@@ -9,11 +12,11 @@ if(!$embeddedAlbum == 1) {
 
 <?php
 	if ($gallery->user->canAddComments($gallery->album)) {
-	    echo "\n". '<input type="button" onClick="javascript:'. popup($url) .'" value="'. _("add comment") .'">';
+		echo gButton('add', gTranslate('core', "add comment"), popup($url));
 	}
 
 	if ($gallery->user->canWriteToAlbum($gallery->album)) {
-		echo "\n". '<input type="submit" value="'. _("Delete marked comments") .'">';
+		echo gSubmit('submit', gTranslate('core', "Delete marked comments"));
 	}
 
 	?>

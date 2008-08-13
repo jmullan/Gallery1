@@ -1,5 +1,5 @@
 	    <td class="plugin_<?php print $modifier ?>"><?php print $plugin ?></td>
-	    <td bgcolor="#<?php print percentColor($pluginData['percentDone']) ?>"><?php print $pluginData['percentDone'] ?>%</td>
+	    <td bgcolor="<?php print percentColor($pluginData['percentDone']) ?>"><?php print $pluginData['percentDone'] ?>%</td>
 
 	    <?php if (isset($pluginData['missing'])) { ?>
 	    <td colspan="5" class="missing_<?php print $modifier ?>">Missing</td>
