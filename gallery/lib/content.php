@@ -1626,6 +1626,7 @@ function old_unhtmlentities($string)
  */
 function sanitizeInput($value) {
 	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+
 	static $safehtml;
 
 	if (empty($safehtml)) {

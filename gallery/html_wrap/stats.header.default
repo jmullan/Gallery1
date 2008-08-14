@@ -1,18 +1,18 @@
 <?php
-// $Id$
-// This is the default stats header (for the stats results page: stats.php).
-// It's companion is stats.footer.default. 
-//
-// To override this header, create a file called stats.header
-// in this directory. 
-//
-// NOTE: This header gets inserted below the <body> tag.
-// 
-?>
-<?php
-	includeHtmlWrap("wrapper.header");
-	global $stats_title;
-	if (!includeTemplate("stats.header.tpl")) {
+/* $Id$
+ *
+ * This is the default stats header (for the stats results page: stats.php).
+ *It's companion is stats.footer.default.
+ *
+ * To override this header, create a file called stats.header in this directory.
+ *
+ * NOTE: This header gets inserted below the <body> tag.
+ */
+
+includeHtmlWrap("wrapper.header");
+global $stats_title;
+
+if (!includeTemplate("stats.header.tpl")) {
 ?>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -25,7 +25,7 @@
             <table cellspacing="0" cellpadding="0" class="mod_toplight_bg">
               <tr>
                 <td class="mod_toplight_left" align="right"></td>
-                <td class="head" align="left"><?php echo _("Gallery statistics") . $stats_title; ?></td>
+                <td class="head" align="left"><?php echo gTranslate('core', "Gallery statistics") . $stats_title; ?></td>
                 <td class="mod_toplight_right" align="left"></td>
               </tr>
             </table>
