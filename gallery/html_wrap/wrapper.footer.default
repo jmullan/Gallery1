@@ -1,7 +1,9 @@
 <?php
-// $Id$
-// This footer file detects whether Gallery is embedded in any
-// known PHP applications and then decorates Gallery appropriately.
+/* $Id$
+ *
+ * This footer file detects whether Gallery is embedded in any
+ * known PHP applications and then decorates Gallery appropriately.
+ */
 
 global $GALLERY_EMBEDDED_INSIDE_TYPE;
 
@@ -9,7 +11,7 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 	case 'phpnuke':
 	case 'postnuke':
 	case 'cpgnuke':
-
+	case 'zikula':
 		/*
 		 * We can control whether we see the right side blocks
 		 * by setting the value of the $index variable.  To
@@ -69,19 +71,21 @@ if (isDebugging()) {
 
 		switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 			case 'phpnuke':
-			break;
-			case 'postnuke':
-				$infoText .= ' '. $GALLERY_POSTNUKE_VERSION;
-			break;
 			case 'cpgnuke':
-			break;
 			case 'phpBB2':
-			break;
 			case 'GeekLog':
+			break;
+
+			case 'postnuke':
+				$infoText .= ' ' . $GALLERY_POSTNUKE_VERSION;
+			break;
+
+			case 'zikula':
+				$infoText .= ' ' . PN_VERSION_NUM;
 			break;
 		}
 	}
 
-    echo infoLine($infoText, 'error');
+    echo gallery_error($infoText);
 }
 ?>

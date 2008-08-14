@@ -344,7 +344,7 @@ function showColorpicker($attrs = array(), $addCallBack = false) {
 	$html .="var g_colorpicker_$id = new MooRainbow('colorpicker_$id', {";
 	$html .="id: 'gal_colorpicker_$id',";
 	$html .="destination : '$id',";
-	$html .="imgPath: '". makeGalleryUrl("images/moorainbow/") ."',";
+	$html .="imgPath: '". getGalleryBaseUrl() . "/images/moorainbow/',";
 	$html .="onComplete: function(color) {";
 	$html .="\$('$id').value = color.hex;";
 	$html .="}";

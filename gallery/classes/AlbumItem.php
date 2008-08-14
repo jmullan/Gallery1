@@ -161,9 +161,10 @@ class AlbumItem {
 	}
 
 	function getComment($commentIndex) {
-		if (!empty($this->comments)) {
+		if (!empty($this->comments) || !isValidGalleryInteger($commentIndex)) {
 			return $this->comments[$commentIndex-1];
-		} else {
+		}
+		else {
 			return null;
 		}
 	}
@@ -1099,7 +1100,7 @@ class AlbumItem {
 			return;
 		}
 		$uid = $user->getUid();
-		
+
 		unset($this->emailMe[$type][$uid]);
 	}
 

@@ -35,7 +35,8 @@ $op		= isset($_REQUEST['op']) ? $_REQUEST['op'] : null;
 $mop		= isset($_REQUEST['mop']) ? $_REQUEST['mop'] : null;
 $name		= isset($_REQUEST['name']) ? $_REQUEST['name'] : null;
 $include	= isset($_REQUEST['include']) ? $_REQUEST['include'] : null;
-$postnuke	= ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') ) ? true : false;
+$postnuke	= ( defined('_PN_VERSION_ID') || defined('PN_VERSION_ID') && PN_VERSION_ID != 'Zikula') ? true : false;
+$zikula		= ( defined('PN_VERSION_ID') && PN_VERSION_ID == 'Zikula') ? true : false;
 $phpnuke	= isset($GLOBALS['nukeurl']) ? true : false;
 
 /*
@@ -44,11 +45,12 @@ $phpnuke	= isset($GLOBALS['nukeurl']) ? true : false;
  * config.php * Therefore we have to detect GeekLog in init.php.
  *
  */
-if ($postnuke ||
-	$phpnuke ||
-	!strcmp($op, "modload") ||
-	!strcmp($mop, "modload") ||
-	isset($option))
+if ($zikula ||
+    $postnuke ||
+    $phpnuke ||
+    !strcmp($op, "modload") ||
+    !strcmp($mop, "modload") ||
+    isset($option))
 {
 	/*
 	 * Change this variable if your Gallery module has a different
@@ -86,6 +88,10 @@ if ($postnuke ||
 		else {
 			$GALLERY_POSTNUKE_VERSION = _PN_VERSION_NUM;
 		}
+	}
+	elseif ($zikula) {
+		$GALLERY_EMBEDDED_INSIDE = 'nuke';
+		$GALLERY_EMBEDDED_INSIDE_TYPE = 'zikula';
 	}
 	elseif ($GLOBALS['user_prefix'] == "nukea") {
 		$GALLERY_EMBEDDED_INSIDE='nuke';
