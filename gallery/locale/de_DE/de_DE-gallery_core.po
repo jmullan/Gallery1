@@ -30,7 +30,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gallery 1.5_LEGACY\n"
 "Report-Msgid-Bugs-To: gallery-translations@lists.sourceforge.net\n"
-"POT-Creation-Date: 2008-08-15 13:00+0200\n"
+"POT-Creation-Date: 2008-08-15 15:51+0200\n"
 "PO-Revision-Date: 2008-08-13 16:38+0100\n"
 "Last-Translator: Jens A. Tkotz <jens@peino.de>\n"
 "Language-Team: German <jens AT peino DOT de>\n"
@@ -681,7 +681,7 @@ msgstr "Die Aktion wurde erfolgreich ausgeführt. Emailing wurde aktiviert, es wu
 msgid "Skipping Movie"
 msgstr " -- Filme werden übersprungen"
 
-#: ../classes/Album.php:1230 ../classes/Album.php:2306
+#: ../classes/Album.php:1230 ../classes/Album.php:2307
 msgid " -- Skipping"
 msgstr " -- Wird &uuml;bersprungen"
 
@@ -690,7 +690,7 @@ msgstr " -- Wird &uuml;bersprungen"
 msgid "Resizing items in album: '<i>%s</i>' (%s) with %d items."
 msgstr "Größenänderung der Elemente in Album: '<i>%s</i>' (%s) mit %d Elementen."
 
-#: ../classes/Album.php:1249 ../classes/Album.php:2341
+#: ../classes/Album.php:1249 ../classes/Album.php:2342
 #, php-format
 msgid "Processing item %d..."
 msgstr "Verarbeite Element %d ..."
@@ -764,87 +764,87 @@ msgstr "Kein Titelbild!"
 msgid "Highlight for album: %s"
 msgstr "Titelbild des Albums: %s"
 
-#: ../classes/Album.php:2005
+#: ../classes/Album.php:2006
 #, php-format
 msgid "Requested index [%d] out of bounds [%d]. Gallery could not load the requested album item."
 msgstr "Angeforderter index [%d] ist ausserhalb der erlaubten Menge [%d]. Gallery konnte das angeforderte Element nicht laden."
 
-#: ../classes/Album.php:2122
+#: ../classes/Album.php:2123
 #, php-format
 msgid "Updating album: '<i>%s</i>'."
 msgstr "Aktualisiere Album: '<i>%s</i>'."
 
-#: ../classes/Album.php:2126
+#: ../classes/Album.php:2127
 #, php-format
 msgid "Updating subalbum '<i>%s</i>'."
 msgstr "Aktualisiere Unteralbum: '<i>%s</i>'."
 
-#: ../classes/Album.php:2131
+#: ../classes/Album.php:2132
 msgid "-- Skipped, because it is empty."
 msgstr "-- Übersprungen, da leer."
 
-#: ../classes/Album.php:2144
+#: ../classes/Album.php:2145
 #, php-format
 msgid "Processing item %d of %d."
 msgstr "Verarbeite Element %d von %d."
 
-#: ../classes/Album.php:2159
+#: ../classes/Album.php:2160
 #, php-format
 msgid "Problem with item #%d (subalbum)."
 msgstr "Problem mit Element #%d (Unteralbum)."
 
-#: ../classes/Album.php:2173
+#: ../classes/Album.php:2174
 #, php-format
 msgid "Problem with item #%d."
 msgstr "Problem mit Element #%d."
 
-#: ../classes/Album.php:2316
+#: ../classes/Album.php:2317
 #, php-format
 msgid "Updating album: '<i>%s</i>' (%s) with %d items."
 msgstr "Aktualisiere Album: '<i>%s</i>' (%s) mit %d Elementen."
 
-#: ../classes/Album.php:2329
+#: ../classes/Album.php:2330
 #, php-format
 msgid "Entering subalbum '<i>%s</i>', processing %d items."
 msgstr "Verarbeite Unteralbum '<i>%s</i>' mit %d Elementen."
 
-#: ../classes/Album.php:2564
+#: ../classes/Album.php:2565
 #, php-format
 msgid "Error getting EXIF data. Expected status 0, got %s."
 msgstr "Fehler beim Holen der EXIF Daten. Erwarteter Status 0, erhalten: %s."
 
-#: ../classes/Album.php:3074
+#: ../classes/Album.php:3075
 msgid "Owner can modify his/her own items."
 msgstr "Besitzer kann seine Elemente verändern."
 
-#: ../classes/Album.php:3077
+#: ../classes/Album.php:3078
 msgid "Owner can NOT modify his/her own items."
 msgstr "Besitzer kann seine Elemente NICHT verändern."
 
-#: ../classes/Album.php:3101
+#: ../classes/Album.php:3102
 msgid "Owner can delete his/her own items."
 msgstr "Besitzer kann seine Elemente löschen."
 
-#: ../classes/Album.php:3104
+#: ../classes/Album.php:3105
 msgid "Owner can NOT delete his/her own items."
 msgstr "Besitzer kann seine Elemente NICHT löschen."
 
-#: ../classes/Album.php:3208
+#: ../classes/Album.php:3209
 #, php-format
 msgid "#%d"
 msgstr "#%d"
 
-#: ../classes/Album.php:3377
+#: ../classes/Album.php:3378
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because no email address was set."
 msgstr "Problem: %s (UID %s) wurde übersprungen, da keine Emailadresse vorhanden ist."
 
-#: ../classes/Album.php:3381
+#: ../classes/Album.php:3382
 #, php-format
 msgid "Problem: Skipping %s (UID %s) because email address: '%s' is not valid."
 msgstr "Problem: %s (UID %s) wurde übersprungen, da die Emailadresse '%s' nicht gültig zu sein scheint."
 
-#: ../classes/Album.php:3391
+#: ../classes/Album.php:3392
 msgid "Email problems"
 msgstr "Email Probleme"
 
@@ -1825,63 +1825,75 @@ msgstr "ImageMaps"
 msgid "No photo chosen."
 msgstr "Kein Photo gewählt."
 
-#: ../imagemap.php:100
+#: ../imagemap.php:103 ../imagemap.php:107
 msgid "An imagemap should at least have three points."
 msgstr "Eine Imagemap muß mindestens aus drei Punkten bestehen."
 
-#: ../imagemap.php:178
+#: ../imagemap.php:183
+msgid "navigate up"
+msgstr "Ebene hoch"
+
+#: ../imagemap.php:190
 msgid "Original photo"
 msgstr "Original Photo"
 
-#: ../imagemap.php:226
+#: ../imagemap.php:238
 msgid "Here you can create, edit or delete imagemaps for the selected photo."
 msgstr "Hier können Sie sogenannte ImageMaps für das ausgewählte Photo anlegen, bearbeiten oder auch wieder löschen."
 
-#: ../imagemap.php:228
+#: ../imagemap.php:240
 msgid "Click the questionmark icon for helpful instructions."
 msgstr "Klicken Sie auf das Fragezeichen um einige hilfreiche Tips zu bekommen."
 
-#: ../imagemap.php:229 ../includes/add_photos/add_form.inc:74
+#: ../imagemap.php:241 ../includes/add_photos/add_form.inc:74
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../imagemap.php:253
-msgid "Clear and reset canvas"
-msgstr "Zeichenfläche löschen."
-
-#: ../imagemap.php:254
+#: ../imagemap.php:265
 msgid "Brush color:"
 msgstr "Pinselfarbe"
 
-#: ../imagemap.php:257
+#: ../imagemap.php:267
 msgid "Optional link-url"
 msgstr "Optionale Link-URL"
 
-#: ../imagemap.php:259
+#: ../imagemap.php:270
 msgid "Description"
 msgstr "Beschriftung"
 
-#: ../imagemap.php:265
-msgid "Save Imagemap"
-msgstr "ImageMap speichern"
+#: ../imagemap.php:279
+msgid "Clear and reset canvas"
+msgstr "Zeichenfläche löschen"
 
-#: ../imagemap.php:272
+#: ../imagemap.php:280
+msgid "Save new Imagemap"
+msgstr "Neue ImageMap speichern"
+
+#: ../imagemap.php:287
+msgid "Edit existing ImageMaps"
+msgstr "Bestehende ImageMaps bearbeiten"
+
+#: ../imagemap.php:289
 msgid "Select entries to show ImageMap areas in your photo."
 msgstr "Markieren Sie hier die Einträge um die ImageMaps im Bild anzuzeigen."
 
-#: ../imagemap.php:280
+#: ../imagemap.php:297
 msgid "Delete selected ImageMap(s)"
 msgstr "Markierte ImageMaps löschen."
 
-#: ../imagemap.php:283
+#: ../imagemap.php:299
 msgid "Update selected ImageMap(s)"
 msgstr "Markierte ImageMaps aktualisieren."
 
-#: ../imagemap.php:285
-msgid "Be aware, that the text of ALL selected entries will be updated!"
-msgstr "Vorsicht, bei einer Aktualisierung werden alle markierten Einträge verwendet."
+#: ../imagemap.php:302
+msgid "Perform action"
+msgstr "Gew&auml;hlte Aktion ausf&uuml;hren"
 
-#: ../imagemap.php:288
+#: ../imagemap.php:304
+msgid "Be aware, that the text of ALL selected entries will be updated!"
+msgstr "Vorsicht, bei einer Aktualisierung werden alle markierten Einträge verwendet!"
+
+#: ../imagemap.php:309
 msgid "No ImageMaps"
 msgstr "Keine ImageMap bisher angelegt."
 
