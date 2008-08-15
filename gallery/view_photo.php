@@ -172,7 +172,7 @@ $bordercolor = $gallery->album->fields['bordercolor'];
 $mainWidth = "100%";
 
 $navigator["id"] = $id;
-$navigator["allIds"] = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
+$navigator["allIds"] = $gallery->album->getIds(true);
 $navigator["fullWidth"] = "100";
 $navigator["widthUnits"] = "%";
 $navigator["url"] = ".";

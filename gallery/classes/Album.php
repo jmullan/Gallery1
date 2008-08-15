@@ -1978,12 +1978,13 @@ class Album {
 
 		if ($returnVisibleItems) {
 			return array($numPhotos, $numAlbums, $visibleItems);
-		} else {
+		}
+		else {
 			return array($numPhotos, $numAlbums);
 		}
 	}
 
-	function getIds($show_hidden = 0) {
+	function getIds($show_hidden = false) {
 		foreach ($this->photos as $photo) {
 			if ((!$photo->isHidden() || $show_hidden) && !$photo->getAlbumName()) {
 				$ids[] = $photo->getPhotoId();
