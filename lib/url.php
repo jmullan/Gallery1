@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * Functions that provide possibility to create and modify URLS
@@ -76,6 +74,7 @@ function getGalleryBaseUrl() {
 
 	return $base;
 }
+
 /**
  * Any URL that you want to use can either be accessed directly
  * in the case of a standalone Gallery, or indirectly if we're
@@ -89,7 +88,6 @@ function getGalleryBaseUrl() {
  *				(eg, array("index" => 1, "set_albumName" => "foo"))
  * @return	string
  */
-
 function makeGalleryUrl($target = '', $args = array()) {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;

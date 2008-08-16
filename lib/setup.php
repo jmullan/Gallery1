@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 function evenOdd_row($fields) {
 	$html = '';
@@ -96,7 +94,8 @@ function make_fields($key, $arr) {
 
 	if (isset($arr['desc'])) {
 		$col3 = $arr['desc'];
-	} else {
+	}
+	else {
 		$col3 = '';
 	}
 
@@ -183,6 +182,7 @@ function form_nv_pairs($key, $arr) {
 		. "<td><b>". gTranslate('common', "Name") . "</b></td>"
 		. "<td><b>". gTranslate('common', "Value") ."</b></td>"
 		. "</tr>";
+
 	foreach ($arr["value"] as $result) {
 		$name=$result["name"];
 		$value=$result["value"];
@@ -195,11 +195,14 @@ function form_nv_pairs($key, $arr) {
 			break;
 		}
 	}
+
 	for (; $x<$arr["size"]; $x++) {
 		$buf .= '<tr><td><input type="text" name="' . $key ."[$x][name]\" $attrs></td>\n";
 		$buf .= '<td><input type="text" name="' . $key ."[$x][value]\" $attrs></td></tr>\n";
 	}
+
 	$buf.="</table>";
+
 	return $buf;
 }
 
@@ -279,8 +282,8 @@ function form_table_values($key, $arr) {
 }
 
 function form_print_services($key, $arr) {
+	$html = "\n\t<table border=\"0\">";
 
-	$buf= "\n\t<table border=\"0\">";
 	foreach ($arr['services'] as $item => $data) {
 		if (isset($arr['value'][$item])) {
 			if (is_array($arr['value'][$item])) {
@@ -288,24 +291,27 @@ function form_print_services($key, $arr) {
 				if (!isset($value['checked'])) {
 					$value['checked'] = false;
 				}
-			} else {
+			}
+			else {
 				$value = array('checked' => true);
 			}
-		} else {
+		}
+		else {
 			$value = array('checked' => false);
 		}
 
 		$checked = $value['checked'] ? ' checked' : '';
-		$buf .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
+		$html .= "\n\t\t<tr><td valign=\"top\">\n\t\t\t<input name=\"${key}[$item][checked]\" value=\"checked\" type=\"checkbox\"$checked><a href=\"${data['url']}\">${data['name']}</a>";
 
 		if (!empty($data['desc'])) {
-			$buf .= ' - ' . $data['desc'];
+			$html .= ' - ' . $data['desc'];
 		}
-		$buf .= "\n\t\t</td></tr>";
+		$html .= "\n\t\t</td></tr>";
 	}
-	$buf .="\n\t</table>\n\t";
 
-	return $buf;
+	$html .="\n\t</table>\n\t";
+
+	return $html;
 }
 
 /**
@@ -399,18 +405,18 @@ function one_constant($key, $value) {
 }
 
 function array_constant($key, $value, $removeEmpty = false) {
-	$buf = '';
+	$html = '';
 
 	foreach ($value as $item) {
 		if($removeEmpty && empty($item)) {
 			continue;
 		}
 		else {
-		  $buf .= "\$gallery->app->${key}[] = \"{$item}\";\n";
+			$html .= "\$gallery->app->${key}[] = \"{$item}\";\n";
 		}
 	}
 
-	return $buf;
+	return $html;
 }
 
 function defaults($key, $value) {
@@ -435,9 +441,10 @@ function error_missing($desc, $key) {
 function check_exec() {
 	$disabled = "" . ini_get("disable_functions");
 
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
+
 	if (!empty($disabled)) {
 		foreach(explode(',', $disabled) as $disabled_func) {
 			if(eregi('^exec$', $disabled_func)) {
@@ -460,9 +467,9 @@ function check_exec() {
 function check_htaccess() {
 	global $GALLERY_PHP_VALUE_OK;
 
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
 
 	if(!fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
 		$fail['fail-nohtaccess'] = true;
@@ -480,10 +487,10 @@ function check_htaccess() {
 function check_php() {
 	global $MIN_PHP_MAJOR_VERSION;
 
-	$version = phpversion();
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$version	= phpversion();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
 
 	if (!function_exists('version_compare') ||
 		!version_compare($version, $MIN_PHP_MAJOR_VERSION, ">=")) {
@@ -502,9 +509,9 @@ function check_php() {
 function check_mod_rewrite()  {
 	global $GALLERY_REWRITE_OK;
 
-	$success = array();
-	$fail = array();
-	$warn = array();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
 
 	if(fs_file_exists(GALLERY_SETUPDIR .'/.htaccess')) {
 		if ($GALLERY_REWRITE_OK) {
@@ -524,9 +531,9 @@ function check_mod_rewrite()  {
 function check_exif($location = '') {
 	global $gallery;
 
-	$fail = array();
-	$success = array();
-	$warn = array();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
 
 	$bin = fs_executable('jhead');
 
@@ -557,9 +564,9 @@ function check_exif($location = '') {
 function check_graphics($location = '', $graphtool = '') {
 	global $gallery;
 
-	$fail = array();
-	$success = array();
-	$warn = array();
+	$success	= array();
+	$fail		= array();
+	$warn		= array();
 
 	$missing_critical = array();
 	$missing = 0;
@@ -586,7 +593,7 @@ function check_graphics($location = '', $graphtool = '') {
 
 	$optional = array(
 		fs_executable('pnmcomp') =>
-		gTranslate('common', "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
+			gTranslate('common', "Without pnmcomp and pamcomp, gallery will not be able to watermark images, unless you use ImageMagick and have the composite binary installed."),
 	);
 
 	$missing_optional = 0;
@@ -757,12 +764,15 @@ function check_jpegtran($location = '') {
 
 	if ($location) {
 		$dir = locateDir($bin, $location);
-	} else {
+	}
+	else {
 		$dir = locateDir($bin, isset($gallery->app->use_jpegtran) ? dirname($gallery->app->use_jpegtran) : '');
 	}
+
 	if (!$dir) {
 		$warn["fail-jpegtran"] = gTranslate('common', "jpegtran was not found.");
-	} else {
+	}
+	else {
 		$success[] = gTranslate('common', "jpegtran binary located.");
 	}
 
@@ -784,22 +794,26 @@ function check_gettext() {
 
 function check_gallery_languages() {
 	global $gallery;
+
 	$fail = array();
 	$success = array();
 	$warn = array();
 
 	$languages = gallery_languages();
+
 	if (sizeof($languages) == 0) {
 		$fail["fail-gallery-languages"] = gTranslate('common', "No languages found."); // should never occur!
-	} else if (sizeof($languages) == 1 ) {
+	}
+	else if (sizeof($languages) == 1 ) {
 		$warn['only_english'] = gTranslate('common', "It seems you didn't download any additional languages. This is not a problem! Gallery will appear just in English. Note: If this is not true, check that all files in locale folder are readable for the webserver, or contact the Gallery Team.");
 	}
 	else {
 		$success[] = sprintf(gTranslate('common', "%d languages are available.  If you are missing a language please visit the %sGallery download page%s."),
-		sizeof($languages),
-		"<a href=\"$gallery->url\" target=\"_blank\">",
-		'</a>');
+				sizeof($languages),
+				"<a href=\"$gallery->url\" target=\"_blank\">",
+				'</a>');
 	}
+
 	return array($success, $fail, $warn);
 }
 
@@ -887,7 +901,7 @@ function check_absent_locales() {
 	else {
 		if (ini_get('open_basedir') && getOS() != OS_LINUX) {
 			$warn[] = sprintf(gTranslate('common', "We were unable to detect any locales.  However, your PHP installation is configured with the %s restriction so this may be interfering with the way that we detect locales.  Unfortunately this means the date format will not change for different languages.  However, it is OK to continue."),
-			'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
+				'<b><a href="http://www.php.net/manual/en/features.safe-mode.php#ini.open-basedir" target="_blank">open_basedir</a></b>');
 		}
 		else {
 			if (getOS() == OS_LINUX) {
@@ -951,7 +965,7 @@ function check_locale() {
 			continue;
 		}
 
-		/**
+		/*
 		 * First, we try using the full lang, (first 5 chars) if
 		 * that doesn't match then
 		 * we use the first 2 letter to build an alias list
@@ -980,8 +994,8 @@ function check_locale() {
 			}
 		}
 
-		$aliases = array_unique($aliases);
-		$noway = array('zh_TW.eucTW');
+		$aliases	= array_unique($aliases);
+		$noway		= array('zh_TW.eucTW');
 		if ($aliases) {
 			foreach ($aliases as $test) {
 				// We do this because all locales in $noway seem to crash at least some NetBSD
@@ -1397,10 +1411,10 @@ function array_stripslashes($subject) {
 }
 
 /*
-** Check if Magic Quotes are On
-** If yes stripslashes and return the cleaned input.
-**
-** Jens Tkotz, 02/2004
+ * Check if Magic Quotes are On
+ * If yes stripslashes and return the cleaned input.
+ *
+ * Jens Tkotz, 02/2004
 */
 function stripWQuotesON($mixed) {
 	if (get_magic_quotes_gpc()) {
@@ -1490,7 +1504,8 @@ function verify_email($emailMaster) {
 				if (! check_email($email)) {
 					$fail[] = sprintf(gTranslate('common', "%s is not a valid email address."),
 					$email);
-				} else {
+				}
+				else {
 					$success[] = "Valid admin email given.";
 				}
 			}
@@ -1863,7 +1878,7 @@ function placeholderDescription() {
  * @param array $result	 The resultcheck
  * @param array $check
  * @return integer
- * @author Jens Tkotz <jens@peino.de>
+ * @author Jens Tkotz
  */
 function getCheckStatus($result, $check) {
 	list($success, $fail, $warn) = $result;
@@ -2010,6 +2025,7 @@ function checkNetPbm($cmd) {
  */
 function getCurrentGraphicTool() {
 	global $gallery;
+
 	if(isset($gallery->app->graphics)) {
 		return $gallery->app->graphics;
 	}
@@ -2021,7 +2037,7 @@ function getCurrentGraphicTool() {
 function embed_hidden($key) {
 	global $$key;
 
-	$buf = "";
+	$html = '';
 	$real = $$key;
 
 	if (is_array($real)) {
@@ -2029,25 +2045,27 @@ function embed_hidden($key) {
 			if (is_array($value)) {
 				foreach($value as $sub_key => $sub_value) {
 					$name = stripWQuotesON($key . "[$real_key][$sub_key]");
-					$buf .= '<input type="hidden" name="'. $name .'" value="';
-					$buf .= urlencode($sub_value);
-					$buf .= "\">\n";
+					$html .= '<input type="hidden" name="'. $name .'" value="';
+					$html .= urlencode($sub_value);
+					$html .= "\">\n";
 				}
-			} else {
+			}
+			else {
 				$name = stripWQuotesON("$key" . "[$real_key]");
-				$buf .= '<input type="hidden" name="'. $name .'" value="';
-				$buf .= urlencode($value);
-				$buf .= "\">\n";
+				$html .= '<input type="hidden" name="'. $name .'" value="';
+				$html .= urlencode($value);
+				$html .= "\">\n";
 			}
 		}
-	} else {
-		$buf .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
-		$buf .= urlencode($real);
-		$buf .= "\">\n";
 	}
-	return $buf;
-}
+	else {
+		$html .= '<input type="hidden" name="'. stripWQuotesON($key) . '" value="';
+		$html .= urlencode($real);
+		$html .= "\">\n";
+	}
 
+	return $html;
+}
 
 function useSMTP() {
 	global $gallery;
@@ -2061,7 +2079,7 @@ function useSMTP() {
 }
 
 function configError($msg) {
-	$html = '<span class="g-error" style="color: red;">' . $msg . '</span>';
+	$html = '<div class="g-error" style="color: red;">' . $msg . '</div>';
 
 	return $html;
 }

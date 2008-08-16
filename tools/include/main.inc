@@ -2,7 +2,7 @@
 <html>
   <head>
     <title> Gallery 1: Localization Status Report (<?php print strftime("%x") ?>)</title>
-    <link rel="stylesheet" type="text/css" href="g1-report.css"/>
+    <link rel="stylesheet" type="text/css" href="g1-report.css">
   </head>
     <body>
 	<h1> Localization Status Report for Gallery 1 </h1>

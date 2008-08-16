@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * Additional voting code Copyright (C) 2003-2004 Joan McGalliard
  *
@@ -20,9 +20,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -34,8 +32,8 @@ if (!$gallery->album->isLoaded()) {
 
 // Is user allowed to see this page ?
 if (!testRequirement('isAdminOrAlbumOwner')) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	echo '<p><a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Back to Gallery") .'</a></p>';
+	printPopupStart(gTranslate('core', "Poll Results"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 

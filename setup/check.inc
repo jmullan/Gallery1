@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require(GALLERY_BASE . '/includes/setup/checks.inc');
 
@@ -230,7 +228,6 @@ $warning = 0;
 
             <div class="clear"></div>
             <?php
-
         }
     ?>
     </div>
@@ -255,33 +252,29 @@ $warning = 0;
         <div style="width: 100%; padding: 10px 15px 2px 15px;">
 <?php
 if ($error > 0) {
-    echo infoBox(array(array(
-        'type' => 'error',
-        'text' => gTranslate('config', "There are errors in your configuration that will prevent Gallery from functioning properly.") .
+    echo gallery_error(
+        gTranslate('config', "There are errors in your configuration that will prevent Gallery from functioning properly.") .
         '<br>'.
         gTranslate('config', "You must fix them before you can continue.")
-    )));
+    );
 }
 else {
     if ($warning > 0) {
         if (isset($serious_warning)) {
-            echo infoBox(array(array(
-                'type' => 'error',
-                'text' => gTranslate('config', "Your installation has <b>serious warnings</b>!<br>Continue at your own risk...")
-            )));
+            echo gallery_error(
+		gTranslate('config', "Your installation has <b>serious warnings</b>!<br>Continue at your own risk...")
+            );
         }
         else {
-            echo infoBox(array(array(
-                'type' => 'warning',
-                'text' =>  gTranslate('config', "Your installation has warnings, but this is usually OK.  Keep going!")
-            )));
+            echo gallery_warning(
+                gTranslate('config', "Your installation has warnings, but this is usually OK.  Keep going!")
+            );
         }
     }
     else {
-        echo infoBox(array(array(
-            'type' => 'success',
-            'text' => gTranslate('config', "Your installation passed with flying colors!  Go go go!")
-        )));
+        echo gallery_success(
+            gTranslate('config', "Your installation passed with flying colors!  Go go go!")
+        );
     }
 ?>
         </div>

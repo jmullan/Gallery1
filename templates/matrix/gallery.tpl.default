@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id: albums.tpl.default 13820 2006-06-14 12:03:36Z jenst $
  */
-?>
-<?php
+
 if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
     echo 'Security violation while including template for startpage.';
     exit;
@@ -45,7 +44,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php
 }
 
-includeTemplate("gallery.header", '', 'classic');
+includeTemplate('gallery.header', '', 'classic');
 
 echo '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
 echo $searchBar;
@@ -87,7 +86,7 @@ foreach ($rootAlbum as $name => $content) {
 
         <!-- Begin Text Cell -->
         <div class="g-albumdesc-cell left" style="height: 150px; overflow: auto;">
-           <table cellspacing="0" cellpadding="0">
+           <table cellspacing="0" cellpadding="0" width="100%">
               <tr>
                  <td class="g-title-left"></td>
                  <td class="g-title g-title-background">
@@ -138,6 +137,8 @@ foreach ($rootAlbum as $name => $content) {
     <div class="clear"></div>
 </div>
 
+<!-- album "table" end -->
+
 <?php if ($displayCommentLegend) :?>
 <p><span class="g-commentIndication">*</span>
    <span class="g-small"><?php echo gTranslate('core', "Comments available for this item.") ;?></span>
@@ -145,10 +146,10 @@ foreach ($rootAlbum as $name => $content) {
 <?php endif ?>
 
 <?php
-if ($navigator["maxPages"] > 1) {
-    echo '<div class="g-navbar-bottom">';
-    includeLayout('navigator.inc');
-    echo '</div>';
+if ($navigator['maxPages'] > 1) {
+	echo '<div class="g-navbar-bottom">';
+	includeLayout('navigator.inc');
+	echo '</div>';
 }
 ?>
 <p>
@@ -157,7 +158,7 @@ if ($navigator["maxPages"] > 1) {
 
 require_once(GALLERY_BASE .'/templates/info_donation-block.tpl.default');
 
-includeTemplate("overall.footer");
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

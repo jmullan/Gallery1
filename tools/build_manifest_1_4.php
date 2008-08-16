@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * This file by Joan McGalliard.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,8 +25,6 @@
 * This script must be run from command line, in directory gallery/
 * eg php tools/build_manifest_1_4.php
 */
-?>
-<?php
 
 $debug = false;
 

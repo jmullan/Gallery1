@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -133,14 +131,14 @@ $bordercolor = $gallery->album->fields['bordercolor'];
 
 $imageCellWidth = floor(100 / $cols) . '%';
 
-$navigator['page']			= $page;
+$navigator['page']		= $page;
 $navigator['pageVar']		= 'page';
 $navigator['maxPages']		= $maxPages;
-$navigator['url']			= makeAlbumUrl($gallery->session->albumName);
+$navigator['url']		= makeAlbumUrl($gallery->session->albumName);
 $navigator['spread']		= 5;
 $navigator['bordercolor']	= $bordercolor;
 
-$breadcrumb['text']			= returnToPathArray($gallery->album, false);
+$breadcrumb['text']		= returnToPathArray($gallery->album, false);
 $breadcrumb['bordercolor']	= $bordercolor;
 
 $adminText	= '';
@@ -251,7 +249,7 @@ if (($gallery->album->getPollType() == 'rank') && canVote()) {
 		foreach ($my_choices as $key => $id) {
 			$index = $gallery->album->getIndexByVotingId($id);
 
-            $pollInfoTable->addElement(array('content' => "- ". $nv_pairs[$key]["name"]));
+			$pollInfoTable->addElement(array('content' => "- ". $nv_pairs[$key]["name"]));
 			$pollInfoTable->addElement(array('content' => ':'));
 			if ($gallery->album->isAlbum($index)) {
 				$albumName = $gallery->album->getAlbumName($index);
@@ -282,7 +280,6 @@ if (($gallery->album->getPollType() == 'rank') && canVote()) {
 }
 
 list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumResults());
-
 
 $va_poll_box2 = '';
 if ($gallery->album->getPollShowResults()) {
@@ -347,7 +344,7 @@ $wz_tooltips = '';
 if ($numPhotos) {
 	$rowCount = 0;
 
-	/* Find the correct starting point, accounting for hidden photos */
+	// Find the correct starting point, accounting for hidden photos
 	$rowStart = 0;
 	$cnt = 0;
 	$form_pos = 0; // counts number of images that have votes below, ie without albums;
@@ -390,7 +387,7 @@ if ($numPhotos) {
 			else {
 				unset($myAlbum);
 				$scaleTo = 0;  // thumbs already the right
-				//	size for this album
+				// size for this album
 				list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i, $scaleTo);
 			}
 
@@ -409,10 +406,10 @@ if ($numPhotos) {
 
 			++$nr;
 
-			$albumItems[$nr]['note']			= '';
+			$albumItems[$nr]['note']		= '';
 			$albumItems[$nr]['dimensions']		= '';
-			$albumItems[$nr]['infos']			= array();
-			$albumItems[$nr]['caption']			= '';
+			$albumItems[$nr]['infos']		= array();
+			$albumItems[$nr]['caption']		= '';
 			$albumItems[$nr]['clickcounter']	= '';
 			$albumItems[$nr]['options']			= '';
 			$description						= '';
@@ -429,7 +426,7 @@ if ($numPhotos) {
 			if ($gallery->album->isMovieByIndex($i)) {
 				$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
-				$gallery->html_wrap['type']			= 'inline_moviethumb.frame';
+				$gallery->html_wrap['type']		= 'inline_moviethumb.frame';
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
 			}
 			/**
@@ -459,7 +456,7 @@ if ($numPhotos) {
 
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->session->albumName, $id);
 				$gallery->html_wrap['frame']		= $gallery->album->fields['thumb_frame'];
-				$gallery->html_wrap['type']			= 'inline_photothumb.frame';
+				$gallery->html_wrap['type']		= 'inline_photothumb.frame';
 
 				/* Do the clickable-dimensions line */
 				if ($gallery->album->fields['showDimensions'] == "yes") {
@@ -490,9 +487,8 @@ if ($numPhotos) {
 						if (($photo->isResized() && !$fullOnly) || !$viewFull) {
 							if($gallery->album->fields['dimensionsAsPopup'] == "yes") {
 								$sizedImageUrl	= $gallery->album->getPhotoPath($i);
-								$attrlist		= array(
-													'onClick' => popup($sizedImageUrl, true, $hr, $wr),
-													'title' => sprintf(gTranslate('core', "Opens picture in %s x %s in a popup."), $wr, $hr)
+								$attrlist	= array('onClick' => popup($sizedImageUrl, true, $hr, $wr),
+											'title' => sprintf(gTranslate('core', "Opens picture in %s x %s in a popup."), $wr, $hr)
 								);
 
 							}
@@ -513,7 +509,7 @@ if ($numPhotos) {
 								   $gallery->album->fields['dimensionsAsPopup'] == "yes")
 							{
 								$fullImageUrl	= $gallery->album->getPhotoPath($i, true);
-								$attrlist		= array(
+								$attrlist	= array(
 									'onClick' => popup($fullImageUrl, true, $hf, $wf),
 									'title' => sprintf(gTranslate('core', "Opens picture in %s x %s in a popup."), $wf, $hf)
 								);

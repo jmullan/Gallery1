@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -391,11 +391,11 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 
 	$innerStatsTable->setColumnCount(2);
 
-	if ($showCaptureDate ) {
+	if ($showCaptureDate) {
 		$captureDate = strftime($gallery->app->dateTimeString, $statsAlbum->getItemCaptureDate($photoIndex));
 
 		$innerStatsTable->addElement(array(
-			'content' => gTranslate('core', "Capture Date:"),
+			'content' => gTranslate('core', "Capture date:"),
 			'cellArgs' => array('width' => 100))
 		);
 
@@ -405,13 +405,13 @@ function displayTextCell($statsAlbum, $photoIndex, $photoId, $rating, $ratingcou
 		);
 	}
 
-	if ($showUploadDate ) {
+	if ($showUploadDate) {
 		$time = $statsAlbum->getUploadDate($photoIndex);
 		// Older albums may not have this field.
 		if ($time) {
 			$time = strftime($gallery->app->dateString,$time);
 			$innerStatsTable->addElement(array(
-				'content' => gTranslate('core', "Upload Date:"),
+				'content' => gTranslate('core', "Upload date:"),
 				'cellArgs' => array('width' => 100))
 			);
 

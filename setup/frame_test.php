@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(__FILE__) . '/init.php');
 
 global $gallery;
@@ -50,13 +49,13 @@ printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate
 $descriptions = array();
 $names = array();
 
-$names["none"]			= gTranslate('config', "No Frame");
+$names["none"]		= gTranslate('config', "No Frame");
 $descriptions["none"]	= gTranslate('config', "No frames");
-$names["dots"]			= gTranslate('config', "Dots");
+$names["dots"]		= gTranslate('config', "Dots");
 $descriptions["dots"]	= gTranslate('config', "Just a simple dashed border around the thumb.");
-$names["solid"]			= gTranslate('config', "Solid");
+$names["solid"]		= gTranslate('config', "Solid");
 $descriptions["solid"]	= gTranslate('config', "Just a simple solid border around the thumb.");
-$names["siriux"]		= 'Siriux';
+$names["siriux"]	= 'Siriux';
 $descriptions["siriux"]	= gTranslate('config', "The frame from Nico Kaisers Siriux theme.") ;
 
 $dir = GALLERY_BASE . '/layout/frames';

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,25 +19,18 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($save, $old_password, $new_password1, $new_password2) =
 	getRequestVar(array('save', 'old_password', 'new_password1', 'new_password2'));
-	
+
 list($uname, $email, $fullname, $defaultLanguage) =
 	getRequestVar(array('uname', 'email', 'fullname', 'defaultLanguage'));
 
 if (!$gallery->user->isLoggedIn()) {
 	printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
-	printInfoBox(array(array(
-		'type' => 'error',
-		'text' => sprintf(gTranslate('core', "You are not allowed to perform this action!. Please go back to %s."),
-					galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
-	)));
-	includeTemplate('overall.footer');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -65,7 +58,7 @@ if (isset($save)) {
 	}
 
 	if (!empty($old_password) && !$gallery->user->isCorrectPassword($old_password)) {
-		$gErrors['old_password'] = gTranslate('core', "Password was incorrect.") ;
+		$gErrors['old_password'] = gTranslate('core', "Incorrect password.") ;
 		$errorCount++;
 	}
 
@@ -96,12 +89,12 @@ if (isset($save)) {
 		$gallery->user->setUsername($uname);
 		$gallery->user->setFullname($fullname);
 		$gallery->user->setEmail($email);
-		
+
 		if (isset($defaultLanguage)) {
 			$gallery->user->setDefaultLanguage($defaultLanguage);
-			$gallery->session->language=$defaultLanguage;
+			$gallery->session->language = $defaultLanguage;
 		}
-		
+
 		// If a new password was entered, use it.  Otherwise leave it the same.
 		if ($new_password1) {
 			$gallery->user->setPassword($new_password1);
@@ -114,41 +107,40 @@ if (isset($save)) {
 	}
 }
 
-$uname			 = $gallery->user->getUsername();
-$fullname		 = $gallery->user->getFullname();
-$email			 = $gallery->user->getEmail();
+$uname		 = $gallery->user->getUsername();
+$fullname	 = $gallery->user->getFullname();
+$email		 = $gallery->user->getEmail();
 $defaultLanguage = $gallery->user->getDefaultLanguage();
 
-$allowChange['uname']			 = $gallery->user->isAdmin() ? true : false;
-$allowChange['email']			 = true;
-$allowChange['fullname']		 = true;
+$allowChange['uname']		 = $gallery->user->isAdmin() ? true : false;
+$allowChange['email']		 = true;
+$allowChange['fullname']	 = true;
 $allowChange['old_password']	 = true;
 $allowChange['default_language'] = true;
-$allowChange['send_email']		 = false;
-$allowChange['member_file']		 = false;
+$allowChange['send_email']	 = false;
+$allowChange['member_file']	 = false;
 $allowChange['create_albums']	 = false;
-$allowChange['password']		 = $gallery->user->canChangeOwnPw() ? true : false;
-$allowChange['admin']			 = true;
+$allowChange['password']	 = $gallery->user->canChangeOwnPw() ? true : false;
+$allowChange['admin']		 = true;
 
 $isAdmin = $gallery->user->isAdmin() ? 1 : 0;
 
 printPopupStart(gTranslate('core', "Change User Preferences"), '', 'left');
 
 if(isset($saveOK)) {
-	$notice_messages[] = array(
-		'type' => 'success',
-		'text' => gTranslate('core', "User successfully updated.")
-	);
-	
-	echo infoBox($notice_messages);
-	
+	echo gallery_success(gTranslate('core', "User successfully updated."));
+
 	echo "\n<br>\n";
 	reload();
 }
 
 echo gTranslate('core', "You can change your user information here.");
-echo gTranslate('core', "If you want to change your password, you must provide your old password and then enter the new one twice.");
-echo gTranslate('core', "You can change your username to any combination of letters and digits.");
+if($allowChange['password']) {
+	echo gTranslate('core', "If you want to change your password, you must provide your old password and then enter the new one twice.");
+}
+if($allowChange['uname']) {
+	echo gTranslate('core', "You can change your username to any combination of letters and digits.");
+}
 
 echo "\n<br>\n";
 

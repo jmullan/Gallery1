@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,14 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
- */
-?>
-<?php
-/*
+
 ###################################################################
-# IBPS E-C@ard for Gallery		   Version 1					#
-# Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de	  #
-# Ported for Gallery By freenik	  webmaster@cittadipolicoro.com#
+# IBPS E-C@ard for Gallery           Version 1                    #
+# Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de      #
+# Ported for Gallery By freenik      webmaster@cittadipolicoro.com#
 ###################################################################
+
 */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,23 +100,23 @@ function createNewAlbum($parentName, $newAlbumName = '', $newAlbumTitle = '', $n
 		$parentAlbum->addNestedAlbum($gallery->session->albumName);
 		$parentAlbum->save(array(i18n("Album \"{$gallery->album->fields['name']}\" created as a sub-album of \"$parentName\".")));
 		// Set default values in nested album to match settings of parent.
-		$gallery->album->fields["perms"]			= $parentAlbum->fields["perms"];
+		$gallery->album->fields["perms"]		= $parentAlbum->fields["perms"];
 		$gallery->album->fields['extra_fields']		= $parentAlbum->fields['extra_fields'];
-		$gallery->album->fields["bgcolor"]			= $parentAlbum->fields["bgcolor"];
+		$gallery->album->fields["bgcolor"]		= $parentAlbum->fields["bgcolor"];
 		$gallery->album->fields["textcolor"]		= $parentAlbum->fields["textcolor"];
 		$gallery->album->fields["linkcolor"]		= $parentAlbum->fields["linkcolor"];
 		$gallery->album->fields['background']		= $parentAlbum->fields['background'];
-		$gallery->album->fields["font"]				= $parentAlbum->fields["font"];
-		$gallery->album->fields["border"]			= $parentAlbum->fields["border"];
+		$gallery->album->fields["font"]			= $parentAlbum->fields["font"];
+		$gallery->album->fields["border"]		= $parentAlbum->fields["border"];
 		$gallery->album->fields["bordercolor"]		= $parentAlbum->fields["bordercolor"];
 		$gallery->album->fields["thumb_size"]		= $parentAlbum->fields["thumb_size"];
 		$gallery->album->fields["resize_size"]		= $parentAlbum->fields["resize_size"];
-		$gallery->album->fields["resize_file_size"] = $parentAlbum->fields["resize_file_size"];
-		$gallery->album->fields['max_size']			= $parentAlbum->fields['max_size'];
+		$gallery->album->fields["resize_file_size"]	= $parentAlbum->fields["resize_file_size"];
+		$gallery->album->fields['max_size']		= $parentAlbum->fields['max_size'];
 		$gallery->album->fields['max_file_size']	= $parentAlbum->fields['max_file_size'];
-		$gallery->album->fields['returnto']			= $parentAlbum->fields['returnto'];
-		$gallery->album->fields["rows"]				= $parentAlbum->fields["rows"];
-		$gallery->album->fields["cols"]				= $parentAlbum->fields["cols"];
+		$gallery->album->fields['returnto']		= $parentAlbum->fields['returnto'];
+		$gallery->album->fields["rows"]			= $parentAlbum->fields["rows"];
+		$gallery->album->fields["cols"]			= $parentAlbum->fields["cols"];
 		$gallery->album->fields["fit_to_window"]	= $parentAlbum->fields["fit_to_window"];
 		$gallery->album->fields["use_fullOnly"]		= $parentAlbum->fields["use_fullOnly"];
 		$gallery->album->fields["print_photos"]		= $parentAlbum->fields["print_photos"];
@@ -127,7 +127,7 @@ function createNewAlbum($parentName, $newAlbumName = '', $newAlbumTitle = '', $n
 		$gallery->album->fields['album_frame']		= $parentAlbum->fields['album_frame'];
 		$gallery->album->fields['thumb_frame']		= $parentAlbum->fields['thumb_frame'];
 		$gallery->album->fields['image_frame']		= $parentAlbum->fields['image_frame'];
-		$gallery->album->fields["use_exif"]			= $parentAlbum->fields["use_exif"];
+		$gallery->album->fields["use_exif"]		= $parentAlbum->fields["use_exif"];
 		$gallery->album->fields["display_clicks"]	= $parentAlbum->fields["display_clicks"];
 		$gallery->album->fields["item_owner_display"]	= $parentAlbum->fields["item_owner_display"];
 		$gallery->album->fields["item_owner_modify"]	= $parentAlbum->fields["item_owner_modify"];
@@ -342,9 +342,9 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
 		}
 		elseif ($photoview) {
 			$pathArray[] = galleryLink(
-							makeAlbumUrl($gallery->album->fields['name']),
-							$gallery->album->fields['title'] ."&nbsp;$lastUpArrow",
-							array('accesskey' => $accesskey), '', false, false
+						makeAlbumUrl($gallery->album->fields['name']),
+						$gallery->album->fields['title'] ."&nbsp;$lastUpArrow",
+						array('accesskey' => $accesskey), '', false, false
 			);
 		}
 	}
@@ -365,18 +365,18 @@ function returnToPathArray($album = NULL, $withCurrentAlbum = true, $photoview =
  * Generates an array that represents an album tree.
  * Each element has this structure:
  * $tree[] = array(
-					'albumUrl' => $albumUrl,
-					'albumName' => $myName,
-					'title' => $title,
-					'clicksText' => $clicksText,
-					'microthumb' => $microthumb,
-					'subTree' => $subtree
-				);
+		'albumUrl' => $albumUrl,
+		'albumName' => $myName,
+		'title' => $title,
+		'clicksText' => $clicksText,
+		'microthumb' => $microthumb,
+		'subTree' => $subtree
+   );
  *
  * This function is recursive, so the subtree is again a tree.
  * @param string    $albumName
- * @param integer   $depth		Maximum depth of the tree
- * @return array    $tree		Structure like described above
+ * @param integer   $depth	Maximum depth of the tree
+ * @return array    $tree	Structure like described above
  * @author Jens Tkotz
  */
 function createTreeArray($albumName,$depth = 0) {
@@ -411,10 +411,12 @@ function createTreeArray($albumName,$depth = 0) {
 
 				$albumUrl = makeAlbumUrl($myName);
 				$subtree = createTreeArray($myName, $depth+1);
+
 				$highlightTag = $nestedAlbum->getHighlightTag(
 									$gallery->app->default["nav_thumbs_size"],
 									array('alt' => "$title $clicksText")
 				);
+
 				$microthumb = "<a href=\"$albumUrl\">$highlightTag</a> ";
 				$tree[] = array(
 					'albumUrl' => $albumUrl,

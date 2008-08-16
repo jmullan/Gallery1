@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 class Geeklog_User extends Abstract_User {
 
@@ -39,12 +37,12 @@ class Geeklog_User extends Abstract_User {
 								"WHERE uid = '$uid'");
 			$userInfo = DB_fetchArray($result);
 
-			$this->uid				= $uid;
+			$this->uid			= $uid;
 			$this->username			= $userInfo['username'];
 			$this->fullname			= $userInfo['fullname'];
 			$this->email			= $userInfo['email'];
 			$this->isAdmin			= SEC_inGroup('Root', $uid);
-			$this->canCreateAlbums	= $this->canCreateAlbums();
+			$this->canCreateAlbums		= $this->canCreateAlbums();
 			$this->isGroup			= 0;
 		}
 		else {
@@ -53,12 +51,12 @@ class Geeklog_User extends Abstract_User {
 							   "WHERE grp_id = '" . abs($uid) . "'");
 			$userInfo = DB_fetchArray($result);
 
-			$this->uid				= $uid;
+			$this->uid			= $uid;
 			$this->username			= $userInfo['grp_name'];
 			$this->fullname			= $userInfo['grp_name'] . " Group";
 			$this->email			= '';
 			$this->isAdmin			= false;
-			$this->canCreateAlbums	= 0;
+			$this->canCreateAlbums		= 0;
 			$this->isGroup			= 1;
 		}
 	}
@@ -66,13 +64,13 @@ class Geeklog_User extends Abstract_User {
 	function loadByUserName($uname) {
 		global $_TABLES;
 
-		$result = DB_query("SELECT uid,username,fullname,email " .
-						   "FROM ". $_TABLES['users'] .
-							" WHERE username = '$uname'");
+		$result = DB_query("SELECT uid,username,fullname,email".
+						   " FROM ". $_TABLES['users'] .
+						   " WHERE username = '$uname'");
 
 		$userInfo = DB_fetchArray($result);
 
-		$this->uid				= $userInfo['uid'];
+		$this->uid			= $userInfo['uid'];
 		$this->username			= $userInfo['username'];
 		$this->fullname			= $userInfo['fullname'];
 		$this->email			= $userInfo['email'];

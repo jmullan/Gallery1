@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -28,7 +26,8 @@ list($create, $bulk_create, $modify, $delete, $gnames) =
 	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'gnames'));
 
 if (!$gallery->user->isAdmin()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Manage Groups"), '', 'left');
+	showInvalidReqMesg(echo gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 

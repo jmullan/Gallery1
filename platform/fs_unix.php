@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 /**
  * @package Filesystem_unix
  */
@@ -193,8 +192,8 @@ function fs_mkdir($dirname, $perms = 0700) {
 
 /**
  * Is file hidden ? Means it starts with a .
- * @param	string	$filename
- * @return	boolean
+ * @param   string     $filename
+ * @return  boolean
  * @author  Jens Tkotz
 */
 function fs_fileIsHidden($filename) {

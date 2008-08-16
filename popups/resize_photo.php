@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,24 +19,27 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $manual, $newsize, $resize_file_size, $remove_resized, $resize_recursive, $full) =
-  getRequestVar(array('index', 'manual', 'newsize', 'resize_file_size', 'remove_resized', 'resize_recursive', 'full'));
+	getRequestVar(array('index', 'manual', 'newsize', 'resize_file_size', 'remove_resized', 'resize_recursive', 'full'));
 
+if (intval($index) > 0) {
+	printPopupStart(gTranslate('core', "Resize Photo"), '', 'left');
+}
+else {
+	printPopupStart(gTranslate('core', "Resize all Photos"), '', 'left');
+}
 // Hack check
-if (! $gallery->user->canWriteToAlbum($gallery->album) &&
-  ! $gallery->album->getItemOwnerModify() &&
-  ! $gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
+	($gallery->album->getItemOwnerModify() &&
+	 $gallery->album->isItemOwner($gallery->user->getUid(), $index))))
+{
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
-
-printPopupStart(gTranslate('core', "Resize Photo"), '',' left');
 
 $all = !strcmp($index, "all");
 if ($gallery->session->albumName && isset($index)) {
@@ -79,33 +82,33 @@ if ($gallery->session->albumName && isset($index)) {
 		    echo "\n</p>";
 		}
 
-	    echo makeFormIntro('resize_photo.php',
-	    	array('name' => 'resize_photo'),
-	    	array('type' => 'popup')
-	    );
+	echo makeFormIntro('resize_photo.php',
+		array('name' => 'resize_photo'),
+		array('type' => 'popup')
+	);
 ?>
 
 <fieldset>
 <legend><?php echo gTranslate('core', "Resizing"); ?></legend>
 <?php
-	    echo gTranslate('core', "Which version of your image do you want to resize?");
-	    echo '&nbsp;';
-	    echo drawSelect(
-	    	'full',
-	    	array(0 => gTranslate('core', "intermediate"), 1 => gTranslate('core', "full")),
-	    	0,
-	    	1,
-	    	array('onChange' => "gallery_toggle2('warning')")
-	    );
-	    echo '<div class="hidden" id="toggleFrame_warning">';
-	    echo infoBox(array(array(
-	    	'type' => 'warning',
-	    	'text' => gTranslate('core', "Unlikely to the change of the intermediate version, this can NOT BE UNDONE.")
-	    )));
-	    echo "\n</div>";
+	echo gTranslate('core', "Which version of your image do you want to resize?");
+	echo '&nbsp;';
+	echo drawSelect(
+		'full',
+		array(0 => gTranslate('core', "intermediate"), 1 => gTranslate('core', "full")),
+		0,
+		1,
+		array('onChange' => "gallery_toggle2('warning')")
+	);
 
-	    echo "\n<div style=\"margin-top: 5px;\"></div>";
-	    echo gTranslate('core', "What target size do you want?");
+	echo '<div class="hidden" id="toggleFrame_warning">';
+	echo gallery_warning(
+		gTranslate('core', "Unlikely to the change of the intermediate version, this can NOT BE UNDONE.")
+	);
+	echo "\n</div>";
+
+	echo "\n<div style=\"margin-top: 5px;\"></div>";
+	echo gTranslate('core', "What target size do you want?");
 ?>
 
 <table style="border: 1px solid; padding: 10px 20px; margin: 1px;">
@@ -119,13 +122,13 @@ if ($gallery->session->albumName && isset($index)) {
 	<td>
 	<table>
 <?php
-	    $choices = array(1280, 1024, 700, 800, 640, 600, 500, 400);
-	    for ($i = 0; $i<count($choices); $i = $i+2) {
-	        echo "\n\t<tr>";
-	        echo "\n\t\t". '<td style="white-space:nowrap">' . gInput('radio', 'newsize', $choices[$i], false, $choices[$i], array('id' => "size_${choices[$i]}")) . '</td>';
-	        echo "\n\t\t". '<td style="white-space:nowrap">' . gInput('radio', 'newsize', $choices[$i+1], false, $choices[$i+1], array('id' => "size_${choices[$i+1]}")) . '</td>';
-	        echo "\n\t</tr>\n";
-	    }
+	$choices = array(1280, 1024, 700, 800, 640, 600, 500, 400);
+	for ($i = 0; $i<count($choices); $i = $i+2) {
+		echo "\n\t<tr>";
+		echo "\n\t\t". '<td style="white-space:nowrap">' . gInput('radio', 'newsize', $choices[$i], false, $choices[$i], array('id' => "size_${choices[$i]}")) . '</td>';
+		echo "\n\t\t". '<td style="white-space:nowrap">' . gInput('radio', 'newsize', $choices[$i+1], false, $choices[$i+1], array('id' => "size_${choices[$i+1]}")) . '</td>';
+		echo "\n\t</tr>\n";
+	}
 ?>
 	<tr>
 		<td colspan="2">
@@ -148,8 +151,8 @@ if ($gallery->session->albumName && isset($index)) {
 	}
 
 	echo '<td class="right">';
-    echo gSubmit('change_size', gTranslate('core', "Change _Size"));
-    echo '</td>';
+	echo gSubmit('change_size', gTranslate('core', "Change _Size"));
+	echo '</td>';
 ?>
 </tr>
 </table>
@@ -169,16 +172,17 @@ if ($gallery->session->albumName && isset($index)) {
 </form>
 
 <?php
-		echo "\n<p class=\"center\">";
- 		echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
- 		echo "\n</p>";
+	echo "\n<p class=\"center\">";
+	echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
+	echo "\n</p>";
 	}
 }
 else {
 	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
+
+includeTemplate('overall.footer');
 ?>
-</div>
 
 </body>
 </html>

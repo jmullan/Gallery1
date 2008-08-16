@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
+
 /**
  * @package Item
  */
@@ -76,7 +75,7 @@ if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 	return;
 }
 elseif (!$gallery->album->isResized($index) &&
-		!$gallery->user->canViewFullImages($gallery->album))
+	!$gallery->user->canViewFullImages($gallery->album))
 {
 	header("Location: " . makeAlbumHeaderUrl($gallery->session->albumName));
 	return;
@@ -105,7 +104,7 @@ $albumName = $gallery->session->albumName;
 $noCount = getRequestVar('noCount');
 
 if ($noCount != 1 && !isset($gallery->session->viewedItem[$gallery->session->albumName][$id]) &&
-  !$gallery->session->offline) {
+    !$gallery->session->offline) {
 	$gallery->session->viewedItem[$albumName][$id] = 1;
 	$gallery->album->incrementItemClicks($index);
 }
@@ -123,8 +122,8 @@ $photoURL = $gallery->album->getAlbumDirURL("full") . "/" . $image->name . "." .
 list($imageWidth, $imageHeight) = $image->getRawDimensions();
 
 $do_fullOnly = isset($gallery->session->fullOnly) &&
-					 !strcmp($gallery->session->fullOnly,"on") &&
-    				 !strcmp($gallery->album->fields["use_fullOnly"],"yes");
+		     !strcmp($gallery->session->fullOnly,"on") &&
+		     !strcmp($gallery->album->fields["use_fullOnly"], "yes");
 
 if ($do_fullOnly) {
 	$full = $gallery->user->canViewFullImages($gallery->album);
@@ -151,8 +150,7 @@ if ($prev <= 0) {
 }
 
 /**
- * We might be prev/next navigating using this page
- *  so recalculate the 'page' variable
+ * We might be prev/next navigating using this page so recalculate the 'page' variable
  */
 $rows = $gallery->album->fields["rows"];
 $cols = $gallery->album->fields["cols"];
@@ -161,7 +159,7 @@ $page = (int)(ceil($index / ($rows * $cols)));
 
 $gallery->session->albumPage[$gallery->album->fields['name']] = $page;
 
-/**
+/*
  * Relative URLs are tricky if we don't know if we're rewriting
  * URLs or not.  If we're rewriting, then the browser will think
  * we're down 1 dir farther than we really are.  Use absolute
@@ -171,9 +169,9 @@ $top = $gallery->app->photoAlbumURL;
 
 $bordercolor = $gallery->album->fields['bordercolor'];
 
-$navigator['id']			= $id;
-$navigator['allIds']		= $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
-$navigator['url']			= '.';
+$navigator['id']	  = $id;
+$navigator['allIds']	  = $gallery->album->getIds($gallery->user->canWriteToAlbum($gallery->album));
+$navigator['url']	  = '.';
 $navigator['bordercolor'] = $bordercolor;
 
 /* -- breadcrumb text --- */
@@ -251,15 +249,18 @@ if (!$gallery->album->isMovie($id)) {
 			switch ($name) {
 				case 'shutterfly':
 					$printShutterflyForm = true;
-					break;
+				break;
+
 				case 'fotoserve':
 					$printFotoserveForm = true;
-					break;
+				break;
+
 				case 'photoaccess':
 					$printPhotoAccessForm = true;
-					break;
+				break;
+
 				default:
-					break;
+				break;
 			}
 		}
 
@@ -279,7 +280,7 @@ if (!$gallery->album->isMovie($id)) {
 
 		/* display a <select> menu if more than one option */
 		if ($numServices > 1) {
-            // Build an array with groups, but only for enabled services
+			// Build an array with groups, but only for enabled services
 			foreach ($fullNames as $serviceGroupName => $serviceGroup) {
 				foreach ($serviceGroup as $name => $fullName) {
 					if (!in_array($name, $printServices)) {
@@ -301,7 +302,7 @@ if (!$gallery->album->isMovie($id)) {
 			}
 
 			$firstGroup = true;
-            // now build the real select options.
+            		// now build the real select options.
 			foreach ($serviceGroups as $serviceGroupName => $serviceGroup) {
 				if (! $firstGroup) {
 					$options[]= '----------';
@@ -406,7 +407,7 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons) {
 
 $iconElements[] = LoginLogoutButton($currentUrlResized);
 
-$adminbox['text']			= makeIconMenu($adminTextIconElemens, 'left');
+$adminbox['text']		= makeIconMenu($adminTextIconElemens, 'left');
 $adminbox['commands']		= makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor']	= $bordercolor;
 
@@ -509,7 +510,7 @@ if ($gallery->app->comments_enabled == 'yes' &&
 	}
 
 	if (! $gallery->album->getEmailMe('comments', $gallery->user)) {
-		$emailMeForm = "\n<form name=\"emailMe\" class=\"g-emailMe-box\" action=\"#\">";
+		$emailMeForm = "\n<form name=\"emailMe\" class=\"left g-emailMe-box\" action=\"#\">";
 
 		$url= makeAlbumUrl($gallery->session->albumName, $id, array(
 			'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')

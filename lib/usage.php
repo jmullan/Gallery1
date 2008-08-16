@@ -1,7 +1,7 @@
 <?php
 /*
 * Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
+* Copyright (C) 2000-2008 Bharat Mediratta
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
 *
 * $Id$
 */
-?>
-<?php
 
 /**
  * Functions for the usage page.
@@ -84,7 +82,7 @@ function showUsagePerAlbum($sortby = 'bytes', $order = 'desc') {
 		<th align="center"><?php echo gTranslate('core', "Album"); ?></th>
 		<th align="center"><?php echo gTranslate('core', "User"); ?></th>
 		<th align="center"><?php echo gTranslate('core', "Disk usage main album"); ?></th>
-		<th align="center"><?php echo gTranslate('core', "Subalbums"); ?></th>		
+		<th align="center"><?php echo gTranslate('core', "Subalbums"); ?></th>
 	</tr>
 <?php
 

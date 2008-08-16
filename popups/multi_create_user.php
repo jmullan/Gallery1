@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,19 +22,18 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($formaction, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
-  getRequestVar(array('formaction', 'defaultLanguage', 'canCreate', 'canChangeOwnPw', 'isAdmin'));
+	getRequestVar(array('formaction', 'defaultLanguage', 'canCreate', 'canChangeOwnPw', 'isAdmin'));
 
 list($send_email, $dismiss) =
-  getRequestVar(array('send_email', 'dismiss'));
+	getRequestVar(array('send_email', 'dismiss'));
 
 if (!$gallery->user->isAdmin() || $gallery->app->multiple_create != "yes") {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Create Multiple Users"));
+	showInvalidReqMesggTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -45,10 +44,11 @@ if ($formaction == 'create') {
 	if (empty($_FILES['membersfile']['name'])) {
 		$gErrors["membersfile"] = gTranslate('core', "No file selected.");
 		$errorCount++;
-	} else {
+	}
+	else {
 		if (!is_uploaded_file($_FILES['membersfile']['tmp_name'])) {
 			$gErrors["membersfile"] =
-			sprintf(gTranslate('core', "Upload failed: %s."), $_FILES['membersfile']['name']);
+				sprintf(gTranslate('core', "Upload failed: %s."), $_FILES['membersfile']['name']);
 			$errorCount++;
 		}
 	}
@@ -60,6 +60,7 @@ if ($formaction == 'create') {
 		}
 	   fclose ($handle);
 	}
+
 	if (isset($users) && sizeof($users) == 0) {
 		$gErrors["membersfile"] =
 		sprintf(gTranslate('core', "Upload went fine, but the file is not readable, please make sure %s is accessable for your webserver. (Also check openbasedir restrictions.)"),
@@ -99,8 +100,10 @@ if ($formaction == 'create') {
 				processingMsg("- ". sprintf (gTranslate('core', "Adding %s (%s)"),
 					$uname, (!empty($fullname) ? $fullname : '<i>' . gTranslate('core', "No fullname given") .'</i>')));
 			}
+
 			$password = generate_password(10);
 			$tmpUser = $gallery->userDB->CreateUser($uname, $email, $password, $fullname, $canCreate, $defaultLanguage, "bulk_register");
+
 			if ($tmpUser) {
 				$total_added++;
 				if ($send_email && !empty($email)) {
@@ -111,10 +114,13 @@ if ($formaction == 'create') {
 						ereg_replace("!!NEWPASSWORDLINK!!",
 						$tmpUser->genRecoverPasswordHash(),
 						welcome_email()))));
+
 					$logmsg = sprintf(gTranslate('core', "New user '%s' has been registered by %s.  Gallery has sent a notification email to %s."),
 						$uname, $gallery->user->getUsername(), $email);
+
 					$logmsg2  = sprintf("New user '%s' has been registered by %s.  Gallery has sent a notification email to %s.",
 						$uname, $gallery->user->getUsername(), $email);
+
 					if ($logmsg != $logmsg2) {
 						$logmsg .= " <<<<>>>>> $logmsg2";
 					}
@@ -131,6 +137,7 @@ if ($formaction == 'create') {
 				$total_skipped++;
 			}
 		}
+
 		echo "\n<p>";
 		echo sprintf(gTranslate('core', "%s added, %s skipped"),
 		gTranslate('core', "1 user", "%d users", $total_added),
@@ -147,9 +154,11 @@ if ($formaction == 'create') {
 <?php
 	exit;
 	}
-} else if ($formaction == 'cancel' || isset($dismiss)) {
+}
+else if ($formaction == 'cancel' || isset($dismiss)) {
 	header('Location: ' . makeGalleryHeaderUrl('manage_users.php', array('type' => 'popup')));
-} else {
+}
+else {
 
 	printPopupStart(gTranslate('core', "Create Multiple Users"));
 }
@@ -157,17 +166,17 @@ if ($formaction == 'create') {
 
 	echo "\n<br><br>";
 
-$allowChange["uname"] = false;
-$allowChange["email"] = false;
-$allowChange["password"] = false;
-$allowChange["old_password"] = false;
-$allowChange["fullname"] = false;
-$allowChange["send_email"] = true;
-$allowChange["default_language"] = true;
-$allowChange["member_file"] = true;
-$allowChange["create_albums"] = true;
-$allowChange["canChangeOwnPw"] = true;
-$allowChange["admin"] = true;
+$allowChange["uname"]		= false;
+$allowChange["email"] 		= false;
+$allowChange["password"]	= false;
+$allowChange["old_password"]	= false;
+$allowChange["fullname"]	= false;
+$allowChange["send_email"]	= true;
+$allowChange["default_language"]= true;
+$allowChange["member_file"] 	= true;
+$allowChange["create_albums"]	= true;
+$allowChange["canChangeOwnPw"]	= true;
+$allowChange["admin"]		= true;
 
 echo makeFormIntro('mulit_create_user.php',
 	array('name' => 'usercreate_form', 'enctype' => 'multipart/form-data'),

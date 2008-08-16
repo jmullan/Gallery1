@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,18 +19,18 @@
  *
  * $Id$
  */
-?>
-<?php
-	require_once(dirname(__FILE__) . '/init.php');
 
-	printPopupStart(gTranslate('config', "Check Versions"));
+require_once(dirname(__FILE__) . '/init.php');
 
-	configLogin(basename(__FILE__));
+printPopupStart(gTranslate('config', "Check Versions"));
+
+configLogin(basename(__FILE__));
+
 ?>
 <script type="text/javascript" src="../js/toggle.js"></script>
 
 <div class="g-sitedesc left"><?php
-	echo sprintf(gTranslate('config', "This page gives you information about the version of each necessary %s file. "),Gallery());
+	printf(gTranslate('config', "This page gives you information about the version of each necessary %s file. "),Gallery());
 	echo "\n<br>";
 	echo gTranslate('config', "If you see any errors, we highly suggest to get the actual version of those files.");
 ?></div>
@@ -116,9 +116,7 @@ foreach($tests as $testname => $args) {
 
 if(!empty($versionStatus['fail'])) {
 	foreach($versionStatus['fail'] as $error => $message) {
-	echo infoBox(array(array(
-		'type' => 'error',
-		'text' => $message)));
+		echo gallery_error($message);
 	}
 }
 ?>

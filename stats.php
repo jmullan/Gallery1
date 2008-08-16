@@ -64,8 +64,8 @@ list ($type, $sca, $sal, $sde, $sco, $scd, $sud, $svi, $sac, $svo, $sav, $sao, $
 
 list ($ty, $tm, $td) = getRequestVar(array('ty', 'tm', 'td'));
 
-list ($page, $set_albumListPage) =
-	getRequestVar(array('page', 'set_albumListPage'));
+list ($page, $set_albumListPage) = getRequestVar(array('page', 'set_albumListPage'));
+
 if (empty($type)) {
 	/* We assume was called direct. So we call show defaults */
 	header("Location: ". unhtmlentities(defaultStatsUrl('views')));
@@ -320,7 +320,8 @@ debugMessage(sprintf (gTranslate('core', "Cache filename = %s ; enabled = %s ; e
 if (!isset($refreshcache) &&
 	!isset($period) &&
 	!isset($album)  &&
-	$cache->enabled ) {
+	$cache->enabled )
+{
 	if (fs_file_exists($cacheFilename)) {
 		$cacheState = fs_stat($cacheFilename);
 		$cacheTime = $cacheState[9];
@@ -643,7 +644,7 @@ if ($useCache ) {
 
 if (isset($stm)) {
 	$time = getmicrotime() - $time_start;
-    echo sprintf(gTranslate('core', "Data load time %d seconds."), $time);
+	printf(gTranslate('core', "Data load time %d seconds."), $time);
 }
 
 /* Start of album layout style. */

@@ -35,7 +35,8 @@ $notice_messages = array();
 
 if (!empty($set)) {
 	if (!$gallery->user->isAdmin()) {
-		echo gTranslate('core', "You are not allowed to perform this action!");
+		printPopupStart(sprintf(gTranslate('core', "Featured item"), $label));
+		showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 		exit;
 	}
 

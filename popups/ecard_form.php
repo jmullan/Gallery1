@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file Copyright (C) 2003-2004 Joan McGalliard
  *
@@ -20,14 +20,11 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
-/*
+
 ####################################################################################
-# IBPS E-C@ard for Gallery		   Version 1									 #
-# Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de					   #
-# Ported (the first time) for Gallery By freenik	  webmaster@cittadipolicoro.com#
+# IBPS E-C@ard for Gallery           Version 1                                     #
+# Copyright 2002 IBPS Friedrichs     info@ibps-friedrichs.de                       #
+# Ported (the first time) for Gallery By freenik      webmaster@cittadipolicoro.com#
 ####################################################################################
 */
 
@@ -51,10 +48,10 @@ if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
 /* Get the dimensions of the sized Photo */
 list($width, $height) = $photo->getDimensions(0, false);
 
-$max_length			= 300;   // Maximum length of the e-Card text
+$max_length		= 300;   // Maximum length of the e-Card text
 $ecard_PLAIN_data	= gTranslate('core', "You have an e-card as attachment. Click to see.");
-$error_msg			= '';
-$ecard_send			= false;
+$error_msg		= '';
+$ecard_send		= false;
 $sendButtonTest		= gTranslate('core',"_Send eCard");
 
 if (! empty($submit_action)) {
@@ -124,7 +121,7 @@ function send_ecard() {
 function check() {
 	var error = false;
 	var error_message = "<?php echo gTranslate('core', "Error: to send an eCard you need to fill out all fields."); ?>";
-    error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
+	error_message +="\n <?php echo gTranslate('core', "Please fill these fields:"); ?>\n\n";
 
 	if (document.ecard_form["ecard[name_sender]"].value == "") {
 		error = true;
@@ -144,7 +141,7 @@ function check() {
 	}
 
     if ((document.ecard_form["ecard[email_recipient]"].value == "") &&
-    (document.ecard_form["ecard[email_recipient]"].value.indexOf("@") == -1)) {
+        (document.ecard_form["ecard[email_recipient]"].value.indexOf("@") == -1)) {
 		error = true;
 		error_message += "<?php echo gTranslate('core', "- Recipient's Email"); ?>\n";
 	}
@@ -169,7 +166,7 @@ function CountMax() {
 	max = <?php echo $max_length ?>;
 	wert = max - document.ecard_form["ecard[message]"].value.length;
 	if (wert < 0) {
-        alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters!"), $max_length); ?>");
+		alert("<?php echo sprintf(gTranslate('core', "You have entered more than %d characters!"), $max_length); ?>");
 		document.ecard_form["ecard[message]"].value = document.ecard_form["ecard[message]"].value.substring(0,max);
 		wert = 0;
 		document.ecard_form.counter.value = wert;
@@ -241,7 +238,7 @@ if (! $ecard_send) {
 for($i = 1; $i <= 27; $i++) {
 	$nr = sprintf("%02d", $i-1);
 	echo "\n\t\t" . '<option value="'. $nr .'">';
-	echo sprintf(gTranslate('core', "Stamp #%d"), $i);
+	printf(gTranslate('core', "Stamp #%d"), $i);
 	echo "</option>";
 }
 ?>

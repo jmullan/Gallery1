@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Image {
 	var $name;
 	var $type;
@@ -153,7 +152,7 @@ class Image {
 				list($w, $h) = getDimensions("$dir/$filename.$this->type");
 
 				if($full) {
-					$this->name			= $filename;
+					$this->name		= $filename;
 					$this->raw_width	= $w;
 					$this->raw_height	= $h;
 				}
@@ -254,8 +253,8 @@ class Image {
 			$attrs['height']	= $this->height;
 		}
 
-		$fullImage = urlencode($this->name) . ".$this->type";
-		$resizedImage = urlencode($this->resizedName) .".$this->type";
+		$fullImage	= urlencode($this->name) .".$this->type";
+		$resizedImage	= urlencode($this->resizedName) .".$this->type";
 
 		if ($this->resizedName && $size == 0) {
 			if ($full) {
@@ -305,6 +304,7 @@ class Image {
 		else {
 			$name = $this->resizedName;
 		}
+
 		return "$dir/$name.$this->type";
 	}
 
@@ -314,6 +314,7 @@ class Image {
 		} else {
 			$name = $this->resizedName;
 		}
+
 		return "$name.$this->type";
 	}
 
@@ -337,21 +338,23 @@ class Image {
 
 	function getDimensions($size=0, $full=false) {
 		if ($size) {
-				if ($this->width > $this->height) {
-					$width = $size;
-					$height = round($size * ($this->height / $this->width));
-				} else {
-					$width = round($size * ($this->width / $this->height));
-					$height = $size;
-				}
-			} else if ($full) {
-		$width = $this->raw_width;
-		$height = $this->raw_height;
+			if ($this->width > $this->height) {
+				$width = $size;
+				$height = round($size * ($this->height / $this->width));
+			}
+			else {
+				$width = round($size * ($this->width / $this->height));
+				$height = $size;
+			}
+		}
+		else if ($full) {
+			$width = $this->raw_width;
+			$height = $this->raw_height;
 		}
 		else {
-		$width = $this->width;
-		$height = $this->height;
-			}
+			$width = $this->width;
+			$height = $this->height;
+		}
 
 		return array($width, $height);
 	}
@@ -364,10 +367,12 @@ class Image {
 	}
 
 	function getThumbRectangle() {
-		return array($this->thumb_x,
-					 $this->thumb_y,
-					 $this->thumb_width,
-					 $this->thumb_height);
+		return array(
+			$this->thumb_x,
+			$this->thumb_y,
+			$this->thumb_width,
+			$this->thumb_height
+		);
 	}
 
 	function getRawDimensions() {

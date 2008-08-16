@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -117,11 +115,11 @@ elseif (!empty($forgot) && !empty($reset_username)) {
 		}
 		else if (check_email($tmpUser->getEmail())) {
 			if (gallery_mail($tmpUser->email,
-			  gTranslate('core', "New password request"),
-			  sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
-			  sprintf(gTranslate('core', "Click to reset your password: %s"),
-			  $tmpUser->genRecoverPasswordHash()) . "\n",
-			  sprintf(gTranslate('core', "New password request %s"), $reset_username)))
+				  gTranslate('core', "New password request"),
+				  sprintf(gTranslate('core', "Someone requested a new password for user %s from Gallery '%s' on %s. You can create a password by visiting the link below. If you didn't request a password, please ignore this mail. "), $reset_username, $gallery->app->galleryTitle, $gallery->app->photoAlbumURL) . "\n\n" .
+				  sprintf(gTranslate('core', "Click to reset your password: %s"),
+				  $tmpUser->genRecoverPasswordHash()) . "\n",
+				  sprintf(gTranslate('core', "New password request %s"), $reset_username)))
 			{
 				$tmpUser->log("new_password_request");
 				$tmpUser->save();
@@ -173,7 +171,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 includeTemplate("gallery.header", '', 'classic');
 
-$adminbox['text']		= gTranslate('common', "Login");
+$adminbox['text']	= gTranslate('common', "Login");
 $adminbox['commands']	= languageSelector();
 
 includeLayout('adminbox.inc');

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 $features = array(
 	'zip'		=> array('zipinfo', 'unzip'),
@@ -129,6 +127,7 @@ $continueTypes = array(
 	'subgroup_end',
 	'message'
 );
+
 foreach ($constants as $key => $val) {
 
 	if (isset($val['enabled']) && $val['enabled'] == 'no') continue;
@@ -140,7 +139,7 @@ foreach ($constants as $key => $val) {
 	$bracketStart = strpos($key, '[');
 	$bracketEnd = strpos($key, ']');
 
-	/**
+	/*
 	 * This is a somewhat strange workaround i made for a strange SunOS with
 	 * register global On an Magic Quotes On.
 	 * The problem is that we have send/get hidden fields which are named like
@@ -384,7 +383,7 @@ foreach ($constants as $key => $val) {
 	}
 }
 
-/**
+/*
  * In Netpbm 9.19, they renamed 'ppmtojpeg' to 'pnmtojpeg'.  !@#$%
  *
  * In Netpbm 10.21 (March 2004), they renamed 'pnmcomp' to 'pamcomp'.
@@ -435,11 +434,11 @@ else if ($graphtool == 'Netpbm' && !empty($graphtest['pnmDir'])) {
 
 if (isset($warn_about_open_basedir)) {
 	$notice_messages[sizeof($notice_messages)+1] = array(
-	'type' => 'warning',
-	'text' => gTranslate('config', "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
-	' (' . ini_get('open_basedir') . ')  ' .
-	sprintf(gTranslate('config', "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
-	'<a href="diagnostics.php">', '</a>')
+	  'type' => 'warning',
+	  'text' => gTranslate('config', "Your server has the PHP open_basedir restriction set, and certain of your paths are not in the list of restricted paths") .
+	    ' (' . ini_get('open_basedir') . ')  ' .
+	    sprintf(gTranslate('config', "This doesn't mean that they won't work, however it does mean that we can't verify that the paths are correct.  If you are unable to upload photos correctly, please refer to the FAQ and to the %sdiagnostics%s to resolve your problems."),
+	    '<a href="diagnostics.php">', '</a>')
 	);
 }
 

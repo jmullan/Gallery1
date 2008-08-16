@@ -27,10 +27,10 @@ class Gallery_Group extends Abstract_Group {
 	function Gallery_Group() {
 		global $gallery;
 
-		$this->name			= '';
+		$this->name		= '';
 		$this->description	= '';
 		$this->memberList	= array();
-		$this->gid			= 'g_' . time() . '_' . mt_rand();
+		$this->gid		= 'g_' . time() . '_' . mt_rand();
 	}
 
 	/**

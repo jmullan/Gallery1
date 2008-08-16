@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(__FILE__) . '/init.php');
 
 // Set defaults, if RSS has not been setup via config wizard
@@ -136,7 +135,8 @@ foreach ($rssAlbumList as $album) {
 		"link" => makeAlbumUrl($album->fields["name"]),
 		"guid" => array($album->fields['guid'], array("isPermaLink" => "false")),
 		"!date" => bestDate($album),
-		"title" => htmlspecialchars($album->fields["title"]));
+		"title" => htmlspecialchars($album->fields["title"])
+	);
 
 	// DATE TAGS
 
@@ -197,9 +197,9 @@ foreach ($rssAlbumList as $album) {
 				$width = floor($width);
 			}
 
-		$albumInfo['pb:thumb'] = $highlight->thumbnail->getPath($base);
-		$albumInfo['pb:height'] = $height;
-		$albumInfo['pb:width'] = $width;
+			$albumInfo['pb:thumb'] = $highlight->thumbnail->getPath($base);
+			$albumInfo['pb:height'] = $height;
+			$albumInfo['pb:width'] = $width;
 		}
 	}
 
@@ -216,19 +216,22 @@ foreach ($rssAlbumList as $album) {
 
 		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbs($album);
-	} elseif ($gallery->app->rssMode == "thumbs-with-captions") {
+	}
+	elseif ($gallery->app->rssMode == "thumbs-with-captions") {
 		if (!$album->transient->photosloaded) {
 			$album->load($album->fields["name"], TRUE);
 		}
 
 		$albumInfo["description"]  = $album->fields["description"] . '<p>';
 		$albumInfo["description"] .= getThumbsAndCaptions($album);
-	} elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
+	}
+	elseif ($gallery->app->rssMode == "highlight" && isset($highlight)) {
 		$url = makeAlbumUrl($album->fields["name"]);
 		$imgtag = $highlight->thumbnail->getTag($base, 0, 0, 'border=0');
 		$albumInfo["description"]  = "<a href=\"$url\">$imgtag</a><br>";
 		$albumInfo["description"] .= $album->fields["description"];
-	} else { # mode = "basic"
+	}
+	else { # mode = "basic"
 		$albumInfo["description"] = $album->fields["description"];
 	}
 
@@ -239,7 +242,9 @@ foreach ($rssAlbumList as $album) {
 
 usort($albumList, "albumSort");
 
-unset($ha); $channel_image = $channel_width = $channel_height = "";
+unset($ha);
+$channel_image = $channel_width = $channel_height = "";
+
 if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 	foreach($albumList as $album) {
 		if ($album["!name"] == $gallery->app->rssHighlight && isset($album["pb:thumb"])) {
@@ -247,7 +252,8 @@ if (isset($gallery->app->rssHighlight) && $gallery->app->rssHighlight != "*") {
 			break;
 		}
 	}
-} elseif (isset($albumList[0]["pb:thumb"])) {
+}
+elseif (isset($albumList[0]["pb:thumb"])) {
 	$ha = $albumList[0];
 }
 

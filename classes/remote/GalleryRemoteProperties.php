@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,26 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
-
-/*
- * workaround for php < 4.1.0
- */
-if (!function_exists ('array_key_exists')) {
-	function array_key_exists($key, $arr)
-	{
-		if (!is_array($arr)) {
-			return false;
-		}
-		foreach (array_keys($arr) as $k) {
-			if ($k == $key) {
-				return true;
-			}
-		}
-		return false;
-	}
-}
 
 /**
  *  This class partially mirrors the functionality of the java class

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * Functions for the slideshow using Gallery Remote
@@ -39,21 +37,20 @@ function slideshow_initialize() {
 	global $albumName, $gallery, $title;
 
 	if (empty($albumName)) {
-        $title = sprintf(gTranslate('core', "Slideshow for Gallery :: %s"),
-            $gallery->app->galleryTitle);
+        	$title = sprintf(gTranslate('core', "Slideshow for Gallery :: %s"),
+		$gallery->app->galleryTitle);
 	}
 	else {
-        $title = sprintf(gTranslate('core', "Slideshow for album :: %s"), $gallery->album->fields["title"]);
+		$title = sprintf(gTranslate('core', "Slideshow for album :: %s"), $gallery->album->fields["title"]);
 	}
 }
 
 function slideshow_body() {}
 
 function slideshow_controlPanel() {
-	echo infobox(array(array(
-		'type' => 'information',
-		'text' => gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
-	)));
+	echo gallery_info(
+		gTranslate('core', "If you don't have the Java Plugin 1.4 or later, or you don't want to wait for the applet to download, you can use one of the non-fullscreen versions.")
+	);
 }
 
 function slideshow_image() {

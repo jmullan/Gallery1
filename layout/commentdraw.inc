@@ -1,5 +1,5 @@
-<?php /* $Id$ */ ?>
 <?php
+	/* $Id$ */
 
 global $commentdraw, $i, $index, $id;
 

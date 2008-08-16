@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -40,7 +38,8 @@ if (!empty($doit)) {
 			else {
 				$message = array(array(
 					'type' => 'information',
-					'text' => gTranslate('core', "Zipdownload would work, but is disabled when debugging.")));
+					'text' => gTranslate('core', "Zipdownload would work, but is disabled when debugging."))
+				);
 			}
 		}
 	}
@@ -63,9 +62,9 @@ if ($gallery->album->numPhotos(1)) {
 echo $gallery->album->fields["title"];
 echo "</p>";
 
-$textNumItems = sprintf(gTranslate('core', "This album contains just one item in total.", "This album contains %d items in total.", $numItems), $numItems);
+$textNumItems	  = sprintf(gTranslate('core', "This album contains just one item in total.", "This album contains %d items in total.", $numItems), $numItems);
 $textNumSubAlbums = sprintf(gTranslate('core', "One subalbum", "%d subalbums", $numAlbums, gTranslate('core', "No subalbums")), $numAlbums);
-$textNumPhotos = sprintf(gTranslate('core', "one photo/movie", "%d photos/movies", $numPhotos , gTranslate('core', "no photo/movie")), $numPhotos);
+$textNumPhotos	  = sprintf(gTranslate('core', "One photo/movie", "%d photos/movies", $numPhotos , gTranslate('core', "no photo/movie")), $numPhotos);
 
 printf("%s ". gTranslate('core', "%s and %s."), $textNumItems, $textNumSubAlbums, $textNumPhotos);
 
@@ -92,7 +91,9 @@ else {
 	echo "<br><br>";
 	echo gButton('close', gTranslate('core', "_Close Window"),'parent.close()');
 }
+
+includeTemplate('overall.footer');
+
 ?>
-</div>
 </body>
 </html>

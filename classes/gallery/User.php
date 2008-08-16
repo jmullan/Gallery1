@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Gallery_User extends Abstract_User {
 
 	var $defaultLanguage;
@@ -29,11 +28,11 @@ class Gallery_User extends Abstract_User {
 	var $lastAction;
 	var $lastActionDate;
 	var $origEmail;
-		// the email from original account creation.  Just incase user goes feral
+	// the email from original account creation.  Just incase user goes feral
 
 	function Gallery_User() {
 		Abstract_User::Abstract_User();
-		$this->setDefaultLanguage("");
+		$this->setDefaultLanguage('');
 
 		// assuming revision 4 ensures that if the user_version is
 		// not properly read from file due to the file format changes

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file originally by Vallimar.
  *
@@ -21,8 +21,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -48,15 +46,15 @@ if ($gallery->app->selfReg != 'yes' || $gallery->app->emailOn == 'no') { ?>
 	exit();
 }
 
-$allowChange['uname']			= true;
-$allowChange['password']		= false;
+$allowChange['uname']		= true;
+$allowChange['password']	= false;
 $allowChange['old_password']	= false;
-$allowChange['fullname']		= true;
-$allowChange['email']			= true;
+$allowChange['fullname']	= true;
+$allowChange['email']		= true;
 $allowChange['default_language']= true;
 $allowChange['create_albums']	= false;
-$allowChange["send_email"]		= false;
-$allowChange["member_file"]		= false;
+$allowChange["send_email"]	= false;
+$allowChange["member_file"]	= false;
 
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {

@@ -64,10 +64,11 @@ switch($GALLERY_EMBEDDED_INSIDE_TYPE) {
 	default:
 		includeTemplate('footer.tpl');
 
-		showDebugInfo();
-
 		// End of g-main
-		echo "\n</div>";
+		echo "\n<!-- End of g-main, or g-content-popup -->\n";
+		echo "\n</div>\n";
+
+		showDebugInfo();
 }
 
 ?>

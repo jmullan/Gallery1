@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,6 @@
  * $Id$
  *
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
 		require_once(dirname(__FILE__) . '/init.php');
@@ -44,19 +42,19 @@ $adminOptions[] = array(
 			'longtext' => gTranslate('core', "Use the config wizard to reconfigure or tweak your Gallery."));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "Find _orphans"),
-		'url' => makeGalleryUrl('tools/find_orphans.php'),
-		'longtext' => gTranslate('core', "Find, remove or re-attach orphaned elements."));
+			'text' => gTranslate('core', "Find _orphans"),
+			'url' => makeGalleryUrl('tools/find_orphans.php'),
+			'longtext' => gTranslate('core', "Find, remove or re-attach orphaned elements."));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "Find _comment spam"),
-		'url' => makeGalleryUrl('tools/despam-comments.php'),
-		'longtext' => gTranslate('core', "Find and remove comments that contain spam."));
+			'text' => gTranslate('core', "Find _comment spam"),
+			'url' => makeGalleryUrl('tools/despam-comments.php'),
+			'longtext' => gTranslate('core', "Find and remove comments that contain spam."));
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "_Validate albums"),
-		'url' => makeGalleryUrl('tools/validate_albums.php'),
-		'longtext' => gTranslate('core', "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
+			'text' => gTranslate('core', "_Validate albums"),
+			'url' => makeGalleryUrl('tools/validate_albums.php'),
+			'longtext' => gTranslate('core', "Identify invalid albums, missing files, and other errors that may prevent you from migrating to Gallery 2"));
 
 /*
 $adminOptions[] = array(
@@ -80,9 +78,9 @@ if (!$GALLERY_EMBEDDED_INSIDE || $GALLERY_EMBEDDED_INSIDE == 'joomla') {
 }
 
 $adminOptions[] = array(
-		'text' => gTranslate('core', "_Filesystem usage"),
-		'url' => makeGalleryUrl('usage.php'),
-		'longtext' => gTranslate('core', "See how much space your Gallery consumes. Viewable by usage per user and per album."));
+			'text' => gTranslate('core', "_Filesystem usage"),
+			'url' => makeGalleryUrl('usage.php'),
+			'longtext' => gTranslate('core', "See how much space your Gallery consumes. Viewable by usage per user and per album."));
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 

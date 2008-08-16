@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 class Geeklog_UserDB extends Abstract_UserDB {
 	var $db;

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * @package Add Photos
@@ -32,7 +30,8 @@ $mode = getRequestVar('mode');
 
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Add items"), '', 'left');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,19 +19,18 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($sort, $order, $albumsFirst) = getRequestVar(array('sort', 'order', 'albumsFirst'));
 
+printPopupStart(gTranslate('core', "Sort Album"));
+
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+if (! $gallery->user->canWriteToAlbum($gallery->album)) {
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
-
-printPopupStart(gTranslate('core', "Sort Album"));
 
 if ($gallery->session->albumName) {
 	if (getRequestVar('confirm')) {
@@ -54,53 +53,35 @@ if ($gallery->session->albumName) {
 <p>
 <?php echo gTranslate('core', "Select your sorting criteria for this album below") ?>
 <br>
-<b><?php echo gTranslate('core', "Warning:  This operation can't be undone.") ?></b>
+<span class="g-emphasis"><?php echo gTranslate('core', "Warning:  This operation can't be undone.") ?></span>
 </p>
 
 <?php
-$highlightIndex = $gallery->album->getHighlight();
-
-if ($highlightIndex != null) {
-	print $gallery->album->getThumbnailTag($highlightIndex);
-}
-
-echo "\n<br>";
-
-if (isset($gallery->album->fields['caption'])) {
-	echo $gallery->album->fields['caption'];
-}
-
-echo "\n<br>";
-
-echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
+	echo  $gallery->album->getHighlightAsThumbnailTag();
+	echo "\n<br>";
+  
+	if (isset($gallery->album->fields['caption'])) {
+		echo $gallery->album->fields['caption'];
+	}
+  
+	echo "\n<br>";
+  
+	echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
 ?>
 
 <table class="left">
+<?php
+	echo gInput('radio', 'sort', gTranslate('core', "By Upload Date"), true, 'upload', array('checked' => null));
+  	echo gInput('radio', 'sort', gTranslate('core', "By Picture-Taken Date"), true, 'itemCapture');
+  	echo gInput('radio', 'sort', gTranslate('core', "By Filename"), true, 'filename');
+  	echo gInput('radio', 'sort', gTranslate('core', "By Number of Clicks"), true, 'click');
+  	echo gInput('radio', 'sort', gTranslate('core', "By Caption"), true, 'caption');
+  	echo gInput('radio', 'sort', gTranslate('core', "By Number of Comments"), true, 'comment');
+  	echo gInput('radio', 'sort', gTranslate('core', "Randomly"), true, 'random');
+?>
+  <tr><td colspan="2">&nbsp;</td></tr>
   <tr>
-	<td><input checked type="radio" name="sort" value="upload"> <?php echo gTranslate('core', "By Upload Date") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="itemCapture"> <?php echo gTranslate('core', "By Picture-Taken Date") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="filename"> <?php echo gTranslate('core', "By Filename") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="click"> <?php echo gTranslate('core', "By Number of Clicks") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="caption"> <?php echo gTranslate('core', "By Caption") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="comment"> <?php echo gTranslate('core', "By Number of Comments") ?></td>
-  </tr>
-  <tr>
-	<td><input type="radio" name="sort" value="random"> <?php echo gTranslate('core', "Randomly") ?></td>
-  </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
-	<td class="center">
-<?php echo gTranslate('core', "Sort Order:"); ?>
+	<td colspan="2" class="center"><?php echo gTranslate('core', "Sort Order:"); ?>
 	<select name="albumsFirst">
 		<option value=""><?php echo gTranslate('core', "Just sort") ?></option>
 		<option value="1"><?php echo gTranslate('core', "Albums first") ?></option>
@@ -123,8 +104,9 @@ echo makeFormIntro('sort_album.php', array(), array('type' => 'popup'));
 } else {
 	echo gallery_error(gTranslate('core', "no album specified"));
 }
-?>
-</div>
 
+includeTemplate('overall.footer');
+
+?>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * This popup provides the possibility to put a watermark on a picture.
  * A preview can be viewed before.
@@ -42,7 +41,7 @@ if (! $gallery->user->canWriteToAlbum($gallery->album) &&
 	! $gallery->album->getItemOwnerModify() &&
 	! $gallery->album->isItemOwner($gallery->user->getUid(), $index))
 {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -108,14 +107,16 @@ if ($photo->image->type == 'gif') {
 }
 
 echo makeFormIntro('edit_watermark.php', array(), array('type' => 'popup', 'index' => $index));
+
 global $watermarkForm;
-$watermarkForm["askRecursive"] = 0;
-$watermarkForm["askPreview"] = 1;
-$watermarkForm["allowNone"] = 0;
+$watermarkForm['askRecursive']	= 0;
+$watermarkForm['askPreview']	= 1;
+$watermarkForm['allowNone']	= 0;
 includeLayout('watermarkform.inc');
 
-echo "\n<br><br>\n";
+echo "\n<br>\n";
 
+// $errors is from watermarkform.inc
 if(empty($errors)) {
 	echo gSubmit('save', gTranslate('core', "_Save"));
 	echo gSubmit('preview', gTranslate('core', "_Preview"));
@@ -125,7 +126,7 @@ echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
 ?>
 </form>
 
-</div>
+<?php includeTemplate('overall.footer'); ?>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 /*
 * Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
+* Copyright (C) 2000-2008 Bharat Mediratta
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
 *
 * $Id: rebuild_thumbs.php 13778 2006-06-08 17:51:08Z jenst $
 */
-?>
-<?php
+
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 $recursive = getRequestVar('recursive');
@@ -28,7 +27,8 @@ $recreate = getRequestVar('recreate');
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Rebuilding Thumbnails"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -45,23 +45,24 @@ else {
 	echo "\n<br>";
 	echo gTranslate('core', "Custom thumbnails will not be reset to default. (Just resized, or rebuild)");
 	echo "\n<br><br>";
+
+	echo makeFormIntro('rebuild_thumbs.php', array('class' => 'center'), array('type' => 'popup'));
+
 	echo gTranslate('core', "Do you also want to rebuild the thumbnails in subalbums?");
-	echo "\n<br>";
+	echo gInput('radio', 'recursive', gTranslate('core', "Yes"), false, 1);
+	echo gInput('radio', 'recursive', gTranslate('core', "No"), false, 0, array('checked' => null));
 
-	echo makeFormIntro('rebuild_thumbs.php', array(), array('type' => 'popup'));
-?>
-	<input type="radio" name="recursive" value="1"> <?php echo gTranslate('core', "Yes"); ?>
-	<input type="radio" name="recursive" value="0" checked> <?php echo gTranslate('core', "No"); ?>
-	<br><br>
-	<?php
+	echo "\n<br><br>";
 
+	echo "\n<div align=\"center\">";
 	echo gSubmit('recreate', gTranslate('core', "_Start"));
 	echo gButton('close', gTranslate('core', "_Close"), 'parent.close()');
-?>
-	  </form>
-<?php
+	echo "\n</div>";
+
+	echo "\n</form>";
 }
+
+includeTemplate('overall.footer');
 ?>
-</div>
 </body>
 </html>

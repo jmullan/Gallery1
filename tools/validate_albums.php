@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require(dirname(dirname(__FILE__)) . '/init.php');
 require(dirname(__FILE__) . '/lib/lib-validate_albums.php');
@@ -39,9 +37,7 @@ $results = array(
 	'invalid_album' => array(),
 );
 
-
 $iconElements = array();
-
 $action = getRequestVar('action');
 
 if(!empty($action)) {
@@ -84,7 +80,7 @@ if (!empty($action)) {
 	switch ($action) {
 		case 'unlinkInvalidAlbum':
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
-			
+
 			if ($verified) {
 				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
 
@@ -146,9 +142,7 @@ if (!empty($action)) {
 			break;
 
 		default:
-			echo infoBox(array(array(
-				'type' => 'error',
-				'text' => gTranslate('core', "Invalid Action !"))));
+			echo gallery_error(gTranslate('core', "Invalid action !"));
 			break;
 	}
 ?>
@@ -167,7 +161,7 @@ else {
 	findInvalidAlbums();
 
 	echo "<div class=\"clear\"></div>\n";
-	
+
 	echo "<fieldset><legend>". gTranslate('core', "Missing files") ."</legend>";
 	if (empty($action)) {
 		if (!empty($results['file_missing'])) { ?>
@@ -182,11 +176,11 @@ else {
 
 		<div class="g-error left g-message">
 		<?php echo gImage('icons/notice/error.gif'); ?>
-		<?php echo sprintf(gTranslate('core', "Missing Files: %s"), sizeof($results['file_missing'])); ?>
+		<?php echo sprintf(gTranslate('core', "Missing files: %s"), sizeof($results['file_missing'])); ?>
 		<br><br>
 		<table>
 		<tr>
-			<th><?php echo gTranslate('core', "Missing File") ?></th>
+			<th><?php echo gTranslate('core', "Missing file") ?></th>
 			<th>&nbsp;</th>
 			<th><?php echo gTranslate('core', "Action") ?></th>
 		</tr>
@@ -202,7 +196,7 @@ else {
 						array('action' => 'deleteMissingPhoto',
 							  'album' => $contents[0],
 						 	  'id' => $contents[1])),
-						gTranslate('core', "delete photo")) .
+						gTranslate('core', "Delete item")) .
 				'</td>';
 				echo "\n\t</tr>";
 			}
@@ -224,15 +218,15 @@ else {
 		echo "<fieldset><legend>". gTranslate('core', "Invalid albums") ."</legend>";
 		if (!empty($results['invalid_album'])) {
 ?>
-		<p><?php echo gTranslate('core', "Invalid Albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x") ?></p>
+		<p><?php echo gTranslate('core', "Invalid albums are directories which have been created in the albums directory that don't actually contain album data.  The presence of these directories can cause problems for Gallery as well as when trying to migrate to Gallery 2.x.") ?></p>
 
 		<div class="g-error left g-message">
 		<?php echo gImage('icons/notice/error.gif'); ?>
-		<?php printf(gTranslate('core', "Invalid Albums: %d"), sizeof($results['invalid_album'])) ?>
+		<?php printf(gTranslate('core', "Invalid albums: %d"), sizeof($results['invalid_album'])) ?>
 		<br><br>
 			<table>
 			<tr>
-				<th><?php echo gTranslate('core', "Invalid Album") ?></th>
+				<th><?php echo gTranslate('core', "Invalid album") ?></th>
 				<th>&nbsp;</th>
 				<th><?php echo gTranslate('core', "Action") ?></th>
 			</tr>
@@ -244,7 +238,7 @@ else {
 				echo "\n\t<td>" . galleryLink(makeGalleryUrl(
 						'tools/validate_albums.php',
 						array('action' => 'unlinkInvalidAlbum', 'invalidAlbum' => $invalidAlbum)),
-						gTranslate('core', "delete directory")) .
+						gTranslate('core', "Delete directory")) .
 				'</td>';
 				echo "\n\t\t</tr>";
 			}

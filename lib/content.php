@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  */
 
 /** Shows the content of a field and if permitted also a link to the edit popup
+ *
  * @param   object  $album
  * @param   string  $field
  * @param   string  $url
@@ -55,6 +56,7 @@ function editField($album, $field, $url = null) {
 }
 
 /** Shows the caption of an albumitem and if permitted also a link to the edit popup
+ *
  * @param   object  $album
  * @param   integer $index	albumitem index
  * @return  string  $html
@@ -219,7 +221,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 			case 'mambo':
 			case 'joomla':
 				if (!empty($_COOKIE['sessioncookie'])) {
-					// really mambo
+					// Really mambo
 					$cookie1_name = 'sessioncookie';
 					$cookie1_value = $_COOKIE[$cookie1_name];
 				}
@@ -227,7 +229,7 @@ function drawApplet($width, $height, $code, $archive, $album, $defaults, $overri
 					// try to find Joomla cookie (this is shaky)
 					foreach ($_COOKIE as $cookie1_name => $cookie1_value) {
 						if (strlen($cookie1_name) == 32 &&
-						strlen($cookie1_value) == 32) {
+						    strlen($cookie1_value) == 32) {
 							// this is probably the right cookie...
 							break;
 						}
@@ -365,6 +367,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 	}
 
 	if ($depth == 0 && !empty($tree)) {
+//		$html .= "\n\n\t tree_{$treeName}.expandAll();";
 		$html .= "\n\n\t tree_{$treeName}.draw();";
 		$html .= "\n\n\t </script>\n";
 	}
@@ -375,7 +378,7 @@ function printChildren($tree, $depth = 0, $parentNode = 'main') {
 /**
  * Returns the HTML code for a the microthumb view off all subalbums of an album.
  * This function is recursive.
-  *
+ *
  * @param array     $tree
  * @param int       $depth
  * @return string   $html
@@ -507,6 +510,7 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 
 /**
  * returns the formatted ownername, if an email is available, then as mailto: link
+ *
  * @param  object	$owner
  * @return string	$name
  * @author Jens Tkotz
@@ -555,7 +559,7 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
 
 		$linkText = gImage("icons/$iconName", $altText);
 
-		if ($iconMode == "both") {
+		if ($iconMode == 'both') {
 			$linkText .= "<br>$text";
 		}
 	}
@@ -653,7 +657,7 @@ function formatted_filesize($filesize = 0, $filename = '') {
 	$units = array('&nbsp;&nbsp;B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
 	$unit_count = (count($units) - 1);
 
-	$pass = 0; // set zero, for Bytes
+	$pass = 0;	// set zero, for Bytes
 	while( $filesize >= 1024 && $pass < $unit_count ) {
 		$filesize /= 1024;
 		$pass++;
@@ -800,8 +804,8 @@ function includeTemplate($name, $skinname = '', $theme = '') {
 
 /**
  * Wrapper around _getStyleSheetLink, its defines which stylesheet link is generated.
- * @return	string	$styleSheetLinks	The generated HTML <LINK> to load the stylesheets.
- * 										Empty when already loaded.
+ * @return string  $styleSheetLinks	The generated HTML <LINK> to load the stylesheets.
+ * 					Empty when already loaded.
  */
 function getStyleSheetLink() {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE;
@@ -811,6 +815,7 @@ function getStyleSheetLink() {
 
 	if(! $styleSheetSet) {
 		$styleSheetLinks = _getStyleSheetLink("base");
+
 		if(isset($gallery->direction) && $gallery->direction == 'rtl') {
 			$styleSheetLinks .= _getStyleSheetLink("rtl");
 		}
@@ -1288,6 +1293,7 @@ function showImageMap($index, $noUrlUrl = '#') {
 
 /**
  * Generates a complete <img ...> html
+ *
  * @param $relativPath  string  path to the images relativ to gallery root
  * @param $altText		string  alt Text
  * @param $attrs		array   optional additional attributs (id, name..)
@@ -1351,6 +1357,7 @@ function LoginLogoutButton($return = 'albums.php', $photoCount = 1) {
 
 /**
  * Returns the accesskey of a string
+ *
  * @param   string  $text
  * @return  string  $accesskey
  * @author  Jens Tkotz
@@ -1381,6 +1388,7 @@ function makeAccessKeyString($text) {
 /**
  * Modifies a string so that the accesskey is surrounded by span tag.
  * returns the access key.
+ *
  * @param   string  $text
  * @return  mixed   $accesskey  The accesskey, or null if no accesskey found
  * @author  Jens Tkotz
@@ -1519,7 +1527,7 @@ function initAutocompleteJS ($label, $inputName, $id, $enableAutocomplete = fals
  */
 function toggleButton($id) {
 	$html = "<a href=\"#\" style=\"outline: none;\" onClick=\"gallery_toggle('$id'); return false;\">" .
-			gImage('expand.gif', gTranslate('config', "Show/hide more information"), array('id' => "toggleBut_$id")) .
+			gImage('expand.gif', gTranslate('config', "Show/Hide more information"), array('id' => "toggleBut_$id")) .
 			'</a> ';
 
 	return $html;
@@ -1602,8 +1610,8 @@ function updateProgressBar($htmlId, $status, $percentDone) {
  * @param  integer $cutAfter		After which chars the text is cutted. Or 0 if cutted at all.
  * @param  string  $readMoreText	Text to be shown after the cut. Default is "... read more"
  * @param  string  $contextId		If set, then the panel is connected to the element with this id.
- * @return array					First element is a boolean, if yes, then a javascript is need to handle the panel.
- *									The second is the complete readMoreBox
+ * @return array			First element is a boolean, if yes, then a javascript is need to handle the panel.
+ *					The second is the complete readMoreBox
  * @author Jens Tkotz
  */
 function readMoreBox($panelID, $panelHeaderText = '', $text, $cutAfter = 0, $readMoreText = '' , $contextId = '') {
@@ -1661,18 +1669,18 @@ function picture($index, $full = false, $newwidth = 0, $newheight = 0) {
 		case 'jpg':
 		case 'jpeg':
 			$function_image_create	= 'imagecreatefromjpeg';
-			$function_image_new		= 'imagejpeg';
+			$function_image_new	= 'imagejpeg';
 
 			break;
 
 		case 'png':
 			$function_image_create	= 'imagecreatefrompng';
-			$function_image_new		= 'ImagePNG';
+			$function_image_new	= 'ImagePNG';
 			break;
 
 		case 'gif':
 			$function_image_create	= 'imagecreatefromgif';
-			$function_image_new		= 'imagepNG';
+			$function_image_new	= 'imagepNG';
 			break;
 	}
 

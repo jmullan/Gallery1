@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -34,7 +32,8 @@ list($email, $defaultLanguage, $canCreate, $canChangeOwnPw, $isAdmin) =
 	getRequestVar(array('email', 'defaultLanguage', 'canCreate','canChangeOwnPw', 'isAdmin'));
 
 if (!$gallery->user->isAdmin()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Modify User"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -89,7 +88,7 @@ if (!empty($save)) {
 		if (!strcmp($old_uname, $gallery->session->username)) {
 			$gallery->session->username = $uname;
 		}
-		
+
 		$notice_messages[] = array(
 			'type' => 'success',
 			'text' => gTranslate('core',"User information succesfully updated.")
@@ -130,14 +129,14 @@ $fullname	= $tmpUser->getFullname();
 $email		= $tmpUser->getEmail();
 $defaultLanguage = $tmpUser->getDefaultLanguage();
 
-$allowChange['uname'] =				true;
-$allowChange['email'] =				true;
-$allowChange['fullname'] =			true;
-$allowChange['admin'] =				true;
+$allowChange['uname'] =			true;
+$allowChange['email'] =			true;
+$allowChange['fullname'] =		true;
+$allowChange['admin'] =			true;
 $allowChange['default_language'] =	true;
 $allowChange['send_email'] =		false;
 $allowChange['member_file'] =		false;
-$allowChange['password'] =			true;
+$allowChange['password'] =		true;
 $allowChange['old_password'] =		false;
 
 $canCreate = $tmpUser->canCreateAlbums() ? 1 : 0;

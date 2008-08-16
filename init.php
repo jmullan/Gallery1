@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 // Hack Prevention
 $sensitiveList = array('gallery', 'GALLERY_EMBEDDED_INSIDE', 'GALLERY_EMBEDDED_INSIDE_TYPE', 'GLOBALS');
@@ -229,7 +227,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 
-			break;
+		break;
 
 		case 'phpnuke':
 			/* we're in phpnuke */
@@ -239,10 +237,11 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			include_once(dirname(__FILE__) . "/classes/nuke5/User.php");
 
 			$gallery->database{"nuke"} = new MySQL_Database(
-			$GLOBALS['dbhost'],
-			$GLOBALS['dbuname'],
-			$GLOBALS['dbpass'],
-			$GLOBALS['dbname']);
+				$GLOBALS['dbhost'],
+				$GLOBALS['dbuname'],
+				$GLOBALS['dbpass'],
+				$GLOBALS['dbname']
+			);
 
 			if (isset($GLOBALS['user_prefix'])) {
 				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
@@ -250,23 +249,26 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			else {
 				$gallery->database{"user_prefix"} = 'nuke_';
 			}
+
 			$gallery->database{"prefix"} = $GLOBALS['prefix'] . '_';
 
 			/* PHP-Nuke changed its "users" table field names in v.6.5 */
 			/* Select the appropriate field names */
 			if (isset($Version_Num) && $Version_Num >= "6.5") {
 				$gallery->database{'fields'} = array (
-				'name'  => 'name',
-				'uname' => 'username',
-				'email' => 'user_email',
-				'uid'   => 'user_id');
+					'name'  => 'name',
+					'uname' => 'username',
+					'email' => 'user_email',
+					'uid'   => 'user_id'
+				);
 			}
 			else {
 				$gallery->database{'fields'} = array (
-				'name'  => 'name',
-				'uname' => 'uname',
-				'email' => 'email',
-				'uid'   => 'uid');
+					'name'  => 'name',
+					'uname' => 'uname',
+					'email' => 'email',
+					'uid'   => 'uid'
+				);
 			}
 
 			/* Load our user database (and user object) */
@@ -287,7 +289,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 
-			break;
+		break;
 
 		case 'nsnnuke':
 			/* we're in nsnnuke */
@@ -297,10 +299,11 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			include_once(dirname(__FILE__) . "/classes/nsnnuke/User.php");
 
 			$gallery->database{"nsnnuke"} = new MySQL_Database(
-			$GLOBALS['dbhost'],
-			$GLOBALS['dbuname'],
-			$GLOBALS['dbpass'],
-			$GLOBALS['dbname']);
+				$GLOBALS['dbhost'],
+				$GLOBALS['dbuname'],
+				$GLOBALS['dbpass'],
+				$GLOBALS['dbname']
+			);
 
 			if (isset($GLOBALS['user_prefix'])) {
 				$gallery->database{"user_prefix"} = $GLOBALS['user_prefix'] . '_';
@@ -317,7 +320,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				'name'  => 'realname',
 				'uname' => 'username',
 				'email' => 'user_email',
-				'uid'   => 'user_id');
+				'uid'   => 'user_id'
+			);
 
 			/* Load our user database (and user object) */
 			$gallery->userDB = new NsnNuke_UserDB;
@@ -337,7 +341,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 
-			break;
+		break;
 
 		case 'phpBB2':
 		//print_r($GLOBALS['board_config']['version']);
@@ -374,7 +378,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 
-			break;
+		break;
 
 		case 'mambo':
 		case 'joomla':
@@ -409,13 +413,13 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				if (substr($gallery->session->mambo->mosRoot, -1) != '/') {
 					$gallery->session->mambo->mosRoot .= '/';
 				}
-				$gallery->session->mambo->mosConfig_host	 = $mosConfig_host;
-				$gallery->session->mambo->mosConfig_user	 = $mosConfig_user;
-				$gallery->session->mambo->mosConfig_password = $mosConfig_password;
-				$gallery->session->mambo->mosConfig_db	   = $mosConfig_db;
-				$gallery->session->mambo->mosConfig_dbprefix = $mosConfig_dbprefix;
-				$gallery->session->mambo->mosConfig_lang	 = $mosConfig_lang;
-				$gallery->session->mambo->MOS_GALLERY_PARAMS = $MOS_GALLERY_PARAMS;
+				$gallery->session->mambo->mosConfig_host	= $mosConfig_host;
+				$gallery->session->mambo->mosConfig_user	= $mosConfig_user;
+				$gallery->session->mambo->mosConfig_password	= $mosConfig_password;
+				$gallery->session->mambo->mosConfig_db		= $mosConfig_db;
+				$gallery->session->mambo->mosConfig_dbprefix	= $mosConfig_dbprefix;
+				$gallery->session->mambo->mosConfig_lang	= $mosConfig_lang;
+				$gallery->session->mambo->MOS_GALLERY_PARAMS	= $MOS_GALLERY_PARAMS;
 			}
 			else {
 				echo 'init.php: ' . gTranslate('core', "Gallery seems to be inside Mambo, but we couldn't get the necessary info.");
@@ -423,18 +427,19 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			}
 
 			$gallery->database{'mambo'} = new MySQL_Database(
-												$mosConfig_host,
-												$mosConfig_user,
-												$mosConfig_password,
-												$mosConfig_db);
-
+					$mosConfig_host,
+					$mosConfig_user,
+					$mosConfig_password,
+					$mosConfig_db
+			);
 			$gallery->database{'user_prefix'} = $mosConfig_dbprefix;
 			$gallery->database{'fields'} = array (
 				'name'  => 'name',
 				'uname' => 'username',
 				'email' => 'email',
 				'uid'   => 'id',
-				'gid'   => 'gid');
+				'gid'   => 'gid'
+			);
 
 			$gallery->userDB = new Mambo_UserDB;
 
@@ -467,7 +472,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 			$row = $db->fetch_row($results);
 			$MOS_GALLERY_PARAMS['itemid'] = $row[0]; // pick the first one
 
-			break;
+		break;
 
 		case 'GeekLog':
 			// Cheat, and grab USER information from the global session variables.
@@ -497,7 +502,7 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = $gallery->userDB->getUserByUsername($gallery->session->username);
 			}
 
-			break;
+		break;
 
 		case 'cpgnuke':
 			/* we're in CPG-Nuke */
@@ -510,7 +515,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$GLOBALS['dbhost'],
 				$GLOBALS['dbuname'],
 				$GLOBALS['dbpass'],
-				$GLOBALS['dbname']);
+				$GLOBALS['dbname']
+			);
 
 			if (isset($GLOBALS['user_prefix'])) {
 				$gallery->database{"user_prefix"} = $GLOBALS['prefix'] . '_';
@@ -526,7 +532,8 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				'name'  => 'name',
 				'uname' => 'username',
 				'email' => 'user_email',
-				'uid'   => 'user_id');
+				'uid'   => 'user_id'
+			);
 
 			/* Load our user database (and user object) */
 			$gallery->userDB = new CPGNuke_UserDB;
@@ -541,13 +548,14 @@ if (isset($GALLERY_EMBEDDED_INSIDE)) {
 				$gallery->user = new CPGNuke_AdminUser();
 				$gallery->session->username = $gallery->user->getUsername();
 			}
-			break;
+		break;
 	}
 }
 else {
 	/* Standalone */
 	include_once(dirname(__FILE__) . "/classes/gallery/UserDB.php");
 	include_once(dirname(__FILE__) . "/classes/gallery/User.php");
+
 	/* Load our user database (and user object) */
 	$gallery->userDB = new Gallery_UserDB;
 
@@ -560,11 +568,9 @@ else {
 /* If there's no specific user, they are the special Everybody user */
 if (!isset($gallery->user) || empty($gallery->user)) {
 	if (!$gallery->userDB->isInitialized()) {
-		echo infoBox(array(array(
-				'type' => 'error',
-				'text' => gTranslate('core', "Fatal error: UserDB failed to initialize!")
-			)));
+		echo gallery_error(gTranslate('core', "Fatal error: UserDB failed to initialize!"));
 	}
+
 	$gallery->user = $gallery->userDB->getEverybody();
 	$gallery->session->username = '';
 }

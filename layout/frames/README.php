@@ -1,21 +1,31 @@
-<?php /* $Id: README.php 5431 2004-03-04 16:58:17Z jenst $ */ ?>
-<html><head><title>How to create new frames</title></head>
-<body bgcolor="#DDAAAA">
-<!--
+<?php
+/* $Id: README.php 5431 2004-03-04 16:58:17Z jenst $ */
 
-			   TL  TTL	 TT	 TTR TR
-				   +----------------+
-			   LLT |				| RRT
-				   |				|
-				   |				|
-				LL |  IMAGE		 | RR
-				   |				|
-				   |				|
-			   LLB |				| RRB
-				   +----------------+
-			   BL  BBL	 BB	 BBR BR 
--->
-Eventually this will contain full instructions for building your own files.  In the meantime, here's a quick diagram of where the diffent images go, and something to test<p>
+include (dirname(dirname(dirname(__FILE__))) . '/config.php');
+include (dirname(dirname(dirname(__FILE__))) . '/util.php');
+
+setGalleryPaths(); 
+/* Load bootstrap code */
+if (getOS() == OS_WINDOWS) {
+	include_once(GALLERY_BASE . '/platform/fs_win32.php');
+}
+else {
+	include_once(GALLERY_BASE . '/platform/fs_unix.php');
+}
+
+initLanguage();
+
+doctype();
+?>
+<html>
+	<head>
+		<title>How to create new frames</title>
+	</head>
+<body bgcolor="#DDAAAA">
+
+Eventually this will contain full instructions for building your own files.
+In the meantime, here's a quick diagram of where the diffent images go, and something to test
+<br><br>
 <center>
 <table border="1">
 <tr>
@@ -33,7 +43,7 @@ Eventually this will contain full instructions for building your own files.  In 
 		<tr><td height="140">LL</td></tr>
 		<tr><td height="30">LLB</td></tr>
 	</table></td> 
-	<td height="200" width="200" valign="center" align="center">IMAGE</td>
+	<td height="200" width="200" align="center">IMAGE</td>
 	<td><table border="1">
 		<tr><td height="30">RRT</td></tr>
 		<tr><td height="140">RR</td></tr>
@@ -53,10 +63,8 @@ Eventually this will contain full instructions for building your own files.  In 
 
 </center>
 
-To test you frames, just insert the name of your frame were indicated below.
+To test you frames, just insert the name of your frame in the code where indicated below.
 <?php
-include (dirname(dirname(dirname(__FILE__))) . '/config.php');
-include (dirname(dirname(dirname(__FILE__))) . '/util.php');
 
 $gallery->html_wrap['frame'] = "polaroid"; /*** PUT YOUR FRAME DIR HERE ***/
 $gallery->html_wrap['borderColor'] = "#AAAAFF";
@@ -64,7 +72,7 @@ $gallery->html_wrap['borderWidth'] = 0;
 $gallery->html_wrap['imageWidth'] = 300;
 $gallery->html_wrap['imageHeight'] = 200;
 $gallery->html_wrap['imageHref'] = null;
-$gallery->html_wrap['imageTag'] = '<img src="../../images/bar.gif" width="300" height="200">';
+$gallery->html_wrap['imageTag'] = '<img src="../../images/bar.gif" width="300" height="200" alt="bar">';
 error_reporting(E_ALL);
 ?> 
 <br><br><br>

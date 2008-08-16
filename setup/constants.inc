@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,35 +19,34 @@
  *
  * $Id$
  */
-?>
-<?php
-    require(GALLERY_BASE . '/includes/setup/constants.inc');
-    require(GALLERY_BASE . '/lib/tabs.php');
-    require(GALLERY_BASE . '/js/multiInput.js.php');
 
-    $inst_type = '';
+require(GALLERY_BASE . '/includes/setup/constants.inc');
+require(GALLERY_BASE . '/lib/tabs.php');
+require(GALLERY_BASE . '/js/multiInput.js.php');
 
-    if(!empty($gallery->session->configForm->inst_type)) {
-        $inst_type = $gallery->session->configForm->inst_type;
-    }
+$inst_type = '';
 
-    if($inst_type == 'easy') {
-        $visibilityKeyword = 'inst_type';
-        $visibilityValue = 'easy';
-    }
-    else {
-        $visibilityKeyword = '';
-        $visibilityValue = '';
+if(!empty($gallery->session->configForm->inst_type)) {
+	$inst_type = $gallery->session->configForm->inst_type;
+}
 
-        include_once(GALLERY_BASE .'/classes/horde/Browser.php');
-        $browser = &Browser::singleton();
+if($inst_type == 'easy') {
+	$visibilityKeyword = 'inst_type';
+	$visibilityValue = 'easy';
+}
+else {
+	$visibilityKeyword = '';
+	$visibilityValue = '';
 
-        if($browser->hasFeature('xmlhttpreq')) {
-            echo autoCompleteJS();
-        }
-    }
+	include_once(GALLERY_BASE .'/classes/horde/Browser.php');
+	$browser = &Browser::singleton();
 
-	insertFormJS('config');
+	if($browser->hasFeature('xmlhttpreq')) {
+		echo autoCompleteJS();
+	}
+}
+
+insertFormJS('config');
 ?>
 
 <input type="hidden" name="this_page" value="constants">
@@ -122,53 +121,55 @@ echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialt
 
 $i = 0;
 foreach ($constants as $key => $val) {
-    if( isset($val["enabled"]) && $val["enabled"] == "no") continue;
+	if( isset($val["enabled"]) && $val["enabled"] == "no") {
+		continue;
+	}
 
-    if (isset($val["type"]) && $val["type"] === 'message') {
-    	echo $val["message"];
-    	continue;
-    }
+	if (isset($val["type"]) && $val["type"] === 'message') {
+		echo $val["message"];
+		continue;
+	}
 
-    if (isset($val["type"]) && $val["type"] === 'block_start') {
-    	echo "\n<table class=\"g-setup-block\">";
-    	echo evenOdd_row(make_fields($key, $val), $i % 2);
-    	continue;
-    }
+	if (isset($val["type"]) && $val["type"] === 'block_start') {
+		echo "\n<table class=\"g-setup-block\">";
+		echo evenOdd_row(make_fields($key, $val), $i % 2);
+		continue;
+	}
 
-    if (isset($val["type"]) && $val["type"] === 'block_end') {
-    	echo evenOdd_row(make_fields($key, $val), $i++ % 2);
-    	echo "\n</table>";
-    	continue;
-    }
+	if (isset($val["type"]) && $val["type"] === 'block_end') {
+		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
+		echo "\n</table>";
+		continue;
+	}
 
-    if (isset($val["type"]) && $val["type"] === 'subgroup') {
-        if($inst_type == 'easy' && !isset($val["inst_type"])) {
-	        $visibility = 'none';
-	    }
-	    else {
-	        $visibility =  $val['display'];
-	    }
+	if (isset($val["type"]) && $val["type"] === 'subgroup') {
+		if($inst_type == 'easy' && !isset($val["inst_type"])) {
+			$visibility = 'none';
+		}
+		else {
+			$visibility =  $val['display'];
+		}
 
-    	echo "\n<div id=\"$key\" style=\"display: $visibility\">";
-    	echo "\n\t<div class=\"g-subgroup center\">{$val['title']}</div>";
-    	if (isset($val['desc'])) {
-    	    echo "\n\t<div>{$val['desc']}</div>";
-    	}
-    	continue;
-    }
+		echo "\n<div id=\"$key\" style=\"display: $visibility\">";
+		echo "\n\t<div class=\"g-subgroup center\">{$val['title']}</div>";
+		if (isset($val['desc'])) {
+			echo "\n\t<div>{$val['desc']}</div>";
+		}
+		continue;
+	}
 
-    if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
-        echo "\n</div>";
-        continue;
-    }
+	if (isset($val["type"]) && $val["type"] === 'subgroup_end') {
+		echo "\n</div>";
+		continue;
+	}
 
 	if (isset($val["type"]) && $val["type"] === 'group_start') {
-	    if($inst_type == 'easy' && !isset($val["inst_type"])) {
-	        $visibility = 'none';
-	    }
-	    else {
-	        $visibility = $val["default"];
-	    }
+		if($inst_type == 'easy' && !isset($val["inst_type"])) {
+			$visibility = 'none';
+		}
+		else {
+			$visibility = $val["default"];
+		}
 
 		echo "\n<div id=\"$key\" style=\"display: {$visibility}\">";
 		echo make_separator($key, $val);
@@ -184,35 +185,36 @@ foreach ($constants as $key => $val) {
 	$preserve[$key] = true;
 
 	if(!empty($visibilityKeyword) && isset($val[$visibilityKeyword]) &&
-	  $val[$visibilityKeyword] != $visibilityValue) {
-        $val["type"] = 'hidden';
-        $val["persistent"] = true;
+	    $val[$visibilityKeyword] != $visibilityValue)
+	{
+		$val["type"] = 'hidden';
+		$val["persistent"] = true;
 	}
 
 	/* if the variable is hidden, lock it in as we don't want to use previous values*/
 	if (isset($val["type"]) && $val["type"] === 'hidden') {
-	    if (!empty($val["persistent"]) && isset($gallery->app->$key)) {
-	        $val["value"] = $gallery->app->$key;
-	    }
-	    elseif (is_array($val["value"])) {
-	        $key = $key."[]";
-	        $val["value"] = $val["value"][0];
-	    }
+		if (!empty($val["persistent"]) && isset($gallery->app->$key)) {
+			$val["value"] = $gallery->app->$key;
+		}
+		elseif (is_array($val["value"])) {
+			$key = $key."[]";
+			$val["value"] = $val["value"][0];
+		}
 
-	    if (ereg("^(..*)\[.*\]$", $key, $matches)) {
-	        unset($preserve[$key]);
-	        $preserve[$matches[1]] = true;
-	        unset($onThisPage[$key]);
-	        $onThisPage[$matches[1]] = true;
-	    }
+		if (ereg("^(..*)\[.*\]$", $key, $matches)) {
+			unset($preserve[$key]);
+			$preserve[$matches[1]] = true;
+			unset($onThisPage[$key]);
+			$onThisPage[$matches[1]] = true;
+		}
 
-	    list($f1, $f2) = make_fields($key, $val);
-	    echo $f2;
+		list($f1, $f2) = make_fields($key, $val);
+		echo $f2;
 	}
 	else {
-	    if (!isset($val["type"]) || $val["type"] !== 'block_element') {
-            echo "\n<table class=\"g-setup-fields\">";
-	    }
+		if (!isset($val["type"]) || $val["type"] !== 'block_element') {
+			echo "\n<table class=\"g-setup-fields\">";
+		}
 		/* Support $app-> for backwards compatibility */
 		if (isset($app->$key)) {
 			$val["value"] = $app->$key;
@@ -254,13 +256,13 @@ foreach ($constants as $key => $val) {
 		}
 		else {
 			$val['value'] = '';
-        }
+		}
 
 		echo evenOdd_row(make_fields($key, $val), $i++ % 2);
 	}
 
 	if (!isset($val['type']) || ($val['type'] !== 'hidden' && $val['type'] !== 'block_element')) {
-	    echo "\n</table>";
+		echo "\n</table>";
 	}
 }
 ?>

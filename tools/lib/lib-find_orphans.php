@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id: lib-find_orphans.php 14282 2006-08-12 00:46:01Z jenst $
  */
-?>
-<?php
 
 function attachOrphanedAlbums($orphans) {
 	global $albumDB;

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,10 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
   * @package setup
-*/
+ */
 
 /**
  * We assume setup/init.php was loaded !
@@ -44,7 +43,8 @@ $outfile = GALLERY_CONFDIR . '/config.php';
 if ($fd = @fs_fopen($outfile, "a")) {
 	fwrite($fd, $gallery->session->configData);
 	fclose($fd);
-} else {
+}
+else {
 	fail($outfile);
 	return;
 }
@@ -53,97 +53,92 @@ if ($fd = @fs_fopen($outfile, "a")) {
  * Process the .htaccess file if present.
  */
 if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
-    /* Read the .htaccess file */
-    $htaccess = file(GALLERY_CONFDIR . '/.htaccess');
-    $htaccess_save = array();
-    $old_htaccess = true;
-    $skipping = false;
-    foreach ($htaccess as $line) {
-        if ($skipping && trim($line) == $end_string) {
-            $skipping = false;
-        } else if ($skipping) {
-            continue;
-        } else if (trim($line) == $start_string) {
-            $skipping = true;
-            $old_htaccess = false;
-        } else {
-            $htaccess_save[] = $line;
-        }
-    }
-    if ($old_htaccess) {
-        $htaccess_save=array();
-    }
+	/* Read the .htaccess file */
+	$htaccess = file(GALLERY_CONFDIR . '/.htaccess');
+	$htaccess_save = array();
+	$old_htaccess = true;
+	$skipping = false;
+	foreach ($htaccess as $line) {
+		if ($skipping && trim($line) == $end_string) {
+			$skipping = false;
+		}
+		else if ($skipping) {
+			continue;
+		}
+		else if (trim($line) == $start_string) {
+			$skipping = true;
+			$old_htaccess = false;
+		} else {
+			$htaccess_save[] = $line;
+		}
+	}
 
-    /*
-     * Begin the .htaccess file
-     */
-    $outfile = GALLERY_CONFDIR . '/.htaccess';
+	if ($old_htaccess) {
+		$htaccess_save=array();
+	}
 
-    if ($fd = @fs_fopen($outfile, "w")) {
-        fwrite($fd, "$start_string\n");
-        fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
-        fwrite($fd, "# Note: still under development, so format may change.\n");
-        fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
-        fclose($fd);
-    }
+	/*
+	 * Begin the .htaccess file
+	 */
+	$outfile = GALLERY_CONFDIR . '/.htaccess';
 
-    /*
-     * Write the php_value lines, if they're permissable in the user's
-     * environment..
-     */
-    if (isset($GALLERY_PHP_VALUE_OK)) {
-        $htaccess = file("php_value.template");
-        if ($fd = @fs_fopen($outfile, "a")) {
-            foreach ($htaccess as $line) {
-                if (!ereg('^#', $line)) {
-                    eval("\$line = \"$line\";");
-                    fwrite($fd, $line);
-                }
-            }
-            fclose($fd);
-        }
-    }
+	if ($fd = @fs_fopen($outfile, "w")) {
+		fwrite($fd, "$start_string\n");
+		fwrite($fd, "# (Automatically generated.  Do not edit this section)\n");
+		fwrite($fd, "# Note: still under development, so format may change.\n");
+		fwrite($fd, "# If you edit this file, make a backup before runnng the Config. Wizard.\n\n");
+		fclose($fd);
+	}
 
-    /*
-     * Write the mod_rewrite lines, if that mod is available.
-     */
-    if ($GALLERY_REWRITE_OK) {
-        $htaccess = file("mod_rewrite.template");
-        if ($fd = @fs_fopen($outfile, "a")) {
-            foreach ($htaccess as $line) {
-                // If the gallery is in the root directory, then we need to
-                // make sure the .htaccess doesn't end up with "RewriteBase \/".
-                if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
-                    continue;
-                }
-                if (!ereg('^#', $line)) {
-                    eval("\$line = \"$line\";");
-                    fwrite($fd, $line);
-                }
-            }
-            fclose($fd);
-        }
-    }
+	/*
+	 * Write the php_value lines, if they're permissable in the user's
+	 * environment..
+	 */
+	if (isset($GALLERY_PHP_VALUE_OK)) {
+		$htaccess = file("php_value.template");
+		if ($fd = @fs_fopen($outfile, "a")) {
+			foreach ($htaccess as $line) {
+				if (!ereg('^#', $line)) {
+					eval("\$line = \"$line\";");
+					fwrite($fd, $line);
+				}
+			}
+			fclose($fd);
+		}
+	}
 
-    /*
-     * End the .htaccess file gallery section
-     */
+	// Write the mod_rewrite lines, if that mod is available.
+	if ($GALLERY_REWRITE_OK) {
+		$htaccess = file("mod_rewrite.template");
+		if ($fd = @fs_fopen($outfile, "a")) {
+			foreach ($htaccess as $line) {
+				// If the gallery is in the root directory, then we need to
+				// make sure the .htaccess doesn't end up with "RewriteBase \/".
+				if ($GALLERY_URL === '\\' && ereg('RewriteBase', $line)) {
+					continue;
+				}
+				if (!ereg('^#', $line)) {
+					eval("\$line = \"$line\";");
+					fwrite($fd, $line);
+				}
+			}
+			fclose($fd);
+		}
+	}
 
-    if ($fd = @fs_fopen($outfile, "a")) {
-        fwrite($fd, "$end_string\n");
-        fclose($fd);
-    }
+	// End the .htaccess file gallery section
+	if ($fd = @fs_fopen($outfile, "a")) {
+		fwrite($fd, "$end_string\n");
+		fclose($fd);
+	}
 
-    /*
-     * Write the preserved data back to the .htaccess file
-     */
-
-    if ($fd = @fs_fopen($outfile, "a")) {
-        foreach ($htaccess_save as $line) {
-            fwrite($fd, $line);
-        }
-        fclose($fd);
-    }
+	// Write the preserved data back to the .htaccess file
+	if ($fd = @fs_fopen($outfile, "a")) {
+		foreach ($htaccess_save as $line) {
+			fwrite($fd, $line);
+		}
+		fclose($fd);
+	}
 
 }
 
@@ -151,7 +146,6 @@ if(fs_is_writable(GALLERY_CONFDIR . '/.htaccess')) {
  * Don't require UserDB before we've written and included config.php or it will
  * have a cow when it tries to verify that the $gallery->app->userDir exists.
  */
-
 include(GALLERY_BASE . '/config.php');
 include_once(GALLERY_BASE . '/classes/UserDB.php');
 include_once(GALLERY_BASE . '/classes/gallery/UserDB.php');
@@ -171,7 +165,7 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 			$admin->setFullName("Administrator");
 		}
 		if (!$admin->getEmail() && isset($adminEmail)) {
-       			$admin->setEmail($adminEmail);
+			$admin->setEmail($adminEmail);
 		}
 		$admin->setCanCreateAlbums(true);
 	}
@@ -181,64 +175,64 @@ if (strlen($gallery->session->configForm->editPassword[2]) > 0) {
 $messages = array();
 
 if (getOS() != OS_WINDOWS) {
-    $messages[] = array(
-        'type' => 'information',
-        'text' => gTranslate('config', "We suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.")
-    );
+	$messages[] = array(
+		'type' => 'information',
+		'text' => gTranslate('config', "We suggest that you run 'secure.sh', or chmod your .htaccess and config.php to 644 for increased security.")
+	);
 }
 
 /* Inform the user that their gallery is not secure until they remove the 'resetadmin' file */
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {
-        $messages[] = array(
-        'type' => 'warning',
-        'text' => sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
-    );
+	$messages[] = array(
+		'type' => 'warning',
+		'text' => sprintf(gTranslate('config', "You must remove the '%s' file from the setup directory to make your Gallery configuration secure"), "resetadmin")
+	);
 }
 
 /* Begin HTML Output */
 ?>
 <div class="g-header">
-    <div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
+	<div class="g-pagetitle"><?php echo gTranslate('config', "Gallery configuration wizard"); ?></div>
 </div>
 
 <div class="g-config">
-    <?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
+	<?php include(GALLERY_BASE . '/includes/setup/stepbar.inc'); ?>
 
-    <div class="g-config-content">
-        <div class="g-config-step floatleft"><?php echo gTranslate('config', "Save"); ?></div>
+	<div class="g-config-content">
+		<div class="g-config-step floatleft"><?php echo gTranslate('config', "Save"); ?></div>
 
-        <div class="clear"></div>
+		<div class="clear"></div>
 
-        <div class="g-config-main">
-        <?php
-            echo infoBox(array(array(
-                'type' => 'success',
-                'text' => gTranslate('config', "Your configuration has been successfully saved!")
-            )), '', false);
+		<div class="g-config-main">
+		<?php
+		echo infoBox(array(array(
+			'type' => 'success',
+			'text' => gTranslate('config', "Your configuration has been successfully saved!")
+		)), '', false);
 
-            echo infoBox($messages, '', false);
-        ?>
-            <div class="g-emphasis" style="margin: 5px 0">
-        <?php
-        	echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
-        	echo '<br>';
-        	echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
-        ?>
-            </div>
+		echo infoBox($messages, '', false);
+		?>
+			<div class="g-emphasis" style="margin: 5px 0">
+		<?php
+		echo gTranslate('config', "You can reconfigure Gallery at any time by re-running this configuration wizard.");
+		echo '<br>';
+		echo gTranslate('config', "It will save your data so you won't have to enter it all again!");
+		?>
+			</div>
 
-        <?php
-        	echo sprintf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
-        		'<a href="http://gallery.sourceforge.net/lists.php">gallery-announce</a>',
-        	       Gallery());
-        ?>
-            <p class="g-emphasis center" style="font-size: large">
-                <a href="../albums.php"><?php echo gTranslate('config', "Enter your Gallery") ?></a>
-            </p>
+		<?php
+		printf(gTranslate('config', "Please subscribe to the %s mailing list. This is a very low volume mailing list that will keep you abreast of important changes in %s.  This is where we announce new versions, important bug fixes and any security issues and their resolution."),
+			'<a href="http://gallery.sourceforge.net/lists.php">gallery-announce</a>',
+		Gallery());
+		?>
+			<p class="g-emphasis center" style="font-size: large">
+				<a href="../albums.php"><?php echo gTranslate('config', "Enter your Gallery") ?></a>
+			</p>
 
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
 </div>
 </body>
 </html>

@@ -756,9 +756,12 @@ class htmlMimeMail
 				// Send it
 				if (!$smtp->send($send_params)) {
 					$this->errors = $smtp->errors;
-					echo gallery_error(gTranslate('Sending mail via smtp method failed with these errors:')) .
-						 '<br>';
-					print_r($smtp->errors);
+					if(isDebugging()) {
+						echo gallery_error(gTranslate('core', "Sending mail via smtp method failed with these errors:") .
+							 '<br>' .
+							 nl2br(implode('<br>', $smtp->errors))
+						);
+					}
 					return false;
 				}
 				return true;

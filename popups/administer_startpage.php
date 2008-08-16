@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,6 @@
  * $Id$
  *
  */
-?>
-<?php
 
 if (!isset($gallery->version)) {
 	require_once(dirname(dirname(__FILE__)) . '/init.php');
@@ -76,7 +74,7 @@ elseif (empty($order)) {
 	echo makeFormIntro('administer_startpage.php', array(), array('type' => 'popup'));
 ?>
 <table>
-<caption"><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
+<caption><?php echo gTranslate('core', "Sort albums on startpage"); ?></caption>
 <?php
 	foreach ($sortOptions as $sortBy => $text) {
 		echo "\n <tr>";

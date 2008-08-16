@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
+ */
 
 /**
  * Functions that provide possibilities to manipulate images
@@ -47,7 +47,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
 	}
 
 	$type = getExtension($src);
-	
+
 	list($width, $height) = getDimensions($src);
 
 	if ($type != 'jpg' && $type != 'png') {
@@ -64,7 +64,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
 
 	/* Check for images smaller then target size, don't blow them up. */
 	if ((empty($target) || ($width <= $target && $height <= $target)) &&
-		(empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs))
+	    (empty($target_fs) || ((int) fs_filesize($src) >> 10) <= $target_fs))
 	{
 		echo debugMessage("&nbsp;&nbsp;&nbsp;". gTranslate('common', "No resizing required."), __FILE__, __LINE__,1);
 
@@ -94,7 +94,7 @@ function resize_image($src, $dest, $target = 0, $target_fs = 0, $keepProfiles = 
 		if (!isset($quality)) {
 			$quality = $gallery->album->fields['last_quality'];
 		}
-		
+
 		processingMsg("&nbsp;&nbsp;&nbsp;". sprintf(gTranslate('common', "Target file size: %d kbytes."), $target_fs)."\n");
 
 		$loop = 0;
@@ -422,9 +422,11 @@ function rotate_image($src, $dest, $target, $type) {
 	$srcFile = fs_import_filename($src, 1);
 
 	$type = strtolower($type);
-	if (!empty($gallery->app->use_jpegtran) && ($type === 'jpg' || $type === 'jpeg')) {
+	if (!empty($gallery->app->use_jpegtran) &&
+	    ($type === 'jpg' || $type === 'jpeg')) 
+	{
 		debugMessage(gTranslate('common', "Using jpegtran for rotation"), __FILE__, __LINE__, 3);
-		
+
 		if (!strcmp($target, '90')) {
 			$args = '-rotate 90';
 		}
@@ -486,8 +488,9 @@ function rotate_image($src, $dest, $target, $type) {
 				}
 
 				exec_wrapper(toPnmCmd($src) . ' | ' .
-				netpbm('pnmflip', $args) .
-				' | ' . fromPnmCmd($out));
+					     netpbm('pnmflip', $args) .
+					     ' | ' . fromPnmCmd($out)
+				);
 
 				// copy exif headers from original image to rotated image
 				if (isset($gallery->app->use_exif)) {
@@ -495,7 +498,7 @@ function rotate_image($src, $dest, $target, $type) {
 					exec_internal(fs_import_filename($path, 1) . " -te $srcFile $outFile");
 				}
 
-				break;
+			break;
 
 			case "ImageMagick":
 				debugMessage(gTranslate('common', "Using ImageMagick for rotation"), __FILE__, __LINE__, 3);
@@ -526,14 +529,14 @@ function rotate_image($src, $dest, $target, $type) {
 
 				$status = exec_wrapper(ImCmd(fs_executable('convert'), '', $srcFile, $destOperator, $outFile));
 
-				break;
+			break;
 
 			default:
 				if (isDebugging()) {
 					echo "<br>". gTranslate('common', "You have no graphics package configured for use!") ."<br>";
 				}
 				return false;
-				break;
+			break;
 		}
 	}
 
@@ -585,7 +588,8 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 			" $offsetX $offsetY $width $height" .
 			" | " .
 			fromPnmCmd($out));
-			break;
+		break;
+
 		case "ImageMagick":
 			if (floor(getImVersion()) < 6) {
 				$repage = "-page +0+0";
@@ -594,7 +598,8 @@ function cut_image($src, $dest, $offsetX, $offsetY, $width, $height) {
 				$repage = "+repage";
 			}
 			exec_wrapper(ImCmd(fs_executable('convert'), '', $srcFile, "-crop ${width}x${height}+${offsetX}+${offsetY} $repage", $outFile));
-			break;
+		break;
+
 		default:
 			if (isDebugging()) {
 				echo "<br>" . gTranslate('common', "You have no graphics package configured for use!") ."<br>";
@@ -643,10 +648,11 @@ function cropImageToRatio($src, $dest, $destSize, $ratio) {
 
 			if($size >0) {
 				$ret = cut_image($src, $dest,
-				$offsetX,
-				$offsetY,
-				$size,
-				$size);
+						$offsetX,
+						$offsetY,
+						$size,
+						$size
+				);
 			}
 			else {
 				debugMessage(gTranslate('common', "No Cropping Done."), __FILE__, __LINE__);
@@ -732,8 +738,8 @@ function fromPnmCmd($file, $quality = NULL) {
 	}
 	else {
 		echo gallery_error(
-				sprintf(gTranslate('common', "Files with type %s are not supported by Gallery with Netpbm."),
-				getExtension($file))
+			sprintf(gTranslate('common', "Files with type %s are not supported by Gallery with Netpbm."),
+			getExtension($file))
 		);
 		return '';
 	}
@@ -813,7 +819,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 			if ($targetSize) {
 				$result = exec_wrapper(toPnmCmd($src) .' | '.
 				netpbm('pnmscale', " -xysize $targetSize $targetSize")  .' | '.
-				fromPnmCmd($dest, $quality)
+			  		fromPnmCmd($dest, $quality)
 				);
 			}
 			else {
@@ -839,7 +845,8 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 					return true;
 				}
 			}
-			break;
+		break;
+
 		case "ImageMagick":
 			/* Set the stripProfiles parameter based on the version of ImageMagick being used.
 			* 6.0.0 changed the parameters.
@@ -893,7 +900,7 @@ function compressImage($src = '', $dest = '', $targetSize = 0, $quality, $keepPr
 
 			return exec_wrapper(ImCmd(fs_executable('convert'), $srcOperator, $srcFile, $destOperator, $destFile));
 		break;
-		
+
 		default:
 			echo debugMessage(gTranslate('common', "You have no graphics package configured for use!"), __FILE__, __LINE__);
 			return false;

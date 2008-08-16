@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id: checks.inc 13795 2006-06-11 14:21:15Z jenst $
  */
-?>
-<?php
 
 /**
  * Defines the checklist and checkpriority for checks in step 1 of the setup.
@@ -101,7 +99,7 @@ $checklist = array(
 		  Gallery(),
 		  "<i>$gallery->version</i>"),
 		'func' => 'check_gallery_version',
-        'optional' => 1,
+		'optional' => 1,
 	),
 	'php' => array(
 		'prompt' => gTranslate('config',"PHP version"),
@@ -121,7 +119,7 @@ $checklist = array(
 		'optional' => 1,
 	),
 	'safe_mode' => array(
-		'prompt' => gTranslate('config',"PHPs safe mode"),
+		'prompt' => gTranslate('config',"PHP's safe mode disabled"),
 		'desc' => gTranslate('config',"Check to see if PHP is running in <b>safe_mode</b>.  Safe Mode is a PHP security feature commonly used in shared environments.  Gallery cannot run when Safe Mode is enabled because it imposes too many restrictions."),
 		'func' => 'check_safe_mode',
 		'fail-safe-mode' => gTranslate('config',"<b>safe_mode</b> is enabled on this server.") .
@@ -142,14 +140,14 @@ $checklist = array(
 		'serious' => 1
 	),
 	'exec' => array(
-		'prompt' => gTranslate('config',"PHPs exec() function"),
+		'prompt' => gTranslate('config',"PHP's exec() function enabled"),
 		'desc' => gTranslate('config',"The <b>exec()</b> function is what Gallery uses to launch programs such as Netpbm, ImageMagick, and jhead.  If <b>exec()</b> is disabled on your server then Gallery will not be able operate."),
 		'func' => 'check_exec',
 		'fail-exec' => gTranslate('config',"The <b>exec()</b> function is disabled on your server.  Gallery will not function with this PHP configuration."),
 		'serious' => 1,
 	),
 	'htaccess' => array(
-		'prompt' => gTranslate('config',".htaccess processed by apache"),
+		'prompt' => gTranslate('config',".htaccess processed by Apache"),
 		'desc' => gTranslate('config',"Allow the Gallery <b>.htaccess</b> file to set application specific configuration options for the Gallery application.  This is controlled by the webserver owner so it's not always possible for you to change it.  The main drawbacks to not having this are that you may not be able to upload files > 2MB (e.g. big ZIP files or movies)."),
 		'func' => 'check_htaccess',
 		'fail-htaccess' => gTranslate('config',"Your webserver is not obeying the 'php_value' lines in your <b>.htaccess</b> file. Try entering the following into your web server's <b>httpd.conf</b> file:") .'<br><pre>' .
@@ -157,7 +155,7 @@ $checklist = array(
 		  "\tAllowOverride Options FileInfo\n" .
 		  "&lt;/Directory&gt;</pre>\n" .
 		  gTranslate('config',"If you are running PHP in CGI mode, this message is unavoidable."),
-        'fail-nohtaccess' => gTranslate('config',"Gallery could not test if your webserver is obeying the 'php_value' lines in your <b>.htaccess</b> as the (original) .htaccess file in your setup folder is missing."),
+		'fail-nohtaccess' => gTranslate('config',"Gallery could not test if your webserver is obeying the 'php_value' lines in your <b>.htaccess</b> as the (original) .htaccess file in your setup folder is missing."),
 		'optional' => 1
 	),
 	'magic-quotes' => array(
@@ -175,9 +173,9 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if your webserver is compiled with <b>mod_rewrite</b>.  This Apache module allows Gallery to use shorter URLs that are easier to read and look nicer when you mail them to your web-challenged relatives.  It's not an essential feature."),
 		'func' => 'check_mod_rewrite',
 		'fail-mod-rewrite' => gTranslate('config',"Either <b>mod_rewrite</b> is not installed or your <b>.htaccess</b> file is not enabled (see above).") .
-            toggleBox('check_mod_rewrite',
-                gTranslate('config', "Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") .
-                    "<pre>\t--enable-module=rewrite</pre>"),
+					toggleBox('check_mod_rewrite',
+					gTranslate('config', "Either way, we'll have to use longer URLs in the Gallery.  If you want to turn it on, first make sure that your <b>.htaccess</b> file is being obeyed. If it still doesn't work, you may need to reconfigure and rebuild Apache with this flag: ") .
+					"<pre>\t--enable-module=rewrite</pre>"),
 		'fail-mod-rewrite-nohtaccess' => gTranslate('config',"Gallery could not test if <b>mod_rewrite</b> is working, as the (original) .htaccess file in your setup folder is missing."),
 		'optional' => 1
 	),
@@ -186,16 +184,16 @@ $checklist = array(
     	'desc' => gTranslate('config',"Check to see if Netpbm is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either Netpbm <b>or</b> ImageMagick installed."),
 		'func' => 'check_graphics',
 		'fail-netpbm' => gTranslate('config',"Netpbm was not found") .
-            toggleBox('checkNetpbm', gTranslate('config',
-                "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
-                $common_messages['getting-netpbm']),
+					toggleBox('checkNetpbm', gTranslate('config',
+					"If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to Netpbm by hand on the following page.  If it's not installed, you have two choices: " ) .
+					$common_messages['getting-netpbm']),
 		'fail-netpbm-partial' => gTranslate('config',"I've found part of Netpbm, but some components are missing (see below).") .
-            toggleBox('fail_netpbm_partial', gTranslate('config',"Perhaps your version of Netpbm is out of date.") . '  ' .
-                $common_messages['getting-netpbm'] .
-                '<p><b> ' . gTranslate('config',"If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page.") .' </b>'
-            ),
-        'open-basedir-note' => $common_messages['open-basedir-active'],
-        'optional' => 1,
+						toggleBox('fail_netpbm_partial', gTranslate('config',"Perhaps your version of Netpbm is out of date.") . '  ' .
+						$common_messages['getting-netpbm'] .
+						'<p><b> ' . gTranslate('config',"If Netpbm is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to Netpbm by hand on the following page.") .' </b>'
+		),
+		'open-basedir-note' => $common_messages['open-basedir-active'],
+		'optional' => 1,
 	),
 	'ImageMagick' => array(
 		'prompt' => gTranslate('config',"ImageMagick installed"),
@@ -203,13 +201,13 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if ImageMagick is installed so that Gallery can manipulate images (rotate, resize, make thumbnails, etc.).  You only need to have either ImageMagick <b>or</b> Netpbm installed."),
 		'func' => 'check_graphics_im',
 		'fail-imagemagick' => gTranslate('config',"ImageMagick was not found.") .
-            toggleBox('fail_imagemagick', gTranslate('config',
-                "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
-            $common_messages['getting-imagemagick']),
+					toggleBox('fail_imagemagick', gTranslate('config',
+					"If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.  If it's not installed, you must install it.  ") .
+					$common_messages['getting-imagemagick']),
 		'fail-imagemagick-partial' => gTranslate('config',"I've found part of ImageMagick, but some components are missing (see below).") .
-            toggleBox('fail_imagemagick_partial',
-                $common_messages['getting-imagemagick'] .
-                '<p><b> ' . gTranslate('config',"If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.") .' </b>'
+						toggleBox('fail_imagemagick_partial',
+						$common_messages['getting-imagemagick'] .
+						'<p><b> ' . gTranslate('config',"If ImageMagick is installed and Gallery isn't finding it automatically that's OK&#8212;you can specify the path to ImageMagick by hand on the following page.") .' </b>'
             ),
 		  'open-basedir-note' => $common_messages['open-basedir-active']
 	),
@@ -219,10 +217,10 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if <b>jhead</b> is installed so that Gallery can examine EXIF headers embedded in images created with most digital cameras."),
 		'func' => 'check_exif',
 		'fail-exif' => gTranslate('config',"jhead was not found.") .
-            toggleBox('check_exif', sprintf(gTranslate('core',
-                 "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
-                '<a href="http://www.sentex.net/~mwandel/jhead/index.html" target="_blank">', '</a>')),
-		'open-basedir-note' => $common_messages['open-basedir-active']
+				toggleBox('check_exif', sprintf(gTranslate('core',
+				"If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself. Jhead is a public domain EXIF parser.  Source, linux binaries, and windows binaries can be found at the %sjhead homepage%s."),
+				'<a href="http://www.sentex.net/~mwandel/jhead/index.html" target="_blank">', '</a>')),
+				'open-basedir-note' => $common_messages['open-basedir-active']
 		),
 	'jpegtran' => array (
 		'prompt' => gTranslate('config',"jpegtran installed"),
@@ -230,9 +228,9 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if <b>jpegtran</b> is installed so that Gallery can perform lossless rotations on JPEG images."),
 		'func' => 'check_jpegtran',
 		'fail-jpegtran' => gTranslate('config',"jpegtran was not found.") .
-            toggleBox('check_jpegtran', sprintf(gTranslate('config', "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."),
-		  '<a href="http://www.ijg.org" target="_blank">', '</a>',
-		  '<a href="http://jpegclub.org/" target="_blank">', '</a>')),
+					toggleBox('check_jpegtran', sprintf(gTranslate('config', "If it's installed and not in the path of the webserver user that's OK&#8212;you can specify the path by hand on the following page.  If it's not installed, you can install it yourself.  Jpegtran is a free tool distributed by the Independent JPEG Group as part of <i>libjpeg</i>.  Source may be found at the %sIJG homepage%s.  Binaries may be found at the %sJPEG Club website%s or in the <i>libjpeg</i> package of Linux distributions."),
+					'<a href="http://www.ijg.org" target="_blank">', '</a>',
+					'<a href="http://jpegclub.org/" target="_blank">', '</a>')),
 		  'open-basedir-note' => $common_messages['open-basedir-active']
 	),
 	'gettext' => array (
@@ -241,7 +239,7 @@ $checklist = array(
 		'desc' => gTranslate('config',"Check to see if PHP is compiled with <b>GNU gettext</b> support for fast translations."),
 		'func' => 'check_gettext',
 		'fail-gettext' => sprintf(gTranslate('config',"Your PHP does not have <b>GNU gettext</b> support installed.  To include it, you'll need to recompile PHP (see the %sPHP docs%s for more information). Multi-language support is still available in Gallery without <b>gettext</b>, but the pages may take slightly longer to load."),
-		  '<a href="http://www.php.net/manual/en/ref.gettext.php" target="_blank">', '</a>')
+					'<a href="http://www.php.net/manual/en/ref.gettext.php" target="_blank">', '</a>')
 	),
 	'gallery-locale' => array (
 		'prompt' => gTranslate('config',"Locales needed for Gallery"),
@@ -254,7 +252,7 @@ $checklist = array(
 		'optional' => 1,
 		'enabled' => (sizeof(gallery_languages()) > 1) ? 'yes' :'no',
 		'desc' => gTranslate('config',"Testing to see which <b>system</b> locales (if any) are absent.") . '<br>'.
-		  gTranslate('config',"These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."),
+				gTranslate('config',"These locales are required to use multilanguage capabilities of Gallery when your PHP has gettext support. They are also needed to format dates and times according to the selected language."),
 		'func' => 'check_absent_locales',
 		'serious' => ( $elawisyl == 'no' ) ? 1 : 0 ,
 		),

@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -60,8 +58,9 @@ if (!empty($newName)) {
 				print "newName=".$newName."<br>";
 				print "oldName=".$oldName."<br>";
 			}
+
 			$parentAlbum = $albumDB->getAlbumByName($parentName);
-			for ($i = 1; $i <= $parentAlbum->numPhotos(1); $i++) {
+			for ($i=1; $i <= $parentAlbum->numPhotos(1); $i++) {
 				if ($parentAlbum->getAlbumName($i) == $oldName) {
 					$parentAlbum->setAlbumName($i,$newName);
 					$parentAlbum->save();
@@ -70,7 +69,7 @@ if (!empty($newName)) {
 			}
 		}
 		// then we need to update the parentAlbumName field in the children
-		for ($i = 1; $i <= $gallery->album->numPhotos(1); $i++) {
+		for ($i=1; $i <= $gallery->album->numPhotos(1); $i++) {
 			if ($gallery->album->isAlbum($i)) {
 				$childAlbum = $gallery->album->getNestedAlbum($i);
 				$childAlbum->fields['parentAlbumName'] = $newName;
@@ -80,10 +79,7 @@ if (!empty($newName)) {
 		$dismiss = 1;
 	}
 	else {
-		echo infoBox(array(array(
-			'type' => 'error',
-			'text' => gTranslate('core', "There is already an album with that name!")))
-		);
+		echo gallery_error(gTranslate('core', "There is already an album with that name!"));
 	}
 
 	// Dismiss and reload if requested

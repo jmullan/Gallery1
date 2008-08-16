@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * @package setup
  */
@@ -33,6 +32,10 @@
 require(dirname(__FILE__) . '/init.php');
 
 gallerySanityCheck();
+
+// Require a user to be logged in before allowing them to configure the server.
+// If Gallery has not been configured before, allow to continue without logging in
+configLogin(basename(__FILE__));
 
 list($preserve, $go_next, $go_back, $next_page, $back_page, $this_page, $go_defaults, $refresh) =
 	getRequestVar(array('preserve', 'go_next', 'go_back', 'next_page', 'back_page', 'this_page', 'go_defaults', 'refresh'));
@@ -65,10 +68,6 @@ doctype();
 
 <body onload="enableButtons()">
 <?php
-
-// Require a user to be logged in before allowing them to configure the server.
-// If Gallery has not been configured before, allow to continue without logging in
-configLogin(basename(__FILE__));
 
 if (isset($go_defaults) || isset($refresh)) {
 	$setup_page = $this_page;
@@ -116,12 +115,12 @@ if (!isset($setup_page)) {
 }
 
 $steps = array(
-	'welcome' => gTranslate('config', "Welcome"),
-	'check' => gTranslate('config', "1- Installation Check"),
-	'constants' => gTranslate('config', "2 - Settings"),
-	'defaults' => gTranslate('config', "3 - Defaults"),
-	'confirm' => gTranslate('config', "4 - Confirm"),
-	'write' => gTranslate('config', "5 - Save")
+	'welcome'	=> gTranslate('config', "Welcome"),
+	'check'		=> gTranslate('config', "1- Installation Check"),
+	'constants'	=> gTranslate('config', "2 - Settings"),
+	'defaults'	=> gTranslate('config', "3 - Defaults"),
+	'confirm'	=> gTranslate('config', "4 - Confirm"),
+	'write'		=> gTranslate('config', "5 - Save")
 );
 
 ?>

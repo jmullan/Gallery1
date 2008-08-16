@@ -1,7 +1,7 @@
 <?php
 /*
 * Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
+* Copyright (C) 2000-2008 Bharat Mediratta
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
 *
 * $Id$
 */
-?>
-<?php
+
 set_time_limit(120);
 require(dirname(__FILE__) . '/init.php');
 require(dirname(__FILE__) . '/lib/usage.php');
@@ -88,7 +87,6 @@ includeLayout('breadcrumb.inc');
 printInfoBox($messages);
 
 if ($gallery->user->isAdmin()) {
-
 	echo "<br>";
 	echo gTranslate('core', "Getting the filesystem usage may take a long time! Choose which usage you want to see.");
 	echo makeFormIntro('usage.php');

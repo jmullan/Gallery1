@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -79,8 +77,8 @@ if ($cmd == 'login') {
 		}
 		else {
 			$messages[] = array(
-			'type' => 'error',
-			'text' => gTranslate('core', "Username and Password are not correct.")
+				'type' => 'error',
+				'text' => gTranslate('core', "Username and Password are not correct.")
 			);
 			$returnval = "Login Incorrect";
 			$WIZARD_BUTTONS="false,true,false";
@@ -91,7 +89,7 @@ if ($cmd == 'login') {
 			'type' => 'error',
 			'text' => gTranslate('core', "Please enter username and password.")
 		);
-		
+
 		$returnval = "Login Incorrect";
 		$WIZARD_BUTTONS="false,true,false";
 	}
@@ -140,7 +138,7 @@ for ($i=1; $i<=$mynumalbums; $i++) {
 	$myAlbum=$albumDB->getAlbum($gallery->user, $i);
 	$albumName = $myAlbum->fields['name'];
 	$albumTitle = $myAlbum->fields['title'];
-	
+
 	if ($gallery->user->canAddToAlbum($myAlbum)) {
 		echo "\t<option ";
 		if (isset($album) && $albumName == $album) echo "selected ";
@@ -226,7 +224,7 @@ if ($cmd == 'select-album') {
 			'type' => 'warning',
 			'text' => gTranslate('core', "Press the 'Back' button and try again!")
 		);
-		
+
 		echo infoBox($messages);
 		$ONBACK_SCRIPT="window.location.href = \"publish_xp.php?cmd=fetch-albums\";";
 		$WIZARD_BUTTONS="true,false,true";
@@ -404,8 +402,7 @@ if (!strcmp($cmd, "add-item")) {
 		echo "SUCCESS";
 	}
 }
-?>
-<?php
+
 function forceQuestionMark($url) {
 	if (!strstr("?", $url)) {
 		$url .= "?";

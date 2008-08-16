@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 class AlbumItem {
 	var $image;
 	var $thumbnail;
@@ -70,8 +69,9 @@ class AlbumItem {
 
 	function getUploadDate() {
 		if (!$this->uploadDate) {
-			return 0;
-		} else {
+			return false;
+		}
+		else {
 			return $this->uploadDate;
 		}
 	}
@@ -400,7 +400,8 @@ class AlbumItem {
 						}
 						return;
 					}
-				} else {
+				}
+				else {
 					$name = $this->image->name;
 					$tag = $this->image->type;
 				}
@@ -429,7 +430,8 @@ class AlbumItem {
 					);
 				}
 				fs_unlink("$dir/$name.tmp.$tag");
-			} elseif ($srcitem->isMovie()) {
+			}
+			elseif ($srcitem->isMovie()) {
 				if (fs_file_exists($gallery->app->movieThumbnail)) {
 					$tag = substr(strrchr($gallery->app->movieThumbnail, '.'), 1);
 					$ret = resize_image(
@@ -480,7 +482,8 @@ class AlbumItem {
 					}
 				}
 			}
-		} else {
+		}
+		else {
 			if (is_object($this->highlightImage)) {
 				$this->highlightImage->simpleDelete($dir);
 				$this->highlightImage = null;
@@ -520,6 +523,7 @@ class AlbumItem {
 			return 0;
 		}
 	}
+
 	function getDimensions($full = 0) {
 		if ($this->image) {
 			return $this->image->getDimensions(0, $full);
@@ -655,7 +659,9 @@ class AlbumItem {
 						"$dir/$name.sized.$type",
 						$gallery->app->watermarkDir . '/' . $wmName,
 						$gallery->app->watermarkDir . '/' . $wmAlphaName,
-						$wmAlign, $wmAlignX, $wmAlignY
+						$wmAlign,
+						$wmAlignX,
+						$wmAlignY
 					);
 				}
 			}
@@ -889,7 +895,7 @@ class AlbumItem {
 			else {
 				$attrList['class'] = 'g-title';
 			}
-			
+
 			$attrs = generateAttrs($attrList);
 
 			return "<span$attrs>". gTranslate('core', "Requested item has no highlight!") .'</span>';
@@ -1109,6 +1115,7 @@ class AlbumItem {
 			return false;
 		}
 	}
+
 	function getEmailMeListUid ($type) {
 		if (isset( $this->emailMe[$type])) {
 			return array_keys($this->emailMe[$type]);
@@ -1116,6 +1123,7 @@ class AlbumItem {
 			return array();
 		}
 	}
+
 	function setEmailMe($type, $user) {
 		if ($this->getEmailMe($type, $user)) {
 			return;
@@ -1123,11 +1131,13 @@ class AlbumItem {
 		$uid = $user->getUid();
 		$this->emailMe[$type][$uid]=true;
 	}
+
 	function unsetEmailMe($type, $user) {
 		if (!$this->getEmailMe($type, $user)) {
 			return;
 		}
 		$uid = $user->getUid();
+		
 		unset($this->emailMe[$type][$uid]);
 	}
 

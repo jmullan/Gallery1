@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /*
  * This page is designed to work in standalone mode AND to be included
  * from init.php, so be certain not to require init.php twice.  We
@@ -33,6 +32,7 @@
 if (!isset($UPGRADE_LOOP)) {
 	$UPGRADE_LOOP = 0;
 }
+
 $UPGRADE_LOOP++;
 if ($UPGRADE_LOOP == 2) {
 	return;
@@ -54,8 +54,9 @@ if ($gallery->session->albumName) {
 
 // Hack check
 if (!$gallery->user->isAdmin() && empty($upgrade_albumname)) {
-		echo _("You are not allowed to perform this action!");
-		exit;
+	printPopupStart(gTranslate('core', "Upgrade Albums"), '', 'left');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
 
 $albumDB = new AlbumDB(FALSE);
@@ -94,8 +95,8 @@ function process($album = null) {
 			$album = $albumDB->getAlbumByName($albumName);
 
 			echo "\n<div class=\"g-emphasis\">".
-				 sprintf(gTranslate('core', "Album: %s"), $album->fields["title"]) .
-				 "</div>";
+				sprintf(gTranslate('core', "Album: %s"), $album->fields["title"]) .
+				"</div>";
 
 			// Upgrade the album
 			if ($album->integrityCheck()) {
@@ -154,18 +155,21 @@ elseif (!isset($actionDone)) {
 		$album = $albumDB->getAlbumByName($albumName);
 
 		$updateList->addElement(array(
-		  'content' => $album->fields["title"],
-		  'cellArgs' => array('class' => 'g-emphasis')));
+			'content' => $album->fields["title"],
+			'cellArgs' => array('class' => 'g-emphasis'))
+		);
 
 		$updateList->addElement(array(
-			'content' => gTranslate('core', "One item", "%s items", $album->numPhotos(1), gTranslate('core', "Empty"),true),
-			'cellArgs' => array('class' => 'right')));
+			'content' => gTranslate('core', "One item", "%d items", $album->numPhotos(1), gTranslate('core', "Empty"),true),
+			'cellArgs' => array('class' => 'right'))
+		);
 
 		$updateList->addElement(array('content' => galleryLink(
 			makeGalleryUrl('upgrade_album.php', array(
 				'upgrade_albumname' => $album->fields['name'],
 				'type' => 'popup')),
-			gTranslate('core', "upgrade"), '', '', true)));
+			gTranslate('core', "upgrade"), '', '', true))
+		);
 	}
 
 	echo $updateList->render();

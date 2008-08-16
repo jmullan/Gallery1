@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
-printPopupStart(gTranslate('config', "Check Mail"),'', 'left');
+printPopupStart(gTranslate('config', "Check Mail"));
 
 configLogin(basename(__FILE__));
 
@@ -67,7 +65,7 @@ if (isset($submit)) {
 	}
 }
 else {
-	echo '<div class="g-sitedesc">';
+	echo '<div class="g-sitedesc left">';
 	print sprintf(gTranslate('config', "This enables you to confirm that email is working correctly on your system.  Submit your email address below, and an email will be sent to you. If you receive it, then you know that mail is working on your system"));
 	echo '</div>';
 	if (getOS() != OS_WINDOWS) {

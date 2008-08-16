@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id: albums.tpl.default 13820 2006-06-14 12:03:36Z jenst $
  */
-?>
-<?php
+
 if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
 	echo 'Security violation while including template for startpage.';
 	exit;
@@ -28,14 +27,17 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
 
 /** Display settings **/
 
-/* Show created / last change date	*/
+// Show created / last change date
 $showCreationDate	= true;
 
-/** Show number of items			*/
-$numItems			= true;
+// Show number of items
+$numItems		= true;
 
 /** Enf of Settings **/
+
 $baseUrl = getGalleryBaseUrl();
+
+$cells = 2;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -50,7 +52,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 
 	rootRSSLink();
 	if (isset($dynsubalbumTree)) {
-		echo "\n<link rel=\"stylesheet\" type=\"text/css\" href=\"$baseUrl/css/yui/folders/tree.css\">";
+		echo _getStyleSheetLink('yui/folders/tree');
 	}
 ?>
 </head>
@@ -61,7 +63,7 @@ includeTemplate("gallery.header", '', 'classic');
 
 if (isset($dynsubalbumTree)) {
 	if ($GALLERY_EMBEDDED_INSIDE) {
-		echo "\n<link rel=\"stylesheet\" type=\"text/css\" href=\"$baseUrl/css/yui/folders/tree.css\">";
+		echo _getStyleSheetLink('yui/folders/tree');
 	}
 ?>
 	<script type="text/javascript" src="<?php echo $baseUrl; ?>/js/yui/yahoo-min.js"></script>
@@ -86,7 +88,7 @@ if ($navigator["maxPages"] > 1) {
 echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
-$cells = 2;
+
 ?>
 
 <!-- album table begin -->
@@ -120,7 +122,7 @@ $cells = 2;
 				 </td>
 				 <td class="g-title-right"></td>
 			  </tr>
-			</table>
+		  </table>
 
 <?php if(!empty($adminAlbumCommands)) : ?>
     		<!-- Begin adminAlbumCommands -->
@@ -189,7 +191,7 @@ $cells = 2;
 <?php endif ?>
 
 <?php
-if ($navigator["maxPages"] > 1) {
+if ($navigator['maxPages'] > 1) {
 	echo '<div class="g-navbar-bottom">';
 	includeLayout('navigator.inc');
 	echo '</div>';
@@ -201,7 +203,7 @@ if ($navigator["maxPages"] > 1) {
 
 require_once(GALLERY_BASE .'/templates/info_donation-block.tpl.default');
 
-includeTemplate("overall.footer");
+includeTemplate('overall.footer');
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

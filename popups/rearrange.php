@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,13 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 if (!isset($gallery->album) || !$gallery->user->canWriteToAlbum($gallery->album)) {
-		echo gTranslate('core', "You are not allowed to perform this action!");
-		exit;
+	printPopupStart(gTranslate('core', "Rearrange Items"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
 
 $rearrList = getRequestVar('rearrList');
@@ -45,7 +44,6 @@ $numPhotos = $gallery->album->numPhotos(1);
 doctype();
 
 ?>
-
 <html>
 <head>
   <title><?php printf(gTranslate('core', "Rearrange items in album: %s"),$gallery->album->fields["title"]); ?></title>

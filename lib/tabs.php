@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 include_once(dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
 
 /**
@@ -29,18 +28,18 @@ include_once(dirname(dirname(__FILE__)) . '/js/sectionTabs.js.php');
  * It analyses a given Array which is in config_data Style:
  *
  * "<group_key>" => array (
- *			"type"	 =>
- *			"name"	 =>
- *			"default"  =>
- *			"title"	   =>
- *			"desc"	   =>
+ *			'type'	 =>
+ *			'default'  =>
+ *			'title'	   =>
+ *			'desc'	   =>
+ *			'contains_required'
  * )
  *
- * "type"		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
- * "default"	: Indicates whether the group is visible or not. Possible values: 'inline', 'none'.
- * "title"		: When the group is visible, this is displayed as tab title aswell as the title over the content.
- * "desc"		: This optional Description is displayed under the title.
- * "contains_required"	: Indicates that this Group contains field that are required
+ * 'type'		: Indicates that a group starts or ends. Possible values: 'group_start' , 'group_end'.
+ * 'default'		: Indicates whether the group is visible or not. Possible values: 'inline', 'none'.
+ * 'title'		: When the group is visible, this is displayed as tab title aswell as the title over the content.
+ * 'desc'		: This optional Description is displayed under the title.
+ * 'contains_required'	: Indicates that this Group contains field that are required
  *
  * Note: - The first group which default is 'inline' will the group that is selected when opening the Page.
  *	 - You always need a group_end for a group. Otherwise everything below will belong to the group.
@@ -88,9 +87,9 @@ function makeSectionTabs($array, $initialtab = '', $sortByTitle = false, $visibi
 			$text .= '<span class="g-littlered">*</span>';
 		}
 
-		$attrList['id']			= "tab_$name";
+		$attrList['id']		= "tab_$name";
 		$attrList['onClick']	= "section_tabs.toggle('$name')";
-		$attrList['title']		= $cell['title'];
+		$attrList['title']	= $cell['title'];
 
 		echo galleryLink('', $text, $attrList);
 	}

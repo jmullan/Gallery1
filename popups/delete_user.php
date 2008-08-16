@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,15 +19,14 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($formaction, $unames) = getRequestVar(array('formaction', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Delete User"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -45,13 +44,11 @@ printPopupStart(gTranslate('core', "Delete User"), '', 'left');
 
 foreach ($unames as $key => $user) {
 	if ($gallery->user->getUsername() == $user) {
-		echo infobox(array(array(
-		  'type' => 'information',
-		  'text' => gTranslate('core', "You can't delete your own account! It was removed from the list.")))
-		);
+		echo gallery_info(gTranslate('core', "You can't delete your own account! It was removed from the list."));
 		unset($unames[$key]);
 	}
 }
+
 if (! empty($unames)) {
 	echo "\n<p>". gTranslate('core', "Users can have special permissions in each album.") .
 	gTranslate('core', "If you delete this user, any such permissions go away.", "If you delete these users, any permissions will go away.", sizeof($unames)) .
@@ -62,7 +59,7 @@ if (! empty($unames)) {
 echo "\n<center>";
 echo makeFormIntro('delete_user.php',
 	array('name' => 'deleteuser_form',
-		  'onsubmit' => "deleteuser_form.deleteButton.disabled='true'"),
+	      'onsubmit' => "deleteuser_form.deleteButton.disabled='true'"),
 	array('type' => 'popup')
 );
 
@@ -75,7 +72,8 @@ if (! empty($unames)) {
 <br><br>
 <input type="submit" name="deleteButton" value="<?php echo gTranslate('core', "Delete") ?>" onclick="deleteuser_form.formaction.value='delete'" class="g-button">
 <?php
-} else {
+}
+else {
 	echo gTranslate('core', "No user available for deletion.");
 }
 ?>
@@ -83,7 +81,8 @@ if (! empty($unames)) {
 <input type="submit" name="cancel" value="<?php echo gTranslate('core', "Back to usermanagement") ?>" onclick="deleteuser_form.formaction.value='back'" class="g-button">
 </form>
 </center>
-</div>
+
+<?php includeTemplate('overall.footer'); ?>
 
 </body>
 </html>

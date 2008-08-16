@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file Copyright (C) 2003-2004 Joan McGalliard
  *
@@ -21,17 +21,14 @@
  *
  * $Id$
  */
-?>
-<?php
-// ###################################################################
-// # IBPS E-C@ard for Gallery		   Version 1					#
-// # Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de	  #
-// # Ported for Gallery By freenik	  webmaster@cittadipolicoro.com#
-// ###################################################################
 
-/* Modified by Jens Tkotz <jens@peino.de> */
-?>
-<?php
+// ######################################################################
+// # IBPS E-C@ard for Gallery		   Version 1		        #
+// # Copyright 2002 IBPS Friedrichs	 info@ibps-friedrichs.de	#
+// # Ported for Gallery By freenik	  webmaster@cittadipolicoro.com #
+// ######################################################################
+
+/* Modified by Jens Tkotz */
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 

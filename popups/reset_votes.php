@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  * This file by Joan McGalliard.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +20,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -31,19 +29,21 @@ if (isset($id)) {
 		$index = $gallery->album->getPhotoIndex($id);
 }
 
+printPopupStart(gTranslate('core', "Reset Voting"));
+
 // Hack check
-if (!$gallery->user->canDeleteFromAlbum($gallery->album) && !$gallery->album->isItemOwner($gallery->user, $index)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
+    !$gallery->album->isItemOwner($gallery->user, $index))
+{
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
-printPopupStart(gTranslate('core', "Reset Voting"));
-
 if (!empty($confirm)) {
-	$gallery->album->fields["votes"]=array();
+	$gallery->album->fields['votes'] = array();
 	$gallery->album->save(array(i18n("All votes removed")));
 	dismissAndReload();
-	return;
+	exit;
 }
 ?>
 
@@ -59,7 +59,7 @@ echo gButton('cancel', gTranslate('core', "_Cancel"), 'parent.close()');
 ?>
 
 </form>
-</div>
 
+<?php includeTemplate('overall.footer'); ?>
 </body>
 </html>

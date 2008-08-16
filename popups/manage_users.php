@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -83,13 +81,13 @@ foreach ($gallery->userDB->getUidList() as $uid) {
 		}
 	}
 	if(empty($memberOf)) {
-		$memberOf = gTranslate('core', "<no group>");
+		$memberOf = gTranslate('core', "&lt;no group&gt;");
 	}
 
 	$tmpUserName = $tmpUser->getUsername();
 	$tmpUserEmail = $tmpUser->getEmail();
 	if(empty($tmpUserEmail)) {
-		$tmpUserEmail = gTranslate('core', "<No email set>");
+		$tmpUserEmail = gTranslate('core', "&lt;No email set&gt;");
 	}
 
 	$isAdmin = $tmpUser->isAdmin() ? gTranslate('core', "yes") : gTranslate('core', "no");
@@ -194,7 +192,6 @@ echo gButton('done', gTranslate('core', "_Done"), 'parent.close()');
 			modifyButton.className	= 'g-buttonDisable';
 			//deleteButton.disabled	= true;
 			deleteButton.className	= 'g-buttonDisable';
-
 		}
 		else if (selected > 1) {
 			modifyButton.disabled	= true;

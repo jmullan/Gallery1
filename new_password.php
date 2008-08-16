@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -95,13 +93,13 @@ if (!empty($save)) {
 	}
 }
 
-$allowChange['uname']		 = false;
-$allowChange['email']		 = true;
-$allowChange['fullname']	 = true;
-$allowChange['password']	 = true;
-$allowChange['old_password'] = false;
-$allowChange['send_email']	 = false;
-$allowChange['member_file']	 = false;
+$allowChange['uname']		= false;
+$allowChange['email']		= true;
+$allowChange['fullname']	= true;
+$allowChange['password']	= true;
+$allowChange['old_password']	= false;
+$allowChange['send_email']	= false;
+$allowChange['member_file']	= false;
 
 printPopupStart(gTranslate('core', "Make New Password"));
 
@@ -131,13 +129,7 @@ include(dirname(__FILE__) . '/layout/userData.inc');
 <?php echo gButton('cancel', gTranslate('core', "_Cancel"), "location.href='". $gallery->app->photoAlbumURL ."'"); ?>
 </form>
 
-<script language="javascript1.2" type="text/JavaScript">
-<!--
-// position cursor in top form field
-document.usermodify_form.new_password1.focus();
-//-->
-</script>
-</div>
+<?php includeTemplate('overall.footer'); ?>
 
 </body>
 </html>

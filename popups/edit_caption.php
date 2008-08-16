@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
@@ -34,10 +32,11 @@ list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minute
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album) &&
-	!($gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
-	$gallery->album->getItemOwnerModify()))
+    !($gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
+    $gallery->album->getItemOwnerModify()))
 {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Edit texts"));
+	echo showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -79,13 +78,14 @@ if (isset($save) || isset($saveclose)) {
 				dismissAndReload();
 				exit;
 			}
+
 			$infoMessages[] = array(
 				'type' => 'success',
 				'text' => gTranslate('core', "Successfully saved.")
 			);
 		}
 		else {
-			 $infoMessages[] = array(
+			$infoMessages[] = array(
 				'type' => 'error',
 				'text' => gTranslate('core', "Gallery was not able to save the data.")
 			);
@@ -101,15 +101,16 @@ if (isset($save) || isset($saveclose)) {
 
 printPopupStart(
 	gTranslate('core', "Edit texts"),
-	sprintf(gTranslate('core', "Edit texts for '<i>%s</i>'"), $gallery->album->getCaption($index)));
+	sprintf(gTranslate('core', "Edit texts for '<i>%s</i>'"), $gallery->album->getCaption($index)),'', 'left');
 
 if(isset($save)) {
 	reload();
 }
 
+echo '<p class="center">';
 echo $gallery->album->getThumbnailTag($index);
+echo '</p>';
 
-echo "\n<br>";
 echo infoBox($infoMessages);
 
 echo makeFormIntro('edit_caption.php', array(), array('type' => 'popup'));
@@ -130,7 +131,7 @@ echo makeFormIntro('edit_caption.php', array(), array('type' => 'popup'));
 	<td><textarea name="description" rows="5" cols="38"><?php echo $gallery->album->getdescription($index) ?></textarea></td>
 </tr>
 <tr>
-	<td valign=top><b><?php echo gTranslate('core', "Keywords") ?>:</b></td>
+	<td valign=top><b><?php echo gTranslate('core', "Keywords") ?></b></td>
 	<td><textarea name="keywords" rows="1" cols="38"><?php echo $gallery->album->getKeywords($index) ?></textarea></td>
 </tr>
 
@@ -140,7 +141,6 @@ $translateableFields = translateableFields();
 
 $extra_field_List = $gallery->album->getExtraFields();
 if(!empty($extra_field_List)) {
-
 	foreach ($extra_field_List as $field) {
 ?>
 
@@ -152,6 +152,7 @@ if(!empty($extra_field_List)) {
 		if (in_array($field, array_keys(automaticFieldsList()))) {
 			continue;
 		}
+
 		$value = $gallery->album->getExtraField($index, $field);
 
 		if (in_array($field, array_keys($translateableFields))) {

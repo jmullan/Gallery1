@@ -1,5 +1,13 @@
 $Id$
 
+*************************************************
+*												*
+* If you are using the *nix scripts you need:	*
+* 												*
+* GNU gettext Version 0.12.1					*
+* Recommended Version is 0.16 or higher			*
+*												*
+*************************************************
 
 Here's how to create a new GALLERY translation (1.4.1 or newer)
 
@@ -17,7 +25,8 @@ Here's how to create a new GALLERY translation (1.4.1 or newer)
 
         sh create_po_template.sh
 
-    This requires xgettext version 0.12.1 or later. Normally you will not need to this, because the .pot that comes with the newest gallery should be up-to-date. Please consult with the translation team leaders before creating your own gallery.pot. 
+	Normally you will not need to this, because the .pot that comes with the newest gallery should be up-to-date.
+	Please consult with the translation team leaders before creating your own gallery.pot. 
 
 3.) copy gallery-XXX.pot (po template) to your own .po file.
     Your .po Translation-File has to be named <language>_<COUNTRY>-gallery_<component>.po

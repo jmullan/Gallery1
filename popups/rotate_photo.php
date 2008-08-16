@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,19 +18,19 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * $Id$
-*/
-?>
-<?php
+ */
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $rotate) = getRequestVar(array('index', 'rotate'));
 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album) &&
-	!($gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
-	$gallery->album->getItemOwnerModify())) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
+      ($gallery->album->getItemOwnerModify() &&
+	$gallery->album->isItemOwner($gallery->user->getUid(), $index))))
+{
+	printPopupStart(gTranslate('core', "Rotate/Flip Photo"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -43,12 +43,12 @@ doctype();
   <?php common_header(); ?>
   <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
   <META HTTP-EQUIV="expires" CONTENT="0">
-  </head>
-<body dir="<?php echo $gallery->direction ?>" class="g-popup">
+</head>
+<body class="g-popup">
 <div class="g-header-popup">
   <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Rotate/Flip Photo"); ?></div>
 </div>
-<div class="g-content-popup" align="center">
+<div class="g-content-popup center">
 <?php
 if ($gallery->session->albumName && isset($index)) {
 	if (isset($rotate) && !empty($rotate)) {
@@ -133,8 +133,9 @@ echo $gallery->album->getThumbnailTag($index);
 else {
 	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
-?>
-</div>
 
+includeTemplate('overall.footer');
+
+?>
 </body>
 </html>

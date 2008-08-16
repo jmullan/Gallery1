@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This file by Andrew Lindeman
  *
@@ -21,8 +21,6 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(__FILE__) . "/init.php");
 

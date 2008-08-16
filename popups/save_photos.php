@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,12 +38,7 @@ list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	printPopupStart(clearGalleryTitle(gTranslate('core', "Add items")));
-	printInfoBox(array(array(
-		'type' => 'error',
-		'text' => sprintf(gTranslate('core', "You are not allowed to perform this action!. Please go back to %s."),
-					galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
-	)));
-	includeTemplate('overall.footer');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -190,7 +185,7 @@ if (!empty($urls)) {
 		if (!$id) {
 			echo infoBox(array(array(
 				'type' => 'error',
-				'text' => sprintf(gTranslate('core', "Could not open url: %s"), $url)
+				'text' => gTranslate('core', "Could not open as URL, file or directory.")
 			)));
 			continue;
 		}

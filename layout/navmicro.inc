@@ -1,7 +1,7 @@
 <?php
-	/*
-		$Id$
-	*/
+/*
+	$Id$
+*/
 
 global $navigator;
 global $full;

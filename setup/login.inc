@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 list($login, $username, $gallerypassword) =
 	getRequestVar(array('login', 'username', 'gallerypassword'));
@@ -49,10 +47,10 @@ elseif (!empty($login)) {
 			$tmpUser->log("login");
 			$tmpUser->save();
 			$gallery->session->username = $username;
+
 			gallery_syslog("Successful config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
-			if ($tmpUser->getDefaultLanguage() != "") {
-				$gallery->session->language =
-					$tmpUser->getDefaultLanguage();
+			if ($tmpUser->getDefaultLanguage() != '') {
+				$gallery->session->language = $tmpUser->getDefaultLanguage();
 			}
 		}
 		elseif (!isset($tmpUser) || !$tmpUser->isCorrectPassword($gallerypassword)) {
@@ -67,7 +65,7 @@ elseif (!empty($login)) {
 		}
 		elseif (!$tmpUser->isAdmin()) {
 			$gallerypassword = null;
-			gallery_syslog("Failed config wizard login for $username from " . $_SERVER['REMOTE_ADDR']);
+			gallery_syslog("Failed config wizard login from " . $_SERVER['REMOTE_ADDR']);
 
 			$messages[] = array(
 				'type' => 'error',
@@ -78,15 +76,25 @@ elseif (!empty($login)) {
 }
 
 if (isset($gallery->session->resetAdminGuid)) {
+	doctype();
 ?>
-<div class="g-header">
-    <div class="g-pagetitle"><?php echo sprintf(gTranslate('config', "Reset %s Password"), "admin"); ?></div>
-</div>
+<html>
+<head>
+  <title><?php printf(gTranslate('config', "Reset %s Password"), "admin") ?></title>
+  <?php common_header(); ?>
+</head>
+<body>
+	<div class="g-header">
+		<div class="g-pagetitle"><?php printf(gTranslate('config', "Reset %s Password"), "admin") ?></div>
+	</div>
 <div class="g-sitedesc"><?php
-    printf(gTranslate('config', "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;.  Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin", $gallery->session->resetAdminGuid, GALLERY_SETUPDIR . "/resetadmin");
+    printf(gTranslate('config', "To continue the password reset process, you must edit the file &quot;%s&quot;, remove any data currently inside it, and add the text &quot;%s&quot;."), GALLERY_SETUPDIR . '/resetadmin', '<span class="g-information">'. $gallery->session->resetAdminGuid . '</span>');
+    echo "\n<br>";
+    printf(gTranslate('config', "Once you have done that, press the refresh button below.  If you know your current admin password, please remove the &quot;%s&quot; file from the server."), GALLERY_SETUPDIR . "/resetadmin");
+    echo "\n<br>";
 ?></div>
 <p align="center">
-<input type="button" onclick="location.reload()" value="<?php echo gTranslate('config', "Refresh"); ?>">
+<?php echo gButton('refresh',  gTranslate('config', "Refresh"), 'location.reload()'); ?>
 </p>
 </body>
 </html>
@@ -102,16 +110,15 @@ elseif (!isset($tmpUser) || !$tmpUser->isAdmin()) {  // Not logged in
 
 <div class="g-content-popup">
 
-    <div class="g-sitedesc left"><?php
         echo gTranslate('config', "You must log in as an administrator to edit this Gallery configuration.");
-        echo "\n<br>";
+        echo "\n<br><br>";
         echo gTranslate('config', "If you have forgotten the password to your admin account, you can easily reset it.");
         echo "\n<br>";
-        printf (gTranslate('config', "Create a blank file named '%s' in your %s directory, then refresh this page and follow the instructions on this page."), 'resetadmin', GALLERY_SETUPDIR);
-    ?></div>
+        printf (gTranslate('config', "Create a blank file named '%s' (yes, no extension) in the <i><b>setup</b></i> directory of your Gallery, then refresh this page and follow the instructions on this page."), 'resetadmin');
 
-    <div class="center">
-    <?php
+	echo "\n</div>";
+
+	echo "\n<div align=\"center\">";
     	echo infoBox($messages);
     	echo makeFormIntro("setup/" . $target, array('name' => 'login_form'));
     ?>

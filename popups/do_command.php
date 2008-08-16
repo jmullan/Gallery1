@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
@@ -34,14 +33,14 @@ list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
  */
 $gUrl = makeGalleryUrl();
 $gUrlStripped = substr($gUrl, 0, strrpos($gUrl, '/'));
-if (!empty($return) && $return[0] != '/' && strstr($return, '://') !== false) {
-	if (
-	  strncmp($return, $gUrlStripped, strlen($gUrlStripped)) != 0 &&
-	  strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
-	  strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0
-	  ) {
+
+if (!empty($return) &&
+	strncmp($return, $gUrlStripped, strlen($gUrlStripped)) != 0 &&
+	strncmp($return, $gallery->app->photoAlbumURL, strlen($gallery->app->photoAlbumURL)) != 0 &&
+	strncmp($return, $gallery->app->albumDirURL, strlen($gallery->app->albumDirURL)) != 0 &&
+	! isValidUrl($return))
+{
 	die(gTranslate('core', 'Attempted security breach.'));
-	}
 }
 
 /* This is used for deleting comments from stats.php */
@@ -142,7 +141,7 @@ switch ($cmd) {
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 
-		break;
+	break;
 
 	case 'new-album':
 		if ($gallery->user->canCreateAlbums() ||
@@ -162,10 +161,10 @@ switch ($cmd) {
 			}
 		}
 		else {
-				header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
-		break;
+	break;
 
 	case 'reset-album-clicks':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -174,10 +173,10 @@ switch ($cmd) {
 			dismissAndReload();
 		}
 		else {
-	   			header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
-		break;
+	break;
 
 	case 'delete-comment':
 		if ($gallery->user->canWriteToAlbum($gallery->album)) {
@@ -186,8 +185,8 @@ switch ($cmd) {
 			$gallery->album->deleteComment($index, $comment_index);
 			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),
-					   	$comment->getName(),
-					   	makeAlbumURL($gallery->album->fields["name"],
+				       	$comment->getName(),
+				       	makeAlbumURL($gallery->album->fields["name"],
 						$gallery->album->getPhotoId($index))));
 			if (!empty($return)) {
 				dismissAndLoad($return);
@@ -197,17 +196,17 @@ switch ($cmd) {
 			}
 		}
 		else {
-				header("Location: " . makeAlbumHeaderUrl());
+			header("Location: " . makeAlbumHeaderUrl());
 		}
 
-		break;
+	break;
 
 	default:
 		if (!empty($return)) {
 			// No command; Can be used to set a session variable
 			header("Location: $return");
 		}
-		break;
+	break;
 
 }
 
@@ -215,7 +214,7 @@ switch ($cmd) {
 
 	<div align="center">
 	<form>
-<?php if (isset($backUrl)) :?>
+<?php if (!empty($backUrl)) :?>
 		<input type="button" value="<?php echo gTranslate('core', "Close window") ?>" onclick="document.location='<?php echo $backUrl; ?>'" class="g-button">
 <?php else : ?>
 		<input type="button" value="<?php echo gTranslate('core', "Cancel") ?>" onclick="parent.close()" class="g-button">

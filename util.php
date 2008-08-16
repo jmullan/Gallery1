@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -219,7 +219,7 @@ function getDimensions($file) {
 	debugMessage(sprintf(gTranslate('core', "Getting Dimension of file: %s"), $file), __FILE__, __LINE__, 2);
 
 	if (! fs_file_exists($file)) {
-        debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
+		debugMessage(gTranslate('core', "The file does not exist?!"), __FILE__, __LINE__);
 		return array(0, 0);
 	}
 
@@ -235,25 +235,26 @@ function getDimensions($file) {
 
 	/* Just in case php can't determine dimensions. */
 	switch($gallery->app->graphics) {
-        case 'Netpbm':
+		case 'Netpbm':
 			list($lines, $status) = exec_internal(toPnmCmd($file) ." | ".
-                Netpbm('pnmfile', '--allimages'));
-			break;
+						Netpbm('pnmfile', '--allimages'));
+		break;
+
 		case "ImageMagick":
 			/* This fails under windows, IM isn't returning parsable status output. */
 			  list($lines, $status) = exec_internal(ImCmd('identify', '', fs_import_filename($file)));
 		break;
 
-	default:
-		echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"));
-		return array(0, 0);
+		default:
+			echo debugMessage(gTranslate('core', "You have no graphics package configured for use!"));
+			return array(0, 0);
 		break;
 	}
 
 	if ($status == $gallery->app->expectedExecStatus) {
 		foreach ($lines as $line) {
 			switch($gallery->app->graphics) {
-                case 'Netpbm':
+				case 'Netpbm':
 					if (ereg("([0-9]+) by ([0-9]+)", $line, $regs)) {
 						return array($regs[1], $regs[2]);
 					}
@@ -340,7 +341,7 @@ function correctPseudoUsers(&$array, $ownerUid) {
 	 */
 	if (count($array) == 0) {
 		if (!strcmp($ownerUid, $everybody->getUid())) {
-				$array = array($everybody->getUid() => $everybody->getUsername());
+			$array = array($everybody->getUid() => $everybody->getUsername());
 		}
 		else {
 			$array[$nobody->getUid()] = $nobody->getUsername();
@@ -378,12 +379,11 @@ function gallerySanityCheck() {
 	}
 
 	if(!realpath($gallery->app->albumDir)) {
-		echo infoBox(array(array(
-			'type' => 'error',
-			'text' => gTranslate('core', "Gallery seems to be configured, but the path to the albums dir is wrong. Maybe you did a host change?") .
+		echo gallery_error(
+			gTranslate('core', "Gallery seems to be configured, but the path to the albums dir is wrong. Maybe you did a host change?") .
 					  '<br>' .
 					  gTranslate('core', "Check all pathes and URLS in your config.php ; Unfortunately this can't be done via the config wizard.")
-		)));
+		);
 		exit;
 	}
 
@@ -848,7 +848,7 @@ function canDecompressArchive($ext) {
 		break;
 
 		default:
-			/* Extension not supported, $tool stays fals */
+			/* Extension not supported, $tool stays false */
 			break;
 	}
 	return $tool;
@@ -941,7 +941,7 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	global $gallery;
 
 	if ($folderName == '') {
-	   return false;
+		return false;
 	}
 
 	$tool = canCreateArchive('zip');
@@ -949,14 +949,15 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	if (! $tool) {
 		debugMessage(gTranslate('core', "No Support for creating Zips"), __FILE__, __LINE__, 2);
 		return false;
-	} else {
-        debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
+	}
+	else {
+		debugMessage(sprintf(gTranslate('core', "Creating Zipfile with %s"), $tool), __FILE__, __LINE__, 2);
 	}
 
 	$tmpDir = $gallery->app->tmpDir .'/'. uniqid(rand());
 
 	if ($zipName == '') {
-	   $fullZipName = 'gallery_zip.zip';
+		$fullZipName = 'gallery_zip.zip';
 	}
 	else {
 		$fullZipName = "$tmpDir/$zipName.zip";
@@ -964,8 +965,8 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 
 	if(! fs_mkdir($tmpDir)) {
 		echo gallery_error(
-          sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
-		  $gallery->app->tmpDir));
+		sprintf(gTranslate('core', "Your tempfolder is not writeable! Please check permissions of this dir: %s"),
+			$gallery->app->tmpDir));
 		return false;
 	}
 	/* Keep Current Dir in mind */
@@ -976,19 +977,19 @@ function createZip($folderName = '', $zipName = '', $deleteSource = true) {
 	$cmd = fs_import_filename($gallery->app->zip) ." -r $fullZipName *";
 
 	if (! exec_wrapper($cmd)) {
-	   echo gallery_error("Zipping failed");
-	   /* Go back */
-	   chdir($currentDir);
-	   return false;
+		echo gallery_error("Zipping failed");
+		/* Go back */
+		chdir($currentDir);
+		return false;
 	}
 	else {
-	   /* Go back */
-	   chdir($currentDir);
-	   if($deleteSource) {
-		   rmdirRecursive($folderName);
-	   }
+		/* Go back */
+		chdir($currentDir);
+		if($deleteSource) {
+			rmdirRecursive($folderName);
+		}
 
-	return $fullZipName;
+		return $fullZipName;
 	}
 }
 
@@ -1014,7 +1015,7 @@ function findInPath($program) {
 */
 function getImVersion() {
 	global $gallery;
-    static $version;
+	static $version;
 
 	if (!isset($version)) {
 		$version = array();
@@ -1033,11 +1034,11 @@ function getImVersion() {
  * @return $version	string	Versionnumber as string
 */
 function getJheadVersion($dir = '') {
-    global $gallery;
+	global $gallery;
 
 	$bin = fs_executable('jhead');
 
-    if(empty($dir)) {
+	if(empty($dir)) {
 		$dir = locateDir($bin, isset($gallery->app->use_exif) ? dirname($gallery->app->use_exif) : "");
 		if(empty($dir)) {
 			return 0;
@@ -1046,12 +1047,12 @@ function getJheadVersion($dir = '') {
 
 	$path ="$dir/$bin";
 
-    fs_exec($path . ' -V', $results, $status);
+	fs_exec($path . ' -V', $results, $status);
 
-    $pieces = explode(' ', $results[0]);
-    $version = $pieces[2];
+	$pieces = explode(' ', $results[0]);
+	$version = $pieces[2];
 
-    return $version;
+	return $version;
 }
 
 define("OS_WINDOWS", "win");
@@ -1181,7 +1182,6 @@ function getCVSVersion($file) {
 	return '';
 }
 
-
 // Returns the SVN revision  as a string, NULL if file can't be read, or ""
 // if version can't be found.
 function getSVNRevision($file) {
@@ -1209,7 +1209,7 @@ function getSVNRevision($file) {
 }
 
 /* Return -1 if old version is greater than new version, 0 if they are the
-   same and 1 if new version is greater.
+ * same and 1 if new version is greater.
  */
 function compareVersions($old_str, $new_str) {
 	if ($old_str === $new_str) {
@@ -1347,7 +1347,7 @@ if (!function_exists('glob')) {
 		$dir = fs_opendir($path_parts['dirname']);
 		while ($file = readdir($dir)) {
 			if ($file != '.' && $file != '..' && ereg($pattern, $file)) {
-				 $result[] = "{$path_parts['dirname']}/$file";
+				$result[] = "{$path_parts['dirname']}/$file";
 			}
 		}
 		closedir($dir);
@@ -1492,12 +1492,12 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
 	$imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
 	$photo = $gallery->album->getPhoto($ecard['photoIndex']);
 	if($preview) {
-	$imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
-	$stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
+		$imageName = $gallery->album->getPhotoPath($ecard['photoIndex'], false);
+		$stampName = getImagePath('ecard_images/'. $ecard['stamp'] .'.gif');
 	}
 	else {
-	$imageName = $photo->getImageName(false);
-	$stampName = $ecard['stamp'] .'.gif';
+		$imageName = $photo->getImageName(false);
+		$stampName = $ecard['stamp'] .'.gif';
 	}
 
 	list ($width, $height) = getDimensions($imagePath);
@@ -1513,50 +1513,50 @@ function parse_ecard_template($ecard,$ecard_data, $preview = true) {
 	$ecard_data = preg_replace ("/<%ecard_width%>/", $widthReplace, $ecard_data);
 
 	return $ecard_data;
-  }
+}
 
-  function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
-	  global $gallery;
+function send_ecard($ecard,$ecard_HTML_data,$ecard_PLAIN_data) {
+	global $gallery;
 
-	  $ecard_pictures = array();
-	  $photo = $gallery->album->getPhoto($ecard['photoIndex']);
-	  $ecard_mail = new htmlMimeMail();
+	$ecard_pictures = array();
+	$photo = $gallery->album->getPhoto($ecard['photoIndex']);
+	$ecard_mail = new htmlMimeMail();
 
-	  $imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
-	  $imageName = $photo->getImageName(false);
+	$imagePath = $gallery->album->getAbsolutePhotoPath($ecard['photoIndex'], false);
+	$imageName = $photo->getImageName(false);
 
-	  $stampName = $ecard['stamp'] .'.gif';
-	  $stampPath = getAbsoluteImagePath("ecard_images/$stampName");
+	$stampName = $ecard['stamp'] .'.gif';
+	$stampPath = getAbsoluteImagePath("ecard_images/$stampName");
 
-	  $ecard_pictures[$imageName] = $imagePath;
-	  $ecard_pictures[$stampName] = $stampPath;
+	$ecard_pictures[$imageName] = $imagePath;
+	$ecard_pictures[$stampName] = $stampPath;
 
-	  foreach ($ecard_pictures as $pictureName => $picturePath) {
-		  $picture = $ecard_mail->getFile($picturePath);
-		  $ecard_mail->addHtmlImage($picture, $pictureName, getMimeType($picturePath));
-	  }
+	foreach ($ecard_pictures as $pictureName => $picturePath) {
+		$picture = $ecard_mail->getFile($picturePath);
+		$ecard_mail->addHtmlImage($picture, $pictureName, getMimeType($picturePath));
+	}
 
-	  /*
-	   * Currently all other images in the template are ignored.
-	  if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
+	/*
+	* Currently all other images in the template are ignored.
+	if (preg_match_all("/(<IMG.*SRC=\")(.*)(\".*>)/Uim", $ecard_HTML_data, $matchArray)) {
 		for ($i = 0; $i < count($matchArray[0]); ++$i) {
 			$ecard_image = $ecard_mail->getFile($matchArray[2][$i]);
 		}
-	  }
-	  */
-	  $ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
-	  $ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
-	  if (empty($ecard['subject'])) {
-		  $ecard['subject'] = sprintf(gTranslate('core', "%s sent you an E-C@rd."), $ecard["name_sender"]);
-	  }
+	}
+	*/
+	$ecard_mail->setHtml($ecard_HTML_data, $ecard_PLAIN_data);
+	$ecard_mail->setFrom($ecard["name_sender"] .' <'. $ecard["email_sender"] .'>');
+	if (empty($ecard['subject'])) {
+		$ecard['subject'] = sprintf(gTranslate('core', "%s sent you an E-C@rd."), $ecard["name_sender"]);
+	}
 
-	  $ecard_mail->setSubject($ecard['subject']);
-	  $ecard_mail->setReturnPath($ecard["email_sender"]);
+	$ecard_mail->setSubject($ecard['subject']);
+	$ecard_mail->setReturnPath($ecard["email_sender"]);
 
 	  $result = $ecard_mail->send(array($ecard["name_recepient"] .' <'. $ecard["email_recepient"] .'>'));
 
-	  return $result;
-  }
+	return $result;
+}
 
 /**
  * This function is taken from
@@ -1687,7 +1687,7 @@ function downloadFile($filename) {
 		return false;
 	}
 	elseif ($validFileName == 0 || dirname($filename) == $gallery->app->tmpDir) {
-        echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
+		echo gallery_error(gTranslate('core', "We are trying to download the tempdir itself?! Download aborted."));
 		return false;
 	}
 
@@ -1703,7 +1703,7 @@ function downloadFile($filename) {
 	header("Content-type: $contentType");
 
 	if ($size > 0) {
-	   header("Content-Length: $size");
+		header("Content-Length: $size");
 	}
 
 	header('Content-Disposition: attachment; filename="'. basename($filename) .'"');

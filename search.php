@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
@@ -46,7 +44,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php }
 
-includeTemplate("gallery.header");
+includeTemplate('gallery.header', '', 'classic');
 
 echo '<div class="right">';
 if (!empty($searchstring)) {
@@ -162,23 +160,27 @@ if (!empty($searchstring)) {
 					// check to see if there are any comment matches
 					$comment = $searchAlbum->getComment($j, $k);
 					$searchComment = $comment->getName();
+
 					if ($gallery->user->isAdmin()) {
 						$searchComment .= " @ ".$comment->getIPNumber();
 					}
 					$searchComment .= ": ".$comment->getCommentText();
+
 					if (eregi($searchstring, $searchComment)) {
 						if (!$commentMatch) {
 							$commentText = gTranslate('core', "Matching Comments").":<br>";
 							$commentMatch = 1;
 						}
+
 						$searchComment = preg_replace($searchExpr, $searchRepl, $searchComment);
 						$commentText .= "\n". $searchComment . "<br><br>";
 					}
 				}
 			}
 
-			$extraFieldsText = '';
+			// Search through extrafields
 			$extraFieldsMatch = 0;
+			$extraFieldsText = '';
 			foreach ($searchAlbum->getExtraFields() as $field) {
 				$fieldValue=$searchAlbum->getExtraField($j, $field);
 				if (eregi($searchstring, $fieldValue)) {
@@ -244,7 +246,8 @@ if (!empty($searchstring)) {
 				includeLayout('searchdraw.inc');
 			}
 			echo "</table><br>\n";
-		} else {
+		}
+		else {
 			echo '<div class="g-longdesc">'. $text['none'] . '</div>';
 		}
 	}

@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 class Gallery_UserDB extends Abstract_UserDB {
 	var $userMap;
 	var $nobody;
@@ -35,11 +34,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 		$this->initialized = false;
 
 		if(empty($gallery->app->userDir)) {
-			echo infoBox(array(array(
-				'type' => 'error',
-				'text' => sprintf("No Userdir defined ! Please rerun the %sconfiguration wizard%s.",
-							'<a href="setup">', '</a>')
-				)));
+			echo gallery_error(
+				sprintf("No userdir defined ! Please rerun the %sconfiguration wizard%s.",
+					'<a href="setup">', '</a>')
+				);
 			exit;
 		}
 
@@ -54,11 +52,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (!fs_file_exists($userDir)) {
 			if(isDebugging()) {
-				echo infoBox(array(array(
-					'type' => 'warning',
-					'text' => sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
-								$userDir)
-				)));
+				echo gallery_warning(
+					sprintf("The Diretory for storing the user information (%s) is defined but does not exits. Trying to create it ...",
+						$userDir)
+				);
 			}
 
 			if (!@mkdir($userDir, 0777)) {
@@ -74,7 +71,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		else {
 			if (!fs_is_dir($userDir)) {
 				echo gallery_error(sprintf(gTranslate('core', "%s exists, but is not a directory!"),
-									$userDir));
+							$userDir));
 				return;
 			}
 		}
@@ -87,7 +84,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			}
 			else {
 				echo gallery_error(sprintf(gTranslate('core', "The folder which contains your user information (%s) is not writable for the webserver."),
-									$userDir));
+							$userDir));
 				exit;
 			}
 		}
@@ -150,12 +147,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return true;
 	}
 
-	function getUserByUsername($username, $level=0) {
+	function getUserByUsername($username, $level = 0) {
 		global $gallery;
 
 		$saveToDisplayUserName = '<i>'. htmlentities($username) .'</i>';
 		echo debugMessage(sprintf("Geting user by username '%s'", $saveToDisplayUserName),
-							__FILE__, __LINE__, 4);
+			__FILE__, __LINE__, 4);
 
 		if ($level > 1) {
 			// We've recursed too many times.  Abort;
@@ -194,7 +191,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 			// but that uid has a different username.  Either way
 			// this means our map is out of date.
 			$this->rebuildUserMap();
-			
+
 			return $this->getUserByUsername($username, ++$level);
 		}
 		else {
@@ -203,7 +200,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 	}
 
-	function getUserByUid($uid, $tryOldFormat=false) {
+	function getUserByUid($uid, $tryOldFormat = false) {
 		global $gallery;
 
 		$userDir = $gallery->app->userDir;
@@ -288,8 +285,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		$this->userMap = array();
 		foreach ($this->getUidList() as $uid) {
-			$tmpUser	= $this->getUserByUid($uid);
-			$username	= $tmpUser->getUsername();
+			$tmpUser			= $this->getUserByUid($uid);
+			$username			= $tmpUser->getUsername();
 			$this->userMap[$username]	= $uid;
 			$this->userMap[$uid]		= $username;
 		}
@@ -355,23 +352,23 @@ class Gallery_UserDB extends Abstract_UserDB {
 
 		if (strlen($username) < 2) {
 			return sprintf(gTranslate('core', "Username '%s' is to short. Must be at least 2 characters."),
-			$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		if (strlen($username) > 15) {
 			return sprintf(gTranslate('core', "Username '%s' too long. Must be at most 15 characters."),
-						$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		if (ereg("[^[:alnum:]]", $username)) {
 
 			return sprintf(gTranslate('core', "Illegal username '%s'. Only letters and digits allowed."),
-						$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		if (!strcmp($username, $this->nobody->getUsername()) ||
-			!strcmp($username, $this->everybody->getUsername()) ||
-			!strcmp($username, $this->loggedIn->getUsername()))
+		    !strcmp($username, $this->everybody->getUsername()) ||
+		    !strcmp($username, $this->loggedIn->getUsername()))
 		{
 			return sprintf(gTranslate('core', "'%s' is reserved and cannot be used."),
 					$saveToDisplayUserName);
@@ -405,6 +402,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		if (strcmp($this->version, $gallery->user_version)) {
 			return true;
 		}
+
 		return false;
 	}
 
@@ -419,9 +417,9 @@ class Gallery_UserDB extends Abstract_UserDB {
 		}
 
 		$success = true;
-		$nobody = $this->nobody->getUsername();
-		$everybody = $this->everybody->getUsername();
-		$loggedin = $this->loggedIn->getUsername();
+		$nobody		= $this->nobody->getUsername();
+		$everybody	= $this->everybody->getUsername();
+		$loggedin	= $this->loggedIn->getUsername();
 
 		$count = 1;
 		$total = sizeof($this->getUidList());
@@ -435,11 +433,12 @@ class Gallery_UserDB extends Abstract_UserDB {
 				printf(gTranslate('core', "Skipped %s (Reserved username from Gallery)"), $user->username);
 				continue;
 			}
+
 			if (!$user->integrityCheck()) {
 				$success = false;
 			}
 		}
-		$this->version=$gallery->user_version;
+		$this->version = $gallery->user_version;
 		if ($success) {
 			$this->rebuildUserMap();
 			if (!$this->save()) {
@@ -453,8 +452,8 @@ class Gallery_UserDB extends Abstract_UserDB {
 	function CreateUser($uname, $email, $new_password, $fullname, $canCreate, $language, $log) {
 		global $gErrors;
 
-		$errorCount			= 0;
-		$gErrors			= array();
+		$errorCount		= 0;
+		$gErrors		= array();
 		$gErrors["uname"]	= $this->validNewUserName($uname);
 
 		if ($gErrors["uname"]) {

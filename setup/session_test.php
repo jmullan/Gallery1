@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 require_once(dirname(__FILE__) . '/init.php');
 
 if (isset($_REQUEST['destroy'])) {
@@ -35,9 +34,9 @@ if(!isset($_SESSION['count'])) {
 
 $_SESSION['count']++;
 
-printPopupStart(gTranslate('config', "Session Test"), '', 'left');
+printPopupStart(gTranslate('config', "Check Session"));
 ?>
-  <div class="g-sitedesc">
+  <div class="g-sitedesc left">
 		<?php echo gTranslate('config', "If sessions are configured properly in your PHP installation, then you should see a session id below."); ?>
 	<br>
 		<?php echo gTranslate('config', "The &quot;page views&quot; number should increase every time you reload the page."); ?>

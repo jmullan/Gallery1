@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 require_once(dirname(dirname(__FILE__)) . '/includes/definitions/cropOptions.php');
@@ -36,8 +34,8 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) &&
 	!$gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
 	!$gallery->album->getItemOwnerModify())
 {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;
+	printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 }
 
 if (! $gallery->session->albumName || ! isset($index)) {
@@ -50,7 +48,7 @@ if (!empty($cropit)) {
 	echo "<html>";
 
 	#-- rebuild the thumbnail, cropped) ---
-	echo(gTranslate('core', "Remaking the Thumbnail..."));
+	echo(gTranslate('core', "Recreating the Thumbnail..."));
 	my_flush();
 
 	$offsetX	= intval($muliplier * $offsetX);
@@ -69,7 +67,7 @@ if (!empty($cropit)) {
 		);
 	}
 
-	#-- close and reload parent ---
+	// -- close and reload parent ---
 	dismissAndReload();
 	exit;
 }
@@ -124,7 +122,7 @@ if($imageWidth < $minSize || $imageHeight < $minSize) {
 $fullpath = $gallery->album->getAbsolutePhotoPath($index, true);
 
 /*
- *Big files are slowing the cropper.
+ * Big files are slowing the cropper.
  * If the file is bigger then 500K,
  * we check whether GD is support and create dynamically a resized version
 */

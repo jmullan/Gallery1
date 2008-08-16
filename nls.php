@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
  * The original filename was horde/config/nls.php.dist and it was
  * maintained by Jan Schneider (jan@horde.org)
  * The modifications to fit it for Gallery were made by Jens Tkotz
- * (jens@peino.de)
  *
  * @package	Language
  */
@@ -40,11 +39,11 @@
 	$nls['phpnuke']['en_US']	=	'english';
 	$nls['alias']['english']	=	'en_US';
 
-	$nls['alias']['en']			=	'en_US';
+	$nls['alias']['en']		=	'en_US';
 
 /* Charset*/
 	$nls['default']['charset']	= 	'ISO-8859-1';
 
 /* Direction */
-	$nls['default']['direction'] =	'ltr';
+	$nls['default']['direction']	=	'ltr';
 ?>

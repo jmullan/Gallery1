@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 function build_popup_url($url, $url_is_complete = false) {
 	/* Separate the target from the arguments */
@@ -72,7 +70,7 @@ function popup_status($url, $height=150, $width=350) {
 	return "open('" . unhtmlentities(build_popup_url($url)) . "','Status','$attrs');";
 }
 
-function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height=550,$width=600, $cssclass='', $extraJS='', $icon ='', $addBrackets = true, $accesskey = true) {
+function popup_link($title, $url, $url_is_complete = 0, $online_only = true, $height = 550, $width = 600, $cssclass='', $extraJS = '', $icon ='', $addBrackets = true, $accesskey = true) {
 	global $gallery;
 	global $specialIconMode;
 
@@ -88,8 +86,8 @@ function popup_link($title, $url, $url_is_complete=0, $online_only=true, $height
 	$width = (int)$width;
 
 	$attrList = array(
-	   'class' => "g-popuplink $cssclass",
-	   'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+		'class' => "g-popuplink $cssclass",
+		'onClick' => "javascript:". $extraJS . popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
 	if(!empty($icon)) {
@@ -107,13 +105,13 @@ function popup_link2($title, $url, $args = array()) {
 
 	$url_is_complete	= isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
 	$online_only		= isset($args['online_only'])		? $args['online_only']		: true;
-	$height				= isset($args['height'])			? $args['height']			: 550;
-	$width				= isset($args['width'])				? $args['width']			: 600;
-	$cssclass			= isset($args['cssclass'])			? $args['cssclass']			: '';
-	$extraJS			= isset($args['extraJS'])			? $args['extraJS']			: '';
+	$height			= isset($args['height'])		? $args['height']		: 550;
+	$width			= isset($args['width'])			? $args['width']		: 600;
+	$cssclass		= isset($args['cssclass'])		? $args['cssclass']		: '';
+	$extraJS		= isset($args['extraJS'])		? $args['extraJS']		: '';
 	$addBrackets		= isset($args['addBrackets'])		? $args['addBrackets']		: false;
-	$accesskey			= isset($args['accesskey'])			? $args['accesskey']		: true;
-	$icon				= isset($args['icon'])				? $args['icon']				: '';
+	$accesskey		= isset($args['accesskey'])		? $args['accesskey']		: true;
+	$icon			= isset($args['icon'])			? $args['icon']			: '';
 
 	if ( !empty($gallery->session->offline) && $online_only ) {
 		return null;
@@ -128,8 +126,8 @@ function popup_link2($title, $url, $args = array()) {
 	$width = (int)$width;
 
 	$attrList = array(
-	   'class' => "g-popuplink $cssclass",
-	   'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
+		'class' => "g-popuplink $cssclass",
+		'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
 	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
@@ -138,12 +136,16 @@ function popup_link2($title, $url, $args = array()) {
 }
 
 /**
- * This function outputs the HTML Start elements of an Popup.
+ * This function outputs the HTML start elements of an popup.
  * It was made to beautify php code ;)
+ *
+ * @param string $title
+ * @param string $header
+ * @param string $align
  */
 function printPopupStart($title = '', $header = '', $align = 'center') {
 	global $gallery;
-	
+
 	if (!empty($title) && empty($header)) {
 		$header = $title;
 	}

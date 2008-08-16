@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * Central caption options formular for adding items.
@@ -32,20 +30,20 @@ if(!isset($setCaption) || (int)$setCaption > 3) {
 }
 
 echo gInput('radio', 'setCaption', gTranslate('core', "Leave blank."), false, 0,
-				array('id' => 'setCaption0', 'checked' => ($setCaption == 0) ? NULL : false));
+		array('id' => 'setCaption0', 'checked' => ($setCaption == 0) ? NULL : false));
 echo "\n<br>";
 
 echo gInput('radio', 'setCaption', gTranslate('core', "Use filename as caption."), false, 1,
-				array('id' => 'setCaption1', 'checked' => ($setCaption == 1) ? NULL : false));
+		array('id' => 'setCaption1', 'checked' => ($setCaption == 1) ? NULL : false));
 echo "\n<br>";
 
 echo gInput('radio', 'setCaption', gTranslate('core', "Use file creation date/time stamp."), false, 2,
-				array('id' => 'setCaption2', 'checked' => ($setCaption == 2) ? NULL : false));
+		array('id' => 'setCaption2', 'checked' => ($setCaption == 2) ? NULL : false));
 echo "\n<br>";
 
 if (isset($gallery->app->use_exif)) {
 	echo gInput('radio', 'setCaption', gTranslate('core', "Set photo captions with file capture times."), false, 3,
-					array('id' => 'setCaption3', 'checked' => ($setCaption == 3) ? NULL : false));
+			array('id' => 'setCaption3', 'checked' => ($setCaption == 3) ? NULL : false));
 }
 
 echo "\n<br><br>";

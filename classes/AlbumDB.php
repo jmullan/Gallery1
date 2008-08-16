@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
 */
-?>
-<?php
+
 class AlbumDB {
 	var $albumList;
 	var $albumOrder;
@@ -63,37 +62,6 @@ class AlbumDB {
 		$this->albumList = array();
 		$this->brokenAlbums = array();
 		$this->outOfDateAlbums = array();
-
-		/*
-		Disable caching for now. It doesnt work well.
-
-		$tmp = '';
-		if($useCache) {
-			// get the cached albumlist
-			$tmp = getFile("$dir/albumlist.cache");
-
-			if (! empty($tmp)) {
-				$changed = 0;
-
-				// we got one
-				$albumList = unserialize($tmp);
-				//print_r($albumList);
-				if($loadphotos){
-					// load all the photos
-					foreach($albumList as $album){
-						$album->loadPhotos($album->getAlbumDir());
-						$this->albumList[] = $album;
-					}
-				}
-				else{
-					$this->albumList = $albumList;
-				}
-			}
-		}*/
-
-		$tmp = '';
-		if (empty($tmp)) {
-			/* Loop through all albums already found in the albumdb.dat */
 			$i = 0;
 			while ($i < sizeof($this->albumOrder)) {
 				$name = $this->albumOrder[$i];
@@ -137,7 +105,6 @@ class AlbumDB {
 				}
 				closedir($fd);
 			}
-		}
 
 		if ($changed) {
 			$this->save();
@@ -150,7 +117,7 @@ class AlbumDB {
 	 * Returns whether the AlbumDB was succesfully initialized or not
 	 *
 	 * @return boolean	 true if succesfully initialized.
-	 * @author Jens Tkotz <jens@peino.de>
+	 * @author Jens Tkotz
 	 */
 	function isInitialized() {
 		return $this->initialized === true;
@@ -291,7 +258,7 @@ class AlbumDB {
 		return $wantedAlbum;
 	}
 
-	function getAlbumByName($name, $load=TRUE) {
+	function getAlbumByName($name, $load = TRUE) {
 		global $gallery;
 
 		/* Look for an exact match */
@@ -387,28 +354,10 @@ class AlbumDB {
 
 	function save() {
 		global $gallery;
-		$success1 = $success2 = false;
+        	$success = 0;
 
 		$dir = $gallery->app->albumDir;
-
-		/*
-		// Create just an albumlist (without photos) for caching.
-		$albumList = array();
-		foreach ($this->albumList as $album){
-			$album->photos = array();
-			$albumList[] = $album;
-		}
-
-		$success1 = safe_serialize($albumList, "$dir/albumlist.cache");
-
-		*/
-
-		$success1 = true;
-		$success2 = safe_serialize($this->albumOrder, "$dir/albumdb.dat");
-
-		$return = $success1 and $success2;
-
-		return $return;
+        	return safe_serialize($this->albumOrder, "$dir/albumdb.dat");
 	}
 
 	function numAccessibleAlbums($user) {

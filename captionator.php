@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(__FILE__) . '/init.php');
 
 list($page, $perPage, $save, $next, $prev, $cancel) =
 	getRequestVar(array('page', 'perPage', 'save', 'next', 'prev', 'cancel'));
+
 list($captionedAlbum, $extra_fields) =
 	getRequestVar(array('captionedAlbum', 'extra_fields'));
 
@@ -171,7 +170,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php }
 
-includeTemplate("album.header");
+includeTemplate("album.header", '', 'classic');
 
 #-- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields["border"];
@@ -185,17 +184,17 @@ else {
 
 $adminText = gTranslate('core', "Multiple Caption Editor.") . " ";
 if ($numPhotos == 1) {
-	$adminText .= gTranslate('core', "1 item in this album") ;
+	$adminText .= gTranslate('core', "1 item in this album.") ;
 }
 else {
 	if ($maxPages > 1) {
-		$adminText .= sprintf(gTranslate('core', "%d items in this album on %s"),
+		$adminText .= sprintf(gTranslate('core', "%d items in this album on %s."),
 			$numPhotos,
-			gTranslate('core', "one page", "%d pages.", $maxPages,'', true)
+			gTranslate('core', "one page", "%d pages", $maxPages,'', true)
 		);
 	}
 	else {
-		$adminText .= gTranslate('core', "One item in this album.", "%d items in this album.", $numPhoto);
+		$adminText .= gTranslate('core', "One item in this album.", "%d items in this album.", $numPhotos, '', true);
 	}
 }
 
@@ -223,18 +222,20 @@ if ($numPhotos) {
 	<input type="hidden" name="captionedAlbum" value="<?php echo $gallery->album->fields['name']; ?>">
 
 	<div class="right" style="padding-bottom: 2px;">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save and Exit") ?>" class="g-button">
 	<?php
+	echo gSubmit('save', gTranslate('core', "Save and Exit"));
+
 	if (!isset($last)) {
-		echo '<input type="submit" name="next" value="'. sprintf(gTranslate('core', "Save and Edit Next %d"),$perPage) .'" class="g-button">';
+		echo gSubmit('next', sprintf(gTranslate('core', "Save and Edit Next %d"), $perPage));
 	}
 
 	if ($page != 1) {
-		 echo '<input type="submit" name="prev" value="'. sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage) .'" class="g-button">';
+		echo gSubmit('prev', sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage));
 	}
+
+	echo gSubmit('cancel', gTranslate('core', "Exit"));
 	?>
 
-	<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Exit") ?>" class="g-button">
 	</div>
 
 	<!-- image grid table -->
@@ -339,26 +340,27 @@ if ($numPhotos) {
 	</table>
 
 	<div class="right">
-	<input type="submit" name="save" value="<?php echo gTranslate('core', "Save and Exit") ?>" class="g-button">
 	<?php
+
+	echo gSubmit('save', gTranslate('core', "Save and Exit"));
+
 	if (!isset($last)) {
-		echo '<input type="submit" name="next" value="'. sprintf(gTranslate('core', "Save and Edit Next %d"),$perPage) .'" class="g-button">';
+		echo gSubmit('next', sprintf(gTranslate('core', "Save and Edit Next %d"), $perPage));
 	}
 
 	if ($page != 1) {
-		 echo '<input type="submit" name="prev" value="'. sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage) .'" class="g-button">';
+		echo gSubmit('prev', sprintf(gTranslate('core', "Save and Edit Previous %d"), $perPage));
 	}
+
+	echo gSubmit('cancel', gTranslate('core', "Exit"));
+
 	?>
 
-	<input type="submit" name="cancel" value="<?php echo gTranslate('core', "Exit") ?>" class="g-button">
 	</div>
 <?php
 }
 else {
-	echo infoBox(array(array(
-		'type' => 'information',
-		'text' => gTranslate('core', "There are not elements to set a caption for.")
-	)));
+	echo gallery_informattion(gTranslate('core', "There are not elements to set a caption for."));
 }
 ?>
 </form>

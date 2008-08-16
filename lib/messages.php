@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 function gallery_error($message) {
 	$html = infoBox(array(array(
@@ -56,7 +54,7 @@ function infoLine($messages, $type = '') {
 function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 	$html = '';
 	$types = array('success', 'warning', 'error', 'information');
-	
+
 	if(!empty($messages)) {
 		if($withOuterBorder) {
 			$html .= "\n<div class=\"g-notice\">";
@@ -89,8 +87,8 @@ function infoBox($messages = array(), $caption = '', $withOuterBorder = true) {
 /**
  * Just a wrapper around infoBox. (Prints an InfoBox). Has the same params
  *
- * @param  array  $messages			Format is array('type' => ..., 'text' => ...)
- * @param  string $caption			An optional caption
+ * @param  array  $messages		Format is array('type' => ..., 'text' => ...)
+ * @param  string $caption		An optional caption
  * @param  bool   $withOuterBorder	Whether to show an outlined border, or not
  * @author Jens Tkotz
  */

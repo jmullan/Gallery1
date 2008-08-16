@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * @package Forms
  *
  * Function for HTML forms
  */
-?>
-<?php
 
 function insertFormJS($formName) {
 
@@ -223,9 +219,9 @@ function drawSelect2($name, $options, $attrList = array()) {
  * argument.  Eg:
  *
  * makeFormIntro("add_photos.php",
- *					  array("name" => "count_form",
- *							  "enctype" => "multipart/form-data",
- *							  "method" => "post"));
+ *			  array("name" => "count_form",
+ *					  "enctype" => "multipart/form-data",
+ *					  "method" => "post"));
  *
  * If no method is given in attrList, then "post" is used.
  * @param string	$target
@@ -397,10 +393,10 @@ function showChoice2($target, $args, $popup = true) {
 /**
  * Returns the HTML Code for a submit button (<input type="submit">).
  *
- * @param string	$name			 Name of the button.
- * @param string	$value			Value shown on the button.
- * @param array	 $additionalAttrs  Additional HTML attributes
- * @return string   $html			 The HTML code.
+ * @param string    $name              Name of the button.
+ * @param string    $value            Value shown on the button.
+ * @param array     $additionalAttrs  Additional HTML attributes
+ * @return string   $html             The HTML code.
  * @author Jens Tkotz
  */
 function gSubmit($name, $value, $additionalAttrs = array()) {
@@ -548,12 +544,12 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 	static $ids = array();
 
-	$attrList['type']		= 'button';
+	$attrList['type']	= 'button';
 	$attrList['accesskey']	= getAndRemoveAccessKey($value);
-	$attrList['value']		= $value;
-	$attrList['class']		= 'g-button';
+	$attrList['value']	= $value;
+	$attrList['class']	= 'g-button';
 	$attrList['onClick']	= $onClick;
-	$attrList['title']		= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+	$attrList['title']	= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
 
 	if(!in_array($name, $ids)) {
 		$attrList['name'] = $attrList['id'] = $name;
@@ -577,12 +573,12 @@ function gButton($name, $value, $onClick, $additionalAttrs = array()) {
 }
 
 function gReset($name, $value, $additionalAttrs = array()) {
-	$attrList['name']		= $name;
-	$attrList['type']		= 'reset';
+	$attrList['name']	= $name;
+	$attrList['type']	= 'reset';
 	$attrList['accesskey']	= getAndRemoveAccessKey($value);
-	$attrList['value']		= $value;
-	$attrList['class']		= 'g-button';
-	$attrList['title']		= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
+	$attrList['value']	= $value;
+	$attrList['class']	= 'g-button';
+	$attrList['title']	= isset($additionalAttrs['title']) ? $additionalAttrs['title'] : $value;
 
 	if($attrList['accesskey'] != '') {
 		$attrList['title'] .= ' '. sprintf(gtranslate('common', "(Accesskey '%s')"), $attrList['accesskey']);

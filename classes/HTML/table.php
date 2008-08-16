@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id$
  */
-?>
-<?php
+
 /**
  * Class for handling a HTML table
  *
@@ -52,14 +51,14 @@ class galleryTable {
 	function setColumnCount($nr) {
 		$this->columnCount = $nr;
 	}
-	
+
 	/**
 	 * Adds an element to the table.
 	 *
 	 * @param array $element	an element is an array consiting of 'content' and 'cellArgs'.
-	 *							'cellArgs' is also an array.
-	 * @return boolean			true if the element was successfully added.
-	 * @author Jens Tkotz <jens@peino.de>
+	 *				'cellArgs' is also an array.
+	 * @return boolean		true if the element was successfully added.
+	 * @author Jens Tkotz
 	 */
 	function addElement($element = array('content' => null, 'cellArgs' => array())) {
 		if (!empty($element)) {

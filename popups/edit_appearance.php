@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,19 +19,18 @@
  *
  * $Id$
 */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+if(! $gallery->user->canWriteToAlbum($gallery->album)) {
+	printPopupStart(gTranslate('core', "Album Properties"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
 list($nv_pairs, $extra_fields, $num_user_fields) =
-getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
+	getRequestVar(array('nv_pairs','extra_fields', 'num_user_fields'));
 
 include_once(dirname(dirname(__FILE__)) . '/includes/definitions/services.php');
 include_once(dirname(dirname(__FILE__)) . '/lib/setup.php');
@@ -65,51 +64,51 @@ if (getRequestVar('save')) {
 		}
 	}
 
-	$gallery->album->fields['summary']				= $summary;
-	$gallery->album->fields['title']				= trim($title);
-	$gallery->album->fields['bgcolor']				= $bgcolor;
-	$gallery->album->fields['textcolor']			= $textcolor;
-	$gallery->album->fields['linkcolor']			= $linkcolor;
-	$gallery->album->fields['font']					= $font;
-	$gallery->album->fields['bordercolor']			= $bordercolor;
-	$gallery->album->fields['border']				= $border;
-	$gallery->album->fields['background']			= $background;
-	$gallery->album->fields['thumb_size']			= $thumb_size;
-	$gallery->album->fields['thumb_ratio']			= $thumb_ratio;
-	$gallery->album->fields['resize_size']			= $resize_size;
-	$gallery->album->fields['resize_file_size']		= $resize_file_size;
-	$gallery->album->fields['max_size']				= $max_size;
-	$gallery->album->fields['max_file_size']		= $max_file_size;
-	$gallery->album->fields['returnto']				= $returnto;
-	$gallery->album->fields['rows']					= $rows;
-	$gallery->album->fields['cols']					= $cols;
-	$gallery->album->fields['fit_to_window']		= $fit_to_window;
-	$gallery->album->fields['use_fullOnly']			= $use_fullOnly;
-	$gallery->album->fields['print_photos']			= $print_photos;
-	$gallery->album->fields['use_exif']				= $use_exif;
-	$gallery->album->fields['display_clicks']		= $display_clicks;
+	$gallery->album->fields['summary']		= $summary;
+	$gallery->album->fields['title']		= trim($title);
+	$gallery->album->fields['bgcolor']		= $bgcolor;
+	$gallery->album->fields['textcolor']		= $textcolor;
+	$gallery->album->fields['linkcolor']		= $linkcolor;
+	$gallery->album->fields['font']			= $font;
+	$gallery->album->fields['bordercolor']		= $bordercolor;
+	$gallery->album->fields['border']		= $border;
+	$gallery->album->fields['background']		= $background;
+	$gallery->album->fields['thumb_size']		= $thumb_size;
+	$gallery->album->fields['thumb_ratio']		= $thumb_ratio;
+	$gallery->album->fields['resize_size']		= $resize_size;
+	$gallery->album->fields['resize_file_size']	= $resize_file_size;
+	$gallery->album->fields['max_size']		= $max_size;
+	$gallery->album->fields['max_file_size']	= $max_file_size;
+	$gallery->album->fields['returnto']		= $returnto;
+	$gallery->album->fields['rows']			= $rows;
+	$gallery->album->fields['cols']			= $cols;
+	$gallery->album->fields['fit_to_window']	= $fit_to_window;
+	$gallery->album->fields['use_fullOnly']		= $use_fullOnly;
+	$gallery->album->fields['print_photos']		= $print_photos;
+	$gallery->album->fields['use_exif']		= $use_exif;
+	$gallery->album->fields['display_clicks']	= $display_clicks;
 	$gallery->album->fields['item_owner_modify']	= $item_owner_modify;
 	$gallery->album->fields['item_owner_delete']	= $item_owner_delete;
 	$gallery->album->fields['item_owner_display']	= $item_owner_display;
-	$gallery->album->fields['add_to_beginning']		= $add_to_beginning;
-	$gallery->album->fields['slideshow_type']		= $slideshow_type;
+	$gallery->album->fields['add_to_beginning']	= $add_to_beginning;
+	$gallery->album->fields['slideshow_type']	= $slideshow_type;
 	$gallery->album->fields['slideshow_recursive']	= $slideshow_recursive;
-	$gallery->album->fields['slideshow_loop']		= $slideshow_loop;
-	$gallery->album->fields['slideshow_length']		= $slideshow_length;
-	$gallery->album->fields['album_frame']			= $album_frame;
-	$gallery->album->fields['thumb_frame']			= $thumb_frame;
-	$gallery->album->fields['image_frame']			= $image_frame;
-	$gallery->album->fields['showDimensions']		= $showDimensions;
+	$gallery->album->fields['slideshow_loop']	= $slideshow_loop;
+	$gallery->album->fields['slideshow_length']	= $slideshow_length;
+	$gallery->album->fields['album_frame']		= $album_frame;
+	$gallery->album->fields['thumb_frame']		= $thumb_frame;
+	$gallery->album->fields['image_frame']		= $image_frame;
+	$gallery->album->fields['showDimensions']	= $showDimensions;
 	$gallery->album->fields['dimensionsAsPopup']	= $dimensionsAsPopup;
-	$gallery->album->fields['ecards']				= $ecards;
+	$gallery->album->fields['ecards']		= $ecards;
 
-	$gallery->album->fields['nav_thumbs']				= $nav_thumbs;
-	$gallery->album->fields['nav_thumbs_style']			= $nav_thumbs_style;
+	$gallery->album->fields['nav_thumbs']			= $nav_thumbs;
+	$gallery->album->fields['nav_thumbs_style']		= $nav_thumbs_style;
 	$gallery->album->fields['nav_thumbs_first_last']	= $nav_thumbs_first_last;
 	$gallery->album->fields['nav_thumbs_prev_shown']	= $nav_thumbs_prev_shown;
 	$gallery->album->fields['nav_thumbs_next_shown']	= $nav_thumbs_next_shown;
 	$gallery->album->fields['nav_thumbs_location']		= $nav_thumbs_location;
-	$gallery->album->fields['nav_thumbs_size']			= $nav_thumbs_size;
+	$gallery->album->fields['nav_thumbs_size']		= $nav_thumbs_size;
 	$gallery->album->fields['nav_thumbs_current_bonus']	= $nav_thumbs_current_bonus;
 
 	/* Poll properties */
@@ -132,11 +131,11 @@ if (getRequestVar('save')) {
 			"<i>". gTranslate('core', "Logged in") ."</i>");
 	}
 
-	$gallery->album->fields['voter_class']			= $voter_class;
-	$gallery->album->fields['poll_scale']			= $poll_scale;
+	$gallery->album->fields['voter_class']		= $voter_class;
+	$gallery->album->fields['poll_scale']		= $poll_scale;
 	$gallery->album->fields['poll_show_results']	= $poll_show_results;
-	$gallery->album->fields['poll_num_results']		= $poll_num_results;
-	$gallery->album->fields['poll_orientation']		= $poll_orientation;
+	$gallery->album->fields['poll_num_results']	= $poll_num_results;
+	$gallery->album->fields['poll_orientation']	= $poll_orientation;
 
 
 	/* Extrafields and Custom Fields */
@@ -195,12 +194,12 @@ function num_special_fields($extra_fields) {
 }
 
 $multiple_choices_EF = array(
-							'Title' => gTranslate('core', "Title"),
-							'AltText' => gTranslate('core', "Alt text / Tooltip")
+			'Title' => gTranslate('core', "Title"),
+			'AltText' => gTranslate('core', "Alt text / Tooltip")
 );
 
 $extra_fields	= $gallery->album->getExtraFields();
-$checked_EF		= array();
+$checked_EF	= array();
 
 foreach (automaticFieldsList() as $automatic => $printable_automatic) {
 	if ($automatic === "EXIF" &&
@@ -227,7 +226,7 @@ foreach ($extra_fields as $value) {
 		continue;
 	}
 
-	$customFields['cf_$i'] = array(
+    	$customFields["cf_$i"] = array(
 		'name'		=> 'extra_fields[]',
 		'prompt'	=> sprintf(gTranslate('core', "Field %s:"),$i),
 		'desc'		=> '',
@@ -262,8 +261,8 @@ $i = 0;
 $initialtab = makeSectionTabs($properties, $initialtab, true);
 
 echo makeFormIntro('edit_appearance.php',
-				   array(),
-				   array('type' => 'popup', 'initialtab' => $initialtab));
+			array(),
+			array('type' => 'popup', 'initialtab' => $initialtab));
 
 foreach ($properties as $key => $val) {
 	if(!empty($val['skip'])) {
