@@ -75,7 +75,7 @@ $error = 0;
 $warning = 0;
 ?>
 
-<script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo makeGalleryUrl('js/toggle.js.php'); ?>"></script>
 
 <input type="hidden" name="this_page" value="check">
 <input type="hidden" name="next_page" value="constants">

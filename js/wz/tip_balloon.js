@@ -1,10 +1,9 @@
 /**
  * Gallery SVN ID:
- * $Id$
+ * $Id: multiInput.js.php 13850 2006-06-19 12:37:37Z jenst $
  */
 
-/*
-tip_balloon.js  v. 1.1
+tip_balloon.js  v. 1.5
 
 The latest version is available at
 http://www.walterzorn.com
@@ -12,7 +11,7 @@ or http://www.devira.com
 or http://www.walterzorn.de
 
 Initial author: Walter Zorn
-Last modified: 24.6.2007
+Last modified: 11.4.2008
 
 Extension for the tooltip library wz_tooltip.js.
 Implements balloon tooltips.
@@ -28,12 +27,13 @@ Implements balloon tooltips.
 // created.
 
 //===================  GLOBAL TOOPTIP CONFIGURATION  =========================//
-config. Balloon = false				   // true or false - set to true if you want this to be the default behaviour
-config. BalloonImgPath = "./js/tip_balloon/" // Path to images (border, corners, stem). This path must be relative to your HTML file.
+config. Balloon			= false	// true or false - set to true if you want this to be the default behaviour
+config. BalloonImgPath		= "./js/wz/tip_balloon/" // Path to images (border, corners, stem), in quotes. Path must be relative to your HTML file.
 // Sizes of balloon images
-config. BalloonEdgeSize = 5
-config. BalloonStemWidth = 15
-config. BalloonStemHeight = 19
+config. BalloonEdgeSize		= 6		// Integer - sidelength of quadratic corner images
+config. BalloonStemWidth	= 15	// Integer
+config. BalloonStemHeight	= 19	// Integer
+config. BalloonStemOffset	= -7	// Integer - horizontal offset of left stem edge from mouse (recommended: -stemwidth/2 to center the stem above the mouse)
 //=======  END OF TOOLTIP CONFIG, DO NOT CHANGE ANYTHING BELOW  ==============//
 
 
@@ -70,7 +70,7 @@ balloon.OnCreateContentString = function()
 	if(!tt_aV[BALLOON])
 		return false;
 
-	var aImg;
+	var aImg, sImgZ, sCssCrn, sVaT, sVaB, sCssImg;
 
 	// Cache balloon images in advance:
 	// Either use the pre-cached default images...
@@ -79,58 +79,62 @@ balloon.OnCreateContentString = function()
 	// ...or load images from different directory
 	else
 		aImg = Balloon_CacheImgs(tt_aV[BALLOONIMGPATH]);
-	sCssCorn = 'style="position:relative;width:' + tt_aV[BALLOONEDGESIZE] + 'px;padding:0px;margin:0px;overflow:hidden;"';
+	sCssCrn = ' style="position:relative;width:' + tt_aV[BALLOONEDGESIZE] + 'px;padding:0px;margin:0px;overflow:hidden;line-height:0px;';
+	sVaT = 'vertical-align:top;" valign="top"';
+	sVaB = 'vertical-align:bottom;" valign="bottom"';
+	sCssImg = 'padding:0px;margin:0px;border:0px;';
+	sImgZ = '" style="' + sCssImg + '" />';
 
 	tt_sContent = '<table border="0" cellpadding="0" cellspacing="0" style="width:auto;padding:0px;margin:0px;left:0px;top:0px;"><tr>'
 				// Left-top corner
-				+ '<td ' + sCssCorn + ' valign="bottom">'
-				+ '<img src="' + aImg[1].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + '" />'
+				+ '<td' + sCssCrn + sVaB + '>'
+				+ '<img src="' + aImg[1].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + sImgZ
 				+ '</td>'
 				// Top border
 				+ '<td valign="bottom" style="position:relative;padding:0px;margin:0px;overflow:hidden;">'
-				+ '<img id="bALlOOnT" style="position:relative;top:1px;z-index:1;display:none;" src="' + aImg[9].src + '" width="' + tt_aV[BALLOONSTEMWIDTH] + '" height="' + tt_aV[BALLOONSTEMHEIGHT] + '" />'
+				+ '<img id="bALlOOnT" style="position:relative;top:1px;z-index:1;display:none;' + sCssImg + '" src="' + aImg[9].src + '" width="' + tt_aV[BALLOONSTEMWIDTH] + '" height="' + tt_aV[BALLOONSTEMHEIGHT] + '" />'
 				+ '<div style="position:relative;z-index:0;padding:0px;margin:0px;overflow:hidden;width:auto;height:' + tt_aV[BALLOONEDGESIZE] + 'px;background-image:url(' + aImg[2].src + ');">'
 				+ '</div>'
 				+ '</td>'
 				// Right-top corner
-				+ '<td ' + sCssCorn + ' valign="bottom">'
-				+ '<img src="' + aImg[3].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + '" />'
+				+ '<td' + sCssCrn + sVaB + '>'
+				+ '<img src="' + aImg[3].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + sImgZ
 				+ '</td>'
 				+ '</tr><tr>'
 				// Left border
 				+ '<td style="position:relative;padding:0px;margin:0px;width:' + tt_aV[BALLOONEDGESIZE] + 'px;overflow:hidden;background-image:url(' + aImg[8].src + ');">'
-				// Image redundancy for bugous old Geckos which don't auto-expand the TD height to 100%
-				+ '<img width="' + tt_aV[BALLOONEDGESIZE] + '" height="100%" src="' + aImg[8].src + '" />'
+				// Redundant image for bugous old Geckos that won't auto-expand TD height to 100%
+				+ '<img width="' + tt_aV[BALLOONEDGESIZE] + '" height="100%" src="' + aImg[8].src + sImgZ
 				+ '</td>'
 				// Content
-				+ '<td style="position:relative'
+				+ '<td id="bALlO0nBdY" style="position:relative;line-height:normal;'
 				+ ';background-image:url(' + aImg[0].src + ')'
 				+ ';color:' + tt_aV[FONTCOLOR]
 				+ ';font-family:' + tt_aV[FONTFACE]
 				+ ';font-size:' + tt_aV[FONTSIZE]
 				+ ';font-weight:' + tt_aV[FONTWEIGHT]
 				+ ';text-align:' + tt_aV[TEXTALIGN]
-				+ ';padding:' + balloon.padding
-				+ ';width:' + (balloon.width ? (balloon.width + 'px') : 'auto')
+				+ ';padding:' + balloon.padding + 'px'
+				+ ';width:' + ((balloon.width > 0) ? (balloon.width + 'px') : 'auto')
 				+ ';">' + tt_sContent + '</td>'
 				// Right border
 				+ '<td style="position:relative;padding:0px;margin:0px;width:' + tt_aV[BALLOONEDGESIZE] + 'px;overflow:hidden;background-image:url(' + aImg[4].src + ');">'
-				// Image redundancy for bugous old Geckos which don't auto-expand the TD height to 100%
-				+ '<img width="' + tt_aV[BALLOONEDGESIZE] + '" height="100%" src="' + aImg[4].src + '" />'
+				// Image redundancy for bugous old Geckos that won't auto-expand TD height to 100%
+				+ '<img width="' + tt_aV[BALLOONEDGESIZE] + '" height="100%" src="' + aImg[4].src + sImgZ
 				+ '</td>'
 				+ '</tr><tr>'
 				// Left-bottom corner
-				+ '<td valign="top" ' + sCssCorn + '>'
-				+ '<img src="' + aImg[7].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + '" />'
+				+ '<td' + sCssCrn + sVaT + '>'
+				+ '<img src="' + aImg[7].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + sImgZ
 				+ '</td>'
 				// Bottom border
 				+ '<td valign="top" style="position:relative;padding:0px;margin:0px;overflow:hidden;">'
 				+ '<div style="position:relative;left:0px;top:0px;padding:0px;margin:0px;overflow:hidden;width:auto;height:' + tt_aV[BALLOONEDGESIZE] + 'px;background-image:url(' + aImg[6].src + ');"></div>'
-				+ '<img id="bALlOOnB" style="position:relative;top:-1px;left:2px;z-index:1;display:none;" src="' + aImg[10].src + '" width="' + tt_aV[BALLOONSTEMWIDTH] + '" height="' + tt_aV[BALLOONSTEMHEIGHT] + '" />'
+				+ '<img id="bALlOOnB" style="position:relative;top:-1px;left:2px;z-index:1;display:none;' + sCssImg + '" src="' + aImg[10].src + '" width="' + tt_aV[BALLOONSTEMWIDTH] + '" height="' + tt_aV[BALLOONSTEMHEIGHT] + '" />'
 				+ '</td>'
 				// Right-bottom corner
-				+ '<td valign="top" ' + sCssCorn + '>'
-				+ '<img src="' + aImg[5].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + '" />'
+				+ '<td' + sCssCrn + sVaT + '>'
+				+ '<img src="' + aImg[5].src + '" width="' + tt_aV[BALLOONEDGESIZE] + '" height="' + tt_aV[BALLOONEDGESIZE] + sImgZ
 				+ '</td>'
 				+ '</tr></table>';
 	return true;
@@ -140,8 +144,10 @@ balloon.OnSubDivsCreated = function()
 	if(tt_aV[BALLOON])
 	{
 		balloon.iStem = tt_aV[ABOVE] * 1;
-		balloon.stem = [tt_GetElt("bALlOOnT"), tt_GetElt("bALlOOnB")];
-		balloon.stem[balloon.iStem].style.display = "inline";
+		balloon.aStem = [tt_GetElt("bALlOOnT"), tt_GetElt("bALlOOnB")];
+		balloon.aStem[balloon.iStem].style.display = "inline";
+		if (balloon.width < -1)
+			Balloon_MaxW();
 		return true;
 	}
 	return false;
@@ -157,19 +163,19 @@ balloon.OnMoveAfter = function()
 		if(iStem != balloon.iStem)
 		{
 			// Display opposite stem
-			balloon.stem[balloon.iStem].style.display = "none";
-			balloon.stem[iStem].style.display = "inline";
+			balloon.aStem[balloon.iStem].style.display = "none";
+			balloon.aStem[iStem].style.display = "inline";
 			balloon.iStem = iStem;
 		}
 
-		balloon.stem[iStem].style.left = Balloon_CalcStemX() + "px";
+		balloon.aStem[iStem].style.left = Balloon_CalcStemX() + "px";
 		return true;
 	}
 	return false;
 };
 function Balloon_CalcStemX()
 {
-	var x = tt_musX - tt_x;
+	var x = tt_musX - tt_x + tt_aV[BALLOONSTEMOFFSET] - tt_aV[BALLOONEDGESIZE];
 	return Math.max(Math.min(x, tt_w - tt_aV[BALLOONSTEMWIDTH] - (tt_aV[BALLOONEDGESIZE] << 1) - 2), 2);
 }
 function Balloon_CacheImgs(sPath)
@@ -182,9 +188,20 @@ function Balloon_CacheImgs(sPath)
 	while(n)
 	{--n;
 		img = aImg[n] = new Image();
-		img.src = sPath + asImg[n] + ".gif";
+		img.src = sPath + asImg[n] + ".gif";  //  Change to ".png" if you want to use PNG images
 	}
 	return aImg;
+}
+function Balloon_MaxW()
+{
+	var bdy = tt_GetElt("bALlO0nBdY");
+
+	if (bdy)
+	{
+		var iAdd = tt_bBoxOld ? (balloon.padding << 1) : 0, w = tt_GetDivW(bdy);
+		if (w > -balloon.width + iAdd)
+			bdy.style.width = (-balloon.width + iAdd) + "px";
+	}
 }
 // This mechanism pre-caches the default images specified by
 // congif.BalloonImgPath, so, whenever a balloon tip using these default images

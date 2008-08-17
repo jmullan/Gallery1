@@ -2246,23 +2246,17 @@ class Album {
 			return true;
 		}
 
-		$onePercent		= 100/$numItems;
-		$progressbarID	= $this->fields['name'];
+		$onePercent	= 100/$numItems;
+		$progressbarID	= 'pbarId_' . $this->fields['name'];
 
-		echo addProgressbar(
-			$progressbarID,
-			sprintf(
-				gTranslate('core', "Updating album: '<i>%s</i>' (%s)' with %d items"),
-				$this->fields['title'],
-				$this->fields['name'],
-				$numItems)
-		);
+		echo addProgressbar($progressbarID);
 
+		$step = 0;
 		for ($i = 1; $i <= $numItems; $i++) {
 			updateProgressBar(
 				$progressbarID,
-				sprintf(gTranslate('core', "Processing item %d..."), $i),
-				ceil($i * $onePercent)
+				sprintf(gTranslate('core', "Processing item %d of %d."), $i, $numItems),
+				-1
 			);
 
 			if ($this->isAlbum($i) && $recursive) {
@@ -2279,6 +2273,11 @@ class Album {
 				$this->setItemCaptureDate($i);
 			}
 
+			updateProgressBar(
+				$progressbarID,
+				'-1',
+				ceil($step * $onePercent)
+			);
 		}
 
 		$this->save();

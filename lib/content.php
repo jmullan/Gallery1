@@ -1554,16 +1554,16 @@ function toggleButton($id) {
 			'</a> ';
 
 	return $html;
-
 }
 
 /**
  * Creates a toggle Box. Optionally a toggle Button is added before, or after.
+ * Note: Needs toggle.js.php to be loaded before!
  *
- * @param string $id
- * @param string $text
- * @param string $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
- * @return string   The HTML code.
+ * @param string  $id
+ * @param string  $text
+ * @param string  $toggleButton  Can be 'append', 'prepend', if something else, no toggle Button shows up.
+ * @return string $html          The HTML code.
  * @author Jens Tkotz
  */
 function toggleBox($id, $text, $toggleButton = 'prepend') {

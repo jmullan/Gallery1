@@ -27,7 +27,7 @@ printPopupStart(gTranslate('config', "Check Versions"));
 configLogin(basename(__FILE__));
 
 ?>
-<script type="text/javascript" src="../js/toggle.js"></script>
+<script type="text/javascript" src="../js/toggle.js.php"></script>
 
 <div class="g-sitedesc left"><?php
 	printf(gTranslate('config', "This page gives you information about the version of each necessary %s file. "),Gallery());
