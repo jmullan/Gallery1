@@ -1,3 +1,21 @@
+2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b133
+
+ * Security Fix *
+
+ Inadequate Password Complexity Enforcement
+ Issue Overview
+ The application does not enforce adequate password complexity requirements
+ for user passwords.
+ Allowing weak passwords increases the chances of account compromise
+ via password guessing attacks.
+
+
+ - Minimum length of passwords 4 characters.
+ - Password = username not allowed anymore.
+ 
+ Added new nice password strengthmeter.
+
+ 
 2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b132
 
  *** Security Fix ***

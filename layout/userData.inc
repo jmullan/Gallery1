@@ -50,15 +50,15 @@ if ($allowChange['uname'] || $uname) {
 }
 
 if (isset($allowChange['password']) && $allowChange['password'] === true) {
-    if (isset($allowChange['old_password']) && $allowChange['old_password'] === true) {
+	if (isset($allowChange['old_password']) && $allowChange['old_password'] === true) {
 		echo gInput('password', 'old_password', gTranslate('core', "_Old Password"), true, '', array('class' => 'g-passwordInput'));
 		echo errorRow("old_password");
 	}
 
-	echo gInput('password', 'new_password1', gTranslate('core', "New _Password"), true, $new_password1);
+	echo gInput('password', 'new_password1', gTranslate('core', "New _Password"), true, '', array('class' => 'g-passwordInput', 'addCheck' => true));
 	echo errorRow("new_password1");
 
-	echo gInput('password', 'new_password2', gTranslate('core', "New Password (again)"), true, $new_password2);
+	echo gInput('password', 'new_password2', gTranslate('core', "New Password (again)"), true, '', array('class' => 'g-passwordInput'));
 	echo errorRow("new_password2");
 }
 
@@ -107,17 +107,17 @@ if ($gallery->user->isAdmin()) { ?>
 <tr>
 	<td><?php echo gTranslate('core', "User is an admin") ?></td>
 	<?php
-		if ($allowChange['admin'] === true) {
-		    if ($uname = $gallery->user->getUsername() == $uname) {
-				echo '<td>'. $yesNoChoices[$isAdmin] .'</td></tr>';
-				echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
-				$hidden[] = array('isAdmin', $isAdmin);
-		    }
-		    else {
-				echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . '</td>';
-				echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i></td>';
-		    }
-		} ?>
+	if ($allowChange['admin'] === true) {
+		if ($uname = $gallery->user->getUsername() == $uname) {
+			echo '<td>'. $yesNoChoices[$isAdmin] . "</td></tr>\n";
+			echo '<tr><td colspan="2"><i>('. gTranslate('core', "You can't un-admin yourself.") . ')</i></td>';
+			$hidden[] = array('isAdmin', $isAdmin);
+		}
+		else {
+			echo '<td>'. drawSelect("isAdmin", $yesNoChoices, $isAdmin, 1) . "</td></tr>\n";
+			echo '<tr><td colspan="2"><i>('. gTranslate('core', "Note: Admins can always create albums and are allowed to change their password.") .')</i></td>';
+		}
+	} ?>
 </tr>
 <?php
 }
@@ -135,8 +135,8 @@ else {
 ?>
 </table>
 <?php
-	foreach ($hidden as $line) {
-		echo "\n". '<input type="hidden" name="'. $line[0] .'" value="'. $line[1] .'">';
-	}
-	echo "\n";
+foreach ($hidden as $line) {
+	echo "\n". '<input type="hidden" name="'. $line[0] .'" value="'. $line[1] .'">';
+}
+echo "\n";
 ?>

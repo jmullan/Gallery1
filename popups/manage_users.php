@@ -127,7 +127,7 @@ doctype();
   </style>
 </head>
 <body class="g-popup" onload="enableButtons()">
-<script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL;?>/js/wz_tooltip.js"></script>
+<?php echo jsHTML('wz/wz_tooltip.js'); ?>
 <div class="g-header-popup">
   <div class="g-pagetitle-popup"><?php echo gTranslate('core', "Manage Users"); ?></div>
 </div>

@@ -477,12 +477,20 @@ function gSubmit($name, $value, $additionalAttrs = array()) {
  */
 function gInput($type, $name, $label = null, $tableElement = false, $value = null, $attrList = array(), $multiInput = false, $autocomplete = false) {
 	global $browser;
+	static $pwCheckAdded	= false;
+	static $idcnt		= 0;
 
-	$attrList['name'] = $name;
-	$attrList['accesskey'] = getAndSetAccessKey($label);
+	$attrList['name']	= $name;
+	$attrList['accesskey']	= getAndSetAccessKey($label);
 
+	$idcnt++;
 	if(!isset($attrList['id'])) {
-		$attrList['id'] = $attrList['name'];
+		if ($type != 'radio') {
+			$attrList['id'] = $attrList['name'];
+		}
+		else {
+			$attrList['id'] = $attrList['name'] . '_' . $idcnt;
+		}
 	}
 
 	$id = $attrList['id'];
@@ -491,12 +499,22 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 		$attrList['value'] = $value;
 	}
 
+	// pre-processing
 	switch($type) {
 		case 'fixedhidden':
 			$attrList['type'] = 'hidden';
 		break;
 
 		case 'textarea':
+		break;
+
+		case 'password':
+			$attrList['type'] = $type;
+			if(isset($attrList['addCheck'])) {
+				$attrList['onkeyup'] = "checkPw('{$attrList['id']}')";
+				$addCheck = true;
+				unset($attrList['addCheck']);
+			}
 		break;
 
 		default:
@@ -531,27 +549,49 @@ function gInput($type, $name, $label = null, $tableElement = false, $value = nul
 		$input = "<input$attrs>";
 	}
 
-	if ($type == 'fixedhidden') {
-		$input .= $value;
+	// post-processing
+	switch ($type) {
+		case 'fixedhidden':
+			$input .= $value;
+		break;
 	}
 
+	if ($type == 'password' && isset($addCheck)) {
+		$input .= "\n" .
+			gInput(
+				'text',
+				"result_{$attrList['id']}", null, false, '',
+				array('size' => 13, 'class' => 'g-pwcheck', 'disabled' => null));
+
+		if(!$pwCheckAdded) {
+			$input .= jsHTML('number_conversions.js');
+			$input .= jsHTML('passwordStrengthMeter.js');
+			$pwCheckAdded = true;
+		}
+	}
+
+	// End post-processing
 	if($tableElement){
+		$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
 		if($label) {
-			$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
-			$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
-			$html .= "\t<td>$input</td>\n";
-			$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
+			if($type == 'checkbox' || $type == 'radio') {
+				$html .= "\t<td width=\"10\">$input</td>\n";
+				$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
+			}
+			else {
+				$html .= "\t<td><label for=\"$id\">$label</label></td>\n";
+				$html .= "\t<td>$input</td>\n";
+			}
 		}
 		else {
-			$html = ($tableElement === 'cell') ? '' : "  <tr>\n";
 			$html .= "\t<td>$input</td>\n";
-			$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
 		}
+		$html .= ($tableElement === 'cell') ? '' : "  </tr>\n";
 	}
 	else {
 		if($label) {
 			if($type == 'checkbox' || $type == 'radio') {
-				$html = "  $input <label for=\"$id\">$label</label>\n";
+				$html = "  $input<label for=\"$id\">$label</label>\n";
 			}
 			else {
 				$html = "  <label for=\"$id\">$label</label> $input\n";
@@ -619,7 +659,7 @@ function gReset($name, $value, $additionalAttrs = array()) {
 
 	$attrs = generateAttrs($attrList);
 
-	$html = "<input$attrs>\n";
+	$html = "  <input$attrs>\n";
 
 	return $html;
 }

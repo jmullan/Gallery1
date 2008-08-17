@@ -371,7 +371,7 @@ class Gallery_UserDB extends Abstract_UserDB {
 		    !strcmp($username, $this->loggedIn->getUsername()))
 		{
 			return sprintf(gTranslate('core', "'%s' is reserved and cannot be used."),
-					$saveToDisplayUserName);
+				$saveToDisplayUserName);
 		}
 
 		$user = $this->getUserByUsername($username);
@@ -383,9 +383,33 @@ class Gallery_UserDB extends Abstract_UserDB {
 		return null;
 	}
 
-	function validPassword($password) {
-		if (strlen($password) < 3) {
-			return gTranslate('core', "Password must be at least 3 characters.");
+	function validPassword($password, $user = NULL) {
+		global $notice_messages;
+
+		$min_length = 4;
+
+		if (strlen($password) < $min_length) {
+			return sprintf(gTranslate('core', "Password must have at least %d characters."), $min_length);
+		}
+
+		//password == username
+		if($user) {
+			if (strtolower($password) == strtolower($user->getUsername())) {
+				return gTranslate('core', "Password can not be the username.");
+			}
+		}
+
+		$passwordStrength = passwordStrength($password);
+
+		if($passwordStrength < 34) {
+			return gTranslate('core', "Password is too weak. Use a more complex password.");
+		}
+
+		if ($passwordStrength < 68) {
+			$notice_messages[] = array(
+				'type' => 'information',
+				'text' => gTranslate('core', "Your password is good, but not strong.")
+			);
 		}
 
 		return null;
