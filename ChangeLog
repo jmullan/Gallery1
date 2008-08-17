@@ -1,3 +1,20 @@
+2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b134
+
+ * Security Fix *
+
+ New Password Functionality Susceptible to Brute Force Attacks
+ Issue Overview
+ The new password functionality generates a one-time password hash value that
+ is comprised of the first 5 characters returned
+ by the PHP md5 function and is derived from the user's current password and
+ the current system timestamp. This weak
+ character composition (valid HEX characters, ie A-F and 0-9) and possibility
+ for duplicate password hashes (due to password
+ requests at the same time and duplicate current password values) exposes the
+ application to remote unauthenticated
+ automated brute force attacks.
+
+
 2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b133
 
  * Security Fix *

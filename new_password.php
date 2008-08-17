@@ -28,52 +28,68 @@ list($hash, $uname, $save, $new_password1, $new_password2) =
 list($fullname, $email, $defaultLanguage) =
 	getRequestVar(array('fullname', 'email', 'defaultLanguage'));
 
-$error_string = '';
+$errorCount = 0;
 
-if (!isset($hash)) {
-	   	$error_string .= gTranslate('core', "missing hash parameter") . "<br>";
+printPopupStart(gTranslate('core', "Make New Password"));
+
+if (empty($hash) || empty($uname)) {
+	showInvalidReqMesg();
+	exit;
 }
-if (empty($uname) ) {
-	   	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
-} else {
-	   	$tmpUser = $gallery->userDB->getUserByUsername($uname);
-	   	if (empty($tmpUser)) {
-		   	$error_string .= gTranslate('core', "Not a valid username") . "<br>";
-	   	} else if (!$tmpUser->checkRecoverPasswordHash($hash)) {
-		   	$error_string .= gTranslate('core', "The recovery password is not the expected value, please try again") . "<br>";
+
+if (!empty($uname) ) {
+	$tmpUser = $gallery->userDB->getUserByUsername($uname);
+	if (! empty($tmpUser) && !$tmpUser->checkRecoverPasswordHash($hash)) {
+		if($tmpUser->lastAction ==  "new_password_request") {
+			showInvalidReqMesg(gTranslate('core', "The recovery password is not the expected value, please try again."));
+			exit;
+		}
+		else {
+			showInvalidReqMesg();
+			exit;
+		}
+	}
+	else {
+		showInvalidReqMesg();
+		exit;
 	}
 }
 
-$errorCount = 0;
 if (!empty($save)) {
+	$saveOk = true;
+
 	if (empty($new_password1) ) {
-		   	$gErrors["new_password1"] = gTranslate('core', "You must provide your new password.");
-		   	$errorCount++;
-	} else if (strcmp($new_password1, $new_password2)) {
-		   	$gErrors["new_password2"] = gTranslate('core', "Passwords do not match!");
-		   	$errorCount++;
-	   	} else {
-		   	$gErrors["new_password1"] = $gallery->userDB->validPassword($new_password1);
-		   	if ($gErrors["new_password1"]) {
-			   	$errorCount++;
-		   	}
-	   	}
+		$gErrors['new_password1'] = gTranslate('core', "You must provide your new password.");
+		$saveOk = false;
+	}
+	else if (strcmp($new_password1, $new_password2)) {
+		$gErrors['new_password2'] = gTranslate('core', "Passwords did not match!");
+		$errorCount++;
+	}
+	else {
+		$gErrors['new_password1'] = $gallery->userDB->validPassword($new_password1);
+		if ($gErrors['new_password1']) {
+			$saveOk = false;
+		}
+	}
 
 	// security check;
-	if($fullname != strip_tags($fullname)) {
-			$gErrors["fullname"] =
-				sprintf(gTranslate('core', "%s contained invalid data, resetting input."), htmlentities($fullname));
-			$errorCount++;
-		}
+	if(! isXSSclean($fullname)) {
+		$gErrors['fullname'] =
+			sprintf(gTranslate('core', "%s contained invalid data, sanitizing input."),
+					sanitizeInput($fullname));
+		$saveOk = false;
+	}
 
 	if (!empty($email) && !check_email($email)) {
 		$gErrors['email'] = gTranslate('core', "You must specify a valid email address.");
-		$errorCount++;
+		$saveOk = false;
 	}
 
-	if (!$error_string && !$errorCount) {
+	if ($saveOk) {
 		$tmpUser->setFullname($fullname);
 		$tmpUser->setEmail($email);
+
 		if (isset($defaultLanguage)) {
 			$tmpUser->setDefaultLanguage($defaultLanguage);
 			$gallery->session->language=$defaultLanguage;
@@ -101,13 +117,9 @@ $allowChange['old_password']	= false;
 $allowChange['send_email']	= false;
 $allowChange['member_file']	= false;
 
-printPopupStart(gTranslate('core', "Make New Password"));
-
-if (!empty($messages)) {
-	echo infobox($messages);
-	echo "<a href='albums.php'>" . gTranslate('core', "Enter the Gallery") . "</a></div></body></html>";
-	exit;
-}
+$fullname	 = $tmpUser->getFullname();
+$email		 = $tmpUser->getEmail();
+$defaultLanguage = $tmpUser->getDefaultLanguage();
 
 echo '<div class="g-sitedesc">';
 echo gTranslate('core', "You can change your user information here.");
@@ -115,10 +127,7 @@ echo gTranslate('core', "You must enter the new password twice.");
 
 echo "\n</div>";
 
-echo makeFormIntro('new_password.php', array('name' => 'usermodify_form'));
-$fullname	= $tmpUser->getFullname();
-$email		= $tmpUser->getEmail();
-$defaultLanguage = $tmpUser->getDefaultLanguage();
+echo makeFormIntro('new_password.php', array('name' => 'usermodify_form', 'style' => 'padding: 15px 50px 0 50px '));
 
 include(dirname(__FILE__) . '/layout/userData.inc');
 

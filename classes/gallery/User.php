@@ -163,10 +163,24 @@ class Gallery_User extends Abstract_User {
 			return '';
 		}
 
-		$rec_pass_hash = substr(md5($this->password . $this->uid.microtime()), 0, 5);
+		/**
+		 * Code below is borrowed from G2 _generateAuthString()
+		 */
+		mt_srand(crc32(microtime()));
+
+		$rand = '';
+		for ($len = 64 ; strlen($rand) < $len ; ) {
+			$rand .= chr(!mt_rand(0,2) ? mt_rand(48,57) :
+			(!mt_rand(0,1) ? mt_rand(65,90) :
+			mt_rand(97,122)));
+		}
+
+		$rec_pass_hash = $rand;
 		$this->recoverPassHash = md5($rec_pass_hash);
 
-		return str_replace("&amp;", "&", makeGalleryUrl('new_password.php', array('hash' => $rec_pass_hash, 'uname' => $this->getUsername())));
+		return makeGalleryUrl(
+			'new_password.php',
+			array('hash' => $rec_pass_hash, 'uname' => $this->getUsername()));
 	}
 
 	function checkRecoverPasswordHash($hash) {
