@@ -179,8 +179,13 @@ else {
 
 function drawApplet($width, $height, $code, $archive, $album, $defaults, $overrides, $configFile, $errorMsg) {
 	global $gallery, $GALLERY_EMBEDDED_INSIDE, $GALLERY_EMBEDDED_INSIDE_TYPE;
-	global $_CONF; // for geeklog
-	global $board_config; // for phpBB2
+	global $_CONF;		// for geeklog
+	global $board_config;	// for phpBB2
+
+	if(!isXSSclean($_SERVER['HTTP_USER_AGENT'], 0)) {
+		echo gallery_error(gTranslate('core', "Security violation!"));
+		return false;
+	}
 
 	if (file_exists($configFile)) {
 		include($configFile);
@@ -498,9 +503,9 @@ function displayPhotoFields($index, $extra_fields, $withExtraFields = true, $wit
 		$customFieldsTable->setCaption($caption, 'g-columnheader');
 
 		foreach ($fields as $key => $value) {
-			$customFieldsTable->addElement(array('content' => $key));
-			$customFieldsTable->addElement(array('content' => ':'));
-			$customFieldsTable->addElement(array('content' => $value));
+			$customFieldsTable->addElement(array('content' => $key, 'cellArgs' => array('class' => 'right')));
+			$customFieldsTable->addElement(array('content' => ':', 'cellArgs' => array('width' => '25')));
+			$customFieldsTable->addElement(array('content' => $value, 'cellArgs' => array('class' => 'left')));
 		}
 		$html = $customFieldsTable->render();
 	}
@@ -704,6 +709,10 @@ function reload() {
  * @param string $url
  */
 function dismissAndLoad($url = '') {
+	if (! isXSSclean($url, 0)) {
+		$url = makeGalleryHeaderUrl();
+	}
+
 	doctype();
 	echo "\n<html>";
 	echo "\n<title>". gTranslate('common', "Operation done, closing window.") . '</title>';
@@ -1472,6 +1481,20 @@ function autoCompleteJS() {
 	return $html;
 }
 
+/**
+ * Returns the HTML code to a js file inside the Galley js folder.
+ *
+ * @param  string	$path	e.g. /js/yui/autocomplete-min.js
+ * @return string	The HTML code
+ * @author Jens Tkotz
+ */
+function jsHTML($path) {
+	$baseUrl = getGalleryBaseUrl();
+
+	if(isXSSclean($path, 0)) {
+		return "\t<script type=\"text/javascript\" src=\"$baseUrl/js/$path\"></script>\n";
+	}
+}
 
 /**
  * Returns the HTML/Javascript code that initializes an autocomplete field
@@ -1707,6 +1730,59 @@ function picture($index, $full = false, $newwidth = 0, $newheight = 0) {
 	}
 
 	$function_image_new($resized);
+}
+
+/**
+ * Sanitize an (input) value.
+ *
+ * @param string	$value
+ * @return string	$sanitized
+ * @author Jens Tkotz
+ */
+function sanitizeInput($value) {
+	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
+	static $safehtml;
+
+	if (empty($safehtml)) {
+		$safehtml =& new HTML_Safe();
+	}
+
+	if(is_array($value)) {
+		//echo "\n -> Array";
+		//echo "\n<ul>";
+		foreach($value as $subkey => $subvalue) {
+			//printf("\n<li>Checking SubValue: %s", gHtmlSafe($subkey));
+			$sanitized[$subkey] = sanitizeInput($subvalue);
+		}
+		//echo "\n</ul>";
+	}
+	else {
+		$sanitized = gHtmlSafe($safehtml->parse($value));
+
+		if($sanitized != $value) {
+			//echo "--->". $sanitized;
+		}
+	}
+
+	return $sanitized;
+}
+
+/**
+ * Returns string that is safe to display in a HTML Page.
+ *
+ * @param string	$string
+ * @return string	$safe_string
+ * @author Jens Tkotz
+ */
+function gHtmlSafe($string) {
+	if (empty($string)) {
+		$safe_string = $string;
+	}
+	else {
+		$safe_string = gallery_htmlentities(unhtmlentities($string));
+	}
+
+	return $safe_string;
 }
 
 ?>

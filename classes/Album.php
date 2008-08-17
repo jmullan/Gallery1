@@ -947,6 +947,10 @@ class Album {
 	}
 
 	function load($name, $loadphotos = true) {
+		if(!isXSSclean($name, 0)) {
+			return false;
+		}
+
 		global $gallery;
 
 		$this->transient->photosloaded = FALSE;

@@ -43,6 +43,10 @@ class Gallery_User extends Abstract_User {
 	function load($uid) {
 		global $gallery;
 
+		if(! isXSSclean($uid, 0)) {
+			return false;
+		}
+
 		$dir = $gallery->app->userDir;
 
 		$tmp = getFile("$dir/$uid");

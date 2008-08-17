@@ -37,10 +37,10 @@ if (!$gallery->user->isLoggedIn()) {
 $errorCount = 0;
 if (isset($save)) {
 	// security check;
-	if($fullname != strip_tags($fullname)) {
-		$gErrors["fullname"] =
-			sprintf(gTranslate('core', "%s contained invalid data, resetting input."),
-					htmlentities($fullname));
+	if(! isXSSclean($fullname)) {
+		$gErrors['fullname'] =
+			sprintf(gTranslate('core', "%s contained invalid data, sanitizing input."),
+					sanitizeInput($fullname));
 		$errorCount++;
 	}
 

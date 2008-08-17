@@ -88,6 +88,10 @@ function findMissingFiles($album, $albumPath) {
  * @return boolean
  */
 function removeInvalidAlbum($path) {
+	if(!isXSSclean($path)) {
+		return false;
+	}
+	
 	if(!fs_is_dir($path)) {
 		return true;
 	}

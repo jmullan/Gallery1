@@ -1,3 +1,22 @@
+2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b127
+
+ *** Security Fix ***
+
+ Cross Site Scripting (XSS)
+ Issue Overview
+ Web application components are vulnerable to Cross-site Scripting (XSS)
+ attacks.
+ Exploiting this issue allows an attacker to supply arbitrary
+ client-side code (JavaScript, VBScript, etc.)
+ within application input parameters that will ultimately be rendered
+ and executed within the end users web browser.
+
+
+ * New functions:
+	isValidUrl($url)
+	jsHTML($path)
+	gHtmlSafe($string)
+
 2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b126
 
  * Added new Skin 'bar014'. Greetings to my Kerstin :-)

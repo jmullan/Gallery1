@@ -49,7 +49,7 @@ define('FEATURE_CACHE', $gallery->app->albumDir . '/featured-item.cache');
 
 list($albumName, $index) = explode('/', getFile(FEATURE_CACHE));
 
-if (!empty($albumName) && !empty($index)) {
+if (!empty($albumName) && isValidGalleryInteger($index)) {
 	$album = new Album();
 	$ret = $album->load($albumName);
 
@@ -139,7 +139,7 @@ if (!empty($albumName) && !empty($index)) {
 else {
 	echo infoBox(array(array(
 		'type' => 'information',
-		'text' => gTranslate('core', "Currently no item is featured by this Gallery.")
+		'text' => gTranslate('core', "Currently no item is featured by this Gallery, or invalid parameters were given.")
 	)));
 }
 

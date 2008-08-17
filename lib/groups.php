@@ -31,7 +31,7 @@ function getGroupIdList() {
 	if (is_dir($userDir)) {
 		if ($dirHandle = opendir($userDir)) {
 			while (($file = readdir($dirHandle)) !== false) {
-				if (!ereg("^g_[0-9].*[0-9]$", $file)) {
+				if(! hasValidGroupIdFormat($file)) {
 					continue;
 				}
 				$groupIdList [] = $file;

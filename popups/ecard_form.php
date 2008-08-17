@@ -35,6 +35,14 @@ list($photoIndex, $ecard, $submit_action) =
 
 printPopupStart(gTranslate('core', "Send this photo as eCard"));
 
+if(! isValidGalleryInteger($photoIndex)) {
+	echo gallery_error(gTranslate('core', "Invalid element chosen."));
+	echo "\n<br><br>";
+	echo gButton('closeButton', gTranslate('core', "_Close Window."),'parent.close()');
+	echo "</div></body></html>";
+	exit;
+}
+
 $ecard['photoIndex'] = empty($ecard['photoIndex']) ? $photoIndex : $ecard['photoIndex'];
 
 if(!$photo = $gallery->album->getPhoto($ecard['photoIndex'])) {
@@ -54,12 +62,20 @@ $error_msg		= '';
 $ecard_send		= false;
 $sendButtonTest		= gTranslate('core',"_Send eCard");
 
+$checks = array(
+	'photoIndex'		=> array( 0, gTranslate('core', "Element index")),
+	'name_sender'		=> array( 1, gTranslate('core', "Name of sender")),
+	'email_sender'		=> array( 1, gTranslate('core', "Email of sender")),
+	'name_recipient'	=> array( 1, gTranslate('core', "Name of recipient")),
+	'email_recipient'	=> array( 1, gTranslate('core', "Email of recipient")),
+	'message'		=> array( 0, gTranslate('core', "Message"))
+);
+
 if (! empty($submit_action)) {
-	foreach ($mandatory as $mandatoryField) {
-		if(empty($ecard[$mandatoryField])) {
-			$error_msg .= gTranslate('core', "Some input fields are not correctly filled out. Please fill out.") . '<br>';
+	foreach ($checks as $fieldname => $specs) {
+		if(empty($ecard[$fieldname]) || ! isXSSclean($ecard[$fieldname], $specs[0])) {
+			$error_msg .= sprintf(gTranslate('core', "%s is not valid."), $specs[1]);
 			$error_msg .= '<br>';
-			break;
 		}
 	}
 

@@ -59,19 +59,27 @@ $allowChange["member_file"]	= false;
 $errorCount = 0;
 if (!empty($formaction) && $formaction == 'create') {
 	// Security check.
-		if($fullname != strip_tags($fullname)) {
+	if (! isXSSclean($uname)) {
+		$gErrors['uname'] = gTranslate('core', "Your username containes invalid data!");
+		$errorCount++;
+	}
+	elseif (empty($uname)) {
+		$gErrors['fullname'] = gTranslate('core', "You must specify a username.");
+		$errorCount++;
+	}
+
+	if(! isXSSclean($fullname)) {
 			$gErrors["fullname"] = gTranslate('core', "Your fullname containes invalid data!");
 			$errorCount++;
-		}
+	}
+	elseif (empty($fullname)) {
+		$gErrors['fullname'] = gTranslate('core', "You must specify a name.");
+		$errorCount++;
+	}
 
 	$gErrors['uname'] = $gallery->userDB->validNewUserName($uname);
 
 	if ($gErrors['uname']) {
-		$errorCount++;
-	}
-
-	if (empty($fullname) || !strcmp($fullname, '')) {
-		$gErrors['fullname'] = gTranslate('core', "You must specify a name.");
 		$errorCount++;
 	}
 

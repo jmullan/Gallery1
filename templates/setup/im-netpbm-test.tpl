@@ -85,9 +85,15 @@ echo "\t\t\t". sprintf(gTranslate('config', "Look for keywords like %s, %s, %s e
 );
 
 echo gTranslate('config', "If both the attempts above failed, you should ask your ISP what operating system you are using.");
-printf(gTranslate('config', "You can check via %s, they can often tell you."),
-  '<a href="http://www.netcraft.com/whats?host=' . $_SERVER['HTTP_HOST'] . '" target="_blank">Netcraft</a>'
-) ;
+
+if(isXSSclean($_SERVER['HTTP_HOST'])) {
+	$link = '<a href="http://www.netcraft.com/whats?host=' . $_SERVER['HTTP_HOST'] . '" target="_blank">Netcraft</a>';
+}
+else {
+	$link = '<a href="http://www.netcraft.com" target="_blank">Netcraft</a>';
+}
+
+printf(gTranslate('config', "You can check via %s, they can often tell you."), $link);
 ?>
     </td>
 </tr>

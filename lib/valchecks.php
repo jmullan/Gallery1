@@ -50,8 +50,7 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 			else {
 				return array(2, $var, gTranslate('common', "The given frame is not valid."));
 			}
-
-			break;
+		break;
 
 		case 'inChoice':
 			if(in_array($var, $choices)) {
@@ -63,12 +62,23 @@ function sanityCheck($value, $type, $default = NULL, $choices = array()) {
 			else {
                 return array(2, $var, gTranslate('common', "The given value is not in the allowed list of choices."));
 			}
+		break;
 
-			break;
+		case 'filename':
+			$status = isXSSclean($var);
+
+			if($status) {
+				$result = array(0, $var, '');
+			}
+			else {
+				$result = array(2, $var, gTranslate('common', "The given value is not an allowed filename."));
+			}
+		break;
+
 		default:
 		case 'text':
-			return isValidText($var, $default);
-			break;
+			$status = isValidText($var);
+		break;
 	}
 }
 
@@ -144,64 +154,57 @@ function isValidGalleryInteger($value, $includingZero = false, $emptyAllowed = f
 	return $result;
 }
 
-function isValidText($text, $default = NULL) {
+/**
+ * This function checks if a given value is a "valid" text.
+ * Valid means, that is does not contain bad HTML or malicous chars.
+ *
+ * @param string	$text
+ * @package integer	$level	0 = low level, 1 = high level
+ * @return boolean	$result
+ * @author Jens Tkotz
+ */
+function isValidText($text, $level = 0) {
 	$sanitized = sanitizeInput($text);
 
-	if($sanitized != $text) {
-		if(isset($default)) {
-            return array(1, $default, gTranslate('common', "Value was set to given default, because the original value is not a valid text."));
-		}
-		else {
-            return array(1, $sanitized, gTranslate('common', "Value was corrected, because the original value is not a valid text."));
-		}
+	if($sanitized == $text && isXSSclean($text, $level)) {
+		$result = true;
 	}
 	else {
-		return array(0, $text, '');
+		$result = false;
 	}
+
+	return $result;
 }
 
-function sanitizeInput($value) {
-	if(!is_array($value) && strip_tags($value) == $value) {
-		return $value;
-	}
-
-	require_once(dirname(dirname(__FILE__)) .'/classes/HTML_Safe/Safe.php');
-	static $safehtml;
-
-	if (empty($safehtml)) {
-		$safehtml =& new HTML_Safe();
-	}
-
-	if(is_array($value)) {
-		//echo "\n -> Array";
-		//echo "\n<ul>";
-		foreach($value as $subkey => $subvalue) {
-			//printf("\n<li>Checking SubValue: %s", htmlspecialchars($subkey));
-			$sanitized[$subkey] = sanitizeInput($subvalue);
-		}
-		//echo "\n</ul>";
-	}
-	else {
-		//echo " === ". htmlspecialchars($value);
-		$sanitized = $safehtml->parse($value);
-		if($sanitized != $value) {
-			//echo "--->". $sanitized;
+/**
+ * Checks whether an URL seems valid
+ *
+ * @param string 	$url	An URL.
+ * @return boolean		True in case its a valid Url, otherwise false.
+ * @author Jens Tkotz
+ */
+function isValidUrl($url) {
+	if (!empty($url)) {
+		//Detect header injection attempts, or XSS exposure.
+		if (!isSafeHttpHeader($url) || ! isXSSclean($url, 0)) {
+			return false;
 		}
 	}
-	return $sanitized;
+
+	return true;
 }
 
 /**
  * Checks whether an URL is a Gallery URL
  *
- * @param string $url	Full URL to a Gallery file.
- * @return boolean
+ * @param string 	$url	Full URL to a Gallery file.
+ * @return boolean		True in case its a valid Url, otherwise false.
+ * @author Jens Tkotz
  */
 function isValidGalleryUrl($url) {
 	if (!empty($url)) {
-		//Detect header injection attempts
-		if (!isSafeHttpHeader($url)) {
-			debugMessage(gTranslate('core', "Invalid return URL! The requested URL contains malicious characters and is denied."), __FILE__, __LINE__);
+
+		if (! isValidUrl($url)) {
 			return false;
 		}
 
@@ -217,10 +220,7 @@ function isValidGalleryUrl($url) {
 		if (strpos($normalizedUrl, $galleryBaseUrl) !== 0 ||
 			strpos($normalizedUrl, '/../') !== false)
 		{
-			debugMessage(gTranslate('core', "Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery."), __FILE__, __LINE__);
-			echo $normalizedUrl;
-			echo "\n<br>";
-			echo $galleryBaseUrl;
+			// Invalid return URL! The requested URL tried to insert a redirection which is not a part of this Gallery
 			return false;
 		}
 	}
@@ -341,6 +341,22 @@ function isXSSclean($string, $level = 1) {
 	}
 	else {
 		return true;
+	}
+}
+
+/**
+ * Checkes whether a given string has a valid format for a groupId
+ *
+ * @param string $string
+ * @return boolean
+ * @author Jens Tkotz
+ */
+function hasValidGroupIdFormat($string) {
+	if (ereg("^g_[0-9].*[0-9]$", $string)) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 

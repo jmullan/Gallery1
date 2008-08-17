@@ -37,7 +37,12 @@ if(!isset($gallery->album)) {
 	$gallery->album->load($pieces[0]);
 }
 
-list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+if(isXSSclean($ecard["template_name"])) {
+	list($error,$ecard_data_to_parse) = get_ecard_template($ecard["template_name"]);
+}
+else {
+	$error = true;
+}
 
 if (!empty($error)) {
 	header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));

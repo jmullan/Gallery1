@@ -27,7 +27,7 @@ list($create, $bulk_create, $modify, $delete, $gnames) =
 
 if (!$gallery->user->isAdmin()) {
 	printPopupStart(gTranslate('core', "Manage Groups"), '', 'left');
-	showInvalidReqMesg(echo gTranslate('core', "You are not allowed to perform this action!"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 

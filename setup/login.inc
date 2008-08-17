@@ -27,6 +27,9 @@ if (isset($gallery->session->username) && !empty($gallery->session->username)) {
 	$tmpUser = $gallery->userDB->getUserByUsername($gallery->session->username);
 }
 
+/* Cleanup usergiven values */
+$username = sanitizeInput($username);
+
 $messages = array();
 
 if (fs_file_exists(GALLERY_SETUPDIR . "/resetadmin")) {

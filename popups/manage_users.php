@@ -26,7 +26,8 @@ list($create, $bulk_create, $modify, $delete, $unames) =
 	getRequestVar(array('create', 'bulk_create', 'modify', 'delete', 'unames'));
 
 if (!$gallery->user->isAdmin()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Manage Users"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 

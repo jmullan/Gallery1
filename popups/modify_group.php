@@ -25,13 +25,14 @@ require_once(dirname(dirname(__FILE__)) . '/lib/groups.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
-list($groupId, $save, $gname, $description, $currentUser) =
-		getRequestVar(array('groupId', 'save', 'gname', 'description', 'currentUser'));
+list($groupId, $save, $gname, $description, $currentMembers) =
+	getRequestVar(array('groupId', 'save', 'gname', 'description', 'currentMembers'));
 
 list($backToGroup, $backToUser) = getRequestVar(array('backToGroup', 'backToUser'));
 
 if (!$gallery->user->isAdmin()) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+	printPopupStart(gTranslate('core', "Modify Group"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
 
@@ -45,76 +46,103 @@ if (!empty($backToUser)) {
 
 $notice_messages = array();
 
-if(! empty($groupId)) {
-	$group = new Gallery_Group();
-	$group->load($groupId);
-}
-else {
+if(empty($groupId) || ! hasValidGroupIdFormat($groupId)) {
 	$notice_messages[] = array(
 		'type' => 'error',
-		'text' => gTranslate('core', "No group selected !"));
+		'text' => gTranslate('core', "No valid group selected !")
+	);
 
-	$failure = true;
+	$failure = 'fatal';
+}
+else {
+	$group = new Gallery_Group();
+
+	if (! $group->load($groupId)) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Gallery was not able to successfully read the group data.")
+		);
+
+		$failure = 'fatal';
+	}
 }
 
 /**
  * User pressed "save" Button
  */
 if (!empty($save) && !isset($failure)) {
-	$group->setName($gname);
-	$group->setDescription($description);
-	$group->setMemberlist($currentUser);
-
-	if($group->save()) {
-		$notice_messages[] = array(
-			'type' => 'success',
-			'text' => gTranslate('core',"Group information succesfully updated.")
-		);
-	}
-	else {
+	if(empty($gname) || ! isValidText($gname)) {
 		$notice_messages[] = array(
 			'type' => 'error',
-			'text' => gTranslate('core', "Group information was not succesfully updated!")
+			'text' =>  gTranslate('core', "Groupname not valid.")
 		);
+		$failure = true;
+	}
+
+	if(! isValidText($description)) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' =>  gTranslate('core', "Description not valid.")
+		);
+		$failure = true;
+	}
+
+	if (!isset($failure)) {
+
+		$group->setName($gname);
+		$group->setDescription($description);
+		$group->setMemberlist($currentMembers);
+
+		if($group->save()) {
+			$notice_messages[] = array(
+				'type' => 'success',
+				'text' => gTranslate('core',"Group information succesfully updated.")
+			);
+		}
+		else {
+			$notice_messages[] = array(
+				'type' => 'error',
+				'text' => gTranslate('core', "Group information was not succesfully updated!")
+			);
+		}
 	}
 }
 
-$groupMembers = $group->getMemberlist();
-
-$availableUsers = array();
-$currentUsers = array();
-
-foreach ($gallery->userDB->getUidList() as $uid) {
-	$tmpUser = $gallery->userDB->getUserByUid($uid);
-	if ($tmpUser->isPseudo()) {
-		continue;
-	}
-
-	$tmpUserName = $tmpUser->getUsername();
-	if(in_array($uid, $groupMembers)) {
-		$currentUsers[$uid] = $tmpUserName;
-	}
-	else {
-	   $availableUsers[$uid] = $tmpUserName;
-	}
-}
-asort($currentUsers);
-asort($availableUsers);
-
+/* HTML Start */
 printPopupStart(gTranslate('core', "Modify Group"), '', 'left');
 
 echo infoBox($notice_messages);
 
-echo makeFormIntro('modify_group.php',
-	array('name' => 'groupmodify_form', 'onSubmit' => "checkAllOptions('currentUserBox')"),
-	array('type' => 'popup', 'groupId' => $groupId));
+if (!isset($failure) || $failure != 'fatal') {
+	echo makeFormIntro('modify_group.php',
+		array('name' => 'groupmodify_form', 'onSubmit' => "checkAllOptions('currentMembersBox')"),
+		array('type' => 'popup', 'groupId' => $groupId));
 
-if(! isset($failure)) {
+	$groupMembers = $group->getMemberlist();
 
-echo gTranslate('core', "You can change any information about the group using this form.");
+	$availableUsers = array();
+	$currentMembers = array();
 
-echo "\n<br>";
+	foreach ($gallery->userDB->getUidList() as $uid) {
+		$tmpUser = $gallery->userDB->getUserByUid($uid);
+		if ($tmpUser->isPseudo()) {
+			continue;
+		}
 
+		$tmpUserName = $tmpUser->getUsername();
+		if(in_array($uid, $groupMembers)) {
+			$currentMembers[$uid] = $tmpUserName;
+		}
+		else {
+		   $availableUsers[$uid] = $tmpUserName;
+		}
+	}
+	asort($currentMembers);
+	asort($availableUsers);
+
+	echo gTranslate('core', "You can change any information about the group using this form.");
+
+	echo "\n<br>";
 ?>
 
 <table>
@@ -131,11 +159,11 @@ echo "\n<br>";
 	<th><?php echo gTranslate('core', "Available user"); ?></th>
 </tr>
 <tr>
-	<td width="33%"><?php echo drawSelect('currentUser[]', $currentUsers, '', 15, array('id' => 'currentUserBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
+	<td width="33%"><?php echo drawSelect('currentMembers[]', $currentMembers, '', 15, array('id' => 'currentMembersBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
 	<td class="center">
-	  <?php echo gButton('add', gTranslate('core', "<-- Add"), "moveSelected('availableUserBox', 'currentUserBox')"); ?>
+	  <?php echo gButton('add', gTranslate('core', "<-- Add"), "moveSelected('availableUserBox', 'currentMembersBox')"); ?>
 	  <br><br>
-	  <?php echo gButton('remove', gTranslate('core', "Remove -->"), "moveSelected('currentUserBox', 'availableUserBox')"); ?>
+	  <?php echo gButton('remove', gTranslate('core', "Remove -->"), "moveSelected('currentMembersBox', 'availableUserBox')"); ?>
 	</td>
 	<td width="33%"><?php echo drawSelect('availableUser[]', $availableUsers, '', 15, array('id' => 'availableUserBox', 'multiple' => null, 'style' => 'width: 100%')); ?></td>
 </tr>
@@ -145,9 +173,12 @@ echo "\n<br>";
 
 <?php
 }
-?>
-	<div class="center">
-<?php
+else {
+	echo makeFormIntro('modify_group.php',
+		array('name' => 'groupmodify_form'),
+		array('type' => 'popup'));
+}
+	echo "\n\t<div class=\"center\">";
 
 	if(! isset($failure)) {
 		echo gSubmit('save', gTranslate('core', "_Save"));
@@ -162,13 +193,6 @@ echo "\n<br>";
 	</div>
 </form>
 </div>
-
-<script type="text/javascript">
-<!--
-// position cursor in top form field
-document.groupmodify_form.gname.focus();
-//-->
-</script>
 
 </body>
 </html>

@@ -23,7 +23,9 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $cmd, $return, $parentName, $rebuild_type, $albumName) =
-  getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
+	getRequestVar(array('index', 'cmd', 'return', 'parentName', 'rebuild_type', 'albumName'));
+
+$backUrl = '';  
 
 /*
  * Test for relative URL, which we know to be local.  If URL contains ://
@@ -41,6 +43,11 @@ if (!empty($return) &&
 	! isValidUrl($return))
 {
 	die(gTranslate('core', 'Attempted security breach.'));
+
+}
+
+if(isset($index) && !isValidGalleryInteger($index)) {
+	die(gTranslate('core', 'Attempted security breach.'));	
 }
 
 /* This is used for deleting comments from stats.php */
@@ -179,9 +186,12 @@ switch ($cmd) {
 	break;
 
 	case 'delete-comment':
-		if ($gallery->user->canWriteToAlbum($gallery->album)) {
-			$comment_index = getRequestVar('comment_index');
-			$comment=$gallery->album->getComment($index, $comment_index);
+		$comment_index = getRequestVar('comment_index');
+
+		if ($gallery->user->canWriteToAlbum($gallery->album) ||
+		    !isValidGalleryInteger($comment_index) && isset($index))
+		{
+			$comment = $gallery->album->getComment($index, $comment_index);
 			$gallery->album->deleteComment($index, $comment_index);
 			$gallery->album->save(array(i18n("Comment \"%s\" by %s deleted from %s"),
 					$comment->getCommentText(),

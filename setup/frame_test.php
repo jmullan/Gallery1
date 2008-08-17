@@ -93,8 +93,14 @@ else {
 ?>
 <div class="g-tabset">
 <?php
+if(!empty($_GET['frame']) && isXSSclean($_GET['frame'])) {
+	$initialtab = $_GET['frame'];
+}
+else {
+	$initialtab = 'none';
+}
+
 $count = 0;
-$initialtab = isset($_GET['frame']) ? $_GET['frame'] : 'none';
 
 foreach (array_keys($names) as $key) {
 	$class = '';

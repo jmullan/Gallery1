@@ -35,6 +35,18 @@ list($urls, $meta, $usercaption, $setCaption) =
 list($wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect) =
 	getRequestVar(array('wmName', 'wmAlign', 'wmAlignX', 'wmAlignY', 'wmSelect'));
 
+list($uploadFromUrl, $addFiles) = getRequestVar(array('uploadFromUrl', 'addFiles'));
+
+if (!isset($gallery->album)) {
+	printPopupStart(clearGalleryTitle(gTranslate('core', "Add items")));
+	echo gallery_error(
+			sprintf(gTranslate('core', "Invalid Request. Please go back to %s."),
+					galleryLink(makeGalleryUrl(), $gallery->app->galleryTitle))
+	);
+	includeTemplate('overall.footer');
+	exit;
+}
+
 // Hack check
 if (!$gallery->user->canAddToAlbum($gallery->album)) {
 	printPopupStart(clearGalleryTitle(gTranslate('core', "Add items")));
