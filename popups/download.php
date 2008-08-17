@@ -22,6 +22,18 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Download album as archive"));
+	showInvalidReqMesg();
+	exit;
+}
+
+if(! $gallery->user->canDownloadAlbum($gallery->album)) {
+	printPopupStart(gTranslate('core', "Download album as archive"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
 list($doit, $full) = getRequestVar(array('doit', 'full'));
 
 $message = array();

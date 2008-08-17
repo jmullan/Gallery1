@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
  *
  * $Id: welcome.inc 13903 2006-06-28 13:46:35Z jenst $
 */
-?>
-<?php
+
 
 $gallerySanity = gallerySanityCheck();
 $install = ($gallerySanity == 'unconfigured') ? true : false;
@@ -94,8 +93,8 @@ $install = ($gallerySanity == 'unconfigured') ? true : false;
 			<?php
 				}
 				else if(isset($gallery->app->config_version) &&
-				  $gallery->app->config_version != $gallery->config_version) {
-
+					$gallery->app->config_version != $gallery->config_version)
+				{
 					echo infobox(array(array(
 						'type' => 'warning',
 						'text' => gTranslate('config', "Your Gallery needs a reconfiguration.") .

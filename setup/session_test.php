@@ -35,6 +35,8 @@ if(!isset($_SESSION['count'])) {
 $_SESSION['count']++;
 
 printPopupStart(gTranslate('config', "Check Session"));
+
+configLogin(basename(__FILE__));
 ?>
   <div class="g-sitedesc left">
 		<?php echo gTranslate('config', "If sessions are configured properly in your PHP installation, then you should see a session id below."); ?>

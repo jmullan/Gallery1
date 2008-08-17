@@ -65,73 +65,46 @@ else {
 
 switch ($cmd) {
 	case 'rebuild_highlights':
-		$albumDB = new AlbumDB(true);
-		$albumList = $albumDB->albumList;
-		$i = 0;
+		if($gallery->user->isAdmin()) {
+			$albumDB = new AlbumDB(true);
+			$albumList = $albumDB->albumList;
+			$i = 0;
 
-		foreach($albumList as $nr => $album) {
-			if($album->isRoot()) {
-				$i++;
-				echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
-				$album->setHighlight($album->getHighlight());
-				$album->save();
+			foreach($albumList as $nr => $album) {
+				if($album->isRoot()) {
+					$i++;
+					echo "\n<br><b>". sprintf (gTranslate('core', "Rebuilding highlight %s"), $i) . '</b>';
+					$album->setHighlight($album->getHighlight());
+					$album->save();
+				}
 			}
 		}
-		dismissAndReload();
-
-		break;
-
-	case 'remake-thumbnail':
-		echo "\n<h3>" . gTranslate('core', "Rebuilding 1 thumbnail...") .'</h3>';
-		my_flush();
-		set_time_limit($gallery->app->timeLimit);
-		$gallery->album->makeThumbnail($index);
 
 		$gallery->album->save();
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 
-		break;
+	break;
 
 	case 'hide':
-		if ($gallery->user->canWriteToAlbum($gallery->album)) {
+		if ($gallery->user->canWriteToAlbum($gallery->album) ||
+			$gallery->album->isItemOwner($gallery->user->getUid(), $index))
+		{
 			$gallery->album->hidePhoto($index);
 			$gallery->album->save();
 		}
-		else {
-			if ($gallery->album->isAlbum($index)) {
-				$myAlbumName = $gallery->album->getAlbumName($index);
-				$myAlbum = new Album;
-				$myAlbum->load($myAlbumName);
-			}
 
-			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-	   			$gallery->album->isItemOwner($gallery->user->getUid(), $index))
-	   		{
-				$gallery->album->hidePhoto($index);
-				$gallery->album->save();
-			}
-		}
 		//-- this is expected to be loaded in a popup, so dismiss ---
 		dismissAndReload();
 	break;
 
 	case 'show':
-		if ($gallery->user->canWriteToAlbum($gallery->album)) {
-			$gallery->album->unhidePhoto($index);
-			$gallery->album->save();
-		}
-		else {
-			if ($gallery->album->isAlbum($index)) {
-				$myAlbumName = $gallery->album->getAlbumName($index);
-				$myAlbum = new Album;
-				$myAlbum->load($myAlbumName);
-			}
-
-			if ((isset($myAlbum) && $gallery->user->isOwnerOfAlbum($myAlbum)) ||
-					$gallery->album->isItemOwner($gallery->user->getUid(), $index)) {
-					$gallery->album->unhidePhoto($index);
-					$gallery->album->save();
+		if(isset($index)) {
+			if ($gallery->user->canWriteToAlbum($gallery->album) ||
+				$gallery->album->isItemOwner($gallery->user->getUid(), $index))
+			{
+				$gallery->album->unhidePhoto($index);
+				$gallery->album->save();
 			}
 		}
 		
@@ -140,9 +113,11 @@ switch ($cmd) {
 	break;
 
 	case 'highlight':
-		if ($gallery->user->canWriteToAlbum($gallery->album)) {
-			$gallery->album->setHighlight($index);
-			$gallery->album->save(array(i18n("Changed Highlight")));
+		if(isset($index)) {
+			if ($gallery->user->canWriteToAlbum($gallery->album)) {
+				$gallery->album->setHighlight($index);
+				$gallery->album->save(array(i18n("Changed Highlight")));
+			}
 		}
 
 		//-- this is expected to be loaded in a popup, so dismiss ---

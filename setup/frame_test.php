@@ -25,6 +25,8 @@ require_once(dirname(__FILE__) . '/init.php');
 global $gallery;
 
 printPopupStart(gTranslate('config', "Gallery Configuration") .':: '. gTranslate('config', "Frames"));
+
+configLogin(basename(__FILE__));
 ?>
 	<!--
 		This Javascript and the Tabs are inspired by the Horde Forms code
