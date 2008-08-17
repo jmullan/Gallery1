@@ -9,7 +9,7 @@
    used instead of this one.
 
    Some of the styles below are overridden by specific
-   album properties.
+   album properties. These are noted
 
    $Id$
 */
@@ -19,16 +19,18 @@
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 
-/*
-* {
-    margin: 0;
-    padding: 0;
-}
-*/
-
 body, html, form, div, p, tr, td {
     padding: 0;
     margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup a:hover,
+         .g-setup-fields a:hover, .g-message a:hover, .g-config-content a:hover {
+    text-decoration: underline;
 }
 
 img {
@@ -39,16 +41,7 @@ p {
    padding: 5px 0 5px 0;
 }
 
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 textarea:focus, input:focus {
-    background-color: #FFFFDA;
 }
 
 caption {
@@ -88,26 +81,26 @@ label {
 
 /* Style for top navigation bar */
 .g-navbar-top {
-    border: 1px dashed grey;
+    border: 1px dashed gray;
     margin-bottom: 1px;
 }
 
 /* Style for bottom navigation bar */
 .g-navbar-bottom {
-    border: 1px dashed grey;
+    border: 1px dashed gray;
     margin-bottom: 2px;
 }
 
-#g-navtable {
+#g-navtable, #g-navtable-bottom {
 	width: 100%;
 }
 
 .g-microthumbnavbar-top {
-    border-bottom: 1px dashed grey;
+    border-bottom: 1px dashed gray;
 }
 
 .g-microthumbnavbar-bottom {
-    border-bottom: 1px dashed grey;
+    border-bottom: 1px dashed gray;
 }
 
 div.g-navbar-top td, div.g-navbar-bottom td, div.g-microthumbnavbar-top td, div.g-microthumbnavbar-bottom td {
@@ -173,19 +166,19 @@ table.g-breadcrumb {
 }
 
 .g-tabset a.g-activeTab {
-    color: #fff;
+	color: #fff;
 	background-color: #009;
-    border-bottom: 1px solid #000;
+	border-bottom: 1px solid #000;
 }
 
 .g-littlered	{
-    font-size: 10px;
-    color:red;
-    vertical-align: top;
+	font-size: 10px;
+	color:red;
+	vertical-align: top;
 }
 
 .g-emphasis {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .g-small {
@@ -244,8 +237,16 @@ table.g-breadcrumb {
 }
 
 .g-emailMe-box {
+	margin-top: 5px;
     margin-bottom: 2px;
     padding: 5px;
+}
+
+.g-emailMe-box input {
+}
+
+.g-emailMe-box legend{
+	font-size: 9pt;
 }
 
 .clear {
@@ -298,6 +299,10 @@ table.g-albums-table .g-albumdesc-cell {
 /* Cell for the "normal" subalbum tree on mainpage */
 .g-subalbumTree-box {
     vertical-align: top;
+}
+
+.g-admin a.g-popuplink {
+	margin-left: 2px; margin-right: 2px;
 }
 
 /******************** Begin single photo view ********************/
@@ -561,24 +566,93 @@ table.g-albums-table .g-albumdesc-cell {
 	padding: 2px;
 }
 
-/* */
+/***** General Form styles  ******/
+
+input, textarea, select, .g-usernameInput, .g-passwordInput{
+}
+
+input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordInput:focus {
+}
+
+input:hover.g-button, input:focus.g-button {
+}
+
+.g-form-text {
+}
+
+.g-form-text:focus {
+}
+
+.g-button, .g-tabset a.g-activeTab {
+}
+
+.g-button {
+}
+
+.g-buttonDisable, input:focus.g-buttonDisable {
+    color: #000;
+    background-color: gray;
+}
+
+.g-disabled {
+	color: gray;
+	text-align: center;
+}
+
+.g-selected {
+	font-weight: bold;
+}
+
+
+.g-pwcheck {
+	display: none;
+	border: 1px solid black;
+	color:black;
+}
+
+.g-form-date {
+	color: #000;
+	background-color: #f3f3f9;
+	border-bottom: 1px solid #669;
+	padding: 2px;
+}
+
+/* defined in ltr/rtl */
+.g-usernameInput, .g-usernameInput:focus {
+}
+
+/* defined in ltr/rtl */
+.g-passwordInput, .g-passwordInput:focus {
+}
+
+/****** End general Form Styles *****/
+
+
+#cropImage {
+	position:absolute;
+}
 
 .g-cropImageBox {
  	position: relative;
  	margin: 5px;
 }
 
-#cropImage {
-	position:absolute;
+.g-tooltip, .g-balloon-tooltip {
+	font-family: arial,helvetica,sans-serif;
+	font-size: 11px;
 }
 
 .g-tooltip {
-	font-family: arial,helvetica,sans-serif;
-	font-size: 11px;
 	padding: 2px;
 	background: #eee;
 	border: 1px solid #ccc;
 	-moz-border-radius: 5px;
+}
+
+.g-balloon-tooltip {
+}
+
+.g-tooltipTitle {
 }
 
 .hidden {
@@ -600,43 +674,7 @@ table.g-albums-table .g-albumdesc-cell {
 	text-align: justify;
 }
 
-/***** General Form styles  ******/
-
-input, textarea, select {
+#bottomNavCloseLink {
+	color: red;
+	white-space: nowrap;
 }
-
-input:focus, textarea:focus, select:focus {
-}
-
-.g-button, .g-tabset a.g-activeTab {
-}
-
-.g-button {
-}
-
-.g-buttonDisable, input:focus.g-buttonDisable {
-    color: #000;
-    background-color: grey;
-}
-
-.g-disabled {
-	color: grey;
-    text-align: center;
-}
-
-.g-selected {
-    font-weight: bold;
-}
-
-input:hover.g-button, input:focus.g-button {
-}
-
-/* defined in ltr/rtl */
-.g-usernameInput, .g-usernameInput:focus {
-}
-
-/* defined in ltr/rtl */
-.g-passwordInput, .g-passwordInput:focus {
-}
-
-/****** End general Form Styles *****/

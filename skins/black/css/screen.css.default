@@ -8,14 +8,14 @@
    If that file is found in this directory it will be
    used instead of this one.
 
-   Some of the styles below are overriden by specific
+   Some of the styles below are overridden by specific
    album properties. These are noted
 
    $Id$
 */
 
 /*
-   default text styles - background and colors overriden by
+   default text styles - background and colors overridden by
    album 'bgcolor', 'background', and 'textcolor' properties.
 */
 
@@ -185,6 +185,10 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     font-weight: bold;
 }
 
+.g-search-form input {
+	color: #000;
+}
+
 /******************** End Common Styles ********************/
 
 /******************** Begin album thumbnail view ********************/
@@ -223,6 +227,9 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-thumb-caption {
 }
 
+.g-thumb-description {
+}
+
 .g-va-infos {
     margin-top: 2px;
 }
@@ -236,16 +243,16 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 /* Album titles */
 .g-title {
-    font-family: verdana, arial, sans-serif;
-    padding: 2px;
-    margin-top: 2px;
-    padding: 0 50px;
+	font-family: verdana, arial, sans-serif;
+	padding: 2px;
+	margin-top: 2px;
+	padding: 0 50px;
 }
 
 .g-title-background {
-    background-image: url(../images/mod_titlebar.jpg);
-    width: 100%;
-    height: 28px;
+	background-image: url(../images/mod_titlebar.jpg);
+	width: 100%;
+	height: 28px;
 }
 
 .g-title-right {
@@ -304,59 +311,13 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     vertical-align: bottom;
 }
 
-.g-sectioncaption-popup {
-    color: #000;
-    height: 15px;
-    padding: 5px;
-    font-size: 12pt;
-    font-weight: bold;
-    text-align: center;
-}
-
-.g-content-popup {
-    font-size: 9pt;
-    font-weight: normal;
-    color: #202020;
-    padding: 5px;
-    border: 1px solid #FFF;
-    background-color: #F0F0F0;
-    margin-bottom: 10px;
-}
-
-.g-content-popup a {
-    color: #666;
-}
-
-.g-content-popup form {
-    margin-top: 2px;
-    padding: 2px;
-    background-color: #E0E0E0;
-}
-
-.g-content-popup p {
-    margin-bottom: 10px;
-}
-
-.g-content-popup {
-    margin: 5px;
-}
-
-.g-form-text {
-	border: 1px solid #AFAFAF;
-}
-
-.g-form-text:focus {
-	border: 1px solid #5d5d60;
-}
-
 .g-error {
     color: #000;
     background-color: #ffd5d4;
-
-    border: 1px solid #aaa;
     padding: 1px;
     padding-left: 5px;
     margin-bottom: 1px;
+    border: 1px solid #aaa;
     -moz-border-radius: 8px;
 }
 
@@ -425,7 +386,6 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 
 /******************** End Navigation Styles ********************/
 
-/****** Style for breadcrumb bar if nothing special was specified ******/
 
 .g-breadcrumb {
     width: 100%;
@@ -468,6 +428,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
     border-bottom: 1px solid #66a;
 }
 
+/******************** Begin infoBox ********************/
 .g-notice {
     color: #000;
     background: #e0e0e0;
@@ -554,11 +515,14 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 /* Box in add_comment */
 .g-commentadd-box {
     border: 1px solid #fff;
-    background-color: #e9e9ff;
+    background-color: #cccccc;
     margin-top: 5px;
 }
 
 .g-commentadd-box th {
+}
+
+.g-commentadd-box td {
 }
 
 /* Header fields in add_comment */
@@ -591,6 +555,7 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 .g-comment-text-cell {
     padding-left:10px;
     border-top:1px solid black;
+    background-color: #1a1a1a;
 }
 
 /***** End Styles for comments *****/
@@ -662,7 +627,13 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 .g-photo-caption {
-    color: black;
+    color: #FFF;
+}
+
+.g-photo-description {
+}
+
+.g-photo-description div {
 }
 
 .g-customFieldsTable {
@@ -679,26 +650,46 @@ a:hover, .g-dim a:hover, .g-message a:hover, .g-content-popup a:hover, .g-popup 
 }
 
 /***** General Form styles  ******/
-input, textarea, select {
+
+input, textarea, select, .g-usernameInput, .g-passwordInput{
     color: #000;
-    background: #f3f3f9;
+    background-color: #f3f3f9;
     border: 1px solid #669;
 }
 
-input:focus, textarea:focus, select:focus {
-    background: #fff;
-    border: 1px solid #99f;
-    color: #000;
+input:focus, textarea:focus, select:focus, .g-usernameInput:focus, .g-passwordInput:focus {
+    background-color: #fff;
+    border: 1px solid #5d5d60;
+}
+
+input:hover.g-button, input:focus.g-button {
+}
+
+.g-form-text {
+}
+
+.g-form-text:focus {
+}
+
+.g-button, .g-buttonDisable, input:focus.g-buttonDisable {
+    -moz-border-radius: 5px;
+    padding-top: 0; padding-bottom: 0;
+    padding-left: 2px; padding-right: 2px;
 }
 
 .g-button {
     color: #fff;
-    background: #333;
+    background-color: #3f3f3f;
     border-bottom: thin solid #5d5d60;
     border-right: thin solid #5d5d60;
     border-top: thin solid #777789;
     border-left: thin solid #777789;
-    -moz-border-radius: 5px;
+}
+
+.g-buttonDisable, input:focus.g-buttonDisable {
+    color: #000;
+    background-color: grey;
+    border: 1px solid #efefff;
 }
 
 .g-button:hover {
@@ -713,14 +704,16 @@ input:focus, textarea:focus, select:focus {
     border: 1px solid #fff;
 }
 
-.g-usernameInput, .g-passwordInput {
-	background-color: #000;
-	color: #fff;
+.g-disabled {
 }
 
-.g-usernameInput:focus, .g-passwordInput:focus {
-	background-color: #fff;
-	color: #000;
+.g-selected {
+}
+
+.g-pwcheck {
+}
+
+.g-form-date {
 }
 
 /****** End general Form Styles *****/
@@ -734,6 +727,12 @@ input:focus, textarea:focus, select:focus {
     border: 1px solid #666;
 }
 
+.g-emailMe-box input {
+}
+
+.g-emailMe-box legend {
+}
+
 .g-columnheader, caption {
     font-weight: bold;
     padding: 2px;
@@ -741,7 +740,45 @@ input:focus, textarea:focus, select:focus {
     color: #FFF;
 }
 
-/****** Styles used in config *****/
+/******************** Begin general Popup Styles ********************/
+
+.g-content-popup {
+	font-size: 9pt;
+	font-weight: normal;
+	color: #202020;
+	padding: 5px;
+	border: 1px solid #FFF;
+	background-color: #F0F0F0;
+	margin-bottom: 10px;
+	margin: 5px;
+}
+
+.g-content-popup a {
+    color: #666;
+}
+
+.g-content-popup form {
+    margin-top: 2px;
+    padding: 2px;
+    background-color: #E0E0E0;
+}
+
+.g-content-popup p {
+    margin-bottom: 10px;
+}
+
+.g-sectioncaption-popup {
+    color: #000;
+    height: 15px;
+    padding: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+/******************** End general Popup Styles ********************/
+
+/***************** Styles used in config *******************/
 
 /* Indicates an important setting. */
 .g-attention {
@@ -778,6 +815,7 @@ input:focus, textarea:focus, select:focus {
 	margin-bottom: 2px;
 }
 
+/* Should be the same as a button */
 .g-current-step {
 	color: #fff;
 	background-color: #555;
@@ -839,7 +877,7 @@ input:focus, textarea:focus, select:focus {
     color: #aaa;
 }
 
-/* Overrides base.css */
+/******************* Overrides base.css ********************/
 
 .g-siriux a img {
     border: 1px solid #000;
@@ -860,4 +898,64 @@ input:focus, textarea:focus, select:focus {
 
 .g-loginpage fieldset legend {
 	background-image: url(../images/mod_titlebar.jpg);
+}
+
+legend {
+	background-image: url(../images/mod_titlebar.jpg);
+	color: #FFF;
+}
+
+/******************* Begin autocomplete ********************/
+
+.YUIsearchcontainer .yui-ac-content  {
+}
+
+.YUIsearchcontainer li.yui-ac-highlight {
+}
+
+/******************** End autocomplete *********************/
+
+.albumUpgradeStatus {
+}
+
+.g-cropImageBox {
+	border: 1px dashed silver;
+}
+
+.g-tooltip, .g-balloon-tooltip {
+	color: #000;
+}
+
+.g-tooltip {
+}
+
+.g-balloon-tooltip {
+}
+
+
+.g-tooltipTitle {
+	background-color: #66a;
+	border: 1px solid red;
+}
+
+#WzTiTl, #WzTiTl table, table.g-tooltip {
+	color: #000;
+}
+
+#WzTiTl, #WzTiTl table {
+	height: 20px;
+}
+
+#WzClOsE {
+	background-color: #66a;
+}
+
+.g-tooltipClickable #WzBoDy {
+	background-color: #f0f0f0;
+	color: #000;
+	font-size: 8pt;
+}
+
+.g-tooltipClickable {
+	border: 1px solid #000;
 }
