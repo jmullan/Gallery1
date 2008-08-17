@@ -429,12 +429,15 @@ function broken_link($file) {
 	}
 }
 
-function galleryLink($url, $text ='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
+function galleryLink($url = '', $text ='', $attrList = array(), $icon = '', $addBrackets = false, $accesskey = true) {
 	global $gallery;
 	static $accessKeyUsed = array();
+	global $specialIconMode;
 
 	$html = '';
 	$altText = $text;
+
+	$specialIconMode = !empty($specialIconMode) ? $specialIconMode : '';
 
 	if($accesskey && empty($attrList['accesskey']) && !empty($text)) {
 		if(is_int($text) && $text < 10) {
@@ -468,7 +471,7 @@ function galleryLink($url, $text ='', $attrList = array(), $icon = '', $addBrack
 	$attrs = generateAttrs($attrList);
 
 	if(!empty($icon)) {
-		$content = getIconText($icon, $text, '', $addBrackets, $altText);
+		$content = getIconText($icon, $text, $specialIconMode, $addBrackets, $altText);
 	}
 	else {
 		if($addBrackets) {
@@ -482,8 +485,11 @@ function galleryLink($url, $text ='', $attrList = array(), $icon = '', $addBrack
 	if (!empty($url)) {
 		$html .= "<a href=\"$url\"$attrs>$content</a>\n";
 	}
-	else {
+	elseif (! empty($attrs)) {
 		$html .= "<a$attrs>$content</a>\n";
+	}
+	else {
+		$html = $content;
 	}
 
 	return $html;
@@ -493,6 +499,7 @@ function galleryLink($url, $text ='', $attrList = array(), $icon = '', $addBrack
 function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array(), $useAccesskey = true) {
 	global $gallery;
 	static $accessKeyUsed = array();
+	global $specialIconMode;
 
 	$html		= '';
 	$altText	= '';
@@ -500,6 +507,10 @@ function galleryIconLink($url, $icon, $text, $iconMode = '', $attrList = array()
 
 	if($useAccesskey) {
 		$accesskey = isset($attrList['accesskey']) ? $attrList['accesskey'] : getAccessKey($text);
+	}
+
+	if(!empty($specialIconMode)) {
+		$iconMode = $specialIconMode;
 	}
 
 	$iconMode = !empty($iconMode) ? $iconMode : $gallery->app->useIcons;

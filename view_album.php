@@ -42,6 +42,8 @@ $albumName = $gallery->session->albumName;
 
 $albumRSSURL = $gallery->app->photoAlbumURL . "/rss.php?set_albumName=$albumName";
 
+$g_theme = $gallery->app->theme;
+
 /* save the info that this album was viewed in this session and increment clickcounter */
 if (!isset($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->offline) {
 	$gallery->session->viewedAlbum[$albumName] = 1;
@@ -110,7 +112,7 @@ if ($page > $maxPages) {
 	$page = $maxPages;
 }
 
-$currentUrl = makeAlbumUrl($gallery->session->albumName,'', array('page' => $page));
+$currentUrl = makeAlbumHeaderUrl($gallery->session->albumName,'', array('page' => $page));
 
 $start = ($page - 1) * $perPage + 1;
 $end = $start + $perPage;
@@ -170,24 +172,22 @@ if ($gallery->user->canWriteToAlbum($gallery->album) && !$gallery->session->offl
 	}
 }
 
-$va_javascript = '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
+$va_javascript = jsHTML('jopen.js');
 
-$adminCommands = getAlbumCommands($gallery->album, true, false);
+$iconElements = array();
 
-/* build up drop-down menu and related javascript */
-if (!empty($adminCommands)) {
-	$iconElements[] = makeFormIntro(
-		'view_album.php',
-		array(
-			'name' => 'admin_options_form',
-			'class' => 'right',
-			'style' => 'margin: 0 10px;')) .
-		drawSelect2(
-			'admin_select',
-			$adminCommands,
-			array('class' => 'g-admin', 'onChange' => 'jopen(this)')) .
-	'</form>';
+if($gallery->app->theme == 'classic_sidebar') {
+	$adminCommandsCaption = false;
+	if( $gallery->app->useIcons == 'both') {
+		$specialIconMode = 'lined';
+	}
+
 }
+else {
+	$adminCommandsCaption = true;
+}
+
+$adminCommands = getAlbumCommands($gallery->album, $adminCommandsCaption, false);
 
 if ($gallery->album->fields['slideshow_type'] != "off" &&
 	($numPhotos != 0 ||
@@ -215,10 +215,7 @@ if (checkRequirements('allowComments', 'comments_enabled', 'hasComments')) {
 
 $iconElements[] = LoginLogoutButton($currentUrl);
 
-$adminbox['text']			= $adminText;
-$adminbox['commands']		= makeIconMenu($iconElements, 'right');
-$adminbox['bordercolor']	= $bordercolor;
-
+$specialIconMode = '';
 
 // -- if borders are off, just make them the bgcolor ----
 $borderwidth = $gallery->album->fields['border'];
@@ -284,15 +281,6 @@ list($va_poll_result, $results) = showResultsGraph( $gallery->album->getPollNumR
 $va_poll_box2 = '';
 if ($gallery->album->getPollShowResults()) {
 	$va_poll_box2 = $va_poll_result;
-}
-
-if(!empty($results) && testRequirement('isAdminOrAlbumOwner')) {
-	$va_poll_box2 .= galleryLink(
-		makeGalleryUrl('poll_results.php', array('set_albumName' => $gallery->session->albumName)),
-		gTranslate('core', "See full poll results"),
-		array('class' => 'g-admin '),
-		'', true
-	);
 }
 
 if (canVote()) {
@@ -375,11 +363,13 @@ if ($numPhotos) {
 		while ($j <= $cols && $i <= $numPhotos) {
 			unset($gallery->html_wrap);
 
+			$photo	= $gallery->album->getPhoto($i);
+
 			//-- put some parameters for the wrap files in the global object ---
 			$gallery->html_wrap['borderColor'] = $bordercolor;
 			$borderwidth = $gallery->html_wrap['borderWidth'] = $borderwidth;
 
-			if ($gallery->album->isAlbum($i)) {
+			if ($photo->isAlbum()) {
 				$scaleTo = 0; //$gallery->album->fields["thumb_size"];
 				$myAlbum = $gallery->album->getNestedAlbum($i);
 				list($iWidth, $iHeight) = $myAlbum->getHighlightDimensions($scaleTo);
@@ -399,6 +389,8 @@ if ($numPhotos) {
 				$iHeight = 100;
 			}
 
+			$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
+
 			$gallery->html_wrap['imageWidth'] = $iWidth;
 			$gallery->html_wrap['imageHeight'] = $iHeight;
 
@@ -411,13 +403,51 @@ if ($numPhotos) {
 			$albumItems[$nr]['infos']		= array();
 			$albumItems[$nr]['caption']		= '';
 			$albumItems[$nr]['clickcounter']	= '';
-			$albumItems[$nr]['options']			= '';
-			$description						= '';
+			$albumItems[$nr]['options']		= '';
+			$caption				= '';
+			$description				= '';
+			$downloadLink				= '';
 
-			$altText = $gallery->album->getAltText($i);
-			if(!empty($altText)) {
-				$tooltipWidth = (2*$iWidth <= 300) ? 2*$iWidth : 300;
-				$wz_tooltips .= "\n <div id=\"wzTooltip_$i\" class=\"g-tooltip\" style=\"display: none; \">" . nl2br($altText) . '</div>';
+			/* Caption for Photo or Movie, Caption for album is done below */
+			if (!isset($myAlbum)) {
+				$caption = nl2br($photo->getCaption());
+
+				$albumItems[$nr]['caption'] = $caption;
+				$albumItems[$nr]['caption'] .= $gallery->album->getCaptionName($i) . ' ';
+
+				// indicate with * if we have a comment for a given photo
+				if ($gallery->user->canViewComments($gallery->album) &&
+					$gallery->app->comments_enabled == "yes")
+				{
+					// If comments indication for either photos or both
+					switch ($gallery->app->comments_indication) {
+						case 'photos':
+						case 'both':
+							$lastCommentDate = $gallery->album->itemLastCommentDate($i);
+							$albumItems[$nr]['caption'] .=
+								lastCommentString($lastCommentDate, $displayCommentLegend);
+							break;
+					}
+
+				}
+
+				$description = nl2br($photo->getDescription());
+				if(!empty($description)) {
+					$header = gTranslate('core' ,"Description for"). sprintf("<br>'%s'", $caption);
+					$label = gTranslate('core' ,"... show full description");
+
+					list($needJavascript, $albumItems[$nr]['description']) =
+						readMoreBox("description$nr", $header, $description, 0, $label, "thumb$nr");
+				}
+
+				if ($gallery->album->fields['display_clicks'] == "yes" &&
+					!$gallery->session->offline &&
+					$photo->getItemClicks() > 0)
+				{
+					$albumItems[$nr]['clickcounter'] =
+						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
+				}
+
 			}
 
 			/**
@@ -433,22 +463,65 @@ if ($numPhotos) {
 			 * Element is a subalbum
 			 */
 			elseif (isset($myAlbum)) {
-				// We already loaded this album - don't do it again, for performance reasons.
+				// Caption
+				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
+					$iconText = gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive"));
+					$downloadLink = popup_link(
+						$iconText,
+						'download.php?set_albumName='. $gallery->album->getAlbumName($i),
+						false, true, 500, 500, '', '', '', false, false
+					);
+				}
 
-				$gallery->html_wrap['imageTag']		= $myAlbum->getHighlightTag(
-														$scaleTo,
-														array('id' => "thumbnail_$i"));
+				$caption ='<span class="g-emphasis">';
+				$caption .= sprintf(gTranslate('core', "Album: %s"),
+							galleryLink(makeAlbumUrl($gallery->album->getAlbumName($i)), $myAlbum->fields['title'])
+				);
+				$caption .= '</span> ';
+
+				$albumItems[$nr]['caption'] = $caption . $downloadLink;
+
+				$tooltip = sprintf(gTranslate('core', "Album: %s"), $myAlbum->fields['title']);
+
+				// Description
+				$myDescription = $myAlbum->fields['description'];
+				if (!empty($myDescription) &&
+					$myDescription != gTranslate('core', "No description") &&
+					$myDescription != "No description")
+				{
+					$albumItems[$nr]['description'] = nl2br($myDescription);
+					$tooltip .= '<br>' . $myDescription;
+				}
+
+				$wz_tooltips .= "\n <div id=\"wzTooltip_$i\" class=\"g-tooltip\" style=\"display: none; \">" . nl2br($tooltip) . '</div>';
+				$gallery->html_wrap['imageTag']	= $myAlbum->getHighlightTag(
+									$scaleTo,
+									array('id' => "thumbnail_$i",
+									      'onmouseover' => "TagToTip('wzTooltip_$i', COPYCONTENT, false)",
+									      'onmouseout' => "UnTip()",
+									      'title' => '',
+									      'alt' => ''),
+									false
+				);
 
 				$gallery->html_wrap['imageHref']	= makeAlbumUrl($gallery->album->getAlbumName($i));
 				$gallery->html_wrap['frame']		= $gallery->album->fields['album_frame'];
-				$gallery->html_wrap['type']			= 'inline_albumthumb.frame';
+				$gallery->html_wrap['type']		= 'inline_albumthumb.frame';
 			}
 			/**
 			 * Element is a picture
 			 */
 			else {
-				if(!empty($altText)) {
-					$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i, 0, array('onmouseover' => "TagToTip('wzTooltip_$i', COPYCONTENT, false)"));
+				$tooltip = $gallery->album->getAltText($i);
+
+				if(!empty($tooltip)) {
+					$gallery->html_wrap['imageTag']	= $gallery->album->getThumbnailTag(
+										$i,
+										0,
+										array('onmouseover' => "TagToTip('wzTooltip_$i', COPYCONTENT, false)",
+										      'onmouseout' => "UnTip()")
+					);
+					$wz_tooltips .= "\n <div id=\"wzTooltip_$i\" class=\"g-tooltip\" style=\"display: none; \">" . nl2br($tooltip) . '</div>';
 				}
 				else {
 					$gallery->html_wrap['imageTag']		= $gallery->album->getThumbnailTag($i);
@@ -460,7 +533,6 @@ if ($numPhotos) {
 
 				/* Do the clickable-dimensions line */
 				if ($gallery->album->fields['showDimensions'] == "yes") {
-					$photo	= $gallery->album->getPhoto($i);
 					$image	= $photo->image;
 
 					if (!empty($image)) {
@@ -538,7 +610,7 @@ if ($numPhotos) {
 			}
 
 			$gallery->html_wrap['style'] = "style=\"padding-top: {$padding}px; padding-bottom:{$padding}px; width: {$divCellWidth}px; height: {$divCellHeight}px;\"";
-			$albumItems[$nr]['thumb'] = $gallery->html_wrap;
+			// Note: Normally all we need for the thumb is already there, but for the lightbox we need the caption
 
 			if (canVote()){
 				if ($gallery->album->fields['poll_type'] == 'rank' && $divCellWidth < 200) {
@@ -546,122 +618,16 @@ if ($numPhotos) {
 				}
 			}
 
-			/* Now do the caption line */
-
-			if ($gallery->album->isAlbum($i)) {
-				$iWidth = $gallery->album->fields['thumb_size'];
-			}
-			else {
-				list($iWidth, $iHeight) = $gallery->album->getThumbDimensions($i);
-			}
-
-			if ($gallery->album->isHidden($i) && !$gallery->session->offline) {
+			if ($photo->isHidden() && !$gallery->session->offline) {
 				$albumItems[$nr]['note'] .= '(' . gTranslate('core', "hidden") .')<br>';
 			}
 
-			$photo = $gallery->album->getPhoto($i);
 			if ($gallery->user->canWriteToAlbum($gallery->album) &&
 				$photo->isHighlight() && !$gallery->session->offline)
 			{
 				$albumItems[$nr]['note'] .= '(' . gTranslate('core', "highlight") .')<br>';
 			}
 
-			/* Album */
-			if (isset($myAlbum)) {
-				$downloadLink = '';
-
-				// Caption
-				if ($gallery->user->canDownloadAlbum($myAlbum) && $myAlbum->numPhotos(1)) {
-					$iconText = gImage('icons/compressed.gif', gTranslate('core', "Download entire album as archive"));
-					$downloadLink = popup_link(
-						$iconText,
-						'download.php?set_albumName='. $gallery->album->getAlbumName($i),
-						false, true, 500, 500, '', '', '', false, false
-					);
-				}
-
-				$caption ='<span class="g-emphasis">';
-				$caption .= sprintf(gTranslate('core', "Album: %s"),
-								galleryLink(makeAlbumUrl($gallery->album->getAlbumName($i)), $myAlbum->fields['title'])
-				);
-				$caption .= '</span> ';
-
-				$albumItems[$nr]['caption'] = $caption . $downloadLink;
-
-				// Description
-				$myDescription = $myAlbum->fields['description'];
-				if (!empty($myDescription) &&
-					$myDescription != gTranslate('core', "No description") &&
-					$myDescription != "No description")
-				{
-					$albumItems[$nr]['description'] = nl2br($myDescription);
-				}
-
-				// Further album infos
-				$albumItems[$nr]['infos'][] =
-					sprintf (gTranslate('core', "Last change: %s"), $myAlbum->getLastModificationDate());
-
-				$visItems = array_sum($myAlbum->numVisibleItems($gallery->user));
-				$contains = gTranslate('core',"Contains: One Item","Contains %d items", $visItems, '', true) .'. ';
-				// If comments indication for either albums or both
-				switch ($gallery->app->comments_indication) {
-					case 'albums':
-					case 'both':
-						$lastCommentDate = $myAlbum->lastCommentDate($gallery->app->comments_indication_verbose);
-						if ($lastCommentDate > 0) {
-							$contains .= lastCommentString($lastCommentDate, $displayCommentLegend);
-						}
-						break;
-				}
-
-				$albumItems[$nr]['infos'][] = $contains;
-
-				if ($gallery->album->fields['display_clicks'] == "yes" &&
-				  !$gallery->session->offline &&
-				  $myAlbum->getClicks() > 0) {
-					$albumItems[$nr]['clickcounter'] = gTranslate('core', "Viewed: Once.", "Viewed: %d times.", $myAlbum->getClicks(), '', true);
-				}
-			}
-			/* Photo or Movie */
-			else {
-				$caption = nl2br($gallery->album->getCaption($i));
-
-				$albumItems[$nr]['caption'] = $caption;
-				$albumItems[$nr]['caption'] .= $gallery->album->getCaptionName($i) . ' ';
-				// indicate with * if we have a comment for a given photo
-				if ($gallery->user->canViewComments($gallery->album) &&
-					$gallery->app->comments_enabled == "yes")
-				{
-					// If comments indication for either photos or both
-					switch ($gallery->app->comments_indication) {
-						case 'photos':
-						case 'both':
-							$lastCommentDate = $gallery->album->itemLastCommentDate($i);
-							$albumItems[$nr]['caption'] .=
-								lastCommentString($lastCommentDate, $displayCommentLegend);
-							break;
-					}
-
-				}
-
-				$description = nl2br($gallery->album->getDescription($i));
-				if(!empty($description)) {
-					$header = gTranslate('core' ,"Description for"). sprintf("<br>'%s'", $caption);
-					$label = gTranslate('core' ,"... show full description");
-
-					list($needJavascript, $albumItems[$nr]['description']) =
-						readMoreBox("description$nr", $header, $description, 0, $label, "thumb$nr");
-				}
-
-				if ($gallery->album->fields['display_clicks'] == "yes" &&
-					!$gallery->session->offline &&
-					$gallery->album->getItemClicks($i) > 0)
-				{
-					$albumItems[$nr]['clickcounter'] =
-						gTranslate('core', "Viewed: 1 time.", "Viewed: %d times.", $gallery->album->getItemClicks($i), '', true);
-				}
-			}
-			// End Caption & Description
 
 			if (canVote()) {
 				$albumItems[$nr]['voting'] =
@@ -711,6 +677,9 @@ if ($numPhotos) {
 			}
 			*/
 
+			$albumItems[$nr]['thumb'] = $gallery->html_wrap;
+
+
 			$j++;
 			$visibleItemIndex++;
 			$i = $visibleItemIndex<=$numVisibleItems ? $visibleItems[$visibleItemIndex] : $numPhotos+1;
@@ -732,6 +701,10 @@ if ($numPhotos) {
 		$rowStart = $visibleItemIndex;
 	}
 	/* End of picture table */
+
+	if(empty($albumItems)) {
+		$va_notice = gTranslate('core', "This album is empty.");
+	}
 }
 else {
 	if ($gallery->user->canAddToAlbum($gallery->album) && !$gallery->session->offline) {
@@ -747,8 +720,12 @@ else {
 	}
 }
 
+if(!fs_file_exists(GALLERY_BASE . "/templates/$g_theme/album.tpl.default")) {
+	$g_theme = 'classic';
+}
+
 define('READY_TO_INCLUDE', 'DISCO');
-$templateFile = getDefaultFilename(GALLERY_BASE .'/templates/album.tpl');
+$templateFile = getDefaultFilename(GALLERY_BASE ."/templates/$g_theme/album.tpl");
 
 require($templateFile);
 

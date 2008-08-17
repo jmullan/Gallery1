@@ -567,6 +567,10 @@ function getIconText($iconName = '', $text = '', $overrideMode = '', $addBracket
 		if ($iconMode == 'both') {
 			$linkText .= "<br>$text";
 		}
+
+		if ($iconMode == 'lined') {
+			$linkText .= " $text";
+		}
 	}
 
 	if (empty($linkText)) {
@@ -774,6 +778,9 @@ function includeTemplate($name, $skinname = '', $theme = '') {
 
 	if(!$theme) {
 		$theme = $gallery->app->theme;
+		if(!fs_is_dir("$base/templates/$theme")) {
+			$theme = 'classic';
+		}
 	}
 
 	if (!$skinname) {
@@ -826,9 +833,11 @@ function getStyleSheetLink() {
 		$styleSheetLinks = _getStyleSheetLink("base");
 
 		if(isset($gallery->direction) && $gallery->direction == 'rtl') {
+			$styleSheetLinks .= _getStyleSheetLink("rtl", 'none');
 			$styleSheetLinks .= _getStyleSheetLink("rtl");
 		}
 		else {
+			$styleSheetLinks .= _getStyleSheetLink("ltr", 'none');
 			$styleSheetLinks .= _getStyleSheetLink("ltr");
 		}
 
@@ -855,6 +864,7 @@ function getStyleSheetLink() {
 function _getStyleSheetLink($filename, $skinname = '') {
 	global $gallery;
 	global $GALLERY_EMBEDDED_INSIDE;
+	static $usedUrls = array();
 
 	$base = dirname(dirname(__FILE__));
 
@@ -883,7 +893,16 @@ function _getStyleSheetLink($filename, $skinname = '') {
 
 	$url = getGalleryBaseUrl() ."/$file";
 
-	return "\n". '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+	if (!in_array($url, $usedUrls)) {
+		$usedUrls[] = $url;
+		return "\n". '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+	}
+	else {
+		//return "\n". '  <link rel="stylesheet" type="text/css" href="' .$url . '">';
+		return '';
+	}
+
+
 }
 
 // The following 2 functions, printAlbumOptionList and printNestedVals provide
@@ -1025,6 +1044,7 @@ function printNestedVals($level, $albumName, $movePhoto, $readOnly) {
 
 /**
  * Formats a nice string to print below an item with comments
+ *
  * @param  int		$lastCommentDate		Timestamp of last comment
  * @param  boolean	$displayCommentLegend	indicator whether a Legend showed be showed later.
  * @return string	$html
@@ -1580,46 +1600,6 @@ function toggleBox($id, $text, $toggleButton = 'prepend') {
 	$html = '<br>' . $html;
 
 	return $html;
-
-}
-
-/**
- * Returns the HTML code for a progressbar.
- *
- * @param string  $id		HTML ID you want to assing to the progressbar
- * @param string  $label	A descriptive Label
- * @return string $html
- * @author Jens Tkotz
- */
-function addProgressbar($id, $label = '') {
-	global $gallery;
-	static $jsSet = false;
-
-	$html = '';
-
-	if(!$jsSet) {
-		$jsUrl = $gallery->app->photoAlbumURL . '/js/progressbar.js';
-		$html .= "<script type=\"text/javascript\" src=\"$jsUrl\"></script>\n";
-		$jsSet = true;
-	}
-
-	$html .= "\n<div class=\"g-emphasis\">$label</div>\n";
-	$html .= "<div id=\"$id\" class=\"progressBar\"><div id=\"progressBarDone_$id\" class=\"progressBarDone\"></div></div>\n";
-	$html .= "<div id=\"progressDescription_$id\"></div>\n";
-
-	return $html;
-}
-
-/**
- * Wrapper around js function updateProgressBar. Updates a progressbar.
- *
- * @param string	$htmlId		HTML ID of the progressbar you want to update.
- * @param string	$status		Optional text you want to write in the description field.
- * @param float		$percentDone
- */
-function updateProgressBar($htmlId, $status, $percentDone) {
-	echo "\n<script type=\"text/javascript\">updateProgressBar('$htmlId', '$status', $percentDone)</script>";
-	my_flush();
 }
 
 /**

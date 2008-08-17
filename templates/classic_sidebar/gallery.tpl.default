@@ -28,12 +28,20 @@ if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
 /** Display settings **/
 
 // Show created / last change date
-$showCreationDate	= true;
+$showCreationDate = true;
 
 // Show number of items
-$numItems		= true;
+$numItems = true;
 
-/** Enf of Settings **/
+/** End of Settings **/
+
+
+if ($gallery->app->theme == 'classic_sidebar' && $gallery->app->useIcons == 'both') {
+	$useIcons = 'yes';
+}
+else {
+	$useIcons = $gallery->app->useIcons;
+}
 
 $cells = 2;
 
@@ -52,6 +60,8 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	if (isset($dynsubalbumTree)) {
 		echo _getStyleSheetLink('yui/folders/tree');
 	}
+
+	echo _getStyleSheetLink('sidebar');
 ?>
 </head>
 <body>
@@ -71,25 +81,44 @@ if (isset($dynsubalbumTree)) {
 	echo jsHTML('yui/animation-min.js');
 }
 
-echo $searchBar;
+if ($GALLERY_EMBEDDED_INSIDE) {
+	echo _getStyleSheetLink('sidebar');
+}
 
-// We do not longer use adminbox.inc here
 ?>
-<div class="g-adminbar">
-  <table width="100%">
-  <tr>
-      <td colspan="2" class="g-adminbarheader right"><?php echo $gallery_welcome ?></td>
-    </tr>
-    <tr>
-      <td class="g-adminbartext left"><?php echo $adminText ?></td>
-      <td class="g-adminbarcommands right">
-      		<?php echo makeIconMenu($iconElements, 'right'); ?>
-      </td>
-    </tr>
-  </table>
-</div>
+
+<table width="100%">
+<tr>
+	<td id="g-sidebar" class="g-sidebar">
+	<div style="width:100%" class="right">
+	<?php echo galleryIconLink('#', 'application_side_expand.png', gTranslate('core', "Open sidebar"), $useIcons, array('id' => 'g-sidebar-icon1', 'onClick' => 'g_sidebar.toggle()')); ?>
+	<?php echo galleryIconLink('#', 'application_side_contract.png', gTranslate('core', "Close sidebar"), $useIcons, array('id' => 'g-sidebar-icon2', 'onClick' => 'g_sidebar.toggle()', 'class' => 'hidden')); ?>
+	</div>
+	<div id="g-sidebar-content">
+		<?php if($gallery->app->useIcons != 'yes') : ?>
+		<div class="g-sidebarHeader"><?php echo gTranslate('core', "Actions"); ?></div>
+		<?php endif ?>
+<?php
+	foreach($iconElements as $command) {
+		echo "\n\t\t<div class=\"nowrap g-adminbarcommands\">$command</div>";
+	}
+?>
+	</div>
+	</td>
+	<td id="g-content" class="1g-content 1floatleft g-borderleftsolid">
+		<?php echo $searchBar; ?>
+		<div class="g-adminbar">
+		  <table width="100%">
+		  <tr>
+		      <td class="g-adminbartext left"><?php echo $adminText ?></td>
+		      <td class="g-adminbarheader right"><?php echo $gallery_welcome ?></td>
+		    </tr>
+		  </table>
+		</div>
 
 <?php
+
+echo jsHTML('sidebar.js');
 
 if ($navigator["maxPages"] > 1) {
 	echo '<div class="g-navbar-top">';
@@ -100,7 +129,6 @@ if ($navigator["maxPages"] > 1) {
 echo languageSelector();
 
 echo infoBox($notice_messages, $notice_caption);
-
 ?>
 
 <!-- album table begin -->
@@ -183,7 +211,7 @@ echo infoBox($notice_messages, $notice_caption);
 		</td>
 		<!-- End Text Cell -->
 
-<?php if (!empty($content['subalbumTree']) || isset($dynsubalbumTree) ) { $cells=3; ?>
+<?php if (!empty($content['subalbumTree']) || isset($dynsubalbumTree) ) { $cells = 3; ?>
 	<?php if (!empty($content['subalbumTree'])) : ?>
 		<!-- Subalbumtree -->
 		<td class="g-subalbumTree-box"><?php echo $content['albumdesc']['subalbumTree'] ?></td>
@@ -207,19 +235,25 @@ echo infoBox($notice_messages, $notice_caption);
 <?php endif ?>
 
 <?php
-if ($navigator['maxPages'] > 1) {
+if ($navigator["maxPages"] > 1) {
 	echo '<div class="g-navbar-bottom">';
 	includeLayout('navigator.inc');
 	echo '</div>';
 }
 ?>
+<!-- end content -->
+	</td>
+</tr>
+</table>
+<div class="clear"></div>
+
 <p>
 <!-- gallery.footer begin -->
 <?php
 
-includeTemplate('info_donation-block');
+require_once(GALLERY_BASE .'/templates/info_donation-block.tpl.default');
 
-includeTemplate('overall.footer');
+includeTemplate("overall.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

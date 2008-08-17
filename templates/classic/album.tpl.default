@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,27 @@
  *
  * $Id: view_album.tpl.default 13820 2006-06-14 12:03:36Z jenst $
  */
-?>
-<?php
+
 if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
-    echo 'Security violation while includiding template for album thumbnail view.';
+    echo 'Security violation while including template for album thumbnail view.';
     exit;
 }
+
+/* Build up drop-down menu and related javascript for album action*/
+if (!empty($adminCommands)) {
+	$adminCommandsDropdown = makeFormIntro(
+		'view_album.php',
+		array('name' => 'admin_options_form',
+		     'class' => 'right',
+		     'style' => 'margin: 0 10px;')) .
+		drawSelect2(
+			'admin_select',
+			$adminCommands,
+			array('class' => 'g-admin', 'onChange' => 'jopen(this)')) .
+	'</form>';
+}
+
+$iconElements = array_merge(array($adminCommandsDropdown), $iconElements);
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
@@ -45,16 +60,17 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <?php echo $customCSS; ?>
   </style>
 <?php endif; ?>
-
 </head>
 <body>
+
 <?php
 }
 
-includeTemplate("album.header");
-if ($GALLERY_EMBEDDED_INSIDE) {
-    echo $vaRenderDescriptionCSS;
-}
+includeTemplate('album.header', '', 'classic');
+
+echo "\n";
+echo jsHTML('wz/wz_tooltip.js');
+echo $embeddedLightboxCSS;
 
 if (!$gallery->session->offline) { ?>
 
@@ -88,12 +104,22 @@ if (!$gallery->session->offline) { ?>
 
 <?php
 }
-?>
-<script type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL ?>/js/wz_tooltip.js"></script>
-<?php
+
 echo $va_javascript;
 
-includeLayout('adminbox.inc');
+// We do not longer use adminbox.inc here
+?>
+<div class="g-adminbar">
+  <table width="100%">
+    <tr>
+      <td class="g-adminbartext left"><?php echo $adminText ?></td>
+      <td class="g-adminbarcommands right">
+      		<?php echo makeIconMenu($iconElements, 'right'); ?>
+      </td>
+    </tr>
+  </table>
+</div>
+<?php
 
 if (!empty($breadcrumb["text"]) || $gallery->user->isLoggedIn()) {
    includeLayout('breadcrumb.inc');
@@ -214,24 +240,32 @@ if ($gallery->app->comments_enabled == 'yes' &&
 	$gallery->app->emailOn == 'yes')
 {
 	echo makeFormIntro("view_album.php", array("name" => "email_me"));
-	//echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  ";
-	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? "checked" : "" ;
-	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? "checked" : "";
+
+	$checked_com = ($gallery->album->getEmailMe('comments', $gallery->user)) ? null : false ;
+	$checked_other = ($gallery->album->getEmailMe('other', $gallery->user)) ? null : false;
+
+	$checkbox_com = gInput('checkbox', 'comments',
+				gTranslate('core', "Comments are added"),
+				false, null, array('checked' => $checked_com, 'onclick' => "document.email_me.submit()"));
+
+	$checkbox_other = gInput('checkbox', 'other',
+				gTranslate('core', "Other changes are maded"),
+				false, null, array('checked' => $checked_other, 'onclick' => "document.email_me.submit()"));
+
+	$checkbox_recursive = gInput('checkbox', 'recursive',
+				gTranslate('core', "Apply settings (both) recursive for subalbums."),
+				false, null, array('onclick' => "document.email_me.submit()"));
 ?>
-  <fieldset class="g-emailMe-box">
+  <fieldset class="left g-emailMe-box">
 	<legend>
     <?php echo gTranslate('core', "Email me when one of the following actions are done to this album:")."  "; ?>
   	</legend>
 
-      <input type="checkbox" name="comments" <?php echo $checked_com; ?> onclick="document.email_me.submit()">
-      <?php echo gTranslate('core', "Comments are added"); ?>
+	<?php echo $checkbox_com; ?>
 <br>
-      <input type="checkbox" name="other" <?php echo $checked_other; ?> onclick="document.email_me.submit()">
-      <?php print gTranslate('core', "Other changes are made") ?>
-
+	<?php echo $checkbox_other; ?>
   <hr>
-  	<input type="checkbox" name="recursive" onclick="document.email_me.submit()">
-  	<?php echo gTranslate('core', "Apply settings (both) recursive for subalbums."); ?>
+  	<?php echo $checkbox_recursive ?>
 
   <input type="hidden" name="submitEmailMe" value="true">
   </fieldset>
@@ -244,7 +278,7 @@ if ($gallery->app->comments_enabled == 'yes' &&
 <?php
 
 if($numVisibleItems != 0) {
-    if ($navigator["maxPages"] > 1) {
+    if ($navigator['maxPages'] > 1) {
     	echo '<div class="g-navbar-bottom">';
         includeLayout('navigator.inc');
 	echo '</div>';
@@ -257,7 +291,7 @@ echo languageSelector();
 // Its better not to touch anything below this.
 includeTemplate('info_donation-block');
 
-includeTemplate("overall.footer");
+includeTemplate('overall.footer');
 
 echo $wz_tooltips;
 

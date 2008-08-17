@@ -38,7 +38,10 @@ includeTemplate("overall.header");
 */
 
 ?>
-	<div class="g-header">
-		<div class="g-pagetitle"><?php echo $gallery->app->galleryTitle ?></div>
-	</div>
-	
+	<table class="g-header" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td class="g-pagetitle-left"></td>
+			<td class="g-pagetitle g-pagetitle-background"><?php echo $gallery->app->galleryTitle ?></td>
+			<td class="g-pagetitle-right"></td>
+		</tr>
+	</table>

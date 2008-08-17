@@ -102,6 +102,7 @@ function popup_link($title, $url, $url_is_complete = 0, $online_only = true, $he
 
 function popup_link2($title, $url, $args = array()) {
 	global $gallery;
+	global $specialIconMode;
 
 	$url_is_complete	= isset($args['url_is_complete'])	? $args['url_is_complete']	: true;
 	$online_only		= isset($args['online_only'])		? $args['online_only']		: true;
@@ -117,6 +118,8 @@ function popup_link2($title, $url, $args = array()) {
 		return null;
 	}
 
+	$iconMode = isset($specialIconMode) ? $specialIconMode : '';
+
 	$args['gallery_popup'] = true;
 
 	$url = build_popup_url($url, $url_is_complete);
@@ -130,7 +133,14 @@ function popup_link2($title, $url, $args = array()) {
 		'onClick' => "javascript:". $extraJS .popup_js("this.href", "Edit", "height=$height,width=$width,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes")
 	);
 
-	$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
+	//$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
+
+	if(!empty($icon)) {
+		$html = galleryIconLink($url, $icon, $title, $iconMode, $attrList, $accesskey);
+	}
+	else {
+		$html = galleryLink($url, $title, $attrList, $icon, $addBrackets, $accesskey);
+	}
 
 	return $html;
 }
@@ -158,9 +168,13 @@ function printPopupStart($title = '', $header = '', $align = 'center') {
   <?php common_header(); ?>
 </head>
 <body class="g-popup">
-<div class="g-header-popup">
-  <div class="g-pagetitle-popup"><?php echo $header ?></div>
-</div>
+<table class="g-header-popup" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td class="g-pagetitle-popup-left"></td>
+		<td class="g-pagetitle-popup g-pagetitle-popup-background"><?php echo $header ?></td>
+		<td class="g-pagetitle-popup-right"></td>
+	</tr>
+</table>
 <div class="g-content-popup <?php echo $align; ?>">
 
 <?php

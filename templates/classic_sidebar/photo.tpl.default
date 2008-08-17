@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,19 @@
  *
  * $Id: view_photo.tpl.default 13821 2006-06-14 12:48:40Z jenst $
  */
-?>
-<?php
+
 if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
-    echo 'Security violation while includiding template for photo view.';
+    echo 'Security violation while including template for photo view.';
     exit;
 }
-?>
-<?php
+
+if ($gallery->app->theme == 'classic_sidebar' && $gallery->app->useIcons == 'both') {
+	$useIcons = 'yes';
+}
+else {
+	$useIcons = $gallery->app->useIcons;
+}
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype(); ?>
 <html>
@@ -93,25 +98,60 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 	echo "\n  </style>";
 	}
 ?>
+	<?php echo _getStyleSheetLink('sidebar'); ?>
   </head>
   <body>
 <?php
 }
 
-includeTemplate("photo.header");
+includeTemplate('photo.header', '', 'classic');
+
+if ($GALLERY_EMBEDDED_INSIDE) {
+	echo _getStyleSheetLink('sidebar');
+}
 
 if (!empty($allImageAreas)) {
-	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
-	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/tip_balloon.js"></script>';
+	echo jsHTML('wz/wz_tooltip.js');
+	echo jsHTML('wz/tip_balloon.js');
 }
 
 if ($fitToWindow) {
-	/* Include Javascript */
-	include(dirname(dirname(__FILE__)) .'/js/fitToWindow.js.php');
+	echo jsHTML('fitToWindow.js.php');
 }
 
-includeLayout('adminbox.inc');
+?>
 
+<table width="100%">
+<tr>
+	<td id="g-sidebar" class="g-sidebar">
+	<div style="width:100%" class="right">
+	<?php echo galleryIconLink('#', 'application_side_expand.png', gTranslate('core', "Open sidebar"), $useIcons, array('id' => 'g-sidebar-icon1', 'onClick' => 'g_sidebar.toggle()')); ?>
+	<?php echo galleryIconLink('#', 'application_side_contract.png', gTranslate('core', "Close sidebar"), $useIcons, array('id' => 'g-sidebar-icon2', 'onClick' => 'g_sidebar.toggle()', 'class' => 'hidden')); ?>
+	</div>
+	<div id="g-sidebar-content">
+		<?php if($gallery->app->useIcons != 'yes') : ?>
+		<div class="g-sidebarHeader"><?php echo gTranslate('core', "Item Actions"); ?></div>
+		<?php endif ?>
+<?php
+	foreach($itemActions as $command) {
+		echo "\n\t<div class=\"g-adminbarcommands\">$command</div>";
+	}
+
+	foreach($adminTextIconElemens as $command) {
+		echo "\n\t<div class=\"g-adminbarcommands\">$command</div>";
+	}
+
+	foreach($iconElements as $command) {
+		echo "\n\t<div class=\"g-adminbarcommands\">$command</div>";
+	}
+?>
+	</div>
+	</td>
+	<td class="g-content g-borderleftsolid">
+		<!-- No Admin bar in this theme -->
+<?php
+
+echo jsHTML('sidebar.js');
 includeLayout('breadcrumb.inc');
 
 ?>
@@ -164,10 +204,6 @@ if(sizeof($navigator['allIds']) > 0) {
 		echo includeLayout('navphoto.inc');
 		echo "\n</div>";
 	}
-}
-
-if(isset($itemActionsMenu)) {
-	echo $itemActionsMenu;
 }
 
 if(isset($imageMapHTML)) {
@@ -232,15 +268,15 @@ if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_
 	echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
 }
 
-if(isset($emailMeForm)) {
-    echo $emailMeForm;
-}
-
 // end g-photo-texts
 ?>
 </div>
 
 <?php
+
+if(isset($emailMeForm)) {
+    echo $emailMeForm;
+}
 
 if(sizeof($navigator['allIds']) > 0) {
 	if ($gallery->album->fields['nav_thumbs'] != 'no' &&
@@ -261,15 +297,19 @@ includeLayout('breadcrumb.inc');
 
 echo languageSelector();
 
+// Dont change anything below !
+?>
+<!-- end content -->
+	</td>
+</tr>
+</table>
+<?php
 
 includeTemplate('info_donation-block');
 
-includeTemplate("overall.footer");
+includeTemplate('overall.footer');
 
-/*
- * Dont change anything below !
-*/
-include_once(dirname(dirname(__FILE__)) .'/includes/view_photo/hidden_print_services.php');
+include_once(GALLERY_BASE .'/includes/view_photo/hidden_print_services.php');
 
 if ($fitToWindow) {
 ?>

@@ -1,0 +1,299 @@
+<?php
+/*
+ * Gallery - a web based photo album viewer and editor
+ * Copyright (C) 2000-2008 Bharat Mediratta
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * $Id: view_photo.tpl.default 13821 2006-06-14 12:48:40Z jenst $
+ */
+
+if(! defined('READY_TO_INCLUDE') || READY_TO_INCLUDE  !== 'DISCO') {
+    echo 'Security violation while includiding template for photo view.';
+    exit;
+}
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+	doctype(); ?>
+<html>
+<head>
+  <title><?php echo clearGalleryTitle() . ' :: '. $gallery->album->fields["title"] . ' :: '. $g_pageTitle ; ?></title>
+  <?php
+  common_header(array('metaTags' => $metaTags));
+
+  /* Prefetch Navigation */
+  if ($navigator['allIds'][0] != $id) {
+  	if ($navigator['allIds'][0] != 'unknown') {
+  		echo "\n  ". '<link rel="first" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][0]) .'">';
+  	}
+
+  	if ($navigator['allIds'][$navpage-1] != 'unknown') {
+  		echo "\n  ". '<link rel="prev" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage-1]) .'">';
+  	}
+  }
+  if ($navigator['allIds'][$navcount - 1] != $id) {
+  	if ($navigator['allIds'][$navpage+1] != 'unknown') {
+  		echo "\n  ". '<link rel="next" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navpage+1]) .'">';
+  	}
+
+  	if ($navigator['allIds'][$navcount-1] != 'unknown') {
+  		echo "\n  ". '<link rel="last" href="'. makeAlbumUrl($gallery->session->albumName, $navigator['allIds'][$navcount - 1]) .'">';
+  	}
+  }
+
+  echo "\n  ". '<link rel="up" href="' . makeAlbumUrl($gallery->session->albumName) .'">';
+
+  if ($gallery->album->isRoot() &&
+  	 (!$gallery->session->offline || isset($gallery->session->offlineAlbums["albums.php"])))
+  {
+  	echo "\n  ". '<link rel="top" href="'. makeGalleryUrl('albums.php', array('set_albumListPage' => 1)) .'">';
+  }
+
+  if( ! empty($gallery->album->fields["linkcolor"]) ||
+ 	  !empty($gallery->album->fields["bgcolor"]) ||
+  	  !empty($gallery->album->fields["textcolor"]))
+  {
+	echo "\n<style type=\"text/css\">";
+	// the link colors have to be done here to override the style sheet
+	if ($gallery->album->fields["linkcolor"]) {
+		echo "\n  a:link, a:visited, a:active {";
+		echo "\n	color: ".$gallery->album->fields['linkcolor'] ."; }";
+		echo "\n  a:hover { color: #ff6600; }";
+
+	}
+
+	if ($gallery->album->fields["bgcolor"]) {
+		echo "body { background-color:".$gallery->album->fields['bgcolor']."; }";
+	}
+
+	if (isset($gallery->album->fields['background']) && $gallery->album->fields['background']) {
+		echo "body { background-image:url(".$gallery->album->fields['background']."); } ";
+	}
+
+	if ($gallery->album->fields["textcolor"]) {
+		echo "body, tf {color:".$gallery->album->fields['textcolor']."; }";
+		echo ".head {color:".$gallery->album->fields['textcolor']."; }";
+		echo ".headbox {background-color:".$gallery->album->fields['bgcolor']."; }";
+	}
+
+	echo "\n  </style>";
+	}
+?>
+  </head>
+  <body>
+<?php
+}
+
+includeTemplate('photo.header', '', 'classic');
+
+if (!empty($allImageAreas)) {
+	echo jsHTML('wz/wz_tooltip.js');
+	echo jsHTML('wz/tip_balloon.js');
+}
+
+if ($fitToWindow) {
+	echo jsHTML('fitToWindow.js.php');
+}
+
+// We do not longer use adminbox.inc here
+?>
+<div class="g-adminbar">
+  <table width="100%">
+    <tr>
+      <td class="g-adminbartext left"><?php echo makeIconMenu($adminTextIconElemens, 'left'); ?></td>
+      <td class="g-adminbarcommands right">
+      		<?php echo makeIconMenu($iconElements, 'right'); ?>
+      </td>
+    </tr>
+  </table>
+</div>
+<?php
+
+includeLayout('breadcrumb.inc');
+
+?>
+<a id="photo_url" href="<?php echo $photoURL ?>"></a>
+<a id="page_url" href="<?php echo $page_url ?>"></a>
+
+<?php if (!$gallery->album->isMovie($id) && !empty($gallery->album->fields["print_photos"]) && !$gallery->session->offline) :?>
+<script language="javascript1.2" type="text/JavaScript">
+	function doPrintService(input) {
+		if (!input) {
+			input = document.print_form.print_services.value;
+		}
+		switch (input) {
+			case 'fotokasten':
+				window.open('<?php echo "http://1071.partner.fotokasten.de/affiliateapi/standard.php?add=" . $rawImage . '&thumbnail=' . $thumbImage . '&height=' . $imageHeight . '&width=' . $imageWidth; ?>','Print_with_Fotokasten','<?php echo "height=500,width=500,location=no,scrollbars=yes,menubars=no,toolbars=no,resizable=yes"; ?>');
+			break;
+			case 'photoaccess':
+				document.photoAccess.returnUrl.value=document.location;
+				document.photoAccess.submit();
+			break;
+			case 'shutterfly':
+				document.sflyc4p.returl.value=document.location;
+				document.sflyc4p.submit();
+			break;
+			case 'mpush':
+				window.open('http://mpush.msolutions.cc/req.php?account=<?php echo $gallery->app->default['mPUSHAccount'] ?>&image=<?php echo $rawImage ?>&caption=<?php echo urlencode($gallery->album->getCaption($index)) ?>','_MPUSH','width=640,height=420,titlebar=1,resizable=1,scrollbars=1');
+			break;
+			case 'fotoserve':
+				document.fotoserve.redirect.value=document.location;
+				document.fotoserve.submit();
+			break;
+		}
+	}
+</script>
+<?php endif ?>
+
+<?php
+
+if(sizeof($navigator['allIds']) > 0) {
+	if ($gallery->album->fields['nav_thumbs'] != 'no' &&
+	  $gallery->album->fields['nav_thumbs_location'] != 'bottom') {
+		echo '<div class="g-microthumbnavbar-top">';
+		includeLayout('navmicro.inc');
+		echo "\n</div>";
+	}
+
+
+	if($gallery->album->fields['nav_thumbs'] != 'yes') {
+		echo "\n<div class=\"g-navbar-top\">";
+		echo includeLayout('navphoto.inc');
+		echo "\n</div>";
+	}
+}
+
+if(!empty($itemActions)) {
+	echo makeIconMenu($itemActions, 'center', true, true);
+}
+
+if(isset($imageMapHTML)) {
+  echo $imageMapHTML;
+}
+
+$description = nl2br($gallery->album->getDescription($index));
+?>
+
+<?php
+	echo infoBox($comment_messages);
+?>
+
+<!-- image -->
+<div class="g-photo">
+	<?php includeLayout('inline_imagewrap.inc'); ?>
+</div>
+
+<div class="g-photo-texts">
+	<!-- caption -->
+	<p class="g-photo-caption"><?php echo editCaption($gallery->album, $index) ?></p>
+
+	<!-- description -->
+    <?php if (!empty($description)) : ?>
+	<div class="g-photo-description left"><div><?php echo gTranslate('core', "Description"); ?></div>
+	<?php echo $description ?></div>
+    <?php endif; ?>
+
+	<!-- Custom Fields -->
+	<?php
+	echo displayPhotoFields($index, $extra_fields, true, in_array('EXIF', $extra_fields), $full);
+	?>
+
+<?php if (canVote() || $gallery->album->getPollShowResults()) : ?>
+	<div class="g-vote-box">
+	    <!-- Voting pulldown / radiobuttons -->
+		<?php echo makeFormIntro('view_photo.php', array('name' => 'vote_form'), array('id' => $id)); ?>
+			<script language="javascript1.2" type="text/JavaScript">
+			function chooseOnlyOne(i, form_pos, scale) {
+				for(var j=0;j<scale;j++) {
+					if(j != i) {
+						eval("document.vote_form['votes["+j+"]'].checked=false");
+					}
+				}
+				document.vote_form.submit("Vote");
+			}
+			</script>
+			<?php echo addPolling("item.$id"); ?>
+			</form>
+	<?php if ($gallery->album->getPollShowResults()) {
+		echo "\n\t<!-- Voting Results -->\n";
+		echo showResults("item.$id");
+	}
+	?>
+	</div>
+<?php endif ?>
+
+	<!-- Comments -->
+<?php
+
+if ($gallery->user->canViewComments($gallery->album) && $gallery->app->comments_enabled == 'yes') {
+	echo viewComments($index, $gallery->user->canAddComments($gallery->album), $page_url);
+}
+
+// end g-photo-texts
+?>
+</div>
+
+<?php
+
+if(isset($emailMeForm)) {
+    echo $emailMeForm;
+}
+
+if(sizeof($navigator['allIds']) > 0) {
+	if ($gallery->album->fields['nav_thumbs'] != 'no' &&
+	  $gallery->album->fields['nav_thumbs_location'] != 'top') {
+		echo '<div class="g-microthumbnavbar-bottom">';
+		includeLayout('navmicro.inc');
+		echo "\n</div>";
+	}
+
+	if ($gallery->album->fields['nav_thumbs'] != 'yes') {
+		echo "<div class=\"g-navbar-bottom\">";
+		includeLayout('navphoto.inc');
+		echo "\n</div>";
+	}
+}
+
+includeLayout('breadcrumb.inc');
+
+echo languageSelector();
+
+includeTemplate('info_donation-block');
+
+includeTemplate('overall.footer');
+
+/*
+ * Dont change anything below !
+*/
+include_once(GALLERY_BASE .'/includes/view_photo/hidden_print_services.php');
+
+if ($fitToWindow) {
+?>
+<script type="text/javascript">
+<!--
+calculateNewSize();
+//-->
+</script>
+
+<?php
+}
+
+if (!$GALLERY_EMBEDDED_INSIDE) { ?>
+</body>
+</html>
+<?php
+}
+
+?>

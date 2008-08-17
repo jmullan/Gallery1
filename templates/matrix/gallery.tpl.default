@@ -49,7 +49,23 @@ includeTemplate('gallery.header', '', 'classic');
 echo '<script type="text/javascript" src="' . getGalleryBaseUrl() . '/js/jopen.js"></script>';
 echo $searchBar;
 
-includeLayout('adminbox.inc');
+// We do not longer use adminbox.inc here
+?>
+<div class="g-adminbar">
+  <table width="100%">
+  <tr>
+      <td colspan="2" class="g-adminbarheader right"><?php echo $gallery_welcome ?></td>
+    </tr>
+    <tr>
+      <td class="g-adminbartext left"><?php echo $adminText ?></td>
+      <td class="g-adminbarcommands right">
+      		<?php echo makeIconMenu($iconElements, 'right'); ?>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<?php
 
 if ($navigator["maxPages"] > 1) {
     echo '<div class="g-navbar-top">';
@@ -156,7 +172,7 @@ if ($navigator['maxPages'] > 1) {
 <!-- gallery.footer begin -->
 <?php
 
-require_once(GALLERY_BASE .'/templates/info_donation-block.tpl.default');
+includeTemplate('info_donation-block');
 
 includeTemplate('overall.footer');
 

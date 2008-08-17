@@ -69,6 +69,8 @@ $nextId = getNextId($id);
 
 $currentUrlResized = makeAlbumHeaderUrl($gallery->session->albumName, $id);
 
+$g_theme = $gallery->app->theme;
+
 /* Determine if user has the rights to view full-sized images */
 if (!empty($full) && !$gallery->user->canViewFullImages($gallery->album)) {
 	header("Location: $currentUrlResized");
@@ -210,6 +212,11 @@ $useIcons = (!$iconsForItemOptions || $gallery->app->useIcons == 'no') ? false :
 $albumItemOptions = getItemActions($index, $useIcons);
 
 $page_url = makeAlbumUrl($gallery->session->albumName, $id, array("full" => 0));
+
+if($gallery->app->theme == 'classic_sidebar' && $gallery->app->useIcons == 'both') {
+	$specialIconMode = 'lined';
+}
+
 $iconElements = array();
 $adminTextIconElemens = array();
 
@@ -391,15 +398,14 @@ if (!$gallery->album->isMovie($id)) {
 /* Show a dropdown if no icons are wanted and there a items
  * Note: First options is just a descriptive text
 */
-if(sizeof($albumItemOptions) > 1 && !$useIcons) {
+if(sizeof($albumItemOptions) > 1 && !$useIcons && $gallery->app->theme != 'classic_sidebar') {
 	$iconElements[] =
 	'<form name="admin_options_form" action="view_album.php" class="right">' .
 	drawSelect2(
 		'itemOptions',
 		$albumItemOptions,
-		array(
-			'onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
-			'class' => 'g-admin'
+		array('onChange' => "imageEditChoice(document.admin_options_form.itemOptions)",
+		      'class' => 'g-admin'
 		)) .
 	"</form>\n"
 	;
@@ -407,20 +413,21 @@ if(sizeof($albumItemOptions) > 1 && !$useIcons) {
 
 $iconElements[] = LoginLogoutButton($currentUrlResized);
 
-$adminbox['text']		= makeIconMenu($adminTextIconElemens, 'left');
-$adminbox['commands']		= makeIconMenu($iconElements, 'right');
-$adminbox['bordercolor']	= $bordercolor;
+$breadcrumb['bordercolor'] = $bordercolor;
 
-$breadcrumb['bordercolor']	= $bordercolor;
 
-/* Icon menu above the photo */
-if($useIcons && sizeof($albumItemOptions) > 1) {
+/* Item actions */
+$itemActions = array();
+
+if(($useIcons || $gallery->app->theme == 'classic_sidebar') && sizeof($albumItemOptions) > 1) {
 	foreach ($albumItemOptions as $trash => $option) {
 		if(!empty($option['value'])) {
 			if (stristr($option['value'], 'popup')) {
 				$content = popup_link(
-					$option['text'], $option['value'],
-					true, false, 500, 500, '', '', $option['icon']);
+						$option['text'],
+						$option['value'],
+						true, false, 550, 600, '', '',
+						$option['icon']);
 			}
 			else {
 				$content = galleryIconLink($option['value'], $option['icon'], $option['text']);
@@ -429,8 +436,9 @@ if($useIcons && sizeof($albumItemOptions) > 1) {
 			$itemActions[] = $content;
 		}
 	}
-	$itemActionsMenu = makeIconMenu($itemActions, 'center', true, true);
 }
+
+$specialIconMode = '';
 
 #-- if borders are off, just make them the bgcolor ----
 if ($gallery->album->fields['border'] == 0) {
@@ -476,7 +484,12 @@ else {
 	$photoTag = $gallery->album->getPhotoTag($index, $full, array('id' => 'galleryImage'));
 }
 
-list($width, $height) = $photo->getDimensions($full);
+if($gallery->album->isMovie($id)) {
+    list($width, $height) = $photo->getThumbDimensions();
+}
+else {
+    list($width, $height) = $photo->getDimensions($full);
+}
 
 $gallery->html_wrap['borderColor']		= $gallery->album->fields["bordercolor"];
 $gallery->html_wrap['borderWidth']		= $gallery->album->fields["border"];
@@ -516,17 +529,23 @@ if ($gallery->app->comments_enabled == 'yes' &&
 			'emailMeComments' => ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? 'false' : 'true')
 		);
 
-		$checked = ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? " checked" : "";
-		$emailMeForm .= "<input type=\"checkbox\" name=\"comments\" $checked onclick=\"location.href='$url'\"> ";
+		$checked = ($gallery->album->getEmailMe('comments', $gallery->user, $id)) ? null : false;
 
-		$emailMeForm .= gTranslate('core', "Email me when comments are added");
+		$emailMeForm .= gInput('checkbox', 'comments',
+				gTranslate('core', "Email me when comments are added"),
+				false, null, array('checked' => $checked, 'onclick' => "location.href='$url'"));
 
 		$emailMeForm .= "\n</form>";
 	}
 }
 
+
+if(!fs_file_exists(GALLERY_BASE . "/templates/$g_theme/photo.tpl.default")) {
+	$g_theme = 'classic';
+}
+
 define('READY_TO_INCLUDE', 'DISCO');
-$templateFile = getDefaultFilename(GALLERY_BASE .'/templates/photo.tpl');
+$templateFile = getDefaultFilename(GALLERY_BASE ."/templates/$g_theme/photo.tpl");
 
 require($templateFile);
 ?>

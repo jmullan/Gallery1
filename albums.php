@@ -140,27 +140,33 @@ if (!empty($gallery->app->stats_foruser) && $numPhotos != 0) {
 	$adminText .= "\n<br>". generateStatsLinks();
 }
 
-/* Admin Text (right side) */
+/* Admin texts  */
 
-$adminCommands = '';
 $iconElements = array();
+
+if($gallery->app->theme == 'classic_sidebar' && $gallery->app->useIcons == 'both') {
+	$specialIconMode = 'lined';
+}
 
 if ($gallery->user->isLoggedIn() && !$gallery->session->offline) {
 	$displayName = $gallery->user->displayName();
-	$adminCommands .= sprintf(gTranslate('core', "Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
+	$gallery_welcome = sprintf(gTranslate('core', "Welcome, %s"), $displayName) . "&nbsp;&nbsp;<br>";
+}
+else {
+	$gallery_welcome = '';
 }
 
 if ($gallery->app->gallery_slideshow_type != "off" && $numPhotos != 0) {
 	$iconElements[] = galleryLink(
 		makeGalleryUrl("slideshow.php", array("set_albumName" => null)),
-		gTranslate('core', "Slidesho_w"), array(), 'presentation.gif'
+		gTranslate('core', "Slidesho_w"), array(), 'presentation.gif', true
 	);
 }
 
 if ($gallery->user->canCreateAlbums() && !$gallery->session->offline) {
 	$iconElements[] = galleryLink(
 		doCommand("new-album", array(), "view_album.php"),
-		gTranslate('core', "New _album"), array(), 'new_album.gif', true
+		gTranslate('core', "New _album"), array(), 'folder_new.png', true
 	);
 }
 
@@ -171,7 +177,7 @@ if ($loggedIn) {
 		$linkurl = makeGalleryUrl('administer_startpage.php', array('type' => 'popup'));
 		$iconElements[] = popup_link(
 			gTranslate('core', "Administer fron_tpage"),
-			$linkurl, true, true, 500, 500, '', '', 'unsortedList.gif'
+			$linkurl, true, true, 550, 600, '', '', 'unsortedList.gif'
 		);
 
 		$iconElements[] = galleryLink(
@@ -205,9 +211,7 @@ if (!$loggedIn && !$GALLERY_EMBEDDED_INSIDE && $gallery->app->selfReg == 'yes') 
 	);
 }
 
-$adminbox['text']			= $adminText;
-$adminbox['commands']		= $adminCommands . makeIconMenu($iconElements, 'right');
-$adminbox['bordercolor']	= $borderColor;
+$specialIconMode = '';
 
 /**
  * Searchfield and when inside phpBB2 a link back to home
@@ -363,7 +367,9 @@ for ($i = $start; $i <= $end; $i++) {
 
 		/* Admin album Commands */
 		$selectBoxCaption = ($g_theme == 'matrix') ? true : false;
+		$specialIconMode = 'no';
 		$rootAlbum[$tmpAlbumName]['albumdesc']['adminRootAlbumCommands'] = getAlbumCommands($gallery->album, $selectBoxCaption);
+		$specialIconMode = '';
 
 		/* Description */
 		$rootAlbum[$tmpAlbumName]['albumdesc']['description'] = editField($gallery->album, "description") ;
