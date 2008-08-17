@@ -204,4 +204,14 @@ function fs_fileIsHidden($filename) {
 		return false;
 	}
 }
+
+/**
+ * Deletes a directory
+ *
+ * @param String $dir
+ * @return boolean
+ */
+function fs_rmdir($dir) {
+	return rmdir($dir);
+}
 ?>

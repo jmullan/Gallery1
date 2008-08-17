@@ -333,7 +333,7 @@ function showComments ($index, $albumName, $reverse = false) {
 	$numComments	= $gallery->album->numComments($index);
 	$delCommentText	= getIconText('delete.gif', gTranslate('core', "Delete comment"), 'yes');
 
-	$commentdraw["index"] = $index;
+	$commentdraw['index'] = $index;
 
 	$commentTable = new galleryTable();
 	$commentTable->setAttrs(array('cellspacing'	=> 0,
@@ -507,43 +507,73 @@ function getLabelByIndex($index) {
  * @param integer   $wmAlignX
  * @param integer   $wmAlignY
  * @param integer   $wmSelect
- * @return string                       Empty on succes, otherwise an errormessage.
+ * @return string                       Empty on success, otherwise an errormessage.
  */
 function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_fields = array(), $wmName = '', $wmAlign = 0, $wmAlignX = 0, $wmAlignY = 0, $wmSelect = 0) {
 	global $gallery;
 	global $temp_files;
+
+	$error = '';
 
 	echo debugMessage(sprintf(gTranslate('core', "Entering function: '%s'"), __FUNCTION__), __FILE__, __LINE__, 3);
 
 	echo debugMessage(sprintf(gTranslate('core', "Processing file: %s"), $file), __FILE__, __LINE__,3);
 
 	/* Begin of code for the case the uploaded file is an archive */
-	if (acceptableArchive($ext)) {
+	if (isAcceptableArchive($ext)) {
 		processingMsg(sprintf(gTranslate('core', "Processing file '%s' as archive"), $name));
 		$tool = canDecompressArchive($ext);
 		if (!$tool) {
-			processingMsg(sprintf(gTranslate('core', "Skipping %s (%s support not enabled)"), $name, $ext));
-			echo "<br>";
-			return;
+			$error = sprintf(gTranslate('core', "Skipping '%s' (%s support not enabled)"), $name, $ext);
+			return $error;
 		}
 
-		/*
-		 * Figure out what files inside the archive we can handle.
-		 * Put all Filenames into $files.
-		*/
-		echo debugMessage(gTranslate('core', "Getting archive content Filenames"), __FILE__, __LINE__);
-		$files = getArchiveFileNames($file, $ext);
+		$temp_filename	= tempnam($gallery->app->tmpDir, 'g1_tmp_');
+		$temp_dirname	= $temp_filename . '.dir';
 
-		/* Get meta data */
-		$image_info = array();
-		foreach ($files as $pic_path) {
-			$pic = basename($pic_path);
-			$tag = getExtension($pic);
-			if ($tag == 'csv') {
-				extractFileFromArchive($file, $ext, $pic_path);
-				$image_info = array_merge($image_info, parse_csv($gallery->app->tmpDir . "/$pic",";"));
+		if (fs_is_dir($temp_dirname)) {
+			$error = gTranslate('core', "An Error occurred before extracting the archive. Temporary destination exists.");
+			return $error;
+		}
+
+		if (! fs_mkdir($temp_dirname)) {
+			$error = gTranslate('core', "An Error occurred before extracting the archive. Temporary destination could not be created.");
+			return $error;
+		}
+
+		processingMsg(gTranslate('core', "Extracting archive"));
+		if(! extractArchive($file, $ext, $temp_dirname)) {
+			$error = gTranslate('core', "Extracting archive failed.");
+			return $error;
+		}
+
+		echo debugMessage(gTranslate('core', "Processing archive content."), __FILE__, __LINE__);
+		$files_to_process	= array();
+		$dir_handle		= fs_opendir($temp_dirname);
+		while (false !== ($content_filename = readdir($dir_handle))) {
+			if(! isXSSclean($content_filename) ||
+			   $content_filename == "." || $content_filename == '..')
+			{
+				continue;
+			}
+
+			$content_file_ext	= getExtension($content_filename);
+			$fullpath_content_file	= $temp_dirname .'/' . $content_filename;
+
+			if ($content_file_ext == 'csv') {
+				$image_info = array_merge($image_info, parse_csv($fullpath_content_file, ';'));
+			}
+			elseif (isAcceptableFormat($content_file_ext) ||
+				isAcceptableArchive($content_file_ext))
+			{
+				$files_to_process[] = array(
+					'filename'	=> $fullpath_content_file,
+					'ext'		=> $content_file_ext
+				);
 			}
 		}
+
+		closedir($dir_handle);
 
 		if(!empty($image_info)) {
 			debugMessage(printMetaData($image_info), __FILE__, __LINE__);
@@ -553,29 +583,22 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 		}
 
 		/* Now process all valid files we found */
-		echo debugMessage(gTranslate('core', "Processing files in archive"), __FILE__, __LINE__);
+		echo debugMessage(gTranslate('core', "Processing valid files from archive"), __FILE__, __LINE__);
 		$loop = 0;
-		foreach ($files as $pic_path) {
-			$loop++;
-			$pic = basename($pic_path);
-			$tag = getExtension($pic);
-			echo debugMessage(sprintf(gTranslate('core', "%d. %s"), $loop, $pic_path), __FILE__, __LINE__);
-			if (acceptableFormat($tag) || acceptableArchive($tag)) {
-				if(!extractFileFromArchive($file, $ext, $pic_path)) {
-					echo '<br>'. gallery_error(sprintf(gTranslate('core', "Could not extract %s"), $pic_path));
-					continue;
-				}
+		foreach ($files_to_process as $current_file) {
+			$current_file_name = basename($current_file['filename']);
+			$current_file_ext  = basename($current_file['ext']);
 
-				/* Now process the metadates. */
-				$extra_fields = array();
-
+			/* Now process the metadata. */
+			$extra_fields = array();
+			if(! empty($image_info)) {
 				/* Find in meta data array */
-				$firstRow = 1;
-				$fileNameKey = "File Name";
+				$firstRow	= 1;
+				$fileNameKey	= 'File Name';
 
 				/* $captionMetaFields will store the names (in order of priority to set caption to) */
 				$captionMetaFields = array("Caption", "Title", "Description", "Persons");
-				foreach ( $image_info as $info ) {
+				foreach ($image_info as $info ) {
 					if ($firstRow) {
 						/* Find the name of the file name field */
 						foreach (array_keys($info) as $currKey) {
@@ -586,7 +609,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 						$firstRow = 0;
 					}
 
-					if ($info[$fileNameKey] == $pic) {
+					if ($info[$fileNameKey] == $current_file_name) {
 						/* Loop through fields */
 						foreach ($captionMetaFields as $field) {
 							/* If caption isn't populated and current field is */
@@ -598,18 +621,26 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 						$extra_fields = $info;
 					}
 				}
-				/* Don't use the second argument for $cmd_pic_path, because it is already quoted. */
-
-				processNewImage($gallery->app->tmpDir . "/$pic", $tag, $pic, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
-				fs_unlink($gallery->app->tmpDir . "/$pic");
 			}
+
+			processNewImage($current_file['filename'],
+							$current_file_ext,
+							$current_file_name,
+							$caption,
+							$setCaption,
+							$extra_fields,
+							$wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect
+			);
 		}
+		/* End of archive processing */
+		rmdirRecursive($temp_dirname);
+		fs_unlink($temp_filename);
 	}
 	else {
-		echo debugMessage(gTranslate('core', "Start Processing single file (Image, not archive)"), __FILE__, __LINE__);
+		echo debugMessage(gTranslate('core', "Start processing single file (image/movie not archive)."), __FILE__, __LINE__);
 
-		if (acceptableFormat($ext)) {
-			echo debugMessage(gTranslate('core', "extension is accepted."), __FILE__, __LINE__, 3);
+		if (isAcceptableFormat($ext)) {
+			echo debugMessage(gTranslate('core', "Extension is accepted."), __FILE__, __LINE__, 3);
 
 			echo debugMessage(gTranslate('core', "Filename processing."), __FILE__, __LINE__,3);
 
@@ -707,5 +738,7 @@ function processNewImage($file, $ext, $name, $caption, $setCaption = '', $extra_
 			echo gallery_error($error);
 		}
 	}
+
+	return $error;
 }
 ?>

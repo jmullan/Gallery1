@@ -1,7 +1,7 @@
 <?php
 /*
 * Gallery - a web based photo album viewer and editor
-* Copyright (C) 2000-2007 Bharat Mediratta
+* Copyright (C) 2000-2008 Bharat Mediratta
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -25,8 +25,6 @@
  * @author	Yahoo!
  * @author	Jens Tkotz
  */
-?>
-<?php
 
 header('Content-type: text/plain');
 
@@ -83,7 +81,7 @@ function search($query) {
 
 			if (in_array($file, $forbidden) ||
 				fs_fileIsHidden($file) ||
-				(!acceptableFormat($ext) && !acceptableArchive($ext) && !fs_is_dir($path)))
+				(! isAcceptableFormat($ext) && ! isAcceptableArchive($ext) && !fs_is_dir($path)))
 			{
 				continue;
 			}

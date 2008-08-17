@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 /**
  * This is a wrapper around different valchecks
@@ -114,6 +112,38 @@ function isValidInteger($mixed, $includingZero = false, $default = NULL, $emptyA
 	return array(0, $mixed, '');
 }
 
+/**
+ * This function checks if a given value is a valid "Gallery" integer.
+ * A "Gallery" integer is a number of the set |N+ = {0, 1, 2, ...}.
+ * Its not the PHP integer which is a number of the set |Z = {..., -2, -1, 0, 1, 2, ...}.
+ *
+ * Valid means:
+ * --- Its a numeric and (real) integer value.
+ * --- Is not lower as a given minimum (can be 1 or 0).
+ *
+ * @param mixed		$value		The value that is to be checked
+ * @param boolean	$includingZero	Is 0 allowed?
+ * @param boolean	$emptyAllowed
+ * @return boolean	$result
+ * @author Jens Tkotz
+ * @author Jesse Mullan
+ */
+function isValidGalleryInteger($value, $includingZero = false, $emptyAllowed = false) {
+	$minimum = ($includingZero == true) ? 0 : 1;
+
+	if($value === '' || !isset($value)) {
+		$result = (boolean) $emptyAllowed;
+	}
+	elseif($value < $minimum || !ctype_digit(trim($value)) || intval($value) != $value) {
+		$result = false;
+	}
+	else {
+		$result = true;
+	}
+
+	return $result;
+}
+
 function isValidText($text, $default = NULL) {
 	$sanitized = sanitizeInput($text);
 
@@ -202,7 +232,7 @@ function isValidGalleryUrl($url) {
  * Checks whether a header contains malicious characters.
  *
  * @param string	$header
- * @return boolean				True in case its a safe header, otherwise false.
+ * @return boolean			True in case its a safe header, otherwise false.
  * @author Jens Tkotz
  */
 function isSafeHttpHeader($header) {
@@ -222,4 +252,176 @@ function isSafeHttpHeader($header) {
 
 	return true;
 }
+
+/**
+ * Returns a set of malicious chars
+ * Level 0: Only chars that i (the author) think are evil anytime are considered.
+ * Level 1: All malicious.
+ *
+ * @param integer	$level
+ * @return array	$badChars
+ * @author Jens Tkotz
+ */
+function getMaliciousChars($level = 1) {
+	$badChars = array();
+
+	$anyTimeEvil = array(
+		"../",
+		"./",
+		"<!--",
+		"-->",
+		"%20",
+		"%22",
+		"%3c",		// <
+		"%253c", 	// <
+		"%3e", 		// >
+		"%0e", 		// >
+		"%28", 		// (
+		"%29", 		// )
+		"%2528", 	// (
+		"%26", 		// &
+		"%24", 		// $
+		"%3f", 		// ?
+		"%3b", 		// ;
+		"%3d",		// =
+		"%2F"		// /
+	);
+
+	$sometimesAllowed = array(
+		"<",
+		">",
+		"'",
+		'"',
+		'$',
+		'#',
+		'{',
+		'}',
+		'=',
+		';',
+		'?',
+		'/',
+		'\\'
+	);
+
+	$badChars = $anyTimeEvil;
+
+	if ($level == 1) {
+		$badChars = array_merge($anyTimeEvil, $sometimesAllowed);
+	}
+
+	return $badChars;
+}
+
+/**
+ * Removes malicious chars from a string.
+ *
+ * @param string $string	String to sanitize
+ * @param integer $level	See getMaliciousChars(), current: 0 lower level, 1 high
+ * @return string
+ */
+function xssCleanup($string, $level = 1) {
+	$badChars = getMaliciousChars($level);
+
+	return stripslashes(str_replace($badChars, '', $string));
+}
+
+/**
+ * Checks whether a string, (eg. filename or url) contains malicious characters.
+ *
+ * @param string	$string
+ * @param integer	$level	See getMaliciousChars()
+ * @return boolean		True/false if no malicious characters were found
+ * @author Jens Tkotz
+ */
+function isXSSclean($string, $level = 1) {
+	$sanitized = xssCleanup($string, $level);
+
+	if(strcmp($sanitized, $string)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+/**
+ * Does the given watermark file exists in our watemark folder?
+ * Hint: No subfolders supported.
+ *
+ * @param string    $wmName
+ * @return boolean
+ */
+function watermarkPicExists($wmName = '') {
+	global $gallery;
+
+	if(empty($gallery->app->watermarkDir) || empty($wmName)) {
+		return false;
+	}
+
+	if(!isXSSclean($wmName)) {
+		return false;
+	}
+
+	if(fs_file_exists($gallery->app->watermarkDir . '/' . $wmName)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+/**
+ * Check given parameters for watermarking
+ *
+ * @param string  $wmName
+ * @param integer $wmAlign
+ * @param integer $wmSelect
+ * @param integer $previewFull
+ * @param integer $wmAlignX
+ * @param integer $wmAlignY
+ * @return array  $notice_messages
+ */
+function checkWatermarkSetting($wmName, $wmAlign, $wmSelect, $previewFull, $wmAlignX, $wmAlignY) {
+	$notice_messages = array();
+
+	if(! watermarkPicExists($wmName)) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "No valid watermark image choosen.")
+		);
+	}
+
+	if(! isValidGalleryInteger($wmAlign) || ! inRange($wmAlign, 1, 10)) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Please select a correct alignment.")
+		);
+	}
+
+	if(! isValidGalleryInteger($wmSelect, true) || ! inRange($wmSelect, 0, 2)) {
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Please select on which photos you want the watermark.")
+		);
+	}
+
+	if(! isValidGalleryInteger($previewFull, true) || ! inRange($previewFull, 0, 1)){
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Do you want a preview or not?")
+		);
+	}
+
+	if ($wmAlign == 10 &&
+	   (! isValidGalleryInteger($wmAlignX, true, false) || ! isValidGalleryInteger($wmAlignY, true, false)))
+	{
+		$notice_messages[] = array(
+			'type' => 'error',
+			'text' => gTranslate('core', "Field X and Y need to be filled correctly.")
+		);
+	}
+
+	return $notice_messages;
+}
+
 ?>

@@ -1,3 +1,50 @@
+2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b125
+
+ *** Security Fix ***
+
+ Insecure Command Execution
+ Issue Overview
+ Several PHP files dynamically build command strings with external input that
+ is then executed on the operating system. By not
+ validating the supplied parameters the application is exposed to arbitrary
+ command execution by remote attackers.
+
+ BIG CHANGES !!!
+
+ * Rename:
+	acceptableFormat   into  isAcceptableFormat
+	acceptableArchive  into  isAcceptableArchive
+	isValidInteger     into  isValidGalleryInteger
+
+ * CHANGE: Major rewrite of processNewImage()
+           The part where zipfiles are processed was completeley changed.
+           The Zip is now extracted into a unique folder and then all files
+           are checked. This is more secure then handling each file inside
+           separately.
+
+ * CHANGE: The code from processNewImage() is also used for Gallery Remote
+           in functions process() and and processFile().
+
+ * New: RAR Support for Gallery Remote.
+
+ * Fix: Better errorhandling in processNewImage()
+
+ * New functions:
+	fs_rmdir()
+	isXSSclean($string, $level = 1)
+	xssCleanup($string, $level = 1)
+	getMaliciousChars($level = 1)
+	isInAllowedUploadPath($url)
+	pathIsAbsolute($path)
+	extractArchive()
+	checkWatermarkSetting(...)
+	watermarkPicExists($wmName = '')
+
+
+ * Removed: extractFileFromArchive(), as its not needed anymore.
+
+ * Fix: Secured isInAllowedUploadPath()
+
 2008-08-17 Jens Tkotz <jens@peino.de> 1.6-RC1-svn-b124
 
  * Change: HTML fixes, Code cleanup, Unification.

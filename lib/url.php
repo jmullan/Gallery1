@@ -404,6 +404,22 @@ function urlIsRelative($url) {
 	}
 }
 
+/**
+ * Checks whether a path looks absolute. Means: starting with a /
+ *
+ * @param string	$path
+ * @return boolean
+ * @author Jens Tkotz
+ */
+function pathIsAbsolute($path) {
+	if($path{0} == '/' && $path{1} != '/') {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 function broken_link($file) {
 	if (fs_is_link($file)) {
 		return !fs_is_file($file);

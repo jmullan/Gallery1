@@ -75,7 +75,8 @@ doctype();
 
 <?php
 // Were an Url given ?
-if (!empty($urls)) {
+if (!empty($urls) && ! empty($urls[0])) {
+	$invalidUrls = 0;
 	echo '<div class="g-content-popup center">';
 
 	/* Process all urls first.
@@ -88,23 +89,34 @@ if (!empty($urls)) {
 		/* Get rid of any extra white space */
 		$url = trim($url);
 
+		if(empty($url)) {
+			continue;
+		}
+
 		/*
 		 * Check to see if the URL is a local directory (inspired by code from Jared (hogalot))
 		 */
 		if (fs_is_dir($url)) {
-			echo infobox(array(array(
-				'type' => 'information',
-				'text' => sprintf(gTranslate('core', "Processing '%s' as a local directory."),
+			list($ret, $msg) = isInAllowedUploadPath($url);
+
+			if(!$ret) {
+				echo $msg;
+				$invalidUrls++;
+				continue;
+			}
+
+			echo gallery_info(
+				sprintf(gTranslate('core', "Processing '%s' as a local directory."),
 							'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
-			)));
+			);
 
 			$handle = fs_opendir($url);
 			if($handle) {
 				while (($file = readdir($handle)) != false) {
-					if ($file != "." && $file != "..") {
+					if (isXSSclean($file)) {
 						$tag = pathinfo($file);
 						$tag = strtolower(isset($tag['extension']) ? $tag['extension'] : '');
-						if (acceptableFormat($tag) || canDecompressArchive($tag)) {
+						if (isAcceptableFormat($tag) || canDecompressArchive($tag)) {
 							/* File seems to be valid, so add to userfile */
 							if (substr($url,-1) == "/") {
 								$image_tags[] = fs_export_filename($url . $file);
@@ -122,6 +134,11 @@ if (!empty($urls)) {
 							}
 						}
 					}
+					else {
+						if ($file != "." && $file != "./" && $file != ".." && $file != "..") {
+							$badFilesMessages = true;
+						}
+					}
 				}
 				closedir($handle);
 			}
@@ -136,18 +153,14 @@ if (!empty($urls)) {
 			)));
 		}
 
-		$urlParts		= parse_url($url);
+		$urlParts	= parse_url($url);
 		$urlPathInfo	= isset($urlParts['path']) ? pathinfo($urlParts['path']) : '';
-		$urlExt			= isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
+		$urlExt		= isset($urlPathInfo['extension']) ? strtolower($urlPathInfo['extension']) : '';
 
 		/* If the URI doesn't start with a scheme, prepend 'http://' */
-		if (!empty($url) && !fs_is_file($url)) {
-			if (!ereg("^(http|ftp)", $url)) {
-				echo infoBox(array(array(
-					'type' => 'warning',
-					'text' => sprintf(gTranslate('core', 'Unable to find %s locally - trying %s.'),
-							  htmlspecialchars(strip_tags(urldecode($url))), 'http')
-				)));
+		if (!fs_is_file($url) && !pathIsAbsolute($url)) {
+			if(! preg_match('!^(http|ftp)\://!', $url)) {
+				// Unable to find %s locally - trying http
 				$url = "http://$url";
 			}
 
@@ -161,6 +174,15 @@ if (!empty($urls)) {
 		}
 		else {
 			debugMessage(gTranslate('core', 'local file'), __FILE__, __LINE__, 2);
+
+			list($ret, $msg) = isInAllowedUploadPath($url);
+
+			if(!$ret) {
+				echo $msg;
+				$invalidUrls++;
+				continue;
+			}
+
 			$name = basename($url);
 		}
 
@@ -187,6 +209,7 @@ if (!empty($urls)) {
 				'type' => 'error',
 				'text' => gTranslate('core', "Could not open as URL, file or directory.")
 			)));
+			$invalidUrls++;
 			continue;
 		}
 		else {
@@ -197,7 +220,7 @@ if (!empty($urls)) {
 		 * If this is an image or movie -
 		 * copy it locally and add it to the processor array
 		 */
-		if (acceptableFormat($urlExt) || acceptableArchive($urlExt)) {
+		if (isAcceptableFormat($urlExt) || isAcceptableArchive($urlExt)) {
 			/* copy file locally
 			 * use fopen instead of fs_fopen to prevent directory and filename disclosure
 			 */
@@ -314,13 +337,16 @@ if(!empty($_FILES['metafile'])) {
 
 	for($i = 0; $i < sizeof($_FILES['metafile']['name']); $i++) {
 		$name = $_FILES['metafile']['name'][$i];
-		echo debugMessage("name $name", __FILE__, __LINE__);
 
-		$file = $_FILES['metafile']['tmp_name'][$i];
-		echo debugMessage("file $file", __FILE__, __LINE__);
+		if(isXSSclean($name)) {
+			echo debugMessage("name $name", __FILE__, __LINE__);
 
-		// image_info is the array that contains the parsed from the csv file(s)
-		$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
+			$file = $_FILES['metafile']['tmp_name'][$i];
+			echo debugMessage("file $file", __FILE__, __LINE__);
+
+			// image_info is the array that contains the parsed from the csv file(s)
+			$image_info = array_merge($image_info, parse_csv(fs_export_filename($file),";"));
+		}
 	}
 
 	$exampleMetaData = $image_info[0];
@@ -349,19 +375,32 @@ echo "\n</div>";
 
 echo debugMessage("Now we start processing the given Files. (If they were given)", __FILE__, __LINE__,1);
 
+/* Delete file with malicious characters. */
+
+if(!empty($_FILES['userfile'])) {
+	foreach ($_FILES['userfile']['name'] as $nr => $filename) {
+		if(! isXSSclean($filename)) {
+			unset($_FILES['userfile']['name'][$nr]);
+			unset($_FILES['userfile']['tmp_name'][$nr]);
+		}
+	}
+}
+
 $photoCount = isset($_FILES['userfile']) ? sizeof($_FILES['userfile']['name']) : 0;
 
 if(isset($uploadTry) || $photoCount > 0) {
 	echo '<div class="g-content-popup left">';
 
-		echo infoBox(array(array(
-			'type' => ($photoCount > 0) ? 'information' : 'error',
-			'text' => gTranslate('core',
-				"Processing %d element.",
-				"Processing %d elements.",
-				$photoCount,
-				'Error, no photo uploaded.', true)
-		)));
+	echo infoBox(array(array(
+		'type' => ($photoCount > 0) ? 'information' : 'error',
+		'text' => gTranslate('core',
+								"Processing %d element.",
+								"Processing %d elements.",
+								$photoCount,
+								'Error, no photo uploaded.', true)
+	)));
+
+	$photosUploadedOk = 0;
 
 	if($photoCount > 0) {
 		for($i = 0; $i < $photoCount; $i++) {
@@ -408,10 +447,18 @@ if(isset($uploadTry) || $photoCount > 0) {
 			$ext = strtolower($path_parts["extension"]);
 
 			// Add new image
-			processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
+			$ret = processNewImage($file, $ext, $name, $caption, $setCaption, $extra_fields, $wmName, $wmAlign, $wmAlignX, $wmAlignY, $wmSelect);
+			if(empty($ret)) {
+				$photosUploadedOk++;
+			}
+			else {
+				echo gallery_error($ret);
+			}
 		}
 
-		$gallery->album->save(array(i18n("%d files uploaded"), $photoCount));
+		if($photosUploadedOk > 0) {
+			$gallery->album->save(array(i18n("%d files uploaded."), $photosUploadedOk));
+		}
 	}
 
 	if (!empty($temp_files)) {
@@ -426,11 +473,15 @@ if(isset($uploadTry) || $photoCount > 0) {
 
 echo '<div class="g-content-popup center">';
 
-if (empty($photoCount) && $upload_started) {
+if ((empty($photoCount) || empty($photosUploadedOk)) && $upload_started) {
 	print gTranslate('core', "No images uploaded!");
 }
 
-echo "\n<br>";
+if(!empty($uploadFromUrl) && count($url) != $invalidUrls) {
+	echo gallery_error(gTranslate('core', "No images found at that place."));
+}
+
+echo "\n<div style=\"margin-top: 5px;\"></div>";
 echo gButton('close', gTranslate('core', "_Dismiss"), 'parent.close()');
 
 /* Prompt for additional files if we found links in the HTML slurpage */
@@ -465,6 +516,14 @@ if (count($image_tags)) {
 	 * into util.php at some time - maybe added functionality to the makeFormIntro?
 	 */
 	echo "\n<p>". insertFormJSLinks('urls[]') ."</p>";
+
+	if(!empty($badFilesMessages)) {
+		$badChars = getMaliciousChars();
+		echo infoBox(array(array(
+			'type' => 'warning',
+			'text' => gTranslate('core', "Some files with malicious characters are not listed. ") . "<p>" . implode(" ", $badChars)
+		)));
+	}
 
 	if (count($info_tags)) { ?>
 <div class="g-content-popup left">

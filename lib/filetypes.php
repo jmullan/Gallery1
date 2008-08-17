@@ -31,7 +31,7 @@
  * @param string	$ext
  * @return boolean			True if the extension belongs to an archive.
  */
-function acceptableArchive($ext) {
+function isAcceptableArchive($ext) {
 	if (in_array($ext, acceptableArchiveList())) {
 		return true;
 	}
@@ -56,7 +56,7 @@ function acceptableArchiveList() {
  * @param string	$ext
  * @return boolean
  */
-function acceptableFormat($ext) {
+function isAcceptableFormat($ext) {
 	return (isImage($ext) || isMovie($ext));
 }
 

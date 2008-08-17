@@ -22,7 +22,14 @@
 
 require_once(dirname(__FILE__) . '/init.php');
 
-list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newAlbumTitle, $createNewAlbum, $album ) = getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd', 'set_albumName', 'setCaption', 'newAlbumTitle', 'createNewAlbum', 'album'));
+list($uname, $password, $langid, $lcid, $cmd, $set_albumName, $setCaption, $newAlbumTitle, $createNewAlbum, $album ) =
+	getRequestVar(array('uname', 'password', 'langid', 'lcid', 'cmd', 'set_albumName', 'setCaption', 'newAlbumTitle', 'createNewAlbum', 'album'));
+
+if(!isXSSclean($langid) || !isXSSclean($lcid)) {
+	printPopupStart(gTranslate('core', "Windows publishing wizard"));
+	showInvalidReqMesg();
+	exit;
+}
 
 if (isset($_SERVER["HTTPS"] ) && stristr($_SERVER["HTTPS"], "on")) {
 	$proto = "https";
@@ -381,11 +388,15 @@ if (!strcmp($cmd, "add-item")) {
 		$tag = ereg_replace(".*\.([^\.]*)$", "\\1", $name);
 		$tag = strtolower($tag);
 
-		if (!empty($name)) {
-			processNewImage($file, $tag, $name, "", $setCaption);
+		if (!empty($name) && isXSSclean($name,0 )) {
+			$error = processNewImage($file, $tag, $name, '', $setCaption);
+			if(empty($error)) {
+				$gallery->album->save(array(i18n("Image added")));
+			}
 		}
-
-		$gallery->album->save(array(i18n("Image added")));
+		else {
+			$error = gTranslate('core', "Skipping file, as it contains malicious characters.");
+		}
 
 		if (!empty($temp_files)) {
 			/* Clean up the temporary url file */

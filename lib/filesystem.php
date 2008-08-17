@@ -100,11 +100,14 @@ function get_size($path, $recursive = false) {
  * @uses   lib/messages
  * @author Jens Tkotz
  */
-function getExtension($filename) {
+function getExtension($filename, $withDebug = true) {
 	$ext = ereg_replace(".*\.([^\.]*)$", "\\1", $filename);
 	$ext = strtolower($ext);
 
-	echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
+	if($withDebug) {
+		echo debugMessage(sprintf(gTranslate('core', "extension of file %s is %s"), basename($filename), $ext), __FILE__, __LINE__, 3);
+	}
+
 	return $ext;
 }
 
@@ -112,6 +115,7 @@ function getExtension($filename) {
  * Remove a directory and its complete content.
  *
  * @param string $dir
+ * @return boolean 		True on success
  */
 function rmdirRecursive($dir) {
 	if($objs = glob($dir."/*")){
@@ -120,12 +124,98 @@ function rmdirRecursive($dir) {
 				rmdirRecursive($obj);
 			}
 			else {
-				unlink($obj);
+				fs_unlink($obj);
 			}
 		}
 	}
 
-	rmdir($dir);
+	return fs_rmdir($dir);
+}
+
+/**
+ * Extracts an archive file into a subfolder in the Gallery temp dir
+ *
+ * @param string $archive       Full path to the archive that you want to extract.
+ * @param string $ext           Extension of the archive. We give it, as we extract tempfiles (.tmp) from Uploads.
+ * @param string $destination   Foldername where the archive is extracted to. Be carefull!
+ * @return boolean              True on succes, otherwise false.
+ * @author Jens Tkotz
+ * @Since 1.6
+ */
+function extractArchive($archive, $ext, $destination) {
+	global $gallery;
+
+	if(! fs_is_dir($destination) && !fs_mkdir($destination)) {
+		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s failed. Not able create the folder to extract the archive in."), $archive),__FILE__, __LINE__);
+		return  false;
+	}
+
+	$archiveName = fs_import_filename($archive);
+	$destination = fs_import_filename($destination);
+
+	if($tool = canDecompressArchive($ext)) {
+		echo debugMessage(sprintf(gTranslate('core', "Extracting: %s with %s"), $archive, $tool),__FILE__, __LINE__,3);
+
+		switch($tool) {
+			case 'zip':
+				$unzip	= fs_import_filename($gallery->app->unzip);
+				$cmd	= "$unzip -j -o $archiveName -d $destination";
+				break;
+
+			case 'rar':
+				$rar	= fs_import_filename($gallery->app->rar);
+				$cmd	= "$rar e $archiveName $destination";
+				break;
+		}
+
+		return exec_wrapper($cmd);
+	}
+	else {
+		echo debugMessage(sprintf(gTranslate('core', "%s with extension %s is not an supported archive."), $archive, $ext),__FILE__, __LINE__);
+		return false;
+	}
+}
+
+/**
+ * Checks wether an url i in the allowed upload pathes of Gallery.
+ *
+ * @param string $url
+ * @return arrray($ret, $msg)	$ret is true on success, otherwise false. $msg contains the errormsg
+ * @author Jens Tkotz
+ */
+function isInAllowedUploadPath($url) {
+	global $gallery;
+
+	$msg = '';
+	$ret = false;
+
+	if(empty($gallery->app->uploadPaths)) {
+		$ret = false;
+		$msg = infobox(array(array(
+				'type' => 'error',
+				'text' => gTranslate('core', "You are not allowed to upload from local directories.")
+		)));
+
+		return array($ret, $msg);
+	}
+
+	foreach ($gallery->app->uploadPaths as $path) {
+		if (strpos($url, $path) === 0 && isXSSclean($url, 0)) {
+			$inAllowedPath = true;
+		}
+	}
+
+	if(! isset($inAllowedPath)) {
+		$ret = false;
+		$msg = infobox(array(array(
+			'type' => 'error',
+			'text' => sprintf(gTranslate('core', "%s is not in the list of allowed uploadpathes. Skipping."),
+						'<i>' . htmlspecialchars(strip_tags(urldecode($url))) . '</i>')
+		)));
+		return array($ret, $msg);
+	}
+
+	return array(true, '');
 }
 
 /**
