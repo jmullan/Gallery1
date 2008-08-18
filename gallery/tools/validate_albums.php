@@ -64,7 +64,7 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['text'] ='<span class="head">'. $title .'</span>';
+$adminbox['text'] ='<span class="title">'. $title .'</span>';
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 
@@ -75,7 +75,7 @@ if (empty($action)) {
 	findInvalidAlbums();
 }
 else {
-   if (!$GALLERY_EMBEDDED_INSIDE) {
+	if (!$GALLERY_EMBEDDED_INSIDE) {
 		doctype();
 ?>
 <html>
@@ -102,7 +102,7 @@ else {
 			list ($verified, $invalidAlbum) = getRequestVar(array('verified', 'invalidAlbum'));
 
 			if ($verified) {
-				$ret = removeInvalidAlbum($gallery->app->albumDir . '/' . $invalidAlbum);
+				$ret = rmdirRecursive($gallery->app->albumDir . '/' . $invalidAlbum);
 
 				if($ret) {
 					printInfoBox(array(array(
@@ -205,14 +205,10 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body dir="<?php echo $gallery->direction ?>">
 <?php
 }
-includeHtmlWrap("gallery.header");
-$adminbox['text'] ='<span class="head">'.  gTranslate('core', "Validate albums") .'</span>';
-$adminCommands = '[<a href="'. makeGalleryUrl("admin-page.php") .'">'. gTranslate('core', "Return to admin page") .'</a>] ';
-$adminCommands .= '[<a href="'. makeAlbumUrl() .'">'. gTranslate('core', "Return to gallery") .'</a>] ';
 
-$adminbox["commands"] = $adminCommands;
-$adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
-$breadcrumb['text'][] = languageSelector();
+$adminbox['text'] ='<span class="title">'.  gTranslate('core', "Validate albums") .'</span>';
+
+includeHtmlWrap("gallery.header");
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
@@ -220,7 +216,7 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
-echo '<br><div class="g-content-popup left">';
+echo '<div class="popup left">';
 echo "<fieldset><legend>". gTranslate('core', "Missing files") ."</legend>";
 if (empty($action)) {
 	if (!empty($results['file_missing'])) { ?>
@@ -320,8 +316,9 @@ if (empty($action)) {
 ?>
 </div>
 <?php
-    includeHtmlWrap("gallery.footer");
-    if (!$GALLERY_EMBEDDED_INSIDE) {
+
+includeHtmlWrap("general.footer");
+if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
 </html>

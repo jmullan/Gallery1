@@ -47,18 +47,33 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
-$adminbox['text'] = gTranslate('core', "Gallery statistics - Wizard");
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	= '<span class="title">'.  gTranslate('core', "Assemble your Gallery statistic") .'</span>';
+$adminbox['commands']	= makeIconMenu($iconElements, 'right');
 
 $breadcrumb['text'][] = languageSelector();
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
-	printPopupStart(clearGalleryTitle($adminbox['text']), '', 'left');
+	doctype();
+?>
+<html>
+<head>
+  <title><?php echo clearGalleryTitle(gTranslate('core', "Statistic Wizard")) ?></title>
+  <?php common_header(); ?>
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
 }
 
-includeLayout('adminbox.inc');
-includeLayout('breadcrumb.inc');
+includeHtmlWrap("gallery.header");
 
+includeLayout('navtablebegin.inc');
+includeLayout('adminbox.inc');
+includeLayout('navtablemiddle.inc');
+includeLayout('breadcrumb.inc');
+includeLayout('navtableend.inc');
+
+$url = makeGalleryHeaderUrl('stats.php');
+$url .= (!$GALLERY_EMBEDDED_INSIDE) ? '?' : '';
 ?>
 <div class="popup" align="center">
 <?php
@@ -68,7 +83,7 @@ includeLayout('breadcrumb.inc');
   function updateUrl() {
 	var value;
 	var url;
-	url='<?php echo makeGalleryUrl('stats.php') .'?'; ?>';
+	url='<?php echo $url; ?>';
 
 	/* This javascript goes through all elements of the form 'stats_form'
 	** depending if set or not it generates an string that represents the parameters for stats.php
@@ -80,6 +95,13 @@ includeLayout('breadcrumb.inc');
 			document.stats_form.showGrid.checked == false) {
 			continue;
 		}
+
+		if(document.stats_form.elements[i].name == 'name' ||
+		   document.stats_form.elements[i].name == 'include')
+		{
+			continue;
+		}
+
 		switch(document.stats_form.elements[i].type) {
 			case 'submit':
 				continue;
@@ -101,6 +123,8 @@ includeLayout('breadcrumb.inc');
 				value = document.stats_form.elements[i].value;
 			break;
 		}
+
+
 		if (value) {
 			url = url + '&'+ document.stats_form.elements[i].name +'=' + value;
 		}
@@ -110,7 +134,7 @@ includeLayout('breadcrumb.inc');
 </script>
 
 <?php
-	echo makeFormIntro("stats.php", array("name" => "stats_form", "onChange" => 'updateUrl()'));
+	echo makeFormIntro('#', array("name" => "stats_form", "onChange" => 'updateUrl()'));
 	echo "\n<table width=\"100%\" border=\"0\">";
 	echo "\n<tr>";
 	echo "\n<td class=\"blockcell\">";
@@ -132,15 +156,17 @@ includeLayout('breadcrumb.inc');
 
 	echo "\n</tr>";
 	echo "\n</table>";
-	echo gsubmit('submitbutton', gTranslate('core', "Show statistics"));
+
+	echo "<br>\n";
+	echo gButton('openStats', gTranslate('core', "Show statistics"), "location.href=document.getElementById('stats_url').value");
 	echo "\n</form>";
 
-	echo "\n". '<div align="left">';
+	echo "\n". '<div style="margin-top: 5px" class="left">';
 	echo gTranslate('core', "Maybe your want to use your OWN statistics somewhere... Just copy and paste the URL from this textbox.");
 	echo "\n<br>". '<form name="url_form" action="#">';
-	echo "\n". '<input type="text" name="stats_url" size="150" value="" readonly';
-	echo "\"</div>";
+	echo "\n". '<input type="text" name="stats_url" id="stats_url" size="150" value="" readonly>';
 	echo "\n</form>";
+	echo "\n</div>";
 
 ?>
 <script type="text/javascript">
@@ -152,7 +178,7 @@ includeLayout('breadcrumb.inc');
 </div>
 
 <?php
-includeHtmlWrap("stats.footer");
+includeHtmlWrap("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>
 </body>

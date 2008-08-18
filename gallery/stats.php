@@ -150,6 +150,7 @@ common_header() ;
    <body dir="<?php echo $gallery->direction ?>">
 <?php
 }
+
 /* End of HTML begin, lets do some calculations etc. */
 
 $set_albumListPage = intval($set_albumListPage);
@@ -578,6 +579,7 @@ else {
 }
 
 // <!-- stats.header begin -->
+
 includeHtmlWrap("stats.header");
 
 $navigator["fullWidth"] = 100;
@@ -598,10 +600,10 @@ if (isset($album)) {
 }
 else {
 	if ($type == "comments" ) {
-        $adminText .= sprintf(gTranslate('core', "%d items with comments in this Gallery."), count($arrPhotos));
+        	$adminText .= sprintf(gTranslate('core', "%d items with comments in this Gallery."), count($arrPhotos));
 	}
 	else {
-        $adminText .= sprintf(gTranslate('core', "%d items this Gallery."), count($arrPhotos));
+        	$adminText .= sprintf(gTranslate('core', "%d items this Gallery."), count($arrPhotos));
 	}
 }
 

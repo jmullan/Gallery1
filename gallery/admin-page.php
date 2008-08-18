@@ -74,8 +74,8 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton();
 
-$adminbox['text']     = gTranslate('core', "Admin options");
-$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['text']	= '<span class="title">'.  gTranslate('core', "Admin options") .'</span>';
+$adminbox['commands']	= makeIconMenu($iconElements, 'right');
 
 $breadcrumb['text'][] = languageSelector();
 
@@ -84,7 +84,7 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 <html>
 <head>
-<title><?php echo $gallery->app->galleryTitle; ?>::<?php echo gTranslate('core', "Admin options") ?></title>
+	<title><?php echo clearGalleryTitle(gTranslate('core', "Admin options")) ?></title>
 <?php
 	common_header() ;
 ?>
@@ -101,24 +101,23 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 
-if(!empty($adminOptions)) {
-	echo "\n" .'<table style="width:80%; margin:10px; margin-bottom:50px">';
-	foreach ($adminOptions as $option) {
-
-		echo "\n<tr>";
-		if (isset($option['url'])) {
-			$link = '<a class="admin" href="'. $option['url'] .'">'. $option['text'] .'</a>';
-		} else {
-			$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 500, 'admin', '', '', false);
-		}
-		echo "\n<td class=\"adm_options\">$link</td>";
-		echo "\n<td class=\"adm_options\">". $option['longtext'] ."</td>";
-		echo "\n</tr>";
+echo "\n<div class=\"popup left\">";
+echo "\n" .'<table style="width:80%; margin:10px; margin-bottom:50px">';
+foreach ($adminOptions as $option) {
+	echo "\n<tr>";
+	if (isset($option['url'])) {
+		$link = '<a class="admin" href="'. $option['url'] .'">'. $option['text'] .'</a>';
 	}
-	echo "\n</table>";
-}
+	else {
+		$link = popup_link($option['text'], $option['popupFile'], false, true, 500, 600, 'admin', '', '', false);
+	}
 
-$validation_file = basename(__FILE__);
+	echo "\n<td class=\"adm_options\">$link</td>";
+	echo "\n<td class=\"adm_options\">". $option['longtext'] ."</td>";
+	echo "\n</tr>";
+}
+echo "\n</table></div>\n";
+
 includeHtmlWrap("general.footer");
 
 if (!$GALLERY_EMBEDDED_INSIDE) { ?>

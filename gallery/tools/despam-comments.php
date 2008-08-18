@@ -34,23 +34,6 @@ if (!$gallery->user->isAdmin()) {
 	exit;
 }
 
-if (!$GALLERY_EMBEDDED_INSIDE) {
-    doctype();
-?>
-<html>
-<head>
-<title><?php echo $gallery->app->galleryTitle ?></title>
-<?php
-common_header() ;
-?>
-
-</head>
-<body dir="<?php echo $gallery->direction ?>">
-<?php
-}
-includeHtmlWrap("gallery.header");
-$adminbox['text'] = '<span class="head">'. gTranslate('core', "Find and remove comment spam") .'</span>';
-
 $iconElements[] = galleryIconLink(
 				makeGalleryUrl("admin-page.php"),
 				'navigation/return_to.gif',
@@ -64,10 +47,28 @@ $iconElements[] = galleryIconLink(
 
 $iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
+$adminbox['text'] = '<span class="title">'. gTranslate('core', "Find and remove comment spam") .'</span>';
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
 $adminbox["bordercolor"] = $gallery->app->default["bordercolor"];
 $breadcrumb['text'][] = languageSelector();
+
+if (!$GALLERY_EMBEDDED_INSIDE) {
+    doctype();
+?>
+<html>
+<head>
+<title><?php echo clearGalleryTitle(gTranslate('core', "Comment Spam")) ?></title>
+<?php
+common_header() ;
+?>
+
+</head>
+<body dir="<?php echo $gallery->direction ?>">
+<?php
+}
+
+includeHtmlWrap("gallery.header");
 
 includeLayout('navtablebegin.inc');
 includeLayout('adminbox.inc');
@@ -75,7 +76,7 @@ includeLayout('navtablemiddle.inc');
 includeLayout('breadcrumb.inc');
 includeLayout('navtableend.inc');
 ?>
-<div class="popup">
+<div class="popup left">
 <table width="100%">
 <tr>
 <?php
@@ -119,7 +120,7 @@ echo "</td></tr>\n";
 </table>
 </div>
 <?php
-includeHtmlWrap("gallery.footer");
+includeHtmlWrap("general.footer");
 if (!$GALLERY_EMBEDDED_INSIDE) {
 ?>
 </body>
