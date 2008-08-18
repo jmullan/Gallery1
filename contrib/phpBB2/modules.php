@@ -21,9 +21,15 @@
  */
 
 /*
-** This file was written by Martin Smallridge <info@snailsource.com>
-** Adapted for 2.0.9 by Jens Tkotz
-*/
+ * This file was written by Martin Smallridge <info@snailsource.com>
+ * Adapted for 2.0.9 by Jens Tkotz
+ */
+
+// $phpEx is set in phpBBs extension.inc, so it should be set in a request
+if (isset($_REQUEST['phpEx'])) {
+	echo "Security violation! Override attempt.\n";
+	exit;
+}
 
 define('MODULES_PATH', './modules/');
 

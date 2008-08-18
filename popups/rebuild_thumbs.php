@@ -25,6 +25,13 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 $recursive = getRequestVar('recursive');
 $recreate = getRequestVar('recreate');
 
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Rebuilding Thumbnails"));
+	showInvalidReqMesg();
+	exit;
+}
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Rebuilding Thumbnails"));

@@ -22,13 +22,16 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($save, $saveclose) = getRequestVar(array('save', 'saveclose'));
+$index = getRequestVar('index');
 
-list($caption, $description, $keywords, $index, $extra_fields) =
-	getRequestVar(array('caption', 'description', 'keywords', 'index', 'extra_fields'));
-
-list($capture_year, $capture_mon, $capture_mday, $capture_hours, $capture_minutes, $capture_seconds) =
-	getRequestVar(array('capture_year', 'capture_mon', 'capture_mday', 'capture_hours', 'capture_minutes', 'capture_seconds'));
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+    ! ($item = $gallery->album->getPhoto($index)))
+{
+	printPopupStart(gTranslate('core', "Edit texts"));
+	showInvalidReqMesg();
+	exit;
+}
 
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album) &&
@@ -39,6 +42,11 @@ if (!$gallery->user->canChangeTextOfAlbum($gallery->album) &&
 	echo showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
 }
+
+list($save, $saveclose) = getRequestVar(array('save', 'saveclose'));
+
+list($caption, $description, $keywords, $extra_fields, $captureDate) =
+	getRequestVar(array('caption', 'description', 'keywords', 'extra_fields', 'captureDate'));
 
 $infoMessages = array();
 

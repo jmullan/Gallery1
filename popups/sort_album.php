@@ -22,11 +22,17 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($sort, $order, $albumsFirst) = getRequestVar(array('sort', 'order', 'albumsFirst'));
+list($confirm, $sort, $order, $albumsFirst) =
+	getRequestVar(array('confirm', 'sort', 'order', 'albumsFirst'));
 
 printPopupStart(gTranslate('core', "Sort Album"));
 
-// Hack check
+// Hack checks
+if (empty($gallery->album)) {
+	showInvalidReqMesg();
+	exit;
+}
+
 if (! $gallery->user->canWriteToAlbum($gallery->album)) {
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;

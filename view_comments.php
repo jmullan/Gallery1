@@ -26,16 +26,19 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->user->canViewComments($gallery->album) &&
-   (! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes"))
-{
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
+if (empty ($gallery->album) || !$gallery->album->isLoaded()) {
+	printPopupStart(gTranslate('core', "View Comments"));
+	showInvalidReqMesg();
+	exit;
 }
 
-if (!$gallery->album->isLoaded()) {
-	header("Location: " . makeAlbumHeaderUrl());
-	return;
+// Further hack check
+if (!$gallery->user->canViewComments($gallery->album) &&
+	(! isset($gallery->app->comments_overview_for_all) || $gallery->app->comments_overview_for_all != "yes"))
+{
+	printPopupStart(gTranslate('core', "View Comments"));
+	showInvalidReqMesg();
+	exit;
 }
 
 $albumName = $gallery->session->albumName;
@@ -91,9 +94,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 <body>
 <?php }
 
-/* User wants to delete comments */
-list($index, $comment_index) = getRequestVar(array('index', 'comment_index'));
-if (!empty($comment_index)) {
+/* User maybe wants to delete comments */
+list($index, $comment_index, $submit) = getRequestVar(array('index', 'comment_index', 'submit'));
+
+if (!empty($submit) && $gallery->user->canWriteToAlbum($gallery->album) &&
+	!empty($comment_index) && isValidGalleryInteger($comment_index) &&
+	!empty($index) && $comment_index[$index])
+{
 	$saveMsg = '';
 	/* First we reverse the index array, as we want to delete backwards */
 	foreach(array_reverse($comment_index, true) as $com_index => $trash) {
@@ -122,17 +129,12 @@ if (!empty($comment_index)) {
 
 includeTemplate('album.header');
 
-$adminbox['text']		 = gTranslate('core', "Comments for this Album");
-$adminbox['commands']	 = galleryLink(makeAlbumUrl($gallery->session->albumName), gTranslate('core', "return to _album"), array(), '', true);
-$adminbox['bordercolor'] = $bordercolor;
-
 includeLayout('adminbox.inc');
 
-$breadcrumb["text"] = returnToPathArray($gallery->album, true);
 includeLayout('breadcrumb.inc');
 
-if (!$gallery->album->fields["perms"]['canAddComments']) {
-	echo "<p>". gallery_error(gTranslate('core', "Sorry.  This album does not allow comments.")) ."</p>";
+if (!$gallery->user->canViewComments($gallery->album)) {
+	echo "<p>". gallery_error(_("Sorry.  You are not allowed to see comments of this album.")) ."</p>";
 }
 else {
 	$numPhotos = $gallery->album->numPhotos(1);

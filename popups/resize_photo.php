@@ -31,7 +31,20 @@ if (intval($index) > 0) {
 else {
 	printPopupStart(gTranslate('core', "Resize all Photos"), '', 'left');
 }
-// Hack check
+
+// Hack checks
+if (empty($gallery->album) || ! isValidGalleryInteger($index, true)) {
+	showInvalidReqMesg();
+	exit;
+}
+
+if (intval($index) > 0 &&
+    (! $gallery->album->getPhoto($index) || !$gallery->album->isImageByIndex($index)))
+{
+	showInvalidReqMesg();
+	exit;
+}
+
 if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
 	($gallery->album->getItemOwnerModify() &&
 	 $gallery->album->isItemOwner($gallery->user->getUid(), $index))))

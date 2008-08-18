@@ -27,6 +27,11 @@ list($formaction, $guid) = getRequestVar(array('formaction', 'guid'));
 printPopupStart(gTranslate('core', "Delete Album"));
 
 // Hack check
+if(! isset($gallery->album) || (!empty($formaction) && $formaction != 'delete')) {
+   	showInvalidReqMesg();
+	exit;
+}
+
 if (!$gallery->user->canDeleteAlbum($gallery->album)) {
    	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;
@@ -37,9 +42,7 @@ if (!empty($formaction) && $formaction == 'delete') {
 		$gallery->album->delete();
 	}
 
-	doctype();
-	echo "\n<html>";
-	dismissAndReload();
+	dismissAndLoad(makeGalleryHeaderUrl());
 	return;
 }
 

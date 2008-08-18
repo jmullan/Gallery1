@@ -19,8 +19,12 @@
  *
  * $Id$
  */
-?>
-<?php
+
+if(!defined('LOAD_SESSIONS')) {
+	echo "Invalid Request. Hard Exit.";
+	exit;
+}
+
 /*
  * PHP 4.0.1pl2 introduces a bug where you can't unserialize a 
  * stdClass instance correctly.  So create a dummy class to hold all

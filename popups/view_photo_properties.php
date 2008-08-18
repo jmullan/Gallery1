@@ -26,6 +26,13 @@ list($index, $reloadExifFromFile) = getRequestVar(array('index', 'reloadExifFrom
 
 echo printPopupStart(gTranslate('core', "Photo Properties"));
 
+// Hack checks
+if (empty($gallery->album) ||
+    ! ($item = $gallery->album->getPhoto($index))) {
+	showInvalidReqMesg();
+	exit;
+}
+
 if (! $gallery->user->canReadAlbum($gallery->album)) {
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;

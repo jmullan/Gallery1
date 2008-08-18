@@ -22,18 +22,47 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-// Hack check
-if (!$gallery->user->canWriteToAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;
-}
-
-$albumDB = new AlbumDB(FALSE); // read album database
-
 list($index, $startPhoto, $endPhoto, $newAlbum) =
 	getRequestVar(array('index', 'startPhoto', 'endPhoto', 'newAlbum'));
 
 printPopupStart(gTranslate('core', "Copy Photo"));
+
+// Hack checks
+$current = $gallery->album->getPhoto($index);
+if(isset($startPhoto))	$myStart = $gallery->album->getPhoto($startPhoto);
+if(isset($endPhoto))	$myEnd	 = $gallery->album->getPhoto($endPhoto);
+
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+	! $current ||
+	(isset ($startPhoto) && !$myStart) ||
+	(isset ($endPhoto) && !$myEnd) ||
+	! isValidText($newAlbum) ||
+	(isset ($startPhoto) && isset($endPhoto) && intval($startPhoto) > intval($endPhoto)))
+{
+	showInvalidReqMesg();
+	exit;
+}
+
+if (!$gallery->user->canWriteToAlbum($gallery->album)) {
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
+
+$albumDB = new AlbumDB(FALSE);
+
+if (!empty($newAlbum)) {
+	$postAlbum = $albumDB->getAlbumByName($newAlbum);
+
+	if (!$postAlbum) {
+		showInvalidReqMesg(gTranslate('core', "Invalid album selected."));
+		exit;
+	}
+}
+
+if ($gallery->album->isAlbum($index)) {
+	showInvalidReqMesg(gTranslate('core', "Copying of subalbums not supported, sorry."));
+	exit;
+}
 
 if ($gallery->session->albumName && isset($index)) {
 	$numPhotos = $gallery->album->numPhotos(1);
@@ -221,8 +250,8 @@ if ($gallery->session->albumName && isset($index)) {
 else {
 	echo gallery_error(gTranslate('core', "no album / index specified"));
 }
-?>
-</div>
 
+includeTemplate('overall.footer');
+?>
 </body>
 </html>

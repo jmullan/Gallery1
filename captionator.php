@@ -29,7 +29,7 @@ list($captionedAlbum, $extra_fields) =
 	getRequestVar(array('captionedAlbum', 'extra_fields'));
 
 // Hack check
-if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
+if (empty($gallery->album) || !$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }

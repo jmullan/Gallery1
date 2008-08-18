@@ -30,9 +30,16 @@ list($full, $index, $imageareas, $formaction) =
 	getRequestVar(array('full', 'index', 'imageareas', 'formaction'));
 
 // Hack check and prevent errors
-if (! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
+if (empty($gallery->album) || ! $gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
+}
+
+// Hack checks
+if (! isset($index)) {
+	printPopupStart(gTranslate('core', "Imagemaps"));
+	showInvalidReqMesg(gTranslate('core', "No photo chosen."));
+	exit;
 }
 
 if ($index > $gallery->album->numPhotos(1)) {
@@ -131,12 +138,13 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 includeTemplate("photo.header");
 
 if (!empty($allImageAreas)) {
-	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/wz_tooltip.js"></script>';
-	echo '<script language="JavaScript" type="text/javascript" src="'. $gallery->app->photoAlbumURL .'/js/tip_balloon.js"></script>';
+	echo jsHTML('wz/wz_tooltip.js');
+	echo jsHTML('wz/tip_balloon.js');
 }
+
+echo jsHTML('wz/wz_jsgraphics.js');
+echo jsHTML('imagemap.js');
 ?>
-  <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/wz_jsgraphics.js'; ?>"></script>
-  <script language="JavaScript" type="text/javascript" src="<?php echo $gallery->app->photoAlbumURL .'/js/imagemap.js'; ?>"></script>
   <script type="text/javascript">
   init_mousemove();
   </script>
@@ -242,7 +250,11 @@ echo makeFormIntro('imagemap.php',
 	<?php echo gTranslate('core', "Optional link-url"); ?><br>
 	<input type="text" size="50" name="areaurl" id="areaurl"><br>
 	<?php echo gTranslate('core', "Description"); ?><br>
+	<?php if($GALLERY_EMBEDDED_INSIDE_TYPE != 'phpnuke') { ?>
 	<textarea name="areatext" id="areatext" cols="40" rows="5"></textarea>
+	<?php } else { ?>
+	<input type="text" id="areatext" size="40">
+	<?php } ?>
 	<input type="submit" class="g-button" value="<?php echo gTranslate('core', "Save Imagemap") ?>" onclick="document.areas.formaction.value='create'">
 	<hr>
 <?php

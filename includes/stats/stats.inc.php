@@ -42,6 +42,10 @@
  * @package Statistics
 */
 
+if (!isset($gallery) || !function_exists('gTranslate')) {
+	exit;
+}
+
 $stats['types'] = array (
 	'views'	=> array(
 			'type' => 'radio',

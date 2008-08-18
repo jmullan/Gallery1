@@ -25,7 +25,7 @@
 require_once(dirname(__FILE__) . '/init.php');
 
 // Hack check
-if (!$gallery->album->isLoaded()) {
+if (empty($gallery->album) || !$gallery->album->isLoaded()) {
 	header("Location: " . makeAlbumHeaderUrl());
 	return;
 }

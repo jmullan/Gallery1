@@ -26,8 +26,9 @@ if (!isset($gallery->version)) {
 }
 
 if (!$gallery->user->isAdmin()) {
-		echo gTranslate('core', "You are not allowed to perform this action!");
-		exit;
+	printPopupStart(gTranslate('core', "Administer startpage"), '', 'left');
+	showInvalidReqMesg((gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
 }
 
 list($sort, $order, $fieldname) = getRequestVar(array('sort', 'order', 'fieldname'));

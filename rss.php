@@ -118,6 +118,12 @@ else {
 	$rssAlbumList = $albumDB->albumList;
 }
 
+if (empty($rssAlbumList)) {
+	printPopupStart(gTranslate('core', "Gallery RSS feed"));
+	showInvalidReqMesg();
+	exit;
+}
+
 foreach ($rssAlbumList as $album) {
 
 	// Save time later.. if we can't read it, don't add it.
@@ -150,10 +156,11 @@ foreach ($rssAlbumList as $album) {
 
 	// COMMENTS TAG
 
-	if (method_exists($album, "canViewComments")
-	   && $album->canViewComments($gallery->user->uid)) {
+	if (isset($gallery->app->comments_enabled) && $gallery->app->comments_enabled == "yes" &&
+		method_exists($album, "canViewComments") && $album->canViewComments($gallery->user->uid))
+	{
 		$albumInfo["comments"] = makeGalleryUrl("view_comments.php",
-		  array("set_albumName" => $album->fields["name"]));
+		array("set_albumName" => $album->fields["name"]));
 	}
 
 	// PHEED AND PHOTO TAGS

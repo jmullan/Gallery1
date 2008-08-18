@@ -22,14 +22,23 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-/* Hack check*/
-if (!$gallery->user->canAddComments($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
-	exit;
-}
-
 list($save, $id, $commenter_name, $comment_text) =
 	getRequestVar(array('save', 'id', 'commenter_name', 'comment_text'));
+
+
+if(empty($gallery->album) ||
+   $gallery->album->getPhotoIndex($id) == -1)
+{
+   	printPopupStart(gTranslate('core', "Add comment"));
+   	showInvalidReqMesg();
+   	exit;
+}
+
+if (!$gallery->user->canAddComments($gallery->album)) {
+	printPopupStart(gTranslate('core', "Add comment"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+   	exit;
+}
 
 $notice_messages = array();
 

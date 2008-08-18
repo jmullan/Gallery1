@@ -1,7 +1,7 @@
 <?php
 /*
  * Gallery - a web based photo album viewer and editor
- * Copyright (C) 2000-2007 Bharat Mediratta
+ * Copyright (C) 2000-2008 Bharat Mediratta
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,10 @@
  *
  * $Id$
  */
+
+if (! class_exists('Abstract_UserDB')) {
+	exit;
+}
 
 class Gallery_UserDB extends Abstract_UserDB {
 	var $userMap;
@@ -59,12 +63,10 @@ class Gallery_UserDB extends Abstract_UserDB {
 			}
 
 			if (!@mkdir($userDir, 0777)) {
-				echo infoBox(array(array(
-					'type' => 'error',
-					'text' => sprintf("Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount.",
-						'<a href="'. makeGalleryUrl('setup/') .'">', '</a>')
-				)));
-				
+				echo gallery_error(
+					"Gallery is unable to use/create the userdir. Please check the path to the albums folder and userdir in your config.php. You can't use the config wizard, as Gallery can't verify your useraccount."
+				);
+
 				return false;
 			}
 		}

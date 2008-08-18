@@ -29,6 +29,21 @@ list($index, $offsetX, $offsetY, $width, $height, $muliplier) =
 list($cropit, $dismiss) =
 	getRequestVar(array('cropit', 'dismiss'));
 
+if (!empty($dismiss)) {
+	// -- just close ---
+	dismissAndLoad();
+	exit;
+}
+
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+	! $photo = $gallery->album->getPhoto($index))
+{
+	printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
+	showInvalidReqMesg();
+	exit;
+}
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album) &&
 	!$gallery->album->isItemOwner($gallery->user->getUid(), $index) &&
@@ -36,10 +51,6 @@ if (!$gallery->user->canWriteToAlbum($gallery->album) &&
 {
 	printPopupStart(gTranslate('core', "Custom Thumbnail"), '', 'left');
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
-}
-
-if (! $gallery->session->albumName || ! isset($index)) {
-	echo gallery_error(gTranslate('core', "no album / index specified"));
 	exit;
 }
 

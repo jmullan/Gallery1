@@ -30,11 +30,13 @@
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 $ecard = getRequestVar('ecard');
-
-if(!isset($gallery->album)) {
+if (empty($ecard) || empty($ecard['image_name']) || empty($ecard["template_name"])) {
+	$error = true;
+}
+else if(!isset($gallery->album)) {
 	$pieces = explode('/', $ecard['image_name']);
 	$gallery->album = new Album;
-	$gallery->album->load($pieces[0]);
+	$loadOk = $gallery->album->load($pieces[0]);
 }
 
 if(isXSSclean($ecard["template_name"])) {
@@ -44,8 +46,13 @@ else {
 	$error = true;
 }
 
-if (!empty($error)) {
-	header('Location: ' . makeGalleryHeaderUrl('includes/ecard/_templates/error.htm'));
+if (!empty($error) || ! $loadOk) {
+	if (!$gallery->user->canDeleteAlbum($gallery->album)) {
+		printPopupStart(gTranslate('core', "Gallery eCard"));
+		echo gallery_error(gTranslate('core', "Gallery could not process your ecard! Please close this window and try again later, thanks!"));
+		includeTemplate("overall.footer");
+		exit;
+	}
 }
 else {
 	echo parse_ecard_template($ecard,$ecard_data_to_parse, true);

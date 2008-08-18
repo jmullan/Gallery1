@@ -32,14 +32,21 @@
  */
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($index, $save, $preview, $wmAlign, $wmName, $wmSelect) =
-	getRequestVar(array('index', 'save', 'preview', 'wmAlign', 'wmName', 'wmSelect'));
+list($save, $preview, $wmAlign, $wmName, $wmSelect) =
+	getRequestVar(array('save', 'preview', 'wmAlign', 'wmName', 'wmSelect'));
+
 list($wmAlignX, $wmAlignY, $recursive, $previewFull) =
 	getRequestVar(array('wmAlignX', 'wmAlignY', 'recursive', 'previewFull'));
 
+// Hack checks
+if (empty($gallery->album)) {
+	printPopupStart(gTranslate('core', "Watermark Album"));
+	showInvalidReqMesg();
+	exit;
+}
+
 printPopupStart(sprintf(gTranslate('core', "Watermarking album :: %s"), $gallery->album->fields['title']));
 
-// Hack check
 if (! $gallery->user->canWriteToAlbum($gallery->album)) {
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
 	exit;

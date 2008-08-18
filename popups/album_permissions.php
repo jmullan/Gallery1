@@ -19,8 +19,6 @@
  *
  * $Id$
  */
-?>
-<?php
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 require_once(dirname(dirname(__FILE__)) . '/lib/tabs.php');
@@ -28,16 +26,34 @@ require_once(dirname(dirname(__FILE__)) . '/lib/groups.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/Group.php');
 require_once(dirname(dirname(__FILE__)) . '/classes/gallery/Group.php');
 
-list($save, $ownerUid, $submit, $actionUid, $initialtab) =
-	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUid' ,'initialtab'));
+$notice_messages	= array();
+$global_notice_messages	= array();
 
-// Hack check
-if (!$gallery->user->isAdmin() &&
-	!$gallery->user->isOwnerOfAlbum($gallery->album)) {
-	echo gTranslate('core', "You are not allowed to perform this action!");
+/**
+ * $save	If not empty, the save button was pressed
+ * $ownerUid	Possible new owner Uid
+ * $submit	Array containing indicators which permission should be updated and how
+ * $actionUids	Array containing a set of UIDs. This UIDs are used for the action given in $submit
+ * $setNested	If not empty, permissions are set recursively
+ */
+
+list($save, $ownerUid, $submit, $actionUids, $initialtab, $setNested) =
+	getRequestVar(array('save', 'ownerUid', 'submit', 'actionUids' ,'initialtab', 'setNested'));
+
+// Hack checks
+if (! isset($gallery->album)) {
+	printPopupStart(gTranslate('core', "Album Permissions"));
+	showInvalidReqMesg(gTranslate('core', "Invalid Request."));
 	exit;
 }
 
+if (!$gallery->user->isAdmin() &&
+	!$gallery->user->isOwnerOfAlbum($gallery->album))
+{
+	printPopupStart(gTranslate('core', "Album Permissions"));
+	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));
+	exit;
+}
 
 // Start with a default owner of nobody -- if there is an
 // owner it'll get filled in below.
@@ -63,7 +79,6 @@ if (!empty($submit)) {
 	if (getRequestVar('setNested')) {
 		$gallery->album->setNestedPermissions();
 	}
-
 }
 
 if (!empty($save) && !empty($ownerUid) && $ownerUid != $prev_ownerUid) {
@@ -260,7 +275,9 @@ echo '<input name="initialtab" id="initialtab" type="hidden" value="'. $initialt
 </table>
 
 </form>
-</div>
 
+<?php
+	includeTemplate('overall.footer');
+?>
 </body>
 </html>

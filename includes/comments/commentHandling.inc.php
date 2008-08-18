@@ -24,6 +24,11 @@
  * Processes given comment information.
  * @package Comments
  */
+
+if (! isset($gallery)) {
+	exit;
+}
+
 $comment_messages = array();
 
 if($gallery->user->canAddComments($gallery->album)) {

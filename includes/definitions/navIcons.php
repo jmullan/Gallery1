@@ -8,6 +8,10 @@
  * $Id$
 */
 
+if (!isset($gallery)) {
+	exit;
+}
+
 if ($gallery->direction == 'ltr') {
 	$fpImg = 'navigation/nav_first.gif';
 	$ppImg = 'navigation/nav_prev.gif';

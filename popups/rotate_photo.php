@@ -24,7 +24,21 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($index, $rotate) = getRequestVar(array('index', 'rotate'));
 
-// Hack check
+// Hack checks
+if (empty($gallery->album) || ! isValidGalleryInteger($index, true)) {
+	printPopupStart(gTranslate('core', "Rotate/Flip Photo"));
+	showInvalidReqMesg();
+	exit;
+}
+
+if (intval($index) > 0 &&
+    (! $gallery->album->getPhoto($index) || !$gallery->album->isImageByIndex($index)))
+{
+	printPopupStart(gTranslate('core', "Rotate/Flip Photo"));
+	showInvalidReqMesg();
+	exit;
+}
+
 if (! ($gallery->user->canWriteToAlbum($gallery->album) ||
       ($gallery->album->getItemOwnerModify() &&
 	$gallery->album->isItemOwner($gallery->user->getUid(), $index))))

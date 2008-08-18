@@ -26,12 +26,17 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 list($id, $index, $confirm) = getRequestVar(array('id', 'index', 'confirm'));
 
 if (isset($id)) {
-		$index = $gallery->album->getPhotoIndex($id);
+	$index = $gallery->album->getPhotoIndex($id);
 }
 
 printPopupStart(gTranslate('core', "Reset Voting"));
 
-// Hack check
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	showInvalidReqMesg();
+	exit;
+}
+
 if (!$gallery->user->canDeleteFromAlbum($gallery->album) &&
     !$gallery->album->isItemOwner($gallery->user, $index))
 {

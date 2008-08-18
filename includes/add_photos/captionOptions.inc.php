@@ -25,6 +25,10 @@
  * @package Gallery
  */
 
+if(! function_exists('gInput')) {
+	exit;
+}
+
 if(!isset($setCaption) || (int)$setCaption > 3) {
 	$setCaption = 1;
 }

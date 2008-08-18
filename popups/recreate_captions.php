@@ -22,8 +22,14 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-list($recursive, $setCaption) = 
-  getRequestVar(array('recursive', 'setCaption'));
+list($recursive, $setCaption) = getRequestVar(array('recursive', 'setCaption'));
+
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Recreate captions"));
+	showInvalidReqMesg();
+	exit;
+}
 
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {

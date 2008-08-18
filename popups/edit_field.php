@@ -24,6 +24,16 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 
 list($save, $field, $data) = getRequestVar(array('save', 'field', 'data'));
 
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName) ||
+	($field != 'title' && $field != 'description') || 
+	!isValidText($data))
+{
+	printPopupStart(gTranslate('core', "Edit texts"));
+	showInvalidReqMesg();
+	exit;
+}
+
 // Hack check
 if (!$gallery->user->canChangeTextOfAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Edit texts"));

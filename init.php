@@ -29,6 +29,11 @@ foreach ($sensitiveList as $sensitive) {
     }
 }
 
+if(function_exists('date_default_timezone_get')) {
+	$defaultTimeZone = date_default_timezone_get();
+	date_default_timezone_set($defaultTimeZone);
+}
+
 /*
 *  Seed the randomization pool once, instead of doing it every place
 *  that we use rand() or mt_rand()
@@ -173,6 +178,7 @@ if(isset($gallery->app)) {
  */
 set_magic_quotes_runtime(0);
 
+define('LOAD_SESSIONS', true);
 if (!isset($GALLERY_NO_SESSIONS)) {
 	require(dirname(__FILE__) . "/session.php");
 }

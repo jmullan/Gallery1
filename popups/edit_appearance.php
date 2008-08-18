@@ -22,7 +22,13 @@
 
 require_once(dirname(dirname(__FILE__)) . '/init.php');
 
-// Hack check
+// Hack checks
+if (! isset($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Album Properties"));
+	showInvalidReqMesg();
+	exit;
+}
+
 if(! $gallery->user->canWriteToAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Album Properties"));
 	showInvalidReqMesg(gTranslate('core', "You are not allowed to perform this action!"));

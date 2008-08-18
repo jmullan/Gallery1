@@ -25,6 +25,13 @@ require_once(dirname(dirname(__FILE__)) . '/init.php');
 $recursive = getRequestVar('recursive');
 $rebuild = getRequestVar('rebuild');
 
+// Hack checks
+if (empty($gallery->album) || ! isset($gallery->session->albumName)) {
+	printPopupStart(gTranslate('core', "Rebuilding capture dates"));
+	showInvalidReqMesg();
+	exit;
+}
+
 // Hack check
 if (!$gallery->user->canWriteToAlbum($gallery->album)) {
 	printPopupStart(gTranslate('core', "Rebuilding capture dates"));
@@ -62,6 +69,6 @@ else {
 
 includeTemplate('overall.footer');
 ?>
-</div>
+
 </body>
 </html>
