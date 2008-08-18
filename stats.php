@@ -603,16 +603,26 @@ else {
 	}
 }
 
-$adminbox["commands"] = '';
 if ($gallery->user->isAdmin()) {
-	$adminbox["commands"] =
-		galleryLink(
-			makeGalleryUrl("stats-wizard.php"),
-			gTranslate('core', "Back to stats-_wizard"),
-			array(), '', true);
+	$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
+
+	$iconElements[] = galleryIconLink(
+				makeGalleryUrl("stats-wizard.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Back to stats-_wizard"));
 }
-$adminbox["commands"] .=
-	galleryLink(makeAlbumUrl(), gTranslate('core', "Return to _gallery"), array(), '', true);
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
 
 if (!empty($gallery->app->stats_foruser)) {
 	$adminText .= "\n<br>&nbsp;". generateStatsLinks();

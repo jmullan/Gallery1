@@ -84,6 +84,18 @@ $adminOptions[] = array(
 
 array_sort_by_fields($adminOptions, 'text', 'asc');
 
+$iconElements[] = galleryIconLink(
+			makeAlbumUrl(),
+			'navigation/return_to.gif',
+			gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = LoginLogoutButton();
+
+$adminbox['text']     = gTranslate('core', "Admin options");
+$adminbox['commands'] = makeIconMenu($iconElements, 'right');
+
+$breadcrumb['text'][] = languageSelector();
+
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
 ?>
@@ -99,10 +111,6 @@ if (!$GALLERY_EMBEDDED_INSIDE) {
 }
 
 includeTemplate("gallery.header", '', 'classic');
-
-$adminbox['text'] = gTranslate('core', "Admin options");
-$adminbox['commands'] = galleryLink(makeAlbumUrl(), gTranslate('core', "return to _gallery"), array(), '', true);
-$breadcrumb['text'][] = languageSelector();
 
 includeLayout('adminbox.inc');
 includeLayout('breadcrumb.inc');

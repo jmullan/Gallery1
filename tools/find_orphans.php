@@ -40,37 +40,23 @@ clearstatcache() ;
 $orphanAlbums = findOrphanedAlbums();
 $orphanImages = findOrphanedImages();
 
+$messages = array();
 $addon = '';
 $iconElements = array();
 
 $adminbox['text'] = gTranslate('core', "Find Orphans");
 
-$iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
 
-$iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
 
-if (!($gallery->user->isAdmin())) {
-	if ($gallery->user->isLoggedIn()) {
-		$messages[] = array(
-			'type' => 'information',
-			'text' => sprintf(gTranslate('core', "You are currently logged in as %s."),
-					  '<i>'. $gallery->user->username .'</i>')
-		);
-	}
-
-	$messages[] = array(
-		'type' => 'information',
-		'text' => gTranslate('core', "You must be logged in as an administrator to see the usage.")
-	);
-
-	$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "usage.php"));
-}
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 

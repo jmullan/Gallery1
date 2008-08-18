@@ -52,20 +52,22 @@ else {
 	$title = gTranslate('core', "Validate Albums");
 }
 
-$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
+
 $adminbox['text'] = $title;
-
-$iconElements[] = galleryLink(
-					makeGalleryUrl('admin-page.php'),
-					gTranslate('core', "return to _admin page"),
-					array(), '', true);
-
-$iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
-					array(), '', true);
-
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
+$adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
+
 
 /* Begin HTML output */
 

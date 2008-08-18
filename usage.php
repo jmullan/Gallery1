@@ -31,16 +31,6 @@ $messages = array();
 
 $adminbox['text'] = gTranslate('core', "Filesystem usage");
 
-$iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "Return to _admin page"),
-					array(), '', true);
-
-$iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "Return to _gallery"),
-					array(), '', true);
-
 if (!($gallery->user->isAdmin())) {
 	if ($gallery->user->isLoggedIn()) {
 		$messages[] = array(
@@ -54,9 +44,20 @@ if (!($gallery->user->isAdmin())) {
 		'type' => 'information',
 		'text' => gTranslate('core', "You must be logged in as an administrator to see the usage.")
 	);
-
-	$iconElements[] = LoginLogoutButton(doCommand("logout", array(), "usage.php"));
 }
+else {
+	$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
+}
+
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl("usage.php"));
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 

@@ -35,15 +35,17 @@ require_once(dirname(__FILE__) . '/includes/stats/stats.inc.php');
 
 $iconElements = array();
 
-$iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
 
-$iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['text'] = gTranslate('core', "Gallery statistics - Wizard");
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');

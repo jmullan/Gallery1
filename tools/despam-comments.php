@@ -39,15 +39,18 @@ require_once(dirname(__FILE__) .'/lib/lib-despam_comments.php');
 $adminbox['bordercolor'] = $gallery->app->default['bordercolor'];
 $adminbox['text'] = gTranslate('core', "Find and remove comment spam");
 
-$iconElements[] = galleryLink(
-					makeGalleryUrl("admin-page.php"),
-					gTranslate('core', "return to _admin page"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeGalleryUrl("admin-page.php"),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _admin page"));
 
-$iconElements[] = galleryLink(
-					makeAlbumUrl(),
-					gTranslate('core', "return to _gallery"),
-					array(), '', true);
+$iconElements[] = galleryIconLink(
+				makeAlbumUrl(),
+				'navigation/return_to.gif',
+				gTranslate('core', "Return to _gallery"));
+
+
+$iconElements[] = LoginLogoutButton(makeGalleryUrl());
 
 $adminbox['commands'] = makeIconMenu($iconElements, 'right');
 

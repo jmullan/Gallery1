@@ -50,7 +50,19 @@ if (empty($gallery->session->viewedAlbum[$albumName]) && !$gallery->session->off
 
 $bordercolor = $gallery->album->fields["bordercolor"];
 
+$breadcrumb["text"] = returnToPathArray($gallery->album, true);
 $breadcrumb["bordercolor"] = $bordercolor;
+
+$adminCommandIcons   = array();
+$adminCommandIcons[] = galleryIconLink(makeAlbumUrl($gallery->session->albumName),
+						'navigation/return_to.gif',
+						gTranslate('core', "Return to _album"));
+
+$adminCommandIcons[] = LoginLogoutButton();
+
+$adminbox['text']	 = gTranslate('core', "Comments for this Album");
+$adminbox['commands']	 = makeIconMenu($adminCommandIcons, 'right');
+$adminbox['bordercolor'] = $bordercolor;
 
 if (!$GALLERY_EMBEDDED_INSIDE) {
 	doctype();
